@@ -9,6 +9,14 @@ import OurStyleScreen      from './screens/OurStyleScreen'
 import PlayerProfileScreen from './screens/PlayerProfileScreen'
 import ConsentScreen       from './screens/ConsentScreen'
 import TeamStaffScreen     from './screens/TeamStaffScreen'
+import InboxScreen         from './screens/InboxScreen'
+import FixturesScreen      from './screens/FixturesScreen'
+import DevGoalsScreen      from './screens/DevGoalsScreen'
+import WellnessScreen      from './screens/WellnessScreen'
+import AvailabilityScreen  from './screens/AvailabilityScreen'
+import OppositionScreen    from './screens/OppositionScreen'
+import ReviewScreen        from './screens/ReviewScreen'
+import ThisWeekScreen      from './screens/ThisWeekScreen'
 import { type Role } from './data'
 import './index.css'
 
@@ -72,6 +80,8 @@ export default function App() {
   const [role]                        = useState<Role>('head')
   const [homeTab, setHomeTab]         = useState(0)
   const [squadTab, setSquadTab]       = useState(0)
+  const [matchdayTab, setMatchdayTab] = useState(0)
+  const [trainingTab, setTrainingTab] = useState(0)
   const [selectedPlayer, setSelectedPlayer] = useState<string | null>(null)
 
   const navTo = (s: Screen) => { setScreen(s) }
@@ -90,12 +100,16 @@ export default function App() {
     screen === 'clips'    ? CLIPS_TABS    : []
 
   const activeTab =
-    screen === 'home'  ? homeTab  :
-    screen === 'squad' ? squadTab : 0
+    screen === 'home'     ? homeTab     :
+    screen === 'squad'    ? squadTab    :
+    screen === 'matchday' ? matchdayTab :
+    screen === 'training' ? trainingTab : 0
 
   function handleTabClick(i: number) {
-    if (screen === 'home')  setHomeTab(i)
-    if (screen === 'squad') setSquadTab(i)
+    if (screen === 'home')     setHomeTab(i)
+    if (screen === 'squad')    setSquadTab(i)
+    if (screen === 'matchday') setMatchdayTab(i)
+    if (screen === 'training') setTrainingTab(i)
   }
 
   return (
@@ -172,16 +186,32 @@ export default function App() {
       )}
 
       {/* ── Screen content ── */}
-      {screen === 'home'  && homeTab === 0 && <HomeScreen role={role} onRole={() => {}} onNav={navTo} />}
-      {screen === 'home'  && homeTab === 4 && <OurStyleScreen />}
-      {screen === 'home'  && homeTab === 5 && <TeamStaffScreen />}
-      {screen === 'home'  && homeTab !== 0 && homeTab !== 4 && homeTab !== 5 && <HomeScreen role={role} onRole={() => {}} onNav={navTo} />}
-      {screen === 'squad' && squadTab !== 4 && <SquadScreen role={role} onPlayerProfile={ini => { setSelectedPlayer(ini); navTo('player') }} />}
+      {/* Home tabs */}
+      {screen === 'home' && homeTab === 0 && <HomeScreen role={role} onRole={() => {}} onNav={navTo} />}
+      {screen === 'home' && homeTab === 1 && <InboxScreen />}
+      {screen === 'home' && homeTab === 2 && <HomeScreen role={role} onRole={() => {}} onNav={navTo} />}
+      {screen === 'home' && homeTab === 3 && <FixturesScreen />}
+      {screen === 'home' && homeTab === 4 && <OurStyleScreen />}
+      {screen === 'home' && homeTab === 5 && <TeamStaffScreen />}
+      {/* Squad tabs */}
+      {screen === 'squad' && squadTab === 0 && <SquadScreen role={role} onPlayerProfile={ini => { setSelectedPlayer(ini); navTo('player') }} />}
+      {screen === 'squad' && squadTab === 1 && <DevGoalsScreen />}
+      {screen === 'squad' && squadTab === 2 && <WellnessScreen />}
+      {screen === 'squad' && squadTab === 3 && <AvailabilityScreen />}
       {screen === 'squad' && squadTab === 4 && <ConsentScreen />}
-      {screen === 'training' && <TrainingScreen role={role} onNav={navTo} />}
-      {screen === 'matchday' && <MatchDayScreen onNav={navTo} />}
-      {screen === 'clips'    && <ClipsScreen />}
-      {screen === 'player'   && <PlayerProfileScreen playerIni={selectedPlayer ?? 'MT'} />}
+      {/* Training tabs */}
+      {screen === 'training' && trainingTab === 0 && <TrainingScreen role={role} onNav={navTo} />}
+      {screen === 'training' && trainingTab === 1 && <ThisWeekScreen />}
+      {screen === 'training' && trainingTab === 2 && <TrainingScreen role={role} onNav={navTo} />}
+      {screen === 'training' && trainingTab === 3 && <TrainingScreen role={role} onNav={navTo} />}
+      {/* Match day tabs */}
+      {screen === 'matchday' && matchdayTab === 0 && <MatchDayScreen onNav={navTo} />}
+      {screen === 'matchday' && matchdayTab === 1 && <MatchDayScreen onNav={navTo} />}
+      {screen === 'matchday' && matchdayTab === 2 && <OppositionScreen />}
+      {screen === 'matchday' && matchdayTab === 3 && <ReviewScreen />}
+      {/* Other screens */}
+      {screen === 'clips'  && <ClipsScreen />}
+      {screen === 'player' && <PlayerProfileScreen playerIni={selectedPlayer ?? 'MT'} />}
     </div>
   )
 }

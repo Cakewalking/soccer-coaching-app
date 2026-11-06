@@ -10,8 +10,8 @@ type Filter = 'all' | 'ready' | 'manage' | 'checkin' | 'goals'
 
 function statusDot(status: SquadPlayer['status']): string {
   if (status === 'ready')   return '#40826d'
-  if (status === 'manage')  return '#d4a844'
-  if (status === 'checkin') return '#008080'
+  if (status === 'manage')  return '#9d7c80'
+  if (status === 'checkin') return '#c39797'
   return '#a3b0ad'
 }
 
@@ -149,12 +149,12 @@ function RightPanel({ p, onProfile }: { p: SquadPlayer; onProfile: () => void })
       {/* Buttons */}
       <div style={{ display: 'flex', gap: 8 }}>
         <button onClick={onProfile} style={{
-          flex: 1, height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff',
-          fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f',
-        }}>Full profile</button>
-        <button style={{
           flex: 1, height: 44, borderRadius: 10, border: 0, background: '#2f6252',
           fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#ffffff',
+        }}>Full profile</button>
+        <button style={{
+          flex: 1, height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff',
+          fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f',
         }}>Message parent</button>
       </div>
     </div>
@@ -187,8 +187,8 @@ export default function SquadScreen({ onPlayerProfile }: Props) {
   const filters: Array<{ id: Filter; label: string; color: string }> = [
     { id: 'all',     label: `All ${counts.all}`,             color: '#10211f' },
     { id: 'ready',   label: `Ready ${counts.ready}`,         color: '#40826d' },
-    { id: 'manage',  label: `Manage load ${counts.manage}`,  color: '#d4a844' },
-    { id: 'checkin', label: `Check in ${counts.checkin}`,    color: '#008080' },
+    { id: 'manage',  label: `Manage load ${counts.manage}`,  color: '#9d7c80' },
+    { id: 'checkin', label: `Check in ${counts.checkin}`,    color: '#c39797' },
     { id: 'goals',   label: `Goals need work ${counts.goals}`,color: '#40826d' },
   ]
 
@@ -259,8 +259,8 @@ export default function SquadScreen({ onPlayerProfile }: Props) {
           Numbers show today's wellness check-in, out of 5. &nbsp;
           <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
             <span style={{ width: 8, height: 8, borderRadius: '999px', background: '#40826d', display: 'inline-block' }} /> Ready &nbsp;
-            <span style={{ width: 8, height: 8, borderRadius: '999px', background: '#d4a844', display: 'inline-block' }} /> Manage load &nbsp;
-            <span style={{ width: 8, height: 8, borderRadius: '999px', background: '#008080', display: 'inline-block' }} /> Check in
+            <span style={{ width: 8, height: 8, borderRadius: '999px', background: '#9d7c80', display: 'inline-block' }} /> Manage load &nbsp;
+            <span style={{ width: 8, height: 8, borderRadius: '999px', background: '#c39797', display: 'inline-block' }} /> Check in
           </span>
         </div>
 
