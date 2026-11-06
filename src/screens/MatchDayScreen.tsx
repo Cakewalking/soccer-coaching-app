@@ -4,6 +4,92 @@ type Screen = 'home' | 'training' | 'matchday' | 'teamtalk'
 
 interface Props {
   onNav: (s: Screen) => void
+  empty?: boolean
+}
+
+function MatchDayEmpty() {
+  const setupItems = [
+    { title: 'Charge the match camera', sub: 'Takes about 3 hours from flat', action: 'How to' },
+    { title: 'Plan where it goes', sub: 'Halfway line, raised, facing the pitch', action: 'How to' },
+    { title: 'Pair the boot sensors', sub: 'One pair per player', action: 'Pair' },
+    { title: 'Hand out GPS vests', sub: 'Name each vest to a player', action: 'Assign' },
+    { title: 'Send check-in reminders', sub: 'Goes to players at 7:30 am', action: 'Set up' },
+  ]
+  return (
+    <div style={{ flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+      {/* Header */}
+      <div style={{ flex: 'none', padding: '14px 28px 0', display: 'flex', alignItems: 'baseline', gap: 12 }}>
+        <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, letterSpacing: '-0.02em' }}>Match day</h1>
+        <span style={{ fontSize: 14, color: '#4a5a57' }}>No game scheduled</span>
+        <div style={{ flexGrow: 1 }} />
+        <button style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          Add a fixture
+        </button>
+      </div>
+
+      {/* Main two-column */}
+      <div style={{ flexGrow: 1, minHeight: 0, display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 340px', gap: 16, padding: '14px 28px 18px', overflow: 'hidden' }}>
+        {/* Left: team talk preview */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10, minHeight: 0, overflowY: 'auto' }}>
+          <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#4a5a57' }}>Team talk · <span style={{ fontWeight: 400, textTransform: 'none', letterSpacing: 0 }}>Builds itself after your first recorded game</span></div>
+
+          <div style={{ background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '28px 24px', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 14, flexGrow: 1 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 22px)', gap: 4 }}>
+              {['#2f6252','#40826d','#cbbeb5','#c39797'].map((c, i) => (
+                <div key={i} style={{ width: 22, height: 22, borderRadius: 5, background: c }} />
+              ))}
+            </div>
+            <div style={{ fontSize: 20, fontWeight: 700, letterSpacing: '-0.01em' }}>Clips of what went well, and what to fix</div>
+            <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: '20px', maxWidth: 400 }}>After each game, Clean Sheet picks the clips and numbers for a 4-minute talk, with notes on what to say.</div>
+            <div style={{ display: 'flex', gap: 8 }}>
+              <button style={{ height: 40, padding: '0 18px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>How to record a game</button>
+              <button style={{ height: 40, padding: '0 18px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Build one yourself</button>
+            </div>
+          </div>
+
+          {/* Tab strip (grayed) */}
+          <div style={{ display: 'flex', gap: 2, padding: '0 2px' }}>
+            {['Start', 'Went well', 'To fix', 'To fix', 'Finish'].map((t, i) => (
+              <div key={i} style={{ flex: 1, height: 36, borderRadius: 8, border: '1px solid #e9eae8', background: '#f7f8f7', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 600, color: '#c5c8c4' }}>{t}</div>
+            ))}
+          </div>
+
+          {/* Player check is off */}
+          <div style={{ background: '#f7f8f7', border: '1px solid #e9eae8', borderRadius: 12, padding: '12px 16px', display: 'flex', alignItems: 'center', gap: 12 }}>
+            <span style={{ flex: 'none', width: 32, height: 32, borderRadius: '999px', background: '#c39797', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            </span>
+            <div style={{ flexGrow: 1 }}>
+              <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 2 }}>Player check is off</div>
+              <div style={{ fontSize: 12, color: '#4a5a57', lineHeight: '16px' }}>On game morning, players answer four quick questions. You'll see who is carrying a knock or feeling flat before kick-off.</div>
+            </div>
+            <button style={{ flex: 'none', height: 36, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Turn on check-ins</button>
+          </div>
+        </div>
+
+        {/* Right: before first game checklist */}
+        <aside style={{ background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '16px 18px', display: 'flex', flexDirection: 'column', gap: 10, minHeight: 0, overflowY: 'auto' }}>
+          <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 2 }}>Before your first game</div>
+          <div style={{ fontSize: 13, color: '#4a5a57', marginBottom: 4 }}>A one-off setup. After this it's a quick checklist every game day.</div>
+          {setupItems.map((item, i) => (
+            <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 0', borderTop: i === 0 ? 'none' : '1px solid #f0f1ef' }}>
+              <div style={{ width: 20, height: 20, borderRadius: '999px', border: '1.5px solid #c5c8c4', flex: 'none' }} />
+              <div style={{ flexGrow: 1 }}>
+                <div style={{ fontSize: 13, fontWeight: 700, lineHeight: '18px' }}>{item.title}</div>
+                <div style={{ fontSize: 12, color: '#4a5a57', lineHeight: '16px' }}>{item.sub}</div>
+              </div>
+              <button style={{ flex: 'none', height: 28, padding: '0 10px', borderRadius: 7, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer', color: '#2f6252' }}>{item.action}</button>
+            </div>
+          ))}
+          <button style={{ marginTop: 'auto', height: 36, borderRadius: 10, border: '1px solid #2f6252', background: '#ffffff', color: '#2f6252', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+            Watch the 2-minute setup guide
+          </button>
+        </aside>
+      </div>
+    </div>
+  )
 }
 
 const SLIDES = [
@@ -45,7 +131,8 @@ const PLAYER_CHECKS = [
   { ini: 'NO', name: 'Noah', badge: 'Sore knees',      rating: 3.8, bg: '#fdf0ee', textColor: '#7a3030' },
 ]
 
-export default function MatchDayScreen({ onNav }: Props) {
+export default function MatchDayScreen({ onNav, empty }: Props) {
+  if (empty) return <MatchDayEmpty />
   const [slide, setSlide] = useState(0)
   const s = SLIDES[slide]
 

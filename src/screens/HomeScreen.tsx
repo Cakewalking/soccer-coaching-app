@@ -6,6 +6,102 @@ interface Props {
   role: Role
   onRole: (r: Role) => void
   onNav: (s: Screen) => void
+  empty?: boolean
+}
+
+function HomeEmpty() {
+  const steps = [
+    { n: 1, title: 'Add your squad', body: 'Names, positions and a parent contact. Import a spreadsheet or share an invite link.', btn: 'Add players' },
+    { n: 2, title: 'Add your fixtures', body: 'Clean Sheet plans training around your game days.', btn: 'Add fixtures' },
+    { n: 3, title: 'Connect the match camera', body: 'The XbotGo Falcon records games and finds the clips for you.', btn: 'Connect' },
+    { n: 4, title: 'Pair boots and vests', body: 'Boot sensors and GPS vests measure running, sprints and touches.', btn: 'Pair devices' },
+    { n: 5, title: 'Turn on wellness check-ins', body: 'Players answer four quick questions on their phone before training and games.', btn: 'Turn on' },
+  ]
+  const styleRows = [
+    { label: 'PRESSING',       desc: 'Wins of the ball in their half' },
+    { label: 'BALL RETENTION', desc: 'Moves of 6 or more passes' },
+    { label: 'TEAM SHAPE',     desc: 'Gap between the lines' },
+    { label: 'RESULTS',        desc: 'Form and league position' },
+  ]
+  return (
+    <div style={{ flexGrow: 1, minHeight: 0, display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 340px', gap: 16, padding: '20px 28px 24px', boxSizing: 'border-box', overflow: 'hidden' }}>
+
+      {/* Left: welcome + setup checklist */}
+      <div style={{ minHeight: 0, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 16 }}>
+        <div>
+          <h1 style={{ margin: '0 0 2px', fontSize: 26, fontWeight: 700, letterSpacing: '-0.02em' }}>Welcome to Clean Sheet, Sam</h1>
+          <div style={{ fontSize: 14, color: '#4a5a57' }}>U12 · Wattle Creek FC · let's get your team ready</div>
+        </div>
+
+        <div style={{ background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 16, overflow: 'hidden' }}>
+          <div style={{ padding: '12px 16px', background: '#2f6252', display: 'flex', alignItems: 'center', gap: 10 }}>
+            <span style={{ fontSize: 15, fontWeight: 700, color: '#ffffff' }}>Get set up</span>
+            <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)' }}>0 of 5 done · about 15 minutes</span>
+            <div style={{ flexGrow: 1 }} />
+            <div style={{ height: 6, width: 120, borderRadius: 3, background: 'rgba(255,255,255,0.3)' }} />
+          </div>
+          {steps.map((s, i) => (
+            <div key={i} style={{ display: 'grid', gridTemplateColumns: '28px minmax(0,1fr) auto', gap: 12, padding: '14px 16px', alignItems: 'center', borderTop: i === 0 ? 'none' : '1px solid #f0f1ef' }}>
+              <span style={{ width: 28, height: 28, borderRadius: '999px', border: '1.5px solid #c5c8c4', background: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, color: '#4a5a57', flex: 'none' }}>{s.n}</span>
+              <div>
+                <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 2 }}>{s.title}</div>
+                <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: '18px' }}>{s.body}</div>
+              </div>
+              <button style={{ height: 36, padding: '0 14px', borderRadius: 10, border: s.n === 1 ? 0 : '1px solid #c5c8c4', background: s.n === 1 ? '#2f6252' : '#ffffff', color: s.n === 1 ? '#ffffff' : '#10211f', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>{s.btn}</button>
+            </div>
+          ))}
+          <div style={{ padding: '12px 16px', borderTop: '1px solid #f0f1ef', display: 'flex', alignItems: 'center', gap: 8 }}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4a5a57" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            <span style={{ fontSize: 13, color: '#4a5a57' }}>Setting up for the whole club? We can walk you through it.</span>
+            <button style={{ border: 0, background: 'transparent', color: '#2f6252', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>Book a 15-minute call</button>
+          </div>
+        </div>
+      </div>
+
+      {/* Right: what happens next + where we're at */}
+      <div style={{ minHeight: 0, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 14 }}>
+        <div style={{ background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '16px 18px' }}>
+          <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 12 }}>What happens next</div>
+          {[
+            { icon: 'M12 21a9 9 0 100-18 9 9 0 000 18zM10 8l6 4-6 4z', title: 'Record your first game', body: 'Camera on the halfway line, press record.' },
+            { icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944', title: 'Get your match review', body: 'About 25 minutes after you upload the video.' },
+            { icon: 'M4 11l8-7 8 7v9H4z', title: 'Get next week\'s training plan', body: 'Three things to fix, and drills to fix them.' },
+          ].map((item, i) => (
+            <div key={i} style={{ display: 'flex', gap: 10, padding: '8px 0', borderTop: i === 0 ? 'none' : '1px solid #f0f1ef' }}>
+              <span style={{ flex: 'none', width: 8, height: 8, borderRadius: '999px', background: '#40826d', marginTop: 5 }} />
+              <div>
+                <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 2 }}>{item.title}</div>
+                <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: '17px' }}>{item.body}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div style={{ background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '16px 18px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
+            <div style={{ fontSize: 15, fontWeight: 700 }}>Where we're at</div>
+            <button style={{ height: 32, padding: '0 12px', borderRadius: 8, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Set our style</button>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
+            {styleRows.map((row, i) => (
+              <div key={i} style={{ display: 'flex', alignItems: 'center', padding: '8px 0', borderTop: i === 0 ? 'none' : '1px solid #f0f1ef' }}>
+                <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.06em', color: '#6f7f7b', width: 100, flex: 'none' }}>{row.label}</span>
+                <span style={{ fontSize: 13, color: '#4a5a57', flexGrow: 1 }}>{row.desc}</span>
+                <span style={{ fontSize: 18, fontWeight: 700, color: '#c5c8c4', flex: 'none' }}>—</span>
+              </div>
+            ))}
+          </div>
+          <div style={{ marginTop: 10, fontSize: 12, color: '#4a5a57', lineHeight: '16px' }}>Fills in after your first recorded game.</div>
+        </div>
+
+        <div style={{ background: '#eef5f2', borderRadius: 12, padding: '10px 14px', display: 'flex', alignItems: 'center', gap: 10 }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2f6252" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/></svg>
+          <span style={{ fontSize: 13, color: '#2f6252', flexGrow: 1 }}>Inbox is empty. Reviews and alerts arrive here.</span>
+          <button style={{ border: 0, background: 'transparent', color: '#2f6252', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>Open inbox</button>
+        </div>
+      </div>
+    </div>
+  )
 }
 
 function iconBg(type: 'green' | 'rose' | 'stone') {
@@ -61,7 +157,8 @@ function weekRowStyle(type: string) {
   return { ...base, color: '#10211f' }
 }
 
-export default function HomeScreen({ onNav }: Props) {
+export default function HomeScreen({ onNav, empty }: Props) {
+  if (empty) return <HomeEmpty />
   return (
     <main style={{
       flexGrow: 1, minHeight: 0, padding: '18px 28px 22px',

@@ -1,5 +1,93 @@
 import { useState } from 'react'
 
+function InboxEmpty() {
+  return (
+    <main style={{ flexGrow: 1, minHeight: 0, display: 'grid', gridTemplateColumns: '340px minmax(0,1fr)', overflow: 'hidden' }}>
+      {/* Left: empty message list */}
+      <div style={{ borderRight: '1px solid #e9eae8', display: 'flex', flexDirection: 'column', minHeight: 0, overflow: 'hidden', background: '#ffffff' }}>
+        <div style={{ flex: 'none', padding: '12px 16px', display: 'flex', alignItems: 'center', gap: 8, borderBottom: '1px solid #f0f1ef' }}>
+          <button style={{ width: 36, height: 36, borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', flexShrink: 0 }}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10211f" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+          </button>
+          <button style={{ flexGrow: 1, height: 36, borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+            New message
+          </button>
+        </div>
+        <div style={{ flex: 'none', display: 'flex', gap: 2, padding: '8px 12px', borderBottom: '1px solid #f0f1ef' }}>
+          {['All', 'Unread 0', 'People', 'Clean Sheet'].map((t, i) => (
+            <button key={i} style={{ height: 30, padding: '0 12px', borderRadius: '999px', border: 0, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', background: i === 0 ? '#10211f' : '#f0f1ef', color: i === 0 ? '#ffffff' : '#4a5a57' }}>{t}</button>
+          ))}
+        </div>
+        <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 24, gap: 8 }}>
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#c5c8c4" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/></svg>
+          <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>Nothing here yet</div>
+          <div style={{ fontSize: 13, color: '#4a5a57', textAlign: 'center', lineHeight: '18px' }}>Messages and alerts arrive once your squad and first game are in.</div>
+        </div>
+        <div style={{ flex: 'none', padding: '0 16px 16px' }}>
+          {[65, 50].map((w, i) => (
+            <div key={i} style={{ height: 54, border: '1px dashed #c5c8c4', borderRadius: 10, marginBottom: 6, display: 'flex', alignItems: 'center', padding: '0 14px', gap: 10 }}>
+              <div style={{ width: 28, height: 28, borderRadius: '999px', background: '#e9eae8', flex: 'none' }} />
+              <div style={{ height: 10, borderRadius: 5, background: '#e9eae8', width: `${w}%` }} />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Right: what lands here */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 0, minHeight: 0, overflowY: 'auto', background: '#fafafa', padding: '20px 24px' }}>
+        <div style={{ fontSize: 18, fontWeight: 700, marginBottom: 16 }}>What lands here</div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 14, marginBottom: 24 }}>
+          {[
+            { icon: 'M12 21a9 9 0 100-18 9 9 0 000 18zM12 7l4 3-1.5 5h-5L8 10z', bg: '#40826d', title: 'Match reviews', body: 'About 25 minutes after a recorded game, with your three things to work on.' },
+            { icon: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z', bg: '#c39797', title: 'Wellness alerts', body: "When a player feels low or sore two days running, with what to do next." },
+            { icon: 'M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9zM13 2v7h7', bg: '#cbbeb5', title: 'Data problems', body: "A vest that didn't sync or a camera that lost the ball, with a one-tap fix." },
+            { icon: 'M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z', bg: '#40826d', title: 'Messages', body: 'From your coaching team and from parents. Reply right here.' },
+          ].map((item, i) => (
+            <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
+              <span style={{ flex: 'none', width: 36, height: 36, borderRadius: '999px', background: item.bg, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={item.icon}/></svg>
+              </span>
+              <div>
+                <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 2 }}>{item.title}</div>
+                <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: '18px' }}>{item.body}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div style={{ background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '16px 18px', marginBottom: 20 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
+            <div style={{ flexGrow: 1 }}>
+              <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 2 }}>Bring in your coaching team</div>
+              <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: '18px' }}>Invite an assistant or fitness coach to message them here. Parents can message you once they've joined.</div>
+            </div>
+            <button style={{ flex: 'none', height: 36, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap' }}>+ Invite coaches</button>
+          </div>
+        </div>
+
+        <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 12 }}>Keeping messages safe</div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          {[
+            { title: 'Coach chats stay with coaches', body: 'Players and parents never see them.' },
+            { title: 'Parent messages are kept by the club', body: 'Your welfare officer can see them.' },
+            { title: 'Players are never messaged alone', body: 'Anything sent to a player is copied to their parent.' },
+          ].map((item, i) => (
+            <div key={i} style={{ display: 'flex', gap: 10 }}>
+              <span style={{ flex: 'none', width: 6, height: 6, borderRadius: '999px', background: '#40826d', marginTop: 7 }} />
+              <div>
+                <span style={{ fontSize: 14, fontWeight: 700 }}>{item.title}</span>
+                <span style={{ fontSize: 13, color: '#4a5a57' }}> {item.body}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+        <button style={{ marginTop: 12, border: 0, background: 'transparent', color: '#2f6252', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', padding: 0, textAlign: 'left' }}>See a busy inbox →</button>
+      </div>
+    </main>
+  )
+}
+
 const MESSAGES = [
   { id: 0, from: 'Clean Sheet · Wellness check-ins', time: '7:30 am', preview: 'Ella has felt low two days running', tag: 'Needs a look', tagBg: '#c39797', tagColor: '#10211f', unread: true, icon: 'M12 2a10 10 0 100 20A10 10 0 0012 2zM12 7v5l3 3', iconBg: '#40826d' },
   { id: 1, from: 'Clean Sheet · Data',                time: '7:12 am', preview: '3 GPS vests didn\'t sync', tag: 'Fix before Saturday', tagBg: '#cbbeb5', tagColor: '#10211f', unread: true, icon: 'M22 12h-4M6 12H2M12 2v4M12 18v4', iconBg: '#c39797' },
@@ -19,7 +107,8 @@ const THREAD_MSGS = [
 
 const FILTER_TABS = ['All', 'Unread 3', 'People', 'Clean Sheet']
 
-export default function InboxScreen() {
+export default function InboxScreen({ empty }: { empty?: boolean }) {
+  if (empty) return <InboxEmpty />
   const [sel, setSel] = useState(2)
   const [filterTab, setFilterTab] = useState(0)
 

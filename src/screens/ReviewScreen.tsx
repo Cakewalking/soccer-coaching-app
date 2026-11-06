@@ -1,3 +1,93 @@
+function ReviewEmpty() {
+  return (
+    <div style={{ flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+      {/* Header */}
+      <div style={{ flex: 'none', padding: '12px 28px', display: 'flex', alignItems: 'center', gap: 12 }}>
+        <div>
+          <h1 style={{ margin: 0, fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em', lineHeight: '28px' }}>Match review</h1>
+          <span style={{ fontSize: 13, color: '#4a5a57' }}>No games recorded yet</span>
+        </div>
+        <div style={{ flexGrow: 1 }} />
+        <button style={{ height: 36, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>Set our style</button>
+        <button style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#ffffff', display: 'flex', alignItems: 'center', gap: 6 }}>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="#fff"/></svg>
+          Record a game
+        </button>
+      </div>
+
+      {/* Body */}
+      <div style={{ flexGrow: 1, minHeight: 0, display: 'grid', gridTemplateColumns: '220px minmax(0,1fr) 280px', overflow: 'hidden' }}>
+
+        {/* Left: style skeleton */}
+        <div style={{ borderRight: '1px solid #e9eae8', padding: '14px 16px', overflowY: 'auto' }}>
+          <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 4 }}>How we played our style</div>
+          <div style={{ fontSize: 12, color: '#4a5a57', marginBottom: 12 }}>Each measure, against your target</div>
+          {[
+            { label: 'WITH THE BALL', val: 'Goal kicks played sho…' },
+            { label: 'WITHOUT IT',    val: 'Wins in their half' },
+            { label: 'WIN IT',        val: 'Shots within 10 s' },
+            { label: 'LOSE IT',       val: 'Seconds to win it back' },
+            { label: 'CLUB VALUES',   val: 'Minutes shared fairly' },
+          ].map((row, i) => (
+            <div key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '8px 0', borderTop: i === 0 ? 'none' : '1px solid #f0f1ef' }}>
+              <div>
+                <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.06em', color: '#6f7f7b', marginBottom: 2 }}>{row.label}</div>
+                <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: '17px', maxWidth: 130 }}>{row.val}</div>
+              </div>
+              <span style={{ fontSize: 18, fontWeight: 700, color: '#c5c8c4' }}>—</span>
+            </div>
+          ))}
+        </div>
+
+        {/* Centre: "Every game reviewed" callout */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px 32px', overflowY: 'auto' }}>
+          <div style={{ maxWidth: 480 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 22px)', gap: 4, marginBottom: 20 }}>
+              {['#2f6252','#40826d','#cbbeb5','#c39797'].map((c, i) => (
+                <div key={i} style={{ width: 22, height: 22, borderRadius: 5, background: c }} />
+              ))}
+            </div>
+            <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#40826d', marginBottom: 8 }}>Your first review</div>
+            <div style={{ fontSize: 24, fontWeight: 700, letterSpacing: '-0.02em', marginBottom: 10, lineHeight: '30px' }}>Every game, reviewed for you</div>
+            <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: '20px', marginBottom: 20 }}>How you played your style, the key clips, everyone's minutes and running, and three things to work on. It builds next week's training from them.</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 20 }}>
+              {[
+                { icon: 'M12 21a9 9 0 100-18 9 9 0 000 18zM10 8l6 4-6 4z', title: 'Record the game', body: 'Camera on the halfway line, press record.' },
+                { icon: 'M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8', title: 'Sync boots and vests', body: 'Hold them near the tablet after the game.' },
+                { icon: 'M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z', title: 'Review ready', body: "About 25 minutes later. We'll message your inbox." },
+              ].map((item, i) => (
+                <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
+                  <span style={{ flex: 'none', width: 8, height: 8, borderRadius: '999px', background: '#40826d', marginTop: 5 }} />
+                  <div>
+                    <span style={{ fontSize: 14, fontWeight: 700 }}>{item.title}</span>
+                    <span style={{ fontSize: 13, color: '#4a5a57' }}> {item.body}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <button style={{ border: 0, background: 'transparent', color: '#2f6252', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', padding: 0, display: 'flex', alignItems: 'center', gap: 4 }}>
+              See an example review from a team like yours
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+        </div>
+
+        {/* Right: players skeleton */}
+        <div style={{ borderLeft: '1px solid #e9eae8', padding: '14px 16px', background: '#fafafa', overflowY: 'auto' }}>
+          <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 4 }}>Players</div>
+          <div style={{ fontSize: 12, color: '#4a5a57', marginBottom: 14 }}>Minutes, running and who stood out</div>
+          {[0,1,2,3].map(i => (
+            <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
+              <div style={{ width: 32, height: 32, borderRadius: '999px', background: '#e9eae8', flex: 'none' }} />
+              <div style={{ flexGrow: 1, height: 10, borderRadius: 5, background: '#e9eae8' }} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 const STYLE_POINTS = [
   { label: 'Goal kicks played short',           value: '64%',  aim: '70%+',   status: 'off-target' },
   { label: 'Wins of the ball in their half',    value: '13',   aim: 'on target', status: 'on-target' },
@@ -28,7 +118,8 @@ const PLAYERS_TO_KNOW = [
   { ini: 'EB', name: 'Ella Brandt', chip: 'Wellness',chipColor: '#c39797', note: 'Felt low two days running. Quick chat tonight.' },
 ]
 
-export default function ReviewScreen() {
+export default function ReviewScreen({ empty }: { empty?: boolean }) {
+  if (empty) return <ReviewEmpty />
   return (
     <div style={{ flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
 

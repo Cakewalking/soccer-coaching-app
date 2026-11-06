@@ -18,6 +18,76 @@ const GOALS = [
 ]
 
 const SEL_PLAYER = GOALS[11] // Leo Marsh
+function Illus() {
+  return (
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 22px)', gap: 4, flex: 'none' }}>
+      {['#2f6252','#40826d','#cbbeb5','#c39797'].map((c, i) => (
+        <div key={i} style={{ width: 22, height: 22, borderRadius: 5, background: c }} />
+      ))}
+    </div>
+  )
+}
+
+function Skel({ rows = 7 }: { rows?: number }) {
+  const ws = [55, 45, 65, 40, 55, 50, 48]
+  return (
+    <div>
+      <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#6f7f7b', marginBottom: 8 }}>Fills in like this</div>
+      {Array.from({ length: rows }, (_, i) => (
+        <div key={i} style={{ height: 44, border: '1px dashed #c5c8c4', borderRadius: 10, marginBottom: 6, display: 'flex', alignItems: 'center', padding: '0 14px', gap: 10 }}>
+          <div style={{ width: 28, height: 28, borderRadius: '999px', background: '#e9eae8', flex: 'none' }} />
+          <div style={{ height: 10, borderRadius: 5, background: '#e9eae8', width: `${ws[i % ws.length]}%` }} />
+          <div style={{ marginLeft: 'auto', width: 48, height: 10, borderRadius: 5, background: '#e9eae8', flex: 'none' }} />
+        </div>
+      ))}
+    </div>
+  )
+}
+
+function DevGoalsEmpty() {
+  return (
+    <main style={{ flexGrow: 1, padding: '14px 28px 18px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 340px', gap: 16, boxSizing: 'border-box', minHeight: 0, overflow: 'hidden' }}>
+      <div style={{ minHeight: 0, display: 'flex', flexDirection: 'column', gap: 16, overflowY: 'auto' }}>
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: 12 }}>
+          <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, letterSpacing: '-0.02em' }}>Development goals</h1>
+          <span style={{ fontSize: 14, color: '#4a5a57' }}>No goals set yet</span>
+        </div>
+        <div style={{ background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '20px 24px', display: 'flex', gap: 20 }}>
+          <Illus />
+          <div style={{ flexGrow: 1 }}>
+            <div style={{ fontSize: 20, fontWeight: 700, marginBottom: 6 }}>One goal per player</div>
+            <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: '20px', marginBottom: 14 }}>After the first recorded game, Clean Sheet suggests a goal for each player from what the video and sensors show. You pick or change it.</div>
+            <div style={{ display: 'flex', gap: 8 }}>
+              <button style={{ height: 36, padding: '0 16px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Add players first</button>
+              <button style={{ height: 36, padding: '0 16px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>See an example</button>
+            </div>
+          </div>
+        </div>
+        <Skel rows={7} />
+      </div>
+      <aside style={{ background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '18px 20px', display: 'flex', flexDirection: 'column', gap: 14, minHeight: 0, overflowY: 'auto' }}>
+        <div style={{ fontSize: 16, fontWeight: 700 }}>How goals work</div>
+        {[
+          { icon: 'M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z', title: 'Checked after every game', body: 'Ticks for each of the last 5 games' },
+          { icon: 'M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8', title: 'Shared with the player', body: 'Players and parents see their own goal' },
+          { icon: 'M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z', title: 'Yours to change', body: 'Swap a suggested goal any time' },
+        ].map((item, i) => (
+          <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
+            <span style={{ flex: 'none', width: 32, height: 32, borderRadius: '999px', background: '#eef5f2', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2f6252" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={item.icon}/></svg>
+            </span>
+            <div>
+              <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 2 }}>{item.title}</div>
+              <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: '18px' }}>{item.body}</div>
+            </div>
+          </div>
+        ))}
+        <div style={{ marginTop: 'auto', fontSize: 12, color: '#4a5a57', lineHeight: '17px' }}>Keep goals small and about the game, like "check your shoulder before a cross".</div>
+      </aside>
+    </main>
+  )
+}
+
 const GAME_LABELS = ['IRO', 'SAL', 'NOR', 'BAY', 'KES']
 
 function statusChip(s: string) {
@@ -37,7 +107,8 @@ function GameTick({ v }: { v: boolean }) {
   )
 }
 
-export default function DevGoalsScreen() {
+export default function DevGoalsScreen({ empty }: { empty?: boolean }) {
+  if (empty) return <DevGoalsEmpty />
   return (
     <div style={{ flexGrow: 1, padding: '14px 28px 18px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 340px', gap: 16, boxSizing: 'border-box', minHeight: 0, overflow: 'hidden' }}>
 

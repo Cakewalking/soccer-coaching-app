@@ -82,7 +82,9 @@ export default function App() {
   const [squadTab, setSquadTab]       = useState(0)
   const [matchdayTab, setMatchdayTab] = useState(0)
   const [trainingTab, setTrainingTab] = useState(0)
+  const [clipsTab, setClipsTab]       = useState(0)
   const [selectedPlayer, setSelectedPlayer] = useState<string | null>(null)
+  const [isEmpty, setIsEmpty]         = useState(false)
 
   const navTo = (s: Screen) => { setScreen(s) }
 
@@ -103,13 +105,15 @@ export default function App() {
     screen === 'home'     ? homeTab     :
     screen === 'squad'    ? squadTab    :
     screen === 'matchday' ? matchdayTab :
-    screen === 'training' ? trainingTab : 0
+    screen === 'training' ? trainingTab :
+    screen === 'clips'    ? clipsTab    : 0
 
   function handleTabClick(i: number) {
     if (screen === 'home')     setHomeTab(i)
     if (screen === 'squad')    setSquadTab(i)
     if (screen === 'matchday') setMatchdayTab(i)
     if (screen === 'training') setTrainingTab(i)
+    if (screen === 'clips')    setClipsTab(i)
   }
 
   return (
@@ -178,7 +182,8 @@ export default function App() {
                 )
               })}
             </nav>
-            <div style={{ display: 'flex', alignItems: 'center', height: 44 }}>
+            <div style={{ display: 'flex', alignItems: 'center', height: 44, gap: 10 }}>
+              <button onClick={() => setIsEmpty(e => !e)} style={{ height: 24, padding: '0 10px', borderRadius: '999px', border: `1px solid ${isEmpty ? '#c39797' : '#c5c8c4'}`, background: isEmpty ? '#fdf0ee' : 'transparent', color: isEmpty ? '#7a3030' : '#6f7f7b', fontSize: 11, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', letterSpacing: '0.05em', textTransform: 'uppercase', flexShrink: 0 }}>New team</button>
               <RoleBadge />
             </div>
           </div>
@@ -187,30 +192,30 @@ export default function App() {
 
       {/* ── Screen content ── */}
       {/* Home tabs */}
-      {screen === 'home' && homeTab === 0 && <HomeScreen role={role} onRole={() => {}} onNav={navTo} />}
-      {screen === 'home' && homeTab === 1 && <InboxScreen />}
-      {screen === 'home' && homeTab === 2 && <HomeScreen role={role} onRole={() => {}} onNav={navTo} />}
-      {screen === 'home' && homeTab === 3 && <FixturesScreen />}
+      {screen === 'home' && homeTab === 0 && <HomeScreen role={role} onRole={() => {}} onNav={navTo} empty={isEmpty} />}
+      {screen === 'home' && homeTab === 1 && <InboxScreen empty={isEmpty} />}
+      {screen === 'home' && homeTab === 2 && <HomeScreen role={role} onRole={() => {}} onNav={navTo} empty={isEmpty} />}
+      {screen === 'home' && homeTab === 3 && <FixturesScreen empty={isEmpty} />}
       {screen === 'home' && homeTab === 4 && <OurStyleScreen />}
       {screen === 'home' && homeTab === 5 && <TeamStaffScreen />}
       {/* Squad tabs */}
-      {screen === 'squad' && squadTab === 0 && <SquadScreen role={role} onPlayerProfile={ini => { setSelectedPlayer(ini); navTo('player') }} />}
-      {screen === 'squad' && squadTab === 1 && <DevGoalsScreen />}
-      {screen === 'squad' && squadTab === 2 && <WellnessScreen />}
-      {screen === 'squad' && squadTab === 3 && <AvailabilityScreen />}
+      {screen === 'squad' && squadTab === 0 && <SquadScreen role={role} onPlayerProfile={ini => { setSelectedPlayer(ini); navTo('player') }} empty={isEmpty} />}
+      {screen === 'squad' && squadTab === 1 && <DevGoalsScreen empty={isEmpty} />}
+      {screen === 'squad' && squadTab === 2 && <WellnessScreen empty={isEmpty} />}
+      {screen === 'squad' && squadTab === 3 && <AvailabilityScreen empty={isEmpty} />}
       {screen === 'squad' && squadTab === 4 && <ConsentScreen />}
       {/* Training tabs */}
-      {screen === 'training' && trainingTab === 0 && <TrainingScreen role={role} onNav={navTo} />}
-      {screen === 'training' && trainingTab === 1 && <ThisWeekScreen />}
-      {screen === 'training' && trainingTab === 2 && <TrainingScreen role={role} onNav={navTo} />}
+      {screen === 'training' && trainingTab === 0 && <TrainingScreen role={role} onNav={navTo} empty={isEmpty} />}
+      {screen === 'training' && trainingTab === 1 && <ThisWeekScreen empty={isEmpty} />}
+      {screen === 'training' && trainingTab === 2 && <TrainingScreen role={role} onNav={navTo} empty={isEmpty} />}
       {screen === 'training' && trainingTab === 3 && <TrainingScreen role={role} onNav={navTo} />}
       {/* Match day tabs */}
-      {screen === 'matchday' && matchdayTab === 0 && <MatchDayScreen onNav={navTo} />}
-      {screen === 'matchday' && matchdayTab === 1 && <MatchDayScreen onNav={navTo} />}
-      {screen === 'matchday' && matchdayTab === 2 && <OppositionScreen />}
-      {screen === 'matchday' && matchdayTab === 3 && <ReviewScreen />}
+      {screen === 'matchday' && matchdayTab === 0 && <MatchDayScreen onNav={navTo} empty={isEmpty} />}
+      {screen === 'matchday' && matchdayTab === 1 && <MatchDayScreen onNav={navTo} empty={isEmpty} />}
+      {screen === 'matchday' && matchdayTab === 2 && <OppositionScreen empty={isEmpty} />}
+      {screen === 'matchday' && matchdayTab === 3 && <ReviewScreen empty={isEmpty} />}
       {/* Other screens */}
-      {screen === 'clips'  && <ClipsScreen />}
+      {screen === 'clips'  && <ClipsScreen empty={isEmpty} activeTab={clipsTab} />}
       {screen === 'player' && <PlayerProfileScreen playerIni={selectedPlayer ?? 'MT'} />}
     </div>
   )

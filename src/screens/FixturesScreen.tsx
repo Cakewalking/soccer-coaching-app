@@ -1,3 +1,76 @@
+function Illus() {
+  return (
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 22px)', gap: 4, flex: 'none' }}>
+      {['#2f6252','#40826d','#cbbeb5','#c39797'].map((c, i) => (
+        <div key={i} style={{ width: 22, height: 22, borderRadius: 5, background: c }} />
+      ))}
+    </div>
+  )
+}
+
+function Skel({ rows = 7 }: { rows?: number }) {
+  const ws = [55, 45, 65, 40, 55, 50, 48]
+  return (
+    <div>
+      <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#6f7f7b', marginBottom: 8 }}>Fills in like this</div>
+      {Array.from({ length: rows }, (_, i) => (
+        <div key={i} style={{ height: 44, border: '1px dashed #c5c8c4', borderRadius: 10, marginBottom: 6, display: 'flex', alignItems: 'center', padding: '0 14px', gap: 10 }}>
+          <div style={{ width: 28, height: 28, borderRadius: '999px', background: '#e9eae8', flex: 'none' }} />
+          <div style={{ height: 10, borderRadius: 5, background: '#e9eae8', width: `${ws[i % ws.length]}%` }} />
+          <div style={{ marginLeft: 'auto', width: 48, height: 10, borderRadius: 5, background: '#e9eae8', flex: 'none' }} />
+        </div>
+      ))}
+    </div>
+  )
+}
+
+function FixturesEmpty() {
+  return (
+    <main style={{ flexGrow: 1, padding: '14px 28px 18px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 340px', gap: 16, boxSizing: 'border-box', minHeight: 0, overflow: 'hidden' }}>
+      <div style={{ minHeight: 0, display: 'flex', flexDirection: 'column', gap: 16, overflowY: 'auto' }}>
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: 12 }}>
+          <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, letterSpacing: '-0.02em' }}>Fixtures and results</h1>
+          <span style={{ fontSize: 14, color: '#4a5a57' }}>No fixtures yet</span>
+        </div>
+        <div style={{ background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '20px 24px', display: 'flex', gap: 20 }}>
+          <Illus />
+          <div style={{ flexGrow: 1 }}>
+            <div style={{ fontSize: 20, fontWeight: 700, marginBottom: 6 }}>Add your season</div>
+            <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: '20px', marginBottom: 14 }}>Import the fixture list from your league, or add games one by one. Training is planned around your game days.</div>
+            <div style={{ display: 'flex', gap: 8 }}>
+              <button style={{ height: 36, padding: '0 16px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden="true"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1M16 8l-4-4-4 4M12 4v12"/></svg>
+                Import from the league
+              </button>
+              <button style={{ height: 36, padding: '0 16px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Add a fixture</button>
+            </div>
+          </div>
+        </div>
+        <Skel rows={7} />
+      </div>
+      <aside style={{ background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '18px 20px', display: 'flex', flexDirection: 'column', gap: 14, minHeight: 0, overflowY: 'auto' }}>
+        <div style={{ fontSize: 16, fontWeight: 700 }}>What you'll see</div>
+        {[
+          { icon: 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zM9 5a2 2 0 002 2h2a2 2 0 002-2V3a2 2 0 00-2-2h-2a2 2 0 00-2 2v2z', title: 'Results and the ladder', body: 'From U12, when the league keeps one' },
+          { icon: 'M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8', title: 'Meet times to parents', body: 'Your team manager sends changes' },
+          { icon: 'M12 21a9 9 0 100-18 9 9 0 000 18zM10 8l6 4-6 4z', title: 'A review for each game', body: 'When the camera records it' },
+        ].map((item, i) => (
+          <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
+            <span style={{ flex: 'none', width: 32, height: 32, borderRadius: '999px', background: '#eef5f2', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2f6252" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={item.icon}/></svg>
+            </span>
+            <div>
+              <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 2 }}>{item.title}</div>
+              <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: '18px' }}>{item.body}</div>
+            </div>
+          </div>
+        ))}
+        <div style={{ marginTop: 'auto', fontSize: 12, color: '#4a5a57', lineHeight: '17px' }}>Mini Roos under 12 don't keep a ladder. Results are still saved for your own review.</div>
+      </aside>
+    </main>
+  )
+}
+
 const RESULTS = [
   { date: 'Sat 31 Oct', opp: 'Ironbark United', ha: 'A', score: '3–1', result: 'W' },
   { date: 'Sat 24 Oct', opp: 'Saltmarsh',       ha: 'A', score: '1–2', result: 'L' },
@@ -31,7 +104,8 @@ function resultDot(r: string) {
   return { bg: '#cbbeb5', color: '#10211f' }
 }
 
-export default function FixturesScreen() {
+export default function FixturesScreen({ empty }: { empty?: boolean }) {
+  if (empty) return <FixturesEmpty />
   return (
     <main style={{ flexGrow: 1, padding: '14px 28px 18px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 340px', gap: 16, boxSizing: 'border-box', minHeight: 0, overflow: 'hidden' }}>
 

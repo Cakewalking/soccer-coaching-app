@@ -4,6 +4,98 @@ import { SQUAD_PLAYERS, POS_GROUP_LABELS, type SquadPlayer, type PosGroup, type 
 interface Props {
   role: Role
   onPlayerProfile: (ini: string) => void
+  empty?: boolean
+}
+
+function SquadEmpty() {
+  const positions = ['KEEPERS', 'DEFENDERS', 'MIDFIELDERS', 'FORWARDS']
+  return (
+    <div style={{ flexGrow: 1, padding: '14px 28px 18px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 340px', gap: 16, boxSizing: 'border-box', minHeight: 0, overflow: 'hidden' }}>
+      <div style={{ minHeight: 0, display: 'flex', flexDirection: 'column', gap: 16, overflowY: 'auto' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, letterSpacing: '-0.02em' }}>Squad</h1>
+          <span style={{ fontSize: 14, color: '#4a5a57' }}>No players yet</span>
+          <div style={{ flexGrow: 1 }} />
+          <button style={{ height: 36, padding: '0 16px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+            Add players
+          </button>
+        </div>
+
+        <div style={{ background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '20px 24px', display: 'flex', gap: 20 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 22px)', gap: 4, flex: 'none', marginTop: 4 }}>
+            {['#2f6252','#40826d','#cbbeb5','#c39797'].map((c, i) => (
+              <div key={i} style={{ width: 22, height: 22, borderRadius: 5, background: c }} />
+            ))}
+          </div>
+          <div style={{ flexGrow: 1 }}>
+            <div style={{ fontSize: 20, fontWeight: 700, marginBottom: 6 }}>Add your players</div>
+            <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: '20px', marginBottom: 16 }}>Start with names and positions. Boots, vests, check-ins and development goals can come later.</div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10 }}>
+              {[
+                { icon: 'M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1M16 8l-4-4-4 4M12 4v12', title: 'Import a spreadsheet', body: 'Use the list from your club registration system.', btn: 'Import', primary: true },
+                { icon: 'M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101M10.172 13.828a4 4 0 015.656 0l4 4a4 4 0 01-5.656 5.656l-1.101-1.102', title: 'Share an invite link', body: 'Parents add their child and their own contact details.', btn: 'Copy link', primary: false },
+                { icon: 'M12 5v14M5 12h14', title: 'Add one at a time', body: 'Good for a few players or a late sign-up.', btn: 'Add a player', primary: false },
+              ].map(opt => (
+                <div key={opt.title} style={{ background: '#f7f8f7', borderRadius: 12, padding: '14px 14px' }}>
+                  <div style={{ width: 32, height: 32, borderRadius: 8, background: '#eef5f2', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 8 }}>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2f6252" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={opt.icon}/></svg>
+                  </div>
+                  <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 4, lineHeight: '17px' }}>{opt.title}</div>
+                  <div style={{ fontSize: 12, color: '#4a5a57', lineHeight: '16px', marginBottom: 10 }}>{opt.body}</div>
+                  <button style={{ height: 32, padding: '0 14px', borderRadius: 8, border: opt.primary ? 0 : '1px solid #c5c8c4', background: opt.primary ? '#2f6252' : '#ffffff', color: opt.primary ? '#ffffff' : '#10211f', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>{opt.btn}</button>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
+            <div style={{ fontSize: 15, fontWeight: 700 }}>Your squad by position</div>
+            <span style={{ fontSize: 13, color: '#4a5a57' }}>Fills in as you add players</span>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10 }}>
+            {positions.map(pos => (
+              <div key={pos} style={{ background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 12, padding: '10px 12px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
+                  <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', color: '#4a5a57' }}>{pos}</span>
+                  <span style={{ fontSize: 13, fontWeight: 700, color: '#4a5a57' }}>0</span>
+                </div>
+                {[0,1,2].map(i => (
+                  <div key={i} style={{ height: 32, border: '1px dashed #c5c8c4', borderRadius: 8, marginBottom: 6 }} />
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <aside style={{ background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '18px 20px', display: 'flex', flexDirection: 'column', gap: 14, minHeight: 0, overflowY: 'auto' }}>
+        <div style={{ fontSize: 16, fontWeight: 700 }}>What you'll see here</div>
+        {[
+          { icon: 'M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138', title: 'Who is ready', body: 'Ready, manage load or check in, for every player, every day.' },
+          { icon: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z', title: 'How they feel', body: 'Sleep, soreness, mood and energy from daily check-ins.' },
+          { icon: 'M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9zM13 2v7h7', title: 'How hard they work', body: 'Running, sprints and load from GPS vests and boot sensors.' },
+          { icon: 'M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z', title: 'How they improve', body: 'One development goal per player, checked after every game.' },
+        ].map((item, i) => (
+          <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
+            <span style={{ flex: 'none', width: 32, height: 32, borderRadius: '999px', background: '#eef5f2', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2f6252" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={item.icon}/></svg>
+            </span>
+            <div>
+              <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 2 }}>{item.title}</div>
+              <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: '18px' }}>{item.body}</div>
+            </div>
+          </div>
+        ))}
+        <div style={{ marginTop: 'auto', display: 'flex', alignItems: 'center', gap: 8, background: '#f7f8f7', borderRadius: 10, padding: '10px 12px' }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4a5a57" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          <span style={{ fontSize: 12, color: '#4a5a57', lineHeight: '17px' }}>Player data is only visible to your team's coaches. Parents see their own child's goals and clips.</span>
+        </div>
+      </aside>
+    </div>
+  )
 }
 
 type Filter = 'all' | 'ready' | 'manage' | 'checkin' | 'goals'
@@ -161,7 +253,8 @@ function RightPanel({ p, onProfile }: { p: SquadPlayer; onProfile: () => void })
   )
 }
 
-export default function SquadScreen({ onPlayerProfile }: Props) {
+export default function SquadScreen({ onPlayerProfile, empty }: Props) {
+  if (empty) return <SquadEmpty />
   const [filter, setFilter] = useState<Filter>('all')
   const [selected, setSelected] = useState<SquadPlayer>(
     SQUAD_PLAYERS.find(p => p.ini === 'EB')!

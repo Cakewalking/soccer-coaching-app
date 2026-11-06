@@ -1,3 +1,62 @@
+function AvailabilityEmpty() {
+  const EmptyCol = ({ title }: { title: string }) => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 2 }}>
+        <span style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>{title}</span>
+        <span style={{ fontSize: 20, fontWeight: 700, color: '#4a5a57' }}>0</span>
+      </div>
+      {[70, 55, 65].map((w, i) => (
+        <div key={i} style={{ height: 54, border: '1px dashed #c5c8c4', borderRadius: 10, display: 'flex', alignItems: 'center', padding: '0 12px', gap: 8 }}>
+          <div style={{ width: 24, height: 24, borderRadius: '999px', background: '#e9eae8', flex: 'none' }} />
+          <div style={{ height: 10, borderRadius: 5, background: '#e9eae8', width: `${w}%` }} />
+        </div>
+      ))}
+    </div>
+  )
+  return (
+    <div style={{ flexGrow: 1, padding: '14px 28px 18px', display: 'flex', flexDirection: 'column', gap: 10, boxSizing: 'border-box', minHeight: 0, overflow: 'hidden' }}>
+      <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, flexShrink: 0 }}>
+        <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, letterSpacing: '-0.02em' }}>Availability</h1>
+        <span style={{ fontSize: 14, color: '#4a5a57' }}>No players or fixtures yet</span>
+      </div>
+      <div style={{ background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '16px 20px', display: 'flex', gap: 16, alignItems: 'flex-start', flexShrink: 0 }}>
+        <span style={{ flex: 'none', width: 36, height: 36, borderRadius: 10, background: '#eef5f2', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2f6252" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        </span>
+        <div>
+          <div style={{ fontSize: 16, fontWeight: 700, marginBottom: 4 }}>Know who's in before you pick</div>
+          <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: '20px' }}>Each week, parents get one question for every game and session: can they make it? Answers land here, sorted.</div>
+        </div>
+      </div>
+      <div style={{ flexGrow: 1, minHeight: 0, display: 'grid', gridTemplateColumns: 'repeat(4, minmax(0,1fr)) 300px', gap: 12, overflow: 'hidden' }}>
+        <EmptyCol title="In" />
+        <EmptyCol title="Maybe" />
+        <EmptyCol title="Can't make it" />
+        <EmptyCol title="No answer" />
+        <aside style={{ background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 16, padding: 16, display: 'flex', flexDirection: 'column', gap: 14 }}>
+          <div style={{ fontSize: 15, fontWeight: 700 }}>Two things first</div>
+          {[
+            { n: 1, title: 'Add your players', sub: 'With a parent contact for each', btn: 'Add players' },
+            { n: 2, title: 'Add your fixtures and sessions', sub: 'Questions go out a week before each', btn: 'Add fixtures' },
+          ].map(item => (
+            <div key={item.n} style={{ display: 'flex', gap: 12 }}>
+              <span style={{ flex: 'none', width: 24, height: 24, borderRadius: '999px', background: '#2f6252', color: '#ffffff', fontSize: 13, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{item.n}</span>
+              <div style={{ flexGrow: 1 }}>
+                <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 2 }}>{item.title}</div>
+                <div style={{ fontSize: 12, color: '#4a5a57', marginBottom: 8, lineHeight: '16px' }}>{item.sub}</div>
+                <button style={{ height: 32, padding: '0 14px', borderRadius: 8, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>{item.btn}</button>
+              </div>
+            </div>
+          ))}
+          <div style={{ marginTop: 'auto', background: '#f7f8f7', borderRadius: 10, padding: '10px 12px', fontSize: 12, color: '#4a5a57', lineHeight: '17px' }}>
+            <strong>What parents see:</strong> "Can Mia play on Saturday?" with Yes, Maybe or No, and space for a reason.
+          </div>
+        </aside>
+      </div>
+    </div>
+  )
+}
+
 const IN = [
   { ini: 'AL', name: 'Ava Lindqvist',  note: '' },
   { ini: 'TR', name: 'Tom Reyes',      note: '' },
@@ -50,7 +109,8 @@ function Column({ title, count, items, accent }: { title: string; count: number;
   )
 }
 
-export default function AvailabilityScreen() {
+export default function AvailabilityScreen({ empty }: { empty?: boolean }) {
+  if (empty) return <AvailabilityEmpty />
   return (
     <div style={{ flexGrow: 1, padding: '14px 28px 18px', display: 'flex', flexDirection: 'column', gap: 10, boxSizing: 'border-box', minHeight: 0, overflow: 'hidden' }}>
 

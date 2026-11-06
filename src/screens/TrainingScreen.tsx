@@ -5,6 +5,87 @@ type Screen = 'home' | 'training' | 'matchday' | 'teamtalk'
 interface Props {
   role: Role
   onNav: (s: Screen) => void
+  empty?: boolean
+}
+
+function TrainingEmpty() {
+  const starterSessions = [
+    { tag: 'Ready-made', title: 'Pressing basics', sub: '6-second press · small game', note: 'Good first session for any age group' },
+    { tag: 'Ready-made', title: 'Pass and move',   sub: 'Passing squares · 3 v 1 · small game', note: 'Builds confidence on the ball' },
+    { tag: 'Ready-made', title: 'Shape and defending', sub: 'Walk-through · 4 v 4 · step up together', note: 'Sets up the back line' },
+  ]
+  return (
+    <div style={{ flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+      {/* Header */}
+      <div style={{ flex: 'none', padding: '14px 28px 0', display: 'flex', alignItems: 'baseline', gap: 12 }}>
+        <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, letterSpacing: '-0.02em' }}>Training</h1>
+        <span style={{ fontSize: 14, color: '#4a5a57' }}>No session planned yet</span>
+        <div style={{ flexGrow: 1 }} />
+        <button style={{ height: 36, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>Build your own</button>
+      </div>
+
+      {/* Main two-column */}
+      <div style={{ flexGrow: 1, minHeight: 0, display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,1.6fr)', gap: 20, padding: '14px 28px', overflow: 'hidden' }}>
+        {/* Left: why + skeleton drills */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10, minHeight: 0, overflowY: 'auto' }}>
+          <div style={{ background: '#f7f8f7', border: '1px solid #e9eae8', borderRadius: 14, padding: '14px 16px' }}>
+            <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 4 }}>Why this plan</div>
+            <div style={{ fontSize: 12, color: '#4a5a57', lineHeight: '17px' }}>After your first recorded game</div>
+            <div style={{ fontSize: 12, color: '#4a5a57', lineHeight: '17px', marginTop: 6 }}>Each drill will link to a clip or a number from your last game, so you can see why it was picked.</div>
+          </div>
+          {[65, 55, 50].map((w, i) => (
+            <div key={i} style={{ height: 56, border: '1px dashed #c5c8c4', borderRadius: 12, display: 'flex', alignItems: 'center', padding: '0 14px', gap: 10 }}>
+              <div style={{ width: 48, height: 36, borderRadius: 8, background: '#e9eae8', flex: 'none' }} />
+              <div style={{ height: 10, borderRadius: 5, background: '#e9eae8', width: `${w}%` }} />
+            </div>
+          ))}
+        </div>
+
+        {/* Right: first plan callout + starter drills */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10, minHeight: 0, overflowY: 'auto' }}>
+          <div style={{ background: '#eef5f2', borderRadius: 14, padding: '16px 18px' }}>
+            <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#40826d', marginBottom: 6 }}>Your first plan</div>
+            <div style={{ fontSize: 18, fontWeight: 700, marginBottom: 6 }}>Plans come from your games</div>
+            <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: '18px', marginBottom: 14 }}>After your first recorded game, Clean Sheet picks drills that fix what it sees in the video and wearable data. Until then, start from a ready-made session.</div>
+            <div style={{ display: 'flex', gap: 8 }}>
+              <button style={{ height: 36, padding: '0 16px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Use a starter session</button>
+              <button style={{ height: 36, padding: '0 16px', borderRadius: 10, border: '1px solid #2f6252', background: '#ffffff', color: '#2f6252', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Record a game</button>
+            </div>
+          </div>
+          {[65, 50].map((w, i) => (
+            <div key={i} style={{ height: 56, border: '1px dashed #c5c8c4', borderRadius: 12, display: 'flex', alignItems: 'center', padding: '0 14px', gap: 10 }}>
+              <div style={{ width: 48, height: 36, borderRadius: 8, background: '#e9eae8', flex: 'none' }} />
+              <div style={{ height: 10, borderRadius: 5, background: '#e9eae8', width: `${w}%` }} />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Starter sessions strip */}
+      <div style={{ flex: 'none', borderTop: '1px solid #e9eae8', padding: '14px 28px', background: '#ffffff' }}>
+        <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#6f7f7b', marginBottom: 10 }}>Starter sessions · 60 minutes · 4 drills each</div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10 }}>
+          {starterSessions.map(s => (
+            <div key={s.title} style={{ background: '#f7f8f7', border: '1px solid #e9eae8', borderRadius: 12, padding: '12px 14px' }}>
+              <span style={{ display: 'inline-block', fontSize: 11, fontWeight: 700, padding: '1px 7px', borderRadius: '999px', background: '#eef5f2', color: '#2f6252', marginBottom: 6 }}>{s.tag}</span>
+              <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 2 }}>{s.title}</div>
+              <div style={{ fontSize: 12, color: '#4a5a57', marginBottom: 4 }}>{s.sub}</div>
+              <div style={{ fontSize: 12, color: '#6f7f7b' }}>{s.note}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Footer: adjust for players */}
+      <div style={{ flex: 'none', borderTop: '1px solid #e9eae8', padding: '10px 28px', display: 'flex', gap: 24, background: '#fafafa' }}>
+        <div style={{ flexGrow: 1 }}>
+          <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 2 }}>Adjust for players</div>
+          <div style={{ fontSize: 12, color: '#4a5a57', lineHeight: '17px' }}>Players who need a lighter night show up here once wellness check-ins and vests are on.</div>
+        </div>
+        <button style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>Turn on check-ins</button>
+      </div>
+    </div>
+  )
 }
 
 
@@ -65,7 +146,8 @@ function DrillDiagram({ tag }: { tag: string }) {
   )
 }
 
-export default function TrainingScreen({ role, onNav }: Props) {
+export default function TrainingScreen({ role, onNav, empty }: Props) {
+  if (empty) return <TrainingEmpty />
   const d = DATA[role]
   const totalMins = d.drills.reduce((s, x) => s + x.mins, 0)
   const focus = d.focus.slice(0, 3)

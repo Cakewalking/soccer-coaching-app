@@ -4,6 +4,187 @@ import { CLIPS, CLIPS_GAMES, CLIPS_MEASURES, type GameClip } from '../data'
 type FilterMode = 'game' | 'measure' | 'player'
 type TypeFilter = 'all' | 'good' | 'work'
 
+function ClipsEmpty({ activeTab }: { activeTab: number }) {
+  if (activeTab === 1) {
+    return (
+      <main style={{ flexGrow: 1, padding: '14px 28px 18px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 340px', gap: 16, boxSizing: 'border-box', minHeight: 0, overflow: 'hidden' }}>
+        <div style={{ minHeight: 0, display: 'flex', flexDirection: 'column', gap: 16, overflowY: 'auto' }}>
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: 12 }}>
+            <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, letterSpacing: '-0.02em' }}>Playlists and shared clips</h1>
+            <span style={{ fontSize: 14, color: '#4a5a57' }}>Nothing yet</span>
+          </div>
+          <div style={{ background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '20px 24px', display: 'flex', gap: 20 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 22px)', gap: 4, flex: 'none' }}>
+              {['#2f6252','#40826d','#cbbeb5','#c39797'].map((c, i) => <div key={i} style={{ width: 22, height: 22, borderRadius: 5, background: c }} />)}
+            </div>
+            <div style={{ flexGrow: 1 }}>
+              <div style={{ fontSize: 20, fontWeight: 700, marginBottom: 6 }}>Save the clips that teach</div>
+              <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: '20px', marginBottom: 14 }}>Group clips into playlists for team talks, or send a clip to one player with a note. They arrive after your first recorded game.</div>
+              <div style={{ display: 'flex', gap: 8 }}>
+                <button style={{ height: 36, padding: '0 16px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="#fff"/></svg>
+                  Record your first game
+                </button>
+                <button style={{ height: 36, padding: '0 16px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>See an example</button>
+              </div>
+            </div>
+          </div>
+          {[65, 50, 60, 45, 55, 48].map((w, i) => (
+            <div key={i} style={{ height: 44, border: '1px dashed #c5c8c4', borderRadius: 10, marginBottom: 6, display: 'flex', alignItems: 'center', padding: '0 14px', gap: 10 }}>
+              <div style={{ width: 28, height: 28, borderRadius: '999px', background: '#e9eae8', flex: 'none' }} />
+              <div style={{ height: 10, borderRadius: 5, background: '#e9eae8', width: `${w}%` }} />
+            </div>
+          ))}
+        </div>
+        <aside style={{ background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '18px 20px', display: 'flex', flexDirection: 'column', gap: 14, minHeight: 0, overflowY: 'auto' }}>
+          <div style={{ fontSize: 16, fontWeight: 700 }}>What you'll see</div>
+          {[
+            { icon: 'M4 6h16M4 12h8M4 18h12', title: 'Playlists for team talks', body: 'Build once, reuse' },
+            { icon: 'M12 21a9 9 0 100-18 9 9 0 000 18zM10 8l6 4-6 4z', title: 'Clips sent to players', body: 'Parents see them too' },
+            { icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944', title: 'No-consent players blurred', body: 'Never in shared clips' },
+          ].map((item, i) => (
+            <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
+              <span style={{ flex: 'none', width: 32, height: 32, borderRadius: '999px', background: '#eef5f2', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2f6252" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={item.icon}/></svg>
+              </span>
+              <div>
+                <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 2 }}>{item.title}</div>
+                <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: '18px' }}>{item.body}</div>
+              </div>
+            </div>
+          ))}
+          <div style={{ marginTop: 'auto', fontSize: 12, color: '#4a5a57', lineHeight: '17px' }}>Clips of a player whose parents said no to filming are never shared.</div>
+        </aside>
+      </main>
+    )
+  }
+
+  if (activeTab === 3) {
+    return (
+      <main style={{ flexGrow: 1, minHeight: 0, display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 340px', overflow: 'hidden' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '40px 24px', gap: 14 }}>
+          <span style={{ width: 48, height: 48, borderRadius: '999px', background: '#eef5f2', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2f6252" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          </span>
+          <div style={{ fontSize: 20, fontWeight: 700 }}>Nothing to check</div>
+          <div style={{ fontSize: 14, color: '#4a5a57', textAlign: 'center', lineHeight: '20px', maxWidth: 320 }}>After each recorded game, the few moments Clean Sheet isn't sure about wait here for a quick yes or no from you.</div>
+          <button style={{ height: 40, padding: '0 20px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="#fff"/></svg>
+            Record your first game
+          </button>
+        </div>
+        <aside style={{ borderLeft: '1px solid #e9eae8', padding: '20px 20px', display: 'flex', flexDirection: 'column', gap: 14, background: '#fafafa', overflowY: 'auto' }}>
+          <div style={{ fontSize: 16, fontWeight: 700 }}>What lands here</div>
+          {[
+            { title: 'Close calls', body: 'Was it a win of the ball, a shot, a goal?' },
+            { title: "Who's who", body: "When a shirt number can't be read." },
+            { title: 'Anything you report', body: 'Tap "Something look wrong?" on any number.' },
+          ].map((item, i) => (
+            <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
+              <span style={{ flex: 'none', width: 24, height: 24, borderRadius: '999px', background: '#10211f', color: '#ffffff', fontSize: 12, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{i + 1}</span>
+              <div>
+                <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 2 }}>{item.title}</div>
+                <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: '18px' }}>{item.body}</div>
+              </div>
+            </div>
+          ))}
+        </aside>
+      </main>
+    )
+  }
+
+  // Browse (tab 0) or Shared with players (tab 2) empty
+  const measures = ['Pressing high', 'Winning it back', 'Building out', 'Counter-attacks']
+  return (
+    <div style={{ flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+      <div style={{ flex: 'none', padding: '14px 28px 0', display: 'flex', alignItems: 'center', gap: 12 }}>
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: 12 }}>
+          <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, letterSpacing: '-0.02em' }}>Clips</h1>
+          <span style={{ fontSize: 14, color: '#4a5a57' }}>No clips yet</span>
+        </div>
+        <div style={{ flexGrow: 1 }} />
+        <button style={{ height: 36, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f', display: 'flex', alignItems: 'center', gap: 6 }}>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden="true"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1M16 8l-4-4-4 4M12 4v12"/></svg>
+          Upload a video
+        </button>
+        <button style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#ffffff', display: 'flex', alignItems: 'center', gap: 6 }}>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="#fff"/></svg>
+          Record a game
+        </button>
+      </div>
+
+      <div style={{ flexGrow: 1, minHeight: 0, display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 300px', gap: 20, padding: '14px 28px 18px', overflow: 'hidden' }}>
+        <div style={{ minHeight: 0, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 16 }}>
+          <div style={{ background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '20px 24px', display: 'flex', gap: 20 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 22px)', gap: 4, flex: 'none' }}>
+              {['#2f6252','#40826d','#cbbeb5','#c39797'].map((c, i) => <div key={i} style={{ width: 22, height: 22, borderRadius: 5, background: c }} />)}
+            </div>
+            <div style={{ flexGrow: 1 }}>
+              <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#40826d', marginBottom: 6 }}>Your first clips</div>
+              <div style={{ fontSize: 20, fontWeight: 700, marginBottom: 6 }}>Clips find themselves</div>
+              <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: '20px', marginBottom: 14 }}>After each recorded game, Clean Sheet cuts out the key moments and tags them to your style: pressing, building out, goals and more.</div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10 }}>
+                {[
+                  { icon: 'M12 21a9 9 0 100-18 9 9 0 000 18zM10 8l6 4-6 4z', title: 'Record a game', body: 'The XbotGo camera films it. Clips are ready about 25 minutes after.', btn: 'Record' },
+                  { icon: 'M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1M16 8l-4-4-4 4M12 4v12', title: 'Upload a video', body: 'Any phone or camera recording of a full game or training.', btn: 'Upload' },
+                  { icon: 'M12 22a10 10 0 100-20 10 10 0 000 20zM8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72', title: 'Connect the camera', body: 'Pair your XbotGo Falcon so games come in on their own.', btn: 'Connect' },
+                ].map(opt => (
+                  <div key={opt.title} style={{ background: '#f7f8f7', borderRadius: 10, padding: '12px 12px' }}>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4a5a57" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginBottom: 6 }} aria-hidden="true"><path d={opt.icon}/></svg>
+                    <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 3 }}>{opt.title}</div>
+                    <div style={{ fontSize: 12, color: '#4a5a57', lineHeight: '16px', marginBottom: 8 }}>{opt.body}</div>
+                    <button style={{ height: 30, padding: '0 12px', borderRadius: 8, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>{opt.btn}</button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
+              <div style={{ fontSize: 15, fontWeight: 700 }}>Browse by game, measure or player</div>
+              <span style={{ fontSize: 13, color: '#4a5a57' }}>Measures come from your style</span>
+            </div>
+            <div style={{ display: 'flex', gap: 6, marginBottom: 10 }}>
+              {measures.map((m, i) => (
+                <div key={i} style={{ padding: '6px 12px', borderRadius: '999px', background: '#f0f1ef', fontSize: 13, fontWeight: 600, color: '#4a5a57' }}>
+                  {m} <span style={{ color: '#6f7f7b' }}>0 clips</span>
+                </div>
+              ))}
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 8 }}>
+              {[0,1,2,3,4,5,6,7].map(i => (
+                <div key={i} style={{ aspectRatio: '16/10', border: '1px dashed #c5c8c4', borderRadius: 10, background: '#f7f8f7' }} />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <aside style={{ background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '18px 20px', display: 'flex', flexDirection: 'column', gap: 14, minHeight: 0, overflowY: 'auto' }}>
+          <div style={{ fontSize: 16, fontWeight: 700 }}>How clips work</div>
+          {[
+            { icon: 'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z', title: 'Found for you', body: 'Every press, build-up, counter and goal is cut out of the full match.' },
+            { icon: 'M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z', title: 'Tagged to your style', body: 'Each clip is linked to a measure, so you can see good examples and ones to work on.' },
+            { icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z', title: 'Checked by you', body: 'Anything Clean Sheet is unsure about waits in To check.' },
+            { icon: 'M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z', title: 'Shared safely', body: 'Players only get clips if their parent agreed. Other players are blurred.' },
+          ].map((item, i) => (
+            <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
+              <span style={{ flex: 'none', width: 32, height: 32, borderRadius: '999px', background: '#eef5f2', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2f6252" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={item.icon}/></svg>
+              </span>
+              <div>
+                <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 2 }}>{item.title}</div>
+                <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: '18px' }}>{item.body}</div>
+              </div>
+            </div>
+          ))}
+          <div style={{ marginTop: 'auto', fontSize: 12, color: '#4a5a57', lineHeight: '17px' }}>Full match video is deleted after 90 days. Clips you keep stay until the end of the season.</div>
+        </aside>
+      </div>
+    </div>
+  )
+}
+
 const PLAYERS = [
   { ini: 'MT', name: 'Mia',  fullName: 'Mia Tran'   },
   { ini: 'NO', name: 'Noah', fullName: 'Noah Owen'   },
@@ -159,7 +340,8 @@ function DropChip({ label }: { label: string }) {
   )
 }
 
-export default function ClipsScreen() {
+export default function ClipsScreen({ empty, activeTab = 0 }: { empty?: boolean; activeTab?: number }) {
+  if (empty) return <ClipsEmpty activeTab={activeTab} />
   const [filterMode, setFilterMode] = useState<FilterMode>('game')
   const [activeGame, setActiveGame] = useState<string>('all')
   const [activeMeasure, setActiveMeasure] = useState<string | null>(null)
