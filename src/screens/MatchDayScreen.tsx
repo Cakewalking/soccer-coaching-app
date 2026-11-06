@@ -1,0 +1,246 @@
+import { useState } from 'react'
+
+type Screen = 'home' | 'training' | 'matchday' | 'teamtalk'
+
+interface Props {
+  onNav: (s: Screen) => void
+}
+
+const SLIDES = [
+  { id: 0, label: 'START',     title: 'Harbour Rovers today',                  text: 'Last game we won 3–1 at Ironbark. Here is what worked, and three things we fix today.', color: '#2f6252' },
+  { id: 1, label: 'WENT WELL', title: 'Pressing high worked',                  text: '+18% more ball wins in their half vs our average.',                                       color: '#40826d' },
+  { id: 2, label: 'WENT WELL', title: 'We scored when we attacked fast',       text: '2 of 3 fast attacks ended in a goal. Best rate all season.',                             color: '#40826d' },
+  { id: 3, label: 'FIX THIS',  title: 'Win the ball back faster',              text: '7 seconds average on Saturday. Our best is 4.',                                          color: '#6b4a4e' },
+  { id: 4, label: 'FIX THIS',  title: 'Keep our lines close',                  text: '26 m gap between lines. Under 20 m is our target.',                                      color: '#6b4a4e' },
+  { id: 5, label: 'FIX THIS',  title: 'Keep running to the final whistle',     text: 'Sprint speed dropped 22% after minute 50. Hold it.',                                     color: '#6b4a4e' },
+  { id: 6, label: 'TODAY',     title: 'vs Harbour Rovers',                     text: 'Press early. Win it back fast. Keep the shape in the last 20.',                          color: '#2f6252' },
+]
+
+const SAY_THIS = [
+  'Keep it short and upbeat. Two things we did well, three to fix.',
+  'Tell them what pressing high got us — mention a specific player who made it happen.',
+  'Show the goal from the fast attack. Ask: what did we do well here?',
+  'Show the clip of the 7-second moment. Ask: what can we do differently?',
+  'Show the gap on the pitch diagram. Ask: how do we fix this?',
+  'Show the sprint data drop. Tell them one thing: keep going at minute 50.',
+  'Build them up. Remind them of the last result. Send them out loud.',
+]
+
+const WHAT_NUMBERS = {
+  wentWell: [
+    { label: 'Pressing high worked',             value: '+18%' },
+    { label: 'We scored when we attacked fast',  value: '2 of 3' },
+  ],
+  notSoGood: [
+    { label: 'Win the ball back faster',          value: '7 s' },
+    { label: 'Keep our lines close',              value: '26 m' },
+    { label: 'Keep running to the final whistle', value: '−22%' },
+  ],
+}
+
+const PLAYER_CHECKS = [
+  { ini: 'KR', name: 'Kai',  badge: 'Tight hamstring', rating: 3.3, bg: '#fdf8e8', textColor: '#7a5a00' },
+  { ini: 'EB', name: 'Ella', badge: 'Low 3 days',      rating: 2.3, bg: '#fdf0ee', textColor: '#7a3030' },
+  { ini: 'MT', name: 'Mia',  badge: 'Heavy legs',      rating: 3.3, bg: '#fdf8e8', textColor: '#7a5a00' },
+  { ini: 'NO', name: 'Noah', badge: 'Sore knees',      rating: 3.8, bg: '#fdf0ee', textColor: '#7a3030' },
+]
+
+export default function MatchDayScreen({ onNav }: Props) {
+  const [slide, setSlide] = useState(0)
+  const s = SLIDES[slide]
+
+  return (
+    <>
+      {/* Match info row */}
+      <div style={{ flex: 'none', background: '#ffffff', borderBottom: '1px solid #e9eae8', padding: '14px 32px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+          <div style={{ flexGrow: 1, minWidth: 0 }}>
+            <div style={{ fontSize: 12, fontWeight: 600, color: '#6f7f7b', letterSpacing: '0.02em', textTransform: 'uppercase', marginBottom: 2 }}>
+              Sat 7 Nov · 9:30 am · home
+            </div>
+            <h1 style={{ margin: 0, fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em', color: '#10211f', lineHeight: '28px' }}>
+              vs Harbour Rovers
+            </h1>
+          </div>
+          <div style={{ display: 'flex', gap: 8, alignItems: 'center', flex: 'none' }}>
+            {/* Kick-off chip */}
+            <div style={{
+              height: 36, padding: '0 14px', borderRadius: '999px',
+              border: '1px solid #40826d', background: '#edf8f2',
+              display: 'flex', alignItems: 'center', gap: 7,
+              fontSize: 14, fontWeight: 600, color: '#2f6252',
+            }}>
+              <span style={{ width: 8, height: 8, borderRadius: '999px', background: '#40826d', display: 'block', flexShrink: 0 }} />
+              Kick-off in 2 h 15 min
+            </div>
+            {/* 3 of 5 ready */}
+            <div style={{
+              height: 36, padding: '0 14px', borderRadius: '999px',
+              background: '#fdf8e8', border: '1px solid #e9d88a',
+              display: 'flex', alignItems: 'center', gap: 7,
+              fontSize: 14, fontWeight: 600, color: '#7a5a00',
+            }}>
+              <span style={{ width: 8, height: 8, borderRadius: '999px', background: '#d4a844', display: 'block', flexShrink: 0 }} />
+              3 of 5 ready
+            </div>
+            <button style={{
+              height: 36, padding: '0 14px', borderRadius: '999px', border: '1px solid #c5c8c4',
+              background: '#ffffff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer',
+            }}>Minutes plan</button>
+            <button style={{
+              height: 36, padding: '0 14px', borderRadius: '999px', border: 0,
+              background: '#c03030', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer',
+              display: 'flex', alignItems: 'center', gap: 7,
+            }}>
+              <span style={{ width: 10, height: 10, borderRadius: '999px', background: '#ff9999', display: 'block', flexShrink: 0 }} />
+              Record
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Body */}
+      <main style={{ flexGrow: 1, display: 'flex', overflow: 'hidden' }}>
+
+        {/* Left: team talk prep + player check */}
+        <div style={{ flexGrow: 1, overflowY: 'auto', padding: '24px 32px 32px' }}>
+
+          {/* Team talk header */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
+            <span style={{ fontSize: 17, fontWeight: 700, color: '#10211f' }}>Team talk</span>
+            <span style={{ fontSize: 14, color: '#6f7f7b' }}>7 slides · 4 min · from the last 5 games</span>
+            <div style={{ flexGrow: 1 }} />
+            <button style={{ border: 0, background: 'transparent', color: '#2f6252', fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Edit talk</button>
+          </div>
+
+          {/* Filmstrip */}
+          <div style={{ display: 'flex', gap: 8, marginBottom: 14, overflowX: 'auto', paddingBottom: 2 }}>
+            {SLIDES.map((sl, i) => (
+              <button key={sl.id} onClick={() => setSlide(i)} style={{
+                flex: 'none', width: 104, height: 64, borderRadius: 10,
+                background: sl.color, border: `2px solid ${slide === i ? 'rgba(255,255,255,0.8)' : 'transparent'}`,
+                outline: slide === i ? `2px solid #40826d` : 'none',
+                cursor: 'pointer', display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
+                padding: '7px 8px', boxSizing: 'border-box',
+              }}>
+                <span style={{ fontSize: 9, fontWeight: 700, color: 'rgba(255,255,255,0.75)', letterSpacing: '0.06em', textTransform: 'uppercase' }}>{sl.label}</span>
+                <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 4 }}>
+                  <span style={{ fontSize: 11, fontWeight: 600, color: '#ffffff', lineHeight: '14px', textAlign: 'left' }}>
+                    {sl.title.length > 22 ? sl.title.slice(0, 22) + '…' : sl.title}
+                  </span>
+                  <span style={{ flex: 'none', fontSize: 12, fontWeight: 700, color: 'rgba(255,255,255,0.6)' }}>{i + 1}</span>
+                </div>
+              </button>
+            ))}
+          </div>
+
+          {/* Large slide preview */}
+          <div style={{
+            borderRadius: 16, background: s.color,
+            padding: '28px 32px', display: 'flex', alignItems: 'center', gap: 32,
+            marginBottom: 14, minHeight: 180,
+          }}>
+            <div style={{ flexGrow: 1, minWidth: 0, color: '#ffffff' }}>
+              <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.65)', marginBottom: 10 }}>{s.label}</div>
+              <div style={{ fontSize: 26, fontWeight: 700, letterSpacing: '-0.02em', lineHeight: '32px', marginBottom: 10 }}>{s.title}</div>
+              <div style={{ fontSize: 15, lineHeight: '22px', color: 'rgba(255,255,255,0.85)' }}>{s.text}</div>
+            </div>
+            <button onClick={() => onNav('teamtalk')} style={{
+              flex: 'none', width: 72, height: 72, borderRadius: '999px',
+              border: '3px solid rgba(255,255,255,0.75)', background: 'transparent',
+              display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer',
+            }}>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="rgba(255,255,255,0.9)" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+            </button>
+          </div>
+
+          {/* Slide dots */}
+          <div style={{ display: 'flex', gap: 6, justifyContent: 'center', marginBottom: 28 }}>
+            {SLIDES.map((_, i) => (
+              <button key={i} onClick={() => setSlide(i)} style={{
+                width: i === slide ? 20 : 8, height: 8, borderRadius: 4,
+                background: i === slide ? '#40826d' : '#d0d4d2',
+                border: 0, cursor: 'pointer', padding: 0,
+              }} />
+            ))}
+          </div>
+
+          {/* Player check */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12, flexWrap: 'wrap' }}>
+            <span style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>Player check</span>
+            <span style={{ fontSize: 14, color: '#6f7f7b' }}>14 of 16 done this morning · squad average 3.6</span>
+            <div style={{ flexGrow: 1 }} />
+            <span style={{ fontSize: 14, color: '#6f7f7b' }}>Not filled in: <strong style={{ color: '#10211f' }}>Zoe and Sam</strong></span>
+            <button style={{
+              height: 32, padding: '0 14px', borderRadius: '999px',
+              border: '1px solid #c5c8c4', background: '#ffffff',
+              fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', color: '#10211f',
+            }}>Remind</button>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 10 }}>
+            {PLAYER_CHECKS.map(p => (
+              <div key={p.ini} style={{ background: '#ffffff', border: '1px solid #e9eae8', borderRadius: 12, padding: '14px 16px', display: 'flex', alignItems: 'center', gap: 12 }}>
+                <div style={{ flex: 'none', width: 36, height: 36, borderRadius: '999px', background: p.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, color: '#10211f' }}>{p.ini}</div>
+                <div style={{ flexGrow: 1, minWidth: 0 }}>
+                  <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', marginBottom: 3 }}>{p.name}</div>
+                  <span style={{ display: 'inline-block', fontSize: 11, fontWeight: 700, color: p.textColor, background: p.bg, borderRadius: 4, padding: '2px 7px' }}>{p.badge}</span>
+                </div>
+                <div style={{ flex: 'none', textAlign: 'right' }}>
+                  <div style={{ fontSize: 22, fontWeight: 700, color: '#10211f', lineHeight: '26px' }}>{p.rating}</div>
+                  <div style={{ fontSize: 11, color: '#6f7f7b' }}>out of 5</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Right sidebar: Say this + What the numbers say */}
+        <div style={{ width: 300, flex: 'none', borderLeft: '1px solid #e9eae8', padding: '24px 20px', overflowY: 'auto', background: '#fafafa' }}>
+
+          {/* Say this */}
+          <div style={{ marginBottom: 24 }}>
+            <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#6f7f7b', marginBottom: 2 }}>
+              Say this · {slide + 1} of {SLIDES.length} · about 20 s
+            </div>
+            <p style={{ margin: '12px 0 0', fontSize: 16, lineHeight: '23px', color: '#10211f', fontWeight: 500 }}>
+              "{SAY_THIS[slide]}"
+            </p>
+          </div>
+
+          <div style={{ height: 1, background: '#e9eae8', marginBottom: 20 }} />
+
+          {/* What the numbers say */}
+          <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', marginBottom: 14 }}>What the numbers say</div>
+
+          <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#40826d', marginBottom: 6 }}>Went well</div>
+          {WHAT_NUMBERS.wentWell.map((item, i) => (
+            <button key={i} onClick={() => setSlide(i + 1)} style={{
+              display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+              padding: '10px 0', width: '100%', border: 0, borderTop: '1px solid #e9eae8',
+              background: 'transparent', cursor: 'pointer', fontFamily: 'inherit',
+            }}>
+              <span style={{ fontSize: 14, color: '#10211f', textAlign: 'left', lineHeight: '19px' }}>{item.label}</span>
+              <span style={{ fontSize: 14, fontWeight: 700, color: '#2f6252', flexShrink: 0, marginLeft: 10 }}>{item.value}</span>
+            </button>
+          ))}
+
+          <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#9d7c80', marginTop: 16, marginBottom: 6 }}>Not so good</div>
+          {WHAT_NUMBERS.notSoGood.map((item, i) => (
+            <button key={i} onClick={() => setSlide(i + 3)} style={{
+              display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+              padding: '10px 0', width: '100%', border: 0, borderTop: '1px solid #e9eae8',
+              background: 'transparent', cursor: 'pointer', fontFamily: 'inherit',
+            }}>
+              <span style={{ fontSize: 14, color: '#10211f', textAlign: 'left', lineHeight: '19px' }}>{item.label}</span>
+              <span style={{ fontSize: 14, fontWeight: 700, color: '#9d7c80', flexShrink: 0, marginLeft: 10 }}>{item.value}</span>
+            </button>
+          ))}
+
+          <p style={{ margin: '16px 0 0', fontSize: 13, lineHeight: '18px', color: '#6f7f7b' }}>
+            Tap a row to jump to its slide. Each fix was practised on Thursday.
+          </p>
+        </div>
+      </main>
+    </>
+  )
+}

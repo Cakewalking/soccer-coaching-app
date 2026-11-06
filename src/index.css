@@ -1,0 +1,183 @@
+@import './tokens.css';
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--surface-100);
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+button { font-family: inherit; cursor: pointer; }
+a { color: var(--green-deep); }
+button:focus-visible, a:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* Utility classes — exact spec from training-day.dc.html */
+.h2 {
+  margin: 0;
+  font-size: 22px;
+  line-height: 28px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.cap {
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--ink-muted);
+}
+
+.card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+}
+
+.section-label {
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 700;
+  color: var(--green-deep);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.hl {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+}
+
+.pill {
+  flex: none;
+  height: 44px;
+  border-radius: var(--radius-full);
+  border: 0;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 0 16px;
+  white-space: nowrap;
+  font-family: inherit;
+}
+
+.act {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  min-height: 72px;
+  padding: 12px 20px;
+  border: 0;
+  border-top: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+  text-align: left;
+  text-decoration: none;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.nav-btn {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 16px;
+  border-radius: 12px;
+  border: 0;
+  background: transparent;
+  color: var(--ink-muted);
+  font-size: 16px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.btn {
+  height: 48px;
+  padding: 0 24px;
+  border-radius: 12px;
+  border: 1px solid var(--green-deep);
+  font-size: 16px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* Design-system classes from dc.html templates */
+.tile {
+  background: #ffffff;
+  border: 1px solid #c5c8c4;
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 14px 0;
+  border: 0;
+  border-top: 1px solid #e9eae8;
+  background: transparent;
+  color: #10211f;
+  text-align: left;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.label {
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #2f6252;
+}
+
+.more {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid #c5c8c4;
+  background: #f7f8f7;
+  color: #10211f;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 24px;
+  border-radius: 999px;
+  border: 0;
+  background: #2f6252;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+}
