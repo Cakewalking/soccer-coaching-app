@@ -17,6 +17,7 @@ import AvailabilityScreen  from './screens/AvailabilityScreen'
 import OppositionScreen    from './screens/OppositionScreen'
 import ReviewScreen        from './screens/ReviewScreen'
 import ThisWeekScreen      from './screens/ThisWeekScreen'
+import DrillLibraryScreen  from './screens/DrillLibraryScreen'
 import { type Role } from './data'
 import './index.css'
 
@@ -207,7 +208,7 @@ export default function App() {
       {/* Training tabs */}
       {screen === 'training' && trainingTab === 0 && <TrainingScreen role={role} onNav={navTo} empty={isEmpty} />}
       {screen === 'training' && trainingTab === 1 && <ThisWeekScreen empty={isEmpty} />}
-      {screen === 'training' && trainingTab === 2 && <TrainingScreen role={role} onNav={navTo} empty={isEmpty} />}
+      {screen === 'training' && trainingTab === 2 && <DrillLibraryScreen />}
       {screen === 'training' && trainingTab === 3 && <TrainingScreen role={role} onNav={navTo} />}
       {/* Match day tabs */}
       {screen === 'matchday' && matchdayTab === 0 && <MatchDayScreen onNav={navTo} empty={isEmpty} />}
