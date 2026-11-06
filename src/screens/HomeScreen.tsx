@@ -71,7 +71,7 @@ export default function HomeScreen({ onNav }: Props) {
 
       {/* ── Inbox (span 4) ── */}
       <section className="tile" style={{ gridColumn: 'span 4', padding: '0 0 8px', overflow: 'hidden', gap: 0 }} aria-label="Inbox">
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '14px 18px', background: '#008080', color: '#ffffff' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '14px 18px', background: '#1f4a3e', color: '#ffffff' }}>
           <h2 className="h2">Inbox</h2>
           <span style={{ background: '#ffffff', color: '#006666', borderRadius: '999px', padding: '2px 10px', fontSize: 13, lineHeight: '18px', fontWeight: 700 }}>3 new</span>
         </div>
