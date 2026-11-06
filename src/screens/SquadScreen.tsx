@@ -77,9 +77,6 @@ function RightPanel({ p, onProfile }: { p: SquadPlayer; onProfile: () => void })
     p.status === 'missing' ? 'No wellness check-in received. Chase before training.' :
     'Player is ready to train at full load.'
 
-  // mini sparkline bars for minutes (8 games)
-  const gameRatings = [6.5, 7, 6, 7.5, 7.5, 7, 6.5, 8.5]
-
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
       {/* Avatar + name */}

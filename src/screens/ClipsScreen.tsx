@@ -183,7 +183,6 @@ export default function ClipsScreen() {
   // Context header data
   const game = activeGame !== 'all' ? CLIPS_GAMES.find(g => g.id === activeGame) : null
   const gameCtx = game ? GAME_FULL[game.id] : null
-  const baseGameCount = activeGame === 'all' ? CLIPS.length : CLIPS.filter(c => c.game === activeGame).length
   const playerInfo = activePlayer ? PLAYERS.find(p => p.ini === activePlayer) : null
   const playerClipCount = activePlayer ? CLIPS.filter(c => c.players.includes(activePlayer)).length : CLIPS.length
 
