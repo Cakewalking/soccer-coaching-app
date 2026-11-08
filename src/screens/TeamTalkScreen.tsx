@@ -7,6 +7,7 @@ interface Props {
 }
 
 export default function TeamTalkScreen({ role, onClose }: Props) {
+  const [playerView, setPlayerView] = useState(false)
   const [slide, setSlide] = useState(0)
   const focus = DATA[role].focus
   const f = focus[slide]
@@ -29,6 +30,16 @@ export default function TeamTalkScreen({ role, onClose }: Props) {
         <span style={{ fontSize: 16, fontWeight: 600, color: '#7cc4ab' }}>Team talk · U14 · Wattle Creek FC</span>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           <span style={{ fontSize: 16, color: '#a3b0ad' }}>{slide + 1} of {total}</span>
+          <button
+            onClick={() => setPlayerView(v => !v)}
+            style={{
+              height: 44, padding: '0 20px', borderRadius: '999px',
+              border: '1px solid #a3b0ad', background: playerView ? '#2f4442' : 'transparent',
+              color: '#ffffff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer',
+            }}
+          >
+            {playerView ? 'Coach view' : 'Show the team'}
+          </button>
           <button
             onClick={onClose}
             style={{

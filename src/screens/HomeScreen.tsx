@@ -1,6 +1,6 @@
 import { INBOX, METRICS, WEEK_SCHEDULE, RESULTS, SQUAD, type Role } from '../data'
 
-type Screen = 'home' | 'training' | 'matchday' | 'teamtalk'
+type Screen = 'home' | 'training' | 'matchday' | 'teamtalk' | 'setstyle'
 
 interface Props {
   role: Role
@@ -9,7 +9,7 @@ interface Props {
   empty?: boolean
 }
 
-function HomeEmpty() {
+function HomeEmpty({ onSetStyle }: { onSetStyle?: () => void }) {
   const steps = [
     { n: 1, title: 'Add your squad', body: 'Names, positions and a parent contact. Import a spreadsheet or share an invite link.', btn: 'Add players' },
     { n: 2, title: 'Add your fixtures', body: 'Clean Sheet plans training around your game days.', btn: 'Add fixtures' },
@@ -80,7 +80,7 @@ function HomeEmpty() {
         <div style={{ background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '16px 18px' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
             <div style={{ fontSize: 15, fontWeight: 700 }}>Where we're at</div>
-            <button style={{ height: 32, padding: '0 12px', borderRadius: 8, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Set our style</button>
+            <button onClick={onSetStyle} style={{ height: 32, padding: '0 12px', borderRadius: 8, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Set our style</button>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
             {styleRows.map((row, i) => (
@@ -158,7 +158,7 @@ function weekRowStyle(type: string) {
 }
 
 export default function HomeScreen({ onNav, empty }: Props) {
-  if (empty) return <HomeEmpty />
+  if (empty) return <HomeEmpty onSetStyle={() => onNav('setstyle')} />
   return (
     <main style={{
       flexGrow: 1, minHeight: 0, padding: '18px 28px 22px',

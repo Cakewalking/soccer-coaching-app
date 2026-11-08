@@ -1,6 +1,6 @@
 import { DATA, COLOR_MAP, type Role } from '../data'
 
-type Screen = 'home' | 'training' | 'matchday' | 'teamtalk'
+type Screen = 'home' | 'training' | 'matchday' | 'teamtalk' | 'pitchside' | 'addgame'
 
 interface Props {
   role: Role
@@ -8,7 +8,7 @@ interface Props {
   empty?: boolean
 }
 
-function TrainingEmpty() {
+function TrainingEmpty({ onNav }: { onNav: (s: 'addgame') => void }) {
   const starterSessions = [
     { tag: 'Ready-made', title: 'Pressing basics', sub: '6-second press · small game', note: 'Good first session for any age group' },
     { tag: 'Ready-made', title: 'Pass and move',   sub: 'Passing squares · 3 v 1 · small game', note: 'Builds confidence on the ball' },
@@ -49,7 +49,7 @@ function TrainingEmpty() {
             <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: '18px', marginBottom: 14 }}>After your first recorded game, Clean Sheet picks drills that fix what it sees in the video and wearable data. Until then, start from a ready-made session.</div>
             <div style={{ display: 'flex', gap: 8 }}>
               <button style={{ height: 36, padding: '0 16px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Use a starter session</button>
-              <button style={{ height: 36, padding: '0 16px', borderRadius: 10, border: '1px solid #2f6252', background: '#ffffff', color: '#2f6252', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Record a game</button>
+              <button onClick={() => onNav('addgame')} style={{ height: 36, padding: '0 16px', borderRadius: 10, border: '1px solid #2f6252', background: '#ffffff', color: '#2f6252', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Record a game</button>
             </div>
           </div>
           {[65, 50].map((w, i) => (
@@ -147,7 +147,7 @@ function DrillDiagram({ tag }: { tag: string }) {
 }
 
 export default function TrainingScreen({ role, onNav, empty }: Props) {
-  if (empty) return <TrainingEmpty />
+  if (empty) return <TrainingEmpty onNav={onNav} />
   const d = DATA[role]
   const totalMins = d.drills.reduce((s, x) => s + x.mins, 0)
   const focus = d.focus.slice(0, 3)
@@ -178,7 +178,7 @@ export default function TrainingScreen({ role, onNav, empty }: Props) {
               height: 36, padding: '0 14px', borderRadius: '999px', border: '1px solid #c5c8c4',
               background: '#ffffff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer',
             }}>Edit plan</button>
-            <button style={{
+            <button onClick={() => onNav('pitchside')} style={{
               height: 36, padding: '0 16px', borderRadius: '999px', border: 0,
               background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer',
               display: 'flex', alignItems: 'center', gap: 6,

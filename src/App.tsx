@@ -18,10 +18,21 @@ import OppositionScreen    from './screens/OppositionScreen'
 import ReviewScreen        from './screens/ReviewScreen'
 import ThisWeekScreen      from './screens/ThisWeekScreen'
 import DrillLibraryScreen  from './screens/DrillLibraryScreen'
+import GrowthLoadScreen    from './screens/GrowthLoadScreen'
+import PitchSideScreen     from './screens/PitchSideScreen'
+import AddGameScreen       from './screens/AddGameScreen'
+import SetOurStyleWizard   from './screens/SetOurStyleWizard'
+import LiveGameScreen      from './screens/LiveGameScreen'
+import MetricDetailScreen  from './screens/MetricDetailScreen'
+import TeamManagerScreen   from './screens/TeamManagerScreen'
+import SignupScreen        from './screens/SignupScreen'
+import PlayerAppScreen     from './screens/PlayerAppScreen'
+import FitnessCoachScreen  from './screens/FitnessCoachScreen'
+import ClubAdminScreen     from './screens/ClubAdminScreen'
 import { type Role } from './data'
 import './index.css'
 
-export type Screen = 'home' | 'squad' | 'training' | 'matchday' | 'teamtalk' | 'clips' | 'player'
+export type Screen = 'home' | 'squad' | 'training' | 'matchday' | 'teamtalk' | 'clips' | 'player' | 'pitchside' | 'addgame' | 'setstyle' | 'livegame' | 'metric' | 'teammanager' | 'signup' | 'playerapp' | 'fitnesscoach' | 'clubadmin'
 
 const NAV_TABS: Array<{ id: Screen; label: string; icon: string }> = [
   { id: 'home',     label: 'Home',      icon: 'M4 11l8-7 8 7v9H4z' },
@@ -52,17 +63,69 @@ function RoleBadge() {
   )
 }
 
-function TeamPicker() {
+function TeamPicker({ onMetric, onNav }: { onMetric?: () => void; onNav?: (s: Screen) => void }) {
+  const [open, setOpen] = useState(false)
+  const go = (s: Screen) => { setOpen(false); onNav?.(s) }
   return (
-    <button style={{
-      display: 'flex', alignItems: 'center', gap: 8, height: 44, padding: '0 16px',
-      borderRadius: '999px', border: 0, background: '#ffffff',
-      fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer', color: '#10211f',
-      flexShrink: 0,
-    }}>
-      U12 · Wattle Creek
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-    </button>
+    <div style={{ position: 'relative', flexShrink: 0 }}>
+      <button onClick={() => setOpen(o => !o)} style={{
+        display: 'flex', alignItems: 'center', gap: 8, height: 44, padding: '0 16px',
+        borderRadius: '999px', border: 0, background: open ? '#40826d' : 'rgba(255,255,255,0.15)',
+        fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer', color: '#ffffff',
+        flexShrink: 0,
+      }}>
+        U12 · Wattle Creek
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      {open && (
+        <>
+          <div onClick={() => setOpen(false)} style={{ position: 'fixed', inset: 0, zIndex: 49 }} />
+          <div style={{ position: 'absolute', top: 52, right: 0, zIndex: 50, background: '#ffffff', borderRadius: 16, boxShadow: '0 8px 32px rgba(0,0,0,0.18)', minWidth: 280, overflow: 'hidden' }}>
+            <div style={{ padding: '10px 16px 6px', fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#6f7f7b' }}>Your teams</div>
+            <div style={{ padding: '8px 16px', display: 'flex', alignItems: 'center', gap: 10, background: '#f0f8f4' }}>
+              <div style={{ flexGrow: 1 }}>
+                <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>U12 Sam</div>
+                <div style={{ fontSize: 12, color: '#6f7f7b' }}>Head coach</div>
+              </div>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#40826d" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div style={{ padding: '10px 16px 6px', fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#6f7f7b', borderTop: '1px solid #f0f1f0' }}>Club</div>
+            <button onClick={() => setOpen(false)} style={{ display: 'block', width: '100%', padding: '8px 16px', border: 0, background: 'transparent', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
+              <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>Club drill library</div>
+              <div style={{ fontSize: 12, color: '#6f7f7b' }}>Shared by every coach</div>
+            </button>
+            <button onClick={() => go('clubadmin')} style={{ display: 'block', width: '100%', padding: '8px 16px', border: 0, background: 'transparent', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
+              <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>Club admin portal</div>
+              <div style={{ fontSize: 12, color: '#6f7f7b' }}>Chair / Director of Football view</div>
+            </button>
+            <div style={{ padding: '10px 16px 6px', fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#6f7f7b', borderTop: '1px solid #f0f1f0' }}>Other portals</div>
+            <button onClick={() => { setOpen(false); onMetric?.() }} style={{ display: 'block', width: '100%', padding: '8px 16px', border: 0, background: 'transparent', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
+              <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>Metric detail</div>
+              <div style={{ fontSize: 12, color: '#6f7f7b' }}>How is this worked out?</div>
+            </button>
+            <button onClick={() => go('teammanager')} style={{ display: 'block', width: '100%', padding: '8px 16px', border: 0, background: 'transparent', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
+              <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>Team manager app</div>
+              <div style={{ fontSize: 12, color: '#6f7f7b' }}>Rob's phone view</div>
+            </button>
+            <button onClick={() => go('playerapp')} style={{ display: 'block', width: '100%', padding: '8px 16px', border: 0, background: 'transparent', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
+              <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>Player app</div>
+              <div style={{ fontSize: 12, color: '#6f7f7b' }}>Harper / Mia's view</div>
+            </button>
+            <button onClick={() => go('fitnesscoach')} style={{ display: 'block', width: '100%', padding: '8px 16px', border: 0, background: 'transparent', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
+              <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>Fitness coach portal</div>
+              <div style={{ fontSize: 12, color: '#6f7f7b' }}>Jamie's view</div>
+            </button>
+            <button onClick={() => go('signup')} style={{ display: 'block', width: '100%', padding: '8px 16px', border: 0, background: 'transparent', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
+              <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>Sign-up / onboarding</div>
+              <div style={{ fontSize: 12, color: '#6f7f7b' }}>Coach, parent, player, staff</div>
+            </button>
+            <div style={{ padding: '10px 16px', borderTop: '1px solid #f0f1f0', fontSize: 12, color: '#6f7f7b', background: '#fafafa' }}>
+              Previewing all app portals
+            </div>
+          </div>
+        </>
+      )}
+    </div>
   )
 }
 
@@ -91,6 +154,70 @@ export default function App() {
 
   if (screen === 'teamtalk') {
     return <TeamTalkScreen role={role} onClose={() => setScreen('training')} />
+  }
+  if (screen === 'pitchside') {
+    return <PitchSideScreen onClose={() => setScreen('training')} />
+  }
+  if (screen === 'addgame') {
+    return <AddGameScreen onClose={() => setScreen('training')} />
+  }
+  if (screen === 'setstyle') {
+    return <SetOurStyleWizard onClose={() => setScreen('home')} />
+  }
+  if (screen === 'livegame') {
+    return <LiveGameScreen onClose={() => setScreen('matchday')} />
+  }
+  if (screen === 'metric') {
+    return (
+      <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
+        <MetricDetailScreen onClose={() => setScreen('home')} />
+      </div>
+    )
+  }
+  if (screen === 'teammanager') {
+    return (
+      <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: '#f0f1f0', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 40 }}>
+        <div style={{ display: 'flex', justifyContent: 'flex-end', width: 390, marginBottom: 12 }}>
+          <button onClick={() => setScreen('home')} style={{ height: 36, padding: '0 16px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Back to coach view</button>
+        </div>
+        <TeamManagerScreen empty={isEmpty} />
+      </div>
+    )
+  }
+  if (screen === 'signup') {
+    return <SignupScreen onDone={() => setScreen('home')} />
+  }
+  if (screen === 'playerapp') {
+    return (
+      <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: '#f0f1f0', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 40 }}>
+        <div style={{ display: 'flex', justifyContent: 'flex-end', width: 390, marginBottom: 12 }}>
+          <button onClick={() => setScreen('home')} style={{ height: 36, padding: '0 16px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Back to coach view</button>
+        </div>
+        <PlayerAppScreen empty={isEmpty} />
+      </div>
+    )
+  }
+  if (screen === 'fitnesscoach') {
+    return (
+      <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
+        <div style={{ flex: 'none', background: '#fff', borderBottom: '1px solid #e9eae8', padding: '0 28px', display: 'flex', alignItems: 'center', height: 52 }}>
+          <button onClick={() => setScreen('home')} style={{ height: 36, padding: '0 16px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Coach view</button>
+          <span style={{ marginLeft: 16, fontSize: 14, fontWeight: 700, color: '#1f4a3e' }}>Fitness coach portal</span>
+        </div>
+        <FitnessCoachScreen empty={isEmpty} />
+      </div>
+    )
+  }
+  if (screen === 'clubadmin') {
+    return (
+      <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
+        <div style={{ flex: 'none', background: '#fff', borderBottom: '1px solid #e9eae8', padding: '0 28px', display: 'flex', alignItems: 'center', height: 52 }}>
+          <button onClick={() => setScreen('home')} style={{ height: 36, padding: '0 16px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Coach view</button>
+          <span style={{ marginLeft: 16, fontSize: 14, fontWeight: 700, color: '#1f4a3e' }}>Club admin portal</span>
+        </div>
+        <ClubAdminScreen empty={isEmpty} />
+      </div>
+    )
   }
 
   const isPlayerScreen = screen === 'player'
@@ -132,7 +259,7 @@ export default function App() {
             Squad
           </button>
           <div style={{ flexGrow: 1 }} />
-          <TeamPicker />
+          <TeamPicker onMetric={() => navTo('metric')} onNav={navTo} />
           <Avatar />
         </div>
       )}
@@ -158,7 +285,7 @@ export default function App() {
                 </button>
               ))}
             </nav>
-            <TeamPicker />
+            <TeamPicker onMetric={() => navTo('metric')} onNav={navTo} />
             <Avatar />
           </div>
 
@@ -209,10 +336,10 @@ export default function App() {
       {screen === 'training' && trainingTab === 0 && <TrainingScreen role={role} onNav={navTo} empty={isEmpty} />}
       {screen === 'training' && trainingTab === 1 && <ThisWeekScreen empty={isEmpty} />}
       {screen === 'training' && trainingTab === 2 && <DrillLibraryScreen />}
-      {screen === 'training' && trainingTab === 3 && <TrainingScreen role={role} onNav={navTo} />}
+      {screen === 'training' && trainingTab === 3 && <GrowthLoadScreen empty={isEmpty} />}
       {/* Match day tabs */}
       {screen === 'matchday' && matchdayTab === 0 && <MatchDayScreen onNav={navTo} empty={isEmpty} />}
-      {screen === 'matchday' && matchdayTab === 1 && <MatchDayScreen onNav={navTo} empty={isEmpty} />}
+      {screen === 'matchday' && matchdayTab === 1 && <LiveGameScreen onClose={() => { setMatchdayTab(0); setScreen('matchday') }} />}
       {screen === 'matchday' && matchdayTab === 2 && <OppositionScreen empty={isEmpty} />}
       {screen === 'matchday' && matchdayTab === 3 && <ReviewScreen empty={isEmpty} />}
       {/* Other screens */}

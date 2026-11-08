@@ -1,0 +1,86 @@
+import { useState } from 'react'
+import type { AdminTab } from './clubadmin/data'
+import ClubTab from './clubadmin/ClubTab'
+import TeamsTab from './clubadmin/TeamsTab'
+import CoachesTab from './clubadmin/CoachesTab'
+import PlayersTab from './clubadmin/PlayersTab'
+import SafeguardingTab from './clubadmin/SafeguardingTab'
+import ReportsTab from './clubadmin/ReportsTab'
+
+export default function ClubAdminScreen({ empty, role = 'chair' }: { empty?: boolean; role?: 'chair' | 'dof' }) {
+  const [tab, setTab] = useState<AdminTab>('club')
+
+  if (empty) {
+    return (
+      <div style={{ background: '#f7f9f7', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 16, padding: '0 32px', textAlign: 'center', fontFamily: 'var(--font-sans)' }}>
+        <div style={{ width: 60, height: 60, borderRadius: '999px', background: '#e4f2eb', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2f6252" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <div style={{ fontSize: 20, fontWeight: 700, color: '#10211f' }}>Club not set up yet</div>
+        <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: '20px' }}>Create the club account to start managing teams and coaches.</div>
+        <button style={{ height: 48, padding: '0 32px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>
+          Get the club ready
+        </button>
+      </div>
+    )
+  }
+
+  const TABS: { id: AdminTab; label: string; icon: string }[] = [
+    { id: 'club', label: 'Club', icon: 'M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z' },
+    { id: 'teams', label: 'Teams', icon: 'M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75' },
+    { id: 'coaches', label: 'Coaches', icon: 'M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8z' },
+    { id: 'players', label: 'Players', icon: 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5' },
+    { id: 'safeguarding', label: 'Safeguarding', icon: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z' },
+    { id: 'reports', label: 'Reports', icon: 'M18 20V10M12 20V4M6 20v-6' },
+  ]
+
+  return (
+    <div style={{ background: '#f7f9f7', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
+      {/* Header */}
+      <div style={{ background: '#1f4a3e', padding: '14px 24px 0', flexShrink: 0 }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <div style={{ fontSize: 15, fontWeight: 800, color: '#fff', letterSpacing: '-0.3px' }}>Clean Sheet</div>
+            <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)' }}>·</span>
+            <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)' }}>CLUB</div>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <button style={{ height: 32, padding: '0 14px', borderRadius: '999px', border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
+              Whole club
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div style={{ width: 32, height: 32, borderRadius: '999px', background: '#c39797', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }}>RM</div>
+          </div>
+        </div>
+
+        {/* Main tab nav */}
+        <div style={{ display: 'flex', overflowX: 'auto', gap: 4 }}>
+          {TABS.map(t => (
+            <button key={t.id} onClick={() => setTab(t.id)} style={{ display: 'flex', alignItems: 'center', gap: 6, flexShrink: 0, padding: '8px 14px', border: 0, background: 'transparent', fontFamily: 'inherit', fontSize: 13, fontWeight: tab === t.id ? 700 : 400, cursor: 'pointer', color: tab === t.id ? '#fff' : 'rgba(255,255,255,0.6)', borderBottom: tab === t.id ? '2px solid #fff' : '2px solid transparent' }}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={t.icon}/></svg>
+              {t.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Role badge strip */}
+      <div style={{ background: '#fff', borderBottom: '1px solid #e9eae8', padding: '0 24px', height: 32, display: 'flex', alignItems: 'center', justifyContent: 'flex-end', flexShrink: 0 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#6f7f7b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span style={{ fontSize: 12, color: '#6f7f7b', fontWeight: 600 }}>{role === 'chair' ? 'Chair' : 'Director of Football'}</span>
+        </div>
+      </div>
+
+      {/* Content */}
+      <div style={{ flexGrow: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
+        {tab === 'club' && <ClubTab role={role} />}
+        {tab === 'teams' && <TeamsTab />}
+        {tab === 'coaches' && <CoachesTab />}
+        {tab === 'players' && <PlayersTab />}
+        {tab === 'safeguarding' && <SafeguardingTab />}
+        {tab === 'reports' && <ReportsTab />}
+      </div>
+    </div>
+  )
+}

@@ -598,9 +598,132 @@ function DrillDetail({ drill, onBack }: { drill: Drill; onBack: ()=>void }) {
   )
 }
 
+// ── Session plans ────────────────────────────────────────────────────────────
+const PHASES = [
+  { id: 'foundation', label: 'Foundation', color: '#c3a84a', desc: 'Ball mastery, passing, movement off the ball' },
+  { id: 'technical',  label: 'Technical',  color: '#2f6252', desc: 'First touch, turning, 1v1, shooting' },
+  { id: 'tactical',   label: 'Tactical',   color: '#1f4a3e', desc: 'Shape, pressing, transitions, set pieces' },
+  { id: 'competition',label: 'Competition',color: '#c39797', desc: 'Match prep, review, game scenarios' },
+]
+const SESSION_SLOTS = [
+  { slot: 'Warm-up', min: 10, drillId: 'd1', desc: 'Dynamic movement with ball · pairs passing · 10 min' },
+  { slot: 'Main 1', min: 20, drillId: 'd2', desc: 'Keep-ball rondo 4v2 · 20 min · focus on scanning' },
+  { slot: 'Main 2', min: 25, drillId: 'd3', desc: 'Press trigger practice 5v5 · 25 min' },
+  { slot: 'Small-sided game', min: 20, drillId: 'd4', desc: 'Transition game · no GK · 20 min' },
+  { slot: 'Cool-down', min: 10, drillId: null, desc: 'Static stretches + group debrief · 10 min' },
+]
+function SessionPlans({ onBack }: { onBack: () => void }) {
+  const [phase, setPhase] = useState('technical')
+  const ph = PHASES.find(p => p.id === phase) ?? PHASES[0]
+  return (
+    <div style={{ flex:1, display:'flex', flexDirection:'column', overflow:'hidden' }}>
+      <div style={{ padding:'16px 24px 0', display:'flex', alignItems:'center', gap:12, flexShrink:0 }}>
+        <button onClick={onBack} style={{ display:'flex', alignItems:'center', gap:4, border:0, background:'none', cursor:'pointer', color:MUT, fontFamily:'inherit', fontSize:13 }}>
+          <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          Back
+        </button>
+        <div style={{ fontSize:18, fontWeight:700, color:INK }}>Session plans</div>
+      </div>
+      <div style={{ display:'flex', gap:8, padding:'12px 24px', flexShrink:0, borderBottom:`1px solid ${LN}` }}>
+        {PHASES.map(p => (
+          <button key={p.id} onClick={() => setPhase(p.id)} style={{ height:32, padding:'0 14px', borderRadius:999, border:`1px solid ${phase===p.id?p.color:LN}`, background:phase===p.id?p.color:'#fff', color:phase===p.id?'#fff':MUT, fontFamily:'inherit', fontSize:13, fontWeight:600, cursor:'pointer' }}>{p.label}</button>
+        ))}
+      </div>
+      <div style={{ flex:1, overflow:'auto', padding:'16px 24px 24px', display:'grid', gridTemplateColumns:'1fr 300px', gap:20 }}>
+        <div>
+          <div style={{ fontSize:13, color:MUT, marginBottom:16 }}>{ph.desc}</div>
+          {SESSION_SLOTS.map((s, i) => (
+            <div key={i} style={{ display:'flex', gap:14, padding:'14px 0', borderTop:i>0?`1px solid ${LN}`:'none' }}>
+              <div style={{ width:36, flexShrink:0, textAlign:'center' }}>
+                <div style={{ fontSize:16, fontWeight:800, color:ph.color }}>{s.min}</div>
+                <div style={{ fontSize:10, color:MUT }}>min</div>
+              </div>
+              <div style={{ flexGrow:1 }}>
+                <div style={{ fontSize:14, fontWeight:700, color:INK, marginBottom:3 }}>{s.slot}</div>
+                <div style={{ fontSize:13, color:MUT }}>{s.desc}</div>
+              </div>
+              {s.drillId && (
+                <div style={{ width:80, height:52, borderRadius:8, background:`${ph.color}22`, border:`1px solid ${ph.color}44`, display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>
+                  <div style={{ fontSize:10, fontWeight:700, color:ph.color }}>See drill</div>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+        <div style={{ background:'#fff', borderRadius:12, padding:'16px', border:`1px solid ${LN}`, alignSelf:'start' }}>
+          <div style={{ fontSize:13, fontWeight:700, color:INK, marginBottom:12 }}>Use this plan</div>
+          {[
+            { d: 'Tomorrow · Tue 10 Nov · 6:00 pm', note: '75 min · pitch 1' },
+            { d: 'Thu 12 Nov · 6:00 pm', note: '75 min · pitch 1' },
+          ].map((s, i) => (
+            <div key={i} style={{ padding:'10px 0', borderTop:i>0?`1px solid ${LN}`:'none' }}>
+              <div style={{ fontSize:13, fontWeight:600, color:INK }}>{s.d}</div>
+              <div style={{ fontSize:12, color:MUT, marginBottom:8 }}>{s.note}</div>
+              <button style={{ height:32, padding:'0 14px', borderRadius:999, border:0, background:G, color:'#fff', fontFamily:'inherit', fontSize:13, fontWeight:600, cursor:'pointer' }}>Use for this session</button>
+            </div>
+          ))}
+          <div style={{ marginTop:16, fontSize:12, color:MUT }}>Adapts to your squad size and pitch. You can swap drills in the session editor.</div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// ── Term planner ────────────────────────────────────────────────────────────
+const TERM_BLOCKS = [
+  { wk: 'Wk 1–2', dates: '28 Oct – 8 Nov', skill: 'Ball mastery', tue: 'Coervers + rondos', thu: 'Movement off the ball' },
+  { wk: 'Wk 3–4', dates: '11–22 Nov', skill: 'First touch & turning', tue: '1v1 receiving drills', thu: 'Turn under pressure' },
+  { wk: 'Wk 5–6', dates: '25 Nov – 6 Dec', skill: 'Press & recover shape', tue: 'Press trigger game', thu: 'Transition 5v5' },
+  { wk: 'Wk 7–8', dates: '9–20 Dec', skill: 'Scoring & finishing', tue: 'Finishing from wide', thu: 'Penalty + 1v1 GK' },
+  { wk: 'Wk 9–10', dates: '6–17 Jan', skill: 'Review + competition', tue: 'Scenario match play', thu: 'Squad review session' },
+]
+function TermPlanner({ onBack }: { onBack: () => void }) {
+  return (
+    <div style={{ flex:1, display:'flex', flexDirection:'column', overflow:'hidden' }}>
+      <div style={{ padding:'16px 24px 12px', display:'flex', alignItems:'center', gap:12, flexShrink:0, borderBottom:`1px solid ${LN}` }}>
+        <button onClick={onBack} style={{ display:'flex', alignItems:'center', gap:4, border:0, background:'none', cursor:'pointer', color:MUT, fontFamily:'inherit', fontSize:13 }}>
+          <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          Back
+        </button>
+        <div>
+          <div style={{ fontSize:18, fontWeight:700, color:INK }}>Term planner</div>
+          <div style={{ fontSize:13, color:MUT }}>Summer Term · U12 Sam · 10 weeks</div>
+        </div>
+        <div style={{ flexGrow:1 }}/>
+        <button style={{ height:32, padding:'0 14px', borderRadius:999, border:`1px solid ${LN}`, background:'#fff', color:MUT, fontFamily:'inherit', fontSize:13, fontWeight:600, cursor:'pointer' }}>Export PDF</button>
+      </div>
+      <div style={{ flex:1, overflow:'auto', padding:'20px 24px 24px' }}>
+        <div style={{ display:'grid', gridTemplateColumns:'80px 120px 1fr 1fr 1fr', gap:0, background:'#fff', borderRadius:12, border:`1px solid ${LN}`, overflow:'hidden' }}>
+          {['', 'DATES', 'SKILL FOCUS', 'TUESDAY', 'THURSDAY'].map(h => (
+            <div key={h} style={{ padding:'8px 14px', borderBottom:`1px solid ${LN}`, fontSize:11, fontWeight:700, color:MUT, background:'#f7f9f7' }}>{h}</div>
+          ))}
+          {TERM_BLOCKS.map((b, i) => (
+            <>
+              <div key={`wk${i}`} style={{ padding:'14px', borderTop:i>0?`1px solid ${LN}`:'none', fontSize:13, fontWeight:700, color:INK }}>{b.wk}</div>
+              <div key={`dt${i}`} style={{ padding:'14px', borderTop:i>0?`1px solid ${LN}`:'none', fontSize:12, color:MUT }}>{b.dates}</div>
+              <div key={`sk${i}`} style={{ padding:'14px', borderTop:i>0?`1px solid ${LN}`:'none' }}>
+                <div style={{ display:'inline-block', background:`${G}22`, color:G2, fontSize:12, fontWeight:700, borderRadius:6, padding:'3px 8px' }}>{b.skill}</div>
+              </div>
+              <div key={`tu${i}`} style={{ padding:'14px', borderTop:i>0?`1px solid ${LN}`:'none', fontSize:12, color:INK }}>{b.tue}</div>
+              <div key={`th${i}`} style={{ padding:'14px', borderTop:i>0?`1px solid ${LN}`:'none', fontSize:12, color:INK }}>{b.thu}</div>
+            </>
+          ))}
+        </div>
+        <div style={{ marginTop:16, background:'#fff', borderRadius:12, padding:'14px 16px', border:`1px solid ${LN}`, display:'flex', justifyContent:'space-between', alignItems:'center' }}>
+          <div>
+            <div style={{ fontSize:14, fontWeight:700, color:INK }}>Suggested by Clean Sheet</div>
+            <div style={{ fontSize:13, color:MUT }}>Based on the curriculum and last season's gaps</div>
+          </div>
+          <button style={{ height:36, padding:'0 16px', borderRadius:999, border:0, background:G, color:'#fff', fontFamily:'inherit', fontSize:13, fontWeight:600, cursor:'pointer' }}>Customise plan</button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 // ── Main screen ────────────────────────────────────────────────────────────
 export default function DrillLibraryScreen() {
-  const [view, setView]     = useState<'library'|'detail'|'wizard'|'done'>('library')
+  const [view, setView]     = useState<'library'|'detail'|'wizard'|'done'|'session-plans'|'term-planner'>('library')
   const [drill, setDrill]   = useState<Drill|null>(null)
   const [filterTab, setFTab] = useState(0)
   const [category, setCat]  = useState('All')
@@ -638,6 +761,12 @@ export default function DrillLibraryScreen() {
   if (view === 'detail' && drill) {
     return <DrillDetail drill={drill} onBack={() => setView('library')}/>
   }
+  if (view === 'session-plans') {
+    return <SessionPlans onBack={() => setView('library')} />
+  }
+  if (view === 'term-planner') {
+    return <TermPlanner onBack={() => setView('library')} />
+  }
 
   const filtered = DRILLS.filter(d =>
     (filterTab===0 ? true : filterTab===1 ? d.isOurs : false) &&
@@ -658,6 +787,8 @@ export default function DrillLibraryScreen() {
           <svg style={{ position:'absolute', left:10, top:'50%', transform:'translateY(-50%)', pointerEvents:'none' }} width={15} height={15} viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth={2} strokeLinecap="round"><circle cx={11} cy={11} r={8}/><path d="M21 21l-4.3-4.3"/></svg>
           <input placeholder="Search drills" style={{ height:36, paddingLeft:32, paddingRight:14, borderRadius:999, border:`1px solid ${LN}`, fontSize:14, fontFamily:'inherit', outline:'none', width:200, color:INK }}/>
         </div>
+        <button onClick={() => setView('session-plans')} style={{ height:36, padding:'0 14px', borderRadius:999, border:`1px solid ${LN}`, background:'#fff', color:MUT, fontSize:13, fontWeight:600, cursor:'pointer', fontFamily:'inherit' }}>Session plans</button>
+        <button onClick={() => setView('term-planner')} style={{ height:36, padding:'0 14px', borderRadius:999, border:`1px solid ${LN}`, background:'#fff', color:MUT, fontSize:13, fontWeight:600, cursor:'pointer', fontFamily:'inherit' }}>Term planner</button>
         <button onClick={openWiz} style={{ height:36, padding:'0 16px', borderRadius:999, border:'none', background:G, color:'#fff', fontSize:14, fontWeight:600, cursor:'pointer', fontFamily:'inherit', display:'flex', alignItems:'center', gap:8 }}>
           <svg width={15} height={15} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round"><path d="M12 5v14M5 12h14"/></svg>
           Add your own drill
