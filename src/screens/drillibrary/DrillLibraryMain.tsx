@@ -1,10 +1,9 @@
 import type { Drill } from './data'
-import { G, G2, INK, MUT, LN, DRILLS, FIX_ITEMS } from './data'
+import { G, G2, INK, MUT, LN, DRILLS, FIX_ITEMS, PHASE_LABEL_TO_ID } from './data'
 import PitchDiagram from './PitchDiagram'
 
 const AGE_PHASES = ['Discovery 5–9','Skill Acquisition 9–12','Game Training 12–16','Performance 16+','All']
 const CHIP_FILTERS = ['Everything','Warm-up','First touch','Striking the ball','Running with the ball','1 v 1','Team movements','Games','Set pieces']
-const FILTER_TABS = [['All drills','46'],['Our drills','2'],['Saved','3']]
 
 const TAG_COLORS: Record<string,string> = {
   'Curriculum':       G2,
@@ -59,11 +58,14 @@ interface Props {
 }
 
 export default function DrillLibraryMain({ filterTab, setFilterTab, agePhase, setAgePhase, chipFilter, setChipFilter, onDrillClick, onSessionPlans, onTermPlanner, onAddDrill }: Props) {
-  const featured = DRILLS.filter(d => d.featured)
+  const phaseId = PHASE_LABEL_TO_ID[agePhase]
+  const featured = DRILLS.filter(d => d.featured && (phaseId === null || d.phases.includes(phaseId)))
   const filtered = DRILLS.filter(d =>
+    (phaseId === null || d.phases.includes(phaseId)) &&
     (filterTab===0 ? true : filterTab===1 ? d.isOurs : false) &&
     (chipFilter==='Everything' ? true : d.category===chipFilter)
   )
+  const ourCount = DRILLS.filter(d => d.isOurs && (phaseId === null || d.phases.includes(phaseId))).length
 
   return (
     <div style={{ flex:1, display:'flex', flexDirection:'column', overflow:'hidden' }}>
@@ -71,7 +73,7 @@ export default function DrillLibraryMain({ filterTab, setFilterTab, agePhase, se
       <div style={{ padding:'20px 28px 0', display:'flex', alignItems:'center', gap:12, flexShrink:0 }}>
         <div>
           <div style={{ fontSize:24, fontWeight:700, color:INK, letterSpacing:'-0.02em' }}>Drill library</div>
-          <div style={{ fontSize:13, color:MUT, marginTop:2 }}>44 drills · 2 of ours</div>
+          <div style={{ fontSize:13, color:MUT, marginTop:2 }}>{filtered.length} drills{ourCount > 0 ? ` · ${ourCount} of ours` : ''}</div>
         </div>
         <div style={{ flexGrow:1 }}/>
         <button onClick={onSessionPlans} style={{ height:36, padding:'0 14px', borderRadius:999, border:`1px solid ${LN}`, background:'#fff', color:MUT, fontSize:13, fontWeight:600, cursor:'pointer', fontFamily:'inherit' }}>Session plans</button>
@@ -132,11 +134,18 @@ export default function DrillLibraryMain({ filterTab, setFilterTab, agePhase, se
 
           {/* Sub-filter tabs */}
           <div style={{ display:'flex', borderBottom:`1px solid ${LN}` }}>
-            {FILTER_TABS.map(([label,count], i) => (
-              <button key={i} onClick={() => setFilterTab(i)} style={{ height:38, padding:'0 16px', border:'none', background:'none', cursor:'pointer', fontFamily:'inherit', fontSize:14, fontWeight:filterTab===i?700:400, color:filterTab===i?INK:MUT, borderBottom:filterTab===i?`2px solid ${G2}`:'2px solid transparent', display:'flex', alignItems:'center', gap:6 }}>
-                {label} <span style={{ fontSize:12, color:MUT }}>{count}</span>
-              </button>
-            ))}
+            {(['All drills','Our drills','Saved'] as const).map((label, i) => {
+              const count = i===0
+                ? DRILLS.filter(d => phaseId === null || d.phases.includes(phaseId)).length
+                : i===1
+                  ? ourCount
+                  : 3
+              return (
+                <button key={i} onClick={() => setFilterTab(i)} style={{ height:38, padding:'0 16px', border:'none', background:'none', cursor:'pointer', fontFamily:'inherit', fontSize:14, fontWeight:filterTab===i?700:400, color:filterTab===i?INK:MUT, borderBottom:filterTab===i?`2px solid ${G2}`:'2px solid transparent', display:'flex', alignItems:'center', gap:6 }}>
+                  {label} <span style={{ fontSize:12, color:MUT }}>{count}</span>
+                </button>
+              )
+            })}
           </div>
 
           {/* Chip filter row */}
