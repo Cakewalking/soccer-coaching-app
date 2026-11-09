@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 const COLS = ['Filming in games', 'Boot sensors / GPS', 'Wellness check-ins', 'Clips to player', 'Club socials']
 
 const ROWS = [
@@ -46,7 +48,8 @@ function TickIcon({ value }: { value: boolean | null }) {
 }
 
 export default function ConsentScreen() {
-  const sel = ROWS[0]
+  const [selIdx, setSelIdx] = useState(0)
+  const sel = ROWS[selIdx]
 
   return (
     <div style={{ flexGrow: 1, minHeight: 0, padding: '14px 28px 18px', display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) 380px', gap: 16, boxSizing: 'border-box' }}>
@@ -97,12 +100,12 @@ export default function ConsentScreen() {
 
           {/* Rows */}
           {ROWS.map((r, ri) => (
-            <div key={ri} style={{
+            <div key={ri} onClick={() => setSelIdx(ri)} style={{
               display: 'grid', gridTemplateColumns: 'minmax(0, 1.6fr) repeat(5, 72px)',
               gap: 6, alignItems: 'center', minHeight: 52,
               borderTop: ri === 0 ? 'none' : '1px solid #f0f1ef',
-              background: ri === 0 ? '#eef5f2' : 'transparent',
-              borderRadius: ri === 0 ? 10 : 0, padding: '0 4px',
+              background: ri === selIdx ? '#eef5f2' : 'transparent',
+              borderRadius: ri === selIdx ? 10 : 0, padding: '0 4px',
               cursor: 'pointer',
             }}>
               <span style={{ display: 'flex', alignItems: 'center', gap: 10 }}>

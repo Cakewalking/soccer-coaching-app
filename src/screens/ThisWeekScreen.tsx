@@ -100,7 +100,7 @@ const DAYS = [
   },
 ]
 
-export default function ThisWeekScreen({ empty }: { empty?: boolean }) {
+export default function ThisWeekScreen({ empty, onDrillLibrary, onTonightsPlan, onGrowthLoad }: { empty?: boolean; onDrillLibrary?: () => void; onTonightsPlan?: () => void; onGrowthLoad?: () => void }) {
   if (empty) return <ThisWeekEmpty />
   return (
     <div style={{ flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
@@ -111,8 +111,8 @@ export default function ThisWeekScreen({ empty }: { empty?: boolean }) {
           <h1 style={{ margin: 0, fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em' }}>This week</h1>
           <span style={{ fontSize: 14, color: '#4a5a57' }}>Mon 2 to Sun 8 Nov · three things from Ironbark, worked on twice before Harbour Rovers</span>
           <div style={{ flexGrow: 1 }} />
-          <button style={{ height: 36, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>Drill library</button>
-          <button style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#ffffff' }}>Tonight's plan</button>
+          <button onClick={onDrillLibrary} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>Drill library</button>
+          <button onClick={onTonightsPlan} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#ffffff' }}>Tonight's plan</button>
         </div>
 
         {/* 3 focus banners */}
@@ -154,7 +154,7 @@ export default function ThisWeekScreen({ empty }: { empty?: boolean }) {
       {/* Footer bar */}
       <div style={{ flex: 'none', borderTop: '1px solid #e9eae8', padding: '10px 28px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#ffffff' }}>
         <span style={{ fontSize: 13, color: '#4a5a57' }}>Load this week: two 75-minute sessions and one 50-minute game. Growing players have sprints capped in both sessions.</span>
-        <button style={{ border: 0, background: 'transparent', color: '#2f6252', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Growth and load →</button>
+        <button onClick={onGrowthLoad} style={{ border: 0, background: 'transparent', color: '#2f6252', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Growth and load →</button>
       </div>
     </div>
   )

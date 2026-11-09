@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 function Illus() {
   return (
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 22px)', gap: 4, flex: 'none' }}>
@@ -90,6 +92,8 @@ function resultBadge(r: 'W'|'L'|'D') {
 }
 
 export default function OppositionScreen({ empty }: { empty?: boolean }) {
+  const [showNote, setShowNote] = useState(false)
+  const [noteText, setNoteText] = useState('')
   if (empty) return <OppositionEmpty />
   return (
     <main style={{ flexGrow: 1, padding: '14px 28px 18px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 340px', gap: 16, boxSizing: 'border-box', minHeight: 0, overflow: 'hidden' }}>
@@ -156,9 +160,25 @@ export default function OppositionScreen({ empty }: { empty?: boolean }) {
             </div>
           ))}
           <div style={{ marginTop: 'auto' }}>
-            <button style={{ width: '100%', height: 44, borderRadius: 12, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>
-              Add a scouting note
-            </button>
+            {showNote ? (
+              <div>
+                <textarea
+                  value={noteText}
+                  onChange={e => setNoteText(e.target.value)}
+                  placeholder="What did you notice about their shape, set pieces, or key players?"
+                  autoFocus
+                  style={{ width: '100%', height: 80, borderRadius: 10, border: '1px solid #c5c8c4', padding: '10px 12px', fontFamily: 'inherit', fontSize: 14, resize: 'none', boxSizing: 'border-box', marginBottom: 8 }}
+                />
+                <div style={{ display: 'flex', gap: 8 }}>
+                  <button onClick={() => { setShowNote(false); setNoteText('') }} style={{ flex: 1, height: 36, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>Cancel</button>
+                  <button onClick={() => { setShowNote(false); setNoteText('') }} style={{ flex: 2, height: 36, borderRadius: 10, border: 0, background: '#2f6252', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, color: '#fff', cursor: 'pointer' }}>Save note</button>
+                </div>
+              </div>
+            ) : (
+              <button onClick={() => setShowNote(true)} style={{ width: '100%', height: 44, borderRadius: 12, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>
+                Add a scouting note
+              </button>
+            )}
           </div>
         </div>
       </div>

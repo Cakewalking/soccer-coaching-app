@@ -52,6 +52,8 @@ export default function PlayerAppScreen({ empty }: { empty?: boolean }) {
   const [checkinQ, setCheckinQ] = useState(0)
   const [playClip, setPlayClip] = useState(false)
   const [inviteStep, setInviteStep] = useState<'landing' | 'toggles' | 'done'>('landing')
+  const [showAddGoal, setShowAddGoal] = useState(false)
+  const [newGoalText, setNewGoalText] = useState('')
   const [recordToggles, setRecordToggles] = useState({
     wellness: true, load: true, growth: false, clips: true,
   })
@@ -279,9 +281,26 @@ export default function PlayerAppScreen({ empty }: { empty?: boolean }) {
               </div>
             </div>
           ))}
-          <button style={{ width: '100%', height: 44, borderRadius: 12, border: '1px dashed #c5c8c4', background: 'transparent', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>
-            + Add my own goal
-          </button>
+          {showAddGoal ? (
+            <div style={{ background: '#fff', borderRadius: 12, padding: 16, border: '1px solid #e9eae8' }}>
+              <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f', marginBottom: 10 }}>New goal</div>
+              <input
+                value={newGoalText}
+                onChange={e => setNewGoalText(e.target.value)}
+                placeholder="What do you want to get better at?"
+                style={{ width: '100%', height: 40, borderRadius: 8, border: '1px solid #e9eae8', padding: '0 12px', fontFamily: 'inherit', fontSize: 14, boxSizing: 'border-box', marginBottom: 10 }}
+                autoFocus
+              />
+              <div style={{ display: 'flex', gap: 8 }}>
+                <button onClick={() => { setShowAddGoal(false); setNewGoalText('') }} style={{ flex: 1, height: 36, borderRadius: 10, border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>Cancel</button>
+                <button onClick={() => { setShowAddGoal(false); setNewGoalText('') }} style={{ flex: 2, height: 36, borderRadius: 10, border: 0, background: '#2f6252', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, color: '#fff', cursor: 'pointer' }}>Save goal</button>
+              </div>
+            </div>
+          ) : (
+            <button onClick={() => setShowAddGoal(true)} style={{ width: '100%', height: 44, borderRadius: 12, border: '1px dashed #c5c8c4', background: 'transparent', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>
+              + Add my own goal
+            </button>
+          )}
         </div>
       </div>
     )

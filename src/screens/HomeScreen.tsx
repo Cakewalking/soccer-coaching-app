@@ -1,11 +1,12 @@
 import { INBOX, METRICS, WEEK_SCHEDULE, RESULTS, SQUAD, type Role } from '../data'
 
-type Screen = 'home' | 'training' | 'matchday' | 'teamtalk' | 'setstyle'
+type Screen = 'home' | 'training' | 'matchday' | 'teamtalk' | 'setstyle' | 'metric'
 
 interface Props {
   role: Role
   onRole: (r: Role) => void
   onNav: (s: Screen) => void
+  onCalendar?: () => void
   empty?: boolean
 }
 
@@ -157,7 +158,7 @@ function weekRowStyle(type: string) {
   return { ...base, color: '#10211f' }
 }
 
-export default function HomeScreen({ onNav, empty }: Props) {
+export default function HomeScreen({ onNav, onCalendar, empty }: Props) {
   if (empty) return <HomeEmpty onSetStyle={() => onNav('setstyle')} />
   return (
     <main style={{
@@ -267,7 +268,7 @@ export default function HomeScreen({ onNav, empty }: Props) {
         <section className="tile" style={{ flexGrow: 1 }} aria-label="Where we're at">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
             <h2 className="h2">Where we're at</h2>
-            <button style={{ display: 'flex', alignItems: 'center', gap: 4, border: 0, background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>
+            <button onClick={() => onNav('metric')} style={{ display: 'flex', alignItems: 'center', gap: 4, border: 0, background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>
               <span style={{ fontSize: 13, color: '#6f7f7b' }}>Measured against our style: press high · build from the back</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6f7f7b" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
             </button>
@@ -300,7 +301,7 @@ export default function HomeScreen({ onNav, empty }: Props) {
         <section className="tile" style={{ flex: 'none', gap: 6 }} aria-label="This week">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
             <h2 className="h2">This week</h2>
-            <button style={{ border: 0, background: 'transparent', color: 'var(--green-deep)', fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Calendar</button>
+            <button onClick={onCalendar} style={{ border: 0, background: 'transparent', color: 'var(--green-deep)', fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Calendar</button>
           </div>
           {WEEK_SCHEDULE.map(d => (
             <div key={d.day} style={weekRowStyle(d.type)}>

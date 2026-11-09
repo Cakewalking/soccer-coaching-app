@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 function Illus() {
   return (
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 22px)', gap: 4, flex: 'none' }}>
@@ -105,6 +107,7 @@ function resultDot(r: string) {
 }
 
 export default function FixturesScreen({ empty }: { empty?: boolean }) {
+  const [synced, setSynced] = useState(false)
   if (empty) return <FixturesEmpty />
   return (
     <main style={{ flexGrow: 1, padding: '14px 28px 18px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 340px', gap: 16, boxSizing: 'border-box', minHeight: 0, overflow: 'hidden' }}>
@@ -116,7 +119,7 @@ export default function FixturesScreen({ empty }: { empty?: boolean }) {
           <span style={{ fontSize: 14, color: '#4a5a57' }}>U12 Mixed · 3rd of 10 · 16 points from 8 games · 2 × 25 minutes, 9 a side</span>
         </div>
         <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
-          <button style={{ height: 36, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>Sync to my calendar</button>
+          <button onClick={() => setSynced(true)} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: `1px solid ${synced ? '#2f6252' : '#c5c8c4'}`, background: synced ? '#e4f2eb' : '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: synced ? '#2f6252' : '#10211f' }}>{synced ? 'Synced to calendar' : 'Sync to my calendar'}</button>
           <button style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#ffffff' }}>+ Add a fixture</button>
         </div>
 

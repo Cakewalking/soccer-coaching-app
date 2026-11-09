@@ -49,7 +49,10 @@ export default function TeamManagerScreen({ empty }: { empty?: boolean }) {
   const [showHeadKnock, setShowHeadKnock] = useState(false)
   const [showSideline, setShowSideline] = useState(false)
   const [showSignOff, setShowSignOff] = useState(false)
+  const [showInjury, setShowInjury] = useState(false)
   const [byeWeek, setByeWeek] = useState(false)
+  const [sidelineTeam, setSidelineTeam] = useState<string | null>(null)
+  const [signOffChoices, setSignOffChoices] = useState<Record<number, string>>({})
 
   function toggleCheck(i: number) {
     setCheckedItems(prev => { const n = new Set(prev); n.has(i) ? n.delete(i) : n.add(i); return n })
@@ -251,7 +254,7 @@ export default function TeamManagerScreen({ empty }: { empty?: boolean }) {
                   <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', margin: '16px 0 10px' }}>Something happened?</div>
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
                     {[
-                      { label: 'Log an injury', color: '#c3a84a', onClick: () => {} },
+                      { label: 'Log an injury', color: '#c3a84a', onClick: () => setShowInjury(true) },
                       { label: 'Log a head knock', color: '#c39797', onClick: () => setShowHeadKnock(true) },
                       { label: 'Report sideline behaviour', color: '#c39797', onClick: () => setShowSideline(true) },
                       { label: 'Sign off the game', color: '#2f6252', onClick: () => setShowSignOff(true) },
@@ -437,7 +440,7 @@ export default function TeamManagerScreen({ empty }: { empty?: boolean }) {
           <div style={{ flexGrow: 1, overflowY: 'auto', padding: '20px' }}>
             {[
               { label: 'Who was involved?', input: <input placeholder="Name or role (e.g. 'parent on east sideline')" style={{ width: '100%', height: 40, borderRadius: 8, border: '1px solid #e9eae8', padding: '0 10px', fontFamily: 'inherit', fontSize: 14, boxSizing: 'border-box' }} /> },
-              { label: 'Which team were they from?', input: <div style={{ display: 'flex', gap: 10 }}>{['Ours', 'Opponents', 'Unknown'].map(o => <button key={o} style={{ flex: 1, height: 40, borderRadius: 10, border: '1px solid #e9eae8', background: '#f7f9f7', color: '#4a5a57', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>{o}</button>)}</div> },
+              { label: 'Which team were they from?', input: <div style={{ display: 'flex', gap: 10 }}>{['Ours', 'Opponents', 'Unknown'].map(o => <button key={o} onClick={() => setSidelineTeam(o)} style={{ flex: 1, height: 40, borderRadius: 10, border: `1px solid ${sidelineTeam === o ? '#2f6252' : '#e9eae8'}`, background: sidelineTeam === o ? '#e4f2eb' : '#f7f9f7', color: sidelineTeam === o ? '#2f6252' : '#4a5a57', fontFamily: 'inherit', fontSize: 13, fontWeight: sidelineTeam === o ? 700 : 400, cursor: 'pointer' }}>{o}</button>)}</div> },
               { label: 'What happened?', input: <textarea placeholder="Describe the behaviour…" style={{ width: '100%', height: 80, borderRadius: 8, border: '1px solid #e9eae8', padding: '10px', fontFamily: 'inherit', fontSize: 14, resize: 'none', boxSizing: 'border-box' }} /> },
             ].map((f, i) => (
               <div key={i} style={{ marginBottom: 16 }}>
@@ -447,6 +450,33 @@ export default function TeamManagerScreen({ empty }: { empty?: boolean }) {
             ))}
             <button style={{ width: '100%', height: 44, borderRadius: 12, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer', marginBottom: 10 }}>Submit report</button>
             <div style={{ fontSize: 12, color: '#6f7f7b', textAlign: 'center' }}>Sent to the club's committee and league if needed</div>
+          </div>
+        </div>
+      )}
+
+      {/* Log injury overlay */}
+      {showInjury && (
+        <div style={{ position: 'fixed', inset: 0, zIndex: 100, background: '#fff', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
+          <div style={{ background: '#1f4a3e', padding: '20px 20px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div style={{ fontSize: 18, fontWeight: 800, color: '#fff' }}>Log an injury</div>
+            <button onClick={() => setShowInjury(false)} style={{ width: 32, height: 32, borderRadius: '999px', border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+          </div>
+          <div style={{ flexGrow: 1, overflowY: 'auto', padding: '20px' }}>
+            {[
+              { label: 'Player', input: <select style={{ width: '100%', height: 40, borderRadius: 8, border: '1px solid #e9eae8', padding: '0 10px', fontFamily: 'inherit', fontSize: 14 }}>{RSVP.map(p => <option key={p.ini}>{p.name}</option>)}</select> },
+              { label: 'What happened?', input: <textarea placeholder="Describe the injury…" style={{ width: '100%', height: 72, borderRadius: 8, border: '1px solid #e9eae8', padding: '10px', fontFamily: 'inherit', fontSize: 14, resize: 'none', boxSizing: 'border-box' }} /> },
+              { label: 'Which part of the body?', input: <input placeholder="e.g. left ankle, right knee" style={{ width: '100%', height: 40, borderRadius: 8, border: '1px solid #e9eae8', padding: '0 10px', fontFamily: 'inherit', fontSize: 14, boxSizing: 'border-box' }} /> },
+              { label: 'Time of incident', input: <input type="time" defaultValue="09:52" style={{ height: 40, borderRadius: 8, border: '1px solid #e9eae8', padding: '0 10px', fontFamily: 'inherit', fontSize: 14 }} /> },
+            ].map((f, i) => (
+              <div key={i} style={{ marginBottom: 16 }}>
+                <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 6 }}>{f.label}</div>
+                {f.input}
+              </div>
+            ))}
+            <button style={{ width: '100%', height: 44, borderRadius: 12, border: 0, background: '#c3a84a', color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer', marginBottom: 10 }}>Log and notify parents</button>
+            <div style={{ fontSize: 12, color: '#6f7f7b', textAlign: 'center' }}>A copy goes to the club's first aid officer</div>
           </div>
         </div>
       )}
@@ -472,7 +502,7 @@ export default function TeamManagerScreen({ empty }: { empty?: boolean }) {
               <div key={i} style={{ marginBottom: 16 }}>
                 <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>{q.label}</div>
                 <div style={{ display: 'flex', gap: 10 }}>
-                  {q.opts.map(o => <button key={o} style={{ flex: 1, height: 40, borderRadius: 10, border: '1px solid #e9eae8', background: '#f7f9f7', color: '#4a5a57', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>{o}</button>)}
+                  {q.opts.map(o => <button key={o} onClick={() => setSignOffChoices(prev => ({ ...prev, [i]: o }))} style={{ flex: 1, height: 40, borderRadius: 10, border: `1px solid ${signOffChoices[i] === o ? '#2f6252' : '#e9eae8'}`, background: signOffChoices[i] === o ? '#e4f2eb' : '#f7f9f7', color: signOffChoices[i] === o ? '#2f6252' : '#4a5a57', fontFamily: 'inherit', fontSize: 13, fontWeight: signOffChoices[i] === o ? 700 : 400, cursor: 'pointer' }}>{o}</button>)}
                 </div>
               </div>
             ))}

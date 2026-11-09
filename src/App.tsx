@@ -320,9 +320,9 @@ export default function App() {
 
       {/* ── Screen content ── */}
       {/* Home tabs */}
-      {screen === 'home' && homeTab === 0 && <HomeScreen role={role} onRole={() => {}} onNav={navTo} empty={isEmpty} />}
+      {screen === 'home' && homeTab === 0 && <HomeScreen role={role} onRole={() => {}} onNav={navTo} onCalendar={() => setHomeTab(2)} empty={isEmpty} />}
       {screen === 'home' && homeTab === 1 && <InboxScreen empty={isEmpty} />}
-      {screen === 'home' && homeTab === 2 && <HomeScreen role={role} onRole={() => {}} onNav={navTo} empty={isEmpty} />}
+      {screen === 'home' && homeTab === 2 && <HomeScreen role={role} onRole={() => {}} onNav={navTo} onCalendar={() => setHomeTab(2)} empty={isEmpty} />}
       {screen === 'home' && homeTab === 3 && <FixturesScreen empty={isEmpty} />}
       {screen === 'home' && homeTab === 4 && <OurStyleScreen />}
       {screen === 'home' && homeTab === 5 && <TeamStaffScreen />}
@@ -334,7 +334,7 @@ export default function App() {
       {screen === 'squad' && squadTab === 4 && <ConsentScreen />}
       {/* Training tabs */}
       {screen === 'training' && trainingTab === 0 && <TrainingScreen role={role} onNav={navTo} empty={isEmpty} />}
-      {screen === 'training' && trainingTab === 1 && <ThisWeekScreen empty={isEmpty} />}
+      {screen === 'training' && trainingTab === 1 && <ThisWeekScreen empty={isEmpty} onDrillLibrary={() => setTrainingTab(2)} onTonightsPlan={() => setTrainingTab(0)} onGrowthLoad={() => setTrainingTab(3)} />}
       {screen === 'training' && trainingTab === 2 && <DrillLibraryScreen />}
       {screen === 'training' && trainingTab === 3 && <GrowthLoadScreen empty={isEmpty} />}
       {/* Match day tabs */}

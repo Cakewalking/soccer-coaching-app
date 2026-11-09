@@ -112,6 +112,7 @@ export default function PitchSideScreen({ onClose }: { onClose: () => void }) {
   const [paused, setPaused] = useState(false)
   const [timer] = useState('22:14')
   const [review, setReview] = useState<ReviewState>({ q1: null, q2: null, q3: null, note: '' })
+  const [moment, setMoment] = useState<'good' | 'work-on' | null>(null)
 
   const drill = DRILL_PLAN[drillIndex]
   const totalMins = DRILL_PLAN.reduce((s, d) => s + d.mins, 0)
@@ -238,6 +239,7 @@ export default function PitchSideScreen({ onClose }: { onClose: () => void }) {
 
   if (view === 'drill') {
     return (
+      <>
       <div style={{ position: 'fixed', inset: 0, background: '#f7f9f7', zIndex: 100, display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
         {/* Dark green header */}
         <div style={{ flex: 'none', background: '#1f4a3e' }}>
@@ -383,7 +385,7 @@ export default function PitchSideScreen({ onClose }: { onClose: () => void }) {
             <div style={{ borderTop: '1px solid #e9eae8', paddingTop: 16 }}>
               <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f', marginBottom: 10 }}>Mark a moment</div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                <button style={{
+                <button onClick={() => setMoment('good')} style={{
                   height: 44, borderRadius: 10, border: 0,
                   background: '#e4f2eb', color: '#2f6252',
                   fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer',
@@ -392,7 +394,7 @@ export default function PitchSideScreen({ onClose }: { onClose: () => void }) {
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                   Good moment
                 </button>
-                <button style={{
+                <button onClick={() => setMoment('work-on')} style={{
                   height: 44, borderRadius: 10, border: 0,
                   background: '#fdf0ee', color: '#7a3030',
                   fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer',
@@ -424,6 +426,32 @@ export default function PitchSideScreen({ onClose }: { onClose: () => void }) {
           </div>
         </div>
       </div>
+      {moment !== null && (
+        <div style={{ position: 'fixed', inset: 0, zIndex: 200, background: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'flex-end', fontFamily: 'var(--font-sans)' }}>
+          <div style={{ width: '100%', background: '#fff', borderRadius: '20px 20px 0 0', padding: '24px 24px 32px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
+              <div style={{ fontSize: 16, fontWeight: 700, color: moment === 'good' ? '#2f6252' : '#7a3030' }}>
+                {moment === 'good' ? 'Good moment' : 'To work on'}
+              </div>
+              <button onClick={() => setMoment(null)} style={{ width: 32, height: 32, borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              </button>
+            </div>
+            <div style={{ marginBottom: 12 }}>
+              <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 6 }}>Player</div>
+              <select style={{ width: '100%', height: 40, borderRadius: 8, border: '1px solid #e9eae8', padding: '0 10px', fontFamily: 'inherit', fontSize: 14 }}>
+                {PLAYERS_HERE.filter(p => p.status === 'here').map(p => <option key={p.ini}>{p.name}</option>)}
+              </select>
+            </div>
+            <div style={{ marginBottom: 16 }}>
+              <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 6 }}>What happened?</div>
+              <textarea placeholder="Describe the moment…" style={{ width: '100%', height: 72, borderRadius: 8, border: '1px solid #e9eae8', padding: 10, fontFamily: 'inherit', fontSize: 14, resize: 'none', boxSizing: 'border-box' }} />
+            </div>
+            <button onClick={() => setMoment(null)} style={{ width: '100%', height: 44, borderRadius: 12, border: 0, background: moment === 'good' ? '#2f6252' : '#7a3030', color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Save</button>
+          </div>
+        </div>
+      )}
+      </>
     )
   }
 

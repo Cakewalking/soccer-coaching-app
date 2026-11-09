@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 function Illus() {
   return (
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 22px)', gap: 4, flex: 'none' }}>
@@ -114,7 +116,8 @@ function noteChipStyle(note: string) {
 
 export default function WellnessScreen({ empty }: { empty?: boolean }) {
   if (empty) return <WellnessEmpty />
-  const sel = PLAYERS[0]
+  const [selIdx, setSelIdx] = useState(0)
+  const sel = PLAYERS[selIdx]
 
   return (
     <main style={{ flexGrow: 1, minHeight: 0, padding: '12px 28px 18px', boxSizing: 'border-box', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 340px', gap: 14, overflow: 'hidden' }}>
@@ -142,13 +145,13 @@ export default function WellnessScreen({ empty }: { empty?: boolean }) {
         </div>
 
         {PLAYERS.map((p, ri) => (
-          <div key={ri} style={{
+          <div key={ri} onClick={() => setSelIdx(ri)} style={{
             display: 'grid', gridTemplateColumns: '180px repeat(7, 34px) minmax(0,1fr)',
             gap: 6, alignItems: 'center', minHeight: 32,
-            background: ri === 0 ? '#eef5f2' : 'transparent',
-            borderRadius: ri === 0 ? 8 : 0,
-            padding: ri === 0 ? '0 8px' : '0',
-            margin: ri === 0 ? '2px -8px' : '0',
+            background: ri === selIdx ? '#eef5f2' : 'transparent',
+            borderRadius: ri === selIdx ? 8 : 0,
+            padding: ri === selIdx ? '0 8px' : '0',
+            margin: ri === selIdx ? '2px -8px' : '0',
             cursor: 'pointer',
           }}>
             <span style={{ display: 'flex', alignItems: 'center', gap: 8, fontWeight: 700 }}>
