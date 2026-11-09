@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { DATA, COLOR_MAP, type Role } from '../data'
 
 type Screen = 'home' | 'training' | 'matchday' | 'teamtalk' | 'pitchside' | 'addgame'
@@ -146,8 +147,111 @@ function DrillDiagram({ tag }: { tag: string }) {
   )
 }
 
+function OfflineView() {
+  const [backOnline, setBackOnline] = useState(false)
+  const WORKS = [
+    { title: "Tonight's plan and drill diagrams", sub: 'Saved when you opened the app at home' },
+    { title: "Who's here", sub: 'Tick players off as they arrive' },
+    { title: 'Sprint limits and adjustments', sub: 'Noah, Zoe, Ella and Kai' },
+    { title: 'First-aid cards', sub: 'Asthma, allergies, emergency contacts' },
+    { title: 'Game timer, subs and tags', sub: 'Minutes count on the tablet' },
+  ]
+  const WAITING = [
+    { title: "Who's here", sub: '12 ticks · Thu 4 Jun' },
+    { title: 'Effort ratings', sub: "2 from players' phones" },
+    { title: 'Injury note', sub: 'Kai · hamstring, passing only' },
+    { title: 'Sprint counts', sub: 'Noah 3, Zoe 3' },
+  ]
+  return (
+    <div style={{ flexGrow: 1, minHeight: 0, padding: '12px 28px 18px', display: 'grid', gap: 14, gridTemplateColumns: 'minmax(0,1fr) 340px', gridTemplateRows: 'auto minmax(0,1fr)', boxSizing: 'border-box' }}>
+      {/* Banner */}
+      <div style={{ gridColumn: 'span 2', display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px', borderRadius: 14, background: backOnline ? '#eef5f2' : '#cbbeb5', color: '#10211f' }}>
+        {backOnline
+          ? <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2f6252" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>
+          : <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2 8.5a15 15 0 0120 0M5 12a10 10 0 0114 0M8.5 15.5a5 5 0 017 0M12 19h.01M3 3l18 18"/></svg>
+        }
+        <span style={{ flexGrow: 1 }}>
+          <strong style={{ display: 'block', fontSize: 16 }}>{backOnline ? 'Back online' : 'No signal at Wattle Creek Oval'}</strong>
+          <span style={{ fontSize: 14 }}>{backOnline ? 'Everything from tonight has been sent.' : 'Carry on. Tonight\'s session is saved on this tablet.'}</span>
+        </span>
+        <span style={{ fontSize: 14, color: '#4a5a57', whiteSpace: 'nowrap' }}>Last updated {backOnline ? '7:22 pm' : '5:31 pm'}</span>
+        <button onClick={() => setBackOnline(o => !o)} style={{ height: 32, padding: '0 12px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>Demo: {backOnline ? 'go offline' : 'back online'}</button>
+      </div>
+      {/* Works without signal */}
+      <section style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '14px 18px 10px', display: 'flex', flexDirection: 'column', minHeight: 0 }}>
+        <h2 style={{ margin: 0, fontSize: 17, fontWeight: 700 }}>{backOnline ? 'Saved for next time' : 'Works without signal'}</h2>
+        <div style={{ height: 4 }} />
+        {WORKS.map((w, i) => (
+          <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 52, borderTop: '1px solid #e9eae8' }}>
+            <span style={{ flexShrink: 0, width: 30, height: 30, borderRadius: '999px', background: '#2f6252', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>
+            </span>
+            <span style={{ flexGrow: 1, minWidth: 0 }}>
+              <span style={{ display: 'block', fontSize: 15, lineHeight: '21px', fontWeight: 700 }}>{w.title}</span>
+              <span style={{ display: 'block', fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>{w.sub}</span>
+            </span>
+          </div>
+        ))}
+        <h2 style={{ margin: '14px 0 0', fontSize: 17, fontWeight: 700 }}>{backOnline ? 'Back on' : 'Waits for signal'}</h2>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0,1fr))', gap: 10, marginTop: 8 }}>
+          {[{ title: 'New clips', sub: backOnline ? 'Up to date' : 'Need the internet' }, { title: 'Messages', sub: backOnline ? 'Up to date' : 'Sent when you\'re back online' }, { title: 'Dribl', sub: backOnline ? 'Up to date' : 'Team sheets and results' }].map(c => (
+            <div key={c.title} style={{ border: '1px solid #c5c8c4', borderRadius: 12, padding: '10px 12px' }}>
+              <span style={{ display: 'block', fontSize: 14, fontWeight: 700 }}>{c.title}</span>
+              <span style={{ display: 'block', fontSize: 13, color: '#4a5a57' }}>{c.sub}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+      {/* Waiting to send */}
+      <section style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 0, minHeight: 0 }}>
+        <h2 style={{ margin: 0, fontSize: 17, fontWeight: 700 }}>{backOnline ? 'Nothing waiting' : 'Waiting to send · 4'}</h2>
+        {backOnline ? (
+          <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 12, textAlign: 'center', padding: '24px 0' }}>
+            <span style={{ width: 72, height: 72, borderRadius: '999px', background: '#eef5f2', color: '#2f6252', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>
+            </span>
+            <span style={{ fontSize: 22, fontWeight: 700, letterSpacing: '-0.01em' }}>All sent</span>
+            <span style={{ fontSize: 15, lineHeight: '22px', color: '#4a5a57' }}>4 things went up at 7:22 pm: who was here, effort ratings, Kai's note and sprint counts.</span>
+          </div>
+        ) : (
+          <>
+            {WAITING.map((w, i) => (
+              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 50, borderTop: '1px solid #e9eae8' }}>
+                <span style={{ flexShrink: 0, width: 30, height: 30, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }}>↑</span>
+                <span style={{ flexGrow: 1, minWidth: 0 }}>
+                  <span style={{ display: 'block', fontSize: 15, lineHeight: '21px', fontWeight: 700 }}>{w.title}</span>
+                  <span style={{ display: 'block', fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>{w.sub}</span>
+                </span>
+              </div>
+            ))}
+            <span style={{ fontSize: 14, color: '#4a5a57', marginTop: 'auto', paddingTop: 12 }}>Sends itself when the tablet finds signal. Nothing is lost if you close the app.</span>
+          </>
+        )}
+      </section>
+    </div>
+  )
+}
+
 export default function TrainingScreen({ role, onNav, empty }: Props) {
+  const [offline, setOffline] = useState(false)
   if (empty) return <TrainingEmpty onNav={onNav} />
+  if (offline) {
+    return (
+      <>
+        <div style={{ flex: 'none', background: '#ffffff', borderBottom: '1px solid #e9eae8', padding: '14px 32px 14px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <div>
+            <h1 style={{ margin: 0, fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em', color: '#10211f', lineHeight: '28px' }}>Tonight's session</h1>
+            <div style={{ fontSize: 13, color: '#6f7f7b', marginTop: 2 }}>Thu 4 Jun · Wattle Creek Oval · <strong>offline</strong></div>
+          </div>
+          <div style={{ display: 'flex', gap: 8 }}>
+            <button style={{ height: 36, padding: '0 14px', borderRadius: '999px', border: '1px solid #2f6252', background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Open pitch-side</button>
+            <button onClick={() => setOffline(false)} style={{ height: 36, padding: '0 14px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', color: '#6f7f7b' }}>Exit offline demo</button>
+          </div>
+        </div>
+        <OfflineView />
+      </>
+    )
+  }
   const d = DATA[role]
   const totalMins = d.drills.reduce((s, x) => s + x.mins, 0)
   const focus = d.focus.slice(0, 3)
@@ -186,6 +290,7 @@ export default function TrainingScreen({ role, onNav, empty }: Props) {
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"/></svg>
               Start session
             </button>
+            <button onClick={() => setOffline(true)} style={{ height: 36, padding: '0 14px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer', color: '#6f7f7b' }}>Offline demo</button>
           </div>
         </div>
       </div>

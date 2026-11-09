@@ -210,6 +210,53 @@ export default function PlayersTab() {
               )}
             </div>
           ))}
+
+          {/* Dispensations */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 300px', gap: 14, marginTop: 20, alignItems: 'start' }}>
+            <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '14px 18px 10px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 6 }}>
+                <div style={{ fontSize: 17, fontWeight: 700 }}>Dispensations</div>
+                <span style={{ fontSize: 14, color: '#4a5a57' }}>2 approved · 1 waiting</span>
+              </div>
+              {[
+                { ini: 'TN', name: 'Tess Nolan', desc: 'Playing down', detail: 'U14 by age · plays U13 Girls Meg · Approved by FV 12 Mar · letter on file', badge: 'Approved', badgeBg: '#2f6252', badgeColor: '#fff' },
+                { ini: 'AY', name: 'Aiden Yu', desc: 'U12 in MiniRoos', detail: 'U12 by age · asked to play U11 Luke · Sent to FV 28 May · can\'t be picked until it\'s back', badge: 'Waiting on FV', badgeBg: '#cbbeb5', badgeColor: '#10211f' },
+                { ini: 'SH', name: 'Sara Haddad', desc: 'Playing down', detail: 'U16 by age · plays U15 Girls Bec · Approved by FV 3 Apr · letter on file', badge: 'Approved', badgeBg: '#2f6252', badgeColor: '#fff' },
+                { ini: 'LP', name: 'Leo Park', desc: 'Playing up', detail: 'U10 Nadia · one game with U11 Luke · Parent asked. No FV approval needed', badge: 'Not needed', badgeBg: '#e9eae8', badgeColor: '#10211f' },
+              ].map(d => (
+                <div key={d.ini} style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 74, borderTop: '1px solid #e9eae8' }}>
+                  <span style={{ flexShrink: 0, width: 38, height: 38, borderRadius: '999px', background: '#eef5f2', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }}>{d.ini}</span>
+                  <span style={{ flexGrow: 1, minWidth: 0 }}>
+                    <span style={{ display: 'block', fontSize: 15, lineHeight: '21px', fontWeight: 700 }}>{d.name} · <span style={{ fontWeight: 400 }}>{d.desc}</span></span>
+                    <span style={{ display: 'block', fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>{d.detail}</span>
+                  </span>
+                  <span style={{ display: 'inline-flex', alignItems: 'center', height: 24, padding: '0 9px', borderRadius: '999px', fontSize: 12, fontWeight: 700, background: d.badgeBg, color: d.badgeColor, whiteSpace: 'nowrap' }}>{d.badge}</span>
+                </div>
+              ))}
+              <div style={{ marginTop: 10, padding: '10px 12px', borderRadius: 12, background: '#eef5f2', fontSize: 13, lineHeight: '19px', display: 'flex', gap: 10 }}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2f6252" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: 1 }} aria-hidden="true"><path d="M12 8v5M12 16h.01M12 3a9 9 0 100 18 9 9 0 000-18z"/></svg>
+                <span>On game day the approval letter shows on the team manager's phone. A player who is still waiting can't be added to the sheet.</span>
+              </div>
+            </div>
+            <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '14px 18px' }}>
+              <div style={{ fontSize: 17, fontWeight: 700, marginBottom: 0 }}>When FV must say yes</div>
+              {[
+                { badge: '↓', badgeBg: '#cbbeb5', title: 'Playing down, U12 and up', sub: 'Written approval, carried on game day' },
+                { badge: '12', badgeBg: '#cbbeb5', title: 'An U12 in MiniRoos', sub: 'Needs a dispensation first' },
+                { badge: '✓', badgeBg: '#eef5f2', title: 'MiniRoos, one age group down', sub: 'No approval needed' },
+                { badge: '↑', badgeBg: '#eef5f2', title: 'Playing up', sub: 'No approval. The club asks the parent' },
+              ].map(r => (
+                <div key={r.badge} style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 60, borderTop: '1px solid #e9eae8' }}>
+                  <span style={{ flexShrink: 0, width: 36, height: 36, borderRadius: '999px', background: r.badgeBg, color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }}>{r.badge}</span>
+                  <span style={{ flexGrow: 1, minWidth: 0 }}>
+                    <span style={{ display: 'block', fontSize: 15, lineHeight: '21px', fontWeight: 700 }}>{r.title}</span>
+                    <span style={{ display: 'block', fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>{r.sub}</span>
+                  </span>
+                </div>
+              ))}
+              <button style={{ marginTop: 12, height: 44, padding: '0 12px', borderRadius: 10, border: '1px solid #2f6252', background: '#2f6252', color: '#fff', fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', width: '100%' }}>Start a request</button>
+            </div>
+          </div>
         </div>
       )}
 

@@ -1,6 +1,7 @@
 import { useState } from 'react'
+import { RaiseConcernView, ConcernSentView, TellSomeoneView, TellHelenView } from './playerapp/SafeguardingFlows'
 
-type PlayerView = 'home' | 'checkin' | 'checkin-sent' | 'clip' | 'goals' | 'parent' | 'invite'
+type PlayerView = 'home' | 'checkin' | 'checkin-sent' | 'clip' | 'goals' | 'parent' | 'invite' | 'raise-concern' | 'concern-sent' | 'tell-someone' | 'tell-helen'
 
 interface WellnessOption { label: string; emoji: string; value: number }
 
@@ -61,6 +62,11 @@ export default function PlayerAppScreen({ empty }: { empty?: boolean }) {
   function toggleRecord(key: keyof typeof recordToggles) {
     setRecordToggles(t => ({ ...t, [key]: !t[key] }))
   }
+
+  if (view === 'raise-concern') return <RaiseConcernView onBack={() => setView('parent')} onSent={() => setView('concern-sent')} />
+  if (view === 'concern-sent') return <ConcernSentView onBack={() => setView('parent')} />
+  if (view === 'tell-someone') return <TellSomeoneView onBack={() => setView('home')} onTellHelen={() => setView('tell-helen')} />
+  if (view === 'tell-helen') return <TellHelenView onBack={() => setView('tell-someone')} />
 
   if (view === 'invite') {
     return (
@@ -302,6 +308,17 @@ export default function PlayerAppScreen({ empty }: { empty?: boolean }) {
             </button>
           )}
         </div>
+
+        {/* Tell someone (player safeguarding) */}
+        <button onClick={() => setView('tell-someone')} style={{ display: 'flex', alignItems: 'center', gap: 14, padding: 14, borderRadius: 16, border: '1px solid #c5c8c4', background: '#fff', color: '#10211f', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit', width: '100%', marginTop: 14 }}>
+          <span style={{ flexShrink: 0, width: 44, height: 44, borderRadius: 12, background: '#eef5f2', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2f6252" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </span>
+          <span style={{ flexGrow: 1, minWidth: 0 }}>
+            <span style={{ display: 'block', fontSize: 15, fontWeight: 700 }}>If something feels wrong</span>
+            <span style={{ display: 'block', fontSize: 13, color: '#4a5a57' }}>You can tell someone. You won't be in trouble.</span>
+          </span>
+        </button>
       </div>
     )
   }
@@ -365,6 +382,11 @@ export default function PlayerAppScreen({ empty }: { empty?: boolean }) {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Safeguarding links */}
+          <div style={{ marginTop: 14, display: 'flex', flexDirection: 'column', gap: 8 }}>
+            <button onClick={() => setView('raise-concern')} style={{ width: '100%', textAlign: 'left', padding: '12px 14px', borderRadius: 12, border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', cursor: 'pointer', fontSize: 14, fontWeight: 600, color: '#10211f' }}>Tell the club something →</button>
           </div>
         </div>
       </div>

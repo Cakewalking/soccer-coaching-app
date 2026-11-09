@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import HeatScreen from './teammanager/HeatScreen'
+import GameDayPapersScreen from './teammanager/GameDayPapersScreen'
 
 type ManagerTab = 'home' | 'gameday' | 'messages' | 'roster'
 type GamedayPhase = 'before' | 'during' | 'after'
@@ -50,6 +52,8 @@ export default function TeamManagerScreen({ empty }: { empty?: boolean }) {
   const [showSideline, setShowSideline] = useState(false)
   const [showSignOff, setShowSignOff] = useState(false)
   const [showInjury, setShowInjury] = useState(false)
+  const [showHeat, setShowHeat] = useState(false)
+  const [showGameDayPapers, setShowGameDayPapers] = useState(false)
   const [byeWeek, setByeWeek] = useState(false)
   const [sidelineTeam, setSidelineTeam] = useState<string | null>(null)
   const [signOffChoices, setSignOffChoices] = useState<Record<number, string>>({})
@@ -249,6 +253,13 @@ export default function TeamManagerScreen({ empty }: { empty?: boolean }) {
                       <div style={{ fontSize: 13, color: '#4a5a57' }}>{p.action}</div>
                     </div>
                   ))}
+
+                  {/* Game day extras */}
+                  <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', margin: '16px 0 10px' }}>Game-day info</div>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 4 }}>
+                    <button onClick={() => setShowHeat(true)} style={{ padding: '12px', borderRadius: 12, border: '1px solid #c3a84a44', background: '#fff', color: '#c3a84a', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer', textAlign: 'center' }}>Hot day · 34°</button>
+                    <button onClick={() => setShowGameDayPapers(true)} style={{ padding: '12px', borderRadius: 12, border: '1px solid #2f625244', background: '#fff', color: '#2f6252', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer', textAlign: 'center' }}>Game-day papers</button>
+                  </div>
 
                   {/* Something happened */}
                   <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', margin: '16px 0 10px' }}>Something happened?</div>
@@ -514,6 +525,9 @@ export default function TeamManagerScreen({ empty }: { empty?: boolean }) {
           </div>
         </div>
       )}
+
+      {showHeat && <HeatScreen onBack={() => setShowHeat(false)} />}
+      {showGameDayPapers && <GameDayPapersScreen onBack={() => setShowGameDayPapers(false)} />}
     </div>
   )
 }

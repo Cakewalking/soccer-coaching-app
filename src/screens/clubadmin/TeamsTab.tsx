@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { MINIROOS, JUNIORS, GRADING } from './data'
 import { SubTabBar, ResultChip, BackBtn } from './ui'
+import CardsTab from './CardsTab'
 
-type TeamsView = 'allteams' | 'seniors' | 'fixtures' | 'leaguesync' | 'grading' | 'referees' | 'teamkit'
+type TeamsView = 'allteams' | 'seniors' | 'fixtures' | 'leaguesync' | 'grading' | 'referees' | 'teamkit' | 'cards'
 
 const TEAM_DETAILS: Record<string, { coach: string; div: string; players: number; turnout: number; style: number; lastFive: string[]; fewest: number; staff: { ini: string; name: string; role: string; check: string }[] }> = {
   'U12 Girls Ana': { coach: 'Ana Silva', div: 'Division 1 · Juniors', players: 15, turnout: 94, style: 74, lastFive: ['W','D','W','W','W'], fewest: 60, staff: [{ ini: 'AS', name: 'Ana Silva', role: 'Coach', check: 'Valid Aug 2027' }, { ini: 'DM', name: 'Dee Moss', role: 'Co-coach', check: 'Valid Feb 2027' }, { ini: 'TW', name: 'Tina Wu', role: 'Team manager', check: 'Valid Oct 2027' }] },
@@ -246,6 +247,7 @@ export default function TeamsTab() {
           { id: 'grading', label: 'Grading' },
           { id: 'referees', label: 'Referees' },
           { id: 'teamkit', label: 'Kit and cameras' },
+          { id: 'cards', label: 'Cards' },
         ]}
         active={view}
         onSelect={id => setView(id as TeamsView)}
@@ -505,6 +507,8 @@ export default function TeamsTab() {
           </div>
         </div>
       )}
+
+      {view === 'cards' && <CardsTab />}
 
       {view === 'teamkit' && (
         <div style={p}>

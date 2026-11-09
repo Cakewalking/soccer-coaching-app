@@ -23,6 +23,7 @@ import PitchSideScreen     from './screens/PitchSideScreen'
 import AddGameScreen       from './screens/AddGameScreen'
 import SetOurStyleWizard   from './screens/SetOurStyleWizard'
 import LiveGameScreen      from './screens/LiveGameScreen'
+import TeamSheetScreen     from './screens/TeamSheetScreen'
 import MetricDetailScreen  from './screens/MetricDetailScreen'
 import TeamManagerScreen   from './screens/TeamManagerScreen'
 import SignupScreen        from './screens/SignupScreen'
@@ -339,7 +340,7 @@ export default function App() {
       {screen === 'training' && trainingTab === 3 && <GrowthLoadScreen empty={isEmpty} />}
       {/* Match day tabs */}
       {screen === 'matchday' && matchdayTab === 0 && <MatchDayScreen onNav={navTo} empty={isEmpty} />}
-      {screen === 'matchday' && matchdayTab === 1 && <LiveGameScreen onClose={() => { setMatchdayTab(0); setScreen('matchday') }} />}
+      {screen === 'matchday' && matchdayTab === 1 && <TeamSheetScreen empty={isEmpty} />}
       {screen === 'matchday' && matchdayTab === 2 && <OppositionScreen empty={isEmpty} />}
       {screen === 'matchday' && matchdayTab === 3 && <ReviewScreen empty={isEmpty} />}
       {/* Other screens */}
