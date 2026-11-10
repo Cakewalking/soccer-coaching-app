@@ -9,7 +9,6 @@ import OurStyleScreen      from './screens/OurStyleScreen'
 import PlayerProfileScreen from './screens/PlayerProfileScreen'
 import ConsentScreen       from './screens/ConsentScreen'
 import TeamStaffScreen     from './screens/TeamStaffScreen'
-import InboxScreen         from './screens/InboxScreen'
 import FixturesScreen      from './screens/FixturesScreen'
 import DevGoalsScreen      from './screens/DevGoalsScreen'
 import WellnessScreen      from './screens/WellnessScreen'
@@ -59,7 +58,7 @@ const NAV_TABS: Array<{ id: Screen; label: string; icon: string }> = [
   { id: 'clips',    label: 'Clips',     icon: 'M12 21a9 9 0 100-18 9 9 0 000 18zM10 8l6 4-6 4z' },
 ]
 
-const HOME_TABS     = ['Overview', 'Inbox', 'Calendar', 'Fixtures and results', 'Our style', 'Team staff', 'Chats']
+const HOME_TABS     = ['Overview', 'Inbox', 'Calendar', 'Fixtures and results', 'Our style', 'Team staff']
 const SQUAD_TABS    = ['Players', 'Development goals', 'Wellness', 'Availability', 'Consent and privacy', 'Season summaries']
 const TRAINING_TABS = ["Tonight's session", 'This week', 'Drill library', 'Growth and load']
 const MATCHDAY_TABS = ['Team talk', 'Line-up and minutes', 'Opposition', 'Review']
@@ -483,12 +482,11 @@ export default function App() {
       {/* ── Screen content ── */}
       {/* Home tabs */}
       {screen === 'home' && homeTab === 0 && <HomeScreen role={role} onRole={() => {}} onNav={navTo} onCalendar={() => setHomeTab(2)} empty={isEmpty} />}
-      {screen === 'home' && homeTab === 1 && <InboxScreen empty={isEmpty} />}
+      {screen === 'home' && homeTab === 1 && <TeamChatScreen empty={isEmpty} />}
       {screen === 'home' && homeTab === 2 && <HomeScreen role={role} onRole={() => {}} onNav={navTo} onCalendar={() => setHomeTab(2)} empty={isEmpty} />}
       {screen === 'home' && homeTab === 3 && <FixturesScreen empty={isEmpty} />}
       {screen === 'home' && homeTab === 4 && <OurStyleScreen />}
       {screen === 'home' && homeTab === 5 && <TeamStaffScreen />}
-      {screen === 'home' && homeTab === 6 && <TeamChatScreen empty={isEmpty} />}
       {/* Squad tabs */}
       {screen === 'squad' && squadTab === 0 && <SquadScreen role={role} onPlayerProfile={ini => { setSelectedPlayer(ini); navTo('player') }} empty={isEmpty} />}
       {screen === 'squad' && squadTab === 1 && <DevGoalsScreen empty={isEmpty} />}
