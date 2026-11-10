@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 type View = 'home' | 'messages' | 'body' | 'adult'
+type Avail = 'in' | 'out' | null
 
 const THIS_WEEK = [
   { dayLabel: 'THU', dayNum: '4', title: 'Training', sub: '7:00 pm · Wattle Creek Reserve', done: true },
@@ -52,6 +53,7 @@ function BottomNav({ view, setView }: { view: View; setView: (v: View) => void }
 }
 
 function HomeView({ setView }: { setView: (v: View) => void }) {
+  const [avail, setAvail] = useState<Avail>(null)
   return (
     <div style={{ flexGrow: 1, overflowY: 'auto', padding: '20px 20px 0', display: 'flex', flexDirection: 'column', gap: 14 }}>
       {/* Greeting */}
@@ -66,8 +68,8 @@ function HomeView({ setView }: { setView: (v: View) => void }) {
         <div style={{ fontSize: 20, fontWeight: 800 }}>SAT 6 · at Harbour Rovers</div>
         <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.75)', marginTop: 4 }}>Meet 2:40 at Rovers Park · kick-off 3:30</div>
         <div style={{ marginTop: 10, display: 'flex', gap: 8 }}>
-          <button style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 0, background: 'rgba(255,255,255,0.2)', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>I'm in</button>
-          <button style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 0, background: 'transparent', color: 'rgba(255,255,255,0.75)', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Can't make it</button>
+          <button onClick={() => setAvail('in')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 0, background: avail === 'in' ? '#fff' : 'rgba(255,255,255,0.2)', color: avail === 'in' ? '#1f4a3e' : '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>{avail === 'in' ? "✓ You're in" : "I'm in"}</button>
+          <button onClick={() => setAvail('out')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 0, background: avail === 'out' ? 'rgba(255,255,255,0.15)' : 'transparent', color: avail === 'out' ? '#fff' : 'rgba(255,255,255,0.75)', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>{avail === 'out' ? "✓ Can't make it" : "Can't make it"}</button>
         </div>
       </div>
 

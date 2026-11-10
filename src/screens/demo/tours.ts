@@ -26,7 +26,7 @@ export const TOURS: Record<string, TourDef> = {
     persona: "as Sam K, U12 Sam",
     device: 'tablet',
     total: 57,
-    home: 'home',
+    home: 'juniorcoach',
     sandboxHome: 'home-e',
     sections: [
       { title: "Join", steps: [
@@ -224,7 +224,7 @@ export const TOURS: Record<string, TourDef> = {
     persona: "as Jess Marsh, U12 Sam",
     device: 'tablet',
     total: 7,
-    home: 'home',
+    home: 'juniorcoach',
     sandboxHome: 'cc1e-coach-e',
     sections: [
       { title: "Join", steps: [
@@ -902,18 +902,6 @@ export const ROLE_GROUPS: Array<{
       { id: 'coordinator', name: 'Club coordinator',     device: 'Tablet', desc: 'as Bianca Rossi' },
       { id: 'welfare',     name: 'Welfare officer',      device: 'Tablet', desc: 'as Helen Park' },
       { id: 'referee',     name: 'Referee',              device: 'Phone',  desc: 'as Zoe Park, 16' },
-    ],
-  },
-  {
-    section: 'THE FOOTBALL YEAR',
-    roles: [
-      { id: 'footballyear', name: 'The football year', device: 'Tablet', desc: 'Full year lifecycle · as Sam K, U12 Sam' },
-    ],
-  },
-  {
-    section: 'STEP 4 SCREENS',
-    roles: [
-      { id: 'step4', name: 'Step 4 · all new screens', device: 'Tablet', desc: '68 screens across all roles' },
     ],
   },
   {

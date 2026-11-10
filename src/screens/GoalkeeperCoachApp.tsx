@@ -50,7 +50,7 @@ function Badge({ children }: { children: React.ReactNode }) {
   )
 }
 
-function HomeOverview() {
+function HomeOverview({ onPlanSession, onKeeperDrills }: { onPlanSession: () => void; onKeeperDrills: () => void }) {
   return (
     <div style={{ flexGrow: 1, minHeight: 0, display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 300px', gap: 20, padding: '20px 28px 28px', overflowY: 'auto' }}>
       {/* Left: keepers list */}
@@ -59,8 +59,8 @@ function HomeOverview() {
           <h1 style={{ margin: '0 0 2px', fontSize: 26, fontWeight: 700, letterSpacing: '-0.02em' }}>Hi Nick</h1>
           <p style={{ margin: '0 0 14px', fontSize: 14, color: '#4a5a57' }}>Goalkeeper coach · 14 keepers across 9 teams · club session Tuesdays 6:00 pm</p>
           <div style={{ display: 'flex', gap: 8, marginBottom: 20 }}>
-            <button style={{ height: 40, padding: '0 16px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Keeper drills</button>
-            <button style={{ height: 40, padding: '0 16px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Plan Tuesday</button>
+            <button onClick={onKeeperDrills} style={{ height: 40, padding: '0 16px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Keeper drills</button>
+            <button onClick={onPlanSession} style={{ height: 40, padding: '0 16px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Plan Tuesday</button>
           </div>
         </div>
 
@@ -332,7 +332,7 @@ export default function GoalkeeperCoachApp({ onBack, empty = false }: { onBack: 
               ))}
             </div>
           </div>
-        ) : <HomeOverview />)}
+        ) : <HomeOverview onPlanSession={() => setNav('training')} onKeeperDrills={() => { setNav('training'); setTrainingTab('drills') }} />)}
         {nav === 'home'     && homeTab !== 'overview' && (
           <div style={{ padding: '20px 28px', color: '#4a5a57' }}>{homeTab === 'inbox' ? 'Inbox' : 'Calendar'} — not shown in this demo.</div>
         )}

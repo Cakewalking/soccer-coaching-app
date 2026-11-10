@@ -345,7 +345,7 @@ export default function FitnessCoachScreen({ empty }: { empty?: boolean }) {
                   <div style={{ background: '#1f4a3e', borderRadius: 16, padding: '14px 16px', marginBottom: 14, color: '#fff' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
                       <div style={{ fontSize: 14, fontWeight: 700 }}>Your part tonight</div>
-                      <button style={{ height: 28, padding: '0 12px', borderRadius: '999px', border: 0, background: '#40826d', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>Open</button>
+                      <button onClick={() => setTab('training')} style={{ height: 28, padding: '0 12px', borderRadius: '999px', border: 0, background: '#40826d', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>Open</button>
                     </div>
                     {[
                       { time: '5:45', label: '11+ Kids warm-up', detail: '15 min · you lead · Noah and Zoe skip the jumps' },

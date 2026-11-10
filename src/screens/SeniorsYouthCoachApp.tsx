@@ -1,3 +1,29 @@
+import { useState } from 'react'
+import SquadScreen          from './SquadScreen'
+import TrainingScreen       from './TrainingScreen'
+import MatchDayScreen       from './MatchDayScreen'
+import ClipsScreen          from './ClipsScreen'
+import TeamChatScreen       from './TeamChatScreen'
+import FixturesScreen       from './FixturesScreen'
+import OurStyleScreen       from './OurStyleScreen'
+import TeamStaffScreen      from './TeamStaffScreen'
+import DevGoalsScreen       from './DevGoalsScreen'
+import WellnessScreen       from './WellnessScreen'
+import AvailabilityScreen   from './AvailabilityScreen'
+import ConsentScreen        from './ConsentScreen'
+import SeasonSummariesScreen from './SeasonSummariesScreen'
+import ThisWeekScreen       from './ThisWeekScreen'
+import SuggestionsScreen    from './SuggestionsScreen'
+import DrillLibraryScreen   from './DrillLibraryScreen'
+import GrowthLoadScreen     from './GrowthLoadScreen'
+import RecordScreen         from './RecordScreen'
+import TeamSheetScreen      from './TeamSheetScreen'
+import OppositionScreen     from './OppositionScreen'
+import ReviewScreen         from './ReviewScreen'
+import TeamTalkScreen       from './TeamTalkScreen'
+import PitchSideScreen      from './PitchSideScreen'
+import { FitnessSquadTab, FitnessTrainingTab, FitnessMatchTab } from './FitnessExtras'
+
 type TeamType = 'seniors' | 'youth'
 
 interface TeamData {
@@ -126,7 +152,14 @@ function resultColor(r: 'W' | 'L' | 'D') {
   return { bg: '#e9eae8', color: '#10211f' }
 }
 
-function CoachHome({ data }: { data: TeamData }) {
+function CoachHome({ data, onTraining, onMatchday, onReview, onCalendar, onInbox }: {
+  data: TeamData
+  onTraining: () => void
+  onMatchday: () => void
+  onReview: () => void
+  onCalendar: () => void
+  onInbox: () => void
+}) {
   return (
     <div style={{ flexGrow: 1, minHeight: 0, overflowY: 'auto', padding: '20px 28px 28px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr) 260px', gap: 16 }}>
 
@@ -147,7 +180,7 @@ function CoachHome({ data }: { data: TeamData }) {
             </div>
           ))}
           <div style={{ padding: '10px 16px', borderTop: '1px solid #e9eae8' }}>
-            <button style={{ fontSize: 13, color: '#2f6252', fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>All messages</button>
+            <button onClick={onInbox} style={{ fontSize: 13, color: '#2f6252', fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>All messages</button>
           </div>
         </div>
 
@@ -168,8 +201,8 @@ function CoachHome({ data }: { data: TeamData }) {
             <div key={i} style={{ fontSize: 13, color: 'rgba(255,255,255,0.85)', padding: '4px 0', borderTop: i > 0 ? '1px solid rgba(255,255,255,0.12)' : 'none' }}>· {b}</div>
           ))}
           <div style={{ display: 'flex', gap: 8, marginTop: 14 }}>
-            <button style={{ flex: 1, height: 40, borderRadius: 10, border: 0, background: '#40826d', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>{data.gameCardCTA}</button>
-            {data.gameCardCTA2 && <button style={{ flex: 1, height: 40, borderRadius: 10, border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>{data.gameCardCTA2}</button>}
+            <button onClick={onTraining} style={{ flex: 1, height: 40, borderRadius: 10, border: 0, background: '#40826d', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>{data.gameCardCTA}</button>
+            {data.gameCardCTA2 && <button onClick={onMatchday} style={{ flex: 1, height: 40, borderRadius: 10, border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>{data.gameCardCTA2}</button>}
           </div>
         </div>
 
@@ -196,7 +229,7 @@ function CoachHome({ data }: { data: TeamData }) {
             ))}
           </div>
           <div style={{ padding: '10px 16px', borderTop: '1px solid #e9eae8', display: 'flex', justifyContent: 'space-between' }}>
-            <button style={{ fontSize: 13, color: '#2f6252', fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>Open the review</button>
+            <button onClick={onReview} style={{ fontSize: 13, color: '#2f6252', fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>Open the review</button>
             <span style={{ fontSize: 13, color: '#6f7f7b' }}>Clips · 11</span>
           </div>
         </div>
@@ -207,7 +240,7 @@ function CoachHome({ data }: { data: TeamData }) {
         <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, overflow: 'hidden' }}>
           <div style={{ padding: '12px 16px 10px', borderBottom: '1px solid #e9eae8', display: 'flex', justifyContent: 'space-between' }}>
             <span style={{ fontSize: 15, fontWeight: 700 }}>This week</span>
-            <button style={{ fontSize: 13, color: '#2f6252', fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>Calendar</button>
+            <button onClick={onCalendar} style={{ fontSize: 13, color: '#2f6252', fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>Calendar</button>
           </div>
           {data.thisWeek.map((w, i) => (
             <div key={i} style={{ display: 'flex', gap: 10, padding: '7px 16px', borderTop: i > 0 ? '1px solid #e9eae8' : 'none', background: w.today ? '#eef5f2' : 'transparent' }}>
@@ -257,22 +290,112 @@ function CoachHome({ data }: { data: TeamData }) {
   )
 }
 
+type NavKey = 'home' | 'squad' | 'training' | 'matchday' | 'clips'
+type Sub = 'teamtalk' | 'pitchside' | null
+
+const NAV_KEYS: NavKey[] = ['home', 'squad', 'training', 'matchday', 'clips']
+const SQUAD_TABS    = ['Players', 'Development goals', 'Wellness', 'Availability', 'Consent and privacy', 'Season summaries', 'Fitness coach']
+const TRAINING_TABS = ["Tonight's session", 'This week', 'Suggested', 'Drill library', 'Growth and load', 'Record', 'Fitness coach']
+const MATCHDAY_TABS = ['Team talk', 'Line-up and minutes', 'Opposition', 'Review', 'Fitness coach']
+const CLIPS_TABS    = ['Browse', 'Playlists', 'Shared with players', 'To check']
+
 export default function SeniorsYouthCoachApp({ teamType, onBack }: { teamType: TeamType; onBack: () => void }) {
   const data = teamType === 'seniors' ? SENIORS : YOUTH
+
+  const [nav, setNav]                 = useState<NavKey>('home')
+  const [sub, setSub]                 = useState<Sub>(null)
+  const [homeTab, setHomeTab]         = useState(0)
+  const [squadTab, setSquadTab]       = useState(0)
+  const [trainingTab, setTrainingTab] = useState(0)
+  const [matchTab, setMatchTab]       = useState(0)
+  const [clipsTab, setClipsTab]       = useState(0)
+
+  function goNav(n: NavKey) { setNav(n); setSub(null) }
+
+  function handleNav(s: string) {
+    if (s === 'training')  { goNav('training'); return }
+    if (s === 'matchday')  { goNav('matchday'); return }
+    if (s === 'teamtalk')  { setSub('teamtalk');  return }
+    if (s === 'pitchside') { setSub('pitchside'); return }
+  }
+
+  if (sub === 'teamtalk')  return <TeamTalkScreen role="head" onClose={() => setSub(null)} />
+  if (sub === 'pitchside') return <PitchSideScreen onClose={() => setSub(null)} empty={false} />
+
+  const subTabs  = nav === 'clips'    ? CLIPS_TABS
+                 : nav === 'home'     ? HOME_TABS
+                 : nav === 'squad'    ? SQUAD_TABS
+                 : nav === 'training' ? TRAINING_TABS
+                 : MATCHDAY_TABS
+
+  const activeIdx = nav === 'home'     ? homeTab
+                  : nav === 'squad'    ? squadTab
+                  : nav === 'training' ? trainingTab
+                  : nav === 'matchday' ? matchTab
+                  : clipsTab
+
+  function handleSubTab(i: number) {
+    setSub(null)
+    if (nav === 'home')     setHomeTab(i)
+    if (nav === 'squad')    setSquadTab(i)
+    if (nav === 'training') setTrainingTab(i)
+    if (nav === 'matchday') setMatchTab(i)
+    if (nav === 'clips')    setClipsTab(i)
+  }
+
+  let content = null
+  if (nav === 'home') {
+    switch (homeTab) {
+      case 0: content = <CoachHome data={data} onTraining={() => goNav('training')} onMatchday={() => goNav('matchday')} onReview={() => { goNav('matchday'); setMatchTab(3) }} onCalendar={() => setHomeTab(2)} onInbox={() => setHomeTab(1)} />; break
+      case 1: content = <TeamChatScreen empty={false} />; break
+      case 2: case 3: content = <FixturesScreen empty={false} />; break
+      case 4: content = <OurStyleScreen />; break
+      case 5: content = <TeamStaffScreen empty={false} />; break
+    }
+  } else if (nav === 'squad') {
+    switch (squadTab) {
+      case 0: content = <SquadScreen role="head" onPlayerProfile={() => {}} empty={false} />; break
+      case 1: content = <DevGoalsScreen empty={false} />; break
+      case 2: content = <WellnessScreen empty={false} />; break
+      case 3: content = <AvailabilityScreen empty={false} />; break
+      case 4: content = <ConsentScreen empty={false} />; break
+      case 5: content = <SeasonSummariesScreen empty={false} />; break
+      case 6: content = <FitnessSquadTab empty={false} />; break
+    }
+  } else if (nav === 'training') {
+    switch (trainingTab) {
+      case 0: content = <TrainingScreen role="head" onNav={handleNav} empty={false} />; break
+      case 1: content = <ThisWeekScreen empty={false} onDrillLibrary={() => setTrainingTab(3)} onTonightsPlan={() => setTrainingTab(0)} onGrowthLoad={() => setTrainingTab(4)} />; break
+      case 2: content = <SuggestionsScreen empty={false} onRecord={() => setTrainingTab(5)} />; break
+      case 3: content = <DrillLibraryScreen empty={false} />; break
+      case 4: content = <GrowthLoadScreen empty={false} />; break
+      case 5: content = <RecordScreen empty={false} />; break
+      case 6: content = <FitnessTrainingTab empty={false} />; break
+    }
+  } else if (nav === 'matchday') {
+    switch (matchTab) {
+      case 0: content = <MatchDayScreen onNav={handleNav} empty={false} />; break
+      case 1: content = <TeamSheetScreen empty={false} />; break
+      case 2: content = <OppositionScreen empty={false} />; break
+      case 3: content = <ReviewScreen empty={false} />; break
+      case 4: content = <FitnessMatchTab empty={false} />; break
+    }
+  } else if (nav === 'clips') {
+    content = <ClipsScreen empty={false} activeTab={clipsTab} />
+  }
 
   return (
     <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
 
-      {/* Top nav */}
       <header style={{ flex: 'none', background: '#2f6252', color: '#fff' }}>
         <div style={{ height: 60, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 16 }}>
           <span style={{ fontSize: 17, fontWeight: 800, letterSpacing: '-0.03em', flexShrink: 0 }}>Clean Sheet</span>
           <nav style={{ display: 'flex', flexGrow: 1, gap: 2 }}>
             {NAV_LABELS.map((label, i) => (
-              <button key={label} style={{
+              <button key={label} onClick={() => goNav(NAV_KEYS[i])} style={{
                 display: 'flex', alignItems: 'center', gap: 7, height: 40, padding: '0 14px', borderRadius: '999px',
-                border: 0, fontFamily: 'inherit', fontSize: 15, fontWeight: i === 0 ? 600 : 400, cursor: 'pointer',
-                background: i === 0 ? '#40826d' : 'transparent', color: '#fff',
+                border: 0, fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer',
+                background: nav === NAV_KEYS[i] ? '#40826d' : 'transparent', color: '#fff',
               }}>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={NAV_ICONS[i]}/></svg>
                 {label}
@@ -286,15 +409,14 @@ export default function SeniorsYouthCoachApp({ teamType, onBack }: { teamType: T
           <div style={{ width: 44, height: 44, borderRadius: '999px', background: data.avatarBg, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 15, flexShrink: 0 }}>{data.avatarLetters}</div>
         </div>
 
-        {/* Sub-tabs */}
         <div style={{ height: 44, padding: '0 28px', background: '#fff', borderBottom: '1px solid #e9eae8', display: 'flex', alignItems: 'flex-end' }}>
           <nav style={{ display: 'flex', flexGrow: 1, height: 44 }}>
-            {HOME_TABS.map((tab, i) => (
-              <button key={tab} style={{
+            {subTabs.map((tab, i) => (
+              <button key={tab} onClick={() => handleSubTab(i)} style={{
                 height: 44, padding: '0 14px', border: 0, background: 'transparent',
-                fontFamily: 'inherit', fontSize: 15, fontWeight: i === 0 ? 600 : 400,
-                color: i === 0 ? '#10211f' : '#6f7f7b', cursor: 'pointer',
-                borderBottom: i === 0 ? '3px solid #40826d' : '3px solid transparent',
+                fontFamily: 'inherit', fontSize: 15, fontWeight: i === activeIdx ? 600 : 400,
+                color: i === activeIdx ? '#10211f' : '#6f7f7b', cursor: 'pointer',
+                borderBottom: i === activeIdx ? '3px solid #40826d' : '3px solid transparent',
                 boxSizing: 'border-box', whiteSpace: 'nowrap',
               }}>{tab}</button>
             ))}
@@ -306,9 +428,8 @@ export default function SeniorsYouthCoachApp({ teamType, onBack }: { teamType: T
         </div>
       </header>
 
-      {/* Content */}
       <div style={{ flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-        <CoachHome data={data} />
+        {content}
       </div>
     </div>
   )

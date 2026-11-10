@@ -215,7 +215,9 @@ export default function CoordinatorPortal({ onBack, empty = false }: { onBack: (
 
       {/* Content */}
       <div style={{ flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-        {tab === 'thisweek' ? <ThisWeekTab /> : <PlaceholderTab label={TABS.find(t => t.id === tab)?.label ?? ''} />}
+        {activeNav !== 'Club'
+          ? <PlaceholderTab label={activeNav} />
+          : tab === 'thisweek' ? <ThisWeekTab /> : <PlaceholderTab label={TABS.find(t => t.id === tab)?.label ?? ''} />}
       </div>
     </div>
   )

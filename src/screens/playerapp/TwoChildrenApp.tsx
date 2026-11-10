@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 type ChildTab = 'both' | 'mia' | 'bao'
-type AppView = 'home' | 'seasonsummary' | 'settings' | 'notifications' | 'data' | 'availability'
+type AppView = 'home' | 'seasonsummary' | 'settings' | 'notifications' | 'data' | 'availability' | 'clips'
 
 interface ChildCard {
   ini: string
@@ -40,7 +40,7 @@ function Toggle({ on }: { on: boolean }) {
   )
 }
 
-function ChildSection({ card, onSeasonSummary }: { card: ChildCard; onSeasonSummary?: () => void }) {
+function ChildSection({ card, onSeasonSummary, onAvailability }: { card: ChildCard; onSeasonSummary?: () => void; onAvailability?: () => void }) {
   return (
     <div style={{ background: '#fff', borderRadius: 16, border: '1px solid #e9eae8', padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 10 }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
@@ -63,7 +63,7 @@ function ChildSection({ card, onSeasonSummary }: { card: ChildCard; onSeasonSumm
           <div style={{ fontSize: 13, fontWeight: card.todo.cta ? 700 : 400, color: card.todo.cta ? '#c39797' : '#6f7f7b' }}>{card.todo.label}</div>
         </div>
         {card.todo.cta && (
-          <button style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>{card.todo.cta}</button>
+          <button onClick={onAvailability} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>{card.todo.cta}</button>
         )}
       </div>
       {card.note && (
@@ -73,10 +73,11 @@ function ChildSection({ card, onSeasonSummary }: { card: ChildCard; onSeasonSumm
   )
 }
 
-function HomeView({ childTab, setChildTab, onSeasonSummary }: {
+function HomeView({ childTab, setChildTab, onSeasonSummary, onAvailability }: {
   childTab: ChildTab
   setChildTab: (t: ChildTab) => void
   onSeasonSummary: () => void
+  onAvailability: () => void
 }) {
   return (
     <>
@@ -113,7 +114,7 @@ function HomeView({ childTab, setChildTab, onSeasonSummary }: {
         )}
 
         {(childTab === 'both' || childTab === 'mia') && <ChildSection card={MIA} onSeasonSummary={onSeasonSummary} />}
-        {(childTab === 'both' || childTab === 'bao') && <ChildSection card={BAO} />}
+        {(childTab === 'both' || childTab === 'bao') && <ChildSection card={BAO} onAvailability={onAvailability} />}
       </div>
     </>
   )
@@ -375,6 +376,69 @@ function DataView({ onBack }: { onBack: () => void }) {
   )
 }
 
+function AvailabilityAnswerView({ onBack }: { onBack: () => void }) {
+  const [answer, setAnswer] = useState<'yes' | 'no' | null>(null)
+  return (
+    <>
+      <div style={{ background: '#1f4a3e', padding: '48px 20px 20px', flex: 'none' }}>
+        <button onClick={onBack} style={{ display: 'flex', alignItems: 'center', gap: 6, background: 'none', border: 'none', color: 'rgba(255,255,255,0.7)', fontFamily: 'inherit', fontSize: 14, cursor: 'pointer', padding: 0, marginBottom: 10 }}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          Back
+        </button>
+        <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', marginBottom: 2 }}>U8 Hannah · this Saturday</div>
+        <div style={{ fontSize: 22, fontWeight: 800, color: '#fff' }}>Is Bao coming?</div>
+      </div>
+      <div style={{ flexGrow: 1, padding: '20px 20px 32px', display: 'flex', flexDirection: 'column', gap: 14 }}>
+        <div style={{ background: '#fff', borderRadius: 16, border: '1px solid #e9eae8', padding: '16px' }}>
+          <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 4 }}>Festival — Saturday 8:30</div>
+          <div style={{ fontSize: 13, color: '#4a5a57' }}>Wattle Creek Sportsground · Pitch 6</div>
+        </div>
+        <button onClick={() => setAnswer('yes')} style={{ width: '100%', height: 52, borderRadius: 14, border: `2px solid ${answer === 'yes' ? '#2f6252' : '#e9eae8'}`, background: answer === 'yes' ? '#eef5f2' : '#fff', fontFamily: 'inherit', fontSize: 16, fontWeight: 700, cursor: 'pointer', color: answer === 'yes' ? '#2f6252' : '#10211f' }}>
+          {answer === 'yes' ? '✓ Yes, Bao is coming' : "Yes, he'll be there"}
+        </button>
+        <button onClick={() => setAnswer('no')} style={{ width: '100%', height: 52, borderRadius: 14, border: `2px solid ${answer === 'no' ? '#c39797' : '#e9eae8'}`, background: answer === 'no' ? '#fdf5f3' : '#fff', fontFamily: 'inherit', fontSize: 16, fontWeight: 700, cursor: 'pointer', color: answer === 'no' ? '#c39797' : '#10211f' }}>
+          {answer === 'no' ? "✓ Can't make it" : "No, he can't make it"}
+        </button>
+        {answer && (
+          <button onClick={onBack} style={{ width: '100%', height: 44, borderRadius: 12, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer', marginTop: 4 }}>Done</button>
+        )}
+      </div>
+    </>
+  )
+}
+
+function ClipsView({ onBack }: { onBack: () => void }) {
+  return (
+    <>
+      <div style={{ background: '#1f4a3e', padding: '48px 20px 20px', flex: 'none' }}>
+        <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', marginBottom: 2 }}>Wattle Creek FC · parent</div>
+        <div style={{ fontSize: 22, fontWeight: 800, color: '#fff' }}>Clips</div>
+      </div>
+      <div style={{ flexGrow: 1, padding: '20px 20px 32px', display: 'flex', flexDirection: 'column', gap: 14 }}>
+        <div style={{ background: '#fff', borderRadius: 16, border: '1px solid #e9eae8', padding: '20px 16px', display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'center', textAlign: 'center' }}>
+          <div style={{ width: 56, height: 56, borderRadius: '50%', background: '#eef5f2', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2f6252" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 21a9 9 0 100-18 9 9 0 000 18zM10 8l6 4-6 4z"/></svg>
+          </div>
+          <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>{"Mia's clips appear here"}</div>
+          <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: '20px' }}>Goals, assists and moments Sam tags for Mia during games.</div>
+        </div>
+      </div>
+      <div style={{ position: 'sticky', bottom: 0, background: '#fff', borderTop: '1px solid #e9eae8', display: 'flex', justifyContent: 'space-around', padding: '8px 0 20px' }}>
+        {[
+          { label: 'Home', icon: 'M4 11l8-7 8 7v9H4z', onClick: onBack },
+          { label: 'Clips', icon: 'M12 21a9 9 0 100-18 9 9 0 000 18zM10 8l6 4-6 4z', active: true },
+          { label: 'Settings', icon: 'M12 12a4 4 0 100-8 4 4 0 000 8zM5 21a7 7 0 0114 0' },
+        ].map(tab => (
+          <button key={tab.label} onClick={tab.onClick} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', padding: '4px 20px' }}>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={tab.active ? '#2f6252' : '#6f7f7b'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d={tab.icon}/></svg>
+            <span style={{ fontSize: 11, fontWeight: 700, color: tab.active ? '#2f6252' : '#6f7f7b' }}>{tab.label}</span>
+          </button>
+        ))}
+      </div>
+    </>
+  )
+}
+
 export default function TwoChildrenApp({ empty = false }: { onBack: () => void; empty?: boolean }) {
   const [childTab, setChildTab] = useState<ChildTab>('both')
   const [view, setView] = useState<AppView>('home')
@@ -395,18 +459,20 @@ export default function TwoChildrenApp({ empty = false }: { onBack: () => void; 
             <div style={{ fontSize: 13, color: '#4a5a57' }}>You said yes to 5 of 6</div>
           </div>
         </div>
-      ) : <HomeView childTab={childTab} setChildTab={setChildTab} onSeasonSummary={() => setView('seasonsummary')} />)}
+      ) : <HomeView childTab={childTab} setChildTab={setChildTab} onSeasonSummary={() => setView('seasonsummary')} onAvailability={() => setView('availability')} />)}
       {view === 'seasonsummary' && <SeasonSummaryView onBack={() => setView('home')} empty={empty} />}
       {view === 'settings'      && <SettingsView onBack={() => setView('home')} onNotifications={() => setView('notifications')} onData={() => setView('data')} />}
       {view === 'notifications' && <NotificationsView onBack={() => setView('settings')} />}
       {view === 'data'          && <DataView onBack={() => setView('settings')} />}
+      {view === 'availability'  && <AvailabilityAnswerView onBack={() => setView('home')} />}
+      {view === 'clips'         && <ClipsView onBack={() => setView('home')} />}
 
       {/* Bottom nav (home only) */}
       {view === 'home' && (
         <div style={{ position: 'sticky', bottom: 0, background: '#fff', borderTop: '1px solid #e9eae8', display: 'flex', justifyContent: 'space-around', padding: '8px 0 20px' }}>
           {[
-            { label: 'Home', icon: 'M4 11l8-7 8 7v9H4z', active: true },
-            { label: 'Clips', icon: 'M12 21a9 9 0 100-18 9 9 0 000 18zM10 8l6 4-6 4z', active: false },
+            { label: 'Home', icon: 'M4 11l8-7 8 7v9H4z', active: true, onClick: undefined as (() => void) | undefined },
+            { label: 'Clips', icon: 'M12 21a9 9 0 100-18 9 9 0 000 18zM10 8l6 4-6 4z', active: false, onClick: () => setView('clips') },
             { label: 'Settings', icon: 'M12 12a4 4 0 100-8 4 4 0 000 8zM5 21a7 7 0 0114 0', active: false, onClick: () => setView('settings') },
           ].map(tab => (
             <button key={tab.label} onClick={tab.onClick} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', padding: '4px 20px' }}>

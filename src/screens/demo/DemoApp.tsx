@@ -158,6 +158,7 @@ import SPp4ParentRestMonth    from '../footballyear/SPp4ParentRestMonth'
 import SPp6ManagerTournament  from '../footballyear/SPp6ManagerTournament'
 import SPp7PlayerRestMonth    from '../footballyear/SPp7PlayerRestMonth'
 import SPp8StandInAsked       from '../footballyear/SPp8StandInAsked'
+import JuniorCoachApp        from '../JuniorCoachApp'
 import DemoStart             from './DemoStart'
 import DemoStartEmpty        from './DemoStartEmpty'
 import DemoSignIn            from './DemoSignIn'
@@ -173,6 +174,8 @@ function noop() {}
 
 function renderScreen(key: string): ReactNode {
   switch (key) {
+    case 'juniorcoach':
+      return <JuniorCoachApp />
     case 'home':
       return <HomeScreen role="head" onRole={noop} onNav={noop} onCalendar={noop} empty={false} />
     case 'training':

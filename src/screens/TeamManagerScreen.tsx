@@ -190,7 +190,7 @@ export default function TeamManagerScreen({ empty }: { empty?: boolean }) {
         {tab === 'home' && (
           <div style={{ padding: '16px' }}>
             {/* Change alert */}
-            <button style={{ display: 'flex', alignItems: 'center', gap: 10, width: '100%', padding: '12px 14px', background: '#fdf8f4', border: '1px solid #f0dcc8', borderRadius: 12, marginBottom: 16, fontFamily: 'inherit', cursor: 'pointer', textAlign: 'left' }}>
+            <button onClick={() => { setTab('messages'); setShowChange(true) }} style={{ display: 'flex', alignItems: 'center', gap: 10, width: '100%', padding: '12px 14px', background: '#fdf8f4', border: '1px solid #f0dcc8', borderRadius: 12, marginBottom: 16, fontFamily: 'inherit', cursor: 'pointer', textAlign: 'left' }}>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c39797" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
               <span style={{ flexGrow: 1, fontSize: 14, fontWeight: 600, color: '#10211f' }}>Something changed? Tell parents</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6f7f7b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
@@ -236,7 +236,7 @@ export default function TeamManagerScreen({ empty }: { empty?: boolean }) {
                       </div>
                     </div>
                   ))}
-                  <button style={{ width: '100%', height: 36, borderRadius: 8, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Remind the 2 who haven't answered</button>
+                  <button onClick={() => setTab('messages')} style={{ width: '100%', height: 36, borderRadius: 8, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Remind the 2 who haven't answered</button>
                 </div>
               )}
               {!showWhosComing && <button style={{ width: '100%', height: 36, borderRadius: 8, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Remind the 2 who haven't answered</button>}
