@@ -448,7 +448,7 @@ export default function MiniRoosApp({ onBack, empty }: { onBack: () => void; emp
 
       {/* Content */}
       <div style={{ flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden', position: 'relative' }}>
-        {nav === 'home' && homeTab === 'overview'  && homeSubView === 'main'          && <HomeMiniRoos empty={empty} onTraining={() => setNav('training')} onSeasonNotes={() => setHomeSubView('seasonnotes')} onFootballYear={() => setHomeSubView('footballyear')} />}
+        {nav === 'home' && homeTab === 'overview'  && homeSubView === 'main'          && <HomeMiniRoos empty={empty} onTraining={() => setNav('training')} onSeasonNotes={() => setHomeSubView('seasonnotes')} onFootballYear={() => setHomeSubView('footballyear')} onAllMessages={() => setHomeTab('inbox')} onCalendar={() => setHomeTab('calendar')} onSwapGame={() => { setNav('training'); setTrainingTab('suggest') }} onWhatWeSaw={() => { setNav('gameday'); setGameDayTab('turns'); setGameDayView('whatisaw') }} onThankParents={() => { setNav('gameday'); setGameDayView('thankparents') }} onInboxItem={() => setHomeTab('inbox')} />}
         {nav === 'home' && homeTab === 'overview'  && homeSubView === 'seasonnotes'  && <SeasonNotesScreen empty={empty} onBack={() => setHomeSubView('main')} />}
         {nav === 'home' && homeTab === 'overview'  && homeSubView === 'footballyear' && <FootballYearScreen onBack={() => setHomeSubView('main')} />}
         {nav === 'home' && homeTab === 'inbox'     && homeSubView !== 'teamchat'     && <InboxMiniRoos empty={empty} onChat={() => setHomeSubView('teamchat')} />}

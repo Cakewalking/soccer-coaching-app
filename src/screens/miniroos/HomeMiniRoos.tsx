@@ -78,9 +78,15 @@ interface Props {
   onTraining?: () => void
   onSeasonNotes?: () => void
   onFootballYear?: () => void
+  onAllMessages?: () => void
+  onCalendar?: () => void
+  onSwapGame?: () => void
+  onWhatWeSaw?: () => void
+  onThankParents?: () => void
+  onInboxItem?: () => void
 }
 
-export default function HomeMiniRoos({ empty, onTraining, onSeasonNotes, onFootballYear }: Props) {
+export default function HomeMiniRoos({ empty, onTraining, onSeasonNotes, onFootballYear, onAllMessages, onCalendar, onSwapGame, onWhatWeSaw, onThankParents, onInboxItem }: Props) {
   if (empty) return <HomeMiniRoosEmpty />
   return (
     <main style={{
@@ -99,7 +105,7 @@ export default function HomeMiniRoos({ empty, onTraining, onSeasonNotes, onFootb
           </div>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             {NEEDS_YOU.map((item, i) => (
-              <button key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 12, width: '100%', minHeight: 68, padding: '10px 18px', boxSizing: 'border-box', border: 0, borderTop: '1px solid #e9eae8', background: '#ffffff', color: '#10211f', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
+              <button key={i} onClick={onInboxItem} style={{ display: 'flex', alignItems: 'flex-start', gap: 12, width: '100%', minHeight: 68, padding: '10px 18px', boxSizing: 'border-box', border: 0, borderTop: '1px solid #e9eae8', background: '#ffffff', color: '#10211f', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
                 <span style={{ flex: 'none', width: 36, height: 36, borderRadius: '999px', marginTop: 2, background: item.iconBg, color: item.iconColor, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700 }}>
                   {item.ini}
                 </span>
@@ -114,7 +120,7 @@ export default function HomeMiniRoos({ empty, onTraining, onSeasonNotes, onFootb
               </button>
             ))}
           </div>
-          <button style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4, width: '100%', height: 40, border: 0, borderTop: '1px solid #e9eae8', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', fontSize: 14, color: '#2f6252', fontWeight: 600 }}>
+          <button onClick={onAllMessages} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4, width: '100%', height: 40, border: 0, borderTop: '1px solid #e9eae8', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', fontSize: 14, color: '#2f6252', fontWeight: 600 }}>
             All messages · 2 more
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
           </button>
@@ -168,7 +174,7 @@ export default function HomeMiniRoos({ empty, onTraining, onSeasonNotes, onFootb
               Open tonight's games
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
             </button>
-            <button style={{ height: 44, padding: '0 16px', borderRadius: 12, border: '2px solid rgba(255,255,255,0.5)', background: 'transparent', color: '#ffffff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Swap a game</button>
+            <button onClick={onSwapGame} style={{ height: 44, padding: '0 16px', borderRadius: 12, border: '2px solid rgba(255,255,255,0.5)', background: 'transparent', color: '#ffffff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Swap a game</button>
           </div>
         </section>
 
@@ -195,8 +201,8 @@ export default function HomeMiniRoos({ empty, onTraining, onSeasonNotes, onFootb
             ))}
           </div>
           <div style={{ display: 'flex', gap: 8, marginTop: 2 }}>
-            <button style={{ flex: 1, height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>What we saw</button>
-            <button style={{ flex: 1, height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Thank the parents</button>
+            <button onClick={onWhatWeSaw} style={{ flex: 1, height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>What we saw</button>
+            <button onClick={onThankParents} style={{ flex: 1, height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Thank the parents</button>
           </div>
           {onSeasonNotes && (
             <button onClick={onSeasonNotes} style={{ width: '100%', height: 40, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#2f6252', marginTop: 2 }}>Season notes →</button>
@@ -210,7 +216,7 @@ export default function HomeMiniRoos({ empty, onTraining, onSeasonNotes, onFootb
         <section className="tile" style={{ flex: 'none', gap: 4 }} aria-label="This week">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 4 }}>
             <h2 className="h2">This week</h2>
-            <button style={{ border: 0, background: 'transparent', color: 'var(--green-deep)', fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Calendar</button>
+            <button onClick={onCalendar} style={{ border: 0, background: 'transparent', color: 'var(--green-deep)', fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Calendar</button>
           </div>
           {MINI_WEEK.map(d => (
             <div key={d.day} style={miniWeekStyle(d.type)}>
