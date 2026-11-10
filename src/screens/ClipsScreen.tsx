@@ -135,7 +135,7 @@ function ClipsEmpty({ activeTab }: { activeTab: number }) {
           <div style={{ fontSize: 15, fontWeight: 700 }}>How clips work</div>
           {[
             { n: '1', title: 'Camera watches the game', body: 'The match camera records everything automatically.' },
-            { n: '2', title: 'AI finds the moments', body: 'Clean Sheet finds clips that match what your style says you're working on.' },
+            { n: '2', title: 'AI finds the moments', body: "Clean Sheet finds clips that match what your style says you're working on." },
             { n: '3', title: 'You review and use them', body: 'Tag them, build playlists, send to players.' },
           ].map(item => (
             <div key={item.n} style={{ display: 'flex', gap: 10 }}>
