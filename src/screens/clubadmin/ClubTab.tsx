@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { SubTabBar } from './ui'
 
-type ClubView = 'overview' | 'inbox' | 'calendar' | 'seasonplan' | 'playingstyle' | 'headingpolicy' | 'kit'
+type ClubView = 'overview' | 'inbox' | 'calendar' | 'seasonplan' | 'playingstyle' | 'headingpolicy' | 'kit' | 'settings'
 
 const MONTHS = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC']
 
@@ -32,6 +32,7 @@ export default function ClubTab({ role }: { role: 'chair' | 'dof' }) {
           { id: 'playingstyle', label: 'Playing style' },
           { id: 'headingpolicy', label: 'Heading policy' },
           { id: 'kit', label: 'Kit and cameras' },
+          { id: 'settings', label: 'Club settings' },
         ]}
         active={view}
         onSelect={id => setView(id as ClubView)}
@@ -350,6 +351,120 @@ export default function ClubTab({ role }: { role: 'chair' | 'dof' }) {
                 <span style={{ fontSize: 13, color: '#6f7f7b' }}>{k.status}</span>
               </div>
             ))}
+          </>
+        )}
+
+        {view === 'settings' && (
+          <>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
+              <div>
+                <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>Club settings</div>
+                <div style={{ fontSize: 12, color: '#6f7f7b' }}>Wattle Creek FC · only the chair and director can change these</div>
+              </div>
+              <div style={{ display: 'flex', gap: 8 }}>
+                <button style={{ height: 36, padding: '0 14px', borderRadius: 10, border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>Cancel</button>
+                <button style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 'none', background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Save</button>
+              </div>
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 340px', gap: 16 }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+                {/* Club details */}
+                <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 14, overflow: 'hidden' }}>
+                  <div style={{ padding: '10px 16px', borderBottom: '1px solid #e9eae8', fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', color: '#6f7f7b' }}>CLUB DETAILS</div>
+                  {[
+                    { label: 'CLUB NAME',         value: 'Wattle Creek FC' },
+                    { label: 'HOME GROUND',        value: 'Wattle Creek Reserve, 5 pitches' },
+                    { label: 'STATE AND LEAGUE',   value: 'Victoria · Football Victoria' },
+                    { label: 'CLUB COLOURS',       value: 'Green and white' },
+                  ].map(f => (
+                    <div key={f.label} style={{ padding: '10px 16px', borderBottom: '1px solid #e9eae8' }}>
+                      <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.07em', color: '#6f7f7b', marginBottom: 5 }}>{f.label}</div>
+                      <div style={{ height: 40, border: '1px solid #e9eae8', borderRadius: 8, padding: '0 12px', display: 'flex', alignItems: 'center', fontSize: 14, background: '#fafafa', color: '#10211f' }}>{f.value}</div>
+                    </div>
+                  ))}
+                  <div style={{ padding: '10px 16px', fontSize: 12, color: '#6f7f7b' }}>The club name and ground show to every family and coach.</div>
+                </div>
+
+                {/* Season and defaults */}
+                <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 14, overflow: 'hidden' }}>
+                  <div style={{ padding: '10px 16px', borderBottom: '1px solid #e9eae8', fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', color: '#6f7f7b' }}>SEASON AND DEFAULTS</div>
+                  <div style={{ padding: '10px 16px', borderBottom: '1px solid #e9eae8' }}>
+                    <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.07em', color: '#6f7f7b', marginBottom: 5 }}>SEASON</div>
+                    <div style={{ height: 40, border: '1px solid #e9eae8', borderRadius: 8, padding: '0 12px', display: 'flex', alignItems: 'center', fontSize: 14, background: '#fafafa', color: '#10211f' }}>11 Apr to 22 Aug 2026</div>
+                  </div>
+                  {[
+                    { label: 'Full match video kept', value: '90 days' },
+                    { label: 'Data stored in', value: 'Australia' },
+                  ].map(f => (
+                    <div key={f.label} style={{ padding: '10px 16px', borderBottom: '1px solid #e9eae8', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <span style={{ fontSize: 14, color: '#10211f' }}>{f.label}</span>
+                      <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+                        <span style={{ fontSize: 13, fontWeight: 600, color: '#4a5a57' }}>{f.value}</span>
+                        <button style={{ height: 28, padding: '0 10px', borderRadius: 999, border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 12, cursor: 'pointer' }}>Change</button>
+                      </div>
+                    </div>
+                  ))}
+                  {[
+                    { label: 'Clips can be downloaded', on: false },
+                    { label: 'Faces blurred outside coaching', on: true },
+                  ].map(r => (
+                    <div key={r.label} style={{ padding: '10px 16px', borderBottom: '1px solid #e9eae8', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <span style={{ fontSize: 14, color: '#10211f' }}>{r.label}</span>
+                      <span style={{ flexShrink: 0, width: 44, height: 26, borderRadius: 13, background: r.on ? '#2f6252' : '#d6d9d7', display: 'flex', alignItems: 'center', justifyContent: r.on ? 'flex-end' : 'flex-start', padding: 3, boxSizing: 'border-box' as const }}>
+                        <span style={{ width: 20, height: 20, borderRadius: 10, background: '#fff' }} />
+                      </span>
+                    </div>
+                  ))}
+                  <div style={{ padding: '10px 16px', fontSize: 12, color: '#6f7f7b', lineHeight: 1.5 }}>Changing a privacy default emails every family before it takes effect.</div>
+                </div>
+              </div>
+
+              {/* Right: officers */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+                <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 14, overflow: 'hidden' }}>
+                  <div style={{ padding: '10px 16px', borderBottom: '1px solid #e9eae8', fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', color: '#6f7f7b' }}>CLUB OFFICERS</div>
+                  {[
+                    { label: 'Welfare officer',      name: 'Helen Park',    ini: 'HP', role: 'Club volunteer · all families know her name' },
+                    { label: 'Concussion officer',   name: 'Marco Bellini', ini: 'MB', role: 'Physio · told about every head knock' },
+                  ].map((o, i) => (
+                    <div key={o.label} style={{ padding: '12px 16px', borderBottom: i === 0 ? '1px solid #e9eae8' : 'none' }}>
+                      <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.07em', color: '#6f7f7b', marginBottom: 8 }}>{o.label.toUpperCase()}</div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                        <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#1f4a3e', color: '#fff', fontSize: 12, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{o.ini}</div>
+                        <div style={{ flex: 1 }}>
+                          <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>{o.name}</div>
+                          <div style={{ fontSize: 12, color: '#6f7f7b' }}>{o.role}</div>
+                        </div>
+                        <button style={{ height: 28, padding: '0 10px', borderRadius: 999, border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 12, cursor: 'pointer' }}>Change</button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 14, overflow: 'hidden' }}>
+                  <div style={{ padding: '10px 16px', borderBottom: '1px solid #e9eae8', fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', color: '#6f7f7b' }}>CONNECTIONS</div>
+                  {[
+                    { name: 'Dribl', desc: 'Fixtures, team sheets, results', status: 'Connected', c: '#40826d', bg: '#e4f2eb' },
+                    { name: 'WWC Connect', desc: 'Children checks · 27 of 31 valid', status: 'Connected', c: '#40826d', bg: '#e4f2eb' },
+                    { name: 'PlayFootball', desc: 'Registrations and player IDs', status: 'Connected', c: '#40826d', bg: '#e4f2eb' },
+                    { name: 'Partner academy', desc: 'Talent pathway referrals', status: 'Not set up', c: '#6f7f7b', bg: '#f4f4f4' },
+                  ].map((c, i) => (
+                    <div key={c.name} style={{ padding: '10px 16px', borderBottom: i < 3 ? '1px solid #e9eae8' : 'none', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <div>
+                        <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{c.name}</div>
+                        <div style={{ fontSize: 12, color: '#6f7f7b' }}>{c.desc}</div>
+                      </div>
+                      <span style={{ fontSize: 11, fontWeight: 700, color: c.c, background: c.bg, borderRadius: 999, padding: '2px 8px' }}>{c.status}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div style={{ background: '#fafafa', border: '1px solid #e9eae8', borderRadius: 12, padding: '10px 14px', fontSize: 12, color: '#6f7f7b', lineHeight: 1.5 }}>
+                  Connections sync each morning. Changes to club details apply immediately to what families and coaches see.
+                </div>
+              </div>
+            </div>
           </>
         )}
 

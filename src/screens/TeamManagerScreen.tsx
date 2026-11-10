@@ -16,12 +16,6 @@ const SAT_DUTIES = [
   { ini: 'IM', name: 'Isla (Morgan family)',  duty: 'Oranges at half-time',  status: 'confirmed' as const },
   { ini: 'LT', name: 'Linh Tran (Mia\'s mum)', duty: 'Canteen 10 to 11',   status: 'confirmed' as const },
 ]
-const ROSTER_ITEMS = [
-  { ini: 'LT', family: 'Morgan family',   duty: 'Canteen ×2, oranges ×1', count: 3, you: false },
-  { ini: 'MI', family: 'Owusu family (you)', duty: 'Camera ×8',            count: 2, you: true },
-  { ini: 'FW', family: 'Walsh family',    duty: 'Linesman ×1',             count: 1, you: false },
-  { ini: 'OB', family: 'Brennan family',  duty: 'Not yet',                 count: 0, you: false },
-]
 const RSVP = [
   { ini: 'MT', name: 'Mia',   status: 'yes'    as const },
   { ini: 'NO', name: 'Noah',  status: 'yes'    as const },
@@ -52,6 +46,7 @@ export default function TeamManagerScreen({ empty }: { empty?: boolean }) {
   const [byeWeek, setByeWeek] = useState(false)
   const [sidelineTeam, setSidelineTeam] = useState<string | null>(null)
   const [signOffChoices, setSignOffChoices] = useState<Record<number, string>>({})
+  const [showWhosComing, setShowWhosComing] = useState(false)
 
   function toggleCheck(i: number) {
     setCheckedItems(prev => { const n = new Set(prev); n.has(i) ? n.delete(i) : n.add(i); return n })
@@ -158,7 +153,30 @@ export default function TeamManagerScreen({ empty }: { empty?: boolean }) {
                   </div>
                 ))}
               </div>
-              <button style={{ width: '100%', height: 40, borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Remind the 2 who haven't answered</button>
+              <button onClick={() => setShowWhosComing(w => !w)} style={{ width: '100%', height: 36, borderRadius: 8, border: '1px solid #e9eae8', background: '#fff', color: '#2f6252', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', marginBottom: 8 }}>
+                {showWhosComing ? 'Hide' : 'Who\'s coming'}
+              </button>
+              {showWhosComing && (
+                <div style={{ marginBottom: 10 }}>
+                  {([
+                    { label: 'In', names: ['Mia','Noah','Jai','Zoe','Grace','Finn','Isla','Liam','Sam','Oscar','Ella','Ruby'] },
+                    { label: 'Maybe', names: ['Ruby · might have a school concert'] },
+                    { label: "Can't", names: ["Kai · family wedding", "Lily · sick, back next week"] },
+                    { label: 'No answer', names: ["Harper · new, consent pending", "Sam D · reminded Wed"] },
+                  ] as { label: string; names: string[] }[]).map(g => g.names.length > 0 && (
+                    <div key={g.label} style={{ marginBottom: 8 }}>
+                      <div style={{ fontSize: 11, fontWeight: 700, color: g.label === 'In' ? '#40826d' : g.label === "Can't" ? '#c39797' : '#6f7f7b', marginBottom: 4 }}>{g.label} · {g.names.length}</div>
+                      <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: 4 }}>
+                        {g.names.map(n => (
+                          <span key={n} style={{ fontSize: 12, color: '#10211f', background: g.label === 'In' ? '#eef5f2' : g.label === "Can't" ? '#fdf4f4' : '#f4f4f4', borderRadius: 6, padding: '2px 8px' }}>{n}</span>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                  <button style={{ width: '100%', height: 36, borderRadius: 8, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Remind the 2 who haven't answered</button>
+                </div>
+              )}
+              {!showWhosComing && <button style={{ width: '100%', height: 36, borderRadius: 8, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Remind the 2 who haven't answered</button>}
             </div>
 
             {/* To do */}
@@ -341,19 +359,56 @@ export default function TeamManagerScreen({ empty }: { empty?: boolean }) {
 
         {tab === 'roster' && (
           <div style={{ padding: '16px' }}>
-            <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', marginBottom: 4 }}>Duty roster</div>
+            <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', marginBottom: 2 }}>Duty roster</div>
             <div style={{ fontSize: 13, color: '#6f7f7b', marginBottom: 14 }}>SAT 6 JUN · VS Harbour Rovers</div>
-            {ROSTER_ITEMS.map((r, i) => (
-              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 0', borderTop: i > 0 ? '1px solid #f0f1f0' : 'none' }}>
-                <div style={{ width: 32, height: 32, borderRadius: '999px', background: r.you ? '#c39797' : '#cbbeb5', color: '#10211f', fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{r.ini}</div>
-                <div style={{ flexGrow: 1 }}>
-                  <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>{r.family}</div>
-                  <div style={{ fontSize: 12, color: '#6f7f7b' }}>{r.duty}</div>
+
+            {/* Specific duties */}
+            {[
+              { duty: 'Oranges at half-time', who: 'Morgan family (Isla)', status: 'done' as const,   note: null },
+              { duty: 'Canteen 10 to 11',     who: 'Linh Tran (Mia)',     status: 'done' as const,   note: null },
+              { duty: 'Club linesman',         who: 'Needs someone over 16 · flag in the blue bag', status: 'ask' as const, note: null },
+              { duty: 'Ground marshal',        who: 'Brennan family',      status: 'done' as const,   note: 'Hi-vis vest · over 18' },
+              { duty: 'Camera on halfway line',who: 'You · kit 1, picked up Friday', status: 'you' as const, note: null },
+            ].map((d, i) => (
+              <div key={i} style={{ padding: '12px 0', borderTop: i > 0 ? '1px solid #f0f1f0' : 'none' }}>
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
+                  <div style={{ flex: 1 }}>
+                    <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>{d.duty}</div>
+                    <div style={{ fontSize: 12, color: '#6f7f7b', marginTop: 2 }}>{d.who}</div>
+                    {d.note && <div style={{ fontSize: 11, color: '#9a9f9d', marginTop: 1 }}>{d.note}</div>}
+                  </div>
+                  {d.status === 'done' && (
+                    <span style={{ fontSize: 11, fontWeight: 700, color: '#40826d', background: '#e4f2eb', borderRadius: 6, padding: '2px 8px', flexShrink: 0 }}>Done</span>
+                  )}
+                  {d.status === 'you' && (
+                    <span style={{ fontSize: 11, fontWeight: 700, color: '#2f6252', background: '#eef5f2', borderRadius: 6, padding: '2px 8px', flexShrink: 0 }}>You</span>
+                  )}
+                  {d.status === 'ask' && (
+                    <button style={{ height: 32, padding: '0 14px', borderRadius: 999, border: 'none', background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer', flexShrink: 0 }}>Ask</button>
+                  )}
                 </div>
-                <div style={{ fontSize: 20, fontWeight: 800, color: r.count === 0 ? '#c39797' : '#10211f' }}>{r.count}</div>
               </div>
             ))}
-            <div style={{ marginTop: 14, fontSize: 12, color: '#6f7f7b', lineHeight: '17px' }}>Asking families who've done the least first. They answer from the parent app.</div>
+
+            {/* Fair share divider */}
+            <div style={{ marginTop: 20, marginBottom: 12, fontSize: 13, fontWeight: 700, color: '#10211f' }}>Fair share this season</div>
+            {[
+              { ini: 'LT', family: 'Tran family',        duty: 'Canteen ×2, oranges ×1', count: 3 },
+              { ini: 'IM', family: 'Morgan family',       duty: 'Oranges ×2',             count: 2 },
+              { ini: 'GO', family: 'Owusu family (you)',  duty: 'Camera ×8',              count: 8, you: true },
+              { ini: 'FW', family: 'Walsh family',        duty: 'Linesman ×1',            count: 1 },
+              { ini: 'OB', family: 'Brennan family',      duty: 'Not yet',                count: 0 },
+            ].map((r, i) => (
+              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 0', borderTop: '1px solid #f0f1f0' }}>
+                <div style={{ width: 28, height: 28, borderRadius: '999px', background: r.you ? '#c39797' : '#cbbeb5', color: '#10211f', fontSize: 10, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{r.ini}</div>
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{r.family}</div>
+                  <div style={{ fontSize: 11, color: '#6f7f7b' }}>{r.duty}</div>
+                </div>
+                <div style={{ fontSize: 18, fontWeight: 800, color: r.count === 0 ? '#c39797' : '#10211f' }}>{r.count}</div>
+              </div>
+            ))}
+            <div style={{ marginTop: 10, padding: '10px 12px', background: '#f7f9f7', borderRadius: 10, fontSize: 12, color: '#6f7f7b', lineHeight: '17px' }}>Asking families who've done the least first. They answer from the parent app.</div>
           </div>
         )}
       </div>
