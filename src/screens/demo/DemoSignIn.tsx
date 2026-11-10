@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 
 interface Props {
   onDemo: () => void
@@ -9,6 +9,7 @@ interface Props {
 export default function DemoSignIn({ onDemo, onSandbox, onWhy }: Props) {
   const [email, setEmail] = useState('')
   const [sent, setSent] = useState(false)
+  const emailRef = useRef<HTMLInputElement>(null)
 
   function handleSend(e: React.FormEvent) {
     e.preventDefault()
@@ -95,6 +96,7 @@ export default function DemoSignIn({ onDemo, onSandbox, onWhy }: Props) {
               <form onSubmit={handleSend} style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                 <label style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#6f7f7b' }}>YOUR EMAIL</label>
                 <input
+                  ref={emailRef}
                   type="email"
                   value={email}
                   onChange={e => setEmail(e.target.value)}
@@ -102,7 +104,7 @@ export default function DemoSignIn({ onDemo, onSandbox, onWhy }: Props) {
                   style={{ height: 48, borderRadius: 10, border: '1.5px solid #c5c8c4', padding: '0 14px', fontFamily: 'inherit', fontSize: 15, color: '#10211f', background: '#fff', outline: 'none', boxSizing: 'border-box' }}
                 />
                 <button type="submit" style={{ height: 48, borderRadius: 12, border: '1.5px solid #c5c8c4', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Email me a sign-in code</button>
-                <button type="button" onClick={onSandbox} style={{ height: 36, borderRadius: 10, border: 0, background: 'none', color: '#4a5a57', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>No password. Already signed in? Open your sandbox</button>
+                <button type="button" onClick={() => { email.trim() ? onSandbox() : emailRef.current?.focus() }} style={{ height: 36, borderRadius: 10, border: 0, background: 'none', color: '#4a5a57', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>No password. Already signed in? Open your sandbox</button>
               </form>
             )}
           </div>

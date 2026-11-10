@@ -501,18 +501,20 @@ export default function SignupScreen({ onDone }: Props) {
       {/* Join options */}
       <div style={{ background: '#fff', borderRadius: '24px 24px 0 0', padding: '32px 24px 48px' }}>
         <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', marginBottom: 16 }}>I am a…</div>
-        {[
-          { id: 'coach' as Flow,  label: 'Coach',        sub: 'Set up my team and start coaching smarter', icon: '👟' },
-          { id: 'parent' as Flow, label: 'Parent / carer', sub: "Stay connected with my child's team",      icon: '👨‍👩‍👧' },
-          { id: 'player' as Flow, label: 'Player',        sub: 'See my clips, goals, and schedule',         icon: '⚽' },
-          { id: 'staff' as Flow,  label: 'Club staff',    sub: 'Admin, registrations, and safeguarding',    icon: '🏟️' },
-        ].map(o => (
+        {([
+          { id: 'coach' as Flow,  label: 'Coach',          sub: 'Set up my team and start coaching smarter', iconPath: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2M9 12h6M9 16h4' },
+          { id: 'parent' as Flow, label: 'Parent / carer',  sub: "Stay connected with my child's team",       iconPath: 'M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75' },
+          { id: 'player' as Flow, label: 'Player',           sub: 'See my clips, goals, and schedule',         iconPath: 'M12 2l2.4 7.4H22l-6.5 4.7 2.5 7.6L12 17l-6 4.7 2.5-7.6L3 9.4h7.6z' },
+          { id: 'staff' as Flow,  label: 'Club staff',       sub: 'Admin, registrations, and safeguarding',    iconPath: 'M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2zM16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2' },
+        ] as const).map(o => (
           <button key={o.id} onClick={() => setFlow(o.id)} style={{
             width: '100%', padding: '14px 16px', borderRadius: 14, border: '1px solid #e9eae8',
             background: '#fff', textAlign: 'left', fontFamily: 'inherit', cursor: 'pointer',
             display: 'flex', alignItems: 'center', gap: 14, marginBottom: 10,
           }}>
-            <span style={{ fontSize: 24 }}>{o.icon}</span>
+            <span style={{ width: 40, height: 40, borderRadius: 10, background: '#eef5f2', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2f6252" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={o.iconPath}/></svg>
+            </span>
             <div style={{ flexGrow: 1 }}>
               <div style={{ fontSize: 16, fontWeight: 700, color: '#10211f' }}>{o.label}</div>
               <div style={{ fontSize: 13, color: '#6f7f7b', marginTop: 2 }}>{o.sub}</div>

@@ -14,6 +14,8 @@ export interface TourDef {
   persona: string
   device: 'tablet' | 'phone'
   total: number
+  home: string        // screen key for "Look around" mode
+  sandboxHome?: string // screen key for sandbox "Look around" (empty state)
   sections: TourSection[]
 }
 
@@ -24,6 +26,8 @@ export const TOURS: Record<string, TourDef> = {
     persona: "as Sam K, U12 Sam",
     device: 'tablet',
     total: 57,
+    home: 'home',
+    sandboxHome: 'home-e',
     sections: [
       { title: "Join", steps: [
         { label: "Welcome", caption: "Signing up takes a few minutes, and nobody sees a child\u2019s data until their children check is confirmed.", screen: "signup" },
@@ -108,6 +112,8 @@ export const TOURS: Record<string, TourDef> = {
     persona: "as Tom Albers, U9 Tom",
     device: 'tablet',
     total: 27,
+    home: 'miniroos',
+    sandboxHome: 'miniroos-e',
     sections: [
       { title: "Join", steps: [
         { label: "Create account and children check", caption: "A volunteer coach signs up in a few minutes. Nothing about a child shows until the children check is confirmed.", screen: "signup" },
@@ -156,6 +162,7 @@ export const TOURS: Record<string, TourDef> = {
     persona: "as Ollie Grant, U16 Ollie",
     device: 'tablet',
     total: 15,
+    home: 'youth',
     sections: [
       { title: "Join and set up", steps: [
         { label: "Same as juniors", caption: "Same sign-up as juniors. The club\u2019s playing style and heading policy arrive already set.", screen: "signup" },
@@ -188,6 +195,7 @@ export const TOURS: Record<string, TourDef> = {
     persona: "as Marko Petrovic, Men's 1sts",
     device: 'tablet',
     total: 11,
+    home: 'seniors',
     sections: [
       { title: "Set up", steps: [
         { label: "Senior teams", caption: "Senior teams add registration windows and clearances.", screen: "seniors" },
@@ -216,6 +224,8 @@ export const TOURS: Record<string, TourDef> = {
     persona: "as Jess Marsh, U12 Sam",
     device: 'tablet',
     total: 7,
+    home: 'home',
+    sandboxHome: 'cc1e-coach-e',
     sections: [
       { title: "Join", steps: [
         { label: "Invite", caption: "The head coach invites a co-coach, who sees what they\u2019ll have access to before saying yes.", screen: "signup" },
@@ -238,6 +248,8 @@ export const TOURS: Record<string, TourDef> = {
     persona: "as Priya Shah, four teams",
     device: 'tablet',
     total: 17,
+    home: 'fitnesscoach',
+    sandboxHome: 'fitnesscoach-e',
     sections: [
       { title: "Join", steps: [
         { label: "Invite", caption: "A fitness coach joins by invite. What they see depends on the age of each team.", screen: "signup" },
@@ -274,6 +286,7 @@ export const TOURS: Record<string, TourDef> = {
     persona: "as Nick Ward, all keepers",
     device: 'tablet',
     total: 6,
+    home: 'goalkeeper',
     sections: [
       { title: "Each week", steps: [
         { label: "Home", caption: "One coach looks after every keeper in the club, across all teams.", screen: "goalkeeper" },
@@ -293,6 +306,8 @@ export const TOURS: Record<string, TourDef> = {
     persona: "as Rob Owusu, U12 Sam",
     device: 'phone',
     total: 19,
+    home: 'teammanager',
+    sandboxHome: 'teammanager-e',
     sections: [
       { title: "Join", steps: [
         { label: "Invite", caption: "Signing up takes a few minutes, and nobody sees a child\u2019s data until their children check is confirmed.", screen: "signup" },
@@ -327,6 +342,7 @@ export const TOURS: Record<string, TourDef> = {
     persona: "as Linh Tran, Mia's mum",
     device: 'phone',
     total: 25,
+    home: 'twochildren',
     sections: [
       { title: "Join", steps: [
         { label: "Invite", caption: "Signing up takes a few minutes, and nobody sees a child\u2019s data until their children check is confirmed.", screen: "twochildren" },
@@ -369,6 +385,7 @@ export const TOURS: Record<string, TourDef> = {
     persona: "as Mia Tran, 11",
     device: 'phone',
     total: 12,
+    home: 'playerapp',
     sections: [
       { title: "Join", steps: [
         { label: "How old are you?", caption: "Under 15s can\u2019t make an account. They join with a code from a parent.", screen: "playerapp" },
@@ -396,6 +413,7 @@ export const TOURS: Record<string, TourDef> = {
     persona: "as Cal West, 16",
     device: 'phone',
     total: 8,
+    home: 'olderplayer',
     sections: [
       { title: "Join", steps: [
         { label: "Own account, 15 to 17", caption: "From 15, players have their own account. Under 18, a parent can still read coach messages.", screen: "olderplayer" },
@@ -417,6 +435,7 @@ export const TOURS: Record<string, TourDef> = {
     persona: "as Rachel M",
     device: 'tablet',
     total: 23,
+    home: 'clubadmin',
     sections: [
       { title: "Set up", steps: [
         { label: "First-use home", caption: "The club is set up once: import the players, choose how the club plays, set the rules.", screen: "clubadmin" },
@@ -459,6 +478,7 @@ export const TOURS: Record<string, TourDef> = {
     persona: "as Greg Lawson",
     device: 'tablet',
     total: 8,
+    home: 'd0c-chair',
     sections: [
       { title: "Set up", steps: [
         { label: "First-use home", caption: "First use: every screen says what to do next, so nothing starts blank.", screen: "clubadmin" },
@@ -482,6 +502,7 @@ export const TOURS: Record<string, TourDef> = {
     persona: "as Bianca Rossi",
     device: 'tablet',
     total: 10,
+    home: 'coordinator',
     sections: [
       { title: "Set up", steps: [
         { label: "First-use home", caption: "The coordinator starts by importing registrations.", screen: "coordinator" },
@@ -507,6 +528,7 @@ export const TOURS: Record<string, TourDef> = {
     persona: "as Helen Park",
     device: 'tablet',
     total: 11,
+    home: 'd5-safeguarding',
     sections: [
       { title: "A concern arrives", steps: [
         { label: "From a parent", caption: "A concern can come from a parent, a child, a wellness alert or the sideline. Each goes only to the welfare officer.", screen: "twochildren" },
@@ -533,6 +555,7 @@ export const TOURS: Record<string, TourDef> = {
     persona: "as Dani Okafor",
     device: 'tablet',
     total: 14,
+    home: 'academyowner',
     sections: [
       { title: "Set up", steps: [
         { label: "First use: three steps", caption: "An academy is a business, so set-up is programs, prices, coaches and child safety. There\u2019s no league or committee.", screen: "academyowner" },
@@ -564,6 +587,7 @@ export const TOURS: Record<string, TourDef> = {
     persona: "as Reece Whitlam",
     device: 'tablet',
     total: 18,
+    home: 'academycoach',
     sections: [
       { title: "Each day", steps: [
         { label: "Home: today\u2019s sessions", caption: "Several groups in one evening. Each player\u2019s own goal sits under their name during the session.", screen: "academycoach" },
@@ -605,6 +629,7 @@ export const TOURS: Record<string, TourDef> = {
     persona: "as Tess Okonkwo, mum of Kai, 13",
     device: 'phone',
     total: 13,
+    home: 'academyparent',
     sections: [
       { title: "Join", steps: [
         { label: "Book a free trial", caption: "A parent books a free trial, gets an honest note and an offer, and can add Saturday games with the partner club on one bill.", screen: "academyparent" },
@@ -637,6 +662,7 @@ export const TOURS: Record<string, TourDef> = {
     persona: "as Kai Okonkwo, 13",
     device: 'phone',
     total: 3,
+    home: 'academyplayer',
     sections: [
       { title: "Each week", steps: [
         { label: "Home: my goal and skills", caption: "Under 15s join with a code from a parent. One goal, their own skills, and ten minutes of practice at home.", screen: "academyplayer" },
@@ -651,6 +677,7 @@ export const TOURS: Record<string, TourDef> = {
     persona: "as Zoe Park, 16",
     device: 'phone',
     total: 4,
+    home: 'refereephone',
     sections: [
       { title: "Each week", steps: [
         { label: "Asked to do a game", caption: "Young referees are asked to do a game and can say yes from their phone.", screen: "refereephone" },
@@ -668,6 +695,7 @@ export const TOURS: Record<string, TourDef> = {
     persona: "as Sam K, U12 Sam · full year lifecycle",
     device: 'tablet',
     total: 34,
+    home: 'footballyear',
     sections: [
       { title: "Year overview", steps: [
         { label: "Football year (empty)", caption: "Before anything is set, Clean Sheet asks when the season runs.", screen: "footballyear-empty" },
@@ -725,6 +753,7 @@ export const TOURS: Record<string, TourDef> = {
     persona: "all 68 screens built in step 4",
     device: 'tablet',
     total: 68,
+    home: 'ack1-home',
     sections: [
       { title: "Academy player", steps: [
         { label: "Academy player home", caption: "Kai's goal and skills progress.", screen: "ack1-home" },
@@ -824,6 +853,7 @@ export const TOURS: Record<string, TourDef> = {
     persona: "one week with an under-12 team",
     device: 'tablet',
     total: 6,
+    home: '',
     sections: [
       { title: "The story", steps: [
         { label: "Saturday: the game goes in", caption: "The club films the game on whatever camera it has. Cameras with a live feed can stream straight in." },

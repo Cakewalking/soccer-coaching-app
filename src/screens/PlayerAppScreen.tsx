@@ -39,7 +39,7 @@ const WELLNESS_QUESTIONS: { q: string; options: WellnessOption[] }[] = [
 
 const GOALS = [
   { title: 'First touch in tight spaces',  progress: 60, note: 'Sam set this · 3 weeks ago',    tag: 'Ball control' },
-  { title: 'Shoot off my left',            progress: 40, note: 'Harper set this · 2 months ago', tag: 'Finishing' },
+  { title: 'Shoot off my left',            progress: 40, note: 'Sam set this · 2 months ago', tag: 'Finishing' },
   { title: 'Get in behind on the overlap', progress: 25, note: 'Sam set this · 1 month ago',     tag: 'Movement' },
 ]
 
@@ -475,8 +475,8 @@ export default function PlayerAppScreen({ empty }: { empty?: boolean }) {
       <div style={{ background: '#1f4a3e', padding: '52px 20px 20px', flex: 'none' }}>
         <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
           <div>
-            <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', marginBottom: 2 }}>U14 Sam · Wattle Creek FC</div>
-            <div style={{ fontSize: 24, fontWeight: 800, color: '#fff' }}>Hi Harper</div>
+            <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', marginBottom: 2 }}>U12 Sam · Wattle Creek FC</div>
+            <div style={{ fontSize: 24, fontWeight: 800, color: '#fff' }}>Hi Mia</div>
           </div>
           <div style={{ display: 'flex', gap: 6 }}>
             <button onClick={() => setView('young-news')} style={{ height: 32, padding: '0 12px', borderRadius: '999px', border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: 'rgba(255,255,255,0.8)', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>News</button>

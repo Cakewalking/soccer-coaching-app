@@ -22,7 +22,7 @@ export default function DemoShell({ roleId, onBack, onStartTour, children }: Pro
         </button>
         <div style={{ width: 1, height: 20, background: 'rgba(255,255,255,0.2)', flex: 'none' }} />
         <div style={{ flexGrow: 1, fontSize: 13, color: 'rgba(255,255,255,0.65)' }}>
-          <span style={{ color: '#fff', fontWeight: 700 }}>Looking around</span> as {tour.persona} · {tour.roleLabel} · Nothing you tap is saved.
+          <span style={{ color: '#fff', fontWeight: 700 }}>Looking around</span> {tour.persona} · {tour.roleLabel} · Nothing you tap is saved.
         </div>
         <button onClick={onStartTour} style={{ flex: 'none', height: 32, padding: '0 14px', borderRadius: 8, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>
           Guided tour →

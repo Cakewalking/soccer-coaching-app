@@ -164,9 +164,10 @@ import DemoSignIn            from './DemoSignIn'
 import DemoWhy               from './DemoWhy'
 import DemoTourShell         from './DemoTourShell'
 import DemoShell             from './DemoShell'
+import DemoShellSandbox      from './DemoShellSandbox'
 import { TOURS, type RoleId } from './tours'
 
-type DemoView = 'signin' | 'start' | 'why' | 'tour' | 'lookaround' | 'sandbox'
+type DemoView = 'signin' | 'start' | 'why' | 'tour' | 'lookaround' | 'sandbox' | 'sandboxlook'
 
 function noop() {}
 
@@ -183,7 +184,11 @@ function renderScreen(key: string): ReactNode {
     case 'review':
       return <ReviewScreen empty={false} />
     case 'signup':
-      return <SignupScreen onDone={noop} />
+      return (
+        <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px', background: '#e8e9e7', minHeight: '100%' }}>
+          <SignupScreen onDone={noop} />
+        </div>
+      )
     case 'miniroos':
       return (
         <div style={{ width: 1180, background: 'var(--surface-100)' }}>
@@ -388,6 +393,20 @@ function renderScreen(key: string): ReactNode {
     // Step 4 — Team chat (tablet)
     case 'ch1-chat':          return <CH1TeamChat />
 
+    // Sandbox empty-state homes
+    case 'home-e':
+      return <HomeScreen role="head" onRole={noop} onNav={noop} onCalendar={noop} empty={true} />
+    case 'miniroos-e':
+      return (
+        <div style={{ width: 1180, background: 'var(--surface-100)' }}>
+          <MiniRoosApp onBack={noop} empty={true} />
+        </div>
+      )
+    case 'fitnesscoach-e':
+      return <FitnessCoachScreen empty={true} />
+    case 'teammanager-e':
+      return <TeamManagerScreen empty={true} />
+
     default:
       return (
         <div style={{ padding: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 300 }}>
@@ -395,16 +414,6 @@ function renderScreen(key: string): ReactNode {
         </div>
       )
   }
-}
-
-function getStartScreen(roleId: RoleId): string | undefined {
-  const tour = TOURS[roleId]
-  for (const section of tour.sections) {
-    for (const step of section.steps) {
-      if (step.screen) return step.screen
-    }
-  }
-  return undefined
 }
 
 export default function DemoApp() {
@@ -434,9 +443,27 @@ export default function DemoApp() {
   if (view === 'sandbox') {
     return (
       <DemoStartEmpty
-        onRole={(roleId) => { setRole(roleId); setView('lookaround') }}
+        onRole={(roleId) => { setRole(roleId); setView('sandboxlook') }}
         onSwitchToDemo={() => setView('start')}
       />
+    )
+  }
+
+  if (view === 'sandboxlook') {
+    const tour = TOURS[role]
+    const homeKey = tour.sandboxHome ?? tour.home
+    return (
+      <DemoShellSandbox
+        roleId={role}
+        onSwitchRole={() => setView('sandbox')}
+        onSwitchToDemo={() => setView('start')}
+      >
+        {homeKey ? renderScreen(homeKey) : (
+          <div style={{ padding: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 300 }}>
+            <div style={{ fontSize: 15, color: '#6f7f7b' }}>{TOURS[role].roleLabel} — no screen preview available.</div>
+          </div>
+        )}
+      </DemoShellSandbox>
     )
   }
 
@@ -455,15 +482,14 @@ export default function DemoApp() {
   }
 
   if (view === 'lookaround') {
-    const startScreenKey = getStartScreen(role)
+    const homeKey = TOURS[role].home
     return (
       <DemoShell
         roleId={role}
         onBack={() => setView('start')}
         onStartTour={() => setView('tour')}
       >
-
-        {startScreenKey ? renderScreen(startScreenKey) : (
+        {homeKey ? renderScreen(homeKey) : (
           <div style={{ padding: 48, fontSize: 15, color: '#6f7f7b' }}>
             {TOURS[role].roleLabel} — no screen preview available.
           </div>
