@@ -9,7 +9,7 @@ export default function TeamTab({ onToast }: { onToast: (m: string) => void }) {
           {[
             { label: 'Team name', value: 'U12 Sam' },
             { label: 'Age group and format', value: 'U12 · Mixed · 9 a side, 2 × 30 minutes' },
-            { label: 'Training', value: 'Tuesday and Thursday, 5:45 pm · Wattle Creek Oval' },
+            { label: 'Training', value: 'Tuesday and Thursday, 5:45 pm · Wattle Creek Reserve' },
             { label: 'Fitness level', value: 'Play · set by age' },
           ].map(f => (
             <div key={f.label} style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>

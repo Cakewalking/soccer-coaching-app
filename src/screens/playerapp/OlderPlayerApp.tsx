@@ -3,7 +3,7 @@ import { useState } from 'react'
 type View = 'home' | 'messages' | 'body' | 'adult'
 
 const THIS_WEEK = [
-  { dayLabel: 'THU', dayNum: '4', title: 'Training', sub: '7:00 pm · Wattle Creek Oval', done: true },
+  { dayLabel: 'THU', dayNum: '4', title: 'Training', sub: '7:00 pm · Wattle Creek Reserve', done: true },
   { dayLabel: 'SAT', dayNum: '6', title: 'at Harbour Rovers', sub: 'Meet 2:40 · kick-off 3:30 · away kit', done: false },
   { dayLabel: 'MON', dayNum: '8', title: 'Goal chat with Ollie', sub: '15 min check-in · optional', done: false },
 ]

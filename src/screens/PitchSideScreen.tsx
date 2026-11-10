@@ -192,7 +192,7 @@ export default function PitchSideScreen({ onClose, empty }: { onClose: () => voi
           </button>
           <div style={{ flexGrow: 1 }}>
             <div style={{ fontSize: 20, fontWeight: 700, color: '#ffffff', letterSpacing: '-0.02em' }}>Before you start</div>
-            <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)', marginTop: 1 }}>Tonight · 6:30 – 7:45 pm · Wattle Creek Oval</div>
+            <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)', marginTop: 1 }}>Tonight · 6:30 – 7:45 pm · Wattle Creek Reserve</div>
           </div>
           <button onClick={() => setView('drill')} style={{
             height: 40, padding: '0 20px', borderRadius: '999px', border: 0,

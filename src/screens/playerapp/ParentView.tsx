@@ -4,7 +4,7 @@ interface Props {
 }
 
 const THIS_WEEK = [
-  { day: 'THU', title: 'Training',              note: '5:45 to 7:15 pm · Wattle Creek Oval · bring water',          bg: '#2f6252', color: '#fff'     },
+  { day: 'THU', title: 'Training',              note: '5:45 to 7:15 pm · Wattle Creek Reserve · bring water',          bg: '#2f6252', color: '#fff'     },
   { day: 'SAT', title: 'vs Harbour Rovers',     note: 'Home · be there 8:40 for a 9:30 start · white kit',          bg: '#cbbeb5', color: '#10211f'  },
   { day: 'TUE', title: 'Goal chat with Sam',    note: '10 minutes after training · parents welcome',                 bg: '#eef5f2', color: '#2f6252'  },
 ]

@@ -171,7 +171,7 @@ function OfflineView() {
           : <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2 8.5a15 15 0 0120 0M5 12a10 10 0 0114 0M8.5 15.5a5 5 0 017 0M12 19h.01M3 3l18 18"/></svg>
         }
         <span style={{ flexGrow: 1 }}>
-          <strong style={{ display: 'block', fontSize: 16 }}>{backOnline ? 'Back online' : 'No signal at Wattle Creek Oval'}</strong>
+          <strong style={{ display: 'block', fontSize: 16 }}>{backOnline ? 'Back online' : 'No signal at Wattle Creek Reserve'}</strong>
           <span style={{ fontSize: 14 }}>{backOnline ? 'Everything from tonight has been sent.' : 'Carry on. Tonight\'s session is saved on this tablet.'}</span>
         </span>
         <span style={{ fontSize: 14, color: '#4a5a57', whiteSpace: 'nowrap' }}>Last updated {backOnline ? '7:22 pm' : '5:31 pm'}</span>
@@ -241,7 +241,7 @@ export default function TrainingScreen({ role, onNav, empty }: Props) {
         <div style={{ flex: 'none', background: '#ffffff', borderBottom: '1px solid #e9eae8', padding: '14px 32px 14px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <div>
             <h1 style={{ margin: 0, fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em', color: '#10211f', lineHeight: '28px' }}>Tonight's session</h1>
-            <div style={{ fontSize: 13, color: '#6f7f7b', marginTop: 2 }}>Thu 4 Jun · Wattle Creek Oval · <strong>offline</strong></div>
+            <div style={{ fontSize: 13, color: '#6f7f7b', marginTop: 2 }}>Thu 4 Jun · Wattle Creek Reserve · <strong>offline</strong></div>
           </div>
           <div style={{ display: 'flex', gap: 8 }}>
             <button style={{ height: 36, padding: '0 14px', borderRadius: '999px', border: '1px solid #2f6252', background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Open pitch-side</button>
@@ -266,7 +266,7 @@ export default function TrainingScreen({ role, onNav, empty }: Props) {
               Training tonight · {d.start}–{d.end}
             </h1>
             <div style={{ fontSize: 13, lineHeight: '18px', marginTop: 2, color: '#6f7f7b' }}>
-              Wattle Creek Oval · 16 players · {totalMins} minutes · 2 days to Harbour Rovers
+              Wattle Creek Reserve · 16 players · {totalMins} minutes · 2 days to Harbour Rovers
             </div>
           </div>
           <div style={{ display: 'flex', gap: 8, alignItems: 'center', flex: 'none' }}>

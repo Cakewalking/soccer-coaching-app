@@ -4,7 +4,7 @@ type Ans = 'yes' | 'maybe' | 'no' | null
 
 const EVENTS = [
   { dayLabel: 'SAT', dayNum: '6', title: 'at Harbour Rovers', sub: 'Meet 2:40 at Rovers Park · kick-off 3:30' },
-  { dayLabel: 'MON', dayNum: '8', title: 'Training', sub: '7:00 pm · Wattle Creek Oval' },
+  { dayLabel: 'MON', dayNum: '8', title: 'Training', sub: '7:00 pm · Wattle Creek Reserve' },
   { dayLabel: 'SAT', dayNum: '13', title: 'vs Kingfisher United', sub: 'Home · 3:30' },
 ]
 

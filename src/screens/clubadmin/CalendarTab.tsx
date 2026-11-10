@@ -9,7 +9,7 @@ const SAT_GAMES = [
   { time: '9:30',  team: 'U10 Nadia vs Bayside Lions',     detail: 'Away · Elderberry Park',          changed: false },
   { time: '9:30',  team: 'U12 Sam vs Harbour Rovers',      detail: 'Home · pitch 2 · Kit 1',         changed: false },
   { time: '10:30', team: 'U11 Girls Kate vs Harbour Rovers', detail: 'Home · pitch 3',               changed: false },
-  { time: '10:30', team: 'U11 Luke vs Kingfisher United',  detail: 'Away · Kingfisher Oval',          changed: false },
+  { time: '10:30', team: 'U11 Luke vs Kingfisher United',  detail: 'Away · Kingfisher Reserve',          changed: false },
   { time: '11:00', team: 'U12 Girls Ana vs Bayside Lions', detail: 'Home · pitch 2 · Kit 3',         changed: false },
   { time: '12:00', team: 'U13 Girls Meg vs Northgate City', detail: 'Home · pitch 1 · Kit 4',        changed: false },
   { time: '12:30', team: 'U13 Chris vs Glenview Park',     detail: 'Away · Glenview Reserve',         changed: false },

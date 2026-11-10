@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 type Step = 1 | 2 | 3 | 4 | 5
-type Source = 'xbotgo' | 'upload' | 'link' | null
+type Source = 'camera' | 'upload' | 'link' | null
 
 const STEP_TITLES = ['Recording source', 'Sync players', 'Who\'s who', 'Analysing', 'Done']
 
@@ -110,9 +110,15 @@ export default function AddGameScreen({ onClose }: { onClose: () => void }) {
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 32 }}>
               {[
-                { id: 'xbotgo' as Source, icon: '📷', title: 'XbotGo Falcon', sub: 'Auto-track AI camera — sync directly' },
-                { id: 'upload' as Source, icon: '⬆', title: 'Upload a file', sub: 'MP4, MOV or MKV from your device' },
-                { id: 'link'   as Source, icon: '🔗', title: 'Paste a link', sub: 'YouTube, Vimeo, or club platform URL' },
+                { id: 'camera' as Source,
+                  icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>,
+                  title: 'Match camera', sub: '' },
+                { id: 'upload' as Source,
+                  icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>,
+                  title: 'Upload a video file', sub: '' },
+                { id: 'link' as Source,
+                  icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>,
+                  title: 'Paste a link', sub: 'From another camera app or cloud storage' },
               ].map(opt => (
                 <button key={opt.id!} onClick={() => setSource(opt.id)} style={{
                   display: 'flex', alignItems: 'center', gap: 16, padding: '18px 20px', borderRadius: 14,
@@ -120,10 +126,10 @@ export default function AddGameScreen({ onClose }: { onClose: () => void }) {
                   background: source === opt.id ? '#f0f8f4' : '#ffffff', cursor: 'pointer',
                   fontFamily: 'inherit', textAlign: 'left',
                 }}>
-                  <span style={{ fontSize: 24, flexShrink: 0 }}>{opt.icon}</span>
+                  <span style={{ flexShrink: 0, color: '#4a5a57' }}>{opt.icon}</span>
                   <div>
                     <div style={{ fontSize: 16, fontWeight: 700, color: '#10211f' }}>{opt.title}</div>
-                    <div style={{ fontSize: 13, color: '#6f7f7b', marginTop: 2 }}>{opt.sub}</div>
+                    {opt.sub && <div style={{ fontSize: 13, color: '#6f7f7b', marginTop: 2 }}>{opt.sub}</div>}
                   </div>
                   {source === opt.id && (
                     <div style={{ marginLeft: 'auto', width: 22, height: 22, borderRadius: '999px', background: '#40826d', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>

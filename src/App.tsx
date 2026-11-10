@@ -97,7 +97,7 @@ function TeamPicker({ onMetric, onNav }: { onMetric?: () => void; onNav?: (s: Sc
         fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer', color: '#ffffff',
         flexShrink: 0,
       }}>
-        U12 · Wattle Creek
+        U12 Sam · Wattle Creek
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9l6 6 6-6"/></svg>
       </button>
       {open && (

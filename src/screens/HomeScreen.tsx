@@ -256,7 +256,7 @@ export default function HomeScreen({ onNav, onCalendar, empty }: Props) {
 
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <span style={{ background: '#ffffff', color: '#2f6252', borderRadius: '999px', padding: '2px 10px', fontSize: 13, lineHeight: '18px', fontWeight: 700, letterSpacing: '0.04em' }}>TODAY</span>
-            <span style={{ fontSize: 14, fontWeight: 600 }}>5:45 pm · Wattle Creek Oval</span>
+            <span style={{ fontSize: 14, fontWeight: 600 }}>5:45 pm · Wattle Creek Reserve</span>
           </div>
           <div>
             <div style={{ fontSize: 28, lineHeight: '34px', fontWeight: 700, letterSpacing: '-0.02em' }}>Training tonight</div>
