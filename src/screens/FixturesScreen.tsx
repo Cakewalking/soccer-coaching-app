@@ -95,8 +95,8 @@ const LADDER = [
   { pos: 1, name: 'Saltmarsh',       played: 8, pts: 20 },
   { pos: 2, name: 'Riverside',       played: 8, pts: 19 },
   { pos: 3, name: 'Wattle Creek',    played: 8, pts: 16, us: true },
-  { pos: 4, name: 'Ironbark United', played: 8, pts: 14 },
-  { pos: 5, name: 'Kestrel Park',    played: 8, pts: 12 },
+  { pos: 4, name: 'Kestrel Park',    played: 8, pts: 14 },
+  { pos: 5, name: 'Bayside',         played: 8, pts: 12 },
   { pos: 6, name: 'Harbour Rovers',  played: 8, pts: 11 },
 ]
 
@@ -175,7 +175,7 @@ export default function FixturesScreen({ empty }: { empty?: boolean }) {
         <div style={{ background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '14px 16px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
             <span style={{ fontSize: 16, fontWeight: 700 }}>Ladder</span>
-            <span style={{ fontSize: 13, color: '#4a5a57' }}>Top 6 of 10 · U12 is the first age with a ladder</span>
+            <span style={{ fontSize: 13, color: '#4a5a57' }}>Top 6 of 10 · from Dribl</span>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: '24px minmax(0,1fr) 36px 36px', gap: 8, marginBottom: 6 }}>
             <span style={{ fontSize: 11, fontWeight: 700, color: '#4a5a57' }}>#</span>

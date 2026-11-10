@@ -516,7 +516,7 @@ export interface SquadPlayer {
   devGoal: string; devGoalStatus: 'on-track' | 'needs-work'
   load: number; minutes: number; minutesUsed: number
   games: number; goals: number; assists: number; avgRating: number
-  foot: 'right' | 'left'; season: string
+  foot: 'right' | 'left'; season: string; checkInNote?: string
 }
 
 export const SQUAD_PLAYERS: SquadPlayer[] = [
@@ -527,7 +527,7 @@ export const SQUAD_PLAYERS: SquadPlayer[] = [
   { ini:'KR', name:'Kai R.',   fullName:'Kai Rahman',    pos:'Right back',       posGroup:'defenders',  wellness:3.8, status:'ready',   note:'Ready',           devGoal:'Drive forward with the ball',devGoalStatus:'on-track',   load:100, minutes:560, minutesUsed:490, games:8, goals:0, assists:4, avgRating:7.3, foot:'right', season:'second season' },
   { ini:'SD', name:'Sam D.',   fullName:'Sam Diallo',    pos:'Left back',        posGroup:'defenders',  wellness:null,status:'missing', note:'No check-in',     devGoal:'Cross first time',           devGoalStatus:'needs-work', load:95,  minutes:560, minutesUsed:420, games:8, goals:0, assists:1, avgRating:6.8, foot:'right', season:'first season' },
   { ini:'RC', name:'Ruby C.',  fullName:'Ruby Chen',     pos:'Right back',       posGroup:'defenders',  wellness:4.3, status:'ready',   note:'Ready',           devGoal:'Take on players wide',       devGoalStatus:'needs-work', load:90,  minutes:560, minutesUsed:350, games:8, goals:1, assists:2, avgRating:7.0, foot:'right', season:'second season' },
-  { ini:'MT', name:'Mia T.',   fullName:'Mia Tran',      pos:'Central midfield', posGroup:'midfielders',wellness:3.3, status:'manage',  note:'High load',       devGoal:'Pass with her left foot',    devGoalStatus:'on-track',   load:125, minutes:560, minutesUsed:560, games:8, goals:2, assists:3, avgRating:7.1, foot:'right', season:'second season' },
+  { ini:'MT', name:'Mia T.',   fullName:'Mia Tran',      pos:'Central midfield', posGroup:'midfielders',wellness:3.3, status:'manage',  note:'High load',       devGoal:'Pass with her left foot',    devGoalStatus:'on-track',   load:125, minutes:560, minutesUsed:560, games:8, goals:2, assists:3, avgRating:7.1, foot:'right', season:'second season', checkInNote:'heavy legs' },
   { ini:'JP', name:'Jai P.',   fullName:'Jai Patel',     pos:'Central midfield', posGroup:'midfielders',wellness:3.8, status:'manage',  note:'Extra minutes',   devGoal:'Shoot from outside the box', devGoalStatus:'needs-work', load:118, minutes:560, minutesUsed:560, games:8, goals:3, assists:8, avgRating:7.9, foot:'right', season:'third season' },
   { ini:'EB', name:'Ella B.',  fullName:'Ella Brandt',   pos:'Holding midfield', posGroup:'midfielders',wellness:2.3, status:'checkin', note:'Low wellness',    devGoal:'Drive forward with the ball',devGoalStatus:'on-track',   load:92,  minutes:560, minutesUsed:350, games:8, goals:2, assists:3, avgRating:7.1, foot:'right', season:'second season' },
   { ini:'IM', name:'Isla M.',  fullName:'Isla Moore',    pos:'Attacking mid',    posGroup:'midfielders',wellness:4.5, status:'ready',   note:'Ready',           devGoal:'Score from midfield runs',   devGoalStatus:'on-track',   load:95,  minutes:560, minutesUsed:420, games:8, goals:4, assists:5, avgRating:7.5, foot:'left',  season:'second season' },
@@ -618,10 +618,10 @@ export const STYLE_MEASURES = [
   { label: 'Goal kicks played short',                   source: 'Match camera',  value: '70%+' },
   { label: 'Passes completed in our third',             source: 'Match camera',  value: '80%+' },
   { label: 'Wins of the ball in their half',            source: 'Match camera',  value: '12 a game' },
-  { label: 'Passes we let them make before a challenge',source: 'Match camera',  value: 'under 10' },
+  { label: 'Their passes before we challenge',          source: 'Match camera',  value: 'under 10' },
   { label: 'Shots within 10 s of winning it',          source: 'Match camera',  value: '3 a game' },
   { label: 'Sprints forward after winning it',         source: 'GPS vests',     value: '20 a game' },
-  { label: 'Seconds to win it back',                   source: 'Match camera',  value: 'under 6 s' },
+  { label: 'Seconds to win it back',                   source: 'Match camera',  value: 'under 4 s' },
   { label: 'Won back within 6 seconds',                source: 'Match camera',  value: '40%+' },
   { label: 'Minutes shared evenly',                    source: 'Match records', value: 'all within 20%' },
   { label: 'Weaker-foot touches',                      source: 'Boot sensors',  value: '20%+' },

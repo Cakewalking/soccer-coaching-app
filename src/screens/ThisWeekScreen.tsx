@@ -71,7 +71,7 @@ const FOCUSES = [
 const DAYS = [
   {
     label: 'TUESDAY', date: '2 Jun', tag: 'Done', tagColor: '#40826d',
-    items: ['Pressing and shape', 'Chase and tag · Win it back · Small game', '15 of 16 came · 13 rated effort, avg 6', "Priya's note: Noah and Zoe sprint caps set"],
+    items: ['Pressing and shape', 'Chase and tag · Win it back · Small game', 'Warm-up cut short by rain', '15 of 16 came · 13 rated effort, average 6', "Jess's note: Kai stopped, hamstring"],
   },
   {
     label: 'WEDNESDAY', date: '3 Jun', tag: null, tagColor: '',
@@ -79,7 +79,7 @@ const DAYS = [
   },
   {
     label: 'THURSDAY', date: '4 Jun', tag: 'Tonight', tagColor: '#2f6252',
-    items: ['Repeat and finish', '5:45 · 11+ warm-up with Priya', 'Rondo · Win it back · Small game', 'Noah and Zoe: 3 sprints · Kai passing only', 'Mia late, about 6:10'],
+    items: ['Repeat and finish', '5:45 · 11+ Kids warm-up with Priya', 'Rondo · Win it back · Small game', 'Noah and Zoe: 3 sprints · Kai: passing only', 'Mia late, about 6:10'],
   },
   {
     label: 'SATURDAY', date: '6 Jun', tag: 'Game', tagColor: '#c39797',
@@ -92,9 +92,10 @@ const DAYS = [
 ]
 
 const PLAYERS_TO_PLAN = [
+  { ini: 'NO', label: 'Noah', note: 'Growing fast · 3 sprints Thursday, 8 Saturday', type: 'stone' as const },
+  { ini: 'ZH', label: 'Zoe', note: 'Growing fast · same caps as Noah', type: 'stone' as const },
   { ini: 'EB', label: 'Ella', note: 'Low check-ins two days · lighter Thursday', type: 'rose' as const },
-  { ini: 'MT', label: 'Mia', note: 'Late on Thursday, 6:10 · dentist', type: 'stone' as const },
-  { ini: 'NO', label: 'Noah & Zoe', note: 'Sprint caps, from Priya · 3 each tonight', type: 'stone' as const },
+  { ini: 'KR', label: 'Kai', note: 'Tight hamstring · passing only, away Saturday', type: 'stone' as const },
 ]
 
 function chipBg(t: 'rose' | 'stone') {
@@ -110,7 +111,7 @@ export default function ThisWeekScreen({ empty, onDrillLibrary, onTonightsPlan, 
       <div style={{ flex: 'none', padding: '14px 28px 0' }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 14, marginBottom: 14 }}>
           <h1 style={{ margin: 0, fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em' }}>This week</h1>
-          <span style={{ fontSize: 14, color: '#4a5a57' }}>Mon 1 Jun – Sun 7 Jun · 3 things from Ironbark, worked on before Harbour Rovers</span>
+          <span style={{ fontSize: 14, color: '#4a5a57' }}>Mon 2 to Sun 7 Jun · three things from Ironbark, worked on twice before Harbour Rovers</span>
           <div style={{ flexGrow: 1 }} />
           <button onClick={onDrillLibrary} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>Drill library</button>
           <button onClick={onTonightsPlan} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#ffffff' }}>Tonight's plan</button>
@@ -192,7 +193,7 @@ export default function ThisWeekScreen({ empty, onDrillLibrary, onTonightsPlan, 
 
       {/* Footer bar */}
       <div style={{ flex: 'none', borderTop: '1px solid #e9eae8', padding: '10px 28px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#ffffff' }}>
-        <span style={{ fontSize: 13, color: '#4a5a57' }}>Load this week: two 90-minute sessions and one game. Noah and Zoe have sprint caps both sessions.</span>
+        <span style={{ fontSize: 13, color: '#4a5a57' }}>Load: two 90-minute sessions and a 60-minute game.</span>
         <button onClick={onGrowthLoad} style={{ border: 0, background: 'transparent', color: '#2f6252', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Growth and load →</button>
       </div>
     </div>

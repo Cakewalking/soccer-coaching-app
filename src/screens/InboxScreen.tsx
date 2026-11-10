@@ -99,9 +99,9 @@ const MESSAGES = [
 ]
 
 const THREAD_MSGS = [
-  { from: 'Priya Shah', time: 'Wednesday', body: "Both are in a growth spurt. I've capped them at 3 sprints tonight and 8 on Saturday." },
-  { from: 'Priya', sub: 'Noah Okafor', subNote: 'Grew 11 cm this month · 26 sprints last week, limit 20', time: '4:52 pm', isPlayer: true },
-  { from: 'Priya', sub: 'Zoe Hartley',  subNote: 'Grew 0.8 cm this month · 24 sprints last week, limit 20', time: '4:52 pm', isPlayer: true },
+  { from: 'Priya Shah', time: 'Wednesday', body: "Both are in a growth spurt. I've capped them at 3 sprints on Thursday and 8 on Saturday." },
+  { from: 'Priya', sub: 'Noah Okafor', subNote: 'Grew 1.1 cm this month · 26 sprints last week, limit 20', time: '4:52 pm', isPlayer: true },
+  { from: 'Priya', sub: 'Zoe Hartley',  subNote: 'Grew 0.9 cm this month · 24 sprints last week, limit 20', time: '4:52 pm', isPlayer: true },
   { from: 'Priya', time: '4:53 pm', body: "Shout if you want them to play more than 35 minutes." },
 ]
 

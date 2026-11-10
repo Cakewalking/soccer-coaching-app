@@ -170,7 +170,7 @@ export default function PlayerProfileScreen({ playerIni, empty }: Props) {
                 <span style={{ ...statusChip, fontSize: 12, fontWeight: 700, padding: '3px 10px', borderRadius: '999px', border: `1px solid ${statusChip.border}` }}>{statusLabel}</span>
               </div>
               <div style={{ fontSize: 13, color: '#6f7f7b', marginTop: 4 }}>
-                #{player.games} · {player.pos} · U14 Wattle Creek · {player.foot} foot · {player.season}
+                {player.pos} · #{player.games} · U12 Sam · {player.foot} foot · {player.season}
               </div>
             </div>
             {/* Quick stats */}
@@ -302,7 +302,7 @@ export default function PlayerProfileScreen({ playerIni, empty }: Props) {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <span style={{ fontSize: 14, fontWeight: 600, color: '#10211f' }}>Wellness today</span>
             <span style={{ fontSize: 14, fontWeight: 700, color: player.wellness && player.wellness < 3 ? '#9d7c80' : '#10211f' }}>
-              {player.wellness ?? '—'} / 5 · {player.note.toLowerCase()}
+              {player.wellness ?? '—'} / 5 · {(player.checkInNote ?? player.note).toLowerCase()}
             </span>
           </div>
         </div>

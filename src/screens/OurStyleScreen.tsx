@@ -54,12 +54,11 @@ export default function OurStyleScreen() {
         {/* Header */}
         <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 24, marginBottom: 24 }}>
           <div>
-            <h1 style={{ margin: '0 0 8px', fontSize: 28, fontWeight: 700, letterSpacing: '-0.02em', color: '#10211f' }}>How do you want to play?</h1>
-            <p style={{ margin: 0, fontSize: 15, color: '#4a5a57' }}>Pick one answer for each moment of the game. Clean Sheet measures your team against your style, not anyone else's.</p>
-          </div>
-          <div style={{ display: 'flex', gap: 8, flexShrink: 0 }}>
-            <button style={{ height: 44, padding: '0 20px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>Reset</button>
-            <button style={{ height: 44, padding: '0 24px', borderRadius: '999px', border: 0, background: '#2f6252', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer', color: '#ffffff' }}>Done</button>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6 }}>
+              <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, letterSpacing: '-0.02em', color: '#10211f' }}>How we play</h1>
+              <span style={{ fontSize: 13, fontWeight: 700, padding: '3px 10px', borderRadius: '999px', background: '#eef5f2', color: '#2f6252' }}>Saved</span>
+            </div>
+            <p style={{ margin: 0, fontSize: 14, color: '#4a5a57' }}>Set 12 March by Sam. Every game since is scored against these answers. Tap any answer to change it.</p>
           </div>
         </div>
 
@@ -73,10 +72,10 @@ export default function OurStyleScreen() {
         {/* Club values */}
         <div style={{ background: '#ffffff', border: '1px solid #e9eae8', borderRadius: 16, padding: '20px 20px 16px' }}>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginBottom: 6 }}>
-            <h2 style={{ margin: 0, fontSize: 17, fontWeight: 700, color: '#10211f' }}>Club values</h2>
-            <span style={{ fontSize: 13, color: '#6f7f7b' }}>· pick any, or none</span>
+            <h2 style={{ margin: 0, fontSize: 17, fontWeight: 700, color: '#10211f' }}>Values</h2>
+            <span style={{ fontSize: 13, color: '#6f7f7b' }}>· pick any</span>
           </div>
-          <p style={{ margin: '0 0 14px', fontSize: 14, color: '#4a5a57' }}>For junior teams, how you develop players matters as much as results.</p>
+          <p style={{ margin: '0 0 14px', fontSize: 14, color: '#4a5a57' }}>The four answers above are yours. Equal minutes is a club rule up to U13.</p>
           <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
             {values.map((v, vi) => (
               <button key={v.label} onClick={() => toggleValue(vi)} style={{
@@ -101,7 +100,7 @@ export default function OurStyleScreen() {
 
       {/* Right: What Clean Sheet will measure */}
       <div style={{ width: 310, flex: 'none', borderLeft: '1px solid #e9eae8', padding: '24px 20px', overflowY: 'auto', background: '#fafafa' }}>
-        <h2 style={{ margin: '0 0 4px', fontSize: 16, fontWeight: 700, color: '#10211f' }}>What Clean Sheet will measure</h2>
+        <h2 style={{ margin: '0 0 4px', fontSize: 16, fontWeight: 700, color: '#10211f' }}>What Clean Sheet measures</h2>
         <p style={{ margin: '0 0 16px', fontSize: 13, color: '#4a5a57' }}>{STYLE_MEASURES.length} measures · shown in Where we're at</p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
           {STYLE_MEASURES.map((m, i) => (
@@ -119,7 +118,7 @@ export default function OurStyleScreen() {
           ))}
         </div>
         <div style={{ marginTop: 16, padding: '12px 14px', background: '#e8f2ee', borderRadius: 10, fontSize: 13, color: '#2f6252', lineHeight: '18px' }}>
-          Targets are a starting point for U14 Wattle Creek. Change them any time; past games are re-scored automatically.
+          If you change your style, past games are re-scored against the new answers. Nothing is lost.
         </div>
       </div>
     </div>
