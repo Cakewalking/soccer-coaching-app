@@ -30,14 +30,6 @@ import SignupScreen        from './screens/SignupScreen'
 import PlayerAppScreen     from './screens/PlayerAppScreen'
 import FitnessCoachScreen  from './screens/FitnessCoachScreen'
 import ClubAdminScreen     from './screens/ClubAdminScreen'
-import InboxMiniRoos       from './screens/miniroos/InboxMiniRoos'
-import CalendarMiniRoos    from './screens/miniroos/CalendarMiniRoos'
-import FixturesMiniRoos    from './screens/miniroos/FixturesMiniRoos'
-import StaffMiniRoos       from './screens/miniroos/StaffMiniRoos'
-import ComingMiniRoos      from './screens/miniroos/ComingMiniRoos'
-import ConsentMiniRoos     from './screens/miniroos/ConsentMiniRoos'
-import WhatWeSawScreen     from './screens/miniroos/WhatWeSawScreen'
-import SeasonNotesScreen         from './screens/miniroos/SeasonNotesScreen'
 import MiniRoosApp               from './screens/miniroos/MiniRoosApp'
 import OlderAvailabilityScreen   from './screens/playerapp/OlderAvailabilityScreen'
 import RefereesPhoneScreen       from './screens/playerapp/RefereesPhoneScreen'
@@ -55,10 +47,10 @@ const NAV_TABS: Array<{ id: Screen; label: string; icon: string }> = [
   { id: 'clips',    label: 'Clips',     icon: 'M12 21a9 9 0 100-18 9 9 0 000 18zM10 8l6 4-6 4z' },
 ]
 
-const HOME_TABS     = ['Overview', 'Inbox', 'Calendar', 'Fixtures and results', 'Our style', 'Team staff', 'Inbox · MiniRoos', 'Calendar · MiniRoos', 'Staff · MiniRoos']
-const SQUAD_TABS    = ['Players', 'Development goals', 'Wellness', 'Availability', 'Consent and privacy', 'Who\'s coming · MiniRoos', 'Consent · MiniRoos', 'Season notes · MiniRoos']
+const HOME_TABS     = ['Overview', 'Inbox', 'Calendar', 'Fixtures and results', 'Our style', 'Team staff']
+const SQUAD_TABS    = ['Players', 'Development goals', 'Wellness', 'Availability', 'Consent and privacy']
 const TRAINING_TABS = ["Tonight's session", 'This week', 'Drill library', 'Growth and load']
-const MATCHDAY_TABS = ['Team talk', 'Line-up and minutes', 'Opposition', 'Review', 'Fixtures · MiniRoos', 'What we saw · MiniRoos']
+const MATCHDAY_TABS = ['Team talk', 'Line-up and minutes', 'Opposition', 'Review']
 const CLIPS_TABS    = ['Browse', 'Playlists', 'Shared with players', 'To check']
 
 function RoleBadge() {
@@ -165,7 +157,7 @@ export default function App() {
   const [trainingTab, setTrainingTab] = useState(0)
   const [clipsTab, setClipsTab]       = useState(0)
   const [selectedPlayer, setSelectedPlayer] = useState<string | null>(null)
-  const [isEmpty, setIsEmpty]         = useState(false)
+  const [isEmpty]                      = useState(false)
 
   const navTo = (s: Screen) => { setScreen(s) }
 
@@ -358,8 +350,7 @@ export default function App() {
                 )
               })}
             </nav>
-            <div style={{ display: 'flex', alignItems: 'center', height: 44, gap: 10 }}>
-              <button onClick={() => setIsEmpty(e => !e)} style={{ height: 24, padding: '0 10px', borderRadius: '999px', border: `1px solid ${isEmpty ? '#c39797' : '#c5c8c4'}`, background: isEmpty ? '#fdf0ee' : 'transparent', color: isEmpty ? '#7a3030' : '#6f7f7b', fontSize: 11, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', letterSpacing: '0.05em', textTransform: 'uppercase', flexShrink: 0 }}>New team</button>
+            <div style={{ display: 'flex', alignItems: 'center', height: 44 }}>
               <RoleBadge />
             </div>
           </div>
@@ -374,18 +365,12 @@ export default function App() {
       {screen === 'home' && homeTab === 3 && <FixturesScreen empty={isEmpty} />}
       {screen === 'home' && homeTab === 4 && <OurStyleScreen />}
       {screen === 'home' && homeTab === 5 && <TeamStaffScreen />}
-      {screen === 'home' && homeTab === 6 && <InboxMiniRoos />}
-      {screen === 'home' && homeTab === 7 && <CalendarMiniRoos />}
-      {screen === 'home' && homeTab === 8 && <StaffMiniRoos />}
       {/* Squad tabs */}
       {screen === 'squad' && squadTab === 0 && <SquadScreen role={role} onPlayerProfile={ini => { setSelectedPlayer(ini); navTo('player') }} empty={isEmpty} />}
       {screen === 'squad' && squadTab === 1 && <DevGoalsScreen empty={isEmpty} />}
       {screen === 'squad' && squadTab === 2 && <WellnessScreen empty={isEmpty} />}
       {screen === 'squad' && squadTab === 3 && <AvailabilityScreen empty={isEmpty} />}
       {screen === 'squad' && squadTab === 4 && <ConsentScreen />}
-      {screen === 'squad' && squadTab === 5 && <ComingMiniRoos />}
-      {screen === 'squad' && squadTab === 6 && <ConsentMiniRoos />}
-      {screen === 'squad' && squadTab === 7 && <SeasonNotesScreen />}
       {/* Training tabs */}
       {screen === 'training' && trainingTab === 0 && <TrainingScreen role={role} onNav={navTo} empty={isEmpty} />}
       {screen === 'training' && trainingTab === 1 && <ThisWeekScreen empty={isEmpty} onDrillLibrary={() => setTrainingTab(2)} onTonightsPlan={() => setTrainingTab(0)} onGrowthLoad={() => setTrainingTab(3)} />}
@@ -396,8 +381,6 @@ export default function App() {
       {screen === 'matchday' && matchdayTab === 1 && <TeamSheetScreen empty={isEmpty} />}
       {screen === 'matchday' && matchdayTab === 2 && <OppositionScreen empty={isEmpty} />}
       {screen === 'matchday' && matchdayTab === 3 && <ReviewScreen empty={isEmpty} />}
-      {screen === 'matchday' && matchdayTab === 4 && <FixturesMiniRoos />}
-      {screen === 'matchday' && matchdayTab === 5 && <WhatWeSawScreen onBack={() => setMatchdayTab(4)} onSave={() => setMatchdayTab(4)} />}
       {/* Other screens */}
       {screen === 'clips'  && <ClipsScreen empty={isEmpty} activeTab={clipsTab} />}
       {screen === 'player' && <PlayerProfileScreen playerIni={selectedPlayer ?? 'MT'} />}
