@@ -6,6 +6,8 @@ import CoachesTab from './clubadmin/CoachesTab'
 import PlayersTab from './clubadmin/PlayersTab'
 import SafeguardingTab from './clubadmin/SafeguardingTab'
 import ReportsTab from './clubadmin/ReportsTab'
+import ClubRulesTab from './clubadmin/ClubRulesTab'
+import ClubPlanTab from './clubadmin/ClubPlanTab'
 
 export default function ClubAdminScreen({ empty, role = 'chair' }: { empty?: boolean; role?: 'chair' | 'dof' }) {
   const [tab, setTab] = useState<AdminTab>('club')
@@ -32,6 +34,8 @@ export default function ClubAdminScreen({ empty, role = 'chair' }: { empty?: boo
     { id: 'players', label: 'Players', icon: 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5' },
     { id: 'safeguarding', label: 'Safeguarding', icon: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z' },
     { id: 'reports', label: 'Reports', icon: 'M18 20V10M12 20V4M6 20v-6' },
+    { id: 'rules', label: 'Club rules', icon: 'M9 11l3 3L22 4M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11' },
+    { id: 'plan', label: 'Plan', icon: 'M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8zM14 2v6h6M8 13h8M8 17h5' },
   ]
 
   return (
@@ -80,6 +84,8 @@ export default function ClubAdminScreen({ empty, role = 'chair' }: { empty?: boo
         {tab === 'players' && <PlayersTab />}
         {tab === 'safeguarding' && <SafeguardingTab />}
         {tab === 'reports' && <ReportsTab />}
+        {tab === 'rules' && <ClubRulesTab />}
+        {tab === 'plan' && <ClubPlanTab />}
       </div>
     </div>
   )

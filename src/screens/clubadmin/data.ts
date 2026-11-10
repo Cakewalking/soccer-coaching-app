@@ -1,4 +1,4 @@
-export type AdminTab = 'club' | 'teams' | 'coaches' | 'players' | 'safeguarding' | 'reports'
+export type AdminTab = 'club' | 'teams' | 'coaches' | 'players' | 'safeguarding' | 'reports' | 'rules' | 'plan'
 
 export type MRTeam = { name: string; level: string; coach: string; players: number; turnout: number; style?: number; alert?: string }
 export type JrTeam = { name: string; div: string; coach: string; players: number; turnout: number; style: number; lastFive: string[]; alert?: string }

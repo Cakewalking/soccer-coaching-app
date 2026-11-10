@@ -30,10 +30,18 @@ import SignupScreen        from './screens/SignupScreen'
 import PlayerAppScreen     from './screens/PlayerAppScreen'
 import FitnessCoachScreen  from './screens/FitnessCoachScreen'
 import ClubAdminScreen     from './screens/ClubAdminScreen'
+import InboxMiniRoos       from './screens/miniroos/InboxMiniRoos'
+import CalendarMiniRoos    from './screens/miniroos/CalendarMiniRoos'
+import FixturesMiniRoos    from './screens/miniroos/FixturesMiniRoos'
+import StaffMiniRoos       from './screens/miniroos/StaffMiniRoos'
+import ComingMiniRoos      from './screens/miniroos/ComingMiniRoos'
+import ConsentMiniRoos     from './screens/miniroos/ConsentMiniRoos'
+import WhatWeSawScreen     from './screens/miniroos/WhatWeSawScreen'
+import SettingsScreen      from './screens/SettingsScreen'
 import { type Role } from './data'
 import './index.css'
 
-export type Screen = 'home' | 'squad' | 'training' | 'matchday' | 'teamtalk' | 'clips' | 'player' | 'pitchside' | 'addgame' | 'setstyle' | 'livegame' | 'metric' | 'teammanager' | 'signup' | 'playerapp' | 'fitnesscoach' | 'clubadmin'
+export type Screen = 'home' | 'squad' | 'training' | 'matchday' | 'teamtalk' | 'clips' | 'player' | 'pitchside' | 'addgame' | 'setstyle' | 'livegame' | 'metric' | 'teammanager' | 'signup' | 'playerapp' | 'fitnesscoach' | 'clubadmin' | 'settings'
 
 const NAV_TABS: Array<{ id: Screen; label: string; icon: string }> = [
   { id: 'home',     label: 'Home',      icon: 'M4 11l8-7 8 7v9H4z' },
@@ -43,10 +51,10 @@ const NAV_TABS: Array<{ id: Screen; label: string; icon: string }> = [
   { id: 'clips',    label: 'Clips',     icon: 'M12 21a9 9 0 100-18 9 9 0 000 18zM10 8l6 4-6 4z' },
 ]
 
-const HOME_TABS     = ['Overview', 'Inbox', 'Calendar', 'Fixtures and results', 'Our style', 'Team staff']
-const SQUAD_TABS    = ['Players', 'Development goals', 'Wellness', 'Availability', 'Consent and privacy']
+const HOME_TABS     = ['Overview', 'Inbox', 'Calendar', 'Fixtures and results', 'Our style', 'Team staff', 'Inbox · MiniRoos', 'Calendar · MiniRoos', 'Staff · MiniRoos']
+const SQUAD_TABS    = ['Players', 'Development goals', 'Wellness', 'Availability', 'Consent and privacy', 'Who\'s coming · MiniRoos', 'Consent · MiniRoos']
 const TRAINING_TABS = ["Tonight's session", 'This week', 'Drill library', 'Growth and load']
-const MATCHDAY_TABS = ['Team talk', 'Line-up and minutes', 'Opposition', 'Review']
+const MATCHDAY_TABS = ['Team talk', 'Line-up and minutes', 'Opposition', 'Review', 'Fixtures · MiniRoos', 'What we saw · MiniRoos']
 const CLIPS_TABS    = ['Browse', 'Playlists', 'Shared with players', 'To check']
 
 function RoleBadge() {
@@ -130,12 +138,12 @@ function TeamPicker({ onMetric, onNav }: { onMetric?: () => void; onNav?: (s: Sc
   )
 }
 
-function Avatar() {
+function Avatar({ onClick }: { onClick?: () => void }) {
   return (
-    <div style={{
+    <div onClick={onClick} style={{
       width: 44, height: 44, borderRadius: '999px', background: '#c39797',
       color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center',
-      fontWeight: 700, fontSize: 15, flexShrink: 0,
+      fontWeight: 700, fontSize: 15, flexShrink: 0, cursor: onClick ? 'pointer' : undefined,
     }}>SK</div>
   )
 }
@@ -152,6 +160,10 @@ export default function App() {
   const [isEmpty, setIsEmpty]         = useState(false)
 
   const navTo = (s: Screen) => { setScreen(s) }
+
+  if (screen === 'settings') {
+    return <SettingsScreen onDone={() => navTo('home')} />
+  }
 
   if (screen === 'teamtalk') {
     return <TeamTalkScreen role={role} onClose={() => setScreen('training')} />
@@ -261,7 +273,7 @@ export default function App() {
           </button>
           <div style={{ flexGrow: 1 }} />
           <TeamPicker onMetric={() => navTo('metric')} onNav={navTo} />
-          <Avatar />
+          <Avatar onClick={() => navTo('settings')} />
         </div>
       )}
 
@@ -287,7 +299,7 @@ export default function App() {
               ))}
             </nav>
             <TeamPicker onMetric={() => navTo('metric')} onNav={navTo} />
-            <Avatar />
+            <Avatar onClick={() => navTo('settings')} />
           </div>
 
           {/* Row 2: white sub-tabs + role badge */}
@@ -327,12 +339,17 @@ export default function App() {
       {screen === 'home' && homeTab === 3 && <FixturesScreen empty={isEmpty} />}
       {screen === 'home' && homeTab === 4 && <OurStyleScreen />}
       {screen === 'home' && homeTab === 5 && <TeamStaffScreen />}
+      {screen === 'home' && homeTab === 6 && <InboxMiniRoos />}
+      {screen === 'home' && homeTab === 7 && <CalendarMiniRoos />}
+      {screen === 'home' && homeTab === 8 && <StaffMiniRoos />}
       {/* Squad tabs */}
       {screen === 'squad' && squadTab === 0 && <SquadScreen role={role} onPlayerProfile={ini => { setSelectedPlayer(ini); navTo('player') }} empty={isEmpty} />}
       {screen === 'squad' && squadTab === 1 && <DevGoalsScreen empty={isEmpty} />}
       {screen === 'squad' && squadTab === 2 && <WellnessScreen empty={isEmpty} />}
       {screen === 'squad' && squadTab === 3 && <AvailabilityScreen empty={isEmpty} />}
       {screen === 'squad' && squadTab === 4 && <ConsentScreen />}
+      {screen === 'squad' && squadTab === 5 && <ComingMiniRoos />}
+      {screen === 'squad' && squadTab === 6 && <ConsentMiniRoos />}
       {/* Training tabs */}
       {screen === 'training' && trainingTab === 0 && <TrainingScreen role={role} onNav={navTo} empty={isEmpty} />}
       {screen === 'training' && trainingTab === 1 && <ThisWeekScreen empty={isEmpty} onDrillLibrary={() => setTrainingTab(2)} onTonightsPlan={() => setTrainingTab(0)} onGrowthLoad={() => setTrainingTab(3)} />}
@@ -343,6 +360,8 @@ export default function App() {
       {screen === 'matchday' && matchdayTab === 1 && <TeamSheetScreen empty={isEmpty} />}
       {screen === 'matchday' && matchdayTab === 2 && <OppositionScreen empty={isEmpty} />}
       {screen === 'matchday' && matchdayTab === 3 && <ReviewScreen empty={isEmpty} />}
+      {screen === 'matchday' && matchdayTab === 4 && <FixturesMiniRoos />}
+      {screen === 'matchday' && matchdayTab === 5 && <WhatWeSawScreen onBack={() => setMatchdayTab(4)} onSave={() => setMatchdayTab(4)} />}
       {/* Other screens */}
       {screen === 'clips'  && <ClipsScreen empty={isEmpty} activeTab={clipsTab} />}
       {screen === 'player' && <PlayerProfileScreen playerIni={selectedPlayer ?? 'MT'} />}

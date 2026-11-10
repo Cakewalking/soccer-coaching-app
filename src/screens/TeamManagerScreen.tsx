@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import HeatScreen from './teammanager/HeatScreen'
 import GameDayPapersScreen from './teammanager/GameDayPapersScreen'
+import MessagesTab from './teammanager/MessagesTab'
 
 type ManagerTab = 'home' | 'gameday' | 'messages' | 'roster'
 type GamedayPhase = 'before' | 'during' | 'after'
-type ChangeChip = 'Meet time' | 'Venue or pitch' | 'Cancelled' | 'Kit or other'
 
 const TODO = [
   { icon: '📋', title: 'Duty roster for Saturday', sub: 'Linesman still needed · oranges and canteen done', tag: '1 gap', tagColor: '#c39797' },
@@ -21,10 +21,6 @@ const ROSTER_ITEMS = [
   { ini: 'MI', family: 'Owusu family (you)', duty: 'Camera ×8',            count: 2, you: true },
   { ini: 'FW', family: 'Walsh family',    duty: 'Linesman ×1',             count: 1, you: false },
   { ini: 'OB', family: 'Brennan family',  duty: 'Not yet',                 count: 0, you: false },
-]
-const MESSAGES = [
-  { id: 'm1', from: 'You → All U12 parents', preview: 'Game Saturday is on. Kick-off 9:30 am.', time: '2 min ago', seen: 12, total: 14 },
-  { id: 'm2', from: 'Linh Tran → You',       preview: "Can Mia have a lift to the game?",        time: '20 min ago', seen: null, total: null },
 ]
 const RSVP = [
   { ini: 'MT', name: 'Mia',   status: 'yes'    as const },
@@ -44,10 +40,9 @@ const RSVP = [
 
 export default function TeamManagerScreen({ empty }: { empty?: boolean }) {
   const [tab, setTab] = useState<ManagerTab>('home')
-  const [compose, setCompose] = useState(false)
+  const [showChange, setShowChange] = useState(false)
   const [gamedayPhase, setGamedayPhase] = useState<GamedayPhase>('before')
   const [checkedItems, setCheckedItems] = useState<Set<number>>(new Set())
-  const [changeChips, setChangeChips] = useState<Set<ChangeChip>>(new Set())
   const [showHeadKnock, setShowHeadKnock] = useState(false)
   const [showSideline, setShowSideline] = useState(false)
   const [showSignOff, setShowSignOff] = useState(false)
@@ -61,8 +56,10 @@ export default function TeamManagerScreen({ empty }: { empty?: boolean }) {
   function toggleCheck(i: number) {
     setCheckedItems(prev => { const n = new Set(prev); n.has(i) ? n.delete(i) : n.add(i); return n })
   }
-  function toggleChip(c: ChangeChip) {
-    setChangeChips(prev => { const n = new Set(prev); n.has(c) ? n.delete(c) : n.add(c); return n })
+
+  function switchTab(t: ManagerTab) {
+    if (t !== 'messages') setShowChange(false)
+    setTab(t)
   }
 
   const BottomNav = () => (
@@ -70,10 +67,10 @@ export default function TeamManagerScreen({ empty }: { empty?: boolean }) {
       {([
         { id: 'home'    as ManagerTab, label: 'Home',     icon: 'M4 11l8-7 8 7v9H4z' },
         { id: 'gameday' as ManagerTab, label: 'Game day', icon: 'M12 22a10 10 0 100-20 10 10 0 000 20zm0-10V7' },
-        { id: 'messages'as ManagerTab, label: 'Messages', icon: 'M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z' },
+        { id: 'messages'as ManagerTab, label: 'Messages', icon: 'M4 5h16v11H8l-4 4z' },
         { id: 'roster'  as ManagerTab, label: 'Roster',   icon: 'M9 11a3 3 0 100-6 3 3 0 000 6zM3 20c0-4 3-6 6-6s6 2 6 6M16 7a3 3 0 010 6M22 20c0-3-2-5-4-5.5' },
       ] as const).map(t => (
-        <button key={t.id} onClick={() => setTab(t.id)} style={{
+        <button key={t.id} onClick={() => switchTab(t.id)} style={{
           flex: 1, padding: '10px 0 12px', border: 0, background: 'transparent',
           display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4,
           cursor: 'pointer', fontFamily: 'inherit',
@@ -109,15 +106,25 @@ export default function TeamManagerScreen({ empty }: { empty?: boolean }) {
     <div style={{ width: 390, margin: '0 auto', background: '#f7f9f7', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)', border: '1px solid #e9eae8', borderRadius: 24, overflow: 'hidden', boxShadow: '0 8px 32px rgba(0,0,0,0.08)' }}>
 
       {/* Header */}
-      <div style={{ background: '#1f4a3e', padding: '48px 20px 20px', color: '#fff', flex: 'none' }}>
-        <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
-          <div>
-            <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', marginBottom: 2 }}>U12 Sam · Team manager</div>
-            <div style={{ fontSize: 24, fontWeight: 800 }}>Hi Rob</div>
-          </div>
-          <div style={{ width: 36, height: 36, borderRadius: '999px', background: '#c39797', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>RO</div>
+      {tab === 'messages' ? (
+        <div style={{ flex: 'none', padding: '14px 18px 12px', background: '#2f6252', color: '#fff', display: 'flex', alignItems: 'center', gap: 12 }}>
+          <span style={{ flexGrow: 1 }}>
+            <span style={{ display: 'block', fontSize: 12, lineHeight: '16px', color: '#cfe6dc' }}>{showChange ? 'Tell parents about a change' : 'U12 Sam · Team manager'}</span>
+            <span style={{ display: 'block', fontSize: 21, lineHeight: '27px', fontWeight: 700 }}>{showChange ? 'Something changed' : 'Messages'}</span>
+          </span>
+          <span style={{ flexShrink: 0, width: 40, height: 40, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>RO</span>
         </div>
-      </div>
+      ) : (
+        <div style={{ background: '#1f4a3e', padding: '48px 20px 20px', color: '#fff', flex: 'none' }}>
+          <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
+            <div>
+              <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', marginBottom: 2 }}>U12 Sam · Team manager</div>
+              <div style={{ fontSize: 24, fontWeight: 800 }}>Hi Rob</div>
+            </div>
+            <div style={{ width: 36, height: 36, borderRadius: '999px', background: '#c39797', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>RO</div>
+          </div>
+        </div>
+      )}
 
       {/* Content */}
       <div style={{ flexGrow: 1, overflowY: 'auto' }}>
@@ -330,64 +337,7 @@ export default function TeamManagerScreen({ empty }: { empty?: boolean }) {
           </div>
         )}
 
-        {tab === 'messages' && (
-          <div style={{ padding: '16px' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
-              <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>Messages</div>
-              <button onClick={() => setCompose(c => !c)} style={{ height: 32, padding: '0 12px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>+ New</button>
-            </div>
-            {compose && (
-              <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 14, padding: '14px', marginBottom: 14 }}>
-                <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 10 }}>Tell parents about a change</div>
-                <div style={{ fontSize: 12, color: '#6f7f7b', marginBottom: 8 }}>What changed?</div>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 14 }}>
-                  {(['Meet time', 'Venue or pitch', 'Cancelled', 'Kit or other'] as ChangeChip[]).map(c => (
-                    <button key={c} onClick={() => toggleChip(c)} style={{ height: 32, padding: '0 14px', borderRadius: '999px', border: `1px solid ${changeChips.has(c) ? '#2f6252' : '#e9eae8'}`, background: changeChips.has(c) ? '#2f6252' : '#fff', color: changeChips.has(c) ? '#fff' : '#4a5a57', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>{c}</button>
-                  ))}
-                </div>
-                {changeChips.has('Meet time') && (
-                  <div style={{ display: 'flex', gap: 10, marginBottom: 12 }}>
-                    <div style={{ flex: 1 }}>
-                      <div style={{ fontSize: 11, color: '#6f7f7b', marginBottom: 4 }}>WAS</div>
-                      <input defaultValue="8:40 am" style={{ width: '100%', height: 36, borderRadius: 8, border: '1px solid #e9eae8', padding: '0 10px', fontFamily: 'inherit', fontSize: 14, boxSizing: 'border-box' }} />
-                    </div>
-                    <div style={{ flex: 1 }}>
-                      <div style={{ fontSize: 11, color: '#6f7f7b', marginBottom: 4 }}>NOW</div>
-                      <input placeholder="New time" style={{ width: '100%', height: 36, borderRadius: 8, border: '1px solid #e9eae8', padding: '0 10px', fontFamily: 'inherit', fontSize: 14, boxSizing: 'border-box' }} />
-                    </div>
-                  </div>
-                )}
-                {changeChips.has('Venue or pitch') && (
-                  <div style={{ display: 'flex', gap: 10, marginBottom: 12 }}>
-                    <div style={{ flex: 1 }}>
-                      <div style={{ fontSize: 11, color: '#6f7f7b', marginBottom: 4 }}>WAS</div>
-                      <input defaultValue="Pitch 2" style={{ width: '100%', height: 36, borderRadius: 8, border: '1px solid #e9eae8', padding: '0 10px', fontFamily: 'inherit', fontSize: 14, boxSizing: 'border-box' }} />
-                    </div>
-                    <div style={{ flex: 1 }}>
-                      <div style={{ fontSize: 11, color: '#6f7f7b', marginBottom: 4 }}>NOW</div>
-                      <input placeholder="New venue or pitch" style={{ width: '100%', height: 36, borderRadius: 8, border: '1px solid #e9eae8', padding: '0 10px', fontFamily: 'inherit', fontSize: 14, boxSizing: 'border-box' }} />
-                    </div>
-                  </div>
-                )}
-                <textarea placeholder="Anything else parents should know…" style={{ width: '100%', height: 64, borderRadius: 10, border: '1px solid #e9eae8', padding: '10px', fontFamily: 'inherit', fontSize: 14, resize: 'none', boxSizing: 'border-box', marginBottom: 10 }} />
-                <div style={{ fontSize: 12, color: '#6f7f7b', marginBottom: 10 }}>Sending to 14 families · they confirm they've seen it</div>
-                <button style={{ height: 36, padding: '0 16px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Send and ask families to confirm</button>
-              </div>
-            )}
-            {MESSAGES.map((m, i) => (
-              <div key={m.id} style={{ padding: '12px 0', borderTop: i > 0 ? '1px solid #f0f1f0' : 'none' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
-                  <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{m.from}</div>
-                  <div style={{ fontSize: 12, color: '#6f7f7b' }}>{m.time}</div>
-                </div>
-                <div style={{ fontSize: 13, color: '#4a5a57' }}>{m.preview}</div>
-                {m.seen !== null && (
-                  <div style={{ fontSize: 12, color: '#40826d', marginTop: 4 }}>{m.seen} of {m.total} seen</div>
-                )}
-              </div>
-            ))}
-          </div>
-        )}
+        {tab === 'messages' && <MessagesTab showChange={showChange} setShowChange={setShowChange} />}
 
         {tab === 'roster' && (
           <div style={{ padding: '16px' }}>
