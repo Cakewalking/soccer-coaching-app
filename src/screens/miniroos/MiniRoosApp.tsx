@@ -9,9 +9,11 @@ import GameDayMiniRoos   from './GameDayMiniRoos'
 import WhatWeSawScreen   from './WhatWeSawScreen'
 import ThankParentsScreen from './ThankParentsScreen'
 import SeasonNotesScreen from './SeasonNotesScreen'
+import FixturesMiniRoos  from './FixturesMiniRoos'
 
 type MiniNav = 'home' | 'squad' | 'training' | 'gameday'
 type HomeTab = 'overview' | 'inbox' | 'calendar' | 'staff'
+type GameDayTab = 'turns' | 'fixtures'
 type GameDayView = 'turns' | 'whatisaw' | 'thankparents'
 
 const NAV: Array<{ id: MiniNav; label: string; icon: string }> = [
@@ -31,11 +33,17 @@ const HOME_TABS: Array<{ id: HomeTab; label: string }> = [
 export default function MiniRoosApp({ onBack, empty }: { onBack: () => void; empty?: boolean }) {
   const [nav, setNav]               = useState<MiniNav>('home')
   const [homeTab, setHomeTab]       = useState<HomeTab>('overview')
+  const [gameDayTab, setGameDayTab] = useState<GameDayTab>('turns')
   const [gameDayView, setGameDayView] = useState<GameDayView>('turns')
   const [homeSubView, setHomeSubView] = useState<'main' | 'seasonnotes'>('main')
 
-  const contextTabs = nav === 'home' ? HOME_TABS.map(t => t.label) : []
-  const activeTabIndex = nav === 'home' ? HOME_TABS.findIndex(t => t.id === homeTab) : 0
+  const GAMEDAY_TABS: Array<{ id: GameDayTab; label: string }> = [
+    { id: 'turns',    label: 'Turns' },
+    { id: 'fixtures', label: 'Fixtures' },
+  ]
+
+  const contextTabs = nav === 'home' ? HOME_TABS.map(t => t.label) : nav === 'gameday' ? GAMEDAY_TABS.map(t => t.label) : []
+  const activeTabIndex = nav === 'home' ? HOME_TABS.findIndex(t => t.id === homeTab) : nav === 'gameday' ? GAMEDAY_TABS.findIndex(t => t.id === gameDayTab) : 0
 
   // Full-screen phone overlays (no main chrome)
   if (nav === 'gameday' && gameDayView === 'thankparents') {
@@ -76,14 +84,17 @@ export default function MiniRoosApp({ onBack, empty }: { onBack: () => void; emp
           </div>
         </div>
 
-        {/* Sub-tabs (home only) */}
-        {nav === 'home' && (
+        {/* Sub-tabs (home and game day) */}
+        {(nav === 'home' || nav === 'gameday') && (
           <div style={{ height: 44, padding: '0 28px', display: 'flex', alignItems: 'flex-end', gap: 24, background: '#ffffff', borderBottom: '1px solid #e9eae8' }}>
             <nav style={{ display: 'flex', flexGrow: 1, height: 44 }}>
               {contextTabs.map((tab, i) => {
                 const active = i === activeTabIndex
                 return (
-                  <button key={tab} onClick={() => setHomeTab(HOME_TABS[i].id)} style={{
+                  <button key={tab} onClick={() => {
+                    if (nav === 'home') setHomeTab(HOME_TABS[i].id)
+                    if (nav === 'gameday') { setGameDayTab(GAMEDAY_TABS[i].id); setGameDayView('turns') }
+                  }} style={{
                     height: 44, padding: '0 16px', border: 0, background: 'transparent',
                     fontFamily: 'inherit', fontSize: 15, fontWeight: active ? 600 : 400,
                     color: active ? '#10211f' : '#6f7f7b', cursor: 'pointer',
@@ -115,8 +126,9 @@ export default function MiniRoosApp({ onBack, empty }: { onBack: () => void; emp
         {nav === 'home' && homeTab === 'staff'     && <StaffMiniRoos empty={empty} />}
         {nav === 'training' && <TrainingMiniRoos />}
         {nav === 'squad'   && <SquadMiniRoos empty={empty} />}
-        {nav === 'gameday' && gameDayView === 'turns'    && <GameDayMiniRoos onWhatWeSaw={() => setGameDayView('whatisaw')} />}
-        {nav === 'gameday' && gameDayView === 'whatisaw' && <WhatWeSawScreen onBack={() => setGameDayView('turns')} onSave={() => setGameDayView('turns')} onThankParents={() => setGameDayView('thankparents')} />}
+        {nav === 'gameday' && gameDayTab === 'turns'    && gameDayView === 'turns'    && <GameDayMiniRoos onWhatWeSaw={() => setGameDayView('whatisaw')} />}
+        {nav === 'gameday' && gameDayTab === 'turns'    && gameDayView === 'whatisaw' && <WhatWeSawScreen onBack={() => setGameDayView('turns')} onSave={() => setGameDayView('turns')} onThankParents={() => setGameDayView('thankparents')} />}
+        {nav === 'gameday' && gameDayTab === 'fixtures' && <FixturesMiniRoos empty={empty} />}
       </div>
     </div>
   )

@@ -40,12 +40,15 @@ import SettingsScreen            from './screens/SettingsScreen'
 import GoalkeeperCoachApp        from './screens/GoalkeeperCoachApp'
 import CoordinatorPortal         from './screens/CoordinatorPortal'
 import RolloverScreen            from './screens/RolloverScreen'
-import SeniorsYouthCoachApp      from './screens/SeniorsYouthCoachApp'
-import DemoApp                   from './screens/demo/DemoApp'
+import SeniorsYouthCoachApp        from './screens/SeniorsYouthCoachApp'
+import SeasonSummariesScreen       from './screens/SeasonSummariesScreen'
+import CoachFitnessScreen          from './screens/CoachFitnessScreen'
+import LiveGame11Screen            from './screens/LiveGame11Screen'
+import DemoApp                     from './screens/demo/DemoApp'
 import { type Role } from './data'
 import './index.css'
 
-export type Screen = 'home' | 'squad' | 'training' | 'matchday' | 'teamtalk' | 'clips' | 'player' | 'pitchside' | 'addgame' | 'setstyle' | 'livegame' | 'metric' | 'teammanager' | 'signup' | 'playerapp' | 'fitnesscoach' | 'clubadmin' | 'settings' | 'olderavail' | 'olderplayer' | 'refereephone' | 'miniroos' | 'goalkeeper' | 'coordinator' | 'rollover' | 'seniors' | 'youth' | 'twochildren' | 'playerme' | 'demo'
+export type Screen = 'home' | 'squad' | 'training' | 'matchday' | 'teamtalk' | 'clips' | 'player' | 'pitchside' | 'addgame' | 'setstyle' | 'livegame' | 'livegame11' | 'metric' | 'teammanager' | 'signup' | 'playerapp' | 'fitnesscoach' | 'clubadmin' | 'settings' | 'olderavail' | 'olderplayer' | 'refereephone' | 'miniroos' | 'goalkeeper' | 'coordinator' | 'rollover' | 'seniors' | 'youth' | 'twochildren' | 'playerme' | 'coachfitness' | 'demo'
 
 const NAV_TABS: Array<{ id: Screen; label: string; icon: string }> = [
   { id: 'home',     label: 'Home',      icon: 'M4 11l8-7 8 7v9H4z' },
@@ -56,7 +59,7 @@ const NAV_TABS: Array<{ id: Screen; label: string; icon: string }> = [
 ]
 
 const HOME_TABS     = ['Overview', 'Inbox', 'Calendar', 'Fixtures and results', 'Our style', 'Team staff']
-const SQUAD_TABS    = ['Players', 'Development goals', 'Wellness', 'Availability', 'Consent and privacy']
+const SQUAD_TABS    = ['Players', 'Development goals', 'Wellness', 'Availability', 'Consent and privacy', 'Season summaries']
 const TRAINING_TABS = ["Tonight's session", 'This week', 'Drill library', 'Growth and load']
 const MATCHDAY_TABS = ['Team talk', 'Line-up and minutes', 'Opposition', 'Review']
 const CLIPS_TABS    = ['Browse', 'Playlists', 'Shared with players', 'To check']
@@ -170,6 +173,14 @@ function TeamPicker({ onMetric, onNav }: { onMetric?: () => void; onNav?: (s: Sc
               <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>Sign-up / onboarding</div>
               <div style={{ fontSize: 12, color: '#6f7f7b' }}>Coach, parent, player, staff</div>
             </button>
+            <button onClick={() => go('coachfitness')} style={{ display: 'block', width: '100%', padding: '8px 16px', border: 0, background: 'transparent', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
+              <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>Coach and fitness combined home</div>
+              <div style={{ fontSize: 12, color: '#6f7f7b' }}>Sam doing both roles · U12 Sam</div>
+            </button>
+            <button onClick={() => go('livegame11')} style={{ display: 'block', width: '100%', padding: '8px 16px', border: 0, background: 'transparent', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
+              <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>Live game · 11 a side</div>
+              <div style={{ fontSize: 12, color: '#6f7f7b' }}>Youth/seniors format · U16 Ollie</div>
+            </button>
             <div style={{ padding: '10px 16px 6px', fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#6f7f7b', borderTop: '1px solid #f0f1f0' }}>Demo mode</div>
             <button onClick={() => go('demo')} style={{ display: 'block', width: '100%', padding: '8px 16px', border: 0, background: 'transparent', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
               <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>Hosted demo</div>
@@ -226,6 +237,21 @@ export default function App() {
   }
   if (screen === 'livegame') {
     return <LiveGameScreen onClose={() => setScreen('matchday')} />
+  }
+  if (screen === 'livegame11') {
+    return <LiveGame11Screen onClose={() => setScreen('matchday')} />
+  }
+  if (screen === 'coachfitness') {
+    return (
+      <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
+        <div style={{ flex: 'none', background: '#fff', borderBottom: '1px solid #e9eae8', padding: '0 28px', display: 'flex', alignItems: 'center', height: 52 }}>
+          <button onClick={() => setScreen('home')} style={{ height: 36, padding: '0 16px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Coach view</button>
+          <span style={{ marginLeft: 16, fontSize: 14, fontWeight: 700, color: '#1f4a3e' }}>Coach and fitness · U12 Sam</span>
+          <span style={{ marginLeft: 12, fontSize: 13, fontWeight: 700, color: '#2f6252', background: '#eef5f2', borderRadius: '999px', padding: '3px 10px' }}>Coach and fitness</span>
+        </div>
+        <CoachFitnessScreen />
+      </div>
+    )
   }
   if (screen === 'metric') {
     return (
@@ -467,6 +493,7 @@ export default function App() {
       {screen === 'squad' && squadTab === 2 && <WellnessScreen empty={isEmpty} />}
       {screen === 'squad' && squadTab === 3 && <AvailabilityScreen empty={isEmpty} />}
       {screen === 'squad' && squadTab === 4 && <ConsentScreen />}
+      {screen === 'squad' && squadTab === 5 && <SeasonSummariesScreen />}
       {/* Training tabs */}
       {screen === 'training' && trainingTab === 0 && <TrainingScreen role={role} onNav={navTo} empty={isEmpty} />}
       {screen === 'training' && trainingTab === 1 && <ThisWeekScreen empty={isEmpty} onDrillLibrary={() => setTrainingTab(2)} onTonightsPlan={() => setTrainingTab(0)} onGrowthLoad={() => setTrainingTab(3)} />}
