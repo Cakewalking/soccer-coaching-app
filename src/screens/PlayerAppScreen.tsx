@@ -138,13 +138,48 @@ export default function PlayerAppScreen({ empty }: { empty?: boolean }) {
 
   if (empty) {
     return (
-      <div style={{ width: 390, margin: '0 auto', background: '#1f4a3e', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-sans)', gap: 20, padding: '0 32px', textAlign: 'center' }}>
-        <div style={{ width: 72, height: 72, borderRadius: 20, background: '#2f6252', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#7cc4ab" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      <div style={{ width: 390, margin: '0 auto', background: '#f7f9f7', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
+        <div style={{ background: '#1f4a3e', padding: '52px 20px 20px', flex: 'none' }}>
+          <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', marginBottom: 6 }}>Wattle Creek U12</div>
+          <div style={{ fontSize: 24, fontWeight: 800, color: '#fff', marginBottom: 12 }}>Hi Harper, welcome!</div>
+          <div style={{ background: 'rgba(255,255,255,0.12)', borderRadius: 12, padding: '12px 14px' }}>
+            <div style={{ fontSize: 14, fontWeight: 700, color: '#fff', marginBottom: 4 }}>Waiting for your mum or dad</div>
+            <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.75)', lineHeight: 1.5 }}>Ask Kate to open the invite from the club. Then Sam can send you clips and check-ins.</div>
+          </div>
         </div>
-        <div style={{ fontSize: 24, fontWeight: 800, color: '#fff' }}>Welcome to Clean Sheet</div>
-        <div style={{ fontSize: 15, color: 'rgba(255,255,255,0.75)', lineHeight: '22px' }}>Once your coach adds you to a team, you'll see your clips, schedule, and goals here.</div>
-        <button style={{ height: 48, padding: '0 32px', borderRadius: '999px', border: 0, background: '#fff', color: '#1f4a3e', fontFamily: 'inherit', fontSize: 16, fontWeight: 700, cursor: 'pointer' }}>Got it</button>
+        <div style={{ flexGrow: 1, overflowY: 'auto', padding: '20px' }}>
+          <div style={{ background: '#fff', borderRadius: 16, padding: '16px', border: '1px solid #e9eae8', marginBottom: 14 }}>
+            <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 10 }}>Your first training</div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+              <div style={{ background: '#1f4a3e', borderRadius: 10, padding: '8px 10px', textAlign: 'center', flexShrink: 0 }}>
+                <div style={{ fontSize: 10, fontWeight: 600, color: 'rgba(255,255,255,0.7)' }}>THU</div>
+                <div style={{ fontSize: 20, fontWeight: 800, color: '#fff' }}>4</div>
+              </div>
+              <div>
+                <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>Training</div>
+                <div style={{ fontSize: 13, color: '#6f7f7b' }}>5:45 pm · Wattle Creek Reserve · bring water and boots</div>
+              </div>
+            </div>
+          </div>
+          <div style={{ background: '#fff', borderRadius: 16, padding: '16px', border: '1px solid #e9eae8', marginBottom: 14 }}>
+            <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 6 }}>Your clips</div>
+            <div style={{ fontSize: 14, color: '#6f7f7b', marginBottom: 4 }}>No clips yet</div>
+            <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: 1.5 }}>After your first game, Sam can send you your best moments here.</div>
+          </div>
+          <div style={{ background: '#fff', borderRadius: 16, padding: '16px', border: '1px solid #e9eae8' }}>
+            <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 6 }}>Your goals</div>
+            <div style={{ fontSize: 14, color: '#6f7f7b', marginBottom: 4 }}>{"You'll pick your first goal with Sam"}</div>
+            <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: 1.5 }}>{"Something to work on, like using your weaker foot. You'll see how you're going after every game."}</div>
+          </div>
+        </div>
+        <div style={{ background: '#fff', borderTop: '1px solid #e9eae8', display: 'flex', height: 56, flexShrink: 0 }}>
+          {([{ label: 'Home', icon: 'M4 11l8-7 8 7v9H4z', active: true }, { label: 'Clips', icon: 'M12 21a9 9 0 100-18 9 9 0 000 18zM10 8l6 4-6 4z', active: false }, { label: 'Goals', icon: 'M12 2l2.4 7.4H22l-6.5 4.7 2.5 7.6L12 17l-6 4.7 2.5-7.6L3 9.4h7.6z', active: false }, { label: 'Me', icon: 'M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8', active: false }]).map(tab => (
+            <button key={tab.label} style={{ flex: 1, border: 'none', background: 'transparent', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 3, fontFamily: 'inherit', fontSize: 10, fontWeight: 600, cursor: 'pointer', color: tab.active ? '#2f6252' : '#4a5a57' }}>
+              <svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"><path d={tab.icon}/></svg>
+              {tab.label}
+            </button>
+          ))}
+        </div>
       </div>
     )
   }
@@ -332,31 +367,40 @@ export default function PlayerAppScreen({ empty }: { empty?: boolean }) {
           <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', marginBottom: 2 }}>Wattle Creek U12 · parent</div>
           <div style={{ fontSize: 22, fontWeight: 800, color: '#fff' }}>Can Mia make it?</div>
         </div>
-        <div style={{ flexGrow: 1, overflowY: 'auto', padding: '20px' }}>
-          {[
-            { day: 'THU', date: 4, tag: 'Tonight', title: 'Training',          note: '5:45 to 7:15 pm · Wattle Creek Reserve' },
-            { day: 'SAT', date: 6, tag: '',         title: 'vs Harbour Rovers', note: 'Home · be there 8:40 for 9:30 · white kit' },
-            { day: 'TUE', date: 9, tag: '',         title: 'Training',          note: '5:45 to 7:15 pm · Wattle Creek Reserve' },
-          ].map((s, i) => (
-            <div key={i} style={{ background: '#fff', borderRadius: 16, padding: '16px', border: '1px solid #e9eae8', marginBottom: 10 }}>
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12, marginBottom: 12 }}>
-                <div style={{ flex: 'none', background: '#1f4a3e', borderRadius: 10, padding: '8px 10px', textAlign: 'center', minWidth: 44 }}>
-                  <div style={{ fontSize: 10, fontWeight: 600, color: 'rgba(255,255,255,0.7)' }}>{s.day}</div>
-                  <div style={{ fontSize: 20, fontWeight: 800, color: '#fff' }}>{s.date}</div>
-                </div>
-                <div style={{ flexGrow: 1 }}>
-                  {s.tag && <div style={{ fontSize: 11, fontWeight: 700, color: '#2f6252', marginBottom: 2 }}>{s.tag}</div>}
-                  <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>{s.title}</div>
-                  <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: '18px', marginTop: 2 }}>{s.note}</div>
-                </div>
-              </div>
-              <div style={{ display: 'flex', gap: 8 }}>
-                <button style={{ flex: 1, height: 40, borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>{"Yes, Mia's in"}</button>
-                <button style={{ flex: 1, height: 40, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>{"Can't make it"}</button>
-              </div>
+        {empty ? (
+          <div style={{ flexGrow: 1, padding: '28px 20px' }}>
+            <div style={{ background: '#fff', borderRadius: 16, padding: '24px 20px', border: '1px solid #e9eae8', textAlign: 'center' }}>
+              <div style={{ fontSize: 16, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>Nothing to answer yet</div>
+              <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.5 }}>{"When Sam adds games and training, you'll get one quick question for each: can Mia make it?"}</div>
             </div>
-          ))}
-        </div>
+          </div>
+        ) : (
+          <div style={{ flexGrow: 1, overflowY: 'auto', padding: '20px' }}>
+            {[
+              { day: 'THU', date: 4, tag: 'Tonight', title: 'Training',          note: '5:45 to 7:15 pm · Wattle Creek Reserve' },
+              { day: 'SAT', date: 6, tag: '',         title: 'vs Harbour Rovers', note: 'Home · be there 8:40 for 9:30 · white kit' },
+              { day: 'TUE', date: 9, tag: '',         title: 'Training',          note: '5:45 to 7:15 pm · Wattle Creek Reserve' },
+            ].map((s, i) => (
+              <div key={i} style={{ background: '#fff', borderRadius: 16, padding: '16px', border: '1px solid #e9eae8', marginBottom: 10 }}>
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12, marginBottom: 12 }}>
+                  <div style={{ flex: 'none', background: '#1f4a3e', borderRadius: 10, padding: '8px 10px', textAlign: 'center', minWidth: 44 }}>
+                    <div style={{ fontSize: 10, fontWeight: 600, color: 'rgba(255,255,255,0.7)' }}>{s.day}</div>
+                    <div style={{ fontSize: 20, fontWeight: 800, color: '#fff' }}>{s.date}</div>
+                  </div>
+                  <div style={{ flexGrow: 1 }}>
+                    {s.tag && <div style={{ fontSize: 11, fontWeight: 700, color: '#2f6252', marginBottom: 2 }}>{s.tag}</div>}
+                    <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>{s.title}</div>
+                    <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: '18px', marginTop: 2 }}>{s.note}</div>
+                  </div>
+                </div>
+                <div style={{ display: 'flex', gap: 8 }}>
+                  <button style={{ flex: 1, height: 40, borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>{"Yes, Mia's in"}</button>
+                  <button style={{ flex: 1, height: 40, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>{"Can't make it"}</button>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     )
   }

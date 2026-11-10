@@ -80,17 +80,80 @@ export default function TeamManagerScreen({ empty }: { empty?: boolean }) {
   if (empty) {
     return (
       <div style={{ width: 390, margin: '0 auto', background: '#f7f9f7', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)', border: '1px solid #e9eae8', borderRadius: 24, overflow: 'hidden', boxShadow: '0 8px 32px rgba(0,0,0,0.08)' }}>
-        <div style={{ background: '#1f4a3e', padding: '48px 24px 28px', color: '#fff' }}>
-          <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', marginBottom: 4 }}>U12 Sam · Team manager</div>
-          <div style={{ fontSize: 24, fontWeight: 800 }}>Hi Rob</div>
-        </div>
-        <div style={{ flexGrow: 1, padding: '24px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 16, textAlign: 'center' }}>
-          <div style={{ width: 60, height: 60, borderRadius: '999px', background: '#e4f2eb', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2f6252" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 11a3 3 0 100-6 3 3 0 000 6zM3 20c0-4 3-6 6-6s6 2 6 6M16 7a3 3 0 010 6M22 20c0-3-2-5-4-5.5"/></svg>
+        {tab === 'messages' ? (
+          <div style={{ flex: 'none', padding: '14px 18px 12px', background: '#2f6252', color: '#fff', display: 'flex', alignItems: 'center', gap: 12 }}>
+            <span style={{ flexGrow: 1 }}>
+              <span style={{ display: 'block', fontSize: 12, lineHeight: '16px', color: '#cfe6dc' }}>U12 Sam</span>
+              <span style={{ display: 'block', fontSize: 21, lineHeight: '27px', fontWeight: 700 }}>Messages</span>
+            </span>
+            <span style={{ flexShrink: 0, width: 40, height: 40, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>RO</span>
           </div>
-          <div style={{ fontSize: 18, fontWeight: 700, color: '#10211f' }}>Co-coach not joined yet</div>
-          <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: '20px' }}>Sam invited you. Things will fill in once you're connected.</div>
-          <button style={{ height: 44, padding: '0 24px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Accept invite</button>
+        ) : (
+          <div style={{ background: '#1f4a3e', padding: '48px 24px 28px', color: '#fff', flex: 'none' }}>
+            <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
+              <div>
+                <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', marginBottom: 2 }}>
+                  {tab === 'gameday' ? 'U12 Sam' : tab === 'roster' ? 'U12 Sam · Saturdays' : 'U12 Sam · Team manager'}
+                </div>
+                <div style={{ fontSize: 24, fontWeight: 800 }}>
+                  {tab === 'gameday' ? 'Game day' : tab === 'roster' ? 'Duty roster' : 'Welcome, Rob'}
+                </div>
+              </div>
+              <div style={{ width: 36, height: 36, borderRadius: '999px', background: '#c39797', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>RO</div>
+            </div>
+          </div>
+        )}
+        <div style={{ flexGrow: 1, overflowY: 'auto', padding: '20px' }}>
+          {tab === 'home' && (<>
+            <div style={{ fontSize: 20, fontWeight: 700, color: '#10211f', marginBottom: 6 }}>Get your families in</div>
+            <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.5, marginBottom: 16 }}>Send the team link to parents. Once they join, you can share meet times, ask who's coming and fill the duty roster.</div>
+            <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 10, marginBottom: 20 }}>
+              <button style={{ height: 44, borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Copy the team link</button>
+              <button style={{ height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>See what parents see</button>
+            </div>
+            <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.07em', color: '#6f7f7b', marginBottom: 8 }}>NEXT GAME</div>
+            <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 12, padding: '12px 14px', fontSize: 13, color: '#4a5a57', marginBottom: 10 }}>Fixtures appear here once Sam or the club adds them.</div>
+            <div style={{ fontSize: 13, color: '#6f7f7b' }}>0 of 17 families joined.</div>
+          </>)}
+          {tab === 'gameday' && (<>
+            <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 14, padding: '20px', marginBottom: 16 }}>
+              <div style={{ fontSize: 16, fontWeight: 700, color: '#10211f', marginBottom: 6 }}>No game this week</div>
+              <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.5, marginBottom: 14 }}>{"It's a bye round. Your game-day checklist opens here on the morning of the next game."}</div>
+              <button style={{ height: 36, padding: '0 16px', borderRadius: 999, border: '1px solid #e9eae8', background: '#fff', color: '#2f6252', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>See fixtures</button>
+            </div>
+            {[
+              { title: 'ON THE DAY', items: ['Arrival text', 'Duty roster', 'Who signed on', 'First-aid card', 'Head knock form', 'Sign-off after the game'] },
+              { title: 'FIRST AID CARD', items: ['The first aid card shows only what parents choose to share, like asthma or allergies, and their phone number.'] },
+            ].map((section, i) => (
+              <div key={i} style={{ marginBottom: 14 }}>
+                <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.07em', color: '#6f7f7b', marginBottom: 8 }}>{section.title}</div>
+                {section.items.map((item, j) => (
+                  <div key={j} style={{ padding: '10px 14px', background: '#fff', border: '1px solid #e9eae8', borderRadius: 10, fontSize: 13, color: '#4a5a57', marginBottom: 6 }}>{item}</div>
+                ))}
+              </div>
+            ))}
+          </>)}
+          {tab === 'messages' && (<>
+            <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 14, padding: '20px', marginBottom: 16 }}>
+              <div style={{ fontSize: 16, fontWeight: 700, color: '#10211f', marginBottom: 6 }}>No messages yet</div>
+              <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.5, marginBottom: 14 }}>Tell every family about a change in one go. You'll see who has read it, and nudge anyone who hasn't.</div>
+              <button style={{ height: 36, padding: '0 16px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Tell parents about a change</button>
+            </div>
+            <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.07em', color: '#6f7f7b', marginBottom: 8 }}>CONVERSATIONS</div>
+            <div style={{ padding: '12px 14px', background: '#fff', border: '1px solid #e9eae8', borderRadius: 10, fontSize: 13, color: '#4a5a57' }}>Messages to a player always go to their parents too. Coaches see team messages in their inbox.</div>
+          </>)}
+          {tab === 'roster' && (<>
+            <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 14, padding: '20px', marginBottom: 16 }}>
+              <div style={{ fontSize: 16, fontWeight: 700, color: '#10211f', marginBottom: 6 }}>No duties yet</div>
+              <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.5, marginBottom: 14 }}>{"Pick the jobs your team needs each week. Families sign up from their phone, and swap if they can't make it."}</div>
+              <div style={{ display: 'flex', gap: 10 }}>
+                <button style={{ height: 36, padding: '0 16px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Add the usual jobs</button>
+                <button style={{ height: 36, padding: '0 16px', borderRadius: 999, border: '1px solid #e9eae8', background: '#fff', color: '#4a5a57', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Choose my own</button>
+              </div>
+            </div>
+            <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.07em', color: '#6f7f7b', marginBottom: 8 }}>FILLS IN LIKE THIS</div>
+            <div style={{ padding: '12px 14px', background: '#fff', border: '1px solid #e9eae8', borderRadius: 10, fontSize: 13, color: '#4a5a57' }}>Most junior teams need oranges at half-time, a canteen hour and a club linesman over 16.</div>
+          </>)}
         </div>
         <BottomNav />
       </div>

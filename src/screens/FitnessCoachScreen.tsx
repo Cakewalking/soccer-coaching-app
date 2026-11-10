@@ -204,12 +204,39 @@ export default function FitnessCoachScreen({ empty }: { empty?: boolean }) {
 
   if (empty) {
     return (
-      <div style={{ background: '#f7f9f7', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 16, padding: '0 32px', textAlign: 'center', fontFamily: 'var(--font-sans)' }}>
-        <div style={{ width: 60, height: 60, borderRadius: '999px', background: '#e4f2eb', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2f6252" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/></svg>
+      <div style={{ background: '#f7f9f7', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
+        <div style={{ background: '#1f4a3e', padding: '20px 24px 16px', flexShrink: 0 }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div>
+              <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', marginBottom: 2 }}>U12 Sam · Play level · Fitness coach</div>
+              <div style={{ fontSize: 20, fontWeight: 800, color: '#fff' }}>Hi Priya</div>
+            </div>
+            <div style={{ width: 36, height: 36, borderRadius: '999px', background: '#c39797', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700 }}>PS</div>
+          </div>
         </div>
-        <div style={{ fontSize: 20, fontWeight: 700, color: '#10211f' }}>No squad linked yet</div>
-        <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: '20px' }}>The head coach needs to invite you as fitness coach first.</div>
+        <div style={{ padding: '28px 24px', display: 'flex', flexDirection: 'column', gap: 16, maxWidth: 560 }}>
+          <div style={{ fontSize: 15, color: '#4a5a57' }}>U12 Sam · Play level · no data yet</div>
+          <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 16, padding: 24 }}>
+            <div style={{ fontSize: 20, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>Start with heights</div>
+            <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.6, marginBottom: 16 }}>Measure the squad once, then Clean Sheet flags anyone growing fast and sets safe sprint and jump limits. Effort and pain check-ins start after the first session.</div>
+            <div style={{ display: 'flex', gap: 10 }}>
+              <button style={{ height: 40, padding: '0 16px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Plan a measuring session</button>
+              <button style={{ height: 40, padding: '0 16px', borderRadius: 999, border: '1px solid #c5c8c4', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Check the fitness level</button>
+            </div>
+          </div>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: '#6f7f7b', marginBottom: 4 }}>What fills in first</div>
+          {[
+            { label: 'Growth',         desc: 'After your first measuring session' },
+            { label: 'Effort and pain', desc: 'Players tap after each session' },
+            { label: 'Load',            desc: 'From boot sensors, from U12' },
+          ].map(item => (
+            <div key={item.label} style={{ padding: '10px 0', borderTop: '1px solid #e9eae8' }}>
+              <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>{item.label}</div>
+              <div style={{ fontSize: 12, color: '#4a5a57' }}>{item.desc}</div>
+            </div>
+          ))}
+          <div style={{ padding: '12px 14px', background: '#eef5f2', borderRadius: 10, fontSize: 13, color: '#2f6252' }}>At Play level you see a few simple flags, not charts. That's on purpose.</div>
+        </div>
       </div>
     )
   }

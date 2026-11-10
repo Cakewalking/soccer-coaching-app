@@ -14,7 +14,7 @@ const GANTT_ROWS = [
   { label: 'Registrations', bars: [{ s: 0, e: 0, label: 'Winter', c: '#cbbeb5' }, { s: 7, e: 7, label: 'Futsal', c: '#cbbeb5' }] },
 ]
 
-export default function ClubTab({ role }: { role: 'chair' | 'dof' }) {
+export default function ClubTab({ role, empty }: { role: 'chair' | 'dof'; empty?: boolean }) {
   const [view, setView] = useState<ClubView>('overview')
   const [headingPolicy, setHeadingPolicy] = useState<'england' | 'own' | 'none' | null>(null)
 
@@ -38,9 +38,73 @@ export default function ClubTab({ role }: { role: 'chair' | 'dof' }) {
         onSelect={id => setView(id as ClubView)}
       />
 
+      {empty && view === 'overview' && (
+        <div style={{ padding: '20px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 300px', gap: 20 }}>
+          <div>
+            <div style={{ fontSize: 20, fontWeight: 800, color: '#10211f', marginBottom: 4 }}>Welcome, Rachel</div>
+            <div style={{ fontSize: 14, color: '#4a5a57', marginBottom: 20 }}>Wattle Creek FC · Director of football · let's set up the club</div>
+            <div style={{ background: '#fff', borderRadius: 16, border: '1px solid #e9eae8', overflow: 'hidden', marginBottom: 14 }}>
+              <div style={{ padding: '14px 16px', borderBottom: '1px solid #e9eae8', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <span style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>Set up the club</span>
+                <span style={{ fontSize: 13, color: '#6f7f7b' }}>0 of 6 · about 30 minutes</span>
+              </div>
+              {[
+                { n: 1, t: 'Bring in your teams', sub: 'Import teams and players from PlayFootball, or add teams one by one.', cta: 'Import' },
+                { n: 2, t: 'Invite your coaches', sub: "Each coach gets a link for their team. Add their children check number.", cta: 'Invite' },
+                { n: 3, t: 'Name a welfare officer', sub: 'The one person who sees safeguarding concerns in full.', cta: 'Name' },
+                { n: 4, t: 'Set the club rules', sub: 'Fair minutes, who sees the first-aid card, consent, how long video is kept.', cta: 'Set rules' },
+                { n: 5, t: "Set the club playing style", sub: "Every team's numbers are measured against it.", cta: 'Set style' },
+                { n: 6, t: 'Add club kit', sub: 'Cameras, boot sensors and vests, shared between teams.', cta: 'Add kit' },
+              ].map((item, i) => (
+                <div key={item.n} style={{ display: 'flex', alignItems: 'flex-start', gap: 14, padding: '14px 16px', borderTop: i > 0 ? '1px solid #e9eae8' : 'none' }}>
+                  <div style={{ width: 28, height: 28, borderRadius: '999px', background: '#f0f1f0', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, color: '#6f7f7b', flexShrink: 0 }}>{item.n}</div>
+                  <div style={{ flexGrow: 1 }}>
+                    <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f', marginBottom: 2 }}>{item.t}</div>
+                    <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: 1.4 }}>{item.sub}</div>
+                  </div>
+                  <button style={{ height: 32, padding: '0 14px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>{item.cta}</button>
+                </div>
+              ))}
+            </div>
+            <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: 1.5, marginBottom: 10 }}>Coaches can start before you finish. Each team can set itself up from a coach link.</div>
+            <button style={{ height: 36, padding: '0 16px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Book a setup call</button>
+          </div>
+          <div>
+            <div style={{ background: '#fff', borderRadius: 16, border: '1px solid #e9eae8', padding: '16px', marginBottom: 14 }}>
+              <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 12 }}>What you will see here</div>
+              {[
+                { label: 'PLAYING OUR WAY', val: '—', sub: 'Teams matching the club style' },
+                { label: 'TRAINING TURNOUT', val: '—', sub: 'Every team, every session' },
+                { label: 'FAIR GAME TIME', val: '—', sub: 'Teams inside the minutes policy' },
+                { label: 'COACHES CLEARED', val: '—', sub: 'Children checks valid' },
+              ].map((m, i) => (
+                <div key={i} style={{ padding: '10px 0', borderTop: i > 0 ? '1px solid #f0f1f0' : 'none' }}>
+                  <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', color: '#6f7f7b', marginBottom: 2 }}>{m.label}</div>
+                  <div style={{ fontSize: 20, fontWeight: 800, color: '#10211f', marginBottom: 1 }}>{m.val}</div>
+                  <div style={{ fontSize: 12, color: '#4a5a57' }}>{m.sub}</div>
+                </div>
+              ))}
+            </div>
+            <div style={{ background: '#eef5f2', borderRadius: 14, padding: '14px 16px' }}>
+              <div style={{ fontSize: 13, fontWeight: 700, color: '#2f6252', marginBottom: 8 }}>Who does what</div>
+              {[
+                { who: 'You and the chair', what: 'See every team. Set the style and the rules.' },
+                { who: 'Coaches, fitness coaches, team managers', what: 'Run their own team. Cannot see other teams.' },
+                { who: 'Parents and players', what: 'Join with a team link. See only their own child.' },
+              ].map((r, i) => (
+                <div key={i} style={{ padding: '8px 0', borderTop: i > 0 ? '1px solid #c5d9d2' : 'none' }}>
+                  <div style={{ fontSize: 12, fontWeight: 700, color: '#1f4a3e', marginBottom: 2 }}>{r.who}</div>
+                  <div style={{ fontSize: 12, color: '#4a5a57' }}>{r.what}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
       <div style={pad}>
 
-        {view === 'overview' && role === 'chair' && (
+        {view === 'overview' && role === 'chair' && !empty && (
           <>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10, marginBottom: 14 }}>
               {[{ n: '212', l: 'Players', sub: '+16 on last season' }, { n: '91%', l: 'Coming back', sub: 'Re-registered from last season' }, { n: '2 open', l: 'Safeguarding', sub: 'Both on track · none overdue' }, { n: '96%', l: 'Parent consent', sub: '204 of 212 players complete' }].map(s => (
@@ -120,7 +184,7 @@ export default function ClubTab({ role }: { role: 'chair' | 'dof' }) {
           </>
         )}
 
-        {view === 'overview' && role === 'dof' && (
+        {view === 'overview' && role === 'dof' && !empty && (
           <>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10, marginBottom: 14 }}>
               {[{ n: '67%', l: 'Playing our way', sub: 'Teams matching the club style · up from 51%' }, { n: '87%', l: 'Training turnout', sub: 'All teams, last 2 weeks' }, { n: '12 of 14', l: 'Fair game time', sub: 'Teams inside the club minutes policy' }, { n: '27 of 31', l: 'Coaches cleared', sub: 'Working with Children Checks valid' }].map(s => (

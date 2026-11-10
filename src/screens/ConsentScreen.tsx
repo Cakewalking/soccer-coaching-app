@@ -47,9 +47,60 @@ function TickIcon({ value }: { value: boolean | null }) {
   )
 }
 
-export default function ConsentScreen() {
+export default function ConsentScreen({ empty }: { empty?: boolean }) {
   const [selIdx, setSelIdx] = useState(0)
   const sel = ROWS[selIdx]
+
+  if (empty) {
+    return (
+      <div style={{ flexGrow: 1, minHeight: 0, padding: '20px 28px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 340px', gap: 20, boxSizing: 'border-box' }}>
+        <div>
+          <div style={{ fontSize: 20, fontWeight: 700, color: '#10211f', marginBottom: 4 }}>Consent and privacy</div>
+          <div style={{ fontSize: 14, color: '#6f7f7b', marginBottom: 20 }}>No players yet</div>
+          <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 16, padding: '20px 20px 24px', marginBottom: 16 }}>
+            <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>Parents choose what is recorded</div>
+            <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.5, marginBottom: 16 }}>{"When you add a player, their parent gets an invite. Until they answer, the player is blurred and nothing is recorded."}</div>
+            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', color: '#6f7f7b', marginBottom: 10 }}>WHAT PARENTS ARE ASKED</div>
+            {[
+              { q: 'Filming in games and training', a: 'If no: blurred in every clip and left out of video stats.' },
+              { q: 'Boot sensors and a GPS vest', a: "If no: they don't wear the kit." },
+              { q: 'Wellness check-ins', a: "If no: they aren't asked." },
+              { q: 'Clips sent to the player', a: "If no: clips stay with coaches." },
+              { q: 'Club highlights and socials', a: "If no: never used in club posts." },
+            ].map((item, i) => (
+              <div key={i} style={{ padding: '10px 0', borderTop: '1px solid #f0f1f0' }}>
+                <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f', marginBottom: 2 }}>{item.q}</div>
+                <div style={{ fontSize: 13, color: '#4a5a57' }}>{item.a}</div>
+              </div>
+            ))}
+            <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: 1.5, marginTop: 12, paddingTop: 10, borderTop: '1px solid #f0f1f0' }}>{"Invites go out by email and text as soon as you add a player with a parent contact."}</div>
+          </div>
+          <button style={{ height: 44, padding: '0 24px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Add players</button>
+        </div>
+        <div>
+          <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 14, padding: '16px' }}>
+            <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 12 }}>Club settings · set before you invite</div>
+            {[
+              { label: 'Blur faces when clips leave the coaches', note: 'Only players a clip is sent to are clear' },
+              { label: 'Blur the other team', note: 'Always, outside coaching' },
+              { label: 'Delete full match video after 90 days', note: 'Clips you keep stay' },
+              { label: 'Allow clips to be downloaded', note: 'Off: watch inside Clean Sheet only' },
+              { label: 'Store everything in Australia', note: 'Video and data on Australian servers' },
+            ].map((s, i) => (
+              <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12, padding: '10px 0', borderTop: i > 0 ? '1px solid #f0f1f0' : 'none' }}>
+                <div>
+                  <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 2 }}>{s.label}</div>
+                  <div style={{ fontSize: 12, color: '#4a5a57' }}>{s.note}</div>
+                </div>
+                <div style={{ width: 44, height: 24, borderRadius: '999px', background: '#e9eae8', flexShrink: 0 }} />
+              </div>
+            ))}
+            <div style={{ fontSize: 12, color: '#4a5a57', lineHeight: 1.5, marginTop: 10, paddingTop: 10, borderTop: '1px solid #f0f1f0' }}>{"Parents see these settings in their invite. Changes later are emailed to every family."}</div>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div style={{ flexGrow: 1, minHeight: 0, padding: '14px 28px 18px', display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) 380px', gap: 16, boxSizing: 'border-box' }}>

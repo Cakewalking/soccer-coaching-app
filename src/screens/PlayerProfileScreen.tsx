@@ -3,7 +3,16 @@ import { SQUAD_PLAYERS, CLIPS } from '../data'
 
 interface Props {
   playerIni: string
+  empty?: boolean
 }
+
+const SETUP_STEPS = [
+  { label: 'Add a parent contact',    desc: 'For messages and consent',    cta: 'Add' },
+  { label: 'Pair her boot sensors',   desc: 'Touches, left and right foot', cta: 'Pair' },
+  { label: 'Give her a GPS vest',     desc: 'Running, sprints and load',    cta: 'Assign' },
+  { label: 'Send her first check-in', desc: 'Three questions on her phone', cta: 'Send' },
+  { label: 'Set a development goal',  desc: 'One goal, checked every game', cta: 'Set goal' },
+]
 
 const PROFILE_TABS = ['Overview', 'Clips', 'Wearable data', 'Wellness', 'Development']
 
@@ -30,7 +39,7 @@ function statusChipColor(status: string) {
   return { bg: '#e8f2ee', color: '#2f6252', border: '#a3d4c0' }
 }
 
-export default function PlayerProfileScreen({ playerIni }: Props) {
+export default function PlayerProfileScreen({ playerIni, empty }: Props) {
   const [activeTab, setActiveTab] = useState(0)
   const player = SQUAD_PLAYERS.find(p => p.ini === playerIni) ?? SQUAD_PLAYERS[7]
   const playerClips = CLIPS.filter(c => c.players.includes(player.ini))
@@ -67,6 +76,83 @@ export default function PlayerProfileScreen({ playerIni }: Props) {
         <polyline points={pts.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ')} stroke={color} strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
         <circle cx={last.x.toFixed(1)} cy={last.y.toFixed(1)} r="3" fill={color}/>
       </svg>
+    )
+  }
+
+  if (empty) {
+    return (
+      <div style={{ flexGrow: 1, display: 'flex', overflow: 'hidden' }}>
+        <div style={{ flexGrow: 1, overflowY: 'auto', padding: '0 0 32px' }}>
+          <div style={{ padding: '20px 32px 0', borderBottom: '1px solid #e9eae8', background: '#ffffff' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 16 }}>
+              <div style={{ width: 56, height: 56, borderRadius: '999px', background: '#c39797', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 700, flexShrink: 0 }}>HQ</div>
+              <div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 2 }}>
+                  <div style={{ fontSize: 22, fontWeight: 700, color: '#10211f' }}>Harper Quinn</div>
+                  <span style={{ padding: '2px 10px', borderRadius: '999px', background: '#eef5f2', color: '#2f6252', fontSize: 12, fontWeight: 700 }}>New</span>
+                </div>
+                <div style={{ fontSize: 13, color: '#4a5a57' }}>Winger · #17 · U12 Sam · added today</div>
+              </div>
+            </div>
+            <div style={{ display: 'flex', gap: 24, paddingBottom: 14 }}>
+              {[{ label: 'Games', value: '—' }, { label: 'Minutes', value: '—' }, { label: 'Goals', value: '—' }, { label: 'Assists', value: '—' }, { label: 'Avg minutes', value: '—' }].map(s => (
+                <div key={s.label} style={{ textAlign: 'center' }}>
+                  <div style={{ fontSize: 20, fontWeight: 700, color: '#10211f' }}>{s.value}</div>
+                  <div style={{ fontSize: 11, color: '#4a5a57' }}>{s.label}</div>
+                </div>
+              ))}
+            </div>
+            <div style={{ display: 'flex', gap: 0, borderTop: '1px solid #e9eae8', marginTop: 4 }}>
+              {PROFILE_TABS.map((t, i) => (
+                <button key={t} onClick={() => setActiveTab(i)} style={{ height: 40, padding: '0 16px', border: 0, borderBottom: activeTab === i ? '2px solid #2f6252' : '2px solid transparent', background: 'transparent', fontFamily: 'inherit', fontSize: 13, fontWeight: activeTab === i ? 700 : 400, cursor: 'pointer', color: activeTab === i ? '#2f6252' : '#4a5a57' }}>{t}</button>
+              ))}
+            </div>
+          </div>
+          <div style={{ padding: '24px 32px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 300px', gap: 20 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 12 }}>
+                {[
+                  { label: 'DISTANCE PER GAME', note: 'After her first game' },
+                  { label: 'SPRINTS PER GAME', note: 'After her first game' },
+                  { label: 'WINS OF THE BALL', note: 'After her first game' },
+                  { label: 'PASSES COMPLETED', note: 'After her first game' },
+                ].map((m, i) => (
+                  <div key={i} style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 12, padding: '14px 16px' }}>
+                    <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', color: '#6f7f7b', marginBottom: 4 }}>{m.label}</div>
+                    <div style={{ fontSize: 24, fontWeight: 700, color: '#10211f', marginBottom: 2 }}>—</div>
+                    <div style={{ fontSize: 12, color: '#4a5a57' }}>{m.note}</div>
+                  </div>
+                ))}
+              </div>
+              <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 12, padding: '14px 16px' }}>
+                <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 6 }}>Game by game</div>
+                <div style={{ fontSize: 13, color: '#4a5a57', marginBottom: 2 }}>Minutes played</div>
+                <div style={{ fontSize: 12, color: '#6f7f7b' }}>Minutes appear after each game</div>
+              </div>
+              <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 12, padding: '14px 16px' }}>
+                <div style={{ fontSize: 13, color: '#4a5a57' }}>No clips of Harper yet</div>
+                <div style={{ fontSize: 12, color: '#6f7f7b', marginTop: 4, lineHeight: 1.5 }}>Once the match camera records a game, her best moments and things to work on are tagged here automatically.</div>
+              </div>
+            </div>
+            <div>
+              <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 14, padding: '16px' }}>
+                <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 2 }}>Set Harper up</div>
+                <div style={{ fontSize: 12, color: '#4a5a57', marginBottom: 12 }}>0 of 5 done</div>
+                {SETUP_STEPS.map((s, i) => (
+                  <div key={i} style={{ padding: '10px 0', borderTop: i > 0 ? '1px solid #f0f1f0' : 'none', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 8 }}>
+                    <div>
+                      <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{s.label}</div>
+                      <div style={{ fontSize: 12, color: '#4a5a57' }}>{s.desc}</div>
+                    </div>
+                    <button style={{ height: 28, padding: '0 10px', borderRadius: 999, border: '1px solid #e9eae8', background: '#fff', color: '#2f6252', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>{s.cta}</button>
+                  </div>
+                ))}
+                <div style={{ fontSize: 12, color: '#4a5a57', lineHeight: 1.5, marginTop: 10, paddingTop: 10, borderTop: '1px solid #f0f1f0' }}>{"Harper's profile fills in on its own as she trains and plays. Nothing else to enter."}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     )
   }
 

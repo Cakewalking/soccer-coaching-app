@@ -31,8 +31,40 @@ function StatusChip({ s }: { s: SummaryStatus }) {
   return <span style={{ fontSize: 12, fontWeight: 700, padding: '2px 8px', borderRadius: '999px', background: STATUS_BG[s], color: STATUS_COLOR[s] }}>{STATUS_LABEL[s]}</span>
 }
 
-export default function SeasonSummariesScreen(_props: { empty?: boolean }) {
+export default function SeasonSummariesScreen({ empty }: { empty?: boolean }) {
   const [selected, setSelected] = useState<string | null>('MT')
+
+  if (empty) {
+    return (
+      <div style={{ flexGrow: 1, minHeight: 0, overflowY: 'auto', padding: '28px 32px' }}>
+        <div style={{ maxWidth: 560 }}>
+          <h1 style={{ margin: '0 0 4px', fontSize: 26, fontWeight: 700, letterSpacing: '-0.02em', color: '#10211f' }}>Season summaries</h1>
+          <div style={{ fontSize: 14, color: '#4a5a57', marginBottom: 20 }}>Opens in the last fortnight of the season</div>
+          <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 16, padding: 24, marginBottom: 20 }}>
+            <div style={{ fontSize: 20, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>One page for every player</div>
+            <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.6 }}>
+              In late August, Clean Sheet drafts a summary for each player from their goals, minutes and clips. You add a few words and send it to the family.
+            </div>
+          </div>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: '#6f7f7b', marginBottom: 10 }}>What goes in</div>
+          {[
+            { n: '1', label: 'Your note',        desc: 'Two or three sentences' },
+            { n: '2', label: 'Goals met',         desc: 'From development goals' },
+            { n: '3', label: 'A favourite clip',  desc: 'The player picks it' },
+          ].map(item => (
+            <div key={item.n} style={{ display: 'flex', gap: 14, padding: '12px 0', borderTop: '1px solid #e9eae8', alignItems: 'flex-start' }}>
+              <div style={{ width: 28, height: 28, borderRadius: '50%', background: '#2f6252', color: '#fff', fontSize: 13, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{item.n}</div>
+              <div>
+                <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>{item.label}</div>
+                <div style={{ fontSize: 13, color: '#4a5a57' }}>{item.desc}</div>
+              </div>
+            </div>
+          ))}
+          <div style={{ marginTop: 16, padding: '12px 14px', background: '#eef5f2', borderRadius: 10, fontSize: 13, color: '#2f6252' }}>Never a rating, a ranking or a comparison.</div>
+        </div>
+      </div>
+    )
+  }
   const [toast, setToast] = useState('')
   const showToast = (msg: string) => { setToast(msg); setTimeout(() => setToast(''), 3000) }
 

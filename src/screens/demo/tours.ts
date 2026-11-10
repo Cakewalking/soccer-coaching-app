@@ -515,6 +515,122 @@ export const TOURS: Record<string, TourDef> = {
       ]},
     ],
   },
+
+  academyowner: {
+    roleLabel: 'Academy owner · Tall Timber Football Academy',
+    persona: 'as Dani Okafor',
+    device: 'tablet',
+    total: 14,
+    sections: [
+      { title: 'Set up', steps: [
+        { label: 'First use: three steps', caption: 'An academy is a business. Set up programs and pricing, add coaches, and tick the six child-safety items. No league, no committee.', screen: 'academyowner' },
+        { label: 'Add programs', caption: 'Create a term program or a school-holidays clinic. Set the age group, session count, price, and whether there\'s a free trial.' },
+        { label: 'Child safety, six things', caption: 'Six items before any child enrols: WWC checks for every coach, emergency contacts, medical forms, photo consent, head-knock protocol, and a welfare officer.' },
+        { label: 'Invite coaches', caption: 'Invite a coach by email. They see only the groups they run. You set what each one can view.' },
+        { label: 'Link a partner club', caption: 'Link a partner club so academy players can add Saturday games on one bill and share their progress both ways.' },
+      ]},
+      { title: 'Fill the places', steps: [
+        { label: 'Trial bookings', caption: 'Parents book a free trial from the academy\'s public link. You see the booking and can confirm or move it.' },
+        { label: 'After the trial', caption: 'Write a brief note on the trial. The parent gets an honest summary and an enrolment offer.' },
+        { label: 'Enrolments', caption: 'Confirm a place. The parent pays and the player appears in your groups. A waiting list fills gaps when someone leaves.' },
+      ]},
+      { title: 'Each week', steps: [
+        { label: 'This week at a glance', caption: 'Your home screen shows today\'s groups, who\'s coming, and anything that needs attention.' },
+        { label: 'Messages', caption: 'Message one family or all of them. Everything goes through the app, not your personal phone.' },
+        { label: 'Safety dashboard', caption: 'WWC expiry dates, missing consent forms, and any open welfare items — all in one place.' },
+      ]},
+      { title: 'End of term', steps: [
+        { label: 'Term report', caption: 'Every player gets a written report at the end of term. It goes to parents through the app.' },
+        { label: 'Re-enrol', caption: 'Parents are invited to re-enrol before spots open to new families. One tap to confirm and pay.' },
+        { label: 'Numbers', caption: 'See how many re-enrolled, revenue for the term, and what the next term is worth in bookings.' },
+      ]},
+    ],
+  },
+
+  academycoach: {
+    roleLabel: 'Academy coach · Tall Timber Football Academy',
+    persona: 'as Reece Whitlam',
+    device: 'tablet',
+    total: 18,
+    sections: [
+      { title: 'Each day', steps: [
+        { label: 'Home: today\'s sessions', caption: 'Several groups in one evening. Each player\'s own goal sits under their name as you run the session.', screen: 'academycoach' },
+        { label: 'Run a session', caption: 'Open a session to see the group, the drill sequence, and each player\'s goal. Tap a player to log a note or swap them out.' },
+        { label: 'Swap a drill', caption: 'Swap a drill on the fly from the library. The swap is remembered so next time the plan is already updated.' },
+      ]},
+      { title: 'Record and repeat', steps: [
+        { label: 'Record a session', caption: 'Record a drill or a 1-on-1. The clip is stored against that player\'s profile.' },
+        { label: 'Pick the drill', caption: 'Choose the drill you\'re recording. The camera knows what to look for and tags moments automatically.' },
+        { label: 'During the recording', caption: 'Live markers appear as the drill runs. You can pause or note something in real time.' },
+        { label: 'Review the results', caption: 'After the session, see what the recording found. Flag clips to send to a player or parent.' },
+      ]},
+      { title: 'New players', steps: [
+        { label: 'Trial: what to watch', caption: 'A trial player\'s profile shows their age, what they said they can do, and space for your notes.' },
+        { label: 'After the trial', caption: 'Write your notes. They become the honest summary the parent sees and the basis for the enrolment offer.' },
+      ]},
+      { title: 'Each player', steps: [
+        { label: 'Player plan', caption: 'Each player has one goal and a set of skills being worked on. You set the goal after a 1-on-1.' },
+        { label: 'One-on-one', caption: 'A 1-on-1 session has its own record. Notes and clips go straight to the player\'s profile.' },
+      ]},
+      { title: 'Game day', steps: [
+        { label: 'Saturday groups', caption: 'Academy players who also play for a partner club see their Saturday game here. The schedule is shared automatically.' },
+        { label: 'Team sheet', caption: 'Set the team sheet for the game. Academy players see it in both apps.' },
+        { label: 'Live game', caption: 'Tag a moment during the game. The camera records everything — you tag what matters.' },
+        { label: 'Post-game', caption: 'Review key moments before you leave the ground. Notes sync to each player\'s profile.' },
+      ]},
+      { title: 'End of term', steps: [
+        { label: 'Term reports', caption: 'Write end-of-term reports from the player\'s session notes and clips. Parents get them through the app.' },
+        { label: 'What improved', caption: 'See which skills moved most this term. The numbers come from session logs and recordings.' },
+        { label: 'Next term plan', caption: 'Set the focus for next term based on what this term found. The plan seeds the first session automatically.' },
+      ]},
+    ],
+  },
+
+  academyparent: {
+    roleLabel: 'Academy parent',
+    persona: 'as Tess Okonkwo, mum of Kai, 13',
+    device: 'phone',
+    total: 13,
+    sections: [
+      { title: 'Join', steps: [
+        { label: 'Book a free trial', caption: 'A parent books a free trial from the academy\'s public link. No account needed to book.', screen: 'academyparent' },
+        { label: 'Booked', caption: 'The confirmation arrives straight away: the time, ground, and what to bring.' },
+        { label: 'Offer and pay', caption: 'After the trial, Tess gets an honest note from the coach and an enrolment offer. Pay from the app.' },
+        { label: 'Join the game team, one bill', caption: 'The academy has a partner club. Add Saturday games on the same bill — one payment covers both.' },
+        { label: 'Before the first session', caption: 'A checklist arrives before the first session: emergency contacts, medical notes, and photo consent.' },
+      ]},
+      { title: 'Each week', steps: [
+        { label: 'Home screen', caption: 'This week\'s sessions, Kai\'s goal, and any messages from the coach.', screen: 'academyparent' },
+        { label: 'Progress', caption: 'Kai\'s skills and how they\'ve shifted over the term. The coach\'s session notes are here too.' },
+        { label: 'Messages', caption: 'Reply to the coach or ask a question. Everything stays in the app.' },
+      ]},
+      { title: 'Each term', steps: [
+        { label: 'Term report', caption: 'An end-of-term report with Kai\'s progress, clips, and a note from the coach.' },
+        { label: 'Re-enrol', caption: 'Re-enrol for next term in one tap. The place is held until the deadline, then opens to new families.' },
+        { label: 'Fees', caption: 'See what\'s paid and what\'s coming. All payments go through the app.' },
+      ]},
+      { title: 'When something\'s wrong', steps: [
+        { label: 'Raise a concern', caption: 'Flag a welfare concern or a head knock. It goes to the welfare officer directly.' },
+      ]},
+      { title: 'If they play elsewhere', steps: [
+        { label: 'Shared with the club', caption: 'If Kai also plays for a club, the academy shares their skills and load with the club coach — with your consent.' },
+      ]},
+    ],
+  },
+
+  academyplayer: {
+    roleLabel: 'Academy player',
+    persona: 'as Kai Okonkwo, 13',
+    device: 'phone',
+    total: 3,
+    sections: [
+      { title: 'Each week', steps: [
+        { label: 'Home: my goal and skills', caption: 'One goal and the skills to work on. Under 15s join with a code from a parent.', screen: 'academyplayer' },
+        { label: 'Practice at home', caption: 'Open the practice guide for a ten-minute drill. Mark each step done as you go.' },
+        { label: 'Before a goal is set', caption: 'New players see the skills list first. The coach sets their goal after the first few sessions.' },
+      ]},
+    ],
+  },
 }
 
 export type RoleId = keyof typeof TOURS
@@ -552,6 +668,15 @@ export const ROLE_GROUPS: Array<{
       { id: 'coordinator', name: 'Club coordinator',     device: 'Tablet', desc: 'as Bianca Rossi' },
       { id: 'welfare',     name: 'Welfare officer',      device: 'Tablet', desc: 'as Helen Park' },
       { id: 'referee',     name: 'Referee',              device: 'Phone',  desc: 'as Zoe Park, 16' },
+    ],
+  },
+  {
+    section: 'PRIVATE ACADEMIES',
+    roles: [
+      { id: 'academyowner',  name: 'Academy owner',  device: 'Tablet', desc: 'as Dani Okafor, Tall Timber' },
+      { id: 'academycoach',  name: 'Academy coach',  device: 'Tablet', desc: 'as Reece Whitlam' },
+      { id: 'academyparent', name: 'Academy parent', device: 'Phone',  desc: 'as Tess Okonkwo' },
+      { id: 'academyplayer', name: 'Academy player', device: 'Phone',  desc: 'as Kai Okonkwo, 13' },
     ],
   },
 ]

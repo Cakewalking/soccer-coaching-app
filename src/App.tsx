@@ -250,7 +250,7 @@ export default function App() {
     return <TeamTalkScreen role={role} onClose={() => setScreen('training')} />
   }
   if (screen === 'pitchside') {
-    return <PitchSideScreen onClose={() => setScreen('training')} />
+    return <PitchSideScreen onClose={() => setScreen('training')} empty={isEmpty} />
   }
   if (screen === 'addgame') {
     return <AddGameScreen onClose={() => setScreen('training')} />
@@ -329,7 +329,7 @@ export default function App() {
         <div style={{ display: 'flex', justifyContent: 'flex-end', width: 390, marginBottom: 12 }}>
           <button onClick={() => setScreen('home')} style={{ height: 36, padding: '0 16px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Back to coach view</button>
         </div>
-        <OlderPlayerApp />
+        <OlderPlayerApp empty={isEmpty} />
       </div>
     )
   }
@@ -339,7 +339,7 @@ export default function App() {
         <div style={{ display: 'flex', justifyContent: 'flex-end', width: 390, marginBottom: 12 }}>
           <button onClick={() => navTo('home')} style={{ height: 36, padding: '0 16px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Coach view</button>
         </div>
-        <RefereesPhoneScreen />
+        <RefereesPhoneScreen empty={isEmpty} />
       </div>
     )
   }
@@ -366,13 +366,13 @@ export default function App() {
     )
   }
   if (screen === 'goalkeeper') {
-    return <GoalkeeperCoachApp onBack={() => setScreen('home')} />
+    return <GoalkeeperCoachApp onBack={() => setScreen('home')} empty={isEmpty} />
   }
   if (screen === 'coordinator') {
-    return <CoordinatorPortal onBack={() => setScreen('home')} />
+    return <CoordinatorPortal onBack={() => setScreen('home')} empty={isEmpty} />
   }
   if (screen === 'rollover') {
-    return <RolloverScreen onBack={() => setScreen('home')} />
+    return <RolloverScreen onBack={() => setScreen('home')} empty={isEmpty} />
   }
   if (screen === 'seniors') {
     return <SeniorsYouthCoachApp teamType="seniors" onBack={() => setScreen('home')} />
@@ -386,7 +386,7 @@ export default function App() {
         <div style={{ display: 'flex', justifyContent: 'flex-end', width: 390, marginBottom: 12 }}>
           <button onClick={() => setScreen('home')} style={{ height: 36, padding: '0 16px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Coach view</button>
         </div>
-        <TwoChildrenApp onBack={() => setScreen('home')} />
+        <TwoChildrenApp onBack={() => setScreen('home')} empty={isEmpty} />
       </div>
     )
   }
@@ -533,20 +533,20 @@ export default function App() {
       {screen === 'home' && homeTab === 2 && <HomeScreen role={role} onRole={() => {}} onNav={navTo} onCalendar={() => setHomeTab(2)} empty={isEmpty} />}
       {screen === 'home' && homeTab === 3 && <FixturesScreen empty={isEmpty} />}
       {screen === 'home' && homeTab === 4 && <OurStyleScreen />}
-      {screen === 'home' && homeTab === 5 && <TeamStaffScreen />}
+      {screen === 'home' && homeTab === 5 && <TeamStaffScreen empty={isEmpty} />}
       {/* Squad tabs */}
       {screen === 'squad' && squadTab === 0 && <SquadScreen role={role} onPlayerProfile={ini => { setSelectedPlayer(ini); navTo('player') }} empty={isEmpty} />}
       {screen === 'squad' && squadTab === 1 && <DevGoalsScreen empty={isEmpty} />}
       {screen === 'squad' && squadTab === 2 && <WellnessScreen empty={isEmpty} />}
       {screen === 'squad' && squadTab === 3 && <AvailabilityScreen empty={isEmpty} />}
-      {screen === 'squad' && squadTab === 4 && <ConsentScreen />}
-      {screen === 'squad' && squadTab === 5 && <SeasonSummariesScreen />}
+      {screen === 'squad' && squadTab === 4 && <ConsentScreen empty={isEmpty} />}
+      {screen === 'squad' && squadTab === 5 && <SeasonSummariesScreen empty={isEmpty} />}
       {screen === 'squad' && squadTab === 6 && <FitnessSquadTab empty={isEmpty} />}
       {/* Training tabs */}
       {screen === 'training' && trainingTab === 0 && <TrainingScreen role={role} onNav={navTo} empty={isEmpty} />}
       {screen === 'training' && trainingTab === 1 && <ThisWeekScreen empty={isEmpty} onDrillLibrary={() => setTrainingTab(3)} onTonightsPlan={() => setTrainingTab(0)} onGrowthLoad={() => setTrainingTab(4)} />}
       {screen === 'training' && trainingTab === 2 && <SuggestionsScreen empty={isEmpty} onRecord={() => setTrainingTab(5)} />}
-      {screen === 'training' && trainingTab === 3 && <DrillLibraryScreen />}
+      {screen === 'training' && trainingTab === 3 && <DrillLibraryScreen empty={isEmpty} />}
       {screen === 'training' && trainingTab === 4 && <GrowthLoadScreen empty={isEmpty} />}
       {screen === 'training' && trainingTab === 5 && <RecordScreen empty={isEmpty} />}
       {screen === 'training' && trainingTab === 6 && <FitnessTrainingTab empty={isEmpty} />}
@@ -558,7 +558,7 @@ export default function App() {
       {screen === 'matchday' && matchdayTab === 4 && <FitnessMatchTab empty={isEmpty} />}
       {/* Other screens */}
       {screen === 'clips'  && <ClipsScreen empty={isEmpty} activeTab={clipsTab} />}
-      {screen === 'player' && <PlayerProfileScreen playerIni={selectedPlayer ?? 'MT'} />}
+      {screen === 'player' && <PlayerProfileScreen playerIni={selectedPlayer ?? 'MT'} empty={isEmpty} />}
     </div>
   )
 }

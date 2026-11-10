@@ -18,6 +18,10 @@ import TwoChildrenApp        from '../playerapp/TwoChildrenApp'
 import PlayerAppScreen       from '../PlayerAppScreen'
 import OlderPlayerApp        from '../playerapp/OlderPlayerApp'
 import RefereesPhoneScreen   from '../playerapp/RefereesPhoneScreen'
+import AcademyOwnerApp       from '../AcademyOwnerApp'
+import AcademyCoachApp       from '../AcademyCoachApp'
+import AcademyParentApp      from '../AcademyParentApp'
+import AcademyPlayerApp      from '../AcademyPlayerApp'
 import DemoStart             from './DemoStart'
 import DemoWhy               from './DemoWhy'
 import DemoTourShell         from './DemoTourShell'
@@ -49,11 +53,11 @@ function renderScreen(key: string): ReactNode {
         </div>
       )
     case 'goalkeeper':
-      return <GoalkeeperCoachApp onBack={noop} />
+      return <GoalkeeperCoachApp onBack={noop} empty={false} />
     case 'coordinator':
-      return <CoordinatorPortal onBack={noop} />
+      return <CoordinatorPortal onBack={noop} empty={false} />
     case 'rollover':
-      return <RolloverScreen onBack={noop} />
+      return <RolloverScreen onBack={noop} empty={false} />
     case 'seniors':
       return <SeniorsYouthCoachApp teamType="seniors" onBack={noop} />
     case 'youth':
@@ -66,13 +70,21 @@ function renderScreen(key: string): ReactNode {
       return <TeamManagerScreen empty={false} />
     case 'twochildren':
     case 'parent-phone':
-      return <TwoChildrenApp onBack={noop} />
+      return <TwoChildrenApp onBack={noop} empty={false} />
     case 'playerapp':
       return <PlayerAppScreen empty={false} />
     case 'olderplayer':
-      return <OlderPlayerApp />
+      return <OlderPlayerApp empty={false} />
     case 'refereephone':
-      return <RefereesPhoneScreen />
+      return <RefereesPhoneScreen empty={false} />
+    case 'academyowner':
+      return <AcademyOwnerApp onBack={noop} empty={false} />
+    case 'academycoach':
+      return <AcademyCoachApp onBack={noop} empty={false} />
+    case 'academyparent':
+      return <AcademyParentApp onBack={noop} empty={false} />
+    case 'academyplayer':
+      return <AcademyPlayerApp onBack={noop} empty={false} />
     default:
       return (
         <div style={{ padding: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 300 }}>

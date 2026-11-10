@@ -15,7 +15,7 @@ export default function DemoStart({ onTour, onLook, onStory, onWhy }: Props) {
       <div style={{ background: '#1f4a3e', padding: '0 32px', height: 48, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           <span style={{ fontSize: 16, fontWeight: 800, letterSpacing: '-0.03em', color: '#fff' }}>Demo.</span>
-          <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)' }}>Wattle Creek FC and everyone in it are made up. Nothing you tap is saved.</span>
+          <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)' }}>Wattle Creek FC, Tall Timber Academy and everyone in them are made up. Nothing you tap is saved.</span>
         </div>
       </div>
 
@@ -53,6 +53,14 @@ export default function DemoStart({ onTour, onLook, onStory, onWhy }: Props) {
                 </div>
               ))}
             </div>
+
+            {/* Academy blurb for Private Academies section */}
+            {group.section === 'PRIVATE ACADEMIES' && (
+              <div style={{ marginTop: 12, padding: '14px 18px', background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16 }}>
+                <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f', marginBottom: 4 }}>The same app, set up for an academy</div>
+                <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: 1.5 }}>Terms and programs in place of seasons and fixtures. Free trials, fees, one-on-ones and a progress report each term. Players who also play for a club can share their week both ways.</div>
+              </div>
+            )}
 
             {/* Phone QR hint in Families section */}
             {group.section === 'FAMILIES' && (

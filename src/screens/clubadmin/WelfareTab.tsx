@@ -13,10 +13,48 @@ function StatusBadge({ status }: { status: CaseStatus }) {
   return <span style={{ padding: '3px 10px', borderRadius: '999px', background: '#eef5f2', color: '#2f6252', fontSize: 12, fontWeight: 700 }}>On track</span>
 }
 
-export default function WelfareTab() {
+export default function WelfareTab({ empty }: { empty?: boolean }) {
   const [selected, setSelected] = useState(0)
   const [toastMsg, setToastMsg] = useState('')
   function showToast(m: string) { setToastMsg(m); setTimeout(() => setToastMsg(''), 3000) }
+
+  if (empty) {
+    return (
+      <div style={{ padding: '20px 20px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 300px', gap: 20 }}>
+          <div>
+            <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '20px 20px 24px' }}>
+              <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', marginBottom: 2 }}>My cases</div>
+              <div style={{ fontSize: 13, color: '#6f7f7b', marginBottom: 16 }}>Welfare officer · nothing open</div>
+              <div style={{ background: '#eef5f2', borderRadius: 12, padding: '14px 16px' }}>
+                <div style={{ fontSize: 14, fontWeight: 700, color: '#2f6252', marginBottom: 6 }}>No open concerns</div>
+                <div style={{ fontSize: 13, color: '#1f4a3e', lineHeight: 1.5 }}>When a parent, child, coach or manager raises something, it comes straight to you and nobody else.</div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 14, padding: '16px' }}>
+              <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 12 }}>How concerns reach you</div>
+              {[
+                { ini: 'P', label: 'Parents', desc: 'From "Tell the club privately"' },
+                { ini: 'K', label: 'Children', desc: 'From "You can tell someone"' },
+                { ini: 'C', label: 'Coaches and managers', desc: 'From a wellness alert or game day' },
+              ].map((r, i) => (
+                <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 12, padding: '10px 0', borderTop: i > 0 ? '1px solid #f0f1f0' : 'none' }}>
+                  <div style={{ width: 28, height: 28, borderRadius: '999px', background: '#eef5f2', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, color: '#2f6252', flexShrink: 0 }}>{r.ini}</div>
+                  <div>
+                    <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{r.label}</div>
+                    <div style={{ fontSize: 12, color: '#4a5a57' }}>{r.desc}</div>
+                  </div>
+                </div>
+              ))}
+              <div style={{ fontSize: 12, color: '#6f7f7b', marginTop: 12, paddingTop: 10, borderTop: '1px solid #f0f1f0' }}>{"If it's about you, it goes to the club chair instead."}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div style={{ padding: '16px 20px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 340px', gap: 14, alignItems: 'start' }}>

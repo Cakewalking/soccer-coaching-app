@@ -119,7 +119,7 @@ function HomeView({ childTab, setChildTab, onSeasonSummary }: {
   )
 }
 
-function SeasonSummaryView({ onBack }: { onBack: () => void }) {
+function SeasonSummaryView({ onBack, empty }: { onBack: () => void; empty?: boolean }) {
   return (
     <>
       <div style={{ background: '#1f4a3e', padding: '48px 20px 20px', flex: 'none' }}>
@@ -128,10 +128,18 @@ function SeasonSummaryView({ onBack }: { onBack: () => void }) {
           Settings
         </button>
         <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', marginBottom: 2 }}>Wattle Creek U12 · season 2026</div>
-        <div style={{ fontSize: 24, fontWeight: 800, color: '#fff' }}>Mia's season</div>
+        <div style={{ fontSize: 24, fontWeight: 800, color: '#fff' }}>{"Mia's season"}</div>
       </div>
+      {empty && (
+        <div style={{ flexGrow: 1, padding: '28px 20px' }}>
+          <div style={{ background: '#fff', borderRadius: 16, padding: '24px 20px', border: '1px solid #e9eae8' }}>
+            <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>Ready at the end of the season</div>
+            <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.5 }}>{"In September, Sam writes a short note for every player, with her goals and a favourite moment."}</div>
+          </div>
+        </div>
+      )}
 
-      <div style={{ flexGrow: 1, overflowY: 'auto', padding: '16px 20px 32px', display: 'flex', flexDirection: 'column', gap: 12 }}>
+      {!empty && <div style={{ flexGrow: 1, overflowY: 'auto', padding: '16px 20px 32px', display: 'flex', flexDirection: 'column', gap: 12 }}>
         {/* Coach note */}
         <div style={{ background: '#1f4a3e', borderRadius: 16, padding: '16px' }}>
           <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', color: 'rgba(255,255,255,0.6)', marginBottom: 6 }}>FROM SAM, HER COACH</div>
@@ -185,7 +193,7 @@ function SeasonSummaryView({ onBack }: { onBack: () => void }) {
         {/* CTAs */}
         <button style={{ width: '100%', height: 52, borderRadius: 14, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 16, fontWeight: 700, cursor: 'pointer' }}>Share with family</button>
         <button style={{ width: '100%', height: 52, borderRadius: 14, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 16, fontWeight: 600, cursor: 'pointer' }}>Download as a PDF</button>
-      </div>
+      </div>}
     </>
   )
 }
@@ -367,15 +375,28 @@ function DataView({ onBack }: { onBack: () => void }) {
   )
 }
 
-export default function TwoChildrenApp(_props: { onBack: () => void }) {
+export default function TwoChildrenApp({ empty = false }: { onBack: () => void; empty?: boolean }) {
   const [childTab, setChildTab] = useState<ChildTab>('both')
   const [view, setView] = useState<AppView>('home')
 
   return (
     <div style={{ width: 390, margin: '0 auto', background: '#f7f9f7', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)', position: 'relative' }}>
 
-      {view === 'home'          && <HomeView childTab={childTab} setChildTab={setChildTab} onSeasonSummary={() => setView('seasonsummary')} />}
-      {view === 'seasonsummary' && <SeasonSummaryView onBack={() => setView('home')} />}
+      {view === 'home' && (empty ? (
+        <div style={{ flexGrow: 1, padding: '48px 20px 20px', display: 'flex', flexDirection: 'column', gap: 16 }}>
+          <div>
+            <div style={{ fontSize: 12, color: '#6f7f7b', marginBottom: 2 }}>Wattle Creek U12 · parent</div>
+            <div style={{ fontSize: 24, fontWeight: 800, color: '#10211f' }}>Welcome, Linh</div>
+          </div>
+          <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', marginBottom: 2 }}>{"Mia's week will show here"}</div>
+          <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.5 }}>{"Once Sam adds training and games, you'll see where to be and when, and one question for each: can Mia make it?"}</div>
+          <div style={{ marginTop: 8, padding: '12px 14px', background: '#eef5f2', borderRadius: 10 }}>
+            <div style={{ fontSize: 13, fontWeight: 700, color: '#2f6252', marginBottom: 6 }}>{"What's recorded for Mia"}</div>
+            <div style={{ fontSize: 13, color: '#4a5a57' }}>You said yes to 5 of 6</div>
+          </div>
+        </div>
+      ) : <HomeView childTab={childTab} setChildTab={setChildTab} onSeasonSummary={() => setView('seasonsummary')} />)}
+      {view === 'seasonsummary' && <SeasonSummaryView onBack={() => setView('home')} empty={empty} />}
       {view === 'settings'      && <SettingsView onBack={() => setView('home')} onNotifications={() => setView('notifications')} onData={() => setView('data')} />}
       {view === 'notifications' && <NotificationsView onBack={() => setView('settings')} />}
       {view === 'data'          && <DataView onBack={() => setView('settings')} />}

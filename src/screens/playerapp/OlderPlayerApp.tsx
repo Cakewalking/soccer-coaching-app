@@ -360,7 +360,7 @@ function AdultView() {
   )
 }
 
-export default function OlderPlayerApp() {
+export default function OlderPlayerApp({ empty = false }: { empty?: boolean }) {
   const [view, setView] = useState<View>('home')
 
   return (
@@ -389,9 +389,28 @@ export default function OlderPlayerApp() {
 
       {/* Content */}
       <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', minHeight: 0, overflow: 'hidden' }}>
-        {view === 'home'     && <HomeView setView={setView} />}
-        {view === 'messages' && <MessagesView />}
-        {view === 'body'     && <BodyView />}
+        {view === 'home' && (empty ? (
+          <div style={{ flexGrow: 1, padding: '24px 20px', display: 'flex', flexDirection: 'column', gap: 16 }}>
+            <div style={{ fontSize: 16, fontWeight: 700, color: '#10211f' }}>{"You're on U16 Ollie"}</div>
+            <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.5 }}>Games, training and messages from your coach show here. First, a parent needs to OK filming and sensors.</div>
+            <button style={{ height: 44, borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Text my parent the link</button>
+            <div style={{ padding: '12px 14px', background: '#eef5f2', borderRadius: 10, fontSize: 13, color: '#2f6252' }}>{"Until they answer you can still play, check in and message Ollie. You're blurred in clips."}</div>
+          </div>
+        ) : <HomeView setView={setView} />)}
+        {view === 'messages' && (empty ? (
+          <div style={{ flexGrow: 1, padding: '24px 20px', display: 'flex', flexDirection: 'column', gap: 12 }}>
+            <div style={{ fontSize: 16, fontWeight: 700, color: '#10211f' }}>No messages yet</div>
+            <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.5 }}>Message Ollie about training, games or anything you're unsure of. A parent can read the chat until you're 18.</div>
+            <button style={{ height: 44, borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Write to Ollie</button>
+          </div>
+        ) : <MessagesView />)}
+        {view === 'body' && (empty ? (
+          <div style={{ flexGrow: 1, padding: '24px 20px', display: 'flex', flexDirection: 'column', gap: 12 }}>
+            <div style={{ fontSize: 16, fontWeight: 700, color: '#10211f' }}>Nothing measured yet</div>
+            <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.5 }}>{"After your first week with a vest, you'll see how much you've done and when to rest. Add school sport so the picture is whole."}</div>
+            <button style={{ height: 44, borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Add other sport</button>
+          </div>
+        ) : <BodyView />)}
         {view === 'adult'    && <AdultView />}
       </div>
 

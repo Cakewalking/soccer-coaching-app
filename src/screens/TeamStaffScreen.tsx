@@ -58,8 +58,65 @@ function Check({ yes }: { yes: boolean | string }) {
   return <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={G} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-label="yes"><polyline points="20 6 9 17 4 12"/></svg>
 }
 
-export default function TeamStaffScreen() {
+export default function TeamStaffScreen({ empty }: { empty?: boolean }) {
   const [inviteOpen, setInviteOpen] = useState(false)
+
+  if (empty) {
+    return (
+      <main style={{ flexGrow: 1, padding: '24px 28px', boxSizing: 'border-box' as const, display: 'flex', flexDirection: 'column', gap: 20 }}>
+        <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
+          <div>
+            <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, letterSpacing: '-0.02em', color: INK }}>Team staff</h1>
+            <div style={{ fontSize: 13, color: MUT, marginTop: 2 }}>U12 Sam · just you so far</div>
+          </div>
+          <button onClick={() => setInviteOpen(true)} style={{ height: 40, padding: '0 18px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>+ Invite</button>
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 340px', gap: 20 }}>
+          <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: 24 }}>
+            <div style={{ fontSize: 20, fontWeight: 700, color: INK, marginBottom: 8 }}>{"It's just you"}</div>
+            <div style={{ fontSize: 14, color: MUT, lineHeight: 1.6, marginBottom: 20 }}>Add a co-coach to share sessions and a team manager to handle meet times, the duty roster and messages to parents.</div>
+            <div style={{ display: 'flex', gap: 10 }}>
+              <button onClick={() => setInviteOpen(true)} style={{ height: 40, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Invite a co-coach</button>
+              <button onClick={() => setInviteOpen(true)} style={{ height: 40, padding: '0 16px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Invite a team manager</button>
+            </div>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+            <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, overflow: 'hidden' }}>
+              <div style={{ padding: '10px 16px', borderBottom: `1px solid ${LN}`, fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', color: MUT }}>FILLS IN LIKE THIS</div>
+              {[
+                { role: 'Co-coach',          desc: 'Everything you see' },
+                { role: 'Team manager',       desc: 'Availability, messages, roster and the first-aid card' },
+                { role: 'Club fitness lead',  desc: 'Growth, load and tests, if your club has one' },
+              ].map((r, i) => (
+                <div key={r.role} style={{ padding: '12px 16px', borderBottom: i < 2 ? `1px solid ${LN}` : 'none' }}>
+                  <div style={{ fontSize: 14, fontWeight: 700, color: INK }}>{r.role}</div>
+                  <div style={{ fontSize: 12, color: MUT }}>{r.desc}</div>
+                </div>
+              ))}
+              <div style={{ padding: '10px 16px', background: PALE, borderTop: `1px solid ${LN}`, fontSize: 12, color: G }}>Everyone who works with players needs a Working with Children Check.</div>
+            </div>
+          </div>
+        </div>
+        {inviteOpen && (
+          <div style={{ position: 'fixed', inset: 0, zIndex: 200, background: 'rgba(16,33,31,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{ background: '#fff', borderRadius: 20, padding: '24px', width: 400, fontFamily: 'inherit' }}>
+              <div style={{ fontSize: 18, fontWeight: 700, color: INK, marginBottom: 16 }}>Invite to U12 Sam</div>
+              {[{ label: 'Name', placeholder: 'e.g. Alex Brown' }, { label: 'Email', placeholder: 'alex.brown@example.com' }].map(f => (
+                <div key={f.label} style={{ marginBottom: 14 }}>
+                  <div style={{ fontSize: 12, fontWeight: 700, color: MUT, letterSpacing: '0.07em', marginBottom: 6 }}>{f.label.toUpperCase()}</div>
+                  <input placeholder={f.placeholder} style={{ width: '100%', height: 44, borderRadius: 10, border: `1px solid ${LN}`, padding: '0 12px', fontFamily: 'inherit', fontSize: 14, boxSizing: 'border-box' as const }} />
+                </div>
+              ))}
+              <div style={{ display: 'flex', gap: 10 }}>
+                <button onClick={() => setInviteOpen(false)} style={{ flex: 1, height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Cancel</button>
+                <button onClick={() => setInviteOpen(false)} style={{ flex: 1, height: 44, borderRadius: 10, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Send invite</button>
+              </div>
+            </div>
+          </div>
+        )}
+      </main>
+    )
+  }
 
   return (
     <main style={{ flexGrow: 1, padding: '24px 28px', boxSizing: 'border-box' as const, display: 'flex', flexDirection: 'column', gap: 20 }}>

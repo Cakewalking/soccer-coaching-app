@@ -227,6 +227,7 @@ const TEAMS_EMPTY: Partial<Record<TeamsView, { icon: string; title: string; desc
   grading:    { icon: 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5', title: "Grading hasn't started", desc: 'Grading games run in March. After them you\'ll see where the league placed each team and whether to ask for a change.', cta: 'Plan grading days', items: [{ title: 'What we asked for', desc: 'Against what we got' }, { title: 'MiniRoos levels', desc: 'Picked by the club' }] },
   referees:   { icon: 'M22 11.08V12a10 10 0 11-5.93-9.14M22 4L12 14.01l-3-3', title: 'No club referees yet', desc: 'Add your game leaders and referees. On Thursday, Clean Sheet shows which home games still need one.', cta: 'Add a referee', items: [{ title: 'Home games covered', desc: 'Or who to ask' }, { title: 'Kind feedback only', desc: 'For young referees' }] },
   teamkit:    { icon: 'M15 10l4.553-2.069A1 1 0 0121 8.869v6.262a1 1 0 01-1.447.894L15 14M3 8h12v9H3z', title: 'No kit added yet', desc: 'Add your match cameras, boot sensors and vests so teams can book them for Saturday.', cta: 'Add a kit', items: [{ title: 'Who has which kit', desc: "And when it's back" }, { title: 'Battery and repairs', desc: 'Before game day' }] },
+  cards:      { icon: 'M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8zM14 2v6h6', title: 'No cards this season', desc: 'Yellow and red cards come in from Dribl the night after each game. Anyone suspended is taken out of line-ups for you.', items: [{ title: 'Red card', desc: 'Misses the next game automatically' }, { title: '5, 10 and 15 yellows', desc: 'Each one brings a suspension' }] },
 }
 
 export default function TeamsTab({ empty }: { empty?: boolean }) {
@@ -519,7 +520,7 @@ export default function TeamsTab({ empty }: { empty?: boolean }) {
         </div>
       )}
 
-      {view === 'cards' && <CardsTab />}
+      {!empty && view === 'cards' && <CardsTab />}
 
       {view === 'teamkit' && (
         <div style={p}>

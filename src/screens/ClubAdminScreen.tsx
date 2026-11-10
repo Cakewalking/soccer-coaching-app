@@ -19,20 +19,6 @@ import GoalkeepersTab from './clubadmin/GoalkeepersTab'
 export default function ClubAdminScreen({ empty, role = 'chair' }: { empty?: boolean; role?: 'chair' | 'dof' }) {
   const [tab, setTab] = useState<AdminTab>('club')
 
-  if (empty) {
-    return (
-      <div style={{ background: '#f7f9f7', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 16, padding: '0 32px', textAlign: 'center', fontFamily: 'var(--font-sans)' }}>
-        <div style={{ width: 60, height: 60, borderRadius: '999px', background: '#e4f2eb', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2f6252" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        </div>
-        <div style={{ fontSize: 20, fontWeight: 700, color: '#10211f' }}>Club not set up yet</div>
-        <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: '20px' }}>Create the club account to start managing teams and coaches.</div>
-        <button style={{ height: 48, padding: '0 32px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>
-          Get the club ready
-        </button>
-      </div>
-    )
-  }
 
   const TABS: { id: AdminTab; label: string; icon: string }[] = [
     { id: 'club',         label: 'Club',          icon: 'M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z' },
@@ -92,7 +78,7 @@ export default function ClubAdminScreen({ empty, role = 'chair' }: { empty?: boo
 
       {/* Content */}
       <div style={{ flexGrow: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
-        {tab === 'club'         && <ClubTab role={role} />}
+        {tab === 'club'         && <ClubTab role={role} empty={empty} />}
         {tab === 'teams'        && <TeamsTab empty={empty} />}
         {tab === 'coaches'      && <CoachesTab empty={empty} />}
         {tab === 'players'      && <PlayersTab empty={empty} />}
@@ -104,7 +90,7 @@ export default function ClubAdminScreen({ empty, role = 'chair' }: { empty?: boo
         {tab === 'leaguesync'   && <LeagueSyncTab empty={empty} />}
         {tab === 'referees'     && <RefereesTab empty={empty} />}
         {tab === 'sideline'     && <SidelineTab empty={empty} />}
-        {tab === 'welfare'      && <WelfareTab />}
+        {tab === 'welfare'      && <WelfareTab empty={empty} />}
         {tab === 'concussion'   && <ConcussionTab empty={empty} />}
         {tab === 'goalkeepers'  && <GoalkeepersTab empty={empty} />}
       </div>

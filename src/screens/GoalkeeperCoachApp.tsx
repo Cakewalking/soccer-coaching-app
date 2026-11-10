@@ -242,7 +242,7 @@ function ClipsTab() {
   )
 }
 
-export default function GoalkeeperCoachApp({ onBack }: { onBack: () => void }) {
+export default function GoalkeeperCoachApp({ onBack, empty = false }: { onBack: () => void; empty?: boolean }) {
   const [nav, setNav]             = useState<GKNav>('home')
   const [homeTab, setHomeTab]     = useState<HomeTab>('overview')
   const [trainingTab, setTrainingTab] = useState<TrainingTab>('session')
@@ -306,12 +306,50 @@ export default function GoalkeeperCoachApp({ onBack }: { onBack: () => void }) {
 
       {/* Content */}
       <div style={{ flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-        {nav === 'home'     && homeTab === 'overview' && <HomeOverview />}
+        {nav === 'home'     && homeTab === 'overview' && (empty ? (
+          <div style={{ flexGrow: 1, padding: '28px 32px', overflowY: 'auto' }}>
+            <div style={{ maxWidth: 500 }}>
+              <h2 style={{ margin: '0 0 4px', fontSize: 22, fontWeight: 700, color: '#10211f' }}>Welcome, Nick</h2>
+              <div style={{ fontSize: 14, color: '#4a5a57', marginBottom: 20 }}>Goalkeeper coach · no keepers named yet</div>
+              <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 16, padding: 24, marginBottom: 20 }}>
+                <div style={{ fontSize: 18, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>Keepers appear as coaches name them</div>
+                <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.6, marginBottom: 16 }}>Each coach from U12 up marks their keepers. Ask them now, or wait for the first games.</div>
+                <button style={{ height: 40, padding: '0 16px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Ask coaches to name keepers</button>
+              </div>
+              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: '#6f7f7b', marginBottom: 10 }}>What you will see</div>
+              {[
+                { n: '1', label: 'Every keeper from U12 up',       desc: 'With one thing to work on' },
+                { n: '2', label: 'Keeper clips from Saturday',     desc: "Only keepers' moments" },
+                { n: '3', label: "Who's had a session with you",   desc: 'So nobody misses out' },
+              ].map(item => (
+                <div key={item.n} style={{ display: 'flex', gap: 14, padding: '12px 0', borderTop: '1px solid #e9eae8', alignItems: 'flex-start' }}>
+                  <div style={{ width: 28, height: 28, borderRadius: '50%', background: '#2f6252', color: '#fff', fontSize: 13, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{item.n}</div>
+                  <div>
+                    <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>{item.label}</div>
+                    <div style={{ fontSize: 12, color: '#4a5a57' }}>{item.desc}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : <HomeOverview />)}
         {nav === 'home'     && homeTab !== 'overview' && (
           <div style={{ padding: '20px 28px', color: '#4a5a57' }}>{homeTab === 'inbox' ? 'Inbox' : 'Calendar'} — not shown in this demo.</div>
         )}
         {nav === 'keepers'  && <KeepersTab />}
-        {nav === 'training' && trainingTab === 'session' && <TrainingSession />}
+        {nav === 'training' && trainingTab === 'session' && (empty ? (
+          <div style={{ flexGrow: 1, padding: '28px 32px', overflowY: 'auto' }}>
+            <div style={{ maxWidth: 500 }}>
+              <h2 style={{ margin: '0 0 4px', fontSize: 22, fontWeight: 700, color: '#10211f' }}>Keeper session</h2>
+              <div style={{ fontSize: 14, color: '#4a5a57', marginBottom: 20 }}>No session planned</div>
+              <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 16, padding: 24 }}>
+                <div style={{ fontSize: 18, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>Pick a night for keepers</div>
+                <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.6, marginBottom: 16 }}>Set a weekly keeper session and Clean Sheet drafts it from that week's keeper clips.</div>
+                <button style={{ height: 40, padding: '0 16px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Set a keeper night</button>
+              </div>
+            </div>
+          </div>
+        ) : <TrainingSession />)}
         {nav === 'training' && trainingTab === 'drills'  && (
           <div style={{ padding: '20px 28px', color: '#4a5a57' }}>Keeper drills library — not shown in this demo.</div>
         )}

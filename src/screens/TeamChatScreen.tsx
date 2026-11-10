@@ -950,6 +950,63 @@ export default function TeamChatScreen({ empty = false, miniRoos = false }: { em
   const teamName    = miniRoos ? 'U9 Tom families' : 'U12 Sam team chat'
   const footerNote  = 'Nobody\'s phone number is shared. Families leave these chats when the season ends.'
 
+  if (empty) {
+    return (
+      <div style={{ flex:1, display:'flex', overflow:'hidden' }}>
+        <div style={{ width:264, flexShrink:0, borderRight:`1px solid ${LN}`, display:'flex', flexDirection:'column', background:'#fff' }}>
+          <div style={{ padding:'14px 16px 10px', borderBottom:`1px solid ${LN}` }}>
+            <div style={{ fontSize:17, fontWeight:700, color:INK, marginBottom:10 }}>Chats</div>
+            <div style={{ display:'flex', gap:6 }}>
+              <button style={{ flex:1, height:32, borderRadius:999, border:`1px solid ${G}`, background:PALE, color:G, fontSize:13, fontWeight:700, cursor:'pointer', fontFamily:'inherit' }}>Inbox</button>
+              <button style={{ flex:1, height:32, borderRadius:999, border:`1px solid ${LN}`, background:'#fff', color:MUT, fontSize:13, fontWeight:600, cursor:'pointer', fontFamily:'inherit' }}>New chat</button>
+            </div>
+          </div>
+          <button style={{ padding:'10px 16px', borderBottom:`1px solid ${LN}`, background:'transparent', border:'none', textAlign:'left', cursor:'pointer', fontFamily:'inherit', display:'block', width:'100%' }}>
+            <div style={{ display:'flex', justifyContent:'space-between', marginBottom:2 }}>
+              <span style={{ fontSize:13, fontWeight:700, color:INK }}>Announcements</span>
+            </div>
+            <div style={{ fontSize:12, color:MUT }}>No messages yet</div>
+          </button>
+          <div style={{ flex:1, overflowY:'auto', padding:'6px 0' }}>
+            <button style={{ display:'flex', alignItems:'flex-start', gap:10, padding:'10px 16px', border:'none', borderBottom:`1px solid ${LN}`, background:PALE, textAlign:'left', cursor:'pointer', fontFamily:'inherit', width:'100%' }}>
+              <Ini s="U12" bg={G} size={36}/>
+              <div style={{ flex:1, minWidth:0 }}>
+                <div style={{ display:'flex', justifyContent:'space-between', marginBottom:2 }}>
+                  <span style={{ fontSize:14, fontWeight:700, color:INK }}>U12 Sam team chat</span>
+                </div>
+                <div style={{ fontSize:12, color:MUT }}>No messages yet</div>
+              </div>
+            </button>
+          </div>
+          <div style={{ padding:'10px 16px', fontSize:11, color:MUT, lineHeight:1.5, borderTop:`1px solid ${LN}`, background:'#fafafa' }}>{"Nobody's phone number is shared. Families leave these chats when the season ends."}</div>
+        </div>
+        <div style={{ flex:1, display:'flex', flexDirection:'column', background:'#fff' }}>
+          <div style={{ padding:'14px 20px 12px', borderBottom:`1px solid ${LN}`, display:'flex', alignItems:'center', gap:10 }}>
+            <Ini s="U12" bg={G} size={32}/>
+            <div>
+              <div style={{ fontSize:15, fontWeight:700, color:INK }}>U12 Sam team chat</div>
+              <div style={{ fontSize:12, color:MUT }}>17 families invited · 9 have joined so far</div>
+            </div>
+          </div>
+          <div style={{ flex:1, display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', padding:'32px 24px', gap:12, textAlign:'center' }}>
+            <div style={{ fontSize:16, fontWeight:700, color:INK }}>Say hello to the team</div>
+            <div style={{ fontSize:14, color:MUT, lineHeight:1.5, maxWidth:340 }}>Families see this chat as soon as they join Clean Sheet. Try a poll for Saturday, or a photo from training.</div>
+            <div style={{ display:'flex', gap:8, flexWrap:'wrap', justifyContent:'center', marginTop:4 }}>
+              {['Photo','Video','Voice','Poll','Place','File','Clip or drill'].map(label => (
+                <button key={label} style={{ height:32, padding:'0 12px', borderRadius:999, border:`1px solid ${LN}`, background:'#fff', color:MUT, fontSize:12, fontWeight:600, cursor:'pointer', fontFamily:'inherit' }}>{label}</button>
+              ))}
+            </div>
+          </div>
+          <div style={{ padding:'12px 20px', borderTop:`1px solid ${LN}`, display:'flex', gap:8 }}>
+            <input style={{ flex:1, height:40, borderRadius:10, border:`1px solid ${LN}`, padding:'0 14px', fontSize:14, fontFamily:'inherit', outline:'none' }} placeholder="Write to the team chat" readOnly />
+            <button style={{ height:40, padding:'0 16px', borderRadius:10, border:0, background:G, color:'#fff', fontSize:14, fontWeight:700, cursor:'pointer', fontFamily:'inherit' }}>Send</button>
+          </div>
+          <div style={{ padding:'0 20px 12px', fontSize:12, color:MUT }}>Everyone in this chat can see this.</div>
+        </div>
+      </div>
+    )
+  }
+
   if (miniRoos) {
     return (
       <div style={{ flex:1, display:'flex', overflow:'hidden' }}>

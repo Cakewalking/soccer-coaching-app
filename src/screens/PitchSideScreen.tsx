@@ -106,7 +106,7 @@ function RatingRow({ q, label, value, onChange }: { q: string; label: string; va
   )
 }
 
-export default function PitchSideScreen({ onClose }: { onClose: () => void }) {
+export default function PitchSideScreen({ onClose, empty }: { onClose: () => void; empty?: boolean }) {
   const [view, setView] = useState<View>('attendance')
   const [drillIndex, setDrillIndex] = useState(1)
   const [paused, setPaused] = useState(false)
@@ -124,6 +124,62 @@ export default function PitchSideScreen({ onClose }: { onClose: () => void }) {
 
   function setRating(key: keyof ReviewState, val: Rating) {
     setReview(r => ({ ...r, [key]: val }))
+  }
+
+  if (empty) {
+    const emptyPlan = [
+      { time: '6:00', name: 'Rondo warm-up',      mins: 10 },
+      { time: '6:10', name: '6-second press',      mins: 20 },
+      { time: '6:30', name: 'Small game',          mins: 25 },
+      { time: '6:55', name: 'Cool-down',           mins: 5  },
+    ]
+    return (
+      <div style={{ position: 'fixed', inset: 0, background: '#f7f9f7', zIndex: 100, display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
+        <div style={{ flex: 'none', background: '#1f4a3e', padding: '0 32px', height: 72, display: 'flex', alignItems: 'center', gap: 16 }}>
+          <button onClick={onClose} style={{ width: 40, height: 40, borderRadius: '999px', border: 0, background: 'rgba(255,255,255,0.12)', color: '#ffffff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          </button>
+          <div style={{ flexGrow: 1 }}>
+            <div style={{ fontSize: 20, fontWeight: 700, color: '#ffffff', letterSpacing: '-0.02em' }}>Starter session · Win it back · 60 min</div>
+            <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)', marginTop: 1 }}>Before you start</div>
+          </div>
+          <button onClick={() => setView('drill')} style={{ height: 40, padding: '0 20px', borderRadius: '999px', border: 0, background: '#40826d', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+            Start the warm-up
+          </button>
+        </div>
+        <div style={{ flexGrow: 1, display: 'flex', overflow: 'hidden' }}>
+          <div style={{ flexGrow: 1, padding: '24px 32px', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 20 }}>
+            <div>
+              <div style={{ fontSize: 18, fontWeight: 700, color: '#10211f', marginBottom: 4 }}>{"Who's here?"}</div>
+              <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 14, padding: '20px 24px', display: 'flex', flexDirection: 'column', gap: 8 }}>
+                <div style={{ fontSize: 14, color: '#4a5a57' }}>Nobody to tick off yet</div>
+                <div style={{ fontSize: 13, color: '#6f7f7b' }}>Everyone expected is here</div>
+                <div style={{ marginTop: 8, padding: '12px 16px', background: '#eef5f2', borderRadius: 10 }}>
+                  <div style={{ fontSize: 14, fontWeight: 700, color: '#2f6252', marginBottom: 4 }}>No squad yet, no problem</div>
+                  <div style={{ fontSize: 13, color: '#1f4a3e', lineHeight: 1.5 }}>Run tonight as a starter session. Add your players later and attendance, load and minutes start counting.</div>
+                  <button onClick={onClose} style={{ marginTop: 10, height: 36, padding: '0 16px', borderRadius: 999, border: 'none', background: '#2f6252', color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Add players</button>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div style={{ fontSize: 18, fontWeight: 700, color: '#10211f', marginBottom: 4 }}>Starter session: Win it back</div>
+              <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 14, overflow: 'hidden' }}>
+                {emptyPlan.map((step, i) => (
+                  <div key={i} style={{ padding: '14px 20px', borderBottom: i < emptyPlan.length - 1 ? '1px solid #f0f1f0' : 'none', display: 'flex', gap: 16, alignItems: 'flex-start' }}>
+                    <div style={{ fontSize: 12, color: '#6f7f7b', width: 36, flexShrink: 0, paddingTop: 2 }}>{step.time}</div>
+                    <div style={{ flexGrow: 1 }}>
+                      <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>{step.name}</div>
+                      <div style={{ fontSize: 12, color: '#4a5a57' }}>{step.mins}{'′'}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
   }
 
   if (view === 'attendance') {

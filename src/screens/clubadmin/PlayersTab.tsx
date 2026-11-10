@@ -13,15 +13,6 @@ const PLAYERS_LIST = [
   { ini: 'RC', name: 'Ruby Chen', team: 'U13 Girls Meg', reg: 'done' as const, dob: '14/09/2008' },
 ]
 
-function PlaceholderSection({ title, desc }: { title: string; desc: string }) {
-  return (
-    <div style={{ textAlign: 'center', padding: '48px 20px' }}>
-      <div style={{ fontSize: 32, marginBottom: 12 }}>📊</div>
-      <div style={{ fontSize: 16, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>{title}</div>
-      <div style={{ fontSize: 14, color: '#6f7f7b', maxWidth: 360, margin: '0 auto' }}>{desc}</div>
-    </div>
-  )
-}
 
 const PLAYERS_EMPTY: Partial<Record<PlayersView, { icon: string; title: string; desc: string; cta?: string; items: { title: string; desc: string }[] }>> = {
   overview:      { icon: 'M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75', title: 'No players yet', desc: 'Players arrive with your PlayFootball import, or as parents join with a team link.', cta: 'Import from PlayFootball', items: [{ title: 'Is everyone getting a fair go?', desc: 'Minutes across every team' }, { title: "Who's ready for more", desc: 'Coach nominations' }] },
@@ -30,6 +21,7 @@ const PLAYERS_EMPTY: Partial<Record<PlayersView, { icon: string; title: string; 
   moves:         { icon: 'M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75', title: 'No moves this month', desc: 'Move a player to another team, or let them play up for a game. The parent is asked first.', cta: 'Move a player', items: [{ title: 'History moves with them', desc: 'Goals, minutes, tests' }, { title: 'Dispensations flagged', desc: 'When FV must approve' }] },
   trials:        { icon: 'M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z', title: 'No trials set up', desc: 'Set up a trial, share the sign-up link, and score players together. Everyone hears back kindly.', cta: 'Set up a trial', items: [{ title: 'Scores stay private', desc: 'Never shared with players' }, { title: 'Birth month shown', desc: "So younger players aren't missed" }] },
   girls:         { icon: 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5', title: "No girls' teams yet", desc: "Add a girls' team, or import your players, to see the pathway from MiniRoos to seniors and where the gaps are.", cta: 'Import from PlayFootball', items: [{ title: 'Pathway by age', desc: 'And the gaps' }, { title: 'Who came back', desc: 'Against last year' }] },
+  growthload:    { icon: 'M22 12h-4l-3 9L9 3l-3 9H2', title: 'No measurements yet', desc: 'Measure heights every 3 months. Fitness coaches add load data after each session. Data stays with the coaching team.', cta: 'Plan a measuring session', items: [{ title: 'Growth spurt flags', desc: 'Sprint limits set automatically' }, { title: 'Load across teams', desc: 'From GPS vests and boot sensors' }] },
 }
 
 const G  = '#2f6252'
@@ -292,9 +284,9 @@ export default function PlayersTab({ empty }: { empty?: boolean }) {
 
       {view === 'goals' && <GoalsView />}
 
-      {view === 'growthload' && (
+      {!empty && view === 'growthload' && (
         <div style={p}>
-          <PlaceholderSection title="Growth and load" desc="Physical measurements and training load data from every 3-month measurement session and fitness coach. Data stays with the coaching team." />
+          <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 14 }}>Growth and load</div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
             {[{ n: '82%', l: 'Growth on track', sub: 'vs last measurement' }, { n: '3', l: 'Fast-growth flags', sub: 'May need load reduction' }].map(s => (
               <div key={s.l} style={{ background: '#fff', borderRadius: 14, padding: '14px', border: '1px solid #e9eae8' }}>

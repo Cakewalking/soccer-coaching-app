@@ -117,9 +117,55 @@ function PlaceholderTab({ label }: { label: string }) {
   )
 }
 
-export default function CoordinatorPortal({ onBack }: { onBack: () => void }) {
+export default function CoordinatorPortal({ onBack, empty = false }: { onBack: () => void; empty?: boolean }) {
   const [tab, setTab] = useState<CoTab>('thisweek')
   const [activeNav, setActiveNav] = useState('Club')
+
+  if (empty) {
+    return (
+      <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
+        <header style={{ flex: 'none', background: '#1f4a3e', color: '#fff' }}>
+          <div style={{ height: 60, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 20 }}>
+            <span style={{ fontSize: 17, fontWeight: 800, letterSpacing: '-0.03em' }}>Clean Sheet</span>
+            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,0.5)', paddingLeft: 4 }}>CLUB</div>
+            {['Club', 'Teams', 'Coaches', 'Players', 'Safeguarding', 'Reports'].map(n => (
+              <button key={n} onClick={() => setActiveNav(n)} style={{ height: 60, padding: '0 14px', border: 0, background: 'transparent', fontFamily: 'inherit', fontSize: 15, fontWeight: activeNav === n ? 700 : 500, color: activeNav === n ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer', borderBottom: activeNav === n ? '3px solid #fff' : '3px solid transparent', boxSizing: 'border-box' as const }}>{n}</button>
+            ))}
+            <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 10 }}>
+              <span style={{ fontSize: 13, fontWeight: 700, color: '#2f6252', background: '#eef5f2', borderRadius: '999px', padding: '4px 12px' }}>Club coordinator</span>
+              <div style={{ width: 36, height: 36, borderRadius: '999px', background: '#40826d', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 14 }}>BR</div>
+            </div>
+          </div>
+        </header>
+        <div style={{ flexGrow: 1, padding: '28px 32px' }}>
+          <div style={{ maxWidth: 560 }}>
+            <h1 style={{ margin: '0 0 2px', fontSize: 24, fontWeight: 700, letterSpacing: '-0.02em', color: '#10211f' }}>Welcome, Bianca</h1>
+            <div style={{ fontSize: 14, color: '#4a5a57', marginBottom: 20 }}>Club coordinator · nothing set up yet</div>
+            <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 16, padding: 24, marginBottom: 20 }}>
+              <div style={{ fontSize: 20, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>Your weekly jobs land here</div>
+              <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.6, marginBottom: 16 }}>Once teams are imported and fixtures sync from Dribl, this page lists what needs doing before each Saturday.</div>
+              <button style={{ height: 40, padding: '0 16px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Import from PlayFootball</button>
+            </div>
+            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: '#6f7f7b', marginBottom: 10 }}>What you will see</div>
+            {[
+              { n: '1', label: 'Registrations',              desc: 'Who still has to finish or pay' },
+              { n: '2', label: 'Referees and game leaders',  desc: 'Home games that still need one' },
+              { n: '3', label: 'Kit and volunteers',         desc: 'Cameras, nets, canteen' },
+            ].map(item => (
+              <div key={item.n} style={{ display: 'flex', gap: 14, padding: '12px 0', borderTop: '1px solid #e9eae8', alignItems: 'flex-start' }}>
+                <div style={{ width: 28, height: 28, borderRadius: '50%', background: '#2f6252', color: '#fff', fontSize: 13, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{item.n}</div>
+                <div>
+                  <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>{item.label}</div>
+                  <div style={{ fontSize: 13, color: '#4a5a57' }}>{item.desc}</div>
+                </div>
+              </div>
+            ))}
+            <div style={{ marginTop: 16, padding: '12px 14px', background: '#eef5f2', borderRadius: 10, fontSize: 13, color: '#2f6252' }}>{"You don't see players' wellness, growth or clips."}</div>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>

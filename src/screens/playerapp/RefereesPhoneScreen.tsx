@@ -191,7 +191,7 @@ function RefReport({ onSend }: { onSend: () => void }) {
   )
 }
 
-export default function RefereesPhoneScreen() {
+export default function RefereesPhoneScreen({ empty = false }: { empty?: boolean }) {
   const [view, setView] = useState<RefView>('asked')
   const [toast, setToast] = useState('')
   function showToast(m: string) { setToast(m); setTimeout(() => setToast(''), 2800) }
@@ -199,7 +199,12 @@ export default function RefereesPhoneScreen() {
   return (
     <PhoneShell activeTab={view === 'asked' ? 'games' : view} onTab={setView}>
       {view === 'asked' && <RefAsked onAccept={() => { showToast("You're confirmed for 12:00."); setView('games') }} onDecline={() => { showToast("That's fine. We'll ask someone else."); setView('games') }} />}
-      {view === 'games' && <RefGames />}
+      {view === 'games' && (empty ? (
+        <div style={{ flexGrow: 1, padding: '24px 20px', display: 'flex', flexDirection: 'column', gap: 12 }}>
+          <div style={{ fontSize: 16, fontWeight: 700, color: '#10211f' }}>No games yet</div>
+          <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.5 }}>{"When Ruth needs a game leader or referee, you'll get a message. Say yes and it shows here."}</div>
+        </div>
+      ) : <RefGames />)}
       {view === 'report' && <RefReport onSend={() => { showToast('Report sent to Ruth.'); setView('games') }} />}
       {(view === 'feedback' || view === 'me') && (
         <div style={{ padding: '48px 20px 20px', textAlign: 'center' as const, color: '#4a5a57', fontSize: 15 }}>

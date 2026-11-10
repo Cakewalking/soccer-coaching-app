@@ -22,7 +22,43 @@ const CARRIES_OVER = [
   { icon: '×', color: '#c39797', bg: '#fdf5f3', title: 'Match video',                      desc: 'Deleted, apart from kept clips' },
 ]
 
-export default function RolloverScreen({ onBack }: { onBack: () => void }) {
+export default function RolloverScreen({ onBack, empty = false }: { onBack: () => void; empty?: boolean }) {
+  if (empty) {
+    return (
+      <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
+        <div style={{ flex: 'none', background: '#fff', borderBottom: '1px solid #e9eae8', padding: '0 28px', height: 52, display: 'flex', alignItems: 'center', gap: 14 }}>
+          <button onClick={onBack} style={{ height: 36, padding: '0 14px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Back</button>
+          <span style={{ fontSize: 14, fontWeight: 700, color: '#1f4a3e' }}>Next season · Rollover</span>
+          <span style={{ marginLeft: 'auto', fontSize: 13, fontWeight: 700, color: '#2f6252', background: '#eef5f2', borderRadius: '999px', padding: '4px 12px' }}>Director of football</span>
+        </div>
+        <div style={{ flexGrow: 1, padding: '28px 32px' }}>
+          <div style={{ maxWidth: 560 }}>
+            <h1 style={{ margin: '0 0 4px', fontSize: 24, fontWeight: 700, letterSpacing: '-0.02em', color: '#10211f' }}>Next season</h1>
+            <div style={{ fontSize: 14, color: '#4a5a57', marginBottom: 20 }}>Opens in September, after the last game</div>
+            <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 16, padding: 24, marginBottom: 20 }}>
+              <div style={{ fontSize: 20, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>Not time yet</div>
+              <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.6 }}>After the last game of the season, every team can move up a year in one go. Players keep their goals and history.</div>
+            </div>
+            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: '#6f7f7b', marginBottom: 10 }}>What carries over</div>
+            {[
+              { symbol: '✓', label: 'Goals and history',          desc: 'Follow each player',                 color: '#2f6252' },
+              { symbol: '↻', label: 'Consent and registration',   desc: 'Asked again each season',            color: '#c3a84a' },
+              { symbol: '×', label: 'Match video',                 desc: 'Deleted, apart from kept clips',     color: '#c39797' },
+            ].map(item => (
+              <div key={item.label} style={{ display: 'flex', gap: 14, padding: '12px 0', borderTop: '1px solid #e9eae8', alignItems: 'center' }}>
+                <div style={{ width: 28, height: 28, borderRadius: '50%', background: item.color + '22', color: item.color, fontSize: 16, fontWeight: 800, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{item.symbol}</div>
+                <div>
+                  <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>{item.label}</div>
+                  <div style={{ fontSize: 12, color: '#4a5a57' }}>{item.desc}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
 
