@@ -416,22 +416,23 @@ export const METRICS: Metric[] = [
 ]
 
 export const WEEK_SCHEDULE = [
-  { day: 'Mon', date: 2, type: 'rest',   label: 'Rest',              icon: 'M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z' },
-  { day: 'Tue', date: 3, type: 'done',   label: 'Training · done',   icon: 'M12 3l6 17H6zM4 20h16M9 12h6' },
-  { day: 'Wed', date: 4, type: 'rest',   label: 'Rest',              icon: 'M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z' },
-  { day: 'Thu', date: 5, type: 'today',  label: 'Training 6:00 pm',  icon: 'M12 3l6 17H6zM4 20h16M9 12h6' },
-  { day: 'Fri', date: 6, type: 'rest',   label: 'Rest',              icon: 'M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z' },
-  { day: 'Sat', date: 7, type: 'game',   label: 'Harbour Rovers 9:30', icon: 'M12 22a10 10 0 100-20 10 10 0 000 20zM8 12h8M12 8v8' },
-  { day: 'Sun', date: 8, type: 'review', label: 'Review ready',      icon: 'M4 19V9M10 19V5M16 19v-7M22 19H2' },
+  { day: 'Mon', date: 1, type: 'rest',   label: 'Rest',                  icon: 'M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z' },
+  { day: 'Tue', date: 2, type: 'done',   label: 'Training · done',       icon: 'M22 11.08V12a10 10 0 11-5.93-9.14M22 4L12 14.01l-3-3' },
+  { day: 'Wed', date: 3, type: 'rest',   label: 'Rest',                  icon: 'M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z' },
+  { day: 'Thu', date: 4, type: 'today',  label: 'Training 5:45 pm',      icon: 'M12 3l6 17H6zM4 20h16M9 12h6' },
+  { day: 'Fri', date: 5, type: 'rest',   label: 'Rest',                  icon: 'M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z' },
+  { day: 'Sat', date: 6, type: 'game',   label: 'Harbour Rovers · 9:30', icon: 'M12 22a10 10 0 100-20 10 10 0 000 20zM8 12h8M12 8v8' },
+  { day: 'Sun', date: 7, type: 'review', label: "Review, once it's in",  icon: 'M4 19V9M10 19V5M16 19v-7M22 19H2' },
 ]
 
 export const RESULTS = {
   position: '3rd of 10',
   games: ['W', 'W', 'D', 'L', 'W'] as Array<'W' | 'D' | 'L'>,
-  next: 'Sat vs Harbour Rovers (6th)',
+  next: 'Sat 9:30 vs Harbour Rovers',
+  nextDetail: 'Home · 12 in, 2 out, 3 to answer',
 }
 
-export const SQUAD = { total: 16, ready: 11, manage: 4, checkIn: 1 }
+export const SQUAD = { total: 17, ready: 12, manage: 4, checkIn: 1 }
 
 // ── Match day data ────────────────────────────────────────────────────────────
 
