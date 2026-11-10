@@ -663,6 +663,63 @@ export const TOURS: Record<string, TourDef> = {
     ],
   },
 
+  footballyear: {
+    roleLabel: "The football year",
+    persona: "as Sam K, U12 Sam · full year lifecycle",
+    device: 'tablet',
+    total: 34,
+    sections: [
+      { title: "Year overview", steps: [
+        { label: "Football year (empty)", caption: "Before anything is set, Clean Sheet asks when the season runs.", screen: "footballyear-empty" },
+        { label: "Football year overview", caption: "Four phases of the year — pre-season, season, post-season, rest month — with dates, reminders and open tasks.", screen: "footballyear" },
+        { label: "Club phases (empty)", caption: "The director sets the year once for every team at the club.", screen: "clubphases-empty" },
+        { label: "Club phases", caption: "Every team's readiness, season dates and who does what in pre-season.", screen: "clubphases" },
+        { label: "Trial window", caption: "Trial dates and rules by age group, set by the director.", screen: "trialwindow" },
+      ]},
+      { title: "Pre-season", steps: [
+        { label: "Pre-season home", caption: "The pre-season checklist: squad, consent, baseline tests, friendlies, grading and kit.", screen: "homepreseason" },
+        { label: "Provisional squad (empty)", caption: "Start the squad from last year's list.", screen: "provisionalsquad-e" },
+        { label: "Provisional squad", caption: "Confirmed, trialling, waitlist and not coming back — all in one view.", screen: "provisionalsquad" },
+        { label: "Trial morning", caption: "Score four trial players on three axes. Late-year birth note included.", screen: "coachtrial" },
+        { label: "Baseline tests (empty)", caption: "Plan four baseline tests before pre-season starts.", screen: "baseline-empty" },
+        { label: "Baseline tests", caption: "Four tests, team median trend, and missed-test players flagged.", screen: "baseline" },
+        { label: "Load build", caption: "Ten-week ramp to 100%. Coming-back-slower players highlighted.", screen: "loadbuild" },
+        { label: "Friendlies (empty)", caption: "Nobody nearby is looking yet — be the first to ask.", screen: "friendlies-empty" },
+        { label: "Friendlies", caption: "Four nearby teams to arrange games with. Say when you're free.", screen: "friendlies" },
+        { label: "Grading input", caption: "Score 17 players on two axes for division grading.", screen: "gradinginput" },
+      ]},
+      { title: "Season", steps: [
+        { label: "Mid-season reviews", caption: "Four player chats, goals and regrade window.", screen: "midseasonreview" },
+      ]},
+      { title: "Post-season", steps: [
+        { label: "Post-season home", caption: "Wrap-up checklist: summaries, chats, coming back, kit, presentation, review.", screen: "homepostseason" },
+        { label: "Tournament (empty)", caption: "Add a tournament or gala day — a squad, a day plan and one review.", screen: "tournament-empty" },
+        { label: "Tournament setup", caption: "Kingfisher Summer Cup: squad, format, fees and before-you-go checklist.", screen: "tournamentsetup" },
+        { label: "Tournament day", caption: "Three games, between-games notes, Jai's ankle, minutes across the day.", screen: "tournamentday" },
+        { label: "Tournament review", caption: "Sprints dropped by a third — normal for five games in two days. Guests return to their own coach.", screen: "tournamentreview" },
+        { label: "Indoor team (empty)", caption: "Set up a summer team with its own fixtures.", screen: "indoorteam-empty" },
+        { label: "Indoor team", caption: "Wattle Creek Fives — 8 players from 3 teams, Monday nights, just for fun.", screen: "indoorteam" },
+        { label: "Coming back", caption: "12 yes, 3 not sure, 2 not coming back. Trial dates for 2027.", screen: "comingback" },
+      ]},
+      { title: "Rest month", steps: [
+        { label: "Rest month", caption: "Nothing needs you this month. Break check for Zoe, Mia and Finn.", screen: "restmonth" },
+      ]},
+      { title: "Stand-in", steps: [
+        { label: "Stand-in (empty)", caption: "Add someone who can lead the team while you're away.", screen: "standin-empty" },
+        { label: "Stand-in", caption: "Hand over to Jess Wu 26 Sep–11 Oct. WWC check note for Linh.", screen: "standin" },
+      ]},
+      { title: "Phone screens", steps: [
+        { label: "Parent: pre-season", caption: "Mia's place confirmed. 4 things before round 1.", screen: "parent-preseason" },
+        { label: "Parent: coming back?", caption: "Is Mia coming back for 2027? Three-tap reply.", screen: "parent-comingback" },
+        { label: "Parent: tournament invite", caption: "Kingfisher Summer Cup invite and payment.", screen: "parent-tournament" },
+        { label: "Parent: rest month", caption: "Note from Sam, Mia's break check.", screen: "parent-restmonth" },
+        { label: "Manager: tournament checklist", caption: "Entry, fees, medical forms, ball bag, directions.", screen: "manager-tournament" },
+        { label: "Player: rest month", caption: "What rest actually does, and football on holiday.", screen: "player-restmonth" },
+        { label: "Parent: asked to lead the team", caption: "Linh Tran asked to support. WWC check note.", screen: "standin-asked" },
+      ]},
+    ],
+  },
+
   story: {
     roleLabel: "The idea in one minute",
     persona: "one week with an under-12 team",
@@ -716,6 +773,12 @@ export const ROLE_GROUPS: Array<{
       { id: 'coordinator', name: 'Club coordinator',     device: 'Tablet', desc: 'as Bianca Rossi' },
       { id: 'welfare',     name: 'Welfare officer',      device: 'Tablet', desc: 'as Helen Park' },
       { id: 'referee',     name: 'Referee',              device: 'Phone',  desc: 'as Zoe Park, 16' },
+    ],
+  },
+  {
+    section: 'THE FOOTBALL YEAR',
+    roles: [
+      { id: 'footballyear', name: 'The football year', device: 'Tablet', desc: 'Full year lifecycle · as Sam K, U12 Sam' },
     ],
   },
   {
