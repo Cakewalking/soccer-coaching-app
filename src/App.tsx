@@ -230,7 +230,7 @@ function Avatar({ onClick }: { onClick?: () => void }) {
 }
 
 export default function App() {
-  const [screen, setScreen]           = useState<Screen>('home')
+  const [screen, setScreen]           = useState<Screen>('demo')
   const [role]                        = useState<Role>('head')
   const [homeTab, setHomeTab]         = useState(0)
   const [squadTab, setSquadTab]       = useState(0)
