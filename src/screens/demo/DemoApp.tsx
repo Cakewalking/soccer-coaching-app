@@ -212,6 +212,8 @@ function renderScreen(key: string): ReactNode {
       return <FitnessCoachScreen empty={false} />
     case 'clubadmin':
       return <ClubAdminScreen empty={false} />
+    case 'chair-home':
+      return <ClubAdminScreen empty={false} role="chair" initials="GL" />
     case 'teammanager':
       return <TeamManagerScreen empty={false} />
     case 'twochildren':

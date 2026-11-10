@@ -478,7 +478,7 @@ export const TOURS: Record<string, TourDef> = {
     persona: "as Greg Lawson",
     device: 'tablet',
     total: 8,
-    home: 'd0c-chair',
+    home: 'chair-home',
     sections: [
       { title: "Set up", steps: [
         { label: "First-use home", caption: "First use: every screen says what to do next, so nothing starts blank.", screen: "clubadmin" },

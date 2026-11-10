@@ -16,7 +16,7 @@ import WelfareTab from './clubadmin/WelfareTab'
 import ConcussionTab from './clubadmin/ConcussionTab'
 import GoalkeepersTab from './clubadmin/GoalkeepersTab'
 
-export default function ClubAdminScreen({ empty, role = 'chair' }: { empty?: boolean; role?: 'chair' | 'dof' }) {
+export default function ClubAdminScreen({ empty, role = 'chair', initials = 'RM' }: { empty?: boolean; role?: 'chair' | 'dof'; initials?: string }) {
   const [tab, setTab] = useState<AdminTab>('club')
 
 
@@ -53,7 +53,7 @@ export default function ClubAdminScreen({ empty, role = 'chair' }: { empty?: boo
               Whole club
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9l6 6 6-6"/></svg>
             </button>
-            <div style={{ width: 32, height: 32, borderRadius: '999px', background: '#c39797', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }}>RM</div>
+            <div style={{ width: 32, height: 32, borderRadius: '999px', background: '#c39797', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }}>{initials}</div>
           </div>
         </div>
 
