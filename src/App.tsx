@@ -41,10 +41,11 @@ import GoalkeeperCoachApp        from './screens/GoalkeeperCoachApp'
 import CoordinatorPortal         from './screens/CoordinatorPortal'
 import RolloverScreen            from './screens/RolloverScreen'
 import SeniorsYouthCoachApp      from './screens/SeniorsYouthCoachApp'
+import DemoApp                   from './screens/demo/DemoApp'
 import { type Role } from './data'
 import './index.css'
 
-export type Screen = 'home' | 'squad' | 'training' | 'matchday' | 'teamtalk' | 'clips' | 'player' | 'pitchside' | 'addgame' | 'setstyle' | 'livegame' | 'metric' | 'teammanager' | 'signup' | 'playerapp' | 'fitnesscoach' | 'clubadmin' | 'settings' | 'olderavail' | 'olderplayer' | 'refereephone' | 'miniroos' | 'goalkeeper' | 'coordinator' | 'rollover' | 'seniors' | 'youth' | 'twochildren' | 'playerme'
+export type Screen = 'home' | 'squad' | 'training' | 'matchday' | 'teamtalk' | 'clips' | 'player' | 'pitchside' | 'addgame' | 'setstyle' | 'livegame' | 'metric' | 'teammanager' | 'signup' | 'playerapp' | 'fitnesscoach' | 'clubadmin' | 'settings' | 'olderavail' | 'olderplayer' | 'refereephone' | 'miniroos' | 'goalkeeper' | 'coordinator' | 'rollover' | 'seniors' | 'youth' | 'twochildren' | 'playerme' | 'demo'
 
 const NAV_TABS: Array<{ id: Screen; label: string; icon: string }> = [
   { id: 'home',     label: 'Home',      icon: 'M4 11l8-7 8 7v9H4z' },
@@ -168,6 +169,11 @@ function TeamPicker({ onMetric, onNav }: { onMetric?: () => void; onNav?: (s: Sc
             <button onClick={() => go('signup')} style={{ display: 'block', width: '100%', padding: '8px 16px', border: 0, background: 'transparent', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
               <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>Sign-up / onboarding</div>
               <div style={{ fontSize: 12, color: '#6f7f7b' }}>Coach, parent, player, staff</div>
+            </button>
+            <div style={{ padding: '10px 16px 6px', fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#6f7f7b', borderTop: '1px solid #f0f1f0' }}>Demo mode</div>
+            <button onClick={() => go('demo')} style={{ display: 'block', width: '100%', padding: '8px 16px', border: 0, background: 'transparent', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
+              <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>Hosted demo</div>
+              <div style={{ fontSize: 12, color: '#6f7f7b' }}>Role picker, guided tours, look-around mode</div>
             </button>
             <div style={{ padding: '10px 16px', borderTop: '1px solid #f0f1f0', fontSize: 12, color: '#6f7f7b', background: '#fafafa' }}>
               Previewing all app portals
@@ -335,6 +341,10 @@ export default function App() {
       </div>
     )
   }
+  if (screen === 'demo') {
+    return <DemoApp />
+  }
+
   if (screen === 'playerme') {
     return (
       <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: '#f0f1f0', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 40 }}>
