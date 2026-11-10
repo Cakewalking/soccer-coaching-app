@@ -37,11 +37,14 @@ import StaffMiniRoos       from './screens/miniroos/StaffMiniRoos'
 import ComingMiniRoos      from './screens/miniroos/ComingMiniRoos'
 import ConsentMiniRoos     from './screens/miniroos/ConsentMiniRoos'
 import WhatWeSawScreen     from './screens/miniroos/WhatWeSawScreen'
-import SettingsScreen      from './screens/SettingsScreen'
+import SeasonNotesScreen         from './screens/miniroos/SeasonNotesScreen'
+import OlderAvailabilityScreen   from './screens/playerapp/OlderAvailabilityScreen'
+import RefereesPhoneScreen       from './screens/playerapp/RefereesPhoneScreen'
+import SettingsScreen            from './screens/SettingsScreen'
 import { type Role } from './data'
 import './index.css'
 
-export type Screen = 'home' | 'squad' | 'training' | 'matchday' | 'teamtalk' | 'clips' | 'player' | 'pitchside' | 'addgame' | 'setstyle' | 'livegame' | 'metric' | 'teammanager' | 'signup' | 'playerapp' | 'fitnesscoach' | 'clubadmin' | 'settings'
+export type Screen = 'home' | 'squad' | 'training' | 'matchday' | 'teamtalk' | 'clips' | 'player' | 'pitchside' | 'addgame' | 'setstyle' | 'livegame' | 'metric' | 'teammanager' | 'signup' | 'playerapp' | 'fitnesscoach' | 'clubadmin' | 'settings' | 'olderavail' | 'refereephone'
 
 const NAV_TABS: Array<{ id: Screen; label: string; icon: string }> = [
   { id: 'home',     label: 'Home',      icon: 'M4 11l8-7 8 7v9H4z' },
@@ -52,7 +55,7 @@ const NAV_TABS: Array<{ id: Screen; label: string; icon: string }> = [
 ]
 
 const HOME_TABS     = ['Overview', 'Inbox', 'Calendar', 'Fixtures and results', 'Our style', 'Team staff', 'Inbox · MiniRoos', 'Calendar · MiniRoos', 'Staff · MiniRoos']
-const SQUAD_TABS    = ['Players', 'Development goals', 'Wellness', 'Availability', 'Consent and privacy', 'Who\'s coming · MiniRoos', 'Consent · MiniRoos']
+const SQUAD_TABS    = ['Players', 'Development goals', 'Wellness', 'Availability', 'Consent and privacy', 'Who\'s coming · MiniRoos', 'Consent · MiniRoos', 'Season notes · MiniRoos']
 const TRAINING_TABS = ["Tonight's session", 'This week', 'Drill library', 'Growth and load']
 const MATCHDAY_TABS = ['Team talk', 'Line-up and minutes', 'Opposition', 'Review', 'Fixtures · MiniRoos', 'What we saw · MiniRoos']
 const CLIPS_TABS    = ['Browse', 'Playlists', 'Shared with players', 'To check']
@@ -210,6 +213,26 @@ export default function App() {
       </div>
     )
   }
+  if (screen === 'olderavail') {
+    return (
+      <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: '#f0f1f0', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 40 }}>
+        <div style={{ display: 'flex', justifyContent: 'flex-end', width: 390, marginBottom: 12 }}>
+          <button onClick={() => navTo('playerapp')} style={{ height: 36, padding: '0 16px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Player app</button>
+        </div>
+        <OlderAvailabilityScreen />
+      </div>
+    )
+  }
+  if (screen === 'refereephone') {
+    return (
+      <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: '#f0f1f0', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 40 }}>
+        <div style={{ display: 'flex', justifyContent: 'flex-end', width: 390, marginBottom: 12 }}>
+          <button onClick={() => navTo('home')} style={{ height: 36, padding: '0 16px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Coach view</button>
+        </div>
+        <RefereesPhoneScreen />
+      </div>
+    )
+  }
   if (screen === 'fitnesscoach') {
     return (
       <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
@@ -350,6 +373,7 @@ export default function App() {
       {screen === 'squad' && squadTab === 4 && <ConsentScreen />}
       {screen === 'squad' && squadTab === 5 && <ComingMiniRoos />}
       {screen === 'squad' && squadTab === 6 && <ConsentMiniRoos />}
+      {screen === 'squad' && squadTab === 7 && <SeasonNotesScreen />}
       {/* Training tabs */}
       {screen === 'training' && trainingTab === 0 && <TrainingScreen role={role} onNav={navTo} empty={isEmpty} />}
       {screen === 'training' && trainingTab === 1 && <ThisWeekScreen empty={isEmpty} onDrillLibrary={() => setTrainingTab(2)} onTonightsPlan={() => setTrainingTab(0)} onGrowthLoad={() => setTrainingTab(3)} />}

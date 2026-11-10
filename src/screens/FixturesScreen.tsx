@@ -74,21 +74,21 @@ function FixturesEmpty() {
 }
 
 const RESULTS = [
-  { date: 'Sat 31 Oct', opp: 'Ironbark United', ha: 'A', score: '3–1', result: 'W' },
-  { date: 'Sat 24 Oct', opp: 'Saltmarsh',       ha: 'A', score: '1–2', result: 'L' },
-  { date: 'Sat 17 Oct', opp: 'Northcote',        ha: 'H', score: '1–1', result: 'D' },
-  { date: 'Sat 10 Oct', opp: 'Bayside',          ha: 'A', score: '2–0', result: 'W' },
-  { date: 'Sat 3 Oct',  opp: 'Kestrel Park',     ha: 'H', score: '3–1', result: 'W' },
-  { date: 'Sat 26 Sep', opp: 'Lyndhurst SC',     ha: 'A', score: '2–1', result: 'W' },
-  { date: 'Sat 19 Sep', opp: 'Riverside',        ha: 'A', score: '0–2', result: 'L' },
-  { date: 'Sat 12 Sep', opp: 'Banksia FC',       ha: 'H', score: '4–2', result: 'W' },
+  { date: 'Sat 30 May', opp: 'Ironbark United', ha: 'A', score: '3–1', result: 'W' },
+  { date: 'Sat 23 May', opp: 'Saltmarsh',       ha: 'A', score: '1–2', result: 'L' },
+  { date: 'Sat 16 May', opp: 'Northgate',        ha: 'H', score: '1–1', result: 'D' },
+  { date: 'Sat 9 May',  opp: 'Bayside',          ha: 'A', score: '2–0', result: 'W' },
+  { date: 'Sat 2 May',  opp: 'Kestrel Park',     ha: 'H', score: '3–1', result: 'W' },
+  { date: 'Sat 25 Apr', opp: 'Lyndhurst SC',     ha: 'H', score: '2–1', result: 'W' },
+  { date: 'Sat 18 Apr', opp: 'Riverside',        ha: 'A', score: '0–2', result: 'L' },
+  { date: 'Sat 11 Apr', opp: 'Banksia FC',       ha: 'H', score: '4–2', result: 'W' },
 ]
 
 const COMING_UP = [
-  { date: 'SAT\n7',  venue: 'vs Harbour Rovers',   sub: '9:30 · meet 8:40 · away kit', note: 'Rob booked camera' },
-  { date: 'SAT\n14', venue: 'at Kestrel Park',      sub: '9:00 · their ground',          note: '' },
-  { date: 'SAT\n21', venue: 'at Banksia FC',         sub: '9:00',                          note: '' },
-  { date: 'SAT\n28', venue: 'vs Riverside',          sub: '9:30',                          note: '' },
+  { date: 'SAT\n6',  venue: 'vs Harbour Rovers',  sub: '9:30 · meet 8:40 · white kit', note: 'Rob booked camera' },
+  { date: 'SAT\n13', venue: 'at Kestrel Park',     sub: '9:00 · their ground',           note: '' },
+  { date: 'SAT\n20', venue: 'at Banksia FC',        sub: '9:00',                           note: '' },
+  { date: 'SAT\n27', venue: 'vs Riverside',         sub: '9:30',                           note: '' },
 ]
 
 const LADDER = [
@@ -116,7 +116,7 @@ export default function FixturesScreen({ empty }: { empty?: boolean }) {
       <div style={{ minHeight: 0, display: 'flex', flexDirection: 'column', gap: 12 }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 14 }}>
           <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, letterSpacing: '-0.02em' }}>Fixtures and results</h1>
-          <span style={{ fontSize: 14, color: '#4a5a57' }}>U12 Mixed · 3rd of 10 · 16 points from 8 games · 2 × 25 minutes, 9 a side</span>
+          <span style={{ fontSize: 14, color: '#4a5a57' }}>U12 Sam · 3rd of 10 · 16 points from 8 games · 2 × 30 minutes, 9 a side</span>
         </div>
         <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
           <button onClick={() => setSynced(true)} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: `1px solid ${synced ? '#2f6252' : '#c5c8c4'}`, background: synced ? '#e4f2eb' : '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: synced ? '#2f6252' : '#10211f' }}>{synced ? 'Synced to calendar' : 'Sync to my calendar'}</button>

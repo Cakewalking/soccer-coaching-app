@@ -8,14 +8,14 @@ interface Props {
 const PROFILE_TABS = ['Overview', 'Clips', 'Wearable data', 'Wellness', 'Development']
 
 const GAME_RESULTS = [
-  { opp: 'RIV', result: 'W', rating: 6.5 },
-  { opp: 'OAK', result: 'W', rating: 7   },
-  { opp: 'PIN', result: 'L', rating: 6   },
-  { opp: 'KES', result: 'W', rating: 7.5 },
-  { opp: 'BAY', result: 'W', rating: 7.5 },
-  { opp: 'NOR', result: 'D', rating: 7   },
-  { opp: 'SAL', result: 'L', rating: 6.5 },
-  { opp: 'IRO', result: 'W', rating: 8.5 },
+  { opp: 'BAN', result: 'W', mins: 40 },
+  { opp: 'RIV', result: 'L', mins: 38 },
+  { opp: 'LYN', result: 'W', mins: 42 },
+  { opp: 'KES', result: 'W', mins: 45 },
+  { opp: 'BAY', result: 'W', mins: 41 },
+  { opp: 'NOR', result: 'D', mins: 44 },
+  { opp: 'SAL', result: 'L', mins: 43 },
+  { opp: 'IRO', result: 'W', mins: 43 },
 ]
 
 function resultColor(r: string) {
@@ -42,14 +42,14 @@ export default function PlayerProfileScreen({ playerIni }: Props) {
     player.status === 'missing' ? 'No check-in' : 'Ready'
 
   const metricCards = [
-    { label: 'Distance per game', value: '5.5 km', sub: '6.4 km last game, her best', source: 'GPS vest', trend: [4.8, 5.1, 4.6, 5.3, 5.5, 5.4, 5.8, 6.4] },
-    { label: 'Sprints per game',   value: '22',     sub: '26 last game, up from 20',  source: 'GPS vest', trend: [18, 20, 19, 21, 22, 20, 24, 26] },
-    { label: 'Wins of the ball',   value: '5.6',    sub: '9 last game, team high',    source: 'Match camera', trend: [4, 5, 4, 5, 6, 5, 7, 9] },
+    { label: 'Distance per game',  value: '4.0 km', sub: '4.6 km last game, her best', source: 'GPS vest',     trend: [3.4, 3.7, 3.5, 3.8, 4.0, 3.9, 4.2, 4.6] },
+    { label: 'Sprints per game',   value: '22',     sub: '26 last game, up from 20',   source: 'GPS vest',     trend: [18, 20, 19, 21, 22, 20, 24, 26] },
+    { label: 'Wins of the ball',   value: '5.6',    sub: '9 last game, team high',     source: 'Match camera', trend: [4, 5, 4, 5, 6, 5, 7, 9] },
     { label: 'Passes completed',   value: '76%',    sub: '82% last game',              source: 'Match camera', trend: [70, 72, 68, 74, 76, 73, 79, 82] },
   ]
 
   const latestNotes = [
-    { from: 'Sam K · Coach', date: 'Sun 1 Nov', text: "Best game of her season. Her pressing set the tone, and the left foot is starting to come." },
+    { from: 'Sam K · Coach', date: 'Sun 31 May', text: "Best game of her season. Her pressing set the tone, and the left foot is starting to come." },
     { from: 'Mia · check-in', date: 'Today', text: '"Legs feel heavy after two trainings."' },
   ]
 
@@ -90,11 +90,11 @@ export default function PlayerProfileScreen({ playerIni }: Props) {
             {/* Quick stats */}
             <div style={{ display: 'flex', gap: 24, flexShrink: 0 }}>
               {[
-                { label: 'Games',       value: player.games       },
-                { label: 'Minutes',     value: player.minutesUsed },
-                { label: 'Goals',       value: player.goals       },
-                { label: 'Assists',     value: player.assists     },
-                { label: 'Avg rating',  value: player.avgRating   },
+                { label: 'Games',        value: player.games       },
+                { label: 'Minutes',      value: player.minutesUsed },
+                { label: 'Goals',        value: player.goals       },
+                { label: 'Assists',      value: player.assists     },
+                { label: 'Avg minutes',  value: 42                 },
               ].map(s => (
                 <div key={s.label} style={{ textAlign: 'center' }}>
                   <div style={{ fontSize: 22, fontWeight: 700, color: '#10211f' }}>{s.value}</div>
@@ -142,13 +142,15 @@ export default function PlayerProfileScreen({ playerIni }: Props) {
             <div style={{ background: '#ffffff', border: '1px solid #e9eae8', borderRadius: 16, padding: '20px 24px', marginBottom: 24 }}>
               <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 20 }}>
                 <h2 style={{ margin: 0, fontSize: 17, fontWeight: 700, color: '#10211f' }}>Game by game</h2>
-                <span style={{ fontSize: 13, color: '#6f7f7b' }}>Coach rating out of 10 · season average {player.avgRating}</span>
+                <span style={{ fontSize: 13, color: '#6f7f7b' }}>Minutes played out of 60 · fair share is about 39</span>
               </div>
-              <div style={{ display: 'flex', gap: 12, alignItems: 'flex-end', height: 100 }}>
+              <div style={{ display: 'flex', gap: 12, alignItems: 'flex-end', height: 100, position: 'relative' }}>
+                {/* Fair share line at 39/60 = 65% height */}
+                <div style={{ position: 'absolute', left: 0, right: 0, bottom: `${(39 / 60) * 80 + 24}px`, borderTop: '1px dashed #c5c8c4', pointerEvents: 'none' }} />
                 {GAME_RESULTS.map((g, i) => (
                   <div key={i} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
-                    <span style={{ fontSize: 11, fontWeight: 700, color: '#6f7f7b' }}>{g.rating}</span>
-                    <div style={{ width: '100%', borderRadius: 4, background: '#40826d', height: `${(g.rating / 10) * 80}px`, transition: 'height 0.2s' }} />
+                    <span style={{ fontSize: 11, fontWeight: 700, color: '#6f7f7b' }}>{g.mins}</span>
+                    <div style={{ width: '100%', borderRadius: 4, background: '#40826d', height: `${(g.mins / 60) * 80}px`, transition: 'height 0.2s' }} />
                     <span style={{ ...resultColor(g.result), width: 24, height: 20, borderRadius: 4, fontSize: 10, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{g.result}</span>
                     <span style={{ fontSize: 11, color: '#6f7f7b' }}>{g.opp}</span>
                   </div>

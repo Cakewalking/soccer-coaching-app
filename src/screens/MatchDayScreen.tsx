@@ -62,7 +62,7 @@ function MatchDayEmpty() {
             </span>
             <div style={{ flexGrow: 1 }}>
               <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 2 }}>Player check is off</div>
-              <div style={{ fontSize: 12, color: '#4a5a57', lineHeight: '16px' }}>On game morning, players answer four quick questions. You'll see who is carrying a knock or feeling flat before kick-off.</div>
+              <div style={{ fontSize: 12, color: '#4a5a57', lineHeight: '16px' }}>On game morning, players answer three quick questions. You'll see who is carrying a knock or feeling flat before kick-off.</div>
             </div>
             <button style={{ flex: 'none', height: 36, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Turn on check-ins</button>
           </div>

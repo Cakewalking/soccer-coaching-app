@@ -8,6 +8,11 @@ import SafeguardingTab from './clubadmin/SafeguardingTab'
 import ReportsTab from './clubadmin/ReportsTab'
 import ClubRulesTab from './clubadmin/ClubRulesTab'
 import ClubPlanTab from './clubadmin/ClubPlanTab'
+import CalendarTab from './clubadmin/CalendarTab'
+import LeagueSyncTab from './clubadmin/LeagueSyncTab'
+import RefereesTab from './clubadmin/RefereesTab'
+import SidelineTab from './clubadmin/SidelineTab'
+import WelfareTab from './clubadmin/WelfareTab'
 
 export default function ClubAdminScreen({ empty, role = 'chair' }: { empty?: boolean; role?: 'chair' | 'dof' }) {
   const [tab, setTab] = useState<AdminTab>('club')
@@ -28,14 +33,19 @@ export default function ClubAdminScreen({ empty, role = 'chair' }: { empty?: boo
   }
 
   const TABS: { id: AdminTab; label: string; icon: string }[] = [
-    { id: 'club', label: 'Club', icon: 'M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z' },
-    { id: 'teams', label: 'Teams', icon: 'M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75' },
-    { id: 'coaches', label: 'Coaches', icon: 'M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8z' },
-    { id: 'players', label: 'Players', icon: 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5' },
-    { id: 'safeguarding', label: 'Safeguarding', icon: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z' },
-    { id: 'reports', label: 'Reports', icon: 'M18 20V10M12 20V4M6 20v-6' },
-    { id: 'rules', label: 'Club rules', icon: 'M9 11l3 3L22 4M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11' },
-    { id: 'plan', label: 'Plan', icon: 'M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8zM14 2v6h6M8 13h8M8 17h5' },
+    { id: 'club',         label: 'Club',          icon: 'M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z' },
+    { id: 'teams',        label: 'Teams',         icon: 'M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75' },
+    { id: 'coaches',      label: 'Coaches',       icon: 'M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8z' },
+    { id: 'players',      label: 'Players',       icon: 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5' },
+    { id: 'safeguarding', label: 'Safeguarding',  icon: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z' },
+    { id: 'reports',      label: 'Reports',       icon: 'M18 20V10M12 20V4M6 20v-6' },
+    { id: 'rules',        label: 'Club rules',    icon: 'M9 11l3 3L22 4M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11' },
+    { id: 'plan',         label: 'Plan',          icon: 'M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8zM14 2v6h6M8 13h8M8 17h5' },
+    { id: 'calendar',     label: 'Calendar',      icon: 'M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z' },
+    { id: 'leaguesync',   label: 'League sync',   icon: 'M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15' },
+    { id: 'referees',     label: 'Referees',      icon: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z' },
+    { id: 'sideline',     label: 'Sideline',      icon: 'M15 10l4.553-2.069A1 1 0 0121 8.869v6.262a1 1 0 01-1.447.894L15 14M3 8h12v9H3z' },
+    { id: 'welfare',      label: 'Welfare',       icon: 'M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z' },
   ]
 
   return (
@@ -78,14 +88,19 @@ export default function ClubAdminScreen({ empty, role = 'chair' }: { empty?: boo
 
       {/* Content */}
       <div style={{ flexGrow: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
-        {tab === 'club' && <ClubTab role={role} />}
-        {tab === 'teams' && <TeamsTab />}
-        {tab === 'coaches' && <CoachesTab />}
-        {tab === 'players' && <PlayersTab />}
+        {tab === 'club'         && <ClubTab role={role} />}
+        {tab === 'teams'        && <TeamsTab />}
+        {tab === 'coaches'      && <CoachesTab />}
+        {tab === 'players'      && <PlayersTab />}
         {tab === 'safeguarding' && <SafeguardingTab />}
-        {tab === 'reports' && <ReportsTab />}
-        {tab === 'rules' && <ClubRulesTab />}
-        {tab === 'plan' && <ClubPlanTab />}
+        {tab === 'reports'      && <ReportsTab />}
+        {tab === 'rules'        && <ClubRulesTab />}
+        {tab === 'plan'         && <ClubPlanTab />}
+        {tab === 'calendar'     && <CalendarTab />}
+        {tab === 'leaguesync'   && <LeagueSyncTab />}
+        {tab === 'referees'     && <RefereesTab />}
+        {tab === 'sideline'     && <SidelineTab />}
+        {tab === 'welfare'      && <WelfareTab />}
       </div>
     </div>
   )

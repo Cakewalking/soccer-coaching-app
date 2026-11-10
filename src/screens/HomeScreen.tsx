@@ -14,15 +14,12 @@ function HomeEmpty({ onSetStyle }: { onSetStyle?: () => void }) {
   const steps = [
     { n: 1, title: 'Add your squad', body: 'Names, positions and a parent contact. Import a spreadsheet or share an invite link.', btn: 'Add players' },
     { n: 2, title: 'Add your fixtures', body: 'Clean Sheet plans training around your game days.', btn: 'Add fixtures' },
-    { n: 3, title: 'Connect the match camera', body: 'The XbotGo Falcon records games and finds the clips for you.', btn: 'Connect' },
+    { n: 3, title: 'Connect the match camera', body: 'Your match camera records games and finds the clips for you.', btn: 'Connect' },
     { n: 4, title: 'Pair boots and vests', body: 'Boot sensors and GPS vests measure running, sprints and touches.', btn: 'Pair devices' },
-    { n: 5, title: 'Turn on wellness check-ins', body: 'Players answer four quick questions on their phone before training and games.', btn: 'Turn on' },
+    { n: 5, title: 'Turn on wellness check-ins', body: 'Players answer three quick questions on their phone before training and games.', btn: 'Turn on' },
   ]
   const styleRows = [
-    { label: 'PRESSING',       desc: 'Wins of the ball in their half' },
-    { label: 'BALL RETENTION', desc: 'Moves of 6 or more passes' },
-    { label: 'TEAM SHAPE',     desc: 'Gap between the lines' },
-    { label: 'RESULTS',        desc: 'Form and league position' },
+    { label: 'PRESSING', desc: 'Wins of the ball in their half' },
   ]
   return (
     <div style={{ flexGrow: 1, minHeight: 0, display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 340px', gap: 16, padding: '20px 28px 24px', boxSizing: 'border-box', overflow: 'hidden' }}>
@@ -31,7 +28,7 @@ function HomeEmpty({ onSetStyle }: { onSetStyle?: () => void }) {
       <div style={{ minHeight: 0, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 16 }}>
         <div>
           <h1 style={{ margin: '0 0 2px', fontSize: 26, fontWeight: 700, letterSpacing: '-0.02em' }}>Welcome to Clean Sheet, Sam</h1>
-          <div style={{ fontSize: 14, color: '#4a5a57' }}>U12 · Wattle Creek FC · let's get your team ready</div>
+          <div style={{ fontSize: 14, color: '#4a5a57' }}>U12 Sam · Wattle Creek FC · let's get your team ready</div>
         </div>
 
         <div style={{ background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 16, overflow: 'hidden' }}>
@@ -97,7 +94,7 @@ function HomeEmpty({ onSetStyle }: { onSetStyle?: () => void }) {
 
         <div style={{ background: '#eef5f2', borderRadius: 12, padding: '10px 14px', display: 'flex', alignItems: 'center', gap: 10 }}>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2f6252" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/></svg>
-          <span style={{ fontSize: 13, color: '#2f6252', flexGrow: 1 }}>Inbox is empty. Reviews and alerts arrive here.</span>
+          <span style={{ fontSize: 13, color: '#2f6252', flexGrow: 1 }}>Nothing needs you yet. Reviews and alerts arrive here.</span>
           <button style={{ border: 0, background: 'transparent', color: '#2f6252', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>Open inbox</button>
         </div>
       </div>
