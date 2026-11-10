@@ -45,6 +45,8 @@ import CoachFitnessScreen          from './screens/CoachFitnessScreen'
 import LiveGame11Screen            from './screens/LiveGame11Screen'
 import DemoApp                     from './screens/demo/DemoApp'
 import TeamChatScreen               from './screens/TeamChatScreen'
+import RecordScreen                 from './screens/RecordScreen'
+import SuggestionsScreen            from './screens/SuggestionsScreen'
 import { type Role } from './data'
 import './index.css'
 
@@ -60,7 +62,7 @@ const NAV_TABS: Array<{ id: Screen; label: string; icon: string }> = [
 
 const HOME_TABS     = ['Overview', 'Inbox', 'Calendar', 'Fixtures and results', 'Our style', 'Team staff']
 const SQUAD_TABS    = ['Players', 'Development goals', 'Wellness', 'Availability', 'Consent and privacy', 'Season summaries']
-const TRAINING_TABS = ["Tonight's session", 'This week', 'Drill library', 'Growth and load']
+const TRAINING_TABS = ["Tonight's session", 'This week', 'Suggested', 'Drill library', 'Growth and load', 'Record']
 const MATCHDAY_TABS = ['Team talk', 'Line-up and minutes', 'Opposition', 'Review']
 const CLIPS_TABS    = ['Browse', 'Playlists', 'Shared with players', 'To check']
 
@@ -496,9 +498,11 @@ export default function App() {
       {screen === 'squad' && squadTab === 5 && <SeasonSummariesScreen />}
       {/* Training tabs */}
       {screen === 'training' && trainingTab === 0 && <TrainingScreen role={role} onNav={navTo} empty={isEmpty} />}
-      {screen === 'training' && trainingTab === 1 && <ThisWeekScreen empty={isEmpty} onDrillLibrary={() => setTrainingTab(2)} onTonightsPlan={() => setTrainingTab(0)} onGrowthLoad={() => setTrainingTab(3)} />}
-      {screen === 'training' && trainingTab === 2 && <DrillLibraryScreen />}
-      {screen === 'training' && trainingTab === 3 && <GrowthLoadScreen empty={isEmpty} />}
+      {screen === 'training' && trainingTab === 1 && <ThisWeekScreen empty={isEmpty} onDrillLibrary={() => setTrainingTab(3)} onTonightsPlan={() => setTrainingTab(0)} onGrowthLoad={() => setTrainingTab(4)} />}
+      {screen === 'training' && trainingTab === 2 && <SuggestionsScreen empty={isEmpty} onRecord={() => setTrainingTab(5)} />}
+      {screen === 'training' && trainingTab === 3 && <DrillLibraryScreen />}
+      {screen === 'training' && trainingTab === 4 && <GrowthLoadScreen empty={isEmpty} />}
+      {screen === 'training' && trainingTab === 5 && <RecordScreen empty={isEmpty} />}
       {/* Match day tabs */}
       {screen === 'matchday' && matchdayTab === 0 && <MatchDayScreen onNav={navTo} empty={isEmpty} />}
       {screen === 'matchday' && matchdayTab === 1 && <TeamSheetScreen empty={isEmpty} />}
