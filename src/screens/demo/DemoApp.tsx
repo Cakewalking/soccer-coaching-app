@@ -158,21 +158,28 @@ import SPp4ParentRestMonth    from '../footballyear/SPp4ParentRestMonth'
 import SPp6ManagerTournament  from '../footballyear/SPp6ManagerTournament'
 import SPp7PlayerRestMonth    from '../footballyear/SPp7PlayerRestMonth'
 import SPp8StandInAsked       from '../footballyear/SPp8StandInAsked'
+import SKRoles              from '../step4/SKRoles'
+import IV3cCoCoachInvite    from '../step4/IV3cCoCoachInvite'
+import IV3fFitnessInvite    from '../step4/IV3fFitnessInvite'
+import IV4ManagerDone       from '../step4/IV4ManagerDone'
+import JoinFlow             from '../join/JoinFlow'
 import JuniorCoachApp        from '../JuniorCoachApp'
 import DemoStart             from './DemoStart'
 import DemoStartEmpty        from './DemoStartEmpty'
 import DemoSignIn            from './DemoSignIn'
 import DemoWhy               from './DemoWhy'
 import DemoTourShell         from './DemoTourShell'
-import DemoShell             from './DemoShell'
+import DemoShell, { type DemoPhase } from './DemoShell'
 import DemoShellSandbox      from './DemoShellSandbox'
 import { TOURS, type RoleId } from './tours'
 
 type DemoView = 'signin' | 'start' | 'why' | 'tour' | 'lookaround' | 'sandbox' | 'sandboxlook'
 
+const PHASE_ROLES = new Set<string>(['coach', 'ccoach', 'parent', 'manager', 'playerolder'])
+
 function noop() {}
 
-function renderScreen(key: string): ReactNode {
+export function renderScreen(key: string): ReactNode {
   switch (key) {
     case 'juniorcoach':
       return <JuniorCoachApp />
@@ -400,6 +407,22 @@ function renderScreen(key: string): ReactNode {
     // Step 4 — Team chat (tablet)
     case 'ch1-chat':          return <CH1TeamChat />
 
+    // Step 4 — Invite + join screens
+    case 'sk-roles':          return <SKRoles />
+    case 'iv3c-coachinvite':  return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><IV3cCoCoachInvite /></div>
+    case 'iv3f-fitinvite':    return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><IV3fFitnessInvite /></div>
+    case 'iv4-managerdone':   return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><IV4ManagerDone /></div>
+    // JN join flow (phone)
+    case 'jn-landing':        return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><JoinFlow initialStep="landing" /></div>
+    case 'jn1-create':        return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><JoinFlow initialStep="parent-create" /></div>
+    case 'jn2-child':         return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><JoinFlow initialStep="parent-child" /></div>
+    case 'jn8-firstaid':      return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><JoinFlow initialStep="parent-firstaid" /></div>
+    case 'jn4-setup':         return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><JoinFlow initialStep="parent-setup" /></div>
+    case 'jn5-parentdone':    return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><JoinFlow initialStep="parent-done" /></div>
+    case 'jn6-age':           return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><JoinFlow initialStep="player-age" /></div>
+    case 'jn7-code':          return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><JoinFlow initialStep="player-code" /></div>
+    case 'jn9a-18plus':       return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><JoinFlow initialStep="player-18" /></div>
+
     // Sandbox empty-state homes
     case 'home-e':
       return <HomeScreen role="head" onRole={noop} onNav={noop} onCalendar={noop} empty={true} />
@@ -450,6 +473,7 @@ export default function DemoApp() {
   const init = pathToState(window.location.pathname)
   const [view, setView] = useState<DemoView>(init.view)
   const [role, setRole] = useState<RoleId>(init.role)
+  const [phase, setPhase] = useState<DemoPhase>('season')
 
   useEffect(() => {
     const path = viewToPath(view, role)
@@ -530,22 +554,64 @@ export default function DemoApp() {
 
   if (view === 'lookaround') {
     const homeKey = TOURS[role].home
-    const lookContent = role === 'miniroos'
-      ? (
+    let lookContent: ReactNode
+    if (role === 'miniroos') {
+      lookContent = (
         <div style={{ width: 1180, background: 'var(--surface-100)' }}>
           <MiniRoosApp onBack={() => setRole('coach')} empty={false} />
         </div>
       )
-      : homeKey ? renderScreen(homeKey) : (
+    } else if (role === 'goalkeeper') {
+      lookContent = <GoalkeeperCoachApp onBack={() => setRole('coach')} empty={false} />
+    } else if (role === 'academyowner') {
+      lookContent = <AcademyOwnerApp onBack={() => setRole('academycoach')} empty={false} />
+    } else if (role === 'academycoach') {
+      lookContent = <AcademyCoachApp onBack={() => setRole('coach')} empty={false} />
+    } else if (role === 'academyparent') {
+      lookContent = (
+        <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}>
+          <AcademyParentApp onBack={() => setView('start')} empty={false} />
+        </div>
+      )
+    } else if (role === 'academyplayer') {
+      lookContent = (
+        <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}>
+          <AcademyPlayerApp onBack={() => setView('start')} empty={false} />
+        </div>
+      )
+    } else if (role === 'coach' || role === 'ccoach') {
+      if (phase === 'preseason')       lookContent = <SP2HomePreSeason onBack={noop} />
+      else if (phase === 'postseason') lookContent = <SP10HomePostSeason onBack={noop} />
+      else if (phase === 'restmonth')  lookContent = <SP16RestMonth onBack={noop} />
+      else                             lookContent = <JuniorCoachApp />
+    } else if (role === 'parent') {
+      if (phase === 'preseason')       lookContent = <SPp1ParentPreSeason onBack={noop} />
+      else if (phase === 'postseason') lookContent = <SPp3ParentTournament onBack={noop} />
+      else if (phase === 'restmonth')  lookContent = <SPp4ParentRestMonth onBack={noop} />
+      else                             lookContent = <TwoChildrenApp onBack={() => setView('start')} empty={false} />
+    } else if (role === 'manager') {
+      if (phase === 'postseason') lookContent = <SPp6ManagerTournament onBack={noop} />
+      else                        lookContent = <TeamManagerScreen empty={false} />
+    } else if (role === 'playerolder') {
+      if (phase === 'restmonth') lookContent = <SPp7PlayerRestMonth onBack={noop} />
+      else                       lookContent = <OlderPlayerApp empty={false} />
+    } else if (homeKey) {
+      lookContent = renderScreen(homeKey)
+    } else {
+      lookContent = (
         <div style={{ padding: 48, fontSize: 15, color: '#6f7f7b' }}>
           {TOURS[role].roleLabel} — no screen preview available.
         </div>
       )
+    }
+    const showPhase = PHASE_ROLES.has(role)
     return (
       <DemoShell
         roleId={role}
         onBack={() => setView('start')}
         onStartTour={() => setView('tour')}
+        phase={showPhase ? phase : undefined}
+        onPhaseChange={showPhase ? setPhase : undefined}
       >
         {lookContent}
       </DemoShell>

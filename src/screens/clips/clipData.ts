@@ -14,7 +14,7 @@ export const GAME_FULL: Record<string, { title: string; sub: string }> = {
   ironbark:  { title: 'Ironbark United · Sat 30 May · Won 3–1',  sub: 'Full match recorded · highlights are 4 min · review ready' },
   saltmarsh: { title: 'Saltmarsh FC · Sat 23 May · Lost 1–2',    sub: 'Full match recorded · highlights are 3 min' },
   northgate: { title: 'Northgate FC · Sat 16 May · Drew 1–1',    sub: 'Full match recorded · highlights are 2 min' },
-  bayside:   { title: 'Bayside FC · Sat 9 May · Won 2–0',        sub: 'Full match recorded · highlights are 4 min' },
+  bayside:   { title: 'Tealside Town · Sat 9 May · Won 2–0',     sub: 'Full match recorded · highlights are 4 min' },
 }
 
 export const MEASURE_INFO: Record<string, string> = {

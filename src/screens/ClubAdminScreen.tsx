@@ -15,6 +15,8 @@ import SidelineTab from './clubadmin/SidelineTab'
 import WelfareTab from './clubadmin/WelfareTab'
 import ConcussionTab from './clubadmin/ConcussionTab'
 import GoalkeepersTab from './clubadmin/GoalkeepersTab'
+import SP18ClubPhases from './footballyear/SP18ClubPhases'
+import SP19TrialWindow from './footballyear/SP19TrialWindow'
 
 export default function ClubAdminScreen({ empty, role = 'chair', initials = 'RM', initialTab = 'club' }: { empty?: boolean; role?: 'chair' | 'dof' | 'welfare'; initials?: string; initialTab?: AdminTab }) {
   const [tab, setTab] = useState<AdminTab>(initialTab)
@@ -36,6 +38,8 @@ export default function ClubAdminScreen({ empty, role = 'chair', initials = 'RM'
     { id: 'welfare',      label: 'Welfare',       icon: 'M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z' },
     { id: 'concussion',   label: 'Concussion',    icon: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10zM12 8v4M12 16h.01' },
     { id: 'goalkeepers',  label: 'Goalkeepers',   icon: 'M15 10l4.553-2.069A1 1 0 0121 8.869v6.262a1 1 0 01-1.447.894L15 14M3 8h12v9H3z' },
+    { id: 'footballyear', label: 'Football year',  icon: 'M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z' },
+    { id: 'trialwindow',  label: 'Trials',         icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2M9 12l2 2 4-4' },
   ]
 
   return (
@@ -93,6 +97,8 @@ export default function ClubAdminScreen({ empty, role = 'chair', initials = 'RM'
         {tab === 'welfare'      && <WelfareTab empty={empty} />}
         {tab === 'concussion'   && <ConcussionTab empty={empty} />}
         {tab === 'goalkeepers'  && <GoalkeepersTab empty={empty} />}
+        {tab === 'footballyear' && <SP18ClubPhases onBack={() => setTab('club')} />}
+        {tab === 'trialwindow'  && <SP19TrialWindow onBack={() => setTab('club')} />}
       </div>
     </div>
   )

@@ -16,7 +16,7 @@ const REPORTS = [
   },
   {
     title: 'Coach on the field during play',
-    game: 'U10 Nadia v Bayside Lions · Sat 23 May · from the referee',
+    game: 'U10 Nadia v Tealside Town · Sat 23 May · from the referee',
     action: 'Closed · reminder sent',
     status: 'closed',
   },

@@ -558,7 +558,7 @@ export const CLIPS_GAMES = [
   { id: 'ironbark',  label: 'Ironbark 3–1',  result: 'W' as const, date: 'Sat 30 May' },
   { id: 'saltmarsh', label: 'Saltmarsh 1–2', result: 'L' as const, date: 'Sat 23 May' },
   { id: 'northgate', label: 'Northgate 1–1', result: 'D' as const, date: 'Sat 16 May' },
-  { id: 'bayside',   label: 'Bayside 2–0',   result: 'W' as const, date: 'Sat 9 May'  },
+  { id: 'bayside',   label: 'Tealside Town 2–0',   result: 'W' as const, date: 'Sat 9 May'  },
 ]
 
 export const CLIPS_MEASURES = [
@@ -586,12 +586,12 @@ export const CLIPS: GameClip[] = [
   { id:15, game:'saltmarsh', gameResult:'L', gameLabel:'Saltmarsh 1–2', gameDate:'Sat 23 May', min:33, duration:'0:16', title:'Long ball after two passes',       desc:'Gave away possession after just two passes, went long.',                                        type:'work', measures:['Building out'],      players:['NO','AL'],       half:'First half' },
   { id:16, game:'saltmarsh', gameResult:'L', gameLabel:'Saltmarsh 1–2', gameDate:'Sat 23 May', min:41, duration:'0:13', title:'Quick press wins it back',         desc:'Winning it back · min 41. Press wins the ball inside their half.',                              type:'good', measures:['Winning it back'],  players:['MT','LM'],       half:'First half' },
   { id:17, game:'saltmarsh', gameResult:'L', gameLabel:'Saltmarsh 1–2', gameDate:'Sat 23 May', min:58, duration:'0:11', title:'Shot blocked, didn\'t follow up',  desc:'Goals and chances · min 58. Good chance, no one on the follow-up.',                             type:'work', measures:['Goals and chances'], players:['TR','JP'],       half:'Second half' },
-  // Bayside 2–0 · Sat 9 May (5 clips · 5 good)
-  { id:18, game:'bayside',   gameResult:'W', gameLabel:'Bayside 2–0',   gameDate:'Sat 9 May',  min:14, duration:'0:11', title:'Goal from a high turnover',        desc:'High press wins it back, shot on goal from the edge of their box.',                             type:'good', measures:['Pressing high'],     players:['AL','JP'],       half:'First half',   taggedBy:'you' },
-  { id:19, game:'bayside',   gameResult:'W', gameLabel:'Bayside 2–0',   gameDate:'Sat 9 May',  min:22, duration:'0:09', title:'Win it, quick pass, goal',         desc:'Winning it back · min 22. Win the ball, play through, goal.',                                   type:'good', measures:['Winning it back'],  players:['EB','MT'],       half:'First half' },
-  { id:20, game:'bayside',   gameResult:'W', gameLabel:'Bayside 2–0',   gameDate:'Sat 9 May',  min:34, duration:'0:12', title:'Win high and go',                  desc:'Won the ball in their half and went straight at goal. Winning it back · min 34.',               type:'good', measures:['Winning it back'],  players:['JP','LM'],       half:'First half' },
-  { id:21, game:'bayside',   gameResult:'W', gameLabel:'Bayside 2–0',   gameDate:'Sat 9 May',  min:44, duration:'0:14', title:'Lines stayed tight all first half', desc:'Our lines compact, no gaps. Gap between lines · min 44.',                                       type:'good', measures:['Gap between lines'], players:['ZH','MT'],       half:'Second half' },
-  { id:22, game:'bayside',   gameResult:'W', gameLabel:'Bayside 2–0',   gameDate:'Sat 9 May',  min:51, duration:'0:13', title:'Low cross, Mia on the finish',      desc:'Goals and chances · min 51. Great movement, great finish.',                                     type:'good', measures:['Goals and chances'], players:['MT','GO'],       half:'Second half' },
+  // Tealside Town 2–0 · Sat 9 May (5 clips · 5 good)
+  { id:18, game:'bayside',   gameResult:'W', gameLabel:'Tealside Town 2–0',   gameDate:'Sat 9 May',  min:14, duration:'0:11', title:'Goal from a high turnover',        desc:'High press wins it back, shot on goal from the edge of their box.',                             type:'good', measures:['Pressing high'],     players:['AL','JP'],       half:'First half',   taggedBy:'you' },
+  { id:19, game:'bayside',   gameResult:'W', gameLabel:'Tealside Town 2–0',   gameDate:'Sat 9 May',  min:22, duration:'0:09', title:'Win it, quick pass, goal',         desc:'Winning it back · min 22. Win the ball, play through, goal.',                                   type:'good', measures:['Winning it back'],  players:['EB','MT'],       half:'First half' },
+  { id:20, game:'bayside',   gameResult:'W', gameLabel:'Tealside Town 2–0',   gameDate:'Sat 9 May',  min:34, duration:'0:12', title:'Win high and go',                  desc:'Won the ball in their half and went straight at goal. Winning it back · min 34.',               type:'good', measures:['Winning it back'],  players:['JP','LM'],       half:'First half' },
+  { id:21, game:'bayside',   gameResult:'W', gameLabel:'Tealside Town 2–0',   gameDate:'Sat 9 May',  min:44, duration:'0:14', title:'Lines stayed tight all first half', desc:'Our lines compact, no gaps. Gap between lines · min 44.',                                       type:'good', measures:['Gap between lines'], players:['ZH','MT'],       half:'Second half' },
+  { id:22, game:'bayside',   gameResult:'W', gameLabel:'Tealside Town 2–0',   gameDate:'Sat 9 May',  min:51, duration:'0:13', title:'Low cross, Mia on the finish',      desc:'Goals and chances · min 51. Great movement, great finish.',                                     type:'good', measures:['Goals and chances'], players:['MT','GO'],       half:'Second half' },
 ]
 
 // ── Our style screen ──────────────────────────────────────────────────────────

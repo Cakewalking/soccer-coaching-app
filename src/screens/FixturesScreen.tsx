@@ -77,7 +77,7 @@ const RESULTS = [
   { date: 'Sat 30 May', opp: 'Ironbark United', ha: 'A', score: '3–1', result: 'W' },
   { date: 'Sat 23 May', opp: 'Saltmarsh',       ha: 'A', score: '1–2', result: 'L' },
   { date: 'Sat 16 May', opp: 'Northgate',        ha: 'H', score: '1–1', result: 'D' },
-  { date: 'Sat 9 May',  opp: 'Bayside',          ha: 'A', score: '2–0', result: 'W' },
+  { date: 'Sat 9 May',  opp: 'Tealside Town',     ha: 'A', score: '2–0', result: 'W' },
   { date: 'Sat 2 May',  opp: 'Kestrel Park',     ha: 'H', score: '3–1', result: 'W' },
   { date: 'Sat 25 Apr', opp: 'Lyndhurst SC',     ha: 'H', score: '2–1', result: 'W' },
   { date: 'Sat 18 Apr', opp: 'Riverside',        ha: 'A', score: '0–2', result: 'L' },
@@ -96,7 +96,7 @@ const LADDER = [
   { pos: 2, name: 'Riverside',       played: 8, pts: 19 },
   { pos: 3, name: 'Wattle Creek',    played: 8, pts: 16, us: true },
   { pos: 4, name: 'Kestrel Park',    played: 8, pts: 14 },
-  { pos: 5, name: 'Bayside',         played: 8, pts: 12 },
+  { pos: 5, name: 'Tealside Town',   played: 8, pts: 12 },
   { pos: 6, name: 'Harbour Rovers',  played: 8, pts: 11 },
 ]
 

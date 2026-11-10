@@ -189,6 +189,12 @@ export default function FitnessCoachScreen({ empty }: { empty?: boolean }) {
   const [rpeScore, setRpeScore]   = useState<number | null>(null)
   const [rpeHurt, setRpeHurt]     = useState<'no' | 'yes' | null>(null)
   const [rpeFun, setRpeFun]       = useState<'nope' | 'ok' | 'loved' | null>(null)
+  const [toast, setToast]           = useState('')
+  const [logPlayer, setLogPlayer]   = useState<string | null>(null)
+  const [logWhat, setLogWhat]       = useState<string | null>(null)
+  const [logTrain, setLogTrain]     = useState<string | null>(null)
+
+  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(''), 3000) }
 
   const RPE_PLAYERS = ['Mia T', 'Noah O', 'Ella B', 'Jai P', 'Zoe H', 'Grace O', 'Liam H', 'Finn W', 'Ruby C', 'Isla M', 'Leo M']
   const RPE_EMOJIS = [
@@ -447,7 +453,7 @@ export default function FitnessCoachScreen({ empty }: { empty?: boolean }) {
                         </div>
                       ))}
                     </div>
-                    <button style={{ width: '100%', height: 40, borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>
+                    <button onClick={() => showToast(`Plan sent to ${currentTeam.coach}.`)} style={{ width: '100%', height: 40, borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>
                       Send Tuesday's plan to {currentTeam.coach}
                     </button>
                   </>
@@ -542,7 +548,7 @@ export default function FitnessCoachScreen({ empty }: { empty?: boolean }) {
                       <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>Growth · U12 Sam</div>
                       <div style={{ fontSize: 12, color: '#6f7f7b', marginTop: 2 }}>Every 3 months · last 11 Mar · next due Thu 11 Jun · flag at 7 cm a year</div>
                     </div>
-                    <button style={{ height: 32, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer', flexShrink: 0 }}>Start measuring</button>
+                    <button onClick={() => { setTab('training'); setTrainSub('measuring') }} style={{ height: 32, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer', flexShrink: 0 }}>Start measuring</button>
                   </div>
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
 
@@ -694,7 +700,7 @@ export default function FitnessCoachScreen({ empty }: { empty?: boolean }) {
                           <div style={{ fontSize: 12, fontWeight: 700, color: '#6f7f7b', marginBottom: 8, textTransform: 'uppercase' as const, letterSpacing: '0.06em' }}>1 · Who</div>
                           <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: 7, marginBottom: 14 }}>
                             {PLAYERS_GROWTH.slice(0, 10).map(p => (
-                              <button key={p.ini} style={{ height: 32, padding: '0 12px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 12, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
+                              <button key={p.ini} onClick={() => setLogPlayer(p.ini)} style={{ height: 32, padding: '0 12px', borderRadius: '999px', border: `1px solid ${logPlayer === p.ini ? '#2f6252' : '#e9eae8'}`, background: logPlayer === p.ini ? '#eef5f2' : '#fff', fontFamily: 'inherit', fontSize: 12, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
                                 <div style={{ width: 18, height: 18, borderRadius: '999px', background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 7, fontWeight: 700, color: '#10211f' }}>{p.ini}</div>
                                 {p.name.split(' ')[0]}
                               </button>
@@ -708,7 +714,7 @@ export default function FitnessCoachScreen({ empty }: { empty?: boolean }) {
                           <div style={{ fontSize: 12, fontWeight: 700, color: '#6f7f7b', marginBottom: 8, textTransform: 'uppercase' as const, letterSpacing: '0.06em' }}>2 · What happened</div>
                           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, marginBottom: 14 }}>
                             {['Training', 'Game', 'No contact', 'Contact'].map(opt => (
-                              <button key={opt} style={{ height: 40, borderRadius: 10, border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>{opt}</button>
+                              <button key={opt} onClick={() => setLogWhat(opt)} style={{ height: 40, borderRadius: 10, border: `1px solid ${logWhat === opt ? '#2f6252' : '#e9eae8'}`, background: logWhat === opt ? '#eef5f2' : '#fff', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>{opt}</button>
                             ))}
                           </div>
                           <div style={{ display: 'flex', gap: 8 }}>
@@ -722,13 +728,13 @@ export default function FitnessCoachScreen({ empty }: { empty?: boolean }) {
                           <div style={{ fontSize: 12, fontWeight: 700, color: '#6f7f7b', marginBottom: 8, textTransform: 'uppercase' as const, letterSpacing: '0.06em' }}>3 · Can they train?</div>
                           <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
                             {['Yes', 'Light only', 'No'].map(opt => (
-                              <button key={opt} style={{ flex: 1, height: 40, borderRadius: 10, border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>{opt}</button>
+                              <button key={opt} onClick={() => setLogTrain(opt)} style={{ flex: 1, height: 40, borderRadius: 10, border: `1px solid ${logTrain === opt ? '#2f6252' : '#e9eae8'}`, background: logTrain === opt ? '#eef5f2' : '#fff', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>{opt}</button>
                             ))}
                           </div>
                           <div style={{ fontSize: 12, color: '#6f7f7b', marginBottom: 12 }}>Parent and Sam are told when you save. Player starts at step 2 of 4.</div>
                           <div style={{ display: 'flex', gap: 8 }}>
                             <button onClick={() => setLogStep(2)} style={{ flex: 1, height: 40, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>← Back</button>
-                            <button onClick={() => { setShowLogInjury(false); setLogStep(1) }} style={{ flex: 2, height: 40, borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Save</button>
+                            <button onClick={() => { setShowLogInjury(false); setLogStep(1); setLogPlayer(null); setLogWhat(null); setLogTrain(null) }} style={{ flex: 2, height: 40, borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Save</button>
                           </div>
                         </>
                       )}
@@ -865,8 +871,8 @@ export default function FitnessCoachScreen({ empty }: { empty?: boolean }) {
                       <div style={{ fontSize: 12, color: '#6f7f7b' }}>U12 Sam · Thu 11 Jun · 9 of 16 measured · about 40 seconds each</div>
                     </div>
                     <div style={{ display: 'flex', gap: 8 }}>
-                      <button style={{ height: 32, padding: '0 14px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>Finish later</button>
-                      <button style={{ height: 32, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Save and update growth</button>
+                      <button onClick={() => setTrainSub('tests')} style={{ height: 32, padding: '0 14px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>Finish later</button>
+                      <button onClick={() => { setTab('squad'); setSquadSub('growth') }} style={{ height: 32, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Save and update growth</button>
                     </div>
                   </div>
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 320px', gap: 20 }}>
@@ -946,8 +952,8 @@ export default function FitnessCoachScreen({ empty }: { empty?: boolean }) {
                       <div style={{ fontSize: 64, fontWeight: 800, color: '#10211f', letterSpacing: '-2px' }}>3.93</div>
                       <div style={{ fontSize: 13, color: '#6f7f7b', marginBottom: 32 }}>seconds · stopped by your tap at the finish cone</div>
                       <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
-                        <button style={{ height: 48, padding: '0 24px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Redo this go</button>
-                        <button style={{ height: 48, padding: '0 24px', borderRadius: '999px', border: 0, background: '#1f4a3e', color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Save · new best · next: Leo</button>
+                        <button onClick={() => showToast('Timing cleared — run again.')} style={{ height: 48, padding: '0 24px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Redo this go</button>
+                        <button onClick={() => showToast("New best saved. Leo's up next.")} style={{ height: 48, padding: '0 24px', borderRadius: '999px', border: 0, background: '#1f4a3e', color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Save · new best · next: Leo</button>
                       </div>
                       <div style={{ marginTop: 20, fontSize: 12, color: '#6f7f7b' }}>Top speed from his boots: 21.2 km/h. Timing on a phone varies by a few hundredths, so the app looks for changes of about 5%.</div>
                     </div>
@@ -1032,7 +1038,7 @@ export default function FitnessCoachScreen({ empty }: { empty?: boolean }) {
             <div style={{ background: '#1f4a3e', borderRadius: 16, padding: '16px' }}>
               <div style={{ fontSize: 15, fontWeight: 700, color: '#fff', marginBottom: 6 }}>Pitch-side test mode</div>
               <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.75)', marginBottom: 14 }}>Record sprint times and jump results while standing on the pitch.</div>
-              <button style={{ height: 40, padding: '0 20px', borderRadius: '999px', border: 0, background: '#fff', color: '#1f4a3e', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Start test mode</button>
+              <button onClick={() => setTrainSub('sprint')} style={{ height: 40, padding: '0 20px', borderRadius: '999px', border: 0, background: '#fff', color: '#1f4a3e', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Start test mode</button>
             </div>
             <div style={{ marginTop: 14, background: '#fff', borderRadius: 16, padding: '16px', border: '1px solid #e9eae8', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <div>
@@ -1044,6 +1050,10 @@ export default function FitnessCoachScreen({ empty }: { empty?: boolean }) {
           </div>
         )}
       </div>
+
+      {toast && (
+        <div style={{ position: 'fixed', bottom: 32, left: '50%', transform: 'translateX(-50%)', background: '#10211f', color: '#fff', padding: '12px 22px', borderRadius: 12, fontSize: 14, fontWeight: 500, zIndex: 50, whiteSpace: 'nowrap' as const, pointerEvents: 'none' }}>{toast}</div>
+      )}
 
       {/* ── RPE OVERLAY ── */}
       {showRPE && (

@@ -96,7 +96,7 @@ function TeamDetail({ name, onBack }: { name: string; onBack: () => void }) {
         <div>
           <div style={{ background: '#fff', borderRadius: 14, padding: '14px 16px', border: '1px solid #e9eae8', marginBottom: 14 }}>
             <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>Next game · Sat 6 Jun</div>
-            <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>vs Bayside Lions</div>
+            <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>vs Tealside Town</div>
             <div style={{ fontSize: 12, color: '#6f7f7b', marginTop: 4 }}>11:00 · Home · Pitch 2</div>
             <div style={{ fontSize: 12, color: '#6f7f7b' }}>Camera: Kit 3</div>
             <div style={{ fontSize: 12, color: '#6f7f7b' }}>Training Tue and Thu 5:45</div>
@@ -383,7 +383,7 @@ export default function TeamsTab({ empty }: { empty?: boolean }) {
           <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', marginBottom: 14 }}>Fixtures · Sat 6 Jun</div>
           {[
             { time: '9:00', team: 'U9 Mark', against: 'Glenroy Park', venue: 'Home · Pitch 4', changed: false },
-            { time: '9:30', team: 'U10 Nadia', against: 'Bayside Lions', venue: 'Away · Elsternwick Park', changed: false },
+            { time: '9:30', team: 'U10 Nadia', against: 'Tealside Town', venue: 'Away · Elsternwick Park', changed: false },
             { time: '9:30', team: 'U12 Sam', against: 'Harbour Rovers', venue: 'Home · Pitch 2', changed: false },
             { time: '12:30', team: 'U13 Chris', against: 'Glenroy Park', venue: 'Division 2 · moved from 12:00', changed: true },
             { time: '1:30', team: 'U14 Josh', against: 'Ironbark FC', venue: 'Away · Ironbark Park', changed: false },
@@ -408,7 +408,7 @@ export default function TeamsTab({ empty }: { empty?: boolean }) {
               <div><div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>This weekend from the league</div><div style={{ fontSize: 12, color: '#6f7f7b' }}>Sat 6 Jun · 6 of 14 games</div></div>
               <span style={{ fontSize: 12, color: '#40826d', fontWeight: 700 }}>✓ Synced 6:02 am today</span>
             </div>
-            {[{ time: '9:00', team: 'U9 Mark', against: 'Glenroy Park', note: 'Home · pitch 4', status: 'Same' }, { time: '9:30', team: 'U10 Nadia', against: 'Bayside Lions', note: 'Away · Elsternwick Park', status: 'Same' }, { time: '9:30', team: 'U12 Sam', against: 'Harbour Rovers', note: 'Home · pitch 2', status: 'Same' }, { time: '12:30', team: 'U13 Chris', against: 'Glenroy Park', note: 'Division 2 · moved from 12:00', status: 'Changed' }, { time: '1:30', team: 'U14 Josh', against: 'Ironbark FC', note: 'Away · Ironbark Park', status: 'Same' }, { time: '3:30', team: 'U16 Ollie', against: 'Harbour Rovers', note: 'Away · new venue', status: 'Changed' }].map((f, i) => (
+            {[{ time: '9:00', team: 'U9 Mark', against: 'Glenroy Park', note: 'Home · pitch 4', status: 'Same' }, { time: '9:30', team: 'U10 Nadia', against: 'Tealside Town', note: 'Away · Elsternwick Park', status: 'Same' }, { time: '9:30', team: 'U12 Sam', against: 'Harbour Rovers', note: 'Home · pitch 2', status: 'Same' }, { time: '12:30', team: 'U13 Chris', against: 'Glenroy Park', note: 'Division 2 · moved from 12:00', status: 'Changed' }, { time: '1:30', team: 'U14 Josh', against: 'Ironbark FC', note: 'Away · Ironbark Park', status: 'Same' }, { time: '3:30', team: 'U16 Ollie', against: 'Harbour Rovers', note: 'Away · new venue', status: 'Changed' }].map((f, i) => (
               <div key={i} style={{ display: 'flex', gap: 12, padding: '10px 0', borderTop: i > 0 ? '1px solid #f0f1f0' : 'none' }}>
                 <div style={{ width: 42, fontSize: 13, fontWeight: 700, color: '#10211f', flexShrink: 0 }}>{f.time}</div>
                 <div style={{ flexGrow: 1 }}><div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{f.team}</div><div style={{ fontSize: 12, color: '#6f7f7b' }}>{f.against} · {f.note}</div></div>
@@ -418,7 +418,7 @@ export default function TeamsTab({ empty }: { empty?: boolean }) {
           </div>
           <div>
             <div style={{ marginBottom: 14 }}><div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>Results to the league</div><div style={{ fontSize: 12, color: '#6f7f7b' }}>Sat 30 May</div></div>
-            {[{ team: 'U12 Sam', result: 'Won 3–1 v Northcote City', status: 'Sent', ok: true }, { team: 'U12 Girls Ana', result: 'Won 2–0 v Glenroy Park', status: 'Sent', ok: true }, { team: 'U13 Chris', result: 'Drew 1–1 v Bayside Lions', status: 'Sent', ok: true }, { team: 'U14 Josh', result: 'Won 2–1 v Kingsbury United', status: 'Waiting for manager', ok: false }, { team: 'U16 Ollie', result: 'Lost 1–3 v Ironbark FC', status: 'Score differs from the league', ok: false, fix: true }].map((r, i) => (
+            {[{ team: 'U12 Sam', result: 'Won 3–1 v Northcote City', status: 'Sent', ok: true }, { team: 'U12 Girls Ana', result: 'Won 2–0 v Glenroy Park', status: 'Sent', ok: true }, { team: 'U13 Chris', result: 'Drew 1–1 v Tealside Town', status: 'Sent', ok: true }, { team: 'U14 Josh', result: 'Won 2–1 v Kingsbury United', status: 'Waiting for manager', ok: false }, { team: 'U16 Ollie', result: 'Lost 1–3 v Ironbark FC', status: 'Score differs from the league', ok: false, fix: true }].map((r, i) => (
               <div key={i} style={{ display: 'flex', gap: 12, padding: '10px 0', borderTop: i > 0 ? '1px solid #f0f1f0' : 'none' }}>
                 <div style={{ flexGrow: 1 }}><div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{r.team}</div><div style={{ fontSize: 12, color: '#6f7f7b' }}>{r.result}</div></div>
                 <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
@@ -489,7 +489,7 @@ export default function TeamsTab({ empty }: { empty?: boolean }) {
               { time: '8:30', game: 'U8 Hannah v Ironbark FC · festival', role: 'Game leader', who: '', needed: true },
               { time: '9:00', game: 'U9 Mark v Glenroy Park', role: 'Game leader', who: 'Ethan Moss, 15', needed: false },
               { time: '9:30', game: 'U12 Sam v Harbour Rovers', role: 'Referee', who: 'Dana · club referee', needed: false },
-              { time: '11:00', game: 'U12 Girls Ana v Bayside Lions', role: 'Referee', who: 'Appointed by the league', needed: false },
+              { time: '11:00', game: 'U12 Girls Ana v Tealside Town', role: 'Referee', who: 'Appointed by the league', needed: false },
               { time: '12:00', game: 'U13 Girls Meg v Northcote City', role: 'Assistant referee', who: '', needed: true },
             ].map((g, i) => (
               <div key={i} style={{ display: 'flex', gap: 12, padding: '10px 0', borderTop: i > 0 ? '1px solid #f0f1f0' : 'none', alignItems: 'center' }}>

@@ -95,7 +95,7 @@ function RefGames() {
             { time: '12:00', desc: 'U13 Girls Meg v Northgate', role: 'Assistant referee · pitch 1', asked: true },
           ]},
           { date: 'SAT 13 JUN', games: [
-            { time: '9:00',  desc: 'U9 Mark v Bayside Lions', role: 'Game leader · pitch 4', mine: true },
+            { time: '9:00',  desc: 'U9 Mark v Tealside Town', role: 'Game leader · pitch 4', mine: true },
             { time: '10:30', desc: 'U11 Luke v Glenview Park', role: 'Game leader · pitch 3', asked: true },
           ]},
         ].map((week, wi) => (

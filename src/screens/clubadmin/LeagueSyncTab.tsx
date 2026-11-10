@@ -3,7 +3,7 @@ import { EmptyCard, FOOTER_DEFAULT } from './ui'
 
 const THIS_WEEKEND = [
   { time: '9:00',  team: 'U9 Mark',    comp: 'Kangaroos',  opp: 'Glenview Park',   venue: 'Home · pitch 4',               changed: false },
-  { time: '9:30',  team: 'U10 Nadia',  comp: 'Wallabies',  opp: 'Bayside Lions',   venue: 'Away · Elderberry Park',       changed: false },
+  { time: '9:30',  team: 'U10 Nadia',  comp: 'Wallabies',  opp: 'Tealside Town',   venue: 'Away · Elderberry Park',       changed: false },
   { time: '9:30',  team: 'U12 Sam',    comp: 'Division 1', opp: 'Harbour Rovers',  venue: 'Home · pitch 2',               changed: false },
   { time: '12:30', team: 'U13 Chris',  comp: 'Division 2', opp: 'Glenview Park',   venue: "Away · moved from 12:00",      changed: true  },
   { time: '1:30',  team: 'U14 Josh',   comp: 'Division 1', opp: 'Ironbark United', venue: 'Away · Ironbark Park',         changed: false },
@@ -13,7 +13,7 @@ const THIS_WEEKEND = [
 const RESULTS_BACK = [
   { team: 'U12 Sam',       score: 'Won 3–1 v Ironbark United',  status: 'sent'    },
   { team: 'U12 Girls Ana', score: 'Won 2–0 v Glenview Park',    status: 'sent'    },
-  { team: 'U13 Chris',     score: 'Drew 1–1 v Bayside Lions',   status: 'sent'    },
+  { team: 'U13 Chris',     score: 'Drew 1–1 v Tealside Town',   status: 'sent'    },
   { team: 'U14 Josh',      score: 'Won 2–1 v Kingfisher United', status: 'waiting' },
   { team: 'U16 Ollie',     score: 'Lost 1–3 v Glenview Park',   status: 'differs' },
 ]

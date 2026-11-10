@@ -239,7 +239,7 @@ export default function TeamManagerScreen({ empty }: { empty?: boolean }) {
                   <button onClick={() => setTab('messages')} style={{ width: '100%', height: 36, borderRadius: 8, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Remind the 2 who haven't answered</button>
                 </div>
               )}
-              {!showWhosComing && <button style={{ width: '100%', height: 36, borderRadius: 8, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Remind the 2 who haven't answered</button>}
+              {!showWhosComing && <button onClick={() => setTab('messages')} style={{ width: '100%', height: 36, borderRadius: 8, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Remind the 2 who haven't answered</button>}
             </div>
 
             {/* To do */}

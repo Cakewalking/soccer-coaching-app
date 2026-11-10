@@ -6,7 +6,7 @@ const HOME_GAMES = [
   { time: '8:30',  game: 'U8 Hannah v Ironbark United · festival', role: 'Game leader', who: '', needed: true },
   { time: '9:00',  game: 'U9 Mark v Glenview Park', role: 'Game leader', who: 'Ethan Moss, 15', needed: false },
   { time: '9:30',  game: 'U12 Sam v Harbour Rovers', role: 'Referee', who: 'Dana · club referee', needed: false },
-  { time: '11:00', game: 'U12 Girls Ana v Bayside Lions', role: 'Referee', who: 'Appointed by the league', needed: false },
+  { time: '11:00', game: 'U12 Girls Ana v Tealside Town', role: 'Referee', who: 'Appointed by the league', needed: false },
   { time: '12:00', game: 'U13 Girls Meg v Northgate City', role: 'Assistant referee', who: '', needed: true },
 ]
 

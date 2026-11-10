@@ -845,6 +845,25 @@ export const TOURS: Record<string, TourDef> = {
       { title: "Team chat", steps: [
         { label: "Team chat", caption: "Rich 3-pane chat with poll.", screen: "ch1-chat" },
       ]},
+      { title: "Invite screens", steps: [
+        { label: "One club, five views", caption: "Overview card: 5 roles, what each sees.", screen: "sk-roles" },
+        { label: "Co-coach invite", caption: "What a co-coach sees when they're invited.", screen: "iv3c-coachinvite" },
+        { label: "Fitness coach invite", caption: "What a fitness coach sees when they're invited.", screen: "iv3f-fitinvite" },
+        { label: "Manager done", caption: "Team manager joins — good first things.", screen: "iv4-managerdone" },
+      ]},
+      { title: "Join flow — parent", steps: [
+        { label: "Who's joining?", caption: "Landing screen for a team invite link.", screen: "jn-landing" },
+        { label: "Create account", caption: "Parent creates account with Apple, Google or email.", screen: "jn1-create" },
+        { label: "Who's your child?", caption: "Confirm child from squad list, add DOB and relationship.", screen: "jn2-child" },
+        { label: "First-aid card", caption: "Parent fills in Mia's first-aid card.", screen: "jn8-firstaid" },
+        { label: "Set up Mia's app", caption: "6-digit code for the child's device, can/can't list.", screen: "jn4-setup" },
+        { label: "You're in, Linh", caption: "Checklist, game-day message, and CTA.", screen: "jn5-parentdone" },
+      ]},
+      { title: "Join flow — player", steps: [
+        { label: "How old are you?", caption: "Age picker — under 15 goes via parent, 15-17 enters code, 18+ own account.", screen: "jn6-age" },
+        { label: "Type your code", caption: "15-17 year old enters 6-digit parent code.", screen: "jn7-code" },
+        { label: "18+ own account", caption: "Full consent toggles for an adult player.", screen: "jn9a-18plus" },
+      ]},
     ],
   },
 
