@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { RaiseConcernView, ConcernSentView, TellSomeoneView, TellHelenView } from './playerapp/SafeguardingFlows'
+import ParentView from './playerapp/ParentView'
 
-type PlayerView = 'home' | 'checkin' | 'checkin-sent' | 'clip' | 'goals' | 'parent' | 'invite' | 'raise-concern' | 'concern-sent' | 'tell-someone' | 'tell-helen'
+type PlayerView = 'home' | 'checkin' | 'checkin-sent' | 'clip' | 'goals' | 'parent' | 'parent-avail' | 'invite' | 'raise-concern' | 'concern-sent' | 'tell-someone' | 'tell-helen'
 
 interface WellnessOption { label: string; emoji: string; value: number }
 
@@ -41,11 +42,6 @@ const GOALS = [
   { title: 'Get in behind on the overlap', progress: 25, note: 'Sam set this · 1 month ago',     tag: 'Movement' },
 ]
 
-const MIA_EVENTS = [
-  { day: 'Mon', label: 'Training', note: 'Arrived · left at full energy', color: '#40826d' },
-  { day: 'Wed', label: 'Training', note: 'Bit tired · Sam adjusted session', color: '#c3a84a' },
-  { day: 'Sat', label: 'Game',    note: 'Played 65 min · 1 assist',        color: '#40826d' },
-]
 
 export default function PlayerAppScreen({ empty }: { empty?: boolean }) {
   const [view, setView] = useState<PlayerView>('home')
@@ -323,74 +319,50 @@ export default function PlayerAppScreen({ empty }: { empty?: boolean }) {
     )
   }
 
-  /* ── PARENT VIEW (Mia's week) ── */
-  if (view === 'parent') {
+  /* ── PARENT AVAILABILITY ── */
+  if (view === 'parent-avail') {
     return (
       <div style={{ width: 390, margin: '0 auto', background: '#f7f9f7', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
         <div style={{ background: '#1f4a3e', padding: '52px 20px 20px', flex: 'none' }}>
-          <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', marginBottom: 2 }}>Parent view</div>
-          <div style={{ fontSize: 22, fontWeight: 800, color: '#fff' }}>Mia's week</div>
+          <button onClick={() => setView('parent')} style={{ display: 'flex', alignItems: 'center', gap: 8, border: 0, background: 'transparent', color: 'rgba(255,255,255,0.7)', fontFamily: 'inherit', fontSize: 14, cursor: 'pointer', padding: 0, marginBottom: 12 }}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+            Back
+          </button>
+          <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', marginBottom: 2 }}>Wattle Creek U12 · parent</div>
+          <div style={{ fontSize: 22, fontWeight: 800, color: '#fff' }}>Can Mia make it?</div>
         </div>
         <div style={{ flexGrow: 1, overflowY: 'auto', padding: '20px' }}>
-          {/* Activity strip */}
-          <div style={{ display: 'flex', gap: 10, marginBottom: 20 }}>
-            {MIA_EVENTS.map((e, i) => (
-              <div key={i} style={{ flex: 1, background: '#fff', borderRadius: 12, padding: '12px', border: '1px solid #e9eae8', textAlign: 'center' }}>
-                <div style={{ fontSize: 11, fontWeight: 700, color: '#6f7f7b', marginBottom: 4 }}>{e.day}</div>
-                <div style={{ width: 10, height: 10, borderRadius: '999px', background: e.color, margin: '0 auto 6px' }} />
-                <div style={{ fontSize: 12, fontWeight: 700, color: '#10211f' }}>{e.label}</div>
-                <div style={{ fontSize: 10, color: '#6f7f7b', lineHeight: '14px', marginTop: 3 }}>{e.note}</div>
-              </div>
-            ))}
-          </div>
-
-          {/* Wellness summary */}
-          <div style={{ background: '#fff', borderRadius: 16, padding: '16px', border: '1px solid #e9eae8', marginBottom: 14 }}>
-            <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 10 }}>Mia's check-ins this week</div>
-            <div style={{ display: 'flex', gap: 24 }}>
-              {[{ l: 'Body', v: '😊 Good' }, { l: 'Energy', v: '😪 Bit tired' }, { l: 'Mood', v: '😊 Good' }].map(c => (
-                <div key={c.l} style={{ textAlign: 'center' }}>
-                  <div style={{ fontSize: 18 }}>{c.v.split(' ')[0]}</div>
-                  <div style={{ fontSize: 11, color: '#6f7f7b', marginTop: 2 }}>{c.l}</div>
+          {[
+            { day: 'THU', date: 4, tag: 'Tonight', title: 'Training',          note: '5:45 to 7:15 pm · Wattle Creek Reserve' },
+            { day: 'SAT', date: 6, tag: '',         title: 'vs Harbour Rovers', note: 'Home · be there 8:40 for 9:30 · white kit' },
+            { day: 'TUE', date: 9, tag: '',         title: 'Training',          note: '5:45 to 7:15 pm · Wattle Creek Reserve' },
+          ].map((s, i) => (
+            <div key={i} style={{ background: '#fff', borderRadius: 16, padding: '16px', border: '1px solid #e9eae8', marginBottom: 10 }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12, marginBottom: 12 }}>
+                <div style={{ flex: 'none', background: '#1f4a3e', borderRadius: 10, padding: '8px 10px', textAlign: 'center', minWidth: 44 }}>
+                  <div style={{ fontSize: 10, fontWeight: 600, color: 'rgba(255,255,255,0.7)' }}>{s.day}</div>
+                  <div style={{ fontSize: 20, fontWeight: 800, color: '#fff' }}>{s.date}</div>
                 </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Load card */}
-          <div style={{ background: '#fff', borderRadius: 16, padding: '16px', border: '1px solid #e9eae8', marginBottom: 14 }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-              <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>Weekly load</div>
-              <span style={{ fontSize: 12, fontWeight: 700, color: '#40826d', background: '#e4f2eb', borderRadius: 6, padding: '2px 8px' }}>Safe zone</span>
-            </div>
-            <div style={{ height: 8, borderRadius: 4, background: '#f0f1f0', marginBottom: 6 }}>
-              <div style={{ height: 8, borderRadius: 4, background: '#40826d', width: '62%' }} />
-            </div>
-            <div style={{ fontSize: 12, color: '#6f7f7b' }}>62% of her safe limit. Sam is monitoring this every session.</div>
-          </div>
-
-          {/* Goals */}
-          <div style={{ background: '#fff', borderRadius: 16, padding: '16px', border: '1px solid #e9eae8' }}>
-            <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 10 }}>Mia's goals</div>
-            {GOALS.slice(0, 2).map((g, i) => (
-              <div key={i} style={{ marginBottom: 12 }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13, fontWeight: 600, color: '#10211f', marginBottom: 6 }}>
-                  <span>{g.title}</span><span>{g.progress}%</span>
-                </div>
-                <div style={{ height: 6, borderRadius: 3, background: '#f0f1f0' }}>
-                  <div style={{ height: 6, borderRadius: 3, background: '#2f6252', width: `${g.progress}%` }} />
+                <div style={{ flexGrow: 1 }}>
+                  {s.tag && <div style={{ fontSize: 11, fontWeight: 700, color: '#2f6252', marginBottom: 2 }}>{s.tag}</div>}
+                  <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>{s.title}</div>
+                  <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: '18px', marginTop: 2 }}>{s.note}</div>
                 </div>
               </div>
-            ))}
-          </div>
-
-          {/* Safeguarding links */}
-          <div style={{ marginTop: 14, display: 'flex', flexDirection: 'column', gap: 8 }}>
-            <button onClick={() => setView('raise-concern')} style={{ width: '100%', textAlign: 'left', padding: '12px 14px', borderRadius: 12, border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', cursor: 'pointer', fontSize: 14, fontWeight: 600, color: '#10211f' }}>Tell the club something →</button>
-          </div>
+              <div style={{ display: 'flex', gap: 8 }}>
+                <button style={{ flex: 1, height: 40, borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>{"Yes, Mia's in"}</button>
+                <button style={{ flex: 1, height: 40, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>{"Can't make it"}</button>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     )
+  }
+
+  /* ── PARENT VIEW (Mia's week) ── */
+  if (view === 'parent') {
+    return <ParentView onAvailability={() => setView('parent-avail')} onRaiseConcern={() => setView('raise-concern')} />
   }
 
   /* ── HOME ── */

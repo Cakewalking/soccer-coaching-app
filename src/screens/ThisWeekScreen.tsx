@@ -1,24 +1,10 @@
+import { METRICS } from '../data'
+
 function Illus() {
   return (
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 22px)', gap: 4, flex: 'none' }}>
       {['#2f6252','#40826d','#cbbeb5','#c39797'].map((c, i) => (
         <div key={i} style={{ width: 22, height: 22, borderRadius: 5, background: c }} />
-      ))}
-    </div>
-  )
-}
-
-function Skel({ rows = 7 }: { rows?: number }) {
-  const ws = [55, 45, 65, 40, 55, 50, 48]
-  return (
-    <div>
-      <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#6f7f7b', marginBottom: 8 }}>Fills in like this</div>
-      {Array.from({ length: rows }, (_, i) => (
-        <div key={i} style={{ height: 48, border: '1px dashed #c5c8c4', borderRadius: 10, marginBottom: 6, display: 'flex', alignItems: 'center', padding: '0 14px', gap: 10 }}>
-          <div style={{ width: 28, height: 28, borderRadius: '999px', background: '#e9eae8', flex: 'none' }} />
-          <div style={{ height: 10, borderRadius: 5, background: '#e9eae8', width: `${ws[i % ws.length]}%` }} />
-          <div style={{ marginLeft: 'auto', width: 48, height: 10, borderRadius: 5, background: '#e9eae8', flex: 'none' }} />
-        </div>
       ))}
     </div>
   )
@@ -46,26 +32,31 @@ function ThisWeekEmpty() {
             </div>
           </div>
         </div>
-        <Skel rows={6} />
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+          {[70, 55, 65, 50, 60].map((w, i) => (
+            <div key={i} style={{ height: 48, border: '1px dashed #c5c8c4', borderRadius: 10, display: 'flex', alignItems: 'center', padding: '0 14px', gap: 10 }}>
+              <div style={{ width: 28, height: 28, borderRadius: '999px', background: '#e9eae8', flex: 'none' }} />
+              <div style={{ height: 10, borderRadius: 5, background: '#e9eae8', width: `${w}%` }} />
+              <div style={{ marginLeft: 'auto', width: 48, height: 10, borderRadius: 5, background: '#e9eae8', flex: 'none' }} />
+            </div>
+          ))}
+        </div>
       </div>
-      <aside style={{ background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '18px 20px', display: 'flex', flexDirection: 'column', gap: 14, minHeight: 0, overflowY: 'auto' }}>
-        <div style={{ fontSize: 16, fontWeight: 700 }}>What you'll see</div>
+      <aside style={{ background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 16, padding: 20, display: 'flex', flexDirection: 'column', gap: 14, minHeight: 0, overflowY: 'auto' }}>
+        <div style={{ fontSize: 15, fontWeight: 700 }}>How this week works</div>
         {[
-          { icon: 'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zM9 5a2 2 0 002 2h2a2 2 0 002-2V3a2 2 0 00-2-2h-2a2 2 0 00-2 2v2z', title: 'Three things to work on', body: 'From the last game' },
-          { icon: 'M9 11a3 3 0 100-6 3 3 0 000 6zM3 20c0-4 3-6 6-6s6 2 6 6M16 11a3 3 0 100-6M21 20c0-3-2-5-4-5.5', title: 'Who\'s coming', body: 'From availability' },
-          { icon: 'M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9zM13 2v7h7', title: 'How hard the week is', body: 'With growing players capped' },
+          { title: 'Drills come from your games', body: 'After each recorded game, Clean Sheet picks what to fix next week.' },
+          { title: "Who's doing what", body: 'Player load, sprint caps and wellness flags appear alongside drills.' },
+          { title: 'Saturday prep', body: "By Friday night you'll see your predicted starting line-up and team talk cues." },
         ].map((item, i) => (
-          <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
-            <span style={{ flex: 'none', width: 32, height: 32, borderRadius: '999px', background: '#eef5f2', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2f6252" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={item.icon}/></svg>
-            </span>
+          <div key={i} style={{ display: 'flex', gap: 10, padding: '8px 0', borderTop: '1px solid #f0f1ef' }}>
+            <span style={{ flex: 'none', width: 8, height: 8, borderRadius: '999px', background: '#40826d', marginTop: 5 }} />
             <div>
               <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 2 }}>{item.title}</div>
-              <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: '18px' }}>{item.body}</div>
+              <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: '17px' }}>{item.body}</div>
             </div>
           </div>
         ))}
-        <div style={{ marginTop: 'auto', fontSize: 12, color: '#4a5a57', lineHeight: '17px' }}>Start with a starter session tonight. The week fills in after your first recorded game.</div>
       </aside>
     </main>
   )
@@ -79,26 +70,36 @@ const FOCUSES = [
 
 const DAYS = [
   {
-    label: 'TUESDAY', date: '3 Nov', tag: 'Done', tagColor: '#40826d',
-    items: ['Pressing and shape', 'Chase and tag · Win it back · Small game', 'Warm-up cut short by rain', '15 of 16 came · 13 rated effort, average 6', "Jess's note: Kai stopped, hamstring"],
+    label: 'TUESDAY', date: '2 Jun', tag: 'Done', tagColor: '#40826d',
+    items: ['Pressing and shape', 'Chase and tag · Win it back · Small game', '15 of 16 came · 13 rated effort, avg 6', "Priya's note: Noah and Zoe sprint caps set"],
   },
   {
-    label: 'WEDNESDAY', date: '4 Nov', tag: null,
+    label: 'WEDNESDAY', date: '3 Jun', tag: null, tagColor: '',
     items: ['Rest', 'Wellness check-ins only', 'Ella low for the second day'],
   },
   {
-    label: 'THURSDAY', date: '5 Nov', tag: 'Tonight', tagColor: '#2f6252',
-    items: ['Repeat and finish', '5:45 · 11+ Kids warm-up with Priya', 'Rondo · Win it back · Small game', 'Noah and Zoe: 3 sprints · Kai passing only', 'Mia late, about 6:10'],
+    label: 'THURSDAY', date: '4 Jun', tag: 'Tonight', tagColor: '#2f6252',
+    items: ['Repeat and finish', '5:45 · 11+ warm-up with Priya', 'Rondo · Win it back · Small game', 'Noah and Zoe: 3 sprints · Kai passing only', 'Mia late, about 6:10'],
   },
   {
-    label: 'SATURDAY', date: '7 Nov', tag: 'Game', tagColor: '#c39797',
+    label: 'SATURDAY', date: '6 Jun', tag: 'Game', tagColor: '#c39797',
     items: ['vs Harbour Rovers', 'Home · meet 8:40 · kick-off 9:30', '12 in · 1 maybe · 2 out · 2 to answer', 'Team talk ready Friday night', 'Camera kit 1 booked by Rob'],
   },
   {
-    label: 'NEXT TUESDAY', date: '10 Nov', tag: null,
+    label: 'NEXT TUESDAY', date: '9 Jun', tag: null, tagColor: '',
     items: ['Built after Saturday', 'Clean Sheet suggests it Sunday, once the review is in', 'Coach meeting at 7:30 pm'],
   },
 ]
+
+const PLAYERS_TO_PLAN = [
+  { ini: 'EB', label: 'Ella', note: 'Low check-ins two days · lighter Thursday', type: 'rose' as const },
+  { ini: 'MT', label: 'Mia', note: 'Late on Thursday, 6:10 · dentist', type: 'stone' as const },
+  { ini: 'NO', label: 'Noah & Zoe', note: 'Sprint caps, from Priya · 3 each tonight', type: 'stone' as const },
+]
+
+function chipBg(t: 'rose' | 'stone') {
+  return t === 'rose' ? '#fdf4f4' : '#f7f8f7'
+}
 
 export default function ThisWeekScreen({ empty, onDrillLibrary, onTonightsPlan, onGrowthLoad }: { empty?: boolean; onDrillLibrary?: () => void; onTonightsPlan?: () => void; onGrowthLoad?: () => void }) {
   if (empty) return <ThisWeekEmpty />
@@ -109,7 +110,7 @@ export default function ThisWeekScreen({ empty, onDrillLibrary, onTonightsPlan, 
       <div style={{ flex: 'none', padding: '14px 28px 0' }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 14, marginBottom: 14 }}>
           <h1 style={{ margin: 0, fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em' }}>This week</h1>
-          <span style={{ fontSize: 14, color: '#4a5a57' }}>Mon 2 to Sun 8 Nov · three things from Ironbark, worked on twice before Harbour Rovers</span>
+          <span style={{ fontSize: 14, color: '#4a5a57' }}>Mon 1 Jun – Sun 7 Jun · 3 things from Ironbark, worked on before Harbour Rovers</span>
           <div style={{ flexGrow: 1 }} />
           <button onClick={onDrillLibrary} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>Drill library</button>
           <button onClick={onTonightsPlan} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#ffffff' }}>Tonight's plan</button>
@@ -129,31 +130,69 @@ export default function ThisWeekScreen({ empty, onDrillLibrary, onTonightsPlan, 
         </div>
       </div>
 
-      {/* Day columns */}
-      <div style={{ flexGrow: 1, minHeight: 0, padding: '0 28px 18px', display: 'grid', gridTemplateColumns: 'repeat(5, minmax(0,1fr))', gap: 10, overflow: 'hidden' }}>
-        {DAYS.map((d, i) => (
-          <div key={i} style={{
-            background: '#ffffff', border: `1px solid ${d.tag === 'Tonight' ? '#2f6252' : '#c5c8c4'}`,
-            borderRadius: 14, padding: '14px 14px', display: 'flex', flexDirection: 'column', gap: 6,
-            overflow: 'hidden',
-          }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 2 }}>
-              <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', color: '#4a5a57', flexGrow: 1 }}>{d.label}</span>
-              {d.tag && (
-                <span style={{ fontSize: 11, fontWeight: 700, padding: '1px 7px', borderRadius: '999px', background: d.tagColor + '22', color: d.tagColor }}>{d.tag}</span>
-              )}
+      {/* Day columns + right sidebar */}
+      <div style={{ flexGrow: 1, minHeight: 0, padding: '0 28px 18px', display: 'flex', gap: 14, overflow: 'hidden' }}>
+
+        {/* 5 day columns */}
+        <div style={{ flexGrow: 1, minWidth: 0, display: 'grid', gridTemplateColumns: 'repeat(5, minmax(0,1fr))', gap: 10, overflow: 'hidden' }}>
+          {DAYS.map((d, i) => (
+            <div key={i} style={{
+              background: '#ffffff', border: `1px solid ${d.tag === 'Tonight' ? '#2f6252' : '#c5c8c4'}`,
+              borderRadius: 14, padding: '14px 14px', display: 'flex', flexDirection: 'column', gap: 6,
+              overflow: 'hidden',
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 2 }}>
+                <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', color: '#4a5a57', flexGrow: 1 }}>{d.label}</span>
+                {d.tag && (
+                  <span style={{ fontSize: 11, fontWeight: 700, padding: '1px 7px', borderRadius: '999px', background: d.tagColor + '22', color: d.tagColor }}>{d.tag}</span>
+                )}
+              </div>
+              <div style={{ fontSize: 20, fontWeight: 700, letterSpacing: '-0.01em', color: '#10211f', marginBottom: 4 }}>{d.date}</div>
+              {d.items.map((item, j) => (
+                <div key={j} style={{ fontSize: 13, lineHeight: '18px', color: j === 0 ? '#10211f' : '#4a5a57', fontWeight: j === 0 ? 700 : 400 }}>{item}</div>
+              ))}
             </div>
-            <div style={{ fontSize: 20, fontWeight: 700, letterSpacing: '-0.01em', color: '#10211f', marginBottom: 4 }}>{d.date}</div>
-            {d.items.map((item, j) => (
-              <div key={j} style={{ fontSize: 13, lineHeight: '18px', color: j === 0 ? '#10211f' : '#4a5a57', fontWeight: j === 0 ? 700 : 400 }}>{item}</div>
+          ))}
+        </div>
+
+        {/* Right sidebar */}
+        <div style={{ flexShrink: 0, width: 230, display: 'flex', flexDirection: 'column', gap: 10, minHeight: 0, overflowY: 'auto' }}>
+
+          {/* How we'll know on Saturday */}
+          <div style={{ background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 14, padding: '14px 14px', flex: 'none' }}>
+            <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 10, letterSpacing: '-0.01em' }}>How we'll know on Saturday</div>
+            {METRICS.slice(0, 3).map((m, i) => (
+              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '7px 0', borderTop: i > 0 ? '1px solid #e9eae8' : 'none' }}>
+                <div style={{ flexGrow: 1, minWidth: 0 }}>
+                  <div style={{ fontSize: 12, fontWeight: 600, color: '#10211f', lineHeight: '16px' }}>{m.label}</div>
+                </div>
+                <div style={{ flex: 'none', textAlign: 'right' }}>
+                  <div style={{ fontSize: 15, fontWeight: 700 }}>{m.value}</div>
+                  <div style={{ fontSize: 11, fontWeight: 700, padding: '1px 6px', borderRadius: '999px', background: m.statusType === 'good' ? '#40826d' : '#c39797', color: m.statusType === 'good' ? '#fff' : '#10211f', whiteSpace: 'nowrap' }}>{m.status}</div>
+                </div>
+              </div>
             ))}
           </div>
-        ))}
+
+          {/* Players to plan around */}
+          <div style={{ background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 14, padding: '14px 14px', flex: 'none' }}>
+            <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 10, letterSpacing: '-0.01em' }}>Players to plan around</div>
+            {PLAYERS_TO_PLAN.map((p, i) => (
+              <div key={i} style={{ display: 'flex', gap: 8, padding: '8px 0', borderTop: i > 0 ? '1px solid #e9eae8' : 'none', alignItems: 'flex-start' }}>
+                <span style={{ flex: 'none', width: 28, height: 28, borderRadius: '999px', background: chipBg(p.type), fontSize: 11, fontWeight: 700, color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{p.ini}</span>
+                <div style={{ flexGrow: 1, minWidth: 0 }}>
+                  <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{p.label}</div>
+                  <div style={{ fontSize: 12, color: '#4a5a57', lineHeight: '16px', marginTop: 1 }}>{p.note}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
 
       {/* Footer bar */}
       <div style={{ flex: 'none', borderTop: '1px solid #e9eae8', padding: '10px 28px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#ffffff' }}>
-        <span style={{ fontSize: 13, color: '#4a5a57' }}>Load this week: two 75-minute sessions and one 50-minute game. Growing players have sprints capped in both sessions.</span>
+        <span style={{ fontSize: 13, color: '#4a5a57' }}>Load this week: two 90-minute sessions and one game. Noah and Zoe have sprint caps both sessions.</span>
         <button onClick={onGrowthLoad} style={{ border: 0, background: 'transparent', color: '#2f6252', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Growth and load →</button>
       </div>
     </div>

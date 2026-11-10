@@ -90,7 +90,7 @@ export default function CalendarMiniRoos() {
           <section style={{ flexShrink: 0, background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 0 }}>
             <h2 style={{ margin: '0 0 0', fontSize: 17, fontWeight: 700 }}>Next up</h2>
             {[
-              { circle: 'Tu', bg: '#40826d', title: 'Training tonight', sub: '5:00 pm · Wattle Creek Oval' },
+              { circle: 'Tu', bg: '#40826d', title: 'Training tonight', sub: '5:00 pm · Wattle Creek Reserve' },
               { circle: 'Sa', bg: '#cbbeb5', title: 'Northgate City', sub: 'Sat 8:30 · away, Redgum Reserve' },
               { circle: '20', bg: '#eef5f2', title: 'Photo day', sub: 'Sat 20 Jun · wear the full kit' },
             ].map((item, i) => (
