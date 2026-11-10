@@ -19,9 +19,12 @@ export default function CardsTab() {
 
       {/* Main: table */}
       <section style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '14px 18px 10px' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 6 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
           <h2 style={{ margin: 0, fontSize: 17, fontWeight: 700 }}>Cards and suspensions</h2>
-          <span style={{ fontSize: 14, color: '#4a5a57' }}>U12 and up · season 2026 · from Dribl</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+            <button style={{ fontSize: 13, fontWeight: 600, color: '#2f6252', background: 'transparent', border: 0, cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>Sideline reports</button>
+            <span style={{ fontSize: 14, color: '#4a5a57' }}>U12 and up · season 2026 · from Dribl</span>
+          </div>
         </div>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 6 }}>
           <h3 style={{ margin: 0, fontSize: 15, fontWeight: 700 }}>Players with cards</h3>

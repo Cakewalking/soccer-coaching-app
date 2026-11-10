@@ -35,7 +35,7 @@ function TeamDetail({ name, onBack }: { name: string; onBack: () => void }) {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 4 }}>
         <div>
           <div style={{ fontSize: 20, fontWeight: 800, color: '#10211f' }}>{name}</div>
-          <div style={{ fontSize: 13, color: '#6f7f7b' }}>{div} · coach {coach} · {players} players · read-only</div>
+          <div style={{ fontSize: 13, color: '#6f7f7b' }}>{div} · coach {coach} · {players} players · read-only, the way its coaches see it</div>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
           <button style={{ height: 32, padding: '0 14px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>Compare</button>

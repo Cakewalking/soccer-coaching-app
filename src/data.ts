@@ -118,11 +118,11 @@ function ex(kind: 'clip' | 'data', t: string, s: string): Example {
 export const DATA: Record<Role, RoleData> = {
   head: {
     roleName: 'Head Coach',
-    heroTitle: 'Training, today at 6:00 pm',
-    heroSub: 'Training day · Thu 5 Nov · 2 days to Harbour Rovers',
+    heroTitle: 'Training, today at 5:45 pm',
+    heroSub: 'Training day · Thu 5 Jun · 2 days to Harbour Rovers',
     sessionTitle: "Tonight's session",
-    sessionSub: '75 minutes · 4 drills',
-    start: '6:00 pm', end: '7:15 pm',
+    sessionSub: '90 minutes · 4 drills',
+    start: '5:45 pm', end: '7:15 pm',
     drills: [
       { name: 'Warm-up rondo, 5 v 2',    how: 'Sharp passing and quick reactions',    tag: 'Warm-up',  mins: 10,
         startTime: '6:00', why: 'Gets passing sharp and starts the pressing habit early.', format: ['7 per group', '10 × 10 m', 'Bibs, 1 ball'] },
@@ -141,36 +141,36 @@ export const DATA: Record<Role, RoleData> = {
     actionsCount: 3,
     playersSub: '4 players, and what to do with each',
     players: [
-      pl('MT', 'Mia Tran',   'High load this week',     'Light work tonight, no extra sprints'),
-      pl('NO', 'Noah Okafor','Growth spurt',             'Skip the sprint drills'),
-      pl('EB', 'Ella Brandt','Low wellness score',       'Have a quick chat before warm-up'),
-      pl('JP', 'Jai Patel',  'Played 30% more minutes', 'Normal session, watch the second half'),
+      pl('MT', 'Mia Tran',   'High load this week',     'First 15 min of the small game only'),
+      pl('NO', 'Noah Okafor','Growth spurt',             'Skip sprints, 3 max'),
+      pl('EB', 'Ella Brandt','Low wellness score',       'Quick chat before warm-up'),
+      pl('JP', 'Jai Patel',  'Played 30% more minutes', 'Normal, watch the second half'),
     ],
     talkLabel: 'Team talk',
     talkSub: 'Tap one to see the clip and the numbers',
     talkCues: [
       'Win the ball back faster',
       'Keep defence and midfield closer',
-      'Stay strong in the last 20 minutes',
+      'Stay strong in the last 15 minutes',
     ],
     talkButton: 'Show the team',
     talkHref: '#teamtalk',
     focus: [
       fc('Win the ball back faster',
-        'When we lose it, we hunt it back together. Six seconds.',
-        'Min 23', 'Lost it on halfway. 9 seconds to win it back.', 4,
-        'Boot sensors', 'seconds to win it back',
+        'We took 7 seconds to win it back. Our usual is 4.',
+        'Min 16', 'Lost it on halfway. 9 seconds to win it back.', 4,
+        'Match camera', 'seconds to win it back',
         'Saturday', '7 s', 'Our usual', '4 s', 8, 4),
       fc('Keep defence and midfield closer',
-        'The gap was over 25 m before 6 of their 8 chances.',
-        'Min 41', 'A 28 m gap before their shot.', 6,
+        'A 25 m gap before 6 of their 8 chances.',
+        'Min 29', 'A 28 m gap before their shot.', 6,
         'Match camera', 'gap between the lines',
         'Saturday', '26 m', 'Aim for', '18 m', 30, 6),
-      fc('Stay strong in the last 20 minutes',
-        'Our sprints dropped 22% after minute 50.',
-        'Min 58', 'Slow to close down. Legs gone.', 3,
+      fc('Stay strong in the last 15 minutes',
+        'Sprints dropped 22% after minute 45.',
+        'Min 52', 'Slow to close down. Legs gone.', 3,
         'GPS vests', 'sprints per player',
-        'Before min 50', '18', 'After min 50', '14', 20, 3),
+        'Before min 45', '18', 'After min 45', '14', 20, 3),
     ],
     worked: {
       focus: 'press higher up the pitch',
@@ -550,42 +550,47 @@ export interface GameClip {
   min: number; duration: string; title: string; desc: string; type: ClipType
   measures: string[]; players: string[]; half: string; taggedBy?: string
   stat1Label?: string; stat1Value?: string; stat2Label?: string; stat2Value?: string
+  stat3Label?: string; stat3Value?: string; stat4Label?: string; stat4Value?: string
 }
 
 export const CLIPS_GAMES = [
-  { id: 'ironbark',  label: 'Ironbark 3–1',   result: 'W' as const, date: 'Sat 31 Oct' },
-  { id: 'saltmarsh', label: 'Saltmarsh 1–2',  result: 'L' as const, date: 'Sat 24 Oct' },
-  { id: 'northgate', label: 'Northgate 1–1',  result: 'D' as const, date: 'Sat 17 Oct' },
-  { id: 'bayside',   label: 'Bayside 2–0',    result: 'W' as const, date: 'Sat 10 Oct' },
+  { id: 'ironbark',  label: 'Ironbark 3–1',  result: 'W' as const, date: 'Sat 30 May' },
+  { id: 'saltmarsh', label: 'Saltmarsh 1–2', result: 'L' as const, date: 'Sat 23 May' },
+  { id: 'northgate', label: 'Northgate 1–1', result: 'D' as const, date: 'Sat 16 May' },
+  { id: 'bayside',   label: 'Bayside 2–0',   result: 'W' as const, date: 'Sat 9 May'  },
 ]
 
 export const CLIPS_MEASURES = [
-  'Pressing high', 'Winning it back', 'Building out', 'Counter-attacks', 'Gap between lines', 'Won in their half',
+  'Pressing high', 'Winning it back', 'Building out', 'Counter-attacks', 'Gap between lines', 'Goals and chances',
 ]
 
 export const CLIPS: GameClip[] = [
-  { id:1,  game:'ironbark',  gameResult:'W', gameLabel:'Ironbark 3–1',  gameDate:'Sat 31 Oct', min:31, duration:'0:11', title:'Front three force the mistake',    desc:'Jai curves his run to cut off the centre-back. Won in their half, shot 6 seconds later.',     type:'good', measures:['Won in their half','Pressing high'], players:['JP','ZH','LM'], half:'First half',   stat1Label:'28 m from goal', stat1Value:'Won at · Match camera', stat2Label:'3 of 3',       stat2Value:'Players pressing · Match camera' },
-  { id:2,  game:'ironbark',  gameResult:'W', gameLabel:'Ironbark 3–1',  gameDate:'Sat 31 Oct', min:23, duration:'0:14', title:'Lost it on halfway',               desc:'One player presses, the rest watch. Nine seconds before we win it back.',                        type:'work', measures:['Winning it back'],                   players:['NO','EB'],       half:'First half',   stat1Label:'9 s',            stat1Value:'Win back · Match camera',       stat2Label:'1 of 4',       stat2Value:'Players pressing · Match camera' },
-  { id:3,  game:'ironbark',  gameResult:'W', gameLabel:'Ironbark 3–1',  gameDate:'Sat 31 Oct', min:12, duration:'0:18', title:'Eight passes out from the keeper', desc:'Ella splits wide, Mia shows on the half-turn, and we play through their press.',               type:'good', measures:['Building out'],                      players:['EB','MT'],       half:'First half',   taggedBy:'you', stat1Label:'8 passes', stat1Value:'Move in · Match camera', stat2Label:'0.9 s avg', stat2Value:'Time on ball · Boot sensors' },
-  { id:4,  game:'ironbark',  gameResult:'W', gameLabel:'Ironbark 3–1',  gameDate:'Sat 31 Oct', min:31, duration:'0:11', title:'Won in their half',                desc:'Front three press high and win it back inside their half.',                                     type:'good', measures:['Won in their half'],                  players:['ZH','JP','LM'], half:'First half'  },
-  { id:5,  game:'ironbark',  gameResult:'W', gameLabel:'Ironbark 3–1',  gameDate:'Sat 31 Oct', min:52, duration:'0:12', title:'Win it, go, goal in 8 seconds',    desc:'Counter-attacks · min 52. Win back, Jai runs at goal, scores.',                                 type:'good', measures:['Counter-attacks'],                   players:['ZH','JP','MT'], half:'Second half', taggedBy:'you' },
-  { id:6,  game:'ironbark',  gameResult:'W', gameLabel:'Ironbark 3–1',  gameDate:'Sat 31 Oct', min:58, duration:'0:10', title:'Slow to close down, legs gone',    desc:'No press from midfield. Pressing high · min 58.',                                              type:'work', measures:['Pressing high'],                     players:['LM','AL'],       half:'Second half' },
-  { id:7,  game:'ironbark',  gameResult:'W', gameLabel:'Ironbark 3–1',  gameDate:'Sat 31 Oct', min:67, duration:'0:09', title:"Mia's goal, 3–1",                 desc:'Goals and chances · min 67. Scores from the edge of the box.',                                 type:'good', measures:['Counter-attacks'],                   players:['MT','AL'],       half:'Second half' },
-  { id:8,  game:'saltmarsh', gameResult:'L', gameLabel:'Saltmarsh 1–2', gameDate:'Sat 24 Oct', min:35, duration:'0:12', title:'Press split, they play through',   desc:'Saltmarsh · min 35. Pressed alone, Mia goes, Jai holds.',                                      type:'work', measures:['Pressing high'],                     players:['MT','JP'],       half:'First half'  },
-  { id:9,  game:'saltmarsh', gameResult:'L', gameLabel:'Saltmarsh 1–2', gameDate:'Sat 24 Oct', min:41, duration:'0:16', title:'A 28 m gap before their shot',     desc:'Gap between lines · min 41. Lines split wide before the chance.',                              type:'work', measures:['Gap between lines'],                 players:['TR','GO'],       half:'First half'  },
-  { id:10, game:'saltmarsh', gameResult:'L', gameLabel:'Saltmarsh 1–2', gameDate:'Sat 24 Oct', min:15, duration:'0:17', title:'Through the thirds, ten passes',   desc:'Building out · min 15. Patient build-up through all three thirds.',                             type:'good', measures:['Building out'],                      players:['GO','AL','MT'],  half:'First half'  },
-  { id:11, game:'saltmarsh', gameResult:'L', gameLabel:'Saltmarsh 1–2', gameDate:'Sat 24 Oct', min:63, duration:'0:13', title:'Lost it, everyone stops',          desc:'Winning it back · min 63. Lost it in midfield, no reaction.',                                  type:'work', measures:['Winning it back'],                   players:['MT','LM'],       half:'Second half' },
-  { id:12, game:'saltmarsh', gameResult:'L', gameLabel:'Saltmarsh 1–2', gameDate:'Sat 24 Oct', min:38, duration:'0:12', title:'Three passes, shot on target',     desc:'Counter-attacks · min 38.',                                                                     type:'good', measures:['Counter-attacks'],                   players:['GO','JP','MT'],  half:'First half'  },
-  { id:13, game:'northgate', gameResult:'D', gameLabel:'Northgate 1–1', gameDate:'Sat 17 Oct', min:19, duration:'0:11', title:'Won in their half',                desc:'Front three press wins it back high up the pitch.',                                             type:'good', measures:['Won in their half','Pressing high'], players:['ZH','JP','LM'], half:'First half'  },
-  { id:14, game:'northgate', gameResult:'D', gameLabel:'Northgate 1–1', gameDate:'Sat 17 Oct', min:44, duration:'0:14', title:'9 s to win back',                 desc:'Nine seconds after losing it, midfield finally close.',                                         type:'work', measures:['Winning it back'],                   players:['NO','EB'],       half:'First half'  },
-  { id:15, game:'northgate', gameResult:'D', gameLabel:'Northgate 1–1', gameDate:'Sat 17 Oct', min:55, duration:'0:10', title:'Slow to close down',              desc:'No press from midfield, they build through easily.',                                            type:'work', measures:['Pressing high'],                     players:['LM','AL'],       half:'Second half' },
-  { id:16, game:'northgate', gameResult:'D', gameLabel:'Northgate 1–1', gameDate:'Sat 17 Oct', min:12, duration:'0:18', title:'Eight passes out from the keeper',desc:'Building from the back successfully, 8 passes.',                                                type:'good', measures:['Building out'],                      players:['EB','MT'],       half:'First half'  },
-  { id:17, game:'northgate', gameResult:'D', gameLabel:'Northgate 1–1', gameDate:'Sat 17 Oct', min:52, duration:'0:12', title:'Win it, go, goal in 8 s',         desc:'Counter-attack leads to goal. Win to shot in 8 seconds.',                                      type:'good', measures:['Counter-attacks'],                   players:['ZH','JP','MT'], half:'Second half', taggedBy:'you' },
-  { id:18, game:'bayside',   gameResult:'W', gameLabel:'Bayside 2–0',   gameDate:'Sat 10 Oct', min:14, duration:'0:11', title:'Front three force the mistake',   desc:'High press wins it back inside their half.',                                                    type:'good', measures:['Won in their half','Pressing high'], players:['JP','ZH','LM'], half:'First half'  },
-  { id:19, game:'bayside',   gameResult:'W', gameLabel:'Bayside 2–0',   gameDate:'Sat 10 Oct', min:28, duration:'0:09', title:'Mia goal from counter',           desc:'Quick counter-attack, goal in 9 seconds.',                                                      type:'good', measures:['Counter-attacks'],                   players:['MT','ZH'],       half:'First half'  },
-  { id:20, game:'bayside',   gameResult:'W', gameLabel:'Bayside 2–0',   gameDate:'Sat 10 Oct', min:38, duration:'0:12', title:'Three passes, shot on target',    desc:'Counter-attack leads to shot on target.',                                                       type:'good', measures:['Counter-attacks'],                   players:['GO','JP','MT'],  half:'First half'  },
-  { id:21, game:'bayside',   gameResult:'W', gameLabel:'Bayside 2–0',   gameDate:'Sat 10 Oct', min:61, duration:'0:10', title:'Wide press, ball over the top',   desc:'Press split by long ball over the top.',                                                        type:'work', measures:['Pressing high'],                     players:['LM','RC'],       half:'Second half' },
-  { id:22, game:'bayside',   gameResult:'W', gameLabel:'Bayside 2–0',   gameDate:'Sat 10 Oct', min:44, duration:'0:14', title:'Nine passes out from the back',   desc:'Patient build-up from defence through all thirds.',                                             type:'good', measures:['Building out'],                      players:['EB','MT','GO'],  half:'Second half' },
+  // Ironbark 3–1 · Sat 30 May (7 clips · 4 good)
+  { id:1,  game:'ironbark',  gameResult:'W', gameLabel:'Ironbark 3–1',  gameDate:'Sat 30 May', min:9,  duration:'0:18', title:'Eight passes out from the keeper', desc:'Ella splits wide, Mia shows on the half-turn, and we play through their press.',               type:'good', measures:['Building out'],      players:['EB','MT'],       half:'First half',   taggedBy:'you', stat1Label:'8',                stat1Value:'Passes in move · Match camera', stat2Label:'0.9 s avg',    stat2Value:'Time on ball · Boot sensors',      stat3Label:'4 before receiving', stat3Value:'Mia scans · Match camera',    stat4Label:'Over halfway',  stat4Value:'Ended · Match camera' },
+  { id:2,  game:'ironbark',  gameResult:'W', gameLabel:'Ironbark 3–1',  gameDate:'Sat 30 May', min:16, duration:'0:14', title:'Lost it on halfway',               desc:'One player presses, the rest watch. Nine seconds before we win it back.',                        type:'work', measures:['Winning it back'],  players:['NO','EB'],       half:'First half',                   stat1Label:'9 s',              stat1Value:'Win back · Match camera',       stat2Label:'1 of 4',       stat2Value:'Players pressing · Match camera', stat3Label:'22 km/h',           stat3Value:'Noah top speed · GPS vest',   stat4Label:'11 m',          stat4Value:'Distance to ball · Match camera' },
+  { id:3,  game:'ironbark',  gameResult:'W', gameLabel:'Ironbark 3–1',  gameDate:'Sat 30 May', min:22, duration:'0:11', title:'Front three force the mistake',    desc:'Jai curves his run to cut off the centre-back. Won in their half, shot 6 seconds later.',     type:'good', measures:['Pressing high'],     players:['JP','ZH','LM'], half:'First half',                   stat1Label:'28 m from goal',   stat1Value:'Won at · Match camera',         stat2Label:'3 of 3',       stat2Value:'Players pressing · Match camera', stat3Label:'26 km/h',           stat3Value:'Jai sprint · GPS vest',       stat4Label:'6 s',           stat4Value:'Shot after · Match camera' },
+  { id:4,  game:'ironbark',  gameResult:'W', gameLabel:'Ironbark 3–1',  gameDate:'Sat 30 May', min:29, duration:'0:16', title:'A 28 m gap before their shot',     desc:'Gap between lines · min 29. Lines split wide before the chance.',                              type:'work', measures:['Gap between lines'], players:['TR','GO'],       half:'First half',                   stat1Label:'28 m',             stat1Value:'Gap · Match camera',            stat2Label:'9 passes',     stat2Value:'No press · Match camera' },
+  { id:5,  game:'ironbark',  gameResult:'W', gameLabel:'Ironbark 3–1',  gameDate:'Sat 30 May', min:37, duration:'0:12', title:'Win it, go, goal in 8 seconds',    desc:'Win back, Jai runs at goal, scores in 8 seconds.',                                              type:'good', measures:['Counter-attacks'],  players:['ZH','JP','MT'], half:'Second half', taggedBy:'you', stat1Label:'8 s',              stat1Value:'Win to goal · Match camera',    stat2Label:'3 passes',     stat2Value:'In the move · Match camera' },
+  { id:6,  game:'ironbark',  gameResult:'W', gameLabel:'Ironbark 3–1',  gameDate:'Sat 30 May', min:47, duration:'0:09', title:"Mia's goal, 3–1",                 desc:'Scores from the edge of the box after a quick combination.',                                    type:'good', measures:['Goals and chances'], players:['MT','AL'],       half:'Second half' },
+  { id:7,  game:'ironbark',  gameResult:'W', gameLabel:'Ironbark 3–1',  gameDate:'Sat 30 May', min:52, duration:'0:10', title:'Slow to close down, legs gone',    desc:'No press from midfield. They build through easily.',                                            type:'work', measures:['Pressing high'],     players:['LM','AL'],       half:'Second half' },
+  // Northgate 1–1 · Sat 16 May (5 clips · 2 good)
+  { id:8,  game:'northgate', gameResult:'D', gameLabel:'Northgate 1–1', gameDate:'Sat 16 May', min:19, duration:'0:11', title:'Press traps them on the touchline', desc:'Coordinated press forces a long ball out of play.',                                             type:'good', measures:['Pressing high'],     players:['ZH','LM','JP'], half:'First half' },
+  { id:9,  game:'northgate', gameResult:'D', gameLabel:'Northgate 1–1', gameDate:'Sat 16 May', min:11, duration:'0:17', title:'Through the thirds, ten passes',   desc:'Patient build-up from defence through all three thirds, ten passes.',                           type:'good', measures:['Building out'],      players:['GO','AL','MT'], half:'First half' },
+  { id:10, game:'northgate', gameResult:'D', gameLabel:'Northgate 1–1', gameDate:'Sat 16 May', min:34, duration:'0:13', title:'Chased but didn\'t close',         desc:'Pressed high but no one commits to the ball. Winning it back · min 34.',                        type:'work', measures:['Winning it back'],  players:['MT','NO'],       half:'First half' },
+  { id:11, game:'northgate', gameResult:'D', gameLabel:'Northgate 1–1', gameDate:'Sat 16 May', min:46, duration:'0:14', title:'Lines pull wide, they go through', desc:'Gap between our lines before their counter. Mid-block split.',                                  type:'work', measures:['Gap between lines'], players:['TR','EB'],       half:'Second half' },
+  { id:12, game:'northgate', gameResult:'D', gameLabel:'Northgate 1–1', gameDate:'Sat 16 May', min:55, duration:'0:12', title:'Win it, hold it—lost too long',    desc:'Won it high but held too long. Counter-attacks · min 55.',                                      type:'work', measures:['Counter-attacks'],  players:['TR','LM'],       half:'Second half' },
+  // Saltmarsh 1–2 · Sat 23 May (5 clips · 1 good)
+  { id:13, game:'saltmarsh', gameResult:'L', gameLabel:'Saltmarsh 1–2', gameDate:'Sat 23 May', min:14, duration:'0:12', title:'Press split, they play through',   desc:'Pressed alone, Saltmarsh played through the first line easily.',                                type:'work', measures:['Pressing high'],     players:['JP','ZH'],       half:'First half' },
+  { id:14, game:'saltmarsh', gameResult:'L', gameLabel:'Saltmarsh 1–2', gameDate:'Sat 23 May', min:22, duration:'0:16', title:'Turned over in midfield',          desc:'Ball turned over before we could build. Building out · min 22.',                                type:'work', measures:['Building out'],      players:['GO','EB'],       half:'First half' },
+  { id:15, game:'saltmarsh', gameResult:'L', gameLabel:'Saltmarsh 1–2', gameDate:'Sat 23 May', min:33, duration:'0:16', title:'Long ball after two passes',       desc:'Gave away possession after just two passes, went long.',                                        type:'work', measures:['Building out'],      players:['NO','AL'],       half:'First half' },
+  { id:16, game:'saltmarsh', gameResult:'L', gameLabel:'Saltmarsh 1–2', gameDate:'Sat 23 May', min:41, duration:'0:13', title:'Quick press wins it back',         desc:'Winning it back · min 41. Press wins the ball inside their half.',                              type:'good', measures:['Winning it back'],  players:['MT','LM'],       half:'First half' },
+  { id:17, game:'saltmarsh', gameResult:'L', gameLabel:'Saltmarsh 1–2', gameDate:'Sat 23 May', min:58, duration:'0:11', title:'Shot blocked, didn\'t follow up',  desc:'Goals and chances · min 58. Good chance, no one on the follow-up.',                             type:'work', measures:['Goals and chances'], players:['TR','JP'],       half:'Second half' },
+  // Bayside 2–0 · Sat 9 May (5 clips · 5 good)
+  { id:18, game:'bayside',   gameResult:'W', gameLabel:'Bayside 2–0',   gameDate:'Sat 9 May',  min:14, duration:'0:11', title:'Goal from a high turnover',        desc:'High press wins it back, shot on goal from the edge of their box.',                             type:'good', measures:['Pressing high'],     players:['AL','JP'],       half:'First half',   taggedBy:'you' },
+  { id:19, game:'bayside',   gameResult:'W', gameLabel:'Bayside 2–0',   gameDate:'Sat 9 May',  min:22, duration:'0:09', title:'Win it, quick pass, goal',         desc:'Winning it back · min 22. Win the ball, play through, goal.',                                   type:'good', measures:['Winning it back'],  players:['EB','MT'],       half:'First half' },
+  { id:20, game:'bayside',   gameResult:'W', gameLabel:'Bayside 2–0',   gameDate:'Sat 9 May',  min:34, duration:'0:12', title:'Win high and go',                  desc:'Won the ball in their half and went straight at goal. Winning it back · min 34.',               type:'good', measures:['Winning it back'],  players:['JP','LM'],       half:'First half' },
+  { id:21, game:'bayside',   gameResult:'W', gameLabel:'Bayside 2–0',   gameDate:'Sat 9 May',  min:44, duration:'0:14', title:'Lines stayed tight all first half', desc:'Our lines compact, no gaps. Gap between lines · min 44.',                                       type:'good', measures:['Gap between lines'], players:['ZH','MT'],       half:'Second half' },
+  { id:22, game:'bayside',   gameResult:'W', gameLabel:'Bayside 2–0',   gameDate:'Sat 9 May',  min:51, duration:'0:13', title:'Low cross, Mia on the finish',      desc:'Goals and chances · min 51. Great movement, great finish.',                                     type:'good', measures:['Goals and chances'], players:['MT','GO'],       half:'Second half' },
 ]
 
 // ── Our style screen ──────────────────────────────────────────────────────────

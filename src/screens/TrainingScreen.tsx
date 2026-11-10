@@ -308,7 +308,7 @@ export default function TrainingScreen({ role, onNav, empty }: Props) {
           <section>
             <h2 style={{ margin: '0 0 12px', fontSize: 15, fontWeight: 700, color: '#10211f' }}>Why this plan</h2>
             <p style={{ margin: '0 0 14px', fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>
-              Three things to fix from Saturday vs Ironbark United
+              3 fixes from Saturday vs Ironbark United
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
               {focus.map((f, i) => (
