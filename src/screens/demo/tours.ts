@@ -591,8 +591,8 @@ export const TOURS: Record<string, TourDef> = {
     sections: [
       { title: "Each day", steps: [
         { label: "Home: today\u2019s sessions", caption: "Several groups in one evening. Each player\u2019s own goal sits under their name during the session.", screen: "academycoach" },
-        { label: "Suggested for tonight", caption: "Several groups in one evening. Each player\u2019s own goal sits under their name during the session.", screen: "academycoach" },
         { label: "Run a session", caption: "Several groups in one evening. Each player\u2019s own goal sits under their name during the session.", screen: "academycoach" },
+        { label: "Suggested for tonight", caption: "Several groups in one evening. Each player\u2019s own goal sits under their name during the session.", screen: "academycoach" },
         { label: "Swap a drill", caption: "Several groups in one evening. Each player\u2019s own goal sits under their name during the session.", screen: "drills" },
       ]},
       { title: "Record and repeat", steps: [
