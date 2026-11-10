@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { RaiseConcernView, ConcernSentView, TellSomeoneView, TellHelenView } from './playerapp/SafeguardingFlows'
 import ParentView from './playerapp/ParentView'
+import ParentChatScreen from './ParentChatScreen'
 
-type PlayerView = 'home' | 'checkin' | 'checkin-sent' | 'clip' | 'goals' | 'parent' | 'parent-avail' | 'invite' | 'raise-concern' | 'concern-sent' | 'tell-someone' | 'tell-helen'
+type PlayerView = 'home' | 'checkin' | 'checkin-sent' | 'clip' | 'goals' | 'parent' | 'parent-avail' | 'parent-chat' | 'young-news' | 'invite' | 'raise-concern' | 'concern-sent' | 'tell-someone' | 'tell-helen'
 
 interface WellnessOption { label: string; emoji: string; value: number }
 
@@ -360,6 +361,64 @@ export default function PlayerAppScreen({ empty }: { empty?: boolean }) {
     )
   }
 
+  /* ── PARENT CHAT ── */
+  if (view === 'parent-chat') {
+    return <ParentChatScreen empty={empty} onBack={() => setView('parent')} />
+  }
+
+  /* ── YOUNG NEWS (PK1 — under-15 player news feed) ── */
+  if (view === 'young-news') {
+    return (
+      <div style={{ width: 390, margin: '0 auto', background: '#f7f9f7', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
+        <div style={{ background: '#1f4a3e', padding: '44px 20px 16px', flexShrink: 0, display: 'flex', alignItems: 'center', gap: 10 }}>
+          <button onClick={() => setView('home')} style={{ width: 30, height: 30, border: 'none', background: 'rgba(255,255,255,0.15)', borderRadius: '999px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={2.5} strokeLinecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          </button>
+          <div style={{ flex: 1 }}>
+            <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.65)' }}>Wattle Creek U12 · from your coach</div>
+            <div style={{ fontSize: 20, fontWeight: 800, color: '#fff' }}>News for Mia</div>
+          </div>
+          <div style={{ width: 36, height: 36, borderRadius: '999px', background: '#c39797', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, color: '#10211f' }}>MT</div>
+        </div>
+        <div style={{ flex: 1, overflowY: 'auto', padding: '16px' }}>
+          {[
+            { from: 'Rob, team manager', time: 'today', subject: 'Be there 8:40 on Saturday', body: 'Pitch 2. White kit.', attach: { label: 'Pitch 2, Wattle Creek Reserve', note: 'Mum has the directions' } },
+            { from: 'Sam, your coach', time: 'today', subject: '14 juggles is a new best!', body: 'Sam saw your video. Can you get to 15 by Thursday?', attach: null },
+          ].map((item, i) => (
+            <div key={i} style={{ background: '#fff', borderRadius: 16, padding: '14px', border: '1px solid #e9eae8', marginBottom: 10 }}>
+              <div style={{ fontSize: 11, color: '#4a5a57', marginBottom: 4 }}>{item.from} · {item.time}</div>
+              <div style={{ fontSize: 16, fontWeight: 700, color: '#10211f', marginBottom: 4 }}>{item.subject}</div>
+              <div style={{ fontSize: 14, color: '#10211f', marginBottom: item.attach ? 10 : 0 }}>{item.body}</div>
+              {item.attach && (
+                <div style={{ display: 'flex', gap: 8, padding: '8px 10px', background: '#f5f6f4', borderRadius: 10, alignItems: 'center' }}>
+                  <div style={{ width: 26, height: 26, borderRadius: 7, background: '#5a7a6e', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={2} strokeLinecap="round"><path d="M12 2a7 7 0 017 7c0 5-7 13-7 13S5 14 5 9a7 7 0 017-7zM12 9a2 2 0 100-4 2 2 0 000 4"/></svg>
+                  </div>
+                  <div><div style={{ fontSize: 12, fontWeight: 600, color: '#10211f' }}>{item.attach.label}</div><div style={{ fontSize: 11, color: '#4a5a57' }}>{item.attach.note}</div></div>
+                </div>
+              )}
+              <div style={{ display: 'flex', gap: 8, marginTop: 10 }}>
+                {['👍', '😀', '⚽'].map(emoji => (
+                  <button key={emoji} style={{ width: 40, height: 40, borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontSize: 18, cursor: 'pointer' }}>{emoji}</button>
+                ))}
+              </div>
+            </div>
+          ))}
+          <div style={{ fontSize: 12, color: '#4a5a57', textAlign: 'center', lineHeight: 1.5, marginBottom: 10 }}>No chat until you're 15. You get news from your coach here. Mum or Dad writes for you.</div>
+          <button onClick={() => setView('tell-someone')} style={{ display: 'block', width: '100%', textAlign: 'center', border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: '#2f6252', padding: '4px 0' }}>Something not right? You can tell someone</button>
+        </div>
+        <div style={{ background: '#fff', borderTop: '1px solid #e9eae8', display: 'flex', height: 56, flexShrink: 0 }}>
+          {([{ label: 'Home', icon: 'M4 11l8-7 8 7v9H4z' }, { label: 'Clips', icon: 'M12 21a9 9 0 100-18 9 9 0 000 18zM10 8l6 4-6 4z' }, { label: 'Goals', icon: 'M12 2l2.4 7.4H22l-6.5 4.7 2.5 7.6L12 17l-6 4.7 2.5-7.6L3 9.4h7.6z' }, { label: 'Me', icon: 'M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8' }]).map(tab => (
+            <button key={tab.label} onClick={() => setView('home')} style={{ flex: 1, border: 'none', background: 'transparent', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 3, fontFamily: 'inherit', fontSize: 10, fontWeight: 600, cursor: 'pointer', color: tab.label === 'Home' ? '#2f6252' : '#4a5a57' }}>
+              <svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"><path d={tab.icon}/></svg>
+              {tab.label}
+            </button>
+          ))}
+        </div>
+      </div>
+    )
+  }
+
   /* ── PARENT VIEW (Mia's week) ── */
   if (view === 'parent') {
     return <ParentView onAvailability={() => setView('parent-avail')} onRaiseConcern={() => setView('raise-concern')} />
@@ -376,7 +435,8 @@ export default function PlayerAppScreen({ empty }: { empty?: boolean }) {
             <div style={{ fontSize: 24, fontWeight: 800, color: '#fff' }}>Hi Harper</div>
           </div>
           <div style={{ display: 'flex', gap: 6 }}>
-            <button onClick={() => setView('invite')} style={{ height: 32, padding: '0 12px', borderRadius: '999px', border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: 'rgba(255,255,255,0.8)', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Invite</button>
+            <button onClick={() => setView('young-news')} style={{ height: 32, padding: '0 12px', borderRadius: '999px', border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: 'rgba(255,255,255,0.8)', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>News</button>
+            <button onClick={() => setView('parent-chat')} style={{ height: 32, padding: '0 12px', borderRadius: '999px', border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: 'rgba(255,255,255,0.8)', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Messages</button>
             <button onClick={() => setView('parent')} style={{ height: 32, padding: '0 12px', borderRadius: '999px', border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: 'rgba(255,255,255,0.8)', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Mia's week →</button>
           </div>
         </div>

@@ -2,6 +2,187 @@ import { useState } from 'react'
 
 type Chip = 'Meet time' | 'Venue or pitch' | 'Cancelled' | 'Kit or other'
 type ThreadKey = 'coaches' | 'linh' | 'all' | 'wattle'
+type MgrView = 'list' | 'teamchat' | 'setup' | 'newpoll'
+
+const G  = '#2f6252'
+const G2 = '#40826d'
+const GD = '#1f4a3e'
+const INK = '#10211f'
+const MUT = '#4a5a57'
+const LN = '#e8edeb'
+const ROSE = '#c39797'
+
+function ManagerIni({ s, bg, size = 32 }: { s: string; bg: string; size?: number }) {
+  return <div style={{ width: size, height: size, borderRadius: '999px', background: bg, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: s.length > 2 ? 10 : 12, fontWeight: 700, flexShrink: 0 }}>{s}</div>
+}
+
+/* TM12 — Manager sets up the team chat */
+function SetUpChatView({ onDone }: { onDone: () => void }) {
+  const [postPerm, setPostPerm] = useState<'coaches' | 'everyone'>('coaches')
+  return (
+    <div style={{ padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 10 }}>
+      <div style={{ fontSize: 12, color: MUT }}>U12 Sam · you own this chat</div>
+      <div style={{ fontSize: 20, fontWeight: 800, color: INK, letterSpacing: '-0.01em' }}>Set up the team chat</div>
+      <div style={{ display: 'flex', gap: 8, marginBottom: 2 }}>
+        <ManagerIni s="RO" bg={MUT} size={28}/>
+        <div style={{ fontSize: 12, color: MUT, lineHeight: 1.5 }}>In the chat: 17 families, Sam and Jess. Players under 15 aren't added. The welfare officer can read it.</div>
+      </div>
+
+      <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: MUT }}>Who can post</div>
+      {(['coaches', 'everyone'] as const).map(v => (
+        <label key={v} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, padding: '10px 12px', borderRadius: 12, border: `1.5px solid ${postPerm === v ? G : LN}`, cursor: 'pointer', background: postPerm === v ? '#f5f9f7' : '#fff' }}>
+          <div onClick={() => setPostPerm(v)} style={{ width: 20, height: 20, borderRadius: '50%', border: `2px solid ${postPerm === v ? G : LN}`, background: postPerm === v ? G : '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 1 }}>
+            {postPerm === v && <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#fff' }}/>}
+          </div>
+          <div>
+            <div style={{ fontSize: 14, fontWeight: 700, color: INK }}>{v === 'coaches' ? 'Coaches and me only' : 'Everyone in the chat'}</div>
+            <div style={{ fontSize: 12, color: MUT }}>{v === 'coaches' ? 'Parents read, react, vote and reply to us privately' : 'Parents can write and send what\'s switched on below'}</div>
+          </div>
+        </label>
+      ))}
+      {postPerm === 'everyone' && (
+        <>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: MUT }}>Parents can send</div>
+          {[{ label: 'Photos and videos', note: 'Checked against photo consent' }, { label: 'Voice notes', note: 'Up to 2 minutes' }, { label: 'Polls', note: 'Off: only coaches and you can ask', off: true }, { label: 'Files and places', note: 'PDFs and a pin on the map' }].map(item => (
+            <div key={item.label} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 0', borderBottom: `1px solid ${LN}` }}>
+              <div style={{ width: 36, height: 22, borderRadius: 11, background: item.off ? LN : G, position: 'relative' as const, flexShrink: 0 }}>
+                <div style={{ position: 'absolute' as const, top: 3, [item.off ? 'left' : 'right']: 3, width: 16, height: 16, borderRadius: '50%', background: '#fff' }}/>
+              </div>
+              <div>
+                <div style={{ fontSize: 13, color: INK }}>{item.label}</div>
+                <div style={{ fontSize: 11, color: MUT }}>{item.note}</div>
+              </div>
+            </div>
+          ))}
+        </>
+      )}
+      <div style={{ padding: '8px 10px', background: '#fafafa', borderRadius: 10, fontSize: 12, color: MUT, lineHeight: 1.5 }}>Quiet hours, 9 pm to 7 am · No notifications overnight</div>
+      <button onClick={onDone} style={{ height: 52, borderRadius: 12, border: 'none', background: G, color: '#fff', fontSize: 16, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Create the chat</button>
+    </div>
+  )
+}
+
+/* TM13 — Manager creates a poll */
+function NewPollView({ onBack }: { onBack: () => void }) {
+  const [preset, setPreset] = useState("Who can help?")
+  return (
+    <div style={{ padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 10 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
+        <button onClick={onBack} style={{ width: 30, height: 30, border: 'none', background: LN, borderRadius: '999px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth={2.5} strokeLinecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        </button>
+        <div style={{ fontSize: 20, fontWeight: 800, color: INK, letterSpacing: '-0.01em' }}>New poll</div>
+      </div>
+      <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: MUT }}>Start from</div>
+      <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' as const }}>
+        {["Who can help?", "Who's coming?", "Your own"].map(p => (
+          <button key={p} onClick={() => setPreset(p)} style={{ height: 32, padding: '0 12px', borderRadius: 999, border: `1px solid ${preset === p ? G : LN}`, background: preset === p ? G : '#fff', color: preset === p ? '#fff' : MUT, fontSize: 13, fontWeight: preset === p ? 700 : 400, cursor: 'pointer', fontFamily: 'inherit' }}>{p}</button>
+        ))}
+      </div>
+      <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: MUT }}>Question</div>
+      <input defaultValue="Who can do canteen on Saturday?" style={{ width: '100%', height: 44, padding: '0 12px', borderRadius: 10, border: `1px solid ${LN}`, fontSize: 14, fontFamily: 'inherit', outline: 'none', color: INK, boxSizing: 'border-box' as const }}/>
+      <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: MUT }}>Answers · one family each</div>
+      {['9 to 10', '10 to 11', '11 to 12'].map(a => (
+        <div key={a} style={{ display: 'flex', gap: 6 }}>
+          <input defaultValue={a} style={{ flex: 1, height: 40, padding: '0 12px', borderRadius: 8, border: `1px solid ${LN}`, fontSize: 14, fontFamily: 'inherit', outline: 'none', color: INK }}/>
+        </div>
+      ))}
+      <button style={{ display: 'flex', alignItems: 'center', gap: 6, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G2, padding: '2px 0' }}>
+        <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        Add an answer
+      </button>
+      <div style={{ padding: '8px 10px', background: '#fafafa', borderRadius: 10 }}>
+        <div style={{ fontSize: 13, fontWeight: 700, color: GD, marginBottom: 2 }}>Fill in the duty roster</div>
+        <div style={{ fontSize: 12, color: MUT }}>Each yes goes straight onto Saturday's roster</div>
+      </div>
+      <div style={{ display: 'flex', gap: 8, alignItems: 'center', padding: '4px 0' }}>
+        <div style={{ fontSize: 13, color: INK, flex: 1 }}>Remind anyone who hasn't answered</div>
+        <span style={{ fontSize: 13, fontWeight: 600, color: G2 }}>Friday at noon, once</span>
+      </div>
+      <button onClick={onBack} style={{ height: 52, borderRadius: 12, border: 'none', background: G, color: '#fff', fontSize: 16, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Send poll</button>
+    </div>
+  )
+}
+
+/* TM14 — Manager's view of the team chat */
+function ManagerTeamChatView({ onBack, onNewPoll, onSetup }: { onBack: () => void; onNewPoll: () => void; onSetup: () => void }) {
+  void onSetup
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: 0, flexGrow: 1 }}>
+      <div style={{ padding: '10px 14px', borderBottom: `1px solid ${LN}`, background: '#fff', display: 'flex', alignItems: 'center', gap: 8 }}>
+        <button onClick={onBack} style={{ width: 30, height: 30, border: 'none', background: LN, borderRadius: '999px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth={2.5} strokeLinecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        </button>
+        <div style={{ flex: 1 }}>
+          <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>U12 Sam team chat</div>
+          <div style={{ fontSize: 11, color: MUT }}>17 families and Sam and Jess</div>
+        </div>
+        <ManagerIni s="RO" bg={MUT} size={28}/>
+      </div>
+      <div style={{ background: '#fdf5f0', padding: '8px 14px', borderBottom: `1px solid ${LN}`, display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: 12, color: MUT }}>
+        <span>You own this chat. Parents can post. <button onClick={onSetup} style={{ border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, color: ROSE, padding: 0 }}>Change</button></span>
+      </div>
+      {/* Poll indicator */}
+      <div style={{ padding: '10px 14px', background: '#f5f9f7', borderBottom: `1px solid ${LN}`, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div style={{ fontSize: 13, color: GD }}>Your poll: oranges. 4 of 17 so far</div>
+        <button style={{ fontSize: 12, fontWeight: 700, color: G2, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit' }}>See who</button>
+      </div>
+      <div style={{ flexGrow: 1, overflowY: 'auto', padding: '14px' }}>
+        {/* Linh's voice */}
+        <div style={{ marginBottom: 14 }}>
+          <div style={{ display: 'flex', gap: 8, marginBottom: 4 }}>
+            <ManagerIni s="LT" bg={ROSE} size={26}/>
+            <span style={{ fontSize: 12, color: MUT }}>Linh · Mia's mum · 7:48 pm</span>
+          </div>
+          <div style={{ background: '#f5f6f4', borderRadius: 12, padding: '8px 12px', marginLeft: 34 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <button style={{ width: 24, height: 24, borderRadius: '999px', border: 'none', background: G, color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <svg width={8} height={8} viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21"/></svg>
+              </button>
+              <div style={{ flex: 1, height: 2, background: LN, borderRadius: 999 }}/>
+              <span style={{ fontSize: 11, color: MUT }}>0:21</span>
+            </div>
+            <div style={{ fontSize: 12, color: MUT, marginTop: 3 }}>Mia found her other boot! And she got to 14 juggles.</div>
+          </div>
+          <div style={{ display: 'flex', gap: 5, marginLeft: 34, marginTop: 3 }}>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 3, background: '#f0f4f2', borderRadius: 999, padding: '1px 7px', fontSize: 12 }}>👍 <span style={{ fontSize: 11, color: MUT }}>6</span></span>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 3, background: '#f0f4f2', borderRadius: 999, padding: '1px 7px', fontSize: 12 }}>🙌 <span style={{ fontSize: 11, color: MUT }}>3</span></span>
+          </div>
+        </div>
+        {/* Sam's reply */}
+        <div style={{ marginBottom: 14 }}>
+          <div style={{ display: 'flex', gap: 8, marginBottom: 4 }}>
+            <ManagerIni s="SK" bg={GD} size={26}/>
+            <span style={{ fontSize: 12, color: MUT }}>Sam · coach · 7:52 pm</span>
+          </div>
+          <div style={{ background: '#f5f6f4', borderRadius: 12, padding: '8px 12px', marginLeft: 34, fontSize: 14, color: INK, lineHeight: 1.5 }}>14 is a new best. Tell her I said so.</div>
+        </div>
+        {/* Dan's message with action hint */}
+        <div style={{ marginBottom: 6 }}>
+          <div style={{ display: 'flex', gap: 8, marginBottom: 4 }}>
+            <ManagerIni s="DC" bg={MUT} size={26}/>
+            <span style={{ fontSize: 12, color: MUT }}>Dan · Ruby's dad · 8:02 pm</span>
+          </div>
+          <div style={{ background: '#f5f6f4', borderRadius: 12, padding: '8px 12px', marginLeft: 34, fontSize: 14, color: INK, lineHeight: 1.5 }}>Why does Ruby only ever get one half? Some kids never come off.</div>
+        </div>
+        <div style={{ marginLeft: 34, marginBottom: 14 }}>
+          <button style={{ height: 28, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: ROSE, cursor: 'pointer', fontFamily: 'inherit' }}>Move this out of the group</button>
+        </div>
+      </div>
+      <div style={{ background: '#fff', borderTop: `1px solid ${LN}`, padding: '8px 14px 10px', flexShrink: 0 }}>
+        <div style={{ display: 'flex', gap: 6, marginBottom: 6 }}>
+          <button onClick={onNewPoll} style={{ height: 30, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>Poll</button>
+          <button style={{ height: 30, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>Announce</button>
+          <button style={{ height: 30, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>Pinned</button>
+        </div>
+        <div style={{ display: 'flex', gap: 8 }}>
+          <input placeholder="Write to the team chat" style={{ flex: 1, height: 38, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, fontSize: 14, fontFamily: 'inherit', outline: 'none', color: INK, background: '#fafafa' }}/>
+          <button style={{ height: 38, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Send</button>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 const CHIPS: Chip[] = ['Meet time', 'Venue or pitch', 'Cancelled', 'Kit or other']
 
@@ -104,6 +285,7 @@ export default function MessagesTab({ showChange, setShowChange }: { showChange:
   const [chips, setChips] = useState<Set<Chip>>(new Set(['Meet time' as Chip]))
   const [sheet, setSheet] = useState<ThreadKey | null>(null)
   const [toast, setToast] = useState('')
+  const [mgrView, setMgrView] = useState<MgrView>('list')
 
   const showToast = (m: string) => { setToast(m); setTimeout(() => setToast(''), 3200) }
   const toggle = (c: Chip) => setChips(prev => { const n = new Set(prev); n.has(c) ? n.delete(c) : n.add(c); return n })
@@ -112,6 +294,16 @@ export default function MessagesTab({ showChange, setShowChange }: { showChange:
 
   if (showChange) {
     return <ChangeForm chips={chips} toggle={toggle} onSend={handleSend} />
+  }
+
+  if (mgrView === 'teamchat') {
+    return <ManagerTeamChatView onBack={() => setMgrView('list')} onNewPoll={() => setMgrView('newpoll')} onSetup={() => setMgrView('setup')}/>
+  }
+  if (mgrView === 'setup') {
+    return <SetUpChatView onDone={() => setMgrView('teamchat')}/>
+  }
+  if (mgrView === 'newpoll') {
+    return <NewPollView onBack={() => setMgrView('teamchat')}/>
   }
 
   const tc = sheet ? THREAD_CONTENT[sheet] : null
@@ -145,7 +337,7 @@ export default function MessagesTab({ showChange, setShowChange }: { showChange:
         <div style={{ border: '1px solid #c5c8c4', borderRadius: 16, padding: '4px 14px', background: '#fff', display: 'flex', flexDirection: 'column' }}>
           <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#4a5a57', padding: '8px 0 4px' }}>Conversations</span>
           {THREADS.map(t => (
-            <button key={t.id} onClick={() => setSheet(t.id)} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 62, borderLeft: 0, borderRight: 0, borderBottom: 0, borderTop: '1px solid #e9eae8', background: 'transparent', padding: '0', cursor: 'pointer', textAlign: 'left' as const, fontFamily: 'inherit', color: '#10211f', width: '100%' }}>
+            <button key={t.id} onClick={() => t.id === 'all' ? setMgrView('teamchat') : setSheet(t.id)} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 62, borderLeft: 0, borderRight: 0, borderBottom: 0, borderTop: '1px solid #e9eae8', background: 'transparent', padding: '0', cursor: 'pointer', textAlign: 'left' as const, fontFamily: 'inherit', color: '#10211f', width: '100%' }}>
               <span style={{ flexShrink: 0, width: 36, height: 36, borderRadius: '999px', background: t.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }}>{t.ini}</span>
               <span style={{ flexGrow: 1, minWidth: 0 }}>
                 <span style={{ display: 'flex', justifyContent: 'space-between', gap: 8 }}>

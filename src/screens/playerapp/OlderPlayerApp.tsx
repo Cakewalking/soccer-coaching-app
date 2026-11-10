@@ -114,49 +114,151 @@ function HomeView({ setView }: { setView: (v: View) => void }) {
   )
 }
 
+type MsgChat = 'list' | 'group' | 'private'
+
 function MessagesView() {
-  return (
+  const [chat, setChat] = useState<MsgChat>('list')
+
+  /* PO6 — messages list */
+  if (chat === 'list') return (
+    <div style={{ flexGrow: 1, overflowY: 'auto', background: '#fff' }}>
+      <div style={{ padding: '10px 16px 4px', fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#4a5a57' }}>U16</div>
+      {/* Announcements */}
+      <button onClick={() => setChat('group')} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 16px', border: 'none', borderBottom: '1px solid #e9eae8', background: 'transparent', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit', width: '100%' }}>
+        <div style={{ width: 40, height: 40, borderRadius: 10, background: '#1f4a3e', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+          <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={2} strokeLinecap="round"><path d="M22 7l-10 10L2 7"/><rect x={2} y={4} width={20} height={16} rx={2}/></svg>
+        </div>
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 2 }}>
+            <span style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>Announcements</span>
+            <span style={{ fontSize: 12, color: '#4a5a57' }}>Wed</span>
+          </div>
+          <div style={{ fontSize: 13, color: '#4a5a57' }}>Ollie: Team meeting Friday 6:00 pm</div>
+        </div>
+      </button>
+      {/* Group chat */}
+      <button onClick={() => setChat('group')} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 16px', border: 'none', borderBottom: '1px solid #e9eae8', background: 'transparent', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit', width: '100%' }}>
+        <div style={{ width: 40, height: 40, borderRadius: '999px', background: '#2f6252', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, color: '#fff', flexShrink: 0 }}>U16</div>
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 2 }}>
+            <span style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>U16 players and coaches</span>
+            <span style={{ fontSize: 12, color: '#4a5a57' }}>8:15 am</span>
+          </div>
+          <div style={{ fontSize: 13, color: '#4a5a57' }}>Jai: who's got the spare shin pads</div>
+        </div>
+        <span style={{ background: '#c39797', color: '#fff', borderRadius: 999, padding: '1px 6px', fontSize: 11, fontWeight: 700, flexShrink: 0 }}>4</span>
+      </button>
+      {/* Private with Ollie */}
+      <button onClick={() => setChat('private')} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 16px', border: 'none', borderBottom: '1px solid #e9eae8', background: 'transparent', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit', width: '100%' }}>
+        <div style={{ width: 40, height: 40, borderRadius: '999px', background: '#40826d', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, color: '#fff', flexShrink: 0 }}>OG</div>
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 2 }}>
+            <span style={{ fontSize: 14, fontWeight: 600, color: '#10211f' }}>Ollie Grant · your coach</span>
+            <span style={{ fontSize: 12, color: '#4a5a57' }}>Thu</span>
+          </div>
+          <div style={{ fontSize: 13, color: '#4a5a57' }}>Also: Priya wants you fresh.</div>
+        </div>
+      </button>
+      <div style={{ padding: '12px 16px', fontSize: 12, color: '#4a5a57', lineHeight: 1.5 }}>Your mum, Mel, can read these chats. That's the rule for every player under 18. You can't start a chat with one adult by yourself — a coach is always in a group with at least two adults.</div>
+    </div>
+  )
+
+  /* PO7 — U16 group chat */
+  if (chat === 'group') return (
     <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', minHeight: 0 }}>
-      {/* Header */}
-      <div style={{ flex: 'none', padding: '16px 20px 12px', borderBottom: '1px solid #e9eae8', background: '#fff' }}>
-        <div style={{ fontSize: 16, fontWeight: 700 }}>Ollie Grant · coach</div>
-        <div style={{ fontSize: 12, color: '#4a5a57' }}>U16 head coach</div>
-        <div style={{ marginTop: 8, background: '#fdf4f4', borderRadius: 10, padding: '8px 10px', fontSize: 12, color: '#6f7f7b', lineHeight: '17px' }}>
-          Your parent or guardian can see this thread. The club keeps a record.
+      <div style={{ flex: 'none', padding: '10px 16px', borderBottom: '1px solid #e9eae8', background: '#fff', display: 'flex', alignItems: 'center', gap: 8 }}>
+        <button onClick={() => setChat('list')} style={{ width: 30, height: 30, border: 'none', background: '#e9eae8', borderRadius: '999px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="#4a5a57" strokeWidth={2.5} strokeLinecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        </button>
+        <div style={{ flex: 1 }}>
+          <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>U16 players and coaches</div>
+          <div style={{ fontSize: 11, color: '#4a5a57' }}>16 players, Ollie and Priya · parents can read this chat. Two coaches are always in it.</div>
         </div>
       </div>
+      <div style={{ flexGrow: 1, overflowY: 'auto', padding: '14px 16px' }}>
+        {/* Ollie's poll */}
+        <div style={{ marginBottom: 14 }}>
+          <div style={{ display: 'flex', gap: 8, marginBottom: 6 }}>
+            <div style={{ width: 26, height: 26, borderRadius: '999px', background: '#40826d', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 10, fontWeight: 700, color: '#fff', flexShrink: 0 }}>OG</div>
+            <span style={{ fontSize: 12, color: '#4a5a57' }}>Ollie · coach · Wed 6:10 pm</span>
+          </div>
+          <div style={{ background: '#f5f6f4', borderRadius: 12, padding: '10px 12px', marginLeft: 34 }}>
+            <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#40826d', marginBottom: 3 }}>Poll</div>
+            <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>Team meeting: which works?</div>
+            {[{ label: 'Fri 6:00 pm', votes: 9 }, { label: 'Sat 1:30, before the game', votes: 4 }].map(opt => (
+              <div key={opt.label} style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 4 }}>
+                <div style={{ flex: 1, height: 26, background: '#e8edeb', borderRadius: 999, overflow: 'hidden', position: 'relative' as const }}>
+                  <div style={{ width: `${opt.votes / 13 * 100}%`, height: '100%', background: '#eef5f2' }}/>
+                  <span style={{ position: 'absolute' as const, left: 8, top: '50%', transform: 'translateY(-50%)', fontSize: 12, color: '#10211f' }}>{opt.label}</span>
+                </div>
+                <span style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{opt.votes}</span>
+              </div>
+            ))}
+            <div style={{ fontSize: 11, color: '#4a5a57', marginTop: 4 }}>13 of 16 · closes tonight</div>
+          </div>
+        </div>
+        {/* Jai's message */}
+        <div style={{ marginBottom: 14 }}>
+          <div style={{ display: 'flex', gap: 8, marginBottom: 4 }}>
+            <div style={{ width: 26, height: 26, borderRadius: '999px', background: '#c39797', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 10, fontWeight: 700, color: '#fff', flexShrink: 0 }}>JP</div>
+            <span style={{ fontSize: 12, color: '#4a5a57' }}>Jai · 8:15 am</span>
+          </div>
+          <div style={{ background: '#f5f6f4', borderRadius: 12, padding: '8px 12px', marginLeft: 34, fontSize: 14, color: '#10211f' }}>who's got the spare shin pads</div>
+          <div style={{ display: 'flex', gap: 4, marginLeft: 34, marginTop: 3 }}>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 3, background: '#f0f4f2', borderRadius: 999, padding: '1px 7px', fontSize: 12 }}>😂 <span style={{ fontSize: 11, color: '#4a5a57' }}>3</span></span>
+          </div>
+        </div>
+        {/* You (player) sent a voice note */}
+        <div style={{ marginBottom: 14 }}>
+          <div style={{ fontSize: 12, color: '#4a5a57', marginBottom: 4, textAlign: 'right' as const }}>You · 8:20 am</div>
+          <div style={{ background: '#2f6252', borderRadius: 12, padding: '8px 12px', maxWidth: 180, marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 8 }}>
+            <button style={{ width: 24, height: 24, borderRadius: '999px', border: 'none', background: 'rgba(255,255,255,0.3)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <svg width={8} height={8} viewBox="0 0 24 24" fill="#fff"><polygon points="5 3 19 12 5 21"/></svg>
+            </button>
+            <div style={{ flex: 1, height: 2, background: 'rgba(255,255,255,0.4)', borderRadius: 999 }}/>
+            <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.75)' }}>0:06</span>
+          </div>
+        </div>
+      </div>
+      <div style={{ flex: 'none', padding: '8px 16px 12px', borderTop: '1px solid #e9eae8', background: '#fff' }}>
+        <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+          <input placeholder="Write to the team" style={{ flex: 1, height: 38, padding: '0 12px', borderRadius: 999, border: '1px solid #e9eae8', fontSize: 14, fontFamily: 'inherit', outline: 'none', color: '#10211f', background: '#fafafa' }}/>
+          <button style={{ height: 38, padding: '0 14px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Send</button>
+        </div>
+        <div style={{ fontSize: 11, color: '#4a5a57', textAlign: 'center' as const, marginTop: 6 }}>Be the teammate you'd want. Anyone can report a message to Helen.</div>
+      </div>
+    </div>
+  )
 
-      {/* Chat */}
-      <div style={{ flexGrow: 1, overflowY: 'auto', padding: '16px 20px', display: 'flex', flexDirection: 'column', gap: 10 }}>
+  /* Private with Ollie */
+  return (
+    <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', minHeight: 0 }}>
+      <div style={{ flex: 'none', padding: '10px 16px', borderBottom: '1px solid #e9eae8', background: '#fff', display: 'flex', alignItems: 'center', gap: 8 }}>
+        <button onClick={() => setChat('list')} style={{ width: 30, height: 30, border: 'none', background: '#e9eae8', borderRadius: '999px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="#4a5a57" strokeWidth={2.5} strokeLinecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        </button>
+        <div>
+          <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>Ollie Grant · your coach</div>
+          <div style={{ fontSize: 11, color: '#4a5a57' }}>Your parent, Mel, can see this. The club keeps a record.</div>
+        </div>
+      </div>
+      <div style={{ flexGrow: 1, overflowY: 'auto', padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 10 }}>
         {CHAT_MSGS.map((m, i) => {
           const isMe = m.from === 'Cal'
           return (
             <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: isMe ? 'flex-end' : 'flex-start', gap: 2 }}>
               {!isMe && <div style={{ fontSize: 12, color: '#6f7f7b', paddingLeft: 2 }}>{m.from} · {m.time}</div>}
-              <div style={{
-                maxWidth: '80%', padding: '10px 14px', borderRadius: isMe ? '16px 16px 4px 16px' : '16px 16px 16px 4px',
-                background: isMe ? '#2f6252' : '#fff', border: isMe ? 'none' : '1px solid #e9eae8',
-                fontSize: 14, lineHeight: '20px', color: isMe ? '#fff' : '#10211f',
-              }}>{m.body}</div>
+              <div style={{ maxWidth: '80%', padding: '10px 14px', borderRadius: isMe ? '16px 16px 4px 16px' : '16px 16px 16px 4px', background: isMe ? '#2f6252' : '#fff', border: isMe ? 'none' : '1px solid #e9eae8', fontSize: 14, lineHeight: '20px', color: isMe ? '#fff' : '#10211f' }}>{m.body}</div>
               {isMe && <div style={{ fontSize: 12, color: '#6f7f7b', paddingRight: 2 }}>{m.time}</div>}
             </div>
           )
         })}
       </div>
-
-      {/* Quick replies + compose */}
-      <div style={{ flex: 'none', padding: '10px 16px', borderTop: '1px solid #e9eae8', background: '#fff' }}>
-        <div style={{ display: 'flex', gap: 6, marginBottom: 8, overflowX: 'auto', paddingBottom: 2 }}>
-          {['Sounds good', 'Yes, see you there', 'Can we chat about this?'].map(r => (
-            <button key={r} style={{ flex: 'none', height: 32, padding: '0 12px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 500, cursor: 'pointer', color: '#10211f', whiteSpace: 'nowrap' }}>{r}</button>
-          ))}
-        </div>
-        <div style={{ display: 'flex', gap: 8 }}>
-          <div style={{ flexGrow: 1, height: 40, background: '#f7f8f7', border: '1px solid #c5c8c4', borderRadius: 10, padding: '0 12px', display: 'flex', alignItems: 'center', fontSize: 14, color: '#6f7f7b' }}>Message Ollie…</div>
-          <button style={{ width: 40, height: 40, borderRadius: 10, border: 0, background: '#2f6252', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.4" strokeLinecap="round" aria-hidden="true"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
-          </button>
-        </div>
+      <div style={{ flex: 'none', padding: '8px 16px 12px', borderTop: '1px solid #e9eae8', background: '#fff', display: 'flex', gap: 8 }}>
+        <input placeholder="Message Ollie…" style={{ flex: 1, height: 38, padding: '0 12px', borderRadius: 999, border: '1px solid #e9eae8', fontSize: 14, fontFamily: 'inherit', outline: 'none', color: '#10211f' }}/>
+        <button style={{ width: 38, height: 38, borderRadius: 10, border: 0, background: '#2f6252', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.4" strokeLinecap="round" aria-hidden="true"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+        </button>
       </div>
     </div>
   )
