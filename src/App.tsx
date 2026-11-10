@@ -32,12 +32,13 @@ import FitnessCoachScreen  from './screens/FitnessCoachScreen'
 import ClubAdminScreen     from './screens/ClubAdminScreen'
 import MiniRoosApp               from './screens/miniroos/MiniRoosApp'
 import OlderAvailabilityScreen   from './screens/playerapp/OlderAvailabilityScreen'
+import OlderPlayerApp            from './screens/playerapp/OlderPlayerApp'
 import RefereesPhoneScreen       from './screens/playerapp/RefereesPhoneScreen'
 import SettingsScreen            from './screens/SettingsScreen'
 import { type Role } from './data'
 import './index.css'
 
-export type Screen = 'home' | 'squad' | 'training' | 'matchday' | 'teamtalk' | 'clips' | 'player' | 'pitchside' | 'addgame' | 'setstyle' | 'livegame' | 'metric' | 'teammanager' | 'signup' | 'playerapp' | 'fitnesscoach' | 'clubadmin' | 'settings' | 'olderavail' | 'refereephone' | 'miniroos'
+export type Screen = 'home' | 'squad' | 'training' | 'matchday' | 'teamtalk' | 'clips' | 'player' | 'pitchside' | 'addgame' | 'setstyle' | 'livegame' | 'metric' | 'teammanager' | 'signup' | 'playerapp' | 'fitnesscoach' | 'clubadmin' | 'settings' | 'olderavail' | 'olderplayer' | 'refereephone' | 'miniroos'
 
 const NAV_TABS: Array<{ id: Screen; label: string; icon: string }> = [
   { id: 'home',     label: 'Home',      icon: 'M4 11l8-7 8 7v9H4z' },
@@ -117,8 +118,12 @@ function TeamPicker({ onMetric, onNav }: { onMetric?: () => void; onNav?: (s: Sc
               <div style={{ fontSize: 12, color: '#6f7f7b' }}>Rob's phone view</div>
             </button>
             <button onClick={() => go('playerapp')} style={{ display: 'block', width: '100%', padding: '8px 16px', border: 0, background: 'transparent', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
-              <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>Player app</div>
+              <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>Player app · younger</div>
               <div style={{ fontSize: 12, color: '#6f7f7b' }}>Harper / Mia's view</div>
+            </button>
+            <button onClick={() => go('olderplayer')} style={{ display: 'block', width: '100%', padding: '8px 16px', border: 0, background: 'transparent', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
+              <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>Player app · older</div>
+              <div style={{ fontSize: 12, color: '#6f7f7b' }}>Cal (U16) and Josh (Men's 1sts)</div>
             </button>
             <button onClick={() => go('fitnesscoach')} style={{ display: 'block', width: '100%', padding: '8px 16px', border: 0, background: 'transparent', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
               <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>Fitness coach portal</div>
@@ -224,6 +229,16 @@ export default function App() {
           <button onClick={() => navTo('playerapp')} style={{ height: 36, padding: '0 16px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Player app</button>
         </div>
         <OlderAvailabilityScreen />
+      </div>
+    )
+  }
+  if (screen === 'olderplayer') {
+    return (
+      <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: '#f0f1f0', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 40 }}>
+        <div style={{ display: 'flex', justifyContent: 'flex-end', width: 390, marginBottom: 12 }}>
+          <button onClick={() => setScreen('home')} style={{ height: 36, padding: '0 16px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Back to coach view</button>
+        </div>
+        <OlderPlayerApp />
       </div>
     )
   }

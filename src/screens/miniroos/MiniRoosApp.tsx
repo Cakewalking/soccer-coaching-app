@@ -4,9 +4,14 @@ import TrainingMiniRoos  from './TrainingMiniRoos'
 import InboxMiniRoos     from './InboxMiniRoos'
 import CalendarMiniRoos  from './CalendarMiniRoos'
 import StaffMiniRoos     from './StaffMiniRoos'
+import SquadMiniRoos     from './SquadMiniRoos'
+import GameDayMiniRoos   from './GameDayMiniRoos'
+import WhatWeSawScreen   from './WhatWeSawScreen'
+import ThankParentsScreen from './ThankParentsScreen'
 
 type MiniNav = 'home' | 'squad' | 'training' | 'gameday'
 type HomeTab = 'overview' | 'inbox' | 'calendar' | 'staff'
+type GameDayView = 'turns' | 'whatisaw' | 'thankparents'
 
 const NAV: Array<{ id: MiniNav; label: string; icon: string }> = [
   { id: 'home',     label: 'Home',     icon: 'M4 11l8-7 8 7v9H4z' },
@@ -23,11 +28,21 @@ const HOME_TABS: Array<{ id: HomeTab; label: string }> = [
 ]
 
 export default function MiniRoosApp({ onBack }: { onBack: () => void }) {
-  const [nav, setNav]         = useState<MiniNav>('home')
-  const [homeTab, setHomeTab] = useState<HomeTab>('overview')
+  const [nav, setNav]               = useState<MiniNav>('home')
+  const [homeTab, setHomeTab]       = useState<HomeTab>('overview')
+  const [gameDayView, setGameDayView] = useState<GameDayView>('turns')
 
   const contextTabs = nav === 'home' ? HOME_TABS.map(t => t.label) : []
   const activeTabIndex = nav === 'home' ? HOME_TABS.findIndex(t => t.id === homeTab) : 0
+
+  // Full-screen phone overlays (no main chrome)
+  if (nav === 'gameday' && gameDayView === 'thankparents') {
+    return (
+      <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: '#f7f8f7', fontFamily: 'var(--font-sans)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <ThankParentsScreen onBack={() => setGameDayView('turns')} />
+      </div>
+    )
+  }
 
   return (
     <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
@@ -38,7 +53,7 @@ export default function MiniRoosApp({ onBack }: { onBack: () => void }) {
           <span style={{ fontSize: 17, fontWeight: 800, letterSpacing: '-0.03em', color: '#ffffff', flexShrink: 0 }}>Clean Sheet</span>
           <nav style={{ display: 'flex', flexGrow: 1, height: 60 }}>
             {NAV.map(tab => (
-              <button key={tab.id} onClick={() => setNav(tab.id)} style={{
+              <button key={tab.id} onClick={() => { setNav(tab.id); setGameDayView('turns') }} style={{
                 height: 60, padding: '0 16px', border: 0, background: 'transparent',
                 fontFamily: 'inherit', fontSize: 15, fontWeight: nav === tab.id ? 700 : 500,
                 color: nav === tab.id ? '#ffffff' : 'rgba(255,255,255,0.65)', cursor: 'pointer',
@@ -59,7 +74,7 @@ export default function MiniRoosApp({ onBack }: { onBack: () => void }) {
           </div>
         </div>
 
-        {/* Sub-tabs */}
+        {/* Sub-tabs (home only) */}
         {nav === 'home' && (
           <div style={{ height: 44, padding: '0 28px', display: 'flex', alignItems: 'flex-end', gap: 24, background: '#ffffff', borderBottom: '1px solid #e9eae8' }}>
             <nav style={{ display: 'flex', flexGrow: 1, height: 44 }}>
@@ -90,18 +105,15 @@ export default function MiniRoosApp({ onBack }: { onBack: () => void }) {
       </header>
 
       {/* Content */}
-      <div style={{ flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+      <div style={{ flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden', position: 'relative' }}>
         {nav === 'home' && homeTab === 'overview'  && <HomeMiniRoos onTraining={() => setNav('training')} />}
         {nav === 'home' && homeTab === 'inbox'     && <InboxMiniRoos />}
         {nav === 'home' && homeTab === 'calendar'  && <CalendarMiniRoos />}
         {nav === 'home' && homeTab === 'staff'     && <StaffMiniRoos />}
         {nav === 'training' && <TrainingMiniRoos />}
-        {nav === 'squad' && (
-          <div style={{ padding: '40px 28px', color: '#4a5a57', fontSize: 15 }}>Squad · Coming soon in this view</div>
-        )}
-        {nav === 'gameday' && (
-          <div style={{ padding: '40px 28px', color: '#4a5a57', fontSize: 15 }}>Game day · Coming soon in this view</div>
-        )}
+        {nav === 'squad'   && <SquadMiniRoos />}
+        {nav === 'gameday' && gameDayView === 'turns'    && <GameDayMiniRoos onWhatWeSaw={() => setGameDayView('whatisaw')} />}
+        {nav === 'gameday' && gameDayView === 'whatisaw' && <WhatWeSawScreen onBack={() => setGameDayView('turns')} onSave={() => setGameDayView('turns')} onThankParents={() => setGameDayView('thankparents')} />}
       </div>
     </div>
   )

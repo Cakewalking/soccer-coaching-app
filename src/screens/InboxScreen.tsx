@@ -107,9 +107,100 @@ const THREAD_MSGS = [
 
 const FILTER_TABS = ['All', 'Unread 3', 'People', 'Clean Sheet']
 
+function EllaPanelContent() {
+  return (
+    <>
+      <div style={{ flex: 'none', padding: '14px 24px', borderBottom: '1px solid #e9eae8', display: 'flex', alignItems: 'center', gap: 12, background: '#ffffff' }}>
+        <span style={{ flex: 'none', width: 36, height: 36, borderRadius: '999px', background: '#40826d', fontSize: 13, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff' }}>CS</span>
+        <div>
+          <div style={{ fontSize: 16, fontWeight: 700, lineHeight: '22px' }}>Wellness check-in</div>
+          <div style={{ fontSize: 13, color: '#4a5a57' }}>Today · 7:30 am</div>
+        </div>
+        <div style={{ flexGrow: 1 }} />
+        <button style={{ height: 32, padding: '0 12px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', color: '#2f6252' }}>Mark as done</button>
+      </div>
+      <div style={{ flexGrow: 1, overflowY: 'auto', padding: '16px 24px', display: 'flex', flexDirection: 'column', gap: 12 }}>
+        <div>
+          <div style={{ fontSize: 18, fontWeight: 700, marginBottom: 6 }}>Ella has felt low two days running</div>
+          <div style={{ fontSize: 15, lineHeight: '22px', color: '#4a5a57' }}>Ella scored 2 out of 5 on Wednesday and again today. She said she is sleeping badly. Her legs and energy are fine.</div>
+        </div>
+        <div style={{ background: '#eef5f2', border: '1px solid #c5d9d0', borderRadius: 14, padding: '14px 16px' }}>
+          <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', color: '#2f6252', marginBottom: 8 }}>SUGGESTED ACTION</div>
+          <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 4 }}>Keep tonight light for Ella</div>
+          <div style={{ fontSize: 14, lineHeight: '20px', color: '#1f4a3e', marginBottom: 12 }}>She can join in but step back if she needs to. Check in with her quietly at training.</div>
+          <button style={{ width: '100%', height: 40, borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Note that — keep it light for Ella</button>
+        </div>
+        <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 14, padding: '14px 16px' }}>
+          <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 4 }}>Message Ella's parent</div>
+          <div style={{ fontSize: 14, lineHeight: '20px', color: '#4a5a57', marginBottom: 10 }}>Let them know you've seen the check-in and are keeping it light tonight.</div>
+          <button style={{ width: '100%', height: 40, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Message Ella's parent</button>
+        </div>
+        <div style={{ fontSize: 12, color: '#6f7f7b', lineHeight: '17px', textAlign: 'center' }}>Low check-ins stay private to your coaching team. Ella's classmates and parents do not see the detail.</div>
+      </div>
+    </>
+  )
+}
+
+const LINH_MSGS = [
+  { from: 'Linh Tran', day: 'Tuesday', body: "Hi Sam, Mia has a dentist appointment on Thursday, so she might be 10 minutes late to training. Sorry!" },
+  { from: 'Coach', day: 'Today', body: "No problem at all, thanks for letting me know. She can join the warm-up when she gets there." },
+]
+
+function LinhPanelContent() {
+  return (
+    <>
+      <div style={{ flex: 'none', padding: '14px 24px', borderBottom: '1px solid #e9eae8', display: 'flex', alignItems: 'center', gap: 12, background: '#ffffff' }}>
+        <span style={{ flex: 'none', width: 36, height: 36, borderRadius: '999px', background: '#cbbeb5', fontSize: 13, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#10211f' }}>LT</span>
+        <div>
+          <div style={{ fontSize: 16, fontWeight: 700, lineHeight: '22px' }}>Linh Tran</div>
+          <div style={{ fontSize: 13, color: '#4a5a57' }}>Mia's mum · parent</div>
+        </div>
+        <div style={{ flexGrow: 1 }} />
+        <button style={{ height: 32, padding: '0 12px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', color: '#2f6252' }}>Mark as done</button>
+      </div>
+      <div style={{ flexGrow: 1, overflowY: 'auto', padding: '16px 24px', display: 'flex', flexDirection: 'column', gap: 10 }}>
+        {LINH_MSGS.map((msg, i) => {
+          const isCoach = msg.from === 'Coach'
+          return (
+            <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: isCoach ? 'flex-end' : 'flex-start', gap: 2 }}>
+              {!isCoach && <div style={{ fontSize: 12, color: '#6f7f7b' }}>{msg.from} · {msg.day}</div>}
+              <div style={{ maxWidth: '80%', background: isCoach ? '#2f6252' : '#fff', border: isCoach ? 'none' : '1px solid #e9eae8', borderRadius: isCoach ? '14px 14px 4px 14px' : '14px 14px 14px 4px', padding: '10px 14px', fontSize: 15, lineHeight: '21px', color: isCoach ? '#fff' : '#10211f' }}>
+                {msg.body}
+              </div>
+              {isCoach && <div style={{ fontSize: 12, color: '#6f7f7b' }}>You · {msg.day}</div>}
+            </div>
+          )
+        })}
+        <div style={{ background: '#eef5f2', borderRadius: 10, padding: '10px 12px', fontSize: 13, color: '#2f6252' }}>Linh has read your reply.</div>
+      </div>
+      <div style={{ flex: 'none', padding: '12px 24px', borderTop: '1px solid #e9eae8', background: '#ffffff' }}>
+        <div style={{ display: 'flex', gap: 6, marginBottom: 10, flexWrap: 'wrap' as const }}>
+          {['No problem, thanks for letting me know', 'She can join the warm-up when she arrives', 'Mark Mia as late tonight'].map(r => (
+            <button key={r} style={{ height: 32, padding: '0 12px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 500, cursor: 'pointer', color: '#10211f' }}>{r}</button>
+          ))}
+        </div>
+        <div style={{ display: 'flex', gap: 8, alignItems: 'flex-end' }}>
+          <div style={{ flexGrow: 1, minHeight: 44, background: '#f7f8f7', border: '1px solid #c5c8c4', borderRadius: 12, padding: '10px 14px', fontSize: 15, color: '#6f7f7b' }}>Reply to Linh…</div>
+          {[
+            { label: 'Player', path: 'M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8' },
+            { label: 'Clip',   path: 'M12 21a9 9 0 100-18 9 9 0 000 18zM10 8l6 4-6 4z' },
+          ].map(a => (
+            <button key={a.label} style={{ height: 44, padding: '0 10px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer', color: '#4a5a57', display: 'flex', alignItems: 'center', gap: 4 }}>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={a.path}/></svg>
+              {a.label}
+            </button>
+          ))}
+          <button style={{ height: 44, padding: '0 16px', borderRadius: 12, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Send</button>
+        </div>
+        <div style={{ marginTop: 6, fontSize: 12, color: '#6f7f7b', textAlign: 'center' }}>Messages with parents are kept by the club. Your club welfare officer can see them.</div>
+      </div>
+    </>
+  )
+}
+
 export default function InboxScreen({ empty }: { empty?: boolean }) {
   if (empty) return <InboxEmpty />
-  const [sel, setSel] = useState(2)
+  const [sel, setSel] = useState(0)
   const [filterTab, setFilterTab] = useState(0)
 
   return (
@@ -117,7 +208,6 @@ export default function InboxScreen({ empty }: { empty?: boolean }) {
 
       {/* Left: message list */}
       <div style={{ borderRight: '1px solid #e9eae8', display: 'flex', flexDirection: 'column', minHeight: 0, overflow: 'hidden', background: '#ffffff' }}>
-        {/* List header */}
         <div style={{ flex: 'none', padding: '12px 16px', display: 'flex', alignItems: 'center', gap: 8, borderBottom: '1px solid #f0f1ef' }}>
           <button style={{ width: 36, height: 36, borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', flexShrink: 0 }}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10211f" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
@@ -127,8 +217,6 @@ export default function InboxScreen({ empty }: { empty?: boolean }) {
             New message
           </button>
         </div>
-
-        {/* Filter tabs */}
         <div style={{ flex: 'none', display: 'flex', gap: 2, padding: '8px 12px', borderBottom: '1px solid #f0f1ef' }}>
           {FILTER_TABS.map((t, i) => (
             <button key={i} onClick={() => setFilterTab(i)} style={{
@@ -137,8 +225,6 @@ export default function InboxScreen({ empty }: { empty?: boolean }) {
             }}>{t}</button>
           ))}
         </div>
-
-        {/* Messages */}
         <div style={{ flexGrow: 1, overflowY: 'auto' }}>
           {MESSAGES.map((m, i) => (
             <button key={i} onClick={() => setSel(i)} style={{
@@ -155,7 +241,7 @@ export default function InboxScreen({ empty }: { empty?: boolean }) {
                   <span style={{ fontSize: 12, color: '#6f7f7b', flexShrink: 0 }}>{m.time}</span>
                 </span>
                 <span style={{ display: 'block', fontSize: 14, fontWeight: m.unread ? 700 : 400, lineHeight: '19px', marginBottom: m.tag ? 4 : 0 }}>{m.preview}</span>
-                {m.tag && <span style={{ display: 'inline-block', fontSize: 11, fontWeight: 700, padding: '1px 8px', borderRadius: '999px', background: m.tagBg, color: m.tagColor }}>{m.tag}</span>}
+                {m.tag && <span style={{ display: 'inline-block', fontSize: 11, fontWeight: 700, padding: '1px 8px', borderRadius: '999px', background: m.tagBg!, color: m.tagColor! }}>{m.tag}</span>}
               </span>
               {m.unread && <span style={{ flex: 'none', width: 8, height: 8, borderRadius: '999px', background: '#40826d', marginTop: 8 }} />}
             </button>
@@ -163,75 +249,73 @@ export default function InboxScreen({ empty }: { empty?: boolean }) {
         </div>
       </div>
 
-      {/* Right: thread */}
+      {/* Right: dynamic panel */}
       <div style={{ display: 'flex', flexDirection: 'column', minHeight: 0, overflow: 'hidden', background: '#fafafa' }}>
-        {/* Thread header */}
-        <div style={{ flex: 'none', padding: '14px 24px', borderBottom: '1px solid #e9eae8', display: 'flex', alignItems: 'center', gap: 12, background: '#ffffff' }}>
-          <span style={{ flex: 'none', width: 36, height: 36, borderRadius: '999px', background: '#c39797', fontSize: 13, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#10211f' }}>PS</span>
-          <div>
-            <div style={{ fontSize: 16, fontWeight: 700, lineHeight: '22px' }}>Priya Shah</div>
-            <div style={{ fontSize: 13, color: '#4a5a57' }}>Fitness coach · U12 coaching team</div>
-          </div>
-          <div style={{ flexGrow: 1 }} />
-          <button style={{ height: 32, padding: '0 12px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', color: '#2f6252' }}>Mark as done</button>
-        </div>
-
-        {/* Messages */}
-        <div style={{ flexGrow: 1, overflowY: 'auto', padding: '16px 24px', display: 'flex', flexDirection: 'column', gap: 10 }}>
-          <div style={{ textAlign: 'center', fontSize: 12, color: '#6f7f7b', marginBottom: 4 }}>Wednesday</div>
-
-          {THREAD_MSGS.map((msg, i) => {
-            if (msg.isPlayer) {
-              return (
-                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 12px', background: '#ffffff', border: '1px solid #e9eae8', borderRadius: 10, cursor: 'pointer' }}>
-                  <span style={{ flex: 'none', width: 28, height: 28, borderRadius: '999px', background: '#cbbeb5', fontSize: 10, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#10211f' }}>
-                    {msg.sub === 'Noah Okafor' ? 'NO' : 'ZH'}
-                  </span>
-                  <div style={{ flexGrow: 1, minWidth: 0 }}>
-                    <div style={{ fontSize: 14, fontWeight: 700 }}>{msg.sub}</div>
-                    <div style={{ fontSize: 12, color: '#4a5a57', lineHeight: '16px' }}>{msg.subNote}</div>
-                  </div>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6f7f7b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
-                </div>
-              )
-            }
-            return (
-              <div key={i} style={{ background: '#ffffff', border: '1px solid #e9eae8', borderRadius: 12, padding: '12px 16px' }}>
-                <div style={{ fontSize: 13, color: '#4a5a57', marginBottom: 6 }}>{msg.time}</div>
-                <div style={{ fontSize: 15, lineHeight: '22px' }}>{msg.body}</div>
+        {sel === 0 && <EllaPanelContent />}
+        {sel === 3 && <LinhPanelContent />}
+        {sel !== 0 && sel !== 3 && (
+          <>
+            <div style={{ flex: 'none', padding: '14px 24px', borderBottom: '1px solid #e9eae8', display: 'flex', alignItems: 'center', gap: 12, background: '#ffffff' }}>
+              <span style={{ flex: 'none', width: 36, height: 36, borderRadius: '999px', background: '#c39797', fontSize: 13, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#10211f' }}>PS</span>
+              <div>
+                <div style={{ fontSize: 16, fontWeight: 700, lineHeight: '22px' }}>Priya Shah</div>
+                <div style={{ fontSize: 13, color: '#4a5a57' }}>Fitness coach · U12 coaching team</div>
               </div>
-            )
-          })}
-        </div>
-
-        {/* Quick replies + compose */}
-        <div style={{ flex: 'none', padding: '12px 24px', borderTop: '1px solid #e9eae8', background: '#ffffff' }}>
-          <div style={{ display: 'flex', gap: 6, marginBottom: 10, flexWrap: 'wrap' }}>
-            {["Thanks, sounds good", "Can Zoe play 60 if we're short?", "Let's chat at training"].map(r => (
-              <button key={r} style={{ height: 32, padding: '0 12px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 500, cursor: 'pointer', color: '#10211f' }}>{r}</button>
-            ))}
-          </div>
-          <div style={{ display: 'flex', gap: 8, alignItems: 'flex-end' }}>
-            <div style={{ flexGrow: 1, minHeight: 44, background: '#f7f8f7', border: '1px solid #c5c8c4', borderRadius: 12, padding: '10px 14px', fontSize: 15, color: '#6f7f7b' }}>
-              Reply…
+              <div style={{ flexGrow: 1 }} />
+              <button style={{ height: 32, padding: '0 12px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', color: '#2f6252' }}>Mark as done</button>
             </div>
-            <div style={{ display: 'flex', gap: 6 }}>
-              {[
-                { label: 'Player', path: 'M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8' },
-                { label: 'Clip',   path: 'M12 21a9 9 0 100-18 9 9 0 000 18zM10 8l6 4-6 4z' },
-                { label: 'Drill',  path: 'M6 5h12a2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V7a2 2 0 012-2zM4 10h16' },
-                { label: 'Session',path: 'M4 11l8-7 8 7v9H4z' },
-              ].map(a => (
-                <button key={a.label} style={{ height: 36, padding: '0 10px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer', color: '#4a5a57', display: 'flex', alignItems: 'center', gap: 4 }}>
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={a.path}/></svg>
-                  {a.label}
-                </button>
-              ))}
+            <div style={{ flexGrow: 1, overflowY: 'auto', padding: '16px 24px', display: 'flex', flexDirection: 'column', gap: 10 }}>
+              <div style={{ textAlign: 'center', fontSize: 12, color: '#6f7f7b', marginBottom: 4 }}>Wednesday</div>
+              {THREAD_MSGS.map((msg, i) => {
+                if (msg.isPlayer) {
+                  return (
+                    <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 12px', background: '#ffffff', border: '1px solid #e9eae8', borderRadius: 10, cursor: 'pointer' }}>
+                      <span style={{ flex: 'none', width: 28, height: 28, borderRadius: '999px', background: '#cbbeb5', fontSize: 10, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#10211f' }}>
+                        {msg.sub === 'Noah Okafor' ? 'NO' : 'ZH'}
+                      </span>
+                      <div style={{ flexGrow: 1, minWidth: 0 }}>
+                        <div style={{ fontSize: 14, fontWeight: 700 }}>{msg.sub}</div>
+                        <div style={{ fontSize: 12, color: '#4a5a57', lineHeight: '16px' }}>{msg.subNote}</div>
+                      </div>
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6f7f7b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+                    </div>
+                  )
+                }
+                return (
+                  <div key={i} style={{ background: '#ffffff', border: '1px solid #e9eae8', borderRadius: 12, padding: '12px 16px' }}>
+                    <div style={{ fontSize: 13, color: '#4a5a57', marginBottom: 6 }}>{msg.time}</div>
+                    <div style={{ fontSize: 15, lineHeight: '22px' }}>{msg.body}</div>
+                  </div>
+                )
+              })}
             </div>
-            <button style={{ height: 44, padding: '0 16px', borderRadius: 12, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Send</button>
-          </div>
-          <div style={{ marginTop: 6, fontSize: 12, color: '#6f7f7b', textAlign: 'center' }}>Coaching team only. Players and parents never see this.</div>
-        </div>
+            <div style={{ flex: 'none', padding: '12px 24px', borderTop: '1px solid #e9eae8', background: '#ffffff' }}>
+              <div style={{ display: 'flex', gap: 6, marginBottom: 10, flexWrap: 'wrap' as const }}>
+                {["Thanks, sounds good", "Can Zoe play 60 if we're short?", "Let's chat at training"].map(r => (
+                  <button key={r} style={{ height: 32, padding: '0 12px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 500, cursor: 'pointer', color: '#10211f' }}>{r}</button>
+                ))}
+              </div>
+              <div style={{ display: 'flex', gap: 8, alignItems: 'flex-end' }}>
+                <div style={{ flexGrow: 1, minHeight: 44, background: '#f7f8f7', border: '1px solid #c5c8c4', borderRadius: 12, padding: '10px 14px', fontSize: 15, color: '#6f7f7b' }}>Reply…</div>
+                <div style={{ display: 'flex', gap: 6 }}>
+                  {[
+                    { label: 'Player', path: 'M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8' },
+                    { label: 'Clip',   path: 'M12 21a9 9 0 100-18 9 9 0 000 18zM10 8l6 4-6 4z' },
+                    { label: 'Drill',  path: 'M6 5h12a2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V7a2 2 0 012-2zM4 10h16' },
+                    { label: 'Session',path: 'M4 11l8-7 8 7v9H4z' },
+                  ].map(a => (
+                    <button key={a.label} style={{ height: 36, padding: '0 10px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer', color: '#4a5a57', display: 'flex', alignItems: 'center', gap: 4 }}>
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={a.path}/></svg>
+                      {a.label}
+                    </button>
+                  ))}
+                </div>
+                <button style={{ height: 44, padding: '0 16px', borderRadius: 12, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Send</button>
+              </div>
+              <div style={{ marginTop: 6, fontSize: 12, color: '#6f7f7b', textAlign: 'center' }}>Coaching team only. Players and parents never see this.</div>
+            </div>
+          </>
+        )}
       </div>
     </main>
   )

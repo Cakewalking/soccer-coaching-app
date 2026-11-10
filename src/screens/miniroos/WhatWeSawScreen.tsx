@@ -21,7 +21,7 @@ function PillGroup({ label, items, sel, toggle }: { label: string; items: string
   )
 }
 
-export default function WhatWeSawScreen({ onBack, onSave }: { onBack: () => void; onSave: () => void }) {
+export default function WhatWeSawScreen({ onBack, onSave, onThankParents }: { onBack: () => void; onSave: () => void; onThankParents?: () => void }) {
   const [wentWell, setWentWell] = useState<Sel>(new Set([0, 2]))
   const [nextStep, setNextStep] = useState<Sel>(new Set([0]))
   const [needsHand, setNeedsHand] = useState<Sel>(new Set([1]))
@@ -32,8 +32,12 @@ export default function WhatWeSawScreen({ onBack, onSave }: { onBack: () => void
   }
 
   const handleSave = () => {
-    setToast('Saved. Sending thank-you to parents.')
-    setTimeout(() => { setToast(''); onSave() }, 2000)
+    if (onThankParents) {
+      onThankParents()
+    } else {
+      setToast('Saved. Sending thank-you to parents.')
+      setTimeout(() => { setToast(''); onSave() }, 2000)
+    }
   }
 
   return (
