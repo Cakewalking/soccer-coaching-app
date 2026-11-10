@@ -12,8 +12,7 @@ export default function DrillLibraryScreen() {
   const [view, setView]       = useState<View>('library')
   const [drill, setDrill]     = useState<Drill | null>(null)
   const [filterTab, setFTab]  = useState(0)
-  const [agePhase, setAge]    = useState('Skill Acquisition 9–12')
-  const [chipFilter, setChip] = useState('Everything')
+  const [agePhase, setAge]    = useState('9–12')
   const [wizStep, setWStep]   = useState(1)
   const [wizName, setWName]   = useState('')
   const [wizPlayers, setWP]   = useState(8)
@@ -59,7 +58,6 @@ export default function DrillLibraryScreen() {
     <DrillLibraryMain
       filterTab={filterTab} setFilterTab={setFTab}
       agePhase={agePhase}   setAgePhase={setAge}
-      chipFilter={chipFilter} setChipFilter={setChip}
       onDrillClick={openDrill}
       onSessionPlans={() => setView('session-plans')}
       onTermPlanner={() => setView('term-planner')}

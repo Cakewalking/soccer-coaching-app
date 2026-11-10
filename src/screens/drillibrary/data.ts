@@ -59,7 +59,7 @@ export const DRILLS: Drill[] = [
     makeEasier:'Bigger square, as many touches as you like', makeHarder:'Two touches inside, one touch for neutrals',
     checksNote:'Clean Sheet checks: ball losses in our half and moves of 6+ passes, from the match camera',
     basedOn:'Based on: the positional rondo (4 v 4 + 3) used widely in youth academies' },
-  { id:'2',  name:'Play out from the keeper, 6 v 4', category:'First touch',      time:20, players:'10 players', phases:['skill'], area:'30 × 25 m', featured:true, tags:['Curriculum'],
+  { id:'2',  name:'Play out from the keeper, 6 v 4', category:'First touch',      time:20, players:'10 players', phases:['skill'], area:'30 × 25 m', featured:true, isOurs:true, tags:['Curriculum'],
     whySuggested:'Checks: goal kicks played short and ball losses in our third.' },
   { id:'3',  name:'First touch away from pressure',   category:'First touch',      time:15, players:'Groups of 3', phases:['skill'], featured:true, tags:['Curriculum'],
     whySuggested:'Checks: first touches under pressure.' },
@@ -175,4 +175,9 @@ export const PHASE_LABEL_TO_ID: Record<string, AgePhase | null> = {
   'Game Training 12–16':    'game',
   'Performance 16+':        'performance',
   'All':                    null,
+  '5–9':                    'discovery',
+  '9–12':                   'skill',
+  '12–16':                  'game',
+  '16+':                    'performance',
+  'All ages':               null,
 }
