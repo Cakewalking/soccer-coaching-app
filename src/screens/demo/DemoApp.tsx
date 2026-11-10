@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import type { ReactNode } from 'react'
 import HomeScreen            from '../HomeScreen'
 import TrainingScreen        from '../TrainingScreen'
@@ -423,9 +423,49 @@ function renderScreen(key: string): ReactNode {
   }
 }
 
+function viewToPath(view: DemoView, role: RoleId): string {
+  if (view === 'lookaround')  return `/look/${role}`
+  if (view === 'tour')        return `/tour/${role}`
+  if (view === 'sandboxlook') return `/sandbox/${role}`
+  if (view === 'start')       return '/start'
+  if (view === 'sandbox')     return '/sandbox'
+  if (view === 'why')         return '/why'
+  return '/'
+}
+
+function pathToState(path: string): { view: DemoView; role: RoleId } {
+  if (path === '/start')   return { view: 'start',   role: 'coach' }
+  if (path === '/why')     return { view: 'why',     role: 'coach' }
+  if (path === '/sandbox') return { view: 'sandbox', role: 'coach' }
+  const m1 = path.match(/^\/look\/([a-z0-9]+)$/)
+  if (m1 && m1[1] in TOURS) return { view: 'lookaround', role: m1[1] as RoleId }
+  const m2 = path.match(/^\/tour\/([a-z0-9]+)$/)
+  if (m2 && m2[1] in TOURS) return { view: 'tour', role: m2[1] as RoleId }
+  const m3 = path.match(/^\/sandbox\/([a-z0-9]+)$/)
+  if (m3 && m3[1] in TOURS) return { view: 'sandboxlook', role: m3[1] as RoleId }
+  return { view: 'signin', role: 'coach' }
+}
+
 export default function DemoApp() {
-  const [view, setView] = useState<DemoView>('signin')
-  const [role, setRole] = useState<RoleId>('coach')
+  const init = pathToState(window.location.pathname)
+  const [view, setView] = useState<DemoView>(init.view)
+  const [role, setRole] = useState<RoleId>(init.role)
+
+  useEffect(() => {
+    const path = viewToPath(view, role)
+    if (window.location.pathname !== path)
+      window.history.pushState(null, '', path)
+  }, [view, role])
+
+  useEffect(() => {
+    const onPop = () => {
+      const { view: v, role: r } = pathToState(window.location.pathname)
+      setView(v)
+      setRole(r)
+    }
+    window.addEventListener('popstate', onPop)
+    return () => window.removeEventListener('popstate', onPop)
+  }, [])
 
   function startTour(roleId: RoleId) {
     setRole(roleId)
