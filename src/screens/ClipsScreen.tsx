@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { CLIPS, CLIPS_GAMES, CLIPS_MEASURES, type GameClip } from '../data'
-import { PLAYERS, GAME_FULL, MEASURE_INFO } from './clips/clipData'
-import { ClipCard, ClipDetail, DropChip, resultColor } from './clips/ClipComponents'
+import { PLAYERS, GAME_FULL, MEASURE_INFO, resultColor } from './clips/clipData'
+import { ClipCard, ClipDetail, DropChip } from './clips/ClipComponents'
 import { PlaylistsTab, ToCheckTab } from './clips/PlaylistsToCheckTab'
 
 type FilterMode = 'game' | 'measure' | 'player'

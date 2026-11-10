@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 type CaseStatus = 'new' | 'ontrack'
 
-const CASES: Array<{ ini: string; name: string; desc: string; from: string; date: string; status: CaseStatus }> = [
+const CASES: Array<{ ini: string; name: string; desc: string; from: string; date?: string; status: CaseStatus }> = [
   { ini: 'MT', name: 'Mia Tran · U12 Sam',      desc: 'Left out at training, upset twice this fortnight',   from: 'From her mum, Linh · Thu 4 Jun · wants a call',  status: 'new' },
   { ini: '?',  name: 'A player · U13 Girls Meg', desc: 'Very quiet since changing schools',                  from: 'From coach Meg Doyle · 27 May · family meeting held', status: 'ontrack' },
   { ini: '?',  name: 'Away spectator · U14 Josh game', desc: 'Shouting at the referee',                     from: 'From Josh Kerr · 1 Jun · sent to Kingfisher United', status: 'ontrack' },
