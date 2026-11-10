@@ -34,11 +34,17 @@ import MiniRoosApp               from './screens/miniroos/MiniRoosApp'
 import OlderAvailabilityScreen   from './screens/playerapp/OlderAvailabilityScreen'
 import OlderPlayerApp            from './screens/playerapp/OlderPlayerApp'
 import RefereesPhoneScreen       from './screens/playerapp/RefereesPhoneScreen'
+import TwoChildrenApp            from './screens/playerapp/TwoChildrenApp'
+import PlayerMeScreen            from './screens/playerapp/PlayerMeScreen'
 import SettingsScreen            from './screens/SettingsScreen'
+import GoalkeeperCoachApp        from './screens/GoalkeeperCoachApp'
+import CoordinatorPortal         from './screens/CoordinatorPortal'
+import RolloverScreen            from './screens/RolloverScreen'
+import SeniorsYouthCoachApp      from './screens/SeniorsYouthCoachApp'
 import { type Role } from './data'
 import './index.css'
 
-export type Screen = 'home' | 'squad' | 'training' | 'matchday' | 'teamtalk' | 'clips' | 'player' | 'pitchside' | 'addgame' | 'setstyle' | 'livegame' | 'metric' | 'teammanager' | 'signup' | 'playerapp' | 'fitnesscoach' | 'clubadmin' | 'settings' | 'olderavail' | 'olderplayer' | 'refereephone' | 'miniroos'
+export type Screen = 'home' | 'squad' | 'training' | 'matchday' | 'teamtalk' | 'clips' | 'player' | 'pitchside' | 'addgame' | 'setstyle' | 'livegame' | 'metric' | 'teammanager' | 'signup' | 'playerapp' | 'fitnesscoach' | 'clubadmin' | 'settings' | 'olderavail' | 'olderplayer' | 'refereephone' | 'miniroos' | 'goalkeeper' | 'coordinator' | 'rollover' | 'seniors' | 'youth' | 'twochildren' | 'playerme'
 
 const NAV_TABS: Array<{ id: Screen; label: string; icon: string }> = [
   { id: 'home',     label: 'Home',      icon: 'M4 11l8-7 8 7v9H4z' },
@@ -108,6 +114,28 @@ function TeamPicker({ onMetric, onNav }: { onMetric?: () => void; onNav?: (s: Sc
               <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>Club admin portal</div>
               <div style={{ fontSize: 12, color: '#6f7f7b' }}>Chair / Director of Football view</div>
             </button>
+            <div style={{ padding: '10px 16px 6px', fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#6f7f7b', borderTop: '1px solid #f0f1f0' }}>Coach portals</div>
+            <button onClick={() => go('seniors')} style={{ display: 'block', width: '100%', padding: '8px 16px', border: 0, background: 'transparent', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
+              <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>Seniors coach home</div>
+              <div style={{ fontSize: 12, color: '#6f7f7b' }}>Men's 1sts · Mo's view</div>
+            </button>
+            <button onClick={() => go('youth')} style={{ display: 'block', width: '100%', padding: '8px 16px', border: 0, background: 'transparent', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
+              <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>Youth coach home</div>
+              <div style={{ fontSize: 12, color: '#6f7f7b' }}>U16 Ollie · Ollie's view</div>
+            </button>
+            <button onClick={() => go('goalkeeper')} style={{ display: 'block', width: '100%', padding: '8px 16px', border: 0, background: 'transparent', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
+              <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>Goalkeeper coach portal</div>
+              <div style={{ fontSize: 12, color: '#6f7f7b' }}>Nick's view · 14 keepers across 9 teams</div>
+            </button>
+            <div style={{ padding: '10px 16px 6px', fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#6f7f7b', borderTop: '1px solid #f0f1f0' }}>Club portals</div>
+            <button onClick={() => go('coordinator')} style={{ display: 'block', width: '100%', padding: '8px 16px', border: 0, background: 'transparent', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
+              <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>Club coordinator portal</div>
+              <div style={{ fontSize: 12, color: '#6f7f7b' }}>Bianca's view · registrations, refs, kit</div>
+            </button>
+            <button onClick={() => go('rollover')} style={{ display: 'block', width: '100%', padding: '8px 16px', border: 0, background: 'transparent', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
+              <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>Season rollover</div>
+              <div style={{ fontSize: 12, color: '#6f7f7b' }}>Roll every team up a year for 2027</div>
+            </button>
             <div style={{ padding: '10px 16px 6px', fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#6f7f7b', borderTop: '1px solid #f0f1f0' }}>Other portals</div>
             <button onClick={() => { setOpen(false); onMetric?.() }} style={{ display: 'block', width: '100%', padding: '8px 16px', border: 0, background: 'transparent', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
               <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>Metric detail</div>
@@ -117,6 +145,10 @@ function TeamPicker({ onMetric, onNav }: { onMetric?: () => void; onNav?: (s: Sc
               <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>Team manager app</div>
               <div style={{ fontSize: 12, color: '#6f7f7b' }}>Rob's phone view</div>
             </button>
+            <button onClick={() => go('twochildren')} style={{ display: 'block', width: '100%', padding: '8px 16px', border: 0, background: 'transparent', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
+              <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>Parent app · two children</div>
+              <div style={{ fontSize: 12, color: '#6f7f7b' }}>Linh's view · Mia and Bao</div>
+            </button>
             <button onClick={() => go('playerapp')} style={{ display: 'block', width: '100%', padding: '8px 16px', border: 0, background: 'transparent', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
               <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>Player app · younger</div>
               <div style={{ fontSize: 12, color: '#6f7f7b' }}>Harper / Mia's view</div>
@@ -124,6 +156,10 @@ function TeamPicker({ onMetric, onNav }: { onMetric?: () => void; onNav?: (s: Sc
             <button onClick={() => go('olderplayer')} style={{ display: 'block', width: '100%', padding: '8px 16px', border: 0, background: 'transparent', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
               <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>Player app · older</div>
               <div style={{ fontSize: 12, color: '#6f7f7b' }}>Cal (U16) and Josh (Men's 1sts)</div>
+            </button>
+            <button onClick={() => go('playerme')} style={{ display: 'block', width: '100%', padding: '8px 16px', border: 0, background: 'transparent', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
+              <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>Player Me settings</div>
+              <div style={{ fontSize: 12, color: '#6f7f7b' }}>Mia's settings screen</div>
             </button>
             <button onClick={() => go('fitnesscoach')} style={{ display: 'block', width: '100%', padding: '8px 16px', border: 0, background: 'transparent', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
               <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>Fitness coach portal</div>
@@ -271,6 +307,41 @@ export default function App() {
           <span style={{ marginLeft: 16, fontSize: 14, fontWeight: 700, color: '#1f4a3e' }}>Club admin portal</span>
         </div>
         <ClubAdminScreen empty={isEmpty} />
+      </div>
+    )
+  }
+  if (screen === 'goalkeeper') {
+    return <GoalkeeperCoachApp onBack={() => setScreen('home')} />
+  }
+  if (screen === 'coordinator') {
+    return <CoordinatorPortal onBack={() => setScreen('home')} />
+  }
+  if (screen === 'rollover') {
+    return <RolloverScreen onBack={() => setScreen('home')} />
+  }
+  if (screen === 'seniors') {
+    return <SeniorsYouthCoachApp teamType="seniors" onBack={() => setScreen('home')} />
+  }
+  if (screen === 'youth') {
+    return <SeniorsYouthCoachApp teamType="youth" onBack={() => setScreen('home')} />
+  }
+  if (screen === 'twochildren') {
+    return (
+      <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: '#f0f1f0', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 40 }}>
+        <div style={{ display: 'flex', justifyContent: 'flex-end', width: 390, marginBottom: 12 }}>
+          <button onClick={() => setScreen('home')} style={{ height: 36, padding: '0 16px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Coach view</button>
+        </div>
+        <TwoChildrenApp onBack={() => setScreen('home')} />
+      </div>
+    )
+  }
+  if (screen === 'playerme') {
+    return (
+      <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: '#f0f1f0', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 40 }}>
+        <div style={{ display: 'flex', justifyContent: 'flex-end', width: 390, marginBottom: 12 }}>
+          <button onClick={() => setScreen('home')} style={{ height: 36, padding: '0 16px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Coach view</button>
+        </div>
+        <PlayerMeScreen onBack={() => setScreen('home')} />
       </div>
     )
   }

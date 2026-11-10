@@ -1,0 +1,315 @@
+type TeamType = 'seniors' | 'youth'
+
+interface TeamData {
+  teamName: string
+  teamPicker: string
+  avatarBg: string
+  avatarLetters: string
+  needsYouItems: { label: string; when: string; note: string; urgent: boolean }[]
+  needsYouNote: string
+  gameCardTitle: string
+  gameCardTime: string
+  gameCardBadge: string
+  gameCardBullets: string[]
+  gameCardCTA: string
+  gameCardCTA2?: string
+  lastGame: { label: string; opponent: string; scorer: string; score: string; bullets: { text: string; tag: string }[] }
+  thisWeek: { day: string; label: string; done?: boolean; today?: boolean }[]
+  lastFive: { result: 'W' | 'L' | 'D' }[]
+  lastFiveLabel: string
+  nextGame: string
+  squad: { total: number; in: number; label2: string; val2: number; label3: string; val3: number }
+  roleNote: string
+}
+
+const SENIORS: TeamData = {
+  teamName: "Men's 1sts",
+  teamPicker: "Men's 1sts · Wattle Creek",
+  avatarBg: '#c39797',
+  avatarLetters: 'MP',
+  needsYouItems: [
+    { label: 'Registrations', when: 'Today', note: "Luca Ferraro's clearance closes 30 Jun", urgent: true },
+    { label: 'Cards · from Dribl', when: 'Mon', note: 'Dean Vukovic is one yellow from a ban', urgent: false },
+    { label: 'Squad load', when: 'Mon', note: 'Daniel Costa has played every minute for 4 games', urgent: false },
+  ],
+  needsYouNote: 'Adults join and consent for themselves, so there are no parent steps. Players check in on their own phones. Results, ladders, cards and the registration window all count.',
+  gameCardTitle: 'Training tonight',
+  gameCardTime: 'TODAY · 7:30 pm · Wattle Creek Reserve',
+  gameCardBadge: '90 minutes · match prep for Banksia Park SC · 18 said yes',
+  gameCardBullets: ["Their press: beat the first line", "Attacking corners", "Costa: 60 minutes only"],
+  gameCardCTA: 'Open training plan',
+  gameCardCTA2: 'Opposition',
+  lastGame: {
+    label: 'Sat 30 May · home',
+    opponent: 'Kingfisher United',
+    scorer: 'Josh Barker scored',
+    score: '1–1',
+    bullets: [
+      { text: 'Pressing high won it 15 times in their half', tag: 'Keep' },
+      { text: 'Two chances given up from our own corners', tag: 'Tonight' },
+      { text: 'Tired legs after 70: one sub used', tag: 'Saturday' },
+    ],
+  },
+  thisWeek: [
+    { day: 'Mon 1', label: 'Recovery · done', done: true },
+    { day: 'Tue 2', label: 'Training · done', done: true },
+    { day: 'Wed 3', label: 'Rest' },
+    { day: 'Thu 4', label: 'Training 7:30 pm', today: true },
+    { day: 'Fri 5', label: 'Rest' },
+    { day: 'Sat 6', label: 'Banksia Park SC 3:00' },
+    { day: 'Sun 7', label: 'Recovery' },
+  ],
+  lastFive: [{ result: 'W' }, { result: 'W' }, { result: 'D' }, { result: 'L' }, { result: 'W' }],
+  lastFiveLabel: '4th of 12 · NPL 3',
+  nextGame: 'Next: Sat 3:00 at Banksia Park SC · Away · 18 in, 2 injured, 1 away',
+  squad: { total: 22, in: 18, label2: 'Injured', val2: 2, label3: 'Out', val3: 2 },
+  roleNote: 'At senior level',
+}
+
+const YOUTH: TeamData = {
+  teamName: 'U16 Ollie',
+  teamPicker: 'U16 Ollie · Wattle Creek',
+  avatarBg: '#40826d',
+  avatarLetters: 'OG',
+  needsYouItems: [
+    { label: 'Cards · from Dribl', when: 'Mon', note: 'Ryan Petersen is suspended for Saturday', urgent: true },
+    { label: 'Priya Shah · Fitness coach', when: 'Yesterday', note: 'Load is up 30% two weeks running', urgent: false },
+    { label: 'Cal West · player', when: '8:10 am', note: 'Exam Friday. Can I miss the team meeting?', urgent: false },
+  ],
+  needsYouNote: '11 a side, 2 × 40 minutes. Players 15 and over have their own accounts and message you directly; a parent is copied in until they turn 18.',
+  gameCardTitle: 'Game in 2 days',
+  gameCardTime: 'SATURDAY · 3:30 pm · away, Rovers Park',
+  gameCardBadge: 'No training tonight · team talk to finish · 13 available, 1 suspended',
+  gameCardBullets: ["Protect tired legs", "Play out under a press", "Subs from minute 50"],
+  gameCardCTA: 'Finish the team talk',
+  gameCardCTA2: 'Team sheet',
+  lastGame: {
+    label: 'Sat 30 May · home',
+    opponent: 'Glenview Park',
+    scorer: 'Theo Ortiz scored',
+    score: '1–3',
+    bullets: [
+      { text: 'Lost the ball 9 times playing out', tag: 'Saturday' },
+      { text: 'Sprints fell 31% in the last 20 minutes', tag: 'Load' },
+      { text: 'Created 6 chances from wide', tag: 'Keep' },
+    ],
+  },
+  thisWeek: [
+    { day: 'Mon 1', label: 'Training · done', done: true },
+    { day: 'Tue 2', label: 'Rest' },
+    { day: 'Wed 3', label: 'Light session · done', done: true },
+    { day: 'Thu 4', label: 'Rest · today', today: true },
+    { day: 'Fri 5', label: 'Team meeting 6:00 pm' },
+    { day: 'Sat 6', label: 'Harbour Rovers 3:30' },
+    { day: 'Sun 7', label: 'Rest' },
+  ],
+  lastFive: [{ result: 'L' }, { result: 'D' }, { result: 'L' }, { result: 'W' }, { result: 'L' }],
+  lastFiveLabel: 'Division 1',
+  nextGame: 'Next: Sat 3:30 at Harbour Rovers · Away · 13 in, 1 suspended',
+  squad: { total: 14, in: 8, label2: 'Manage', val2: 5, label3: 'Out', val3: 1 },
+  roleNote: 'At this age',
+}
+
+const NAV_ICONS = [
+  'M4 11l8-7 8 7v9H4z',
+  'M9 11a3 3 0 100-6 3 3 0 000 6zM3 20c0-4 3-6 6-6s6 2 6 6M16 11a3 3 0 100-6M21 20c0-3-2-5-4-5.5',
+  'M6 5h12a2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V7a2 2 0 012-2zM4 10h16M9 3v4M15 3v4',
+  'M12 21a9 9 0 100-18 9 9 0 000 18zM12 7l4 3-1.5 5h-5L8 10z',
+  'M12 21a9 9 0 100-18 9 9 0 000 18zM10 8l6 4-6 4z',
+]
+const NAV_LABELS = ['Home', 'Squad', 'Training', 'Match day', 'Clips']
+const HOME_TABS  = ['Overview', 'Inbox', 'Calendar', 'Fixtures and results', 'Our style', 'Team staff']
+
+function resultColor(r: 'W' | 'L' | 'D') {
+  if (r === 'W') return { bg: '#40826d', color: '#fff' }
+  if (r === 'L') return { bg: '#c39797', color: '#fff' }
+  return { bg: '#e9eae8', color: '#10211f' }
+}
+
+function CoachHome({ data }: { data: TeamData }) {
+  return (
+    <div style={{ flexGrow: 1, minHeight: 0, overflowY: 'auto', padding: '20px 28px 28px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr) 260px', gap: 16 }}>
+
+      {/* Col 1: Needs you */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+        <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, overflow: 'hidden' }}>
+          <div style={{ padding: '12px 16px 10px', borderBottom: '1px solid #e9eae8', display: 'flex', alignItems: 'center', gap: 8 }}>
+            <span style={{ fontSize: 15, fontWeight: 700 }}>Needs you</span>
+            <span style={{ background: '#c39797', color: '#10211f', borderRadius: '999px', padding: '1px 7px', fontSize: 12, fontWeight: 700 }}>3 new</span>
+          </div>
+          {data.needsYouItems.map((item, i) => (
+            <div key={i} style={{ padding: '11px 16px', borderTop: i > 0 ? '1px solid #e9eae8' : 'none' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 2 }}>
+                <span style={{ fontSize: 12, fontWeight: 700, color: item.urgent ? '#c39797' : '#4a5a57' }}>{item.label}</span>
+                <span style={{ fontSize: 12, color: '#6f7f7b' }}>{item.when}</span>
+              </div>
+              <div style={{ fontSize: 13, color: '#10211f' }}>{item.note}</div>
+            </div>
+          ))}
+          <div style={{ padding: '10px 16px', borderTop: '1px solid #e9eae8' }}>
+            <button style={{ fontSize: 13, color: '#2f6252', fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>All messages</button>
+          </div>
+        </div>
+
+        <div style={{ background: '#eef5f2', border: '1px solid #c5d9d2', borderRadius: 14, padding: '12px 14px' }}>
+          <div style={{ fontSize: 12, fontWeight: 700, color: '#2f6252', marginBottom: 4 }}>{data.roleNote}</div>
+          <div style={{ fontSize: 13, color: '#1f4a3e', lineHeight: '18px' }}>{data.needsYouNote}</div>
+        </div>
+      </div>
+
+      {/* Col 2: Game/Training card + Last game */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+        {/* Game/training card */}
+        <div style={{ background: '#1f4a3e', borderRadius: 16, padding: '16px 18px', color: '#fff' }}>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', color: 'rgba(255,255,255,0.6)', marginBottom: 4 }}>{data.gameCardTime}</div>
+          <div style={{ fontSize: 18, fontWeight: 700, marginBottom: 8 }}>{data.gameCardTitle}</div>
+          <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.75)', marginBottom: 10 }}>{data.gameCardBadge}</div>
+          {data.gameCardBullets.map((b, i) => (
+            <div key={i} style={{ fontSize: 13, color: 'rgba(255,255,255,0.85)', padding: '4px 0', borderTop: i > 0 ? '1px solid rgba(255,255,255,0.12)' : 'none' }}>· {b}</div>
+          ))}
+          <div style={{ display: 'flex', gap: 8, marginTop: 14 }}>
+            <button style={{ flex: 1, height: 40, borderRadius: 10, border: 0, background: '#40826d', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>{data.gameCardCTA}</button>
+            {data.gameCardCTA2 && <button style={{ flex: 1, height: 40, borderRadius: 10, border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>{data.gameCardCTA2}</button>}
+          </div>
+        </div>
+
+        {/* Last game */}
+        <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, overflow: 'hidden' }}>
+          <div style={{ padding: '12px 16px 10px', borderBottom: '1px solid #e9eae8', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <span style={{ fontSize: 15, fontWeight: 700 }}>Last game</span>
+            <span style={{ fontSize: 12, color: '#6f7f7b' }}>{data.lastGame.label}</span>
+          </div>
+          <div style={{ padding: '12px 16px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
+              <span style={{ width: 36, height: 36, borderRadius: '999px', background: '#e9eae8', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, color: '#6f7f7b', flex: 'none' }}>vs</span>
+              <div>
+                <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>{data.lastGame.opponent}</div>
+                <div style={{ fontSize: 12, color: '#6f7f7b' }}>{data.lastGame.scorer}</div>
+              </div>
+              <div style={{ marginLeft: 'auto', fontSize: 22, fontWeight: 800, letterSpacing: '-0.02em', color: '#10211f' }}>{data.lastGame.score}</div>
+            </div>
+            {data.lastGame.bullets.map((b, i) => (
+              <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, padding: '6px 0', borderTop: '1px solid #e9eae8' }}>
+                <span style={{ flex: 'none', fontSize: 11, fontWeight: 700, padding: '2px 8px', borderRadius: '999px', background: '#f0f1ef', color: '#4a5a57', marginTop: 1 }}>{b.tag}</span>
+                <span style={{ fontSize: 13, color: '#10211f' }}>{b.text}</span>
+              </div>
+            ))}
+          </div>
+          <div style={{ padding: '10px 16px', borderTop: '1px solid #e9eae8', display: 'flex', justifyContent: 'space-between' }}>
+            <button style={{ fontSize: 13, color: '#2f6252', fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>Open the review</button>
+            <span style={{ fontSize: 13, color: '#6f7f7b' }}>Clips · 11</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Col 3: This week + Last 5 + Squad */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+        <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, overflow: 'hidden' }}>
+          <div style={{ padding: '12px 16px 10px', borderBottom: '1px solid #e9eae8', display: 'flex', justifyContent: 'space-between' }}>
+            <span style={{ fontSize: 15, fontWeight: 700 }}>This week</span>
+            <button style={{ fontSize: 13, color: '#2f6252', fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>Calendar</button>
+          </div>
+          {data.thisWeek.map((w, i) => (
+            <div key={i} style={{ display: 'flex', gap: 10, padding: '7px 16px', borderTop: i > 0 ? '1px solid #e9eae8' : 'none', background: w.today ? '#eef5f2' : 'transparent' }}>
+              <span style={{ flex: 'none', fontSize: 12, fontWeight: 700, color: '#6f7f7b', width: 44 }}>{w.day}</span>
+              <span style={{ fontSize: 13, color: w.done ? '#6f7f7b' : w.today ? '#1f4a3e' : '#10211f', fontWeight: w.today ? 700 : 400, textDecoration: w.done ? 'line-through' : 'none' }}>{w.label}</span>
+            </div>
+          ))}
+        </div>
+
+        <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '14px 16px' }}>
+          <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 10 }}>
+            <span style={{ fontSize: 15, fontWeight: 700 }}>Last 5</span>
+            <span style={{ fontSize: 12, color: '#6f7f7b' }}>{data.lastFiveLabel}</span>
+          </div>
+          <div style={{ display: 'flex', gap: 6, marginBottom: 10 }}>
+            {data.lastFive.map((r, i) => {
+              const c = resultColor(r.result)
+              return <span key={i} style={{ flex: 1, height: 32, borderRadius: 8, background: c.bg, color: c.color, fontSize: 13, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{r.result}</span>
+            })}
+          </div>
+          <div style={{ fontSize: 12, color: '#4a5a57', lineHeight: '17px' }}>{data.nextGame}</div>
+        </div>
+
+        <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '14px 16px' }}>
+          <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 10 }}>Squad</div>
+          <div style={{ display: 'flex', gap: 10 }}>
+            <div style={{ flex: 1, textAlign: 'center' }}>
+              <div style={{ fontSize: 22, fontWeight: 700, color: '#10211f' }}>{data.squad.total}</div>
+              <div style={{ fontSize: 12, color: '#6f7f7b' }}>players</div>
+            </div>
+            <div style={{ flex: 1, textAlign: 'center' }}>
+              <div style={{ fontSize: 22, fontWeight: 700, color: '#40826d' }}>{data.squad.in}</div>
+              <div style={{ fontSize: 12, color: '#6f7f7b' }}>in</div>
+            </div>
+            <div style={{ flex: 1, textAlign: 'center' }}>
+              <div style={{ fontSize: 22, fontWeight: 700, color: '#c39797' }}>{data.squad.val2}</div>
+              <div style={{ fontSize: 12, color: '#6f7f7b' }}>{data.squad.label2.toLowerCase()}</div>
+            </div>
+            <div style={{ flex: 1, textAlign: 'center' }}>
+              <div style={{ fontSize: 22, fontWeight: 700, color: '#6f7f7b' }}>{data.squad.val3}</div>
+              <div style={{ fontSize: 12, color: '#6f7f7b' }}>{data.squad.label3.toLowerCase()}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default function SeniorsYouthCoachApp({ teamType, onBack }: { teamType: TeamType; onBack: () => void }) {
+  const data = teamType === 'seniors' ? SENIORS : YOUTH
+
+  return (
+    <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
+
+      {/* Top nav */}
+      <header style={{ flex: 'none', background: '#2f6252', color: '#fff' }}>
+        <div style={{ height: 60, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 16 }}>
+          <span style={{ fontSize: 17, fontWeight: 800, letterSpacing: '-0.03em', flexShrink: 0 }}>Clean Sheet</span>
+          <nav style={{ display: 'flex', flexGrow: 1, gap: 2 }}>
+            {NAV_LABELS.map((label, i) => (
+              <button key={label} style={{
+                display: 'flex', alignItems: 'center', gap: 7, height: 40, padding: '0 14px', borderRadius: '999px',
+                border: 0, fontFamily: 'inherit', fontSize: 15, fontWeight: i === 0 ? 600 : 400, cursor: 'pointer',
+                background: i === 0 ? '#40826d' : 'transparent', color: '#fff',
+              }}>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={NAV_ICONS[i]}/></svg>
+                {label}
+              </button>
+            ))}
+          </nav>
+          <button style={{ display: 'flex', alignItems: 'center', gap: 8, height: 44, padding: '0 16px', borderRadius: '999px', border: 0, background: 'rgba(255,255,255,0.15)', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer', color: '#fff', flexShrink: 0 }}>
+            {data.teamPicker}
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div style={{ width: 44, height: 44, borderRadius: '999px', background: data.avatarBg, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 15, flexShrink: 0 }}>{data.avatarLetters}</div>
+        </div>
+
+        {/* Sub-tabs */}
+        <div style={{ height: 44, padding: '0 28px', background: '#fff', borderBottom: '1px solid #e9eae8', display: 'flex', alignItems: 'flex-end' }}>
+          <nav style={{ display: 'flex', flexGrow: 1, height: 44 }}>
+            {HOME_TABS.map((tab, i) => (
+              <button key={tab} style={{
+                height: 44, padding: '0 14px', border: 0, background: 'transparent',
+                fontFamily: 'inherit', fontSize: 15, fontWeight: i === 0 ? 600 : 400,
+                color: i === 0 ? '#10211f' : '#6f7f7b', cursor: 'pointer',
+                borderBottom: i === 0 ? '3px solid #40826d' : '3px solid transparent',
+                boxSizing: 'border-box', whiteSpace: 'nowrap',
+              }}>{tab}</button>
+            ))}
+          </nav>
+          <div style={{ display: 'flex', alignItems: 'center', height: 44, gap: 10 }}>
+            <span style={{ fontSize: 13, fontWeight: 700, color: '#2f6252', background: '#eef5f2', borderRadius: '999px', padding: '4px 12px' }}>Head coach</span>
+            <button onClick={onBack} style={{ height: 28, padding: '0 12px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Switch view</button>
+          </div>
+        </div>
+      </header>
+
+      {/* Content */}
+      <div style={{ flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+        <CoachHome data={data} />
+      </div>
+    </div>
+  )
+}
