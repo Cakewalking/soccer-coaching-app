@@ -1199,10 +1199,12 @@ export default function AcademyCoachApp({ onBack, empty = false }: { onBack: () 
 
   const contextTabs =
     nav === 'today'   ? TODAY_TABS.map(t => t.label) :
-    nav === 'gameday' ? GAMEDAY_TABS.map(t => t.label) : []
+    nav === 'gameday' ? GAMEDAY_TABS.map(t => t.label) :
+    nav === 'library' ? TODAY_TABS.map(t => t.label) : []
   const activeTabIndex =
     nav === 'today'   ? TODAY_TABS.findIndex(t => t.id === todayTab) :
-    nav === 'gameday' ? GAMEDAY_TABS.findIndex(t => t.id === gameDayTab) : 0
+    nav === 'gameday' ? GAMEDAY_TABS.findIndex(t => t.id === gameDayTab) :
+    nav === 'library' ? TODAY_TABS.findIndex(t => t.id === 'suggested') : 0
 
   // Live recording occupies full screen
   if (nav === 'today' && todayTab === 'record' && recordStep === 'recording') {
@@ -1278,9 +1280,7 @@ export default function AcademyCoachApp({ onBack, empty = false }: { onBack: () 
           <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', color: MUT, fontSize: 14 }}>Review — coming in Bucket 11</div>
         )}
         {/* Library */}
-        {nav === 'library' && (
-          <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', color: MUT, fontSize: 14 }}>Drill library — coming in Bucket 12</div>
-        )}
+        {nav === 'library' && <SuggestedView empty={empty} />}
       </div>
     </div>
   )
