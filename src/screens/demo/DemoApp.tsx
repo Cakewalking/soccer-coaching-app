@@ -44,6 +44,86 @@ import DrillLibraryScreen    from '../DrillLibraryScreen'
 import AddGameScreen         from '../AddGameScreen'
 import CoachFitnessScreen    from '../CoachFitnessScreen'
 import SettingsScreen        from '../SettingsScreen'
+// Step 4 screens — Academy player
+import ACK1AcademyPlayerHome      from '../step4/ACK1AcademyPlayerHome'
+import ACK1eAcademyPlayerHomeEmpty from '../step4/ACK1eAcademyPlayerHomeEmpty'
+import ACK2HomePractice            from '../step4/ACK2HomePractice'
+import ACK2eHomePracticeEmpty      from '../step4/ACK2eHomePracticeEmpty'
+// Step 4 screens — Academy parent
+import ACP2Offer                  from '../step4/ACP2Offer'
+import ACP3eAcademyParentHomeEmpty from '../step4/ACP3eAcademyParentHomeEmpty'
+import ACP4ParentFees             from '../step4/ACP4ParentFees'
+import ACP5eProgressReportEmpty   from '../step4/ACP5eProgressReportEmpty'
+import ACP6MakeUp                 from '../step4/ACP6MakeUp'
+import ACP7ShareWithClub          from '../step4/ACP7ShareWithClub'
+import ACP8eBookClinicEmpty       from '../step4/ACP8eBookClinicEmpty'
+import ACP9JoinGameTeam           from '../step4/ACP9JoinGameTeam'
+import ACP10AcademyConcern        from '../step4/ACP10AcademyConcern'
+// Step 4 screens — Director view
+import D5Safeguarding             from '../step4/D5Safeguarding'
+import DS1Concerns                from '../step4/DS1Concerns'
+import DS2DataRequests            from '../step4/DS2DataRequests'
+import DB4Grants                  from '../step4/DB4Grants'
+import DK1Kit                     from '../step4/DK1Kit'
+import DN1Nominations             from '../step4/DN1Nominations'
+import DN1eNominationsEmpty       from '../step4/DN1eNominationsEmpty'
+import D7U7Mixed                  from '../step4/D7U7Mixed'
+import D7U8Mixed                  from '../step4/D7U8Mixed'
+import D7U11Girls                 from '../step4/D7U11Girls'
+import D7U11Mixed                 from '../step4/D7U11Mixed'
+import D7U14Mixed                 from '../step4/D7U14Mixed'
+import D7U15Girls                 from '../step4/D7U15Girls'
+// Step 4 screens — Tablet coach
+import AV2ParentAvailability      from '../step4/AV2ParentAvailability'
+import ETeamTalk                  from '../step4/ETeamTalk'
+import HM11ComingMiniRoos         from '../step4/HM11ComingMiniRoos'
+import HM3eTrainingMiniRoosEmpty  from '../step4/HM3eTrainingMiniRoosEmpty'
+import HM4eGameDayMiniRoosEmpty   from '../step4/HM4eGameDayMiniRoosEmpty'
+import I1Inbox                    from '../step4/I1Inbox'
+import I1eInboxVests              from '../step4/I1eInboxVests'
+import T1TabletTraining           from '../step4/T1TabletTraining'
+import P1Consent                  from '../step4/P1Consent'
+import P2ParentConsent            from '../step4/P2ParentConsent'
+import P2bParentConsentStep1      from '../step4/P2bParentConsentStep1'
+import P2cParentConsentStep2      from '../step4/P2cParentConsentStep2'
+// Step 4 screens — Empty states
+import DL2eTermPlannerEmpty       from '../step4/DL2eTermPlannerEmpty'
+import DSet6ePartnerAcademyEmpty  from '../step4/DSet6ePartnerAcademyEmpty'
+import PAeClipsEmpty              from '../step4/PAeClipsEmpty'
+import PAeGoalsEmpty              from '../step4/PAeGoalsEmpty'
+import RF4eRefFeedbackEmpty       from '../step4/RF4eRefFeedbackEmpty'
+import SG3eAskCleanSheetEmpty     from '../step4/SG3eAskCleanSheetEmpty'
+import X11LineupEmpty             from '../step4/X11LineupEmpty'
+import X6ClipsEmpty               from '../step4/X6ClipsEmpty'
+import X7InboxEmpty               from '../step4/X7InboxEmpty'
+// Step 4 screens — Season features
+import D0cChairWelcome            from '../step4/D0cChairWelcome'
+import FN2SeniorSquad             from '../step4/FN2SeniorSquad'
+import FP1PlayFootball            from '../step4/FP1PlayFootball'
+import FT1Trials                  from '../step4/FT1Trials'
+import FV1FeesVolunteers          from '../step4/FV1FeesVolunteers'
+import FW1GirlsWomen              from '../step4/FW1GirlsWomen'
+// Step 4 screens — Settings
+import DSet2Roles                 from '../step4/DSet2Roles'
+import DSet3Connections           from '../step4/DSet3Connections'
+import DSet6PartnerAcademy        from '../step4/DSet6PartnerAcademy'
+import SET4eDevicesEmpty          from '../step4/SET4eDevicesEmpty'
+import SET6Display                from '../step4/SET6Display'
+// Step 4 screens — Fitness coach
+import IL1eInjuryLogEmpty         from '../step4/IL1eInjuryLogEmpty'
+import TL1TestLibrary             from '../step4/TL1TestLibrary'
+import TL3SprintResults           from '../step4/TL3SprintResults'
+import TL3eSprintResultsEmpty     from '../step4/TL3eSprintResultsEmpty'
+// Step 4 screens — Coaches / TM
+import CC1eCoachHomeEmpty         from '../step4/CC1eCoachHomeEmpty'
+import TM6WhoComing               from '../step4/TM6WhoComing'
+import TM6eWhoComingEmpty         from '../step4/TM6eWhoComingEmpty'
+// Step 4 screens — Record
+import RCm1RecordChoice           from '../step4/RCm1RecordChoice'
+import RCm2ClipPicker             from '../step4/RCm2ClipPicker'
+// Step 4 screens — Team chat
+import CH1TeamChat                from '../step4/CH1TeamChat'
+
 import SP1FootballYear        from '../footballyear/SP1FootballYear'
 import SP1eFootballYearEmpty  from '../footballyear/SP1eFootballYearEmpty'
 import SP18ClubPhases         from '../footballyear/SP18ClubPhases'
@@ -227,6 +307,86 @@ function renderScreen(key: string): ReactNode {
     case 'manager-tournament':  return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><SPp6ManagerTournament onBack={noop} /></div>
     case 'player-restmonth':    return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><SPp7PlayerRestMonth onBack={noop} /></div>
     case 'standin-asked':       return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><SPp8StandInAsked onBack={noop} /></div>
+
+    // Step 4 — Academy player (phone)
+    case 'ack1-home':         return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><ACK1AcademyPlayerHome /></div>
+    case 'ack1-home-empty':   return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><ACK1eAcademyPlayerHomeEmpty /></div>
+    case 'ack2-practice':     return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><ACK2HomePractice /></div>
+    case 'ack2-practice-e':   return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><ACK2eHomePracticeEmpty /></div>
+    // Step 4 — Academy parent (phone)
+    case 'acp2-offer':        return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><ACP2Offer /></div>
+    case 'acp3-home-e':       return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><ACP3eAcademyParentHomeEmpty /></div>
+    case 'acp4-fees':         return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><ACP4ParentFees /></div>
+    case 'acp5-report-e':     return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><ACP5eProgressReportEmpty /></div>
+    case 'acp6-makeup':       return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><ACP6MakeUp /></div>
+    case 'acp7-share':        return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><ACP7ShareWithClub /></div>
+    case 'acp8-clinic-e':     return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><ACP8eBookClinicEmpty /></div>
+    case 'acp9-join':         return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><ACP9JoinGameTeam /></div>
+    case 'acp10-concern':     return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><ACP10AcademyConcern /></div>
+    // Step 4 — Director view (tablet)
+    case 'd5-safeguarding':   return <D5Safeguarding />
+    case 'ds1-concerns':      return <DS1Concerns />
+    case 'ds2-data':          return <DS2DataRequests />
+    case 'db4-grants':        return <DB4Grants />
+    case 'dk1-kit':           return <DK1Kit />
+    case 'dn1-noms':          return <DN1Nominations />
+    case 'dn1-noms-e':        return <DN1eNominationsEmpty />
+    case 'd7-u7':             return <D7U7Mixed />
+    case 'd7-u8':             return <D7U8Mixed />
+    case 'd7-u11girls':       return <D7U11Girls />
+    case 'd7-u11':            return <D7U11Mixed />
+    case 'd7-u14':            return <D7U14Mixed />
+    case 'd7-u15girls':       return <D7U15Girls />
+    // Step 4 — Tablet coach
+    case 'av2-avail':         return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><AV2ParentAvailability /></div>
+    case 'e-teamtalk':        return <ETeamTalk />
+    case 'hm11-coming':       return <HM11ComingMiniRoos />
+    case 'hm3-training-e':    return <HM3eTrainingMiniRoosEmpty />
+    case 'hm4-gameday-e':     return <HM4eGameDayMiniRoosEmpty />
+    case 'i1-inbox':          return <I1Inbox />
+    case 'i1-inbox-vests':    return <I1eInboxVests />
+    case 't1-training':       return <T1TabletTraining />
+    case 'p1-consent':        return <P1Consent />
+    case 'p2-consent':        return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><P2ParentConsent /></div>
+    case 'p2b-consent':       return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><P2bParentConsentStep1 /></div>
+    case 'p2c-consent':       return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><P2cParentConsentStep2 /></div>
+    // Step 4 — Empty states
+    case 'dl2-planner-e':     return <DL2eTermPlannerEmpty />
+    case 'dset6-partner-e':   return <DSet6ePartnerAcademyEmpty />
+    case 'pa-clips-e':        return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PAeClipsEmpty /></div>
+    case 'pa-goals-e':        return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PAeGoalsEmpty /></div>
+    case 'rf4-feedback-e':    return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><RF4eRefFeedbackEmpty /></div>
+    case 'sg3-ask-e':         return <SG3eAskCleanSheetEmpty />
+    case 'x11-lineup-e':      return <X11LineupEmpty />
+    case 'x6-clips-e':        return <X6ClipsEmpty />
+    case 'x7-inbox-e':        return <X7InboxEmpty />
+    // Step 4 — Season features (tablet)
+    case 'd0c-chair':         return <D0cChairWelcome />
+    case 'fn2-squad':         return <FN2SeniorSquad />
+    case 'fp1-playfootball':  return <FP1PlayFootball />
+    case 'ft1-trials':        return <FT1Trials />
+    case 'fv1-fees':          return <FV1FeesVolunteers />
+    case 'fw1-girls':         return <FW1GirlsWomen />
+    // Step 4 — Settings (tablet)
+    case 'dset2-roles':       return <DSet2Roles />
+    case 'dset3-connections': return <DSet3Connections />
+    case 'dset6-partner':     return <DSet6PartnerAcademy />
+    case 'set4e-devices':     return <SET4eDevicesEmpty />
+    case 'set6-display':      return <SET6Display />
+    // Step 4 — Fitness coach (tablet)
+    case 'il1e-injury-e':     return <IL1eInjuryLogEmpty />
+    case 'tl1-tests':         return <TL1TestLibrary />
+    case 'tl3-sprint':        return <TL3SprintResults />
+    case 'tl3e-sprint-e':     return <TL3eSprintResultsEmpty />
+    // Step 4 — Coaches / TM
+    case 'cc1e-coach-e':      return <CC1eCoachHomeEmpty />
+    case 'tm6-coming':        return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TM6WhoComing /></div>
+    case 'tm6e-coming-e':     return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TM6eWhoComingEmpty /></div>
+    // Step 4 — Record (tablet)
+    case 'rcm1-record':       return <RCm1RecordChoice />
+    case 'rcm2-clips':        return <RCm2ClipPicker />
+    // Step 4 — Team chat (tablet)
+    case 'ch1-chat':          return <CH1TeamChat />
 
     default:
       return (
