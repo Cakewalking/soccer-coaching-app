@@ -1,9 +1,17 @@
 import { useState } from 'react'
-import { SubTabBar } from './ui'
+import { SubTabBar, EmptyCard, FOOTER_DEFAULT } from './ui'
 
 type ReportsView = 'board' | 'grants' | 'league' | 'season' | 'fees'
 
-export default function ReportsTab() {
+const REPORTS_EMPTY: Record<ReportsView, { icon: string; title: string; desc: string; cta?: string; items: { title: string; desc: string }[] }> = {
+  board:  { icon: 'M18 20V10M12 20V4M6 20v-6', title: 'Your first report writes itself', desc: 'At the end of your first month, Clean Sheet drafts a one-page report for the committee from the club\'s own numbers.', cta: 'See an example', items: [{ title: 'Players, coaches, safety', desc: 'One page, plain words' }, { title: 'Sent when you say', desc: 'Never automatically' }] },
+  grants: { icon: 'M18 20V10M12 20V4M6 20v-6', title: 'No grants listed yet', desc: 'Tell us your council and Clean Sheet lists grants the club could apply for, with your numbers filled in.', cta: 'Add your council', items: [{ title: 'Numbers grants ask for', desc: 'Players, girls, volunteers' }, { title: 'No names leave the club', desc: 'Ever' }] },
+  league: { icon: 'M18 20V10M12 20V4M6 20v-6', title: 'Nothing due yet', desc: 'Once fixtures sync from Dribl, the things Football Victoria needs from the club show here with their due times.', cta: 'Connect Dribl', items: [{ title: 'Team sheets and results', desc: 'With deadlines' }, { title: 'Children checks', desc: 'Linked in WWC Connect' }] },
+  season: { icon: 'M18 20V10M12 20V4M6 20v-6', title: 'Fills in as the season goes', desc: 'After round 4 you\'ll see highlights and what to fix. The full review writes itself at season end.', cta: 'See an example', items: [{ title: 'Players and goals met', desc: 'Against last season' }, { title: 'What to fix', desc: 'Before next year' }] },
+  fees:   { icon: 'M18 20V10M12 20V4M6 20v-6', title: 'Nothing here yet', desc: 'Fees come from PlayFootball. Add the club\'s volunteer jobs and families can sign up from their phones.', cta: 'Add volunteer jobs', items: [{ title: 'Fees by age group', desc: 'Coaches never see who paid' }, { title: 'Volunteer roster', desc: 'For jobs the whole club shares' }] },
+}
+
+export default function ReportsTab({ empty }: { empty?: boolean }) {
   const [view, setView] = useState<ReportsView>('board')
 
   const p = { padding: '16px 20px' }
@@ -22,7 +30,9 @@ export default function ReportsTab() {
         onSelect={id => setView(id as ReportsView)}
       />
 
-      {view === 'board' && (
+      {empty && view in REPORTS_EMPTY && <EmptyCard {...REPORTS_EMPTY[view]!} footer={FOOTER_DEFAULT} />}
+
+      {!empty && view === 'board' && (
         <div style={p}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
             <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>Board report summary</div>
@@ -49,7 +59,7 @@ export default function ReportsTab() {
         </div>
       )}
 
-      {view === 'grants' && (
+      {!empty && view === 'grants' && (
         <div style={p}>
           <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', marginBottom: 14 }}>Grant reports</div>
           {[
@@ -71,7 +81,7 @@ export default function ReportsTab() {
         </div>
       )}
 
-      {view === 'league' && (
+      {!empty && view === 'league' && (
         <div style={p}>
           <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', marginBottom: 14 }}>League standing · Spring 2026</div>
           {[
@@ -97,7 +107,7 @@ export default function ReportsTab() {
         </div>
       )}
 
-      {view === 'season' && (
+      {!empty && view === 'season' && (
         <div style={p}>
           <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', marginBottom: 14 }}>End of season overview</div>
           <div style={{ background: '#fdf8f4', borderRadius: 14, padding: '14px 16px', border: '1px solid #f0dcc8', marginBottom: 14 }}>
@@ -108,7 +118,7 @@ export default function ReportsTab() {
         </div>
       )}
 
-      {view === 'fees' && (
+      {!empty && view === 'fees' && (
         <div style={p}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10, marginBottom: 20 }}>
             {[{ n: '$32,400', l: 'Collected', sub: '94% of target · $1,980 outstanding', color: '#10211f' }, { n: '14', l: 'Outstanding accounts', sub: 'Oldest: 42 days overdue', color: '#c39797' }, { n: '$2,100', l: 'Hardship waivers', sub: '7 families this season', color: '#c3a84a' }].map(s => (

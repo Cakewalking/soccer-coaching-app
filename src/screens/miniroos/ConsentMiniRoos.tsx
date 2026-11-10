@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { EmptyCard } from '../clubadmin/ui'
 
 type ConsentVal = 'yes' | 'no' | 'waiting'
 
@@ -28,9 +29,11 @@ function Badge({ val }: { val: ConsentVal }) {
   )
 }
 
-export default function ConsentMiniRoos() {
+export default function ConsentMiniRoos({ empty }: { empty?: boolean }) {
   const [toast, setToast] = useState('')
   const showToast = (msg: string) => { setToast(msg); setTimeout(() => setToast(''), 3200) }
+
+  if (empty) return <EmptyCard icon="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" title="Parents answer when they join" desc="Each parent gets three yes-or-no questions when they add their child. Until they answer, it's treated as no." cta="Copy the team link" sidebarTitle="What parents are asked" items={[{ title: 'Team photos', desc: 'Can their child be in them?' }, { title: 'First-aid card', desc: 'Allergies and who to call' }, { title: 'Club news', desc: 'First name only' }]} />
 
   const waiting = PLAYERS.filter(p => p.photos === 'waiting' || p.firstAid === 'waiting' || p.news === 'waiting')
   const answered = PLAYERS.length - waiting.length

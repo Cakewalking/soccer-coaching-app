@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { EmptyCard } from '../clubadmin/ui'
 
 const STAFF = [
   { ini: 'TA', bg: '#c39797', name: 'Tom Albers', role: 'Head coach', check: 'Valid', checkBg: '#2f6252', checkColor: '#fff', canEdit: false },
@@ -6,9 +7,11 @@ const STAFF = [
   { ini: 'KN', bg: '#cbbeb5', name: 'Kim Nolan', role: 'Team manager', check: 'Check due 30 Jun', checkBg: '#cbbeb5', checkColor: '#10211f', canEdit: false },
 ]
 
-export default function StaffMiniRoos() {
+export default function StaffMiniRoos({ empty }: { empty?: boolean }) {
   const [toast, setToast] = useState('')
   const showToast = (msg: string) => { setToast(msg); setTimeout(() => setToast(''), 3200) }
+
+  if (empty) return <EmptyCard icon="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" title="It's just you so far" desc="Most MiniRoos teams run best with a second adult. Invite a co-coach or a parent as team manager." cta="Invite someone" items={[{ title: 'Co-coach', desc: 'Sees everything you see' }, { title: 'Team manager', desc: "Looks after who's coming and messages" }, { title: 'Game leader', desc: 'A young referee, booked by the club' }]} />
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, minHeight: 0 }}>

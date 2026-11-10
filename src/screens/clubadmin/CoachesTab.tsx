@@ -1,10 +1,17 @@
 import { useState } from 'react'
 import { COACHES_DATA } from './data'
-import { SubTabBar, BackBtn } from './ui'
+import { SubTabBar, BackBtn, EmptyCard, FOOTER_DEFAULT } from './ui'
 
 type CoachesView = 'allcoaches' | 'training' | 'meetings' | 'goalkeepers' | 'drilllib'
 
-export default function CoachesTab() {
+const COACHES_EMPTY: Partial<Record<CoachesView, { icon: string; title: string; desc: string; cta?: string; items: { title: string; desc: string }[] }>> = {
+  allcoaches:  { icon: 'M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8z', title: 'No coaches yet', desc: "Invite your coaches by email. They can't see any player until their children check is confirmed.", cta: 'Invite coaches', items: [{ title: 'Children checks', desc: 'Expiry dates and reminders' }, { title: "Who's using it", desc: 'Sessions planned, games recorded' }] },
+  training:    { icon: 'M22 10v6M2 10l10-5 10 5-10 5z', title: 'No courses recorded yet', desc: 'As coaches join, their Football Australia courses and first-aid training show here.', cta: 'Invite coaches', items: [{ title: 'Who needs which course', desc: 'By the age they coach' }, { title: 'Club course days', desc: 'Book coaches in' }] },
+  meetings:    { icon: 'M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75', title: 'No meeting planned', desc: "Set a date and Clean Sheet drafts an agenda from that week's numbers.", cta: 'Plan a meeting', items: [{ title: 'Agenda drafted for you', desc: 'Checks, minutes, cameras' }, { title: "Who's coming", desc: 'In the room or online' }] },
+  goalkeepers: { icon: 'M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75', title: 'No keepers named yet', desc: "From U12, coaches mark their keepers. Under 12s take turns, so they aren't listed.", cta: 'Add a keeper coach', items: [{ title: 'Keeper coaching', desc: 'Who gets how much' }, { title: 'Keeper drills', desc: 'In the club library' }] },
+}
+
+export default function CoachesTab({ empty }: { empty?: boolean }) {
   const [view, setView] = useState<CoachesView>('allcoaches')
   const [selectedCoach, setSelectedCoach] = useState<string | null>(null)
 
@@ -24,7 +31,9 @@ export default function CoachesTab() {
         onSelect={id => { setView(id as CoachesView); setSelectedCoach(null) }}
       />
 
-      {view === 'allcoaches' && (
+      {empty && view in COACHES_EMPTY && <EmptyCard {...COACHES_EMPTY[view]!} footer={FOOTER_DEFAULT} />}
+
+      {!empty && view === 'allcoaches' && (
         <div style={{ display: 'grid', gridTemplateColumns: selectedCoach ? '1fr 320px' : '1fr', gap: 0 }}>
           <div style={p}>
             {selectedCoach && <BackBtn label="All coaches" onClick={() => setSelectedCoach(null)} />}

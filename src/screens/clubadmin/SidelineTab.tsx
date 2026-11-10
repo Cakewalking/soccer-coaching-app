@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { EmptyCard, FOOTER_DEFAULT } from './ui'
 
 const REPORTS = [
   {
@@ -21,9 +22,11 @@ const REPORTS = [
   },
 ]
 
-export default function SidelineTab() {
+export default function SidelineTab({ empty }: { empty?: boolean }) {
   const [toastMsg, setToastMsg] = useState('')
   function showToast(m: string) { setToastMsg(m); setTimeout(() => setToastMsg(''), 3000) }
+
+  if (empty) return <EmptyCard icon="M15 10l4.553-2.069A1 1 0 0121 8.869v6.262a1 1 0 01-1.447.894L15 14M3 8h12v9H3z" title="No sideline reports" desc="Good news. When a coach or manager reports behaviour at a game, it shows here for you and the welfare officer." cta="Edit the code of conduct" items={[{ title: 'Code of conduct', desc: 'Parents agree when they join' }, { title: '48 hours', desc: 'To report serious misconduct to FV' }]} footer={FOOTER_DEFAULT} />
 
   return (
     <div style={{ padding: '16px 20px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 300px', gap: 14, alignItems: 'start' }}>

@@ -8,6 +8,7 @@ import SquadMiniRoos     from './SquadMiniRoos'
 import GameDayMiniRoos   from './GameDayMiniRoos'
 import WhatWeSawScreen   from './WhatWeSawScreen'
 import ThankParentsScreen from './ThankParentsScreen'
+import SeasonNotesScreen from './SeasonNotesScreen'
 
 type MiniNav = 'home' | 'squad' | 'training' | 'gameday'
 type HomeTab = 'overview' | 'inbox' | 'calendar' | 'staff'
@@ -27,10 +28,11 @@ const HOME_TABS: Array<{ id: HomeTab; label: string }> = [
   { id: 'staff',    label: 'Team staff' },
 ]
 
-export default function MiniRoosApp({ onBack }: { onBack: () => void }) {
+export default function MiniRoosApp({ onBack, empty }: { onBack: () => void; empty?: boolean }) {
   const [nav, setNav]               = useState<MiniNav>('home')
   const [homeTab, setHomeTab]       = useState<HomeTab>('overview')
   const [gameDayView, setGameDayView] = useState<GameDayView>('turns')
+  const [homeSubView, setHomeSubView] = useState<'main' | 'seasonnotes'>('main')
 
   const contextTabs = nav === 'home' ? HOME_TABS.map(t => t.label) : []
   const activeTabIndex = nav === 'home' ? HOME_TABS.findIndex(t => t.id === homeTab) : 0
@@ -106,12 +108,13 @@ export default function MiniRoosApp({ onBack }: { onBack: () => void }) {
 
       {/* Content */}
       <div style={{ flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden', position: 'relative' }}>
-        {nav === 'home' && homeTab === 'overview'  && <HomeMiniRoos onTraining={() => setNav('training')} />}
-        {nav === 'home' && homeTab === 'inbox'     && <InboxMiniRoos />}
-        {nav === 'home' && homeTab === 'calendar'  && <CalendarMiniRoos />}
-        {nav === 'home' && homeTab === 'staff'     && <StaffMiniRoos />}
+        {nav === 'home' && homeTab === 'overview'  && homeSubView === 'main'        && <HomeMiniRoos empty={empty} onTraining={() => setNav('training')} onSeasonNotes={() => setHomeSubView('seasonnotes')} />}
+        {nav === 'home' && homeTab === 'overview'  && homeSubView === 'seasonnotes' && <SeasonNotesScreen empty={empty} onBack={() => setHomeSubView('main')} />}
+        {nav === 'home' && homeTab === 'inbox'     && <InboxMiniRoos empty={empty} />}
+        {nav === 'home' && homeTab === 'calendar'  && <CalendarMiniRoos empty={empty} />}
+        {nav === 'home' && homeTab === 'staff'     && <StaffMiniRoos empty={empty} />}
         {nav === 'training' && <TrainingMiniRoos />}
-        {nav === 'squad'   && <SquadMiniRoos />}
+        {nav === 'squad'   && <SquadMiniRoos empty={empty} />}
         {nav === 'gameday' && gameDayView === 'turns'    && <GameDayMiniRoos onWhatWeSaw={() => setGameDayView('whatisaw')} />}
         {nav === 'gameday' && gameDayView === 'whatisaw' && <WhatWeSawScreen onBack={() => setGameDayView('turns')} onSave={() => setGameDayView('turns')} onThankParents={() => setGameDayView('thankparents')} />}
       </div>

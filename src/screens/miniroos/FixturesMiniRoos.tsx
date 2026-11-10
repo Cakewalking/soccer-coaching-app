@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { EmptyCard } from '../clubadmin/ui'
 
 const FIXTURES = [
   { date: 'Sat 2 May', opp: 'Banksia Park', where: 'Home', time: 'Played', note: 'All 10 had a go', past: true },
@@ -11,9 +12,11 @@ const FIXTURES = [
   { date: 'Sat 20 Jun', opp: 'Banksia Park', where: 'Away · Banksia Reserve', time: '8:30 am', note: 'Photo day after' },
 ]
 
-export default function FixturesMiniRoos() {
+export default function FixturesMiniRoos({ empty }: { empty?: boolean }) {
   const [toast, setToast] = useState('')
   const showToast = (msg: string) => { setToast(msg); setTimeout(() => setToast(''), 3200) }
+
+  if (empty) return <EmptyCard icon="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" title="Fixtures arrive from the league" desc="The league publishes them before round 1. They'll appear here and in every family's calendar." sidebarTitle="Until then" items={[{ title: 'Friendly games', desc: 'Add one by hand from the calendar' }, { title: 'Training', desc: 'Runs as normal' }, { title: 'Families', desc: "See 'fixtures coming soon'" }]} />
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, minHeight: 0 }}>

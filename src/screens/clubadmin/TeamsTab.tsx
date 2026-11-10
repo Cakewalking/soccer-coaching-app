@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { MINIROOS, JUNIORS, GRADING } from './data'
-import { SubTabBar, ResultChip, BackBtn } from './ui'
+import { SubTabBar, ResultChip, BackBtn, EmptyCard, FOOTER_DEFAULT } from './ui'
 import CardsTab from './CardsTab'
 
 type TeamsView = 'allteams' | 'seniors' | 'fixtures' | 'leaguesync' | 'grading' | 'referees' | 'teamkit' | 'cards'
@@ -220,7 +220,16 @@ function CompareView({ onBack }: { onBack: () => void }) {
   )
 }
 
-export default function TeamsTab() {
+const TEAMS_EMPTY: Partial<Record<TeamsView, { icon: string; title: string; desc: string; cta?: string; items: { title: string; desc: string }[] }>> = {
+  allteams:   { icon: 'M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75', title: 'No teams yet', desc: 'Bring your teams across from PlayFootball, or add one by hand. Each team gets its own coach view.', cta: 'Import from PlayFootball', items: [{ title: 'Every team on one page', desc: 'Level, coach, turnout' }, { title: 'Open any team read-only', desc: 'The way its coach sees it' }] },
+  seniors:    { icon: 'M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75', title: 'No senior teams yet', desc: 'Add a senior team. Adult players join and give consent for themselves, with no parent steps.', cta: 'Add a senior team', items: [{ title: 'Registration window', desc: 'And clearances' }, { title: 'Juniors moving up', desc: "Who's two seasons away" }] },
+  leaguesync: { icon: 'M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15', title: 'Not connected to Dribl yet', desc: 'Connect once and fixtures, venues and changes come in for every team from U12 up.', cta: 'Connect Dribl', items: [{ title: 'Changes reach families', desc: 'Calendar, roster, reminders' }, { title: 'Results go back', desc: 'After the manager confirms' }] },
+  grading:    { icon: 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5', title: "Grading hasn't started", desc: 'Grading games run in March. After them you\'ll see where the league placed each team and whether to ask for a change.', cta: 'Plan grading days', items: [{ title: 'What we asked for', desc: 'Against what we got' }, { title: 'MiniRoos levels', desc: 'Picked by the club' }] },
+  referees:   { icon: 'M22 11.08V12a10 10 0 11-5.93-9.14M22 4L12 14.01l-3-3', title: 'No club referees yet', desc: 'Add your game leaders and referees. On Thursday, Clean Sheet shows which home games still need one.', cta: 'Add a referee', items: [{ title: 'Home games covered', desc: 'Or who to ask' }, { title: 'Kind feedback only', desc: 'For young referees' }] },
+  teamkit:    { icon: 'M15 10l4.553-2.069A1 1 0 0121 8.869v6.262a1 1 0 01-1.447.894L15 14M3 8h12v9H3z', title: 'No kit added yet', desc: 'Add your match cameras, boot sensors and vests so teams can book them for Saturday.', cta: 'Add a kit', items: [{ title: 'Who has which kit', desc: "And when it's back" }, { title: 'Battery and repairs', desc: 'Before game day' }] },
+}
+
+export default function TeamsTab({ empty }: { empty?: boolean }) {
   const [view, setView] = useState<TeamsView>('allteams')
   const [selectedTeam, setSelectedTeam] = useState<string | null>(null)
   const [showCompare, setShowCompare] = useState(false)
@@ -253,7 +262,9 @@ export default function TeamsTab() {
         onSelect={id => setView(id as TeamsView)}
       />
 
-      {view === 'allteams' && (
+      {empty && view in TEAMS_EMPTY && <EmptyCard {...TEAMS_EMPTY[view]!} footer={FOOTER_DEFAULT} />}
+
+      {!empty && view === 'allteams' && (
         <div style={p}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
             <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>Teams · 14 teams · tap a team to open it as its coach sees it, read-only</div>

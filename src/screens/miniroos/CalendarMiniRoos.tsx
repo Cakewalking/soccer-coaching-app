@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { EmptyCard } from '../clubadmin/ui'
+import FixturesMiniRoos from './FixturesMiniRoos'
 
 type DayEvent = { label: string; bg: string; color: string }
 type Day = { n: number; today?: boolean; events: DayEvent[] }
@@ -39,16 +41,36 @@ const DAYS: (Day | null)[] = [
 
 const DAYS_OF_WEEK = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 
-export default function CalendarMiniRoos() {
+export default function CalendarMiniRoos({ empty }: { empty?: boolean }) {
   const [toast, setToast] = useState('')
+  const [calView, setCalView] = useState<'calendar' | 'fixtures'>('calendar')
   const showToast = (msg: string) => { setToast(msg); setTimeout(() => setToast(''), 3200) }
 
   // Pad to 35 cells (5 rows × 7)
   const cells: (Day | null)[] = [...DAYS]
   while (cells.length < 35) cells.push(null)
 
+  if (calView === 'fixtures') return <FixturesMiniRoos empty={empty} />
+
+  if (empty) return (
+    <>
+      <div style={{ flexShrink: 0, padding: '8px 28px 0', display: 'flex', gap: 0, borderBottom: '1px solid #e9eae8' }}>
+        {(['calendar', 'fixtures'] as const).map(v => (
+          <button key={v} onClick={() => setCalView(v)} style={{ height: 40, padding: '0 16px', border: 0, background: 'transparent', fontFamily: 'inherit', fontSize: 14, fontWeight: calView === v ? 700 : 500, color: calView === v ? '#10211f' : '#6f7f7b', cursor: 'pointer', borderBottom: calView === v ? '2px solid #40826d' : '2px solid transparent' }}>{v === 'calendar' ? 'Calendar' : 'Fixtures'}</button>
+        ))}
+      </div>
+      <EmptyCard icon="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" title="Add your training night" desc="Games arrive from the league on their own. Add your training night and the term fills in." cta="Add your training night" items={[{ title: 'Training', desc: 'Your night, every week of term' }, { title: 'Games', desc: 'From the league, with the ground' }, { title: 'Club days', desc: 'Photo day and presentation day' }]} />
+    </>
+  )
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, minHeight: 0 }}>
+      <div style={{ flexShrink: 0, padding: '8px 28px 0', display: 'flex', gap: 0, borderBottom: '1px solid #e9eae8' }}>
+        {(['calendar', 'fixtures'] as const).map(v => (
+          <button key={v} onClick={() => setCalView(v)} style={{ height: 40, padding: '0 16px', border: 0, background: 'transparent', fontFamily: 'inherit', fontSize: 14, fontWeight: calView === v ? 700 : 500, color: calView === v ? '#10211f' : '#6f7f7b', cursor: 'pointer', borderBottom: calView === v ? '2px solid #40826d' : '2px solid transparent' }}>{v === 'calendar' ? 'Calendar' : 'Fixtures'}</button>
+        ))}
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, minHeight: 0 }}>
       <div style={{ flexShrink: 0, padding: '14px 28px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 20 }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 14 }}>
           <h1 style={{ margin: 0, fontSize: 26, lineHeight: '32px', fontWeight: 700, letterSpacing: '-0.02em' }}>Calendar</h1>
@@ -117,6 +139,7 @@ export default function CalendarMiniRoos() {
           {toast}
         </div>
       )}
+      </div>
     </div>
   )
 }

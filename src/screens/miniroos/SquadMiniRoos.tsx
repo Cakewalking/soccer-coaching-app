@@ -1,5 +1,8 @@
 import { useState } from 'react'
+import ComingMiniRoos from './ComingMiniRoos'
+import ConsentMiniRoos from './ConsentMiniRoos'
 
+type SquadTab = 'players' | 'coming' | 'consent'
 type Avail = 'yes' | 'maybe' | 'away' | 'noreply'
 
 interface Player {
@@ -52,22 +55,34 @@ const Check = () => (
   <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
 )
 
-export default function SquadMiniRoos() {
+export default function SquadMiniRoos({ empty }: { empty?: boolean }) {
   const [sel, setSel] = useState<Player>(PLAYERS[7])
+  const [squadTab, setSquadTab] = useState<SquadTab>('players')
+
+  const tabBar = (
+    <div style={{ flex: 'none', padding: '14px 28px 0' }}>
+      <div style={{ display: 'flex', alignItems: 'baseline', gap: 14, marginBottom: 8 }}>
+        <h1 style={{ margin: 0, fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em' }}>Squad</h1>
+        <span style={{ fontSize: 14, color: '#4a5a57' }}>10 players · U9 Tom · 7 coming Saturday, 1 maybe, 1 away, 1 to answer</span>
+        <div style={{ flexGrow: 1 }} />
+        <button style={{ height: 36, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Remind 1 family</button>
+        <button style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>+ Add a player</button>
+      </div>
+      <div style={{ display: 'flex', gap: 0, borderBottom: '1px solid #e9eae8', marginBottom: 10 }}>
+        {([['players', 'Players'], ['coming', "Who's coming"], ['consent', 'Consent']] as [SquadTab, string][]).map(([id, label]) => (
+          <button key={id} onClick={() => setSquadTab(id)} style={{ height: 38, padding: '0 16px', border: 0, background: 'transparent', fontFamily: 'inherit', fontSize: 14, fontWeight: squadTab === id ? 700 : 500, color: squadTab === id ? '#10211f' : '#6f7f7b', cursor: 'pointer', borderBottom: squadTab === id ? '2px solid #40826d' : '2px solid transparent' }}>{label}</button>
+        ))}
+      </div>
+    </div>
+  )
+
+  if (squadTab === 'coming')  return <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, minHeight: 0, overflow: 'hidden' }}>{tabBar}<ComingMiniRoos empty={empty} /></div>
+  if (squadTab === 'consent') return <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, minHeight: 0, overflow: 'hidden' }}>{tabBar}<ConsentMiniRoos empty={empty} /></div>
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, minHeight: 0, overflow: 'hidden' }}>
 
-      {/* Header */}
-      <div style={{ flex: 'none', padding: '14px 28px 0' }}>
-        <div style={{ display: 'flex', alignItems: 'baseline', gap: 14, marginBottom: 10 }}>
-          <h1 style={{ margin: 0, fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em' }}>Squad</h1>
-          <span style={{ fontSize: 14, color: '#4a5a57' }}>10 players · U9 Tom · 7 coming Saturday, 1 maybe, 1 away, 1 to answer</span>
-          <div style={{ flexGrow: 1 }} />
-          <button style={{ height: 36, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Remind 1 family</button>
-          <button style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>+ Add a player</button>
-        </div>
-      </div>
+      {tabBar}
 
       {/* Grid + sidebar */}
       <div style={{ flexGrow: 1, minHeight: 0, padding: '0 28px 0', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 300px', gap: 20, overflow: 'hidden' }}>

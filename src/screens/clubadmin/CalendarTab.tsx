@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { EmptyCard, FOOTER_DEFAULT } from './ui'
 
 const SAT_GAMES = [
   { time: '8:30',  team: 'U7 Dan vs Ironbark United',      detail: 'Home festival · pitch 5',         changed: false },
@@ -27,8 +28,10 @@ const COMING_UP = [
   { date: 'SAT 20 JUN', time: '9:00',  note: 'Club course',                         sub: '9 new coaches · clubrooms' },
 ]
 
-export default function CalendarTab() {
+export default function CalendarTab({ empty }: { empty?: boolean }) {
   const [synced, setSynced] = useState(false)
+
+  if (empty) return <EmptyCard icon="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" title="Nothing on the calendar yet" desc="Fixtures come in from Dribl and training nights from each coach. Add club events yourself." cta="Add a club event" items={[{ title: "Every team's games", desc: 'Home in green, away in sand' }, { title: 'Clashes flagged', desc: 'Pitches and camera kits' }]} footer={FOOTER_DEFAULT} />
 
   return (
     <div style={{ padding: '16px 20px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 300px', gap: 14, alignItems: 'start' }}>

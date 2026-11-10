@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { EmptyCard } from '../clubadmin/ui'
 
 const MESSAGES = [
   { id: 'availability', ini: 'SA', bg: '#cbbeb5', from: 'Saturday', date: 'Today', text: '2 families haven\'t said if they\'re coming', unread: true },
@@ -46,7 +47,7 @@ const DETAIL: Record<string, { title: string; from: string; time: string; body: 
   },
 }
 
-export default function InboxMiniRoos() {
+export default function InboxMiniRoos({ empty }: { empty?: boolean }) {
   const [selected, setSelected] = useState('omar')
   const [toast, setToast] = useState('')
 
@@ -56,6 +57,8 @@ export default function InboxMiniRoos() {
   }
 
   const detail = DETAIL[selected]
+
+  if (empty) return <EmptyCard icon="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zM22 6l-10 7L2 6" title="No messages yet" desc="When a parent or the club writes to you, it lands here. You can message all your families at once." cta="Message all families" sidebarTitle="What arrives here" items={[{ title: 'Parents', desc: "Who's away, and questions" }, { title: 'The club', desc: 'Photo day, kit and ground changes' }, { title: 'Clean Sheet', desc: 'Only what needs you' }]} />
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, minHeight: 0 }}>

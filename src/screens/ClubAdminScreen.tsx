@@ -89,17 +89,17 @@ export default function ClubAdminScreen({ empty, role = 'chair' }: { empty?: boo
       {/* Content */}
       <div style={{ flexGrow: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
         {tab === 'club'         && <ClubTab role={role} />}
-        {tab === 'teams'        && <TeamsTab />}
-        {tab === 'coaches'      && <CoachesTab />}
-        {tab === 'players'      && <PlayersTab />}
-        {tab === 'safeguarding' && <SafeguardingTab />}
-        {tab === 'reports'      && <ReportsTab />}
-        {tab === 'rules'        && <ClubRulesTab />}
-        {tab === 'plan'         && <ClubPlanTab />}
-        {tab === 'calendar'     && <CalendarTab />}
-        {tab === 'leaguesync'   && <LeagueSyncTab />}
-        {tab === 'referees'     && <RefereesTab />}
-        {tab === 'sideline'     && <SidelineTab />}
+        {tab === 'teams'        && <TeamsTab empty={empty} />}
+        {tab === 'coaches'      && <CoachesTab empty={empty} />}
+        {tab === 'players'      && <PlayersTab empty={empty} />}
+        {tab === 'safeguarding' && <SafeguardingTab empty={empty} />}
+        {tab === 'reports'      && <ReportsTab empty={empty} />}
+        {tab === 'rules'        && <ClubRulesTab empty={empty} />}
+        {tab === 'plan'         && <ClubPlanTab empty={empty} />}
+        {tab === 'calendar'     && <CalendarTab empty={empty} />}
+        {tab === 'leaguesync'   && <LeagueSyncTab empty={empty} />}
+        {tab === 'referees'     && <RefereesTab empty={empty} />}
+        {tab === 'sideline'     && <SidelineTab empty={empty} />}
         {tab === 'welfare'      && <WelfareTab />}
       </div>
     </div>

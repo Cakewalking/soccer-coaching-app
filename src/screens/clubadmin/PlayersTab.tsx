@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { FAIR_TIME } from './data'
-import { SubTabBar } from './ui'
+import { SubTabBar, EmptyCard, FOOTER_DEFAULT } from './ui'
 
 type PlayersView = 'overview' | 'goals' | 'growthload' | 'fairtime' | 'registrations' | 'moves' | 'trials' | 'girls'
 
@@ -23,7 +23,16 @@ function PlaceholderSection({ title, desc }: { title: string; desc: string }) {
   )
 }
 
-export default function PlayersTab() {
+const PLAYERS_EMPTY: Partial<Record<PlayersView, { icon: string; title: string; desc: string; cta?: string; items: { title: string; desc: string }[] }>> = {
+  overview:      { icon: 'M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75', title: 'No players yet', desc: 'Players arrive with your PlayFootball import, or as parents join with a team link.', cta: 'Import from PlayFootball', items: [{ title: 'Is everyone getting a fair go?', desc: 'Minutes across every team' }, { title: "Who's ready for more", desc: 'Coach nominations' }] },
+  fairtime:      { icon: 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5', title: 'Nothing to show until teams play', desc: "Minutes come from each team's game timer. After the first round you'll see every team against the club policy.", cta: 'Set the minutes policy', items: [{ title: 'Fewest minutes per team', desc: 'Against the policy line' }, { title: 'Who to talk to', desc: 'Coaches below the line' }] },
+  registrations: { icon: 'M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8zM14 2v6h6M8 13h8M8 17h5', title: 'No registrations yet', desc: 'Connect PlayFootball and registrations, fees and consent show here by team.', cta: 'Import from PlayFootball', items: [{ title: 'Fees owing', desc: 'By team, never by name to coaches' }, { title: 'Consent done', desc: 'And who to remind' }] },
+  moves:         { icon: 'M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75', title: 'No moves this month', desc: 'Move a player to another team, or let them play up for a game. The parent is asked first.', cta: 'Move a player', items: [{ title: 'History moves with them', desc: 'Goals, minutes, tests' }, { title: 'Dispensations flagged', desc: 'When FV must approve' }] },
+  trials:        { icon: 'M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z', title: 'No trials set up', desc: 'Set up a trial, share the sign-up link, and score players together. Everyone hears back kindly.', cta: 'Set up a trial', items: [{ title: 'Scores stay private', desc: 'Never shared with players' }, { title: 'Birth month shown', desc: "So younger players aren't missed" }] },
+  girls:         { icon: 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5', title: "No girls' teams yet", desc: "Add a girls' team, or import your players, to see the pathway from MiniRoos to seniors and where the gaps are.", cta: 'Import from PlayFootball', items: [{ title: 'Pathway by age', desc: 'And the gaps' }, { title: 'Who came back', desc: 'Against last year' }] },
+}
+
+export default function PlayersTab({ empty }: { empty?: boolean }) {
   const [view, setView] = useState<PlayersView>('overview')
 
   const p = { padding: '16px 20px' }
@@ -51,7 +60,9 @@ export default function PlayersTab() {
         onSelect={id => setView(id as PlayersView)}
       />
 
-      {view === 'overview' && (
+      {empty && view in PLAYERS_EMPTY && <EmptyCard {...PLAYERS_EMPTY[view]!} footer={FOOTER_DEFAULT} />}
+
+      {!empty && view === 'overview' && (
         <div style={p}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10, marginBottom: 20 }}>
             {[{ n: '212', l: 'Total players', sub: '134 juniors · 78 seniors' }, { n: '96%', l: 'Consent done', sub: '8 pending' }, { n: '12 of 14', l: 'Fair game time', sub: '2 teams with players under' }, { n: '11', l: 'Ready for more', sub: 'Coach nominations this season' }].map(s => (

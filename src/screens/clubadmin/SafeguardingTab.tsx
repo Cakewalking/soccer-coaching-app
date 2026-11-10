@@ -1,12 +1,20 @@
 import { useState } from 'react'
 import { COACHES_DATA, CONCERNS, CONCUSSIONS } from './data'
-import { SubTabBar } from './ui'
+import { SubTabBar, EmptyCard, FOOTER_DEFAULT } from './ui'
 
 type SafeguardingView = 'checks' | 'consent' | 'concerns' | 'datareq' | 'concussion' | 'sideline'
 
 const STAGES = ['Rest', 'Light activity', 'Non-contact training', 'Contact training', 'Games']
 
-export default function SafeguardingTab() {
+const SG_EMPTY: Partial<Record<SafeguardingView, { icon: string; title: string; desc: string; cta?: string; items: { title: string; desc: string }[] }>> = {
+  checks:    { icon: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z', title: 'Start with a welfare officer', desc: 'Name the one person who sees concerns in full. Then checks, consent and concerns fill in here.', cta: 'Name a welfare officer', items: [{ title: 'Children checks', desc: "Everyone valid, or who isn't" }, { title: 'Consent', desc: 'What each family agreed to' }] },
+  concerns:  { icon: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z', title: 'No concerns raised', desc: "When someone raises a concern it goes to the welfare officer. You see that it exists and whether it's on track.", cta: 'Raise a concern', items: [{ title: 'Who can raise one', desc: 'Parents, children, coaches, managers' }, { title: 'What you see', desc: 'A count, not names' }] },
+  datareq:   { icon: 'M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8zM14 2v6h6M8 13h8M8 17h5', title: 'No requests yet', desc: "Families can ask for a copy of their child's data, or to delete it. Requests and due dates show here.", cta: 'Consent settings', items: [{ title: 'Copies', desc: 'Sent within a day' }, { title: 'Deletes', desc: 'Within 7 days' }] },
+  concussion: { icon: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z', title: 'No head knocks logged', desc: 'Coaches and managers log a head knock from the sideline. The player then follows the return-to-play steps here.', cta: 'Name a concussion officer', items: [{ title: 'If in doubt, sit them out', desc: 'No game for at least 21 days' }, { title: 'Parents and coach told', desc: 'The same day' }] },
+  sideline:  { icon: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z', title: 'No sideline reports', desc: 'Good news. When a coach or manager reports behaviour at a game, it shows here for you and the welfare officer.', cta: 'Edit the code of conduct', items: [{ title: 'Code of conduct', desc: 'Parents agree when they join' }, { title: '48 hours', desc: 'To report serious misconduct to FV' }] },
+}
+
+export default function SafeguardingTab({ empty }: { empty?: boolean }) {
   const [view, setView] = useState<SafeguardingView>('checks')
 
   const p = { padding: '16px 20px' }
@@ -26,7 +34,9 @@ export default function SafeguardingTab() {
         onSelect={id => setView(id as SafeguardingView)}
       />
 
-      {view === 'checks' && (
+      {empty && view in SG_EMPTY && <EmptyCard {...SG_EMPTY[view]!} footer={FOOTER_DEFAULT} />}
+
+      {!empty && view === 'checks' && (
         <div style={p}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
             <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>Working with children checks</div>
@@ -51,7 +61,7 @@ export default function SafeguardingTab() {
         </div>
       )}
 
-      {view === 'consent' && (
+      {!empty && view === 'consent' && (
         <div style={p}>
           <div style={{ fontSize: 18, fontWeight: 800, color: '#10211f', marginBottom: 4 }}>Consent</div>
           <div style={{ fontSize: 13, color: '#6f7f7b', marginBottom: 20 }}>What parents have agreed to, and what is still outstanding</div>
@@ -83,7 +93,7 @@ export default function SafeguardingTab() {
         </div>
       )}
 
-      {view === 'concerns' && (
+      {!empty && view === 'concerns' && (
         <div style={p}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
             <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>{CONCERNS.length} concerns</div>
@@ -102,7 +112,7 @@ export default function SafeguardingTab() {
         </div>
       )}
 
-      {view === 'datareq' && (
+      {!empty && view === 'datareq' && (
         <div style={p}>
           <div style={{ background: '#fdf8f4', borderRadius: 14, padding: '14px 16px', border: '1px solid #f0dcc8', marginBottom: 14 }}>
             <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 4 }}>Data requests</div>
@@ -112,7 +122,7 @@ export default function SafeguardingTab() {
         </div>
       )}
 
-      {view === 'concussion' && (
+      {!empty && view === 'concussion' && (
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 300px', gap: 20, padding: p.padding }}>
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 16 }}>
@@ -181,7 +191,7 @@ export default function SafeguardingTab() {
         </div>
       )}
 
-      {view === 'sideline' && (
+      {!empty && view === 'sideline' && (
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 300px', gap: 20, padding: p.padding }}>
           <div>
             <div style={{ fontSize: 18, fontWeight: 800, color: '#10211f', marginBottom: 4 }}>Sideline behaviour</div>

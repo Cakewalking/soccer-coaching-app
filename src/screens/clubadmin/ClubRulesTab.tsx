@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { EmptyCard } from './ui'
 
 type RuleStatus = 'on' | 'needs-you' | 'off'
 
@@ -24,9 +25,11 @@ function StatusBadge({ status }: { status: RuleStatus }) {
   return <span style={{ display: 'inline-flex', alignItems: 'center', height: 24, padding: '0 9px', borderRadius: '999px', fontSize: 12, fontWeight: 700, background: '#e9eae8', color: '#4a5a57' }}>Off</span>
 }
 
-export default function ClubRulesTab() {
+export default function ClubRulesTab({ empty }: { empty?: boolean }) {
   const [toast, setToast] = useState('')
   const showToast = (msg: string) => { setToast(msg); setTimeout(() => setToast(''), 3200) }
+
+  if (empty) return <EmptyCard icon="M9 11l3 3L22 4M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" title="Start with fair game time" desc="Pick how minutes are shared at each age. Every coach's line-up then follows it without you checking." cta="Set fair game time" sidebarTitle="Already built in" sidebarBody="League rules are on from day one: no scores under 12, the head-knock rule, the heat rule and children checks." />
 
   return (
     <div style={{ padding: '20px 24px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 320px', gap: 16, minHeight: 0 }}>

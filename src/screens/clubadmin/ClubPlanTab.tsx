@@ -1,8 +1,11 @@
 import { useState } from 'react'
+import { EmptyCard, FOOTER_DEFAULT } from './ui'
 
-export default function ClubPlanTab() {
+export default function ClubPlanTab({ empty }: { empty?: boolean }) {
   const [toast, setToast] = useState('')
   const showToast = (msg: string) => { setToast(msg); setTimeout(() => setToast(''), 3200) }
+
+  if (empty) return <EmptyCard icon="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8zM14 2v6h6M8 13h8M8 17h5" title="No season dates yet" desc="Add your season start and Clean Sheet lays out grading, tests, courses and registrations across the year." cta="Set season dates" items={[{ title: 'The year on one line', desc: 'By age group' }, { title: "What's coming up", desc: 'In the next month' }]} footer={FOOTER_DEFAULT} />
 
   return (
     <div style={{ padding: '20px 24px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 340px', gap: 16 }}>

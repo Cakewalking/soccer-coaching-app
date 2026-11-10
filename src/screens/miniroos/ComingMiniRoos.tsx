@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { EmptyCard } from '../clubadmin/ui'
 
 type Attending = 'yes' | 'maybe' | 'no' | 'away'
 
@@ -19,9 +20,11 @@ const STATUS_LABEL: Record<Attending, string> = { yes: 'Coming', maybe: 'Maybe',
 const STATUS_BG: Record<Attending, string> = { yes: '#2f6252', maybe: '#cbbeb5', no: '#c39797', away: '#e9eae8' }
 const STATUS_COLOR: Record<Attending, string> = { yes: '#fff', maybe: '#10211f', no: '#10211f', away: '#10211f' }
 
-export default function ComingMiniRoos() {
+export default function ComingMiniRoos({ empty }: { empty?: boolean }) {
   const [toast, setToast] = useState('')
   const showToast = (msg: string) => { setToast(msg); setTimeout(() => setToast(''), 3200) }
+
+  if (empty) return <EmptyCard icon="M20 6L9 17l-5-5" title="Answers appear when families join" desc="Each week, parents get one question: can they make it? Their answers line up here." cta="Copy the team link" sidebarTitle="How it works" items={[{ title: 'Asked on Monday', desc: 'One tap to answer' }, { title: 'Reminded once', desc: "On Thursday, if there's no answer" }, { title: 'You see the count', desc: 'And who to chase' }]} />
 
   const coming = PLAYERS.filter(p => p.status === 'yes').length
   const notSure = PLAYERS.filter(p => p.status === 'maybe').length

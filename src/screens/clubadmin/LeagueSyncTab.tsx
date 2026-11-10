@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { EmptyCard, FOOTER_DEFAULT } from './ui'
 
 const THIS_WEEKEND = [
   { time: '9:00',  team: 'U9 Mark',    comp: 'Kangaroos',  opp: 'Glenview Park',   venue: 'Home · pitch 4',               changed: false },
@@ -17,9 +18,11 @@ const RESULTS_BACK = [
   { team: 'U16 Ollie',     score: 'Lost 1–3 v Glenview Park',   status: 'differs' },
 ]
 
-export default function LeagueSyncTab() {
+export default function LeagueSyncTab({ empty }: { empty?: boolean }) {
   const [toastMsg, setToastMsg] = useState('')
   function showToast(m: string) { setToastMsg(m); setTimeout(() => setToastMsg(''), 3000) }
+
+  if (empty) return <EmptyCard icon="M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15" title="Not connected to Dribl yet" desc="Connect once and fixtures, venues and changes come in for every team from U12 up." cta="Connect Dribl" items={[{ title: 'Changes reach families', desc: 'Calendar, roster, reminders' }, { title: 'Results go back', desc: 'After the manager confirms' }]} footer={FOOTER_DEFAULT} />
 
   return (
     <div style={{ padding: '16px 20px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 300px', gap: 14, alignItems: 'start' }}>

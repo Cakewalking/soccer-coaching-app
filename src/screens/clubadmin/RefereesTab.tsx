@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { EmptyCard, FOOTER_DEFAULT } from './ui'
 
 const HOME_GAMES = [
   { time: '8:30',  game: 'U7 Dan v Ironbark United · festival', role: 'Game leader', who: 'Zoe Park, 16', needed: false },
@@ -16,9 +17,11 @@ const CLUB_REFS = [
   { ini: 'RA', name: 'Ruth Adeyemi', age: 0, games: 30, note: 'Adult · 30 games · coordinator' },
 ]
 
-export default function RefereesTab() {
+export default function RefereesTab({ empty }: { empty?: boolean }) {
   const [toastMsg, setToastMsg] = useState('')
   function showToast(m: string) { setToastMsg(m); setTimeout(() => setToastMsg(''), 3000) }
+
+  if (empty) return <EmptyCard icon="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" title="No club referees yet" desc="Add your game leaders and referees. On Thursday, Clean Sheet shows which home games still need one." cta="Add a referee" items={[{ title: 'Home games covered', desc: 'Or who to ask' }, { title: 'Kind feedback only', desc: 'For young referees' }]} footer={FOOTER_DEFAULT} />
 
   return (
     <div style={{ padding: '16px 20px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 300px', gap: 14, alignItems: 'start' }}>

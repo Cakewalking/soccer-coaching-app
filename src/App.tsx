@@ -218,7 +218,7 @@ export default function App() {
   if (screen === 'miniroos') {
     return (
       <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
-        <MiniRoosApp onBack={() => setScreen('home')} />
+        <MiniRoosApp onBack={() => setScreen('home')} empty={isEmpty} />
       </div>
     )
   }

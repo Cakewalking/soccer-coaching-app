@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { EmptyCard } from '../clubadmin/ui'
 
 type NoteStatus = 'sent' | 'draft' | 'todo'
 
@@ -69,18 +70,21 @@ function ArloDetail({ onSend }: { onSend: () => void }) {
   )
 }
 
-export default function SeasonNotesScreen() {
+export default function SeasonNotesScreen({ empty, onBack }: { empty?: boolean; onBack?: () => void }) {
   const [selected, setSelected] = useState('Arlo')
   const [toast, setToast] = useState('')
   const draftCount = PLAYERS.filter(p => p.status === 'draft').length
 
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(''), 2800) }
 
+  if (empty) return <EmptyCard icon="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8zM14 2v6h6M8 13h8M8 17h5" title="A short note for every family" desc="At the end of the season, Clean Sheet drafts a note for each child from what you tapped after games. You check it and send it." sidebarTitle="What goes in" items={[{ title: 'Two things they loved', desc: '' }, { title: 'Two things they got better at', desc: '' }]} footer="Never a score or a comparison." />
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, minHeight: 0 }}>
       {/* Header */}
       <div style={{ flexShrink: 0, padding: '14px 28px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 20 }}>
         <div>
+          {onBack && <button onClick={onBack} style={{ height: 28, padding: '0 12px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer', marginBottom: 8 }}>← Back</button>}
           <h1 style={{ margin: 0, fontSize: 26, lineHeight: '32px', fontWeight: 700, letterSpacing: '-0.02em' }}>Season notes</h1>
           <div style={{ fontSize: 14, color: '#4a5a57', marginTop: 2 }}>One short note for each family · 2 sent, {draftCount} drafted, 4 to write</div>
         </div>

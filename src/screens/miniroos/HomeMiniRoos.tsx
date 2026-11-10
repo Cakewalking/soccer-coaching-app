@@ -30,11 +30,57 @@ function miniWeekStyle(type: string) {
   return { ...base, color: '#10211f' }
 }
 
-interface Props {
-  onTraining?: () => void
+function HomeMiniRoosEmpty() {
+  return (
+    <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 320px', gap: 16, padding: '16px 20px 20px', boxSizing: 'border-box', alignContent: 'start', flexGrow: 1 }}>
+      <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, display: 'flex', flexDirection: 'column', padding: '32px 40px', gap: 24 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10, textAlign: 'center' }}>
+          <div style={{ width: 60, height: 60, borderRadius: '999px', background: '#eef5f2', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2f6252" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 11l8-7 8 7v9H4z"/></svg>
+          </div>
+          <div style={{ fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em', color: '#10211f' }}>Welcome, Tom</div>
+        </div>
+        {[
+          { step: 1, label: 'Share the team link', cta: 'Copy link' },
+          { step: 2, label: 'Add your training night', cta: 'Add' },
+          { step: 3, label: 'Invite a team manager', cta: 'Invite' },
+        ].map(({ step, label, cta }) => (
+          <div key={step} style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '14px 16px', borderRadius: 12, background: '#f7f9f7', border: '1px solid #e9eae8' }}>
+            <span style={{ flexShrink: 0, width: 32, height: 32, borderRadius: '999px', background: '#eef5f2', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700, color: '#2f6252' }}>{step}</span>
+            <span style={{ flexGrow: 1, fontSize: 16, fontWeight: 600, color: '#10211f' }}>{label}</span>
+            <button style={{ height: 36, padding: '0 16px', borderRadius: 8, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer', flexShrink: 0 }}>{cta}</button>
+          </div>
+        ))}
+      </div>
+      <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '16px 18px', display: 'flex', flexDirection: 'column' }}>
+        <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 10 }}>What you'll see each week</div>
+        {[
+          { title: "Who's coming", desc: 'Parents answer in the app' },
+          { title: 'Four games for training', desc: 'A new skill each fortnight' },
+          { title: 'Turns on game day', desc: 'Minutes, goal and captain' },
+        ].map((item, i) => (
+          <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start', padding: '10px 0', borderTop: '1px solid #e9eae8' }}>
+            <span style={{ flexShrink: 0, width: 24, height: 24, borderRadius: '999px', background: '#eef5f2', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, color: '#2f6252' }}>{i + 1}</span>
+            <div>
+              <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>{item.title}</div>
+              <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: '18px' }}>{item.desc}</div>
+            </div>
+          </div>
+        ))}
+        <div style={{ marginTop: 'auto', paddingTop: 16, fontSize: 13, color: '#4a5a57', lineHeight: '18px', borderTop: '1px solid #e9eae8' }}>No camera, sensors or scores at this age. You don't need any kit.</div>
+      </div>
+    </div>
+  )
 }
 
-export default function HomeMiniRoos({ onTraining }: Props) {
+interface Props {
+  empty?: boolean
+  onTraining?: () => void
+  onSeasonNotes?: () => void
+}
+
+export default function HomeMiniRoos({ empty, onTraining, onSeasonNotes }: Props) {
+  if (empty) return <HomeMiniRoosEmpty />
   return (
     <main style={{
       flexGrow: 1, minHeight: 0, padding: '18px 28px 22px',
@@ -151,6 +197,9 @@ export default function HomeMiniRoos({ onTraining }: Props) {
             <button style={{ flex: 1, height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>What we saw</button>
             <button style={{ flex: 1, height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Thank the parents</button>
           </div>
+          {onSeasonNotes && (
+            <button onClick={onSeasonNotes} style={{ width: '100%', height: 40, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#2f6252', marginTop: 2 }}>Season notes →</button>
+          )}
         </section>
       </div>
 
