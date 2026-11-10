@@ -13,6 +13,8 @@ import LeagueSyncTab from './clubadmin/LeagueSyncTab'
 import RefereesTab from './clubadmin/RefereesTab'
 import SidelineTab from './clubadmin/SidelineTab'
 import WelfareTab from './clubadmin/WelfareTab'
+import ConcussionTab from './clubadmin/ConcussionTab'
+import GoalkeepersTab from './clubadmin/GoalkeepersTab'
 
 export default function ClubAdminScreen({ empty, role = 'chair' }: { empty?: boolean; role?: 'chair' | 'dof' }) {
   const [tab, setTab] = useState<AdminTab>('club')
@@ -46,6 +48,8 @@ export default function ClubAdminScreen({ empty, role = 'chair' }: { empty?: boo
     { id: 'referees',     label: 'Referees',      icon: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z' },
     { id: 'sideline',     label: 'Sideline',      icon: 'M15 10l4.553-2.069A1 1 0 0121 8.869v6.262a1 1 0 01-1.447.894L15 14M3 8h12v9H3z' },
     { id: 'welfare',      label: 'Welfare',       icon: 'M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z' },
+    { id: 'concussion',   label: 'Concussion',    icon: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10zM12 8v4M12 16h.01' },
+    { id: 'goalkeepers',  label: 'Goalkeepers',   icon: 'M15 10l4.553-2.069A1 1 0 0121 8.869v6.262a1 1 0 01-1.447.894L15 14M3 8h12v9H3z' },
   ]
 
   return (
@@ -101,6 +105,8 @@ export default function ClubAdminScreen({ empty, role = 'chair' }: { empty?: boo
         {tab === 'referees'     && <RefereesTab empty={empty} />}
         {tab === 'sideline'     && <SidelineTab empty={empty} />}
         {tab === 'welfare'      && <WelfareTab />}
+        {tab === 'concussion'   && <ConcussionTab empty={empty} />}
+        {tab === 'goalkeepers'  && <GoalkeepersTab empty={empty} />}
       </div>
     </div>
   )

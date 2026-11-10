@@ -47,10 +47,15 @@ import DemoApp                     from './screens/demo/DemoApp'
 import TeamChatScreen               from './screens/TeamChatScreen'
 import RecordScreen                 from './screens/RecordScreen'
 import SuggestionsScreen            from './screens/SuggestionsScreen'
+import AcademyCoachApp              from './screens/AcademyCoachApp'
+import AcademyOwnerApp             from './screens/AcademyOwnerApp'
+import { FitnessSquadTab, FitnessTrainingTab, FitnessMatchTab } from './screens/FitnessExtras'
+import AcademyParentApp            from './screens/AcademyParentApp'
+import AcademyPlayerApp            from './screens/AcademyPlayerApp'
 import { type Role } from './data'
 import './index.css'
 
-export type Screen = 'home' | 'squad' | 'training' | 'matchday' | 'teamtalk' | 'clips' | 'player' | 'pitchside' | 'addgame' | 'setstyle' | 'livegame' | 'livegame11' | 'metric' | 'teammanager' | 'signup' | 'playerapp' | 'fitnesscoach' | 'clubadmin' | 'settings' | 'olderavail' | 'olderplayer' | 'refereephone' | 'miniroos' | 'goalkeeper' | 'coordinator' | 'rollover' | 'seniors' | 'youth' | 'twochildren' | 'playerme' | 'coachfitness' | 'demo'
+export type Screen = 'home' | 'squad' | 'training' | 'matchday' | 'teamtalk' | 'clips' | 'player' | 'pitchside' | 'addgame' | 'setstyle' | 'livegame' | 'livegame11' | 'metric' | 'teammanager' | 'signup' | 'playerapp' | 'fitnesscoach' | 'clubadmin' | 'settings' | 'olderavail' | 'olderplayer' | 'refereephone' | 'miniroos' | 'goalkeeper' | 'coordinator' | 'rollover' | 'seniors' | 'youth' | 'twochildren' | 'playerme' | 'coachfitness' | 'demo' | 'academy' | 'academyowner' | 'academyparent' | 'academyplayer'
 
 const NAV_TABS: Array<{ id: Screen; label: string; icon: string }> = [
   { id: 'home',     label: 'Home',      icon: 'M4 11l8-7 8 7v9H4z' },
@@ -61,9 +66,9 @@ const NAV_TABS: Array<{ id: Screen; label: string; icon: string }> = [
 ]
 
 const HOME_TABS     = ['Overview', 'Inbox', 'Calendar', 'Fixtures and results', 'Our style', 'Team staff']
-const SQUAD_TABS    = ['Players', 'Development goals', 'Wellness', 'Availability', 'Consent and privacy', 'Season summaries']
-const TRAINING_TABS = ["Tonight's session", 'This week', 'Suggested', 'Drill library', 'Growth and load', 'Record']
-const MATCHDAY_TABS = ['Team talk', 'Line-up and minutes', 'Opposition', 'Review']
+const SQUAD_TABS    = ['Players', 'Development goals', 'Wellness', 'Availability', 'Consent and privacy', 'Season summaries', 'Fitness coach']
+const TRAINING_TABS = ["Tonight's session", 'This week', 'Suggested', 'Drill library', 'Growth and load', 'Record', 'Fitness coach']
+const MATCHDAY_TABS = ['Team talk', 'Line-up and minutes', 'Opposition', 'Review', 'Fitness coach']
 const CLIPS_TABS    = ['Browse', 'Playlists', 'Shared with players', 'To check']
 
 function RoleBadge() {
@@ -119,6 +124,22 @@ function TeamPicker({ onMetric, onNav }: { onMetric?: () => void; onNav?: (s: Sc
             <button onClick={() => go('clubadmin')} style={{ display: 'block', width: '100%', padding: '8px 16px', border: 0, background: 'transparent', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
               <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>Club admin portal</div>
               <div style={{ fontSize: 12, color: '#6f7f7b' }}>Chair / Director of Football view</div>
+            </button>
+            <button onClick={() => go('academy')} style={{ display: 'block', width: '100%', padding: '8px 16px', border: 0, background: 'transparent', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
+              <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>Academy coach portal</div>
+              <div style={{ fontSize: 12, color: '#6f7f7b' }}>Reece · Tall Timber Academy</div>
+            </button>
+            <button onClick={() => go('academyowner')} style={{ display: 'block', width: '100%', padding: '8px 16px', border: 0, background: 'transparent', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
+              <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>Academy owner portal</div>
+              <div style={{ fontSize: 12, color: '#6f7f7b' }}>Dani · Tall Timber Academy</div>
+            </button>
+            <button onClick={() => go('academyparent')} style={{ display: 'block', width: '100%', padding: '8px 16px', border: 0, background: 'transparent', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
+              <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>Academy parent app</div>
+              <div style={{ fontSize: 12, color: '#6f7f7b' }}>Mia · Kai's family</div>
+            </button>
+            <button onClick={() => go('academyplayer')} style={{ display: 'block', width: '100%', padding: '8px 16px', border: 0, background: 'transparent', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
+              <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>Academy player app</div>
+              <div style={{ fontSize: 12, color: '#6f7f7b' }}>Kai · 13 year old player</div>
             </button>
             <div style={{ padding: '10px 16px 6px', fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#6f7f7b', borderTop: '1px solid #f0f1f0' }}>Coach portals</div>
             <button onClick={() => go('seniors')} style={{ display: 'block', width: '100%', padding: '8px 16px', border: 0, background: 'transparent', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
@@ -373,6 +394,30 @@ export default function App() {
     return <DemoApp />
   }
 
+  if (screen === 'academy') {
+    return <AcademyCoachApp onBack={() => setScreen('home')} empty={isEmpty} />
+  }
+
+  if (screen === 'academyowner') {
+    return <AcademyOwnerApp onBack={() => setScreen('home')} empty={isEmpty} />
+  }
+
+  if (screen === 'academyparent') {
+    return (
+      <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: '#f0f1f0', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 40 }}>
+        <AcademyParentApp onBack={() => setScreen('home')} empty={isEmpty} />
+      </div>
+    )
+  }
+
+  if (screen === 'academyplayer') {
+    return (
+      <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: '#f0f1f0', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 40 }}>
+        <AcademyPlayerApp onBack={() => setScreen('home')} empty={isEmpty} />
+      </div>
+    )
+  }
+
   if (screen === 'playerme') {
     return (
       <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: '#f0f1f0', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 40 }}>
@@ -496,6 +541,7 @@ export default function App() {
       {screen === 'squad' && squadTab === 3 && <AvailabilityScreen empty={isEmpty} />}
       {screen === 'squad' && squadTab === 4 && <ConsentScreen />}
       {screen === 'squad' && squadTab === 5 && <SeasonSummariesScreen />}
+      {screen === 'squad' && squadTab === 6 && <FitnessSquadTab empty={isEmpty} />}
       {/* Training tabs */}
       {screen === 'training' && trainingTab === 0 && <TrainingScreen role={role} onNav={navTo} empty={isEmpty} />}
       {screen === 'training' && trainingTab === 1 && <ThisWeekScreen empty={isEmpty} onDrillLibrary={() => setTrainingTab(3)} onTonightsPlan={() => setTrainingTab(0)} onGrowthLoad={() => setTrainingTab(4)} />}
@@ -503,11 +549,13 @@ export default function App() {
       {screen === 'training' && trainingTab === 3 && <DrillLibraryScreen />}
       {screen === 'training' && trainingTab === 4 && <GrowthLoadScreen empty={isEmpty} />}
       {screen === 'training' && trainingTab === 5 && <RecordScreen empty={isEmpty} />}
+      {screen === 'training' && trainingTab === 6 && <FitnessTrainingTab empty={isEmpty} />}
       {/* Match day tabs */}
       {screen === 'matchday' && matchdayTab === 0 && <MatchDayScreen onNav={navTo} empty={isEmpty} />}
       {screen === 'matchday' && matchdayTab === 1 && <TeamSheetScreen empty={isEmpty} />}
       {screen === 'matchday' && matchdayTab === 2 && <OppositionScreen empty={isEmpty} />}
       {screen === 'matchday' && matchdayTab === 3 && <ReviewScreen empty={isEmpty} />}
+      {screen === 'matchday' && matchdayTab === 4 && <FitnessMatchTab empty={isEmpty} />}
       {/* Other screens */}
       {screen === 'clips'  && <ClipsScreen empty={isEmpty} activeTab={clipsTab} />}
       {screen === 'player' && <PlayerProfileScreen playerIni={selectedPlayer ?? 'MT'} />}

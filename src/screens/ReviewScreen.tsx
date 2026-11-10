@@ -1,3 +1,5 @@
+import { FitnessReviewSection } from './FitnessExtras'
+
 function ReviewEmpty() {
   return (
     <div style={{ flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
@@ -192,6 +194,9 @@ export default function ReviewScreen({ empty }: { empty?: boolean }) {
               Open Thursday's plan →
             </button>
           </div>
+
+          {/* Fitness section */}
+          <FitnessReviewSection />
 
           {/* What went well */}
           <div>

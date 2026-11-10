@@ -47,7 +47,7 @@ const DETAIL: Record<string, { title: string; from: string; time: string; body: 
   },
 }
 
-export default function InboxMiniRoos({ empty }: { empty?: boolean }) {
+export default function InboxMiniRoos({ empty, onChat }: { empty?: boolean; onChat?: () => void }) {
   const [selected, setSelected] = useState('omar')
   const [toast, setToast] = useState('')
 
@@ -68,9 +68,12 @@ export default function InboxMiniRoos({ empty }: { empty?: boolean }) {
           <h1 style={{ margin: 0, fontSize: 26, lineHeight: '32px', fontWeight: 700, letterSpacing: '-0.02em' }}>Inbox</h1>
           <span style={{ fontSize: 14, color: '#4a5a57' }}>U9 Tom · 2 new · 4 this week</span>
         </div>
-        <button onClick={() => showToast('New message to all 10 families.')} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: '1px solid #2f6252', background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>
-          Message all families
-        </button>
+        <div style={{ display: 'flex', gap: 8 }}>
+          {onChat && <button onClick={onChat} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer', color: '#2f6252' }}>Family chat</button>}
+          <button onClick={() => showToast('New message to all 10 families.')} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: '1px solid #2f6252', background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>
+            Message all families
+          </button>
+        </div>
       </div>
 
       {/* 2-col grid */}

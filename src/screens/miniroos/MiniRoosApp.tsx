@@ -10,6 +10,8 @@ import WhatWeSawScreen   from './WhatWeSawScreen'
 import ThankParentsScreen from './ThankParentsScreen'
 import SeasonNotesScreen from './SeasonNotesScreen'
 import FixturesMiniRoos  from './FixturesMiniRoos'
+import TeamChatMiniRoos  from './TeamChatMiniRoos'
+import FootballYearScreen from './FootballYearScreen'
 
 const G   = '#2f6252'
 const G2  = '#40826d'
@@ -322,7 +324,7 @@ function RecordMiniRoosClips({ empty, onBack }: { empty?: boolean; onBack: () =>
 
 type MiniNav = 'home' | 'squad' | 'training' | 'gameday'
 type HomeTab = 'overview' | 'inbox' | 'calendar' | 'staff'
-type GameDayTab = 'turns' | 'fixtures'
+type GameDayTab = 'turns' | 'fixtures' | 'record'
 type GameDayView = 'turns' | 'whatisaw' | 'thankparents'
 type TrainingTab = 'plan' | 'suggest' | 'record'
 type RecordView = 'start' | 'clips'
@@ -346,13 +348,14 @@ export default function MiniRoosApp({ onBack, empty }: { onBack: () => void; emp
   const [homeTab, setHomeTab]       = useState<HomeTab>('overview')
   const [gameDayTab, setGameDayTab] = useState<GameDayTab>('turns')
   const [gameDayView, setGameDayView] = useState<GameDayView>('turns')
-  const [homeSubView, setHomeSubView] = useState<'main' | 'seasonnotes'>('main')
+  const [homeSubView, setHomeSubView] = useState<'main' | 'seasonnotes' | 'teamchat' | 'footballyear'>('main')
   const [trainingTab, setTrainingTab] = useState<TrainingTab>('plan')
   const [recordView, setRecordView] = useState<RecordView>('start')
 
   const GAMEDAY_TABS: Array<{ id: GameDayTab; label: string }> = [
     { id: 'turns',    label: 'Turns' },
     { id: 'fixtures', label: 'Fixtures' },
+    { id: 'record',   label: 'Record' },
   ]
 
   const TRAINING_TABS_MR: Array<{ id: TrainingTab; label: string }> = [
@@ -417,8 +420,8 @@ export default function MiniRoosApp({ onBack, empty }: { onBack: () => void; emp
                 const active = i === activeTabIndex
                 return (
                   <button key={tab} onClick={() => {
-                    if (nav === 'home') setHomeTab(HOME_TABS[i].id)
-                    if (nav === 'gameday') { setGameDayTab(GAMEDAY_TABS[i].id); setGameDayView('turns') }
+                    if (nav === 'home') { setHomeTab(HOME_TABS[i].id); setHomeSubView('main') }
+                    if (nav === 'gameday') { setGameDayTab(GAMEDAY_TABS[i].id); setGameDayView('turns'); setRecordView('start') }
                     if (nav === 'training') { setTrainingTab(TRAINING_TABS_MR[i].id); setRecordView('start') }
                   }} style={{
                     height: 44, padding: '0 16px', border: 0, background: 'transparent',
@@ -445,9 +448,11 @@ export default function MiniRoosApp({ onBack, empty }: { onBack: () => void; emp
 
       {/* Content */}
       <div style={{ flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden', position: 'relative' }}>
-        {nav === 'home' && homeTab === 'overview'  && homeSubView === 'main'        && <HomeMiniRoos empty={empty} onTraining={() => setNav('training')} onSeasonNotes={() => setHomeSubView('seasonnotes')} />}
-        {nav === 'home' && homeTab === 'overview'  && homeSubView === 'seasonnotes' && <SeasonNotesScreen empty={empty} onBack={() => setHomeSubView('main')} />}
-        {nav === 'home' && homeTab === 'inbox'     && <InboxMiniRoos empty={empty} />}
+        {nav === 'home' && homeTab === 'overview'  && homeSubView === 'main'          && <HomeMiniRoos empty={empty} onTraining={() => setNav('training')} onSeasonNotes={() => setHomeSubView('seasonnotes')} onFootballYear={() => setHomeSubView('footballyear')} />}
+        {nav === 'home' && homeTab === 'overview'  && homeSubView === 'seasonnotes'  && <SeasonNotesScreen empty={empty} onBack={() => setHomeSubView('main')} />}
+        {nav === 'home' && homeTab === 'overview'  && homeSubView === 'footballyear' && <FootballYearScreen onBack={() => setHomeSubView('main')} />}
+        {nav === 'home' && homeTab === 'inbox'     && homeSubView !== 'teamchat'     && <InboxMiniRoos empty={empty} onChat={() => setHomeSubView('teamchat')} />}
+        {nav === 'home' && homeTab === 'inbox'     && homeSubView === 'teamchat'     && <TeamChatMiniRoos empty={empty} onBack={() => setHomeSubView('main')} />}
         {nav === 'home' && homeTab === 'calendar'  && <CalendarMiniRoos empty={empty} />}
         {nav === 'home' && homeTab === 'staff'     && <StaffMiniRoos empty={empty} />}
         {nav === 'training' && trainingTab === 'plan'    && <TrainingMiniRoos />}
@@ -458,6 +463,8 @@ export default function MiniRoosApp({ onBack, empty }: { onBack: () => void; emp
         {nav === 'gameday' && gameDayTab === 'turns'    && gameDayView === 'turns'    && <GameDayMiniRoos onWhatWeSaw={() => setGameDayView('whatisaw')} />}
         {nav === 'gameday' && gameDayTab === 'turns'    && gameDayView === 'whatisaw' && <WhatWeSawScreen onBack={() => setGameDayView('turns')} onSave={() => setGameDayView('turns')} onThankParents={() => setGameDayView('thankparents')} />}
         {nav === 'gameday' && gameDayTab === 'fixtures' && <FixturesMiniRoos empty={empty} />}
+        {nav === 'gameday' && gameDayTab === 'record'   && recordView === 'start' && <RecordMiniRoosStart empty={empty} onClips={() => setRecordView('clips')} />}
+        {nav === 'gameday' && gameDayTab === 'record'   && recordView === 'clips' && <RecordMiniRoosClips empty={empty} onBack={() => setRecordView('start')} />}
       </div>
     </div>
   )

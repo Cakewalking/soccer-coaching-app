@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { FAIR_TIME } from './data'
 import { SubTabBar, EmptyCard, FOOTER_DEFAULT } from './ui'
 
-type PlayersView = 'overview' | 'goals' | 'growthload' | 'fairtime' | 'registrations' | 'moves' | 'trials' | 'girls'
+type PlayersView = 'overview' | 'goals' | 'growthload' | 'fairtime' | 'registrations' | 'moves' | 'trials' | 'girls' | 'nominations'
 
 const PLAYERS_LIST = [
   { ini: 'MT', name: 'Mia Tran', team: 'U12 Sam', reg: 'done' as const, dob: '12/08/2014' },
@@ -32,6 +32,203 @@ const PLAYERS_EMPTY: Partial<Record<PlayersView, { icon: string; title: string; 
   girls:         { icon: 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5', title: "No girls' teams yet", desc: "Add a girls' team, or import your players, to see the pathway from MiniRoos to seniors and where the gaps are.", cta: 'Import from PlayFootball', items: [{ title: 'Pathway by age', desc: 'And the gaps' }, { title: 'Who came back', desc: 'Against last year' }] },
 }
 
+const G  = '#2f6252'
+const GD = '#1f4a3e'
+const INK = '#10211f'
+const MUT = '#4a5a57'
+const LN  = '#e8edeb'
+const PALE = '#eef5f2'
+const ROSE = '#c39797'
+const WARN = '#c3a84a'
+
+type GoalStatus = 'on-track' | 'needs-work' | 'to-set'
+const statusStyle = (s: GoalStatus) => s === 'on-track'
+  ? { bg: '#e4f2eb', c: '#40826d', label: 'On track' }
+  : s === 'needs-work'
+  ? { bg: '#fdf4f4', c: ROSE, label: 'Needs work' }
+  : { bg: '#f4f4f4', c: MUT, label: 'To set' }
+
+const GOALS_DATA: Array<{ ini: string; name: string; team: string; goal: string; dots: boolean[]; status: GoalStatus }> = [
+  { ini: 'MT', name: 'Mia Tran',      team: 'U12 Sam',       goal: 'First touch under pressure', dots: [true,true,true,false,true],  status: 'on-track' },
+  { ini: 'NO', name: 'Noah Owusu',    team: 'U14 Sam',       goal: 'Head up before passing',      dots: [true,false,true,true,true],  status: 'on-track' },
+  { ini: 'EB', name: 'Ella Brennan',  team: 'U14 Sam',       goal: 'Win headers at the back',     dots: [false,true,false,false,true], status: 'needs-work' },
+  { ini: 'JP', name: 'Jai Patel',     team: 'U16 Boys',      goal: 'Shoot first time, in the box',dots: [true,true,true,true,true],   status: 'on-track' },
+  { ini: 'HD', name: 'Harper Day',    team: 'U14 Sam',       goal: '—',                           dots: [false,false,false,false,false],status: 'to-set' },
+  { ini: 'RC', name: 'Ruby Chen',     team: 'U13 Girls Meg', goal: 'Press high with the striker',  dots: [true,true,true,false,false],  status: 'needs-work' },
+  { ini: 'AK', name: 'Aisha Kaur',   team: 'U12 Girls Ana', goal: 'Control on the chest',        dots: [true,true,true,true,false],  status: 'on-track' },
+  { ini: 'TL', name: 'Tom Li',        team: 'U13 Chris',     goal: 'Better left foot',            dots: [false,true,false,true,true],  status: 'needs-work' },
+  { ini: 'GN', name: 'Grace Nguyen',  team: 'U11 Girls Kate',goal: '—',                           dots: [false,false,false,false,false],status: 'to-set' },
+  { ini: 'SD', name: 'Sam Dex',       team: 'U16 Ollie',     goal: 'Winning headers mid-block',   dots: [true,true,false,true,true],   status: 'on-track' },
+  { ini: 'AH', name: 'Amy Hughes',    team: 'U14 Sam',       goal: 'Body shape to receive',       dots: [true,false,true,false,true],  status: 'needs-work' },
+  { ini: 'OB', name: 'Owen Baker',    team: 'U13 Sam',       goal: 'Dribble past defenders 1v1',  dots: [true,true,true,true,true],    status: 'on-track' },
+  { ini: 'PW', name: 'Priya Watts',   team: 'U12 Girls Ana', goal: 'First touch wide, not back',  dots: [false,true,true,false,true],  status: 'needs-work' },
+  { ini: 'JK', name: 'James Kirk',    team: 'U13 Chris',     goal: '—',                           dots: [false,false,false,false,false],status: 'to-set' },
+  { ini: 'FL', name: 'Freya Lowe',    team: 'U11 Girls Kate',goal: 'Chip the keeper from outside',dots: [true,false,true,true,true],   status: 'on-track' },
+  { ini: 'BM', name: 'Ben Morris',    team: 'U12 Sam',       goal: 'Win the ball back quickly',   dots: [true,true,false,true,false],  status: 'needs-work' },
+]
+
+function GoalDot({ filled }: { filled: boolean }) {
+  return <span style={{ display: 'inline-block', width: 9, height: 9, borderRadius: '50%', background: filled ? G : LN, border: `1.5px solid ${filled ? '#40826d' : MUT}` }} />
+}
+
+function GoalsView() {
+  const [sel, setSel] = useState(0)
+  const player = GOALS_DATA[sel]!
+  const st = statusStyle(player.status)
+  const onTrack = GOALS_DATA.filter(r => r.status === 'on-track').length
+  const needsWork = GOALS_DATA.filter(r => r.status === 'needs-work').length
+  const toSet = GOALS_DATA.filter(r => r.status === 'to-set').length
+
+  return (
+    <div style={{ padding: '16px 20px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10, marginBottom: 16 }}>
+        {[{ n: `${onTrack}`, l: 'On track', sub: `${Math.round(onTrack/GOALS_DATA.length*100)}% of players with goals`, c: '#40826d' }, { n: `${needsWork}`, l: 'Needs work', sub: 'Goal set but not showing in games', c: ROSE }, { n: `${toSet}`, l: 'Yet to set a goal', sub: 'Coach to prompt this week', c: MUT }].map(s => (
+          <div key={s.l} style={{ background: '#fff', borderRadius: 14, padding: '12px 14px', border: '1px solid #e9eae8' }}>
+            <div style={{ fontSize: 22, fontWeight: 800, color: s.c }}>{s.n}</div>
+            <div style={{ fontSize: 12, fontWeight: 700, color: INK, marginTop: 2 }}>{s.l}</div>
+            <div style={{ fontSize: 11, color: MUT, marginTop: 2 }}>{s.sub}</div>
+          </div>
+        ))}
+      </div>
+
+      <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 300px', gap: 20 }}>
+        <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, overflow: 'hidden' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr 100px 90px', padding: '8px 14px', borderBottom: `1px solid ${LN}` }}>
+            {['PLAYER', 'GOAL', 'LAST 5 GAMES', 'STATUS'].map(h => (
+              <span key={h} style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.07em', color: MUT }}>{h}</span>
+            ))}
+          </div>
+          {GOALS_DATA.map((row, i) => {
+            const s = statusStyle(row.status)
+            return (
+              <div
+                key={row.ini}
+                onClick={() => setSel(i)}
+                style={{ display: 'grid', gridTemplateColumns: '1fr 2fr 100px 90px', padding: '9px 14px', borderBottom: i < GOALS_DATA.length - 1 ? `1px solid ${LN}` : 'none', alignItems: 'center', cursor: 'pointer', background: sel === i ? PALE : 'transparent' }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <div style={{ width: 28, height: 28, borderRadius: '50%', background: GD, color: '#fff', fontSize: 10, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{row.ini}</div>
+                  <div>
+                    <div style={{ fontSize: 12, fontWeight: 700, color: INK }}>{row.name}</div>
+                    <div style={{ fontSize: 10, color: MUT }}>{row.team}</div>
+                  </div>
+                </div>
+                <span style={{ fontSize: 12, color: row.status === 'to-set' ? MUT : INK, fontStyle: row.status === 'to-set' ? 'italic' : 'normal' }}>{row.goal}</span>
+                <div style={{ display: 'flex', gap: 3 }}>{row.dots.map((f, di) => <GoalDot key={di} filled={f} />)}</div>
+                <span style={{ fontSize: 11, fontWeight: 700, color: s.c, background: s.bg, borderRadius: 999, padding: '2px 8px', display: 'inline-block' }}>{s.label}</span>
+              </div>
+            )
+          })}
+        </div>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+          <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, overflow: 'hidden' }}>
+            <div style={{ padding: '12px 14px', background: GD, color: '#fff' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'rgba(255,255,255,0.15)', color: '#fff', fontSize: 12, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{player.ini}</div>
+                <div>
+                  <div style={{ fontSize: 15, fontWeight: 700 }}>{player.name}</div>
+                  <div style={{ fontSize: 12, opacity: 0.75 }}>{player.team}</div>
+                </div>
+              </div>
+            </div>
+            <div style={{ padding: '12px 14px', borderBottom: `1px solid ${LN}` }}>
+              <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.07em', color: MUT, marginBottom: 4 }}>SEASON GOAL</div>
+              <div style={{ fontSize: 14, fontWeight: 600, color: INK }}>{player.status === 'to-set' ? 'Not set yet' : player.goal}</div>
+            </div>
+            <div style={{ padding: '10px 14px', borderBottom: `1px solid ${LN}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <span style={{ fontSize: 13, color: MUT }}>Progress</span>
+              <span style={{ fontSize: 13, fontWeight: 700, color: st.c, background: st.bg, borderRadius: 999, padding: '2px 10px' }}>{st.label}</span>
+            </div>
+            <div style={{ padding: '10px 14px', borderBottom: `1px solid ${LN}` }}>
+              <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.07em', color: MUT, marginBottom: 6 }}>LAST 5 GAMES</div>
+              <div style={{ display: 'flex', gap: 6 }}>{player.dots.map((f, di) => <GoalDot key={di} filled={f} />)}</div>
+            </div>
+            {player.status === 'needs-work' && (
+              <div style={{ padding: '10px 14px', background: '#fdf4f4', borderBottom: `1px solid ${LN}` }}>
+                <div style={{ fontSize: 12, color: ROSE, fontWeight: 600 }}>Goal set but not showing in recent games. Talk to coach before next session.</div>
+              </div>
+            )}
+            {player.status === 'to-set' && (
+              <div style={{ padding: '10px 14px', background: PALE, borderBottom: `1px solid ${LN}` }}>
+                <div style={{ fontSize: 12, color: G, fontWeight: 600 }}>Prompt the coach — this player has not set a goal yet this season.</div>
+              </div>
+            )}
+            <div style={{ padding: '10px 14px', display: 'flex', gap: 8 }}>
+              <button style={{ flex: 1, height: 36, borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Message coach</button>
+              <button style={{ flex: 1, height: 36, borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>View clips</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+const NOMINATIONS: Array<{ ini: string; name: string; team: string; coach: string; why: string; numbers: string; next: string; birthMonth: string; bornLate: boolean }> = [
+  { ini: 'JP', name: 'Jai Patel',      team: 'U16 Boys',      coach: 'Ollie Marsh',   why: 'Leading scorer, sets the tempo every game, pulls younger players into shape.',           numbers: '14 goals · 94% training · highest pass rate on team',       next: 'Invite to seniors pre-season trial',          birthMonth: 'Jan', bornLate: false },
+  { ini: 'AK', name: 'Aisha Kaur',    team: 'U12 Girls Ana', coach: 'Ana Silva',     why: "Plays two years ahead technically. Calm under pressure. Already coaching the younger ones in warm-ups.",  numbers: '11 goals · 97% training · unbeaten run captain', next: 'Invite to U14 Girls Meg training session',    birthMonth: 'Feb', bornLate: false },
+  { ini: 'OB', name: 'Owen Baker',    team: 'U13 Sam',       coach: 'Sam Kerr',      why: 'Covers the most ground per game. Reading the game two passes ahead. Coachable, brings others.',          numbers: '8 goals · 91% training · 11 assists',               next: 'Nominate for FV talent ID program',           birthMonth: 'Nov', bornLate: true },
+  { ini: 'GN', name: 'Grace Nguyen',  team: 'U11 Girls Kate',coach: 'Kate Lim',      why: "Very quick, wins the ball back everywhere. Needs a bigger challenge — she is bored in the current team.", numbers: '9 goals · 89% training · lowest minutes conceded', next: 'Move to U12 Girls Ana',                       birthMonth: 'Aug', bornLate: true },
+  { ini: 'MT', name: 'Mia Tran',      team: 'U12 Sam',       coach: 'Sam Kerr',      why: 'Has improved more this season than any other player. First touch is now a weapon.',                     numbers: '7 goals · 90% training · most improved score',      next: 'Invite to talent day',                        birthMonth: 'Mar', bornLate: false },
+  { ini: 'FL', name: 'Freya Lowe',    team: 'U11 Girls Kate',coach: 'Kate Lim',      why: 'Leads the press without being coached to. Vision is there already. Ready for a step up.',               numbers: '6 goals · 93% training · most tackles won',         next: 'Invite to U12 Girls Ana session',             birthMonth: 'Dec', bornLate: true },
+  { ini: 'RC', name: 'Ruby Chen',     team: 'U13 Girls Meg', coach: 'Meg Doyle',     why: 'Best engine in the team. Covers more ground than anyone and wins the ball back consistently.',           numbers: '5 goals · 88% training · most pressures',           next: 'Nominate for FV talent ID program',           birthMonth: 'Sep', bornLate: true },
+  { ini: 'NO', name: 'Noah Owusu',    team: 'U14 Sam',       coach: 'Sam Kerr',      why: 'Very mature for age. Already directing the defence. Good to get in front of a senior coach.',           numbers: '4 goals · 92% training · 0 red or yellow cards',   next: 'Attend senior training as observer',          birthMonth: 'May', bornLate: false },
+  { ini: 'PW', name: 'Priya Watts',   team: 'U12 Girls Ana', coach: 'Ana Silva',     why: 'Fastest player at the club. Speed needs to catch up with her technical level but the ceiling is high.',  numbers: '8 goals · 85% training · fastest sprint recorded', next: 'Invite to talent day',                        birthMonth: 'Jul', bornLate: true },
+  { ini: 'SD', name: 'Sam Dex',       team: 'U16 Ollie',     coach: 'Ollie Marsh',   why: 'Dominant in the air. Wins every header. Already playing at the intensity of seniors.',                  numbers: '10 goals · 91% training · most headers won',        next: 'Trial with seniors in pre-season',            birthMonth: 'Apr', bornLate: false },
+  { ini: 'TL', name: 'Tom Li',        team: 'U13 Chris',     coach: 'Chris Okafor',  why: "Very tidy technically. Keeps the ball in every situation. Needs to play with better players to grow.",  numbers: '5 goals · 87% training · highest pass rate',       next: 'Nominate for FV talent ID program',           birthMonth: 'Oct', bornLate: true },
+]
+
+function NominationsView() {
+  const lateBorn = NOMINATIONS.filter(n => n.bornLate).length
+  return (
+    <div style={{ padding: '16px 20px' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 14 }}>
+        <div>
+          <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>Ready for more · 11 nominations</div>
+          <div style={{ fontSize: 12, color: MUT }}>Coach nominations this season · talk to families before making any offer</div>
+        </div>
+        <button style={{ height: 36, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Export list</button>
+      </div>
+
+      <div style={{ background: '#fdf8ed', border: `1px solid #e8d8a0`, borderRadius: 12, padding: '10px 14px', marginBottom: 16, display: 'flex', gap: 10, alignItems: 'flex-start' }}>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={WARN} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: 1 }} aria-hidden="true"><path d="M12 8v5M12 16h.01M12 3a9 9 0 100 18 9 9 0 000-18z"/></svg>
+        <div style={{ fontSize: 13, color: '#7a6218', lineHeight: 1.5 }}>
+          <strong>{lateBorn} of these {NOMINATIONS.length} players</strong> were born in the second half of the year (Aug–Dec). Coaches may be seeing maturity, not talent. Talk to the coach about the birth month before acting.
+        </div>
+      </div>
+
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+        {NOMINATIONS.map((nom) => (
+          <div key={nom.ini} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 16px' }}>
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12, marginBottom: 8 }}>
+              <div style={{ width: 36, height: 36, borderRadius: '50%', background: GD, color: '#fff', fontSize: 12, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{nom.ini}</div>
+              <div style={{ flex: 1 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' as const }}>
+                  <span style={{ fontSize: 14, fontWeight: 700, color: INK }}>{nom.name}</span>
+                  <span style={{ fontSize: 12, color: MUT }}>{nom.team}</span>
+                  {nom.bornLate && <span style={{ fontSize: 10, fontWeight: 700, color: WARN, background: '#fdf8ed', borderRadius: 999, padding: '1px 7px' }}>Born {nom.birthMonth}</span>}
+                </div>
+                <div style={{ fontSize: 12, color: MUT, marginTop: 1 }}>Nominated by {nom.coach}</div>
+              </div>
+              <div style={{ textAlign: 'right' as const, flexShrink: 0 }}>
+                <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.06em', color: MUT, marginBottom: 2 }}>SUGGESTED NEXT STEP</div>
+                <div style={{ fontSize: 12, fontWeight: 600, color: G }}>{nom.next}</div>
+              </div>
+            </div>
+            <div style={{ fontSize: 13, color: MUT, lineHeight: 1.5, marginBottom: 8, paddingLeft: 48 }}>{nom.why}</div>
+            <div style={{ fontSize: 11, color: G, fontWeight: 600, background: PALE, borderRadius: 8, padding: '5px 10px', marginBottom: 10, marginLeft: 48 }}>{nom.numbers}</div>
+            <div style={{ display: 'flex', gap: 8, paddingLeft: 48 }}>
+              <button style={{ height: 32, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Message {nom.coach}</button>
+              <button style={{ height: 32, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Talk to family</button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 export default function PlayersTab({ empty }: { empty?: boolean }) {
   const [view, setView] = useState<PlayersView>('overview')
 
@@ -55,6 +252,7 @@ export default function PlayersTab({ empty }: { empty?: boolean }) {
           { id: 'moves', label: 'Moves' },
           { id: 'trials', label: 'Trials' },
           { id: 'girls', label: 'Girls and women' },
+          { id: 'nominations', label: 'Ready for more' },
         ]}
         active={view}
         onSelect={id => setView(id as PlayersView)}
@@ -92,20 +290,7 @@ export default function PlayersTab({ empty }: { empty?: boolean }) {
         </div>
       )}
 
-      {view === 'goals' && (
-        <div style={p}>
-          <PlaceholderSection title="Player goals" desc="Season goals are set by players and tracked in the app. This view shows how many players have set goals and how many have been met." />
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10 }}>
-            {[{ n: '134', l: 'Goals set', sub: '63% of players' }, { n: '61%', l: 'On track', sub: 'Up from 48% last season' }, { n: '24', l: 'Goals met', sub: 'This season so far' }].map(s => (
-              <div key={s.l} style={{ background: '#fff', borderRadius: 14, padding: '14px', border: '1px solid #e9eae8', textAlign: 'center' }}>
-                <div style={{ fontSize: 24, fontWeight: 800, color: '#10211f' }}>{s.n}</div>
-                <div style={{ fontSize: 12, fontWeight: 700, color: '#10211f', marginTop: 2 }}>{s.l}</div>
-                <div style={{ fontSize: 11, color: '#6f7f7b', marginTop: 2 }}>{s.sub}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
+      {view === 'goals' && <GoalsView />}
 
       {view === 'growthload' && (
         <div style={p}>
@@ -322,6 +507,8 @@ export default function PlayersTab({ empty }: { empty?: boolean }) {
           ))}
         </div>
       )}
+
+      {view === 'nominations' && <NominationsView />}
 
       {view === 'girls' && (
         <div style={p}>

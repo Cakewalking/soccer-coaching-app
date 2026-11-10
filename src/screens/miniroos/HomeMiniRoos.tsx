@@ -77,9 +77,10 @@ interface Props {
   empty?: boolean
   onTraining?: () => void
   onSeasonNotes?: () => void
+  onFootballYear?: () => void
 }
 
-export default function HomeMiniRoos({ empty, onTraining, onSeasonNotes }: Props) {
+export default function HomeMiniRoos({ empty, onTraining, onSeasonNotes, onFootballYear }: Props) {
   if (empty) return <HomeMiniRoosEmpty />
   return (
     <main style={{
@@ -235,6 +236,9 @@ export default function HomeMiniRoos({ empty, onTraining, onSeasonNotes }: Props
           <p style={{ margin: 0, fontSize: 13, color: '#4a5a57', lineHeight: '19px' }}>
             Under 12s play MiniRoos. Football Victoria keeps no results or ladders, so Clean Sheet doesn't either. No filming, sensors or style numbers until U12.
           </p>
+          {onFootballYear && (
+            <button onClick={onFootballYear} style={{ alignSelf: 'flex-start', fontSize: 13, fontWeight: 600, color: '#40826d', border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: 0, marginTop: 4 }}>The football year →</button>
+          )}
         </section>
       </div>
 
