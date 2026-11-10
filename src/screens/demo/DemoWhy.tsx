@@ -18,6 +18,11 @@ const PILLARS = [
     body: `No child's data is visible until a parent has set consent and the coach's children check is confirmed. Parents control what's filmed and what's tracked — and can change their mind any time.\n\nWelfare concerns go to the welfare officer directly, not to the coach. Children can raise a concern from their own app without a parent or coach seeing it.`,
     items: ['Children check required before access', 'Per-child consent: 6 switches', 'Welfare concerns bypass the coach', 'Children can self-report privately', 'Data deletion on request'],
   },
+  {
+    heading: 'Private and local',
+    body: `Under 15s join through a parent. The parent creates the account, sets six consent switches, and can remove everything at any time. A player under 15 never has a login that a parent doesn't share.\n\nData is stored in Australia and is never sold or used for advertising. Clean Sheet holds only what's needed to run the team.`,
+    items: ['Under 15s join through a parent', 'Data is stored in Australia', 'No advertising tracking', 'No player data in grant reports', 'Right to deletion, any time'],
+  },
 ]
 
 export default function DemoWhy({ onBack }: Props) {
@@ -40,13 +45,14 @@ export default function DemoWhy({ onBack }: Props) {
       </div>
 
       {/* Pillars */}
-      <div style={{ maxWidth: 1180, margin: '0 auto', padding: '0 48px 64px', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }}>
+      <div style={{ maxWidth: 1180, margin: '0 auto', padding: '0 48px 64px', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 24 }}>
         {PILLARS.map((p, i) => (
           <div key={i} style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 20, padding: '28px 28px 24px', display: 'flex', flexDirection: 'column', gap: 16 }}>
             <div style={{ width: 48, height: 48, borderRadius: 14, background: '#1f4a3e', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               {i === 0 && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 21a9 9 0 100-18 9 9 0 000 18zM12 7l4 3-1.5 5h-5L8 10z"/></svg>}
               {i === 1 && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M9 12l2 2 4-4m-8 9a9 9 0 110-14"/></svg>}
               {i === 2 && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>}
+              {i === 3 && <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>}
             </div>
             <h2 style={{ fontSize: 20, fontWeight: 800, letterSpacing: '-0.02em', color: '#10211f', margin: 0 }}>{p.heading}</h2>
             <p style={{ fontSize: 14, color: '#4a5a57', lineHeight: '1.6', margin: 0, whiteSpace: 'pre-line' }}>{p.body}</p>

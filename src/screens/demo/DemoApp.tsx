@@ -162,6 +162,7 @@ import SKRoles              from '../step4/SKRoles'
 import IV3cCoCoachInvite    from '../step4/IV3cCoCoachInvite'
 import IV3fFitnessInvite    from '../step4/IV3fFitnessInvite'
 import IV4ManagerDone       from '../step4/IV4ManagerDone'
+import PAThanks             from '../step4/PAThanks'
 import JoinFlow             from '../join/JoinFlow'
 import JuniorCoachApp        from '../JuniorCoachApp'
 import DemoStart             from './DemoStart'
@@ -170,6 +171,7 @@ import DemoSignIn            from './DemoSignIn'
 import DemoWhy               from './DemoWhy'
 import DemoTourShell         from './DemoTourShell'
 import DemoShell, { type DemoPhase } from './DemoShell'
+import DemoShellPhone        from './DemoShellPhone'
 import DemoShellSandbox      from './DemoShellSandbox'
 import { TOURS, type RoleId } from './tours'
 
@@ -374,6 +376,7 @@ export function renderScreen(key: string): ReactNode {
     case 'dset6-partner-e':   return <DSet6ePartnerAcademyEmpty />
     case 'pa-clips-e':        return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PAeClipsEmpty /></div>
     case 'pa-goals-e':        return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PAeGoalsEmpty /></div>
+    case 'pa-thanks':         return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PAThanks /></div>
     case 'rf4-feedback-e':    return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><RF4eRefFeedbackEmpty /></div>
     case 'sg3-ask-e':         return <SG3eAskCleanSheetEmpty />
     case 'x11-lineup-e':      return <X11LineupEmpty />
@@ -568,17 +571,9 @@ export default function DemoApp() {
     } else if (role === 'academycoach') {
       lookContent = <AcademyCoachApp onBack={() => setRole('coach')} empty={false} />
     } else if (role === 'academyparent') {
-      lookContent = (
-        <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}>
-          <AcademyParentApp onBack={() => setView('start')} empty={false} />
-        </div>
-      )
+      lookContent = <AcademyParentApp onBack={() => setView('start')} empty={false} />
     } else if (role === 'academyplayer') {
-      lookContent = (
-        <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}>
-          <AcademyPlayerApp onBack={() => setView('start')} empty={false} />
-        </div>
-      )
+      lookContent = <AcademyPlayerApp onBack={() => setView('start')} empty={false} />
     } else if (role === 'coach' || role === 'ccoach') {
       if (phase === 'preseason')       lookContent = <SP2HomePreSeason onBack={noop} />
       else if (phase === 'postseason') lookContent = <SP10HomePostSeason onBack={noop} />
@@ -604,7 +599,21 @@ export default function DemoApp() {
         </div>
       )
     }
+    const isPhoneRole = TOURS[role].device === 'phone'
     const showPhase = PHASE_ROLES.has(role)
+    if (isPhoneRole) {
+      return (
+        <DemoShellPhone
+          roleId={role}
+          onBack={() => setView('start')}
+          onStartTour={() => setView('tour')}
+          phase={showPhase ? phase : undefined}
+          onPhaseChange={showPhase ? setPhase : undefined}
+        >
+          {lookContent}
+        </DemoShellPhone>
+      )
+    }
     return (
       <DemoShell
         roleId={role}
