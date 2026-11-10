@@ -528,7 +528,7 @@ export const TOURS: Record<string, TourDef> = {
     persona: "as Helen Park",
     device: 'tablet',
     total: 11,
-    home: 'd5-safeguarding',
+    home: 'welfare-home',
     sections: [
       { title: "A concern arrives", steps: [
         { label: "From a parent", caption: "A concern can come from a parent, a child, a wellness alert or the sideline. Each goes only to the welfare officer.", screen: "twochildren" },

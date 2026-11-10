@@ -214,6 +214,8 @@ function renderScreen(key: string): ReactNode {
       return <ClubAdminScreen empty={false} />
     case 'chair-home':
       return <ClubAdminScreen empty={false} role="chair" initials="GL" />
+    case 'welfare-home':
+      return <ClubAdminScreen empty={false} role="welfare" initials="HP" initialTab="welfare" />
     case 'teammanager':
       return <TeamManagerScreen empty={false} />
     case 'twochildren':
