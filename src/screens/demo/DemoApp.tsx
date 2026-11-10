@@ -530,17 +530,24 @@ export default function DemoApp() {
 
   if (view === 'lookaround') {
     const homeKey = TOURS[role].home
+    const lookContent = role === 'miniroos'
+      ? (
+        <div style={{ width: 1180, background: 'var(--surface-100)' }}>
+          <MiniRoosApp onBack={() => setRole('coach')} empty={false} />
+        </div>
+      )
+      : homeKey ? renderScreen(homeKey) : (
+        <div style={{ padding: 48, fontSize: 15, color: '#6f7f7b' }}>
+          {TOURS[role].roleLabel} — no screen preview available.
+        </div>
+      )
     return (
       <DemoShell
         roleId={role}
         onBack={() => setView('start')}
         onStartTour={() => setView('tour')}
       >
-        {homeKey ? renderScreen(homeKey) : (
-          <div style={{ padding: 48, fontSize: 15, color: '#6f7f7b' }}>
-            {TOURS[role].roleLabel} — no screen preview available.
-          </div>
-        )}
+        {lookContent}
       </DemoShell>
     )
   }

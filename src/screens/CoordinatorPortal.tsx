@@ -1,4 +1,9 @@
 import { useState } from 'react'
+import TeamsTab        from './clubadmin/TeamsTab'
+import CoachesTab      from './clubadmin/CoachesTab'
+import PlayersTab      from './clubadmin/PlayersTab'
+import SafeguardingTab from './clubadmin/SafeguardingTab'
+import ReportsTab      from './clubadmin/ReportsTab'
 
 type CoTab = 'thisweek' | 'registrations' | 'fixtures' | 'referees' | 'kit' | 'fees' | 'calendar'
 
@@ -215,9 +220,13 @@ export default function CoordinatorPortal({ onBack, empty = false }: { onBack: (
 
       {/* Content */}
       <div style={{ flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-        {activeNav !== 'Club'
-          ? <PlaceholderTab label={activeNav} />
-          : tab === 'thisweek' ? <ThisWeekTab /> : <PlaceholderTab label={TABS.find(t => t.id === tab)?.label ?? ''} />}
+        {activeNav === 'Teams'         ? <TeamsTab empty={false} />
+        : activeNav === 'Coaches'      ? <CoachesTab empty={false} />
+        : activeNav === 'Players'      ? <PlayersTab empty={false} />
+        : activeNav === 'Safeguarding' ? <SafeguardingTab empty={false} />
+        : activeNav === 'Reports'      ? <ReportsTab empty={false} />
+        : tab === 'thisweek'           ? <ThisWeekTab />
+        : <PlaceholderTab label={TABS.find(t => t.id === tab)?.label ?? ''} />}
       </div>
     </div>
   )
