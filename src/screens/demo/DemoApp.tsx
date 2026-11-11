@@ -98,6 +98,25 @@ import X6ClipsEmpty               from '../step4/X6ClipsEmpty'
 import X7InboxEmpty               from '../step4/X7InboxEmpty'
 // Step 4 screens — Season features
 import D0cChairWelcome            from '../step4/D0cChairWelcome'
+// Step 4 screens — Director/Chair dedicated screens (agent 1)
+import D0ClubEmpty                from '../step4/D0ClubEmpty'
+import D1ClubOverview             from '../step4/D1ClubOverview'
+import D2Teams                    from '../step4/D2Teams'
+import D3Coaches                  from '../step4/D3Coaches'
+import D4Players                  from '../step4/D4Players'
+import DC1Calendar                from '../step4/DC1Calendar'
+import DM1CoachMeeting            from '../step4/DM1CoachMeeting'
+import DT1Courses                 from '../step4/DT1Courses'
+import DX1CompareTeams            from '../step4/DX1CompareTeams'
+import DP1FairGameTime            from '../step4/DP1FairGameTime'
+import FM1Moves                   from '../step4/FM1Moves'
+import FH1HeadingPolicy           from '../step4/FH1HeadingPolicy'
+import FY1SeasonPlan              from '../step4/FY1SeasonPlan'
+import D6BoardReport              from '../step4/D6BoardReport'
+import DB2SeasonReview            from '../step4/DB2SeasonReview'
+import DB3LeagueReturns           from '../step4/DB3LeagueReturns'
+import FD3Dispensations           from '../step4/FD3Dispensations'
+import FG1Grading                 from '../step4/FG1Grading'
 import FN2SeniorSquad             from '../step4/FN2SeniorSquad'
 import FP1PlayFootball            from '../step4/FP1PlayFootball'
 import FT1Trials                  from '../step4/FT1Trials'
@@ -121,8 +140,145 @@ import TM6eWhoComingEmpty         from '../step4/TM6eWhoComingEmpty'
 // Step 4 screens — Record
 import RCm1RecordChoice           from '../step4/RCm1RecordChoice'
 import RCm2ClipPicker             from '../step4/RCm2ClipPicker'
+// Step 4 screens — MiniRoos screens
+import HM1HomeMiniRoos            from '../step4/HM1HomeMiniRoos'
+import HM2SquadMiniRoos           from '../step4/HM2SquadMiniRoos'
+import HM3TrainingMiniRoos        from '../step4/HM3TrainingMiniRoos'
+import HM4GameDayMiniRoos         from '../step4/HM4GameDayMiniRoos'
+import HM5WhatWeSaw               from '../step4/HM5WhatWeSaw'
+import HM5bThankParents           from '../step4/HM5bThankParents'
+import HM6SeasonNotes             from '../step4/HM6SeasonNotes'
+import HM7InboxMiniRoos           from '../step4/HM7InboxMiniRoos'
+import HM8CalendarMiniRoos        from '../step4/HM8CalendarMiniRoos'
+import HM9FixturesMiniRoos        from '../step4/HM9FixturesMiniRoos'
+import HM10StaffMiniRoos          from '../step4/HM10StaffMiniRoos'
+import HM12ConsentMiniRoos        from '../step4/HM12ConsentMiniRoos'
+// Step 4 screens — Team Manager additional
+import TM1ManagerHome             from '../step4/TM1ManagerHome'
+import TM2ManagerGameDay          from '../step4/TM2ManagerGameDay'
+import TM3ManagerChange           from '../step4/TM3ManagerChange'
+import TM4DutyRoster              from '../step4/TM4DutyRoster'
+import TM5ManagerMessages         from '../step4/TM5ManagerMessages'
+import TM8SidelineReport          from '../step4/TM8SidelineReport'
+import TM9SignOff                  from '../step4/TM9SignOff'
+import TM10Heat                   from '../step4/TM10Heat'
+import TM11GameDayPapers          from '../step4/TM11GameDayPapers'
+import TM12ManagerSetUpChat       from '../step4/TM12ManagerSetUpChat'
+import TM13ManagerPoll            from '../step4/TM13ManagerPoll'
+import TM14ManagerTeamChat        from '../step4/TM14ManagerTeamChat'
 // Step 4 screens — Team chat
 import CH1TeamChat                from '../step4/CH1TeamChat'
+import CH2Announcements           from '../step4/CH2Announcements'
+import CH3NewChat                  from '../step4/CH3NewChat'
+import CH4NewPoll                  from '../step4/CH4NewPoll'
+import CH5PollResults              from '../step4/CH5PollResults'
+import CH6Media                    from '../step4/CH6Media'
+import CH7PhotoCheck               from '../step4/CH7PhotoCheck'
+import CH9MessageActions           from '../step4/CH9MessageActions'
+
+// Step 4 — Fitness coach screens (agent 2)
+import GT2MeasureSession         from '../step4/GT2MeasureSession'
+import F3FitnessTraining         from '../step4/F3FitnessTraining'
+import F4FitnessMatch            from '../step4/F4FitnessMatch'
+import FT2FitnessHomeU14         from '../step4/FT2FitnessHomeU14'
+import FT3FitnessHomeU13G        from '../step4/FT3FitnessHomeU13G'
+import FT4FitnessHomeU16         from '../step4/FT4FitnessHomeU16'
+import TL2TestMode               from '../step4/TL2TestMode'
+import IL1Injuries               from '../step4/IL1Injuries'
+import FC1Concussion             from '../step4/FC1Concussion'
+// Step 4 — Coordinator screens (agent 2)
+import DCo1CoordinatorHome       from '../step4/DCo1CoordinatorHome'
+import DR1Registrations          from '../step4/DR1Registrations'
+import FF1LeagueSync             from '../step4/FF1LeagueSync'
+import FR1Referees               from '../step4/FR1Referees'
+import FD1Cards                  from '../step4/FD1Cards'
+// Step 4 — Welfare / goalkeeper (agent 2)
+import DW1WelfareCases           from '../step4/DW1WelfareCases'
+import FS1Sideline               from '../step4/FS1Sideline'
+import FK1Goalkeepers            from '../step4/FK1Goalkeepers'
+import HG1HomeKeeperCoach        from '../step4/HG1HomeKeeperCoach'
+import HG2KeeperSession          from '../step4/HG2KeeperSession'
+// Step 4 — Referee phone screens (agent 2)
+import RF2RefGames               from '../step4/RF2RefGames'
+import RF3RefReport              from '../step4/RF3RefReport'
+import RF4RefFeedback            from '../step4/RF4RefFeedback'
+// Step 4 — Parent phone welfare (agent 2)
+import PC2bTellHelen             from '../step4/PC2bTellHelen'
+// Step 4 — Record screens (agent 3)
+import RC1RecordStart            from '../step4/RC1RecordStart'
+import RC2RecordFriendly         from '../step4/RC2RecordFriendly'
+import RC3RecordDrill            from '../step4/RC3RecordDrill'
+import RC4Recording              from '../step4/RC4Recording'
+import RC5RecordResults          from '../step4/RC5RecordResults'
+import RC6RunHistory             from '../step4/RC6RunHistory'
+import RC7Recorded               from '../step4/RC7Recorded'
+import RC8HowWeMeasure           from '../step4/RC8HowWeMeasure'
+// Step 4 — Pitchside / offline (agent 3)
+import TR1bPitchSideDrill        from '../step4/TR1bPitchSideDrill'
+import TR1cPitchSideWrap         from '../step4/TR1cPitchSideWrap'
+import FO1Offline                from '../step4/FO1Offline'
+// Step 4 — Home state variations (agent 3)
+import T1sHomeSunday             from '../step4/T1sHomeSunday'
+import T1gHomeGameDay            from '../step4/T1gHomeGameDay'
+// Step 4 — Suggestions screens (agent 3)
+import SG1Suggested              from '../step4/SG1Suggested'
+import SG2WhySuggested           from '../step4/SG2WhySuggested'
+import SG3AskCleanSheet          from '../step4/SG3AskCleanSheet'
+import SG4WhatItUses             from '../step4/SG4WhatItUses'
+import SG5WhatWorked             from '../step4/SG5WhatWorked'
+// Step 4 — Sign-up screens (agent 3)
+import OBSignUp                  from '../step4/OBSignUp'
+import OB1SignUp                 from '../step4/OB1SignUp'
+import OB3SignUp                 from '../step4/OB3SignUp'
+import OB4SignUp                 from '../step4/OB4SignUp'
+import OB5SignUp                 from '../step4/OB5SignUp'
+// Step 4 — Training / squad / live game screens (agent 3)
+import T3TrainingTab             from '../step4/T3TrainingTab'
+import T4SquadTab                from '../step4/T4SquadTab'
+import T5PlayerProfile           from '../step4/T5PlayerProfile'
+import L11LiveGame11             from '../step4/L11LiveGame11'
+// Step 4 — Parent phone screens (agent 4)
+import PM1ParentChats            from '../step4/PM1ParentChats'
+import PM2ParentTeamChat         from '../step4/PM2ParentTeamChat'
+import PM3ParentAnnouncements    from '../step4/PM3ParentAnnouncements'
+import PM4ParentPoll             from '../step4/PM4ParentPoll'
+import PM5ParentAttach           from '../step4/PM5ParentAttach'
+import PM6ParentChatSettings     from '../step4/PM6ParentChatSettings'
+import PM7ParentReport           from '../step4/PM7ParentReport'
+import PM8ParentReadOnly         from '../step4/PM8ParentReadOnly'
+import PM9ParentPrivateChat      from '../step4/PM9ParentPrivateChat'
+import PM10ParentPhotoCheck      from '../step4/PM10ParentPhotoCheck'
+import PC1RaiseConcern           from '../step4/PC1RaiseConcern'
+import PC1bConcernSent           from '../step4/PC1bConcernSent'
+import PP1TwoChildren            from '../step4/PP1TwoChildren'
+import PP2SeasonSummary          from '../step4/PP2SeasonSummary'
+import PAParent                  from '../step4/PAParent'
+import JN3Join                   from '../step4/JN3Join'
+// Step 4 — Academy owner screens (agent 4)
+import AC1eAcademyHomeEmpty      from '../step4/AC1eAcademyHomeEmpty'
+import AC2Programs               from '../step4/AC2Programs'
+import AC3Trials                 from '../step4/AC3Trials'
+import AC4AcademyPlayers         from '../step4/AC4AcademyPlayers'
+import AC5Fees                   from '../step4/AC5Fees'
+import AC6AcademyCoaches         from '../step4/AC6AcademyCoaches'
+import AC7ReportsOut             from '../step4/AC7ReportsOut'
+import AC9HolidayClinic          from '../step4/AC9HolidayClinic'
+import AC11PartnerClub           from '../step4/AC11PartnerClub'
+// Step 4 — Academy owner screens (agent 4 extra)
+import AC12AcademyBroadcast      from '../step4/AC12AcademyBroadcast'
+// Step 4 — Academy coach screens (agent 4)
+import ACC2RunSession            from '../step4/ACC2RunSession'
+import ACC3TrialAssess           from '../step4/ACC3TrialAssess'
+import ACC5OneOnOne              from '../step4/ACC5OneOnOne'
+import ACC6ReportDraft           from '../step4/ACC6ReportDraft'
+import ACC7AcademyGameDay        from '../step4/ACC7AcademyGameDay'
+import ACC12AcademySuggested     from '../step4/ACC12AcademySuggested'
+import ACC13AcademyChat          from '../step4/ACC13AcademyChat'
+// Step 4 — Invite flow screens (agent 4)
+import IVInvite                  from '../step4/IVInvite'
+import IV1                       from '../step4/IV1'
+import IV2                       from '../step4/IV2'
+import IV3                       from '../step4/IV3'
 
 import SP1FootballYear        from '../footballyear/SP1FootballYear'
 import SP1eFootballYearEmpty  from '../footballyear/SP1eFootballYearEmpty'
@@ -290,7 +446,7 @@ export function renderScreen(key: string): ReactNode {
     case 'fitnesscoach':
       return <FitnessCoachScreen empty={false} />
     case 'clubadmin':
-      return <ClubAdminScreen empty={false} />
+      return <ClubAdminScreen empty={false} role="dof" initials="RM" />
     case 'chair-home':
       return <ClubAdminScreen empty={false} role="chair" initials="GL" />
     case 'welfare-home':
@@ -510,6 +666,219 @@ export function renderScreen(key: string): ReactNode {
     case 'rcm2-clips':        return <RCm2ClipPicker />
     // Step 4 — Team chat (tablet)
     case 'ch1-chat':          return <CH1TeamChat />
+
+    // Design IDs — MiniRoos screens (HM)
+    case 'HM1-HomeMiniRoos':          return <HM1HomeMiniRoos />
+    case 'HM2-SquadMiniRoos':         return <HM2SquadMiniRoos />
+    case 'HM3-TrainingMiniRoos':      return <HM3TrainingMiniRoos />
+    case 'HM4-GameDayMiniRoos':       return <HM4GameDayMiniRoos />
+    case 'HM5-WhatWeSaw':             return <HM5WhatWeSaw />
+    case 'HM5b-ThankParents':         return <HM5bThankParents />
+    case 'HM6-SeasonNotes':           return <HM6SeasonNotes />
+    case 'HM7-InboxMiniRoos':         return <HM7InboxMiniRoos />
+    case 'HM8-CalendarMiniRoos':      return <HM8CalendarMiniRoos />
+    case 'HM9-FixturesMiniRoos':      return <HM9FixturesMiniRoos />
+    case 'HM10-StaffMiniRoos':        return <HM10StaffMiniRoos />
+    case 'HM11-ComingMiniRoos':       return <HM11ComingMiniRoos />
+    case 'HM12-ConsentMiniRoos':      return <HM12ConsentMiniRoos />
+    case 'HM3e-TrainingMiniRoosEmpty': return <HM3eTrainingMiniRoosEmpty />
+    case 'HM2e-SquadMiniRoosEmpty':   return <MiniRoosApp onBack={noop} empty={true} />
+    case 'HM2c-PlayerCard':           return <HM2cPlayerCardMiniRoos onBack={noop} />
+    case 'HM6n-SeasonNote':           return <HM6nSeasonNoteOne onBack={noop} />
+    case 'HM1n-QuickNotes':           return <HM1nQuickNotes onBack={noop} />
+    case 'HM4e-GameDayMiniRoosEmpty': return <HM4eGameDayMiniRoosEmpty />
+    // Design IDs — Team Manager screens (TM phone)
+    case 'TM1-ManagerHome':           return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TM1ManagerHome /></div>
+    case 'TM2-ManagerGameDay':        return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TM2ManagerGameDay /></div>
+    case 'TM3-ManagerChange':         return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TM3ManagerChange /></div>
+    case 'TM4-DutyRoster':            return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TM4DutyRoster /></div>
+    case 'TM5-ManagerMessages':       return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TM5ManagerMessages /></div>
+    case 'TM6-ManagerWhosComing':     return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TM6WhoComing /></div>
+    case 'TM7-HeadKnock':             return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TM8SidelineReport /></div>
+    case 'TM8-SidelineReport':        return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TM8SidelineReport /></div>
+    case 'TM9-SignOff':               return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TM9SignOff /></div>
+    case 'TM10-Heat':                 return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TM10Heat /></div>
+    case 'TM11-GameDayPapers':        return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TM11GameDayPapers /></div>
+    case 'TM12-ManagerSetUpChat':     return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TM12ManagerSetUpChat /></div>
+    case 'TM13-ManagerPoll':          return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TM13ManagerPoll /></div>
+    case 'TM14-ManagerTeamChat':      return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TM14ManagerTeamChat /></div>
+    // Design IDs — Team chat sub-screens (CH tablet)
+    case 'CH1-TeamChat':              return <CH1TeamChat />
+    case 'CH2-Announcements':         return <CH2Announcements />
+    case 'CH3-NewChat':               return <CH3NewChat />
+    case 'CH4-NewPoll':               return <CH4NewPoll />
+    case 'CH5-PollResults':           return <CH5PollResults />
+    case 'CH6-Media':                 return <CH6Media />
+    case 'CH7-PhotoCheck':            return <CH7PhotoCheck />
+    case 'CH9-MessageActions':        return <CH9MessageActions />
+    // Design ID aliases — existing tablet coach screens
+    case 'T1-TabletTraining':         return <T1TabletTraining />
+    case 'P1-Consent':                return <P1Consent />
+    case 'AV2-ParentAvailability':    return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><AV2ParentAvailability /></div>
+    case 'RCm1-RecordMiniRoos':       return <RCm1RecordChoice />
+    case 'RCm2-MiniRoosClips':        return <RCm2ClipPicker />
+    // Design ID aliases — Director screens (D* tablet)
+    case 'D0-ClubEmpty':              return <D0ClubEmpty />
+    case 'D1-ClubOverview':           return <D1ClubOverview />
+    case 'D2-Teams':                  return <D2Teams />
+    case 'D3-Coaches':                return <D3Coaches />
+    case 'D4-Players':                return <D4Players />
+    case 'DC1-Calendar':              return <DC1Calendar />
+    case 'DM1-CoachMeeting':          return <DM1CoachMeeting />
+    case 'DT1-Courses':               return <DT1Courses />
+    case 'DX1-CompareTeams':          return <DX1CompareTeams />
+    case 'DP1-FairGameTime':          return <DP1FairGameTime />
+    case 'FM1-Moves':                 return <FM1Moves />
+    case 'FH1-HeadingPolicy':         return <FH1HeadingPolicy />
+    case 'FY1-SeasonPlan':            return <FY1SeasonPlan />
+    case 'D5-Safeguarding':           return <D5Safeguarding />
+    case 'DS1-Concerns':              return <DS1Concerns />
+    case 'DS2-DataRequests':          return <DS2DataRequests />
+    case 'DB4-Grants':                return <DB4Grants />
+    case 'DK1-Kit':                   return <DK1Kit />
+    case 'DN1-Nominations':           return <DN1Nominations />
+    case 'D0c-ChairWelcome':          return <D0cChairWelcome />
+    case 'D1b-ClubChair':             return <ClubAdminScreen empty={false} role="chair" initials="GL" initialTab="club" />
+    case 'D6-BoardReport':            return <D6BoardReport />
+    case 'DB2-SeasonReview':          return <DB2SeasonReview />
+    case 'DB3-LeagueReturns':         return <DB3LeagueReturns />
+    case 'FD3-Dispensations':         return <FD3Dispensations />
+    case 'FG1-Grading':               return <FG1Grading />
+    case 'DW1-WelfareCases':          return <ClubAdminScreen empty={false} role="welfare" initials="HP" initialTab="welfare" />
+    case 'FS1-Sideline':              return <ClubAdminScreen empty={false} role="welfare" initials="HP" initialTab="sideline" />
+    // Design ID aliases — Fitness/coordinator
+    case 'TL1-Tests':                 return <TL1TestLibrary />
+    case 'TL3-TestResults':           return <TL3SprintResults />
+    // Design ID aliases — Season features
+    case 'FN2-SeniorSquad':           return <FN2SeniorSquad />
+    case 'FN3-SeniorTeam':            return <FN3SeniorTeam onBack={noop} />
+    case 'FP1-PlayFootball':          return <FP1PlayFootball />
+    case 'FT1-Trials':                return <FT1Trials />
+    case 'FV1-FeesVolunteers':        return <FV1FeesVolunteers />
+    case 'FW1-GirlsWomen':            return <FW1GirlsWomen />
+    // Design ID aliases — Invite screens (phone)
+    case 'IV3c-Invite':               return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><IV3cCoCoachInvite /></div>
+    case 'IV3f-Invite':               return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><IV3fFitnessInvite /></div>
+    case 'IV4-Invite':                return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><IV4ManagerDone /></div>
+    // Design ID aliases — JN join flow (phone)
+    case 'JN-Join':                   return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><JoinFlow initialStep="landing" /></div>
+    case 'JN1-Join':                  return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><JoinFlow initialStep="parent-create" /></div>
+    case 'JN2-Join':                  return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><JoinFlow initialStep="parent-child" /></div>
+    case 'JN4-Join':                  return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><JoinFlow initialStep="parent-setup" /></div>
+    case 'JN5-Join':                  return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><JoinFlow initialStep="parent-done" /></div>
+    case 'JN6-Join':                  return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><JoinFlow initialStep="player-age" /></div>
+    case 'JN7-Join':                  return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><JoinFlow initialStep="player-code" /></div>
+    case 'JN8-Join':                  return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><JoinFlow initialStep="parent-firstaid" /></div>
+    case 'JN9a-Join':                 return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><JoinFlow initialStep="player-18" /></div>
+    // Design ID aliases — parent consent (phone)
+    case 'P2b-ParentConsent':         return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><P2bParentConsentStep1 /></div>
+    case 'P2c-ParentConsent':         return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><P2cParentConsentStep2 /></div>
+
+    // Design IDs — Fitness coach screens (GT2, F3, F4, FT*, TL2, IL1, FC1)
+    case 'GT2-MeasureSession':        return <GT2MeasureSession />
+    case 'F3-FitnessTraining':        return <F3FitnessTraining />
+    case 'F4-FitnessMatch':           return <F4FitnessMatch />
+    case 'FT2-FitnessHomeU14':        return <FT2FitnessHomeU14 />
+    case 'FT3-FitnessHomeU13G':       return <FT3FitnessHomeU13G />
+    case 'FT4-FitnessHomeU16':        return <FT4FitnessHomeU16 />
+    case 'TL2-TestMode':              return <TL2TestMode />
+    case 'IL1-Injuries':              return <IL1Injuries />
+    case 'FC1-Concussion':            return <FC1Concussion />
+    // Design IDs — Coordinator screens
+    case 'DCo1-CoordinatorHome':      return <DCo1CoordinatorHome />
+    case 'DR1-Registrations':         return <DR1Registrations />
+    case 'FF1-LeagueSync':            return <FF1LeagueSync />
+    case 'FR1-Referees':              return <FR1Referees />
+    case 'FD1-Cards':                 return <FD1Cards />
+    // Design IDs — Welfare / goalkeeper screens
+    case 'DW1-WelfareCases':          return <DW1WelfareCases />
+    case 'FS1-Sideline':              return <FS1Sideline />
+    case 'FK1-Goalkeepers':           return <FK1Goalkeepers />
+    case 'HG1-HomeKeeperCoach':       return <HG1HomeKeeperCoach />
+    case 'HG2-KeeperSession':         return <HG2KeeperSession />
+    // Design IDs — Referee phone screens
+    case 'RF2-RefGames':              return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><RF2RefGames /></div>
+    case 'RF3-RefReport':             return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><RF3RefReport /></div>
+    case 'RF4-RefFeedback':           return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><RF4RefFeedback /></div>
+    // Design IDs — Parent phone welfare
+    case 'PC2b-TellHelen':            return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PC2bTellHelen /></div>
+    // Design IDs — Record screens (tablet)
+    case 'RC1-RecordStart':           return <RC1RecordStart />
+    case 'RC2-RecordFriendly':        return <RC2RecordFriendly />
+    case 'RC3-RecordDrill':           return <RC3RecordDrill />
+    case 'RC4-Recording':             return <RC4Recording />
+    case 'RC5-RecordResults':         return <RC5RecordResults />
+    case 'RC6-RunHistory':            return <RC6RunHistory />
+    case 'RC7-Recorded':              return <RC7Recorded />
+    case 'RC8-HowWeMeasure':          return <RC8HowWeMeasure />
+    // Design IDs — Pitchside / offline (tablet)
+    case 'TR1b-PitchSideDrill':       return <TR1bPitchSideDrill />
+    case 'TR1c-PitchSideWrap':        return <TR1cPitchSideWrap />
+    case 'FO1-Offline':               return <FO1Offline />
+    // Design IDs — Home state variations (tablet)
+    case 'T1s-HomeSunday':            return <T1sHomeSunday />
+    case 'T1g-HomeGameDay':           return <T1gHomeGameDay />
+    // Design IDs — Suggestions screens (tablet)
+    case 'SG1-Suggested':             return <SG1Suggested />
+    case 'SG2-WhySuggested':          return <SG2WhySuggested />
+    case 'SG3-AskCleanSheet':         return <SG3AskCleanSheet />
+    case 'SG4-WhatItUses':            return <SG4WhatItUses />
+    case 'SG5-WhatWorked':            return <SG5WhatWorked />
+    // Design IDs — Sign-up / onboarding screens (phone)
+    case 'OB-SignUp':                 return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><OBSignUp /></div>
+    case 'OB1-SignUp':                return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><OB1SignUp /></div>
+    case 'OB3-SignUp':                return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><OB3SignUp /></div>
+    case 'OB4-SignUp':                return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><OB4SignUp /></div>
+    case 'OB5-SignUp':                return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><OB5SignUp /></div>
+    // Design IDs — Training tab / squad / live game (tablet)
+    case 'T3-TrainingTab':            return <T3TrainingTab />
+    case 'T4-SquadTab':               return <T4SquadTab />
+    case 'T5-PlayerProfile':          return <T5PlayerProfile />
+    case 'L11-LiveGame11':            return <L11LiveGame11 />
+    // Design IDs — Parent phone chat screens
+    case 'PM1-ParentChats':           return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PM1ParentChats /></div>
+    case 'PM2-ParentTeamChat':        return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PM2ParentTeamChat /></div>
+    case 'PM3-ParentAnnouncements':   return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PM3ParentAnnouncements /></div>
+    case 'PM4-ParentPoll':            return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PM4ParentPoll /></div>
+    case 'PM5-ParentAttach':          return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PM5ParentAttach /></div>
+    case 'PM6-ParentChatSettings':    return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PM6ParentChatSettings /></div>
+    case 'PM7-ParentReport':          return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PM7ParentReport /></div>
+    case 'PM8-ParentReadOnly':        return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PM8ParentReadOnly /></div>
+    case 'PM9-ParentPrivateChat':     return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PM9ParentPrivateChat /></div>
+    case 'PM10-ParentPhotoCheck':     return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PM10ParentPhotoCheck /></div>
+    case 'PC1-RaiseConcern':          return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PC1RaiseConcern /></div>
+    case 'PC1b-ConcernSent':          return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PC1bConcernSent /></div>
+    case 'PP1-TwoChildren':           return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PP1TwoChildren /></div>
+    case 'PP2-SeasonSummary':         return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PP2SeasonSummary /></div>
+    case 'PA-Parent':                 return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PAParent /></div>
+    case 'JN3-Join':                  return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><JN3Join /></div>
+    // Design IDs — Academy owner screens (tablet)
+    case 'AC1e-AcademyHomeEmpty':     return <AcademyOwnerApp onBack={noop} empty={true} />
+    case 'AC1-AcademyHome':           return <AcademyOwnerApp onBack={noop} empty={false} />
+    case 'AC2e-ProgramsEmpty':        return <AC1eAcademyHomeEmpty />
+    case 'AC2-Programs':              return <AC2Programs />
+    case 'AC3-Trials':                return <AC3Trials />
+    case 'AC4-AcademyPlayers':        return <AC4AcademyPlayers />
+    case 'AC5-Fees':                  return <AC5Fees />
+    case 'AC6-AcademyCoaches':        return <AC6AcademyCoaches />
+    case 'AC7-ReportsOut':            return <AC7ReportsOut />
+    case 'AC9-HolidayClinic':         return <AC9HolidayClinic />
+    case 'AC11-PartnerClub':          return <AC11PartnerClub />
+    case 'AC10-AcademySafety':        return <AcademyOwnerApp onBack={noop} empty={false} />
+    case 'AC12-AcademyBroadcast':     return <AC12AcademyBroadcast />
+    // Design IDs — Academy coach screens (tablet)
+    case 'ACC2-RunSession':           return <ACC2RunSession />
+    case 'ACC3-TrialAssess':          return <ACC3TrialAssess />
+    case 'ACC5-OneOnOne':             return <ACC5OneOnOne />
+    case 'ACC6-ReportDraft':          return <ACC6ReportDraft />
+    case 'ACC7-AcademyGameDay':       return <ACC7AcademyGameDay />
+    case 'ACC12-AcademySuggested':    return <ACC12AcademySuggested />
+    case 'ACC13-AcademyChat':         return <ACC13AcademyChat />
+    // Design IDs — Invite flow (phone)
+    case 'IV-Invite':                 return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><IVInvite /></div>
+    case 'IV1-Invite':                return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><IV1 /></div>
+    case 'IV2-Invite':                return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><IV2 /></div>
+    case 'IV3-Invite':                return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><IV3 /></div>
 
     // Step 4 — Invite + join screens
     case 'sk-roles':          return <SKRoles />

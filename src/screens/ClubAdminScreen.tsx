@@ -19,10 +19,10 @@ import SP18ClubPhases from './footballyear/SP18ClubPhases'
 import SP19TrialWindow from './footballyear/SP19TrialWindow'
 
 export default function ClubAdminScreen({ empty, role = 'chair', initials = 'RM', initialTab = 'club' }: { empty?: boolean; role?: 'chair' | 'dof' | 'welfare'; initials?: string; initialTab?: AdminTab }) {
-  const [tab, setTab] = useState<AdminTab>(initialTab)
+  const safeInitial: AdminTab = initialTab === 'welfare' && role !== 'welfare' ? 'club' : initialTab
+  const [tab, setTab] = useState<AdminTab>(safeInitial)
 
-
-  const TABS: { id: AdminTab; label: string; icon: string }[] = [
+  const ALL_TABS: { id: AdminTab; label: string; icon: string }[] = [
     { id: 'club',         label: 'Club',          icon: 'M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z' },
     { id: 'teams',        label: 'Teams',         icon: 'M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75' },
     { id: 'coaches',      label: 'Coaches',       icon: 'M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8z' },
@@ -41,6 +41,7 @@ export default function ClubAdminScreen({ empty, role = 'chair', initials = 'RM'
     { id: 'footballyear', label: 'Football year',  icon: 'M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z' },
     { id: 'trialwindow',  label: 'Trials',         icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2M9 12l2 2 4-4' },
   ]
+  const TABS = role === 'welfare' ? ALL_TABS : ALL_TABS.filter(t => t.id !== 'welfare')
 
   return (
     <div style={{ background: '#f7f9f7', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
