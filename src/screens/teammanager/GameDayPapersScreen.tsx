@@ -6,7 +6,7 @@ export default function GameDayPapersScreen({ onBack }: Props) {
       {/* Header */}
       <div style={{ flexShrink: 0, padding: '14px 18px 12px', background: '#2f6252', color: '#fff', display: 'flex', alignItems: 'center', gap: 12 }}>
         <span style={{ flexGrow: 1 }}>
-          <span style={{ display: 'block', fontSize: 12, lineHeight: '16px', color: '#cfe6dc' }}>U13 Girls Meg · Sat 6 Jun · vs Northcote City</span>
+          <span style={{ display: 'block', fontSize: 12, lineHeight: '16px', color: '#cfe6dc' }}>U13 Girls Meg · Sat 6 Jun · vs Northgate City</span>
           <span style={{ display: 'block', fontSize: 21, lineHeight: '27px', fontWeight: 700 }}>Game-day papers</span>
         </span>
         <span style={{ flexShrink: 0, width: 40, height: 40, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>RO</span>

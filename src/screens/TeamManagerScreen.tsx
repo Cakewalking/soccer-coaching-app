@@ -292,7 +292,7 @@ export default function TeamManagerScreen({ empty }: { empty?: boolean }) {
                 </div>
                 <div style={{ marginTop: 16, background: '#fff', borderRadius: 14, padding: '14px 16px', border: '1px solid #e9eae8' }}>
                   <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f', marginBottom: 6 }}>Next game</div>
-                  <div style={{ fontSize: 13, color: '#6f7f7b' }}>SAT 21 JUN · vs Northern Hawks · Home · kick-off 9:30 am</div>
+                  <div style={{ fontSize: 13, color: '#6f7f7b' }}>SAT 21 JUN · vs Banksia Park · Home · kick-off 9:30 am</div>
                 </div>
               </div>
             ) : (

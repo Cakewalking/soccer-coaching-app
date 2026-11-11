@@ -418,7 +418,7 @@ export default function TeamsTab({ empty }: { empty?: boolean }) {
           </div>
           <div>
             <div style={{ marginBottom: 14 }}><div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>Results to the league</div><div style={{ fontSize: 12, color: '#6f7f7b' }}>Sat 30 May</div></div>
-            {[{ team: 'U12 Sam', result: 'Won 3–1 v Northcote City', status: 'Sent', ok: true }, { team: 'U12 Girls Ana', result: 'Won 2–0 v Glenroy Park', status: 'Sent', ok: true }, { team: 'U13 Chris', result: 'Drew 1–1 v Tealside Town', status: 'Sent', ok: true }, { team: 'U14 Josh', result: 'Won 2–1 v Kingsbury United', status: 'Waiting for manager', ok: false }, { team: 'U16 Ollie', result: 'Lost 1–3 v Ironbark FC', status: 'Score differs from the league', ok: false, fix: true }].map((r, i) => (
+            {[{ team: 'U12 Sam', result: 'Won 3–1 v Northgate City', status: 'Sent', ok: true }, { team: 'U12 Girls Ana', result: 'Won 2–0 v Glenroy Park', status: 'Sent', ok: true }, { team: 'U13 Chris', result: 'Drew 1–1 v Tealside Town', status: 'Sent', ok: true }, { team: 'U14 Josh', result: 'Won 2–1 v Kingsbury United', status: 'Waiting for manager', ok: false }, { team: 'U16 Ollie', result: 'Lost 1–3 v Ironbark FC', status: 'Score differs from the league', ok: false, fix: true }].map((r, i) => (
               <div key={i} style={{ display: 'flex', gap: 12, padding: '10px 0', borderTop: i > 0 ? '1px solid #f0f1f0' : 'none' }}>
                 <div style={{ flexGrow: 1 }}><div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{r.team}</div><div style={{ fontSize: 12, color: '#6f7f7b' }}>{r.result}</div></div>
                 <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
@@ -490,7 +490,7 @@ export default function TeamsTab({ empty }: { empty?: boolean }) {
               { time: '9:00', game: 'U9 Mark v Glenroy Park', role: 'Game leader', who: 'Ethan Moss, 15', needed: false },
               { time: '9:30', game: 'U12 Sam v Harbour Rovers', role: 'Referee', who: 'Dana · club referee', needed: false },
               { time: '11:00', game: 'U12 Girls Ana v Tealside Town', role: 'Referee', who: 'Appointed by the league', needed: false },
-              { time: '12:00', game: 'U13 Girls Meg v Northcote City', role: 'Assistant referee', who: '', needed: true },
+              { time: '12:00', game: 'U13 Girls Meg v Northgate City', role: 'Assistant referee', who: '', needed: true },
             ].map((g, i) => (
               <div key={i} style={{ display: 'flex', gap: 12, padding: '10px 0', borderTop: i > 0 ? '1px solid #f0f1f0' : 'none', alignItems: 'center' }}>
                 <div style={{ width: 42, fontSize: 12, fontWeight: 700, color: '#10211f', flexShrink: 0 }}>{g.time}</div>

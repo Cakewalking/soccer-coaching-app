@@ -165,6 +165,10 @@ import IV4ManagerDone       from '../step4/IV4ManagerDone'
 import PAThanks             from '../step4/PAThanks'
 import JoinFlow             from '../join/JoinFlow'
 import JuniorCoachApp        from '../JuniorCoachApp'
+import SignInFlow            from '../signin/SignInFlow'
+import { SB1SandboxEnding, SB2SandboxEnded, SB3NoSandbox, SB4KeepGoing } from '../signin/SandboxScreens'
+import { ER1SomethingWrong, ER2UploadFailed, ER3Loading, ER4NotFound, ER5NoAccess, ERp1SomethingWrong, ERp2NotFound } from '../signin/ErrorScreens'
+import CoachPhoneApp, { CPh1CoachPhoneHome, CPh2CoachPhoneComing, CPh3CoachPhoneMessages, CPh4CoachPhoneGame, CPh5CoachPhonePlan, CPh1eCoachPhoneHomeEmpty, CPh2eCoachPhoneComingEmpty, CPh3eCoachPhoneMessagesEmpty, CPh4eCoachPhoneGameEmpty } from '../coachphone/CoachPhoneApp'
 import DemoStart             from './DemoStart'
 import DemoStartEmpty        from './DemoStartEmpty'
 import DemoSignIn            from './DemoSignIn'
@@ -181,6 +185,16 @@ const PHASE_ROLES = new Set<string>(['coach', 'ccoach', 'parent', 'manager', 'pl
 
 function noop() {}
 
+function SignupWithSignIn() {
+  const [showSignIn, setShowSignIn] = useState(false)
+  if (showSignIn) return <SignInFlow initialState="email" onBack={() => setShowSignIn(false)} />
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px', background: '#e8e9e7', minHeight: '100%' }}>
+      <SignupScreen onDone={() => setShowSignIn(true)} />
+    </div>
+  )
+}
+
 export function renderScreen(key: string): ReactNode {
   switch (key) {
     case 'juniorcoach':
@@ -196,11 +210,7 @@ export function renderScreen(key: string): ReactNode {
     case 'review':
       return <ReviewScreen empty={false} />
     case 'signup':
-      return (
-        <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px', background: '#e8e9e7', minHeight: '100%' }}>
-          <SignupScreen onDone={noop} />
-        </div>
-      )
+      return <SignupWithSignIn />
     case 'miniroos':
       return (
         <div style={{ width: 1180, background: 'var(--surface-100)' }}>
@@ -415,6 +425,40 @@ export function renderScreen(key: string): ReactNode {
     case 'iv3c-coachinvite':  return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><IV3cCoCoachInvite /></div>
     case 'iv3f-fitinvite':    return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><IV3fFitnessInvite /></div>
     case 'iv4-managerdone':   return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><IV4ManagerDone /></div>
+    // Sign-in flow (SI screens)
+    case 'si1':               return <SignInFlow initialState="email" />
+    case 'si2':               return <SignInFlow initialState="code" />
+    case 'si3':               return <SignInFlow initialState="wrong" />
+    case 'si4':               return <SignInFlow initialState="expired" />
+    case 'si5':               return <SignInFlow initialState="toomany" />
+    case 'si6':               return <SignInFlow initialState="newdevice" />
+    case 'si7':               return <SignInFlow initialState="signedout" />
+    case 'sip1':              return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><SignInFlow phone initialState="email" /></div>
+    case 'sip2':              return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><SignInFlow phone initialState="code" /></div>
+    case 'sip3':              return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><SignInFlow phone initialState="wrong" /></div>
+    // Sandbox ending (SB screens)
+    case 'sb1':               return <SB1SandboxEnding />
+    case 'sb2':               return <SB2SandboxEnded />
+    case 'sb3':               return <SB3NoSandbox />
+    case 'sb4':               return <SB4KeepGoing />
+    // Error / fault screens (ER screens)
+    case 'er1':               return <ER1SomethingWrong />
+    case 'er2':               return <ER2UploadFailed />
+    case 'er3':               return <ER3Loading />
+    case 'er4':               return <ER4NotFound />
+    case 'er5':               return <ER5NoAccess />
+    case 'erp1':              return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><ERp1SomethingWrong /></div>
+    case 'erp2':              return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><ERp2NotFound /></div>
+    // Coach phone (CPh screens)
+    case 'cph1':              return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><CPh1CoachPhoneHome /></div>
+    case 'cph2':              return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><CPh2CoachPhoneComing /></div>
+    case 'cph3':              return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><CPh3CoachPhoneMessages /></div>
+    case 'cph4':              return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><CPh4CoachPhoneGame /></div>
+    case 'cph5':              return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><CPh5CoachPhonePlan /></div>
+    case 'cph1e':             return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><CPh1eCoachPhoneHomeEmpty /></div>
+    case 'cph2e':             return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><CPh2eCoachPhoneComingEmpty /></div>
+    case 'cph3e':             return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><CPh3eCoachPhoneMessagesEmpty /></div>
+    case 'cph4e':             return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><CPh4eCoachPhoneGameEmpty /></div>
     // JN join flow (phone)
     case 'jn-landing':        return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><JoinFlow initialStep="landing" /></div>
     case 'jn1-create':        return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><JoinFlow initialStep="parent-create" /></div>
@@ -575,7 +619,9 @@ export default function DemoApp() {
     } else if (role === 'academyplayer') {
       lookContent = <AcademyPlayerApp onBack={() => setView('start')} empty={false} />
     } else if (role === 'coach' || role === 'ccoach') {
-      if (phase === 'preseason')       lookContent = <SP2HomePreSeason onBack={noop} />
+      if (window.innerWidth <= 640) {
+        lookContent = <CoachPhoneApp />
+      } else if (phase === 'preseason')       lookContent = <SP2HomePreSeason onBack={noop} />
       else if (phase === 'postseason') lookContent = <SP10HomePostSeason onBack={noop} />
       else if (phase === 'restmonth')  lookContent = <SP16RestMonth onBack={noop} />
       else                             lookContent = <JuniorCoachApp />
