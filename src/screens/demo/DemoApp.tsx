@@ -959,8 +959,9 @@ export function renderScreen(key: string): ReactNode {
     case 'teammanager-e':
       return <TeamManagerScreen empty={true} />
     case 'youth-e':
+      return <SeniorsYouthCoachApp teamType="youth" onBack={noop} empty={true} />
     case 'seniors-e':
-      return <HomeScreen role="head" onRole={noop} onNav={noop} onCalendar={noop} empty={true} />
+      return <SeniorsYouthCoachApp teamType="seniors" onBack={noop} empty={true} />
     case 'goalkeeper-e':
       return <GoalkeeperCoachApp onBack={noop} empty={true} />
     case 'parent-e':

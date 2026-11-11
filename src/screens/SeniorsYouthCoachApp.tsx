@@ -30,6 +30,7 @@ type TeamType = 'seniors' | 'youth'
 interface TeamData {
   teamName: string
   teamPicker: string
+  coachFirst: string
   avatarBg: string
   avatarLetters: string
   needsYouItems: { label: string; when: string; note: string; urgent: boolean }[]
@@ -52,6 +53,7 @@ interface TeamData {
 const SENIORS: TeamData = {
   teamName: "Men's 1sts",
   teamPicker: "Men's 1sts · Wattle Creek",
+  coachFirst: 'Marko',
   avatarBg: '#c39797',
   avatarLetters: 'MP',
   needsYouItems: [
@@ -96,6 +98,7 @@ const SENIORS: TeamData = {
 const YOUTH: TeamData = {
   teamName: 'U16 Ollie',
   teamPicker: 'U16 Ollie · Wattle Creek',
+  coachFirst: 'Ollie',
   avatarBg: '#40826d',
   avatarLetters: 'OG',
   needsYouItems: [
@@ -151,6 +154,60 @@ function resultColor(r: 'W' | 'L' | 'D') {
   if (r === 'W') return { bg: '#40826d', color: '#fff' }
   if (r === 'L') return { bg: '#c39797', color: '#fff' }
   return { bg: '#e9eae8', color: '#10211f' }
+}
+
+function SYCoachHomeEmpty({ coachFirst, teamLine, onNav }: { coachFirst: string; teamLine: string; onNav: (s: string) => void }) {
+  const steps = [
+    { n: 1, title: 'Add your squad',            body: 'Names, positions and a parent contact. Import a spreadsheet or share an invite link.', btn: 'Add players',  nav: 'squad'    },
+    { n: 2, title: 'Add your fixtures',          body: 'Clean Sheet plans training around your game days.',                                    btn: 'Add fixtures', nav: 'fixtures' },
+    { n: 3, title: 'Connect the match camera',   body: 'Your match camera records games and finds the clips for you.',                         btn: 'Connect',      nav: 'clips'    },
+    { n: 4, title: 'Pair boots and vests',       body: 'Boot sensors and GPS vests measure running, sprints and touches.',                     btn: 'Pair devices', nav: 'metric'   },
+    { n: 5, title: 'Turn on wellness check-ins', body: 'Players answer three quick questions on their phone before training and games.',       btn: 'Turn on',      nav: 'metric'   },
+  ]
+  return (
+    <div style={{ flexGrow: 1, minHeight: 0, display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 340px', gap: 16, padding: '20px 28px 24px', boxSizing: 'border-box', overflow: 'hidden' }}>
+      <div style={{ minHeight: 0, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 16 }}>
+        <div>
+          <h1 style={{ margin: '0 0 2px', fontSize: 26, fontWeight: 700, letterSpacing: '-0.02em' }}>Welcome to Clean Sheet, {coachFirst}</h1>
+          <div style={{ fontSize: 14, color: '#4a5a57' }}>{teamLine}</div>
+        </div>
+        <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, overflow: 'hidden' }}>
+          <div style={{ padding: '12px 16px', background: '#2f6252', display: 'flex', alignItems: 'center', gap: 10 }}>
+            <span style={{ fontSize: 15, fontWeight: 700, color: '#fff' }}>Get set up</span>
+            <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)' }}>0 of 5 done · about 15 minutes</span>
+          </div>
+          {steps.map((s, i) => (
+            <div key={i} style={{ display: 'grid', gridTemplateColumns: '28px minmax(0,1fr) auto', gap: 12, padding: '14px 16px', alignItems: 'center', borderTop: i === 0 ? 'none' : '1px solid #f0f1ef' }}>
+              <span style={{ width: 28, height: 28, borderRadius: '999px', border: '1.5px solid #c5c8c4', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, color: '#4a5a57', flex: 'none' }}>{s.n}</span>
+              <div>
+                <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 2 }}>{s.title}</div>
+                <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: '18px' }}>{s.body}</div>
+              </div>
+              <button onClick={() => onNav(s.nav)} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: s.n === 1 ? 0 : '1px solid #c5c8c4', background: s.n === 1 ? '#2f6252' : '#fff', color: s.n === 1 ? '#fff' : '#10211f', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>{s.btn}</button>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div style={{ minHeight: 0, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 14 }}>
+        <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '16px 18px' }}>
+          <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 12 }}>What happens next</div>
+          {[
+            { title: 'Record your first game',        body: 'Camera on the halfway line, press record.' },
+            { title: 'Get your match review',          body: 'About 25 minutes after you upload the video.' },
+            { title: "Get next week's training plan", body: 'Three things to fix, and drills to fix them.' },
+          ].map((item, i) => (
+            <div key={i} style={{ display: 'flex', gap: 10, padding: '8px 0', borderTop: i === 0 ? 'none' : '1px solid #f0f1ef' }}>
+              <span style={{ flex: 'none', width: 8, height: 8, borderRadius: '999px', background: '#40826d', marginTop: 5 }} />
+              <div>
+                <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 2 }}>{item.title}</div>
+                <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: '17px' }}>{item.body}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
 }
 
 function CoachHome({ data, onTraining, onMatchday, onReview, onCalendar, onInbox }: {
@@ -300,7 +357,7 @@ const TRAINING_TABS = ["Tonight's session", 'This week', 'Suggested', 'Drill lib
 const MATCHDAY_TABS = ['Team talk', 'Line-up and minutes', 'Opposition', 'Review', 'Fitness coach']
 const CLIPS_TABS    = ['Browse', 'Playlists', 'Shared with players', 'To check']
 
-export default function SeniorsYouthCoachApp({ teamType, onBack, phaseContent }: { teamType: TeamType; onBack: () => void; phaseContent?: ReactNode }) {
+export default function SeniorsYouthCoachApp({ teamType, onBack, phaseContent, empty = false }: { teamType: TeamType; onBack: () => void; phaseContent?: ReactNode; empty?: boolean }) {
   const data = teamType === 'seniors' ? SENIORS : YOUTH
 
   const [nav, setNav]                 = useState<NavKey>('home')
@@ -316,6 +373,12 @@ export default function SeniorsYouthCoachApp({ teamType, onBack, phaseContent }:
   function handleNav(s: string) {
     if (s === 'training')  { goNav('training'); return }
     if (s === 'matchday')  { goNav('matchday'); return }
+    if (s === 'squad')     { goNav('squad');    return }
+    if (s === 'clips')     { goNav('clips');    return }
+    if (s === 'inbox')     { setHomeTab(1);     return }
+    if (s === 'fixtures')  { setHomeTab(3);     return }
+    if (s === 'metric')    { goNav('squad'); setSquadTab(2); return }
+    if (s === 'setstyle')  { setHomeTab(4);     return }
     if (s === 'teamtalk')  { setSub('teamtalk');  return }
     if (s === 'pitchside') { setSub('pitchside'); return }
   }
@@ -347,7 +410,9 @@ export default function SeniorsYouthCoachApp({ teamType, onBack, phaseContent }:
   let content = null
   if (nav === 'home') {
     switch (homeTab) {
-      case 0: content = phaseContent ?? <CoachHome data={data} onTraining={() => goNav('training')} onMatchday={() => goNav('matchday')} onReview={() => { goNav('matchday'); setMatchTab(3) }} onCalendar={() => setHomeTab(2)} onInbox={() => setHomeTab(1)} />; break
+      case 0: content = empty
+        ? <SYCoachHomeEmpty coachFirst={data.coachFirst} teamLine={`${data.teamPicker} · let's get your team ready`} onNav={handleNav} />
+        : (phaseContent ?? <CoachHome data={data} onTraining={() => goNav('training')} onMatchday={() => goNav('matchday')} onReview={() => { goNav('matchday'); setMatchTab(3) }} onCalendar={() => setHomeTab(2)} onInbox={() => setHomeTab(1)} />); break
       case 1: content = <TeamChatScreen empty={false} />; break
       case 2: case 3: content = <FixturesScreen empty={false} />; break
       case 4: content = <OurStyleScreen />; break

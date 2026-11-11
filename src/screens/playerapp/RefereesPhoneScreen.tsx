@@ -192,7 +192,7 @@ function RefReport({ onSend }: { onSend: () => void }) {
 }
 
 export default function RefereesPhoneScreen({ empty = false }: { empty?: boolean }) {
-  const [view, setView] = useState<RefView>('asked')
+  const [view, setView] = useState<RefView>(empty ? 'games' : 'asked')
   const [toast, setToast] = useState('')
   function showToast(m: string) { setToast(m); setTimeout(() => setToast(''), 2800) }
 

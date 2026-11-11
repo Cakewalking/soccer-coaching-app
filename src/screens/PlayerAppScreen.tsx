@@ -141,7 +141,7 @@ export default function PlayerAppScreen({ empty }: { empty?: boolean }) {
       <div style={{ width: 390, margin: '0 auto', background: '#f7f9f7', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
         <div style={{ background: '#1f4a3e', padding: '52px 20px 20px', flex: 'none' }}>
           <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', marginBottom: 6 }}>Wattle Creek U12</div>
-          <div style={{ fontSize: 24, fontWeight: 800, color: '#fff', marginBottom: 12 }}>Hi Harper, welcome!</div>
+          <div style={{ fontSize: 24, fontWeight: 800, color: '#fff', marginBottom: 12 }}>Hi Mia, welcome!</div>
           <div style={{ background: 'rgba(255,255,255,0.12)', borderRadius: 12, padding: '12px 14px' }}>
             <div style={{ fontSize: 14, fontWeight: 700, color: '#fff', marginBottom: 4 }}>Waiting for your mum or dad</div>
             <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.75)', lineHeight: 1.5 }}>Ask Kate to open the invite from the club. Then Sam can send you clips and check-ins.</div>
