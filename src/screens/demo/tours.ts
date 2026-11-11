@@ -163,6 +163,7 @@ export const TOURS: Record<string, TourDef> = {
     device: 'tablet',
     total: 15,
     home: 'youth',
+    sandboxHome: 'youth-e',
     sections: [
       { title: "Join and set up", steps: [
         { label: "Same as juniors", caption: "Same sign-up as juniors. The club\u2019s playing style and heading policy arrive already set.", screen: "signup" },
@@ -196,6 +197,7 @@ export const TOURS: Record<string, TourDef> = {
     device: 'tablet',
     total: 11,
     home: 'seniors',
+    sandboxHome: 'seniors-e',
     sections: [
       { title: "Set up", steps: [
         { label: "Senior teams", caption: "Senior teams add registration windows and clearances.", screen: "seniors" },
@@ -287,6 +289,7 @@ export const TOURS: Record<string, TourDef> = {
     device: 'tablet',
     total: 6,
     home: 'goalkeeper',
+    sandboxHome: 'goalkeeper-e',
     sections: [
       { title: "Each week", steps: [
         { label: "Home", caption: "One coach looks after every keeper in the club, across all teams.", screen: "HG1-HomeKeeperCoach" },
@@ -343,6 +346,7 @@ export const TOURS: Record<string, TourDef> = {
     device: 'phone',
     total: 25,
     home: 'twochildren',
+    sandboxHome: 'parent-e',
     sections: [
       { title: "Join", steps: [
         { label: "Invite", caption: "Signing up takes a few minutes, and nobody sees a child\u2019s data until their children check is confirmed.", screen: "JN-Join" },
@@ -386,6 +390,7 @@ export const TOURS: Record<string, TourDef> = {
     device: 'phone',
     total: 12,
     home: 'playerapp',
+    sandboxHome: 'playeryoung-e',
     sections: [
       { title: "Join", steps: [
         { label: "How old are you?", caption: "Under 15s can\u2019t make an account. They join with a code from a parent.", screen: "JN6-Join" },
@@ -414,6 +419,7 @@ export const TOURS: Record<string, TourDef> = {
     device: 'phone',
     total: 8,
     home: 'olderplayer',
+    sandboxHome: 'playerolder-e',
     sections: [
       { title: "Join", steps: [
         { label: "Own account, 15 to 17", caption: "From 15, players have their own account. Under 18, a parent can still read coach messages.", screen: "olderplayer" },
@@ -436,6 +442,7 @@ export const TOURS: Record<string, TourDef> = {
     device: 'tablet',
     total: 23,
     home: 'clubadmin',
+    sandboxHome: 'director-e',
     sections: [
       { title: "Set up", steps: [
         { label: "First-use home", caption: "The club is set up once: import the players, choose how the club plays, set the rules.", screen: "D0-ClubEmpty" },
@@ -479,6 +486,7 @@ export const TOURS: Record<string, TourDef> = {
     device: 'tablet',
     total: 8,
     home: 'chair-home',
+    sandboxHome: 'chair-e',
     sections: [
       { title: "Set up", steps: [
         { label: "First-use home", caption: "First use: every screen says what to do next, so nothing starts blank.", screen: "D0c-ChairWelcome" },
@@ -503,6 +511,7 @@ export const TOURS: Record<string, TourDef> = {
     device: 'tablet',
     total: 10,
     home: 'coordinator',
+    sandboxHome: 'coordinator-e',
     sections: [
       { title: "Set up", steps: [
         { label: "First-use home", caption: "The coordinator starts by importing registrations.", screen: "coordinator" },
@@ -529,6 +538,7 @@ export const TOURS: Record<string, TourDef> = {
     device: 'tablet',
     total: 11,
     home: 'welfare-home',
+    sandboxHome: 'welfare-e',
     sections: [
       { title: "A concern arrives", steps: [
         { label: "From a parent", caption: "A concern can come from a parent, a child, a wellness alert or the sideline. Each goes only to the welfare officer.", screen: "PC1-RaiseConcern" },
@@ -556,6 +566,7 @@ export const TOURS: Record<string, TourDef> = {
     device: 'tablet',
     total: 14,
     home: 'academyowner',
+    sandboxHome: 'academyowner-e',
     sections: [
       { title: "Set up", steps: [
         { label: "First use: three steps", caption: "An academy is a business, so set-up is programs, prices, coaches and child safety. There\u2019s no league or committee.", screen: "AC1e-AcademyHomeEmpty" },
@@ -588,6 +599,7 @@ export const TOURS: Record<string, TourDef> = {
     device: 'tablet',
     total: 18,
     home: 'academycoach',
+    sandboxHome: 'academycoach-e',
     sections: [
       { title: "Each day", steps: [
         { label: "Home: today\u2019s sessions", caption: "Several groups in one evening. Each player\u2019s own goal sits under their name during the session.", screen: "academycoach" },
@@ -630,6 +642,7 @@ export const TOURS: Record<string, TourDef> = {
     device: 'phone',
     total: 13,
     home: 'academyparent',
+    sandboxHome: 'academyparent-e',
     sections: [
       { title: "Join", steps: [
         { label: "Book a free trial", caption: "A parent books a free trial, gets an honest note and an offer, and can add Saturday games with the partner club on one bill.", screen: "academyparent" },
@@ -663,6 +676,7 @@ export const TOURS: Record<string, TourDef> = {
     device: 'phone',
     total: 3,
     home: 'academyplayer',
+    sandboxHome: 'academyplayer-e',
     sections: [
       { title: "Each week", steps: [
         { label: "Home: my goal and skills", caption: "Under 15s join with a code from a parent. One goal, their own skills, and ten minutes of practice at home.", screen: "academyplayer" },
@@ -678,6 +692,7 @@ export const TOURS: Record<string, TourDef> = {
     device: 'phone',
     total: 4,
     home: 'refereephone',
+    sandboxHome: 'referee-e',
     sections: [
       { title: "Each week", steps: [
         { label: "Asked to do a game", caption: "Young referees are asked to do a game and can say yes from their phone.", screen: "refereephone" },

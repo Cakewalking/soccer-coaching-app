@@ -4,9 +4,11 @@ interface Props {
   onRole: (role: RoleId) => void
   onSwitchToDemo: () => void
   expiryDate?: string
+  onFill?: () => void
+  onReset?: () => void
 }
 
-export default function DemoStartEmpty({ onRole, onSwitchToDemo, expiryDate = 'Thursday 18 June' }: Props) {
+export default function DemoStartEmpty({ onRole, onSwitchToDemo, expiryDate = 'Thursday 18 June', onFill, onReset }: Props) {
   return (
     <div style={{ minHeight: '100vh', background: '#f5f6f4', fontFamily: 'var(--font-sans)' }}>
 
@@ -77,12 +79,12 @@ export default function DemoStartEmpty({ onRole, onSwitchToDemo, expiryDate = 'T
             <div>
               <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f', marginBottom: 2 }}>Fill with sample data</div>
               <div style={{ fontSize: 13, color: '#6f7f7b', marginBottom: 8 }}>A squad, three games and recordings, marked as samples</div>
-              <button style={{ height: 36, padding: '0 16px', borderRadius: 8, border: '1.5px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: '#10211f', cursor: 'pointer' }}>Fill</button>
+              <button onClick={onFill} style={{ height: 36, padding: '0 16px', borderRadius: 8, border: '1.5px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: '#10211f', cursor: 'pointer' }}>Fill</button>
             </div>
             <div style={{ borderTop: '1px solid #e9eae8', paddingTop: 10 }}>
               <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f', marginBottom: 2 }}>Empty it and start again</div>
               <div style={{ fontSize: 13, color: '#6f7f7b', marginBottom: 8 }}>Removes everything you've added</div>
-              <button style={{ height: 36, padding: '0 16px', borderRadius: 8, border: '1.5px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: '#10211f', cursor: 'pointer' }}>Reset</button>
+              <button onClick={onReset} style={{ height: 36, padding: '0 16px', borderRadius: 8, border: '1.5px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: '#10211f', cursor: 'pointer' }}>Reset</button>
             </div>
             <div style={{ borderTop: '1px solid #e9eae8', paddingTop: 10 }}>
               <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f', marginBottom: 2 }}>Keep it going</div>

@@ -16,9 +16,10 @@ interface Props {
   children: ReactNode
   phase?: DemoPhase
   onPhaseChange?: (p: DemoPhase) => void
+  expiryShort?: string
 }
 
-export default function DemoShellSandbox({ roleId, onSwitchRole, onSwitchToDemo, children, phase, onPhaseChange }: Props) {
+export default function DemoShellSandbox({ roleId, onSwitchRole, onSwitchToDemo, children, phase, onPhaseChange, expiryShort }: Props) {
   const tour = TOURS[roleId]
 
   return (
@@ -32,7 +33,7 @@ export default function DemoShellSandbox({ roleId, onSwitchRole, onSwitchToDemo,
         </button>
         <div style={{ height: 22, padding: '0 8px', borderRadius: 6, border: '1.5px solid rgba(255,255,255,0.4)', display: 'flex', alignItems: 'center', fontSize: 11, fontWeight: 800, letterSpacing: '0.08em', color: '#fff', flexShrink: 0 }}>SANDBOX</div>
         <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.75)', overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis', flex: '0 1 auto', minWidth: 0 }}>
-          Your own club · kept until <strong style={{ color: '#fff' }}>Thu 18 June</strong>
+          Your own club · kept until <strong style={{ color: '#fff' }}>{expiryShort ?? 'Thu 18 June'}</strong>
         </div>
         <div style={{ flex: 1 }} />
         {phase && onPhaseChange && (

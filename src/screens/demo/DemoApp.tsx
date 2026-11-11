@@ -397,6 +397,21 @@ function checkSandboxExpiry(): SandboxState {
   return 'fresh'
 }
 
+const DAYS = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
+const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December']
+function sandboxExpiryLabel(): string {
+  const sb = getSandbox()
+  if (!sb) return ''
+  const exp = new Date(sb.createdAt + 14 * 86400000)
+  return `${DAYS[exp.getDay()]} ${exp.getDate()} ${MONTHS[exp.getMonth()]}`
+}
+function sandboxExpiryShort(): string {
+  const sb = getSandbox()
+  if (!sb) return ''
+  const exp = new Date(sb.createdAt + 14 * 86400000)
+  return `${DAYS[exp.getDay()].slice(0,3)} ${exp.getDate()} ${MONTHS[exp.getMonth()]}`
+}
+
 const PHASE_ROLES = new Set<string>(['coach', 'ccoach', 'youth', 'seniors', 'miniroos', 'parent', 'manager', 'playeryoung', 'playerolder'])
 
 function noop() {}
@@ -943,6 +958,35 @@ export function renderScreen(key: string): ReactNode {
       return <FitnessCoachScreen empty={true} />
     case 'teammanager-e':
       return <TeamManagerScreen empty={true} />
+    case 'youth-e':
+    case 'seniors-e':
+      return <HomeScreen role="head" onRole={noop} onNav={noop} onCalendar={noop} empty={true} />
+    case 'goalkeeper-e':
+      return <GoalkeeperCoachApp onBack={noop} empty={true} />
+    case 'parent-e':
+      return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TwoChildrenApp onBack={noop} empty={true} /></div>
+    case 'playeryoung-e':
+      return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PlayerAppScreen empty={true} /></div>
+    case 'playerolder-e':
+      return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><OlderPlayerApp empty={true} /></div>
+    case 'director-e':
+      return <D0ClubEmpty />
+    case 'chair-e':
+      return <ClubAdminScreen empty={true} role="chair" initials="GL" />
+    case 'coordinator-e':
+      return <CoordinatorPortal onBack={noop} empty={true} />
+    case 'welfare-e':
+      return <ClubAdminScreen empty={true} role="welfare" initials="HP" initialTab="welfare" />
+    case 'academyowner-e':
+      return <AcademyOwnerApp onBack={noop} empty={true} />
+    case 'academycoach-e':
+      return <AcademyCoachApp onBack={noop} empty={true} />
+    case 'academyparent-e':
+      return <AcademyParentApp onBack={noop} empty={true} />
+    case 'academyplayer-e':
+      return <AcademyPlayerApp onBack={noop} empty={true} />
+    case 'referee-e':
+      return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><RefereesPhoneScreen empty={true} /></div>
 
     default:
       return (
@@ -1050,6 +1094,18 @@ export default function DemoApp() {
       <DemoStartEmpty
         onRole={(roleId) => { setRole(roleId); setView('sandboxlook') }}
         onSwitchToDemo={() => setView('start')}
+        expiryDate={sandboxExpiryLabel()}
+        onFill={() => {
+          localStorage.setItem('cs_demo_sandbox_filled', '1')
+          alert('Sample data loaded. 18 players, 3 games and recordings, marked as samples.')
+        }}
+        onReset={() => {
+          if (window.confirm("Remove everything you’ve added and start again?")) {
+            localStorage.removeItem('cs_demo_sandbox_filled')
+            deleteSandbox()
+            createSandbox()
+          }
+        }}
       />
     )
   }
@@ -1064,6 +1120,7 @@ export default function DemoApp() {
         onSwitchToDemo={() => setView('start')}
         phase={PHASE_ROLES.has(role) ? phase : undefined}
         onPhaseChange={PHASE_ROLES.has(role) ? setPhase : undefined}
+        expiryShort={sandboxExpiryShort()}
       >
         {homeKey ? renderScreen(homeKey) : (
           <div style={{ padding: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 300 }}>
