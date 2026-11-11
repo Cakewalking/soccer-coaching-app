@@ -630,9 +630,9 @@ function BookTab({ onClinic, onTeam }: { onClinic: () => void; onTeam: () => voi
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
-export default function AcademyParentApp({ onBack, empty = false }: { onBack: () => void; empty?: boolean }) {
-  const [nav, setNav]     = useState<Nav>('home')
-  const [modal, setModal] = useState<Modal>('trial')
+export default function AcademyParentApp({ onBack, empty = false, initialModal = 'trial', initialNav = 'home' }: { onBack: () => void; empty?: boolean; initialModal?: Modal; initialNav?: Nav }) {
+  const [nav, setNav]     = useState<Nav>(initialNav)
+  const [modal, setModal] = useState<Modal>(initialModal)
 
   const handleNav = (n: Nav) => { setNav(n); setModal('none') }
 

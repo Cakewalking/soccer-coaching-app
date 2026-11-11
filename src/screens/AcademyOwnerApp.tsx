@@ -467,6 +467,8 @@ function ProgramsView({ empty }: { empty: boolean }) {
 // ─── AC9 — Holiday clinic ─────────────────────────────────────────────────────
 
 function ClinicView({ empty }: { empty: boolean }) {
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   if (empty) return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '20px 28px 32px', display: 'flex', flexDirection: 'column', gap: 16 }}>
       <PageHead title="Holiday clinics" sub="None planned"/>
@@ -522,7 +524,8 @@ function ClinicView({ empty }: { empty: boolean }) {
       </Card>
 
       <div style={{ fontSize: 12, color: MUT, lineHeight: 1.5 }}>Clinic families pay when they book. A place can be cancelled for a full refund up to 7 days before.</div>
-      <button style={{ alignSelf: 'flex-start', fontSize: 13, fontWeight: 700, color: G2, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>Invite new families to a trial →</button>
+      <button onClick={() => showToast('Opening the trial invite form.')} style={{ alignSelf: 'flex-start', fontSize: 13, fontWeight: 700, color: G2, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>Invite new families to a trial →</button>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
   )
 }
@@ -592,6 +595,8 @@ function PlayersView({ empty }: { empty: boolean }) {
 // ─── AC6 — Coaches ───────────────────────────────────────────────────────────
 
 function CoachesView({ empty }: { empty: boolean }) {
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   if (empty) return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '20px 28px 32px', display: 'flex', flexDirection: 'column', gap: 16 }}>
       <PageHead title="Coaches" sub="Just you so far"/>
@@ -656,7 +661,8 @@ function CoachesView({ empty }: { empty: boolean }) {
         <div style={{ padding: '10px 16px', borderTop: `1px solid ${LN}`, fontSize: 12, color: MUT, lineHeight: 1.5 }}>Each note is two taps per player. At the end of term they become the progress report, so nobody writes 80 reports from memory.</div>
       </Card>
 
-      <button style={{ alignSelf: 'flex-start', fontSize: 13, fontWeight: 700, color: G2, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>See term reports →</button>
+      <button onClick={() => showToast('Opening term reports.')} style={{ alignSelf: 'flex-start', fontSize: 13, fontWeight: 700, color: G2, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>See term reports →</button>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
   )
 }
@@ -740,6 +746,8 @@ function FeesView({ empty }: { empty: boolean }) {
 // ─── AC12 — Broadcast ─────────────────────────────────────────────────────────
 
 function BroadcastView({ empty, onBack }: { empty: boolean; onBack: () => void }) {
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   const sent = [
     { title: 'July clinic bookings are open', to: 'All families', time: 'Mon 9:00 am', seen: '61 of 80 seen' },
     { title: 'Thursday is indoors: wet weather', to: 'Advanced and Development', time: 'Wed 2:15 pm', seen: '52 of 52 seen' },
@@ -830,8 +838,9 @@ function BroadcastView({ empty, onBack }: { empty: boolean; onBack: () => void }
             </div>
           ))}
         </Card>
-        <div style={{ fontSize: 12, color: ROSE, marginTop: 8 }}>19 families haven't seen the clinic news. <button style={{ fontSize: 12, fontWeight: 700, color: ROSE, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit' }}>Nudge them</button></div>
+        <div style={{ fontSize: 12, color: ROSE, marginTop: 8 }}>19 families haven't seen the clinic news. <button onClick={() => showToast("Nudge sent to 19 families who haven't seen the clinic news.")} style={{ fontSize: 12, fontWeight: 700, color: ROSE, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit' }}>Nudge them</button></div>
       </div>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
   )
 }

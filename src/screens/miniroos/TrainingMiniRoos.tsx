@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 const DRILLS = [
   {
     time: '5:00', duration: '10 min', name: 'Traffic lights dribble', tag: 'Fun warm-up',
@@ -34,6 +36,8 @@ function tagColor(tag: string) {
 }
 
 export default function TrainingMiniRoos() {
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
 
@@ -43,8 +47,8 @@ export default function TrainingMiniRoos() {
           <h1 style={{ margin: '0 0 2px', fontSize: 24, fontWeight: 700, letterSpacing: '-0.02em' }}>Training tonight · 5:00–5:45 pm</h1>
           <div style={{ fontSize: 14, color: '#4a5a57' }}>Wattle Creek Reserve · 9 coming · this fortnight: running with the ball</div>
         </div>
-        <button style={{ height: 44, padding: '0 18px', borderRadius: 12, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>Swap a game</button>
-        <button style={{ height: 44, padding: '0 22px', borderRadius: 12, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>Start</button>
+        <button onClick={() => showToast('Opening the drill swap screen.')} style={{ height: 44, padding: '0 18px', borderRadius: 12, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>Swap a game</button>
+        <button onClick={() => showToast('Starting the training session timer.')} style={{ height: 44, padding: '0 22px', borderRadius: 12, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>Start</button>
       </div>
 
       {/* Main content */}
@@ -115,6 +119,7 @@ export default function TrainingMiniRoos() {
           </section>
         </div>
       </div>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
   )
 }

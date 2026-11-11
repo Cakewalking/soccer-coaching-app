@@ -227,8 +227,8 @@ export default function FitnessCoachScreen({ empty }: { empty?: boolean }) {
             <div style={{ fontSize: 20, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>Start with heights</div>
             <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.6, marginBottom: 16 }}>Measure the squad once, then Clean Sheet flags anyone growing fast and sets safe sprint and jump limits. Effort and pain check-ins start after the first session.</div>
             <div style={{ display: 'flex', gap: 10 }}>
-              <button style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Plan a measuring session</button>
-              <button style={{ height: 44, padding: '0 16px', borderRadius: 999, border: '1px solid #c5c8c4', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Check the fitness level</button>
+              <button onClick={() => showToast('Opening the measuring session planner.')} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Plan a measuring session</button>
+              <button onClick={() => showToast("Opening the squad's current fitness level.")} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: '1px solid #c5c8c4', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Check the fitness level</button>
             </div>
           </div>
           <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: '#6f7f7b', marginBottom: 4 }}>What fills in first</div>

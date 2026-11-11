@@ -8,6 +8,8 @@ type FilterMode = 'game' | 'measure' | 'player'
 type TypeFilter = 'all' | 'good' | 'work'
 
 function ClipsEmpty({ activeTab }: { activeTab: number }) {
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   if (activeTab === 1) {
     return (
       <main style={{ flexGrow: 1, padding: '14px 28px 18px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 340px', gap: 16, boxSizing: 'border-box', minHeight: 0, overflow: 'hidden' }}>
@@ -28,7 +30,7 @@ function ClipsEmpty({ activeTab }: { activeTab: number }) {
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="#fff"/></svg>
                   Record your first game
                 </button>
-                <button style={{ height: 44, padding: '0 16px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>See an example</button>
+                <button onClick={() => showToast('Opening an example clip from last season.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>See an example</button>
               </div>
             </div>
           </div>
@@ -105,11 +107,11 @@ function ClipsEmpty({ activeTab }: { activeTab: number }) {
           <span style={{ fontSize: 14, color: '#4a5a57' }}>No clips yet</span>
         </div>
         <div style={{ flexGrow: 1 }} />
-        <button style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f', display: 'flex', alignItems: 'center', gap: 6 }}>
+        <button onClick={() => showToast('Opening the video upload flow.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f', display: 'flex', alignItems: 'center', gap: 6 }}>
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden="true"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1M16 8l-4-4-4 4M12 4v12"/></svg>
           Upload a video
         </button>
-        <button style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#ffffff', display: 'flex', alignItems: 'center', gap: 6 }}>
+        <button onClick={() => showToast('Opening the game recording flow.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#ffffff', display: 'flex', alignItems: 'center', gap: 6 }}>
           <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="#fff"/></svg>
           Record a game
         </button>
@@ -123,7 +125,7 @@ function ClipsEmpty({ activeTab }: { activeTab: number }) {
             <div style={{ flexGrow: 1 }}>
               <div style={{ fontSize: 20, fontWeight: 700, marginBottom: 6 }}>Clips start after your first game</div>
               <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: '20px', marginBottom: 14 }}>Your match camera records games and finds the clips for you. They're sorted by what your style says matters.</div>
-              <button style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Record a game</button>
+              <button onClick={() => showToast('Opening the game recording flow.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Record a game</button>
             </div>
           </div>
           <div style={{ fontSize: 13, fontWeight: 600, color: '#6f7f7b', textTransform: 'uppercase', letterSpacing: '0.05em' }}>What you'll get clips of</div>
@@ -148,6 +150,7 @@ function ClipsEmpty({ activeTab }: { activeTab: number }) {
           ))}
         </aside>
       </div>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
   )
 }

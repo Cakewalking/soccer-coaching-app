@@ -1,7 +1,10 @@
 import { useState } from 'react'
 import { STYLE_QUESTIONS, STYLE_CLUB_VALUES, STYLE_MEASURES, type StyleQuestion } from '../data'
+import SetOurStyleWizard from './SetOurStyleWizard'
 
-function QuestionCard({ q, onSelect }: { q: StyleQuestion; onSelect: (i: number) => void }) {
+type WizardStep = 'intro' | 1 | 2 | 3 | 4 | 5 | 'review' | 'saved'
+
+function QuestionCard({ q, onEdit }: { q: StyleQuestion; onEdit: () => void }) {
   return (
     <div style={{ background: '#ffffff', border: '1px solid #e9eae8', borderRadius: 16, padding: '20px 20px 16px', display: 'flex', flexDirection: 'column', gap: 14 }}>
       <div>
@@ -12,7 +15,7 @@ function QuestionCard({ q, onSelect }: { q: StyleQuestion; onSelect: (i: number)
         {q.options.map((opt, i) => {
           const sel = q.selected === i
           return (
-            <button key={opt} onClick={() => onSelect(i)} style={{
+            <button key={opt} onClick={onEdit} style={{
               display: 'flex', alignItems: 'center', gap: 12,
               padding: '12px 14px', borderRadius: 10,
               border: `1.5px solid ${sel ? '#40826d' : '#e9eae8'}`,
@@ -37,18 +40,15 @@ function QuestionCard({ q, onSelect }: { q: StyleQuestion; onSelect: (i: number)
 }
 
 export default function OurStyleScreen() {
-  const [questions, setQuestions] = useState(STYLE_QUESTIONS)
   const [values, setValues] = useState(STYLE_CLUB_VALUES)
-  const [toast, setToast] = useState<string | null>(null)
-  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
+  const [wizardStep, setWizardStep] = useState<WizardStep | null>(null)
 
-  function selectOption(qi: number, oi: number) {
-    setQuestions(qs => qs.map((q, i) => i === qi ? { ...q, selected: oi } : q))
-    const opt = STYLE_QUESTIONS[qi].options[oi]
-    showToast(`Style saved: ${opt}.`)
-  }
   function toggleValue(vi: number) {
     setValues(vs => vs.map((v, i) => i === vi ? { ...v, checked: !v.checked } : v))
+  }
+
+  if (wizardStep !== null) {
+    return <SetOurStyleWizard onClose={() => setWizardStep(null)} initialStep={wizardStep} />
   }
 
   return (
@@ -66,10 +66,10 @@ export default function OurStyleScreen() {
           </div>
         </div>
 
-        {/* 2×2 question grid */}
+        {/* 2×2 question grid — each card opens the wizard at the matching step */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 28 }}>
-          {questions.map((q, qi) => (
-            <QuestionCard key={qi} q={q} onSelect={oi => selectOption(qi, oi)} />
+          {STYLE_QUESTIONS.map((q, qi) => (
+            <QuestionCard key={qi} q={q} onEdit={() => setWizardStep((qi + 1) as 1 | 2 | 3 | 4)} />
           ))}
         </div>
 
@@ -82,8 +82,8 @@ export default function OurStyleScreen() {
           <p style={{ margin: '0 0 14px', fontSize: 14, color: '#4a5a57' }}>The four answers above are yours. Equal minutes is a club rule up to U13.</p>
           <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
             {values.map((v, vi) => (
-              <button key={v.label} onClick={() => toggleValue(vi)} style={{
-                display: 'flex', alignItems: 'center', gap: 8, height: 40, padding: '0 16px',
+              <button key={v.label} onClick={() => { toggleValue(vi); setWizardStep(5) }} style={{
+                display: 'flex', alignItems: 'center', gap: 8, height: 44, padding: '0 16px',
                 borderRadius: '999px', border: `1.5px solid ${v.checked ? '#40826d' : '#e9eae8'}`,
                 background: v.checked ? '#f0f8f4' : '#ffffff',
                 fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: v.checked ? '#2f6252' : '#10211f',
@@ -125,9 +125,6 @@ export default function OurStyleScreen() {
           If you change your style, past games are re-scored against the new answers. Nothing is lost.
         </div>
       </div>
-      {toast && (
-        <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>
-      )}
     </div>
   )
 }

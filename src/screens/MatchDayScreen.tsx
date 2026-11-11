@@ -8,6 +8,8 @@ interface Props {
 }
 
 function MatchDayEmpty() {
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   const setupItems = [
     { title: 'Charge the match camera', sub: 'Takes about 3 hours from flat', action: 'How to' },
     { title: 'Plan where it goes', sub: 'Halfway line, raised, facing the pitch', action: 'How to' },
@@ -22,7 +24,7 @@ function MatchDayEmpty() {
         <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, letterSpacing: '-0.02em' }}>Match day</h1>
         <span style={{ fontSize: 14, color: '#4a5a57' }}>No game scheduled</span>
         <div style={{ flexGrow: 1 }} />
-        <button style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
+        <button onClick={() => showToast('Opening the add fixture form.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
           Add a fixture
         </button>
@@ -43,8 +45,8 @@ function MatchDayEmpty() {
             <div style={{ fontSize: 20, fontWeight: 700, letterSpacing: '-0.01em' }}>Clips of what went well, and what to fix</div>
             <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: '20px', maxWidth: 400 }}>After each game, Clean Sheet picks the clips and numbers for a 4-minute talk, with notes on what to say.</div>
             <div style={{ display: 'flex', gap: 8 }}>
-              <button style={{ height: 44, padding: '0 18px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>How to record a game</button>
-              <button style={{ height: 44, padding: '0 18px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Build one yourself</button>
+              <button onClick={() => showToast('Opening the recording guide.')} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>How to record a game</button>
+              <button onClick={() => showToast('Opening the manual team talk builder.')} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Build one yourself</button>
             </div>
           </div>
 
@@ -64,7 +66,7 @@ function MatchDayEmpty() {
               <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 2 }}>Player check is off</div>
               <div style={{ fontSize: 12, color: '#4a5a57', lineHeight: '16px' }}>On game morning, players answer three quick questions. You'll see who is carrying a knock or feeling flat before kick-off.</div>
             </div>
-            <button style={{ flex: 'none', height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Turn on check-ins</button>
+            <button onClick={() => showToast('Player check-ins turned on. Players will get reminders on game morning.')} style={{ flex: 'none', height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Turn on check-ins</button>
           </div>
         </div>
 
@@ -79,15 +81,16 @@ function MatchDayEmpty() {
                 <div style={{ fontSize: 13, fontWeight: 700, lineHeight: '18px' }}>{item.title}</div>
                 <div style={{ fontSize: 12, color: '#4a5a57', lineHeight: '16px' }}>{item.sub}</div>
               </div>
-              <button style={{ flex: 'none', height: 44, padding: '0 10px', borderRadius: 7, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer', color: '#2f6252' }}>{item.action}</button>
+              <button onClick={() => showToast(`Opening: ${item.title}.`)} style={{ flex: 'none', height: 44, padding: '0 10px', borderRadius: 7, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer', color: '#2f6252' }}>{item.action}</button>
             </div>
           ))}
-          <button style={{ marginTop: 'auto', height: 44, borderRadius: 10, border: '1px solid #2f6252', background: '#ffffff', color: '#2f6252', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
+          <button onClick={() => showToast('Playing the 2-minute setup guide.')} style={{ marginTop: 'auto', height: 44, borderRadius: 10, border: '1px solid #2f6252', background: '#ffffff', color: '#2f6252', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
             <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"/></svg>
             Watch the 2-minute setup guide
           </button>
         </aside>
       </div>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
   )
 }
@@ -260,7 +263,7 @@ export default function MatchDayScreen({ onNav, empty }: Props) {
             <span style={{ fontSize: 14, color: '#6f7f7b' }}>14 of 16 done this morning · squad average 3.6</span>
             <div style={{ flexGrow: 1 }} />
             <span style={{ fontSize: 14, color: '#6f7f7b' }}>Not filled in: <strong style={{ color: '#10211f' }}>Zoe and Sam</strong></span>
-            <button style={{
+            <button onClick={() => showToast('Reminder sent to Zoe and Sam.')} style={{
               height: 32, padding: '0 14px', borderRadius: '999px',
               border: '1px solid #c5c8c4', background: '#ffffff',
               fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', color: '#10211f',

@@ -81,8 +81,8 @@ function getLabel(step: StepNum, id: string | null): string {
   return STEP_OPTIONS[step].find(o => o.id === id)?.title ?? '—'
 }
 
-export default function SetOurStyleWizard({ onClose }: { onClose: () => void }) {
-  const [step, setStep] = useState<Step>('intro')
+export default function SetOurStyleWizard({ onClose, initialStep = 'intro' }: { onClose: () => void; initialStep?: Step }) {
+  const [step, setStep] = useState<Step>(initialStep)
   const [answers, setAnswers] = useState<StyleAnswers>({ s1: null, s2: null, s3: null, s4: null, s5: [] })
 
   function choose(stepNum: StepNum, id: string) {

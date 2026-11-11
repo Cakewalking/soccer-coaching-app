@@ -88,8 +88,8 @@ function StepFooter({ onBack, onNext, backLabel = 'Back', nextLabel = 'Next', ne
   )
 }
 
-export default function AddGameScreen({ onClose }: { onClose: () => void }) {
-  const [step, setStep] = useState<Step>(1)
+export default function AddGameScreen({ onClose, initialStep = 1 }: { onClose: () => void; initialStep?: Step }) {
+  const [step, setStep] = useState<Step>(initialStep)
   const [source, setSource] = useState<Source>(null)
   const [homeScore, setHomeScore] = useState(2)
   const [awayScore, setAwayScore] = useState(1)

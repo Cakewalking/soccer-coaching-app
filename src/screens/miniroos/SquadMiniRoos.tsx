@@ -58,6 +58,8 @@ const Check = () => (
 export default function SquadMiniRoos({ empty }: { empty?: boolean }) {
   const [sel, setSel] = useState<Player>(PLAYERS[7])
   const [squadTab, setSquadTab] = useState<SquadTab>('players')
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   const tabBar = (
     <div style={{ flex: 'none', padding: '14px 28px 0' }}>
@@ -65,8 +67,8 @@ export default function SquadMiniRoos({ empty }: { empty?: boolean }) {
         <h1 style={{ margin: 0, fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em' }}>Squad</h1>
         <span style={{ fontSize: 14, color: '#4a5a57' }}>10 players · U9 Tom · 7 coming Saturday, 1 maybe, 1 away, 1 to answer</span>
         <div style={{ flexGrow: 1 }} />
-        <button style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Remind 1 family</button>
-        <button style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>+ Add a player</button>
+        <button onClick={() => showToast('Reminder sent to the 1 family who hasn\'t replied.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Remind 1 family</button>
+        <button onClick={() => showToast('Opening the add player form.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>+ Add a player</button>
       </div>
       <div style={{ display: 'flex', gap: 0, borderBottom: '1px solid #e9eae8', marginBottom: 10 }}>
         {([['players', 'Players'], ['coming', "Who's coming"], ['consent', 'Consent']] as [SquadTab, string][]).map(([id, label]) => (
@@ -146,8 +148,8 @@ export default function SquadMiniRoos({ empty }: { empty?: boolean }) {
               </div>
             ))}
           </div>
-          <button style={{ width: '100%', height: 44, borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Message her mum</button>
-          <button style={{ width: '100%', height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Add a note</button>
+          <button onClick={() => showToast(`Message started to ${sel.name.split(' ')[0]}'s mum.`)} style={{ width: '100%', height: 44, borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Message her mum</button>
+          <button onClick={() => showToast(`Note added for ${sel.name.split(' ')[0]}.`)} style={{ width: '100%', height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Add a note</button>
         </div>
       </div>
 
@@ -155,6 +157,7 @@ export default function SquadMiniRoos({ empty }: { empty?: boolean }) {
       <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, borderTop: '1px solid #e9eae8', padding: '10px 28px', background: '#fff' }}>
         <span style={{ fontSize: 13, color: '#4a5a57' }}>No ratings, rankings or running numbers at this age. Just who is here, who has had a turn, and what helps each child.</span>
       </div>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
   )
 }

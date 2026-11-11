@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 interface Props {
   onAvailability: () => void
   onRaiseConcern: () => void
@@ -18,6 +20,8 @@ const MINS_GAMES = [
 ]
 
 export default function ParentView({ onAvailability, onRaiseConcern }: Props) {
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 390, margin: '0 auto', background: '#f7f9f7', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
 
@@ -68,7 +72,7 @@ export default function ParentView({ onAvailability, onRaiseConcern }: Props) {
             <div style={{ fontSize: 12, color: '#6f7f7b', marginBottom: 4 }}>Rob, team manager · 7:12 pm</div>
             <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', lineHeight: '21px' }}>Meet time now 8:40 on Saturday. We're on pitch 2.</div>
           </div>
-          <button style={{ flex: 'none', height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Got it</button>
+          <button onClick={() => showToast('Acknowledged. Sam can see you\'ve read this.')} style={{ flex: 'none', height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Got it</button>
         </div>
 
         {/* Mia's minutes */}
@@ -109,6 +113,7 @@ export default function ParentView({ onAvailability, onRaiseConcern }: Props) {
           Worried about something? Tell the club privately
         </button>
       </div>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
   )
 }

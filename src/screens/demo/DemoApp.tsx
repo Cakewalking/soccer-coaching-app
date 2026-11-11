@@ -42,6 +42,8 @@ import GrowthLoadScreen      from '../GrowthLoadScreen'
 import OppositionScreen      from '../OppositionScreen'
 import DrillLibraryScreen    from '../DrillLibraryScreen'
 import AddGameScreen         from '../AddGameScreen'
+import SetOurStyleWizard     from '../SetOurStyleWizard'
+import PACheckScreen         from '../PACheckScreen'
 import CoachFitnessScreen    from '../CoachFitnessScreen'
 import SettingsScreen        from '../SettingsScreen'
 import LiveGameScreen        from '../LiveGameScreen'
@@ -477,6 +479,10 @@ export function renderScreen(key: string): ReactNode {
       return <TwoChildrenApp onBack={noop} empty={false} />
     case 'playerapp':
       return <PlayerAppScreen empty={false} />
+    case 'playerapp-checkin':
+      return <PlayerAppScreen empty={false} initialView="checkin" />
+    case 'playerapp-done':
+      return <PlayerAppScreen empty={false} initialView="checkin-sent" />
     case 'olderplayer':
       return <OlderPlayerApp empty={false} />
     case 'refereephone':
@@ -486,7 +492,17 @@ export function renderScreen(key: string): ReactNode {
     case 'academycoach':
       return <AcademyCoachApp onBack={noop} empty={false} />
     case 'academyparent':
-      return <AcademyParentApp onBack={noop} empty={false} />
+      return <AcademyParentApp onBack={noop} empty={false} initialModal="none" />
+    case 'academyparent-trial':
+      return <AcademyParentApp onBack={noop} empty={false} initialModal="trial" />
+    case 'academyparent-trialbooked':
+      return <AcademyParentApp onBack={noop} empty={false} initialModal="trialBooked" />
+    case 'academyparent-chat':
+      return <AcademyParentApp onBack={noop} empty={false} initialModal="chat" />
+    case 'academyparent-fees':
+      return <AcademyParentApp onBack={noop} empty={false} initialNav="fees" initialModal="none" />
+    case 'academyparent-progress':
+      return <AcademyParentApp onBack={noop} empty={false} initialNav="progress" initialModal="none" />
     case 'academyplayer':
       return <AcademyPlayerApp onBack={noop} empty={false} />
     case 'playerme':
@@ -507,6 +523,14 @@ export function renderScreen(key: string): ReactNode {
       return <WellnessScreen empty={false} />
     case 'style':
       return <OurStyleScreen />
+    case 'sf0': return <SetOurStyleWizard onClose={noop} initialStep="intro" />
+    case 'sf1': return <SetOurStyleWizard onClose={noop} initialStep={1} />
+    case 'sf2': return <SetOurStyleWizard onClose={noop} initialStep={2} />
+    case 'sf3': return <SetOurStyleWizard onClose={noop} initialStep={3} />
+    case 'sf4': return <SetOurStyleWizard onClose={noop} initialStep={4} />
+    case 'sf5': return <SetOurStyleWizard onClose={noop} initialStep={5} />
+    case 'sf6': return <SetOurStyleWizard onClose={noop} initialStep="review" />
+    case 'sf7': return <SetOurStyleWizard onClose={noop} initialStep="saved" />
     case 'teamtalk':
       return <TeamTalkScreen role="head" onClose={noop} />
     case 'pitchside':
@@ -533,6 +557,12 @@ export function renderScreen(key: string): ReactNode {
       return <DrillLibraryScreen empty={false} />
     case 'addgame':
       return <AddGameScreen onClose={noop} />
+    case 'gi0': return <AddGameScreen onClose={noop} initialStep={1} />
+    case 'gi1': return <AddGameScreen onClose={noop} initialStep={2} />
+    case 'gi2': return <AddGameScreen onClose={noop} initialStep={3} />
+    case 'gi3': return <AddGameScreen onClose={noop} initialStep={4} />
+    case 'gi4': return <AddGameScreen onClose={noop} initialStep={5} />
+    case 'pa-check': return <PACheckScreen />
     case 'coachfitness':
       return <CoachFitnessScreen />
     case 'settings':

@@ -44,8 +44,8 @@ const GOALS = [
 ]
 
 
-export default function PlayerAppScreen({ empty }: { empty?: boolean }) {
-  const [view, setView] = useState<PlayerView>('home')
+export default function PlayerAppScreen({ empty, initialView = 'home' }: { empty?: boolean; initialView?: PlayerView }) {
+  const [view, setView] = useState<PlayerView>(initialView)
   const [checkinAnswers, setCheckinAnswers] = useState<number[]>([])
   const [checkinQ, setCheckinQ] = useState(0)
   const [playClip, setPlayClip] = useState(false)

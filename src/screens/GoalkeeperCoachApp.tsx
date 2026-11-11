@@ -134,6 +134,8 @@ function HomeOverview({ onPlanSession, onKeeperDrills }: { onPlanSession: () => 
 }
 
 function TrainingSession() {
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ flexGrow: 1, minHeight: 0, overflowY: 'auto', padding: '20px 28px 28px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 280px', gap: 20 }}>
       {/* Left: drills */}
@@ -144,8 +146,8 @@ function TrainingSession() {
             <p style={{ margin: 0, fontSize: 14, color: '#4a5a57' }}>Tue 9 Jun · 6:00 to 6:45 pm · 11 of 14 coming</p>
           </div>
           <div style={{ display: 'flex', gap: 8 }}>
-            <button style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Swap a drill</button>
-            <button style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Send the plan</button>
+            <button onClick={() => showToast('Opening the drill swap screen.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Swap a drill</button>
+            <button onClick={() => showToast('Session plan sent to all 11 keepers.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Send the plan</button>
           </div>
         </div>
 
@@ -193,6 +195,7 @@ function TrainingSession() {
           ))}
         </div>
       </div>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
   )
 }
@@ -220,6 +223,8 @@ function KeepersTab() {
 }
 
 function ClipsTab() {
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ flexGrow: 1, minHeight: 0, overflowY: 'auto', padding: '20px 28px 28px' }}>
       <h1 style={{ margin: '0 0 4px', fontSize: 24, fontWeight: 700, letterSpacing: '-0.02em' }}>Keeper clips</h1>
@@ -235,9 +240,10 @@ function ClipsTab() {
             <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', marginBottom: 2 }}>{c.name} · {c.event}</div>
             <div style={{ fontSize: 13, color: '#6f7f7b' }}>{c.team}</div>
           </div>
-          <button style={{ flex: 'none', height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Play</button>
+          <button onClick={() => showToast(`Playing: ${c.name} — ${c.event}.`)} style={{ flex: 'none', height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Play</button>
         </div>
       ))}
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
   )
 }
@@ -246,6 +252,8 @@ export default function GoalkeeperCoachApp({ onBack, empty = false }: { onBack: 
   const [nav, setNav]             = useState<GKNav>('home')
   const [homeTab, setHomeTab]     = useState<HomeTab>('overview')
   const [trainingTab, setTrainingTab] = useState<TrainingTab>('session')
+  const [toast, setToast]         = useState<string | null>(null)
+  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   return (
     <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
@@ -268,7 +276,7 @@ export default function GoalkeeperCoachApp({ onBack, empty = false }: { onBack: 
               </button>
             ))}
           </nav>
-          <button style={{ display: 'flex', alignItems: 'center', gap: 8, height: 44, padding: '0 16px', borderRadius: '999px', border: 0, background: 'rgba(255,255,255,0.15)', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer', color: '#fff', flexShrink: 0 }}>
+          <button onClick={() => showToast('Switching to Wattle Creek — all keepers view.')} style={{ display: 'flex', alignItems: 'center', gap: 8, height: 44, padding: '0 16px', borderRadius: '999px', border: 0, background: 'rgba(255,255,255,0.15)', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer', color: '#fff', flexShrink: 0 }}>
             All keepers · Wattle Creek
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9l6 6 6-6"/></svg>
           </button>
@@ -314,7 +322,7 @@ export default function GoalkeeperCoachApp({ onBack, empty = false }: { onBack: 
               <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 16, padding: 24, marginBottom: 20 }}>
                 <div style={{ fontSize: 18, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>Keepers appear as coaches name them</div>
                 <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.6, marginBottom: 16 }}>Each coach from U12 up marks their keepers. Ask them now, or wait for the first games.</div>
-                <button style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Ask coaches to name keepers</button>
+                <button onClick={() => showToast('Message sent to 9 coaches — asking them to name their keepers.')} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Ask coaches to name keepers</button>
               </div>
               <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: '#6f7f7b', marginBottom: 10 }}>What you will see</div>
               {[
@@ -345,7 +353,7 @@ export default function GoalkeeperCoachApp({ onBack, empty = false }: { onBack: 
               <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 16, padding: 24 }}>
                 <div style={{ fontSize: 18, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>Pick a night for keepers</div>
                 <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.6, marginBottom: 16 }}>Set a weekly keeper session and Clean Sheet drafts it from that week's keeper clips.</div>
-                <button style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Set a keeper night</button>
+                <button onClick={() => showToast('Opening the keeper night scheduler.')} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Set a keeper night</button>
               </div>
             </div>
           </div>
@@ -355,6 +363,7 @@ export default function GoalkeeperCoachApp({ onBack, empty = false }: { onBack: 
         )}
         {nav === 'clips'    && <ClipsTab />}
       </div>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
   )
 }
