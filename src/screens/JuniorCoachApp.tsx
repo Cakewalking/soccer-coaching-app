@@ -44,7 +44,7 @@ const TRAINING_TABS = ["Tonight's session", 'This week', 'Suggested', 'Drill lib
 const MATCHDAY_TABS = ['Team talk', 'Line-up and minutes', 'Opposition', 'Review', 'Fitness coach']
 const CLIPS_TABS    = ['Browse', 'Playlists', 'Shared with players', 'To check']
 
-export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLabel, coachInitials }: { onBack?: () => void; phaseContent?: ReactNode; coachLabel?: string; coachInitials?: string }) {
+export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLabel, coachInitials, empty = false }: { onBack?: () => void; phaseContent?: ReactNode; coachLabel?: string; coachInitials?: string; empty?: boolean }) {
   const [nav, setNav]                 = useState<NavKey>('home')
   const [sub, setSub]                 = useState<Sub>(null)
   const [homeTab, setHomeTab]         = useState(0)
@@ -64,6 +64,7 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
     if (s === 'inbox')     { goNav('home');     setHomeTab(1);  return }
     if (s === 'metric')    { goNav('squad');    setSquadTab(2); return }
     if (s === 'fixtures')  { goNav('home');     setHomeTab(3);  return }
+    if (s === 'setstyle')  { goNav('home');     setHomeTab(4);  return }
     if (s === 'teamtalk')  { setSub('teamtalk');  return }
     if (s === 'pitchside') { setSub('pitchside'); return }
     if (s === 'addgame')   { setSub('addgame');   return }
@@ -96,7 +97,7 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
 
   let content = null
   if (nav === 'home') {
-    if (homeTab === 0) content = phaseContent ?? <HomeScreen role="head" onRole={() => {}} onNav={handleNav} onCalendar={() => setHomeTab(2)} empty={false} />
+    if (homeTab === 0) content = phaseContent ?? <HomeScreen role="head" onRole={() => {}} onNav={handleNav} onCalendar={() => setHomeTab(2)} empty={empty} />
     else if (homeTab === 1) content = <TeamChatScreen empty={false} />
     else if (homeTab === 2) content = <AvailabilityScreen empty={false} />
     else if (homeTab === 3) content = <FixturesScreen empty={false} />

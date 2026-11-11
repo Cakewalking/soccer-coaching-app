@@ -947,7 +947,7 @@ export function renderScreen(key: string): ReactNode {
 
     // Sandbox empty-state homes
     case 'home-e':
-      return <HomeScreen role="head" onRole={noop} onNav={noop} onCalendar={noop} empty={true} />
+      return <JuniorCoachApp empty={true} />
     case 'miniroos-e':
       return (
         <div style={{ width: 1180, background: 'var(--surface-100)' }}>
