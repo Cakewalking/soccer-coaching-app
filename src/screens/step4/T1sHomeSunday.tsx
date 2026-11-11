@@ -17,7 +17,7 @@ export default function T1sHomeSunday(_: { onBack?: () => void }) {
           <div style={{ marginBottom: 20 }}>
             <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 8 }}>Needs you</div>
             {[
-              { from: 'Match review', time: '8:00 am', text: 'Saturday's review is ready · W Ironbark 3–1', urgent: false },
+              { from: 'Match review', time: '8:00 am', text: "Saturday's review is ready · W Ironbark 3–1", urgent: false },
               { from: 'Wellness check-ins', time: '7:45 am', text: 'Ella has felt low three days running', urgent: true },
               { from: 'Match camera', time: '7:20 am', text: '7 clips tagged from yesterday', urgent: false },
             ].map((n, i) => (
