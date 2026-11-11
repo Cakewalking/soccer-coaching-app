@@ -372,6 +372,11 @@ import DemoShell, { type DemoPhase } from './DemoShell'
 import DemoShellPhone        from './DemoShellPhone'
 import DemoShellSandbox      from './DemoShellSandbox'
 import { TOURS, type RoleId } from './tours'
+import { AskHome, AskMinimised, AskOpen, AskOpenFirst, AskPhoneButton, AskPhoneOpen } from '../AskCleanSheet'
+import { MessagesRules, CoachNewMessage, CoachMessages, CoachMessagesPersonCard, DirectorMessages, ParentMessages, ParentMessagesEmpty, ParentNewMessage, RefereeMessages } from '../MessagesScreens'
+import { AcademyTrainingWeek, AcademyTrainingSuggested, AcademySessionPlan, AcademyWhoComing, AcademyTrainingWeekEmpty } from '../AcademyTraining'
+import { RecordHub, RecordSaved, RecordHubEmpty } from '../RecordHub'
+import { SquadLineups, SquadLineupsEmpty } from '../SquadLineups'
 
 type DemoView = 'signin' | 'start' | 'why' | 'tour' | 'lookaround' | 'sandbox' | 'sandboxlook' | 'nosandbox' | 'notfound'
 
@@ -1103,6 +1108,41 @@ export function renderScreen(key: string): ReactNode {
       return <AcademyPlayerApp onBack={noop} empty={true} />
     case 'referee-e':
       return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><RefereesPhoneScreen empty={true} /></div>
+
+    // Ask Clean Sheet (sections 12–13)
+    case 'ASK1-HomeWithAsk':           return <AskHome onBack={noop} />
+    case 'ASK2-AskMinimised':          return <AskMinimised onBack={noop} />
+    case 'ASK3-AskOpen':               return <AskOpen onBack={noop} />
+    case 'ASK3e-AskOpenFirst':         return <AskOpenFirst onBack={noop} />
+    case 'ASKp1-PhoneAsk':             return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0' }}><AskPhoneButton onBack={noop} /></div>
+    case 'ASKp2-PhoneAskOpen':         return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0' }}><AskPhoneOpen onBack={noop} /></div>
+
+    // Messages (sections 14–15)
+    case 'MSG0-WhoCanMessage':         return <MessagesRules onBack={noop} />
+    case 'MSG1-NewMessage':            return <CoachNewMessage onBack={noop} />
+    case 'MSG2-DirectChat':            return <CoachMessages onBack={noop} />
+    case 'MSG3-PersonCard':            return <CoachMessagesPersonCard onBack={noop} />
+    case 'MSG4-DirectorMessages':      return <DirectorMessages onBack={noop} />
+    case 'MSGp1-ParentMessages':       return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0' }}><ParentMessages onBack={noop} /></div>
+    case 'MSGp1e-ParentMessagesEmpty': return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0' }}><ParentMessagesEmpty onBack={noop} /></div>
+    case 'MSGp2-ParentNewMessage':     return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0' }}><ParentNewMessage onBack={noop} /></div>
+    case 'MSGp3-RefereeMessages':      return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0' }}><RefereeMessages onBack={noop} /></div>
+
+    // Academy Training (section 16)
+    case 'ACT1-AcademyWeek':           return <AcademyTrainingWeek onBack={noop} />
+    case 'ACT2-AcademySuggested':      return <AcademyTrainingSuggested onBack={noop} />
+    case 'ACT3-AcademySessionPlan':    return <AcademySessionPlan onBack={noop} />
+    case 'ACT4-AcademyComing':         return <AcademyWhoComing onBack={noop} />
+    case 'ACT1e-AcademyWeekEmpty':     return <AcademyTrainingWeekEmpty onBack={noop} />
+
+    // Record hub (section 17)
+    case 'REC1-RecordHub':             return <RecordHub onBack={noop} />
+    case 'REC2-RecordSaved':           return <RecordSaved onBack={noop} />
+    case 'REC1e-RecordHubEmpty':       return <RecordHubEmpty onBack={noop} />
+
+    // Squad line-ups (section 18)
+    case 'SQ1-BestLineups':            return <SquadLineups onBack={noop} />
+    case 'SQ1e-BestLineupsEmpty':      return <SquadLineupsEmpty onBack={noop} />
 
     default:
       return (
