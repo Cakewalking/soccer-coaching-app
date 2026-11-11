@@ -61,6 +61,8 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
     if (s === 'squad')     { goNav('squad');    return }
     if (s === 'clips')     { goNav('clips');    return }
     if (s === 'home')      { goNav('home');     return }
+    if (s === 'inbox')     { goNav('home'); setHomeTab(1); return }
+    if (s === 'metric')    { goNav('squad'); setSquadTab(2); return }
     if (s === 'teamtalk')  { setSub('teamtalk');  return }
     if (s === 'pitchside') { setSub('pitchside'); return }
     if (s === 'addgame')   { setSub('addgame');   return }
@@ -95,7 +97,7 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
   if (nav === 'home') {
     if (homeTab === 0) content = phaseContent ?? <HomeScreen role="head" onRole={() => {}} onNav={handleNav} onCalendar={() => setHomeTab(2)} empty={false} />
     else if (homeTab === 1) content = <TeamChatScreen empty={false} />
-    else if (homeTab === 2) content = <HomeScreen role="head" onRole={() => {}} onNav={handleNav} onCalendar={() => setHomeTab(2)} empty={false} />
+    else if (homeTab === 2) content = <AvailabilityScreen empty={false} />
     else if (homeTab === 3) content = <FixturesScreen empty={false} />
     else if (homeTab === 4) content = <OurStyleScreen />
     else if (homeTab === 5) content = <TeamStaffScreen empty={false} />

@@ -1,6 +1,6 @@
 import { INBOX, METRICS, WEEK_SCHEDULE, RESULTS, SQUAD, type Role } from '../data'
 
-type Screen = 'home' | 'training' | 'matchday' | 'teamtalk' | 'setstyle' | 'metric'
+type Screen = 'home' | 'training' | 'matchday' | 'teamtalk' | 'setstyle' | 'metric' | 'inbox' | 'squad'
 
 interface Props {
   role: Role
@@ -174,7 +174,7 @@ export default function HomeScreen({ onNav, onCalendar, empty }: Props) {
           </div>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             {INBOX.filter(item => item.unread).map((item, i) => (
-              <button key={i} style={{
+              <button key={i} onClick={() => onNav('inbox')} style={{
                 display: 'flex', alignItems: 'flex-start', gap: 12,
                 width: '100%', minHeight: 72, padding: '10px 18px',
                 boxSizing: 'border-box', border: 0, borderTop: '1px solid #e9eae8',
@@ -201,7 +201,7 @@ export default function HomeScreen({ onNav, onCalendar, empty }: Props) {
               </button>
             ))}
           </div>
-          <button style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4, width: '100%', height: 40, border: 0, borderTop: '1px solid #e9eae8', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', fontSize: 14, color: '#2f6252', fontWeight: 600 }}>
+          <button onClick={() => onNav('inbox')} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4, width: '100%', height: 40, border: 0, borderTop: '1px solid #e9eae8', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', fontSize: 14, color: '#2f6252', fontWeight: 600 }}>
             All messages · 3 more
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
           </button>
@@ -215,7 +215,7 @@ export default function HomeScreen({ onNav, onCalendar, empty }: Props) {
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10, flexGrow: 1 }}>
             {METRICS.slice(0, 2).map((m, i) => (
-              <button key={i} style={{
+              <button key={i} onClick={() => onNav('metric')} style={{
                 display: 'flex', flexDirection: 'column', gap: 4, padding: '12px 14px',
                 background: '#ffffff', border: '1px solid #e9eae8', borderRadius: 14,
                 textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit', flexGrow: 1,
@@ -348,7 +348,7 @@ export default function HomeScreen({ onNav, onCalendar, empty }: Props) {
         </section>
 
         {/* Last 5 */}
-        <button className="tile" style={{ flex: 'none', gap: 8 }} aria-label="Last 5">
+        <button className="tile" onClick={() => onNav('matchday')} style={{ flex: 'none', gap: 8 }} aria-label="Last 5">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', width: '100%' }}>
             <h2 className="h2">Last 5</h2>
             <span className="cap">{RESULTS.position}</span>
@@ -367,7 +367,7 @@ export default function HomeScreen({ onNav, onCalendar, empty }: Props) {
         </button>
 
         {/* Squad */}
-        <button className="tile" style={{ flexGrow: 1, gap: 8 }} aria-label="Squad">
+        <button className="tile" onClick={() => onNav('squad')} style={{ flexGrow: 1, gap: 8 }} aria-label="Squad">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', width: '100%' }}>
             <h2 className="h2">Squad</h2>
             <span className="cap">{SQUAD.total} players</span>
