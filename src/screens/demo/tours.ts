@@ -867,6 +867,108 @@ export const TOURS: Record<string, TourDef> = {
     ],
   },
 
+  'year-coach': {
+    roleLabel: "The football year — coach",
+    persona: "as Ollie, U16 coach · full year",
+    device: 'tablet',
+    total: 20,
+    home: 'footballyear',
+    sections: [
+      { title: "Pre-season", steps: [
+        { label: "Year at a glance",          caption: "Four phases — when each starts and what needs doing.", screen: "footballyear" },
+        { label: "Home checklist",            caption: "7 items before round 1: squad, consent, baseline tests, friendlies, grading.", screen: "homepreseason" },
+        { label: "Squad: confirmed & trials", caption: "Confirmed, trialling and waitlist — the squad starts here.", screen: "provisionalsquad" },
+        { label: "Trial morning",             caption: "Score trial players on three axes.", screen: "coachtrial" },
+        { label: "Baseline tests",            caption: "Four fitness tests, team median trend.", screen: "baseline" },
+        { label: "Build up load",             caption: "10-week ramp — growing players capped automatically.", screen: "loadbuild" },
+        { label: "Find friendlies",           caption: "Four nearby teams to arrange games with.", screen: "friendlies" },
+        { label: "Scores for grading",        caption: "Score 17 players for division grading.", screen: "gradinginput" },
+      ]},
+      { title: "Season", steps: [
+        { label: "Home in-season",            caption: "Tonight's session, what needs you, Saturday's game.", screen: "JuniorCoachApp" },
+        { label: "Mid-season reviews",        caption: "Four player chats, goals and regrade window.", screen: "midseasonreview" },
+      ]},
+      { title: "Post-season", steps: [
+        { label: "Home wrap-up",              caption: "5-item wrap-up: summaries, chats, coming back, kit, review.", screen: "homepostseason" },
+        { label: "One player's summary",      caption: "Mia's season: 16 games, 2 of 3 goals met, three clips.", screen: "se2-playersummary" },
+        { label: "Tournament squad",          caption: "Summer Cup: squad, fees and checklist.", screen: "tournamentsetup" },
+        { label: "Tournament day",            caption: "Three games, between-game notes, minutes across the day.", screen: "tournamentday" },
+        { label: "Tournament review",         caption: "Sprints dropped — normal for five games in two days.", screen: "tournamentreview" },
+        { label: "Indoor team",               caption: "Wattle Creek Fives — 8 players, Monday nights.", screen: "indoorteam" },
+        { label: "Who's coming back?",        caption: "12 yes, 3 not sure, 2 not coming back.", screen: "comingback" },
+      ]},
+      { title: "Rest month", steps: [
+        { label: "Quiet home",                caption: "Nothing needs you this month. Break tracker for two players.", screen: "restmonth" },
+        { label: "Hand over to stand-in",     caption: "Add Linh as stand-in for 26 Sep–11 Oct.", screen: "standin" },
+        { label: "What stand-in sees",        caption: "Linh's view: Home, Training, Match day only. No Squad, no Clips.", screen: "standin-home" },
+      ]},
+    ],
+  },
+
+  'year-club': {
+    roleLabel: "The football year — club",
+    persona: "as Rachel, director of football",
+    device: 'tablet',
+    total: 14,
+    home: 'clubphases',
+    sections: [
+      { title: "Set the year", steps: [
+        { label: "Dates and phases",          caption: "Set the year once for every team at the club.", screen: "clubphases" },
+        { label: "Trial dates and rules",     caption: "Trial window and rules by age group.", screen: "trialwindow" },
+      ]},
+      { title: "Youth", steps: [
+        { label: "Youth: pre-season",         caption: "U16 Ollie's checklist — players 15+ answer for themselves.", screen: "youth-preseason" },
+        { label: "Youth: post-season",        caption: "Chats, coming back, moving up to seniors.", screen: "youth-postseason" },
+        { label: "Youth: rest month",         caption: "Nothing needed. Break tracker for Cal and Ryan.", screen: "youth-restmonth" },
+      ]},
+      { title: "Seniors", steps: [
+        { label: "Seniors: pre-season",       caption: "Men's 1sts Marko — registration and clearances lead.", screen: "senior-preseason" },
+        { label: "Seniors: post-season",      caption: "One-to-ones, kit, presentation night, director review.", screen: "senior-postseason" },
+        { label: "Seniors: off-season",       caption: "Nothing needed. Adults choose their own break.", screen: "senior-offseason" },
+      ]},
+      { title: "MiniRoos and academy", steps: [
+        { label: "MiniRoos: before first Saturday", caption: "U9 Tom's 6-item list. No trials, no grading.", screen: "miniroos-preseason" },
+        { label: "MiniRoos: after the season",      caption: "Season notes, medals, coming back, thank helpers.", screen: "miniroos-postseason" },
+        { label: "MiniRoos: rest",                  caption: "Nothing until March. Tell Bianca if coaching next year.", screen: "miniroos-rest" },
+        { label: "Co-coach shared view",            caption: "Jess's checklist — each item tagged with who owns it.", screen: "ccoach-preseason" },
+        { label: "Academy team (read-only)",        caption: "Men's Reserves: results, registered, training turnout.", screen: "fn3-seniorteam" },
+      ]},
+    ],
+  },
+
+  'year-family': {
+    roleLabel: "The football year — family",
+    persona: "as Linh Tran, parent of Mia",
+    device: 'tablet',
+    total: 16,
+    home: 'parent-preseason',
+    sections: [
+      { title: "Parent phone", steps: [
+        { label: "Pre-season",                caption: "Mia's spot confirmed. 4 things before round 1.", screen: "parent-preseason" },
+        { label: "Tournament invite",         caption: "Summer Cup invite and payment.", screen: "parent-tournament" },
+        { label: "Coming back?",              caption: "Is Mia coming back for 2027? Three-tap reply.", screen: "parent-comingback" },
+        { label: "Rest month",                caption: "Note from Sam, Mia's break check.", screen: "parent-restmonth" },
+      ]},
+      { title: "Manager phone", steps: [
+        { label: "Pre-season",                caption: "Before round 1: duty roster, fees, first-aid cards.", screen: "manager-preseason" },
+        { label: "Post-season",               caption: "Kit back, Summer Cup, thank volunteers.", screen: "manager-postseason" },
+        { label: "Rest month",                caption: "Nothing until January. Season stats.", screen: "manager-restmonth" },
+        { label: "Tournament checklist",      caption: "Entry, fees, medical forms, ball bag.", screen: "manager-tournament" },
+      ]},
+      { title: "Player under 15", steps: [
+        { label: "Pre-season",                caption: "You're in U12 Sam. Pick one thing to get better at.", screen: "player-preseason" },
+        { label: "Post-season",               caption: "Coach note, 16 games, season goal met.", screen: "player-postseason" },
+        { label: "Rest month",                caption: "Nothing until January. Break tracker.", screen: "player-restmonth" },
+      ]},
+      { title: "Player 15 and over", steps: [
+        { label: "Pre-season",                caption: "Yours to do: consent, baseline tests, pick your goal.", screen: "older-preseason" },
+        { label: "Post-season",               caption: "Coach note. Are you coming back? (you answer yourself).", screen: "older-postseason" },
+        { label: "Rest month",                caption: "No football until January. Message Ollie. Welfare contact.", screen: "older-restmonth" },
+        { label: "Player settings",           caption: "Josh Bell: what Marko can see, leave the squad, sign out.", screen: "po5s-adultsettings" },
+      ]},
+    ],
+  },
+
   story: {
     roleLabel: "The idea in one minute",
     persona: "one week with an under-12 team",

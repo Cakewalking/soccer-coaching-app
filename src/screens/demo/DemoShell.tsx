@@ -26,23 +26,25 @@ export default function DemoShell({ roleId, onBack, onStartTour, children, phase
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', fontFamily: 'var(--font-sans)' }}>
 
       {/* Demo bar */}
-      <div style={{ flex: 'none', background: '#1f4a3e', height: 48, display: 'flex', alignItems: 'center', padding: '0 20px', gap: 12, zIndex: 20 }}>
-        <button onClick={onBack} style={{ display: 'flex', alignItems: 'center', gap: 7, background: 'none', border: 'none', cursor: 'pointer', color: 'rgba(255,255,255,0.65)', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, padding: 0, flexShrink: 0 }}>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      <div style={{ flex: 'none', background: '#1f4a3e', height: 48, display: 'flex', alignItems: 'center', padding: '0 0 0 16px', gap: 10, zIndex: 20 }}>
+        <button onClick={onBack} style={{ display: 'flex', alignItems: 'center', gap: 6, background: 'none', border: 'none', cursor: 'pointer', color: 'rgba(255,255,255,0.75)', fontFamily: 'inherit', fontSize: 13, fontWeight: 500, padding: 0, flexShrink: 0 }}>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
           Switch role
         </button>
-        <div style={{ width: 1, height: 20, background: 'rgba(255,255,255,0.2)', flex: 'none' }} />
-        <div style={{ flex: 1, fontSize: 13, color: 'rgba(255,255,255,0.65)', overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis' }}>
-          <span style={{ color: '#fff', fontWeight: 700 }}>Looking around</span> {tour.persona} · {tour.roleLabel} · Nothing you tap is saved.
+        <div style={{ height: 22, padding: '0 8px', borderRadius: 6, border: '1.5px solid rgba(255,255,255,0.4)', display: 'flex', alignItems: 'center', fontSize: 11, fontWeight: 800, letterSpacing: '0.08em', color: '#fff', flexShrink: 0 }}>DEMO</div>
+        <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.75)', overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis', flex: '0 1 auto', minWidth: 0 }}>
+          as {tour.persona.replace(/^as /, '')}
         </div>
+        <div style={{ flex: 1 }} />
         {phase && onPhaseChange && (
-          <div style={{ display: 'flex', gap: 3, flex: 'none' }}>
+          <div style={{ display: 'flex', alignSelf: 'stretch', flex: 'none' }}>
             {(Object.keys(PHASE_LABELS) as DemoPhase[]).map(p => (
               <button key={p} onClick={() => onPhaseChange(p)} style={{
-                height: 28, padding: '0 10px', borderRadius: 6, border: 0,
-                background: phase === p ? 'rgba(255,255,255,0.95)' : 'rgba(255,255,255,0.12)',
-                color: phase === p ? '#1f4a3e' : 'rgba(255,255,255,0.75)',
-                fontFamily: 'inherit', fontSize: 12, fontWeight: phase === p ? 700 : 400,
+                height: '100%', padding: '0 14px', border: 0,
+                borderBottom: phase === p ? '2px solid #fff' : '2px solid transparent',
+                background: 'none',
+                color: phase === p ? '#fff' : 'rgba(255,255,255,0.6)',
+                fontFamily: 'inherit', fontSize: 13, fontWeight: phase === p ? 700 : 400,
                 cursor: 'pointer', whiteSpace: 'nowrap',
               }}>
                 {PHASE_LABELS[p]}
@@ -50,7 +52,7 @@ export default function DemoShell({ roleId, onBack, onStartTour, children, phase
             ))}
           </div>
         )}
-        <button onClick={onStartTour} style={{ flex: 'none', height: 32, padding: '0 14px', borderRadius: 8, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>
+        <button onClick={onStartTour} style={{ alignSelf: 'stretch', padding: '0 18px', border: 0, borderLeft: '1px solid rgba(255,255,255,0.15)', background: 'none', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap', flex: 'none' }}>
           Guided tour →
         </button>
       </div>

@@ -151,6 +151,18 @@ import SP15ComingBack         from '../footballyear/SP15ComingBack'
 import SP16RestMonth          from '../footballyear/SP16RestMonth'
 import SP20StandIn            from '../footballyear/SP20StandIn'
 import SP20eStandInEmpty      from '../footballyear/SP20eStandInEmpty'
+import SPy2YouthPreSeason     from '../footballyear/SPy2YouthPreSeason'
+import SPy10YouthPostSeason   from '../footballyear/SPy10YouthPostSeason'
+import SPy16YouthRestMonth    from '../footballyear/SPy16YouthRestMonth'
+import SPs2SeniorPreSeason    from '../footballyear/SPs2SeniorPreSeason'
+import SPs10SeniorPostSeason  from '../footballyear/SPs10SeniorPostSeason'
+import SPs16SeniorOffSeason   from '../footballyear/SPs16SeniorOffSeason'
+import SPm2MiniRoosPreSeason  from '../footballyear/SPm2MiniRoosPreSeason'
+import SPm10MiniRoosPostSeason from '../footballyear/SPm10MiniRoosPostSeason'
+import SPm16MiniRoosRest      from '../footballyear/SPm16MiniRoosRest'
+import SPc2CoCoachPreSeason   from '../footballyear/SPc2CoCoachPreSeason'
+import SP21StandInHome        from '../footballyear/SP21StandInHome'
+import SP21eStandInHomeEmpty  from '../footballyear/SP21eStandInHomeEmpty'
 import SPp1ParentPreSeason    from '../footballyear/SPp1ParentPreSeason'
 import SPp2ParentComingBack   from '../footballyear/SPp2ParentComingBack'
 import SPp3ParentTournament   from '../footballyear/SPp3ParentTournament'
@@ -158,6 +170,25 @@ import SPp4ParentRestMonth    from '../footballyear/SPp4ParentRestMonth'
 import SPp6ManagerTournament  from '../footballyear/SPp6ManagerTournament'
 import SPp7PlayerRestMonth    from '../footballyear/SPp7PlayerRestMonth'
 import SPp8StandInAsked       from '../footballyear/SPp8StandInAsked'
+import SPp10ManagerPreSeason  from '../footballyear/SPp10ManagerPreSeason'
+import SPp11ManagerPostSeason from '../footballyear/SPp11ManagerPostSeason'
+import SPp12ManagerRestMonth  from '../footballyear/SPp12ManagerRestMonth'
+import SPp13PlayerPreSeason   from '../footballyear/SPp13PlayerPreSeason'
+import SPp14PlayerPostSeason  from '../footballyear/SPp14PlayerPostSeason'
+import SPp15OlderPreSeason    from '../footballyear/SPp15OlderPreSeason'
+import SPp16OlderPostSeason   from '../footballyear/SPp16OlderPostSeason'
+import SPp17OlderRestMonth    from '../footballyear/SPp17OlderRestMonth'
+import FN3SeniorTeam          from '../step4/FN3SeniorTeam'
+import HM2cPlayerCardMiniRoos from '../step4/HM2cPlayerCardMiniRoos'
+import HM6nSeasonNoteOne      from '../step4/HM6nSeasonNoteOne'
+import HM1nQuickNotes         from '../step4/HM1nQuickNotes'
+import HM1rNotesBack          from '../step4/HM1rNotesBack'
+import SE2PlayerSummary       from '../step4/SE2PlayerSummary'
+import PO5sAdultSettings      from '../step4/PO5sAdultSettings'
+import TM11lLetterFull        from '../teammanager/TM11lLetterFull'
+import C1sClipSearch          from '../step4/C1sClipSearch'
+import C1seClipSearchNone     from '../step4/C1seClipSearchNone'
+import ACC8pPairCamera        from '../coachphone/ACC8pPairCamera'
 import SKRoles              from '../step4/SKRoles'
 import IV3cCoCoachInvite    from '../step4/IV3cCoCoachInvite'
 import IV3fFitnessInvite    from '../step4/IV3fFitnessInvite'
@@ -181,7 +212,7 @@ import { TOURS, type RoleId } from './tours'
 
 type DemoView = 'signin' | 'start' | 'why' | 'tour' | 'lookaround' | 'sandbox' | 'sandboxlook'
 
-const PHASE_ROLES = new Set<string>(['coach', 'ccoach', 'parent', 'manager', 'playerolder'])
+const PHASE_ROLES = new Set<string>(['coach', 'ccoach', 'youth', 'seniors', 'miniroos', 'parent', 'manager', 'playeryoung', 'playerolder'])
 
 function noop() {}
 
@@ -331,6 +362,37 @@ export function renderScreen(key: string): ReactNode {
     case 'restmonth':           return <SP16RestMonth onBack={noop} />
     case 'standin':             return <SP20StandIn onBack={noop} />
     case 'standin-empty':       return <SP20eStandInEmpty onBack={noop} />
+    case 'youth-preseason':     return <SPy2YouthPreSeason onBack={noop} />
+    case 'youth-postseason':    return <SPy10YouthPostSeason onBack={noop} />
+    case 'youth-restmonth':     return <SPy16YouthRestMonth onBack={noop} />
+    case 'senior-preseason':    return <SPs2SeniorPreSeason onBack={noop} />
+    case 'senior-postseason':   return <SPs10SeniorPostSeason onBack={noop} />
+    case 'senior-offseason':    return <SPs16SeniorOffSeason onBack={noop} />
+    case 'miniroos-preseason':  return <SPm2MiniRoosPreSeason onBack={noop} />
+    case 'miniroos-postseason': return <SPm10MiniRoosPostSeason onBack={noop} />
+    case 'miniroos-rest':       return <SPm16MiniRoosRest onBack={noop} />
+    case 'ccoach-preseason':    return <SPc2CoCoachPreSeason onBack={noop} />
+    case 'standin-home':        return <SP21StandInHome onBack={noop} />
+    case 'standin-home-empty':  return <SP21eStandInHomeEmpty onBack={noop} />
+    case 'manager-preseason':   return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><SPp10ManagerPreSeason /></div>
+    case 'manager-postseason':  return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><SPp11ManagerPostSeason /></div>
+    case 'manager-restmonth':   return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><SPp12ManagerRestMonth /></div>
+    case 'player-preseason':    return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><SPp13PlayerPreSeason /></div>
+    case 'player-postseason':   return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><SPp14PlayerPostSeason /></div>
+    case 'older-preseason':     return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><SPp15OlderPreSeason /></div>
+    case 'older-postseason':    return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><SPp16OlderPostSeason /></div>
+    case 'older-restmonth':     return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><SPp17OlderRestMonth /></div>
+    case 'fn3-seniorteam':      return <FN3SeniorTeam onBack={noop} />
+    case 'hm2c-playercard':     return <HM2cPlayerCardMiniRoos onBack={noop} />
+    case 'hm6n-seasonnote':     return <HM6nSeasonNoteOne onBack={noop} />
+    case 'hm1n-quicknotes':     return <HM1nQuickNotes onBack={noop} />
+    case 'hm1r-notesback':      return <HM1rNotesBack onBack={noop} />
+    case 'se2-playersummary':   return <SE2PlayerSummary onBack={noop} />
+    case 'po5s-adultsettings':  return <PO5sAdultSettings onBack={noop} />
+    case 'tm11l-letterfull':    return <TM11lLetterFull onBack={noop} />
+    case 'c1s-clipsearch':      return <C1sClipSearch onBack={noop} />
+    case 'c1se-clipsearchnone': return <C1seClipSearchNone onBack={noop} />
+    case 'acc8p-paircamera':    return <ACC8pPairCamera onBack={noop} />
     case 'parent-preseason':    return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><SPp1ParentPreSeason onBack={noop} /></div>
     case 'parent-comingback':   return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><SPp2ParentComingBack onBack={noop} /></div>
     case 'parent-tournament':   return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><SPp3ParentTournament onBack={noop} /></div>
@@ -575,6 +637,8 @@ export default function DemoApp() {
         roleId={role}
         onSwitchRole={() => setView('sandbox')}
         onSwitchToDemo={() => setView('start')}
+        phase={PHASE_ROLES.has(role) ? phase : undefined}
+        onPhaseChange={PHASE_ROLES.has(role) ? setPhase : undefined}
       >
         {homeKey ? renderScreen(homeKey) : (
           <div style={{ padding: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 300 }}>
@@ -618,24 +682,52 @@ export default function DemoApp() {
       lookContent = <AcademyParentApp onBack={() => setView('start')} empty={false} />
     } else if (role === 'academyplayer') {
       lookContent = <AcademyPlayerApp onBack={() => setView('start')} empty={false} />
-    } else if (role === 'coach' || role === 'ccoach') {
+    } else if (role === 'coach') {
       if (window.innerWidth <= 640) {
         lookContent = <CoachPhoneApp />
       } else if (phase === 'preseason')       lookContent = <SP2HomePreSeason onBack={noop} />
       else if (phase === 'postseason') lookContent = <SP10HomePostSeason onBack={noop} />
       else if (phase === 'restmonth')  lookContent = <SP16RestMonth onBack={noop} />
       else                             lookContent = <JuniorCoachApp />
+    } else if (role === 'ccoach') {
+      if (phase === 'preseason')       lookContent = <SPc2CoCoachPreSeason onBack={noop} />
+      else if (phase === 'postseason') lookContent = <SP10HomePostSeason onBack={noop} />
+      else if (phase === 'restmonth')  lookContent = <SP16RestMonth onBack={noop} />
+      else                             lookContent = <JuniorCoachApp />
+    } else if (role === 'youth') {
+      if (phase === 'preseason')       lookContent = <SPy2YouthPreSeason onBack={noop} />
+      else if (phase === 'postseason') lookContent = <SPy10YouthPostSeason onBack={noop} />
+      else if (phase === 'restmonth')  lookContent = <SPy16YouthRestMonth onBack={noop} />
+      else                             lookContent = <JuniorCoachApp />
+    } else if (role === 'seniors') {
+      if (phase === 'preseason')       lookContent = <SPs2SeniorPreSeason onBack={noop} />
+      else if (phase === 'postseason') lookContent = <SPs10SeniorPostSeason onBack={noop} />
+      else if (phase === 'restmonth')  lookContent = <SPs16SeniorOffSeason onBack={noop} />
+      else                             lookContent = <JuniorCoachApp />
+    } else if (role === 'miniroos') {
+      if (phase === 'preseason')       lookContent = <div style={{ width: 1180, background: 'var(--surface-100)' }}><SPm2MiniRoosPreSeason onBack={noop} /></div>
+      else if (phase === 'postseason') lookContent = <div style={{ width: 1180, background: 'var(--surface-100)' }}><SPm10MiniRoosPostSeason onBack={noop} /></div>
+      else if (phase === 'restmonth')  lookContent = <div style={{ width: 1180, background: 'var(--surface-100)' }}><SPm16MiniRoosRest onBack={noop} /></div>
+      else                             lookContent = <div style={{ width: 1180, background: 'var(--surface-100)' }}><MiniRoosApp onBack={() => setRole('coach')} empty={false} /></div>
     } else if (role === 'parent') {
       if (phase === 'preseason')       lookContent = <SPp1ParentPreSeason onBack={noop} />
       else if (phase === 'postseason') lookContent = <SPp3ParentTournament onBack={noop} />
       else if (phase === 'restmonth')  lookContent = <SPp4ParentRestMonth onBack={noop} />
       else                             lookContent = <TwoChildrenApp onBack={() => setView('start')} empty={false} />
     } else if (role === 'manager') {
-      if (phase === 'postseason') lookContent = <SPp6ManagerTournament onBack={noop} />
-      else                        lookContent = <TeamManagerScreen empty={false} />
+      if (phase === 'preseason')       lookContent = <SPp10ManagerPreSeason />
+      else if (phase === 'postseason') lookContent = <SPp11ManagerPostSeason />
+      else if (phase === 'restmonth')  lookContent = <SPp12ManagerRestMonth />
+      else                             lookContent = <TeamManagerScreen empty={false} />
+    } else if (role === 'playeryoung') {
+      if (phase === 'preseason')       lookContent = <SPp13PlayerPreSeason />
+      else if (phase === 'postseason') lookContent = <SPp14PlayerPostSeason />
+      else                             lookContent = <TwoChildrenApp onBack={() => setView('start')} empty={false} />
     } else if (role === 'playerolder') {
-      if (phase === 'restmonth') lookContent = <SPp7PlayerRestMonth onBack={noop} />
-      else                       lookContent = <OlderPlayerApp empty={false} />
+      if (phase === 'preseason')       lookContent = <SPp15OlderPreSeason />
+      else if (phase === 'postseason') lookContent = <SPp16OlderPostSeason />
+      else if (phase === 'restmonth')  lookContent = <SPp17OlderRestMonth />
+      else                             lookContent = <OlderPlayerApp empty={false} />
     } else if (homeKey) {
       lookContent = renderScreen(homeKey)
     } else {
