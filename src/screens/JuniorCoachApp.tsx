@@ -61,8 +61,9 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
     if (s === 'squad')     { goNav('squad');    return }
     if (s === 'clips')     { goNav('clips');    return }
     if (s === 'home')      { goNav('home');     return }
-    if (s === 'inbox')     { goNav('home'); setHomeTab(1); return }
-    if (s === 'metric')    { goNav('squad'); setSquadTab(2); return }
+    if (s === 'inbox')     { goNav('home');     setHomeTab(1);  return }
+    if (s === 'metric')    { goNav('squad');    setSquadTab(2); return }
+    if (s === 'fixtures')  { goNav('home');     setHomeTab(3);  return }
     if (s === 'teamtalk')  { setSub('teamtalk');  return }
     if (s === 'pitchside') { setSub('pitchside'); return }
     if (s === 'addgame')   { setSub('addgame');   return }

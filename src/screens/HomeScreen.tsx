@@ -1,6 +1,6 @@
 import { INBOX, METRICS, WEEK_SCHEDULE, RESULTS, SQUAD, type Role } from '../data'
 
-type Screen = 'home' | 'training' | 'matchday' | 'teamtalk' | 'setstyle' | 'metric' | 'inbox' | 'squad'
+type Screen = 'home' | 'training' | 'matchday' | 'teamtalk' | 'setstyle' | 'metric' | 'inbox' | 'squad' | 'clips' | 'fixtures'
 
 interface Props {
   role: Role
@@ -10,13 +10,13 @@ interface Props {
   empty?: boolean
 }
 
-function HomeEmpty({ onSetStyle }: { onSetStyle?: () => void }) {
-  const steps = [
-    { n: 1, title: 'Add your squad', body: 'Names, positions and a parent contact. Import a spreadsheet or share an invite link.', btn: 'Add players' },
-    { n: 2, title: 'Add your fixtures', body: 'Clean Sheet plans training around your game days.', btn: 'Add fixtures' },
-    { n: 3, title: 'Connect the match camera', body: 'Your match camera records games and finds the clips for you.', btn: 'Connect' },
-    { n: 4, title: 'Pair boots and vests', body: 'Boot sensors and GPS vests measure running, sprints and touches.', btn: 'Pair devices' },
-    { n: 5, title: 'Turn on wellness check-ins', body: 'Players answer three quick questions on their phone before training and games.', btn: 'Turn on' },
+function HomeEmpty({ onNav }: { onNav: (s: Screen) => void }) {
+  const steps: Array<{ n: number; title: string; body: string; btn: string; nav: Screen }> = [
+    { n: 1, title: 'Add your squad',          body: 'Names, positions and a parent contact. Import a spreadsheet or share an invite link.', btn: 'Add players',  nav: 'squad'    },
+    { n: 2, title: 'Add your fixtures',        body: 'Clean Sheet plans training around your game days.',                                    btn: 'Add fixtures', nav: 'fixtures' },
+    { n: 3, title: 'Connect the match camera', body: 'Your match camera records games and finds the clips for you.',                         btn: 'Connect',      nav: 'clips'    },
+    { n: 4, title: 'Pair boots and vests',     body: 'Boot sensors and GPS vests measure running, sprints and touches.',                     btn: 'Pair devices', nav: 'metric'   },
+    { n: 5, title: 'Turn on wellness check-ins', body: 'Players answer three quick questions on their phone before training and games.',     btn: 'Turn on',      nav: 'metric'   },
   ]
   const styleRows = [
     { label: 'PRESSING', desc: 'Wins of the ball in their half' },
@@ -42,7 +42,7 @@ function HomeEmpty({ onSetStyle }: { onSetStyle?: () => void }) {
                 <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 2 }}>{s.title}</div>
                 <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: '18px' }}>{s.body}</div>
               </div>
-              <button style={{ height: 36, padding: '0 14px', borderRadius: 10, border: s.n === 1 ? 0 : '1px solid #c5c8c4', background: s.n === 1 ? '#2f6252' : '#ffffff', color: s.n === 1 ? '#ffffff' : '#10211f', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>{s.btn}</button>
+              <button onClick={() => onNav(s.nav)} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: s.n === 1 ? 0 : '1px solid #c5c8c4', background: s.n === 1 ? '#2f6252' : '#ffffff', color: s.n === 1 ? '#ffffff' : '#10211f', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>{s.btn}</button>
             </div>
           ))}
           <div style={{ padding: '12px 16px', borderTop: '1px solid #f0f1ef', display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -72,7 +72,7 @@ function HomeEmpty({ onSetStyle }: { onSetStyle?: () => void }) {
         <div style={{ background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '16px 18px' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
             <div style={{ fontSize: 15, fontWeight: 700 }}>Where we're at</div>
-            <button onClick={onSetStyle} style={{ height: 32, padding: '0 12px', borderRadius: 8, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Set our style</button>
+            <button onClick={() => onNav('setstyle')} style={{ height: 32, padding: '0 12px', borderRadius: 8, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Set our style</button>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
             {styleRows.map((row, i) => (
@@ -88,7 +88,7 @@ function HomeEmpty({ onSetStyle }: { onSetStyle?: () => void }) {
         <div style={{ background: '#eef5f2', borderRadius: 12, padding: '10px 14px', display: 'flex', alignItems: 'center', gap: 10 }}>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2f6252" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/></svg>
           <span style={{ fontSize: 13, color: '#2f6252', flexGrow: 1 }}>Nothing needs you yet. Reviews and alerts arrive here.</span>
-          <button style={{ border: 0, background: 'transparent', color: '#2f6252', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>Open inbox</button>
+          <button onClick={() => onNav('inbox')} style={{ border: 0, background: 'transparent', color: '#2f6252', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>Open inbox</button>
         </div>
       </div>
     </div>
@@ -155,7 +155,7 @@ const LAST_GAME_FINDINGS = [
 ]
 
 export default function HomeScreen({ onNav, onCalendar, empty }: Props) {
-  if (empty) return <HomeEmpty onSetStyle={() => onNav('setstyle')} />
+  if (empty) return <HomeEmpty onNav={onNav} />
   return (
     <main style={{
       flexGrow: 1, minHeight: 0, padding: '18px 28px 22px',
