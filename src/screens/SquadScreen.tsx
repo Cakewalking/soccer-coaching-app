@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { SQUAD_PLAYERS, POS_GROUP_LABELS, type SquadPlayer, type PosGroup, type Role } from '../data'
+import { useSandbox } from './sandbox/SandboxContext'
+import { addPlayer } from './sandbox/sandboxStore'
 
 interface Props {
   role: Role
@@ -7,21 +9,84 @@ interface Props {
   empty?: boolean
 }
 
+function AddPlayerForm({ onDone }: { onDone: () => void }) {
+  const { store, update } = useSandbox()
+  const [name, setName] = useState('')
+  const [position, setPosition] = useState('Midfielder')
+  const teamId = store.teams[0]?.id ?? 'sandbox-team'
+  const positions = ['Goalkeeper', 'Defender', 'Midfielder', 'Striker']
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    if (!name.trim()) return
+    const ns = addPlayer(store, { teamId, name: name.trim(), position })
+    update(ns)
+    setName('')
+    onDone()
+  }
+
+  return (
+    <form onSubmit={handleSubmit} style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 14, padding: '16px 18px', display: 'flex', gap: 10, alignItems: 'flex-end', flexWrap: 'wrap' as const }}>
+      <div style={{ flex: '2 1 180px' }}>
+        <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: '#4a5a57', marginBottom: 4 }}>Player name</label>
+        <input
+          value={name} onChange={e => setName(e.target.value)}
+          placeholder="e.g. Alex Johnson"
+          style={{ width: '100%', height: 44, padding: '0 12px', border: '1px solid #c5c8c4', borderRadius: 8, fontSize: 14, fontFamily: 'inherit', boxSizing: 'border-box' as const, outline: 'none', color: '#10211f' }}
+          autoFocus
+        />
+      </div>
+      <div style={{ flex: '1 1 140px' }}>
+        <label style={{ display: 'block', fontSize: 12, fontWeight: 700, color: '#4a5a57', marginBottom: 4 }}>Position</label>
+        <select
+          value={position} onChange={e => setPosition(e.target.value)}
+          style={{ width: '100%', height: 44, padding: '0 12px', border: '1px solid #c5c8c4', borderRadius: 8, fontSize: 14, fontFamily: 'inherit', boxSizing: 'border-box' as const, outline: 'none', color: '#10211f', background: '#fff' }}
+        >
+          {positions.map(p => <option key={p} value={p}>{p}</option>)}
+        </select>
+      </div>
+      <button type="submit" style={{ height: 44, padding: '0 18px', borderRadius: 8, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', flex: 'none' }}>Add</button>
+      <button type="button" onClick={onDone} style={{ height: 44, padding: '0 14px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, cursor: 'pointer', flex: 'none' }}>Cancel</button>
+    </form>
+  )
+}
+
 function SquadEmpty() {
+  const { active: inSandbox, store } = useSandbox()
+  const sbPlayers = inSandbox ? store.players : []
+  const [showForm, setShowForm] = useState(false)
   const positions = ['KEEPERS', 'DEFENDERS', 'MIDFIELDERS', 'FORWARDS']
+
   return (
     <div style={{ flexGrow: 1, padding: '14px 28px 18px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 340px', gap: 16, boxSizing: 'border-box', minHeight: 0, overflow: 'hidden' }}>
       <div style={{ minHeight: 0, display: 'flex', flexDirection: 'column', gap: 16, overflowY: 'auto' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, letterSpacing: '-0.02em' }}>Squad</h1>
-          <span style={{ fontSize: 14, color: '#4a5a57' }}>No players yet</span>
+          <span style={{ fontSize: 14, color: '#4a5a57' }}>{sbPlayers.length > 0 ? `${sbPlayers.length} player${sbPlayers.length !== 1 ? 's' : ''}` : 'No players yet'}</span>
           <div style={{ flexGrow: 1 }} />
-          <button style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
+          <button onClick={() => setShowForm(true)} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
-            Add players
+            {sbPlayers.length > 0 ? 'Add another' : 'Add players'}
           </button>
         </div>
 
+        {showForm && inSandbox && <AddPlayerForm onDone={() => setShowForm(false)} />}
+
+        {sbPlayers.length > 0 ? (
+          <div style={{ background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 16, overflow: 'hidden' }}>
+            {sbPlayers.map((p, i) => (
+              <div key={p.id} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px', borderTop: i > 0 ? '1px solid #e9eae8' : 'none' }}>
+                <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, color: '#10211f', flexShrink: 0 }}>
+                  {p.name.split(' ').map(w => w[0]).slice(0,2).join('')}
+                </div>
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontSize: 15, fontWeight: 600 }}>{p.name}</div>
+                  <div style={{ fontSize: 12, color: '#4a5a57' }}>{p.position}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
         <div style={{ background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '20px 24px', display: 'flex', gap: 20 }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 22px)', gap: 4, flex: 'none', marginTop: 4 }}>
             {['#2f6252','#40826d','#cbbeb5','#c39797'].map((c, i) => (
@@ -35,7 +100,7 @@ function SquadEmpty() {
               {[
                 { icon: 'M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1M16 8l-4-4-4 4M12 4v12', title: 'Import a spreadsheet', body: 'Use the list from your club registration system.', btn: 'Import', primary: true },
                 { icon: 'M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101M10.172 13.828a4 4 0 015.656 0l4 4a4 4 0 01-5.656 5.656l-1.101-1.102', title: 'Share an invite link', body: 'Parents add their child and their own contact details.', btn: 'Copy link', primary: false },
-                { icon: 'M12 5v14M5 12h14', title: 'Add one at a time', body: 'Good for a few players or a late sign-up.', btn: 'Add a player', primary: false },
+                { icon: 'M12 5v14M5 12h14', title: 'Add one at a time', body: 'Good for a few players or a late sign-up.', btn: 'Add a player', primary: false, onClick: () => setShowForm(true) },
               ].map(opt => (
                 <div key={opt.title} style={{ background: '#f7f8f7', borderRadius: 12, padding: '14px 14px' }}>
                   <div style={{ width: 32, height: 32, borderRadius: 8, background: '#eef5f2', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 8 }}>
@@ -43,12 +108,13 @@ function SquadEmpty() {
                   </div>
                   <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 4, lineHeight: '17px' }}>{opt.title}</div>
                   <div style={{ fontSize: 12, color: '#4a5a57', lineHeight: '16px', marginBottom: 10 }}>{opt.body}</div>
-                  <button style={{ height: 44, padding: '0 14px', borderRadius: 8, border: opt.primary ? 0 : '1px solid #c5c8c4', background: opt.primary ? '#2f6252' : '#ffffff', color: opt.primary ? '#ffffff' : '#10211f', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>{opt.btn}</button>
+                  <button onClick={'onClick' in opt ? opt.onClick : undefined} style={{ height: 44, padding: '0 14px', borderRadius: 8, border: opt.primary ? 0 : '1px solid #c5c8c4', background: opt.primary ? '#2f6252' : '#ffffff', color: opt.primary ? '#ffffff' : '#10211f', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>{opt.btn}</button>
                 </div>
               ))}
             </div>
           </div>
         </div>
+        )}
 
         <div>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
@@ -254,7 +320,8 @@ function RightPanel({ p, onProfile }: { p: SquadPlayer; onProfile: () => void })
 }
 
 export default function SquadScreen({ onPlayerProfile, empty }: Props) {
-  if (empty) return <SquadEmpty />
+  const { active: inSandbox } = useSandbox()
+  if (empty || inSandbox) return <SquadEmpty />
   const [filter, setFilter] = useState<Filter>('all')
   const [selected, setSelected] = useState<SquadPlayer>(
     SQUAD_PLAYERS.find(p => p.ini === 'EB')!

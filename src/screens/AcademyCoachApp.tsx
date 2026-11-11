@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { AcademyTrainingWeek, AcademyTrainingSuggested, AcademySessionPlan, AcademyWhoComing } from './AcademyTraining'
 
 const G    = '#2f6252'
 const G2   = '#40826d'
@@ -9,8 +10,9 @@ const LN   = '#e8edeb'
 const PALE = '#eef5f2'
 const ROSE = '#c39797'
 
-type AcademyNav  = 'today' | 'players' | 'gameday' | 'library'
-type TodayTab    = 'overview' | 'runsession' | 'trial' | 'oneonone' | 'record' | 'suggested' | 'chat'
+type AcademyNav   = 'today' | 'training' | 'players' | 'gameday' | 'record'
+type TrainingTab  = 'week' | 'session' | 'suggested' | 'whoComing'
+type TodayTab     = 'overview' | 'runsession' | 'trial' | 'oneonone' | 'suggested' | 'chat'
 type GameDayTab  = 'saturday' | 'teamsheet' | 'livegame' | 'review'
 type RecordStep  = 'pick' | 'drill' | 'recording' | 'results'
 type PlayersView = 'list' | 'plan' | 'report'
@@ -1193,6 +1195,7 @@ function PlayersListView({ onPlayer, onReport }: { onPlayer: (name: string, isNe
 export default function AcademyCoachApp({ onBack, empty = false, initialScreen, onNavChange }: { onBack: () => void; empty?: boolean; initialScreen?: string; onNavChange?: (screen: string) => void }) {
   const [nav, setNav]               = useState<AcademyNav>((initialScreen as AcademyNav) ?? 'today')
   const [todayTab, setTodayTab]     = useState<TodayTab>('overview')
+  const [trainingTab, setTrainingTab] = useState<TrainingTab>('week')
   const [gameDayTab, setGameDayTab] = useState<GameDayTab>('saturday')
   const [playersView, setPlayersView] = useState<PlayersView>('list')
   const [selectedPlayer, setSelectedPlayer] = useState<{ name: string; isNew: boolean } | null>(null)
@@ -1203,9 +1206,14 @@ export default function AcademyCoachApp({ onBack, empty = false, initialScreen, 
     { id: 'runsession', label: 'Run a session' },
     { id: 'trial',     label: 'Trial player' },
     { id: 'oneonone',  label: 'One-on-one' },
-    { id: 'record',    label: 'Record' },
     { id: 'suggested', label: 'Suggested' },
     { id: 'chat',      label: 'Chats' },
+  ]
+  const TRAINING_TABS_ACC: Array<{ id: TrainingTab; label: string }> = [
+    { id: 'week',      label: 'This week' },
+    { id: 'session',   label: 'Session plan' },
+    { id: 'suggested', label: 'Suggested' },
+    { id: 'whoComing', label: "Who's coming" },
   ]
   const GAMEDAY_TABS: Array<{ id: GameDayTab; label: string }> = [
     { id: 'saturday',  label: 'This Saturday' },
@@ -1215,16 +1223,16 @@ export default function AcademyCoachApp({ onBack, empty = false, initialScreen, 
   ]
 
   const contextTabs =
-    nav === 'today'   ? TODAY_TABS.map(t => t.label) :
-    nav === 'gameday' ? GAMEDAY_TABS.map(t => t.label) :
-    nav === 'library' ? TODAY_TABS.map(t => t.label) : []
+    nav === 'today'    ? TODAY_TABS.map(t => t.label) :
+    nav === 'training' ? TRAINING_TABS_ACC.map(t => t.label) :
+    nav === 'gameday'  ? GAMEDAY_TABS.map(t => t.label) : []
   const activeTabIndex =
-    nav === 'today'   ? TODAY_TABS.findIndex(t => t.id === todayTab) :
-    nav === 'gameday' ? GAMEDAY_TABS.findIndex(t => t.id === gameDayTab) :
-    nav === 'library' ? TODAY_TABS.findIndex(t => t.id === 'suggested') : 0
+    nav === 'today'    ? TODAY_TABS.findIndex(t => t.id === todayTab) :
+    nav === 'training' ? TRAINING_TABS_ACC.findIndex(t => t.id === trainingTab) :
+    nav === 'gameday'  ? GAMEDAY_TABS.findIndex(t => t.id === gameDayTab) : 0
 
   // Live recording occupies full screen
-  if (nav === 'today' && todayTab === 'record' && recordStep === 'recording') {
+  if (nav === 'record' && recordStep === 'recording') {
     return (
       <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: '#0e1a17', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
         <LiveRecordingView onStop={() => setRecordStep('results')}/>
@@ -1239,8 +1247,14 @@ export default function AcademyCoachApp({ onBack, empty = false, initialScreen, 
         <div style={{ height: 60, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 16 }}>
           <span style={{ fontSize: 17, fontWeight: 800, letterSpacing: '-0.03em', color: '#fff', flexShrink: 0 }}>Clean Sheet</span>
           <nav style={{ display: 'flex', flexGrow: 1, height: 60 }}>
-            {(['today', 'players', 'gameday', 'library'] as AcademyNav[]).map(id => (
-              <button key={id} onClick={() => { setNav(id); onNavChange?.(id) }} style={{ height: 60, padding: '0 16px', border: 0, background: 'transparent', fontFamily: 'inherit', fontSize: 15, fontWeight: nav === id ? 700 : 500, color: nav === id ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer', borderBottom: nav === id ? '3px solid #fff' : '3px solid transparent', textTransform: 'capitalize', boxSizing: 'border-box' as const }}>{id === 'gameday' ? 'Game day' : id.charAt(0).toUpperCase() + id.slice(1)}</button>
+            {([
+              { id: 'today',    label: 'Today' },
+              { id: 'training', label: 'Training' },
+              { id: 'players',  label: 'Players' },
+              { id: 'gameday',  label: 'Game day' },
+              { id: 'record',   label: 'Record' },
+            ] as Array<{ id: AcademyNav; label: string }>).map(({ id, label }) => (
+              <button key={id} onClick={() => { setNav(id); onNavChange?.(id) }} style={{ height: 60, padding: '0 16px', border: 0, background: 'transparent', fontFamily: 'inherit', fontSize: 15, fontWeight: nav === id ? 700 : 500, color: nav === id ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer', borderBottom: nav === id ? '3px solid #fff' : '3px solid transparent', boxSizing: 'border-box' as const }}>{label}</button>
             ))}
           </nav>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
@@ -1257,6 +1271,7 @@ export default function AcademyCoachApp({ onBack, empty = false, initialScreen, 
                 return (
                   <button key={tab} onClick={() => {
                     if (nav === 'today') { setTodayTab(TODAY_TABS[i].id); setRecordStep('pick') }
+                    if (nav === 'training') setTrainingTab(TRAINING_TABS_ACC[i].id)
                     if (nav === 'gameday') setGameDayTab(GAMEDAY_TABS[i].id)
                   }} style={{ height: 44, padding: '0 16px', border: 0, background: 'transparent', fontFamily: 'inherit', fontSize: 14, fontWeight: active ? 600 : 400, color: active ? INK : MUT, cursor: 'pointer', borderBottom: active ? `3px solid ${G2}` : '3px solid transparent', boxSizing: 'border-box', whiteSpace: 'nowrap' }}>{tab}</button>
                 )
@@ -1276,11 +1291,17 @@ export default function AcademyCoachApp({ onBack, empty = false, initialScreen, 
         {nav === 'today' && todayTab === 'runsession' && <RunSessionView empty={empty}/>}
         {nav === 'today' && todayTab === 'trial'      && <TrialView empty={empty}/>}
         {nav === 'today' && todayTab === 'oneonone'   && <OneOnOneView empty={empty}/>}
-        {nav === 'today' && todayTab === 'record' && recordStep === 'pick'     && <RecordView empty={empty} onDrill={() => setRecordStep('drill')} onRecording={() => setRecordStep('recording')}/>}
-        {nav === 'today' && todayTab === 'record' && recordStep === 'drill'    && <RecordDrillView onStart={() => setRecordStep('recording')}/>}
-        {nav === 'today' && todayTab === 'record' && recordStep === 'results'  && <RecordResultsView firstRun={false}/>}
         {nav === 'today' && todayTab === 'suggested'  && <SuggestedView empty={empty}/>}
         {nav === 'today' && todayTab === 'chat'       && <ChatView empty={empty}/>}
+        {/* Training */}
+        {nav === 'training' && trainingTab === 'week'      && <AcademyTrainingWeek />}
+        {nav === 'training' && trainingTab === 'session'   && <AcademySessionPlan />}
+        {nav === 'training' && trainingTab === 'suggested' && <AcademyTrainingSuggested />}
+        {nav === 'training' && trainingTab === 'whoComing' && <AcademyWhoComing />}
+        {/* Record */}
+        {nav === 'record' && recordStep === 'pick'      && <RecordView empty={empty} onDrill={() => setRecordStep('drill')} onRecording={() => setRecordStep('recording')}/>}
+        {nav === 'record' && recordStep === 'drill'     && <RecordDrillView onStart={() => setRecordStep('recording')}/>}
+        {nav === 'record' && recordStep === 'results'   && <RecordResultsView firstRun={false}/>}
         {/* Players */}
         {nav === 'players' && playersView === 'list'   && <PlayersListView onPlayer={(name, isNew) => { setSelectedPlayer({ name, isNew }); setPlayersView('plan') }} onReport={() => setPlayersView('report')}/>}
         {nav === 'players' && playersView === 'plan'   && <PlayerPlanView playerName={selectedPlayer?.name ?? 'Kai Okonkwo'} newPlayer={selectedPlayer?.isNew} onReport={() => setPlayersView('report')}/>}
@@ -1296,8 +1317,6 @@ export default function AcademyCoachApp({ onBack, empty = false, initialScreen, 
         {nav === 'gameday' && gameDayTab === 'review' && (
           <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', color: MUT, fontSize: 14 }}>Review — coming in Bucket 11</div>
         )}
-        {/* Library */}
-        {nav === 'library' && <SuggestedView empty={empty} />}
       </div>
     </div>
   )

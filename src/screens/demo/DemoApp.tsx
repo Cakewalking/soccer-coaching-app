@@ -163,6 +163,7 @@ import TM2ManagerGameDay          from '../step4/TM2ManagerGameDay'
 import TM3ManagerChange           from '../step4/TM3ManagerChange'
 import TM4DutyRoster              from '../step4/TM4DutyRoster'
 import TM5ManagerMessages         from '../step4/TM5ManagerMessages'
+import TM7HeadKnock               from '../step4/TM7HeadKnock'
 import TM8SidelineReport          from '../step4/TM8SidelineReport'
 import TM9SignOff                  from '../step4/TM9SignOff'
 import TM10Heat                   from '../step4/TM10Heat'
@@ -372,6 +373,8 @@ import DemoShell, { type DemoPhase } from './DemoShell'
 import DemoShellPhone        from './DemoShellPhone'
 import DemoShellSandbox      from './DemoShellSandbox'
 import { TOURS, type RoleId } from './tours'
+import { readStore, writeStore, clearStore, storeHasData, sampleStore, type SandboxStore } from '../sandbox/sandboxStore'
+import { SandboxContext } from '../sandbox/SandboxContext'
 import { AskHome, AskMinimised, AskOpen, AskOpenFirst, AskPhoneButton, AskPhoneOpen } from '../AskCleanSheet'
 import { MessagesRules, CoachNewMessage, CoachMessages, CoachMessagesPersonCard, DirectorMessages, ParentMessages, ParentMessagesEmpty, ParentNewMessage, RefereeMessages } from '../MessagesScreens'
 import { AcademyTrainingWeek, AcademyTrainingSuggested, AcademySessionPlan, AcademyWhoComing, AcademyTrainingWeekEmpty } from '../AcademyTraining'
@@ -763,7 +766,7 @@ export function renderScreen(key: string): ReactNode {
     case 'TM4-DutyRoster':            return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TM4DutyRoster /></div>
     case 'TM5-ManagerMessages':       return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TM5ManagerMessages /></div>
     case 'TM6-ManagerWhosComing':     return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TM6WhoComing /></div>
-    case 'TM7-HeadKnock':             return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TM8SidelineReport /></div>
+    case 'TM7-HeadKnock':             return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TM7HeadKnock /></div>
     case 'TM8-SidelineReport':        return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TM8SidelineReport /></div>
     case 'TM9-SignOff':               return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TM9SignOff /></div>
     case 'TM10-Heat':                 return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TM10Heat /></div>
@@ -782,8 +785,8 @@ export function renderScreen(key: string): ReactNode {
     case 'CH9-MessageActions':        return <CH9MessageActions />
     // Design ID aliases — existing tablet coach screens
     case 'T1-TabletTraining':         return <T1TabletTraining />
-    case 'C1-ClipsTab':               return <ClipsScreen empty={false} />
-    case 'HS1-HomeSeniors':           return <SeniorsYouthCoachApp teamType="seniors" onBack={noop} />
+    case 'C1-ClipsTab':               return <JuniorCoachApp initialScreen="clips" />
+    case 'HS1-HomeSeniors':           return <SeniorsYouthCoachApp teamType="seniors" onBack={noop} initialScreen="training" />
     case 'signup':                    return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><OBSignUp /></div>
     case 'P1-Consent':                return <P1Consent />
     case 'AV2-ParentAvailability':    return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><AV2ParentAvailability /></div>
@@ -822,6 +825,7 @@ export function renderScreen(key: string): ReactNode {
     case 'TL3-TestResults':           return <TL3SprintResults />
     // Design ID aliases — Season features
     case 'FN2-SeniorSquad':           return <FN2SeniorSquad />
+    case 'FN2b-SeniorSquad':          return <FN2SeniorSquad />
     case 'FN3-SeniorTeam':            return <FN3SeniorTeam onBack={noop} />
     case 'FP1-PlayFootball':          return <FP1PlayFootball />
     case 'FT1-Trials':                return <FT1Trials />
@@ -848,6 +852,7 @@ export function renderScreen(key: string): ReactNode {
     // Design IDs — Fitness coach screens (GT2, F3, F4, FT*, TL2, IL1, FC1)
     case 'GT2-MeasureSession':        return <GT2MeasureSession />
     case 'F3-FitnessTraining':        return <F3FitnessTraining />
+    case 'F3b-FitnessTraining':       return <F3FitnessTraining />
     case 'F4-FitnessMatch':           return <F4FitnessMatch />
     case 'FT2-FitnessHomeU14':        return <FT2FitnessHomeU14 />
     case 'FT3-FitnessHomeU13G':       return <FT3FitnessHomeU13G />
@@ -864,6 +869,7 @@ export function renderScreen(key: string): ReactNode {
     // Design IDs — Welfare / goalkeeper screens
     case 'DW1-WelfareCases':          return <DW1WelfareCases />
     case 'FS1-Sideline':              return <FS1Sideline />
+    case 'FS1b-Sideline':             return <FS1Sideline />
     case 'FK1-Goalkeepers':           return <FK1Goalkeepers />
     case 'HG1-HomeKeeperCoach':       return <HG1HomeKeeperCoach />
     case 'HG2-KeeperSession':         return <HG2KeeperSession />
@@ -929,6 +935,7 @@ export function renderScreen(key: string): ReactNode {
     case 'AC1-AcademyHome':           return <AcademyOwnerApp onBack={noop} empty={false} />
     case 'AC2e-ProgramsEmpty':        return <AC1eAcademyHomeEmpty />
     case 'AC2-Programs':              return <AC2Programs />
+    case 'AC2b-Programs':             return <AC2Programs />
     case 'AC3-Trials':                return <AC3Trials />
     case 'AC4-AcademyPlayers':        return <AC4AcademyPlayers />
     case 'AC5-Fees':                  return <AC5Fees />
@@ -936,12 +943,13 @@ export function renderScreen(key: string): ReactNode {
     case 'AC7-ReportsOut':            return <AC7ReportsOut />
     case 'AC9-HolidayClinic':         return <AC9HolidayClinic />
     case 'AC11-PartnerClub':          return <AC11PartnerClub />
-    case 'AC10-AcademySafety':        return <AcademyOwnerApp onBack={noop} empty={false} />
+    case 'AC10-AcademySafety':        return <AcademyOwnerApp onBack={noop} empty={false} initialScreen="safety" />
     case 'AC12-AcademyBroadcast':     return <AC12AcademyBroadcast />
     // Design IDs — Academy coach screens (tablet)
     case 'ACC2-RunSession':           return <ACC2RunSession />
     case 'ACC3-TrialAssess':          return <ACC3TrialAssess />
     case 'ACC4-PlayerPlan':           return <ACC4PlayerPlan />
+    case 'ACC4b-PlayerPlan':          return <ACC4PlayerPlan />
     case 'ACC5-OneOnOne':             return <ACC5OneOnOne />
     case 'ACC6-ReportDraft':          return <ACC6ReportDraft />
     case 'ACC7-AcademyGameDay':       return <ACC7AcademyGameDay />
@@ -1103,7 +1111,7 @@ export function renderScreen(key: string): ReactNode {
     case 'academycoach-e':
       return <AcademyCoachApp onBack={noop} empty={true} />
     case 'academyparent-e':
-      return <AcademyParentApp onBack={noop} empty={true} />
+      return <AcademyParentApp onBack={noop} empty={true} initialModal="none" />
     case 'academyplayer-e':
       return <AcademyPlayerApp onBack={noop} empty={true} />
     case 'referee-e':
@@ -1177,15 +1185,15 @@ function pathToState(path: string): { view: DemoView; role: RoleId; screen?: str
     const lookScreen = m1[2]
     if (lookScreen !== undefined) {
       const LOOK_SCREENS: Partial<Record<RoleId, Set<string>>> = {
-        coach:        new Set(['home', 'squad', 'training', 'matchday', 'clips']),
-        ccoach:       new Set(['home', 'squad', 'training', 'matchday', 'clips']),
-        youth:        new Set(['home', 'squad', 'training', 'matchday', 'clips']),
-        seniors:      new Set(['home', 'squad', 'training', 'matchday', 'clips']),
+        coach:        new Set(['home', 'squad', 'training', 'matchday', 'clips', 'record']),
+        ccoach:       new Set(['home', 'squad', 'training', 'matchday', 'clips', 'record']),
+        youth:        new Set(['home', 'squad', 'training', 'matchday', 'clips', 'record']),
+        seniors:      new Set(['home', 'squad', 'training', 'matchday', 'clips', 'record']),
         miniroos:     new Set(['home', 'squad', 'training', 'gameday']),
         goalkeeper:   new Set(['home', 'keepers', 'training', 'clips']),
         fitness:      new Set(['home', 'squad', 'training', 'matchday']),
         academyowner: new Set(['home', 'programs', 'players', 'coaches', 'money']),
-        academycoach: new Set(['today', 'players', 'gameday', 'library']),
+        academycoach: new Set(['today', 'training', 'players', 'gameday', 'record']),
       }
       if (!LOOK_SCREENS[lookRole]?.has(lookScreen)) return { view: 'notfound', role: 'coach' }
     }
@@ -1204,7 +1212,8 @@ export default function DemoApp() {
   const [role, setRole] = useState<RoleId>(init.role)
   const [screen, setScreen] = useState<string | undefined>(init.screen)
   const [phase, setPhase] = useState<DemoPhase>('season')
-  const [filled, setFilled] = useState(() => localStorage.getItem('cs_demo_sandbox_filled') === '1')
+  const [sbStore, setSbStore] = useState<SandboxStore>(() => readStore())
+  const sbFilled = storeHasData(sbStore)
   const [isPhone, setIsPhone] = useState(() => window.innerWidth < 768)
 
   useEffect(() => {
@@ -1281,16 +1290,15 @@ export default function DemoApp() {
         onSwitchToDemo={() => setView('start')}
         expiryDate={sandboxExpiryLabel()}
         onFill={() => {
-          localStorage.setItem('cs_demo_sandbox_filled', '1')
-          setFilled(true)
-          alert('Sample data loaded. 18 players, 3 games and recordings, marked as samples.')
+          const filled = sampleStore()
+          writeStore(filled)
+          setSbStore(filled)
         }}
         onReset={() => {
           if (window.confirm("Remove everything you've added and start again?")) {
-            localStorage.removeItem('cs_demo_sandbox_filled')
-            deleteSandbox()
-            createSandbox()
-            setFilled(false)
+            clearStore()
+            const empty = readStore()
+            setSbStore(empty)
           }
         }}
       />
@@ -1299,7 +1307,7 @@ export default function DemoApp() {
 
   if (view === 'sandboxlook') {
     const tour = TOURS[role]
-    const homeKey = filled ? tour.home : (tour.sandboxHome ?? tour.home)
+    const homeKey = sbFilled ? tour.home : (tour.sandboxHome ?? tour.home)
     return (
       <DemoShellSandbox
         roleId={role}
@@ -1308,12 +1316,31 @@ export default function DemoApp() {
         phase={PHASE_ROLES.has(role) ? phase : undefined}
         onPhaseChange={PHASE_ROLES.has(role) ? setPhase : undefined}
         expiryShort={sandboxExpiryShort()}
+        filled={sbFilled}
+        onFill={() => {
+          const filled = sampleStore()
+          writeStore(filled)
+          setSbStore(filled)
+        }}
+        onReset={() => {
+          if (window.confirm("Remove everything you've added and start again?")) {
+            clearStore()
+            const empty = readStore()
+            setSbStore(empty)
+          }
+        }}
       >
-        {homeKey ? renderScreen(homeKey) : (
-          <div style={{ padding: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 300 }}>
-            <div style={{ fontSize: 15, color: '#6f7f7b' }}>{TOURS[role].roleLabel} — no screen preview available.</div>
-          </div>
-        )}
+        <SandboxContext.Provider value={{
+          store: sbStore,
+          update: (s) => { writeStore(s); setSbStore(s) },
+          active: true,
+        }}>
+          {homeKey ? renderScreen(homeKey) : (
+            <div style={{ padding: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 300 }}>
+              <div style={{ fontSize: 15, color: '#6f7f7b' }}>{TOURS[role].roleLabel} — no screen preview available.</div>
+            </div>
+          )}
+        </SandboxContext.Provider>
       </DemoShellSandbox>
     )
   }

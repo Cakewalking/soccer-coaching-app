@@ -449,7 +449,7 @@ export default function TwoChildrenApp({ empty = false }: { onBack: () => void; 
       {view === 'home' && (empty ? (
         <div style={{ flexGrow: 1, padding: '48px 20px 20px', display: 'flex', flexDirection: 'column', gap: 16 }}>
           <div>
-            <div style={{ fontSize: 12, color: '#6f7f7b', marginBottom: 2 }}>Wattle Creek U12 · parent</div>
+            <div style={{ fontSize: 12, color: '#6f7f7b', marginBottom: 2 }}>Parent · waiting for first training</div>
             <div style={{ fontSize: 24, fontWeight: 800, color: '#10211f' }}>Welcome, Linh</div>
           </div>
           <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', marginBottom: 2 }}>{"Mia's week will show here"}</div>

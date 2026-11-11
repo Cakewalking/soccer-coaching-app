@@ -17,9 +17,12 @@ interface Props {
   phase?: DemoPhase
   onPhaseChange?: (p: DemoPhase) => void
   expiryShort?: string
+  filled?: boolean
+  onFill?: () => void
+  onReset?: () => void
 }
 
-export default function DemoShellSandbox({ roleId, onSwitchRole, onSwitchToDemo, children, phase, onPhaseChange, expiryShort }: Props) {
+export default function DemoShellSandbox({ roleId, onSwitchRole, onSwitchToDemo, children, phase, onPhaseChange, expiryShort, filled, onFill, onReset }: Props) {
   const tour = TOURS[roleId]
 
   return (
@@ -51,6 +54,16 @@ export default function DemoShellSandbox({ roleId, onSwitchRole, onSwitchToDemo,
               </button>
             ))}
           </div>
+        )}
+        {onFill && !filled && (
+          <button onClick={onFill} style={{ alignSelf: 'stretch', padding: '0 14px', border: 0, borderLeft: '1px solid rgba(255,255,255,0.15)', background: 'none', color: 'rgba(255,255,255,0.8)', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap', flex: 'none' }}>
+            Fill with sample data
+          </button>
+        )}
+        {onReset && filled && (
+          <button onClick={onReset} style={{ alignSelf: 'stretch', padding: '0 14px', border: 0, borderLeft: '1px solid rgba(255,255,255,0.15)', background: 'none', color: 'rgba(255,255,255,0.65)', fontFamily: 'inherit', fontSize: 13, fontWeight: 400, cursor: 'pointer', whiteSpace: 'nowrap', flex: 'none' }}>
+            Reset
+          </button>
         )}
         <button onClick={onSwitchToDemo} style={{ alignSelf: 'stretch', padding: '0 18px', border: 0, borderLeft: '1px solid rgba(255,255,255,0.15)', background: 'none', color: 'rgba(255,255,255,0.8)', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap', flex: 'none' }}>
           Switch to the demo

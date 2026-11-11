@@ -205,7 +205,7 @@ export const TOURS: Record<string, TourDef> = {
       ]},
       { title: "Each week", steps: [
         { label: "Home", caption: "For adults the week is load, the opposition and the plan.", screen: "HS1-HomeSeniors" },
-        { label: "Squad load", caption: "For adults the week is load, the opposition and the plan.", screen: "FN2-SeniorSquad" },
+        { label: "Squad load", caption: "For adults the week is load, the opposition and the plan.", screen: "FN2b-SeniorSquad" },
         { label: "Opposition", caption: "For adults the week is load, the opposition and the plan. This screen is shared with other ages, so it shows the under-12 team here.", screen: "opposition" },
         { label: "Tonight\u2019s plan", caption: "For adults the week is load, the opposition and the plan.", screen: "training" },
       ]},
@@ -262,7 +262,7 @@ export const TOURS: Record<string, TourDef> = {
         { label: "Home", caption: "Under 12 it\u2019s simple: growth, a good warm-up and a few flags. No fitness testing.", screen: "F3-FitnessTraining" },
         { label: "Growth", caption: "Under 12 it\u2019s simple: growth, a good warm-up and a few flags. No fitness testing.", screen: "growth" },
         { label: "Measuring session", caption: "Under 12 it\u2019s simple: growth, a good warm-up and a few flags. No fitness testing.", screen: "GT2-MeasureSession" },
-        { label: "Your part of training", caption: "Under 12 it\u2019s simple: growth, a good warm-up and a few flags. No fitness testing.", screen: "coachfitness" },
+        { label: "Your part of training", caption: "Under 12 it\u2019s simple: growth, a good warm-up and a few flags. No fitness testing.", screen: "F3b-FitnessTraining" },
       ]},
       { title: "Under 13 to 16: Grow", steps: [
         { label: "Home, U13 girls", caption: "From under 13 the view grows with the players: growth spurts, load and tests against their own last result.", screen: "FT3-FitnessHomeU13G" },
@@ -408,7 +408,7 @@ export const TOURS: Record<string, TourDef> = {
       ]},
       { title: "When something\u2019s wrong", steps: [
         { label: "You can tell someone", caption: "A child can write privately to the welfare officer. The coach can\u2019t see it.", screen: "twochildren" },
-        { label: "Write to the welfare officer", caption: "A child can write privately to the welfare officer. The coach can\u2019t see it.", screen: "twochildren" },
+        { label: "Write to the welfare officer", caption: "A child can write privately to the welfare officer. The coach can\u2019t see it.", screen: "PC2b-TellHelen" },
       ]},
     ],
   },
@@ -550,7 +550,7 @@ export const TOURS: Record<string, TourDef> = {
         { label: "My cases", caption: "Only the welfare officer sees names. The director sees counts.", screen: "DW1-WelfareCases" },
         { label: "Nothing open", caption: "Only the welfare officer sees names. The director sees counts." },
         { label: "What the director sees", caption: "Only the welfare officer sees names. The director sees counts.", screen: "D4-Players" },
-        { label: "Sideline reports", caption: "Only the welfare officer sees names. The director sees counts.", screen: "FS1-Sideline" },
+        { label: "Sideline reports", caption: "Only the welfare officer sees names. The director sees counts.", screen: "FS1b-Sideline" },
       ]},
       { title: "Also yours", steps: [
         { label: "Concussion return to play", caption: "The welfare officer also holds concussion returns, children checks and data requests.", screen: "FC1-Concussion" },
@@ -577,7 +577,7 @@ export const TOURS: Record<string, TourDef> = {
       ]},
       { title: "Fill the places", steps: [
         { label: "Trials: booked to joined", caption: "Free trials are how academies grow. Every trial family is followed from booking to joining, so none drop off.", screen: "AC3-Trials" },
-        { label: "Programs and waiting list", caption: "Free trials are how academies grow. Every trial family is followed from booking to joining, so none drop off.", screen: "AC2-Programs" },
+        { label: "Programs and waiting list", caption: "Free trials are how academies grow. Every trial family is followed from booking to joining, so none drop off.", screen: "AC2b-Programs" },
         { label: "Holiday clinic", caption: "Free trials are how academies grow. Every trial family is followed from booking to joining, so none drop off.", screen: "AC9-HolidayClinic" },
       ]},
       { title: "Each week", steps: [
@@ -621,7 +621,7 @@ export const TOURS: Record<string, TourDef> = {
         { label: "A new player\u2019s plan", caption: "A trial player is assessed in four taps, with a suggested group and a line for the family.", screen: "ACC4-PlayerPlan" },
       ]},
       { title: "Each player", steps: [
-        { label: "Plan, goal and whole week", caption: "One plan per player, their whole week across club and academy, and one-on-ones kept in open view.", screen: "ACC4-PlayerPlan" },
+        { label: "Plan, goal and whole week", caption: "One plan per player, their whole week across club and academy, and one-on-ones kept in open view.", screen: "ACC4b-PlayerPlan" },
         { label: "One-on-one, in open view", caption: "One plan per player, their whole week across club and academy, and one-on-ones kept in open view.", screen: "ACC5-OneOnOne" },
       ]},
       { title: "Game day", steps: [
@@ -992,11 +992,11 @@ export const TOURS: Record<string, TourDef> = {
     home: '',
     sections: [
       { title: "The story", steps: [
-        { label: "Saturday: the game goes in", caption: "The club films the game on whatever camera it has. Cameras with a live feed can stream straight in." },
-        { label: "The review comes back", caption: "About 25 minutes later: what went well, and three things to work on, each with a clip." },
-        { label: "Thursday: the plan is ready", caption: "Training is built from those three things, using drills written to the national curriculum." },
-        { label: "At the ground", caption: "Pitch-side, the coach sees what to set up and what to say. Growing players have their sprints capped." },
-        { label: "Parents are in the loop", caption: "Meanwhile, families get one simple week view on their phone, and decide what\u2019s recorded." },
+        { label: "Saturday: the game goes in", caption: "The club films the game on whatever camera it has. Cameras with a live feed can stream straight in.", screen: "GI0-Recording" },
+        { label: "The review comes back", caption: "About 25 minutes later: what went well, and three things to work on, each with a clip.", screen: "review" },
+        { label: "Thursday: the plan is ready", caption: "Training is built from those three things, using drills written to the national curriculum.", screen: "T3-TrainingTab" },
+        { label: "At the ground", caption: "Pitch-side, the coach sees what to set up and what to say. Growing players have their sprints capped.", screen: "TR1b-PitchSideDrill" },
+        { label: "Parents are in the loop", caption: "Meanwhile, families get one simple week view on their phone, and decide what\u2019s recorded.", screen: "PA-Parent" },
         { label: "Next Saturday", caption: "The loop closes: game, plan, training, proof." },
       ]},
     ],

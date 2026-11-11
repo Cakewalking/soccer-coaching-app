@@ -24,7 +24,7 @@ function HomeEmpty({ onNav }: { onNav: (s: string) => void }) {
       <div style={{ minHeight: 0, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 16 }}>
         <div>
           <h1 style={{ margin: '0 0 2px', fontSize: 26, fontWeight: 700, letterSpacing: '-0.02em' }}>Welcome to Clean Sheet, Sam</h1>
-          <div style={{ fontSize: 14, color: '#4a5a57' }}>U12 Sam · Wattle Creek FC · let's get your team ready</div>
+          <div style={{ fontSize: 14, color: '#4a5a57' }}>U12 Sam · let's get your team ready</div>
         </div>
         <div style={{ background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 16, overflow: 'hidden' }}>
           <div style={{ padding: '12px 16px', background: '#2f6252', display: 'flex', alignItems: 'center', gap: 10 }}>
@@ -46,7 +46,7 @@ function HomeEmpty({ onNav }: { onNav: (s: string) => void }) {
           <div style={{ padding: '12px 16px', borderTop: '1px solid #f0f1ef', display: 'flex', alignItems: 'center', gap: 8 }}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4a5a57" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
             <span style={{ fontSize: 13, color: '#4a5a57' }}>Setting up for the whole club? We can walk you through it.</span>
-            <button style={{ border: 0, background: 'transparent', color: '#2f6252', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>Book a 15-minute call</button>
+            <button onClick={() => onNav('call')} style={{ border: 0, background: 'transparent', color: '#2f6252', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>Book a 15-minute call</button>
           </div>
         </div>
       </div>

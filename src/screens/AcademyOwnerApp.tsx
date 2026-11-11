@@ -909,8 +909,10 @@ function AcademyYearView({ onBack }: { onBack: () => void }) {
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
 export default function AcademyOwnerApp({ onBack, empty = false, initialScreen, onNavChange }: { onBack: () => void; empty?: boolean; initialScreen?: string; onNavChange?: (screen: string) => void }) {
-  const [nav, setNav]             = useState<OwnerNav>((initialScreen as OwnerNav) ?? 'home')
-  const [homeTab, setHomeTab]     = useState<HomeTab>('overview')
+  const HOME_TAB_IDS: HomeTab[] = ['overview', 'trials', 'reports', 'safety', 'partner']
+  const isHomeSub = HOME_TAB_IDS.includes(initialScreen as HomeTab)
+  const [nav, setNav]             = useState<OwnerNav>(isHomeSub ? 'home' : (initialScreen as OwnerNav) ?? 'home')
+  const [homeTab, setHomeTab]     = useState<HomeTab>(isHomeSub ? (initialScreen as HomeTab) : 'overview')
   const [programsTab, setProgramsTab] = useState<ProgramsTab>('term')
   const [showBroadcast, setShowBroadcast] = useState(false)
   const [showFootballYear, setShowFootballYear] = useState(false)

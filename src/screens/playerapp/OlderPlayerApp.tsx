@@ -372,7 +372,7 @@ export default function OlderPlayerApp({ empty = false, initialView, initialChat
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <div style={{ flexGrow: 1 }}>
             <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.65)', fontWeight: 500, letterSpacing: '0.04em' }}>
-              {view === 'adult' ? 'WATTLE CREEK MEN\'S 1STS · NPL3' : 'WATTLE CREEK U16'}
+              {empty ? 'PLAYER · 15 AND OVER' : view === 'adult' ? 'WATTLE CREEK MEN\'S 1STS · NPL3' : 'WATTLE CREEK U16'}
             </div>
             <div style={{ fontSize: 20, fontWeight: 700, color: '#fff', marginTop: 2 }}>
               {view === 'messages' ? 'Messages' : view === 'body' ? 'My body' : view === 'adult' ? 'Player app' : 'Player app'}
@@ -384,8 +384,8 @@ export default function OlderPlayerApp({ empty = false, initialView, initialChat
         </div>
         {/* Adult/U16 toggle */}
         <div style={{ marginTop: 10, display: 'flex', gap: 6 }}>
-          <button onClick={() => setView('home')} style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: 0, background: view !== 'adult' ? '#fff' : 'rgba(255,255,255,0.2)', color: view !== 'adult' ? '#1f4a3e' : '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Cal · U16</button>
-          <button onClick={() => setView('adult')} style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: 0, background: view === 'adult' ? '#fff' : 'rgba(255,255,255,0.2)', color: view === 'adult' ? '#1f4a3e' : '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Josh · Men's 1sts</button>
+          <button onClick={() => setView('home')} style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: 0, background: view !== 'adult' ? '#fff' : 'rgba(255,255,255,0.2)', color: view !== 'adult' ? '#1f4a3e' : '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>{empty ? 'Cal · player 15+' : 'Cal · U16'}</button>
+          {!empty && <button onClick={() => setView('adult')} style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: 0, background: view === 'adult' ? '#fff' : 'rgba(255,255,255,0.2)', color: view === 'adult' ? '#1f4a3e' : '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Josh · Men's 1sts</button>}
         </div>
       </div>
 

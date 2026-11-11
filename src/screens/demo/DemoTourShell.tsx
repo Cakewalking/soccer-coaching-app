@@ -132,16 +132,16 @@ export default function DemoTourShell({ roleId, onBack, renderScreen, initialSte
             {step.screen
               ? tour.device === 'phone'
                 ? (
-                  <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 80px' }}>
+                  <div key={step.screen} style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 80px' }}>
                     {renderScreen(step.screen)}
                   </div>
                 )
                 : (
-                  <div style={{ height: '100%', paddingBottom: 72 }}>
+                  <div key={step.screen} style={{ height: '100%', paddingBottom: 72 }}>
                     {renderScreen(step.screen)}
                   </div>
                 )
-              : <StepCard step={step} globalIdx={idx} total={steps.length} />
+              : <StepCard key={idx} step={step} globalIdx={idx} total={steps.length} />
             }
           </div>
 

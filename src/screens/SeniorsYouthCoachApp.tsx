@@ -4,7 +4,6 @@ import SquadScreen          from './SquadScreen'
 import TrainingScreen       from './TrainingScreen'
 import MatchDayScreen       from './MatchDayScreen'
 import ClipsScreen          from './ClipsScreen'
-import TeamChatScreen       from './TeamChatScreen'
 import FixturesScreen       from './FixturesScreen'
 import OurStyleScreen       from './OurStyleScreen'
 import TeamStaffScreen      from './TeamStaffScreen'
@@ -17,13 +16,15 @@ import ThisWeekScreen       from './ThisWeekScreen'
 import SuggestionsScreen    from './SuggestionsScreen'
 import DrillLibraryScreen   from './DrillLibraryScreen'
 import GrowthLoadScreen     from './GrowthLoadScreen'
-import RecordScreen         from './RecordScreen'
 import TeamSheetScreen      from './TeamSheetScreen'
 import OppositionScreen     from './OppositionScreen'
 import ReviewScreen         from './ReviewScreen'
 import TeamTalkScreen       from './TeamTalkScreen'
 import PitchSideScreen      from './PitchSideScreen'
 import { FitnessSquadTab, FitnessTrainingTab, FitnessMatchTab } from './FitnessExtras'
+import RecordHub           from './RecordHub'
+import { CoachMessages }   from './MessagesScreens'
+import { SquadLineups }    from './SquadLineups'
 
 type TeamType = 'seniors' | 'youth'
 
@@ -146,9 +147,10 @@ const NAV_ICONS = [
   'M6 5h12a2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V7a2 2 0 012-2zM4 10h16M9 3v4M15 3v4',
   'M12 21a9 9 0 100-18 9 9 0 000 18zM12 7l4 3-1.5 5h-5L8 10z',
   'M12 21a9 9 0 100-18 9 9 0 000 18zM10 8l6 4-6 4z',
+  'M12 21a9 9 0 100-18 9 9 0 000 18zM12 15a3 3 0 100-6 3 3 0 000 6z',
 ]
-const NAV_LABELS = ['Home', 'Squad', 'Training', 'Match day', 'Clips']
-const HOME_TABS  = ['Overview', 'Inbox', 'Calendar', 'Fixtures and results', 'Our style', 'Team staff']
+const NAV_LABELS = ['Home', 'Squad', 'Training', 'Match day', 'Clips', 'Record']
+const HOME_TABS  = ['Overview', 'Messages', 'Calendar', 'Fixtures and results', 'Our style', 'Team staff']
 
 function resultColor(r: 'W' | 'L' | 'D') {
   if (r === 'W') return { bg: '#40826d', color: '#fff' }
@@ -348,18 +350,18 @@ function CoachHome({ data, onTraining, onMatchday, onReview, onCalendar, onInbox
   )
 }
 
-type NavKey = 'home' | 'squad' | 'training' | 'matchday' | 'clips'
+type NavKey = 'home' | 'squad' | 'training' | 'matchday' | 'clips' | 'record'
 type Sub = 'teamtalk' | 'pitchside' | null
 
-const NAV_KEYS: NavKey[] = ['home', 'squad', 'training', 'matchday', 'clips']
-const SQUAD_TABS    = ['Players', 'Development goals', 'Wellness', 'Availability', 'Consent and privacy', 'Season summaries', 'Fitness coach']
-const TRAINING_TABS = ["Tonight's session", 'This week', 'Suggested', 'Drill library', 'Growth and load', 'Record', 'Fitness coach']
+const NAV_KEYS: NavKey[] = ['home', 'squad', 'training', 'matchday', 'clips', 'record']
+const SQUAD_TABS    = ['Players', 'Line-ups', 'Development goals', 'Wellness', 'Availability', 'Consent and privacy', 'Season summaries', 'Fitness coach']
+const TRAINING_TABS = ["Tonight's session", 'This week', 'Suggested', 'Drill library', 'Growth and load', 'Fitness coach']
 const MATCHDAY_TABS = ['Team talk', 'Line-up and minutes', 'Opposition', 'Review', 'Fitness coach']
 const CLIPS_TABS    = ['Browse', 'Playlists', 'Shared with players', 'To check']
 
 export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseContent, empty = false, initialScreen, onNavChange }: { teamType: TeamType; onBack: () => void; phaseContent?: ReactNode; empty?: boolean; initialScreen?: string; onNavChange?: (screen: string) => void }) {
   const data = teamType === 'seniors' ? SENIORS : YOUTH
-  const validNav = (s?: string): NavKey => (s === 'squad' || s === 'training' || s === 'matchday' || s === 'clips') ? s : 'home'
+  const validNav = (s?: string): NavKey => (s === 'squad' || s === 'training' || s === 'matchday' || s === 'clips' || s === 'record') ? s : 'home'
 
   const [nav, setNav]                 = useState<NavKey>(validNav(initialScreen))
   const [sub, setSub]                 = useState<Sub>(null)
@@ -371,34 +373,38 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
   const [toast, setToast]             = useState<string | null>(null)
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
-  function goNav(n: NavKey) { setNav(n); setSub(null); onNavChange?.(n) }
+  const [askOpen, setAskOpen] = useState(false)
+  function goNav(n: NavKey) { setNav(n); setSub(null); setAskOpen(false); onNavChange?.(n) }
 
   function handleNav(s: string) {
     if (s === 'training')  { goNav('training'); return }
     if (s === 'matchday')  { goNav('matchday'); return }
     if (s === 'squad')     { goNav('squad');    return }
     if (s === 'clips')     { goNav('clips');    return }
+    if (s === 'record')    { goNav('record');   return }
     if (s === 'inbox')     { setHomeTab(1);     return }
     if (s === 'fixtures')  { setHomeTab(3);     return }
-    if (s === 'metric')    { goNav('squad'); setSquadTab(2); return }
+    if (s === 'metric')    { goNav('squad'); setSquadTab(3); return }
     if (s === 'setstyle')  { setHomeTab(4);     return }
     if (s === 'teamtalk')  { setSub('teamtalk');  return }
     if (s === 'pitchside') { setSub('pitchside'); return }
   }
 
   if (sub === 'teamtalk')  return <TeamTalkScreen role="head" onClose={() => setSub(null)} />
-  if (sub === 'pitchside') return <PitchSideScreen onClose={() => setSub(null)} empty={false} />
+  if (sub === 'pitchside') return <PitchSideScreen onClose={() => setSub(null)} empty={empty} />
 
   const subTabs  = nav === 'clips'    ? CLIPS_TABS
                  : nav === 'home'     ? HOME_TABS
                  : nav === 'squad'    ? SQUAD_TABS
                  : nav === 'training' ? TRAINING_TABS
+                 : nav === 'record'   ? []
                  : MATCHDAY_TABS
 
   const activeIdx = nav === 'home'     ? homeTab
                   : nav === 'squad'    ? squadTab
                   : nav === 'training' ? trainingTab
                   : nav === 'matchday' ? matchTab
+                  : nav === 'record'   ? 0
                   : clipsTab
 
   function handleSubTab(i: number) {
@@ -416,41 +422,43 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
       case 0: content = empty
         ? <SYCoachHomeEmpty coachFirst={data.coachFirst} teamLine={`${data.teamPicker} · let's get your team ready`} onNav={handleNav} />
         : (phaseContent ?? <CoachHome data={data} onTraining={() => goNav('training')} onMatchday={() => goNav('matchday')} onReview={() => { goNav('matchday'); setMatchTab(3) }} onCalendar={() => setHomeTab(2)} onInbox={() => setHomeTab(1)} />); break
-      case 1: content = <TeamChatScreen empty={false} />; break
-      case 2: case 3: content = <FixturesScreen empty={false} />; break
+      case 1: content = <CoachMessages />; break
+      case 2: case 3: content = <FixturesScreen empty={empty} />; break
       case 4: content = <OurStyleScreen />; break
-      case 5: content = <TeamStaffScreen empty={false} />; break
+      case 5: content = <TeamStaffScreen empty={empty} />; break
     }
   } else if (nav === 'squad') {
     switch (squadTab) {
-      case 0: content = <SquadScreen role="head" onPlayerProfile={() => {}} empty={false} />; break
-      case 1: content = <DevGoalsScreen empty={false} />; break
-      case 2: content = <WellnessScreen empty={false} />; break
-      case 3: content = <AvailabilityScreen empty={false} />; break
-      case 4: content = <ConsentScreen empty={false} />; break
-      case 5: content = <SeasonSummariesScreen empty={false} />; break
-      case 6: content = <FitnessSquadTab empty={false} />; break
+      case 0: content = <SquadScreen role="head" onPlayerProfile={() => {}} empty={empty} />; break
+      case 1: content = <SquadLineups />; break
+      case 2: content = <DevGoalsScreen empty={empty} />; break
+      case 3: content = <WellnessScreen empty={empty} />; break
+      case 4: content = <AvailabilityScreen empty={empty} />; break
+      case 5: content = <ConsentScreen empty={empty} />; break
+      case 6: content = <SeasonSummariesScreen empty={empty} />; break
+      case 7: content = <FitnessSquadTab empty={empty} />; break
     }
   } else if (nav === 'training') {
     switch (trainingTab) {
-      case 0: content = <TrainingScreen role="head" onNav={handleNav} empty={false} />; break
-      case 1: content = <ThisWeekScreen empty={false} onDrillLibrary={() => setTrainingTab(3)} onTonightsPlan={() => setTrainingTab(0)} onGrowthLoad={() => setTrainingTab(4)} />; break
-      case 2: content = <SuggestionsScreen empty={false} onRecord={() => setTrainingTab(5)} />; break
-      case 3: content = <DrillLibraryScreen empty={false} />; break
-      case 4: content = <GrowthLoadScreen empty={false} />; break
-      case 5: content = <RecordScreen empty={false} />; break
-      case 6: content = <FitnessTrainingTab empty={false} />; break
+      case 0: content = <TrainingScreen role="head" onNav={handleNav} empty={empty} />; break
+      case 1: content = <ThisWeekScreen empty={empty} onDrillLibrary={() => setTrainingTab(3)} onTonightsPlan={() => setTrainingTab(0)} onGrowthLoad={() => setTrainingTab(4)} />; break
+      case 2: content = <SuggestionsScreen empty={empty} onRecord={() => goNav('record')} />; break
+      case 3: content = <DrillLibraryScreen empty={empty} />; break
+      case 4: content = <GrowthLoadScreen empty={empty} />; break
+      case 5: content = <FitnessTrainingTab empty={empty} />; break
     }
+  } else if (nav === 'record') {
+    content = <RecordHub />
   } else if (nav === 'matchday') {
     switch (matchTab) {
-      case 0: content = <MatchDayScreen onNav={handleNav} empty={false} />; break
-      case 1: content = <TeamSheetScreen empty={false} />; break
-      case 2: content = <OppositionScreen empty={false} />; break
-      case 3: content = <ReviewScreen empty={false} />; break
-      case 4: content = <FitnessMatchTab empty={false} />; break
+      case 0: content = <MatchDayScreen onNav={handleNav} empty={empty} />; break
+      case 1: content = <TeamSheetScreen empty={empty} />; break
+      case 2: content = <OppositionScreen empty={empty} />; break
+      case 3: content = <ReviewScreen empty={empty} />; break
+      case 4: content = <FitnessMatchTab empty={empty} />; break
     }
   } else if (nav === 'clips') {
-    content = <ClipsScreen empty={false} activeTab={clipsTab} />
+    content = <ClipsScreen empty={empty} activeTab={clipsTab} />
   }
 
   return (
@@ -471,8 +479,12 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
               </button>
             ))}
           </nav>
+          <button onClick={() => setAskOpen(o => !o)} aria-label="Ask Clean Sheet" style={{ height: 36, padding: '0 14px', borderRadius: '999px', border: '1.5px solid rgba(255,255,255,0.3)', background: askOpen ? 'rgba(255,255,255,0.15)' : 'transparent', color: '#fff', display: 'flex', alignItems: 'center', gap: 7, cursor: 'pointer', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, flexShrink: 0 }}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg>
+            Ask
+          </button>
           <button style={{ display: 'flex', alignItems: 'center', gap: 8, height: 44, padding: '0 16px', borderRadius: '999px', border: 0, background: 'rgba(255,255,255,0.15)', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer', color: '#fff', flexShrink: 0 }}>
-            {data.teamPicker}
+            {empty ? 'My team' : data.teamPicker}
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9l6 6 6-6"/></svg>
           </button>
           <div style={{ width: 44, height: 44, borderRadius: '999px', background: data.avatarBg, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 15, flexShrink: 0 }}>{data.avatarLetters}</div>
@@ -497,8 +509,35 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
         </div>
       </header>
 
-      <div style={{ flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+      <div style={{ flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden', position: 'relative' }}>
         {content}
+        {askOpen && (
+          <aside role="dialog" aria-label="Ask Clean Sheet" style={{ position: 'absolute', top: 0, right: 0, bottom: 0, width: 400, background: '#fff', borderLeft: '1px solid #e8edeb', boxShadow: '-8px 0 32px rgba(16,33,31,0.12)', zIndex: 50, display: 'flex', flexDirection: 'column' }}>
+            <div style={{ padding: '16px 20px', borderBottom: '1px solid #e8edeb', display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2f6252" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg>
+              <span style={{ flex: 1, fontSize: 15, fontWeight: 700, color: '#10211f' }}>Ask Clean Sheet</span>
+              <button onClick={() => setAskOpen(false)} aria-label="Close Ask Clean Sheet" style={{ width: 32, height: 32, borderRadius: '50%', border: '1px solid #e8edeb', background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#4a5a57' }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+              </button>
+            </div>
+            <div style={{ flex: 1, overflowY: 'auto', padding: '20px' }}>
+              <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: 8, marginBottom: 20 }}>
+                {['Who needs a rest?', 'What to work on tonight?', 'Is everyone getting fair minutes?', 'Why did we concede Saturday?'].map(q => (
+                  <button key={q} style={{ padding: '7px 12px', borderRadius: 100, border: '1px solid #e8edeb', background: '#eef5f2', color: '#2f6252', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{q}</button>
+                ))}
+              </div>
+              <div style={{ background: '#eef5f2', borderRadius: 14, padding: '14px 16px', fontSize: 14, color: '#10211f', lineHeight: 1.6 }}>
+                <div style={{ fontSize: 11, fontWeight: 700, color: '#2f6252', marginBottom: 8, letterSpacing: '0.07em', textTransform: 'uppercase' as const }}>Clean Sheet</div>
+                Mia has played 58% of available minutes — 9 of the last 12 games. She was absent for one game and came off at half-time twice, both times with a note about hamstring load.
+              </div>
+              <div style={{ fontSize: 11, color: '#4a5a57', marginTop: 16, lineHeight: 1.6 }}>It answers from what you can see as head coach. It never sends anything by itself. Wellness and welfare concerns are never used.</div>
+            </div>
+            <div style={{ padding: '12px 16px', borderTop: '1px solid #e8edeb', display: 'flex', gap: 8, flexShrink: 0 }}>
+              <input placeholder="Ask about your team…" style={{ flex: 1, height: 40, padding: '0 12px', borderRadius: 8, border: '1px solid #e8edeb', fontSize: 13, fontFamily: 'inherit', outline: 'none', color: '#10211f' }} />
+              <button style={{ height: 40, padding: '0 16px', borderRadius: 8, background: '#2f6252', color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Ask</button>
+            </div>
+          </aside>
+        )}
       </div>
       {toast && (
         <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>

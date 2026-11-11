@@ -215,14 +215,14 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange }
         <div style={{ background: '#1f4a3e', padding: '20px 24px 16px', flexShrink: 0 }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <div>
-              <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', marginBottom: 2 }}>U12 Sam · Play level · Fitness coach</div>
+              <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', marginBottom: 2 }}>Fitness coach</div>
               <div style={{ fontSize: 20, fontWeight: 800, color: '#fff' }}>Hi Priya</div>
             </div>
             <div style={{ width: 36, height: 36, borderRadius: '999px', background: '#c39797', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700 }}>PS</div>
           </div>
         </div>
         <div style={{ padding: '28px 24px', display: 'flex', flexDirection: 'column', gap: 16, maxWidth: 560 }}>
-          <div style={{ fontSize: 15, color: '#4a5a57' }}>U12 Sam · Play level · no data yet</div>
+          <div style={{ fontSize: 15, color: '#4a5a57' }}>No teams yet · no data yet</div>
           <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 16, padding: 24 }}>
             <div style={{ fontSize: 20, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>Start with heights</div>
             <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.6, marginBottom: 16 }}>Measure the squad once, then Clean Sheet flags anyone growing fast and sets safe sprint and jump limits. Effort and pain check-ins start after the first session.</div>
