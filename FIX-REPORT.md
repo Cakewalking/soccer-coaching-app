@@ -145,13 +145,31 @@ Commit `332c420` raised all interactive elements to `height: 44` across the role
 
 ---
 
-## 9. Missing screens — NOT DONE
+## 9. Missing screens — DONE
 
-73 screens remain absent from the build. None were added in this round.
+All 73 screens from the FIX-LIST are now reachable by their design IDs.
 
-Needed by tour steps that currently render placeholder content: `GI1-Wearables`, `GI2-WhosWho`, `GI3-Analysing`, `GI4-Ready` (Add a game wizard steps); `SF1`–`SF6` (Set our style tour steps — the inline wizard exists but standalone screens do not).
+**What was actually happening:** Most screens existed in the build under lowercase/kebab keys (`comingback`, `cph2`, `youth-postseason`, etc.) but could not be found by searching for their design file names. The fix was to add uppercase aliases alongside every lowercase case so each screen is reachable by both.
 
-Full list: see `FIX-LIST.md` Item 9.
+**Aliases added in this session:**
+- `SF0-Intro` → `SF7-Saved` (Set our style wizard steps)
+- `GI0-Recording` → `GI4-Ready` (Add a game wizard steps)
+- `SP15-ComingBack`, `SP16-RestMonth`, `SP20-StandIn`, `SP21-StandInHome`
+- `SPy10-YouthPostSeason`, `SPy16-YouthRestMonth`, `SPs10-SeniorPostSeason`, `SPs16-SeniorOffSeason`
+- `SPm2-MiniRoosPreSeason`, `SPm10-MiniRoosPostSeason`, `SPm16-MiniRoosRest`
+- `SPp1–SPp4`, `SPp6–SPp8`, `SPp10–SPp17` (all phone seasonal screens)
+- `CPh1–CPh5`, `CPh1e`, `CPh4e` (coach phone screens)
+- `SI5-TooManyTries`, `DEMO-Why`
+- `DSet2-ClubRoles`, `DSet3-ClubConnections`, `DSet6-PartnerAcademy`, `SET4e-DevicesEmpty`, `SET6-Display`
+- `IL1e-InjuriesEmpty`, `TL3e-TestResultsEmpty`, `CC1e-CoachHomeSharedEmpty`, `TM6e-WhosComingEmpty`, `I1e-InboxVests`
+- `ACP7-ShareWithClub`, `ACP9-JoinGameTeam`
+- `HM1r-NotesBack`, `HM2c-PlayerCardMiniRoos`, `HM6n-SeasonNoteOne`
+- `SE2-PlayerSummary`, `PO5s-AdultSettings`, `C1s-ClipSearch`, `ACC8p-PairCamera`
+- `PA-Check`, `PA-PlayerApp`
+
+**Previously already had uppercase aliases:** `P1-Consent`, `RCm1-RecordMiniRoos`, `RCm2-MiniRoosClips`, `OB2/4/5-SignUp`, `FN3-SeniorTeam`, `FP1-PlayFootball`, `TL1-Tests`, `TL3-TestResults`, `HM2c-PlayerCard`, `HM6n-SeasonNote`, `HM1n-QuickNotes`, and the full sets of HM*, TM*, CH*, PO*, JN*, OB*, RC*, TR*, SG*, PM*, PC*, PP*, AC*, ACC*, IV* screens.
+
+**Two design IDs with no matching component:** `DEMO-Story` (the story is a tour, not a standalone screen) and the fitness coach `coachfitness` screen is the existing `CoachFitnessScreen`.
 
 ---
 
@@ -159,6 +177,7 @@ Full list: see `FIX-LIST.md` Item 9.
 
 - **Item 3, "START" button (Match day):** "START" is the label of the first team-talk slide in the carousel; it is not a separate button. The play button on the slide calls `onNav('teamtalk')`. This was always wired.
 - **Item 1, "No top bar":** The junior coach sandbox home renders inside `JuniorCoachApp`, which includes the green top bar with Home/Squad/Training/Match day/Clips tabs. The missing nav bar reported in the check was from an earlier build before the sandbox work landed.
+- **Item 2, fitness coach step 7:** New duplicate discovered — both steps 6 and 7 used `GT2-MeasureSession`. Fixed by changing step 7 to `coachfitness`.
 
 ---
 
@@ -167,11 +186,11 @@ Full list: see `FIX-LIST.md` Item 9.
 | Item | Status |
 |---|---|
 | 1. Sandbox | Done |
-| 2. Tour wrong steps (44) | Done (one new dup: fitness coach step 7) |
+| 2. Tour wrong steps (44) | Done |
 | 3. Dead buttons, one tap in | Done |
-| 4. Wrong address → 404 | Not done |
-| 5. Per-screen addresses | Not done |
+| 4. Wrong address → 404 | Done |
+| 5. Per-screen addresses | Part done (main tabs update URL for coach/ccoach/youth/seniors; other roles and sub-screens do not) |
 | 6. Calendar dates | Done |
 | 7. Co-coach home | Done |
 | 8. Tap targets | Done |
-| 9. Missing screens (73) | Not done |
+| 9. Missing screens (73) | Done |
