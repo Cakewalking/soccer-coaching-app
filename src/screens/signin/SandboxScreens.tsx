@@ -92,12 +92,12 @@ export function SB1SandboxEnding() {
             </div>
             <div style={{ border: '1px solid #d4d6d4', borderRadius: 12, padding: '20px 20px 16px' }}>
               <div style={{ fontSize: 17, fontWeight: 800, color: INK, marginBottom: 6 }}>Let it end</div>
-              <div style={{ fontSize: 14, color: MUT, lineHeight: 1.5, marginBottom: 16 }}>Nothing to do. We delete it and email you once it's gone.</div>
+              <div style={{ fontSize: 14, color: MUT, lineHeight: 1.5, marginBottom: 16 }}>Nothing to do. It's deleted from this browser on Thursday.</div>
               <button style={{ ...BTN_OUTLINE, width: '100%' }}>Remind me tomorrow</button>
             </div>
           </div>
           <p style={{ margin: 0, fontSize: 14, color: MUT, lineHeight: 1.5 }}>
-            Not ready to decide? You can start a new sandbox with the same email any time.
+            Not ready to decide? You can start a new sandbox any time.
           </p>
         </div>
       </div>
@@ -106,7 +106,7 @@ export function SB1SandboxEnding() {
 }
 
 /* SB2 — Sandbox has ended */
-export function SB2SandboxEnded() {
+export function SB2SandboxEnded({ onStartSandbox, onDemo }: { onStartSandbox?: () => void; onDemo?: () => void }) {
   return (
     <AuthShell>
       <div style={CARD}>
@@ -119,50 +119,39 @@ export function SB2SandboxEnded() {
           Your sandbox has ended
         </h1>
         <p style={{ margin: '0 0 20px', fontSize: 15, color: MUT, lineHeight: 1.5 }}>
-          It ran for 14 days and was deleted on Thursday 18 June, with everything in it. We kept only your email, so you can start again.
+          It ran for 14 days and was deleted from this browser on Thursday 18 June, with everything in it. Nothing was kept.
         </p>
         <div style={{ display: 'flex', gap: 12, marginBottom: 20 }}>
-          <button style={BTN_GREEN}>Start a new sandbox</button>
-          <button style={BTN_OUTLINE}>Follow the demo</button>
+          <button style={BTN_GREEN} onClick={onStartSandbox}>Start a new sandbox</button>
+          <button style={BTN_OUTLINE} onClick={onDemo}>Follow the demo</button>
         </div>
-        <button style={{ background: 'none', border: 'none', color: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', padding: 0, marginBottom: 16, display: 'block' }}>
+        <button style={{ background: 'none', border: 'none', color: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', padding: 0, display: 'block' }}>
           Ready for the real thing? Set up your club
         </button>
-        <p style={{ margin: 0, fontSize: 14, color: MUT, lineHeight: 1.5 }}>
-          Want your email removed too? Reply to the email we sent and we'll delete it.
-        </p>
       </div>
     </AuthShell>
   )
 }
 
-/* SB3 — No sandbox on this device */
-export function SB3NoSandbox() {
-  const [email, setEmail] = useState('')
+/* SB3 — No sandbox in this browser */
+export function SB3NoSandbox({ onStartSandbox, onDemo }: { onStartSandbox?: () => void; onDemo?: () => void }) {
   return (
     <AuthShell>
       <div style={{ ...CARD, width: 540 }}>
         <h1 style={{ margin: '0 0 12px', fontSize: 28, fontWeight: 800, letterSpacing: '-0.02em', color: INK }}>
-          No sandbox open on this device
+          No sandbox in this browser
         </h1>
-        <p style={{ margin: '0 0 20px', fontSize: 15, color: MUT, lineHeight: 1.5 }}>
-          If you've started one, sign in with the same email and it opens here. If you haven't, this starts one.
+        <p style={{ margin: '0 0 24px', fontSize: 15, color: MUT, lineHeight: 1.5 }}>
+          A sandbox is kept on the device you started it on. If you started one on another phone or computer, open it there. Or start a new one here.
         </p>
-        <label style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 6, display: 'block' }}>
-          YOUR EMAIL
-        </label>
-        <input
-          type="email"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-          placeholder="you@example.com"
-          style={{ width: '100%', height: 52, borderRadius: 10, border: '1.5px solid #c5c8c4', padding: '0 14px', fontFamily: 'inherit', fontSize: 15, color: INK, background: '#fff', outline: 'none', boxSizing: 'border-box', display: 'block', marginBottom: 14 }}
-        />
-        <button style={{ ...BTN_GREEN, width: '100%', marginBottom: 20 }}>Email me a sign-in code</button>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <button style={LINK}>Follow the demo instead</button>
-          <span style={{ fontSize: 13, color: MUT }}>A sandbox lasts 14 days</span>
+        <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 10, marginBottom: 20 }}>
+          <button style={{ ...BTN_GREEN, width: '100%' }} onClick={onStartSandbox}>Start with an empty club</button>
+          <button style={{ ...BTN_OUTLINE, width: '100%' }} onClick={onDemo}>Follow the demo</button>
         </div>
+        <button style={LINK}>Ready for the real thing? Set up your club</button>
+        <p style={{ margin: '16px 0 0', fontSize: 13, color: MUT, lineHeight: 1.5 }}>
+          Cleared your browser data, or used a private window? That removes the sandbox too. A new one lasts 14 days.
+        </p>
       </div>
     </AuthShell>
   )
@@ -171,6 +160,7 @@ export function SB3NoSandbox() {
 /* SB4 — Keep going (make it real) — also used internally from SB1 */
 function SB4KeepGoingInner() {
   const [clubName, setClubName] = useState('Wattle Creek FC')
+  const [email, setEmail] = useState('')
   const [sent, setSent] = useState(false)
   return (
     <div style={{ minHeight: '100vh', background: BG, fontFamily: 'var(--font-sans)' }}>
@@ -215,6 +205,14 @@ function SB4KeepGoingInner() {
                 <input
                   value={clubName}
                   onChange={e => setClubName(e.target.value)}
+                  style={{ width: '100%', height: 52, borderRadius: 10, border: '1.5px solid #c5c8c4', padding: '0 14px', fontFamily: 'inherit', fontSize: 15, color: INK, background: '#fff', outline: 'none', boxSizing: 'border-box', display: 'block', marginBottom: 14 }}
+                />
+                <label style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 6, display: 'block' }}>YOUR EMAIL</label>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                  placeholder="you@example.com"
                   style={{ width: '100%', height: 52, borderRadius: 10, border: '1.5px solid #c5c8c4', padding: '0 14px', fontFamily: 'inherit', fontSize: 15, color: INK, background: '#fff', outline: 'none', boxSizing: 'border-box', display: 'block', marginBottom: 20 }}
                 />
               </div>

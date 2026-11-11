@@ -205,12 +205,41 @@ import DemoStartEmpty        from './DemoStartEmpty'
 import DemoSignIn            from './DemoSignIn'
 import DemoWhy               from './DemoWhy'
 import DemoTourShell         from './DemoTourShell'
+import DemoPhone             from './DemoPhone'
 import DemoShell, { type DemoPhase } from './DemoShell'
 import DemoShellPhone        from './DemoShellPhone'
 import DemoShellSandbox      from './DemoShellSandbox'
 import { TOURS, type RoleId } from './tours'
 
-type DemoView = 'signin' | 'start' | 'why' | 'tour' | 'lookaround' | 'sandbox' | 'sandboxlook'
+type DemoView = 'signin' | 'start' | 'why' | 'tour' | 'lookaround' | 'sandbox' | 'sandboxlook' | 'nosandbox'
+
+const SANDBOX_KEY = 'cs_demo_sandbox_v1'
+
+function getSandbox(): { createdAt: number } | null {
+  try {
+    const v = localStorage.getItem(SANDBOX_KEY)
+    return v ? JSON.parse(v) as { createdAt: number } : null
+  } catch { return null }
+}
+
+function createSandbox() {
+  localStorage.setItem(SANDBOX_KEY, JSON.stringify({ createdAt: Date.now() }))
+}
+
+function deleteSandbox() {
+  localStorage.removeItem(SANDBOX_KEY)
+}
+
+type SandboxState = 'none' | 'fresh' | 'ending' | 'ended'
+function checkSandboxExpiry(): SandboxState {
+  const sb = getSandbox()
+  if (!sb) return 'none'
+  const ageMs = Date.now() - sb.createdAt
+  const DAY = 86400000
+  if (ageMs > 14 * DAY) { deleteSandbox(); return 'ended' }
+  if (ageMs > 12 * DAY) return 'ending'
+  return 'fresh'
+}
 
 const PHASE_ROLES = new Set<string>(['coach', 'ccoach', 'youth', 'seniors', 'miniroos', 'parent', 'manager', 'playeryoung', 'playerolder'])
 
@@ -561,14 +590,16 @@ function viewToPath(view: DemoView, role: RoleId): string {
   if (view === 'sandboxlook') return `/sandbox/${role}`
   if (view === 'start')       return '/start'
   if (view === 'sandbox')     return '/sandbox'
+  if (view === 'nosandbox')   return '/nosandbox'
   if (view === 'why')         return '/why'
   return '/'
 }
 
 function pathToState(path: string): { view: DemoView; role: RoleId } {
-  if (path === '/start')   return { view: 'start',   role: 'coach' }
-  if (path === '/why')     return { view: 'why',     role: 'coach' }
-  if (path === '/sandbox') return { view: 'sandbox', role: 'coach' }
+  if (path === '/start')      return { view: 'start',     role: 'coach' }
+  if (path === '/why')        return { view: 'why',       role: 'coach' }
+  if (path === '/sandbox')    return { view: 'sandbox',   role: 'coach' }
+  if (path === '/nosandbox')  return { view: 'nosandbox', role: 'coach' }
   const m1 = path.match(/^\/look\/([a-z0-9]+)$/)
   if (m1 && m1[1] in TOURS) return { view: 'lookaround', role: m1[1] as RoleId }
   const m2 = path.match(/^\/tour\/([a-z0-9]+)$/)
@@ -583,6 +614,13 @@ export default function DemoApp() {
   const [view, setView] = useState<DemoView>(init.view)
   const [role, setRole] = useState<RoleId>(init.role)
   const [phase, setPhase] = useState<DemoPhase>('season')
+  const [isPhone, setIsPhone] = useState(() => window.innerWidth < 768)
+
+  useEffect(() => {
+    const onResize = () => setIsPhone(window.innerWidth < 768)
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [])
 
   useEffect(() => {
     const path = viewToPath(view, role)
@@ -614,13 +652,31 @@ export default function DemoApp() {
     return (
       <DemoSignIn
         onDemo={() => setView('start')}
-        onSandbox={() => setView('sandbox')}
+        onSandbox={() => { createSandbox(); setView('sandbox') }}
+        onOpenSandbox={() => { getSandbox() ? setView('sandbox') : setView('nosandbox') }}
         onWhy={() => setView('why')}
+        hasSandbox={getSandbox() !== null}
+      />
+    )
+  }
+
+  if (view === 'nosandbox') {
+    return (
+      <SB3NoSandbox
+        onStartSandbox={() => { createSandbox(); setView('sandbox') }}
+        onDemo={() => setView('start')}
       />
     )
   }
 
   if (view === 'sandbox') {
+    const sbState = checkSandboxExpiry()
+    if (sbState === 'ended') {
+      return <SB2SandboxEnded onStartSandbox={() => { createSandbox(); setView('sandbox') }} onDemo={() => setView('start')} />
+    }
+    if (sbState === 'ending') {
+      return <SB1SandboxEnding />
+    }
     return (
       <DemoStartEmpty
         onRole={(roleId) => { setRole(roleId); setView('sandboxlook') }}
@@ -765,12 +821,23 @@ export default function DemoApp() {
     )
   }
 
+  if (isPhone && view === 'start') {
+    return (
+      <DemoPhone
+        onLook={startLook}
+        onWhy={() => setView('why')}
+        onSandbox={() => { createSandbox(); setView('sandbox') }}
+      />
+    )
+  }
+
   return (
     <DemoStart
       onTour={startTour}
       onLook={startLook}
       onStory={() => startTour('story')}
       onWhy={() => setView('why')}
+      onSandbox={() => { createSandbox(); setView('sandbox') }}
     />
   )
 }

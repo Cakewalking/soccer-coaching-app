@@ -58,10 +58,10 @@ export default function DemoShell({ roleId, onBack, onStartTour, children, phase
       </div>
 
       {/* Screen */}
-      <div style={{ flex: 1, background: tour.device === 'phone' ? '#e8e9e7' : undefined }}>
+      <div style={{ flex: 1, background: tour.device === 'phone' ? '#e8e9e7' : undefined, display: 'flex', justifyContent: 'center' }}>
         {tour.device === 'phone'
-          ? <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}>{children}</div>
-          : children
+          ? <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px', width: '100%' }}>{children}</div>
+          : <div style={{ width: '100%', maxWidth: 1180 }}>{children}</div>
         }
       </div>
     </div>

@@ -1,19 +1,22 @@
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 
 interface Props {
   onDemo: () => void
   onSandbox: () => void
+  onOpenSandbox: () => void
   onWhy: () => void
+  hasSandbox?: boolean
 }
 
-export default function DemoSignIn({ onDemo, onSandbox, onWhy }: Props) {
-  const [email, setEmail] = useState('')
-  const [sent, setSent] = useState(false)
-  const emailRef = useRef<HTMLInputElement>(null)
+export default function DemoSignIn({ onDemo, onSandbox, onOpenSandbox, onWhy, hasSandbox = false }: Props) {
+  const [confirmReplace, setConfirmReplace] = useState(false)
 
-  function handleSend(e: React.FormEvent) {
-    e.preventDefault()
-    if (email.trim()) setSent(true)
+  function handleStartEmpty() {
+    if (hasSandbox && !confirmReplace) {
+      setConfirmReplace(true)
+      return
+    }
+    onSandbox()
   }
 
   return (
@@ -46,7 +49,7 @@ export default function DemoSignIn({ onDemo, onSandbox, onWhy }: Props) {
         {/* Demo card */}
         <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 20, padding: 32, display: 'flex', flexDirection: 'column', gap: 20 }}>
           <div>
-            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#2f6252', marginBottom: 6 }}>No sign-in · Best for a first look</div>
+            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#2f6252', marginBottom: 6 }}>No sign-in · Best for a first look</div>
             <div style={{ fontSize: 22, fontWeight: 800, letterSpacing: '-0.02em', color: '#10211f', marginBottom: 10 }}>Follow the demo</div>
             <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.5, marginBottom: 16 }}>Wattle Creek FC and Tall Timber Academy, mid-season, with games, video, sensors and messages already in.</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -71,13 +74,13 @@ export default function DemoSignIn({ onDemo, onSandbox, onWhy }: Props) {
         {/* Sandbox card */}
         <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 20, padding: 32, display: 'flex', flexDirection: 'column', gap: 20 }}>
           <div>
-            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#6f7f7b', marginBottom: 6 }}>Sign in with your email · Best for trying it properly</div>
+            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#6f7f7b', marginBottom: 6 }}>Yours to fill · Best for trying it properly</div>
             <div style={{ fontSize: 22, fontWeight: 800, letterSpacing: '-0.02em', color: '#10211f', marginBottom: 10 }}>Start with an empty club</div>
             <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.5, marginBottom: 16 }}>Your own sandbox. Set up a team, add players, plan a session and add a game, and watch each screen fill in.</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 20 }}>
               {[
                 'Starts empty, exactly as a new club would see it',
-                'What you add is saved, and is yours for 14 days',
+                'What you add is saved in this browser for 14 days',
                 'Stuck? Fill it with sample data in one tap',
               ].map((point, i) => (
                 <div key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
@@ -88,25 +91,23 @@ export default function DemoSignIn({ onDemo, onSandbox, onWhy }: Props) {
                 </div>
               ))}
             </div>
-            {sent ? (
-              <div style={{ background: '#eef5f2', border: '1px solid #c5d9d2', borderRadius: 12, padding: '14px 16px', fontSize: 14, color: '#2f6252', fontWeight: 600 }}>
-                Check your email for a sign-in code.
+
+            {confirmReplace ? (
+              <div style={{ background: '#f5f6f4', borderRadius: 12, padding: '16px 18px' }}>
+                <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', marginBottom: 6 }}>You already have a sandbox</div>
+                <div style={{ fontSize: 14, color: '#4a5a57', marginBottom: 14, lineHeight: 1.4 }}>Carry on with the one you have, or start again? Starting again removes everything in it.</div>
+                <div style={{ display: 'flex', gap: 8 }}>
+                  <button onClick={onOpenSandbox} style={{ flex: 1, height: 44, borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Carry on</button>
+                  <button onClick={onSandbox} style={{ flex: 1, height: 44, borderRadius: 10, border: '1.5px solid #c5c8c4', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Start again</button>
+                </div>
               </div>
             ) : (
-              <form onSubmit={handleSend} style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-                <label style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#6f7f7b' }}>YOUR EMAIL</label>
-                <input
-                  ref={emailRef}
-                  type="email"
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
-                  placeholder="dani@example.com"
-                  style={{ height: 48, borderRadius: 10, border: '1.5px solid #c5c8c4', padding: '0 14px', fontFamily: 'inherit', fontSize: 15, color: '#10211f', background: '#fff', outline: 'none', boxSizing: 'border-box' }}
-                />
-                <button type="submit" style={{ height: 48, borderRadius: 12, border: '1.5px solid #c5c8c4', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Email me a sign-in code</button>
-                <button type="button" onClick={() => { email.trim() ? onSandbox() : emailRef.current?.focus() }} style={{ height: 36, borderRadius: 10, border: 0, background: 'none', color: '#4a5a57', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>No password. Already signed in? Open your sandbox</button>
-              </form>
+              <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 10 }}>
+                <button onClick={handleStartEmpty} style={{ height: 48, borderRadius: 12, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Start with an empty club</button>
+                <button onClick={onOpenSandbox} style={{ height: 48, borderRadius: 12, border: '1.5px solid #c5c8c4', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Open my sandbox</button>
+              </div>
             )}
+            <div style={{ marginTop: 14, fontSize: 13, color: '#6f7f7b', lineHeight: 1.5 }}>No email and no password. It stays on this device, so it won't be there on another phone or computer.</div>
           </div>
           <div style={{ fontSize: 12, color: '#6f7f7b', lineHeight: 1.5 }}>In a sandbox, use made-up names. Please don't enter real children's details. It isn't a live club, nobody is invited or messaged, and everything is deleted after 14 days.</div>
         </div>

@@ -5,9 +5,10 @@ interface Props {
   onLook: (role: RoleId) => void
   onStory: () => void
   onWhy: () => void
+  onSandbox?: () => void
 }
 
-export default function DemoStart({ onTour, onLook, onStory, onWhy }: Props) {
+export default function DemoStart({ onTour, onLook, onStory, onWhy, onSandbox }: Props) {
   return (
     <div style={{ minHeight: '100vh', background: '#f5f6f4', fontFamily: 'var(--font-sans)' }}>
 
@@ -17,6 +18,9 @@ export default function DemoStart({ onTour, onLook, onStory, onWhy }: Props) {
           <span style={{ fontSize: 16, fontWeight: 800, letterSpacing: '-0.03em', color: '#fff' }}>Demo.</span>
           <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)' }}>Wattle Creek FC, Tall Timber Academy and everyone in them are made up. Nothing you tap is saved.</span>
         </div>
+        {onSandbox && (
+          <button onClick={onSandbox} style={{ height: 32, padding: '0 14px', borderRadius: 8, border: '1px solid rgba(255,255,255,0.3)', background: 'none', color: 'rgba(255,255,255,0.8)', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap' as const }}>Start with an empty club instead</button>
+        )}
       </div>
 
       {/* Hero section */}
