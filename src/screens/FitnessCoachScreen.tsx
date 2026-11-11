@@ -176,8 +176,8 @@ function EffortChart({ data }: { data: { sessions: string[]; planned: number[]; 
   )
 }
 
-export default function FitnessCoachScreen({ empty }: { empty?: boolean }) {
-  const [tab, setTab]           = useState<FitnessTab>('home')
+export default function FitnessCoachScreen({ empty, initialScreen, onNavChange }: { empty?: boolean; initialScreen?: string; onNavChange?: (screen: string) => void }) {
+  const [tab, setTab]           = useState<FitnessTab>((initialScreen as FitnessTab) ?? 'home')
   const [squadSub, setSquadSub] = useState<SquadSubTab>('growth')
   const [trainSub, setTrainSub] = useState<TrainingSubTab>('tests')
   const [teamId, setTeamId]     = useState<TeamId>('u12')
@@ -270,7 +270,7 @@ export default function FitnessCoachScreen({ empty }: { empty?: boolean }) {
           { id: 'training' as FitnessTab, label: 'Training' },
           { id: 'matchday' as FitnessTab, label: 'Match day' },
         ] as const).map(t => (
-          <button key={t.id} onClick={() => setTab(t.id)} style={{
+          <button key={t.id} onClick={() => { setTab(t.id); onNavChange?.(t.id) }} style={{
             flex: 1, height: 44, border: 0, background: 'transparent', fontFamily: 'inherit',
             fontSize: 13, fontWeight: tab === t.id ? 700 : 400, cursor: 'pointer',
             color: tab === t.id ? '#1f4a3e' : '#6f7f7b',

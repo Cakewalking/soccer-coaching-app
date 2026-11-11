@@ -908,8 +908,8 @@ function AcademyYearView({ onBack }: { onBack: () => void }) {
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
-export default function AcademyOwnerApp({ onBack, empty = false }: { onBack: () => void; empty?: boolean }) {
-  const [nav, setNav]             = useState<OwnerNav>('home')
+export default function AcademyOwnerApp({ onBack, empty = false, initialScreen, onNavChange }: { onBack: () => void; empty?: boolean; initialScreen?: string; onNavChange?: (screen: string) => void }) {
+  const [nav, setNav]             = useState<OwnerNav>((initialScreen as OwnerNav) ?? 'home')
   const [homeTab, setHomeTab]     = useState<HomeTab>('overview')
   const [programsTab, setProgramsTab] = useState<ProgramsTab>('term')
   const [showBroadcast, setShowBroadcast] = useState(false)
@@ -954,7 +954,7 @@ export default function AcademyOwnerApp({ onBack, empty = false }: { onBack: () 
           <span style={{ fontSize: 17, fontWeight: 800, letterSpacing: '-0.03em', color: '#fff', flexShrink: 0 }}>Clean Sheet</span>
           <nav style={{ display: 'flex', flexGrow: 1, height: 60 }}>
             {(['home', 'programs', 'players', 'coaches', 'money'] as OwnerNav[]).map(id => (
-              <button key={id} onClick={() => setNav(id)} style={{ height: 60, padding: '0 16px', border: 0, background: 'transparent', fontFamily: 'inherit', fontSize: 15, fontWeight: nav === id ? 700 : 500, color: nav === id ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer', borderBottom: nav === id ? '3px solid #fff' : '3px solid transparent', textTransform: 'capitalize', boxSizing: 'border-box' as const }}>
+              <button key={id} onClick={() => { setNav(id); onNavChange?.(id) }} style={{ height: 60, padding: '0 16px', border: 0, background: 'transparent', fontFamily: 'inherit', fontSize: 15, fontWeight: nav === id ? 700 : 500, color: nav === id ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer', borderBottom: nav === id ? '3px solid #fff' : '3px solid transparent', textTransform: 'capitalize', boxSizing: 'border-box' as const }}>
                 {id === 'money' ? 'Money' : id.charAt(0).toUpperCase() + id.slice(1)}
               </button>
             ))}

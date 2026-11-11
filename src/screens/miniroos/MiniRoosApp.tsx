@@ -344,8 +344,8 @@ const HOME_TABS: Array<{ id: HomeTab; label: string }> = [
   { id: 'staff',    label: 'Team staff' },
 ]
 
-export default function MiniRoosApp({ onBack, empty, phaseContent }: { onBack: () => void; empty?: boolean; phaseContent?: ReactNode }) {
-  const [nav, setNav]               = useState<MiniNav>('home')
+export default function MiniRoosApp({ onBack, empty, phaseContent, initialScreen, onNavChange }: { onBack: () => void; empty?: boolean; phaseContent?: ReactNode; initialScreen?: string; onNavChange?: (screen: string) => void }) {
+  const [nav, setNav]               = useState<MiniNav>((initialScreen as MiniNav) ?? 'home')
   const [homeTab, setHomeTab]       = useState<HomeTab>('overview')
   const [gameDayTab, setGameDayTab] = useState<GameDayTab>('turns')
   const [gameDayView, setGameDayView] = useState<GameDayView>('turns')
@@ -392,7 +392,7 @@ export default function MiniRoosApp({ onBack, empty, phaseContent }: { onBack: (
           <span style={{ fontSize: 17, fontWeight: 800, letterSpacing: '-0.03em', color: '#ffffff', flexShrink: 0 }}>Clean Sheet</span>
           <nav style={{ display: 'flex', flexGrow: 1, height: 60 }}>
             {NAV.map(tab => (
-              <button key={tab.id} onClick={() => { setNav(tab.id); setGameDayView('turns') }} style={{
+              <button key={tab.id} onClick={() => { setNav(tab.id); setGameDayView('turns'); onNavChange?.(tab.id) }} style={{
                 height: 60, padding: '0 16px', border: 0, background: 'transparent',
                 fontFamily: 'inherit', fontSize: 15, fontWeight: nav === tab.id ? 700 : 500,
                 color: nav === tab.id ? '#ffffff' : 'rgba(255,255,255,0.65)', cursor: 'pointer',

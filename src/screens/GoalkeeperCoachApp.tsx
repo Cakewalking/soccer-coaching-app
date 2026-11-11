@@ -248,8 +248,8 @@ function ClipsTab() {
   )
 }
 
-export default function GoalkeeperCoachApp({ onBack, empty = false }: { onBack: () => void; empty?: boolean }) {
-  const [nav, setNav]             = useState<GKNav>('home')
+export default function GoalkeeperCoachApp({ onBack, empty = false, initialScreen, onNavChange }: { onBack: () => void; empty?: boolean; initialScreen?: string; onNavChange?: (screen: string) => void }) {
+  const [nav, setNav]             = useState<GKNav>((initialScreen as GKNav) ?? 'home')
   const [homeTab, setHomeTab]     = useState<HomeTab>('overview')
   const [trainingTab, setTrainingTab] = useState<TrainingTab>('session')
   const [toast, setToast]         = useState<string | null>(null)
@@ -264,7 +264,7 @@ export default function GoalkeeperCoachApp({ onBack, empty = false }: { onBack: 
           <span style={{ fontSize: 17, fontWeight: 800, letterSpacing: '-0.03em', flexShrink: 0 }}>Clean Sheet</span>
           <nav style={{ display: 'flex', flexGrow: 1, height: 60 }}>
             {GK_NAV.map(tab => (
-              <button key={tab.id} onClick={() => setNav(tab.id)} style={{
+              <button key={tab.id} onClick={() => { setNav(tab.id); onNavChange?.(tab.id) }} style={{
                 height: 60, padding: '0 16px', border: 0, background: 'transparent',
                 fontFamily: 'inherit', fontSize: 15, fontWeight: nav === tab.id ? 700 : 500,
                 color: nav === tab.id ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer',

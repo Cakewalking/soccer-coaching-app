@@ -1136,9 +1136,18 @@ function pathToState(path: string): { view: DemoView; role: RoleId; screen?: str
     const lookRole = m1[1] as RoleId
     const lookScreen = m1[2]
     if (lookScreen !== undefined) {
-      const NAV_SCREENS = new Set(['home', 'squad', 'training', 'matchday', 'clips'])
-      const NAV_ROLES   = new Set<RoleId>(['coach', 'ccoach', 'youth', 'seniors'])
-      if (!NAV_ROLES.has(lookRole) || !NAV_SCREENS.has(lookScreen)) return { view: 'notfound', role: 'coach' }
+      const LOOK_SCREENS: Partial<Record<RoleId, Set<string>>> = {
+        coach:        new Set(['home', 'squad', 'training', 'matchday', 'clips']),
+        ccoach:       new Set(['home', 'squad', 'training', 'matchday', 'clips']),
+        youth:        new Set(['home', 'squad', 'training', 'matchday', 'clips']),
+        seniors:      new Set(['home', 'squad', 'training', 'matchday', 'clips']),
+        miniroos:     new Set(['home', 'squad', 'training', 'gameday']),
+        goalkeeper:   new Set(['home', 'keepers', 'training', 'clips']),
+        fitness:      new Set(['home', 'squad', 'training', 'matchday']),
+        academyowner: new Set(['home', 'programs', 'players', 'coaches', 'money']),
+        academycoach: new Set(['today', 'players', 'gameday', 'library']),
+      }
+      if (!LOOK_SCREENS[lookRole]?.has(lookScreen)) return { view: 'notfound', role: 'coach' }
     }
     return { view: 'lookaround', role: lookRole, screen: lookScreen }
   }
@@ -1322,13 +1331,15 @@ export default function DemoApp() {
                : phase === 'postseason' ? <SPm10MiniRoosPostSeason onBack={noop} />
                : phase === 'restmonth' ? <SPm16MiniRoosRest onBack={noop} />
                : undefined
-      lookContent = <div style={{ width: 1180, background: 'var(--surface-100)' }}><MiniRoosApp onBack={() => setRole('coach')} empty={false} phaseContent={pc} /></div>
+      lookContent = <div style={{ width: 1180, background: 'var(--surface-100)' }}><MiniRoosApp onBack={() => setRole('coach')} empty={false} phaseContent={pc} initialScreen={screen} onNavChange={setScreen} /></div>
     } else if (role === 'goalkeeper') {
-      lookContent = <GoalkeeperCoachApp onBack={() => setRole('coach')} empty={false} />
+      lookContent = <GoalkeeperCoachApp onBack={() => setRole('coach')} empty={false} initialScreen={screen} onNavChange={setScreen} />
+    } else if (role === 'fitness') {
+      lookContent = <FitnessCoachScreen empty={false} initialScreen={screen} onNavChange={setScreen} />
     } else if (role === 'academyowner') {
-      lookContent = <AcademyOwnerApp onBack={() => setRole('academycoach')} empty={false} />
+      lookContent = <AcademyOwnerApp onBack={() => setRole('academycoach')} empty={false} initialScreen={screen} onNavChange={setScreen} />
     } else if (role === 'academycoach') {
-      lookContent = <AcademyCoachApp onBack={() => setRole('coach')} empty={false} />
+      lookContent = <AcademyCoachApp onBack={() => setRole('coach')} empty={false} initialScreen={screen} onNavChange={setScreen} />
     } else if (role === 'academyparent') {
       lookContent = <AcademyParentApp onBack={() => setView('start')} empty={false} />
     } else if (role === 'academyplayer') {
