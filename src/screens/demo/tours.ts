@@ -262,7 +262,7 @@ export const TOURS: Record<string, TourDef> = {
         { label: "Home", caption: "Under 12 it\u2019s simple: growth, a good warm-up and a few flags. No fitness testing.", screen: "F3-FitnessTraining" },
         { label: "Growth", caption: "Under 12 it\u2019s simple: growth, a good warm-up and a few flags. No fitness testing.", screen: "growth" },
         { label: "Measuring session", caption: "Under 12 it\u2019s simple: growth, a good warm-up and a few flags. No fitness testing.", screen: "GT2-MeasureSession" },
-        { label: "Your part of training", caption: "Under 12 it\u2019s simple: growth, a good warm-up and a few flags. No fitness testing.", screen: "GT2-MeasureSession" },
+        { label: "Your part of training", caption: "Under 12 it\u2019s simple: growth, a good warm-up and a few flags. No fitness testing.", screen: "coachfitness" },
       ]},
       { title: "Under 13 to 16: Grow", steps: [
         { label: "Home, U13 girls", caption: "From under 13 the view grows with the players: growth spurts, load and tests against their own last result.", screen: "FT3-FitnessHomeU13G" },

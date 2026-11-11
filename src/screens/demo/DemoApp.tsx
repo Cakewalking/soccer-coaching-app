@@ -1069,7 +1069,17 @@ function pathToState(path: string): { view: DemoView; role: RoleId; screen?: str
   if (path === '/sandbox')          return { view: 'sandbox',  role: 'coach' }
   if (path === '/nosandbox')        return { view: 'nosandbox', role: 'coach' }
   const m1 = path.match(/^\/look\/([a-z0-9]+)(?:\/(.+))?$/)
-  if (m1) return m1[1] in TOURS ? { view: 'lookaround', role: m1[1] as RoleId, screen: m1[2] } : { view: 'notfound', role: 'coach' }
+  if (m1) {
+    if (!(m1[1] in TOURS)) return { view: 'notfound', role: 'coach' }
+    const lookRole = m1[1] as RoleId
+    const lookScreen = m1[2]
+    if (lookScreen !== undefined) {
+      const NAV_SCREENS = new Set(['home', 'squad', 'training', 'matchday', 'clips'])
+      const NAV_ROLES   = new Set<RoleId>(['coach', 'ccoach', 'youth', 'seniors'])
+      if (!NAV_ROLES.has(lookRole) || !NAV_SCREENS.has(lookScreen)) return { view: 'notfound', role: 'coach' }
+    }
+    return { view: 'lookaround', role: lookRole, screen: lookScreen }
+  }
   const m2 = path.match(/^\/tour\/([a-z0-9]+)(?:\/(\d+))?$/)
   if (m2) return m2[1] in TOURS ? { view: 'tour', role: m2[1] as RoleId, screen: m2[2] } : { view: 'notfound', role: 'coach' }
   const m3 = path.match(/^\/sandbox\/([a-z0-9]+)(?:\/(.+))?$/)

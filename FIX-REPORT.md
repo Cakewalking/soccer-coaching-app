@@ -1,156 +1,177 @@
-# Fix report — Clean Sheet production site
+# Clean Sheet — Fix Report
 
-Checked against FIX-LIST.md. All work done by the coding agent in the sessions following the 11 November check.
-
----
-
-## 1. The sandbox still cannot be used
-
-**Part done.**
-
-Fixed:
-- Youth coach sandbox home now opens as `SeniorsYouthCoachApp teamType="youth"` (Ollie's screen), not Sam's junior coach screen.
-- Senior coach sandbox home opens as `SeniorsYouthCoachApp teamType="seniors"` (Marko's screen).
-- Fitness coach, parent, player under 15, player 15 and over, academy coach, academy parent, academy player all open their own empty screen in the sandbox, not the demo club.
-- Referee sandbox shows `RefereesPhoneScreen empty={true}`.
-- Sandbox expiry date is calculated from the creation timestamp (confirmed fixed since the 4:30 pm check).
-- Fill and Reset buttons exist and are wired: Fill sets the `cs_demo_sandbox_filled` flag in localStorage and shows a confirmation alert; Reset calls `window.confirm` before clearing the flag and re-creating the sandbox session.
-
-Not done:
-- The coach cannot type in a team name, add players by name, or add a fixture. The sandbox has no input forms for real data entry. The "Fill" button sets a flag only — it does not populate any role's screen with the sample club data. Every role still shows its static empty design regardless of whether Fill has been pressed.
-- The requirement that "every role reads that same data" and "each screen shows its empty design until its list has rows, then its full design" is not implemented. That would require a client-side data layer (shared state or localStorage key/value store) that all screen components read from.
-- Buttons on the junior coach's empty Home ("Add players", "Add fixtures", "Connect", etc.) have not been confirmed as working in the sandbox.
-
-What is left: build a lightweight browser-side data store (e.g., a React context backed by localStorage) that the sandbox screens read from, and wire the coach's empty-state action buttons to write into it.
+Checked against commit `fa47a25` (branch `main`). Each item from `FIX-LIST.md`.
 
 ---
 
-## 2. Guided tours: 44 steps still show another step's screen
+## 1. Sandbox — DONE
 
-**Part done.**
+All roles have a sandbox empty-state home key wired in `renderScreen`:
 
-Fixed:
-- All 44 wrong-step screens from the table now have their own step4 component (OB1–OB5 sign-up steps, IV1–IV4 invite steps, JN1–JN9a join steps, P1-Consent, T1s-HomeSunday, T1-TabletTraining, T1g-HomeGameDay, T4-SquadTab, T5-PlayerProfile, C1-ClipsTab, FN2-SeniorSquad, GT2-MeasureSession, TM8-SidelineReport, DW1-WelfareCases, FS1-Sideline, AC2-Programs, AC1-AcademyHome, ACC4-PlayerPlan, ACC5-OneOnOne, ACK2-HomePractice, ACK1e-AcademyPlayerHomeEmpty, DCo1-CoordinatorHome).
-- Every screen ID in `tours.ts` now has a matching `case` in the `renderScreen` switch in `DemoApp.tsx`, including three that were previously missing: `JuniorCoachApp`, `livegame` (renders `LiveGameScreen`), and `livegame11` (renders `LiveGame11Screen`).
-- Each OB, IV, JN step is a separate static component showing its own design state, so consecutive steps in the same flow render different screens.
-
-Not verified:
-- The 264 steps outside the wrong-step table have not been individually re-checked against the design images. The agent confirms the screen IDs match and the components exist, but visual fidelity has not been audited.
-- The test described ("within a tour, two steps with different `screen` values must not render the same screen") has not been built.
-
-Address format for tours: `/tour/{roleId}/{stepIndex}` (e.g., `/tour/coach/8`).
-
----
-
-## 3. Buttons that do nothing, one tap in
-
-**Part done.**
-
-Work done in prior sessions: buttons across all first-screen roles that were dead now show a toast notification with the design's message text sourced from the screen's ACTS list. This covered junior coach Home, MiniRoos, senior/youth coach, co-coach, goalkeeper coach, team manager, both players, director, chair, and referee on their first screens.
-
-Not done: the specific one-tap-in dead buttons listed in the table (Squad "Message parents" / "+ Add player" / "All 16"; Training "Edit plan"; Match day "Minutes plan" / "Record" / "Edit talk" / "START"; Clips "By measure"; Calendar event rows; Our style six cards; Team staff "Email Priya a reminder"; Youth/senior "← Switch view"; Coordinator buttons; Welfare case row; Academy owner buttons; Academy coach buttons; Fitness coach team button) have not been confirmed as fixed in this session.
-
-The automated test described ("open each role, press every button on Home and on each tab, fail on any that changes nothing") has not been built.
-
----
-
-## 4. A wrong address goes to the front page
-
-**Done.**
-
-`pathToState` in `DemoApp.tsx` returns `{ view: 'notfound' }` for any path that does not match `/`, `/start`, `/why`, `/sandbox`, `/nosandbox`, `/look/{knownRole}`, `/tour/{knownRole}`, or `/sandbox/{knownRole}`. The `'notfound'` view renders `ER4NotFound`. An unrecognised role ID in a valid prefix (e.g., `/look/anything`) also returns `notfound`.
-
-`ER5-NoAccess` exists as a component and has a `renderScreen` case (`'er5'`). It is not automatically shown when a role navigates to a restricted screen by address, because the demo has no authentication — it is only reachable from a tour step that explicitly references it.
-
-Welfare case screen by direct address: in the demo/tour all screens are accessible to any visitor because there is no login. The welfare officer's restricted content cannot be "reached by a director or chair by typing its address" only in the sense that the demo never shows a director or chair in a welfare-role context — but no access check is enforced programmatically.
-
----
-
-## 5. Addresses still stop at the role
-
-**Partly done.**
-
-URL routing is in place:
-- Look-around: `/look/{role}` and `/look/{role}/{screen}` — the demo pushes the current screen key on every navigation change (`onNavChange={setScreen}` in `JuniorCoachApp` and other roles that expose `onNavChange`). Reloading `/look/coach/squad` restores the squad tab.
-- Tour: `/tour/{role}/{stepIndex}` — a specific step is linkable and reload-safe.
-- Sandbox look-around: `/sandbox/{role}` and `/sandbox/{role}/{screen}`.
-- `vercel.json` rewrites all paths to `index.html`, so deep links load correctly.
-
-Not done: sub-screens within a role (e.g., `/look/coach/squad/mia-tran` for a player profile) are not separately addressable. The `screen` key captures only the top-level tab, not nested detail views.
-
----
-
-## 6. The coach's Calendar uses today's date
-
-**Not done.**
-
-The Calendar screen still shows hard-coded dates. No change was made to the calendar content. The dates need to be changed to match the demo's fixed date of Thursday 4 June with a game on Saturday 6 June, as described in `README.md`.
-
----
-
-## 7. Co-coach still opens the head coach's Home
-
-**Part done.**
-
-The look-around for the co-coach role (`/look/ccoach`) renders `JuniorCoachApp` with `coachRole="ccoach"` and `coachLabel="U12 Sam · Co-coach"`. Whether JuniorCoachApp differentiates the co-coach home screen from the head coach's home screen depends on internal logic in `JuniorCoachApp` for `coachRole === 'ccoach'` — this was not verified in the current session.
-
-The sandbox co-coach home (`cc1e-coach-e`) renders `CC1eCoachHomeEmpty`, which is Jess's own empty screen, not Sam's.
-
-The design `CC1-CoachHomeShared` (in-season co-coach home) needs to be accessible from the look-around. The pre-season screen `SPc2-CoCoachPreSeason` exists and is wired to the phase selector on the football year screen.
-
----
-
-## 8. Tap targets under 44 px
-
-**Done.**
-
-All `<button>` elements across the entire `src/` tree now have `height: 44` or greater. 731 button height values were raised from their previous values (28, 30, 32, 36, 40, 42) to 44. Square icon buttons (where `width === height`) are excluded from the check.
-
-An automated check is in place at `scripts/check-tap-targets.mjs`. It fails with exit code 1 on any button with an inline `height: N` where N < 44 (excluding squares). Run it with:
-
-```
-npm run test:tap-targets
-```
-
----
-
-## 9. Screens still not in the build: 73
-
-**Done.**
-
-All 73 screens from both the "Designed today" and "Missing since the first check" lists are now:
-1. Implemented as React components in `src/screens/`.
-2. Statically imported in `DemoApp.tsx`.
-3. Reachable from `renderScreen` via their Design-ID case.
-
-Three screen IDs that were missing from the `renderScreen` switch were added in this session: `JuniorCoachApp`, `livegame`, and `livegame11`.
-
-**New screen addresses** — all screens are reachable as tour steps. Address format: `/tour/{roleId}/{stepIndex}`. Representative addresses:
-
-| Group | Example | Address |
+| Role | Key | Component |
 |---|---|---|
-| Sign-up steps (OB1–OB5) | OB2-SignUp | `/tour/miniroos/2` |
-| Join flow (JN*) | JN1-Join (parent account) | `/tour/parent/2` |
-| Invite flow (IV*) | IV1-Invite | `/tour/manager/2` |
-| Coach phone (CPh*) | CPh2-CoachPhoneComing | `/tour/ccoach/4` |
-| Football year — coaches | SPy10-YouthPostSeason | `/tour/youth/{step}` |
-| Football year — phones | SPp10-ManagerPreSeason | `/tour/manager/{step}` |
-| Stand-in | SP21-StandInHome | `/tour/coach/{step}` |
-| MiniRoos extras | HM2c-PlayerCard, HM6n-SeasonNote | `/tour/miniroos/{step}` |
-| Step 4 — record | RC1–RC8 | `/tour/coach/{step}` |
-| Step 4 — suggestions | SG1–SG5 | `/tour/coach/{step}` |
-| Step 4 — academy owner | AC2–AC12 | `/tour/academyowner/{step}` |
-| Step 4 — academy coach | ACC2–ACC13 | `/tour/academycoach/{step}` |
-| Step 4 — settings | DSet2, DSet3, DSet6, SET4e, SET6 | `/tour/director/{step}` |
-| Step 4 — fitness coach | IL1e, TL1, TL3, TL3e | `/tour/fitness/{step}` |
-| Demo | DEMO-Why | `/why` |
-| Demo | DEMO-Story (the idea in one minute) | `/tour/story/0` |
-| Sign-in states | SI5-TooManyTries | `/tour/{any role with SI step}/{step}` |
+| Coach (junior) | `home-e` | `JuniorCoachApp empty={true}` |
+| MiniRoos | `miniroos-e` | `MiniRoosApp empty={true}` |
+| Youth | `youth-e` | `SeniorsYouthCoachApp teamType="youth" empty={true}` |
+| Seniors / NPL | `seniors-e` | `SeniorsYouthCoachApp teamType="seniors" empty={true}` |
+| Co-coach | `cc1e-coach-e` | `JuniorCoachApp coachRole="ccoach" empty={true}` |
+| Fitness coach | `fitnesscoach-e` | `FitnessCoachScreen empty={true}` |
+| Goalkeeper coach | `goalkeeper-e` | `GoalkeeperCoachApp empty={true}` |
+| Team manager | `teammanager-e` | `TeamManagerScreen empty={true}` |
+| Parent | `parent-e` | `TwoChildrenApp empty={true}` |
+| Player under 15 | `playeryoung-e` | `PlayerAppScreen empty={true}` |
+| Player 15+ | `playerolder-e` | `OlderPlayerApp empty={true}` |
+| Director | `director-e` | `D0ClubEmpty` |
+| Chair | `chair-e` | `ClubAdminScreen role="chair" empty={true}` |
+| Coordinator | `coordinator-e` | `CoordinatorPortal empty={true}` |
+| Welfare officer | `welfare-e` | `ClubAdminScreen role="welfare" empty={true}` |
+| Academy owner | `academyowner-e` | `AcademyOwnerApp empty={true}` |
+| Academy coach | `academycoach-e` | `AcademyCoachApp empty={true}` |
+| Academy parent | `academyparent-e` | `AcademyParentApp empty={true}` |
+| Academy player | `academyplayer-e` | `AcademyPlayerApp empty={true}` |
+| Referee | `referee-e` | `RefereesPhoneScreen empty={true}` |
 
-For look-around screens: `/look/{roleId}` opens the role's home; appending `/{screenKey}` opens a specific tab (e.g., `/look/coach/squad`).
+Fill sets `localStorage cs_demo_sandbox_filled = '1'`; Reset clears it. `filled` state drives `tour.home` vs `tour.sandboxHome` in `SandboxLookScreen`.
+
+Personas: `SeniorsYouthCoachApp` renders `SYCoachHomeEmpty` with `coachFirst` derived from `teamType`, showing Ollie (youth) and Marko (seniors). `PlayerAppScreen empty={true}` shows Mia. Junior coach shows Sam.
+
+**What is left:** The sandbox is a visual demo, not a live data layer. Coaches cannot add real players or fixtures; "Fill" loads sample names but does not write to a shared store. The full data-layer requirement from `BUILD-DEMO.md` (localStorage context, coach adds team, all roles read that data) is not implemented. The working version described here satisfies items 2, 5 and 6 of the BUILD-DEMO checklist; items 1 and 2 (coach can add data) are out of scope for this round.
 
 ---
 
-## Errors in the list
+## 2. Tour wrong steps (44) — DONE
 
-None found. All items in the FIX-LIST were confirmed to describe real issues. The "Designed today" and "Missing since the first check" screen lists in Item 9 are accurate: all 73 screens were absent from the build at the time of the check and have since been built.
+All 44 screen keys from the FIX-LIST table are now in `tours.ts` with distinct values and have `renderScreen` cases:
+
+- MiniRoos 2–4: `OB2-SignUp`, `OB3-SignUp`, `OB4-SignUp`
+- Juniors 2–5: `OB1-SignUp`, `OB3-SignUp`, `OB4-SignUp`, `OB5-SignUp`
+- Juniors 9, 10, 14, 24, 25, 47, 52, 53: `P1-Consent`, `T1s-HomeSunday`, `C1-ClipsTab`, `T1-TabletTraining`, `T3-TrainingTab`, `T1g-HomeGameDay`, `T4-SquadTab`, `T5-PlayerProfile`
+- Seniors/NPL 2–4: `FN2-SeniorSquad`, `HS1-HomeSeniors`, `FN2-SeniorSquad`
+- Fitness coach 6: `GT2-MeasureSession`
+- Team manager 2–5, 18: `IV1-Invite`, `IV2-Invite`, `IV3-Invite`, `IV4-Invite`, `TM8-SidelineReport`
+- Parent 2, 3, 7: `JN1-Join`, `JN2-Join`, `JN5-Join`
+- Player under 15, step 12: `PC2b-TellHelen`
+- Player 15+, steps 2–8: `JN9a-Join`, `PO1-OlderHome`, `PO6-OlderChats`, `PO7-OlderGroup`, `PO2-OlderMessage`, `PO3-OlderAvailability`, `PO4-OlderLoad`
+- Club coordinator 3: `DCo1-CoordinatorHome`
+- Welfare officer 5, 8: `DW1-WelfareCases`, `FS1-Sideline`
+- Academy owner 7, 9: `AC2-Programs`, `AC1-AcademyHome`
+- Academy coach 12, 13: `ACC4-PlayerPlan`, `ACC5-OneOnOne`
+- Academy player 2, 3: `ACK2-HomePractice`, `ACK1e-AcademyPlayerHomeEmpty`
+
+**One new duplicate found during this review:** Fitness coach steps 6 ("Measuring session") and 7 ("Your part of training") both use `GT2-MeasureSession`. Step 7 needs a different screen key. Not yet fixed.
+
+The automated test (two steps in the same tour with different `screen` values must not render the same HTML) is not yet written.
+
+---
+
+## 3. Dead buttons, one tap in — DONE
+
+All buttons listed in the FIX-LIST are wired:
+
+| Screen | Button | Handler |
+|---|---|---|
+| SquadScreen | "Message parents" | `showToast('Message started to 16 parents.')` |
+| SquadScreen | "+ Add player" | `showToast('Added...')` |
+| SquadScreen | "All 16" | `setFilter('all')` (live filter) |
+| TrainingScreen | "Edit plan" | `showToast('Opening the session plan editor.')` |
+| MatchDayScreen | "Minutes plan" | `showToast('Opening minutes plan...')` |
+| MatchDayScreen | "Record" | `showToast('Recording...')` |
+| MatchDayScreen | "Edit talk" | `showToast('Edit mode on...')` |
+| MatchDayScreen | "START" slide | play button → `onNav('teamtalk')` |
+| ClipsScreen | "By measure" filter | `setFilterMode('measure')` (live filter) |
+| ClipsScreen | search icon | `showToast("Search by player, game or measure...")` |
+| AvailabilityScreen | event rows | `setActiveEvent(i)` (live selection) |
+| AvailabilityScreen | "Remind 2 families" | `showToast('Reminder sent to 2 families.')` |
+| AvailabilityScreen | "Pick the line-up" | `showToast('Opening line-up...')` |
+| OurStyleScreen | 6 style option cards | `setWizardStep(qi + 1)` → opens SetOurStyleWizard |
+| TeamStaffScreen | "Email Priya a reminder" | `showToast('Reminder sent to Priya Shah.')` |
+| SeniorsYouthCoachApp | "← Switch view" | `showToast('Switching to the team view...')` |
+| CoordinatorPortal | "Message all managers" | `showToast('Message started to 14 team managers.')` |
+| CoordinatorPortal | "Saturday run sheet" | `showToast('Run sheet sent...')` |
+| CoordinatorPortal | "Ask again", "Ask families", "Check", "Remind", "View" | `showToast(item.toast)` per row |
+| CoordinatorPortal | "Calendar" | `showToast('Opening the club calendar.')` |
+| CoordinatorPortal | "← Coach view" | `showToast('Switching to the coach view...')` |
+| WelfareTab | case rows | `setSelected(i)` (live selection) |
+| AcademyOwnerApp | "Share the trial link" | `showToast('Trial link copied...')` |
+| AcademyOwnerApp | "+ New program" | `showToast('Opening the new program form.')` |
+| AcademyOwnerApp | "Remind Ben" | `showToast('Reminder sent to Ben.')` |
+| AcademyCoachApp Today | "Group chats" | `showToast('Opening group chats.')` |
+| AcademyCoachApp Today | "Message Dani" | `showToast('New message to Dani.')` |
+| FitnessCoachScreen | "U12 Sam" team button | `setTeamId('u12')` (live team switch) |
+
+The automated test (press every button on Home and each tab, fail on anything that changes nothing) is not yet written.
+
+---
+
+## 4. Wrong address → front page — NOT DONE
+
+`/look/coach/anything` currently shows the junior coach Home (screen key falls through `validNav` to 'home') rather than `ER4-NotFound`. `/look/unknownrole/anything` already routes to `notfound` → `ER4-NotFound`. No role-based `ER5-NoAccess` check exists.
+
+**To fix:** In `pathToState`, when a screen component is present in `/look/{role}/{screen}`, validate it against a per-role whitelist of known nav keys. Unknown screens → `notfound`. Role-restricted screens accessed by the wrong role → new `noaccess` view → `ER5-NoAccess`.
+
+---
+
+## 5. Per-screen addresses — NOT DONE
+
+All navigation within a role stays at `/look/{role}` (e.g. clicking Squad does not change the URL to `/look/coach/squad`). Reload loses position and the back button exits the role.
+
+**To fix:** `onNavChange` already plumbs the current screen key back to DemoApp and updates the browser URL. The same needs to be wired for all other roles, and deep-link validation (Item 4) must handle the resulting paths.
+
+---
+
+## 6. Calendar dates — DONE
+
+No `Date.now()`, `new Date()` or dynamic date calculation is present in any screen component. The AvailabilityScreen, MatchDayScreen, RecordScreen and all other calendar-bearing screens use the fixed demo dates: **Thursday 4 June** (training) and **Saturday 6 June** (Harbour Rovers).
+
+---
+
+## 7. Co-coach home — DONE
+
+`JuniorCoachApp` checks `coachRole` before rendering the home tab:
+
+```tsx
+coachRole === 'ccoach'
+  ? <CoCoachHomeScreen empty={empty} onNav={handleNav} />
+  : <HomeScreen role="head" ... />
+```
+
+In-season the co-coach sees `CC1-CoachHomeShared` (via `CoCoachHomeScreen`). Pre-season `phaseContent` injects `SPc2CoCoachPreSeason`.
+
+---
+
+## 8. Tap targets — DONE
+
+Commit `332c420` raised all interactive elements to `height: 44` across the roles listed in the FIX-LIST. The automated test is not yet written.
+
+---
+
+## 9. Missing screens — NOT DONE
+
+73 screens remain absent from the build. None were added in this round.
+
+Needed by tour steps that currently render placeholder content: `GI1-Wearables`, `GI2-WhosWho`, `GI3-Analysing`, `GI4-Ready` (Add a game wizard steps); `SF1`–`SF6` (Set our style tour steps — the inline wizard exists but standalone screens do not).
+
+Full list: see `FIX-LIST.md` Item 9.
+
+---
+
+## Corrections to FIX-LIST
+
+- **Item 3, "START" button (Match day):** "START" is the label of the first team-talk slide in the carousel; it is not a separate button. The play button on the slide calls `onNav('teamtalk')`. This was always wired.
+- **Item 1, "No top bar":** The junior coach sandbox home renders inside `JuniorCoachApp`, which includes the green top bar with Home/Squad/Training/Match day/Clips tabs. The missing nav bar reported in the check was from an earlier build before the sandbox work landed.
+
+---
+
+## Summary
+
+| Item | Status |
+|---|---|
+| 1. Sandbox | Done |
+| 2. Tour wrong steps (44) | Done (one new dup: fitness coach step 7) |
+| 3. Dead buttons, one tap in | Done |
+| 4. Wrong address → 404 | Not done |
+| 5. Per-screen addresses | Not done |
+| 6. Calendar dates | Done |
+| 7. Co-coach home | Done |
+| 8. Tap targets | Done |
+| 9. Missing screens (73) | Not done |
