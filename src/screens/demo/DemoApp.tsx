@@ -824,7 +824,7 @@ export function renderScreen(key: string): ReactNode {
     case 'TL1-Tests':                 return <TL1TestLibrary />
     case 'TL3-TestResults':           return <TL3SprintResults />
     // Design ID aliases — Season features
-    case 'FN2-SeniorSquad':           return <FN2SeniorSquad />
+    case 'FN2-SeniorSquad':           return <FN2SeniorSquad mode="registration" />
     case 'FN2b-SeniorSquad':          return <FN2SeniorSquad />
     case 'FN3-SeniorTeam':            return <FN3SeniorTeam onBack={noop} />
     case 'FP1-PlayFootball':          return <FP1PlayFootball />

@@ -544,7 +544,7 @@ export const TOURS: Record<string, TourDef> = {
         { label: "From a parent", caption: "A concern can come from a parent, a child, a wellness alert or the sideline. Each goes only to the welfare officer.", screen: "PC1-RaiseConcern" },
         { label: "From a child", caption: "A concern can come from a parent, a child, a wellness alert or the sideline. Each goes only to the welfare officer.", screen: "PC2b-TellHelen" },
         { label: "From a wellness alert", caption: "A concern can come from a parent, a child, a wellness alert or the sideline. Each goes only to the welfare officer.", screen: "inbox" },
-        { label: "From the sideline", caption: "A concern can come from a parent, a child, a wellness alert or the sideline. Each goes only to the welfare officer.", screen: "FS1-Sideline" },
+        { label: "From the sideline", caption: "A concern can come from a parent, a child, a wellness alert or the sideline. Each goes only to the welfare officer.", screen: "TM8-SidelineReport" },
       ]},
       { title: "Handle it", steps: [
         { label: "My cases", caption: "Only the welfare officer sees names. The director sees counts.", screen: "DW1-WelfareCases" },
@@ -900,7 +900,7 @@ export const TOURS: Record<string, TourDef> = {
         { label: "Scores for grading",        caption: "Score 17 players for division grading.", screen: "gradinginput" },
       ]},
       { title: "Season", steps: [
-        { label: "Home in-season",            caption: "Tonight's session, what needs you, Saturday's game.", screen: "JuniorCoachApp" },
+        { label: "Home in-season",            caption: "Tonight's session, what needs you, Saturday's game.", screen: "T1-TabletTraining" },
         { label: "Mid-season reviews",        caption: "Four player chats, goals and regrade window.", screen: "midseasonreview" },
       ]},
       { title: "Post-season", steps: [
@@ -924,7 +924,7 @@ export const TOURS: Record<string, TourDef> = {
     roleLabel: "The football year — club",
     persona: "as Rachel, director of football",
     device: 'tablet',
-    total: 14,
+    total: 13,
     home: 'clubphases',
     sections: [
       { title: "Set the year", steps: [
@@ -955,7 +955,7 @@ export const TOURS: Record<string, TourDef> = {
     roleLabel: "The football year — family",
     persona: "as Linh Tran, parent of Mia",
     device: 'tablet',
-    total: 16,
+    total: 15,
     home: 'parent-preseason',
     sections: [
       { title: "Parent phone", steps: [
@@ -1047,6 +1047,14 @@ export const ROLE_GROUPS: Array<{
       { id: 'academycoach',  name: 'Academy coach',  device: 'Tablet', desc: 'as Reece Whitlam' },
       { id: 'academyparent', name: 'Academy parent', device: 'Phone',  desc: 'as Tess Okonkwo' },
       { id: 'academyplayer', name: 'Academy player', device: 'Phone',  desc: 'as Kai Okonkwo, 13' },
+    ],
+  },
+  {
+    section: 'A YEAR AT THE CLUB',
+    roles: [
+      { id: 'year-coach',  name: 'The year — coach',  device: 'Tablet', desc: 'U16 Ollie · all four phases · 20 steps' },
+      { id: 'year-club',   name: 'The year — club',   device: 'Tablet', desc: 'as Rachel, director of football · 13 steps' },
+      { id: 'year-family', name: 'The year — family', device: 'Tablet', desc: 'as Linh Tran, parent of Mia · 15 steps' },
     ],
   },
 ]

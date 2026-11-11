@@ -66,6 +66,14 @@ export default function DemoStart({ onTour, onLook, onStory, onWhy, onSandbox }:
               </div>
             )}
 
+            {/* Blurb for year-at-the-club section */}
+            {group.section === 'A YEAR AT THE CLUB' && (
+              <div style={{ marginTop: 12, padding: '14px 18px', background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16 }}>
+                <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f', marginBottom: 4 }}>Everything in one go</div>
+                <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: 1.5 }}>These longer tours walk through the whole football year — pre-season, season, post-season and rest month — from the coach's, club's or family's point of view.</div>
+              </div>
+            )}
+
             {/* Phone QR hint in Families section */}
             {group.section === 'FAMILIES' && (
               <div style={{ marginTop: 12, padding: '14px 18px', background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, display: 'flex', alignItems: 'center', gap: 16 }}>
