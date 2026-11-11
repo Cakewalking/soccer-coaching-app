@@ -22,8 +22,8 @@ export default function SP4CoachTrial({ onBack }: { onBack?: () => void }) {
           <div style={{ fontSize: 14, color: MUT }}>Sun 22 March · 4 players join your normal session</div>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button onClick={onBack} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Back to the squad</button>
-          <button onClick={() => t('Saved. Rachel, the director, sends every family a reply by Tuesday.')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Save and tell the club</button>
+          <button onClick={onBack} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Back to the squad</button>
+          <button onClick={() => t('Saved. Rachel, the director, sends every family a reply by Tuesday.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Save and tell the club</button>
         </div>
       </div>
 
@@ -51,7 +51,7 @@ export default function SP4CoachTrial({ onBack }: { onBack?: () => void }) {
                 ))}
               </div>
             ))}
-            <button onClick={() => t(`${p.name} confirmed.`)} style={{ height: 32, padding: '0 10px', borderRadius: 8, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Confirm</button>
+            <button onClick={() => t(`${p.name} confirmed.`)} style={{ height: 44, padding: '0 10px', borderRadius: 8, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Confirm</button>
           </div>
         ))}
         <div style={{ padding: '10px 16px', background: '#fafafa', fontSize: 12, color: MUT }}>Scores stay with coaches. Families only ever get words: a place, another look, or another team.</div>

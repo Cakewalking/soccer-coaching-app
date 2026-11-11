@@ -40,8 +40,8 @@ export default function CoachesTab({ empty }: { empty?: boolean }) {
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
               <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>Coaches · {COACHES_DATA.length} coaches · 9 shown · sorted by what needs doing</div>
               <div style={{ display: 'flex', gap: 8 }}>
-                <button style={{ height: 32, padding: '0 14px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>1 request to join</button>
-                <button style={{ height: 32, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>+ Invite a coach</button>
+                <button style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>1 request to join</button>
+                <button style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>+ Invite a coach</button>
               </div>
             </div>
             <div style={{ background: '#fff', borderRadius: 14, border: '1px solid #e9eae8', overflow: 'hidden' }}>
@@ -100,8 +100,8 @@ export default function CoachesTab({ empty }: { empty?: boolean }) {
                   </div>
                 )}
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginTop: 16 }}>
-                  <button style={{ height: 40, borderRadius: '999px', border: 0, background: '#1f4a3e', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Message {c.name.split(' ')[0]}</button>
-                  <button style={{ height: 40, borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 14, cursor: 'pointer' }}>Send check renewal link</button>
+                  <button style={{ height: 44, borderRadius: '999px', border: 0, background: '#1f4a3e', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Message {c.name.split(' ')[0]}</button>
+                  <button style={{ height: 44, borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 14, cursor: 'pointer' }}>Send check renewal link</button>
                 </div>
               </div>
             )
@@ -113,7 +113,7 @@ export default function CoachesTab({ empty }: { empty?: boolean }) {
         <div style={p}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 20 }}>
             <div><div style={{ fontSize: 18, fontWeight: 800, color: '#10211f' }}>Training and courses</div><div style={{ fontSize: 12, color: '#6f7f7b' }}>31 coaches · what they've done and what's next</div></div>
-            <button style={{ height: 32, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Invite the 9 to the club course</button>
+            <button style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Invite the 9 to the club course</button>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 14, marginBottom: 24 }}>
             {[{ n: '22 of 31', label: 'Club course done', sub: '9 to go · next one Sat 20 Jun' }, { n: '14', label: 'Foundation courses', sub: 'MiniRoos or Foundation of Football' }, { n: '3', label: 'C Diploma', sub: 'Sam K, Bec Ward and one assistant' }, { n: '18 of 31', label: 'First aid', sub: 'Every team has at least one' }].map(s => (
@@ -145,7 +145,7 @@ export default function CoachesTab({ empty }: { empty?: boolean }) {
                     <div style={{ width: 24, height: 24, borderRadius: '999px', background: '#e4f2eb', color: '#2f6252', fontSize: 10, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{item.ini}</div>
                     <div><div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{item.label}</div><div style={{ fontSize: 11, color: '#6f7f7b' }}>{item.desc}</div></div>
                   </div>
-                  <button style={{ flexShrink: 0, height: 28, padding: '0 12px', borderRadius: '999px', border: '1px solid #2f6252', background: '#fff', color: '#2f6252', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>{item.cta}</button>
+                  <button style={{ flexShrink: 0, height: 44, padding: '0 12px', borderRadius: '999px', border: '1px solid #2f6252', background: '#fff', color: '#2f6252', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>{item.cta}</button>
                 </div>
               ))}
             </div>
@@ -162,8 +162,8 @@ export default function CoachesTab({ empty }: { empty?: boolean }) {
                 <div style={{ fontSize: 12, color: '#6f7f7b' }}>Tue 9 Jun · 7:30 pm · clubrooms and online</div>
               </div>
               <div style={{ display: 'flex', gap: 8 }}>
-                <button style={{ height: 32, padding: '0 14px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>Edit agenda</button>
-                <button style={{ height: 32, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Send agenda</button>
+                <button style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>Edit agenda</button>
+                <button style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Send agenda</button>
               </div>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', margin: '14px 0 10px' }}>
@@ -208,7 +208,7 @@ export default function CoachesTab({ empty }: { empty?: boolean }) {
                 </div>
               ))}
             </div>
-            <button style={{ width: '100%', height: 40, borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 14, cursor: 'pointer' }}>Remind the 7</button>
+            <button style={{ width: '100%', height: 44, borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 14, cursor: 'pointer' }}>Remind the 7</button>
           </div>
         </div>
       )}
@@ -239,7 +239,7 @@ export default function CoachesTab({ empty }: { empty?: boolean }) {
                 <span style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{row.value}</span>
               </div>
             ))}
-            <button style={{ marginTop: 12, width: '100%', height: 36, borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Message Lee</button>
+            <button style={{ marginTop: 12, width: '100%', height: 44, borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Message Lee</button>
           </div>
         </div>
       )}
@@ -249,7 +249,7 @@ export default function CoachesTab({ empty }: { empty?: boolean }) {
           <div style={{ fontSize: 32, marginBottom: 16 }}>📚</div>
           <div style={{ fontSize: 18, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>Club drill library</div>
           <div style={{ fontSize: 14, color: '#6f7f7b', maxWidth: 400, margin: '0 auto 20px' }}>The club drill library is managed in the coach Training tab. Coaches can access all shared drills from their session planner.</div>
-          <button style={{ height: 36, padding: '0 20px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Go to drill library</button>
+          <button style={{ height: 44, padding: '0 20px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Go to drill library</button>
         </div>
       )}
     </>

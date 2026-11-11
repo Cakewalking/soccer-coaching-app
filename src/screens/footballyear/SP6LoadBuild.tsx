@@ -17,8 +17,8 @@ export default function SP6LoadBuild({ onBack }: { onBack?: () => void }) {
           <div style={{ fontSize: 14, color: MUT }}>Thu 12 March · pre-season · 4 weeks to round 1</div>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button onClick={onBack} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Back to Home</button>
-          <button onClick={() => t('Opening sessions')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>This week's sessions</button>
+          <button onClick={onBack} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Back to Home</button>
+          <button onClick={() => t('Opening sessions')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>This week's sessions</button>
         </div>
       </div>
 
@@ -72,7 +72,7 @@ export default function SP6LoadBuild({ onBack }: { onBack?: () => void }) {
           <div style={{ fontSize: 13, fontWeight: 700, color: GD, marginBottom: 2 }}>Why build up</div>
           <div style={{ fontSize: 13, color: G, lineHeight: 1.5 }}>Most early-season injuries come from doing too much in the first weeks back.</div>
         </div>
-        <button onClick={() => t('Message started to Priya, your fitness coach.')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', flex: 'none' }}>Ask Priya to change it</button>
+        <button onClick={() => t('Message started to Priya, your fitness coach.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', flex: 'none' }}>Ask Priya to change it</button>
       </div>
 
       {toast && <div style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', background: INK, color: '#fff', padding: '10px 20px', borderRadius: 12, fontSize: 14, fontWeight: 600, zIndex: 1000, whiteSpace: 'nowrap' as const }}>{toast}</div>}

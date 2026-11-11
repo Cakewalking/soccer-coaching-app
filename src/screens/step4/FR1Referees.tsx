@@ -43,8 +43,8 @@ export default function FR1Referees(_: { onBack?: () => void }) {
                 ? <span style={{ fontSize: 14 }}>{g.ref}</span>
                 : <span style={{ fontSize: 14, color: '#c00', fontStyle: 'italic' }}>Not assigned</span>}
               {!g.ref
-                ? <button style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Assign ref</button>
-                : <button style={{ height: 36, padding: '0 14px', borderRadius: 10, border: `1px solid #c5c8c4`, background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Change</button>}
+                ? <button style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Assign ref</button>
+                : <button style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid #c5c8c4`, background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Change</button>}
             </div>
           ))}
           <div style={{ marginTop: 10, fontSize: 13, color: MUT }}>Feedback so far: 5 of 5 great or good ratings this season.</div>
@@ -60,7 +60,7 @@ export default function FR1Referees(_: { onBack?: () => void }) {
               </span>
             </div>
           ))}
-          <button style={{ height: 42, borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer', marginTop: 'auto' }}>Contact Ruth</button>
+          <button style={{ height: 44, borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer', marginTop: 'auto' }}>Contact Ruth</button>
         </div>
       </div>
     </div>

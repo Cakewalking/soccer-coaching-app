@@ -27,8 +27,8 @@ export default function SP1FootballYear({ onBack }: { onBack?: () => void }) {
           <div style={{ fontSize: 14, color: MUT }}>U12 Sam · dates set by Wattle Creek FC, you can adjust yours</div>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button onClick={() => setSheet('spdates')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Change dates</button>
-          <button onClick={onBack} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>See what the club does</button>
+          <button onClick={() => setSheet('spdates')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Change dates</button>
+          <button onClick={onBack} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>See what the club does</button>
         </div>
       </div>
 
@@ -90,7 +90,7 @@ export default function SP1FootballYear({ onBack }: { onBack?: () => void }) {
               <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>{item.title}</div>
               <div style={{ fontSize: 13, color: MUT }}>{item.sub}</div>
             </div>
-            <button onClick={() => t(`Opening ${item.title} view`)} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Open</button>
+            <button onClick={() => t(`Opening ${item.title} view`)} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Open</button>
           </div>
         ))}
       </div>
@@ -118,8 +118,8 @@ export default function SP1FootballYear({ onBack }: { onBack?: () => void }) {
           ))}
         </div>
         <div style={{ display: 'flex', gap: 8, marginTop: 14 }}>
-          <button onClick={() => t('Dates saved. Home changes on each date.')} style={{ height: 36, padding: '0 16px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Save dates</button>
-          <button onClick={() => setSheet(null)} style={{ height: 36, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Cancel</button>
+          <button onClick={() => t('Dates saved. Home changes on each date.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Save dates</button>
+          <button onClick={() => setSheet(null)} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Cancel</button>
         </div>
       </div>
 

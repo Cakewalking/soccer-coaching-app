@@ -39,13 +39,13 @@ export default function SP21eStandInHomeEmpty({onBack}:{onBack?:()=>void}){
                 <div style={{fontSize:14,fontWeight:item.done?400:600,color:item.done?MUT:INK,textDecoration:item.done?'line-through':'none'}}>{item.label}</div>
                 <div style={{fontSize:12,color:MUT}}>{item.note}</div>
               </div>
-              {'action' in item&&item.action&&<button onClick={()=>t(`${item.action} tapped`)} style={{height:30,padding:'0 12px',borderRadius:8,border:`1px solid ${LN}`,background:'#fff',color:G,fontFamily:'inherit',fontSize:12,fontWeight:600,cursor:'pointer',flexShrink:0}}>{item.action}</button>}
+              {'action' in item&&item.action&&<button onClick={()=>t(`${item.action} tapped`)} style={{height: 44,padding:'0 12px',borderRadius:8,border:`1px solid ${LN}`,background:'#fff',color:G,fontFamily:'inherit',fontSize:12,fontWeight:600,cursor:'pointer',flexShrink:0}}>{item.action}</button>}
             </div>
           ))}
         </div>
         <div style={{marginTop:16}}>
           <div style={{fontSize:13,color:MUT}}>Questions? Message Sam directly.</div>
-          <button onClick={()=>t('Opening message to Sam')} style={{marginTop:8,height:36,padding:'0 16px',borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:GD,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>Message Sam</button>
+          <button onClick={()=>t('Opening message to Sam')} style={{marginTop:8,height: 44,padding:'0 16px',borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:GD,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>Message Sam</button>
         </div>
       </div>
       {toast&&<div style={{position:'fixed',bottom:24,left:'50%',transform:'translateX(-50%)',background:INK,color:'#fff',padding:'10px 20px',borderRadius:12,fontSize:14,fontWeight:600,zIndex:1000,whiteSpace:'nowrap' as const}}>{toast}</div>}

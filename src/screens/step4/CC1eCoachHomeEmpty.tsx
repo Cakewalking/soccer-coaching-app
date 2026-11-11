@@ -28,7 +28,7 @@ export default function CC1eCoachHomeEmpty(_: { onBack?: () => void }) {
               <div style={{ fontSize: 12, color: MUT }}>Invited · hasn't set up Clean Sheet yet</div>
             </div>
           </div>
-          <button onClick={() => t('Reminder sent to Jess.')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Remind Jess</button>
+          <button onClick={() => t('Reminder sent to Jess.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Remind Jess</button>
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 20 }}>
@@ -43,7 +43,7 @@ export default function CC1eCoachHomeEmpty(_: { onBack?: () => void }) {
                 <div style={{ fontSize: 14, fontWeight: 700, color: INK, marginBottom: 2 }}>{item.label}</div>
                 <div style={{ fontSize: 12, color: MUT }}>{item.sub}</div>
               </div>
-              <button onClick={() => t(`${item.cta} would open.`)} style={{ height: 36, padding: '0 12px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer', flex: 'none' }}>{item.cta}</button>
+              <button onClick={() => t(`${item.cta} would open.`)} style={{ height: 44, padding: '0 12px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer', flex: 'none' }}>{item.cta}</button>
             </div>
           ))}
         </div>

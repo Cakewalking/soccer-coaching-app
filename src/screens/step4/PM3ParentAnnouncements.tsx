@@ -76,7 +76,7 @@ export default function PM3ParentAnnouncements(_: { onBack?: () => void }) {
       <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: '#fff', borderTop: `1px solid ${LN}`, padding: '12px 16px', display: 'flex', alignItems: 'center', gap: 10 }}>
         <span style={{ fontSize: 16 }}>🔒</span>
         <span style={{ fontSize: 13, color: MUT, flex: 1 }}>You can't write here.</span>
-        <button onClick={() => setSheet('robprivate')} style={{ height: 40, padding: '0 16px', borderRadius: 20, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Message Rob</button>
+        <button onClick={() => setSheet('robprivate')} style={{ height: 44, padding: '0 16px', borderRadius: 20, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Message Rob</button>
       </div>
 
       {/* Sheet: Rob private */}

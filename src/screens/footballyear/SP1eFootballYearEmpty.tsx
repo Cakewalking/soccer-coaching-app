@@ -64,8 +64,8 @@ export default function SP1eFootballYearEmpty(_: { onBack?: () => void }) {
             ))}
           </div>
           <div style={{ display: 'flex', gap: 8 }}>
-            <button onClick={() => { t('Dates saved. Home changes on each date.'); setSheet(null) }} style={{ height: 36, padding: '0 16px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Save dates</button>
-            <button onClick={() => setSheet(null)} style={{ height: 36, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Cancel</button>
+            <button onClick={() => { t('Dates saved. Home changes on each date.'); setSheet(null) }} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Save dates</button>
+            <button onClick={() => setSheet(null)} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Cancel</button>
           </div>
         </div>
       )}

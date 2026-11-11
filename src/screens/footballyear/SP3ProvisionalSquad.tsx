@@ -16,8 +16,8 @@ export default function SP3ProvisionalSquad(_: { onBack?: () => void }) {
           <div style={{ fontSize: 14, color: MUT }}>Thu 12 March · pre-season · 4 weeks to round 1 · squad list goes to the club on 27 March</div>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button onClick={() => t('Trial invite sent.')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Run a trial</button>
-          <button onClick={() => setSheet('spsquad')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Send the squad list</button>
+          <button onClick={() => t('Trial invite sent.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Run a trial</button>
+          <button onClick={() => setSheet('spsquad')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Send the squad list</button>
         </div>
       </div>
 
@@ -37,7 +37,7 @@ export default function SP3ProvisionalSquad(_: { onBack?: () => void }) {
                 <div style={{ fontSize: 14, fontWeight: 600, color: INK }}>Harper Quinn</div>
                 <div style={{ fontSize: 12, color: MUT }}>New · moved from Northgate City</div>
               </div>
-              <button onClick={() => t('Opening Harper\'s profile')} style={{ height: 32, padding: '0 10px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>See</button>
+              <button onClick={() => t('Opening Harper\'s profile')} style={{ height: 44, padding: '0 10px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>See</button>
             </div>
             <div style={{ padding: '10px 16px' }}>
               <button onClick={() => t('Showing all 14')} style={{ fontSize: 13, color: G, fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', padding: 0, fontFamily: 'inherit' }}>See all 14</button>
@@ -60,8 +60,8 @@ export default function SP3ProvisionalSquad(_: { onBack?: () => void }) {
                   <div style={{ fontSize: 14, fontWeight: 600, color: INK }}>{p.name}</div>
                   <div style={{ fontSize: 12, color: MUT }}>{p.note}</div>
                 </div>
-                <button onClick={() => t(`${p.name} moved to the waitlist. Her parent gets a kind note.`)} style={{ height: 32, padding: '0 10px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Waitlist</button>
-                <button onClick={() => t(`${p.name} confirmed. Parent gets welcome and consent questions.`)} style={{ height: 32, padding: '0 10px', borderRadius: 8, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Confirm</button>
+                <button onClick={() => t(`${p.name} moved to the waitlist. Her parent gets a kind note.`)} style={{ height: 44, padding: '0 10px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Waitlist</button>
+                <button onClick={() => t(`${p.name} confirmed. Parent gets welcome and consent questions.`)} style={{ height: 44, padding: '0 10px', borderRadius: 8, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Confirm</button>
               </div>
             ))}
             <div style={{ padding: '10px 16px' }}>
@@ -78,8 +78,8 @@ export default function SP3ProvisionalSquad(_: { onBack?: () => void }) {
                 <div style={{ fontSize: 14, fontWeight: 600, color: INK }}>Jonah Park</div>
                 <div style={{ fontSize: 12, color: MUT }}>Keeper · trialled 1 March · offer a place here, or suggest U12 Luke</div>
               </div>
-              <button onClick={() => t('Suggested to Luke, who has 2 places.')} style={{ height: 32, padding: '0 10px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>U12 Luke</button>
-              <button onClick={() => t('Offer sent to Jonah\'s parent.')} style={{ height: 32, padding: '0 10px', borderRadius: 8, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Offer</button>
+              <button onClick={() => t('Suggested to Luke, who has 2 places.')} style={{ height: 44, padding: '0 10px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>U12 Luke</button>
+              <button onClick={() => t('Offer sent to Jonah\'s parent.')} style={{ height: 44, padding: '0 10px', borderRadius: 8, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Offer</button>
             </div>
             <div style={{ fontSize: 12, color: MUT, marginTop: 8 }}>A waitlisted player hears as soon as a place opens, or is offered another team at the club.</div>
           </div>

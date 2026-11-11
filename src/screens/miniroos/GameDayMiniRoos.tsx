@@ -46,7 +46,7 @@ export default function GameDayMiniRoos({ onWhatWeSaw }: { onWhatWeSaw: () => vo
         <h1 style={{ margin: 0, fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em' }}>Game day</h1>
         <span style={{ fontSize: 14, color: '#4a5a57' }}>Saturday 6 Jun · vs Harbour Rovers · Home · 9 playing</span>
         <div style={{ flexGrow: 1 }} />
-        <button style={{ height: 36, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Print turns</button>
+        <button style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Print turns</button>
       </div>
 
       {/* Main grid + sidebar */}
@@ -129,7 +129,7 @@ export default function GameDayMiniRoos({ onWhatWeSaw }: { onWhatWeSaw: () => vo
       {/* Footer */}
       <div style={{ flex: 'none', borderTop: '1px solid #e9eae8', padding: '10px 28px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#fff' }}>
         <span style={{ fontSize: 13, color: '#4a5a57' }}>Every child plays. Every child has a turn in goal and as captain this season.</span>
-        <button onClick={onWhatWeSaw} style={{ height: 38, padding: '0 18px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>What we saw →</button>
+        <button onClick={onWhatWeSaw} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>What we saw →</button>
       </div>
     </div>
   )

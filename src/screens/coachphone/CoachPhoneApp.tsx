@@ -37,7 +37,7 @@ function PhoneShell({ children, tab, onTab, onPlan }: {
         <span style={{ fontSize: 14, fontWeight: 800, letterSpacing: '-0.02em', color: '#fff' }}>Clean Sheet</span>
         <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
           {tab === 'home' && onPlan && (
-            <button onClick={onPlan} style={{ background: 'rgba(255,255,255,0.15)', border: 'none', borderRadius: 7, height: 28, padding: '0 10px', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>Tonight's plan</button>
+            <button onClick={onPlan} style={{ background: 'rgba(255,255,255,0.15)', border: 'none', borderRadius: 7, height: 44, padding: '0 10px', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>Tonight's plan</button>
           )}
           <div style={{ width: 28, height: 28, borderRadius: '50%', background: '#8fa09b', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, color: '#fff' }}>SK</div>
         </div>
@@ -105,8 +105,8 @@ function CoachPhoneHomeTab({ onPlan }: { onPlan: () => void }) {
           </div>
         </div>
         <div style={{ borderTop: '1px solid #f0f1f0', padding: '10px 14px', display: 'flex', gap: 8 }}>
-          <button onClick={onPlan} style={{ flex: 1, height: 42, borderRadius: 10, border: 0, background: GD, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Tonight's plan</button>
-          <button style={{ height: 42, padding: '0 14px', borderRadius: 10, border: '1px solid #d4d6d4', background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Coming</button>
+          <button onClick={onPlan} style={{ flex: 1, height: 44, borderRadius: 10, border: 0, background: GD, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Tonight's plan</button>
+          <button style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #d4d6d4', background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Coming</button>
         </div>
       </Card>
 
@@ -136,8 +136,8 @@ function CoachPhoneHomeTab({ onPlan }: { onPlan: () => void }) {
           <div style={{ fontSize: 14, color: MUT }}>Home · Wattle Creek Oval</div>
         </div>
         <div style={{ borderTop: '1px solid #f0f1f0', padding: '10px 14px', display: 'flex', gap: 8 }}>
-          <button style={{ flex: 1, height: 40, borderRadius: 10, border: '1px solid #d4d6d4', background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Team sheet</button>
-          <button style={{ flex: 1, height: 40, borderRadius: 10, border: '1px solid #d4d6d4', background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Game day</button>
+          <button style={{ flex: 1, height: 44, borderRadius: 10, border: '1px solid #d4d6d4', background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Team sheet</button>
+          <button style={{ flex: 1, height: 44, borderRadius: 10, border: '1px solid #d4d6d4', background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Game day</button>
         </div>
       </Card>
 
@@ -193,7 +193,7 @@ function CoachPhoneComingTab() {
       {/* Remind button for no-reply */}
       {states.some(s => s === null) && (
         <div style={{ padding: '0 12px 10px' }}>
-          <button style={{ width: '100%', height: 42, borderRadius: 10, border: 0, background: GD, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>
+          <button style={{ width: '100%', height: 44, borderRadius: 10, border: 0, background: GD, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>
             Remind {states.filter(s => s === null).length} who haven't answered
           </button>
         </div>
@@ -287,8 +287,8 @@ function CoachPhoneGameTab() {
           </div>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button onClick={() => setMinutes(m => m + 1)} style={{ flex: 1, height: 36, borderRadius: 8, border: 'none', background: 'rgba(255,255,255,0.15)', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>+1 min</button>
-          <button onClick={() => setMinutes(m => m + 5)} style={{ flex: 1, height: 36, borderRadius: 8, border: 'none', background: 'rgba(255,255,255,0.15)', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>+5 min</button>
+          <button onClick={() => setMinutes(m => m + 1)} style={{ flex: 1, height: 44, borderRadius: 8, border: 'none', background: 'rgba(255,255,255,0.15)', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>+1 min</button>
+          <button onClick={() => setMinutes(m => m + 5)} style={{ flex: 1, height: 44, borderRadius: 8, border: 'none', background: 'rgba(255,255,255,0.15)', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>+5 min</button>
         </div>
       </div>
 
@@ -308,7 +308,7 @@ function CoachPhoneGameTab() {
           </div>
         </div>
         <div style={{ padding: '0 14px 12px' }}>
-          <button style={{ width: '100%', height: 42, borderRadius: 10, border: 0, background: GD, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Record this change</button>
+          <button style={{ width: '100%', height: 44, borderRadius: 10, border: 0, background: GD, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Record this change</button>
         </div>
       </Card>
 

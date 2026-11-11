@@ -56,7 +56,7 @@ export default function DS1Concerns(_: { onBack?: () => void }) {
               <div style={{ fontSize: 14, fontWeight: 700, color: INK, marginBottom: 8 }}>Welfare officer</div>
               <div style={{ fontSize: 15, fontWeight: 700, color: GD, marginBottom: 2 }}>Helen Park</div>
               <div style={{ fontSize: 12, color: MUT, marginBottom: 12 }}>Member protection and child safety</div>
-              <button onClick={() => t('Message sent to Helen.')} style={{ width: '100%', height: 40, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Message Helen privately</button>
+              <button onClick={() => t('Message sent to Helen.')} style={{ width: '100%', height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Message Helen privately</button>
             </div>
 
             <div style={{ background: PALE, borderRadius: 12, padding: '12px 14px', marginBottom: 14 }}>
@@ -86,8 +86,8 @@ export default function DS1Concerns(_: { onBack?: () => void }) {
             </div>
             <textarea placeholder="What happened? If someone is in danger now, call 000 first." style={{ width: '100%', height: 80, borderRadius: 10, border: `1px solid ${LN}`, padding: 10, fontFamily: 'inherit', fontSize: 13, resize: 'none', boxSizing: 'border-box' }} />
             <div style={{ display: 'flex', gap: 10, marginTop: 14 }}>
-              <button onClick={() => setSheet(null)} style={{ flex: 1, height: 40, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Cancel</button>
-              <button onClick={() => { setSheet(null); t('Sent to Helen.') }} style={{ flex: 1, height: 40, borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Send to Helen</button>
+              <button onClick={() => setSheet(null)} style={{ flex: 1, height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Cancel</button>
+              <button onClick={() => { setSheet(null); t('Sent to Helen.') }} style={{ flex: 1, height: 44, borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Send to Helen</button>
             </div>
           </div>
         </div>

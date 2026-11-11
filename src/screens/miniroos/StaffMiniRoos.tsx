@@ -55,7 +55,7 @@ export default function StaffMiniRoos({ empty }: { empty?: boolean }) {
             </span>
             <span style={{ fontSize: 14, color: '#4a5a57' }}>One-off</span>
             <span style={{ fontSize: 14, color: '#4a5a57' }}>Not needed</span>
-            <button onClick={() => showToast('Asked again. First to say yes gets it.')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', textAlign: 'left' as const }}>Ask a family →</button>
+            <button onClick={() => showToast('Asked again. First to say yes gets it.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', textAlign: 'left' as const }}>Ask a family →</button>
           </div>
 
           <span style={{ fontSize: 14, color: '#4a5a57', marginTop: 'auto', paddingTop: 8 }}>Children checks are updated automatically via Working With Children Check online.</span>

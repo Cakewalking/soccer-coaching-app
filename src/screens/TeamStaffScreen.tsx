@@ -60,6 +60,8 @@ function Check({ yes }: { yes: boolean | string }) {
 
 export default function TeamStaffScreen({ empty }: { empty?: boolean }) {
   const [inviteOpen, setInviteOpen] = useState(false)
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   if (empty) {
     return (
@@ -69,15 +71,15 @@ export default function TeamStaffScreen({ empty }: { empty?: boolean }) {
             <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, letterSpacing: '-0.02em', color: INK }}>Team staff</h1>
             <div style={{ fontSize: 13, color: MUT, marginTop: 2 }}>U12 Sam · just you so far</div>
           </div>
-          <button onClick={() => setInviteOpen(true)} style={{ height: 40, padding: '0 18px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>+ Invite</button>
+          <button onClick={() => setInviteOpen(true)} style={{ height: 44, padding: '0 18px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>+ Invite</button>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 340px', gap: 20 }}>
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: 24 }}>
             <div style={{ fontSize: 20, fontWeight: 700, color: INK, marginBottom: 8 }}>{"It's just you"}</div>
             <div style={{ fontSize: 14, color: MUT, lineHeight: 1.6, marginBottom: 20 }}>Add a co-coach to share sessions and a team manager to handle meet times, the duty roster and messages to parents.</div>
             <div style={{ display: 'flex', gap: 10 }}>
-              <button onClick={() => setInviteOpen(true)} style={{ height: 40, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Invite a co-coach</button>
-              <button onClick={() => setInviteOpen(true)} style={{ height: 40, padding: '0 16px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Invite a team manager</button>
+              <button onClick={() => setInviteOpen(true)} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Invite a co-coach</button>
+              <button onClick={() => setInviteOpen(true)} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Invite a team manager</button>
             </div>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
@@ -127,7 +129,7 @@ export default function TeamStaffScreen({ empty }: { empty?: boolean }) {
           <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, letterSpacing: '-0.02em', color: INK }}>Team staff</h1>
           <div style={{ fontSize: 13, color: MUT, marginTop: 2 }}>U12 Sam · Play level · a usual community team: two coaches and a team manager</div>
         </div>
-        <button onClick={() => setInviteOpen(true)} style={{ height: 40, padding: '0 18px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>+ Invite</button>
+        <button onClick={() => setInviteOpen(true)} style={{ height: 44, padding: '0 18px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>+ Invite</button>
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 340px', gap: 20, alignItems: 'start' }}>
@@ -218,7 +220,7 @@ export default function TeamStaffScreen({ empty }: { empty?: boolean }) {
                 <strong>Priya Shah's check expires in 29 days.</strong> If it lapses, she can't be shown player data until it's renewed.
               </div>
             </div>
-            <button style={{ marginTop: 10, height: 32, padding: '0 14px', borderRadius: 999, border: 'none', background: WARN, color: '#fff', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Email Priya a reminder</button>
+            <button onClick={() => showToast('Reminder sent to Priya Shah.')} style={{ marginTop: 10, height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: WARN, color: '#fff', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Email Priya a reminder</button>
           </div>
 
           {/* Quick invite */}
@@ -226,7 +228,7 @@ export default function TeamStaffScreen({ empty }: { empty?: boolean }) {
             <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 4 }}>Invite someone to the team</div>
             <div style={{ fontSize: 12, color: MUT, marginBottom: 10, lineHeight: 1.5 }}>They get a link by email. They accept and join immediately.</div>
             <div style={{ display: 'flex', gap: 8 }}>
-              <button onClick={() => setInviteOpen(true)} style={{ flex: 1, height: 36, borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>+ Invite</button>
+              <button onClick={() => setInviteOpen(true)} style={{ flex: 1, height: 44, borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>+ Invite</button>
             </div>
           </div>
         </div>
@@ -247,7 +249,7 @@ export default function TeamStaffScreen({ empty }: { empty?: boolean }) {
               <div style={{ fontSize: 12, fontWeight: 700, color: MUT, letterSpacing: '0.07em', marginBottom: 6 }}>ROLE</div>
               <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' as const }}>
                 {['Co-coach', 'Team manager', 'Fitness (club)', 'Other'].map(r => (
-                  <button key={r} style={{ height: 36, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#f7f9f7', color: MUT, fontSize: 13, cursor: 'pointer', fontFamily: 'inherit' }}>{r}</button>
+                  <button key={r} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#f7f9f7', color: MUT, fontSize: 13, cursor: 'pointer', fontFamily: 'inherit' }}>{r}</button>
                 ))}
               </div>
             </div>
@@ -257,6 +259,9 @@ export default function TeamStaffScreen({ empty }: { empty?: boolean }) {
             </div>
           </div>
         </div>
+      )}
+      {toast && (
+        <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 300, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>
       )}
     </main>
   )

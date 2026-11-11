@@ -36,7 +36,7 @@ export default function FD3Dispensations(_: { onBack?: () => void }) {
               <div style={{ fontSize: 20, fontWeight: 800, letterSpacing: '-0.02em', color: INK }}>Dispensations</div>
               <div style={{ fontSize: 13, color: MUT }}>4 this season · 1 awaiting FV approval</div>
             </div>
-            <button onClick={() => t('Opening dispensation request form…')} style={{ height: 36, padding: '0 16px', borderRadius: 9, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>+ New request</button>
+            <button onClick={() => t('Opening dispensation request form…')} style={{ height: 44, padding: '0 16px', borderRadius: 9, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>+ New request</button>
           </div>
           {DISPS.map(d => (
             <div key={d.player} style={{ background: '#fff', border: `1px solid ${d.status === 'Waiting FV' ? '#ffe0b2' : LN}`, borderRadius: 14, padding: '14px 18px', marginBottom: 10 }}>
@@ -52,7 +52,7 @@ export default function FD3Dispensations(_: { onBack?: () => void }) {
               </div>
               <div style={{ fontSize: 12, color: MUT, marginTop: 4 }}>{d.reason}</div>
               {d.status === 'Waiting FV' && (
-                <button onClick={() => t('Chasing FV for Aiden Yu…')} style={{ marginTop: 10, height: 30, padding: '0 12px', borderRadius: 7, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Chase FV</button>
+                <button onClick={() => t('Chasing FV for Aiden Yu…')} style={{ marginTop: 10, height: 44, padding: '0 12px', borderRadius: 7, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Chase FV</button>
               )}
             </div>
           ))}

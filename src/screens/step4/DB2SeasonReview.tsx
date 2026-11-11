@@ -61,7 +61,7 @@ export default function DB2SeasonReview(_: { onBack?: () => void }) {
                 <span style={{ fontSize: 13, color: INK }}>{f.text}</span>
               </div>
             ))}
-            <button onClick={() => t('Exporting season report…')} style={{ width: '100%', height: 40, borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer', marginTop: 8 }}>Export season report</button>
+            <button onClick={() => t('Exporting season report…')} style={{ width: '100%', height: 44, borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer', marginTop: 8 }}>Export season report</button>
           </div>
         </div>
       </div>

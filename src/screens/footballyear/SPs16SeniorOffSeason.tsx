@@ -11,7 +11,7 @@ export default function SPs16SeniorOffSeason({onBack}:{onBack?:()=>void}){
           <div style={{fontSize:24,fontWeight:800,letterSpacing:'-0.02em',color:INK,marginBottom:2}}>Off-season</div>
           <div style={{fontSize:14,color:MUT}}>Mon 1 December · off-season · back 11 January</div>
         </div>
-        <button onClick={onBack} style={{height:36,padding:'0 14px',borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:INK,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>The football year</button>
+        <button onClick={onBack} style={{height: 44,padding:'0 14px',borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:INK,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>The football year</button>
       </div>
       <div style={{display:'grid',gridTemplateColumns:'minmax(0,1fr) 340px',gap:16}}>
         <div>
@@ -22,7 +22,7 @@ export default function SPs16SeniorOffSeason({onBack}:{onBack?:()=>void}){
           <div style={{background:'#fff',border:`1px solid ${LN}`,borderRadius:14,padding:'14px 16px',marginBottom:12}}>
             <div style={{fontSize:15,fontWeight:700,color:INK,marginBottom:6}}>Summer programmes</div>
             <div style={{fontSize:13,color:MUT,marginBottom:12}}>6 players asked Priya for a summer programme. She'll set those up with them directly.</div>
-            <button onClick={()=>t('Opening summer programme')} style={{height:40,padding:'0 14px',borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:G,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>See what Priya has planned</button>
+            <button onClick={()=>t('Opening summer programme')} style={{height: 44,padding:'0 14px',borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:G,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>See what Priya has planned</button>
           </div>
         </div>
         <div>
@@ -33,8 +33,8 @@ export default function SPs16SeniorOffSeason({onBack}:{onBack?:()=>void}){
           </div>
           <div style={{background:'#fff',border:`1px solid ${LN}`,borderRadius:14,padding:'14px 16px'}}>
             <div style={{fontSize:14,fontWeight:700,color:INK,marginBottom:8}}>While you wait</div>
-            <button onClick={()=>t('Opening next year\'s plan')} style={{width:'100%',height:40,borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:G,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer',marginBottom:8}}>Plan next year</button>
-            <button onClick={()=>t('Opening stand-in')} style={{width:'100%',height:40,borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:G,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>Set a stand-in</button>
+            <button onClick={()=>t('Opening next year\'s plan')} style={{width:'100%',height: 44,borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:G,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer',marginBottom:8}}>Plan next year</button>
+            <button onClick={()=>t('Opening stand-in')} style={{width:'100%',height: 44,borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:G,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>Set a stand-in</button>
           </div>
         </div>
       </div>

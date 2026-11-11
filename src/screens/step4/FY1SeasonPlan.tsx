@@ -30,7 +30,7 @@ export default function FY1SeasonPlan(_: { onBack?: () => void }) {
             <div style={{ fontSize: 20, fontWeight: 800, letterSpacing: '-0.02em', color: INK }}>Season plan 2026</div>
             <div style={{ fontSize: 13, color: MUT }}>Thu 4 Jun · Round 9 of 18</div>
           </div>
-          <button onClick={() => t('Opening grading planner…')} style={{ height: 38, padding: '0 18px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Plan grading days</button>
+          <button onClick={() => t('Opening grading planner…')} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Plan grading days</button>
         </div>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, overflow: 'hidden', padding: '20px 20px' }}>
           <div style={{ display: 'flex', marginBottom: 8 }}>

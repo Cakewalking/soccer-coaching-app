@@ -58,7 +58,7 @@ export default function CH6Media(_: { onBack?: () => void }) {
         <div style={{ gridColumn: 'span 9', background: '#fff', border: `1px solid #c5c8c4`, borderRadius: 16, padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 12 }}>
           <div style={{ display: 'flex', gap: 2, padding: 3, borderRadius: 12, background: '#e9eae8', alignSelf: 'flex-start' }}>
             {tabs.map((tab, i) => (
-              <button key={i} onClick={() => setActiveTab(i)} style={{ height: 38, padding: '0 14px', borderRadius: 9, fontSize: 14, fontWeight: 600, color: i === activeTab ? INK : MUT, background: i === activeTab ? '#fff' : 'transparent', border: 0, cursor: 'pointer', fontFamily: 'inherit' }}>{tab}</button>
+              <button key={i} onClick={() => setActiveTab(i)} style={{ height: 44, padding: '0 14px', borderRadius: 9, fontSize: 14, fontWeight: 600, color: i === activeTab ? INK : MUT, background: i === activeTab ? '#fff' : 'transparent', border: 0, cursor: 'pointer', fontFamily: 'inherit' }}>{tab}</button>
             ))}
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 190px)', gap: '14px 16px', justifyContent: 'space-between', overflowY: 'auto' }}>
@@ -115,7 +115,7 @@ export default function CH6Media(_: { onBack?: () => void }) {
             </div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
               {['Save', 'Remove from the chat', 'Report'].map((a, i) => (
-                <button key={a} onClick={() => { setModal(false); t(a + ' done.') }} style={{ height: 40, padding: '0 14px', borderRadius: 999, border: i === 0 ? 0 : `1px solid #c5c8c4`, background: i === 0 ? G : '#fff', color: i === 0 ? '#fff' : INK, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{a}</button>
+                <button key={a} onClick={() => { setModal(false); t(a + ' done.') }} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: i === 0 ? 0 : `1px solid #c5c8c4`, background: i === 0 ? G : '#fff', color: i === 0 ? '#fff' : INK, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{a}</button>
               ))}
             </div>
             <div style={{ background: '#f7f8f7', borderRadius: 12, padding: '10px 12px', fontSize: 13, lineHeight: '19px' }}>Sharing a photo outside this chat asks the parent of each child in it first.</div>

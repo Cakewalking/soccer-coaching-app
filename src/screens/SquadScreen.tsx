@@ -16,7 +16,7 @@ function SquadEmpty() {
           <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, letterSpacing: '-0.02em' }}>Squad</h1>
           <span style={{ fontSize: 14, color: '#4a5a57' }}>No players yet</span>
           <div style={{ flexGrow: 1 }} />
-          <button style={{ height: 36, padding: '0 16px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
+          <button style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
             Add players
           </button>
@@ -43,7 +43,7 @@ function SquadEmpty() {
                   </div>
                   <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 4, lineHeight: '17px' }}>{opt.title}</div>
                   <div style={{ fontSize: 12, color: '#4a5a57', lineHeight: '16px', marginBottom: 10 }}>{opt.body}</div>
-                  <button style={{ height: 32, padding: '0 14px', borderRadius: 8, border: opt.primary ? 0 : '1px solid #c5c8c4', background: opt.primary ? '#2f6252' : '#ffffff', color: opt.primary ? '#ffffff' : '#10211f', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>{opt.btn}</button>
+                  <button style={{ height: 44, padding: '0 14px', borderRadius: 8, border: opt.primary ? 0 : '1px solid #c5c8c4', background: opt.primary ? '#2f6252' : '#ffffff', color: opt.primary ? '#ffffff' : '#10211f', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>{opt.btn}</button>
                 </div>
               ))}
             </div>
@@ -259,6 +259,8 @@ export default function SquadScreen({ onPlayerProfile, empty }: Props) {
   const [selected, setSelected] = useState<SquadPlayer>(
     SQUAD_PLAYERS.find(p => p.ini === 'EB')!
   )
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   const counts = {
     all:    SQUAD_PLAYERS.length,
@@ -298,10 +300,10 @@ export default function SquadScreen({ onPlayerProfile, empty }: Props) {
         {/* Header */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
           <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, letterSpacing: '-0.02em', color: '#10211f' }}>Squad</h1>
-          <span style={{ fontSize: 14, color: '#4a5a57' }}>16 players · Thursday 5 Nov · 2 days to Harbour Rovers</span>
+          <span style={{ fontSize: 14, color: '#4a5a57' }}>16 players · Thursday 4 Jun · 2 days to Harbour Rovers</span>
           <div style={{ flexGrow: 1 }} />
-          <button style={{ height: 40, padding: '0 16px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>Message parents</button>
-          <button style={{ height: 40, padding: '0 16px', borderRadius: '999px', border: 0, background: '#2f6252', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#ffffff' }}>+ Add player</button>
+          <button onClick={() => showToast('Message started to 16 parents.')} style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>Message parents</button>
+          <button onClick={() => showToast('Added. Their parent gets the team link now.')} style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: 0, background: '#2f6252', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#ffffff' }}>+ Add player</button>
         </div>
 
         {/* Filter chips */}
@@ -394,6 +396,9 @@ export default function SquadScreen({ onPlayerProfile, empty }: Props) {
       <div style={{ width: 300, flex: 'none', borderLeft: '1px solid #e9eae8', padding: '24px 20px', overflowY: 'auto', background: '#ffffff' }}>
         <RightPanel p={selected} onProfile={() => onPlayerProfile(selected.ini)} />
       </div>
+      {toast && (
+        <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, display: 'flex', alignItems: 'center', gap: 10, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>
+      )}
     </div>
   )
 }

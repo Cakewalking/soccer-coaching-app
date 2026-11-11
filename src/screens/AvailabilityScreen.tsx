@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 function AvailabilityEmpty() {
   const EmptyCol = ({ title }: { title: string }) => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
@@ -44,7 +46,7 @@ function AvailabilityEmpty() {
               <div style={{ flexGrow: 1 }}>
                 <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 2 }}>{item.title}</div>
                 <div style={{ fontSize: 12, color: '#4a5a57', marginBottom: 8, lineHeight: '16px' }}>{item.sub}</div>
-                <button style={{ height: 32, padding: '0 14px', borderRadius: 8, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>{item.btn}</button>
+                <button style={{ height: 44, padding: '0 14px', borderRadius: 8, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>{item.btn}</button>
               </div>
             </div>
           ))}
@@ -111,6 +113,9 @@ function Column({ title, count, items, accent }: { title: string; count: number;
 
 export default function AvailabilityScreen({ empty }: { empty?: boolean }) {
   if (empty) return <AvailabilityEmpty />
+  const [activeEvent, setActiveEvent] = useState(0)
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ flexGrow: 1, padding: '14px 28px 18px', display: 'flex', flexDirection: 'column', gap: 10, boxSizing: 'border-box', minHeight: 0, overflow: 'hidden' }}>
 
@@ -124,12 +129,12 @@ export default function AvailabilityScreen({ empty }: { empty?: boolean }) {
         {/* Upcoming fixtures */}
         <div style={{ display: 'flex', gap: 8 }}>
           {[
-            { label: 'Sat 7 Nov · 9:30', sub: 'vs Harbour Rovers', active: true },
-            { label: 'Tonight · 6:00', sub: 'Training', active: false },
-            { label: 'Sat 14 Nov · 9:00', sub: 'at Kestrel Park', active: false },
-          ].map(f => (
-            <button key={f.label} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${f.active ? '#2f6252' : '#c5c8c4'}`, background: f.active ? '#eef5f2' : '#ffffff', fontFamily: 'inherit', cursor: 'pointer', textAlign: 'center' }}>
-              <div style={{ fontSize: 12, fontWeight: 700, color: f.active ? '#2f6252' : '#4a5a57' }}>{f.label}</div>
+            { label: 'Sat 6 Jun · 9:30', sub: 'vs Harbour Rovers' },
+            { label: 'Tonight · 6:00', sub: 'Training' },
+            { label: 'Sat 13 Jun · 9:00', sub: 'at Kestrel Park' },
+          ].map((f, i) => (
+            <button key={f.label} onClick={() => setActiveEvent(i)} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${activeEvent === i ? '#2f6252' : '#c5c8c4'}`, background: activeEvent === i ? '#eef5f2' : '#ffffff', fontFamily: 'inherit', cursor: 'pointer', textAlign: 'center' }}>
+              <div style={{ fontSize: 12, fontWeight: 700, color: activeEvent === i ? '#2f6252' : '#4a5a57' }}>{f.label}</div>
               <div style={{ fontSize: 12, color: '#4a5a57' }}>{f.sub}</div>
             </button>
           ))}
@@ -155,7 +160,7 @@ export default function AvailabilityScreen({ empty }: { empty?: boolean }) {
             <span style={{ fontSize: 20, fontWeight: 700, lineHeight: '26px' }}>{NO_ANS.length}</span>
           </div>
           {NO_ANS.map((p, i) => <PlayerPill key={i} {...p} />)}
-          <button style={{ height: 40, borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', marginTop: 'auto' }}>
+          <button onClick={() => showToast('Reminder sent to 2 families.')} style={{ height: 44, borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', marginTop: 'auto' }}>
             Remind 2 families
           </button>
         </div>
@@ -169,7 +174,7 @@ export default function AvailabilityScreen({ empty }: { empty?: boolean }) {
             <div style={{ marginTop: 10, height: 6, borderRadius: 3, background: '#c5d8d0' }}>
               <div style={{ height: 6, borderRadius: 3, background: '#2f6252', width: `${(IN.length/17)*100}%` }} />
             </div>
-            <button style={{ marginTop: 12, width: '100%', height: 40, borderRadius: 10, border: '1px solid #2f6252', background: '#ffffff', color: '#2f6252', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>
+            <button onClick={() => showToast('Opening line-up for Saturday vs Harbour Rovers.')} style={{ marginTop: 12, width: '100%', height: 44, borderRadius: 10, border: '1px solid #2f6252', background: '#ffffff', color: '#2f6252', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>
               Pick the line-up
             </button>
           </div>
@@ -191,6 +196,9 @@ export default function AvailabilityScreen({ empty }: { empty?: boolean }) {
           </div>
         </aside>
       </div>
+      {toast && (
+        <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>
+      )}
     </div>
   )
 }

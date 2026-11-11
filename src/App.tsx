@@ -272,7 +272,7 @@ export default function App() {
     return (
       <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
         <div style={{ flex: 'none', background: '#fff', borderBottom: '1px solid #e9eae8', padding: '0 28px', display: 'flex', alignItems: 'center', height: 52 }}>
-          <button onClick={() => setScreen('home')} style={{ height: 36, padding: '0 16px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Coach view</button>
+          <button onClick={() => setScreen('home')} style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Coach view</button>
           <span style={{ marginLeft: 16, fontSize: 14, fontWeight: 700, color: '#1f4a3e' }}>Coach and fitness · U12 Sam</span>
           <span style={{ marginLeft: 12, fontSize: 13, fontWeight: 700, color: '#2f6252', background: '#eef5f2', borderRadius: '999px', padding: '3px 10px' }}>Coach and fitness</span>
         </div>
@@ -291,7 +291,7 @@ export default function App() {
     return (
       <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: '#f0f1f0', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 40 }}>
         <div style={{ display: 'flex', justifyContent: 'flex-end', width: 390, marginBottom: 12 }}>
-          <button onClick={() => setScreen('home')} style={{ height: 36, padding: '0 16px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Back to coach view</button>
+          <button onClick={() => setScreen('home')} style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Back to coach view</button>
         </div>
         <TeamManagerScreen empty={isEmpty} />
       </div>
@@ -304,7 +304,7 @@ export default function App() {
     return (
       <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: '#f0f1f0', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 40 }}>
         <div style={{ display: 'flex', justifyContent: 'flex-end', width: 390, marginBottom: 12 }}>
-          <button onClick={() => setScreen('home')} style={{ height: 36, padding: '0 16px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Back to coach view</button>
+          <button onClick={() => setScreen('home')} style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Back to coach view</button>
         </div>
         <PlayerAppScreen empty={isEmpty} />
       </div>
@@ -321,7 +321,7 @@ export default function App() {
     return (
       <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: '#f0f1f0', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 40 }}>
         <div style={{ display: 'flex', justifyContent: 'flex-end', width: 390, marginBottom: 12 }}>
-          <button onClick={() => navTo('playerapp')} style={{ height: 36, padding: '0 16px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Player app</button>
+          <button onClick={() => navTo('playerapp')} style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Player app</button>
         </div>
         <OlderAvailabilityScreen />
       </div>
@@ -331,7 +331,7 @@ export default function App() {
     return (
       <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: '#f0f1f0', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 40 }}>
         <div style={{ display: 'flex', justifyContent: 'flex-end', width: 390, marginBottom: 12 }}>
-          <button onClick={() => setScreen('home')} style={{ height: 36, padding: '0 16px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Back to coach view</button>
+          <button onClick={() => setScreen('home')} style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Back to coach view</button>
         </div>
         <OlderPlayerApp empty={isEmpty} />
       </div>
@@ -341,7 +341,7 @@ export default function App() {
     return (
       <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: '#f0f1f0', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 40 }}>
         <div style={{ display: 'flex', justifyContent: 'flex-end', width: 390, marginBottom: 12 }}>
-          <button onClick={() => navTo('home')} style={{ height: 36, padding: '0 16px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Coach view</button>
+          <button onClick={() => navTo('home')} style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Coach view</button>
         </div>
         <RefereesPhoneScreen empty={isEmpty} />
       </div>
@@ -351,7 +351,7 @@ export default function App() {
     return (
       <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
         <div style={{ flex: 'none', background: '#fff', borderBottom: '1px solid #e9eae8', padding: '0 28px', display: 'flex', alignItems: 'center', height: 52 }}>
-          <button onClick={() => setScreen('home')} style={{ height: 36, padding: '0 16px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Coach view</button>
+          <button onClick={() => setScreen('home')} style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Coach view</button>
           <span style={{ marginLeft: 16, fontSize: 14, fontWeight: 700, color: '#1f4a3e' }}>Fitness coach portal</span>
         </div>
         <FitnessCoachScreen empty={isEmpty} />
@@ -362,7 +362,7 @@ export default function App() {
     return (
       <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
         <div style={{ flex: 'none', background: '#fff', borderBottom: '1px solid #e9eae8', padding: '0 28px', display: 'flex', alignItems: 'center', height: 52 }}>
-          <button onClick={() => setScreen('home')} style={{ height: 36, padding: '0 16px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Coach view</button>
+          <button onClick={() => setScreen('home')} style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Coach view</button>
           <span style={{ marginLeft: 16, fontSize: 14, fontWeight: 700, color: '#1f4a3e' }}>Club admin portal</span>
         </div>
         <ClubAdminScreen empty={isEmpty} />
@@ -388,7 +388,7 @@ export default function App() {
     return (
       <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: '#f0f1f0', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 40 }}>
         <div style={{ display: 'flex', justifyContent: 'flex-end', width: 390, marginBottom: 12 }}>
-          <button onClick={() => setScreen('home')} style={{ height: 36, padding: '0 16px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Coach view</button>
+          <button onClick={() => setScreen('home')} style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Coach view</button>
         </div>
         <TwoChildrenApp onBack={() => setScreen('home')} empty={isEmpty} />
       </div>
@@ -426,7 +426,7 @@ export default function App() {
     return (
       <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: '#f0f1f0', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 40 }}>
         <div style={{ display: 'flex', justifyContent: 'flex-end', width: 390, marginBottom: 12 }}>
-          <button onClick={() => setScreen('home')} style={{ height: 36, padding: '0 16px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Coach view</button>
+          <button onClick={() => setScreen('home')} style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Coach view</button>
         </div>
         <PlayerMeScreen onBack={() => setScreen('home')} />
       </div>
@@ -467,7 +467,7 @@ export default function App() {
       {/* ── Player back bar ── */}
       {isPlayerScreen && (
         <div style={{ height: 64, padding: '0 28px', background: '#ffffff', borderBottom: '1px solid var(--line)', display: 'flex', alignItems: 'center', gap: 16, flex: 'none' }}>
-          <button onClick={() => navTo('squad')} style={{ display: 'flex', alignItems: 'center', gap: 8, height: 40, padding: '0 14px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>
+          <button onClick={() => navTo('squad')} style={{ display: 'flex', alignItems: 'center', gap: 8, height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
             Squad
           </button>

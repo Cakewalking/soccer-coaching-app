@@ -21,8 +21,8 @@ export default function X11LineupEmpty(_: { onBack?: () => void }) {
           <div style={{ fontSize: 13, color: MUT, marginBottom: 20 }}>Sat 6 Jun vs Harbour Rovers · no players yet</div>
 
           <div style={{ display: 'flex', gap: 10, marginBottom: 24 }}>
-            <button style={{ height: 40, padding: '0 16px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Add players</button>
-            <button style={{ height: 40, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Start live game</button>
+            <button style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Add players</button>
+            <button style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Start live game</button>
           </div>
 
           {/* Pitch */}

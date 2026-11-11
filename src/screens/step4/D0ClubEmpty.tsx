@@ -29,7 +29,7 @@ export default function D0ClubEmpty(_: { onBack?: () => void }) {
             <div key={s.id} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 20px', marginBottom: 10, display: 'flex', alignItems: 'center', gap: 14 }}>
               <div style={{ width: 28, height: 28, borderRadius: '50%', background: s.done ? G : PALE, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, color: s.done ? '#fff' : MUT, flexShrink: 0 }}>{s.done ? '✓' : s.n}</div>
               <div style={{ flex: 1, fontSize: 14, fontWeight: 600, color: s.done ? MUT : INK, textDecoration: s.done ? 'line-through' : 'none' }}>{s.label}</div>
-              {!s.done && <button onClick={() => setSheet(s.id)} style={{ height: 32, padding: '0 14px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Set up</button>}
+              {!s.done && <button onClick={() => setSheet(s.id)} style={{ height: 44, padding: '0 14px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Set up</button>}
             </div>
           ))}
           <div style={{ background: PALE, borderRadius: 12, padding: '12px 16px', marginTop: 8 }}>
@@ -65,8 +65,8 @@ export default function D0ClubEmpty(_: { onBack?: () => void }) {
             </div>
             <div style={{ fontSize: 13, color: MUT, marginBottom: 20 }}>Wattle Creek FC</div>
             <div style={{ display: 'flex', gap: 10 }}>
-              <button onClick={() => setSheet(null)} style={{ flex: 1, height: 40, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Cancel</button>
-              <button onClick={() => { setSheet(null); t('Saved.') }} style={{ flex: 1, height: 40, borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Save</button>
+              <button onClick={() => setSheet(null)} style={{ flex: 1, height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Cancel</button>
+              <button onClick={() => { setSheet(null); t('Saved.') }} style={{ flex: 1, height: 44, borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Save</button>
             </div>
           </div>
         </div>

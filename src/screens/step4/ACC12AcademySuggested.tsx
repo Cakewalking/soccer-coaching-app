@@ -28,7 +28,7 @@ export default function ACC12AcademySuggested(_: { onBack?: () => void }) {
             </button>
           ))}
         </div>
-        <button style={{ background: 'rgba(255,255,255,0.18)', border: 'none', color: '#fff', fontSize: 14, fontWeight: 500, padding: '0 14px', height: 36, borderRadius: 999, cursor: 'pointer', marginRight: 12 }}>Tall Timber Academy ▾</button>
+        <button style={{ background: 'rgba(255,255,255,0.18)', border: 'none', color: '#fff', fontSize: 14, fontWeight: 500, padding: '0 14px', height: 44, borderRadius: 999, cursor: 'pointer', marginRight: 12 }}>Tall Timber Academy ▾</button>
         <div style={{ width: 44, height: 44, borderRadius: 999, background: '#c39797', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 15, fontWeight: 700, color: INK }}>RW</div>
       </div>
 
@@ -53,8 +53,8 @@ export default function ACC12AcademySuggested(_: { onBack?: () => void }) {
           <p style={{ margin: '4px 0 0', fontSize: 14, color: MUT }}>Advanced · from 3 recordings, your session notes and each player's goal</p>
         </div>
         <div style={{ display: 'flex', gap: 8, paddingTop: 4 }}>
-          <button onClick={() => showToast('Back to today.')} style={{ height: 38, padding: '0 16px', borderRadius: 10, background: '#fff', border: `1px solid #c5c8c4`, color: INK, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Back to today</button>
-          <button onClick={() => showToast('Tonight\'s plan updated with both suggestions.')} style={{ height: 38, padding: '0 16px', borderRadius: 10, background: G, border: 'none', color: '#fff', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Use both</button>
+          <button onClick={() => showToast('Back to today.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, background: '#fff', border: `1px solid #c5c8c4`, color: INK, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Back to today</button>
+          <button onClick={() => showToast('Tonight\'s plan updated with both suggestions.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, background: G, border: 'none', color: '#fff', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Use both</button>
         </div>
       </div>
 
@@ -81,7 +81,7 @@ export default function ACC12AcademySuggested(_: { onBack?: () => void }) {
                 <div style={{ fontSize: 14, fontWeight: 700, color: INK }}>Finishing circuit, with a chasing defender</div>
                 <div style={{ fontSize: 13, color: MUT }}>Same stations · defender starts 3 metres behind</div>
               </div>
-              <button onClick={() => showToast('Added. The set-up is saved as a new series.')} style={{ height: 34, padding: '0 14px', borderRadius: 8, background: G, border: 'none', color: '#fff', fontSize: 13, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>Add to tonight</button>
+              <button onClick={() => showToast('Added. The set-up is saved as a new series.')} style={{ height: 44, padding: '0 14px', borderRadius: 8, background: G, border: 'none', color: '#fff', fontSize: 13, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>Add to tonight</button>
             </div>
           </div>
 
@@ -104,7 +104,7 @@ export default function ACC12AcademySuggested(_: { onBack?: () => void }) {
                 <div style={{ fontSize: 14, fontWeight: 700, color: INK }}>Receive on the half turn, one station</div>
                 <div style={{ fontSize: 13, color: MUT }}>8 minutes · Mila, Zane and four others</div>
               </div>
-              <button onClick={() => showToast('Added as station 3.')} style={{ height: 34, padding: '0 14px', borderRadius: 8, background: G, border: 'none', color: '#fff', fontSize: 13, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>Add to tonight</button>
+              <button onClick={() => showToast('Added as station 3.')} style={{ height: 44, padding: '0 14px', borderRadius: 8, background: G, border: 'none', color: '#fff', fontSize: 13, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>Add to tonight</button>
             </div>
           </div>
         </div>

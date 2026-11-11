@@ -26,6 +26,7 @@ import TeamTalkScreen        from './TeamTalkScreen'
 import PitchSideScreen       from './PitchSideScreen'
 import AddGameScreen         from './AddGameScreen'
 import { FitnessSquadTab, FitnessTrainingTab, FitnessMatchTab } from './FitnessExtras'
+import CoCoachHomeScreen from './CoCoachHomeScreen'
 
 type NavKey = 'home' | 'squad' | 'training' | 'matchday' | 'clips'
 type Sub = 'teamtalk' | 'pitchside' | 'addgame' | null
@@ -44,8 +45,9 @@ const TRAINING_TABS = ["Tonight's session", 'This week', 'Suggested', 'Drill lib
 const MATCHDAY_TABS = ['Team talk', 'Line-up and minutes', 'Opposition', 'Review', 'Fitness coach']
 const CLIPS_TABS    = ['Browse', 'Playlists', 'Shared with players', 'To check']
 
-export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLabel, coachInitials, empty = false }: { onBack?: () => void; phaseContent?: ReactNode; coachLabel?: string; coachInitials?: string; empty?: boolean }) {
-  const [nav, setNav]                 = useState<NavKey>('home')
+export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLabel, coachInitials, empty = false, initialScreen, onNavChange, coachRole = 'head' }: { onBack?: () => void; phaseContent?: ReactNode; coachLabel?: string; coachInitials?: string; empty?: boolean; initialScreen?: string; onNavChange?: (screen: string) => void; coachRole?: 'head' | 'ccoach' }) {
+  const validNav = (s?: string): NavKey => (s === 'squad' || s === 'training' || s === 'matchday' || s === 'clips') ? s : 'home'
+  const [nav, setNav]                 = useState<NavKey>(validNav(initialScreen))
   const [sub, setSub]                 = useState<Sub>(null)
   const [homeTab, setHomeTab]         = useState(0)
   const [squadTab, setSquadTab]       = useState(0)
@@ -53,7 +55,7 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
   const [matchTab, setMatchTab]       = useState(0)
   const [clipsTab, setClipsTab]       = useState(0)
 
-  function goNav(n: NavKey) { setNav(n); setSub(null) }
+  function goNav(n: NavKey) { setNav(n); setSub(null); onNavChange?.(n) }
 
   function handleNav(s: string) {
     if (s === 'training')  { goNav('training'); return }
@@ -97,7 +99,7 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
 
   let content = null
   if (nav === 'home') {
-    if (homeTab === 0) content = phaseContent ?? <HomeScreen role="head" onRole={() => {}} onNav={handleNav} onCalendar={() => setHomeTab(2)} empty={empty} />
+    if (homeTab === 0) content = phaseContent ?? (coachRole === 'ccoach' ? <CoCoachHomeScreen empty={empty} onNav={handleNav} /> : <HomeScreen role="head" onRole={() => {}} onNav={handleNav} onCalendar={() => setHomeTab(2)} empty={empty} />)
     else if (homeTab === 1) content = <TeamChatScreen empty={false} />
     else if (homeTab === 2) content = <AvailabilityScreen empty={false} />
     else if (homeTab === 3) content = <FixturesScreen empty={false} />
@@ -142,7 +144,7 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
           <nav style={{ display: 'flex', gap: 2, flexGrow: 1 }}>
             {NAV_TABS.map(t => (
               <button key={t.id} onClick={() => goNav(t.id)} style={{
-                display: 'flex', alignItems: 'center', gap: 7, height: 40, padding: '0 14px', borderRadius: '999px',
+                display: 'flex', alignItems: 'center', gap: 7, height: 44, padding: '0 14px', borderRadius: '999px',
                 border: 0, fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer',
                 background: nav === t.id ? '#40826d' : 'transparent', color: '#ffffff',
               }}>

@@ -44,7 +44,7 @@ export default function FG1Grading(_: { onBack?: () => void }) {
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                   <div style={{ fontSize: 12, fontWeight: 700, color: suggestColor(r.suggest) }}>{r.suggest}</div>
                   {r.suggest !== 'Stay' && (
-                    <button onClick={() => t(`Request sent for ${r.team}.`)} style={{ height: 26, padding: '0 8px', borderRadius: 6, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 11, fontWeight: 600, cursor: 'pointer' }}>Request</button>
+                    <button onClick={() => t(`Request sent for ${r.team}.`)} style={{ height: 44, padding: '0 8px', borderRadius: 6, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 11, fontWeight: 600, cursor: 'pointer' }}>Request</button>
                   )}
                 </div>
               </div>
@@ -67,7 +67,7 @@ export default function FG1Grading(_: { onBack?: () => void }) {
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 18px' }}>
             <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 8 }}>Next season's grading</div>
             <div style={{ fontSize: 12, color: MUT, lineHeight: 1.6, marginBottom: 12 }}>FV opens grading submissions in October. Use season results to build your case for each team.</div>
-            <button onClick={() => t('Opening 2027 grading planner…')} style={{ width: '100%', height: 38, borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Plan 2027 grading</button>
+            <button onClick={() => t('Opening 2027 grading planner…')} style={{ width: '100%', height: 44, borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Plan 2027 grading</button>
           </div>
         </div>
       </div>

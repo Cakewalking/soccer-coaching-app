@@ -39,7 +39,7 @@ export default function FH1HeadingPolicy(_: { onBack?: () => void }) {
               <div style={{ fontSize: 13, color: MUT, paddingLeft: 28 }}>{o.desc}</div>
             </div>
           ))}
-          <button onClick={() => { if (selected) t(`Heading policy saved: ${OPTIONS.find(o => o.id === selected)?.label}`) }} disabled={!selected} style={{ height: 42, padding: '0 24px', borderRadius: 10, border: 0, background: selected ? G : LN, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: selected ? 'pointer' : 'default', marginTop: 8 }}>Save policy</button>
+          <button onClick={() => { if (selected) t(`Heading policy saved: ${OPTIONS.find(o => o.id === selected)?.label}`) }} disabled={!selected} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 0, background: selected ? G : LN, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: selected ? 'pointer' : 'default', marginTop: 8 }}>Save policy</button>
         </div>
         <div>
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 18px' }}>

@@ -59,8 +59,8 @@ function HomeOverview({ onPlanSession, onKeeperDrills }: { onPlanSession: () => 
           <h1 style={{ margin: '0 0 2px', fontSize: 26, fontWeight: 700, letterSpacing: '-0.02em' }}>Hi Nick</h1>
           <p style={{ margin: '0 0 14px', fontSize: 14, color: '#4a5a57' }}>Goalkeeper coach · 14 keepers across 9 teams · club session Tuesdays 6:00 pm</p>
           <div style={{ display: 'flex', gap: 8, marginBottom: 20 }}>
-            <button onClick={onKeeperDrills} style={{ height: 40, padding: '0 16px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Keeper drills</button>
-            <button onClick={onPlanSession} style={{ height: 40, padding: '0 16px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Plan Tuesday</button>
+            <button onClick={onKeeperDrills} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Keeper drills</button>
+            <button onClick={onPlanSession} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Plan Tuesday</button>
           </div>
         </div>
 
@@ -144,8 +144,8 @@ function TrainingSession() {
             <p style={{ margin: 0, fontSize: 14, color: '#4a5a57' }}>Tue 9 Jun · 6:00 to 6:45 pm · 11 of 14 coming</p>
           </div>
           <div style={{ display: 'flex', gap: 8 }}>
-            <button style={{ height: 40, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Swap a drill</button>
-            <button style={{ height: 40, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Send the plan</button>
+            <button style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Swap a drill</button>
+            <button style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Send the plan</button>
           </div>
         </div>
 
@@ -235,7 +235,7 @@ function ClipsTab() {
             <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', marginBottom: 2 }}>{c.name} · {c.event}</div>
             <div style={{ fontSize: 13, color: '#6f7f7b' }}>{c.team}</div>
           </div>
-          <button style={{ flex: 'none', height: 36, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Play</button>
+          <button style={{ flex: 'none', height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Play</button>
         </div>
       ))}
     </div>
@@ -299,7 +299,7 @@ export default function GoalkeeperCoachApp({ onBack, empty = false }: { onBack: 
           </nav>
           <div style={{ display: 'flex', alignItems: 'center', height: 44, gap: 10 }}>
             <span style={{ fontSize: 13, fontWeight: 700, color: '#2f6252', background: '#eef5f2', borderRadius: '999px', padding: '4px 12px' }}>Goalkeeper coach</span>
-            <button onClick={onBack} style={{ height: 28, padding: '0 12px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Head coach view</button>
+            <button onClick={onBack} style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Head coach view</button>
           </div>
         </div>
       </header>
@@ -314,7 +314,7 @@ export default function GoalkeeperCoachApp({ onBack, empty = false }: { onBack: 
               <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 16, padding: 24, marginBottom: 20 }}>
                 <div style={{ fontSize: 18, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>Keepers appear as coaches name them</div>
                 <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.6, marginBottom: 16 }}>Each coach from U12 up marks their keepers. Ask them now, or wait for the first games.</div>
-                <button style={{ height: 40, padding: '0 16px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Ask coaches to name keepers</button>
+                <button style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Ask coaches to name keepers</button>
               </div>
               <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: '#6f7f7b', marginBottom: 10 }}>What you will see</div>
               {[
@@ -345,7 +345,7 @@ export default function GoalkeeperCoachApp({ onBack, empty = false }: { onBack: 
               <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 16, padding: 24 }}>
                 <div style={{ fontSize: 18, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>Pick a night for keepers</div>
                 <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.6, marginBottom: 16 }}>Set a weekly keeper session and Clean Sheet drafts it from that week's keeper clips.</div>
-                <button style={{ height: 40, padding: '0 16px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Set a keeper night</button>
+                <button style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Set a keeper night</button>
               </div>
             </div>
           </div>

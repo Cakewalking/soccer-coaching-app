@@ -40,7 +40,7 @@ export default function SafeguardingTab({ empty }: { empty?: boolean }) {
         <div style={p}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
             <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>Working with children checks</div>
-            <button style={{ height: 32, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Club course</button>
+            <button style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Club course</button>
           </div>
           {COACHES_DATA.map((c, i) => {
             const expiring = c.checkDays > 0 && c.checkDays <= 30
@@ -97,7 +97,7 @@ export default function SafeguardingTab({ empty }: { empty?: boolean }) {
         <div style={p}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
             <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>{CONCERNS.length} concerns</div>
-            <button style={{ height: 32, padding: '0 12px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>+ Log concern</button>
+            <button style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>+ Log concern</button>
           </div>
           {CONCERNS.map((c, i) => (
             <div key={i} style={{ background: '#fff', borderRadius: 14, padding: '14px 16px', border: '1px solid #e9eae8', marginBottom: 10 }}>
@@ -130,7 +130,7 @@ export default function SafeguardingTab({ empty }: { empty?: boolean }) {
                 <div style={{ fontSize: 18, fontWeight: 800, color: '#10211f' }}>Concussion</div>
                 <div style={{ fontSize: 12, color: '#6f7f7b' }}>Return to play · AIS concussion guidelines 2024 · community football</div>
               </div>
-              <button style={{ height: 32, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Log a head knock</button>
+              <button style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Log a head knock</button>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
               <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>Returning to play</div>
@@ -161,7 +161,7 @@ export default function SafeguardingTab({ empty }: { empty?: boolean }) {
                   ))}
                 </div>
                 <div style={{ fontSize: 12, color: '#4a5a57', marginBottom: 10 }}>{c.note}</div>
-                <button style={{ height: 28, padding: '0 12px', borderRadius: '999px', border: '1px solid #2f6252', background: '#fff', color: '#2f6252', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>{c.action}</button>
+                <button style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: '1px solid #2f6252', background: '#fff', color: '#2f6252', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>{c.action}</button>
               </div>
             ))}
             <div style={{ padding: '12px 14px', background: '#fff', borderRadius: 10, border: '1px solid #e9eae8', fontSize: 12, color: '#6f7f7b' }}>

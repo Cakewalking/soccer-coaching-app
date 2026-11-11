@@ -69,7 +69,7 @@ export default function LiveGame11Screen({ onClose }: { onClose: () => void }) {
             </div>
           </div>
           <span style={{ fontSize: 15, color: 'rgba(255,255,255,0.65)', fontVariantNumeric: 'tabular-nums' }}>58:12</span>
-          <button style={{ height: 32, padding: '0 14px', borderRadius: 8, border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Pause</button>
+          <button style={{ height: 44, padding: '0 14px', borderRadius: 8, border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Pause</button>
         </div>
         <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.4)' }}>11 a side · 2 × 40 min</span>
       </div>
@@ -81,8 +81,8 @@ export default function LiveGame11Screen({ onClose }: { onClose: () => void }) {
             <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 2 }}>Suggested now</div>
             <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.85)' }}>Cal off, Ari on. Cal's week is 45% over his usual, and Ari has played 18 minutes.</div>
           </div>
-          <button onClick={() => { showToast('Sub confirmed: Cal off, Ari on.'); setSuggestedDismissed(true) }} style={{ flex: 'none', height: 36, padding: '0 14px', borderRadius: 8, border: 0, background: '#fff', color: '#1f4a3e', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Make the change</button>
-          <button onClick={() => setSuggestedDismissed(true)} style={{ flex: 'none', height: 36, padding: '0 14px', borderRadius: 8, border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Not yet</button>
+          <button onClick={() => { showToast('Sub confirmed: Cal off, Ari on.'); setSuggestedDismissed(true) }} style={{ flex: 'none', height: 44, padding: '0 14px', borderRadius: 8, border: 0, background: '#fff', color: '#1f4a3e', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Make the change</button>
+          <button onClick={() => setSuggestedDismissed(true)} style={{ flex: 'none', height: 44, padding: '0 14px', borderRadius: 8, border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Not yet</button>
         </div>
       )}
 
@@ -143,9 +143,9 @@ export default function LiveGame11Screen({ onClose }: { onClose: () => void }) {
 
           {/* Quick actions */}
           <div style={{ display: 'flex', gap: 8 }}>
-            <button onClick={() => showToast('Logging a goal.')} style={{ flex: 1, height: 40, borderRadius: 10, border: '1px solid rgba(255,255,255,0.2)', background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Goal</button>
-            <button onClick={() => showToast('Logging a card.')} style={{ flex: 1, height: 40, borderRadius: 10, border: '1px solid rgba(255,255,255,0.2)', background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Card</button>
-            <button onClick={() => showToast('Tagging a good moment.')} style={{ flex: 1, height: 40, borderRadius: 10, border: '1px solid rgba(255,255,255,0.2)', background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Good moment</button>
+            <button onClick={() => showToast('Logging a goal.')} style={{ flex: 1, height: 44, borderRadius: 10, border: '1px solid rgba(255,255,255,0.2)', background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Goal</button>
+            <button onClick={() => showToast('Logging a card.')} style={{ flex: 1, height: 44, borderRadius: 10, border: '1px solid rgba(255,255,255,0.2)', background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Card</button>
+            <button onClick={() => showToast('Tagging a good moment.')} style={{ flex: 1, height: 44, borderRadius: 10, border: '1px solid rgba(255,255,255,0.2)', background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Good moment</button>
           </div>
         </div>
       </div>

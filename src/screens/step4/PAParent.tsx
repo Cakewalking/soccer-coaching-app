@@ -85,7 +85,7 @@ export default function PAParent(_: { onBack?: () => void }) {
         {/* Week heading */}
         <div>
           <div style={{ fontSize: 20, fontWeight: 700, color: INK }}>Mia's week</div>
-          <div style={{ fontSize: 14, color: MUT, marginTop: 2 }}>5 Nov · U12 Sam</div>
+          <div style={{ fontSize: 14, color: MUT, marginTop: 2 }}>4 Jun · U12 Sam</div>
         </div>
 
         {/* This week card */}

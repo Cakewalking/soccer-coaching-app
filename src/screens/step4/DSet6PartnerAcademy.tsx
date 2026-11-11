@@ -49,7 +49,7 @@ export default function DSet6PartnerAcademy(_: { onBack?: () => void }) {
               <div style={{ fontSize: 13, color: INK }}>{s.setting}</div>
               <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
                 <div style={{ fontSize: 13, fontWeight: 600, color: s.val === 'On' ? G : MUT }}>{s.val}</div>
-                <button onClick={() => t('Setting changed.')} style={{ height: 28, padding: '0 10px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Change</button>
+                <button onClick={() => t('Setting changed.')} style={{ height: 44, padding: '0 10px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Change</button>
               </div>
             </div>
           ))}

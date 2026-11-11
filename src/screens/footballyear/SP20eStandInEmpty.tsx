@@ -44,8 +44,8 @@ export default function SP20eStandInEmpty(_: { onBack?: () => void }) {
           <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 14 }}>Add a team staff member</div>
           <div style={{ fontSize: 13, color: MUT, marginBottom: 14 }}>They'll be invited to the app and you can set their role and permissions.</div>
           <div style={{ display: 'flex', gap: 8 }}>
-            <button onClick={() => { t("Invitation sent. They'll appear here once they accept."); setSheet(null) }} style={{ height: 36, padding: '0 16px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Send invite</button>
-            <button onClick={() => setSheet(null)} style={{ height: 36, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Cancel</button>
+            <button onClick={() => { t("Invitation sent. They'll appear here once they accept."); setSheet(null) }} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Send invite</button>
+            <button onClick={() => setSheet(null)} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Cancel</button>
           </div>
         </div>
       )}

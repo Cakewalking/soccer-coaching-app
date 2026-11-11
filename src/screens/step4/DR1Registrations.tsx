@@ -57,7 +57,7 @@ export default function DR1Registrations(_: { onBack?: () => void }) {
           <div style={{ background: '#fff', border: `1px solid #c5c8c4`, borderRadius: 16, padding: '14px 16px', display: 'flex', flexDirection: 'column' as const, gap: 8 }}>
             <div style={{ fontSize: 15, fontWeight: 700 }}>Quick actions</div>
             {['Send fee reminder to 5 families','Chase consent from 7 families','Export full registration list'].map(a => (
-              <button key={a} style={{ height: 42, borderRadius: 10, border: `1px solid #c5c8c4`, background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', textAlign: 'left' as const, padding: '0 14px' }}>{a}</button>
+              <button key={a} style={{ height: 44, borderRadius: 10, border: `1px solid #c5c8c4`, background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', textAlign: 'left' as const, padding: '0 14px' }}>{a}</button>
             ))}
           </div>
         </div>

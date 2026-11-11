@@ -22,8 +22,8 @@ export default function SPs2SeniorPreSeason({onBack}:{onBack?:()=>void}){
           <div style={{fontSize:14,color:MUT}}>Thu 12 March · pre-season · 4 weeks to round 1</div>
         </div>
         <div style={{display:'flex',gap:8}}>
-          <button onClick={onBack} style={{height:36,padding:'0 14px',borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:INK,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>The football year</button>
-          <button onClick={()=>t('Opening tonight\'s session')} style={{height:36,padding:'0 14px',borderRadius:10,border:0,background:G,color:'#fff',fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>Tonight's session</button>
+          <button onClick={onBack} style={{height: 44,padding:'0 14px',borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:INK,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>The football year</button>
+          <button onClick={()=>t('Opening tonight\'s session')} style={{height: 44,padding:'0 14px',borderRadius:10,border:0,background:G,color:'#fff',fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>Tonight's session</button>
         </div>
       </div>
       <div style={{display:'grid',gridTemplateColumns:'minmax(0,1fr) 340px',gap:16}}>
@@ -46,14 +46,14 @@ export default function SPs2SeniorPreSeason({onBack}:{onBack?:()=>void}){
                   <div style={{fontSize:14,fontWeight:item.done?400:600,color:item.done?MUT:INK,textDecoration:item.done?'line-through':'none'}}>{item.label}</div>
                   <div style={{fontSize:12,color:MUT}}>{item.note}</div>
                 </div>
-                {'action' in item&&item.action&&<button onClick={()=>t(`${item.action} tapped`)} style={{height:32,padding:'0 12px',borderRadius:8,border:`1px solid ${LN}`,background:'#fff',color:G,fontFamily:'inherit',fontSize:12,fontWeight:600,cursor:'pointer',flexShrink:0}}>{item.action}</button>}
+                {'action' in item&&item.action&&<button onClick={()=>t(`${item.action} tapped`)} style={{height: 44,padding:'0 12px',borderRadius:8,border:`1px solid ${LN}`,background:'#fff',color:G,fontFamily:'inherit',fontSize:12,fontWeight:600,cursor:'pointer',flexShrink:0}}>{item.action}</button>}
               </div>
             ))}
           </div>
           <div style={{background:'#fff',border:`1px solid ${LN}`,borderRadius:14,padding:'14px 16px',marginBottom:16}}>
             <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:8}}>
               <div style={{fontSize:15,fontWeight:700,color:INK}}>Building up · week 6 of 10</div>
-              <button onClick={()=>t('Opening load plan')} style={{height:32,padding:'0 12px',borderRadius:8,border:`1px solid ${LN}`,background:'#fff',color:G,fontFamily:'inherit',fontSize:12,fontWeight:600,cursor:'pointer'}}>See the plan</button>
+              <button onClick={()=>t('Opening load plan')} style={{height: 44,padding:'0 12px',borderRadius:8,border:`1px solid ${LN}`,background:'#fff',color:G,fontFamily:'inherit',fontSize:12,fontWeight:600,cursor:'pointer'}}>See the plan</button>
             </div>
             <div style={{fontSize:13,color:MUT}}>Three sessions this week, about 80% of a mid-season week.</div>
             <div style={{fontSize:12,color:MUT,marginTop:4}}>4 players came back late from summer and do one round less.</div>

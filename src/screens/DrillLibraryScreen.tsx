@@ -49,7 +49,7 @@ export default function DrillLibraryScreen({ empty }: { empty?: boolean }) {
             <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, letterSpacing: '-0.02em', color: INK }}>Drill library</h1>
             <div style={{ fontSize: 13, color: MUT, marginTop: 2 }}>44 drills · none of your own yet</div>
           </div>
-          <button onClick={openWiz} style={{ height: 40, padding: '0 18px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Add your own drill</button>
+          <button onClick={openWiz} style={{ height: 44, padding: '0 18px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Add your own drill</button>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 300px', gap: 20 }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
@@ -67,13 +67,13 @@ export default function DrillLibraryScreen({ empty }: { empty?: boolean }) {
                   </div>
                 ))}
               </div>
-              <button style={{ marginTop: 12, height: 36, padding: '0 16px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>See all 24</button>
+              <button style={{ marginTop: 12, height: 44, padding: '0 16px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>See all 24</button>
             </div>
             <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '20px 24px' }}>
               <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 4 }}>Our drills</div>
               <div style={{ fontSize: 14, color: MUT, marginBottom: 2 }}>No drills of your own yet</div>
               <div style={{ fontSize: 13, color: MUT, lineHeight: 1.5, marginBottom: 14 }}>Draw one, pick a clip, or snap your whiteboard. Clean Sheet suggests it when it fits.</div>
-              <button onClick={openWiz} style={{ height: 36, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Add your own drill</button>
+              <button onClick={openWiz} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Add your own drill</button>
             </div>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>

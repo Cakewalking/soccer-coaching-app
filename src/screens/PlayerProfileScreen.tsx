@@ -104,7 +104,7 @@ export default function PlayerProfileScreen({ playerIni, empty }: Props) {
             </div>
             <div style={{ display: 'flex', gap: 0, borderTop: '1px solid #e9eae8', marginTop: 4 }}>
               {PROFILE_TABS.map((t, i) => (
-                <button key={t} onClick={() => setActiveTab(i)} style={{ height: 40, padding: '0 16px', border: 0, borderBottom: activeTab === i ? '2px solid #2f6252' : '2px solid transparent', background: 'transparent', fontFamily: 'inherit', fontSize: 13, fontWeight: activeTab === i ? 700 : 400, cursor: 'pointer', color: activeTab === i ? '#2f6252' : '#4a5a57' }}>{t}</button>
+                <button key={t} onClick={() => setActiveTab(i)} style={{ height: 44, padding: '0 16px', border: 0, borderBottom: activeTab === i ? '2px solid #2f6252' : '2px solid transparent', background: 'transparent', fontFamily: 'inherit', fontSize: 13, fontWeight: activeTab === i ? 700 : 400, cursor: 'pointer', color: activeTab === i ? '#2f6252' : '#4a5a57' }}>{t}</button>
               ))}
             </div>
           </div>
@@ -144,7 +144,7 @@ export default function PlayerProfileScreen({ playerIni, empty }: Props) {
                       <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{s.label}</div>
                       <div style={{ fontSize: 12, color: '#4a5a57' }}>{s.desc}</div>
                     </div>
-                    <button style={{ height: 28, padding: '0 10px', borderRadius: 999, border: '1px solid #e9eae8', background: '#fff', color: '#2f6252', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>{s.cta}</button>
+                    <button style={{ height: 44, padding: '0 10px', borderRadius: 999, border: '1px solid #e9eae8', background: '#fff', color: '#2f6252', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>{s.cta}</button>
                   </div>
                 ))}
                 <div style={{ fontSize: 12, color: '#4a5a57', lineHeight: 1.5, marginTop: 10, paddingTop: 10, borderTop: '1px solid #f0f1f0' }}>{"Harper's profile fills in on its own as she trains and plays. Nothing else to enter."}</div>

@@ -44,7 +44,7 @@ export default function DSet2Roles(_: { onBack?: () => void }) {
               <div style={{ fontSize: 14, fontWeight: 700, color: INK }}>{r.role}</div>
               <div style={{ fontSize: 13, color: r.person === 'You' ? GD : INK, fontWeight: r.person === 'You' ? 700 : 400 }}>{r.person}</div>
               <div style={{ fontSize: 12, color: MUT }}>{r.note}</div>
-              <button onClick={() => t(`Change ${r.role} form would open.`)} style={{ height: 32, padding: '0 10px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Change</button>
+              <button onClick={() => t(`Change ${r.role} form would open.`)} style={{ height: 44, padding: '0 10px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Change</button>
             </div>
           ))}
         </div>

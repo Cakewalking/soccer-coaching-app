@@ -41,7 +41,7 @@ export default function OB3SignUp(_: { onBack?: () => void }) {
             <div style={{ fontSize: 13, fontWeight: 700, color: MUT, marginBottom: 8 }}>Age group</div>
             <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: 8 }}>
               {AGES.map(a => (
-                <button key={a} style={{ height: 36, padding: '0 14px', borderRadius: 999, border: `1px solid ${a === 'U12' ? G : LN}`, background: a === 'U12' ? PALE : '#fff', color: a === 'U12' ? G : INK, fontSize: 14, fontWeight: a === 'U12' ? 700 : 500, cursor: 'pointer' }}>{a}</button>
+                <button key={a} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${a === 'U12' ? G : LN}`, background: a === 'U12' ? PALE : '#fff', color: a === 'U12' ? G : INK, fontSize: 14, fontWeight: a === 'U12' ? 700 : 500, cursor: 'pointer' }}>{a}</button>
               ))}
             </div>
           </div>
@@ -50,7 +50,7 @@ export default function OB3SignUp(_: { onBack?: () => void }) {
             <div style={{ fontSize: 13, fontWeight: 700, color: MUT, marginBottom: 8 }}>Gender</div>
             <div style={{ display: 'flex', gap: 8 }}>
               {GENDERS.map(g => (
-                <button key={g} style={{ height: 36, padding: '0 18px', borderRadius: 999, border: `1px solid ${g === 'Mixed' ? G : LN}`, background: g === 'Mixed' ? PALE : '#fff', color: g === 'Mixed' ? G : INK, fontSize: 14, fontWeight: g === 'Mixed' ? 700 : 500, cursor: 'pointer' }}>{g}</button>
+                <button key={g} style={{ height: 44, padding: '0 18px', borderRadius: 999, border: `1px solid ${g === 'Mixed' ? G : LN}`, background: g === 'Mixed' ? PALE : '#fff', color: g === 'Mixed' ? G : INK, fontSize: 14, fontWeight: g === 'Mixed' ? 700 : 500, cursor: 'pointer' }}>{g}</button>
               ))}
             </div>
           </div>
@@ -59,7 +59,7 @@ export default function OB3SignUp(_: { onBack?: () => void }) {
             <div style={{ fontSize: 13, fontWeight: 700, color: MUT, marginBottom: 8 }}>Division</div>
             <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: 8 }}>
               {DIVS.map(d => (
-                <button key={d} style={{ height: 36, padding: '0 14px', borderRadius: 999, border: `1px solid ${d === 'Division 2' ? G : LN}`, background: d === 'Division 2' ? PALE : '#fff', color: d === 'Division 2' ? G : INK, fontSize: 14, fontWeight: d === 'Division 2' ? 700 : 500, cursor: 'pointer' }}>{d}</button>
+                <button key={d} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${d === 'Division 2' ? G : LN}`, background: d === 'Division 2' ? PALE : '#fff', color: d === 'Division 2' ? G : INK, fontSize: 14, fontWeight: d === 'Division 2' ? 700 : 500, cursor: 'pointer' }}>{d}</button>
               ))}
             </div>
           </div>

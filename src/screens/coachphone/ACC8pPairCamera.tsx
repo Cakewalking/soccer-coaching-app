@@ -40,7 +40,7 @@ export default function ACC8pPairCamera({onBack,onDone}:{onBack?:()=>void,onDone
                 <>
                   <div style={{fontSize:13,color:MUT,marginBottom:16,marginLeft:40}}>Hold the button on the side of the camera for 3 seconds until the light is blue.</div>
                   <div style={{marginLeft:40}}>
-                    <button onClick={()=>setStep(2)} style={{height:40,padding:'0 20px',borderRadius:10,border:0,background:G,color:'#fff',fontFamily:'inherit',fontSize:13,fontWeight:700,cursor:'pointer'}}>Light is blue</button>
+                    <button onClick={()=>setStep(2)} style={{height: 44,padding:'0 20px',borderRadius:10,border:0,background:G,color:'#fff',fontFamily:'inherit',fontSize:13,fontWeight:700,cursor:'pointer'}}>Light is blue</button>
                   </div>
                 </>
               )}
@@ -55,7 +55,7 @@ export default function ACC8pPairCamera({onBack,onDone}:{onBack?:()=>void,onDone
                       </button>
                     </div>
                   ))}
-                  {selected&&<div style={{marginLeft:40,marginTop:12}}><button onClick={()=>setStep(3)} style={{height:40,padding:'0 20px',borderRadius:10,border:0,background:G,color:'#fff',fontFamily:'inherit',fontSize:13,fontWeight:700,cursor:'pointer'}}>Connect to {selected}</button></div>}
+                  {selected&&<div style={{marginLeft:40,marginTop:12}}><button onClick={()=>setStep(3)} style={{height: 44,padding:'0 20px',borderRadius:10,border:0,background:G,color:'#fff',fontFamily:'inherit',fontSize:13,fontWeight:700,cursor:'pointer'}}>Connect to {selected}</button></div>}
                 </>
               )}
               {step===3&&n===3&&(
@@ -69,8 +69,8 @@ export default function ACC8pPairCamera({onBack,onDone}:{onBack?:()=>void,onDone
                     </div>
                     <div style={{fontSize:13,color:MUT,marginBottom:12}}>Can you see the pitch? Adjust the camera angle if needed.</div>
                     <div style={{display:'flex',gap:8}}>
-                      <button onClick={onDone ?? (() => t('Camera paired'))} style={{height:40,padding:'0 20px',borderRadius:10,border:0,background:G,color:'#fff',fontFamily:'inherit',fontSize:13,fontWeight:700,cursor:'pointer'}}>Looks good</button>
-                      <button onClick={()=>setStep(2)} style={{height:40,padding:'0 14px',borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:MUT,fontFamily:'inherit',fontSize:13,cursor:'pointer'}}>Try another camera</button>
+                      <button onClick={onDone ?? (() => t('Camera paired'))} style={{height: 44,padding:'0 20px',borderRadius:10,border:0,background:G,color:'#fff',fontFamily:'inherit',fontSize:13,fontWeight:700,cursor:'pointer'}}>Looks good</button>
+                      <button onClick={()=>setStep(2)} style={{height: 44,padding:'0 14px',borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:MUT,fontFamily:'inherit',fontSize:13,cursor:'pointer'}}>Try another camera</button>
                     </div>
                   </div>
                 </>

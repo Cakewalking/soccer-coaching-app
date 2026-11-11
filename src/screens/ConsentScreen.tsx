@@ -112,8 +112,8 @@ export default function ConsentScreen({ empty }: { empty?: boolean }) {
           <h1 style={{ margin: 0, fontSize: 28, lineHeight: '34px', fontWeight: 700, letterSpacing: '-0.02em' }}>Consent and privacy</h1>
           <div style={{ flexGrow: 1 }} />
           <div style={{ display: 'flex', gap: 2, padding: 3, borderRadius: 12, background: '#e9eae8' }}>
-            <button style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 0, background: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f', boxShadow: '0 1px 3px rgba(0,0,0,0.08)' }}>Players</button>
-            <button style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 0, background: 'transparent', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#6f7f7b' }}>Club settings</button>
+            <button style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f', boxShadow: '0 1px 3px rgba(0,0,0,0.08)' }}>Players</button>
+            <button style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: 'transparent', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#6f7f7b' }}>Club settings</button>
           </div>
         </div>
 

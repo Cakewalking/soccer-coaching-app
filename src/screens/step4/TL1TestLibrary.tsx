@@ -32,7 +32,7 @@ export default function TL1TestLibrary(_: { onBack?: () => void }) {
             <div style={{ fontSize: 20, fontWeight: 800, letterSpacing: '-0.02em', color: INK, marginBottom: 2 }}>Test library</div>
             <div style={{ fontSize: 13, color: MUT }}>7 tests · 2 due soon</div>
           </div>
-          <button onClick={() => t('Add test form would open.')} style={{ height: 40, padding: '0 16px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Add a test</button>
+          <button onClick={() => t('Add test form would open.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Add a test</button>
         </div>
 
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, overflow: 'hidden' }}>
@@ -45,7 +45,7 @@ export default function TL1TestLibrary(_: { onBack?: () => void }) {
               <div style={{ fontSize: 12, fontWeight: 600, color: test.dueWarn ? '#c05' : (test.due.startsWith('Done') ? G : MUT) }}>{test.due}</div>
               <div style={{ fontSize: 12, color: MUT }}>{test.desc}</div>
               <div style={{ fontSize: 12, color: MUT }}>{test.groups}</div>
-              <button onClick={() => t(`Running ${test.name}.`)} style={{ height: 32, padding: '0 10px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Run</button>
+              <button onClick={() => t(`Running ${test.name}.`)} style={{ height: 44, padding: '0 10px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Run</button>
             </div>
           ))}
         </div>

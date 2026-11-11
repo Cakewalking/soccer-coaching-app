@@ -25,7 +25,7 @@ export default function TM2ManagerGameDay(_: { onBack?: () => void }) {
       <div style={{ flexGrow: 1, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 10, overflowY: 'auto' }}>
         <div style={{ display: 'flex', gap: 6 }}>
           {(['before', 'during', 'after'] as const).map(p => (
-            <button key={p} onClick={() => setPhase(p)} style={{ flex: 1, height: 36, borderRadius: 999, fontSize: 13, fontWeight: 700, border: phase === p ? 0 : `1px solid ${LN}`, background: phase === p ? G : '#fff', color: phase === p ? '#fff' : INK, cursor: 'pointer', fontFamily: 'inherit', textTransform: 'capitalize' }}>{p}</button>
+            <button key={p} onClick={() => setPhase(p)} style={{ flex: 1, height: 44, borderRadius: 999, fontSize: 13, fontWeight: 700, border: phase === p ? 0 : `1px solid ${LN}`, background: phase === p ? G : '#fff', color: phase === p ? '#fff' : INK, cursor: 'pointer', fontFamily: 'inherit', textTransform: 'capitalize' }}>{p}</button>
           ))}
         </div>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '4px 14px' }}>

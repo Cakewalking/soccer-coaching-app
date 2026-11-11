@@ -56,7 +56,7 @@ export default function CalendarMiniRoos({ empty }: { empty?: boolean }) {
     <>
       <div style={{ flexShrink: 0, padding: '8px 28px 0', display: 'flex', gap: 0, borderBottom: '1px solid #e9eae8' }}>
         {(['calendar', 'fixtures'] as const).map(v => (
-          <button key={v} onClick={() => setCalView(v)} style={{ height: 40, padding: '0 16px', border: 0, background: 'transparent', fontFamily: 'inherit', fontSize: 14, fontWeight: calView === v ? 700 : 500, color: calView === v ? '#10211f' : '#6f7f7b', cursor: 'pointer', borderBottom: calView === v ? '2px solid #40826d' : '2px solid transparent' }}>{v === 'calendar' ? 'Calendar' : 'Fixtures'}</button>
+          <button key={v} onClick={() => setCalView(v)} style={{ height: 44, padding: '0 16px', border: 0, background: 'transparent', fontFamily: 'inherit', fontSize: 14, fontWeight: calView === v ? 700 : 500, color: calView === v ? '#10211f' : '#6f7f7b', cursor: 'pointer', borderBottom: calView === v ? '2px solid #40826d' : '2px solid transparent' }}>{v === 'calendar' ? 'Calendar' : 'Fixtures'}</button>
         ))}
       </div>
       <EmptyCard icon="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" title="Add your training night" desc="Games arrive from the league on their own. Add your training night and the term fills in." cta="Add your training night" items={[{ title: 'Training', desc: 'Your night, every week of term' }, { title: 'Games', desc: 'From the league, with the ground' }, { title: 'Club days', desc: 'Photo day and presentation day' }]} />
@@ -67,7 +67,7 @@ export default function CalendarMiniRoos({ empty }: { empty?: boolean }) {
     <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, minHeight: 0 }}>
       <div style={{ flexShrink: 0, padding: '8px 28px 0', display: 'flex', gap: 0, borderBottom: '1px solid #e9eae8' }}>
         {(['calendar', 'fixtures'] as const).map(v => (
-          <button key={v} onClick={() => setCalView(v)} style={{ height: 40, padding: '0 16px', border: 0, background: 'transparent', fontFamily: 'inherit', fontSize: 14, fontWeight: calView === v ? 700 : 500, color: calView === v ? '#10211f' : '#6f7f7b', cursor: 'pointer', borderBottom: calView === v ? '2px solid #40826d' : '2px solid transparent' }}>{v === 'calendar' ? 'Calendar' : 'Fixtures'}</button>
+          <button key={v} onClick={() => setCalView(v)} style={{ height: 44, padding: '0 16px', border: 0, background: 'transparent', fontFamily: 'inherit', fontSize: 14, fontWeight: calView === v ? 700 : 500, color: calView === v ? '#10211f' : '#6f7f7b', cursor: 'pointer', borderBottom: calView === v ? '2px solid #40826d' : '2px solid transparent' }}>{v === 'calendar' ? 'Calendar' : 'Fixtures'}</button>
         ))}
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, minHeight: 0 }}>

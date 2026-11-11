@@ -39,9 +39,13 @@ function QuestionCard({ q, onSelect }: { q: StyleQuestion; onSelect: (i: number)
 export default function OurStyleScreen() {
   const [questions, setQuestions] = useState(STYLE_QUESTIONS)
   const [values, setValues] = useState(STYLE_CLUB_VALUES)
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   function selectOption(qi: number, oi: number) {
     setQuestions(qs => qs.map((q, i) => i === qi ? { ...q, selected: oi } : q))
+    const opt = STYLE_QUESTIONS[qi].options[oi]
+    showToast(`Style saved: ${opt}.`)
   }
   function toggleValue(vi: number) {
     setValues(vs => vs.map((v, i) => i === vi ? { ...v, checked: !v.checked } : v))
@@ -121,6 +125,9 @@ export default function OurStyleScreen() {
           If you change your style, past games are re-scored against the new answers. Nothing is lost.
         </div>
       </div>
+      {toast && (
+        <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>
+      )}
     </div>
   )
 }

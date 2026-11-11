@@ -63,7 +63,7 @@ export default function RC1RecordStart(_: { onBack?: () => void }) {
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '14px 16px' }}>
             <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 8 }}>Run one again</div>
             <div style={{ fontSize: 14, color: MUT, marginBottom: 10 }}>Re-run the last drill from Tuesday to compare.</div>
-            <button style={{ width: '100%', height: 40, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 14, fontWeight: 600, color: G, cursor: 'pointer' }}>Rondo 5 v 2 · Tue 2 Jun</button>
+            <button style={{ width: '100%', height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 14, fontWeight: 600, color: G, cursor: 'pointer' }}>Rondo 5 v 2 · Tue 2 Jun</button>
           </div>
         </div>
       </main>

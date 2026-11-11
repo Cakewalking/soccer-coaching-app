@@ -22,7 +22,7 @@ export default function ACC7AcademyGameDay(_: { onBack?: () => void }) {
             </button>
           ))}
         </div>
-        <button style={{ background: 'rgba(255,255,255,0.18)', border: 'none', color: '#fff', fontSize: 14, fontWeight: 500, padding: '0 14px', height: 36, borderRadius: 999, cursor: 'pointer', marginRight: 12 }}>Tall Timber Academy ▾</button>
+        <button style={{ background: 'rgba(255,255,255,0.18)', border: 'none', color: '#fff', fontSize: 14, fontWeight: 500, padding: '0 14px', height: 44, borderRadius: 999, cursor: 'pointer', marginRight: 12 }}>Tall Timber Academy ▾</button>
         <div style={{ width: 44, height: 44, borderRadius: 999, background: '#c39797', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 15, fontWeight: 700, color: INK }}>RW</div>
       </div>
 
@@ -47,8 +47,8 @@ export default function ACC7AcademyGameDay(_: { onBack?: () => void }) {
           <p style={{ margin: '4px 0 0', fontSize: 14, color: MUT }}>Sat 6 June · 11:00 vs Banksia Park · home, pitch 2</p>
         </div>
         <div style={{ display: 'flex', gap: 8, paddingTop: 4 }}>
-          <button onClick={() => showToast('New message to 16 families.')} style={{ height: 38, padding: '0 16px', borderRadius: 10, background: '#fff', border: `1px solid #c5c8c4`, color: INK, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Message the team</button>
-          <button onClick={() => showToast('Starting live game...')} style={{ height: 38, padding: '0 16px', borderRadius: 10, background: G, border: 'none', color: '#fff', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Start the game</button>
+          <button onClick={() => showToast('New message to 16 families.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, background: '#fff', border: `1px solid #c5c8c4`, color: INK, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Message the team</button>
+          <button onClick={() => showToast('Starting live game...')} style={{ height: 44, padding: '0 16px', borderRadius: 10, background: G, border: 'none', color: '#fff', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Start the game</button>
         </div>
       </div>
 
@@ -68,7 +68,7 @@ export default function ACC7AcademyGameDay(_: { onBack?: () => void }) {
               <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>Team sheet</div>
               <div style={{ fontSize: 13, color: MUT }}>14 of 16 can play · 2 still to register with the club</div>
             </div>
-            <button onClick={() => showToast('Opening team sheet...')} style={{ height: 30, padding: '0 12px', borderRadius: 8, background: '#fff', border: `1px solid #c5c8c4`, color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>Open</button>
+            <button onClick={() => showToast('Opening team sheet...')} style={{ height: 44, padding: '0 12px', borderRadius: 8, background: '#fff', border: `1px solid #c5c8c4`, color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>Open</button>
           </div>
 
           {/* Item 2: check */}
@@ -78,7 +78,7 @@ export default function ACC7AcademyGameDay(_: { onBack?: () => void }) {
               <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>Minutes</div>
               <div style={{ fontSize: 13, color: MUT }}>Everyone gets at least half a game. The plan is ready</div>
             </div>
-            <button onClick={() => showToast('Minutes plan: 16 players, nobody under 35 of 70 minutes.')} style={{ height: 30, padding: '0 12px', borderRadius: 8, background: '#fff', border: `1px solid #c5c8c4`, color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>See plan</button>
+            <button onClick={() => showToast('Minutes plan: 16 players, nobody under 35 of 70 minutes.')} style={{ height: 44, padding: '0 12px', borderRadius: 8, background: '#fff', border: `1px solid #c5c8c4`, color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>See plan</button>
           </div>
 
           {/* Item 3: check */}
@@ -88,7 +88,7 @@ export default function ACC7AcademyGameDay(_: { onBack?: () => void }) {
               <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>Team talk</div>
               <div style={{ fontSize: 13, color: MUT }}>3 slides from Thursday's session: finishing with the weaker foot</div>
             </div>
-            <button onClick={() => showToast('Opening team talk...')} style={{ height: 30, padding: '0 12px', borderRadius: 8, background: '#fff', border: `1px solid #c5c8c4`, color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>Open</button>
+            <button onClick={() => showToast('Opening team talk...')} style={{ height: 44, padding: '0 12px', borderRadius: 8, background: '#fff', border: `1px solid #c5c8c4`, color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>Open</button>
           </div>
 
           {/* Item 4: check */}

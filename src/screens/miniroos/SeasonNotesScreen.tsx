@@ -84,7 +84,7 @@ export default function SeasonNotesScreen({ empty, onBack }: { empty?: boolean; 
       {/* Header */}
       <div style={{ flexShrink: 0, padding: '14px 28px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 20 }}>
         <div>
-          {onBack && <button onClick={onBack} style={{ height: 28, padding: '0 12px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer', marginBottom: 8 }}>← Back</button>}
+          {onBack && <button onClick={onBack} style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer', marginBottom: 8 }}>← Back</button>}
           <h1 style={{ margin: 0, fontSize: 26, lineHeight: '32px', fontWeight: 700, letterSpacing: '-0.02em' }}>Season notes</h1>
           <div style={{ fontSize: 14, color: '#4a5a57', marginTop: 2 }}>One short note for each family · 2 sent, {draftCount} drafted, 4 to write</div>
         </div>

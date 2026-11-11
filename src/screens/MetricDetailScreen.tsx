@@ -124,7 +124,7 @@ export default function MetricDetailScreen({ onClose }: Props) {
             <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: '18px', marginTop: 4 }}>From 57 of 60 minutes of clear camera view.</div>
           </div>
 
-          <button style={{ width: '100%', height: 40, borderRadius: 10, border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>
+          <button style={{ width: '100%', height: 44, borderRadius: 10, border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>
             Something look wrong? Report it
           </button>
         </div>

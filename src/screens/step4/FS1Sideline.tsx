@@ -57,7 +57,7 @@ export default function FS1Sideline(_: { onBack?: () => void }) {
             ))}
           </div>
           <button style={{ height: 44, borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Remind 15 parents</button>
-          <button style={{ height: 42, borderRadius: 10, border: `1px solid #c5c8c4`, background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Edit the code</button>
+          <button style={{ height: 44, borderRadius: 10, border: `1px solid #c5c8c4`, background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Edit the code</button>
         </div>
       </div>
     </div>

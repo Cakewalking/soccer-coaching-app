@@ -18,7 +18,7 @@ export default function DemoStartEmpty({ onRole, onSwitchToDemo, expiryDate = 'T
           <span style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)' }}>Sandbox · Your data</span>
           <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)' }}>Your own empty club, as a coach. What you add is saved until {expiryDate}.</span>
         </div>
-        <button onClick={onSwitchToDemo} style={{ height: 32, padding: '0 14px', borderRadius: 8, border: '1px solid rgba(255,255,255,0.3)', background: 'none', color: 'rgba(255,255,255,0.8)', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Switch to the demo</button>
+        <button onClick={onSwitchToDemo} style={{ height: 44, padding: '0 14px', borderRadius: 8, border: '1px solid rgba(255,255,255,0.3)', background: 'none', color: 'rgba(255,255,255,0.8)', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Switch to the demo</button>
       </div>
 
       {/* Hero */}
@@ -79,17 +79,17 @@ export default function DemoStartEmpty({ onRole, onSwitchToDemo, expiryDate = 'T
             <div>
               <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f', marginBottom: 2 }}>Fill with sample data</div>
               <div style={{ fontSize: 13, color: '#6f7f7b', marginBottom: 8 }}>A squad, three games and recordings, marked as samples</div>
-              <button onClick={onFill} style={{ height: 36, padding: '0 16px', borderRadius: 8, border: '1.5px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: '#10211f', cursor: 'pointer' }}>Fill</button>
+              <button onClick={onFill} style={{ height: 44, padding: '0 16px', borderRadius: 8, border: '1.5px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: '#10211f', cursor: 'pointer' }}>Fill</button>
             </div>
             <div style={{ borderTop: '1px solid #e9eae8', paddingTop: 10 }}>
               <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f', marginBottom: 2 }}>Empty it and start again</div>
               <div style={{ fontSize: 13, color: '#6f7f7b', marginBottom: 8 }}>Removes everything you've added</div>
-              <button onClick={onReset} style={{ height: 36, padding: '0 16px', borderRadius: 8, border: '1.5px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: '#10211f', cursor: 'pointer' }}>Reset</button>
+              <button onClick={onReset} style={{ height: 44, padding: '0 16px', borderRadius: 8, border: '1.5px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: '#10211f', cursor: 'pointer' }}>Reset</button>
             </div>
             <div style={{ borderTop: '1px solid #e9eae8', paddingTop: 10 }}>
               <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f', marginBottom: 2 }}>Keep it going</div>
               <div style={{ fontSize: 13, color: '#6f7f7b', marginBottom: 8 }}>Turn the sandbox into a real club account</div>
-              <button style={{ height: 36, padding: '0 16px', borderRadius: 8, border: '1.5px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: '#10211f', cursor: 'pointer' }}>Ask us</button>
+              <button style={{ height: 44, padding: '0 16px', borderRadius: 8, border: '1.5px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: '#10211f', cursor: 'pointer' }}>Ask us</button>
             </div>
           </div>
           <div style={{ marginTop: 14, padding: '10px 12px', background: '#f5f6f4', borderRadius: 10, fontSize: 12, color: '#6f7f7b', lineHeight: 1.5 }}>

@@ -62,12 +62,12 @@ export default function ClubTab({ role, empty }: { role: 'chair' | 'dof'; empty?
                     <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f', marginBottom: 2 }}>{item.t}</div>
                     <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: 1.4 }}>{item.sub}</div>
                   </div>
-                  <button style={{ height: 32, padding: '0 14px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>{item.cta}</button>
+                  <button style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>{item.cta}</button>
                 </div>
               ))}
             </div>
             <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: 1.5, marginBottom: 10 }}>Coaches can start before you finish. Each team can set itself up from a coach link.</div>
-            <button style={{ height: 36, padding: '0 16px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Book a setup call</button>
+            <button style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Book a setup call</button>
           </div>
           <div>
             <div style={{ background: '#fff', borderRadius: 16, border: '1px solid #e9eae8', padding: '16px', marginBottom: 14 }}>
@@ -213,7 +213,7 @@ export default function ClubTab({ role, empty }: { role: 'chair' | 'dof'; empty?
                       <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{item.text}</div>
                       <div style={{ fontSize: 12, color: '#6f7f7b', marginTop: 2 }}>{item.sub}</div>
                     </div>
-                    <button style={{ flexShrink: 0, height: 28, padding: '0 12px', borderRadius: '999px', border: '1px solid #2f6252', background: '#fff', color: '#2f6252', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>{item.cta}</button>
+                    <button style={{ flexShrink: 0, height: 44, padding: '0 12px', borderRadius: '999px', border: '1px solid #2f6252', background: '#fff', color: '#2f6252', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>{item.cta}</button>
                   </div>
                 ))}
               </div>
@@ -310,7 +310,7 @@ export default function ClubTab({ role, empty }: { role: 'chair' | 'dof'; empty?
                 <div style={{ fontSize: 18, fontWeight: 800, color: '#10211f' }}>Season plan</div>
                 <div style={{ fontSize: 12, color: '#6f7f7b' }}>Season 2026 · winter football with a summer break</div>
               </div>
-              <button style={{ height: 32, padding: '0 14px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>Add to calendar</button>
+              <button style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>Add to calendar</button>
             </div>
             <div style={{ background: '#fff', borderRadius: 14, border: '1px solid #e9eae8', overflow: 'hidden' }}>
               <div style={{ display: 'grid', gridTemplateColumns: '130px repeat(12, 1fr)', borderBottom: '1px solid #f0f1f0' }}>
@@ -354,7 +354,7 @@ export default function ClubTab({ role, empty }: { role: 'chair' | 'dof'; empty?
                 <div style={{ height: 6, borderRadius: 3, background: '#f0f1f0' }}><div style={{ height: 6, borderRadius: 3, background: '#2f6252', width: `${s.pct}%` }} /></div>
               </div>
             ))}
-            <button style={{ marginTop: 8, height: 36, padding: '0 16px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Edit style</button>
+            <button style={{ marginTop: 8, height: 44, padding: '0 16px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Edit style</button>
           </div>
         )}
 
@@ -426,8 +426,8 @@ export default function ClubTab({ role, empty }: { role: 'chair' | 'dof'; empty?
                 <div style={{ fontSize: 12, color: '#6f7f7b' }}>Wattle Creek FC · only the chair and director can change these</div>
               </div>
               <div style={{ display: 'flex', gap: 8 }}>
-                <button style={{ height: 36, padding: '0 14px', borderRadius: 10, border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>Cancel</button>
-                <button style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 'none', background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Save</button>
+                <button style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>Cancel</button>
+                <button style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 'none', background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Save</button>
               </div>
             </div>
 
@@ -465,7 +465,7 @@ export default function ClubTab({ role, empty }: { role: 'chair' | 'dof'; empty?
                       <span style={{ fontSize: 14, color: '#10211f' }}>{f.label}</span>
                       <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
                         <span style={{ fontSize: 13, fontWeight: 600, color: '#4a5a57' }}>{f.value}</span>
-                        <button style={{ height: 28, padding: '0 10px', borderRadius: 999, border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 12, cursor: 'pointer' }}>Change</button>
+                        <button style={{ height: 44, padding: '0 10px', borderRadius: 999, border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 12, cursor: 'pointer' }}>Change</button>
                       </div>
                     </div>
                   ))}
@@ -500,7 +500,7 @@ export default function ClubTab({ role, empty }: { role: 'chair' | 'dof'; empty?
                           <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>{o.name}</div>
                           <div style={{ fontSize: 12, color: '#6f7f7b' }}>{o.role}</div>
                         </div>
-                        <button style={{ height: 28, padding: '0 10px', borderRadius: 999, border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 12, cursor: 'pointer' }}>Change</button>
+                        <button style={{ height: 44, padding: '0 10px', borderRadius: 999, border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 12, cursor: 'pointer' }}>Change</button>
                       </div>
                     </div>
                   ))}

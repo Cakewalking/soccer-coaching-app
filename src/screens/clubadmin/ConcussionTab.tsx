@@ -53,7 +53,7 @@ export default function ConcussionTab({ empty }: { empty?: boolean }) {
         <div style={{ fontSize: 13, color: MUT, marginTop: 2 }}>Nothing here yet · No head knocks logged</div>
       </div>
       <div style={{ background: PALE, borderRadius: 14, padding: '14px 16px', fontSize: 14, color: G, lineHeight: 1.5 }}>Coaches and managers log a head knock from the sideline. The player then follows the return-to-play steps here.</div>
-      <button style={{ alignSelf: 'flex-start', height: 40, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Name a concussion officer</button>
+      <button style={{ alignSelf: 'flex-start', height: 44, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Name a concussion officer</button>
       <Card>
         <div style={{ padding: '10px 14px', borderBottom: `1px solid ${LN}`, fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: MUT }}>What you will see</div>
         {[
@@ -80,7 +80,7 @@ export default function ConcussionTab({ empty }: { empty?: boolean }) {
           <div style={{ fontSize: 22, fontWeight: 700, color: INK, letterSpacing: '-0.02em' }}>Concussion</div>
           <div style={{ fontSize: 13, color: MUT }}>Return to play · AIS concussion guidelines 2024 · community football</div>
         </div>
-        <button style={{ height: 40, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Log a head knock</button>
+        <button style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Log a head knock</button>
       </div>
 
       <div style={{ display: 'flex', gap: 8 }}>
@@ -127,8 +127,8 @@ export default function ConcussionTab({ empty }: { empty?: boolean }) {
               <div style={{ padding: '10px 14px', background: PALE, fontSize: 13, color: G, lineHeight: 1.5 }}>{p.note}</div>
 
               <div style={{ padding: '10px 14px', borderTop: `1px solid ${LN}`, display: 'flex', gap: 8 }}>
-                <button style={{ height: 36, flex: 1, borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Message coach</button>
-                <button style={{ height: 36, flex: 1, borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>{p.actionLabel}</button>
+                <button style={{ height: 44, flex: 1, borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Message coach</button>
+                <button style={{ height: 44, flex: 1, borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>{p.actionLabel}</button>
               </div>
             </Card>
           ))}
@@ -149,7 +149,7 @@ export default function ConcussionTab({ empty }: { empty?: boolean }) {
               </div>
             </div>
             <div style={{ padding: '0 14px 12px' }}>
-              <button style={{ height: 36, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Change</button>
+              <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Change</button>
             </div>
           </Card>
 

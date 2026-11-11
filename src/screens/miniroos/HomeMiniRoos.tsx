@@ -48,7 +48,7 @@ function HomeMiniRoosEmpty() {
           <div key={step} style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '14px 16px', borderRadius: 12, background: '#f7f9f7', border: '1px solid #e9eae8' }}>
             <span style={{ flexShrink: 0, width: 32, height: 32, borderRadius: '999px', background: '#eef5f2', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700, color: '#2f6252' }}>{step}</span>
             <span style={{ flexGrow: 1, fontSize: 16, fontWeight: 600, color: '#10211f' }}>{label}</span>
-            <button style={{ height: 36, padding: '0 16px', borderRadius: 8, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer', flexShrink: 0 }}>{cta}</button>
+            <button style={{ height: 44, padding: '0 16px', borderRadius: 8, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer', flexShrink: 0 }}>{cta}</button>
           </div>
         ))}
       </div>
@@ -120,7 +120,7 @@ export default function HomeMiniRoos({ empty, onTraining, onSeasonNotes, onFootb
               </button>
             ))}
           </div>
-          <button onClick={onAllMessages} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4, width: '100%', height: 40, border: 0, borderTop: '1px solid #e9eae8', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', fontSize: 14, color: '#2f6252', fontWeight: 600 }}>
+          <button onClick={onAllMessages} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4, width: '100%', height: 44, border: 0, borderTop: '1px solid #e9eae8', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', fontSize: 14, color: '#2f6252', fontWeight: 600 }}>
             All messages · 2 more
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
           </button>
@@ -205,7 +205,7 @@ export default function HomeMiniRoos({ empty, onTraining, onSeasonNotes, onFootb
             <button onClick={onThankParents} style={{ flex: 1, height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Thank the parents</button>
           </div>
           {onSeasonNotes && (
-            <button onClick={onSeasonNotes} style={{ width: '100%', height: 40, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#2f6252', marginTop: 2 }}>Season notes →</button>
+            <button onClick={onSeasonNotes} style={{ width: '100%', height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#2f6252', marginTop: 2 }}>Season notes →</button>
           )}
         </section>
       </div>

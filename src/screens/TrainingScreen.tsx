@@ -22,7 +22,7 @@ function TrainingEmpty({ onNav }: { onNav: (s: 'addgame') => void }) {
         <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, letterSpacing: '-0.02em' }}>Training</h1>
         <span style={{ fontSize: 14, color: '#4a5a57' }}>No session planned yet</span>
         <div style={{ flexGrow: 1 }} />
-        <button style={{ height: 36, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>Build your own</button>
+        <button style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>Build your own</button>
       </div>
 
       {/* Main two-column */}
@@ -49,8 +49,8 @@ function TrainingEmpty({ onNav }: { onNav: (s: 'addgame') => void }) {
             <div style={{ fontSize: 18, fontWeight: 700, marginBottom: 6 }}>Plans come from your games</div>
             <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: '18px', marginBottom: 14 }}>After your first recorded game, Clean Sheet picks drills that fix what it sees in the video and wearable data. Until then, start from a ready-made session.</div>
             <div style={{ display: 'flex', gap: 8 }}>
-              <button style={{ height: 36, padding: '0 16px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Use a starter session</button>
-              <button onClick={() => onNav('addgame')} style={{ height: 36, padding: '0 16px', borderRadius: 10, border: '1px solid #2f6252', background: '#ffffff', color: '#2f6252', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Record a game</button>
+              <button style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Use a starter session</button>
+              <button onClick={() => onNav('addgame')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: '1px solid #2f6252', background: '#ffffff', color: '#2f6252', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Record a game</button>
             </div>
           </div>
           {[65, 50].map((w, i) => (
@@ -83,7 +83,7 @@ function TrainingEmpty({ onNav }: { onNav: (s: 'addgame') => void }) {
           <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 2 }}>Adjust for players</div>
           <div style={{ fontSize: 12, color: '#4a5a57', lineHeight: '17px' }}>Players who need a lighter night show up here once wellness check-ins and vests are on.</div>
         </div>
-        <button style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>Turn on check-ins</button>
+        <button style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>Turn on check-ins</button>
       </div>
     </div>
   )
@@ -175,7 +175,7 @@ function OfflineView() {
           <span style={{ fontSize: 14 }}>{backOnline ? 'Everything from tonight has been sent.' : 'Carry on. Tonight\'s session is saved on this tablet.'}</span>
         </span>
         <span style={{ fontSize: 14, color: '#4a5a57', whiteSpace: 'nowrap' }}>Last updated {backOnline ? '7:22 pm' : '5:31 pm'}</span>
-        <button onClick={() => setBackOnline(o => !o)} style={{ height: 32, padding: '0 12px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>Demo: {backOnline ? 'go offline' : 'back online'}</button>
+        <button onClick={() => setBackOnline(o => !o)} style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>Demo: {backOnline ? 'go offline' : 'back online'}</button>
       </div>
       {/* Works without signal */}
       <section style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '14px 18px 10px', display: 'flex', flexDirection: 'column', minHeight: 0 }}>
@@ -234,6 +234,8 @@ function OfflineView() {
 
 export default function TrainingScreen({ role, onNav, empty }: Props) {
   const [offline, setOffline] = useState(false)
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   if (empty) return <TrainingEmpty onNav={onNav} />
   if (offline) {
     return (
@@ -244,8 +246,8 @@ export default function TrainingScreen({ role, onNav, empty }: Props) {
             <div style={{ fontSize: 13, color: '#6f7f7b', marginTop: 2 }}>Thu 4 Jun · Wattle Creek Reserve · <strong>offline</strong></div>
           </div>
           <div style={{ display: 'flex', gap: 8 }}>
-            <button style={{ height: 36, padding: '0 14px', borderRadius: '999px', border: '1px solid #2f6252', background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Open pitch-side</button>
-            <button onClick={() => setOffline(false)} style={{ height: 36, padding: '0 14px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', color: '#6f7f7b' }}>Exit offline demo</button>
+            <button style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #2f6252', background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Open pitch-side</button>
+            <button onClick={() => setOffline(false)} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', color: '#6f7f7b' }}>Exit offline demo</button>
           </div>
         </div>
         <OfflineView />
@@ -278,7 +280,7 @@ export default function TrainingScreen({ role, onNav, empty }: Props) {
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>
               Team talk
             </button>
-            <button style={{
+            <button onClick={() => showToast('Opening the session plan editor.')} style={{
               height: 36, padding: '0 14px', borderRadius: '999px', border: '1px solid #c5c8c4',
               background: '#ffffff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer',
             }}>Edit plan</button>
@@ -290,7 +292,7 @@ export default function TrainingScreen({ role, onNav, empty }: Props) {
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"/></svg>
               Start session
             </button>
-            <button onClick={() => setOffline(true)} style={{ height: 36, padding: '0 14px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer', color: '#6f7f7b' }}>Offline demo</button>
+            <button onClick={() => setOffline(true)} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer', color: '#6f7f7b' }}>Offline demo</button>
           </div>
         </div>
       </div>
@@ -430,6 +432,9 @@ export default function TrainingScreen({ role, onNav, empty }: Props) {
           ))}
         </div>
       </main>
+      {toast && (
+        <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>
+      )}
     </>
   )
 }

@@ -19,7 +19,7 @@ export default function DemoStart({ onTour, onLook, onStory, onWhy, onSandbox }:
           <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)' }}>Wattle Creek FC, Tall Timber Academy and everyone in them are made up. Nothing you tap is saved.</span>
         </div>
         {onSandbox && (
-          <button onClick={onSandbox} style={{ height: 32, padding: '0 14px', borderRadius: 8, border: '1px solid rgba(255,255,255,0.3)', background: 'none', color: 'rgba(255,255,255,0.8)', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap' as const }}>Start with an empty club instead</button>
+          <button onClick={onSandbox} style={{ height: 44, padding: '0 14px', borderRadius: 8, border: '1px solid rgba(255,255,255,0.3)', background: 'none', color: 'rgba(255,255,255,0.8)', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap' as const }}>Start with an empty club instead</button>
         )}
       </div>
 
@@ -51,8 +51,8 @@ export default function DemoStart({ onTour, onLook, onStory, onWhy, onSandbox }:
                     <div style={{ fontSize: 12, color: '#6f7f7b' }}>{role.desc}</div>
                   </div>
                   <div style={{ display: 'flex', gap: 8 }}>
-                    <button onClick={() => onTour(role.id)} style={{ flex: 1, height: 36, borderRadius: 8, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Guided tour</button>
-                    <button onClick={() => onLook(role.id)} style={{ flex: 1, height: 36, borderRadius: 8, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Look around</button>
+                    <button onClick={() => onTour(role.id)} style={{ flex: 1, height: 44, borderRadius: 8, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Guided tour</button>
+                    <button onClick={() => onLook(role.id)} style={{ flex: 1, height: 44, borderRadius: 8, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Look around</button>
                   </div>
                 </div>
               ))}

@@ -147,8 +147,8 @@ function GoalsView() {
               </div>
             )}
             <div style={{ padding: '10px 14px', display: 'flex', gap: 8 }}>
-              <button style={{ flex: 1, height: 36, borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Message coach</button>
-              <button style={{ flex: 1, height: 36, borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>View clips</button>
+              <button style={{ flex: 1, height: 44, borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Message coach</button>
+              <button style={{ flex: 1, height: 44, borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>View clips</button>
             </div>
           </div>
         </div>
@@ -180,7 +180,7 @@ function NominationsView() {
           <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>Ready for more · 11 nominations</div>
           <div style={{ fontSize: 12, color: MUT }}>Coach nominations this season · talk to families before making any offer</div>
         </div>
-        <button style={{ height: 36, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Export list</button>
+        <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Export list</button>
       </div>
 
       <div style={{ background: '#fdf8ed', border: `1px solid #e8d8a0`, borderRadius: 12, padding: '10px 14px', marginBottom: 16, display: 'flex', gap: 10, alignItems: 'flex-start' }}>
@@ -211,8 +211,8 @@ function NominationsView() {
             <div style={{ fontSize: 13, color: MUT, lineHeight: 1.5, marginBottom: 8, paddingLeft: 48 }}>{nom.why}</div>
             <div style={{ fontSize: 11, color: G, fontWeight: 600, background: PALE, borderRadius: 8, padding: '5px 10px', marginBottom: 10, marginLeft: 48 }}>{nom.numbers}</div>
             <div style={{ display: 'flex', gap: 8, paddingLeft: 48 }}>
-              <button style={{ height: 32, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Message {nom.coach}</button>
-              <button style={{ height: 32, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Talk to family</button>
+              <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Message {nom.coach}</button>
+              <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Talk to family</button>
             </div>
           </div>
         ))}
@@ -307,7 +307,7 @@ export default function PlayersTab({ empty }: { empty?: boolean }) {
                 <div style={{ fontSize: 18, fontWeight: 800, color: '#10211f' }}>Fair game time</div>
                 <div style={{ fontSize: 12, color: '#6f7f7b' }}>Every team · fewest minutes this season, as a share of the game</div>
               </div>
-              <button style={{ height: 32, padding: '0 14px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>Export</button>
+              <button style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>Export</button>
             </div>
             <div style={{ background: '#fff', borderRadius: 14, border: '1px solid #e9eae8', overflow: 'hidden' }}>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 2fr 60px 100px', padding: '8px 16px', borderBottom: '1px solid #f0f1f0', gap: 8 }}>
@@ -361,7 +361,7 @@ export default function PlayersTab({ empty }: { empty?: boolean }) {
             <div key={i} style={{ background: '#fff', borderRadius: 14, padding: '14px 16px', border: '1px solid #e9eae8', marginBottom: 10, display: 'flex', alignItems: 'center', gap: 12 }}>
               <div style={{ width: 32, height: 32, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{p2.ini}</div>
               <div style={{ flexGrow: 1 }}><div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>{p2.name}</div><div style={{ fontSize: 12, color: '#6f7f7b' }}>{p2.team}</div></div>
-              <button style={{ height: 32, padding: '0 12px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>Chase</button>
+              <button style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>Chase</button>
             </div>
           ))}
         </div>
@@ -374,7 +374,7 @@ export default function PlayersTab({ empty }: { empty?: boolean }) {
               <div style={{ fontSize: 18, fontWeight: 800, color: '#10211f' }}>Player moves</div>
               <div style={{ fontSize: 13, color: '#6f7f7b' }}>7 moves this season · 2 pending coach approval</div>
             </div>
-            <button style={{ height: 36, padding: '0 16px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>+ Propose a move</button>
+            <button style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>+ Propose a move</button>
           </div>
           {[
             { ini: 'EB', name: 'Ella Brennan', from: 'U12 Sam', to: 'U14 Sam', reason: 'Growth spurt — competing better in older age group', status: 'approved', date: '12 May' },
@@ -392,8 +392,8 @@ export default function PlayersTab({ empty }: { empty?: boolean }) {
               <div style={{ fontSize: 12, color: '#4a5a57' }}>{m.reason}</div>
               {m.status === 'pending' && (
                 <div style={{ display: 'flex', gap: 8, marginTop: 10 }}>
-                  <button style={{ height: 28, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>Approve</button>
-                  <button style={{ height: 28, padding: '0 14px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 12, cursor: 'pointer' }}>Decline</button>
+                  <button style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>Approve</button>
+                  <button style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 12, cursor: 'pointer' }}>Decline</button>
                 </div>
               )}
             </div>
@@ -455,7 +455,7 @@ export default function PlayersTab({ empty }: { empty?: boolean }) {
               <div style={{ fontSize: 18, fontWeight: 800, color: '#10211f' }}>Trials and talent days</div>
               <div style={{ fontSize: 13, color: '#6f7f7b' }}>Next: Sat 14 Jun · 23 players registered</div>
             </div>
-            <button style={{ height: 36, padding: '0 16px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>+ New trial</button>
+            <button style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>+ New trial</button>
           </div>
           <div style={{ background: '#1f4a3e', borderRadius: 14, padding: '16px', marginBottom: 16, color: '#fff' }}>
             <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 4 }}>Sat 14 Jun · 10:00 am</div>
@@ -469,8 +469,8 @@ export default function PlayersTab({ empty }: { empty?: boolean }) {
               ))}
             </div>
             <div style={{ display: 'flex', gap: 10 }}>
-              <button style={{ height: 36, padding: '0 16px', borderRadius: '999px', border: '1px solid rgba(255,255,255,0.4)', background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>View list</button>
-              <button style={{ height: 36, padding: '0 16px', borderRadius: '999px', border: 0, background: '#fff', color: '#1f4a3e', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Send reminder to 12 unregistered</button>
+              <button style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: '1px solid rgba(255,255,255,0.4)', background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>View list</button>
+              <button style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: 0, background: '#fff', color: '#1f4a3e', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Send reminder to 12 unregistered</button>
             </div>
           </div>
           <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', marginBottom: 12 }}>Import from PlayFootball</div>
@@ -482,7 +482,7 @@ export default function PlayersTab({ empty }: { empty?: boolean }) {
               <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>Sync trial registrations from PlayFootball</div>
               <div style={{ fontSize: 12, color: '#6f7f7b' }}>Last synced 2 hours ago · 23 entries found</div>
             </div>
-            <button style={{ height: 36, padding: '0 16px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#2f6252', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Sync now</button>
+            <button style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#2f6252', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Sync now</button>
           </div>
           <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', marginBottom: 12 }}>Past trials</div>
           {[
@@ -494,7 +494,7 @@ export default function PlayersTab({ empty }: { empty?: boolean }) {
                 <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{t.date}</div>
                 <div style={{ fontSize: 12, color: '#6f7f7b' }}>{t.label}</div>
               </div>
-              <button style={{ height: 28, padding: '0 12px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 12, cursor: 'pointer' }}>View</button>
+              <button style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 12, cursor: 'pointer' }}>View</button>
             </div>
           ))}
         </div>

@@ -41,7 +41,7 @@ export default function DB3LeagueReturns(_: { onBack?: () => void }) {
               </div>
               <div style={{ fontSize: 12, fontWeight: 700, padding: '4px 12px', borderRadius: 20, ...statusStyle(item.status) }}>{statusLabel(item.status)}</div>
               {item.status !== 'done' && (
-                <button onClick={() => t(`Opening: ${item.label}`)} style={{ height: 32, padding: '0 12px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Fix</button>
+                <button onClick={() => t(`Opening: ${item.label}`)} style={{ height: 44, padding: '0 12px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Fix</button>
               )}
             </div>
           ))}
@@ -52,10 +52,10 @@ export default function DB3LeagueReturns(_: { onBack?: () => void }) {
             {CHASE.map(name => (
               <div key={name} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px 0', borderBottom: `1px solid ${LN}` }}>
                 <div style={{ fontSize: 13, color: INK }}>{name}</div>
-                <button onClick={() => t(`Reminder sent to ${name.split(' ')[0]}'s family.`)} style={{ height: 28, padding: '0 10px', borderRadius: 6, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 11, fontWeight: 600, cursor: 'pointer' }}>Remind</button>
+                <button onClick={() => t(`Reminder sent to ${name.split(' ')[0]}'s family.`)} style={{ height: 44, padding: '0 10px', borderRadius: 6, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 11, fontWeight: 600, cursor: 'pointer' }}>Remind</button>
               </div>
             ))}
-            <button onClick={() => t('All 5 reminders sent.')} style={{ width: '100%', height: 38, borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer', marginTop: 12 }}>Remind all 5</button>
+            <button onClick={() => t('All 5 reminders sent.')} style={{ width: '100%', height: 44, borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer', marginTop: 12 }}>Remind all 5</button>
           </div>
           <div style={{ background: PALE, borderRadius: 12, padding: '12px 14px' }}>
             <div style={{ fontSize: 13, color: GD }}>FV requires all players registered before Round 10. Deadline Mon 8 Jun.</div>

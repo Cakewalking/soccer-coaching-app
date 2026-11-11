@@ -67,8 +67,8 @@ export default function L11LiveGame11(_: { onBack?: () => void }) {
             <div style={{ fontSize: 15, fontWeight: 700 }}>Suggested now</div>
             <div style={{ fontSize: 14, lineHeight: '20px' }}><strong>Cal off, Ari on.</strong> Cal's week is 45% over his usual, and Ari has played 18 minutes.</div>
             <div style={{ display: 'flex', gap: 8 }}>
-              <button style={{ flex: 1, height: 42, borderRadius: 10, border: 0, background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Make the change</button>
-              <button style={{ flex: 1, height: 42, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Not yet</button>
+              <button style={{ flex: 1, height: 44, borderRadius: 10, border: 0, background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Make the change</button>
+              <button style={{ flex: 1, height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Not yet</button>
             </div>
           </div>
 

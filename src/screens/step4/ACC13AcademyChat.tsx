@@ -26,15 +26,15 @@ function InfoBox({ text }: { text: string }) {
 function SheetFooter({ onCancel, confirmLabel, onConfirm }: { onCancel: () => void; confirmLabel: string; onConfirm: () => void }) {
   return (
     <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8, paddingTop: 4 }}>
-      <button onClick={onCancel} style={{ height: 38, padding: '0 16px', borderRadius: 10, background: '#fff', border: `1px solid #c5c8c4`, color: INK, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Cancel</button>
-      <button onClick={onConfirm} style={{ height: 38, padding: '0 16px', borderRadius: 10, background: G, border: 'none', color: '#fff', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>{confirmLabel}</button>
+      <button onClick={onCancel} style={{ height: 44, padding: '0 16px', borderRadius: 10, background: '#fff', border: `1px solid #c5c8c4`, color: INK, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Cancel</button>
+      <button onClick={onConfirm} style={{ height: 44, padding: '0 16px', borderRadius: 10, background: G, border: 'none', color: '#fff', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>{confirmLabel}</button>
     </div>
   )
 }
 
 function Chip({ label, active, onClick }: { label: string; active?: boolean; onClick?: () => void }) {
   return (
-    <button onClick={onClick} style={{ height: 32, padding: '0 14px', borderRadius: 999, background: active ? G : '#fff', color: active ? '#fff' : INK, border: active ? 'none' : `1px solid #c5c8c4`, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>{label}</button>
+    <button onClick={onClick} style={{ height: 44, padding: '0 14px', borderRadius: 999, background: active ? G : '#fff', color: active ? '#fff' : INK, border: active ? 'none' : `1px solid #c5c8c4`, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>{label}</button>
   )
 }
 
@@ -70,7 +70,7 @@ export default function ACC13AcademyChat(_: { onBack?: () => void }) {
             </button>
           ))}
         </div>
-        <button style={{ background: 'rgba(255,255,255,0.18)', border: 'none', color: '#fff', fontSize: 14, fontWeight: 500, padding: '0 14px', height: 36, borderRadius: 999, cursor: 'pointer', marginRight: 12 }}>Tall Timber Academy ▾</button>
+        <button style={{ background: 'rgba(255,255,255,0.18)', border: 'none', color: '#fff', fontSize: 14, fontWeight: 500, padding: '0 14px', height: 44, borderRadius: 999, cursor: 'pointer', marginRight: 12 }}>Tall Timber Academy ▾</button>
         <div style={{ width: 44, height: 44, borderRadius: 999, background: '#c39797', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 15, fontWeight: 700, color: INK }}>RW</div>
       </div>
 
@@ -94,8 +94,8 @@ export default function ACC13AcademyChat(_: { onBack?: () => void }) {
         <div style={{ width: 340, flexShrink: 0, background: '#fff', border: `1px solid #c5c8c4`, borderRadius: 16, display: 'flex', flexDirection: 'column' as const, overflow: 'hidden' }}>
           <div style={{ padding: '14px 16px 12px', display: 'flex', alignItems: 'center', gap: 8 }}>
             <h1 style={{ margin: 0, fontSize: 22, fontWeight: 700, color: INK, flex: 1 }}>Chats</h1>
-            <button style={{ height: 30, padding: '0 12px', borderRadius: 8, background: '#fff', border: `1px solid #c5c8c4`, color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Today</button>
-            <button onClick={() => setSheet('cacadnew')} style={{ height: 30, padding: '0 12px', borderRadius: 8, background: G, border: 'none', color: '#fff', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>+ New chat</button>
+            <button style={{ height: 44, padding: '0 12px', borderRadius: 8, background: '#fff', border: `1px solid #c5c8c4`, color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Today</button>
+            <button onClick={() => setSheet('cacadnew')} style={{ height: 44, padding: '0 12px', borderRadius: 8, background: G, border: 'none', color: '#fff', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>+ New chat</button>
           </div>
 
           {/* Chat rows */}
@@ -161,8 +161,8 @@ export default function ACC13AcademyChat(_: { onBack?: () => void }) {
               <div style={{ fontSize: 17, fontWeight: 700, color: INK }}>Advanced · Tue and Thu</div>
               <div style={{ fontSize: 13, color: MUT }}>22 families, Reece and Dani · parents can post · set up by Dani</div>
             </div>
-            <button onClick={() => setSheet('cacadmedia')} style={{ height: 34, padding: '0 12px', borderRadius: 8, background: '#fff', border: `1px solid #c5c8c4`, color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Photos</button>
-            <button onClick={() => setSheet('cacadinfo')} style={{ height: 34, padding: '0 12px', borderRadius: 8, background: '#fff', border: `1px solid #c5c8c4`, color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Info</button>
+            <button onClick={() => setSheet('cacadmedia')} style={{ height: 44, padding: '0 12px', borderRadius: 8, background: '#fff', border: `1px solid #c5c8c4`, color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Photos</button>
+            <button onClick={() => setSheet('cacadinfo')} style={{ height: 44, padding: '0 12px', borderRadius: 8, background: '#fff', border: `1px solid #c5c8c4`, color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Info</button>
           </div>
 
           {/* Messages */}
@@ -234,7 +234,7 @@ export default function ACC13AcademyChat(_: { onBack?: () => void }) {
                 { label: 'File', action: () => setSheet('cfile') },
                 { label: 'Home practice', action: () => showToast('This week\'s home practice attached.') },
               ].map(btn => (
-                <button key={btn.label} onClick={btn.action} style={{ height: 30, padding: '0 11px', borderRadius: 8, background: '#fff', border: `1px solid #c5c8c4`, color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>{btn.label}</button>
+                <button key={btn.label} onClick={btn.action} style={{ height: 44, padding: '0 11px', borderRadius: 8, background: '#fff', border: `1px solid #c5c8c4`, color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>{btn.label}</button>
               ))}
             </div>
             {/* Input row */}
@@ -245,7 +245,7 @@ export default function ACC13AcademyChat(_: { onBack?: () => void }) {
                 placeholder="Write to the Advanced group"
                 style={{ flex: 1, height: 40, borderRadius: 10, border: `1px solid #c5c8c4`, padding: '0 14px', fontSize: 14, color: INK, outline: 'none', background: '#fff' }}
               />
-              <button onClick={() => { showToast('Sent to the Advanced group.'); setComposeText('') }} style={{ height: 40, padding: '0 16px', borderRadius: 10, background: G, border: 'none', color: '#fff', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Send</button>
+              <button onClick={() => { showToast('Sent to the Advanced group.'); setComposeText('') }} style={{ height: 44, padding: '0 16px', borderRadius: 10, background: G, border: 'none', color: '#fff', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Send</button>
             </div>
             <div style={{ fontSize: 12, color: MUT }}>Notes about one player belong in their plan or a private reply, not the group.</div>
           </div>
@@ -337,7 +337,7 @@ export default function ACC13AcademyChat(_: { onBack?: () => void }) {
           />
           <div style={{ display: 'flex', gap: 6 }}>
             {['Yes, happy to', 'No, can\'t make it', 'Let me check'].map(r => (
-              <button key={r} onClick={() => setDaniReply(r)} style={{ height: 30, padding: '0 12px', borderRadius: 999, background: '#fff', border: `1px solid #c5c8c4`, color: INK, fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>{r}</button>
+              <button key={r} onClick={() => setDaniReply(r)} style={{ height: 44, padding: '0 12px', borderRadius: 999, background: '#fff', border: `1px solid #c5c8c4`, color: INK, fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>{r}</button>
             ))}
           </div>
           <SheetFooter onCancel={closeSheet} confirmLabel="Send to Dani" onConfirm={() => showToast('Sent to Dani.')} />

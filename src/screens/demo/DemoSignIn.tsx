@@ -28,7 +28,7 @@ export default function DemoSignIn({ onDemo, onSandbox, onOpenSandbox, onWhy, ha
           <span style={{ fontSize: 16, fontWeight: 800, letterSpacing: '-0.03em', color: '#fff' }}>Try Clean Sheet.</span>
           <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)' }}>Two ways in. You can switch between them at any time.</span>
         </div>
-        <button onClick={onWhy} style={{ height: 32, padding: '0 14px', borderRadius: 8, border: '1px solid rgba(255,255,255,0.3)', background: 'none', color: 'rgba(255,255,255,0.8)', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Why trust it</button>
+        <button onClick={onWhy} style={{ height: 44, padding: '0 14px', borderRadius: 8, border: '1px solid rgba(255,255,255,0.3)', background: 'none', color: 'rgba(255,255,255,0.8)', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Why trust it</button>
       </div>
 
       {/* Hero */}
@@ -68,7 +68,7 @@ export default function DemoSignIn({ onDemo, onSandbox, onOpenSandbox, onWhy, ha
             </div>
           </div>
           <button onClick={onDemo} style={{ height: 48, borderRadius: 12, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Start the demo</button>
-          <button onClick={onWhy} style={{ height: 36, borderRadius: 10, border: 0, background: 'none', color: '#4a5a57', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>The idea in one minute</button>
+          <button onClick={onWhy} style={{ height: 44, borderRadius: 10, border: 0, background: 'none', color: '#4a5a57', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>The idea in one minute</button>
         </div>
 
         {/* Sandbox card */}

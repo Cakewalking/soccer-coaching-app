@@ -35,8 +35,8 @@ export default function SP19TrialWindow(_: { onBack?: () => void }) {
           <div style={{ fontSize: 14, color: MUT }}>Wattle Creek FC · for the 2027 season</div>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button onClick={() => t('Trial dates published on the club page and sent to every coach.')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Run a club trial</button>
-          <button onClick={() => t('Trial dates published on the club page and sent to every coach.')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Publish to families</button>
+          <button onClick={() => t('Trial dates published on the club page and sent to every coach.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Run a club trial</button>
+          <button onClick={() => t('Trial dates published on the club page and sent to every coach.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Publish to families</button>
         </div>
       </div>
 

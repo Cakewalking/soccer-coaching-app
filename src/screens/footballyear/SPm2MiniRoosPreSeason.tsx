@@ -21,8 +21,8 @@ export default function SPm2MiniRoosPreSeason({onBack}:{onBack?:()=>void}){
           <div style={{fontSize:14,color:MUT}}>Sat 4 April · pre-season · first game in 3 weeks</div>
         </div>
         <div style={{display:'flex',gap:8}}>
-          <button onClick={onBack} style={{height:36,padding:'0 14px',borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:INK,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>The football year</button>
-          <button onClick={()=>t('Opening this Saturday')} style={{height:36,padding:'0 14px',borderRadius:10,border:0,background:G,color:'#fff',fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>This Saturday</button>
+          <button onClick={onBack} style={{height: 44,padding:'0 14px',borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:INK,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>The football year</button>
+          <button onClick={()=>t('Opening this Saturday')} style={{height: 44,padding:'0 14px',borderRadius:10,border:0,background:G,color:'#fff',fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>This Saturday</button>
         </div>
       </div>
       <div style={{display:'grid',gridTemplateColumns:'minmax(0,1fr) 340px',gap:16}}>
@@ -41,7 +41,7 @@ export default function SPm2MiniRoosPreSeason({onBack}:{onBack?:()=>void}){
                   <div style={{fontSize:14,fontWeight:item.done?400:600,color:item.done?MUT:INK,textDecoration:item.done?'line-through':'none'}}>{item.label}</div>
                   <div style={{fontSize:12,color:MUT}}>{item.note}</div>
                 </div>
-                {'action' in item&&item.action&&<button onClick={()=>t(`${item.action} tapped`)} style={{height:32,padding:'0 12px',borderRadius:8,border:`1px solid ${LN}`,background:'#fff',color:G,fontFamily:'inherit',fontSize:12,fontWeight:600,cursor:'pointer',flexShrink:0}}>{item.action}</button>}
+                {'action' in item&&item.action&&<button onClick={()=>t(`${item.action} tapped`)} style={{height: 44,padding:'0 12px',borderRadius:8,border:`1px solid ${LN}`,background:'#fff',color:G,fontFamily:'inherit',fontSize:12,fontWeight:600,cursor:'pointer',flexShrink:0}}>{item.action}</button>}
               </div>
             ))}
           </div>

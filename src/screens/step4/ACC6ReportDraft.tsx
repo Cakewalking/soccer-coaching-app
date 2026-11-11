@@ -46,7 +46,7 @@ export default function ACC6ReportDraft(_: { onBack?: () => void }) {
             </button>
           ))}
         </div>
-        <button style={{ background: 'rgba(255,255,255,0.18)', border: 'none', color: '#fff', fontSize: 14, fontWeight: 500, padding: '0 14px', height: 36, borderRadius: 999, cursor: 'pointer', marginRight: 12 }}>Tall Timber Academy ▾</button>
+        <button style={{ background: 'rgba(255,255,255,0.18)', border: 'none', color: '#fff', fontSize: 14, fontWeight: 500, padding: '0 14px', height: 44, borderRadius: 999, cursor: 'pointer', marginRight: 12 }}>Tall Timber Academy ▾</button>
         <div style={{ width: 44, height: 44, borderRadius: 999, background: '#c39797', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 15, fontWeight: 700, color: INK }}>RW</div>
       </div>
 
@@ -71,8 +71,8 @@ export default function ACC6ReportDraft(_: { onBack?: () => void }) {
           <p style={{ margin: '4px 0 0', fontSize: 14, color: MUT }}>Drafted from your 5 session notes · check it, then send to Dani</p>
         </div>
         <div style={{ display: 'flex', gap: 8, paddingTop: 4 }}>
-          <button onClick={() => showToast('Opening Ana\'s. Too new for a report, so skipped.')} style={{ height: 38, padding: '0 16px', borderRadius: 10, background: '#fff', border: `1px solid #c5c8c4`, color: INK, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Next draft</button>
-          <button onClick={() => showToast('Sent to Dani to approve. 3 more drafts to check.')} style={{ height: 38, padding: '0 16px', borderRadius: 10, background: G, border: 'none', color: '#fff', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Looks right, send to Dani</button>
+          <button onClick={() => showToast('Opening Ana\'s. Too new for a report, so skipped.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, background: '#fff', border: `1px solid #c5c8c4`, color: INK, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Next draft</button>
+          <button onClick={() => showToast('Sent to Dani to approve. 3 more drafts to check.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, background: G, border: 'none', color: '#fff', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Looks right, send to Dani</button>
         </div>
       </div>
 
@@ -93,9 +93,9 @@ export default function ACC6ReportDraft(_: { onBack?: () => void }) {
             </p>
           </div>
           <div style={{ display: 'flex', gap: 8, marginTop: 12 }}>
-            <button onClick={() => showToast('Shortened to three sentences.')} style={{ height: 34, padding: '0 14px', borderRadius: 8, background: '#fff', border: `1px solid #c5c8c4`, color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Make it shorter</button>
-            <button onClick={() => showToast('Tap any sentence to edit it.')} style={{ height: 34, padding: '0 14px', borderRadius: 8, background: '#fff', border: `1px solid #c5c8c4`, color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Change a word</button>
-            <button onClick={() => showToast('Pick from Kai\'s 4 clips this term.')} style={{ height: 34, padding: '0 14px', borderRadius: 8, background: '#fff', border: `1px solid #c5c8c4`, color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Add a clip</button>
+            <button onClick={() => showToast('Shortened to three sentences.')} style={{ height: 44, padding: '0 14px', borderRadius: 8, background: '#fff', border: `1px solid #c5c8c4`, color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Make it shorter</button>
+            <button onClick={() => showToast('Tap any sentence to edit it.')} style={{ height: 44, padding: '0 14px', borderRadius: 8, background: '#fff', border: `1px solid #c5c8c4`, color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Change a word</button>
+            <button onClick={() => showToast('Pick from Kai\'s 4 clips this term.')} style={{ height: 44, padding: '0 14px', borderRadius: 8, background: '#fff', border: `1px solid #c5c8c4`, color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Add a clip</button>
           </div>
           <div style={{ marginTop: 'auto', paddingTop: 12, borderTop: `1px solid ${LN}`, fontSize: 12, color: MUT }}>
             Written from what you noted, in plain words. It never compares Kai with another child.

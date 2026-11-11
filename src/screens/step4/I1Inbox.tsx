@@ -30,7 +30,7 @@ export default function I1Inbox(_: { onBack?: () => void }) {
         <div style={{ width: 380, background: '#fff', borderRight: `1px solid ${LN}`, display: 'flex', flexDirection: 'column' as const }}>
           <div style={{ padding: '12px 16px', borderBottom: `1px solid ${LN}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>Inbox</div>
-            <button style={{ height: 32, padding: '0 12px', borderRadius: 8, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>New message</button>
+            <button style={{ height: 44, padding: '0 12px', borderRadius: 8, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>New message</button>
           </div>
           <div style={{ padding: '0 16px', borderBottom: `1px solid ${LN}`, display: 'flex', gap: 16, height: 40, alignItems: 'center' }}>
             {['All', 'Unread 2', 'People', 'Clean Sheet'].map(t => (

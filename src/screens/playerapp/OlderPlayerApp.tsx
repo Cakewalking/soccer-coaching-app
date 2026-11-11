@@ -68,8 +68,8 @@ function HomeView({ setView }: { setView: (v: View) => void }) {
         <div style={{ fontSize: 20, fontWeight: 800 }}>SAT 6 · at Harbour Rovers</div>
         <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.75)', marginTop: 4 }}>Meet 2:40 at Rovers Park · kick-off 3:30</div>
         <div style={{ marginTop: 10, display: 'flex', gap: 8 }}>
-          <button onClick={() => setAvail('in')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 0, background: avail === 'in' ? '#fff' : 'rgba(255,255,255,0.2)', color: avail === 'in' ? '#1f4a3e' : '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>{avail === 'in' ? "✓ You're in" : "I'm in"}</button>
-          <button onClick={() => setAvail('out')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 0, background: avail === 'out' ? 'rgba(255,255,255,0.15)' : 'transparent', color: avail === 'out' ? '#fff' : 'rgba(255,255,255,0.75)', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>{avail === 'out' ? "✓ Can't make it" : "Can't make it"}</button>
+          <button onClick={() => setAvail('in')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: avail === 'in' ? '#fff' : 'rgba(255,255,255,0.2)', color: avail === 'in' ? '#1f4a3e' : '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>{avail === 'in' ? "✓ You're in" : "I'm in"}</button>
+          <button onClick={() => setAvail('out')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: avail === 'out' ? 'rgba(255,255,255,0.15)' : 'transparent', color: avail === 'out' ? '#fff' : 'rgba(255,255,255,0.75)', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>{avail === 'out' ? "✓ Can't make it" : "Can't make it"}</button>
         </div>
       </div>
 
@@ -118,8 +118,8 @@ function HomeView({ setView }: { setView: (v: View) => void }) {
 
 type MsgChat = 'list' | 'group' | 'private'
 
-function MessagesView() {
-  const [chat, setChat] = useState<MsgChat>('list')
+function MessagesView({ initialChat = 'list' }: { initialChat?: MsgChat }) {
+  const [chat, setChat] = useState<MsgChat>(initialChat)
 
   /* PO6 — messages list */
   if (chat === 'list') return (
@@ -225,7 +225,7 @@ function MessagesView() {
       <div style={{ flex: 'none', padding: '8px 16px 12px', borderTop: '1px solid #e9eae8', background: '#fff' }}>
         <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
           <input placeholder="Write to the team" style={{ flex: 1, height: 38, padding: '0 12px', borderRadius: 999, border: '1px solid #e9eae8', fontSize: 14, fontFamily: 'inherit', outline: 'none', color: '#10211f', background: '#fafafa' }}/>
-          <button style={{ height: 38, padding: '0 14px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Send</button>
+          <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Send</button>
         </div>
         <div style={{ fontSize: 11, color: '#4a5a57', textAlign: 'center' as const, marginTop: 6 }}>Be the teammate you'd want. Anyone can report a message to Helen.</div>
       </div>
@@ -290,7 +290,7 @@ function BodyView() {
         <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 8 }}>Other sport this week</div>
         <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' as const }}>
           {['Basketball', 'Swimming', 'Tennis', 'Running', 'Gym', '+ Add'].map(s => (
-            <button key={s} style={{ height: 36, padding: '0 14px', borderRadius: '999px', border: `1.5px solid ${s === '+ Add' ? '#2f6252' : '#c5c8c4'}`, background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 500, cursor: 'pointer', color: s === '+ Add' ? '#2f6252' : '#10211f' }}>{s}</button>
+            <button key={s} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: `1.5px solid ${s === '+ Add' ? '#2f6252' : '#c5c8c4'}`, background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 500, cursor: 'pointer', color: s === '+ Add' ? '#2f6252' : '#10211f' }}>{s}</button>
           ))}
         </div>
       </div>
@@ -362,8 +362,8 @@ function AdultView() {
   )
 }
 
-export default function OlderPlayerApp({ empty = false }: { empty?: boolean }) {
-  const [view, setView] = useState<View>('home')
+export default function OlderPlayerApp({ empty = false, initialView, initialChat }: { empty?: boolean; initialView?: View; initialChat?: MsgChat }) {
+  const [view, setView] = useState<View>(initialView ?? 'home')
 
   return (
     <div style={{ width: 390, minHeight: '100vh', background: '#f7f8f7', display: 'flex', flexDirection: 'column', fontFamily: "'DM Sans', sans-serif" }}>
@@ -384,8 +384,8 @@ export default function OlderPlayerApp({ empty = false }: { empty?: boolean }) {
         </div>
         {/* Adult/U16 toggle */}
         <div style={{ marginTop: 10, display: 'flex', gap: 6 }}>
-          <button onClick={() => setView('home')} style={{ height: 28, padding: '0 12px', borderRadius: '999px', border: 0, background: view !== 'adult' ? '#fff' : 'rgba(255,255,255,0.2)', color: view !== 'adult' ? '#1f4a3e' : '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Cal · U16</button>
-          <button onClick={() => setView('adult')} style={{ height: 28, padding: '0 12px', borderRadius: '999px', border: 0, background: view === 'adult' ? '#fff' : 'rgba(255,255,255,0.2)', color: view === 'adult' ? '#1f4a3e' : '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Josh · Men's 1sts</button>
+          <button onClick={() => setView('home')} style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: 0, background: view !== 'adult' ? '#fff' : 'rgba(255,255,255,0.2)', color: view !== 'adult' ? '#1f4a3e' : '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Cal · U16</button>
+          <button onClick={() => setView('adult')} style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: 0, background: view === 'adult' ? '#fff' : 'rgba(255,255,255,0.2)', color: view === 'adult' ? '#1f4a3e' : '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Josh · Men's 1sts</button>
         </div>
       </div>
 
@@ -405,7 +405,7 @@ export default function OlderPlayerApp({ empty = false }: { empty?: boolean }) {
             <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.5 }}>Message Ollie about training, games or anything you're unsure of. A parent can read the chat until you're 18.</div>
             <button style={{ height: 44, borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Write to Ollie</button>
           </div>
-        ) : <MessagesView />)}
+        ) : <MessagesView initialChat={initialChat} />)}
         {view === 'body' && (empty ? (
           <div style={{ flexGrow: 1, padding: '24px 20px', display: 'flex', flexDirection: 'column', gap: 12 }}>
             <div style={{ fontSize: 16, fontWeight: 700, color: '#10211f' }}>Nothing measured yet</div>

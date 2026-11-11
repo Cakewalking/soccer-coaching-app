@@ -94,13 +94,13 @@ export function FitnessSquadTab({ empty }: { empty: boolean }) {
           <div style={{ fontSize: 13, color: MUT }}>17 players, 16 shown · Thursday 4 Jun · 2 days to Harbour Rovers</div>
         </div>
         <div style={{ flex: 1 }}/>
-        <button style={{ height: 36, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 700, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Message parents</button>
-        <button style={{ height: 36, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>+ Add player</button>
+        <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 700, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Message parents</button>
+        <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>+ Add player</button>
       </div>
 
       <div style={{ flexShrink: 0, padding: '10px 28px', display: 'flex', gap: 6, flexWrap: 'wrap' as const }}>
         {FILTERS.map(f => (
-          <button key={f.id} onClick={() => setFilter(f.id)} style={{ height: 32, padding: '0 12px', borderRadius: 999, border: `1px solid ${filter === f.id ? GD : LN}`, background: filter === f.id ? GD : '#fff', color: filter === f.id ? '#fff' : MUT, fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>
+          <button key={f.id} onClick={() => setFilter(f.id)} style={{ height: 44, padding: '0 12px', borderRadius: 999, border: `1px solid ${filter === f.id ? GD : LN}`, background: filter === f.id ? GD : '#fff', color: filter === f.id ? '#fff' : MUT, fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>
             {f.label} {f.count}
           </button>
         ))}
@@ -165,8 +165,8 @@ export function FitnessSquadTab({ empty }: { empty: boolean }) {
               ))}
               {sel.ini === 'EB' && <div style={{ padding: '10px 14px', fontSize: 13, color: MUT, lineHeight: 1.5, background: PALE }}>Have a quick chat before warm-up. Keep it light if she wants.</div>}
               <div style={{ padding: '10px 14px', borderTop: `1px solid ${LN}`, display: 'flex', gap: 8 }}>
-                <button style={{ flex: 1, height: 36, borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 700, color: G, cursor: 'pointer', fontFamily: 'inherit' }}>Full profile</button>
-                <button style={{ flex: 1, height: 36, borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Message parent</button>
+                <button style={{ flex: 1, height: 44, borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 700, color: G, cursor: 'pointer', fontFamily: 'inherit' }}>Full profile</button>
+                <button style={{ flex: 1, height: 44, borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Message parent</button>
               </div>
             </Card>
           )}
@@ -205,8 +205,8 @@ export function FitnessTrainingTab({ empty }: { empty: boolean }) {
         <div style={{ fontSize: 22, fontWeight: 700, color: INK, letterSpacing: '-0.02em' }}>Fitness coach</div>
         <div style={{ background: PALE, borderRadius: 14, padding: '14px 16px', fontSize: 14, color: G, lineHeight: 1.5 }}>Your part appears when Sam plans the session. Once the head coach sets tonight's training, you'll see the warm-up, who to go easy on, and where your 15 minutes fit.</div>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button style={{ height: 40, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Ask Sam to plan it</button>
-          <button style={{ height: 40, padding: '0 16px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Browse warm-ups</button>
+          <button style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Ask Sam to plan it</button>
+          <button style={{ height: 44, padding: '0 16px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Browse warm-ups</button>
         </div>
         <Card>
           <div style={{ padding: '10px 14px', borderBottom: `1px solid ${LN}`, fontSize: 12, fontWeight: 700, color: MUT, letterSpacing: '0.07em', textTransform: 'uppercase' as const }}>What you will see</div>
@@ -231,9 +231,9 @@ export function FitnessTrainingTab({ empty }: { empty: boolean }) {
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
           {['Team talk', 'Edit my part', 'Record'].map(l => (
-            <button key={l} style={{ height: 36, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>{l}</button>
+            <button key={l} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>{l}</button>
           ))}
-          <button style={{ height: 36, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Start session</button>
+          <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Start session</button>
         </div>
 
         <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: MUT }}>Adjust tonight</div>
@@ -310,8 +310,8 @@ export function FitnessMatchTab({ empty }: { empty: boolean }) {
         <Card><div style={{ padding: 14, textAlign: 'center' }}>
           <div style={{ fontSize: 14, fontWeight: 700, color: INK, marginBottom: 4 }}>A bye week is a good time for a measuring session.</div>
           <div style={{ display: 'flex', gap: 8, justifyContent: 'center' }}>
-            <button style={{ height: 36, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Plan a session</button>
-            <button style={{ height: 36, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>See the fixtures</button>
+            <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Plan a session</button>
+            <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>See the fixtures</button>
           </div>
         </div></Card>
       </div>
@@ -328,7 +328,7 @@ export function FitnessMatchTab({ empty }: { empty: boolean }) {
         <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
           <div style={{ height: 36, padding: '0 14px', borderRadius: 999, background: PALE, display: 'flex', alignItems: 'center', fontSize: 13, fontWeight: 700, color: G }}>3 of 5 ready</div>
           {['Load limits', 'Record'].map(l => (
-            <button key={l} style={{ height: 36, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>{l}</button>
+            <button key={l} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>{l}</button>
           ))}
         </div>
 
@@ -345,7 +345,7 @@ export function FitnessMatchTab({ empty }: { empty: boolean }) {
             <div style={{ fontSize: 18, fontWeight: 700, color: INK, marginBottom: 8 }}>{SLIDES[slideIdx]}</div>
             <div style={{ display: 'flex', gap: 8 }}>
               {SLIDES.map((s, i) => (
-                <button key={s} onClick={() => setSlideIdx(i)} style={{ flex: 1, height: 4, borderRadius: 2, border: 'none', background: i === slideIdx ? GD : LN, cursor: 'pointer', padding: 0 }}/>
+                <button key={s} onClick={() => setSlideIdx(i)} style={{ flex: 1, height: 44, borderRadius: 2, border: 'none', background: i === slideIdx ? GD : LN, cursor: 'pointer', padding: 0 }}/>
               ))}
             </div>
           </div>
@@ -360,8 +360,8 @@ export function FitnessMatchTab({ empty }: { empty: boolean }) {
             </div>
           </div>
           <div style={{ padding: '8px 14px', borderTop: `1px solid ${LN}`, display: 'flex', gap: 8 }}>
-            <button style={{ height: 36, flex: 1, borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Edit talk</button>
-            <button style={{ height: 36, flex: 1, borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>START</button>
+            <button style={{ height: 44, flex: 1, borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Edit talk</button>
+            <button style={{ height: 44, flex: 1, borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>START</button>
           </div>
         </Card>
 

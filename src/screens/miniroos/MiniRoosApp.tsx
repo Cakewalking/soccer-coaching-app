@@ -32,7 +32,7 @@ function SuggestedMiniRoos({ empty }: { empty?: boolean }) {
       <div style={{ background: PALE, borderRadius: 16, padding: '24px', textAlign: 'center' as const }}>
         <div style={{ fontSize: 18, fontWeight: 700, color: GD, marginBottom: 8 }}>U9 Tom · nothing to go on yet</div>
         <div style={{ fontSize: 14, color: G, lineHeight: 1.6, marginBottom: 16 }}>Ideas start after your first game. Tap three things you saw after a game and Clean Sheet picks games to match. Until then it follows the under 9 curriculum.</div>
-        <button style={{ height: 40, padding: '0 20px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Tap what you saw</button>
+        <button style={{ height: 44, padding: '0 20px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Tap what you saw</button>
       </div>
       <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 8 }}>It uses</div>
       {[
@@ -82,7 +82,7 @@ function SuggestedMiniRoos({ empty }: { empty?: boolean }) {
           <div style={{ fontSize: 24, fontWeight: 700, color: INK, letterSpacing: '-0.02em' }}>Suggested games</div>
           <div style={{ fontSize: 13, color: MUT, marginTop: 2 }}>From what you've tapped after games, who had a go, and the curriculum</div>
         </div>
-        <button style={{ height: 36, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: G2, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>Game library</button>
+        <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: G2, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>Game library</button>
       </div>
 
       {cards.map((card, idx) => !card1dismissed || idx > 0 ? (
@@ -105,9 +105,9 @@ function SuggestedMiniRoos({ empty }: { empty?: boolean }) {
             <div style={{ fontSize: 13, color: G, marginTop: 2 }}>{card.note}</div>
           </div>
           <div style={{ padding: '12px 16px', display: 'flex', gap: 8 }}>
-            {idx === 0 && <button onClick={() => setCard1dismissed(true)} style={{ height: 36, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Not this</button>}
-            {idx > 0 && <button style={{ height: 36, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Not this</button>}
-            <button style={{ height: 36, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', marginLeft: 'auto' }}>Add to Tuesday</button>
+            {idx === 0 && <button onClick={() => setCard1dismissed(true)} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Not this</button>}
+            {idx > 0 && <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Not this</button>}
+            <button style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', marginLeft: 'auto' }}>Add to Tuesday</button>
           </div>
         </div>
       ) : null)}
@@ -285,8 +285,8 @@ function RecordMiniRoosClips({ empty, onBack }: { empty?: boolean; onBack: () =>
           <div style={{ fontSize: 13, color: MUT }}>8 children · filmed Sat 7 Jun · 44 minutes</div>
         </div>
         <div style={{ marginLeft: 'auto', display: 'flex', gap: 8 }}>
-          <button style={{ height: 36, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 700, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>Pick two for Tuesday</button>
-          <button style={{ height: 36, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Send to families</button>
+          <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 700, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>Pick two for Tuesday</button>
+          <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Send to families</button>
         </div>
       </div>
 
@@ -441,7 +441,7 @@ export default function MiniRoosApp({ onBack, empty, phaseContent }: { onBack: (
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" aria-hidden="true"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zM5 21a7 7 0 0114 0"/></svg>
                 Coach · MiniRoos
               </span>
-              <button onClick={onBack} style={{ height: 28, padding: '0 12px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Head coach view</button>
+              <button onClick={onBack} style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Head coach view</button>
             </div>
           </div>
         )}

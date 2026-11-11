@@ -50,8 +50,8 @@ export default function SP18eClubPhasesEmpty(_: { onBack?: () => void }) {
           <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 4 }}>Dates for the football year</div>
           <div style={{ fontSize: 13, color: MUT, marginBottom: 16 }}>U12 Sam · the club's dates are filled in</div>
           <div style={{ display: 'flex', gap: 8 }}>
-            <button onClick={() => { t('Dates saved. Home changes on each date.'); setSheet(null) }} style={{ height: 36, padding: '0 16px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Save dates</button>
-            <button onClick={() => setSheet(null)} style={{ height: 36, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Cancel</button>
+            <button onClick={() => { t('Dates saved. Home changes on each date.'); setSheet(null) }} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Save dates</button>
+            <button onClick={() => setSheet(null)} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Cancel</button>
           </div>
         </div>
       )}

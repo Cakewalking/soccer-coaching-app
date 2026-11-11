@@ -43,7 +43,7 @@ export default function CalendarTab({ empty }: { empty?: boolean }) {
               <h2 style={{ margin: 0, fontSize: 17, fontWeight: 700 }}>Saturday 6 Jun · 14 games</h2>
               <div style={{ fontSize: 13, color: '#4a5a57', marginTop: 2 }}>Green home · sand away</div>
             </div>
-            <button onClick={() => setSynced(true)} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: `1px solid ${synced ? '#2f6252' : '#c5c8c4'}`, background: synced ? '#e4f2eb' : '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: synced ? '#2f6252' : '#10211f' }}>
+            <button onClick={() => setSynced(true)} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${synced ? '#2f6252' : '#c5c8c4'}`, background: synced ? '#e4f2eb' : '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: synced ? '#2f6252' : '#10211f' }}>
               {synced ? 'Synced' : 'Sync to my calendar'}
             </button>
           </div>

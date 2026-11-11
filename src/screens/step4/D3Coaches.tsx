@@ -34,8 +34,8 @@ export default function D3Coaches(_: { onBack?: () => void }) {
               <div style={{ fontSize: 13, color: MUT }}>9 coaches · Wattle Creek FC</div>
             </div>
             <div style={{ display: 'flex', gap: 8 }}>
-              <button onClick={() => setSheet('joinreq')} style={{ height: 36, padding: '0 14px', borderRadius: 9, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Join request</button>
-              <button onClick={() => setSheet('invite')} style={{ height: 36, padding: '0 14px', borderRadius: 9, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>+ Invite coach</button>
+              <button onClick={() => setSheet('joinreq')} style={{ height: 44, padding: '0 14px', borderRadius: 9, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Join request</button>
+              <button onClick={() => setSheet('invite')} style={{ height: 44, padding: '0 14px', borderRadius: 9, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>+ Invite coach</button>
             </div>
           </div>
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, overflow: 'hidden' }}>
@@ -64,8 +64,8 @@ export default function D3Coaches(_: { onBack?: () => void }) {
                 <span style={{ fontWeight: 700, color: s.red ? '#c00' : INK }}>{s.val}</span>
               </div>
             ))}
-            <button onClick={() => t(`Message sent to ${sel.name.split(' ')[0]}.`)} style={{ width: '100%', height: 38, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', marginTop: 14 }}>Message {sel.name.split(' ')[0]}</button>
-            {sel.warn && <button onClick={() => t('Reminder sent.')} style={{ width: '100%', height: 38, borderRadius: 10, border: 0, background: '#c00', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer', marginTop: 8 }}>Send check reminder</button>}
+            <button onClick={() => t(`Message sent to ${sel.name.split(' ')[0]}.`)} style={{ width: '100%', height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', marginTop: 14 }}>Message {sel.name.split(' ')[0]}</button>
+            {sel.warn && <button onClick={() => t('Reminder sent.')} style={{ width: '100%', height: 44, borderRadius: 10, border: 0, background: '#c00', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer', marginTop: 8 }}>Send check reminder</button>}
           </div>
         </div>
       </div>
@@ -76,8 +76,8 @@ export default function D3Coaches(_: { onBack?: () => void }) {
             <div style={{ fontSize: 13, color: MUT, marginBottom: 16 }}>{sheet === 'invite' ? 'They\'ll get an email to join Wattle Creek FC.' : 'Review a pending request to join.'}</div>
             <input placeholder={sheet === 'invite' ? 'Email address' : 'Request ID'} style={{ width: '100%', height: 38, borderRadius: 8, border: `1px solid ${LN}`, padding: '0 10px', fontFamily: 'inherit', fontSize: 13, boxSizing: 'border-box' as const, marginBottom: 14 }} />
             <div style={{ display: 'flex', gap: 10 }}>
-              <button onClick={() => setSheet(null)} style={{ flex: 1, height: 40, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Cancel</button>
-              <button onClick={() => { setSheet(null); t(sheet === 'invite' ? 'Invite sent.' : 'Request reviewed.') }} style={{ flex: 1, height: 40, borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>{sheet === 'invite' ? 'Send invite' : 'Approve'}</button>
+              <button onClick={() => setSheet(null)} style={{ flex: 1, height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Cancel</button>
+              <button onClick={() => { setSheet(null); t(sheet === 'invite' ? 'Invite sent.' : 'Request reviewed.') }} style={{ flex: 1, height: 44, borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>{sheet === 'invite' ? 'Send invite' : 'Approve'}</button>
             </div>
           </div>
         </div>

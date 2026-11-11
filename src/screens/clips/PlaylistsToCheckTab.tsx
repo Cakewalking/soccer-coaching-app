@@ -77,8 +77,8 @@ export function ToCheckTab() {
           <div style={{ fontSize: 22, fontWeight: 700, color: '#10211f' }}>All checked. Thanks!</div>
           <div style={{ fontSize: 14, color: '#4a5a57', textAlign: 'center', lineHeight: '20px', maxWidth: 400 }}>Wins in their half stays at 13. The minute-47 clip and its running data moved to Mia. Zoe's chance is logged as saved.</div>
           <div style={{ display: 'flex', gap: 10 }}>
-            <button style={{ height: 40, padding: '0 20px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>See the updated review</button>
-            <button onClick={() => setAnswers({})} style={{ height: 40, padding: '0 20px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Back to clips</button>
+            <button style={{ height: 44, padding: '0 20px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>See the updated review</button>
+            <button onClick={() => setAnswers({})} style={{ height: 44, padding: '0 20px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Back to clips</button>
           </div>
         </div>
       </div>

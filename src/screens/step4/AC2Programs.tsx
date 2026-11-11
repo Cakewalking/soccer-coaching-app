@@ -39,13 +39,13 @@ export default function AC2Programs(_: { onBack?: () => void }) {
             { label: 'Coaches', icon: '🎓' },
             { label: 'Money', icon: '$' },
           ].map(({ label, icon }) => (
-            <button key={label} style={{ background: label === 'Programs' ? GD : 'transparent', color: '#fff', border: 'none', borderRadius: 8, padding: '0 14px', height: 40, fontSize: 14, fontWeight: label === 'Programs' ? 700 : 500, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
+            <button key={label} style={{ background: label === 'Programs' ? GD : 'transparent', color: '#fff', border: 'none', borderRadius: 8, padding: '0 14px', height: 44, fontSize: 14, fontWeight: label === 'Programs' ? 700 : 500, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
               <span style={{ fontSize: 15 }}>{icon}</span>{label}
             </button>
           ))}
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <button style={{ background: '#fff', color: INK, border: 'none', borderRadius: 20, padding: '0 14px', height: 32, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Tall Timber Academy ▾</button>
+          <button style={{ background: '#fff', color: INK, border: 'none', borderRadius: 20, padding: '0 14px', height: 44, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Tall Timber Academy ▾</button>
           <div style={{ width: 44, height: 44, borderRadius: 22, background: '#c39797', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: 700, fontSize: 15 }}>DO</div>
         </div>
       </div>
@@ -96,12 +96,12 @@ export default function AC2Programs(_: { onBack?: () => void }) {
                 }
               </div>
               <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' as const }}>
-                <button onClick={() => t(`Opening ${p.name}...`)} style={{ height: 36, padding: '0 14px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Open</button>
+                <button onClick={() => t(`Opening ${p.name}...`)} style={{ height: 44, padding: '0 14px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Open</button>
                 {p.name === 'Development' && (
-                  <button onClick={() => t('Copying to term 3...')} style={{ height: 36, padding: '0 14px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Copy to term 3</button>
+                  <button onClick={() => t('Copying to term 3...')} style={{ height: 44, padding: '0 14px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Copy to term 3</button>
                 )}
                 {p.name === 'Advanced' && (
-                  <button onClick={() => t('Offer link copied.')} style={{ height: 36, padding: '0 14px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Offer link</button>
+                  <button onClick={() => t('Offer link copied.')} style={{ height: 44, padding: '0 14px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Offer link</button>
                 )}
               </div>
             </div>

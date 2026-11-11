@@ -23,8 +23,8 @@ export default function SP7Friendlies(_: { onBack?: () => void }) {
           <div style={{ fontSize: 14, color: MUT }}>Thu 12 March · pre-season · 4 weeks to round 1 · other Clean Sheet clubs looking for a game</div>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button onClick={() => t('Opening \'add one yourself\'')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Add one yourself</button>
-          <button onClick={() => setSheet('spfree')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Say when you're free</button>
+          <button onClick={() => t('Opening \'add one yourself\'')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Add one yourself</button>
+          <button onClick={() => setSheet('spfree')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Say when you're free</button>
         </div>
       </div>
 
@@ -43,9 +43,9 @@ export default function SP7Friendlies(_: { onBack?: () => void }) {
             </div>
             <div style={{ display: 'flex', gap: 6 }}>
               {team.status === 'Booked' && <span style={{ fontSize: 13, fontWeight: 600, color: G }}>Booked</span>}
-              {team.status === 'Say yes' && <button onClick={() => t("Yes sent to Northgate City. Rob will tell parents once they confirm.")} style={{ height: 32, padding: '0 10px', borderRadius: 8, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Say yes</button>}
-              {team.status === 'Ask' && <button onClick={() => t(`Asked ${team.initial === 'K' ? 'Kingfisher' : 'Elderberry Park'} for a friendly.`)} style={{ height: 32, padding: '0 10px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Ask</button>}
-              {team.status !== 'Booked' && <button onClick={() => t('Opening')} style={{ height: 32, padding: '0 10px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Open</button>}
+              {team.status === 'Say yes' && <button onClick={() => t("Yes sent to Northgate City. Rob will tell parents once they confirm.")} style={{ height: 44, padding: '0 10px', borderRadius: 8, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Say yes</button>}
+              {team.status === 'Ask' && <button onClick={() => t(`Asked ${team.initial === 'K' ? 'Kingfisher' : 'Elderberry Park'} for a friendly.`)} style={{ height: 44, padding: '0 10px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Ask</button>}
+              {team.status !== 'Booked' && <button onClick={() => t('Opening')} style={{ height: 44, padding: '0 10px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Open</button>}
             </div>
           </div>
         ))}
@@ -77,13 +77,13 @@ export default function SP7Friendlies(_: { onBack?: () => void }) {
           <div style={{ fontSize: 13, color: MUT, marginBottom: 14 }}>Shown to Clean Sheet clubs within 20 km.</div>
           <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' as const, marginBottom: 12 }}>
             {['Sat 14 Mar','Sat 21 Mar','Sun 22 Mar','Sat 28 Mar'].map(d => (
-              <button key={d} style={{ height: 36, padding: '0 12px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>{d}</button>
+              <button key={d} style={{ height: 44, padding: '0 12px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>{d}</button>
             ))}
           </div>
           <div style={{ fontSize: 12, color: MUT, marginBottom: 14 }}>Only your name, age group and last year's division are shown.</div>
           <div style={{ display: 'flex', gap: 8 }}>
-            <button onClick={() => { t("Posted. You'll hear when a club says yes."); setSheet(null) }} style={{ height: 36, padding: '0 16px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Post it</button>
-            <button onClick={() => setSheet(null)} style={{ height: 36, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Cancel</button>
+            <button onClick={() => { t("Posted. You'll hear when a club says yes."); setSheet(null) }} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Post it</button>
+            <button onClick={() => setSheet(null)} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Cancel</button>
           </div>
         </div>
       )}

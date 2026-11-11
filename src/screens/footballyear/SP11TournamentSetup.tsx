@@ -28,8 +28,8 @@ export default function SP11TournamentSetup({ onBack }: { onBack?: () => void })
           <div style={{ fontSize: 14, color: MUT }}>Sat 21 and Sun 22 November · Redgum Reserve · under 12s, 9 a side</div>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button onClick={onBack} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>All tournaments</button>
-          <button onClick={() => t('Opening day plan')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Plan the day</button>
+          <button onClick={onBack} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>All tournaments</button>
+          <button onClick={() => t('Opening day plan')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Plan the day</button>
         </div>
       </div>
 
@@ -55,7 +55,7 @@ export default function SP11TournamentSetup({ onBack }: { onBack?: () => void })
               <div style={{ fontSize: 13, color: MUT }}>2 guests from U12 Girls Ana: Priya Nair and Hana Sato. Ana and both parents have said yes.</div>
             </div>
             <div style={{ padding: '10px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <button onClick={() => setSheet('spguest')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Add a guest</button>
+              <button onClick={() => setSheet('spguest')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Add a guest</button>
               <div style={{ fontSize: 12, color: MUT }}>12 picked of the 14 allowed. Guests play under their own registration.</div>
             </div>
           </div>
@@ -91,7 +91,7 @@ export default function SP11TournamentSetup({ onBack }: { onBack?: () => void })
                   <div style={{ fontSize: 13, fontWeight: 700, color: MUT }}>{item.label}</div>
                   <div style={{ fontSize: 13, color: INK }}>{item.val}</div>
                 </div>
-                {item.action && <button onClick={item.onAct} style={{ height: 32, padding: '0 10px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>{item.action}</button>}
+                {item.action && <button onClick={item.onAct} style={{ height: 44, padding: '0 10px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>{item.action}</button>}
               </div>
             ))}
           </div>
@@ -108,8 +108,8 @@ export default function SP11TournamentSetup({ onBack }: { onBack?: () => void })
           <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 14 }}>Add a tournament or gala day</div>
           <div style={{ fontSize: 13, color: MUT, marginBottom: 14 }}>A day or weekend of short games.</div>
           <div style={{ display: 'flex', gap: 8 }}>
-            <button onClick={() => { t('Tournament added. Pick the squad next.'); setSheet(null) }} style={{ height: 36, padding: '0 16px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Add and pick a squad</button>
-            <button onClick={() => setSheet(null)} style={{ height: 36, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Cancel</button>
+            <button onClick={() => { t('Tournament added. Pick the squad next.'); setSheet(null) }} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Add and pick a squad</button>
+            <button onClick={() => setSheet(null)} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Cancel</button>
           </div>
         </div>
       )}
@@ -119,8 +119,8 @@ export default function SP11TournamentSetup({ onBack }: { onBack?: () => void })
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '20px 24px', maxWidth: 480, marginTop: 16 }}>
           <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 14 }}>Add a guest player</div>
           <div style={{ fontSize: 13, color: MUT, marginBottom: 14 }}>From another team at Wattle Creek FC.</div>
-          <button onClick={() => { t("Asked Luke and Eli's parent."); setSheet(null) }} style={{ height: 36, padding: '0 16px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Ask Eli's coach and parent</button>
-          <button onClick={() => setSheet(null)} style={{ height: 36, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', marginLeft: 8 }}>Cancel</button>
+          <button onClick={() => { t("Asked Luke and Eli's parent."); setSheet(null) }} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Ask Eli's coach and parent</button>
+          <button onClick={() => setSheet(null)} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', marginLeft: 8 }}>Cancel</button>
         </div>
       )}
 

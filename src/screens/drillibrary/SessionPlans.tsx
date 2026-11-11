@@ -36,7 +36,7 @@ export default function SessionPlans({ onBack }: { onBack: () => void }) {
       {/* Phase tabs */}
       <div style={{ display:'flex', gap:8, padding:'0 28px 12px', flexShrink:0, borderBottom:`1px solid ${LN}` }}>
         {PHASES.map(p => (
-          <button key={p.id} onClick={() => setPhase(p.id)} style={{ height:36, padding:'0 16px', borderRadius:999, border:`1.5px solid ${phase===p.id?G2:LN}`, background:phase===p.id?'#fff':LN+22, color:phase===p.id?G2:MUT, fontFamily:'inherit', fontSize:13, fontWeight:phase===p.id?700:500, cursor:'pointer' }}>{p.label}</button>
+          <button key={p.id} onClick={() => setPhase(p.id)} style={{ height: 44, padding:'0 16px', borderRadius:999, border:`1.5px solid ${phase===p.id?G2:LN}`, background:phase===p.id?'#fff':LN+22, color:phase===p.id?G2:MUT, fontFamily:'inherit', fontSize:13, fontWeight:phase===p.id?700:500, cursor:'pointer' }}>{p.label}</button>
         ))}
       </div>
 
@@ -83,7 +83,7 @@ export default function SessionPlans({ onBack }: { onBack: () => void }) {
           <div style={{ fontSize:13, color:MUT, maxWidth:580, lineHeight:1.6 }}>
             Follows the curriculum's game, teach, game structure for the Skill Acquisition Phase: one core skill and one main moment per session, planned in two-week blocks.
           </div>
-          <button style={{ flexShrink:0, height:40, padding:'0 20px', border:'none', borderRadius:999, background:G, color:'#fff', fontFamily:'inherit', fontSize:14, fontWeight:600, cursor:'pointer', marginLeft:20 }}>Use for Tuesday</button>
+          <button style={{ flexShrink:0, height: 44, padding:'0 20px', border:'none', borderRadius:999, background:G, color:'#fff', fontFamily:'inherit', fontSize:14, fontWeight:600, cursor:'pointer', marginLeft:20 }}>Use for Tuesday</button>
         </div>
       </div>
     </div>

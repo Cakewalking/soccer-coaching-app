@@ -77,7 +77,7 @@ export default function SE2PlayerSummary({onBack}:{onBack?:()=>void}){
             <div style={{fontSize:12,fontWeight:600,color:MUT,marginBottom:4}}>Left out on purpose</div>
             <div style={{fontSize:12,color:MUT,lineHeight:1.5}}>Specific game events, comparisons to other players, and anything from wellness check-ins.</div>
           </div>
-          <button onClick={()=>t('Opening message to family')} style={{marginTop:12,width:'100%',height:40,borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:GD,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>Send to family</button>
+          <button onClick={()=>t('Opening message to family')} style={{marginTop:12,width:'100%',height: 44,borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:GD,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>Send to family</button>
         </div>
       </div>
       {toast&&<div style={{position:'fixed',bottom:24,left:'50%',transform:'translateX(-50%)',background:INK,color:'#fff',padding:'10px 20px',borderRadius:12,fontSize:14,fontWeight:600,zIndex:1000,whiteSpace:'nowrap' as const}}>{toast}</div>}

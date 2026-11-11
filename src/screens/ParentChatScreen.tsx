@@ -279,7 +279,7 @@ function TeamChatView({ empty, onBack, onPoll, onAttach, onSettings, onReport, o
             <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth={2} strokeLinecap="round"><rect x={3} y={3} width={18} height={18} rx={2}/><circle cx={8.5} cy={8.5} r={1.5}/><path d="M21 15l-5-5L5 21"/></svg>
           </button>
           <input placeholder="Write to the team chat" style={{ flex: 1, height: 36, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, fontSize: 14, fontFamily: 'inherit', outline: 'none', color: INK, background: '#fafafa' }}/>
-          <button style={{ height: 36, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Send</button>
+          <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Send</button>
         </div>
         <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
           <button onClick={onSettings} style={{ fontSize: 12, color: MUT, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: '2px 0' }}>Chat settings and mute</button>
@@ -344,7 +344,7 @@ function AnnouncementsView({ onBack, onPrivate }: { onBack: () => void; onPrivat
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <span style={{ display: 'inline-flex', alignItems: 'center', gap: 3, background: '#f0f4f2', borderRadius: 999, padding: '2px 8px', fontSize: 13 }}>👍 <span style={{ fontSize: 11, color: MUT }}>11</span></span>
-            <button style={{ height: 32, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 700, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Got it</button>
+            <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 700, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Got it</button>
           </div>
         </div>
       </div>
@@ -648,7 +648,7 @@ function PrivateChatView({ empty, onBack }: { empty: boolean; onBack: () => void
       </div>
       <div style={{ background: '#fff', borderTop: `1px solid ${LN}`, padding: '8px 16px 16px', flexShrink: 0, display: 'flex', gap: 8 }}>
         <input placeholder="Write to Sam" style={{ flex: 1, height: 40, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, fontSize: 14, fontFamily: 'inherit', outline: 'none', color: INK, background: '#fafafa' }}/>
-        <button style={{ height: 40, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Send</button>
+        <button style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Send</button>
       </div>
     </PhoneWrap>
   )

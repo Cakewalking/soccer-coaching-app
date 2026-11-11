@@ -130,10 +130,10 @@ export default function TeamChatMiniRoos({ empty, onBack }: { empty?: boolean; o
             <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth={2.5} strokeLinecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
           </button>
           <div style={{ flex: 1, fontSize: 24, fontWeight: 700, color: INK, letterSpacing: '-0.02em' }}>Chats</div>
-          <button style={{ height: 36, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>New chat</button>
+          <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>New chat</button>
         </div>
         <div style={{ display: 'flex', borderBottom: `2px solid ${LN}`, marginBottom: 0 }}>
-          <button style={{ height: 36, padding: '0 14px', border: 'none', background: 'transparent', borderBottom: `2px solid ${G2}`, color: INK, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', marginBottom: -2 }}>Inbox</button>
+          <button style={{ height: 44, padding: '0 14px', border: 'none', background: 'transparent', borderBottom: `2px solid ${G2}`, color: INK, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', marginBottom: -2 }}>Inbox</button>
         </div>
       </div>
 

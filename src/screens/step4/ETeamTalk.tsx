@@ -26,8 +26,8 @@ export default function ETeamTalk(_: { onBack?: () => void }) {
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>Team talk · U12 Sam · Wattle Creek FC</div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
           <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)' }}>1 of 3</div>
-          <button onClick={() => {}} style={{ height: 36, padding: '0 16px', borderRadius: 10, border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Close</button>
-          <button onClick={() => setSlide(1)} style={{ height: 36, padding: '0 16px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Next</button>
+          <button onClick={() => {}} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Close</button>
+          <button onClick={() => setSlide(1)} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Next</button>
         </div>
       </div>
 

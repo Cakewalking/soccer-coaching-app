@@ -19,7 +19,7 @@ function SectionHead({ label }: { label: string }) {
 
 function BackBtn({ onBack, label = 'Back to suggestions' }: { onBack: () => void; label?: string }) {
   return (
-    <button onClick={onBack} style={{ display: 'flex', alignItems: 'center', gap: 8, height: 36, padding: '0 14px 0 10px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>
+    <button onClick={onBack} style={{ display: 'flex', alignItems: 'center', gap: 8, height: 44, padding: '0 14px 0 10px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>
       <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
       {label}
     </button>
@@ -69,8 +69,8 @@ function MainView({ empty, onWhy, onAsk, onWhatItUses, onWhatWorked }:
         <div style={{ fontSize: 18, fontWeight: 700, color: GD, marginBottom: 8 }}>Not enough to go on yet</div>
         <div style={{ fontSize: 14, color: G, lineHeight: 1.6, marginBottom: 16 }}>Suggestions start after your first game. Until then, your plan follows the national curriculum for under 12s. Add a game or record a drill and Clean Sheet starts to tailor it.</div>
         <div style={{ display: 'flex', gap: 10, justifyContent: 'center' }}>
-          <button style={{ height: 40, padding: '0 20px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Add a game</button>
-          <button style={{ height: 40, padding: '0 16px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Record a drill</button>
+          <button style={{ height: 44, padding: '0 20px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Add a game</button>
+          <button style={{ height: 44, padding: '0 16px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Record a drill</button>
         </div>
       </div>
       <SectionHead label="What it will use"/>
@@ -98,9 +98,9 @@ function MainView({ empty, onWhy, onAsk, onWhatItUses, onWhatWorked }:
           <div style={{ fontSize: 24, fontWeight: 700, color: INK, letterSpacing: '-0.02em' }}>Suggested for you</div>
           <div style={{ fontSize: 13, color: MUT, marginTop: 2 }}>From your last 6 games, 9 recordings, this week's load and your notes</div>
         </div>
-        <button onClick={onWhatItUses} style={{ height: 36, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap' as const }}>What it uses</button>
-        <button onClick={onWhatWorked} style={{ height: 36, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: G2, cursor: 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap' as const }}>What worked</button>
-        <button onClick={onAsk} style={{ height: 36, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap' as const }}>Ask a question</button>
+        <button onClick={onWhatItUses} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap' as const }}>What it uses</button>
+        <button onClick={onWhatWorked} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: G2, cursor: 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap' as const }}>What worked</button>
+        <button onClick={onAsk} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap' as const }}>Ask a question</button>
       </div>
 
       {/* Card 1 */}
@@ -125,9 +125,9 @@ function MainView({ empty, onWhy, onAsk, onWhatItUses, onWhatWorked }:
             <div style={{ fontSize: 13, color: G, marginTop: 2 }}>Worked for your team in 3 runs · 25 min · 12 to 16 players</div>
           </div>
           <div style={{ padding: '12px 16px', display: 'flex', gap: 8 }}>
-            <button onClick={onWhy} style={{ height: 36, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Why</button>
-            <button onClick={() => setCard1dismissed(true)} style={{ height: 36, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Not relevant</button>
-            <button style={{ height: 36, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', marginLeft: 'auto' }}>Add to Tuesday</button>
+            <button onClick={onWhy} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Why</button>
+            <button onClick={() => setCard1dismissed(true)} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Not relevant</button>
+            <button style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', marginLeft: 'auto' }}>Add to Tuesday</button>
           </div>
         </div>
       )}
@@ -153,9 +153,9 @@ function MainView({ empty, onWhy, onAsk, onWhatItUses, onWhatWorked }:
           <div style={{ fontSize: 13, color: G, marginTop: 2 }}>Lower load than a running drill · Noah and Zoe do 2 rounds</div>
         </div>
         <div style={{ padding: '12px 16px', display: 'flex', gap: 8 }}>
-          <button style={{ height: 36, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Why</button>
-          <button style={{ height: 36, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Not relevant</button>
-          <button style={{ height: 36, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', marginLeft: 'auto' }}>Add to Tuesday</button>
+          <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Why</button>
+          <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Not relevant</button>
+          <button style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', marginLeft: 'auto' }}>Add to Tuesday</button>
         </div>
       </div>
 
@@ -180,8 +180,8 @@ function MainView({ empty, onWhy, onAsk, onWhatItUses, onWhatWorked }:
           <div style={{ fontSize: 13, color: MUT, marginTop: 2 }}>One more game makes this a pattern, or not</div>
         </div>
         <div style={{ padding: '12px 16px', display: 'flex', gap: 8 }}>
-          <button onClick={() => setCard3watching(!card3watching)} style={{ height: 36, padding: '0 14px', borderRadius: 999, border: `1px solid ${card3watching ? G : LN}`, background: card3watching ? PALE : '#fff', fontSize: 13, fontWeight: 600, color: card3watching ? G : MUT, cursor: 'pointer', fontFamily: 'inherit' }}>{card3watching ? 'Watching ✓' : 'Keep watching'}</button>
-          <button style={{ height: 36, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>Suggest a drill anyway</button>
+          <button onClick={() => setCard3watching(!card3watching)} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${card3watching ? G : LN}`, background: card3watching ? PALE : '#fff', fontSize: 13, fontWeight: 600, color: card3watching ? G : MUT, cursor: 'pointer', fontFamily: 'inherit' }}>{card3watching ? 'Watching ✓' : 'Keep watching'}</button>
+          <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>Suggest a drill anyway</button>
         </div>
       </div>
 
@@ -227,8 +227,8 @@ function WhyView({ onBack }: { onBack: () => void }) {
           <div style={{ fontSize: 13, color: MUT }}>Still slow to win the ball back in games</div>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button style={{ height: 36, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Swap the drill</button>
-          <button style={{ height: 36, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Add to Tuesday</button>
+          <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Swap the drill</button>
+          <button style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Add to Tuesday</button>
         </div>
       </div>
 
@@ -274,7 +274,7 @@ function WhyView({ onBack }: { onBack: () => void }) {
           <span style={{ fontSize: 11, fontWeight: 700, color: G2, background: PALE, padding: '2px 8px', borderRadius: 999 }}>Vests</span>
           Only 3 players sprint in the first 3 seconds after losing it
         </div>
-        <button style={{ height: 32, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: PALE, fontSize: 13, fontWeight: 700, color: G, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 6 }}>
+        <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: PALE, fontSize: 13, fontWeight: 700, color: G, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 6 }}>
           <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
           6 clips · Watch
         </button>
@@ -386,7 +386,7 @@ function AskView({ onBack }: { onBack: () => void }) {
             <span key={t} style={{ fontSize: 12, fontWeight: 600, color: G, background: '#fff', padding: '3px 10px', borderRadius: 999, border: `1px solid ${G2}44` }}>{t}</span>
           ))}
         </div>
-        <button style={{ marginTop: 10, height: 32, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 6 }}>
+        <button style={{ marginTop: 10, height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 6 }}>
           <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
           Watch the 5 clips
         </button>
@@ -407,7 +407,7 @@ function AskView({ onBack }: { onBack: () => void }) {
               <div style={{ fontSize: 12, color: MUT, marginTop: 2 }}>{drill.note}</div>
               <span style={{ fontSize: 11, fontWeight: 700, color: G2, background: PALE, padding: '2px 8px', borderRadius: 999, marginTop: 6, display: 'inline-block' }}>{drill.tag}</span>
             </div>
-            <button style={{ height: 36, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>Add</button>
+            <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>Add</button>
           </div>
         ))}
       </div>
@@ -523,7 +523,7 @@ function WhatWorkedView({ empty, onBack, onRecord }: { empty: boolean; onBack: (
       <div style={{ background: PALE, borderRadius: 16, padding: '24px', textAlign: 'center' as const }}>
         <div style={{ fontSize: 18, fontWeight: 700, color: GD, marginBottom: 8 }}>No drill recorded more than once yet</div>
         <div style={{ fontSize: 14, color: G, lineHeight: 1.6, marginBottom: 16 }}>Record a drill three times with the same set-up and Clean Sheet can tell you whether it's working, and stop suggesting the ones that aren't.</div>
-        <button onClick={onRecord} style={{ height: 40, padding: '0 20px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Record a drill</button>
+        <button onClick={onRecord} style={{ height: 44, padding: '0 20px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Record a drill</button>
       </div>
       <SectionHead label="Then you'll see"/>
       {[
@@ -559,7 +559,7 @@ function WhatWorkedView({ empty, onBack, onRecord }: { empty: boolean; onBack: (
           <div style={{ fontSize: 20, fontWeight: 700, color: INK }}>What worked</div>
           <div style={{ fontSize: 13, color: MUT }}>Drills you've recorded more than once, and whether they moved anything</div>
         </div>
-        <button onClick={onRecord} style={{ height: 36, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Record a drill</button>
+        <button onClick={onRecord} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Record a drill</button>
       </div>
 
       <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '10px 14px' }}>

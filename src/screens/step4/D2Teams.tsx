@@ -37,7 +37,7 @@ export default function D2Teams(_: { onBack?: () => void }) {
             <div style={{ fontSize: 20, fontWeight: 800, letterSpacing: '-0.02em', color: INK }}>Teams</div>
             <div style={{ fontSize: 13, color: MUT }}>14 teams · 204 players</div>
           </div>
-          <button onClick={() => setSheet(true)} style={{ height: 38, padding: '0 18px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>+ Add a team</button>
+          <button onClick={() => setSheet(true)} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>+ Add a team</button>
         </div>
         <div style={{ display: 'flex', gap: 8, marginBottom: 20 }}>
           {['All teams', 'Needs attention', 'Girls', 'Recording games'].map(f => (
@@ -64,8 +64,8 @@ export default function D2Teams(_: { onBack?: () => void }) {
               </div>
             ))}
             <div style={{ display: 'flex', gap: 10, marginTop: 8 }}>
-              <button onClick={() => setSheet(false)} style={{ flex: 1, height: 40, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Cancel</button>
-              <button onClick={() => { setSheet(false); t('Team added.') }} style={{ flex: 1, height: 40, borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Add team</button>
+              <button onClick={() => setSheet(false)} style={{ flex: 1, height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Cancel</button>
+              <button onClick={() => { setSheet(false); t('Team added.') }} style={{ flex: 1, height: 44, borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Add team</button>
             </div>
           </div>
         </div>

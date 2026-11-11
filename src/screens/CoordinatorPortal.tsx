@@ -27,14 +27,16 @@ const STAT_CARDS = [
 ]
 
 const TODO_ITEMS = [
-  { title: 'U8 Hannah has no game leader for Saturday', desc: '8:30 at home. Four young game leaders asked, none yet.', action: 'Ask again',    urgent: true },
-  { title: 'Goal nets and flags: 0 of 2 volunteers',   desc: 'Pack-down, Saturday 2:30 pm.',                           action: 'Ask families', urgent: true },
-  { title: '2 games moved in Dribl',                   desc: 'U13 Chris and U16 Ollie. Teams and parents were told automatically.', action: 'Check', urgent: false },
-  { title: "5 new players haven't finished in PlayFootball", desc: "They can train, but can't go on a team sheet.",    action: 'Remind',       urgent: false },
-  { title: "Aiden Yu's dispensation is still with FV", desc: "Sent 28 May. He can't play for U11 Luke until it's back.", action: 'View',      urgent: false },
+  { title: 'U8 Hannah has no game leader for Saturday', desc: '8:30 at home. Four young game leaders asked, none yet.', action: 'Ask again',    toast: 'Asking again. Four game leaders will get a notification.',   urgent: true },
+  { title: 'Goal nets and flags: 0 of 2 volunteers',   desc: 'Pack-down, Saturday 2:30 pm.',                           action: 'Ask families', toast: 'Post shared with the volunteer board.',                       urgent: true },
+  { title: '2 games moved in Dribl',                   desc: 'U13 Chris and U16 Ollie. Teams and parents were told automatically.', action: 'Check', toast: 'Fixtures synced.',                             urgent: false },
+  { title: "5 new players haven't finished in PlayFootball", desc: "They can train, but can't go on a team sheet.",    action: 'Remind',       toast: 'Reminder sent to 5 families.',                              urgent: false },
+  { title: "Aiden Yu's dispensation is still with FV", desc: "Sent 28 May. He can't play for U11 Luke until it's back.", action: 'View',      toast: 'Dispensation open.',                                         urgent: false },
 ]
 
 function ThisWeekTab() {
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ flexGrow: 1, minHeight: 0, overflowY: 'auto', padding: '20px 28px 28px' }}>
       {/* Greeting row */}
@@ -44,8 +46,8 @@ function ThisWeekTab() {
           <p style={{ margin: 0, fontSize: 14, color: '#4a5a57' }}>Club coordinator · week 9 of 18 · 14 games on Saturday</p>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button style={{ height: 40, padding: '0 16px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Message all managers</button>
-          <button style={{ height: 40, padding: '0 16px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Saturday run sheet</button>
+          <button onClick={() => showToast('Message started to 14 team managers.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Message all managers</button>
+          <button onClick={() => showToast('Run sheet sent to your email and the clubrooms printer.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Saturday run sheet</button>
         </div>
       </div>
 
@@ -76,7 +78,7 @@ function ThisWeekTab() {
                   <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f', marginBottom: 2 }}>{item.title}</div>
                   <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: '18px' }}>{item.desc}</div>
                 </div>
-                <button style={{ flex: 'none', height: 36, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap' }}>{item.action}</button>
+                <button onClick={() => showToast(item.toast)} style={{ flex: 'none', height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap' }}>{item.action}</button>
               </div>
             ))}
           </div>
@@ -87,7 +89,7 @@ function ThisWeekTab() {
           <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '14px 16px' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
               <span style={{ fontSize: 15, fontWeight: 700 }}>Saturday at a glance</span>
-              <button style={{ fontSize: 13, color: '#2f6252', fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>Calendar</button>
+              <button onClick={() => showToast('Opening the club calendar.')} style={{ fontSize: 13, color: '#2f6252', fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>Calendar</button>
             </div>
             {[
               { label: 'Home games',   value: '7 · first 8:30' },
@@ -110,6 +112,9 @@ function ThisWeekTab() {
           </div>
         </div>
       </div>
+      {toast && (
+        <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>
+      )}
     </div>
   )
 }
@@ -122,9 +127,11 @@ function PlaceholderTab({ label }: { label: string }) {
   )
 }
 
-export default function CoordinatorPortal({ onBack, empty = false }: { onBack: () => void; empty?: boolean }) {
+export default function CoordinatorPortal({ onBack: _onBack, empty = false }: { onBack: () => void; empty?: boolean }) {
   const [tab, setTab] = useState<CoTab>('thisweek')
   const [activeNav, setActiveNav] = useState('Club')
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   if (empty) {
     return (
@@ -149,7 +156,7 @@ export default function CoordinatorPortal({ onBack, empty = false }: { onBack: (
             <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 16, padding: 24, marginBottom: 20 }}>
               <div style={{ fontSize: 20, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>Your weekly jobs land here</div>
               <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.6, marginBottom: 16 }}>Once teams are imported and fixtures sync from Dribl, this page lists what needs doing before each Saturday.</div>
-              <button style={{ height: 40, padding: '0 16px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Import from PlayFootball</button>
+              <button style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Import from PlayFootball</button>
             </div>
             <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: '#6f7f7b', marginBottom: 10 }}>What you will see</div>
             {[
@@ -213,7 +220,7 @@ export default function CoordinatorPortal({ onBack, empty = false }: { onBack: (
           </nav>
           <div style={{ display: 'flex', alignItems: 'center', height: 44, gap: 10 }}>
             <span style={{ fontSize: 13, fontWeight: 700, color: '#2f6252', background: '#eef5f2', borderRadius: '999px', padding: '4px 12px' }}>Club coordinator</span>
-            <button onClick={onBack} style={{ height: 28, padding: '0 12px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Coach view</button>
+            <button onClick={() => showToast('Switching to the coach view on a connected device.')} style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Coach view</button>
           </div>
         </div>
       </header>
@@ -228,6 +235,9 @@ export default function CoordinatorPortal({ onBack, empty = false }: { onBack: (
         : tab === 'thisweek'           ? <ThisWeekTab />
         : <PlaceholderTab label={TABS.find(t => t.id === tab)?.label ?? ''} />}
       </div>
+      {toast && (
+        <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>
+      )}
     </div>
   )
 }

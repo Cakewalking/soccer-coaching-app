@@ -156,7 +156,7 @@ export default function SKRoles() {
                       <div key={i} style={{ fontSize: 11, color: '#2f6252', fontWeight: 600 }}>{s}</div>
                     ))}
                   </div>
-                  <button style={{ marginTop: 10, width: '100%', height: 32, borderRadius: 8, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 11, fontWeight: 700, cursor: 'pointer' }}>
+                  <button style={{ marginTop: 10, width: '100%', height: 44, borderRadius: 8, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 11, fontWeight: 700, cursor: 'pointer' }}>
                     {role.ctaLabel}
                   </button>
                 </div>

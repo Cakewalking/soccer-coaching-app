@@ -67,8 +67,8 @@ function AddToSessionModal({ drill, onClose }: { drill: Drill; onClose: () => vo
         </div>
         <div style={{ fontSize:12, color:MUT, marginBottom:20 }}>Player load stays within plan. Fitness can see the change.</div>
         <div style={{ display:'flex', gap:12, justifyContent:'flex-end' }}>
-          <button onClick={onClose} style={{ height:40, padding:'0 20px', border:`1px solid ${LN}`, borderRadius:999, background:'#fff', color:INK, fontSize:14, cursor:'pointer', fontFamily:'inherit' }}>Cancel</button>
-          <button style={{ height:40, padding:'0 24px', border:'none', borderRadius:999, background:G, color:'#fff', fontSize:14, fontWeight:600, cursor:'pointer', fontFamily:'inherit' }}>Add to tonight</button>
+          <button onClick={onClose} style={{ height: 44, padding:'0 20px', border:`1px solid ${LN}`, borderRadius:999, background:'#fff', color:INK, fontSize:14, cursor:'pointer', fontFamily:'inherit' }}>Cancel</button>
+          <button style={{ height: 44, padding:'0 24px', border:'none', borderRadius:999, background:G, color:'#fff', fontSize:14, fontWeight:600, cursor:'pointer', fontFamily:'inherit' }}>Add to tonight</button>
         </div>
       </div>
     </div>
@@ -89,8 +89,8 @@ export default function DrillDetail({ drill, onBack }: { drill: Drill; onBack: (
         <h1 style={{ margin:0, fontSize:26, fontWeight:700, color:INK, letterSpacing:'-0.02em' }}>{drill.name}</h1>
         <Tag label={drill.category}/>
         <div style={{ flexGrow:1 }}/>
-        <button style={{ height:36, padding:'0 16px', border:`1px solid ${LN}`, borderRadius:999, background:'#fff', color:INK, fontSize:14, fontWeight:500, cursor:'pointer', fontFamily:'inherit' }}>Save</button>
-        <button onClick={() => setShowSession(true)} style={{ height:36, padding:'0 16px', border:'none', borderRadius:999, background:G, color:'#fff', fontSize:14, fontWeight:600, cursor:'pointer', fontFamily:'inherit', display:'flex', alignItems:'center', gap:8 }}>
+        <button style={{ height: 44, padding:'0 16px', border:`1px solid ${LN}`, borderRadius:999, background:'#fff', color:INK, fontSize:14, fontWeight:500, cursor:'pointer', fontFamily:'inherit' }}>Save</button>
+        <button onClick={() => setShowSession(true)} style={{ height: 44, padding:'0 16px', border:'none', borderRadius:999, background:G, color:'#fff', fontSize:14, fontWeight:600, cursor:'pointer', fontFamily:'inherit', display:'flex', alignItems:'center', gap:8 }}>
           <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round"><path d="M12 5v14M5 12h14"/></svg>
           Add to a session
         </button>
@@ -128,7 +128,7 @@ export default function DrillDetail({ drill, onBack }: { drill: Drill; onBack: (
               <div style={{ fontSize:13, fontWeight:600, color:'#fff' }}>Show the team before you start</div>
               <div style={{ fontSize:11, color:'rgba(255,255,255,.6)', marginTop:2 }}>Opens the diagram and a clip of us doing it well against Ironbark.</div>
             </div>
-            <button style={{ height:28, padding:'0 12px', border:'1px solid rgba(255,255,255,.3)', borderRadius:999, background:'transparent', color:'#fff', fontSize:12, fontWeight:600, cursor:'pointer', fontFamily:'inherit', flexShrink:0 }}>Show</button>
+            <button style={{ height: 44, padding:'0 12px', border:'1px solid rgba(255,255,255,.3)', borderRadius:999, background:'transparent', color:'#fff', fontSize:12, fontWeight:600, cursor:'pointer', fontFamily:'inherit', flexShrink:0 }}>Show</button>
           </div>
         </div>
 

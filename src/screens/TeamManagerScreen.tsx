@@ -119,7 +119,7 @@ export default function TeamManagerScreen({ empty }: { empty?: boolean }) {
             <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 14, padding: '20px', marginBottom: 16 }}>
               <div style={{ fontSize: 16, fontWeight: 700, color: '#10211f', marginBottom: 6 }}>No game this week</div>
               <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.5, marginBottom: 14 }}>{"It's a bye round. Your game-day checklist opens here on the morning of the next game."}</div>
-              <button style={{ height: 36, padding: '0 16px', borderRadius: 999, border: '1px solid #e9eae8', background: '#fff', color: '#2f6252', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>See fixtures</button>
+              <button style={{ height: 44, padding: '0 16px', borderRadius: 999, border: '1px solid #e9eae8', background: '#fff', color: '#2f6252', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>See fixtures</button>
             </div>
             {[
               { title: 'ON THE DAY', items: ['Arrival text', 'Duty roster', 'Who signed on', 'First-aid card', 'Head knock form', 'Sign-off after the game'] },
@@ -137,7 +137,7 @@ export default function TeamManagerScreen({ empty }: { empty?: boolean }) {
             <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 14, padding: '20px', marginBottom: 16 }}>
               <div style={{ fontSize: 16, fontWeight: 700, color: '#10211f', marginBottom: 6 }}>No messages yet</div>
               <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.5, marginBottom: 14 }}>Tell every family about a change in one go. You'll see who has read it, and nudge anyone who hasn't.</div>
-              <button style={{ height: 36, padding: '0 16px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Tell parents about a change</button>
+              <button style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Tell parents about a change</button>
             </div>
             <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.07em', color: '#6f7f7b', marginBottom: 8 }}>CONVERSATIONS</div>
             <div style={{ padding: '12px 14px', background: '#fff', border: '1px solid #e9eae8', borderRadius: 10, fontSize: 13, color: '#4a5a57' }}>Messages to a player always go to their parents too. Coaches see team messages in their inbox.</div>
@@ -147,8 +147,8 @@ export default function TeamManagerScreen({ empty }: { empty?: boolean }) {
               <div style={{ fontSize: 16, fontWeight: 700, color: '#10211f', marginBottom: 6 }}>No duties yet</div>
               <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.5, marginBottom: 14 }}>{"Pick the jobs your team needs each week. Families sign up from their phone, and swap if they can't make it."}</div>
               <div style={{ display: 'flex', gap: 10 }}>
-                <button style={{ height: 36, padding: '0 16px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Add the usual jobs</button>
-                <button style={{ height: 36, padding: '0 16px', borderRadius: 999, border: '1px solid #e9eae8', background: '#fff', color: '#4a5a57', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Choose my own</button>
+                <button style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Add the usual jobs</button>
+                <button style={{ height: 44, padding: '0 16px', borderRadius: 999, border: '1px solid #e9eae8', background: '#fff', color: '#4a5a57', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Choose my own</button>
               </div>
             </div>
             <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.07em', color: '#6f7f7b', marginBottom: 8 }}>FILLS IN LIKE THIS</div>
@@ -216,7 +216,7 @@ export default function TeamManagerScreen({ empty }: { empty?: boolean }) {
                   </div>
                 ))}
               </div>
-              <button onClick={() => setShowWhosComing(w => !w)} style={{ width: '100%', height: 36, borderRadius: 8, border: '1px solid #e9eae8', background: '#fff', color: '#2f6252', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', marginBottom: 8 }}>
+              <button onClick={() => setShowWhosComing(w => !w)} style={{ width: '100%', height: 44, borderRadius: 8, border: '1px solid #e9eae8', background: '#fff', color: '#2f6252', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', marginBottom: 8 }}>
                 {showWhosComing ? 'Hide' : 'Who\'s coming'}
               </button>
               {showWhosComing && (
@@ -236,10 +236,10 @@ export default function TeamManagerScreen({ empty }: { empty?: boolean }) {
                       </div>
                     </div>
                   ))}
-                  <button onClick={() => setTab('messages')} style={{ width: '100%', height: 36, borderRadius: 8, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Remind the 2 who haven't answered</button>
+                  <button onClick={() => setTab('messages')} style={{ width: '100%', height: 44, borderRadius: 8, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Remind the 2 who haven't answered</button>
                 </div>
               )}
-              {!showWhosComing && <button onClick={() => setTab('messages')} style={{ width: '100%', height: 36, borderRadius: 8, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Remind the 2 who haven't answered</button>}
+              {!showWhosComing && <button onClick={() => setTab('messages')} style={{ width: '100%', height: 44, borderRadius: 8, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Remind the 2 who haven't answered</button>}
             </div>
 
             {/* To do */}
@@ -274,7 +274,7 @@ export default function TeamManagerScreen({ empty }: { empty?: boolean }) {
             {/* Bye week toggle (demo) */}
             <div style={{ padding: '8px 16px', background: '#f7f9f7', borderBottom: '1px solid #f0f1f0', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
               <span style={{ fontSize: 12, color: '#6f7f7b' }}>Demo: bye week</span>
-              <button onClick={() => setByeWeek(b => !b)} style={{ width: 40, height: 24, borderRadius: 12, border: 0, background: byeWeek ? '#40826d' : '#d6d9d7', cursor: 'pointer', position: 'relative' }}>
+              <button onClick={() => setByeWeek(b => !b)} style={{ width: 40, height: 44, borderRadius: 12, border: 0, background: byeWeek ? '#40826d' : '#d6d9d7', cursor: 'pointer', position: 'relative' }}>
                 <div style={{ width: 16, height: 16, borderRadius: '999px', background: '#fff', position: 'absolute', top: 4, left: byeWeek ? 20 : 4 }} />
               </button>
             </div>
@@ -286,8 +286,8 @@ export default function TeamManagerScreen({ empty }: { empty?: boolean }) {
                   <div style={{ fontSize: 18, fontWeight: 800, color: '#10211f', marginBottom: 6 }}>No game this week</div>
                   <div style={{ fontSize: 14, color: '#6f7f7b', marginBottom: 20 }}>Bye round · SAT 14 JUN. Use this week for extra training or a break.</div>
                   <div style={{ display: 'flex', gap: 10, justifyContent: 'center' }}>
-                    <button style={{ height: 36, padding: '0 16px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#4a5a57', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Extra training session?</button>
-                    <button style={{ height: 36, padding: '0 16px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Tell parents</button>
+                    <button style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#4a5a57', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Extra training session?</button>
+                    <button style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Tell parents</button>
                   </div>
                 </div>
                 <div style={{ marginTop: 16, background: '#fff', borderRadius: 14, padding: '14px 16px', border: '1px solid #e9eae8' }}>
@@ -300,7 +300,7 @@ export default function TeamManagerScreen({ empty }: { empty?: boolean }) {
             {/* Phase tabs */}
             <div style={{ display: 'flex', borderBottom: '1px solid #e9eae8', background: '#fff' }}>
               {(['before', 'during', 'after'] as GamedayPhase[]).map(p => (
-                <button key={p} onClick={() => setGamedayPhase(p)} style={{ flex: 1, height: 42, border: 0, background: 'transparent', fontFamily: 'inherit', fontSize: 13, fontWeight: gamedayPhase === p ? 700 : 400, cursor: 'pointer', color: gamedayPhase === p ? '#1f4a3e' : '#6f7f7b', borderBottom: gamedayPhase === p ? '2px solid #1f4a3e' : '2px solid transparent', textTransform: 'capitalize' }}>{p}</button>
+                <button key={p} onClick={() => setGamedayPhase(p)} style={{ flex: 1, height: 44, border: 0, background: 'transparent', fontFamily: 'inherit', fontSize: 13, fontWeight: gamedayPhase === p ? 700 : 400, cursor: 'pointer', color: gamedayPhase === p ? '#1f4a3e' : '#6f7f7b', borderBottom: gamedayPhase === p ? '2px solid #1f4a3e' : '2px solid transparent', textTransform: 'capitalize' }}>{p}</button>
               ))}
             </div>
             <div style={{ padding: '16px' }}>
@@ -447,7 +447,7 @@ export default function TeamManagerScreen({ empty }: { empty?: boolean }) {
                     <span style={{ fontSize: 11, fontWeight: 700, color: '#2f6252', background: '#eef5f2', borderRadius: 6, padding: '2px 8px', flexShrink: 0 }}>You</span>
                   )}
                   {d.status === 'ask' && (
-                    <button style={{ height: 32, padding: '0 14px', borderRadius: 999, border: 'none', background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer', flexShrink: 0 }}>Ask</button>
+                    <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer', flexShrink: 0 }}>Ask</button>
                   )}
                 </div>
               </div>
@@ -519,7 +519,7 @@ export default function TeamManagerScreen({ empty }: { empty?: boolean }) {
           <div style={{ flexGrow: 1, overflowY: 'auto', padding: '20px' }}>
             {[
               { label: 'Who was involved?', input: <input placeholder="Name or role (e.g. 'parent on east sideline')" style={{ width: '100%', height: 40, borderRadius: 8, border: '1px solid #e9eae8', padding: '0 10px', fontFamily: 'inherit', fontSize: 14, boxSizing: 'border-box' }} /> },
-              { label: 'Which team were they from?', input: <div style={{ display: 'flex', gap: 10 }}>{['Ours', 'Opponents', 'Unknown'].map(o => <button key={o} onClick={() => setSidelineTeam(o)} style={{ flex: 1, height: 40, borderRadius: 10, border: `1px solid ${sidelineTeam === o ? '#2f6252' : '#e9eae8'}`, background: sidelineTeam === o ? '#e4f2eb' : '#f7f9f7', color: sidelineTeam === o ? '#2f6252' : '#4a5a57', fontFamily: 'inherit', fontSize: 13, fontWeight: sidelineTeam === o ? 700 : 400, cursor: 'pointer' }}>{o}</button>)}</div> },
+              { label: 'Which team were they from?', input: <div style={{ display: 'flex', gap: 10 }}>{['Ours', 'Opponents', 'Unknown'].map(o => <button key={o} onClick={() => setSidelineTeam(o)} style={{ flex: 1, height: 44, borderRadius: 10, border: `1px solid ${sidelineTeam === o ? '#2f6252' : '#e9eae8'}`, background: sidelineTeam === o ? '#e4f2eb' : '#f7f9f7', color: sidelineTeam === o ? '#2f6252' : '#4a5a57', fontFamily: 'inherit', fontSize: 13, fontWeight: sidelineTeam === o ? 700 : 400, cursor: 'pointer' }}>{o}</button>)}</div> },
               { label: 'What happened?', input: <textarea placeholder="Describe the behaviour…" style={{ width: '100%', height: 80, borderRadius: 8, border: '1px solid #e9eae8', padding: '10px', fontFamily: 'inherit', fontSize: 14, resize: 'none', boxSizing: 'border-box' }} /> },
             ].map((f, i) => (
               <div key={i} style={{ marginBottom: 16 }}>
@@ -581,7 +581,7 @@ export default function TeamManagerScreen({ empty }: { empty?: boolean }) {
               <div key={i} style={{ marginBottom: 16 }}>
                 <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>{q.label}</div>
                 <div style={{ display: 'flex', gap: 10 }}>
-                  {q.opts.map(o => <button key={o} onClick={() => setSignOffChoices(prev => ({ ...prev, [i]: o }))} style={{ flex: 1, height: 40, borderRadius: 10, border: `1px solid ${signOffChoices[i] === o ? '#2f6252' : '#e9eae8'}`, background: signOffChoices[i] === o ? '#e4f2eb' : '#f7f9f7', color: signOffChoices[i] === o ? '#2f6252' : '#4a5a57', fontFamily: 'inherit', fontSize: 13, fontWeight: signOffChoices[i] === o ? 700 : 400, cursor: 'pointer' }}>{o}</button>)}
+                  {q.opts.map(o => <button key={o} onClick={() => setSignOffChoices(prev => ({ ...prev, [i]: o }))} style={{ flex: 1, height: 44, borderRadius: 10, border: `1px solid ${signOffChoices[i] === o ? '#2f6252' : '#e9eae8'}`, background: signOffChoices[i] === o ? '#e4f2eb' : '#f7f9f7', color: signOffChoices[i] === o ? '#2f6252' : '#4a5a57', fontFamily: 'inherit', fontSize: 13, fontWeight: signOffChoices[i] === o ? 700 : 400, cursor: 'pointer' }}>{o}</button>)}
                 </div>
               </div>
             ))}

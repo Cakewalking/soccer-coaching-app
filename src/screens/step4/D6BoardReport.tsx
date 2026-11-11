@@ -63,7 +63,7 @@ export default function D6BoardReport(_: { onBack?: () => void }) {
               </div>
             ))}
           </div>
-          <button onClick={() => t('PDF downloaded.')} style={{ width: '100%', height: 42, borderRadius: 10, border: 0, background: GD, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Download PDF</button>
+          <button onClick={() => t('PDF downloaded.')} style={{ width: '100%', height: 44, borderRadius: 10, border: 0, background: GD, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Download PDF</button>
         </div>
       </div>
       {toast && <div style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', background: INK, color: '#fff', padding: '10px 20px', borderRadius: 12, fontSize: 14, fontWeight: 600, zIndex: 1000, whiteSpace: 'nowrap' as const }}>{toast}</div>}

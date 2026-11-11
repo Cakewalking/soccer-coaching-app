@@ -22,14 +22,14 @@ export default function C1sClipSearch({onBack,onNoResults}:{onBack?:()=>void,onN
           <div style={{fontSize:24,fontWeight:800,letterSpacing:'-0.02em',color:INK,marginBottom:2}}>Search results</div>
           <div style={{fontSize:14,color:MUT}}>Player: Mia Tran · Moment: pressing · 6 clips</div>
         </div>
-        <button onClick={()=>t('Making playlist')} style={{height:36,padding:'0 14px',borderRadius:10,border:0,background:G,color:'#fff',fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>Make playlist</button>
+        <button onClick={()=>t('Making playlist')} style={{height: 44,padding:'0 14px',borderRadius:10,border:0,background:G,color:'#fff',fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>Make playlist</button>
       </div>
       <div style={{display:'flex',gap:8,marginBottom:20}}>
         <div style={{flex:1,background:'#fff',border:`1px solid ${LN}`,borderRadius:10,height:40,display:'flex',alignItems:'center',padding:'0 14px',gap:10}}>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
           <span style={{fontSize:14,color:MUT}}>Mia pressing</span>
         </div>
-        <button onClick={onNoResults} style={{height:40,padding:'0 14px',borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:MUT,fontFamily:'inherit',fontSize:13,cursor:'pointer'}}>Try: Mia heading →</button>
+        <button onClick={onNoResults} style={{height: 44,padding:'0 14px',borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:MUT,fontFamily:'inherit',fontSize:13,cursor:'pointer'}}>Try: Mia heading →</button>
       </div>
       <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fill,minmax(300px,1fr))',gap:12}}>
         {CLIPS.map(clip=>(

@@ -85,7 +85,7 @@ export default function LeagueSyncTab({ empty }: { empty?: boolean }) {
               </div>
               {r.status === 'sent'    && <span style={{ fontSize: 13, color: '#2f6252', fontWeight: 600 }}>Sent</span>}
               {r.status === 'waiting' && <span style={{ fontSize: 13, color: '#7a5a00', fontWeight: 600 }}>Waiting for manager</span>}
-              {r.status === 'differs' && <button onClick={() => showToast('Opening score discrepancy for U16 Ollie.')} style={{ height: 32, padding: '0 14px', borderRadius: '999px', border: 0, background: '#c39797', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer', color: '#10211f' }}>Fix</button>}
+              {r.status === 'differs' && <button onClick={() => showToast('Opening score discrepancy for U16 Ollie.')} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: 0, background: '#c39797', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer', color: '#10211f' }}>Fix</button>}
             </div>
           ))}
           <div style={{ marginTop: 10, fontSize: 12, color: '#4a5a57', borderTop: '1px solid #e9eae8', paddingTop: 10 }}>MiniRoos (U6–U11) don't keep scores, so nothing is sent. From U12, the home team enters the score in Dribl within 48 hours when there's no league referee. The team manager confirms it first.</div>

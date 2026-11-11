@@ -27,7 +27,7 @@ function Chips({ options, value, onChange, multi=false }: { options:string[]; va
       {options.map(o => {
         const on = active.includes(o)
         return (
-          <button key={o} onClick={() => toggle(o)} style={{ height:32, padding:'0 14px', borderRadius:999, border:`1px solid ${on?G2:LN}`, background:on?G:'#fff', color:on?'#fff':MUT, fontSize:13, fontWeight:on?600:400, cursor:'pointer', fontFamily:'inherit' }}>
+          <button key={o} onClick={() => toggle(o)} style={{ height: 44, padding:'0 14px', borderRadius:999, border:`1px solid ${on?G2:LN}`, background:on?G:'#fff', color:on?'#fff':MUT, fontSize:13, fontWeight:on?600:400, cursor:'pointer', fontFamily:'inherit' }}>
             {o}
           </button>
         )
@@ -101,7 +101,7 @@ function WizStep2() {
       <h2 style={{ margin:'0 0 20px', fontSize:28, fontWeight:700, color:INK }}>Show the players how it works</h2>
       <div style={{ display:'flex', gap:10, marginBottom:20 }}>
         {['Draw it','From our clips','Upload a video','Photo of a whiteboard'].map((t, i) => (
-          <button key={t} style={{ display:'flex', alignItems:'center', gap:6, height:36, padding:'0 16px', border:`1px solid ${i===0?G2:LN}`, borderRadius:999, background:i===0?'#f0f8f4':'#fff', color:i===0?G:MUT, fontSize:13, fontWeight:i===0?600:400, cursor:'pointer', fontFamily:'inherit' }}>
+          <button key={t} style={{ display:'flex', alignItems:'center', gap:6, height: 44, padding:'0 16px', border:`1px solid ${i===0?G2:LN}`, borderRadius:999, background:i===0?'#f0f8f4':'#fff', color:i===0?G:MUT, fontSize:13, fontWeight:i===0?600:400, cursor:'pointer', fontFamily:'inherit' }}>
             {t}
           </button>
         ))}
@@ -112,15 +112,15 @@ function WizStep2() {
             const on = activeTool === t
             const dotColor = t==='Our player'?G : t==='Opponent'?'#c39797' : t==='Ball'?'#1a1a1a' : '#aaa'
             return (
-              <button key={t} onClick={() => setActiveTool(t)} style={{ width:'100%', height:40, border:`1px solid ${on?G2:LN}`, borderRadius:8, background:on?G:'#fff', color:on?'#fff':INK, fontSize:13, fontWeight:on?600:400, cursor:'pointer', fontFamily:'inherit', marginBottom:6, display:'flex', alignItems:'center', gap:10, padding:'0 12px', boxSizing:'border-box' }}>
+              <button key={t} onClick={() => setActiveTool(t)} style={{ width:'100%', height: 44, border:`1px solid ${on?G2:LN}`, borderRadius:8, background:on?G:'#fff', color:on?'#fff':INK, fontSize:13, fontWeight:on?600:400, cursor:'pointer', fontFamily:'inherit', marginBottom:6, display:'flex', alignItems:'center', gap:10, padding:'0 12px', boxSizing:'border-box' }}>
                 <span style={{ width:10, height:10, borderRadius:'50%', background:on?'#fff':dotColor, flexShrink:0 }}/>
                 {t}
               </button>
             )
           })}
           <div style={{ display:'flex', gap:6, marginTop:4 }}>
-            <button style={{ flex:1, height:34, border:`1px solid ${LN}`, borderRadius:8, background:'#fff', color:MUT, fontSize:12, cursor:'pointer', fontFamily:'inherit' }}>Undo</button>
-            <button style={{ flex:1, height:34, border:`1px solid ${LN}`, borderRadius:8, background:'#fff', color:MUT, fontSize:12, cursor:'pointer', fontFamily:'inherit' }}>Clear</button>
+            <button style={{ flex:1, height: 44, border:`1px solid ${LN}`, borderRadius:8, background:'#fff', color:MUT, fontSize:12, cursor:'pointer', fontFamily:'inherit' }}>Undo</button>
+            <button style={{ flex:1, height: 44, border:`1px solid ${LN}`, borderRadius:8, background:'#fff', color:MUT, fontSize:12, cursor:'pointer', fontFamily:'inherit' }}>Clear</button>
           </div>
         </div>
         <div style={{ flex:1, minHeight:300, background:'#f0f4f2', borderRadius:12, border:`2px dashed #c5d4cd`, display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', position:'relative', overflow:'hidden' }}>
@@ -151,7 +151,7 @@ function WizStep3() {
           {cats.map(c => {
             const on = category === c
             return (
-              <button key={c} onClick={() => setCategory(c)} style={{ display:'flex', alignItems:'center', gap:6, height:32, padding:'0 14px', borderRadius:999, border:`1px solid ${on?G2:LN}`, background:on?G:'#fff', color:on?'#fff':MUT, fontSize:13, fontWeight:on?600:400, cursor:'pointer', fontFamily:'inherit' }}>
+              <button key={c} onClick={() => setCategory(c)} style={{ display:'flex', alignItems:'center', gap:6, height: 44, padding:'0 14px', borderRadius:999, border:`1px solid ${on?G2:LN}`, background:on?G:'#fff', color:on?'#fff':MUT, fontSize:13, fontWeight:on?600:400, cursor:'pointer', fontFamily:'inherit' }}>
                 {on && <span style={{ width:8, height:8, borderRadius:'50%', background:'#fff', flexShrink:0 }}/>}
                 {c}
               </button>
@@ -297,7 +297,7 @@ export default function DrillWizard(p: WizShellProps) {
           </>
         )}
         <div style={{ marginLeft:'auto' }}>
-          <button onClick={p.onCancel} style={{ display:'flex', alignItems:'center', gap:6, height:32, padding:'0 14px', border:'1px solid rgba(255,255,255,.3)', borderRadius:999, background:'transparent', color:'#fff', fontSize:13, fontWeight:600, cursor:'pointer', fontFamily:'inherit' }}>
+          <button onClick={p.onCancel} style={{ display:'flex', alignItems:'center', gap:6, height: 44, padding:'0 14px', border:'1px solid rgba(255,255,255,.3)', borderRadius:999, background:'transparent', color:'#fff', fontSize:13, fontWeight:600, cursor:'pointer', fontFamily:'inherit' }}>
             <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
             {p.done ? 'Close' : 'Cancel'}
           </button>
@@ -312,13 +312,13 @@ export default function DrillWizard(p: WizShellProps) {
       </div>
       {!p.done && (
         <div style={{ height:60, borderTop:`1px solid ${LN}`, display:'flex', alignItems:'center', padding:'0 28px', gap:12, flexShrink:0 }}>
-          <button onClick={p.onBack} style={{ display:'flex', alignItems:'center', gap:8, height:38, padding:'0 18px', border:`1px solid ${LN}`, borderRadius:999, background:'#fff', color:INK, fontSize:14, fontWeight:500, cursor:'pointer', fontFamily:'inherit' }}>
+          <button onClick={p.onBack} style={{ display:'flex', alignItems:'center', gap:8, height: 44, padding:'0 18px', border:`1px solid ${LN}`, borderRadius:999, background:'#fff', color:INK, fontSize:14, fontWeight:500, cursor:'pointer', fontFamily:'inherit' }}>
             <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
             Back
           </button>
           <span style={{ fontSize:13, color:MUT }}>{footerNote}</span>
           <div style={{ flexGrow:1 }}/>
-          <button onClick={p.onNext} style={{ display:'flex', alignItems:'center', gap:8, height:38, padding:'0 20px', border:'none', borderRadius:999, background:G, color:'#fff', fontSize:14, fontWeight:600, cursor:'pointer', fontFamily:'inherit' }}>
+          <button onClick={p.onNext} style={{ display:'flex', alignItems:'center', gap:8, height: 44, padding:'0 20px', border:'none', borderRadius:999, background:G, color:'#fff', fontSize:14, fontWeight:600, cursor:'pointer', fontFamily:'inherit' }}>
             {p.step===4 ? 'Save drill' : 'Next'}
             <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </button>

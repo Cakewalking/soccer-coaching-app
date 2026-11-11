@@ -33,8 +33,8 @@ export default function SP12TournamentDay({ onBack }: { onBack?: () => void }) {
           <div style={{ fontSize: 14, color: MUT }}>Sat 21 November · Kingfisher Summer Cup · 12:05 pm</div>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button onClick={onBack} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Squad</button>
-          <button onClick={() => t('Opening game 3')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Start game 3</button>
+          <button onClick={onBack} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Squad</button>
+          <button onClick={() => t('Opening game 3')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Start game 3</button>
         </div>
       </div>
 
@@ -74,7 +74,7 @@ export default function SP12TournamentDay({ onBack }: { onBack?: () => void }) {
                 <div style={{ fontSize: 14, fontWeight: 600, color: '#8b3a3a' }}>Jai rolled an ankle</div>
                 <div style={{ fontSize: 12, color: MUT }}>Sitting out game 3 · his dad is here</div>
               </div>
-              <button onClick={() => setSheet('loginjury')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: `1px solid #f0c0c0`, background: '#fff', color: '#8b3a3a', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Log it</button>
+              <button onClick={() => setSheet('loginjury')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid #f0c0c0`, background: '#fff', color: '#8b3a3a', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Log it</button>
             </div>
           </div>
         </div>
@@ -93,7 +93,7 @@ export default function SP12TournamentDay({ onBack }: { onBack?: () => void }) {
                 </div>
               </div>
             ))}
-            <button onClick={() => t('Opening line-up for game 3')} style={{ width: '100%', height: 36, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', marginTop: 10 }}>See it</button>
+            <button onClick={() => t('Opening line-up for game 3')} style={{ width: '100%', height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', marginTop: 10 }}>See it</button>
           </div>
         </div>
       </div>
@@ -103,8 +103,8 @@ export default function SP12TournamentDay({ onBack }: { onBack?: () => void }) {
           <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 14 }}>Log an injury</div>
           <div style={{ fontSize: 13, color: MUT, marginBottom: 14 }}>Takes 3 taps. The parent and coaches are told.</div>
           <div style={{ display: 'flex', gap: 8 }}>
-            <button onClick={() => { t('Saved. The parent and Sam have been told.'); setSheet(null) }} style={{ height: 36, padding: '0 16px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Save</button>
-            <button onClick={() => setSheet(null)} style={{ height: 36, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Cancel</button>
+            <button onClick={() => { t('Saved. The parent and Sam have been told.'); setSheet(null) }} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Save</button>
+            <button onClick={() => setSheet(null)} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Cancel</button>
           </div>
         </div>
       )}

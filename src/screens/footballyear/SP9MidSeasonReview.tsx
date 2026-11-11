@@ -24,8 +24,8 @@ export default function SP9MidSeasonReview({ onBack }: { onBack?: () => void }) 
           <div style={{ fontSize: 14, color: MUT }}>Thu 4 June · round 9 of 18 · halfway</div>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button onClick={onBack} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>The football year</button>
-          <button onClick={() => t('10-minute chats offered to 13 families for the next two weeks.')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Book the rest</button>
+          <button onClick={onBack} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>The football year</button>
+          <button onClick={() => t('10-minute chats offered to 13 families for the next two weeks.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Book the rest</button>
         </div>
       </div>
 
@@ -61,7 +61,7 @@ export default function SP9MidSeasonReview({ onBack }: { onBack?: () => void }) 
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 16px', marginBottom: 12 }}>
             <div style={{ fontSize: 14, fontWeight: 700, color: INK, marginBottom: 6 }}>The league's regrade window opens Monday</div>
             <div style={{ fontSize: 13, color: MUT, marginBottom: 10 }}>One request per team, mid-season. U12 Sam is fine where it is.</div>
-            <button onClick={() => t('Opening grading')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Open grading</button>
+            <button onClick={() => t('Opening grading')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Open grading</button>
           </div>
 
           {/* Also at halfway */}
@@ -77,7 +77,7 @@ export default function SP9MidSeasonReview({ onBack }: { onBack?: () => void }) 
                   <div style={{ fontSize: 14, fontWeight: 600, color: INK }}>{item.label}</div>
                   <div style={{ fontSize: 12, color: MUT }}>{item.note}</div>
                 </div>
-                {item.action && <button onClick={item.onAct} style={{ height: 32, padding: '0 10px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>{item.action}</button>}
+                {item.action && <button onClick={item.onAct} style={{ height: 44, padding: '0 10px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>{item.action}</button>}
               </div>
             ))}
           </div>

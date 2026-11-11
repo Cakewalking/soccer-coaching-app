@@ -47,7 +47,7 @@ export default function SET6Display(_: { onBack?: () => void }) {
               <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 10 }}>Text size</div>
               <div style={{ display: 'flex', gap: 8 }}>
                 {['Small', 'Default', 'Large', 'Larger'].map((s, i) => (
-                  <button key={i} onClick={() => setTextSize(i)} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: textSize === i ? 0 : `1px solid ${LN}`, background: textSize === i ? G : '#fff', color: textSize === i ? '#fff' : INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>{s}</button>
+                  <button key={i} onClick={() => setTextSize(i)} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: textSize === i ? 0 : `1px solid ${LN}`, background: textSize === i ? G : '#fff', color: textSize === i ? '#fff' : INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>{s}</button>
                 ))}
               </div>
             </div>
@@ -72,7 +72,7 @@ export default function SET6Display(_: { onBack?: () => void }) {
               <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 10 }}>Units</div>
               <div style={{ display: 'flex', gap: 8 }}>
                 {(['metric', 'imperial'] as const).map(u => (
-                  <button key={u} onClick={() => setUnits(u)} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: units === u ? 0 : `1px solid ${LN}`, background: units === u ? G : '#fff', color: units === u ? '#fff' : INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>{u === 'metric' ? 'Metric (km, kg)' : 'Imperial (mi, lb)'}</button>
+                  <button key={u} onClick={() => setUnits(u)} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: units === u ? 0 : `1px solid ${LN}`, background: units === u ? G : '#fff', color: units === u ? '#fff' : INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>{u === 'metric' ? 'Metric (km, kg)' : 'Imperial (mi, lb)'}</button>
                 ))}
               </div>
             </div>
@@ -80,7 +80,7 @@ export default function SET6Display(_: { onBack?: () => void }) {
             {/* Language */}
             <div style={{ padding: '14px 20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <div style={{ fontSize: 13, fontWeight: 700, color: INK }}>Language</div>
-              <button onClick={() => t('Language options would open.')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>{lang} ▾</button>
+              <button onClick={() => t('Language options would open.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>{lang} ▾</button>
             </div>
           </div>
         </div>

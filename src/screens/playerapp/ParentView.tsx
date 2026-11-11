@@ -68,7 +68,7 @@ export default function ParentView({ onAvailability, onRaiseConcern }: Props) {
             <div style={{ fontSize: 12, color: '#6f7f7b', marginBottom: 4 }}>Rob, team manager · 7:12 pm</div>
             <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', lineHeight: '21px' }}>Meet time now 8:40 on Saturday. We're on pitch 2.</div>
           </div>
-          <button style={{ flex: 'none', height: 36, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Got it</button>
+          <button style={{ flex: 'none', height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Got it</button>
         </div>
 
         {/* Mia's minutes */}

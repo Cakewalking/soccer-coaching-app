@@ -43,7 +43,7 @@ export default function FV1FeesVolunteers(_: { onBack?: () => void }) {
             <div style={{ display: 'flex', gap: 12, marginBottom: 12 }}>
               <div style={{ fontSize: 12, color: MUT }}>On a payment plan: 9 families · Fee help from club: 6 families (private)</div>
             </div>
-            <button onClick={() => t('Reminders sent to 25 families.')} style={{ height: 40, padding: '0 16px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Remind 25</button>
+            <button onClick={() => t('Reminders sent to 25 families.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Remind 25</button>
             <div style={{ fontSize: 12, color: MUT, marginTop: 8 }}>Coaches never see who has paid. Nobody is left out of a game over fees.</div>
           </div>
 
@@ -61,7 +61,7 @@ export default function FV1FeesVolunteers(_: { onBack?: () => void }) {
                   <div style={{ fontSize: 13, color: INK }}>{v.duty}</div>
                   <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
                     <div style={{ fontSize: 12, fontWeight: 600, color: v.warn ? '#c05' : G }}>{v.slots}</div>
-                    {v.warn && <button onClick={() => t('Volunteers asked.')} style={{ height: 28, padding: '0 10px', borderRadius: 8, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Ask</button>}
+                    {v.warn && <button onClick={() => t('Volunteers asked.')} style={{ height: 44, padding: '0 10px', borderRadius: 8, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Ask</button>}
                   </div>
                 </div>
               ))}

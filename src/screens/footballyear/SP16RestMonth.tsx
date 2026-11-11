@@ -37,8 +37,8 @@ export default function SP16RestMonth(_: { onBack?: () => void }) {
           <div style={{ fontSize: 14, color: MUT }}>December · nothing scheduled</div>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button onClick={() => setSheet('note')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Read the note to families</button>
-          <button onClick={() => t('Note sent to 17 families.')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Send the note</button>
+          <button onClick={() => setSheet('note')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Read the note to families</button>
+          <button onClick={() => t('Note sent to 17 families.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Send the note</button>
         </div>
       </div>
 
@@ -99,8 +99,8 @@ export default function SP16RestMonth(_: { onBack?: () => void }) {
             "Hi everyone. What a year. Training is done and we won't have any scheduled football until February. The research on growing athletes is pretty clear: a few weeks completely away from organised sport each year is one of the best things for long-term development. So please, don't sign them up for a holiday clinic just to keep them busy — a rest actually works. We'll be in touch in January about registration for 2027. Happy holidays to all families. Sam."
           </div>
           <div style={{ display: 'flex', gap: 8 }}>
-            <button onClick={() => { t('Note sent to 17 families.'); setSheet(null) }} style={{ height: 36, padding: '0 16px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Send this</button>
-            <button onClick={() => setSheet(null)} style={{ height: 36, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Close</button>
+            <button onClick={() => { t('Note sent to 17 families.'); setSheet(null) }} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Send this</button>
+            <button onClick={() => setSheet(null)} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Close</button>
           </div>
         </div>
       )}

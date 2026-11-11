@@ -26,8 +26,8 @@ export default function SP14IndoorTeam(_: { onBack?: () => void }) {
           <div style={{ fontSize: 14, color: MUT }}>Indoor league · Monday nights at Elderberry Park Indoor Centre · 14 September to 30 November</div>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button onClick={() => t('Opening fixtures')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Fixtures</button>
-          <button onClick={() => t("Monday's five and three subs sent to 8 families.")} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Monday's five</button>
+          <button onClick={() => t('Opening fixtures')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Fixtures</button>
+          <button onClick={() => t("Monday's five and three subs sent to 8 families.")} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Monday's five</button>
         </div>
       </div>
 
@@ -84,7 +84,7 @@ export default function SP14IndoorTeam(_: { onBack?: () => void }) {
                   <div style={{ fontSize: 13, fontWeight: 700, color: MUT }}>{item.label}</div>
                   <div style={{ fontSize: 13, color: INK, lineHeight: 1.4 }}>{item.val}</div>
                 </div>
-                {item.action && <button onClick={item.onAct} style={{ height: 32, padding: '0 10px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer', flex: 'none' }}>{item.action}</button>}
+                {item.action && <button onClick={item.onAct} style={{ height: 44, padding: '0 10px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer', flex: 'none' }}>{item.action}</button>}
                 {item.badge && <span style={{ fontSize: 11, fontWeight: 700, padding: '2px 8px', borderRadius: 999, background: '#f0f1ef', color: MUT, flex: 'none' }}>{item.badge}</span>}
               </div>
             ))}

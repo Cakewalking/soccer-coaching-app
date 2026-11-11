@@ -79,8 +79,8 @@ export default function TR1bPitchSideDrill(_: { onBack?: () => void }) {
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '14px 16px' }}>
             <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 8 }}>Tag players</div>
             <div style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
-              <button style={{ flex: 1, height: 40, borderRadius: 10, border: `1px solid ${G}`, background: PALE, color: G, fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>👍 Good</button>
-              <button style={{ flex: 1, height: 40, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>📌 Work on</button>
+              <button style={{ flex: 1, height: 44, borderRadius: 10, border: `1px solid ${G}`, background: PALE, color: G, fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>👍 Good</button>
+              <button style={{ flex: 1, height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>📌 Work on</button>
             </div>
             <div style={{ fontSize: 12, color: MUT, lineHeight: '17px' }}>Tags are added to the drill record and used in next session's suggestions.</div>
           </div>

@@ -219,7 +219,7 @@ export default function SetOurStyleWizard({ onClose }: { onClose: () => void }) 
             <div style={{ fontSize: 20, fontWeight: 700, color: '#ffffff', letterSpacing: '-0.02em' }}>Here's your style</div>
             <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', marginTop: 1 }}>Review and confirm</div>
           </div>
-          <button onClick={next} style={{ height: 40, padding: '0 24px', borderRadius: '999px', border: 0, background: '#c3e6d4', color: '#1f4a3e', fontFamily: 'inherit', fontSize: 14, fontWeight: 800, cursor: 'pointer' }}>Save style</button>
+          <button onClick={next} style={{ height: 44, padding: '0 24px', borderRadius: '999px', border: 0, background: '#c3e6d4', color: '#1f4a3e', fontFamily: 'inherit', fontSize: 14, fontWeight: 800, cursor: 'pointer' }}>Save style</button>
         </div>
 
         {/* Body */}
@@ -232,7 +232,7 @@ export default function SetOurStyleWizard({ onClose }: { onClose: () => void }) 
                 <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '14px 0', borderTop: i > 0 ? '1px solid #e9eae8' : 'none' }}>
                   <div style={{ width: 110, fontSize: 13, fontWeight: 700, color: '#6f7f7b' }}>{row.label}</div>
                   <div style={{ flexGrow: 1, fontSize: 15, fontWeight: 700, color: '#10211f' }}>{row.val}</div>
-                  <button onClick={back} style={{ height: 28, padding: '0 10px', borderRadius: 6, border: '1px solid #e9eae8', background: '#f7f8f7', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Change</button>
+                  <button onClick={back} style={{ height: 44, padding: '0 10px', borderRadius: 6, border: '1px solid #e9eae8', background: '#f7f8f7', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Change</button>
                 </div>
               ))}
             </div>

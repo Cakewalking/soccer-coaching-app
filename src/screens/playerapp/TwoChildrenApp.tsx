@@ -49,7 +49,7 @@ function ChildSection({ card, onSeasonSummary, onAvailability }: { card: ChildCa
           <span style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>{card.name}</span>
           <span style={{ fontSize: 12, color: '#6f7f7b', marginLeft: 6 }}>{card.team}</span>
         </div>
-        <button onClick={onSeasonSummary} style={{ marginLeft: 'auto', height: 32, padding: '0 12px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', color: '#2f6252' }}>Open</button>
+        <button onClick={onSeasonSummary} style={{ marginLeft: 'auto', height: 44, padding: '0 12px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', color: '#2f6252' }}>Open</button>
       </div>
       {card.events.map((e, i) => (
         <div key={i} style={{ display: 'flex', gap: 10, padding: '6px 0', borderTop: '1px solid #e9eae8' }}>
@@ -63,7 +63,7 @@ function ChildSection({ card, onSeasonSummary, onAvailability }: { card: ChildCa
           <div style={{ fontSize: 13, fontWeight: card.todo.cta ? 700 : 400, color: card.todo.cta ? '#c39797' : '#6f7f7b' }}>{card.todo.label}</div>
         </div>
         {card.todo.cta && (
-          <button onClick={onAvailability} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>{card.todo.cta}</button>
+          <button onClick={onAvailability} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>{card.todo.cta}</button>
         )}
       </div>
       {card.note && (

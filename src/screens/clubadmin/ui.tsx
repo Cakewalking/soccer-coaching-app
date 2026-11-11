@@ -45,7 +45,7 @@ export function EmptyCard({ icon, title, desc, cta, sidebarTitle = 'What you\'ll
 export const SubTabBar = ({ items, active, onSelect }: { items: { id: string; label: string }[]; active: string; onSelect: (id: string) => void }) => (
   <div style={{ display: 'flex', borderBottom: '1px solid #e9eae8', background: '#fff', overflowX: 'auto', flexShrink: 0 }}>
     {items.map(t => (
-      <button key={t.id} onClick={() => onSelect(t.id)} style={{ flexShrink: 0, padding: '0 14px', height: 40, border: 0, background: 'transparent', fontFamily: 'inherit', fontSize: 13, fontWeight: active === t.id ? 700 : 400, cursor: 'pointer', color: active === t.id ? '#1f4a3e' : '#6f7f7b', borderBottom: active === t.id ? '2px solid #1f4a3e' : '2px solid transparent', whiteSpace: 'nowrap' }}>{t.label}</button>
+      <button key={t.id} onClick={() => onSelect(t.id)} style={{ flexShrink: 0, padding: '0 14px', height: 44, border: 0, background: 'transparent', fontFamily: 'inherit', fontSize: 13, fontWeight: active === t.id ? 700 : 400, cursor: 'pointer', color: active === t.id ? '#1f4a3e' : '#6f7f7b', borderBottom: active === t.id ? '2px solid #1f4a3e' : '2px solid transparent', whiteSpace: 'nowrap', boxSizing: 'border-box' }}>{t.label}</button>
     ))}
   </div>
 )

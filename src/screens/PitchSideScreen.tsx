@@ -143,7 +143,7 @@ export default function PitchSideScreen({ onClose, empty }: { onClose: () => voi
             <div style={{ fontSize: 20, fontWeight: 700, color: '#ffffff', letterSpacing: '-0.02em' }}>Starter session · Win it back · 60 min</div>
             <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)', marginTop: 1 }}>Before you start</div>
           </div>
-          <button onClick={() => setView('drill')} style={{ height: 40, padding: '0 20px', borderRadius: '999px', border: 0, background: '#40826d', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
+          <button onClick={() => setView('drill')} style={{ height: 44, padding: '0 20px', borderRadius: '999px', border: 0, background: '#40826d', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"/></svg>
             Start the warm-up
           </button>
@@ -158,7 +158,7 @@ export default function PitchSideScreen({ onClose, empty }: { onClose: () => voi
                 <div style={{ marginTop: 8, padding: '12px 16px', background: '#eef5f2', borderRadius: 10 }}>
                   <div style={{ fontSize: 14, fontWeight: 700, color: '#2f6252', marginBottom: 4 }}>No squad yet, no problem</div>
                   <div style={{ fontSize: 13, color: '#1f4a3e', lineHeight: 1.5 }}>Run tonight as a starter session. Add your players later and attendance, load and minutes start counting.</div>
-                  <button onClick={onClose} style={{ marginTop: 10, height: 36, padding: '0 16px', borderRadius: 999, border: 'none', background: '#2f6252', color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Add players</button>
+                  <button onClick={onClose} style={{ marginTop: 10, height: 44, padding: '0 16px', borderRadius: 999, border: 'none', background: '#2f6252', color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Add players</button>
                 </div>
               </div>
             </div>

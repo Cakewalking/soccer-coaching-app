@@ -54,7 +54,7 @@ export default function FC1Concussion(_: { onBack?: () => void }) {
               <span style={{ width: 32, height: 32, borderRadius: '50%', background: PALE, color: G, fontSize: 12, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>MB</span>
               <span><strong style={{ fontSize: 14 }}>Marco Bellini</strong><br /><span style={{ fontSize: 12, color: MUT }}>Club physio</span></span>
             </div>
-            <button style={{ height: 40, borderRadius: 10, border: `1px solid #c5c8c4`, background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Contact Marco</button>
+            <button style={{ height: 44, borderRadius: 10, border: `1px solid #c5c8c4`, background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Contact Marco</button>
           </div>
           <div style={{ background: '#fff', border: `1px solid #c5c8c4`, borderRadius: 16, padding: '14px 16px', display: 'flex', flexDirection: 'column' as const, gap: 6 }}>
             <div style={{ fontSize: 15, fontWeight: 700 }}>This season</div>

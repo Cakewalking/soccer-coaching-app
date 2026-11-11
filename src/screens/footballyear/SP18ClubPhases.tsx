@@ -27,8 +27,8 @@ export default function SP18ClubPhases(_: { onBack?: () => void }) {
           <div style={{ fontSize: 14, color: MUT }}>Wattle Creek FC · Thu 12 March · pre-season</div>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button onClick={() => setSheet('spdates')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Change the dates</button>
-          <button onClick={() => t('Nudge sent to the coaches of U12 Luke and U14 Josh.')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Nudge teams that are behind</button>
+          <button onClick={() => setSheet('spdates')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Change the dates</button>
+          <button onClick={() => t('Nudge sent to the coaches of U12 Luke and U14 Josh.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Nudge teams that are behind</button>
         </div>
       </div>
 
@@ -77,7 +77,7 @@ export default function SP18ClubPhases(_: { onBack?: () => void }) {
       <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '16px 20px', marginBottom: 16 }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
           <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>Who does what in pre-season</div>
-          <button onClick={() => setSheet('spjobs')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Other parts of the year</button>
+          <button onClick={() => setSheet('spjobs')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Other parts of the year</button>
         </div>
         {[
           { badge: 'D', role: 'Director',         desc: 'Dates, trial rules, coaches for every team' },
@@ -103,8 +103,8 @@ export default function SP18ClubPhases(_: { onBack?: () => void }) {
           <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 4 }}>Dates for the football year</div>
           <div style={{ fontSize: 13, color: MUT, marginBottom: 16 }}>U12 Sam · the club's dates are filled in</div>
           <div style={{ display: 'flex', gap: 8 }}>
-            <button onClick={() => { t('Dates saved. Home changes on each date.'); setSheet(null) }} style={{ height: 36, padding: '0 16px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Save dates</button>
-            <button onClick={() => setSheet(null)} style={{ height: 36, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Cancel</button>
+            <button onClick={() => { t('Dates saved. Home changes on each date.'); setSheet(null) }} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Save dates</button>
+            <button onClick={() => setSheet(null)} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Cancel</button>
           </div>
         </div>
       )}
@@ -122,7 +122,7 @@ export default function SP18ClubPhases(_: { onBack?: () => void }) {
               <div style={{ fontSize: 13, color: MUT, lineHeight: 1.4 }}>{r.desc}</div>
             </div>
           ))}
-          <button onClick={() => { t('Closed.'); setSheet(null) }} style={{ height: 36, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', marginTop: 14 }}>Done</button>
+          <button onClick={() => { t('Closed.'); setSheet(null) }} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', marginTop: 14 }}>Done</button>
         </div>
       )}
 

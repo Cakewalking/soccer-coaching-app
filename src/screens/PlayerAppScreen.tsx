@@ -330,8 +330,8 @@ export default function PlayerAppScreen({ empty }: { empty?: boolean }) {
                 autoFocus
               />
               <div style={{ display: 'flex', gap: 8 }}>
-                <button onClick={() => { setShowAddGoal(false); setNewGoalText('') }} style={{ flex: 1, height: 36, borderRadius: 10, border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>Cancel</button>
-                <button onClick={() => { setShowAddGoal(false); setNewGoalText('') }} style={{ flex: 2, height: 36, borderRadius: 10, border: 0, background: '#2f6252', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, color: '#fff', cursor: 'pointer' }}>Save goal</button>
+                <button onClick={() => { setShowAddGoal(false); setNewGoalText('') }} style={{ flex: 1, height: 44, borderRadius: 10, border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>Cancel</button>
+                <button onClick={() => { setShowAddGoal(false); setNewGoalText('') }} style={{ flex: 2, height: 44, borderRadius: 10, border: 0, background: '#2f6252', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, color: '#fff', cursor: 'pointer' }}>Save goal</button>
               </div>
             </div>
           ) : (
@@ -394,8 +394,8 @@ export default function PlayerAppScreen({ empty }: { empty?: boolean }) {
                   </div>
                 </div>
                 <div style={{ display: 'flex', gap: 8 }}>
-                  <button style={{ flex: 1, height: 40, borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>{"Yes, Mia's in"}</button>
-                  <button style={{ flex: 1, height: 40, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>{"Can't make it"}</button>
+                  <button style={{ flex: 1, height: 44, borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>{"Yes, Mia's in"}</button>
+                  <button style={{ flex: 1, height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>{"Can't make it"}</button>
                 </div>
               </div>
             ))}
@@ -479,9 +479,9 @@ export default function PlayerAppScreen({ empty }: { empty?: boolean }) {
             <div style={{ fontSize: 24, fontWeight: 800, color: '#fff' }}>Hi Mia</div>
           </div>
           <div style={{ display: 'flex', gap: 6 }}>
-            <button onClick={() => setView('young-news')} style={{ height: 32, padding: '0 12px', borderRadius: '999px', border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: 'rgba(255,255,255,0.8)', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>News</button>
-            <button onClick={() => setView('parent-chat')} style={{ height: 32, padding: '0 12px', borderRadius: '999px', border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: 'rgba(255,255,255,0.8)', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Messages</button>
-            <button onClick={() => setView('parent')} style={{ height: 32, padding: '0 12px', borderRadius: '999px', border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: 'rgba(255,255,255,0.8)', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Mia's week →</button>
+            <button onClick={() => setView('young-news')} style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: 'rgba(255,255,255,0.8)', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>News</button>
+            <button onClick={() => setView('parent-chat')} style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: 'rgba(255,255,255,0.8)', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Messages</button>
+            <button onClick={() => setView('parent')} style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: 'rgba(255,255,255,0.8)', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Mia's week →</button>
           </div>
         </div>
       </div>

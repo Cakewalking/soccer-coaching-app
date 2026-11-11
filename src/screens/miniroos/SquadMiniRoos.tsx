@@ -65,12 +65,12 @@ export default function SquadMiniRoos({ empty }: { empty?: boolean }) {
         <h1 style={{ margin: 0, fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em' }}>Squad</h1>
         <span style={{ fontSize: 14, color: '#4a5a57' }}>10 players · U9 Tom · 7 coming Saturday, 1 maybe, 1 away, 1 to answer</span>
         <div style={{ flexGrow: 1 }} />
-        <button style={{ height: 36, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Remind 1 family</button>
-        <button style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>+ Add a player</button>
+        <button style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Remind 1 family</button>
+        <button style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>+ Add a player</button>
       </div>
       <div style={{ display: 'flex', gap: 0, borderBottom: '1px solid #e9eae8', marginBottom: 10 }}>
         {([['players', 'Players'], ['coming', "Who's coming"], ['consent', 'Consent']] as [SquadTab, string][]).map(([id, label]) => (
-          <button key={id} onClick={() => setSquadTab(id)} style={{ height: 38, padding: '0 16px', border: 0, background: 'transparent', fontFamily: 'inherit', fontSize: 14, fontWeight: squadTab === id ? 700 : 500, color: squadTab === id ? '#10211f' : '#6f7f7b', cursor: 'pointer', borderBottom: squadTab === id ? '2px solid #40826d' : '2px solid transparent' }}>{label}</button>
+          <button key={id} onClick={() => setSquadTab(id)} style={{ height: 44, padding: '0 16px', border: 0, background: 'transparent', fontFamily: 'inherit', fontSize: 14, fontWeight: squadTab === id ? 700 : 500, color: squadTab === id ? '#10211f' : '#6f7f7b', cursor: 'pointer', borderBottom: squadTab === id ? '2px solid #40826d' : '2px solid transparent' }}>{label}</button>
         ))}
       </div>
     </div>

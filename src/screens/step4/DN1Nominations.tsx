@@ -48,7 +48,7 @@ export default function DN1Nominations(_: { onBack?: () => void }) {
               <div style={{ fontSize: 12, color: MUT }}>{n.team}</div>
               <div style={{ fontSize: 12, color: INK }}>{n.reason}</div>
               <div style={{ fontSize: 12, fontWeight: 600, color: G }}>{n.suggestion}</div>
-              <button onClick={() => t(`Talk to ${n.player.split(' ')[0]}'s family.`)} style={{ height: 32, padding: '0 10px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Talk to family</button>
+              <button onClick={() => t(`Talk to ${n.player.split(' ')[0]}'s family.`)} style={{ height: 44, padding: '0 10px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Talk to family</button>
             </div>
           ))}
         </div>

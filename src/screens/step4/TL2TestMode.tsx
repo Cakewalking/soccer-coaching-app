@@ -27,7 +27,7 @@ export default function TL2TestMode(_: { onBack?: () => void }) {
       <div style={{ height: 60, background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 16, flex: 'none' }}>
         <div style={{ fontSize: 21, fontWeight: 700, color: '#fff', letterSpacing: '-0.02em' }}>Clean Sheet</div>
         <div style={{ flex: 1, fontSize: 14, color: 'rgba(255,255,255,0.75)', fontWeight: 600 }}>20 m sprint race · U12 Sam</div>
-        <button style={{ height: 40, padding: '0 16px', borderRadius: 10, border: `1px solid rgba(255,255,255,0.3)`, background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Finish early</button>
+        <button style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid rgba(255,255,255,0.3)`, background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Finish early</button>
       </div>
       <div style={{ flex: 1, minHeight: 0, padding: '16px 28px 18px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 320px', gap: 16 }}>
         <div style={{ background: '#fff', border: `1px solid #c5c8c4`, borderRadius: 20, padding: '24px 28px', display: 'flex', flexDirection: 'column' as const, alignItems: 'center', justifyContent: 'center', gap: 12 }}>

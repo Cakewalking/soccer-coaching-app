@@ -107,8 +107,8 @@ export function ClipDetail({ clip }: { clip: GameClip }) {
         <button style={{ height: 44, borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Add to team talk</button>
         <button style={{ height: 44, borderRadius: 10, border: 0, background: '#40826d', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Send to {clip.players.length} players</button>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button style={{ flex: 1, height: 40, borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>Add to playlist</button>
-          <button style={{ flex: 1, height: 40, borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>Draw on it</button>
+          <button style={{ flex: 1, height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>Add to playlist</button>
+          <button style={{ flex: 1, height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>Draw on it</button>
         </div>
       </div>
     </div>

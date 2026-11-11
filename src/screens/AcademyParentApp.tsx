@@ -225,7 +225,7 @@ function ParentHome({ empty, onCantCome, onShare, onConcern, onChat }: {
 
   return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '20px 16px 24px', display: 'flex', flexDirection: 'column', gap: 14 }}>
-      <PHeader title="Hi, Mia" right={<button onClick={onChat} style={{ padding: '0 12px', height: 32, borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 700, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>Group chat</button>}/>
+      <PHeader title="Hi, Mia" right={<button onClick={onChat} style={{ padding: '0 12px', height: 44, borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 700, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>Group chat</button>}/>
 
       <div>
         <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 8 }}>Kai's week · Term 2 week 7</div>
@@ -365,7 +365,7 @@ function ProgressView({ empty }: { empty: boolean }) {
             <div style={{ fontSize: 13, fontWeight: 700, color: INK }}>Coach clip</div>
             <div style={{ fontSize: 12, color: MUT }}>23 Apr · 48 seconds · Kai approved to share clips</div>
           </div>
-          <button style={{ padding: '0 14px', height: 36, borderRadius: 999, border: `1px solid ${G}`, background: 'transparent', color: G, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Play</button>
+          <button style={{ padding: '0 14px', height: 44, borderRadius: 999, border: `1px solid ${G}`, background: 'transparent', color: G, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Play</button>
         </div>
       </Card>
 
@@ -641,7 +641,7 @@ export default function AcademyParentApp({ onBack, empty = false }: { onBack: ()
       <div style={{ background: GD, padding: '12px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexShrink: 0 }}>
         <span style={{ fontSize: 16, fontWeight: 800, color: '#fff', letterSpacing: '-0.02em' }}>Clean Sheet</span>
         <span style={{ fontSize: 12, fontWeight: 600, color: 'rgba(255,255,255,0.7)' }}>Kai's family</span>
-        <button onClick={onBack} style={{ height: 28, padding: '0 10px', borderRadius: 999, border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: 'rgba(255,255,255,0.75)', fontSize: 11, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>← Back</button>
+        <button onClick={onBack} style={{ height: 44, padding: '0 10px', borderRadius: 999, border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: 'rgba(255,255,255,0.75)', fontSize: 11, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>← Back</button>
       </div>
       {content}
     </div>

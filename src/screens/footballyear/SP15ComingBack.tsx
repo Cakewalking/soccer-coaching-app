@@ -40,8 +40,8 @@ export default function SP15ComingBack(_: { onBack?: () => void }) {
           <div style={{ fontSize: 14, color: MUT }}>Who is coming back for 2027</div>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button onClick={() => setSheet('remind')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Remind those who haven't replied</button>
-          <button onClick={() => t('Squad list saved. Director can see it.')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Save for the director</button>
+          <button onClick={() => setSheet('remind')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Remind those who haven't replied</button>
+          <button onClick={() => t('Squad list saved. Director can see it.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Save for the director</button>
         </div>
       </div>
 
@@ -126,8 +126,8 @@ export default function SP15ComingBack(_: { onBack?: () => void }) {
           <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 14 }}>Send a reminder</div>
           <div style={{ fontSize: 13, color: MUT, marginBottom: 14 }}>To Connor, Priya and Jamie — a quick message asking if they're coming back.</div>
           <div style={{ display: 'flex', gap: 8 }}>
-            <button onClick={() => { t('Reminder sent to 3 families.'); setSheet(null) }} style={{ height: 36, padding: '0 16px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Send</button>
-            <button onClick={() => setSheet(null)} style={{ height: 36, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Cancel</button>
+            <button onClick={() => { t('Reminder sent to 3 families.'); setSheet(null) }} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Send</button>
+            <button onClick={() => setSheet(null)} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Cancel</button>
           </div>
         </div>
       )}

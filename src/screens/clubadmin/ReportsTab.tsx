@@ -40,8 +40,8 @@ export default function ReportsTab({ empty }: { empty?: boolean }) {
               <div style={{ fontSize: 12, color: '#6f7f7b' }}>May 2026 · written by Clean Sheet from this month's data · edit before you send</div>
             </div>
             <div style={{ display: 'flex', gap: 8 }}>
-              <button style={{ height: 36, padding: '0 14px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>Edit</button>
-              <button style={{ height: 36, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Send to committee</button>
+              <button style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>Edit</button>
+              <button style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Send to committee</button>
             </div>
           </div>
 
@@ -84,7 +84,7 @@ export default function ReportsTab({ empty }: { empty?: boolean }) {
 
           <div style={{ display: 'flex', gap: 8, marginBottom: 14 }}>
             {['Headline numbers', 'Results by team', 'Safeguarding', 'Kit and spending', 'Player names'].map((t, i) => (
-              <button key={t} style={{ height: 32, padding: '0 12px', borderRadius: '999px', border: `1px solid ${i === 0 ? '#1f4a3e' : '#e9eae8'}`, background: i === 0 ? '#1f4a3e' : '#fff', color: i === 0 ? '#fff' : '#6f7f7b', fontFamily: 'inherit', fontSize: 12, fontWeight: i === 0 ? 700 : 400, cursor: 'pointer' }}>{t}</button>
+              <button key={t} style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: `1px solid ${i === 0 ? '#1f4a3e' : '#e9eae8'}`, background: i === 0 ? '#1f4a3e' : '#fff', color: i === 0 ? '#fff' : '#6f7f7b', fontFamily: 'inherit', fontSize: 12, fontWeight: i === 0 ? 700 : 400, cursor: 'pointer' }}>{t}</button>
             ))}
           </div>
 
@@ -119,7 +119,7 @@ export default function ReportsTab({ empty }: { empty?: boolean }) {
                   <div style={{ fontSize: 13, color: '#4a5a57', marginBottom: 10, lineHeight: 1.5 }}>{g.body}</div>
                   {g.action && (
                     <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                      <button style={{ height: 32, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>{g.action}</button>
+                      <button style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>{g.action}</button>
                       {g.daysLeft && <span style={{ fontSize: 12, color: '#6f7f7b' }}>{g.daysLeft} days left</span>}
                     </div>
                   )}
@@ -197,7 +197,7 @@ export default function ReportsTab({ empty }: { empty?: boolean }) {
                       <span style={{ fontSize: 13, fontWeight: 700, color: r.ok ? '#40826d' : '#c39797' }}>{r.value}</span>
                     </div>
                     {r.action && (
-                      <button style={{ marginTop: 6, height: 28, padding: '0 10px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>{r.action}</button>
+                      <button style={{ marginTop: 6, height: 44, padding: '0 10px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>{r.action}</button>
                     )}
                   </div>
                 ))}
@@ -217,7 +217,7 @@ export default function ReportsTab({ empty }: { empty?: boolean }) {
               <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>Season review · Spring 2026</div>
               <div style={{ fontSize: 12, color: '#6f7f7b' }}>Generated from the season's data · 2 rounds left · share after the final</div>
             </div>
-            <button style={{ height: 36, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Share season review</button>
+            <button style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Share season review</button>
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 300px', gap: 20 }}>
@@ -298,7 +298,7 @@ export default function ReportsTab({ empty }: { empty?: boolean }) {
             <div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
                 <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>Outstanding accounts · 14</div>
-                <button style={{ height: 32, padding: '0 12px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>Send all invoices</button>
+                <button style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>Send all invoices</button>
               </div>
               {[
                 { ini: 'EB', name: 'Ella Brennan', team: 'U14 Sam', amount: '$180', days: 42, sent: 2 },
@@ -314,7 +314,7 @@ export default function ReportsTab({ empty }: { empty?: boolean }) {
                   </div>
                   <div style={{ textAlign: 'right' }}>
                     <div style={{ fontSize: 14, fontWeight: 800, color: '#c39797' }}>{a.amount}</div>
-                    <button style={{ height: 24, padding: '0 10px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 11, cursor: 'pointer', marginTop: 4 }}>Send invoice</button>
+                    <button style={{ height: 44, padding: '0 10px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 11, cursor: 'pointer', marginTop: 4 }}>Send invoice</button>
                   </div>
                 </div>
               ))}

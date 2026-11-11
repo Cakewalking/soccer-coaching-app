@@ -59,7 +59,7 @@ export function SegmentRow({ title, desc, options, active }: { title: string; de
       </span>
       <span style={{ display: 'flex', gap: 2, padding: 3, borderRadius: 12, background: '#e9eae8', flexShrink: 0 }}>
         {options.map((o, i) => (
-          <button key={i} onClick={() => setSel(i)} style={{ height: 38, padding: '0 14px', borderRadius: 9, fontSize: 14, border: 0, cursor: 'pointer', fontFamily: 'inherit', background: sel === i ? '#fff' : 'transparent', fontWeight: sel === i ? 700 : 600, color: sel === i ? '#10211f' : '#4a5a57', boxShadow: sel === i ? '0 1px 2px rgba(16,33,31,0.12)' : 'none' }}>{o}</button>
+          <button key={i} onClick={() => setSel(i)} style={{ height: 44, padding: '0 14px', borderRadius: 9, fontSize: 14, border: 0, cursor: 'pointer', fontFamily: 'inherit', background: sel === i ? '#fff' : 'transparent', fontWeight: sel === i ? 700 : 600, color: sel === i ? '#10211f' : '#4a5a57', boxShadow: sel === i ? '0 1px 2px rgba(16,33,31,0.12)' : 'none' }}>{o}</button>
         ))}
       </span>
     </div>

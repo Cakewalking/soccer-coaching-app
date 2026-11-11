@@ -78,8 +78,8 @@ export default function PM8ParentReadOnly(_: { onBack?: () => void }) {
       <div style={{ background: '#fff', borderTop: `1px solid ${LN}`, padding: '12px 14px', display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
         <span style={{ fontSize: 16, flexShrink: 0 }}>🔒</span>
         <span style={{ fontSize: 13, color: MUT, flex: 1 }}>Only coaches and manager can post</span>
-        <button onClick={() => t('Message sent privately.')} style={{ height: 36, padding: '0 12px', borderRadius: 20, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', color: INK, whiteSpace: 'nowrap' as const }}>Message Sam K</button>
-        <button onClick={() => t('Message sent privately.')} style={{ height: 36, padding: '0 12px', borderRadius: 20, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap' as const }}>Message Ben</button>
+        <button onClick={() => t('Message sent privately.')} style={{ height: 44, padding: '0 12px', borderRadius: 20, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', color: INK, whiteSpace: 'nowrap' as const }}>Message Sam K</button>
+        <button onClick={() => t('Message sent privately.')} style={{ height: 44, padding: '0 12px', borderRadius: 20, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap' as const }}>Message Ben</button>
       </div>
 
       {toast && <div style={{ position: 'absolute', left: '50%', bottom: 28, transform: 'translateX(-50%)', background: GD, color: '#fff', padding: '12px 16px', borderRadius: 14, fontSize: 15, fontWeight: 600, zIndex: 60, whiteSpace: 'nowrap' as const }}>{toast}</div>}

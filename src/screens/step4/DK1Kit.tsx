@@ -35,7 +35,7 @@ export default function DK1Kit(_: { onBack?: () => void }) {
             <div style={{ fontSize: 20, fontWeight: 800, letterSpacing: '-0.02em', color: INK, marginBottom: 4 }}>Kit and cameras</div>
             <div style={{ fontSize: 13, color: MUT }}>Shared between all 14 teams · book through each team manager</div>
           </div>
-          <button onClick={() => t('Add kit form would open.')} style={{ height: 40, padding: '0 16px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>+ Add kit</button>
+          <button onClick={() => t('Add kit form would open.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>+ Add kit</button>
         </div>
 
         {/* Summary cards */}

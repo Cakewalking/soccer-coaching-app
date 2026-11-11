@@ -55,8 +55,8 @@ export default function T1sHomeSunday(_: { onBack?: () => void }) {
             <div style={{ fontSize: 16, fontWeight: 800, color: INK, marginBottom: 4 }}>Match review · rest day</div>
             <div style={{ fontSize: 13, color: MUT, marginBottom: 10 }}>Review Saturday · plan next week · 7 clips to tag</div>
             <div style={{ display: 'flex', gap: 10, marginTop: 14 }}>
-              <button style={{ flex: 1, height: 40, borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Open the review</button>
-              <button style={{ flex: 1, height: 40, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Plan next week</button>
+              <button style={{ flex: 1, height: 44, borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Open the review</button>
+              <button style={{ flex: 1, height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Plan next week</button>
             </div>
           </div>
         </div>

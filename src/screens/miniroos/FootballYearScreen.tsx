@@ -45,7 +45,7 @@ export default function FootballYearScreen({ onBack }: { onBack: () => void }) {
           <div style={{ fontSize: 24, fontWeight: 700, color: INK, letterSpacing: '-0.02em' }}>The football year</div>
           <div style={{ fontSize: 13, color: MUT }}>U9 Tom · MiniRoos keep it simpler</div>
         </div>
-        <button style={{ marginLeft: 'auto', height: 36, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', color: G2, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Add a gala day</button>
+        <button style={{ marginLeft: 'auto', height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', color: G2, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Add a gala day</button>
       </div>
 
       {/* Come-and-try note */}
@@ -54,7 +54,7 @@ export default function FootballYearScreen({ onBack }: { onBack: () => void }) {
           <div style={{ fontSize: 14, fontWeight: 700, color: GD }}>Come-and-try day</div>
           <div style={{ fontSize: 12, color: G }}>Sat 28 March · Wattle Creek Reserve</div>
         </div>
-        <button style={{ height: 32, padding: '0 12px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Details</button>
+        <button style={{ height: 44, padding: '0 12px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Details</button>
       </div>
 
       {/* Four parts heading */}

@@ -76,7 +76,7 @@ function NewPollView({ onBack }: { onBack: () => void }) {
       <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: MUT }}>Start from</div>
       <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' as const }}>
         {["Who can help?", "Who's coming?", "Your own"].map(p => (
-          <button key={p} onClick={() => setPreset(p)} style={{ height: 32, padding: '0 12px', borderRadius: 999, border: `1px solid ${preset === p ? G : LN}`, background: preset === p ? G : '#fff', color: preset === p ? '#fff' : MUT, fontSize: 13, fontWeight: preset === p ? 700 : 400, cursor: 'pointer', fontFamily: 'inherit' }}>{p}</button>
+          <button key={p} onClick={() => setPreset(p)} style={{ height: 44, padding: '0 12px', borderRadius: 999, border: `1px solid ${preset === p ? G : LN}`, background: preset === p ? G : '#fff', color: preset === p ? '#fff' : MUT, fontSize: 13, fontWeight: preset === p ? 700 : 400, cursor: 'pointer', fontFamily: 'inherit' }}>{p}</button>
         ))}
       </div>
       <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: MUT }}>Question</div>
@@ -166,18 +166,18 @@ function ManagerTeamChatView({ onBack, onNewPoll, onSetup }: { onBack: () => voi
           <div style={{ background: '#f5f6f4', borderRadius: 12, padding: '8px 12px', marginLeft: 34, fontSize: 14, color: INK, lineHeight: 1.5 }}>Why does Ruby only ever get one half? Some kids never come off.</div>
         </div>
         <div style={{ marginLeft: 34, marginBottom: 14 }}>
-          <button style={{ height: 28, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: ROSE, cursor: 'pointer', fontFamily: 'inherit' }}>Move this out of the group</button>
+          <button style={{ height: 44, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: ROSE, cursor: 'pointer', fontFamily: 'inherit' }}>Move this out of the group</button>
         </div>
       </div>
       <div style={{ background: '#fff', borderTop: `1px solid ${LN}`, padding: '8px 14px 10px', flexShrink: 0 }}>
         <div style={{ display: 'flex', gap: 6, marginBottom: 6 }}>
-          <button onClick={onNewPoll} style={{ height: 30, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>Poll</button>
-          <button style={{ height: 30, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>Announce</button>
-          <button style={{ height: 30, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>Pinned</button>
+          <button onClick={onNewPoll} style={{ height: 44, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>Poll</button>
+          <button style={{ height: 44, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>Announce</button>
+          <button style={{ height: 44, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>Pinned</button>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
           <input placeholder="Write to the team chat" style={{ flex: 1, height: 38, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, fontSize: 14, fontFamily: 'inherit', outline: 'none', color: INK, background: '#fafafa' }}/>
-          <button style={{ height: 38, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Send</button>
+          <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Send</button>
         </div>
       </div>
     </div>

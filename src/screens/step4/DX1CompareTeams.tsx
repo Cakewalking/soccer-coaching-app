@@ -76,7 +76,7 @@ export default function DX1CompareTeams(_: { onBack?: () => void }) {
             <div style={{ background: PALE, borderRadius: 12, padding: '14px 14px', fontSize: 13, color: GD, lineHeight: 1.6 }}>
               {ta.playingPct < tb.playingPct ? `${a} is 29 percentage points behind ${b} on playing our way. Consider reviewing session plans with ${ta.coach}.` : `${a} leads ${b} on playing our way. ${ta.coach} may have useful session ideas to share.`}
             </div>
-            <button onClick={() => t('Suggestion sent to both coaches.')} style={{ width: '100%', height: 40, borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer', marginTop: 12 }}>Suggest a conversation</button>
+            <button onClick={() => t('Suggestion sent to both coaches.')} style={{ width: '100%', height: 44, borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer', marginTop: 12 }}>Suggest a conversation</button>
           </div>
         </div>
       </div>

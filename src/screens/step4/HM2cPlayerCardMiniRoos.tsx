@@ -40,7 +40,7 @@ export default function HM2cPlayerCardMiniRoos({onBack,onNote}:{onBack?:()=>void
                 <span style={{fontSize:13,color:INK,lineHeight:1.5}}>{note}</span>
               </div>
             ))}
-            <button onClick={()=>t('Adding note')} style={{marginTop:12,height:36,padding:'0 14px',borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:G,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>+ Add note</button>
+            <button onClick={()=>t('Adding note')} style={{marginTop:12,height: 44,padding:'0 14px',borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:G,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>+ Add note</button>
           </div>
           <div style={{background:'#fff',border:`1px solid ${LN}`,borderRadius:14,padding:'14px 16px',marginBottom:16}}>
             <div style={{fontSize:14,fontWeight:700,color:INK,marginBottom:4}}>Quiet on 23 May</div>

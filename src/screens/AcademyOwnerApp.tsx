@@ -35,7 +35,7 @@ function Badge({ label, color = G, bg = PALE }: { label: string; color?: string;
 
 function Btn({ label, primary, small, onClick }: { label: string; primary?: boolean; small?: boolean; onClick?: () => void }) {
   return (
-    <button onClick={onClick} style={{ height: small ? 32 : 40, padding: `0 ${small ? 12 : 18}px`, borderRadius: 999, border: primary ? 'none' : `1px solid ${LN}`, background: primary ? G : '#fff', color: primary ? '#fff' : MUT, fontSize: small ? 12 : 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>{label}</button>
+    <button onClick={onClick} style={{ height: 44, padding: `0 ${small ? 12 : 18}px`, borderRadius: 999, border: primary ? 'none' : `1px solid ${LN}`, background: primary ? G : '#fff', color: primary ? '#fff' : MUT, fontSize: small ? 12 : 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>{label}</button>
   )
 }
 
@@ -60,6 +60,8 @@ function PageHead({ title, sub, right }: { title: string; sub?: string; right?: 
 function Overview({ empty, onBroadcast, onTrials, onFees, onReports, onFootballYear }: {
   empty: boolean; onBroadcast: () => void; onTrials: () => void; onFees: () => void; onReports: () => void; onFootballYear: () => void
 }) {
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   if (empty) return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '20px 28px 32px', display: 'flex', flexDirection: 'column', gap: 16 }}>
       <PageHead title="Welcome, Dani" sub="Tall Timber Football Academy · nothing set up yet"/>
@@ -87,7 +89,7 @@ function Overview({ empty, onBroadcast, onTrials, onFees, onReports, onFootballY
   const needs = [
     { n: '1', title: '3 trial families are waiting on an offer', note: 'They came last week. Offers sent within 2 days are taken up most often', cta: 'Send offers', onClick: onTrials },
     { n: '2', title: '4 families are behind on term fees', note: '$1,160 in total · the oldest is 3 weeks late', cta: 'See who', onClick: onFees },
-    { n: '3', title: "Ben's children check runs out on 30 June", note: "He can't coach after that until it's renewed", cta: 'Remind Ben', onClick: () => {} },
+    { n: '3', title: "Ben's children check runs out on 30 June", note: "He can't coach after that until it's renewed", cta: 'Remind Ben', onClick: () => showToast('Reminder sent to Ben.') },
   ]
 
   const today = [
@@ -99,7 +101,7 @@ function Overview({ empty, onBroadcast, onTrials, onFees, onReports, onFootballY
   return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '20px 28px 32px', display: 'flex', flexDirection: 'column', gap: 16 }}>
       <PageHead title="Hi Dani" sub="Thursday 4 June · Term 2, week 7 of 10"
-        right={<><Btn label="Message families" small onClick={onBroadcast}/><Btn label="Share the trial link" small/><Btn label="+ New program" small primary/></>}/>
+        right={<><Btn label="Message families" small onClick={onBroadcast}/><Btn label="Share the trial link" small onClick={() => showToast('Trial link copied. Anyone with it can book a free trial.')}/><Btn label="+ New program" small primary onClick={() => showToast('Opening the new program form.')}/></>}/>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10 }}>
         {stats.map(s => <Stat key={s.label} {...s}/>)}
@@ -117,7 +119,7 @@ function Overview({ empty, onBroadcast, onTrials, onFees, onReports, onFootballY
               <div style={{ fontSize: 14, fontWeight: 700, color: INK }}>{n.title}</div>
               <div style={{ fontSize: 12, color: MUT }}>{n.note}</div>
             </div>
-            <button onClick={n.onClick} style={{ height: 32, padding: '0 12px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>{n.cta}</button>
+            <button onClick={n.onClick} style={{ height: 44, padding: '0 12px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>{n.cta}</button>
           </div>
         ))}
       </Card>
@@ -143,6 +145,9 @@ function Overview({ empty, onBroadcast, onTrials, onFees, onReports, onFootballY
       </div>
 
       <button onClick={onFootballYear} style={{ alignSelf: 'flex-start', fontSize: 13, fontWeight: 600, color: G2, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>The football year →</button>
+      {toast && (
+        <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>
+      )}
     </div>
   )
 }
@@ -186,7 +191,7 @@ function TrialsView({ empty }: { empty: boolean }) {
                   <div style={{ fontSize: 14, fontWeight: 700, color: INK }}>{item.name}</div>
                   <div style={{ fontSize: 12, color: MUT }}>{item.note}</div>
                 </div>
-                {section.cta && <button style={{ height: 30, padding: '0 12px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>{section.cta}</button>}
+                {section.cta && <button style={{ height: 44, padding: '0 12px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>{section.cta}</button>}
               </div>
             ))}
             {section.note && <div style={{ padding: '10px 14px', borderTop: `1px solid ${LN}`, fontSize: 12, color: MUT }}>{section.note}</div>}
@@ -789,7 +794,7 @@ function BroadcastView({ empty, onBack }: { empty: boolean; onBack: () => void }
           </div>
           <div style={{ padding: '12px 16px', display: 'flex', gap: 8, borderBottom: `1px solid ${LN}` }}>
             {['Photo', 'Video', 'File', 'Poll', 'Booking link'].map(a => (
-              <button key={a} style={{ height: 32, padding: '0 10px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>{a}</button>
+              <button key={a} style={{ height: 44, padding: '0 10px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>{a}</button>
             ))}
           </div>
           <div style={{ padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: 8, fontSize: 13 }}>
@@ -948,7 +953,7 @@ export default function AcademyOwnerApp({ onBack, empty = false }: { onBack: () 
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
             <span style={{ fontSize: 14, fontWeight: 600, color: 'rgba(255,255,255,0.8)' }}>Tall Timber Academy</span>
             <div style={{ width: 40, height: 40, borderRadius: '50%', background: ROSE, color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>DO</div>
-            <button onClick={onBack} style={{ height: 32, padding: '0 12px', borderRadius: 999, border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: 'rgba(255,255,255,0.8)', fontSize: 12, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>← Coach view</button>
+            <button onClick={onBack} style={{ height: 44, padding: '0 12px', borderRadius: 999, border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: 'rgba(255,255,255,0.8)', fontSize: 12, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>← Coach view</button>
           </div>
         </div>
         {contextTabs.length > 0 && (

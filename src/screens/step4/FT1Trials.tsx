@@ -30,7 +30,7 @@ export default function FT1Trials(_: { onBack?: () => void }) {
             <div style={{ fontSize: 20, fontWeight: 800, letterSpacing: '-0.02em', color: INK, marginBottom: 2 }}>Trials</div>
             <div style={{ fontSize: 13, color: MUT }}>Run trials, score players, and send offers kindly</div>
           </div>
-          <button onClick={() => t('Set up trial form would open.')} style={{ height: 40, padding: '0 16px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Set up a trial</button>
+          <button onClick={() => t('Set up trial form would open.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Set up a trial</button>
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 320px', gap: 24 }}>
@@ -51,14 +51,14 @@ export default function FT1Trials(_: { onBack?: () => void }) {
                   <div style={{ fontSize: 15, fontWeight: 700, color: GD }}>{p.game}</div>
                   <div style={{ fontSize: 15, fontWeight: 700, color: GD }}>{p.effort}</div>
                   <div style={{ fontSize: 12, fontWeight: 600, color: p.suggestion === 'Not this time' ? MUT : G }}>{p.suggestion}</div>
-                  <button onClick={() => t(`Reply sent kindly to ${p.name.split(' ')[0]}.`)} style={{ height: 32, padding: '0 10px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Reply</button>
+                  <button onClick={() => t(`Reply sent kindly to ${p.name.split(' ')[0]}.`)} style={{ height: 44, padding: '0 10px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Reply</button>
                 </div>
               ))}
             </div>
 
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <div style={{ fontSize: 12, color: MUT }}>Every player hears back, using the club's kind message. Scores are never shared.</div>
-              <button onClick={() => t('14 replies sent kindly.')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Send 14 replies</button>
+              <button onClick={() => t('14 replies sent kindly.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Send 14 replies</button>
             </div>
           </div>
 

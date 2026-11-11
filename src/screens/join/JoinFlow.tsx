@@ -146,7 +146,7 @@ export default function JoinFlow({ initialStep = 'landing' }: { initialStep?: Jo
             <div style={{ marginBottom: 14 }}>
               <label style={{ display: 'block', fontSize: 13, fontWeight: 700, color: INK, marginBottom: 8 }}>Your relationship to Mia</label>
               {(['Mum', 'Dad', 'Carer'] as const).map(rel => (
-                <button key={rel} style={{ marginRight: 8, height: 36, padding: '0 16px', borderRadius: 20, border: rel === 'Mum' ? '2px solid #2f6252' : '1.5px solid #d4d7d4', background: rel === 'Mum' ? '#eef5f2' : '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: rel === 'Mum' ? 700 : 400, color: rel === 'Mum' ? G : INK, cursor: 'pointer' }}>{rel}</button>
+                <button key={rel} style={{ marginRight: 8, height: 44, padding: '0 16px', borderRadius: 20, border: rel === 'Mum' ? '2px solid #2f6252' : '1.5px solid #d4d7d4', background: rel === 'Mum' ? '#eef5f2' : '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: rel === 'Mum' ? 700 : 400, color: rel === 'Mum' ? G : INK, cursor: 'pointer' }}>{rel}</button>
               ))}
             </div>
             <button style={{ display: 'flex', alignItems: 'center', gap: 6, border: 0, background: 'none', cursor: 'pointer', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, padding: 0 }}>
@@ -195,7 +195,7 @@ export default function JoinFlow({ initialStep = 'landing' }: { initialStep?: Jo
                 </button>
               )
             })}
-            <button style={{ height: 36, padding: '0 14px', borderRadius: 20, border: '1.5px solid #d4d7d4', background: '#fff', fontFamily: 'inherit', fontSize: 14, color: MUT, cursor: 'pointer' }}>
+            <button style={{ height: 44, padding: '0 14px', borderRadius: 20, border: '1.5px solid #d4d7d4', background: '#fff', fontFamily: 'inherit', fontSize: 14, color: MUT, cursor: 'pointer' }}>
               Nothing to add
             </button>
           </div>

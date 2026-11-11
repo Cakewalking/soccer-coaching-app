@@ -36,13 +36,13 @@ export default function AC12AcademyBroadcast(_: { onBack?: () => void }) {
             { label: 'Coaches', icon: '🎓' },
             { label: 'Money', icon: '$' },
           ].map(({ label, icon }) => (
-            <button key={label} style={{ background: label === 'Home' ? GD : 'transparent', color: '#fff', border: 'none', borderRadius: 8, padding: '0 14px', height: 40, fontSize: 14, fontWeight: label === 'Home' ? 700 : 500, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
+            <button key={label} style={{ background: label === 'Home' ? GD : 'transparent', color: '#fff', border: 'none', borderRadius: 8, padding: '0 14px', height: 44, fontSize: 14, fontWeight: label === 'Home' ? 700 : 500, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
               <span style={{ fontSize: 15 }}>{icon}</span>{label}
             </button>
           ))}
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <button style={{ background: '#fff', color: INK, border: 'none', borderRadius: 20, padding: '0 14px', height: 32, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Tall Timber Academy ▾</button>
+          <button style={{ background: '#fff', color: INK, border: 'none', borderRadius: 20, padding: '0 14px', height: 44, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Tall Timber Academy ▾</button>
           <div style={{ width: 44, height: 44, borderRadius: 22, background: '#c39797', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: 700, fontSize: 15 }}>DO</div>
         </div>
       </div>
@@ -70,7 +70,7 @@ export default function AC12AcademyBroadcast(_: { onBack?: () => void }) {
             <div style={{ fontWeight: 700, fontSize: 15, color: INK }}>Who gets it</div>
             <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: 8 }}>
               {audiences.map(a => (
-                <button key={a.label} onClick={() => t(a.label)} style={{ height: 34, padding: '0 14px', borderRadius: 17, border: a.selected ? 'none' : '1px solid #c5c8c4', background: a.selected ? G : '#fff', color: a.selected ? '#fff' : INK, fontSize: 13, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
+                <button key={a.label} onClick={() => t(a.label)} style={{ height: 44, padding: '0 14px', borderRadius: 17, border: a.selected ? 'none' : '1px solid #c5c8c4', background: a.selected ? G : '#fff', color: a.selected ? '#fff' : INK, fontSize: 13, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
                   {a.selected && <span>✓</span>}{a.label}
                 </button>
               ))}
@@ -93,11 +93,11 @@ export default function AC12AcademyBroadcast(_: { onBack?: () => void }) {
 
             {/* Attach row */}
             <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' as const, paddingTop: 4 }}>
-              <button onClick={() => t('Photo added.')} style={{ height: 36, padding: '0 14px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>📷 Photo</button>
-              <button onClick={() => setSheet('cvideo')} style={{ height: 36, padding: '0 14px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>🎥 Video</button>
-              <button onClick={() => setSheet('cfile')} style={{ height: 36, padding: '0 14px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>📎 File</button>
-              <button onClick={() => setSheet('cacadpoll')} style={{ height: 36, padding: '0 14px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>📊 Poll</button>
-              <button onClick={() => t('Booking link added.')} style={{ height: 36, padding: '0 14px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>🔗 Booking link</button>
+              <button onClick={() => t('Photo added.')} style={{ height: 44, padding: '0 14px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>📷 Photo</button>
+              <button onClick={() => setSheet('cvideo')} style={{ height: 44, padding: '0 14px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>🎥 Video</button>
+              <button onClick={() => setSheet('cfile')} style={{ height: 44, padding: '0 14px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>📎 File</button>
+              <button onClick={() => setSheet('cacadpoll')} style={{ height: 44, padding: '0 14px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>📊 Poll</button>
+              <button onClick={() => t('Booking link added.')} style={{ height: 44, padding: '0 14px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>🔗 Booking link</button>
             </div>
           </div>
         </div>
@@ -140,7 +140,7 @@ export default function AC12AcademyBroadcast(_: { onBack?: () => void }) {
             ))}
             <div style={{ paddingTop: 12, display: 'flex', alignItems: 'center', gap: 10, borderTop: `1px solid ${LN}` }}>
               <div style={{ fontSize: 13, color: MUT, flex: 1 }}>19 families haven't seen the clinic news.</div>
-              <button onClick={() => t('Nudge sent to 19 families.')} style={{ height: 34, padding: '0 12px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>Nudge them</button>
+              <button onClick={() => t('Nudge sent to 19 families.')} style={{ height: 44, padding: '0 12px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>Nudge them</button>
             </div>
           </div>
         </div>
@@ -160,8 +160,8 @@ export default function AC12AcademyBroadcast(_: { onBack?: () => void }) {
             ))}
             <div style={{ background: PALE, borderRadius: 10, padding: '10px 14px', fontSize: 13, color: GD }}>Videos are only visible to the families in this message, not the public.</div>
             <div style={{ display: 'flex', gap: 10, justifyContent: 'flex-end' }}>
-              <button onClick={() => setSheet(null)} style={{ height: 40, padding: '0 16px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Cancel</button>
-              <button onClick={() => { setSheet(null); t('Video added.') }} style={{ height: 40, padding: '0 16px', borderRadius: 8, background: G, color: '#fff', border: 'none', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Add video</button>
+              <button onClick={() => setSheet(null)} style={{ height: 44, padding: '0 16px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Cancel</button>
+              <button onClick={() => { setSheet(null); t('Video added.') }} style={{ height: 44, padding: '0 16px', borderRadius: 8, background: G, color: '#fff', border: 'none', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Add video</button>
             </div>
           </div>
         </div>
@@ -180,8 +180,8 @@ export default function AC12AcademyBroadcast(_: { onBack?: () => void }) {
             ))}
             <div style={{ background: PALE, borderRadius: 10, padding: '10px 14px', fontSize: 13, color: GD }}>PDFs and images are supported. Max 20 MB.</div>
             <div style={{ display: 'flex', gap: 10, justifyContent: 'flex-end' }}>
-              <button onClick={() => setSheet(null)} style={{ height: 40, padding: '0 16px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Cancel</button>
-              <button onClick={() => { setSheet(null); t('File attached.') }} style={{ height: 40, padding: '0 16px', borderRadius: 8, background: G, color: '#fff', border: 'none', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Attach</button>
+              <button onClick={() => setSheet(null)} style={{ height: 44, padding: '0 16px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Cancel</button>
+              <button onClick={() => { setSheet(null); t('File attached.') }} style={{ height: 44, padding: '0 16px', borderRadius: 8, background: G, color: '#fff', border: 'none', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Attach</button>
             </div>
           </div>
         </div>
@@ -197,7 +197,7 @@ export default function AC12AcademyBroadcast(_: { onBack?: () => void }) {
               <div style={{ fontSize: 12, fontWeight: 600, color: MUT }}>Start from</div>
               <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' as const }}>
                 {['Make-up times', 'Kit preference', 'Camp interest', 'Blank poll'].map((chip, i) => (
-                  <button key={chip} style={{ height: 32, padding: '0 12px', borderRadius: 16, border: i === 0 ? 'none' : `1px solid #c5c8c4`, background: i === 0 ? G : '#fff', color: i === 0 ? '#fff' : INK, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>{chip}</button>
+                  <button key={chip} style={{ height: 44, padding: '0 12px', borderRadius: 16, border: i === 0 ? 'none' : `1px solid #c5c8c4`, background: i === 0 ? G : '#fff', color: i === 0 ? '#fff' : INK, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>{chip}</button>
                 ))}
               </div>
             </div>
@@ -216,7 +216,7 @@ export default function AC12AcademyBroadcast(_: { onBack?: () => void }) {
               <div style={{ fontSize: 12, fontWeight: 600, color: MUT }}>Answers do</div>
               <div style={{ display: 'flex', gap: 8 }}>
                 {['Show totals only', 'Show who answered', 'Stay private'].map((chip, i) => (
-                  <button key={chip} style={{ height: 32, padding: '0 12px', borderRadius: 16, border: i === 0 ? 'none' : `1px solid #c5c8c4`, background: i === 0 ? G : '#fff', color: i === 0 ? '#fff' : INK, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>{chip}</button>
+                  <button key={chip} style={{ height: 44, padding: '0 12px', borderRadius: 16, border: i === 0 ? 'none' : `1px solid #c5c8c4`, background: i === 0 ? G : '#fff', color: i === 0 ? '#fff' : INK, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>{chip}</button>
                 ))}
               </div>
             </div>
@@ -224,8 +224,8 @@ export default function AC12AcademyBroadcast(_: { onBack?: () => void }) {
             <div style={{ background: PALE, borderRadius: 10, padding: '10px 14px', fontSize: 13, color: GD }}>Families answer in the app. You see results as they come in.</div>
 
             <div style={{ display: 'flex', gap: 10, justifyContent: 'flex-end' }}>
-              <button onClick={() => setSheet(null)} style={{ height: 40, padding: '0 16px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Cancel</button>
-              <button onClick={() => { setSheet(null); t('Poll sent.') }} style={{ height: 40, padding: '0 16px', borderRadius: 8, background: G, color: '#fff', border: 'none', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Send poll</button>
+              <button onClick={() => setSheet(null)} style={{ height: 44, padding: '0 16px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Cancel</button>
+              <button onClick={() => { setSheet(null); t('Poll sent.') }} style={{ height: 44, padding: '0 16px', borderRadius: 8, background: G, color: '#fff', border: 'none', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Send poll</button>
             </div>
           </div>
         </div>

@@ -50,7 +50,7 @@ export default function D0cChairWelcome(_: { onBack?: () => void }) {
                   <div style={{ fontSize: 12, color: MUT }}>{s.sub}</div>
                 </div>
                 {!done.includes(i) && (
-                  <button onClick={() => { setDone(prev => [...prev, i]); t(`Done.`) }} style={{ height: 32, padding: '0 12px', borderRadius: 8, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer', flex: 'none' }}>
+                  <button onClick={() => { setDone(prev => [...prev, i]); t(`Done.`) }} style={{ height: 44, padding: '0 12px', borderRadius: 8, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer', flex: 'none' }}>
                     {['Invite', 'Name', 'Name', 'Review', 'Add'][i]}
                   </button>
                 )}

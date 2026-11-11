@@ -98,8 +98,8 @@ function StartView({ empty, onFriendly, onDrill, onRecorded, onHowWeMeasure, onR
         <div style={{ fontSize: 18, fontWeight: 700, color: INK }}>No camera or sensors paired yet</div>
         <div style={{ fontSize: 14, color: MUT, lineHeight: 1.5, maxWidth: 400 }}>Pair a camera, or start with your phone. Any camera that saves a video file works. With no kit at all you can still record a test with a phone timer.</div>
         <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
-          <button style={{ height: 40, padding: '0 20px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Pair a camera</button>
-          <button style={{ height: 40, padding: '0 20px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Record with a phone</button>
+          <button style={{ height: 44, padding: '0 20px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Pair a camera</button>
+          <button style={{ height: 44, padding: '0 20px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Record with a phone</button>
         </div>
       </div>
       <SectionHead label="What each bit of kit adds"/>
@@ -131,8 +131,8 @@ function StartView({ empty, onFriendly, onDrill, onRecorded, onHowWeMeasure, onR
         <div style={{ flex: 1 }}>
           <div style={{ fontSize: 13, color: MUT }}>Film it, wear the sensors, then see what changed since last time</div>
         </div>
-        <button onClick={onHowWeMeasure} style={{ height: 32, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap' as const }}>How we measure</button>
-        <button onClick={onRecorded} style={{ height: 32, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: G2, cursor: 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap' as const }}>Everything recorded · 14</button>
+        <button onClick={onHowWeMeasure} style={{ height: 44, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap' as const }}>How we measure</button>
+        <button onClick={onRecorded} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: G2, cursor: 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap' as const }}>Everything recorded · 14</button>
       </div>
 
       {/* What are you recording */}
@@ -180,7 +180,7 @@ function StartView({ empty, onFriendly, onDrill, onRecorded, onHowWeMeasure, onR
               <div style={{ fontSize: 14, fontWeight: 700, color: INK }}>{item.name}</div>
               <div style={{ fontSize: 12, color: MUT }}>{item.type}</div>
             </div>
-            <button onClick={onRunAgain} style={{ height: 32, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Again</button>
+            <button onClick={onRunAgain} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Again</button>
           </div>
         ))}
         <div style={{ fontSize: 12, color: MUT }}>Running it again uses the same set-up, so the comparison is fair.</div>
@@ -197,7 +197,7 @@ function FriendlyView({ onStart }: { onStart: () => void }) {
     <div style={{ flex: 1, overflowY: 'auto', padding: '20px 28px 32px', display: 'flex', flexDirection: 'column', gap: 16 }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
         <div style={{ fontSize: 13, color: MUT }}>A game outside the league fixture list</div>
-        <button onClick={onStart} style={{ height: 40, padding: '0 20px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>Save and start on the day</button>
+        <button onClick={onStart} style={{ height: 44, padding: '0 20px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>Save and start on the day</button>
       </div>
 
       <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, overflow: 'hidden' }}>
@@ -276,8 +276,8 @@ function DrillView({ onStart }: { onStart: () => void }) {
         <div style={{ fontSize: 15, fontWeight: 700, color: '#fff', marginBottom: 2 }}>Win it back in 6 seconds</div>
         <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.65)', marginBottom: 10 }}>Third on tonight's plan</div>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button style={{ height: 32, padding: '0 14px', borderRadius: 999, border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: 'rgba(255,255,255,0.75)', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Pick another drill</button>
-          <button onClick={onStart} style={{ height: 32, padding: '0 16px', borderRadius: 999, border: 'none', background: '#fff', color: GD, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Start recording →</button>
+          <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: 'rgba(255,255,255,0.75)', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Pick another drill</button>
+          <button onClick={onStart} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 'none', background: '#fff', color: GD, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Start recording →</button>
         </div>
       </div>
 
@@ -433,13 +433,13 @@ function ResultsView({ firstRun, onHistory, onHowWeMeasure }:
     <div style={{ flex: 1, overflowY: 'auto', padding: '20px 28px 32px', display: 'flex', flexDirection: 'column', gap: 16 }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
         <div style={{ fontSize: 13, color: MUT }}>Tonight · 12 players · your starting point</div>
-        <button style={{ marginLeft: 'auto', height: 32, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Add to next week</button>
-        <button style={{ height: 32, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>Clips · 4</button>
+        <button style={{ marginLeft: 'auto', height: 44, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Add to next week</button>
+        <button style={{ height: 44, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>Clips · 4</button>
       </div>
       <div style={{ background: PALE, borderRadius: 14, padding: '14px 16px' }}>
         <div style={{ fontSize: 15, fontWeight: 700, color: GD, marginBottom: 4 }}>This is your starting point</div>
         <div style={{ fontSize: 13, color: G, lineHeight: 1.5, marginBottom: 10 }}>Tonight: 6.1 seconds to win it back, and 35% inside 6 seconds. Run it again with the same set-up to see what changes.</div>
-        <button onClick={onHistory} style={{ height: 32, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Add to next week</button>
+        <button onClick={onHistory} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Add to next week</button>
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
         {metrics.map(m => (
@@ -461,9 +461,9 @@ function ResultsView({ firstRun, onHistory, onHowWeMeasure }:
     <div style={{ flex: 1, overflowY: 'auto', padding: '20px 28px 32px', display: 'flex', flexDirection: 'column', gap: 16 }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' as const }}>
         <div style={{ fontSize: 13, color: MUT, flex: 1 }}>Tonight · 12 players · same set-up as run 2</div>
-        <button onClick={onHistory} style={{ height: 32, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>All runs</button>
-        <button style={{ height: 32, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Clips · 6</button>
-        <button style={{ height: 32, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Add to next week</button>
+        <button onClick={onHistory} style={{ height: 44, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>All runs</button>
+        <button style={{ height: 44, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Clips · 6</button>
+        <button style={{ height: 44, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Add to next week</button>
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
@@ -529,8 +529,8 @@ function HistoryView({ firstRun, onRunAgain }: { firstRun: boolean; onRunAgain: 
         <div style={{ fontSize: 16, fontWeight: 700, color: GD, marginBottom: 6 }}>One run isn't a comparison yet</div>
         <div style={{ fontSize: 13, color: G, lineHeight: 1.5, marginBottom: 12 }}>Run it again with the same set-up and the two line up here. Three runs make a trend.</div>
         <div style={{ display: 'flex', gap: 8, justifyContent: 'center' }}>
-          <button onClick={onRunAgain} style={{ height: 40, padding: '0 20px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Run it again</button>
-          <button style={{ height: 40, padding: '0 16px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>See run 1</button>
+          <button onClick={onRunAgain} style={{ height: 44, padding: '0 20px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Run it again</button>
+          <button style={{ height: 44, padding: '0 16px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>See run 1</button>
         </div>
       </div>
       <SectionHead label="What makes it fair"/>
@@ -546,8 +546,8 @@ function HistoryView({ firstRun, onRunAgain }: { firstRun: boolean; onRunAgain: 
     <div style={{ flex: 1, overflowY: 'auto', padding: '20px 28px 32px', display: 'flex', flexDirection: 'column', gap: 16 }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
         <div style={{ fontSize: 13, color: MUT, flex: 1 }}>3 runs since 12 May · same set-up each time</div>
-        <button onClick={onRunAgain} style={{ height: 32, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Run it again</button>
-        <button style={{ height: 32, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Change the set-up</button>
+        <button onClick={onRunAgain} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Run it again</button>
+        <button style={{ height: 44, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Change the set-up</button>
       </div>
 
       {/* Trend charts */}
@@ -662,7 +662,7 @@ function RecordedView({ empty, onRecord, onHowWeMeasure, onResults }:
           const key = t.split(' ·')[0]
           const active = tab === key
           return (
-            <button key={t} onClick={() => setTab(key)} style={{ height: 38, padding: '0 14px', border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', fontSize: 13, fontWeight: active ? 700 : 400, color: active ? INK : MUT, borderBottom: active ? `2px solid ${G2}` : '2px solid transparent', boxSizing: 'border-box' as const, whiteSpace: 'nowrap' as const }}>{t}</button>
+            <button key={t} onClick={() => setTab(key)} style={{ height: 44, padding: '0 14px', border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', fontSize: 13, fontWeight: active ? 700 : 400, color: active ? INK : MUT, borderBottom: active ? `2px solid ${G2}` : '2px solid transparent', boxSizing: 'border-box' as const, whiteSpace: 'nowrap' as const }}>{t}</button>
           )
         })}
       </div>
@@ -681,7 +681,7 @@ function RecordedView({ empty, onRecord, onHowWeMeasure, onResults }:
             <div style={{ fontSize: 12, color: MUT }}>{r.when}</div>
             <div style={{ fontSize: 12, color: MUT }}>{r.kit}</div>
             <div style={{ fontSize: 12, fontWeight: 600, color: r.status === 'Ready' ? G2 : MUT }}>{r.status}</div>
-            <button onClick={r.action === 'Open' || r.action === 'Review' ? onResults : onRecord} style={{ height: 30, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 700, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>{r.action}</button>
+            <button onClick={r.action === 'Open' || r.action === 'Review' ? onResults : onRecord} style={{ height: 44, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 700, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>{r.action}</button>
           </div>
         ))}
         <div style={{ padding: '12px 0', fontSize: 12, color: MUT }}>Full game video is deleted after 90 days. Clips and numbers stay for the season.</div>
@@ -689,7 +689,7 @@ function RecordedView({ empty, onRecord, onHowWeMeasure, onResults }:
       </div>
 
       <div style={{ padding: '12px 28px', borderTop: `1px solid ${LN}`, flexShrink: 0 }}>
-        <button onClick={onRecord} style={{ height: 40, padding: '0 20px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 8 }}>
+        <button onClick={onRecord} style={{ height: 44, padding: '0 20px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 8 }}>
           <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round"><path d="M12 5v14M5 12h14"/></svg>
           Record
         </button>

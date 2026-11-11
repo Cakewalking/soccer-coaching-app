@@ -24,13 +24,13 @@ export default function AC3Trials(_: { onBack?: () => void }) {
             { label: 'Coaches', icon: '🎓' },
             { label: 'Money', icon: '$' },
           ].map(({ label, icon }) => (
-            <button key={label} style={{ background: label === 'Home' ? GD : 'transparent', color: '#fff', border: 'none', borderRadius: 8, padding: '0 14px', height: 40, fontSize: 14, fontWeight: label === 'Home' ? 700 : 500, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
+            <button key={label} style={{ background: label === 'Home' ? GD : 'transparent', color: '#fff', border: 'none', borderRadius: 8, padding: '0 14px', height: 44, fontSize: 14, fontWeight: label === 'Home' ? 700 : 500, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
               <span style={{ fontSize: 15 }}>{icon}</span>{label}
             </button>
           ))}
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <button style={{ background: '#fff', color: INK, border: 'none', borderRadius: 20, padding: '0 14px', height: 32, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Tall Timber Academy ▾</button>
+          <button style={{ background: '#fff', color: INK, border: 'none', borderRadius: 20, padding: '0 14px', height: 44, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Tall Timber Academy ▾</button>
           <div style={{ width: 44, height: 44, borderRadius: 22, background: '#c39797', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: 700, fontSize: 15 }}>DO</div>
         </div>
       </div>
@@ -97,7 +97,7 @@ export default function AC3Trials(_: { onBack?: () => void }) {
               <div style={{ fontWeight: 700, fontSize: 14, color: INK }}>{c.name}</div>
               <div style={{ fontSize: 12, color: MUT }}>{c.sub}</div>
               <div style={{ fontSize: 12, color: MUT }}>{c.note}</div>
-              <button onClick={() => t(c.toastMsg)} style={{ height: 36, padding: '0 14px', borderRadius: 8, background: c.primary ? G : '#fff', color: c.primary ? '#fff' : INK, border: c.primary ? 'none' : '1px solid #c5c8c4', fontSize: 13, fontWeight: 600, cursor: 'pointer', alignSelf: 'flex-start' as const }}>{c.btnLabel}</button>
+              <button onClick={() => t(c.toastMsg)} style={{ height: 44, padding: '0 14px', borderRadius: 8, background: c.primary ? G : '#fff', color: c.primary ? '#fff' : INK, border: c.primary ? 'none' : '1px solid #c5c8c4', fontSize: 13, fontWeight: 600, cursor: 'pointer', alignSelf: 'flex-start' as const }}>{c.btnLabel}</button>
             </div>
           ))}
         </div>

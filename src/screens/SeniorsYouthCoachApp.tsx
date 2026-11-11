@@ -183,7 +183,7 @@ function SYCoachHomeEmpty({ coachFirst, teamLine, onNav }: { coachFirst: string;
                 <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 2 }}>{s.title}</div>
                 <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: '18px' }}>{s.body}</div>
               </div>
-              <button onClick={() => onNav(s.nav)} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: s.n === 1 ? 0 : '1px solid #c5c8c4', background: s.n === 1 ? '#2f6252' : '#fff', color: s.n === 1 ? '#fff' : '#10211f', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>{s.btn}</button>
+              <button onClick={() => onNav(s.nav)} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: s.n === 1 ? 0 : '1px solid #c5c8c4', background: s.n === 1 ? '#2f6252' : '#fff', color: s.n === 1 ? '#fff' : '#10211f', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>{s.btn}</button>
             </div>
           ))}
         </div>
@@ -259,8 +259,8 @@ function CoachHome({ data, onTraining, onMatchday, onReview, onCalendar, onInbox
             <div key={i} style={{ fontSize: 13, color: 'rgba(255,255,255,0.85)', padding: '4px 0', borderTop: i > 0 ? '1px solid rgba(255,255,255,0.12)' : 'none' }}>· {b}</div>
           ))}
           <div style={{ display: 'flex', gap: 8, marginTop: 14 }}>
-            <button onClick={onTraining} style={{ flex: 1, height: 40, borderRadius: 10, border: 0, background: '#40826d', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>{data.gameCardCTA}</button>
-            {data.gameCardCTA2 && <button onClick={onMatchday} style={{ flex: 1, height: 40, borderRadius: 10, border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>{data.gameCardCTA2}</button>}
+            <button onClick={onTraining} style={{ flex: 1, height: 44, borderRadius: 10, border: 0, background: '#40826d', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>{data.gameCardCTA}</button>
+            {data.gameCardCTA2 && <button onClick={onMatchday} style={{ flex: 1, height: 44, borderRadius: 10, border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>{data.gameCardCTA2}</button>}
           </div>
         </div>
 
@@ -357,18 +357,21 @@ const TRAINING_TABS = ["Tonight's session", 'This week', 'Suggested', 'Drill lib
 const MATCHDAY_TABS = ['Team talk', 'Line-up and minutes', 'Opposition', 'Review', 'Fitness coach']
 const CLIPS_TABS    = ['Browse', 'Playlists', 'Shared with players', 'To check']
 
-export default function SeniorsYouthCoachApp({ teamType, onBack, phaseContent, empty = false }: { teamType: TeamType; onBack: () => void; phaseContent?: ReactNode; empty?: boolean }) {
+export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseContent, empty = false, initialScreen, onNavChange }: { teamType: TeamType; onBack: () => void; phaseContent?: ReactNode; empty?: boolean; initialScreen?: string; onNavChange?: (screen: string) => void }) {
   const data = teamType === 'seniors' ? SENIORS : YOUTH
+  const validNav = (s?: string): NavKey => (s === 'squad' || s === 'training' || s === 'matchday' || s === 'clips') ? s : 'home'
 
-  const [nav, setNav]                 = useState<NavKey>('home')
+  const [nav, setNav]                 = useState<NavKey>(validNav(initialScreen))
   const [sub, setSub]                 = useState<Sub>(null)
   const [homeTab, setHomeTab]         = useState(0)
   const [squadTab, setSquadTab]       = useState(0)
   const [trainingTab, setTrainingTab] = useState(0)
   const [matchTab, setMatchTab]       = useState(0)
   const [clipsTab, setClipsTab]       = useState(0)
+  const [toast, setToast]             = useState<string | null>(null)
+  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
-  function goNav(n: NavKey) { setNav(n); setSub(null) }
+  function goNav(n: NavKey) { setNav(n); setSub(null); onNavChange?.(n) }
 
   function handleNav(s: string) {
     if (s === 'training')  { goNav('training'); return }
@@ -459,7 +462,7 @@ export default function SeniorsYouthCoachApp({ teamType, onBack, phaseContent, e
           <nav style={{ display: 'flex', flexGrow: 1, gap: 2 }}>
             {NAV_LABELS.map((label, i) => (
               <button key={label} onClick={() => goNav(NAV_KEYS[i])} style={{
-                display: 'flex', alignItems: 'center', gap: 7, height: 40, padding: '0 14px', borderRadius: '999px',
+                display: 'flex', alignItems: 'center', gap: 7, height: 44, padding: '0 14px', borderRadius: '999px',
                 border: 0, fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer',
                 background: nav === NAV_KEYS[i] ? '#40826d' : 'transparent', color: '#fff',
               }}>
@@ -489,7 +492,7 @@ export default function SeniorsYouthCoachApp({ teamType, onBack, phaseContent, e
           </nav>
           <div style={{ display: 'flex', alignItems: 'center', height: 44, gap: 10 }}>
             <span style={{ fontSize: 13, fontWeight: 700, color: '#2f6252', background: '#eef5f2', borderRadius: '999px', padding: '4px 12px' }}>Head coach</span>
-            <button onClick={onBack} style={{ height: 28, padding: '0 12px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Switch view</button>
+            <button onClick={() => showToast('Switching to the team view on a connected device.')} style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Switch view</button>
           </div>
         </div>
       </header>
@@ -497,6 +500,9 @@ export default function SeniorsYouthCoachApp({ teamType, onBack, phaseContent, e
       <div style={{ flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
         {content}
       </div>
+      {toast && (
+        <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>
+      )}
     </div>
   )
 }

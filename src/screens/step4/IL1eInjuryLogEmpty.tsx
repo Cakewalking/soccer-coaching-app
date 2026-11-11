@@ -46,8 +46,8 @@ export default function IL1eInjuryLogEmpty(_: { onBack?: () => void }) {
                   <textarea value={desc} onChange={e => setDesc(e.target.value)} placeholder="Describe the injury and when it happened…" rows={3} style={{ width: '100%', borderRadius: 10, border: `1px solid ${LN}`, padding: '10px 12px', fontFamily: 'inherit', fontSize: 14, boxSizing: 'border-box' as const, resize: 'vertical' as const, outline: 'none' }} />
                 </div>
                 <div style={{ display: 'flex', gap: 10 }}>
-                  <button onClick={() => setLogOpen(false)} style={{ height: 40, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Cancel</button>
-                  <button onClick={() => { setLogOpen(false); t('Injury logged.') }} style={{ height: 40, padding: '0 16px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Log injury</button>
+                  <button onClick={() => setLogOpen(false)} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Cancel</button>
+                  <button onClick={() => { setLogOpen(false); t('Injury logged.') }} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Log injury</button>
                 </div>
               </div>
             </div>

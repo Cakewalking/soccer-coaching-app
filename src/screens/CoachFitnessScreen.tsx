@@ -116,7 +116,7 @@ export default function CoachFitnessScreen() {
               </div>
             ))}
           </div>
-          <button style={{ marginTop: 12, height: 36, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>Open the review</button>
+          <button style={{ marginTop: 12, height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>Open the review</button>
           <span style={{ marginLeft: 12, fontSize: 13, color: '#6f7f7b' }}>Clips · 7</span>
         </div>
       </div>

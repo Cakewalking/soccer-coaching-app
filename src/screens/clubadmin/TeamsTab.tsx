@@ -38,8 +38,8 @@ function TeamDetail({ name, onBack }: { name: string; onBack: () => void }) {
           <div style={{ fontSize: 13, color: '#6f7f7b' }}>{div} · coach {coach} · {players} players · read-only, the way its coaches see it</div>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button style={{ height: 32, padding: '0 14px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>Compare</button>
-          <button style={{ height: 32, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Message the coaches</button>
+          <button style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>Compare</button>
+          <button style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Message the coaches</button>
         </div>
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10, margin: '16px 0' }}>
@@ -211,7 +211,7 @@ function CompareView({ onBack }: { onBack: () => void }) {
               <div><div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{item.title}</div><div style={{ fontSize: 12, color: '#6f7f7b', marginTop: 2 }}>{item.body}</div></div>
             </div>
           ))}
-          <button style={{ width: '100%', height: 40, borderRadius: '999px', border: 0, background: '#1f4a3e', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer', marginTop: 8 }}>
+          <button style={{ width: '100%', height: 44, borderRadius: '999px', border: 0, background: '#1f4a3e', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer', marginTop: 8 }}>
             Suggest {b.split(' ').pop()} watches {a.split(' ').pop()}
           </button>
         </div>
@@ -270,13 +270,13 @@ export default function TeamsTab({ empty }: { empty?: boolean }) {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
             <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>Teams · 14 teams · tap a team to open it as its coach sees it, read-only</div>
             <div style={{ display: 'flex', gap: 8 }}>
-              <button onClick={() => setShowCompare(true)} style={{ height: 32, padding: '0 14px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>Compare two teams</button>
-              <button style={{ height: 32, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>+ Add a team</button>
+              <button onClick={() => setShowCompare(true)} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>Compare two teams</button>
+              <button style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>+ Add a team</button>
             </div>
           </div>
           <div style={{ display: 'flex', gap: 8, marginBottom: 16, flexWrap: 'wrap' }}>
             {[{ id: 'all', label: 'All teams' }, { id: 'attention', label: `Needs attention ${alertTeams.length}` }, { id: 'girls', label: 'Girls' }, { id: 'recording', label: 'Recording games' }].map(f => (
-              <button key={f.id} onClick={() => setFilter(f.id as typeof filter)} style={{ height: 30, padding: '0 14px', borderRadius: '999px', border: `1px solid ${filter === f.id ? '#2f6252' : '#e9eae8'}`, background: filter === f.id ? '#2f6252' : '#fff', color: filter === f.id ? '#fff' : '#6f7f7b', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>{f.label}</button>
+              <button key={f.id} onClick={() => setFilter(f.id as typeof filter)} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: `1px solid ${filter === f.id ? '#2f6252' : '#e9eae8'}`, background: filter === f.id ? '#2f6252' : '#fff', color: filter === f.id ? '#fff' : '#6f7f7b', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>{f.label}</button>
             ))}
           </div>
 
@@ -333,7 +333,7 @@ export default function TeamsTab({ empty }: { empty?: boolean }) {
         <div style={p}>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 20 }}>
             <div><div style={{ fontSize: 18, fontWeight: 800, color: '#10211f' }}>Seniors</div><div style={{ fontSize: 13, color: '#6f7f7b' }}>4 senior teams · 79 players · adults join and consent for themselves</div></div>
-            <button style={{ height: 32, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Add a senior team</button>
+            <button style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Add a senior team</button>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 14, marginBottom: 24 }}>
             {[
@@ -372,7 +372,7 @@ export default function TeamsTab({ empty }: { empty?: boolean }) {
                 <span style={{ fontSize: 13, color: '#10211f' }}>U16s training with the 1sts</span>
                 <span style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>3</span>
               </div>
-              <button style={{ marginTop: 8, height: 32, padding: '0 14px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>See U16 Ollie</button>
+              <button style={{ marginTop: 8, height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>See U16 Ollie</button>
             </div>
           </div>
         </div>
@@ -423,7 +423,7 @@ export default function TeamsTab({ empty }: { empty?: boolean }) {
                 <div style={{ flexGrow: 1 }}><div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{r.team}</div><div style={{ fontSize: 12, color: '#6f7f7b' }}>{r.result}</div></div>
                 <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
                   <span style={{ fontSize: 11, fontWeight: 700, color: r.ok ? '#40826d' : '#c39797', background: r.ok ? '#e4f2eb' : '#fdf4f4', borderRadius: 6, padding: '2px 8px' }}>{r.status}</span>
-                  {r.fix && <button style={{ height: 24, padding: '0 10px', borderRadius: '999px', border: 0, background: '#c39797', color: '#fff', fontFamily: 'inherit', fontSize: 11, fontWeight: 700, cursor: 'pointer' }}>Fix</button>}
+                  {r.fix && <button style={{ height: 44, padding: '0 10px', borderRadius: '999px', border: 0, background: '#c39797', color: '#fff', fontFamily: 'inherit', fontSize: 11, fontWeight: 700, cursor: 'pointer' }}>Fix</button>}
                 </div>
               </div>
             ))}
@@ -436,7 +436,7 @@ export default function TeamsTab({ empty }: { empty?: boolean }) {
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 16 }}>
               <div><div style={{ fontSize: 18, fontWeight: 800, color: '#10211f' }}>Grading</div><div style={{ fontSize: 12, color: '#6f7f7b' }}>How the league placed each U12+ team, and whether to ask for a change</div></div>
-              <button style={{ height: 32, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Ask the league to regrade</button>
+              <button style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Ask the league to regrade</button>
             </div>
             <div style={{ background: '#fff', borderRadius: 14, border: '1px solid #e9eae8', overflow: 'hidden' }}>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr 120px', padding: '10px 16px', borderBottom: '1px solid #f0f1f0', gap: 8 }}>
@@ -468,7 +468,7 @@ export default function TeamsTab({ empty }: { empty?: boolean }) {
             <div style={{ background: '#fff', borderRadius: 14, padding: '14px 16px', border: '1px solid #e9eae8' }}>
               <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>Next season's grading</div>
               <div style={{ fontSize: 12, color: '#4a5a57' }}>Coaches score each player in 3 areas at grading games. You see a suggested team for every player.</div>
-              <button style={{ marginTop: 10, height: 32, padding: '0 12px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 12, cursor: 'pointer' }}>Plan grading days</button>
+              <button style={{ marginTop: 10, height: 44, padding: '0 12px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 12, cursor: 'pointer' }}>Plan grading days</button>
             </div>
           </div>
         </div>
@@ -499,7 +499,7 @@ export default function TeamsTab({ empty }: { empty?: boolean }) {
                   <div style={{ fontSize: 12, color: '#6f7f7b' }}>{g.role}</div>
                 </div>
                 {g.needed ? (
-                  <button style={{ height: 28, padding: '0 12px', borderRadius: '999px', border: 0, background: '#c39797', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>Ask</button>
+                  <button style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: 0, background: '#c39797', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>Ask</button>
                 ) : (
                   <span style={{ fontSize: 12, color: '#40826d', fontWeight: 700 }}>{g.who}</span>
                 )}
@@ -515,7 +515,7 @@ export default function TeamsTab({ empty }: { empty?: boolean }) {
               </div>
             ))}
             <div style={{ marginTop: 10, fontSize: 12, color: '#6f7f7b', paddingTop: 10, borderTop: '1px solid #f0f1f0' }}>Feedback this week: 5 · all positive</div>
-            <button style={{ marginTop: 10, height: 32, width: '100%', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 12, cursor: 'pointer' }}>Add a referee</button>
+            <button style={{ marginTop: 10, height: 44, width: '100%', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 12, cursor: 'pointer' }}>Add a referee</button>
           </div>
         </div>
       )}

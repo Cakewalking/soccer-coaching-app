@@ -15,8 +15,8 @@ export default function SP13TournamentReview({ onBack }: { onBack?: () => void }
           <div style={{ fontSize: 14, color: MUT }}>Kingfisher Summer Cup · 5 games over two days</div>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button onClick={onBack} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Clips from the weekend</button>
-          <button onClick={() => t('Highlights sent to 12 families, with each child\'s best moment.')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Send families the highlights</button>
+          <button onClick={onBack} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Clips from the weekend</button>
+          <button onClick={() => t('Highlights sent to 12 families, with each child\'s best moment.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Send families the highlights</button>
         </div>
       </div>
 

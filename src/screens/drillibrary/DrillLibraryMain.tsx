@@ -98,13 +98,13 @@ export default function DrillLibraryMain({ filterTab, setFilterTab, agePhase, se
           <div style={{ fontSize:13, color:MUT, marginTop:2 }}>{DRILLS.length} drills{totalOurs > 0 ? ` · ${totalOurs} of ours` : ''}</div>
         </div>
         <div style={{ flexGrow:1 }}/>
-        <button onClick={onSessionPlans} style={{ height:36, padding:'0 14px', borderRadius:999, border:`1px solid ${LN}`, background:'#fff', color:MUT, fontSize:13, fontWeight:600, cursor:'pointer', fontFamily:'inherit' }}>Session plans</button>
-        <button onClick={onTermPlanner} style={{ height:36, padding:'0 14px', borderRadius:999, border:`1px solid ${LN}`, background:'#fff', color:MUT, fontSize:13, fontWeight:600, cursor:'pointer', fontFamily:'inherit' }}>Term planner</button>
+        <button onClick={onSessionPlans} style={{ height: 44, padding:'0 14px', borderRadius:999, border:`1px solid ${LN}`, background:'#fff', color:MUT, fontSize:13, fontWeight:600, cursor:'pointer', fontFamily:'inherit' }}>Session plans</button>
+        <button onClick={onTermPlanner} style={{ height: 44, padding:'0 14px', borderRadius:999, border:`1px solid ${LN}`, background:'#fff', color:MUT, fontSize:13, fontWeight:600, cursor:'pointer', fontFamily:'inherit' }}>Term planner</button>
         <div style={{ position:'relative' }}>
           <svg style={{ position:'absolute', left:10, top:'50%', transform:'translateY(-50%)', pointerEvents:'none' }} width={15} height={15} viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth={2} strokeLinecap="round"><circle cx={11} cy={11} r={8}/><path d="M21 21l-4.3-4.3"/></svg>
           <input placeholder="Search drills" style={{ height:36, paddingLeft:32, paddingRight:14, borderRadius:999, border:`1px solid ${LN}`, fontSize:13, fontFamily:'inherit', outline:'none', width:180, color:INK }}/>
         </div>
-        <button onClick={onAddDrill} style={{ height:36, padding:'0 16px', borderRadius:999, border:'none', background:G, color:'#fff', fontSize:13, fontWeight:600, cursor:'pointer', fontFamily:'inherit', display:'flex', alignItems:'center', gap:8 }}>
+        <button onClick={onAddDrill} style={{ height: 44, padding:'0 16px', borderRadius:999, border:'none', background:G, color:'#fff', fontSize:13, fontWeight:600, cursor:'pointer', fontFamily:'inherit', display:'flex', alignItems:'center', gap:8 }}>
           <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round"><path d="M12 5v14M5 12h14"/></svg>
           Add a drill
         </button>
@@ -127,7 +127,7 @@ export default function DrillLibraryMain({ filterTab, setFilterTab, agePhase, se
           })}
           <div style={{ marginLeft:'auto', display:'flex', gap:4 }}>
             {([`All ${allCount}`, `Ours ${ourCount}`, 'Saved 3'] as const).map((label, i) => (
-              <button key={i} onClick={() => setFilterTab(i)} style={{ height:30, padding:'0 12px', borderRadius:999, border:`1px solid ${filterTab === i ? G : LN}`, background: filterTab === i ? G : '#fff', color: filterTab === i ? '#fff' : MUT, fontSize:12, fontWeight: filterTab === i ? 700 : 400, cursor:'pointer', fontFamily:'inherit', whiteSpace:'nowrap' }}>
+              <button key={i} onClick={() => setFilterTab(i)} style={{ height: 44, padding:'0 12px', borderRadius:999, border:`1px solid ${filterTab === i ? G : LN}`, background: filterTab === i ? G : '#fff', color: filterTab === i ? '#fff' : MUT, fontSize:12, fontWeight: filterTab === i ? 700 : 400, cursor:'pointer', fontFamily:'inherit', whiteSpace:'nowrap' }}>
                 {label}
               </button>
             ))}
@@ -140,7 +140,7 @@ export default function DrillLibraryMain({ filterTab, setFilterTab, agePhase, se
         {/* Row 3: Filter dropdowns + drill count */}
         <div style={{ display:'flex', alignItems:'center', gap:8 }}>
           {(['Skill', 'Players', 'Time', 'Goals'] as const).map(f => (
-            <button key={f} style={{ height:32, padding:'0 12px', borderRadius:999, border:`1px solid ${LN}`, background:'#fff', color:MUT, fontSize:13, cursor:'pointer', fontFamily:'inherit', display:'flex', alignItems:'center', gap:4, whiteSpace:'nowrap' }}>
+            <button key={f} style={{ height: 44, padding:'0 12px', borderRadius:999, border:`1px solid ${LN}`, background:'#fff', color:MUT, fontSize:13, cursor:'pointer', fontFamily:'inherit', display:'flex', alignItems:'center', gap:4, whiteSpace:'nowrap' }}>
               {f} <span style={{ color:'#9cb5ae' }}>Any</span>
               <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round"><path d="M6 9l6 6 6-6"/></svg>
             </button>
@@ -152,11 +152,11 @@ export default function DrillLibraryMain({ filterTab, setFilterTab, agePhase, se
         <div style={{ background:GD, borderRadius:10, padding:'10px 14px', display:'flex', alignItems:'center', gap:8, overflowX:'auto' }}>
           <span style={{ fontSize:12, color:'rgba(255,255,255,0.45)', fontWeight:600, whiteSpace:'nowrap', flexShrink:0 }}>From Saturday vs Ironbark</span>
           {FIX_ITEMS.map((f, i) => (
-            <button key={i} onClick={() => setActiveSugg(i)} style={{ height:28, padding:'0 12px', borderRadius:999, border:'none', background: activeSugg === i ? G2 : 'rgba(255,255,255,0.12)', color:'#fff', fontSize:12, fontWeight: activeSugg === i ? 700 : 500, cursor:'pointer', fontFamily:'inherit', whiteSpace:'nowrap', flexShrink:0 }}>
+            <button key={i} onClick={() => setActiveSugg(i)} style={{ height: 44, padding:'0 12px', borderRadius:999, border:'none', background: activeSugg === i ? G2 : 'rgba(255,255,255,0.12)', color:'#fff', fontSize:12, fontWeight: activeSugg === i ? 700 : 500, cursor:'pointer', fontFamily:'inherit', whiteSpace:'nowrap', flexShrink:0 }}>
               {f.label}
             </button>
           ))}
-          <button style={{ marginLeft:'auto', height:28, padding:'0 12px', borderRadius:999, border:'1px solid rgba(255,255,255,0.25)', background:'transparent', color:'rgba(255,255,255,0.7)', fontSize:12, fontWeight:500, cursor:'pointer', fontFamily:'inherit', whiteSpace:'nowrap', flexShrink:0, display:'flex', alignItems:'center', gap:4 }}>
+          <button style={{ marginLeft:'auto', height: 44, padding:'0 12px', borderRadius:999, border:'1px solid rgba(255,255,255,0.25)', background:'transparent', color:'rgba(255,255,255,0.7)', fontSize:12, fontWeight:500, cursor:'pointer', fontFamily:'inherit', whiteSpace:'nowrap', flexShrink:0, display:'flex', alignItems:'center', gap:4 }}>
             All suggestions
             <svg width={11} height={11} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.2} strokeLinecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </button>
@@ -170,7 +170,7 @@ export default function DrillLibraryMain({ filterTab, setFilterTab, agePhase, se
                 <div style={{ fontSize:13, fontWeight:700, color:G, marginBottom:3 }}>Suggested · {activeFix.stat}</div>
                 <div style={{ fontSize:12, color:MUT, lineHeight:1.5, maxWidth:520 }}>Most were short passes under pressure from their front three. Keep-ball games build calm first touches and scanning.</div>
               </div>
-              <button style={{ height:30, padding:'0 13px', borderRadius:999, border:`1px solid ${LN}`, background:'#fff', color:MUT, fontSize:12, fontWeight:600, cursor:'pointer', fontFamily:'inherit', whiteSpace:'nowrap', flexShrink:0, marginLeft:16 }}>Watch 6 clips</button>
+              <button style={{ height: 44, padding:'0 13px', borderRadius:999, border:`1px solid ${LN}`, background:'#fff', color:MUT, fontSize:12, fontWeight:600, cursor:'pointer', fontFamily:'inherit', whiteSpace:'nowrap', flexShrink:0, marginLeft:16 }}>Watch 6 clips</button>
             </div>
             <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:10 }}>
               {featured.map(d => <SuggestedCard key={d.id} drill={d} onClick={() => onDrillClick(d)}/>)}

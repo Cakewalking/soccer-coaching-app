@@ -66,7 +66,7 @@ export default function DP1FairGameTime(_: { onBack?: () => void }) {
               <div style={{ fontSize: 12, fontWeight: 700, color: G }}>U14 and above</div>
               <div style={{ fontSize: 12, color: MUT }}>Minimum 33% of game minutes</div>
             </div>
-            <button onClick={() => t('Reminder sent to coaches below target.')} style={{ width: '100%', height: 38, borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Remind coaches below target</button>
+            <button onClick={() => t('Reminder sent to coaches below target.')} style={{ width: '100%', height: 44, borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Remind coaches below target</button>
           </div>
         </div>
       </div>

@@ -83,7 +83,7 @@ export default function P1Consent(_: { onBack?: () => void }) {
               <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 6 }}>Not started</div>
               <div style={{ fontSize: 14, fontWeight: 600, color: '#c05' }}>Harper Quinn</div>
               <div style={{ fontSize: 12, color: MUT, marginBottom: 8 }}>Her parents were reminded twice. Until they answer, Harper is blurred in every clip.</div>
-              <button style={{ width: '100%', height: 36, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Remind again</button>
+              <button style={{ width: '100%', height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Remind again</button>
             </div>
           </div>
         </div>

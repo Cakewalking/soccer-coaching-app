@@ -96,7 +96,7 @@ export default function ComingMiniRoos({ empty }: { empty?: boolean }) {
           <section style={{ flexGrow: 1, background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 8 }}>
             <h2 style={{ margin: 0, fontSize: 17, fontWeight: 700 }}>Not answered by Friday?</h2>
             <span style={{ fontSize: 14, color: '#4a5a57', lineHeight: '20px' }}>A reminder goes out automatically Friday at 6 pm to anyone who hasn't replied.</span>
-            <button onClick={() => showToast('Reminder sent to Jude\'s family.')} style={{ height: 40, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', textAlign: 'left' as const }}>Nudge Jude's family now →</button>
+            <button onClick={() => showToast('Reminder sent to Jude\'s family.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', textAlign: 'left' as const }}>Nudge Jude's family now →</button>
           </section>
         </div>
       </main>

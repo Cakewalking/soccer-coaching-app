@@ -30,24 +30,24 @@ export const TOURS: Record<string, TourDef> = {
     sandboxHome: 'home-e',
     sections: [
       { title: "Join", steps: [
-        { label: "Welcome", caption: "Signing up takes a few minutes, and nobody sees a child\u2019s data until their children check is confirmed.", screen: "signup" },
-        { label: "Account and children check", caption: "Signing up takes a few minutes, and nobody sees a child\u2019s data until their children check is confirmed.", screen: "signup" },
-        { label: "Team and division", caption: "Signing up takes a few minutes, and nobody sees a child\u2019s data until their children check is confirmed.", screen: "signup" },
-        { label: "Invite staff", caption: "Signing up takes a few minutes, and nobody sees a child\u2019s data until their children check is confirmed.", screen: "signup" },
-        { label: "Ready", caption: "Signing up takes a few minutes, and nobody sees a child\u2019s data until their children check is confirmed.", screen: "signup" },
+        { label: "Welcome", caption: "Signing up takes a few minutes, and nobody sees a child\u2019s data until their children check is confirmed.", screen: "OB-SignUp" },
+        { label: "Account and children check", caption: "Signing up takes a few minutes, and nobody sees a child\u2019s data until their children check is confirmed.", screen: "OB1-SignUp" },
+        { label: "Team and division", caption: "Signing up takes a few minutes, and nobody sees a child\u2019s data until their children check is confirmed.", screen: "OB3-SignUp" },
+        { label: "Invite staff", caption: "Signing up takes a few minutes, and nobody sees a child\u2019s data until their children check is confirmed.", screen: "OB4-SignUp" },
+        { label: "Ready", caption: "Signing up takes a few minutes, and nobody sees a child\u2019s data until their children check is confirmed.", screen: "OB5-SignUp" },
       ]},
       { title: "Set up", steps: [
         { label: "First-use home", caption: "First use: every screen says what to do next, so nothing starts blank.", screen: "home" },
         { label: "Set how we play", caption: "First use: every screen says what to do next, so nothing starts blank.", screen: "style" },
         { label: "Add players", caption: "First use: every screen says what to do next, so nothing starts blank.", screen: "squad" },
-        { label: "Consent by player", caption: "First use: every screen says what to do next, so nothing starts blank.", screen: "squad" },
+        { label: "Consent by player", caption: "First use: every screen says what to do next, so nothing starts blank.", screen: "P1-Consent" },
       ]},
       { title: "After a game", steps: [
-        { label: "Home on Sunday", caption: "The game goes in, and about 25 minutes later the review comes back with three things to work on.", screen: "home" },
+        { label: "Home on Sunday", caption: "The game goes in, and about 25 minutes later the review comes back with three things to work on.", screen: "T1s-HomeSunday" },
         { label: "Add the game", caption: "The game goes in, and about 25 minutes later the review comes back with three things to work on.", screen: "addgame" },
         { label: "Match review", caption: "The game goes in, and about 25 minutes later the review comes back with three things to work on.", screen: "review" },
         { label: "Check unsure moments", caption: "The game goes in, and about 25 minutes later the review comes back with three things to work on.", screen: "clips" },
-        { label: "Clips", caption: "The game goes in, and about 25 minutes later the review comes back with three things to work on.", screen: "clips" },
+        { label: "Clips", caption: "The game goes in, and about 25 minutes later the review comes back with three things to work on.", screen: "C1-ClipsTab" },
       ]},
       { title: "Plan the week", steps: [
         { label: "This week", caption: "Clean Sheet suggests drills from what keeps happening in games, which drills worked in training, the week\u2019s load and the coach\u2019s own notes. Every suggestion shows its reasons.", screen: "thisweek" },
@@ -61,8 +61,8 @@ export const TOURS: Record<string, TourDef> = {
         { label: "Who\u2019s coming", caption: "Clean Sheet suggests drills from what keeps happening in games, which drills worked in training, the week\u2019s load and the coach\u2019s own notes. Every suggestion shows its reasons.", screen: "availability" },
       ]},
       { title: "Train", steps: [
-        { label: "Home on training day", caption: "At the ground: the plan, who\u2019s here, and what to say. It works with no signal.", screen: "home" },
-        { label: "Tonight\u2019s plan", caption: "At the ground: the plan, who\u2019s here, and what to say. It works with no signal.", screen: "training" },
+        { label: "Home on training day", caption: "At the ground: the plan, who’s here, and what to say. It works with no signal.", screen: "T1-TabletTraining" },
+        { label: "Tonight’s plan", caption: "At the ground: the plan, who’s here, and what to say. It works with no signal.", screen: "T3-TrainingTab" },
         { label: "Show the players", caption: "At the ground: the plan, who\u2019s here, and what to say. It works with no signal.", screen: "teamtalk" },
         { label: "Pitch-side: who\u2019s here", caption: "At the ground: the plan, who\u2019s here, and what to say. It works with no signal.", screen: "pitchside" },
         { label: "Pitch-side: drill", caption: "At the ground: the plan, who\u2019s here, and what to say. It works with no signal.", screen: "TR1b-PitchSideDrill" },
@@ -90,15 +90,15 @@ export const TOURS: Record<string, TourDef> = {
         { label: "Set up: who can post", caption: "Everything a team does in a messaging app, in one place: a group chat with polls, photos, videos and voice notes, and a separate channel for announcements. Polls fill in who\u2019s coming. Nobody\u2019s phone number is shared.", screen: "CH3-NewChat" },
       ]},
       { title: "Game day", steps: [
-        { label: "Home on game day", caption: "Game day: the team sheet, the talk, and fair minutes for every player.", screen: "home" },
+        { label: "Home on game day", caption: "Game day: the team sheet, the talk, and fair minutes for every player.", screen: "T1g-HomeGameDay" },
         { label: "Team sheet", caption: "Game day: the team sheet, the talk, and fair minutes for every player.", screen: "teamsheet" },
         { label: "Opposition", caption: "Game day: the team sheet, the talk, and fair minutes for every player.", screen: "opposition" },
         { label: "Team talk", caption: "Game day: the team sheet, the talk, and fair minutes for every player.", screen: "matchday" },
         { label: "Live game and subs", caption: "Game day: the team sheet, the talk, and fair minutes for every player.", screen: "livegame" },
       ]},
       { title: "Players", steps: [
-        { label: "Squad", caption: "Each player has one goal, checked after every game. No rankings.", screen: "squad" },
-        { label: "Player profile", caption: "Each player has one goal, checked after every game. No rankings.", screen: "squad" },
+        { label: "Squad", caption: "Each player has one goal, checked after every game. No rankings.", screen: "T4-SquadTab" },
+        { label: "Player profile", caption: "Each player has one goal, checked after every game. No rankings.", screen: "T5-PlayerProfile" },
         { label: "Goals", caption: "Each player has one goal, checked after every game. No rankings.", screen: "goals" },
         { label: "Wellness", caption: "Each player has one goal, checked after every game. No rankings.", screen: "wellness" },
         { label: "Inbox", caption: "Each player has one goal, checked after every game. No rankings.", screen: "inbox" },
@@ -116,10 +116,10 @@ export const TOURS: Record<string, TourDef> = {
     sandboxHome: 'miniroos-e',
     sections: [
       { title: "Join", steps: [
-        { label: "Create account and children check", caption: "A volunteer coach signs up in a few minutes. Nothing about a child shows until the children check is confirmed.", screen: "signup" },
-        { label: "Find the club", caption: "A volunteer coach signs up in a few minutes. Nothing about a child shows until the children check is confirmed.", screen: "signup" },
-        { label: "Set up the team", caption: "A volunteer coach signs up in a few minutes. Nothing about a child shows until the children check is confirmed.", screen: "signup" },
-        { label: "Invite a manager", caption: "A volunteer coach signs up in a few minutes. Nothing about a child shows until the children check is confirmed.", screen: "signup" },
+        { label: "Create account and children check", caption: "A volunteer coach signs up in a few minutes. Nothing about a child shows until the children check is confirmed.", screen: "OB1-SignUp" },
+        { label: "Find the club", caption: "A volunteer coach signs up in a few minutes. Nothing about a child shows until the children check is confirmed.", screen: "OB2-SignUp" },
+        { label: "Set up the team", caption: "A volunteer coach signs up in a few minutes. Nothing about a child shows until the children check is confirmed.", screen: "OB3-SignUp" },
+        { label: "Invite a manager", caption: "A volunteer coach signs up in a few minutes. Nothing about a child shows until the children check is confirmed.", screen: "OB4-SignUp" },
       ]},
       { title: "Set up", steps: [
         { label: "Share the team link with families", caption: "First use: share one link with families and add a training night. That\u2019s all the set-up there is.", screen: "HM2e-SquadMiniRoosEmpty" },
@@ -201,11 +201,11 @@ export const TOURS: Record<string, TourDef> = {
     sections: [
       { title: "Set up", steps: [
         { label: "Senior teams", caption: "Senior teams add registration windows and clearances.", screen: "seniors" },
-        { label: "Registration window and clearances", caption: "Senior teams add registration windows and clearances.", screen: "seniors" },
+        { label: "Registration window and clearances", caption: "Senior teams add registration windows and clearances.", screen: "FN2-SeniorSquad" },
       ]},
       { title: "Each week", steps: [
-        { label: "Home", caption: "For adults the week is load, the opposition and the plan.", screen: "seniors" },
-        { label: "Squad load", caption: "For adults the week is load, the opposition and the plan.", screen: "seniors" },
+        { label: "Home", caption: "For adults the week is load, the opposition and the plan.", screen: "HS1-HomeSeniors" },
+        { label: "Squad load", caption: "For adults the week is load, the opposition and the plan.", screen: "FN2-SeniorSquad" },
         { label: "Opposition", caption: "For adults the week is load, the opposition and the plan. This screen is shared with other ages, so it shows the under-12 team here.", screen: "opposition" },
         { label: "Tonight\u2019s plan", caption: "For adults the week is load, the opposition and the plan.", screen: "training" },
       ]},
@@ -261,7 +261,7 @@ export const TOURS: Record<string, TourDef> = {
       { title: "Under 12: Play", steps: [
         { label: "Home", caption: "Under 12 it\u2019s simple: growth, a good warm-up and a few flags. No fitness testing.", screen: "F3-FitnessTraining" },
         { label: "Growth", caption: "Under 12 it\u2019s simple: growth, a good warm-up and a few flags. No fitness testing.", screen: "growth" },
-        { label: "Measuring session", caption: "Under 12 it\u2019s simple: growth, a good warm-up and a few flags. No fitness testing.", screen: "growth" },
+        { label: "Measuring session", caption: "Under 12 it\u2019s simple: growth, a good warm-up and a few flags. No fitness testing.", screen: "GT2-MeasureSession" },
         { label: "Your part of training", caption: "Under 12 it\u2019s simple: growth, a good warm-up and a few flags. No fitness testing.", screen: "GT2-MeasureSession" },
       ]},
       { title: "Under 13 to 16: Grow", steps: [
@@ -314,10 +314,10 @@ export const TOURS: Record<string, TourDef> = {
     sections: [
       { title: "Join", steps: [
         { label: "Invite", caption: "Signing up takes a few minutes, and nobody sees a child\u2019s data until their children check is confirmed.", screen: "signup" },
-        { label: "Account", caption: "Signing up takes a few minutes, and nobody sees a child\u2019s data until their children check is confirmed.", screen: "signup" },
-        { label: "Children check", caption: "Signing up takes a few minutes, and nobody sees a child\u2019s data until their children check is confirmed.", screen: "signup" },
-        { label: "What you\u2019ll see", caption: "Signing up takes a few minutes, and nobody sees a child\u2019s data until their children check is confirmed.", screen: "signup" },
-        { label: "You\u2019re in", caption: "Signing up takes a few minutes, and nobody sees a child\u2019s data until their children check is confirmed.", screen: "signup" },
+        { label: "Account", caption: "Signing up takes a few minutes, and nobody sees a child\u2019s data until their children check is confirmed.", screen: "IV1-Invite" },
+        { label: "Children check", caption: "Signing up takes a few minutes, and nobody sees a child\u2019s data until their children check is confirmed.", screen: "IV2-Invite" },
+        { label: "What you\u2019ll see", caption: "Signing up takes a few minutes, and nobody sees a child\u2019s data until their children check is confirmed.", screen: "IV3-Invite" },
+        { label: "You\u2019re in", caption: "Signing up takes a few minutes, and nobody sees a child\u2019s data until their children check is confirmed.", screen: "IV4-Invite" },
       ]},
       { title: "Each week", steps: [
         { label: "Home", caption: "The weekly jobs, done from a phone in a minute or two.", screen: "TM1-ManagerHome" },
@@ -423,15 +423,15 @@ export const TOURS: Record<string, TourDef> = {
     sections: [
       { title: "Join", steps: [
         { label: "Own account, 15 to 17", caption: "From 15, players have their own account. Under 18, a parent can still read coach messages.", screen: "olderplayer" },
-        { label: "Own account, adult", caption: "From 15, players have their own account. Under 18, a parent can still read coach messages.", screen: "olderplayer" },
+        { label: "Own account, adult", caption: "From 15, players have their own account. Under 18, a parent can still read coach messages.", screen: "JN9a-Join" },
       ]},
       { title: "Each week", steps: [
-        { label: "Home for older players", caption: "Older players see their own load and tests, and say when they\u2019re available.", screen: "olderplayer" },
-        { label: "Messages", caption: "Older players see their own load and tests, and say when they\u2019re available.", screen: "olderplayer" },
-        { label: "Players and coaches group", caption: "Older players see their own load and tests, and say when they\u2019re available.", screen: "olderplayer" },
-        { label: "Message the coach, parent copied", caption: "Older players see their own load and tests, and say when they\u2019re available.", screen: "olderplayer" },
-        { label: "Say if you\u2019re available", caption: "Older players see their own load and tests, and say when they\u2019re available.", screen: "olderplayer" },
-        { label: "My load and tests", caption: "Older players see their own load and tests, and say when they\u2019re available.", screen: "olderplayer" },
+        { label: "Home for older players", caption: "Older players see their own load and tests, and say when they\u2019re available.", screen: "PO1-OlderHome" },
+        { label: "Messages", caption: "Older players see their own load and tests, and say when they\u2019re available.", screen: "PO6-OlderChats" },
+        { label: "Players and coaches group", caption: "Older players see their own load and tests, and say when they\u2019re available.", screen: "PO7-OlderGroup" },
+        { label: "Message the coach, parent copied", caption: "Older players see their own load and tests, and say when they\u2019re available.", screen: "PO2-OlderMessage" },
+        { label: "Say if you\u2019re available", caption: "Older players see their own load and tests, and say when they\u2019re available.", screen: "PO3-OlderAvailability" },
+        { label: "My load and tests", caption: "Older players see their own load and tests, and say when they\u2019re available.", screen: "PO4-OlderLoad" },
       ]},
     ],
   },
@@ -518,7 +518,7 @@ export const TOURS: Record<string, TourDef> = {
         { label: "Import from PlayFootball", caption: "The coordinator starts by importing registrations.", screen: "FP1-PlayFootball" },
       ]},
       { title: "Each week", steps: [
-        { label: "Home", caption: "The jobs that keep a club running: registrations, fixtures, referees, kit and volunteers.", screen: "coordinator" },
+        { label: "Home", caption: "The jobs that keep a club running: registrations, fixtures, referees, kit and volunteers.", screen: "DCo1-CoordinatorHome" },
         { label: "Registrations", caption: "The jobs that keep a club running: registrations, fixtures, referees, kit and volunteers.", screen: "DR1-Registrations" },
         { label: "Fixtures from Dribl", caption: "The jobs that keep a club running: registrations, fixtures, referees, kit and volunteers.", screen: "FF1-LeagueSync" },
         { label: "Referees and game leaders", caption: "The jobs that keep a club running: registrations, fixtures, referees, kit and volunteers.", screen: "FR1-Referees" },
@@ -618,10 +618,10 @@ export const TOURS: Record<string, TourDef> = {
       ]},
       { title: "New players", steps: [
         { label: "Assess a trial player", caption: "A trial player is assessed in four taps, with a suggested group and a line for the family.", screen: "ACC3-TrialAssess" },
-        { label: "A new player\u2019s plan", caption: "A trial player is assessed in four taps, with a suggested group and a line for the family.", screen: "ACC5-OneOnOne" },
+        { label: "A new player\u2019s plan", caption: "A trial player is assessed in four taps, with a suggested group and a line for the family.", screen: "ACC4-PlayerPlan" },
       ]},
       { title: "Each player", steps: [
-        { label: "Plan, goal and whole week", caption: "One plan per player, their whole week across club and academy, and one-on-ones kept in open view.", screen: "ACC5-OneOnOne" },
+        { label: "Plan, goal and whole week", caption: "One plan per player, their whole week across club and academy, and one-on-ones kept in open view.", screen: "ACC4-PlayerPlan" },
         { label: "One-on-one, in open view", caption: "One plan per player, their whole week across club and academy, and one-on-ones kept in open view.", screen: "ACC5-OneOnOne" },
       ]},
       { title: "Game day", steps: [
@@ -679,9 +679,9 @@ export const TOURS: Record<string, TourDef> = {
     sandboxHome: 'academyplayer-e',
     sections: [
       { title: "Each week", steps: [
-        { label: "Home: my goal and skills", caption: "Under 15s join with a code from a parent. One goal, their own skills, and ten minutes of practice at home.", screen: "academyplayer" },
-        { label: "Practice at home", caption: "Under 15s join with a code from a parent. One goal, their own skills, and ten minutes of practice at home.", screen: "academyplayer" },
-        { label: "Before a goal is set", caption: "Under 15s join with a code from a parent. One goal, their own skills, and ten minutes of practice at home.", screen: "academyplayer" },
+        { label: "Home: my goal and skills", caption: "Under 15s join with a code from a parent. One goal, their own skills, and ten minutes of practice at home.", screen: "ACK1-AcademyPlayerHome" },
+        { label: "Practice at home", caption: "Under 15s join with a code from a parent. One goal, their own skills, and ten minutes of practice at home.", screen: "ACK2-HomePractice" },
+        { label: "Before a goal is set", caption: "Under 15s join with a code from a parent. One goal, their own skills, and ten minutes of practice at home.", screen: "ACK1e-AcademyPlayerHomeEmpty" },
       ]},
     ],
   },

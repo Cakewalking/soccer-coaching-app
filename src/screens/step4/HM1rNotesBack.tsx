@@ -34,8 +34,8 @@ export default function HM1rNotesBack({onBack}:{onBack?:()=>void}){
           <div style={{fontSize:15,color:INK,lineHeight:1.6}}>Check in with Zara's parent at the start. Keep her involved but watch how she goes in the first contact drill.</div>
         </div>
         <div style={{marginTop:16,display:'flex',gap:8}}>
-          <button onClick={()=>t('Opening this Saturday\'s notes')} style={{height:40,padding:'0 16px',borderRadius:10,border:0,background:G,color:'#fff',fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>Note this Saturday</button>
-          <button onClick={()=>t('Opening all notes')} style={{height:40,padding:'0 16px',borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:GD,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>All notes</button>
+          <button onClick={()=>t('Opening this Saturday\'s notes')} style={{height: 44,padding:'0 16px',borderRadius:10,border:0,background:G,color:'#fff',fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>Note this Saturday</button>
+          <button onClick={()=>t('Opening all notes')} style={{height: 44,padding:'0 16px',borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:GD,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>All notes</button>
         </div>
       </div>
       {toast&&<div style={{position:'fixed',bottom:24,left:'50%',transform:'translateX(-50%)',background:INK,color:'#fff',padding:'10px 20px',borderRadius:12,fontSize:14,fontWeight:600,zIndex:1000,whiteSpace:'nowrap' as const}}>{toast}</div>}

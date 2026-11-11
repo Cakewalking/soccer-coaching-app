@@ -34,7 +34,7 @@ export default function TR1cPitchSideWrap(_: { onBack?: () => void }) {
               <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 10 }}>{item.q}</div>
               <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' as const }}>
                 {item.opts.map((o, i) => (
-                  <button key={o} style={{ height: 38, padding: '0 16px', borderRadius: 999, border: `1px solid ${i === 0 && qi === 0 ? G : LN}`, background: i === 0 && qi === 0 ? PALE : '#fff', color: i === 0 && qi === 0 ? G : INK, fontSize: 14, fontWeight: i === 0 && qi === 0 ? 700 : 500, cursor: 'pointer' }}>{o}</button>
+                  <button key={o} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: `1px solid ${i === 0 && qi === 0 ? G : LN}`, background: i === 0 && qi === 0 ? PALE : '#fff', color: i === 0 && qi === 0 ? G : INK, fontSize: 14, fontWeight: i === 0 && qi === 0 ? 700 : 500, cursor: 'pointer' }}>{o}</button>
                 ))}
               </div>
             </div>

@@ -19,8 +19,8 @@ export default function HM6nSeasonNoteOne({onBack}:{onBack?:()=>void}){
           <div style={{fontSize:14,color:MUT}}>9 of 12 written · no scores or comparisons</div>
         </div>
         <div style={{display:'flex',gap:8}}>
-          <button onClick={()=>setPreview(!preview)} style={{height:36,padding:'0 14px',borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:INK,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>{preview?'Edit':'Preview'}</button>
-          <button onClick={save} style={{height:36,padding:'0 14px',borderRadius:10,border:0,background:G,color:'#fff',fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>{saved?'Saved':'Save'}</button>
+          <button onClick={()=>setPreview(!preview)} style={{height: 44,padding:'0 14px',borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:INK,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>{preview?'Edit':'Preview'}</button>
+          <button onClick={save} style={{height: 44,padding:'0 14px',borderRadius:10,border:0,background:G,color:'#fff',fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>{saved?'Saved':'Save'}</button>
         </div>
       </div>
       {!preview?(
@@ -45,7 +45,7 @@ export default function HM6nSeasonNoteOne({onBack}:{onBack?:()=>void}){
             <div style={{background:'#fff',border:`1px solid ${LN}`,borderRadius:14,padding:'14px 16px'}}>
               <div style={{fontSize:13,fontWeight:700,color:MUT,marginBottom:8,letterSpacing:'0.06em',textTransform:'uppercase' as const}}>What the family sees</div>
               <div style={{fontSize:13,color:MUT,marginBottom:12}}>A short note, your name, and 3 clips you choose.</div>
-              <button onClick={()=>alert('Change clips')} style={{height:36,padding:'0 14px',borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:G,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>Change the 3 clips</button>
+              <button onClick={()=>alert('Change clips')} style={{height: 44,padding:'0 14px',borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:G,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>Change the 3 clips</button>
             </div>
           </div>
         </div>

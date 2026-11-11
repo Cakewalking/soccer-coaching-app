@@ -38,7 +38,7 @@ export default function DM1CoachMeeting(_: { onBack?: () => void }) {
               <div style={{ fontSize: 16, color: MUT }}>›</div>
             </div>
           ))}
-          <button onClick={() => t('Agenda sent to all coaches.')} style={{ marginTop: 12, height: 40, padding: '0 20px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Send agenda to coaches</button>
+          <button onClick={() => t('Agenda sent to all coaches.')} style={{ marginTop: 12, height: 44, padding: '0 20px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Send agenda to coaches</button>
         </div>
         <div>
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 18px', marginBottom: 14 }}>

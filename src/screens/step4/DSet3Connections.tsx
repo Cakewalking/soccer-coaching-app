@@ -48,7 +48,7 @@ export default function DSet3Connections(_: { onBack?: () => void }) {
                 <div style={{ width: 7, height: 7, borderRadius: '50%', background: G, flex: 'none' }} />
                 <div style={{ fontSize: 12, fontWeight: 600, color: G }}>{c.status}</div>
               </div>
-              <button onClick={() => t(`${c.action} dialog would open.`)} style={{ height: 32, padding: '0 10px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>{c.action}</button>
+              <button onClick={() => t(`${c.action} dialog would open.`)} style={{ height: 44, padding: '0 10px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>{c.action}</button>
             </div>
           ))}
         </div>

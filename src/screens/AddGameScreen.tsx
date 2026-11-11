@@ -207,7 +207,7 @@ export default function AddGameScreen({ onClose }: { onClose: () => void }) {
                         Synced
                       </span>
                     ) : (
-                      <button style={{ height: 28, padding: '0 10px', borderRadius: 6, border: '1px solid #e9eae8', background: '#f7f8f7', color: '#10211f', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Sync now</button>
+                      <button style={{ height: 44, padding: '0 10px', borderRadius: 6, border: '1px solid #e9eae8', background: '#f7f8f7', color: '#10211f', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Sync now</button>
                     )}
                   </div>
                 </div>
@@ -254,10 +254,10 @@ export default function AddGameScreen({ onClose }: { onClose: () => void }) {
                   <div style={{ fontSize: 12, color: '#6f7f7b', marginBottom: 8 }}>Frame {card.frame}</div>
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
                     {card.players.map(name => (
-                      <button key={name} style={{ height: 28, padding: '0 10px', borderRadius: '999px', border: 0, background: '#e4f2eb', color: '#2f6252', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>{name}</button>
+                      <button key={name} style={{ height: 44, padding: '0 10px', borderRadius: '999px', border: 0, background: '#e4f2eb', color: '#2f6252', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>{name}</button>
                     ))}
                   </div>
-                  <button style={{ marginTop: 10, width: '100%', height: 32, borderRadius: 8, border: '1px dashed #c5c8c4', background: '#f7f8f7', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 12, cursor: 'pointer' }}>+ Add another player</button>
+                  <button style={{ marginTop: 10, width: '100%', height: 44, borderRadius: 8, border: '1px dashed #c5c8c4', background: '#f7f8f7', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 12, cursor: 'pointer' }}>+ Add another player</button>
                 </div>
               </div>
             ))}

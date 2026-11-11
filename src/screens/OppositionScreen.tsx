@@ -40,8 +40,8 @@ function OppositionEmpty() {
             <div style={{ fontSize: 20, fontWeight: 700, marginBottom: 6 }}>Know who you're playing</div>
             <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: '20px', marginBottom: 14 }}>Add a fixture to see the other team's results. After you've played them once, you'll have your own clips of them too.</div>
             <div style={{ display: 'flex', gap: 8 }}>
-              <button style={{ height: 36, padding: '0 16px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Add a fixture</button>
-              <button style={{ height: 36, padding: '0 16px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>See an example</button>
+              <button style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Add a fixture</button>
+              <button style={{ height: 44, padding: '0 16px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>See an example</button>
             </div>
           </div>
         </div>
@@ -102,7 +102,7 @@ export default function OppositionScreen({ empty }: { empty?: boolean }) {
       <div style={{ minHeight: 0, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 14 }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 14 }}>
           <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, letterSpacing: '-0.02em' }}>Harbour Rovers</h1>
-          <span style={{ fontSize: 14, color: '#4a5a57' }}>Saturday 7 Nov · home · 6th on the ladder · we haven't played them this season</span>
+          <span style={{ fontSize: 14, color: '#4a5a57' }}>Saturday 6 Jun · home · 6th on the ladder · we haven't played them this season</span>
         </div>
 
         <div style={{ background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '16px 18px', display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -170,8 +170,8 @@ export default function OppositionScreen({ empty }: { empty?: boolean }) {
                   style={{ width: '100%', height: 80, borderRadius: 10, border: '1px solid #c5c8c4', padding: '10px 12px', fontFamily: 'inherit', fontSize: 14, resize: 'none', boxSizing: 'border-box', marginBottom: 8 }}
                 />
                 <div style={{ display: 'flex', gap: 8 }}>
-                  <button onClick={() => { setShowNote(false); setNoteText('') }} style={{ flex: 1, height: 36, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>Cancel</button>
-                  <button onClick={() => { setShowNote(false); setNoteText('') }} style={{ flex: 2, height: 36, borderRadius: 10, border: 0, background: '#2f6252', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, color: '#fff', cursor: 'pointer' }}>Save note</button>
+                  <button onClick={() => { setShowNote(false); setNoteText('') }} style={{ flex: 1, height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>Cancel</button>
+                  <button onClick={() => { setShowNote(false); setNoteText('') }} style={{ flex: 2, height: 44, borderRadius: 10, border: 0, background: '#2f6252', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, color: '#fff', cursor: 'pointer' }}>Save note</button>
                 </div>
               </div>
             ) : (

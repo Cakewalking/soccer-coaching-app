@@ -36,7 +36,7 @@ export default function DB4Grants(_: { onBack?: () => void }) {
                     <div style={{ fontSize: 13, color: G, fontWeight: 700, marginBottom: 2 }}>{g.amount}</div>
                     <div style={{ fontSize: 12, color: MUT }}>{g.closes} · fits: {g.fit}</div>
                   </div>
-                  <button onClick={() => t(`${g.action}.`)} style={{ height: 36, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', flex: 'none' }}>{g.action}</button>
+                  <button onClick={() => t(`${g.action}.`)} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', flex: 'none' }}>{g.action}</button>
                 </div>
               </div>
             ))}

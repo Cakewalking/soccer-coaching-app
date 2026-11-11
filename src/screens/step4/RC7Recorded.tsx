@@ -39,7 +39,7 @@ export default function RC7Recorded(_: { onBack?: () => void }) {
 
         <div style={{ display: 'flex', gap: 8 }}>
           {FILTERS.map(f => (
-            <button key={f} style={{ height: 36, padding: '0 14px', borderRadius: 999, border: `1px solid ${f === 'All' ? G : LN}`, background: f === 'All' ? PALE : '#fff', fontSize: 14, fontWeight: f === 'All' ? 700 : 500, color: f === 'All' ? G : INK, cursor: 'pointer' }}>{f}</button>
+            <button key={f} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${f === 'All' ? G : LN}`, background: f === 'All' ? PALE : '#fff', fontSize: 14, fontWeight: f === 'All' ? 700 : 500, color: f === 'All' ? G : INK, cursor: 'pointer' }}>{f}</button>
           ))}
         </div>
 

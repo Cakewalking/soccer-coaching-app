@@ -30,7 +30,7 @@ export default function SPp15OlderPreSeason(){
                   <div style={{fontSize:14,fontWeight:item.done?400:600,color:item.done?MUT:INK,textDecoration:item.done?'line-through':'none'}}>{item.label}</div>
                   <div style={{fontSize:12,color:MUT}}>{item.note}</div>
                 </div>
-                {'action' in item&&item.action&&<button onClick={()=>t(`${item.action}`)} style={{height:30,padding:'0 10px',borderRadius:8,border:`1px solid ${LN}`,background:'#fff',color:G,fontFamily:'inherit',fontSize:12,fontWeight:600,cursor:'pointer'}}>{item.action}</button>}
+                {'action' in item&&item.action&&<button onClick={()=>t(`${item.action}`)} style={{height: 44,padding:'0 10px',borderRadius:8,border:`1px solid ${LN}`,background:'#fff',color:G,fontFamily:'inherit',fontSize:12,fontWeight:600,cursor:'pointer'}}>{item.action}</button>}
               </div>
             ))}
             <div style={{marginTop:16,background:PALE,borderRadius:14,padding:'14px'}}>

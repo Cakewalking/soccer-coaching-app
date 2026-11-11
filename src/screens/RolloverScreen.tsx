@@ -27,7 +27,7 @@ export default function RolloverScreen({ onBack, empty = false }: { onBack: () =
     return (
       <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
         <div style={{ flex: 'none', background: '#fff', borderBottom: '1px solid #e9eae8', padding: '0 28px', height: 52, display: 'flex', alignItems: 'center', gap: 14 }}>
-          <button onClick={onBack} style={{ height: 36, padding: '0 14px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Back</button>
+          <button onClick={onBack} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Back</button>
           <span style={{ fontSize: 14, fontWeight: 700, color: '#1f4a3e' }}>Next season · Rollover</span>
           <span style={{ marginLeft: 'auto', fontSize: 13, fontWeight: 700, color: '#2f6252', background: '#eef5f2', borderRadius: '999px', padding: '4px 12px' }}>Director of football</span>
         </div>
@@ -64,7 +64,7 @@ export default function RolloverScreen({ onBack, empty = false }: { onBack: () =
 
       {/* Header bar */}
       <div style={{ flex: 'none', background: '#fff', borderBottom: '1px solid #e9eae8', padding: '0 28px', height: 52, display: 'flex', alignItems: 'center', gap: 14 }}>
-        <button onClick={onBack} style={{ height: 36, padding: '0 14px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Back</button>
+        <button onClick={onBack} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Back</button>
         <span style={{ fontSize: 14, fontWeight: 700, color: '#1f4a3e' }}>Next season · Rollover</span>
         <span style={{ marginLeft: 'auto', fontSize: 13, fontWeight: 700, color: '#2f6252', background: '#eef5f2', borderRadius: '999px', padding: '4px 12px' }}>Director of football</span>
       </div>
@@ -126,7 +126,7 @@ export default function RolloverScreen({ onBack, empty = false }: { onBack: () =
             <div style={{ background: '#fdf5f3', border: '1px solid #e8d5d0', borderRadius: 16, padding: '14px 16px' }}>
               <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 6, color: '#10211f' }}>To sort first</div>
               <div style={{ fontSize: 14, color: '#4a5a57', marginBottom: 12 }}>1 team needs a coach</div>
-              <button style={{ width: '100%', height: 40, borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Find a coach for U10 Mark</button>
+              <button style={{ width: '100%', height: 44, borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Find a coach for U10 Mark</button>
             </div>
           </div>
         </div>

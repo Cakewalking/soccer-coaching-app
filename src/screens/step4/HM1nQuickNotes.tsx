@@ -15,14 +15,14 @@ export default function HM1nQuickNotes({onBack,onSave}:{onBack?:()=>void,onSave?
           <div style={{fontSize:24,fontWeight:800,letterSpacing:'-0.02em',color:INK,marginBottom:2}}>How was Saturday?</div>
           <div style={{fontSize:14,color:MUT}}>3 quick questions · takes 2 minutes</div>
         </div>
-        <button onClick={onBack} style={{height:36,padding:'0 14px',borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:MUT,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>Skip</button>
+        <button onClick={onBack} style={{height: 44,padding:'0 14px',borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:MUT,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>Skip</button>
       </div>
       <div style={{maxWidth:600}}>
         <div style={{background:'#fff',border:`1px solid ${LN}`,borderRadius:14,padding:'20px',marginBottom:16}}>
           <div style={{fontSize:16,fontWeight:700,color:INK,marginBottom:14}}>1. Did they have fun?</div>
           <div style={{display:'flex',gap:10}}>
             {([['yes','Yes, clearly'],['some','Some did'],['tough','Tough one']] as const).map(([v,l])=>(
-              <button key={v} onClick={()=>setFun(v)} style={{flex:1,height:40,borderRadius:10,border:`1.5px solid ${fun===v?G:'#e8edeb'}`,background:fun===v?'#eef5f2':'#fff',color:fun===v?GD:INK,fontFamily:'inherit',fontSize:13,fontWeight:fun===v?700:400,cursor:'pointer'}}>{l}</button>
+              <button key={v} onClick={()=>setFun(v)} style={{flex:1,height: 44,borderRadius:10,border:`1.5px solid ${fun===v?G:'#e8edeb'}`,background:fun===v?'#eef5f2':'#fff',color:fun===v?GD:INK,fontFamily:'inherit',fontSize:13,fontWeight:fun===v?700:400,cursor:'pointer'}}>{l}</button>
             ))}
           </div>
         </div>

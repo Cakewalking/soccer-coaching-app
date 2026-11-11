@@ -65,7 +65,7 @@ export default function FM1Moves(_: { onBack?: () => void }) {
                 <div style={{ position: 'absolute' as const, top: 2, left: trialMove ? 20 : 2, width: 18, height: 18, borderRadius: '50%', background: '#fff', transition: 'left 0.2s' }} />
               </div>
             </div>
-            <button onClick={() => t('Move submitted for approval.')} style={{ width: '100%', height: 40, borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Submit move</button>
+            <button onClick={() => t('Move submitted for approval.')} style={{ width: '100%', height: 44, borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Submit move</button>
           </div>
         </div>
       </div>

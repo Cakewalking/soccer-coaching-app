@@ -9,14 +9,14 @@ function InboxEmpty() {
           <button style={{ width: 36, height: 36, borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', flexShrink: 0 }}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10211f" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
           </button>
-          <button style={{ flexGrow: 1, height: 36, borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
+          <button style={{ flexGrow: 1, height: 44, borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
             New message
           </button>
         </div>
         <div style={{ flex: 'none', display: 'flex', gap: 2, padding: '8px 12px', borderBottom: '1px solid #f0f1ef' }}>
           {['All', 'Unread 0', 'People', 'Clean Sheet'].map((t, i) => (
-            <button key={i} style={{ height: 30, padding: '0 12px', borderRadius: '999px', border: 0, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', background: i === 0 ? '#10211f' : '#f0f1ef', color: i === 0 ? '#ffffff' : '#4a5a57' }}>{t}</button>
+            <button key={i} style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: 0, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', background: i === 0 ? '#10211f' : '#f0f1ef', color: i === 0 ? '#ffffff' : '#4a5a57' }}>{t}</button>
           ))}
         </div>
         <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 24, gap: 8 }}>
@@ -62,7 +62,7 @@ function InboxEmpty() {
               <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 2 }}>Bring in your coaching team</div>
               <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: '18px' }}>Invite an assistant or fitness coach to message them here. Parents can message you once they've joined.</div>
             </div>
-            <button style={{ flex: 'none', height: 36, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap' }}>+ Invite coaches</button>
+            <button style={{ flex: 'none', height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap' }}>+ Invite coaches</button>
           </div>
         </div>
 
@@ -117,7 +117,7 @@ function EllaPanelContent() {
           <div style={{ fontSize: 13, color: '#4a5a57' }}>Today · 7:30 am</div>
         </div>
         <div style={{ flexGrow: 1 }} />
-        <button style={{ height: 32, padding: '0 12px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', color: '#2f6252' }}>Mark as done</button>
+        <button style={{ height: 44, padding: '0 12px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', color: '#2f6252' }}>Mark as done</button>
       </div>
       <div style={{ flexGrow: 1, overflowY: 'auto', padding: '16px 24px', display: 'flex', flexDirection: 'column', gap: 12 }}>
         <div>
@@ -128,12 +128,12 @@ function EllaPanelContent() {
           <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', color: '#2f6252', marginBottom: 8 }}>SUGGESTED ACTION</div>
           <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 4 }}>Keep tonight light for Ella</div>
           <div style={{ fontSize: 14, lineHeight: '20px', color: '#1f4a3e', marginBottom: 12 }}>She can join in but step back if she needs to. Check in with her quietly at training.</div>
-          <button style={{ width: '100%', height: 40, borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Note that — keep it light for Ella</button>
+          <button style={{ width: '100%', height: 44, borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Note that — keep it light for Ella</button>
         </div>
         <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 14, padding: '14px 16px' }}>
           <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 4 }}>Message Ella's parent</div>
           <div style={{ fontSize: 14, lineHeight: '20px', color: '#4a5a57', marginBottom: 10 }}>Let them know you've seen the check-in and are keeping it light tonight.</div>
-          <button style={{ width: '100%', height: 40, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Message Ella's parent</button>
+          <button style={{ width: '100%', height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Message Ella's parent</button>
         </div>
         <div style={{ fontSize: 12, color: '#6f7f7b', lineHeight: '17px', textAlign: 'center' }}>Low check-ins stay private to your coaching team. Ella's classmates and parents do not see the detail.</div>
       </div>
@@ -156,7 +156,7 @@ function LinhPanelContent() {
           <div style={{ fontSize: 13, color: '#4a5a57' }}>Mia's mum · parent</div>
         </div>
         <div style={{ flexGrow: 1 }} />
-        <button style={{ height: 32, padding: '0 12px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', color: '#2f6252' }}>Mark as done</button>
+        <button style={{ height: 44, padding: '0 12px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', color: '#2f6252' }}>Mark as done</button>
       </div>
       <div style={{ flexGrow: 1, overflowY: 'auto', padding: '16px 24px', display: 'flex', flexDirection: 'column', gap: 10 }}>
         {LINH_MSGS.map((msg, i) => {
@@ -176,7 +176,7 @@ function LinhPanelContent() {
       <div style={{ flex: 'none', padding: '12px 24px', borderTop: '1px solid #e9eae8', background: '#ffffff' }}>
         <div style={{ display: 'flex', gap: 6, marginBottom: 10, flexWrap: 'wrap' as const }}>
           {['No problem, thanks for letting me know', 'She can join the warm-up when she arrives', 'Mark Mia as late tonight'].map(r => (
-            <button key={r} style={{ height: 32, padding: '0 12px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 500, cursor: 'pointer', color: '#10211f' }}>{r}</button>
+            <button key={r} style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 500, cursor: 'pointer', color: '#10211f' }}>{r}</button>
           ))}
         </div>
         <div style={{ display: 'flex', gap: 8, alignItems: 'flex-end' }}>
@@ -212,7 +212,7 @@ export default function InboxScreen({ empty }: { empty?: boolean }) {
           <button style={{ width: 36, height: 36, borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', flexShrink: 0 }}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10211f" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
           </button>
-          <button style={{ flexGrow: 1, height: 36, borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
+          <button style={{ flexGrow: 1, height: 44, borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
             New message
           </button>
@@ -262,7 +262,7 @@ export default function InboxScreen({ empty }: { empty?: boolean }) {
                 <div style={{ fontSize: 13, color: '#4a5a57' }}>Fitness coach · U12 coaching team</div>
               </div>
               <div style={{ flexGrow: 1 }} />
-              <button style={{ height: 32, padding: '0 12px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', color: '#2f6252' }}>Mark as done</button>
+              <button style={{ height: 44, padding: '0 12px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', color: '#2f6252' }}>Mark as done</button>
             </div>
             <div style={{ flexGrow: 1, overflowY: 'auto', padding: '16px 24px', display: 'flex', flexDirection: 'column', gap: 10 }}>
               <div style={{ textAlign: 'center', fontSize: 12, color: '#6f7f7b', marginBottom: 4 }}>Wednesday</div>
@@ -292,7 +292,7 @@ export default function InboxScreen({ empty }: { empty?: boolean }) {
             <div style={{ flex: 'none', padding: '12px 24px', borderTop: '1px solid #e9eae8', background: '#ffffff' }}>
               <div style={{ display: 'flex', gap: 6, marginBottom: 10, flexWrap: 'wrap' as const }}>
                 {["Thanks, sounds good", "Can Zoe play 60 if we're short?", "Let's chat at training"].map(r => (
-                  <button key={r} style={{ height: 32, padding: '0 12px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 500, cursor: 'pointer', color: '#10211f' }}>{r}</button>
+                  <button key={r} style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 500, cursor: 'pointer', color: '#10211f' }}>{r}</button>
                 ))}
               </div>
               <div style={{ display: 'flex', gap: 8, alignItems: 'flex-end' }}>
@@ -304,7 +304,7 @@ export default function InboxScreen({ empty }: { empty?: boolean }) {
                     { label: 'Drill',  path: 'M6 5h12a2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V7a2 2 0 012-2zM4 10h16' },
                     { label: 'Session',path: 'M4 11l8-7 8 7v9H4z' },
                   ].map(a => (
-                    <button key={a.label} style={{ height: 36, padding: '0 10px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer', color: '#4a5a57', display: 'flex', alignItems: 'center', gap: 4 }}>
+                    <button key={a.label} style={{ height: 44, padding: '0 10px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer', color: '#4a5a57', display: 'flex', alignItems: 'center', gap: 4 }}>
                       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={a.path}/></svg>
                       {a.label}
                     </button>

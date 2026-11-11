@@ -47,7 +47,7 @@ export default function RefereesTab({ empty }: { empty?: boolean }) {
               <span style={{ fontSize: 13, color: '#4a5a57' }}>{g.role}</span>
               <span style={{ fontSize: 14, color: g.needed ? '#c39797' : '#10211f', fontWeight: g.needed ? 700 : 400 }}>{g.needed ? 'Needed' : g.who}</span>
               {g.needed && (
-                <button onClick={() => showToast('Opening referee requests.')} style={{ height: 32, padding: '0 10px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Ask</button>
+                <button onClick={() => showToast('Opening referee requests.')} style={{ height: 44, padding: '0 10px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Ask</button>
               )}
             </div>
           ))}
@@ -57,7 +57,7 @@ export default function RefereesTab({ empty }: { empty?: boolean }) {
         {/* Feedback */}
         <div style={{ background: '#eef5f2', border: '1px solid #c5c8c4', borderRadius: 16, padding: '12px 18px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <span style={{ fontSize: 15, fontWeight: 600 }}>Feedback this week · 5 · all positive</span>
-          <button onClick={() => showToast('Opening referee feedback.')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>View</button>
+          <button onClick={() => showToast('Opening referee feedback.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>View</button>
         </div>
       </section>
 

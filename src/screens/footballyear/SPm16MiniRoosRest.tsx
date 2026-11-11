@@ -11,7 +11,7 @@ export default function SPm16MiniRoosRest({onBack}:{onBack?:()=>void}){
           <div style={{fontSize:24,fontWeight:800,letterSpacing:'-0.02em',color:INK,marginBottom:2}}>Nothing to do until March</div>
           <div style={{fontSize:14,color:MUT}}>Mon 1 December · rest · pre-season starts March</div>
         </div>
-        <button onClick={onBack} style={{height:36,padding:'0 14px',borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:INK,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>The football year</button>
+        <button onClick={onBack} style={{height: 44,padding:'0 14px',borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:INK,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>The football year</button>
       </div>
       <div style={{display:'grid',gridTemplateColumns:'minmax(0,1fr) 340px',gap:16}}>
         <div>
@@ -22,7 +22,7 @@ export default function SPm16MiniRoosRest({onBack}:{onBack?:()=>void}){
           <div style={{background:'#fff',border:`1px solid ${LN}`,borderRadius:14,padding:'14px 16px'}}>
             <div style={{fontSize:14,fontWeight:700,color:INK,marginBottom:8}}>One thing to do</div>
             <div style={{fontSize:13,color:MUT,marginBottom:12}}>Tell Bianca (club coordinator) if you're coaching next year. She's planning the U10 program now.</div>
-            <button onClick={()=>t('Opening message to Bianca')} style={{height:40,padding:'0 14px',borderRadius:10,border:0,background:G,color:'#fff',fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>Message Bianca</button>
+            <button onClick={()=>t('Opening message to Bianca')} style={{height: 44,padding:'0 14px',borderRadius:10,border:0,background:G,color:'#fff',fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>Message Bianca</button>
           </div>
         </div>
         <div>
@@ -34,7 +34,7 @@ export default function SPm16MiniRoosRest({onBack}:{onBack?:()=>void}){
           <div style={{background:'#fff',border:`1px solid ${LN}`,borderRadius:14,padding:'14px 16px'}}>
             <div style={{fontSize:14,fontWeight:700,color:INK,marginBottom:4}}>What stays</div>
             <div style={{fontSize:13,color:MUT,lineHeight:1.6}}>The team link, photos consent, and first-aid notes stay until you archive the team.</div>
-            <button onClick={()=>t('Opening archive')} style={{marginTop:12,height:36,padding:'0 14px',borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:G,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>Archive team</button>
+            <button onClick={()=>t('Opening archive')} style={{marginTop:12,height: 44,padding:'0 14px',borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:G,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>Archive team</button>
           </div>
         </div>
       </div>

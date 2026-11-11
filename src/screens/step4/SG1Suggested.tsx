@@ -40,8 +40,8 @@ export default function SG1Suggested(_: { onBack?: () => void }) {
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: 6, borderTop: `1px solid ${LN}` }}>
                 <div style={{ fontSize: 14, color: MUT }}>{d.drill}</div>
                 <div style={{ display: 'flex', gap: 8 }}>
-                  <button style={{ height: 36, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, cursor: 'pointer', color: INK }}>Why →</button>
-                  <button style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Add to plan</button>
+                  <button style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, cursor: 'pointer', color: INK }}>Why →</button>
+                  <button style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Add to plan</button>
                 </div>
               </div>
             </div>

@@ -136,7 +136,7 @@ export default function LiveGameScreen({ onClose }: { onClose: () => void }) {
           <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)' }}>{half}</span>
         </div>
         <div style={{ fontSize: 26, fontWeight: 800, color: '#fff', letterSpacing: '0.03em' }}>{timer}</div>
-        <button style={{ height: 32, padding: '0 14px', borderRadius: '999px', border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Pause</button>
+        <button style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Pause</button>
         <div style={{ flexGrow: 1 }} />
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: 15, fontWeight: 700, color: '#fff' }}>
           <span>Wattle Creek</span>
@@ -172,8 +172,8 @@ export default function LiveGameScreen({ onClose }: { onClose: () => void }) {
               <div style={{ flexGrow: 1, fontSize: 14, color: '#ffffff', lineHeight: '20px' }}>
                 <strong>{subToPlayer.name}</strong> on for <strong>{subFromPlayer.name}</strong>. {subToPlayer.name} will end on {37 - (subFromPlayer.mins - 23)}′. {subFromPlayer.name} on {subFromPlayer.mins}′.
               </div>
-              <button onClick={() => { setSubFrom(null); setSubTo(null); setShowSubConfirm(false) }} style={{ height: 36, padding: '0 14px', borderRadius: '999px', border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Cancel</button>
-              <button onClick={makeSub} style={{ height: 36, padding: '0 16px', borderRadius: '999px', border: 0, background: '#40826d', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Make the sub</button>
+              <button onClick={() => { setSubFrom(null); setSubTo(null); setShowSubConfirm(false) }} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Cancel</button>
+              <button onClick={makeSub} style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: 0, background: '#40826d', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Make the sub</button>
             </div>
           )}
 
@@ -220,7 +220,7 @@ export default function LiveGameScreen({ onClose }: { onClose: () => void }) {
                 <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{suggestedSub.name} on for Noah</div>
                 <div style={{ fontSize: 12, color: '#4a5a57' }}>Noah has hit the sprint cap · Priya set</div>
               </div>
-              <button style={{ marginLeft: 'auto', height: 32, padding: '0 12px', borderRadius: 8, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer', flexShrink: 0 }}>Do it</button>
+              <button style={{ marginLeft: 'auto', height: 44, padding: '0 12px', borderRadius: 8, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer', flexShrink: 0 }}>Do it</button>
             </div>
           </div>
 

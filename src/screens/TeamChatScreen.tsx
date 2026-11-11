@@ -57,10 +57,10 @@ function Sidebar({ selectedChat, panelView, onChat, onAnnouncements, onNewChat }
       <div style={{ padding:'14px 16px 10px', borderBottom:`1px solid ${LN}` }}>
         <div style={{ fontSize:17, fontWeight:700, color:INK, marginBottom:10 }}>Chats</div>
         <div style={{ display:'flex', gap:6 }}>
-          <button style={{ flex:1, height:32, borderRadius:999, border:`1px solid ${panelView==='chat'?G:LN}`, background:panelView==='chat'?PALE:'#fff', color:panelView==='chat'?G:MUT, fontSize:13, fontWeight:panelView==='chat'?700:400, cursor:'pointer', fontFamily:'inherit' }}>
+          <button style={{ flex:1, height: 44, borderRadius:999, border:`1px solid ${panelView==='chat'?G:LN}`, background:panelView==='chat'?PALE:'#fff', color:panelView==='chat'?G:MUT, fontSize:13, fontWeight:panelView==='chat'?700:400, cursor:'pointer', fontFamily:'inherit' }}>
             Inbox
           </button>
-          <button onClick={onNewChat} style={{ flex:1, height:32, borderRadius:999, border:`1px solid ${panelView==='newchat'?G:LN}`, background:panelView==='newchat'?PALE:'#fff', color:panelView==='newchat'?G:MUT, fontSize:13, fontWeight:600, cursor:'pointer', fontFamily:'inherit' }}>
+          <button onClick={onNewChat} style={{ flex:1, height: 44, borderRadius:999, border:`1px solid ${panelView==='newchat'?G:LN}`, background:panelView==='newchat'?PALE:'#fff', color:panelView==='newchat'?G:MUT, fontSize:13, fontWeight:600, cursor:'pointer', fontFamily:'inherit' }}>
             New chat
           </button>
         </div>
@@ -132,7 +132,7 @@ function ComposeBar({ onPoll, hint, placeholder='Write to the team chat' }: { on
       {/* Text + send */}
       <div style={{ display:'flex', alignItems:'center', gap:10, padding:'8px 16px 10px' }}>
         <input placeholder={placeholder} style={{ flex:1, height:40, padding:'0 14px', borderRadius:999, border:`1px solid ${LN}`, fontSize:14, fontFamily:'inherit', outline:'none', color:INK, background:'#fafafa' }}/>
-        <button style={{ height:40, padding:'0 20px', borderRadius:999, border:'none', background:G, color:'#fff', fontSize:14, fontWeight:700, cursor:'pointer', fontFamily:'inherit' }}>Send</button>
+        <button style={{ height: 44, padding:'0 20px', borderRadius:999, border:'none', background:G, color:'#fff', fontSize:14, fontWeight:700, cursor:'pointer', fontFamily:'inherit' }}>Send</button>
       </div>
       {hint && <div style={{ padding:'0 16px 10px', fontSize:11, color:MUT }}>{hint}</div>}
     </div>
@@ -220,7 +220,7 @@ function ChatPanel({ empty, selectedChat, onResults, onPoll, onMedia, onInfo, on
           {selectedChat==='linh' && <div style={{ fontSize:12, color:MUT }}>Private · Linh Tran</div>}
           {selectedChat==='wcfc' && <div style={{ fontSize:12, color:MUT }}>Wattle Creek FC · all staff</div>}
         </div>
-        <button onClick={onMedia} style={{ height:32, padding:'0 12px', borderRadius:999, border:`1px solid ${LN}`, background:'#fff', color:MUT, fontSize:12, fontWeight:600, cursor:'pointer', fontFamily:'inherit' }}>Photos &amp; files</button>
+        <button onClick={onMedia} style={{ height: 44, padding:'0 12px', borderRadius:999, border:`1px solid ${LN}`, background:'#fff', color:MUT, fontSize:12, fontWeight:600, cursor:'pointer', fontFamily:'inherit' }}>Photos &amp; files</button>
         <button onClick={onInfo} style={{ width:36, height:36, borderRadius:999, border:`1px solid ${LN}`, background:'#fff', cursor:'pointer', display:'flex', alignItems:'center', justifyContent:'center' }}>
           <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"><circle cx={12} cy={12} r={10}/><path d="M12 16v-4M12 8h.01"/></svg>
         </button>
@@ -353,7 +353,7 @@ function AnnouncementCard({ ini, name, time, seen, total, subject, body, attach,
       {canNudge && nudgeCount && (
         <div style={{ marginTop:10, padding:'10px 12px', background:'#fdf5f0', borderRadius:10, display:'flex', alignItems:'center', justifyContent:'space-between' }}>
           <span style={{ fontSize:13, color:ROSE }}>3 families haven't seen the change: Brennan, Delaney and Quinn.</span>
-          <button style={{ height:32, padding:'0 14px', borderRadius:999, border:'none', background:ROSE, color:'#fff', fontSize:12, fontWeight:700, cursor:'pointer', fontFamily:'inherit', whiteSpace:'nowrap' as const, marginLeft:12 }}>Nudge the {nudgeCount}</button>
+          <button style={{ height: 44, padding:'0 14px', borderRadius:999, border:'none', background:ROSE, color:'#fff', fontSize:12, fontWeight:700, cursor:'pointer', fontFamily:'inherit', whiteSpace:'nowrap' as const, marginLeft:12 }}>Nudge the {nudgeCount}</button>
         </div>
       )}
     </div>
@@ -522,7 +522,7 @@ function NewPollPanel({ onCancel, onSend }: { onCancel:()=>void; onSend:()=>void
         <Section label="Start from">
           <div style={{ display:'flex', gap:6, flexWrap:'wrap' }}>
             {["Who's coming?","Who can help?","Pick a date","Your own question"].map(p => (
-              <button key={p} onClick={() => setPreset(p)} style={{ height:32, padding:'0 14px', borderRadius:999, border:`1px solid ${preset===p?G:LN}`, background:preset===p?G:'#fff', color:preset===p?'#fff':MUT, fontSize:13, fontWeight:preset===p?700:400, cursor:'pointer', fontFamily:'inherit' }}>{p}</button>
+              <button key={p} onClick={() => setPreset(p)} style={{ height: 44, padding:'0 14px', borderRadius:999, border:`1px solid ${preset===p?G:LN}`, background:preset===p?G:'#fff', color:preset===p?'#fff':MUT, fontSize:13, fontWeight:preset===p?700:400, cursor:'pointer', fontFamily:'inherit' }}>{p}</button>
             ))}
           </div>
         </Section>
@@ -703,7 +703,7 @@ function MediaPanel({ empty, onBack }: { empty:boolean; onBack:()=>void }) {
       {/* Tabs */}
       <div style={{ display:'flex', borderBottom:`1px solid ${LN}`, background:'#fff', flexShrink:0, padding:'0 20px' }}>
         {[`Photos and videos · ${empty?0:19}`,`Files · ${empty?0:3}`,'Polls · 4','Places · 2'].map((t,i) => (
-          <button key={t} onClick={() => setTab(i)} style={{ height:40, padding:'0 16px', border:'none', background:'transparent', cursor:'pointer', fontFamily:'inherit', fontSize:13, fontWeight:tab===i?700:400, color:tab===i?INK:MUT, borderBottom:tab===i?`2px solid ${G2}`:'2px solid transparent', boxSizing:'border-box' }}>{t}</button>
+          <button key={t} onClick={() => setTab(i)} style={{ height: 44, padding:'0 16px', border:'none', background:'transparent', cursor:'pointer', fontFamily:'inherit', fontSize:13, fontWeight:tab===i?700:400, color:tab===i?INK:MUT, borderBottom:tab===i?`2px solid ${G2}`:'2px solid transparent', boxSizing:'border-box' }}>{t}</button>
         ))}
       </div>
       <div style={{ flex:1, overflowY:'auto', padding:'16px 20px' }}>
@@ -880,8 +880,8 @@ function PhotoCheckOverlay({ onDone }: { onDone:()=>void }) {
 
         <div style={{ fontSize:12, color:MUT, lineHeight:1.5, marginBottom:16 }}>You're only asked when someone in the team has no yes for photos. The same question goes to a parent who sends a photo.</div>
         <div style={{ display:'flex', gap:8, justifyContent:'flex-end' }}>
-          <button onClick={onDone} style={{ height:36, padding:'0 16px', borderRadius:999, border:`1px solid ${LN}`, background:'#fff', color:MUT, fontSize:13, fontWeight:600, cursor:'pointer', fontFamily:'inherit' }}>Ask Harper's parent again</button>
-          <button onClick={onDone} style={{ height:36, padding:'0 16px', borderRadius:999, border:'none', background:G, color:'#fff', fontSize:13, fontWeight:700, cursor:'pointer', fontFamily:'inherit' }}>Blur and send</button>
+          <button onClick={onDone} style={{ height: 44, padding:'0 16px', borderRadius:999, border:`1px solid ${LN}`, background:'#fff', color:MUT, fontSize:13, fontWeight:600, cursor:'pointer', fontFamily:'inherit' }}>Ask Harper's parent again</button>
+          <button onClick={onDone} style={{ height: 44, padding:'0 16px', borderRadius:999, border:'none', background:G, color:'#fff', fontSize:13, fontWeight:700, cursor:'pointer', fontFamily:'inherit' }}>Blur and send</button>
         </div>
       </div>
     </div>
@@ -957,8 +957,8 @@ export default function TeamChatScreen({ empty = false, miniRoos = false }: { em
           <div style={{ padding:'14px 16px 10px', borderBottom:`1px solid ${LN}` }}>
             <div style={{ fontSize:17, fontWeight:700, color:INK, marginBottom:10 }}>Chats</div>
             <div style={{ display:'flex', gap:6 }}>
-              <button style={{ flex:1, height:32, borderRadius:999, border:`1px solid ${G}`, background:PALE, color:G, fontSize:13, fontWeight:700, cursor:'pointer', fontFamily:'inherit' }}>Inbox</button>
-              <button style={{ flex:1, height:32, borderRadius:999, border:`1px solid ${LN}`, background:'#fff', color:MUT, fontSize:13, fontWeight:600, cursor:'pointer', fontFamily:'inherit' }}>New chat</button>
+              <button style={{ flex:1, height: 44, borderRadius:999, border:`1px solid ${G}`, background:PALE, color:G, fontSize:13, fontWeight:700, cursor:'pointer', fontFamily:'inherit' }}>Inbox</button>
+              <button style={{ flex:1, height: 44, borderRadius:999, border:`1px solid ${LN}`, background:'#fff', color:MUT, fontSize:13, fontWeight:600, cursor:'pointer', fontFamily:'inherit' }}>New chat</button>
             </div>
           </div>
           <button style={{ padding:'10px 16px', borderBottom:`1px solid ${LN}`, background:'transparent', border:'none', textAlign:'left', cursor:'pointer', fontFamily:'inherit', display:'block', width:'100%' }}>
@@ -993,13 +993,13 @@ export default function TeamChatScreen({ empty = false, miniRoos = false }: { em
             <div style={{ fontSize:14, color:MUT, lineHeight:1.5, maxWidth:340 }}>Families see this chat as soon as they join Clean Sheet. Try a poll for Saturday, or a photo from training.</div>
             <div style={{ display:'flex', gap:8, flexWrap:'wrap', justifyContent:'center', marginTop:4 }}>
               {['Photo','Video','Voice','Poll','Place','File','Clip or drill'].map(label => (
-                <button key={label} style={{ height:32, padding:'0 12px', borderRadius:999, border:`1px solid ${LN}`, background:'#fff', color:MUT, fontSize:12, fontWeight:600, cursor:'pointer', fontFamily:'inherit' }}>{label}</button>
+                <button key={label} style={{ height: 44, padding:'0 12px', borderRadius:999, border:`1px solid ${LN}`, background:'#fff', color:MUT, fontSize:12, fontWeight:600, cursor:'pointer', fontFamily:'inherit' }}>{label}</button>
               ))}
             </div>
           </div>
           <div style={{ padding:'12px 20px', borderTop:`1px solid ${LN}`, display:'flex', gap:8 }}>
             <input style={{ flex:1, height:40, borderRadius:10, border:`1px solid ${LN}`, padding:'0 14px', fontSize:14, fontFamily:'inherit', outline:'none' }} placeholder="Write to the team chat" readOnly />
-            <button style={{ height:40, padding:'0 16px', borderRadius:10, border:0, background:G, color:'#fff', fontSize:14, fontWeight:700, cursor:'pointer', fontFamily:'inherit' }}>Send</button>
+            <button style={{ height: 44, padding:'0 16px', borderRadius:10, border:0, background:G, color:'#fff', fontSize:14, fontWeight:700, cursor:'pointer', fontFamily:'inherit' }}>Send</button>
           </div>
           <div style={{ padding:'0 20px 12px', fontSize:12, color:MUT }}>Everyone in this chat can see this.</div>
         </div>
@@ -1015,8 +1015,8 @@ export default function TeamChatScreen({ empty = false, miniRoos = false }: { em
           <div style={{ padding:'14px 16px 10px', borderBottom:`1px solid ${LN}` }}>
             <div style={{ fontSize:17, fontWeight:700, color:INK, marginBottom:10 }}>Chats</div>
             <div style={{ display:'flex', gap:6 }}>
-              <button style={{ flex:1, height:32, borderRadius:999, border:`1px solid ${G}`, background:PALE, color:G, fontSize:13, fontWeight:700, cursor:'pointer', fontFamily:'inherit' }}>Inbox</button>
-              <button onClick={() => setPanelView('newchat')} style={{ flex:1, height:32, borderRadius:999, border:`1px solid ${LN}`, background:'#fff', color:MUT, fontSize:13, fontWeight:600, cursor:'pointer', fontFamily:'inherit' }}>New chat</button>
+              <button style={{ flex:1, height: 44, borderRadius:999, border:`1px solid ${G}`, background:PALE, color:G, fontSize:13, fontWeight:700, cursor:'pointer', fontFamily:'inherit' }}>Inbox</button>
+              <button onClick={() => setPanelView('newchat')} style={{ flex:1, height: 44, borderRadius:999, border:`1px solid ${LN}`, background:'#fff', color:MUT, fontSize:13, fontWeight:600, cursor:'pointer', fontFamily:'inherit' }}>New chat</button>
             </div>
           </div>
           <button onClick={() => setPanelView('announcements')} style={{ padding:'10px 16px', borderBottom:`1px solid ${LN}`, background: panelView==='announcements'?PALE:'transparent', border:'none', textAlign:'left', cursor:'pointer', fontFamily:'inherit', display:'block', width:'100%' }}>

@@ -78,6 +78,8 @@ function StepList({ items }: { items: { n: string; title: string; note?: string 
 // ─── ACC1 — Today overview ────────────────────────────────────────────────────
 
 function TodayOverview({ empty, onRun, onTrials, onReport }: { empty: boolean; onRun: () => void; onTrials: () => void; onReport: () => void }) {
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   if (empty) return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '20px 28px 32px', display: 'flex', flexDirection: 'column', gap: 16 }}>
       <PageHead title="Hi Reece" sub="Friday 5 June · no sessions today"/>
@@ -116,7 +118,7 @@ function TodayOverview({ empty, onRun, onTrials, onReport }: { empty: boolean; o
   return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '20px 28px 32px', display: 'flex', flexDirection: 'column', gap: 16 }}>
       <PageHead title="Hi Reece" sub="Thursday 4 June · 3 sessions today at Messmate Primary School"
-        right={<><Btn label="Group chats" small onClick={() => {}}/><Btn label="Message Dani" small primary/></>}/>
+        right={<><Btn label="Group chats" small onClick={() => showToast('Opening group chats.')}/><Btn label="Message Dani" small primary onClick={() => showToast('New message to Dani.')}/></>}/>
 
       <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: MUT }}>Today · Tap a session to run it</div>
 
@@ -166,6 +168,9 @@ function TodayOverview({ empty, onRun, onTrials, onReport }: { empty: boolean; o
       </Card>
 
       <div style={{ fontSize: 12, color: MUT, lineHeight: 1.5 }}>Plans come from each group's term plan. Swap any drill from the library.</div>
+      {toast && (
+        <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>
+      )}
     </div>
   )
 }
@@ -235,7 +240,7 @@ function RunSessionView({ empty }: { empty: boolean }) {
       <Card>
         <div style={{ padding: '10px 16px', borderBottom: `1px solid ${LN}`, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <span style={{ fontSize: 13, fontWeight: 700, color: MUT, letterSpacing: '0.06em', textTransform: 'uppercase' as const }}>The plan</span>
-          <button style={{ height: 28, padding: '0 10px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>Film this drill</button>
+          <button style={{ height: 44, padding: '0 10px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>Film this drill</button>
         </div>
         {plan.map(p => (
           <div key={p.drill} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px', borderBottom: `1px solid ${LN}`, background: p.status === 'now' ? PALE : '#fff' }}>
@@ -300,7 +305,7 @@ function TrialView({ empty }: { empty: boolean }) {
             <div style={{ fontSize: 12, color: MUT, marginBottom: 10 }}>{skill.note}</div>
             <div style={{ display: 'flex', gap: 8 }}>
               {(['starting', 'getting', 'strong'] as const).map(opt => (
-                <button key={opt} onClick={() => setTaps(t => ({ ...t, [skill.id]: opt }))} style={{ flex: 1, height: 36, borderRadius: 8, border: `1.5px solid ${taps[skill.id] === opt ? G : LN}`, background: taps[skill.id] === opt ? PALE : '#fff', fontSize: 13, fontWeight: taps[skill.id] === opt ? 700 : 400, color: taps[skill.id] === opt ? G : MUT, cursor: 'pointer', fontFamily: 'inherit', textTransform: 'capitalize' as const }}>
+                <button key={opt} onClick={() => setTaps(t => ({ ...t, [skill.id]: opt }))} style={{ flex: 1, height: 44, borderRadius: 8, border: `1.5px solid ${taps[skill.id] === opt ? G : LN}`, background: taps[skill.id] === opt ? PALE : '#fff', fontSize: 13, fontWeight: taps[skill.id] === opt ? 700 : 400, color: taps[skill.id] === opt ? G : MUT, cursor: 'pointer', fontFamily: 'inherit', textTransform: 'capitalize' as const }}>
                   {opt === 'starting' ? 'Starting out' : opt === 'getting' ? 'Getting there' : 'Strong'}
                 </button>
               ))}
@@ -1080,7 +1085,7 @@ function ChatView({ empty }: { empty: boolean }) {
           {['📷', '🎥', '🎤', '📊', '📄', '🏃'].map((icon, i) => (
             <button key={i} style={{ width: 36, height: 36, borderRadius: '50%', border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', fontSize: 16 }}>{icon}</button>
           ))}
-          <button style={{ height: 36, padding: '0 14px', borderRadius: 999, border: `1px solid ${G}`, background: PALE, fontSize: 12, fontWeight: 700, color: G, cursor: 'pointer', fontFamily: 'inherit' }}>Home practice</button>
+          <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${G}`, background: PALE, fontSize: 12, fontWeight: 700, color: G, cursor: 'pointer', fontFamily: 'inherit' }}>Home practice</button>
         </div>
         <div style={{ display: 'flex', gap: 10 }}>
           <input defaultValue="" placeholder="Write to the Advanced group" style={{ flex: 1, height: 44, padding: '0 14px', border: `1px solid ${LN}`, borderRadius: 999, fontFamily: 'inherit', fontSize: 14, outline: 'none' }}/>
@@ -1229,7 +1234,7 @@ export default function AcademyCoachApp({ onBack, empty = false }: { onBack: () 
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
             <span style={{ fontSize: 14, fontWeight: 600, color: 'rgba(255,255,255,0.8)' }}>Tall Timber Academy</span>
             <div style={{ width: 40, height: 40, borderRadius: '50%', background: ROSE, color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>RW</div>
-            <button onClick={onBack} style={{ height: 32, padding: '0 12px', borderRadius: 999, border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: 'rgba(255,255,255,0.8)', fontSize: 12, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>← Coach view</button>
+            <button onClick={onBack} style={{ height: 44, padding: '0 12px', borderRadius: 999, border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: 'rgba(255,255,255,0.8)', fontSize: 12, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>← Coach view</button>
           </div>
         </div>
         {contextTabs.length > 0 && (

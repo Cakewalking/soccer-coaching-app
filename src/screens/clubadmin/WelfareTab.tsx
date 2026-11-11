@@ -65,7 +65,7 @@ export default function WelfareTab({ empty }: { empty?: boolean }) {
             <h2 style={{ margin: 0, fontSize: 17, fontWeight: 700 }}>My cases</h2>
             <span style={{ fontSize: 14, color: '#4a5a57' }}>Welfare officer · 3 open · only you see names and details</span>
           </div>
-          <button onClick={() => showToast('Opening concern form.')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', marginBottom: 10 }}>Log a concern yourself</button>
+          <button onClick={() => showToast('Opening concern form.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', marginBottom: 10 }}>Log a concern yourself</button>
 
           <div style={{ fontSize: 13, color: '#4a5a57', fontWeight: 700, marginBottom: 6 }}>Open · Newest first</div>
           {CASES.map((c, i) => (

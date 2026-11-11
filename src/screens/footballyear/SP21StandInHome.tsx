@@ -80,7 +80,7 @@ export default function SP21StandInHome({onBack}:{onBack?:()=>void}){
                   </div>
                 ))}
               </div>
-              <button onClick={()=>t('Hand back early modal')} style={{width:'100%',height:40,borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:MUT,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>Hand back early</button>
+              <button onClick={()=>t('Hand back early modal')} style={{width:'100%',height: 44,borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:MUT,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>Hand back early</button>
             </div>
           </div>
         </div>

@@ -46,7 +46,7 @@ export default function CH4NewPoll(_: { onBack?: () => void }) {
   const t = (m: string) => { setToast(m); setTimeout(() => setToast(null), 3200) }
   const { q, opts } = presets[ptype]
   const Toggle = ({ on, onToggle }: { on: boolean; onToggle: () => void }) => (
-    <button onClick={onToggle} style={{ width: 52, height: 32, borderRadius: 999, background: on ? G : '#c5c8c4', border: 0, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: on ? 'flex-end' : 'flex-start', padding: 3, flexShrink: 0 }}>
+    <button onClick={onToggle} style={{ width: 52, height: 44, borderRadius: 999, background: on ? G : '#c5c8c4', border: 0, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: on ? 'flex-end' : 'flex-start', padding: 3, flexShrink: 0 }}>
       <div style={{ width: 26, height: 26, borderRadius: '50%', background: '#fff' }} />
     </button>
   )

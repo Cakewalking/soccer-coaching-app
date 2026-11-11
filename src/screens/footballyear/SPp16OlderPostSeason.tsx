@@ -33,7 +33,7 @@ export default function SPp16OlderPostSeason(){
             <div style={{background:'#f5f6f4',borderRadius:12,padding:'12px 14px',marginBottom:10}}>
               <div style={{fontSize:13,fontWeight:600,color:INK,marginBottom:4}}>Marko asked about you</div>
               <div style={{fontSize:13,color:MUT}}>Men's 1sts coach Marko invited you to train with his squad. Talk to Ollie first.</div>
-              <button onClick={()=>t('Opening Marko invite')} style={{marginTop:8,height:32,padding:'0 12px',borderRadius:8,border:`1px solid ${LN}`,background:'#fff',color:G,fontFamily:'inherit',fontSize:12,fontWeight:600,cursor:'pointer'}}>See invite</button>
+              <button onClick={()=>t('Opening Marko invite')} style={{marginTop:8,height: 44,padding:'0 12px',borderRadius:8,border:`1px solid ${LN}`,background:'#fff',color:G,fontFamily:'inherit',fontSize:12,fontWeight:600,cursor:'pointer'}}>See invite</button>
             </div>
             <div style={{background:'#f5f6f4',borderRadius:12,padding:'12px 14px'}}>
               <div style={{fontSize:12,fontWeight:600,color:MUT}}>Exams until 20 Nov — Ollie knows</div>

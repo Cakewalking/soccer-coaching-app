@@ -79,7 +79,7 @@ export default function TeamSheetScreen({ empty }: Props) {
             </span>
             <span style={{ display: 'inline-flex', alignItems: 'center', height: 24, padding: '0 9px', borderRadius: '999px', fontSize: 12, fontWeight: 700, whiteSpace: 'nowrap', background: p.badgeBg, color: p.badgeColor }}>{p.badge}</span>
             {p.canSwap && (
-              <button onClick={() => showToast('Pick who swaps with Ruby.')} style={{ display: 'inline-flex', alignItems: 'center', height: 40, padding: '0 16px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', color: '#10211f', fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', marginLeft: 8 }}>Swap</button>
+              <button onClick={() => showToast('Pick who swaps with Ruby.')} style={{ display: 'inline-flex', alignItems: 'center', height: 44, padding: '0 16px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', color: '#10211f', fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', marginLeft: 8 }}>Swap</button>
             )}
           </div>
         ))}

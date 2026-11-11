@@ -33,12 +33,16 @@ interface Props {
   roleId: RoleId
   onBack: () => void
   renderScreen: (screenKey: string) => React.ReactNode
+  initialStep?: number
+  onStepChange?: (step: number) => void
 }
 
-export default function DemoTourShell({ roleId, onBack, renderScreen }: Props) {
+export default function DemoTourShell({ roleId, onBack, renderScreen, initialStep, onStepChange }: Props) {
   const tour = TOURS[roleId]
   const steps = flattenSteps(roleId)
-  const [idx, setIdx] = useState(0)
+  const [idx, setIdx] = useState(initialStep ?? 0)
+
+  function goStep(n: number) { setIdx(n); onStepChange?.(n) }
 
   const step = steps[idx]
   const isFirst = idx === 0
@@ -92,7 +96,7 @@ export default function DemoTourShell({ roleId, onBack, renderScreen }: Props) {
                   return (
                     <button
                       key={stepI}
-                      onClick={() => setIdx(globalStepIdx)}
+                      onClick={() => goStep(globalStepIdx)}
                       style={{
                         display: 'flex', alignItems: 'center', gap: 10, width: '100%', padding: '7px 16px',
                         border: 0, background: isCurrent ? 'rgba(255,255,255,0.1)' : 'transparent',
@@ -148,10 +152,10 @@ export default function DemoTourShell({ roleId, onBack, renderScreen }: Props) {
               <div style={{ fontSize: 14, color: '#fff', lineHeight: '1.5' }}>{step.caption}</div>
             </div>
             <div style={{ display: 'flex', gap: 8, flex: 'none' }}>
-              <button onClick={() => setIdx(i => Math.max(0, i - 1))} disabled={isFirst} style={{ height: 40, padding: '0 18px', borderRadius: 10, border: '1px solid rgba(255,255,255,0.2)', background: 'transparent', color: isFirst ? 'rgba(255,255,255,0.3)' : '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: isFirst ? 'default' : 'pointer' }}>← Prev</button>
+              <button onClick={() => goStep(Math.max(0, idx - 1))} disabled={isFirst} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: '1px solid rgba(255,255,255,0.2)', background: 'transparent', color: isFirst ? 'rgba(255,255,255,0.3)' : '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: isFirst ? 'default' : 'pointer' }}>← Prev</button>
               {isLast
-                ? <button onClick={onBack} style={{ height: 40, padding: '0 18px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Done</button>
-                : <button onClick={() => setIdx(i => Math.min(steps.length - 1, i + 1))} style={{ height: 40, padding: '0 18px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Next →</button>
+                ? <button onClick={onBack} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Done</button>
+                : <button onClick={() => goStep(Math.min(steps.length - 1, idx + 1))} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Next →</button>
               }
             </div>
           </div>

@@ -64,7 +64,7 @@ export default function DT1Courses(_: { onBack?: () => void }) {
                   <div style={{ fontSize: 13, fontWeight: 700, color: INK }}>{s.name}</div>
                   <div style={{ fontSize: 12, color: MUT }}>{s.level}</div>
                 </div>
-                <button onClick={() => t(`${s.action}: ${s.name}`)} style={{ height: 32, padding: '0 12px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>{s.action}</button>
+                <button onClick={() => t(`${s.action}: ${s.name}`)} style={{ height: 44, padding: '0 12px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>{s.action}</button>
               </div>
             ))}
           </div>
