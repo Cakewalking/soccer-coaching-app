@@ -44,7 +44,7 @@ const TRAINING_TABS = ["Tonight's session", 'This week', 'Suggested', 'Drill lib
 const MATCHDAY_TABS = ['Team talk', 'Line-up and minutes', 'Opposition', 'Review', 'Fitness coach']
 const CLIPS_TABS    = ['Browse', 'Playlists', 'Shared with players', 'To check']
 
-export default function JuniorCoachApp({ onBack: _onBack, phaseContent }: { onBack?: () => void; phaseContent?: ReactNode }) {
+export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLabel, coachInitials }: { onBack?: () => void; phaseContent?: ReactNode; coachLabel?: string; coachInitials?: string }) {
   const [nav, setNav]                 = useState<NavKey>('home')
   const [sub, setSub]                 = useState<Sub>(null)
   const [homeTab, setHomeTab]         = useState(0)
@@ -148,10 +148,10 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent }: { onBa
             ))}
           </nav>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, height: 44, padding: '0 16px', borderRadius: '999px', background: 'rgba(255,255,255,0.15)', fontSize: 15, fontWeight: 600, color: '#fff', flexShrink: 0 }}>
-            U12 Sam · Wattle Creek
+            {coachLabel ?? 'U12 Sam · Wattle Creek'}
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9l6 6 6-6"/></svg>
           </div>
-          <div style={{ width: 44, height: 44, borderRadius: '999px', background: '#c39797', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 15, flexShrink: 0 }}>SK</div>
+          <div style={{ width: 44, height: 44, borderRadius: '999px', background: '#c39797', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 15, flexShrink: 0 }}>{coachInitials ?? 'SK'}</div>
         </div>
 
         {/* Sub-tabs */}

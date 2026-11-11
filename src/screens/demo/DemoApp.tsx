@@ -1163,7 +1163,7 @@ export default function DemoApp() {
                : phase === 'postseason' ? <SP10HomePostSeason onBack={noop} />
                : phase === 'restmonth' ? <SP16RestMonth onBack={noop} />
                : undefined
-      lookContent = <JuniorCoachApp phaseContent={pc} />
+      lookContent = <JuniorCoachApp phaseContent={pc} coachLabel="U12 Sam · Co-coach" coachInitials="JM" />
     } else if (role === 'youth') {
       const pc = phase === 'preseason' ? <SPy2YouthPreSeason onBack={noop} />
                : phase === 'postseason' ? <SPy10YouthPostSeason onBack={noop} />

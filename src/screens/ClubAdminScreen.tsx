@@ -41,7 +41,10 @@ export default function ClubAdminScreen({ empty, role = 'chair', initials = 'RM'
     { id: 'footballyear', label: 'Football year',  icon: 'M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z' },
     { id: 'trialwindow',  label: 'Trials',         icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2M9 12l2 2 4-4' },
   ]
-  const TABS = role === 'welfare' ? ALL_TABS : ALL_TABS.filter(t => t.id !== 'welfare')
+  const CHAIR_TAB_IDS = new Set(['club', 'teams', 'coaches', 'safeguarding', 'reports', 'plan', 'calendar'])
+  const TABS = role === 'welfare' ? ALL_TABS
+             : role === 'chair' ? ALL_TABS.filter(t => CHAIR_TAB_IDS.has(t.id))
+             : ALL_TABS.filter(t => t.id !== 'welfare')
 
   return (
     <div style={{ background: '#f7f9f7', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
