@@ -523,14 +523,14 @@ export function renderScreen(key: string): ReactNode {
       return <WellnessScreen empty={false} />
     case 'style':
       return <OurStyleScreen />
-    case 'sf0': return <SetOurStyleWizard onClose={noop} initialStep="intro" />
-    case 'sf1': return <SetOurStyleWizard onClose={noop} initialStep={1} />
-    case 'sf2': return <SetOurStyleWizard onClose={noop} initialStep={2} />
-    case 'sf3': return <SetOurStyleWizard onClose={noop} initialStep={3} />
-    case 'sf4': return <SetOurStyleWizard onClose={noop} initialStep={4} />
-    case 'sf5': return <SetOurStyleWizard onClose={noop} initialStep={5} />
-    case 'sf6': return <SetOurStyleWizard onClose={noop} initialStep="review" />
-    case 'sf7': return <SetOurStyleWizard onClose={noop} initialStep="saved" />
+    case 'sf0': case 'SF0-Intro':       return <SetOurStyleWizard onClose={noop} initialStep="intro" />
+    case 'sf1': case 'SF1-WithBall':    return <SetOurStyleWizard onClose={noop} initialStep={1} />
+    case 'sf2': case 'SF2-WithoutBall': return <SetOurStyleWizard onClose={noop} initialStep={2} />
+    case 'sf3': case 'SF3-WinIt':       return <SetOurStyleWizard onClose={noop} initialStep={3} />
+    case 'sf4': case 'SF4-LoseIt':      return <SetOurStyleWizard onClose={noop} initialStep={4} />
+    case 'sf5': case 'SF5-Values':      return <SetOurStyleWizard onClose={noop} initialStep={5} />
+    case 'sf6': case 'SF6-Review':      return <SetOurStyleWizard onClose={noop} initialStep="review" />
+    case 'sf7': case 'SF7-Saved':       return <SetOurStyleWizard onClose={noop} initialStep="saved" />
     case 'teamtalk':
       return <TeamTalkScreen role="head" onClose={noop} />
     case 'pitchside':
@@ -557,11 +557,11 @@ export function renderScreen(key: string): ReactNode {
       return <DrillLibraryScreen empty={false} />
     case 'addgame':
       return <AddGameScreen onClose={noop} />
-    case 'gi0': return <AddGameScreen onClose={noop} initialStep={1} />
-    case 'gi1': return <AddGameScreen onClose={noop} initialStep={2} />
-    case 'gi2': return <AddGameScreen onClose={noop} initialStep={3} />
-    case 'gi3': return <AddGameScreen onClose={noop} initialStep={4} />
-    case 'gi4': return <AddGameScreen onClose={noop} initialStep={5} />
+    case 'gi0': case 'GI0-Recording':  return <AddGameScreen onClose={noop} initialStep={1} />
+    case 'gi1': case 'GI1-Wearables':  return <AddGameScreen onClose={noop} initialStep={2} />
+    case 'gi2': case 'GI2-WhosWho':    return <AddGameScreen onClose={noop} initialStep={3} />
+    case 'gi3': case 'GI3-Analysing':  return <AddGameScreen onClose={noop} initialStep={4} />
+    case 'gi4': case 'GI4-Ready':      return <AddGameScreen onClose={noop} initialStep={5} />
     case 'pa-check': return <PACheckScreen />
     case 'coachfitness':
       return <CoachFitnessScreen />
@@ -997,6 +997,68 @@ export function renderScreen(key: string): ReactNode {
     case 'jn6-age':           return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><JoinFlow initialStep="player-age" /></div>
     case 'jn7-code':          return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><JoinFlow initialStep="player-code" /></div>
     case 'jn9a-18plus':       return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><JoinFlow initialStep="player-18" /></div>
+
+    // Design ID aliases — Football year (SP* tablet screens)
+    case 'SP15-ComingBack':           return <SP15ComingBack onBack={noop} />
+    case 'SP16-RestMonth':            return <SP16RestMonth onBack={noop} />
+    case 'SP20-StandIn':              return <SP20StandIn onBack={noop} />
+    case 'SP21-StandInHome':          return <SP21StandInHome onBack={noop} />
+    case 'SPy10-YouthPostSeason':     return <SPy10YouthPostSeason onBack={noop} />
+    case 'SPy16-YouthRestMonth':      return <SPy16YouthRestMonth onBack={noop} />
+    case 'SPs10-SeniorPostSeason':    return <SPs10SeniorPostSeason onBack={noop} />
+    case 'SPs16-SeniorOffSeason':     return <SPs16SeniorOffSeason onBack={noop} />
+    case 'SPm2-MiniRoosPreSeason':    return <SPm2MiniRoosPreSeason onBack={noop} />
+    case 'SPm10-MiniRoosPostSeason':  return <SPm10MiniRoosPostSeason onBack={noop} />
+    case 'SPm16-MiniRoosRest':        return <SPm16MiniRoosRest onBack={noop} />
+    // Design ID aliases — Football year (SPp* phone screens)
+    case 'SPp1-ParentPreSeason':      return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><SPp1ParentPreSeason onBack={noop} /></div>
+    case 'SPp2-ParentComingBack':     return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><SPp2ParentComingBack onBack={noop} /></div>
+    case 'SPp3-ParentTournament':     return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><SPp3ParentTournament onBack={noop} /></div>
+    case 'SPp4-ParentRestMonth':      return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><SPp4ParentRestMonth onBack={noop} /></div>
+    case 'SPp6-ManagerTournament':    return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><SPp6ManagerTournament onBack={noop} /></div>
+    case 'SPp7-PlayerRestMonth':      return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><SPp7PlayerRestMonth onBack={noop} /></div>
+    case 'SPp8-StandInAsked':         return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><SPp8StandInAsked onBack={noop} /></div>
+    case 'SPp10-ManagerPreSeason':    return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><SPp10ManagerPreSeason /></div>
+    case 'SPp11-ManagerPostSeason':   return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><SPp11ManagerPostSeason /></div>
+    case 'SPp12-ManagerRestMonth':    return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><SPp12ManagerRestMonth /></div>
+    case 'SPp13-PlayerPreSeason':     return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><SPp13PlayerPreSeason /></div>
+    case 'SPp14-PlayerPostSeason':    return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><SPp14PlayerPostSeason /></div>
+    case 'SPp15-OlderPreSeason':      return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><SPp15OlderPreSeason /></div>
+    case 'SPp16-OlderPostSeason':     return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><SPp16OlderPostSeason /></div>
+    case 'SPp17-OlderRestMonth':      return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><SPp17OlderRestMonth /></div>
+    // Design ID aliases — Coach phone (CPh* phone screens)
+    case 'CPh1-CoachPhoneHome':        return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><CPh1CoachPhoneHome /></div>
+    case 'CPh2-CoachPhoneComing':      return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><CPh2CoachPhoneComing /></div>
+    case 'CPh3-CoachPhoneMessages':    return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><CPh3CoachPhoneMessages /></div>
+    case 'CPh4-CoachPhoneGame':        return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><CPh4CoachPhoneGame /></div>
+    case 'CPh5-CoachPhonePlan':        return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><CPh5CoachPhonePlan /></div>
+    case 'CPh1e-CoachPhoneHomeEmpty':  return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><CPh1eCoachPhoneHomeEmpty /></div>
+    case 'CPh4e-CoachPhoneGameEmpty':  return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><CPh4eCoachPhoneGameEmpty /></div>
+    // Design ID aliases — Sign-in / demo screens
+    case 'SI5-TooManyTries':           return <SignInFlow initialState="toomany" />
+    case 'DEMO-Why':                   return <DemoWhy onBack={noop} />
+    // Design ID aliases — Settings, fitness, staff, misc
+    case 'DSet2-ClubRoles':            return <DSet2Roles />
+    case 'DSet3-ClubConnections':      return <DSet3Connections />
+    case 'DSet6-PartnerAcademy':       return <DSet6PartnerAcademy />
+    case 'SET4e-DevicesEmpty':         return <SET4eDevicesEmpty />
+    case 'SET6-Display':               return <SET6Display />
+    case 'IL1e-InjuriesEmpty':         return <IL1eInjuryLogEmpty />
+    case 'TL3e-TestResultsEmpty':      return <TL3eSprintResultsEmpty />
+    case 'CC1e-CoachHomeSharedEmpty':  return <CC1eCoachHomeEmpty />
+    case 'TM6e-WhosComingEmpty':       return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TM6eWhoComingEmpty /></div>
+    case 'I1e-InboxVests':             return <I1eInboxVests />
+    case 'ACP7-ShareWithClub':         return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><ACP7ShareWithClub /></div>
+    case 'ACP9-JoinGameTeam':          return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><ACP9JoinGameTeam /></div>
+    case 'HM1r-NotesBack':             return <HM1rNotesBack onBack={noop} />
+    case 'HM2c-PlayerCardMiniRoos':    return <HM2cPlayerCardMiniRoos onBack={noop} />
+    case 'HM6n-SeasonNoteOne':         return <HM6nSeasonNoteOne onBack={noop} />
+    case 'SE2-PlayerSummary':          return <SE2PlayerSummary onBack={noop} />
+    case 'PO5s-AdultSettings':         return <PO5sAdultSettings onBack={noop} />
+    case 'C1s-ClipSearch':             return <C1sClipSearch onBack={noop} />
+    case 'ACC8p-PairCamera':           return <ACC8pPairCamera onBack={noop} />
+    case 'PA-Check':                   return <PACheckScreen />
+    case 'PA-PlayerApp':               return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PAParent /></div>
 
     // Sandbox empty-state homes
     case 'home-e':
