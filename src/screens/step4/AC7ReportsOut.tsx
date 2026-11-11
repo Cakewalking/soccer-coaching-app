@@ -11,7 +11,6 @@ function ProgBar({ pct }: { pct: number }) {
 }
 
 export default function AC7ReportsOut(_: { onBack?: () => void }) {
-  const [sheet, setSheet] = useState<string | null>(null)
   const [toast, setToast] = useState<string | null>(null)
   function t(m: string) { setToast(m); setTimeout(() => setToast(null), 3200) }
 

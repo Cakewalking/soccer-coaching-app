@@ -240,7 +240,11 @@ export default function App() {
   const [selectedPlayer, setSelectedPlayer] = useState<string | null>(null)
   const [isEmpty]                      = useState(false)
 
-  const navTo = (s: Screen) => { setScreen(s) }
+  const navTo = (s: string) => {
+    if (s === 'inbox')    { setScreen('home');  setHomeTab(1); return }
+    if (s === 'fixtures') { setScreen('home');  setHomeTab(3); return }
+    setScreen(s as Screen)
+  }
 
   if (screen === 'settings') {
     return <SettingsScreen onDone={() => navTo('home')} />

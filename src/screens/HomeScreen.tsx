@@ -1,17 +1,15 @@
 import { INBOX, METRICS, WEEK_SCHEDULE, RESULTS, SQUAD, type Role } from '../data'
 
-type Screen = 'home' | 'training' | 'matchday' | 'teamtalk' | 'setstyle' | 'metric' | 'inbox' | 'squad' | 'clips' | 'fixtures'
-
 interface Props {
   role: Role
   onRole: (r: Role) => void
-  onNav: (s: Screen) => void
+  onNav: (s: string) => void
   onCalendar?: () => void
   empty?: boolean
 }
 
-function HomeEmpty({ onNav }: { onNav: (s: Screen) => void }) {
-  const steps: Array<{ n: number; title: string; body: string; btn: string; nav: Screen }> = [
+function HomeEmpty({ onNav }: { onNav: (s: string) => void }) {
+  const steps: Array<{ n: number; title: string; body: string; btn: string; nav: string }> = [
     { n: 1, title: 'Add your squad',          body: 'Names, positions and a parent contact. Import a spreadsheet or share an invite link.', btn: 'Add players',  nav: 'squad'    },
     { n: 2, title: 'Add your fixtures',        body: 'Clean Sheet plans training around your game days.',                                    btn: 'Add fixtures', nav: 'fixtures' },
     { n: 3, title: 'Connect the match camera', body: 'Your match camera records games and finds the clips for you.',                         btn: 'Connect',      nav: 'clips'    },

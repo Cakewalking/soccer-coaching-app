@@ -1,4 +1,4 @@
-const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
+const G = '#2f6252', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 const NAV_ITEMS = ['Home', 'Squad', 'Training', 'Match day', 'Clips']
 const SUBNAV = ['Team talk', 'Line-up and minutes', 'Opposition', 'Review']

@@ -1,4 +1,4 @@
-const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
+const G = '#2f6252', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 const STEPS = ['Your account', 'Children check', 'Team setup', 'Invite staff', 'Done']
 const ROLES = [
@@ -50,7 +50,7 @@ export default function OB4SignUp(_: { onBack?: () => void }) {
           </div>
 
           <div>
-            <div style={{ fontSize: 13, fontWeight: 700, color: MUT, marginBottom: 8 }}>Invite by email <span style={{ fontWeight: 400 }}>(optional)</span></div>
+            <div style={{ fontSize: 13, color: MUT, marginBottom: 8 }}>Invite by email <span style={{ fontWeight: 400 }}>(optional)</span></div>
             {[0, 1].map(i => (
               <div key={i} style={{ display: 'flex', gap: 10, marginBottom: 10 }}>
                 <input placeholder="coach@example.com" style={{ flex: 1, height: 46, border: `1px solid ${LN}`, borderRadius: 10, padding: '0 14px', fontSize: 15, color: INK, background: '#fff', fontFamily: 'inherit' }} />

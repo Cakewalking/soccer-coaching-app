@@ -7,7 +7,6 @@ function Badge({ label, color, bg }: { label: string; color: string; bg: string 
 }
 
 export default function AC3Trials(_: { onBack?: () => void }) {
-  const [sheet, setSheet] = useState<string | null>(null)
   const [toast, setToast] = useState<string | null>(null)
   function t(m: string) { setToast(m); setTimeout(() => setToast(null), 3200) }
 

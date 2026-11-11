@@ -52,7 +52,7 @@ export default function CH9MessageActions(_: { onBack?: () => void }) {
                 {c.icon ? <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={G} strokeWidth="2" strokeLinecap="round"><path d="M4 10v4h3l7 4V6l-7 4zM18 9a4 4 0 010 6"/></svg> : c.ini}
               </div>
               <div style={{ flexGrow: 1, minWidth: 0 }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8 }}><strong style={{ fontSize: 15, lineHeight: '20px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{c.name}</strong><span style={{ flexShrink: 0, fontSize: 12, color: MUT }}>{c.time}</span></div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8 }}><strong style={{ lineHeight: '20px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{c.name}</strong><span style={{ flexShrink: 0, fontSize: 12, color: MUT }}>{c.time}</span></div>
                 <div style={{ fontSize: 13, color: MUT, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{c.sub}</div>
               </div>
             </button>

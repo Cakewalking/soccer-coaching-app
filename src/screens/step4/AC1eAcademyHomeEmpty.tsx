@@ -3,7 +3,6 @@ import { useState } from 'react'
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 export default function AC1eAcademyHomeEmpty(_: { onBack?: () => void }) {
-  const [sheet, setSheet] = useState<string | null>(null)
   const [toast, setToast] = useState<string | null>(null)
   function t(m: string) { setToast(m); setTimeout(() => setToast(null), 3200) }
 

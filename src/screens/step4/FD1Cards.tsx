@@ -1,4 +1,4 @@
-const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
+const G = '#2f6252', GD = '#1f4a3e', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 const PLAYERS = [
   { ini: 'RP', name: 'Ryan Petersen', team: 'U16 Ollie', yellows: 2, red: true, status: 'Suspended', note: 'Misses Saturday' },

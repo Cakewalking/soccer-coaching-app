@@ -53,7 +53,7 @@ export default function TM1ManagerHome(_: { onBack?: () => void }) {
             { icon: '📄', title: 'Team sheet', sub: 'Sam picks the 14 Fri night, you put it in Dribl', badge: 'Fri', badgeBg: LN },
             { icon: '🛡️', title: "Harper's consent form", sub: "New player · parent hasn't finished it", badge: 'Chase', badgeBg: '#cbbeb5' },
           ].map((item, i) => (
-            <button key={i} onClick={() => t(`${item.title} opened.`)} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 50, borderTop: `1px solid ${LN}`, width: '100%', background: 'none', border: 0, borderTop: `1px solid ${LN}`, padding: '0', cursor: 'pointer', textAlign: 'left' }}>
+            <button key={i} onClick={() => t(`${item.title} opened.`)} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 50, width: '100%', background: 'none', border: 0, borderTop: `1px solid ${LN}`, padding: '0', cursor: 'pointer', textAlign: 'left' }}>
               <div style={{ width: 36, height: 36, borderRadius: 10, background: PALE, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, flexShrink: 0 }}>{item.icon}</div>
               <div style={{ flexGrow: 1 }}>
                 <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>{item.title}</div>

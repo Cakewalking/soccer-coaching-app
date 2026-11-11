@@ -1,4 +1,4 @@
-const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
+const G = '#2f6252', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb'
 
 const QUOTES = [
   { from: 'U12 Sam coach', q: 'Zoe was calm and clear the whole game. The players respected her decisions.' },

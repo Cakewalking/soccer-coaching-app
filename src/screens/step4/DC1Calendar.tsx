@@ -1,5 +1,5 @@
 import { useState } from 'react'
-const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
+const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb'
 const GAMES = [
   { time: '8:30', color: '#1565c0', home: 'U7 Dan', away: 'Moorabbin U7', venue: 'Oval 1' },
   { time: '9:00', color: G, home: 'U8 Hannah', away: 'Hampton U8', venue: 'Oval 2' },

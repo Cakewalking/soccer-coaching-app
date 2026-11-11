@@ -1,4 +1,4 @@
-const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
+const G = '#2f6252', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb'
 
 const NAV_ITEMS = ['Home', 'Squad', 'Training', 'Match day', 'Clips']
 const SUBNAV = ['Players', 'Development goals', 'Wellness', 'Availability', 'Consent and privacy']
@@ -65,7 +65,7 @@ export default function T4SquadTab(_: { onBack?: () => void }) {
               <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 6 }}>Development goals</div>
               <div style={{ fontSize: 22, fontWeight: 700 }}>11 of 16 on track</div>
               <div style={{ display: 'flex', height: 8, borderRadius: 4, overflow: 'hidden', gap: 2, margin: '8px 0' }}>
-                <div style={{ flex: 11, background: '#40826d' }} /><div style={{ flex: 2, background: '#c39797' }} /><div style={{ flex: 3, background: '#cbbeb5' }} />
+                <div style={{ background: '#c39797' }} /><div style={{ flex: 3, background: '#cbbeb5' }} />
               </div>
               <div style={{ fontSize: 13, color: MUT }}>2 need work · 3 to set</div>
             </div>

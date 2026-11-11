@@ -127,7 +127,7 @@ export default function CH4NewPoll(_: { onBack?: () => void }) {
                     <span style={{ flexGrow: 1 }}>{opt}</span>
                     <strong>0</strong>
                   </div>
-                  <div style={{ height: 6, borderRadius: 3, background: '#e9eae8', overflow: 'hidden' }}><div style={{ height: '100%', width: '0%', background: NAV_BG }} /></div>
+                  <div style={{ borderRadius: 3, overflow: 'hidden' }}><div style={{ height: '100%', width: '0%', background: NAV_BG }} /></div>
                 </div>
               ))}
               <div style={{ fontSize: 12, color: MUT }}>One answer per player · closes Fri 6 pm</div>

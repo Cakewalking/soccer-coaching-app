@@ -40,7 +40,7 @@ export default function TM5ManagerMessages(_: { onBack?: () => void }) {
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '4px 14px' }}>
           <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: MUT, padding: '8px 0 4px' }}>Conversations</div>
           {convos.map((c, i) => (
-            <button key={i} onClick={() => t(`Opening conversation with ${c.name}.`)} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 62, borderTop: `1px solid ${LN}`, width: '100%', background: 'none', border: 0, borderTop: `1px solid ${LN}`, padding: 0, cursor: 'pointer', textAlign: 'left' }}>
+            <button key={i} onClick={() => t(`Opening conversation with ${c.name}.`)} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 62, width: '100%', background: 'none', border: 0, borderTop: `1px solid ${LN}`, padding: 0, cursor: 'pointer', textAlign: 'left' }}>
               <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0 }}>{c.ini}</div>
               <div style={{ flexGrow: 1, minWidth: 0 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8 }}>

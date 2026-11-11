@@ -1,5 +1,5 @@
 import { useState } from 'react'
-const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb'
+const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57'
 const NAV_BG = '#40826d'
 function TopBar() {
   return (

@@ -73,7 +73,7 @@ export default function PM10ParentPhotoCheck(_: { onBack?: () => void }) {
         </button>
         <button
           onClick={() => t('Blurring Harper... photo will send in 30 seconds.')}
-          style={{ flex: 2, height: 52, borderRadius: 14, border: 0, background: selected === 'blur' ? G : (selected === 'noharper' ? G : MUT), color: '#fff', fontFamily: 'inherit', fontSize: 16, fontWeight: 700, cursor: 'pointer' }}
+          style={{ flex: 2, height: 52, borderRadius: 14, border: 0, background: selected === 'blur' ? G : '#fff', fontFamily: 'inherit', fontSize: 16, fontWeight: 700, cursor: 'pointer' }}
         >
           {selected === 'blur' ? 'Blur and send' : selected === 'noharper' ? 'Send photo' : "Don't send"}
         </button>

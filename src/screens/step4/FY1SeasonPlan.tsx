@@ -41,7 +41,7 @@ export default function FY1SeasonPlan(_: { onBack?: () => void }) {
           </div>
           <div style={{ position: 'relative' as const }}>
             <div style={{ position: 'absolute' as const, left: LEFT_W + TODAY_COL * COL_W + COL_W / 2, top: 0, bottom: 0, width: 2, background: '#e53935', zIndex: 2 }} />
-            {ROWS.map((row, ri) => (
+            {ROWS.map((row) => (
               <div key={row.label} style={{ display: 'flex', alignItems: 'center', marginBottom: 8, position: 'relative' as const }}>
                 <div style={{ width: LEFT_W, flexShrink: 0, fontSize: 12, fontWeight: 600, color: MUT, paddingRight: 10 }}>{row.label}</div>
                 <div style={{ position: 'relative' as const, height: 28, flex: 1 }}>

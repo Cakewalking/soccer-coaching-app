@@ -1,4 +1,4 @@
-const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
+const G = '#2f6252', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 const PLAYERS = [
   { ini: 'NO', name: 'Noah Okafor', last: '149.7', h: '151.8', sit: '78.9', wt: '41.0', note: '+2.1 cm in 3 months' },

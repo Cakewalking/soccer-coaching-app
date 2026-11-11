@@ -30,7 +30,7 @@ export default function TM10Heat(_: { onBack?: () => void }) {
         </div>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '4px 14px' }}>
           {items.map((item, i) => (
-            <button key={i} onClick={() => toggle(i)} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 50, borderTop: i > 0 ? `1px solid ${LN}` : 'none', width: '100%', background: 'none', border: 0, borderTop: i > 0 ? `1px solid ${LN}` : 'none', padding: 0, cursor: 'pointer', textAlign: 'left' }}>
+            <button key={i} onClick={() => toggle(i)} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 50, width: '100%', background: 'none', border: 0, borderTop: i > 0 ? `1px solid ${LN}` : 'none', padding: 0, cursor: 'pointer', textAlign: 'left' }}>
               <div style={{ width: 24, height: 24, borderRadius: '50%', background: checked.includes(i) ? G : 'transparent', border: checked.includes(i) ? 0 : `2px solid ${LN}`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                 {checked.includes(i) && <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round"><path d="M5 12l5 5 9-10"/></svg>}
               </div>

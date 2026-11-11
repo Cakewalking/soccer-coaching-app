@@ -1,4 +1,4 @@
-const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
+const G = '#2f6252', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 const LIMITS = [
   { ini: 'KR', name: 'Kai Russo', limit: 'No play', reason: 'Return to play step 1' },

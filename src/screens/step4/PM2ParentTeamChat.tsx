@@ -4,10 +4,6 @@ const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8
 
 export default function PM2ParentTeamChat(_: { onBack?: () => void }) {
   const [sheet, setSheet] = useState<string | null>(null)
-  const [toast, setToast] = useState<string | null>(null)
-
-  function t(m: string) { setToast(m); setTimeout(() => setToast(null), 3200) }
-
   const waveHeights = [14, 20, 28, 18, 32, 24, 16, 30, 22, 26, 18, 14, 28, 20, 24]
 
   return (
@@ -109,7 +105,6 @@ export default function PM2ParentTeamChat(_: { onBack?: () => void }) {
         </div>
       )}
 
-      {toast && <div style={{ position: 'absolute', left: '50%', bottom: 28, transform: 'translateX(-50%)', background: GD, color: '#fff', padding: '12px 16px', borderRadius: 14, fontSize: 15, fontWeight: 600, zIndex: 60, whiteSpace: 'nowrap' as const }}>{toast}</div>}
     </div>
   )
 }

@@ -1,4 +1,4 @@
-const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
+const GD = '#1f4a3e', MUT = '#4a5a57', LN = '#e8edeb'
 
 const TEAMS = [
   ['U7 Dan', 14, 0, 0], ['U8 Hannah', 16, 1, 0], ['U9 Mark', 16, 0, 1],

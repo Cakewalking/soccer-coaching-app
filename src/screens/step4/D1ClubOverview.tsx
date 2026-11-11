@@ -57,7 +57,7 @@ export default function D1ClubOverview(_: { onBack?: () => void }) {
                   <div style={{ fontSize: 13, fontWeight: 700, color: INK }}>{r.name}</div>
                   <div style={{ fontSize: 12, color: MUT }}>{r.coach}</div>
                   <div style={{ display: 'flex', gap: 3 }}>{r.last5.map((w, j) => <div key={j} style={{ width: 10, height: 10, borderRadius: '50%', background: w ? G : '#e0e0e0' }} />)}</div>
-                  <div style={{ background: PALE, borderRadius: 6, height: 8, overflow: 'hidden' }}><div style={{ background: G, width: `${r.pct}%`, height: '100%', borderRadius: 6 }} /></div>
+                  <div style={{ overflow: 'hidden' }}><div style={{ background: G, width: `${r.pct}%`, height: '100%', borderRadius: 6 }} /></div>
                   <div style={{ fontSize: 12, fontWeight: 700, color: r.turnout < 75 ? '#f57c00' : INK }}>{r.turnout}%</div>
                 </div>
               ))}

@@ -53,7 +53,7 @@ export default function CH2Announcements(_: { onBack?: () => void }) {
                 {c.icon ? <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={G} strokeWidth="2" strokeLinecap="round"><path d="M4 10v4h3l7 4V6l-7 4zM18 9a4 4 0 010 6"/></svg> : c.ini}
               </div>
               <div style={{ flexGrow: 1, minWidth: 0 }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8 }}><strong style={{ fontSize: 15, lineHeight: '20px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{c.name}</strong><span style={{ flexShrink: 0, fontSize: 12, color: MUT }}>{c.time}</span></div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8 }}><strong style={{ lineHeight: '20px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{c.name}</strong><span style={{ flexShrink: 0, fontSize: 12, color: MUT }}>{c.time}</span></div>
                 <div style={{ fontSize: 13, lineHeight: '18px', color: MUT, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{c.sub}</div>
               </div>
             </button>
@@ -65,7 +65,7 @@ export default function CH2Announcements(_: { onBack?: () => void }) {
               <div style={{ width: 40, height: 40, borderRadius: '50%', background: PALE, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={G} strokeWidth="2" strokeLinecap="round"><path d="M4 10v4h3l7 4V6l-7 4zM18 9a4 4 0 010 6"/></svg>
               </div>
-              <div style={{ flexGrow: 1 }}><div style={{ fontSize: 17, fontWeight: 700 }}>Announcements</div><div style={{ fontSize: 13, color: MUT }}>Coaches and Rob post · 17 families read</div></div>
+              <div style={{ flexGrow: 1 }}><div style={{ fontWeight: 700 }}>Announcements</div><div style={{ fontSize: 13, color: MUT }}>Coaches and Rob post · 17 families read</div></div>
               <button onClick={() => t('Search this chat.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid #c5c8c4`, background: '#fff', fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Search</button>
               <button onClick={() => t('Chat details opened.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid #c5c8c4`, background: '#fff', fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Details</button>
             </div>

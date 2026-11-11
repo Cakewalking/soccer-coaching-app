@@ -59,7 +59,7 @@ export default function HM1HomeMiniRoos(_: { onBack?: () => void }) {
             {[{ label: 'Had a go in goal', val: '7 of 10', pct: 70 }, { label: 'Been captain', val: '6 of 10', pct: 60 }, { label: 'Started a game', val: '10 of 10', pct: 100 }].map(item => (
               <div key={item.label} style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 14 }}><span>{item.label}</span><strong>{item.val}</strong></div>
-                <div style={{ height: 8, borderRadius: 4, background: LN, overflow: 'hidden' }}><div style={{ height: '100%', width: `${item.pct}%`, background: '#40826d' }} /></div>
+                <div style={{ borderRadius: 4, overflow: 'hidden' }}><div style={{ height: '100%', width: `${item.pct}%`, background: '#40826d' }} /></div>
               </div>
             ))}
             <div style={{ marginTop: 'auto', fontSize: 14, color: MUT }}>Next in goal: Ivy, Max and Arlo. Clean Sheet lines up Saturday's turns for you.</div>

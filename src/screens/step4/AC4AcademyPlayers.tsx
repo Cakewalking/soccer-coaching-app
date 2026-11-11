@@ -7,7 +7,6 @@ function Badge({ label, bg, color }: { label: string; bg: string; color: string 
 }
 
 export default function AC4AcademyPlayers(_: { onBack?: () => void }) {
-  const [sheet, setSheet] = useState<string | null>(null)
   const [toast, setToast] = useState<string | null>(null)
   function t(m: string) { setToast(m); setTimeout(() => setToast(null), 3200) }
 

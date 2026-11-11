@@ -1,4 +1,4 @@
-const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
+const G = '#2f6252', INK = '#10211f', MUT = '#4a5a57', PALE = '#eef5f2'
 
 const WHAT = ['Yellow card','Red card','Injury','Spectator behaviour','Other']
 const WHY = ['Late tackle','Handball','Foul language','Violent conduct','Simulation','Dissent']

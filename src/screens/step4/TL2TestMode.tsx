@@ -1,4 +1,4 @@
-const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
+const G = '#2f6252', GD = '#1f4a3e', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 const ORDER = [
   { ini: 'RB', name: 'Ruby Bell', status: 'done', t: '4.21' },
@@ -36,7 +36,7 @@ export default function TL2TestMode(_: { onBack?: () => void }) {
             <span style={{ width: 48, height: 48, borderRadius: '50%', background: PALE, color: G, fontSize: 16, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>FW</span>
             <span style={{ fontSize: 28, fontWeight: 700 }}>Finn Walsh</span>
           </div>
-          <div style={{ fontSize: 80, fontWeight: 800, letterSpacing: '-0.04em', color: GD, fontVariantNumeric: 'tabular-nums' }}>3.93<span style={{ fontSize: 32, fontWeight: 600, color: MUT }}>s</span></div>
+          <div style={{ letterSpacing: '-0.04em', fontVariantNumeric: 'tabular-nums' }}>3.93<span style={{ fontSize: 32, fontWeight: 600, color: MUT }}>s</span></div>
           <div style={{ display: 'flex', gap: 12, fontSize: 14, color: MUT }}>
             <span>Go 2 of 2</span>
             <span>·</span>

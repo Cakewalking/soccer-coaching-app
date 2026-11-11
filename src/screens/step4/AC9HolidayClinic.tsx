@@ -14,7 +14,6 @@ function Bar({ pct, label }: { pct: number; label: string }) {
 }
 
 export default function AC9HolidayClinic(_: { onBack?: () => void }) {
-  const [sheet, setSheet] = useState<string | null>(null)
   const [toast, setToast] = useState<string | null>(null)
   function t(m: string) { setToast(m); setTimeout(() => setToast(null), 3200) }
 
