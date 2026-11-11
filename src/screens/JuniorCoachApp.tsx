@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import type { ReactNode } from 'react'
 import HomeScreen            from './HomeScreen'
 import SquadScreen           from './SquadScreen'
 import TrainingScreen        from './TrainingScreen'
@@ -43,7 +44,7 @@ const TRAINING_TABS = ["Tonight's session", 'This week', 'Suggested', 'Drill lib
 const MATCHDAY_TABS = ['Team talk', 'Line-up and minutes', 'Opposition', 'Review', 'Fitness coach']
 const CLIPS_TABS    = ['Browse', 'Playlists', 'Shared with players', 'To check']
 
-export default function JuniorCoachApp({ onBack: _onBack }: { onBack?: () => void }) {
+export default function JuniorCoachApp({ onBack: _onBack, phaseContent }: { onBack?: () => void; phaseContent?: ReactNode }) {
   const [nav, setNav]                 = useState<NavKey>('home')
   const [sub, setSub]                 = useState<Sub>(null)
   const [homeTab, setHomeTab]         = useState(0)
@@ -92,7 +93,7 @@ export default function JuniorCoachApp({ onBack: _onBack }: { onBack?: () => voi
 
   let content = null
   if (nav === 'home') {
-    if (homeTab === 0) content = <HomeScreen role="head" onRole={() => {}} onNav={handleNav} onCalendar={() => setHomeTab(2)} empty={false} />
+    if (homeTab === 0) content = phaseContent ?? <HomeScreen role="head" onRole={() => {}} onNav={handleNav} onCalendar={() => setHomeTab(2)} empty={false} />
     else if (homeTab === 1) content = <TeamChatScreen empty={false} />
     else if (homeTab === 2) content = <HomeScreen role="head" onRole={() => {}} onNav={handleNav} onCalendar={() => setHomeTab(2)} empty={false} />
     else if (homeTab === 3) content = <FixturesScreen empty={false} />

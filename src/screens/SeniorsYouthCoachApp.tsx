@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import type { ReactNode } from 'react'
 import SquadScreen          from './SquadScreen'
 import TrainingScreen       from './TrainingScreen'
 import MatchDayScreen       from './MatchDayScreen'
@@ -299,7 +300,7 @@ const TRAINING_TABS = ["Tonight's session", 'This week', 'Suggested', 'Drill lib
 const MATCHDAY_TABS = ['Team talk', 'Line-up and minutes', 'Opposition', 'Review', 'Fitness coach']
 const CLIPS_TABS    = ['Browse', 'Playlists', 'Shared with players', 'To check']
 
-export default function SeniorsYouthCoachApp({ teamType, onBack }: { teamType: TeamType; onBack: () => void }) {
+export default function SeniorsYouthCoachApp({ teamType, onBack, phaseContent }: { teamType: TeamType; onBack: () => void; phaseContent?: ReactNode }) {
   const data = teamType === 'seniors' ? SENIORS : YOUTH
 
   const [nav, setNav]                 = useState<NavKey>('home')
@@ -346,7 +347,7 @@ export default function SeniorsYouthCoachApp({ teamType, onBack }: { teamType: T
   let content = null
   if (nav === 'home') {
     switch (homeTab) {
-      case 0: content = <CoachHome data={data} onTraining={() => goNav('training')} onMatchday={() => goNav('matchday')} onReview={() => { goNav('matchday'); setMatchTab(3) }} onCalendar={() => setHomeTab(2)} onInbox={() => setHomeTab(1)} />; break
+      case 0: content = phaseContent ?? <CoachHome data={data} onTraining={() => goNav('training')} onMatchday={() => goNav('matchday')} onReview={() => { goNav('matchday'); setMatchTab(3) }} onCalendar={() => setHomeTab(2)} onInbox={() => setHomeTab(1)} />; break
       case 1: content = <TeamChatScreen empty={false} />; break
       case 2: case 3: content = <FixturesScreen empty={false} />; break
       case 4: content = <OurStyleScreen />; break

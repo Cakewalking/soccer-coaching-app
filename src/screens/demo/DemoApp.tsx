@@ -1148,12 +1148,40 @@ export default function DemoApp() {
   if (view === 'lookaround') {
     const homeKey = TOURS[role].home
     let lookContent: ReactNode
-    if (role === 'miniroos') {
-      lookContent = (
-        <div style={{ width: 1180, background: 'var(--surface-100)' }}>
-          <MiniRoosApp onBack={() => setRole('coach')} empty={false} />
-        </div>
-      )
+    if (role === 'coach') {
+      if (window.innerWidth <= 640) {
+        lookContent = <CoachPhoneApp />
+      } else {
+        const pc = phase === 'preseason' ? <SP2HomePreSeason onBack={noop} />
+                 : phase === 'postseason' ? <SP10HomePostSeason onBack={noop} />
+                 : phase === 'restmonth' ? <SP16RestMonth onBack={noop} />
+                 : undefined
+        lookContent = <JuniorCoachApp phaseContent={pc} />
+      }
+    } else if (role === 'ccoach') {
+      const pc = phase === 'preseason' ? <SPc2CoCoachPreSeason onBack={noop} />
+               : phase === 'postseason' ? <SP10HomePostSeason onBack={noop} />
+               : phase === 'restmonth' ? <SP16RestMonth onBack={noop} />
+               : undefined
+      lookContent = <JuniorCoachApp phaseContent={pc} />
+    } else if (role === 'youth') {
+      const pc = phase === 'preseason' ? <SPy2YouthPreSeason onBack={noop} />
+               : phase === 'postseason' ? <SPy10YouthPostSeason onBack={noop} />
+               : phase === 'restmonth' ? <SPy16YouthRestMonth onBack={noop} />
+               : undefined
+      lookContent = <SeniorsYouthCoachApp teamType="youth" onBack={noop} phaseContent={pc} />
+    } else if (role === 'seniors') {
+      const pc = phase === 'preseason' ? <SPs2SeniorPreSeason onBack={noop} />
+               : phase === 'postseason' ? <SPs10SeniorPostSeason onBack={noop} />
+               : phase === 'restmonth' ? <SPs16SeniorOffSeason onBack={noop} />
+               : undefined
+      lookContent = <SeniorsYouthCoachApp teamType="seniors" onBack={noop} phaseContent={pc} />
+    } else if (role === 'miniroos') {
+      const pc = phase === 'preseason' ? <SPm2MiniRoosPreSeason onBack={noop} />
+               : phase === 'postseason' ? <SPm10MiniRoosPostSeason onBack={noop} />
+               : phase === 'restmonth' ? <SPm16MiniRoosRest onBack={noop} />
+               : undefined
+      lookContent = <div style={{ width: 1180, background: 'var(--surface-100)' }}><MiniRoosApp onBack={() => setRole('coach')} empty={false} phaseContent={pc} /></div>
     } else if (role === 'goalkeeper') {
       lookContent = <GoalkeeperCoachApp onBack={() => setRole('coach')} empty={false} />
     } else if (role === 'academyowner') {
@@ -1164,33 +1192,6 @@ export default function DemoApp() {
       lookContent = <AcademyParentApp onBack={() => setView('start')} empty={false} />
     } else if (role === 'academyplayer') {
       lookContent = <AcademyPlayerApp onBack={() => setView('start')} empty={false} />
-    } else if (role === 'coach') {
-      if (window.innerWidth <= 640) {
-        lookContent = <CoachPhoneApp />
-      } else if (phase === 'preseason')       lookContent = <SP2HomePreSeason onBack={noop} />
-      else if (phase === 'postseason') lookContent = <SP10HomePostSeason onBack={noop} />
-      else if (phase === 'restmonth')  lookContent = <SP16RestMonth onBack={noop} />
-      else                             lookContent = <JuniorCoachApp />
-    } else if (role === 'ccoach') {
-      if (phase === 'preseason')       lookContent = <SPc2CoCoachPreSeason onBack={noop} />
-      else if (phase === 'postseason') lookContent = <SP10HomePostSeason onBack={noop} />
-      else if (phase === 'restmonth')  lookContent = <SP16RestMonth onBack={noop} />
-      else                             lookContent = <JuniorCoachApp />
-    } else if (role === 'youth') {
-      if (phase === 'preseason')       lookContent = <SPy2YouthPreSeason onBack={noop} />
-      else if (phase === 'postseason') lookContent = <SPy10YouthPostSeason onBack={noop} />
-      else if (phase === 'restmonth')  lookContent = <SPy16YouthRestMonth onBack={noop} />
-      else                             lookContent = <JuniorCoachApp />
-    } else if (role === 'seniors') {
-      if (phase === 'preseason')       lookContent = <SPs2SeniorPreSeason onBack={noop} />
-      else if (phase === 'postseason') lookContent = <SPs10SeniorPostSeason onBack={noop} />
-      else if (phase === 'restmonth')  lookContent = <SPs16SeniorOffSeason onBack={noop} />
-      else                             lookContent = <JuniorCoachApp />
-    } else if (role === 'miniroos') {
-      if (phase === 'preseason')       lookContent = <div style={{ width: 1180, background: 'var(--surface-100)' }}><SPm2MiniRoosPreSeason onBack={noop} /></div>
-      else if (phase === 'postseason') lookContent = <div style={{ width: 1180, background: 'var(--surface-100)' }}><SPm10MiniRoosPostSeason onBack={noop} /></div>
-      else if (phase === 'restmonth')  lookContent = <div style={{ width: 1180, background: 'var(--surface-100)' }}><SPm16MiniRoosRest onBack={noop} /></div>
-      else                             lookContent = <div style={{ width: 1180, background: 'var(--surface-100)' }}><MiniRoosApp onBack={() => setRole('coach')} empty={false} /></div>
     } else if (role === 'parent') {
       if (phase === 'preseason')       lookContent = <SPp1ParentPreSeason onBack={noop} />
       else if (phase === 'postseason') lookContent = <SPp3ParentTournament onBack={noop} />
