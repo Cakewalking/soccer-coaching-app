@@ -17,7 +17,7 @@ function AuthShell({ children }: { children: React.ReactNode }) {
   )
 }
 
-function SandboxBar({ daysLeft }: { daysLeft: number }) {
+function SandboxBar({ daysLeft, onSwitchToDemo }: { daysLeft: number; onSwitchToDemo?: () => void }) {
   return (
     <div style={{ background: GD, height: 40, display: 'flex', alignItems: 'center', padding: '0 24px', justifyContent: 'space-between', fontFamily: 'var(--font-sans)' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
@@ -28,7 +28,7 @@ function SandboxBar({ daysLeft }: { daysLeft: number }) {
           Your own club, as a <strong style={{ color: '#fff' }}>coach</strong>. {daysLeft} days left. Ends Thursday 18 June.
         </span>
       </div>
-      <button style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.7)', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', padding: 0 }}>
+      <button onClick={onSwitchToDemo} style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.7)', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', padding: 0 }}>
         Switch to the demo
       </button>
     </div>
@@ -66,12 +66,14 @@ function IconCircle({ children }: { children: React.ReactNode }) {
 }
 
 /* SB1 — Sandbox ending warning (shown 2 days before end) */
-export function SB1SandboxEnding() {
+export function SB1SandboxEnding({ onSwitchToDemo }: { onSwitchToDemo?: () => void }) {
   const [view, setView] = useState<'ending' | 'keepgoing'>('ending')
-  if (view === 'keepgoing') return <SB4KeepGoingInner />
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
+  if (view === 'keepgoing') return <SB4KeepGoingInner onSwitchToDemo={onSwitchToDemo} onBack={() => setView('ending')} />
   return (
-    <div style={{ minHeight: '100vh', background: BG, fontFamily: 'var(--font-sans)' }}>
-      <SandboxBar daysLeft={2} />
+    <div style={{ minHeight: '100vh', background: BG, fontFamily: 'var(--font-sans)', position: 'relative' }}>
+      <SandboxBar daysLeft={2} onSwitchToDemo={onSwitchToDemo} />
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 32px', height: 56 }}>
         <span style={{ color: G, fontWeight: 800, fontSize: 15, letterSpacing: '-0.02em' }}>Clean Sheet</span>
         <button style={{ background: 'none', border: 'none', color: G, fontWeight: 600, fontSize: 14, cursor: 'pointer', padding: 0 }}>Help</button>
@@ -93,7 +95,7 @@ export function SB1SandboxEnding() {
             <div style={{ border: '1px solid #d4d6d4', borderRadius: 12, padding: '20px 20px 16px' }}>
               <div style={{ fontSize: 17, fontWeight: 800, color: INK, marginBottom: 6 }}>Let it end</div>
               <div style={{ fontSize: 14, color: MUT, lineHeight: 1.5, marginBottom: 16 }}>Nothing to do. It's deleted from this browser on Thursday.</div>
-              <button style={{ ...BTN_OUTLINE, width: '100%' }}>Remind me tomorrow</button>
+              <button style={{ ...BTN_OUTLINE, width: '100%' }} onClick={() => showToast("We'll remind you tomorrow.")}>Remind me tomorrow</button>
             </div>
           </div>
           <p style={{ margin: 0, fontSize: 14, color: MUT, lineHeight: 1.5 }}>
@@ -101,6 +103,7 @@ export function SB1SandboxEnding() {
           </p>
         </div>
       </div>
+      {toast && <div style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', background: GD, color: '#fff', padding: '10px 20px', borderRadius: 999, fontSize: 13, fontWeight: 600, zIndex: 100 }}>{toast}</div>}
     </div>
   )
 }
@@ -158,13 +161,13 @@ export function SB3NoSandbox({ onStartSandbox, onDemo }: { onStartSandbox?: () =
 }
 
 /* SB4 — Keep going (make it real) — also used internally from SB1 */
-function SB4KeepGoingInner() {
+function SB4KeepGoingInner({ onSwitchToDemo, onBack }: { onSwitchToDemo?: () => void; onBack?: () => void }) {
   const [clubName, setClubName] = useState('Wattle Creek FC')
   const [email, setEmail] = useState('')
   const [sent, setSent] = useState(false)
   return (
     <div style={{ minHeight: '100vh', background: BG, fontFamily: 'var(--font-sans)' }}>
-      <SandboxBar daysLeft={2} />
+      <SandboxBar daysLeft={2} onSwitchToDemo={onSwitchToDemo} />
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 32px', height: 56 }}>
         <span style={{ color: G, fontWeight: 800, fontSize: 15, letterSpacing: '-0.02em' }}>Clean Sheet</span>
         <button style={{ background: 'none', border: 'none', color: G, fontWeight: 600, fontSize: 14, cursor: 'pointer', padding: 0 }}>Help</button>
@@ -218,7 +221,7 @@ function SB4KeepGoingInner() {
               </div>
               <div style={{ display: 'flex', gap: 12, marginBottom: 16 }}>
                 <button style={BTN_GREEN} onClick={() => setSent(true)}>Make it real</button>
-                <button style={BTN_OUTLINE}>Not yet</button>
+                <button style={BTN_OUTLINE} onClick={onBack}>Not yet</button>
               </div>
               <p style={{ margin: 0, fontSize: 14, color: MUT, lineHeight: 1.5 }}>
                 We'll confirm what Clean Sheet costs your club before anything is charged. Your sandbox keeps running while we check.

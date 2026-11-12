@@ -6,9 +6,10 @@ interface Props {
   expiryDate?: string
   onFill?: () => void
   onReset?: () => void
+  onKeepGoing?: () => void
 }
 
-export default function DemoStartEmpty({ onRole, onSwitchToDemo, expiryDate = 'Thursday 18 June', onFill, onReset }: Props) {
+export default function DemoStartEmpty({ onRole, onSwitchToDemo, expiryDate = 'Thursday 18 June', onFill, onReset, onKeepGoing }: Props) {
   return (
     <div style={{ minHeight: '100vh', background: '#f5f6f4', fontFamily: 'var(--font-sans)' }}>
 
@@ -89,7 +90,7 @@ export default function DemoStartEmpty({ onRole, onSwitchToDemo, expiryDate = 'T
             <div style={{ borderTop: '1px solid #e9eae8', paddingTop: 10 }}>
               <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f', marginBottom: 2 }}>Keep it going</div>
               <div style={{ fontSize: 13, color: '#6f7f7b', marginBottom: 8 }}>Turn the sandbox into a real club account</div>
-              <button style={{ height: 44, padding: '0 16px', borderRadius: 8, border: '1.5px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: '#10211f', cursor: 'pointer' }}>Ask us</button>
+              <button onClick={onKeepGoing} style={{ height: 44, padding: '0 16px', borderRadius: 8, border: '1.5px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: '#10211f', cursor: 'pointer' }}>Ask us</button>
             </div>
           </div>
           <div style={{ marginTop: 14, padding: '10px 12px', background: '#f5f6f4', borderRadius: 10, fontSize: 12, color: '#6f7f7b', lineHeight: 1.5 }}>

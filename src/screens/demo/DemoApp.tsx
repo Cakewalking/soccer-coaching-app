@@ -1667,7 +1667,7 @@ export default function DemoApp() {
       return <SB2SandboxEnded onStartSandbox={() => { createSandbox(); setView('sandbox') }} onDemo={() => setView('start')} />
     }
     if (sbState === 'ending') {
-      return <SB1SandboxEnding />
+      return <SB1SandboxEnding onSwitchToDemo={() => setView('start')} />
     }
     return (
       <DemoStartEmpty
@@ -1686,6 +1686,7 @@ export default function DemoApp() {
             setSbStore(empty)
           }
         }}
+        onKeepGoing={() => setSbState('ending')}
       />
     )
   }
