@@ -1274,9 +1274,8 @@ export default function AcademyCoachApp({ onBack, empty = false, initialScreen, 
             ))}
           </nav>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
-            <button onClick={() => setAskOpen(o => !o)} aria-label="Ask Clean Sheet" style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1.5px solid rgba(255,255,255,0.3)', background: askOpen ? 'rgba(255,255,255,0.15)' : 'transparent', color: '#fff', display: 'flex', alignItems: 'center', gap: 7, cursor: 'pointer', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, flexShrink: 0 }}>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg>
-              Ask
+            <button onClick={() => setAskOpen(o => !o)} aria-label="Ask Clean Sheet" style={{ width: 44, height: 44, borderRadius: '50%', border: '1.5px solid #a9cfc0', background: askOpen ? '#fff' : 'transparent', color: askOpen ? '#10211f' : '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', flexShrink: 0 }}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg>
             </button>
             <span style={{ fontSize: 14, fontWeight: 600, color: 'rgba(255,255,255,0.8)' }}>Tall Timber Academy</span>
             <div style={{ width: 40, height: 40, borderRadius: '50%', background: ROSE, color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>RW</div>
@@ -1338,29 +1337,29 @@ export default function AcademyCoachApp({ onBack, empty = false, initialScreen, 
           <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', color: MUT, fontSize: 14 }}>Review — coming in Bucket 11</div>
         )}
         {askOpen && (
-          <aside role="dialog" aria-label="Ask Clean Sheet" style={{ position: 'absolute', top: 0, right: 0, bottom: 0, width: 400, background: '#fff', borderLeft: '1px solid #e8edeb', boxShadow: '-8px 0 32px rgba(16,33,31,0.12)', zIndex: 50, display: 'flex', flexDirection: 'column' }}>
-            <div style={{ padding: '16px 20px', borderBottom: '1px solid #e8edeb', display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2f6252" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg>
+          <aside role="dialog" aria-label="Ask Clean Sheet" style={{ position: 'absolute', top: 0, right: 0, bottom: 0, width: 380, background: '#eef5f2', borderLeft: '1px solid #e8edeb', boxShadow: '-6px 0 24px rgba(16,33,31,0.10)', zIndex: 50, display: 'flex', flexDirection: 'column' }}>
+            <div style={{ background: '#fff', padding: '14px 16px', borderBottom: '1px solid #e8edeb', display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2f6252" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg>
               <span style={{ flex: 1, fontSize: 15, fontWeight: 700, color: '#10211f' }}>Ask Clean Sheet</span>
-              <button onClick={() => setAskOpen(false)} aria-label="Close Ask Clean Sheet" style={{ width: 44, height: 44, borderRadius: '50%', border: '1px solid #e8edeb', background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#4a5a57' }}>
+              <button onClick={() => setAskOpen(false)} aria-label="Close" style={{ width: 36, height: 36, borderRadius: '50%', border: '1px solid #e8edeb', background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#4a5a57' }}>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
               </button>
             </div>
-            <div style={{ flex: 1, overflowY: 'auto', padding: '20px' }}>
-              <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: 8, marginBottom: 20 }}>
-                {['Who is making the most progress?', 'Which players need more one-on-ones?', 'Who is due for a trial outcome?', 'Is anyone behind on their term goals?'].map(q => (
-                  <button key={q} onClick={() => showToast(`Asking: ${q}`)} style={{ padding: '7px 12px', borderRadius: 100, border: '1px solid #e8edeb', background: '#eef5f2', color: '#2f6252', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{q}</button>
-                ))}
-              </div>
-              <div style={{ background: '#eef5f2', borderRadius: 14, padding: '14px 16px', fontSize: 14, color: '#10211f', lineHeight: 1.6 }}>
-                <div style={{ fontSize: 11, fontWeight: 700, color: '#2f6252', marginBottom: 8, letterSpacing: '0.07em', textTransform: 'uppercase' as const }}>Clean Sheet</div>
-                Kai Okonkwo has attended 11 of 12 sessions this term and hit 4 of 5 development goals. His one-on-one is overdue by 2 weeks.
-              </div>
-              <div style={{ fontSize: 11, color: '#4a5a57', marginTop: 16, lineHeight: 1.6 }}>It answers from what you can see as academy coach. It never sends anything by itself. Wellness and welfare concerns are never used.</div>
+            <div style={{ flex: 1, overflowY: 'auto', padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 10 }}>
+              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', color: '#4a5a57', textTransform: 'uppercase' as const, marginTop: 4 }}>About this screen</div>
+              {['Who is making the most progress?', 'Which players need more one-on-ones?', 'Is anyone behind on their term goals?'].map(q => (
+                <button key={q} onClick={() => showToast(`Demo: ${q}`)} style={{ width: '100%', textAlign: 'left', padding: '10px 14px', borderRadius: 10, border: '1px solid #e8edeb', background: '#fff', color: '#2f6252', fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{q}</button>
+              ))}
+              <div style={{ fontSize: 12, color: '#4a5a57', marginTop: 4 }}>Or anything else</div>
             </div>
-            <div style={{ padding: '12px 16px', borderTop: '1px solid #e8edeb', display: 'flex', gap: 8, flexShrink: 0 }}>
-              <input placeholder="Ask about Tall Timber Academy…" style={{ flex: 1, height: 44, padding: '0 12px', borderRadius: 8, border: '1px solid #e8edeb', fontSize: 13, fontFamily: 'inherit', outline: 'none', color: '#10211f' }} />
-              <button onClick={() => showToast('Asking Clean Sheet.')} style={{ height: 44, padding: '0 16px', borderRadius: 8, background: '#2f6252', color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Ask</button>
+            <div style={{ background: '#fff', padding: '10px 14px 12px', borderTop: '1px solid #e8edeb', flexShrink: 0 }}>
+              <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginBottom: 6 }}>
+                <input placeholder="Ask a follow-up…" style={{ flex: 1, height: 40, padding: '0 12px', borderRadius: 8, border: '1px solid #e8edeb', fontSize: 13, fontFamily: 'inherit', outline: 'none', color: '#10211f' }} />
+                <button onClick={() => showToast('Ask sent.')} style={{ width: 40, height: 40, borderRadius: 8, background: '#2f6252', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                </button>
+              </div>
+              <div style={{ fontSize: 11, color: '#4a5a57', lineHeight: 1.5 }}>Uses only what you can see as academy coach. Never sends anything by itself.</div>
             </div>
           </aside>
         )}

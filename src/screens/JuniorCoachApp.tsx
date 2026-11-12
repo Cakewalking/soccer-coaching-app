@@ -114,7 +114,7 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
 
   let content = null
   if (nav === 'home') {
-    if (homeTab === 0) content = phaseContent ?? (coachRole === 'ccoach' ? <CoCoachHomeScreen empty={sbEmpty} onNav={handleNav} /> : <HomeScreen role="head" onRole={() => {}} onNav={handleNav} onCalendar={() => setHomeTab(2)} empty={sbEmpty} />)
+    if (homeTab === 0) content = phaseContent ?? (coachRole === 'ccoach' ? <CoCoachHomeScreen empty={sbEmpty} onNav={handleNav} /> : <HomeScreen role="head" onRole={() => {}} onNav={handleNav} onCalendar={() => setHomeTab(2)} empty={sbEmpty} onAsk={() => setAskOpen(true)} askQuestions={['Who needs a rest this week?', 'What should we work on tonight?', 'Is everyone getting fair minutes?']} teamName={inSandbox ? (store.teams[0]?.name ?? 'your team') : 'U12 Sam'} />)
     else if (homeTab === 1) content = <CoachMessages />
     else if (homeTab === 2) content = <AvailabilityScreen empty={sbEmpty} />
     else if (homeTab === 3) content = <FixturesScreen empty={sbEmpty} />
@@ -163,6 +163,8 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
       showAsk={true}
       askOpen={askOpen}
       onAskToggle={() => setAskOpen(o => !o)}
+      askQuestions={['Who needs a rest this week?', 'What should we work on tonight?', 'Is everyone getting fair minutes?']}
+      askRole={coachRole === 'ccoach' ? 'co-coach' : 'head coach'}
       showBadge={tab => !sbEmpty && !inSandbox && (tab === 'Messages' || tab === 'To check')}
     >
       {content}

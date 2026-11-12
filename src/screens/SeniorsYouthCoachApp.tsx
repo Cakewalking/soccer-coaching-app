@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import type { ReactNode } from 'react'
+import { AskLine } from './HomeScreen'
 import SquadScreen          from './SquadScreen'
 import TrainingScreen       from './TrainingScreen'
 import MatchDayScreen       from './MatchDayScreen'
@@ -219,16 +220,21 @@ function SYCoachHomeEmpty({ coachFirst, teamLine, onNav }: { coachFirst: string;
   )
 }
 
-function CoachHome({ data, onTraining, onMatchday, onReview, onCalendar, onInbox }: {
+function CoachHome({ data, onTraining, onMatchday, onReview, onCalendar, onInbox, onAsk, askQuestions, roleLabel }: {
   data: TeamData
   onTraining: () => void
   onMatchday: () => void
   onReview: () => void
   onCalendar: () => void
   onInbox: () => void
+  onAsk?: () => void
+  askQuestions?: string[]
+  roleLabel?: string
 }) {
   return (
-    <div style={{ flexGrow: 1, minHeight: 0, overflowY: 'auto', padding: '20px 28px 28px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr) 260px', gap: 16 }}>
+    <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', minHeight: 0 }}>
+    <AskLine teamName={data.teamName} questions={askQuestions ?? []} onAsk={onAsk} roleLabel={roleLabel} />
+    <div style={{ flex: 1, minHeight: 0, overflowY: 'auto', padding: '12px 28px 28px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr) 260px', gap: 16 }}>
 
       {/* Col 1: Needs you */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
@@ -354,6 +360,7 @@ function CoachHome({ data, onTraining, onMatchday, onReview, onCalendar, onInbox
         </div>
       </div>
     </div>
+    </div>
   )
 }
 
@@ -430,7 +437,7 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
     switch (homeTab) {
       case 0: content = sbEmpty
         ? <SYCoachHomeEmpty coachFirst={data.coachFirst} teamLine={`${data.teamPicker} · let's get your team ready`} onNav={handleNav} />
-        : (phaseContent ?? <CoachHome data={data} onTraining={() => goNav('training')} onMatchday={() => goNav('matchday')} onReview={() => { goNav('matchday'); setMatchTab(3) }} onCalendar={() => setHomeTab(2)} onInbox={() => setHomeTab(1)} />); break
+        : (phaseContent ?? <CoachHome data={data} onTraining={() => goNav('training')} onMatchday={() => goNav('matchday')} onReview={() => { goNav('matchday'); setMatchTab(3) }} onCalendar={() => setHomeTab(2)} onInbox={() => setHomeTab(1)} onAsk={() => setAskOpen(true)} askQuestions={teamType === 'seniors' ? ["Who is one yellow from a ban?", "How do Banksia Park build out?", "Who is carrying a knock?"] : ["Who is over their load this week?", "What did Kingfisher United do to us?", "Who has exams coming up?"]} roleLabel={teamType === 'seniors' ? 'senior coach' : 'youth coach'} />); break
       case 1: content = <CoachMessages />; break
       case 2: case 3: content = <FixturesScreen empty={sbEmpty} />; break
       case 4: content = <OurStyleScreen />; break
@@ -489,6 +496,8 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
         showAsk={true}
         askOpen={askOpen}
         onAskToggle={() => setAskOpen(o => !o)}
+        askQuestions={teamType === 'seniors' ? ["Who is one yellow from a ban?", "How do Banksia Park build out?", "Who is carrying a knock?"] : ["Who is over their load this week?", "What did Kingfisher United do to us?", "Who has exams coming up?"]}
+        askRole={teamType === 'seniors' ? 'senior coach' : 'youth coach'}
         showBadge={tab => !sbEmpty && !inSandbox && (tab === 'Messages' || tab === 'To check')}
       >
         {content}

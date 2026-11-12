@@ -3,12 +3,17 @@ import { INBOX, METRICS, WEEK_SCHEDULE, RESULTS, SQUAD, type Role } from '../dat
 import { useSandbox } from './sandbox/SandboxContext'
 import { addTeam } from './sandbox/sandboxStore'
 
+const SPARKLE = 'M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z'
+
 interface Props {
   role: Role
   onRole: (r: Role) => void
   onNav: (s: string) => void
   onCalendar?: () => void
   empty?: boolean
+  onAsk?: () => void
+  askQuestions?: string[]
+  teamName?: string
 }
 
 function HomeEmpty({ onNav }: { onNav: (s: string) => void }) {
@@ -181,15 +186,67 @@ const LAST_GAME_FINDINGS = [
   { text: '26 m gap between defence and midfield',       label: 'Tonight', keep: false },
 ]
 
-export default function HomeScreen({ onNav, onCalendar, empty }: Props) {
-  const { active: inSandbox } = useSandbox()
-  if (empty || inSandbox) return <HomeEmpty onNav={onNav} />
+export function AskLine({ teamName, questions, onAsk, roleLabel = 'head coach' }: { teamName: string; questions: string[]; onAsk?: () => void; roleLabel?: string }) {
+  const [open, setOpen] = useState(false)
+  const example = questions[0] ?? 'What should we work on tonight?'
   return (
-    <main style={{
-      flexGrow: 1, minHeight: 0, padding: '18px 28px 22px',
-      boxSizing: 'border-box', display: 'grid',
-      gridTemplateColumns: 'repeat(12, minmax(0, 1fr))', gap: 18,
-    }}>
+    <div style={{ padding: '12px 28px 0', flexShrink: 0, position: 'relative', zIndex: 10 }}>
+      <button
+        onClick={() => setOpen(o => !o)}
+        style={{
+          width: '100%', height: 52, borderRadius: 14,
+          border: `1px solid ${open ? '#40826d' : '#d4dbd8'}`,
+          background: '#fff', cursor: 'text',
+          display: 'flex', alignItems: 'center', gap: 10, padding: '0 16px',
+          fontFamily: 'inherit', boxSizing: 'border-box' as const,
+        }}
+        aria-label="Ask Clean Sheet"
+      >
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2f6252" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={SPARKLE}/></svg>
+        <span style={{ flex: 1, textAlign: 'left', fontSize: 14, color: '#6f7f7b' }}>
+          Ask about {teamName}…{' '}
+          <span style={{ color: '#aab8b4' }}>{example}</span>
+        </span>
+      </button>
+      {open && (
+        <div style={{ position: 'absolute', left: 28, right: 28, top: '100%', marginTop: 4, background: '#fff', border: '1px solid #d4dbd8', borderRadius: 14, boxShadow: '0 8px 24px rgba(16,33,31,0.12)', overflow: 'hidden' }}>
+          <div style={{ padding: '10px 16px 6px', fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', color: '#6f7f7b', textTransform: 'uppercase' as const }}>About today</div>
+          {questions.map(q => (
+            <button
+              key={q}
+              onClick={() => { setOpen(false); onAsk?.() }}
+              style={{ display: 'block', width: '100%', textAlign: 'left', padding: '10px 16px', border: 0, background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', fontSize: 14, color: '#10211f', borderTop: '1px solid #f0f1ef' }}
+            >
+              {q}
+            </button>
+          ))}
+          <div style={{ padding: '10px 16px', fontSize: 11, color: '#6f7f7b', borderTop: '1px solid #f0f1ef', lineHeight: 1.5 }}>
+            Uses only what you can see as {roleLabel}. Wellness answers and welfare concerns are never used.
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
+export default function HomeScreen({ onNav, onCalendar, empty, onAsk, askQuestions, teamName = 'U12 Sam' }: Props) {
+  const { active: inSandbox } = useSandbox()
+  const defaultQs = askQuestions ?? ['Who needs a rest this week?', 'What should we work on tonight?', 'Is everyone getting fair minutes?']
+
+  if (empty || inSandbox) return (
+    <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', minHeight: 0 }}>
+      <AskLine teamName={teamName} questions={defaultQs} onAsk={onAsk} />
+      <HomeEmpty onNav={onNav} />
+    </div>
+  )
+  return (
+    <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', minHeight: 0 }}>
+      <AskLine teamName={teamName} questions={defaultQs} onAsk={onAsk} />
+      <main style={{
+        flex: 1, minHeight: 0, padding: '12px 28px 22px',
+        boxSizing: 'border-box', display: 'grid',
+        gridTemplateColumns: 'repeat(12, minmax(0, 1fr))', gap: 18,
+      }}>
 
       {/* ── Left column: Needs you + Where we're at (span 4) ── */}
       <div style={{ gridColumn: 'span 4', display: 'flex', flexDirection: 'column', gap: 14, minHeight: 0 }}>
@@ -413,6 +470,7 @@ export default function HomeScreen({ onNav, onCalendar, empty }: Props) {
         </button>
       </div>
 
-    </main>
+      </main>
+    </div>
   )
 }
