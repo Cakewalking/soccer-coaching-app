@@ -13,6 +13,10 @@ import SeasonNotesScreen from './SeasonNotesScreen'
 import FixturesMiniRoos  from './FixturesMiniRoos'
 import TeamChatMiniRoos  from './TeamChatMiniRoos'
 import FootballYearScreen from './FootballYearScreen'
+import CoachTabletFrame  from '../CoachTabletFrame'
+import { MS1MiniRoosStyle } from './MiniRoosStyleScreen'
+import { MS2MiniRoosWhereWeAt } from './MiniRoosWhereWeAt'
+import { MS3MiniRoosReview } from './MiniRoosReview'
 
 const G   = '#2f6252'
 const G2  = '#40826d'
@@ -323,11 +327,10 @@ function RecordMiniRoosClips({ empty, onBack }: { empty?: boolean; onBack: () =>
   )
 }
 
-type MiniNav = 'home' | 'squad' | 'training' | 'gameday'
-type HomeTab = 'overview' | 'inbox' | 'calendar' | 'staff'
-type GameDayTab = 'turns' | 'fixtures' | 'record'
-type GameDayView = 'turns' | 'whatisaw' | 'thankparents'
-type TrainingTab = 'plan' | 'suggest' | 'record'
+type MiniNav = 'home' | 'squad' | 'training' | 'gameday' | 'clips' | 'record'
+type HomeTab = 'overview' | 'messages' | 'calendar' | 'fixtures' | 'style' | 'whereweat' | 'staff'
+type GameDayTab = 'turns' | 'review' | 'whatisaw' | 'thankparents'
+type TrainingTab = 'plan' | 'suggest'
 type RecordView = 'start' | 'clips'
 
 const NAV: Array<{ id: MiniNav; label: string; icon: string }> = [
@@ -335,34 +338,38 @@ const NAV: Array<{ id: MiniNav; label: string; icon: string }> = [
   { id: 'squad',    label: 'Squad',    icon: 'M9 11a3 3 0 100-6 3 3 0 000 6zM3 20c0-4 3-6 6-6s6 2 6 6M16 11a3 3 0 100-6M21 20c0-3-2-5-4-5.5' },
   { id: 'training', label: 'Training', icon: 'M6 5h12a2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V7a2 2 0 012-2zM4 10h16M9 3v4M15 3v4' },
   { id: 'gameday',  label: 'Game day', icon: 'M12 21a9 9 0 100-18 9 9 0 000 18zM12 7l4 3-1.5 5h-5L8 10z' },
+  { id: 'clips',    label: 'Clips',    icon: 'M12 21a9 9 0 100-18 9 9 0 000 18zM10 8l6 4-6 4z' },
+  { id: 'record',   label: 'Record',   icon: 'M12 21a9 9 0 100-18 9 9 0 000 18zM12 15a3 3 0 100-6 3 3 0 000 6z' },
 ]
 
 const HOME_TABS: Array<{ id: HomeTab; label: string }> = [
-  { id: 'overview', label: 'Overview' },
-  { id: 'inbox',    label: 'Inbox' },
-  { id: 'calendar', label: 'Calendar' },
-  { id: 'staff',    label: 'Team staff' },
+  { id: 'overview',  label: 'Overview' },
+  { id: 'messages',  label: 'Messages' },
+  { id: 'calendar',  label: 'Calendar' },
+  { id: 'fixtures',  label: 'Fixtures' },
+  { id: 'style',     label: 'Our style' },
+  { id: 'whereweat', label: "Where we're at" },
+  { id: 'staff',     label: 'Team staff' },
 ]
 
 export default function MiniRoosApp({ onBack, empty, phaseContent, initialScreen, onNavChange }: { onBack: () => void; empty?: boolean; phaseContent?: ReactNode; initialScreen?: string; onNavChange?: (screen: string) => void }) {
   const [nav, setNav]               = useState<MiniNav>((initialScreen as MiniNav) ?? 'home')
   const [homeTab, setHomeTab]       = useState<HomeTab>('overview')
   const [gameDayTab, setGameDayTab] = useState<GameDayTab>('turns')
-  const [gameDayView, setGameDayView] = useState<GameDayView>('turns')
   const [homeSubView, setHomeSubView] = useState<'main' | 'seasonnotes' | 'teamchat' | 'footballyear'>('main')
   const [trainingTab, setTrainingTab] = useState<TrainingTab>('plan')
   const [recordView, setRecordView] = useState<RecordView>('start')
 
   const GAMEDAY_TABS: Array<{ id: GameDayTab; label: string }> = [
-    { id: 'turns',    label: 'Turns' },
-    { id: 'fixtures', label: 'Fixtures' },
-    { id: 'record',   label: 'Record' },
+    { id: 'turns',       label: 'Turns' },
+    { id: 'review',      label: 'Review' },
+    { id: 'whatisaw',    label: 'What we saw' },
+    { id: 'thankparents', label: 'Thank the parents' },
   ]
 
   const TRAINING_TABS_MR: Array<{ id: TrainingTab; label: string }> = [
     { id: 'plan',    label: 'Tonight' },
     { id: 'suggest', label: 'Suggested' },
-    { id: 'record',  label: 'Record' },
   ]
 
   const contextTabs =
@@ -374,99 +381,72 @@ export default function MiniRoosApp({ onBack, empty, phaseContent, initialScreen
     nav === 'gameday'  ? GAMEDAY_TABS.findIndex(t => t.id === gameDayTab) :
     nav === 'training' ? TRAINING_TABS_MR.findIndex(t => t.id === trainingTab) : 0
 
-  // Full-screen phone overlays (no main chrome)
-  if (nav === 'gameday' && gameDayView === 'thankparents') {
-    return (
-      <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: '#f7f8f7', fontFamily: 'var(--font-sans)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <ThankParentsScreen onBack={() => setGameDayView('turns')} />
-      </div>
-    )
+  function handleNavChange(id: string) {
+    setNav(id as MiniNav)
+    onNavChange?.(id)
+  }
+
+  function handleSubTab(i: number) {
+    if (nav === 'home')     { setHomeTab(HOME_TABS[i].id); setHomeSubView('main') }
+    if (nav === 'gameday')  { setGameDayTab(GAMEDAY_TABS[i].id) }
+    if (nav === 'training') { setTrainingTab(TRAINING_TABS_MR[i].id) }
+  }
+
+  let content = null
+  if (nav === 'home') {
+    if (homeTab === 'overview' && homeSubView === 'main')
+      content = phaseContent ?? <HomeMiniRoos empty={empty} onTraining={() => setNav('training')} onSeasonNotes={() => setHomeSubView('seasonnotes')} onFootballYear={() => setHomeSubView('footballyear')} onAllMessages={() => setHomeTab('messages')} onCalendar={() => setHomeTab('calendar')} onSwapGame={() => { setNav('training'); setTrainingTab('suggest') }} onWhatWeSaw={() => { setNav('gameday'); setGameDayTab('whatisaw') }} onThankParents={() => { setNav('gameday'); setGameDayTab('thankparents') }} onInboxItem={() => setHomeTab('messages')} />
+    else if (homeTab === 'overview' && homeSubView === 'seasonnotes')
+      content = <SeasonNotesScreen empty={empty} onBack={() => setHomeSubView('main')} />
+    else if (homeTab === 'overview' && homeSubView === 'footballyear')
+      content = <FootballYearScreen onBack={() => setHomeSubView('main')} />
+    else if (homeTab === 'messages' && homeSubView !== 'teamchat')
+      content = <InboxMiniRoos empty={empty} onChat={() => setHomeSubView('teamchat')} />
+    else if (homeTab === 'messages' && homeSubView === 'teamchat')
+      content = <TeamChatMiniRoos empty={empty} onBack={() => setHomeSubView('main')} />
+    else if (homeTab === 'calendar')  content = <CalendarMiniRoos empty={empty} />
+    else if (homeTab === 'fixtures')  content = <FixturesMiniRoos empty={empty} />
+    else if (homeTab === 'style')     content = <MS1MiniRoosStyle />
+    else if (homeTab === 'whereweat') content = <MS2MiniRoosWhereWeAt />
+    else if (homeTab === 'staff')     content = <StaffMiniRoos empty={empty} />
+  } else if (nav === 'training') {
+    if (trainingTab === 'plan')    content = <TrainingMiniRoos />
+    else if (trainingTab === 'suggest') content = <SuggestedMiniRoos empty={empty} />
+  } else if (nav === 'squad') {
+    content = <SquadMiniRoos empty={empty} />
+  } else if (nav === 'gameday') {
+    if (gameDayTab === 'turns')
+      content = <GameDayMiniRoos onWhatWeSaw={() => setGameDayTab('whatisaw')} />
+    else if (gameDayTab === 'review')
+      content = <MS3MiniRoosReview />
+    else if (gameDayTab === 'whatisaw')
+      content = <WhatWeSawScreen onBack={() => setGameDayTab('turns')} onSave={() => setGameDayTab('turns')} onThankParents={() => setGameDayTab('thankparents')} />
+    else if (gameDayTab === 'thankparents')
+      content = <ThankParentsScreen onBack={() => setGameDayTab('turns')} />
+  } else if (nav === 'clips') {
+    content = recordView === 'clips'
+      ? <RecordMiniRoosClips empty={empty} onBack={() => setRecordView('start')} />
+      : <RecordMiniRoosClips empty={empty} onBack={() => setRecordView('start')} />
+  } else if (nav === 'record') {
+    content = recordView === 'clips'
+      ? <RecordMiniRoosClips empty={empty} onBack={() => setRecordView('start')} />
+      : <RecordMiniRoosStart empty={empty} onClips={() => setRecordView('clips')} />
   }
 
   return (
-    <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
-
-      {/* Top nav */}
-      <header style={{ flex: 'none', background: '#1f4a3e', color: '#ffffff' }}>
-        <div style={{ height: 60, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 24 }}>
-          <span style={{ fontSize: 17, fontWeight: 800, letterSpacing: '-0.03em', color: '#ffffff', flexShrink: 0 }}>Clean Sheet</span>
-          <nav style={{ display: 'flex', flexGrow: 1, height: 60 }}>
-            {NAV.map(tab => (
-              <button key={tab.id} onClick={() => { setNav(tab.id); setGameDayView('turns'); onNavChange?.(tab.id) }} style={{
-                height: 60, padding: '0 16px', border: 0, background: 'transparent',
-                fontFamily: 'inherit', fontSize: 15, fontWeight: nav === tab.id ? 700 : 500,
-                color: nav === tab.id ? '#ffffff' : 'rgba(255,255,255,0.65)', cursor: 'pointer',
-                borderBottom: nav === tab.id ? '3px solid #ffffff' : '3px solid transparent',
-                display: 'flex', alignItems: 'center', gap: 7, boxSizing: 'border-box',
-              }}>
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={tab.icon}/></svg>
-                {tab.label}
-              </button>
-            ))}
-          </nav>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
-            <button style={{ display: 'flex', alignItems: 'center', gap: 8, height: 44, padding: '0 16px', borderRadius: '999px', border: 0, background: 'rgba(255,255,255,0.15)', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer', color: '#ffffff' }}>
-              U9 Tom · Wattle Creek
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-            </button>
-            <div style={{ width: 44, height: 44, borderRadius: '999px', background: '#c39797', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 15, flexShrink: 0 }}>TA</div>
-          </div>
-        </div>
-
-        {/* Sub-tabs (home, training and game day) */}
-        {(nav === 'home' || nav === 'gameday' || nav === 'training') && (
-          <div style={{ height: 44, padding: '0 28px', display: 'flex', alignItems: 'flex-end', gap: 24, background: '#ffffff', borderBottom: '1px solid #e9eae8' }}>
-            <nav style={{ display: 'flex', flexGrow: 1, height: 44 }}>
-              {contextTabs.map((tab, i) => {
-                const active = i === activeTabIndex
-                return (
-                  <button key={tab} onClick={() => {
-                    if (nav === 'home') { setHomeTab(HOME_TABS[i].id); setHomeSubView('main') }
-                    if (nav === 'gameday') { setGameDayTab(GAMEDAY_TABS[i].id); setGameDayView('turns'); setRecordView('start') }
-                    if (nav === 'training') { setTrainingTab(TRAINING_TABS_MR[i].id); setRecordView('start') }
-                  }} style={{
-                    height: 44, padding: '0 16px', border: 0, background: 'transparent',
-                    fontFamily: 'inherit', fontSize: 15, fontWeight: active ? 600 : 400,
-                    color: active ? '#10211f' : '#6f7f7b', cursor: 'pointer',
-                    borderBottom: active ? '3px solid #40826d' : '3px solid transparent',
-                    display: 'flex', alignItems: 'center', paddingBottom: 3, boxSizing: 'border-box',
-                  }}>
-                    {tab}
-                  </button>
-                )
-              })}
-            </nav>
-            <div style={{ display: 'flex', alignItems: 'center', height: 44, gap: 10 }}>
-              <span style={{ fontSize: 13, fontWeight: 700, color: '#2f6252', background: '#eef5f2', borderRadius: '999px', padding: '4px 12px', display: 'flex', alignItems: 'center', gap: 5 }}>
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" aria-hidden="true"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zM5 21a7 7 0 0114 0"/></svg>
-                Coach · MiniRoos
-              </span>
-              <button onClick={onBack} style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Head coach view</button>
-            </div>
-          </div>
-        )}
-      </header>
-
-      {/* Content */}
-      <div style={{ flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden', position: 'relative' }}>
-        {nav === 'home' && homeTab === 'overview'  && homeSubView === 'main'          && (phaseContent ?? <HomeMiniRoos empty={empty} onTraining={() => setNav('training')} onSeasonNotes={() => setHomeSubView('seasonnotes')} onFootballYear={() => setHomeSubView('footballyear')} onAllMessages={() => setHomeTab('inbox')} onCalendar={() => setHomeTab('calendar')} onSwapGame={() => { setNav('training'); setTrainingTab('suggest') }} onWhatWeSaw={() => { setNav('gameday'); setGameDayTab('turns'); setGameDayView('whatisaw') }} onThankParents={() => { setNav('gameday'); setGameDayView('thankparents') }} onInboxItem={() => setHomeTab('inbox')} />)}
-        {nav === 'home' && homeTab === 'overview'  && homeSubView === 'seasonnotes'  && <SeasonNotesScreen empty={empty} onBack={() => setHomeSubView('main')} />}
-        {nav === 'home' && homeTab === 'overview'  && homeSubView === 'footballyear' && <FootballYearScreen onBack={() => setHomeSubView('main')} />}
-        {nav === 'home' && homeTab === 'inbox'     && homeSubView !== 'teamchat'     && <InboxMiniRoos empty={empty} onChat={() => setHomeSubView('teamchat')} />}
-        {nav === 'home' && homeTab === 'inbox'     && homeSubView === 'teamchat'     && <TeamChatMiniRoos empty={empty} onBack={() => setHomeSubView('main')} />}
-        {nav === 'home' && homeTab === 'calendar'  && <CalendarMiniRoos empty={empty} />}
-        {nav === 'home' && homeTab === 'staff'     && <StaffMiniRoos empty={empty} />}
-        {nav === 'training' && trainingTab === 'plan'    && <TrainingMiniRoos />}
-        {nav === 'training' && trainingTab === 'suggest' && <SuggestedMiniRoos empty={empty} />}
-        {nav === 'training' && trainingTab === 'record'  && recordView === 'start' && <RecordMiniRoosStart empty={empty} onClips={() => setRecordView('clips')} />}
-        {nav === 'training' && trainingTab === 'record'  && recordView === 'clips' && <RecordMiniRoosClips empty={empty} onBack={() => setRecordView('start')} />}
-        {nav === 'squad'   && <SquadMiniRoos empty={empty} />}
-        {nav === 'gameday' && gameDayTab === 'turns'    && gameDayView === 'turns'    && <GameDayMiniRoos onWhatWeSaw={() => setGameDayView('whatisaw')} />}
-        {nav === 'gameday' && gameDayTab === 'turns'    && gameDayView === 'whatisaw' && <WhatWeSawScreen onBack={() => setGameDayView('turns')} onSave={() => setGameDayView('turns')} onThankParents={() => setGameDayView('thankparents')} />}
-        {nav === 'gameday' && gameDayTab === 'fixtures' && <FixturesMiniRoos empty={empty} />}
-        {nav === 'gameday' && gameDayTab === 'record'   && recordView === 'start' && <RecordMiniRoosStart empty={empty} onClips={() => setRecordView('clips')} />}
-        {nav === 'gameday' && gameDayTab === 'record'   && recordView === 'clips' && <RecordMiniRoosClips empty={empty} onBack={() => setRecordView('start')} />}
-      </div>
-    </div>
+    <CoachTabletFrame
+      navTabs={NAV}
+      activeNav={nav}
+      onNav={handleNavChange}
+      subTabs={contextTabs}
+      activeSubTabIndex={activeTabIndex}
+      onSubTab={handleSubTab}
+      roleChip="Coach · MiniRoos"
+      teamLabel="U9 Tom · Wattle Creek"
+      avatarLetters="TA"
+      showAsk={false}
+    >
+      {content}
+    </CoachTabletFrame>
   )
 }

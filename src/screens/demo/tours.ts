@@ -45,7 +45,7 @@ export const TOURS: Record<string, TourDef> = {
       { title: "After a game", steps: [
         { label: "Home on Sunday", caption: "The game goes in, and about 25 minutes later the review comes back with three things to work on.", screen: "T1s-HomeSunday" },
         { label: "Add the game", caption: "The game goes in, and about 25 minutes later the review comes back with three things to work on.", screen: "addgame" },
-        { label: "Match review", caption: "The game goes in, and about 25 minutes later the review comes back with three things to work on.", screen: "review" },
+        { label: "Match review", caption: "The game goes in, and about 25 minutes later the review comes back with three things to work on.", screen: "R1-MatchReview" },
         { label: "Check unsure moments", caption: "The game goes in, and about 25 minutes later the review comes back with three things to work on.", screen: "TC1-ToCheck" },
         { label: "Clips", caption: "The game goes in, and about 25 minutes later the review comes back with three things to work on.", screen: "C1-ClipsTab" },
       ]},

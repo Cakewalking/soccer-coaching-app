@@ -386,6 +386,11 @@ import { MessagesRules, CoachNewMessage, CoachMessages, CoachMessagesPersonCard,
 import { AcademyTrainingWeek, AcademyTrainingSuggested, AcademySessionPlan, AcademyWhoComing, AcademyTrainingWeekEmpty } from '../AcademyTraining'
 import { RecordHub, RecordSaved, RecordHubEmpty } from '../RecordHub'
 import { SquadLineups, SquadLineupsEmpty } from '../SquadLineups'
+import { WhereWeAtScreen, WhereWeAtScreenEmpty } from '../WhereWeAtScreen'
+import { MS1MiniRoosStyle, MS1eMiniRoosStyleEmpty } from '../miniroos/MiniRoosStyleScreen'
+import { MS2MiniRoosWhereWeAt, MS2eMiniRoosWhereWeAtEmpty } from '../miniroos/MiniRoosWhereWeAt'
+import { MS3MiniRoosReview, MS3eMiniRoosReviewEmpty } from '../miniroos/MiniRoosReview'
+import PAR0SameTools from '../PAR0SameTools'
 import C2ClipsByGame                     from '../step4/C2ClipsByGame'
 import { C3ClipsByPlayer, CL1Playlists, TC1ToCheck, TC1bToCheckDone, TC1eToCheckEmpty } from '../step4/ClipsSubScreens'
 import { GT1Growth, GT1eGrowthEmpty }    from '../step4/GT1Growth'
@@ -1372,6 +1377,27 @@ export function renderScreen(key: string): ReactNode {
     // Squad line-ups (section 18)
     case 'SQ1-BestLineups':            return <SquadLineups onBack={noop} />
     case 'SQ1e-BestLineupsEmpty':      return <SquadLineupsEmpty onBack={noop} />
+
+    // Where we're at (item 12)
+    case 'WA1-WhereWeAt':              return <WhereWeAtScreen teamType="juniors" />
+    case 'WA1e-WhereWeAtEmpty':        return <WhereWeAtScreenEmpty teamType="juniors" />
+    case 'WA2-WhereWeAtYouth':         return <WhereWeAtScreen teamType="youth" />
+    case 'WA3-WhereWeAtSeniors':       return <WhereWeAtScreen teamType="seniors" />
+
+    // MiniRoos style + where we're at (item 12)
+    case 'MS1-MiniRoosStyle':          return <MS1MiniRoosStyle />
+    case 'MS1e-MiniRoosStyleEmpty':    return <MS1eMiniRoosStyleEmpty />
+    case 'MS2-MiniRoosWhereWeAt':      return <MS2MiniRoosWhereWeAt />
+    case 'MS2e-MiniRoosWhereWeAtEmpty': return <MS2eMiniRoosWhereWeAtEmpty />
+    case 'MS3-MiniRoosReview':         return <MS3MiniRoosReview />
+    case 'MS3e-MiniRoosReviewEmpty':   return <MS3eMiniRoosReviewEmpty />
+
+    // Same tools + home aliases (item 12)
+    case 'PAR0-SameTools':             return <PAR0SameTools />
+    case 'PH1-HomeJuniorsSame':        return <JuniorCoachApp onBack={noop} empty={false} />
+    case 'PH2-HomeYouthSame':          return <SeniorsYouthCoachApp teamType="youth" onBack={noop} empty={false} />
+    case 'PH3-HomeSeniorsSame':        return <SeniorsYouthCoachApp teamType="seniors" onBack={noop} empty={false} />
+    case 'MS5-HomeMiniRoosSame':       return <MiniRoosApp onBack={noop} empty={false} />
 
     default:
       return (

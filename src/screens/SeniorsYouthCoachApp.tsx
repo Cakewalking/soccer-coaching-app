@@ -27,6 +27,8 @@ import { CoachMessages }   from './MessagesScreens'
 import { SquadLineups }    from './SquadLineups'
 import { useSandbox }      from './sandbox/SandboxContext'
 import { storeHasData }   from './sandbox/sandboxStore'
+import CoachTabletFrame   from './CoachTabletFrame'
+import { WhereWeAtScreen } from './WhereWeAtScreen'
 
 type TeamType = 'seniors' | 'youth'
 
@@ -152,7 +154,7 @@ const NAV_ICONS = [
   'M12 21a9 9 0 100-18 9 9 0 000 18zM12 15a3 3 0 100-6 3 3 0 000 6z',
 ]
 const NAV_LABELS = ['Home', 'Squad', 'Training', 'Match day', 'Clips', 'Record']
-const HOME_TABS  = ['Overview', 'Messages', 'Calendar', 'Fixtures and results', 'Our style', 'Team staff']
+const HOME_TABS  = ['Overview', 'Messages', 'Calendar', 'Fixtures and results', 'Our style', "Where we're at", 'Team staff']
 
 function resultColor(r: 'W' | 'L' | 'D') {
   if (r === 'W') return { bg: '#40826d', color: '#fff' }
@@ -374,8 +376,6 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
   const [trainingTab, setTrainingTab] = useState(0)
   const [matchTab, setMatchTab]       = useState(0)
   const [clipsTab, setClipsTab]       = useState(0)
-  const [toast, setToast]             = useState<string | null>(null)
-  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   const [askOpen, setAskOpen] = useState(false)
   function goNav(n: NavKey) { setNav(n); setSub(null); setAskOpen(false); onNavChange?.(n) }
@@ -429,7 +429,8 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
       case 1: content = <CoachMessages />; break
       case 2: case 3: content = <FixturesScreen empty={sbEmpty} />; break
       case 4: content = <OurStyleScreen />; break
-      case 5: content = <TeamStaffScreen empty={sbEmpty} />; break
+      case 5: content = <WhereWeAtScreen teamType={teamType === 'seniors' ? 'seniors' : 'youth'} />; break
+      case 6: content = <TeamStaffScreen empty={sbEmpty} />; break
     }
   } else if (nav === 'squad') {
     switch (squadTab) {
@@ -465,87 +466,28 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
     content = <ClipsScreen empty={sbEmpty} activeTab={clipsTab} />
   }
 
+  const navTabs = NAV_LABELS.map((label, i) => ({ id: NAV_KEYS[i], label, icon: NAV_ICONS[i] }))
+
   return (
-    <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
-
-      <header style={{ flex: 'none', background: '#2f6252', color: '#fff' }}>
-        <div style={{ height: 60, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 16 }}>
-          <span style={{ fontSize: 17, fontWeight: 800, letterSpacing: '-0.03em', flexShrink: 0 }}>Clean Sheet</span>
-          <nav style={{ display: 'flex', flexGrow: 1, gap: 2 }}>
-            {NAV_LABELS.map((label, i) => (
-              <button key={label} onClick={() => goNav(NAV_KEYS[i])} style={{
-                display: 'flex', alignItems: 'center', gap: 7, height: 44, padding: '0 14px', borderRadius: '999px',
-                border: 0, fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer',
-                background: nav === NAV_KEYS[i] ? '#40826d' : 'transparent', color: '#fff',
-              }}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={NAV_ICONS[i]}/></svg>
-                {label}
-              </button>
-            ))}
-          </nav>
-          <button onClick={() => setAskOpen(o => !o)} aria-label="Ask Clean Sheet" style={{ height: 36, padding: '0 14px', borderRadius: '999px', border: '1.5px solid rgba(255,255,255,0.3)', background: askOpen ? 'rgba(255,255,255,0.15)' : 'transparent', color: '#fff', display: 'flex', alignItems: 'center', gap: 7, cursor: 'pointer', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, flexShrink: 0 }}>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg>
-            Ask
-          </button>
-          <button style={{ display: 'flex', alignItems: 'center', gap: 8, height: 44, padding: '0 16px', borderRadius: '999px', border: 0, background: 'rgba(255,255,255,0.15)', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer', color: '#fff', flexShrink: 0 }}>
-            {inSandbox ? (store.teams[0]?.name ?? 'My team') : data.teamPicker}
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-          </button>
-          <div style={{ width: 44, height: 44, borderRadius: '999px', background: data.avatarBg, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 15, flexShrink: 0 }}>{data.avatarLetters}</div>
-        </div>
-
-        <div style={{ height: 44, padding: '0 28px', background: '#fff', borderBottom: '1px solid #e9eae8', display: 'flex', alignItems: 'flex-end' }}>
-          <nav style={{ display: 'flex', flexGrow: 1, height: 44 }}>
-            {subTabs.map((tab, i) => (
-              <button key={tab} onClick={() => handleSubTab(i)} style={{
-                height: 44, padding: '0 14px', border: 0, background: 'transparent',
-                fontFamily: 'inherit', fontSize: 15, fontWeight: i === activeIdx ? 600 : 400,
-                color: i === activeIdx ? '#10211f' : '#6f7f7b', cursor: 'pointer',
-                borderBottom: i === activeIdx ? '3px solid #40826d' : '3px solid transparent',
-                boxSizing: 'border-box', whiteSpace: 'nowrap',
-              }}>{tab}</button>
-            ))}
-          </nav>
-          <div style={{ display: 'flex', alignItems: 'center', height: 44, gap: 10 }}>
-            <span style={{ fontSize: 13, fontWeight: 700, color: '#2f6252', background: '#eef5f2', borderRadius: '999px', padding: '4px 12px' }}>Head coach</span>
-            <button onClick={() => showToast('Switching to the team view on a connected device.')} style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Switch view</button>
-          </div>
-        </div>
-      </header>
-
-      <div style={{ flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden', position: 'relative' }}>
+    <>
+      <CoachTabletFrame
+        navTabs={navTabs}
+        activeNav={nav}
+        onNav={id => goNav(id as NavKey)}
+        subTabs={subTabs}
+        activeSubTabIndex={activeIdx}
+        onSubTab={handleSubTab}
+        roleChip="Head coach"
+        teamLabel={inSandbox ? (store.teams[0]?.name ?? 'My team') : data.teamPicker}
+        avatarLetters={data.avatarLetters}
+        avatarBg={data.avatarBg}
+        showAsk={true}
+        askOpen={askOpen}
+        onAskToggle={() => setAskOpen(o => !o)}
+        showBadge={tab => !sbEmpty && !inSandbox && (tab === 'Messages' || tab === 'To check')}
+      >
         {content}
-        {askOpen && (
-          <aside role="dialog" aria-label="Ask Clean Sheet" style={{ position: 'absolute', top: 0, right: 0, bottom: 0, width: 400, background: '#fff', borderLeft: '1px solid #e8edeb', boxShadow: '-8px 0 32px rgba(16,33,31,0.12)', zIndex: 50, display: 'flex', flexDirection: 'column' }}>
-            <div style={{ padding: '16px 20px', borderBottom: '1px solid #e8edeb', display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2f6252" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg>
-              <span style={{ flex: 1, fontSize: 15, fontWeight: 700, color: '#10211f' }}>Ask Clean Sheet</span>
-              <button onClick={() => setAskOpen(false)} aria-label="Close Ask Clean Sheet" style={{ width: 32, height: 32, borderRadius: '50%', border: '1px solid #e8edeb', background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#4a5a57' }}>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
-              </button>
-            </div>
-            <div style={{ flex: 1, overflowY: 'auto', padding: '20px' }}>
-              <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: 8, marginBottom: 20 }}>
-                {['Who needs a rest?', 'What to work on tonight?', 'Is everyone getting fair minutes?', 'Why did we concede Saturday?'].map(q => (
-                  <button key={q} style={{ padding: '7px 12px', borderRadius: 100, border: '1px solid #e8edeb', background: '#eef5f2', color: '#2f6252', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{q}</button>
-                ))}
-              </div>
-              <div style={{ background: '#eef5f2', borderRadius: 14, padding: '14px 16px', fontSize: 14, color: '#10211f', lineHeight: 1.6 }}>
-                <div style={{ fontSize: 11, fontWeight: 700, color: '#2f6252', marginBottom: 8, letterSpacing: '0.07em', textTransform: 'uppercase' as const }}>Clean Sheet</div>
-                Mia has played 58% of available minutes — 9 of the last 12 games. She was absent for one game and came off at half-time twice, both times with a note about hamstring load.
-              </div>
-              <div style={{ fontSize: 11, color: '#4a5a57', marginTop: 16, lineHeight: 1.6 }}>It answers from what you can see as head coach. It never sends anything by itself. Wellness and welfare concerns are never used.</div>
-            </div>
-            <div style={{ padding: '12px 16px', borderTop: '1px solid #e8edeb', display: 'flex', gap: 8, flexShrink: 0 }}>
-              <input placeholder="Ask about your team…" style={{ flex: 1, height: 40, padding: '0 12px', borderRadius: 8, border: '1px solid #e8edeb', fontSize: 13, fontFamily: 'inherit', outline: 'none', color: '#10211f' }} />
-              <button style={{ height: 40, padding: '0 16px', borderRadius: 8, background: '#2f6252', color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Ask</button>
-            </div>
-          </aside>
-        )}
-      </div>
-      {toast && (
-        <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>
-      )}
-    </div>
+      </CoachTabletFrame>
+    </>
   )
 }
