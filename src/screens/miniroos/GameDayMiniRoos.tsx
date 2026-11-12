@@ -39,9 +39,25 @@ function turnStyle(t: Turn) {
   return                   { bg: '#f0f1ef', color: '#6f7f7b', label: 'Rest'    }
 }
 
-export default function GameDayMiniRoos({ onWhatWeSaw }: { onWhatWeSaw: () => void }) {
+export default function GameDayMiniRoos({ onWhatWeSaw, empty }: { onWhatWeSaw: () => void; empty?: boolean }) {
   const [toast, setToast] = useState<string | null>(null)
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
+  if (empty) {
+    return (
+      <div style={{ flexGrow: 1, padding: '28px 32px', overflowY: 'auto', fontFamily: 'var(--font-sans)' }}>
+        <div style={{ maxWidth: 500 }}>
+          <h1 style={{ margin: '0 0 4px', fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em', color: '#10211f' }}>Game day</h1>
+          <div style={{ fontSize: 14, color: '#4a5a57', marginBottom: 20 }}>No game scheduled yet</div>
+          <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 16, padding: 24, marginBottom: 16 }}>
+            <div style={{ fontSize: 18, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>Turns appear once a game is added</div>
+            <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.6, marginBottom: 16 }}>Clean Sheet generates an equal-time turns plan for every player. Each child gets a turn in goal and as captain across the season.</div>
+            <button onClick={() => showToast('Opening the add game screen.')} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Add a game</button>
+          </div>
+        </div>
+        {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
+      </div>
+    )
+  }
   return (
     <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, minHeight: 0, overflow: 'hidden' }}>
 

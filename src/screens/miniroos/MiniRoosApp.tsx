@@ -417,7 +417,9 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
   } else if (nav === 'squad') {
     content = <SquadMiniRoos empty={empty} />
   } else if (nav === 'gameday') {
-    if (gameDayTab === 'turns')
+    if (empty)
+      content = <GameDayMiniRoos empty={true} onWhatWeSaw={() => {}} />
+    else if (gameDayTab === 'turns')
       content = <GameDayMiniRoos onWhatWeSaw={() => setGameDayTab('whatisaw')} />
     else if (gameDayTab === 'review')
       content = <MS3MiniRoosReview />
