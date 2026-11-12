@@ -1051,8 +1051,10 @@ export function renderScreen(key: string): ReactNode {
     case 'CPh3-CoachPhoneMessages':    return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><CPh3CoachPhoneMessages /></div>
     case 'CPh4-CoachPhoneGame':        return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><CPh4CoachPhoneGame /></div>
     case 'CPh5-CoachPhonePlan':        return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><CPh5CoachPhonePlan /></div>
-    case 'CPh1e-CoachPhoneHomeEmpty':  return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><CPh1eCoachPhoneHomeEmpty /></div>
-    case 'CPh4e-CoachPhoneGameEmpty':  return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><CPh4eCoachPhoneGameEmpty /></div>
+    case 'CPh1e-CoachPhoneHomeEmpty':     return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><CPh1eCoachPhoneHomeEmpty /></div>
+    case 'CPh2e-CoachPhoneComingEmpty':   return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><CPh2eCoachPhoneComingEmpty /></div>
+    case 'CPh3e-CoachPhoneMessagesEmpty': return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><CPh3eCoachPhoneMessagesEmpty /></div>
+    case 'CPh4e-CoachPhoneGameEmpty':     return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><CPh4eCoachPhoneGameEmpty /></div>
     // Design ID aliases — Sign-in / demo screens
     case 'SI5-TooManyTries':           return <SignInFlow initialState="toomany" />
     case 'DEMO-Why':                   return <DemoWhy onBack={noop} />
@@ -1430,6 +1432,7 @@ export default function DemoApp() {
     } else if (role === 'playeryoung') {
       if (phase === 'preseason')       lookContent = <SPp13PlayerPreSeason />
       else if (phase === 'postseason') lookContent = <SPp14PlayerPostSeason />
+      else if (phase === 'restmonth')  lookContent = <SPp7PlayerRestMonth />
       else                             lookContent = <TwoChildrenApp onBack={() => setView('start')} empty={false} />
     } else if (role === 'playerolder') {
       if (phase === 'preseason')       lookContent = <SPp15OlderPreSeason />
