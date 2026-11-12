@@ -91,7 +91,7 @@ export function GT1Growth() {
                   </tr>
                 </thead>
                 <tbody>
-                  {PLAYERS.map((p, i) => {
+                  {PLAYERS.map((p) => {
                     const isFast = parseFloat(p.rate) >= 7
                     const hasInjury = p.flags.includes('pain')
                     return (

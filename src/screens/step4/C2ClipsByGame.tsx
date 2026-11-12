@@ -102,7 +102,7 @@ export default function C2ClipsByGame() {
               ))}
             </div>
           </div>
-          {CLIPS.map((c, i) => (
+          {CLIPS.map((c) => (
             <div key={c.id} style={{ padding: '12px 16px', borderBottom: `1px solid ${LN}`, cursor: 'pointer', background: c.id === 1 ? PALE : '#fff' }}>
               <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 8, marginBottom: 6 }}>
                 <div>

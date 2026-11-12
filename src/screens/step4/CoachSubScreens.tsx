@@ -49,11 +49,6 @@ function Shell({ navActive, sideItems, sideActive, children }: {
   )
 }
 
-function Tag({ text, color, bg }: { text: string; color: string; bg: string }) {
-  return (
-    <span style={{ fontSize: 11, fontWeight: 700, padding: '2px 8px', borderRadius: 20, background: bg, color }}>{text}</span>
-  )
-}
 
 // ─── WK1 This Week ───────────────────────────────────────────────────────────
 
