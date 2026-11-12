@@ -35,9 +35,25 @@ function tagColor(tag: string) {
   return                            { bg: '#cbbeb5', color: '#10211f' }
 }
 
-export default function TrainingMiniRoos() {
+export default function TrainingMiniRoos({ empty }: { empty?: boolean }) {
   const [toast, setToast] = useState<string | null>(null)
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
+  if (empty) {
+    return (
+      <div style={{ flexGrow: 1, padding: '28px 32px', overflowY: 'auto', fontFamily: 'var(--font-sans)' }}>
+        <div style={{ maxWidth: 500 }}>
+          <h1 style={{ margin: '0 0 4px', fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em', color: '#10211f' }}>Training</h1>
+          <div style={{ fontSize: 14, color: '#4a5a57', marginBottom: 20 }}>No session planned yet</div>
+          <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 16, padding: 24 }}>
+            <div style={{ fontSize: 18, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>Your session plan appears here</div>
+            <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.6, marginBottom: 16 }}>Set a focus for the fortnight and Clean Sheet drafts a session from the drill library. Each session is 45 minutes of games and skill activities.</div>
+            <button onClick={() => showToast('Opening the focus picker.')} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Set a focus</button>
+          </div>
+        </div>
+        {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
+      </div>
+    )
+  }
   return (
     <div style={{ flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
 

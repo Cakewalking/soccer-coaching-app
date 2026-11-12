@@ -61,6 +61,25 @@ export default function SquadMiniRoos({ empty }: { empty?: boolean }) {
   const [toast, setToast] = useState<string | null>(null)
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
+  if (empty) {
+    return (
+      <div style={{ flexGrow: 1, padding: '28px 32px', overflowY: 'auto' }}>
+        <div style={{ maxWidth: 500 }}>
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: 14, marginBottom: 20 }}>
+            <h1 style={{ margin: 0, fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em' }}>Squad</h1>
+            <span style={{ fontSize: 14, color: '#4a5a57' }}>No players yet</span>
+          </div>
+          <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 16, padding: 24, marginBottom: 16 }}>
+            <div style={{ fontSize: 18, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>Players appear here once registered</div>
+            <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.6, marginBottom: 16 }}>The director or coordinator registers players to the club. Each player then gets game notifications and their turn in goal and as captain is tracked automatically.</div>
+            <button onClick={() => showToast('Opening the add player form.')} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>+ Add a player</button>
+          </div>
+        </div>
+        {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
+      </div>
+    )
+  }
+
   const tabBar = (
     <div style={{ flex: 'none', padding: '14px 28px 0' }}>
       <div style={{ display: 'flex', alignItems: 'baseline', gap: 14, marginBottom: 8 }}>

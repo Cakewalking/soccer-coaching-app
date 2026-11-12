@@ -14,6 +14,7 @@ import FixturesMiniRoos  from './FixturesMiniRoos'
 import TeamChatMiniRoos  from './TeamChatMiniRoos'
 import FootballYearScreen from './FootballYearScreen'
 import CoachTabletFrame  from '../CoachTabletFrame'
+import { useSandbox }   from '../sandbox/SandboxContext'
 import { MS1MiniRoosStyle } from './MiniRoosStyleScreen'
 import { MS2MiniRoosWhereWeAt } from './MiniRoosWhereWeAt'
 import { MS3MiniRoosReview } from './MiniRoosReview'
@@ -359,6 +360,7 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
   const [homeSubView, setHomeSubView] = useState<'main' | 'seasonnotes' | 'teamchat' | 'footballyear'>('main')
   const [trainingTab, setTrainingTab] = useState<TrainingTab>('plan')
   const [recordView, setRecordView] = useState<RecordView>('start')
+  const { active: inSandbox, store } = useSandbox()
 
   const GAMEDAY_TABS: Array<{ id: GameDayTab; label: string }> = [
     { id: 'turns',       label: 'Turns' },
@@ -410,7 +412,7 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
     else if (homeTab === 'whereweat') content = <MS2MiniRoosWhereWeAt />
     else if (homeTab === 'staff')     content = <StaffMiniRoos empty={empty} />
   } else if (nav === 'training') {
-    if (trainingTab === 'plan')    content = <TrainingMiniRoos />
+    if (trainingTab === 'plan')    content = <TrainingMiniRoos empty={empty} />
     else if (trainingTab === 'suggest') content = <SuggestedMiniRoos empty={empty} />
   } else if (nav === 'squad') {
     content = <SquadMiniRoos empty={empty} />
@@ -442,8 +444,8 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
       activeSubTabIndex={activeTabIndex}
       onSubTab={handleSubTab}
       roleChip="Coach · MiniRoos"
-      teamLabel="U9 Tom · Wattle Creek"
-      avatarLetters="TA"
+      teamLabel={inSandbox ? (store.teams[0]?.name ?? 'My team') : 'U9 Tom · Wattle Creek'}
+      avatarLetters={inSandbox ? 'MC' : 'TA'}
       showAsk={false}
     >
       {content}
