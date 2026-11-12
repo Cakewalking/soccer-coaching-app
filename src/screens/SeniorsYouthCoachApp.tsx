@@ -46,6 +46,7 @@ interface TeamData {
   gameCardBullets: string[]
   gameCardCTA: string
   gameCardCTA2?: string
+  opponent: string
   lastGame: { label: string; opponent: string; scorer: string; score: string; bullets: { text: string; tag: string }[] }
   thisWeek: { day: string; label: string; done?: boolean; today?: boolean }[]
   lastFive: { result: 'W' | 'L' | 'D' }[]
@@ -73,6 +74,7 @@ const SENIORS: TeamData = {
   gameCardBullets: ["Their press: beat the first line", "Attacking corners", "Costa: 60 minutes only"],
   gameCardCTA: 'Open training plan',
   gameCardCTA2: 'Opposition',
+  opponent: 'Banksia Park SC',
   lastGame: {
     label: 'Sat 30 May · home',
     opponent: 'Kingfisher United',
@@ -118,6 +120,7 @@ const YOUTH: TeamData = {
   gameCardBullets: ["Protect tired legs", "Play out under a press", "Subs from minute 50"],
   gameCardCTA: 'Finish the team talk',
   gameCardCTA2: 'Team sheet',
+  opponent: 'Harbour Rovers',
   lastGame: {
     label: 'Sat 30 May · home',
     opponent: 'Glenview Park',
@@ -458,7 +461,7 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
     content = <RecordHub noFrame />
   } else if (nav === 'matchday') {
     switch (matchTab) {
-      case 0: content = <MatchDayScreen onNav={handleNav} empty={sbEmptyFixture} />; break
+      case 0: content = <MatchDayScreen onNav={handleNav} empty={sbEmptyFixture} opponent={data.opponent} />; break
       case 1: content = <TeamSheetScreen empty={sbEmptyFixture} />; break
       case 2: content = <OppositionScreen empty={sbEmptyFixture} />; break
       case 3: content = <ReviewScreen empty={sbEmptyFixture} />; break

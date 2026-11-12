@@ -5,6 +5,7 @@ type Screen = 'home' | 'training' | 'matchday' | 'teamtalk'
 interface Props {
   onNav: (s: Screen) => void
   empty?: boolean
+  opponent?: string
 }
 
 function MatchDayEmpty() {
@@ -95,15 +96,17 @@ function MatchDayEmpty() {
   )
 }
 
-const SLIDES = [
-  { id: 0, label: 'START',     title: 'Harbour Rovers today',                  text: 'Last game we won 3–1 at Ironbark. Here is what worked, and three things we fix today.', color: '#2f6252' },
-  { id: 1, label: 'WENT WELL', title: 'Pressing high worked',                  text: '+18% more ball wins in their half vs our average.',                                       color: '#40826d' },
-  { id: 2, label: 'WENT WELL', title: 'We scored when we attacked fast',       text: '2 of 3 fast attacks ended in a goal. Best rate all season.',                             color: '#40826d' },
-  { id: 3, label: 'FIX THIS',  title: 'Win the ball back faster',              text: '7 seconds average on Saturday. Our best is 4.',                                          color: '#6b4a4e' },
-  { id: 4, label: 'FIX THIS',  title: 'Keep our lines close',                  text: '26 m gap between lines. Under 20 m is our target.',                                      color: '#6b4a4e' },
-  { id: 5, label: 'FIX THIS',  title: 'Keep running to the final whistle',     text: 'Sprint speed dropped 22% after minute 50. Hold it.',                                     color: '#6b4a4e' },
-  { id: 6, label: 'TODAY',     title: 'vs Harbour Rovers',                     text: 'Press early. Win it back fast. Keep the shape in the last 20.',                          color: '#2f6252' },
-]
+function makeSlides(opponent: string) {
+  return [
+    { id: 0, label: 'START',     title: `${opponent} today`,           text: 'Last game we won 3–1. Here is what worked, and three things we fix today.',  color: '#2f6252' },
+    { id: 1, label: 'WENT WELL', title: 'Pressing high worked',        text: '+18% more ball wins in their half vs our average.',                           color: '#40826d' },
+    { id: 2, label: 'WENT WELL', title: 'We scored when attacked fast',text: '2 of 3 fast attacks ended in a goal. Best rate all season.',                  color: '#40826d' },
+    { id: 3, label: 'FIX THIS',  title: 'Win the ball back faster',    text: '7 seconds average on Saturday. Our best is 4.',                               color: '#6b4a4e' },
+    { id: 4, label: 'FIX THIS',  title: 'Keep our lines close',        text: '26 m gap between lines. Under 20 m is our target.',                           color: '#6b4a4e' },
+    { id: 5, label: 'FIX THIS',  title: 'Keep running to the whistle', text: 'Sprint speed dropped 22% after minute 50. Hold it.',                          color: '#6b4a4e' },
+    { id: 6, label: 'TODAY',     title: `vs ${opponent}`,              text: 'Press early. Win it back fast. Keep the shape in the last 20.',                color: '#2f6252' },
+  ]
+}
 
 const SAY_THIS = [
   'Keep it short and upbeat. Two things we did well, three to fix.',
@@ -134,8 +137,9 @@ const PLAYER_CHECKS = [
   { ini: 'NO', name: 'Noah', badge: 'Sore knees',      rating: 3.8, bg: '#fdf0ee', textColor: '#7a3030' },
 ]
 
-export default function MatchDayScreen({ onNav, empty }: Props) {
+export default function MatchDayScreen({ onNav, empty, opponent = 'Harbour Rovers' }: Props) {
   if (empty) return <MatchDayEmpty />
+  const SLIDES = makeSlides(opponent)
   const [slide, setSlide] = useState(0)
   const [toast, setToast] = useState<string | null>(null)
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
@@ -151,7 +155,7 @@ export default function MatchDayScreen({ onNav, empty }: Props) {
               Sat 6 Jun · 9:30 am · home
             </div>
             <h1 style={{ margin: 0, fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em', color: '#10211f', lineHeight: '28px' }}>
-              vs Harbour Rovers
+              vs {opponent}
             </h1>
           </div>
           <div style={{ display: 'flex', gap: 8, alignItems: 'center', flex: 'none' }}>
@@ -175,7 +179,7 @@ export default function MatchDayScreen({ onNav, empty }: Props) {
               <span style={{ width: 8, height: 8, borderRadius: '999px', background: '#d4a844', display: 'block', flexShrink: 0 }} />
               3 of 5 ready
             </div>
-            <button onClick={() => showToast('Opening minutes plan for Saturday vs Harbour Rovers.')} style={{
+            <button onClick={() => showToast(`Opening minutes plan for Saturday vs ${opponent}.`)} style={{
               height: 36, padding: '0 14px', borderRadius: '999px', border: '1px solid #c5c8c4',
               background: '#ffffff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer',
             }}>Minutes plan</button>

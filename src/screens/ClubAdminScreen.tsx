@@ -47,7 +47,7 @@ export default function ClubAdminScreen({ empty, role = 'chair', initials = 'RM'
     { id: 'messages',     label: 'Messages',       icon: 'M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z' },
   ]
   const CHAIR_TAB_IDS = new Set(['club', 'teams', 'coaches', 'safeguarding', 'reports', 'plan', 'calendar', 'messages'])
-  const TABS = role === 'welfare' ? ALL_TABS
+  const TABS = role === 'welfare' ? ALL_TABS.filter(t => t.id === 'welfare')
              : role === 'chair' ? ALL_TABS.filter(t => CHAIR_TAB_IDS.has(t.id))
              : ALL_TABS.filter(t => t.id !== 'welfare')
 

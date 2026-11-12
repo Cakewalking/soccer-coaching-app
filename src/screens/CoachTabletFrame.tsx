@@ -42,7 +42,7 @@ export default function CoachTabletFrame({
 
         {/* 64px green nav bar */}
         <div style={{ height: 64, padding: '0 28px', background: G, display: 'flex', alignItems: 'center', gap: 16 }}>
-          <button onClick={() => onNav('home')} style={{ fontSize: 21, fontWeight: 700, color: '#fff', letterSpacing: '-0.02em', border: 0, background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: 0, flexShrink: 0 }}>
+          <button onClick={() => onNav('home')} style={{ fontSize: 21, fontWeight: 700, color: '#fff', letterSpacing: '-0.02em', border: 0, background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: '0 8px', alignSelf: 'stretch', display: 'flex', alignItems: 'center', flexShrink: 0 }}>
             Clean Sheet
           </button>
           <nav style={{ display: 'flex', gap: 2, flexGrow: 1 }}>

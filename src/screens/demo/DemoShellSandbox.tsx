@@ -30,7 +30,7 @@ export default function DemoShellSandbox({ roleId, onSwitchRole, onSwitchToDemo,
 
       {/* Sandbox bar */}
       <div style={{ flex: 'none', background: '#10211f', height: 48, display: 'flex', alignItems: 'center', padding: '0 0 0 16px', gap: 10, zIndex: 20 }}>
-        <button onClick={onSwitchRole} style={{ display: 'flex', alignItems: 'center', gap: 6, background: 'none', border: 'none', cursor: 'pointer', color: 'rgba(255,255,255,0.75)', fontFamily: 'inherit', fontSize: 13, fontWeight: 500, padding: 0, flexShrink: 0 }}>
+        <button onClick={onSwitchRole} style={{ display: 'flex', alignItems: 'center', gap: 6, alignSelf: 'stretch', background: 'none', border: 'none', cursor: 'pointer', color: 'rgba(255,255,255,0.75)', fontFamily: 'inherit', fontSize: 13, fontWeight: 500, padding: '0 8px 0 0', flexShrink: 0 }}>
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
           Switch role
         </button>

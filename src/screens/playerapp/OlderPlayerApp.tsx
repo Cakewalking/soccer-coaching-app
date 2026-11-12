@@ -25,6 +25,14 @@ const TESTS = [
   { label: 'Hip flexor tightness', value: 'Moderate', trend: 'Watch', good: false },
 ]
 
+const WELLNESS_FACES = [
+  { label: 'Exhausted',  path: <><circle cx="12" cy="12" r="9"/><path d="M8.5 10.5h1M14.5 10.5h1"/><path d="M9 15.5Q12 13.5 15 15.5"/></> },
+  { label: 'Not great',  path: <><circle cx="12" cy="12" r="9"/><circle cx="9.5" cy="11" r="1" fill="currentColor"/><circle cx="14.5" cy="11" r="1" fill="currentColor"/><path d="M9 15.5Q12 13.5 15 15.5"/></> },
+  { label: 'OK',         path: <><circle cx="12" cy="12" r="9"/><circle cx="9.5" cy="11" r="1" fill="currentColor"/><circle cx="14.5" cy="11" r="1" fill="currentColor"/><path d="M9.5 15h5"/></> },
+  { label: 'Good',       path: <><circle cx="12" cy="12" r="9"/><circle cx="9.5" cy="11" r="1" fill="currentColor"/><circle cx="14.5" cy="11" r="1" fill="currentColor"/><path d="M9 14Q12 16.5 15 14"/></> },
+  { label: 'Great',      path: <><circle cx="12" cy="12" r="9"/><circle cx="9.5" cy="10.5" r="1" fill="currentColor"/><circle cx="14.5" cy="10.5" r="1" fill="currentColor"/><path d="M8.5 13.5Q12 17 15.5 13.5"/></> },
+]
+
 const SEASON_STATS = [
   { label: 'Apps', value: '8' }, { label: 'Goals', value: '4' },
   { label: 'Assists', value: '3' }, { label: 'Avg mins', value: '72' },
@@ -338,8 +346,10 @@ function AdultView() {
       <div style={{ background: '#fff', borderRadius: 16, padding: '14px 16px', border: '1px solid #e9eae8' }}>
         <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 8 }}>How are you feeling?</div>
         <div style={{ display: 'flex', gap: 6, justifyContent: 'space-between' }}>
-          {['😴', '😕', '😐', '🙂', '💪'].map((e, i) => (
-            <button key={i} onClick={() => setCheckin(i)} style={{ flex: 1, height: 48, borderRadius: 12, border: `2px solid ${checkin === i ? '#40826d' : '#e9eae8'}`, background: checkin === i ? '#eef5f2' : '#fff', fontSize: 20, cursor: 'pointer' }}>{e}</button>
+          {WELLNESS_FACES.map((face, i) => (
+            <button key={i} onClick={() => setCheckin(i)} aria-label={face.label} style={{ flex: 1, height: 48, borderRadius: 12, border: `2px solid ${checkin === i ? '#40826d' : '#e9eae8'}`, background: checkin === i ? '#eef5f2' : '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: checkin === i ? '#2f6252' : '#6f7f7b' }}>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{face.path}</svg>
+            </button>
           ))}
         </div>
         {checkin !== null && <div style={{ marginTop: 8, fontSize: 13, color: '#4a5a57', textAlign: 'center' }}>Logged — only you and your coach can see this.</div>}

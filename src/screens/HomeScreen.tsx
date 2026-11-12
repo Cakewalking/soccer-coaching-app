@@ -75,7 +75,7 @@ function HomeEmpty({ onNav }: { onNav: (s: string) => void }) {
           <div style={{ padding: '12px 16px', borderTop: '1px solid #f0f1ef', display: 'flex', alignItems: 'center', gap: 8 }}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4a5a57" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
             <span style={{ fontSize: 13, color: '#4a5a57' }}>Setting up for the whole club? We can walk you through it.</span>
-            <button onClick={() => onNav('call')} style={{ border: 0, background: 'transparent', color: '#2f6252', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>Book a 15-minute call</button>
+            <button onClick={() => onNav('call')} style={{ border: 0, background: 'transparent', color: '#2f6252', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', padding: 0, minHeight: 44, display: 'flex', alignItems: 'center' }}>Book a 15-minute call</button>
           </div>
         </div>
       </div>
@@ -115,7 +115,7 @@ function HomeEmpty({ onNav }: { onNav: (s: string) => void }) {
         <div style={{ background: '#eef5f2', borderRadius: 12, padding: '10px 14px', display: 'flex', alignItems: 'center', gap: 10 }}>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2f6252" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/></svg>
           <span style={{ fontSize: 13, color: '#2f6252', flexGrow: 1 }}>Nothing needs you yet. Reviews and alerts arrive here.</span>
-          <button onClick={() => onNav('inbox')} style={{ border: 0, background: 'transparent', color: '#2f6252', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>Open inbox</button>
+          <button onClick={() => onNav('inbox')} style={{ border: 0, background: 'transparent', color: '#2f6252', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', padding: 0, minHeight: 44, display: 'flex', alignItems: 'center' }}>Open inbox</button>
         </div>
       </div>
     </div>
