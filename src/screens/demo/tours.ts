@@ -205,7 +205,7 @@ export const TOURS: Record<string, TourDef> = {
       ]},
       { title: "Each week", steps: [
         { label: "Home", caption: "For adults the week is load, the opposition and the plan.", screen: "HS1-HomeSeniors" },
-        { label: "Squad load", caption: "For adults the week is load, the opposition and the plan.", screen: "FN2-SeniorSquad" },
+        { label: "Squad load", caption: "For adults the week is load, the opposition and the plan.", screen: "FN2b-SeniorSquad" },
         { label: "Opposition", caption: "For adults the week is load, the opposition and the plan. This screen is shared with other ages, so it shows the under-12 team here.", screen: "opposition" },
         { label: "Tonight\u2019s plan", caption: "For adults the week is load, the opposition and the plan.", screen: "training" },
       ]},
@@ -259,7 +259,7 @@ export const TOURS: Record<string, TourDef> = {
         { label: "Fitness level by age", caption: "A fitness coach joins by invite. What they see depends on the age of each team.", screen: "coachfitness" },
       ]},
       { title: "Under 12: Play", steps: [
-        { label: "Home", caption: "Under 12 it\u2019s simple: growth, a good warm-up and a few flags. No fitness testing.", screen: "F3-FitnessTraining" },
+        { label: "Home", caption: "Under 12 it\u2019s simple: growth, a good warm-up and a few flags. No fitness testing.", screen: "B1-CoachAndFitness" },
         { label: "Growth", caption: "Under 12 it\u2019s simple: growth, a good warm-up and a few flags. No fitness testing.", screen: "growth" },
         { label: "Measuring session", caption: "Under 12 it\u2019s simple: growth, a good warm-up and a few flags. No fitness testing.", screen: "GT2-MeasureSession" },
         { label: "Your part of training", caption: "Under 12 it\u2019s simple: growth, a good warm-up and a few flags. No fitness testing.", screen: "F3-FitnessTraining" },
@@ -993,7 +993,7 @@ export const TOURS: Record<string, TourDef> = {
     sections: [
       { title: "The story", steps: [
         { label: "Saturday: the game goes in", caption: "The club films the game on whatever camera it has. Cameras with a live feed can stream straight in.", screen: "GI0-Recording" },
-        { label: "The review comes back", caption: "About 25 minutes later: what went well, and three things to work on, each with a clip.", screen: "review" },
+        { label: "The review comes back", caption: "About 25 minutes later: what went well, and three things to work on, each with a clip.", screen: "R1-MatchReview" },
         { label: "Thursday: the plan is ready", caption: "Training is built from those three things, using drills written to the national curriculum.", screen: "T3-TrainingTab" },
         { label: "At the ground", caption: "Pitch-side, the coach sees what to set up and what to say. Growing players have their sprints capped.", screen: "TR1b-PitchSideDrill" },
         { label: "Parents are in the loop", caption: "Meanwhile, families get one simple week view on their phone, and decide what\u2019s recorded.", screen: "PA-Parent" },
