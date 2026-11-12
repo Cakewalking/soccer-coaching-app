@@ -435,7 +435,7 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
   } else if (nav === 'squad') {
     switch (squadTab) {
       case 0: content = <SquadScreen role="head" onPlayerProfile={() => {}} empty={sbEmpty} />; break
-      case 1: content = <SquadLineups />; break
+      case 1: content = <SquadLineups noFrame />; break
       case 2: content = <DevGoalsScreen empty={sbEmpty} />; break
       case 3: content = <WellnessScreen empty={sbEmpty} />; break
       case 4: content = <AvailabilityScreen empty={sbEmpty} />; break
@@ -453,7 +453,7 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
       case 5: content = <FitnessTrainingTab empty={sbEmpty} />; break
     }
   } else if (nav === 'record') {
-    content = <RecordHub />
+    content = <RecordHub noFrame />
   } else if (nav === 'matchday') {
     switch (matchTab) {
       case 0: content = <MatchDayScreen onNav={handleNav} empty={sbEmpty} />; break

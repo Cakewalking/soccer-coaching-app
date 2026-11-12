@@ -121,7 +121,7 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
     else if (homeTab === 6) content = <TeamStaffScreen empty={sbEmpty} />
   } else if (nav === 'squad') {
     if (squadTab === 0) content = <SquadScreen role="head" onPlayerProfile={() => {}} empty={sbEmpty} />
-    else if (squadTab === 1) content = <SquadLineups />
+    else if (squadTab === 1) content = <SquadLineups noFrame />
     else if (squadTab === 2) content = <DevGoalsScreen empty={sbEmpty} />
     else if (squadTab === 3) content = <WellnessScreen empty={sbEmpty} />
     else if (squadTab === 4) content = <AvailabilityScreen empty={sbEmpty} />
@@ -136,7 +136,7 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
     else if (trainingTab === 4) content = <GrowthLoadScreen empty={sbEmpty} />
     else if (trainingTab === 5) content = <FitnessTrainingTab empty={sbEmpty} />
   } else if (nav === 'record') {
-    content = <RecordHub />
+    content = <RecordHub noFrame />
   } else if (nav === 'matchday') {
     if (matchTab === 0) content = <MatchDayScreen onNav={handleNav} empty={sbEmpty} />
     else if (matchTab === 1) content = <TeamSheetScreen empty={sbEmpty} />

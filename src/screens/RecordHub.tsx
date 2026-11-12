@@ -51,10 +51,23 @@ const NAV6 = [
 
 const REC_SUBS = ['Record', 'Recorded lately', 'Devices']
 
-function CoachFrame({ activeNav, activeSub, subTabs, pageTitle, pageSub, pageRight, children, toast, onNavTab }: {
+function CoachFrame({ activeNav, activeSub, subTabs, pageTitle, pageSub, pageRight, children, toast, onNavTab, noFrame }: {
   activeNav: string; activeSub: string; subTabs: string[]; pageTitle: string; pageSub: string;
-  pageRight?: React.ReactNode; children: React.ReactNode; toast: string | null; onNavTab: (t: string) => void
+  pageRight?: React.ReactNode; children: React.ReactNode; toast: string | null; onNavTab: (t: string) => void; noFrame?: boolean
 }) {
+  if (noFrame) return (
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#f7f8f7' }}>
+      <div style={{ padding: '20px 28px 12px', display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexShrink: 0 }}>
+        <div>
+          <h1 style={{ margin: 0, fontSize: 24, fontWeight: 700, color: INK, letterSpacing: '-0.02em' }}>{pageTitle}</h1>
+          {pageSub && <div style={{ fontSize: 13, color: MUT, marginTop: 2 }}>{pageSub}</div>}
+        </div>
+        {pageRight && <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginTop: 4 }}>{pageRight}</div>}
+      </div>
+      <div style={{ flex: 1, overflowY: 'auto', padding: '0 28px 32px' }}>{children}</div>
+      {toast && <Toast msg={toast}/>}
+    </div>
+  )
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#f7f8f7' }}>
       <div style={{ background: GD, display: 'flex', alignItems: 'center', padding: '0 20px', gap: 2, height: 56, flexShrink: 0 }}>
@@ -107,7 +120,7 @@ function BtnPrimary({ label, onClick }: { label: string; onClick?: () => void })
 }
 
 // REC1 — Record hub
-export function RecordHub({ onBack: _onBack }: { onBack?: () => void }) {
+export function RecordHub({ onBack: _onBack, noFrame }: { onBack?: () => void; noFrame?: boolean }) {
   const [toast, setToast] = useState<string | null>(null)
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
@@ -128,6 +141,7 @@ export function RecordHub({ onBack: _onBack }: { onBack?: () => void }) {
       pageRight={<BtnMore label="Devices" onClick={() => t('Opening device settings.')}/>}
       toast={toast}
       onNavTab={(id) => t(id.startsWith('sub:') ? `${id.slice(4)} opens.` : `${id.charAt(0).toUpperCase() + id.slice(1)} tab opens.`)}
+      noFrame={noFrame}
     >
       <div style={{ display: 'flex', gap: 16 }}>
         {/* 6 record option cards */}

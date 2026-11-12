@@ -41,10 +41,23 @@ const NAV6 = [
 
 const SQUAD_SUBS = ['Players', 'Line-ups', 'Development goals', 'Wellness', 'Availability', 'Consent and privacy']
 
-function CoachFrame({ activeNav, activeSub, subTabs, pageTitle, pageSub, pageRight, children, toast, onNavTab }: {
+function CoachFrame({ activeNav, activeSub, subTabs, pageTitle, pageSub, pageRight, children, toast, onNavTab, noFrame }: {
   activeNav: string; activeSub: string; subTabs: string[]; pageTitle: string; pageSub: string;
-  pageRight?: React.ReactNode; children: React.ReactNode; toast: string | null; onNavTab: (t: string) => void
+  pageRight?: React.ReactNode; children: React.ReactNode; toast: string | null; onNavTab: (t: string) => void; noFrame?: boolean
 }) {
+  if (noFrame) return (
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#f7f8f7' }}>
+      <div style={{ padding: '20px 28px 12px', display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexShrink: 0 }}>
+        <div>
+          <h1 style={{ margin: 0, fontSize: 24, fontWeight: 700, color: INK, letterSpacing: '-0.02em' }}>{pageTitle}</h1>
+          {pageSub && <div style={{ fontSize: 13, color: MUT, marginTop: 2 }}>{pageSub}</div>}
+        </div>
+        {pageRight && <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginTop: 4 }}>{pageRight}</div>}
+      </div>
+      <div style={{ flex: 1, overflowY: 'auto', padding: '0 28px 32px' }}>{children}</div>
+      {toast && <Toast msg={toast}/>}
+    </div>
+  )
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#f7f8f7' }}>
       {/* Top bar */}
@@ -101,7 +114,7 @@ function BtnPrimary({ label, onClick }: { label: string; onClick?: () => void })
 }
 
 // SQ1 — Best lineups screen
-export function SquadLineups({ onBack: _onBack }: { onBack?: () => void }) {
+export function SquadLineups({ onBack: _onBack, noFrame }: { onBack?: () => void; noFrame?: boolean }) {
   const [toast, setToast] = useState<string | null>(null)
   const [active, setActive] = useState(0)
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
@@ -139,6 +152,7 @@ export function SquadLineups({ onBack: _onBack }: { onBack?: () => void }) {
       pageRight={<><BtnMore label="This season" onClick={() => t('Season selector opens.')}/><BtnPrimary label="Try it on Saturday" onClick={() => t('Opening Saturday\'s team sheet with this line-up.')}/></>}
       toast={toast}
       onNavTab={(id) => t(id.startsWith('sub:') ? `${id.slice(4)} opens.` : `${id.charAt(0).toUpperCase() + id.slice(1)} tab opens.`)}
+      noFrame={noFrame}
     >
       <div style={{ display: 'flex', gap: 16 }}>
         {/* Left: method cards + pitch */}
