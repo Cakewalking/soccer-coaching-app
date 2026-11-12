@@ -984,6 +984,47 @@ export const TOURS: Record<string, TourDef> = {
     ],
   },
 
+  settings: {
+    roleLabel: "Settings · every role",
+    persona: "as Sam, Linh, Mia and the club",
+    device: 'tablet',
+    total: 23,
+    home: 'SET1-Account',
+    sections: [
+      { title: "Coach, tablet", steps: [
+        { label: "Account and sign-in",  caption: "Settings are reached from the profile picture, top right of every screen.", screen: "SET1-Account" },
+        { label: "Team",                 caption: "Settings are reached from the profile picture, top right of every screen.", screen: "SET2-Team" },
+        { label: "Notifications",        caption: "Settings are reached from the profile picture, top right of every screen.", screen: "SET3-Notifications" },
+        { label: "Devices",              caption: "Settings are reached from the profile picture, top right of every screen.", screen: "SET4-Devices" },
+        { label: "No devices yet",       caption: "Settings are reached from the profile picture, top right of every screen.", screen: "SET4e-DevicesEmpty" },
+        { label: "Privacy and data",     caption: "Settings are reached from the profile picture, top right of every screen.", screen: "SET5-Privacy" },
+        { label: "Display",              caption: "Settings are reached from the profile picture, top right of every screen.", screen: "SET6-Display" },
+        { label: "Help",                 caption: "Settings are reached from the profile picture, top right of every screen.", screen: "SET7-Help" },
+      ]},
+      { title: "Parent, phone", steps: [
+        { label: "Settings",             caption: "On a phone, consent is prominent and data is easy to delete.", screen: "PS1-ParentSettings" },
+        { label: "Notifications",        caption: "On a phone, consent is prominent and data is easy to delete.", screen: "PS2-ParentNotifications" },
+        { label: "What’s recorded",  caption: "On a phone, consent is prominent and data is easy to delete.", screen: "P2b-ParentConsent" },
+        { label: "Download or delete",   caption: "On a phone, consent is prominent and data is easy to delete.", screen: "PS3-ParentData" },
+        { label: "Deleted",              caption: "On a phone, consent is prominent and data is easy to delete.", screen: "P2c-ParentConsent" },
+      ]},
+      { title: "Player, phone", steps: [
+        { label: "Me, under 15",         caption: "Under 15s have a simple ‘Me’ screen. Adults hold their own account.", screen: "PS4-PlayerMe" },
+        { label: "Adult player decides", caption: "Under 15s have a simple ‘Me’ screen. Adults hold their own account.", screen: "po5s-adultsettings" },
+      ]},
+      { title: "Club", steps: [
+        { label: "Club details and defaults", caption: "Club settings are set once: name, rules, what’s connected.", screen: "DSet1-ClubSettings" },
+        { label: "People and roles",          caption: "Club settings are set once: name, rules, what’s connected.", screen: "DSet2-ClubRoles" },
+        { label: "Connections",               caption: "Club settings are set once: name, rules, what’s connected.", screen: "DSet3-ClubConnections" },
+        { label: "Nothing connected",         caption: "Club settings are set once: name, rules, what’s connected.", screen: "DSet3e-ClubConnectionsEmpty" },
+        { label: "Club rules",                caption: "Club settings are set once: name, rules, what’s connected.", screen: "DSet4-ClubRules" },
+        { label: "Plan: pilot, free",         caption: "Club settings are set once: name, rules, what’s connected.", screen: "DSet5-ClubPlan" },
+        { label: "Partner academy",           caption: "Club settings are set once: name, rules, what’s connected.", screen: "DSet6-PartnerAcademy" },
+        { label: "Full role map",             caption: "Club settings are set once: name, rules, what’s connected.", screen: "sk-roles" },
+      ]},
+    ],
+  },
+
   story: {
     roleLabel: "The idea in one minute",
     persona: "one week with an under-12 team",
@@ -1055,6 +1096,12 @@ export const ROLE_GROUPS: Array<{
       { id: 'year-coach',  name: 'The year — coach',  device: 'Tablet', desc: 'U16 Ollie · all four phases · 20 steps' },
       { id: 'year-club',   name: 'The year — club',   device: 'Tablet', desc: 'as Rachel, director of football · 13 steps' },
       { id: 'year-family', name: 'The year — family', device: 'Tablet', desc: 'as Linh Tran, parent of Mia · 15 steps' },
+    ],
+  },
+  {
+    section: 'SETTINGS',
+    roles: [
+      { id: 'settings', name: 'Settings · every role', device: 'Tablet', desc: 'Coach, parent, player and club · 23 steps' },
     ],
   },
 ]
