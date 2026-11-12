@@ -35,7 +35,7 @@ export default function DemoStartEmpty({ onRole, onSwitchToDemo, expiryDate = 'T
 
       {/* Role groups */}
       <div style={{ maxWidth: 1180, margin: '0 auto', padding: '0 48px', boxSizing: 'border-box' }}>
-        {ROLE_GROUPS.map(group => (
+        {ROLE_GROUPS.filter(g => g.section !== 'A YEAR AT THE CLUB' && g.section !== 'SETTINGS').map(group => (
           <div key={group.section} style={{ marginBottom: 28 }}>
             <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', color: '#6f7f7b', textTransform: 'uppercase', marginBottom: 10 }}>{group.section}</div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 10 }}>

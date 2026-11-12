@@ -217,9 +217,9 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange }
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <div>
               <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', marginBottom: 2 }}>Fitness coach</div>
-              <div style={{ fontSize: 20, fontWeight: 800, color: '#fff' }}>Hi Priya</div>
+              <div style={{ fontSize: 20, fontWeight: 800, color: '#fff' }}>No data yet</div>
             </div>
-            <div style={{ width: 36, height: 36, borderRadius: '999px', background: '#c39797', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700 }}>PS</div>
+            <div style={{ width: 36, height: 36, borderRadius: '999px', background: '#c39797', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700 }}>FC</div>
           </div>
         </div>
         <div style={{ padding: '28px 24px', display: 'flex', flexDirection: 'column', gap: 16, maxWidth: 560 }}>

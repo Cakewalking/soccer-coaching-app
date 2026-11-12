@@ -203,7 +203,21 @@ function TrainingSession() {
   )
 }
 
-function KeepersTab() {
+function KeepersTab({ empty }: { empty?: boolean }) {
+  if (empty) {
+    return (
+      <div style={{ flexGrow: 1, padding: '28px 32px', overflowY: 'auto' }}>
+        <div style={{ maxWidth: 500 }}>
+          <h1 style={{ margin: '0 0 4px', fontSize: 24, fontWeight: 700, letterSpacing: '-0.02em' }}>All keepers</h1>
+          <p style={{ margin: '0 0 20px', fontSize: 14, color: '#4a5a57' }}>No keepers named yet</p>
+          <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 16, padding: 24 }}>
+            <div style={{ fontSize: 16, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>Coaches mark their keepers from U12 up</div>
+            <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.6 }}>Keepers appear here as they're named. Each keeper shows one focus and how many sessions they've had with you.</div>
+          </div>
+        </div>
+      </div>
+    )
+  }
   return (
     <div style={{ flexGrow: 1, minHeight: 0, overflowY: 'auto', padding: '20px 28px 28px' }}>
       <h1 style={{ margin: '0 0 4px', fontSize: 24, fontWeight: 700, letterSpacing: '-0.02em' }}>All keepers</h1>
@@ -225,9 +239,23 @@ function KeepersTab() {
   )
 }
 
-function ClipsTab() {
+function ClipsTab({ empty }: { empty?: boolean }) {
   const [toast, setToast] = useState<string | null>(null)
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
+  if (empty) {
+    return (
+      <div style={{ flexGrow: 1, padding: '28px 32px', overflowY: 'auto' }}>
+        <div style={{ maxWidth: 500 }}>
+          <h1 style={{ margin: '0 0 4px', fontSize: 24, fontWeight: 700, letterSpacing: '-0.02em' }}>Keeper clips</h1>
+          <p style={{ margin: '0 0 20px', fontSize: 14, color: '#4a5a57' }}>No clips yet</p>
+          <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 16, padding: 24 }}>
+            <div style={{ fontSize: 16, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>Clips appear after the first recorded games</div>
+            <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.6 }}>The camera auto-tags goalkeeper moments. Each keeper only sees their own clips.</div>
+          </div>
+        </div>
+      </div>
+    )
+  }
   return (
     <div style={{ flexGrow: 1, minHeight: 0, overflowY: 'auto', padding: '20px 28px 28px' }}>
       <h1 style={{ margin: '0 0 4px', fontSize: 24, fontWeight: 700, letterSpacing: '-0.02em' }}>Keeper clips</h1>
@@ -285,10 +313,10 @@ export default function GoalkeeperCoachApp({ onBack, empty = false, initialScree
             Ask
           </button>
           <button onClick={() => showToast('Switching to Wattle Creek — all keepers view.')} style={{ display: 'flex', alignItems: 'center', gap: 8, height: 44, padding: '0 16px', borderRadius: '999px', border: 0, background: 'rgba(255,255,255,0.15)', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer', color: '#fff', flexShrink: 0 }}>
-            All keepers · Wattle Creek
+            {empty ? 'All keepers' : 'All keepers · Wattle Creek'}
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9l6 6 6-6"/></svg>
           </button>
-          <div style={{ width: 44, height: 44, borderRadius: '999px', background: '#40826d', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 15, flexShrink: 0 }}>NW</div>
+          <div style={{ width: 44, height: 44, borderRadius: '999px', background: '#40826d', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 15, flexShrink: 0 }}>{empty ? 'GK' : 'NW'}</div>
         </div>
 
         {/* Sub-tabs row */}
@@ -325,8 +353,8 @@ export default function GoalkeeperCoachApp({ onBack, empty = false, initialScree
         {nav === 'home'     && homeTab === 'overview' && (empty ? (
           <div style={{ flexGrow: 1, padding: '28px 32px', overflowY: 'auto' }}>
             <div style={{ maxWidth: 500 }}>
-              <h2 style={{ margin: '0 0 4px', fontSize: 22, fontWeight: 700, color: '#10211f' }}>Welcome, Nick</h2>
-              <div style={{ fontSize: 14, color: '#4a5a57', marginBottom: 20 }}>Goalkeeper coach · no keepers named yet</div>
+              <h2 style={{ margin: '0 0 4px', fontSize: 22, fontWeight: 700, color: '#10211f' }}>Goalkeeper coach</h2>
+              <div style={{ fontSize: 14, color: '#4a5a57', marginBottom: 20 }}>No keepers named yet</div>
               <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 16, padding: 24, marginBottom: 20 }}>
                 <div style={{ fontSize: 18, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>Keepers appear as coaches name them</div>
                 <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.6, marginBottom: 16 }}>Each coach from U12 up marks their keepers. Ask them now, or wait for the first games.</div>
@@ -353,7 +381,7 @@ export default function GoalkeeperCoachApp({ onBack, empty = false, initialScree
         {nav === 'home'     && homeTab === 'calendar' && (
           <div style={{ padding: '20px 28px', color: '#4a5a57' }}>Calendar — not shown in this demo.</div>
         )}
-        {nav === 'keepers'  && <KeepersTab />}
+        {nav === 'keepers'  && <KeepersTab empty={empty} />}
         {nav === 'record'   && <RecordHub />}
         {nav === 'training' && trainingTab === 'session' && (empty ? (
           <div style={{ flexGrow: 1, padding: '28px 32px', overflowY: 'auto' }}>
@@ -371,7 +399,7 @@ export default function GoalkeeperCoachApp({ onBack, empty = false, initialScree
         {nav === 'training' && trainingTab === 'drills'  && (
           <div style={{ padding: '20px 28px', color: '#4a5a57' }}>Keeper drills library — not shown in this demo.</div>
         )}
-        {nav === 'clips'    && <ClipsTab />}
+        {nav === 'clips'    && <ClipsTab empty={empty} />}
         {askOpen && (
           <aside role="dialog" aria-label="Ask Clean Sheet" style={{ position: 'absolute', top: 0, right: 0, bottom: 0, width: 400, background: '#fff', borderLeft: '1px solid #e8edeb', boxShadow: '-8px 0 32px rgba(16,33,31,0.12)', zIndex: 50, display: 'flex', flexDirection: 'column' }}>
             <div style={{ padding: '16px 20px', borderBottom: '1px solid #e8edeb', display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
