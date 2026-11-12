@@ -52,7 +52,7 @@ export default function DemoShellPhone({ roleId, onBack, onStartTour, children, 
 
       {/* Demo bar — single row */}
       <div style={{ flex: 'none', background: '#1f4a3e', height: 44, display: 'flex', alignItems: 'center', padding: '0 0 0 14px', gap: 8, zIndex: 20 }}>
-        <button onClick={onBack} style={{ display: 'flex', alignItems: 'center', gap: 5, background: 'none', border: 'none', cursor: 'pointer', color: 'rgba(255,255,255,0.75)', fontFamily: 'inherit', fontSize: 12, fontWeight: 500, padding: 0, flexShrink: 0 }}>
+        <button onClick={onBack} style={{ display: 'flex', alignItems: 'center', gap: 5, alignSelf: 'stretch', background: 'none', border: 'none', cursor: 'pointer', color: 'rgba(255,255,255,0.75)', fontFamily: 'inherit', fontSize: 12, fontWeight: 500, padding: '0 8px 0 0', flexShrink: 0 }}>
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
           Roles
         </button>

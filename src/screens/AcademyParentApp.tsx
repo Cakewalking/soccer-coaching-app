@@ -37,7 +37,7 @@ function PHeader({ title, back, right }: { title: string; back?: () => void; rig
   return (
     <div style={{ padding: '16px 16px 0', display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
       {back && (
-        <button onClick={back} style={{ width: 32, height: 32, borderRadius: '50%', border: 'none', background: LN, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+        <button onClick={back} style={{ width: 44, height: 44, borderRadius: '50%', border: 'none', background: LN, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
           <svg width={13} height={13} viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth={2.5} strokeLinecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
         </button>
       )}
@@ -66,7 +66,7 @@ function Row({ label, value, sub, btn }: { label: string; value?: string; sub?: 
 
 function PBtn({ label, primary, small, block, onClick }: { label: string; primary?: boolean; small?: boolean; block?: boolean; onClick?: () => void }) {
   return (
-    <button onClick={onClick} style={{ height: small ? 36 : 48, padding: `0 ${small ? 14 : 20}px`, borderRadius: 999, border: primary ? 'none' : `1px solid ${LN}`, background: primary ? G : '#fff', color: primary ? '#fff' : MUT, fontSize: small ? 13 : 15, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0, width: block ? '100%' : undefined }}>{label}</button>
+    <button onClick={onClick} style={{ height: small ? 44 : 48, padding: `0 ${small ? 14 : 20}px`, borderRadius: 999, border: primary ? 'none' : `1px solid ${LN}`, background: primary ? G : '#fff', color: primary ? '#fff' : MUT, fontSize: small ? 13 : 15, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0, width: block ? '100%' : undefined }}>{label}</button>
   )
 }
 
@@ -305,7 +305,7 @@ function FeesView({ empty }: { empty: boolean }) {
               <div style={{ fontSize: 14, fontWeight: 700, color: INK }}>{r.a}</div>
               <div style={{ fontSize: 12, color: MUT }}>{r.d} · {r.t}</div>
             </div>
-            <button style={{ fontSize: 13, fontWeight: 700, color: G2, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit' }}>Download</button>
+            <button style={{ fontSize: 13, fontWeight: 700, color: G2, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: '0 4px', minHeight: 44, display: 'flex', alignItems: 'center' }}>Download</button>
           </div>
         ))}
         <div style={{ padding: '10px 14px', fontSize: 12, color: MUT }}>For something unexpected on your statement: <span style={{ color: G2, fontWeight: 700 }}>Contact Dani</span></div>
@@ -549,7 +549,7 @@ function ConcernView({ onBack }: { onBack: () => void }) {
       <div style={{ background: '#fffaf8', border: `1px solid ${ROSE}22`, borderRadius: 14, padding: '12px 14px' }}>
         <div style={{ fontSize: 13, fontWeight: 700, color: ROSE, marginBottom: 4 }}>Victoria's Social Services Regulator</div>
         <div style={{ fontSize: 12, color: MUT, lineHeight: 1.5, marginBottom: 8 }}>If your concern is about the owner or you're not comfortable raising it here, contact the regulator directly.</div>
-        <button style={{ fontSize: 13, fontWeight: 700, color: ROSE, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>How to contact the regulator →</button>
+        <button style={{ fontSize: 13, fontWeight: 700, color: ROSE, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: '0 4px', minHeight: 44, display: 'flex', alignItems: 'center' }}>How to contact the regulator →</button>
       </div>
     </div>
   )
@@ -578,7 +578,7 @@ function ParentChatView({ empty, onBack }: { empty: boolean; onBack: () => void 
   return (
     <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: 0 }}>
       <div style={{ padding: '16px 16px 12px', borderBottom: `1px solid ${LN}`, flexShrink: 0, display: 'flex', alignItems: 'center', gap: 10 }}>
-        <button onClick={onBack} style={{ width: 32, height: 32, borderRadius: '50%', border: 'none', background: LN, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+        <button onClick={onBack} style={{ width: 44, height: 44, borderRadius: '50%', border: 'none', background: LN, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
           <svg width={13} height={13} viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth={2.5} strokeLinecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
         </button>
         <div>

@@ -1203,7 +1203,7 @@ function pathToState(path: string): { view: DemoView; role: RoleId; screen?: str
         academyowner: new Set(['home', 'programs', 'players', 'coaches', 'money']),
         academycoach: new Set(['today', 'training', 'players', 'gameday', 'record']),
       }
-      if (!LOOK_SCREENS[lookRole]?.has(lookScreen)) return { view: 'notfound', role: 'coach' }
+      if (!LOOK_SCREENS[lookRole]?.has(lookScreen)) return { view: 'notfound', role: lookRole }
     }
     return { view: 'lookaround', role: lookRole, screen: lookScreen }
   }
@@ -1281,7 +1281,34 @@ export default function DemoApp() {
   }
 
   if (view === 'notfound') {
-    return <ER4NotFound />
+    const isPhoneRole = TOURS[role].device === 'phone'
+    const showPhase = PHASE_ROLES.has(role)
+    if (isPhoneRole) {
+      return (
+        <DemoShellPhone
+          roleId={role}
+          onBack={() => setView('start')}
+          onStartTour={() => setView('tour')}
+          phase={showPhase ? phase : undefined}
+          onPhaseChange={showPhase ? setPhase : undefined}
+        >
+          <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px', width: '100%' }}>
+            <ERp2NotFound />
+          </div>
+        </DemoShellPhone>
+      )
+    }
+    return (
+      <DemoShell
+        roleId={role}
+        onBack={() => setView('start')}
+        onStartTour={() => setView('tour')}
+        phase={showPhase ? phase : undefined}
+        onPhaseChange={showPhase ? setPhase : undefined}
+      >
+        <ER4NotFound />
+      </DemoShell>
+    )
   }
 
   if (view === 'sandbox') {

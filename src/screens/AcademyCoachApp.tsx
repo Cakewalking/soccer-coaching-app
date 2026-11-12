@@ -38,14 +38,14 @@ function Row({ label, value, action, onAction }: { label: string; value?: string
     <div style={{ display: 'flex', alignItems: 'center', padding: '10px 16px', borderBottom: `1px solid ${LN}` }}>
       <span style={{ fontSize: 14, color: MUT, flex: 1 }}>{label}</span>
       {value && <span style={{ fontSize: 14, fontWeight: 600, color: INK }}>{value}</span>}
-      {action && <button onClick={onAction} style={{ marginLeft: 10, fontSize: 13, fontWeight: 700, color: G2, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>{action}</button>}
+      {action && <button onClick={onAction} style={{ marginLeft: 10, fontSize: 13, fontWeight: 700, color: G2, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: '0 4px', minHeight: 44, display: 'flex', alignItems: 'center' }}>{action}</button>}
     </div>
   )
 }
 
 function Btn({ label, primary, onClick, small }: { label: string; primary?: boolean; onClick?: () => void; small?: boolean }) {
   return (
-    <button onClick={onClick} style={{ height: small ? 32 : 40, padding: `0 ${small ? 12 : 18}px`, borderRadius: 999, border: primary ? 'none' : `1px solid ${LN}`, background: primary ? G : '#fff', color: primary ? '#fff' : MUT, fontSize: small ? 12 : 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>{label}</button>
+    <button onClick={onClick} style={{ height: 44, padding: `0 ${small ? 12 : 18}px`, borderRadius: 999, border: primary ? 'none' : `1px solid ${LN}`, background: primary ? G : '#fff', color: primary ? '#fff' : MUT, fontSize: small ? 12 : 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>{label}</button>
   )
 }
 
@@ -153,7 +153,7 @@ function TodayOverview({ empty, onRun, onTrials, onReport }: { empty: boolean; o
           <div>
             <div style={{ fontSize: 14, fontWeight: 700, color: INK }}>Arjun's first time</div>
             <div style={{ fontSize: 12, color: MUT }}>Assess him in the last 10 minutes</div>
-            <button onClick={onTrials} style={{ marginTop: 4, fontSize: 12, fontWeight: 600, color: G2, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>Open trial assess →</button>
+            <button onClick={onTrials} style={{ marginTop: 4, fontSize: 12, fontWeight: 600, color: G2, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: '0 4px', minHeight: 44, display: 'flex', alignItems: 'center' }}>Open trial assess →</button>
           </div>
         </div>
       </Card>

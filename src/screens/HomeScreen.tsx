@@ -238,7 +238,7 @@ export default function HomeScreen({ onNav, onCalendar, empty }: Props) {
         <section className="tile" style={{ flexGrow: 1, gap: 10 }} aria-label="Where we're at">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
             <h2 className="h2">Where we're at</h2>
-            <button onClick={() => onNav('metric')} style={{ border: 0, background: 'transparent', color: '#2f6252', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>All 4</button>
+            <button onClick={() => onNav('metric')} style={{ border: 0, background: 'transparent', color: '#2f6252', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', padding: '0 4px', minHeight: 44, display: 'flex', alignItems: 'center' }}>All 4</button>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10, flexGrow: 1 }}>
             {METRICS.slice(0, 2).map((m, i) => (
@@ -361,7 +361,7 @@ export default function HomeScreen({ onNav, onCalendar, empty }: Props) {
         <section className="tile" style={{ flex: 'none', gap: 6 }} aria-label="This week">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
             <h2 className="h2">This week</h2>
-            <button onClick={onCalendar} style={{ border: 0, background: 'transparent', color: 'var(--green-deep)', fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Calendar</button>
+            <button onClick={onCalendar} style={{ border: 0, background: 'transparent', color: 'var(--green-deep)', fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', padding: '0 4px', minHeight: 44, display: 'flex', alignItems: 'center' }}>Calendar</button>
           </div>
           {WEEK_SCHEDULE.map(d => (
             <div key={d.day} style={weekRowStyle(d.type)}>
