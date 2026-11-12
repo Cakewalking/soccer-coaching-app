@@ -465,7 +465,7 @@ import L1bLiveGameSub                  from '../step4/L1bLiveGameSub'
 import I1bInboxElla                    from '../step4/I1bInboxElla'
 import SPa1AcademyYear                 from '../step4/SPa1AcademyYear'
 
-type DemoView = 'signin' | 'start' | 'why' | 'tour' | 'lookaround' | 'sandbox' | 'sandboxlook' | 'nosandbox' | 'notfound'
+type DemoView = 'signin' | 'start' | 'why' | 'tour' | 'lookaround' | 'sandbox' | 'sandboxlook' | 'nosandbox' | 'notfound' | 'noaccess'
 
 const SANDBOX_KEY = 'cs_demo_sandbox_v1'
 
@@ -1551,6 +1551,7 @@ function pathToState(path: string): { view: DemoView; role: RoleId; screen?: str
         academyowner: new Set(['home', 'programs', 'players', 'coaches', 'money']),
         academycoach: new Set(['today', 'training', 'players', 'gameday', 'record']),
       }
+      if (lookScreen in TOURS) return { view: 'noaccess', role: lookRole }
       if (!LOOK_SCREENS[lookRole]?.has(lookScreen)) return { view: 'notfound', role: lookRole }
     }
     return { view: 'lookaround', role: lookRole, screen: lookScreen }
@@ -1660,6 +1661,31 @@ export default function DemoApp() {
     )
   }
 
+  if (view === 'noaccess') {
+    const isPhoneRole = TOURS[role].device === 'phone'
+    const noAccessContent = (
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: 300, padding: '48px 32px', gap: 12 }}>
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#c39797" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M4.93 4.93l14.14 14.14"/></svg>
+        <div style={{ fontSize: 18, fontWeight: 700, color: '#10211f', textAlign: 'center' }}>This page is for a different role.</div>
+        <div style={{ fontSize: 14, color: '#4a5a57', textAlign: 'center', maxWidth: 320, lineHeight: 1.5 }}>Switch roles using the bar above to see it.</div>
+      </div>
+    )
+    if (isPhoneRole) {
+      return (
+        <DemoShellPhone roleId={role} onBack={() => setView('start')} onStartTour={() => setView('tour')}>
+          <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px', width: '100%' }}>
+            <div style={{ width: 390, background: '#fff', borderRadius: 20 }}>{noAccessContent}</div>
+          </div>
+        </DemoShellPhone>
+      )
+    }
+    return (
+      <DemoShell roleId={role} onBack={() => setView('start')} onStartTour={() => setView('tour')}>
+        {noAccessContent}
+      </DemoShell>
+    )
+  }
+
   if (view === 'sandbox') {
     const sbState = checkSandboxExpiry()
     if (sbState === 'ended') {
@@ -1691,8 +1717,34 @@ export default function DemoApp() {
   }
 
   if (view === 'sandboxlook') {
-    const tour = TOURS[role]
-    const homeKey = tour.sandboxHome ?? tour.home
+    const sbEmpty = !sbFilled
+    let sbApp: ReactNode
+    if (role === 'coach') {
+      sbApp = <JuniorCoachApp empty={sbEmpty} initialScreen={screen} onNavChange={setScreen} />
+    } else if (role === 'ccoach') {
+      sbApp = <JuniorCoachApp empty={sbEmpty} coachRole="ccoach" coachLabel="U12 Sam · Co-coach" coachInitials="JM" initialScreen={screen} onNavChange={setScreen} />
+    } else if (role === 'youth') {
+      sbApp = <SeniorsYouthCoachApp teamType="youth" onBack={noop} empty={sbEmpty} initialScreen={screen} onNavChange={setScreen} />
+    } else if (role === 'seniors') {
+      sbApp = <SeniorsYouthCoachApp teamType="seniors" onBack={noop} empty={sbEmpty} initialScreen={screen} onNavChange={setScreen} />
+    } else if (role === 'miniroos') {
+      sbApp = <div style={{ width: 1180, background: 'var(--surface-100)' }}><MiniRoosApp onBack={noop} empty={sbEmpty} initialScreen={screen} onNavChange={setScreen} /></div>
+    } else if (role === 'goalkeeper') {
+      sbApp = <GoalkeeperCoachApp onBack={noop} empty={sbEmpty} initialScreen={screen} onNavChange={setScreen} />
+    } else if (role === 'fitness') {
+      sbApp = <FitnessCoachScreen empty={sbEmpty} initialScreen={screen} onNavChange={setScreen} />
+    } else if (role === 'academycoach') {
+      sbApp = <AcademyCoachApp onBack={noop} empty={sbEmpty} initialScreen={screen} onNavChange={setScreen} />
+    } else if (role === 'academyowner') {
+      sbApp = <AcademyOwnerApp onBack={noop} empty={sbEmpty} initialScreen={screen} onNavChange={setScreen} />
+    } else {
+      const homeKey = TOURS[role].sandboxHome ?? TOURS[role].home
+      sbApp = homeKey ? renderScreen(homeKey) : (
+        <div style={{ padding: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 300 }}>
+          <div style={{ fontSize: 15, color: '#6f7f7b' }}>{TOURS[role].roleLabel} — no screen preview available.</div>
+        </div>
+      )
+    }
     return (
       <DemoShellSandbox
         roleId={role}
@@ -1720,11 +1772,7 @@ export default function DemoApp() {
           update: (s) => { writeStore(s); setSbStore(s) },
           active: true,
         }}>
-          {homeKey ? renderScreen(homeKey) : (
-            <div style={{ padding: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 300 }}>
-              <div style={{ fontSize: 15, color: '#6f7f7b' }}>{TOURS[role].roleLabel} — no screen preview available.</div>
-            </div>
-          )}
+          {sbApp}
         </SandboxContext.Provider>
       </DemoShellSandbox>
     )
