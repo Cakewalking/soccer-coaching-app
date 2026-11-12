@@ -46,8 +46,11 @@ export default function T1TabletTraining(_: { onBack?: () => void }) {
               ].map(m => (
                 <div key={m.label} style={{ padding: '10px 12px', background: PALE, borderRadius: 10 }}>
                   <div style={{ fontSize: 12, color: MUT }}>{m.label}</div>
-                  <div style={{ fontSize: 20, fontWeight: 800, color: m.warn ? '#c05' : GD }}>{m.val}</div>
-                  <div style={{ fontSize: 11, color: m.warn ? '#c05' : G }}>{m.note}</div>
+                  <div style={{ fontSize: 20, fontWeight: 800, color: m.warn ? '#7a3838' : GD }}>{m.val}</div>
+                  {m.warn
+                    ? <span style={{ display: 'inline-block', background: '#c39797', color: '#10211f', borderRadius: 999, padding: '1px 7px', fontSize: 11, fontWeight: 700 }}>{m.note}</span>
+                    : <div style={{ fontSize: 11, color: G }}>{m.note}</div>
+                  }
                 </div>
               ))}
             </div>

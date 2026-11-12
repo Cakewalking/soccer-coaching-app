@@ -1110,7 +1110,7 @@ export function renderScreen(key: string): ReactNode {
     case 'C1s-ClipSearch':             return <C1sClipSearch onBack={noop} />
     case 'ACC8p-PairCamera':           return <ACC8pPairCamera onBack={noop} />
     case 'PA-Check':                   return <PACheckScreen />
-    case 'PA-PlayerApp':               return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PAParent /></div>
+    case 'PA-PlayerApp':               return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PlayerAppScreen empty={false} /></div>
 
     // Sandbox empty-state homes
     case 'home-e':

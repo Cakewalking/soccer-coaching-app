@@ -66,9 +66,12 @@ export default function CoachFitnessScreen() {
             {METRICS.map((m, i) => (
               <div key={i} style={{ background: '#f5f6f4', borderRadius: 12, padding: '10px 12px' }}>
                 <div style={{ fontSize: 13, color: '#4a5a57', marginBottom: 4 }}>{m.label}</div>
-                <div style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
-                  <span style={{ fontSize: 24, fontWeight: 800, letterSpacing: '-0.03em', color: m.warn ? '#9d7c80' : '#10211f' }}>{m.value}</span>
-                  <span style={{ fontSize: 13, fontWeight: 600, color: m.warn ? '#9d7c80' : '#2f6252' }}>{m.note}</span>
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, flexWrap: 'wrap' as const }}>
+                  <span style={{ fontSize: 24, fontWeight: 800, letterSpacing: '-0.03em', color: m.warn ? '#7a3838' : '#10211f' }}>{m.value}</span>
+                  {m.warn
+                    ? <span style={{ display: 'inline-block', background: '#c39797', color: '#10211f', borderRadius: 999, padding: '1px 7px', fontSize: 11, fontWeight: 700 }}>{m.note}</span>
+                    : <span style={{ fontSize: 13, fontWeight: 600, color: '#2f6252' }}>{m.note}</span>
+                  }
                 </div>
               </div>
             ))}

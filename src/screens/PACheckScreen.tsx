@@ -11,7 +11,6 @@ type Rating = 1 | 2 | 3 | 4 | 5
 
 const SLEEP_LABELS: Record<Rating, string>  = { 1: 'Badly', 2: 'Not great', 3: 'OK', 4: 'Good', 5: 'Great' }
 const BODY_LABELS: Record<Rating, string>   = { 1: 'Sore', 2: 'A bit sore', 3: 'OK', 4: 'Good', 5: 'Fresh' }
-const MOOD_LABELS: Record<Rating, string>   = { 1: 'Low', 2: 'Meh', 3: 'OK', 4: 'Good', 5: 'Great' }
 
 const SORE_AREAS = ['Legs', 'Knees', 'Ankles or feet', 'Back', 'Somewhere else']
 
@@ -40,11 +39,10 @@ export default function PACheckScreen({ onClose }: { onClose?: () => void }) {
   const [sleep, setSleep]       = useState<Rating | null>(null)
   const [body, setBody]         = useState<Rating | null>(null)
   const [soreAreas, setSore]    = useState<string[]>([])
-  const [mood, setMood]         = useState<Rating | null>(null)
   const [sent, setSent]         = useState(false)
 
   const bodySore = body !== null && body <= 2
-  const canSend = sleep !== null && body !== null && mood !== null
+  const canSend = sleep !== null && body !== null
 
   function toggleArea(a: string) {
     setSore(prev => prev.includes(a) ? prev.filter(x => x !== a) : [...prev, a])
@@ -60,14 +58,22 @@ export default function PACheckScreen({ onClose }: { onClose?: () => void }) {
       <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}>
         <div style={{ width: 390, background: '#fff', borderRadius: 20, fontFamily: 'var(--font-sans)', overflow: 'hidden', boxShadow: '0 2px 12px rgba(16,33,31,0.08)' }}>
           <div style={{ background: GD, padding: '20px 20px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <div style={{ fontSize: 16, fontWeight: 700, color: '#fff' }}>Before training · Thu</div>
+            <div style={{ fontSize: 15, fontWeight: 700, color: '#fff' }}>Wattle Creek U12</div>
+            <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#c39797', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, color: INK }}>MT</div>
           </div>
-          <div style={{ padding: '32px 24px', textAlign: 'center' }}>
+          <div style={{ padding: '32px 24px' }}>
             <div style={{ width: 56, height: 56, borderRadius: '50%', background: PALE, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px' }}>
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={G} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={G} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
             </div>
-            <div style={{ fontSize: 20, fontWeight: 700, color: INK, marginBottom: 8 }}>Sent</div>
-            <div style={{ fontSize: 14, color: MUT }}>Your coach and your parent can see your answers.</div>
+            <div style={{ fontSize: 22, fontWeight: 800, color: INK, textAlign: 'center', marginBottom: 6 }}>All done</div>
+            <div style={{ fontSize: 16, fontWeight: 700, color: INK, textAlign: 'center', marginBottom: 8 }}>Thanks, Mia!</div>
+            <div style={{ fontSize: 14, color: MUT, textAlign: 'center', marginBottom: 24, lineHeight: '20px' }}>Sam and Priya will see this before training tonight.</div>
+            <div style={{ background: '#f7f8f7', borderRadius: 12, padding: '14px 16px', marginBottom: 12 }}>
+              <div style={{ fontSize: 14, color: INK, fontWeight: 600, marginBottom: 4 }}>Something really wrong? Tell Sam, Priya or a parent. You can always talk to them, not just in the app.</div>
+            </div>
+            <button style={{ width: '100%', height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>
+              Don't want to tell them? Other people can help
+            </button>
           </div>
         </div>
       </div>
@@ -128,12 +134,6 @@ export default function PACheckScreen({ onClose }: { onClose?: () => void }) {
             </div>
           )}
 
-          {/* Mood */}
-          <div>
-            <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 10 }}>How are you feeling today?</div>
-            <RatingRow labels={MOOD_LABELS} value={mood} onChange={setMood} />
-          </div>
-
           {/* Send button */}
           <button onClick={send} disabled={!canSend} style={{
             width: '100%', height: 52, borderRadius: 12, border: 0,
@@ -141,7 +141,7 @@ export default function PACheckScreen({ onClose }: { onClose?: () => void }) {
             fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: canSend ? 'pointer' : 'default',
             transition: 'background 0.2s',
           }}>
-            {canSend ? 'Send check-in' : 'Answer all 3 to send'}
+            {canSend ? 'Send check-in' : 'Answer both to send'}
           </button>
 
           {onClose && (

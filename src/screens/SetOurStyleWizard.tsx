@@ -27,30 +27,28 @@ const STEP_TITLES: Record<StepNum, string> = {
   5: 'Anything else?',
 }
 
-const STEP_OPTIONS: Record<StepNum, Array<{ id: string; title: string; sub: string; measures: string[] }>> = {
+const STEP_OPTIONS: Record<StepNum, Array<{ id: string; title: string; sub: string; suits: string; measures: string[] }>> = {
   1: [
-    { id: 'keep',   title: 'Keep the ball',       sub: 'Patient build-up, control the tempo',  measures: ['Pass completion %', 'Possession %', 'Ball retention'] },
-    { id: 'build',  title: 'Build from the back', sub: 'Play through the thirds with purpose',  measures: ['Build-up efficiency', 'Progressive passes', 'GK distribution'] },
-    { id: 'direct', title: 'Get forward fast',    sub: 'Direct, positive transitions',           measures: ['Forward passes %', 'Directness', 'Time to chance'] },
+    { id: 'keep',  title: 'Keep the ball',       sub: 'Patient passing. Wait for a gap.',               suits: 'Suits: confident passers, good touch',    measures: ['Possession', 'Moves of 6+ passes'] },
+    { id: 'build', title: 'Build from the back', sub: 'Short goal kicks, play through the thirds.',     suits: 'Suits: teams learning to play out',         measures: ['Goal kicks played short', 'Passes completed in our third'] },
   ],
   2: [
-    { id: 'high',    title: 'Press high',              sub: 'Win it back in their half',         measures: ['High press %', 'PPDA', 'Defensive actions / 90'] },
-    { id: 'mid',     title: 'Hold a compact middle',   sub: 'Stay in shape, force errors',       measures: ['Mid-block wins', 'Defensive compactness', 'Challenges won %'] },
-    { id: 'protect', title: 'Protect our goal',        sub: 'Deep block, win duels',              measures: ['Blocks', 'Clearances', 'Goals conceded'] },
+    { id: 'high', title: 'Press high',            sub: 'Win it back near their goal.',                  suits: 'Suits: fit, energetic squads',              measures: ['Wins of the ball in their half', 'Passes we let them make before a challenge'] },
+    { id: 'mid',  title: 'Hold a compact middle', sub: 'Stay close, win it in midfield.',               suits: 'Suits: most teams, most weeks',             measures: ['Gap between defence and midfield', 'Wins of the ball in midfield'] },
   ],
   3: [
-    { id: 'counter', title: 'Counter-attack',    sub: 'Win it, play forward immediately',        measures: ['Transition speed', 'Counter chances', 'Direct goals'] },
-    { id: 'keep2',   title: 'Keep it first',     sub: 'Secure possession before moving',         measures: ['Turn possession %', 'Passes after win', 'Recycled possessions'] },
+    { id: 'counter', title: 'Counter-attack', sub: 'Go for goal before they get back.',                 suits: 'Suits: fast players, a high press',         measures: ['Shots within 10 s of winning it', 'Sprints forward after winning it'] },
+    { id: 'keep2',   title: 'Keep it first',  sub: 'Calm first pass, then build again.',                suits: 'Suits: a keep-the-ball style',              measures: ['Kept it for 3+ passes after winning it', 'First pass completed after winning it'] },
   ],
   4: [
-    { id: 'press2',  title: 'Win it straight back', sub: 'Immediate counter-press',               measures: ['Counter-press recoveries', 'Seconds to press', 'Turnover-to-win %'] },
-    { id: 'drop',    title: 'Drop back into shape', sub: 'Recover quickly, hold structure',       measures: ['Recovery sprints', 'Shape hold %', 'Transition goals conceded'] },
+    { id: 'press2', title: 'Win it straight back', sub: 'Nearest players press at once.',               suits: 'Suits: pressing teams',                     measures: ['Seconds to win it back', 'Won back within 6 seconds'] },
+    { id: 'drop',   title: 'Drop back into shape', sub: 'Get behind the ball first.',                   suits: 'Suits: compact or deep defending',          measures: ['Seconds to get back into shape', 'Recovery sprints towards our goal'] },
   ],
   5: [
-    { id: 'equal',   title: 'Equal minutes',        sub: 'Everyone gets roughly the same time on the pitch', measures: [] },
-    { id: 'ball',    title: 'Everyone on the ball',  sub: 'Every player touches the ball in every phase',     measures: [] },
-    { id: 'feet',    title: 'Use both feet',         sub: 'Encourage non-dominant foot passing',              measures: [] },
-    { id: 'newpos',  title: 'Try new positions',     sub: 'Rotate players through unfamiliar roles',          measures: [] },
+    { id: 'equal',  title: 'Equal minutes',        sub: 'Everyone plays a fair share across the season.', suits: '', measures: ['Minutes shared evenly'] },
+    { id: 'ball',   title: 'Everyone on the ball',  sub: 'No passengers. Every player gets touches.',     suits: '', measures: ['Touches for every player'] },
+    { id: 'feet',   title: 'Use both feet',         sub: 'Build the weaker foot early.',                  suits: '', measures: ['Weaker-foot touches'] },
+    { id: 'newpos', title: 'Try new positions',     sub: 'Players learn the game from more than one spot.', suits: '', measures: [] },
   ],
 }
 
@@ -202,11 +200,11 @@ export default function SetOurStyleWizard({ onClose, initialStep = 'intro' }: { 
   if (step === 'review') {
     const metrics = getMetrics(answers)
     const choiceRows = [
-      { label: 'Possession',   val: getLabel(1, answers.s1) },
-      { label: 'Pressing',     val: getLabel(2, answers.s2) },
-      { label: 'Win it →',     val: getLabel(3, answers.s3) },
-      { label: 'Lose it →',    val: getLabel(4, answers.s4) },
-      { label: 'Extras',       val: answers.s5.length > 0 ? answers.s5.map(id => STEP_OPTIONS[5].find(o => o.id === id)?.title ?? id).join(', ') : 'None' },
+      { label: 'When we have the ball',   val: getLabel(1, answers.s1) },
+      { label: 'When they have the ball', val: getLabel(2, answers.s2) },
+      { label: 'The moment we win it',    val: getLabel(3, answers.s3) },
+      { label: 'The moment we lose it',   val: getLabel(4, answers.s4) },
+      { label: 'Club values',             val: answers.s5.length > 0 ? answers.s5.map(id => STEP_OPTIONS[5].find(o => o.id === id)?.title ?? id).join(', ') : 'None' },
     ]
     return (
       <div style={{ position: 'fixed', inset: 0, background: '#f7f9f7', zIndex: 100, display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
@@ -217,7 +215,7 @@ export default function SetOurStyleWizard({ onClose, initialStep = 'intro' }: { 
           </button>
           <div style={{ flexGrow: 1 }}>
             <div style={{ fontSize: 20, fontWeight: 700, color: '#ffffff', letterSpacing: '-0.02em' }}>Here's your style</div>
-            <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', marginTop: 1 }}>Review and confirm</div>
+            <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', marginTop: 1 }}>Check and save</div>
           </div>
           <button onClick={next} style={{ height: 44, padding: '0 24px', borderRadius: '999px', border: 0, background: '#c3e6d4', color: '#1f4a3e', fontFamily: 'inherit', fontSize: 14, fontWeight: 800, cursor: 'pointer' }}>Save style</button>
         </div>
@@ -297,7 +295,11 @@ export default function SetOurStyleWizard({ onClose, initialStep = 'intro' }: { 
       <div style={{ flexGrow: 1, overflowY: 'auto', padding: '28px 32px' }}>
         <h2 style={{ margin: '0 0 6px', fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em', color: '#10211f' }}>{STEP_TITLES[sn]}</h2>
         <p style={{ margin: '0 0 24px', fontSize: 14, color: '#6f7f7b' }}>
-          {isMulti ? 'Select all that apply.' : 'Choose one approach for your team.'}
+          {sn === 1 ? 'Think about your normal game plan, not every situation.'
+            : sn === 2 ? 'Where on the pitch you want to defend from.'
+            : sn === 3 ? 'The first few seconds after we get the ball back.'
+            : sn === 4 ? 'The first few seconds after we give the ball away.'
+            : 'For junior teams, how players develop matters as much as the result. Pick any, or none.'}
         </p>
 
         <div style={{ display: 'grid', gridTemplateColumns: opts.length <= 2 ? '1fr 1fr' : opts.length === 4 ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)', gap: 14 }}>
@@ -317,11 +319,15 @@ export default function SetOurStyleWizard({ onClose, initialStep = 'intro' }: { 
                 )}
                 <div style={{ fontSize: 16, fontWeight: 700, color: '#10211f', lineHeight: '22px', paddingRight: selected ? 28 : 0 }}>{opt.title}</div>
                 <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: '18px' }}>{opt.sub}</div>
+                {opt.suits && <div style={{ fontSize: 12, color: '#6f7f7b', lineHeight: '17px', fontStyle: 'italic' }}>{opt.suits}</div>}
                 {opt.measures.length > 0 && (
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 5, marginTop: 4 }}>
-                    {opt.measures.map(m => (
-                      <span key={m} style={{ fontSize: 11, fontWeight: 600, color: '#2f6252', background: '#e4f2eb', borderRadius: 5, padding: '2px 7px' }}>{m}</span>
-                    ))}
+                  <div style={{ marginTop: 6 }}>
+                    <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: '#9aada9', marginBottom: 5 }}>We'll measure</div>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 5 }}>
+                      {opt.measures.map(m => (
+                        <span key={m} style={{ fontSize: 11, fontWeight: 600, color: '#2f6252', background: '#e4f2eb', borderRadius: 5, padding: '2px 7px' }}>{m}</span>
+                      ))}
+                    </div>
                   </div>
                 )}
               </button>

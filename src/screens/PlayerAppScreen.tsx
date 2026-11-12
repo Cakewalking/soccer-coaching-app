@@ -475,74 +475,103 @@ export default function PlayerAppScreen({ empty, initialView = 'home' }: { empty
       <div style={{ background: '#1f4a3e', padding: '52px 20px 20px', flex: 'none' }}>
         <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
           <div>
-            <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', marginBottom: 2 }}>U12 Sam · Wattle Creek FC</div>
+            <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', marginBottom: 2 }}>Wattle Creek U12</div>
             <div style={{ fontSize: 24, fontWeight: 800, color: '#fff' }}>Hi Mia</div>
           </div>
-          <div style={{ display: 'flex', gap: 6 }}>
-            <button onClick={() => setView('young-news')} style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: 'rgba(255,255,255,0.8)', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>News</button>
-            <button onClick={() => setView('parent-chat')} style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: 'rgba(255,255,255,0.8)', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Messages</button>
-            <button onClick={() => setView('parent')} style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: 'rgba(255,255,255,0.8)', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Mia's week →</button>
-          </div>
+          <div style={{ width: 40, height: 40, borderRadius: '50%', background: '#c39797', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, color: '#10211f' }}>MT</div>
         </div>
       </div>
 
-      <div style={{ flexGrow: 1, overflowY: 'auto', padding: '20px' }}>
-        {/* Check-in prompt */}
-        <button onClick={() => setView('checkin')} style={{
-          width: '100%', borderRadius: 16, border: 0, background: '#2f6252',
-          padding: '18px 20px', fontFamily: 'inherit', cursor: 'pointer', textAlign: 'left',
-          display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16,
-        }}>
-          <div>
-            <div style={{ fontSize: 16, fontWeight: 700, color: '#fff', marginBottom: 4 }}>Check in before training</div>
-            <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.75)' }}>Tonight at 6:00 pm · Ash Road ground 1</div>
-          </div>
-          <div style={{ fontSize: 24 }}>💬</div>
-        </button>
-
-        {/* Clip from coach */}
-        <div style={{ background: '#fff', borderRadius: 16, padding: '16px', border: '1px solid #e9eae8', marginBottom: 14 }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
-            <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>New from Sam</div>
-            <span style={{ fontSize: 11, fontWeight: 700, color: '#c39797', background: '#fdf4f4', borderRadius: 6, padding: '2px 8px' }}>1 new</span>
-          </div>
-          <button onClick={() => setView('clip')} style={{
-            width: '100%', height: 100, borderRadius: 12, background: '#10211f', border: 0,
-            display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', position: 'relative',
-          }}>
-            <div style={{ width: 44, height: 44, borderRadius: '999px', border: '2px solid rgba(255,255,255,0.7)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"/></svg>
-            </div>
-            <div style={{ position: 'absolute', bottom: 10, left: 12, fontSize: 12, color: 'rgba(255,255,255,0.75)', fontWeight: 600 }}>Your first touch on the overlap · 0:23</div>
-          </button>
-        </div>
-
+      <div style={{ flexGrow: 1, overflowY: 'auto', padding: '16px 16px 24px' }}>
         {/* Next game */}
-        <div style={{ background: '#fff', borderRadius: 16, padding: '16px', border: '1px solid #e9eae8', marginBottom: 14 }}>
-          <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>Next game</div>
+        <div style={{ background: '#fff', borderRadius: 14, padding: '14px 16px', border: '1px solid #e9eae8', marginBottom: 12 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
             <div style={{ background: '#1f4a3e', borderRadius: 10, padding: '8px 12px', textAlign: 'center', flexShrink: 0 }}>
               <div style={{ fontSize: 10, fontWeight: 600, color: 'rgba(255,255,255,0.7)' }}>SAT</div>
-              <div style={{ fontSize: 20, fontWeight: 800, color: '#fff' }}>7</div>
+              <div style={{ fontSize: 20, fontWeight: 800, color: '#fff' }}>6</div>
             </div>
             <div>
               <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>vs Harbour Rovers</div>
-              <div style={{ fontSize: 13, color: '#6f7f7b' }}>Home · kick-off 9:30 am</div>
+              <div style={{ fontSize: 13, color: '#6f7f7b' }}>Home · kick-off 9:30 · be there 8:40</div>
             </div>
           </div>
+        </div>
+
+        {/* Check-in prompt */}
+        <button onClick={() => setView('checkin')} style={{
+          width: '100%', borderRadius: 14, border: 0, background: '#2f6252',
+          padding: '16px 18px', fontFamily: 'inherit', cursor: 'pointer', textAlign: 'left',
+          display: 'flex', flexDirection: 'column', gap: 4, marginBottom: 12,
+        }}>
+          <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)', fontWeight: 600 }}>How are you feeling?</div>
+          <div style={{ fontSize: 15, fontWeight: 700, color: '#fff' }}>3 quick questions before training tonight</div>
+        </button>
+
+        {/* Clip from coach */}
+        <div style={{ background: '#fff', borderRadius: 14, padding: '14px 16px', border: '1px solid #e9eae8', marginBottom: 12 }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 10 }}>New from Sam</div>
+          <button onClick={() => setView('clip')} style={{
+            width: '100%', borderRadius: 10, background: '#10211f', border: 0,
+            padding: '12px 14px', fontFamily: 'inherit', cursor: 'pointer', textAlign: 'left',
+            display: 'flex', alignItems: 'center', gap: 14, marginBottom: 8,
+          }}>
+            <div style={{ width: 36, height: 36, borderRadius: '50%', border: '1.5px solid rgba(255,255,255,0.6)', display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 'none' }}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+            </div>
+            <div>
+              <div style={{ fontSize: 13, fontWeight: 700, color: '#fff' }}>Your goal vs Ironbark</div>
+              <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.6)' }}>0:09</div>
+            </div>
+          </button>
+          <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: '18px', fontStyle: 'italic' }}>"Left foot, low across the keeper. That's your goal working!"</div>
         </div>
 
         {/* Goals */}
         <button onClick={() => setView('goals')} style={{
-          width: '100%', background: '#fff', borderRadius: 16, padding: '16px', border: '1px solid #e9eae8',
-          fontFamily: 'inherit', cursor: 'pointer', textAlign: 'left', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+          width: '100%', background: '#fff', borderRadius: 14, padding: '14px 16px', border: '1px solid #e9eae8',
+          fontFamily: 'inherit', cursor: 'pointer', textAlign: 'left', marginBottom: 12,
         }}>
-          <div>
-            <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 4 }}>My goals</div>
-            <div style={{ fontSize: 13, color: '#6f7f7b' }}>{GOALS.length} active goals</div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
+            <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>My goals</div>
+            <span style={{ fontSize: 11, color: '#6f7f7b' }}>1 done, 1 going</span>
           </div>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6f7f7b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            <div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13, marginBottom: 4 }}>
+                <span style={{ fontWeight: 600, color: '#10211f' }}>Use my left foot more</span>
+                <span style={{ color: '#6f7f7b' }}>18%</span>
+              </div>
+              <div style={{ height: 6, borderRadius: 3, background: '#f0f1f0' }}>
+                <div style={{ height: 6, borderRadius: 3, background: '#2f6252', width: '18%' }} />
+              </div>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13 }}>
+              <span style={{ fontWeight: 600, color: '#10211f' }}>Look before the ball comes</span>
+              <span style={{ fontSize: 11, fontWeight: 700, color: '#2f6252', background: '#eef5f2', borderRadius: 6, padding: '2px 8px' }}>Done</span>
+            </div>
+          </div>
         </button>
+
+        {/* After-training check-in */}
+        <div style={{ background: '#fff', borderRadius: 14, padding: '14px 16px', border: '1px solid #e9eae8' }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 2 }}>After training: how was it?</div>
+          <div style={{ fontSize: 12, color: '#6f7f7b' }}>3 quick taps, opens at 7:15 pm</div>
+        </div>
+      </div>
+
+      {/* Bottom nav */}
+      <div style={{ background: '#fff', borderTop: '1px solid #e9eae8', display: 'flex', height: 56, flexShrink: 0 }}>
+        {([
+          { label: 'Home',  icon: 'M4 11l8-7 8 7v9H4z',                                               active: true },
+          { label: 'Clips', icon: 'M12 21a9 9 0 100-18 9 9 0 000 18zM10 8l6 4-6 4z',                 active: false },
+          { label: 'Goals', icon: 'M12 2l2.4 7.4H22l-6.5 4.7 2.5 7.6L12 17l-6 4.7 2.5-7.6L3 9.4h7.6z', active: false },
+          { label: 'Me',    icon: 'M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8', active: false },
+        ]).map(tab => (
+          <button key={tab.label} style={{ flex: 1, border: 'none', background: 'transparent', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 3, fontFamily: 'inherit', fontSize: 10, fontWeight: 600, cursor: 'pointer', color: tab.active ? '#2f6252' : '#4a5a57' }}>
+            <svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"><path d={tab.icon}/></svg>
+            {tab.label}
+          </button>
+        ))}
       </div>
     </div>
   )
