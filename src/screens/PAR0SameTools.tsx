@@ -1,5 +1,4 @@
 const G    = '#2f6252'
-const G2   = '#40826d'
 const GD   = '#1f4a3e'
 const INK  = '#10211f'
 const MUT  = '#4a5a57'

@@ -352,7 +352,7 @@ const HOME_TABS: Array<{ id: HomeTab; label: string }> = [
   { id: 'staff',     label: 'Team staff' },
 ]
 
-export default function MiniRoosApp({ onBack, empty, phaseContent, initialScreen, onNavChange }: { onBack: () => void; empty?: boolean; phaseContent?: ReactNode; initialScreen?: string; onNavChange?: (screen: string) => void }) {
+export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, initialScreen, onNavChange }: { onBack: () => void; empty?: boolean; phaseContent?: ReactNode; initialScreen?: string; onNavChange?: (screen: string) => void }) {
   const [nav, setNav]               = useState<MiniNav>((initialScreen as MiniNav) ?? 'home')
   const [homeTab, setHomeTab]       = useState<HomeTab>('overview')
   const [gameDayTab, setGameDayTab] = useState<GameDayTab>('turns')

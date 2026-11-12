@@ -5,7 +5,6 @@ const INK  = '#10211f'
 const MUT  = '#4a5a57'
 const LN   = '#e8edeb'
 const PALE = '#eef5f2'
-const ROSE = '#c39797'
 
 const TAPS = [
   { label: 'Brave with the ball', status: 'Keep',    note: '24 dribbles. Poppy tried her first three, and beat a player with one.', clips: 5 },
