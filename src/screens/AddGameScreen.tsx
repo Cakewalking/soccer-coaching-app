@@ -14,11 +14,6 @@ const SYNC_PLAYERS = [
   { ini: 'MT', name: 'Mia T.',      boots: true,  vest: true  },
 ]
 
-const WHO_CARDS = [
-  { frame: '0:14', players: ['Maya T', 'Jake L', 'Zoe K'], thumb: '#40826d' },
-  { frame: '1:02', players: ['Noah O', 'Ella A'],          thumb: '#2f6252' },
-  { frame: '2:34', players: ['Mia I', 'Liam H', 'Ava W'], thumb: '#1f4a3e' },
-]
 
 const ANALYSE_STEPS = [
   { label: 'Detecting players',           pct: 100, done: true },
