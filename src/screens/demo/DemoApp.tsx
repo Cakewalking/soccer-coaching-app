@@ -416,6 +416,56 @@ import {
   PO1eOlderHomeEmpty, PO2eOlderClipsEmpty, PO4eOlderBodyEmpty,
 } from '../step4/EmptyScreenBatch'
 
+// Step 4 — Item 7 missing screens (Nov 2026)
+import RC1eRecordStartEmpty            from '../step4/RC1eRecordStartEmpty'
+import RC4eRecordingNoCameraEmpty      from '../step4/RC4eRecordingNoCameraEmpty'
+import RC5eRecordResultsFirstEmpty     from '../step4/RC5eRecordResultsFirstEmpty'
+import RC6eRunHistoryEmpty             from '../step4/RC6eRunHistoryEmpty'
+import RC7eRecordedEmpty               from '../step4/RC7eRecordedEmpty'
+import RCm2eClipsEmpty                 from '../step4/RCm2eClipsEmpty'
+import TM1eManagerHomeEmpty            from '../step4/TM1eManagerHomeEmpty'
+import TM2eManagerGameDayEmpty         from '../step4/TM2eManagerGameDayEmpty'
+import TM4eDutyRosterEmpty             from '../step4/TM4eDutyRosterEmpty'
+import TM5eManagerMessagesEmpty        from '../step4/TM5eManagerMessagesEmpty'
+import FM1eMovesEmpty                  from '../step4/FM1eMovesEmpty'
+import FW1eGirlsWomenEmpty             from '../step4/FW1eGirlsWomenEmpty'
+import FS1eSidelineEmpty               from '../step4/FS1eSidelineEmpty'
+import FY1eSeasonPlanEmpty             from '../step4/FY1eSeasonPlanEmpty'
+import FD3eDispensationsEmpty          from '../step4/FD3eDispensationsEmpty'
+import FG1eGradingEmpty                from '../step4/FG1eGradingEmpty'
+import FT1eFitnessHomeEmpty            from '../step4/FT1eFitnessHomeEmpty'
+import F3eFitnessTrainingEmpty         from '../step4/F3eFitnessTrainingEmpty'
+import HG2eKeeperSessionEmpty          from '../step4/HG2eKeeperSessionEmpty'
+import TS1FitnessLevel                 from '../step4/TS1FitnessLevel'
+import SG5eWhatWorkedEmpty             from '../step4/SG5eWhatWorkedEmpty'
+import X16OppositionEmpty              from '../step4/X16OppositionEmpty'
+import SGm1SuggestedMiniRoos           from '../step4/SGm1SuggestedMiniRoos'
+import SGm1eSuggestedMiniRoosEmpty     from '../step4/SGm1eSuggestedMiniRoosEmpty'
+import PP2eSeasonSummaryEmpty          from '../step4/PP2eSeasonSummaryEmpty'
+import ACP4eParentFeesEmpty            from '../step4/ACP4eParentFeesEmpty'
+import RF2eRefGamesEmpty               from '../step4/RF2eRefGamesEmpty'
+import X10DrillsEmpty                  from '../step4/X10DrillsEmpty'
+import ACC9AcademyRecordDrill          from '../step4/ACC9AcademyRecordDrill'
+import ACC11AcademyRecording           from '../step4/ACC11AcademyRecording'
+import ACC10AcademyRecordResults       from '../step4/ACC10AcademyRecordResults'
+import ACC10eAcademyRecordResultsEmpty from '../step4/ACC10eAcademyRecordResultsEmpty'
+import DF1DrillDetail                  from '../step4/DF1DrillDetail'
+import DF2AddSheet                     from '../step4/DF2AddSheet'
+import DF3OwnBasics                    from '../step4/DF3OwnBasics'
+import DF4OwnDraw                      from '../step4/DF4OwnDraw'
+import DF5OwnFixes                     from '../step4/DF5OwnFixes'
+import DF6OwnCoaching                  from '../step4/DF6OwnCoaching'
+import DF7OwnSaved                     from '../step4/DF7OwnSaved'
+import RF1RefAsked                     from '../step4/RF1RefAsked'
+import PK1YoungNews                    from '../step4/PK1YoungNews'
+import PE1EffortRating                 from '../step4/PE1EffortRating'
+import SPp5TrialOutcome                from '../step4/SPp5TrialOutcome'
+import EX1HowWorkedOut                 from '../step4/EX1HowWorkedOut'
+import EX1eHowWorkedOutEmpty           from '../step4/EX1eHowWorkedOutEmpty'
+import L1bLiveGameSub                  from '../step4/L1bLiveGameSub'
+import I1bInboxElla                    from '../step4/I1bInboxElla'
+import SPa1AcademyYear                 from '../step4/SPa1AcademyYear'
+
 type DemoView = 'signin' | 'start' | 'why' | 'tour' | 'lookaround' | 'sandbox' | 'sandboxlook' | 'nosandbox' | 'notfound'
 
 const SANDBOX_KEY = 'cs_demo_sandbox_v1'
@@ -1398,6 +1448,66 @@ export function renderScreen(key: string): ReactNode {
     case 'PH2-HomeYouthSame':          return <SeniorsYouthCoachApp teamType="youth" onBack={noop} empty={false} />
     case 'PH3-HomeSeniorsSame':        return <SeniorsYouthCoachApp teamType="seniors" onBack={noop} empty={false} />
     case 'MS5-HomeMiniRoosSame':       return <MiniRoosApp onBack={noop} empty={false} />
+
+    // Item 7 — RC empty screens (tablet)
+    case 'RC1e-RecordStartEmpty':          return <RC1eRecordStartEmpty />
+    case 'RC4e-RecordingNoCameraEmpty':    return <RC4eRecordingNoCameraEmpty />
+    case 'RC5e-RecordResultsFirstEmpty':   return <RC5eRecordResultsFirstEmpty />
+    case 'RC6e-RunHistoryEmpty':           return <RC6eRunHistoryEmpty />
+    case 'RC7e-RecordedEmpty':             return <RC7eRecordedEmpty />
+    case 'RCm2e-ClipsEmpty':               return <RCm2eClipsEmpty />
+    // TM empty screens (phone)
+    case 'TM1e-ManagerHomeEmpty':          return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TM1eManagerHomeEmpty /></div>
+    case 'TM2e-ManagerGameDayEmpty':       return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TM2eManagerGameDayEmpty /></div>
+    case 'TM4e-DutyRosterEmpty':           return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TM4eDutyRosterEmpty /></div>
+    case 'TM5e-ManagerMessagesEmpty':      return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TM5eManagerMessagesEmpty /></div>
+    // Director empty screens (tablet)
+    case 'FM1e-MovesEmpty':                return <FM1eMovesEmpty />
+    case 'FW1e-GirlsWomenEmpty':           return <FW1eGirlsWomenEmpty />
+    case 'FS1e-SidelineEmpty':             return <FS1eSidelineEmpty />
+    case 'FY1e-SeasonPlanEmpty':           return <FY1eSeasonPlanEmpty />
+    case 'FD3e-DispensationsEmpty':        return <FD3eDispensationsEmpty />
+    case 'FG1e-GradingEmpty':              return <FG1eGradingEmpty />
+    // Fitness/keeper empty screens (tablet)
+    case 'FT1e-FitnessHomeEmpty':          return <FT1eFitnessHomeEmpty />
+    case 'F3e-FitnessTrainingEmpty':       return <F3eFitnessTrainingEmpty />
+    case 'HG2e-KeeperSessionEmpty':        return <HG2eKeeperSessionEmpty />
+    case 'TS1-FitnessLevel':               return <TS1FitnessLevel />
+    // Suggestions / opposition empty (tablet)
+    case 'SG5e-WhatWorkedEmpty':           return <SG5eWhatWorkedEmpty />
+    case 'X16-OppositionEmpty':            return <X16OppositionEmpty />
+    // MiniRoos suggested (tablet)
+    case 'SGm1-SuggestedMiniRoos':         return <SGm1SuggestedMiniRoos />
+    case 'SGm1e-SuggestedMiniRoosEmpty':   return <SGm1eSuggestedMiniRoosEmpty />
+    // Player/parent phone screens
+    case 'PP2e-SeasonSummaryEmpty':        return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PP2eSeasonSummaryEmpty /></div>
+    case 'ACP4e-ParentFeesEmpty':          return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><ACP4eParentFeesEmpty /></div>
+    case 'RF2e-RefGamesEmpty':             return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><RF2eRefGamesEmpty /></div>
+    case 'RF1-RefAsked':                   return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><RF1RefAsked /></div>
+    case 'PK1-YoungNews':                  return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PK1YoungNews /></div>
+    case 'PE1-EffortRating':               return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PE1EffortRating /></div>
+    case 'SPp5-TrialOutcome':              return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><SPp5TrialOutcome /></div>
+    // Drill library empty + drill create flow (tablet)
+    case 'X10-DrillsEmpty':                return <X10DrillsEmpty />
+    case 'DF1-DrillDetail':                return <DF1DrillDetail />
+    case 'DF2-AddSheet':                   return <DF2AddSheet />
+    case 'DF3-OwnBasics':                  return <DF3OwnBasics />
+    case 'DF4-OwnDraw':                    return <DF4OwnDraw />
+    case 'DF5-OwnFixes':                   return <DF5OwnFixes />
+    case 'DF6-OwnCoaching':                return <DF6OwnCoaching />
+    case 'DF7-OwnSaved':                   return <DF7OwnSaved />
+    // Academy coach record flow (tablet)
+    case 'ACC9-AcademyRecordDrill':          return <ACC9AcademyRecordDrill />
+    case 'ACC11-AcademyRecording':           return <ACC11AcademyRecording />
+    case 'ACC10-AcademyRecordResults':       return <ACC10AcademyRecordResults />
+    case 'ACC10e-AcademyRecordResultsEmpty': return <ACC10eAcademyRecordResultsEmpty />
+    // Match analysis (tablet)
+    case 'EX1-HowWorkedOut':               return <EX1HowWorkedOut />
+    case 'EX1e-HowWorkedOutEmpty':         return <EX1eHowWorkedOutEmpty />
+    case 'L1b-LiveGameSub':                return <L1bLiveGameSub />
+    case 'I1b-InboxElla':                  return <I1bInboxElla />
+    // Academy owner football year (tablet)
+    case 'SPa1-AcademyYear':               return <SPa1AcademyYear />
 
     default:
       return (
