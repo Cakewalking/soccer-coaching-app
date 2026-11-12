@@ -14,7 +14,8 @@ const WATCH = [
   { ini: 'NO', name: 'Noah Okafor', tag: 'Modified', note: 'Step 1 return to play' },
 ]
 
-export default function F3FitnessTraining(_: { onBack?: () => void }) {
+export default function F3FitnessTraining({ mode }: { onBack?: () => void; mode?: 'yourpart' }) {
+  const yourPart = mode === 'yourpart'
   return (
     <div style={{ width: 1180, height: 820, background: '#f7f8f7', boxSizing: 'border-box' as const, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' as const }}>
       <div style={{ height: 64, background: G, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 16, flex: 'none' }}>
@@ -25,26 +26,58 @@ export default function F3FitnessTraining(_: { onBack?: () => void }) {
         ))}
       </div>
       <div style={{ flex: 'none', padding: '14px 28px 0', display: 'flex', alignItems: 'baseline', gap: 14 }}>
-        <h1 style={{ margin: 0, fontSize: 26, fontWeight: 700, letterSpacing: '-0.02em' }}>Tonight's training</h1>
-        <span style={{ fontSize: 14, color: MUT }}>Tue 10 Jun · 5:30 – 6:35 pm · Wattle Creek Oval, Pitch 2</span>
+        <h1 style={{ margin: 0, fontSize: 26, fontWeight: 700, letterSpacing: '-0.02em' }}>
+          {yourPart ? 'Your part of training' : "Tonight's training"}
+        </h1>
+        <span style={{ fontSize: 14, color: MUT }}>
+          {yourPart ? 'Tue 10 Jun · Warm-up · 5:30 – 5:40 pm' : 'Tue 10 Jun · 5:30 – 6:35 pm · Wattle Creek Oval, Pitch 2'}
+        </span>
       </div>
       <div style={{ flex: 1, minHeight: 0, padding: '12px 28px 18px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 300px', gap: 14 }}>
-        <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 10 }}>
-          <div style={{ background: '#fff', border: `1px solid #c5c8c4`, borderRadius: 16, padding: '14px 16px' }}>
-            <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 8 }}>Session plan</div>
-            {DRILLS.map((d, i) => (
-              <div key={i} style={{ display: 'grid', gridTemplateColumns: '56px 1fr 80px 200px', alignItems: 'center', minHeight: 44, borderTop: `1px solid ${LN}`, fontSize: 14, gap: 12 }}>
-                <span style={{ fontWeight: 700, color: MUT }}>{d.time}</span>
-                <span style={{ fontWeight: 700 }}>{d.name}</span>
-                <span style={{ color: MUT }}>{d.dur}</span>
-                <span style={{ color: MUT, fontSize: 13 }}>{d.note}</span>
+        {yourPart ? (
+          <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 10 }}>
+            <div style={{ background: G, borderRadius: 16, padding: '20px 20px' }}>
+              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,0.65)', marginBottom: 6 }}>NOW · 5:30 – 5:40 pm</div>
+              <div style={{ fontSize: 20, fontWeight: 700, color: '#fff', marginBottom: 4 }}>Dynamic warm-up</div>
+              <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.75)', marginBottom: 18 }}>10 min · Light jog and mobility work</div>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8 }}>
+                {[
+                  ['Jog laps','2 min · easy pace'],
+                  ['Hip circles','90 sec · both legs'],
+                  ['High knees','90 sec · light'],
+                  ['Ankle rolls','1 min · standing'],
+                  ['Arm swings','1 min · dynamic'],
+                  ['Ready check','All 14 moving freely'],
+                ].map(([title, detail]) => (
+                  <div key={title} style={{ background: 'rgba(255,255,255,0.12)', borderRadius: 10, padding: '10px 14px' }}>
+                    <div style={{ fontSize: 13, fontWeight: 700, color: '#fff' }}>{title}</div>
+                    <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)' }}>{detail}</div>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+            <div style={{ background: '#fff5e6', border: '1px solid #f0c070', borderRadius: 16, padding: '12px 16px', fontSize: 14, lineHeight: '20px' }}>
+              <strong>Game Saturday.</strong> Keep session RPE at 6-7/10. Avoid max sprints and heavy lower-body plyometrics tonight.
+            </div>
           </div>
-          <div style={{ background: '#fff5e6', border: '1px solid #f0c070', borderRadius: 16, padding: '12px 16px', fontSize: 14, lineHeight: '20px' }}>
-            <strong>Game Saturday.</strong> Keep session RPE at 6-7/10. Avoid max sprints and heavy lower-body plyometrics tonight.
+        ) : (
+          <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 10 }}>
+            <div style={{ background: '#fff', border: `1px solid #c5c8c4`, borderRadius: 16, padding: '14px 16px' }}>
+              <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 8 }}>Session plan</div>
+              {DRILLS.map((d, i) => (
+                <div key={i} style={{ display: 'grid', gridTemplateColumns: '56px 1fr 80px 200px', alignItems: 'center', minHeight: 44, borderTop: `1px solid ${LN}`, fontSize: 14, gap: 12 }}>
+                  <span style={{ fontWeight: 700, color: MUT }}>{d.time}</span>
+                  <span style={{ fontWeight: 700 }}>{d.name}</span>
+                  <span style={{ color: MUT }}>{d.dur}</span>
+                  <span style={{ color: MUT, fontSize: 13 }}>{d.note}</span>
+                </div>
+              ))}
+            </div>
+            <div style={{ background: '#fff5e6', border: '1px solid #f0c070', borderRadius: 16, padding: '12px 16px', fontSize: 14, lineHeight: '20px' }}>
+              <strong>Game Saturday.</strong> Keep session RPE at 6-7/10. Avoid max sprints and heavy lower-body plyometrics tonight.
+            </div>
           </div>
-        </div>
+        )}
         <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 10 }}>
           <div style={{ background: '#fff', border: `1px solid #c5c8c4`, borderRadius: 16, padding: '14px 16px', display: 'flex', flexDirection: 'column' as const, gap: 8 }}>
             <div style={{ fontSize: 15, fontWeight: 700 }}>Needs attention tonight</div>
@@ -61,14 +94,16 @@ export default function F3FitnessTraining(_: { onBack?: () => void }) {
               </div>
             ))}
           </div>
-          <div style={{ background: '#fff', border: `1px solid #c5c8c4`, borderRadius: 16, padding: '14px 16px', display: 'flex', flexDirection: 'column' as const, gap: 8 }}>
-            <div style={{ fontSize: 15, fontWeight: 700 }}>Session targets</div>
-            {[['Total time','65 min'],['Target RPE','6–7 / 10'],['Sprints','≤ 6 per player'],['Attending','14 of 16']].map(([k, v]) => (
-              <div key={k} style={{ display: 'flex', justifyContent: 'space-between', borderTop: `1px solid ${LN}`, paddingTop: 6, fontSize: 14 }}>
-                <span style={{ color: MUT }}>{k}</span><strong>{v}</strong>
-              </div>
-            ))}
-          </div>
+          {!yourPart && (
+            <div style={{ background: '#fff', border: `1px solid #c5c8c4`, borderRadius: 16, padding: '14px 16px', display: 'flex', flexDirection: 'column' as const, gap: 8 }}>
+              <div style={{ fontSize: 15, fontWeight: 700 }}>Session targets</div>
+              {[['Total time','65 min'],['Target RPE','6–7 / 10'],['Sprints','≤ 6 per player'],['Attending','14 of 16']].map(([k, v]) => (
+                <div key={k} style={{ display: 'flex', justifyContent: 'space-between', borderTop: `1px solid ${LN}`, paddingTop: 6, fontSize: 14 }}>
+                  <span style={{ color: MUT }}>{k}</span><strong>{v}</strong>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>

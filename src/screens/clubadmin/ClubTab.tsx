@@ -17,6 +17,8 @@ const GANTT_ROWS = [
 export default function ClubTab({ role, empty }: { role: 'chair' | 'dof'; empty?: boolean }) {
   const [view, setView] = useState<ClubView>('overview')
   const [headingPolicy, setHeadingPolicy] = useState<'england' | 'own' | 'none' | null>(null)
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   const pad = { padding: '16px 20px' }
   const card = { background: '#fff', borderRadius: 14, padding: '14px 16px', border: '1px solid #e9eae8', marginBottom: 14 }
@@ -62,7 +64,7 @@ export default function ClubTab({ role, empty }: { role: 'chair' | 'dof'; empty?
                     <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f', marginBottom: 2 }}>{item.t}</div>
                     <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: 1.4 }}>{item.sub}</div>
                   </div>
-                  <button style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>{item.cta}</button>
+                  <button onClick={() => showToast(`Opens ${item.cta.toLowerCase()} setup.`)} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>{item.cta}</button>
                 </div>
               ))}
             </div>
@@ -213,7 +215,7 @@ export default function ClubTab({ role, empty }: { role: 'chair' | 'dof'; empty?
                       <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{item.text}</div>
                       <div style={{ fontSize: 12, color: '#6f7f7b', marginTop: 2 }}>{item.sub}</div>
                     </div>
-                    <button style={{ flexShrink: 0, height: 44, padding: '0 12px', borderRadius: '999px', border: '1px solid #2f6252', background: '#fff', color: '#2f6252', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>{item.cta}</button>
+                    <button onClick={() => showToast(`${item.cta} — opens action.`)} style={{ flexShrink: 0, height: 44, padding: '0 12px', borderRadius: '999px', border: '1px solid #2f6252', background: '#fff', color: '#2f6252', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>{item.cta}</button>
                   </div>
                 ))}
               </div>
@@ -354,7 +356,7 @@ export default function ClubTab({ role, empty }: { role: 'chair' | 'dof'; empty?
                 <div style={{ height: 6, borderRadius: 3, background: '#f0f1f0' }}><div style={{ height: 6, borderRadius: 3, background: '#2f6252', width: `${s.pct}%` }} /></div>
               </div>
             ))}
-            <button style={{ marginTop: 8, height: 44, padding: '0 16px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Edit style</button>
+            <button onClick={() => showToast('Opens style editor.')} style={{ marginTop: 8, height: 44, padding: '0 16px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Edit style</button>
           </div>
         )}
 
@@ -426,8 +428,8 @@ export default function ClubTab({ role, empty }: { role: 'chair' | 'dof'; empty?
                 <div style={{ fontSize: 12, color: '#6f7f7b' }}>Wattle Creek FC · only the chair and director can change these</div>
               </div>
               <div style={{ display: 'flex', gap: 8 }}>
-                <button style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>Cancel</button>
-                <button style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 'none', background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Save</button>
+                <button onClick={() => showToast('Changes discarded.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>Cancel</button>
+                <button onClick={() => showToast('Settings saved.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 'none', background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Save</button>
               </div>
             </div>
 
@@ -465,7 +467,7 @@ export default function ClubTab({ role, empty }: { role: 'chair' | 'dof'; empty?
                       <span style={{ fontSize: 14, color: '#10211f' }}>{f.label}</span>
                       <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
                         <span style={{ fontSize: 13, fontWeight: 600, color: '#4a5a57' }}>{f.value}</span>
-                        <button style={{ height: 44, padding: '0 10px', borderRadius: 999, border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 12, cursor: 'pointer' }}>Change</button>
+                        <button onClick={() => showToast(`Opens ${f.label.toLowerCase()} change.`)} style={{ height: 44, padding: '0 10px', borderRadius: 999, border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 12, cursor: 'pointer' }}>Change</button>
                       </div>
                     </div>
                   ))}
@@ -500,7 +502,7 @@ export default function ClubTab({ role, empty }: { role: 'chair' | 'dof'; empty?
                           <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>{o.name}</div>
                           <div style={{ fontSize: 12, color: '#6f7f7b' }}>{o.role}</div>
                         </div>
-                        <button style={{ height: 44, padding: '0 10px', borderRadius: 999, border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 12, cursor: 'pointer' }}>Change</button>
+                        <button onClick={() => showToast(`Opens ${o.label.toLowerCase()} change.`)} style={{ height: 44, padding: '0 10px', borderRadius: 999, border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 12, cursor: 'pointer' }}>Change</button>
                       </div>
                     </div>
                   ))}
@@ -533,6 +535,7 @@ export default function ClubTab({ role, empty }: { role: 'chair' | 'dof'; empty?
         )}
 
       </div>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </>
   )
 }

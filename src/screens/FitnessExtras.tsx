@@ -70,6 +70,8 @@ const SQUAD_SECTIONS = [
 export function FitnessSquadTab({ empty }: { empty: boolean }) {
   const [filter, setFilter] = useState<SquadFilter>('all')
   const [selected, setSelected] = useState<string>('EB')
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   if (empty) return (
     <div style={{ flexGrow: 1, minHeight: 0, overflowY: 'auto', padding: '20px 28px' }}>
@@ -94,8 +96,8 @@ export function FitnessSquadTab({ empty }: { empty: boolean }) {
           <div style={{ fontSize: 13, color: MUT }}>17 players, 16 shown · Thursday 4 Jun · 2 days to Harbour Rovers</div>
         </div>
         <div style={{ flex: 1 }}/>
-        <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 700, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Message parents</button>
-        <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>+ Add player</button>
+        <button onClick={() => showToast('Message started to all parents.')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 700, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Message parents</button>
+        <button onClick={() => showToast('Added. Their parent gets the team link now.')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>+ Add player</button>
       </div>
 
       <div style={{ flexShrink: 0, padding: '10px 28px', display: 'flex', gap: 6, flexWrap: 'wrap' as const }}>
@@ -165,13 +167,14 @@ export function FitnessSquadTab({ empty }: { empty: boolean }) {
               ))}
               {sel.ini === 'EB' && <div style={{ padding: '10px 14px', fontSize: 13, color: MUT, lineHeight: 1.5, background: PALE }}>Have a quick chat before warm-up. Keep it light if she wants.</div>}
               <div style={{ padding: '10px 14px', borderTop: `1px solid ${LN}`, display: 'flex', gap: 8 }}>
-                <button style={{ flex: 1, height: 44, borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 700, color: G, cursor: 'pointer', fontFamily: 'inherit' }}>Full profile</button>
-                <button style={{ flex: 1, height: 44, borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Message parent</button>
+                <button onClick={() => showToast('Opens full player profile.')} style={{ flex: 1, height: 44, borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 700, color: G, cursor: 'pointer', fontFamily: 'inherit' }}>Full profile</button>
+                <button onClick={() => showToast('Opens message to parent.')} style={{ flex: 1, height: 44, borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Message parent</button>
               </div>
             </Card>
           )}
         </div>
       </div>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
   )
 }
@@ -199,14 +202,16 @@ const ADJUST_TONIGHT = [
 ]
 
 export function FitnessTrainingTab({ empty }: { empty: boolean }) {
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   if (empty) return (
     <div style={{ flexGrow: 1, minHeight: 0, overflowY: 'auto', padding: '20px 28px' }}>
       <div style={{ maxWidth: 540, display: 'flex', flexDirection: 'column', gap: 16 }}>
         <div style={{ fontSize: 22, fontWeight: 700, color: INK, letterSpacing: '-0.02em' }}>Fitness coach</div>
         <div style={{ background: PALE, borderRadius: 14, padding: '14px 16px', fontSize: 14, color: G, lineHeight: 1.5 }}>Your part appears when Sam plans the session. Once the head coach sets tonight's training, you'll see the warm-up, who to go easy on, and where your 15 minutes fit.</div>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Ask Sam to plan it</button>
-          <button style={{ height: 44, padding: '0 16px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Browse warm-ups</button>
+          <button onClick={() => showToast('Sent — Sam will get a notification.')} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Ask Sam to plan it</button>
+          <button onClick={() => showToast('Opens warm-up library.')} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Browse warm-ups</button>
         </div>
         <Card>
           <div style={{ padding: '10px 14px', borderBottom: `1px solid ${LN}`, fontSize: 12, fontWeight: 700, color: MUT, letterSpacing: '0.07em', textTransform: 'uppercase' as const }}>What you will see</div>
@@ -231,9 +236,9 @@ export function FitnessTrainingTab({ empty }: { empty: boolean }) {
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
           {['Team talk', 'Edit my part', 'Record'].map(l => (
-            <button key={l} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>{l}</button>
+            <button key={l} onClick={() => showToast(`Opens ${l.toLowerCase()}.`)} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>{l}</button>
           ))}
-          <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Start session</button>
+          <button onClick={() => showToast('Session started.')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Start session</button>
         </div>
 
         <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: MUT }}>Adjust tonight</div>
@@ -284,6 +289,7 @@ export function FitnessTrainingTab({ empty }: { empty: boolean }) {
           </Card>
         ))}
       </div>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
   )
 }
@@ -301,6 +307,8 @@ const SLIDES = ['Legs and energy today', 'Lighter Tuesdays worked', 'The late-ga
 
 export function FitnessMatchTab({ empty }: { empty: boolean }) {
   const [slideIdx, setSlideIdx] = useState(0)
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   if (empty) return (
     <div style={{ flexGrow: 1, minHeight: 0, overflowY: 'auto', padding: '20px 28px' }}>
@@ -310,8 +318,8 @@ export function FitnessMatchTab({ empty }: { empty: boolean }) {
         <Card><div style={{ padding: 14, textAlign: 'center' }}>
           <div style={{ fontSize: 14, fontWeight: 700, color: INK, marginBottom: 4 }}>A bye week is a good time for a measuring session.</div>
           <div style={{ display: 'flex', gap: 8, justifyContent: 'center' }}>
-            <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Plan a session</button>
-            <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>See the fixtures</button>
+            <button onClick={() => showToast('Opens session planner.')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Plan a session</button>
+            <button onClick={() => showToast('Opens fixtures screen.')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>See the fixtures</button>
           </div>
         </div></Card>
       </div>
@@ -328,7 +336,7 @@ export function FitnessMatchTab({ empty }: { empty: boolean }) {
         <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
           <div style={{ height: 36, padding: '0 14px', borderRadius: 999, background: PALE, display: 'flex', alignItems: 'center', fontSize: 13, fontWeight: 700, color: G }}>3 of 5 ready</div>
           {['Load limits', 'Record'].map(l => (
-            <button key={l} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>{l}</button>
+            <button key={l} onClick={() => showToast(`Opens ${l.toLowerCase()}.`)} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>{l}</button>
           ))}
         </div>
 
@@ -360,15 +368,15 @@ export function FitnessMatchTab({ empty }: { empty: boolean }) {
             </div>
           </div>
           <div style={{ padding: '8px 14px', borderTop: `1px solid ${LN}`, display: 'flex', gap: 8 }}>
-            <button style={{ height: 44, flex: 1, borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Edit talk</button>
-            <button style={{ height: 44, flex: 1, borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>START</button>
+            <button onClick={() => showToast('Opens fitness talk editor.')} style={{ height: 44, flex: 1, borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Edit talk</button>
+            <button onClick={() => showToast('Fitness talk started.')} style={{ height: 44, flex: 1, borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>START</button>
           </div>
         </Card>
 
         <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: MUT }}>Player check · 14 of 16 done · avg 3.6</div>
         <div style={{ background: PALE, borderRadius: 10, padding: '8px 12px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: 13, color: G }}>
           <span>Not filled in: Zoe and Sam</span>
-          <button style={{ fontSize: 13, fontWeight: 700, color: G2, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit' }}>Remind</button>
+          <button onClick={() => showToast('Reminder sent to Zoe and Sam.')} style={{ fontSize: 13, fontWeight: 700, color: G2, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit' }}>Remind</button>
         </div>
       </div>
 
@@ -391,6 +399,7 @@ export function FitnessMatchTab({ empty }: { empty: boolean }) {
           </Card>
         ))}
       </div>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
   )
 }
@@ -398,6 +407,8 @@ export function FitnessMatchTab({ empty }: { empty: boolean }) {
 // ─── F5 — Fitness section on Review screen ────────────────────────────────────
 
 export function FitnessReviewSection() {
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 10, padding: '12px 0' }}>
       <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: MUT }}>Load and fitness this week</div>
@@ -432,7 +443,8 @@ export function FitnessReviewSection() {
         </div>
       ))}
 
-      <button style={{ alignSelf: 'flex-start', fontSize: 13, fontWeight: 700, color: G2, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>Open Thursday's fitness block →</button>
+      <button onClick={() => showToast("Opens Thursday's fitness block.")} style={{ alignSelf: 'flex-start', fontSize: 13, fontWeight: 700, color: G2, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>Open Thursday's fitness block →</button>
+    {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
   )
 }

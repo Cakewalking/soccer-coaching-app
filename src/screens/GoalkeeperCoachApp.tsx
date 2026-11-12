@@ -1,7 +1,9 @@
 import { useState } from 'react'
+import RecordHub           from './RecordHub'
+import { CoachMessages }   from './MessagesScreens'
 
-type GKNav = 'home' | 'keepers' | 'training' | 'clips'
-type HomeTab = 'overview' | 'inbox' | 'calendar'
+type GKNav = 'home' | 'keepers' | 'training' | 'clips' | 'record'
+type HomeTab = 'overview' | 'messages' | 'calendar'
 type TrainingTab = 'session' | 'drills'
 
 const KEEPERS = [
@@ -31,11 +33,12 @@ const GK_NAV: Array<{ id: GKNav; label: string; icon: string }> = [
   { id: 'keepers',  label: 'Keepers',  icon: 'M9 11a3 3 0 100-6 3 3 0 000 6zM3 20c0-4 3-6 6-6s6 2 6 6M16 11a3 3 0 100-6M21 20c0-3-2-5-4-5.5' },
   { id: 'training', label: 'Training', icon: 'M6 5h12a2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V7a2 2 0 012-2zM4 10h16M9 3v4M15 3v4' },
   { id: 'clips',    label: 'Clips',    icon: 'M12 21a9 9 0 100-18 9 9 0 000 18zM10 8l6 4-6 4z' },
+  { id: 'record',   label: 'Record',   icon: 'M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z' },
 ]
 
 const HOME_TABS: Array<{ id: HomeTab; label: string }> = [
   { id: 'overview', label: 'Overview' },
-  { id: 'inbox',    label: 'Inbox' },
+  { id: 'messages', label: 'Messages' },
   { id: 'calendar', label: 'Calendar' },
 ]
 
@@ -253,6 +256,7 @@ export default function GoalkeeperCoachApp({ onBack, empty = false, initialScree
   const [homeTab, setHomeTab]     = useState<HomeTab>('overview')
   const [trainingTab, setTrainingTab] = useState<TrainingTab>('session')
   const [toast, setToast]         = useState<string | null>(null)
+  const [askOpen, setAskOpen]     = useState(false)
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   return (
@@ -276,6 +280,10 @@ export default function GoalkeeperCoachApp({ onBack, empty = false, initialScree
               </button>
             ))}
           </nav>
+          <button onClick={() => setAskOpen(o => !o)} aria-label="Ask Clean Sheet" style={{ height: 36, padding: '0 14px', borderRadius: '999px', border: '1.5px solid rgba(255,255,255,0.3)', background: askOpen ? 'rgba(255,255,255,0.15)' : 'transparent', color: '#fff', display: 'flex', alignItems: 'center', gap: 7, cursor: 'pointer', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, flexShrink: 0 }}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg>
+            Ask
+          </button>
           <button onClick={() => showToast('Switching to Wattle Creek — all keepers view.')} style={{ display: 'flex', alignItems: 'center', gap: 8, height: 44, padding: '0 16px', borderRadius: '999px', border: 0, background: 'rgba(255,255,255,0.15)', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer', color: '#fff', flexShrink: 0 }}>
             All keepers · Wattle Creek
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9l6 6 6-6"/></svg>
@@ -313,7 +321,7 @@ export default function GoalkeeperCoachApp({ onBack, empty = false, initialScree
       </header>
 
       {/* Content */}
-      <div style={{ flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+      <div style={{ flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden', position: 'relative' }}>
         {nav === 'home'     && homeTab === 'overview' && (empty ? (
           <div style={{ flexGrow: 1, padding: '28px 32px', overflowY: 'auto' }}>
             <div style={{ maxWidth: 500 }}>
@@ -341,10 +349,12 @@ export default function GoalkeeperCoachApp({ onBack, empty = false, initialScree
             </div>
           </div>
         ) : <HomeOverview onPlanSession={() => setNav('training')} onKeeperDrills={() => { setNav('training'); setTrainingTab('drills') }} />)}
-        {nav === 'home'     && homeTab !== 'overview' && (
-          <div style={{ padding: '20px 28px', color: '#4a5a57' }}>{homeTab === 'inbox' ? 'Inbox' : 'Calendar'} — not shown in this demo.</div>
+        {nav === 'home'     && homeTab === 'messages' && <CoachMessages />}
+        {nav === 'home'     && homeTab === 'calendar' && (
+          <div style={{ padding: '20px 28px', color: '#4a5a57' }}>Calendar — not shown in this demo.</div>
         )}
         {nav === 'keepers'  && <KeepersTab />}
+        {nav === 'record'   && <RecordHub />}
         {nav === 'training' && trainingTab === 'session' && (empty ? (
           <div style={{ flexGrow: 1, padding: '28px 32px', overflowY: 'auto' }}>
             <div style={{ maxWidth: 500 }}>
@@ -362,6 +372,33 @@ export default function GoalkeeperCoachApp({ onBack, empty = false, initialScree
           <div style={{ padding: '20px 28px', color: '#4a5a57' }}>Keeper drills library — not shown in this demo.</div>
         )}
         {nav === 'clips'    && <ClipsTab />}
+        {askOpen && (
+          <aside role="dialog" aria-label="Ask Clean Sheet" style={{ position: 'absolute', top: 0, right: 0, bottom: 0, width: 400, background: '#fff', borderLeft: '1px solid #e8edeb', boxShadow: '-8px 0 32px rgba(16,33,31,0.12)', zIndex: 50, display: 'flex', flexDirection: 'column' }}>
+            <div style={{ padding: '16px 20px', borderBottom: '1px solid #e8edeb', display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2f6252" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg>
+              <span style={{ flex: 1, fontSize: 15, fontWeight: 700, color: '#10211f' }}>Ask Clean Sheet</span>
+              <button onClick={() => setAskOpen(false)} aria-label="Close Ask Clean Sheet" style={{ width: 32, height: 32, borderRadius: '50%', border: '1px solid #e8edeb', background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#4a5a57' }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+              </button>
+            </div>
+            <div style={{ flex: 1, overflowY: 'auto', padding: '20px' }}>
+              <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: 8, marginBottom: 20 }}>
+                {['Who needs a rest?', 'What to work on tonight?', 'Is everyone getting fair minutes?', "How is each keeper's starting position?"].map(q => (
+                  <button key={q} style={{ padding: '7px 12px', borderRadius: 100, border: '1px solid #e8edeb', background: '#eef5f2', color: '#2f6252', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{q}</button>
+                ))}
+              </div>
+              <div style={{ background: '#eef5f2', borderRadius: 14, padding: '14px 16px', fontSize: 14, color: '#10211f', lineHeight: 1.6 }}>
+                <div style={{ fontSize: 11, fontWeight: 700, color: '#2f6252', marginBottom: 8, letterSpacing: '0.07em', textTransform: 'uppercase' as const }}>Clean Sheet</div>
+                Grace has had 3 of 4 keeper sessions this month — the highest of your group. Jack and Ava have had 1 each. Both are confirmed for Tuesday.
+              </div>
+              <div style={{ fontSize: 11, color: '#4a5a57', marginTop: 16, lineHeight: 1.6 }}>It answers from what you can see as goalkeeper coach. It never sends anything by itself. Wellness and welfare concerns are never used.</div>
+            </div>
+            <div style={{ padding: '12px 16px', borderTop: '1px solid #e8edeb', display: 'flex', gap: 8, flexShrink: 0 }}>
+              <input placeholder="Ask about your keepers…" style={{ flex: 1, height: 40, padding: '0 12px', borderRadius: 8, border: '1px solid #e8edeb', fontSize: 13, fontFamily: 'inherit', outline: 'none', color: '#10211f' }} />
+              <button style={{ height: 40, padding: '0 16px', borderRadius: 8, background: '#2f6252', color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Ask</button>
+            </div>
+          </aside>
+        )}
       </div>
       {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>

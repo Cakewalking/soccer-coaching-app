@@ -1,6 +1,9 @@
+import { useState } from 'react'
 import { FitnessReviewSection } from './FitnessExtras'
 
 function ReviewEmpty() {
+  const [toast, setToast] = useState('')
+  const showToast = (msg: string) => { setToast(msg); setTimeout(() => setToast(''), 2500) }
   return (
     <div style={{ flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
       {/* Header */}
@@ -10,7 +13,8 @@ function ReviewEmpty() {
           <span style={{ fontSize: 13, color: '#4a5a57' }}>No games recorded yet</span>
         </div>
         <div style={{ flexGrow: 1 }} />
-        <button style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>Set our style</button>
+        {toast && <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.9)', background: '#10211f', padding: '6px 12px', borderRadius: 8 }}>{toast}</span>}
+        <button onClick={() => showToast('Opens team style settings')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>Set our style</button>
         <button style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#ffffff', display: 'flex', alignItems: 'center', gap: 6 }}>
           <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="#fff"/></svg>
           Record a game
@@ -67,7 +71,7 @@ function ReviewEmpty() {
                 </div>
               ))}
             </div>
-            <button style={{ border: 0, background: 'transparent', color: '#2f6252', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', padding: 0, display: 'flex', alignItems: 'center', gap: 4 }}>
+            <button onClick={() => showToast('Shows an example review')} style={{ border: 0, background: 'transparent', color: '#2f6252', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', padding: 0, display: 'flex', alignItems: 'center', gap: 4 }}>
               See an example review from a team like yours
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
             </button>
@@ -122,6 +126,8 @@ const PLAYERS_TO_KNOW = [
 
 export default function ReviewScreen({ empty }: { empty?: boolean }) {
   if (empty) return <ReviewEmpty />
+  const [toast, setToast] = useState('')
+  const showToast = (msg: string) => { setToast(msg); setTimeout(() => setToast(''), 2500) }
   return (
     <div style={{ flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
 
@@ -136,7 +142,8 @@ export default function ReviewScreen({ empty }: { empty?: boolean }) {
         </div>
         <div style={{ flexGrow: 1 }} />
         <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.75)' }}>Good data for 47 of 50 min</span>
-        <button style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid rgba(255,255,255,0.4)', background: 'transparent', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
+        {toast && <span style={{ fontSize: 13, color: '#10211f', background: '#ffffff', padding: '6px 12px', borderRadius: 8 }}>{toast}</span>}
+        <button onClick={() => showToast('Opens highlights video')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid rgba(255,255,255,0.4)', background: 'transparent', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"/></svg>
           Highlights · 4 min
         </button>
@@ -152,7 +159,7 @@ export default function ReviewScreen({ empty }: { empty?: boolean }) {
           <div style={{ marginBottom: 20 }}>
             <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: 12 }}>
               <span style={{ fontSize: 16, fontWeight: 700 }}>How we played our style</span>
-              <button style={{ border: 0, background: 'transparent', color: '#2f6252', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Our style →</button>
+              <button onClick={() => showToast('Opens team style page')} style={{ border: 0, background: 'transparent', color: '#2f6252', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Our style →</button>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
               {STYLE_POINTS.map((s, i) => (
@@ -190,7 +197,7 @@ export default function ReviewScreen({ empty }: { empty?: boolean }) {
                 </div>
               ))}
             </div>
-            <button style={{ marginTop: 10, height: 44, padding: '0 20px', borderRadius: 12, border: '1px solid #2f6252', background: '#ffffff', color: '#2f6252', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>
+            <button onClick={() => showToast('Opens Thursday training plan')} style={{ marginTop: 10, height: 44, padding: '0 20px', borderRadius: 12, border: '1px solid #2f6252', background: '#ffffff', color: '#2f6252', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>
               Open Thursday's plan →
             </button>
           </div>
@@ -249,7 +256,7 @@ export default function ReviewScreen({ empty }: { empty?: boolean }) {
                 <span style={{ fontSize: 12, fontWeight: 700, width: 24, textAlign: 'right' }}>{p.mins}</span>
               </div>
             ))}
-            <button style={{ marginTop: 8, fontSize: 13, color: '#2f6252', fontWeight: 600, border: 0, background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>All 16 players →</button>
+            <button onClick={() => showToast('Shows all 16 players')} style={{ marginTop: 8, fontSize: 13, color: '#2f6252', fontWeight: 600, border: 0, background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>All 16 players →</button>
           </div>
         </div>
       </div>

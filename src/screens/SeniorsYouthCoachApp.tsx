@@ -25,6 +25,7 @@ import { FitnessSquadTab, FitnessTrainingTab, FitnessMatchTab } from './FitnessE
 import RecordHub           from './RecordHub'
 import { CoachMessages }   from './MessagesScreens'
 import { SquadLineups }    from './SquadLineups'
+import { useSandbox }      from './sandbox/SandboxContext'
 
 type TeamType = 'seniors' | 'youth'
 
@@ -361,6 +362,7 @@ const CLIPS_TABS    = ['Browse', 'Playlists', 'Shared with players', 'To check']
 
 export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseContent, empty = false, initialScreen, onNavChange }: { teamType: TeamType; onBack: () => void; phaseContent?: ReactNode; empty?: boolean; initialScreen?: string; onNavChange?: (screen: string) => void }) {
   const data = teamType === 'seniors' ? SENIORS : YOUTH
+  const { active: inSandbox, store } = useSandbox()
   const validNav = (s?: string): NavKey => (s === 'squad' || s === 'training' || s === 'matchday' || s === 'clips' || s === 'record') ? s : 'home'
 
   const [nav, setNav]                 = useState<NavKey>(validNav(initialScreen))
@@ -484,7 +486,7 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
             Ask
           </button>
           <button style={{ display: 'flex', alignItems: 'center', gap: 8, height: 44, padding: '0 16px', borderRadius: '999px', border: 0, background: 'rgba(255,255,255,0.15)', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer', color: '#fff', flexShrink: 0 }}>
-            {empty ? 'My team' : data.teamPicker}
+            {inSandbox ? (store.teams[0]?.name ?? 'My team') : data.teamPicker}
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9l6 6 6-6"/></svg>
           </button>
           <div style={{ width: 44, height: 44, borderRadius: '999px', background: data.avatarBg, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 15, flexShrink: 0 }}>{data.avatarLetters}</div>

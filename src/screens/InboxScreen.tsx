@@ -6,7 +6,7 @@ function InboxEmpty() {
       {/* Left: empty message list */}
       <div style={{ borderRight: '1px solid #e9eae8', display: 'flex', flexDirection: 'column', minHeight: 0, overflow: 'hidden', background: '#ffffff' }}>
         <div style={{ flex: 'none', padding: '12px 16px', display: 'flex', alignItems: 'center', gap: 8, borderBottom: '1px solid #f0f1ef' }}>
-          <button style={{ width: 36, height: 36, borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', flexShrink: 0 }}>
+          <button aria-label="Search messages" style={{ width: 36, height: 36, borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', flexShrink: 0 }}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10211f" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
           </button>
           <button style={{ flexGrow: 1, height: 44, borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
@@ -209,7 +209,7 @@ export default function InboxScreen({ empty }: { empty?: boolean }) {
       {/* Left: message list */}
       <div style={{ borderRight: '1px solid #e9eae8', display: 'flex', flexDirection: 'column', minHeight: 0, overflow: 'hidden', background: '#ffffff' }}>
         <div style={{ flex: 'none', padding: '12px 16px', display: 'flex', alignItems: 'center', gap: 8, borderBottom: '1px solid #f0f1ef' }}>
-          <button style={{ width: 36, height: 36, borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', flexShrink: 0 }}>
+          <button aria-label="Search messages" style={{ width: 36, height: 36, borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', flexShrink: 0 }}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10211f" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
           </button>
           <button style={{ flexGrow: 1, height: 44, borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>

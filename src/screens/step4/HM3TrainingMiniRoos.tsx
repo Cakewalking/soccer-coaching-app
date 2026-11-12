@@ -1,3 +1,4 @@
+import { useState } from 'react'
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 const GAMES = [
@@ -8,6 +9,8 @@ const GAMES = [
 ]
 
 export default function HM3TrainingMiniRoos(_: { onBack?: () => void }) {
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }}>
       <div style={{ background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 20, height: 64 }}>
@@ -33,15 +36,15 @@ export default function HM3TrainingMiniRoos(_: { onBack?: () => void }) {
           <span style={{ fontSize: 14, color: MUT }}>Wattle Creek Reserve · 9 coming · this fortnight: running with the ball</span>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Swap a game</button>
-          <button style={{ height: 44, padding: '0 18px', borderRadius: 10, border: `1px solid ${G}`, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Start</button>
+          <button onClick={() => showToast('Opens game swap picker.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Swap a game</button>
+          <button onClick={() => showToast('Session started.')} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: `1px solid ${G}`, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Start</button>
         </div>
       </div>
 
       <div style={{ flex: 1, padding: '12px 28px 18px', display: 'grid', gap: 14, gridTemplateColumns: 'minmax(0, 1fr) 320px' }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
           {GAMES.map(g => (
-            <div key={g.name} style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '12px 14px', borderRadius: 14, border: `1px solid #c5c8c4`, background: '#fff', flex: 1, cursor: 'pointer' }}>
+            <div key={g.name} onClick={() => showToast(`Opens ${g.name}.`)} role="button" tabIndex={0} style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '12px 14px', borderRadius: 14, border: `1px solid #c5c8c4`, background: '#fff', flex: 1, cursor: 'pointer' }}>
               <div style={{ width: 64, flexShrink: 0 }}>
                 <div style={{ fontSize: 20, fontWeight: 700 }}>{g.time}</div>
                 <div style={{ fontSize: 13, color: MUT }}>{g.dur}</div>
@@ -90,6 +93,7 @@ export default function HM3TrainingMiniRoos(_: { onBack?: () => void }) {
           </div>
         </div>
       </div>
+    {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
   )
 }

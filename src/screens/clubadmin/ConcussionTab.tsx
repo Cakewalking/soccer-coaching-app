@@ -1,4 +1,5 @@
 // FC1 / FC1e — Concussion return-to-play tracker
+import { useState } from 'react'
 const G    = '#2f6252'
 const GD   = '#1f4a3e'
 const INK  = '#10211f'
@@ -46,6 +47,8 @@ const PLAYERS: Array<{
 ]
 
 export default function ConcussionTab({ empty }: { empty?: boolean }) {
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   if (empty) return (
     <div style={{ padding: '24px 28px', maxWidth: 560, display: 'flex', flexDirection: 'column', gap: 20 }}>
       <div>
@@ -80,7 +83,7 @@ export default function ConcussionTab({ empty }: { empty?: boolean }) {
           <div style={{ fontSize: 22, fontWeight: 700, color: INK, letterSpacing: '-0.02em' }}>Concussion</div>
           <div style={{ fontSize: 13, color: MUT }}>Return to play · AIS concussion guidelines 2024 · community football</div>
         </div>
-        <button style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Log a head knock</button>
+        <button onClick={() => showToast('Opens head knock form.')} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Log a head knock</button>
       </div>
 
       <div style={{ display: 'flex', gap: 8 }}>
@@ -127,8 +130,8 @@ export default function ConcussionTab({ empty }: { empty?: boolean }) {
               <div style={{ padding: '10px 14px', background: PALE, fontSize: 13, color: G, lineHeight: 1.5 }}>{p.note}</div>
 
               <div style={{ padding: '10px 14px', borderTop: `1px solid ${LN}`, display: 'flex', gap: 8 }}>
-                <button style={{ height: 44, flex: 1, borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Message coach</button>
-                <button style={{ height: 44, flex: 1, borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>{p.actionLabel}</button>
+                <button onClick={() => showToast('Opens message to coach.')} style={{ height: 44, flex: 1, borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Message coach</button>
+                <button onClick={() => showToast(`${p.actionLabel} logged.`)} style={{ height: 44, flex: 1, borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>{p.actionLabel}</button>
               </div>
             </Card>
           ))}
@@ -149,7 +152,7 @@ export default function ConcussionTab({ empty }: { empty?: boolean }) {
               </div>
             </div>
             <div style={{ padding: '0 14px 12px' }}>
-              <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Change</button>
+              <button onClick={() => showToast('Opens concussion officer change.')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Change</button>
             </div>
           </Card>
 
@@ -173,6 +176,7 @@ export default function ConcussionTab({ empty }: { empty?: boolean }) {
           </div>
         </div>
       </div>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
   )
 }

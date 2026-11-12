@@ -28,6 +28,7 @@ import CoCoachHomeScreen from './CoCoachHomeScreen'
 import RecordHub           from './RecordHub'
 import { CoachMessages }   from './MessagesScreens'
 import { SquadLineups }    from './SquadLineups'
+import { useSandbox }      from './sandbox/SandboxContext'
 
 type NavKey = 'home' | 'squad' | 'training' | 'matchday' | 'clips' | 'record'
 type Sub = 'teamtalk' | 'pitchside' | 'addgame' | null
@@ -48,6 +49,7 @@ const MATCHDAY_TABS = ['Team talk', 'Line-up and minutes', 'Opposition', 'Review
 const CLIPS_TABS    = ['Browse', 'Playlists', 'Shared with players', 'To check']
 
 export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLabel, coachInitials, empty = false, initialScreen, onNavChange, coachRole = 'head' }: { onBack?: () => void; phaseContent?: ReactNode; coachLabel?: string; coachInitials?: string; empty?: boolean; initialScreen?: string; onNavChange?: (screen: string) => void; coachRole?: 'head' | 'ccoach' }) {
+  const { active: inSandbox, store } = useSandbox()
   const validNav = (s?: string): NavKey => (s === 'squad' || s === 'training' || s === 'matchday' || s === 'clips' || s === 'record') ? s : 'home'
   const [nav, setNav]                 = useState<NavKey>(validNav(initialScreen))
   const [sub, setSub]                 = useState<Sub>(null)
@@ -167,7 +169,7 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
             Ask
           </button>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, height: 44, padding: '0 16px', borderRadius: '999px', background: 'rgba(255,255,255,0.15)', fontSize: 15, fontWeight: 600, color: '#fff', flexShrink: 0 }}>
-            {coachLabel ?? (empty ? 'My team' : 'U12 Sam · Wattle Creek')}
+            {coachLabel ?? (inSandbox ? (store.teams[0]?.name ?? 'My team') : 'U12 Sam · Wattle Creek')}
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9l6 6 6-6"/></svg>
           </div>
           <div style={{ width: 44, height: 44, borderRadius: '999px', background: '#c39797', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 15, flexShrink: 0 }}>{coachInitials ?? 'SK'}</div>
@@ -188,8 +190,8 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
                   boxSizing: 'border-box',
                 }}>
                   {tab}
-                  {tab === 'Messages' && !empty && <span style={{ background: '#c39797', color: '#10211f', borderRadius: '999px', padding: '0 7px', fontSize: 12, lineHeight: '19px' }}>3</span>}
-                  {tab === 'To check' && !empty && <span style={{ background: '#c39797', color: '#10211f', borderRadius: '999px', padding: '0 7px', fontSize: 12, lineHeight: '19px' }}>3</span>}
+                  {tab === 'Messages' && !empty && !inSandbox && <span style={{ background: '#c39797', color: '#10211f', borderRadius: '999px', padding: '0 7px', fontSize: 12, lineHeight: '19px' }}>3</span>}
+                  {tab === 'To check' && !empty && !inSandbox && <span style={{ background: '#c39797', color: '#10211f', borderRadius: '999px', padding: '0 7px', fontSize: 12, lineHeight: '19px' }}>3</span>}
                 </button>
               )
             })}

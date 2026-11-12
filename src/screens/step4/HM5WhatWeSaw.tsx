@@ -1,19 +1,27 @@
+import { useState } from 'react'
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 const SECTION1 = ['Brave dribbling', 'Lots of shots', 'Passing to a friend', 'Getting back to help', 'Everyone had fun']
 const SECTION2 = ['Find space', 'Use both feet', 'Look up', 'Keep going after a mistake']
 const SECTION3 = ['Poppy', 'Arlo', 'Jude', 'Nobody this week']
-const SELECTED1 = new Set(['Brave dribbling', 'Passing to a friend'])
-const SELECTED2 = new Set(['Find space'])
-const SELECTED3 = new Set(['Arlo'])
 
-function Chip({ label, on }: { label: string; on: boolean }) {
+function Chip({ label, on, onToggle }: { label: string; on: boolean; onToggle: () => void }) {
   return (
-    <div style={{ minHeight: 48, padding: '0 16px', borderRadius: 999, display: 'inline-flex', alignItems: 'center', fontSize: 15, fontWeight: 700, cursor: 'pointer', background: on ? G : '#fff', color: on ? '#fff' : INK, border: on ? 'none' : `1px solid #c5c8c4` }}>{label}</div>
+    <button onClick={onToggle} style={{ minHeight: 48, padding: '0 16px', borderRadius: 999, display: 'inline-flex', alignItems: 'center', fontSize: 15, fontWeight: 700, cursor: 'pointer', background: on ? G : '#fff', color: on ? '#fff' : INK, border: on ? 'none' : `1px solid #c5c8c4`, fontFamily: 'inherit' }}>{label}</button>
   )
 }
 
+function toggle(setter: React.Dispatch<React.SetStateAction<Set<string>>>, label: string) {
+  setter(prev => { const next = new Set(prev); next.has(label) ? next.delete(label) : next.add(label); return next })
+}
+
 export default function HM5WhatWeSaw(_: { onBack?: () => void }) {
+  const [sel1, setSel1] = useState(() => new Set(['Brave dribbling', 'Passing to a friend']))
+  const [sel2, setSel2] = useState(() => new Set(['Find space']))
+  const [sel3, setSel3] = useState(() => new Set(['Arlo']))
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
+
   return (
     <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }}>
       <div style={{ background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 20, height: 64 }}>
@@ -39,8 +47,8 @@ export default function HM5WhatWeSaw(_: { onBack?: () => void }) {
           <span style={{ fontSize: 14, color: MUT }}>Sat 6 Jun v Northgate City · no score kept · 30 seconds</span>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Back to turns</button>
-          <button style={{ height: 44, padding: '0 18px', borderRadius: 10, border: `1px solid ${G}`, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Save and thank the parents</button>
+          <button onClick={() => showToast('Back to turns.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Back to turns</button>
+          <button onClick={() => showToast('Saved — thank-you sent to parents.')} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: `1px solid ${G}`, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Save and thank the parents</button>
         </div>
       </div>
 
@@ -49,19 +57,19 @@ export default function HM5WhatWeSaw(_: { onBack?: () => void }) {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             <div style={{ fontSize: 16, fontWeight: 700 }}>1 · What went well?</div>
             <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: 8 }}>
-              {SECTION1.map(l => <Chip key={l} label={l} on={SELECTED1.has(l)} />)}
+              {SECTION1.map(l => <Chip key={l} label={l} on={sel1.has(l)} onToggle={() => toggle(setSel1, l)} />)}
             </div>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             <div style={{ fontSize: 16, fontWeight: 700 }}>2 · What's next?</div>
             <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: 8 }}>
-              {SECTION2.map(l => <Chip key={l} label={l} on={SELECTED2.has(l)} />)}
+              {SECTION2.map(l => <Chip key={l} label={l} on={sel2.has(l)} onToggle={() => toggle(setSel2, l)} />)}
             </div>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             <div style={{ fontSize: 16, fontWeight: 700 }}>3 · Who needs a hand?</div>
             <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: 8 }}>
-              {SECTION3.map(l => <Chip key={l} label={l} on={SELECTED3.has(l)} />)}
+              {SECTION3.map(l => <Chip key={l} label={l} on={sel3.has(l)} onToggle={() => toggle(setSel3, l)} />)}
             </div>
           </div>
           <div style={{ marginTop: 'auto', fontSize: 14, color: MUT }}>Tuesday's four games are picked from what you tap here. Nothing is scored and no child is rated.</div>
@@ -85,6 +93,7 @@ export default function HM5WhatWeSaw(_: { onBack?: () => void }) {
           <div style={{ marginTop: 'auto', fontSize: 14, color: MUT, paddingTop: 8 }}>Turns in goal and as captain were saved from the game timer.</div>
         </div>
       </div>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
   )
 }

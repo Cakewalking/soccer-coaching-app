@@ -440,6 +440,12 @@ function SignupWithSignIn() {
   )
 }
 
+function MatchDayScreenNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <MatchDayScreen onNav={(s) => setInner(s)} empty={false} />
+}
+
 export function renderScreen(key: string): ReactNode {
   switch (key) {
     case 'juniorcoach':
@@ -449,7 +455,7 @@ export function renderScreen(key: string): ReactNode {
     case 'training':
       return <TrainingScreen role="head" onNav={noop} empty={false} />
     case 'matchday':
-      return <MatchDayScreen onNav={noop} empty={false} />
+      return <MatchDayScreenNav />
     case 'squad':
       return <SquadScreen role="head" onPlayerProfile={noop} empty={false} />
     case 'review':
@@ -852,7 +858,7 @@ export function renderScreen(key: string): ReactNode {
     // Design IDs — Fitness coach screens (GT2, F3, F4, FT*, TL2, IL1, FC1)
     case 'GT2-MeasureSession':        return <GT2MeasureSession />
     case 'F3-FitnessTraining':        return <F3FitnessTraining />
-    case 'F3b-FitnessTraining':       return <F3FitnessTraining />
+    case 'F3b-FitnessTraining':       return <F3FitnessTraining mode='yourpart' />
     case 'F4-FitnessMatch':           return <F4FitnessMatch />
     case 'FT2-FitnessHomeU14':        return <FT2FitnessHomeU14 />
     case 'FT3-FitnessHomeU13G':       return <FT3FitnessHomeU13G />
@@ -948,7 +954,7 @@ export function renderScreen(key: string): ReactNode {
     // Design IDs — Academy coach screens (tablet)
     case 'ACC2-RunSession':           return <ACC2RunSession />
     case 'ACC3-TrialAssess':          return <ACC3TrialAssess />
-    case 'ACC4-PlayerPlan':           return <ACC4PlayerPlan />
+    case 'ACC4-PlayerPlan':           return <ACC4PlayerPlan mode='new' />
     case 'ACC4b-PlayerPlan':          return <ACC4PlayerPlan />
     case 'ACC5-OneOnOne':             return <ACC5OneOnOne />
     case 'ACC6-ReportDraft':          return <ACC6ReportDraft />
@@ -1307,7 +1313,7 @@ export default function DemoApp() {
 
   if (view === 'sandboxlook') {
     const tour = TOURS[role]
-    const homeKey = sbFilled ? tour.home : (tour.sandboxHome ?? tour.home)
+    const homeKey = tour.sandboxHome ?? tour.home
     return (
       <DemoShellSandbox
         roleId={role}

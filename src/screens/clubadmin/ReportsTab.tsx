@@ -13,6 +13,9 @@ const REPORTS_EMPTY: Record<ReportsView, { icon: string; title: string; desc: st
 
 export default function ReportsTab({ empty }: { empty?: boolean }) {
   const [view, setView] = useState<ReportsView>('board')
+  const [activeChip, setActiveChip] = useState(0)
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   const p = { padding: '16px 20px' }
 
@@ -40,8 +43,8 @@ export default function ReportsTab({ empty }: { empty?: boolean }) {
               <div style={{ fontSize: 12, color: '#6f7f7b' }}>May 2026 · written by Clean Sheet from this month's data · edit before you send</div>
             </div>
             <div style={{ display: 'flex', gap: 8 }}>
-              <button style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>Edit</button>
-              <button style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Send to committee</button>
+              <button onClick={() => showToast('Opens report editor.')} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>Edit</button>
+              <button onClick={() => showToast('Report sent to committee.')} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Send to committee</button>
             </div>
           </div>
 
@@ -84,7 +87,7 @@ export default function ReportsTab({ empty }: { empty?: boolean }) {
 
           <div style={{ display: 'flex', gap: 8, marginBottom: 14 }}>
             {['Headline numbers', 'Results by team', 'Safeguarding', 'Kit and spending', 'Player names'].map((t, i) => (
-              <button key={t} style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: `1px solid ${i === 0 ? '#1f4a3e' : '#e9eae8'}`, background: i === 0 ? '#1f4a3e' : '#fff', color: i === 0 ? '#fff' : '#6f7f7b', fontFamily: 'inherit', fontSize: 12, fontWeight: i === 0 ? 700 : 400, cursor: 'pointer' }}>{t}</button>
+              <button key={t} onClick={() => setActiveChip(i)} style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: `1px solid ${i === activeChip ? '#1f4a3e' : '#e9eae8'}`, background: i === activeChip ? '#1f4a3e' : '#fff', color: i === activeChip ? '#fff' : '#6f7f7b', fontFamily: 'inherit', fontSize: 12, fontWeight: i === activeChip ? 700 : 400, cursor: 'pointer' }}>{t}</button>
             ))}
           </div>
 
@@ -357,6 +360,7 @@ export default function ReportsTab({ empty }: { empty?: boolean }) {
           </div>
         </div>
       )}
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </>
   )
 }

@@ -1200,6 +1200,7 @@ export default function AcademyCoachApp({ onBack, empty = false, initialScreen, 
   const [playersView, setPlayersView] = useState<PlayersView>('list')
   const [selectedPlayer, setSelectedPlayer] = useState<{ name: string; isNew: boolean } | null>(null)
   const [recordStep, setRecordStep]   = useState<RecordStep>('pick')
+  const [askOpen, setAskOpen]         = useState(false)
 
   const TODAY_TABS: Array<{ id: TodayTab; label: string }> = [
     { id: 'overview',  label: 'Today' },
@@ -1258,6 +1259,10 @@ export default function AcademyCoachApp({ onBack, empty = false, initialScreen, 
             ))}
           </nav>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
+            <button onClick={() => setAskOpen(o => !o)} aria-label="Ask Clean Sheet" style={{ height: 36, padding: '0 14px', borderRadius: '999px', border: '1.5px solid rgba(255,255,255,0.3)', background: askOpen ? 'rgba(255,255,255,0.15)' : 'transparent', color: '#fff', display: 'flex', alignItems: 'center', gap: 7, cursor: 'pointer', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, flexShrink: 0 }}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg>
+              Ask
+            </button>
             <span style={{ fontSize: 14, fontWeight: 600, color: 'rgba(255,255,255,0.8)' }}>Tall Timber Academy</span>
             <div style={{ width: 40, height: 40, borderRadius: '50%', background: ROSE, color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>RW</div>
             <button onClick={onBack} style={{ height: 44, padding: '0 12px', borderRadius: 999, border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: 'rgba(255,255,255,0.8)', fontSize: 12, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>← Coach view</button>
@@ -1285,7 +1290,7 @@ export default function AcademyCoachApp({ onBack, empty = false, initialScreen, 
       </header>
 
       {/* Content */}
-      <div style={{ flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+      <div style={{ flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden', position: 'relative' }}>
         {/* Today tabs */}
         {nav === 'today' && todayTab === 'overview'   && <TodayOverview empty={empty} onRun={() => setTodayTab('runsession')} onTrials={() => setTodayTab('trial')} onReport={() => { setNav('players'); setPlayersView('report') }}/>}
         {nav === 'today' && todayTab === 'runsession' && <RunSessionView empty={empty}/>}
@@ -1316,6 +1321,33 @@ export default function AcademyCoachApp({ onBack, empty = false, initialScreen, 
         )}
         {nav === 'gameday' && gameDayTab === 'review' && (
           <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', color: MUT, fontSize: 14 }}>Review — coming in Bucket 11</div>
+        )}
+        {askOpen && (
+          <aside role="dialog" aria-label="Ask Clean Sheet" style={{ position: 'absolute', top: 0, right: 0, bottom: 0, width: 400, background: '#fff', borderLeft: '1px solid #e8edeb', boxShadow: '-8px 0 32px rgba(16,33,31,0.12)', zIndex: 50, display: 'flex', flexDirection: 'column' }}>
+            <div style={{ padding: '16px 20px', borderBottom: '1px solid #e8edeb', display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2f6252" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg>
+              <span style={{ flex: 1, fontSize: 15, fontWeight: 700, color: '#10211f' }}>Ask Clean Sheet</span>
+              <button onClick={() => setAskOpen(false)} aria-label="Close Ask Clean Sheet" style={{ width: 32, height: 32, borderRadius: '50%', border: '1px solid #e8edeb', background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#4a5a57' }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+              </button>
+            </div>
+            <div style={{ flex: 1, overflowY: 'auto', padding: '20px' }}>
+              <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: 8, marginBottom: 20 }}>
+                {['Who is making the most progress?', 'Which players need more one-on-ones?', 'Who is due for a trial outcome?', 'Is anyone behind on their term goals?'].map(q => (
+                  <button key={q} style={{ padding: '7px 12px', borderRadius: 100, border: '1px solid #e8edeb', background: '#eef5f2', color: '#2f6252', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{q}</button>
+                ))}
+              </div>
+              <div style={{ background: '#eef5f2', borderRadius: 14, padding: '14px 16px', fontSize: 14, color: '#10211f', lineHeight: 1.6 }}>
+                <div style={{ fontSize: 11, fontWeight: 700, color: '#2f6252', marginBottom: 8, letterSpacing: '0.07em', textTransform: 'uppercase' as const }}>Clean Sheet</div>
+                Kai Okonkwo has attended 11 of 12 sessions this term and hit 4 of 5 development goals. His one-on-one is overdue by 2 weeks.
+              </div>
+              <div style={{ fontSize: 11, color: '#4a5a57', marginTop: 16, lineHeight: 1.6 }}>It answers from what you can see as academy coach. It never sends anything by itself. Wellness and welfare concerns are never used.</div>
+            </div>
+            <div style={{ padding: '12px 16px', borderTop: '1px solid #e8edeb', display: 'flex', gap: 8, flexShrink: 0 }}>
+              <input placeholder="Ask about Tall Timber Academy…" style={{ flex: 1, height: 40, padding: '0 12px', borderRadius: 8, border: '1px solid #e8edeb', fontSize: 13, fontFamily: 'inherit', outline: 'none', color: '#10211f' }} />
+              <button style={{ height: 40, padding: '0 16px', borderRadius: 8, background: '#2f6252', color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Ask</button>
+            </div>
+          </aside>
         )}
       </div>
     </div>

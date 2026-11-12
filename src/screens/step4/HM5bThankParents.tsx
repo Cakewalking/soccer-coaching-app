@@ -1,6 +1,9 @@
+import { useState } from 'react'
 const G = '#2f6252', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb'
 
 export default function HM5bThankParents(_: { onBack?: () => void }) {
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       {/* Phone frame centred on the tablet canvas */}
@@ -43,10 +46,11 @@ export default function HM5bThankParents(_: { onBack?: () => void }) {
         </div>
 
         <div style={{ padding: '10px 14px 24px', background: '#fff', borderTop: `1px solid ${LN}`, display: 'flex', flexDirection: 'column', gap: 6 }}>
-          <button style={{ height: 50, borderRadius: 10, border: `1px solid ${G}`, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 16, fontWeight: 600, cursor: 'pointer' }}>Send to 10 families</button>
-          <button style={{ height: 44, borderRadius: 10, border: `1px solid #c5c8c4`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Edit the message</button>
+          <button onClick={() => showToast('Sent to 10 families.')} style={{ height: 50, borderRadius: 10, border: `1px solid ${G}`, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 16, fontWeight: 600, cursor: 'pointer' }}>Send to 10 families</button>
+          <button onClick={() => showToast('Opens message editor.')} style={{ height: 44, borderRadius: 10, border: `1px solid #c5c8c4`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Edit the message</button>
         </div>
       </div>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
   )
 }

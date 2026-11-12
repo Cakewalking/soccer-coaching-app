@@ -1,3 +1,4 @@
+import { useState } from 'react'
 const G = '#2f6252', GD = '#1f4a3e', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 const GAMES = [
@@ -16,6 +17,8 @@ const REFS = [
 ]
 
 export default function FR1Referees(_: { onBack?: () => void }) {
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, height: 820, background: '#f7f8f7', boxSizing: 'border-box' as const, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' as const }}>
       <div style={{ height: 64, background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 12, flex: 'none' }}>
@@ -43,8 +46,8 @@ export default function FR1Referees(_: { onBack?: () => void }) {
                 ? <span style={{ fontSize: 14 }}>{g.ref}</span>
                 : <span style={{ fontSize: 14, color: '#c00', fontStyle: 'italic' }}>Not assigned</span>}
               {!g.ref
-                ? <button style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Assign ref</button>
-                : <button style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid #c5c8c4`, background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Change</button>}
+                ? <button onClick={() => showToast('Opens referee assignment.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Assign ref</button>
+                : <button onClick={() => showToast('Opens referee change.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid #c5c8c4`, background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Change</button>}
             </div>
           ))}
           <div style={{ marginTop: 10, fontSize: 13, color: MUT }}>Feedback so far: 5 of 5 great or good ratings this season.</div>
@@ -60,9 +63,10 @@ export default function FR1Referees(_: { onBack?: () => void }) {
               </span>
             </div>
           ))}
-          <button style={{ height: 44, borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer', marginTop: 'auto' }}>Contact Ruth</button>
+          <button onClick={() => showToast('Opens message to Ruth.')} style={{ height: 44, borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer', marginTop: 'auto' }}>Contact Ruth</button>
         </div>
       </div>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
   )
 }

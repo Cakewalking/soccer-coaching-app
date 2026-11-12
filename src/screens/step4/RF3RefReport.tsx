@@ -1,11 +1,12 @@
+import { useState } from 'react'
 const G = '#2f6252', INK = '#10211f', MUT = '#4a5a57', PALE = '#eef5f2'
 
 const WHAT = ['Yellow card','Red card','Injury','Spectator behaviour','Other']
 const WHY = ['Late tackle','Handball','Foul language','Violent conduct','Simulation','Dissent']
 const TEAMS = ['Wattle Creek FC','Northgate City']
 
-const Chip = ({ label, active }: { label: string; active?: boolean }) => (
-  <div style={{ height: 36, padding: '0 14px', borderRadius: 99, border: `2px solid ${active ? G : '#c5c8c4'}`, background: active ? PALE : '#fff', display: 'flex', alignItems: 'center', fontSize: 14, fontWeight: active ? 700 : 500, color: active ? G : INK, cursor: 'pointer', whiteSpace: 'nowrap' as const }}>{label}</div>
+const Chip = ({ label, active, onToggle }: { label: string; active?: boolean; onToggle?: () => void }) => (
+  <button onClick={onToggle} style={{ height: 36, padding: '0 14px', borderRadius: 99, border: `2px solid ${active ? G : '#c5c8c4'}`, background: active ? PALE : '#fff', display: 'flex', alignItems: 'center', fontSize: 14, fontWeight: active ? 700 : 500, color: active ? G : INK, cursor: 'pointer', whiteSpace: 'nowrap' as const, fontFamily: 'inherit' }}>{label}</button>
 )
 
 const NavItem = ({ icon, label, active }: { icon: string; label: string; active?: boolean }) => (
@@ -16,6 +17,12 @@ const NavItem = ({ icon, label, active }: { icon: string; label: string; active?
 )
 
 export default function RF3RefReport(_: { onBack?: () => void }) {
+  const [activeWhat, setActiveWhat] = useState('Yellow card')
+  const [activeTeam, setActiveTeam] = useState('Northgate City')
+  const [activeWhy, setActiveWhy] = useState('Late tackle')
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
+
   return (
     <div style={{ width: 390, height: 844, background: '#f7f8f7', boxSizing: 'border-box' as const, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' as const, overflow: 'hidden' }}>
       <div style={{ flex: 'none', padding: '12px 18px', background: G, color: '#fff', display: 'flex', alignItems: 'center', gap: 10 }}>
@@ -27,11 +34,11 @@ export default function RF3RefReport(_: { onBack?: () => void }) {
       <div style={{ flex: 1, minHeight: 0, overflowY: 'auto', padding: '14px 16px', display: 'flex', flexDirection: 'column' as const, gap: 14 }}>
         <div>
           <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 8 }}>What happened</div>
-          <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: 8 }}>{WHAT.map(w => <Chip key={w} label={w} active={w === 'Yellow card'} />)}</div>
+          <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: 8 }}>{WHAT.map(w => <Chip key={w} label={w} active={w === activeWhat} onToggle={() => setActiveWhat(w)} />)}</div>
         </div>
         <div>
           <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 8 }}>Team</div>
-          <div style={{ display: 'flex', gap: 8 }}>{TEAMS.map(t => <Chip key={t} label={t} active={t === 'Northgate City'} />)}</div>
+          <div style={{ display: 'flex', gap: 8 }}>{TEAMS.map(t => <Chip key={t} label={t} active={t === activeTeam} onToggle={() => setActiveTeam(t)} />)}</div>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
           <div>
@@ -45,10 +52,10 @@ export default function RF3RefReport(_: { onBack?: () => void }) {
         </div>
         <div>
           <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 8 }}>Why</div>
-          <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: 8 }}>{WHY.map(w => <Chip key={w} label={w} active={w === 'Late tackle'} />)}</div>
+          <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: 8 }}>{WHY.map(w => <Chip key={w} label={w} active={w === activeWhy} onToggle={() => setActiveWhy(w)} />)}</div>
         </div>
         <div style={{ marginTop: 'auto', paddingTop: 8 }}>
-          <button style={{ width: '100%', height: 50, borderRadius: 12, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 16, fontWeight: 700, cursor: 'pointer' }}>Send to Ruth</button>
+          <button onClick={() => showToast('Report sent to Ruth.')} style={{ width: '100%', height: 50, borderRadius: 12, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 16, fontWeight: 700, cursor: 'pointer' }}>Send to Ruth</button>
         </div>
       </div>
       <nav style={{ flex: 'none', display: 'flex', borderTop: '1px solid #c5c8c4', background: '#fff' }}>
@@ -57,6 +64,7 @@ export default function RF3RefReport(_: { onBack?: () => void }) {
         <NavItem icon="💬" label="Feedback" />
         <NavItem icon="👤" label="Me" />
       </nav>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
   )
 }

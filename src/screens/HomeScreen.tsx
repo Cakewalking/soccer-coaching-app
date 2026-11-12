@@ -1,4 +1,7 @@
+import { useState } from 'react'
 import { INBOX, METRICS, WEEK_SCHEDULE, RESULTS, SQUAD, type Role } from '../data'
+import { useSandbox } from './sandbox/SandboxContext'
+import { addTeam } from './sandbox/sandboxStore'
 
 interface Props {
   role: Role
@@ -9,6 +12,19 @@ interface Props {
 }
 
 function HomeEmpty({ onNav }: { onNav: (s: string) => void }) {
+  const { active: inSandbox, store, update } = useSandbox()
+  const [teamName, setTeamName] = useState('')
+
+  function saveTeam() {
+    const name = teamName.trim()
+    if (!name || !inSandbox) return
+    update(addTeam(store, { name, ageGroup: '' }))
+    setTeamName('')
+  }
+
+  const teamLabel = inSandbox ? (store.teams[0]?.name ?? '') : 'U12 Sam'
+  const hasTeam   = inSandbox ? store.teams.length > 0 : true
+
   const steps: Array<{ n: number; title: string; body: string; btn: string; nav: string }> = [
     { n: 1, title: 'Add your squad',          body: 'Names, positions and a parent contact. Import a spreadsheet or share an invite link.', btn: 'Add players',  nav: 'squad'    },
     { n: 2, title: 'Add your fixtures',        body: 'Clean Sheet plans training around your game days.',                                    btn: 'Add fixtures', nav: 'fixtures' },
@@ -23,9 +39,22 @@ function HomeEmpty({ onNav }: { onNav: (s: string) => void }) {
     <div style={{ flexGrow: 1, minHeight: 0, display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 340px', gap: 16, padding: '20px 28px 24px', boxSizing: 'border-box', overflow: 'hidden' }}>
       <div style={{ minHeight: 0, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 16 }}>
         <div>
-          <h1 style={{ margin: '0 0 2px', fontSize: 26, fontWeight: 700, letterSpacing: '-0.02em' }}>Welcome to Clean Sheet, Sam</h1>
-          <div style={{ fontSize: 14, color: '#4a5a57' }}>U12 Sam · let's get your team ready</div>
+          <h1 style={{ margin: '0 0 2px', fontSize: 26, fontWeight: 700, letterSpacing: '-0.02em' }}>
+            {inSandbox ? 'Welcome to Clean Sheet' : 'Welcome to Clean Sheet, Sam'}
+          </h1>
+          <div style={{ fontSize: 14, color: '#4a5a57' }}>
+            {inSandbox ? (teamLabel || 'Your team') : 'U12 Sam'} · let's get your team ready
+          </div>
         </div>
+        {inSandbox && !hasTeam && (
+          <form onSubmit={e => { e.preventDefault(); saveTeam() }} style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '16px 20px', display: 'flex', gap: 10, alignItems: 'flex-end' }}>
+            <div style={{ flex: 1 }}>
+              <label style={{ display: 'block', fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#4a5a57', marginBottom: 6 }}>Name your team to get started</label>
+              <input value={teamName} onChange={e => setTeamName(e.target.value)} placeholder="e.g. U12 Blues, U16 Redbacks" autoFocus style={{ width: '100%', height: 44, padding: '0 12px', border: '1px solid #c5c8c4', borderRadius: 8, fontSize: 14, fontFamily: 'inherit', boxSizing: 'border-box' as const, outline: 'none', color: '#10211f' }} />
+            </div>
+            <button type="submit" style={{ height: 44, padding: '0 18px', borderRadius: 8, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>Save</button>
+          </form>
+        )}
         <div style={{ background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 16, overflow: 'hidden' }}>
           <div style={{ padding: '12px 16px', background: '#2f6252', display: 'flex', alignItems: 'center', gap: 10 }}>
             <span style={{ fontSize: 15, fontWeight: 700, color: '#ffffff' }}>Get set up</span>
