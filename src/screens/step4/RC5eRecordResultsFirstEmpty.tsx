@@ -1,8 +1,12 @@
+import { useState } from 'react'
+
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 const NAV_ITEMS = ['Home', 'Squad', 'Training', 'Match day', 'Clips']
 const SUBNAV = ["Tonight's session", 'This week', 'Suggested', 'Drill library', 'Growth and load', 'Record']
 
 export default function RC5eRecordResultsFirstEmpty(_: { onBack?: () => void }) {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, height: 820, boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       <div style={{ flex: 'none', background: '#fff', borderBottom: `1px solid ${LN}` }}>
@@ -39,7 +43,7 @@ export default function RC5eRecordResultsFirstEmpty(_: { onBack?: () => void }) 
             </div>
             <div style={{ fontSize: 13, color: MUT, lineHeight: 1.5 }}>Run it again with the same set-up and the two results will line up here for comparison.</div>
           </div>
-          <button style={{ height: 48, borderRadius: 12, background: GD, color: '#fff', border: 'none', fontSize: 15, fontWeight: 700, cursor: 'pointer', alignSelf: 'flex-start' as const, padding: '0 24px' }}>Add to next week</button>
+          <button style={{ height: 48, borderRadius: 12, background: GD, color: '#fff', border: 'none', fontSize: 15, fontWeight: 700, cursor: 'pointer', alignSelf: 'flex-start' as const, padding: '0 24px' }} onClick={() => st('Adding to next week.')}>Add to next week</button>
         </div>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '20px' }}>
           <div style={{ fontSize: 14, fontWeight: 700, color: INK, marginBottom: 12 }}>It still counts tonight</div>
@@ -53,6 +57,7 @@ export default function RC5eRecordResultsFirstEmpty(_: { onBack?: () => void }) 
             ))}
           </div>
         </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
       </main>
     </div>
   )

@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', BG = '#f5f6f4'
 
 function Session({ time, group, detail, plan, tag }: { time: string; group: string; detail: string; plan: string; tag?: string }) {
@@ -17,6 +19,8 @@ function Session({ time, group, detail, plan, tag }: { time: string; group: stri
 }
 
 export default function ACC1CoachToday() {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, background: BG, fontFamily: 'var(--font-sans)', minHeight: 820 }}>
       {/* Top nav */}
@@ -54,8 +58,8 @@ export default function ACC1CoachToday() {
             <div style={{ fontSize: 22, fontWeight: 800, color: INK, marginBottom: 2 }}>Hi Reece</div>
             <div style={{ fontSize: 13, color: MUT }}>Thursday 4 June · 3 sessions today at Messmate Primary School</div>
             <div style={{ display: 'flex', gap: 12, marginTop: 8 }}>
-              <button style={{ height: 36, padding: '0 16px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, cursor: 'pointer' }}>Group chats</button>
-              <button style={{ height: 36, padding: '0 16px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, cursor: 'pointer' }}>Message Dani</button>
+              <button onClick={() => st('Opening group chats.')} style={{ height: 36, padding: '0 16px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, cursor: 'pointer' }}>Group chats</button>
+              <button onClick={() => st('Opening message to Dani.')} style={{ height: 36, padding: '0 16px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, cursor: 'pointer' }}>Message Dani</button>
             </div>
           </div>
 
@@ -97,10 +101,11 @@ export default function ACC1CoachToday() {
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 18px' }}>
             <div style={{ fontSize: 14, fontWeight: 700, color: INK, marginBottom: 4 }}>Term reports</div>
             <div style={{ fontSize: 13, color: MUT, marginBottom: 10 }}>8 of your 52 are drafted from your notes. 4 are ready for you to check.</div>
-            <button style={{ height: 36, padding: '0 16px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, cursor: 'pointer' }}>Check a draft</button>
+            <button onClick={() => st('Opening draft report.')} style={{ height: 36, padding: '0 16px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, cursor: 'pointer' }}>Check a draft</button>
           </div>
         </div>
       </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }

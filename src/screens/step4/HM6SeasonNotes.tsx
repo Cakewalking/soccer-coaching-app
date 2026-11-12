@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 type NoteStatus = 'Sent' | 'Draft' | 'To write'
@@ -28,6 +30,8 @@ const LOVED_ON = new Set(['Being captain', 'Treasure island'])
 const BETTER_ON = new Set(['Joining in', 'Dribbling'])
 
 export default function HM6SeasonNotes(_: { onBack?: () => void }) {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }}>
       <div style={{ background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 20, height: 64 }}>
@@ -52,7 +56,7 @@ export default function HM6SeasonNotes(_: { onBack?: () => void }) {
           <h1 style={{ margin: 0, fontSize: 26, fontWeight: 700, letterSpacing: '-0.02em' }}>Season notes</h1>
           <span style={{ fontSize: 14, color: MUT }}>One short note for each family · 2 sent, 4 drafted, 4 to write</span>
         </div>
-        <button style={{ height: 44, padding: '0 18px', borderRadius: 10, border: `1px solid ${G}`, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Send the 4 drafts</button>
+        <button onClick={() => st('Sending 4 drafted notes.')} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: `1px solid ${G}`, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Send the 4 drafts</button>
       </div>
 
       <div style={{ flex: 1, padding: '12px 28px 18px', display: 'grid', gap: 14, gridTemplateColumns: '400px minmax(0, 1fr)' }}>
@@ -103,11 +107,12 @@ export default function HM6SeasonNotes(_: { onBack?: () => void }) {
 
           <div style={{ marginTop: 'auto', fontSize: 14, color: MUT }}>No scores or comparisons. Two things he loved, two he got better at, in your words.</div>
           <div style={{ display: 'flex', gap: 8 }}>
-            <button style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Edit</button>
-            <button style={{ flex: 1, height: 44, borderRadius: 10, border: `1px solid ${G}`, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Send to Arlo's dad</button>
+            <button onClick={() => st('Opening note editor.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Edit</button>
+            <button onClick={() => st("Note sent to Arlo's dad.")} style={{ flex: 1, height: 44, borderRadius: 10, border: `1px solid ${G}`, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Send to Arlo's dad</button>
           </div>
         </div>
       </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }

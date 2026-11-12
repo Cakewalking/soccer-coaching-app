@@ -94,12 +94,12 @@ export default function ACC4PlayerPlan({ mode }: { mode?: 'new' } = {}) {
         {isNew ? (
           <>
             <button onClick={() => showToast("New message to Luca's parents.")} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 14, fontWeight: 600, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Message Luca's parents</button>
-            <button style={{ height: 44, padding: '0 18px', borderRadius: 10, border: 0, background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Complete assessment</button>
+            <button onClick={() => showToast('Opening assessment.')} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: 0, background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Complete assessment</button>
           </>
         ) : (
           <>
             <button onClick={() => showToast('New message to Tess Okonkwo.')} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 14, fontWeight: 600, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Message Kai's mum</button>
-            <button style={{ height: 44, padding: '0 18px', borderRadius: 10, border: 0, background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Write term report</button>
+            <button onClick={() => showToast('Writing term report.')} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: 0, background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Write term report</button>
           </>
         )}
       </div>

@@ -18,6 +18,8 @@ const CHATS: Array<{ id: ChatId; ini: string; bg: string; label: string; time: s
 ]
 
 function U9GroupChat({ empty, onBack }: { empty?: boolean; onBack: () => void }) {
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
       {/* Header */}
@@ -96,13 +98,14 @@ function U9GroupChat({ empty, onBack }: { empty?: boolean; onBack: () => void })
       {/* Compose */}
       <div style={{ padding: '12px 20px', borderTop: `1px solid ${LN}`, background: '#fff', flexShrink: 0 }}>
         <div style={{ display: 'flex', gap: 8, marginBottom: 10 }}>
-          {['📷', '🎥', '🎤', '📊', '📍', '📄'].map((icon, i) => (
-            <button key={i} style={{ width: 36, height: 36, borderRadius: '50%', border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', fontSize: 15 }}>{icon}</button>
-          ))}
+          {(['📷', '🎥', '🎤', '📊', '📍', '📄'] as const).map((icon, i) => {
+            const labels = ['Adding a photo.', 'Adding a video.', 'Recording a voice message.', 'Creating a poll.', 'Sharing a location.', 'Attaching a file.']
+            return <button key={i} onClick={() => showToast(labels[i])} style={{ width: 36, height: 36, borderRadius: '50%', border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', fontSize: 15 }}>{icon}</button>
+          })}
         </div>
         <div style={{ display: 'flex', gap: 10 }}>
           <input defaultValue="" placeholder="Write to the families" style={{ flex: 1, height: 44, padding: '0 14px', border: `1px solid ${LN}`, borderRadius: 999, fontFamily: 'inherit', fontSize: 14, outline: 'none' }}/>
-          <button style={{ width: 44, height: 44, borderRadius: '50%', border: 'none', background: G, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <button onClick={() => showToast('Message sent.')} style={{ width: 44, height: 44, borderRadius: '50%', border: 'none', background: G, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <svg width={18} height={18} viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={2} strokeLinecap="round"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>
           </button>
         </div>
@@ -110,12 +113,15 @@ function U9GroupChat({ empty, onBack }: { empty?: boolean; onBack: () => void })
           {empty ? 'Everyone in this chat can see this.' : 'Clean Sheet steps in if someone posts a score or a ladder: under 12s don\'t keep them.'}
         </div>
       </div>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
   )
 }
 
 export default function TeamChatMiniRoos({ empty, onBack }: { empty?: boolean; onBack: () => void }) {
   const [activeChat, setActiveChat] = useState<ChatId | null>(null)
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
 
   if (activeChat === 'u9') {
     return <U9GroupChat empty={empty} onBack={() => setActiveChat(null)}/>
@@ -130,10 +136,10 @@ export default function TeamChatMiniRoos({ empty, onBack }: { empty?: boolean; o
             <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth={2.5} strokeLinecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
           </button>
           <div style={{ flex: 1, fontSize: 24, fontWeight: 700, color: INK, letterSpacing: '-0.02em' }}>Chats</div>
-          <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>New chat</button>
+          <button onClick={() => showToast('Opening new chat.')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>New chat</button>
         </div>
         <div style={{ display: 'flex', borderBottom: `2px solid ${LN}`, marginBottom: 0 }}>
-          <button style={{ height: 44, padding: '0 14px', border: 'none', background: 'transparent', borderBottom: `2px solid ${G2}`, color: INK, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', marginBottom: -2 }}>Inbox</button>
+          <button style={{ height: 44, padding: '0 14px', border: 'none', background: 'transparent', borderBottom: `2px solid ${G2}`, color: INK, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', marginBottom: -2 }} onClick={() => showToast('Opening inbox.')}>Inbox</button>
         </div>
       </div>
 
@@ -158,6 +164,7 @@ export default function TeamChatMiniRoos({ empty, onBack }: { empty?: boolean; o
           Nobody's phone number is shared. Families leave these chats when the season ends.
         </div>
       </div>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
   )
 }

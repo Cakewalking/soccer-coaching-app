@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2', BG = '#f5f6f4'
 
 function CoachClipsShell({ activeTab, children }: { activeTab: string; children: React.ReactNode }) {
@@ -103,6 +105,8 @@ export function C3ClipsByPlayer() {
 // ─── CL1 Playlists ─────────────────────────────────────────────────────────────
 
 export function CL1Playlists() {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   const playlists = [
     { title: 'Team talk · Harbour Rovers', clips: 5, dur: '4 min', note: 'Ready for Saturday' },
     { title: "Pressing: what good looks like", clips: 9, dur: 'from 4 games', note: 'Used in 3 team talks' },
@@ -113,7 +117,7 @@ export function CL1Playlists() {
       <div style={{ padding: 24 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
           <div style={{ fontSize: 16, fontWeight: 700, color: INK }}>Playlists and shared clips</div>
-          <button style={{ height: 44, padding: '0 20px', borderRadius: 10, border: 'none', background: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>+ New playlist</button>
+          <button onClick={() => st('Creating new playlist.')} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: 'none', background: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>+ New playlist</button>
         </div>
         <div style={{ fontSize: 13, color: MUT, marginBottom: 16 }}>Build a playlist once, use it in team talks or send it to players</div>
         <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 10 }}>
@@ -132,6 +136,7 @@ export function CL1Playlists() {
           ))}
         </div>
       </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </CoachClipsShell>
   )
 }
@@ -139,6 +144,8 @@ export function CL1Playlists() {
 // ─── TC1 To Check ─────────────────────────────────────────────────────────────
 
 export function TC1ToCheck() {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   const checks = [
     { title: 'A win in their half?', game: 'Ironbark · min 24', question: 'Did we win the ball in their half?', certainty: '62% sure', desc: "Jai and their defender reached the ball together, right on halfway. It's hard to tell who got there first, and which side of the line it was.", options: ['Yes, in their half', 'Yes, but in our half', "No, they kept it", "Not sure, skip for now"] },
     { title: 'Who is this?', game: 'Ironbark · min 34', question: 'Which player is this?', certainty: '58% sure', desc: 'Two players are very close together here. Clean Sheet thinks it\'s Noah, but Ella is nearby.', options: ['Noah Okafor', 'Ella Brandt', 'Hard to tell', 'Skip for now'] },
@@ -175,12 +182,13 @@ export function TC1ToCheck() {
                   <button key={j} style={{ height: 40, borderRadius: 8, border: `1px solid ${LN}`, background: j === 0 ? PALE : '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: j === 0 ? 700 : 500, color: j === 0 ? G : INK, cursor: 'pointer', textAlign: 'left' as const, paddingLeft: 14 }}>{opt}</button>
                 ))}
               </div>
-              <button style={{ width: '100%', height: 44, marginTop: 10, borderRadius: 10, border: 'none', background: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>Confirm</button>
+              <button onClick={() => st('Confirmed.')} style={{ width: '100%', height: 44, marginTop: 10, borderRadius: 10, border: 'none', background: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>Confirm</button>
             </div>
           ))}
         </div>
         <div style={{ fontSize: 12, color: MUT }}>Your answer updates the review straight away.</div>
       </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </CoachClipsShell>
   )
 }

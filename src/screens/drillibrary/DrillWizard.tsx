@@ -94,6 +94,8 @@ function WizStep1({ name, onName, players, onPlayers, time, onTime, area, onArea
 
 function WizStep2() {
   const [activeTool, setActiveTool] = useState('Our player')
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   const tools = ['Our player','Opponent','Cone','Ball','— Pass','-- Run']
   return (
     <div style={{ padding:'40px 60px' }}>
@@ -119,8 +121,8 @@ function WizStep2() {
             )
           })}
           <div style={{ display:'flex', gap:6, marginTop:4 }}>
-            <button style={{ flex:1, height: 44, border:`1px solid ${LN}`, borderRadius:8, background:'#fff', color:MUT, fontSize:12, cursor:'pointer', fontFamily:'inherit' }}>Undo</button>
-            <button style={{ flex:1, height: 44, border:`1px solid ${LN}`, borderRadius:8, background:'#fff', color:MUT, fontSize:12, cursor:'pointer', fontFamily:'inherit' }}>Clear</button>
+            <button onClick={() => st('Undo.')} style={{ flex:1, height: 44, border:`1px solid ${LN}`, borderRadius:8, background:'#fff', color:MUT, fontSize:12, cursor:'pointer', fontFamily:'inherit' }}>Undo</button>
+            <button onClick={() => st('Drawing cleared.')} style={{ flex:1, height: 44, border:`1px solid ${LN}`, borderRadius:8, background:'#fff', color:MUT, fontSize:12, cursor:'pointer', fontFamily:'inherit' }}>Clear</button>
           </div>
         </div>
         <div style={{ flex:1, minHeight:300, background:'#f0f4f2', borderRadius:12, border:`2px dashed #c5d4cd`, display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', position:'relative', overflow:'hidden' }}>
@@ -128,6 +130,7 @@ function WizStep2() {
           <div style={{ position:'absolute', bottom:12, fontSize:12, color:MUT }}>Tap the pitch to add: {activeTool.toLowerCase()}. Hold anything to move or delete it.</div>
         </div>
       </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }

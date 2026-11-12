@@ -31,6 +31,8 @@ function StatGrid({ stats }: { stats: Stat[] }) {
 type Attention = { text: string; sub: string; action?: string }
 
 function NeedsAttention({ items }: { items: Attention[] }) {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   if (items.length === 0) {
     return (
       <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 18px', marginBottom: 14 }}>
@@ -48,10 +50,11 @@ function NeedsAttention({ items }: { items: Attention[] }) {
           <div>
             <div style={{ fontSize: 14, fontWeight: 600, color: INK }}>{item.text}</div>
             <div style={{ fontSize: 12, color: MUT }}>{item.sub}</div>
-            {item.action && <button style={{ marginTop: 6, fontSize: 12, fontWeight: 600, color: G, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>{item.action}</button>}
+            {item.action && <button onClick={() => st('Opening action.')} style={{ marginTop: 6, fontSize: 12, fontWeight: 600, color: G, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>{item.action}</button>}
           </div>
         </div>
       ))}
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }
@@ -150,7 +153,7 @@ function TwoCols({ left, right }: { left: React.ReactNode; right: React.ReactNod
   )
 }
 
-import React from 'react'
+import React, { useState } from 'react'
 
 export function D7U9Blue() {
   return (

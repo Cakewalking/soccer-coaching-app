@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2', BG = '#f5f6f4'
 
 function CoachNav({ active }: { active: string }) {
@@ -150,6 +152,8 @@ export function WK1ThisWeek() {
 // ─── CF1 Fixtures and Results ─────────────────────────────────────────────────
 
 export function CF1Fixtures() {
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   const homeNav = ['Overview', 'Inbox', 'Calendar', 'Fixtures and results', 'Our style', 'Team staff']
   const results = [
     { date: 'Sat 30 May', opp: 'Ironbark United', ha: 'A', score: '3–1', res: 'W' },
@@ -184,7 +188,7 @@ export function CF1Fixtures() {
           <div style={{ fontSize: 20, fontWeight: 800, color: INK, marginBottom: 2 }}>Fixtures and results</div>
           <div style={{ fontSize: 13, color: MUT }}>U12 Sam · 3rd of 10 · 16 points from 8 games · 2 × 30 minutes, 9 a side</div>
         </div>
-        <button style={{ height: 36, padding: '0 16px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, cursor: 'pointer' }}>Sync to my calendar</button>
+        <button onClick={() => showToast('Syncing fixtures to your calendar.')} style={{ height: 36, padding: '0 16px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, cursor: 'pointer' }}>Sync to my calendar</button>
       </div>
 
       <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, marginBottom: 20, overflow: 'hidden' }}>
@@ -246,6 +250,7 @@ export function CF1Fixtures() {
           </div>
         ))}
       </div>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </Shell>
   )
 }
@@ -353,6 +358,8 @@ export function AV1Availability() {
 // ─── MS1 Team Sheet ───────────────────────────────────────────────────────────
 
 export function MS1TeamSheet() {
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   const matchNav = ['Team talk', 'Line-up and minutes', 'Opposition', 'Review']
   const onSheet = [
     { init: 'SD', name: 'Sam Delaney', satOut: 1 },
@@ -383,8 +390,8 @@ export function MS1TeamSheet() {
           <div style={{ fontSize: 13, color: MUT }}>Sat 6 Jun vs Harbour Rovers · 14 of 17 · due in Dribl by 9:00</div>
         </div>
         <div style={{ display: 'flex', gap: 10 }}>
-          <button style={{ height: 44, padding: '0 20px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: G, cursor: 'pointer' }}>Who's coming</button>
-          <button style={{ height: 44, padding: '0 20px', borderRadius: 10, border: 'none', background: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>Send to Dribl</button>
+          <button onClick={() => showToast('Opening availability for this game.')} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: G, cursor: 'pointer' }}>Who's coming</button>
+          <button onClick={() => showToast('Team sheet sent to Dribl.')} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: 'none', background: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>Send to Dribl</button>
         </div>
       </div>
 
@@ -425,6 +432,7 @@ export function MS1TeamSheet() {
           <div style={{ fontSize: 12, color: MUT }}>1 · Away, sick or suspended — they come off first</div>
         </div>
       </div>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </Shell>
   )
 }
@@ -432,6 +440,8 @@ export function MS1TeamSheet() {
 // ─── R1 Match Review ──────────────────────────────────────────────────────────
 
 export function R1MatchReview() {
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   const matchNav = ['Team talk', 'Line-up and minutes', 'Opposition', 'Review']
   const styleRows = [
     { label: 'Goal kicks played short', actual: '64%', aim: '70%+', status: 'Close', dir: 'with' },
@@ -461,7 +471,7 @@ export function R1MatchReview() {
         <div style={{ fontSize: 13, color: MUT, marginBottom: 8 }}>Sat 30 May · Mia, Jai and Zoe scored · 7 key clips</div>
         <div style={{ display: 'flex', gap: 10 }}>
           <div style={{ fontSize: 12, padding: '4px 12px', borderRadius: 20, background: PALE, color: G }}>Good data for 57 of 60 min</div>
-          <button style={{ height: 32, padding: '0 16px', borderRadius: 20, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, cursor: 'pointer' }}>Highlights · 4 min</button>
+          <button onClick={() => showToast('Opening highlights reel.')} style={{ height: 32, padding: '0 16px', borderRadius: 20, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, cursor: 'pointer' }}>Highlights · 4 min</button>
         </div>
       </div>
 
@@ -484,7 +494,7 @@ export function R1MatchReview() {
       <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 20px', marginBottom: 20 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: INK }}>Work on this week</div>
-          <button style={{ height: 32, padding: '0 14px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, color: G, cursor: 'pointer' }}>Open Thursday's plan</button>
+          <button onClick={() => showToast("Opening Thursday's training plan.")} style={{ height: 32, padding: '0 14px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, color: G, cursor: 'pointer' }}>Open Thursday's plan</button>
         </div>
         {works.map((w, i) => (
           <div key={i} style={{ display: 'flex', gap: 12, padding: '10px 0', borderTop: i === 0 ? 'none' : `1px solid ${LN}` }}>
@@ -507,6 +517,7 @@ export function R1MatchReview() {
           </div>
         ))}
       </div>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </Shell>
   )
 }
@@ -514,6 +525,8 @@ export function R1MatchReview() {
 // ─── SE1 Season Summaries ─────────────────────────────────────────────────────
 
 export function SE1SeasonSummaries() {
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   const squadNav = ['Players', 'Development goals', 'Wellness', 'Availability', 'Consent and privacy']
   const players = [
     { init: 'MT', name: 'Mia Tran', status: 'Ready' },
@@ -535,8 +548,8 @@ export function SE1SeasonSummaries() {
           <div style={{ fontSize: 13, color: MUT }}>U12 Sam · season 2026 · 9 ready, 5 to check, 3 to write</div>
         </div>
         <div style={{ display: 'flex', gap: 10 }}>
-          <button style={{ height: 44, padding: '0 20px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: G, cursor: 'pointer' }}>What parents see</button>
-          <button style={{ height: 44, padding: '0 20px', borderRadius: 10, border: 'none', background: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>Send the 9 ready</button>
+          <button onClick={() => showToast('Opening parent view of summaries.')} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: G, cursor: 'pointer' }}>What parents see</button>
+          <button onClick={() => showToast('Sending 9 ready summaries.')} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: 'none', background: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>Send the 9 ready</button>
         </div>
       </div>
 
@@ -593,11 +606,12 @@ export function SE1SeasonSummaries() {
           <div style={{ fontSize: 12, color: MUT, marginBottom: 16 }}>Left out on purpose: running numbers, sprint counts, wellness answers and anything that compares her with teammates.</div>
 
           <div style={{ display: 'flex', gap: 10 }}>
-            <button style={{ height: 44, flex: 1, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: G, cursor: 'pointer' }}>Edit</button>
-            <button style={{ height: 44, flex: 1, borderRadius: 10, border: 'none', background: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>Send Mia's</button>
+            <button onClick={() => showToast("Opening draft editor for Mia.")} style={{ height: 44, flex: 1, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: G, cursor: 'pointer' }}>Edit</button>
+            <button onClick={() => showToast("Mia's summary sent.")} style={{ height: 44, flex: 1, borderRadius: 10, border: 'none', background: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>Send Mia's</button>
           </div>
         </div>
       </div>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </Shell>
   )
 }
@@ -605,6 +619,8 @@ export function SE1SeasonSummaries() {
 // ─── Empty states for SE1e and AV1e ──────────────────────────────────────────
 
 export function SE1eSeasonSummariesEmpty() {
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   const squadNav = ['Players', 'Development goals', 'Wellness', 'Availability', 'Consent and privacy']
   return (
     <Shell navActive="Squad" sideItems={squadNav} sideActive="Players">
@@ -613,13 +629,16 @@ export function SE1eSeasonSummariesEmpty() {
       <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '48px 24px', textAlign: 'center' as const }}>
         <div style={{ fontSize: 16, fontWeight: 700, color: INK, marginBottom: 8 }}>No summaries yet</div>
         <div style={{ fontSize: 14, color: MUT, marginBottom: 20 }}>Summaries are drafted from your session notes and goals as the season progresses.</div>
-        <button style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 'none', background: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>Check a summary</button>
+        <button onClick={() => showToast('Opening draft summary.')} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 'none', background: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>Check a summary</button>
       </div>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </Shell>
   )
 }
 
 export function AV1eAvailabilityEmpty() {
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   const squadNav = ['Players', 'Development goals', 'Wellness', 'Availability', 'Consent and privacy']
   return (
     <Shell navActive="Squad" sideItems={squadNav} sideActive="Availability">
@@ -628,8 +647,9 @@ export function AV1eAvailabilityEmpty() {
       <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '48px 24px', textAlign: 'center' as const }}>
         <div style={{ fontSize: 16, fontWeight: 700, color: INK, marginBottom: 8 }}>No availability yet</div>
         <div style={{ fontSize: 14, color: MUT, marginBottom: 20 }}>Parents and players answer availability through the app when you post upcoming sessions.</div>
-        <button style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 'none', background: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>Post upcoming sessions</button>
+        <button onClick={() => showToast('Opening session planner.')} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 'none', background: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>Post upcoming sessions</button>
       </div>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </Shell>
   )
 }

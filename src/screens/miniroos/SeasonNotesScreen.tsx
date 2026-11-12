@@ -27,7 +27,7 @@ const STATUS_COLORS: Record<NoteStatus, { bg: string; color: string }> = {
   todo:  { bg: '#f0f1ef', color: '#4a5a57' },
 }
 
-function ArloDetail({ onSend }: { onSend: () => void }) {
+function ArloDetail({ onSend, onEdit }: { onSend: () => void; onEdit: () => void }) {
   return (
     <aside style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '18px 20px', display: 'flex', flexDirection: 'column', gap: 0 }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
@@ -64,7 +64,7 @@ function ArloDetail({ onSend }: { onSend: () => void }) {
 
       <div style={{ display: 'flex', gap: 8 }}>
         <button style={{ flexGrow: 1, height: 44, borderRadius: 10, border: 0, background: '#2f6252', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, color: '#fff', cursor: 'pointer' }} onClick={onSend}>Send to Arlo's dad</button>
-        <button style={{ height: 44, padding: '0 16px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Edit</button>
+        <button onClick={onEdit} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Edit</button>
       </div>
     </aside>
   )
@@ -118,7 +118,7 @@ export default function SeasonNotesScreen({ empty, onBack }: { empty?: boolean; 
 
         {/* Detail */}
         {selected === 'Arlo' ? (
-          <ArloDetail onSend={() => showToast("Sent to Arlo's dad, Raj.")} />
+          <ArloDetail onSend={() => showToast("Sent to Arlo's dad, Raj.")} onEdit={() => showToast("Opening draft editor for Arlo.")} />
         ) : (
           <aside style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '28px 24px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 12, textAlign: 'center' }}>
             <div style={{ width: 48, height: 48, borderRadius: '999px', background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 700 }}>

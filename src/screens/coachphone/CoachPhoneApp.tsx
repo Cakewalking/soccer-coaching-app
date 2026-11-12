@@ -217,6 +217,8 @@ function CoachPhoneRestMonthHome() {
 
 /* ---- CPh1 Home (populated) ---- */
 function CoachPhoneHomeTab({ onPlan }: { onPlan: () => void }) {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <>
       {/* Tonight's training card */}
@@ -232,7 +234,7 @@ function CoachPhoneHomeTab({ onPlan }: { onPlan: () => void }) {
         </div>
         <div style={{ borderTop: '1px solid #f0f1f0', padding: '10px 14px', display: 'flex', gap: 8 }}>
           <button onClick={onPlan} style={{ flex: 1, height: 44, borderRadius: 10, border: 0, background: GD, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Tonight's plan</button>
-          <button style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #d4d6d4', background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Coming</button>
+          <button onClick={() => st("Opening tonight's availability.")} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #d4d6d4', background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Coming</button>
         </div>
       </Card>
 
@@ -262,8 +264,8 @@ function CoachPhoneHomeTab({ onPlan }: { onPlan: () => void }) {
           <div style={{ fontSize: 14, color: MUT }}>Home · Wattle Creek Reserve</div>
         </div>
         <div style={{ borderTop: '1px solid #f0f1f0', padding: '10px 14px', display: 'flex', gap: 8 }}>
-          <button style={{ flex: 1, height: 44, borderRadius: 10, border: '1px solid #d4d6d4', background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Team sheet</button>
-          <button style={{ flex: 1, height: 44, borderRadius: 10, border: '1px solid #d4d6d4', background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Game day</button>
+          <button onClick={() => st('Opening team sheet.')} style={{ flex: 1, height: 44, borderRadius: 10, border: '1px solid #d4d6d4', background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Team sheet</button>
+          <button onClick={() => st('Opening game day.')} style={{ flex: 1, height: 44, borderRadius: 10, border: '1px solid #d4d6d4', background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Game day</button>
         </div>
       </Card>
 
@@ -272,6 +274,7 @@ function CoachPhoneHomeTab({ onPlan }: { onPlan: () => void }) {
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{ flex: 'none', marginTop: 1 }}><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
         <span style={{ fontSize: 13, color: MUT, lineHeight: 1.4 }}>Review, clips and planning are on the tablet.</span>
       </div>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 80, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '10px 18px', borderRadius: 10, background: '#1f4a3e', color: '#fff', fontSize: 14, fontWeight: 600, whiteSpace: 'nowrap' }}>{toast}</div>}
     </>
   )
 }
@@ -297,6 +300,8 @@ function CoachPhoneComingTab() {
     { initials: 'PH', name: 'Priya Huang', in: true },
   ]
   const [states, setStates] = useState<(boolean | null)[]>(players.map(p => p.in))
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
 
   return (
     <>
@@ -319,7 +324,7 @@ function CoachPhoneComingTab() {
       {/* Remind button for no-reply */}
       {states.some(s => s === null) && (
         <div style={{ padding: '0 12px 10px' }}>
-          <button style={{ width: '100%', height: 44, borderRadius: 10, border: 0, background: GD, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>
+          <button onClick={() => st(`Reminder sent to ${states.filter(s => s === null).length} players.`)} style={{ width: '100%', height: 44, borderRadius: 10, border: 0, background: GD, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>
             Remind {states.filter(s => s === null).length} who haven't answered
           </button>
         </div>
@@ -343,6 +348,7 @@ function CoachPhoneComingTab() {
           </div>
         ))}
       </Card>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 80, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '10px 18px', borderRadius: 10, background: '#1f4a3e', color: '#fff', fontSize: 14, fontWeight: 600, whiteSpace: 'nowrap' }}>{toast}</div>}
     </>
   )
 }
@@ -384,6 +390,8 @@ function CoachPhoneMessagesTab() {
 function CoachPhoneGameTab() {
   const [score, setScore] = useState({ us: 1, them: 0 })
   const [minutes, setMinutes] = useState(23)
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
 
   return (
     <>
@@ -434,7 +442,7 @@ function CoachPhoneGameTab() {
           </div>
         </div>
         <div style={{ padding: '0 14px 12px' }}>
-          <button style={{ width: '100%', height: 44, borderRadius: 10, border: 0, background: GD, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Record this change</button>
+          <button onClick={() => st('Change recorded: Isla off, Tom on.')} style={{ width: '100%', height: 44, borderRadius: 10, border: 0, background: GD, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Record this change</button>
         </div>
       </Card>
 
@@ -447,12 +455,13 @@ function CoachPhoneGameTab() {
           { label: 'Head knock', icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg> },
           { label: 'Half time', icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="3" x2="12" y2="21"/></svg> },
         ].map(a => (
-          <button key={a.label} style={{ height: 56, borderRadius: 12, border: '1px solid #e8e9e7', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: INK, cursor: 'pointer' }}>
+          <button key={a.label} onClick={() => st(`${a.label} recorded.`)} style={{ height: 56, borderRadius: 12, border: '1px solid #e8e9e7', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: INK, cursor: 'pointer' }}>
             {a.icon}
             {a.label}
           </button>
         ))}
       </div>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 80, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '10px 18px', borderRadius: 10, background: '#1f4a3e', color: '#fff', fontSize: 14, fontWeight: 600, whiteSpace: 'nowrap' }}>{toast}</div>}
     </>
   )
 }
@@ -509,13 +518,13 @@ function CoachPhonePlanScreen({ onBack }: { onBack: () => void }) {
 }
 
 /* ---- Empty states ---- */
-function EmptyState({ icon, title, sub, action }: { icon: React.ReactNode; title: string; sub: string; action?: string }) {
+function EmptyState({ icon, title, sub, action, onAction }: { icon: React.ReactNode; title: string; sub: string; action?: string; onAction?: () => void }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', flex: 1, padding: '48px 32px', textAlign: 'center' as const }}>
       <div style={{ width: 60, height: 60, borderRadius: '50%', background: PALE, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}>{icon}</div>
       <div style={{ fontSize: 18, fontWeight: 800, letterSpacing: '-0.02em', color: INK, marginBottom: 8 }}>{title}</div>
       <div style={{ fontSize: 15, color: MUT, lineHeight: 1.5, marginBottom: 24 }}>{sub}</div>
-      {action && <button style={{ height: 48, padding: '0 20px', borderRadius: 12, border: 0, background: GD, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>{action}</button>}
+      {action && <button onClick={onAction} style={{ height: 48, padding: '0 20px', borderRadius: 12, border: 0, background: GD, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>{action}</button>}
     </div>
   )
 }
@@ -548,6 +557,7 @@ export function CPh4CoachPhoneGame() { return <CoachPhoneApp initialTab="game" /
 export function CPh5CoachPhonePlan() { return <CoachPhonePlanScreen onBack={() => {}} /> }
 
 export function CPh1eCoachPhoneHomeEmpty() {
+  const [toast, setToast] = useState<string|null>(null)
   return (
     <PhoneShell tab="home" onTab={() => {}}>
       <EmptyState
@@ -555,7 +565,9 @@ export function CPh1eCoachPhoneHomeEmpty() {
         title="Nothing on yet"
         sub="When you add a session or game, the details appear here."
         action="Add a session"
+        onAction={() => { setToast('Opening session creator.'); setTimeout(() => setToast(null), 3000) }}
       />
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 80, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '10px 18px', borderRadius: 10, background: '#1f4a3e', color: '#fff', fontSize: 14, fontWeight: 600, whiteSpace: 'nowrap' }}>{toast}</div>}
     </PhoneShell>
   )
 }

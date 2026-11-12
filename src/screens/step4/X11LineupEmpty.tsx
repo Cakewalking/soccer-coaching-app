@@ -1,8 +1,12 @@
+import { useState } from 'react'
+
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb'
 
 const POSITIONS = ['GK', 'LB', 'CB', 'RB', 'CM', 'CM', 'LW', 'ST', 'RW']
 
 export default function X11LineupEmpty(_: { onBack?: () => void }) {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820 }}>
       <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 32, height: 52 }}>
@@ -21,8 +25,8 @@ export default function X11LineupEmpty(_: { onBack?: () => void }) {
           <div style={{ fontSize: 13, color: MUT, marginBottom: 20 }}>Sat 6 Jun vs Harbour Rovers · no players yet</div>
 
           <div style={{ display: 'flex', gap: 10, marginBottom: 24 }}>
-            <button style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Add players</button>
-            <button style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Start live game</button>
+            <button onClick={() => st('Opening player selector.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Add players</button>
+            <button onClick={() => st('Starting live game.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Start live game</button>
           </div>
 
           {/* Pitch */}
@@ -48,5 +52,6 @@ export default function X11LineupEmpty(_: { onBack?: () => void }) {
         </div>
       </div>
     </div>
+    {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
   )
 }

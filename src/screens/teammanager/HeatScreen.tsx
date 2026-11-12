@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 interface Props { onBack: () => void }
 
 const CHECKLIST = [
@@ -8,6 +10,8 @@ const CHECKLIST = [
 ]
 
 export default function HeatScreen({ onBack }: Props) {
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ position: 'fixed', inset: 0, zIndex: 100, background: '#f7f8f7', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)', width: 390, margin: '0 auto' }}>
       {/* Header */}
@@ -56,9 +60,10 @@ export default function HeatScreen({ onBack }: Props) {
 
       {/* Footer */}
       <div style={{ flexShrink: 0, padding: '10px 14px 12px', background: '#fff', borderTop: '1px solid #e9eae8', display: 'flex', flexDirection: 'column', gap: 6 }}>
-        <button style={{ height: 50, borderRadius: 10, border: '1px solid #2f6252', background: '#2f6252', color: '#fff', fontSize: 16, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Tell families to bring extra water</button>
+        <button onClick={() => showToast('Message sent to 17 families.')} style={{ height: 50, borderRadius: 10, border: '1px solid #2f6252', background: '#2f6252', color: '#fff', fontSize: 16, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Tell families to bring extra water</button>
         <button onClick={onBack} style={{ height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', color: '#10211f', fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Back to game day</button>
       </div>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 110, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
   )
 }

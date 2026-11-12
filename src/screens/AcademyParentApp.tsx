@@ -267,6 +267,8 @@ function ParentHome({ empty, onCantCome, onShare, onConcern, onChat }: {
 // ─── ACP4 — Fees ─────────────────────────────────────────────────────────────
 
 function FeesView({ empty }: { empty: boolean }) {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   if (empty) return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '20px 16px 24px', display: 'flex', flexDirection: 'column', gap: 16 }}>
       <PHeader title="Fees"/>
@@ -305,11 +307,12 @@ function FeesView({ empty }: { empty: boolean }) {
               <div style={{ fontSize: 14, fontWeight: 700, color: INK }}>{r.a}</div>
               <div style={{ fontSize: 12, color: MUT }}>{r.d} · {r.t}</div>
             </div>
-            <button style={{ fontSize: 13, fontWeight: 700, color: G2, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: '0 4px', minHeight: 44, display: 'flex', alignItems: 'center' }}>Download</button>
+            <button onClick={() => st('Downloading receipt.')} style={{ fontSize: 13, fontWeight: 700, color: G2, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: '0 4px', minHeight: 44, display: 'flex', alignItems: 'center' }}>Download</button>
           </div>
         ))}
         <div style={{ padding: '10px 14px', fontSize: 12, color: MUT }}>For something unexpected on your statement: <span style={{ color: G2, fontWeight: 700 }}>Contact Dani</span></div>
       </Card>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }
@@ -317,6 +320,8 @@ function FeesView({ empty }: { empty: boolean }) {
 // ─── ACP5 — Progress ─────────────────────────────────────────────────────────
 
 function ProgressView({ empty }: { empty: boolean }) {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   if (empty) return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '20px 16px 24px', display: 'flex', flexDirection: 'column', gap: 16 }}>
       <PHeader title="Progress"/>
@@ -365,11 +370,12 @@ function ProgressView({ empty }: { empty: boolean }) {
             <div style={{ fontSize: 13, fontWeight: 700, color: INK }}>Coach clip</div>
             <div style={{ fontSize: 12, color: MUT }}>23 Apr · 48 seconds · Kai approved to share clips</div>
           </div>
-          <button style={{ padding: '0 14px', height: 44, borderRadius: 999, border: `1px solid ${G}`, background: 'transparent', color: G, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Play</button>
+          <button onClick={() => st('Playing clip.')} style={{ padding: '0 14px', height: 44, borderRadius: 999, border: `1px solid ${G}`, background: 'transparent', color: G, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Play</button>
         </div>
       </Card>
 
       <div style={{ fontSize: 12, color: MUT, lineHeight: 1.5 }}>This report is Kai against his own last term. No rankings and no comparisons with other players.</div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }
@@ -525,6 +531,8 @@ function JoinTeamView({ onBack }: { onBack: () => void }) {
 // ─── ACP10 — Raise concern ────────────────────────────────────────────────────
 
 function ConcernView({ onBack }: { onBack: () => void }) {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '20px 16px 24px', display: 'flex', flexDirection: 'column', gap: 14 }}>
       <PHeader title="Raise a concern" back={onBack}/>
@@ -549,8 +557,9 @@ function ConcernView({ onBack }: { onBack: () => void }) {
       <div style={{ background: '#fffaf8', border: `1px solid ${ROSE}22`, borderRadius: 14, padding: '12px 14px' }}>
         <div style={{ fontSize: 13, fontWeight: 700, color: ROSE, marginBottom: 4 }}>Victoria's Social Services Regulator</div>
         <div style={{ fontSize: 12, color: MUT, lineHeight: 1.5, marginBottom: 8 }}>If your concern is about the owner or you're not comfortable raising it here, contact the regulator directly.</div>
-        <button style={{ fontSize: 13, fontWeight: 700, color: ROSE, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: '0 4px', minHeight: 44, display: 'flex', alignItems: 'center' }}>How to contact the regulator →</button>
+        <button onClick={() => st('Opening regulator contact information.')} style={{ fontSize: 13, fontWeight: 700, color: ROSE, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: '0 4px', minHeight: 44, display: 'flex', alignItems: 'center' }}>How to contact the regulator →</button>
       </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }
@@ -558,6 +567,8 @@ function ConcernView({ onBack }: { onBack: () => void }) {
 // ─── ACP11 — Parent chat ─────────────────────────────────────────────────────
 
 function ParentChatView({ empty, onBack }: { empty: boolean; onBack: () => void }) {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   if (empty) return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '20px 16px 24px', display: 'flex', flexDirection: 'column', gap: 14 }}>
       <PHeader title="Group chat" back={onBack}/>
@@ -600,10 +611,11 @@ function ParentChatView({ empty, onBack }: { empty: boolean; onBack: () => void 
       </div>
       <div style={{ padding: '10px 12px', borderTop: `1px solid ${LN}`, display: 'flex', gap: 8, flexShrink: 0, background: '#fff' }}>
         <div style={{ flex: 1, background: '#f5f8f7', borderRadius: 999, border: `1px solid ${LN}`, padding: '0 14px', display: 'flex', alignItems: 'center', fontSize: 14, color: MUT, minHeight: 42 }}>Write a message</div>
-        <button style={{ width: 44, height: 44, borderRadius: '50%', border: 'none', background: G, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+        <button onClick={() => st('Message sent.')} style={{ width: 44, height: 44, borderRadius: '50%', border: 'none', background: G, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
           <svg width={18} height={18} viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
         </button>
       </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }

@@ -1,6 +1,8 @@
 import { useState } from 'react'
 
 function AvailabilityEmpty() {
+  const [toast, setToast] = useState<string | null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   const EmptyCol = ({ title }: { title: string }) => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 2 }}>
@@ -46,7 +48,7 @@ function AvailabilityEmpty() {
               <div style={{ flexGrow: 1 }}>
                 <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 2 }}>{item.title}</div>
                 <div style={{ fontSize: 12, color: '#4a5a57', marginBottom: 8, lineHeight: '16px' }}>{item.sub}</div>
-                <button style={{ height: 44, padding: '0 14px', borderRadius: 8, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>{item.btn}</button>
+                <button onClick={() => st('Opening setup.')} style={{ height: 44, padding: '0 14px', borderRadius: 8, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>{item.btn}</button>
               </div>
             </div>
           ))}
@@ -55,6 +57,7 @@ function AvailabilityEmpty() {
           </div>
         </aside>
       </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }

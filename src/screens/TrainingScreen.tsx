@@ -10,6 +10,8 @@ interface Props {
 }
 
 function TrainingEmpty({ onNav }: { onNav: (s: 'addgame') => void }) {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   const starterSessions = [
     { tag: 'Ready-made', title: 'Pressing basics', sub: '6-second press · small game', note: 'Good first session for any age group' },
     { tag: 'Ready-made', title: 'Pass and move',   sub: 'Passing squares · 3 v 1 · small game', note: 'Builds confidence on the ball' },
@@ -22,7 +24,7 @@ function TrainingEmpty({ onNav }: { onNav: (s: 'addgame') => void }) {
         <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, letterSpacing: '-0.02em' }}>Training</h1>
         <span style={{ fontSize: 14, color: '#4a5a57' }}>No session planned yet</span>
         <div style={{ flexGrow: 1 }} />
-        <button style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>Build your own</button>
+        <button onClick={() => st('Opening session builder.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>Build your own</button>
       </div>
 
       {/* Main two-column */}
@@ -49,7 +51,7 @@ function TrainingEmpty({ onNav }: { onNav: (s: 'addgame') => void }) {
             <div style={{ fontSize: 18, fontWeight: 700, marginBottom: 6 }}>Plans come from your games</div>
             <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: '18px', marginBottom: 14 }}>After your first recorded game, Clean Sheet picks drills that fix what it sees in the video and wearable data. Until then, start from a ready-made session.</div>
             <div style={{ display: 'flex', gap: 8 }}>
-              <button style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Use a starter session</button>
+              <button onClick={() => st('Opening starter sessions.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Use a starter session</button>
               <button onClick={() => onNav('addgame')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: '1px solid #2f6252', background: '#ffffff', color: '#2f6252', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Record a game</button>
             </div>
           </div>
@@ -83,8 +85,9 @@ function TrainingEmpty({ onNav }: { onNav: (s: 'addgame') => void }) {
           <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 2 }}>Adjust for players</div>
           <div style={{ fontSize: 12, color: '#4a5a57', lineHeight: '17px' }}>Players who need a lighter night show up here once wellness check-ins and vests are on.</div>
         </div>
-        <button style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>Turn on check-ins</button>
+        <button onClick={() => st('Turning on check-ins.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>Turn on check-ins</button>
       </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }
@@ -246,7 +249,7 @@ export default function TrainingScreen({ role, onNav, empty }: Props) {
             <div style={{ fontSize: 13, color: '#6f7f7b', marginTop: 2 }}>Thu 4 Jun · Wattle Creek Reserve · <strong>offline</strong></div>
           </div>
           <div style={{ display: 'flex', gap: 8 }}>
-            <button style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #2f6252', background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Open pitch-side</button>
+            <button onClick={() => showToast('Opening pitch-side mode.')} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #2f6252', background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Open pitch-side</button>
             <button onClick={() => setOffline(false)} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', color: '#6f7f7b' }}>Exit offline demo</button>
           </div>
         </div>

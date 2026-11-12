@@ -122,7 +122,7 @@ export default function ReportsTab({ empty }: { empty?: boolean }) {
                   <div style={{ fontSize: 13, color: '#4a5a57', marginBottom: 10, lineHeight: 1.5 }}>{g.body}</div>
                   {g.action && (
                     <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                      <button style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>{g.action}</button>
+                      <button onClick={() => showToast(`${g.action}.`)} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>{g.action}</button>
                       {g.daysLeft && <span style={{ fontSize: 12, color: '#6f7f7b' }}>{g.daysLeft} days left</span>}
                     </div>
                   )}
@@ -200,7 +200,7 @@ export default function ReportsTab({ empty }: { empty?: boolean }) {
                       <span style={{ fontSize: 13, fontWeight: 700, color: r.ok ? '#40826d' : '#c39797' }}>{r.value}</span>
                     </div>
                     {r.action && (
-                      <button style={{ marginTop: 6, height: 44, padding: '0 10px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>{r.action}</button>
+                      <button onClick={() => showToast(`${r.action}.`)} style={{ marginTop: 6, height: 44, padding: '0 10px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>{r.action}</button>
                     )}
                   </div>
                 ))}
@@ -220,7 +220,7 @@ export default function ReportsTab({ empty }: { empty?: boolean }) {
               <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>Season review · Spring 2026</div>
               <div style={{ fontSize: 12, color: '#6f7f7b' }}>Generated from the season's data · 2 rounds left · share after the final</div>
             </div>
-            <button style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Share season review</button>
+            <button onClick={() => showToast('Sharing season review.')} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Share season review</button>
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 300px', gap: 20 }}>
@@ -301,7 +301,7 @@ export default function ReportsTab({ empty }: { empty?: boolean }) {
             <div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
                 <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>Outstanding accounts · 14</div>
-                <button style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>Send all invoices</button>
+                <button onClick={() => showToast('Sending all outstanding invoices.')} style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>Send all invoices</button>
               </div>
               {[
                 { ini: 'EB', name: 'Ella Brennan', team: 'U14 Sam', amount: '$180', days: 42, sent: 2 },
@@ -317,7 +317,7 @@ export default function ReportsTab({ empty }: { empty?: boolean }) {
                   </div>
                   <div style={{ textAlign: 'right' }}>
                     <div style={{ fontSize: 14, fontWeight: 800, color: '#c39797' }}>{a.amount}</div>
-                    <button style={{ height: 44, padding: '0 10px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 11, cursor: 'pointer', marginTop: 4 }}>Send invoice</button>
+                    <button onClick={() => showToast('Invoice sent.')} style={{ height: 44, padding: '0 10px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 11, cursor: 'pointer', marginTop: 4 }}>Send invoice</button>
                   </div>
                 </div>
               ))}

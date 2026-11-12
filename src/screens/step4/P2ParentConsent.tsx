@@ -15,6 +15,8 @@ const PERMS = [
 export default function P2ParentConsent() {
   const [answers, setAnswers] = useState<Record<string, boolean | null>>({})
   const [step, setStep] = useState(0)
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
 
   const allAnswered = PERMS.every(p => answers[p.key] !== undefined)
 
@@ -30,9 +32,10 @@ export default function P2ParentConsent() {
       ))}
       <div style={{ fontSize: 12, color: MUT, marginTop: 16, lineHeight: 1.5 }}>Change any of these whenever you like. You can also download everything we hold about Harper, or ask us to delete it.</div>
       <div style={{ display: 'flex', gap: 10, marginTop: 16 }}>
-        <button style={{ flex: 1, height: 44, borderRadius: 12, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Download Harper's data</button>
-        <button style={{ flex: 1, height: 44, borderRadius: 12, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Done</button>
+        <button onClick={() => st("Downloading Harper's data.")} style={{ flex: 1, height: 44, borderRadius: 12, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Download Harper's data</button>
+        <button onClick={() => st('Done. All set.')} style={{ flex: 1, height: 44, borderRadius: 12, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Done</button>
       </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 

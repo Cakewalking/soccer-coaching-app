@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import type { GameClip } from '../../data'
 import { resultColor } from './clipData'
 
@@ -65,6 +66,8 @@ export function ClipCard({ clip, selected, onClick }: { clip: GameClip; selected
 }
 
 export function ClipDetail({ clip }: { clip: GameClip }) {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   const stats = [
     clip.stat1Label ? { label: clip.stat1Label, value: clip.stat1Value } : null,
     clip.stat2Label ? { label: clip.stat2Label, value: clip.stat2Value } : null,
@@ -104,20 +107,21 @@ export function ClipDetail({ clip }: { clip: GameClip }) {
         <span style={{ ...resultColor(clip.gameResult), borderRadius: 6, padding: '3px 8px', fontSize: 12, fontWeight: 700 }}>{clip.gameLabel}</span>
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-        <button style={{ height: 44, borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Add to team talk</button>
-        <button style={{ height: 44, borderRadius: 10, border: 0, background: '#40826d', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Send to {clip.players.length} players</button>
+        <button onClick={() => st('Added to team talk.')} style={{ height: 44, borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Add to team talk</button>
+        <button onClick={() => st(`Sent to ${clip.players.length} players.`)} style={{ height: 44, borderRadius: 10, border: 0, background: '#40826d', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Send to {clip.players.length} players</button>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button style={{ flex: 1, height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>Add to playlist</button>
-          <button style={{ flex: 1, height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>Draw on it</button>
+          <button onClick={() => st('Added to playlist.')} style={{ flex: 1, height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>Add to playlist</button>
+          <button onClick={() => st('Opening drawing tool.')} style={{ flex: 1, height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>Draw on it</button>
         </div>
       </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }
 
-export function DropChip({ label }: { label: string }) {
+export function DropChip({ label, onClick }: { label: string; onClick?: () => void }) {
   return (
-    <button style={{
+    <button onClick={onClick} style={{
       height: 32, padding: '0 12px', borderRadius: '999px',
       border: '1px solid #e9eae8', background: '#ffffff',
       fontFamily: 'inherit', fontSize: 13, fontWeight: 500, cursor: 'pointer', color: '#6f7f7b',

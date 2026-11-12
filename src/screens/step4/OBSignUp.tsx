@@ -1,6 +1,10 @@
+import { useState } from 'react'
+
 const G = '#2f6252', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 export default function OBSignUp(_: { onBack?: () => void }) {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       <div style={{ flex: 'none', height: 64, boxSizing: 'border-box', padding: '0 32px', display: 'flex', alignItems: 'center', background: G }}>
@@ -33,22 +37,23 @@ export default function OBSignUp(_: { onBack?: () => void }) {
           </div>
 
           <div style={{ display: 'flex', gap: 12 }}>
-            <button style={{ flex: 1, height: 52, borderRadius: 12, border: `1px solid ${LN}`, background: '#fff', fontSize: 15, fontWeight: 600, color: INK, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10 }}>
+            <button onClick={() => st('Continuing with Google.')} style={{ flex: 1, height: 52, borderRadius: 12, border: `1px solid ${LN}`, background: '#fff', fontSize: 15, fontWeight: 600, color: INK, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10 }}>
               <svg width={20} height={20} viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke={LN} strokeWidth="1.5"/><path d="M15.5 8.5a3 3 0 00-6 0v2h6V8.5z" fill="#4285f4"/><rect x="6.5" y="10.5" width="11" height="8" rx="1" fill="#4285f4"/></svg>
               Continue with Google
             </button>
-            <button style={{ flex: 1, height: 52, borderRadius: 12, border: `1px solid ${LN}`, background: '#fff', fontSize: 15, fontWeight: 600, color: INK, cursor: 'pointer' }}>Continue with Apple</button>
+            <button onClick={() => st('Continuing with Apple.')} style={{ flex: 1, height: 52, borderRadius: 12, border: `1px solid ${LN}`, background: '#fff', fontSize: 15, fontWeight: 600, color: INK, cursor: 'pointer' }}>Continue with Apple</button>
           </div>
 
           <div style={{ textAlign: 'center' as const, fontSize: 14, color: MUT }}>or</div>
 
-          <button style={{ width: '100%', height: 52, borderRadius: 12, border: 0, background: G, color: '#fff', fontSize: 16, fontWeight: 700, cursor: 'pointer' }}>
+          <button onClick={() => st('Continuing with email.')} style={{ width: '100%', height: 52, borderRadius: 12, border: 0, background: G, color: '#fff', fontSize: 16, fontWeight: 700, cursor: 'pointer' }}>
             Continue with email →
           </button>
 
           <div style={{ textAlign: 'center' as const, fontSize: 13, color: MUT }}>Already have an account? <span style={{ color: G, fontWeight: 600 }}>Sign in</span></div>
         </div>
       </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }

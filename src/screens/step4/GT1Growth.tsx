@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2', BG = '#f5f6f4'
 
 const PLAYERS = [
@@ -39,6 +41,8 @@ function MiniChart() {
 
 export function GT1Growth() {
   const fitnessNav = ['Play level', 'Growth', 'Injuries', 'Wellness', 'Availability']
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, background: BG, fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' as const }}>
       {/* Top nav */}
@@ -78,7 +82,7 @@ export function GT1Growth() {
                 <div style={{ fontSize: 13, color: MUT }}>U12 Sam · measured every 3 months · last 11 Mar · next due Thu 11 Jun</div>
                 <div style={{ fontSize: 12, color: MUT }}>Flag at 7 cm a year</div>
               </div>
-              <button style={{ height: 44, padding: '0 20px', borderRadius: 10, border: 'none', background: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>Start measuring session</button>
+              <button onClick={() => st('Opening measuring session.')} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: 'none', background: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>Start measuring session</button>
             </div>
 
             <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, overflow: 'hidden' }}>
@@ -165,12 +169,15 @@ export function GT1Growth() {
           </div>
         </div>
       </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }
 
 export function GT1eGrowthEmpty() {
   const fitnessNav = ['Play level', 'Growth', 'Injuries', 'Wellness', 'Availability']
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, background: BG, fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' as const }}>
       <div style={{ background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 24, height: 52, flexShrink: 0 }}>
@@ -193,10 +200,11 @@ export function GT1eGrowthEmpty() {
           <div style={{ textAlign: 'center' as const, maxWidth: 420 }}>
             <div style={{ fontSize: 18, fontWeight: 700, color: INK, marginBottom: 8 }}>No growth data yet</div>
             <div style={{ fontSize: 14, color: MUT, marginBottom: 24 }}>Run a measuring session to record your squad's heights. Clean Sheet will track growth rates and flag fast growers.</div>
-            <button style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 'none', background: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>Start measuring session</button>
+            <button onClick={() => st('Opening measuring session.')} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 'none', background: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>Start measuring session</button>
           </div>
         </div>
       </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }

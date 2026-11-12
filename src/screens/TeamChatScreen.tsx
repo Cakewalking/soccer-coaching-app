@@ -51,13 +51,15 @@ function Btn({ label, primary, onClick, small }: { label:string; primary?:boolea
 
 function Sidebar({ selectedChat, panelView, onChat, onAnnouncements, onNewChat }:
   { selectedChat:ChatId; panelView:PanelView; onChat:(id:ChatId)=>void; onAnnouncements:()=>void; onNewChat:()=>void }) {
+  const [sbToast, setSbToast] = useState<string|null>(null)
+  function st(m: string) { setSbToast(m); setTimeout(() => setSbToast(null), 3000) }
   return (
     <div style={{ width:264, flexShrink:0, borderRight:`1px solid ${LN}`, display:'flex', flexDirection:'column', background:'#fff' }}>
       {/* Top actions */}
       <div style={{ padding:'14px 16px 10px', borderBottom:`1px solid ${LN}` }}>
         <div style={{ fontSize:17, fontWeight:700, color:INK, marginBottom:10 }}>Chats</div>
         <div style={{ display:'flex', gap:6 }}>
-          <button style={{ flex:1, height: 44, borderRadius:999, border:`1px solid ${panelView==='chat'?G:LN}`, background:panelView==='chat'?PALE:'#fff', color:panelView==='chat'?G:MUT, fontSize:13, fontWeight:panelView==='chat'?700:400, cursor:'pointer', fontFamily:'inherit' }}>
+          <button onClick={() => st('Opening inbox.')} style={{ flex:1, height: 44, borderRadius:999, border:`1px solid ${panelView==='chat'?G:LN}`, background:panelView==='chat'?PALE:'#fff', color:panelView==='chat'?G:MUT, fontSize:13, fontWeight:panelView==='chat'?700:400, cursor:'pointer', fontFamily:'inherit' }}>
             Inbox
           </button>
           <button onClick={onNewChat} style={{ flex:1, height: 44, borderRadius:999, border:`1px solid ${panelView==='newchat'?G:LN}`, background:panelView==='newchat'?PALE:'#fff', color:panelView==='newchat'?G:MUT, fontSize:13, fontWeight:600, cursor:'pointer', fontFamily:'inherit' }}>
@@ -102,6 +104,7 @@ function Sidebar({ selectedChat, panelView, onChat, onAnnouncements, onNewChat }
       <div style={{ padding:'10px 16px', fontSize:11, color:MUT, lineHeight:1.5, borderTop:`1px solid ${LN}`, background:'#fafafa' }}>
         Nobody's phone number is shared. Families leave these chats when the season ends.
       </div>
+      {sbToast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{sbToast}</div>}
     </div>
   )
 }
@@ -109,6 +112,8 @@ function Sidebar({ selectedChat, panelView, onChat, onAnnouncements, onNewChat }
 // ─── Compose bar ─────────────────────────────────────────────────────────────
 
 function ComposeBar({ onPoll, hint, placeholder='Write to the team chat' }: { onPoll?:()=>void; hint?:string; placeholder?:string }) {
+  const [attachToast, setAttachToast] = useState<string|null>(null)
+  if (attachToast) setTimeout(() => setAttachToast(null), 3000)
   const attachIcons = [
     { label:'Photo',   icon:'M4 16l4-4 4 4 4-6 4 6' },
     { label:'Video',   icon:'M15 10l4.5-2.5v9L15 14M3 8a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z' },
@@ -123,7 +128,7 @@ function ComposeBar({ onPoll, hint, placeholder='Write to the team chat' }: { on
       {/* Attachment row */}
       <div style={{ display:'flex', gap:0, padding:'8px 16px 0', overflowX:'auto' }}>
         {attachIcons.map(a => (
-          <button key={a.label} onClick={a.label==='Poll'?onPoll:undefined} style={{ display:'flex', flexDirection:'column', alignItems:'center', gap:3, padding:'4px 10px', border:'none', background:'transparent', cursor:'pointer', fontFamily:'inherit' }}>
+          <button key={a.label} onClick={a.label==='Poll'?onPoll:()=>setAttachToast(a.label+' picker opens.')} style={{ display:'flex', flexDirection:'column', alignItems:'center', gap:3, padding:'4px 10px', border:'none', background:'transparent', cursor:'pointer', fontFamily:'inherit' }}>
             <svg width={18} height={18} viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round"><path d={a.icon}/></svg>
             <span style={{ fontSize:10, color:MUT }}>{a.label}</span>
           </button>
@@ -132,9 +137,10 @@ function ComposeBar({ onPoll, hint, placeholder='Write to the team chat' }: { on
       {/* Text + send */}
       <div style={{ display:'flex', alignItems:'center', gap:10, padding:'8px 16px 10px' }}>
         <input placeholder={placeholder} style={{ flex:1, height:40, padding:'0 14px', borderRadius:999, border:`1px solid ${LN}`, fontSize:14, fontFamily:'inherit', outline:'none', color:INK, background:'#fafafa' }}/>
-        <button style={{ height: 44, padding:'0 20px', borderRadius:999, border:'none', background:G, color:'#fff', fontSize:14, fontWeight:700, cursor:'pointer', fontFamily:'inherit' }}>Send</button>
+        <button onClick={() => setAttachToast('Message sent.')} style={{ height: 44, padding:'0 20px', borderRadius:999, border:'none', background:G, color:'#fff', fontSize:14, fontWeight:700, cursor:'pointer', fontFamily:'inherit' }}>Send</button>
       </div>
       {hint && <div style={{ padding:'0 16px 10px', fontSize:11, color:MUT }}>{hint}</div>}
+      {attachToast && <div style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', background:'#1f4a3e', color:'#fff', padding:'10px 20px', borderRadius:999, fontSize:13, fontWeight:600, zIndex:100 }}>{attachToast}</div>}
     </div>
   )
 }
@@ -164,10 +170,12 @@ function PollCard({ onResults }: { onResults:()=>void }) {
 }
 
 function VoiceMsg({ duration, text, reactions }: { duration:string; text:string; reactions:{emoji:string; count:number}[] }) {
+  const [vmToast, setVmToast] = useState<string|null>(null)
+  if (vmToast) setTimeout(() => setVmToast(null), 3000)
   return (
     <div>
       <div style={{ display:'flex', alignItems:'center', gap:8, marginBottom:4 }}>
-        <button style={{ width:28, height:28, borderRadius:'999px', border:'none', background:G, color:'#fff', cursor:'pointer', display:'flex', alignItems:'center', justifyContent:'center' }}>
+        <button onClick={() => setVmToast('Playing voice message.')} style={{ width:28, height:28, borderRadius:'999px', border:'none', background:G, color:'#fff', cursor:'pointer', display:'flex', alignItems:'center', justifyContent:'center' }}>
           <svg width={12} height={12} viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21"/></svg>
         </button>
         <div style={{ flex:1, height:3, background:LN, borderRadius:999 }}>
@@ -183,6 +191,7 @@ function VoiceMsg({ duration, text, reactions }: { duration:string; text:string;
           </span>
         ))}
       </div>
+      {vmToast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{vmToast}</div>}
     </div>
   )
 }
@@ -314,6 +323,8 @@ function ChatPanel({ empty, selectedChat, onResults, onPoll, onMedia, onInfo, on
 
 function AnnouncementCard({ ini, name, time, seen, total, subject, body, attach, reactions, canNudge, nudgeCount }:
   { ini:string; name:string; time:string; seen:number; total:number; subject:string; body:string; attach?:{icon:string;label:string;sub:string}; reactions:{emoji:string;count:number}[]; canNudge?:boolean; nudgeCount?:number }) {
+  const [acToast, setAcToast] = useState<string|null>(null)
+  if (acToast) setTimeout(() => setAcToast(null), 3000)
   const allSeen = seen===total
   return (
     <div style={{ background:'#fff', border:`1px solid ${LN}`, borderRadius:14, padding:'14px 16px', marginBottom:12 }}>
@@ -348,14 +359,15 @@ function AnnouncementCard({ ini, name, time, seen, total, subject, body, attach,
             </span>
           ))}
         </div>
-        <button style={{ fontSize:12, fontWeight:600, color:MUT, border:'none', background:'transparent', cursor:'pointer', fontFamily:'inherit' }}>Who has seen it</button>
+        <button onClick={() => setAcToast('Opening seen list.')} style={{ fontSize:12, fontWeight:600, color:MUT, border:'none', background:'transparent', cursor:'pointer', fontFamily:'inherit' }}>Who has seen it</button>
       </div>
       {canNudge && nudgeCount && (
         <div style={{ marginTop:10, padding:'10px 12px', background:'#fdf5f0', borderRadius:10, display:'flex', alignItems:'center', justifyContent:'space-between' }}>
           <span style={{ fontSize:13, color:ROSE }}>3 families haven't seen the change: Brennan, Delaney and Quinn.</span>
-          <button style={{ height: 44, padding:'0 14px', borderRadius:999, border:'none', background:ROSE, color:'#fff', fontSize:12, fontWeight:700, cursor:'pointer', fontFamily:'inherit', whiteSpace:'nowrap' as const, marginLeft:12 }}>Nudge the {nudgeCount}</button>
+          <button onClick={() => setAcToast(`Nudge sent to ${nudgeCount} families.`)} style={{ height: 44, padding:'0 14px', borderRadius:999, border:'none', background:ROSE, color:'#fff', fontSize:12, fontWeight:700, cursor:'pointer', fontFamily:'inherit', whiteSpace:'nowrap' as const, marginLeft:12 }}>Nudge the {nudgeCount}</button>
         </div>
       )}
+      {acToast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{acToast}</div>}
     </div>
   )
 }
@@ -407,6 +419,8 @@ function AnnouncementsPanel({ empty }: { empty:boolean }) {
 
 function NewChatPanel({ onCancel, onCreate }: { onCancel:()=>void; onCreate:()=>void }) {
   const [postPerm, setPostPerm] = useState<'coaches'|'everyone'>('coaches')
+  const [ncToast, setNcToast] = useState<string|null>(null)
+  if (ncToast) setTimeout(() => setNcToast(null), 3000)
   return (
     <div style={{ flex:1, display:'flex', flexDirection:'column', overflow:'hidden' }}>
       <div style={{ padding:'12px 20px', borderBottom:`1px solid ${LN}`, display:'flex', alignItems:'center', justifyContent:'space-between', flexShrink:0, background:'#fff' }}>
@@ -432,7 +446,7 @@ function NewChatPanel({ onCancel, onCreate }: { onCancel:()=>void; onCreate:()=>
               <span style={{ fontSize:14, color:INK }}>{label}</span>
             </label>
           ))}
-          <button style={{ display:'flex', alignItems:'center', gap:6, border:'none', background:'transparent', cursor:'pointer', fontFamily:'inherit', fontSize:13, fontWeight:600, color:G2, padding:'10px 0' }}>
+          <button onClick={() => setNcToast('Opening the people picker.')} style={{ display:'flex', alignItems:'center', gap:6, border:'none', background:'transparent', cursor:'pointer', fontFamily:'inherit', fontSize:13, fontWeight:600, color:G2, padding:'10px 0' }}>
             <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round"><path d="M12 5v14M5 12h14"/></svg>
             Pick people
           </button>
@@ -489,6 +503,7 @@ function NewChatPanel({ onCancel, onCreate }: { onCancel:()=>void; onCreate:()=>
 
         <div style={{ fontSize:12, color:MUT, lineHeight:1.6, padding:'4px 0 20px' }}>Set by Wattle Creek FC and can't be turned off: the welfare officer can read every chat with families, and messages are kept by the club.</div>
       </div>
+      {ncToast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{ncToast}</div>}
     </div>
   )
 }
@@ -506,6 +521,8 @@ function Section({ label, children }: { label:string; children:React.ReactNode }
 
 function NewPollPanel({ onCancel, onSend }: { onCancel:()=>void; onSend:()=>void }) {
   const [preset, setPreset] = useState<string>("Who's coming?")
+  const [npToast, setNpToast] = useState<string|null>(null)
+  if (npToast) setTimeout(() => setNpToast(null), 3000)
   return (
     <div style={{ flex:1, display:'flex', flexDirection:'column', overflow:'hidden' }}>
       <div style={{ padding:'12px 20px', borderBottom:`1px solid ${LN}`, display:'flex', alignItems:'center', justifyContent:'space-between', flexShrink:0, background:'#fff' }}>
@@ -535,12 +552,12 @@ function NewPollPanel({ onCancel, onSend }: { onCancel:()=>void; onSend:()=>void
           {['Coming','Can\'t come','Not sure yet'].map((a,i) => (
             <div key={a} style={{ display:'flex', alignItems:'center', gap:8, marginBottom:8 }}>
               <input defaultValue={a} style={{ flex:1, height:40, padding:'0 12px', borderRadius:8, border:`1px solid ${LN}`, fontSize:14, fontFamily:'inherit', outline:'none', color:INK }}/>
-              {i>0 && <button style={{ width:32, height:32, borderRadius:999, border:'none', background:LN, cursor:'pointer', display:'flex', alignItems:'center', justifyContent:'center' }}>
+              {i>0 && <button onClick={() => setNpToast('Answer removed.')} style={{ width:32, height:32, borderRadius:999, border:'none', background:LN, cursor:'pointer', display:'flex', alignItems:'center', justifyContent:'center' }}>
                 <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth={2.5} strokeLinecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
               </button>}
             </div>
           ))}
-          <button style={{ display:'flex', alignItems:'center', gap:6, border:'none', background:'transparent', cursor:'pointer', fontFamily:'inherit', fontSize:13, fontWeight:600, color:G2, padding:'4px 0' }}>
+          <button onClick={() => setNpToast('Answer added.')} style={{ display:'flex', alignItems:'center', gap:6, border:'none', background:'transparent', cursor:'pointer', fontFamily:'inherit', fontSize:13, fontWeight:600, color:G2, padding:'4px 0' }}>
             <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round"><path d="M12 5v14M5 12h14"/></svg>
             Add an answer
           </button>
@@ -572,7 +589,7 @@ function NewPollPanel({ onCancel, onSend }: { onCancel:()=>void; onSend:()=>void
             <div style={{ fontSize:11, fontWeight:700, letterSpacing:'0.06em', textTransform:'uppercase' as const, color:MUT, marginBottom:8 }}>Closes</div>
             <div style={{ display:'flex', alignItems:'center', gap:8 }}>
               <span style={{ fontSize:14, color:INK }}>Friday 6 pm</span>
-              <button style={{ fontSize:12, fontWeight:600, color:G2, border:'none', background:'transparent', cursor:'pointer', fontFamily:'inherit' }}>Change</button>
+              <button onClick={() => setNpToast('Opening date picker.')} style={{ fontSize:12, fontWeight:600, color:G2, border:'none', background:'transparent', cursor:'pointer', fontFamily:'inherit' }}>Change</button>
             </div>
           </div>
         </div>
@@ -593,6 +610,7 @@ function NewPollPanel({ onCancel, onSend }: { onCancel:()=>void; onSend:()=>void
           </div>
         </Section>
       </div>
+      {npToast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{npToast}</div>}
     </div>
   )
 }
@@ -678,6 +696,8 @@ function PollResultsPanel({ empty, onBack }: { empty:boolean; onBack:()=>void })
 
 function MediaPanel({ empty, onBack }: { empty:boolean; onBack:()=>void }) {
   const [tab, setTab] = useState(0)
+  const [mpToast, setMpToast] = useState<string|null>(null)
+  if (mpToast) setTimeout(() => setMpToast(null), 3000)
   const mediaItems = [
     {ini:'LT', iniColor:ROSE,  label:'Mia with both boots',    sender:'Linh · today',   isVideo:false},
     {ini:'LT', iniColor:ROSE,  label:'0:21',                   sender:'Linh · today',   isVideo:true},
@@ -697,7 +717,7 @@ function MediaPanel({ empty, onBack }: { empty:boolean; onBack:()=>void }) {
         </div>
         <div style={{ display:'flex', gap:8 }}>
           <Btn label="Back to chat" onClick={onBack}/>
-          {!empty && <Btn label="Save all to this tablet"/>}
+          {!empty && <Btn label="Save all to this tablet" onClick={() => setMpToast('Saving all media to this tablet.')}/>}
         </div>
       </div>
       {/* Tabs */}
@@ -739,7 +759,7 @@ function MediaPanel({ empty, onBack }: { empty:boolean; onBack:()=>void }) {
               <div style={{ fontSize:13, fontWeight:700, color:ROSE, marginBottom:4 }}>Held back · 1</div>
               <div style={{ fontSize:13, color:INK, marginBottom:6 }}>A photo with Harper in it</div>
               <div style={{ fontSize:12, color:MUT, marginBottom:8 }}>Harper's parent hasn't answered about photos yet. Only you can see it.</div>
-              <Btn label="Look" small/>
+              <Btn label="Look" small onClick={() => setMpToast('Opening held-back photo.')} />
             </div>
             <div style={{ marginTop:16, fontSize:12, color:MUT, lineHeight:1.5 }}>Kept how long: until the season ends, then photos and videos are deleted unless the club saves them to its own albums. A parent can ask for any photo of their child to be removed.</div>
           </>
@@ -747,6 +767,7 @@ function MediaPanel({ empty, onBack }: { empty:boolean; onBack:()=>void }) {
           <div style={{ padding:'24px 0', textAlign:'center', fontSize:14, color:MUT }}>Nothing in this tab yet</div>
         )}
       </div>
+      {mpToast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{mpToast}</div>}
     </div>
   )
 }
@@ -754,6 +775,8 @@ function MediaPanel({ empty, onBack }: { empty:boolean; onBack:()=>void }) {
 // ─── Chat info (CH8) ─────────────────────────────────────────────────────────
 
 function ChatInfoPanel({ onBack }: { onBack:()=>void }) {
+  const [ciToast, setCiToast] = useState<string|null>(null)
+  if (ciToast) setTimeout(() => setCiToast(null), 3000)
   return (
     <div style={{ flex:1, display:'flex', flexDirection:'column', overflow:'hidden' }}>
       <div style={{ padding:'12px 20px', borderBottom:`1px solid ${LN}`, display:'flex', alignItems:'center', justifyContent:'space-between', flexShrink:0, background:'#fff' }}>
@@ -763,7 +786,7 @@ function ChatInfoPanel({ onBack }: { onBack:()=>void }) {
         </div>
         <div style={{ display:'flex', gap:8 }}>
           <Btn label="Back to chat" onClick={onBack}/>
-          <Btn label="Change settings"/>
+          <Btn label="Change settings" onClick={() => setCiToast('Opening chat settings.')}/>
         </div>
       </div>
       <div style={{ flex:1, overflowY:'auto', padding:'20px 24px' }}>
@@ -771,7 +794,7 @@ function ChatInfoPanel({ onBack }: { onBack:()=>void }) {
         <div style={{ marginBottom:20 }}>
           <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:10 }}>
             <div style={{ fontSize:11, fontWeight:700, letterSpacing:'0.06em', textTransform:'uppercase' as const, color:MUT }}>In this chat · 20 adults</div>
-            <button style={{ fontSize:12, fontWeight:600, color:G2, border:'none', background:'transparent', cursor:'pointer', fontFamily:'inherit' }}>See all</button>
+            <button onClick={() => setCiToast('Showing all 20 members.')} style={{ fontSize:12, fontWeight:600, color:G2, border:'none', background:'transparent', cursor:'pointer', fontFamily:'inherit' }}>See all</button>
           </div>
           {[
             {ini:'RO', bg:MUT, name:'Rob Owusu', role:'Team manager · owner', badge:'Owner'},
@@ -827,13 +850,14 @@ function ChatInfoPanel({ onBack }: { onBack:()=>void }) {
                 {item.note && <div style={{ fontSize:12, color:MUT }}>{item.note}</div>}
               </div>
               {item.action
-                ? <button style={{ fontSize:12, fontWeight:600, color:G2, border:'none', background:'transparent', cursor:'pointer', fontFamily:'inherit' }}>{item.action}</button>
+                ? <button onClick={() => setCiToast(`Opening ${item.action?.toLowerCase()}.`)} style={{ fontSize:12, fontWeight:600, color:G2, border:'none', background:'transparent', cursor:'pointer', fontFamily:'inherit' }}>{item.action}</button>
                 : <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth={2} strokeLinecap="round"><path d="M9 18l6-6-6-6"/></svg>
               }
             </div>
           ))}
         </div>
       </div>
+      {ciToast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{ciToast}</div>}
     </div>
   )
 }
@@ -946,6 +970,8 @@ export default function TeamChatScreen({ empty = false, miniRoos = false }: { em
   const [selectedChat, setSelectedChat] = useState<ChatId>('u12')
   const [panelView, setPanelView]       = useState<PanelView>('chat')
   const [overlay, setOverlay]           = useState<Overlay>(null)
+  const [toast, setToast]               = useState<string|null>(null)
+  function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
 
   const teamName    = miniRoos ? 'U9 Tom families' : 'U12 Sam team chat'
   const footerNote  = 'Nobody\'s phone number is shared. Families leave these chats when the season ends.'
@@ -957,18 +983,18 @@ export default function TeamChatScreen({ empty = false, miniRoos = false }: { em
           <div style={{ padding:'14px 16px 10px', borderBottom:`1px solid ${LN}` }}>
             <div style={{ fontSize:17, fontWeight:700, color:INK, marginBottom:10 }}>Chats</div>
             <div style={{ display:'flex', gap:6 }}>
-              <button style={{ flex:1, height: 44, borderRadius:999, border:`1px solid ${G}`, background:PALE, color:G, fontSize:13, fontWeight:700, cursor:'pointer', fontFamily:'inherit' }}>Inbox</button>
-              <button style={{ flex:1, height: 44, borderRadius:999, border:`1px solid ${LN}`, background:'#fff', color:MUT, fontSize:13, fontWeight:600, cursor:'pointer', fontFamily:'inherit' }}>New chat</button>
+              <button onClick={() => showToast('Opening inbox.')} style={{ flex:1, height: 44, borderRadius:999, border:`1px solid ${G}`, background:PALE, color:G, fontSize:13, fontWeight:700, cursor:'pointer', fontFamily:'inherit' }}>Inbox</button>
+              <button onClick={() => showToast('Opening new chat.')} style={{ flex:1, height: 44, borderRadius:999, border:`1px solid ${LN}`, background:'#fff', color:MUT, fontSize:13, fontWeight:600, cursor:'pointer', fontFamily:'inherit' }}>New chat</button>
             </div>
           </div>
-          <button style={{ padding:'10px 16px', borderBottom:`1px solid ${LN}`, background:'transparent', border:'none', textAlign:'left', cursor:'pointer', fontFamily:'inherit', display:'block', width:'100%' }}>
+          <button onClick={() => showToast('Opening announcements.')} style={{ padding:'10px 16px', borderBottom:`1px solid ${LN}`, background:'transparent', border:'none', textAlign:'left', cursor:'pointer', fontFamily:'inherit', display:'block', width:'100%' }}>
             <div style={{ display:'flex', justifyContent:'space-between', marginBottom:2 }}>
               <span style={{ fontSize:13, fontWeight:700, color:INK }}>Announcements</span>
             </div>
             <div style={{ fontSize:12, color:MUT }}>No messages yet</div>
           </button>
           <div style={{ flex:1, overflowY:'auto', padding:'6px 0' }}>
-            <button style={{ display:'flex', alignItems:'flex-start', gap:10, padding:'10px 16px', border:'none', borderBottom:`1px solid ${LN}`, background:PALE, textAlign:'left', cursor:'pointer', fontFamily:'inherit', width:'100%' }}>
+            <button onClick={() => showToast('Opening U12 Sam team chat.')} style={{ display:'flex', alignItems:'flex-start', gap:10, padding:'10px 16px', border:'none', borderBottom:`1px solid ${LN}`, background:PALE, textAlign:'left', cursor:'pointer', fontFamily:'inherit', width:'100%' }}>
               <Ini s="U12" bg={G} size={36}/>
               <div style={{ flex:1, minWidth:0 }}>
                 <div style={{ display:'flex', justifyContent:'space-between', marginBottom:2 }}>
@@ -993,16 +1019,17 @@ export default function TeamChatScreen({ empty = false, miniRoos = false }: { em
             <div style={{ fontSize:14, color:MUT, lineHeight:1.5, maxWidth:340 }}>Families see this chat as soon as they join Clean Sheet. Try a poll for Saturday, or a photo from training.</div>
             <div style={{ display:'flex', gap:8, flexWrap:'wrap', justifyContent:'center', marginTop:4 }}>
               {['Photo','Video','Voice','Poll','Place','File','Clip or drill'].map(label => (
-                <button key={label} style={{ height: 44, padding:'0 12px', borderRadius:999, border:`1px solid ${LN}`, background:'#fff', color:MUT, fontSize:12, fontWeight:600, cursor:'pointer', fontFamily:'inherit' }}>{label}</button>
+                <button key={label} onClick={() => showToast(`${label} picker opens.`)} style={{ height: 44, padding:'0 12px', borderRadius:999, border:`1px solid ${LN}`, background:'#fff', color:MUT, fontSize:12, fontWeight:600, cursor:'pointer', fontFamily:'inherit' }}>{label}</button>
               ))}
             </div>
           </div>
           <div style={{ padding:'12px 20px', borderTop:`1px solid ${LN}`, display:'flex', gap:8 }}>
             <input style={{ flex:1, height:40, borderRadius:10, border:`1px solid ${LN}`, padding:'0 14px', fontSize:14, fontFamily:'inherit', outline:'none' }} placeholder="Write to the team chat" readOnly />
-            <button style={{ height: 44, padding:'0 16px', borderRadius:10, border:0, background:G, color:'#fff', fontSize:14, fontWeight:700, cursor:'pointer', fontFamily:'inherit' }}>Send</button>
+            <button onClick={() => showToast('Message sent.')} style={{ height: 44, padding:'0 16px', borderRadius:10, border:0, background:G, color:'#fff', fontSize:14, fontWeight:700, cursor:'pointer', fontFamily:'inherit' }}>Send</button>
           </div>
           <div style={{ padding:'0 20px 12px', fontSize:12, color:MUT }}>Everyone in this chat can see this.</div>
         </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
       </div>
     )
   }
@@ -1015,7 +1042,7 @@ export default function TeamChatScreen({ empty = false, miniRoos = false }: { em
           <div style={{ padding:'14px 16px 10px', borderBottom:`1px solid ${LN}` }}>
             <div style={{ fontSize:17, fontWeight:700, color:INK, marginBottom:10 }}>Chats</div>
             <div style={{ display:'flex', gap:6 }}>
-              <button style={{ flex:1, height: 44, borderRadius:999, border:`1px solid ${G}`, background:PALE, color:G, fontSize:13, fontWeight:700, cursor:'pointer', fontFamily:'inherit' }}>Inbox</button>
+              <button onClick={() => showToast('Opening inbox.')} style={{ flex:1, height: 44, borderRadius:999, border:`1px solid ${G}`, background:PALE, color:G, fontSize:13, fontWeight:700, cursor:'pointer', fontFamily:'inherit' }}>Inbox</button>
               <button onClick={() => setPanelView('newchat')} style={{ flex:1, height: 44, borderRadius:999, border:`1px solid ${LN}`, background:'#fff', color:MUT, fontSize:13, fontWeight:600, cursor:'pointer', fontFamily:'inherit' }}>New chat</button>
             </div>
           </div>
@@ -1040,7 +1067,7 @@ export default function TeamChatScreen({ empty = false, miniRoos = false }: { em
                 </div>
               </div>
             </button>
-            <button style={{ display:'flex', alignItems:'flex-start', gap:10, padding:'10px 16px', border:'none', borderBottom:`1px solid ${LN}`, background:'transparent', textAlign:'left', cursor:'pointer', fontFamily:'inherit', width:'100%' }}>
+            <button onClick={() => showToast("Opening chat with Sami Haddad.")} style={{ display:'flex', alignItems:'flex-start', gap:10, padding:'10px 16px', border:'none', borderBottom:`1px solid ${LN}`, background:'transparent', textAlign:'left', cursor:'pointer', fontFamily:'inherit', width:'100%' }}>
               <Ini s="SH" bg={ROSE} size={36}/>
               <div style={{ flex:1 }}>
                 <div style={{ display:'flex', justifyContent:'space-between', marginBottom:2 }}>
@@ -1120,6 +1147,7 @@ export default function TeamChatScreen({ empty = false, miniRoos = false }: { em
             </>
           )}
         </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
       </div>
     )
   }
@@ -1140,6 +1168,7 @@ export default function TeamChatScreen({ empty = false, miniRoos = false }: { em
       {/* Overlays */}
       {overlay === 'photocheck'     && <PhotoCheckOverlay onDone={() => setOverlay(null)}/>}
       {overlay === 'messageactions' && <MessageActionsOverlay onDone={() => setOverlay(null)}/>}
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }

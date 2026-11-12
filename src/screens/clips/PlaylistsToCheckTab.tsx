@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { PLAYLISTS, SHARED_CLIPS, TO_CHECK_ITEMS, TO_CHECK_OPTIONS } from './clipData'
 
 export function PlaylistsTab() {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ flexGrow: 1, display: 'flex', overflow: 'hidden' }}>
       <div style={{ flexGrow: 1, padding: '20px 24px', overflowY: 'auto', borderRight: '1px solid #e9eae8' }}>
@@ -20,7 +22,7 @@ export function PlaylistsTab() {
             </div>
           ))}
         </div>
-        <button style={{ marginTop: 14, height: 44, borderRadius: 12, border: '1px dashed #c5c8c4', background: 'transparent', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', width: '100%' }}>+ New playlist</button>
+        <button onClick={() => st('Creating new playlist.')} style={{ marginTop: 14, height: 44, borderRadius: 12, border: '1px dashed #c5c8c4', background: 'transparent', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', width: '100%' }}>+ New playlist</button>
       </div>
       <div style={{ width: 300, flex: 'none', padding: '20px', overflowY: 'auto' }}>
         <div style={{ fontSize: 16, fontWeight: 700, color: '#10211f', marginBottom: 14 }}>Shared with players</div>
@@ -40,6 +42,7 @@ export function PlaylistsTab() {
           ))}
         </div>
       </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }
@@ -49,6 +52,8 @@ export function ToCheckTab() {
   const [answers, setAnswers] = useState<Record<string, string>>({})
   const allDone = TO_CHECK_ITEMS.every(item => answers[item.id])
   const doneCount = Object.keys(answers).length
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
 
   if (allDone) {
     return (
@@ -77,10 +82,11 @@ export function ToCheckTab() {
           <div style={{ fontSize: 22, fontWeight: 700, color: '#10211f' }}>All checked. Thanks!</div>
           <div style={{ fontSize: 14, color: '#4a5a57', textAlign: 'center', lineHeight: '20px', maxWidth: 400 }}>Wins in their half stays at 13. The minute-47 clip and its running data moved to Mia. Zoe's chance is logged as saved.</div>
           <div style={{ display: 'flex', gap: 10 }}>
-            <button style={{ height: 44, padding: '0 20px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>See the updated review</button>
+            <button onClick={() => st('Opening updated review.')} style={{ height: 44, padding: '0 20px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>See the updated review</button>
             <button onClick={() => setAnswers({})} style={{ height: 44, padding: '0 20px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Back to clips</button>
           </div>
         </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
       </div>
     )
   }
@@ -142,13 +148,14 @@ export function ToCheckTab() {
             }}>{opt}</button>
           ))}
         </div>
-        <button style={{ fontSize: 13, color: '#6f7f7b', border: 0, background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left', marginBottom: 16 }}>Not sure, skip for now</button>
+        <button onClick={() => st('Skipping for now.')} style={{ fontSize: 13, color: '#6f7f7b', border: 0, background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left', marginBottom: 16 }}>Not sure, skip for now</button>
         <button onClick={() => { if (answers[item.id]) setActiveItem(i => Math.min(i + 1, TO_CHECK_ITEMS.length - 1)) }} disabled={!answers[item.id]} style={{
           height: 44, borderRadius: 12, border: 0, background: answers[item.id] ? '#2f6252' : '#c5c8c4',
           color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: answers[item.id] ? 'pointer' : 'not-allowed', opacity: answers[item.id] ? 1 : 0.6,
         }}>Confirm</button>
         <div style={{ marginTop: 10, fontSize: 12, color: '#6f7f7b' }}>Your answer updates the review straight away.</div>
       </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }

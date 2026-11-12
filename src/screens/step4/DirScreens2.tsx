@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2', BG = '#f5f6f4'
 
 function DirNav({ active = 'Club' }: { active?: string }) {
@@ -26,6 +28,8 @@ function SettingsSidebar({ active }: { active: string }) {
 // ─── DSet5 Club Plan ──────────────────────────────────────────────────────────
 
 export function DSet5ClubPlan() {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, background: BG, fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' as const }}>
       <DirNav active="Club" />
@@ -80,11 +84,12 @@ export function DSet5ClubPlan() {
           </div>
 
           <div style={{ display: 'flex', gap: 10 }}>
-            <button style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 'none', background: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>Talk to us about the plan</button>
-            <button style={{ height: 44, padding: '0 24px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: MUT, cursor: 'pointer' }}>Leave the pilot</button>
+            <button onClick={() => st('Opening contact form.')} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 'none', background: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>Talk to us about the plan</button>
+            <button onClick={() => st('Opening pilot exit flow.')} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: MUT, cursor: 'pointer' }}>Leave the pilot</button>
           </div>
         </div>
       </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }
@@ -92,6 +97,8 @@ export function DSet5ClubPlan() {
 // ─── DRo1 Rollover ─────────────────────────────────────────────────────────────
 
 export function DRo1Rollover() {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   const teams = [
     { from: 'U7 Dan', to: 'U8 Dan' },
     { from: 'U8 Priya', to: 'U9 Priya' },
@@ -128,7 +135,7 @@ export function DRo1Rollover() {
               <div style={{ fontSize: 20, fontWeight: 800, color: INK, marginBottom: 4 }}>Next season</div>
               <div style={{ fontSize: 13, color: MUT }}>Roll every team up a year for 2027 · nothing changes until you press the button</div>
             </div>
-            <button style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 'none', background: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>Start 2027</button>
+            <button onClick={() => st('Starting 2027 season rollover.')} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 'none', background: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>Start 2027</button>
           </div>
 
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, overflow: 'hidden' }}>
@@ -157,6 +164,7 @@ export function DRo1Rollover() {
           </div>
         </div>
       </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }

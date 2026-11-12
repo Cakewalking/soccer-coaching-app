@@ -36,6 +36,8 @@ export default function DrillLibraryScreen({ empty }: { empty?: boolean }) {
   const [wizArea, setWA]      = useState('30 × 25 m')
   const [wizAges, setWAges]   = useState<string[]>([])
   const [wizKit, setWKit]     = useState<string[]>(['Balls'])
+  const [toast, setToast]     = useState<string | null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
 
   const openDrill = (d: Drill) => { setDrill(d); setView('detail') }
   const openWiz   = () => { setView('wizard'); setWStep(1) }
@@ -67,7 +69,7 @@ export default function DrillLibraryScreen({ empty }: { empty?: boolean }) {
                   </div>
                 ))}
               </div>
-              <button style={{ marginTop: 12, height: 44, padding: '0 16px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>See all 24</button>
+              <button onClick={() => st('Showing all 24 drills.')} style={{ marginTop: 12, height: 44, padding: '0 16px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>See all 24</button>
             </div>
             <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '20px 24px' }}>
               <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 4 }}>Our drills</div>
@@ -88,6 +90,7 @@ export default function DrillLibraryScreen({ empty }: { empty?: boolean }) {
             ))}
           </div>
         </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
       </div>
     )
   }

@@ -70,7 +70,7 @@ export default function ACC13AcademyChat(_: { onBack?: () => void }) {
             </button>
           ))}
         </div>
-        <button style={{ background: 'rgba(255,255,255,0.18)', border: 'none', color: '#fff', fontSize: 14, fontWeight: 500, padding: '0 14px', height: 44, borderRadius: 999, cursor: 'pointer', marginRight: 12 }}>Tall Timber Academy ▾</button>
+        <button onClick={() => showToast('Opening academy selector.')} style={{ background: 'rgba(255,255,255,0.18)', border: 'none', color: '#fff', fontSize: 14, fontWeight: 500, padding: '0 14px', height: 44, borderRadius: 999, cursor: 'pointer', marginRight: 12 }}>Tall Timber Academy ▾</button>
         <div style={{ width: 44, height: 44, borderRadius: 999, background: '#c39797', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 15, fontWeight: 700, color: INK }}>RW</div>
       </div>
 
@@ -94,7 +94,7 @@ export default function ACC13AcademyChat(_: { onBack?: () => void }) {
         <div style={{ width: 340, flexShrink: 0, background: '#fff', border: `1px solid #c5c8c4`, borderRadius: 16, display: 'flex', flexDirection: 'column' as const, overflow: 'hidden' }}>
           <div style={{ padding: '14px 16px 12px', display: 'flex', alignItems: 'center', gap: 8 }}>
             <h1 style={{ margin: 0, fontSize: 22, fontWeight: 700, color: INK, flex: 1 }}>Chats</h1>
-            <button style={{ height: 44, padding: '0 12px', borderRadius: 8, background: '#fff', border: `1px solid #c5c8c4`, color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Today</button>
+            <button onClick={() => showToast('Showing today.')} style={{ height: 44, padding: '0 12px', borderRadius: 8, background: '#fff', border: `1px solid #c5c8c4`, color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Today</button>
             <button onClick={() => setSheet('cacadnew')} style={{ height: 44, padding: '0 12px', borderRadius: 8, background: G, border: 'none', color: '#fff', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>+ New chat</button>
           </div>
 

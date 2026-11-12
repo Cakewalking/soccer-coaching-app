@@ -120,6 +120,8 @@ type MsgChat = 'list' | 'group' | 'private'
 
 function MessagesView({ initialChat = 'list' }: { initialChat?: MsgChat }) {
   const [chat, setChat] = useState<MsgChat>(initialChat)
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
 
   /* PO6 — messages list */
   if (chat === 'list') return (
@@ -214,7 +216,7 @@ function MessagesView({ initialChat = 'list' }: { initialChat?: MsgChat }) {
         <div style={{ marginBottom: 14 }}>
           <div style={{ fontSize: 12, color: '#4a5a57', marginBottom: 4, textAlign: 'right' as const }}>You · 8:20 am</div>
           <div style={{ background: '#2f6252', borderRadius: 12, padding: '8px 12px', maxWidth: 180, marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 8 }}>
-            <button style={{ width: 24, height: 24, borderRadius: '999px', border: 'none', background: 'rgba(255,255,255,0.3)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <button onClick={() => st('Playing voice note.')} style={{ width: 24, height: 24, borderRadius: '999px', border: 'none', background: 'rgba(255,255,255,0.3)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <svg width={8} height={8} viewBox="0 0 24 24" fill="#fff"><polygon points="5 3 19 12 5 21"/></svg>
             </button>
             <div style={{ flex: 1, height: 2, background: 'rgba(255,255,255,0.4)', borderRadius: 999 }}/>
@@ -225,10 +227,11 @@ function MessagesView({ initialChat = 'list' }: { initialChat?: MsgChat }) {
       <div style={{ flex: 'none', padding: '8px 16px 12px', borderTop: '1px solid #e9eae8', background: '#fff' }}>
         <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
           <input placeholder="Write to the team" style={{ flex: 1, height: 38, padding: '0 12px', borderRadius: 999, border: '1px solid #e9eae8', fontSize: 14, fontFamily: 'inherit', outline: 'none', color: '#10211f', background: '#fafafa' }}/>
-          <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Send</button>
+          <button onClick={() => st('Message sent.')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Send</button>
         </div>
         <div style={{ fontSize: 11, color: '#4a5a57', textAlign: 'center' as const, marginTop: 6 }}>Be the teammate you'd want. Anyone can report a message to Helen.</div>
       </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:70, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'10px 18px', borderRadius:10, background:'#1f4a3e', color:'#fff', fontSize:14, fontWeight:600, whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 
@@ -258,15 +261,18 @@ function MessagesView({ initialChat = 'list' }: { initialChat?: MsgChat }) {
       </div>
       <div style={{ flex: 'none', padding: '8px 16px 12px', borderTop: '1px solid #e9eae8', background: '#fff', display: 'flex', gap: 8 }}>
         <input placeholder="Message Ollie…" style={{ flex: 1, height: 38, padding: '0 12px', borderRadius: 999, border: '1px solid #e9eae8', fontSize: 14, fontFamily: 'inherit', outline: 'none', color: '#10211f' }}/>
-        <button style={{ width: 38, height: 38, borderRadius: 10, border: 0, background: '#2f6252', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <button onClick={() => st('Message sent.')} style={{ width: 38, height: 38, borderRadius: 10, border: 0, background: '#2f6252', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.4" strokeLinecap="round" aria-hidden="true"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
         </button>
       </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:70, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'10px 18px', borderRadius:10, background:'#1f4a3e', color:'#fff', fontSize:14, fontWeight:600, whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }
 
 function BodyView() {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ flexGrow: 1, overflowY: 'auto', padding: '20px 20px 20px', display: 'flex', flexDirection: 'column', gap: 14 }}>
       <div style={{ fontSize: 20, fontWeight: 800, letterSpacing: '-0.02em' }}>My body</div>
@@ -290,7 +296,7 @@ function BodyView() {
         <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 8 }}>Other sport this week</div>
         <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' as const }}>
           {['Basketball', 'Swimming', 'Tennis', 'Running', 'Gym', '+ Add'].map(s => (
-            <button key={s} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: `1.5px solid ${s === '+ Add' ? '#2f6252' : '#c5c8c4'}`, background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 500, cursor: 'pointer', color: s === '+ Add' ? '#2f6252' : '#10211f' }}>{s}</button>
+            <button key={s} onClick={() => st(s === '+ Add' ? 'Opening sport picker.' : `${s} added.`)} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: `1.5px solid ${s === '+ Add' ? '#2f6252' : '#c5c8c4'}`, background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 500, cursor: 'pointer', color: s === '+ Add' ? '#2f6252' : '#10211f' }}>{s}</button>
           ))}
         </div>
       </div>
@@ -309,6 +315,7 @@ function BodyView() {
           </div>
         ))}
       </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:70, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'10px 18px', borderRadius:10, background:'#1f4a3e', color:'#fff', fontSize:14, fontWeight:600, whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }
@@ -364,6 +371,8 @@ function AdultView() {
 
 export default function OlderPlayerApp({ empty = false, initialView, initialChat }: { empty?: boolean; initialView?: View; initialChat?: MsgChat }) {
   const [view, setView] = useState<View>(initialView ?? 'home')
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
 
   return (
     <div style={{ width: 390, minHeight: '100vh', background: '#f7f8f7', display: 'flex', flexDirection: 'column', fontFamily: "'DM Sans', sans-serif" }}>
@@ -395,7 +404,7 @@ export default function OlderPlayerApp({ empty = false, initialView, initialChat
           <div style={{ flexGrow: 1, padding: '24px 20px', display: 'flex', flexDirection: 'column', gap: 16 }}>
             <div style={{ fontSize: 16, fontWeight: 700, color: '#10211f' }}>{"You're on U16 Ollie"}</div>
             <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.5 }}>Games, training and messages from your coach show here. First, a parent needs to OK filming and sensors.</div>
-            <button style={{ height: 44, borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Text my parent the link</button>
+            <button onClick={() => st('Link sent to parent.')} style={{ height: 44, borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Text my parent the link</button>
             <div style={{ padding: '12px 14px', background: '#eef5f2', borderRadius: 10, fontSize: 13, color: '#2f6252' }}>{"Until they answer you can still play, check in and message Ollie. You're blurred in clips."}</div>
           </div>
         ) : <HomeView setView={setView} />)}
@@ -403,14 +412,14 @@ export default function OlderPlayerApp({ empty = false, initialView, initialChat
           <div style={{ flexGrow: 1, padding: '24px 20px', display: 'flex', flexDirection: 'column', gap: 12 }}>
             <div style={{ fontSize: 16, fontWeight: 700, color: '#10211f' }}>No messages yet</div>
             <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.5 }}>Message Ollie about training, games or anything you're unsure of. A parent can read the chat until you're 18.</div>
-            <button style={{ height: 44, borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Write to Ollie</button>
+            <button onClick={() => setView('messages')} style={{ height: 44, borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Write to Ollie</button>
           </div>
         ) : <MessagesView initialChat={initialChat} />)}
         {view === 'body' && (empty ? (
           <div style={{ flexGrow: 1, padding: '24px 20px', display: 'flex', flexDirection: 'column', gap: 12 }}>
             <div style={{ fontSize: 16, fontWeight: 700, color: '#10211f' }}>Nothing measured yet</div>
             <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.5 }}>{"After your first week with a vest, you'll see how much you've done and when to rest. Add school sport so the picture is whole."}</div>
-            <button style={{ height: 44, borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Add other sport</button>
+            <button onClick={() => st('Opening sport picker.')} style={{ height: 44, borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Add other sport</button>
           </div>
         ) : <BodyView />)}
         {view === 'adult'    && <AdultView />}
@@ -418,6 +427,7 @@ export default function OlderPlayerApp({ empty = false, initialView, initialChat
 
       {/* Bottom nav (hide for adult view which has its own feel) */}
       {view !== 'adult' && <BottomNav view={view} setView={setView} />}
+      {toast && <div role="status" style={{ position:'fixed', bottom:70, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'10px 18px', borderRadius:10, background:'#1f4a3e', color:'#fff', fontSize:14, fontWeight:600, whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }

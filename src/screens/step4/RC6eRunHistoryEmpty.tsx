@@ -1,8 +1,12 @@
+import { useState } from 'react'
+
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 const NAV_ITEMS = ['Home', 'Squad', 'Training', 'Match day', 'Clips']
 const SUBNAV = ["Tonight's session", 'This week', 'Suggested', 'Drill library', 'Growth and load', 'Record']
 
 export default function RC6eRunHistoryEmpty(_: { onBack?: () => void }) {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, height: 820, boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       <div style={{ flex: 'none', background: '#fff', borderBottom: `1px solid ${LN}` }}>
@@ -34,7 +38,7 @@ export default function RC6eRunHistoryEmpty(_: { onBack?: () => void }) {
               <div style={{ fontSize: 12, fontWeight: 600, color: MUT, background: PALE, padding: '4px 10px', borderRadius: 999 }}>Starting point</div>
             </div>
             <div style={{ marginTop: 16 }}>
-              <button style={{ height: 44, padding: '0 20px', borderRadius: 10, background: GD, color: '#fff', border: 'none', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Run it again</button>
+              <button style={{ height: 44, padding: '0 20px', borderRadius: 10, background: GD, color: '#fff', border: 'none', fontSize: 14, fontWeight: 700, cursor: 'pointer' }} onClick={() => st('Starting new run.')}>Run it again</button>
             </div>
           </div>
         </div>
@@ -50,6 +54,7 @@ export default function RC6eRunHistoryEmpty(_: { onBack?: () => void }) {
             </div>
           ))}
         </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
       </main>
     </div>
   )

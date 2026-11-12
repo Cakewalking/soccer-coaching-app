@@ -69,7 +69,7 @@ export default function LiveGame11Screen({ onClose }: { onClose: () => void }) {
             </div>
           </div>
           <span style={{ fontSize: 15, color: 'rgba(255,255,255,0.65)', fontVariantNumeric: 'tabular-nums' }}>58:12</span>
-          <button style={{ height: 44, padding: '0 14px', borderRadius: 8, border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Pause</button>
+          <button style={{ height: 44, padding: '0 14px', borderRadius: 8, border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }} onClick={() => showToast('Game paused.')}>Pause</button>
         </div>
         <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.4)' }}>11 a side · 2 × 40 min</span>
       </div>

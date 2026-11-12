@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 const GD = '#1f4a3e', INK = '#10211f'
 
 const FIRST_THINGS = [
@@ -7,6 +9,9 @@ const FIRST_THINGS = [
 ]
 
 export default function IV4ManagerDone() {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
+
   return (
     <div style={{ width: 390, margin: '0 auto', background: GD, minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
 
@@ -43,9 +48,10 @@ export default function IV4ManagerDone() {
           Sam can see you've joined.
         </div>
 
-        <button style={{ marginTop: 32, width: '100%', height: 52, borderRadius: '999px', border: 0, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 16, fontWeight: 700, cursor: 'pointer' }}>
+        <button style={{ marginTop: 32, width: '100%', height: 52, borderRadius: '999px', border: 0, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 16, fontWeight: 700, cursor: 'pointer' } onClick={() => st('Going to home.')}>
           Go to my Home
         </button>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
       </div>
     </div>
   )

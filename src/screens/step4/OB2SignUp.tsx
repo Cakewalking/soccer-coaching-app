@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 const G = '#2f6252', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 const STEPS = ['Your account', 'Your club', 'Your team', 'All set']
@@ -9,6 +11,8 @@ const CLUBS = [
 ]
 
 export default function OB2SignUp(_: { onBack?: () => void }) {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       {/* Top bar */}
@@ -49,7 +53,7 @@ export default function OB2SignUp(_: { onBack?: () => void }) {
                   <div style={{ fontSize: 13, color: MUT }}>{club.loc}</div>
                 </div>
                 {club.action && (
-                  <button style={{ height: 44, padding: '0 18px', borderRadius: 10, border: club.highlight ? 0 : `1px solid ${LN}`, background: club.highlight ? G : '#fff', color: club.highlight ? '#fff' : INK, fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>
+                  <button onClick={() => st(`${club.action}.`)} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: club.highlight ? 0 : `1px solid ${LN}`, background: club.highlight ? G : '#fff', color: club.highlight ? '#fff' : INK, fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>
                     {club.action}
                   </button>
                 )}
@@ -61,7 +65,7 @@ export default function OB2SignUp(_: { onBack?: () => void }) {
             You're the first from Wattle Creek FC. You'll be its admin until a director of football joins.
           </div>
 
-          <button style={{ alignSelf: 'flex-start', fontSize: 14, fontWeight: 600, color: G, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
+          <button onClick={() => st("Opening add club form.")} style={{ alignSelf: 'flex-start', fontSize: 14, fontWeight: 600, color: G, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
             Can't find it? Add your club
           </button>
         </div>
@@ -86,6 +90,7 @@ export default function OB2SignUp(_: { onBack?: () => void }) {
           </div>
         </div>
       </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }

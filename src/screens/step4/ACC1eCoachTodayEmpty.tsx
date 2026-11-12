@@ -1,6 +1,11 @@
+import { useState } from 'react'
+
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', BG = '#f5f6f4'
 
 export default function ACC1eCoachTodayEmpty() {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
+
   return (
     <div style={{ width: 1180, background: BG, fontFamily: 'var(--font-sans)', minHeight: 820 }}>
       <div style={{ background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 28, height: 52 }}>
@@ -39,7 +44,7 @@ export default function ACC1eCoachTodayEmpty() {
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '32px 24px', textAlign: 'center' as const, marginBottom: 20 }}>
             <div style={{ fontSize: 16, fontWeight: 700, color: INK, marginBottom: 8 }}>Nothing on today</div>
             <div style={{ fontSize: 14, color: MUT, marginBottom: 16 }}>Your next session is Development on Tuesday at 4:30. Now is a good time to check your report drafts.</div>
-            <button style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 'none', background: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>Check report drafts</button>
+            <button style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 'none', background: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }} onClick={() => st('Opening report drafts.')}>Check report drafts</button>
           </div>
 
           <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 10 }}>Coming up</div>
@@ -59,6 +64,7 @@ export default function ACC1eCoachTodayEmpty() {
             ))}
           </div>
         </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
       </div>
     </div>
   )

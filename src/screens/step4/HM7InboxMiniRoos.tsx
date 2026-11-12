@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 const MESSAGES = [
@@ -8,6 +10,8 @@ const MESSAGES = [
 ]
 
 export default function HM7InboxMiniRoos(_: { onBack?: () => void }) {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }}>
       <div style={{ background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 20, height: 64 }}>
@@ -33,8 +37,8 @@ export default function HM7InboxMiniRoos(_: { onBack?: () => void }) {
           <span style={{ fontSize: 14, color: MUT }}>U9 Tom · 2 new · 4 this week</span>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Family chat</button>
-          <button style={{ height: 44, padding: '0 18px', borderRadius: 10, border: `1px solid ${G}`, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Message all families</button>
+          <button onClick={() => st('Opening family chat.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Family chat</button>
+          <button onClick={() => st('Opening message to all families.')} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: `1px solid ${G}`, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Message all families</button>
         </div>
       </div>
 
@@ -80,10 +84,11 @@ export default function HM7InboxMiniRoos(_: { onBack?: () => void }) {
 
           <div style={{ marginTop: 'auto', display: 'flex', gap: 8, alignItems: 'center' }}>
             <div style={{ flex: 1, minHeight: 48, border: `1px solid #c5c8c4`, borderRadius: 12, padding: '0 14px', display: 'flex', alignItems: 'center', fontSize: 15, color: MUT, background: '#fff' }}>Write a reply</div>
-            <button style={{ height: 48, padding: '0 18px', borderRadius: 10, border: `1px solid ${G}`, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Send</button>
+            <button onClick={() => st('Reply sent.')} style={{ height: 48, padding: '0 18px', borderRadius: 10, border: `1px solid ${G}`, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Send</button>
           </div>
         </div>
       </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }

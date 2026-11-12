@@ -76,6 +76,8 @@ interface Props {
 
 export default function DrillLibraryMain({ filterTab, setFilterTab, agePhase, setAgePhase, onDrillClick, onSessionPlans, onTermPlanner, onAddDrill }: Props) {
   const [activeSugg, setActiveSugg] = useState(0)
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
 
   const phaseId    = PHASE_LABEL_TO_ID[agePhase]
   const featured   = DRILLS.filter(d => d.featured && (phaseId === null || d.phases.includes(phaseId)))
@@ -156,7 +158,7 @@ export default function DrillLibraryMain({ filterTab, setFilterTab, agePhase, se
               {f.label}
             </button>
           ))}
-          <button style={{ marginLeft:'auto', height: 44, padding:'0 12px', borderRadius:999, border:'1px solid rgba(255,255,255,0.25)', background:'transparent', color:'rgba(255,255,255,0.7)', fontSize:12, fontWeight:500, cursor:'pointer', fontFamily:'inherit', whiteSpace:'nowrap', flexShrink:0, display:'flex', alignItems:'center', gap:4 }}>
+          <button onClick={() => st('Opening all suggestions.')} style={{ marginLeft:'auto', height: 44, padding:'0 12px', borderRadius:999, border:'1px solid rgba(255,255,255,0.25)', background:'transparent', color:'rgba(255,255,255,0.7)', fontSize:12, fontWeight:500, cursor:'pointer', fontFamily:'inherit', whiteSpace:'nowrap', flexShrink:0, display:'flex', alignItems:'center', gap:4 }}>
             All suggestions
             <svg width={11} height={11} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.2} strokeLinecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </button>
@@ -170,7 +172,7 @@ export default function DrillLibraryMain({ filterTab, setFilterTab, agePhase, se
                 <div style={{ fontSize:13, fontWeight:700, color:G, marginBottom:3 }}>Suggested · {activeFix.stat}</div>
                 <div style={{ fontSize:12, color:MUT, lineHeight:1.5, maxWidth:520 }}>Most were short passes under pressure from their front three. Keep-ball games build calm first touches and scanning.</div>
               </div>
-              <button style={{ height: 44, padding:'0 13px', borderRadius:999, border:`1px solid ${LN}`, background:'#fff', color:MUT, fontSize:12, fontWeight:600, cursor:'pointer', fontFamily:'inherit', whiteSpace:'nowrap', flexShrink:0, marginLeft:16 }}>Watch 6 clips</button>
+              <button onClick={() => st('Watching 6 clips.')} style={{ height: 44, padding:'0 13px', borderRadius:999, border:`1px solid ${LN}`, background:'#fff', color:MUT, fontSize:12, fontWeight:600, cursor:'pointer', fontFamily:'inherit', whiteSpace:'nowrap', flexShrink:0, marginLeft:16 }}>Watch 6 clips</button>
             </div>
             <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:10 }}>
               {featured.map(d => <SuggestedCard key={d.id} drill={d} onClick={() => onDrillClick(d)}/>)}
@@ -192,6 +194,7 @@ export default function DrillLibraryMain({ filterTab, setFilterTab, agePhase, se
           <div style={{ padding:'24px 0', fontSize:14, color:MUT, textAlign:'center' }}>No drills in this filter</div>
         )}
       </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }

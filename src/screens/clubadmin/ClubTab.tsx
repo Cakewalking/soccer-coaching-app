@@ -69,7 +69,7 @@ export default function ClubTab({ role, empty }: { role: 'chair' | 'dof'; empty?
               ))}
             </div>
             <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: 1.5, marginBottom: 10 }}>Coaches can start before you finish. Each team can set itself up from a coach link.</div>
-            <button style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Book a setup call</button>
+            <button onClick={() => showToast('Opening setup call booking.')} style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Book a setup call</button>
           </div>
           <div>
             <div style={{ background: '#fff', borderRadius: 16, border: '1px solid #e9eae8', padding: '16px', marginBottom: 14 }}>
@@ -222,7 +222,7 @@ export default function ClubTab({ role, empty }: { role: 'chair' | 'dof'; empty?
               <div style={card}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 12 }}>
                   <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>Teams to watch</div>
-                  <button style={{ fontSize: 12, color: '#2f6252', background: 'none', border: 0, cursor: 'pointer', fontFamily: 'inherit' }}>All 14 teams</button>
+                  <button onClick={() => showToast('Opening all teams view.')} style={{ fontSize: 12, color: '#2f6252', background: 'none', border: 0, cursor: 'pointer', fontFamily: 'inherit' }}>All 14 teams</button>
                 </div>
                 <div style={{ display: 'grid', gridTemplateColumns: 'auto 1fr auto auto', gap: '6px 12px', fontSize: 12 }}>
                   <div style={{ color: '#6f7f7b', fontWeight: 700 }}>TEAM</div>
@@ -312,7 +312,7 @@ export default function ClubTab({ role, empty }: { role: 'chair' | 'dof'; empty?
                 <div style={{ fontSize: 18, fontWeight: 800, color: '#10211f' }}>Season plan</div>
                 <div style={{ fontSize: 12, color: '#6f7f7b' }}>Season 2026 · winter football with a summer break</div>
               </div>
-              <button style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>Add to calendar</button>
+              <button onClick={() => showToast('Adding season plan to calendar.')} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>Add to calendar</button>
             </div>
             <div style={{ background: '#fff', borderRadius: 14, border: '1px solid #e9eae8', overflow: 'hidden' }}>
               <div style={{ display: 'grid', gridTemplateColumns: '130px repeat(12, 1fr)', borderBottom: '1px solid #f0f1f0' }}>

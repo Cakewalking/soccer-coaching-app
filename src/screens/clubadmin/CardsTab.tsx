@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 const CARDS_DATA = [
   { ini: 'RP', name: 'Ryan Petersen', team: 'U16 Ollie', cards: [{ c: 'Y' }, { c: 'Y' }, { c: 'R' }], cardsLabel: '2 yellows · 1 red', badgeText: 'Suspended · misses Sat 6 Jun', badgeBg: '#c39797', note: "Out of Ollie's line-up" },
   { ini: 'DV', name: 'Dean Vukovic',  team: "Men's 1sts", cards: [{ c: 'Y' }, { c: 'Y' }, { c: 'Y' }, { c: 'Y' }], cardsLabel: '4 yellows', badgeText: '1 yellow from a ban', badgeBg: '#cbbeb5', note: 'Marko told' },
@@ -14,6 +16,9 @@ function CardRect({ c }: { c: 'Y' | 'R' }) {
 }
 
 export default function CardsTab() {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
+
   return (
     <div style={{ padding: '16px 20px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 300px', gap: 14, alignItems: 'start' }}>
 
@@ -22,7 +27,7 @@ export default function CardsTab() {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
           <h2 style={{ margin: 0, fontSize: 17, fontWeight: 700 }}>Cards and suspensions</h2>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-            <button style={{ fontSize: 13, fontWeight: 600, color: '#2f6252', background: 'transparent', border: 0, cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>Sideline reports</button>
+            <button style={{ fontSize: 13, fontWeight: 600, color: '#2f6252', background: 'transparent', border: 0, cursor: 'pointer', fontFamily: 'inherit', padding: 0 }} onClick={() => st('Opening sideline reports.')}>Sideline reports</button>
             <span style={{ fontSize: 14, color: '#4a5a57' }}>U12 and up · season 2026 · from Dribl</span>
           </div>
         </div>
@@ -86,6 +91,7 @@ export default function CardsTab() {
         ))}
         <span style={{ fontSize: 13, color: '#4a5a57', marginTop: 'auto', paddingTop: 12, lineHeight: '18px' }}>A suspended player can't be put in a line-up or on a team sheet. Their coach and parent are told the same day.</span>
         <div style={{ marginTop: 12, fontSize: 12, color: '#6f7f7b', borderTop: '1px solid #e9eae8', paddingTop: 10 }}>Last checked against Dribl: today 7:03 am</div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
       </aside>
     </div>
   )

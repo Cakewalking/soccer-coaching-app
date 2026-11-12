@@ -73,7 +73,7 @@ export default function TrainingMiniRoos({ empty }: { empty?: boolean }) {
         {/* Drill list */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10, minHeight: 0, overflowY: 'auto' }}>
           {DRILLS.map((d, i) => (
-            <button key={i} style={{ display: 'grid', gridTemplateColumns: '56px minmax(0,1fr) 24px', gap: 0, background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 16, padding: 0, overflow: 'hidden', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
+            <button key={i} onClick={() => showToast(`Opening ${d.name}.`)} style={{ display: 'grid', gridTemplateColumns: '56px minmax(0,1fr) 24px', gap: 0, background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 16, padding: 0, overflow: 'hidden', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
               {/* Time col */}
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '14px 0', background: '#f7f8f7', borderRight: '1px solid #e9eae8', gap: 2 }}>
                 <span style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>{d.time}</span>

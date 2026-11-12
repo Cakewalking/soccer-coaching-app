@@ -14,6 +14,8 @@ export default function ThankParentsScreen({ onBack }: { onBack: () => void }) {
   const [msg, setMsg] = useState(DRAFT)
   const [askComingNext, setAskComingNext] = useState(true)
   const [sent, setSent] = useState(false)
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
 
   if (sent) {
     return (
@@ -49,7 +51,7 @@ export default function ThankParentsScreen({ onBack }: { onBack: () => void }) {
           <div style={{ fontSize: 12, color: '#4a5a57', marginTop: 4 }}>Auto-drafted by Clean Sheet. Edit before sending.</div>
         </div>
 
-        <button style={{ width: '100%', height: 50, background: '#fff', border: '1.5px dashed #c5c8c4', borderRadius: 14, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, cursor: 'pointer', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, color: '#4a5a57' }}>
+        <button onClick={() => st('Opening photo picker.')} style={{ width: '100%', height: 50, background: '#fff', border: '1.5px dashed #c5c8c4', borderRadius: 14, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, cursor: 'pointer', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, color: '#4a5a57' }}>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9l4-4 4 4 4-4 4 4"/><circle cx="8.5" cy="13.5" r="1.5"/></svg>
           Add a team photo
         </button>
@@ -83,8 +85,9 @@ export default function ThankParentsScreen({ onBack }: { onBack: () => void }) {
       {/* Footer */}
       <div style={{ position: 'fixed', bottom: 0, width: 390, padding: '14px 20px', background: '#fff', borderTop: '1px solid #e9eae8', display: 'flex', flexDirection: 'column', gap: 10, boxSizing: 'border-box' }}>
         <button onClick={() => setSent(true)} style={{ width: '100%', height: 50, borderRadius: 14, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 16, fontWeight: 700, cursor: 'pointer' }}>Send to 10 families</button>
-        <button style={{ width: '100%', height: 44, borderRadius: 14, border: '1.5px solid #c5c8c4', background: 'transparent', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>Edit the message</button>
+        <button onClick={() => st('Opening message editor.')} style={{ width: '100%', height: 44, borderRadius: 14, border: '1.5px solid #c5c8c4', background: 'transparent', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>Edit the message</button>
       </div>
+      {toast && <div style={{ position: 'fixed', bottom: 100, left: 0, right: 0, display: 'flex', justifyContent: 'center', zIndex: 100 }}><div style={{ background: '#1f4a3e', color: '#fff', padding: '10px 20px', borderRadius: 999, fontSize: 13, fontWeight: 600 }}>{toast}</div></div>}
     </div>
   )
 }

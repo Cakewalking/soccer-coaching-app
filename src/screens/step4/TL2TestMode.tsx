@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 const G = '#2f6252', GD = '#1f4a3e', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 const ORDER = [
@@ -22,12 +24,14 @@ const Row = ({ p }: { p: typeof ORDER[0] }) => (
 )
 
 export default function TL2TestMode(_: { onBack?: () => void }) {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, height: 820, background: '#f7f8f7', boxSizing: 'border-box' as const, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' as const }}>
       <div style={{ height: 60, background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 16, flex: 'none' }}>
         <div style={{ fontSize: 21, fontWeight: 700, color: '#fff', letterSpacing: '-0.02em' }}>Clean Sheet</div>
         <div style={{ flex: 1, fontSize: 14, color: 'rgba(255,255,255,0.75)', fontWeight: 600 }}>20 m sprint race · U12 Sam</div>
-        <button style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid rgba(255,255,255,0.3)`, background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Finish early</button>
+        <button onClick={() => st('Finishing early.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid rgba(255,255,255,0.3)`, background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Finish early</button>
       </div>
       <div style={{ flex: 1, minHeight: 0, padding: '16px 28px 18px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 320px', gap: 16 }}>
         <div style={{ background: '#fff', border: `1px solid #c5c8c4`, borderRadius: 20, padding: '24px 28px', display: 'flex', flexDirection: 'column' as const, alignItems: 'center', justifyContent: 'center', gap: 12 }}>
@@ -43,8 +47,8 @@ export default function TL2TestMode(_: { onBack?: () => void }) {
             <span>Go 1 was 3.98 s</span>
           </div>
           <div style={{ display: 'flex', gap: 12, marginTop: 8 }}>
-            <button style={{ height: 44, padding: '0 20px', borderRadius: 10, border: `1px solid #c5c8c4`, background: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Redo this go</button>
-            <button style={{ height: 44, padding: '0 20px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Save · new best · next: Leo</button>
+            <button onClick={() => st('Redoing this go.')} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: `1px solid #c5c8c4`, background: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Redo this go</button>
+            <button onClick={() => st('Saved. Next up: Leo.')} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Save · new best · next: Leo</button>
           </div>
         </div>
         <div style={{ background: '#fff', border: `1px solid #c5c8c4`, borderRadius: 16, padding: '14px 16px', display: 'flex', flexDirection: 'column' as const, gap: 2 }}>
@@ -53,6 +57,7 @@ export default function TL2TestMode(_: { onBack?: () => void }) {
           <div style={{ marginTop: 'auto', fontSize: 13, color: MUT, paddingTop: 8 }}>2 goes each · best time recorded</div>
         </div>
       </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }

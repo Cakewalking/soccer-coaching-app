@@ -47,6 +47,8 @@ export default function TeamManagerScreen({ empty }: { empty?: boolean }) {
   const [sidelineTeam, setSidelineTeam] = useState<string | null>(null)
   const [signOffChoices, setSignOffChoices] = useState<Record<number, string>>({})
   const [showWhosComing, setShowWhosComing] = useState(false)
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
 
   function toggleCheck(i: number) {
     setCheckedItems(prev => { const n = new Set(prev); n.has(i) ? n.delete(i) : n.add(i); return n })
@@ -108,8 +110,8 @@ export default function TeamManagerScreen({ empty }: { empty?: boolean }) {
             <div style={{ fontSize: 20, fontWeight: 700, color: '#10211f', marginBottom: 6 }}>Get your families in</div>
             <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.5, marginBottom: 16 }}>Send the team link to parents. Once they join, you can share meet times, ask who's coming and fill the duty roster.</div>
             <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 10, marginBottom: 20 }}>
-              <button style={{ height: 44, borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Copy the team link</button>
-              <button style={{ height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>See what parents see</button>
+              <button onClick={() => showToast('Team link copied.')} style={{ height: 44, borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Copy the team link</button>
+              <button onClick={() => showToast('Opening parent view.')} style={{ height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>See what parents see</button>
             </div>
             <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.07em', color: '#6f7f7b', marginBottom: 8 }}>NEXT GAME</div>
             <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 12, padding: '12px 14px', fontSize: 13, color: '#4a5a57', marginBottom: 10 }}>Fixtures appear here once Sam or the club adds them.</div>
@@ -119,7 +121,7 @@ export default function TeamManagerScreen({ empty }: { empty?: boolean }) {
             <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 14, padding: '20px', marginBottom: 16 }}>
               <div style={{ fontSize: 16, fontWeight: 700, color: '#10211f', marginBottom: 6 }}>No game this week</div>
               <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.5, marginBottom: 14 }}>{"It's a bye round. Your game-day checklist opens here on the morning of the next game."}</div>
-              <button style={{ height: 44, padding: '0 16px', borderRadius: 999, border: '1px solid #e9eae8', background: '#fff', color: '#2f6252', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>See fixtures</button>
+              <button onClick={() => showToast('Opening fixtures.')} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: '1px solid #e9eae8', background: '#fff', color: '#2f6252', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>See fixtures</button>
             </div>
             {[
               { title: 'ON THE DAY', items: ['Arrival text', 'Duty roster', 'Who signed on', 'First-aid card', 'Head knock form', 'Sign-off after the game'] },
@@ -137,7 +139,7 @@ export default function TeamManagerScreen({ empty }: { empty?: boolean }) {
             <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 14, padding: '20px', marginBottom: 16 }}>
               <div style={{ fontSize: 16, fontWeight: 700, color: '#10211f', marginBottom: 6 }}>No messages yet</div>
               <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.5, marginBottom: 14 }}>Tell every family about a change in one go. You'll see who has read it, and nudge anyone who hasn't.</div>
-              <button style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Tell parents about a change</button>
+              <button onClick={() => showToast('Opening change message.')} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Tell parents about a change</button>
             </div>
             <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.07em', color: '#6f7f7b', marginBottom: 8 }}>CONVERSATIONS</div>
             <div style={{ padding: '12px 14px', background: '#fff', border: '1px solid #e9eae8', borderRadius: 10, fontSize: 13, color: '#4a5a57' }}>Messages to a player always go to their parents too. Coaches see team messages in their inbox.</div>
@@ -147,8 +149,8 @@ export default function TeamManagerScreen({ empty }: { empty?: boolean }) {
               <div style={{ fontSize: 16, fontWeight: 700, color: '#10211f', marginBottom: 6 }}>No duties yet</div>
               <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.5, marginBottom: 14 }}>{"Pick the jobs your team needs each week. Families sign up from their phone, and swap if they can't make it."}</div>
               <div style={{ display: 'flex', gap: 10 }}>
-                <button style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Add the usual jobs</button>
-                <button style={{ height: 44, padding: '0 16px', borderRadius: 999, border: '1px solid #e9eae8', background: '#fff', color: '#4a5a57', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Choose my own</button>
+                <button onClick={() => showToast('Adding usual jobs.')} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Add the usual jobs</button>
+                <button onClick={() => showToast('Opening custom jobs.')} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: '1px solid #e9eae8', background: '#fff', color: '#4a5a57', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Choose my own</button>
               </div>
             </div>
             <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.07em', color: '#6f7f7b', marginBottom: 8 }}>FILLS IN LIKE THIS</div>
@@ -156,6 +158,7 @@ export default function TeamManagerScreen({ empty }: { empty?: boolean }) {
           </>)}
         </div>
         <BottomNav />
+        {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
       </div>
     )
   }
@@ -286,8 +289,8 @@ export default function TeamManagerScreen({ empty }: { empty?: boolean }) {
                   <div style={{ fontSize: 18, fontWeight: 800, color: '#10211f', marginBottom: 6 }}>No game this week</div>
                   <div style={{ fontSize: 14, color: '#6f7f7b', marginBottom: 20 }}>Bye round · SAT 14 JUN. Use this week for extra training or a break.</div>
                   <div style={{ display: 'flex', gap: 10, justifyContent: 'center' }}>
-                    <button style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#4a5a57', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Extra training session?</button>
-                    <button style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Tell parents</button>
+                    <button onClick={() => showToast('Opening extra session planner.')} style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#4a5a57', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Extra training session?</button>
+                    <button onClick={() => showToast('Sending bye week message.')} style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Tell parents</button>
                   </div>
                 </div>
                 <div style={{ marginTop: 16, background: '#fff', borderRadius: 14, padding: '14px 16px', border: '1px solid #e9eae8' }}>
@@ -447,7 +450,7 @@ export default function TeamManagerScreen({ empty }: { empty?: boolean }) {
                     <span style={{ fontSize: 11, fontWeight: 700, color: '#2f6252', background: '#eef5f2', borderRadius: 6, padding: '2px 8px', flexShrink: 0 }}>You</span>
                   )}
                   {d.status === 'ask' && (
-                    <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer', flexShrink: 0 }}>Ask</button>
+                    <button onClick={() => showToast('Asking for a volunteer.')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer', flexShrink: 0 }}>Ask</button>
                   )}
                 </div>
               </div>
@@ -501,7 +504,7 @@ export default function TeamManagerScreen({ empty }: { empty?: boolean }) {
                 {f.input}
               </div>
             ))}
-            <button style={{ width: '100%', height: 44, borderRadius: 12, border: 0, background: '#c39797', color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer', marginBottom: 10 }}>Log and notify parents</button>
+            <button onClick={() => { setShowHeadKnock(false); showToast('Head knock logged.') }} style={{ width: '100%', height: 44, borderRadius: 12, border: 0, background: '#c39797', color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer', marginBottom: 10 }}>Log and notify parents</button>
             <div style={{ fontSize: 12, color: '#6f7f7b', textAlign: 'center' }}>A copy goes to the club's safeguarding officer</div>
           </div>
         </div>
@@ -527,7 +530,7 @@ export default function TeamManagerScreen({ empty }: { empty?: boolean }) {
                 {f.input}
               </div>
             ))}
-            <button style={{ width: '100%', height: 44, borderRadius: 12, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer', marginBottom: 10 }}>Submit report</button>
+            <button onClick={() => { setShowSideline(false); showToast('Sideline report submitted.') }} style={{ width: '100%', height: 44, borderRadius: 12, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer', marginBottom: 10 }}>Submit report</button>
             <div style={{ fontSize: 12, color: '#6f7f7b', textAlign: 'center' }}>Sent to the club's committee and league if needed</div>
           </div>
         </div>
@@ -554,7 +557,7 @@ export default function TeamManagerScreen({ empty }: { empty?: boolean }) {
                 {f.input}
               </div>
             ))}
-            <button style={{ width: '100%', height: 44, borderRadius: 12, border: 0, background: '#c3a84a', color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer', marginBottom: 10 }}>Log and notify parents</button>
+            <button onClick={() => { setShowInjury(false); showToast('Injury logged.') }} style={{ width: '100%', height: 44, borderRadius: 12, border: 0, background: '#c3a84a', color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer', marginBottom: 10 }}>Log and notify parents</button>
             <div style={{ fontSize: 12, color: '#6f7f7b', textAlign: 'center' }}>A copy goes to the club's first aid officer</div>
           </div>
         </div>
@@ -589,13 +592,14 @@ export default function TeamManagerScreen({ empty }: { empty?: boolean }) {
               <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 6 }}>Anything for next week?</div>
               <textarea placeholder="Optional note for Sam and the committee…" style={{ width: '100%', height: 72, borderRadius: 8, border: '1px solid #e9eae8', padding: '10px', fontFamily: 'inherit', fontSize: 14, resize: 'none', boxSizing: 'border-box' }} />
             </div>
-            <button style={{ width: '100%', height: 44, borderRadius: 12, border: 0, background: '#1f4a3e', color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Sign off</button>
+            <button onClick={() => { setShowSignOff(false); showToast('Game signed off.') }} style={{ width: '100%', height: 44, borderRadius: 12, border: 0, background: '#1f4a3e', color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Sign off</button>
           </div>
         </div>
       )}
 
       {showHeat && <HeatScreen onBack={() => setShowHeat(false)} />}
       {showGameDayPapers && <GameDayPapersScreen onBack={() => setShowGameDayPapers(false)} />}
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
   )
 }

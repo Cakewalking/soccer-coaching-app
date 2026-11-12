@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 const COMING = ['Ivy Chen', 'Max Bailey', 'Arlo Kaur', 'Zara Moore', 'Leo Wright', 'Evie Nolan', 'Theo Santos']
@@ -6,6 +8,8 @@ const NOANSWER = [{ name: 'Jude Lim', reason: 'Asked Tuesday and Thursday' }]
 const AWAY = [{ name: 'Omar Haddad', reason: "At his grandparents'. Back next week" }]
 
 export default function HM11ComingMiniRoos(_: { onBack?: () => void }) {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820 }}>
       <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 32, height: 52 }}>
@@ -23,7 +27,7 @@ export default function HM11ComingMiniRoos(_: { onBack?: () => void }) {
             <div style={{ fontSize: 20, fontWeight: 800, letterSpacing: '-0.02em', color: INK, marginBottom: 2 }}>Who's coming</div>
             <div style={{ fontSize: 13, color: MUT }}>Sat 6 Jun · 8:30 vs Northgate City · you need 7</div>
           </div>
-          <button style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Remind 2 families</button>
+          <button style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }} onClick={() => st('Sending reminders.')}>Remind 2 families</button>
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 320px', gap: 24 }}>
@@ -86,6 +90,7 @@ export default function HM11ComingMiniRoos(_: { onBack?: () => void }) {
             </div>
           </div>
         </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
       </div>
     </div>
   )

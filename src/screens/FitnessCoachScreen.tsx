@@ -1133,7 +1133,7 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange }
           <div style={{ flex: 1, overflowY: 'auto', padding: '20px' }}>
             <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: 8, marginBottom: 20 }}>
               {['Who is growing fast?', 'Any load concerns this week?', 'Who needs a sprint limit review?', 'Which players reported pain?'].map(q => (
-                <button key={q} style={{ padding: '7px 12px', borderRadius: 100, border: '1px solid #e8edeb', background: '#eef5f2', color: '#2f6252', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{q}</button>
+                <button key={q} onClick={() => showToast(`Asking: ${q}`)} style={{ padding: '7px 12px', borderRadius: 100, border: '1px solid #e8edeb', background: '#eef5f2', color: '#2f6252', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{q}</button>
               ))}
             </div>
             <div style={{ background: '#eef5f2', borderRadius: 14, padding: '14px 16px', fontSize: 14, color: '#10211f', lineHeight: 1.6 }}>
@@ -1144,7 +1144,7 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange }
           </div>
           <div style={{ padding: '12px 16px', borderTop: '1px solid #e8edeb', display: 'flex', gap: 8, flexShrink: 0 }}>
             <input placeholder="Ask about squad fitness…" style={{ flex: 1, height: 40, padding: '0 12px', borderRadius: 8, border: '1px solid #e8edeb', fontSize: 13, fontFamily: 'inherit', outline: 'none', color: '#10211f' }} />
-            <button style={{ height: 40, padding: '0 16px', borderRadius: 8, background: '#2f6252', color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Ask</button>
+            <button onClick={() => showToast('Asking Clean Sheet.')} style={{ height: 40, padding: '0 16px', borderRadius: 8, background: '#2f6252', color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Ask</button>
           </div>
         </aside>
       )}

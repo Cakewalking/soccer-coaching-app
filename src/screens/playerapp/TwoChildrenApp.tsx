@@ -122,6 +122,8 @@ function HomeView({ childTab, setChildTab, onSeasonSummary, onAvailability }: {
 }
 
 function SeasonSummaryView({ onBack, empty }: { onBack: () => void; empty?: boolean }) {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <>
       <div style={{ background: '#1f4a3e', padding: '48px 20px 20px', flex: 'none' }}>
@@ -193,9 +195,10 @@ function SeasonSummaryView({ onBack, empty }: { onBack: () => void; empty?: bool
         <div style={{ fontSize: 12, color: '#6f7f7b', lineHeight: '17px', textAlign: 'center' }}>No scores, rankings or comparisons with other children.</div>
 
         {/* CTAs */}
-        <button style={{ width: '100%', height: 52, borderRadius: 14, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 16, fontWeight: 700, cursor: 'pointer' }}>Share with family</button>
-        <button style={{ width: '100%', height: 52, borderRadius: 14, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 16, fontWeight: 600, cursor: 'pointer' }}>Download as a PDF</button>
+        <button onClick={() => st('Sharing with family.')} style={{ width: '100%', height: 52, borderRadius: 14, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 16, fontWeight: 700, cursor: 'pointer' }}>Share with family</button>
+        <button onClick={() => st('Downloading as a PDF.')} style={{ width: '100%', height: 52, borderRadius: 14, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 16, fontWeight: 600, cursor: 'pointer' }}>Download as a PDF</button>
       </div>}
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </>
   )
 }
@@ -335,6 +338,8 @@ function NotificationsView({ onBack }: { onBack: () => void }) {
 }
 
 function DataView({ onBack }: { onBack: () => void }) {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <>
       <div style={{ background: '#1f4a3e', padding: '48px 20px 20px', flex: 'none' }}>
@@ -349,7 +354,7 @@ function DataView({ onBack }: { onBack: () => void }) {
         <div style={{ background: '#fff', borderRadius: 16, border: '1px solid #e9eae8', padding: '16px' }}>
           <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 6 }}>Download a copy</div>
           <div style={{ fontSize: 13, color: '#6f7f7b', lineHeight: '18px', marginBottom: 12 }}>Everything held about you and your children: clips, numbers, check-ins, consent.</div>
-          <button style={{ width: '100%', height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Email me a copy</button>
+          <button onClick={() => st('Email on its way.')} style={{ width: '100%', height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Email me a copy</button>
         </div>
 
         <div style={{ background: '#fff', borderRadius: 16, border: '1px solid #e9eae8', overflow: 'hidden' }}>
@@ -368,11 +373,12 @@ function DataView({ onBack }: { onBack: () => void }) {
         <div style={{ background: '#fff', borderRadius: 16, border: '2px solid #e8d5d0', padding: '16px' }}>
           <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 6, color: '#10211f' }}>Leave and delete everything</div>
           <div style={{ fontSize: 13, color: '#6f7f7b', lineHeight: '18px', marginBottom: 12 }}>Removes your account and your children's data within 7 days. The club keeps only what the law says it must, such as a head-knock record.</div>
-          <button style={{ width: '100%', height: 44, borderRadius: 10, border: '1px solid #e8d5d0', background: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer', color: '#c39797' }}>Delete everything</button>
+          <button onClick={() => st('Opening deletion confirmation.')} style={{ width: '100%', height: 44, borderRadius: 10, border: '1px solid #e8d5d0', background: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer', color: '#c39797' }}>Delete everything</button>
         </div>
 
         <div style={{ fontSize: 12, color: '#6f7f7b', lineHeight: '17px', textAlign: 'center' }}>Mia can still play. Deleting data never affects her place in the team.</div>
       </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </>
   )
 }

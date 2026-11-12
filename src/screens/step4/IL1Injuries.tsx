@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 const G = '#2f6252', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 const ACTIVE = [
@@ -21,6 +23,8 @@ const StepBar = ({ n }: { n: number }) => (
 )
 
 export default function IL1Injuries(_: { onBack?: () => void }) {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, height: 820, background: '#f7f8f7', boxSizing: 'border-box' as const, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' as const }}>
       <div style={{ height: 64, background: G, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 16, flex: 'none' }}>
@@ -79,8 +83,9 @@ export default function IL1Injuries(_: { onBack?: () => void }) {
             <rect x="52" y="106" width="18" height="60" rx="8" fill={PALE} stroke={LN} strokeWidth="1.5" />
           </svg>
           <input placeholder="What happened? (optional)" style={{ height: 36, borderRadius: 8, border: `1px solid #c5c8c4`, padding: '0 10px', fontSize: 14, fontFamily: 'inherit' }} />
-          <button style={{ height: 44, borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Log injury</button>
+          <button style={{ height: 44, borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }} onClick={() => st('Logging injury.')}>Log injury</button>
         </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
       </div>
     </div>
   )

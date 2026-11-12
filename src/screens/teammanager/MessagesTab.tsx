@@ -65,6 +65,8 @@ function SetUpChatView({ onDone }: { onDone: () => void }) {
 /* TM13 — Manager creates a poll */
 function NewPollView({ onBack }: { onBack: () => void }) {
   const [preset, setPreset] = useState("Who can help?")
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 10 }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
@@ -87,7 +89,7 @@ function NewPollView({ onBack }: { onBack: () => void }) {
           <input defaultValue={a} style={{ flex: 1, height: 40, padding: '0 12px', borderRadius: 8, border: `1px solid ${LN}`, fontSize: 14, fontFamily: 'inherit', outline: 'none', color: INK }}/>
         </div>
       ))}
-      <button style={{ display: 'flex', alignItems: 'center', gap: 6, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G2, padding: '2px 0' }}>
+      <button onClick={() => showToast('Opening new answer field.')} style={{ display: 'flex', alignItems: 'center', gap: 6, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G2, padding: '2px 0' }}>
         <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round"><path d="M12 5v14M5 12h14"/></svg>
         Add an answer
       </button>
@@ -100,6 +102,7 @@ function NewPollView({ onBack }: { onBack: () => void }) {
         <span style={{ fontSize: 13, fontWeight: 600, color: G2 }}>Friday at noon, once</span>
       </div>
       <button onClick={onBack} style={{ height: 52, borderRadius: 12, border: 'none', background: G, color: '#fff', fontSize: 16, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Send poll</button>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
   )
 }
@@ -107,6 +110,8 @@ function NewPollView({ onBack }: { onBack: () => void }) {
 /* TM14 — Manager's view of the team chat */
 function ManagerTeamChatView({ onBack, onNewPoll, onSetup }: { onBack: () => void; onNewPoll: () => void; onSetup: () => void }) {
   void onSetup
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: 0, flexGrow: 1 }}>
       <div style={{ padding: '10px 14px', borderBottom: `1px solid ${LN}`, background: '#fff', display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -125,7 +130,7 @@ function ManagerTeamChatView({ onBack, onNewPoll, onSetup }: { onBack: () => voi
       {/* Poll indicator */}
       <div style={{ padding: '10px 14px', background: '#f5f9f7', borderBottom: `1px solid ${LN}`, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <div style={{ fontSize: 13, color: GD }}>Your poll: oranges. 4 of 17 so far</div>
-        <button style={{ fontSize: 12, fontWeight: 700, color: G2, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit' }}>See who</button>
+        <button onClick={() => showToast('Opening poll responses.')} style={{ fontSize: 12, fontWeight: 700, color: G2, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit' }}>See who</button>
       </div>
       <div style={{ flexGrow: 1, overflowY: 'auto', padding: '14px' }}>
         {/* Linh's voice */}
@@ -136,7 +141,7 @@ function ManagerTeamChatView({ onBack, onNewPoll, onSetup }: { onBack: () => voi
           </div>
           <div style={{ background: '#f5f6f4', borderRadius: 12, padding: '8px 12px', marginLeft: 34 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <button style={{ width: 24, height: 24, borderRadius: '999px', border: 'none', background: G, color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <button onClick={() => showToast('Playing voice note.')} style={{ width: 24, height: 24, borderRadius: '999px', border: 'none', background: G, color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <svg width={8} height={8} viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21"/></svg>
               </button>
               <div style={{ flex: 1, height: 2, background: LN, borderRadius: 999 }}/>
@@ -166,20 +171,21 @@ function ManagerTeamChatView({ onBack, onNewPoll, onSetup }: { onBack: () => voi
           <div style={{ background: '#f5f6f4', borderRadius: 12, padding: '8px 12px', marginLeft: 34, fontSize: 14, color: INK, lineHeight: 1.5 }}>Why does Ruby only ever get one half? Some kids never come off.</div>
         </div>
         <div style={{ marginLeft: 34, marginBottom: 14 }}>
-          <button style={{ height: 44, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: ROSE, cursor: 'pointer', fontFamily: 'inherit' }}>Move this out of the group</button>
+          <button onClick={() => showToast('Opening private thread with Dan.')} style={{ height: 44, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: ROSE, cursor: 'pointer', fontFamily: 'inherit' }}>Move this out of the group</button>
         </div>
       </div>
       <div style={{ background: '#fff', borderTop: `1px solid ${LN}`, padding: '8px 14px 10px', flexShrink: 0 }}>
         <div style={{ display: 'flex', gap: 6, marginBottom: 6 }}>
           <button onClick={onNewPoll} style={{ height: 44, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>Poll</button>
-          <button style={{ height: 44, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>Announce</button>
-          <button style={{ height: 44, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>Pinned</button>
+          <button onClick={() => showToast('Opening announcement compose.')} style={{ height: 44, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>Announce</button>
+          <button onClick={() => showToast('Viewing pinned messages.')} style={{ height: 44, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>Pinned</button>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
           <input placeholder="Write to the team chat" style={{ flex: 1, height: 38, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, fontSize: 14, fontFamily: 'inherit', outline: 'none', color: INK, background: '#fafafa' }}/>
-          <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Send</button>
+          <button onClick={() => showToast('Message sent.')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Send</button>
         </div>
       </div>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
   )
 }

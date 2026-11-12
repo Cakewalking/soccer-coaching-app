@@ -1,3 +1,4 @@
+import { useState } from 'react'
 const G = '#2f6252', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 const NAV_ITEMS = ['Home', 'Squad', 'Training', 'Match day', 'Clips']
@@ -24,12 +25,14 @@ const BENCH = [
 ]
 
 export default function L11LiveGame11(_: { onBack?: () => void }) {
+  const [toast, setToast] = useState<string|null>(null)
+  function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       <div style={{ flex: 'none', height: 64, boxSizing: 'border-box', padding: '0 28px', display: 'flex', alignItems: 'center', gap: 4, background: G }}>
         <div style={{ fontSize: 20, fontWeight: 700, color: '#fff', marginRight: 16, letterSpacing: '-0.02em' }}>Clean Sheet</div>
         {NAV_ITEMS.map(n => <div key={n} style={{ height: 48, padding: '0 14px', borderRadius: 12, display: 'flex', alignItems: 'center', fontSize: 15, fontWeight: 600, color: n === 'Match day' ? '#fff' : 'rgba(255,255,255,0.75)', background: n === 'Match day' ? '#40826d' : 'transparent', cursor: 'pointer' }}>{n}</div>)}
-        <div style={{ marginLeft: 'auto' }}><button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: '1px solid #fff', background: '#fff', fontSize: 14, fontWeight: 600, color: INK, cursor: 'pointer' }}>U12 Sam · Wattle Creek ▾</button></div>
+        <div style={{ marginLeft: 'auto' }}><button onClick={() => showToast('Opening team selector.')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: '1px solid #fff', background: '#fff', fontSize: 14, fontWeight: 600, color: INK, cursor: 'pointer' }}>U12 Sam · Wattle Creek ▾</button></div>
       </div>
       <div style={{ flex: 'none', height: 44, padding: '0 28px', display: 'flex', alignItems: 'flex-end', gap: 24, background: '#fff', borderBottom: `1px solid ${LN}` }}>
         {SUBNAV.map(n => <div key={n} style={{ height: 44, display: 'flex', alignItems: 'center', fontSize: 14, fontWeight: 600, color: n === 'Line-up and minutes' ? INK : MUT, borderBottom: `3px solid ${n === 'Line-up and minutes' ? '#40826d' : 'transparent'}`, cursor: 'pointer', whiteSpace: 'nowrap' as const }}>{n}</div>)}
@@ -44,7 +47,7 @@ export default function L11LiveGame11(_: { onBack?: () => void }) {
         <div style={{ flex: 1 }} />
         <div style={{ fontSize: 24, fontWeight: 700 }}>1–1</div>
         <div style={{ height: 44, padding: '0 16px', borderRadius: 12, background: INK, color: '#fff', display: 'flex', alignItems: 'center', fontSize: 20, fontWeight: 700, fontVariantNumeric: 'tabular-nums' }}>58:12</div>
-        <button style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Pause</button>
+        <button onClick={() => showToast('Game paused.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Pause</button>
       </div>
 
       <main style={{ flexGrow: 1, minHeight: 0, padding: '10px 28px 16px', boxSizing: 'border-box', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 330px', gap: 14 }}>
@@ -54,7 +57,7 @@ export default function L11LiveGame11(_: { onBack?: () => void }) {
           <div style={{ position: 'absolute' as const, left: 0, top: '28%', bottom: '28%', width: '10%', border: '2px solid rgba(255,255,255,0.4)', borderLeft: 'none' }} />
           <div style={{ position: 'absolute' as const, right: 0, top: '28%', bottom: '28%', width: '10%', border: '2px solid rgba(255,255,255,0.4)', borderRight: 'none' }} />
           {PITCH_PLAYERS.map(p => (
-            <button key={p.ini} style={{ position: 'absolute' as const, left: p.x, top: p.y, transform: 'translate(-50%,-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, background: 'none', border: 'none', cursor: 'pointer' }}>
+            <button key={p.ini} onClick={() => showToast(`Opening ${p.name}'s stats.`)} style={{ position: 'absolute' as const, left: p.x, top: p.y, transform: 'translate(-50%,-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, background: 'none', border: 'none', cursor: 'pointer' }}>
               <div style={{ width: 42, height: 42, borderRadius: '50%', background: '#fff', color: INK, border: `3px solid ${p.rest ? '#c39797' : '#fff'}`, boxSizing: 'border-box', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }}>{p.ini}</div>
               <div style={{ fontSize: 11, fontWeight: 700, color: '#fff', background: 'rgba(16,33,31,0.55)', borderRadius: 5, padding: '0 5px', whiteSpace: 'nowrap' as const }}>{p.name} {p.mins}′</div>
             </button>
@@ -67,8 +70,8 @@ export default function L11LiveGame11(_: { onBack?: () => void }) {
             <div style={{ fontSize: 15, fontWeight: 700 }}>Suggested now</div>
             <div style={{ fontSize: 14, lineHeight: '20px' }}><strong>Cal off, Ari on.</strong> Cal's week is 45% over his usual, and Ari has played 18 minutes.</div>
             <div style={{ display: 'flex', gap: 8 }}>
-              <button style={{ flex: 1, height: 44, borderRadius: 10, border: 0, background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Make the change</button>
-              <button style={{ flex: 1, height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Not yet</button>
+              <button onClick={() => showToast('Substitution made: Cal off, Ari on.')} style={{ flex: 1, height: 44, borderRadius: 10, border: 0, background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Make the change</button>
+              <button onClick={() => showToast('Noted — keeping Cal on for now.')} style={{ flex: 1, height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Not yet</button>
             </div>
           </div>
 
@@ -91,12 +94,13 @@ export default function L11LiveGame11(_: { onBack?: () => void }) {
           </div>
 
           <div style={{ display: 'flex', gap: 8 }}>
-            <button style={{ flex: 1, height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Goal</button>
-            <button style={{ flex: 1, height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Card</button>
-            <button style={{ flex: 1, height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Good moment</button>
+            <button onClick={() => showToast('Recording goal.')} style={{ flex: 1, height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Goal</button>
+            <button onClick={() => showToast('Recording card.')} style={{ flex: 1, height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Card</button>
+            <button onClick={() => showToast('Good moment saved.')} style={{ flex: 1, height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Good moment</button>
           </div>
         </div>
       </main>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }

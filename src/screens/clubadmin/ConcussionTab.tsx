@@ -56,7 +56,7 @@ export default function ConcussionTab({ empty }: { empty?: boolean }) {
         <div style={{ fontSize: 13, color: MUT, marginTop: 2 }}>Nothing here yet · No head knocks logged</div>
       </div>
       <div style={{ background: PALE, borderRadius: 14, padding: '14px 16px', fontSize: 14, color: G, lineHeight: 1.5 }}>Coaches and managers log a head knock from the sideline. The player then follows the return-to-play steps here.</div>
-      <button style={{ alignSelf: 'flex-start', height: 44, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Name a concussion officer</button>
+      <button onClick={() => showToast('Opening concussion officer form.')} style={{ alignSelf: 'flex-start', height: 44, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Name a concussion officer</button>
       <Card>
         <div style={{ padding: '10px 14px', borderBottom: `1px solid ${LN}`, fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: MUT }}>What you will see</div>
         {[

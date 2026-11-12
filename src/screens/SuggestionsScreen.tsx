@@ -61,6 +61,8 @@ function MainView({ empty, onWhy, onAsk, onWhatItUses, onWhatWorked }:
 
   const [card1dismissed, setCard1dismissed] = useState(false)
   const [card3watching, setCard3watching] = useState(false)
+  const [toast, setToast] = useState<string|null>(null)
+  function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
 
   if (empty) return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '24px 28px 32px', display: 'flex', flexDirection: 'column', gap: 16 }}>
@@ -69,8 +71,8 @@ function MainView({ empty, onWhy, onAsk, onWhatItUses, onWhatWorked }:
         <div style={{ fontSize: 18, fontWeight: 700, color: GD, marginBottom: 8 }}>Not enough to go on yet</div>
         <div style={{ fontSize: 14, color: G, lineHeight: 1.6, marginBottom: 16 }}>Suggestions start after your first game. Until then, your plan follows the national curriculum for under 12s. Add a game or record a drill and Clean Sheet starts to tailor it.</div>
         <div style={{ display: 'flex', gap: 10, justifyContent: 'center' }}>
-          <button style={{ height: 44, padding: '0 20px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Add a game</button>
-          <button style={{ height: 44, padding: '0 16px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Record a drill</button>
+          <button onClick={() => showToast('Opening record screen.')} style={{ height: 44, padding: '0 20px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Add a game</button>
+          <button onClick={() => showToast('Opening drill recorder.')} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Record a drill</button>
         </div>
       </div>
       <SectionHead label="What it will use"/>
@@ -87,6 +89,7 @@ function MainView({ empty, onWhy, onAsk, onWhatItUses, onWhatWorked }:
           </div>
         </div>
       ))}
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
   )
 
@@ -127,7 +130,7 @@ function MainView({ empty, onWhy, onAsk, onWhatItUses, onWhatWorked }:
           <div style={{ padding: '12px 16px', display: 'flex', gap: 8 }}>
             <button onClick={onWhy} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Why</button>
             <button onClick={() => setCard1dismissed(true)} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Not relevant</button>
-            <button style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', marginLeft: 'auto' }}>Add to Tuesday</button>
+            <button onClick={() => showToast("'Win it back' added to Tuesday.")} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', marginLeft: 'auto' }}>Add to Tuesday</button>
           </div>
         </div>
       )}
@@ -153,9 +156,9 @@ function MainView({ empty, onWhy, onAsk, onWhatItUses, onWhatWorked }:
           <div style={{ fontSize: 13, color: G, marginTop: 2 }}>Lower load than a running drill · Noah and Zoe do 2 rounds</div>
         </div>
         <div style={{ padding: '12px 16px', display: 'flex', gap: 8 }}>
-          <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Why</button>
-          <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Not relevant</button>
-          <button style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', marginLeft: 'auto' }}>Add to Tuesday</button>
+          <button onClick={onWhy} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Why</button>
+          <button onClick={() => showToast('Dismissed from suggestions.')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Not relevant</button>
+          <button onClick={() => showToast("'Small game' added to Tuesday.")} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', marginLeft: 'auto' }}>Add to Tuesday</button>
         </div>
       </div>
 
@@ -181,7 +184,7 @@ function MainView({ empty, onWhy, onAsk, onWhatItUses, onWhatWorked }:
         </div>
         <div style={{ padding: '12px 16px', display: 'flex', gap: 8 }}>
           <button onClick={() => setCard3watching(!card3watching)} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${card3watching ? G : LN}`, background: card3watching ? PALE : '#fff', fontSize: 13, fontWeight: 600, color: card3watching ? G : MUT, cursor: 'pointer', fontFamily: 'inherit' }}>{card3watching ? 'Watching ✓' : 'Keep watching'}</button>
-          <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>Suggest a drill anyway</button>
+          <button onClick={() => showToast('Opening drill suggestion for left-side play.')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>Suggest a drill anyway</button>
         </div>
       </div>
 
@@ -211,6 +214,7 @@ function MainView({ empty, onWhy, onAsk, onWhatItUses, onWhatWorked }:
         <div style={{ fontSize: 13, color: G, lineHeight: 1.5 }}>These are suggestions, with the reasons shown. Add one, swap it or drop it. What you drop teaches Clean Sheet what you don't want.</div>
         <div style={{ fontSize: 12, color: G, marginTop: 6 }}>Drills come from the library, which is written to the national curriculum for your age group.</div>
       </div>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
   )
 }
@@ -218,6 +222,8 @@ function MainView({ empty, onWhy, onAsk, onWhatItUses, onWhatWorked }:
 // ─── SG2 — Why this is suggested ─────────────────────────────────────────────
 
 function WhyView({ onBack }: { onBack: () => void }) {
+  const [toast, setToast] = useState<string|null>(null)
+  function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '20px 28px 32px', display: 'flex', flexDirection: 'column', gap: 16 }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
@@ -227,8 +233,8 @@ function WhyView({ onBack }: { onBack: () => void }) {
           <div style={{ fontSize: 13, color: MUT }}>Still slow to win the ball back in games</div>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Swap the drill</button>
-          <button style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Add to Tuesday</button>
+          <button onClick={() => showToast('Opening drill swap.')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Swap the drill</button>
+          <button onClick={() => showToast("Drill added to Tuesday.")} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Add to Tuesday</button>
         </div>
       </div>
 
@@ -274,7 +280,7 @@ function WhyView({ onBack }: { onBack: () => void }) {
           <span style={{ fontSize: 11, fontWeight: 700, color: G2, background: PALE, padding: '2px 8px', borderRadius: 999 }}>Vests</span>
           Only 3 players sprint in the first 3 seconds after losing it
         </div>
-        <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: PALE, fontSize: 13, fontWeight: 700, color: G, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 6 }}>
+        <button onClick={() => showToast('Opening 6 clips.')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: PALE, fontSize: 13, fontWeight: 700, color: G, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 6 }}>
           <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
           6 clips · Watch
         </button>
@@ -307,6 +313,7 @@ function WhyView({ onBack }: { onBack: () => void }) {
         </div>
         <div style={{ fontSize: 13, color: MUT, marginTop: 8 }}>Not sure it's right? Swap it. Two other drills check the same thing.</div>
       </div>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
   )
 }
@@ -316,6 +323,8 @@ function WhyView({ onBack }: { onBack: () => void }) {
 function AskView({ onBack }: { onBack: () => void }) {
   const [submitted, setSubmitted] = useState(false)
   const [question, setQuestion] = useState('')
+  const [toast, setToast] = useState<string|null>(null)
+  function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
 
   const exampleQ = "We keep getting caught on the counter after our own corners. What should I run?"
 
@@ -338,7 +347,7 @@ function AskView({ onBack }: { onBack: () => void }) {
           <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
           Ask
         </button>
-        <button style={{ height: 44, padding: '0 16px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 8 }}>
+        <button onClick={() => showToast('Opening voice input.')} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 8 }}>
           <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3zM19 10v2a7 7 0 01-14 0v-2M12 19v4M8 23h8"/></svg>
           Mic
         </button>
@@ -363,6 +372,7 @@ function AskView({ onBack }: { onBack: () => void }) {
         <div style={{ fontSize: 13, color: G, lineHeight: 1.5 }}>Only your own team's games, recordings and notes, and the drill library. If there isn't enough to go on, it says so and doesn't guess.</div>
         <div style={{ fontSize: 13, color: G, lineHeight: 1.5, marginTop: 6 }}>It won't rank players, or answer about a child whose parent hasn't agreed.</div>
       </div>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
   )
 
@@ -386,7 +396,7 @@ function AskView({ onBack }: { onBack: () => void }) {
             <span key={t} style={{ fontSize: 12, fontWeight: 600, color: G, background: '#fff', padding: '3px 10px', borderRadius: 999, border: `1px solid ${G2}44` }}>{t}</span>
           ))}
         </div>
-        <button style={{ marginTop: 10, height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 6 }}>
+        <button onClick={() => showToast('Opening 5 clips.')} style={{ marginTop: 10, height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 6 }}>
           <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
           Watch the 5 clips
         </button>
@@ -407,7 +417,7 @@ function AskView({ onBack }: { onBack: () => void }) {
               <div style={{ fontSize: 12, color: MUT, marginTop: 2 }}>{drill.note}</div>
               <span style={{ fontSize: 11, fontWeight: 700, color: G2, background: PALE, padding: '2px 8px', borderRadius: 999, marginTop: 6, display: 'inline-block' }}>{drill.tag}</span>
             </div>
-            <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>Add</button>
+            <button onClick={() => showToast(`${drill.name.split(':')[0]} added to Tuesday.`)} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>Add</button>
           </div>
         ))}
       </div>
@@ -415,8 +425,9 @@ function AskView({ onBack }: { onBack: () => void }) {
       {/* Follow up */}
       <div style={{ display: 'flex', gap: 10 }}>
         <input defaultValue="" placeholder="Ask a follow-up, or tap the microphone" style={{ flex: 1, height: 44, padding: '0 14px', border: `1px solid ${LN}`, borderRadius: 999, fontFamily: 'inherit', fontSize: 14, color: INK, outline: 'none', background: '#fff' }}/>
-        <button style={{ height: 44, padding: '0 20px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Ask</button>
+        <button onClick={() => showToast('Sending follow-up question.')} style={{ height: 44, padding: '0 20px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Ask</button>
       </div>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
   )
 }
@@ -424,6 +435,8 @@ function AskView({ onBack }: { onBack: () => void }) {
 // ─── SG4 — What it uses ───────────────────────────────────────────────────────
 
 function WhatItUsesView({ onBack }: { onBack: () => void }) {
+  const [toast, setToast] = useState<string|null>(null)
+  function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   const sources = [
     { src: 'Game video',         have: '6 games this season',              use: 'What keeps happening, and where',           on: true },
     { src: 'Training recordings',have: '9 runs of 4 drills',               use: 'Which drills moved their measure',           on: true },
@@ -469,6 +482,7 @@ function WhatItUsesView({ onBack }: { onBack: () => void }) {
       </div>
 
       <div style={{ fontSize: 12, color: MUT, lineHeight: 1.5 }}>A pattern needs at least 3 games, or 3 runs of a drill. Anything less is shown as an early sign.</div>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
 
       {/* What it never does */}
       <div>
@@ -505,7 +519,7 @@ function WhatItUsesView({ onBack }: { onBack: () => void }) {
             </div>
           ))}
         </div>
-        <button style={{ marginTop: 10, fontSize: 13, fontWeight: 600, color: G2, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>You dropped 2 suggestions this term. Bring them back</button>
+        <button onClick={() => showToast('Restoring 2 dropped suggestions.')} style={{ marginTop: 10, fontSize: 13, fontWeight: 600, color: G2, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>You dropped 2 suggestions this term. Bring them back</button>
       </div>
     </div>
   )

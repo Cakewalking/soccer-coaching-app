@@ -1,6 +1,10 @@
+import { useState } from 'react'
+
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb'
 
 export default function RC4Recording(_: { onBack?: () => void }) {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: GD, color: '#ffffff', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       <div style={{ flex: 'none', height: 64, boxSizing: 'border-box', padding: '0 28px', display: 'flex', alignItems: 'center', gap: 16 }}>
@@ -38,13 +42,13 @@ export default function RC4Recording(_: { onBack?: () => void }) {
           </div>
 
           <div style={{ display: 'flex', gap: 10 }}>
-            <button style={{ flex: 1, height: 52, borderRadius: 12, border: '2px solid rgba(255,255,255,0.4)', background: 'transparent', color: '#fff', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Next round →</button>
-            <button style={{ height: 52, padding: '0 20px', borderRadius: 12, border: '2px solid rgba(255,255,255,0.4)', background: 'transparent', color: '#fff', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Mark a moment</button>
+            <button onClick={() => st('Moving to next round.')} style={{ flex: 1, height: 52, borderRadius: 12, border: '2px solid rgba(255,255,255,0.4)', background: 'transparent', color: '#fff', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Next round →</button>
+            <button onClick={() => st('Moment marked.')} style={{ height: 52, padding: '0 20px', borderRadius: 12, border: '2px solid rgba(255,255,255,0.4)', background: 'transparent', color: '#fff', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Mark a moment</button>
           </div>
 
           <div style={{ display: 'flex', gap: 10 }}>
-            <button style={{ flex: 1, height: 48, borderRadius: 12, border: '2px solid rgba(255,255,255,0.3)', background: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.8)', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>⏸ Pause</button>
-            <button style={{ flex: 1, height: 48, borderRadius: 12, border: '2px solid rgba(255,255,255,0.3)', background: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.8)', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Stop and save</button>
+            <button onClick={() => st('Recording paused.')} style={{ flex: 1, height: 48, borderRadius: 12, border: '2px solid rgba(255,255,255,0.3)', background: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.8)', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>⏸ Pause</button>
+            <button onClick={() => st('Recording stopped and saved.')} style={{ flex: 1, height: 48, borderRadius: 12, border: '2px solid rgba(255,255,255,0.3)', background: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.8)', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Stop and save</button>
           </div>
         </div>
 
@@ -70,6 +74,7 @@ export default function RC4Recording(_: { onBack?: () => void }) {
           </div>
         </div>
       </main>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }

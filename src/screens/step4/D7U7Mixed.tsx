@@ -1,6 +1,10 @@
+import { useState } from 'react'
+
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 export default function D7U7Mixed(_: { onBack?: () => void }) {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820 }}>
       <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 32, height: 52 }}>
@@ -44,7 +48,7 @@ export default function D7U7Mixed(_: { onBack?: () => void }) {
                 <div>
                   <div style={{ fontSize: 14, fontWeight: 600, color: INK }}>2 families haven't done consent</div>
                   <div style={{ fontSize: 12, color: MUT }}>New this term. Their child isn't filmed.</div>
-                  <button style={{ marginTop: 6, fontSize: 12, fontWeight: 600, color: G, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>Remind</button>
+                  <button style={{ marginTop: 6, fontSize: 12, fontWeight: 600, color: G, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }} onClick={() => st('Sending reminder.')}>Remind</button>
                 </div>
               </div>
             </div>
@@ -101,6 +105,7 @@ export default function D7U7Mixed(_: { onBack?: () => void }) {
             </div>
           </div>
         </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
       </div>
     </div>
   )

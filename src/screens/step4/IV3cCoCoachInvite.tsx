@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 const GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57'
 
 const ACCESS_ROWS = [
@@ -10,6 +12,9 @@ const ACCESS_ROWS = [
 ]
 
 export default function IV3cCoCoachInvite() {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
+
   return (
     <div style={{ width: 390, margin: '0 auto', background: '#f7f9f7', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
 
@@ -50,9 +55,10 @@ export default function IV3cCoCoachInvite() {
         <div style={{ fontSize: 12, color: MUT, marginBottom: 16, lineHeight: 1.5 }}>
           The club can change these for every co-coach.
         </div>
-        <button style={{ width: '100%', height: 52, borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 16, fontWeight: 700, cursor: 'pointer' }}>
+        <button style={{ width: '100%', height: 52, borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 16, fontWeight: 700, cursor: 'pointer' } onClick={() => st('Confirmed.')}>
           Looks right
         </button>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
       </div>
     </div>
   )

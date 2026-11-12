@@ -37,6 +37,10 @@ export default function JoinFlow({ initialStep = 'landing' }: { initialStep?: Jo
   const [codeDigits, setCodeDigits] = useState(['4', '8', '2', '9', '1', '3'])
   const [firstAidChecks, setFirstAidChecks] = useState<string[]>([])
   const [consent18, setConsent18] = useState({ film: true, boots: true, clips: true, checkin: true, club: false, firstaid: true })
+  const [toast, setToast] = useState<string|null>(null)
+  function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
+  const [selectedRel, setSelectedRel] = useState<string>('Mum')
+  const [selectedColor, setSelectedColor] = useState(0)
 
   /* ── JN: Landing ── */
   if (step === 'landing') {
@@ -69,10 +73,11 @@ export default function JoinFlow({ initialStep = 'landing' }: { initialStep?: Jo
             Players under 15 join through a parent. Coaches never message a player without their parent copied in.
           </div>
 
-          <button style={{ border: 0, background: 'none', cursor: 'pointer', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: 'rgba(255,255,255,0.55)', padding: 0 }}>
+          <button onClick={() => showToast('Opening staff invite.')} style={{ border: 0, background: 'none', cursor: 'pointer', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: 'rgba(255,255,255,0.55)', padding: 0 }}>
             Invited as a coach, team manager or fitness coach? Open your staff invite
           </button>
         </div>
+        {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
       </div>
     )
   }
@@ -90,11 +95,11 @@ export default function JoinFlow({ initialStep = 'landing' }: { initialStep?: Jo
           </div>
         </div>
         <div style={{ flex: 1, padding: '24px', overflowY: 'auto' }}>
-          <button style={{ width: '100%', height: 50, borderRadius: '999px', border: '1.5px solid #d4d7d4', background: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, color: INK, cursor: 'pointer', marginBottom: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10 }}>
+          <button onClick={() => showToast('Continuing with Apple.')} style={{ width: '100%', height: 50, borderRadius: '999px', border: '1.5px solid #d4d7d4', background: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, color: INK, cursor: 'pointer', marginBottom: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10 }}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={INK} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M4.93 4.93l14.14 14.14"/></svg>
             Continue with Apple
           </button>
-          <button style={{ width: '100%', height: 50, borderRadius: '999px', border: '1.5px solid #d4d7d4', background: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, color: INK, cursor: 'pointer', marginBottom: 18, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10 }}>
+          <button onClick={() => showToast('Continuing with Google.')} style={{ width: '100%', height: 50, borderRadius: '999px', border: '1.5px solid #d4d7d4', background: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, color: INK, cursor: 'pointer', marginBottom: 18, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10 }}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={INK} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 22a10 10 0 100-20 10 10 0 000 20z"/><path d="M15 9h-3v3h3V9zM9 9h3v9H9z"/></svg>
             Continue with Google
           </button>
@@ -114,6 +119,7 @@ export default function JoinFlow({ initialStep = 'landing' }: { initialStep?: Jo
             By joining you agree to Wattle Creek FC's privacy policy.
           </div>
         </div>
+        {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
       </div>
     )
   }
@@ -146,10 +152,10 @@ export default function JoinFlow({ initialStep = 'landing' }: { initialStep?: Jo
             <div style={{ marginBottom: 14 }}>
               <label style={{ display: 'block', fontSize: 13, fontWeight: 700, color: INK, marginBottom: 8 }}>Your relationship to Mia</label>
               {(['Mum', 'Dad', 'Carer'] as const).map(rel => (
-                <button key={rel} style={{ marginRight: 8, height: 44, padding: '0 16px', borderRadius: 20, border: rel === 'Mum' ? '2px solid #2f6252' : '1.5px solid #d4d7d4', background: rel === 'Mum' ? '#eef5f2' : '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: rel === 'Mum' ? 700 : 400, color: rel === 'Mum' ? G : INK, cursor: 'pointer' }}>{rel}</button>
+                <button key={rel} onClick={() => setSelectedRel(rel)} style={{ marginRight: 8, height: 44, padding: '0 16px', borderRadius: 20, border: rel === selectedRel ? '2px solid #2f6252' : '1.5px solid #d4d7d4', background: rel === selectedRel ? '#eef5f2' : '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: rel === selectedRel ? 700 : 400, color: rel === selectedRel ? G : INK, cursor: 'pointer' }}>{rel}</button>
               ))}
             </div>
-            <button style={{ display: 'flex', alignItems: 'center', gap: 6, border: 0, background: 'none', cursor: 'pointer', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, padding: 0 }}>
+            <button onClick={() => showToast('Opening child form.')} style={{ display: 'flex', alignItems: 'center', gap: 6, border: 0, background: 'none', cursor: 'pointer', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, padding: 0 }}>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
               + Another child in this club
             </button>
@@ -166,6 +172,7 @@ export default function JoinFlow({ initialStep = 'landing' }: { initialStep?: Jo
             Only you and Mia's coaches see her details.
           </div>
         </div>
+        {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
       </div>
     )
   }
@@ -195,7 +202,7 @@ export default function JoinFlow({ initialStep = 'landing' }: { initialStep?: Jo
                 </button>
               )
             })}
-            <button style={{ height: 44, padding: '0 14px', borderRadius: 20, border: '1.5px solid #d4d7d4', background: '#fff', fontFamily: 'inherit', fontSize: 14, color: MUT, cursor: 'pointer' }}>
+            <button onClick={() => showToast('No conditions noted.')} style={{ height: 44, padding: '0 14px', borderRadius: 20, border: '1.5px solid #d4d7d4', background: '#fff', fontFamily: 'inherit', fontSize: 14, color: MUT, cursor: 'pointer' }}>
               Nothing to add
             </button>
           </div>
@@ -206,7 +213,7 @@ export default function JoinFlow({ initialStep = 'landing' }: { initialStep?: Jo
             </div>
           )}
           <FieldRow label="Linh Tran · Mum" placeholder="0412 345 678 · first to call" />
-          <button style={{ display: 'flex', alignItems: 'center', gap: 6, border: 0, background: 'none', cursor: 'pointer', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, padding: '0 0 20px' }}>
+          <button onClick={() => showToast('Adding second contact.')} style={{ display: 'flex', alignItems: 'center', gap: 6, border: 0, background: 'none', cursor: 'pointer', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, padding: '0 0 20px' }}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
             Second contact
           </button>
@@ -217,6 +224,7 @@ export default function JoinFlow({ initialStep = 'landing' }: { initialStep?: Jo
             Only Mia's coaches and Rob see this card. You can change it any time.
           </div>
         </div>
+        {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
       </div>
     )
   }
@@ -318,7 +326,7 @@ export default function JoinFlow({ initialStep = 'landing' }: { initialStep?: Jo
             <div style={{ fontSize: 13, color: MUT, marginBottom: 12 }}>
               Home, pitch 2 · meet 8:40 · kick-off 9:30
             </div>
-            <button style={{ width: '100%', height: 44, borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>
+            <button onClick={() => showToast('Opening game-day response.')} style={{ width: '100%', height: 44, borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>
               Answer now
             </button>
           </div>
@@ -337,16 +345,17 @@ export default function JoinFlow({ initialStep = 'landing' }: { initialStep?: Jo
             </div>
           ))}
 
-          <button style={{ marginTop: 20, width: '100%', height: 44, borderRadius: '999px', border: '1.5px solid #d4d7d4', background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', marginBottom: 10 }}>
+          <button onClick={() => showToast('Game-day reminders turned on.')} style={{ marginTop: 20, width: '100%', height: 44, borderRadius: '999px', border: '1.5px solid #d4d7d4', background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', marginBottom: 10 }}>
             Turn on game-day reminders
           </button>
-          <button style={{ width: '100%', height: 52, borderRadius: '999px', border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 16, fontWeight: 700, cursor: 'pointer' }}>
+          <button onClick={() => showToast("Opening Mia's week.")} style={{ width: '100%', height: 52, borderRadius: '999px', border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 16, fontWeight: 700, cursor: 'pointer' }}>
             Go to Mia's week
           </button>
           <div style={{ fontSize: 12, color: MUT, textAlign: 'center', marginTop: 10, lineHeight: 1.5 }}>
             Answer game-day questions any time from your home screen.
           </div>
         </div>
+        {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
       </div>
     )
   }
@@ -376,7 +385,7 @@ export default function JoinFlow({ initialStep = 'landing' }: { initialStep?: Jo
               <div style={{ fontSize: 14, color: MUT, lineHeight: 1.5, marginBottom: 16 }}>
                 Ask a parent or carer to open Sam's invite. They'll give you a 6-digit code to type in here.
               </div>
-              <button style={{ width: '100%', height: 44, borderRadius: '999px', border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer', marginBottom: 10 }}>
+              <button onClick={() => showToast('Invite sent to parent.')} style={{ width: '100%', height: 44, borderRadius: '999px', border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer', marginBottom: 10 }}>
                 Send the invite to my parent
               </button>
               <button onClick={() => setStep('player-code')} style={{ width: '100%', height: 44, borderRadius: '999px', border: '1.5px solid #d4d7d4', background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>
@@ -397,6 +406,7 @@ export default function JoinFlow({ initialStep = 'landing' }: { initialStep?: Jo
             </button>
           )}
         </div>
+        {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
       </div>
     )
   }
@@ -433,18 +443,19 @@ export default function JoinFlow({ initialStep = 'landing' }: { initialStep?: Jo
             <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 8 }}>Pick your kit colour</div>
             <div style={{ display: 'flex', gap: 8 }}>
               {['#c39797', '#9797c3', '#97c397', '#c3c397', '#97b8c3'].map((col, i) => (
-                <button key={i} style={{ width: 36, height: 36, borderRadius: '999px', background: col, border: i === 0 ? '3px solid #1f4a3e' : 'none', cursor: 'pointer' }} />
+                <button key={i} onClick={() => setSelectedColor(i)} style={{ width: 36, height: 36, borderRadius: '999px', background: col, border: i === selectedColor ? '3px solid #1f4a3e' : 'none', cursor: 'pointer' }} />
               ))}
             </div>
           </div>
 
-          <button style={{ width: '100%', height: 52, borderRadius: '999px', border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 16, fontWeight: 700, cursor: 'pointer', marginBottom: 10 }}>
+          <button onClick={() => showToast("Let's go, Mia!")} style={{ width: '100%', height: 52, borderRadius: '999px', border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 16, fontWeight: 700, cursor: 'pointer', marginBottom: 10 }}>
             Let's go
           </button>
           <div style={{ fontSize: 12, color: MUT, textAlign: 'center' }}>
             Your parent can see what you see.
           </div>
         </div>
+        {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
       </div>
     )
   }
@@ -487,13 +498,14 @@ export default function JoinFlow({ initialStep = 'landing' }: { initialStep?: Jo
             ))}
           </div>
 
-          <button style={{ width: '100%', height: 52, borderRadius: '999px', border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 16, fontWeight: 700, cursor: 'pointer', marginBottom: 12 }}>
+          <button onClick={() => showToast('Account created.')} style={{ width: '100%', height: 52, borderRadius: '999px', border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 16, fontWeight: 700, cursor: 'pointer', marginBottom: 12 }}>
             Create account
           </button>
           <div style={{ fontSize: 12, color: MUT, textAlign: 'center' }}>
             By joining you agree to the club's privacy policy.
           </div>
         </div>
+        {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
       </div>
     )
   }

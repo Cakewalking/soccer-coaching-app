@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 const NEEDS_YOU = [
   { ini: 'AV', iconBg: '#40826d', iconColor: '#fff', category: 'Availability', time: 'Saturday', badge: 'Today', title: "2 families haven't said if they're coming", unread: true },
   { ini: 'RF', iconBg: '#cbbeb5', iconColor: '#10211f', category: 'Referees', time: 'Yesterday', badge: '', title: 'Saturday still needs a game leader', unread: true },
@@ -31,6 +33,9 @@ function miniWeekStyle(type: string) {
 }
 
 function HomeMiniRoosEmpty() {
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
+  const STEP_TOASTS = ['Team link copied.', 'Opening training night setup.', 'Opening team manager invite.']
   return (
     <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 320px', gap: 16, padding: '16px 20px 20px', boxSizing: 'border-box', alignContent: 'start', flexGrow: 1 }}>
       <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, display: 'flex', flexDirection: 'column', padding: '32px 40px', gap: 24 }}>
@@ -44,11 +49,11 @@ function HomeMiniRoosEmpty() {
           { step: 1, label: 'Share the team link', cta: 'Copy link' },
           { step: 2, label: 'Add your training night', cta: 'Add' },
           { step: 3, label: 'Invite a team manager', cta: 'Invite' },
-        ].map(({ step, label, cta }) => (
+        ].map(({ step, label, cta }, i) => (
           <div key={step} style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '14px 16px', borderRadius: 12, background: '#f7f9f7', border: '1px solid #e9eae8' }}>
             <span style={{ flexShrink: 0, width: 32, height: 32, borderRadius: '999px', background: '#eef5f2', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700, color: '#2f6252' }}>{step}</span>
             <span style={{ flexGrow: 1, fontSize: 16, fontWeight: 600, color: '#10211f' }}>{label}</span>
-            <button style={{ height: 44, padding: '0 16px', borderRadius: 8, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer', flexShrink: 0 }}>{cta}</button>
+            <button onClick={() => showToast(STEP_TOASTS[i])} style={{ height: 44, padding: '0 16px', borderRadius: 8, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer', flexShrink: 0 }}>{cta}</button>
           </div>
         ))}
       </div>
@@ -69,6 +74,7 @@ function HomeMiniRoosEmpty() {
         ))}
         <div style={{ marginTop: 'auto', paddingTop: 16, fontSize: 13, color: '#4a5a57', lineHeight: '18px', borderTop: '1px solid #e9eae8' }}>No camera, sensors or scores at this age. You don't need any kit.</div>
       </div>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
   )
 }

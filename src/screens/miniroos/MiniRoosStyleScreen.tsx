@@ -51,6 +51,8 @@ const DEFAULT_PICKED = new Set(['brave', 'friend', 'winback'])
 
 export function MS1MiniRoosStyle() {
   const [picked, setPicked] = useState(new Set(DEFAULT_PICKED))
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   const MAX = 3
 
   function toggle(id: string) {
@@ -76,8 +78,8 @@ export function MS1MiniRoosStyle() {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
           <div style={{ fontSize: 13, color: G2, fontWeight: 600 }}>{picked.size} of {MAX} picked</div>
           <div style={{ display: 'flex', gap: 8 }}>
-            <button style={{ height: 36, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>See what parents see</button>
-            <button style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 'none', background: G, fontSize: 13, fontWeight: 700, color: '#fff', cursor: 'pointer', fontFamily: 'inherit' }}>Save</button>
+            <button onClick={() => showToast('Opening parent view.')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>See what parents see</button>
+            <button onClick={() => showToast('Style saved.')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 'none', background: G, fontSize: 13, fontWeight: 700, color: '#fff', cursor: 'pointer', fontFamily: 'inherit' }}>Save</button>
           </div>
         </div>
 
@@ -141,11 +143,14 @@ export function MS1MiniRoosStyle() {
           <div style={{ fontSize: 13, color: G, lineHeight: 1.5 }}>No scores, no ladder, no child ranked against another. That is the same for every MiniRoos team.</div>
         </div>
       </div>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
   )
 }
 
 export function MS1eMiniRoosStyleEmpty() {
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '20px 28px 32px', fontFamily: 'var(--font-sans)' }}>
       <div style={{ marginBottom: 16 }}>
@@ -157,8 +162,8 @@ export function MS1eMiniRoosStyleEmpty() {
         <div style={{ fontSize: 18, fontWeight: 700, color: INK, marginBottom: 8 }}>What do you want to see on Saturday?</div>
         <div style={{ fontSize: 14, color: MUT, lineHeight: 1.6, marginBottom: 20 }}>Pick up to three things, in words the children use. Clean Sheet looks for them in games and builds Tuesday around them.</div>
         <div style={{ display: 'flex', gap: 10 }}>
-          <button style={{ height: 44, padding: '0 20px', borderRadius: 10, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Pick our three things</button>
-          <button style={{ height: 44, padding: '0 20px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Use a balanced style for now</button>
+          <button onClick={() => showToast('Opening style picker.')} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Pick our three things</button>
+          <button onClick={() => showToast('Setting balanced style.')} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Use a balanced style for now</button>
         </div>
       </div>
 
@@ -177,6 +182,7 @@ export function MS1eMiniRoosStyleEmpty() {
         </div>
       ))}
       <div style={{ fontSize: 13, color: MUT, marginTop: 8 }}>The same tool every coach at the club has, in MiniRoos words.</div>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
   )
 }

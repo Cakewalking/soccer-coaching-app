@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 const G    = '#2f6252'
 const G2   = '#40826d'
 const GD   = '#1f4a3e'
@@ -24,6 +26,8 @@ function statusColor(s: string) {
 }
 
 export function MS3MiniRoosReview() {
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '20px 28px 32px', display: 'flex', gap: 20, fontFamily: 'var(--font-sans)' }}>
 
@@ -35,8 +39,8 @@ export function MS3MiniRoosReview() {
         </div>
 
         <div style={{ display: 'flex', gap: 8, marginTop: 14, marginBottom: 20 }}>
-          <button style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>A best moment each</button>
-          <button style={{ height: 36, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Build Tuesday from this</button>
+          <button onClick={() => showToast('Opening a best moment for each child.')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>A best moment each</button>
+          <button onClick={() => showToast('Building Tuesday plan from this review.')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Build Tuesday from this</button>
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 20 }}>
@@ -82,7 +86,7 @@ export function MS3MiniRoosReview() {
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 16px', marginBottom: 16 }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
             <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>Your taps</div>
-            <button style={{ fontSize: 13, color: G, fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>Change</button>
+            <button onClick={() => showToast('Opening tap editor.')} style={{ fontSize: 13, color: G, fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>Change</button>
           </div>
           <div style={{ fontSize: 13, color: MUT }}>You tapped "Brave dribbling" and "Bunching round the ball". The film agrees with both.</div>
         </div>
@@ -98,7 +102,7 @@ export function MS3MiniRoosReview() {
       <div style={{ width: 280, flexShrink: 0 }}>
         <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 12 }}>For Tuesday</div>
         <div style={{ background: PALE, borderRadius: 14, padding: '12px 14px', marginBottom: 10 }}>
-          <button style={{ fontSize: 13, fontWeight: 700, color: G, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>Open</button>
+          <button onClick={() => showToast('Opening Tuesday session plan.')} style={{ fontSize: 13, fontWeight: 700, color: G, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>Open</button>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
           {DRILLS.map(d => (
@@ -112,11 +116,14 @@ export function MS3MiniRoosReview() {
           ))}
         </div>
       </div>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
   )
 }
 
 export function MS3eMiniRoosReviewEmpty() {
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '20px 28px 32px', fontFamily: 'var(--font-sans)' }}>
       <div style={{ marginBottom: 16 }}>
@@ -127,7 +134,7 @@ export function MS3eMiniRoosReviewEmpty() {
       <div style={{ background: PALE, borderRadius: 16, padding: '32px 24px', maxWidth: 480, marginBottom: 24 }}>
         <div style={{ fontSize: 18, fontWeight: 700, color: INK, marginBottom: 8 }}>Film Saturday to get this</div>
         <div style={{ fontSize: 14, color: MUT, lineHeight: 1.6, marginBottom: 20 }}>After a filmed game Clean Sheet shows your three things, the turns check and suggests games for Tuesday. No score kept.</div>
-        <button style={{ height: 44, padding: '0 20px', borderRadius: 10, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Go to Record</button>
+        <button onClick={() => showToast('Opening Record screen.')} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Go to Record</button>
       </div>
 
       {[
@@ -143,6 +150,7 @@ export function MS3eMiniRoosReviewEmpty() {
           </div>
         </div>
       ))}
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
   )
 }

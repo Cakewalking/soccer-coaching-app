@@ -98,7 +98,7 @@ export default function ParentView({ onAvailability, onRaiseConcern }: Props) {
         </div>
 
         {/* What's recorded */}
-        <button style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 12, padding: '14px 16px', borderRadius: 16, border: '1px solid #e9eae8', background: '#fff', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit', boxSizing: 'border-box', marginBottom: 20 }}>
+        <button onClick={() => showToast('Opening recording settings.')} style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 12, padding: '14px 16px', borderRadius: 16, border: '1px solid #e9eae8', background: '#fff', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit', boxSizing: 'border-box', marginBottom: 20 }}>
           <span style={{ flex: 'none', width: 36, height: 36, borderRadius: 10, background: '#eef5f2', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2f6252" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </span>

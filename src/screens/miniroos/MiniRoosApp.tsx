@@ -30,6 +30,8 @@ const ROSE = '#c39797'
 
 function SuggestedMiniRoos({ empty }: { empty?: boolean }) {
   const [card1dismissed, setCard1dismissed] = useState(false)
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
 
   if (empty) return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '24px 28px 32px', display: 'flex', flexDirection: 'column', gap: 16 }}>
@@ -37,7 +39,7 @@ function SuggestedMiniRoos({ empty }: { empty?: boolean }) {
       <div style={{ background: PALE, borderRadius: 16, padding: '24px', textAlign: 'center' as const }}>
         <div style={{ fontSize: 18, fontWeight: 700, color: GD, marginBottom: 8 }}>U9 Tom · nothing to go on yet</div>
         <div style={{ fontSize: 14, color: G, lineHeight: 1.6, marginBottom: 16 }}>Ideas start after your first game. Tap three things you saw after a game and Clean Sheet picks games to match. Until then it follows the under 9 curriculum.</div>
-        <button style={{ height: 44, padding: '0 20px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Tap what you saw</button>
+        <button onClick={() => st('Opening what you saw.')} style={{ height: 44, padding: '0 20px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Tap what you saw</button>
       </div>
       <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 8 }}>It uses</div>
       {[
@@ -87,7 +89,7 @@ function SuggestedMiniRoos({ empty }: { empty?: boolean }) {
           <div style={{ fontSize: 24, fontWeight: 700, color: INK, letterSpacing: '-0.02em' }}>Suggested games</div>
           <div style={{ fontSize: 13, color: MUT, marginTop: 2 }}>From what you've tapped after games, who had a go, and the curriculum</div>
         </div>
-        <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: G2, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>Game library</button>
+        <button onClick={() => st('Opening game library.')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: G2, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>Game library</button>
       </div>
 
       {cards.map((card, idx) => !card1dismissed || idx > 0 ? (
@@ -111,8 +113,8 @@ function SuggestedMiniRoos({ empty }: { empty?: boolean }) {
           </div>
           <div style={{ padding: '12px 16px', display: 'flex', gap: 8 }}>
             {idx === 0 && <button onClick={() => setCard1dismissed(true)} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Not this</button>}
-            {idx > 0 && <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Not this</button>}
-            <button style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', marginLeft: 'auto' }}>Add to Tuesday</button>
+            {idx > 0 && <button onClick={() => st('Dismissed.')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Not this</button>}
+            <button onClick={() => st('Added to Tuesday\'s plan.')} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', marginLeft: 'auto' }}>Add to Tuesday</button>
           </div>
         </div>
       ) : null)}
@@ -142,11 +144,14 @@ function SuggestedMiniRoos({ empty }: { empty?: boolean }) {
         </div>
         <div style={{ fontSize: 12, color: MUT, marginTop: 8 }}>One tap after each game is all it needs.</div>
       </div>
+      {toast && <div style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', background: '#1f4a3e', color: '#fff', padding: '10px 20px', borderRadius: 999, fontSize: 13, fontWeight: 600, zIndex: 100 }}>{toast}</div>}
     </div>
   )
 }
 
 function RecordMiniRoosStart({ empty, onClips }: { empty?: boolean; onClips: () => void }) {
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   const children = [
     { ini: 'AL', name: 'Ava L',    ok: true },
     { ini: 'EB', name: 'Ella B',   ok: true },
@@ -167,7 +172,7 @@ function RecordMiniRoosStart({ empty, onClips }: { empty?: boolean; onClips: () 
       </div>
       <div style={{ fontSize: 20, fontWeight: 700, color: INK }}>Film something</div>
       <div style={{ fontSize: 14, color: MUT, lineHeight: 1.6, maxWidth: 400 }}>Film a Saturday game, a training game, or a skill challenge. Set the camera up and tap Start filming.</div>
-      <button style={{ height: 44, padding: '0 24px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Start filming</button>
+      <button onClick={() => showToast('Opening the recording screen.')} style={{ height: 44, padding: '0 24px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Start filming</button>
       <div style={{ marginTop: 16, maxWidth: 400, textAlign: 'left' as const, padding: '14px 16px', background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, width: '100%' }}>
         <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 10 }}>Good to know</div>
         {[
@@ -181,6 +186,7 @@ function RecordMiniRoosStart({ empty, onClips }: { empty?: boolean; onClips: () 
           </div>
         ))}
       </div>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
   )
 
@@ -290,8 +296,8 @@ function RecordMiniRoosClips({ empty, onBack }: { empty?: boolean; onBack: () =>
           <div style={{ fontSize: 13, color: MUT }}>8 children · filmed Sat 7 Jun · 44 minutes</div>
         </div>
         <div style={{ marginLeft: 'auto', display: 'flex', gap: 8 }}>
-          <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 700, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>Pick two for Tuesday</button>
-          <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Send to families</button>
+          <button onClick={() => showToast('Opening game picker for Tuesday.')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 700, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>Pick two for Tuesday</button>
+          <button onClick={() => showToast('Clips sent to 8 families.')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Send to families</button>
         </div>
       </div>
 
@@ -305,10 +311,10 @@ function RecordMiniRoosClips({ empty, onBack }: { empty?: boolean; onBack: () =>
               <div style={{ fontSize: 13, color: MUT, marginTop: 2 }}>{c.note}</div>
             </div>
             <div style={{ display: 'flex', gap: 8 }}>
-              <button style={{ width: 36, height: 36, borderRadius: '50%', border: 'none', background: PALE, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <button onClick={() => showToast(`Playing ${c.name}'s clip.`)} style={{ width: 36, height: 36, borderRadius: '50%', border: 'none', background: PALE, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke={G} strokeWidth={2} strokeLinecap="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
               </button>
-              <button style={{ width: 36, height: 36, borderRadius: '50%', border: 'none', background: PALE, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <button onClick={() => showToast(`Sharing ${c.name}'s clip.`)} style={{ width: 36, height: 36, borderRadius: '50%', border: 'none', background: PALE, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke={G} strokeWidth={2} strokeLinecap="round"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8M16 6l-4-4-4 4M12 2v13"/></svg>
               </button>
             </div>
@@ -324,6 +330,7 @@ function RecordMiniRoosClips({ empty, onBack }: { empty?: boolean; onBack: () =>
       <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 12, padding: '12px 16px', fontSize: 13, color: MUT, lineHeight: 1.5 }}>
         What isn't kept: the full video is deleted after 90 days. Clips stay for the season. Families only see their own child's clip.
       </div>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
   )
 }

@@ -15,6 +15,8 @@ const TEAM_DETAILS: Record<string, { coach: string; div: string; players: number
 }
 
 function TeamDetail({ name, onBack }: { name: string; onBack: () => void }) {
+  const [tdToast, setTdToast] = useState<string|null>(null)
+  function showToast(m: string) { setTdToast(m); setTimeout(() => setTdToast(null), 3000) }
   const all = [...MINIROOS, ...JUNIORS]
   const mr = MINIROOS.find(t => t.name === name)
   const jr = JUNIORS.find(t => t.name === name)
@@ -38,8 +40,8 @@ function TeamDetail({ name, onBack }: { name: string; onBack: () => void }) {
           <div style={{ fontSize: 13, color: '#6f7f7b' }}>{div} · coach {coach} · {players} players · read-only, the way its coaches see it</div>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>Compare</button>
-          <button style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Message the coaches</button>
+          <button onClick={() => showToast('Opening comparison view.')} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>Compare</button>
+          <button onClick={() => showToast('Opening message to coaches.')} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Message the coaches</button>
         </div>
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10, margin: '16px 0' }}>
@@ -82,7 +84,7 @@ function TeamDetail({ name, onBack }: { name: string; onBack: () => void }) {
           <div style={{ background: '#fff', borderRadius: 14, padding: '14px 16px', border: '1px solid #e9eae8' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 10 }}>
               <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>Staff</div>
-              <button style={{ fontSize: 12, color: '#2f6252', background: 'none', border: 0, cursor: 'pointer' }}>All coaches</button>
+              <button onClick={() => showToast('Opening all coaches.')} style={{ fontSize: 12, color: '#2f6252', background: 'none', border: 0, cursor: 'pointer' }}>All coaches</button>
             </div>
             {staff.map((s, i) => (
               <div key={i} style={{ display: 'flex', gap: 10, alignItems: 'center', padding: '8px 0', borderTop: i > 0 ? '1px solid #f0f1f0' : 'none' }}>
@@ -121,11 +123,14 @@ function TeamDetail({ name, onBack }: { name: string; onBack: () => void }) {
       <div style={{ marginTop: 14, padding: '12px 14px', background: '#fdf8f4', borderRadius: 10, border: '1px solid #f0dcc8', fontSize: 12, color: '#6f7f7b' }}>
         You see this team the way its coaches do, but cannot change their plans. Fitness: Coach runs the 11+ Kids warm-up.
       </div>
+      {tdToast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{tdToast}</div>}
     </div>
   )
 }
 
 function CompareView({ onBack }: { onBack: () => void }) {
+  const [cvToast, setCvToast] = useState<string|null>(null)
+  function showToast(m: string) { setCvToast(m); setTimeout(() => setCvToast(null), 3000) }
   const [a, setA] = useState('U11 Girls Kate')
   const [b, setB] = useState('U11 Luke')
   const allNames = [...MINIROOS.map(t => t.name), ...JUNIORS.map(t => t.name)]
@@ -178,7 +183,7 @@ function CompareView({ onBack }: { onBack: () => void }) {
         <div style={{ background: '#fff', borderRadius: 14, border: '1px solid #e9eae8', overflow: 'hidden' }}>
           <div style={{ padding: '12px 16px', borderBottom: '1px solid #f0f1f0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>{a}</div>
-            <button style={{ fontSize: 12, color: '#2f6252', background: 'none', border: 0, cursor: 'pointer' }}>Open team</button>
+            <button onClick={() => showToast(`Opening ${a}.`)} style={{ fontSize: 12, color: '#2f6252', background: 'none', border: 0, cursor: 'pointer' }}>Open team</button>
           </div>
           {rows.map((r, i) => (
             <div key={i} style={{ display: 'flex', justifyContent: 'space-between', padding: '10px 16px', borderBottom: '1px solid #f0f1f0', fontSize: 13 }}>
@@ -190,7 +195,7 @@ function CompareView({ onBack }: { onBack: () => void }) {
         <div style={{ background: '#fff', borderRadius: 14, border: '1px solid #e9eae8', overflow: 'hidden' }}>
           <div style={{ padding: '12px 16px', borderBottom: '1px solid #f0f1f0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>{b}</div>
-            <button style={{ fontSize: 12, color: '#2f6252', background: 'none', border: 0, cursor: 'pointer' }}>Open team</button>
+            <button onClick={() => showToast(`Opening ${b}.`)} style={{ fontSize: 12, color: '#2f6252', background: 'none', border: 0, cursor: 'pointer' }}>Open team</button>
           </div>
           {rows.map((r, i) => (
             <div key={i} style={{ display: 'flex', justifyContent: 'space-between', padding: '10px 16px', borderBottom: '1px solid #f0f1f0', fontSize: 13 }}>
@@ -211,11 +216,12 @@ function CompareView({ onBack }: { onBack: () => void }) {
               <div><div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{item.title}</div><div style={{ fontSize: 12, color: '#6f7f7b', marginTop: 2 }}>{item.body}</div></div>
             </div>
           ))}
-          <button style={{ width: '100%', height: 44, borderRadius: '999px', border: 0, background: '#1f4a3e', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer', marginTop: 8 }}>
+          <button onClick={() => showToast(`Suggestion sent to ${b.split(' ').pop()}.`)} style={{ width: '100%', height: 44, borderRadius: '999px', border: 0, background: '#1f4a3e', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer', marginTop: 8 }}>
             Suggest {b.split(' ').pop()} watches {a.split(' ').pop()}
           </button>
         </div>
       </div>
+      {cvToast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{cvToast}</div>}
     </div>
   )
 }
@@ -235,6 +241,8 @@ export default function TeamsTab({ empty }: { empty?: boolean }) {
   const [selectedTeam, setSelectedTeam] = useState<string | null>(null)
   const [showCompare, setShowCompare] = useState(false)
   const [filter, setFilter] = useState<'all' | 'attention' | 'girls' | 'recording'>('all')
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
 
   if (showCompare) return <CompareView onBack={() => setShowCompare(false)} />
   if (selectedTeam) return <TeamDetail name={selectedTeam} onBack={() => setSelectedTeam(null)} />
@@ -271,7 +279,7 @@ export default function TeamsTab({ empty }: { empty?: boolean }) {
             <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>Teams · 14 teams · tap a team to open it as its coach sees it, read-only</div>
             <div style={{ display: 'flex', gap: 8 }}>
               <button onClick={() => setShowCompare(true)} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>Compare two teams</button>
-              <button style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>+ Add a team</button>
+              <button onClick={() => showToast('Opening add team form.')} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>+ Add a team</button>
             </div>
           </div>
           <div style={{ display: 'flex', gap: 8, marginBottom: 16, flexWrap: 'wrap' }}>
@@ -333,7 +341,7 @@ export default function TeamsTab({ empty }: { empty?: boolean }) {
         <div style={p}>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 20 }}>
             <div><div style={{ fontSize: 18, fontWeight: 800, color: '#10211f' }}>Seniors</div><div style={{ fontSize: 13, color: '#6f7f7b' }}>4 senior teams · 79 players · adults join and consent for themselves</div></div>
-            <button style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Add a senior team</button>
+            <button onClick={() => showToast('Opening add senior team form.')} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Add a senior team</button>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 14, marginBottom: 24 }}>
             {[
@@ -372,7 +380,7 @@ export default function TeamsTab({ empty }: { empty?: boolean }) {
                 <span style={{ fontSize: 13, color: '#10211f' }}>U16s training with the 1sts</span>
                 <span style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>3</span>
               </div>
-              <button style={{ marginTop: 8, height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>See U16 Ollie</button>
+              <button onClick={() => showToast('Opening U16 Ollie.')} style={{ marginTop: 8, height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>See U16 Ollie</button>
             </div>
           </div>
         </div>
@@ -423,7 +431,7 @@ export default function TeamsTab({ empty }: { empty?: boolean }) {
                 <div style={{ flexGrow: 1 }}><div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{r.team}</div><div style={{ fontSize: 12, color: '#6f7f7b' }}>{r.result}</div></div>
                 <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
                   <span style={{ fontSize: 11, fontWeight: 700, color: r.ok ? '#40826d' : '#c39797', background: r.ok ? '#e4f2eb' : '#fdf4f4', borderRadius: 6, padding: '2px 8px' }}>{r.status}</span>
-                  {r.fix && <button style={{ height: 44, padding: '0 10px', borderRadius: '999px', border: 0, background: '#c39797', color: '#fff', fontFamily: 'inherit', fontSize: 11, fontWeight: 700, cursor: 'pointer' }}>Fix</button>}
+                  {r.fix && <button onClick={() => showToast('Opening score fix.')} style={{ height: 44, padding: '0 10px', borderRadius: '999px', border: 0, background: '#c39797', color: '#fff', fontFamily: 'inherit', fontSize: 11, fontWeight: 700, cursor: 'pointer' }}>Fix</button>}
                 </div>
               </div>
             ))}
@@ -436,7 +444,7 @@ export default function TeamsTab({ empty }: { empty?: boolean }) {
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 16 }}>
               <div><div style={{ fontSize: 18, fontWeight: 800, color: '#10211f' }}>Grading</div><div style={{ fontSize: 12, color: '#6f7f7b' }}>How the league placed each U12+ team, and whether to ask for a change</div></div>
-              <button style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Ask the league to regrade</button>
+              <button onClick={() => showToast('Opening regrade request.')} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Ask the league to regrade</button>
             </div>
             <div style={{ background: '#fff', borderRadius: 14, border: '1px solid #e9eae8', overflow: 'hidden' }}>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr 120px', padding: '10px 16px', borderBottom: '1px solid #f0f1f0', gap: 8 }}>
@@ -468,7 +476,7 @@ export default function TeamsTab({ empty }: { empty?: boolean }) {
             <div style={{ background: '#fff', borderRadius: 14, padding: '14px 16px', border: '1px solid #e9eae8' }}>
               <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>Next season's grading</div>
               <div style={{ fontSize: 12, color: '#4a5a57' }}>Coaches score each player in 3 areas at grading games. You see a suggested team for every player.</div>
-              <button style={{ marginTop: 10, height: 44, padding: '0 12px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 12, cursor: 'pointer' }}>Plan grading days</button>
+              <button onClick={() => showToast('Opening grading day planner.')} style={{ marginTop: 10, height: 44, padding: '0 12px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 12, cursor: 'pointer' }}>Plan grading days</button>
             </div>
           </div>
         </div>
@@ -499,7 +507,7 @@ export default function TeamsTab({ empty }: { empty?: boolean }) {
                   <div style={{ fontSize: 12, color: '#6f7f7b' }}>{g.role}</div>
                 </div>
                 {g.needed ? (
-                  <button style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: 0, background: '#c39797', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>Ask</button>
+                  <button onClick={() => showToast(`Opening referee request.`)} style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: 0, background: '#c39797', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>Ask</button>
                 ) : (
                   <span style={{ fontSize: 12, color: '#40826d', fontWeight: 700 }}>{g.who}</span>
                 )}
@@ -515,7 +523,7 @@ export default function TeamsTab({ empty }: { empty?: boolean }) {
               </div>
             ))}
             <div style={{ marginTop: 10, fontSize: 12, color: '#6f7f7b', paddingTop: 10, borderTop: '1px solid #f0f1f0' }}>Feedback this week: 5 · all positive</div>
-            <button style={{ marginTop: 10, height: 44, width: '100%', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 12, cursor: 'pointer' }}>Add a referee</button>
+            <button onClick={() => showToast('Opening add referee form.')} style={{ marginTop: 10, height: 44, width: '100%', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 12, cursor: 'pointer' }}>Add a referee</button>
           </div>
         </div>
       )}
@@ -542,6 +550,7 @@ export default function TeamsTab({ empty }: { empty?: boolean }) {
           ))}
         </div>
       )}
+      {toast && <div style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', background: '#1f4a3e', color: '#fff', padding: '10px 20px', borderRadius: 999, fontSize: 13, fontWeight: 600, zIndex: 100 }}>{toast}</div>}
     </>
   )
 }

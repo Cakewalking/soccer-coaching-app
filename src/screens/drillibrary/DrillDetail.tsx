@@ -23,6 +23,8 @@ function MetaBox({ label, value }: { label: string; value: string }) {
 
 function AddToSessionModal({ drill, onClose }: { drill: Drill; onClose: () => void }) {
   const [slot, setSlot] = useState(0)
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   const options = [
     { label: 'Swap for "Warm-up rondo, 5 v 2" (10 min)', time: '80 min' },
     { label: 'Swap for "Win it back in 6 seconds" (25 min)', time: '65 min' },
@@ -66,9 +68,10 @@ function AddToSessionModal({ drill, onClose }: { drill: Drill; onClose: () => vo
           </div>
         </div>
         <div style={{ fontSize:12, color:MUT, marginBottom:20 }}>Player load stays within plan. Fitness can see the change.</div>
+        {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:1100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
         <div style={{ display:'flex', gap:12, justifyContent:'flex-end' }}>
           <button onClick={onClose} style={{ height: 44, padding:'0 20px', border:`1px solid ${LN}`, borderRadius:999, background:'#fff', color:INK, fontSize:14, cursor:'pointer', fontFamily:'inherit' }}>Cancel</button>
-          <button style={{ height: 44, padding:'0 24px', border:'none', borderRadius:999, background:G, color:'#fff', fontSize:14, fontWeight:600, cursor:'pointer', fontFamily:'inherit' }}>Add to tonight</button>
+          <button onClick={() => { st("Added to tonight's session."); setTimeout(onClose, 1200) }} style={{ height: 44, padding:'0 24px', border:'none', borderRadius:999, background:G, color:'#fff', fontSize:14, fontWeight:600, cursor:'pointer', fontFamily:'inherit' }}>Add to tonight</button>
         </div>
       </div>
     </div>
@@ -77,6 +80,8 @@ function AddToSessionModal({ drill, onClose }: { drill: Drill; onClose: () => vo
 
 export default function DrillDetail({ drill, onBack }: { drill: Drill; onBack: () => void }) {
   const [showSession, setShowSession] = useState(false)
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
 
   return (
     <div style={{ flex:1, overflowY:'auto', padding:'16px 28px 32px', position:'relative' }}>
@@ -89,7 +94,7 @@ export default function DrillDetail({ drill, onBack }: { drill: Drill; onBack: (
         <h1 style={{ margin:0, fontSize:26, fontWeight:700, color:INK, letterSpacing:'-0.02em' }}>{drill.name}</h1>
         <Tag label={drill.category}/>
         <div style={{ flexGrow:1 }}/>
-        <button style={{ height: 44, padding:'0 16px', border:`1px solid ${LN}`, borderRadius:999, background:'#fff', color:INK, fontSize:14, fontWeight:500, cursor:'pointer', fontFamily:'inherit' }}>Save</button>
+        <button onClick={() => st('Drill saved.')} style={{ height: 44, padding:'0 16px', border:`1px solid ${LN}`, borderRadius:999, background:'#fff', color:INK, fontSize:14, fontWeight:500, cursor:'pointer', fontFamily:'inherit' }}>Save</button>
         <button onClick={() => setShowSession(true)} style={{ height: 44, padding:'0 16px', border:'none', borderRadius:999, background:G, color:'#fff', fontSize:14, fontWeight:600, cursor:'pointer', fontFamily:'inherit', display:'flex', alignItems:'center', gap:8 }}>
           <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round"><path d="M12 5v14M5 12h14"/></svg>
           Add to a session
@@ -128,7 +133,7 @@ export default function DrillDetail({ drill, onBack }: { drill: Drill; onBack: (
               <div style={{ fontSize:13, fontWeight:600, color:'#fff' }}>Show the team before you start</div>
               <div style={{ fontSize:11, color:'rgba(255,255,255,.6)', marginTop:2 }}>Opens the diagram and a clip of us doing it well against Ironbark.</div>
             </div>
-            <button style={{ height: 44, padding:'0 12px', border:'1px solid rgba(255,255,255,.3)', borderRadius:999, background:'transparent', color:'#fff', fontSize:12, fontWeight:600, cursor:'pointer', fontFamily:'inherit', flexShrink:0 }}>Show</button>
+            <button onClick={() => st('Opening drill preview.')} style={{ height: 44, padding:'0 12px', border:'1px solid rgba(255,255,255,.3)', borderRadius:999, background:'transparent', color:'#fff', fontSize:12, fontWeight:600, cursor:'pointer', fontFamily:'inherit', flexShrink:0 }}>Show</button>
           </div>
         </div>
 
@@ -210,6 +215,7 @@ export default function DrillDetail({ drill, onBack }: { drill: Drill; onBack: (
       </div>
 
       {showSession && <AddToSessionModal drill={drill} onClose={() => setShowSession(false)}/>}
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }

@@ -1,8 +1,12 @@
+import { useState } from 'react'
+
 const G = '#2f6252', GD = '#1f4a3e', G2 = '#40826d', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 const NAV = ['Home', 'Squad', 'Training', 'Match day', 'Clips']
 const SUBNAV = ["Where we're at", 'Opposition', 'Team talk', 'Line-up and minutes', 'Review']
 
 export default function EX1eHowWorkedOutEmpty(_: { onBack?: () => void }) {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, height: 820, boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       <div style={{ flex: 'none', background: G, height: 64, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 4 }}>
@@ -38,7 +42,7 @@ export default function EX1eHowWorkedOutEmpty(_: { onBack?: () => void }) {
             </div>
             <div style={{ fontSize: 18, fontWeight: 800, color: INK }}>Not measured yet</div>
             <div style={{ fontSize: 14, color: MUT, lineHeight: 1.6, maxWidth: 400 }}>After your first recorded game you'll see every time you lost the ball, how long it took to win it back, and the clip for each one.</div>
-            <button style={{ height: 48, padding: '0 28px', borderRadius: 12, background: GD, color: '#fff', border: 'none', fontSize: 15, fontWeight: 700, cursor: 'pointer', marginTop: 4 }}>Record a game</button>
+            <button style={{ height: 48, padding: '0 28px', borderRadius: 12, background: GD, color: '#fff', border: 'none', fontSize: 15, fontWeight: 700, cursor: 'pointer', marginTop: 4 }} onClick={() => st('Opening recording setup.')}>Record a game</button>
           </div>
         </div>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '16px 18px', alignSelf: 'flex-start' as const }}>
@@ -54,6 +58,7 @@ export default function EX1eHowWorkedOutEmpty(_: { onBack?: () => void }) {
             {['Set pieces, and times the ball went out of play.', "Times we lost it in their box, where pressing isn't the plan.", "Any minutes the camera couldn't see the ball."].map((s, i) => <div key={i} style={{ fontSize: 12, color: MUT, padding: '3px 0' }}>{s}</div>)}
           </div>
         </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
       </main>
     </div>
   )

@@ -4,15 +4,18 @@ const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', PALE = '#
 const BG = '#f5f6f4'
 
 function AuthShell({ children }: { children: React.ReactNode }) {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ minHeight: '100vh', background: BG, fontFamily: 'var(--font-sans)' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 32px', height: 56 }}>
         <span style={{ color: G, fontWeight: 800, fontSize: 15, letterSpacing: '-0.02em' }}>Clean Sheet</span>
-        <button style={{ background: 'none', border: 'none', color: G, fontWeight: 600, fontSize: 14, cursor: 'pointer', padding: 0 }}>Help</button>
+        <button onClick={() => st('Help is on its way.')} style={{ background: 'none', border: 'none', color: G, fontWeight: 600, fontSize: 14, cursor: 'pointer', padding: 0 }}>Help</button>
       </div>
       <div style={{ display: 'flex', justifyContent: 'center', padding: '48px 20px 60px' }}>
         {children}
       </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }
@@ -76,7 +79,7 @@ export function SB1SandboxEnding({ onSwitchToDemo }: { onSwitchToDemo?: () => vo
       <SandboxBar daysLeft={2} onSwitchToDemo={onSwitchToDemo} />
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 32px', height: 56 }}>
         <span style={{ color: G, fontWeight: 800, fontSize: 15, letterSpacing: '-0.02em' }}>Clean Sheet</span>
-        <button style={{ background: 'none', border: 'none', color: G, fontWeight: 600, fontSize: 14, cursor: 'pointer', padding: 0 }}>Help</button>
+        <button onClick={() => showToast('Help is on its way.')} style={{ background: 'none', border: 'none', color: G, fontWeight: 600, fontSize: 14, cursor: 'pointer', padding: 0 }}>Help</button>
       </div>
       <div style={{ display: 'flex', justifyContent: 'center', padding: '40px 20px 60px' }}>
         <div style={CARD}>
@@ -110,6 +113,8 @@ export function SB1SandboxEnding({ onSwitchToDemo }: { onSwitchToDemo?: () => vo
 
 /* SB2 — Sandbox has ended */
 export function SB2SandboxEnded({ onStartSandbox, onDemo }: { onStartSandbox?: () => void; onDemo?: () => void }) {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <AuthShell>
       <div style={CARD}>
@@ -128,16 +133,19 @@ export function SB2SandboxEnded({ onStartSandbox, onDemo }: { onStartSandbox?: (
           <button style={BTN_GREEN} onClick={onStartSandbox}>Start a new sandbox</button>
           <button style={BTN_OUTLINE} onClick={onDemo}>Follow the demo</button>
         </div>
-        <button style={{ background: 'none', border: 'none', color: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', padding: 0, display: 'block' }}>
+        <button onClick={() => st('Opening club setup.')} style={{ background: 'none', border: 'none', color: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', padding: 0, display: 'block' }}>
           Ready for the real thing? Set up your club
         </button>
       </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </AuthShell>
   )
 }
 
 /* SB3 — No sandbox in this browser */
 export function SB3NoSandbox({ onStartSandbox, onDemo }: { onStartSandbox?: () => void; onDemo?: () => void }) {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <AuthShell>
       <div style={{ ...CARD, width: 540 }}>
@@ -151,11 +159,12 @@ export function SB3NoSandbox({ onStartSandbox, onDemo }: { onStartSandbox?: () =
           <button style={{ ...BTN_GREEN, width: '100%' }} onClick={onStartSandbox}>Start with an empty club</button>
           <button style={{ ...BTN_OUTLINE, width: '100%' }} onClick={onDemo}>Follow the demo</button>
         </div>
-        <button style={LINK}>Ready for the real thing? Set up your club</button>
+        <button onClick={() => st('Opening club setup.')} style={LINK}>Ready for the real thing? Set up your club</button>
         <p style={{ margin: '16px 0 0', fontSize: 13, color: MUT, lineHeight: 1.5 }}>
           Cleared your browser data, or used a private window? That removes the sandbox too. A new one lasts 14 days.
         </p>
       </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </AuthShell>
   )
 }
@@ -165,12 +174,14 @@ function SB4KeepGoingInner({ onSwitchToDemo, onBack }: { onSwitchToDemo?: () => 
   const [clubName, setClubName] = useState('Wattle Creek FC')
   const [email, setEmail] = useState('')
   const [sent, setSent] = useState(false)
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ minHeight: '100vh', background: BG, fontFamily: 'var(--font-sans)' }}>
       <SandboxBar daysLeft={2} onSwitchToDemo={onSwitchToDemo} />
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 32px', height: 56 }}>
         <span style={{ color: G, fontWeight: 800, fontSize: 15, letterSpacing: '-0.02em' }}>Clean Sheet</span>
-        <button style={{ background: 'none', border: 'none', color: G, fontWeight: 600, fontSize: 14, cursor: 'pointer', padding: 0 }}>Help</button>
+        <button onClick={() => st('Help is on its way.')} style={{ background: 'none', border: 'none', color: G, fontWeight: 600, fontSize: 14, cursor: 'pointer', padding: 0 }}>Help</button>
       </div>
       <div style={{ display: 'flex', justifyContent: 'center', padding: '40px 20px 60px' }}>
         <div style={{ ...CARD, width: 620 }}>
@@ -230,6 +241,7 @@ function SB4KeepGoingInner({ onSwitchToDemo, onBack }: { onSwitchToDemo?: () => 
           )}
         </div>
       </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }

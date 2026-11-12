@@ -26,7 +26,7 @@ function ClipsEmpty({ activeTab }: { activeTab: number }) {
               <div style={{ fontSize: 20, fontWeight: 700, marginBottom: 6 }}>Save the clips that teach</div>
               <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: '20px', marginBottom: 14 }}>Group clips into playlists for team talks, or send a clip to one player with a note. They arrive after your first recorded game.</div>
               <div style={{ display: 'flex', gap: 8 }}>
-                <button style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
+                <button onClick={() => showToast('Opening recording setup.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="#fff"/></svg>
                   Record your first game
                 </button>
@@ -73,7 +73,7 @@ function ClipsEmpty({ activeTab }: { activeTab: number }) {
           </span>
           <div style={{ fontSize: 20, fontWeight: 700 }}>Nothing to check</div>
           <div style={{ fontSize: 14, color: '#4a5a57', textAlign: 'center', lineHeight: '20px', maxWidth: 320 }}>After each recorded game, the few moments Clean Sheet isn't sure about wait here for a quick yes or no from you.</div>
-          <button style={{ height: 44, padding: '0 20px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
+          <button onClick={() => showToast('Opening recording setup.')} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
             <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="#fff"/></svg>
             Record your first game
           </button>
@@ -292,7 +292,7 @@ export default function ClipsScreen({ empty, activeTab = 0 }: { empty?: boolean;
               {filterMode === 'player' && 'Share a good example and one to work on before Saturday'}
             </div>
           </div>
-          <button style={{
+          <button onClick={() => showToast(filterMode === 'game' && gameCtx ? 'Playing highlights.' : `Playing all ${filtered.length} clips.`)} style={{
             flex: 'none', height: 36, padding: '0 16px', borderRadius: '999px',
             border: 0, background: '#10211f', color: '#ffffff',
             fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer',
@@ -316,10 +316,10 @@ export default function ClipsScreen({ empty, activeTab = 0 }: { empty?: boolean;
           }}>{t === 'all' ? 'All' : t === 'good' ? 'Good' : 'To work on'}</button>
         ))}
         <div style={{ width: 1, height: 20, background: '#e9eae8', margin: '0 4px' }} />
-        <DropChip label="Area" />
-        <DropChip label="Half" />
-        <DropChip label="Source" />
-        <DropChip label="Found by" />
+        <DropChip label="Area" onClick={() => showToast('Opening area filter.')} />
+        <DropChip label="Half" onClick={() => showToast('Opening half filter.')} />
+        <DropChip label="Source" onClick={() => showToast('Opening source filter.')} />
+        <DropChip label="Found by" onClick={() => showToast('Opening found-by filter.')} />
         <div style={{ flexGrow: 1 }} />
         <span style={{ fontSize: 13, color: '#6f7f7b' }}>{filtered.length} clips</span>
       </div>

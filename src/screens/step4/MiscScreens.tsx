@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2', BG = '#f5f6f4'
 
 function PhoneWrap({ children }: { children: React.ReactNode }) {
@@ -162,6 +162,8 @@ export function PO1OlderHome() {
 // ─── CH8 Chat Info ─────────────────────────────────────────────────────────────
 
 export function CH8ChatInfo() {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   const participants = [
     { init: 'RO', name: 'Rob Owusu', role: 'Team manager · owner', badge: 'Owner' },
     { init: 'SK', name: 'Sam K (you)', role: 'Head coach', badge: 'Can manage' },
@@ -192,8 +194,8 @@ export function CH8ChatInfo() {
           <div style={{ fontSize: 13, color: MUT, marginBottom: 20 }}>U12 Sam team chat · set up by Rob on 2 March</div>
 
           <div style={{ display: 'flex', gap: 10, marginBottom: 24 }}>
-            <button style={{ height: 44, padding: '0 20px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: G, cursor: 'pointer' }}>Back to chat</button>
-            <button style={{ height: 44, padding: '0 20px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: G, cursor: 'pointer' }}>Change settings</button>
+            <button onClick={() => st('Going back to chat.')} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: G, cursor: 'pointer' }}>Back to chat</button>
+            <button onClick={() => st('Opening chat settings.')} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: G, cursor: 'pointer' }}>Change settings</button>
           </div>
 
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, overflow: 'hidden' }}>
@@ -214,6 +216,7 @@ export function CH8ChatInfo() {
           </div>
         </div>
       </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }
@@ -318,6 +321,8 @@ export function PS2ParentNotifications() {
 }
 
 export function PS3ParentData() {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <PSShell title="Privacy">
       {[
@@ -335,7 +340,8 @@ export function PS3ParentData() {
         </div>
       ))}
       <div style={{ marginTop: 16 }}>
-        <button style={{ width: '100%', height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: G, cursor: 'pointer' }}>Download a copy of all data</button>
+        <button onClick={() => st('Downloading a copy of all data.')} style={{ width: '100%', height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: G, cursor: 'pointer' }}>Download a copy of all data</button>
+        {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
       </div>
     </PSShell>
   )

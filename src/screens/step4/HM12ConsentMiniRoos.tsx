@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 type ConsentVal = 'Yes' | 'No' | 'Waiting'
@@ -27,6 +29,8 @@ function Badge({ val }: { val: ConsentVal }) {
 }
 
 export default function HM12ConsentMiniRoos(_: { onBack?: () => void }) {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }}>
       <div style={{ background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 20, height: 64 }}>
@@ -51,7 +55,7 @@ export default function HM12ConsentMiniRoos(_: { onBack?: () => void }) {
           <h1 style={{ margin: 0, fontSize: 26, fontWeight: 700, letterSpacing: '-0.02em' }}>Consent</h1>
           <span style={{ fontSize: 14, color: MUT }}>U9 Tom · 8 of 10 families have answered everything</span>
         </div>
-        <button style={{ height: 44, padding: '0 18px', borderRadius: 10, border: `1px solid ${G}`, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Remind 2 families</button>
+        <button style={{ height: 44, padding: '0 18px', borderRadius: 10, border: `1px solid ${G}`, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }} onClick={() => st('Sending reminders.')}>Remind 2 families</button>
       </div>
 
       <div style={{ flex: 1, padding: '12px 28px 18px', display: 'grid', gap: 14, gridTemplateColumns: 'minmax(0, 1fr) 300px' }}>
@@ -99,6 +103,7 @@ export default function HM12ConsentMiniRoos(_: { onBack?: () => void }) {
             <div style={{ marginTop: 'auto', paddingTop: 8, fontSize: 14, color: MUT }}>Until a parent says yes, the answer is treated as no.</div>
           </div>
         </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
       </div>
     </div>
   )

@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 const G = '#2f6252', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 const STEPS = ['Your account', 'Your club', 'Your team', 'All set']
@@ -13,6 +15,8 @@ const ROLES = [
 const INVITE_ROWS = ['Co-coach', 'Manager', 'Fitness']
 
 export default function OB4SignUp(_: { onBack?: () => void }) {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       {/* Top bar */}
@@ -66,7 +70,7 @@ export default function OB4SignUp(_: { onBack?: () => void }) {
                 </div>
               ))}
             </div>
-            <button style={{ marginTop: 10, fontSize: 14, fontWeight: 600, color: G, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>+ Add another</button>
+            <button onClick={() => st('Opening extra invite field.')} style={{ marginTop: 10, fontSize: 14, fontWeight: 600, color: G, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>+ Add another</button>
           </div>
 
           {/* Players and parents */}
@@ -75,8 +79,8 @@ export default function OB4SignUp(_: { onBack?: () => void }) {
             <div style={{ fontSize: 13, fontWeight: 600, color: INK, marginBottom: 4 }}>Your team link is ready</div>
             <div style={{ fontSize: 13, color: MUT, lineHeight: '19px', marginBottom: 14 }}>Parents join, add their child and give consent. Players under 15 join through a parent.</div>
             <div style={{ display: 'flex', gap: 10 }}>
-              <button style={{ height: 36, padding: '0 16px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>What parents see</button>
-              <button style={{ height: 36, padding: '0 16px', borderRadius: 8, border: 0, background: G, fontSize: 13, fontWeight: 700, color: '#fff', cursor: 'pointer', fontFamily: 'inherit' }}>Copy link</button>
+              <button onClick={() => st('Opening parent view.')} style={{ height: 36, padding: '0 16px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>What parents see</button>
+              <button onClick={() => st('Team link copied.')} style={{ height: 36, padding: '0 16px', borderRadius: 8, border: 0, background: G, fontSize: 13, fontWeight: 700, color: '#fff', cursor: 'pointer', fontFamily: 'inherit' }}>Copy link</button>
             </div>
           </div>
 
@@ -102,12 +106,13 @@ export default function OB4SignUp(_: { onBack?: () => void }) {
       </div>
 
       <div style={{ flex: 'none', height: 68, background: '#fff', borderTop: `1px solid ${LN}`, padding: '0 40px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <button style={{ height: 44, padding: '0 20px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 15, fontWeight: 600, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Back</button>
+        <button onClick={() => st('Going back.')} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 15, fontWeight: 600, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Back</button>
         <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
           <span style={{ fontSize: 13, color: MUT }}>You can invite coaches and parents later too.</span>
-          <button style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 0, background: G, color: '#fff', fontSize: 15, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Finish</button>
+          <button onClick={() => st('Setup complete.')} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 0, background: G, color: '#fff', fontSize: 15, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Finish</button>
         </div>
       </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }

@@ -219,7 +219,7 @@ function RunSessionView({ empty }: { empty: boolean }) {
   return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '20px 28px 32px', display: 'flex', flexDirection: 'column', gap: 16 }}>
       <PageHead title="Advanced · 12 to 14" sub="Thursday 5:30 to 6:40 · finishing with the weaker foot"
-        right={<><Btn label="Swap a drill" small/><Btn label="Finish and write notes" small primary/></>}/>
+        right={<><Btn label="Swap a drill" small onClick={() => showToast('Opening drill swap.')}/><Btn label="Finish and write notes" small primary onClick={() => showToast('Opening session notes.')}/></>}/>
 
       {/* Who's here */}
       <Card>
@@ -288,7 +288,7 @@ function TrialView({ empty }: { empty: boolean }) {
       <Card><div style={{ padding: 20, textAlign: 'center' }}>
         <div style={{ fontSize: 16, fontWeight: 700, color: INK, marginBottom: 6 }}>No trial players this week</div>
         <div style={{ fontSize: 13, color: MUT, lineHeight: 1.5, marginBottom: 12 }}>When a family books a trial in one of your groups, the child shows on your session with a trial tag.</div>
-        <Btn label="Back to today" primary/>
+        <Btn label="Back to today" primary onClick={() => showToast('Going back to today.')}/>
       </div></Card>
       <StepList items={[
         { n: '1', title: 'Welcome them in', note: 'They join the normal session' },
@@ -301,7 +301,7 @@ function TrialView({ empty }: { empty: boolean }) {
   return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '20px 28px 32px', display: 'flex', flexDirection: 'column', gap: 16 }}>
       <PageHead title="Trial · Arjun Mehta, 10" sub="In Development today · 4 taps, then send"
-        right={<><Btn label="Not today" small/><Btn label="Send to Dani" small primary/></>}/>
+        right={<><Btn label="Not today" small onClick={() => showToast('Trial postponed.')}/><Btn label="Send to Dani" small primary onClick={() => showToast('Assessment sent to Dani.')}/></>}/>
 
       {/* What you saw */}
       <Card>
@@ -434,6 +434,8 @@ function PlayerPlanView({ playerName, newPlayer, onReport }: { playerName: strin
 // ─── ACC5 — One-on-one ────────────────────────────────────────────────────────
 
 function OneOnOneView({ empty }: { empty: boolean }) {
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   const plan = [
     { dur: '10', title: 'Ball each, left foot only', note: 'Touches, turns and a strike at the wall' },
     { dur: '15', title: 'Set, touch, finish', note: 'You serve from the right. Left-foot finish, near post then far' },
@@ -447,7 +449,7 @@ function OneOnOneView({ empty }: { empty: boolean }) {
       <Card><div style={{ padding: 20, textAlign: 'center' }}>
         <div style={{ fontSize: 16, fontWeight: 700, color: INK, marginBottom: 6 }}>No one-on-ones booked</div>
         <div style={{ fontSize: 13, color: MUT, lineHeight: 1.5, marginBottom: 12 }}>Parents book and pay from their app, in the times you've opened. Each session is planned from the player's goal.</div>
-        <Btn label="Open more times" primary/>
+        <Btn label="Open more times" primary onClick={() => showToast('Opening calendar to book more times.')}/>
       </div></Card>
       <StepList items={[
         { n: '1', title: 'Is in open view', note: 'On a pitch others can see' },
@@ -460,7 +462,7 @@ function OneOnOneView({ empty }: { empty: boolean }) {
   return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '20px 28px 32px', display: 'flex', flexDirection: 'column', gap: 16 }}>
       <PageHead title="One-on-one · Kai Okonkwo" sub="Thursday 6:45 to 7:30 · pitch 2"
-        right={<><Btn label="Move the session" small/><Btn label="Finish and send summary" small primary/></>}/>
+        right={<><Btn label="Move the session" small onClick={() => showToast('Opening session reschedule.')}/><Btn label="Finish and send summary" small primary onClick={() => showToast('Summary sent to Dani.')}/></>}/>
 
       <div style={{ background: PALE, borderRadius: 14, padding: '12px 16px', fontSize: 14, fontWeight: 600, color: GD }}>
         45 minutes, built from Kai's goal: score with his left foot in a game
@@ -497,6 +499,7 @@ function OneOnOneView({ empty }: { empty: boolean }) {
         ))}
         <div style={{ padding: '12px 16px', fontSize: 12, color: MUT, lineHeight: 1.5 }}>After the session: two taps on how it went, and Tess gets a short summary with a clip. The session is paid already: $90, by card.</div>
       </Card>
+      {toast && <div style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', background: '#1f4a3e', color: '#fff', padding: '10px 20px', borderRadius: 999, fontSize: 13, fontWeight: 600, zIndex: 100 }}>{toast}</div>}
     </div>
   )
 }
@@ -504,6 +507,8 @@ function OneOnOneView({ empty }: { empty: boolean }) {
 // ─── ACC6 — Term report ───────────────────────────────────────────────────────
 
 function TermReportView({ empty, onBack }: { empty: boolean; onBack?: () => void }) {
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   if (empty) return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '20px 28px 32px', display: 'flex', flexDirection: 'column', gap: 16 }}>
       <PageHead title="Term reports" sub="No drafts yet · they start in week 8"/>
@@ -525,7 +530,7 @@ function TermReportView({ empty, onBack }: { empty: boolean; onBack?: () => void
   return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '20px 28px 32px', display: 'flex', flexDirection: 'column', gap: 16 }}>
       <PageHead title="Term report · Kai Okonkwo" sub="Drafted from your 5 session notes · check it, then send to Dani"
-        right={<><Btn label="Next draft" small/><Btn label="Looks right, send to Dani" small primary/></>}/>
+        right={<><Btn label="Next draft" small onClick={() => showToast('Opening next draft.')}/><Btn label="Looks right, send to Dani" small primary onClick={() => showToast('Draft sent to Dani.')}/></>}/>
 
       {/* Draft text */}
       <Card>
@@ -539,9 +544,9 @@ function TermReportView({ empty, onBack }: { empty: boolean; onBack?: () => void
           </div>
         </div>
         <div style={{ padding: '10px 16px', borderTop: `1px solid ${LN}`, display: 'flex', gap: 8 }}>
-          <Btn label="Make it shorter" small/>
-          <Btn label="Change a word" small/>
-          <Btn label="Add a clip" small/>
+          <Btn label="Make it shorter" small onClick={() => showToast('Making the report shorter.')}/>
+          <Btn label="Change a word" small onClick={() => showToast('Opening word editor.')}/>
+          <Btn label="Add a clip" small onClick={() => showToast('Opening clip picker.')}/>
         </div>
         <div style={{ padding: '10px 16px', borderTop: `1px solid ${LN}`, fontSize: 12, color: MUT }}>Written from what you noted, in plain words. It never compares Kai with another child.</div>
       </Card>
@@ -562,6 +567,7 @@ function TermReportView({ empty, onBack }: { empty: boolean; onBack?: () => void
       </Card>
 
       <div style={{ fontSize: 12, color: MUT }}>The lighter dot is what moved this term.</div>
+      {toast && <div style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', background: '#1f4a3e', color: '#fff', padding: '10px 20px', borderRadius: 999, fontSize: 13, fontWeight: 600, zIndex: 100 }}>{toast}</div>}
     </div>
   )
 }
@@ -577,7 +583,7 @@ function GameDayMainView({ empty }: { empty: boolean }) {
       <Card><div style={{ padding: 20, textAlign: 'center' }}>
         <div style={{ fontSize: 16, fontWeight: 700, color: INK, marginBottom: 6 }}>Your groups only train for now</div>
         <div style={{ fontSize: 13, color: MUT, lineHeight: 1.5, marginBottom: 12 }}>If the academy links with a club, your game team's fixtures, team sheet and reviews show here.</div>
-        <Btn label="Back to today" primary/>
+        <Btn label="Back to today" primary onClick={() => showToast('Going back to today.')}/>
       </div></Card>
       <StepList items={[
         { n: '1', title: 'Fixtures arrive', note: "From the club's league" },
@@ -726,6 +732,8 @@ function RecordView({ empty, onDrill, onRecording }: { empty: boolean; onDrill: 
 }
 
 function RecordDrillView({ onStart }: { onStart: () => void }) {
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '20px 28px 32px', display: 'flex', flexDirection: 'column', gap: 16 }}>
       <PageHead title="Record a drill" sub="Finishing circuit · Advanced, 12 to 14 · third on tonight's plan"
@@ -763,13 +771,14 @@ function RecordDrillView({ onStart }: { onStart: () => void }) {
               <Badge label={m.src} color={G2} bg={PALE}/>
             </div>
           ))}
-          <button style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '12px 16px', border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G2 }}>
+          <button onClick={() => showToast('Opening manual count.')} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '12px 16px', border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G2 }}>
             <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round"><path d="M12 5v14M5 12h14"/></svg>
             Count something by hand
           </button>
         </Card>
         <div style={{ fontSize: 12, color: MUT, marginTop: 8 }}>Last run: Thu 21 May, run 2. Six players have this as their term goal.</div>
       </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }
@@ -909,13 +918,15 @@ function RecordResultsView({ firstRun }: { firstRun: boolean }) {
 // ─── ACC12 — Suggested ────────────────────────────────────────────────────────
 
 function SuggestedView({ empty }: { empty: boolean }) {
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   if (empty) return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '20px 28px 32px', display: 'flex', flexDirection: 'column', gap: 16 }}>
       <PageHead title="Suggested for tonight" sub="Not enough to go on yet"/>
       <Card><div style={{ padding: 20, textAlign: 'center' }}>
         <div style={{ fontSize: 16, fontWeight: 700, color: INK, marginBottom: 6 }}>Suggestions start after a few sessions</div>
         <div style={{ fontSize: 13, color: MUT, lineHeight: 1.5, marginBottom: 12 }}>Keep tapping your two notes per player. After three sessions, or one recorded drill, Clean Sheet suggests what to change for the group and for each player.</div>
-        <Btn label="Record a drill" primary/>
+        <Btn label="Record a drill" primary onClick={() => showToast('Opening drill recorder.')}/>
       </div></Card>
       <StepList items={[
         { n: '1', title: 'Your session notes', note: 'Two taps per player' },
@@ -934,7 +945,7 @@ function SuggestedView({ empty }: { empty: boolean }) {
   return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '20px 28px 32px', display: 'flex', flexDirection: 'column', gap: 16 }}>
       <PageHead title="Suggested for tonight" sub="Advanced · from 3 recordings, your session notes and each player's goal"
-        right={<Btn label="Back to today" small/>}/>
+        right={<Btn label="Back to today" small onClick={() => showToast('Going back to today.')}/>}/>
 
       {/* Group suggestions */}
       <Card>
@@ -956,7 +967,7 @@ function SuggestedView({ empty }: { empty: boolean }) {
           <div style={{ fontSize: 13, color: G }}>Same stations · defender starts 3 metres behind</div>
         </div>
         <div style={{ padding: '10px 16px' }}>
-          <Btn label="Add to tonight" primary/>
+          <Btn label="Add to tonight" primary onClick={() => showToast("Added to tonight's session.")}/>
         </div>
       </Card>
 
@@ -1002,6 +1013,7 @@ function SuggestedView({ empty }: { empty: boolean }) {
       <div style={{ background: PALE, borderRadius: 14, padding: '12px 16px', fontSize: 13, color: G, lineHeight: 1.5 }}>
         Parents can see why. When a suggestion changes a player's plan, the reason goes into their term report in plain words.
       </div>
+      {toast && <div style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', background: '#1f4a3e', color: '#fff', padding: '10px 20px', borderRadius: 999, fontSize: 13, fontWeight: 600, zIndex: 100 }}>{toast}</div>}
     </div>
   )
 }
@@ -1095,14 +1107,15 @@ function ChatView({ empty }: { empty: boolean }) {
       {/* Compose */}
       <div style={{ padding: '12px 20px', borderTop: `1px solid ${LN}`, background: '#fff', flexShrink: 0 }}>
         <div style={{ display: 'flex', gap: 10, marginBottom: 10 }}>
-          {['📷', '🎥', '🎤', '📊', '📄', '🏃'].map((icon, i) => (
-            <button key={i} style={{ width: 44, height: 44, borderRadius: '50%', border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', fontSize: 16 }}>{icon}</button>
-          ))}
+          {(['📷', '🎥', '🎤', '📊', '📄', '🏃'] as const).map((icon, i) => {
+            const labels = ['Adding a photo.', 'Adding a video.', 'Recording a voice message.', 'Creating a poll.', 'Attaching a file.', 'Setting home practice.']
+            return <button key={i} onClick={() => showToast(labels[i])} style={{ width: 44, height: 44, borderRadius: '50%', border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', fontSize: 16 }}>{icon}</button>
+          })}
           <button onClick={() => showToast('Opening the home practice template.')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${G}`, background: PALE, fontSize: 12, fontWeight: 700, color: G, cursor: 'pointer', fontFamily: 'inherit' }}>Home practice</button>
         </div>
         <div style={{ display: 'flex', gap: 10 }}>
           <input defaultValue="" placeholder="Write to the Advanced group" style={{ flex: 1, height: 44, padding: '0 14px', border: `1px solid ${LN}`, borderRadius: 999, fontFamily: 'inherit', fontSize: 14, outline: 'none' }}/>
-          <button style={{ width: 44, height: 44, borderRadius: '50%', border: 'none', background: G, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <button onClick={() => showToast('Message sent.')} style={{ width: 44, height: 44, borderRadius: '50%', border: 'none', background: G, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <svg width={18} height={18} viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={2} strokeLinecap="round"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>
           </button>
         </div>
@@ -1114,7 +1127,7 @@ function ChatView({ empty }: { empty: boolean }) {
 
   return (
     <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-      <PageHead title="Chats" right={<Btn label="New chat" small primary/>}/>
+      <PageHead title="Chats" right={<Btn label="New chat" small primary onClick={() => showToast('Opening new chat.')}/>}/>
       <div style={{ flex: 1, overflowY: 'auto', padding: '12px 28px 32px', display: 'flex', flexDirection: 'column', gap: 2 }}>
         {chats.map(c => (
           <button key={c.id} onClick={() => setActiveChat(c.id)} style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '14px 16px', border: `1px solid ${LN}`, borderRadius: 12, background: '#fff', cursor: 'pointer', textAlign: 'left', fontFamily: 'inherit', marginBottom: 6 }}>
@@ -1201,6 +1214,8 @@ export default function AcademyCoachApp({ onBack, empty = false, initialScreen, 
   const [selectedPlayer, setSelectedPlayer] = useState<{ name: string; isNew: boolean } | null>(null)
   const [recordStep, setRecordStep]   = useState<RecordStep>('pick')
   const [askOpen, setAskOpen]         = useState(false)
+  const [toast, setToast]             = useState<string | null>(null)
+  function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
 
   const TODAY_TABS: Array<{ id: TodayTab; label: string }> = [
     { id: 'overview',  label: 'Today' },
@@ -1334,7 +1349,7 @@ export default function AcademyCoachApp({ onBack, empty = false, initialScreen, 
             <div style={{ flex: 1, overflowY: 'auto', padding: '20px' }}>
               <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: 8, marginBottom: 20 }}>
                 {['Who is making the most progress?', 'Which players need more one-on-ones?', 'Who is due for a trial outcome?', 'Is anyone behind on their term goals?'].map(q => (
-                  <button key={q} style={{ padding: '7px 12px', borderRadius: 100, border: '1px solid #e8edeb', background: '#eef5f2', color: '#2f6252', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{q}</button>
+                  <button key={q} onClick={() => showToast(`Asking: ${q}`)} style={{ padding: '7px 12px', borderRadius: 100, border: '1px solid #e8edeb', background: '#eef5f2', color: '#2f6252', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{q}</button>
                 ))}
               </div>
               <div style={{ background: '#eef5f2', borderRadius: 14, padding: '14px 16px', fontSize: 14, color: '#10211f', lineHeight: 1.6 }}>
@@ -1345,11 +1360,12 @@ export default function AcademyCoachApp({ onBack, empty = false, initialScreen, 
             </div>
             <div style={{ padding: '12px 16px', borderTop: '1px solid #e8edeb', display: 'flex', gap: 8, flexShrink: 0 }}>
               <input placeholder="Ask about Tall Timber Academy…" style={{ flex: 1, height: 44, padding: '0 12px', borderRadius: 8, border: '1px solid #e8edeb', fontSize: 13, fontFamily: 'inherit', outline: 'none', color: '#10211f' }} />
-              <button style={{ height: 44, padding: '0 16px', borderRadius: 8, background: '#2f6252', color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Ask</button>
+              <button onClick={() => showToast('Asking Clean Sheet.')} style={{ height: 44, padding: '0 16px', borderRadius: 8, background: '#2f6252', color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Ask</button>
             </div>
           </aside>
         )}
       </div>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
   )
 }

@@ -45,9 +45,10 @@ function Ini({ s, bg, size = 34 }: { s: string; bg: string; size?: number }) {
 }
 
 function VoiceRow({ dur }: { dur: string }) {
+  const [playing, setPlaying] = useState(false)
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '6px 0' }}>
-      <button style={{ width: 26, height: 26, borderRadius: '999px', border: 'none', background: G, color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <button onClick={() => setPlaying(p => !p)} style={{ width: 26, height: 26, borderRadius: '999px', border: 'none', background: G, color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <svg width={10} height={10} viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21"/></svg>
       </button>
       <div style={{ flex: 1, height: 3, background: LN, borderRadius: 999 }}><div style={{ width: '12%', height: '100%', background: G2, borderRadius: 999 }}/></div>
@@ -180,6 +181,8 @@ function ChatListView({ empty, onTeamChat, onAnnouncements, onPrivate, onReadOnl
 
 function TeamChatView({ empty, onBack, onPoll, onAttach, onSettings, onReport, onPhotoCheck }:
   { empty: boolean; onBack: () => void; onPoll: () => void; onAttach: () => void; onSettings: () => void; onReport: () => void; onPhotoCheck: () => void }) {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <PhoneWrap>
       <div style={{ background: GD, padding: '44px 16px 10px', flexShrink: 0 }}>
@@ -279,13 +282,14 @@ function TeamChatView({ empty, onBack, onPoll, onAttach, onSettings, onReport, o
             <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth={2} strokeLinecap="round"><rect x={3} y={3} width={18} height={18} rx={2}/><circle cx={8.5} cy={8.5} r={1.5}/><path d="M21 15l-5-5L5 21"/></svg>
           </button>
           <input placeholder="Write to the team chat" style={{ flex: 1, height: 36, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, fontSize: 14, fontFamily: 'inherit', outline: 'none', color: INK, background: '#fafafa' }}/>
-          <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Send</button>
+          <button onClick={() => st('Message sent.')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Send</button>
         </div>
         <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
           <button onClick={onSettings} style={{ fontSize: 12, color: MUT, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: '2px 0' }}>Chat settings and mute</button>
           <button onClick={onReport} style={{ fontSize: 12, color: MUT, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: '2px 0' }}>Report a message</button>
         </div>
       </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:16, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'10px 18px', borderRadius:10, background:'#1f4a3e', color:'#fff', fontSize:14, fontWeight:600, whiteSpace:'nowrap' }}>{toast}</div>}
     </PhoneWrap>
   )
 }
@@ -293,6 +297,8 @@ function TeamChatView({ empty, onBack, onPoll, onAttach, onSettings, onReport, o
 // ─── PM3 · Announcements ──────────────────────────────────────────────────────
 
 function AnnouncementsView({ onBack, onPrivate }: { onBack: () => void; onPrivate: () => void }) {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <PhoneWrap>
       <TopBar title="Announcements" sub="Only Sam, Jess and Rob post here" onBack={onBack} right={<Ini s="LT" bg={ROSE} size={30}/>}/>
@@ -344,7 +350,7 @@ function AnnouncementsView({ onBack, onPrivate }: { onBack: () => void; onPrivat
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <span style={{ display: 'inline-flex', alignItems: 'center', gap: 3, background: '#f0f4f2', borderRadius: 999, padding: '2px 8px', fontSize: 13 }}>👍 <span style={{ fontSize: 11, color: MUT }}>11</span></span>
-            <button style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 700, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Got it</button>
+            <button onClick={() => st('Got it — noted.')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 700, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Got it</button>
           </div>
         </div>
       </div>
@@ -352,6 +358,7 @@ function AnnouncementsView({ onBack, onPrivate }: { onBack: () => void; onPrivat
         <div style={{ fontSize: 12, color: MUT, textAlign: 'center' as const, marginBottom: 8 }}>You can't write here. A question?</div>
         <button onClick={onPrivate} style={{ display: 'block', width: '100%', height: 44, borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Ask Rob privately</button>
       </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:16, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'10px 18px', borderRadius:10, background:'#1f4a3e', color:'#fff', fontSize:14, fontWeight:600, whiteSpace:'nowrap' }}>{toast}</div>}
     </PhoneWrap>
   )
 }
@@ -481,7 +488,7 @@ function ChatSettingsView({ onBack }: { onBack: () => void }) {
           </div>
         ))}
 
-        <button style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '14px 0', borderBottom: `1px solid ${LN}`, width: '100%', border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit' }}>
+        <button onClick={onBack} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '14px 0', borderBottom: `1px solid ${LN}`, width: '100%', border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit' }}>
           <div>
             <div style={{ fontSize: 14, fontWeight: 600, color: ROSE }}>Report a message</div>
             <div style={{ fontSize: 12, color: MUT }}>To the welfare officer, privately</div>
@@ -603,6 +610,8 @@ function ReadOnlyView({ onBack }: { onBack: () => void }) {
 // ─── PM9 · Private with coach ─────────────────────────────────────────────────
 
 function PrivateChatView({ empty, onBack }: { empty: boolean; onBack: () => void }) {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <PhoneWrap>
       <TopBar title="Sam" sub="Sam K · U12 Sam coach" onBack={onBack} right={<Ini s="LT" bg={ROSE} size={30}/>}/>
@@ -614,7 +623,7 @@ function PrivateChatView({ empty, onBack }: { empty: boolean; onBack: () => void
             <div style={{ fontSize: 13, color: MUT, lineHeight: 1.5, maxWidth: 280 }}>Running late, a question about game time, or something Sam should know about Mia. It stays between you and Sam.</div>
             <div style={{ marginTop: 12, display: 'flex', flexDirection: 'column', gap: 8, width: '100%' }}>
               {['Mia will be late', "Mia can't make it", 'Can we talk after training?'].map(msg => (
-                <button key={msg} style={{ height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 14, color: G, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{msg}</button>
+                <button key={msg} onClick={() => st(`"${msg}" sent to Sam.`)} style={{ height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 14, color: G, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{msg}</button>
               ))}
             </div>
           </div>
@@ -648,8 +657,9 @@ function PrivateChatView({ empty, onBack }: { empty: boolean; onBack: () => void
       </div>
       <div style={{ background: '#fff', borderTop: `1px solid ${LN}`, padding: '8px 16px 16px', flexShrink: 0, display: 'flex', gap: 8 }}>
         <input placeholder="Write to Sam" style={{ flex: 1, height: 40, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, fontSize: 14, fontFamily: 'inherit', outline: 'none', color: INK, background: '#fafafa' }}/>
-        <button style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Send</button>
+        <button onClick={() => st('Message sent to Sam.')} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Send</button>
       </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:16, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'10px 18px', borderRadius:10, background:'#1f4a3e', color:'#fff', fontSize:14, fontWeight:600, whiteSpace:'nowrap' }}>{toast}</div>}
     </PhoneWrap>
   )
 }

@@ -1,6 +1,10 @@
+import { useState } from 'react'
+
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 export default function HM10StaffMiniRoos(_: { onBack?: () => void }) {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }}>
       <div style={{ background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 20, height: 64 }}>
@@ -25,7 +29,7 @@ export default function HM10StaffMiniRoos(_: { onBack?: () => void }) {
           <h1 style={{ margin: 0, fontSize: 26, fontWeight: 700, letterSpacing: '-0.02em' }}>Team staff</h1>
           <span style={{ fontSize: 14, color: MUT }}>U9 Tom · 3 adults · everyone needs a children check</span>
         </div>
-        <button style={{ height: 44, padding: '0 18px', borderRadius: 10, border: `1px solid ${G}`, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>+ Invite someone</button>
+        <button onClick={() => st('Opening invite form.')} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: `1px solid ${G}`, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>+ Invite someone</button>
       </div>
 
       <div style={{ flex: 1, padding: '12px 28px 18px', display: 'grid', gap: 14, gridTemplateColumns: 'minmax(0, 1fr) 320px' }}>
@@ -52,7 +56,7 @@ export default function HM10StaffMiniRoos(_: { onBack?: () => void }) {
               <div style={{ fontSize: 15, fontWeight: 700 }}>Game leader this Saturday</div>
               <div style={{ fontSize: 13, color: MUT }}>Nobody yet. The club's young game leaders have been asked</div>
             </div>
-            <button style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>Ask again</button>
+            <button onClick={() => st('Sending another reminder.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>Ask again</button>
           </div>
 
           <div style={{ marginTop: 'auto', paddingTop: 8, fontSize: 14, color: MUT }}>Kim's check runs out on 30 June. She's been reminded, and can't see player details after that until it's renewed.</div>
@@ -77,5 +81,6 @@ export default function HM10StaffMiniRoos(_: { onBack?: () => void }) {
         </div>
       </div>
     </div>
+    {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
   )
 }

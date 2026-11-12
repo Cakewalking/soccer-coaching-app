@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 interface Props { onClose: () => void }
 
 const BAR_DATA = [3,5,2,8,4,9,6,7,3,5,8,7,4,6,9,12,8,5,7,6,4,8,10,7,5,9,6,8,4,7,11]
@@ -5,6 +7,8 @@ const BAR_DATA = [3,5,2,8,4,9,6,7,3,5,8,7,4,6,9,12,8,5,7,6,4,8,10,7,5,9,6,8,4,7,
 export default function MetricDetailScreen({ onClose }: Props) {
   const target = 4
   const maxBar = Math.max(...BAR_DATA)
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
 
   return (
     <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', background: '#f7f9f7', fontFamily: 'var(--font-sans)' }}>
@@ -77,13 +81,13 @@ export default function MetricDetailScreen({ onClose }: Props) {
             </div>
             {/* Bottom clip link */}
             <div style={{ marginTop: 12, padding: '10px 12px', background: '#f7f9f7', borderRadius: 10, display: 'flex', alignItems: 'center', gap: 10 }}>
-              <button style={{ width: 32, height: 32, borderRadius: '999px', border: 0, background: '#10211f', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+              <button onClick={() => st('Playing clip.')} style={{ width: 32, height: 32, borderRadius: '999px', border: 0, background: '#10211f', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"/></svg>
               </button>
               <div style={{ flexGrow: 1, fontSize: 13, color: '#10211f' }}>
                 <strong>Min 15 · 12 seconds</strong> — one player pressed, the rest watched
               </div>
-              <button style={{ fontSize: 13, fontWeight: 600, color: '#2f6252', border: 0, background: 'transparent', cursor: 'pointer', fontFamily: 'inherit' }}>All 4 clips</button>
+              <button onClick={() => st('Opening all 4 clips.')} style={{ fontSize: 13, fontWeight: 600, color: '#2f6252', border: 0, background: 'transparent', cursor: 'pointer', fontFamily: 'inherit' }}>All 4 clips</button>
             </div>
           </div>
         </div>
@@ -124,11 +128,12 @@ export default function MetricDetailScreen({ onClose }: Props) {
             <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: '18px', marginTop: 4 }}>From 57 of 60 minutes of clear camera view.</div>
           </div>
 
-          <button style={{ width: '100%', height: 44, borderRadius: 10, border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>
+          <button onClick={() => st('Opening report.')} style={{ width: '100%', height: 44, borderRadius: 10, border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>
             Something look wrong? Report it
           </button>
         </div>
       </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }

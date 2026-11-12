@@ -102,7 +102,7 @@ export default function HM4GameDayMiniRoos(_: { onBack?: () => void }) {
           <div style={{ flex: 1, background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 8 }}>
             <div style={{ fontSize: 17, fontWeight: 700 }}>After the game</div>
             <div style={{ fontSize: 14, color: MUT }}>No score to enter. Tap three things you saw, and thank the parents. It takes 30 seconds.</div>
-            <button style={{ marginTop: 'auto', height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>What we saw</button>
+            <button style={{ marginTop: 'auto', height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }} onClick={() => showToast('Opening review.')}>What we saw</button>
           </div>
         </div>
       </div>

@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2', BG = '#f5f6f4'
 
 const RULES = [
@@ -17,6 +19,8 @@ const LEAGUE_RULES = [
 ]
 
 export default function DSet4ClubRules() {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, background: BG, fontFamily: 'var(--font-sans)', minHeight: 820 }}>
       <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 32, height: 52 }}>
@@ -56,7 +60,7 @@ export default function DSet4ClubRules() {
                   <div style={{ fontSize: 12, color: MUT }}>{r.desc}</div>
                 </div>
                 <div style={{ fontSize: 12, fontWeight: 600, color: r.warn ? '#c05' : MUT, flexShrink: 0 }}>{r.status}</div>
-                <button style={{ height: 36, padding: '0 16px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, cursor: 'pointer', flexShrink: 0 }}>{r.action}</button>
+                <button onClick={() => st('Opening rule settings.')} style={{ height: 36, padding: '0 16px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, cursor: 'pointer', flexShrink: 0 }}>{r.action}</button>
               </div>
             ))}
           </div>
@@ -78,6 +82,7 @@ export default function DSet4ClubRules() {
           </div>
         </div>
       </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }

@@ -1,8 +1,12 @@
+import { useState } from 'react'
+
 const G = '#2f6252', GD = '#1f4a3e', G2 = '#40826d', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 const NAV = ['Home', 'Squad', 'Training', 'Match day', 'Clips']
 const SUBNAV = ["Tonight's session", 'This week', 'Suggested', 'Drill library', 'Growth and load', 'Record']
 
 export default function SG5eWhatWorkedEmpty(_: { onBack?: () => void }) {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, height: 820, boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       <div style={{ flex: 'none', background: G, height: 64, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 4 }}>
@@ -26,7 +30,7 @@ export default function SG5eWhatWorkedEmpty(_: { onBack?: () => void }) {
           <div style={{ fontSize: 20, fontWeight: 800, color: INK }}>No drill recorded more than once yet</div>
           <div style={{ fontSize: 15, fontWeight: 600, color: MUT }}>Record a drill three times</div>
           <div style={{ fontSize: 14, color: MUT, lineHeight: 1.6, maxWidth: 440 }}>With three runs of the same set-up, Clean Sheet can tell you whether a drill is working for your team, and stop suggesting the ones that aren't.</div>
-          <button style={{ height: 48, padding: '0 28px', borderRadius: 12, background: GD, color: '#fff', border: 'none', fontSize: 15, fontWeight: 700, cursor: 'pointer', marginTop: 4 }}>Record a drill</button>
+          <button style={{ height: 48, padding: '0 28px', borderRadius: 12, background: GD, color: '#fff', border: 'none', fontSize: 15, fontWeight: 700, cursor: 'pointer', marginTop: 4 }} onClick={() => st('Opening drill recorder.')}>Record a drill</button>
         </div>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: 20 }}>
           <div style={{ fontSize: 14, fontWeight: 700, color: INK, marginBottom: 14 }}>Then you'll see</div>
@@ -40,6 +44,7 @@ export default function SG5eWhatWorkedEmpty(_: { onBack?: () => void }) {
             </div>
           ))}
         </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
       </main>
     </div>
   )

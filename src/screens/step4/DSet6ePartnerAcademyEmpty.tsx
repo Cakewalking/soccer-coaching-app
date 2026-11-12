@@ -1,6 +1,10 @@
+import { useState } from 'react'
+
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 export default function DSet6ePartnerAcademyEmpty(_: { onBack?: () => void }) {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820 }}>
       <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 32, height: 52 }}>
@@ -24,13 +28,14 @@ export default function DSet6ePartnerAcademyEmpty(_: { onBack?: () => void }) {
           </div>
           <div style={{ fontSize: 22, fontWeight: 900, letterSpacing: '-0.02em', color: INK, marginBottom: 8 }}>Partner academies · none linked</div>
           <div style={{ fontSize: 15, color: MUT, lineHeight: 1.6, marginBottom: 24 }}>Does an academy play its games through your club? Link it and its team shows up beside your own, under your rules, with no double entry of players or team sheets.</div>
-          <button style={{ height: 48, padding: '0 28px', borderRadius: 14, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer', marginBottom: 24 }}>Link an academy</button>
+          <button style={{ height: 48, padding: '0 28px', borderRadius: 14, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer', marginBottom: 24 }} onClick={() => st('Opening academy link.')}>Link an academy</button>
 
           <div style={{ background: PALE, borderRadius: 12, padding: '14px 16px', textAlign: 'left' as const }}>
             <div style={{ fontSize: 13, fontWeight: 700, color: GD, marginBottom: 4 }}>You stay in charge of</div>
             <div style={{ fontSize: 13, color: GD }}>Registrations, game time, cards and child safety at games. The academy keeps its own fees and coaching.</div>
           </div>
         </div>
+      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
       </div>
     </div>
   )

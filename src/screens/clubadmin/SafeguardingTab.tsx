@@ -16,6 +16,8 @@ const SG_EMPTY: Partial<Record<SafeguardingView, { icon: string; title: string; 
 
 export default function SafeguardingTab({ empty }: { empty?: boolean }) {
   const [view, setView] = useState<SafeguardingView>('checks')
+  const [toast, setToast] = useState<string | null>(null)
+  function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
 
   const p = { padding: '16px 20px' }
 
@@ -40,7 +42,7 @@ export default function SafeguardingTab({ empty }: { empty?: boolean }) {
         <div style={p}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
             <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>Working with children checks</div>
-            <button style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Club course</button>
+            <button onClick={() => showToast('Opening club course details.')} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Club course</button>
           </div>
           {COACHES_DATA.map((c, i) => {
             const expiring = c.checkDays > 0 && c.checkDays <= 30
@@ -97,7 +99,7 @@ export default function SafeguardingTab({ empty }: { empty?: boolean }) {
         <div style={p}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
             <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>{CONCERNS.length} concerns</div>
-            <button style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>+ Log concern</button>
+            <button onClick={() => showToast('Opening log concern form.')} style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>+ Log concern</button>
           </div>
           {CONCERNS.map((c, i) => (
             <div key={i} style={{ background: '#fff', borderRadius: 14, padding: '14px 16px', border: '1px solid #e9eae8', marginBottom: 10 }}>
@@ -130,7 +132,7 @@ export default function SafeguardingTab({ empty }: { empty?: boolean }) {
                 <div style={{ fontSize: 18, fontWeight: 800, color: '#10211f' }}>Concussion</div>
                 <div style={{ fontSize: 12, color: '#6f7f7b' }}>Return to play · AIS concussion guidelines 2024 · community football</div>
               </div>
-              <button style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Log a head knock</button>
+              <button onClick={() => showToast('Opening head knock form.')} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Log a head knock</button>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
               <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>Returning to play</div>
@@ -161,7 +163,7 @@ export default function SafeguardingTab({ empty }: { empty?: boolean }) {
                   ))}
                 </div>
                 <div style={{ fontSize: 12, color: '#4a5a57', marginBottom: 10 }}>{c.note}</div>
-                <button style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: '1px solid #2f6252', background: '#fff', color: '#2f6252', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>{c.action}</button>
+                <button onClick={() => showToast(`${c.action} logged.`)} style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: '1px solid #2f6252', background: '#fff', color: '#2f6252', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>{c.action}</button>
               </div>
             ))}
             <div style={{ padding: '12px 14px', background: '#fff', borderRadius: 10, border: '1px solid #e9eae8', fontSize: 12, color: '#6f7f7b' }}>
@@ -175,7 +177,7 @@ export default function SafeguardingTab({ empty }: { empty?: boolean }) {
                 <div style={{ width: 32, height: 32, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>MB</div>
                 <div><div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>Marco Bellini</div><div style={{ fontSize: 12, color: '#6f7f7b' }}>Physio · club volunteer</div></div>
               </div>
-              <div style={{ fontSize: 12, color: '#6f7f7b' }}>Told about every knock. <button style={{ background: 'none', border: 0, color: '#2f6252', cursor: 'pointer', fontFamily: 'inherit', fontSize: 12, padding: 0 }}>Change</button></div>
+              <div style={{ fontSize: 12, color: '#6f7f7b' }}>Told about every knock. <button onClick={() => showToast('Opening change concussion officer.')} style={{ background: 'none', border: 0, color: '#2f6252', cursor: 'pointer', fontFamily: 'inherit', fontSize: 12, padding: 0 }}>Change</button></div>
             </div>
             <div style={{ background: '#fff', borderRadius: 14, padding: '14px 16px', border: '1px solid #e9eae8' }}>
               <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 10 }}>This season</div>
@@ -221,6 +223,7 @@ export default function SafeguardingTab({ empty }: { empty?: boolean }) {
           </div>
         </div>
       )}
+      {toast && <div style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', background: '#1f4a3e', color: '#fff', padding: '10px 20px', borderRadius: 999, fontSize: 13, fontWeight: 600, zIndex: 100 }}>{toast}</div>}
     </>
   )
 }
