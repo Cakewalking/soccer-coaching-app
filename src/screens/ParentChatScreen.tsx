@@ -45,7 +45,7 @@ function Ini({ s, bg, size = 34 }: { s: string; bg: string; size?: number }) {
 }
 
 function VoiceRow({ dur }: { dur: string }) {
-  const [playing, setPlaying] = useState(false)
+  const [, setPlaying] = useState(false)
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '6px 0' }}>
       <button onClick={() => setPlaying(p => !p)} style={{ width: 26, height: 26, borderRadius: '999px', border: 'none', background: G, color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>

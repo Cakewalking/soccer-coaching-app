@@ -112,7 +112,7 @@ function CoachPhonePreSeasonHome() {
           </div>
           <span style={{ fontSize: 12, fontWeight: 700, color: G }}>{doneCount}/{items.length} ready</span>
         </div>
-        {items.map((item, i) => (
+        {items.map((item) => (
           <div key={item.label} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 14px', borderTop: '1px solid #f0f1f0' }}>
             <div style={{ width: 20, height: 20, borderRadius: '50%', background: item.done ? G : '#f0f1ef', border: item.done ? 'none' : '1.5px solid #d4d6d4', display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 'none' }}>
               {item.done && <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>}

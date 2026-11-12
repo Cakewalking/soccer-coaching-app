@@ -70,7 +70,6 @@ import ACP9JoinGameTeam           from '../step4/ACP9JoinGameTeam'
 import ACP10AcademyConcern        from '../step4/ACP10AcademyConcern'
 // Step 4 screens — Director view
 import D5Safeguarding             from '../step4/D5Safeguarding'
-import DS1Concerns                from '../step4/DS1Concerns'
 import DS2DataRequests            from '../step4/DS2DataRequests'
 import DB4Grants                  from '../step4/DB4Grants'
 import DK1Kit                     from '../step4/DK1Kit'
@@ -1686,7 +1685,7 @@ export default function DemoApp() {
             setSbStore(empty)
           }
         }}
-        onKeepGoing={() => setSbState('ending')}
+        onKeepGoing={() => {}}
       />
     )
   }

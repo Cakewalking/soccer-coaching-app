@@ -1,4 +1,4 @@
-const GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2', G = '#2f6252'
+const GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', G = '#2f6252'
 
 export default function ACP4eParentFeesEmpty(_: { onBack?: () => void }) {
   return (

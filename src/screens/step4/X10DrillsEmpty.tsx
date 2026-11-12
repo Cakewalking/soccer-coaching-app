@@ -1,5 +1,5 @@
 import { useState } from 'react'
-const G = '#2f6252', GD = '#1f4a3e', G2 = '#40826d', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
+const G = '#2f6252', GD = '#1f4a3e', G2 = '#40826d', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb'
 const NAV = ['Home', 'Squad', 'Training', 'Match day', 'Clips']
 const SUBNAV = ["Tonight's session", 'This week', 'Drill library', 'Growth and load']
 const AGE_FILTERS = ['5–9', '9–12', 'Your team', '12–16', '16+', 'All ages']

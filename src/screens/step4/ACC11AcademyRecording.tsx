@@ -1,5 +1,5 @@
 import { useState } from 'react'
-const INK = '#10211f', MUT = '#4a5a57', G = '#2f6252', GD = '#1f4a3e'
+const G = '#2f6252', GD = '#1f4a3e'
 
 export default function ACC11AcademyRecording(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string | null>(null)

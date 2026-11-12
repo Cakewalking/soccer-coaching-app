@@ -41,7 +41,7 @@ export default function PAThanks(_: { onBack?: () => void }) {
           ))}
         </div>
 
-        <button style={{ width: '100%', height: 52, borderRadius: 14, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' } onClick={() => st('Going back to home.')}>
+        <button onClick={() => st('Going back to home.')} style={{ width: '100%', height: 52, borderRadius: 14, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>
           Back to home
         </button>
       {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}

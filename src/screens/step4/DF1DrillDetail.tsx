@@ -37,7 +37,7 @@ export default function DF1DrillDetail(_: { onBack?: () => void }) {
                 {[{ label: 'Us', color: GD }, { label: 'Them', color: '#7c3030' }, { label: 'Plays for both', color: '#a06020' }].map(b => <button key={b.label} onClick={() => st(`Viewing ${b.label}.`)} style={{ height: 36, padding: '0 12px', borderRadius: 8, background: b.color, color: '#fff', border: 'none', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>{b.label}</button>)}
               </div>
             </div>
-            <div style={{ padding: '10px 12px', display: 'flex', gap: 8' }}>
+            <div style={{ padding: '10px 12px', display: 'flex', gap: 8 }}>
               {['Pass', 'Run'].map(t => <div key={t} style={{ display: 'flex', alignItems: 'center', gap: 4 }}><div style={{ width: 20, height: 2, background: t === 'Pass' ? GD : '#a0a0a0' }}/>  <span style={{ fontSize: 11, color: MUT }}>{t}</span></div>)}
             </div>
           </div>

@@ -263,6 +263,8 @@ function RecordMiniRoosStart({ empty, onClips }: { empty?: boolean; onClips: () 
 }
 
 function RecordMiniRoosClips({ empty, onBack }: { empty?: boolean; onBack: () => void }) {
+  const [toast, setToast] = useState<string|null>(null)
+  function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   const clips = [
     { ini: 'AL', name: 'Ava Lindgren',  note: 'Controls a bouncing ball under pressure, 23 min' },
     { ini: 'EB', name: 'Ella Brooks',   note: 'Dribbles past two defenders to set up a goal, 11 min' },
