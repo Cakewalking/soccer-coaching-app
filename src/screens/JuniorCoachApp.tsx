@@ -53,7 +53,9 @@ const CLIPS_TABS    = ['Browse', 'Playlists', 'Shared with players', 'To check']
 
 export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLabel, coachInitials, empty = false, initialScreen, onNavChange, coachRole = 'head' }: { onBack?: () => void; phaseContent?: ReactNode; coachLabel?: string; coachInitials?: string; empty?: boolean; initialScreen?: string; onNavChange?: (screen: string) => void; coachRole?: 'head' | 'ccoach' }) {
   const { active: inSandbox, store } = useSandbox()
-  const sbEmpty = inSandbox ? !storeHasData(store) : empty
+  const sbEmpty        = inSandbox ? !storeHasData(store)        : empty
+  const sbEmptySession = inSandbox ? store.sessions.length === 0 : empty
+  const sbEmptyFixture = inSandbox ? store.fixtures.length === 0 : empty
   const validNav = (s?: string): NavKey => (s === 'squad' || s === 'training' || s === 'matchday' || s === 'clips' || s === 'record') ? s : 'home'
   const [nav, setNav]                 = useState<NavKey>(validNav(initialScreen))
   const [sub, setSub]                 = useState<Sub>(null)
@@ -129,20 +131,20 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
     else if (squadTab === 6) content = <SeasonSummariesScreen empty={sbEmpty} />
     else if (squadTab === 7) content = <FitnessSquadTab empty={sbEmpty} />
   } else if (nav === 'training') {
-    if (trainingTab === 0) content = <TrainingScreen role="head" onNav={handleNav} empty={sbEmpty} />
-    else if (trainingTab === 1) content = <ThisWeekScreen empty={sbEmpty} onDrillLibrary={() => setTrainingTab(3)} onTonightsPlan={() => setTrainingTab(0)} onGrowthLoad={() => setTrainingTab(4)} />
-    else if (trainingTab === 2) content = <SuggestionsScreen empty={sbEmpty} onRecord={() => goNav('record')} />
-    else if (trainingTab === 3) content = <DrillLibraryScreen empty={sbEmpty} />
-    else if (trainingTab === 4) content = <GrowthLoadScreen empty={sbEmpty} />
-    else if (trainingTab === 5) content = <FitnessTrainingTab empty={sbEmpty} />
+    if (trainingTab === 0) content = <TrainingScreen role="head" onNav={handleNav} empty={sbEmptySession} />
+    else if (trainingTab === 1) content = <ThisWeekScreen empty={sbEmptySession} onDrillLibrary={() => setTrainingTab(3)} onTonightsPlan={() => setTrainingTab(0)} onGrowthLoad={() => setTrainingTab(4)} />
+    else if (trainingTab === 2) content = <SuggestionsScreen empty={sbEmptySession} onRecord={() => goNav('record')} />
+    else if (trainingTab === 3) content = <DrillLibraryScreen empty={sbEmptySession} />
+    else if (trainingTab === 4) content = <GrowthLoadScreen empty={sbEmptySession} />
+    else if (trainingTab === 5) content = <FitnessTrainingTab empty={sbEmptySession} />
   } else if (nav === 'record') {
     content = <RecordHub noFrame />
   } else if (nav === 'matchday') {
-    if (matchTab === 0) content = <MatchDayScreen onNav={handleNav} empty={sbEmpty} />
-    else if (matchTab === 1) content = <TeamSheetScreen empty={sbEmpty} />
-    else if (matchTab === 2) content = <OppositionScreen empty={sbEmpty} />
-    else if (matchTab === 3) content = <ReviewScreen empty={sbEmpty} />
-    else if (matchTab === 4) content = <FitnessMatchTab empty={sbEmpty} />
+    if (matchTab === 0) content = <MatchDayScreen onNav={handleNav} empty={sbEmptyFixture} />
+    else if (matchTab === 1) content = <TeamSheetScreen empty={sbEmptyFixture} />
+    else if (matchTab === 2) content = <OppositionScreen empty={sbEmptyFixture} />
+    else if (matchTab === 3) content = <ReviewScreen empty={sbEmptyFixture} />
+    else if (matchTab === 4) content = <FitnessMatchTab empty={sbEmptyFixture} />
   } else if (nav === 'clips') {
     content = <ClipsScreen empty={sbEmpty} activeTab={clipsTab} />
   }

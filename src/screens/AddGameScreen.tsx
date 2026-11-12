@@ -86,6 +86,9 @@ export default function AddGameScreen({ onClose, initialStep = 1 }: { onClose: (
   const [homeScore, setHomeScore] = useState(2)
   const [awayScore, setAwayScore] = useState(1)
 
+  const [toast, setToast] = useState<string|null>(null)
+  const [whoIsWho, setWhoIsWho] = useState<Record<string, string>>({})
+  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   const next = () => setStep(s => Math.min(5, s + 1) as Step)
   const back = () => setStep(s => Math.max(1, s - 1) as Step)
 
@@ -195,13 +198,13 @@ export default function AddGameScreen({ onClose, initialStep = 1 }: { onClose: (
                   <div>
                     {p.boots
                       ? <span style={{ fontSize: 12, fontWeight: 700, color: '#2f6252' }}>Synced</span>
-                      : <button style={{ height: 36, padding: '0 12px', borderRadius: 8, border: '1px solid #e9eae8', background: '#f7f8f7', color: '#10211f', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Sync now</button>
+                      : <button onClick={() => showToast('Syncing now — this takes about 30 seconds.')} style={{ height: 36, padding: '0 12px', borderRadius: 8, border: '1px solid #e9eae8', background: '#f7f8f7', color: '#10211f', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Sync now</button>
                     }
                   </div>
                   <div>
                     {p.vest
                       ? <span style={{ fontSize: 12, fontWeight: 700, color: '#2f6252' }}>Synced</span>
-                      : <button style={{ height: 36, padding: '0 12px', borderRadius: 8, border: '1px solid #e9eae8', background: '#f7f8f7', color: '#10211f', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Sync now</button>
+                      : <button onClick={() => showToast('Syncing now — this takes about 30 seconds.')} style={{ height: 36, padding: '0 12px', borderRadius: 8, border: '1px solid #e9eae8', background: '#f7f8f7', color: '#10211f', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Sync now</button>
                     }
                   </div>
                 </div>
@@ -234,7 +237,7 @@ export default function AddGameScreen({ onClose, initialStep = 1 }: { onClose: (
                     <div style={{ fontSize: 14, fontWeight: 600, color: '#10211f', marginBottom: 10 }}>{card.note}</div>
                     <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: 8 }}>
                       {card.players.map(name => (
-                        <button key={name} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1.5px solid #e9eae8', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>{name}</button>
+                        <button key={name} onClick={() => setWhoIsWho(w => ({ ...w, [String(i)]: name }))} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: `1.5px solid ${whoIsWho[String(i)] === name ? '#2f6252' : '#e9eae8'}`, background: whoIsWho[String(i)] === name ? '#eef5f2' : '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>{name}</button>
                       ))}
                     </div>
                   </div>
@@ -325,5 +328,6 @@ export default function AddGameScreen({ onClose, initialStep = 1 }: { onClose: (
         nextDisabled={step === 1 && source === null}
       />
     </div>
+    {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 200, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
   )
 }

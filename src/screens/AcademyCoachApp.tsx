@@ -1030,7 +1030,7 @@ function ChatView({ empty }: { empty: boolean }) {
     <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
       {/* Chat header */}
       <div style={{ padding: '12px 20px', borderBottom: `1px solid ${LN}`, background: '#fff', display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
-        <button onClick={() => setActiveChat(null)} style={{ width: 32, height: 32, border: 'none', background: LN, borderRadius: '50%', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <button onClick={() => setActiveChat(null)} style={{ width: 44, height: 44, border: 'none', background: LN, borderRadius: '50%', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth={2.5} strokeLinecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
         </button>
         <div style={{ flex: 1 }}>
@@ -1096,7 +1096,7 @@ function ChatView({ empty }: { empty: boolean }) {
       <div style={{ padding: '12px 20px', borderTop: `1px solid ${LN}`, background: '#fff', flexShrink: 0 }}>
         <div style={{ display: 'flex', gap: 10, marginBottom: 10 }}>
           {['📷', '🎥', '🎤', '📊', '📄', '🏃'].map((icon, i) => (
-            <button key={i} style={{ width: 36, height: 36, borderRadius: '50%', border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', fontSize: 16 }}>{icon}</button>
+            <button key={i} style={{ width: 44, height: 44, borderRadius: '50%', border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', fontSize: 16 }}>{icon}</button>
           ))}
           <button onClick={() => showToast('Opening the home practice template.')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${G}`, background: PALE, fontSize: 12, fontWeight: 700, color: G, cursor: 'pointer', fontFamily: 'inherit' }}>Home practice</button>
         </div>
@@ -1259,7 +1259,7 @@ export default function AcademyCoachApp({ onBack, empty = false, initialScreen, 
             ))}
           </nav>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
-            <button onClick={() => setAskOpen(o => !o)} aria-label="Ask Clean Sheet" style={{ height: 36, padding: '0 14px', borderRadius: '999px', border: '1.5px solid rgba(255,255,255,0.3)', background: askOpen ? 'rgba(255,255,255,0.15)' : 'transparent', color: '#fff', display: 'flex', alignItems: 'center', gap: 7, cursor: 'pointer', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, flexShrink: 0 }}>
+            <button onClick={() => setAskOpen(o => !o)} aria-label="Ask Clean Sheet" style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1.5px solid rgba(255,255,255,0.3)', background: askOpen ? 'rgba(255,255,255,0.15)' : 'transparent', color: '#fff', display: 'flex', alignItems: 'center', gap: 7, cursor: 'pointer', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, flexShrink: 0 }}>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg>
               Ask
             </button>
@@ -1327,7 +1327,7 @@ export default function AcademyCoachApp({ onBack, empty = false, initialScreen, 
             <div style={{ padding: '16px 20px', borderBottom: '1px solid #e8edeb', display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2f6252" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg>
               <span style={{ flex: 1, fontSize: 15, fontWeight: 700, color: '#10211f' }}>Ask Clean Sheet</span>
-              <button onClick={() => setAskOpen(false)} aria-label="Close Ask Clean Sheet" style={{ width: 32, height: 32, borderRadius: '50%', border: '1px solid #e8edeb', background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#4a5a57' }}>
+              <button onClick={() => setAskOpen(false)} aria-label="Close Ask Clean Sheet" style={{ width: 44, height: 44, borderRadius: '50%', border: '1px solid #e8edeb', background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#4a5a57' }}>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
               </button>
             </div>
@@ -1344,8 +1344,8 @@ export default function AcademyCoachApp({ onBack, empty = false, initialScreen, 
               <div style={{ fontSize: 11, color: '#4a5a57', marginTop: 16, lineHeight: 1.6 }}>It answers from what you can see as academy coach. It never sends anything by itself. Wellness and welfare concerns are never used.</div>
             </div>
             <div style={{ padding: '12px 16px', borderTop: '1px solid #e8edeb', display: 'flex', gap: 8, flexShrink: 0 }}>
-              <input placeholder="Ask about Tall Timber Academy…" style={{ flex: 1, height: 40, padding: '0 12px', borderRadius: 8, border: '1px solid #e8edeb', fontSize: 13, fontFamily: 'inherit', outline: 'none', color: '#10211f' }} />
-              <button style={{ height: 40, padding: '0 16px', borderRadius: 8, background: '#2f6252', color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Ask</button>
+              <input placeholder="Ask about Tall Timber Academy…" style={{ flex: 1, height: 44, padding: '0 12px', borderRadius: 8, border: '1px solid #e8edeb', fontSize: 13, fontFamily: 'inherit', outline: 'none', color: '#10211f' }} />
+              <button style={{ height: 44, padding: '0 16px', borderRadius: 8, background: '#2f6252', color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Ask</button>
             </div>
           </aside>
         )}

@@ -41,6 +41,8 @@ function statusChipColor(status: string) {
 
 export default function PlayerProfileScreen({ playerIni, empty }: Props) {
   const [activeTab, setActiveTab] = useState(0)
+  const [toast, setToast] = useState<string|null>(null)
+  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   const player = SQUAD_PLAYERS.find(p => p.ini === playerIni) ?? SQUAD_PLAYERS[7]
   const playerClips = CLIPS.filter(c => c.players.includes(player.ini))
   const statusChip = statusChipColor(player.status)
@@ -144,7 +146,7 @@ export default function PlayerProfileScreen({ playerIni, empty }: Props) {
                       <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{s.label}</div>
                       <div style={{ fontSize: 12, color: '#4a5a57' }}>{s.desc}</div>
                     </div>
-                    <button style={{ height: 44, padding: '0 10px', borderRadius: 999, border: '1px solid #e9eae8', background: '#fff', color: '#2f6252', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>{s.cta}</button>
+                    <button onClick={() => showToast(`${s.cta}: ${s.label.toLowerCase()}.`)} style={{ height: 44, padding: '0 10px', borderRadius: 999, border: '1px solid #e9eae8', background: '#fff', color: '#2f6252', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>{s.cta}</button>
                   </div>
                 ))}
                 <div style={{ fontSize: 12, color: '#4a5a57', lineHeight: 1.5, marginTop: 10, paddingTop: 10, borderTop: '1px solid #f0f1f0' }}>{"Harper's profile fills in on its own as she trains and plays. Nothing else to enter."}</div>
@@ -248,7 +250,7 @@ export default function PlayerProfileScreen({ playerIni, empty }: Props) {
             <div>
               <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 14 }}>
                 <h2 style={{ margin: 0, fontSize: 17, fontWeight: 700, color: '#10211f' }}>Best recent clips</h2>
-                <button style={{ border: 0, background: 'transparent', color: '#2f6252', fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>See all {playerClips.length}</button>
+                <button onClick={() => showToast(`Opening all ${playerClips.length} clips for ${player.fullName}.`)} style={{ border: 0, background: 'transparent', color: '#2f6252', fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>See all {playerClips.length}</button>
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14 }}>
                 {playerClips.slice(0, 3).map(clip => (
@@ -329,7 +331,7 @@ export default function PlayerProfileScreen({ playerIni, empty }: Props) {
             <div style={{ height: 4, borderRadius: 2, background: '#40826d', width: '68%' }} />
           </div>
           <div style={{ fontSize: 13, color: '#4a5a57' }}>Left-foot passes per game: 2 → 11 this season</div>
-          <button style={{ border: 0, background: 'transparent', color: '#2f6252', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', padding: 0, marginTop: 4 }}>See development →</button>
+          <button onClick={() => { setActiveTab(4) }} style={{ border: 0, background: 'transparent', color: '#2f6252', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', padding: 0, marginTop: 4 }}>See development →</button>
         </div>
 
         {/* Latest notes */}
@@ -347,5 +349,6 @@ export default function PlayerProfileScreen({ playerIni, empty }: Props) {
         </div>
       </div>
     </div>
+    {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
   )
 }

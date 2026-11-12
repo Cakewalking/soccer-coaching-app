@@ -50,6 +50,9 @@ function TickIcon({ value }: { value: boolean | null }) {
 export default function ConsentScreen({ empty }: { empty?: boolean }) {
   const [selIdx, setSelIdx] = useState(0)
   const sel = ROWS[selIdx]
+  const [toast, setToast] = useState<string|null>(null)
+  const [consentTab, setConsentTab] = useState(0)
+  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   if (empty) {
     return (
@@ -75,7 +78,7 @@ export default function ConsentScreen({ empty }: { empty?: boolean }) {
             ))}
             <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: 1.5, marginTop: 12, paddingTop: 10, borderTop: '1px solid #f0f1f0' }}>{"Invites go out by email and text as soon as you add a player with a parent contact."}</div>
           </div>
-          <button style={{ height: 44, padding: '0 24px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Add players</button>
+          <button onClick={() => showToast('Opening the add players flow.')} style={{ height: 44, padding: '0 24px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Add players</button>
         </div>
         <div>
           <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 14, padding: '16px' }}>
@@ -112,15 +115,15 @@ export default function ConsentScreen({ empty }: { empty?: boolean }) {
           <h1 style={{ margin: 0, fontSize: 28, lineHeight: '34px', fontWeight: 700, letterSpacing: '-0.02em' }}>Consent and privacy</h1>
           <div style={{ flexGrow: 1 }} />
           <div style={{ display: 'flex', gap: 2, padding: 3, borderRadius: 12, background: '#e9eae8' }}>
-            <button style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f', boxShadow: '0 1px 3px rgba(0,0,0,0.08)' }}>Players</button>
-            <button style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: 'transparent', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#6f7f7b' }}>Club settings</button>
+            <button onClick={() => setConsentTab(0)} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: consentTab === 0 ? '#ffffff' : 'transparent', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: consentTab === 0 ? '#10211f' : '#6f7f7b', boxShadow: consentTab === 0 ? '0 1px 3px rgba(0,0,0,0.08)' : 'none' }}>Players</button>
+            <button onClick={() => setConsentTab(1)} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: consentTab === 1 ? '#ffffff' : 'transparent', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: consentTab === 1 ? '#10211f' : '#6f7f7b', boxShadow: consentTab === 1 ? '0 1px 3px rgba(0,0,0,0.08)' : 'none' }}>Club settings</button>
           </div>
         </div>
 
         {/* Summary tiles */}
         <div style={{ flex: 'none', display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: 10 }}>
           {TILES.map(t => (
-            <button key={t.label} style={{
+            <button key={t.label} onClick={() => showToast(`${t.n} players: ${t.label.toLowerCase()}.`)} style={{
               display: 'flex', alignItems: 'center', gap: 12, padding: '14px 16px',
               background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 14,
               cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left',
@@ -214,12 +217,13 @@ export default function ConsentScreen({ empty }: { empty?: boolean }) {
         <div style={{ flexGrow: 1 }} />
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
-            <button style={{ height: 44, borderRadius: 12, border: '1px solid #c5c8c4', background: '#ffffff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>See history</button>
-            <button style={{ height: 44, borderRadius: 12, border: '1px solid #c5c8c4', background: '#ffffff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>What parents see</button>
+            <button onClick={() => showToast('Opening consent history for ' + sel.name + '.')} style={{ height: 44, borderRadius: 12, border: '1px solid #c5c8c4', background: '#ffffff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>See history</button>
+            <button onClick={() => showToast('Showing the parent-facing consent view.')} style={{ height: 44, borderRadius: 12, border: '1px solid #c5c8c4', background: '#ffffff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>What parents see</button>
           </div>
           <span style={{ fontSize: 12, lineHeight: '17px', color: '#4a5a57' }}>Only parents can change these. Coaches can ask, but can't switch anything on.</span>
         </div>
       </aside>
     </div>
+    {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
   )
 }

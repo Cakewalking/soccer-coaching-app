@@ -57,6 +57,8 @@ function GrowthChart() {
 
 export default function GrowthLoadScreen({ empty }: { empty?: boolean }) {
   const [selected, setSelected] = useState(PLAYERS[0])
+  const [toast, setToast] = useState<string|null>(null)
+  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   if (empty) {
     return (
@@ -77,11 +79,11 @@ export default function GrowthLoadScreen({ empty }: { empty?: boolean }) {
                 Measure height every 3 months. Clean Sheet flags anyone growing fast, so you can cut jumps and sprints before knees and heels get sore.
               </div>
               <div style={{ display: 'flex', gap: 10 }}>
-                <button style={{ height: 44, padding: '0 18px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
+                <button onClick={() => showToast('Opening the measuring session planner.')} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
                   Plan a measuring session
                 </button>
-                <button style={{ height: 44, padding: '0 18px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>See an example</button>
+                <button onClick={() => showToast('Showing a sample growth report.')} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>See an example</button>
               </div>
             </div>
           </div>
@@ -134,7 +136,7 @@ export default function GrowthLoadScreen({ empty }: { empty?: boolean }) {
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <div style={{ fontSize: 13, color: '#6f7f7b' }}>Flag at 7 cm a year</div>
-            <button style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Start measuring session</button>
+            <button onClick={() => showToast('Starting a measuring session — ask players to line up at the wall.')} style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Start measuring session</button>
           </div>
         </div>
 
@@ -219,5 +221,6 @@ export default function GrowthLoadScreen({ empty }: { empty?: boolean }) {
         </div>
       </div>
     </div>
+    {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
   )
 }

@@ -22,7 +22,11 @@ const CARRIES_OVER = [
   { icon: '×', color: '#c39797', bg: '#fdf5f3', title: 'Match video',                      desc: 'Deleted, apart from kept clips' },
 ]
 
+import { useState } from 'react'
+
 export default function RolloverScreen({ onBack, empty = false }: { onBack: () => void; empty?: boolean }) {
+  const [toast, setToast] = useState<string|null>(null)
+  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   if (empty) {
     return (
       <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
@@ -77,7 +81,7 @@ export default function RolloverScreen({ onBack, empty = false }: { onBack: () =
             <h1 style={{ margin: '0 0 4px', fontSize: 24, fontWeight: 700, letterSpacing: '-0.02em' }}>Next season</h1>
             <p style={{ margin: 0, fontSize: 14, color: '#4a5a57' }}>Roll every team up a year for 2027 · nothing changes until you press the button</p>
           </div>
-          <button style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Start 2027</button>
+          <button onClick={() => showToast('Opening season rollover — teams will move up after you confirm.')} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Start 2027</button>
         </div>
 
         {/* 2-col layout */}
@@ -126,11 +130,12 @@ export default function RolloverScreen({ onBack, empty = false }: { onBack: () =
             <div style={{ background: '#fdf5f3', border: '1px solid #e8d5d0', borderRadius: 16, padding: '14px 16px' }}>
               <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 6, color: '#10211f' }}>To sort first</div>
               <div style={{ fontSize: 14, color: '#4a5a57', marginBottom: 12 }}>1 team needs a coach</div>
-              <button style={{ width: '100%', height: 44, borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Find a coach for U10 Mark</button>
+              <button onClick={() => showToast('Opening coach recruitment for U10 Mark.')} style={{ width: '100%', height: 44, borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Find a coach for U10 Mark</button>
             </div>
           </div>
         </div>
       </div>
     </div>
+    {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
   )
 }

@@ -366,7 +366,9 @@ const CLIPS_TABS    = ['Browse', 'Playlists', 'Shared with players', 'To check']
 export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseContent, empty = false, initialScreen, onNavChange }: { teamType: TeamType; onBack: () => void; phaseContent?: ReactNode; empty?: boolean; initialScreen?: string; onNavChange?: (screen: string) => void }) {
   const data = teamType === 'seniors' ? SENIORS : YOUTH
   const { active: inSandbox, store } = useSandbox()
-  const sbEmpty = inSandbox ? !storeHasData(store) : empty
+  const sbEmpty        = inSandbox ? !storeHasData(store)        : empty
+  const sbEmptySession = inSandbox ? store.sessions.length === 0 : empty
+  const sbEmptyFixture = inSandbox ? store.fixtures.length === 0 : empty
   const validNav = (s?: string): NavKey => (s === 'squad' || s === 'training' || s === 'matchday' || s === 'clips' || s === 'record') ? s : 'home'
 
   const [nav, setNav]                 = useState<NavKey>(validNav(initialScreen))
@@ -445,22 +447,22 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
     }
   } else if (nav === 'training') {
     switch (trainingTab) {
-      case 0: content = <TrainingScreen role="head" onNav={handleNav} empty={sbEmpty} />; break
-      case 1: content = <ThisWeekScreen empty={sbEmpty} onDrillLibrary={() => setTrainingTab(3)} onTonightsPlan={() => setTrainingTab(0)} onGrowthLoad={() => setTrainingTab(4)} />; break
-      case 2: content = <SuggestionsScreen empty={sbEmpty} onRecord={() => goNav('record')} />; break
-      case 3: content = <DrillLibraryScreen empty={sbEmpty} />; break
-      case 4: content = <GrowthLoadScreen empty={sbEmpty} />; break
-      case 5: content = <FitnessTrainingTab empty={sbEmpty} />; break
+      case 0: content = <TrainingScreen role="head" onNav={handleNav} empty={sbEmptySession} />; break
+      case 1: content = <ThisWeekScreen empty={sbEmptySession} onDrillLibrary={() => setTrainingTab(3)} onTonightsPlan={() => setTrainingTab(0)} onGrowthLoad={() => setTrainingTab(4)} />; break
+      case 2: content = <SuggestionsScreen empty={sbEmptySession} onRecord={() => goNav('record')} />; break
+      case 3: content = <DrillLibraryScreen empty={sbEmptySession} />; break
+      case 4: content = <GrowthLoadScreen empty={sbEmptySession} />; break
+      case 5: content = <FitnessTrainingTab empty={sbEmptySession} />; break
     }
   } else if (nav === 'record') {
     content = <RecordHub noFrame />
   } else if (nav === 'matchday') {
     switch (matchTab) {
-      case 0: content = <MatchDayScreen onNav={handleNav} empty={sbEmpty} />; break
-      case 1: content = <TeamSheetScreen empty={sbEmpty} />; break
-      case 2: content = <OppositionScreen empty={sbEmpty} />; break
-      case 3: content = <ReviewScreen empty={sbEmpty} />; break
-      case 4: content = <FitnessMatchTab empty={sbEmpty} />; break
+      case 0: content = <MatchDayScreen onNav={handleNav} empty={sbEmptyFixture} />; break
+      case 1: content = <TeamSheetScreen empty={sbEmptyFixture} />; break
+      case 2: content = <OppositionScreen empty={sbEmptyFixture} />; break
+      case 3: content = <ReviewScreen empty={sbEmptyFixture} />; break
+      case 4: content = <FitnessMatchTab empty={sbEmptyFixture} />; break
     }
   } else if (nav === 'clips') {
     content = <ClipsScreen empty={sbEmpty} activeTab={clipsTab} />

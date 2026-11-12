@@ -15,7 +15,7 @@ function ReviewEmpty() {
         <div style={{ flexGrow: 1 }} />
         {toast && <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.9)', background: '#10211f', padding: '6px 12px', borderRadius: 8 }}>{toast}</span>}
         <button onClick={() => showToast('Opens team style settings')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>Set our style</button>
-        <button style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#ffffff', display: 'flex', alignItems: 'center', gap: 6 }}>
+        <button onClick={() => showToast('Opening the game recording flow.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#ffffff', display: 'flex', alignItems: 'center', gap: 6 }}>
           <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="#fff"/></svg>
           Record a game
         </button>

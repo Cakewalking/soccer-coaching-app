@@ -4,6 +4,8 @@ const G = '#2f6252'
 
 export default function ETeamTalk(_: { onBack?: () => void }) {
   const [slide, setSlide] = useState(0)
+  const [toast, setToast] = useState<string|null>(null)
+  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   const slides = [
     {
@@ -26,7 +28,7 @@ export default function ETeamTalk(_: { onBack?: () => void }) {
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>Team talk · U12 Sam · Wattle Creek FC</div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
           <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)' }}>1 of 3</div>
-          <button onClick={() => {}} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Close</button>
+          <button onClick={() => showToast('Closing team talk — returning to match day.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Close</button>
           <button onClick={() => setSlide(1)} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Next</button>
         </div>
       </div>
@@ -66,5 +68,6 @@ export default function ETeamTalk(_: { onBack?: () => void }) {
         </div>
       </div>
     </div>
+    {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
   )
 }

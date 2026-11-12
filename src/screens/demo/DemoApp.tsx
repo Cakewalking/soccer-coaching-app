@@ -722,7 +722,7 @@ export function renderScreen(key: string): ReactNode {
     case 'acp10-concern':     return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><ACP10AcademyConcern /></div>
     // Step 4 — Director view (tablet)
     case 'd5-safeguarding':   return <D5Safeguarding />
-    case 'ds1-concerns':      return <DS1Concerns />
+    case 'ds1-concerns':      return <ER5NoAccess />
     case 'ds2-data':          return <DS2DataRequests />
     case 'db4-grants':        return <DB4Grants />
     case 'dk1-kit':           return <DK1Kit />
@@ -855,7 +855,7 @@ export function renderScreen(key: string): ReactNode {
     case 'FH1-HeadingPolicy':         return <FH1HeadingPolicy />
     case 'FY1-SeasonPlan':            return <FY1SeasonPlan />
     case 'D5-Safeguarding':           return <D5Safeguarding />
-    case 'DS1-Concerns':              return <DS1Concerns />
+    case 'DS1-Concerns':              return <ER5NoAccess />
     case 'DS2-DataRequests':          return <DS2DataRequests />
     case 'DB4-Grants':                return <DB4Grants />
     case 'DK1-Kit':                   return <DK1Kit />
@@ -1470,6 +1470,7 @@ export default function DemoApp() {
   }, [])
 
   useEffect(() => {
+    if (view === 'notfound') return
     const path = viewToPath(view, role, screen)
     if (window.location.pathname !== path)
       window.history.pushState(null, '', path)
@@ -1642,7 +1643,7 @@ export default function DemoApp() {
     let lookContent: ReactNode
     if (role === 'coach') {
       if (window.innerWidth <= 640) {
-        lookContent = <CoachPhoneApp />
+        lookContent = <CoachPhoneApp phase={phase} />
       } else {
         const pc = phase === 'preseason' ? <SP2HomePreSeason onBack={noop} />
                  : phase === 'postseason' ? <SP10HomePostSeason onBack={noop} />

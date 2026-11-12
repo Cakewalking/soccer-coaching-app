@@ -3,6 +3,7 @@ import { useState } from 'react'
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', PALE = '#eef5f2'
 
 type Tab = 'home' | 'coming' | 'messages' | 'game'
+type Phase = 'preseason' | 'season' | 'postseason' | 'restmonth'
 
 /* ---- shared chrome ---- */
 
@@ -87,6 +88,131 @@ function Row({ icon, label, sub, right, onPress }: { icon?: React.ReactNode; lab
 
 function Pill({ label, color = G }: { label: string; color?: string }) {
   return <div style={{ height: 22, padding: '0 8px', borderRadius: 11, background: color + '20', display: 'inline-flex', alignItems: 'center', fontSize: 11, fontWeight: 700, color, flexShrink: 0 }}>{label}</div>
+}
+
+/* ---- Phase-specific Home tabs ---- */
+function CoachPhonePreSeasonHome() {
+  const [toast, setToast] = useState<string | null>(null)
+  function st(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
+  const items = [
+    { label: 'Set how we play', note: 'Done · press high, play out from the back', done: true },
+    { label: 'Confirm the squad', note: '14 confirmed · 4 trialling', done: false, action: 'Open' },
+    { label: 'Consent for 2026', note: '12 of 17 families answered', done: false, action: 'Remind 5' },
+    { label: 'Baseline tests', note: '2 of 4 done · finish by 20 March', done: false, action: 'Open' },
+    { label: 'Kit sizes', note: '17 of 17 · order sent', done: true },
+  ]
+  const doneCount = items.filter(i => i.done).length
+  return (
+    <>
+      <SectionHead>Pre-season · 4 weeks to round 1</SectionHead>
+      <Card>
+        <div style={{ padding: '10px 14px 6px', display: 'flex', alignItems: 'center', gap: 10 }}>
+          <div style={{ flex: 1, height: 6, borderRadius: 3, background: '#e8e9e7', overflow: 'hidden' }}>
+            <div style={{ height: '100%', width: `${(doneCount / items.length) * 100}%`, background: G, borderRadius: 3 }} />
+          </div>
+          <span style={{ fontSize: 12, fontWeight: 700, color: G }}>{doneCount}/{items.length} ready</span>
+        </div>
+        {items.map((item, i) => (
+          <div key={item.label} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 14px', borderTop: '1px solid #f0f1f0' }}>
+            <div style={{ width: 20, height: 20, borderRadius: '50%', background: item.done ? G : '#f0f1ef', border: item.done ? 'none' : '1.5px solid #d4d6d4', display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 'none' }}>
+              {item.done && <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>}
+            </div>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ fontSize: 14, fontWeight: item.done ? 400 : 600, color: item.done ? MUT : INK, textDecoration: item.done ? 'line-through' : 'none' }}>{item.label}</div>
+              <div style={{ fontSize: 12, color: MUT }}>{item.note}</div>
+            </div>
+            {(item as { action?: string }).action && (
+              <button onClick={() => st(`${(item as { action?: string }).action} tapped`)} style={{ height: 32, padding: '0 10px', borderRadius: 7, border: '1px solid #d4d6d4', background: '#fff', color: G, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>{(item as { action?: string }).action}</button>
+            )}
+          </div>
+        ))}
+      </Card>
+      <SectionHead>Tonight</SectionHead>
+      <Card>
+        <div style={{ padding: '12px 14px 10px' }}>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 4 }}>Training · Thu 12 March · 6 pm</div>
+          <div style={{ fontSize: 16, fontWeight: 800, color: INK }}>U12 Sam · Wattle Creek</div>
+        </div>
+        <div style={{ borderTop: '1px solid #f0f1f0', padding: '10px 14px' }}>
+          <button onClick={() => st('Opening tonight\'s session plan.')} style={{ width: '100%', height: 44, borderRadius: 10, border: 0, background: GD, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Tonight's session</button>
+        </div>
+      </Card>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 80, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '10px 18px', borderRadius: 10, background: '#1f4a3e', color: '#fff', fontSize: 14, fontWeight: 600, whiteSpace: 'nowrap' }}>{toast}</div>}
+    </>
+  )
+}
+
+function CoachPhonePostSeasonHome() {
+  const [toast, setToast] = useState<string | null>(null)
+  function st(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
+  return (
+    <>
+      <SectionHead>Season done · great run, U12 Sam</SectionHead>
+      <Card>
+        <div style={{ padding: '12px 14px 10px' }}>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 4 }}>2026 season · final result</div>
+          <div style={{ fontSize: 18, fontWeight: 800, color: INK, marginBottom: 4 }}>Wattle Creek 2 – 1 Banksia Park</div>
+          <div style={{ fontSize: 14, color: MUT }}>3rd place · Division 1 · 10 wins, 3 draws, 3 losses</div>
+        </div>
+        <div style={{ borderTop: '1px solid #f0f1f0', padding: '10px 14px' }}>
+          <button onClick={() => st('Opening the season review.')} style={{ width: '100%', height: 44, borderRadius: 10, border: 0, background: GD, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>See the season review</button>
+        </div>
+      </Card>
+      <SectionHead>Next up</SectionHead>
+      <Card>
+        <Row
+          icon={<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={G} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>}
+          label="Roll the squad over to 2027"
+          sub="Move players up and confirm staff"
+          right={<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6l6 6-6 6"/></svg>}
+          onPress={() => st('Opening the season rollover.')}
+        />
+        <Row
+          icon={<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={G} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"/><path d="M20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/><path d="M9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5z"/><path d="M3.5 14H5v1.5c0 .83-.67 1.5-1.5 1.5S2 16.33 2 15.5 2.67 14 3.5 14z"/><path d="M14 14.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5z"/><path d="M15.5 19H14v1.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z"/><path d="M10 9.5c0 .83-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5S2.67 8 3.5 8h5c.83 0 1.5.67 1.5 1.5z"/><path d="M8.5 5H10V3.5c0-.83-.67-1.5-1.5-1.5S7 2.67 7 3.5 7.67 5 8.5 5z"/></svg>}
+          label="Tournaments and gala days"
+          sub="2 available in October"
+          right={<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6l6 6-6 6"/></svg>}
+          onPress={() => st('Opening tournament options.')}
+        />
+      </Card>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 80, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '10px 18px', borderRadius: 10, background: '#1f4a3e', color: '#fff', fontSize: 14, fontWeight: 600, whiteSpace: 'nowrap' }}>{toast}</div>}
+    </>
+  )
+}
+
+function CoachPhoneRestMonthHome() {
+  const [toast, setToast] = useState<string | null>(null)
+  function st(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
+  return (
+    <>
+      <SectionHead>Rest month · no training</SectionHead>
+      <div style={{ margin: '0 12px 10px', padding: '14px', borderRadius: 14, background: PALE, border: `1px solid #c5d9d0` }}>
+        <div style={{ fontSize: 15, fontWeight: 700, color: GD, marginBottom: 4 }}>Good time to step back</div>
+        <div style={{ fontSize: 13, color: MUT, lineHeight: 1.5 }}>No training or games this month. Players are resting. Pre-season starts in 4 weeks.</div>
+      </div>
+      <SectionHead>When you're ready</SectionHead>
+      <Card>
+        <Row
+          icon={<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={G} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>}
+          label="Plan pre-season"
+          sub="Set goals and sessions for March"
+          right={<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6l6 6-6 6"/></svg>}
+          onPress={() => st('Opening the pre-season planner.')}
+        />
+        <Row
+          icon={<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={G} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>}
+          label="Check in with parents"
+          sub="Let them know when pre-season starts"
+          right={<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6l6 6-6 6"/></svg>}
+          onPress={() => st('Opening the message to parents.')}
+        />
+      </Card>
+      <div style={{ margin: '0 12px 20px', padding: '12px 14px', borderRadius: 12, background: '#f0f1f0', fontSize: 13, color: MUT, lineHeight: 1.5 }}>
+        Review, clips and planning are on the tablet.
+      </div>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 80, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '10px 18px', borderRadius: 10, background: '#1f4a3e', color: '#fff', fontSize: 14, fontWeight: 600, whiteSpace: 'nowrap' }}>{toast}</div>}
+    </>
+  )
 }
 
 /* ---- CPh1 Home (populated) ---- */
@@ -395,18 +521,21 @@ function EmptyState({ icon, title, sub, action }: { icon: React.ReactNode; title
 }
 
 /* ---- Main component (full app, tabs) ---- */
-export default function CoachPhoneApp({ initialTab = 'home' }: { initialTab?: Tab }) {
+export default function CoachPhoneApp({ initialTab = 'home', phase = 'season' as Phase }: { initialTab?: Tab; phase?: Phase }) {
   const [tab, setTab] = useState<Tab>(initialTab)
   const [showPlan, setShowPlan] = useState(false)
 
   if (showPlan) return <CoachPhonePlanScreen onBack={() => setShowPlan(false)} />
 
   return (
-    <PhoneShell tab={tab} onTab={setTab} onPlan={tab === 'home' ? () => setShowPlan(true) : undefined}>
-      {tab === 'home' && <CoachPhoneHomeTab onPlan={() => setShowPlan(true)} />}
-      {tab === 'coming' && <CoachPhoneComingTab />}
+    <PhoneShell tab={tab} onTab={setTab} onPlan={tab === 'home' && phase === 'season' ? () => setShowPlan(true) : undefined}>
+      {tab === 'home' && phase === 'preseason'  && <CoachPhonePreSeasonHome />}
+      {tab === 'home' && phase === 'postseason' && <CoachPhonePostSeasonHome />}
+      {tab === 'home' && phase === 'restmonth'  && <CoachPhoneRestMonthHome />}
+      {tab === 'home' && phase === 'season'     && <CoachPhoneHomeTab onPlan={() => setShowPlan(true)} />}
+      {tab === 'coming'   && <CoachPhoneComingTab />}
       {tab === 'messages' && <CoachPhoneMessagesTab />}
-      {tab === 'game' && <CoachPhoneGameTab />}
+      {tab === 'game'     && <CoachPhoneGameTab />}
     </PhoneShell>
   )
 }

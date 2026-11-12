@@ -600,7 +600,7 @@ function ParentChatView({ empty, onBack }: { empty: boolean; onBack: () => void 
       </div>
       <div style={{ padding: '10px 12px', borderTop: `1px solid ${LN}`, display: 'flex', gap: 8, flexShrink: 0, background: '#fff' }}>
         <div style={{ flex: 1, background: '#f5f8f7', borderRadius: 999, border: `1px solid ${LN}`, padding: '0 14px', display: 'flex', alignItems: 'center', fontSize: 14, color: MUT, minHeight: 42 }}>Write a message</div>
-        <button style={{ width: 42, height: 42, borderRadius: '50%', border: 'none', background: G, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+        <button style={{ width: 44, height: 44, borderRadius: '50%', border: 'none', background: G, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
           <svg width={18} height={18} viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
         </button>
       </div>

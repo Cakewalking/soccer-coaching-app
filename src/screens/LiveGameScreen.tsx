@@ -96,6 +96,8 @@ export default function LiveGameScreen({ onClose }: { onClose: () => void }) {
     { type: 'work',    min: 'Min 26' },
   ])
   const [showSubConfirm, setShowSubConfirm] = useState(false)
+  const [toast, setToast] = useState<string|null>(null)
+  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   function handlePitchTap(ini: string) {
     if (subFrom === ini) { setSubFrom(null); setSubTo(null); setShowSubConfirm(false); return }
@@ -136,7 +138,7 @@ export default function LiveGameScreen({ onClose }: { onClose: () => void }) {
           <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)' }}>{half}</span>
         </div>
         <div style={{ fontSize: 26, fontWeight: 800, color: '#fff', letterSpacing: '0.03em' }}>{timer}</div>
-        <button style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Pause</button>
+        <button onClick={() => showToast('Timer paused.')} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Pause</button>
         <div style={{ flexGrow: 1 }} />
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: 15, fontWeight: 700, color: '#fff' }}>
           <span>Wattle Creek</span>
@@ -220,7 +222,7 @@ export default function LiveGameScreen({ onClose }: { onClose: () => void }) {
                 <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{suggestedSub.name} on for Noah</div>
                 <div style={{ fontSize: 12, color: '#4a5a57' }}>Noah has hit the sprint cap · Priya set</div>
               </div>
-              <button style={{ marginLeft: 'auto', height: 44, padding: '0 12px', borderRadius: 8, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer', flexShrink: 0 }}>Do it</button>
+              <button onClick={() => handleBenchTap(suggestedSub.ini)} style={{ marginLeft: 'auto', height: 44, padding: '0 12px', borderRadius: 8, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer', flexShrink: 0 }}>Do it</button>
             </div>
           </div>
 
@@ -249,5 +251,6 @@ export default function LiveGameScreen({ onClose }: { onClose: () => void }) {
         </div>
       </div>
     </div>
+    {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
   )
 }
