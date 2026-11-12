@@ -1,6 +1,7 @@
 import { type RoleId } from './tours'
 
 const PHONE_ROLES: Array<{ id: RoleId; name: string; desc: string }> = [
+  { id: 'coach',        name: 'Head coach',        desc: 'As Sam K, U12 Sam' },
   { id: 'parent',       name: 'Parent',           desc: 'As Linh Tran, Mia\'s mum' },
   { id: 'manager',      name: 'Team manager',      desc: 'As Rob Owusu, U12 Sam' },
   { id: 'playeryoung',  name: 'Player under 15',   desc: 'As Mia Tran, 11' },
@@ -61,7 +62,7 @@ export default function DemoPhone({ onLook, onWhy, onSandbox }: Props) {
 
       {/* Footer */}
       <div style={{ margin: '0 20px 32px', padding: '14px 16px', background: '#fff', border: '1px solid #c5c8c4', borderRadius: 12 }}>
-        <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: 1.5 }}>Coaches and the club use a tablet or laptop. Open this address on a bigger screen for those, and for the guided tours.</div>
+        <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: 1.5 }}>Head coaches have a phone app too — it's at the top of this list. Other coaching roles and club staff use a tablet or laptop. Open this address on a bigger screen for those, and for the guided tours.</div>
       </div>
     </div>
   )

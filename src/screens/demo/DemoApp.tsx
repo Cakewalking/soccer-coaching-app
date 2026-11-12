@@ -1826,7 +1826,7 @@ export default function DemoApp() {
         </div>
       )
     }
-    const isPhoneRole = TOURS[role].device === 'phone'
+    const isPhoneRole = TOURS[role].device === 'phone' || (role === 'coach' && window.innerWidth <= 640)
     const showPhase = PHASE_ROLES.has(role)
     if (isPhoneRole) {
       return (

@@ -11,6 +11,7 @@ const PHASE_LABELS: Record<DemoPhase, string> = {
 }
 
 const SHORT_ROLE: Partial<Record<RoleId, string>> = {
+  coach:        'a head coach',
   parent:       'a parent',
   manager:      'a team manager',
   playeryoung:  'a player',
