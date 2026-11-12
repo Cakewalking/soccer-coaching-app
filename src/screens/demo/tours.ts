@@ -46,7 +46,7 @@ export const TOURS: Record<string, TourDef> = {
         { label: "Home on Sunday", caption: "The game goes in, and about 25 minutes later the review comes back with three things to work on.", screen: "T1s-HomeSunday" },
         { label: "Add the game", caption: "The game goes in, and about 25 minutes later the review comes back with three things to work on.", screen: "addgame" },
         { label: "Match review", caption: "The game goes in, and about 25 minutes later the review comes back with three things to work on.", screen: "review" },
-        { label: "Check unsure moments", caption: "The game goes in, and about 25 minutes later the review comes back with three things to work on.", screen: "clips" },
+        { label: "Check unsure moments", caption: "The game goes in, and about 25 minutes later the review comes back with three things to work on.", screen: "TC1-ToCheck" },
         { label: "Clips", caption: "The game goes in, and about 25 minutes later the review comes back with three things to work on.", screen: "C1-ClipsTab" },
       ]},
       { title: "Plan the week", steps: [
@@ -200,12 +200,12 @@ export const TOURS: Record<string, TourDef> = {
     sandboxHome: 'seniors-e',
     sections: [
       { title: "Set up", steps: [
-        { label: "Senior teams", caption: "Senior teams add registration windows and clearances.", screen: "seniors" },
+        { label: "Senior teams", caption: "Senior teams add registration windows and clearances.", screen: "FN1-Seniors" },
         { label: "Registration window and clearances", caption: "Senior teams add registration windows and clearances.", screen: "FN2-SeniorSquad" },
       ]},
       { title: "Each week", steps: [
         { label: "Home", caption: "For adults the week is load, the opposition and the plan.", screen: "HS1-HomeSeniors" },
-        { label: "Squad load", caption: "For adults the week is load, the opposition and the plan.", screen: "FN2b-SeniorSquad" },
+        { label: "Squad load", caption: "For adults the week is load, the opposition and the plan.", screen: "FN2-SeniorSquad" },
         { label: "Opposition", caption: "For adults the week is load, the opposition and the plan. This screen is shared with other ages, so it shows the under-12 team here.", screen: "opposition" },
         { label: "Tonight\u2019s plan", caption: "For adults the week is load, the opposition and the plan.", screen: "training" },
       ]},
@@ -262,7 +262,7 @@ export const TOURS: Record<string, TourDef> = {
         { label: "Home", caption: "Under 12 it\u2019s simple: growth, a good warm-up and a few flags. No fitness testing.", screen: "F3-FitnessTraining" },
         { label: "Growth", caption: "Under 12 it\u2019s simple: growth, a good warm-up and a few flags. No fitness testing.", screen: "growth" },
         { label: "Measuring session", caption: "Under 12 it\u2019s simple: growth, a good warm-up and a few flags. No fitness testing.", screen: "GT2-MeasureSession" },
-        { label: "Your part of training", caption: "Under 12 it\u2019s simple: growth, a good warm-up and a few flags. No fitness testing.", screen: "F3b-FitnessTraining" },
+        { label: "Your part of training", caption: "Under 12 it\u2019s simple: growth, a good warm-up and a few flags. No fitness testing.", screen: "F3-FitnessTraining" },
       ]},
       { title: "Under 13 to 16: Grow", steps: [
         { label: "Home, U13 girls", caption: "From under 13 the view grows with the players: growth spurts, load and tests against their own last result.", screen: "FT3-FitnessHomeU13G" },
@@ -422,7 +422,7 @@ export const TOURS: Record<string, TourDef> = {
     sandboxHome: 'playerolder-e',
     sections: [
       { title: "Join", steps: [
-        { label: "Own account, 15 to 17", caption: "From 15, players have their own account. Under 18, a parent can still read coach messages.", screen: "olderplayer" },
+        { label: "Own account, 15 to 17", caption: "From 15, players have their own account. Under 18, a parent can still read coach messages.", screen: "JN9-Join" },
         { label: "Own account, adult", caption: "From 15, players have their own account. Under 18, a parent can still read coach messages.", screen: "JN9a-Join" },
       ]},
       { title: "Each week", steps: [
@@ -550,7 +550,7 @@ export const TOURS: Record<string, TourDef> = {
         { label: "My cases", caption: "Only the welfare officer sees names. The director sees counts.", screen: "DW1-WelfareCases" },
         { label: "Nothing open", caption: "Only the welfare officer sees names. The director sees counts." },
         { label: "What the director sees", caption: "Only the welfare officer sees names. The director sees counts.", screen: "D4-Players" },
-        { label: "Sideline reports", caption: "Only the welfare officer sees names. The director sees counts.", screen: "FS1b-Sideline" },
+        { label: "Sideline reports", caption: "Only the welfare officer sees names. The director sees counts.", screen: "FS1-Sideline" },
       ]},
       { title: "Also yours", steps: [
         { label: "Concussion return to play", caption: "The welfare officer also holds concussion returns, children checks and data requests.", screen: "FC1-Concussion" },
@@ -570,14 +570,14 @@ export const TOURS: Record<string, TourDef> = {
     sections: [
       { title: "Set up", steps: [
         { label: "First use: three steps", caption: "An academy is a business, so set-up is programs, prices, coaches and child safety. There\u2019s no league or committee.", screen: "AC1e-AcademyHomeEmpty" },
-        { label: "Add programs", caption: "An academy is a business, so set-up is programs, prices, coaches and child safety. There\u2019s no league or committee.", screen: "AC2-Programs" },
+        { label: "Add programs", caption: "An academy is a business, so set-up is programs, prices, coaches and child safety. There\u2019s no league or committee.", screen: "AC2e-ProgramsEmpty" },
         { label: "Child safety, six things", caption: "An academy is a business, so set-up is programs, prices, coaches and child safety. There\u2019s no league or committee.", screen: "AC10-AcademySafety" },
         { label: "Invite coaches", caption: "An academy is a business, so set-up is programs, prices, coaches and child safety. There\u2019s no league or committee.", screen: "AC6-AcademyCoaches" },
         { label: "Link a partner club", caption: "An academy is a business, so set-up is programs, prices, coaches and child safety. There\u2019s no league or committee.", screen: "AC11-PartnerClub" },
       ]},
       { title: "Fill the places", steps: [
         { label: "Trials: booked to joined", caption: "Free trials are how academies grow. Every trial family is followed from booking to joining, so none drop off.", screen: "AC3-Trials" },
-        { label: "Programs and waiting list", caption: "Free trials are how academies grow. Every trial family is followed from booking to joining, so none drop off.", screen: "AC2b-Programs" },
+        { label: "Programs and waiting list", caption: "Free trials are how academies grow. Every trial family is followed from booking to joining, so none drop off.", screen: "AC2-Programs" },
         { label: "Holiday clinic", caption: "Free trials are how academies grow. Every trial family is followed from booking to joining, so none drop off.", screen: "AC9-HolidayClinic" },
       ]},
       { title: "Each week", steps: [
@@ -618,10 +618,10 @@ export const TOURS: Record<string, TourDef> = {
       ]},
       { title: "New players", steps: [
         { label: "Assess a trial player", caption: "A trial player is assessed in four taps, with a suggested group and a line for the family.", screen: "ACC3-TrialAssess" },
-        { label: "A new player\u2019s plan", caption: "A trial player is assessed in four taps, with a suggested group and a line for the family.", screen: "ACC4-PlayerPlan" },
+        { label: "A new player\u2019s plan", caption: "A trial player is assessed in four taps, with a suggested group and a line for the family.", screen: "ACC4e-PlayerPlanEmpty" },
       ]},
       { title: "Each player", steps: [
-        { label: "Plan, goal and whole week", caption: "One plan per player, their whole week across club and academy, and one-on-ones kept in open view.", screen: "ACC4b-PlayerPlan" },
+        { label: "Plan, goal and whole week", caption: "One plan per player, their whole week across club and academy, and one-on-ones kept in open view.", screen: "ACC4-PlayerPlan" },
         { label: "One-on-one, in open view", caption: "One plan per player, their whole week across club and academy, and one-on-ones kept in open view.", screen: "ACC5-OneOnOne" },
       ]},
       { title: "Game day", steps: [
@@ -652,13 +652,13 @@ export const TOURS: Record<string, TourDef> = {
         { label: "Before the first session", caption: "A parent books a free trial, gets an honest note and an offer, and can add Saturday games with the partner club on one bill.", screen: "acp3-home-e" },
       ]},
       { title: "Each week", steps: [
-        { label: "Home: Kai\u2019s week", caption: "The week on one screen: sessions, the goal, a note from the coach, and a make-up when they can\u2019t come.", screen: "academyparent" },
-        { label: "Group chat", caption: "The week on one screen: sessions, the goal, a note from the coach, and a make-up when they can\u2019t come.", screen: "academyparent-chat" },
+        { label: "Home: Kai\u2019s week", caption: "The week on one screen: sessions, the goal, a note from the coach, and a make-up when they can\u2019t come.", screen: "ACP3-AcademyParentHome" },
+        { label: "Group chat", caption: "The week on one screen: sessions, the goal, a note from the coach, and a make-up when they can\u2019t come.", screen: "ACP11-AcademyParentChat" },
         { label: "Away and make-up", caption: "The week on one screen: sessions, the goal, a note from the coach, and a make-up when they can\u2019t come.", screen: "acp6-makeup" },
         { label: "Fees", caption: "The week on one screen: sessions, the goal, a note from the coach, and a make-up when they can\u2019t come.", screen: "academyparent-fees" },
       ]},
       { title: "Each term", steps: [
-        { label: "Term report", caption: "The report shows five skills, then and now, against the child\u2019s own start.", screen: "academyparent-progress" },
+        { label: "Term report", caption: "The report shows five skills, then and now, against the child\u2019s own start.", screen: "ACP5-ProgressReport" },
         { label: "Holiday clinic", caption: "The report shows five skills, then and now, against the child\u2019s own start.", screen: "acp8-clinic-e" },
       ]},
       { title: "When something\u2019s wrong", steps: [

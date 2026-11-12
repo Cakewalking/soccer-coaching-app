@@ -547,6 +547,9 @@ export function renderScreen(key: string): ReactNode {
       return <AcademyParentApp onBack={noop} empty={false} initialNav="fees" initialModal="none" />
     case 'academyparent-progress':
       return <AcademyParentApp onBack={noop} empty={false} initialNav="progress" initialModal="none" />
+    case 'ACP3-AcademyParentHome':  return <AcademyParentApp onBack={noop} empty={false} initialModal="none" />
+    case 'ACP11-AcademyParentChat': return <AcademyParentApp onBack={noop} empty={false} initialModal="chat" />
+    case 'ACP5-ProgressReport':     return <AcademyParentApp onBack={noop} empty={false} initialNav="progress" initialModal="none" />
     case 'academyplayer':
       return <AcademyPlayerApp onBack={noop} empty={false} />
     case 'playerme':
@@ -602,7 +605,6 @@ export function renderScreen(key: string): ReactNode {
     case 'addgame':
       return <AddGameScreen onClose={noop} />
     case 'gi0': case 'GI0-Recording':  return <AddGameScreen onClose={noop} initialStep={1} />
-    case 'gi0': case 'GI0-Recording':   return <AddGameScreen onClose={noop} initialStep={1} />
     case 'gi1': case 'GI1-Wearables':  return <AddGameScreen onClose={noop} initialStep={2} />
     case 'gi2': case 'GI2-WhosWho':    return <AddGameScreen onClose={noop} initialStep={3} />
     case 'gi3': case 'GI3-Analysing':  return <AddGameScreen onClose={noop} initialStep={4} />
@@ -655,6 +657,9 @@ export function renderScreen(key: string): ReactNode {
     case 'miniroos-postseason': return <SPm10MiniRoosPostSeason onBack={noop} />
     case 'miniroos-rest':       return <SPm16MiniRoosRest onBack={noop} />
     case 'ccoach-preseason':    return <SPc2CoCoachPreSeason onBack={noop} />
+    case 'SPy2-YouthPreSeason':   return <SPy2YouthPreSeason onBack={noop} />
+    case 'SPs2-SeniorPreSeason':  return <SPs2SeniorPreSeason onBack={noop} />
+    case 'SPc2-CoCoachPreSeason': return <SPc2CoCoachPreSeason onBack={noop} />
     case 'standin-home':        return <SP21StandInHome onBack={noop} />
     case 'standin-home-empty':  return <SP21eStandInHomeEmpty onBack={noop} />
     case 'manager-preseason':   return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><SPp10ManagerPreSeason /></div>
@@ -823,7 +828,8 @@ export function renderScreen(key: string): ReactNode {
     // Design ID aliases — existing tablet coach screens
     case 'T1-TabletTraining':         return <T1TabletTraining />
     case 'C1-ClipsTab':               return <JuniorCoachApp initialScreen="clips" />
-    case 'HS1-HomeSeniors':           return <SeniorsYouthCoachApp teamType="seniors" onBack={noop} initialScreen="training" />
+    case 'FN1-Seniors':               return <SeniorsYouthCoachApp teamType="seniors" onBack={noop} empty={true} />
+    case 'HS1-HomeSeniors':           return <SeniorsYouthCoachApp teamType="seniors" onBack={noop} />
     case 'signup':                    return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><OBSignUp /></div>
     case 'P1-Consent':                return <P1Consent />
     case 'AV2-ParentAvailability':    return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><AV2ParentAvailability /></div>
@@ -881,6 +887,7 @@ export function renderScreen(key: string): ReactNode {
     case 'JN6-Join':                  return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><JoinFlow initialStep="player-age" /></div>
     case 'JN7-Join':                  return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><JoinFlow initialStep="player-code" /></div>
     case 'JN8-Join':                  return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><JoinFlow initialStep="parent-firstaid" /></div>
+    case 'JN9-Join':                  return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><JoinFlow initialStep="player-age" /></div>
     case 'JN9a-Join':                 return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><JoinFlow initialStep="player-18" /></div>
     // Design ID aliases — parent consent (phone)
     case 'P2b-ParentConsent':         return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><P2bParentConsentStep1 /></div>
