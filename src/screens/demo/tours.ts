@@ -131,7 +131,7 @@ export const TOURS: Record<string, TourDef> = {
         { label: "Family chat", caption: "Under 12 there are no scores, sensors or numbers. The week is four fun games, who\u2019s coming, and a turn for everyone. Filming is optional, for clips.", screen: "CH1-TeamChat" },
         { label: "Tonight\u2019s four games", caption: "Under 12 there are no scores, sensors or numbers. The week is four fun games, who\u2019s coming, and a turn for everyone. Filming is optional, for clips.", screen: "HM3-TrainingMiniRoos" },
         { label: "Swap a game from the library", caption: "Under 12 there are no scores, sensors or numbers. The week is four fun games, who\u2019s coming, and a turn for everyone. Filming is optional, for clips. This screen is shared with other ages, so it shows the under-12 team here.", screen: "drills" },
-        { label: "This term, skill by skill", caption: "Under 12 there are no scores, sensors or numbers. The week is four fun games, who\u2019s coming, and a turn for everyone. Filming is optional, for clips. This screen is shared with other ages, so it shows the under-12 team here." },
+        { label: "This term, skill by skill", caption: "Under 12 there are no scores, sensors or numbers. The week is four fun games, who\u2019s coming, and a turn for everyone. Filming is optional, for clips. This screen is shared with other ages, so it shows the under-12 team here.", screen: "training" },
         { label: "Suggested games, from your taps", caption: "Under 12 there are no scores, sensors or numbers. The week is four fun games, who\u2019s coming, and a turn for everyone. Filming is optional, for clips.", screen: "suggestions" },
         { label: "Inbox", caption: "Under 12 there are no scores, sensors or numbers. The week is four fun games, who\u2019s coming, and a turn for everyone. Filming is optional, for clips.", screen: "HM7-InboxMiniRoos" },
         { label: "Calendar", caption: "Under 12 there are no scores, sensors or numbers. The week is four fun games, who\u2019s coming, and a turn for everyone. Filming is optional, for clips.", screen: "HM8-CalendarMiniRoos" },
@@ -254,8 +254,8 @@ export const TOURS: Record<string, TourDef> = {
     sandboxHome: 'fitnesscoach-e',
     sections: [
       { title: "Join", steps: [
-        { label: "Invite", caption: "A fitness coach joins by invite. What they see depends on the age of each team.", screen: "signup" },
-        { label: "First-use home", caption: "A fitness coach joins by invite. What they see depends on the age of each team." },
+        { label: "Invite", caption: "A fitness coach joins by invite. What they see depends on the age of each team.", screen: "IV3f-Invite" },
+        { label: "First-use home", caption: "A fitness coach joins by invite. What they see depends on the age of each team.", screen: "FT1e-FitnessHomeEmpty" },
         { label: "Fitness level by age", caption: "A fitness coach joins by invite. What they see depends on the age of each team.", screen: "coachfitness" },
       ]},
       { title: "Under 12: Play", steps: [
@@ -278,7 +278,7 @@ export const TOURS: Record<string, TourDef> = {
       ]},
       { title: "Game day", steps: [
         { label: "Load limits and fitness talk", caption: "On game day: who should play fewer minutes, and how hard it felt afterwards.", screen: "F4-FitnessMatch" },
-        { label: "Effort after training", caption: "On game day: who should play fewer minutes, and how hard it felt afterwards.", screen: "playerapp" },
+        { label: "Effort after training", caption: "On game day: who should play fewer minutes, and how hard it felt afterwards.", screen: "PE1-EffortRating" },
       ]},
     ],
   },
@@ -395,19 +395,19 @@ export const TOURS: Record<string, TourDef> = {
       { title: "Join", steps: [
         { label: "How old are you?", caption: "Under 15s can\u2019t make an account. They join with a code from a parent.", screen: "JN6-Join" },
         { label: "Code from a parent", caption: "Under 15s can\u2019t make an account. They join with a code from a parent.", screen: "JN7-Join" },
-        { label: "Waiting for a parent", caption: "Under 15s can\u2019t make an account. They join with a code from a parent.", screen: "JN8-Join" },
+        { label: "Waiting for a parent", caption: "Under 15s can\u2019t make an account. They join with a code from a parent.", screen: "playeryoung-e" },
       ]},
       { title: "Each week", steps: [
         { label: "Home", caption: "A child\u2019s week: a quick check-in, a clip from the coach and one goal. No rankings and no chat: under 15s get news from the coach and a parent writes for them.", screen: "playerapp" },
         { label: "Check-in", caption: "A child\u2019s week: a quick check-in, a clip from the coach and one goal. No rankings and no chat: under 15s get news from the coach and a parent writes for them.", screen: "playerapp-checkin" },
         { label: "Done", caption: "A child\u2019s week: a quick check-in, a clip from the coach and one goal. No rankings and no chat: under 15s get news from the coach and a parent writes for them.", screen: "playerapp-done" },
-        { label: "After training", caption: "A child\u2019s week: a quick check-in, a clip from the coach and one goal. No rankings and no chat: under 15s get news from the coach and a parent writes for them.", screen: "playerapp" },
+        { label: "After training", caption: "A child\u2019s week: a quick check-in, a clip from the coach and one goal. No rankings and no chat: under 15s get news from the coach and a parent writes for them.", screen: "PE1-EffortRating" },
         { label: "A clip from the coach", caption: "A child\u2019s week: a quick check-in, a clip from the coach and one goal. No rankings and no chat: under 15s get news from the coach and a parent writes for them.", screen: "playerapp" },
         { label: "My goals", caption: "A child\u2019s week: a quick check-in, a clip from the coach and one goal. No rankings and no chat: under 15s get news from the coach and a parent writes for them.", screen: "playerapp" },
-        { label: "News from the coach, no chat", caption: "A child\u2019s week: a quick check-in, a clip from the coach and one goal. No rankings and no chat: under 15s get news from the coach and a parent writes for them.", screen: "playerapp" },
+        { label: "News from the coach, no chat", caption: "A child\u2019s week: a quick check-in, a clip from the coach and one goal. No rankings and no chat: under 15s get news from the coach and a parent writes for them.", screen: "PK1-YoungNews" },
       ]},
       { title: "When something\u2019s wrong", steps: [
-        { label: "You can tell someone", caption: "A child can write privately to the welfare officer. The coach can\u2019t see it.", screen: "twochildren" },
+        { label: "You can tell someone", caption: "A child can write privately to the welfare officer. The coach can\u2019t see it.", screen: "playerapp" },
         { label: "Write to the welfare officer", caption: "A child can write privately to the welfare officer. The coach can\u2019t see it.", screen: "PC2b-TellHelen" },
       ]},
     ],
@@ -514,7 +514,7 @@ export const TOURS: Record<string, TourDef> = {
     sandboxHome: 'coordinator-e',
     sections: [
       { title: "Set up", steps: [
-        { label: "First-use home", caption: "The coordinator starts by importing registrations.", screen: "coordinator" },
+        { label: "First-use home", caption: "The coordinator starts by importing registrations.", screen: "DCo1e-CoordinatorHomeEmpty" },
         { label: "Import from PlayFootball", caption: "The coordinator starts by importing registrations.", screen: "FP1-PlayFootball" },
       ]},
       { title: "Each week", steps: [
@@ -543,13 +543,13 @@ export const TOURS: Record<string, TourDef> = {
       { title: "A concern arrives", steps: [
         { label: "From a parent", caption: "A concern can come from a parent, a child, a wellness alert or the sideline. Each goes only to the welfare officer.", screen: "PC1-RaiseConcern" },
         { label: "From a child", caption: "A concern can come from a parent, a child, a wellness alert or the sideline. Each goes only to the welfare officer.", screen: "PC2b-TellHelen" },
-        { label: "From a wellness alert", caption: "A concern can come from a parent, a child, a wellness alert or the sideline. Each goes only to the welfare officer.", screen: "inbox" },
+        { label: "From a wellness alert", caption: "A concern can come from a parent, a child, a wellness alert or the sideline. Each goes only to the welfare officer.", screen: "I1b-InboxElla" },
         { label: "From the sideline", caption: "A concern can come from a parent, a child, a wellness alert or the sideline. Each goes only to the welfare officer.", screen: "TM8-SidelineReport" },
       ]},
       { title: "Handle it", steps: [
         { label: "My cases", caption: "Only the welfare officer sees names. The director sees counts.", screen: "DW1-WelfareCases" },
-        { label: "Nothing open", caption: "Only the welfare officer sees names. The director sees counts." },
-        { label: "What the director sees", caption: "Only the welfare officer sees names. The director sees counts.", screen: "D4-Players" },
+        { label: "Nothing open", caption: "Only the welfare officer sees names. The director sees counts.", screen: "DW1e-WelfareCasesEmpty" },
+        { label: "What the director sees", caption: "Only the welfare officer sees names. The director sees counts.", screen: "D5-Safeguarding" },
         { label: "Sideline reports", caption: "Only the welfare officer sees names. The director sees counts.", screen: "FS1-Sideline" },
       ]},
       { title: "Also yours", steps: [
@@ -609,9 +609,9 @@ export const TOURS: Record<string, TourDef> = {
       ]},
       { title: "Record and repeat", steps: [
         { label: "Choose what to record", caption: "Recording a drill does the coach\u2019s paperwork: session notes are written from it, and the results feed each player\u2019s plan and term report.", screen: "RC1-RecordStart" },
-        { label: "Set-up and measures", caption: "Recording a drill does the coach\u2019s paperwork: session notes are written from it, and the results feed each player\u2019s plan and term report.", screen: "RC3-RecordDrill" },
-        { label: "Recording", caption: "Recording a drill does the coach\u2019s paperwork: session notes are written from it, and the results feed each player\u2019s plan and term report.", screen: "RC4-Recording" },
-        { label: "Results, into notes and plans", caption: "Recording a drill does the coach\u2019s paperwork: session notes are written from it, and the results feed each player\u2019s plan and term report.", screen: "RC5-RecordResults" },
+        { label: "Set-up and measures", caption: "Recording a drill does the coach\u2019s paperwork: session notes are written from it, and the results feed each player\u2019s plan and term report.", screen: "ACC9-AcademyRecordDrill" },
+        { label: "Recording", caption: "Recording a drill does the coach\u2019s paperwork: session notes are written from it, and the results feed each player\u2019s plan and term report.", screen: "ACC11-AcademyRecording" },
+        { label: "Results, into notes and plans", caption: "Recording a drill does the coach\u2019s paperwork: session notes are written from it, and the results feed each player\u2019s plan and term report.", screen: "ACC10-AcademyRecordResults" },
       ]},
       { title: "Group chat", steps: [
         { label: "Program group chat", caption: "Each program group has a chat. Home practice goes out as a video and a poll books make-up sessions.", screen: "ACC13-AcademyChat" },
@@ -695,7 +695,7 @@ export const TOURS: Record<string, TourDef> = {
     sandboxHome: 'referee-e',
     sections: [
       { title: "Each week", steps: [
-        { label: "Asked to do a game", caption: "Young referees are asked to do a game and can say yes from their phone.", screen: "refereephone" },
+        { label: "Asked to do a game", caption: "Young referees are asked to do a game and can say yes from their phone.", screen: "RF1-RefAsked" },
         { label: "My games", caption: "Young referees are asked to do a game and can say yes from their phone.", screen: "RF2-RefGames" },
       ]},
       { title: "Game day", steps: [
