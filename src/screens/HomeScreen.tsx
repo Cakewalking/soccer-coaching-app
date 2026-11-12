@@ -182,7 +182,8 @@ const LAST_GAME_FINDINGS = [
 ]
 
 export default function HomeScreen({ onNav, onCalendar, empty }: Props) {
-  if (empty) return <HomeEmpty onNav={onNav} />
+  const { active: inSandbox } = useSandbox()
+  if (empty || inSandbox) return <HomeEmpty onNav={onNav} />
   return (
     <main style={{
       flexGrow: 1, minHeight: 0, padding: '18px 28px 22px',

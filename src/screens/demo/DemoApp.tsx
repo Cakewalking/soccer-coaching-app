@@ -48,6 +48,11 @@ import CoachFitnessScreen    from '../CoachFitnessScreen'
 import SettingsScreen        from '../SettingsScreen'
 import LiveGameScreen        from '../LiveGameScreen'
 import LiveGame11Screen      from '../LiveGame11Screen'
+// Step 4 screens — New (DSet1, DSet4, ACC1)
+import DSet1ClubSettings          from '../step4/DSet1ClubSettings'
+import DSet4ClubRules             from '../step4/DSet4ClubRules'
+import ACC1CoachToday             from '../step4/ACC1CoachToday'
+import ACC1eCoachTodayEmpty       from '../step4/ACC1eCoachTodayEmpty'
 // Step 4 screens — Academy player
 import ACK1AcademyPlayerHome      from '../step4/ACK1AcademyPlayerHome'
 import ACK1eAcademyPlayerHomeEmpty from '../step4/ACK1eAcademyPlayerHomeEmpty'
@@ -77,6 +82,7 @@ import D7U11Girls                 from '../step4/D7U11Girls'
 import D7U11Mixed                 from '../step4/D7U11Mixed'
 import D7U14Mixed                 from '../step4/D7U14Mixed'
 import D7U15Girls                 from '../step4/D7U15Girls'
+import { D7U9Blue, D7U9Green, D7U10Mixed, D7U12Girls, D7U13Boys, D7U13Girls, D7U16Boys } from '../step4/D7ExtraTeams'
 // Step 4 screens — Tablet coach
 import AV2ParentAvailability      from '../step4/AV2ParentAvailability'
 import ETeamTalk                  from '../step4/ETeamTalk'
@@ -380,6 +386,30 @@ import { MessagesRules, CoachNewMessage, CoachMessages, CoachMessagesPersonCard,
 import { AcademyTrainingWeek, AcademyTrainingSuggested, AcademySessionPlan, AcademyWhoComing, AcademyTrainingWeekEmpty } from '../AcademyTraining'
 import { RecordHub, RecordSaved, RecordHubEmpty } from '../RecordHub'
 import { SquadLineups, SquadLineupsEmpty } from '../SquadLineups'
+import C2ClipsByGame                     from '../step4/C2ClipsByGame'
+import { C3ClipsByPlayer, CL1Playlists, TC1ToCheck, TC1bToCheckDone, TC1eToCheckEmpty } from '../step4/ClipsSubScreens'
+import { GT1Growth, GT1eGrowthEmpty }    from '../step4/GT1Growth'
+import { WK1ThisWeek, CF1Fixtures, AV1Availability, MS1TeamSheet, R1MatchReview, SE1SeasonSummaries, SE1eSeasonSummariesEmpty, AV1eAvailabilityEmpty } from '../step4/CoachSubScreens'
+import { DSet5ClubPlan, DRo1Rollover, DRo1eRolloverEmpty } from '../step4/DirScreens2'
+import { B1CoachAndFitness, PO1OlderHome, CH8ChatInfo, PS1ParentSettings, PS2ParentNotifications, PS3ParentData, PS4PlayerMe } from '../step4/MiscScreens'
+import {
+  D2eTeamsEmpty, D3eCoachesEmpty, D4ePlayersEmpty, D5eSafeguardingEmpty, D6eBoardReportEmpty,
+  DB2eSeasonReviewEmpty, DB3eLeagueReturnsEmpty, DB4eGrantsEmpty, DC1eCalendarEmpty, DCo1eCoordinatorHomeEmpty,
+  DK1eKitEmpty, DSet3eClubConnectionsEmpty, DSet4eClubRulesEmpty, DM1eCoachMeetingEmpty, DP1eFairGameTimeEmpty,
+  DR1eRegistrationsEmpty, DS1eConcernsEmpty, DS2eDataRequestsEmpty, DT1eCoursesEmpty, DW1eWelfareCasesEmpty,
+  DX1eCompareTeamsEmpty,
+  HM1eHomeMiniRoosEmpty, HM6eSeasonNotesEmpty, HM7eInboxMiniRoosEmpty, HM8eCalendarMiniRoosEmpty,
+  HM9eFixturesMiniRoosEmpty, HM10eStaffMiniRoosEmpty, HM11eComingMiniRoosEmpty, HM12eConsentMiniRoosEmpty,
+  AC3eTrialsEmpty, AC4eAcademyPlayersEmpty, AC5eFeesEmpty, AC6eAcademyCoachesEmpty, AC7eReportsEmpty,
+  AC8eAcademyRecordEmpty, AC9eHolidayClinicEmpty, AC10eAcademySafetyEmpty, AC11ePartnerClubEmpty, AC12eAcademyBroadcastEmpty,
+  ACC2eRunSessionEmpty, ACC3eTrialAssessEmpty, ACC4ePlayerPlanEmpty, ACC5eOneOnOneEmpty, ACC6eReportDraftEmpty,
+  ACC7eAcademyGameDayEmpty, ACC8eAcademyRecordEmpty, ACC12eAcademySuggestedEmpty, ACC13eAcademyChatEmpty,
+  CH1eTeamChatEmpty, CH2eAnnouncementsEmpty, CH5ePollResultsEmpty, CH6eMediaEmpty,
+  CHm1TeamChatMiniRoos, CHm1eTeamChatMiniRoosEmpty,
+  PM1eParentChatsEmpty, PM2eParentTeamChatEmpty, PM9eParentPrivateChatEmpty, AV2eParentAvailabilityEmpty,
+  FC1eConcussionEmpty, FK1eGoalkeepersEmpty, MS1eTeamSheetEmpty,
+  PO1eOlderHomeEmpty, PO2eOlderClipsEmpty, PO4eOlderBodyEmpty,
+} from '../step4/EmptyScreenBatch'
 
 type DemoView = 'signin' | 'start' | 'why' | 'tour' | 'lookaround' | 'sandbox' | 'sandboxlook' | 'nosandbox' | 'notfound'
 
@@ -572,6 +602,7 @@ export function renderScreen(key: string): ReactNode {
     case 'addgame':
       return <AddGameScreen onClose={noop} />
     case 'gi0': case 'GI0-Recording':  return <AddGameScreen onClose={noop} initialStep={1} />
+    case 'gi0': case 'GI0-Recording':   return <AddGameScreen onClose={noop} initialStep={1} />
     case 'gi1': case 'GI1-Wearables':  return <AddGameScreen onClose={noop} initialStep={2} />
     case 'gi2': case 'GI2-WhosWho':    return <AddGameScreen onClose={noop} initialStep={3} />
     case 'gi3': case 'GI3-Analysing':  return <AddGameScreen onClose={noop} initialStep={4} />
@@ -1125,6 +1156,181 @@ export function renderScreen(key: string): ReactNode {
     case 'referee-e':
       return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><RefereesPhoneScreen empty={true} /></div>
 
+    // Director settings (DSet1, DSet4)
+    case 'dset1-club':          case 'DSet1-ClubSettings':  return <DSet1ClubSettings />
+    case 'dset4-rules':         case 'DSet4-ClubRules':     return <DSet4ClubRules />
+    // Academy coach today (ACC1)
+    case 'acc1-today':          case 'ACC1-CoachToday':     return <ACC1CoachToday />
+    case 'acc1-today-e':        case 'ACC1e-CoachTodayEmpty': return <ACC1eCoachTodayEmpty />
+    // Design ID aliases — D7 extra teams
+    case 'd7-u9blue':    case 'D7-U9Blue':    return <D7U9Blue />
+    case 'd7-u9green':   case 'D7-U9Green':   return <D7U9Green />
+    case 'd7-u10':       case 'D7-U10Mixed':  return <D7U10Mixed />
+    case 'd7-u12girls':  case 'D7-U12Girls':  return <D7U12Girls />
+    case 'd7-u13':       case 'D7-U13Boys':   return <D7U13Boys />
+    case 'd7-u13girls':  case 'D7-U13Girls':  return <D7U13Girls />
+    case 'd7-u16':       case 'D7-U16Boys':   return <D7U16Boys />
+    // Design ID aliases — D7 existing teams
+    case 'D7-U7Mixed':   return <D7U7Mixed />
+    case 'D7-U8Mixed':   return <D7U8Mixed />
+    case 'D7-U11Girls':  return <D7U11Girls />
+    case 'D7-U11Mixed':  return <D7U11Mixed />
+    case 'D7-U14Mixed':  return <D7U14Mixed />
+    case 'D7-U15Girls':  return <D7U15Girls />
+    // Design ID aliases — Settings (open on specific tab)
+    case 'SET1-Account':       return <SettingsScreen onDone={noop} initialTab="account" />
+    case 'SET2-Team':          return <SettingsScreen onDone={noop} initialTab="team" />
+    case 'SET3-Notifications': return <SettingsScreen onDone={noop} initialTab="notifications" />
+    case 'SET4-Devices':       return <SettingsScreen onDone={noop} initialTab="devices" />
+    case 'SET5-Privacy':       return <SettingsScreen onDone={noop} initialTab="privacy" />
+    case 'SET7-Help':          return <SettingsScreen onDone={noop} initialTab="help" />
+    // Design ID aliases — Football year (SP* tablet, pre-season and season)
+    case 'SP1-FootballYear':           return <SP1FootballYear onBack={noop} />
+    case 'SP1e-FootballYearEmpty':     return <SP1eFootballYearEmpty onBack={noop} />
+    case 'SP2-HomePreSeason':          return <SP2HomePreSeason onBack={noop} />
+    case 'SP3-ProvisionalSquad':       return <SP3ProvisionalSquad onBack={noop} />
+    case 'SP3e-ProvisionalSquadEmpty': return <SP3eProvisionalSquadEmpty onBack={noop} />
+    case 'SP4-CoachTrial':             return <SP4CoachTrial onBack={noop} />
+    case 'SP5-Baseline':               return <SP5Baseline onBack={noop} />
+    case 'SP5e-BaselineEmpty':         return <SP5eBaselineEmpty onBack={noop} />
+    case 'SP6-LoadBuild':              return <SP6LoadBuild onBack={noop} />
+    case 'SP7-Friendlies':             return <SP7Friendlies onBack={noop} />
+    case 'SP7e-FriendliesEmpty':       return <SP7eFriendliesEmpty onBack={noop} />
+    case 'SP8-GradingInput':           return <SP8GradingInput onBack={noop} />
+    case 'SP9-MidSeasonReview':        return <SP9MidSeasonReview onBack={noop} />
+    case 'SP10-HomePostSeason':        return <SP10HomePostSeason onBack={noop} />
+    case 'SP11-TournamentSetup':       return <SP11TournamentSetup onBack={noop} />
+    case 'SP11e-TournamentEmpty':      return <SP11eTournamentEmpty onBack={noop} />
+    case 'SP12-TournamentDay':         return <SP12TournamentDay onBack={noop} />
+    case 'SP13-TournamentReview':      return <SP13TournamentReview onBack={noop} />
+    case 'SP14-IndoorTeam':            return <SP14IndoorTeam onBack={noop} />
+    case 'SP14e-IndoorTeamEmpty':      return <SP14eIndoorTeamEmpty onBack={noop} />
+    case 'SP18-ClubPhases':            return <SP18ClubPhases onBack={noop} />
+    case 'SP18e-ClubPhasesEmpty':      return <SP18eClubPhasesEmpty onBack={noop} />
+    case 'SP19-TrialWindow':           return <SP19TrialWindow onBack={noop} />
+    case 'SP20e-StandInEmpty':         return <SP20eStandInEmpty onBack={noop} />
+    // Design ID aliases — misc already-built screens with different case names
+    case 'P2-ParentConsent':           return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><P2ParentConsent /></div>
+    case 'ACK2e-HomePracticeEmpty':    return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><ACK2eHomePracticeEmpty /></div>
+    case 'PAe-ClipsEmpty':             return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PAeClipsEmpty /></div>
+    case 'PAe-GoalsEmpty':             return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PAeGoalsEmpty /></div>
+    case 'RF4e-RefFeedbackEmpty':      return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><RF4eRefFeedbackEmpty /></div>
+    case 'SG3e-AskCleanSheetEmpty':    return <SG3eAskCleanSheetEmpty />
+    case 'X11-LineupEmpty':            return <X11LineupEmpty />
+    case 'X6-ClipsEmpty':              return <X6ClipsEmpty />
+    case 'X7-InboxEmpty':              return <X7InboxEmpty />
+    case 'DL2e-TermPlannerEmpty':      return <DL2eTermPlannerEmpty />
+    case 'DSet6e-PartnerAcademyEmpty': return <DSet6ePartnerAcademyEmpty />
+    case 'DN1e-NominationsEmpty':      return <DN1eNominationsEmpty />
+    case 'IL1e-InjuriesEmpty':         return <IL1eInjuryLogEmpty />
+    case 'TL3e-TestResultsEmpty':      return <TL3eSprintResultsEmpty />
+    case 'CC1e-CoachHomeSharedEmpty':  return <CC1eCoachHomeEmpty />
+    case 'I1-Inbox':                   return <I1Inbox />
+
+    // Coach sub-screens (new)
+    case 'wk1': case 'WK1-ThisWeek':           return <WK1ThisWeek />
+    case 'cf1': case 'CF1-Fixtures':           return <CF1Fixtures />
+    case 'av1': case 'AV1-Availability':       return <AV1Availability />
+    case 'ms1': case 'MS1-TeamSheet':          return <MS1TeamSheet />
+    case 'r1':  case 'R1-MatchReview':         return <R1MatchReview />
+    case 'se1': case 'SE1-SeasonSummaries':    return <SE1SeasonSummaries />
+    case 'se1e': case 'SE1e-SeasonSummariesEmpty': return <SE1eSeasonSummariesEmpty />
+    case 'av1e': case 'AV1e-AvailabilityEmpty':    return <AV1eAvailabilityEmpty />
+    case 'ms1e': case 'MS1e-TeamSheetEmpty':       return <MS1eTeamSheetEmpty />
+    case 'b1':  case 'B1-CoachAndFitness':     return <B1CoachAndFitness />
+    // Clips sub-screens (new)
+    case 'c2': case 'C2-ClipsByGame':          return <C2ClipsByGame />
+    case 'c3': case 'C3-ClipsByPlayer':        return <C3ClipsByPlayer />
+    case 'cl1': case 'CL1-Playlists':          return <CL1Playlists />
+    case 'tc1': case 'TC1-ToCheck':            return <TC1ToCheck />
+    case 'tc1b': case 'TC1b-ToCheckDone':      return <TC1bToCheckDone />
+    case 'tc1e': case 'TC1e-ToCheckEmpty':     return <TC1eToCheckEmpty />
+    // Fitness/growth (new)
+    case 'gt1': case 'GT1-Growth':             return <GT1Growth />
+    case 'gt1e': case 'GT1e-GrowthEmpty':      return <GT1eGrowthEmpty />
+    case 'fc1e': case 'FC1e-ConcussionEmpty':  return <FC1eConcussionEmpty />
+    case 'fk1e': case 'FK1e-GoalkeepersEmpty': return <FK1eGoalkeepersEmpty />
+    // Director new screens
+    case 'dset5': case 'DSet5-ClubPlan':       return <DSet5ClubPlan />
+    case 'dro1':  case 'DRo1-Rollover':        return <DRo1Rollover />
+    case 'dro1e': case 'DRo1e-RolloverEmpty':  return <DRo1eRolloverEmpty />
+    // Director empties
+    case 'D2e-TeamsEmpty':                     return <D2eTeamsEmpty />
+    case 'D3e-CoachesEmpty':                   return <D3eCoachesEmpty />
+    case 'D4e-PlayersEmpty':                   return <D4ePlayersEmpty />
+    case 'D5e-SafeguardingEmpty':              return <D5eSafeguardingEmpty />
+    case 'D6e-BoardReportEmpty':               return <D6eBoardReportEmpty />
+    case 'DB2e-SeasonReviewEmpty':             return <DB2eSeasonReviewEmpty />
+    case 'DB3e-LeagueReturnsEmpty':            return <DB3eLeagueReturnsEmpty />
+    case 'DB4e-GrantsEmpty':                   return <DB4eGrantsEmpty />
+    case 'DC1e-CalendarEmpty':                 return <DC1eCalendarEmpty />
+    case 'DCo1e-CoordinatorHomeEmpty':         return <DCo1eCoordinatorHomeEmpty />
+    case 'DK1e-KitEmpty':                      return <DK1eKitEmpty />
+    case 'DSet3e-ClubConnectionsEmpty':        return <DSet3eClubConnectionsEmpty />
+    case 'DSet4e-ClubRulesEmpty':              return <DSet4eClubRulesEmpty />
+    case 'DM1e-CoachMeetingEmpty':             return <DM1eCoachMeetingEmpty />
+    case 'DP1e-FairGameTimeEmpty':             return <DP1eFairGameTimeEmpty />
+    case 'DR1e-RegistrationsEmpty':            return <DR1eRegistrationsEmpty />
+    case 'DS1e-ConcernsEmpty':                 return <DS1eConcernsEmpty />
+    case 'DS2e-DataRequestsEmpty':             return <DS2eDataRequestsEmpty />
+    case 'DT1e-CoursesEmpty':                  return <DT1eCoursesEmpty />
+    case 'DW1e-WelfareCasesEmpty':             return <DW1eWelfareCasesEmpty />
+    case 'DX1e-CompareTeamsEmpty':             return <DX1eCompareTeamsEmpty />
+    // MiniRoos empties
+    case 'HM1e-HomeMiniRoosEmpty':             return <HM1eHomeMiniRoosEmpty />
+    case 'HM6e-SeasonNotesEmpty':              return <HM6eSeasonNotesEmpty />
+    case 'HM7e-InboxMiniRoosEmpty':            return <HM7eInboxMiniRoosEmpty />
+    case 'HM8e-CalendarMiniRoosEmpty':         return <HM8eCalendarMiniRoosEmpty />
+    case 'HM9e-FixturesMiniRoosEmpty':         return <HM9eFixturesMiniRoosEmpty />
+    case 'HM10e-StaffMiniRoosEmpty':           return <HM10eStaffMiniRoosEmpty />
+    case 'HM11e-ComingMiniRoosEmpty':          return <HM11eComingMiniRoosEmpty />
+    case 'HM12e-ConsentMiniRoosEmpty':         return <HM12eConsentMiniRoosEmpty />
+    // Academy owner empties
+    case 'AC3e-TrialsEmpty':                   return <AC3eTrialsEmpty />
+    case 'AC4e-AcademyPlayersEmpty':           return <AC4eAcademyPlayersEmpty />
+    case 'AC5e-FeesEmpty':                     return <AC5eFeesEmpty />
+    case 'AC6e-AcademyCoachesEmpty':           return <AC6eAcademyCoachesEmpty />
+    case 'AC7e-ReportsEmpty':                  return <AC7eReportsEmpty />
+    case 'AC8e-AcademyRecordEmpty':            return <AC8eAcademyRecordEmpty />
+    case 'AC9e-HolidayClinicEmpty':            return <AC9eHolidayClinicEmpty />
+    case 'AC10e-AcademySafetyEmpty':           return <AC10eAcademySafetyEmpty />
+    case 'AC11e-PartnerClubEmpty':             return <AC11ePartnerClubEmpty />
+    case 'AC12e-AcademyBroadcastEmpty':        return <AC12eAcademyBroadcastEmpty />
+    // Academy coach empties
+    case 'ACC2e-RunSessionEmpty':              return <ACC2eRunSessionEmpty />
+    case 'ACC3e-TrialAssessEmpty':             return <ACC3eTrialAssessEmpty />
+    case 'ACC4e-PlayerPlanEmpty':              return <ACC4ePlayerPlanEmpty />
+    case 'ACC5e-OneOnOneEmpty':                return <ACC5eOneOnOneEmpty />
+    case 'ACC6e-ReportDraftEmpty':             return <ACC6eReportDraftEmpty />
+    case 'ACC7e-AcademyGameDayEmpty':          return <ACC7eAcademyGameDayEmpty />
+    case 'ACC8e-AcademyRecordEmpty':           return <ACC8eAcademyRecordEmpty />
+    case 'ACC12e-AcademySuggestedEmpty':       return <ACC12eAcademySuggestedEmpty />
+    case 'ACC13e-AcademyChatEmpty':            return <ACC13eAcademyChatEmpty />
+    // Chat screens (new)
+    case 'ch8': case 'CH8-ChatInfo':           return <CH8ChatInfo />
+    // Chat empties
+    case 'CH1e-TeamChatEmpty':                 return <CH1eTeamChatEmpty />
+    case 'CH2e-AnnouncementsEmpty':            return <CH2eAnnouncementsEmpty />
+    case 'CH5e-PollResultsEmpty':              return <CH5ePollResultsEmpty />
+    case 'CH6e-MediaEmpty':                    return <CH6eMediaEmpty />
+    // MiniRoos chat
+    case 'chm1': case 'CHm1-TeamChatMiniRoos':      return <CHm1TeamChatMiniRoos />
+    case 'chm1e': case 'CHm1e-TeamChatMiniRoosEmpty': return <CHm1eTeamChatMiniRoosEmpty />
+    // Player/parent empties
+    case 'PM1e-ParentChatsEmpty':              return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PM1eParentChatsEmpty /></div>
+    case 'PM2e-ParentTeamChatEmpty':           return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PM2eParentTeamChatEmpty /></div>
+    case 'PM9e-ParentPrivateChatEmpty':        return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PM9eParentPrivateChatEmpty /></div>
+    case 'AV2e-ParentAvailabilityEmpty':       return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><AV2eParentAvailabilityEmpty /></div>
+    // Older player screens (new)
+    case 'po1':                                return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PO1OlderHome /></div>
+    case 'PO1e-OlderHomeEmpty':                return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PO1eOlderHomeEmpty /></div>
+    case 'PO2e-OlderClipsEmpty':               return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PO2eOlderClipsEmpty /></div>
+    case 'PO4e-OlderBodyEmpty':                return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PO4eOlderBodyEmpty /></div>
+    // Parent settings (new)
+    case 'ps1': case 'PS1-ParentSettings':     return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PS1ParentSettings /></div>
+    case 'ps2': case 'PS2-ParentNotifications': return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PS2ParentNotifications /></div>
+    case 'ps3': case 'PS3-ParentData':         return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PS3ParentData /></div>
+    case 'ps4': case 'PS4-PlayerMe':           return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PS4PlayerMe /></div>
     // Ask Clean Sheet (sections 12–13)
     case 'ASK1-HomeWithAsk':           return <AskHome onBack={noop} />
     case 'ASK2-AskMinimised':          return <AskMinimised onBack={noop} />
@@ -1390,6 +1596,7 @@ export default function DemoApp() {
       <DemoTourShell
         roleId={role}
         onBack={() => setView('start')}
+        onWhy={() => setView('why')}
         renderScreen={renderScreen}
         initialStep={isNaN(initStep) ? 0 : initStep}
         onStepChange={n => setScreen(String(n))}

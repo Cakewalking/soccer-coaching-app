@@ -17,6 +17,36 @@ function flattenSteps(roleId: RoleId): FlatStep[] {
   return result
 }
 
+function ClosingCard({ onPickRole, onWhy }: { onPickRole: () => void; onWhy: () => void }) {
+  const metrics = [
+    { label: 'Seconds to win the ball back', value: '7 → 5',       note: 'Trained twice in the week' },
+    { label: 'Gap between the lines',        value: '26 m → 21 m', note: 'Small game, tight shape' },
+    { label: 'Sprints after minute 45',      value: '−22% → −9%',  note: 'Fresh legs on from the bench' },
+  ]
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', padding: '32px 48px' }}>
+      <div style={{ width: '100%', maxWidth: 900, background: '#2f6252', borderRadius: 20, padding: '52px 60px', display: 'flex', flexDirection: 'column', gap: 24, color: '#fff', boxSizing: 'border-box' as const }}>
+        <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase' as const, color: '#cfe6dc' }}>The next Saturday</div>
+        <h2 style={{ margin: 0, fontSize: 40, lineHeight: '1.1', fontWeight: 800, letterSpacing: '-0.03em' }}>Did it work? The coach can see.</h2>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14 }}>
+          {metrics.map(m => (
+            <div key={m.label} style={{ background: '#1f4a3e', borderRadius: 14, padding: '18px 20px', display: 'flex', flexDirection: 'column', gap: 6 }}>
+              <div style={{ fontSize: 13, fontWeight: 600, color: '#cfe6dc', lineHeight: '1.4' }}>{m.label}</div>
+              <div style={{ fontSize: 32, fontWeight: 800, letterSpacing: '-0.02em', fontVariantNumeric: 'tabular-nums' }}>{m.value}</div>
+              <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)' }}>{m.note}</div>
+            </div>
+          ))}
+        </div>
+        <p style={{ margin: 0, fontSize: 17, lineHeight: '1.6', color: 'rgba(255,255,255,0.85)', maxWidth: 760 }}>One game in, one plan out, and proof the next week. Every player got a fair share of minutes along the way.</p>
+        <div style={{ display: 'flex', gap: 12 }}>
+          <button onClick={onPickRole} style={{ height: 48, padding: '0 22px', borderRadius: 10, border: 0, background: '#fff', color: '#2f6252', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Pick a role and look around</button>
+          <button onClick={onWhy} style={{ height: 48, padding: '0 20px', borderRadius: 10, border: '1.5px solid rgba(255,255,255,0.5)', background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Why trust it</button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 function StepCard({ step, globalIdx, total }: { step: FlatStep; globalIdx: number; total: number }) {
   return (
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', padding: 48 }}>
@@ -32,12 +62,13 @@ function StepCard({ step, globalIdx, total }: { step: FlatStep; globalIdx: numbe
 interface Props {
   roleId: RoleId
   onBack: () => void
+  onWhy?: () => void
   renderScreen: (screenKey: string) => React.ReactNode
   initialStep?: number
   onStepChange?: (step: number) => void
 }
 
-export default function DemoTourShell({ roleId, onBack, renderScreen, initialStep, onStepChange }: Props) {
+export default function DemoTourShell({ roleId, onBack, onWhy, renderScreen, initialStep, onStepChange }: Props) {
   const tour = TOURS[roleId]
   const steps = flattenSteps(roleId)
   const [idx, setIdx] = useState(initialStep ?? 0)
@@ -64,7 +95,7 @@ export default function DemoTourShell({ roleId, onBack, renderScreen, initialSte
 
       {/* Top bar */}
       <div style={{ flex: 'none', background: '#1f4a3e', height: 48, display: 'flex', alignItems: 'center', padding: '0 20px', gap: 16, zIndex: 10 }}>
-        <button onClick={onBack} style={{ display: 'flex', alignItems: 'center', gap: 7, background: 'none', border: 'none', cursor: 'pointer', color: 'rgba(255,255,255,0.65)', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, padding: 0, flexShrink: 0 }}>
+        <button onClick={onBack} style={{ display: 'flex', alignItems: 'center', gap: 7, alignSelf: 'stretch', background: 'none', border: 'none', cursor: 'pointer', color: 'rgba(255,255,255,0.65)', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, padding: '0 8px 0 0', flexShrink: 0 }}>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
           All roles
         </button>
@@ -141,7 +172,10 @@ export default function DemoTourShell({ roleId, onBack, renderScreen, initialSte
                     {renderScreen(step.screen)}
                   </div>
                 )
-              : <StepCard key={idx} step={step} globalIdx={idx} total={steps.length} />
+              : (roleId === 'story' && isLast
+                  ? <ClosingCard key={idx} onPickRole={onBack} onWhy={onWhy ?? onBack} />
+                  : <StepCard key={idx} step={step} globalIdx={idx} total={steps.length} />
+                )
             }
           </div>
 

@@ -19,8 +19,8 @@ const TABS: Array<{ id: SettingsTab; label: string }> = [
   { id: 'help',          label: 'Help' },
 ]
 
-export default function SettingsScreen({ onDone }: { onDone: () => void }) {
-  const [tab, setTab] = useState<SettingsTab>('account')
+export default function SettingsScreen({ onDone, initialTab }: { onDone: () => void; initialTab?: SettingsTab }) {
+  const [tab, setTab] = useState<SettingsTab>(initialTab ?? 'account')
   const [toast, setToast] = useState('')
   const [toastKey, setToastKey] = useState(0)
 

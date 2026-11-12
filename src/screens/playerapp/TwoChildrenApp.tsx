@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useSandbox } from '../sandbox/SandboxContext'
 
 type ChildTab = 'both' | 'mia' | 'bao'
 type AppView = 'home' | 'seasonsummary' | 'settings' | 'notifications' | 'data' | 'availability' | 'clips'
@@ -440,13 +441,38 @@ function ClipsView({ onBack }: { onBack: () => void }) {
 }
 
 export default function TwoChildrenApp({ empty = false }: { onBack: () => void; empty?: boolean }) {
+  const { active: inSandbox, store } = useSandbox()
   const [childTab, setChildTab] = useState<ChildTab>('both')
   const [view, setView] = useState<AppView>('home')
+
+  const sbHasTeam = inSandbox && store.teams.length > 0
+  const showEmpty = inSandbox ? !sbHasTeam : empty
+  const team0 = store.teams[0]
+  const teamPlayers = team0 ? store.players.filter(p => p.teamId === team0.id) : []
 
   return (
     <div style={{ width: 390, margin: '0 auto', background: '#f7f9f7', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)', position: 'relative' }}>
 
-      {view === 'home' && (empty ? (
+      {view === 'home' && (sbHasTeam ? (
+        <>
+          <div style={{ background: '#1f4a3e', padding: '48px 20px 16px', flex: 'none' }}>
+            <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', marginBottom: 2 }}>{team0!.name} · parent</div>
+            <div style={{ fontSize: 22, fontWeight: 800, color: '#fff' }}>Your family's week</div>
+          </div>
+          <div style={{ flexGrow: 1, overflowY: 'auto', padding: '14px 20px 32px', display: 'flex', flexDirection: 'column', gap: 12 }}>
+            <div style={{ background: '#fff', borderRadius: 16, border: '1px solid #e9eae8', padding: '14px 16px' }}>
+              <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>{team0!.name}</div>
+              {teamPlayers.length > 0
+                ? teamPlayers.map(p => (
+                    <div key={p.id} style={{ padding: '6px 0', borderTop: '1px solid #e9eae8', fontSize: 13, color: '#10211f' }}>{p.name}</div>
+                  ))
+                : <div style={{ fontSize: 14, color: '#6f7f7b', paddingTop: 4 }}>No players added yet</div>
+              }
+            </div>
+            <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.5 }}>Training and game days will appear here when the coach adds them.</div>
+          </div>
+        </>
+      ) : showEmpty ? (
         <div style={{ flexGrow: 1, padding: '48px 20px 20px', display: 'flex', flexDirection: 'column', gap: 16 }}>
           <div>
             <div style={{ fontSize: 12, color: '#6f7f7b', marginBottom: 2 }}>Parent · waiting for first training</div>
