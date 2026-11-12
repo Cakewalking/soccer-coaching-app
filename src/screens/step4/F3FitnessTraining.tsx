@@ -30,7 +30,7 @@ export default function F3FitnessTraining({ mode }: { onBack?: () => void; mode?
           {yourPart ? 'Your part of training' : "Tonight's training"}
         </h1>
         <span style={{ fontSize: 14, color: MUT }}>
-          {yourPart ? 'Tue 10 Jun · Warm-up · 5:30 – 5:40 pm' : 'Tue 10 Jun · 5:30 – 6:35 pm · Wattle Creek Oval, Pitch 2'}
+          {yourPart ? 'Tue 10 Jun · Warm-up · 5:30 – 5:40 pm' : 'Tue 10 Jun · 5:30 – 6:35 pm · Wattle Creek Reserve, Pitch 2'}
         </span>
       </div>
       <div style={{ flex: 1, minHeight: 0, padding: '12px 28px 18px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 300px', gap: 14 }}>

@@ -95,7 +95,7 @@ export default function PM2ParentTeamChat(_: { onBack?: () => void }) {
               </div>
               <div style={{ padding: '12px 0' }}>
                 <div style={{ fontWeight: 600, fontSize: 14, color: INK, marginBottom: 2 }}>📌 Thursday training</div>
-                <div style={{ fontSize: 13, color: MUT }}>5 June · 4:30 pm · Wattle Creek Oval, Pitch 2</div>
+                <div style={{ fontSize: 13, color: MUT }}>5 June · 4:30 pm · Wattle Creek Reserve, Pitch 2</div>
               </div>
             </div>
             <div style={{ display: 'flex', justifyContent: 'flex-end' }}>

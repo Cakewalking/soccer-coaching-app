@@ -101,7 +101,7 @@ function CoachPhoneHomeTab({ onPlan }: { onPlan: () => void }) {
           <div style={{ fontSize: 18, fontWeight: 800, letterSpacing: '-0.02em', color: INK, marginBottom: 8 }}>U12 Sam · Wattle Creek</div>
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' as const }}>
             <Pill label="14 of 16 coming" />
-            <Pill label="Oval 3" />
+            <Pill label="Pitch 3" />
           </div>
         </div>
         <div style={{ borderTop: '1px solid #f0f1f0', padding: '10px 14px', display: 'flex', gap: 8 }}>
@@ -133,7 +133,7 @@ function CoachPhoneHomeTab({ onPlan }: { onPlan: () => void }) {
         <div style={{ padding: '14px 14px 10px' }}>
           <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 4 }}>Game · Sat 6 June · 10 am</div>
           <div style={{ fontSize: 16, fontWeight: 800, letterSpacing: '-0.02em', color: INK, marginBottom: 4 }}>vs Banksia Park</div>
-          <div style={{ fontSize: 14, color: MUT }}>Home · Wattle Creek Oval</div>
+          <div style={{ fontSize: 14, color: MUT }}>Home · Wattle Creek Reserve</div>
         </div>
         <div style={{ borderTop: '1px solid #f0f1f0', padding: '10px 14px', display: 'flex', gap: 8 }}>
           <button style={{ flex: 1, height: 44, borderRadius: 10, border: '1px solid #d4d6d4', background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Team sheet</button>
@@ -350,7 +350,7 @@ function CoachPhonePlanScreen({ onBack }: { onBack: () => void }) {
         </button>
         <div>
           <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>Tonight's plan</div>
-          <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)' }}>Thu 4 June · 6 pm · Oval 3</div>
+          <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)' }}>Thu 4 June · 6 pm · Pitch 3</div>
         </div>
       </div>
       <div style={{ flex: 1, overflowY: 'auto', padding: '12px 12px 32px' }}>

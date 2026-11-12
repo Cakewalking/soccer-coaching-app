@@ -76,7 +76,7 @@ export default function FN3SeniorTeam({onBack}:{onBack?:()=>void}){
           <div style={{background:'#fff',border:`1px solid ${LN}`,borderRadius:14,padding:'14px 16px'}}>
             <div style={{fontSize:13,fontWeight:700,letterSpacing:'0.06em',textTransform:'uppercase' as const,color:MUT,marginBottom:8}}>Next game</div>
             <div style={{fontSize:15,fontWeight:600,color:INK,marginBottom:4}}>Sat 14 · Valley SC</div>
-            <div style={{fontSize:13,color:MUT}}>3:00 pm · away · Riverside Oval</div>
+            <div style={{fontSize:13,color:MUT}}>3:00 pm · away · Riverside Reserve</div>
             <button onClick={()=>t('Opening this game')} style={{marginTop:12,height: 44,padding:'0 14px',borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:G,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>See game details</button>
           </div>
         </div>

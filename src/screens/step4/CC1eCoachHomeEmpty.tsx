@@ -15,7 +15,7 @@ export default function CC1eCoachHomeEmpty(_: { onBack?: () => void }) {
 
       <div style={{ padding: 48 }}>
         <div style={{ fontSize: 24, fontWeight: 900, letterSpacing: '-0.02em', color: INK, marginBottom: 4 }}>Hi Sam, welcome to your team</div>
-        <div style={{ fontSize: 15, color: MUT, marginBottom: 32 }}>U12 · Wattle Creek FC · season 2026</div>
+        <div style={{ fontSize: 15, color: MUT, marginBottom: 32 }}>U12 Sam · Wattle Creek · season 2026</div>
 
         {/* Co-coach not yet joined */}
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 20px', marginBottom: 20, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
