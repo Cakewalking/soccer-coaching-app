@@ -7,11 +7,54 @@ type Phase = 'preseason' | 'season' | 'postseason' | 'restmonth'
 
 /* ---- shared chrome ---- */
 
-function PhoneShell({ children, tab, onTab, onPlan }: {
+const SPARKLE_D = 'M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z'
+
+function PhoneAskSheet({ onClose }: { onClose: () => void }) {
+  const [input, setInput] = useState('')
+  const [toast, setToast] = useState<string | null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 2500) }
+  return (
+    <div style={{ position: 'absolute', inset: 0, zIndex: 40, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
+      <div onClick={onClose} style={{ position: 'absolute', inset: 0, background: 'rgba(16,33,31,0.3)' }} />
+      <div style={{ position: 'relative', background: '#fff', borderRadius: '20px 20px 0 0', boxShadow: '0 -4px 24px rgba(16,33,31,0.14)', display: 'flex', flexDirection: 'column', maxHeight: '72%' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', padding: '10px 0 4px', flexShrink: 0 }}>
+          <div style={{ width: 40, height: 4, borderRadius: 2, background: '#e8edeb' }} />
+        </div>
+        <div style={{ padding: '6px 16px 10px', display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={G} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={SPARKLE_D}/></svg>
+          <span style={{ fontSize: 14, fontWeight: 700, color: G, flex: 1 }}>Ask Clean Sheet</span>
+          <button onClick={onClose} style={{ width: 28, height: 28, borderRadius: '50%', border: '1px solid #e8edeb', background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: MUT }}>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <div style={{ flex: 1, overflowY: 'auto', padding: '0 16px 10px', display: 'flex', flexDirection: 'column', gap: 8 }}>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 2 }}>About today</div>
+          {['Who needs a rest this week?', 'What should we work on tonight?', 'Is everyone getting fair minutes?'].map(q => (
+            <button key={q} onClick={() => st(`Demo: ${q}`)} style={{ width: '100%', textAlign: 'left', padding: '10px 12px', borderRadius: 10, border: '1px solid #e8edeb', background: '#eef5f2', color: G, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{q}</button>
+          ))}
+        </div>
+        <div style={{ padding: '10px 16px 20px', borderTop: '1px solid #e8edeb', flexShrink: 0 }}>
+          <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginBottom: 6 }}>
+            <input value={input} onChange={e => setInput(e.target.value)} placeholder="Ask something…" style={{ flex: 1, height: 40, padding: '0 12px', borderRadius: 8, border: '1px solid #e8edeb', fontSize: 13, fontFamily: 'inherit', outline: 'none' }} />
+            <button onClick={() => st('Ask sent.')} style={{ width: 40, height: 40, borderRadius: 8, background: G, border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+            </button>
+          </div>
+          <div style={{ fontSize: 11, color: MUT, lineHeight: 1.5 }}>Uses only what you can see as coach. Never sends anything by itself.</div>
+        </div>
+        {toast && <div style={{ position: 'absolute', bottom: 80, left: '50%', transform: 'translateX(-50%)', background: GD, color: '#fff', padding: '8px 16px', borderRadius: 20, fontSize: 12, fontWeight: 600, whiteSpace: 'nowrap' }}>{toast}</div>}
+      </div>
+    </div>
+  )
+}
+
+function PhoneShell({ children, tab, onTab, onPlan, askOpen, onAskToggle }: {
   children: React.ReactNode
   tab: Tab
   onTab: (t: Tab) => void
   onPlan?: () => void
+  askOpen?: boolean
+  onAskToggle?: () => void
 }) {
   const tabs: { key: Tab; label: string; icon: React.ReactNode }[] = [
     {
@@ -34,11 +77,16 @@ function PhoneShell({ children, tab, onTab, onPlan }: {
   return (
     <div style={{ width: 390, minHeight: 844, background: '#f5f6f4', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
       {/* Status bar stub */}
-      <div style={{ background: GD, height: 44, display: 'flex', alignItems: 'flex-end', padding: '0 20px 10px', justifyContent: 'space-between', flexShrink: 0 }}>
+      <div style={{ background: GD, height: 44, display: 'flex', alignItems: 'flex-end', padding: '0 16px 10px', justifyContent: 'space-between', flexShrink: 0 }}>
         <span style={{ fontSize: 14, fontWeight: 800, letterSpacing: '-0.02em', color: '#fff' }}>Clean Sheet</span>
         <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
           {tab === 'home' && onPlan && (
-            <button onClick={onPlan} style={{ background: 'rgba(255,255,255,0.15)', border: 'none', borderRadius: 7, height: 44, padding: '0 10px', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>Tonight's plan</button>
+            <button onClick={onPlan} style={{ background: 'rgba(255,255,255,0.15)', border: 'none', borderRadius: 7, height: 32, padding: '0 10px', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>Tonight's plan</button>
+          )}
+          {tab !== 'home' && onAskToggle && (
+            <button onClick={onAskToggle} aria-label="Ask Clean Sheet" style={{ width: 36, height: 36, borderRadius: '50%', border: '1.5px solid #a9cfc0', background: askOpen ? '#fff' : 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={askOpen ? GD : '#fff'} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={SPARKLE_D}/></svg>
+            </button>
           )}
           <div style={{ width: 28, height: 28, borderRadius: '50%', background: '#8fa09b', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, color: '#fff' }}>SK</div>
         </div>
@@ -47,6 +95,7 @@ function PhoneShell({ children, tab, onTab, onPlan }: {
       <div style={{ flex: 1, overflowY: 'auto', paddingBottom: 68 }}>
         {children}
       </div>
+      {askOpen && onAskToggle && <PhoneAskSheet onClose={onAskToggle} />}
       {/* Bottom tab bar */}
       <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, maxWidth: 390, margin: '0 auto', background: '#fff', borderTop: '1px solid #e8e9e7', display: 'flex', height: 68, zIndex: 10 }}>
         {tabs.map(t => (
@@ -216,11 +265,21 @@ function CoachPhoneRestMonthHome() {
 }
 
 /* ---- CPh1 Home (populated) ---- */
-function CoachPhoneHomeTab({ onPlan }: { onPlan: () => void }) {
+function PhoneAskLine({ onAsk }: { onAsk: () => void }) {
+  return (
+    <button onClick={onAsk} aria-label="Ask Clean Sheet" style={{ display: 'flex', alignItems: 'center', gap: 10, margin: '10px 12px 0', padding: '0 14px', height: 52, borderRadius: 14, border: '1px solid #d4dbd8', background: '#fff', cursor: 'pointer', textAlign: 'left', width: 'calc(100% - 24px)', boxSizing: 'border-box' as const }}>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={G} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={SPARKLE_D}/></svg>
+      <span style={{ flex: 1, fontSize: 14, color: MUT }}>Ask about U12 Sam…</span>
+    </button>
+  )
+}
+
+function CoachPhoneHomeTab({ onPlan, onAsk }: { onPlan: () => void; onAsk: () => void }) {
   const [toast, setToast] = useState<string|null>(null)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <>
+      <PhoneAskLine onAsk={onAsk} />
       {/* Tonight's training card */}
       <SectionHead>Tonight</SectionHead>
       <Card>
@@ -533,15 +592,16 @@ function EmptyState({ icon, title, sub, action, onAction }: { icon: React.ReactN
 export default function CoachPhoneApp({ initialTab = 'home', phase = 'season' as Phase }: { initialTab?: Tab; phase?: Phase }) {
   const [tab, setTab] = useState<Tab>(initialTab)
   const [showPlan, setShowPlan] = useState(false)
+  const [askOpen, setAskOpen] = useState(false)
 
   if (showPlan) return <CoachPhonePlanScreen onBack={() => setShowPlan(false)} />
 
   return (
-    <PhoneShell tab={tab} onTab={setTab} onPlan={tab === 'home' && phase === 'season' ? () => setShowPlan(true) : undefined}>
+    <PhoneShell tab={tab} onTab={setTab} onPlan={tab === 'home' && phase === 'season' ? () => setShowPlan(true) : undefined} askOpen={askOpen} onAskToggle={() => setAskOpen(o => !o)}>
       {tab === 'home' && phase === 'preseason'  && <CoachPhonePreSeasonHome />}
       {tab === 'home' && phase === 'postseason' && <CoachPhonePostSeasonHome />}
       {tab === 'home' && phase === 'restmonth'  && <CoachPhoneRestMonthHome />}
-      {tab === 'home' && phase === 'season'     && <CoachPhoneHomeTab onPlan={() => setShowPlan(true)} />}
+      {tab === 'home' && phase === 'season'     && <CoachPhoneHomeTab onPlan={() => setShowPlan(true)} onAsk={() => setAskOpen(true)} />}
       {tab === 'coming'   && <CoachPhoneComingTab />}
       {tab === 'messages' && <CoachPhoneMessagesTab />}
       {tab === 'game'     && <CoachPhoneGameTab />}

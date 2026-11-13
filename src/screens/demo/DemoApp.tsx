@@ -380,7 +380,7 @@ import DemoShellSandbox      from './DemoShellSandbox'
 import { TOURS, type RoleId } from './tours'
 import { readStore, writeStore, clearStore, storeHasData, sampleStore, type SandboxStore } from '../sandbox/sandboxStore'
 import { SandboxContext } from '../sandbox/SandboxContext'
-import { AskHome, AskMinimised, AskOpen, AskOpenFirst, AskPhoneButton, AskPhoneOpen } from '../AskCleanSheet'
+import { AskPhoneOpen } from '../AskCleanSheet'
 import { MessagesRules, CoachNewMessage, CoachMessages, CoachMessagesPersonCard, DirectorMessages, ParentMessages, ParentMessagesEmpty, ParentNewMessage, RefereeMessages } from '../MessagesScreens'
 import { AcademyTrainingWeek, AcademyTrainingSuggested, AcademySessionPlan, AcademyWhoComing, AcademyTrainingWeekEmpty } from '../AcademyTraining'
 import { RecordHub, RecordSaved, RecordHubEmpty } from '../RecordHub'
@@ -1392,13 +1392,8 @@ export function renderScreen(key: string): ReactNode {
     case 'ps2': case 'PS2-ParentNotifications': return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PS2ParentNotifications /></div>
     case 'ps3': case 'PS3-ParentData':         return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PS3ParentData /></div>
     case 'ps4': case 'PS4-PlayerMe':           return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PS4PlayerMe /></div>
-    // Ask Clean Sheet (sections 12–13)
-    case 'ASK1-HomeWithAsk':           return <AskHome onBack={noop} />
-    case 'ASK2-AskMinimised':          return <AskMinimised onBack={noop} />
-    case 'ASK3-AskOpen':               return <AskOpen onBack={noop} />
-    case 'ASK3e-AskOpenFirst':         return <AskOpenFirst onBack={noop} />
-    case 'ASKp1-PhoneAsk':             return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0' }}><AskPhoneButton onBack={noop} /></div>
-    case 'ASKp2-PhoneAskOpen':         return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0' }}><AskPhoneOpen onBack={noop} /></div>
+    // Ask phone sheet (still stands per spec)
+    case 'ASKp2-PhoneAskOpen': return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0' }}><AskPhoneOpen onBack={noop} /></div>
 
     // Messages (sections 14–15)
     case 'MSG0-WhoCanMessage':         return <MessagesRules onBack={noop} />
