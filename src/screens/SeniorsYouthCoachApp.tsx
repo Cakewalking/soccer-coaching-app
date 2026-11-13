@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { SENIORS_SQUAD_PLAYERS as SENIORS_SQUAD, YOUTH_SQUAD_PLAYERS as YOUTH_SQUAD } from '../data'
 import type { ReactNode } from 'react'
 import { AskLine } from './HomeScreen'
 import SquadScreen          from './SquadScreen'
@@ -446,7 +447,7 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
     }
   } else if (nav === 'squad') {
     switch (squadTab) {
-      case 0: content = <SquadScreen role="head" onPlayerProfile={() => {}} empty={sbEmpty} />; break
+      case 0: content = <SquadScreen role="head" onPlayerProfile={() => {}} empty={sbEmpty} players={teamType === 'seniors' ? SENIORS_SQUAD : YOUTH_SQUAD} />; break
       case 1: content = <SquadLineups noFrame />; break
       case 2: content = <DevGoalsScreen empty={sbEmpty} />; break
       case 3: content = <WellnessScreen empty={sbEmpty} />; break

@@ -7,6 +7,7 @@ interface Props {
   role: Role
   onPlayerProfile: (ini: string) => void
   empty?: boolean
+  players?: SquadPlayer[]
 }
 
 function AddPlayerForm({ onDone }: { onDone: () => void }) {
@@ -322,25 +323,26 @@ function RightPanel({ p, onProfile }: { p: SquadPlayer; onProfile: () => void })
   )
 }
 
-export default function SquadScreen({ onPlayerProfile, empty }: Props) {
+export default function SquadScreen({ onPlayerProfile, empty, players: propPlayers }: Props) {
   const { active: inSandbox } = useSandbox()
   if (empty || inSandbox) return <SquadEmpty />
+  const players = propPlayers ?? SQUAD_PLAYERS
   const [filter, setFilter] = useState<Filter>('all')
   const [selected, setSelected] = useState<SquadPlayer>(
-    SQUAD_PLAYERS.find(p => p.ini === 'EB')!
+    players.find(p => p.status === 'checkin' || p.status === 'missing') ?? players[0]
   )
   const [toast, setToast] = useState<string | null>(null)
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   const counts = {
-    all:    SQUAD_PLAYERS.length,
-    ready:  SQUAD_PLAYERS.filter(p => p.status === 'ready').length,
-    manage: SQUAD_PLAYERS.filter(p => p.status === 'manage').length,
-    checkin:SQUAD_PLAYERS.filter(p => p.status === 'checkin' || p.status === 'missing').length,
-    goals:  SQUAD_PLAYERS.filter(p => p.devGoalStatus === 'needs-work').length,
+    all:    players.length,
+    ready:  players.filter(p => p.status === 'ready').length,
+    manage: players.filter(p => p.status === 'manage').length,
+    checkin:players.filter(p => p.status === 'checkin' || p.status === 'missing').length,
+    goals:  players.filter(p => p.devGoalStatus === 'needs-work').length,
   }
 
-  const visible = SQUAD_PLAYERS.filter(p => {
+  const visible = players.filter(p => {
     if (filter === 'all')    return true
     if (filter === 'ready')  return p.status === 'ready'
     if (filter === 'manage') return p.status === 'manage'
@@ -358,9 +360,9 @@ export default function SquadScreen({ onPlayerProfile, empty }: Props) {
   ]
 
   // bottom stats
-  const devOnTrack = SQUAD_PLAYERS.filter(p => p.devGoalStatus === 'on-track').length
-  const wellnessAvg = (SQUAD_PLAYERS.filter(p => p.wellness).reduce((s, p) => s + (p.wellness ?? 0), 0) / SQUAD_PLAYERS.filter(p => p.wellness).length).toFixed(1)
-  const overloaded = SQUAD_PLAYERS.filter(p => p.load > 110)
+  const devOnTrack = players.filter(p => p.devGoalStatus === 'on-track').length
+  const wellnessAvg = (players.filter(p => p.wellness).reduce((s, p) => s + (p.wellness ?? 0), 0) / players.filter(p => p.wellness).length).toFixed(1)
+  const overloaded = players.filter(p => p.load > 110)
 
   return (
     <div style={{ flexGrow: 1, display: 'flex', overflow: 'hidden' }}>
@@ -397,7 +399,7 @@ export default function SquadScreen({ onPlayerProfile, empty }: Props) {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 2, marginBottom: 24 }}>
           {POS_GROUPS.map(group => {
             const players = visible.filter(p => p.posGroup === group)
-            const all = SQUAD_PLAYERS.filter(p => p.posGroup === group)
+            const all = players.filter(p => p.posGroup === group)
             return (
               <div key={group}>
                 <div style={{ padding: '0 10px 8px', display: 'flex', alignItems: 'center', gap: 8 }}>
