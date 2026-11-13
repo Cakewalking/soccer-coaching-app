@@ -465,6 +465,53 @@ import L1bLiveGameSub                  from '../step4/L1bLiveGameSub'
 import I1bInboxElla                    from '../step4/I1bInboxElla'
 import SPa1AcademyYear                 from '../step4/SPa1AcademyYear'
 
+// Step 4 — Features & Billing (PRM)
+import PRM1FeaturesByTeam             from '../step4/PRM1FeaturesByTeam'
+import PRM1eFeaturesEmpty             from '../step4/PRM1eFeaturesEmpty'
+import PRM2TurnOn                     from '../step4/PRM2TurnOn'
+import PRM3Bill                       from '../step4/PRM3Bill'
+import PRM4CoachOff                   from '../step4/PRM4CoachOff'
+import PRM6Usage                      from '../step4/PRM6Usage'
+// Step 4 — Files (FIL)
+import FIL1Files                      from '../step4/FIL1Files'
+import FIL1eFilesEmpty                from '../step4/FIL1eFilesEmpty'
+import FIL2Sheet                      from '../step4/FIL2Sheet'
+import FIL2bSheetLineup               from '../step4/FIL2bSheetLineup'
+import FIL3Doc                        from '../step4/FIL3Doc'
+import FIL3bDocParent                 from '../step4/FIL3bDocParent'
+import FIL4Share                      from '../step4/FIL4Share'
+import FIL5ClubFiles                  from '../step4/FIL5ClubFiles'
+import FIL6SignUp                     from '../step4/FIL6SignUp'
+import FIL7Form                       from '../step4/FIL7Form'
+import FILp1ParentFiles               from '../step4/FILp1ParentFiles'
+import FILp2ParentSignUp              from '../step4/FILp2ParentSignUp'
+import FILp3ParentForm                from '../step4/FILp3ParentForm'
+// Step 4 — Playing Up (PU)
+import PU1PlayingUp                   from '../step4/PU1PlayingUp'
+import PU1ePlayingUpEmpty             from '../step4/PU1ePlayingUpEmpty'
+import PU2PlayerReadiness             from '../step4/PU2PlayerReadiness'
+import PU3TrialPlan                   from '../step4/PU3TrialPlan'
+import PU4Compare                     from '../step4/PU4Compare'
+import PU5Settings                    from '../step4/PU5Settings'
+import PU6Review                      from '../step4/PU6Review'
+import PU7CoachView                   from '../step4/PU7CoachView'
+import PUp1ParentAsk                  from '../step4/PUp1ParentAsk'
+import PUp2PlayerAsk                  from '../step4/PUp2PlayerAsk'
+// Step 4 — Playing Down / Across (PX)
+import PX1PlayingDown                 from '../step4/PX1PlayingDown'
+import PX2LateDeveloper               from '../step4/PX2LateDeveloper'
+import PX3BandedNight                 from '../step4/PX3BandedNight'
+import PXp1ParentDown                 from '../step4/PXp1ParentDown'
+// Step 4 — Learn (EDU)
+import EDU1Learn                      from '../step4/EDU1Learn'
+import EDU1eLearnEmpty                from '../step4/EDU1eLearnEmpty'
+import EDU2Lesson                     from '../step4/EDU2Lesson'
+import EDU3MakeLesson                 from '../step4/EDU3MakeLesson'
+import EDU4ClubLibrary                from '../step4/EDU4ClubLibrary'
+import EDU5CoachCorner                from '../step4/EDU5CoachCorner'
+import EDU6CoachPaths                 from '../step4/EDU6CoachPaths'
+import EDUp1PlayerLearn               from '../step4/EDUp1PlayerLearn'
+
 type DemoView = 'signin' | 'start' | 'why' | 'tour' | 'lookaround' | 'sandbox' | 'sandboxlook' | 'nosandbox' | 'notfound' | 'noaccess'
 
 const SANDBOX_KEY = 'cs_demo_sandbox_v1'
@@ -1509,6 +1556,53 @@ export function renderScreen(key: string): ReactNode {
     case 'I1b-InboxElla':                  return <I1bInboxElla />
     // Academy owner football year (tablet)
     case 'SPa1-AcademyYear':               return <SPa1AcademyYear />
+
+    // Features & Billing (PRM)
+    case 'PRM1-FeaturesByTeam':   return <PRM1FeaturesByTeam />
+    case 'PRM1e-FeaturesEmpty':   return <PRM1eFeaturesEmpty />
+    case 'PRM2-TurnOn':           return <PRM2TurnOn onClose={noop} onConfirm={noop} />
+    case 'PRM3-Bill':             return <PRM3Bill onBack={noop} />
+    case 'PRM4-CoachOff':         return <PRM4CoachOff />
+    case 'PRM6-Usage':            return <PRM6Usage onBack={noop} />
+    // Files (FIL)
+    case 'FIL1-Files':            return <FIL1Files onOpenSheet={noop} onOpenDoc={noop} />
+    case 'FIL1e-FilesEmpty':      return <FIL1eFilesEmpty />
+    case 'FIL2-Sheet':            return <FIL2Sheet onLineupView={noop} onShare={noop} />
+    case 'FIL2b-SheetLineup':     return <FIL2bSheetLineup onTableView={noop} onShare={noop} />
+    case 'FIL3-Doc':              return <FIL3Doc onParentView={noop} onShare={noop} />
+    case 'FIL3b-DocParent':       return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><FIL3bDocParent onBack={noop} /></div>
+    case 'FIL4-Share':            return <FIL4Share onClose={noop} />
+    case 'FIL5-ClubFiles':        return <FIL5ClubFiles />
+    case 'FIL6-SignUp':           return <FIL6SignUp />
+    case 'FIL7-Form':             return <FIL7Form />
+    case 'FILp1-ParentFiles':     return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><FILp1ParentFiles /></div>
+    case 'FILp2-ParentSignUp':    return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><FILp2ParentSignUp /></div>
+    case 'FILp3-ParentForm':      return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><FILp3ParentForm /></div>
+    // Playing Up (PU)
+    case 'PU1-PlayingUp':         return <PU1PlayingUp onPlayer={noop} onNominate={noop} />
+    case 'PU1e-PlayingUpEmpty':   return <PU1ePlayingUpEmpty />
+    case 'PU2-PlayerReadiness':   return <PU2PlayerReadiness onBack={noop} onCompare={noop} onTrial={noop} />
+    case 'PU3-TrialPlan':         return <PU3TrialPlan onBack={noop} />
+    case 'PU4-Compare':           return <PU4Compare onBack={noop} />
+    case 'PU5-Settings':          return <PU5Settings onBack={noop} />
+    case 'PU6-Review':            return <PU6Review onBack={noop} />
+    case 'PU7-CoachView':         return <PU7CoachView onBack={noop} />
+    case 'PUp1-ParentAsk':        return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PUp1ParentAsk /></div>
+    case 'PUp2-PlayerAsk':        return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PUp2PlayerAsk /></div>
+    // Playing Down / Across (PX)
+    case 'PX1-PlayingDown':       return <PX1PlayingDown onPlayer={noop} onBandedNight={noop} />
+    case 'PX2-LateDeveloper':     return <PX2LateDeveloper onBack={noop} />
+    case 'PX3-BandedNight':       return <PX3BandedNight onBack={noop} />
+    case 'PXp1-ParentDown':       return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PXp1ParentDown /></div>
+    // Learn (EDU)
+    case 'EDU1-Learn':            return <EDU1Learn onLesson={noop} onMakeLesson={noop} />
+    case 'EDU1e-LearnEmpty':      return <EDU1eLearnEmpty onMakeLesson={noop} />
+    case 'EDU2-Lesson':           return <EDU2Lesson onBack={noop} onShare={noop} />
+    case 'EDU3-MakeLesson':       return <EDU3MakeLesson onBack={noop} />
+    case 'EDU4-ClubLibrary':      return <EDU4ClubLibrary onLesson={noop} onMakeLesson={noop} />
+    case 'EDU5-CoachCorner':      return <EDU5CoachCorner onLesson={noop} />
+    case 'EDU6-CoachPaths':       return <EDU6CoachPaths onBack={noop} />
+    case 'EDUp1-PlayerLearn':     return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><EDUp1PlayerLearn /></div>
 
     default:
       return (
