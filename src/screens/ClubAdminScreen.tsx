@@ -19,7 +19,7 @@ import GoalkeepersTab from './clubadmin/GoalkeepersTab'
 import SP18ClubPhases from './footballyear/SP18ClubPhases'
 import SP19TrialWindow from './footballyear/SP19TrialWindow'
 
-export default function ClubAdminScreen({ empty, role = 'chair', initials = 'RM', initialTab = 'club' }: { empty?: boolean; role?: 'chair' | 'dof' | 'welfare'; initials?: string; initialTab?: AdminTab }) {
+export default function ClubAdminScreen({ empty, role = 'chair', initials = 'RM', initialTab = 'club', onNav }: { empty?: boolean; role?: 'chair' | 'dof' | 'welfare'; initials?: string; initialTab?: AdminTab; onNav?: (s: string) => void }) {
   const safeInitial: AdminTab = initialTab === 'welfare' && role !== 'welfare' ? 'club' : initialTab
   const [tab, setTab] = useState<AdminTab>(safeInitial)
   const [askOpen, setAskOpen] = useState(false)
@@ -98,7 +98,7 @@ export default function ClubAdminScreen({ empty, role = 'chair', initials = 'RM'
           {tab === 'club'         && <ClubTab role={role === 'welfare' ? 'chair' : role} empty={empty} />}
           {tab === 'teams'        && <TeamsTab empty={empty} />}
           {tab === 'coaches'      && <CoachesTab empty={empty} />}
-          {tab === 'players'      && <PlayersTab empty={empty} />}
+          {tab === 'players'      && <PlayersTab empty={empty} onNav={onNav} />}
           {tab === 'safeguarding' && <SafeguardingTab empty={empty} />}
           {tab === 'reports'      && <ReportsTab empty={empty} />}
           {tab === 'rules'        && <ClubRulesTab empty={empty} />}

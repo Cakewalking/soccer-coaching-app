@@ -229,27 +229,27 @@ function NominationsView() {
 }
 
 type PUDot = 'full' | 'ring' | 'empty'
-type PUPlayer = { initials: string; bg: string; name: string; from: string; to: string; sub: string; dots: [PUDot,PUDot,PUDot,PUDot,PUDot]; status: string; statusColor: string }
+type PUPlayer = { initials: string; bg: string; name: string; from: string; to: string; sub: string; dots: [PUDot,PUDot,PUDot,PUDot,PUDot]; status: string; statusColor: string; target?: string }
 const DOT_LABELS = ['Football', 'Body', 'Head', 'Settling in', 'Load']
 
 function PUDotMark({ d, label }: { d: PUDot; label: string }) {
   return <div title={label} aria-label={label} style={{ width: 14, height: 14, borderRadius: '50%', border: `2px solid ${d === 'empty' ? '#c8d4d0' : G}`, background: d === 'full' ? G : 'transparent', flexShrink: 0 }} />
 }
 
-function PlayingAcrossView() {
+function PlayingAcrossView({ onNav }: { onNav?: (s: string) => void }) {
   const [ageFilter, setAgeFilter] = useState<'All ages' | 'Girls' | 'Boys'>('All ages')
   const [segment, setSegment] = useState<'up' | 'down' | 'mixed'>('up')
   const [toast, setToast] = useState<string | null>(null)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 2500) }
 
   const worthLook: PUPlayer[] = [
-    { initials: 'MT', bg: '#7a9e7e', name: 'Mia Tran', from: 'U12 Sam', to: 'U13 Girls Meg', sub: 'Sam nominated her too · strong for 8 weeks', dots: ['full','full','full','ring','full'], status: 'Ready to try', statusColor: G },
-    { initials: 'TA', bg: '#8fa09b', name: 'Tane Waru', from: 'U14 Josh', to: 'U16 Ollie', sub: 'Head: coach has not answered yet', dots: ['full','full','ring','empty','ring'], status: 'Needs a view', statusColor: WARN },
-    { initials: 'ZP', bg: '#c0a070', name: 'Zoe Park', from: 'U11 Luke', to: 'U12 Girls Ana', sub: 'Would be her third team this year', dots: ['full','ring','ring','ring','ring'], status: 'Talk first', statusColor: MUT },
+    { initials: 'MT', bg: '#7a9e7e', name: 'Mia Tran', from: 'U12 Sam', to: 'U13 Girls Meg', sub: 'Sam nominated her too · strong for 8 weeks', dots: ['full','full','full','ring','full'], status: 'Ready to try', statusColor: G, target: 'PU2-PlayerReadiness' },
+    { initials: 'TA', bg: '#8fa09b', name: 'Tane Waru', from: 'U14 Josh', to: 'U16 Ollie', sub: 'Head: coach has not answered yet', dots: ['full','full','ring','empty','ring'], status: 'Needs a view', statusColor: WARN, target: 'PU2-PlayerReadiness' },
+    { initials: 'ZP', bg: '#c0a070', name: 'Zoe Park', from: 'U11 Luke', to: 'U12 Girls Ana', sub: 'Would be her third team this year', dots: ['full','ring','ring','ring','ring'], status: 'Talk first', statusColor: MUT, target: 'PU2-PlayerReadiness' },
   ]
   const playingNow: PUPlayer[] = [
-    { initials: 'LC', bg: '#6b9eab', name: 'Leo Costa', from: 'U13 Chris', to: 'U14 Josh', sub: 'Week 3 of 4 · training up, playing his own age', dots: ['full','full','full','full','ring'], status: 'Review 18 Jun', statusColor: G },
-    { initials: 'AW', bg: '#a09080', name: 'Ava Walsh', from: 'U12 Sam', to: 'U13 Girls Meg', sub: 'Moved up in May · check-in every 6 weeks', dots: ['full','full','full','full','full'], status: 'Going well', statusColor: G },
+    { initials: 'LC', bg: '#6b9eab', name: 'Leo Costa', from: 'U13 Chris', to: 'U14 Josh', sub: 'Week 3 of 4 · training up, playing his own age', dots: ['full','full','full','full','ring'], status: 'Review 18 Jun', statusColor: G, target: 'PU3-TrialPlan' },
+    { initials: 'AW', bg: '#a09080', name: 'Ava Walsh', from: 'U12 Sam', to: 'U13 Girls Meg', sub: 'Moved up in May · check-in every 6 weeks', dots: ['full','full','full','full','full'], status: 'Going well', statusColor: G, target: 'PU3-TrialPlan' },
   ]
   const heldBack: PUPlayer[] = [
     { initials: 'NO', bg: '#c05050', name: 'Noah Okafor', from: 'U14 Josh', to: '', sub: 'Growing fast, knee pain. Looked at in 8 weeks.', dots: ['full','empty','full','full','ring'], status: '', statusColor: '' },
@@ -257,7 +257,7 @@ function PlayingAcrossView() {
 
   function PUPlayerRow({ p }: { p: PUPlayer }) {
     return (
-      <div onClick={() => st(`Opening ${p.name}'s readiness profile.`)} style={{ display: 'flex', alignItems: 'center', padding: '12px 0', borderBottom: `1px solid ${LN}`, cursor: 'pointer', gap: 12 }}
+      <div onClick={() => p.target ? onNav?.(p.target) : st(`Opening ${p.name}'s readiness profile.`)} style={{ display: 'flex', alignItems: 'center', padding: '12px 0', borderBottom: `1px solid ${LN}`, cursor: 'pointer', gap: 12 }}
         onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = '#eef5f2' }}
         onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = 'transparent' }}
       >
@@ -385,7 +385,7 @@ function PlayingAcrossView() {
   )
 }
 
-export default function PlayersTab({ empty }: { empty?: boolean }) {
+export default function PlayersTab({ empty, onNav }: { empty?: boolean; onNav?: (s: string) => void }) {
   const [view, setView] = useState<PlayersView>('overview')
   const [toast, setToast] = useState<string|null>(null)
   function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
@@ -517,7 +517,7 @@ export default function PlayersTab({ empty }: { empty?: boolean }) {
         </div>
       )}
 
-      {view === 'playingacross' && (empty ? <EmptyCard {...PLAYERS_EMPTY.playingacross!} footer={FOOTER_DEFAULT} /> : <PlayingAcrossView />)}
+      {view === 'playingacross' && (empty ? <EmptyCard {...PLAYERS_EMPTY.playingacross!} footer={FOOTER_DEFAULT} /> : <PlayingAcrossView onNav={onNav} />)}
 
       {view === 'registrations' && (
         <div style={p}>

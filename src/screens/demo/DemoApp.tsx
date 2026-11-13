@@ -669,6 +669,12 @@ function SP10HomePostSeasonNav() {
   if (inner) return <>{renderScreen(inner)}</>
   return <SP10HomePostSeason onNav={(s) => setInner(s)} />
 }
+function ClubAdminScreenNav({ role, initials, initialTab, empty }: { role?: 'chair'|'dof'|'welfare'; initials?: string; initialTab?: string; empty?: boolean }) {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <ClubAdminScreen role={role} initials={initials} initialTab={initialTab as Parameters<typeof ClubAdminScreen>[0]['initialTab']} empty={empty} onNav={(s) => setInner(s)} />
+}
+
 function PU1PlayingUpNav() {
   const [inner, setInner] = useState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
@@ -1086,11 +1092,11 @@ function renderScreenInner(key: string): ReactNode {
     case 'fitnesscoach':
       return <FitnessCoachScreen empty={false} />
     case 'clubadmin':
-      return <ClubAdminScreen empty={false} role="dof" initials="RM" />
+      return <ClubAdminScreenNav empty={false} role="dof" initials="RM" />
     case 'chair-home':
-      return <ClubAdminScreen empty={false} role="chair" initials="GL" />
+      return <ClubAdminScreenNav empty={false} role="chair" initials="GL" />
     case 'welfare-home':
-      return <ClubAdminScreen empty={false} role="welfare" initials="HP" initialTab="welfare" />
+      return <ClubAdminScreenNav empty={false} role="welfare" initials="HP" initialTab="welfare" />
     case 'teammanager':
       return <TeamManagerScreen empty={false} />
     case 'twochildren':
