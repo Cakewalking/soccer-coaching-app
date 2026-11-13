@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
+const GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 export default function PRM2TurnOn({ onNav }: { onNav?: (s: string) => void }) {
   const [lastTool, setLastTool] = useState('')
