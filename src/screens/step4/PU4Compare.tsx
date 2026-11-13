@@ -23,7 +23,7 @@ function CompareRow({ r }: { r: Row }) {
   )
 }
 
-export default function PU4Compare({ onBack }: { onBack?: () => void }) {
+export default function PU4Compare({ onBack, onTrial }: { onBack?: () => void; onTrial?: () => void }) {
   const [posFilter, setPosFilter] = useState(false)
   const bodyRows: Row[] = [
     { label: 'Top speed', val: '24.1 km/h', pct: 0.72, tag: 'Upper third', tagColor: G },
@@ -119,7 +119,7 @@ export default function PU4Compare({ onBack }: { onBack?: () => void }) {
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 20px' }}>
             <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 8 }}>The best evidence</div>
             <div style={{ fontSize: 12, color: MUT, lineHeight: 1.5 }}>2 guest sessions with the U13s. As they flag, once a trial starts, they replace the own-age numbers as the main view.</div>
-            <button onClick={() => onBack?.()} style={{ marginTop: 10, height: 32, padding: '0 14px', borderRadius: 999, background: PALE, border: 'none', fontSize: 12, color: G, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Plan a trial →</button>
+            <button onClick={() => onTrial?.()} style={{ marginTop: 10, height: 32, padding: '0 14px', borderRadius: 999, background: PALE, border: 'none', fontSize: 12, color: G, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Plan a trial →</button>
           </div>
           <div style={{ background: '#fffbeb', border: '1.5px solid #fde68a', borderRadius: 14, padding: '14px' }}>
             <div style={{ fontSize: 12, fontWeight: 700, color: '#92400e', marginBottom: 6 }}>Read with care</div>

@@ -512,7 +512,7 @@ import EDU5CoachCorner                from '../step4/EDU5CoachCorner'
 import EDU6CoachPaths                 from '../step4/EDU6CoachPaths'
 import EDUp1PlayerLearn               from '../step4/EDUp1PlayerLearn'
 
-type DemoView = 'signin' | 'start' | 'why' | 'tour' | 'lookaround' | 'sandbox' | 'sandboxlook' | 'nosandbox' | 'notfound' | 'noaccess'
+type DemoView = 'signin' | 'start' | 'why' | 'tour' | 'lookaround' | 'sandbox' | 'sandboxlook' | 'nosandbox' | 'notfound' | 'noaccess' | 'screendirect'
 
 const SANDBOX_KEY = 'cs_demo_sandbox_v1'
 
@@ -643,8 +643,58 @@ function SP10HomePostSeasonNav() {
   if (inner) return <>{renderScreen(inner)}</>
   return <SP10HomePostSeason onNav={(s) => setInner(s)} />
 }
+function PU1PlayingUpNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <PU1PlayingUp onPlayer={() => setInner('PU2-PlayerReadiness')} onNominate={noop} onSettings={() => setInner('PU5-Settings')} />
+}
+function PU2PlayerReadinessNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <PU2PlayerReadiness onBack={() => setInner('PU1-PlayingUp')} onCompare={() => setInner('PU4-Compare')} onTrial={() => setInner('PU3-TrialPlan')} />
+}
+function PU3TrialPlanNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <PU3TrialPlan onBack={() => setInner('PU2-PlayerReadiness')} />
+}
+function PU4CompareNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <PU4Compare onBack={() => setInner('PU2-PlayerReadiness')} onTrial={() => setInner('PU3-TrialPlan')} />
+}
+function PU5SettingsNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <PU5Settings onBack={() => setInner('PU1-PlayingUp')} />
+}
+function PU6ReviewNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <PU6Review onBack={() => setInner('PU1-PlayingUp')} />
+}
+function PU7CoachViewNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <PU7CoachView onBack={() => setInner('PU1-PlayingUp')} />
+}
+function PX1PlayingDownNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <PX1PlayingDown onPlayer={() => setInner('PX2-LateDeveloper')} onBandedNight={() => setInner('PX3-BandedNight')} />
+}
+function PX2LateDeveloperNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <PX2LateDeveloper onBack={() => setInner('PX1-PlayingDown')} />
+}
+function PX3BandedNightNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <PX3BandedNight onBack={() => setInner('PX1-PlayingDown')} />
+}
 
-export function renderScreen(key: string): ReactNode {
+function renderScreenInner(key: string): ReactNode {
   switch (key) {
     case 'juniorcoach':
       return <JuniorCoachApp />
@@ -1646,20 +1696,20 @@ export function renderScreen(key: string): ReactNode {
     case 'FILp2-ParentSignUp':    return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><FILp2ParentSignUp /></div>
     case 'FILp3-ParentForm':      return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><FILp3ParentForm /></div>
     // Playing Up (PU)
-    case 'PU1-PlayingUp':         return <PU1PlayingUp onPlayer={noop} onNominate={noop} />
+    case 'PU1-PlayingUp':         return <PU1PlayingUpNav />
     case 'PU1e-PlayingUpEmpty':   return <PU1ePlayingUpEmpty />
-    case 'PU2-PlayerReadiness':   return <PU2PlayerReadiness onBack={noop} onCompare={noop} onTrial={noop} />
-    case 'PU3-TrialPlan':         return <PU3TrialPlan onBack={noop} />
-    case 'PU4-Compare':           return <PU4Compare onBack={noop} />
-    case 'PU5-Settings':          return <PU5Settings onBack={noop} />
-    case 'PU6-Review':            return <PU6Review onBack={noop} />
-    case 'PU7-CoachView':         return <PU7CoachView onBack={noop} />
+    case 'PU2-PlayerReadiness':   return <PU2PlayerReadinessNav />
+    case 'PU3-TrialPlan':         return <PU3TrialPlanNav />
+    case 'PU4-Compare':           return <PU4CompareNav />
+    case 'PU5-Settings':          return <PU5SettingsNav />
+    case 'PU6-Review':            return <PU6ReviewNav />
+    case 'PU7-CoachView':         return <PU7CoachViewNav />
     case 'PUp1-ParentAsk':        return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PUp1ParentAsk /></div>
     case 'PUp2-PlayerAsk':        return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PUp2PlayerAsk /></div>
     // Playing Down / Across (PX)
-    case 'PX1-PlayingDown':       return <PX1PlayingDown onPlayer={noop} onBandedNight={noop} />
-    case 'PX2-LateDeveloper':     return <PX2LateDeveloper onBack={noop} />
-    case 'PX3-BandedNight':       return <PX3BandedNight onBack={noop} />
+    case 'PX1-PlayingDown':       return <PX1PlayingDownNav />
+    case 'PX2-LateDeveloper':     return <PX2LateDeveloperNav />
+    case 'PX3-BandedNight':       return <PX3BandedNightNav />
     case 'PXp1-ParentDown':       return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PXp1ParentDown /></div>
     // Learn (EDU)
     case 'EDU1-Learn':            return <EDU1Learn onLesson={noop} onMakeLesson={noop} />
@@ -1680,7 +1730,12 @@ export function renderScreen(key: string): ReactNode {
   }
 }
 
+export function renderScreen(key: string): ReactNode {
+  return <div data-screen={key}>{renderScreenInner(key)}</div>
+}
+
 function viewToPath(view: DemoView, role: RoleId, screen?: string): string {
+  if (view === 'screendirect') return screen ? `/__screen/${screen}` : '/__screen'
   if (view === 'lookaround')  return screen ? `/look/${role}/${screen}` : `/look/${role}`
   if (view === 'tour')        return screen ? `/tour/${role}/${screen}` : `/tour/${role}`
   if (view === 'sandboxlook') return screen ? `/sandbox/${role}/${screen}` : `/sandbox/${role}`
@@ -1723,6 +1778,8 @@ function pathToState(path: string): { view: DemoView; role: RoleId; screen?: str
   if (m2) return m2[1] in TOURS ? { view: 'tour', role: m2[1] as RoleId, screen: m2[2] } : { view: 'notfound', role: 'coach' }
   const m3 = path.match(/^\/sandbox\/([a-z0-9]+)(?:\/(.+))?$/)
   if (m3) return m3[1] in TOURS ? { view: 'sandboxlook', role: m3[1] as RoleId, screen: m3[2] } : { view: 'notfound', role: 'coach' }
+  const m4 = path.match(/^\/__screen\/([A-Za-z0-9_-]+)$/)
+  if (m4) return { view: 'screendirect', role: 'coach', screen: m4[1] }
   return { view: 'notfound', role: 'coach' }
 }
 
@@ -1791,6 +1848,10 @@ export default function DemoApp() {
         onDemo={() => setView('start')}
       />
     )
+  }
+
+  if (view === 'screendirect' && screen) {
+    return <>{renderScreen(screen)}</>
   }
 
   if (view === 'notfound') {

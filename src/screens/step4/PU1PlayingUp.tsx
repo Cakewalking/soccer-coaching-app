@@ -13,7 +13,7 @@ function DotMark({ d, label }: { d: Dot; label: string }) {
 
 const DOT_LABELS = ['Football', 'Body', 'Head', 'Settling in', 'Load']
 
-export default function PU1PlayingUp({ onPlayer, onNominate }: { onPlayer?: () => void; onNominate?: () => void }) {
+export default function PU1PlayingUp({ onPlayer, onNominate, onSettings }: { onPlayer?: () => void; onNominate?: () => void; onSettings?: () => void }) {
   const [ageFilter, setAgeFilter] = useState<'All ages' | 'Girls' | 'Boys'>('All ages')
   const [toast, setToast] = useState<string | null>(null)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 2500) }
@@ -84,7 +84,7 @@ export default function PU1PlayingUp({ onPlayer, onNominate }: { onPlayer?: () =
               <div style={{ fontSize: 13, color: MUT }}>Wattle Creek FC · 192 players looked at each Monday</div>
             </div>
             <div style={{ marginLeft: 'auto', display: 'flex', gap: 10 }}>
-              <button onClick={() => st('Opening what the club counts.')} style={{ height: 36, padding: '0 16px', borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 13, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>What the club counts</button>
+              <button onClick={() => onSettings ? onSettings() : st('Opening what the club counts.')} style={{ height: 36, padding: '0 16px', borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 13, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>What the club counts</button>
               <button onClick={() => onNominate?.()} style={{ height: 36, padding: '0 16px', borderRadius: 999, background: G, color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Nominate a player</button>
             </div>
           </div>
