@@ -25,7 +25,7 @@ export const TOURS: Record<string, TourDef> = {
     roleLabel: "Coach \u00b7 Juniors, under 12 and under 13",
     persona: "as Sam K, U12 Sam",
     device: 'tablet',
-    total: 57,
+    total: 69,
     home: 'juniorcoach',
     sandboxHome: 'home-e',
     sections: [
@@ -88,6 +88,22 @@ export const TOURS: Record<string, TourDef> = {
         { label: "Photos, videos and files", caption: "Everything a team does in a messaging app, in one place: a group chat with polls, photos, videos and voice notes, and a separate channel for announcements. Polls fill in who\u2019s coming. Nobody\u2019s phone number is shared.", screen: "CH6-Media" },
         { label: "Message actions", caption: "Everything a team does in a messaging app, in one place: a group chat with polls, photos, videos and voice notes, and a separate channel for announcements. Polls fill in who\u2019s coming. Nobody\u2019s phone number is shared.", screen: "CH9-MessageActions" },
         { label: "Set up: who can post", caption: "Everything a team does in a messaging app, in one place: a group chat with polls, photos, videos and voice notes, and a separate channel for announcements. Polls fill in who\u2019s coming. Nobody\u2019s phone number is shared.", screen: "CH3-NewChat" },
+      ]},
+      { title: "Files", steps: [
+        { label: "Files", caption: "Docs, team sheets, sign-up sheets and forms \u2014 shared with the right people. Live updates mean families always see the latest version.", screen: "FIL1-Files" },
+        { label: "Team sheet", caption: "Docs, team sheets, sign-up sheets and forms \u2014 shared with the right people. Live updates mean families always see the latest version.", screen: "FIL2-Sheet" },
+        { label: "Line-up view", caption: "Docs, team sheets, sign-up sheets and forms \u2014 shared with the right people. Live updates mean families always see the latest version.", screen: "FIL2b-SheetLineup" },
+        { label: "Doc", caption: "Docs, team sheets, sign-up sheets and forms \u2014 shared with the right people. Live updates mean families always see the latest version.", screen: "FIL3-Doc" },
+        { label: "As a parent sees it", caption: "Docs, team sheets, sign-up sheets and forms \u2014 shared with the right people. Live updates mean families always see the latest version.", screen: "FIL3b-DocParent" },
+        { label: "Share settings", caption: "Docs, team sheets, sign-up sheets and forms \u2014 shared with the right people. Live updates mean families always see the latest version.", screen: "FIL4-Share" },
+        { label: "Sign-up sheet", caption: "Docs, team sheets, sign-up sheets and forms \u2014 shared with the right people. Live updates mean families always see the latest version.", screen: "FIL6-SignUp" },
+        { label: "Form", caption: "Docs, team sheets, sign-up sheets and forms \u2014 shared with the right people. Live updates mean families always see the latest version.", screen: "FIL7-Form" },
+      ]},
+      { title: "Learn", steps: [
+        { label: "Learn tab", caption: "Short clips of your own players showing a skill done well, with what to notice and something to try. Made in two minutes from a clip you already have.", screen: "EDU1-Learn" },
+        { label: "A lesson", caption: "Short clips of your own players showing a skill done well, with what to notice and something to try. Made in two minutes from a clip you already have.", screen: "EDU2-Lesson" },
+        { label: "Make a lesson from a clip", caption: "Short clips of your own players showing a skill done well, with what to notice and something to try. Made in two minutes from a clip you already have.", screen: "EDU3-MakeLesson" },
+        { label: "Coach\u2019s Corner", caption: "Short reads for coaches: game model, player welfare, session design and working with parents. Five minutes before training.", screen: "EDU5-CoachCorner" },
       ]},
       { title: "Game day", steps: [
         { label: "Home on game day", caption: "Game day: the team sheet, the talk, and fair minutes for every player.", screen: "T1g-HomeGameDay" },
@@ -440,7 +456,7 @@ export const TOURS: Record<string, TourDef> = {
     roleLabel: "Director of football",
     persona: "as Rachel M",
     device: 'tablet',
-    total: 23,
+    total: 40,
     home: 'clubadmin',
     sandboxHome: 'director-e',
     sections: [
@@ -463,6 +479,7 @@ export const TOURS: Record<string, TourDef> = {
         { label: "Courses", caption: "Coaches\u2019 checks, courses and meetings in one place.", screen: "DT1-Courses" },
         { label: "Coach meeting", caption: "Coaches\u2019 checks, courses and meetings in one place.", screen: "DM1-CoachMeeting" },
         { label: "Goalkeepers", caption: "Coaches\u2019 checks, courses and meetings in one place.", screen: "goalkeeper" },
+        { label: "Coach learning paths", caption: "Track each coach through their learning modules. Nudge when someone is stuck.", screen: "EDU6-CoachPaths" },
       ]},
       { title: "Players", steps: [
         { label: "Players", caption: "Across the club: fair game time, who\u2019s ready for more, and moves between teams.", screen: "D4-Players" },
@@ -471,6 +488,26 @@ export const TOURS: Record<string, TourDef> = {
         { label: "Moves", caption: "Across the club: fair game time, who\u2019s ready for more, and moves between teams.", screen: "FM1-Moves" },
         { label: "Dispensations", caption: "Across the club: fair game time, who\u2019s ready for more, and moves between teams.", screen: "FD3-Dispensations" },
         { label: "Girls and women", caption: "Across the club: fair game time, who\u2019s ready for more, and moves between teams.", screen: "FW1-GirlsWomen" },
+      ]},
+      { title: "Playing across", steps: [
+        { label: "Playing up: list", caption: "Players ready for more challenge, based on football, physical and wellbeing evidence \u2014 not just the coach\u2019s hunch.", screen: "PU1-PlayingUp" },
+        { label: "Player readiness: 6 areas", caption: "Players ready for more challenge, based on football, physical and wellbeing evidence \u2014 not just the coach\u2019s hunch.", screen: "PU2-PlayerReadiness" },
+        { label: "Compare to the older group", caption: "Players ready for more challenge, based on football, physical and wellbeing evidence \u2014 not just the coach\u2019s hunch.", screen: "PU4-Compare" },
+        { label: "Trial plan", caption: "Players ready for more challenge, based on football, physical and wellbeing evidence \u2014 not just the coach\u2019s hunch.", screen: "PU3-TrialPlan" },
+        { label: "Trial review", caption: "Players ready for more challenge, based on football, physical and wellbeing evidence \u2014 not just the coach\u2019s hunch.", screen: "PU6-Review" },
+        { label: "Late developers: playing down", caption: "Growing later than their year. One training night a week in a matched group \u2014 they stay in their own team for games.", screen: "PX1-PlayingDown" },
+        { label: "Late developer: 6 areas", caption: "Growing later than their year. One training night a week in a matched group \u2014 they stay in their own team for games.", screen: "PX2-LateDeveloper" },
+        { label: "Mixed-age session", caption: "Growing later than their year. One training night a week in a matched group \u2014 they stay in their own team for games.", screen: "PX3-BandedNight" },
+        { label: "What the system looks at", caption: "Adjust the thresholds the club uses for playing across.", screen: "PU5-Settings" },
+      ]},
+      { title: "Files", steps: [
+        { label: "Club files", caption: "Documents the whole club shares: sent to families, opened counts, nudge the ones who haven\u2019t read it.", screen: "FIL5-ClubFiles" },
+      ]},
+      { title: "Features and billing", steps: [
+        { label: "Features by team", caption: "Turn add-ons on or off per team. Only pay for what each team actually uses.", screen: "PRM1-FeaturesByTeam" },
+        { label: "Monthly bill", caption: "Turn add-ons on or off per team. Only pay for what each team actually uses.", screen: "PRM3-Bill" },
+        { label: "Coach sees a feature is off", caption: "A coach whose feature is off sees why the club turned it off, and how to ask for it.", screen: "PRM4-CoachOff" },
+        { label: "Usage", caption: "See which teams are actually using what they\u2019re paying for.", screen: "PRM6-Usage" },
       ]},
       { title: "Season", steps: [
         { label: "Grading", caption: "The big jobs once a year: grading, trials and rolling teams over.", screen: "FG1-Grading" },
