@@ -25,7 +25,7 @@ export const TOURS: Record<string, TourDef> = {
     roleLabel: "Coach \u00b7 Juniors, under 12 and under 13",
     persona: "as Sam K, U12 Sam",
     device: 'tablet',
-    total: 69,
+    total: 72,
     home: 'juniorcoach',
     sandboxHome: 'home-e',
     sections: [
@@ -91,6 +91,7 @@ export const TOURS: Record<string, TourDef> = {
       ]},
       { title: "Files", steps: [
         { label: "Files", caption: "Docs, team sheets, sign-up sheets and forms \u2014 shared with the right people. Live updates mean families always see the latest version.", screen: "FIL1-Files" },
+        { label: "Before any files", caption: "What the coach sees the first time. Four file types explained; two ways to start.", screen: "FIL1e-FilesEmpty" },
         { label: "Team sheet", caption: "Docs, team sheets, sign-up sheets and forms \u2014 shared with the right people. Live updates mean families always see the latest version.", screen: "FIL2-Sheet" },
         { label: "Line-up view", caption: "Docs, team sheets, sign-up sheets and forms \u2014 shared with the right people. Live updates mean families always see the latest version.", screen: "FIL2b-SheetLineup" },
         { label: "Doc", caption: "Docs, team sheets, sign-up sheets and forms \u2014 shared with the right people. Live updates mean families always see the latest version.", screen: "FIL3-Doc" },
@@ -100,6 +101,7 @@ export const TOURS: Record<string, TourDef> = {
         { label: "Form", caption: "Docs, team sheets, sign-up sheets and forms \u2014 shared with the right people. Live updates mean families always see the latest version.", screen: "FIL7-Form" },
       ]},
       { title: "Learn", steps: [
+        { label: "Before any lessons", caption: "Empty state: three-step explainer and two ways to start.", screen: "EDU1e-LearnEmpty" },
         { label: "Learn tab", caption: "Short clips of your own players showing a skill done well, with what to notice and something to try. Made in two minutes from a clip you already have.", screen: "EDU1-Learn" },
         { label: "A lesson", caption: "Short clips of your own players showing a skill done well, with what to notice and something to try. Made in two minutes from a clip you already have.", screen: "EDU2-Lesson" },
         { label: "Make a lesson from a clip", caption: "Short clips of your own players showing a skill done well, with what to notice and something to try. Made in two minutes from a clip you already have.", screen: "EDU3-MakeLesson" },
@@ -119,6 +121,7 @@ export const TOURS: Record<string, TourDef> = {
         { label: "Wellness", caption: "Each player has one goal, checked after every game. No rankings.", screen: "wellness" },
         { label: "Inbox", caption: "Each player has one goal, checked after every game. No rankings.", screen: "inbox" },
         { label: "End-of-season summary per player", caption: "At the end of the season: one page for each player, drafted for the coach.", screen: "seasons" },
+        { label: "Playing across: coach’s view", caption: "Three questions only the coach can answer. A ‘no’ with a reason is a valid answer.", screen: "PU7-CoachView" },
       ]},
     ],
   },
@@ -360,7 +363,7 @@ export const TOURS: Record<string, TourDef> = {
     roleLabel: "Parent or carer",
     persona: "as Linh Tran, Mia's mum",
     device: 'phone',
-    total: 25,
+    total: 31,
     home: 'twochildren',
     sandboxHome: 'parent-e',
     sections: [
@@ -386,6 +389,9 @@ export const TOURS: Record<string, TourDef> = {
         { label: "Chat settings", caption: "The weekly jobs, done from a phone in a minute or two.", screen: "PM6-ParentChatSettings" },
         { label: "Private chat with the coach", caption: "The weekly jobs, done from a phone in a minute or two.", screen: "PM9-ParentPrivateChat" },
         { label: "Change what\u2019s recorded", caption: "The weekly jobs, done from a phone in a minute or two.", screen: "P2c-ParentConsent" },
+        { label: "Files on your phone", caption: "Docs, team sheets and PDFs the coach has shared \u2014 new ones are badged.", screen: "FILp1-ParentFiles" },
+        { label: "Sign-up sheet (parent)", caption: "Tick a slot, get a confirmation. Live update when the coach edits the sheet.", screen: "FILp2-ParentSignUp" },
+        { label: "Form (parent)", caption: "Fill in and submit. The coach sees who has and who hasn\u2019t returned it.", screen: "FILp3-ParentForm" },
       ]},
       { title: "When something\u2019s wrong", steps: [
         { label: "Report a message", caption: "A private route to the welfare officer that the coach can\u2019t see.", screen: "PM7-ParentReport" },
@@ -396,6 +402,9 @@ export const TOURS: Record<string, TourDef> = {
         { label: "Two children at the club", caption: "Things that happen once or twice a season.", screen: "PP1-TwoChildren" },
         { label: "End-of-season summary", caption: "At the end of the season: a note from the coach, with no scores or rankings.", screen: "PP2-SeasonSummary" },
         { label: "Leave and delete data", caption: "Things that happen once or twice a season.", screen: "twochildren" },
+        { label: "Playing across: the idea put to the family", caption: "A letter from the director. No numbers shown. The family can say no, and nothing changes.", screen: "PUp1-ParentAsk" },
+        { label: "Playing across: how she feels", caption: "Who she knows in the older team, and how she feels. Run from the parent's phone for under 15s.", screen: "PUp2-PlayerAsk" },
+        { label: "Playing across: late developer", caption: "One training night a week with a matched group. He stays in his own team.", screen: "PXp1-ParentDown" },
       ]},
     ],
   },
@@ -404,7 +413,7 @@ export const TOURS: Record<string, TourDef> = {
     roleLabel: "Player under 15",
     persona: "as Mia Tran, 11",
     device: 'phone',
-    total: 12,
+    total: 13,
     home: 'playerapp',
     sandboxHome: 'playeryoung-e',
     sections: [
@@ -421,6 +430,7 @@ export const TOURS: Record<string, TourDef> = {
         { label: "A clip from the coach", caption: "A child\u2019s week: a quick check-in, a clip from the coach and one goal. No rankings and no chat: under 15s get news from the coach and a parent writes for them.", screen: "playerapp-clip" },
         { label: "My goals", caption: "A child\u2019s week: a quick check-in, a clip from the coach and one goal. No rankings and no chat: under 15s get news from the coach and a parent writes for them.", screen: "playerapp-goals" },
         { label: "News from the coach, no chat", caption: "A child\u2019s week: a quick check-in, a clip from the coach and one goal. No rankings and no chat: under 15s get news from the coach and a parent writes for them.", screen: "PK1-YoungNews" },
+        { label: "Learn", caption: "Lessons from the coach matched to your goal. No likes, comments or view counts.", screen: "EDUp1-PlayerLearn" },
       ]},
       { title: "When something\u2019s wrong", steps: [
         { label: "You can tell someone", caption: "A child can write privately to the welfare officer. The coach can\u2019t see it.", screen: "playerapp-concern" },
@@ -456,7 +466,7 @@ export const TOURS: Record<string, TourDef> = {
     roleLabel: "Director of football",
     persona: "as Rachel M",
     device: 'tablet',
-    total: 40,
+    total: 42,
     home: 'clubadmin',
     sandboxHome: 'director-e',
     sections: [
@@ -480,6 +490,7 @@ export const TOURS: Record<string, TourDef> = {
         { label: "Coach meeting", caption: "Coaches\u2019 checks, courses and meetings in one place.", screen: "DM1-CoachMeeting" },
         { label: "Goalkeepers", caption: "Coaches\u2019 checks, courses and meetings in one place.", screen: "goalkeeper" },
         { label: "Coach learning paths", caption: "Track each coach through their learning modules. Nudge when someone is stuck.", screen: "EDU6-CoachPaths" },
+        { label: "Club lesson library", caption: "Check lessons before they go wider, see coverage by style and age, and take down any lesson on request.", screen: "EDU4-ClubLibrary" },
       ]},
       { title: "Players", steps: [
         { label: "Players", caption: "Across the club: fair game time, who\u2019s ready for more, and moves between teams.", screen: "D4-Players" },
@@ -490,6 +501,7 @@ export const TOURS: Record<string, TourDef> = {
         { label: "Girls and women", caption: "Across the club: fair game time, who\u2019s ready for more, and moves between teams.", screen: "FW1-GirlsWomen" },
       ]},
       { title: "Playing across", steps: [
+        { label: "Playing up: before enough data", caption: "What the director sees before recording is in \u2014 three stat cards and two ways to start.", screen: "PU1e-PlayingUpEmpty" },
         { label: "Playing up: list", caption: "Players ready for more challenge, based on football, physical and wellbeing evidence \u2014 not just the coach\u2019s hunch.", screen: "PU1-PlayingUp" },
         { label: "Player readiness: 6 areas", caption: "Players ready for more challenge, based on football, physical and wellbeing evidence \u2014 not just the coach\u2019s hunch.", screen: "PU2-PlayerReadiness" },
         { label: "Compare to the older group", caption: "Players ready for more challenge, based on football, physical and wellbeing evidence \u2014 not just the coach\u2019s hunch.", screen: "PU4-Compare" },
@@ -504,7 +516,9 @@ export const TOURS: Record<string, TourDef> = {
         { label: "Club files", caption: "Documents the whole club shares: sent to families, opened counts, nudge the ones who haven\u2019t read it.", screen: "FIL5-ClubFiles" },
       ]},
       { title: "Features and billing", steps: [
+        { label: "Before any add-ons", caption: "Four feature cards before any are turned on. No teams set up yet.", screen: "PRM1e-FeaturesEmpty" },
         { label: "Features by team", caption: "Turn add-ons on or off per team. Only pay for what each team actually uses.", screen: "PRM1-FeaturesByTeam" },
+        { label: "Turn on an add-on", caption: "What you get, the cost breakdown, and a checkbox before it goes live.", screen: "PRM2-TurnOn" },
         { label: "Monthly bill", caption: "Turn add-ons on or off per team. Only pay for what each team actually uses.", screen: "PRM3-Bill" },
         { label: "Coach sees a feature is off", caption: "A coach whose feature is off sees why the club turned it off, and how to ask for it.", screen: "PRM4-CoachOff" },
         { label: "Usage", caption: "See which teams are actually using what they\u2019re paying for.", screen: "PRM6-Usage" },

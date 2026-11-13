@@ -525,6 +525,7 @@ function getSandbox(): { createdAt: number } | null {
 
 function createSandbox() {
   localStorage.setItem(SANDBOX_KEY, JSON.stringify({ createdAt: Date.now() }))
+  clearStore()  // always start fresh — wipes any previous Fill
 }
 
 function deleteSandbox() {
@@ -1709,7 +1710,7 @@ export default function DemoApp() {
     return (
       <DemoSignIn
         onDemo={() => setView('start')}
-        onSandbox={() => { createSandbox(); setView('sandbox') }}
+        onSandbox={() => { createSandbox(); setSbStore(readStore()); setView('sandbox') }}
         onOpenSandbox={() => { getSandbox() ? setView('sandbox') : setView('nosandbox') }}
         onWhy={() => setView('why')}
         hasSandbox={getSandbox() !== null}
@@ -1720,7 +1721,7 @@ export default function DemoApp() {
   if (view === 'nosandbox') {
     return (
       <SB3NoSandbox
-        onStartSandbox={() => { createSandbox(); setView('sandbox') }}
+        onStartSandbox={() => { createSandbox(); setSbStore(readStore()); setView('sandbox') }}
         onDemo={() => setView('start')}
       />
     )
@@ -1785,7 +1786,7 @@ export default function DemoApp() {
   if (view === 'sandbox') {
     const sbState = checkSandboxExpiry()
     if (sbState === 'ended') {
-      return <SB2SandboxEnded onStartSandbox={() => { createSandbox(); setView('sandbox') }} onDemo={() => setView('start')} />
+      return <SB2SandboxEnded onStartSandbox={() => { createSandbox(); setSbStore(readStore()); setView('sandbox') }} onDemo={() => setView('start')} />
     }
     if (sbState === 'ending') {
       return <SB1SandboxEnding onSwitchToDemo={() => setView('start')} />
@@ -2005,7 +2006,7 @@ export default function DemoApp() {
       <DemoPhone
         onLook={startLook}
         onWhy={() => setView('why')}
-        onSandbox={() => { createSandbox(); setView('sandbox') }}
+        onSandbox={() => { createSandbox(); setSbStore(readStore()); setView('sandbox') }}
       />
     )
   }
@@ -2016,7 +2017,7 @@ export default function DemoApp() {
       onLook={startLook}
       onStory={() => startTour('story')}
       onWhy={() => setView('why')}
-      onSandbox={() => { createSandbox(); setView('sandbox') }}
+      onSandbox={() => { createSandbox(); setSbStore(readStore()); setView('sandbox') }}
     />
   )
 }

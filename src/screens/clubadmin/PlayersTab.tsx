@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { FAIR_TIME } from './data'
 import { SubTabBar, EmptyCard, FOOTER_DEFAULT } from './ui'
 
-type PlayersView = 'overview' | 'goals' | 'growthload' | 'fairtime' | 'registrations' | 'moves' | 'trials' | 'girls' | 'nominations'
+type PlayersView = 'overview' | 'goals' | 'growthload' | 'fairtime' | 'playingacross' | 'registrations' | 'moves' | 'trials' | 'girls' | 'nominations'
 
 const PLAYERS_LIST = [
   { ini: 'MT', name: 'Mia Tran', team: 'U12 Sam', reg: 'done' as const, dob: '12/08/2014' },
@@ -22,6 +22,7 @@ const PLAYERS_EMPTY: Partial<Record<PlayersView, { icon: string; title: string; 
   trials:        { icon: 'M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z', title: 'No trials set up', desc: 'Set up a trial, share the sign-up link, and score players together. Everyone hears back kindly.', cta: 'Set up a trial', items: [{ title: 'Scores stay private', desc: 'Never shared with players' }, { title: 'Birth month shown', desc: "So younger players aren't missed" }] },
   girls:         { icon: 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5', title: "No girls' teams yet", desc: "Add a girls' team, or import your players, to see the pathway from MiniRoos to seniors and where the gaps are.", cta: 'Import from PlayFootball', items: [{ title: 'Pathway by age', desc: 'And the gaps' }, { title: 'Who came back', desc: 'Against last year' }] },
   growthload:    { icon: 'M22 12h-4l-3 9L9 3l-3 9H2', title: 'No measurements yet', desc: 'Measure heights every 3 months. Fitness coaches add load data after each session. Data stays with the coaching team.', cta: 'Plan a measuring session', items: [{ title: 'Growth spurt flags', desc: 'Sprint limits set automatically' }, { title: 'Load across teams', desc: 'From GPS vests and boot sensors' }] },
+  playingacross: { icon: 'M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75', title: 'No data yet', desc: 'Playing across needs a few rounds of recorded games before the system can tell who is ready for more challenge.', cta: 'Start recording games', items: [{ title: 'Worth a look', desc: 'Players stretched at their current age' }, { title: 'Playing up now', desc: 'Who is already in a trial' }] },
 }
 
 const G  = '#2f6252'
@@ -227,6 +228,163 @@ function NominationsView() {
   )
 }
 
+type PUDot = 'full' | 'ring' | 'empty'
+type PUPlayer = { initials: string; bg: string; name: string; from: string; to: string; sub: string; dots: [PUDot,PUDot,PUDot,PUDot,PUDot]; status: string; statusColor: string }
+const DOT_LABELS = ['Football', 'Body', 'Head', 'Settling in', 'Load']
+
+function PUDotMark({ d, label }: { d: PUDot; label: string }) {
+  return <div title={label} aria-label={label} style={{ width: 14, height: 14, borderRadius: '50%', border: `2px solid ${d === 'empty' ? '#c8d4d0' : G}`, background: d === 'full' ? G : 'transparent', flexShrink: 0 }} />
+}
+
+function PlayingAcrossView() {
+  const [ageFilter, setAgeFilter] = useState<'All ages' | 'Girls' | 'Boys'>('All ages')
+  const [segment, setSegment] = useState<'up' | 'down' | 'mixed'>('up')
+  const [toast, setToast] = useState<string | null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 2500) }
+
+  const worthLook: PUPlayer[] = [
+    { initials: 'MT', bg: '#7a9e7e', name: 'Mia Tran', from: 'U12 Sam', to: 'U13 Girls Meg', sub: 'Sam nominated her too · strong for 8 weeks', dots: ['full','full','full','ring','full'], status: 'Ready to try', statusColor: G },
+    { initials: 'TA', bg: '#8fa09b', name: 'Tane Waru', from: 'U14 Josh', to: 'U16 Ollie', sub: 'Head: coach has not answered yet', dots: ['full','full','ring','empty','ring'], status: 'Needs a view', statusColor: WARN },
+    { initials: 'ZP', bg: '#c0a070', name: 'Zoe Park', from: 'U11 Luke', to: 'U12 Girls Ana', sub: 'Would be her third team this year', dots: ['full','ring','ring','ring','ring'], status: 'Talk first', statusColor: MUT },
+  ]
+  const playingNow: PUPlayer[] = [
+    { initials: 'LC', bg: '#6b9eab', name: 'Leo Costa', from: 'U13 Chris', to: 'U14 Josh', sub: 'Week 3 of 4 · training up, playing his own age', dots: ['full','full','full','full','ring'], status: 'Review 18 Jun', statusColor: G },
+    { initials: 'AW', bg: '#a09080', name: 'Ava Walsh', from: 'U12 Sam', to: 'U13 Girls Meg', sub: 'Moved up in May · check-in every 6 weeks', dots: ['full','full','full','full','full'], status: 'Going well', statusColor: G },
+  ]
+  const heldBack: PUPlayer[] = [
+    { initials: 'NO', bg: '#c05050', name: 'Noah Okafor', from: 'U14 Josh', to: '', sub: 'Growing fast, knee pain. Looked at in 8 weeks.', dots: ['full','empty','full','full','ring'], status: '', statusColor: '' },
+  ]
+
+  function PUPlayerRow({ p }: { p: PUPlayer }) {
+    return (
+      <div onClick={() => st(`Opening ${p.name}'s readiness profile.`)} style={{ display: 'flex', alignItems: 'center', padding: '12px 0', borderBottom: `1px solid ${LN}`, cursor: 'pointer', gap: 12 }}
+        onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = '#eef5f2' }}
+        onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = 'transparent' }}
+      >
+        <div style={{ width: 36, height: 36, borderRadius: '50%', background: p.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, color: '#fff', flexShrink: 0 }}>{p.initials}</div>
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ fontSize: 14, fontWeight: 700, color: INK }}>{p.name}</div>
+          <div style={{ fontSize: 12, color: MUT }}>{p.from}{p.to ? ` → ${p.to}` : ''}</div>
+          <div style={{ fontSize: 11, color: MUT }}>{p.sub}</div>
+        </div>
+        <div style={{ display: 'flex', gap: 4, alignItems: 'center' }}>
+          {p.dots.map((d, i) => <PUDotMark key={i} d={d} label={DOT_LABELS[i]} />)}
+        </div>
+        {p.status && (
+          <div style={{ height: 28, padding: '0 12px', borderRadius: 999, background: p.statusColor === G ? '#eef5f2' : p.statusColor === WARN ? '#fffbeb' : '#f7f8f7', color: p.statusColor, fontSize: 12, fontWeight: 700, display: 'flex', alignItems: 'center', flexShrink: 0 }}>{p.status}</div>
+        )}
+        <div style={{ color: MUT, fontSize: 16 }}>›</div>
+      </div>
+    )
+  }
+
+  const segments: { id: 'up'|'down'|'mixed'; label: string; count: number }[] = [
+    { id: 'up', label: 'An age group up', count: 3 },
+    { id: 'down', label: 'An age group down', count: 2 },
+    { id: 'mixed', label: 'Mixed-age sessions', count: 0 },
+  ]
+
+  return (
+    <div style={{ display: 'flex', flex: 1, padding: '20px 20px 20px 20px', gap: 20 }}>
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 16 }}>
+          <div>
+            <div style={{ fontSize: 18, fontWeight: 800, color: INK }}>Playing across</div>
+            <div style={{ fontSize: 12, color: MUT }}>Wattle Creek FC · 192 players looked at each Monday</div>
+          </div>
+          <div style={{ marginLeft: 'auto' }}>
+            <button onClick={() => st('Opening nomination form.')} style={{ height: 36, padding: '0 16px', borderRadius: 999, background: G, color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Nominate a player</button>
+          </div>
+        </div>
+
+        <div style={{ display: 'flex', gap: 8, marginBottom: 20, flexWrap: 'wrap' as const }}>
+          {segments.map(s => (
+            <button key={s.id} onClick={() => setSegment(s.id)} style={{ height: 36, padding: '0 16px', borderRadius: 999, border: `1.5px solid ${segment === s.id ? G : LN}`, background: segment === s.id ? '#eef5f2' : '#fff', fontSize: 13, color: segment === s.id ? G : MUT, fontWeight: segment === s.id ? 700 : 400, cursor: 'pointer', fontFamily: 'inherit' }}>{s.label} · {s.count}</button>
+          ))}
+        </div>
+
+        {segment === 'up' && (
+          <>
+            <div style={{ display: 'flex', alignItems: 'center', padding: '0 0 8px 60px', gap: 12 }}>
+              <div style={{ flex: 1 }} />
+              <div style={{ display: 'flex', gap: 4 }}>
+                {['F','B','H','S','L'].map(l => (
+                  <div key={l} style={{ width: 14, textAlign: 'center' as const, fontSize: 11, fontWeight: 700, color: MUT }}>{l}</div>
+                ))}
+              </div>
+              <div style={{ width: 100 }} /><div style={{ width: 24 }} />
+            </div>
+
+            <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 20px', marginBottom: 14 }}>
+              <div style={{ display: 'flex', alignItems: 'center', marginBottom: 4 }}>
+                <div style={{ fontSize: 15, fontWeight: 700, color: INK, flex: 1 }}>Worth a look</div>
+                <div style={{ display: 'flex', gap: 8 }}>
+                  {(['All ages','Girls','Boys'] as const).map(f => (
+                    <button key={f} onClick={() => setAgeFilter(f)} style={{ height: 28, padding: '0 12px', borderRadius: 999, border: `1.5px solid ${ageFilter === f ? G : LN}`, background: ageFilter === f ? '#eef5f2' : '#fff', fontSize: 12, color: ageFilter === f ? G : MUT, fontWeight: ageFilter === f ? 700 : 400, cursor: 'pointer', fontFamily: 'inherit' }}>{f}</button>
+                  ))}
+                </div>
+              </div>
+              <div style={{ fontSize: 11, color: MUT, marginBottom: 12 }}>Full dot: strong · ring: some · empty: not yet</div>
+              {worthLook.map(p => <PUPlayerRow key={p.name} p={p} />)}
+            </div>
+
+            <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 20px', marginBottom: 14 }}>
+              <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 12 }}>Playing up now</div>
+              {playingNow.map(p => <PUPlayerRow key={p.name} p={p} />)}
+            </div>
+
+            <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 20px' }}>
+              <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 12 }}>Held back by a rule</div>
+              {heldBack.map(p => <PUPlayerRow key={p.name} p={p} />)}
+            </div>
+
+            <div style={{ marginTop: 12, fontSize: 12, color: MUT }}>Not a ranking and not a score. It says who is worth a conversation. People decide.</div>
+          </>
+        )}
+
+        {segment === 'down' && (
+          <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '32px', textAlign: 'center' as const }}>
+            <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 8 }}>Playing down · 2 players</div>
+            <div style={{ fontSize: 13, color: MUT }}>Growing later than their year. One training night a week in a matched group — they stay in their own team for games.</div>
+          </div>
+        )}
+
+        {segment === 'mixed' && (
+          <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '32px', textAlign: 'center' as const }}>
+            <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 8 }}>No mixed-age sessions yet</div>
+            <div style={{ fontSize: 13, color: MUT }}>Mixed-age banded sessions appear here once your club sets one up.</div>
+          </div>
+        )}
+      </div>
+
+      <div style={{ width: 240, flexShrink: 0, display: 'flex', flexDirection: 'column', gap: 14 }}>
+        <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px' }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 12 }}>How a player gets here</div>
+          {[
+            { n: 1, label: 'Stretched for 6 weeks', sub: 'Well above their own age group in games' },
+            { n: 2, label: 'Nothing says wait', sub: 'Not in a growth spurt, not sore, not overloaded' },
+            { n: 3, label: "Their coach agrees", sub: 'Or the coach nominates first' },
+          ].map(item => (
+            <div key={item.n} style={{ display: 'flex', gap: 10, padding: '8px 0', borderBottom: `1px solid ${LN}` }}>
+              <div style={{ width: 24, height: 24, borderRadius: '50%', background: '#eef5f2', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, color: G, flexShrink: 0 }}>{item.n}</div>
+              <div>
+                <div style={{ fontSize: 12, fontWeight: 600, color: INK }}>{item.label}</div>
+                <div style={{ fontSize: 11, color: MUT }}>{item.sub}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div style={{ background: '#eef5f2', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 16px' }}>
+          <div style={{ fontSize: 12, fontWeight: 700, color: G, marginBottom: 6 }}>Never used</div>
+          <div style={{ fontSize: 12, color: MUT, lineHeight: 1.5 }}>Size alone, results, or what a parent has asked for.</div>
+        </div>
+      </div>
+
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: GD, color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
+    </div>
+  )
+}
+
 export default function PlayersTab({ empty }: { empty?: boolean }) {
   const [view, setView] = useState<PlayersView>('overview')
   const [toast, setToast] = useState<string|null>(null)
@@ -248,6 +406,7 @@ export default function PlayersTab({ empty }: { empty?: boolean }) {
           { id: 'goals', label: 'Goals' },
           { id: 'growthload', label: 'Growth and load' },
           { id: 'fairtime', label: 'Fair game time' },
+          { id: 'playingacross', label: 'Playing across' },
           { id: 'registrations', label: 'Registrations' },
           { id: 'moves', label: 'Moves' },
           { id: 'trials', label: 'Trials' },
@@ -357,6 +516,8 @@ export default function PlayersTab({ empty }: { empty?: boolean }) {
           </div>
         </div>
       )}
+
+      {view === 'playingacross' && (empty ? <EmptyCard {...PLAYERS_EMPTY.playingacross!} footer={FOOTER_DEFAULT} /> : <PlayingAcrossView />)}
 
       {view === 'registrations' && (
         <div style={p}>
