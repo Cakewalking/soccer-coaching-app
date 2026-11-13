@@ -260,7 +260,7 @@ export function AcademyTrainingSuggested({ onBack: _onBack }: { onBack?: () => v
 }
 
 // ACT3 — Academy Session Plan
-export function AcademySessionPlan({ onBack: _onBack }: { onBack?: () => void }) {
+export function AcademySessionPlan({ onBack: _onBack, onNav }: { onBack?: () => void; onNav?: (s: string) => void }) {
   const [toast, setToast] = useState<string | null>(null)
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
@@ -282,7 +282,7 @@ export function AcademySessionPlan({ onBack: _onBack }: { onBack?: () => void })
       activeSub="Session plan"
       pageTitle="Tuesday · Advanced"
       pageSub="3 June · 4:30pm · Messmate Primary School, pitch 1 · 60 min"
-      pageRight={<><BtnMore label="Send to families" onClick={() => t('Session summary sent to families.')}/><BtnPrimary label="Run it" onClick={() => t('Opening live session mode.')}/></>}
+      pageRight={<><BtnMore label="Send to families" onClick={() => t('Session summary sent to families.')}/><BtnPrimary label="Run it" onClick={() => onNav ? onNav('livegame') : t('Opening live session mode.')}/></>}
       toast={toast}
       onNav={(id) => t(id.startsWith('sub:') ? `${id.slice(4)} opens.` : `${id.charAt(0).toUpperCase() + id.slice(1)} tab opens.`)}
     >
@@ -345,7 +345,7 @@ export function AcademySessionPlan({ onBack: _onBack }: { onBack?: () => void })
 }
 
 // ACT4 — Who's coming
-export function AcademyWhoComing({ onBack: _onBack }: { onBack?: () => void }) {
+export function AcademyWhoComing({ onBack: _onBack, onNav }: { onBack?: () => void; onNav?: (s: string) => void }) {
   const [toast, setToast] = useState<string | null>(null)
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
@@ -367,7 +367,7 @@ export function AcademyWhoComing({ onBack: _onBack }: { onBack?: () => void }) {
       activeSub="Who's coming"
       pageTitle="Who's coming"
       pageSub="Tue 3 June · Advanced · 4:30pm"
-      pageRight={<><BtnMore label="Remind 2" onClick={() => t('Reminder sent to Marco and Jai\'s families.')}/><BtnPrimary label="Check in at the gate" onClick={() => t('Opening live check-in screen.')}/></>}
+      pageRight={<><BtnMore label="Remind 2" onClick={() => t('Reminder sent to Marco and Jai\'s families.')}/><BtnPrimary label="Check in at the gate" onClick={() => onNav ? onNav('livegame11') : t('Opening live check-in screen.')}/></>}
       toast={toast}
       onNav={(id) => t(id.startsWith('sub:') ? `${id.slice(4)} opens.` : `${id.charAt(0).toUpperCase() + id.slice(1)} tab opens.`)}
     >
@@ -423,7 +423,7 @@ export function AcademyWhoComing({ onBack: _onBack }: { onBack?: () => void }) {
 }
 
 // ACT1e — Academy Week Empty
-export function AcademyTrainingWeekEmpty({ onBack: _onBack }: { onBack?: () => void }) {
+export function AcademyTrainingWeekEmpty({ onBack: _onBack, onNav }: { onBack?: () => void; onNav?: (s: string) => void }) {
   const [toast, setToast] = useState<string | null>(null)
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
@@ -444,7 +444,7 @@ export function AcademyTrainingWeekEmpty({ onBack: _onBack }: { onBack?: () => v
               Plan each session in advance and Clean Sheet will suggest drills, track who's coming, and monitor load automatically.
             </div>
             <div style={{ display: 'flex', gap: 8, justifyContent: 'center' }}>
-              <BtnPrimary label="Plan a session" onClick={() => t('Opening session planner.')}/>
+              <BtnPrimary label="Plan a session" onClick={() => onNav ? onNav('ACT2-AcademySuggested') : t('Opening session planner.')}/>
               <BtnMore label="Open the drill library" onClick={() => t('Opening drill library.')}/>
             </div>
           </div>

@@ -197,7 +197,7 @@ export function RecordHub({ onBack: _onBack, noFrame, onNav }: { onBack?: () => 
 }
 
 // REC2 — Record saved
-export function RecordSaved({ onBack }: { onBack?: () => void }) {
+export function RecordSaved({ onBack, onNav }: { onBack?: () => void; onNav?: (s: string) => void }) {
   const [toast, setToast] = useState<string | null>(null)
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
@@ -214,7 +214,7 @@ export function RecordSaved({ onBack }: { onBack?: () => void }) {
       activeNav="record" activeSub="Record" subTabs={REC_SUBS}
       pageTitle="Saved: Tuesday training"
       pageSub="2 June · 58 minutes · camera kit 2 and 15 vests"
-      pageRight={<><BtnMore label="Record something else" onClick={() => onBack ? onBack() : t('Back to Record hub.')}/><BtnPrimary label="How did it go?" onClick={() => t('Opening the training review.')} /></>}
+      pageRight={<><BtnMore label="Record something else" onClick={() => onBack ? onBack() : t('Back to Record hub.')}/><BtnPrimary label="How did it go?" onClick={() => onNav ? onNav('EX1-HowWorkedOut') : t('Opening the training review.')} /></>}
       toast={toast}
       onNavTab={(id) => t(id.startsWith('sub:') ? `${id.slice(4)} opens.` : `${id.charAt(0).toUpperCase() + id.slice(1)} tab opens.`)}
     >

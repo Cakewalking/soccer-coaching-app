@@ -11,7 +11,7 @@ const WRAPUP = [
   { label: 'Your own review',                       note: '10 minutes with Rachel, the director', done: false, action: 'Book' },
 ]
 
-export default function SP10HomePostSeason({ onBack }: { onBack?: () => void }) {
+export default function SP10HomePostSeason({ onBack, onNav }: { onBack?: () => void; onNav?: (s: string) => void }) {
   const [toast, setToast] = useState<string | null>(null)
   function t(m: string) { setToast(m); setTimeout(() => setToast(null), 3200) }
 
@@ -28,7 +28,7 @@ export default function SP10HomePostSeason({ onBack }: { onBack?: () => void }) 
         <div style={{ display: 'flex', gap: 8 }}>
           <button onClick={() => t('Opening \'going away\'')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Going away?</button>
           <button onClick={onBack} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>The football year</button>
-          <button onClick={() => t('Opening next year\'s squad')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Next year's squad</button>
+          <button onClick={() => onNav ? onNav('SP3-ProvisionalSquad') : t('Opening next year\'s squad.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Next year's squad</button>
         </div>
       </div>
 
@@ -87,7 +87,7 @@ export default function SP10HomePostSeason({ onBack }: { onBack?: () => void }) 
           <div style={{ background: '#fff', border: `1px solid #f0c0c0`, borderRadius: 12, padding: '12px 14px' }}>
             <div style={{ fontSize: 13, fontWeight: 700, color: '#8b3a3a', marginBottom: 4 }}>Rest month starts 1 December</div>
             <div style={{ fontSize: 13, color: '#7a4a4a', lineHeight: 1.5, marginBottom: 10 }}>Zoe and Mia will have had no four-week break this year if they play on.</div>
-            <button onClick={() => t('Opening rest month view')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid #f0c0c0`, background: '#fff', color: '#8b3a3a', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>See who needs a break</button>
+            <button onClick={() => onNav ? onNav('SP16-RestMonth') : t('Opening rest month view.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid #f0c0c0`, background: '#fff', color: '#8b3a3a', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>See who needs a break</button>
           </div>
         </div>
       </div>

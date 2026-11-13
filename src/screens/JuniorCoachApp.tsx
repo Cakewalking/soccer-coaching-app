@@ -145,7 +145,7 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
     else if (trainingTab === 4) content = <GrowthLoadScreen empty={sbEmptySession} />
     else if (trainingTab === 5) content = <FitnessTrainingTab empty={sbEmptySession} />
   } else if (nav === 'record') {
-    if (recView === 'REC2-RecordSaved') content = <RecordSaved onBack={() => setRecView(null)} />
+    if (recView === 'REC2-RecordSaved') content = <RecordSaved onBack={() => setRecView(null)} onNav={(s) => { if (s === 'EX1-HowWorkedOut') { goNav('matchday'); setMatchTab(3) } }} />
     else content = <RecordHub noFrame onNav={setRecView} />
   } else if (nav === 'matchday') {
     if (matchTab === 0) content = <MatchDayScreen onNav={handleNav} empty={sbEmptyFixture} />

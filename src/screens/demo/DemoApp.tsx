@@ -613,6 +613,36 @@ function SquadLineupsNav() {
   if (inner) return <>{renderScreen(inner)}</>
   return <SquadLineups onNav={(s) => setInner(s)} />
 }
+function RecordSavedNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <RecordSaved onNav={(s) => setInner(s)} />
+}
+function AcademySessionPlanNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <AcademySessionPlan onNav={(s) => setInner(s)} />
+}
+function AcademyWhoComingNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <AcademyWhoComing onNav={(s) => setInner(s)} />
+}
+function AcademyTrainingWeekEmptyNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <AcademyTrainingWeekEmpty onNav={(s) => setInner(s)} />
+}
+function SP2HomePreSeasonNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <SP2HomePreSeason onNav={(s) => setInner(s)} />
+}
+function SP10HomePostSeasonNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <SP10HomePostSeason onNav={(s) => setInner(s)} />
+}
 
 export function renderScreen(key: string): ReactNode {
   switch (key) {
@@ -769,7 +799,7 @@ export function renderScreen(key: string): ReactNode {
     case 'clubphases':          return <SP18ClubPhases onBack={noop} />
     case 'clubphases-empty':    return <SP18eClubPhasesEmpty onBack={noop} />
     case 'trialwindow':         return <SP19TrialWindow onBack={noop} />
-    case 'homepreseason':       return <SP2HomePreSeason onBack={noop} />
+    case 'homepreseason':       return <SP2HomePreSeasonNav />
     case 'provisionalsquad':    return <SP3ProvisionalSquad onBack={noop} />
     case 'provisionalsquad-e':  return <SP3eProvisionalSquadEmpty onBack={noop} />
     case 'coachtrial':          return <SP4CoachTrial onBack={noop} />
@@ -780,7 +810,7 @@ export function renderScreen(key: string): ReactNode {
     case 'friendlies-empty':    return <SP7eFriendliesEmpty onBack={noop} />
     case 'gradinginput':        return <SP8GradingInput onBack={noop} />
     case 'midseasonreview':     return <SP9MidSeasonReview onBack={noop} />
-    case 'homepostseason':      return <SP10HomePostSeason onBack={noop} />
+    case 'homepostseason':      return <SP10HomePostSeasonNav />
     case 'tournamentsetup':     return <SP11TournamentSetup onBack={noop} />
     case 'tournament-empty':    return <SP11eTournamentEmpty onBack={noop} />
     case 'tournamentday':       return <SP12TournamentDay onBack={noop} />
@@ -1339,7 +1369,7 @@ export function renderScreen(key: string): ReactNode {
     // Design ID aliases — Football year (SP* tablet, pre-season and season)
     case 'SP1-FootballYear':           return <SP1FootballYear onBack={noop} />
     case 'SP1e-FootballYearEmpty':     return <SP1eFootballYearEmpty onBack={noop} />
-    case 'SP2-HomePreSeason':          return <SP2HomePreSeason onBack={noop} />
+    case 'SP2-HomePreSeason':          return <SP2HomePreSeasonNav />
     case 'SP3-ProvisionalSquad':       return <SP3ProvisionalSquad onBack={noop} />
     case 'SP3e-ProvisionalSquadEmpty': return <SP3eProvisionalSquadEmpty onBack={noop} />
     case 'SP4-CoachTrial':             return <SP4CoachTrial onBack={noop} />
@@ -1350,7 +1380,7 @@ export function renderScreen(key: string): ReactNode {
     case 'SP7e-FriendliesEmpty':       return <SP7eFriendliesEmpty onBack={noop} />
     case 'SP8-GradingInput':           return <SP8GradingInput onBack={noop} />
     case 'SP9-MidSeasonReview':        return <SP9MidSeasonReview onBack={noop} />
-    case 'SP10-HomePostSeason':        return <SP10HomePostSeason onBack={noop} />
+    case 'SP10-HomePostSeason':        return <SP10HomePostSeasonNav />
     case 'SP11-TournamentSetup':       return <SP11TournamentSetup onBack={noop} />
     case 'SP11e-TournamentEmpty':      return <SP11eTournamentEmpty onBack={noop} />
     case 'SP12-TournamentDay':         return <SP12TournamentDay onBack={noop} />
@@ -1500,13 +1530,13 @@ export function renderScreen(key: string): ReactNode {
     // Academy Training (section 16)
     case 'ACT1-AcademyWeek':           return <AcademyTrainingWeekNav />
     case 'ACT2-AcademySuggested':      return <AcademyTrainingSuggested onBack={noop} />
-    case 'ACT3-AcademySessionPlan':    return <AcademySessionPlan onBack={noop} />
-    case 'ACT4-AcademyComing':         return <AcademyWhoComing onBack={noop} />
-    case 'ACT1e-AcademyWeekEmpty':     return <AcademyTrainingWeekEmpty onBack={noop} />
+    case 'ACT3-AcademySessionPlan':    return <AcademySessionPlanNav />
+    case 'ACT4-AcademyComing':         return <AcademyWhoComingNav />
+    case 'ACT1e-AcademyWeekEmpty':     return <AcademyTrainingWeekEmptyNav />
 
     // Record hub (section 17)
     case 'REC1-RecordHub':             return <RecordHubNav />
-    case 'REC2-RecordSaved':           return <RecordSaved onBack={() => { /* standalone view — back stays on this screen */ }} />
+    case 'REC2-RecordSaved':           return <RecordSavedNav />
     case 'REC1e-RecordHubEmpty':       return <RecordHubEmpty onBack={noop} />
 
     // Squad line-ups (section 18)
