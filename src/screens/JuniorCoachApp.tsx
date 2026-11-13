@@ -26,7 +26,8 @@ import AddGameScreen         from './AddGameScreen'
 import { FitnessSquadTab, FitnessTrainingTab, FitnessMatchTab } from './FitnessExtras'
 import CoCoachHomeScreen from './CoCoachHomeScreen'
 import RecordHub           from './RecordHub'
-import { CoachMessages }   from './MessagesScreens'
+import { RecordSaved }     from './RecordHub'
+import { CoachMessages, CoachNewMessage, CoachMessagesPersonCard } from './MessagesScreens'
 import { SquadLineups }    from './SquadLineups'
 import { useSandbox }      from './sandbox/SandboxContext'
 import { storeHasData }   from './sandbox/sandboxStore'
@@ -66,7 +67,9 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
   const [clipsTab, setClipsTab]       = useState(0)
 
   const [askOpen, setAskOpen] = useState(false)
-  function goNav(n: NavKey) { setNav(n); setSub(null); setAskOpen(false); onNavChange?.(n) }
+  const [msgsView, setMsgsView] = useState<string | null>(null)
+  const [recView, setRecView] = useState<string | null>(null)
+  function goNav(n: NavKey) { setNav(n); setSub(null); setAskOpen(false); onNavChange?.(n); setMsgsView(null); setRecView(null) }
 
   function handleNav(s: string) {
     if (s === 'training')  { goNav('training'); return }
@@ -115,7 +118,11 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
   let content = null
   if (nav === 'home') {
     if (homeTab === 0) content = phaseContent ?? (coachRole === 'ccoach' ? <CoCoachHomeScreen empty={sbEmpty} onNav={handleNav} onAsk={() => setAskOpen(true)} askQuestions={['Who needs a rest this week?', 'What should we work on tonight?', 'Is everyone getting fair minutes?']} /> : <HomeScreen role="head" onRole={() => {}} onNav={handleNav} onCalendar={() => setHomeTab(2)} empty={sbEmpty} onAsk={() => setAskOpen(true)} askQuestions={['Who needs a rest this week?', 'What should we work on tonight?', 'Is everyone getting fair minutes?']} teamName={inSandbox ? (store.teams[0]?.name ?? 'your team') : 'U12 Sam'} />)
-    else if (homeTab === 1) content = <CoachMessages />
+    else if (homeTab === 1) {
+      if (msgsView === 'MSG1-NewMessage') content = <CoachNewMessage onBack={() => setMsgsView(null)} onNav={setMsgsView} />
+      else if (msgsView === 'MSG3-PersonCard') content = <CoachMessagesPersonCard onBack={() => setMsgsView(null)} onNav={setMsgsView} />
+      else content = <CoachMessages onNav={setMsgsView} />
+    }
     else if (homeTab === 2) content = <AvailabilityScreen empty={sbEmpty} />
     else if (homeTab === 3) content = <FixturesScreen empty={sbEmpty} />
     else if (homeTab === 4) content = <OurStyleScreen />
@@ -123,7 +130,7 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
     else if (homeTab === 6) content = <TeamStaffScreen empty={sbEmpty} />
   } else if (nav === 'squad') {
     if (squadTab === 0) content = <SquadScreen role="head" onPlayerProfile={() => {}} empty={sbEmpty} />
-    else if (squadTab === 1) content = <SquadLineups noFrame />
+    else if (squadTab === 1) content = <SquadLineups noFrame onNav={(s) => { if (s === 'record') { goNav('record') } else if (s === 'teamsheet') { goNav('matchday'); setMatchTab(1) } }} />
     else if (squadTab === 2) content = <DevGoalsScreen empty={sbEmpty} />
     else if (squadTab === 3) content = <WellnessScreen empty={sbEmpty} />
     else if (squadTab === 4) content = <AvailabilityScreen empty={sbEmpty} />
@@ -138,7 +145,8 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
     else if (trainingTab === 4) content = <GrowthLoadScreen empty={sbEmptySession} />
     else if (trainingTab === 5) content = <FitnessTrainingTab empty={sbEmptySession} />
   } else if (nav === 'record') {
-    content = <RecordHub noFrame />
+    if (recView === 'REC2-RecordSaved') content = <RecordSaved onBack={() => setRecView(null)} />
+    else content = <RecordHub noFrame onNav={setRecView} />
   } else if (nav === 'matchday') {
     if (matchTab === 0) content = <MatchDayScreen onNav={handleNav} empty={sbEmptyFixture} />
     else if (matchTab === 1) content = <TeamSheetScreen empty={sbEmptyFixture} />

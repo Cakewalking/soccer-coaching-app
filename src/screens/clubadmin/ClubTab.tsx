@@ -215,7 +215,7 @@ export default function ClubTab({ role, empty }: { role: 'chair' | 'dof'; empty?
                       <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{item.text}</div>
                       <div style={{ fontSize: 12, color: '#6f7f7b', marginTop: 2 }}>{item.sub}</div>
                     </div>
-                    <button onClick={() => showToast(`${item.cta} — opens action.`)} style={{ flexShrink: 0, height: 44, padding: '0 12px', borderRadius: '999px', border: '1px solid #2f6252', background: '#fff', color: '#2f6252', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>{item.cta}</button>
+                    <button onClick={() => showToast(`${item.cta} sent.`)} style={{ flexShrink: 0, height: 44, padding: '0 12px', borderRadius: '999px', border: '1px solid #2f6252', background: '#fff', color: '#2f6252', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>{item.cta}</button>
                   </div>
                 ))}
               </div>

@@ -30,7 +30,7 @@ function PhoneAskSheet({ onClose }: { onClose: () => void }) {
         <div style={{ flex: 1, overflowY: 'auto', padding: '0 16px 10px', display: 'flex', flexDirection: 'column', gap: 8 }}>
           <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 2 }}>About today</div>
           {['Who needs a rest this week?', 'What should we work on tonight?', 'Is everyone getting fair minutes?'].map(q => (
-            <button key={q} onClick={() => st(`Demo: ${q}`)} style={{ width: '100%', textAlign: 'left', padding: '10px 12px', borderRadius: 10, border: '1px solid #e8edeb', background: '#eef5f2', color: G, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{q}</button>
+            <button key={q} onClick={() => st(q)} style={{ width: '100%', textAlign: 'left', padding: '10px 12px', borderRadius: 10, border: '1px solid #e8edeb', background: '#eef5f2', color: G, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{q}</button>
           ))}
         </div>
         <div style={{ padding: '10px 16px 20px', borderTop: '1px solid #e8edeb', flexShrink: 0 }}>

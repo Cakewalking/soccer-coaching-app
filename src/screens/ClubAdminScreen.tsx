@@ -126,7 +126,7 @@ export default function ClubAdminScreen({ empty, role = 'chair', initials = 'RM'
             <div style={{ flex: 1, overflowY: 'auto', padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 10 }}>
               <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', color: '#4a5a57', textTransform: 'uppercase' as const, marginTop: 4 }}>About this screen</div>
               {['Which teams are outside fair game time?', 'Who can cover U9 Mark on Saturday?', 'Which teams have recorded the fewest games?'].map(q => (
-                <button key={q} onClick={() => st(`Demo: ${q}`)} style={{ width: '100%', textAlign: 'left', padding: '10px 14px', borderRadius: 10, border: '1px solid #e8edeb', background: '#fff', color: '#2f6252', fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{q}</button>
+                <button key={q} onClick={() => st(q)} style={{ width: '100%', textAlign: 'left', padding: '10px 14px', borderRadius: 10, border: '1px solid #e8edeb', background: '#fff', color: '#2f6252', fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{q}</button>
               ))}
               <div style={{ fontSize: 12, color: '#4a5a57', marginTop: 4 }}>Or anything else</div>
             </div>

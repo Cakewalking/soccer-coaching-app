@@ -120,7 +120,7 @@ function BtnPrimary({ label, onClick }: { label: string; onClick?: () => void })
 }
 
 // REC1 — Record hub
-export function RecordHub({ onBack: _onBack, noFrame }: { onBack?: () => void; noFrame?: boolean }) {
+export function RecordHub({ onBack: _onBack, noFrame, onNav }: { onBack?: () => void; noFrame?: boolean; onNav?: (s: string) => void }) {
   const [toast, setToast] = useState<string | null>(null)
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
@@ -149,7 +149,7 @@ export function RecordHub({ onBack: _onBack, noFrame }: { onBack?: () => void; n
           <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 12 }}>What are you recording?</div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
             {options.map(opt => (
-              <button key={opt.title} onClick={opt.link ? () => t('Opening the training recording flow — Training saved screen is at REC2.') : opt.onClick}
+              <button key={opt.title} onClick={opt.link ? () => onNav ? onNav('REC2-RecordSaved') : t('Opening the training recording flow.') : opt.onClick}
                 style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '16px', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit', display: 'flex', flexDirection: 'column', gap: 6, boxSizing: 'border-box', minHeight: 120 }}>
                 <span style={{ color: G }}>
                   <Icon d={opt.icon} size={22} stroke={G}/>
@@ -197,7 +197,7 @@ export function RecordHub({ onBack: _onBack, noFrame }: { onBack?: () => void; n
 }
 
 // REC2 — Record saved
-export function RecordSaved({ onBack: _onBack }: { onBack?: () => void }) {
+export function RecordSaved({ onBack }: { onBack?: () => void }) {
   const [toast, setToast] = useState<string | null>(null)
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
@@ -214,7 +214,7 @@ export function RecordSaved({ onBack: _onBack }: { onBack?: () => void }) {
       activeNav="record" activeSub="Record" subTabs={REC_SUBS}
       pageTitle="Saved: Tuesday training"
       pageSub="2 June · 58 minutes · camera kit 2 and 15 vests"
-      pageRight={<><BtnMore label="Record something else" onClick={() => t('Back to Record hub.')}/><BtnPrimary label="How did it go?" onClick={() => t('Opening the training review.')} /></>}
+      pageRight={<><BtnMore label="Record something else" onClick={() => onBack ? onBack() : t('Back to Record hub.')}/><BtnPrimary label="How did it go?" onClick={() => t('Opening the training review.')} /></>}
       toast={toast}
       onNavTab={(id) => t(id.startsWith('sub:') ? `${id.slice(4)} opens.` : `${id.charAt(0).toUpperCase() + id.slice(1)} tab opens.`)}
     >

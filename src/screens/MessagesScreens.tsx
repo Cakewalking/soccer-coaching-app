@@ -91,7 +91,7 @@ function Ini({ s, bg, color, size = 36 }: { s: string; bg?: string; color?: stri
 }
 
 // MSG0 — Who can message whom
-export function MessagesRules({ onBack: _onBack }: { onBack?: () => void }) {
+export function MessagesRules({ onBack, onNav }: { onBack?: () => void; onNav?: (s: string) => void }) {
   const [toast, setToast] = useState<string | null>(null)
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
@@ -127,7 +127,7 @@ export function MessagesRules({ onBack: _onBack }: { onBack?: () => void }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#f7f8f7' }}>
       <div style={{ background: GD, height: 56, display: 'flex', alignItems: 'center', padding: '0 20px', flexShrink: 0 }}>
-        <button onClick={() => t('Back.')} style={{ background: 'transparent', border: 'none', color: '#e9eae8', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8, fontSize: 15, fontWeight: 600, fontFamily: 'inherit', padding: '0 10px 0 0' }}>
+        <button onClick={() => onBack ? onBack() : t('Back.')} style={{ background: 'transparent', border: 'none', color: '#e9eae8', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8, fontSize: 15, fontWeight: 600, fontFamily: 'inherit', padding: '0 10px 0 0' }}>
           <Icon d={ICONS.back} size={18}/> Back
         </button>
         <span style={{ color: '#e9eae8', fontWeight: 800, fontSize: 16 }}>Who can message whom</span>
@@ -149,8 +149,8 @@ export function MessagesRules({ onBack: _onBack }: { onBack?: () => void }) {
           <strong>These rules apply everywhere.</strong> Every screen that shows a person's name has a card with a Message button — the right rules apply automatically, so you never have to work out what's allowed.
         </div>
         <div style={{ display: 'flex', gap: 10, justifyContent: 'center' }}>
-          <button onClick={() => t('Coach messages view opens — MSG1.')} style={{ height: 44, padding: '0 18px', borderRadius: 10, background: G, color: '#fff', border: 'none', fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>See it as a coach</button>
-          <button onClick={() => t('Parent messages view opens — MSGp1.')} style={{ height: 44, padding: '0 18px', borderRadius: 10, background: '#fff', color: INK, border: `1px solid ${LN}`, fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>See it as a parent</button>
+          <button onClick={() => onNav ? onNav('MSG1-NewMessage') : t('Coach messages view opens.')} style={{ height: 44, padding: '0 18px', borderRadius: 10, background: G, color: '#fff', border: 'none', fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>See it as a coach</button>
+          <button onClick={() => t('Parent messages view opens.')} style={{ height: 44, padding: '0 18px', borderRadius: 10, background: '#fff', color: INK, border: `1px solid ${LN}`, fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>See it as a parent</button>
         </div>
       </div>
       {toast && <Toast msg={toast}/>}
@@ -159,7 +159,7 @@ export function MessagesRules({ onBack: _onBack }: { onBack?: () => void }) {
 }
 
 // MSG1 — New message picker
-export function CoachNewMessage({ onBack: _onBack }: { onBack?: () => void }) {
+export function CoachNewMessage({ onBack: _onBack, onNav }: { onBack?: () => void; onNav?: (s: string) => void }) {
   const [toast, setToast] = useState<string | null>(null)
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
@@ -249,7 +249,7 @@ export function CoachNewMessage({ onBack: _onBack }: { onBack?: () => void }) {
           <ul style={{ margin: 0, padding: '0 0 0 18px' }}>
             {rules.map(r => <li key={r} style={{ fontSize: 13, color: INK, lineHeight: 1.7, marginBottom: 4 }}>{r}</li>)}
           </ul>
-          <button onClick={() => t('Full rules — MSG0 opens.')} style={{ marginTop: 16, fontSize: 13, fontWeight: 600, color: G, background: 'transparent', border: 'none', padding: 0, cursor: 'pointer', textDecoration: 'underline', fontFamily: 'inherit' }}>See the full rules →</button>
+          <button onClick={() => onNav ? onNav('MSG0-WhoCanMessage') : t('Full rules open.')} style={{ marginTop: 16, fontSize: 13, fontWeight: 600, color: G, background: 'transparent', border: 'none', padding: 0, cursor: 'pointer', textDecoration: 'underline', fontFamily: 'inherit' }}>See the full rules →</button>
         </div>
       </div>
       {toast && <Toast msg={toast}/>}
@@ -258,7 +258,7 @@ export function CoachNewMessage({ onBack: _onBack }: { onBack?: () => void }) {
 }
 
 // MSG2 — Direct chat
-export function CoachMessages({ onBack: _onBack }: { onBack?: () => void }) {
+export function CoachMessages({ onBack: _onBack, onNav }: { onBack?: () => void; onNav?: (s: string) => void }) {
   const [toast, setToast] = useState<string | null>(null)
   const [input, setInput] = useState('')
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
@@ -310,7 +310,7 @@ export function CoachMessages({ onBack: _onBack }: { onBack?: () => void }) {
             ))}
           </div>
           <div style={{ padding: '12px 14px', borderTop: `1px solid ${LN}` }}>
-            <button onClick={() => t('New message — MSG1 opens.')} style={{ width: '100%', height: 40, borderRadius: 10, background: G, color: '#fff', border: 'none', fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>+ New message</button>
+            <button onClick={() => onNav ? onNav('MSG1-NewMessage') : t('New message.')} style={{ width: '100%', height: 40, borderRadius: 10, background: G, color: '#fff', border: 'none', fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>+ New message</button>
           </div>
         </div>
         {/* Active chat */}
@@ -320,7 +320,7 @@ export function CoachMessages({ onBack: _onBack }: { onBack?: () => void }) {
             <Ini s="BR" size={36}/>
             <div>
               <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>Bianca Rossi</div>
-              <button onClick={() => t('Person card opens — MSG3.')} style={{ fontSize: 12, color: G, background: 'transparent', border: 'none', padding: 0, cursor: 'pointer', fontFamily: 'inherit' }}>Club co-ordinator · Wattle Creek FC</button>
+              <button onClick={() => onNav ? onNav('MSG3-PersonCard') : t('Person card opens.')} style={{ fontSize: 12, color: G, background: 'transparent', border: 'none', padding: 0, cursor: 'pointer', fontFamily: 'inherit' }}>Club co-ordinator · Wattle Creek FC</button>
             </div>
           </div>
           {/* Messages */}
@@ -356,7 +356,7 @@ export function CoachMessages({ onBack: _onBack }: { onBack?: () => void }) {
 }
 
 // MSG3 — Person card overlay on MSG2
-export function CoachMessagesPersonCard({ onBack: _onBack }: { onBack?: () => void }) {
+export function CoachMessagesPersonCard({ onBack, onNav }: { onBack?: () => void; onNav?: (s: string) => void }) {
   const [toast, setToast] = useState<string | null>(null)
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
@@ -374,7 +374,7 @@ export function CoachMessagesPersonCard({ onBack: _onBack }: { onBack?: () => vo
           <div style={{ fontSize: 20, fontWeight: 800, color: INK, marginTop: 10 }}>Bianca Rossi</div>
           <div style={{ fontSize: 13, color: MUT }}>Club co-ordinator · Wattle Creek FC</div>
         </div>
-        <button onClick={() => t('Message opens — MSG2.')} style={{ display: 'block', width: '100%', height: 44, borderRadius: 10, background: G, color: '#fff', border: 'none', fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', marginBottom: 10 }}>Message</button>
+        <button onClick={() => onNav ? onNav('MSG2-DirectChat') : (onBack ? onBack() : t('Message opens.'))} style={{ display: 'block', width: '100%', height: 44, borderRadius: 10, background: G, color: '#fff', border: 'none', fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', marginBottom: 10 }}>Message</button>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, marginBottom: 20 }}>
           <button onClick={() => t('Add to group opens.')} style={{ height: 40, borderRadius: 10, background: '#fff', color: INK, border: `1px solid ${LN}`, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Add to group</button>
           <button onClick={() => t('Role info opens.')} style={{ height: 40, borderRadius: 10, background: '#fff', color: INK, border: `1px solid ${LN}`, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Role info</button>

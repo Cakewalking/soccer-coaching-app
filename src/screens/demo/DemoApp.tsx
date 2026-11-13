@@ -578,6 +578,42 @@ function MatchDayScreenNav() {
   return <MatchDayScreen onNav={(s) => setInner(s)} empty={false} />
 }
 
+function MessagesRulesNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <MessagesRules onNav={(s) => setInner(s)} />
+}
+function CoachNewMessageNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <CoachNewMessage onNav={(s) => setInner(s)} />
+}
+function CoachMessagesNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <CoachMessages onNav={(s) => setInner(s)} />
+}
+function CoachMessagesPersonCardNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <CoachMessagesPersonCard onNav={(s) => setInner(s)} />
+}
+function RecordHubNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <RecordHub onNav={(s) => setInner(s)} />
+}
+function AcademyTrainingWeekNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <AcademyTrainingWeek onNav={(s) => setInner(s)} />
+}
+function SquadLineupsNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <SquadLineups onNav={(s) => setInner(s)} />
+}
+
 export function renderScreen(key: string): ReactNode {
   switch (key) {
     case 'juniorcoach':
@@ -1451,10 +1487,10 @@ export function renderScreen(key: string): ReactNode {
     case 'ASKp2-PhoneAskOpen': return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0' }}><AskPhoneOpen onBack={noop} /></div>
 
     // Messages (sections 14–15)
-    case 'MSG0-WhoCanMessage':         return <MessagesRules onBack={noop} />
-    case 'MSG1-NewMessage':            return <CoachNewMessage onBack={noop} />
-    case 'MSG2-DirectChat':            return <CoachMessages onBack={noop} />
-    case 'MSG3-PersonCard':            return <CoachMessagesPersonCard onBack={noop} />
+    case 'MSG0-WhoCanMessage':         return <MessagesRulesNav />
+    case 'MSG1-NewMessage':            return <CoachNewMessageNav />
+    case 'MSG2-DirectChat':            return <CoachMessagesNav />
+    case 'MSG3-PersonCard':            return <CoachMessagesPersonCardNav />
     case 'MSG4-DirectorMessages':      return <DirectorMessages onBack={noop} />
     case 'MSGp1-ParentMessages':       return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0' }}><ParentMessages onBack={noop} /></div>
     case 'MSGp1e-ParentMessagesEmpty': return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0' }}><ParentMessagesEmpty onBack={noop} /></div>
@@ -1462,19 +1498,19 @@ export function renderScreen(key: string): ReactNode {
     case 'MSGp3-RefereeMessages':      return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0' }}><RefereeMessages onBack={noop} /></div>
 
     // Academy Training (section 16)
-    case 'ACT1-AcademyWeek':           return <AcademyTrainingWeek onBack={noop} />
+    case 'ACT1-AcademyWeek':           return <AcademyTrainingWeekNav />
     case 'ACT2-AcademySuggested':      return <AcademyTrainingSuggested onBack={noop} />
     case 'ACT3-AcademySessionPlan':    return <AcademySessionPlan onBack={noop} />
     case 'ACT4-AcademyComing':         return <AcademyWhoComing onBack={noop} />
     case 'ACT1e-AcademyWeekEmpty':     return <AcademyTrainingWeekEmpty onBack={noop} />
 
     // Record hub (section 17)
-    case 'REC1-RecordHub':             return <RecordHub onBack={noop} />
-    case 'REC2-RecordSaved':           return <RecordSaved onBack={noop} />
+    case 'REC1-RecordHub':             return <RecordHubNav />
+    case 'REC2-RecordSaved':           return <RecordSaved onBack={() => { /* standalone view — back stays on this screen */ }} />
     case 'REC1e-RecordHubEmpty':       return <RecordHubEmpty onBack={noop} />
 
     // Squad line-ups (section 18)
-    case 'SQ1-BestLineups':            return <SquadLineups onBack={noop} />
+    case 'SQ1-BestLineups':            return <SquadLineupsNav />
     case 'SQ1e-BestLineupsEmpty':      return <SquadLineupsEmpty onBack={noop} />
 
     // Where we're at (item 12)

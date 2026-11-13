@@ -100,7 +100,7 @@ function BtnPrimary({ label, onClick }: { label: string; onClick?: () => void })
 }
 
 // ACT1 — Academy Training Week
-export function AcademyTrainingWeek({ onBack: _onBack }: { onBack?: () => void }) {
+export function AcademyTrainingWeek({ onBack: _onBack, onNav }: { onBack?: () => void; onNav?: (s: string) => void }) {
   const [toast, setToast] = useState<string | null>(null)
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
@@ -123,7 +123,7 @@ export function AcademyTrainingWeek({ onBack: _onBack }: { onBack?: () => void }
       activeSub="This week"
       pageTitle="This week"
       pageSub="Tall Timber Academy · term 3, week 4 of 10 · Reece's groups"
-      pageRight={<><BtnMore label="Copy last week" onClick={() => t('Copying last week\'s sessions.')}/><BtnPrimary label="Plan a session" onClick={() => t('Opening session planner — ACT2 (Suggested) or ACT3 (Session plan).')}/></>}
+      pageRight={<><BtnMore label="Copy last week" onClick={() => t('Copying last week\'s sessions.')}/><BtnPrimary label="Plan a session" onClick={() => onNav ? onNav('ACT2-AcademySuggested') : t('Opening session planner.')}/></>}
       toast={toast}
       onNav={(id) => t(id.startsWith('sub:') ? `${id.slice(4)} opens.` : `${id.charAt(0).toUpperCase() + id.slice(1)} tab opens.`)}
     >
@@ -141,7 +141,7 @@ export function AcademyTrainingWeek({ onBack: _onBack }: { onBack?: () => void }
                     <div style={{ fontSize: 12, color: MUT }}>{s.note}</div>
                   </div>
                   <span style={{ padding: '4px 12px', borderRadius: 100, background: st.bg, color: st.color, fontSize: 12, fontWeight: 700 }}>{st.label}</span>
-                  <button onClick={() => t(s.link ? `${s.link} opens.` : `${s.label} session opens.`)}
+                  <button onClick={() => s.link && onNav ? onNav(s.link === 'ACT2' ? 'ACT2-AcademySuggested' : 'ACT3-AcademySessionPlan') : t(`${s.label} session opens.`)}
                     style={{ width: 36, height: 36, borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: MUT }}>
                     <Icon d={ICONS.chevright} size={16}/>
                   </button>

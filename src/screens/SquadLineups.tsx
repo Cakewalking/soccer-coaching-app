@@ -114,7 +114,7 @@ function BtnPrimary({ label, onClick }: { label: string; onClick?: () => void })
 }
 
 // SQ1 — Best lineups screen
-export function SquadLineups({ onBack: _onBack, noFrame }: { onBack?: () => void; noFrame?: boolean }) {
+export function SquadLineups({ onBack: _onBack, noFrame, onNav }: { onBack?: () => void; noFrame?: boolean; onNav?: (s: string) => void }) {
   const [toast, setToast] = useState<string | null>(null)
   const [active, setActive] = useState(0)
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
@@ -149,7 +149,7 @@ export function SquadLineups({ onBack: _onBack, noFrame }: { onBack?: () => void
       activeNav="squad" activeSub="Line-ups" subTabs={SQUAD_SUBS}
       pageTitle="Line-ups that worked"
       pageSub="U12 Sam · from 9 recorded games this season"
-      pageRight={<><BtnMore label="This season" onClick={() => t('Season selector opens.')}/><BtnPrimary label="Try it on Saturday" onClick={() => t('Opening Saturday\'s team sheet with this line-up.')}/></>}
+      pageRight={<><BtnMore label="This season" onClick={() => t('Season selector opens.')}/><BtnPrimary label="Try it on Saturday" onClick={() => onNav ? onNav('teamsheet') : t('Opening Saturday\'s team sheet.')}/></>}
       toast={toast}
       onNavTab={(id) => t(id.startsWith('sub:') ? `${id.slice(4)} opens.` : `${id.charAt(0).toUpperCase() + id.slice(1)} tab opens.`)}
       noFrame={noFrame}
@@ -230,7 +230,7 @@ export function SquadLineups({ onBack: _onBack, noFrame }: { onBack?: () => void
 }
 
 // SQ1e — Best lineups empty state
-export function SquadLineupsEmpty({ onBack: _onBack }: { onBack?: () => void }) {
+export function SquadLineupsEmpty({ onBack: _onBack, onNav }: { onBack?: () => void; onNav?: (s: string) => void }) {
   const [toast, setToast] = useState<string | null>(null)
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
@@ -253,8 +253,8 @@ export function SquadLineupsEmpty({ onBack: _onBack }: { onBack?: () => void }) 
               Clean Sheet needs to see who was on the pitch together, for long enough to mean something. You have 1 of 3.
             </div>
             <div style={{ display: 'flex', gap: 8, justifyContent: 'center' }}>
-              <BtnPrimary label="Record Saturday's game" onClick={() => t('Opening the Record tab.')}/>
-              <BtnMore label="Set Saturday's line-up" onClick={() => t('Opening the team sheet.')}/>
+              <BtnPrimary label="Record Saturday's game" onClick={() => onNav ? onNav('record') : t('Opening the Record tab.')}/>
+              <BtnMore label="Set Saturday's line-up" onClick={() => onNav ? onNav('teamsheet') : t('Opening the team sheet.')}/>
             </div>
           </div>
         </div>
