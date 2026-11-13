@@ -28,20 +28,26 @@ function FileIcon({ type }: { type: FileItem['type'] }) {
   )
 }
 
-export default function FIL1Files({ onOpenSheet, onOpenDoc }: { onOpenSheet?: () => void; onOpenDoc?: () => void }) {
+export default function FIL1Files({ onOpenSheet, onOpenDoc, onNav }: {
+  onOpenSheet?: () => void
+  onOpenDoc?: () => void
+  onNav?: (s: string) => void
+}) {
   const [search, setSearch] = useState('')
   const [filter, setFilter] = useState('All 6')
   const [toast, setToast] = useState<string | null>(null)
+  const [uploadDone, setUploadDone] = useState(false)
+  const [lastTemplate, setLastTemplate] = useState<string | null>(null)
+  const [openedPdfId, setOpenedPdfId] = useState<string | null>(null)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 2500) }
 
   const filters = ['All 6', 'Shared with families 4', 'Coaching team only 2', 'From the club 3']
-
   const filtered = FILES.filter(f => f.name.toLowerCase().includes(search.toLowerCase()))
 
   function handleOpen(f: FileItem) {
     if (f.type === 'sheet') onOpenSheet?.()
     else if (f.type === 'doc') onOpenDoc?.()
-    else st(`Opening ${f.name}`)
+    else { setOpenedPdfId(f.id); st(`Opening ${f.name}`) }
   }
 
   return (
@@ -49,24 +55,40 @@ export default function FIL1Files({ onOpenSheet, onOpenDoc }: { onOpenSheet?: ()
       {/* Top nav */}
       <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 24, height: 52, flexShrink: 0 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>Clean Sheet</div>
-        {['Home', 'Squad', 'Training', 'Match day', 'Clips', 'Record'].map(t => (
-          <div key={t} style={{ fontSize: 13, fontWeight: 500, color: 'rgba(255,255,255,0.65)', cursor: 'pointer' }}>{t}</div>
+        {[
+          { label: 'Home', target: 'PH1-HomeJuniorsSame' },
+          { label: 'Squad', target: 'PH1-HomeJuniorsSame' },
+          { label: 'Training', target: 'PH1-HomeJuniorsSame' },
+          { label: 'Match day', target: 'PH1-HomeJuniorsSame' },
+          { label: 'Clips', target: 'PH1-HomeJuniorsSame' },
+          { label: 'Record', target: 'REC1-RecordHub' },
+        ].map(({ label, target }) => (
+          <div key={label} onClick={() => onNav?.(target)} style={{ fontSize: 13, fontWeight: 500, color: 'rgba(255,255,255,0.65)', cursor: 'pointer' }}>{label}</div>
         ))}
         <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 12 }}>
-          <div style={{ height: 32, padding: '0 14px', borderRadius: 999, border: '1.5px solid rgba(255,255,255,0.3)', display: 'flex', alignItems: 'center', fontSize: 13, color: '#fff', cursor: 'pointer', gap: 6 }}>
-            <span>✦</span>
+          <div aria-label="Ask Clean Sheet" onClick={() => onNav?.('ASKd4-PanelFirst')} style={{ height: 32, padding: '0 14px', borderRadius: 999, border: '1.5px solid rgba(255,255,255,0.3)', display: 'flex', alignItems: 'center', fontSize: 13, color: '#fff', cursor: 'pointer', gap: 6 }}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17 5.8 21.3l2.4-7.4L2 9.4h7.6L12 2z"/></svg>
           </div>
-          <div style={{ height: 32, padding: '0 14px', borderRadius: 999, border: '1.5px solid rgba(255,255,255,0.3)', display: 'flex', alignItems: 'center', fontSize: 13, color: '#fff', cursor: 'pointer', gap: 6 }}>
-            U12 Sam ▾
+          <div onClick={() => onNav?.('PH1-HomeJuniorsSame')} style={{ height: 32, padding: '0 14px', borderRadius: 999, border: '1.5px solid rgba(255,255,255,0.3)', display: 'flex', alignItems: 'center', fontSize: 13, color: '#fff', cursor: 'pointer', gap: 6 }}>
+            U12 Sam
           </div>
           <div style={{ width: 32, height: 32, borderRadius: '50%', background: '#7a9e7e', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, color: '#fff' }}>SK</div>
         </div>
       </div>
 
       {/* Sub nav */}
-      <div style={{ background: '#fff', borderBottom: `1px solid ${LN}`, padding: '0 32px', display: 'flex', gap: 24, height: 44, alignItems: 'center' }}>
-        {['Overview', 'Messages', 'Calendar', 'Fixtures and results', 'Our style', 'Where we\'re at', 'Team staff', 'Files'].map(t => (
-          <div key={t} style={{ height: 44, display: 'flex', alignItems: 'center', borderBottom: t === 'Files' ? `2px solid ${G}` : '2px solid transparent', fontSize: 13, fontWeight: t === 'Files' ? 700 : 500, color: t === 'Files' ? G : MUT, cursor: 'pointer' }}>{t}</div>
+      <div style={{ background: '#fff', borderBottom: `1px solid ${LN}`, padding: '0 32px', display: 'flex', gap: 24, height: 44, alignItems: 'center', flexShrink: 0 }}>
+        {[
+          { label: 'Overview', target: 'PH1-HomeJuniorsSame' },
+          { label: 'Messages', target: 'PH1-HomeJuniorsSame' },
+          { label: 'Calendar', target: 'PH1-HomeJuniorsSame' },
+          { label: 'Fixtures and results', target: 'PH1-HomeJuniorsSame' },
+          { label: 'Our style', target: 'PH1-HomeJuniorsSame' },
+          { label: "Where we're at", target: 'WA1-WhereWeAt' },
+          { label: 'Team staff', target: 'PH1-HomeJuniorsSame' },
+          { label: 'Files', target: 'FIL1-Files' },
+        ].map(({ label, target }) => (
+          <div key={label} onClick={() => onNav?.(target)} style={{ height: 44, display: 'flex', alignItems: 'center', borderBottom: label === 'Files' ? `2px solid ${G}` : '2px solid transparent', fontSize: 13, fontWeight: label === 'Files' ? 700 : 500, color: label === 'Files' ? G : MUT, cursor: 'pointer' }}>{label}</div>
         ))}
         <div style={{ marginLeft: 'auto', fontSize: 12, color: MUT }}>Head coach</div>
       </div>
@@ -80,7 +102,7 @@ export default function FIL1Files({ onOpenSheet, onOpenDoc }: { onOpenSheet?: ()
               <div style={{ fontSize: 13, color: MUT }}>U12 Sam · docs, sheets and anything you upload, in one place</div>
             </div>
             <div style={{ marginLeft: 'auto', display: 'flex', gap: 10 }}>
-              <button onClick={() => st('Opening file upload picker.')} style={{ height: 36, padding: '0 16px', borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 13, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Upload</button>
+              <button onClick={() => setUploadDone(true)} style={{ height: 36, padding: '0 16px', borderRadius: 999, border: `1.5px solid ${LN}`, background: uploadDone ? PALE : '#fff', fontSize: 13, color: uploadDone ? G : INK, cursor: 'pointer', fontFamily: 'inherit' }}>{uploadDone ? 'Uploaded ✓' : 'Upload'}</button>
               <button onClick={() => onOpenSheet?.()} style={{ height: 36, padding: '0 16px', borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 13, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>New sheet</button>
               <button onClick={() => onOpenDoc?.()} style={{ height: 36, padding: '0 16px', borderRadius: 999, background: G, color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>New doc</button>
             </div>
@@ -105,9 +127,9 @@ export default function FIL1Files({ onOpenSheet, onOpenDoc }: { onOpenSheet?: ()
               ))}
             </div>
             {filtered.map((f, i) => (
-              <div key={f.id} onClick={() => handleOpen(f)} style={{ display: 'grid', gridTemplateColumns: '1fr 220px 100px', padding: '14px 20px', borderBottom: i < filtered.length - 1 ? `1px solid ${LN}` : 'none', cursor: 'pointer', alignItems: 'center' }}
-                onMouseEnter={e => (e.currentTarget as HTMLElement).style.background = PALE}
-                onMouseLeave={e => (e.currentTarget as HTMLElement).style.background = '#fff'}
+              <div key={f.id} onClick={() => handleOpen(f)} style={{ display: 'grid', gridTemplateColumns: '1fr 220px 100px', padding: '14px 20px', borderBottom: i < filtered.length - 1 ? `1px solid ${LN}` : 'none', cursor: 'pointer', alignItems: 'center', background: openedPdfId === f.id ? PALE : '#fff' }}
+                onMouseEnter={e => { if (openedPdfId !== f.id) (e.currentTarget as HTMLElement).style.background = PALE }}
+                onMouseLeave={e => { if (openedPdfId !== f.id) (e.currentTarget as HTMLElement).style.background = '#fff' }}
               >
                 <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
                   <FileIcon type={f.type} />
@@ -135,16 +157,17 @@ export default function FIL1Files({ onOpenSheet, onOpenDoc }: { onOpenSheet?: ()
               { label: 'Duty roster', sub: 'Canteen, kit, oranges' },
               { label: 'Letter to families', sub: 'Your words, club header' },
             ].map(t => (
-              <div key={t.label} onClick={() => st(`Opening ${t.label} template.`)} style={{ display: 'flex', gap: 10, padding: '10px 0', borderBottom: `1px solid ${LN}`, cursor: 'pointer' }}>
+              <div key={t.label} onClick={() => setLastTemplate(t.label)} style={{ display: 'flex', gap: 10, padding: '10px 0', borderBottom: `1px solid ${LN}`, cursor: 'pointer', background: lastTemplate === t.label ? PALE : 'none' }}>
                 <div style={{ width: 28, height: 28, borderRadius: 6, background: PALE, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={G} strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
                 </div>
                 <div>
-                  <div style={{ fontSize: 12, fontWeight: 600, color: INK }}>{t.label}</div>
+                  <div style={{ fontSize: 12, fontWeight: 600, color: lastTemplate === t.label ? G : INK }}>{t.label}</div>
                   <div style={{ fontSize: 11, color: MUT }}>{t.sub}</div>
                 </div>
               </div>
             ))}
+            {lastTemplate && <div style={{ marginTop: 8, fontSize: 11, color: G }}>Opening {lastTemplate}…</div>}
           </div>
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px' }}>
             <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 8 }}>Space</div>
@@ -158,7 +181,7 @@ export default function FIL1Files({ onOpenSheet, onOpenDoc }: { onOpenSheet?: ()
       </div>
 
       {toast && (
-        <div style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', background: GD, color: '#fff', padding: '10px 20px', borderRadius: 999, fontSize: 13, fontWeight: 600, zIndex: 100 }}>{toast}</div>
+        <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', background: GD, color: '#fff', padding: '10px 20px', borderRadius: 999, fontSize: 13, fontWeight: 600, zIndex: 100 }}>{toast}</div>
       )}
     </div>
   )

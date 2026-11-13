@@ -2,9 +2,11 @@ import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
-export default function FIL5ClubFiles() {
+export default function FIL5ClubFiles({ onNav }: { onNav?: (s: string) => void }) {
+  const [lastTool, setLastTool] = useState('')
   const [toast, setToast] = useState<string | null>(null)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 2500) }
+  function tool(name: string) { setLastTool(name) }
 
   const docs = [
     { name: 'Club constitution 2026', to: 'All coaches, managers', opened: 28, of: 31 },
@@ -13,10 +15,10 @@ export default function FIL5ClubFiles() {
     { name: 'Kit ordering guide', to: 'Club coordinators', opened: 4, of: 4 },
   ]
   const templates = [
-    { name: 'Game day info', desc: 'Meet time, ground, what to bring' },
-    { name: 'Tournament team sheet', desc: 'Squad, games, turns in goal' },
-    { name: 'Season letter to families', desc: 'Your words, club header' },
-    { name: 'End of season letter', desc: 'Thanks, next season dates' },
+    { name: 'Game day info', desc: 'Meet time, ground, what to bring', editTarget: 'FIL2-Sheet' as string | null },
+    { name: 'Tournament team sheet', desc: 'Squad, games, turns in goal', editTarget: 'FIL3-Doc' as string | null },
+    { name: 'Season letter to families', desc: 'Your words, club header', editTarget: null },
+    { name: 'End of season letter', desc: 'Thanks, next season dates', editTarget: null },
   ]
   const teams = [
     { name: 'U12 Sam', used: 1.2, of: 5 },
@@ -27,28 +29,47 @@ export default function FIL5ClubFiles() {
   ]
 
   return (
-    <div style={{ width: 1180, background: '#f7f8f7', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }}>
+    <div style={{ width: 1180, background: '#f7f8f7', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }} data-lasttool={lastTool}>
+      {/* Top nav – director frame */}
       <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 32, height: 52, flexShrink: 0 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>Clean Sheet</div>
         {['Club', 'Teams', 'Coaches', 'Players', 'Safeguarding', 'Reports'].map(t => (
-          <div key={t} style={{ fontSize: 13, fontWeight: t === 'Club' ? 700 : 500, color: t === 'Club' ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer' }}>{t}</div>
+          <div key={t} onClick={() => tool(t)} style={{ fontSize: 13, fontWeight: t === 'Club' ? 700 : 500, color: t === 'Club' ? '#fff' : 'rgba(255,255,255,0.65)', background: t === 'Club' ? 'rgba(255,255,255,0.15)' : 'none', borderRadius: 999, padding: '4px 12px', cursor: 'pointer' }}>{t}</div>
         ))}
         <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 12 }}>
-          <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)' }}>Whole club ▾</div>
+          <div aria-label="Ask Clean Sheet" onClick={() => onNav?.('ASKd4-PanelFirst')} style={{ height: 32, padding: '0 14px', borderRadius: 999, border: '1.5px solid rgba(255,255,255,0.3)', display: 'flex', alignItems: 'center', fontSize: 13, color: '#fff', cursor: 'pointer', gap: 6 }}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17 5.8 21.3l2.4-7.4L2 9.4h7.6L12 2z"/></svg>
+          </div>
+          <div onClick={() => tool('Whole club')} style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)', cursor: 'pointer' }}>Whole club ▾</div>
           <div style={{ width: 32, height: 32, borderRadius: '50%', background: '#c0a070', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, color: '#fff' }}>RM</div>
         </div>
       </div>
 
+      {/* Sub nav */}
       <div style={{ background: '#fff', borderBottom: `1px solid ${LN}`, padding: '0 32px', display: 'flex', gap: 24, height: 44, alignItems: 'center' }}>
-        {['Overview', 'Messages', 'Calendar', 'Season plan', 'Playing style', 'Files', 'Features and billing'].map(t => (
-          <div key={t} style={{ height: 44, display: 'flex', alignItems: 'center', borderBottom: t === 'Files' ? `2px solid ${G}` : '2px solid transparent', fontSize: 13, fontWeight: t === 'Files' ? 700 : 500, color: t === 'Files' ? G : MUT, cursor: 'pointer' }}>{t}</div>
+        {[
+          { label: 'Overview' },
+          { label: 'Messages' },
+          { label: 'Calendar' },
+          { label: 'Season plan' },
+          { label: 'Playing style' },
+          { label: 'Files' },
+          { label: 'Features and billing', target: 'PRM1-FeaturesByTeam' },
+        ].map(({ label, target }) => (
+          <div key={label} onClick={() => target ? onNav?.(target) : tool(label)} style={{ height: 44, display: 'flex', alignItems: 'center', borderBottom: label === 'Files' ? `2px solid ${G}` : '2px solid transparent', fontSize: 13, fontWeight: label === 'Files' ? 700 : 500, color: label === 'Files' ? G : MUT, cursor: 'pointer' }}>{label}</div>
         ))}
         <div style={{ marginLeft: 'auto', fontSize: 12, color: MUT }}>Director of football</div>
       </div>
 
       <div style={{ display: 'flex', flex: 1, padding: '24px 32px', gap: 24 }}>
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 20 }}>
-          <div style={{ fontSize: 22, fontWeight: 800, color: INK }}>Club files</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+            <div style={{ fontSize: 22, fontWeight: 800, color: INK }}>Club files</div>
+            <div style={{ marginLeft: 'auto', display: 'flex', gap: 8 }}>
+              <button onClick={() => tool('Upload')} style={{ height: 36, padding: '0 16px', borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 13, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Upload</button>
+              <button onClick={() => tool('New template')} style={{ height: 36, padding: '0 16px', borderRadius: 999, background: G, color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>New template</button>
+            </div>
+          </div>
 
           {/* Club documents */}
           <div>
@@ -62,12 +83,11 @@ export default function FIL5ClubFiles() {
                   </div>
                   <div style={{ fontSize: 13, color: MUT, marginRight: 16 }}>{d.opened} of {d.of} read</div>
                   {d.opened < d.of && (
-                    <button onClick={() => st(`Nudging ${d.of - d.opened} people.`)} style={{ height: 30, padding: '0 12px', borderRadius: 999, background: PALE, border: 'none', fontSize: 12, color: G, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Nudge {d.of - d.opened}</button>
+                    <button onClick={() => tool(`Nudge-${d.name}`)} style={{ height: 30, padding: '0 12px', borderRadius: 999, background: PALE, border: 'none', fontSize: 12, color: G, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Nudge {d.of - d.opened}</button>
                   )}
                 </div>
               ))}
             </div>
-            <button onClick={() => st('Opening new club document.')} style={{ marginTop: 10, height: 36, padding: '0 16px', borderRadius: 999, background: G, color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>+ New document</button>
           </div>
 
           {/* Templates */}
@@ -80,7 +100,7 @@ export default function FIL5ClubFiles() {
                     <div style={{ fontSize: 14, fontWeight: 600, color: INK }}>{t.name}</div>
                     <div style={{ fontSize: 12, color: MUT }}>{t.desc}</div>
                   </div>
-                  <button onClick={() => st(`Editing ${t.name} template.`)} style={{ height: 30, padding: '0 12px', borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 12, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Edit</button>
+                  <button onClick={() => t.editTarget ? onNav?.(t.editTarget) : tool(`Edit-${t.name}`)} style={{ height: 30, padding: '0 12px', borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 12, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Edit</button>
                 </div>
               ))}
             </div>
@@ -102,14 +122,14 @@ export default function FIL5ClubFiles() {
                 </div>
               </div>
             ))}
-            <button onClick={() => st('Opening extra space in Features and billing.')} style={{ marginTop: 14, width: '100%', height: 36, borderRadius: 999, background: G, color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>+ Add space</button>
+            <button onClick={() => onNav?.('PRM1-FeaturesByTeam')} style={{ marginTop: 14, width: '100%', height: 36, borderRadius: 999, background: G, color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>+ Add space</button>
             <div style={{ fontSize: 11, color: MUT, marginTop: 8, textAlign: 'center' }}>Video is not counted. It stays with Clips.</div>
           </div>
         </div>
       </div>
 
       {toast && (
-        <div style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', background: GD, color: '#fff', padding: '10px 20px', borderRadius: 999, fontSize: 13, fontWeight: 600, zIndex: 100 }}>{toast}</div>
+        <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', background: GD, color: '#fff', padding: '10px 20px', borderRadius: 999, fontSize: 13, fontWeight: 600, zIndex: 100 }}>{toast}</div>
       )}
     </div>
   )

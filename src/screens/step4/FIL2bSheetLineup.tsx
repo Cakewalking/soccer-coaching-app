@@ -18,35 +18,79 @@ const PLAYERS: Position[] = [
   { name: 'Ava', x: 65, y: 72, mins: 50 },
 ]
 
-export default function FIL2bSheetLineup({ onTableView, onShare }: { onTableView?: () => void; onShare?: () => void }) {
+export default function FIL2bSheetLineup({ onBack, onShare, onNav }: {
+  onBack?: () => void
+  onShare?: () => void
+  onNav?: (s: string) => void
+}) {
   const [gameIdx, setGameIdx] = useState(0)
+  const [lastTool, setLastTool] = useState('')
   const [toast, setToast] = useState<string | null>(null)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 2500) }
+  function tool(name: string) { setLastTool(name) }
 
   const games = ['Game 1 · 11 Oct', 'Game 2 · 18 Oct', 'Game 3 · 25 Oct', 'Game 4 · 1 Nov']
 
   return (
-    <div style={{ width: 1180, background: '#f7f8f7', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }}>
+    <div style={{ width: 1180, background: '#f7f8f7', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }} data-lasttool={lastTool}>
+      {/* Top nav */}
       <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 24, height: 52, flexShrink: 0 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>Clean Sheet</div>
-        {['Home', 'Squad', 'Training', 'Match day', 'Files', 'Record'].map(t => (
-          <div key={t} style={{ fontSize: 13, fontWeight: t === 'Files' ? 700 : 500, color: t === 'Files' ? '#fff' : 'rgba(255,255,255,0.65)', background: t === 'Files' ? 'rgba(255,255,255,0.15)' : 'none', borderRadius: 999, padding: '4px 12px', cursor: 'pointer' }}>{t}</div>
+        {[
+          { label: 'Home', target: 'PH1-HomeJuniorsSame' },
+          { label: 'Squad', target: 'PH1-HomeJuniorsSame' },
+          { label: 'Training', target: 'PH1-HomeJuniorsSame' },
+          { label: 'Match day', target: 'PH1-HomeJuniorsSame' },
+          { label: 'Clips', target: 'PH1-HomeJuniorsSame' },
+          { label: 'Record', target: 'REC1-RecordHub' },
+        ].map(({ label, target }) => (
+          <div key={label} onClick={() => { tool(label); onNav?.(target) }} style={{ fontSize: 13, fontWeight: 500, color: 'rgba(255,255,255,0.65)', cursor: 'pointer' }}>{label}</div>
         ))}
         <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 12 }}>
-          <div style={{ height: 32, padding: '0 14px', borderRadius: 999, border: '1.5px solid rgba(255,255,255,0.3)', fontSize: 13, color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>U12 Sam ▾</div>
+          <div aria-label="Ask Clean Sheet" onClick={() => onNav?.('ASKd4-PanelFirst')} style={{ height: 32, padding: '0 14px', borderRadius: 999, border: '1.5px solid rgba(255,255,255,0.3)', display: 'flex', alignItems: 'center', fontSize: 13, color: '#fff', cursor: 'pointer', gap: 6 }}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17 5.8 21.3l2.4-7.4L2 9.4h7.6L12 2z"/></svg>
+          </div>
+          <div onClick={() => onNav?.('PH1-HomeJuniorsSame')} style={{ height: 32, padding: '0 14px', borderRadius: 999, border: '1.5px solid rgba(255,255,255,0.3)', display: 'flex', alignItems: 'center', fontSize: 13, color: '#fff', cursor: 'pointer' }}>U12 Sam</div>
           <div style={{ width: 32, height: 32, borderRadius: '50%', background: '#7a9e7e', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, color: '#fff' }}>SK</div>
         </div>
       </div>
 
-      <div style={{ background: '#fff', borderBottom: `1px solid ${LN}`, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 16, height: 48 }}>
-        <div style={{ fontSize: 13, color: MUT, cursor: 'pointer' }}>← Files</div>
-        <div style={{ fontSize: 13, fontWeight: 700, color: INK }}>Summer sevens team sheets</div>
-        <div style={{ marginLeft: 'auto', display: 'flex', gap: 10 }}>
-          <div style={{ display: 'flex', border: `1.5px solid ${LN}`, borderRadius: 999, overflow: 'hidden' }}>
-            <button onClick={onTableView} style={{ height: 32, padding: '0 14px', background: '#fff', border: 'none', fontSize: 13, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Table</button>
-            <button style={{ height: 32, padding: '0 14px', background: G, border: 'none', fontSize: 13, color: '#fff', fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Line-up</button>
-          </div>
-          <button onClick={onShare} style={{ height: 36, padding: '0 16px', borderRadius: 999, background: G, color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Share</button>
+      {/* Sub nav */}
+      <div style={{ background: '#fff', borderBottom: `1px solid ${LN}`, padding: '0 32px', display: 'flex', gap: 24, height: 44, alignItems: 'center', flexShrink: 0 }}>
+        {[
+          { label: 'Overview', target: 'PH1-HomeJuniorsSame' },
+          { label: 'Messages', target: 'PH1-HomeJuniorsSame' },
+          { label: 'Calendar', target: 'PH1-HomeJuniorsSame' },
+          { label: 'Fixtures and results', target: 'PH1-HomeJuniorsSame' },
+          { label: 'Our style', target: 'PH1-HomeJuniorsSame' },
+          { label: "Where we're at", target: 'WA1-WhereWeAt' },
+          { label: 'Team staff', target: 'PH1-HomeJuniorsSame' },
+          { label: 'Files', target: 'FIL1-Files' },
+        ].map(({ label, target }) => (
+          <div key={label} onClick={() => onNav?.(target)} style={{ height: 44, display: 'flex', alignItems: 'center', borderBottom: label === 'Files' ? `2px solid ${G}` : '2px solid transparent', fontSize: 13, fontWeight: label === 'Files' ? 700 : 500, color: label === 'Files' ? G : MUT, cursor: 'pointer' }}>{label}</div>
+        ))}
+        <div style={{ marginLeft: 'auto', fontSize: 12, color: MUT }}>Head coach</div>
+      </div>
+
+      {/* File toolbar */}
+      <div style={{ background: '#fff', borderBottom: `1px solid ${LN}`, padding: '0 16px', display: 'flex', gap: 6, height: 44, alignItems: 'center', flexShrink: 0 }}>
+        <button onClick={() => onBack?.()} style={{ fontSize: 13, color: MUT, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', padding: '0 8px', whiteSpace: 'nowrap' }}>Back to Files</button>
+        <div style={{ width: 1, height: 24, background: LN, flexShrink: 0 }} />
+        {['History', 'Download'].map(b => (
+          <button key={b} onClick={() => tool(b)} style={{ height: 28, padding: '0 10px', borderRadius: 6, border: `1px solid ${LN}`, background: lastTool === b ? PALE : '#fff', fontSize: 12, cursor: 'pointer', fontFamily: 'inherit', color: lastTool === b ? G : INK }}>{b}</button>
+        ))}
+        <div style={{ width: 1, height: 24, background: LN, flexShrink: 0 }} />
+        <button onClick={() => tool('Shape: 2-3-1')} style={{ height: 28, padding: '0 10px', borderRadius: 6, border: `1px solid ${lastTool === 'Shape: 2-3-1' ? G : LN}`, background: lastTool === 'Shape: 2-3-1' ? PALE : '#fff', fontSize: 12, cursor: 'pointer', fontFamily: 'inherit', color: lastTool === 'Shape: 2-3-1' ? G : INK }}>Shape: 2-3-1</button>
+        <button onClick={() => tool('Print')} style={{ height: 28, padding: '0 10px', borderRadius: 6, border: `1px solid ${LN}`, background: lastTool === 'Print' ? PALE : '#fff', fontSize: 12, cursor: 'pointer', fontFamily: 'inherit', color: lastTool === 'Print' ? G : INK }}>Print</button>
+        <div style={{ width: 1, height: 24, background: LN, flexShrink: 0 }} />
+        <button onClick={() => tool('Swap for me')} style={{ height: 28, padding: '0 10px', borderRadius: 6, border: `1px solid ${LN}`, background: lastTool === 'Swap for me' ? PALE : '#fff', fontSize: 12, cursor: 'pointer', fontFamily: 'inherit', color: lastTool === 'Swap for me' ? G : INK }}>Swap for me</button>
+        <div style={{ display: 'flex', border: `1.5px solid ${LN}`, borderRadius: 999, overflow: 'hidden', marginLeft: 4 }}>
+          <button onClick={() => onNav?.('FIL2-Sheet')} style={{ height: 28, padding: '0 12px', background: '#fff', border: 'none', fontSize: 12, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Table</button>
+          <button onClick={() => tool('Line-up')} style={{ height: 28, padding: '0 12px', background: G, border: 'none', fontSize: 12, color: '#fff', fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Line-up</button>
+        </div>
+        <div style={{ marginLeft: 'auto', display: 'flex', gap: 6 }}>
+          <button onClick={() => onNav?.('FIL2-Sheet')} style={{ height: 28, padding: '0 12px', borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 12, cursor: 'pointer', fontFamily: 'inherit', color: MUT }}>Back to the table</button>
+          <button onClick={() => onShare?.()} style={{ height: 28, padding: '0 12px', borderRadius: 999, background: G, color: '#fff', border: 'none', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Share</button>
         </div>
       </div>
 
@@ -62,18 +106,13 @@ export default function FIL2bSheetLineup({ onTableView, onShare }: { onTableView
         {/* Pitch */}
         <div style={{ flex: 1 }}>
           <div style={{ position: 'relative', background: '#3a7a52', borderRadius: 12, overflow: 'hidden', aspectRatio: '0.65', maxHeight: 580 }}>
-            {/* Pitch markings */}
             <div style={{ position: 'absolute', inset: '10%', border: '2px solid rgba(255,255,255,0.3)', borderRadius: 4 }} />
             <div style={{ position: 'absolute', left: '30%', right: '30%', top: '50%', height: 2, background: 'rgba(255,255,255,0.3)' }} />
             <div style={{ position: 'absolute', left: '50%', top: '50%', width: 60, height: 60, borderRadius: '50%', border: '2px solid rgba(255,255,255,0.3)', transform: 'translate(-50%, -50%)' }} />
-
-            {/* Goal areas */}
             <div style={{ position: 'absolute', left: '30%', right: '30%', top: '10%', height: '12%', border: '2px solid rgba(255,255,255,0.3)' }} />
             <div style={{ position: 'absolute', left: '30%', right: '30%', bottom: '10%', height: '12%', border: '2px solid rgba(255,255,255,0.3)' }} />
-
-            {/* Players */}
             {PLAYERS.map(p => (
-              <div key={p.name} style={{ position: 'absolute', left: `${p.x}%`, top: `${p.y}%`, transform: 'translate(-50%, -50%)', textAlign: 'center', cursor: 'pointer' }} onClick={() => st(`${p.name}: ${p.mins} minutes`)}>
+              <div key={p.name} style={{ position: 'absolute', left: `${p.x}%`, top: `${p.y}%`, transform: 'translate(-50%, -50%)', textAlign: 'center', cursor: 'pointer' }} onClick={() => { tool(p.name); st(`${p.name}: ${p.mins} minutes`) }}>
                 <div style={{ width: 36, height: 36, borderRadius: '50%', background: p.alert ? '#c05' : G, border: `2px solid ${p.alert ? '#fca5a5' : '#fff'}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 800, color: '#fff', margin: '0 auto', boxShadow: '0 2px 6px rgba(0,0,0,0.3)' }}>
                   {p.name.slice(0, 2)}
                 </div>
@@ -86,17 +125,15 @@ export default function FIL2bSheetLineup({ onTableView, onShare }: { onTableView
 
         {/* Right */}
         <div style={{ width: 260, flexShrink: 0, display: 'flex', flexDirection: 'column', gap: 12 }}>
-          {/* Alert */}
           <div style={{ background: '#fff5f5', border: '1px solid #fca5a5', borderRadius: 14, padding: '14px 16px' }}>
             <div style={{ fontSize: 13, fontWeight: 700, color: '#991b1b', marginBottom: 6 }}>Check · Ruby Lane</div>
             <div style={{ fontSize: 12, color: INK, lineHeight: 1.5, marginBottom: 10 }}>Plays all 4 games at 60 min — over equal-time rule.</div>
             <div style={{ display: 'flex', gap: 8 }}>
-              <button onClick={() => st('Swapping Ruby in game 4.')} style={{ flex: 1, height: 32, borderRadius: 999, background: '#c05', color: '#fff', border: 'none', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Swap for me</button>
-              <button onClick={() => st('OK, left as is.')} style={{ flex: 1, height: 32, borderRadius: 999, background: '#fff', border: `1.5px solid #fca5a5`, fontSize: 12, color: '#991b1b', cursor: 'pointer', fontFamily: 'inherit' }}>Leave it</button>
+              <button onClick={() => { tool('Swap for me'); st('Swapping Ruby in game 4.') }} style={{ flex: 1, height: 32, borderRadius: 999, background: '#c05', color: '#fff', border: 'none', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Swap for me</button>
+              <button onClick={() => { tool('Leave it'); st('OK, left as is.') }} style={{ flex: 1, height: 32, borderRadius: 999, background: '#fff', border: `1.5px solid #fca5a5`, fontSize: 12, color: '#991b1b', cursor: 'pointer', fontFamily: 'inherit' }}>Leave it</button>
             </div>
           </div>
 
-          {/* Minute summary */}
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 16px' }}>
             <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 10 }}>This game · minutes</div>
             {PLAYERS.map(p => (
@@ -110,7 +147,7 @@ export default function FIL2bSheetLineup({ onTableView, onShare }: { onTableView
       </div>
 
       {toast && (
-        <div style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', background: GD, color: '#fff', padding: '10px 20px', borderRadius: 999, fontSize: 13, fontWeight: 600, zIndex: 100 }}>{toast}</div>
+        <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', background: GD, color: '#fff', padding: '10px 20px', borderRadius: 999, fontSize: 13, fontWeight: 600, zIndex: 100 }}>{toast}</div>
       )}
     </div>
   )

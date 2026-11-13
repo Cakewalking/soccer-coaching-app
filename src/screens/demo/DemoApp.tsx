@@ -735,6 +735,79 @@ function PRM6UsageNav() {
   return <PRM6Usage onBill={() => setInner('PRM3-Bill')} onFeatures={() => setInner('PRM1-FeaturesByTeam')} />
 }
 
+function FIL1FilesNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <FIL1Files onOpenSheet={() => setInner('FIL2-Sheet')} onOpenDoc={() => setInner('FIL3-Doc')} onNav={(s) => setInner(s)} />
+}
+function FIL2SheetNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <FIL2Sheet onBack={() => setInner('FIL1-Files')} onShare={() => setInner('FIL4-Share')} onNav={(s) => setInner(s)} />
+}
+function FIL4ShareWithFIL2Bg() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return (
+    <div style={{ position: 'relative' }}>
+      <FIL2Sheet onBack={() => setInner('FIL1-Files')} onShare={() => {}} onNav={(s) => setInner(s)} />
+      <FIL4Share onClose={() => setInner('FIL2-Sheet')} />
+    </div>
+  )
+}
+function FIL3DocNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <FIL3Doc onBack={() => setInner('FIL1-Files')} onShare={() => setInner('FIL4-Share')} onNav={(s) => setInner(s)} />
+}
+function FIL2bSheetLineupNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <FIL2bSheetLineup onBack={() => setInner('FIL1-Files')} onShare={() => setInner('FIL4-Share')} onNav={(s) => setInner(s)} />
+}
+function FIL6SignUpNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <FIL6SignUp onBack={() => setInner('FIL1-Files')} onShare={() => setInner('FIL4-Share')} onNav={(s) => setInner(s)} />
+}
+function FIL7FormNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <FIL7Form onBack={() => setInner('FIL1-Files')} onShare={() => setInner('FIL4-Share')} onAnswersSheet={() => setInner('FIL2-Sheet')} onNav={(s) => setInner(s)} />
+}
+function FIL5ClubFilesNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <FIL5ClubFiles onNav={(s) => setInner(s)} />
+}
+function FILp1ParentFilesNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}>
+      <FILp1ParentFiles onBack={() => setInner('FIL1-Files')} onNav={(s) => setInner(s)} />
+    </div>
+  )
+}
+function FILp2ParentSignUpNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}>
+      <FILp2ParentSignUp onBack={() => setInner('FILp1-ParentFiles')} onNav={(s) => setInner(s)} />
+    </div>
+  )
+}
+function FILp3ParentFormNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}>
+      <FILp3ParentForm onBack={() => setInner('FILp1-ParentFiles')} onNav={(s) => setInner(s)} />
+    </div>
+  )
+}
+
 function renderScreenInner(key: string): ReactNode {
   switch (key) {
     case 'juniorcoach':
@@ -1724,19 +1797,19 @@ function renderScreenInner(key: string): ReactNode {
     case 'PRM5-CoachAsk':         return <PRM5CoachAskWithBg />
     case 'PRM6-Usage':            return <PRM6UsageNav />
     // Files (FIL)
-    case 'FIL1-Files':            return <FIL1Files onOpenSheet={noop} onOpenDoc={noop} />
+    case 'FIL1-Files':            return <FIL1FilesNav />
     case 'FIL1e-FilesEmpty':      return <FIL1eFilesEmpty />
-    case 'FIL2-Sheet':            return <FIL2Sheet onLineupView={noop} onShare={noop} />
-    case 'FIL2b-SheetLineup':     return <FIL2bSheetLineup onTableView={noop} onShare={noop} />
-    case 'FIL3-Doc':              return <FIL3Doc onParentView={noop} onShare={noop} />
+    case 'FIL2-Sheet':            return <FIL2SheetNav />
+    case 'FIL2b-SheetLineup':     return <FIL2bSheetLineupNav />
+    case 'FIL3-Doc':              return <FIL3DocNav />
     case 'FIL3b-DocParent':       return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><FIL3bDocParent onBack={noop} /></div>
-    case 'FIL4-Share':            return <FIL4Share onClose={noop} />
-    case 'FIL5-ClubFiles':        return <FIL5ClubFiles />
-    case 'FIL6-SignUp':           return <FIL6SignUp />
-    case 'FIL7-Form':             return <FIL7Form />
-    case 'FILp1-ParentFiles':     return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><FILp1ParentFiles /></div>
-    case 'FILp2-ParentSignUp':    return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><FILp2ParentSignUp /></div>
-    case 'FILp3-ParentForm':      return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><FILp3ParentForm /></div>
+    case 'FIL4-Share':            return <FIL4ShareWithFIL2Bg />
+    case 'FIL5-ClubFiles':        return <FIL5ClubFilesNav />
+    case 'FIL6-SignUp':           return <FIL6SignUpNav />
+    case 'FIL7-Form':             return <FIL7FormNav />
+    case 'FILp1-ParentFiles':     return <FILp1ParentFilesNav />
+    case 'FILp2-ParentSignUp':    return <FILp2ParentSignUpNav />
+    case 'FILp3-ParentForm':      return <FILp3ParentFormNav />
     // Playing Up (PU)
     case 'PU1-PlayingUp':         return <PU1PlayingUpNav />
     case 'PU1e-PlayingUpEmpty':   return <PU1ePlayingUpEmpty />
