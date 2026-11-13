@@ -369,7 +369,9 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
   const [homeSubView, setHomeSubView] = useState<'main' | 'seasonnotes' | 'teamchat' | 'footballyear'>('main')
   const [trainingTab, setTrainingTab] = useState<TrainingTab>('plan')
   const [recordView, setRecordView] = useState<RecordView>('start')
+  const [askOpen, setAskOpen]       = useState(false)
   const { active: inSandbox, store } = useSandbox()
+  const ASK_QUESTIONS = ['Who needs a rest this week?', 'What should we work on tonight?', 'Is everyone getting fair minutes?']
 
   const GAMEDAY_TABS: Array<{ id: GameDayTab; label: string }> = [
     { id: 'turns',       label: 'Turns' },
@@ -406,7 +408,7 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
   let content = null
   if (nav === 'home') {
     if (homeTab === 'overview' && homeSubView === 'main')
-      content = phaseContent ?? <HomeMiniRoos empty={empty} onTraining={() => setNav('training')} onSeasonNotes={() => setHomeSubView('seasonnotes')} onFootballYear={() => setHomeSubView('footballyear')} onAllMessages={() => setHomeTab('messages')} onCalendar={() => setHomeTab('calendar')} onSwapGame={() => { setNav('training'); setTrainingTab('suggest') }} onWhatWeSaw={() => { setNav('gameday'); setGameDayTab('whatisaw') }} onThankParents={() => { setNav('gameday'); setGameDayTab('thankparents') }} onInboxItem={() => setHomeTab('messages')} />
+      content = phaseContent ?? <HomeMiniRoos empty={empty} onTraining={() => setNav('training')} onSeasonNotes={() => setHomeSubView('seasonnotes')} onFootballYear={() => setHomeSubView('footballyear')} onAllMessages={() => setHomeTab('messages')} onCalendar={() => setHomeTab('calendar')} onSwapGame={() => { setNav('training'); setTrainingTab('suggest') }} onWhatWeSaw={() => { setNav('gameday'); setGameDayTab('whatisaw') }} onThankParents={() => { setNav('gameday'); setGameDayTab('thankparents') }} onInboxItem={() => setHomeTab('messages')} onAsk={() => setAskOpen(true)} askQuestions={ASK_QUESTIONS} />
     else if (homeTab === 'overview' && homeSubView === 'seasonnotes')
       content = <SeasonNotesScreen empty={empty} onBack={() => setHomeSubView('main')} />
     else if (homeTab === 'overview' && homeSubView === 'footballyear')
@@ -457,7 +459,10 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
       roleChip="Coach · MiniRoos"
       teamLabel={inSandbox ? (store.teams[0]?.name ?? 'My team') : 'U9 Tom · Wattle Creek'}
       avatarLetters={inSandbox ? 'MC' : 'TA'}
-      showAsk={false}
+      askOpen={askOpen}
+      onAskToggle={() => setAskOpen(o => !o)}
+      askQuestions={ASK_QUESTIONS}
+      askRole="MiniRoos coach"
     >
       {content}
     </CoachTabletFrame>

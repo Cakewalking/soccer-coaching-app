@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { AskLine } from '../HomeScreen'
 
 const NEEDS_YOU = [
   { ini: 'AV', iconBg: '#40826d', iconColor: '#fff', category: 'Availability', time: 'Saturday', badge: 'Today', title: "2 families haven't said if they're coming", unread: true },
@@ -90,13 +91,17 @@ interface Props {
   onWhatWeSaw?: () => void
   onThankParents?: () => void
   onInboxItem?: () => void
+  onAsk?: () => void
+  askQuestions?: string[]
 }
 
-export default function HomeMiniRoos({ empty, onTraining, onSeasonNotes, onFootballYear, onAllMessages, onCalendar, onSwapGame, onWhatWeSaw, onThankParents, onInboxItem }: Props) {
+export default function HomeMiniRoos({ empty, onTraining, onSeasonNotes, onFootballYear, onAllMessages, onCalendar, onSwapGame, onWhatWeSaw, onThankParents, onInboxItem, onAsk, askQuestions }: Props) {
   if (empty) return <HomeMiniRoosEmpty />
   return (
+    <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', minHeight: 0 }}>
+      <AskLine teamName="U9 Tom" questions={askQuestions ?? []} onAsk={onAsk} roleLabel="MiniRoos coach" />
     <main style={{
-      flexGrow: 1, minHeight: 0, padding: '18px 28px 22px',
+      flex: 1, minHeight: 0, padding: '18px 28px 22px',
       boxSizing: 'border-box', display: 'grid',
       gridTemplateColumns: 'repeat(12, minmax(0,1fr))', gap: 18,
     }}>
@@ -255,5 +260,6 @@ export default function HomeMiniRoos({ empty, onTraining, onSeasonNotes, onFootb
       </div>
 
     </main>
+    </div>
   )
 }
