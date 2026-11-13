@@ -385,10 +385,6 @@ import { MessagesRules, CoachNewMessage, CoachMessages, CoachMessagesPersonCard,
 import { AcademyTrainingWeek, AcademyTrainingSuggested, AcademySessionPlan, AcademyWhoComing, AcademyTrainingWeekEmpty } from '../AcademyTraining'
 import { RecordHub, RecordSaved, RecordHubEmpty } from '../RecordHub'
 import { SquadLineups, SquadLineupsEmpty } from '../SquadLineups'
-import { WhereWeAtScreen, WhereWeAtScreenEmpty } from '../WhereWeAtScreen'
-import { MS1MiniRoosStyle, MS1eMiniRoosStyleEmpty } from '../miniroos/MiniRoosStyleScreen'
-import { MS2MiniRoosWhereWeAt, MS2eMiniRoosWhereWeAtEmpty } from '../miniroos/MiniRoosWhereWeAt'
-import { MS3MiniRoosReview, MS3eMiniRoosReviewEmpty } from '../miniroos/MiniRoosReview'
 import PAR0SameTools from '../PAR0SameTools'
 import C2ClipsByGame                     from '../step4/C2ClipsByGame'
 import { C3ClipsByPlayer, CL1Playlists, TC1ToCheck, TC1bToCheckDone, TC1eToCheckEmpty } from '../step4/ClipsSubScreens'
@@ -522,6 +518,25 @@ import ASKd7OtherRole                 from '../step4/ASKd7OtherRole'
 import ASKd8PhoneHome                 from '../step4/ASKd8PhoneHome'
 import ASKd9PhoneScreen               from '../step4/ASKd9PhoneScreen'
 import ASKp2PhoneAskOpen              from '../step4/ASKp2PhoneAskOpen'
+// Step 4 — Same Tools screens (item 12)
+import STPh1HomeJuniors               from '../step4/STPh1HomeJuniors'
+import STPh2HomeYouth                 from '../step4/STPh2HomeYouth'
+import STPh3HomeSeniors               from '../step4/STPh3HomeSeniors'
+import STPh4HomeAssistant             from '../step4/STPh4HomeAssistant'
+import STPh4eHomeAssistantEmpty       from '../step4/STPh4eHomeAssistantEmpty'
+import STWa1WhereWeAt                 from '../step4/STWa1WhereWeAt'
+import STWa1eWhereWeAtEmpty           from '../step4/STWa1eWhereWeAtEmpty'
+import STWa2WhereWeAtYouth            from '../step4/STWa2WhereWeAtYouth'
+import STWa3WhereWeAtSeniors          from '../step4/STWa3WhereWeAtSeniors'
+import STMs1MiniRoosStyle             from '../step4/STMs1MiniRoosStyle'
+import STMs1eMiniRoosStyleEmpty       from '../step4/STMs1eMiniRoosStyleEmpty'
+import STMs2MiniRoosWhereWeAt         from '../step4/STMs2MiniRoosWhereWeAt'
+import STMs2eMiniRoosWhereWeAtEmpty   from '../step4/STMs2eMiniRoosWhereWeAtEmpty'
+import STMs3MiniRoosReview            from '../step4/STMs3MiniRoosReview'
+import STMs3eMiniRoosReviewEmpty      from '../step4/STMs3eMiniRoosReviewEmpty'
+import STMs4MiniRoosChild             from '../step4/STMs4MiniRoosChild'
+import STMs4eMiniRoosChildEmpty       from '../step4/STMs4eMiniRoosChildEmpty'
+import STMs5HomeMiniRoos              from '../step4/STMs5HomeMiniRoos'
 
 type DemoView = 'signin' | 'start' | 'why' | 'tour' | 'lookaround' | 'sandbox' | 'sandboxlook' | 'nosandbox' | 'notfound' | 'noaccess' | 'screendirect'
 
@@ -923,6 +938,97 @@ function ASKp2PhoneAskOpenNav() {
       <ASKp2PhoneAskOpen onNav={(s) => setInner(s)} />
     </div>
   )
+}
+
+function STPh1HomeJuniorsNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <STPh1HomeJuniors onNav={(s) => setInner(s)} />
+}
+function STPh2HomeYouthNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <STPh2HomeYouth onNav={(s) => setInner(s)} />
+}
+function STPh3HomeSeniorsNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <STPh3HomeSeniors onNav={(s) => setInner(s)} />
+}
+function STPh4HomeAssistantNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <STPh4HomeAssistant onNav={(s) => setInner(s)} />
+}
+function STPh4eHomeAssistantEmptyNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <STPh4eHomeAssistantEmpty onNav={(s) => setInner(s)} />
+}
+function STWa1WhereWeAtNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <STWa1WhereWeAt onNav={(s) => setInner(s)} />
+}
+function STWa1eWhereWeAtEmptyNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <STWa1eWhereWeAtEmpty onNav={(s) => setInner(s)} />
+}
+function STWa2WhereWeAtYouthNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <STWa2WhereWeAtYouth onNav={(s) => setInner(s)} />
+}
+function STWa3WhereWeAtSeniorsNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <STWa3WhereWeAtSeniors onNav={(s) => setInner(s)} />
+}
+function STMs1MiniRoosStyleNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <STMs1MiniRoosStyle onNav={(s) => setInner(s)} />
+}
+function STMs1eMiniRoosStyleEmptyNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <STMs1eMiniRoosStyleEmpty onNav={(s) => setInner(s)} />
+}
+function STMs2MiniRoosWhereWeAtNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <STMs2MiniRoosWhereWeAt onNav={(s) => setInner(s)} />
+}
+function STMs2eMiniRoosWhereWeAtEmptyNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <STMs2eMiniRoosWhereWeAtEmpty onNav={(s) => setInner(s)} />
+}
+function STMs3MiniRoosReviewNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <STMs3MiniRoosReview onNav={(s) => setInner(s)} />
+}
+function STMs3eMiniRoosReviewEmptyNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <STMs3eMiniRoosReviewEmpty onNav={(s) => setInner(s)} />
+}
+function STMs4MiniRoosChildNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <STMs4MiniRoosChild onNav={(s) => setInner(s)} />
+}
+function STMs4eMiniRoosChildEmptyNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <STMs4eMiniRoosChildEmpty onNav={(s) => setInner(s)} />
+}
+function STMs5HomeMiniRoosNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <STMs5HomeMiniRoos onNav={(s) => setInner(s)} />
 }
 
 function renderScreenInner(key: string): ReactNode {
@@ -1825,25 +1931,29 @@ function renderScreenInner(key: string): ReactNode {
     case 'SQ1e-BestLineupsEmpty':      return <SquadLineupsEmpty onBack={noop} />
 
     // Where we're at (item 12)
-    case 'WA1-WhereWeAt':              return <WhereWeAtScreen teamType="juniors" />
-    case 'WA1e-WhereWeAtEmpty':        return <WhereWeAtScreenEmpty teamType="juniors" />
-    case 'WA2-WhereWeAtYouth':         return <WhereWeAtScreen teamType="youth" />
-    case 'WA3-WhereWeAtSeniors':       return <WhereWeAtScreen teamType="seniors" />
+    case 'WA1-WhereWeAt':              return <STWa1WhereWeAtNav />
+    case 'WA1e-WhereWeAtEmpty':        return <STWa1eWhereWeAtEmptyNav />
+    case 'WA2-WhereWeAtYouth':         return <STWa2WhereWeAtYouthNav />
+    case 'WA3-WhereWeAtSeniors':       return <STWa3WhereWeAtSeniorsNav />
 
     // MiniRoos style + where we're at (item 12)
-    case 'MS1-MiniRoosStyle':          return <MS1MiniRoosStyle />
-    case 'MS1e-MiniRoosStyleEmpty':    return <MS1eMiniRoosStyleEmpty />
-    case 'MS2-MiniRoosWhereWeAt':      return <MS2MiniRoosWhereWeAt />
-    case 'MS2e-MiniRoosWhereWeAtEmpty': return <MS2eMiniRoosWhereWeAtEmpty />
-    case 'MS3-MiniRoosReview':         return <MS3MiniRoosReview />
-    case 'MS3e-MiniRoosReviewEmpty':   return <MS3eMiniRoosReviewEmpty />
+    case 'MS1-MiniRoosStyle':          return <STMs1MiniRoosStyleNav />
+    case 'MS1e-MiniRoosStyleEmpty':    return <STMs1eMiniRoosStyleEmptyNav />
+    case 'MS2-MiniRoosWhereWeAt':      return <STMs2MiniRoosWhereWeAtNav />
+    case 'MS2e-MiniRoosWhereWeAtEmpty': return <STMs2eMiniRoosWhereWeAtEmptyNav />
+    case 'MS3-MiniRoosReview':         return <STMs3MiniRoosReviewNav />
+    case 'MS3e-MiniRoosReviewEmpty':   return <STMs3eMiniRoosReviewEmptyNav />
+    case 'MS4-MiniRoosChild':          return <STMs4MiniRoosChildNav />
+    case 'MS4e-MiniRoosChildEmpty':    return <STMs4eMiniRoosChildEmptyNav />
 
     // Same tools + home aliases (item 12)
     case 'PAR0-SameTools':             return <PAR0SameTools />
-    case 'PH1-HomeJuniorsSame':        return <JuniorCoachApp onBack={noop} empty={false} />
-    case 'PH2-HomeYouthSame':          return <SeniorsYouthCoachApp teamType="youth" onBack={noop} empty={false} />
-    case 'PH3-HomeSeniorsSame':        return <SeniorsYouthCoachApp teamType="seniors" onBack={noop} empty={false} />
-    case 'MS5-HomeMiniRoosSame':       return <MiniRoosApp onBack={noop} empty={false} />
+    case 'PH1-HomeJuniorsSame':        return <STPh1HomeJuniorsNav />
+    case 'PH2-HomeYouthSame':          return <STPh2HomeYouthNav />
+    case 'PH3-HomeSeniorsSame':        return <STPh3HomeSeniorsNav />
+    case 'PH4-HomeAssistantSame':      return <STPh4HomeAssistantNav />
+    case 'PH4e-HomeAssistantEmpty':    return <STPh4eHomeAssistantEmptyNav />
+    case 'MS5-HomeMiniRoosSame':       return <STMs5HomeMiniRoosNav />
 
     // Item 7 — RC empty screens (tablet)
     case 'RC1e-RecordStartEmpty':          return <RC1eRecordStartEmpty />
