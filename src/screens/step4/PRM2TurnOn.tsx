@@ -3,7 +3,7 @@ import { useState } from 'react'
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 export default function PRM2TurnOn({ onClose, onConfirm }: { onClose?: () => void; onConfirm?: () => void }) {
-  const [agreed, setAgreed] = useState(false)
+  const [agreed, setAgreed] = useState(true)
   const [toast, setToast] = useState<string | null>(null)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 2500) }
 
@@ -63,8 +63,8 @@ export default function PRM2TurnOn({ onClose, onConfirm }: { onClose?: () => voi
 
           {/* Actions */}
           <div style={{ display: 'flex', gap: 10 }}>
-            <button onClick={onClose} style={{ flex: 1, height: 44, borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 14, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Cancel</button>
-            <button onClick={() => { if (agreed) { onConfirm?.(); st('Live game help is now on for U14 Josh.') } else st('Tick the box first.') }} style={{ flex: 2, height: 44, borderRadius: 999, background: agreed ? G : '#ccc', color: '#fff', border: 'none', fontSize: 14, fontWeight: 700, cursor: agreed ? 'pointer' : 'not-allowed', fontFamily: 'inherit' }}>Turn on · $10/month</button>
+            <button onClick={onClose} style={{ flex: 1, height: 44, borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 14, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Not now</button>
+            <button onClick={() => { onConfirm?.(); st('Live game help is now on for U14 Josh.') }} style={{ flex: 2, height: 44, borderRadius: 999, background: G, color: '#fff', border: 'none', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Turn on, $15 a month</button>
           </div>
         </div>
       </div>

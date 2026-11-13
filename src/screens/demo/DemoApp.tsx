@@ -471,6 +471,7 @@ import PRM1eFeaturesEmpty             from '../step4/PRM1eFeaturesEmpty'
 import PRM2TurnOn                     from '../step4/PRM2TurnOn'
 import PRM3Bill                       from '../step4/PRM3Bill'
 import PRM4CoachOff                   from '../step4/PRM4CoachOff'
+import PRM5CoachAsk                   from '../step4/PRM5CoachAsk'
 import PRM6Usage                      from '../step4/PRM6Usage'
 // Step 4 — Files (FIL)
 import FIL1Files                      from '../step4/FIL1Files'
@@ -692,6 +693,46 @@ function PX3BandedNightNav() {
   const [inner, setInner] = useState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <PX3BandedNight onBack={() => setInner('PX1-PlayingDown')} />
+}
+function PRM1FeaturesByTeamNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <PRM1FeaturesByTeam onShowBill={() => setInner('PRM3-Bill')} onShowTurnOn={() => setInner('PRM2-TurnOn')} />
+}
+function PRM2TurnOnWithBg() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return (
+    <div style={{ position: 'relative' }}>
+      <PRM1FeaturesByTeam onShowBill={() => setInner('PRM3-Bill')} onShowTurnOn={() => setInner('PRM2-TurnOn')} />
+      <PRM2TurnOn onClose={() => setInner('PRM1-FeaturesByTeam')} onConfirm={() => setInner('PRM1-FeaturesByTeam')} />
+    </div>
+  )
+}
+function PRM3BillNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <PRM3Bill onFeatures={() => setInner('PRM1-FeaturesByTeam')} onUsage={() => setInner('PRM6-Usage')} onOpen={() => setInner('PRM2-TurnOn')} />
+}
+function PRM4CoachOffNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <PRM4CoachOff onNav={(s) => setInner(s)} />
+}
+function PRM5CoachAskWithBg() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return (
+    <div style={{ position: 'relative' }}>
+      <PRM4CoachOff onNav={(s) => setInner(s)} />
+      <PRM5CoachAsk onNav={(s) => setInner(s)} />
+    </div>
+  )
+}
+function PRM6UsageNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <PRM6Usage onBill={() => setInner('PRM3-Bill')} onFeatures={() => setInner('PRM1-FeaturesByTeam')} />
 }
 
 function renderScreenInner(key: string): ReactNode {
@@ -1675,12 +1716,13 @@ function renderScreenInner(key: string): ReactNode {
     case 'SPa1-AcademyYear':               return <SPa1AcademyYear />
 
     // Features & Billing (PRM)
-    case 'PRM1-FeaturesByTeam':   return <PRM1FeaturesByTeam />
+    case 'PRM1-FeaturesByTeam':   return <PRM1FeaturesByTeamNav />
     case 'PRM1e-FeaturesEmpty':   return <PRM1eFeaturesEmpty />
-    case 'PRM2-TurnOn':           return <PRM2TurnOn onClose={noop} onConfirm={noop} />
-    case 'PRM3-Bill':             return <PRM3Bill onBack={noop} />
-    case 'PRM4-CoachOff':         return <PRM4CoachOff />
-    case 'PRM6-Usage':            return <PRM6Usage onBack={noop} />
+    case 'PRM2-TurnOn':           return <PRM2TurnOnWithBg />
+    case 'PRM3-Bill':             return <PRM3BillNav />
+    case 'PRM4-CoachOff':         return <PRM4CoachOffNav />
+    case 'PRM5-CoachAsk':         return <PRM5CoachAskWithBg />
+    case 'PRM6-Usage':            return <PRM6UsageNav />
     // Files (FIL)
     case 'FIL1-Files':            return <FIL1Files onOpenSheet={noop} onOpenDoc={noop} />
     case 'FIL1e-FilesEmpty':      return <FIL1eFilesEmpty />

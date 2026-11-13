@@ -2,8 +2,10 @@ import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb'
 
-export default function PRM3Bill({ onBack }: { onBack?: () => void }) {
+export default function PRM3Bill({ onFeatures, onUsage, onOpen }: { onFeatures?: () => void; onUsage?: () => void; onOpen?: () => void }) {
   const [toast, setToast] = useState<string | null>(null)
+  const [downloaded, setDownloaded] = useState(false)
+  const [added, setAdded] = useState(false)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 2500) }
 
   const lines = [
@@ -42,9 +44,9 @@ export default function PRM3Bill({ onBack }: { onBack?: () => void }) {
             <div style={{ fontSize: 22, fontWeight: 800, color: INK }}>This month's bill</div>
             <div style={{ fontSize: 13, color: MUT }}>June 2026 · next payment 1 July · card ending 4821</div>
             <div style={{ marginLeft: 'auto', display: 'flex', gap: 10 }}>
-              <button onClick={() => st('Opening usage by team.')} style={{ height: 36, padding: '0 16px', borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 13, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Is it being used?</button>
-              <button onClick={onBack} style={{ height: 36, padding: '0 16px', borderRadius: 999, border: `1.5px solid ${G}`, background: '#fff', fontSize: 13, color: G, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Features by team</button>
-              <button onClick={() => st('Downloading bill as PDF.')} style={{ height: 36, padding: '0 16px', borderRadius: 999, background: G, color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Download</button>
+              <button onClick={() => onUsage?.()} style={{ height: 36, padding: '0 16px', borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 13, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Is it being used?</button>
+              <button onClick={() => onFeatures?.()} style={{ height: 36, padding: '0 16px', borderRadius: 999, border: `1.5px solid ${G}`, background: '#fff', fontSize: 13, color: G, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Features by team</button>
+              <button onClick={() => setDownloaded(true)} style={{ height: 36, padding: '0 16px', borderRadius: 999, background: downloaded ? '#5a8a7a' : G, color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>{downloaded ? 'Downloaded ✓' : 'Download'}</button>
             </div>
           </div>
 
@@ -91,7 +93,8 @@ export default function PRM3Bill({ onBack }: { onBack?: () => void }) {
                 </div>
               </div>
             ))}
-            <button onClick={() => st('Opening add person flow.')} style={{ marginTop: 12, width: '100%', height: 34, borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 13, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>+ Add someone</button>
+            {added && <div style={{ marginTop: 8, fontSize: 12, color: G, fontWeight: 600 }}>Person added ✓</div>}
+            <button onClick={() => setAdded(true)} style={{ marginTop: 8, width: '100%', height: 34, borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 13, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>+ Add someone</button>
           </div>
 
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 20px' }}>
@@ -118,7 +121,7 @@ export default function PRM3Bill({ onBack }: { onBack?: () => void }) {
                 <div style={{ fontSize: 12, fontWeight: 600, color: INK }}>Sam: Live game help, U12 Sam</div>
                 <div style={{ fontSize: 11, color: MUT }}>"A tight run of games."</div>
               </div>
-              <button onClick={() => st('Opening request details.')} style={{ height: 28, padding: '0 12px', borderRadius: 999, background: G, color: '#fff', border: 'none', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>Open</button>
+              <button onClick={() => onOpen?.()} style={{ height: 28, padding: '0 12px', borderRadius: 999, background: G, color: '#fff', border: 'none', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>Open</button>
             </div>
           </div>
         </div>

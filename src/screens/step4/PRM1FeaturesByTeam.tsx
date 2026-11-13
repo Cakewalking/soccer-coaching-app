@@ -16,6 +16,7 @@ type Band = { label: string; sub: string; teams: Team[]; lghAllowed: boolean; ve
 
 export default function PRM1FeaturesByTeam({ onShowBill, onShowTurnOn }: { onShowBill?: () => void; onShowTurnOn?: () => void }) {
   const [toast, setToast] = useState<string | null>(null)
+  const [showDefs, setShowDefs] = useState(false)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 2500) }
 
   const [bands, setBands] = useState<Band[]>([
@@ -96,7 +97,7 @@ export default function PRM1FeaturesByTeam({ onShowBill, onShowTurnOn }: { onSho
             <div style={{ fontSize: 22, fontWeight: 800, color: INK }}>Features and billing</div>
             <div style={{ fontSize: 13, color: MUT }}>Wattle Creek FC · you are the billing owner</div>
             <div style={{ marginLeft: 'auto', display: 'flex', gap: 10 }}>
-              <button onClick={() => st('Opening feature descriptions.')} style={{ height: 36, padding: '0 16px', borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 13, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>What each one does</button>
+              <button onClick={() => setShowDefs(d => !d)} style={{ height: 36, padding: '0 16px', borderRadius: 999, border: `1.5px solid ${showDefs ? G : LN}`, background: showDefs ? PALE : '#fff', fontSize: 13, color: showDefs ? G : INK, fontWeight: showDefs ? 700 : 400, cursor: 'pointer', fontFamily: 'inherit' }}>What each one does</button>
               <button onClick={() => onShowBill?.()} style={{ height: 36, padding: '0 16px', borderRadius: 999, border: `1.5px solid ${G}`, background: '#fff', fontSize: 13, color: G, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>This month's bill</button>
             </div>
           </div>

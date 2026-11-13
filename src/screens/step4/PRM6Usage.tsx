@@ -2,10 +2,12 @@ import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
-export default function PRM6Usage({ onBack }: { onBack?: () => void }) {
+export default function PRM6Usage({ onBill, onFeatures }: { onBill?: () => void; onFeatures?: () => void }) {
   const [toast, setToast] = useState<string | null>(null)
   const [alertWeeks, setAlertWeeks] = useState(4)
   const [coachStop, setCoachStop] = useState(true)
+  const [askedMarko, setAskedMarko] = useState(false)
+  const [turnedOff, setTurnedOff] = useState(false)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 2500) }
 
   const rows = [
@@ -50,8 +52,8 @@ export default function PRM6Usage({ onBack }: { onBack?: () => void }) {
               <div style={{ fontSize: 13, color: MUT }}>June 2026 · every add-on, team by team, over the last 8 weeks</div>
             </div>
             <div style={{ marginLeft: 'auto', display: 'flex', gap: 10 }}>
-              <button onClick={onBack} style={{ height: 36, padding: '0 16px', borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 13, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>This month's bill</button>
-              <button onClick={() => st('Opening features by team.')} style={{ height: 36, padding: '0 16px', borderRadius: 999, border: `1.5px solid ${G}`, background: '#fff', fontSize: 13, color: G, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Features by team</button>
+              <button onClick={() => onBill?.()} style={{ height: 36, padding: '0 16px', borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 13, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>This month's bill</button>
+              <button onClick={() => onFeatures?.()} style={{ height: 36, padding: '0 16px', borderRadius: 999, border: `1.5px solid ${G}`, background: '#fff', fontSize: 13, color: G, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Features by team</button>
             </div>
           </div>
 
@@ -80,11 +82,17 @@ export default function PRM6Usage({ onBack }: { onBack?: () => void }) {
                 <div style={{ fontSize: 12, color: MUT }}>{r.lastUsed}</div>
                 <div style={{ fontSize: 13, color: INK }}>{r.month}</div>
                 <div>
-                  {r.action === 'Turn off' && (
-                    <button onClick={() => st('Turned off. Nothing recorded is lost.')} style={{ height: 32, padding: '0 14px', borderRadius: 999, background: '#fef2f2', color: '#c05', border: '1.5px solid #f9a8a8', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Turn off</button>
+                  {r.action === 'Turn off' && !turnedOff && (
+                    <button onClick={() => setTurnedOff(true)} style={{ height: 32, padding: '0 14px', borderRadius: 999, background: '#fef2f2', color: '#c05', border: '1.5px solid #f9a8a8', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Turn off</button>
                   )}
-                  {r.action === 'Ask Marko' && (
-                    <button onClick={() => st('Sending a friendly note to Marko.')} style={{ height: 32, padding: '0 14px', borderRadius: 999, background: '#fff', color: G, border: `1.5px solid ${G}`, fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Ask Marko</button>
+                  {r.action === 'Turn off' && turnedOff && (
+                    <div style={{ fontSize: 12, color: MUT }}>Turned off ✓</div>
+                  )}
+                  {r.action === 'Ask Marko' && !askedMarko && (
+                    <button onClick={() => setAskedMarko(true)} style={{ height: 32, padding: '0 14px', borderRadius: 999, background: '#fff', color: G, border: `1.5px solid ${G}`, fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Ask Marko</button>
+                  )}
+                  {r.action === 'Ask Marko' && askedMarko && (
+                    <div style={{ fontSize: 12, color: G, fontWeight: 600 }}>Note sent ✓</div>
                   )}
                 </div>
               </div>

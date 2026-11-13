@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
-export default function PRM4CoachOff() {
+export default function PRM4CoachOff({ onNav }: { onNav?: (s: string) => void }) {
   const [showAsk, setShowAsk] = useState(false)
   const [reason, setReason] = useState('')
   const [sent, setSent] = useState(false)
@@ -20,15 +20,22 @@ export default function PRM4CoachOff() {
       {/* Top nav */}
       <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 24, height: 52, flexShrink: 0 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>Clean Sheet</div>
-        {['Home', 'Squad', 'Training', 'Game day', 'Clips', 'Record'].map(t => (
-          <div key={t} style={{ fontSize: 13, fontWeight: t === 'Game day' ? 700 : 500, color: t === 'Game day' ? '#fff' : 'rgba(255,255,255,0.65)', background: t === 'Game day' ? 'rgba(255,255,255,0.15)' : 'none', borderRadius: 999, padding: '4px 12px', cursor: 'pointer' }}>{t}</div>
+        {[
+          { label: 'Home', target: 'MS5-HomeMiniRoosSame' },
+          { label: 'Squad', target: 'HM2-SquadMiniRoos' },
+          { label: 'Training', target: 'HM3-TrainingMiniRoos' },
+          { label: 'Game day', target: 'HM4-GameDayMiniRoos' },
+          { label: 'Clips', target: 'HM1-HomeMiniRoos' },
+          { label: 'Record', target: 'HM1-HomeMiniRoos' },
+        ].map(({ label, target }) => (
+          <div key={label} onClick={() => onNav?.(target)} style={{ fontSize: 13, fontWeight: label === 'Game day' ? 700 : 500, color: label === 'Game day' ? '#fff' : 'rgba(255,255,255,0.65)', background: label === 'Game day' ? 'rgba(255,255,255,0.15)' : 'none', borderRadius: 999, padding: '4px 12px', cursor: 'pointer' }}>{label}</div>
         ))}
         <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 12 }}>
-          <div style={{ height: 32, padding: '0 14px', borderRadius: 999, border: '1.5px solid rgba(255,255,255,0.3)', display: 'flex', alignItems: 'center', fontSize: 13, color: '#fff', cursor: 'pointer', gap: 6 }}>
-            <span>✦</span>
+          <div aria-label="Ask Clean Sheet" onClick={() => onNav?.('ASKd4-PanelFirst')} style={{ height: 32, padding: '0 14px', borderRadius: 999, border: '1.5px solid rgba(255,255,255,0.3)', display: 'flex', alignItems: 'center', fontSize: 13, color: '#fff', cursor: 'pointer', gap: 6 }}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17 5.8 21.3l2.4-7.4L2 9.4h7.6L12 2z"/></svg>
           </div>
-          <div style={{ height: 32, padding: '0 14px', borderRadius: 999, border: '1.5px solid rgba(255,255,255,0.3)', display: 'flex', alignItems: 'center', fontSize: 13, color: '#fff', cursor: 'pointer', gap: 6 }}>
-            U9 Tom ▾
+          <div onClick={() => onNav?.('HM1-HomeMiniRoos')} style={{ height: 32, padding: '0 14px', borderRadius: 999, border: '1.5px solid rgba(255,255,255,0.3)', display: 'flex', alignItems: 'center', fontSize: 13, color: '#fff', cursor: 'pointer', gap: 6 }}>
+            U9 Tom
           </div>
           <div style={{ width: 32, height: 32, borderRadius: '50%', background: '#c0a070', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, color: '#fff' }}>TA</div>
         </div>
@@ -36,8 +43,13 @@ export default function PRM4CoachOff() {
 
       {/* Sub nav */}
       <div style={{ background: '#fff', borderBottom: `1px solid ${LN}`, padding: '0 32px', display: 'flex', gap: 28, height: 44, alignItems: 'center' }}>
-        {['Turns', 'Live', 'Review', 'What we saw'].map(t => (
-          <div key={t} style={{ height: 44, display: 'flex', alignItems: 'center', borderBottom: t === 'Live' ? `2px solid ${G}` : '2px solid transparent', fontSize: 13, fontWeight: t === 'Live' ? 700 : 500, color: t === 'Live' ? G : MUT, cursor: 'pointer' }}>{t}</div>
+        {[
+          { label: 'Turns', target: 'HM4-GameDayMiniRoos' },
+          { label: 'Live', target: 'PRM4-CoachOff' },
+          { label: 'Review', target: 'MS3-MiniRoosReview' },
+          { label: 'What we saw', target: 'HM4-GameDayMiniRoos' },
+        ].map(({ label, target }) => (
+          <div key={label} onClick={() => onNav?.(target)} style={{ height: 44, display: 'flex', alignItems: 'center', borderBottom: label === 'Live' ? `2px solid ${G}` : '2px solid transparent', fontSize: 13, fontWeight: label === 'Live' ? 700 : 500, color: label === 'Live' ? G : MUT, cursor: 'pointer' }}>{label}</div>
         ))}
         <div style={{ marginLeft: 'auto', fontSize: 12, color: MUT }}>Coach · MiniRoos</div>
       </div>
@@ -48,7 +60,7 @@ export default function PRM4CoachOff() {
           <div style={{ fontSize: 20, fontWeight: 800, color: INK }}>Saturday at Northgate City</div>
           <div style={{ fontSize: 13, color: MUT }}>U9 Tom · kick-off 8:30 · game 2 of 4</div>
         </div>
-        <button onClick={() => st('Opening turns.')} style={{ height: 40, padding: '0 20px', borderRadius: 999, background: G, color: '#fff', border: 'none', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Open turns</button>
+        <button onClick={() => onNav?.('HM4-GameDayMiniRoos')} style={{ height: 40, padding: '0 20px', borderRadius: 999, background: G, color: '#fff', border: 'none', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Open turns</button>
       </div>
 
       <div style={{ display: 'flex', flex: 1 }}>
@@ -65,7 +77,7 @@ export default function PRM4CoachOff() {
               Wattle Creek FC has this off for under 6 to under 11. "New coaches learn to read the game first." Rachel, director of football.
             </div>
             <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
-              <button onClick={() => st('Showing what you still have on game day.')} style={{ height: 44, padding: '0 24px', borderRadius: 999, background: G, color: '#fff', border: 'none', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>What you still have today</button>
+              <button onClick={() => onNav?.('HM4-GameDayMiniRoos')} style={{ height: 44, padding: '0 24px', borderRadius: 999, background: G, color: '#fff', border: 'none', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>What you still have today</button>
               {!sent
                 ? <button onClick={() => setShowAsk(true)} style={{ height: 44, padding: '0 24px', borderRadius: 999, background: '#fff', color: G, border: `1.5px solid ${G}`, fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Ask Rachel</button>
                 : <div style={{ height: 44, padding: '0 24px', borderRadius: 999, background: PALE, color: G, border: `1.5px solid ${LN}`, fontSize: 14, fontWeight: 700, display: 'flex', alignItems: 'center' }}>Note sent ✓</div>
