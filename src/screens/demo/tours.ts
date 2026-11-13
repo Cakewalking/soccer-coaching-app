@@ -1033,7 +1033,7 @@ export const TOURS: Record<string, TourDef> = {
     home: '',
     sections: [
       { title: "The story", steps: [
-        { label: "Saturday: the game goes in", caption: "The club films the game on whatever camera it has. Cameras with a live feed can stream straight in.", screen: "GI0-Recording" },
+        { label: "Saturday: the game goes in", caption: "The club films the game on whatever camera it has. Cameras with a live feed can stream straight in.", screen: "T1s-HomeSunday" },
         { label: "The review comes back", caption: "About 25 minutes later: what went well, and three things to work on, each with a clip.", screen: "R1-MatchReview" },
         { label: "Thursday: the plan is ready", caption: "Training is built from those three things, using drills written to the national curriculum.", screen: "T3-TrainingTab" },
         { label: "At the ground", caption: "Pitch-side, the coach sees what to set up and what to say. Growing players have their sprints capped.", screen: "TR1b-PitchSideDrill" },
