@@ -742,42 +742,42 @@ function PXp1ParentDownNav() {
 function PRM1FeaturesByTeamNav() {
   const [inner, setInner] = useState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
-  return <PRM1FeaturesByTeam onShowBill={() => setInner('PRM3-Bill')} onShowTurnOn={() => setInner('PRM2-TurnOn')} />
+  return <PRM1FeaturesByTeam onNav={(s) => setInner(s)} />
+}
+function PRM1eFeaturesEmptyNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <PRM1eFeaturesEmpty onNav={(s) => setInner(s)} />
 }
 function PRM2TurnOnWithBg() {
   const [inner, setInner] = useState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return (
     <div style={{ position: 'relative' }}>
-      <PRM1FeaturesByTeam onShowBill={() => setInner('PRM3-Bill')} onShowTurnOn={() => setInner('PRM2-TurnOn')} />
-      <PRM2TurnOn onClose={() => setInner('PRM1-FeaturesByTeam')} onConfirm={() => setInner('PRM1-FeaturesByTeam')} />
+      <PRM1FeaturesByTeam onNav={(s) => setInner(s)} />
+      <PRM2TurnOn onNav={(s) => setInner(s)} />
     </div>
   )
 }
 function PRM3BillNav() {
   const [inner, setInner] = useState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
-  return <PRM3Bill onFeatures={() => setInner('PRM1-FeaturesByTeam')} onUsage={() => setInner('PRM6-Usage')} onOpen={() => setInner('PRM2-TurnOn')} />
+  return <PRM3Bill onNav={(s) => setInner(s)} />
 }
 function PRM4CoachOffNav() {
   const [inner, setInner] = useState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <PRM4CoachOff onNav={(s) => setInner(s)} />
 }
-function PRM5CoachAskWithBg() {
+function PRM5CoachAskNav() {
   const [inner, setInner] = useState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
-  return (
-    <div style={{ position: 'relative' }}>
-      <PRM4CoachOff onNav={(s) => setInner(s)} />
-      <PRM5CoachAsk onNav={(s) => setInner(s)} />
-    </div>
-  )
+  return <PRM5CoachAsk onNav={(s) => setInner(s)} />
 }
 function PRM6UsageNav() {
   const [inner, setInner] = useState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
-  return <PRM6Usage onBill={() => setInner('PRM3-Bill')} onFeatures={() => setInner('PRM1-FeaturesByTeam')} />
+  return <PRM6Usage onNav={(s) => setInner(s)} />
 }
 
 function FIL1FilesNav() {
@@ -2037,11 +2037,11 @@ function renderScreenInner(key: string): ReactNode {
 
     // Features & Billing (PRM)
     case 'PRM1-FeaturesByTeam':   return <PRM1FeaturesByTeamNav />
-    case 'PRM1e-FeaturesEmpty':   return <PRM1eFeaturesEmpty />
+    case 'PRM1e-FeaturesEmpty':   return <PRM1eFeaturesEmptyNav />
     case 'PRM2-TurnOn':           return <PRM2TurnOnWithBg />
     case 'PRM3-Bill':             return <PRM3BillNav />
     case 'PRM4-CoachOff':         return <PRM4CoachOffNav />
-    case 'PRM5-CoachAsk':         return <PRM5CoachAskWithBg />
+    case 'PRM5-CoachAsk':         return <PRM5CoachAskNav />
     case 'PRM6-Usage':            return <PRM6UsageNav />
     // Files (FIL)
     case 'FIL1-Files':            return <FIL1FilesNav />
