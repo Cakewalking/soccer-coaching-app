@@ -230,10 +230,9 @@ export function AskLine({ teamName, questions, onAsk, roleLabel = 'head coach' }
 }
 
 export default function HomeScreen({ onNav, onCalendar, empty, onAsk, askQuestions, teamName = 'U12 Sam' }: Props) {
-  const { active: inSandbox } = useSandbox()
   const defaultQs = askQuestions ?? ['Who needs a rest this week?', 'What should we work on tonight?', 'Is everyone getting fair minutes?']
 
-  if (empty || inSandbox) return (
+  if (empty) return (
     <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', minHeight: 0 }}>
       <AskLine teamName={teamName} questions={defaultQs} onAsk={onAsk} />
       <HomeEmpty onNav={onNav} />

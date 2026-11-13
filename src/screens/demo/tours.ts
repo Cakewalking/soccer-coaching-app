@@ -402,12 +402,12 @@ export const TOURS: Record<string, TourDef> = {
         { label: "Check-in", caption: "A child\u2019s week: a quick check-in, a clip from the coach and one goal. No rankings and no chat: under 15s get news from the coach and a parent writes for them.", screen: "playerapp-checkin" },
         { label: "Done", caption: "A child\u2019s week: a quick check-in, a clip from the coach and one goal. No rankings and no chat: under 15s get news from the coach and a parent writes for them.", screen: "playerapp-done" },
         { label: "After training", caption: "A child\u2019s week: a quick check-in, a clip from the coach and one goal. No rankings and no chat: under 15s get news from the coach and a parent writes for them.", screen: "PE1-EffortRating" },
-        { label: "A clip from the coach", caption: "A child\u2019s week: a quick check-in, a clip from the coach and one goal. No rankings and no chat: under 15s get news from the coach and a parent writes for them.", screen: "playerapp" },
-        { label: "My goals", caption: "A child\u2019s week: a quick check-in, a clip from the coach and one goal. No rankings and no chat: under 15s get news from the coach and a parent writes for them.", screen: "playerapp" },
+        { label: "A clip from the coach", caption: "A child\u2019s week: a quick check-in, a clip from the coach and one goal. No rankings and no chat: under 15s get news from the coach and a parent writes for them.", screen: "playerapp-clip" },
+        { label: "My goals", caption: "A child\u2019s week: a quick check-in, a clip from the coach and one goal. No rankings and no chat: under 15s get news from the coach and a parent writes for them.", screen: "playerapp-goals" },
         { label: "News from the coach, no chat", caption: "A child\u2019s week: a quick check-in, a clip from the coach and one goal. No rankings and no chat: under 15s get news from the coach and a parent writes for them.", screen: "PK1-YoungNews" },
       ]},
       { title: "When something\u2019s wrong", steps: [
-        { label: "You can tell someone", caption: "A child can write privately to the welfare officer. The coach can\u2019t see it.", screen: "playerapp" },
+        { label: "You can tell someone", caption: "A child can write privately to the welfare officer. The coach can\u2019t see it.", screen: "playerapp-concern" },
         { label: "Write to the welfare officer", caption: "A child can write privately to the welfare officer. The coach can\u2019t see it.", screen: "PC2b-TellHelen" },
       ]},
     ],
@@ -549,7 +549,7 @@ export const TOURS: Record<string, TourDef> = {
       { title: "Handle it", steps: [
         { label: "My cases", caption: "Only the welfare officer sees names. The director sees counts.", screen: "DW1-WelfareCases" },
         { label: "Nothing open", caption: "Only the welfare officer sees names. The director sees counts.", screen: "DW1e-WelfareCasesEmpty" },
-        { label: "What the director sees", caption: "Only the welfare officer sees names. The director sees counts.", screen: "D5-Safeguarding" },
+        { label: "What the director sees", caption: "Only the welfare officer sees names. The director sees counts.", screen: "D5-Safeguarding-concerns" },
         { label: "Sideline reports", caption: "Only the welfare officer sees names. The director sees counts.", screen: "FS1-Sideline" },
       ]},
       { title: "Also yours", steps: [

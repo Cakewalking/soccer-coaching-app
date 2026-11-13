@@ -581,6 +581,12 @@ export function renderScreen(key: string): ReactNode {
       return <PlayerAppScreen empty={false} initialView="checkin" />
     case 'playerapp-done':
       return <PlayerAppScreen empty={false} initialView="checkin-sent" />
+    case 'playerapp-clip':
+      return <PlayerAppScreen empty={false} initialView="clip" />
+    case 'playerapp-goals':
+      return <PlayerAppScreen empty={false} initialView="goals" />
+    case 'playerapp-concern':
+      return <PlayerAppScreen empty={false} initialView="tell-someone" />
     case 'olderplayer':
       return <OlderPlayerApp empty={false} />
     case 'refereephone':
@@ -903,7 +909,8 @@ export function renderScreen(key: string): ReactNode {
     case 'FM1-Moves':                 return <FM1Moves />
     case 'FH1-HeadingPolicy':         return <FH1HeadingPolicy />
     case 'FY1-SeasonPlan':            return <FY1SeasonPlan />
-    case 'D5-Safeguarding':           return <D5Safeguarding />
+    case 'D5-Safeguarding':            return <D5Safeguarding />
+    case 'D5-Safeguarding-concerns':   return <D5Safeguarding initialTab="concerns" />
     case 'DS1-Concerns':              return <ER5NoAccess />
     case 'DS2-DataRequests':          return <DS2DataRequests />
     case 'DB4-Grants':                return <DB4Grants />
@@ -1733,7 +1740,9 @@ export default function DemoApp() {
     } else if (role === 'academyowner') {
       sbApp = <AcademyOwnerApp onBack={noop} empty={sbEmpty} initialScreen={screen} onNavChange={setScreen} />
     } else {
-      const homeKey = TOURS[role].sandboxHome ?? TOURS[role].home
+      const homeKey = sbFilled
+        ? (TOURS[role].home ?? TOURS[role].sandboxHome)
+        : (TOURS[role].sandboxHome ?? TOURS[role].home)
       sbApp = homeKey ? renderScreen(homeKey) : (
         <div style={{ padding: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 300 }}>
           <div style={{ fontSize: 15, color: '#6f7f7b' }}>{TOURS[role].roleLabel} — no screen preview available.</div>

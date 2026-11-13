@@ -2,8 +2,8 @@ import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
-export default function D5Safeguarding(_: { onBack?: () => void }) {
-  const [tab, setTab] = useState<'consent' | 'concerns' | 'data'>('consent')
+export default function D5Safeguarding({ initialTab = 'consent' }: { onBack?: () => void; initialTab?: 'consent' | 'concerns' | 'data' }) {
+  const [tab, setTab] = useState<'consent' | 'concerns' | 'data'>(initialTab)
   const [toast, setToast] = useState<string | null>(null)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
 
