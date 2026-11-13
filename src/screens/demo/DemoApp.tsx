@@ -512,6 +512,16 @@ import EDU4ClubLibrary                from '../step4/EDU4ClubLibrary'
 import EDU5CoachCorner                from '../step4/EDU5CoachCorner'
 import EDU6CoachPaths                 from '../step4/EDU6CoachPaths'
 import EDUp1PlayerLearn               from '../step4/EDUp1PlayerLearn'
+import ASKd1HomeRest                  from '../step4/ASKd1HomeRest'
+import ASKd2HomeFocus                 from '../step4/ASKd2HomeFocus'
+import ASKd3AnyScreen                 from '../step4/ASKd3AnyScreen'
+import ASKd4PanelFirst                from '../step4/ASKd4PanelFirst'
+import ASKd5PanelAnswer               from '../step4/ASKd5PanelAnswer'
+import ASKd6States                    from '../step4/ASKd6States'
+import ASKd7OtherRole                 from '../step4/ASKd7OtherRole'
+import ASKd8PhoneHome                 from '../step4/ASKd8PhoneHome'
+import ASKd9PhoneScreen               from '../step4/ASKd9PhoneScreen'
+import ASKp2PhoneAskOpen              from '../step4/ASKp2PhoneAskOpen'
 
 type DemoView = 'signin' | 'start' | 'why' | 'tour' | 'lookaround' | 'sandbox' | 'sandboxlook' | 'nosandbox' | 'notfound' | 'noaccess' | 'screendirect'
 
@@ -848,6 +858,69 @@ function EDUp1PlayerLearnNav() {
   return (
     <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}>
       <EDUp1PlayerLearn onNav={(s) => setInner(s)} />
+    </div>
+  )
+}
+
+function ASKd1HomeRestNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <ASKd1HomeRest onNav={(s) => setInner(s)} />
+}
+function ASKd2HomeFocusNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <ASKd2HomeFocus onNav={(s) => setInner(s)} />
+}
+function ASKd3AnyScreenNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <ASKd3AnyScreen onNav={(s) => setInner(s)} />
+}
+function ASKd4PanelFirstNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <ASKd4PanelFirst onNav={(s) => setInner(s)} />
+}
+function ASKd5PanelAnswerNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <ASKd5PanelAnswer onNav={(s) => setInner(s)} />
+}
+function ASKd6StatesNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <ASKd6States onNav={(s) => setInner(s)} />
+}
+function ASKd7OtherRoleNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <ASKd7OtherRole onNav={(s) => setInner(s)} />
+}
+function ASKd8PhoneHomeNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}>
+      <ASKd8PhoneHome onNav={(s) => setInner(s)} />
+    </div>
+  )
+}
+function ASKd9PhoneScreenNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}>
+      <ASKd9PhoneScreen onNav={(s) => setInner(s)} />
+    </div>
+  )
+}
+function ASKp2PhoneAskOpenNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}>
+      <ASKp2PhoneAskOpen onNav={(s) => setInner(s)} />
     </div>
   )
 }
@@ -1879,6 +1952,17 @@ function renderScreenInner(key: string): ReactNode {
     case 'EDU5-CoachCorner':      return <EDU5CoachCornerNav />
     case 'EDU6-CoachPaths':       return <EDU6CoachPathsNav />
     case 'EDUp1-PlayerLearn':     return <EDUp1PlayerLearnNav />
+    // Ask Clean Sheet (ASK)
+    case 'ASKd1-HomeRest':        return <ASKd1HomeRestNav />
+    case 'ASKd2-HomeFocus':       return <ASKd2HomeFocusNav />
+    case 'ASKd3-AnyScreen':       return <ASKd3AnyScreenNav />
+    case 'ASKd4-PanelFirst':      return <ASKd4PanelFirstNav />
+    case 'ASKd5-PanelAnswer':     return <ASKd5PanelAnswerNav />
+    case 'ASKd6-States':          return <ASKd6StatesNav />
+    case 'ASKd7-OtherRole':       return <ASKd7OtherRoleNav />
+    case 'ASKd8-PhoneHome':       return <ASKd8PhoneHomeNav />
+    case 'ASKd9-PhoneScreen':     return <ASKd9PhoneScreenNav />
+    case 'ASKp2-PhoneAskOpen':    return <ASKp2PhoneAskOpenNav />
 
     default:
       return (
