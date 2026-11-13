@@ -807,6 +807,50 @@ function FILp3ParentFormNav() {
     </div>
   )
 }
+function EDU1LearnNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <EDU1Learn onNav={(s) => setInner(s)} />
+}
+function EDU1eLearnEmptyNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <EDU1eLearnEmpty onNav={(s) => setInner(s)} />
+}
+function EDU2LessonNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <EDU2Lesson onNav={(s) => setInner(s)} />
+}
+function EDU3MakeLessonNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <EDU3MakeLesson onNav={(s) => setInner(s)} />
+}
+function EDU4ClubLibraryNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <EDU4ClubLibrary onNav={(s) => setInner(s)} />
+}
+function EDU5CoachCornerNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <EDU5CoachCorner onNav={(s) => setInner(s)} />
+}
+function EDU6CoachPathsNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <EDU6CoachPaths onNav={(s) => setInner(s)} />
+}
+function EDUp1PlayerLearnNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}>
+      <EDUp1PlayerLearn onNav={(s) => setInner(s)} />
+    </div>
+  )
+}
 
 function renderScreenInner(key: string): ReactNode {
   switch (key) {
@@ -1827,14 +1871,14 @@ function renderScreenInner(key: string): ReactNode {
     case 'PX3-BandedNight':       return <PX3BandedNightNav />
     case 'PXp1-ParentDown':       return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PXp1ParentDown /></div>
     // Learn (EDU)
-    case 'EDU1-Learn':            return <EDU1Learn onLesson={noop} onMakeLesson={noop} />
-    case 'EDU1e-LearnEmpty':      return <EDU1eLearnEmpty onMakeLesson={noop} />
-    case 'EDU2-Lesson':           return <EDU2Lesson onBack={noop} onShare={noop} />
-    case 'EDU3-MakeLesson':       return <EDU3MakeLesson onBack={noop} />
-    case 'EDU4-ClubLibrary':      return <EDU4ClubLibrary onLesson={noop} onMakeLesson={noop} />
-    case 'EDU5-CoachCorner':      return <EDU5CoachCorner onLesson={noop} />
-    case 'EDU6-CoachPaths':       return <EDU6CoachPaths onBack={noop} />
-    case 'EDUp1-PlayerLearn':     return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><EDUp1PlayerLearn /></div>
+    case 'EDU1-Learn':            return <EDU1LearnNav />
+    case 'EDU1e-LearnEmpty':      return <EDU1eLearnEmptyNav />
+    case 'EDU2-Lesson':           return <EDU2LessonNav />
+    case 'EDU3-MakeLesson':       return <EDU3MakeLessonNav />
+    case 'EDU4-ClubLibrary':      return <EDU4ClubLibraryNav />
+    case 'EDU5-CoachCorner':      return <EDU5CoachCornerNav />
+    case 'EDU6-CoachPaths':       return <EDU6CoachPathsNav />
+    case 'EDUp1-PlayerLearn':     return <EDUp1PlayerLearnNav />
 
     default:
       return (
