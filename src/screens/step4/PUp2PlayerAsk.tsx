@@ -1,69 +1,66 @@
 import { useState } from 'react'
 
-const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
+const G = '#2f6252', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
-export default function PUp2PlayerAsk() {
-  const [feeling, setFeeling] = useState<'yes' | 'maybe' | 'no' | null>(null)
-  const [submitted, setSubmitted] = useState(false)
+export default function PUp2PlayerAsk({ onNav }: { onNav?: (s: string) => void }) {
+  const [lastTool, setLastTool] = useState('')
+  function tool(name: string) { setLastTool(name) }
 
-  if (submitted) {
-    return (
-      <div style={{ width: 390, background: '#f7f8f7', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column', borderRadius: 24, overflow: 'hidden', alignItems: 'center', justifyContent: 'center', padding: 24, textAlign: 'center' }}>
-        <div style={{ width: 72, height: 72, borderRadius: '50%', background: PALE, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20, fontSize: 32 }}>⚽</div>
-        <div style={{ fontSize: 20, fontWeight: 800, color: INK, marginBottom: 8 }}>
-          {feeling === 'no' ? 'All good — no worries.' : 'Thanks, Mia!'}
-        </div>
-        <div style={{ fontSize: 14, color: MUT, lineHeight: 1.6 }}>
-          {feeling === 'yes' ? 'Rachel and Sam will work out the next step and your parents will hear about it too.' : feeling === 'maybe' ? 'Rachel will talk with you and your family before anything happens.' : 'Nothing changes. This stays between you and Rachel.'}
-        </div>
-      </div>
-    )
-  }
+  const players = [
+    { code: 'AW', label: 'AW Ava', name: 'Ava', target: 'Ava: taken off.' },
+    { code: 'BK', label: 'BK Bella', name: 'Bella', target: 'Bella: taken off.' },
+    { code: 'CH', label: 'CH Chloe', name: 'Chloe', target: 'Chloe: picked.' },
+    { code: 'DS', label: 'DS Dani', name: 'Dani', target: 'Dani: taken off.' },
+    { code: 'EM', label: 'EM Evie', name: 'Evie', target: 'Evie: picked.' },
+    { code: 'FR', label: 'FR Frankie', name: 'Frankie', target: 'Frankie: taken off.' },
+    { code: 'HN', label: 'HN Hana', name: 'Hana', target: 'Hana: picked.' },
+  ]
 
   return (
-    <div style={{ width: 390, background: '#f7f8f7', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column', borderRadius: 24, overflow: 'hidden' }}>
-      <div style={{ background: GD, padding: '32px 24px 24px' }}>
-        <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.6)', marginBottom: 2 }}>From Rachel · just for you</div>
-        <div style={{ fontSize: 22, fontWeight: 800, color: '#fff', marginTop: 8 }}>Hi Mia 👋</div>
+    <div data-lasttool={lastTool} style={{ width: 390, background: '#f4f6f5', fontFamily: 'var(--font-sans)', minHeight: 844, display: 'flex', flexDirection: 'column', margin: '0 auto' }}>
+      <div style={{ background: '#fff', borderBottom: `1px solid ${LN}`, padding: '12px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <button aria-label="Back" onClick={() => onNav?.('PUp1-ParentAsk')} style={{ height: 44, padding: '0 12px', background: 'none', color: G, border: 'none', fontSize: 15, cursor: 'pointer', fontFamily: 'inherit' }}>Back</button>
+        <div style={{ fontSize: 14, fontWeight: 700, color: INK }}>Clean Sheet</div>
+        <button aria-label="Ask Clean Sheet" onClick={() => onNav?.('ASKp2-PhoneAskOpen')} style={{ height: 44, padding: '0 12px', background: 'none', color: G, border: 'none', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Ask Clean Sheet</button>
       </div>
 
-      <div style={{ flex: 1, padding: '24px 20px', overflowY: 'auto' }}>
-        <div style={{ fontSize: 15, color: INK, lineHeight: 1.7, marginBottom: 24 }}>
-          Sam and I think you're doing really well and might enjoy training with the under 13 girls sometimes. Your parents have already said they're happy to hear more.
+      <div style={{ flex: 1, padding: '24px 20px', display: 'flex', flexDirection: 'column', gap: 20 }}>
+        <div>
+          <div style={{ fontSize: 20, fontWeight: 900, color: INK, marginBottom: 4 }}>Training with the under 13s</div>
+          <div style={{ fontSize: 13, color: MUT }}>Mia, a few questions for you</div>
         </div>
 
-        <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 20px', marginBottom: 16 }}>
-          <div style={{ fontSize: 14, fontWeight: 700, color: INK, marginBottom: 10 }}>Do you know anyone in that team?</div>
-          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-            {['Isla Chen', 'Zoe Park', 'Grace Reid', 'Priya Shah'].map(name => (
-              <div key={name} style={{ height: 32, padding: '0 12px', borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 13, color: INK, display: 'flex', alignItems: 'center' }}>{name}</div>
+        <div>
+          <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 8 }}>Who do you know in that team?</div>
+          <div style={{ fontSize: 13, color: MUT, marginBottom: 12 }}>Tap anyone you'd be happy to pair up with. It's fine to pick nobody.</div>
+          <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: 10 }}>
+            {players.map(p => (
+              <button key={p.code} aria-label={p.label} onClick={() => tool(p.target)} style={{ height: 44, padding: '0 16px', background: PALE, color: G, border: `1px solid ${LN}`, borderRadius: 22, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{p.label}</button>
             ))}
-            <div style={{ height: 32, padding: '0 12px', borderRadius: 999, background: PALE, border: `1.5px solid ${G}`, fontSize: 13, color: G, fontWeight: 700, display: 'flex', alignItems: 'center' }}>Isla Chen +2</div>
+            <button aria-label="+7 More" onClick={() => tool('More: picked.')} style={{ height: 44, padding: '0 16px', background: '#fff', color: MUT, border: `1px solid ${LN}`, borderRadius: 22, fontSize: 13, cursor: 'pointer', fontFamily: 'inherit' }}>+7 More</button>
           </div>
         </div>
 
-        <div style={{ marginBottom: 24 }}>
-          <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 14 }}>How do you feel about giving it a try?</div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-            {[
-              { key: 'yes' as const, emoji: '😊', label: "I'd like to try it" },
-              { key: 'maybe' as const, emoji: '🤔', label: "Maybe — can I find out more first?" },
-              { key: 'no' as const, emoji: '😕', label: "Not for me right now" },
-            ].map(o => (
-              <button key={o.key} onClick={() => setFeeling(o.key)} style={{ width: '100%', height: 56, borderRadius: 14, border: `1.5px solid ${feeling === o.key ? G : LN}`, background: feeling === o.key ? PALE : '#fff', fontSize: 15, color: feeling === o.key ? G : INK, fontWeight: feeling === o.key ? 700 : 400, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', paddingLeft: 20, gap: 12 }}>
-                <span style={{ fontSize: 20 }}>{o.emoji}</span>
-                {o.label}
-              </button>
+        <div>
+          <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 8 }}>How do you feel about trying it?</div>
+          <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: 10 }}>
+            {(['Can\'t wait', 'A bit nervous', 'Not sure'] as const).map(label => (
+              <button key={label} aria-label={label} onClick={() => tool(label + '.')} style={{ height: 44, padding: '0 16px', background: '#fff', color: INK, border: `1px solid ${LN}`, borderRadius: 22, fontSize: 13, cursor: 'pointer', fontFamily: 'inherit' }}>{label}</button>
             ))}
           </div>
         </div>
 
-        <button onClick={() => { if (feeling) setSubmitted(true) }} disabled={!feeling} style={{ width: '100%', height: 50, borderRadius: 14, background: feeling ? G : '#c8d4d0', color: '#fff', border: 'none', fontSize: 16, fontWeight: 700, cursor: feeling ? 'pointer' : 'not-allowed', fontFamily: 'inherit' }}>
-          {feeling ? 'Send to Rachel' : 'Pick one above first'}
-        </button>
+        <div>
+          <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 8 }}>Anything you want Sam or Meg to know?</div>
+          <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 12, padding: '14px 16px', marginBottom: 10 }}>
+            <div style={{ fontSize: 13, color: MUT, fontStyle: 'italic' }}>Type here (optional)</div>
+          </div>
+          <div style={{ fontSize: 12, color: MUT }}>Only Sam, Meg and Rachel see this. The girls you pick are not told.</div>
+        </div>
 
-        <div style={{ marginTop: 16, fontSize: 12, color: MUT, textAlign: 'center', lineHeight: 1.6 }}>
-          No is completely fine. It's private — only you and Rachel.
+        <div style={{ display: 'flex', gap: 10 }}>
+          <button aria-label="Skip" onClick={() => tool('Skipped. You can answer later.')} style={{ height: 56, flex: 1, background: '#fff', color: MUT, border: `1px solid ${LN}`, borderRadius: 12, fontSize: 15, cursor: 'pointer', fontFamily: 'inherit' }}>Skip</button>
+          <button aria-label="Send" onClick={() => tool('Thanks, Mia. Meg will pair you with Ava on Tuesday.')} style={{ height: 56, flex: 2, background: G, color: '#fff', border: 'none', borderRadius: 12, fontSize: 16, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Send</button>
         </div>
       </div>
     </div>

@@ -2,98 +2,90 @@ import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
-export default function PX3BandedNight({ onBack }: { onBack?: () => void }) {
-  const [toast, setToast] = useState<string | null>(null)
-  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 2500) }
+export default function PX3BandedNight({ onNav }: { onNav?: (s: string) => void }) {
+  const [lastTool, setLastTool] = useState('')
+  function tool(name: string) { setLastTool(name) }
 
-  const groups = [
-    { color: '#2d6a4f', name: 'Green', label: 'Before the spurt', count: 17, players: ['Eli Ward', 'Sana Iyer', 'Aiden Pham', '+ 14 more'], work: 'Small games and touches. Full pitch. Normal duels.' },
-    { color: '#c8a84b', name: 'Sand', label: 'In the spurt', count: 16, players: ['Kai Osei', 'Leo Costa (visiting)', 'Priya Shah', '+ 13 more'], work: 'No jumps. Capped sprints. Lighter contact.' },
-    { color: '#f0ebe0', name: 'White', label: 'After the spurt', count: 13, players: ['Mia Tran', 'Grace Reid', 'Noah (visiting)', '+ 10 more'], work: 'Bigger pitch. Harder duels. Full sprint load.' },
-  ]
+  const tnb = { height: 56, padding: '0 10px', background: 'none' as const, color: 'rgba(255,255,255,0.75)', border: 'none' as const, fontSize: 13, fontWeight: 600, cursor: 'pointer' as const, fontFamily: 'inherit', flexShrink: 0 as const }
+  const snb = { height: 44, padding: '0 14px', background: 'none' as const, color: MUT, border: 'none' as const, fontSize: 13, fontWeight: 600, cursor: 'pointer' as const, fontFamily: 'inherit', flexShrink: 0 as const }
 
   return (
-    <div style={{ width: 1180, background: '#f7f8f7', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }}>
-      <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 32, height: 52, flexShrink: 0 }}>
-        <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>Clean Sheet</div>
-        {['Club', 'Teams', 'Coaches', 'Players', 'Safeguarding', 'Reports'].map(t => (
-          <div key={t} style={{ fontSize: 13, fontWeight: t === 'Players' ? 700 : 500, color: t === 'Players' ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer' }}>{t}</div>
-        ))}
-        <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 12 }}>
-          <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)' }}>Whole club ▾</div>
-          <div style={{ width: 32, height: 32, borderRadius: '50%', background: '#c0a070', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, color: '#fff' }}>RM</div>
-        </div>
-      </div>
+    <div data-lasttool={lastTool} style={{ width: 1180, background: '#f4f6f5', fontFamily: 'var(--font-sans)', minHeight: 768, display: 'flex', flexDirection: 'column' }}>
+      <nav style={{ background: GD, height: 56, display: 'flex', alignItems: 'center', padding: '0 20px', flexShrink: 0 }}>
+        <span style={{ fontSize: 15, fontWeight: 900, color: '#fff', marginRight: 16, letterSpacing: '-0.02em' }}>Clean Sheet</span>
+        <button aria-label="Club" onClick={() => tool('Club › Overview')} style={tnb}>Club</button>
+        <button aria-label="Teams" onClick={() => tool('Teams')} style={tnb}>Teams</button>
+        <button aria-label="Coaches" onClick={() => tool('Coaches')} style={tnb}>Coaches</button>
+        <button aria-label="Players" onClick={() => tool('Players')} style={tnb}>Players</button>
+        <button aria-label="Safeguarding" onClick={() => tool('Safeguarding')} style={tnb}>Safeguarding</button>
+        <button aria-label="Reports" onClick={() => tool('Reports › Board report')} style={tnb}>Reports</button>
+        <button aria-label="Ask Clean Sheet" onClick={() => onNav?.('ASKd4-PanelFirst')} style={{ ...tnb, background: 'rgba(255,255,255,0.12)' as const }}>Ask Clean Sheet</button>
+        <div style={{ flex: 1 }} />
+        <button aria-label="Whole club" onClick={() => tool('switcher')} style={{ height: 44, padding: '0 14px', background: 'rgba(255,255,255,0.15)', color: '#fff', border: 'none', borderRadius: 22, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', marginRight: 12, flexShrink: 0 }}>Whole club</button>
+        <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#c0a070', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, color: '#fff', flexShrink: 0 }}>RM</div>
+      </nav>
+      <nav style={{ background: '#fff', borderBottom: `1px solid ${LN}`, height: 44, display: 'flex', alignItems: 'center', padding: '0 20px', flexShrink: 0 }}>
+        <button aria-label="All players" onClick={() => tool('Players')} style={snb}>All players</button>
+        <button aria-label="Pathway" onClick={() => tool('DP1-Pathway')} style={snb}>Pathway</button>
+        <button aria-label="Playing across" onClick={() => onNav?.('PU1-PlayingUp')} style={snb}>Playing across</button>
+        <button aria-label="Fair game time" onClick={() => tool('Players')} style={snb}>Fair game time</button>
+      </nav>
 
-      <div style={{ background: '#fff', borderBottom: `1px solid ${LN}`, padding: '0 32px', display: 'flex', gap: 24, height: 44, alignItems: 'center' }}>
-        <button onClick={onBack} style={{ fontSize: 13, color: G, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit' }}>← Playing across</button>
-        <div style={{ fontSize: 13, fontWeight: 700, color: INK }}>Mixed-age session</div>
-        <div style={{ marginLeft: 'auto', display: 'flex', gap: 10 }}>
-          <button onClick={() => st('Opening session plan.')} style={{ height: 36, padding: '0 16px', borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 13, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Session plan</button>
-          <button onClick={() => st('Opening run-sheet for coaches.')} style={{ height: 36, padding: '0 16px', borderRadius: 999, background: G, color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Run sheet</button>
-        </div>
-      </div>
-
-      <div style={{ display: 'flex', flex: 1, padding: '24px 32px', gap: 24 }}>
-        <div style={{ flex: 1 }}>
-          <div style={{ marginBottom: 20 }}>
-            <div style={{ fontSize: 22, fontWeight: 800, color: INK }}>Mixed-age session</div>
-            <div style={{ fontSize: 13, color: MUT }}>Fri 19 June · 46 players · Under 12 to under 15 · 6:00 pm, Wattle Creek Reserve</div>
-          </div>
-
-          <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 20px', marginBottom: 16 }}>
-            <div style={{ fontSize: 14, fontWeight: 700, color: INK, marginBottom: 10 }}>Players are told their colour. Coaches see groups. Families see only that there is a mixed-age night.</div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 12 }}>
-              {groups.map(g => (
-                <div key={g.name} style={{ border: `2px solid ${g.color === '#f0ebe0' ? LN : g.color}`, borderRadius: 14, overflow: 'hidden' }}>
-                  <div style={{ background: g.color, padding: '12px 16px', display: 'flex', alignItems: 'center', gap: 8 }}>
-                    <div style={{ fontSize: 15, fontWeight: 800, color: g.color === '#f0ebe0' ? INK : '#fff' }}>{g.name}</div>
-                    <div style={{ fontSize: 12, color: g.color === '#f0ebe0' ? MUT : 'rgba(255,255,255,0.8)' }}>· {g.label}</div>
-                  </div>
-                  <div style={{ padding: '12px 16px' }}>
-                    <div style={{ fontSize: 20, fontWeight: 800, color: INK, marginBottom: 8 }}>{g.count} players</div>
-                    {g.players.map(p => (
-                      <div key={p} style={{ fontSize: 12, color: MUT, padding: '3px 0' }}>{p}</div>
-                    ))}
-                    <div style={{ marginTop: 10, background: PALE, borderRadius: 8, padding: '8px 10px', fontSize: 12, color: G }}>{g.work}</div>
-                  </div>
-                </div>
-              ))}
+      <div style={{ flex: 1, display: 'flex', gap: 20, padding: '20px', overflow: 'auto' }}>
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 16 }}>
+          <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 12 }}>
+            <div>
+              <div style={{ fontSize: 20, fontWeight: 900, color: INK }}>Mixed-age sessions</div>
+              <div style={{ fontSize: 13, color: MUT }}>46 players in three groups by where they are in their growth, not by birth year. Once a month.</div>
+            </div>
+            <div style={{ display: 'flex', gap: 10 }}>
+              <button aria-label="Who is in which group" onClick={() => tool('The full list, with each player\'s growth stage and when it was last measured.')} style={{ height: 44, padding: '0 18px', background: '#fff', color: G, border: `1.5px solid ${G}`, borderRadius: 8, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Who is in which group</button>
+              <button aria-label="Plan the next one" onClick={() => tool('Pick a date. Coaches and families of the 46 players are asked.')} style={{ height: 44, padding: '0 18px', background: G, color: '#fff', border: 'none', borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Plan the next one</button>
             </div>
           </div>
 
-          <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 20px' }}>
-            <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 12 }}>How groups are set</div>
+          <div style={{ display: 'flex', gap: 10 }}>
+            <button aria-label="An age group up · 3" onClick={() => onNav?.('PU1-PlayingUp')} style={{ height: 44, padding: '0 18px', background: '#fff', color: MUT, border: `1px solid ${LN}`, borderRadius: 22, fontSize: 13, cursor: 'pointer', fontFamily: 'inherit' }}>An age group up · 3</button>
+            <button aria-label="An age group down · 2" onClick={() => onNav?.('PX1-PlayingDown')} style={{ height: 44, padding: '0 18px', background: '#fff', color: MUT, border: `1px solid ${LN}`, borderRadius: 22, fontSize: 13, cursor: 'pointer', fontFamily: 'inherit' }}>An age group down · 2</button>
+            <button aria-label="Mixed-age sessions" onClick={() => onNav?.('PX3-BandedNight')} style={{ height: 44, padding: '0 18px', background: PALE, color: G, border: `1.5px solid ${G}`, borderRadius: 22, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Mixed-age sessions</button>
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
             {[
-              { who: 'Clean Sheet', how: 'Groups players by monthly heights — before, in, or after the typical growth spurt for their birth year.' },
-              { who: 'Fitness coach', how: 'Can move any player between groups before the session. Their call is final.' },
-              { who: 'Nobody else', how: 'Coaches see groups, not measurements. Families see only that there is a mixed-age night. No child is told their stage.' },
-            ].map((r, i) => (
-              <div key={i} style={{ display: 'flex', gap: 12, padding: '10px 0', borderBottom: `1px solid ${LN}` }}>
-                <div style={{ width: 100, fontSize: 12, fontWeight: 700, color: INK, flexShrink: 0 }}>{r.who}</div>
-                <div style={{ fontSize: 13, color: MUT, lineHeight: 1.5 }}>{r.how}</div>
+              { title: 'Early growth', desc: 'From U12 to U14. Eli Ward, Sana Iyer and 15 others. Small games, lots of touches.', n: 17 },
+              { title: 'Mid growth', desc: 'From U12 to U15. Noah Okafor, Zoe Hartley and 14 others. No jumps, sprints capped.', n: 16 },
+              { title: 'Late growth or stable', desc: 'From U13 to U15. Tane Waru, Leo Costa and 11 others. Bigger pitch, harder duels.', n: 13 },
+            ].map(group => (
+              <div key={group.title} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '18px 20px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', marginBottom: 6 }}>
+                  <div style={{ fontSize: 15, fontWeight: 700, color: INK, flex: 1 }}>{group.title}</div>
+                  <div style={{ fontSize: 13, color: MUT }}>{group.n} players</div>
+                </div>
+                <div style={{ fontSize: 13, color: MUT }}>{group.desc}</div>
               </div>
             ))}
           </div>
+
+          <div style={{ background: PALE, border: `1px solid ${LN}`, borderRadius: 12, padding: '14px 16px' }}>
+            <div style={{ fontSize: 13, color: MUT }}>Early growers stop winning on size alone. Late growers get to show what they can do. Nobody is moved anywhere.</div>
+          </div>
+
+          <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 12, padding: '14px 16px' }}>
+            <div style={{ fontSize: 12, color: MUT }}>Which stage they are in, or anyone's height. Coaches see the groups, not the measurements.</div>
+          </div>
         </div>
 
-        <div style={{ width: 220, flexShrink: 0 }}>
-          <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 20px', marginBottom: 12 }}>
-            <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 10 }}>Nobody changes team</div>
-            <div style={{ fontSize: 12, color: MUT, lineHeight: 1.6 }}>It is the lightest way to try the idea. Players keep their own team, their own coach, and their own friends. The session is one night.</div>
+        <div style={{ width: 280, flexShrink: 0, display: 'flex', flexDirection: 'column', gap: 14 }}>
+          <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 12, padding: '16px 18px' }}>
+            <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 8 }}>Last session</div>
+            <div style={{ fontSize: 12, color: MUT }}>3 November · Tall Timber Reserve · 42 of 46 attended</div>
           </div>
-          <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 20px' }}>
-            <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 10 }}>Next session</div>
-            <div style={{ fontSize: 15, fontWeight: 800, color: INK }}>Fri 24 July</div>
-            <div style={{ fontSize: 12, color: MUT, marginTop: 4 }}>Heights are updated each month. Groups may change.</div>
-            <button onClick={() => st('Scheduling next mixed-age session.')} style={{ marginTop: 12, width: '100%', height: 34, borderRadius: 999, background: G, color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Schedule</button>
+          <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 12, padding: '16px 18px' }}>
+            <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 8 }}>Next session</div>
+            <div style={{ fontSize: 12, color: MUT }}>Not planned yet.</div>
           </div>
         </div>
       </div>
-
-      {toast && (
-        <div style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', background: GD, color: '#fff', padding: '10px 20px', borderRadius: 999, fontSize: 13, fontWeight: 600, zIndex: 100 }}>{toast}</div>
-      )}
     </div>
   )
 }

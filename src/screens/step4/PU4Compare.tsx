@@ -2,132 +2,99 @@ import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
-type Row = { label: string; val: string; pct: number; tag: string; tagColor: string }
+export default function PU4Compare({ onNav }: { onNav?: (s: string) => void }) {
+  const [lastTool, setLastTool] = useState('')
+  function tool(name: string) { setLastTool(name) }
 
-function CompareRow({ r }: { r: Row }) {
-  const tagBg = r.tagColor === G ? PALE : r.tagColor === '#f59e0b' ? '#fffbeb' : '#f7f8f7'
-  return (
-    <div style={{ display: 'grid', gridTemplateColumns: '160px 60px 1fr 100px', gap: 12, padding: '10px 0', borderBottom: `1px solid ${LN}`, alignItems: 'center' }}>
-      <div style={{ fontSize: 13, color: INK }}>{r.label}</div>
-      <div style={{ fontSize: 13, fontWeight: 700, color: INK }}>{r.val}</div>
-      <div style={{ position: 'relative', height: 20 }}>
-        {/* Range band */}
-        <div style={{ position: 'absolute', left: '20%', right: '20%', top: 6, height: 8, background: '#e0ece8', borderRadius: 999 }} />
-        {/* Middle line */}
-        <div style={{ position: 'absolute', left: '50%', top: 2, width: 2, height: 16, background: GD, borderRadius: 999 }} />
-        {/* Player dot */}
-        <div style={{ position: 'absolute', left: `${r.pct * 100}%`, top: 4, width: 12, height: 12, borderRadius: '50%', background: G, border: '2px solid #fff', boxShadow: '0 1px 4px rgba(0,0,0,0.3)', transform: 'translateX(-6px)' }} />
-      </div>
-      <div style={{ fontSize: 11, fontWeight: 700, background: tagBg, color: r.tagColor, borderRadius: 999, padding: '2px 10px', textAlign: 'center' }}>{r.tag}</div>
-    </div>
-  )
-}
+  const tnb = { height: 56, padding: '0 10px', background: 'none' as const, color: 'rgba(255,255,255,0.75)', border: 'none' as const, fontSize: 13, fontWeight: 600, cursor: 'pointer' as const, fontFamily: 'inherit', flexShrink: 0 as const }
+  const snb = { height: 44, padding: '0 14px', background: 'none' as const, color: MUT, border: 'none' as const, fontSize: 13, fontWeight: 600, cursor: 'pointer' as const, fontFamily: 'inherit', flexShrink: 0 as const }
 
-export default function PU4Compare({ onBack, onTrial }: { onBack?: () => void; onTrial?: () => void }) {
-  const [posFilter, setPosFilter] = useState(false)
-  const bodyRows: Row[] = [
-    { label: 'Top speed', val: '24.1 km/h', pct: 0.72, tag: 'Upper third', tagColor: G },
-    { label: '10 m sprint', val: '2.08 s', pct: 0.68, tag: 'Upper third', tagColor: G },
-    { label: 'Sprints a game', val: '11', pct: 0.60, tag: 'Middle', tagColor: '#f59e0b' },
-    { label: 'Distance a game', val: '4.4 km', pct: 0.78, tag: 'Above', tagColor: G },
-  ]
-  const footballRows: Row[] = [
-    { label: 'Duels won', val: '71%', pct: 0.80, tag: 'Above', tagColor: G },
-    { label: 'Fwd passes under press.', val: '68%', pct: 0.73, tag: 'Upper third', tagColor: G },
-    { label: 'Wins of the ball', val: '7', pct: 0.65, tag: 'Middle', tagColor: '#f59e0b' },
-    { label: 'Goals and assists', val: '0.9', pct: 0.70, tag: 'Upper third', tagColor: G },
-    { label: 'Touches', val: '48', pct: 0.55, tag: 'Middle', tagColor: '#f59e0b' },
+  const measures = [
+    { label: 'Forward passes', mia: 82, lo: 55, hi: 95, mid: 68 },
+    { label: 'Duels won %', mia: 54, lo: 44, hi: 72, mid: 52 },
+    { label: 'Touches', mia: 78, lo: 60, hi: 88, mid: 71 },
+    { label: 'Ball under pressure', mia: 76, lo: 58, hi: 90, mid: 69 },
+    { label: 'Space found', mia: 63, lo: 50, hi: 80, mid: 62 },
+    { label: 'Head: settling in', mia: 85, lo: 60, hi: 90, mid: 72 },
+    { label: 'Sprint speed', mia: 65, lo: 52, hi: 82, mid: 64 },
+    { label: 'Vest: 1v1', mia: 72, lo: 58, hi: 88, mid: 68 },
+    { label: 'Vest: small group', mia: 70, lo: 55, hi: 85, mid: 65 },
   ]
 
   return (
-    <div style={{ width: 1180, background: '#f7f8f7', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }}>
-      <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 32, height: 52, flexShrink: 0 }}>
-        <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>Clean Sheet</div>
-        {['Club', 'Teams', 'Coaches', 'Players', 'Safeguarding', 'Reports'].map(t => (
-          <div key={t} style={{ fontSize: 13, fontWeight: t === 'Players' ? 700 : 500, color: t === 'Players' ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer' }}>{t}</div>
-        ))}
-        <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 12 }}>
-          <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)' }}>Whole club ▾</div>
-          <div style={{ width: 32, height: 32, borderRadius: '50%', background: '#c0a070', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, color: '#fff' }}>RM</div>
-        </div>
-      </div>
+    <div data-lasttool={lastTool} style={{ width: 1180, background: '#f4f6f5', fontFamily: 'var(--font-sans)', minHeight: 768, display: 'flex', flexDirection: 'column' }}>
+      <nav style={{ background: GD, height: 56, display: 'flex', alignItems: 'center', padding: '0 20px', flexShrink: 0 }}>
+        <span style={{ fontSize: 15, fontWeight: 900, color: '#fff', marginRight: 16, letterSpacing: '-0.02em' }}>Clean Sheet</span>
+        <button aria-label="Club" onClick={() => tool('Club › Overview')} style={tnb}>Club</button>
+        <button aria-label="Teams" onClick={() => tool('Teams')} style={tnb}>Teams</button>
+        <button aria-label="Coaches" onClick={() => tool('Coaches')} style={tnb}>Coaches</button>
+        <button aria-label="Players" onClick={() => tool('Players')} style={tnb}>Players</button>
+        <button aria-label="Safeguarding" onClick={() => tool('Safeguarding')} style={tnb}>Safeguarding</button>
+        <button aria-label="Reports" onClick={() => tool('Reports › Board report')} style={tnb}>Reports</button>
+        <button aria-label="Ask Clean Sheet" onClick={() => onNav?.('ASKd4-PanelFirst')} style={{ ...tnb, background: 'rgba(255,255,255,0.12)' as const }}>Ask Clean Sheet</button>
+        <div style={{ flex: 1 }} />
+        <button aria-label="Whole club" onClick={() => tool('switcher')} style={{ height: 44, padding: '0 14px', background: 'rgba(255,255,255,0.15)', color: '#fff', border: 'none', borderRadius: 22, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', marginRight: 12, flexShrink: 0 }}>Whole club</button>
+        <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#c0a070', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, color: '#fff', flexShrink: 0 }}>RM</div>
+      </nav>
+      <nav style={{ background: '#fff', borderBottom: `1px solid ${LN}`, height: 44, display: 'flex', alignItems: 'center', padding: '0 20px', flexShrink: 0 }}>
+        <button aria-label="All players" onClick={() => tool('Players')} style={snb}>All players</button>
+        <button aria-label="Pathway" onClick={() => tool('DP1-Pathway')} style={snb}>Pathway</button>
+        <button aria-label="Playing across" onClick={() => onNav?.('PU1-PlayingUp')} style={snb}>Playing across</button>
+        <button aria-label="Fair game time" onClick={() => tool('Players')} style={snb}>Fair game time</button>
+      </nav>
 
-      <div style={{ background: '#fff', borderBottom: `1px solid ${LN}`, padding: '0 32px', display: 'flex', gap: 24, height: 44, alignItems: 'center' }}>
-        <button onClick={onBack} style={{ fontSize: 13, color: G, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit' }}>← Mia Tran</button>
-        <div style={{ fontSize: 13, fontWeight: 700, color: INK }}>Mia against the team above</div>
-        <div style={{ marginLeft: 'auto', display: 'flex', gap: 10, alignItems: 'center' }}>
-          <label style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 13, color: INK, cursor: 'pointer' }}>
-            <input type="checkbox" checked={posFilter} onChange={e => setPosFilter(e.target.checked)} />
-            Midfielders only
-          </label>
-          <button onClick={onBack} style={{ height: 36, padding: '0 16px', borderRadius: 999, background: G, color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Back to Mia</button>
-        </div>
-      </div>
-
-      <div style={{ display: 'flex', flex: 1 }}>
-        <div style={{ flex: 1, padding: '24px 24px 24px 32px' }}>
-          <div style={{ marginBottom: 20 }}>
-            <div style={{ fontSize: 20, fontWeight: 800, color: INK }}>Mia against the team above</div>
-            <div style={{ fontSize: 13, color: MUT }}>U13 Girls Meg · all 14 players · per 60 minutes played</div>
-          </div>
-
-          {/* Legend */}
-          <div style={{ display: 'flex', gap: 20, alignItems: 'center', marginBottom: 16, fontSize: 12, color: MUT }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-              <div style={{ width: 40, height: 8, background: '#e0ece8', borderRadius: 999 }} />
-              <span>U13 Meg range</span>
+      <div style={{ flex: 1, display: 'flex', gap: 20, padding: '20px', overflow: 'auto' }}>
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 16 }}>
+          <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 12 }}>
+            <div>
+              <div style={{ fontSize: 20, fontWeight: 900, color: INK }}>Mia Tran vs U13 Girls</div>
+              <div style={{ fontSize: 13, color: MUT }}>U12 Sam → U13 Girls Meg · all 14 players · per 60 minutes</div>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-              <div style={{ width: 2, height: 16, background: GD }} />
-              <span>Their middle</span>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-              <div style={{ width: 12, height: 12, borderRadius: '50%', background: G, border: '2px solid #fff', boxShadow: '0 1px 4px rgba(0,0,0,0.2)' }} />
-              <span>Mia</span>
+            <div style={{ display: 'flex', gap: 10 }}>
+              <button aria-label="Midfielders only" onClick={() => tool('Now compared with the 5 midfielders in U13 Girls Meg.')} style={{ height: 44, padding: '0 18px', background: '#fff', color: G, border: `1.5px solid ${G}`, borderRadius: 8, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Midfielders only</button>
+              <button aria-label="Back to Mia" onClick={() => onNav?.('PU2-PlayerReadiness')} style={{ height: 44, padding: '0 18px', background: '#fff', color: MUT, border: `1px solid ${LN}`, borderRadius: 8, fontSize: 13, cursor: 'pointer', fontFamily: 'inherit' }}>Back to Mia</button>
+              <button aria-label="Plan a trial" onClick={() => onNav?.('PU3-TrialPlan')} style={{ height: 44, padding: '0 18px', background: G, color: '#fff', border: 'none', borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Plan a trial</button>
             </div>
           </div>
 
-          {/* Body block */}
-          <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 20px', marginBottom: 12 }}>
-            <div style={{ display: 'flex', alignItems: 'center', marginBottom: 12 }}>
-              <div style={{ fontSize: 15, fontWeight: 700, color: INK, flex: 1 }}>Body</div>
-              <div style={{ fontSize: 12, color: MUT, background: '#f0faf5', borderRadius: 999, padding: '2px 10px' }}>Fair to compare</div>
+          <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '20px' }}>
+            <div style={{ fontSize: 12, color: MUT, marginBottom: 12 }}>Green band: the U13 girls, slowest to fastest. Dark line: their middle player. Dot: Mia. No U13 player is named.</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              {measures.map(m => {
+                const range = m.hi - m.lo
+                const dotPos = Math.min(100, Math.max(0, (m.mia - m.lo) / range * 100))
+                const midPos = (m.mid - m.lo) / range * 100
+                return (
+                  <div key={m.label} style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                    <div style={{ width: 160, fontSize: 12, color: INK, flexShrink: 0 }}>{m.label}</div>
+                    <div style={{ flex: 1, position: 'relative', height: 20 }}>
+                      <div style={{ position: 'absolute', left: '0%', right: '0%', top: 7, height: 6, background: '#c0d8cc', borderRadius: 3 }} />
+                      <div style={{ position: 'absolute', left: `${midPos}%`, top: 4, width: 2, height: 12, background: GD, transform: 'translateX(-50%)' }} />
+                      <div style={{ position: 'absolute', left: `${dotPos}%`, top: 2, width: 16, height: 16, borderRadius: '50%', background: G, border: '2px solid #fff', transform: 'translateX(-50%)' }} />
+                    </div>
+                    <div style={{ width: 100, fontSize: 12, color: m.mia >= m.mid ? G : MUT, fontWeight: m.mia >= m.mid ? 600 : 400 }}>
+                      {m.mia >= m.hi ? 'Above range' : m.mia >= m.mid ? 'Above middle' : 'Near middle'}
+                    </div>
+                  </div>
+                )
+              })}
             </div>
-            {bodyRows.map(r => <CompareRow key={r.label} r={r} />)}
+            <div style={{ marginTop: 14, fontSize: 13, color: MUT }}>inside or above the U13 range. Above their middle on 5.</div>
           </div>
 
-          {/* Football block */}
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 20px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', marginBottom: 8 }}>
-              <div style={{ fontSize: 15, fontWeight: 700, color: INK, flex: 1 }}>Football · her games against U13s</div>
-              <div style={{ fontSize: 12, color: '#f59e0b', background: '#fffbeb', borderRadius: 999, padding: '2px 10px' }}>Compare with care</div>
-            </div>
-            <div style={{ fontSize: 12, color: MUT, marginBottom: 10 }}>2 guest sessions with the U13s. These are the fairest evidence once a trial starts.</div>
-            {footballRows.map(r => <CompareRow key={r.label} r={r} />)}
+            <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 8 }}>Guest sessions</div>
+            <div style={{ fontSize: 13, color: MUT, marginBottom: 6 }}>2 guest sessions with the U13s. Duels won 48%, against their middle of 52%.</div>
+            <div style={{ fontSize: 12, color: MUT }}>Small, but it is against the right opposition. A trial gives 4 weeks of this.</div>
           </div>
-
-          <div style={{ marginTop: 12, fontSize: 12, color: MUT }}>Ranges hidden if fewer than 8 players have data. The older team appears as a range only — no player is named.</div>
         </div>
 
-        {/* Summary */}
-        <div style={{ width: 220, padding: '24px 24px 24px 0', display: 'flex', flexDirection: 'column', gap: 16, flexShrink: 0 }}>
-          <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 20px' }}>
-            <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 10 }}>In one line</div>
-            <div style={{ fontSize: 24, fontWeight: 800, color: G }}>9 of 9</div>
-            <div style={{ fontSize: 13, color: MUT, marginTop: 4, lineHeight: 1.5 }}>Inside or above the U13 range. Above their middle on 5.</div>
-          </div>
-          <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 20px' }}>
-            <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 8 }}>The best evidence</div>
-            <div style={{ fontSize: 12, color: MUT, lineHeight: 1.5 }}>2 guest sessions with the U13s. As they flag, once a trial starts, they replace the own-age numbers as the main view.</div>
-            <button onClick={() => onTrial?.()} style={{ marginTop: 10, height: 32, padding: '0 14px', borderRadius: 999, background: PALE, border: 'none', fontSize: 12, color: G, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Plan a trial →</button>
-          </div>
-          <div style={{ background: '#fffbeb', border: '1.5px solid #fde68a', borderRadius: 14, padding: '14px' }}>
-            <div style={{ fontSize: 12, fontWeight: 700, color: '#92400e', marginBottom: 6 }}>Read with care</div>
-            <div style={{ fontSize: 12, color: '#78350f', lineHeight: 1.5 }}>Small, run against older players with more experience. Numbers tell part of the story. People decide.</div>
+        <div style={{ width: 280, flexShrink: 0, display: 'flex', flexDirection: 'column', gap: 14 }}>
+          <div style={{ background: PALE, border: `1px solid ${LN}`, borderRadius: 12, padding: '14px 16px' }}>
+            <div style={{ fontSize: 12, color: MUT }}>Her game numbers were made against under 12s, so they flatter her. Goals depend on position and team. Tests and vests compare fairly.</div>
           </div>
         </div>
       </div>
-
     </div>
   )
 }

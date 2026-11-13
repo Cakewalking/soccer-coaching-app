@@ -2,108 +2,98 @@ import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
-export default function PU3TrialPlan({ onBack }: { onBack?: () => void }) {
-  const [toast, setToast] = useState<string | null>(null)
-  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 2500) }
+export default function PU3TrialPlan({ onNav }: { onNav?: (s: string) => void }) {
+  const [lastTool, setLastTool] = useState('')
+  function tool(name: string) { setLastTool(name) }
 
-  const steps = [
-    { n: 1, label: 'Sam asks Mia', done: true, detail: "Coach's view answered. Sam: \"She plays up in her mind already.\"", date: '1 June' },
-    { n: 2, label: 'Ask the family', done: true, detail: 'Message sent to Mia and her parents. Both said yes.', date: '3 June' },
-    { n: 3, label: 'Mia says yes', done: true, detail: 'Mia: "I know three of them. I\'d like to try."', date: '4 June' },
-    { n: 4, label: 'Trial starts', done: false, detail: '4 weeks training with U13 Girls Meg, still playing U12 Sam.', date: '10 June' },
-    { n: 5, label: 'Check-in after each session', done: false, detail: 'One question to Mia after each session. Sam and Meg see the answers.', date: 'During trial' },
-    { n: 6, label: 'Review · 8 July', done: false, detail: 'Mia\'s words first, then numbers with the older group, then both coaches.', date: '8 July' },
-  ]
+  const tnb = { height: 56, padding: '0 10px', background: 'none' as const, color: 'rgba(255,255,255,0.75)', border: 'none' as const, fontSize: 13, fontWeight: 600, cursor: 'pointer' as const, fontFamily: 'inherit', flexShrink: 0 as const }
+  const snb = { height: 44, padding: '0 14px', background: 'none' as const, color: MUT, border: 'none' as const, fontSize: 13, fontWeight: 600, cursor: 'pointer' as const, fontFamily: 'inherit', flexShrink: 0 as const }
 
   return (
-    <div style={{ width: 1180, background: '#f7f8f7', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }}>
-      <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 32, height: 52, flexShrink: 0 }}>
-        <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>Clean Sheet</div>
-        {['Club', 'Teams', 'Coaches', 'Players', 'Safeguarding', 'Reports'].map(t => (
-          <div key={t} style={{ fontSize: 13, fontWeight: t === 'Players' ? 700 : 500, color: t === 'Players' ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer' }}>{t}</div>
-        ))}
-        <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 12 }}>
-          <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)' }}>Whole club ▾</div>
-          <div style={{ width: 32, height: 32, borderRadius: '50%', background: '#c0a070', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, color: '#fff' }}>RM</div>
-        </div>
-      </div>
+    <div data-lasttool={lastTool} style={{ width: 1180, background: '#f4f6f5', fontFamily: 'var(--font-sans)', minHeight: 768, display: 'flex', flexDirection: 'column' }}>
+      <nav style={{ background: GD, height: 56, display: 'flex', alignItems: 'center', padding: '0 20px', flexShrink: 0 }}>
+        <span style={{ fontSize: 15, fontWeight: 900, color: '#fff', marginRight: 16, letterSpacing: '-0.02em' }}>Clean Sheet</span>
+        <button aria-label="Club" onClick={() => tool('Club › Overview')} style={tnb}>Club</button>
+        <button aria-label="Teams" onClick={() => tool('Teams')} style={tnb}>Teams</button>
+        <button aria-label="Coaches" onClick={() => tool('Coaches')} style={tnb}>Coaches</button>
+        <button aria-label="Players" onClick={() => tool('Players')} style={tnb}>Players</button>
+        <button aria-label="Safeguarding" onClick={() => tool('Safeguarding')} style={tnb}>Safeguarding</button>
+        <button aria-label="Reports" onClick={() => tool('Reports › Board report')} style={tnb}>Reports</button>
+        <button aria-label="Ask Clean Sheet" onClick={() => onNav?.('ASKd4-PanelFirst')} style={{ ...tnb, background: 'rgba(255,255,255,0.12)' as const }}>Ask Clean Sheet</button>
+        <div style={{ flex: 1 }} />
+        <button aria-label="Whole club" onClick={() => tool('switcher')} style={{ height: 44, padding: '0 14px', background: 'rgba(255,255,255,0.15)', color: '#fff', border: 'none', borderRadius: 22, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', marginRight: 12, flexShrink: 0 }}>Whole club</button>
+        <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#c0a070', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, color: '#fff', flexShrink: 0 }}>RM</div>
+      </nav>
+      <nav style={{ background: '#fff', borderBottom: `1px solid ${LN}`, height: 44, display: 'flex', alignItems: 'center', padding: '0 20px', flexShrink: 0 }}>
+        <button aria-label="All players" onClick={() => tool('Players')} style={snb}>All players</button>
+        <button aria-label="Pathway" onClick={() => tool('DP1-Pathway')} style={snb}>Pathway</button>
+        <button aria-label="Playing across" onClick={() => onNav?.('PU1-PlayingUp')} style={snb}>Playing across</button>
+        <button aria-label="Fair game time" onClick={() => tool('Players')} style={snb}>Fair game time</button>
+      </nav>
 
-      <div style={{ background: '#fff', borderBottom: `1px solid ${LN}`, padding: '0 32px', display: 'flex', gap: 24, height: 44, alignItems: 'center' }}>
-        <button onClick={onBack} style={{ fontSize: 13, color: G, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit' }}>← Mia Tran</button>
-        <div style={{ fontSize: 13, fontWeight: 700, color: INK }}>Trial plan</div>
-        <div style={{ marginLeft: 'auto', display: 'flex', gap: 10 }}>
-          <button onClick={() => st('Opening the family message.')} style={{ height: 36, padding: '0 16px', borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 13, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Family message</button>
-          <button onClick={() => st('Starting trial. Sam and Meg will be told.')} style={{ height: 36, padding: '0 16px', borderRadius: 999, background: G, color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Start trial</button>
-        </div>
-      </div>
-
-      <div style={{ display: 'flex', flex: 1, padding: '24px 32px', gap: 24 }}>
-        <div style={{ flex: 1 }}>
-          <div style={{ marginBottom: 24 }}>
-            <div style={{ fontSize: 22, fontWeight: 800, color: INK }}>Trial plan · Mia Tran</div>
-            <div style={{ fontSize: 13, color: MUT }}>U12 Sam → U13 Girls Meg · 4 weeks training · starting 10 June</div>
+      <div style={{ flex: 1, display: 'flex', gap: 20, padding: '20px', overflow: 'auto' }}>
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 16 }}>
+          <div>
+            <div style={{ fontSize: 20, fontWeight: 900, color: INK }}>Leo Costa · Trial plan</div>
+            <div style={{ fontSize: 13, color: MUT }}>U13 Chris → U14 Josh · week 3 of 4 · review Thursday 18 June</div>
           </div>
 
-          <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '20px', marginBottom: 20 }}>
-            {steps.map((s, i) => (
-              <div key={s.n} style={{ display: 'flex', gap: 16, padding: '14px 0', borderBottom: i < steps.length - 1 ? `1px solid ${LN}` : 'none' }}>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0 }}>
-                  <div style={{ width: 32, height: 32, borderRadius: '50%', background: s.done ? G : '#f0f0f0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    {s.done
-                      ? <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                      : <span style={{ fontSize: 13, fontWeight: 700, color: MUT }}>{s.n}</span>
-                    }
-                  </div>
-                  {i < steps.length - 1 && <div style={{ width: 2, flex: 1, minHeight: 20, background: s.done ? G : LN, marginTop: 4 }} />}
-                </div>
-                <div style={{ flex: 1, paddingBottom: 8 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 4 }}>
-                    <div style={{ fontSize: 15, fontWeight: 700, color: s.done ? INK : MUT }}>{s.label}</div>
-                    <div style={{ fontSize: 12, color: MUT }}>{s.date}</div>
-                    {s.done && <div style={{ fontSize: 11, fontWeight: 700, color: G, background: PALE, borderRadius: 999, padding: '2px 8px' }}>Done</div>}
-                  </div>
-                  <div style={{ fontSize: 13, color: MUT, lineHeight: 1.5 }}>{s.detail}</div>
-                </div>
-              </div>
-            ))}
+          <div style={{ display: 'flex', gap: 10 }}>
+            <button aria-label="Message both coaches" onClick={() => tool('Chat with Chris and Josh opens.')} style={{ height: 44, padding: '0 18px', background: '#fff', color: G, border: `1.5px solid ${G}`, borderRadius: 8, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Message both coaches</button>
+            <div style={{ flex: 1 }} />
+            <button aria-label="Do the review" onClick={() => tool('The review opens on 18 June: Leo\'s view, both coaches\' views, the numbers.')} style={{ height: 44, padding: '0 18px', background: G, color: '#fff', border: 'none', borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Do the review</button>
           </div>
 
-          <div style={{ background: PALE, border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 20px' }}>
-            <div style={{ fontSize: 14, fontWeight: 700, color: G, marginBottom: 6 }}>After the trial, three choices</div>
-            <div style={{ display: 'flex', gap: 16 }}>
-              {['Do both · play for both teams', 'Move up · play only for U13 Meg', 'Back to own age · with a completed trial, not a failure'].map((c, i) => (
-                <div key={i} style={{ flex: 1, background: '#fff', border: `1px solid ${LN}`, borderRadius: 10, padding: '12px 14px', fontSize: 13, color: INK }}>{c}</div>
+          <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '20px' }}>
+            <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 14 }}>The plan</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              {[
+                { n: 1, t: '4 weeks · Tuesdays up, Thursdays and Saturdays with his own team', s: 'Started 26 May · 3 Tuesdays done' },
+                { n: 2, t: 'Two Saturdays, at least 30 minutes each. Still in the U13 chat', s: 'Playing Saturday 7 June and 14 June with U14 Josh' },
+                { n: 3, t: 'Stay up, do both, or back to U13. Looked at every 6 weeks after', s: 'Review opens 18 June' },
+              ].map(step => (
+                <div key={step.n} style={{ display: 'flex', gap: 14, padding: '12px 0', borderBottom: `1px solid ${LN}` }}>
+                  <div style={{ width: 28, height: 28, borderRadius: '50%', background: G, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, color: '#fff', flexShrink: 0 }}>{step.n}</div>
+                  <div>
+                    <div style={{ fontSize: 13, fontWeight: 700, color: INK }}>{step.t}</div>
+                    <div style={{ fontSize: 12, color: MUT }}>{step.s}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '20px' }}>
+            <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 10 }}>Progress so far</div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 10 }}>
+              {[
+                { label: 'Tuesdays', val: '3 of 4 done' },
+                { label: 'Game minutes (U14)', val: '65 of 60 target' },
+                { label: 'Load cap', val: 'Inside' },
+                { label: 'Pain flags', val: 'None' },
+              ].map(m => (
+                <div key={m.label} style={{ background: PALE, borderRadius: 10, padding: '12px 14px' }}>
+                  <div style={{ fontSize: 12, color: MUT }}>{m.label}</div>
+                  <div style={{ fontSize: 14, fontWeight: 700, color: INK }}>{m.val}</div>
+                </div>
               ))}
             </div>
           </div>
         </div>
 
-        {/* Notes */}
-        <div style={{ width: 240, flexShrink: 0 }}>
-          <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 20px' }}>
-            <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 10 }}>Rules during the trial</div>
-            {[
-              'Mia is in both squads',
-              'Fair-game-time counts both teams',
-              'Load counts both teams — no extra',
-              'League eligibility checked for every game',
-            ].map((r, i) => (
-              <div key={i} style={{ display: 'flex', gap: 8, padding: '6px 0', borderBottom: `1px solid ${LN}` }}>
-                <div style={{ color: G, fontSize: 14, flexShrink: 0 }}>·</div>
-                <div style={{ fontSize: 12, color: MUT, lineHeight: 1.5 }}>{r}</div>
-              </div>
-            ))}
+        <div style={{ width: 280, flexShrink: 0, display: 'flex', flexDirection: 'column', gap: 14 }}>
+          <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 12, padding: '16px 18px' }}>
+            <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 8 }}>Who knows</div>
+            <div style={{ fontSize: 12, color: MUT, marginBottom: 6 }}>Leo, his parents, U13 Chris, U14 Josh. Told on 26 May.</div>
           </div>
-          <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 20px', marginTop: 12 }}>
-            <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 8 }}>If the family says no</div>
-            <div style={{ fontSize: 12, color: MUT, lineHeight: 1.5 }}>The trial ends quietly. No message goes to anyone except you and Sam. Nothing is recorded as a rejection.</div>
+          <div style={{ background: PALE, border: `1px solid ${LN}`, borderRadius: 12, padding: '14px 16px' }}>
+            <div style={{ fontSize: 12, fontWeight: 700, color: G, marginBottom: 4 }}>Going back is part of the plan, not a failure. Everyone is told that at step 1.</div>
+          </div>
+          <div style={{ background: PALE, border: `1px solid ${LN}`, borderRadius: 12, padding: '14px 16px' }}>
+            <div style={{ fontSize: 12, color: MUT }}>Leo is age-eligible for under 14. Clean Sheet checks the team sheet before each game.</div>
           </div>
         </div>
       </div>
-
-      {toast && (
-        <div style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', background: GD, color: '#fff', padding: '10px 20px', borderRadius: 999, fontSize: 13, fontWeight: 600, zIndex: 100 }}>{toast}</div>
-      )}
     </div>
   )
 }

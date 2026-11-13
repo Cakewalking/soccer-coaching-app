@@ -672,52 +672,72 @@ function SP10HomePostSeasonNav() {
 function PU1PlayingUpNav() {
   const [inner, setInner] = useState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
-  return <PU1PlayingUp onPlayer={() => setInner('PU2-PlayerReadiness')} onNominate={noop} onSettings={() => setInner('PU5-Settings')} />
+  return <PU1PlayingUp onNav={(s) => setInner(s)} />
+}
+function PU1ePlayingUpEmptyNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <PU1ePlayingUpEmpty onNav={(s) => setInner(s)} />
 }
 function PU2PlayerReadinessNav() {
   const [inner, setInner] = useState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
-  return <PU2PlayerReadiness onBack={() => setInner('PU1-PlayingUp')} onCompare={() => setInner('PU4-Compare')} onTrial={() => setInner('PU3-TrialPlan')} />
+  return <PU2PlayerReadiness onNav={(s) => setInner(s)} />
 }
 function PU3TrialPlanNav() {
   const [inner, setInner] = useState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
-  return <PU3TrialPlan onBack={() => setInner('PU2-PlayerReadiness')} />
+  return <PU3TrialPlan onNav={(s) => setInner(s)} />
 }
 function PU4CompareNav() {
   const [inner, setInner] = useState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
-  return <PU4Compare onBack={() => setInner('PU2-PlayerReadiness')} onTrial={() => setInner('PU3-TrialPlan')} />
+  return <PU4Compare onNav={(s) => setInner(s)} />
 }
 function PU5SettingsNav() {
   const [inner, setInner] = useState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
-  return <PU5Settings onBack={() => setInner('PU1-PlayingUp')} />
+  return <PU5Settings onNav={(s) => setInner(s)} />
 }
 function PU6ReviewNav() {
   const [inner, setInner] = useState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
-  return <PU6Review onBack={() => setInner('PU1-PlayingUp')} />
+  return <PU6Review onNav={(s) => setInner(s)} />
 }
 function PU7CoachViewNav() {
   const [inner, setInner] = useState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
-  return <PU7CoachView onBack={() => setInner('PU1-PlayingUp')} />
+  return <PU7CoachView onNav={(s) => setInner(s)} />
+}
+function PUp1ParentAskNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PUp1ParentAsk onNav={(s) => setInner(s)} /></div>
+}
+function PUp2PlayerAskNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PUp2PlayerAsk onNav={(s) => setInner(s)} /></div>
 }
 function PX1PlayingDownNav() {
   const [inner, setInner] = useState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
-  return <PX1PlayingDown onPlayer={() => setInner('PX2-LateDeveloper')} onBandedNight={() => setInner('PX3-BandedNight')} />
+  return <PX1PlayingDown onNav={(s) => setInner(s)} />
 }
 function PX2LateDeveloperNav() {
   const [inner, setInner] = useState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
-  return <PX2LateDeveloper onBack={() => setInner('PX1-PlayingDown')} />
+  return <PX2LateDeveloper onNav={(s) => setInner(s)} />
 }
 function PX3BandedNightNav() {
   const [inner, setInner] = useState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
-  return <PX3BandedNight onBack={() => setInner('PX1-PlayingDown')} />
+  return <PX3BandedNight onNav={(s) => setInner(s)} />
+}
+function PXp1ParentDownNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PXp1ParentDown onNav={(s) => setInner(s)} /></div>
 }
 function PRM1FeaturesByTeamNav() {
   const [inner, setInner] = useState<string | null>(null)
@@ -2039,20 +2059,20 @@ function renderScreenInner(key: string): ReactNode {
     case 'FILp3-ParentForm':      return <FILp3ParentFormNav />
     // Playing Up (PU)
     case 'PU1-PlayingUp':         return <PU1PlayingUpNav />
-    case 'PU1e-PlayingUpEmpty':   return <PU1ePlayingUpEmpty />
+    case 'PU1e-PlayingUpEmpty':   return <PU1ePlayingUpEmptyNav />
     case 'PU2-PlayerReadiness':   return <PU2PlayerReadinessNav />
     case 'PU3-TrialPlan':         return <PU3TrialPlanNav />
     case 'PU4-Compare':           return <PU4CompareNav />
     case 'PU5-Settings':          return <PU5SettingsNav />
     case 'PU6-Review':            return <PU6ReviewNav />
     case 'PU7-CoachView':         return <PU7CoachViewNav />
-    case 'PUp1-ParentAsk':        return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PUp1ParentAsk /></div>
-    case 'PUp2-PlayerAsk':        return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PUp2PlayerAsk /></div>
+    case 'PUp1-ParentAsk':        return <PUp1ParentAskNav />
+    case 'PUp2-PlayerAsk':        return <PUp2PlayerAskNav />
     // Playing Down / Across (PX)
     case 'PX1-PlayingDown':       return <PX1PlayingDownNav />
     case 'PX2-LateDeveloper':     return <PX2LateDeveloperNav />
     case 'PX3-BandedNight':       return <PX3BandedNightNav />
-    case 'PXp1-ParentDown':       return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PXp1ParentDown /></div>
+    case 'PXp1-ParentDown':       return <PXp1ParentDownNav />
     // Learn (EDU)
     case 'EDU1-Learn':            return <EDU1LearnNav />
     case 'EDU1e-LearnEmpty':      return <EDU1eLearnEmptyNav />
