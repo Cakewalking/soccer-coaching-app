@@ -1,8 +1,9 @@
 import { useState } from 'react'
+import { AskLine } from './HomeScreen'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
-export default function CoCoachHomeScreen({ empty, onNav }: { empty?: boolean; onNav?: (s: string) => void }) {
+export default function CoCoachHomeScreen({ empty, onNav, onAsk, askQuestions }: { empty?: boolean; onNav?: (s: string) => void; onAsk?: () => void; askQuestions?: string[] }) {
   const [toast, setToast] = useState<string | null>(null)
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
@@ -30,7 +31,9 @@ export default function CoCoachHomeScreen({ empty, onNav }: { empty?: boolean; o
   ]
 
   return (
-    <div style={{ flexGrow: 1, overflowY: 'auto', padding: '28px 32px 36px', display: 'flex', flexDirection: 'column', gap: 20 }}>
+    <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', minHeight: 0 }}>
+      <AskLine teamName="U12 Sam" questions={askQuestions ?? []} onAsk={onAsk} roleLabel="co-coach" />
+    <div style={{ flex: 1, overflowY: 'auto', padding: '28px 32px 36px', display: 'flex', flexDirection: 'column', gap: 20 }}>
 
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
@@ -114,6 +117,7 @@ export default function CoCoachHomeScreen({ empty, onNav }: { empty?: boolean; o
       {toast && (
         <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>
       )}
+    </div>
     </div>
   )
 }
