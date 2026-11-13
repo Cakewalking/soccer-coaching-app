@@ -12,8 +12,6 @@ export default function FIL6SignUp({ onBack, onShare, onNav }: {
   const [view, setView] = useState<'Jobs' | 'By family'>('Jobs')
   const [reminded, setReminded] = useState(false)
   const [lastTool, setLastTool] = useState('')
-  const [toast, setToast] = useState<string | null>(null)
-  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 2500) }
   function tool(name: string) { setLastTool(name) }
 
   const [jobs] = useState<Job[]>([
@@ -160,10 +158,6 @@ export default function FIL6SignUp({ onBack, onShare, onNav }: {
           </div>
         </div>
       </div>
-
-      {toast && (
-        <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', background: GD, color: '#fff', padding: '10px 20px', borderRadius: 999, fontSize: 13, fontWeight: 600, zIndex: 100 }}>{toast}</div>
-      )}
     </div>
   )
 }

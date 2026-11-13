@@ -30,8 +30,6 @@ function LessonCard({ c, onClick }: { c: LCard; onClick?: () => void }) {
 export default function EDU1Learn({ onNav }: { onNav?: (s: string) => void }) {
   const [lastTool, setLastTool] = useState('')
   const [expanded, setExpanded] = useState<string | null>(null)
-  const [toast, setToast] = useState<string | null>(null)
-  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 2500) }
   function tool(name: string) { setLastTool(name) }
 
   const picked: LCard[] = [
@@ -172,10 +170,6 @@ export default function EDU1Learn({ onNav }: { onNav?: (s: string) => void }) {
           </div>
         </div>
       </div>
-
-      {toast && (
-        <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', background: GD, color: '#fff', padding: '10px 20px', borderRadius: 999, fontSize: 13, fontWeight: 600, zIndex: 100 }}>{toast}</div>
-      )}
     </div>
   )
 }

@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb'
 
-export default function EDUp1PlayerLearn({ onNav }: { onNav?: (s: string) => void }) {
+export default function EDUp1PlayerLearn({ onNav: _onNav }: { onNav?: (s: string) => void }) {
   const [lastTool, setLastTool] = useState('')
   const [played, setPlayed] = useState<string | null>(null)
   const [didIt, setDidIt] = useState(false)

@@ -14,14 +14,12 @@ export default function FIL7Form({ onBack, onShare, onAnswersSheet, onNav }: {
   const [formView, setFormView] = useState<'Questions' | 'Answers' | 'As a parent sees it'>('Questions')
   const [reminded, setReminded] = useState(false)
   const [lastTool, setLastTool] = useState('')
-  const [toast, setToast] = useState<string | null>(null)
   const [questions, setQuestions] = useState<Question[]>([
     { q: 'Kit size this season?', type: 'Choice' },
     { q: 'Available for photo day, Saturday 15 June?', type: 'Yes or no' },
     { q: 'Any dietary needs at presentation lunch?', type: 'Short answer' },
     { q: 'Shirt number preference (not guaranteed)?', type: 'Choice' },
   ])
-  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 2500) }
   function tool(name: string) { setLastTool(name) }
 
   function cycleType(i: number) {
@@ -163,10 +161,6 @@ export default function FIL7Form({ onBack, onShare, onAnswersSheet, onNav }: {
           </div>
         </div>
       </div>
-
-      {toast && (
-        <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', background: GD, color: '#fff', padding: '10px 20px', borderRadius: 999, fontSize: 13, fontWeight: 600, zIndex: 100 }}>{toast}</div>
-      )}
     </div>
   )
 }
