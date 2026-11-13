@@ -1958,7 +1958,7 @@ export default function DemoApp() {
       if (phase === 'preseason')       lookContent = <SPp13PlayerPreSeason />
       else if (phase === 'postseason') lookContent = <SPp14PlayerPostSeason />
       else if (phase === 'restmonth')  lookContent = <SPp7PlayerRestMonth />
-      else                             lookContent = <TwoChildrenApp onBack={() => setView('start')} empty={false} />
+      else                             lookContent = <PlayerAppScreen empty={false} />
     } else if (role === 'playerolder') {
       if (phase === 'preseason')       lookContent = <SPp15OlderPreSeason />
       else if (phase === 'postseason') lookContent = <SPp16OlderPostSeason />
