@@ -372,7 +372,7 @@ import DemoStart             from './DemoStart'
 import DemoStartEmpty        from './DemoStartEmpty'
 import StartPage             from '../start/StartPage'
 import { HomeStoryTablet, HomeStoryPhone, HomeStoryBody, HomeStoryMiniRoosTraining, HomeStoryMiniRoosNoFilm } from '../story/HomeStory'
-import { TABLET_CONFIGS, STO1, STO4, STO5, STO6, STO7, STO10, STO11 } from '../story/configs'
+import { TABLET_CONFIGS, STO1, STO4, STO5, STO6, STO7, STO8, STO9, STO10, STO11, STO14, STO15 } from '../story/configs'
 import { PHONE_CONFIGS }      from '../story/phoneConfigs'
 import DemoWhy               from './DemoWhy'
 import DemoTourShell         from './DemoTourShell'
@@ -2486,13 +2486,13 @@ export default function DemoApp() {
                : <HomeStoryBody cfg={STO1} />
       lookContent = <div style={{ width: 1180, background: 'var(--surface-100)' }}><MiniRoosApp onBack={() => setRole('coach')} empty={false} phaseContent={pc} initialScreen={screen} onNavChange={setScreen} /></div>
     } else if (role === 'goalkeeper') {
-      lookContent = <GoalkeeperCoachApp onBack={() => setRole('coach')} empty={false} initialScreen={screen} onNavChange={setScreen} />
+      lookContent = <GoalkeeperCoachApp onBack={() => setRole('coach')} empty={false} initialScreen={screen} onNavChange={setScreen} homeStory={<HomeStoryBody cfg={STO9} />} />
     } else if (role === 'fitness') {
-      lookContent = <FitnessCoachScreen empty={false} initialScreen={screen} onNavChange={setScreen} />
+      lookContent = <FitnessCoachScreen empty={false} initialScreen={screen} onNavChange={setScreen} homeStory={<HomeStoryBody cfg={STO8} />} />
     } else if (role === 'academyowner') {
-      lookContent = <AcademyOwnerApp onBack={() => setRole('academycoach')} empty={false} initialScreen={screen} onNavChange={setScreen} />
+      lookContent = <AcademyOwnerApp onBack={() => setRole('academycoach')} empty={false} initialScreen={screen} onNavChange={setScreen} homeStory={<HomeStoryBody cfg={STO14} />} />
     } else if (role === 'academycoach') {
-      lookContent = <AcademyCoachApp onBack={() => setRole('coach')} empty={false} initialScreen={screen} onNavChange={setScreen} />
+      lookContent = <AcademyCoachApp onBack={() => setRole('coach')} empty={false} initialScreen={screen} onNavChange={setScreen} homeStory={<HomeStoryBody cfg={STO15} />} />
     } else if (role === 'academyparent') {
       lookContent = <AcademyParentApp onBack={() => setView('start')} empty={false} />
     } else if (role === 'academyplayer') {

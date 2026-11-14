@@ -926,7 +926,7 @@ function AcademyYearView({ onBack }: { onBack: () => void }) {
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
-export default function AcademyOwnerApp({ onBack, empty = false, initialScreen, onNavChange }: { onBack: () => void; empty?: boolean; initialScreen?: string; onNavChange?: (screen: string) => void }) {
+export default function AcademyOwnerApp({ onBack, empty = false, initialScreen, onNavChange, homeStory }: { onBack: () => void; empty?: boolean; initialScreen?: string; onNavChange?: (screen: string) => void; homeStory?: import('react').ReactNode }) {
   const HOME_TAB_IDS: HomeTab[] = ['overview', 'trials', 'reports', 'safety', 'partner']
   const isHomeSub = HOME_TAB_IDS.includes(initialScreen as HomeTab)
   const [nav, setNav]             = useState<OwnerNav>(isHomeSub ? 'home' : (initialScreen as OwnerNav) ?? 'home')
@@ -1012,7 +1012,8 @@ export default function AcademyOwnerApp({ onBack, empty = false, initialScreen, 
       </header>
 
       <div style={{ flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden', position: 'relative' }}>
-        {nav === 'home' && homeTab === 'overview' && <Overview empty={empty} onBroadcast={() => setShowBroadcast(true)} onTrials={() => setHomeTab('trials')} onFees={() => setNav('money')} onReports={() => setHomeTab('reports')} onFootballYear={() => setShowFootballYear(true)}/>}
+        {nav === 'home' && homeTab === 'overview' && !empty && homeStory}
+        {nav === 'home' && homeTab === 'overview' && !(!empty && homeStory) && <Overview empty={empty} onBroadcast={() => setShowBroadcast(true)} onTrials={() => setHomeTab('trials')} onFees={() => setNav('money')} onReports={() => setHomeTab('reports')} onFootballYear={() => setShowFootballYear(true)}/>}
         {nav === 'home' && homeTab === 'trials'   && <TrialsView empty={empty}/>}
         {nav === 'home' && homeTab === 'reports'  && <ReportsView empty={empty}/>}
         {nav === 'home' && homeTab === 'safety'   && <SafetyView empty={empty}/>}

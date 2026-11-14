@@ -1205,7 +1205,7 @@ function PlayersListView({ onPlayer, onReport }: { onPlayer: (name: string, isNe
 
 // ─── Main app ─────────────────────────────────────────────────────────────────
 
-export default function AcademyCoachApp({ onBack, empty = false, initialScreen, onNavChange }: { onBack: () => void; empty?: boolean; initialScreen?: string; onNavChange?: (screen: string) => void }) {
+export default function AcademyCoachApp({ onBack, empty = false, initialScreen, onNavChange, homeStory }: { onBack: () => void; empty?: boolean; initialScreen?: string; onNavChange?: (screen: string) => void; homeStory?: import('react').ReactNode }) {
   const [nav, setNav]               = useState<AcademyNav>((initialScreen as AcademyNav) ?? 'today')
   const [todayTab, setTodayTab]     = useState<TodayTab>('overview')
   const [trainingTab, setTrainingTab] = useState<TrainingTab>('week')
@@ -1306,7 +1306,8 @@ export default function AcademyCoachApp({ onBack, empty = false, initialScreen, 
       {/* Content */}
       <div style={{ flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden', position: 'relative' }}>
         {/* Today tabs */}
-        {nav === 'today' && todayTab === 'overview'   && <TodayOverview empty={empty} onRun={() => setTodayTab('runsession')} onTrials={() => setTodayTab('trial')} onReport={() => { setNav('players'); setPlayersView('report') }}/>}
+        {nav === 'today' && todayTab === 'overview'   && !empty && homeStory}
+        {nav === 'today' && todayTab === 'overview'   && !(!empty && homeStory) && <TodayOverview empty={empty} onRun={() => setTodayTab('runsession')} onTrials={() => setTodayTab('trial')} onReport={() => { setNav('players'); setPlayersView('report') }}/>}
         {nav === 'today' && todayTab === 'runsession' && <RunSessionView empty={empty}/>}
         {nav === 'today' && todayTab === 'trial'      && <TrialView empty={empty}/>}
         {nav === 'today' && todayTab === 'oneonone'   && <OneOnOneView empty={empty}/>}

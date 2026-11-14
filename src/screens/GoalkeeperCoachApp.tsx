@@ -279,7 +279,7 @@ function ClipsTab({ empty }: { empty?: boolean }) {
   )
 }
 
-export default function GoalkeeperCoachApp({ onBack, empty = false, initialScreen, onNavChange }: { onBack: () => void; empty?: boolean; initialScreen?: string; onNavChange?: (screen: string) => void }) {
+export default function GoalkeeperCoachApp({ onBack, empty = false, initialScreen, onNavChange, homeStory }: { onBack: () => void; empty?: boolean; initialScreen?: string; onNavChange?: (screen: string) => void; homeStory?: import('react').ReactNode }) {
   const [nav, setNav]             = useState<GKNav>((initialScreen as GKNav) ?? 'home')
   const [homeTab, setHomeTab]     = useState<HomeTab>('overview')
   const [trainingTab, setTrainingTab] = useState<TrainingTab>('session')
@@ -349,7 +349,8 @@ export default function GoalkeeperCoachApp({ onBack, empty = false, initialScree
 
       {/* Content */}
       <div style={{ flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden', position: 'relative' }}>
-        {nav === 'home'     && homeTab === 'overview' && (empty ? (
+        {nav === 'home'     && homeTab === 'overview' && !empty && homeStory}
+        {nav === 'home'     && homeTab === 'overview' && !(!empty && homeStory) && (empty ? (
           <div style={{ flexGrow: 1, padding: '28px 32px', overflowY: 'auto' }}>
             <div style={{ maxWidth: 500 }}>
               <h2 style={{ margin: '0 0 4px', fontSize: 22, fontWeight: 700, color: '#10211f' }}>Goalkeeper coach</h2>

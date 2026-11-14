@@ -176,7 +176,7 @@ function EffortChart({ data }: { data: { sessions: string[]; planned: number[]; 
   )
 }
 
-export default function FitnessCoachScreen({ empty, initialScreen, onNavChange }: { empty?: boolean; initialScreen?: string; onNavChange?: (screen: string) => void }) {
+export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, homeStory }: { empty?: boolean; initialScreen?: string; onNavChange?: (screen: string) => void; homeStory?: import('react').ReactNode }) {
   const [tab, setTab]           = useState<FitnessTab>((initialScreen as FitnessTab) ?? 'home')
   const [squadSub, setSquadSub] = useState<SquadSubTab>('growth')
   const [trainSub, setTrainSub] = useState<TrainingSubTab>('tests')
@@ -288,7 +288,8 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange }
       <div style={{ flexGrow: 1, overflowY: 'auto' }}>
 
         {/* ── HOME TAB ── */}
-        {tab === 'home' && (
+        {tab === 'home' && !empty && homeStory}
+        {tab === 'home' && !(!empty && homeStory) && (
           <div>
             {/* Team picker */}
             <div style={{ padding: '14px 20px 0', display: 'flex', gap: 7, flexWrap: 'wrap' as const }}>
