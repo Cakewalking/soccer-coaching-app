@@ -51,7 +51,6 @@ import LiveGame11Screen      from '../LiveGame11Screen'
 // Step 4 screens — New (DSet1, DSet4, ACC1)
 import DSet1ClubSettings          from '../step4/DSet1ClubSettings'
 import DSet4ClubRules             from '../step4/DSet4ClubRules'
-import ACC1CoachToday             from '../step4/ACC1CoachToday'
 import ACC1eCoachTodayEmpty       from '../step4/ACC1eCoachTodayEmpty'
 // Step 4 screens — Academy player
 import ACK1AcademyPlayerHome      from '../step4/ACK1AcademyPlayerHome'
@@ -274,7 +273,6 @@ import ACC2RunSession            from '../step4/ACC2RunSession'
 import ACC3TrialAssess           from '../step4/ACC3TrialAssess'
 import ACC5OneOnOne              from '../step4/ACC5OneOnOne'
 import ACC6ReportDraft           from '../step4/ACC6ReportDraft'
-import ACC7AcademyGameDay        from '../step4/ACC7AcademyGameDay'
 import ACC12AcademySuggested     from '../step4/ACC12AcademySuggested'
 import ACC13AcademyChat          from '../step4/ACC13AcademyChat'
 // Step 4 — Invite flow screens (agent 4)
@@ -1638,11 +1636,11 @@ function renderScreenInner(key: string): ReactNode {
     // Design IDs — Academy coach screens (tablet)
     case 'ACC2-RunSession':           return <ACC2RunSession />
     case 'ACC3-TrialAssess':          return <ACC3TrialAssess />
-    case 'ACC4-PlayerPlan':           return <ACC4PlayerPlan mode='new' />
+    case 'ACC4-PlayerPlan':           return <AcademyCoachApp onBack={noop} initialScreen="players" empty={false} />
     case 'ACC4b-PlayerPlan':          return <ACC4PlayerPlan />
     case 'ACC5-OneOnOne':             return <ACC5OneOnOne />
     case 'ACC6-ReportDraft':          return <ACC6ReportDraft />
-    case 'ACC7-AcademyGameDay':       return <ACC7AcademyGameDay />
+    case 'ACC7-AcademyGameDay':       return <AcademyCoachApp onBack={noop} initialScreen="gameday" empty={false} />
     case 'ACC12-AcademySuggested':    return <ACC12AcademySuggested />
     case 'ACC13-AcademyChat':         return <ACC13AcademyChat />
     // Design IDs — Invite flow (phone)
@@ -1813,7 +1811,7 @@ function renderScreenInner(key: string): ReactNode {
     case 'dset1-club':          case 'DSet1-ClubSettings':  return <DSet1ClubSettings />
     case 'dset4-rules':         case 'DSet4-ClubRules':     return <DSet4ClubRules />
     // Academy coach today (ACC1)
-    case 'acc1-today':          case 'ACC1-CoachToday':     return <ACC1CoachToday />
+    case 'acc1-today':          case 'ACC1-CoachToday':     return <AcademyCoachApp onBack={noop} initialScreen="today" empty={false} />
     case 'acc1-today-e':        case 'ACC1e-CoachTodayEmpty': return <ACC1eCoachTodayEmpty />
     // Design ID aliases — D7 extra teams
     case 'd7-u9blue':    case 'D7-U9Blue':    return <D7U9Blue />
