@@ -371,8 +371,9 @@ import CoachPhoneApp, { CPh1CoachPhoneHome, CPh2CoachPhoneComing, CPh3CoachPhone
 import DemoStart             from './DemoStart'
 import DemoStartEmpty        from './DemoStartEmpty'
 import StartPage             from '../start/StartPage'
-import { HomeStoryTablet }   from '../story/HomeStory'
+import { HomeStoryTablet, HomeStoryPhone } from '../story/HomeStory'
 import { TABLET_CONFIGS }     from '../story/configs'
+import { PHONE_CONFIGS }      from '../story/phoneConfigs'
 import DemoWhy               from './DemoWhy'
 import DemoTourShell         from './DemoTourShell'
 import DemoPhone             from './DemoPhone'
@@ -2157,6 +2158,14 @@ function renderScreenInner(key: string): ReactNode {
     case 'STO14-HomeStoryAcademyOwner':
     case 'STO15-HomeStoryAcademyCoach':
       return <HomeStoryNav id={key} />
+    case 'STO16-HomeStoryManager':
+    case 'STO17-HomeStoryParent':
+    case 'STO18-HomeStoryPlayerYoung':
+    case 'STO19-HomeStoryPlayerOlder':
+    case 'STO20-HomeStoryReferee':
+    case 'STO21-HomeStoryAcademyParent':
+    case 'STO22-HomeStoryAcademyPlayer':
+      return <HomeStoryPhone cfg={PHONE_CONFIGS[key]} />
 
     default:
       return (

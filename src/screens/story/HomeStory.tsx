@@ -221,6 +221,95 @@ function Frame({ cfg, nav, tool, children }: { cfg: HomeCfg; nav: (s: string) =>
   )
 }
 
+// ---- Phone (STO16–STO22) ----
+export type PhoneBlock =
+  | { kind: 'proof'; label: string; headline: string; second: string; bars?: Bar[]; unit?: string; clip?: { duration: string; note: string }; btn: string }
+  | { kind: 'ready'; when?: string; title: string; text: string; btns: string[] }
+  | { kind: 'list'; label?: string; title: string; text?: string; lines?: string[]; action?: string }
+  | { kind: 'done'; title: string; lines: string[] }
+  | { kind: 'needs'; count: number; title: string }
+  | { kind: 'note'; text: string }
+export type PhoneCfg = { id: string; roleLine: string; greeting: string; avatar: string; tabs: string[]; blocks: PhoneBlock[] }
+
+export function HomeStoryPhone({ cfg }: { cfg: PhoneCfg }) {
+  const [lastTool, setLastTool] = useState('')
+  const [toast, setToast] = useState<string | null>(null)
+  const tool = (s: string) => { setLastTool(s); setToast(s); setTimeout(() => setToast(null), 2200) }
+  const amberBtn: React.CSSProperties = { height: 46, borderRadius: 12, border: 'none', background: AMBER, color: INK, fontSize: 15, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', width: '100%' }
+  return (
+    <div data-lasttool={lastTool} style={{ width: 390, minHeight: 844, background: '#f4f5f3', fontFamily: "'DM Sans',system-ui,sans-serif", display: 'flex', flexDirection: 'column' }}>
+      <header style={{ background: '#fff', borderBottom: `1px solid ${HAIR}`, padding: '12px 16px', display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.04em', color: GREY, textTransform: 'uppercase' }}>{cfg.roleLine}</div>
+          <div style={{ fontSize: 20, fontWeight: 700, color: INK }}>{cfg.greeting}</div>
+        </div>
+        <div style={{ width: 38, height: 38, borderRadius: '50%', background: '#b9777a', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, flexShrink: 0 }}>{cfg.avatar}</div>
+      </header>
+      <div style={{ flex: 1, padding: 16, display: 'flex', flexDirection: 'column', gap: 12 }}>
+        {cfg.blocks.map((b, i) => {
+          if (b.kind === 'proof') return (
+            <div key={i} style={{ background: DARK, borderRadius: 18, padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 8, color: '#fff' }}>
+              <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', color: AMBER }}>{b.label}</span>
+              <strong style={{ fontSize: 20, lineHeight: '26px', letterSpacing: '-0.01em' }}>{b.headline}</strong>
+              <span style={{ fontSize: 14, lineHeight: '19px', color: PALE }}>{b.second}</span>
+              {b.bars && <div style={{ padding: '4px 0' }}><Bars bars={b.bars} unit={b.unit} /></div>}
+              {b.clip && (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                  <span style={{ height: 92, borderRadius: 12, background: 'rgba(255,255,255,0.10)', border: `1px solid ${PALE}`, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', color: '#fff' }}>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5l11 7-11 7z" /></svg>
+                    <span style={{ position: 'absolute', left: 10, bottom: 8, fontSize: 12, fontWeight: 700, background: 'rgba(0,0,0,0.35)', padding: '2px 8px', borderRadius: 6 }}>{b.clip.duration}</span>
+                  </span>
+                  <span style={{ fontSize: 12, lineHeight: '16px', color: PALE }}>{b.clip.note}</span>
+                </div>
+              )}
+              <button onClick={() => tool(b.btn)} style={amberBtn}>{b.btn}</button>
+            </div>
+          )
+          if (b.kind === 'ready') return (
+            <div key={i} style={{ background: GREEN, borderRadius: 16, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 5, color: '#fff' }}>
+              {b.when && <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em' }}>{b.when}</span>}
+              <strong style={{ fontSize: 18, lineHeight: '23px' }}>{b.title}</strong>
+              <span style={{ fontSize: 13, lineHeight: '18px' }}>{b.text}</span>
+              <span style={{ display: 'flex', gap: 8, marginTop: 3 }}>
+                {b.btns.map((t, j) => <button key={t} onClick={() => tool(t)} style={{ flex: j === 0 ? 1 : undefined, height: 46, padding: '0 16px', borderRadius: 12, border: j === 0 ? 'none' : '1px solid rgba(255,255,255,0.6)', background: j === 0 ? '#fff' : 'transparent', color: j === 0 ? INK : '#fff', fontSize: 15, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>{t}</button>)}
+              </span>
+            </div>
+          )
+          if (b.kind === 'list') return (
+            <div key={i} style={{ background: '#fff', border: `1px solid ${BORDER}`, borderRadius: 16, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 6 }}>
+              {b.label && <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', color: GREY }}>{b.label}</span>}
+              <strong style={{ fontSize: 15, lineHeight: '20px' }}>{b.title}</strong>
+              {b.text && <span style={{ fontSize: 14, lineHeight: '19px', color: GREY }}>{b.text}</span>}
+              {b.lines?.map(l => <span key={l} style={{ display: 'flex', gap: 8, fontSize: 14, lineHeight: '19px' }}><span style={{ flexShrink: 0, display: 'flex', marginTop: 1 }}><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={GREEN} strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10" /></svg></span><span>{l}</span></span>)}
+              {b.action && <button onClick={() => tool(b.action!)} style={{ minHeight: 44, borderRadius: 10, border: `1px solid ${BORDER}`, background: '#fff', fontSize: 14, fontWeight: 700, color: INK, cursor: 'pointer', fontFamily: 'inherit', marginTop: 2 }}>{b.action}</button>}
+            </div>
+          )
+          if (b.kind === 'done') return (
+            <div key={i} style={{ background: '#fff', border: `1px solid ${BORDER}`, borderRadius: 16, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 6 }}>
+              <strong style={{ fontSize: 15, lineHeight: '20px' }}>{b.title}</strong>
+              {b.lines.map(l => <span key={l} style={{ display: 'flex', gap: 8, fontSize: 14, lineHeight: '19px' }}><span style={{ flexShrink: 0, display: 'flex', marginTop: 1 }}><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={GREEN} strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10" /></svg></span><span>{l}</span></span>)}
+            </div>
+          )
+          if (b.kind === 'needs') return (
+            <button key={i} onClick={() => tool(b.title)} style={{ background: '#fff', border: `1px solid ${BORDER}`, borderRadius: 16, padding: '12px 14px', minHeight: 44, display: 'flex', gap: 12, alignItems: 'center', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
+              <span style={{ width: 30, height: 30, borderRadius: '50%', background: AMBER, color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700, flexShrink: 0 }}>{b.count}</span>
+              <span style={{ flex: 1, fontSize: 14, fontWeight: 700, color: INK }}>{b.title}</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={GREY} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+            </button>
+          )
+          return <span key={i} style={{ fontSize: 13, lineHeight: '18px', color: GREY }}>{b.text}</span>
+        })}
+      </div>
+      <nav style={{ background: '#fff', borderTop: `1px solid ${HAIR}`, display: 'flex', flexShrink: 0 }}>
+        {cfg.tabs.map((t, i) => (
+          <button key={t} onClick={() => tool(t)} style={{ flex: 1, minHeight: 56, background: 'none', border: 'none', fontSize: 12, fontWeight: i === 0 ? 700 : 600, color: i === 0 ? GREEN : GREY, cursor: 'pointer', fontFamily: 'inherit' }}>{t}</button>
+        ))}
+      </nav>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 72, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '10px 16px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 13, fontWeight: 600, maxWidth: 340 }}>{toast}</div>}
+    </div>
+  )
+}
+
 export function HomeStoryTablet({ cfg, onNav }: { cfg: HomeCfg; onNav?: (s: string) => void }) {
   const [lastTool, setLastTool] = useState('')
   const [toast, setToast] = useState<string | null>(null)
