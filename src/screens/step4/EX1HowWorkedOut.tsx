@@ -82,7 +82,7 @@ export default function EX1HowWorkedOut(_: { onBack?: () => void }) {
               <div style={{ fontSize: 13, fontWeight: 700, color: G, marginBottom: 4 }}>Solid</div>
               <div style={{ fontSize: 12, color: MUT }}>From 57 of 60 minutes of clear camera view.</div>
             </div>
-            <button onClick={() => st('Report submitted.')} style={{ marginTop: 10, height: 36, padding: '0 12px', borderRadius: 8, background: 'transparent', color: G, border: `1px solid ${G}`, fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Something look wrong? Report it</button>
+            <button onClick={() => st('Report submitted.')} style={{ marginTop: 10, height: 44, padding: '0 12px', borderRadius: 8, background: 'transparent', color: G, border: `1px solid ${G}`, fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Something look wrong? Report it</button>
           </div>
         </div>
       </main>

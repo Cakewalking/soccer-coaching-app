@@ -58,7 +58,7 @@ export default function HG1HomeKeeperCoach(_: { onBack?: () => void }) {
             <div style={{ fontSize: 15, fontWeight: 700 }}>From Saturday clips</div>
             {CLIPS.map((c, i) => (
               <div key={i} style={{ display: 'flex', gap: 10, borderTop: `1px solid ${LN}`, paddingTop: 6 }}>
-                <div style={{ width: 40, height: 36, borderRadius: 8, background: '#e8edeb', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <div style={{ width: 40, height: 44, borderRadius: 8, background: '#e8edeb', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="5 3 19 12 5 21"/></svg>
                 </div>
                 <div>

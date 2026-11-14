@@ -20,7 +20,7 @@ function SlotCell({ val }: { val: Slot }) {
   const bg = val === 'In goal' ? GD : val === 'On' ? '#40826d' : LN
   const color = val === 'Rest' ? INK : '#fff'
   return (
-    <div style={{ height: 36, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, background: bg, color }}>{val}</div>
+    <div style={{ height: 44, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, background: bg, color }}>{val}</div>
   )
 }
 

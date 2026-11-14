@@ -52,7 +52,7 @@ export default function ACC9AcademyRecordDrill(_: { onBack?: () => void }) {
               <div key={i} style={{ display: 'flex', alignItems: 'center', padding: '11px 16px', borderBottom: `1px solid ${LN}` }}>
                 <span style={{ fontSize: 13, color: MUT, width: 100, flexShrink: 0 }}>{r.label}</span>
                 <span style={{ fontSize: 13, fontWeight: 600, color: INK, flexGrow: 1 }}>{r.value}</span>
-                <button onClick={() => st(`Changing ${r.label}.`)} style={{ height: 36, padding: '0 12px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: G, cursor: 'pointer' }}>{r.label === 'Camera' ? 'Check view' : 'Change'}</button>
+                <button onClick={() => st(`Changing ${r.label}.`)} style={{ height: 44, padding: '0 12px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: G, cursor: 'pointer' }}>{r.label === 'Camera' ? 'Check view' : 'Change'}</button>
               </div>
             ))}
             <div style={{ padding: '10px 16px', background: PALE }}>

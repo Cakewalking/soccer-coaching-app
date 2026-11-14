@@ -118,9 +118,9 @@ export default function TeamSheetBody({ cfg, onBack, onShare, onTool }: {
               <div key={a.ini} style={{ width: 28, height: 28, borderRadius: '50%', background: a.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 10, fontWeight: 700, color: '#fff', marginLeft: i > 0 ? -8 : 0, border: '2px solid #fff', zIndex: 3 - i, position: 'relative' }}>{a.ini}</div>
             ))}
           </div>
-          <button onClick={() => tool('History')}  style={{ height: 36, padding: '0 14px', borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 13, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>History</button>
-          <button onClick={() => tool('Download')} style={{ height: 36, padding: '0 14px', borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 13, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Download</button>
-          <button onClick={() => onShare?.()}      style={{ height: 36, padding: '0 16px', borderRadius: 999, background: GD, color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Share</button>
+          <button onClick={() => tool('History')}  style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 13, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>History</button>
+          <button onClick={() => tool('Download')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 13, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Download</button>
+          <button onClick={() => onShare?.()}      style={{ height: 44, padding: '0 16px', borderRadius: 999, background: GD, color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Share</button>
         </div>
       </div>
 
@@ -165,7 +165,7 @@ export default function TeamSheetBody({ cfg, onBack, onShare, onTool }: {
       </div>
 
       {/* Formula bar */}
-      <div style={{ background: '#fff', borderBottom: `1px solid ${LN}`, padding: '0 16px', display: 'flex', alignItems: 'center', gap: 8, height: 36, flexShrink: 0 }}>
+      <div style={{ background: '#fff', borderBottom: `1px solid ${LN}`, padding: '0 16px', display: 'flex', alignItems: 'center', gap: 8, height: 44, flexShrink: 0 }}>
         <span style={{ fontSize: 11, fontWeight: 700, color: INK, background: PALE, padding: '2px 8px', borderRadius: 4 }}>{selRef}</span>
         <div style={{ width: 1, height: 16, background: LN, flexShrink: 0 }} />
         <span style={{ fontSize: 11, color: MUT, whiteSpace: 'nowrap' }}>Choice:</span>

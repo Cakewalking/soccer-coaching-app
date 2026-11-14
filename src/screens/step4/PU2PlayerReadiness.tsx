@@ -142,7 +142,7 @@ export default function PU2PlayerReadiness({ onNav }: { onNav?: (s: string) => v
                 <Badge label="Room for it" />
               </div>
               <div style={{ fontSize: 12, color: MUT, marginBottom: 10 }}>Two sessions and a game a week. No other sport this term. Wellness steady.</div>
-              <div style={{ display: 'flex', gap: 3, alignItems: 'flex-end', height: 36, marginBottom: 8 }}>
+              <div style={{ display: 'flex', gap: 3, alignItems: 'flex-end', height: 44, marginBottom: 8 }}>
                 {[20, 28, 24, 30, 26, 22].map((h, i) => (
                   <div key={i} style={{ flex: 1, background: '#c8ddd8', borderRadius: '2px 2px 0 0', height: `${h * 1.1}px` }} />
                 ))}

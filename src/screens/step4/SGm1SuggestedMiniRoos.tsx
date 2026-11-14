@@ -41,8 +41,8 @@ export default function SGm1SuggestedMiniRoos(_: { onBack?: () => void }) {
               <div style={{ fontSize: 12, opacity: 0.85 }}>{card.setup}</div>
             </div>
             <div style={{ display: 'flex', gap: 8 }}>
-              <button onClick={() => st('Marked as not suitable.')} style={{ flex: 1, height: 36, borderRadius: 8, background: '#fff', color: MUT, border: `1px solid ${LN}`, fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Not this</button>
-              <button onClick={() => st('Added to Tuesday.')} style={{ flex: 1, height: 36, borderRadius: 8, background: G, color: '#fff', border: 'none', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>Add to Tuesday</button>
+              <button onClick={() => st('Marked as not suitable.')} style={{ flex: 1, height: 44, borderRadius: 8, background: '#fff', color: MUT, border: `1px solid ${LN}`, fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Not this</button>
+              <button onClick={() => st('Added to Tuesday.')} style={{ flex: 1, height: 44, borderRadius: 8, background: G, color: '#fff', border: 'none', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>Add to Tuesday</button>
             </div>
           </div>
         ))}

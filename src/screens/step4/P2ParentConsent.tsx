@@ -54,7 +54,7 @@ export default function P2ParentConsent() {
             <div style={{ display: 'flex', gap: 8 }}>
               {[true, false].map(val => (
                 <button key={String(val)} onClick={() => setAnswers(prev => ({ ...prev, [p.key]: val }))} style={{
-                  flex: 1, height: 36, borderRadius: 10,
+                  flex: 1, height: 44, borderRadius: 10,
                   border: `1.5px solid ${answers[p.key] === val ? G : LN}`,
                   background: answers[p.key] === val ? PALE : '#fff',
                   color: answers[p.key] === val ? GD : MUT,

@@ -82,7 +82,7 @@ export default function IL1Injuries(_: { onBack?: () => void }) {
             <rect x="30" y="106" width="18" height="60" rx="8" fill={PALE} stroke={LN} strokeWidth="1.5" />
             <rect x="52" y="106" width="18" height="60" rx="8" fill={PALE} stroke={LN} strokeWidth="1.5" />
           </svg>
-          <input placeholder="What happened? (optional)" style={{ height: 36, borderRadius: 8, border: `1px solid #c5c8c4`, padding: '0 10px', fontSize: 14, fontFamily: 'inherit' }} />
+          <input placeholder="What happened? (optional)" style={{ height: 44, borderRadius: 8, border: `1px solid #c5c8c4`, padding: '0 10px', fontSize: 14, fontFamily: 'inherit' }} />
           <button style={{ height: 44, borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }} onClick={() => st('Logging injury.')}>Log injury</button>
         </div>
       {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}

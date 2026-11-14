@@ -34,7 +34,7 @@ export default function DF1DrillDetail(_: { onBack?: () => void }) {
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, overflow: 'hidden' }}>
             <div style={{ height: 160, background: '#e0ece7', display: 'flex', alignItems: 'center', justifyContent: 'center', borderBottom: `1px solid ${LN}` }}>
               <div style={{ display: 'flex', gap: 16 }}>
-                {[{ label: 'Us', color: GD }, { label: 'Them', color: '#7c3030' }, { label: 'Plays for both', color: '#a06020' }].map(b => <button key={b.label} onClick={() => st(`Viewing ${b.label}.`)} style={{ height: 36, padding: '0 12px', borderRadius: 8, background: b.color, color: '#fff', border: 'none', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>{b.label}</button>)}
+                {[{ label: 'Us', color: GD }, { label: 'Them', color: '#7c3030' }, { label: 'Plays for both', color: '#a06020' }].map(b => <button key={b.label} onClick={() => st(`Viewing ${b.label}.`)} style={{ height: 44, padding: '0 12px', borderRadius: 8, background: b.color, color: '#fff', border: 'none', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>{b.label}</button>)}
               </div>
             </div>
             <div style={{ padding: '10px 12px', display: 'flex', gap: 8 }}>

@@ -40,7 +40,7 @@ export default function L1bLiveGameSub(_: { onBack?: () => void }) {
           <span style={{ fontSize: 13, fontWeight: 700, color: 'rgba(255,255,255,0.7)' }}>LIVE · 2nd half</span>
         </div>
         <div style={{ fontSize: 28, fontWeight: 800, letterSpacing: '-0.02em' }}>37:14</div>
-        <button onClick={() => st('Paused.')} style={{ height: 36, padding: '0 14px', borderRadius: 8, background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)', color: '#fff', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Pause</button>
+        <button onClick={() => st('Paused.')} style={{ height: 44, padding: '0 14px', borderRadius: 8, background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)', color: '#fff', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Pause</button>
         <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginLeft: 'auto' }}>
           <span style={{ fontSize: 16, fontWeight: 700 }}>Wattle Creek</span>
           <button onClick={() => st('Score changed.')} style={{ width: 32, height: 32, borderRadius: '50%', background: 'rgba(255,255,255,0.1)', border: 'none', color: '#fff', fontSize: 18, cursor: 'pointer' }}>−</button>

@@ -112,7 +112,7 @@ export default function FIL1Files({ onOpenSheet, onOpenDoc, onNav }: {
           <div style={{ display: 'flex', gap: 10, marginBottom: 16, flexWrap: 'wrap' }}>
             <div style={{ position: 'relative', flex: 1, maxWidth: 280 }}>
               <svg style={{ position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)' }} width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-              <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search files" style={{ width: '100%', height: 36, paddingLeft: 32, paddingRight: 12, border: `1.5px solid ${LN}`, borderRadius: 999, fontSize: 13, fontFamily: 'inherit', outline: 'none', boxSizing: 'border-box' }} />
+              <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search files" style={{ width: '100%', height: 44, paddingLeft: 32, paddingRight: 12, border: `1.5px solid ${LN}`, borderRadius: 999, fontSize: 13, fontFamily: 'inherit', outline: 'none', boxSizing: 'border-box' }} />
             </div>
             {filters.map(f => (
               <button key={f} onClick={() => setFilter(f)} style={{ minHeight: 44, padding: '0 14px', borderRadius: 999, border: `1.5px solid ${filter === f ? G : LN}`, background: filter === f ? PALE : '#fff', fontSize: 13, color: filter === f ? G : INK, fontWeight: filter === f ? 700 : 400, cursor: 'pointer', fontFamily: 'inherit' }}>{f}</button>

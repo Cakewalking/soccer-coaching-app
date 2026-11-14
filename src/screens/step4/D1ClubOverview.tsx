@@ -40,7 +40,7 @@ export default function D1ClubOverview(_: { onBack?: () => void }) {
             <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 10 }}>Needs you this week</div>
             {ACTIONS.map((a, i) => (
               <div key={i} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 12, padding: '12px 16px', marginBottom: 8, display: 'flex', alignItems: 'center', gap: 12 }}>
-                <div style={{ width: 4, height: 36, borderRadius: 4, background: a.color, flexShrink: 0 }} />
+                <div style={{ width: 4, height: 44, borderRadius: 4, background: a.color, flexShrink: 0 }} />
                 <div style={{ fontSize: 13, color: INK, flex: 1 }}>{a.text}</div>
                 <div onClick={() => t('Marked done.')} style={{ fontSize: 12, color: MUT, cursor: 'pointer' }}>Done</div>
               </div>

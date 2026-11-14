@@ -6,7 +6,7 @@ const WHY = ['Late tackle','Handball','Foul language','Violent conduct','Simulat
 const TEAMS = ['Wattle Creek FC','Northgate City']
 
 const Chip = ({ label, active, onToggle }: { label: string; active?: boolean; onToggle?: () => void }) => (
-  <button onClick={onToggle} style={{ height: 36, padding: '0 14px', borderRadius: 99, border: `2px solid ${active ? G : '#c5c8c4'}`, background: active ? PALE : '#fff', display: 'flex', alignItems: 'center', fontSize: 14, fontWeight: active ? 700 : 500, color: active ? G : INK, cursor: 'pointer', whiteSpace: 'nowrap' as const, fontFamily: 'inherit' }}>{label}</button>
+  <button onClick={onToggle} style={{ height: 44, padding: '0 14px', borderRadius: 99, border: `2px solid ${active ? G : '#c5c8c4'}`, background: active ? PALE : '#fff', display: 'flex', alignItems: 'center', fontSize: 14, fontWeight: active ? 700 : 500, color: active ? G : INK, cursor: 'pointer', whiteSpace: 'nowrap' as const, fontFamily: 'inherit' }}>{label}</button>
 )
 
 const NavItem = ({ icon, label, active }: { icon: string; label: string; active?: boolean }) => (

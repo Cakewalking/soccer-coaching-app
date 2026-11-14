@@ -188,7 +188,7 @@ export function CF1Fixtures() {
           <div style={{ fontSize: 20, fontWeight: 800, color: INK, marginBottom: 2 }}>Fixtures and results</div>
           <div style={{ fontSize: 13, color: MUT }}>U12 Sam · 3rd of 10 · 16 points from 8 games · 2 × 30 minutes, 9 a side</div>
         </div>
-        <button onClick={() => showToast('Syncing fixtures to your calendar.')} style={{ height: 36, padding: '0 16px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, cursor: 'pointer' }}>Sync to my calendar</button>
+        <button onClick={() => showToast('Syncing fixtures to your calendar.')} style={{ height: 44, padding: '0 16px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, cursor: 'pointer' }}>Sync to my calendar</button>
       </div>
 
       <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, marginBottom: 20, overflow: 'hidden' }}>

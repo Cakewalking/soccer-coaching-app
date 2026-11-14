@@ -19,7 +19,7 @@ export default function X7InboxEmpty(_: { onBack?: () => void }) {
       <div style={{ flex: 1, display: 'flex' }}>
         <div style={{ width: 380, background: '#fff', borderRight: `1px solid ${LN}`, padding: '12px 16px' }}>
           <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 8 }}>Inbox</div>
-          <div style={{ display: 'flex', gap: 16, height: 36, alignItems: 'center', marginBottom: 16 }}>
+          <div style={{ display: 'flex', gap: 16, height: 44, alignItems: 'center', marginBottom: 16 }}>
             {['All', 'Unread 0', 'People', 'Clean Sheet'].map(t => (
               <div key={t} style={{ fontSize: 12, color: MUT }}>{t}</div>
             ))}

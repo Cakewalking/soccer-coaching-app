@@ -21,7 +21,7 @@ export default function DF4OwnDraw(_: { onBack?: () => void }) {
           <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT }}>Step 2 of 4 · Show it</div>
           <div style={{ fontSize: 16, fontWeight: 700, color: INK }}>Show the players how it works</div>
           <div style={{ display: 'flex', gap: 8 }}>
-            {SOURCES.map(s => <button key={s.label} onClick={() => s.active ? null : st(`Switching to ${s.label}.`)} style={{ height: 36, padding: '0 14px', borderRadius: 999, background: s.active ? G : '#fff', color: s.active ? '#fff' : MUT, border: `1px solid ${s.active ? G : LN}`, fontSize: 13, fontWeight: s.active ? 700 : 500, cursor: 'pointer' }}>{s.label}</button>)}
+            {SOURCES.map(s => <button key={s.label} onClick={() => s.active ? null : st(`Switching to ${s.label}.`)} style={{ height: 44, padding: '0 14px', borderRadius: 999, background: s.active ? G : '#fff', color: s.active ? '#fff' : MUT, border: `1px solid ${s.active ? G : LN}`, fontSize: 13, fontWeight: s.active ? 700 : 500, cursor: 'pointer' }}>{s.label}</button>)}
           </div>
           <div style={{ background: '#e8ede9', borderRadius: 16, flexGrow: 1, minHeight: 300, position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <div style={{ color: MUT, fontSize: 14 }}>Tap the pitch to add: <strong style={{ color: INK }}>{TOOLS.find(t => t.id === drawMode)?.label}</strong>. Hold anything to move or delete it.</div>

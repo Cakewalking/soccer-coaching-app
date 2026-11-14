@@ -49,7 +49,7 @@ export default function TS1FitnessLevel(_: { onBack?: () => void }) {
       <div style={{ padding: '20px 28px 0', flexShrink: 0 }}>
         <div style={{ fontSize: 22, fontWeight: 800, letterSpacing: '-0.02em' }}>Fitness level</div>
         <div style={{ fontSize: 13, color: MUT, marginTop: 2 }}>U12 Sam · set from the age group · decides what the app collects and shows</div>
-        <button onClick={() => st('Sending message to Rachel.')} style={{ marginTop: 8, height: 36, padding: '0 16px', borderRadius: 8, background: 'transparent', color: G, border: `1.5px solid ${G}`, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Ask Rachel to change it</button>
+        <button onClick={() => st('Sending message to Rachel.')} style={{ marginTop: 8, height: 44, padding: '0 16px', borderRadius: 8, background: 'transparent', color: G, border: `1.5px solid ${G}`, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Ask Rachel to change it</button>
       </div>
       <main style={{ flexGrow: 1, padding: '16px 28px 28px', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16, overflowY: 'auto' }}>
         {LEVELS.map(lvl => (

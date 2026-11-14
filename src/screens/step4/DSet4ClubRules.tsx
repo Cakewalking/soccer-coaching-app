@@ -60,7 +60,7 @@ export default function DSet4ClubRules() {
                   <div style={{ fontSize: 12, color: MUT }}>{r.desc}</div>
                 </div>
                 <div style={{ fontSize: 12, fontWeight: 600, color: r.warn ? '#c05' : MUT, flexShrink: 0 }}>{r.status}</div>
-                <button onClick={() => st('Opening rule settings.')} style={{ height: 36, padding: '0 16px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, cursor: 'pointer', flexShrink: 0 }}>{r.action}</button>
+                <button onClick={() => st('Opening rule settings.')} style={{ height: 44, padding: '0 16px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, cursor: 'pointer', flexShrink: 0 }}>{r.action}</button>
               </div>
             ))}
           </div>

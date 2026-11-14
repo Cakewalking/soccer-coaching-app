@@ -88,7 +88,7 @@ export default function ACC10AcademyRecordResults(_: { onBack?: () => void }) {
                   <div style={{ fontSize: 13, fontWeight: 600, color: INK }}>{r.label}</div>
                   <div style={{ fontSize: 12, color: MUT }}>{r.sub}</div>
                 </div>
-                {r.action && <button onClick={() => st(`Opening ${r.label}.`)} style={{ height: 36, padding: '0 12px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 700, color: G, cursor: 'pointer' }}>{r.action}</button>}
+                {r.action && <button onClick={() => st(`Opening ${r.label}.`)} style={{ height: 44, padding: '0 12px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 700, color: G, cursor: 'pointer' }}>{r.action}</button>}
               </div>
             ))}
           </div>

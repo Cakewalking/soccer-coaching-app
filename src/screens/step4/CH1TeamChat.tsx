@@ -111,7 +111,7 @@ export default function CH1TeamChat(_: { onBack?: () => void }) {
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth="1.5" strokeLinecap="round">{btn.icon}</svg>
                 </button>
               ))}
-              <input value={msg} onChange={e => setMsg(e.target.value)} placeholder={channel === 'team' ? 'Message the team…' : 'Write an announcement…'} style={{ flex: 1, height: 36, borderRadius: 10, border: `1px solid ${LN}`, padding: '0 12px', fontFamily: 'inherit', fontSize: 14, outline: 'none' }} />
+              <input value={msg} onChange={e => setMsg(e.target.value)} placeholder={channel === 'team' ? 'Message the team…' : 'Write an announcement…'} style={{ flex: 1, height: 44, borderRadius: 10, border: `1px solid ${LN}`, padding: '0 12px', fontFamily: 'inherit', fontSize: 14, outline: 'none' }} />
               <button onClick={() => { if (msg) { t('Message sent.'); setMsg('') } }} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: msg ? G : LN, color: msg ? '#fff' : MUT, fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer', flex: 'none' }}>Send</button>
             </div>
           </div>

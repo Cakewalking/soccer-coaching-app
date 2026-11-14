@@ -43,7 +43,7 @@ export default function DC1Calendar(_: { onBack?: () => void }) {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
             {GAMES.map((g, i) => (
               <div key={i} onClick={() => t(`${g.home} vs ${g.away}`)} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 12, padding: '10px 14px', display: 'flex', gap: 10, alignItems: 'center', cursor: 'pointer' }}>
-                <div style={{ width: 3, height: 36, borderRadius: 3, background: g.color, flexShrink: 0 }} />
+                <div style={{ width: 3, height: 44, borderRadius: 3, background: g.color, flexShrink: 0 }} />
                 <div>
                   <div style={{ fontSize: 11, color: MUT }}>{g.time}</div>
                   <div style={{ fontSize: 13, fontWeight: 700, color: INK }}>{g.home}</div>

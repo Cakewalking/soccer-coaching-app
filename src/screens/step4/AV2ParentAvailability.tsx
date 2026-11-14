@@ -41,7 +41,7 @@ export default function AV2ParentAvailability() {
             <div style={{ display: 'flex', gap: 8 }}>
               {(['yes', 'maybe', 'no'] as const).map(opt => (
                 <button key={opt} onClick={() => answer(s.id, opt)} style={{
-                  flex: 1, height: 36, borderRadius: 10, border: `1.5px solid ${answers[s.id] === opt ? G : LN}`,
+                  flex: 1, height: 44, borderRadius: 10, border: `1.5px solid ${answers[s.id] === opt ? G : LN}`,
                   background: answers[s.id] === opt ? PALE : '#fff',
                   color: answers[s.id] === opt ? GD : MUT,
                   fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer',

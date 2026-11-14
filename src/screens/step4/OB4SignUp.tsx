@@ -79,8 +79,8 @@ export default function OB4SignUp(_: { onBack?: () => void }) {
             <div style={{ fontSize: 13, fontWeight: 600, color: INK, marginBottom: 4 }}>Your team link is ready</div>
             <div style={{ fontSize: 13, color: MUT, lineHeight: '19px', marginBottom: 14 }}>Parents join, add their child and give consent. Players under 15 join through a parent.</div>
             <div style={{ display: 'flex', gap: 10 }}>
-              <button onClick={() => st('Opening parent view.')} style={{ height: 36, padding: '0 16px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>What parents see</button>
-              <button onClick={() => st('Team link copied.')} style={{ height: 36, padding: '0 16px', borderRadius: 8, border: 0, background: G, fontSize: 13, fontWeight: 700, color: '#fff', cursor: 'pointer', fontFamily: 'inherit' }}>Copy link</button>
+              <button onClick={() => st('Opening parent view.')} style={{ height: 44, padding: '0 16px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>What parents see</button>
+              <button onClick={() => st('Team link copied.')} style={{ height: 44, padding: '0 16px', borderRadius: 8, border: 0, background: G, fontSize: 13, fontWeight: 700, color: '#fff', cursor: 'pointer', fontFamily: 'inherit' }}>Copy link</button>
             </div>
           </div>
 

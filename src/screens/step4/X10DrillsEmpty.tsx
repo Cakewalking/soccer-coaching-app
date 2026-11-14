@@ -39,9 +39,9 @@ export default function X10DrillsEmpty(_: { onBack?: () => void }) {
       </div>
       <div style={{ flex: 'none', padding: '10px 28px', display: 'flex', gap: 8 }}>
         {AGE_FILTERS.map(f => (
-          <button key={f} onClick={() => setAgeFilter(f)} style={{ height: 36, padding: '0 14px', borderRadius: 999, background: f === ageFilter ? G : '#fff', color: f === ageFilter ? '#fff' : MUT, border: `1px solid ${f === ageFilter ? G : LN}`, fontSize: 13, fontWeight: f === ageFilter ? 700 : 500, cursor: 'pointer' }}>{f}</button>
+          <button key={f} onClick={() => setAgeFilter(f)} style={{ height: 44, padding: '0 14px', borderRadius: 999, background: f === ageFilter ? G : '#fff', color: f === ageFilter ? '#fff' : MUT, border: `1px solid ${f === ageFilter ? G : LN}`, fontSize: 13, fontWeight: f === ageFilter ? 700 : 500, cursor: 'pointer' }}>{f}</button>
         ))}
-        {['Skill', 'Players', 'Time', 'Goals'].map(f => <button key={f} style={{ height: 36, padding: '0 14px', borderRadius: 999, background: '#fff', color: MUT, border: `1px solid ${LN}`, fontSize: 13, fontWeight: 500, cursor: 'pointer' }}>{f}</button>)}
+        {['Skill', 'Players', 'Time', 'Goals'].map(f => <button key={f} style={{ height: 44, padding: '0 14px', borderRadius: 999, background: '#fff', color: MUT, border: `1px solid ${LN}`, fontSize: 13, fontWeight: 500, cursor: 'pointer' }}>{f}</button>)}
       </div>
       <main style={{ flexGrow: 1, padding: '8px 28px 24px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 300px', gap: 24, overflowY: 'auto' }}>
         <div>
