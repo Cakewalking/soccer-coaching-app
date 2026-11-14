@@ -157,7 +157,6 @@ import HM9FixturesMiniRoos        from '../step4/HM9FixturesMiniRoos'
 import HM10StaffMiniRoos          from '../step4/HM10StaffMiniRoos'
 import HM12ConsentMiniRoos        from '../step4/HM12ConsentMiniRoos'
 // Step 4 screens — Team Manager additional
-import TM1ManagerHome             from '../step4/TM1ManagerHome'
 import TM2ManagerGameDay          from '../step4/TM2ManagerGameDay'
 import TM3ManagerChange           from '../step4/TM3ManagerChange'
 import TM4DutyRoster              from '../step4/TM4DutyRoster'
@@ -1338,7 +1337,7 @@ function renderScreenInner(key: string): ReactNode {
     case 'ack2-practice':          return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><ACK2HomePractice /></div>
     case 'ack2-practice-e':        return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><ACK2eHomePracticeEmpty /></div>
     // Design ID aliases — Academy player (Design-ID format)
-    case 'ACK1-AcademyPlayerHome':      return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><ACK1AcademyPlayerHome /></div>
+    case 'ACK1-AcademyPlayerHome':      return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><AcademyPlayerApp onBack={noop} empty={false} /></div>
     case 'ACK1e-AcademyPlayerHomeEmpty': return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><ACK1eAcademyPlayerHomeEmpty /></div>
     case 'ACK2-HomePractice':           return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><ACK2HomePractice /></div>
     // Design IDs — Older player phone screens (PO*)
@@ -1445,7 +1444,7 @@ function renderScreenInner(key: string): ReactNode {
     case 'HM1n-QuickNotes':           return <HM1nQuickNotes onBack={noop} />
     case 'HM4e-GameDayMiniRoosEmpty': return <HM4eGameDayMiniRoosEmpty />
     // Design IDs — Team Manager screens (TM phone)
-    case 'TM1-ManagerHome':           return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TM1ManagerHome /></div>
+    case 'TM1-ManagerHome':           return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TeamManagerScreen empty={false} /></div>
     case 'TM2-ManagerGameDay':        return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TM2ManagerGameDay /></div>
     case 'TM3-ManagerChange':         return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TM3ManagerChange /></div>
     case 'TM4-DutyRoster':            return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TM4DutyRoster /></div>
@@ -2193,7 +2192,7 @@ function renderScreenInner(key: string): ReactNode {
     case 'ACC8-AcademyRecord':         return <ACC11AcademyRecording />
     case 'FT1-FitnessHomeU12':         return <FitnessCoachScreen empty={false} />
     case 'DP1-Pathway':                return <DP1FairGameTime />
-    case 'PA-ParentHome':              return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PP1TwoChildren /></div>
+    case 'PA-ParentHome':              return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TwoChildrenApp onBack={noop} empty={false} /></div>
     case 'PA-Clip':                    return <ClipsScreen empty={false} />
     case 'PA-Goals':                   return <DevGoalsScreen />
     case 'ACP4-ParentFees':            return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><ACP4ParentFees /></div>
