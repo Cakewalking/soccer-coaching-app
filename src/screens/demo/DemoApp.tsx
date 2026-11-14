@@ -145,10 +145,8 @@ import RCm1RecordChoice           from '../step4/RCm1RecordChoice'
 import RCm2ClipPicker             from '../step4/RCm2ClipPicker'
 // Step 4 screens — MiniRoos screens
 import HM1HomeMiniRoos            from '../step4/HM1HomeMiniRoos'
-import HM5WhatWeSaw               from '../step4/HM5WhatWeSaw'
 import HM5bThankParents           from '../step4/HM5bThankParents'
 import HM6SeasonNotes             from '../step4/HM6SeasonNotes'
-import HM7InboxMiniRoos           from '../step4/HM7InboxMiniRoos'
 import HM8CalendarMiniRoos        from '../step4/HM8CalendarMiniRoos'
 import HM9FixturesMiniRoos        from '../step4/HM9FixturesMiniRoos'
 import HM10StaffMiniRoos          from '../step4/HM10StaffMiniRoos'
@@ -192,7 +190,6 @@ import FD1Cards                  from '../step4/FD1Cards'
 // Step 4 — Welfare / goalkeeper (agent 2)
 import DW1WelfareCases           from '../step4/DW1WelfareCases'
 import FS1Sideline               from '../step4/FS1Sideline'
-import FK1Goalkeepers            from '../step4/FK1Goalkeepers'
 import HG1HomeKeeperCoach        from '../step4/HG1HomeKeeperCoach'
 import HG2KeeperSession          from '../step4/HG2KeeperSession'
 // Step 4 — Referee phone screens (agent 2)
@@ -1422,10 +1419,10 @@ function renderScreenInner(key: string): ReactNode {
     case 'HM2-SquadMiniRoos':         return <MiniRoosApp onBack={noop} empty={false} initialScreen="squad" />
     case 'HM3-TrainingMiniRoos':      return <MiniRoosApp onBack={noop} empty={false} initialScreen="training" />
     case 'HM4-GameDayMiniRoos':       return <MiniRoosApp onBack={noop} empty={false} initialScreen="gameday" />
-    case 'HM5-WhatWeSaw':             return <HM5WhatWeSaw />
+    case 'HM5-WhatWeSaw':             return <MiniRoosApp onBack={noop} empty={false} initialScreen="gameday" />
     case 'HM5b-ThankParents':         return <HM5bThankParents />
     case 'HM6-SeasonNotes':           return <HM6SeasonNotes />
-    case 'HM7-InboxMiniRoos':         return <HM7InboxMiniRoos />
+    case 'HM7-InboxMiniRoos':         return <MiniRoosApp onBack={noop} empty={false} initialScreen="home" />
     case 'HM8-CalendarMiniRoos':      return <HM8CalendarMiniRoos />
     case 'HM9-FixturesMiniRoos':      return <HM9FixturesMiniRoos />
     case 'HM10-StaffMiniRoos':        return <HM10StaffMiniRoos />
@@ -1551,7 +1548,7 @@ function renderScreenInner(key: string): ReactNode {
     case 'DW1-WelfareCases':          return <DW1WelfareCases />
     case 'FS1-Sideline':              return <FS1Sideline />
     case 'FS1b-Sideline':             return <FS1Sideline />
-    case 'FK1-Goalkeepers':           return <FK1Goalkeepers />
+    case 'FK1-Goalkeepers':           return <GoalkeeperCoachApp onBack={noop} empty={false} initialScreen="keepers" />
     case 'HG1-HomeKeeperCoach':       return <HG1HomeKeeperCoach />
     case 'HG2-KeeperSession':         return <HG2KeeperSession />
     // Design IDs — Referee phone screens
