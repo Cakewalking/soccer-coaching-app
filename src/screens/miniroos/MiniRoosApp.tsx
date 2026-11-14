@@ -35,6 +35,54 @@ const LN  = '#e8edeb'
 const PALE = '#eef5f2'
 const ROSE = '#c39797'
 
+function LiveOffContent({ onAsk }: { onAsk: () => void }) {
+  const [toast, setToast] = useState<string|null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
+  const [expanded, setExpanded] = useState(false)
+  const still = [
+    { n: 1, label: 'Turns', sub: 'Who starts, who is in goal, who is captain' },
+    { n: 2, label: 'A game clock', sub: 'With a buzz at each change' },
+    { n: 3, label: 'Quick notes', sub: 'Three taps after each game' },
+    { n: 4, label: 'The review on Sunday', sub: 'From the film, as usual' },
+  ]
+  return (
+    <div style={{ flex: 1, overflowY: 'auto', padding: '24px 28px 32px', maxWidth: 600 }}>
+      <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 4 }}>Saturday at Northgate City</div>
+      <div style={{ fontSize: 13, color: MUT, marginBottom: 20 }}>U9 Tom · kick-off 8:30 · game 2 of 4</div>
+      <div style={{ background: '#fff5e6', border: '1px solid #fde68a', borderRadius: 14, padding: 20, marginBottom: 20 }}>
+        <div style={{ fontSize: 15, fontWeight: 700, color: '#92400e', marginBottom: 6 }}>Live game help is off for MiniRoos</div>
+        <div style={{ fontSize: 13, color: '#78350f', lineHeight: 1.6, marginBottom: 14 }}>
+          Wattle Creek FC has this off for under 6 to under 11. "New coaches learn to read the game first." Rachel, director of football.
+        </div>
+        <button onClick={() => { st('A note goes to Rachel. Say why it would help your team.'); onAsk() }}
+          style={{ height: 44, padding: '0 16px', borderRadius: 8, border: '1.5px solid #d97706', background: '#fff', color: '#92400e', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Ask Rachel</button>
+      </div>
+      <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, overflow: 'hidden', marginBottom: 14 }}>
+        <button onClick={() => setExpanded(e => !e)}
+          style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '14px 20px', background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit' }}>
+          <span style={{ fontSize: 14, fontWeight: 700, color: INK }}>What you still have today</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d={expanded ? 'M18 15l-6-6-6 6' : 'M6 9l6 6 6-6'}/></svg>
+        </button>
+        {expanded && (
+          <div style={{ padding: '0 20px 16px', borderTop: `1px solid ${LN}` }}>
+            {still.map(item => (
+              <div key={item.n} style={{ display: 'flex', gap: 12, alignItems: 'flex-start', paddingTop: 12 }}>
+                <div style={{ width: 24, height: 24, borderRadius: '50%', background: G, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0 }}>{item.n}</div>
+                <div>
+                  <div style={{ fontSize: 13, fontWeight: 700, color: INK }}>{item.label}</div>
+                  <div style={{ fontSize: 12, color: MUT }}>{item.sub}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+      <div style={{ fontSize: 13, color: MUT }}>Nothing you already recorded is lost when a feature is off.</div>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: GD, color: '#fff', fontSize: 14, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)' }}>{toast}</div>}
+    </div>
+  )
+}
+
 function SuggestedMiniRoos({ empty }: { empty?: boolean }) {
   const [card1dismissed, setCard1dismissed] = useState(false)
   const [toast, setToast] = useState<string|null>(null)
@@ -346,7 +394,7 @@ function RecordMiniRoosClips({ empty, onBack }: { empty?: boolean; onBack: () =>
 
 type MiniNav = 'home' | 'squad' | 'training' | 'gameday' | 'clips' | 'record'
 type HomeTab = 'overview' | 'messages' | 'calendar' | 'fixtures' | 'style' | 'whereweat' | 'staff' | 'files'
-type GameDayTab = 'turns' | 'review' | 'whatisaw' | 'thankparents'
+type GameDayTab = 'turns' | 'live' | 'review' | 'whatisaw' | 'thankparents'
 type TrainingTab = 'plan' | 'suggest'
 type RecordView = 'start' | 'clips'
 
@@ -383,9 +431,10 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
   const ASK_QUESTIONS = ['Who needs a rest this week?', 'What should we work on tonight?', 'Is everyone getting fair minutes?']
 
   const GAMEDAY_TABS: Array<{ id: GameDayTab; label: string }> = [
-    { id: 'turns',       label: 'Turns' },
-    { id: 'review',      label: 'Review' },
-    { id: 'whatisaw',    label: 'What we saw' },
+    { id: 'turns',        label: 'Turns' },
+    { id: 'live',         label: 'Live' },
+    { id: 'review',       label: 'Review' },
+    { id: 'whatisaw',     label: 'What we saw' },
     { id: 'thankparents', label: 'Thank the parents' },
   ]
 
@@ -466,6 +515,8 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
       content = <GameDayMiniRoos empty={true} onWhatWeSaw={() => {}} />
     else if (gameDayTab === 'turns')
       content = <GameDayMiniRoos onWhatWeSaw={() => setGameDayTab('whatisaw')} />
+    else if (gameDayTab === 'live')
+      content = <LiveOffContent onAsk={() => setGameDayTab('turns')} />
     else if (gameDayTab === 'review')
       content = <MS3MiniRoosReview />
     else if (gameDayTab === 'whatisaw')
