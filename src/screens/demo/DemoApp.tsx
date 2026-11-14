@@ -144,12 +144,8 @@ import TM6eWhoComingEmpty         from '../step4/TM6eWhoComingEmpty'
 import RCm1RecordChoice           from '../step4/RCm1RecordChoice'
 import RCm2ClipPicker             from '../step4/RCm2ClipPicker'
 // Step 4 screens — MiniRoos screens
-import HM1HomeMiniRoos            from '../step4/HM1HomeMiniRoos'
 import HM5bThankParents           from '../step4/HM5bThankParents'
 import HM6SeasonNotes             from '../step4/HM6SeasonNotes'
-import HM8CalendarMiniRoos        from '../step4/HM8CalendarMiniRoos'
-import HM9FixturesMiniRoos        from '../step4/HM9FixturesMiniRoos'
-import HM10StaffMiniRoos          from '../step4/HM10StaffMiniRoos'
 import HM12ConsentMiniRoos        from '../step4/HM12ConsentMiniRoos'
 // Step 4 screens — Team Manager additional
 import TM3ManagerChange           from '../step4/TM3ManagerChange'
@@ -1415,17 +1411,17 @@ function renderScreenInner(key: string): ReactNode {
     case 'ch1-chat':          return <CH1TeamChat />
 
     // Design IDs — MiniRoos screens (HM)
-    case 'HM1-HomeMiniRoos':          return <HM1HomeMiniRoos />
+    case 'HM1-HomeMiniRoos':          return <MiniRoosApp onBack={noop} empty={false} initialScreen="home" />
     case 'HM2-SquadMiniRoos':         return <MiniRoosApp onBack={noop} empty={false} initialScreen="squad" />
     case 'HM3-TrainingMiniRoos':      return <MiniRoosApp onBack={noop} empty={false} initialScreen="training" />
     case 'HM4-GameDayMiniRoos':       return <MiniRoosApp onBack={noop} empty={false} initialScreen="gameday" />
     case 'HM5-WhatWeSaw':             return <MiniRoosApp onBack={noop} empty={false} initialScreen="gameday" />
     case 'HM5b-ThankParents':         return <HM5bThankParents />
     case 'HM6-SeasonNotes':           return <HM6SeasonNotes />
-    case 'HM7-InboxMiniRoos':         return <MiniRoosApp onBack={noop} empty={false} initialScreen="home" />
-    case 'HM8-CalendarMiniRoos':      return <HM8CalendarMiniRoos />
-    case 'HM9-FixturesMiniRoos':      return <HM9FixturesMiniRoos />
-    case 'HM10-StaffMiniRoos':        return <HM10StaffMiniRoos />
+    case 'HM7-InboxMiniRoos':         return <MiniRoosApp onBack={noop} empty={false} initialScreen="messages" />
+    case 'HM8-CalendarMiniRoos':      return <MiniRoosApp onBack={noop} empty={false} initialScreen="calendar" />
+    case 'HM9-FixturesMiniRoos':      return <MiniRoosApp onBack={noop} empty={false} initialScreen="fixtures" />
+    case 'HM10-StaffMiniRoos':        return <MiniRoosApp onBack={noop} empty={false} initialScreen="staff" />
     case 'HM11-ComingMiniRoos':       return <MiniRoosApp onBack={noop} empty={false} initialScreen="gameday" />
     case 'HM12-ConsentMiniRoos':      return <HM12ConsentMiniRoos />
     case 'HM3e-TrainingMiniRoosEmpty': return <HM3eTrainingMiniRoosEmpty />

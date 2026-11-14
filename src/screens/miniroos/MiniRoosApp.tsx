@@ -658,8 +658,10 @@ const HOME_TABS: Array<{ id: HomeTab; label: string }> = [
 ]
 
 export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, initialScreen, onNavChange }: { onBack: () => void; empty?: boolean; phaseContent?: ReactNode; initialScreen?: string; onNavChange?: (screen: string) => void }) {
-  const [nav, setNav]               = useState<MiniNav>((initialScreen as MiniNav) ?? 'home')
-  const [homeTab, setHomeTab]       = useState<HomeTab>('overview')
+  const HOME_SUBTABS: HomeTab[] = ['messages', 'calendar', 'fixtures', 'style', 'whereweat', 'staff', 'files']
+  const isHomeSub = !!initialScreen && (HOME_SUBTABS as string[]).includes(initialScreen)
+  const [nav, setNav]               = useState<MiniNav>(isHomeSub ? 'home' : ((initialScreen as MiniNav) ?? 'home'))
+  const [homeTab, setHomeTab]       = useState<HomeTab>(isHomeSub ? (initialScreen as HomeTab) : 'overview')
   const [gameDayTab, setGameDayTab] = useState<GameDayTab>('turns')
   const [homeSubView, setHomeSubView] = useState<'main' | 'seasonnotes' | 'teamchat' | 'footballyear'>('main')
   const [trainingTab, setTrainingTab] = useState<TrainingTab>('plan')
