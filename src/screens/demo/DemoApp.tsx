@@ -808,15 +808,17 @@ function HomeStoryNav({ id }: { id: string }) {
   return <HomeStoryTablet cfg={cfg} onNav={(s) => setInner(s)} />
 }
 
+function PhoneStoryNav({ id }: { id: string }) {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <HomeStoryPhone cfg={PHONE_CONFIGS[id]} onNav={(s) => setInner(s)} />
+}
+
 function StartPageNav({ phone }: { phone?: boolean }) {
-  const [fired, setFired] = useState<string | null>(null)
-  const go = (dest: string) => () => setFired(dest)
-  if (fired) return (
-    <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#f4f5f3', fontFamily: "'DM Sans',system-ui,sans-serif" }}>
-      <div style={{ fontSize: 18, fontWeight: 700, color: '#10211f' }}>Opening {fired}…</div>
-    </div>
-  )
-  return <StartPage phone={phone} onDemo={go('Demo mode')} onStory={go('Tour')} onSandbox={go('Sandbox')} onOpenSandbox={go('Sandbox')} onWhy={go('Why trust it')} />
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  const go = (dest: string) => () => setInner(dest)
+  return <StartPage phone={phone} onDemo={go('DEMO-Start')} onStory={go('DEMO-Story')} onSandbox={go('DEMO-StartEmpty')} onOpenSandbox={go('DEMO-StartEmpty')} onWhy={go('DEMO-Why')} />
 }
 function FIL2SheetNav() {
   const [inner, setInner] = useState<string | null>(null)
@@ -2167,7 +2169,7 @@ function renderScreenInner(key: string): ReactNode {
     case 'STO20-HomeStoryReferee':
     case 'STO21-HomeStoryAcademyParent':
     case 'STO22-HomeStoryAcademyPlayer':
-      return <HomeStoryPhone cfg={PHONE_CONFIGS[key]} />
+      return <PhoneStoryNav id={key} />
 
     default:
       return (

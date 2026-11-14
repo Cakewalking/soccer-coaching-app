@@ -19,6 +19,7 @@ export type HomeCfg = {
   id: string
   role: string            // role chip text e.g. "Coach · MiniRoos"
   team: string            // team pill text
+  teamTarget?: string     // team pill opens the switcher (VS1-SwitchView)
   avatar: string          // avatar initials
   topNav: FrameNavItem[]  // top nav (Home, Squad, …) — target set = open, else existing
   subNav: FrameNavItem[]  // sub nav (Overview, Messages, …)
@@ -30,7 +31,8 @@ export type HomeCfg = {
     second: string
     bars?: Bar[]
     unit?: string
-    reel?: { duration: string; chips: string[]; caption: string }  // one clickable block (existing)
+    reel?: { duration: string; chips: string[]; caption: string }  // one clickable block
+    reelTarget?: string
     status?: StatusLine[]
     statusCaption?: string
     mainBtn: string
@@ -47,10 +49,12 @@ export type HomeCfg = {
     btn1: string
     btn1Target?: string
     btn2?: string
+    btn2Target?: string
   }
   moments: {
     title: string
     link: string
+    linkTarget?: string
     faces: Face[]
     rows: MomentRow[]
     foot: string
@@ -99,7 +103,7 @@ function ProofInner({ p, nav, tool }: { p: HomeCfg['proof']; nav: (s: string) =>
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
         {p.reel ? (
-          <button onClick={() => tool(p.reel!.caption)} style={{ display: 'flex', flexDirection: 'column', gap: 6, background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
+          <button onClick={() => p.reelTarget ? nav(p.reelTarget) : tool(p.reel!.caption)} style={{ display: 'flex', flexDirection: 'column', gap: 6, background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
             <span style={{ height: 132, borderRadius: 12, background: 'rgba(255,255,255,0.10)', border: `1px solid ${PALE}`, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700, position: 'relative' }}>
               <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style={{ opacity: 0.85 }}><path d="M8 5l11 7-11 7z" /></svg>
               <span style={{ position: 'absolute', left: 10, bottom: 10, fontSize: 12, fontWeight: 700, background: 'rgba(0,0,0,0.35)', padding: '2px 8px', borderRadius: 6 }}>{p.reel.duration}</span>
@@ -138,7 +142,7 @@ function ReadyCard({ r, nav, tool }: { r: HomeCfg['ready']; nav: (s: string) => 
       {r.pale && <span style={{ fontSize: 13, lineHeight: '18px', color: PALEG, marginTop: 'auto' }}>{r.pale}</span>}
       <span style={{ display: 'flex', gap: 8, marginTop: r.pale ? 0 : 'auto' }}>
         <button onClick={() => r.btn1Target ? nav(r.btn1Target) : tool(r.btn1)} style={{ flex: 1, height: 46, borderRadius: 12, background: '#fff', color: INK, border: 'none', fontSize: 15, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>{r.btn1}</button>
-        {r.btn2 && <button onClick={() => tool(r.btn2!)} style={{ height: 46, padding: '0 16px', borderRadius: 12, background: 'transparent', color: '#fff', border: '1px solid rgba(255,255,255,0.6)', fontSize: 15, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>{r.btn2}</button>}
+        {r.btn2 && <button onClick={() => r.btn2Target ? nav(r.btn2Target) : tool(r.btn2!)} style={{ height: 46, padding: '0 16px', borderRadius: 12, background: 'transparent', color: '#fff', border: '1px solid rgba(255,255,255,0.6)', fontSize: 15, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>{r.btn2}</button>}
       </span>
     </div>
   )
@@ -149,7 +153,7 @@ function MomentsCard({ m, nav, tool }: { m: HomeCfg['moments']; nav: (s: string)
     <CardShell style={{ gap: 4 }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <strong style={{ fontSize: 17, lineHeight: '23px' }}>{m.title}</strong>
-        <button onClick={() => tool(m.link)} style={{ minHeight: 44, display: 'flex', alignItems: 'center', fontSize: 14, fontWeight: 700, color: GREEN, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit' }}>{m.link}</button>
+        <button onClick={() => m.linkTarget ? nav(m.linkTarget) : tool(m.link)} style={{ minHeight: 44, display: 'flex', alignItems: 'center', fontSize: 14, fontWeight: 700, color: GREEN, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit' }}>{m.link}</button>
       </div>
       <div style={{ display: 'flex', gap: 8, padding: '4px 4px 6px', flexWrap: 'wrap' }}>{m.faces.map((f, i) => <Face key={i} {...f} />)}</div>
       {m.rows.map((row, i) => (
@@ -206,7 +210,7 @@ function Frame({ cfg, nav, tool, children }: { cfg: HomeCfg; nav: (s: string) =>
         <span style={{ fontSize: 15, fontWeight: 900, color: '#fff', marginRight: 16 }}>Clean Sheet</span>
         {cfg.topNav.map(it => <button key={it.label} onClick={click(it)} style={tnb(it)}>{it.label}</button>)}
         <div style={{ flex: 1 }} />
-        <button onClick={() => tool('switcher')} style={{ height: 44, padding: '0 14px', background: 'rgba(255,255,255,0.15)', color: '#fff', border: 'none', borderRadius: 22, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', marginRight: 12 }}>{cfg.team}</button>
+        <button onClick={() => cfg.teamTarget ? nav(cfg.teamTarget) : tool('switcher')} style={{ height: 44, padding: '0 14px', background: 'rgba(255,255,255,0.15)', color: '#fff', border: 'none', borderRadius: 22, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', marginRight: 12 }}>{cfg.team}</button>
         <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#b9777a', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, color: '#fff' }}>{cfg.avatar}</div>
       </nav>
       <nav style={{ background: '#fff', borderBottom: `1px solid ${HAIR}`, height: 44, display: 'flex', alignItems: 'center', padding: '0 20px', flexShrink: 0 }}>
@@ -222,19 +226,22 @@ function Frame({ cfg, nav, tool, children }: { cfg: HomeCfg; nav: (s: string) =>
 }
 
 // ---- Phone (STO16–STO22) ----
+export type PhoneTab = { label: string; target?: string }
+export type PhoneBtn = { label: string; target?: string }
 export type PhoneBlock =
-  | { kind: 'proof'; label: string; headline: string; second: string; bars?: Bar[]; unit?: string; clip?: { duration: string; note: string }; btn: string }
-  | { kind: 'ready'; when?: string; title: string; text: string; btns: string[] }
-  | { kind: 'list'; label?: string; title: string; text?: string; lines?: string[]; action?: string }
+  | { kind: 'proof'; label: string; headline: string; second: string; bars?: Bar[]; unit?: string; clip?: { duration: string; note: string }; btn: string; btnTarget?: string }
+  | { kind: 'ready'; when?: string; title: string; text: string; btns: PhoneBtn[] }
+  | { kind: 'list'; label?: string; title: string; text?: string; lines?: string[]; action?: string; actionTarget?: string }
   | { kind: 'done'; title: string; lines: string[] }
-  | { kind: 'needs'; count: number; title: string }
+  | { kind: 'needs'; count: number; title: string; target?: string }
   | { kind: 'note'; text: string }
-export type PhoneCfg = { id: string; roleLine: string; greeting: string; avatar: string; tabs: string[]; blocks: PhoneBlock[] }
+export type PhoneCfg = { id: string; roleLine: string; greeting: string; avatar: string; tabs: PhoneTab[]; blocks: PhoneBlock[] }
 
-export function HomeStoryPhone({ cfg }: { cfg: PhoneCfg }) {
+export function HomeStoryPhone({ cfg, onNav }: { cfg: PhoneCfg; onNav?: (s: string) => void }) {
   const [lastTool, setLastTool] = useState('')
   const [toast, setToast] = useState<string | null>(null)
   const tool = (s: string) => { setLastTool(s); setToast(s); setTimeout(() => setToast(null), 2200) }
+  const nav = (s: string) => onNav ? onNav(s) : tool(s)
   const amberBtn: React.CSSProperties = { height: 46, borderRadius: 12, border: 'none', background: AMBER, color: INK, fontSize: 15, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', width: '100%' }
   return (
     <div data-lasttool={lastTool} style={{ width: 390, minHeight: 844, background: '#f4f5f3', fontFamily: "'DM Sans',system-ui,sans-serif", display: 'flex', flexDirection: 'column' }}>
@@ -262,7 +269,7 @@ export function HomeStoryPhone({ cfg }: { cfg: PhoneCfg }) {
                   <span style={{ fontSize: 12, lineHeight: '16px', color: PALE }}>{b.clip.note}</span>
                 </div>
               )}
-              <button onClick={() => tool(b.btn)} style={amberBtn}>{b.btn}</button>
+              <button onClick={() => b.btnTarget ? nav(b.btnTarget) : tool(b.btn)} style={amberBtn}>{b.btn}</button>
             </div>
           )
           if (b.kind === 'ready') return (
@@ -271,7 +278,7 @@ export function HomeStoryPhone({ cfg }: { cfg: PhoneCfg }) {
               <strong style={{ fontSize: 18, lineHeight: '23px' }}>{b.title}</strong>
               <span style={{ fontSize: 13, lineHeight: '18px' }}>{b.text}</span>
               <span style={{ display: 'flex', gap: 8, marginTop: 3 }}>
-                {b.btns.map((t, j) => <button key={t} onClick={() => tool(t)} style={{ flex: j === 0 ? 1 : undefined, height: 46, padding: '0 16px', borderRadius: 12, border: j === 0 ? 'none' : '1px solid rgba(255,255,255,0.6)', background: j === 0 ? '#fff' : 'transparent', color: j === 0 ? INK : '#fff', fontSize: 15, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>{t}</button>)}
+                {b.btns.map((t, j) => <button key={t.label} onClick={() => t.target ? nav(t.target) : tool(t.label)} style={{ flex: j === 0 ? 1 : undefined, height: 46, padding: '0 16px', borderRadius: 12, border: j === 0 ? 'none' : '1px solid rgba(255,255,255,0.6)', background: j === 0 ? '#fff' : 'transparent', color: j === 0 ? INK : '#fff', fontSize: 15, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>{t.label}</button>)}
               </span>
             </div>
           )
@@ -281,7 +288,7 @@ export function HomeStoryPhone({ cfg }: { cfg: PhoneCfg }) {
               <strong style={{ fontSize: 15, lineHeight: '20px' }}>{b.title}</strong>
               {b.text && <span style={{ fontSize: 14, lineHeight: '19px', color: GREY }}>{b.text}</span>}
               {b.lines?.map(l => <span key={l} style={{ display: 'flex', gap: 8, fontSize: 14, lineHeight: '19px' }}><span style={{ flexShrink: 0, display: 'flex', marginTop: 1 }}><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={GREEN} strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10" /></svg></span><span>{l}</span></span>)}
-              {b.action && <button onClick={() => tool(b.action!)} style={{ minHeight: 44, borderRadius: 10, border: `1px solid ${BORDER}`, background: '#fff', fontSize: 14, fontWeight: 700, color: INK, cursor: 'pointer', fontFamily: 'inherit', marginTop: 2 }}>{b.action}</button>}
+              {b.action && <button onClick={() => b.actionTarget ? nav(b.actionTarget) : tool(b.action!)} style={{ minHeight: 44, borderRadius: 10, border: `1px solid ${BORDER}`, background: '#fff', fontSize: 14, fontWeight: 700, color: INK, cursor: 'pointer', fontFamily: 'inherit', marginTop: 2 }}>{b.action}</button>}
             </div>
           )
           if (b.kind === 'done') return (
@@ -291,7 +298,7 @@ export function HomeStoryPhone({ cfg }: { cfg: PhoneCfg }) {
             </div>
           )
           if (b.kind === 'needs') return (
-            <button key={i} onClick={() => tool(b.title)} style={{ background: '#fff', border: `1px solid ${BORDER}`, borderRadius: 16, padding: '12px 14px', minHeight: 44, display: 'flex', gap: 12, alignItems: 'center', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
+            <button key={i} onClick={() => b.target ? nav(b.target) : tool(b.title)} style={{ background: '#fff', border: `1px solid ${BORDER}`, borderRadius: 16, padding: '12px 14px', minHeight: 44, display: 'flex', gap: 12, alignItems: 'center', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
               <span style={{ width: 30, height: 30, borderRadius: '50%', background: AMBER, color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700, flexShrink: 0 }}>{b.count}</span>
               <span style={{ flex: 1, fontSize: 14, fontWeight: 700, color: INK }}>{b.title}</span>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={GREY} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
@@ -302,7 +309,7 @@ export function HomeStoryPhone({ cfg }: { cfg: PhoneCfg }) {
       </div>
       <nav style={{ background: '#fff', borderTop: `1px solid ${HAIR}`, display: 'flex', flexShrink: 0 }}>
         {cfg.tabs.map((t, i) => (
-          <button key={t} onClick={() => tool(t)} style={{ flex: 1, minHeight: 56, background: 'none', border: 'none', fontSize: 12, fontWeight: i === 0 ? 700 : 600, color: i === 0 ? GREEN : GREY, cursor: 'pointer', fontFamily: 'inherit' }}>{t}</button>
+          <button key={t.label} onClick={() => t.target ? nav(t.target) : tool(t.label)} style={{ flex: 1, minHeight: 56, background: 'none', border: 'none', fontSize: 12, fontWeight: i === 0 ? 700 : 600, color: i === 0 ? GREEN : GREY, cursor: 'pointer', fontFamily: 'inherit' }}>{t.label}</button>
         ))}
       </nav>
       {toast && <div role="status" style={{ position: 'fixed', bottom: 72, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '10px 16px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 13, fontWeight: 600, maxWidth: 340 }}>{toast}</div>}
@@ -397,11 +404,11 @@ export function HomeStoryMiniRoosTraining({ cfg, onNav }: { cfg: HomeCfg; onNav?
                   {games.map(g => <span key={g} style={{ height: 30, padding: '0 12px', borderRadius: 8, background: 'rgba(255,255,255,0.10)', display: 'inline-flex', alignItems: 'center', fontSize: 13, color: '#fff' }}>{g}</span>)}
                 </div>
                 <div style={{ display: 'flex', gap: 8, marginTop: 6 }}>
-                  <button onClick={() => tool('Start tonight')} style={amberBtnDark}>Start tonight</button>
-                  <button onClick={() => tool('Swap a game')} style={outlineBtnDark}>Swap a game</button>
+                  <button onClick={() => nav('HM3-TrainingMiniRoos')} style={amberBtnDark}>Start tonight</button>
+                  <button onClick={() => nav('SGm1-SuggestedMiniRoos')} style={outlineBtnDark}>Swap a game</button>
                 </div>
               </div>
-              <button onClick={() => tool('0:25 reel')} style={{ display: 'flex', flexDirection: 'column', gap: 6, background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
+              <button onClick={() => nav('RCm2-MiniRoosClips')} style={{ display: 'flex', flexDirection: 'column', gap: 6, background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
                 <span style={{ height: 132, borderRadius: 12, background: 'rgba(255,255,255,0.10)', border: `1px solid ${PALE}`, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
                   <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style={{ opacity: 0.85 }}><path d="M8 5l11 7-11 7z" /></svg>
                   <span style={{ position: 'absolute', left: 10, bottom: 10, fontSize: 12, fontWeight: 700, background: 'rgba(0,0,0,0.35)', padding: '2px 8px', borderRadius: 6 }}>0:25</span>
@@ -414,7 +421,7 @@ export function HomeStoryMiniRoosTraining({ cfg, onNav }: { cfg: HomeCfg; onNav?
           {/* Saturday in 40 seconds card */}
           <div style={{ background: GREEN, border: `1px solid ${GREEN}`, borderRadius: 16, padding: '14px 16px', color: '#fff', display: 'flex', flexDirection: 'column', gap: 8 }}>
             <strong style={{ fontSize: 22, lineHeight: '27px', letterSpacing: '-0.01em' }}>Saturday in 40 seconds</strong>
-            <button onClick={() => tool('0:40')} style={{ height: 92, borderRadius: 12, background: 'rgba(255,255,255,0.14)', border: '1px solid rgba(255,255,255,0.4)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', cursor: 'pointer', fontFamily: 'inherit' }}>
+            <button onClick={() => nav('RCm2-MiniRoosClips')} style={{ height: 92, borderRadius: 12, background: 'rgba(255,255,255,0.14)', border: '1px solid rgba(255,255,255,0.4)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', cursor: 'pointer', fontFamily: 'inherit' }}>
               <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5l11 7-11 7z" /></svg>
               <span style={{ position: 'absolute', left: 10, bottom: 8, fontSize: 12, fontWeight: 700, background: 'rgba(0,0,0,0.35)', padding: '2px 8px', borderRadius: 6 }}>0:40</span>
             </button>
@@ -422,7 +429,7 @@ export function HomeStoryMiniRoosTraining({ cfg, onNav }: { cfg: HomeCfg; onNav?
             <span style={{ fontSize: 13, lineHeight: '18px', color: PALEG }}>Brave with the ball: keep. Finding a friend: tonight.</span>
             <span style={{ display: 'flex', gap: 8, marginTop: 'auto' }}>
               <button onClick={() => nav('MS3-MiniRoosReview')} style={{ flex: 1, height: 46, borderRadius: 12, background: '#fff', color: INK, border: 'none', fontSize: 15, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>What we saw</button>
-              <button onClick={() => tool('Film tonight')} style={{ height: 46, padding: '0 16px', borderRadius: 12, background: 'transparent', color: '#fff', border: '1px solid rgba(255,255,255,0.6)', fontSize: 15, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Film tonight</button>
+              <button onClick={() => nav('RCm1-RecordMiniRoos')} style={{ height: 46, padding: '0 16px', borderRadius: 12, background: 'transparent', color: '#fff', border: '1px solid rgba(255,255,255,0.6)', fontSize: 15, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Film tonight</button>
             </span>
           </div>
           <MomentsCard m={cfg.moments} nav={nav} tool={tool} />
@@ -460,7 +467,7 @@ export function HomeStoryMiniRoosNoFilm({ cfg, onNav }: { cfg: HomeCfg; onNav?: 
                 </div>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                <button onClick={() => tool('Add a photo')} style={{ height: 44, borderRadius: 12, background: 'rgba(255,255,255,0.10)', border: `1px solid ${PALE}`, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Add a photo</button>
+                <button onClick={() => nav('RCm1-RecordMiniRoos')} style={{ height: 44, borderRadius: 12, background: 'rgba(255,255,255,0.10)', border: `1px solid ${PALE}`, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Add a photo</button>
                 <div style={{ display: 'flex', gap: 6 }}>
                   {['From Rob', 'From Linh', 'Add yours'].map(c => <span key={c} style={{ flex: 1, height: 44, borderRadius: 8, background: 'rgba(255,255,255,0.14)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, color: '#fff' }}>{c}</span>)}
                 </div>
@@ -480,13 +487,13 @@ export function HomeStoryMiniRoosNoFilm({ cfg, onNav }: { cfg: HomeCfg; onNav?: 
                 </span>
               ))}
             </CardShell>
-            <button onClick={() => tool('See them do it')} style={{ background: FACEBG, border: `1px solid ${BORDER}`, borderRadius: 16, padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 4, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
+            <button onClick={() => nav('RCm1-RecordMiniRoos')} style={{ background: FACEBG, border: `1px solid ${BORDER}`, borderRadius: 16, padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 4, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
               <strong style={{ fontSize: 15, lineHeight: '20px', color: INK }}>See them do it</strong>
               <span style={{ fontSize: 13, lineHeight: '18px', color: GREY }}>Prop a phone on the fence for one game. You get a reel, a clip for each child, and proof of what changed.</span>
               <span style={{ fontSize: 14, fontWeight: 700, color: GREEN, marginTop: 2 }}>How filming works</span>
             </button>
             {cfg.needs.count > 0 && (
-              <button onClick={() => tool('needs')} style={{ background: '#fff', border: `1px solid ${BORDER}`, borderRadius: 16, padding: '12px 16px', display: 'flex', gap: 12, alignItems: 'center', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
+              <button onClick={() => cfg.needs.target ? nav(cfg.needs.target) : tool('needs')} style={{ background: '#fff', border: `1px solid ${BORDER}`, borderRadius: 16, padding: '12px 16px', display: 'flex', gap: 12, alignItems: 'center', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
                 <span style={{ width: 40, height: 40, borderRadius: '50%', background: AMBER, color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 17, fontWeight: 700, flexShrink: 0 }}>{cfg.needs.count}</span>
                 <span style={{ flex: 1, fontSize: 15, lineHeight: '20px', fontWeight: 700, color: INK }}>{cfg.needs.title}</span>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={GREY} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
