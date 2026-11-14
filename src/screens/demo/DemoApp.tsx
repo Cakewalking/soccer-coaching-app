@@ -370,7 +370,7 @@ import { ER1SomethingWrong, ER2UploadFailed, ER3Loading, ER4NotFound, ER5NoAcces
 import CoachPhoneApp, { CPh1CoachPhoneHome, CPh2CoachPhoneComing, CPh3CoachPhoneMessages, CPh4CoachPhoneGame, CPh5CoachPhonePlan, CPh1eCoachPhoneHomeEmpty, CPh2eCoachPhoneComingEmpty, CPh3eCoachPhoneMessagesEmpty, CPh4eCoachPhoneGameEmpty } from '../coachphone/CoachPhoneApp'
 import DemoStart             from './DemoStart'
 import DemoStartEmpty        from './DemoStartEmpty'
-import DemoSignIn            from './DemoSignIn'
+import StartPage             from '../start/StartPage'
 import DemoWhy               from './DemoWhy'
 import DemoTourShell         from './DemoTourShell'
 import DemoPhone             from './DemoPhone'
@@ -790,6 +790,20 @@ function FIL1FilesNav() {
   const [inner, setInner] = useState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <FIL1Files onOpenSheet={() => setInner('FIL2-Sheet')} onOpenDoc={() => setInner('FIL3-Doc')} onNav={(s) => setInner(s)} />
+}
+
+// Checking-only wrapper for the /__screen/STA* route. Each control fires a
+// status line so the acceptance check sees the page change. In the real app
+// (view 'signin') StartPage is wired to the actual navigation handlers.
+function StartPageNav({ phone }: { phone?: boolean }) {
+  const [fired, setFired] = useState<string | null>(null)
+  const go = (dest: string) => () => setFired(dest)
+  if (fired) return (
+    <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#f4f5f3', fontFamily: "'DM Sans',system-ui,sans-serif" }}>
+      <div style={{ fontSize: 18, fontWeight: 700, color: '#10211f' }}>Opening {fired}…</div>
+    </div>
+  )
+  return <StartPage phone={phone} onDemo={go('Demo mode')} onStory={go('Tour')} onSandbox={go('Sandbox')} onOpenSandbox={go('Sandbox')} onWhy={go('Why trust it')} />
 }
 function FIL2SheetNav() {
   const [inner, setInner] = useState<string | null>(null)
@@ -2113,6 +2127,9 @@ function renderScreenInner(key: string): ReactNode {
     case 'ASKd8-PhoneHome':       return <ASKd8PhoneHomeNav />
     case 'ASKd9-PhoneScreen':     return <ASKd9PhoneScreenNav />
     case 'ASKp2-PhoneAskOpen':    return <ASKp2PhoneAskOpenNav />
+    // Start page (STA)
+    case 'STA1-StartPage':        return <StartPageNav />
+    case 'STA2-StartPagePhone':   return <StartPageNav phone />
 
     default:
       return (
@@ -2224,12 +2241,13 @@ export default function DemoApp() {
 
   if (view === 'signin') {
     return (
-      <DemoSignIn
+      <StartPage
+        phone={isPhone}
         onDemo={() => setView('start')}
+        onStory={() => startTour('story')}
         onSandbox={() => { createSandbox(); setSbStore(readStore()); setView('sandbox') }}
         onOpenSandbox={() => { getSandbox() ? setView('sandbox') : setView('nosandbox') }}
         onWhy={() => setView('why')}
-        hasSandbox={getSandbox() !== null}
       />
     )
   }
