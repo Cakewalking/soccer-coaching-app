@@ -52,16 +52,28 @@ export default function FIL2Sheet({ onBack, onShare, onNav }: {
 }) {
   const [view, setView]           = useState<ViewType>('table')
   const [panelTab, setPanelTab]   = useState<PanelTab>('Checks')
+  const [sheets, setSheets]       = useState(['Team sheets', 'Contacts', 'Kit sizes'])
   const [activeTab, setActiveTab] = useState('Team sheets')
   const [lastTool, setLastTool]   = useState('')
   const [rows, setRows]           = useState<PlayerRow[]>(INITIAL_ROWS)
-  const [swapped, setSwapped]     = useState(false)
+  const [sel, setSel]             = useState<{ ri: number; ci: number }>({ ri: 7, ci: 2 })
 
   function tool(name: string) { setLastTool(name) }
 
+  function cycleCell(ri: number, ci: number) {
+    const colLetter = ['C', 'D', 'E', 'F'][ci]
+    tool(`${colLetter}${ri + 1}`)
+    setSel({ ri, ci })
+    setRows(prev => prev.map((r, i) => {
+      if (i !== ri) return r
+      const g = [...r.games]
+      g[ci] = g[ci] === 'start' ? 'ingoal' : g[ci] === 'ingoal' ? 'bench' : 'start'
+      return { ...r, games: g }
+    }))
+  }
+
   function handleSwap() {
     tool('Swap for me')
-    setSwapped(true)
     setRows(prev => prev.map(r => {
       if (r.name === 'Ruby Lane')   { const g = [...r.games]; g[2] = 'bench';  return { ...r, games: g } }
       if (r.name === 'Zoe Hartley') { const g = [...r.games]; g[2] = 'ingoal'; return { ...r, games: g } }
@@ -69,7 +81,18 @@ export default function FIL2Sheet({ onBack, onShare, onNav }: {
     }))
   }
 
-  const rubyWarning = !swapped
+  function addSheet() {
+    const name = `Sheet ${sheets.length - 1}`
+    setSheets(prev => [...prev, name])
+    setActiveTab(name)
+    tool('+ Sheet')
+  }
+
+  const rubyRow   = rows.find(r => r.name === 'Ruby Lane')!
+  const rubyWarning = minsFor(rubyRow.games) > 45
+
+  const selLabel = sel ? (rows[sel.ri].games[sel.ci] === 'start' ? 'Start' : rows[sel.ri].games[sel.ci] === 'ingoal' ? 'In goal' : 'Bench') : 'Start'
+  const selRef   = sel ? `${['C', 'D', 'E', 'F'][sel.ci]}${sel.ri + 1}` : 'E8'
 
   const isActive = (v: ViewType, label: string) =>
     (v === 'table' && label === 'Table') || (v === 'lineup' && label === 'Line-up') || (v === 'print' && label === 'Print')
@@ -179,11 +202,11 @@ export default function FIL2Sheet({ onBack, onShare, onNav }: {
 
       {/* Formula bar */}
       <div style={{ background: '#fff', borderBottom: `1px solid ${LN}`, padding: '0 16px', display: 'flex', alignItems: 'center', gap: 8, height: 36, flexShrink: 0 }}>
-        <span style={{ fontSize: 11, fontWeight: 700, color: INK, background: PALE, padding: '2px 8px', borderRadius: 4 }}>E8</span>
+        <span style={{ fontSize: 11, fontWeight: 700, color: INK, background: PALE, padding: '2px 8px', borderRadius: 4 }}>{selRef}</span>
         <div style={{ width: 1, height: 16, background: LN, flexShrink: 0 }} />
         <span style={{ fontSize: 11, color: MUT, whiteSpace: 'nowrap' }}>Choice:</span>
         {(['Start', 'In goal', 'Bench'] as const).map(c => (
-          <span key={c} style={{ fontSize: 11, fontWeight: 600, padding: '2px 10px', borderRadius: 999, background: c === 'Bench' ? 'transparent' : GD, border: c === 'Bench' ? `1.5px solid ${LN}` : 'none', color: c === 'Bench' ? INK : '#fff', whiteSpace: 'nowrap' }}>{c}</span>
+          <span key={c} style={{ fontSize: 11, fontWeight: 600, padding: '2px 10px', borderRadius: 999, background: c === selLabel ? GD : c === 'Bench' ? 'transparent' : 'transparent', border: (c !== selLabel && c === 'Bench') || (c !== selLabel) ? `1.5px solid ${LN}` : 'none', color: c === selLabel ? '#fff' : INK, whiteSpace: 'nowrap' }}>{c}</span>
         ))}
         <div style={{ marginLeft: 'auto', fontSize: 11, color: MUT, whiteSpace: 'nowrap' }}>Minutes = 15 for each Start or In goal</div>
       </div>
@@ -262,11 +285,14 @@ export default function FIL2Sheet({ onBack, onShare, onNav }: {
                           </td>
                           <td style={{ padding: '8px 10px', borderRight: `1px solid ${LN}`, fontSize: 13, fontWeight: 600, color: INK }}>{r.name}</td>
                           <td style={{ padding: '8px 10px', borderRight: `1px solid ${LN}`, fontSize: 13, color: MUT }}>{r.spot}</td>
-                          {r.games.map((g, ci) => (
-                            <td key={ci} style={{ padding: '8px 10px', borderRight: `1px solid ${LN}`, background: isRuby && ci === 2 && rubyWarning ? '#fdf0f0' : undefined }}>
-                              <Pill status={g} />
-                            </td>
-                          ))}
+                          {r.games.map((g, ci) => {
+                            const isSel = sel?.ri === ri && sel?.ci === ci
+                            return (
+                              <td key={ci} onClick={() => cycleCell(ri, ci)} style={{ padding: '8px 10px', borderRight: `1px solid ${LN}`, cursor: 'pointer', background: isRuby && ci === 2 && rubyWarning ? '#fdf0f0' : undefined, outline: isSel ? `2px solid ${G}` : undefined, outlineOffset: isSel ? -2 : undefined }}>
+                                <Pill status={g} />
+                              </td>
+                            )
+                          })}
                           <td style={{ padding: '8px 10px', borderRight: `1px solid ${LN}`, fontSize: 13, fontWeight: 700, color: warn ? '#c04' : INK, background: warn ? '#fdf5f5' : undefined }}>{mins}</td>
                           <td style={{ padding: '8px 10px', fontSize: 12, color: MUT }}>{r.notes ?? ''}</td>
                         </tr>
@@ -288,13 +314,13 @@ export default function FIL2Sheet({ onBack, onShare, onNav }: {
 
               {/* Bottom tabs */}
               <div style={{ background: '#fff', borderTop: `1px solid ${LN}`, padding: '0 16px', display: 'flex', alignItems: 'center', height: 52, gap: 4, flexShrink: 0 }}>
-                <div style={{ display: 'flex', gap: 2 }}>
-                  {['Team sheets', 'Contacts', 'Kit sizes'].map(t => (
-                    <button key={t} onClick={() => { setActiveTab(t); tool(t) }} style={{ minHeight: 44, padding: '0 14px', borderRadius: '8px 8px 0 0', border: `1.5px solid ${LN}`, borderBottom: activeTab === t ? '1.5px solid #fff' : `1.5px solid ${LN}`, background: activeTab === t ? '#fff' : '#f7f8f7', fontSize: 12, color: activeTab === t ? INK : MUT, cursor: 'pointer', fontFamily: 'inherit' }}>{t}</button>
+                <div style={{ display: 'flex', gap: 2, overflowX: 'auto', scrollbarWidth: 'none' }}>
+                  {sheets.map(t => (
+                    <button key={t} onClick={() => { setActiveTab(t); tool(t) }} style={{ minHeight: 44, padding: '0 14px', borderRadius: '8px 8px 0 0', border: `1.5px solid ${LN}`, borderBottom: activeTab === t ? '1.5px solid #fff' : `1.5px solid ${LN}`, background: activeTab === t ? '#fff' : '#f7f8f7', fontSize: 12, color: activeTab === t ? INK : MUT, cursor: 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap' }}>{t}</button>
                   ))}
-                  <button onClick={() => tool('+ Sheet')} style={{ minHeight: 44, padding: '0 10px', borderRadius: '8px 8px 0 0', border: `1.5px solid ${LN}`, background: '#f7f8f7', fontSize: 12, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>+ Sheet</button>
+                  <button onClick={addSheet} style={{ minHeight: 44, padding: '0 10px', borderRadius: '8px 8px 0 0', border: `1.5px solid ${LN}`, background: '#f7f8f7', fontSize: 12, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>+ Sheet</button>
                 </div>
-                <div style={{ marginLeft: 'auto', fontSize: 11, color: MUT }}>9 players · 4 games · Sat 13 Dec, Banksia Park</div>
+                <div style={{ marginLeft: 'auto', fontSize: 11, color: MUT, whiteSpace: 'nowrap', paddingLeft: 12 }}>9 players · 4 games · Sat 13 Dec, Banksia Park</div>
               </div>
             </>
           )}
@@ -311,10 +337,10 @@ export default function FIL2Sheet({ onBack, onShare, onNav }: {
                 </div>
               </div>
               <div style={{ display: 'flex', gap: 2, marginTop: 'auto' }}>
-                {['Team sheets', 'Contacts', 'Kit sizes'].map(t => (
-                  <button key={t} onClick={() => { setActiveTab(t); tool(t) }} style={{ minHeight: 44, padding: '0 14px', borderRadius: '8px 8px 0 0', border: `1.5px solid ${LN}`, background: activeTab === t ? '#fff' : '#f7f8f7', fontSize: 12, color: activeTab === t ? INK : MUT, cursor: 'pointer', fontFamily: 'inherit' }}>{t}</button>
+                {sheets.map(t => (
+                  <button key={t} onClick={() => { setActiveTab(t); tool(t) }} style={{ minHeight: 44, padding: '0 14px', borderRadius: '8px 8px 0 0', border: `1.5px solid ${LN}`, background: activeTab === t ? '#fff' : '#f7f8f7', fontSize: 12, color: activeTab === t ? INK : MUT, cursor: 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap' }}>{t}</button>
                 ))}
-                <button onClick={() => tool('+ Sheet')} style={{ minHeight: 44, padding: '0 10px', borderRadius: '8px 8px 0 0', border: `1.5px solid ${LN}`, background: '#f7f8f7', fontSize: 12, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>+ Sheet</button>
+                <button onClick={addSheet} style={{ minHeight: 44, padding: '0 10px', borderRadius: '8px 8px 0 0', border: `1.5px solid ${LN}`, background: '#f7f8f7', fontSize: 12, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>+ Sheet</button>
               </div>
             </div>
           )}
