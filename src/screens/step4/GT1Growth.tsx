@@ -49,7 +49,7 @@ export function GT1Growth() {
       <div style={{ background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 24, height: 52, flexShrink: 0 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>Clean Sheet</div>
         {['Home', 'Squad', 'Training', 'Match day', 'Clips'].map(t => (
-          <div key={t} style={{ fontSize: 13, fontWeight: t === 'Squad' ? 700 : 500, color: t === 'Squad' ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer' }}>{t}</div>
+          <div key={t} style={{ fontSize: 13, fontWeight: t === 'Squad' ? 700 : 500, color: t === 'Squad' ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>
         ))}
         <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 10 }}>
           <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)' }}>U12 Sam · Wattle Creek</div>
@@ -183,7 +183,7 @@ export function GT1eGrowthEmpty() {
       <div style={{ background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 24, height: 52, flexShrink: 0 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>Clean Sheet</div>
         {['Home', 'Squad', 'Training', 'Match day', 'Clips'].map(t => (
-          <div key={t} style={{ fontSize: 13, fontWeight: t === 'Squad' ? 700 : 500, color: t === 'Squad' ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer' }}>{t}</div>
+          <div key={t} style={{ fontSize: 13, fontWeight: t === 'Squad' ? 700 : 500, color: t === 'Squad' ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>
         ))}
         <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 10 }}>
           <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)' }}>U12 Sam · Wattle Creek</div>
@@ -193,7 +193,7 @@ export function GT1eGrowthEmpty() {
       <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
         <div style={{ width: 200, background: '#fff', borderRight: `1px solid ${LN}`, flexShrink: 0, padding: '12px 0' }}>
           {fitnessNav.map(item => (
-            <div key={item} style={{ padding: '10px 20px', fontSize: 14, fontWeight: item === 'Growth' ? 700 : 500, color: item === 'Growth' ? G : MUT, background: item === 'Growth' ? PALE : 'transparent', borderLeft: item === 'Growth' ? `3px solid ${G}` : '3px solid transparent', cursor: 'pointer' }}>{item}</div>
+            <div key={item} style={{ padding: '10px 20px', fontSize: 14, fontWeight: item === 'Growth' ? 700 : 500, color: item === 'Growth' ? G : MUT, background: item === 'Growth' ? PALE : 'transparent', borderLeft: item === 'Growth' ? `3px solid ${G}` : '3px solid transparent', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{item}</div>
           ))}
         </div>
         <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 32 }}>

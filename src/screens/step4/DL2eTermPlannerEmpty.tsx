@@ -11,14 +11,14 @@ export default function DL2eTermPlannerEmpty(_: { onBack?: () => void }) {
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>Clean Sheet</div>
         <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.8)' }}>U12 Sam · Wattle Creek</div>
         {['Home', 'Squad', 'Training', 'Match day', 'Clips'].map(t => (
-          <div key={t} style={{ fontSize: 13, fontWeight: t === 'Training' ? 700 : 500, color: t === 'Training' ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer' }}>{t}</div>
+          <div key={t} style={{ fontSize: 13, fontWeight: t === 'Training' ? 700 : 500, color: t === 'Training' ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>
         ))}
         <div style={{ marginLeft: 'auto', fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,0.5)' }}>Head coach</div>
       </div>
 
       <div style={{ background: '#fff', borderBottom: `1px solid ${LN}`, padding: '0 32px', display: 'flex', gap: 24, height: 44, alignItems: 'center' }}>
         {['Tonight\'s session', 'This week', 'Term planner', 'Drill library', 'Growth and load', 'Record'].map(t => (
-          <div key={t} style={{ fontSize: 13, fontWeight: t === 'Term planner' ? 700 : 500, color: t === 'Term planner' ? G : MUT, borderBottom: t === 'Term planner' ? `2px solid ${G}` : '2px solid transparent', height: '100%', display: 'flex', alignItems: 'center', cursor: 'pointer' }}>{t}</div>
+          <div key={t} style={{ fontSize: 13, fontWeight: t === 'Term planner' ? 700 : 500, color: t === 'Term planner' ? G : MUT, borderBottom: t === 'Term planner' ? `2px solid ${G}` : '2px solid transparent', height: '100%', display: 'flex', alignItems: 'center', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>
         ))}
       </div>
 

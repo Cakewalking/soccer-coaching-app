@@ -22,7 +22,7 @@ export default function I1Inbox(_: { onBack?: () => void }) {
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>Clean Sheet</div>
         <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.8)' }}>U12 Sam · Wattle Creek</div>
         {['Overview', 'Inbox', 'Calendar', 'Fixtures and results', 'Our style', 'Team staff'].map(t => (
-          <div key={t} style={{ fontSize: 13, fontWeight: t === 'Inbox' ? 700 : 500, color: t === 'Inbox' ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer' }}>{t}</div>
+          <div key={t} style={{ fontSize: 13, fontWeight: t === 'Inbox' ? 700 : 500, color: t === 'Inbox' ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>
         ))}
         <div style={{ marginLeft: 'auto', fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,0.5)' }}>Head coach</div>
       </div>
@@ -36,7 +36,7 @@ export default function I1Inbox(_: { onBack?: () => void }) {
           </div>
           <div style={{ padding: '0 16px', borderBottom: `1px solid ${LN}`, display: 'flex', gap: 16, height: 40, alignItems: 'center' }}>
             {['All', 'Unread 2', 'People', 'Clean Sheet'].map(t => (
-              <div key={t} style={{ fontSize: 12, fontWeight: t === 'All' ? 700 : 500, color: t === 'All' ? G : MUT, borderBottom: t === 'All' ? `2px solid ${G}` : '2px solid transparent', height: '100%', display: 'flex', alignItems: 'center', cursor: 'pointer' }}>{t}</div>
+              <div key={t} style={{ fontSize: 12, fontWeight: t === 'All' ? 700 : 500, color: t === 'All' ? G : MUT, borderBottom: t === 'All' ? `2px solid ${G}` : '2px solid transparent', height: '100%', display: 'flex', alignItems: 'center', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>
             ))}
           </div>
           <div style={{ overflow: 'auto', flex: 1 }}>

@@ -25,7 +25,7 @@ export default function DK1Kit(_: { onBack?: () => void }) {
 
       <div style={{ background: '#fff', borderBottom: `1px solid ${LN}`, padding: '0 32px', display: 'flex', gap: 24, height: 44, alignItems: 'center' }}>
         {['Overview', 'Inbox', 'Calendar', 'Season plan', 'Playing style', 'Heading policy', 'Kit and cameras'].map(t => (
-          <div key={t} style={{ fontSize: 13, fontWeight: t === 'Kit and cameras' ? 700 : 500, color: t === 'Kit and cameras' ? G : MUT, borderBottom: t === 'Kit and cameras' ? `2px solid ${G}` : '2px solid transparent', height: '100%', display: 'flex', alignItems: 'center', cursor: 'pointer' }}>{t}</div>
+          <div key={t} style={{ fontSize: 13, fontWeight: t === 'Kit and cameras' ? 700 : 500, color: t === 'Kit and cameras' ? G : MUT, borderBottom: t === 'Kit and cameras' ? `2px solid ${G}` : '2px solid transparent', height: '100%', display: 'flex', alignItems: 'center', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>
         ))}
       </div>
 

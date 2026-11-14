@@ -21,7 +21,7 @@ export default function TM6WhoComing(_: { onBack?: () => void }) {
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff', marginBottom: 4 }}>Clean Sheet</div>
         <div style={{ display: 'flex', gap: 16, overflowX: 'auto' as const }}>
           {['Team', 'Who\'s coming', 'Training', 'Game day', 'Squad'].map(t => (
-            <div key={t} style={{ fontSize: 13, fontWeight: t === "Who's coming" ? 700 : 500, color: t === "Who's coming" ? '#fff' : 'rgba(255,255,255,0.65)', padding: '8px 0', borderBottom: t === "Who's coming" ? '2px solid #fff' : '2px solid transparent', whiteSpace: 'nowrap' as const, cursor: 'pointer' }}>{t}</div>
+            <div key={t} style={{ fontSize: 13, fontWeight: t === "Who's coming" ? 700 : 500, color: t === "Who's coming" ? '#fff' : 'rgba(255,255,255,0.65)', padding: '8px 0', borderBottom: t === "Who's coming" ? '2px solid #fff' : '2px solid transparent', whiteSpace: 'nowrap' as const, cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>
           ))}
         </div>
       </div>

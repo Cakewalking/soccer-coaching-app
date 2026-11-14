@@ -8,7 +8,7 @@ function DirNav({ active = 'Club' }: { active?: string }) {
     <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 32, height: 52, flexShrink: 0 }}>
       <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>Clean Sheet</div>
       {tabs.map(t => (
-        <div key={t} style={{ fontSize: 13, fontWeight: t === active ? 700 : 500, color: t === active ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer' }}>{t}</div>
+        <div key={t} style={{ fontSize: 13, fontWeight: t === active ? 700 : 500, color: t === active ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>
       ))}
       <div style={{ marginLeft: 'auto', fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,0.5)' }}>Director of football</div>
     </div>
@@ -19,7 +19,7 @@ function SettingsSidebar({ active }: { active: string }) {
   return (
     <div style={{ width: 200, background: '#fff', borderRight: `1px solid ${LN}`, flexShrink: 0, padding: '12px 0' }}>
       {['Club details', 'People and roles', 'Connections', 'Club rules', 'Plan', 'Partner academies'].map(item => (
-        <div key={item} style={{ padding: '10px 20px', fontSize: 14, fontWeight: item === active ? 700 : 500, color: item === active ? G : MUT, background: item === active ? PALE : 'transparent', borderLeft: item === active ? `3px solid ${G}` : '3px solid transparent', cursor: 'pointer' }}>{item}</div>
+        <div key={item} style={{ padding: '10px 20px', fontSize: 14, fontWeight: item === active ? 700 : 500, color: item === active ? G : MUT, background: item === active ? PALE : 'transparent', borderLeft: item === active ? `3px solid ${G}` : '3px solid transparent', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{item}</div>
       ))}
     </div>
   )
@@ -119,14 +119,14 @@ export function DRo1Rollover() {
       <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 32, height: 52, flexShrink: 0 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>Clean Sheet</div>
         {['Club', 'Teams', 'Coaches', 'Players', 'Safeguarding', 'Reports'].map(t => (
-          <div key={t} style={{ fontSize: 13, fontWeight: t === 'Teams' ? 700 : 500, color: t === 'Teams' ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer' }}>{t}</div>
+          <div key={t} style={{ fontSize: 13, fontWeight: t === 'Teams' ? 700 : 500, color: t === 'Teams' ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>
         ))}
         <div style={{ marginLeft: 'auto', fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,0.5)' }}>Director of football</div>
       </div>
       <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
         <div style={{ width: 220, background: '#fff', borderRight: `1px solid ${LN}`, padding: '12px 0' }}>
           {['All teams', 'Seniors', 'Fixtures', 'League sync', 'Grading', 'Referees', 'Cards', 'Kit and cameras', 'Next season'].map(item => (
-            <div key={item} style={{ padding: '10px 20px', fontSize: 14, fontWeight: item === 'Next season' ? 700 : 500, color: item === 'Next season' ? G : MUT, background: item === 'Next season' ? PALE : 'transparent', borderLeft: item === 'Next season' ? `3px solid ${G}` : '3px solid transparent', cursor: 'pointer' }}>{item}</div>
+            <div key={item} style={{ padding: '10px 20px', fontSize: 14, fontWeight: item === 'Next season' ? 700 : 500, color: item === 'Next season' ? G : MUT, background: item === 'Next season' ? PALE : 'transparent', borderLeft: item === 'Next season' ? `3px solid ${G}` : '3px solid transparent', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{item}</div>
           ))}
         </div>
         <div style={{ flex: 1, overflowY: 'auto', padding: 32 }}>
@@ -175,14 +175,14 @@ export function DRo1eRolloverEmpty() {
       <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 32, height: 52, flexShrink: 0 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>Clean Sheet</div>
         {['Club', 'Teams', 'Coaches', 'Players', 'Safeguarding', 'Reports'].map(t => (
-          <div key={t} style={{ fontSize: 13, fontWeight: t === 'Teams' ? 700 : 500, color: t === 'Teams' ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer' }}>{t}</div>
+          <div key={t} style={{ fontSize: 13, fontWeight: t === 'Teams' ? 700 : 500, color: t === 'Teams' ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>
         ))}
         <div style={{ marginLeft: 'auto', fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,0.5)' }}>Director of football</div>
       </div>
       <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
         <div style={{ width: 220, background: '#fff', borderRight: `1px solid ${LN}`, padding: '12px 0' }}>
           {['All teams', 'Seniors', 'Fixtures', 'League sync', 'Grading', 'Referees', 'Cards', 'Kit and cameras', 'Next season'].map(item => (
-            <div key={item} style={{ padding: '10px 20px', fontSize: 14, fontWeight: item === 'Next season' ? 700 : 500, color: item === 'Next season' ? G : MUT, background: item === 'Next season' ? PALE : 'transparent', borderLeft: item === 'Next season' ? `3px solid ${G}` : '3px solid transparent', cursor: 'pointer' }}>{item}</div>
+            <div key={item} style={{ padding: '10px 20px', fontSize: 14, fontWeight: item === 'Next season' ? 700 : 500, color: item === 'Next season' ? G : MUT, background: item === 'Next season' ? PALE : 'transparent', borderLeft: item === 'Next season' ? `3px solid ${G}` : '3px solid transparent', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{item}</div>
           ))}
         </div>
         <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 32 }}>

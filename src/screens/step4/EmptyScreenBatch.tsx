@@ -11,14 +11,14 @@ function DirShell({ navActive = 'Teams', sideItems, sideActive, title, sub, ctaL
     <div style={{ width: 1180, background: BG, fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' as const }}>
       <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 32, height: 52, flexShrink: 0 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>Clean Sheet</div>
-        {tabs.map(t => <div key={t} style={{ fontSize: 13, fontWeight: t === navActive ? 700 : 500, color: t === navActive ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer' }}>{t}</div>)}
+        {tabs.map(t => <div key={t} style={{ fontSize: 13, fontWeight: t === navActive ? 700 : 500, color: t === navActive ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>)}
         <div style={{ marginLeft: 'auto', fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,0.5)' }}>Director of football</div>
       </div>
       <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
         {sideItems && (
           <div style={{ width: 200, background: '#fff', borderRight: `1px solid ${LN}`, flexShrink: 0, padding: '12px 0' }}>
             {sideItems.map(item => (
-              <div key={item} style={{ padding: '10px 20px', fontSize: 14, fontWeight: item === sideActive ? 700 : 500, color: item === sideActive ? G : MUT, background: item === sideActive ? PALE : 'transparent', borderLeft: item === sideActive ? `3px solid ${G}` : '3px solid transparent', cursor: 'pointer' }}>{item}</div>
+              <div key={item} style={{ padding: '10px 20px', fontSize: 14, fontWeight: item === sideActive ? 700 : 500, color: item === sideActive ? G : MUT, background: item === sideActive ? PALE : 'transparent', borderLeft: item === sideActive ? `3px solid ${G}` : '3px solid transparent', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{item}</div>
             ))}
           </div>
         )}
@@ -43,7 +43,7 @@ function HMShell({ navActive = 'Today', title, sub, ctaLabel }: { navActive?: st
     <div style={{ width: 1180, background: BG, fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' as const }}>
       <div style={{ background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 24, height: 52, flexShrink: 0 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>Clean Sheet</div>
-        {tabs.map(t => <div key={t} style={{ fontSize: 13, fontWeight: t === navActive ? 700 : 500, color: t === navActive ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer' }}>{t}</div>)}
+        {tabs.map(t => <div key={t} style={{ fontSize: 13, fontWeight: t === navActive ? 700 : 500, color: t === navActive ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>)}
         <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 10 }}>
           <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)' }}>Kangaroos · Wattle Creek</div>
           <div style={{ width: 32, height: 32, borderRadius: '50%', background: G, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, color: '#fff' }}>ME</div>
@@ -69,7 +69,7 @@ function AcOwnerShell({ navActive = 'Home', title, sub, ctaLabel }: { navActive?
     <div style={{ width: 1180, background: BG, fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' as const }}>
       <div style={{ background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 28, height: 52, flexShrink: 0 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>Clean Sheet</div>
-        {tabs.map(t => <div key={t} style={{ fontSize: 13, fontWeight: t === navActive ? 700 : 500, color: t === navActive ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer' }}>{t}</div>)}
+        {tabs.map(t => <div key={t} style={{ fontSize: 13, fontWeight: t === navActive ? 700 : 500, color: t === navActive ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>)}
         <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 10 }}>
           <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)' }}>Tall Timber Academy</div>
           <div style={{ width: 32, height: 32, borderRadius: '50%', background: G, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, color: '#fff' }}>TT</div>
@@ -95,7 +95,7 @@ function AcCoachShell({ title, sub, ctaLabel }: { title: string; sub: string; ct
     <div style={{ width: 1180, background: BG, fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' as const }}>
       <div style={{ background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 28, height: 52, flexShrink: 0 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>Clean Sheet</div>
-        {['Today', 'Players', 'Game day', 'Library'].map(t => <div key={t} style={{ fontSize: 13, fontWeight: 500, color: 'rgba(255,255,255,0.65)', cursor: 'pointer' }}>{t}</div>)}
+        {['Today', 'Players', 'Game day', 'Library'].map(t => <div key={t} style={{ fontSize: 13, fontWeight: 500, color: 'rgba(255,255,255,0.65)', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>)}
         <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 10 }}>
           <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)' }}>Tall Timber Academy</div>
           <div style={{ width: 32, height: 32, borderRadius: '50%', background: G, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, color: '#fff' }}>RW</div>
@@ -103,7 +103,7 @@ function AcCoachShell({ title, sub, ctaLabel }: { title: string; sub: string; ct
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: '220px 1fr', flex: 1 }}>
         <div style={{ background: '#fff', borderRight: `1px solid ${LN}`, padding: '12px 0' }}>
-          {sideItems.map(item => <div key={item} style={{ padding: '10px 20px', fontSize: 14, fontWeight: 500, color: MUT, cursor: 'pointer' }}>{item}</div>)}
+          {sideItems.map(item => <div key={item} style={{ padding: '10px 20px', fontSize: 14, fontWeight: 500, color: MUT, cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{item}</div>)}
         </div>
         <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 32 }}>
           <div style={{ textAlign: 'center' as const, maxWidth: 440 }}>
@@ -125,7 +125,7 @@ function CoachShell({ navActive = 'Squad', title, sub, ctaLabel }: { navActive?:
     <div style={{ width: 1180, background: BG, fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' as const }}>
       <div style={{ background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 24, height: 52, flexShrink: 0 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>Clean Sheet</div>
-        {['Home', 'Squad', 'Training', 'Match day', 'Clips'].map(t => <div key={t} style={{ fontSize: 13, fontWeight: t === navActive ? 700 : 500, color: t === navActive ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer' }}>{t}</div>)}
+        {['Home', 'Squad', 'Training', 'Match day', 'Clips'].map(t => <div key={t} style={{ fontSize: 13, fontWeight: t === navActive ? 700 : 500, color: t === navActive ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>)}
         <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 10 }}>
           <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)' }}>U12 Sam · Wattle Creek</div>
           <div style={{ width: 32, height: 32, borderRadius: '50%', background: G, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, color: '#fff' }}>SK</div>

@@ -30,7 +30,7 @@ export default function T5PlayerProfile(_: { onBack?: () => void }) {
     <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       <div style={{ flex: 'none', height: 64, boxSizing: 'border-box', padding: '0 28px', display: 'flex', alignItems: 'center', gap: 4, background: G }}>
         <div style={{ fontSize: 20, fontWeight: 700, color: '#fff', marginRight: 16, letterSpacing: '-0.02em' }}>Clean Sheet</div>
-        {NAV_ITEMS.map(n => <div key={n} style={{ height: 48, padding: '0 14px', borderRadius: 12, display: 'flex', alignItems: 'center', fontSize: 15, fontWeight: 600, color: n === 'Squad' ? '#fff' : 'rgba(255,255,255,0.75)', background: n === 'Squad' ? '#40826d' : 'transparent', cursor: 'pointer' }}>{n}</div>)}
+        {NAV_ITEMS.map(n => <div key={n} style={{ height: 48, padding: '0 14px', borderRadius: 12, display: 'flex', alignItems: 'center', fontSize: 15, fontWeight: 600, color: n === 'Squad' ? '#fff' : 'rgba(255,255,255,0.75)', background: n === 'Squad' ? '#40826d' : 'transparent', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{n}</div>)}
         <div style={{ marginLeft: 'auto' }}><button onClick={() => st('Opening team selector.')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: '1px solid #fff', background: '#fff', fontSize: 14, fontWeight: 600, color: INK, cursor: 'pointer' }}>U12 Sam · Wattle Creek ▾</button></div>
       </div>
 
@@ -55,7 +55,7 @@ export default function T5PlayerProfile(_: { onBack?: () => void }) {
           </div>
         </div>
         <nav style={{ display: 'flex', gap: 24, height: 44, borderTop: `1px solid ${LN}` }}>
-          {PROFILE_TABS.map(t => <div key={t} style={{ height: 44, display: 'flex', alignItems: 'center', fontSize: 14, fontWeight: t === 'Overview' ? 700 : 500, color: t === 'Overview' ? INK : MUT, borderBottom: `3px solid ${t === 'Overview' ? '#40826d' : 'transparent'}`, cursor: 'pointer' }}>{t}</div>)}
+          {PROFILE_TABS.map(t => <div key={t} style={{ height: 44, display: 'flex', alignItems: 'center', fontSize: 14, fontWeight: t === 'Overview' ? 700 : 500, color: t === 'Overview' ? INK : MUT, borderBottom: `3px solid ${t === 'Overview' ? '#40826d' : 'transparent'}`, cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>)}
         </nav>
       </header>
 

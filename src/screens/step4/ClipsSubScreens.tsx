@@ -8,7 +8,7 @@ function CoachClipsShell({ activeTab, children }: { activeTab: string; children:
       <div style={{ background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 24, height: 52, flexShrink: 0 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>Clean Sheet</div>
         {['Home', 'Squad', 'Training', 'Match day', 'Clips'].map(t => (
-          <div key={t} style={{ fontSize: 13, fontWeight: t === 'Clips' ? 700 : 500, color: t === 'Clips' ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer' }}>{t}</div>
+          <div key={t} style={{ fontSize: 13, fontWeight: t === 'Clips' ? 700 : 500, color: t === 'Clips' ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>
         ))}
         <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 10 }}>
           <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)' }}>U12 Sam · Wattle Creek</div>
@@ -17,7 +17,7 @@ function CoachClipsShell({ activeTab, children }: { activeTab: string; children:
       </div>
       <div style={{ background: '#fff', borderBottom: `1px solid ${LN}`, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 4, height: 44, flexShrink: 0 }}>
         {['Browse', 'Playlists', 'Shared with players'].map(t => (
-          <div key={t} style={{ padding: '0 16px', height: 44, display: 'flex', alignItems: 'center', fontSize: 14, fontWeight: t === activeTab ? 700 : 500, color: t === activeTab ? G : MUT, borderBottom: t === activeTab ? `2px solid ${G}` : '2px solid transparent', cursor: 'pointer' }}>{t}</div>
+          <div key={t} style={{ padding: '0 16px', height: 44, display: 'flex', alignItems: 'center', fontSize: 14, fontWeight: t === activeTab ? 700 : 500, color: t === activeTab ? G : MUT, borderBottom: t === activeTab ? `2px solid ${G}` : '2px solid transparent', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>
         ))}
         <div style={{ padding: '0 16px', height: 44, display: 'flex', alignItems: 'center', gap: 6, fontSize: 14, fontWeight: activeTab === 'To check' ? 700 : 500, color: activeTab === 'To check' ? G : MUT, borderBottom: activeTab === 'To check' ? `2px solid ${G}` : '2px solid transparent', cursor: 'pointer' }}>
           To check

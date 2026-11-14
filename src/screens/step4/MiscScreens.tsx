@@ -29,7 +29,7 @@ export function B1CoachAndFitness() {
       <div style={{ background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 24, height: 52, flexShrink: 0 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>Clean Sheet</div>
         {['Home', 'Squad', 'Training', 'Match day', 'Clips'].map(t => (
-          <div key={t} style={{ fontSize: 13, fontWeight: t === 'Home' ? 700 : 500, color: t === 'Home' ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer' }}>{t}</div>
+          <div key={t} style={{ fontSize: 13, fontWeight: t === 'Home' ? 700 : 500, color: t === 'Home' ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>
         ))}
         <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 10 }}>
           <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)' }}>U12 Sam · Wattle Creek</div>
@@ -152,7 +152,7 @@ export function PO1OlderHome() {
       {/* Bottom nav */}
       <div style={{ borderTop: `1px solid ${LN}`, display: 'flex' }}>
         {['Home', 'Clips', 'Body', 'Messages'].map(t => (
-          <div key={t} style={{ flex: 1, padding: '10px 0', textAlign: 'center' as const, fontSize: 12, fontWeight: t === 'Home' ? 700 : 500, color: t === 'Home' ? G : MUT, cursor: 'pointer' }}>{t}</div>
+          <div key={t} style={{ flex: 1, padding: '10px 0', textAlign: 'center' as const, fontSize: 12, fontWeight: t === 'Home' ? 700 : 500, color: t === 'Home' ? G : MUT, cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>
         ))}
       </div>
     </PhoneWrap>
@@ -176,7 +176,7 @@ export function CH8ChatInfo() {
       <div style={{ background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 24, height: 52, flexShrink: 0 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>Clean Sheet</div>
         {['Home', 'Squad', 'Training', 'Match day', 'Clips'].map(t => (
-          <div key={t} style={{ fontSize: 13, fontWeight: t === 'Home' ? 700 : 500, color: t === 'Home' ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer' }}>{t}</div>
+          <div key={t} style={{ fontSize: 13, fontWeight: t === 'Home' ? 700 : 500, color: t === 'Home' ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>
         ))}
         <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 10 }}>
           <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)' }}>U12 Sam · Wattle Creek</div>
@@ -186,7 +186,7 @@ export function CH8ChatInfo() {
       <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
         <div style={{ width: 200, background: '#fff', borderRight: `1px solid ${LN}`, flexShrink: 0, padding: '12px 0' }}>
           {homeNav.map(item => (
-            <div key={item} style={{ padding: '10px 20px', fontSize: 14, fontWeight: 500, color: MUT, cursor: 'pointer' }}>{item}</div>
+            <div key={item} style={{ padding: '10px 20px', fontSize: 14, fontWeight: 500, color: MUT, cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{item}</div>
           ))}
         </div>
         <div style={{ flex: 1, overflowY: 'auto', padding: 28, maxWidth: 640 }}>
@@ -232,7 +232,7 @@ function PSShell({ title, children }: { title: string; children: React.ReactNode
       </div>
       <div style={{ display: 'flex', borderBottom: `1px solid ${LN}`, padding: '0 16px' }}>
         {['Account', 'Notifications', 'Privacy', 'Mia'].map(t => (
-          <div key={t} style={{ flex: 1, padding: '10px 0', textAlign: 'center' as const, fontSize: 13, fontWeight: t === title ? 700 : 500, color: t === title ? G : MUT, borderBottom: t === title ? `2px solid ${G}` : '2px solid transparent', cursor: 'pointer' }}>{t}</div>
+          <div key={t} style={{ flex: 1, padding: '10px 0', textAlign: 'center' as const, fontSize: 13, fontWeight: t === title ? 700 : 500, color: t === title ? G : MUT, borderBottom: t === title ? `2px solid ${G}` : '2px solid transparent', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>
         ))}
       </div>
       <div style={{ padding: '16px 20px' }}>{children}</div>
