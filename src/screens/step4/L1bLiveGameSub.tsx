@@ -43,9 +43,9 @@ export default function L1bLiveGameSub(_: { onBack?: () => void }) {
         <button onClick={() => st('Paused.')} style={{ height: 44, padding: '0 14px', borderRadius: 8, background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)', color: '#fff', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Pause</button>
         <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginLeft: 'auto' }}>
           <span style={{ fontSize: 16, fontWeight: 700 }}>Wattle Creek</span>
-          <button onClick={() => st('Score changed.')} style={{ width: 32, height: 32, borderRadius: '50%', background: 'rgba(255,255,255,0.1)', border: 'none', color: '#fff', fontSize: 18, cursor: 'pointer' }}>−</button>
+          <button onClick={() => st('Score changed.')} style={{ width: 44, height: 44, borderRadius: '50%', background: 'rgba(255,255,255,0.1)', border: 'none', color: '#fff', fontSize: 18, cursor: 'pointer' }}>−</button>
           <span style={{ fontSize: 24, fontWeight: 800 }}>2–1</span>
-          <button onClick={() => st('Score changed.')} style={{ width: 32, height: 32, borderRadius: '50%', background: 'rgba(255,255,255,0.1)', border: 'none', color: '#fff', fontSize: 18, cursor: 'pointer' }}>−</button>
+          <button onClick={() => st('Score changed.')} style={{ width: 44, height: 44, borderRadius: '50%', background: 'rgba(255,255,255,0.1)', border: 'none', color: '#fff', fontSize: 18, cursor: 'pointer' }}>−</button>
           <span style={{ fontSize: 16, fontWeight: 700 }}>Harbour Rovers</span>
         </div>
       </div>

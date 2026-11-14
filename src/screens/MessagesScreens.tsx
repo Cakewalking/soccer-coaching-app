@@ -336,15 +336,15 @@ export function CoachMessages({ onBack: _onBack, onNav }: { onBack?: () => void;
           </div>
           {/* Composer */}
           <div style={{ padding: '12px 20px', borderTop: `1px solid ${LN}`, background: '#fff', display: 'flex', gap: 8, alignItems: 'center' }}>
-            <button onClick={() => t('Attachment picker opens.')} style={{ width: 40, height: 40, borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: MUT }}>
+            <button onClick={() => t('Attachment picker opens.')} style={{ width: 44, height: 44, borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: MUT }}>
               <Icon d={ICONS.attach} size={18}/>
             </button>
-            <button onClick={() => t('Voice message opens.')} style={{ width: 40, height: 40, borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: MUT }}>
+            <button onClick={() => t('Voice message opens.')} style={{ width: 44, height: 44, borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: MUT }}>
               <Icon d={ICONS.mic} size={18}/>
             </button>
             <input value={input} onChange={e => setInput(e.target.value)} placeholder="Message Bianca…"
               style={{ flex: 1, height: 40, padding: '0 14px', borderRadius: 8, border: `1px solid ${LN}`, fontSize: 14, fontFamily: 'inherit', outline: 'none' }}/>
-            <button onClick={() => { t('Message sent.'); setInput('') }} style={{ width: 40, height: 40, borderRadius: 8, background: G, color: '#fff', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <button onClick={() => { t('Message sent.'); setInput('') }} style={{ width: 44, height: 44, borderRadius: 8, background: G, color: '#fff', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <Icon d={ICONS.send} size={18} stroke="#fff"/>
             </button>
           </div>
@@ -368,7 +368,7 @@ export function CoachMessagesPersonCard({ onBack, onNav }: { onBack?: () => void
       <div style={{ flex: 1, background: '#f7f8f7', filter: 'blur(2px)', opacity: 0.5, position: 'absolute', inset: '112px 0 0 0' }}/>
       {/* Person card dialog */}
       <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', zIndex: 10, background: '#fff', borderRadius: 20, border: `1px solid ${LN}`, boxShadow: '0 20px 60px rgba(16,33,31,0.18)', width: 380, padding: '28px 24px' }}>
-        <button onClick={() => t('Card closed.')} style={{ position: 'absolute', top: 16, right: 16, width: 32, height: 32, borderRadius: '50%', border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', fontSize: 16, color: MUT, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>✕</button>
+        <button onClick={() => t('Card closed.')} style={{ position: 'absolute', top: 16, right: 16, width: 44, height: 44, borderRadius: '50%', border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', fontSize: 16, color: MUT, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>✕</button>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 20 }}>
           <Ini s="BR" size={64} bg={PALE}/>
           <div style={{ fontSize: 20, fontWeight: 800, color: INK, marginTop: 10 }}>Bianca Rossi</div>
@@ -457,7 +457,7 @@ export function DirectorMessages({ onBack: _onBack }: { onBack?: () => void }) {
         <div style={{ width: 300, flexShrink: 0, borderRight: `1px solid ${LN}`, background: '#fff', display: 'flex', flexDirection: 'column' }}>
           <div style={{ padding: '12px 14px', borderBottom: `1px solid ${LN}`, display: 'flex', gap: 8 }}>
             <button onClick={() => t('Message all coaches opens.')} style={{ flex: 1, height: 36, borderRadius: 8, background: PALE, color: G, border: 'none', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Message all coaches</button>
-            <button onClick={() => t('New message opens.')} style={{ width: 36, height: 36, borderRadius: 8, background: G, color: '#fff', border: 'none', fontSize: 18, cursor: 'pointer' }}>+</button>
+            <button onClick={() => t('New message opens.')} style={{ width: 44, height: 44, borderRadius: 8, background: G, color: '#fff', border: 'none', fontSize: 18, cursor: 'pointer' }}>+</button>
           </div>
           <div style={{ overflowY: 'auto', flex: 1 }}>
             {chats.map(c => (
@@ -498,7 +498,7 @@ export function DirectorMessages({ onBack: _onBack }: { onBack?: () => void }) {
           <div style={{ padding: '12px 20px', borderTop: `1px solid ${LN}`, background: '#fff', display: 'flex', gap: 8, alignItems: 'center' }}>
             <input value={input} onChange={e => setInput(e.target.value)} placeholder="Message Sam…"
               style={{ flex: 1, height: 40, padding: '0 14px', borderRadius: 8, border: `1px solid ${LN}`, fontSize: 14, fontFamily: 'inherit', outline: 'none' }}/>
-            <button onClick={() => { t('Message sent.'); setInput('') }} style={{ width: 40, height: 40, borderRadius: 8, background: G, color: '#fff', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <button onClick={() => { t('Message sent.'); setInput('') }} style={{ width: 44, height: 44, borderRadius: 8, background: G, color: '#fff', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <Icon d={ICONS.send} size={18} stroke="#fff"/>
             </button>
           </div>

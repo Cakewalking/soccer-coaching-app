@@ -257,7 +257,7 @@ export default function PlayerAppScreen({ empty, initialView = 'home' }: { empty
     return (
       <div style={{ width: 390, margin: '0 auto', background: '#10211f', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
         <div style={{ flex: 'none', padding: '52px 20px 16px', display: 'flex', alignItems: 'center', gap: 12 }}>
-          <button onClick={() => setView('home')} style={{ width: 36, height: 36, borderRadius: '999px', border: '1px solid rgba(255,255,255,0.2)', background: 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+          <button onClick={() => setView('home')} style={{ width: 44, height: 44, borderRadius: '999px', border: '1px solid rgba(255,255,255,0.2)', background: 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
           </button>
           <div style={{ color: '#7cc4ab', fontSize: 14, fontWeight: 700 }}>Clip from Sam</div>
@@ -421,7 +421,7 @@ export default function PlayerAppScreen({ empty, initialView = 'home' }: { empty
     return (
       <div style={{ width: 390, margin: '0 auto', background: '#f7f9f7', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
         <div style={{ background: '#1f4a3e', padding: '44px 20px 16px', flexShrink: 0, display: 'flex', alignItems: 'center', gap: 10 }}>
-          <button onClick={() => setView('home')} style={{ width: 30, height: 30, border: 'none', background: 'rgba(255,255,255,0.15)', borderRadius: '999px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <button onClick={() => setView('home')} style={{ width: 44, height: 44, border: 'none', background: 'rgba(255,255,255,0.15)', borderRadius: '999px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={2.5} strokeLinecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
           </button>
           <div style={{ flex: 1 }}>
@@ -449,7 +449,7 @@ export default function PlayerAppScreen({ empty, initialView = 'home' }: { empty
               )}
               <div style={{ display: 'flex', gap: 8, marginTop: 10 }}>
                 {['👍', '😀', '⚽'].map(emoji => (
-                  <button key={emoji} onClick={() => showToast('Reaction sent.')} style={{ width: 40, height: 40, borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontSize: 18, cursor: 'pointer' }}>{emoji}</button>
+                  <button key={emoji} onClick={() => showToast('Reaction sent.')} style={{ width: 44, height: 44, borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontSize: 18, cursor: 'pointer' }}>{emoji}</button>
                 ))}
               </div>
             </div>

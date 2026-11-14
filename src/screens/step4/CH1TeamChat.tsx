@@ -107,7 +107,7 @@ export default function CH1TeamChat(_: { onBack?: () => void }) {
                 { icon: <><path d="M12 2a3 3 0 0 1 3 3v7a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></>, label: 'Voice' },
                 { icon: <><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 12l2 2 4-4"/></>, label: 'Poll' },
               ].map(btn => (
-                <button key={btn.label} onClick={() => t(`${btn.label} composer would open.`)} style={{ width: 36, height: 36, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 'none' }}>
+                <button key={btn.label} onClick={() => t(`${btn.label} composer would open.`)} style={{ width: 44, height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 'none' }}>
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth="1.5" strokeLinecap="round">{btn.icon}</svg>
                 </button>
               ))}

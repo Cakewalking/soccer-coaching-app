@@ -209,7 +209,7 @@ export default function ClipsScreen({ empty, activeTab = 0 }: { empty?: boolean;
               }}>By {m}</button>
             ))}
           </div>
-          <button onClick={() => showToast("Search by player, game or measure. Try ‘Mia pressing’.")} style={{ width: 40, height: 40, borderRadius: '999px', border: '1px solid #e9eae8', background: '#ffffff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <button onClick={() => showToast("Search by player, game or measure. Try ‘Mia pressing’.")} style={{ width: 44, height: 44, borderRadius: '999px', border: '1px solid #e9eae8', background: '#ffffff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6f7f7b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
           </button>
         </div>

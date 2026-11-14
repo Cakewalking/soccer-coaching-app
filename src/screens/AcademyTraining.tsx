@@ -142,7 +142,7 @@ export function AcademyTrainingWeek({ onBack: _onBack, onNav }: { onBack?: () =>
                   </div>
                   <span style={{ padding: '4px 12px', borderRadius: 100, background: st.bg, color: st.color, fontSize: 12, fontWeight: 700 }}>{st.label}</span>
                   <button onClick={() => s.link && onNav ? onNav(s.link === 'ACT2' ? 'ACT2-AcademySuggested' : 'ACT3-AcademySessionPlan') : t(`${s.label} session opens.`)}
-                    style={{ width: 36, height: 36, borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: MUT }}>
+                    style={{ width: 44, height: 44, borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: MUT }}>
                     <Icon d={ICONS.chevright} size={16}/>
                   </button>
                 </div>

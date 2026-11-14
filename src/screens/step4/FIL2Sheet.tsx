@@ -141,7 +141,7 @@ export default function FIL2Sheet({ onBack, onShare, onNav }: {
 
       {/* Document header */}
       <div style={{ background: '#fff', borderBottom: `1px solid ${LN}`, padding: '0 20px', display: 'flex', alignItems: 'center', gap: 12, height: 56, flexShrink: 0 }}>
-        <button aria-label="Back to Files" onClick={onBack} style={{ width: 32, height: 32, borderRadius: '50%', background: LN, border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+        <button aria-label="Back to Files" onClick={onBack} style={{ width: 44, height: 44, borderRadius: '50%', background: LN, border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth="2.5" strokeLinecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
         </button>
         <div>

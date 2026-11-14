@@ -418,7 +418,7 @@ export default function CoachTabletFrame({
               <button
                 onClick={onAskToggle}
                 aria-label="Close"
-                style={{ width: 36, height: 36, borderRadius: '50%', border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: MUT, flexShrink: 0 }}
+                style={{ width: 44, height: 44, borderRadius: '50%', border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: MUT, flexShrink: 0 }}
               >
                 <S d={X_P} size={14} />
               </button>
@@ -565,7 +565,7 @@ export default function CoachTabletFrame({
                 <button
                   onClick={() => { if (askInput.trim()) askQuestion(askInput.trim()) }}
                   aria-label="Send"
-                  style={{ width: 40, height: 40, borderRadius: 8, background: askInput.trim() ? G : LN, border: 'none', cursor: askInput.trim() ? 'pointer' : 'default', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}
+                  style={{ width: 44, height: 44, borderRadius: 8, background: askInput.trim() ? G : LN, border: 'none', cursor: askInput.trim() ? 'pointer' : 'default', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}
                 >
                   <S d={SEND_P} size={15} stroke="#fff" />
                 </button>

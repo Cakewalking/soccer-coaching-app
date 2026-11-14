@@ -81,7 +81,7 @@ export default function MetricDetailScreen({ onClose }: Props) {
             </div>
             {/* Bottom clip link */}
             <div style={{ marginTop: 12, padding: '10px 12px', background: '#f7f9f7', borderRadius: 10, display: 'flex', alignItems: 'center', gap: 10 }}>
-              <button onClick={() => st('Playing clip.')} style={{ width: 32, height: 32, borderRadius: '999px', border: 0, background: '#10211f', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+              <button onClick={() => st('Playing clip.')} style={{ width: 44, height: 44, borderRadius: '999px', border: 0, background: '#10211f', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"/></svg>
               </button>
               <div style={{ flexGrow: 1, fontSize: 13, color: '#10211f' }}>

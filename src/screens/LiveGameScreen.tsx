@@ -127,7 +127,7 @@ export default function LiveGameScreen({ onClose }: { onClose: () => void }) {
     <div style={{ position: 'fixed', inset: 0, zIndex: 100, background: '#f7f9f7', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
       {/* Header */}
       <div style={{ flex: 'none', background: '#10211f', padding: '0 24px', height: 56, display: 'flex', alignItems: 'center', gap: 16 }}>
-        <button onClick={onClose} style={{ width: 36, height: 36, borderRadius: '999px', border: 0, background: 'rgba(255,255,255,0.1)', color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+        <button onClick={onClose} style={{ width: 44, height: 44, borderRadius: '999px', border: 0, background: 'rgba(255,255,255,0.1)', color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
         </button>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>

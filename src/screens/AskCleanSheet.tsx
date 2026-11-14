@@ -209,7 +209,7 @@ export function AskOpen({ onBack: _onBack }: { onBack?: () => void }) {
           <div style={{ padding: '16px 18px', borderBottom: `1px solid ${LN}`, display: 'flex', alignItems: 'center', gap: 10 }}>
             <Icon d={SPARKLE} size={18} stroke={G}/>
             <span style={{ flex: 1, fontSize: 15, fontWeight: 700, color: INK }}>Ask Clean Sheet</span>
-            <button onClick={() => t('Panel closed.')} style={{ width: 32, height: 32, borderRadius: '50%', border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: MUT }}>
+            <button onClick={() => t('Panel closed.')} style={{ width: 44, height: 44, borderRadius: '50%', border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: MUT }}>
               <Icon d={X} size={14}/>
             </button>
           </div>
@@ -255,10 +255,10 @@ export function AskOpen({ onBack: _onBack }: { onBack?: () => void }) {
           <div style={{ padding: '12px 14px', borderTop: `1px solid ${LN}`, display: 'flex', gap: 8, alignItems: 'center' }}>
             <input value={input} onChange={e => setInput(e.target.value)} placeholder="Ask something else…"
               style={{ flex: 1, height: 40, padding: '0 12px', borderRadius: 8, border: `1px solid ${LN}`, fontSize: 13, fontFamily: 'inherit', outline: 'none' }}/>
-            <button onClick={() => t('Opening voice input.')} style={{ width: 36, height: 36, borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: MUT }}>
+            <button onClick={() => t('Opening voice input.')} style={{ width: 44, height: 44, borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: MUT }}>
               <Icon d={MIC} size={16}/>
             </button>
-            <button onClick={() => t('Question sent.')} style={{ width: 36, height: 36, borderRadius: 8, background: G, color: '#fff', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <button onClick={() => t('Question sent.')} style={{ width: 44, height: 44, borderRadius: 8, background: G, color: '#fff', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <Icon d={SEND} size={16} stroke="#fff"/>
             </button>
           </div>
@@ -292,7 +292,7 @@ export function AskOpenFirst({ onBack: _onBack }: { onBack?: () => void }) {
           <div style={{ padding: '16px 18px', borderBottom: `1px solid ${LN}`, display: 'flex', alignItems: 'center', gap: 10 }}>
             <Icon d={SPARKLE} size={18} stroke={G}/>
             <span style={{ flex: 1, fontSize: 15, fontWeight: 700, color: INK }}>Ask Clean Sheet</span>
-            <button onClick={() => t('Panel closed.')} style={{ width: 32, height: 32, borderRadius: '50%', border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: MUT }}>
+            <button onClick={() => t('Panel closed.')} style={{ width: 44, height: 44, borderRadius: '50%', border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: MUT }}>
               <Icon d={X} size={14}/>
             </button>
           </div>
@@ -318,10 +318,10 @@ export function AskOpenFirst({ onBack: _onBack }: { onBack?: () => void }) {
           <div style={{ padding: '12px 14px', borderTop: `1px solid ${LN}`, display: 'flex', gap: 8, alignItems: 'center' }}>
             <input value={input} onChange={e => setInput(e.target.value)} placeholder="Ask your first question…"
               style={{ flex: 1, height: 40, padding: '0 12px', borderRadius: 8, border: `1px solid ${LN}`, fontSize: 13, fontFamily: 'inherit', outline: 'none' }}/>
-            <button onClick={() => t('Opening voice input.')} style={{ width: 36, height: 36, borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: MUT }}>
+            <button onClick={() => t('Opening voice input.')} style={{ width: 44, height: 44, borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: MUT }}>
               <Icon d={MIC} size={16}/>
             </button>
-            <button onClick={() => t('Question sent — ASK3 panel opens with answer.')} style={{ width: 36, height: 36, borderRadius: 8, background: G, color: '#fff', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <button onClick={() => t('Question sent — ASK3 panel opens with answer.')} style={{ width: 44, height: 44, borderRadius: 8, background: G, color: '#fff', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <Icon d={SEND} size={16} stroke="#fff"/>
             </button>
           </div>
@@ -438,10 +438,10 @@ export function AskPhoneOpen({ onBack: _onBack }: { onBack?: () => void }) {
         <div style={{ padding: '10px 16px 0', display: 'flex', gap: 8, alignItems: 'center' }}>
           <input value={input} onChange={e => setInput(e.target.value)} placeholder="Ask something else…"
             style={{ flex: 1, height: 40, padding: '0 12px', borderRadius: 8, border: `1px solid ${LN}`, fontSize: 13, fontFamily: 'inherit', outline: 'none' }}/>
-          <button onClick={() => t('Opening voice input.')} style={{ width: 36, height: 36, borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: MUT }}>
+          <button onClick={() => t('Opening voice input.')} style={{ width: 44, height: 44, borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: MUT }}>
             <Icon d={MIC} size={16}/>
           </button>
-          <button onClick={() => t('Question sent.')} style={{ width: 36, height: 36, borderRadius: 8, background: G, color: '#fff', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <button onClick={() => t('Question sent.')} style={{ width: 44, height: 44, borderRadius: 8, background: G, color: '#fff', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <Icon d={SEND} size={16} stroke="#fff"/>
           </button>
         </div>

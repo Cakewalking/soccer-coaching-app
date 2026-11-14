@@ -41,7 +41,7 @@ function StepHeader({ step, onClose }: { step: Step; onClose: () => void }) {
   return (
     <div style={{ flex: 'none', background: '#1f4a3e' }}>
       <div style={{ padding: '0 32px', height: 72, display: 'flex', alignItems: 'center', gap: 16 }}>
-        <button onClick={onClose} style={{ width: 40, height: 40, borderRadius: '999px', border: 0, background: 'rgba(255,255,255,0.12)', color: '#ffffff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+        <button onClick={onClose} style={{ width: 44, height: 44, borderRadius: '999px', border: 0, background: 'rgba(255,255,255,0.12)', color: '#ffffff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
         </button>
         <div style={{ flexGrow: 1 }}>
@@ -143,18 +143,18 @@ export default function AddGameScreen({ onClose, initialStep = 1 }: { onClose: (
                   <div style={{ flex: 1 }}>
                     <div style={{ fontSize: 13, fontWeight: 600, color: '#6f7f7b', marginBottom: 8 }}>Wattle Creek</div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                      <button onClick={() => setHomeScore(s => Math.max(0, s - 1))} style={{ width: 36, height: 36, borderRadius: 8, border: '1px solid #e9eae8', background: '#f7f8f7', fontSize: 20, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#10211f' }}>−</button>
+                      <button onClick={() => setHomeScore(s => Math.max(0, s - 1))} style={{ width: 44, height: 44, borderRadius: 8, border: '1px solid #e9eae8', background: '#f7f8f7', fontSize: 20, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#10211f' }}>−</button>
                       <div style={{ fontSize: 36, fontWeight: 800, color: '#10211f', minWidth: 40, textAlign: 'center' }}>{homeScore}</div>
-                      <button onClick={() => setHomeScore(s => s + 1)} style={{ width: 36, height: 36, borderRadius: 8, border: '1px solid #e9eae8', background: '#f7f8f7', fontSize: 20, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#10211f' }}>+</button>
+                      <button onClick={() => setHomeScore(s => s + 1)} style={{ width: 44, height: 44, borderRadius: 8, border: '1px solid #e9eae8', background: '#f7f8f7', fontSize: 20, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#10211f' }}>+</button>
                     </div>
                   </div>
                   <div style={{ fontSize: 24, fontWeight: 700, color: '#c5c8c4' }}>vs</div>
                   <div style={{ flex: 1 }}>
                     <div style={{ fontSize: 13, fontWeight: 600, color: '#6f7f7b', marginBottom: 8 }}>Ironbark United (away)</div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                      <button onClick={() => setAwayScore(s => Math.max(0, s - 1))} style={{ width: 36, height: 36, borderRadius: 8, border: '1px solid #e9eae8', background: '#f7f8f7', fontSize: 20, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#10211f' }}>−</button>
+                      <button onClick={() => setAwayScore(s => Math.max(0, s - 1))} style={{ width: 44, height: 44, borderRadius: 8, border: '1px solid #e9eae8', background: '#f7f8f7', fontSize: 20, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#10211f' }}>−</button>
                       <div style={{ fontSize: 36, fontWeight: 800, color: '#10211f', minWidth: 40, textAlign: 'center' }}>{awayScore}</div>
-                      <button onClick={() => setAwayScore(s => s + 1)} style={{ width: 36, height: 36, borderRadius: 8, border: '1px solid #e9eae8', background: '#f7f8f7', fontSize: 20, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#10211f' }}>+</button>
+                      <button onClick={() => setAwayScore(s => s + 1)} style={{ width: 44, height: 44, borderRadius: 8, border: '1px solid #e9eae8', background: '#f7f8f7', fontSize: 20, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#10211f' }}>+</button>
                     </div>
                   </div>
                 </div>

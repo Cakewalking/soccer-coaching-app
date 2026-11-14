@@ -22,7 +22,7 @@ function PageHeader({ title, sub, onBack, right }: { title: string; sub?: string
   return (
     <div style={{ padding: '20px 28px 0', display: 'flex', alignItems: 'flex-start', gap: 12, flexShrink: 0 }}>
       {onBack && (
-        <button onClick={onBack} style={{ width: 32, height: 32, border: 'none', background: LN, borderRadius: '999px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 4, flexShrink: 0 }}>
+        <button onClick={onBack} style={{ width: 44, height: 44, border: 'none', background: LN, borderRadius: '999px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 4, flexShrink: 0 }}>
           <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth={2.5} strokeLinecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
         </button>
       )}
