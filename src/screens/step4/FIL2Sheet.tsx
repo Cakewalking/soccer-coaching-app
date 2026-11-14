@@ -14,7 +14,7 @@ export default function FIL2Sheet({ onBack, onShare, onNav }: {
   onNav?: (s: string) => void
 }) {
   const [view, setView] = useState<ViewType>('table')
-  const [panelTab, setPanelTab] = useState<PanelTab>('Checks')
+  const [panelTab, setPanelTab] = useState<PanelTab>('Data')
   const [activeTab, setActiveTab] = useState('Team sheets')
   const [lastTool, setLastTool] = useState('')
   function tool(name: string) { setLastTool(name) }
@@ -44,13 +44,13 @@ export default function FIL2Sheet({ onBack, onShare, onNav }: {
           { label: 'Clips', target: 'PH1-HomeJuniorsSame' },
           { label: 'Record', target: 'REC1-RecordHub' },
         ].map(({ label, target }) => (
-          <div key={label} onClick={() => onNav?.(target)} style={{ fontSize: 13, fontWeight: 500, color: 'rgba(255,255,255,0.65)', cursor: 'pointer' }}>{label}</div>
+          <div key={label} onClick={() => onNav?.(target)} style={{ fontSize: 13, fontWeight: 500, color: 'rgba(255,255,255,0.65)', cursor: 'pointer', minHeight: 44, padding: '0 10px', display: 'flex', alignItems: 'center' }}>{label}</div>
         ))}
         <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 12 }}>
-          <div aria-label="Ask Clean Sheet" onClick={() => onNav?.('ASKd4-PanelFirst')} style={{ height: 32, padding: '0 14px', borderRadius: 999, border: '1.5px solid rgba(255,255,255,0.3)', display: 'flex', alignItems: 'center', fontSize: 13, color: '#fff', cursor: 'pointer', gap: 6 }}>
+          <div aria-label="Ask Clean Sheet" onClick={() => onNav?.('ASKd4-PanelFirst')} style={{ minHeight: 44, padding: '0 14px', borderRadius: 999, border: '1.5px solid rgba(255,255,255,0.3)', display: 'flex', alignItems: 'center', fontSize: 13, color: '#fff', cursor: 'pointer', gap: 6 }}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17 5.8 21.3l2.4-7.4L2 9.4h7.6L12 2z"/></svg>
           </div>
-          <div onClick={() => onNav?.('PH1-HomeJuniorsSame')} style={{ height: 32, padding: '0 14px', borderRadius: 999, border: '1.5px solid rgba(255,255,255,0.3)', display: 'flex', alignItems: 'center', fontSize: 13, color: '#fff', cursor: 'pointer' }}>U12 Sam</div>
+          <div onClick={() => onNav?.('PH1-HomeJuniorsSame')} style={{ minHeight: 44, padding: '0 14px', borderRadius: 999, border: '1.5px solid rgba(255,255,255,0.3)', display: 'flex', alignItems: 'center', fontSize: 13, color: '#fff', cursor: 'pointer' }}>U12 Sam</div>
           <div style={{ width: 32, height: 32, borderRadius: '50%', background: '#7a9e7e', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, color: '#fff' }}>SK</div>
         </div>
       </div>
@@ -67,24 +67,24 @@ export default function FIL2Sheet({ onBack, onShare, onNav }: {
           { label: 'Team staff', target: 'PH1-HomeJuniorsSame' },
           { label: 'Files', target: 'FIL1-Files' },
         ].map(({ label, target }) => (
-          <div key={label} onClick={() => onNav?.(target)} style={{ height: 44, display: 'flex', alignItems: 'center', borderBottom: label === 'Files' ? `2px solid ${G}` : '2px solid transparent', fontSize: 13, fontWeight: label === 'Files' ? 700 : 500, color: label === 'Files' ? G : MUT, cursor: 'pointer' }}>{label}</div>
+          <div key={label} onClick={() => onNav?.(target)} style={{ height: 44, minWidth: 44, display: 'flex', alignItems: 'center', borderBottom: label === 'Files' ? `2px solid ${G}` : '2px solid transparent', fontSize: 13, fontWeight: label === 'Files' ? 700 : 500, color: label === 'Files' ? G : MUT, cursor: 'pointer' }}>{label}</div>
         ))}
         <div style={{ marginLeft: 'auto', fontSize: 12, color: MUT }}>Head coach</div>
       </div>
 
       {/* Sheet toolbar */}
       <div style={{ background: '#fff', borderBottom: `1px solid ${LN}`, padding: '0 16px', display: 'flex', gap: 4, height: 44, alignItems: 'center', flexShrink: 0 }}>
-        <button onClick={() => onBack?.()} style={{ fontSize: 13, color: MUT, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', padding: '0 8px', whiteSpace: 'nowrap' }}>Back to Files</button>
+        <button onClick={() => onBack?.()} style={{ fontSize: 13, color: MUT, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', padding: '0 8px', whiteSpace: 'nowrap', minHeight: 44, display: 'flex', alignItems: 'center' }}>Back to Files</button>
         <div style={{ width: 1, height: 24, background: LN, flexShrink: 0 }} />
         {['History', 'Download', 'Undo', 'Redo', 'Choice', 'B', 'Fill colour', 'Align', 'Filter', 'Sort', 'Comment', '+ Column', 'From Clean Sheet', 'Print'].map(b => (
-          <button key={b} onClick={() => tool(b)} style={{ height: 28, padding: '0 8px', borderRadius: 6, border: `1px solid ${LN}`, background: lastTool === b ? PALE : '#fff', fontSize: 12, cursor: 'pointer', fontFamily: 'inherit', color: lastTool === b ? G : INK, whiteSpace: 'nowrap', flexShrink: 0 }}>{b}</button>
+          <button key={b} onClick={() => tool(b)} style={{ minHeight: 44, minWidth: 44, padding: '0 8px', borderRadius: 6, border: `1px solid ${LN}`, background: lastTool === b ? PALE : '#fff', fontSize: 12, cursor: 'pointer', fontFamily: 'inherit', color: lastTool === b ? G : INK, whiteSpace: 'nowrap', flexShrink: 0 }}>{b}</button>
         ))}
         <div style={{ marginLeft: 'auto', display: 'flex', gap: 6, alignItems: 'center', flexShrink: 0 }}>
           <div style={{ display: 'flex', border: `1.5px solid ${LN}`, borderRadius: 999, overflow: 'hidden' }}>
-            <button onClick={() => { setView('table'); tool('Table') }} style={{ height: 30, padding: '0 12px', background: view === 'table' ? PALE : '#fff', border: 'none', fontSize: 12, color: view === 'table' ? G : INK, fontWeight: view === 'table' ? 700 : 400, cursor: 'pointer', fontFamily: 'inherit' }}>Table</button>
-            <button onClick={() => { setView('lineup'); tool('Line-up') }} style={{ height: 30, padding: '0 12px', background: view === 'lineup' ? PALE : '#fff', border: 'none', fontSize: 12, color: view === 'lineup' ? G : INK, fontWeight: view === 'lineup' ? 700 : 400, cursor: 'pointer', fontFamily: 'inherit' }}>Line-up</button>
+            <button onClick={() => { setView('table'); tool('Table') }} style={{ minHeight: 44, padding: '0 12px', background: view === 'table' ? PALE : '#fff', border: 'none', fontSize: 12, color: view === 'table' ? G : INK, fontWeight: view === 'table' ? 700 : 400, cursor: 'pointer', fontFamily: 'inherit' }}>Table</button>
+            <button onClick={() => { setView('lineup'); tool('Line-up') }} style={{ minHeight: 44, padding: '0 12px', background: view === 'lineup' ? PALE : '#fff', border: 'none', fontSize: 12, color: view === 'lineup' ? G : INK, fontWeight: view === 'lineup' ? 700 : 400, cursor: 'pointer', fontFamily: 'inherit' }}>Line-up</button>
           </div>
-          <button onClick={() => onShare?.()} style={{ height: 30, padding: '0 12px', borderRadius: 999, background: G, color: '#fff', border: 'none', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Share</button>
+          <button onClick={() => onShare?.()} style={{ minHeight: 44, padding: '0 12px', borderRadius: 999, background: G, color: '#fff', border: 'none', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Share</button>
         </div>
       </div>
 
@@ -92,14 +92,22 @@ export default function FIL2Sheet({ onBack, onShare, onNav }: {
       <div style={{ background: '#fffbeb', borderBottom: `1px solid #fde68a`, padding: '10px 24px', display: 'flex', alignItems: 'center', gap: 16, flexShrink: 0 }}>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" strokeWidth="2.5"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
         <div style={{ fontSize: 13, color: '#92400e' }}><strong>Check:</strong> Ruby Lane plays all four games (60 min each). The spread is wider than the template allows.</div>
-        <button onClick={() => tool('Swap for me')} style={{ marginLeft: 'auto', height: 30, padding: '0 14px', borderRadius: 999, background: '#f59e0b', color: '#fff', border: 'none', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Swap for me</button>
-        <button onClick={() => tool('Leave it')} style={{ height: 30, padding: '0 14px', borderRadius: 999, background: '#fff', color: '#92400e', border: '1.5px solid #fde68a', fontSize: 12, cursor: 'pointer', fontFamily: 'inherit' }}>Leave it</button>
+        <span style={{ fontSize: 13, color: '#92400e', marginLeft: 8 }}>60 minutes; everyone else has 45. Rest her in game 3?</span>
+        <button onClick={() => tool('Swap for me')} style={{ marginLeft: 'auto', minHeight: 44, padding: '0 14px', borderRadius: 999, background: '#f59e0b', color: '#fff', border: 'none', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Swap for me</button>
+        <button onClick={() => tool('Leave it')} style={{ minHeight: 44, padding: '0 14px', borderRadius: 999, background: '#fff', color: '#92400e', border: '1.5px solid #fde68a', fontSize: 12, cursor: 'pointer', fontFamily: 'inherit' }}>Leave it</button>
+      </div>
+
+      {/* File metadata */}
+      <div style={{ background: '#fff', padding: '6px 24px 6px', borderBottom: `1px solid ${LN}`, flexShrink: 0 }}>
+        <div style={{ fontSize: 12, color: MUT }}>Sheet · saved just now · 3 people can edit · shared with U12 Sam families</div>
+        <div style={{ fontSize: 12, color: MUT }}>9 players · 4 games · Sat 13 Dec, Banksia Park</div>
       </div>
 
       <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
         {/* Main grid / lineup */}
         <div style={{ flex: 1, padding: '16px 24px', overflowX: 'auto', overflowY: 'auto' }}>
-          <div style={{ fontSize: 15, fontWeight: 800, color: INK, marginBottom: 12 }}>Summer sevens · team sheets</div>
+          <div style={{ fontSize: 15, fontWeight: 800, color: INK, marginBottom: 4 }}>Summer sevens · team sheets</div>
+          <div style={{ fontSize: 12, color: MUT, marginBottom: 12 }}>Minutes = 15 for each Start or In goal</div>
 
           {view === 'table' && (
             <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, overflow: 'hidden', display: 'inline-block', minWidth: '100%' }}>
@@ -155,9 +163,9 @@ export default function FIL2Sheet({ onBack, onShare, onNav }: {
           {/* Tabs */}
           <div style={{ marginTop: 12, display: 'flex', gap: 2 }}>
             {['Team sheets', 'Contacts', 'Kit sizes'].map(t => (
-              <button key={t} onClick={() => setActiveTab(t)} style={{ height: 32, padding: '0 14px', borderRadius: '8px 8px 0 0', border: `1.5px solid ${LN}`, borderBottom: activeTab === t ? '1.5px solid #fff' : `1.5px solid ${LN}`, background: activeTab === t ? '#fff' : '#f7f8f7', fontSize: 12, color: activeTab === t ? INK : MUT, cursor: 'pointer', fontFamily: 'inherit' }}>{t}</button>
+              <button key={t} onClick={() => { setActiveTab(t); tool(t) }} style={{ minHeight: 44, padding: '0 14px', borderRadius: '8px 8px 0 0', border: `1.5px solid ${LN}`, borderBottom: activeTab === t ? '1.5px solid #fff' : `1.5px solid ${LN}`, background: activeTab === t ? '#fff' : '#f7f8f7', fontSize: 12, color: activeTab === t ? INK : MUT, cursor: 'pointer', fontFamily: 'inherit' }}>{t}</button>
             ))}
-            <button onClick={() => tool('+ Sheet')} style={{ height: 32, padding: '0 10px', borderRadius: '8px 8px 0 0', border: `1.5px solid ${LN}`, background: '#f7f8f7', fontSize: 12, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>+ Sheet</button>
+            <button onClick={() => tool('+ Sheet')} style={{ minHeight: 44, padding: '0 10px', borderRadius: '8px 8px 0 0', border: `1.5px solid ${LN}`, background: '#f7f8f7', fontSize: 12, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>+ Sheet</button>
           </div>
         </div>
 
@@ -165,13 +173,13 @@ export default function FIL2Sheet({ onBack, onShare, onNav }: {
         <div style={{ width: 220, borderLeft: `1px solid ${LN}`, background: '#fff', flexShrink: 0, display: 'flex', flexDirection: 'column' }}>
           <div style={{ display: 'flex', borderBottom: `1px solid ${LN}` }}>
             {(['Checks', 'Comments', 'Data'] as PanelTab[]).map(t => (
-              <button key={t} onClick={() => setPanelTab(t)} style={{ flex: 1, height: 38, background: 'none', border: 'none', borderBottom: panelTab === t ? `2px solid ${G}` : '2px solid transparent', fontSize: 11, fontWeight: panelTab === t ? 700 : 500, color: panelTab === t ? G : MUT, cursor: 'pointer', fontFamily: 'inherit' }}>{t}</button>
+              <button key={t} onClick={() => { setPanelTab(t); tool(t) }} style={{ flex: 1, minHeight: 44, background: 'none', border: 'none', borderBottom: panelTab === t ? `2px solid ${G}` : '2px solid transparent', fontSize: 11, fontWeight: panelTab === t ? 700 : 500, color: panelTab === t ? G : MUT, cursor: 'pointer', fontFamily: 'inherit' }}>{t}</button>
             ))}
           </div>
           <div style={{ flex: 1, padding: 12, fontSize: 12, color: MUT }}>
-            {panelTab === 'Checks' && <div>1 check: Ruby Lane over equal-time rule.</div>}
+            {panelTab === 'Checks' && <div>60 minutes; everyone else has 45. Rest her in game 3?</div>}
             {panelTab === 'Comments' && <div>No comments yet.</div>}
-            {panelTab === 'Data' && <div>Sheet has {PLAYERS.length} players, {GAMES.length} games.</div>}
+            {panelTab === 'Data' && <div>Player, Spot and Minutes come from your squad and this sheet&apos;s own choices. Change the squad and they change here.</div>}
           </div>
         </div>
       </div>

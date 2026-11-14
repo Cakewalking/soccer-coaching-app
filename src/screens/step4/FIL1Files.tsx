@@ -7,7 +7,7 @@ type FileItem = { id: string; name: string; type: 'sheet' | 'doc' | 'upload' | '
 const FILES: FileItem[] = [
   { id: '1', name: 'Summer sevens · team sheets', type: 'sheet', who: 'U12 Sam families · 9 of 17 opened', changed: 'Today' },
   { id: '2', name: 'Saturday v Harbour Rovers · where and when', type: 'doc', who: 'U12 Sam families · 12 of 17 opened', changed: 'Yesterday' },
-  { id: '3', name: 'Canteen and kit roster, term 2', type: 'sheet', who: 'Coaching team · Rob can edit', changed: 'Tue 2 Jun' },
+  { id: '3', name: 'Canteen and kit roster, term 2', type: 'sheet', who: 'Coaching team · Rob can edit', changed: 'Tue' },
   { id: '4', name: 'Season letter to families', type: 'doc', who: 'U12 Sam families', changed: '12 May' },
   { id: '5', name: 'Ground map, Redgum Reserve.pdf', type: 'upload', who: 'U12 Sam families', changed: '3 May' },
   { id: '6', name: "Coaches' meeting notes, May", type: 'doc', who: 'Coaching team only', changed: '28 May' },
@@ -63,13 +63,13 @@ export default function FIL1Files({ onOpenSheet, onOpenDoc, onNav }: {
           { label: 'Clips', target: 'PH1-HomeJuniorsSame' },
           { label: 'Record', target: 'REC1-RecordHub' },
         ].map(({ label, target }) => (
-          <div key={label} onClick={() => onNav?.(target)} style={{ fontSize: 13, fontWeight: 500, color: 'rgba(255,255,255,0.65)', cursor: 'pointer' }}>{label}</div>
+          <div key={label} onClick={() => onNav?.(target)} style={{ fontSize: 13, fontWeight: 500, color: 'rgba(255,255,255,0.65)', cursor: 'pointer', minHeight: 44, padding: '0 10px', display: 'flex', alignItems: 'center' }}>{label}</div>
         ))}
         <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 12 }}>
-          <div aria-label="Ask Clean Sheet" onClick={() => onNav?.('ASKd4-PanelFirst')} style={{ height: 32, padding: '0 14px', borderRadius: 999, border: '1.5px solid rgba(255,255,255,0.3)', display: 'flex', alignItems: 'center', fontSize: 13, color: '#fff', cursor: 'pointer', gap: 6 }}>
+          <div aria-label="Ask Clean Sheet" onClick={() => onNav?.('ASKd4-PanelFirst')} style={{ minHeight: 44, padding: '0 14px', borderRadius: 999, border: '1.5px solid rgba(255,255,255,0.3)', display: 'flex', alignItems: 'center', fontSize: 13, color: '#fff', cursor: 'pointer', gap: 6 }}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17 5.8 21.3l2.4-7.4L2 9.4h7.6L12 2z"/></svg>
           </div>
-          <div onClick={() => onNav?.('PH1-HomeJuniorsSame')} style={{ height: 32, padding: '0 14px', borderRadius: 999, border: '1.5px solid rgba(255,255,255,0.3)', display: 'flex', alignItems: 'center', fontSize: 13, color: '#fff', cursor: 'pointer', gap: 6 }}>
+          <div onClick={() => onNav?.('PH1-HomeJuniorsSame')} style={{ minHeight: 44, padding: '0 14px', borderRadius: 999, border: '1.5px solid rgba(255,255,255,0.3)', display: 'flex', alignItems: 'center', fontSize: 13, color: '#fff', cursor: 'pointer', gap: 6 }}>
             U12 Sam
           </div>
           <div style={{ width: 32, height: 32, borderRadius: '50%', background: '#7a9e7e', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, color: '#fff' }}>SK</div>
@@ -88,7 +88,7 @@ export default function FIL1Files({ onOpenSheet, onOpenDoc, onNav }: {
           { label: 'Team staff', target: 'PH1-HomeJuniorsSame' },
           { label: 'Files', target: 'FIL1-Files' },
         ].map(({ label, target }) => (
-          <div key={label} onClick={() => onNav?.(target)} style={{ height: 44, display: 'flex', alignItems: 'center', borderBottom: label === 'Files' ? `2px solid ${G}` : '2px solid transparent', fontSize: 13, fontWeight: label === 'Files' ? 700 : 500, color: label === 'Files' ? G : MUT, cursor: 'pointer' }}>{label}</div>
+          <div key={label} onClick={() => onNav?.(target)} style={{ height: 44, minWidth: 44, display: 'flex', alignItems: 'center', borderBottom: label === 'Files' ? `2px solid ${G}` : '2px solid transparent', fontSize: 13, fontWeight: label === 'Files' ? 700 : 500, color: label === 'Files' ? G : MUT, cursor: 'pointer' }}>{label}</div>
         ))}
         <div style={{ marginLeft: 'auto', fontSize: 12, color: MUT }}>Head coach</div>
       </div>
@@ -102,9 +102,9 @@ export default function FIL1Files({ onOpenSheet, onOpenDoc, onNav }: {
               <div style={{ fontSize: 13, color: MUT }}>U12 Sam · docs, sheets and anything you upload, in one place</div>
             </div>
             <div style={{ marginLeft: 'auto', display: 'flex', gap: 10 }}>
-              <button onClick={() => setUploadDone(true)} style={{ height: 36, padding: '0 16px', borderRadius: 999, border: `1.5px solid ${LN}`, background: uploadDone ? PALE : '#fff', fontSize: 13, color: uploadDone ? G : INK, cursor: 'pointer', fontFamily: 'inherit' }}>{uploadDone ? 'Uploaded ✓' : 'Upload'}</button>
-              <button onClick={() => onOpenSheet?.()} style={{ height: 36, padding: '0 16px', borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 13, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>New sheet</button>
-              <button onClick={() => onOpenDoc?.()} style={{ height: 36, padding: '0 16px', borderRadius: 999, background: G, color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>New doc</button>
+              <button onClick={() => setUploadDone(true)} style={{ minHeight: 44, padding: '0 16px', borderRadius: 999, border: `1.5px solid ${LN}`, background: uploadDone ? PALE : '#fff', fontSize: 13, color: uploadDone ? G : INK, cursor: 'pointer', fontFamily: 'inherit' }}>{uploadDone ? 'Uploaded ✓' : 'Upload'}</button>
+              <button onClick={() => onOpenSheet?.()} style={{ minHeight: 44, padding: '0 16px', borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 13, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>New sheet</button>
+              <button onClick={() => onOpenDoc?.()} style={{ minHeight: 44, padding: '0 16px', borderRadius: 999, background: G, color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>New doc</button>
             </div>
           </div>
 
@@ -115,7 +115,7 @@ export default function FIL1Files({ onOpenSheet, onOpenDoc, onNav }: {
               <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search files" style={{ width: '100%', height: 36, paddingLeft: 32, paddingRight: 12, border: `1.5px solid ${LN}`, borderRadius: 999, fontSize: 13, fontFamily: 'inherit', outline: 'none', boxSizing: 'border-box' }} />
             </div>
             {filters.map(f => (
-              <button key={f} onClick={() => setFilter(f)} style={{ height: 36, padding: '0 14px', borderRadius: 999, border: `1.5px solid ${filter === f ? G : LN}`, background: filter === f ? PALE : '#fff', fontSize: 13, color: filter === f ? G : INK, fontWeight: filter === f ? 700 : 400, cursor: 'pointer', fontFamily: 'inherit' }}>{f}</button>
+              <button key={f} onClick={() => setFilter(f)} style={{ minHeight: 44, padding: '0 14px', borderRadius: 999, border: `1.5px solid ${filter === f ? G : LN}`, background: filter === f ? PALE : '#fff', fontSize: 13, color: filter === f ? G : INK, fontWeight: filter === f ? 700 : 400, cursor: 'pointer', fontFamily: 'inherit' }}>{f}</button>
             ))}
           </div>
 

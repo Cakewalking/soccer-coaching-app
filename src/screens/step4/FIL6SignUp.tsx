@@ -41,13 +41,13 @@ export default function FIL6SignUp({ onBack, onShare, onNav }: {
           { label: 'Clips', target: 'PH1-HomeJuniorsSame' },
           { label: 'Record', target: 'REC1-RecordHub' },
         ].map(({ label, target }) => (
-          <div key={label} onClick={() => onNav?.(target)} style={{ fontSize: 13, fontWeight: 500, color: 'rgba(255,255,255,0.65)', cursor: 'pointer' }}>{label}</div>
+          <div key={label} onClick={() => onNav?.(target)} style={{ fontSize: 13, fontWeight: 500, color: 'rgba(255,255,255,0.65)', cursor: 'pointer', minHeight: 44, padding: '0 10px', display: 'flex', alignItems: 'center' }}>{label}</div>
         ))}
         <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 12 }}>
-          <div aria-label="Ask Clean Sheet" onClick={() => onNav?.('ASKd4-PanelFirst')} style={{ height: 32, padding: '0 14px', borderRadius: 999, border: '1.5px solid rgba(255,255,255,0.3)', display: 'flex', alignItems: 'center', fontSize: 13, color: '#fff', cursor: 'pointer', gap: 6 }}>
+          <div aria-label="Ask Clean Sheet" onClick={() => onNav?.('ASKd4-PanelFirst')} style={{ minHeight: 44, padding: '0 14px', borderRadius: 999, border: '1.5px solid rgba(255,255,255,0.3)', display: 'flex', alignItems: 'center', fontSize: 13, color: '#fff', cursor: 'pointer', gap: 6 }}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17 5.8 21.3l2.4-7.4L2 9.4h7.6L12 2z"/></svg>
           </div>
-          <div onClick={() => onNav?.('PH1-HomeJuniorsSame')} style={{ height: 32, padding: '0 14px', borderRadius: 999, border: '1.5px solid rgba(255,255,255,0.3)', display: 'flex', alignItems: 'center', fontSize: 13, color: '#fff', cursor: 'pointer' }}>U12 Sam</div>
+          <div onClick={() => onNav?.('PH1-HomeJuniorsSame')} style={{ minHeight: 44, padding: '0 14px', borderRadius: 999, border: '1.5px solid rgba(255,255,255,0.3)', display: 'flex', alignItems: 'center', fontSize: 13, color: '#fff', cursor: 'pointer' }}>U12 Sam</div>
           <div style={{ width: 32, height: 32, borderRadius: '50%', background: '#7a9e7e', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, color: '#fff' }}>SK</div>
         </div>
       </div>
@@ -64,35 +64,42 @@ export default function FIL6SignUp({ onBack, onShare, onNav }: {
           { label: 'Team staff', target: 'PH1-HomeJuniorsSame' },
           { label: 'Files', target: 'FIL1-Files' },
         ].map(({ label, target }) => (
-          <div key={label} onClick={() => onNav?.(target)} style={{ height: 44, display: 'flex', alignItems: 'center', borderBottom: label === 'Files' ? `2px solid ${G}` : '2px solid transparent', fontSize: 13, fontWeight: label === 'Files' ? 700 : 500, color: label === 'Files' ? G : MUT, cursor: 'pointer' }}>{label}</div>
+          <div key={label} onClick={() => onNav?.(target)} style={{ height: 44, minWidth: 44, display: 'flex', alignItems: 'center', borderBottom: label === 'Files' ? `2px solid ${G}` : '2px solid transparent', fontSize: 13, fontWeight: label === 'Files' ? 700 : 500, color: label === 'Files' ? G : MUT, cursor: 'pointer' }}>{label}</div>
         ))}
         <div style={{ marginLeft: 'auto', fontSize: 12, color: MUT }}>Head coach</div>
       </div>
 
       {/* File toolbar */}
       <div style={{ background: '#fff', borderBottom: `1px solid ${LN}`, padding: '0 16px', display: 'flex', gap: 6, height: 44, alignItems: 'center', flexShrink: 0 }}>
-        <button onClick={() => onBack?.()} style={{ fontSize: 13, color: MUT, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', padding: '0 8px', whiteSpace: 'nowrap' }}>Back to Files</button>
+        <button onClick={() => onBack?.()} style={{ fontSize: 13, color: MUT, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', padding: '0 8px', whiteSpace: 'nowrap', minHeight: 44, display: 'flex', alignItems: 'center' }}>Back to Files</button>
         <div style={{ width: 1, height: 24, background: LN, flexShrink: 0 }} />
         {['History', 'Download', '+ Job', 'Copy from last time'].map(b => (
-          <button key={b} onClick={() => tool(b)} style={{ height: 28, padding: '0 10px', borderRadius: 6, border: `1px solid ${LN}`, background: lastTool === b ? PALE : '#fff', fontSize: 12, cursor: 'pointer', fontFamily: 'inherit', color: lastTool === b ? G : INK, whiteSpace: 'nowrap' }}>{b}</button>
+          <button key={b} onClick={() => tool(b)} style={{ minHeight: 44, padding: '0 10px', borderRadius: 6, border: `1px solid ${LN}`, background: lastTool === b ? PALE : '#fff', fontSize: 12, cursor: 'pointer', fontFamily: 'inherit', color: lastTool === b ? G : INK, whiteSpace: 'nowrap' }}>{b}</button>
         ))}
         <div style={{ marginLeft: 'auto', display: 'flex', gap: 6 }}>
-          <button onClick={() => onShare?.()} style={{ height: 28, padding: '0 12px', borderRadius: 999, background: G, color: '#fff', border: 'none', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Share</button>
+          <button onClick={() => onShare?.()} style={{ minHeight: 44, padding: '0 12px', borderRadius: 999, background: G, color: '#fff', border: 'none', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Share</button>
         </div>
+      </div>
+
+      {/* Sign-up metadata */}
+      <div style={{ background: '#fff', padding: '4px 24px', borderBottom: `1px solid ${LN}`, flexShrink: 0 }}>
+        <div style={{ fontSize: 12, color: MUT }}>Sign-up sheet · shared with U12 Sam families · 11 of 17 have answered</div>
+        <div style={{ fontSize: 12, color: MUT }}>Closes Thu 11 Dec, 6:00 pm</div>
       </div>
 
       <div style={{ display: 'flex', flex: 1 }}>
         <div style={{ flex: 1, padding: '24px 24px 24px 32px' }}>
-          <div style={{ display: 'flex', alignItems: 'baseline', gap: 16, marginBottom: 20 }}>
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: 16, marginBottom: 12 }}>
             <div style={{ fontSize: 22, fontWeight: 800, color: INK }}>Summer sevens · who can help</div>
-            <div style={{ fontSize: 13, color: MUT }}>Closes Thu 11 Dec 6:00 pm</div>
             <div style={{ marginLeft: 'auto', display: 'flex', gap: 8 }}>
               {(['Jobs', 'By family'] as const).map(v => (
-                <button key={v} onClick={() => setView(v)} style={{ height: 34, padding: '0 16px', borderRadius: 999, border: `1.5px solid ${view === v ? G : LN}`, background: view === v ? PALE : '#fff', fontSize: 13, color: view === v ? G : INK, fontWeight: view === v ? 700 : 400, cursor: 'pointer', fontFamily: 'inherit' }}>{v}</button>
+                <button key={v} onClick={() => { setView(v); tool(v) }} style={{ minHeight: 44, padding: '0 16px', borderRadius: 999, border: `1.5px solid ${view === v ? G : LN}`, background: view === v ? PALE : '#fff', fontSize: 13, color: view === v ? G : INK, fontWeight: view === v ? 700 : 400, cursor: 'pointer', fontFamily: 'inherit' }}>{v}</button>
               ))}
-              <button onClick={() => tool('Print')} style={{ height: 34, padding: '0 16px', borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 13, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Print</button>
+              <button onClick={() => tool('Print')} style={{ minHeight: 44, padding: '0 16px', borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 13, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Print</button>
             </div>
           </div>
+          <div style={{ fontSize: 13, color: MUT, marginBottom: 12 }}>Families tap a job on their phone. A job disappears for others when it is full.</div>
+          <div style={{ fontSize: 13, color: MUT, marginBottom: 20 }}>6 families have not answered.</div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 12, marginBottom: 20 }}>
             {[
@@ -152,9 +159,9 @@ export default function FIL6SignUp({ onBack, onShare, onNav }: {
             ))}
           </div>
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px' }}>
-            <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 10 }}>6 families haven't answered</div>
-            <button onClick={() => setReminded(true)} style={{ width: '100%', height: 36, borderRadius: 999, background: reminded ? '#5a8a7a' : G, color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>{reminded ? 'Reminder sent ✓' : 'Remind the 6'}</button>
-            <div style={{ fontSize: 11, color: MUT, marginTop: 8 }}>The reminder shows only open jobs.</div>
+            <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 10 }}>6 families have not answered</div>
+            <button onClick={() => setReminded(true)} style={{ width: '100%', minHeight: 44, borderRadius: 999, background: reminded ? '#5a8a7a' : G, color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>{reminded ? 'Reminder sent ✓' : 'Remind the 6'}</button>
+            <div style={{ fontSize: 11, color: MUT, marginTop: 8 }}>Clean Sheet shows each family the jobs they have done least this season first. Nobody sees a tally of others.</div>
           </div>
         </div>
       </div>

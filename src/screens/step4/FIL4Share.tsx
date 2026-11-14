@@ -10,7 +10,7 @@ const accessLabel: Record<Access, string> = { edit: 'Can edit', view: 'Can see',
 export default function FIL4Share({ onClose }: { onClose?: () => void }) {
   const [groups, setGroups] = useState<Group[]>([
     { label: 'Coaching team', sub: 'Sam, Rob, fitness coach', access: 'edit' },
-    { label: "U12 Sam's families", sub: '17 families', access: 'view' },
+    { label: "U12 Sam's families", sub: '17 families · they get a message with the file', access: 'view' },
     { label: 'Team manager', sub: 'Jess Marsh', access: 'edit' },
     { label: 'The club', sub: 'Director, coordinators', access: 'none' },
   ])
@@ -27,7 +27,7 @@ export default function FIL4Share({ onClose }: { onClose?: () => void }) {
       <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 20, padding: '32px', width: 520, boxShadow: '0 20px 60px rgba(0,0,0,0.2)', maxHeight: '80vh', overflowY: 'auto' }}>
         <div style={{ display: 'flex', alignItems: 'center', marginBottom: 8 }}>
           <div style={{ fontSize: 18, fontWeight: 800, color: INK, flex: 1 }}>Who can see this</div>
-          <button onClick={() => onClose?.()} style={{ background: 'none', border: 'none', fontSize: 14, color: MUT, cursor: 'pointer', fontFamily: 'inherit', padding: '4px 8px' }}>Close</button>
+          <button onClick={() => onClose?.()} style={{ background: 'none', border: 'none', fontSize: 14, color: MUT, cursor: 'pointer', fontFamily: 'inherit', padding: '4px 8px', minHeight: 44 }}>Close</button>
         </div>
         <div style={{ fontSize: 13, color: MUT, marginBottom: 24 }}>Summer sevens · team sheets</div>
 
@@ -37,7 +37,7 @@ export default function FIL4Share({ onClose }: { onClose?: () => void }) {
               <div style={{ fontSize: 14, fontWeight: 600, color: INK }}>{g.label}</div>
               <div style={{ fontSize: 12, color: MUT }}>{g.sub}</div>
             </div>
-            <button onClick={() => cycleAccess(i)} style={{ height: 36, padding: '0 14px', borderRadius: 8, border: `1.5px solid ${LN}`, fontSize: 13, fontFamily: 'inherit', cursor: 'pointer', color: INK, background: '#fff' }}>
+            <button onClick={() => cycleAccess(i)} style={{ minHeight: 44, padding: '0 14px', borderRadius: 8, border: `1.5px solid ${LN}`, fontSize: 13, fontFamily: 'inherit', cursor: 'pointer', color: INK, background: '#fff' }}>
               {accessLabel[g.access]}
             </button>
           </div>
@@ -45,8 +45,8 @@ export default function FIL4Share({ onClose }: { onClose?: () => void }) {
 
         <div style={{ marginTop: 20, background: '#fffbeb', border: '1.5px solid #fde68a', borderRadius: 10, padding: '12px 16px' }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#92400e', marginBottom: 4 }}>Open link not allowed</div>
-          <div style={{ fontSize: 12, color: '#78350f' }}>This file contains player names. It can only be shared with people in Clean Sheet.</div>
-          <button onClick={() => setDownloading(true)} style={{ marginTop: 8, height: 30, padding: '0 14px', borderRadius: 999, background: downloading ? PALE : '#fff', border: '1.5px solid #fde68a', fontSize: 12, color: downloading ? G : '#92400e', cursor: 'pointer', fontFamily: 'inherit' }}>
+          <div style={{ fontSize: 12, color: '#78350f' }}>Off: this file has children&apos;s names. Download a copy without names to send outside Clean Sheet.</div>
+          <button onClick={() => setDownloading(true)} style={{ marginTop: 8, minHeight: 44, padding: '0 14px', borderRadius: 999, background: downloading ? PALE : '#fff', border: '1.5px solid #fde68a', fontSize: 12, color: downloading ? G : '#92400e', cursor: 'pointer', fontFamily: 'inherit' }}>
             {downloading ? 'Downloading ✓' : 'Download without names'}
           </button>
         </div>

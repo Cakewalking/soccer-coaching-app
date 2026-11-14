@@ -801,7 +801,7 @@ function FIL4ShareWithFIL2Bg() {
   if (inner) return <>{renderScreen(inner)}</>
   return (
     <div style={{ position: 'relative' }}>
-      <FIL2Sheet onBack={() => setInner('FIL1-Files')} onShare={() => {}} onNav={(s) => setInner(s)} />
+      <FIL2Sheet onBack={() => setInner('FIL1-Files')} onShare={() => setInner('FIL4-Share')} onNav={(s) => setInner(s)} />
       <FIL4Share onClose={() => setInner('FIL2-Sheet')} />
     </div>
   )
@@ -830,6 +830,20 @@ function FIL5ClubFilesNav() {
   const [inner, setInner] = useState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <FIL5ClubFiles onNav={(s) => setInner(s)} />
+}
+function FIL1eFilesEmptyNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <FIL1eFilesEmpty onNav={(s) => setInner(s)} onOpenSheet={() => setInner('FIL2-Sheet')} />
+}
+function FIL3bDocParentNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}>
+      <FIL3bDocParent onNav={(s) => setInner(s)} />
+    </div>
+  )
 }
 function FILp1ParentFilesNav() {
   const [inner, setInner] = useState<string | null>(null)
@@ -2051,11 +2065,11 @@ function renderScreenInner(key: string): ReactNode {
     case 'PRM6-Usage':            return <PRM6UsageNav />
     // Files (FIL)
     case 'FIL1-Files':            return <FIL1FilesNav />
-    case 'FIL1e-FilesEmpty':      return <FIL1eFilesEmpty />
+    case 'FIL1e-FilesEmpty':      return <FIL1eFilesEmptyNav />
     case 'FIL2-Sheet':            return <FIL2SheetNav />
     case 'FIL2b-SheetLineup':     return <FIL2bSheetLineupNav />
     case 'FIL3-Doc':              return <FIL3DocNav />
-    case 'FIL3b-DocParent':       return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><FIL3bDocParent onBack={noop} /></div>
+    case 'FIL3b-DocParent':       return <FIL3bDocParentNav />
     case 'FIL4-Share':            return <FIL4ShareWithFIL2Bg />
     case 'FIL5-ClubFiles':        return <FIL5ClubFilesNav />
     case 'FIL6-SignUp':           return <FIL6SignUpNav />
