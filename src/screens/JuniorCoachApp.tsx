@@ -197,7 +197,7 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
       subTabs={subTabs}
       activeSubTabIndex={activeIdx}
       onSubTab={handleSubTab}
-      roleChip={coachRole === 'ccoach' ? 'Co-coach' : 'Head coach'}
+      roleChip={coachRole === 'ccoach' ? 'Assistant coach' : 'Head coach'}
       teamLabel={coachLabel ?? (inSandbox ? (store.teams[0]?.name ?? 'My team') : 'U12 Sam · Wattle Creek')}
       avatarLetters={coachInitials ?? 'SK'}
       showAsk={true}

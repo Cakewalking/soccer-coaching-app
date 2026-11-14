@@ -371,8 +371,8 @@ import CoachPhoneApp, { CPh1CoachPhoneHome, CPh2CoachPhoneComing, CPh3CoachPhone
 import DemoStart             from './DemoStart'
 import DemoStartEmpty        from './DemoStartEmpty'
 import StartPage             from '../start/StartPage'
-import { HomeStoryTablet, HomeStoryPhone, HomeStoryMiniRoosTraining, HomeStoryMiniRoosNoFilm } from '../story/HomeStory'
-import { TABLET_CONFIGS }     from '../story/configs'
+import { HomeStoryTablet, HomeStoryPhone, HomeStoryBody, HomeStoryMiniRoosTraining, HomeStoryMiniRoosNoFilm } from '../story/HomeStory'
+import { TABLET_CONFIGS, STO1, STO4, STO5, STO6, STO7 } from '../story/configs'
 import { PHONE_CONFIGS }      from '../story/phoneConfigs'
 import DemoWhy               from './DemoWhy'
 import DemoTourShell         from './DemoTourShell'
@@ -2372,7 +2372,7 @@ export default function DemoApp() {
     if (role === 'coach') {
       sbApp = <JuniorCoachApp empty={sbEmpty} initialScreen={screen} onNavChange={setScreen} />
     } else if (role === 'ccoach') {
-      sbApp = <JuniorCoachApp empty={sbEmpty} coachRole="ccoach" coachLabel="U12 Sam · Co-coach" coachInitials="JM" initialScreen={screen} onNavChange={setScreen} />
+      sbApp = <JuniorCoachApp empty={sbEmpty} coachRole="ccoach" coachLabel="U12 Sam · Assistant coach" coachInitials="JM" initialScreen={screen} onNavChange={setScreen} />
     } else if (role === 'youth') {
       sbApp = <SeniorsYouthCoachApp teamType="youth" onBack={noop} empty={sbEmpty} initialScreen={screen} onNavChange={setScreen} />
     } else if (role === 'seniors') {
@@ -2458,32 +2458,32 @@ export default function DemoApp() {
         const pc = phase === 'preseason' ? <SP2HomePreSeason onBack={noop} />
                  : phase === 'postseason' ? <SP10HomePostSeason onBack={noop} />
                  : phase === 'restmonth' ? <SP16RestMonth onBack={noop} />
-                 : undefined
+                 : <HomeStoryBody cfg={STO5} />
         lookContent = <JuniorCoachApp phaseContent={pc} initialScreen={screen} onNavChange={setScreen} />
       }
     } else if (role === 'ccoach') {
       const pc = phase === 'preseason' ? <SPc2CoCoachPreSeason onBack={noop} />
                : phase === 'postseason' ? <SP10HomePostSeason onBack={noop} />
                : phase === 'restmonth' ? <SP16RestMonth onBack={noop} />
-               : undefined
-      lookContent = <JuniorCoachApp phaseContent={pc} coachLabel="U12 Sam · Co-coach" coachInitials="JM" initialScreen={screen} onNavChange={setScreen} coachRole="ccoach" />
+               : <HomeStoryBody cfg={STO7} />
+      lookContent = <JuniorCoachApp phaseContent={pc} coachLabel="U12 Sam · Assistant coach" coachInitials="JM" initialScreen={screen} onNavChange={setScreen} coachRole="ccoach" />
     } else if (role === 'youth') {
       const pc = phase === 'preseason' ? <SPy2YouthPreSeason onBack={noop} />
                : phase === 'postseason' ? <SPy10YouthPostSeason onBack={noop} />
                : phase === 'restmonth' ? <SPy16YouthRestMonth onBack={noop} />
-               : undefined
+               : <HomeStoryBody cfg={STO6} />
       lookContent = <SeniorsYouthCoachApp teamType="youth" onBack={noop} phaseContent={pc} initialScreen={screen} onNavChange={setScreen} />
     } else if (role === 'seniors') {
       const pc = phase === 'preseason' ? <SPs2SeniorPreSeason onBack={noop} />
                : phase === 'postseason' ? <SPs10SeniorPostSeason onBack={noop} />
                : phase === 'restmonth' ? <SPs16SeniorOffSeason onBack={noop} />
-               : undefined
+               : <HomeStoryBody cfg={STO4} />
       lookContent = <SeniorsYouthCoachApp teamType="seniors" onBack={noop} phaseContent={pc} initialScreen={screen} onNavChange={setScreen} />
     } else if (role === 'miniroos') {
       const pc = phase === 'preseason' ? <SPm2MiniRoosPreSeason onBack={noop} />
                : phase === 'postseason' ? <SPm10MiniRoosPostSeason onBack={noop} />
                : phase === 'restmonth' ? <SPm16MiniRoosRest onBack={noop} />
-               : undefined
+               : <HomeStoryBody cfg={STO1} />
       lookContent = <div style={{ width: 1180, background: 'var(--surface-100)' }}><MiniRoosApp onBack={() => setRole('coach')} empty={false} phaseContent={pc} initialScreen={screen} onNavChange={setScreen} /></div>
     } else if (role === 'goalkeeper') {
       lookContent = <GoalkeeperCoachApp onBack={() => setRole('coach')} empty={false} initialScreen={screen} onNavChange={setScreen} />

@@ -338,6 +338,29 @@ export function HomeStoryTablet({ cfg, onNav }: { cfg: HomeCfg; onNav?: (s: stri
   )
 }
 
+// Content-only Home (ask line + four-part grid) for dropping inside a role's
+// existing frame (the role app supplies the top/sub nav and Ask panel).
+export function HomeStoryBody({ cfg, onNav }: { cfg: HomeCfg; onNav?: (s: string) => void }) {
+  const [lastTool, setLastTool] = useState('')
+  const [toast, setToast] = useState<string | null>(null)
+  const nav = (s: string) => onNav ? onNav(s) : tool(s)
+  const tool = (s: string) => { setLastTool(s); setToast(s); setTimeout(() => setToast(null), 2500) }
+  return (
+    <div data-lasttool={lastTool} style={{ flex: 1, display: 'flex', flexDirection: 'column', background: '#f4f6f5', fontFamily: "'DM Sans',system-ui,sans-serif", overflowY: 'auto' }}>
+      <AskLine cfg={cfg} nav={nav} />
+      <div style={{ padding: '12px 28px 18px', display: 'grid', gap: 14, gridTemplateColumns: 'minmax(0,1fr) minmax(0,1.08fr) 300px', gridTemplateRows: 'auto minmax(0,1fr)', flex: 1 }}>
+        <div style={{ gridColumn: '1 / 4', background: DARK, borderRadius: 20, padding: '18px 24px' }}>
+          <ProofInner p={cfg.proof} nav={nav} tool={tool} />
+        </div>
+        <ReadyCard r={cfg.ready} nav={nav} tool={tool} />
+        <MomentsCard m={cfg.moments} nav={nav} tool={tool} />
+        <RightColumn done={cfg.done} needs={cfg.needs} nav={nav} tool={tool} />
+      </div>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 14, fontWeight: 600 }}>{toast}</div>}
+    </div>
+  )
+}
+
 function AskLine({ cfg, nav }: { cfg: HomeCfg; nav: (s: string) => void }) {
   return (
     <div style={{ padding: '14px 28px 0' }}>
