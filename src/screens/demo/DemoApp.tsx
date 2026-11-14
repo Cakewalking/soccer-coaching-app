@@ -371,6 +371,8 @@ import CoachPhoneApp, { CPh1CoachPhoneHome, CPh2CoachPhoneComing, CPh3CoachPhone
 import DemoStart             from './DemoStart'
 import DemoStartEmpty        from './DemoStartEmpty'
 import StartPage             from '../start/StartPage'
+import { HomeStoryTablet }   from '../story/HomeStory'
+import { TABLET_CONFIGS }     from '../story/configs'
 import DemoWhy               from './DemoWhy'
 import DemoTourShell         from './DemoTourShell'
 import DemoPhone             from './DemoPhone'
@@ -795,6 +797,14 @@ function FIL1FilesNav() {
 // Checking-only wrapper for the /__screen/STA* route. Each control fires a
 // status line so the acceptance check sees the page change. In the real app
 // (view 'signin') StartPage is wired to the actual navigation handlers.
+function HomeStoryNav({ id }: { id: string }) {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  const cfg = TABLET_CONFIGS[id]
+  if (!cfg) return <div style={{ padding: 48 }}>Home story "{id}" not yet built.</div>
+  return <HomeStoryTablet cfg={cfg} onNav={(s) => setInner(s)} />
+}
+
 function StartPageNav({ phone }: { phone?: boolean }) {
   const [fired, setFired] = useState<string | null>(null)
   const go = (dest: string) => () => setFired(dest)
@@ -2130,6 +2140,11 @@ function renderScreenInner(key: string): ReactNode {
     // Start page (STA)
     case 'STA1-StartPage':        return <StartPageNav />
     case 'STA2-StartPagePhone':   return <StartPageNav phone />
+    // Home that tells a story (STO)
+    case 'STO1-HomeStoryMiniRoos':
+    case 'STO2-HomeStoryMiniRoosTraining':
+    case 'STO3-HomeStoryMiniRoosNoFilm':
+      return <HomeStoryNav id={key} />
 
     default:
       return (
