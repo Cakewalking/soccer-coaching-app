@@ -145,9 +145,6 @@ import RCm1RecordChoice           from '../step4/RCm1RecordChoice'
 import RCm2ClipPicker             from '../step4/RCm2ClipPicker'
 // Step 4 screens — MiniRoos screens
 import HM1HomeMiniRoos            from '../step4/HM1HomeMiniRoos'
-import HM2SquadMiniRoos           from '../step4/HM2SquadMiniRoos'
-import HM3TrainingMiniRoos        from '../step4/HM3TrainingMiniRoos'
-import HM4GameDayMiniRoos         from '../step4/HM4GameDayMiniRoos'
 import HM5WhatWeSaw               from '../step4/HM5WhatWeSaw'
 import HM5bThankParents           from '../step4/HM5bThankParents'
 import HM6SeasonNotes             from '../step4/HM6SeasonNotes'
@@ -1422,9 +1419,9 @@ function renderScreenInner(key: string): ReactNode {
 
     // Design IDs — MiniRoos screens (HM)
     case 'HM1-HomeMiniRoos':          return <HM1HomeMiniRoos />
-    case 'HM2-SquadMiniRoos':         return <HM2SquadMiniRoos />
-    case 'HM3-TrainingMiniRoos':      return <HM3TrainingMiniRoos />
-    case 'HM4-GameDayMiniRoos':       return <HM4GameDayMiniRoos />
+    case 'HM2-SquadMiniRoos':         return <MiniRoosApp onBack={noop} empty={false} initialScreen="squad" />
+    case 'HM3-TrainingMiniRoos':      return <MiniRoosApp onBack={noop} empty={false} initialScreen="training" />
+    case 'HM4-GameDayMiniRoos':       return <MiniRoosApp onBack={noop} empty={false} initialScreen="gameday" />
     case 'HM5-WhatWeSaw':             return <HM5WhatWeSaw />
     case 'HM5b-ThankParents':         return <HM5bThankParents />
     case 'HM6-SeasonNotes':           return <HM6SeasonNotes />
@@ -1432,7 +1429,7 @@ function renderScreenInner(key: string): ReactNode {
     case 'HM8-CalendarMiniRoos':      return <HM8CalendarMiniRoos />
     case 'HM9-FixturesMiniRoos':      return <HM9FixturesMiniRoos />
     case 'HM10-StaffMiniRoos':        return <HM10StaffMiniRoos />
-    case 'HM11-ComingMiniRoos':       return <HM11ComingMiniRoos />
+    case 'HM11-ComingMiniRoos':       return <MiniRoosApp onBack={noop} empty={false} initialScreen="gameday" />
     case 'HM12-ConsentMiniRoos':      return <HM12ConsentMiniRoos />
     case 'HM3e-TrainingMiniRoosEmpty': return <HM3eTrainingMiniRoosEmpty />
     case 'HM2e-SquadMiniRoosEmpty':   return <MiniRoosApp onBack={noop} empty={true} />
