@@ -4,7 +4,7 @@ const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8
 
 type FileItem = { id: string; name: string; subtitle: string }
 
-export default function FILp1ParentFiles({ onBack, onNav }: {
+export default function FILp1ParentFiles({ onBack: _onBack, onNav }: {
   onBack?: () => void
   onNav?: (s: string) => void
 }) {
