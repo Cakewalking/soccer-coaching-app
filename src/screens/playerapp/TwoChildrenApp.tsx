@@ -446,10 +446,10 @@ function ClipsView({ onBack }: { onBack: () => void }) {
   )
 }
 
-export default function TwoChildrenApp({ empty = false }: { onBack: () => void; empty?: boolean }) {
+export default function TwoChildrenApp({ empty = false, initialView }: { onBack?: () => void; empty?: boolean; initialView?: AppView }) {
   const { active: inSandbox, store } = useSandbox()
   const [childTab, setChildTab] = useState<ChildTab>('both')
-  const [view, setView] = useState<AppView>('home')
+  const [view, setView] = useState<AppView>(initialView ?? 'home')
 
   const sbHasTeam = inSandbox && store.teams.length > 0
   const showEmpty = inSandbox ? !sbHasTeam : empty

@@ -157,10 +157,7 @@ import HM9FixturesMiniRoos        from '../step4/HM9FixturesMiniRoos'
 import HM10StaffMiniRoos          from '../step4/HM10StaffMiniRoos'
 import HM12ConsentMiniRoos        from '../step4/HM12ConsentMiniRoos'
 // Step 4 screens — Team Manager additional
-import TM2ManagerGameDay          from '../step4/TM2ManagerGameDay'
 import TM3ManagerChange           from '../step4/TM3ManagerChange'
-import TM4DutyRoster              from '../step4/TM4DutyRoster'
-import TM5ManagerMessages         from '../step4/TM5ManagerMessages'
 import TM7HeadKnock               from '../step4/TM7HeadKnock'
 import TM8SidelineReport          from '../step4/TM8SidelineReport'
 import TM9SignOff                  from '../step4/TM9SignOff'
@@ -384,7 +381,7 @@ import { C3ClipsByPlayer, CL1Playlists, TC1ToCheck, TC1bToCheckDone, TC1eToCheck
 import { GT1Growth, GT1eGrowthEmpty }    from '../step4/GT1Growth'
 import { WK1ThisWeek, CF1Fixtures, AV1Availability, MS1TeamSheet, R1MatchReview, SE1SeasonSummaries, SE1eSeasonSummariesEmpty, AV1eAvailabilityEmpty } from '../step4/CoachSubScreens'
 import { DSet5ClubPlan, DRo1Rollover, DRo1eRolloverEmpty } from '../step4/DirScreens2'
-import { B1CoachAndFitness, PO1OlderHome, CH8ChatInfo, PS1ParentSettings, PS2ParentNotifications, PS3ParentData, PS4PlayerMe } from '../step4/MiscScreens'
+import { B1CoachAndFitness, PO1OlderHome, CH8ChatInfo, PS2ParentNotifications, PS3ParentData, PS4PlayerMe } from '../step4/MiscScreens'
 import {
   D2eTeamsEmpty, D3eCoachesEmpty, D4ePlayersEmpty, D5eSafeguardingEmpty, D6eBoardReportEmpty,
   DB2eSeasonReviewEmpty, DB3eLeagueReturnsEmpty, DB4eGrantsEmpty, DC1eCalendarEmpty, DCo1eCoordinatorHomeEmpty,
@@ -1445,10 +1442,10 @@ function renderScreenInner(key: string): ReactNode {
     case 'HM4e-GameDayMiniRoosEmpty': return <HM4eGameDayMiniRoosEmpty />
     // Design IDs — Team Manager screens (TM phone)
     case 'TM1-ManagerHome':           return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TeamManagerScreen empty={false} /></div>
-    case 'TM2-ManagerGameDay':        return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TM2ManagerGameDay /></div>
+    case 'TM2-ManagerGameDay':        return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TeamManagerScreen empty={false} initialScreen="gameday" /></div>
     case 'TM3-ManagerChange':         return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TM3ManagerChange /></div>
-    case 'TM4-DutyRoster':            return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TM4DutyRoster /></div>
-    case 'TM5-ManagerMessages':       return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TM5ManagerMessages /></div>
+    case 'TM4-DutyRoster':            return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TeamManagerScreen empty={false} initialScreen="roster" /></div>
+    case 'TM5-ManagerMessages':       return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TeamManagerScreen empty={false} initialScreen="messages" /></div>
     case 'TM6-ManagerWhosComing':     return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TM6WhoComing /></div>
     case 'TM7-HeadKnock':             return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TM7HeadKnock /></div>
     case 'TM8-SidelineReport':        return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TM8SidelineReport /></div>
@@ -1977,7 +1974,7 @@ function renderScreenInner(key: string): ReactNode {
     case 'PO2e-OlderClipsEmpty':               return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PO2eOlderClipsEmpty /></div>
     case 'PO4e-OlderBodyEmpty':                return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PO4eOlderBodyEmpty /></div>
     // Parent settings (new)
-    case 'ps1': case 'PS1-ParentSettings':     return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PS1ParentSettings /></div>
+    case 'ps1': case 'PS1-ParentSettings':     return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TwoChildrenApp onBack={noop} empty={false} initialView="settings" /></div>
     case 'ps2': case 'PS2-ParentNotifications': return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PS2ParentNotifications /></div>
     case 'ps3': case 'PS3-ParentData':         return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PS3ParentData /></div>
     case 'ps4': case 'PS4-PlayerMe':           return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PS4PlayerMe /></div>

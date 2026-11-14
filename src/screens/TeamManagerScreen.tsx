@@ -32,8 +32,8 @@ const RSVP = [
 ]
 
 
-export default function TeamManagerScreen({ empty }: { empty?: boolean }) {
-  const [tab, setTab] = useState<ManagerTab>('home')
+export default function TeamManagerScreen({ empty, initialScreen }: { empty?: boolean; initialScreen?: ManagerTab }) {
+  const [tab, setTab] = useState<ManagerTab>(initialScreen ?? 'home')
   const [showChange, setShowChange] = useState(false)
   const [gamedayPhase, setGamedayPhase] = useState<GamedayPhase>('before')
   const [checkedItems, setCheckedItems] = useState<Set<number>>(new Set())
