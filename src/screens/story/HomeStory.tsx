@@ -337,3 +337,142 @@ export function HomeStoryTablet({ cfg, onNav }: { cfg: HomeCfg; onNav?: (s: stri
     </div>
   )
 }
+
+function AskLine({ cfg, nav }: { cfg: HomeCfg; nav: (s: string) => void }) {
+  return (
+    <div style={{ padding: '14px 28px 0' }}>
+      <button onClick={() => nav(cfg.askTarget)} style={{ width: '100%', height: 52, borderRadius: 14, border: `1px solid ${HAIR}`, background: '#fff', display: 'flex', alignItems: 'center', gap: 10, padding: '0 16px', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill={GREEN} aria-hidden="true"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17 5.8 21.3l2.4-7.4L2 9.4h7.6L12 2z" /></svg>
+        <span style={{ fontSize: 15, color: GREY }}>{cfg.ask}</span>
+      </button>
+    </div>
+  )
+}
+
+const outlineBtnDark: React.CSSProperties = { height: 46, padding: '0 18px', borderRadius: 12, fontSize: 15, fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: 8, background: 'transparent', border: `1px solid ${PALE}`, color: '#fff', cursor: 'pointer', fontFamily: 'inherit' }
+const amberBtnDark: React.CSSProperties = { height: 46, padding: '0 18px', borderRadius: 12, fontSize: 15, fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: 8, border: 'none', background: AMBER, color: INK, cursor: 'pointer', fontFamily: 'inherit' }
+
+// STO2 — MiniRoos training-day Home (bespoke proof + "Saturday in 40 seconds" card)
+export function HomeStoryMiniRoosTraining({ cfg, onNav }: { cfg: HomeCfg; onNav?: (s: string) => void }) {
+  const [lastTool, setLastTool] = useState('')
+  const [toast, setToast] = useState<string | null>(null)
+  const nav = (s: string) => onNav?.(s)
+  const tool = (s: string) => { setLastTool(s); setToast(s); setTimeout(() => setToast(null), 2500) }
+  const games = ['5:00 · Traffic lights dribble', '5:10 · Treasure island', '5:20 · Gates galore', '5:30 · 4 v 4, four goals']
+  return (
+    <div data-lasttool={lastTool}>
+      <Frame cfg={cfg} nav={nav} tool={tool}>
+        <AskLine cfg={cfg} nav={nav} />
+        <div style={{ padding: '12px 28px 18px', display: 'grid', gap: 14, gridTemplateColumns: 'minmax(0,1fr) minmax(0,1.08fr) 300px', gridTemplateRows: 'auto minmax(0,1fr)', flex: 1 }}>
+          <div style={{ gridColumn: '1 / 4', background: DARK, borderRadius: 20, padding: '18px 24px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 300px', gap: 28, alignItems: 'center' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
+                <span style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', color: AMBER }}>TONIGHT · 5:00 pm · WATTLE CREEK RESERVE</span>
+                <h1 style={{ margin: 0, fontSize: 27, lineHeight: '34px', letterSpacing: '-0.02em', color: '#fff', fontWeight: 700 }}>Four games, ready. Tonight is about finding a friend in space.</h1>
+                <span style={{ fontSize: 15, lineHeight: '21px', color: PALE }}>Built from Saturday, when they bunched round the ball. 8 are coming, 2 still to answer.</span>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 2 }}>
+                  {games.map(g => <span key={g} style={{ height: 30, padding: '0 12px', borderRadius: 8, background: 'rgba(255,255,255,0.10)', display: 'inline-flex', alignItems: 'center', fontSize: 13, color: '#fff' }}>{g}</span>)}
+                </div>
+                <div style={{ display: 'flex', gap: 8, marginTop: 6 }}>
+                  <button onClick={() => tool('Start tonight')} style={amberBtnDark}>Start tonight</button>
+                  <button onClick={() => tool('Swap a game')} style={outlineBtnDark}>Swap a game</button>
+                </div>
+              </div>
+              <button onClick={() => tool('0:25 reel')} style={{ display: 'flex', flexDirection: 'column', gap: 6, background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
+                <span style={{ height: 132, borderRadius: 12, background: 'rgba(255,255,255,0.10)', border: `1px solid ${PALE}`, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+                  <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style={{ opacity: 0.85 }}><path d="M8 5l11 7-11 7z" /></svg>
+                  <span style={{ position: 'absolute', left: 10, bottom: 10, fontSize: 12, fontWeight: 700, background: 'rgba(0,0,0,0.35)', padding: '2px 8px', borderRadius: 6 }}>0:25</span>
+                </span>
+                <span style={{ display: 'flex', gap: 6 }}>{['Bunching', 'Space', 'A friend'].map(c => <span key={c} style={{ flex: 1, height: 30, borderRadius: 6, background: 'rgba(255,255,255,0.14)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, color: '#fff' }}>{c}</span>)}</span>
+                <span style={{ fontSize: 13, lineHeight: '18px', color: PALE }}>Why tonight: 25 seconds of Saturday’s bunching, to watch before you go.</span>
+              </button>
+            </div>
+          </div>
+          {/* Saturday in 40 seconds card */}
+          <div style={{ background: GREEN, border: `1px solid ${GREEN}`, borderRadius: 16, padding: '14px 16px', color: '#fff', display: 'flex', flexDirection: 'column', gap: 8 }}>
+            <strong style={{ fontSize: 22, lineHeight: '27px', letterSpacing: '-0.01em' }}>Saturday in 40 seconds</strong>
+            <button onClick={() => tool('0:40')} style={{ height: 92, borderRadius: 12, background: 'rgba(255,255,255,0.14)', border: '1px solid rgba(255,255,255,0.4)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', cursor: 'pointer', fontFamily: 'inherit' }}>
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5l11 7-11 7z" /></svg>
+              <span style={{ position: 'absolute', left: 10, bottom: 8, fontSize: 12, fontWeight: 700, background: 'rgba(0,0,0,0.35)', padding: '2px 8px', borderRadius: 6 }}>0:40</span>
+            </button>
+            <span style={{ fontSize: 14, lineHeight: '20px' }}>Seven of ten took a player on. A month ago it was three.</span>
+            <span style={{ fontSize: 13, lineHeight: '18px', color: PALEG }}>Brave with the ball: keep. Finding a friend: tonight.</span>
+            <span style={{ display: 'flex', gap: 8, marginTop: 'auto' }}>
+              <button onClick={() => nav('MS3-MiniRoosReview')} style={{ flex: 1, height: 46, borderRadius: 12, background: '#fff', color: INK, border: 'none', fontSize: 15, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>What we saw</button>
+              <button onClick={() => tool('Film tonight')} style={{ height: 46, padding: '0 16px', borderRadius: 12, background: 'transparent', color: '#fff', border: '1px solid rgba(255,255,255,0.6)', fontSize: 15, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Film tonight</button>
+            </span>
+          </div>
+          <MomentsCard m={cfg.moments} nav={nav} tool={tool} />
+          <RightColumn done={cfg.done} needs={cfg.needs} nav={nav} tool={tool} />
+        </div>
+      </Frame>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 14, fontWeight: 600 }}>{toast}</div>}
+    </div>
+  )
+}
+
+// STO3 — MiniRoos never-filmed Home (bespoke proof with taps + photos, + "See them do it")
+export function HomeStoryMiniRoosNoFilm({ cfg, onNav }: { cfg: HomeCfg; onNav?: (s: string) => void }) {
+  const [lastTool, setLastTool] = useState('')
+  const [toast, setToast] = useState<string | null>(null)
+  const nav = (s: string) => onNav?.(s)
+  const tool = (s: string) => { setLastTool(s); setToast(s); setTimeout(() => setToast(null), 2500) }
+  const notes = ['Brave with the ball · keep', 'Six different kids had a shot · keep', 'Bunching round the ball · Tuesday']
+  return (
+    <div data-lasttool={lastTool}>
+      <Frame cfg={cfg} nav={nav} tool={tool}>
+        <AskLine cfg={cfg} nav={nav} />
+        <div style={{ padding: '12px 28px 18px', display: 'grid', gap: 14, gridTemplateColumns: 'minmax(0,1fr) minmax(0,1.08fr) 300px', gridTemplateRows: 'auto minmax(0,1fr)', flex: 1 }}>
+          <div style={{ gridColumn: '1 / 4', background: DARK, borderRadius: 20, padding: '18px 24px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 300px', gap: 28, alignItems: 'center' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
+                <span style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', color: AMBER }}>SATURDAY AT NORTHGATE CITY · FROM YOUR THREE TAPS</span>
+                <h1 style={{ margin: 0, fontSize: 27, lineHeight: '34px', letterSpacing: '-0.02em', color: '#fff', fontWeight: 700 }}>You worked on being brave with the ball. On Saturday you saw lots of them take a player on.</h1>
+                <span style={{ fontSize: 15, lineHeight: '21px', color: PALE }}>That is three Saturdays running you have tapped it. No score kept.</span>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginTop: 2 }}>
+                  {notes.map(n => <span key={n} style={{ fontSize: 14, color: '#fff', display: 'flex', alignItems: 'center', gap: 8 }}><span style={{ display: 'flex' }}><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke={PALE} strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10" /></svg></span>{n}</span>)}
+                </div>
+                <div style={{ marginTop: 6 }}>
+                  <button onClick={() => nav('MS3-MiniRoosReview')} style={amberBtnDark}>What we saw</button>
+                </div>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                <button onClick={() => tool('Add a photo')} style={{ height: 44, borderRadius: 12, background: 'rgba(255,255,255,0.10)', border: `1px solid ${PALE}`, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Add a photo</button>
+                <div style={{ display: 'flex', gap: 6 }}>
+                  {['From Rob', 'From Linh', 'Add yours'].map(c => <span key={c} style={{ flex: 1, height: 44, borderRadius: 8, background: 'rgba(255,255,255,0.14)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, color: '#fff' }}>{c}</span>)}
+                </div>
+                <span style={{ fontSize: 13, lineHeight: '18px', color: PALE }}>Two photos from parents, checked against consent. Film one game on any phone or camera and this becomes a 40-second reel of the children doing it.</span>
+              </div>
+            </div>
+          </div>
+          <ReadyCard r={cfg.ready} nav={nav} tool={tool} />
+          <MomentsCard m={cfg.moments} nav={nav} tool={tool} />
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 14, minHeight: 0 }}>
+            <CardShell style={{ gap: 7 }}>
+              <strong style={{ fontSize: 17, lineHeight: '23px' }}>{cfg.done.title}</strong>
+              {cfg.done.lines.map((l, i) => (
+                <span key={i} style={{ display: 'flex', gap: 8, alignItems: 'flex-start', fontSize: 14, lineHeight: '19px' }}>
+                  <span style={{ flexShrink: 0, display: 'flex', marginTop: 1 }}><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={GREEN} strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10" /></svg></span>
+                  <span>{l}</span>
+                </span>
+              ))}
+            </CardShell>
+            <button onClick={() => tool('See them do it')} style={{ background: FACEBG, border: `1px solid ${BORDER}`, borderRadius: 16, padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 4, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
+              <strong style={{ fontSize: 15, lineHeight: '20px', color: INK }}>See them do it</strong>
+              <span style={{ fontSize: 13, lineHeight: '18px', color: GREY }}>Prop a phone on the fence for one game. You get a reel, a clip for each child, and proof of what changed.</span>
+              <span style={{ fontSize: 14, fontWeight: 700, color: GREEN, marginTop: 2 }}>How filming works</span>
+            </button>
+            {cfg.needs.count > 0 && (
+              <button onClick={() => tool('needs')} style={{ background: '#fff', border: `1px solid ${BORDER}`, borderRadius: 16, padding: '12px 16px', display: 'flex', gap: 12, alignItems: 'center', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
+                <span style={{ width: 40, height: 40, borderRadius: '50%', background: AMBER, color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 17, fontWeight: 700, flexShrink: 0 }}>{cfg.needs.count}</span>
+                <span style={{ flex: 1, fontSize: 15, lineHeight: '20px', fontWeight: 700, color: INK }}>{cfg.needs.title}</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={GREY} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+              </button>
+            )}
+          </div>
+        </div>
+      </Frame>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 14, fontWeight: 600 }}>{toast}</div>}
+    </div>
+  )
+}

@@ -480,8 +480,56 @@ export const STO15: HomeCfg = {
   needs: { count: 1, title: 'One thing needs you', sub: 'Dani asked: can you take Friday?' },
 }
 
+// STO2 (training day) and STO3 (no film) reuse the MiniRoos frame + moments/
+// right column; their proof and ready cards are rendered bespoke. The `proof`
+// here is a placeholder (ignored by the bespoke renderers).
+const PLACEHOLDER_PROOF: HomeCfg['proof'] = { label: '', headline: '', second: '', mainBtn: '' }
+
+export const STO2: HomeCfg = {
+  id: 'STO2-HomeStoryMiniRoosTraining', role: 'Coach · MiniRoos', team: 'U9 Tom · Wattle Creek', avatar: 'TA',
+  topNav: MINIROOS_TOPNAV, subNav: MINIROOS_SUBNAV,
+  ask: 'Ask about U9 Tom… What if only seven come tonight?', askTarget: 'ASKd2-HomeFocus',
+  proof: PLACEHOLDER_PROOF,
+  ready: { when: '', title: '', text: '', btn1: '' },
+  moments: {
+    title: 'A moment for every child', link: 'All moments', faces: MINIROOS_FACES,
+    rows: [
+      { ini: 'IV', title: 'Ivy · none yet this term', sub: 'She is in goal on Saturday. Watch for one tonight', action: 'Watch for' },
+      { ini: 'MX', title: 'Max · none yet this term', sub: 'Loves Treasure island. Watch for one tonight', action: 'Watch for' },
+    ],
+    foot: '7 of 10 have had one. Three sent on Sunday: all three families replied.',
+  },
+  done: { title: 'Done for you', lines: ['Reminder goes to 2 families at 3:00 pm', 'Kit list sent to Rob', 'Game leader found: Dan Kovac', 'Heat checked: 24°, play as normal'], next: 'Next: Sat 13 June, 8:30 at home' },
+  needs: { count: 1, title: 'One thing needs you', sub: 'A message from Omar’s dad' },
+}
+
+export const STO3: HomeCfg = {
+  id: 'STO3-HomeStoryMiniRoosNoFilm', role: 'Coach · MiniRoos', team: 'U9 Tom · Wattle Creek', avatar: 'TA',
+  topNav: MINIROOS_TOPNAV, subNav: MINIROOS_SUBNAV,
+  ask: 'Ask about U9 Tom… Who hasn’t been in goal yet?', askTarget: 'ASKd2-HomeFocus',
+  proof: PLACEHOLDER_PROOF,
+  ready: {
+    when: 'TUE 9 JUNE · 5:00 pm · WATTLE CREEK RESERVE', title: 'Tuesday is ready',
+    text: 'Four games built from your three taps. Next is finding a friend in space.',
+    chips: ['45 minutes', 'A ball each', 'No laps, no lines'], pale: 'Three taps after the game is all it took.',
+    btn1: 'Open the games', btn2: 'Swap one',
+  },
+  moments: {
+    title: 'A moment for every child', link: 'All moments', faces: MINIROOS_FACES,
+    rows: [
+      { ini: 'AK', title: 'Arlo · first go in goal', sub: 'Your note on Saturday', action: 'Send' },
+      { ini: 'PD', title: 'Poppy · took a player on', sub: 'Your note · Rob’s photo', action: 'Send' },
+    ],
+    foot: '7 of 10 have had one this term, from your notes and photos. Ivy, Max and Sami are next.',
+  },
+  done: { title: 'Done for you', lines: ['Reminder sent to 2 families', 'Saturday’s turns lined up'], next: 'Next: Sat 13 June, 8:30 at home' },
+  needs: { count: 2, title: 'Two things need you' },
+}
+
 export const TABLET_CONFIGS: Record<string, HomeCfg> = {
   'STO1-HomeStoryMiniRoos': STO1,
+  'STO2-HomeStoryMiniRoosTraining': STO2,
+  'STO3-HomeStoryMiniRoosNoFilm': STO3,
   'STO8-HomeStoryFitness': STO8,
   'STO9-HomeStoryKeepers': STO9,
   'STO14-HomeStoryAcademyOwner': STO14,

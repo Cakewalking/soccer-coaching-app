@@ -371,7 +371,7 @@ import CoachPhoneApp, { CPh1CoachPhoneHome, CPh2CoachPhoneComing, CPh3CoachPhone
 import DemoStart             from './DemoStart'
 import DemoStartEmpty        from './DemoStartEmpty'
 import StartPage             from '../start/StartPage'
-import { HomeStoryTablet, HomeStoryPhone } from '../story/HomeStory'
+import { HomeStoryTablet, HomeStoryPhone, HomeStoryMiniRoosTraining, HomeStoryMiniRoosNoFilm } from '../story/HomeStory'
 import { TABLET_CONFIGS }     from '../story/configs'
 import { PHONE_CONFIGS }      from '../story/phoneConfigs'
 import DemoWhy               from './DemoWhy'
@@ -803,6 +803,8 @@ function HomeStoryNav({ id }: { id: string }) {
   if (inner) return <>{renderScreen(inner)}</>
   const cfg = TABLET_CONFIGS[id]
   if (!cfg) return <div style={{ padding: 48 }}>Home story "{id}" not yet built.</div>
+  if (id === 'STO2-HomeStoryMiniRoosTraining') return <HomeStoryMiniRoosTraining cfg={cfg} onNav={(s) => setInner(s)} />
+  if (id === 'STO3-HomeStoryMiniRoosNoFilm') return <HomeStoryMiniRoosNoFilm cfg={cfg} onNav={(s) => setInner(s)} />
   return <HomeStoryTablet cfg={cfg} onNav={(s) => setInner(s)} />
 }
 
