@@ -18,6 +18,8 @@ import { useSandbox }   from '../sandbox/SandboxContext'
 import { MS1MiniRoosStyle } from './MiniRoosStyleScreen'
 import { MS2MiniRoosWhereWeAt } from './MiniRoosWhereWeAt'
 import { MS3MiniRoosReview } from './MiniRoosReview'
+import TeamSheetBody from '../step4/TeamSheetBody'
+import type { TeamSheetConfig } from '../step4/TeamSheetBody'
 
 const G   = '#2f6252'
 const G2  = '#40826d'
@@ -27,6 +29,41 @@ const MUT = '#4a5a57'
 const LN  = '#e8edeb'
 const PALE = '#eef5f2'
 const ROSE = '#c39797'
+
+function u9TurnsSheetCfg(title: string): TeamSheetConfig {
+  return {
+    title,
+    subtitle: 'Sheet · saved just now · 2 people can edit · shared with U9 Tom families',
+    shareLabel: 'Shared with U9 Tom families',
+    editors: [{ ini: 'TA', bg: '#b9777a' }, { ini: 'AM', bg: '#7a9e7e' }],
+    gameCols: [
+      { label: 'Game 1', sub: '8:30 · Northgate' },
+      { label: 'Game 2', sub: '9:10 · Northgate' },
+      { label: 'Game 3', sub: '9:50 · Northgate' },
+      { label: 'Game 4', sub: '10:30 · Northgate' },
+    ],
+    rows: [
+      { row: 1, jersey: 7,  name: 'Mia Tran',    spot: 'Mid', games: ['start',  'start',  'bench',  'start']  },
+      { row: 2, jersey: 4,  name: 'Cal Reyes',   spot: 'Def', games: ['start',  'bench',  'start',  'start']  },
+      { row: 3, jersey: 9,  name: 'Harper Lee',  spot: 'Fwd', games: ['bench',  'start',  'start',  'start']  },
+      { row: 4, jersey: 5,  name: 'Bao Nguyen',  spot: 'Def', games: ['start',  'start',  'start',  'bench'],  notes: 'Captain, game 1' },
+      { row: 5, jersey: 11, name: 'Lily Park',   spot: 'Fwd', games: ['bench',  'start',  'start',  'start']  },
+      { row: 6, jersey: 8,  name: 'Noah Ali',    spot: 'Mid', games: ['start',  'bench',  'start',  'start']  },
+      { row: 7, jersey: 6,  name: 'Priya Shah',  spot: 'GK',  games: ['ingoal', 'start',  'ingoal', 'start']  },
+      { row: 8, jersey: 3,  name: 'Eli Brooks',  spot: 'Def', games: ['start',  'ingoal', 'start',  'bench']  },
+    ],
+    initialSheets: ['Turns', 'Contacts', 'Shirt sizes'],
+    footerNote: '8 players · 4 games · Sat 6 June, Northgate City',
+    checks: [
+      { icon: 'check', title: 'A turn in goal for everyone', sub: 'One in goal every game' },
+      { icon: 'check', title: 'Nobody benched twice in a row', sub: '' },
+      { icon: 'check', title: 'Captain shared around', sub: 'A new captain each game' },
+      { icon: 'lock',  title: '2 families still to answer', sub: 'Harper and Bao not confirmed' },
+    ],
+    warn: { player: 'Priya Shah', swapWith: 'Cal Reyes', title: 'Priya plays every game', body: '60 minutes; everyone else has 45. Rest her in game 3?', game: 2 },
+    dataNote: "Player, Spot and Minutes come from your squad and this sheet's own choices. Change the squad and they change here.",
+  }
+}
 
 function MiniRooFileOpen({ name, type, onBack }: { name: string; type: 'doc' | 'sheet'; onBack: () => void }) {
   const [toast, setToast] = useState<string | null>(null)
@@ -683,6 +720,8 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
     else if (homeTab === 'style')     content = <MS1MiniRoosStyle />
     else if (homeTab === 'whereweat') content = <MS2MiniRoosWhereWeAt />
     else if (homeTab === 'staff')     content = <StaffMiniRoos empty={empty} />
+    else if (homeTab === 'files' && filOpen && filOpen.type === 'sheet' && !/duty|roster/i.test(filOpen.name))
+      content = <TeamSheetBody cfg={u9TurnsSheetCfg(filOpen.name === 'New sheet' ? 'Untitled sheet' : filOpen.name)} onBack={() => setFilOpen(null)} onShare={() => {}} />
     else if (homeTab === 'files' && filOpen) content = <MiniRooFileOpen name={filOpen.name} type={filOpen.type} onBack={() => setFilOpen(null)} />
     else if (homeTab === 'files')            content = <MiniRooFilesContent onOpenFile={(name, type) => setFilOpen({ name, type })} />
   } else if (nav === 'training') {
