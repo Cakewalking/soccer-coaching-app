@@ -1,4 +1,5 @@
 import type { CSSProperties, ReactNode } from 'react'
+import Logo from '../Logo'
 
 // Start page (STA1 desktop / STA2 phone). Ported pixel-for-pixel from
 // source/STA1-StartPage.dc.html and source/STA2-StartPagePhone.dc.html.
@@ -17,9 +18,6 @@ type Handlers = {
   onOpenSandbox: () => void
 }
 
-const logoIcon = (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5zM3 12l9 5 9-5M3 16l9 5 9-5"/></svg>
-)
 const arrow = (s = 18, sw = 2.2) => (
   <svg width={s} height={s} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={sw} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
 )
@@ -150,7 +148,7 @@ function Desktop(h: Handlers) {
       <header style={band(DARK)}>
         <div style={{ ...inner('0'), height: 64, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <span style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            <span style={{ width: 32, height: 32, borderRadius: 9, background: GREEN, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff' }}>{logoIcon}</span>
+            <Logo size={32} />
             <strong style={{ fontSize: 18 }}>Clean Sheet</strong>
           </span>
           <span style={{ display: 'flex', gap: 10 }}>
@@ -368,7 +366,7 @@ function Phone(h: Handlers) {
     <div data-screen="STA2-StartPagePhone" style={{ width: 390, margin: '0 auto', background: PAGE, color: INK, fontFamily: "'DM Sans',system-ui,sans-serif", display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <header style={{ height: 56, background: DARK, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 16px', flex: 'none' }}>
         <span style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <span style={{ width: 32, height: 32, borderRadius: 9, background: GREEN, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff' }}>{logoIcon}</span>
+          <Logo size={32} />
           <strong style={{ fontSize: 18 }}>Clean Sheet</strong>
         </span>
         <Btn onClick={h.onDemo} style={{ height: 44, padding: '0 22px', borderRadius: 14, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 15, fontWeight: 700, background: '#fff', color: INK, border: '1px solid #fff' }}>Start</Btn>

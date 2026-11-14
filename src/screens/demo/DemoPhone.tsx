@@ -1,4 +1,5 @@
 import { type RoleId } from './tours'
+import Logo from '../Logo'
 
 const PHONE_ROLES: Array<{ id: RoleId; name: string; desc: string }> = [
   { id: 'coach',        name: 'Head coach',        desc: 'As Sam K, U12 Sam' },
@@ -32,9 +33,7 @@ export default function DemoPhone({ onLook, onWhy, onSandbox }: Props) {
       {/* Hero */}
       <div style={{ padding: '24px 20px 16px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
-          <div style={{ width: 24, height: 24, background: '#2f6252', borderRadius: 5, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-          </div>
+          <Logo size={24} />
           <span style={{ fontSize: 14, fontWeight: 800, letterSpacing: '-0.02em', color: '#10211f' }}>Clean Sheet</span>
         </div>
         <h1 style={{ margin: '0 0 4px', fontSize: 26, fontWeight: 800, letterSpacing: '-0.02em', color: '#10211f' }}>Pick who you are</h1>

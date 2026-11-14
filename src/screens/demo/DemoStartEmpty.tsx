@@ -1,4 +1,5 @@
 import { ROLE_GROUPS, type RoleId } from './tours'
+import Logo from '../Logo'
 
 interface Props {
   onRole: (role: RoleId) => void
@@ -25,9 +26,7 @@ export default function DemoStartEmpty({ onRole, onSwitchToDemo, expiryDate = 'T
       {/* Hero */}
       <div style={{ maxWidth: 1180, margin: '0 auto', padding: '40px 48px 24px', boxSizing: 'border-box' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
-          <div style={{ width: 28, height: 28, background: '#2f6252', borderRadius: 6, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-          </div>
+          <Logo size={28} />
           <span style={{ fontSize: 15, fontWeight: 800, letterSpacing: '-0.02em', color: '#10211f' }}>Clean Sheet</span>
         </div>
         <h1 style={{ margin: '0 0 6px', fontSize: 28, fontWeight: 800, letterSpacing: '-0.03em', color: '#10211f' }}>Your club is empty. Where do you want to start?</h1>
