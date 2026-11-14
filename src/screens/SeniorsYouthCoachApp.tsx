@@ -31,6 +31,13 @@ import { useSandbox }      from './sandbox/SandboxContext'
 import { storeHasData }   from './sandbox/sandboxStore'
 import CoachTabletFrame   from './CoachTabletFrame'
 import { WhereWeAtScreen } from './WhereWeAtScreen'
+import FIL1Files       from './step4/FIL1Files'
+import FIL2Sheet       from './step4/FIL2Sheet'
+import FIL2bSheetLineup from './step4/FIL2bSheetLineup'
+import FIL3Doc         from './step4/FIL3Doc'
+import FIL4Share       from './step4/FIL4Share'
+import FIL6SignUp      from './step4/FIL6SignUp'
+import FIL7Form        from './step4/FIL7Form'
 
 type TeamType = 'seniors' | 'youth'
 
@@ -159,7 +166,7 @@ const NAV_ICONS = [
   'M12 21a9 9 0 100-18 9 9 0 000 18zM12 15a3 3 0 100-6 3 3 0 000 6z',
 ]
 const NAV_LABELS = ['Home', 'Squad', 'Training', 'Match day', 'Clips', 'Record']
-const HOME_TABS  = ['Overview', 'Messages', 'Calendar', 'Fixtures and results', 'Our style', "Where we're at", 'Team staff']
+const HOME_TABS  = ['Overview', 'Messages', 'Calendar', 'Fixtures and results', 'Our style', "Where we're at", 'Team staff', 'Files']
 
 function resultColor(r: 'W' | 'L' | 'D') {
   if (r === 'W') return { bg: '#40826d', color: '#fff' }
@@ -391,7 +398,8 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
   const [clipsTab, setClipsTab]       = useState(0)
 
   const [askOpen, setAskOpen] = useState(false)
-  function goNav(n: NavKey) { setNav(n); setSub(null); setAskOpen(false); onNavChange?.(n) }
+  const [filView, setFilView] = useState<string | null>(null)
+  function goNav(n: NavKey) { setNav(n); setSub(null); setAskOpen(false); onNavChange?.(n); setFilView(null) }
 
   function handleNav(s: string) {
     if (s === 'training')  { goNav('training'); return }
@@ -426,11 +434,35 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
 
   function handleSubTab(i: number) {
     setSub(null)
-    if (nav === 'home')     setHomeTab(i)
+    if (nav === 'home')     { setHomeTab(i); if (i !== 7) setFilView(null) }
     if (nav === 'squad')    setSquadTab(i)
     if (nav === 'training') setTrainingTab(i)
     if (nav === 'matchday') setMatchTab(i)
     if (nav === 'clips')    setClipsTab(i)
+  }
+
+  function filNav(s: string) {
+    if (s === 'FIL1-Files' || s === 'FIL2-Sheet' || s === 'FIL2b-SheetLineup' ||
+        s === 'FIL3-Doc'   || s === 'FIL4-Share'  || s === 'FIL6-SignUp' || s === 'FIL7-Form') {
+      setFilView(s); return
+    }
+    setHomeTab(0); setFilView(null)
+  }
+
+  if (homeTab === 7) {
+    const fv = filView ?? 'FIL1-Files'
+    if (fv === 'FIL4-Share') return (
+      <div style={{ position: 'relative' }}>
+        <FIL2Sheet onBack={() => setFilView('FIL1-Files')} onShare={() => setFilView('FIL4-Share')} onNav={filNav} />
+        <FIL4Share onClose={() => setFilView('FIL2-Sheet')} />
+      </div>
+    )
+    if (fv === 'FIL2-Sheet')       return <FIL2Sheet onBack={() => setFilView('FIL1-Files')} onShare={() => setFilView('FIL4-Share')} onNav={filNav} />
+    if (fv === 'FIL2b-SheetLineup') return <FIL2bSheetLineup onBack={() => setFilView('FIL1-Files')} onShare={() => setFilView('FIL4-Share')} onNav={filNav} />
+    if (fv === 'FIL3-Doc')         return <FIL3Doc onBack={() => setFilView('FIL1-Files')} onShare={() => setFilView('FIL4-Share')} onNav={filNav} />
+    if (fv === 'FIL6-SignUp')      return <FIL6SignUp onBack={() => setFilView('FIL1-Files')} onShare={() => setFilView('FIL4-Share')} onNav={filNav} />
+    if (fv === 'FIL7-Form')        return <FIL7Form onBack={() => setFilView('FIL1-Files')} onShare={() => setFilView('FIL4-Share')} onAnswersSheet={() => setFilView('FIL2-Sheet')} onNav={filNav} />
+    return <FIL1Files onOpenSheet={() => setFilView('FIL2-Sheet')} onOpenDoc={() => setFilView('FIL3-Doc')} onNav={filNav} />
   }
 
   let content = null

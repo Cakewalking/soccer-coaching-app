@@ -18,6 +18,13 @@ import { useSandbox }   from '../sandbox/SandboxContext'
 import { MS1MiniRoosStyle } from './MiniRoosStyleScreen'
 import { MS2MiniRoosWhereWeAt } from './MiniRoosWhereWeAt'
 import { MS3MiniRoosReview } from './MiniRoosReview'
+import FIL1Files        from '../step4/FIL1Files'
+import FIL2Sheet        from '../step4/FIL2Sheet'
+import FIL2bSheetLineup from '../step4/FIL2bSheetLineup'
+import FIL3Doc          from '../step4/FIL3Doc'
+import FIL4Share        from '../step4/FIL4Share'
+import FIL6SignUp       from '../step4/FIL6SignUp'
+import FIL7Form         from '../step4/FIL7Form'
 
 const G   = '#2f6252'
 const G2  = '#40826d'
@@ -338,7 +345,7 @@ function RecordMiniRoosClips({ empty, onBack }: { empty?: boolean; onBack: () =>
 }
 
 type MiniNav = 'home' | 'squad' | 'training' | 'gameday' | 'clips' | 'record'
-type HomeTab = 'overview' | 'messages' | 'calendar' | 'fixtures' | 'style' | 'whereweat' | 'staff'
+type HomeTab = 'overview' | 'messages' | 'calendar' | 'fixtures' | 'style' | 'whereweat' | 'staff' | 'files'
 type GameDayTab = 'turns' | 'review' | 'whatisaw' | 'thankparents'
 type TrainingTab = 'plan' | 'suggest'
 type RecordView = 'start' | 'clips'
@@ -360,6 +367,7 @@ const HOME_TABS: Array<{ id: HomeTab; label: string }> = [
   { id: 'style',     label: 'Our style' },
   { id: 'whereweat', label: "Where we're at" },
   { id: 'staff',     label: 'Team staff' },
+  { id: 'files',     label: 'Files' },
 ]
 
 export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, initialScreen, onNavChange }: { onBack: () => void; empty?: boolean; phaseContent?: ReactNode; initialScreen?: string; onNavChange?: (screen: string) => void }) {
@@ -370,6 +378,7 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
   const [trainingTab, setTrainingTab] = useState<TrainingTab>('plan')
   const [recordView, setRecordView] = useState<RecordView>('start')
   const [askOpen, setAskOpen]       = useState(false)
+  const [filView, setFilView]       = useState<string | null>(null)
   const { active: inSandbox, store } = useSandbox()
   const ASK_QUESTIONS = ['Who needs a rest this week?', 'What should we work on tonight?', 'Is everyone getting fair minutes?']
 
@@ -397,12 +406,37 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
   function handleNavChange(id: string) {
     setNav(id as MiniNav)
     onNavChange?.(id)
+    setFilView(null)
   }
 
   function handleSubTab(i: number) {
-    if (nav === 'home')     { setHomeTab(HOME_TABS[i].id); setHomeSubView('main') }
+    if (nav === 'home')     { setHomeTab(HOME_TABS[i].id); setHomeSubView('main'); if (HOME_TABS[i].id !== 'files') setFilView(null) }
     if (nav === 'gameday')  { setGameDayTab(GAMEDAY_TABS[i].id) }
     if (nav === 'training') { setTrainingTab(TRAINING_TABS_MR[i].id) }
+  }
+
+  function filNav(s: string) {
+    if (s === 'FIL1-Files' || s === 'FIL2-Sheet' || s === 'FIL2b-SheetLineup' ||
+        s === 'FIL3-Doc'   || s === 'FIL4-Share'  || s === 'FIL6-SignUp' || s === 'FIL7-Form') {
+      setFilView(s); return
+    }
+    setHomeTab('overview'); setFilView(null)
+  }
+
+  if (homeTab === 'files') {
+    const fv = filView ?? 'FIL1-Files'
+    if (fv === 'FIL4-Share') return (
+      <div style={{ position: 'relative' }}>
+        <FIL2Sheet onBack={() => setFilView('FIL1-Files')} onShare={() => setFilView('FIL4-Share')} onNav={filNav} />
+        <FIL4Share onClose={() => setFilView('FIL2-Sheet')} />
+      </div>
+    )
+    if (fv === 'FIL2-Sheet')        return <FIL2Sheet onBack={() => setFilView('FIL1-Files')} onShare={() => setFilView('FIL4-Share')} onNav={filNav} />
+    if (fv === 'FIL2b-SheetLineup') return <FIL2bSheetLineup onBack={() => setFilView('FIL1-Files')} onShare={() => setFilView('FIL4-Share')} onNav={filNav} />
+    if (fv === 'FIL3-Doc')          return <FIL3Doc onBack={() => setFilView('FIL1-Files')} onShare={() => setFilView('FIL4-Share')} onNav={filNav} />
+    if (fv === 'FIL6-SignUp')       return <FIL6SignUp onBack={() => setFilView('FIL1-Files')} onShare={() => setFilView('FIL4-Share')} onNav={filNav} />
+    if (fv === 'FIL7-Form')         return <FIL7Form onBack={() => setFilView('FIL1-Files')} onShare={() => setFilView('FIL4-Share')} onAnswersSheet={() => setFilView('FIL2-Sheet')} onNav={filNav} />
+    return <FIL1Files onOpenSheet={() => setFilView('FIL2-Sheet')} onOpenDoc={() => setFilView('FIL3-Doc')} onNav={filNav} />
   }
 
   let content = null

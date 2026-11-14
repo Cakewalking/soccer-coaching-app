@@ -18,6 +18,7 @@ import ConcussionTab from './clubadmin/ConcussionTab'
 import GoalkeepersTab from './clubadmin/GoalkeepersTab'
 import SP18ClubPhases from './footballyear/SP18ClubPhases'
 import SP19TrialWindow from './footballyear/SP19TrialWindow'
+import FilesTab from './clubadmin/FilesTab'
 
 export default function ClubAdminScreen({ empty, role = 'chair', initials = 'RM', initialTab = 'club', onNav }: { empty?: boolean; role?: 'chair' | 'dof' | 'welfare'; initials?: string; initialTab?: AdminTab; onNav?: (s: string) => void }) {
   const safeInitial: AdminTab = initialTab === 'welfare' && role !== 'welfare' ? 'club' : initialTab
@@ -45,9 +46,10 @@ export default function ClubAdminScreen({ empty, role = 'chair', initials = 'RM'
     { id: 'footballyear', label: 'Football year',  icon: 'M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z' },
     { id: 'trialwindow',  label: 'Trials',         icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2M9 12l2 2 4-4' },
     { id: 'messages',     label: 'Messages',       icon: 'M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z' },
+    { id: 'files',        label: 'Files',          icon: 'M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8zM14 2v6h6' },
   ]
-  const CHAIR_TAB_IDS = new Set(['club', 'teams', 'coaches', 'safeguarding', 'reports', 'plan', 'calendar', 'messages'])
-  const DOF_TAB_IDS   = new Set(['club', 'teams', 'coaches', 'players', 'safeguarding', 'reports'])
+  const CHAIR_TAB_IDS = new Set(['club', 'teams', 'coaches', 'safeguarding', 'reports', 'plan', 'calendar', 'messages', 'files'])
+  const DOF_TAB_IDS   = new Set(['club', 'teams', 'coaches', 'players', 'safeguarding', 'reports', 'files'])
   const TABS = role === 'welfare' ? ALL_TABS.filter(t => t.id === 'welfare')
              : role === 'chair'   ? ALL_TABS.filter(t => CHAIR_TAB_IDS.has(t.id))
              :                      ALL_TABS.filter(t => DOF_TAB_IDS.has(t.id))
@@ -114,6 +116,7 @@ export default function ClubAdminScreen({ empty, role = 'chair', initials = 'RM'
           {tab === 'footballyear' && <SP18ClubPhases onBack={() => setTab('club')} />}
           {tab === 'trialwindow'  && <SP19TrialWindow onBack={() => setTab('club')} />}
           {tab === 'messages'     && <DirectorMessages />}
+          {tab === 'files'        && <FilesTab onNav={onNav} />}
         </div>
         {askOpen && (
           <aside role="dialog" aria-label="Ask Clean Sheet" style={{ position: 'absolute', top: 0, right: 0, bottom: 0, width: 380, background: '#eef5f2', borderLeft: '1px solid #e8edeb', boxShadow: '-6px 0 24px rgba(16,33,31,0.10)', zIndex: 50, display: 'flex', flexDirection: 'column' }}>

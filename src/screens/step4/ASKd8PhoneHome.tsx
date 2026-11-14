@@ -76,7 +76,7 @@ export default function ASKd8PhoneHome({ onNav }: { onNav?: (s: string) => void 
           <NavIcon icon="messages" />
           <span style={{ fontSize: 11, color: MUT }}>Messages</span>
         </button>
-        <button onClick={() => tool('Mia')} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', minWidth: 44, minHeight: 44, justifyContent: 'center' }}>
+        <button onClick={() => onNav?.('FILp1-ParentFiles')} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', minWidth: 44, minHeight: 44, justifyContent: 'center' }}>
           <NavIcon icon="mia" />
           <span style={{ fontSize: 11, color: MUT }}>Mia</span>
         </button>

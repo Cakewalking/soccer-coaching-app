@@ -359,7 +359,7 @@ export default function CoachTabletFrame({
         {/* 44px white sub-tabs bar */}
         {subTabs.length > 0 && (
           <div style={{ height: 44, padding: '0 28px', display: 'flex', alignItems: 'flex-end', gap: 24 }}>
-            <nav style={{ display: 'flex', flexGrow: 1, height: 44 }}>
+            <nav style={{ display: 'flex', flexGrow: 1, height: 44, overflowX: 'auto', scrollbarWidth: 'none' }}>
               {subTabs.map((tab, i) => {
                 const active = i === activeSubTabIndex
                 return (
