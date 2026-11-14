@@ -2209,6 +2209,28 @@ function renderScreenInner(key: string): ReactNode {
     case 'ACP6-MakeUp':                return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><ACP6MakeUp /></div>
     case 'ACP8-BookClinic':            return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><ACP8eBookClinicEmpty /></div>
     case 'VS1-SwitchView':             return <SwitchViewScreen />
+    // Add-a-game flow (GI0–GI4) → AddGameScreen steps 1–5
+    case 'GI0-Recording':              return <AddGameScreen onClose={noop} initialStep={1} />
+    case 'GI1-Wearables':              return <AddGameScreen onClose={noop} initialStep={2} />
+    case 'GI2-WhosWho':                return <AddGameScreen onClose={noop} initialStep={3} />
+    case 'GI3-Analysing':              return <AddGameScreen onClose={noop} initialStep={4} />
+    case 'GI4-Ready':                  return <AddGameScreen onClose={noop} initialStep={5} />
+    // Set-our-style flow (SF0–SF7) → SetOurStyleWizard steps
+    case 'SF0-Intro':                  return <SetOurStyleWizard onClose={noop} initialStep="intro" />
+    case 'SF1-WithBall':               return <SetOurStyleWizard onClose={noop} initialStep={1} />
+    case 'SF2-WithoutBall':            return <SetOurStyleWizard onClose={noop} initialStep={2} />
+    case 'SF3-WinIt':                  return <SetOurStyleWizard onClose={noop} initialStep={3} />
+    case 'SF4-LoseIt':                 return <SetOurStyleWizard onClose={noop} initialStep={4} />
+    case 'SF5-Values':                 return <SetOurStyleWizard onClose={noop} initialStep={5} />
+    case 'SF6-Review':                 return <SetOurStyleWizard onClose={noop} initialStep="review" />
+    case 'SF7-Saved':                  return <SetOurStyleWizard onClose={noop} initialStep="saved" />
+    // Settings (SET1–SET7) → SettingsScreen tabs
+    case 'SET1-Account':               return <SettingsScreen onDone={noop} initialTab="account" />
+    case 'SET2-Team':                  return <SettingsScreen onDone={noop} initialTab="team" />
+    case 'SET3-Notifications':         return <SettingsScreen onDone={noop} initialTab="notifications" />
+    case 'SET4-Devices':               return <SettingsScreen onDone={noop} initialTab="devices" />
+    case 'SET5-Privacy':               return <SettingsScreen onDone={noop} initialTab="privacy" />
+    case 'SET7-Help':                  return <SettingsScreen onDone={noop} initialTab="help" />
 
     default:
       return (
@@ -2220,7 +2242,10 @@ function renderScreenInner(key: string): ReactNode {
 }
 
 export function renderScreen(key: string): ReactNode {
-  return <div data-screen={key}>{renderScreenInner(key)}</div>
+  // minHeight keeps the wrapper measurable for screens whose root is a
+  // position:fixed overlay (e.g. the add-game / set-style / settings flows),
+  // so the data-screen hook stays visible to the acceptance check.
+  return <div data-screen={key} style={{ minHeight: '100vh' }}>{renderScreenInner(key)}</div>
 }
 
 function viewToPath(view: DemoView, role: RoleId, screen?: string): string {
