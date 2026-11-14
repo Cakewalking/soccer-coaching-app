@@ -18,7 +18,7 @@ export default function TL3SprintResults(_: { onBack?: () => void }) {
       <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 32, height: 52 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>Clean Sheet</div>
         {['Squad', 'Fitness tests', 'Injury log', 'Load'].map(t => (
-          <div key={t} style={{ fontSize: 13, fontWeight: t === 'Fitness tests' ? 700 : 500, color: t === 'Fitness tests' ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer' }}>{t}</div>
+          <div key={t} style={{ fontSize: 13, fontWeight: t === 'Fitness tests' ? 700 : 500, color: t === 'Fitness tests' ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer', minHeight: 44, minWidth: 44, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', padding: '0 10px' }}>{t}</div>
         ))}
         <div style={{ marginLeft: 'auto', fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,0.5)' }}>Fitness coach</div>
       </div>

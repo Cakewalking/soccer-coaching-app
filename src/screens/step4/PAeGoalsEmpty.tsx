@@ -21,7 +21,7 @@ export default function PAeGoalsEmpty() {
 
       <div style={{ position: 'fixed', bottom: 0, left: '50%', transform: 'translateX(-50%)', width: 390, background: '#fff', borderTop: `1px solid ${LN}`, display: 'flex', justifyContent: 'space-around', padding: '10px 0 20px' }}>
         {['Home', 'Clips', 'Goals', 'Me'].map(t => (
-          <div key={t} style={{ fontSize: 12, fontWeight: t === 'Goals' ? 700 : 500, color: t === 'Goals' ? G : MUT, cursor: 'pointer' }}>{t}</div>
+          <div key={t} style={{ fontSize: 12, fontWeight: t === 'Goals' ? 700 : 500, color: t === 'Goals' ? G : MUT, cursor: 'pointer', minHeight: 44, minWidth: 44, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', padding: '0 10px' }}>{t}</div>
         ))}
       </div>
     </div>

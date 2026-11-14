@@ -21,7 +21,7 @@ export default function P1Consent(_: { onBack?: () => void }) {
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>Clean Sheet</div>
         <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.8)' }}>U12 Sam · Wattle Creek</div>
         {['Players', 'Development goals', 'Wellness', 'Availability', 'Consent and privacy'].map(t => (
-          <div key={t} onClick={() => setTab(t)} style={{ fontSize: 13, fontWeight: t === 'Consent and privacy' ? 700 : 500, color: t === 'Consent and privacy' ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer' }}>{t}</div>
+          <div key={t} onClick={() => setTab(t)} style={{ fontSize: 13, fontWeight: t === 'Consent and privacy' ? 700 : 500, color: t === 'Consent and privacy' ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer', minHeight: 44, minWidth: 44, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', padding: '0 10px' }}>{t}</div>
         ))}
         <div style={{ marginLeft: 'auto', fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,0.5)' }}>Head coach</div>
       </div>

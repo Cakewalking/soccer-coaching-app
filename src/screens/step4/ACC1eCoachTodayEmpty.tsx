@@ -11,7 +11,7 @@ export default function ACC1eCoachTodayEmpty() {
       <div style={{ background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 28, height: 52 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>Clean Sheet</div>
         {['Today', 'Players', 'Game day', 'Library'].map(t => (
-          <div key={t} style={{ fontSize: 13, fontWeight: t === 'Today' ? 700 : 500, color: t === 'Today' ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer' }}>{t}</div>
+          <div key={t} style={{ fontSize: 13, fontWeight: t === 'Today' ? 700 : 500, color: t === 'Today' ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer', minHeight: 44, minWidth: 44, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', padding: '0 10px' }}>{t}</div>
         ))}
         <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 10 }}>
           <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)' }}>Tall Timber Academy</div>

@@ -8,7 +8,7 @@ function CoachNav({ active }: { active: string }) {
     <div style={{ background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 24, height: 52, flexShrink: 0 }}>
       <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>Clean Sheet</div>
       {tabs.map(t => (
-        <div key={t} style={{ fontSize: 13, fontWeight: t === active ? 700 : 500, color: t === active ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer' }}>{t}</div>
+        <div key={t} style={{ fontSize: 13, fontWeight: t === active ? 700 : 500, color: t === active ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer', minHeight: 44, minWidth: 44, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', padding: '0 10px' }}>{t}</div>
       ))}
       <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 10 }}>
         <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)' }}>U12 Sam · Wattle Creek</div>
