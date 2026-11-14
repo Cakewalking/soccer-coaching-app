@@ -238,8 +238,6 @@ import OB3SignUp                 from '../step4/OB3SignUp'
 import OB4SignUp                 from '../step4/OB4SignUp'
 import OB5SignUp                 from '../step4/OB5SignUp'
 // Step 4 — Training / squad / live game screens (agent 3)
-import T3TrainingTab             from '../step4/T3TrainingTab'
-import T4SquadTab                from '../step4/T4SquadTab'
 import T5PlayerProfile           from '../step4/T5PlayerProfile'
 import L11LiveGame11             from '../step4/L11LiveGame11'
 // Step 4 — Parent phone screens (agent 4)
@@ -1473,7 +1471,7 @@ function renderScreenInner(key: string): ReactNode {
     case 'CH7-PhotoCheck':            return <CH7PhotoCheck />
     case 'CH9-MessageActions':        return <CH9MessageActions />
     // Design ID aliases — existing tablet coach screens
-    case 'T1-TabletTraining':         return <T1TabletTraining />
+    case 'T1-TabletTraining':         return <JuniorCoachApp initialScreen="home" />
     case 'C1-ClipsTab':               return <JuniorCoachApp initialScreen="clips" />
     case 'FN1-Seniors':               return <SeniorsYouthCoachApp teamType="seniors" onBack={noop} empty={true} />
     case 'HS1-HomeSeniors':           return <SeniorsYouthCoachApp teamType="seniors" onBack={noop} />
@@ -1601,8 +1599,8 @@ function renderScreenInner(key: string): ReactNode {
     case 'OB2-SignUp':                return <OB2SignUp />
     case 'OB5-SignUp':                return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><OB5SignUp /></div>
     // Design IDs — Training tab / squad / live game (tablet)
-    case 'T3-TrainingTab':            return <T3TrainingTab />
-    case 'T4-SquadTab':               return <T4SquadTab />
+    case 'T3-TrainingTab':            return <JuniorCoachApp initialScreen="training" />
+    case 'T4-SquadTab':               return <JuniorCoachApp initialScreen="squad" />
     case 'T5-PlayerProfile':          return <T5PlayerProfile />
     case 'L11-LiveGame11':            return <L11LiveGame11 />
     // Design IDs — Parent phone chat screens
@@ -2188,7 +2186,7 @@ function renderScreenInner(key: string): ReactNode {
     case 'STO22-HomeStoryAcademyPlayer':
       return <PhoneStoryNav id={key} />
     // Home-link targets that lacked a direct address (map to the real screen)
-    case 'T2-TabletMatch':             return <MatchDayScreen onNav={noop} empty={false} />
+    case 'T2-TabletMatch':             return <JuniorCoachApp initialScreen="matchday" />
     case 'S1-PlayingStyle':            return <OurStyleScreen />
     case 'D8-ClubStyle':               return <OurStyleScreen />
     case 'ST1-TeamStaff':              return <TeamStaffScreen empty={false} />
