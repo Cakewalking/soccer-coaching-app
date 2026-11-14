@@ -348,8 +348,144 @@ export const STO13: HomeCfg = {
   needs: { count: 1, title: 'One thing needs you', sub: 'A new concern to read' },
 }
 
+export const STO8: HomeCfg = {
+  id: 'STO8-HomeStoryFitness', role: 'Fitness coach', team: 'Four teams', avatar: 'PS',
+  topNav: [{ label: 'Home', active: true }, { label: 'Squad' }, { label: 'Training' }, { label: 'Match day' }],
+  subNav: [{ label: 'Overview', active: true }, { label: 'Messages' }, { label: 'Calendar' }],
+  ask: 'Ask about your four teams… Who is growing fast?', askTarget: 'ASKd2-HomeFocus',
+  proof: {
+    label: 'FOUR TEAMS · WEEK OF 1 JUNE',
+    headline: 'You capped sprints for the U16s two weeks ago. Sore legs are down from six players to two, and they finished Saturday strong.',
+    second: 'Last-15-minute sprints dropped by 18%, not 30%. Ollie kept the full squad available.',
+    bars: [{ n: '6', when: '18 May' }, { n: '4', when: '25 May' }, { n: '2', when: 'This week', amber: true }],
+    unit: 'U16 players reporting sore legs',
+    status: [
+      { label: 'U12 Sam', value: 'Steady' }, { label: 'U13 Girls Meg', value: 'Steady' },
+      { label: 'U14 Josh', value: '2 growing fast' }, { label: 'U16 Ollie', value: 'Load easing' },
+    ],
+    statusCaption: 'Nobody is ranked. Each player is compared with their own last month.',
+    mainBtn: 'See the load', outlineBtn: 'Who is growing',
+  },
+  ready: {
+    when: 'TONIGHT · 5:45 pm · U12 SAM', title: 'Tonight’s block is ready',
+    text: 'Fifteen minutes inside Sam’s session: short sprints with a ball, capped for Noah and Zoe.',
+    chips: ['15 minutes', '16 players', '2 capped'], pale: 'Built from last week’s sprint counts and Monday’s check-ins.',
+    btn1: 'Open my part', btn2: 'Tell Sam',
+  },
+  moments: {
+    title: 'A real change for every player', link: 'All players', faces: FACES10(['ZH', 'JP', 'RC', 'IM', 'MT', 'LM', 'CR', 'TW', 'DL', '+54']),
+    rows: [
+      { ini: 'CR', title: 'Cal · U16 · 6% faster than last month', sub: 'Bigger than the noise in the vests', action: 'Send' },
+      { ini: 'ZH', title: 'Zoe Hartley · U12 · grew 8 cm this year', sub: 'Sprints capped. Her coach and parent know', action: 'Open' },
+    ],
+    foot: '9 real changes this month across 63 players. Small moves are shown as “about the same”.',
+  },
+  done: { title: 'Done for you', lines: ['Measuring session planned: Thu 11 June', 'Growth flags sent to three coaches', 'Sprint caps applied to four plans', 'Test results filed against last term'], next: 'Next: U14 Josh tests, Tue 9 June' },
+  needs: { count: 2, title: 'Two things need you', sub: 'Noah’s sore knee · measuring due' },
+}
+
+export const STO9: HomeCfg = {
+  id: 'STO9-HomeStoryKeepers', role: 'Goalkeeper coach', team: 'All keepers', avatar: 'NW',
+  topNav: [{ label: 'Home', active: true }, { label: 'Keepers' }, { label: 'Training' }, { label: 'Clips' }],
+  subNav: [{ label: 'Overview', active: true }, { label: 'Messages' }, { label: 'Calendar' }],
+  ask: 'Ask about your keepers… How is each keeper’s distribution?', askTarget: 'ASKd2-HomeFocus',
+  proof: {
+    label: 'ELEVEN KEEPERS · LAST WEEKEND',
+    headline: 'You worked on starting higher. On Saturday Grace swept up five balls behind her defence. A month ago, one.',
+    second: 'Across all eleven keepers, sweeps are up from 9 to 21 a weekend.',
+    bars: [{ n: '9', when: '2 May' }, { n: '15', when: '16 May' }, { n: '21', when: 'Last weekend', amber: true }],
+    unit: 'balls swept up behind the defence',
+    reel: { duration: '1:00', chips: ['Grace', 'Ava', 'Tom', 'Bao', '+2'], caption: 'Six sweeps from five keepers, and one that started a goal.' },
+    mainBtn: 'Play 60 seconds', outlineBtn: 'By keeper',
+  },
+  ready: {
+    when: 'TUE 9 JUNE · 6:00 pm · PITCH 2', title: 'Tuesday is ready',
+    text: 'Quick restarts: catch, look, roll. Three keepers held the ball over six seconds on Saturday.',
+    chips: ['40 minutes', '3 drills', '11 keepers'], pale: 'Built from every keeper’s clips this fortnight.',
+    btn1: 'Open the session', btn2: 'Send the plan',
+  },
+  moments: {
+    title: 'A clip for every keeper', link: 'All keepers', faces: FACES10(['GO', 'AL', 'TR', 'BT', 'KR', 'IM', 'OB', 'SD', 'FW', '+2']),
+    rows: [
+      { ini: 'GO', title: 'Grace Owusu · quick roll started a goal', sub: 'Saturday · 11 seconds of film', action: 'Send' },
+      { ini: 'AL', title: 'Ava Lindqvist · first clean catch from a corner', sub: 'Saturday · 7 seconds of film', action: 'Send' },
+    ],
+    foot: '9 of 11 have had a clip this month. Oscar and Sam D are next.',
+  },
+  done: { title: 'Done for you', lines: ['Plan sent to 11 keepers', 'Keeper clips cut from 7 games', 'Glove sizes sent to Bianca', 'U9 turns in goal checked: 7 of 10'], next: 'Next: Tue 9 June, 6:00 pm' },
+  needs: { count: 1, title: 'One thing needs you', sub: 'Tom asked for a keeper game for U9s' },
+}
+
+export const STO14: HomeCfg = {
+  id: 'STO14-HomeStoryAcademyOwner', role: 'Academy owner', team: 'Tall Timber Academy', avatar: 'DO',
+  topNav: [{ label: 'Home', active: true }, { label: 'Programs' }, { label: 'Players' }, { label: 'Coaches' }, { label: 'Money' }],
+  subNav: [{ label: 'Overview', active: true }, { label: 'Trials' }, { label: 'Reports' }, { label: 'Child safety' }, { label: 'Partner club' }],
+  ask: 'Ask about Tall Timber… Who is behind on their term goal?', askTarget: 'ASKd2-HomeFocus',
+  proof: {
+    label: 'TALL TIMBER ACADEMY · TERM 2, WEEK 7 OF 10',
+    headline: 'Families pay for progress. 71 of your 80 players have moved up a step on a skill this term, and every family has seen it.',
+    second: 'In week 2 it was 38. Nine have not moved yet: six have a one-on-one booked.',
+    bars: [{ n: '38', when: 'Week 2' }, { n: '56', when: 'Week 4' }, { n: '71', when: 'Week 7', amber: true }],
+    unit: 'players up a step on a skill',
+    reel: { duration: '1:30', chips: ['Kai', 'Ana', 'Leo', 'Mei', '+2'], caption: 'Before and after for six players. Cleared by their families for your trial page.' },
+    mainBtn: 'Play term 2 so far', outlineBtn: 'By program',
+  },
+  ready: {
+    when: 'FRI 26 JUNE · TERM REPORTS GO OUT', title: 'Five reports are ready',
+    text: 'Drafted by Reece from each player’s plan, clips and attendance. They wait for your yes.',
+    chips: ['5 drafted', '75 to come', '2 minutes each'], pale: 'Families who get a report with clips re-enrol more often.',
+    btn1: 'Approve 5 and send', btn2: 'Read one',
+  },
+  moments: {
+    title: 'A step for every player', link: 'All players', faces: FACES10(['KO', 'AM', 'LS', 'MC', 'JT', 'RB', 'SN', 'EV', 'DP', '+71']),
+    rows: [
+      { ini: 'KO', title: 'Kai Okonkwo · weak-foot pass is now Strong', sub: 'Advanced · 15 seconds, before and after', action: 'Send' },
+      { ini: 'AM', title: 'Ana Moreno · first touch is now Getting There', sub: 'Development · 12 seconds', action: 'Send' },
+    ],
+    foot: '71 of 80 have moved a step. Nine have not: Reece has six one-on-ones booked.',
+  },
+  done: { title: 'Done for you', lines: ['Three trial offers sent', 'Two late fees chased', 'July clinic: 19 of 24 booked', 'Partner club sent Saturday’s team sheet'], next: 'Next: trials, Sat 13 June' },
+  needs: { count: 2, title: 'Two things need you', sub: 'A make-up request · a coach check' },
+}
+
+export const STO15: HomeCfg = {
+  id: 'STO15-HomeStoryAcademyCoach', role: 'Academy coach', team: 'Tall Timber Academy', avatar: 'RW',
+  topNav: [{ label: 'Today', active: true }, { label: 'Players' }, { label: 'Game day' }, { label: 'Library' }],
+  subNav: [{ label: 'Today', active: true }, { label: 'Run a session' }, { label: 'Trial player' }, { label: 'One-on-one' }, { label: 'Record' }, { label: 'Suggested' }],
+  ask: 'Ask about your groups… Who is making the most progress?', askTarget: 'ASKd2-HomeFocus',
+  proof: {
+    label: 'ADVANCED · 12 TO 14 · LAST FOUR WEEKS',
+    headline: 'You worked on receiving on the half-turn. Fourteen of your twenty now do it under pressure. Four weeks ago, six.',
+    second: 'Kai went from Getting There to Strong. Six are still at Starting Out.',
+    bars: [{ n: '6', when: 'Week 3' }, { n: '10', when: 'Week 5' }, { n: '14', when: 'Week 7', amber: true }],
+    unit: 'players who turn under pressure',
+    reel: { duration: '0:45', chips: ['Kai', 'Mei', 'Leo', 'Jo'], caption: 'Before and after for four players, from the drill you filmed in weeks 3 and 7.' },
+    mainBtn: 'Play 45 seconds', outlineBtn: 'By player',
+  },
+  ready: {
+    when: 'TODAY · 4:30 pm · MESSMATE PRIMARY', title: 'Today’s three sessions are ready',
+    text: 'Development at 4:30, Advanced at 5:30, Kai’s one-on-one at 6:45. Each is built from last week’s notes.',
+    chips: ['14 coming', '20 coming', '45 minutes'], pale: 'The six at Starting Out get an easier first step tonight.',
+    btn1: 'Start the 4:30', btn2: 'Swap a drill',
+  },
+  moments: {
+    title: 'A step for every player', link: 'All players', faces: FACES10(['KO', 'MC', 'LS', 'JT', 'RB', 'SN', 'EV', 'DP', 'AW', '+11']),
+    rows: [
+      { ini: 'KO', title: 'Kai Okonkwo · half-turn is now Strong', sub: 'Week 7 · 15 seconds, before and after', action: 'Send' },
+      { ini: 'SN', title: 'Sam Ng · still at Starting Out', sub: 'Missed two weeks. A one-on-one would help', action: 'Offer' },
+    ],
+    foot: '14 of 20 have moved a step. Dani sees the same list.',
+  },
+  done: { title: 'Done for you', lines: ['Four report drafts started', 'Attendance marked from check-in', 'Make-up session offered to two', 'Saturday’s team sheet sent'], next: 'Next: Sat 6 June, U13 Timber' },
+  needs: { count: 1, title: 'One thing needs you', sub: 'Dani asked: can you take Friday?' },
+}
+
 export const TABLET_CONFIGS: Record<string, HomeCfg> = {
   'STO1-HomeStoryMiniRoos': STO1,
+  'STO8-HomeStoryFitness': STO8,
+  'STO9-HomeStoryKeepers': STO9,
+  'STO14-HomeStoryAcademyOwner': STO14,
+  'STO15-HomeStoryAcademyCoach': STO15,
   'STO4-HomeStorySeniors': STO4,
   'STO5-HomeStoryJuniors': STO5,
   'STO6-HomeStoryYouth': STO6,
