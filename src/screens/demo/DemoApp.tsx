@@ -109,10 +109,6 @@ import X7InboxEmpty               from '../step4/X7InboxEmpty'
 import D0cChairWelcome            from '../step4/D0cChairWelcome'
 // Step 4 screens — Director/Chair dedicated screens (agent 1)
 import D0ClubEmpty                from '../step4/D0ClubEmpty'
-import D1ClubOverview             from '../step4/D1ClubOverview'
-import D2Teams                    from '../step4/D2Teams'
-import D3Coaches                  from '../step4/D3Coaches'
-import D4Players                  from '../step4/D4Players'
 import DC1Calendar                from '../step4/DC1Calendar'
 import DM1CoachMeeting            from '../step4/DM1CoachMeeting'
 import DT1Courses                 from '../step4/DT1Courses'
@@ -121,7 +117,6 @@ import DP1FairGameTime            from '../step4/DP1FairGameTime'
 import FM1Moves                   from '../step4/FM1Moves'
 import FH1HeadingPolicy           from '../step4/FH1HeadingPolicy'
 import FY1SeasonPlan              from '../step4/FY1SeasonPlan'
-import D6BoardReport              from '../step4/D6BoardReport'
 import DB2SeasonReview            from '../step4/DB2SeasonReview'
 import DB3LeagueReturns           from '../step4/DB3LeagueReturns'
 import FD3Dispensations           from '../step4/FD3Dispensations'
@@ -1489,10 +1484,10 @@ function renderScreenInner(key: string): ReactNode {
     case 'RCm2-MiniRoosClips':        return <RCm2ClipPicker />
     // Design ID aliases — Director screens (D* tablet)
     case 'D0-ClubEmpty':              return <D0ClubEmpty />
-    case 'D1-ClubOverview':           return <D1ClubOverview />
-    case 'D2-Teams':                  return <D2Teams />
-    case 'D3-Coaches':                return <D3Coaches />
-    case 'D4-Players':                return <D4Players />
+    case 'D1-ClubOverview':           return <ClubAdminScreenNav role="dof" initials="RM" initialTab="club" empty={false} />
+    case 'D2-Teams':                  return <ClubAdminScreenNav role="dof" initials="RM" initialTab="teams" empty={false} />
+    case 'D3-Coaches':                return <ClubAdminScreenNav role="dof" initials="RM" initialTab="coaches" empty={false} />
+    case 'D4-Players':                return <ClubAdminScreenNav role="dof" initials="RM" initialTab="players" empty={false} />
     case 'DC1-Calendar':              return <DC1Calendar />
     case 'DM1-CoachMeeting':          return <DM1CoachMeeting />
     case 'DT1-Courses':               return <DT1Courses />
@@ -1501,7 +1496,7 @@ function renderScreenInner(key: string): ReactNode {
     case 'FM1-Moves':                 return <FM1Moves />
     case 'FH1-HeadingPolicy':         return <FH1HeadingPolicy />
     case 'FY1-SeasonPlan':            return <FY1SeasonPlan />
-    case 'D5-Safeguarding':            return <D5Safeguarding />
+    case 'D5-Safeguarding':            return <ClubAdminScreenNav role="dof" initials="RM" initialTab="safeguarding" empty={false} />
     case 'D5-Safeguarding-concerns':   return <D5Safeguarding initialTab="concerns" />
     case 'DS1-Concerns':              return <ER5NoAccess />
     case 'DS2-DataRequests':          return <DS2DataRequests />
@@ -1510,7 +1505,7 @@ function renderScreenInner(key: string): ReactNode {
     case 'DN1-Nominations':           return <DN1Nominations />
     case 'D0c-ChairWelcome':          return <D0cChairWelcome />
     case 'D1b-ClubChair':             return <ClubAdminScreen empty={false} role="chair" initials="GL" initialTab="club" />
-    case 'D6-BoardReport':            return <D6BoardReport />
+    case 'D6-BoardReport':            return <ClubAdminScreenNav role="dof" initials="RM" initialTab="reports" empty={false} />
     case 'DB2-SeasonReview':          return <DB2SeasonReview />
     case 'DB3-LeagueReturns':         return <DB3LeagueReturns />
     case 'FD3-Dispensations':         return <FD3Dispensations />
