@@ -1336,7 +1336,7 @@ function renderScreenInner(key: string): ReactNode {
     // Design ID aliases — Academy player (Design-ID format)
     case 'ACK1-AcademyPlayerHome':      return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><AcademyPlayerApp onBack={noop} empty={false} /></div>
     case 'ACK1e-AcademyPlayerHomeEmpty': return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><ACK1eAcademyPlayerHomeEmpty /></div>
-    case 'ACK2-HomePractice':           return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><ACK2HomePractice /></div>
+    case 'ACK2-HomePractice':           return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><AcademyPlayerApp onBack={noop} empty={false} initialNav="practice" /></div>
     // Design IDs — Older player phone screens (PO*)
     case 'PO1-OlderHome':          return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><OlderPlayerApp empty={false} initialView="home" /></div>
     case 'PO2-OlderMessage':       return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><OlderPlayerApp empty={false} initialView="messages" initialChat="private" /></div>
@@ -2192,9 +2192,9 @@ function renderScreenInner(key: string): ReactNode {
     case 'PA-ParentHome':              return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TwoChildrenApp onBack={noop} empty={false} /></div>
     case 'PA-Clip':                    return <ClipsScreen empty={false} />
     case 'PA-Goals':                   return <DevGoalsScreen />
-    case 'ACP4-ParentFees':            return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><ACP4ParentFees /></div>
+    case 'ACP4-ParentFees':            return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><AcademyParentApp onBack={noop} empty={false} initialNav="fees" initialModal="none" /></div>
     case 'ACP6-MakeUp':                return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><ACP6MakeUp /></div>
-    case 'ACP8-BookClinic':            return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><ACP8eBookClinicEmpty /></div>
+    case 'ACP8-BookClinic':            return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><AcademyParentApp onBack={noop} empty={false} initialNav="book" initialModal="none" /></div>
     case 'VS1-SwitchView':             return <SwitchViewScreen />
     // Add-a-game flow (GI0–GI4) → AddGameScreen steps 1–5
     case 'GI0-Recording':              return <AddGameScreen onClose={noop} initialStep={1} />
