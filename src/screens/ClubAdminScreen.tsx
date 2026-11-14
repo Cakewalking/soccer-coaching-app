@@ -21,7 +21,7 @@ import SP19TrialWindow from './footballyear/SP19TrialWindow'
 import FilesTab from './clubadmin/FilesTab'
 import FeaturesTab from './clubadmin/FeaturesTab'
 
-export default function ClubAdminScreen({ empty, role = 'chair', initials = 'RM', initialTab = 'club', onNav }: { empty?: boolean; role?: 'chair' | 'dof' | 'welfare'; initials?: string; initialTab?: AdminTab; onNav?: (s: string) => void }) {
+export default function ClubAdminScreen({ empty, role = 'chair', initials = 'RM', initialTab = 'club', onNav, homeStory }: { empty?: boolean; role?: 'chair' | 'dof' | 'welfare'; initials?: string; initialTab?: AdminTab; onNav?: (s: string) => void; homeStory?: import('react').ReactNode }) {
   const safeInitial: AdminTab = initialTab === 'welfare' && role !== 'welfare' ? 'club' : initialTab
   const [tab, setTab] = useState<AdminTab>(safeInitial)
   const [askOpen, setAskOpen] = useState(false)
@@ -100,7 +100,7 @@ export default function ClubAdminScreen({ empty, role = 'chair', initials = 'RM'
       {/* Content */}
       <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden' }}>
         <div style={{ flex: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
-          {tab === 'club'         && <ClubTab role={role === 'welfare' ? 'chair' : role} empty={empty} />}
+          {tab === 'club'         && <ClubTab role={role === 'welfare' ? 'chair' : role} empty={empty} homeStory={homeStory} />}
           {tab === 'teams'        && <TeamsTab empty={empty} />}
           {tab === 'coaches'      && <CoachesTab empty={empty} />}
           {tab === 'players'      && <PlayersTab empty={empty} onNav={onNav} />}

@@ -14,7 +14,7 @@ const GANTT_ROWS = [
   { label: 'Registrations', bars: [{ s: 0, e: 0, label: 'Winter', c: '#cbbeb5' }, { s: 7, e: 7, label: 'Futsal', c: '#cbbeb5' }] },
 ]
 
-export default function ClubTab({ role, empty }: { role: 'chair' | 'dof'; empty?: boolean }) {
+export default function ClubTab({ role, empty, homeStory }: { role: 'chair' | 'dof'; empty?: boolean; homeStory?: import('react').ReactNode }) {
   const [view, setView] = useState<ClubView>('overview')
   const [headingPolicy, setHeadingPolicy] = useState<'england' | 'own' | 'none' | null>(null)
   const [toast, setToast] = useState<string | null>(null)
@@ -39,6 +39,8 @@ export default function ClubTab({ role, empty }: { role: 'chair' | 'dof'; empty?
         active={view}
         onSelect={id => setView(id as ClubView)}
       />
+
+      {view === 'overview' && !empty && homeStory}
 
       {empty && view === 'overview' && (
         <div style={{ padding: '20px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 300px', gap: 20 }}>
@@ -106,7 +108,7 @@ export default function ClubTab({ role, empty }: { role: 'chair' | 'dof'; empty?
 
       <div style={pad}>
 
-        {view === 'overview' && role === 'chair' && !empty && (
+        {view === 'overview' && role === 'chair' && !empty && !homeStory && (
           <>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10, marginBottom: 14 }}>
               {[{ n: '212', l: 'Players', sub: '+16 on last season' }, { n: '91%', l: 'Coming back', sub: 'Re-registered from last season' }, { n: '2 open', l: 'Safeguarding', sub: 'Both on track · none overdue' }, { n: '96%', l: 'Parent consent', sub: '204 of 212 players complete' }].map(s => (
@@ -186,7 +188,7 @@ export default function ClubTab({ role, empty }: { role: 'chair' | 'dof'; empty?
           </>
         )}
 
-        {view === 'overview' && role === 'dof' && !empty && (
+        {view === 'overview' && role === 'dof' && !empty && !homeStory && (
           <>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10, marginBottom: 14 }}>
               {[{ n: '67%', l: 'Playing our way', sub: 'Teams matching the club style · up from 51%' }, { n: '87%', l: 'Training turnout', sub: 'All teams, last 2 weeks' }, { n: '12 of 14', l: 'Fair game time', sub: 'Teams inside the club minutes policy' }, { n: '27 of 31', l: 'Coaches cleared', sub: 'Working with Children Checks valid' }].map(s => (

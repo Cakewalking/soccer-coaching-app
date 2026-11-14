@@ -372,7 +372,7 @@ import DemoStart             from './DemoStart'
 import DemoStartEmpty        from './DemoStartEmpty'
 import StartPage             from '../start/StartPage'
 import { HomeStoryTablet, HomeStoryPhone, HomeStoryBody, HomeStoryMiniRoosTraining, HomeStoryMiniRoosNoFilm } from '../story/HomeStory'
-import { TABLET_CONFIGS, STO1, STO4, STO5, STO6, STO7 } from '../story/configs'
+import { TABLET_CONFIGS, STO1, STO4, STO5, STO6, STO7, STO10, STO11 } from '../story/configs'
 import { PHONE_CONFIGS }      from '../story/phoneConfigs'
 import DemoWhy               from './DemoWhy'
 import DemoTourShell         from './DemoTourShell'
@@ -672,10 +672,10 @@ function SP10HomePostSeasonNav() {
   if (inner) return <>{renderScreen(inner)}</>
   return <SP10HomePostSeason onNav={(s) => setInner(s)} />
 }
-function ClubAdminScreenNav({ role, initials, initialTab, empty }: { role?: 'chair'|'dof'|'welfare'; initials?: string; initialTab?: string; empty?: boolean }) {
+function ClubAdminScreenNav({ role, initials, initialTab, empty, homeStory }: { role?: 'chair'|'dof'|'welfare'; initials?: string; initialTab?: string; empty?: boolean; homeStory?: ReactNode }) {
   const [inner, setInner] = useState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
-  return <ClubAdminScreen role={role} initials={initials} initialTab={initialTab as Parameters<typeof ClubAdminScreen>[0]['initialTab']} empty={empty} onNav={(s) => setInner(s)} />
+  return <ClubAdminScreen role={role} initials={initials} initialTab={initialTab as Parameters<typeof ClubAdminScreen>[0]['initialTab']} empty={empty} onNav={(s) => setInner(s)} homeStory={homeStory} />
 }
 
 function PU1PlayingUpNav() {
@@ -1133,9 +1133,9 @@ function renderScreenInner(key: string): ReactNode {
     case 'fitnesscoach':
       return <FitnessCoachScreen empty={false} />
     case 'clubadmin':
-      return <ClubAdminScreenNav empty={false} role="dof" initials="RM" />
+      return <ClubAdminScreenNav empty={false} role="dof" initials="RM" homeStory={<HomeStoryBody cfg={STO10} />} />
     case 'chair-home':
-      return <ClubAdminScreenNav empty={false} role="chair" initials="GL" />
+      return <ClubAdminScreenNav empty={false} role="chair" initials="GL" homeStory={<HomeStoryBody cfg={STO11} />} />
     case 'welfare-home':
       return <ClubAdminScreenNav empty={false} role="welfare" initials="HP" initialTab="welfare" />
     case 'teammanager':
