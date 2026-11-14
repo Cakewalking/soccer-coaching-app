@@ -1733,9 +1733,9 @@ function renderScreenInner(key: string): ReactNode {
     case 'playerolder-e':
       return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><OlderPlayerApp empty={true} /></div>
     case 'director-e':
-      return <D0ClubEmpty />
+      return <ClubAdminScreenNav empty={true} role="dof" initials="RM" />
     case 'chair-e':
-      return <ClubAdminScreen empty={true} role="chair" initials="GL" />
+      return <ClubAdminScreenNav empty={true} role="chair" initials="GL" />
     case 'coordinator-e':
       return <CoordinatorPortal onBack={noop} empty={true} />
     case 'welfare-e':
@@ -2234,33 +2234,10 @@ export default function DemoApp() {
   }
 
   if (view === 'notfound') {
-    const isPhoneRole = TOURS[role].device === 'phone'
-    const showPhase = PHASE_ROLES.has(role)
-    if (isPhoneRole) {
-      return (
-        <DemoShellPhone
-          roleId={role}
-          onBack={() => setView('start')}
-          onStartTour={() => setView('tour')}
-          phase={showPhase ? phase : undefined}
-          onPhaseChange={showPhase ? setPhase : undefined}
-        >
-          <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px', width: '100%' }}>
-            <ERp2NotFound />
-          </div>
-        </DemoShellPhone>
-      )
-    }
     return (
-      <DemoShell
-        roleId={role}
-        onBack={() => setView('start')}
-        onStartTour={() => setView('tour')}
-        phase={showPhase ? phase : undefined}
-        onPhaseChange={showPhase ? setPhase : undefined}
-      >
+      <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#f7f9f7' }}>
         <ER4NotFound />
-      </DemoShell>
+      </div>
     )
   }
 

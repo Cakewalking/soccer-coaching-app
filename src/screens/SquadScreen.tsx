@@ -379,10 +379,10 @@ export default function SquadScreen({ onPlayerProfile, empty, players: propPlaye
         </div>
 
         {/* Filter chips */}
-        <div style={{ display: 'flex', gap: 8, marginBottom: 20, flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', gap: 8, marginBottom: 20, overflowX: 'auto', flexShrink: 0 }}>
           {filters.map(f => (
             <button key={f.id} onClick={() => setFilter(f.id)} style={{
-              height: 36, padding: '0 14px', borderRadius: '999px',
+              height: 36, padding: '0 14px', borderRadius: '999px', flexShrink: 0,
               border: `1px solid ${filter === f.id ? f.color : '#e9eae8'}`,
               background: filter === f.id ? '#10211f' : '#ffffff',
               fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer',
