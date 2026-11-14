@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import type { ReactNode } from 'react'
 
 // Home that tells a story (STO1–STO22). Shared four-part layout driven by a
 // per-screen config. Measurements from HANDOVER-HOME.md. Amber #f4c95d only in
@@ -237,11 +238,23 @@ export type PhoneBlock =
   | { kind: 'note'; text: string }
 export type PhoneCfg = { id: string; roleLine: string; greeting: string; avatar: string; tabs: PhoneTab[]; blocks: PhoneBlock[] }
 
-export function HomeStoryPhone({ cfg, onNav }: { cfg: PhoneCfg; onNav?: (s: string) => void }) {
+export function HomeStoryPhone({ cfg, onNav, renderTarget }: { cfg: PhoneCfg; onNav?: (s: string) => void; renderTarget?: (id: string) => ReactNode }) {
   const [lastTool, setLastTool] = useState('')
   const [toast, setToast] = useState<string | null>(null)
+  const [open, setOpen] = useState<string | null>(null)
   const tool = (s: string) => { setLastTool(s); setToast(s); setTimeout(() => setToast(null), 2200) }
-  const nav = (s: string) => onNav ? onNav(s) : tool(s)
+  const nav = (s: string) => renderTarget ? setOpen(s) : (onNav ? onNav(s) : tool(s))
+  if (open && renderTarget) return (
+    <div style={{ width: 390, minHeight: 844, margin: '0 auto', background: '#f4f5f3', display: 'flex', flexDirection: 'column' }}>
+      <div style={{ padding: '10px 16px', borderBottom: `1px solid ${HAIR}`, background: '#fff', flexShrink: 0 }}>
+        <button onClick={() => setOpen(null)} style={{ height: 36, padding: '0 14px', borderRadius: 8, border: `1px solid ${BORDER}`, background: '#fff', fontSize: 13, fontWeight: 600, color: INK, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 6 }}>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7" /></svg>
+          Back to Home
+        </button>
+      </div>
+      <div style={{ flex: 1, overflow: 'auto' }}>{renderTarget(open)}</div>
+    </div>
+  )
   const amberBtn: React.CSSProperties = { height: 46, borderRadius: 12, border: 'none', background: AMBER, color: INK, fontSize: 15, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', width: '100%' }
   return (
     <div data-lasttool={lastTool} style={{ width: 390, minHeight: 844, background: '#f4f5f3', fontFamily: "'DM Sans',system-ui,sans-serif", display: 'flex', flexDirection: 'column' }}>
@@ -345,13 +358,30 @@ export function HomeStoryTablet({ cfg, onNav }: { cfg: HomeCfg; onNav?: (s: stri
   )
 }
 
+// Back bar shown above a target screen opened from a Home deep-link.
+function TargetShell({ onBack, children }: { onBack: () => void; children: ReactNode }) {
+  return (
+    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: 0, background: '#f4f6f5' }}>
+      <div style={{ padding: '10px 28px', borderBottom: `1px solid ${HAIR}`, background: '#fff', flexShrink: 0 }}>
+        <button onClick={onBack} style={{ height: 36, padding: '0 14px', borderRadius: 8, border: `1px solid ${BORDER}`, background: '#fff', fontSize: 13, fontWeight: 600, color: INK, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 6 }}>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7" /></svg>
+          Back to Home
+        </button>
+      </div>
+      <div style={{ flex: 1, overflow: 'auto', minHeight: 0 }}>{children}</div>
+    </div>
+  )
+}
+
 // Content-only Home (ask line + four-part grid) for dropping inside a role's
 // existing frame (the role app supplies the top/sub nav and Ask panel).
-export function HomeStoryBody({ cfg, onNav }: { cfg: HomeCfg; onNav?: (s: string) => void }) {
+export function HomeStoryBody({ cfg, onNav, renderTarget }: { cfg: HomeCfg; onNav?: (s: string) => void; renderTarget?: (id: string) => ReactNode }) {
   const [lastTool, setLastTool] = useState('')
   const [toast, setToast] = useState<string | null>(null)
-  const nav = (s: string) => onNav ? onNav(s) : tool(s)
+  const [open, setOpen] = useState<string | null>(null)
+  const nav = (s: string) => renderTarget ? setOpen(s) : (onNav ? onNav(s) : tool(s))
   const tool = (s: string) => { setLastTool(s); setToast(s); setTimeout(() => setToast(null), 2500) }
+  if (open && renderTarget) return <TargetShell onBack={() => setOpen(null)}>{renderTarget(open)}</TargetShell>
   return (
     <div data-lasttool={lastTool} style={{ flex: 1, display: 'flex', flexDirection: 'column', background: '#f4f6f5', fontFamily: "'DM Sans',system-ui,sans-serif", overflowY: 'auto' }}>
       <AskLine cfg={cfg} nav={nav} />

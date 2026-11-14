@@ -814,6 +814,28 @@ function PhoneStoryNav({ id }: { id: string }) {
   return <HomeStoryPhone cfg={PHONE_CONFIGS[id]} onNav={(s) => setInner(s)} />
 }
 
+// VS1-SwitchView: the switcher behind the team/club pill.
+function SwitchViewScreen() {
+  const [picked, setPicked] = useState('U12 Sam')
+  const views = ['Whole club', 'U9 Tom', 'U11 Luke', 'U12 Sam', 'U13 Chris', 'U15 Girls Bec', 'U16 Ollie', "Men's 1sts"]
+  return (
+    <div data-screen="VS1-SwitchView" style={{ width: 1180, minHeight: 820, background: '#f4f6f5', fontFamily: "'DM Sans',system-ui,sans-serif", padding: '28px 32px' }}>
+      <div style={{ maxWidth: 560 }}>
+        <div style={{ fontSize: 22, fontWeight: 800, color: '#10211f', marginBottom: 4 }}>Switch view</div>
+        <div style={{ fontSize: 14, color: '#4a5a57', marginBottom: 20 }}>Wattle Creek FC · you see every team the club way. Pick a team, or the whole club.</div>
+        <div style={{ background: '#fff', border: '1px solid #e8edeb', borderRadius: 16, overflow: 'hidden' }}>
+          {views.map((v, i) => (
+            <button key={v} onClick={() => setPicked(v)} style={{ width: '100%', minHeight: 56, padding: '0 18px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: picked === v ? '#eef5f2' : '#fff', border: 'none', borderTop: i > 0 ? '1px solid #e8edeb' : 'none', fontSize: 15, fontWeight: picked === v ? 700 : 500, color: picked === v ? '#2f6252' : '#10211f', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
+              {v}
+              {picked === v && <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2f6252" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10" /></svg>}
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 function StartPageNav({ phone }: { phone?: boolean }) {
   const [inner, setInner] = useState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
@@ -1125,7 +1147,7 @@ function renderScreenInner(key: string): ReactNode {
     case 'goalkeeper':
       return <GoalkeeperCoachApp onBack={noop} empty={false} />
     case 'coordinator':
-      return <CoordinatorPortal onBack={noop} empty={false} homeStory={<HomeStoryBody cfg={STO12} />} />
+      return <CoordinatorPortal onBack={noop} empty={false} homeStory={<HomeStoryBody cfg={STO12} renderTarget={renderScreen} />} />
     case 'rollover':
       return <RolloverScreen onBack={noop} empty={false} />
     case 'seniors':
@@ -1135,9 +1157,9 @@ function renderScreenInner(key: string): ReactNode {
     case 'fitnesscoach':
       return <FitnessCoachScreen empty={false} />
     case 'clubadmin':
-      return <ClubAdminScreenNav empty={false} role="dof" initials="RM" homeStory={<HomeStoryBody cfg={STO10} />} />
+      return <ClubAdminScreenNav empty={false} role="dof" initials="RM" homeStory={<HomeStoryBody cfg={STO10} renderTarget={renderScreen} />} />
     case 'chair-home':
-      return <ClubAdminScreenNav empty={false} role="chair" initials="GL" homeStory={<HomeStoryBody cfg={STO11} />} />
+      return <ClubAdminScreenNav empty={false} role="chair" initials="GL" homeStory={<HomeStoryBody cfg={STO11} renderTarget={renderScreen} />} />
     case 'welfare-home':
       return <HomeStoryNav id="STO13-HomeStoryWelfare" />
     case 'teammanager':
@@ -2170,6 +2192,23 @@ function renderScreenInner(key: string): ReactNode {
     case 'STO21-HomeStoryAcademyParent':
     case 'STO22-HomeStoryAcademyPlayer':
       return <PhoneStoryNav id={key} />
+    // Home-link targets that lacked a direct address (map to the real screen)
+    case 'T2-TabletMatch':             return <MatchDayScreen onNav={noop} empty={false} />
+    case 'S1-PlayingStyle':            return <OurStyleScreen />
+    case 'D8-ClubStyle':               return <OurStyleScreen />
+    case 'ST1-TeamStaff':              return <TeamStaffScreen empty={false} />
+    case 'D7-SeasonPlan':              return <FY1SeasonPlan />
+    case 'DrillFlow':                  return <DrillLibraryScreen empty={false} />
+    case 'ACC8-AcademyRecord':         return <ACC11AcademyRecording />
+    case 'FT1-FitnessHomeU12':         return <FitnessCoachScreen empty={false} />
+    case 'DP1-Pathway':                return <DP1FairGameTime />
+    case 'PA-ParentHome':              return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PP1TwoChildren /></div>
+    case 'PA-Clip':                    return <ClipsScreen empty={false} />
+    case 'PA-Goals':                   return <DevGoalsScreen />
+    case 'ACP4-ParentFees':            return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><ACP4ParentFees /></div>
+    case 'ACP6-MakeUp':                return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><ACP6MakeUp /></div>
+    case 'ACP8-BookClinic':            return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><ACP8eBookClinicEmpty /></div>
+    case 'VS1-SwitchView':             return <SwitchViewScreen />
 
     default:
       return (
@@ -2460,67 +2499,67 @@ export default function DemoApp() {
         const pc = phase === 'preseason' ? <SP2HomePreSeason onBack={noop} />
                  : phase === 'postseason' ? <SP10HomePostSeason onBack={noop} />
                  : phase === 'restmonth' ? <SP16RestMonth onBack={noop} />
-                 : <HomeStoryBody cfg={STO5} />
+                 : <HomeStoryBody cfg={STO5} renderTarget={renderScreen} />
         lookContent = <JuniorCoachApp phaseContent={pc} initialScreen={screen} onNavChange={setScreen} />
       }
     } else if (role === 'ccoach') {
       const pc = phase === 'preseason' ? <SPc2CoCoachPreSeason onBack={noop} />
                : phase === 'postseason' ? <SP10HomePostSeason onBack={noop} />
                : phase === 'restmonth' ? <SP16RestMonth onBack={noop} />
-               : <HomeStoryBody cfg={STO7} />
+               : <HomeStoryBody cfg={STO7} renderTarget={renderScreen} />
       lookContent = <JuniorCoachApp phaseContent={pc} coachLabel="U12 Sam · Assistant coach" coachInitials="JM" initialScreen={screen} onNavChange={setScreen} coachRole="ccoach" />
     } else if (role === 'youth') {
       const pc = phase === 'preseason' ? <SPy2YouthPreSeason onBack={noop} />
                : phase === 'postseason' ? <SPy10YouthPostSeason onBack={noop} />
                : phase === 'restmonth' ? <SPy16YouthRestMonth onBack={noop} />
-               : <HomeStoryBody cfg={STO6} />
+               : <HomeStoryBody cfg={STO6} renderTarget={renderScreen} />
       lookContent = <SeniorsYouthCoachApp teamType="youth" onBack={noop} phaseContent={pc} initialScreen={screen} onNavChange={setScreen} />
     } else if (role === 'seniors') {
       const pc = phase === 'preseason' ? <SPs2SeniorPreSeason onBack={noop} />
                : phase === 'postseason' ? <SPs10SeniorPostSeason onBack={noop} />
                : phase === 'restmonth' ? <SPs16SeniorOffSeason onBack={noop} />
-               : <HomeStoryBody cfg={STO4} />
+               : <HomeStoryBody cfg={STO4} renderTarget={renderScreen} />
       lookContent = <SeniorsYouthCoachApp teamType="seniors" onBack={noop} phaseContent={pc} initialScreen={screen} onNavChange={setScreen} />
     } else if (role === 'miniroos') {
       const pc = phase === 'preseason' ? <SPm2MiniRoosPreSeason onBack={noop} />
                : phase === 'postseason' ? <SPm10MiniRoosPostSeason onBack={noop} />
                : phase === 'restmonth' ? <SPm16MiniRoosRest onBack={noop} />
-               : <HomeStoryBody cfg={STO1} />
+               : <HomeStoryBody cfg={STO1} renderTarget={renderScreen} />
       lookContent = <div style={{ width: 1180, background: 'var(--surface-100)' }}><MiniRoosApp onBack={() => setRole('coach')} empty={false} phaseContent={pc} initialScreen={screen} onNavChange={setScreen} /></div>
     } else if (role === 'goalkeeper') {
-      lookContent = <GoalkeeperCoachApp onBack={() => setRole('coach')} empty={false} initialScreen={screen} onNavChange={setScreen} homeStory={<HomeStoryBody cfg={STO9} />} />
+      lookContent = <GoalkeeperCoachApp onBack={() => setRole('coach')} empty={false} initialScreen={screen} onNavChange={setScreen} homeStory={<HomeStoryBody cfg={STO9} renderTarget={renderScreen} />} />
     } else if (role === 'fitness') {
-      lookContent = <FitnessCoachScreen empty={false} initialScreen={screen} onNavChange={setScreen} homeStory={<HomeStoryBody cfg={STO8} />} />
+      lookContent = <FitnessCoachScreen empty={false} initialScreen={screen} onNavChange={setScreen} homeStory={<HomeStoryBody cfg={STO8} renderTarget={renderScreen} />} />
     } else if (role === 'academyowner') {
-      lookContent = <AcademyOwnerApp onBack={() => setRole('academycoach')} empty={false} initialScreen={screen} onNavChange={setScreen} homeStory={<HomeStoryBody cfg={STO14} />} />
+      lookContent = <AcademyOwnerApp onBack={() => setRole('academycoach')} empty={false} initialScreen={screen} onNavChange={setScreen} homeStory={<HomeStoryBody cfg={STO14} renderTarget={renderScreen} />} />
     } else if (role === 'academycoach') {
-      lookContent = <AcademyCoachApp onBack={() => setRole('coach')} empty={false} initialScreen={screen} onNavChange={setScreen} homeStory={<HomeStoryBody cfg={STO15} />} />
+      lookContent = <AcademyCoachApp onBack={() => setRole('coach')} empty={false} initialScreen={screen} onNavChange={setScreen} homeStory={<HomeStoryBody cfg={STO15} renderTarget={renderScreen} />} />
     } else if (role === 'academyparent') {
-      lookContent = <HomeStoryPhone cfg={PHONE_CONFIGS['STO21-HomeStoryAcademyParent']} />
+      lookContent = <HomeStoryPhone cfg={PHONE_CONFIGS['STO21-HomeStoryAcademyParent']} renderTarget={renderScreen} />
     } else if (role === 'academyplayer') {
-      lookContent = <HomeStoryPhone cfg={PHONE_CONFIGS['STO22-HomeStoryAcademyPlayer']} />
+      lookContent = <HomeStoryPhone cfg={PHONE_CONFIGS['STO22-HomeStoryAcademyPlayer']} renderTarget={renderScreen} />
     } else if (role === 'referee') {
-      lookContent = <HomeStoryPhone cfg={PHONE_CONFIGS['STO20-HomeStoryReferee']} />
+      lookContent = <HomeStoryPhone cfg={PHONE_CONFIGS['STO20-HomeStoryReferee']} renderTarget={renderScreen} />
     } else if (role === 'parent') {
       if (phase === 'preseason')       lookContent = <SPp1ParentPreSeason onBack={noop} />
       else if (phase === 'postseason') lookContent = <SPp3ParentTournament onBack={noop} />
       else if (phase === 'restmonth')  lookContent = <SPp4ParentRestMonth onBack={noop} />
-      else                             lookContent = <HomeStoryPhone cfg={PHONE_CONFIGS['STO17-HomeStoryParent']} />
+      else                             lookContent = <HomeStoryPhone cfg={PHONE_CONFIGS['STO17-HomeStoryParent']} renderTarget={renderScreen} />
     } else if (role === 'manager') {
       if (phase === 'preseason')       lookContent = <SPp10ManagerPreSeason />
       else if (phase === 'postseason') lookContent = <SPp11ManagerPostSeason />
       else if (phase === 'restmonth')  lookContent = <SPp12ManagerRestMonth />
-      else                             lookContent = <HomeStoryPhone cfg={PHONE_CONFIGS['STO16-HomeStoryManager']} />
+      else                             lookContent = <HomeStoryPhone cfg={PHONE_CONFIGS['STO16-HomeStoryManager']} renderTarget={renderScreen} />
     } else if (role === 'playeryoung') {
       if (phase === 'preseason')       lookContent = <SPp13PlayerPreSeason />
       else if (phase === 'postseason') lookContent = <SPp14PlayerPostSeason />
       else if (phase === 'restmonth')  lookContent = <SPp7PlayerRestMonth />
-      else                             lookContent = <HomeStoryPhone cfg={PHONE_CONFIGS['STO18-HomeStoryPlayerYoung']} />
+      else                             lookContent = <HomeStoryPhone cfg={PHONE_CONFIGS['STO18-HomeStoryPlayerYoung']} renderTarget={renderScreen} />
     } else if (role === 'playerolder') {
       if (phase === 'preseason')       lookContent = <SPp15OlderPreSeason />
       else if (phase === 'postseason') lookContent = <SPp16OlderPostSeason />
       else if (phase === 'restmonth')  lookContent = <SPp17OlderRestMonth />
-      else                             lookContent = <HomeStoryPhone cfg={PHONE_CONFIGS['STO19-HomeStoryPlayerOlder']} />
+      else                             lookContent = <HomeStoryPhone cfg={PHONE_CONFIGS['STO19-HomeStoryPlayerOlder']} renderTarget={renderScreen} />
     } else if (homeKey) {
       lookContent = renderScreen(homeKey)
     } else {
