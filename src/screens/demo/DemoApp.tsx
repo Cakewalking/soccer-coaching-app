@@ -372,7 +372,7 @@ import DemoStart             from './DemoStart'
 import DemoStartEmpty        from './DemoStartEmpty'
 import StartPage             from '../start/StartPage'
 import { HomeStoryTablet, HomeStoryPhone, HomeStoryBody, HomeStoryMiniRoosTraining, HomeStoryMiniRoosNoFilm } from '../story/HomeStory'
-import { TABLET_CONFIGS, STO1, STO4, STO5, STO6, STO7, STO8, STO9, STO10, STO11, STO14, STO15 } from '../story/configs'
+import { TABLET_CONFIGS, STO1, STO4, STO5, STO6, STO7, STO8, STO9, STO10, STO11, STO12, STO14, STO15 } from '../story/configs'
 import { PHONE_CONFIGS }      from '../story/phoneConfigs'
 import DemoWhy               from './DemoWhy'
 import DemoTourShell         from './DemoTourShell'
@@ -1123,7 +1123,7 @@ function renderScreenInner(key: string): ReactNode {
     case 'goalkeeper':
       return <GoalkeeperCoachApp onBack={noop} empty={false} />
     case 'coordinator':
-      return <CoordinatorPortal onBack={noop} empty={false} />
+      return <CoordinatorPortal onBack={noop} empty={false} homeStory={<HomeStoryBody cfg={STO12} />} />
     case 'rollover':
       return <RolloverScreen onBack={noop} empty={false} />
     case 'seniors':
@@ -1137,7 +1137,7 @@ function renderScreenInner(key: string): ReactNode {
     case 'chair-home':
       return <ClubAdminScreenNav empty={false} role="chair" initials="GL" homeStory={<HomeStoryBody cfg={STO11} />} />
     case 'welfare-home':
-      return <ClubAdminScreenNav empty={false} role="welfare" initials="HP" initialTab="welfare" />
+      return <HomeStoryNav id="STO13-HomeStoryWelfare" />
     case 'teammanager':
       return <TeamManagerScreen empty={false} />
     case 'twochildren':

@@ -127,7 +127,7 @@ function PlaceholderTab({ label }: { label: string }) {
   )
 }
 
-export default function CoordinatorPortal({ onBack: _onBack, empty = false }: { onBack: () => void; empty?: boolean }) {
+export default function CoordinatorPortal({ onBack: _onBack, empty = false, homeStory }: { onBack: () => void; empty?: boolean; homeStory?: import('react').ReactNode }) {
   const [tab, setTab] = useState<CoTab>('thisweek')
   const [activeNav, setActiveNav] = useState('Club')
   const [toast, setToast] = useState<string | null>(null)
@@ -232,7 +232,7 @@ export default function CoordinatorPortal({ onBack: _onBack, empty = false }: { 
         : activeNav === 'Players'      ? <PlayersTab empty={false} />
         : activeNav === 'Safeguarding' ? <SafeguardingTab empty={false} />
         : activeNav === 'Reports'      ? <ReportsTab empty={false} />
-        : tab === 'thisweek'           ? <ThisWeekTab />
+        : tab === 'thisweek'           ? ((activeNav === 'Club' && homeStory) ? homeStory : <ThisWeekTab />)
         : <PlaceholderTab label={TABS.find(t => t.id === tab)?.label ?? ''} />}
       </div>
       {toast && (
