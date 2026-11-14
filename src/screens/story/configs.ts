@@ -193,10 +193,169 @@ export const STO7: HomeCfg = {
   needs: { count: 1, title: 'One thing needs you', sub: 'Sam asked: can you lead on Tue 9 June?' },
 }
 
+// Director/chair club frame (top tabs + Overview sub-nav).
+const CLUB_TOPNAV = [
+  { label: 'Club', active: true }, { label: 'Teams' }, { label: 'Coaches' },
+  { label: 'Players' }, { label: 'Safeguarding' }, { label: 'Reports' },
+]
+const CLUB_SUBNAV = [
+  { label: 'Overview', active: true }, { label: 'Messages', target: 'MSG4-DirectorMessages' },
+  { label: 'Calendar' }, { label: 'Season plan' }, { label: 'Playing style' },
+  { label: 'Files', target: 'FIL5-ClubFiles' }, { label: 'Features and billing', target: 'PRM1-FeaturesByTeam' },
+]
+const CLUB_TEAM_FACES = (ls: string[]): { ini: string; has: boolean }[] => ls.map((ini, i) => ({ ini, has: i % 3 !== 1 }))
+
+export const STO10: HomeCfg = {
+  id: 'STO10-HomeStoryDirector', role: 'Director of football', team: 'Whole club', avatar: 'RM',
+  topNav: CLUB_TOPNAV, subNav: CLUB_SUBNAV,
+  ask: 'Ask about Wattle Creek FC… Which teams are outside fair game time?', askTarget: 'ASKd2-HomeFocus',
+  proof: {
+    label: 'WATTLE CREEK FC · 14 TEAMS · ROUND 8',
+    headline: 'You asked every team to play the club way. In April, half of their games looked like it. This week, two in three.',
+    second: 'Biggest movers: U12 Sam and U16 Ollie. U9 Mark and U13 Chris need a hand.',
+    bars: [{ n: '51', when: 'Round 2' }, { n: '58', when: 'Round 5' }, { n: '67', when: 'Round 8', amber: true }],
+    unit: '% of games played our way',
+    reel: { duration: '2:00', chips: ['U9', 'U12', 'U16', '1sts', '+7'], caption: 'One clip from each team that recorded a game. Ready for Tuesday’s coach meeting.' },
+    mainBtn: 'Play 2 minutes', outlineBtn: 'By team',
+  },
+  ready: {
+    when: 'TUE 9 JUNE · 7:00 pm · CLUBROOMS', title: 'The coach meeting is ready',
+    text: 'Agenda drafted from this week: pressing as a club, recording every game, cover for U9 Mark.',
+    chips: ['45 minutes', '3 items', '11 clips'], pale: 'Three coaches are due a learning step. It is on the agenda.',
+    btn1: 'Open the agenda', btn2: 'Send to coaches',
+  },
+  moments: {
+    title: 'A highlight from every team', link: 'All teams', faces: CLUB_TEAM_FACES(['U9', 'U9', 'U11', 'U12', 'U13', 'U13', 'U14', 'U15', 'U16', '+5']),
+    rows: [
+      { ini: 'U12', title: 'U12 Sam · 13 wins of the ball in their half', sub: 'Best in the club this round', action: 'Share' },
+      { ini: 'U11', title: 'U11 Luke · every child has been captain', sub: 'First team to get there this season', action: 'Share' },
+    ],
+    foot: '11 of 14 teams recorded a game this fortnight. U9 Mark, U13 Chris and U15 Girls Bec did not.',
+  },
+  done: { title: 'Done for you', lines: ['Board report drafted for Greg', 'Four children checks chased', 'Fair game time checked: 12 of 14', 'Fixtures synced with the league'], next: 'Next: coach meeting, Tue 9 June' },
+  needs: { count: 5, title: 'Five things need you', sub: 'U9 Mark has no coach on Saturday', target: 'MSG4-DirectorMessages' },
+}
+
+export const STO11: HomeCfg = {
+  id: 'STO11-HomeStoryChair', role: 'Chair', team: 'Whole club', avatar: 'GL',
+  topNav: CLUB_TOPNAV, subNav: CLUB_SUBNAV,
+  ask: 'Ask about Wattle Creek FC… How many players did we keep from last year?', askTarget: 'ASKd2-HomeFocus',
+  proof: {
+    label: 'WATTLE CREEK FC · BOARD MEETING IN 6 DAYS',
+    headline: 'The club promised every child fair game time. Twelve of fourteen teams now keep it. In round 1, seven did.',
+    second: '192 players, up 14 on last year. 31 of 31 coaches hold a current children check.',
+    bars: [{ n: '7', when: 'Round 1' }, { n: '10', when: 'Round 4' }, { n: '12', when: 'Round 8', amber: true }],
+    unit: 'teams inside the fair game time rule',
+    status: [
+      { label: 'Players · kept from last year', value: '192 · up 14' },
+      { label: 'Coaches cleared', value: '88% · 31 of 31' },
+      { label: 'Open concerns', value: '2 · on track' },
+    ],
+    statusCaption: 'Counts only. Names and details stay with the welfare officer.',
+    mainBtn: 'Read the board report', outlineBtn: 'The two teams',
+  },
+  ready: {
+    when: 'WED 10 JUNE · 7:30 pm · CLUBROOMS', title: 'The board report is ready',
+    text: 'One page, drafted from this month’s numbers. Rachel has checked the football; you add the money.',
+    chips: ['1 page', '6 numbers', '2 decisions'], pale: 'The council grant report uses the same numbers. It is drafted too.',
+    btn1: 'Open the report', btn2: 'Send to committee',
+  },
+  moments: {
+    title: 'What members will ask', link: 'All reports', faces: [],
+    rows: [
+      { ini: '192', title: 'Registrations · up 14 on last year', sub: 'Girls and women up from 41 to 58', action: 'Open', target: 'PRM3-Bill' },
+      { ini: '$', title: 'This month’s bill · $384, 2 add-ons on 6 teams', sub: 'Used on 5 of the 6 teams paying for them', action: 'Open', target: 'PRM3-Bill' },
+    ],
+    foot: 'Nothing here names a child. Coaches see their own team; the committee sees counts.',
+  },
+  done: { title: 'Done for you', lines: ['Grant report drafted', 'Committee papers collated', 'Volunteer hours totalled: 412', 'Pilot review booked with Clean Sheet'], next: 'Next: board, Wed 10 June' },
+  needs: { count: 1, title: 'One thing needs you', sub: 'Approve the U9 Mark coach cover', target: 'MSG4-DirectorMessages' },
+}
+
+export const STO12: HomeCfg = {
+  id: 'STO12-HomeStoryCoordinator', role: 'Club coordinator', team: 'Whole club', avatar: 'BR',
+  topNav: CLUB_TOPNAV,
+  subNav: [{ label: 'This week', active: true }, { label: 'Registrations' }, { label: 'Fixtures' }, { label: 'Referees' }, { label: 'Kit' }, { label: 'Fees and volunteers' }],
+  ask: 'Ask about this week… Which games still need a game leader?', askTarget: 'ASKd2-HomeFocus',
+  proof: {
+    label: 'SATURDAY 6 JUNE · 14 GAMES · 3 GROUNDS',
+    headline: 'Saturday is nearly covered. On Monday 31 families hadn’t answered. Today it’s five.',
+    second: '13 of 14 games have a game leader. Every pitch is booked. Canteen needs one more.',
+    bars: [{ n: '31', when: 'Monday' }, { n: '12', when: 'Wednesday' }, { n: '5', when: 'Today', amber: true }],
+    unit: 'families still to answer',
+    status: [
+      { label: 'Game leaders', value: '13 of 14' },
+      { label: 'Pitches booked', value: '14 of 14' },
+      { label: 'Canteen', value: '5 of 6 shifts' },
+      { label: 'Kit', value: '2 bibs sets short' },
+    ],
+    statusCaption: 'Each line opens the list behind it.',
+    mainBtn: 'Saturday run sheet', outlineBtn: 'Remind the five',
+  },
+  ready: {
+    when: 'SAT 6 JUNE · FIRST GAME 8:30 am', title: 'The run sheet is ready',
+    text: 'Fourteen games by ground and time, with who opens up, who referees and who locks up.',
+    chips: ['3 grounds', '14 games', '26 volunteers'], pale: 'Built from fixtures, the roster and what families answered.',
+    btn1: 'Open the run sheet', btn2: 'Send to managers',
+  },
+  moments: {
+    title: 'Gaps to fill', link: 'Everything', faces: [],
+    rows: [
+      { ini: 'U9', title: 'U9 Mark · needs a game leader', sub: 'Four parents asked · none yet', action: 'Ask again' },
+      { ini: 'C', title: 'Canteen 10 to 11 · one more needed', sub: 'Posted on the volunteer board', action: 'Ask' },
+    ],
+    foot: 'Two gaps left for Saturday. On Monday there were nine.',
+  },
+  done: { title: 'Done for you', lines: ['Fixtures synced with the league', 'Reminders sent to 31 families', 'Pitch 2 moved for line marking', 'Referee fees totalled'], next: 'Next: Sat 6 June, 8:30 am' },
+  needs: { count: 2, title: 'Two things need you', sub: 'A dispensation · a late registration', target: 'MSG4-DirectorMessages' },
+}
+
+export const STO13: HomeCfg = {
+  id: 'STO13-HomeStoryWelfare', role: 'Welfare officer', team: 'Whole club', avatar: 'HP',
+  topNav: [{ label: 'Welfare', active: true }],
+  subNav: [{ label: 'Overview', active: true }, { label: 'Concerns' }, { label: 'Children checks' }, { label: 'Messages' }],
+  ask: 'Ask about safeguarding… Whose children check runs out next?', askTarget: 'ASKd2-HomeFocus',
+  proof: {
+    label: 'SAFEGUARDING · WEEK OF 1 JUNE',
+    headline: 'Two concerns are open and both are on track. This year a concern has taken eight days to close, down from 21.',
+    second: 'One new concern arrived this morning. Only you can read it.',
+    bars: [{ n: '21', when: '2024' }, { n: '12', when: '2025' }, { n: '8', when: 'This year', amber: true }],
+    unit: 'days to close a concern, on average',
+    status: [
+      { label: 'Open concerns', value: '2 · on track' },
+      { label: 'Closed this year', value: '6 of 6 in time' },
+      { label: 'Coaches cleared', value: '31 of 31' },
+      { label: 'Course done', value: '28 of 31' },
+    ],
+    statusCaption: 'The committee sees these counts. Never names or details.',
+    mainBtn: 'Read the new concern', outlineBtn: 'Log one yourself',
+  },
+  ready: {
+    when: 'THU 4 JUNE · 4:00 pm · PHONE', title: 'Thursday’s check-in is ready',
+    text: 'Your call with a parent from U13 Girls Meg: what was agreed last time and what to ask.',
+    chips: ['15 minutes', 'Private notes', '2 agreed steps'], pale: 'Notes stay with you. Nothing is shared without your say.',
+    btn1: 'Open my notes', btn2: 'Move it',
+  },
+  moments: {
+    title: 'People to check on', link: 'All concerns', faces: [],
+    rows: [
+      { ini: '?', title: 'A player, U13 Girls Meg · check-in due Friday', sub: 'On track · two steps agreed', action: 'Open' },
+      { ini: '?', title: 'Away spectator, U14 Josh · club replied', sub: 'On track · waiting on the other club', action: 'Open' },
+    ],
+    foot: 'Names show only when you open a concern, and never on a shared screen.',
+  },
+  done: { title: 'Done for you', lines: ['Four expiring checks chased', 'Course reminder sent to three coaches', 'Committee counts drafted', 'Report line checked: answered in 1 day'], next: 'Kids Helpline 1800 55 1800 is on every child’s screen' },
+  needs: { count: 1, title: 'One thing needs you', sub: 'A new concern to read' },
+}
+
 export const TABLET_CONFIGS: Record<string, HomeCfg> = {
   'STO1-HomeStoryMiniRoos': STO1,
   'STO4-HomeStorySeniors': STO4,
   'STO5-HomeStoryJuniors': STO5,
   'STO6-HomeStoryYouth': STO6,
   'STO7-HomeStoryAssistant': STO7,
+  'STO10-HomeStoryDirector': STO10,
+  'STO11-HomeStoryChair': STO11,
+  'STO12-HomeStoryCoordinator': STO12,
+  'STO13-HomeStoryWelfare': STO13,
 }

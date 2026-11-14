@@ -12,7 +12,7 @@ const GREY = '#4a5a57', FACEBG = '#eef5f2'
 type Bar = { n: string; when: string; amber?: boolean }
 type StatusLine = { label: string; value: string }
 type Face = { ini: string; has: boolean }
-type MomentRow = { ini: string; title: string; sub: string; action: string }
+type MomentRow = { ini: string; title: string; sub: string; action: string; target?: string }
 
 export type FrameNavItem = { label: string; target?: string; active?: boolean }
 export type HomeCfg = {
@@ -112,7 +112,7 @@ function ProofInner({ p, nav, tool }: { p: HomeCfg['proof']; nav: (s: string) =>
         ) : p.status ? (
           <>
             {p.status.map(s => (
-              <button key={s.label} onClick={() => tool(s.label)} style={{ height: 40, padding: '0 12px', borderRadius: 10, background: 'rgba(255,255,255,0.10)', border: 'none', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: 14, cursor: 'pointer', fontFamily: 'inherit' }}>
+              <button key={s.label} onClick={() => tool(s.label)} style={{ minHeight: 44, padding: '0 12px', borderRadius: 10, background: 'rgba(255,255,255,0.10)', border: 'none', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: 14, cursor: 'pointer', fontFamily: 'inherit' }}>
                 <span style={{ color: PALE }}>{s.label}</span><strong>{s.value}</strong>
               </button>
             ))}
@@ -144,7 +144,7 @@ function ReadyCard({ r, nav, tool }: { r: HomeCfg['ready']; nav: (s: string) => 
   )
 }
 
-function MomentsCard({ m, tool }: { m: HomeCfg['moments']; tool: (s: string) => void }) {
+function MomentsCard({ m, nav, tool }: { m: HomeCfg['moments']; nav: (s: string) => void; tool: (s: string) => void }) {
   return (
     <CardShell style={{ gap: 4 }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -159,7 +159,7 @@ function MomentsCard({ m, tool }: { m: HomeCfg['moments']; tool: (s: string) => 
             <div style={{ fontSize: 15, lineHeight: '20px', fontWeight: 700, color: INK }}>{row.title}</div>
             <div style={{ fontSize: 13, lineHeight: '18px', color: GREY }}>{row.sub}</div>
           </span>
-          <button onClick={() => tool(row.action === 'Send' ? `send:${row.ini}` : `watch:${row.ini}`)} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${BORDER}`, background: '#fff', fontSize: 14, fontWeight: 700, color: INK, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>{row.action}</button>
+          <button onClick={() => row.target ? nav(row.target) : tool(`${row.action}:${row.ini}`)} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${BORDER}`, background: '#fff', fontSize: 14, fontWeight: 700, color: INK, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>{row.action}</button>
         </div>
       ))}
       <span style={{ fontSize: 14, lineHeight: '20px', color: GREY, marginTop: 'auto', borderTop: `1px solid ${HAIR}`, paddingTop: 8 }}>{m.foot}</span>
@@ -198,7 +198,7 @@ function RightColumn({ done, needs, nav, tool }: { done: HomeCfg['done']; needs:
 
 function Frame({ cfg, nav, tool, children }: { cfg: HomeCfg; nav: (s: string) => void; tool: (s: string) => void; children: React.ReactNode }) {
   const tnb = (it: FrameNavItem): React.CSSProperties => ({ height: 56, padding: '0 12px', background: it.active ? 'rgba(255,255,255,0.14)' : 'none', color: it.active ? '#fff' : 'rgba(255,255,255,0.75)', border: 'none', borderRadius: it.active ? 10 : 0, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0, display: 'flex', alignItems: 'center', gap: 6 })
-  const snb = (it: FrameNavItem): React.CSSProperties => ({ height: 44, padding: '0 10px', background: 'none', color: it.active ? GREEN : GREY, borderBottom: it.active ? `2px solid ${GREEN}` : '2px solid transparent', border: 'none', fontSize: 13, fontWeight: it.active ? 700 : 600, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 })
+  const snb = (it: FrameNavItem): React.CSSProperties => ({ height: 44, minWidth: 44, padding: '0 10px', background: 'none', color: it.active ? GREEN : GREY, borderBottom: it.active ? `2px solid ${GREEN}` : '2px solid transparent', border: 'none', fontSize: 13, fontWeight: it.active ? 700 : 600, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 })
   const click = (it: FrameNavItem) => () => it.target ? nav(it.target) : tool(it.label)
   return (
     <div data-lasttool="" style={{ width: 1180, minHeight: 820, background: '#f4f6f5', fontFamily: "'DM Sans',system-ui,sans-serif", display: 'flex', flexDirection: 'column' }}>
@@ -240,7 +240,7 @@ export function HomeStoryTablet({ cfg, onNav }: { cfg: HomeCfg; onNav?: (s: stri
             <ProofInner p={cfg.proof} nav={nav} tool={tool} />
           </div>
           <ReadyCard r={cfg.ready} nav={nav} tool={tool} />
-          <MomentsCard m={cfg.moments} tool={tool} />
+          <MomentsCard m={cfg.moments} nav={nav} tool={tool} />
           <RightColumn done={cfg.done} needs={cfg.needs} nav={nav} tool={tool} />
         </div>
       </Frame>
