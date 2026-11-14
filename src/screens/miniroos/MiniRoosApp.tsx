@@ -35,6 +35,98 @@ const LN  = '#e8edeb'
 const PALE = '#eef5f2'
 const ROSE = '#c39797'
 
+const MR_FILES = [
+  { id: '1', name: 'Wattle Creek Reserve · where and when', type: 'doc' as const, who: 'U9 Tom families · 10 of 14 opened', changed: 'Today' },
+  { id: '2', name: 'Term 2 turns sheet', type: 'sheet' as const, who: 'U9 Tom families · 8 of 14 opened', changed: 'Tue' },
+  { id: '3', name: 'Duty roster, term 2', type: 'sheet' as const, who: 'Coaching team only', changed: '15 May' },
+]
+
+function MrFileIcon({ type }: { type: 'doc' | 'sheet' }) {
+  const color = type === 'sheet' ? G : '#6b7280'
+  return (
+    <div style={{ width: 36, height: 36, borderRadius: 8, background: type === 'sheet' ? PALE : '#f9fafb', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        {type === 'sheet'
+          ? <><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/></>
+          : <><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></>}
+      </svg>
+    </div>
+  )
+}
+
+function MiniRooFilesContent({ onOpenSheet, onOpenDoc }: { onOpenSheet: () => void; onOpenDoc: () => void }) {
+  const [toast, setToast] = useState<string | null>(null)
+  const [uploadDone, setUploadDone] = useState(false)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 2500) }
+  const templates = [
+    { label: 'Game day info', desc: 'Meet time, ground, what to bring' },
+    { label: 'Duty roster', desc: 'Canteen, kit, oranges' },
+    { label: 'Letter to families', desc: 'Your words, club header' },
+  ]
+  return (
+    <div style={{ flex: 1, display: 'flex', overflow: 'hidden' }}>
+      <div style={{ flex: 1, padding: '24px 24px 24px 28px', overflowY: 'auto' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 20 }}>
+          <div>
+            <div style={{ fontSize: 22, fontWeight: 800, color: INK }}>Files</div>
+            <div style={{ fontSize: 13, color: MUT }}>U9 Tom · docs, sheets and anything you upload, in one place</div>
+          </div>
+          <div style={{ marginLeft: 'auto', display: 'flex', gap: 10 }}>
+            <button onClick={() => { setUploadDone(true); st('File uploaded') }} style={{ minHeight: 44, padding: '0 16px', borderRadius: 999, border: `1.5px solid ${LN}`, background: uploadDone ? PALE : '#fff', fontSize: 13, color: uploadDone ? G : INK, cursor: 'pointer', fontFamily: 'inherit' }}>{uploadDone ? 'Uploaded ✓' : 'Upload'}</button>
+            <button onClick={onOpenSheet} style={{ minHeight: 44, padding: '0 16px', borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 13, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>New sheet</button>
+            <button onClick={onOpenDoc} style={{ minHeight: 44, padding: '0 16px', borderRadius: 999, background: G, color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>New doc</button>
+          </div>
+        </div>
+        <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, overflow: 'hidden' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 220px 100px', padding: '10px 20px', background: PALE, borderBottom: `1px solid ${LN}` }}>
+            {['NAME', 'WHO CAN SEE IT', 'CHANGED'].map(h => (
+              <div key={h} style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT }}>{h}</div>
+            ))}
+          </div>
+          {MR_FILES.map((f, i) => (
+            <div key={f.id} onClick={() => f.type === 'sheet' ? onOpenSheet() : onOpenDoc()}
+              style={{ display: 'grid', gridTemplateColumns: '1fr 220px 100px', padding: '12px 20px', borderBottom: i < MR_FILES.length - 1 ? `1px solid ${LN}` : 'none', alignItems: 'center', cursor: 'pointer' }}>
+              <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+                <MrFileIcon type={f.type} />
+                <div>
+                  <div style={{ fontSize: 13, fontWeight: 600, color: INK }}>{f.name}</div>
+                  <div style={{ fontSize: 11, color: MUT, marginTop: 2, textTransform: 'capitalize' as const }}>{f.type}</div>
+                </div>
+              </div>
+              <div style={{ fontSize: 12, color: MUT }}>{f.who}</div>
+              <div style={{ fontSize: 12, color: MUT }}>{f.changed}</div>
+            </div>
+          ))}
+        </div>
+        <div style={{ fontSize: 12, color: MUT, marginTop: 12 }}>Files with players' names can only be shared with people in Clean Sheet, never by open link.</div>
+      </div>
+      <div style={{ width: 220, padding: '24px 20px', flexShrink: 0, display: 'flex', flexDirection: 'column', gap: 16 }}>
+        <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 18px' }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 12 }}>Start from</div>
+          {templates.map(t => (
+            <div key={t.label} onClick={onOpenDoc} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', marginBottom: 10, cursor: 'pointer' }}>
+              <div style={{ width: 28, height: 28, background: PALE, borderRadius: 6, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={G} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
+              </div>
+              <div>
+                <div style={{ fontSize: 12, fontWeight: 700, color: INK }}>{t.label}</div>
+                <div style={{ fontSize: 11, color: MUT }}>{t.desc}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 18px' }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 8 }}>Space</div>
+          <div style={{ height: 6, background: LN, borderRadius: 3, marginBottom: 6 }}><div style={{ height: '100%', width: '8%', background: G, borderRadius: 3 }} /></div>
+          <div style={{ fontSize: 12, color: MUT }}>0.4 of 5 GB used</div>
+          <div style={{ fontSize: 11, color: MUT, marginTop: 4 }}>Video does not count. It is kept with Clips.</div>
+        </div>
+      </div>
+      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: GD, color: '#fff', fontSize: 14, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)' }}>{toast}</div>}
+    </div>
+  )
+}
+
 function LiveOffContent({ onAsk }: { onAsk: () => void }) {
   const [toast, setToast] = useState<string|null>(null)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
@@ -472,8 +564,8 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
     setHomeTab('overview'); setFilView(null)
   }
 
-  if (homeTab === 'files') {
-    const fv = filView ?? 'FIL1-Files'
+  if (homeTab === 'files' && filView && filView !== 'FIL1-Files') {
+    const fv = filView
     if (fv === 'FIL4-Share') return (
       <div style={{ position: 'relative' }}>
         <FIL2Sheet onBack={() => setFilView('FIL1-Files')} onShare={() => setFilView('FIL4-Share')} onNav={filNav} />
@@ -485,7 +577,6 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
     if (fv === 'FIL3-Doc')          return <FIL3Doc onBack={() => setFilView('FIL1-Files')} onShare={() => setFilView('FIL4-Share')} onNav={filNav} />
     if (fv === 'FIL6-SignUp')       return <FIL6SignUp onBack={() => setFilView('FIL1-Files')} onShare={() => setFilView('FIL4-Share')} onNav={filNav} />
     if (fv === 'FIL7-Form')         return <FIL7Form onBack={() => setFilView('FIL1-Files')} onShare={() => setFilView('FIL4-Share')} onAnswersSheet={() => setFilView('FIL2-Sheet')} onNav={filNav} />
-    return <FIL1Files onOpenSheet={() => setFilView('FIL2-Sheet')} onOpenDoc={() => setFilView('FIL3-Doc')} onNav={filNav} />
   }
 
   let content = null
@@ -505,6 +596,7 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
     else if (homeTab === 'style')     content = <MS1MiniRoosStyle />
     else if (homeTab === 'whereweat') content = <MS2MiniRoosWhereWeAt />
     else if (homeTab === 'staff')     content = <StaffMiniRoos empty={empty} />
+    else if (homeTab === 'files')     content = <MiniRooFilesContent onOpenSheet={() => setFilView('FIL2-Sheet')} onOpenDoc={() => setFilView('FIL3-Doc')} />
   } else if (nav === 'training') {
     if (trainingTab === 'plan')    content = <TrainingMiniRoos empty={empty} />
     else if (trainingTab === 'suggest') content = <SuggestedMiniRoos empty={empty} />
