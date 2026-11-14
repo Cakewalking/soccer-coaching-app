@@ -2494,29 +2494,31 @@ export default function DemoApp() {
     } else if (role === 'academycoach') {
       lookContent = <AcademyCoachApp onBack={() => setRole('coach')} empty={false} initialScreen={screen} onNavChange={setScreen} homeStory={<HomeStoryBody cfg={STO15} />} />
     } else if (role === 'academyparent') {
-      lookContent = <AcademyParentApp onBack={() => setView('start')} empty={false} />
+      lookContent = <HomeStoryPhone cfg={PHONE_CONFIGS['STO21-HomeStoryAcademyParent']} />
     } else if (role === 'academyplayer') {
-      lookContent = <AcademyPlayerApp onBack={() => setView('start')} empty={false} />
+      lookContent = <HomeStoryPhone cfg={PHONE_CONFIGS['STO22-HomeStoryAcademyPlayer']} />
+    } else if (role === 'referee') {
+      lookContent = <HomeStoryPhone cfg={PHONE_CONFIGS['STO20-HomeStoryReferee']} />
     } else if (role === 'parent') {
       if (phase === 'preseason')       lookContent = <SPp1ParentPreSeason onBack={noop} />
       else if (phase === 'postseason') lookContent = <SPp3ParentTournament onBack={noop} />
       else if (phase === 'restmonth')  lookContent = <SPp4ParentRestMonth onBack={noop} />
-      else                             lookContent = <TwoChildrenApp onBack={() => setView('start')} empty={false} />
+      else                             lookContent = <HomeStoryPhone cfg={PHONE_CONFIGS['STO17-HomeStoryParent']} />
     } else if (role === 'manager') {
       if (phase === 'preseason')       lookContent = <SPp10ManagerPreSeason />
       else if (phase === 'postseason') lookContent = <SPp11ManagerPostSeason />
       else if (phase === 'restmonth')  lookContent = <SPp12ManagerRestMonth />
-      else                             lookContent = <TeamManagerScreen empty={false} />
+      else                             lookContent = <HomeStoryPhone cfg={PHONE_CONFIGS['STO16-HomeStoryManager']} />
     } else if (role === 'playeryoung') {
       if (phase === 'preseason')       lookContent = <SPp13PlayerPreSeason />
       else if (phase === 'postseason') lookContent = <SPp14PlayerPostSeason />
       else if (phase === 'restmonth')  lookContent = <SPp7PlayerRestMonth />
-      else                             lookContent = <PlayerAppScreen empty={false} />
+      else                             lookContent = <HomeStoryPhone cfg={PHONE_CONFIGS['STO18-HomeStoryPlayerYoung']} />
     } else if (role === 'playerolder') {
       if (phase === 'preseason')       lookContent = <SPp15OlderPreSeason />
       else if (phase === 'postseason') lookContent = <SPp16OlderPostSeason />
       else if (phase === 'restmonth')  lookContent = <SPp17OlderRestMonth />
-      else                             lookContent = <OlderPlayerApp empty={false} />
+      else                             lookContent = <HomeStoryPhone cfg={PHONE_CONFIGS['STO19-HomeStoryPlayerOlder']} />
     } else if (homeKey) {
       lookContent = renderScreen(homeKey)
     } else {
