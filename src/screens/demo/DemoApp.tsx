@@ -2144,6 +2144,10 @@ function renderScreenInner(key: string): ReactNode {
     case 'STO1-HomeStoryMiniRoos':
     case 'STO2-HomeStoryMiniRoosTraining':
     case 'STO3-HomeStoryMiniRoosNoFilm':
+    case 'STO4-HomeStorySeniors':
+    case 'STO5-HomeStoryJuniors':
+    case 'STO6-HomeStoryYouth':
+    case 'STO7-HomeStoryAssistant':
       return <HomeStoryNav id={key} />
 
     default:
