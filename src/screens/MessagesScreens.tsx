@@ -568,6 +568,7 @@ function PhoneBackBtn({ onClick }: { onClick: () => void }) {
 // MSGp1 — Parent messages
 export function ParentMessages({ onBack: _onBack }: { onBack?: () => void }) {
   const [toast, setToast] = useState<string | null>(null)
+  const [selected, setSelected] = useState<string | null>(null)
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   const chats = [
@@ -584,9 +585,10 @@ export function ParentMessages({ onBack: _onBack }: { onBack?: () => void }) {
       <div style={{ background: PALE, border: `1px solid ${LN}`, borderRadius: 12, padding: '12px 14px', marginBottom: 14, fontSize: 13, color: G, lineHeight: 1.6 }}>
         <strong>Mia and Bao are under 15,</strong> so they have no chats. Anything a coach sends them comes to you too.
       </div>
+      {selected && <div style={{ background: GD, color: '#fff', borderRadius: 12, padding: '10px 14px', marginBottom: 10, fontSize: 13, fontWeight: 600 }}>Opened: {selected}</div>}
       {chats.map(c => (
-        <button key={c.name} onClick={() => t(`${c.name} chat opens.`)}
-          style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 14px', width: '100%', background: '#fff', border: `none`, borderBottom: `1px solid ${LN}`, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left', borderRadius: 0 }}>
+        <button key={c.name} onClick={() => setSelected(c.name)}
+          style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 14px', width: '100%', background: selected === c.name ? PALE : '#fff', border: `none`, borderBottom: `1px solid ${LN}`, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left', borderRadius: 0 }}>
           <Ini s={c.ini} size={40} bg={'private' in c && c.private ? '#f0f4f0' : PALE}/>
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
@@ -626,6 +628,7 @@ export function ParentMessagesEmpty({ onBack: _onBack }: { onBack?: () => void }
 // MSGp2 — Parent new message
 export function ParentNewMessage({ onBack: _onBack }: { onBack?: () => void }) {
   const [toast, setToast] = useState<string | null>(null)
+  const [picked, setPicked] = useState<string | null>(null)
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   const groups = [
@@ -660,13 +663,14 @@ export function ParentNewMessage({ onBack: _onBack }: { onBack?: () => void }) {
         <input placeholder="Search…" style={{ width: '100%', height: 44, padding: '0 14px 0 40px', borderRadius: 10, border: `1px solid ${LN}`, fontSize: 14, fontFamily: 'inherit', outline: 'none', boxSizing: 'border-box' }}/>
         <span style={{ position: 'absolute', left: 12, top: 12, color: MUT }}><Icon d={ICONS.search} size={20}/></span>
       </div>
+      {picked && <div style={{ marginBottom: 12, padding: '8px 12px', borderRadius: 10, background: PALE, color: G, fontSize: 13, fontWeight: 700 }}>To: {picked}</div>}
       {groups.map(g => (
         <div key={g.heading} style={{ marginBottom: 20 }}>
           <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 8 }}>{g.heading}</div>
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, overflow: 'hidden' }}>
             {g.contacts.map((c, i) => (
-              <button key={c.ini} onClick={() => t('child' in c && c.child ? 'You can message Kate instead.' : `New message to ${c.name} opens.`)}
-                style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 14px', width: '100%', background: 'transparent', border: 'none', borderBottom: i < g.contacts.length - 1 ? `1px solid ${LN}` : 'none', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
+              <button key={c.ini} onClick={() => 'child' in c && c.child ? t('You can message Kate instead.') : setPicked(c.name)}
+                style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 14px', width: '100%', background: picked === c.name ? PALE : 'transparent', border: 'none', borderBottom: i < g.contacts.length - 1 ? `1px solid ${LN}` : 'none', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
                 <Ini s={c.ini} size={36} bg={'child' in c && c.child ? LN : PALE} color={'child' in c && c.child ? MUT : G}/>
                 <div style={{ flex: 1 }}>
                   <div style={{ fontSize: 14, fontWeight: 700, color: 'child' in c && c.child ? MUT : INK }}>{c.name}</div>
@@ -687,6 +691,7 @@ export function ParentNewMessage({ onBack: _onBack }: { onBack?: () => void }) {
 // MSGp3 — Referee messages
 export function RefereeMessages({ onBack: _onBack }: { onBack?: () => void }) {
   const [toast, setToast] = useState<string | null>(null)
+  const [selected, setSelected] = useState<string | null>(null)
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   const chats = [
@@ -700,9 +705,10 @@ export function RefereeMessages({ onBack: _onBack }: { onBack?: () => void }) {
       <div style={{ background: PALE, border: `1px solid ${LN}`, borderRadius: 12, padding: '12px 14px', marginBottom: 14, fontSize: 13, color: G, lineHeight: 1.6 }}>
         You're 16, so your mum is copied on messages from adults and can read these chats. Other adults can't start a chat with you: Ruth adds them.
       </div>
+      {selected && <div style={{ background: GD, color: '#fff', borderRadius: 12, padding: '10px 14px', marginBottom: 10, fontSize: 13, fontWeight: 600 }}>Opened: {selected}</div>}
       {chats.map(c => (
-        <button key={c.name} onClick={() => t(`${c.name} chat opens.`)}
-          style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 14px', width: '100%', background: 'active' in c && c.active ? PALE : '#fff', border: 'none', borderBottom: `1px solid ${LN}`, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
+        <button key={c.name} onClick={() => setSelected(c.name)}
+          style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 14px', width: '100%', background: selected === c.name ? PALE : '#fff', border: 'none', borderBottom: `1px solid ${LN}`, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
           <Ini s={c.ini} size={40} bg={PALE}/>
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
@@ -727,7 +733,7 @@ export function RefereeMessages({ onBack: _onBack }: { onBack?: () => void }) {
         </div>
         <button onClick={() => t('Opening welfare chat.')} style={{ marginTop: 10, width: '100%', height: 40, borderRadius: 10, background: '#fff', border: `1px solid ${LN}`, color: G, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Write to Helen privately</button>
       </div>
-      <button onClick={() => t('New message — Ruth adds contacts.')} style={{ display: 'block', width: '100%', height: 48, borderRadius: 12, background: G, color: '#fff', border: 'none', fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>+ New message</button>
+      <button onClick={() => t('Opening a new message. Ruth adds your contacts.')} style={{ display: 'block', width: '100%', height: 48, borderRadius: 12, background: G, color: '#fff', border: 'none', fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>+ New message</button>
     </PhoneShell>
   )
 }
