@@ -161,6 +161,7 @@ export function MessagesRules({ onBack, onNav }: { onBack?: () => void; onNav?: 
 // MSG1 — New message picker
 export function CoachNewMessage({ onBack: _onBack, onNav }: { onBack?: () => void; onNav?: (s: string) => void }) {
   const [toast, setToast] = useState<string | null>(null)
+  const [picked, setPicked] = useState<string | null>(null)
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   const groups = [
@@ -217,6 +218,7 @@ export function CoachNewMessage({ onBack: _onBack, onNav }: { onBack?: () => voi
         <div style={{ flex: 1, overflowY: 'auto', padding: '24px 24px 24px 28px', display: 'flex', gap: 16 }}>
           <div style={{ flex: 1, maxWidth: 560 }}>
             <h2 style={{ margin: '0 0 12px', fontSize: 20, fontWeight: 700, color: INK }}>New message</h2>
+            {picked && <div style={{ marginBottom: 12, padding: '8px 12px', borderRadius: 10, background: PALE, color: G, fontSize: 13, fontWeight: 700 }}>To: {picked}</div>}
             <div style={{ position: 'relative', marginBottom: 20 }}>
               <input placeholder="Search for a person or group…" style={{ width: '100%', height: 44, padding: '0 16px 0 40px', borderRadius: 10, border: `1px solid ${LN}`, fontSize: 14, color: INK, background: '#fff', boxSizing: 'border-box', fontFamily: 'inherit', outline: 'none' }}/>
               <span style={{ position: 'absolute', left: 12, top: 12, color: MUT }}><Icon d={ICONS.search} size={20}/></span>
@@ -226,8 +228,8 @@ export function CoachNewMessage({ onBack: _onBack, onNav }: { onBack?: () => voi
                 <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 8 }}>{g.heading}</div>
                 <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, overflow: 'hidden' }}>
                   {g.contacts.map((c, i) => (
-                    <button key={c.ini} onClick={() => t(`Opening new message to ${c.name}.`)}
-                      style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 14px', width: '100%', background: 'transparent', border: 'none', borderBottom: i < g.contacts.length - 1 ? `1px solid ${LN}` : 'none', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
+                    <button key={c.ini} onClick={() => setPicked(c.name)}
+                      style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 14px', width: '100%', background: picked === c.name ? PALE : 'transparent', border: 'none', borderBottom: i < g.contacts.length - 1 ? `1px solid ${LN}` : 'none', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
                       <Ini s={c.ini} bg={'welfare' in c && c.welfare ? '#f0f4f0' : PALE}/>
                       <div style={{ flex: 1 }}>
                         <div style={{ fontSize: 14, fontWeight: 700, color: INK }}>{c.name}</div>
@@ -419,6 +421,8 @@ export function CoachMessagesPersonCard({ onBack, onNav }: { onBack?: () => void
 export function DirectorMessages({ onBack: _onBack, embedded }: { onBack?: () => void; embedded?: boolean }) {
   const [toast, setToast] = useState<string | null>(null)
   const [input, setInput] = useState('')
+  const [activeChat, setActiveChat] = useState(1)   // Sam K by default
+  const [sent, setSent] = useState<string[]>([])
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   // When embedded as the Club › Messages sub-tab, the real ClubAdminScreen frame
@@ -479,9 +483,9 @@ export function DirectorMessages({ onBack: _onBack, embedded }: { onBack?: () =>
             <button onClick={() => t('New message opens.')} style={{ width: 44, height: 44, borderRadius: 8, background: G, color: '#fff', border: 'none', fontSize: 18, cursor: 'pointer' }}>+</button>
           </div>
           <div style={{ overflowY: 'auto', flex: 1 }}>
-            {chats.map(c => (
-              <button key={c.name} onClick={() => t(`${c.name} chat opens.`)}
-                style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 14px', width: '100%', background: 'active' in c && c.active ? PALE : 'transparent', border: 'none', borderBottom: `1px solid ${LN}`, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
+            {chats.map((c, i) => (
+              <button key={c.name} onClick={() => setActiveChat(i)}
+                style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 14px', width: '100%', background: i === activeChat ? PALE : 'transparent', border: 'none', borderBottom: `1px solid ${LN}`, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
                 <Ini s={c.ini} size={36} bg={'welfare' in c && c.welfare ? '#f0f4f0' : PALE}/>
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
@@ -498,10 +502,10 @@ export function DirectorMessages({ onBack: _onBack, embedded }: { onBack?: () =>
         {/* Active chat */}
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
           <div style={{ padding: '12px 20px', borderBottom: `1px solid ${LN}`, background: '#fff', display: 'flex', alignItems: 'center', gap: 12 }}>
-            <Ini s="SK" size={36}/>
+            <Ini s={chats[activeChat].ini} size={36}/>
             <div>
-              <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>Sam K</div>
-              <div style={{ fontSize: 12, color: MUT }}>Head coach · U12 Sam</div>
+              <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>{chats[activeChat].name}</div>
+              <div style={{ fontSize: 12, color: MUT }}>Wattle Creek FC</div>
             </div>
           </div>
           <div style={{ flex: 1, overflowY: 'auto', padding: '20px' }}>
@@ -513,11 +517,19 @@ export function DirectorMessages({ onBack: _onBack, embedded }: { onBack?: () =>
                 </div>
               </div>
             ))}
+            {sent.map((m, i) => (
+              <div key={`s${i}`} style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 12 }}>
+                <div style={{ maxWidth: '70%' }}>
+                  <div style={{ padding: '10px 14px', borderRadius: '14px 14px 2px 14px', background: GD, color: '#fff', fontSize: 14, lineHeight: 1.5 }}>{m}</div>
+                  <div style={{ fontSize: 11, color: MUT, textAlign: 'right', marginTop: 4 }}>now</div>
+                </div>
+              </div>
+            ))}
           </div>
           <div style={{ padding: '12px 20px', borderTop: `1px solid ${LN}`, background: '#fff', display: 'flex', gap: 8, alignItems: 'center' }}>
-            <input value={input} onChange={e => setInput(e.target.value)} placeholder="Message Sam…"
+            <input value={input} onChange={e => setInput(e.target.value)} placeholder={`Message ${chats[activeChat].name.split(' ')[0]}…`}
               style={{ flex: 1, height: 40, padding: '0 14px', borderRadius: 8, border: `1px solid ${LN}`, fontSize: 14, fontFamily: 'inherit', outline: 'none' }}/>
-            <button onClick={() => { t('Message sent.'); setInput('') }} style={{ width: 44, height: 44, borderRadius: 8, background: G, color: '#fff', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <button onClick={() => { const v = input.trim() || 'Thanks!'; setSent(s => [...s, v]); setInput('') }} style={{ width: 44, height: 44, borderRadius: 8, background: G, color: '#fff', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <Icon d={ICONS.send} size={18} stroke="#fff"/>
             </button>
           </div>
