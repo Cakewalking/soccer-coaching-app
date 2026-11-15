@@ -1,8 +1,11 @@
 import { useState } from 'react'
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb'
 export default function TM5ManagerMessages(_: { onBack?: () => void }) {
-  const [toast, setToast] = useState<string | null>(null)
-  const t = (m: string) => { setToast(m); setTimeout(() => setToast(null), 3200) }
+  const [activeNav, setActiveNav] = useState('Messages')
+  const [selectedConvo, setSelectedConvo] = useState<number | null>(null)
+  const [done, setDone] = useState<string[]>([])
+  const mark = (k: string) => setDone(d => d.includes(k) ? d : [...d, k])
+  const is = (k: string) => done.includes(k)
   const convos = [
     { ini: 'SJ', name: 'Coaches · Sam, Jess', preview: 'Sam: Line-up done, I\'ll send it Friday night', time: '7:40 pm', unread: true },
     { ini: 'LT', name: 'Linh Tran (Mia)', preview: "Can I swap canteen to 11 to 12? Mia's dentist", time: '6:02 pm', unread: true },
@@ -19,9 +22,9 @@ export default function TM5ManagerMessages(_: { onBack?: () => void }) {
         <div style={{ width: 40, height: 40, borderRadius: '50%', background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>RO</div>
       </div>
       <div style={{ flexGrow: 1, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 10, overflowY: 'auto' }}>
-        <button onClick={() => t('Opening change message...')} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 52, padding: '0 14px', borderRadius: 14, background: GD, color: '#fff', border: 0, cursor: 'pointer', textAlign: 'left' }}>
+        <button onClick={() => mark('tell')} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 52, padding: '0 14px', borderRadius: 14, background: GD, color: '#fff', border: 0, cursor: 'pointer', textAlign: 'left' }}>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><path d="M12 9v4M12 17h.01M10.3 3.9L2 18a2 2 0 001.7 3h16.6a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/></svg>
-          <span style={{ flexGrow: 1, fontSize: 16, fontWeight: 700 }}>Something changed? Tell parents</span>
+          <span style={{ flexGrow: 1, fontSize: 16, fontWeight: 700 }}>{is('tell') ? 'Opening a message to parents…' : 'Something changed? Tell parents'}</span>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"><path d="M9 6l6 6-6 6"/></svg>
         </button>
         <div style={{ background: '#fff', border: `2px solid ${G}`, borderRadius: 16, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -35,12 +38,12 @@ export default function TM5ManagerMessages(_: { onBack?: () => void }) {
             <div style={{ flex: 3, background: LN }} />
           </div>
           <div style={{ fontSize: 14 }}><strong>14 of 17</strong> have seen it · Brennan, Delaney and Quinn families haven't</div>
-          <button onClick={() => t('Nudge sent to the 3 families who haven\'t seen it.')} style={{ height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Nudge the 3 now</button>
+          <button onClick={() => mark('nudge')} style={{ height: 44, borderRadius: 10, border: `1px solid ${is('nudge') ? G : LN}`, background: is('nudge') ? '#eef5f2' : '#fff', color: is('nudge') ? G : INK, fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{is('nudge') ? '✓ Nudged 3 families' : 'Nudge the 3 now'}</button>
         </div>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '4px 14px' }}>
           <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: MUT, padding: '8px 0 4px' }}>Conversations</div>
           {convos.map((c, i) => (
-            <button key={i} onClick={() => t(`Opening conversation with ${c.name}.`)} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 62, width: '100%', background: 'none', border: 0, borderTop: `1px solid ${LN}`, padding: 0, cursor: 'pointer', textAlign: 'left' }}>
+            <button key={i} onClick={() => setSelectedConvo(i)} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 62, width: '100%', background: selectedConvo === i ? '#eef5f2' : 'none', border: 0, borderTop: `1px solid ${LN}`, padding: '0 6px', cursor: 'pointer', textAlign: 'left' }}>
               <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0 }}>{c.ini}</div>
               <div style={{ flexGrow: 1, minWidth: 0 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8 }}>
@@ -56,11 +59,10 @@ export default function TM5ManagerMessages(_: { onBack?: () => void }) {
         <div style={{ fontSize: 12, color: MUT, textAlign: 'center', padding: '0 6px' }}>Messages to a player always copy in their parent. The club's welfare officer can see every family thread.</div>
       </div>
       <nav style={{ display: 'flex', borderTop: `1px solid ${LN}`, background: '#fff' }}>
-        {['Home', 'Game day', 'Messages', 'Roster'].map((label, i) => (
-          <button key={label} onClick={() => t(`${label} tab`)} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 2, minHeight: 56, fontSize: 11, fontWeight: 700, color: i === 2 ? G : MUT, background: 'none', border: 0, cursor: 'pointer' }}>{label}</button>
+        {['Home', 'Game day', 'Messages', 'Roster'].map(label => (
+          <button key={label} onClick={() => setActiveNav(label)} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 2, minHeight: 56, fontSize: 11, fontWeight: 700, color: label === activeNav ? G : MUT, background: 'none', border: 0, cursor: 'pointer' }}>{label}</button>
         ))}
       </nav>
-      {toast && <div style={{ position: 'absolute', left: 16, right: 16, bottom: 72, background: GD, color: '#fff', padding: '12px 16px', borderRadius: 14, fontSize: 15, fontWeight: 600, zIndex: 60 }}>{toast}</div>}
     </div>
   )
 }
