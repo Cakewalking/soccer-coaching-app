@@ -25,7 +25,7 @@ function statusColor(s: string) {
   return { color: MUT, bg: '#f5f6f4' }
 }
 
-export function MS3MiniRoosReview() {
+export function MS3MiniRoosReview({ onWhatWeSaw, onThankParents }: { onWhatWeSaw?: () => void; onThankParents?: () => void } = {}) {
   const [toast, setToast] = useState<string | null>(null)
   function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
@@ -41,6 +41,8 @@ export function MS3MiniRoosReview() {
         <div style={{ display: 'flex', gap: 8, marginTop: 14, marginBottom: 20 }}>
           <button onClick={() => showToast('Opening a best moment for each child.')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>A best moment each</button>
           <button onClick={() => showToast('Building Tuesday plan from this review.')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Build Tuesday from this</button>
+          <button onClick={() => onWhatWeSaw ? onWhatWeSaw() : showToast('Opening what we saw.')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>What we saw</button>
+          <button onClick={() => onThankParents ? onThankParents() : showToast('Opening thank the parents.')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Thank the parents</button>
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 20 }}>

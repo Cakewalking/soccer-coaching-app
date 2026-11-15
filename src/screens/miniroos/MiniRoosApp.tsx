@@ -10,6 +10,7 @@ import GameDayMiniRoos   from './GameDayMiniRoos'
 import WhatWeSawScreen   from './WhatWeSawScreen'
 import ThankParentsScreen from './ThankParentsScreen'
 import SeasonNotesScreen from './SeasonNotesScreen'
+import ComingMiniRoos from './ComingMiniRoos'
 import FixturesMiniRoos  from './FixturesMiniRoos'
 import TeamChatMiniRoos  from './TeamChatMiniRoos'
 import FootballYearScreen from './FootballYearScreen'
@@ -633,7 +634,7 @@ function RecordMiniRoosClips({ empty, onBack }: { empty?: boolean; onBack: () =>
 
 type MiniNav = 'home' | 'squad' | 'training' | 'gameday' | 'clips' | 'record'
 type HomeTab = 'overview' | 'messages' | 'calendar' | 'fixtures' | 'style' | 'whereweat' | 'staff' | 'files'
-type GameDayTab = 'turns' | 'live' | 'review' | 'whatisaw' | 'thankparents'
+type GameDayTab = 'turns' | 'whoscoming' | 'live' | 'review' | 'whatisaw' | 'thankparents'
 type TrainingTab = 'plan' | 'suggest'
 type RecordView = 'start' | 'clips'
 
@@ -671,12 +672,12 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
   const { active: inSandbox, store } = useSandbox()
   const ASK_QUESTIONS = ['Who needs a rest this week?', 'What should we work on tonight?', 'Is everyone getting fair minutes?']
 
+  // APP-MAP: Turns, Who's coming, Review. What we saw and Thank the parents open
+  // from Review, not as sub-tabs; Live is not a MiniRoos thing (FIX-LIST item 3).
   const GAMEDAY_TABS: Array<{ id: GameDayTab; label: string }> = [
-    { id: 'turns',        label: 'Turns' },
-    { id: 'live',         label: 'Live' },
-    { id: 'review',       label: 'Review' },
-    { id: 'whatisaw',     label: 'What we saw' },
-    { id: 'thankparents', label: 'Thank the parents' },
+    { id: 'turns',      label: 'Turns' },
+    { id: 'whoscoming', label: "Who's coming" },
+    { id: 'review',     label: 'Review' },
   ]
 
   const TRAINING_TABS_MR: Array<{ id: TrainingTab; label: string }> = [
@@ -736,10 +737,12 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
       content = <GameDayMiniRoos empty={true} onWhatWeSaw={() => {}} />
     else if (gameDayTab === 'turns')
       content = <GameDayMiniRoos onWhatWeSaw={() => setGameDayTab('whatisaw')} />
+    else if (gameDayTab === 'whoscoming')
+      content = <ComingMiniRoos empty={empty} />
     else if (gameDayTab === 'live')
       content = <LiveOffContent onAsk={() => setGameDayTab('turns')} />
     else if (gameDayTab === 'review')
-      content = <MS3MiniRoosReview />
+      content = <MS3MiniRoosReview onWhatWeSaw={() => setGameDayTab('whatisaw')} onThankParents={() => setGameDayTab('thankparents')} />
     else if (gameDayTab === 'whatisaw')
       content = <WhatWeSawScreen onBack={() => setGameDayTab('turns')} onSave={() => setGameDayTab('turns')} onThankParents={() => setGameDayTab('thankparents')} />
     else if (gameDayTab === 'thankparents')

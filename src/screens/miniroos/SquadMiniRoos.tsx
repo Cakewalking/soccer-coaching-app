@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import ComingMiniRoos from './ComingMiniRoos'
 import ConsentMiniRoos from './ConsentMiniRoos'
+import SeasonNotesScreen from './SeasonNotesScreen'
 
-type SquadTab = 'players' | 'coming' | 'consent'
+type SquadTab = 'players' | 'coming' | 'consent' | 'seasonnotes'
 type Avail = 'yes' | 'maybe' | 'away' | 'noreply'
 
 interface Player {
@@ -90,7 +91,7 @@ export default function SquadMiniRoos({ empty }: { empty?: boolean }) {
         <button onClick={() => showToast('Opening the add player form.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>+ Add a player</button>
       </div>
       <div style={{ display: 'flex', gap: 0, borderBottom: '1px solid #e9eae8', marginBottom: 10 }}>
-        {([['players', 'Players'], ['coming', "Who's coming"], ['consent', 'Consent']] as [SquadTab, string][]).map(([id, label]) => (
+        {([['players', 'Players'], ['coming', "Who's coming"], ['consent', 'Consent'], ['seasonnotes', 'Season notes']] as [SquadTab, string][]).map(([id, label]) => (
           <button key={id} onClick={() => setSquadTab(id)} style={{ height: 44, padding: '0 16px', border: 0, background: 'transparent', fontFamily: 'inherit', fontSize: 14, fontWeight: squadTab === id ? 700 : 500, color: squadTab === id ? '#10211f' : '#6f7f7b', cursor: 'pointer', borderBottom: squadTab === id ? '2px solid #40826d' : '2px solid transparent' }}>{label}</button>
         ))}
       </div>
@@ -99,6 +100,7 @@ export default function SquadMiniRoos({ empty }: { empty?: boolean }) {
 
   if (squadTab === 'coming')  return <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, minHeight: 0, overflow: 'hidden' }}>{tabBar}<ComingMiniRoos empty={empty} /></div>
   if (squadTab === 'consent') return <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, minHeight: 0, overflow: 'hidden' }}>{tabBar}<ConsentMiniRoos empty={empty} /></div>
+  if (squadTab === 'seasonnotes') return <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, minHeight: 0, overflow: 'hidden' }}>{tabBar}<SeasonNotesScreen empty={empty} onBack={() => setSquadTab('players')} /></div>
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, minHeight: 0, overflow: 'hidden' }}>
