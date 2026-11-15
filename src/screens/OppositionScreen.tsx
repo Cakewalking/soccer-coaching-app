@@ -94,7 +94,7 @@ function resultBadge(r: 'W'|'L'|'D') {
   return { bg: '#cbbeb5', color: '#10211f' }
 }
 
-export default function OppositionScreen({ empty }: { empty?: boolean }) {
+export default function OppositionScreen({ empty, opponent = 'Harbour Rovers', scout = 'Jess' }: { empty?: boolean; opponent?: string; scout?: string }) {
   const [showNote, setShowNote] = useState(false)
   const [noteText, setNoteText] = useState('')
   if (empty) return <OppositionEmpty />
@@ -104,14 +104,14 @@ export default function OppositionScreen({ empty }: { empty?: boolean }) {
       {/* Left */}
       <div style={{ minHeight: 0, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 14 }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 14 }}>
-          <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, letterSpacing: '-0.02em' }}>Harbour Rovers</h1>
+          <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, letterSpacing: '-0.02em' }}>{opponent}</h1>
           <span style={{ fontSize: 14, color: '#4a5a57' }}>Saturday 6 Jun · home · 6th on the ladder · we haven't played them this season</span>
         </div>
 
         <div style={{ background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '16px 18px', display: 'flex', flexDirection: 'column', gap: 2 }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
             <span style={{ fontSize: 15, fontWeight: 700 }}>How they play</span>
-            <span style={{ fontSize: 13, color: '#4a5a57' }}>From Jess's scouting on 24 Oct and the league table</span>
+            <span style={{ fontSize: 13, color: '#4a5a57' }}>From {scout}'s scouting on 24 Oct and the league table</span>
           </div>
           {HOW_THEY_PLAY.map((item, i) => (
             <div key={i} style={{ display: 'flex', gap: 12, padding: '10px 0', borderTop: i === 0 ? 'none' : '1px solid #f0f1ef' }}>

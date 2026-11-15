@@ -106,8 +106,9 @@ function chipBg(t: 'rose' | 'stone') {
   return t === 'rose' ? '#fdf4f4' : '#f7f8f7'
 }
 
-export default function ThisWeekScreen({ empty, onDrillLibrary, onTonightsPlan, onGrowthLoad }: { empty?: boolean; onDrillLibrary?: () => void; onTonightsPlan?: () => void; onGrowthLoad?: () => void }) {
+export default function ThisWeekScreen({ empty, onDrillLibrary, onTonightsPlan, onGrowthLoad, nextOpponent = 'Harbour Rovers', lastOpponent = 'Ironbark' }: { empty?: boolean; onDrillLibrary?: () => void; onTonightsPlan?: () => void; onGrowthLoad?: () => void; nextOpponent?: string; lastOpponent?: string }) {
   if (empty) return <ThisWeekEmpty />
+  const days = DAYS.map(d => d.label === 'SATURDAY' ? { ...d, items: [`vs ${nextOpponent}`, ...d.items.slice(1)] } : d)
   return (
     <div style={{ flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
 
@@ -115,7 +116,7 @@ export default function ThisWeekScreen({ empty, onDrillLibrary, onTonightsPlan, 
       <div style={{ flex: 'none', padding: '14px 28px 0' }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 14, marginBottom: 14 }}>
           <h1 style={{ margin: 0, fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em' }}>This week</h1>
-          <span style={{ fontSize: 14, color: '#4a5a57' }}>Mon 2 to Sun 7 Jun · three things from Ironbark, worked on twice before Harbour Rovers</span>
+          <span style={{ fontSize: 14, color: '#4a5a57' }}>Mon 2 to Sun 7 Jun · three things from {lastOpponent}, worked on twice before {nextOpponent}</span>
           <div style={{ flexGrow: 1 }} />
           <button onClick={onDrillLibrary} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>Drill library</button>
           <button onClick={onTonightsPlan} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#ffffff' }}>Tonight's plan</button>
@@ -140,7 +141,7 @@ export default function ThisWeekScreen({ empty, onDrillLibrary, onTonightsPlan, 
 
         {/* 5 day columns */}
         <div style={{ flexGrow: 1, minWidth: 0, display: 'grid', gridTemplateColumns: 'repeat(5, minmax(0,1fr))', gap: 10, overflow: 'hidden' }}>
-          {DAYS.map((d, i) => (
+          {days.map((d, i) => (
             <div key={i} style={{
               background: '#ffffff', border: `1px solid ${d.tag === 'Tonight' ? '#2f6252' : '#c5c8c4'}`,
               borderRadius: 14, padding: '14px 14px', display: 'flex', flexDirection: 'column', gap: 6,

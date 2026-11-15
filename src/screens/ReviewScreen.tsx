@@ -124,7 +124,7 @@ const PLAYERS_TO_KNOW = [
   { ini: 'EB', name: 'Ella Brandt', chip: 'Wellness',chipColor: '#c39797', note: 'Felt low two days running. Quick chat tonight.' },
 ]
 
-export default function ReviewScreen({ empty }: { empty?: boolean }) {
+export default function ReviewScreen({ empty, scoreline = '3–1', resultLine = 'Won away at Ironbark United', scorerLine = 'Sat 31 Oct · Mia, Jai and Zoe scored · 24 key clips' }: { empty?: boolean; scoreline?: string; resultLine?: string; scorerLine?: string }) {
   if (empty) return <ReviewEmpty />
   const [toast, setToast] = useState('')
   const showToast = (msg: string) => { setToast(msg); setTimeout(() => setToast(''), 2500) }
@@ -134,10 +134,10 @@ export default function ReviewScreen({ empty }: { empty?: boolean }) {
       {/* Game header */}
       <div style={{ flex: 'none', background: '#2f6252', color: '#ffffff', padding: '12px 28px', display: 'flex', alignItems: 'center', gap: 16 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <span style={{ fontSize: 28, fontWeight: 800, letterSpacing: '-0.02em' }}>3–1</span>
+          <span style={{ fontSize: 28, fontWeight: 800, letterSpacing: '-0.02em' }}>{scoreline}</span>
           <div>
-            <div style={{ fontSize: 15, fontWeight: 700 }}>Won away at Ironbark United</div>
-            <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.75)' }}>Sat 31 Oct · Mia, Jai and Zoe scored · 24 key clips</div>
+            <div style={{ fontSize: 15, fontWeight: 700 }}>{resultLine}</div>
+            <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.75)' }}>{scorerLine}</div>
           </div>
         </div>
         <div style={{ flexGrow: 1 }} />

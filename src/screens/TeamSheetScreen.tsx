@@ -1,6 +1,9 @@
 import { useState } from 'react'
+import { YOUTH_SQUAD_PLAYERS, SENIORS_SQUAD_PLAYERS } from '../data'
 
-const ON_SHEET = [
+export type TeamSheetTeam = 'juniors' | 'youth' | 'seniors'
+
+const JUNIOR_ON_SHEET = [
   { ini: 'SD', name: 'Sam Delaney',   satOut: 1 },
   { ini: 'TR', name: 'Tom Reyes',     satOut: 1 },
   { ini: 'EB', name: 'Ella Brandt',   satOut: 1 },
@@ -15,17 +18,41 @@ const ON_SHEET = [
   { ini: 'FW', name: 'Finn Walsh',    satOut: 1 },
   { ini: 'OB', name: 'Oscar Brennan', satOut: 2 },
   { ini: 'HQ', name: 'Harper Quinn',  satOut: 0, label: 'New · first game' },
-]
+] as { ini: string; name: string; satOut: number; label?: string }[]
 
-const SITTING_OUT = [
+const JUNIOR_SITTING_OUT = [
   { ini: 'RC', name: 'Ruby Chen',   reason: 'Her turn · sat out 0 of 8 so far', badge: 'Suggested', badgeBg: '#cbbeb5', badgeColor: '#10211f', canSwap: true },
   { ini: 'KR', name: 'Kai Russo',   reason: 'Away · family trip',               badge: 'Away',      badgeBg: '#e9eae8', badgeColor: '#10211f', canSwap: false },
   { ini: 'LN', name: 'Lily Nguyen', reason: 'Sick · told Rob on Thursday',      badge: 'Sick',      badgeBg: '#e9eae8', badgeColor: '#10211f', canSwap: false },
 ]
 
-type Props = { empty?: boolean }
+// Team-specific sheet from the squad, so the youth and senior coaches see their
+// own players, not U12 Sam's (FIX-LIST item 2).
+function teamSheetData(team: TeamSheetTeam) {
+  if (team === 'juniors') return {
+    onSheet: JUNIOR_ON_SHEET, sittingOut: JUNIOR_SITTING_OUT,
+    rule: 'Football Victoria allows 14 players on an U12 team sheet. With 17 in the squad, three sit out each week.',
+  }
+  const squad = team === 'youth' ? YOUTH_SQUAD_PLAYERS : SENIORS_SQUAD_PLAYERS
+  const onSheet = squad.slice(0, squad.length - 2).map(p => ({ ini: p.ini, name: p.fullName, satOut: p.ini.charCodeAt(0) % 3 })) as { ini: string; name: string; satOut: number; label?: string }[]
+  const rest = squad.slice(squad.length - 2)
+  const sittingOut = rest.map((p, i) => ({
+    ini: p.ini, name: p.fullName,
+    reason: i === 0 ? 'Rotated · their turn to rest' : 'Away · let the manager know',
+    badge: i === 0 ? 'Suggested' : 'Away', badgeBg: i === 0 ? '#cbbeb5' : '#e9eae8', badgeColor: '#10211f', canSwap: i === 0,
+  }))
+  const rule = team === 'youth'
+    ? `Football Victoria allows 16 on a youth team sheet. With ${squad.length} named, two rotate each week.`
+    : `A senior squad names up to 16. With ${squad.length} available, two start on the bench.`
+  return { onSheet, sittingOut, rule }
+}
 
-export default function TeamSheetScreen({ empty }: Props) {
+type Props = { empty?: boolean; teamType?: TeamSheetTeam }
+
+export default function TeamSheetScreen({ empty, teamType = 'juniors' }: Props) {
+  const tsd = teamSheetData(teamType)
+  const ON_SHEET = tsd.onSheet
+  const SITTING_OUT = tsd.sittingOut
   const [toast, setToast] = useState('')
   const [sent, setSent] = useState(false)
 
@@ -103,7 +130,7 @@ export default function TeamSheetScreen({ empty }: Props) {
         ))}
         <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start', padding: '10px 12px', borderRadius: 12, background: '#eef5f2', fontSize: 13, lineHeight: '19px', marginTop: 8 }}>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2f6252" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: 1 }} aria-hidden="true"><path d="M12 8v5M12 16h.01M12 3a9 9 0 100 18 9 9 0 000-18z"/></svg>
-          <span>Football Victoria allows 14 players on an U12 team sheet. With 17 in the squad, three sit out each week.</span>
+          <span>{tsd.rule}</span>
         </div>
         <span style={{ fontSize: 14, color: '#4a5a57', marginTop: 'auto', paddingTop: 12 }}>Never picked on ability. Parents see "Ruby's turn to rest this week" and when she's next in.</span>
         <div style={{ display: 'flex', gap: 8, marginTop: 16 }}>

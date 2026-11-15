@@ -490,8 +490,8 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
     }
   } else if (nav === 'training') {
     switch (trainingTab) {
-      case 0: content = <TrainingScreen role="head" onNav={handleNav} empty={sbEmptySession} />; break
-      case 1: content = <ThisWeekScreen empty={sbEmptySession} onDrillLibrary={() => setTrainingTab(3)} onTonightsPlan={() => setTrainingTab(0)} onGrowthLoad={() => setTrainingTab(4)} />; break
+      case 0: content = <TrainingScreen role="head" onNav={handleNav} empty={sbEmptySession} nextOpponent={data.opponent} lastOpponent={teamType === 'seniors' ? 'Glenview Park' : 'Tealside Town'} />; break
+      case 1: content = <ThisWeekScreen empty={sbEmptySession} onDrillLibrary={() => setTrainingTab(3)} onTonightsPlan={() => setTrainingTab(0)} onGrowthLoad={() => setTrainingTab(4)} nextOpponent={data.opponent} lastOpponent={teamType === 'seniors' ? 'Glenview Park' : 'Tealside Town'} />; break
       case 2: content = <SuggestionsScreen empty={sbEmptySession} onRecord={() => goNav('record')} />; break
       case 3: content = <DrillLibraryScreen empty={sbEmptySession} />; break
       case 4: content = <GrowthLoadScreen empty={sbEmptySession} />; break
@@ -502,9 +502,12 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
   } else if (nav === 'matchday') {
     switch (matchTab) {
       case 0: content = <MatchDayScreen onNav={handleNav} empty={sbEmptyFixture} opponent={data.opponent} />; break
-      case 1: content = <TeamSheetScreen empty={sbEmptyFixture} />; break
-      case 2: content = <OppositionScreen empty={sbEmptyFixture} />; break
-      case 3: content = <ReviewScreen empty={sbEmptyFixture} />; break
+      case 1: content = <TeamSheetScreen empty={sbEmptyFixture} teamType={teamType === 'seniors' ? 'seniors' : 'youth'} />; break
+      case 2: content = <OppositionScreen empty={sbEmptyFixture} opponent={data.opponent} scout={teamType === 'seniors' ? 'Nico' : 'Tom'} />; break
+      case 3: content = <ReviewScreen empty={sbEmptyFixture}
+        scoreline={teamType === 'seniors' ? '2–0' : '2–2'}
+        resultLine={teamType === 'seniors' ? 'Won at home v Glenview Park' : 'Drew at home with Tealside Town'}
+        scorerLine={teamType === 'seniors' ? 'Sat 30 May · Harry and Mo scored · 26 key clips' : 'Sat 30 May · Theo and Leo scored · 22 key clips'} />; break
       case 4: content = <FitnessMatchTab empty={sbEmptyFixture} />; break
     }
   } else if (nav === 'clips') {
