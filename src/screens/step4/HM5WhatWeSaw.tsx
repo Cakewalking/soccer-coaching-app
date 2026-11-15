@@ -15,26 +15,27 @@ function toggle(setter: React.Dispatch<React.SetStateAction<Set<string>>>, label
   setter(prev => { const next = new Set(prev); next.has(label) ? next.delete(label) : next.add(label); return next })
 }
 
-export default function HM5WhatWeSaw(_: { onBack?: () => void }) {
+export default function HM5WhatWeSaw({ onBack }: { onBack?: () => void }) {
   const [sel1, setSel1] = useState(() => new Set(['Brave dribbling', 'Passing to a friend']))
   const [sel2, setSel2] = useState(() => new Set(['Find space']))
   const [sel3, setSel3] = useState(() => new Set(['Arlo']))
-  const [toast, setToast] = useState<string | null>(null)
-  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
+  const [activeNav, setActiveNav] = useState('Game day')
+  const [activeSub, setActiveSub] = useState('Turns')
+  const [saved, setSaved] = useState(false)
 
   return (
     <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }}>
       <div style={{ background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 20, height: 64 }}>
         <div style={{ fontSize: 21, fontWeight: 800, color: '#fff', letterSpacing: '-0.02em' }}>Clean Sheet</div>
         {['Home', 'Squad', 'Training', 'Game day'].map(t => (
-          <div key={t} style={{ height: 48, display: 'flex', alignItems: 'center', gap: 8, padding: '0 14px', borderRadius: 12, fontSize: 16, fontWeight: 600, background: t === 'Game day' ? '#40826d' : 'transparent', color: t === 'Game day' ? '#fff' : 'rgba(255,255,255,0.7)', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>
+          <div key={t} onClick={() => setActiveNav(t)} style={{ height: 48, display: 'flex', alignItems: 'center', gap: 8, padding: '0 14px', borderRadius: 12, fontSize: 16, fontWeight: 600, background: t === activeNav ? '#40826d' : 'transparent', color: t === activeNav ? '#fff' : 'rgba(255,255,255,0.7)', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>
         ))}
         <div style={{ marginLeft: 'auto', height: 44, padding: '0 14px', borderRadius: 999, background: '#fff', color: INK, fontSize: 15, fontWeight: 600, display: 'flex', alignItems: 'center' }}>U9 Tom · Wattle Creek</div>
         <div style={{ width: 44, height: 44, borderRadius: 999, background: '#c39797', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 15, color: INK }}>TA</div>
       </div>
       <div style={{ background: '#fff', borderBottom: `1px solid ${LN}`, height: 44, padding: '0 28px', display: 'flex', alignItems: 'flex-end', gap: 24 }}>
         {['Turns', 'Fixtures', 'Record'].map(t => (
-          <div key={t} style={{ height: 44, display: 'flex', alignItems: 'center', fontSize: 15, fontWeight: 600, color: t === 'Turns' ? INK : MUT, borderBottom: t === 'Turns' ? `3px solid #40826d` : '3px solid transparent', boxSizing: 'border-box', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>
+          <div key={t} onClick={() => setActiveSub(t)} style={{ height: 44, display: 'flex', alignItems: 'center', fontSize: 15, fontWeight: 600, color: t === activeSub ? INK : MUT, borderBottom: t === activeSub ? `3px solid #40826d` : '3px solid transparent', boxSizing: 'border-box', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>
         ))}
         <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', height: 44 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 6, height: 32, padding: '0 12px', borderRadius: 999, background: PALE, color: G, fontSize: 13, fontWeight: 700 }}>Coach · MiniRoos</div>
@@ -47,8 +48,8 @@ export default function HM5WhatWeSaw(_: { onBack?: () => void }) {
           <span style={{ fontSize: 14, color: MUT }}>Sat 6 Jun v Northgate City · no score kept · 30 seconds</span>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button onClick={() => showToast('Back to turns.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Back to turns</button>
-          <button onClick={() => showToast('Saved — thank-you sent to parents.')} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: `1px solid ${G}`, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Save and thank the parents</button>
+          <button onClick={() => { setActiveSub('Turns'); onBack?.() }} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Back to turns</button>
+          <button onClick={() => setSaved(true)} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: `1px solid ${G}`, background: saved ? '#40826d' : G, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>{saved ? '✓ Saved — parents thanked' : 'Save and thank the parents'}</button>
         </div>
       </div>
 
@@ -93,7 +94,6 @@ export default function HM5WhatWeSaw(_: { onBack?: () => void }) {
           <div style={{ marginTop: 'auto', fontSize: 14, color: MUT, paddingTop: 8 }}>Turns in goal and as captain were saved from the game timer.</div>
         </div>
       </div>
-      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
   )
 }

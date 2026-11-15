@@ -17,14 +17,15 @@ const TEAMS = [
   { name: 'U16 Ollie', coach: 'Ollie P', pct: 58, junior: true },
 ]
 export default function DP1FairGameTime(_: { onBack?: () => void }) {
-  const [toast, setToast] = useState<string | null>(null)
-  function t(m: string) { setToast(m); setTimeout(() => setToast(null), 3200) }
+  const [activeNav, setActiveNav] = useState('Players')
+  const [selectedTeam, setSelectedTeam] = useState<string | null>(null)
+  const [reminded, setReminded] = useState(false)
   return (
     <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, position: 'relative' }}>
       <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 32, height: 52 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff', letterSpacing: '-0.01em' }}>Clean Sheet</div>
         {['Club', 'Teams', 'Coaches', 'Players', 'Safeguarding', 'Reports'].map(tab => (
-          <div key={tab} style={{ fontSize: 13, fontWeight: tab === 'Players' ? 700 : 500, color: tab === 'Players' ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer', minHeight: 44, minWidth: 44, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 10px' }}>{tab}</div>
+          <div key={tab} onClick={() => setActiveNav(tab)} style={{ fontSize: 13, fontWeight: tab === activeNav ? 700 : 500, color: tab === activeNav ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer', minHeight: 44, minWidth: 44, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 10px' }}>{tab}</div>
         ))}
         <div style={{ marginLeft: 'auto', fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,0.5)' }}>Director of football</div>
       </div>
@@ -40,7 +41,7 @@ export default function DP1FairGameTime(_: { onBack?: () => void }) {
               const policy = r.junior ? 33 : 50
               const ok = r.pct >= policy
               return (
-                <div key={r.name} style={{ display: 'grid', gridTemplateColumns: '140px 90px 1fr 60px 100px', gap: 8, padding: '10px 16px', borderBottom: `1px solid ${LN}`, alignItems: 'center' }}>
+                <div key={r.name} onClick={() => setSelectedTeam(r.name)} style={{ display: 'grid', gridTemplateColumns: '140px 90px 1fr 60px 100px', gap: 8, padding: '10px 16px', borderBottom: `1px solid ${LN}`, alignItems: 'center', cursor: 'pointer', background: selectedTeam === r.name ? PALE : 'transparent' }}>
                   <div style={{ fontSize: 13, fontWeight: 700, color: INK }}>{r.name}</div>
                   <div style={{ fontSize: 12, color: MUT }}>{r.coach}</div>
                   <div style={{ position: 'relative' as const, background: PALE, borderRadius: 6, height: 10 }}>
@@ -66,11 +67,10 @@ export default function DP1FairGameTime(_: { onBack?: () => void }) {
               <div style={{ fontSize: 12, fontWeight: 700, color: G }}>U14 and above</div>
               <div style={{ fontSize: 12, color: MUT }}>Minimum 33% of game minutes</div>
             </div>
-            <button onClick={() => t('Reminder sent to coaches below target.')} style={{ width: '100%', height: 44, borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Remind coaches below target</button>
+            <button onClick={() => setReminded(true)} style={{ width: '100%', height: 44, borderRadius: 10, border: 0, background: reminded ? '#40826d' : G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>{reminded ? '✓ Reminded 2 coaches below target' : 'Remind coaches below target'}</button>
           </div>
         </div>
       </div>
-      {toast && <div style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', background: INK, color: '#fff', padding: '10px 20px', borderRadius: 12, fontSize: 14, fontWeight: 600, zIndex: 1000, whiteSpace: 'nowrap' as const }}>{toast}</div>}
     </div>
   )
 }
