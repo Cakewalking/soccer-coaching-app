@@ -125,12 +125,12 @@ export function RecordHub({ onBack: _onBack, noFrame, onNav }: { onBack?: () => 
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   const options = [
-    { icon: ICONS.game,     title: 'A game',            sub: 'Video, sensors, or both',       goes: 'Match review, Clips, each player\'s minutes and load',  onClick: () => t('Opening the game recording flow.') },
+    { icon: ICONS.game,     title: 'A game',            sub: 'Video, sensors, or both',       goes: 'Match review, Clips, each player\'s minutes and load',  onClick: () => onNav ? onNav('RC1-RecordStart') : t('Opening the game recording flow.') },
     { icon: ICONS.training2,title: 'Training',          sub: 'Tonight\'s session',             goes: 'Session notes, Clips, Growth and load',                  link: true },
-    { icon: ICONS.test,     title: 'A test',            sub: 'Sprints, juggles, jumps, beep test', goes: 'Fitness tests, and each player\'s own trend',         onClick: () => t('Opening the test recording flow.') },
+    { icon: ICONS.test,     title: 'A test',            sub: 'Sprints, juggles, jumps, beep test', goes: 'Fitness tests, and each player\'s own trend',         onClick: () => onNav ? onNav('TL2-TestMode') : t('Opening the test recording flow.') },
     { icon: ICONS.note,     title: 'A quick note',      sub: 'Say it or type it',              goes: 'The player or game you name. You check it first',        onClick: () => t('Opening the quick note flow.') },
     { icon: ICONS.photo,    title: 'Photos for families',sub: 'Checked against consent',       goes: 'The team chat, once you send',                           onClick: () => t('Opening the photos flow.') },
-    { icon: ICONS.injury,   title: 'Head knock / injury',sub: 'Linked to the club welfare officer', goes: 'Head knock log, and welfare officer',               onClick: () => t('Opening the head knock log.') },
+    { icon: ICONS.injury,   title: 'Head knock / injury',sub: 'Linked to the club welfare officer', goes: 'Head knock log, and welfare officer',               onClick: () => onNav ? onNav('TM7-HeadKnock') : t('Opening the head knock log.') },
   ]
 
   return (

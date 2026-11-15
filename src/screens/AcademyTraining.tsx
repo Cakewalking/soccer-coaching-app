@@ -358,6 +358,8 @@ export function AcademySessionPlan({ onBack: _onBack, onNav }: { onBack?: () => 
 // ACT4 — Who's coming
 export function AcademyWhoComing({ onBack: _onBack, onNav }: { onBack?: () => void; onNav?: (s: string) => void }) {
   const [toast, setToast] = useState<string | null>(null)
+  const [viewing, setViewing] = useState<string | null>(null)
+  const [showAll, setShowAll] = useState(false)
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   const coming = [
@@ -407,16 +409,23 @@ export function AcademyWhoComing({ onBack: _onBack, onNav }: { onBack?: () => vo
             <div key={section.title} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, overflow: 'hidden' }}>
               <div style={{ padding: '12px 16px', borderBottom: `1px solid ${LN}`, fontSize: 13, fontWeight: 700, color: MUT, letterSpacing: '0.06em', textTransform: 'uppercase' as const }}>{section.title}</div>
               {section.players.map((p, i) => (
-                <div key={p.n} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px', borderBottom: i < section.players.length - 1 ? `1px solid ${LN}` : 'none' }}>
-                  <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'makeup' in p && p.makeup ? '#faf3f0' : PALE, color: G, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, flexShrink: 0 }}>{p.n}</div>
-                  <div style={{ flex: 1 }}>
-                    <div style={{ fontSize: 14, fontWeight: 700, color: INK }}>{p.name}</div>
-                    <div style={{ fontSize: 12, color: MUT }}>{p.note}</div>
+                <div key={p.n} style={{ borderBottom: i < section.players.length - 1 ? `1px solid ${LN}` : 'none' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px' }}>
+                    <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'makeup' in p && p.makeup ? '#faf3f0' : PALE, color: G, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, flexShrink: 0 }}>{p.n}</div>
+                    <div style={{ flex: 1 }}>
+                      <div style={{ fontSize: 14, fontWeight: 700, color: INK }}>{p.name}</div>
+                      <div style={{ fontSize: 12, color: MUT }}>{p.note}</div>
+                    </div>
+                    <button onClick={() => setViewing(v => v === p.name ? null : p.name)} style={{ height: 32, padding: '0 10px', borderRadius: 8, border: `1px solid ${viewing === p.name ? G : LN}`, background: viewing === p.name ? PALE : '#fff', fontSize: 12, fontWeight: 600, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>View</button>
                   </div>
-                  <button onClick={() => t(`${p.name} profile opens.`)} style={{ height: 32, padding: '0 10px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>View</button>
+                  {viewing === p.name && (
+                    <div style={{ padding: '0 16px 12px 64px', fontSize: 12, color: MUT, lineHeight: 1.6 }}>{p.name} · Advanced group · {p.note}. Attendance 8 of 10 this term; last skill checked: receiving on the half-turn.</div>
+                  )}
                 </div>
               ))}
-              {section.hint && <div style={{ padding: '10px 16px', fontSize: 12, color: G, fontWeight: 600, cursor: 'pointer' }} onClick={() => t('Full list opens.')}>Show all</div>}
+              {section.hint && (showAll
+                ? <div style={{ padding: '10px 16px', fontSize: 12, color: MUT }}>{section.hint}: all confirmed are shown.</div>
+                : <div style={{ padding: '10px 16px', fontSize: 12, color: G, fontWeight: 600, cursor: 'pointer' }} onClick={() => setShowAll(true)}>Show all</div>)}
             </div>
           ))}
         </div>
