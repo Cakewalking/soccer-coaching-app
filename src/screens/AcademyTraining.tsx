@@ -189,6 +189,9 @@ export function AcademyTrainingWeek({ onBack: _onBack, onNav }: { onBack?: () =>
 // ACT2 — Academy Suggested
 export function AcademyTrainingSuggested({ onBack: _onBack }: { onBack?: () => void }) {
   const [toast, setToast] = useState<string | null>(null)
+  const [added, setAdded] = useState<string[]>([])
+  const [expanded, setExpanded] = useState<string | null>(null)
+  const [dismissed, setDismissed] = useState<string[]>([])
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   const drills = [
@@ -220,8 +223,8 @@ export function AcademyTrainingSuggested({ onBack: _onBack }: { onBack?: () => v
     >
       <div style={{ display: 'flex', gap: 16 }}>
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 12 }}>
-          {drills.map(d => (
-            <div key={d.title} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '16px' }}>
+          {drills.filter(d => !dismissed.includes(d.title)).map(d => (
+            <div key={d.title} style={{ background: '#fff', border: `1px solid ${added.includes(d.title) ? G : LN}`, borderRadius: 16, padding: '16px' }}>
               <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 10 }}>
                 <div style={{ flex: 1 }}>
                   <div style={{ fontSize: 16, fontWeight: 700, color: INK, marginBottom: 4 }}>{d.title}</div>
@@ -231,13 +234,21 @@ export function AcademyTrainingSuggested({ onBack: _onBack }: { onBack?: () => v
                   <div style={{ fontSize: 12, color: MUT }}>{d.duration}</div>
                 </div>
                 <div style={{ display: 'flex', gap: 8, flexShrink: 0 }}>
-                  <button onClick={() => t(`${d.title} added to Wednesday.`)} style={{ height: 36, padding: '0 12px', borderRadius: 8, background: G, color: '#fff', border: 'none', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap' }}>Add to Wednesday</button>
-                  <button onClick={() => t(`${d.title} detail view opens.`)} style={{ height: 36, padding: '0 12px', borderRadius: 8, background: '#fff', color: INK, border: `1px solid ${LN}`, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>See it</button>
-                  <button onClick={() => t(`${d.title} dismissed.`)} style={{ height: 36, padding: '0 12px', borderRadius: 8, background: '#fff', color: MUT, border: `1px solid ${LN}`, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Not this</button>
+                  <button onClick={() => setAdded(a => a.includes(d.title) ? a : [...a, d.title])} style={{ height: 36, padding: '0 12px', borderRadius: 8, background: added.includes(d.title) ? PALE : G, color: added.includes(d.title) ? G : '#fff', border: 'none', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap' }}>{added.includes(d.title) ? 'Added ✓' : 'Add to Wednesday'}</button>
+                  <button onClick={() => setExpanded(e => e === d.title ? null : d.title)} style={{ height: 36, padding: '0 12px', borderRadius: 8, background: '#fff', color: INK, border: `1px solid ${expanded === d.title ? G : LN}`, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>See it</button>
+                  <button onClick={() => setDismissed(x => [...x, d.title])} style={{ height: 36, padding: '0 12px', borderRadius: 8, background: '#fff', color: MUT, border: `1px solid ${LN}`, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Not this</button>
                 </div>
               </div>
+              {expanded === d.title && (
+                <div style={{ marginTop: 12, paddingTop: 12, borderTop: `1px solid ${LN}`, fontSize: 13, color: MUT, lineHeight: 1.6 }}>
+                  {d.duration} · {d.title}. Set-up: two grids, a bounce player on each side. Progress by shrinking the grid. The clip shows the shape before you run it.
+                </div>
+              )}
             </div>
           ))}
+          {drills.filter(d => !dismissed.includes(d.title)).length === 0 && (
+            <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '16px', fontSize: 13, color: MUT }}>No suggestions left. Build the whole session or ask in your own words.</div>
+          )}
         </div>
         <div style={{ width: 280, flexShrink: 0 }}>
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '14px 16px' }}>
