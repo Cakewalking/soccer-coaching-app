@@ -2,7 +2,7 @@ import { useState } from 'react'
 import RecordHub           from './RecordHub'
 import { CoachMessages }   from './MessagesScreens'
 
-type GKNav = 'home' | 'keepers' | 'training' | 'clips' | 'record'
+type GKNav = 'home' | 'keepers' | 'training' | 'matchday' | 'clips' | 'record'
 type HomeTab = 'overview' | 'messages' | 'calendar'
 type TrainingTab = 'session' | 'drills'
 
@@ -32,6 +32,7 @@ const GK_NAV: Array<{ id: GKNav; label: string; icon: string }> = [
   { id: 'home',     label: 'Home',     icon: 'M4 11l8-7 8 7v9H4z' },
   { id: 'keepers',  label: 'Keepers',  icon: 'M9 11a3 3 0 100-6 3 3 0 000 6zM3 20c0-4 3-6 6-6s6 2 6 6M16 11a3 3 0 100-6M21 20c0-3-2-5-4-5.5' },
   { id: 'training', label: 'Training', icon: 'M6 5h12a2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V7a2 2 0 012-2zM4 10h16M9 3v4M15 3v4' },
+  { id: 'matchday', label: 'Match day', icon: 'M12 21a9 9 0 100-18 9 9 0 000 18zM12 7l4 3-1.5 5h-5L8 10z' },
   { id: 'clips',    label: 'Clips',    icon: 'M12 21a9 9 0 100-18 9 9 0 000 18zM10 8l6 4-6 4z' },
   { id: 'record',   label: 'Record',   icon: 'M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z' },
 ]
@@ -311,10 +312,11 @@ export default function GoalkeeperCoachApp({ empty = false, initialScreen, onNav
           <button onClick={() => setAskOpen(o => !o)} aria-label="Ask Clean Sheet" style={{ width: 44, height: 44, borderRadius: '50%', border: '1.5px solid #a9cfc0', background: askOpen ? '#fff' : 'transparent', color: askOpen ? '#10211f' : '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', flexShrink: 0 }}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg>
           </button>
-          <button onClick={() => showToast('Switching to Wattle Creek — all keepers view.')} style={{ display: 'flex', alignItems: 'center', gap: 8, height: 44, padding: '0 16px', borderRadius: '999px', border: 0, background: 'rgba(255,255,255,0.15)', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer', color: '#fff', flexShrink: 0 }}>
+          {/* Team pill — decorative, like the other coach frames (FIX-LIST item 3) */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, height: 44, padding: '0 16px', borderRadius: '999px', background: 'rgba(255,255,255,0.15)', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, color: '#fff', flexShrink: 0, cursor: 'default' }}>
             {empty ? 'All keepers' : 'All keepers · Wattle Creek'}
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-          </button>
+          </div>
           <div style={{ width: 44, height: 44, borderRadius: '999px', background: '#40826d', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 15, flexShrink: 0 }}>{empty ? 'GK' : 'NW'}</div>
         </div>
 
@@ -381,6 +383,29 @@ export default function GoalkeeperCoachApp({ empty = false, initialScreen, onNav
           <div style={{ padding: '20px 28px', color: '#4a5a57' }}>Calendar — not shown in this demo.</div>
         )}
         {nav === 'keepers'  && <KeepersTab empty={empty} />}
+        {nav === 'matchday' && (
+          <div style={{ flexGrow: 1, overflowY: 'auto', padding: '20px 28px' }}>
+            <h2 style={{ margin: '0 0 2px', fontSize: 22, fontWeight: 700, color: '#10211f' }}>Saturday's keepers</h2>
+            <div style={{ fontSize: 13, color: '#6f7f7b', marginBottom: 16 }}>6 games across the club · one thing for each keeper</div>
+            <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 16, overflow: 'hidden', marginBottom: 16 }}>
+              {KEEPERS.map((k, i) => (
+                <div key={k.ini} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px', borderTop: i > 0 ? '1px solid #f0f1f0' : 'none' }}>
+                  <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#eef5f2', color: '#2f6252', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0 }}>{k.ini}</div>
+                  <div style={{ flexGrow: 1, minWidth: 0 }}>
+                    <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>{k.name} · {k.team}</div>
+                    <div style={{ fontSize: 12, color: '#6f7f7b' }}>This week: {k.note}</div>
+                  </div>
+                  <button onClick={() => showToast(`Reminder sent to ${k.name.split(' ')[0]}.`)} style={{ height: 36, padding: '0 12px', borderRadius: 999, border: '1px solid #c5c8c4', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>Send reminder</button>
+                </div>
+              ))}
+            </div>
+            <div style={{ background: '#1f4a3e', borderRadius: 16, padding: '16px' }}>
+              <div style={{ fontSize: 15, fontWeight: 700, color: '#fff', marginBottom: 6 }}>After the games</div>
+              <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.75)', marginBottom: 14 }}>Clean Sheet pulls every keeper's moments from the match cameras, ready for Tuesday.</div>
+              <button onClick={() => setNav('clips')} style={{ height: 44, padding: '0 20px', borderRadius: '999px', border: 0, background: '#fff', color: '#1f4a3e', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>See keeper clips</button>
+            </div>
+          </div>
+        )}
         {nav === 'record'   && <RecordHub />}
         {nav === 'training' && trainingTab === 'session' && (empty ? (
           <div style={{ flexGrow: 1, padding: '28px 32px', overflowY: 'auto' }}>
