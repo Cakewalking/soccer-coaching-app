@@ -1161,6 +1161,7 @@ function renderScreenInner(key: string): ReactNode {
       return <PlayerAppScreen empty={false} initialView="clip" />
     case 'playerapp-goals':
       return <PlayerAppScreen empty={false} initialView="goals" />
+    case 'PC2-TellSomeone':
     case 'playerapp-concern':
       return <PlayerAppScreen empty={false} initialView="tell-someone" />
     case 'olderplayer':
@@ -1173,8 +1174,10 @@ function renderScreenInner(key: string): ReactNode {
       return <AcademyCoachApp onBack={noop} empty={false} />
     case 'academyparent':
       return <AcademyParentApp onBack={noop} empty={false} initialModal="none" />
+    case 'ACP1-BookTrial':
     case 'academyparent-trial':
       return <AcademyParentApp onBack={noop} empty={false} initialModal="trial" />
+    case 'ACP1b-TrialBooked':
     case 'academyparent-trialbooked':
       return <AcademyParentApp onBack={noop} empty={false} initialModal="trialBooked" />
     case 'academyparent-chat':
@@ -1202,6 +1205,7 @@ function renderScreenInner(key: string): ReactNode {
       return <SuggestionsScreen empty={false} />
     case 'thisweek':
       return <ThisWeekScreen empty={false} />
+    case 'WL1-Wellness':
     case 'wellness':
       return <WellnessScreen empty={false} />
     case 'style':
@@ -1216,12 +1220,14 @@ function renderScreenInner(key: string): ReactNode {
     case 'sf7': case 'SF7-Saved':       return <SetOurStyleWizard onClose={noop} initialStep="saved" />
     case 'teamtalk':
       return <TeamTalkScreen role="head" onClose={noop} />
+    case 'TR1-PitchSide':
     case 'pitchside':
       return <PitchSideScreen onClose={noop} empty={false} />
     case 'inbox':
       return <InboxScreen empty={false} />
     case 'record':
       return <RecordScreen empty={false} />
+    case 'DG1-Goals':
     case 'goals':
       return <DevGoalsScreen />
     case 'availability':
@@ -1234,6 +1240,7 @@ function renderScreenInner(key: string): ReactNode {
       return <SeasonSummariesScreen />
     case 'growth':
       return <GrowthLoadScreen />
+    case 'OP1-Opposition':
     case 'opposition':
       return <OppositionScreen />
     case 'drills':
@@ -1252,6 +1259,7 @@ function renderScreenInner(key: string): ReactNode {
       return <SettingsScreen onDone={noop} />
 
     case 'JuniorCoachApp':      return <JuniorCoachApp />
+    case 'L1-LiveGame':
     case 'livegame':            return <LiveGameScreen onClose={noop} />
     case 'livegame11':          return <LiveGame11Screen onClose={noop} />
 
@@ -1313,8 +1321,10 @@ function renderScreenInner(key: string): ReactNode {
     case 'hm1r-notesback':      return <HM1rNotesBack onBack={noop} />
     case 'se2-playersummary':   return <SE2PlayerSummary onBack={noop} />
     case 'po5s-adultsettings':  return <PO5sAdultSettings onBack={noop} />
+    case 'TM11l-LetterFull':
     case 'tm11l-letterfull':    return <TM11lLetterFull onBack={noop} />
     case 'c1s-clipsearch':      return <C1sClipSearch onBack={noop} />
+    case 'C1se-ClipSearchNone':
     case 'c1se-clipsearchnone': return <C1seClipSearchNone onBack={noop} />
     case 'acc8p-paircamera':    return <ACC8pPairCamera onBack={noop} />
     case 'parent-preseason':    return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><SPp1ParentPreSeason onBack={noop} /></div>
@@ -1342,6 +1352,7 @@ function renderScreenInner(key: string): ReactNode {
     case 'PO6-OlderChats':         return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><OlderPlayerApp empty={false} initialView="messages" initialChat="list" /></div>
     case 'PO7-OlderGroup':         return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><OlderPlayerApp empty={false} initialView="messages" initialChat="group" /></div>
     // Step 4 — Academy parent (phone)
+    case 'ACP2-Offer':
     case 'acp2-offer':        return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><ACP2Offer /></div>
     case 'acp3-home-e':       return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><ACP3eAcademyParentHomeEmpty /></div>
     case 'acp4-fees':         return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><ACP4ParentFees /></div>
@@ -1350,6 +1361,7 @@ function renderScreenInner(key: string): ReactNode {
     case 'acp7-share':        return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><ACP7ShareWithClub /></div>
     case 'acp8-clinic-e':     return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><ACP8eBookClinicEmpty /></div>
     case 'acp9-join':         return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><ACP9JoinGameTeam /></div>
+    case 'ACP10-AcademyConcern':
     case 'acp10-concern':     return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><ACP10AcademyConcern /></div>
     // Step 4 — Director view (tablet)
     case 'd5-safeguarding':   return <D5Safeguarding />
@@ -1367,6 +1379,7 @@ function renderScreenInner(key: string): ReactNode {
     case 'd7-u15girls':       return <D7U15Girls />
     // Step 4 — Tablet coach
     case 'av2-avail':         return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><AV2ParentAvailability /></div>
+    case 'E-TeamTalk':
     case 'e-teamtalk':        return <ETeamTalk />
     case 'hm11-coming':       return <HM11ComingMiniRoos />
     case 'hm3-training-e':    return <HM3eTrainingMiniRoosEmpty />
@@ -1643,33 +1656,54 @@ function renderScreenInner(key: string): ReactNode {
     case 'IV3-Invite':                return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><IV3 /></div>
 
     // Step 4 — Invite + join screens
+    case 'SK-Roles':
     case 'sk-roles':          return <SKRoles />
     case 'iv3c-coachinvite':  return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><IV3cCoCoachInvite /></div>
     case 'iv3f-fitinvite':    return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><IV3fFitnessInvite /></div>
     case 'iv4-managerdone':   return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><IV4ManagerDone /></div>
     // Sign-in flow (SI screens)
+    case 'SI1':
     case 'si1':               return <SignInFlow initialState="email" />
+    case 'SI2':
     case 'si2':               return <SignInFlow initialState="code" />
+    case 'SI3':
     case 'si3':               return <SignInFlow initialState="wrong" />
+    case 'SI4':
     case 'si4':               return <SignInFlow initialState="expired" />
     case 'si5':               return <SignInFlow initialState="toomany" />
+    case 'SI6':
     case 'si6':               return <SignInFlow initialState="newdevice" />
+    case 'SI7':
     case 'si7':               return <SignInFlow initialState="signedout" />
+    case 'SIp1':
     case 'sip1':              return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><SignInFlow phone initialState="email" /></div>
+    case 'SIp2':
     case 'sip2':              return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><SignInFlow phone initialState="code" /></div>
+    case 'SIp3':
     case 'sip3':              return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><SignInFlow phone initialState="wrong" /></div>
     // Sandbox ending (SB screens)
+    case 'SB1':
     case 'sb1':               return <SB1SandboxEnding />
+    case 'SB2':
     case 'sb2':               return <SB2SandboxEnded />
+    case 'SB3':
     case 'sb3':               return <SB3NoSandbox />
+    case 'SB4':
     case 'sb4':               return <SB4KeepGoing />
     // Error / fault screens (ER screens)
+    case 'ER1':
     case 'er1':               return <ER1SomethingWrong />
+    case 'ER2':
     case 'er2':               return <ER2UploadFailed />
+    case 'ER3':
     case 'er3':               return <ER3Loading />
+    case 'ER4':
     case 'er4':               return <ER4NotFound />
+    case 'ER5':
     case 'er5':               return <ER5NoAccess />
+    case 'ERp1':
     case 'erp1':              return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><ERp1SomethingWrong /></div>
+    case 'ERp2':
     case 'erp2':              return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><ERp2NotFound /></div>
     // Coach phone (CPh screens)
     case 'cph1':              return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><CPh1CoachPhoneHome /></div>
@@ -1934,6 +1968,7 @@ function renderScreenInner(key: string): ReactNode {
     case 'AC4e-AcademyPlayersEmpty':           return <AC4eAcademyPlayersEmpty />
     case 'AC5e-FeesEmpty':                     return <AC5eFeesEmpty />
     case 'AC6e-AcademyCoachesEmpty':           return <AC6eAcademyCoachesEmpty />
+    case 'AC7e-ReportsOutEmpty':
     case 'AC7e-ReportsEmpty':                  return <AC7eReportsEmpty />
     case 'AC8e-AcademyRecordEmpty':            return <AC8eAcademyRecordEmpty />
     case 'AC9e-HolidayClinicEmpty':            return <AC9eHolidayClinicEmpty />
@@ -1968,7 +2003,9 @@ function renderScreenInner(key: string): ReactNode {
     // Older player screens (new)
     case 'po1':                                return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PO1OlderHome /></div>
     case 'PO1e-OlderHomeEmpty':                return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PO1eOlderHomeEmpty /></div>
+    case 'PO2e-OlderMessageEmpty':
     case 'PO2e-OlderClipsEmpty':               return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PO2eOlderClipsEmpty /></div>
+    case 'PO4e-OlderLoadEmpty':
     case 'PO4e-OlderBodyEmpty':                return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PO4eOlderBodyEmpty /></div>
     // Parent settings (new)
     case 'ps1': case 'PS1-ParentSettings':     return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TwoChildrenApp onBack={noop} empty={false} initialView="settings" /></div>
@@ -2036,6 +2073,7 @@ function renderScreenInner(key: string): ReactNode {
     case 'RC5e-RecordResultsFirstEmpty':   return <RC5eRecordResultsFirstEmpty />
     case 'RC6e-RunHistoryEmpty':           return <RC6eRunHistoryEmpty />
     case 'RC7e-RecordedEmpty':             return <RC7eRecordedEmpty />
+    case 'RCm2e-MiniRoosClipsEmpty':
     case 'RCm2e-ClipsEmpty':               return <RCm2eClipsEmpty />
     // TM empty screens (phone)
     case 'TM1e-ManagerHomeEmpty':          return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TM1eManagerHomeEmpty /></div>
@@ -2070,6 +2108,7 @@ function renderScreenInner(key: string): ReactNode {
     case 'SPp5-TrialOutcome':              return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><SPp5TrialOutcome /></div>
     // Drill library empty + drill create flow (tablet)
     case 'X10-DrillsEmpty':                return <X10DrillsEmpty />
+    case 'DF1-Detail':
     case 'DF1-DrillDetail':                return <DF1DrillDetail />
     case 'DF2-AddSheet':                   return <DF2AddSheet />
     case 'DF3-OwnBasics':                  return <DF3OwnBasics />
