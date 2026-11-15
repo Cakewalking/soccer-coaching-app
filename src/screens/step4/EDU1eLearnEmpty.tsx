@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { DARK, AMBER, PALEON } from './directorParts'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb'
 
@@ -37,10 +38,10 @@ export default function EDU1eLearnEmpty({ onNav }: { onNav?: (s: string) => void
       </div>
 
       <div style={{ flex: 1, display: 'flex', gap: 48, padding: '40px 48px', alignItems: 'flex-start' }}>
-        {/* Left: main content */}
-        <div style={{ flex: 1 }}>
-          <div style={{ fontSize: 24, fontWeight: 800, color: INK, marginBottom: 8 }}>Show your players what good looks like</div>
-          <div style={{ fontSize: 15, color: MUT, maxWidth: 500, lineHeight: 1.6, marginBottom: 32 }}>
+        {/* Left: main content (dark empty panel) */}
+        <div style={{ flex: 1, background: DARK, borderRadius: 16, padding: '28px 32px', color: '#fff' }}>
+          <div style={{ fontSize: 24, fontWeight: 700, color: '#fff', marginBottom: 8 }}>Show your players what good looks like</div>
+          <div style={{ fontSize: 15, color: PALEON, maxWidth: 500, lineHeight: 1.6, marginBottom: 32 }}>
             Pick a clip of one of your own players doing something well, say what to notice, and send it to the team.
           </div>
 
@@ -51,17 +52,17 @@ export default function EDU1eLearnEmpty({ onNav }: { onNav?: (s: string) => void
               { title: 'The player and a parent say yes', body: 'Consent is tracked for you. You choose when to ask.' },
               { title: 'To your team, or the whole club after a check', body: 'The director reviews it once before it goes club-wide.' },
             ].map((s, i) => (
-              <div key={i} style={{ flex: 1, background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 20px' }}>
-                <div style={{ width: 28, height: 28, borderRadius: '50%', background: G, color: '#fff', fontSize: 13, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 10 }}>{i + 1}</div>
-                <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 6 }}>{s.title}</div>
-                <div style={{ fontSize: 12, color: MUT, lineHeight: 1.5 }}>{s.body}</div>
+              <div key={i} style={{ flex: 1, background: 'rgba(255,255,255,0.08)', borderRadius: 14, padding: '16px 20px' }}>
+                <div style={{ width: 28, height: 28, borderRadius: '50%', background: AMBER, color: INK, fontSize: 13, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 10 }}>{i + 1}</div>
+                <div style={{ fontSize: 13, fontWeight: 700, color: '#fff', marginBottom: 6 }}>{s.title}</div>
+                <div style={{ fontSize: 12, color: PALEON, lineHeight: 1.5 }}>{s.body}</div>
               </div>
             ))}
           </div>
 
           <div style={{ display: 'flex', gap: 12 }}>
-            <button onClick={() => onNav?.('EDU3-MakeLesson')} style={{ height: 44, padding: '0 24px', borderRadius: 999, background: G, color: '#fff', border: 'none', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Make one from a clip</button>
-            <button onClick={() => { tool('See ready-made lessons'); st('Lessons from Clean Sheet, with players who are not from your club.') }} style={{ height: 44, padding: '0 24px', borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 14, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>See ready-made lessons</button>
+            <button onClick={() => onNav?.('EDU3-MakeLesson')} style={{ height: 46, padding: '0 24px', borderRadius: 12, background: AMBER, color: INK, border: 'none', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Make one from a clip</button>
+            <button onClick={() => { tool('See ready-made lessons'); st('Lessons from Clean Sheet, with players who are not from your club.') }} style={{ height: 46, padding: '0 24px', borderRadius: 12, border: `1px solid ${PALEON}`, background: 'transparent', fontSize: 14, color: '#fff', cursor: 'pointer', fontFamily: 'inherit' }}>See ready-made lessons</button>
           </div>
         </div>
 

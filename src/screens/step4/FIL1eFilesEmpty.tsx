@@ -1,6 +1,7 @@
 import { useState } from 'react'
+import { DARK, AMBER, PALEON } from './directorParts'
 
-const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
+const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb'
 
 export default function FIL1eFilesEmpty({ onOpenSheet, onNav }: {
   onOpenSheet?: () => void
@@ -62,12 +63,12 @@ export default function FIL1eFilesEmpty({ onOpenSheet, onNav }: {
       </div>
 
       {/* Empty state */}
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 40 }}>
-        <div style={{ width: 72, height: 72, borderRadius: '50%', background: PALE, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}>
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke={G} strokeWidth="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 40, background: DARK, margin: 24, borderRadius: 16, color: '#fff' }}>
+        <div style={{ width: 72, height: 72, borderRadius: '50%', border: `1.5px solid ${AMBER}`, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}>
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke={AMBER} strokeWidth="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
         </div>
-        <div style={{ fontSize: 20, fontWeight: 800, color: INK, marginBottom: 8 }}>One place for the team's paperwork</div>
-        <div style={{ fontSize: 14, color: MUT, maxWidth: 480, textAlign: 'center', lineHeight: 1.7, marginBottom: 32 }}>
+        <div style={{ fontSize: 20, fontWeight: 800, color: '#fff', marginBottom: 8 }}>One place for the team's paperwork</div>
+        <div style={{ fontSize: 14, color: PALEON, maxWidth: 480, textAlign: 'center', lineHeight: 1.7, marginBottom: 32 }}>
           Make a team sheet or a game day note, or upload what you already have. Share it with your families in two taps.
         </div>
 
@@ -77,14 +78,14 @@ export default function FIL1eFilesEmpty({ onOpenSheet, onNav }: {
             { title: 'Change the meet time once, the doc changes too', desc: 'Live blocks pull from your fixtures automatically.' },
             { title: 'Upload Word, Excel and PDF. Download any time', desc: 'Your files, shared with the right people.' },
           ].map(f => (
-            <div key={f.title} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px' }}>
-              <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 6 }}>{f.title}</div>
-              <div style={{ fontSize: 12, color: MUT }}>{f.desc}</div>
+            <div key={f.title} style={{ background: 'rgba(255,255,255,0.08)', borderRadius: 14, padding: '16px' }}>
+              <div style={{ fontSize: 13, fontWeight: 700, color: '#fff', marginBottom: 6 }}>{f.title}</div>
+              <div style={{ fontSize: 12, color: PALEON }}>{f.desc}</div>
             </div>
           ))}
         </div>
 
-        <div style={{ fontSize: 12, color: MUT, marginBottom: 8 }}>5 GB for each team. Your club can add more.</div>
+        <div style={{ fontSize: 12, color: PALEON, marginBottom: 8 }}>5 GB for each team. Your club can add more.</div>
       </div>
     </div>
   )

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { DARK, AMBER, PALEON } from './directorParts'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
@@ -46,18 +47,18 @@ export default function PRM4CoachOff({ onNav }: { onNav?: (s: string) => void })
       <div style={{ flex: 1, display: 'flex' }}>
         {/* Main: feature off card */}
         <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '40px 48px' }}>
-          <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 20, padding: '48px 56px', textAlign: 'center' as const, maxWidth: 500 }}>
-            <div style={{ width: 72, height: 72, borderRadius: '50%', background: PALE, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px' }}>
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke={G} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <div style={{ background: DARK, borderRadius: 20, padding: '48px 56px', textAlign: 'center' as const, maxWidth: 500, color: '#fff' }}>
+            <div style={{ width: 72, height: 72, borderRadius: '50%', border: `1.5px solid ${AMBER}`, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px' }}>
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke={AMBER} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>
               </svg>
             </div>
-            <div style={{ fontSize: 20, fontWeight: 800, color: INK, marginBottom: 12 }}>Live game help is off for MiniRoos</div>
-            <div style={{ fontSize: 14, color: MUT, lineHeight: 1.7, marginBottom: 32 }}>
+            <div style={{ fontSize: 20, fontWeight: 700, color: '#fff', marginBottom: 12 }}>Live game help is off for MiniRoos</div>
+            <div style={{ fontSize: 14, color: PALEON, lineHeight: 1.7, marginBottom: 32 }}>
               Wattle Creek FC has this off for under 6 to under 11. "New coaches learn to read the game first." Rachel, director of football.
             </div>
             {/* Ask Rachel [nth=1, change] */}
-            <button onClick={() => tool('A note goes to Rachel. Say why it would help your team.')} style={{ height: 44, padding: '0 28px', background: G, color: '#fff', border: 'none', borderRadius: 8, fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Ask Rachel</button>
+            <button onClick={() => tool('A note goes to Rachel. Say why it would help your team.')} style={{ height: 46, padding: '0 28px', background: AMBER, color: INK, border: 'none', borderRadius: 12, fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Ask Rachel</button>
           </div>
         </div>
 
