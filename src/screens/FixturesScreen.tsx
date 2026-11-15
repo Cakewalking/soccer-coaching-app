@@ -211,7 +211,13 @@ function resultDot(r: string) {
   return { bg: '#cbbeb5', color: '#10211f' }
 }
 
-export default function FixturesScreen({ empty }: { empty?: boolean }) {
+const FIXTURES_HEADER: Record<'juniors' | 'youth' | 'seniors', string> = {
+  juniors: 'U12 Sam · 3rd of 10 · 16 points from 8 games · 2 × 30 minutes, 9 a side',
+  youth:   'U16 Ollie · 4th of 12 · 14 points from 8 games · 2 × 35 minutes, 11 a side',
+  seniors: "Men's 1sts · 2nd of 12 · 22 points from 10 games · 2 × 45 minutes, 11 a side",
+}
+
+export default function FixturesScreen({ empty, teamType = 'juniors' }: { empty?: boolean; teamType?: 'juniors' | 'youth' | 'seniors' }) {
   const { active: inSandbox } = useSandbox()
   if (inSandbox) return <FixturesSandboxView />
   const [synced, setSynced] = useState(false)
@@ -226,7 +232,7 @@ export default function FixturesScreen({ empty }: { empty?: boolean }) {
       <div style={{ minHeight: 0, display: 'flex', flexDirection: 'column', gap: 12 }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 14 }}>
           <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, letterSpacing: '-0.02em' }}>Fixtures and results</h1>
-          <span style={{ fontSize: 14, color: '#4a5a57' }}>U12 Sam · 3rd of 10 · 16 points from 8 games · 2 × 30 minutes, 9 a side</span>
+          <span style={{ fontSize: 14, color: '#4a5a57' }}>{FIXTURES_HEADER[teamType]}</span>
         </div>
         <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
           <button onClick={() => setSynced(true)} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${synced ? '#2f6252' : '#c5c8c4'}`, background: synced ? '#e4f2eb' : '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: synced ? '#2f6252' : '#10211f' }}>{synced ? 'Synced to calendar' : 'Sync to my calendar'}</button>
