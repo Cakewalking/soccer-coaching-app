@@ -47,7 +47,7 @@ export default function RC4Recording(_: { onBack?: () => void }) {
           </div>
 
           <div style={{ display: 'flex', gap: 10 }}>
-            <button onClick={() => st('Recording paused.')} style={{ flex: 1, height: 48, borderRadius: 12, border: '2px solid rgba(255,255,255,0.3)', background: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.8)', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>⏸ Pause</button>
+            <button onClick={() => st('Recording paused.')} style={{ flex: 1, height: 48, borderRadius: 12, border: '2px solid rgba(255,255,255,0.3)', background: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.8)', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Pause</button>
             <button onClick={() => st('Recording stopped and saved.')} style={{ flex: 1, height: 48, borderRadius: 12, border: '2px solid rgba(255,255,255,0.3)', background: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.8)', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Stop and save</button>
           </div>
         </div>

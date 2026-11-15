@@ -12,7 +12,7 @@ const ROLES = [
   { id: 'chair', label: 'Chair or committee',    desc: 'Club overview and reports' },
 ]
 
-const INVITE_ROWS = ['Co-coach', 'Manager', 'Fitness']
+const INVITE_ROWS = ['Assistant coach', 'Manager', 'Fitness']
 
 export default function OB4SignUp(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string|null>(null)

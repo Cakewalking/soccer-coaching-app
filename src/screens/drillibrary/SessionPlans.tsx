@@ -9,7 +9,7 @@ const PHASES = [
 ]
 
 const BLOCKS = [
-  { slot:'Warm-up',         min:10, color:'#2f6252', desc:'A fun, fast start with a ball. Twice a week, use the FIFA 11+ Kids warm-up instead.',       drills:['Ball mastery square','FIFA 11+ Kids warm-up'] },
+  { slot:'Warm-up',         min:10, color:'#2f6252', desc:'A fun, fast start with a ball. Twice a week, use the 11+ Kids warm-up instead.',       drills:['Ball mastery square','11+ Kids warm-up'] },
   { slot:'Recognition game',min:10, color:'#40826d', desc:'A real game. Watch for today\'s skill, then add a scoring rule that rewards it.',          drills:['Recognition game: 4 v 4 + 2'] },
   { slot:'Skill breakdown', min:10, color:'#1f4a3e', desc:'Short teach: I do, we do, you do. Use the key words and ask questions.',                   drills:['First touch away from pressure','Through the gates'] },
   { slot:'Mini-games',      min:20, color:'#c3a84a', desc:'Small games where the skill wins points. Everyone plays, no queues.',                       drills:['Receive and turn, 3 v 1 lanes','1 v 1 to gates'] },

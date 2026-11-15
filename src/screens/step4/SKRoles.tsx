@@ -19,13 +19,13 @@ const ROLES: RoleCard[] = [
   {
     id: 'coach',
     title: 'Coach',
-    persona: 'Sam K and co-coach Jess Marsh',
+    persona: 'Sam K and assistant coach Jess Marsh',
     device: 'Tablet, pitch-side',
     homeQuestion: 'What do we work on tonight, and did last week work?',
     tabs: 'Home · Squad · Training · Match day · Clips',
     canSee: ["Their team's clips, numbers and plans", "Each player's wellness and goals", "Messages with parents and staff"],
     cantSee: ["Other teams", "Club-wide numbers"],
-    keyScreens: ["Tonight's session", "Match review", "Home shared with a co-coach"],
+    keyScreens: ["Tonight's session", "Match review", "Home shared with a assistant coach"],
     ctaLabel: "Open Home",
   },
   {

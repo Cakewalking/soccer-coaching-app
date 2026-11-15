@@ -241,7 +241,7 @@ export const TOURS: Record<string, TourDef> = {
   },
 
   ccoach: {
-    roleLabel: "Co-coach or assistant",
+    roleLabel: "Assistant coach",
     persona: "as Jess Marsh, U12 Sam",
     device: 'tablet',
     total: 7,
@@ -249,8 +249,8 @@ export const TOURS: Record<string, TourDef> = {
     sandboxHome: 'cc1e-coach-e',
     sections: [
       { title: "Join", steps: [
-        { label: "Invite", caption: "The head coach invites a co-coach, who sees what they\u2019ll have access to before saying yes.", screen: "IV3c-Invite" },
-        { label: "What you\u2019ll see", caption: "The head coach invites a co-coach, who sees what they\u2019ll have access to before saying yes.", screen: "IV2-Invite" },
+        { label: "Invite", caption: "The head coach invites a assistant coach, who sees what they\u2019ll have access to before saying yes.", screen: "IV3c-Invite" },
+        { label: "What you\u2019ll see", caption: "The head coach invites a assistant coach, who sees what they\u2019ll have access to before saying yes.", screen: "IV2-Invite" },
       ]},
       { title: "Each week", steps: [
         { label: "Shared home and hand-over notes", caption: "Two coaches share one home, with hand-over notes so either can run the session.", screen: "home" },
@@ -900,7 +900,7 @@ export const TOURS: Record<string, TourDef> = {
         { label: "Sprint results (empty)", caption: "No results for Jai yet.", screen: "tl3e-sprint-e" },
       ]},
       { title: "Coaches / TM", steps: [
-        { label: "Coach home (empty)", caption: "Jess Wu co-coach not yet joined.", screen: "cc1e-coach-e" },
+        { label: "Coach home (empty)", caption: "Jess Wu assistant coach not yet joined.", screen: "cc1e-coach-e" },
         { label: "Who's coming", caption: "12 in, 1 maybe, 2 can't.", screen: "tm6-coming" },
         { label: "Who's coming (empty)", caption: "No game this week.", screen: "tm6e-coming-e" },
       ]},
@@ -913,7 +913,7 @@ export const TOURS: Record<string, TourDef> = {
       ]},
       { title: "Invite screens", steps: [
         { label: "One club, five views", caption: "Overview card: 5 roles, what each sees.", screen: "sk-roles" },
-        { label: "Co-coach invite", caption: "What a co-coach sees when they're invited.", screen: "iv3c-coachinvite" },
+        { label: "Assistant coach invite", caption: "What a assistant coach sees when they're invited.", screen: "iv3c-coachinvite" },
         { label: "Fitness coach invite", caption: "What a fitness coach sees when they're invited.", screen: "iv3f-fitinvite" },
         { label: "Manager done", caption: "Team manager joins — good first things.", screen: "iv4-managerdone" },
       ]},
@@ -996,7 +996,7 @@ export const TOURS: Record<string, TourDef> = {
         { label: "MiniRoos: before first Saturday", caption: "U9 Tom's 6-item list. No trials, no grading.", screen: "miniroos-preseason" },
         { label: "MiniRoos: after the season",      caption: "Season notes, medals, coming back, thank helpers.", screen: "miniroos-postseason" },
         { label: "MiniRoos: rest",                  caption: "Nothing until March. Tell Bianca if coaching next year.", screen: "miniroos-rest" },
-        { label: "Co-coach shared view",            caption: "Jess's checklist — each item tagged with who owns it.", screen: "ccoach-preseason" },
+        { label: "Assistant coach shared view",            caption: "Jess's checklist — each item tagged with who owns it.", screen: "ccoach-preseason" },
         { label: "Academy team (read-only)",        caption: "Men's Reserves: results, registered, training turnout.", screen: "fn3-seniorteam" },
       ]},
     ],
@@ -1108,7 +1108,7 @@ export const ROLE_GROUPS: Array<{
       { id: 'coach',      name: 'Junior coach',       device: 'Tablet', desc: 'Under 12 and 13 · as Sam K' },
       { id: 'youth',      name: 'Youth coach',        device: 'Tablet', desc: 'Under 14 to 18 · as Ollie Grant' },
       { id: 'seniors',    name: 'Senior coach',       device: 'Tablet', desc: 'Adults · as Marko Petrovic' },
-      { id: 'ccoach',     name: 'Co-coach',           device: 'Tablet', desc: 'as Jess Marsh' },
+      { id: 'ccoach',     name: 'Assistant coach',           device: 'Tablet', desc: 'as Jess Marsh' },
       { id: 'fitness',    name: 'Fitness coach',      device: 'Tablet', desc: 'as Priya Shah' },
       { id: 'goalkeeper', name: 'Goalkeeper coach',   device: 'Tablet', desc: 'as Nick Ward' },
     ],

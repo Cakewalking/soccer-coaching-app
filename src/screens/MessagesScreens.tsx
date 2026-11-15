@@ -167,7 +167,7 @@ export function CoachNewMessage({ onBack: _onBack, onNav }: { onBack?: () => voi
     {
       heading: 'My team · U12 Sam',
       contacts: [
-        { ini: 'JM', name: 'Jess Marsh',    role: 'Co-coach' },
+        { ini: 'JM', name: 'Jess Marsh',    role: 'Assistant coach' },
         { ini: 'RO', name: 'Rob Owusu',     role: 'Team manager' },
         { ini: 'PS', name: 'Priya Shah',    role: 'Fitness coach' },
       ],

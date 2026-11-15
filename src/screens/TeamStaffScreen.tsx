@@ -83,8 +83,8 @@ const ROLE_MATRIX = [
 ]
 
 const PLAY_LEVELS = [
-  { level: 'Play',          ages: 'U6 to U12',          roles: ['Coach', 'Co-coach', 'Team manager'] },
-  { level: 'Grow',          ages: 'U13 to U16',          roles: ['Coach', 'Co-coach', 'Team manager', 'Club fitness lead'] },
+  { level: 'Play',          ages: 'U6 to U12',          roles: ['Coach', 'Assistant coach', 'Team manager'] },
+  { level: 'Grow',          ages: 'U13 to U16',          roles: ['Coach', 'Assistant coach', 'Team manager', 'Club fitness lead'] },
   { level: 'Perform · Pro', ages: 'NPL, academy',        roles: ['Head coach', 'Assistants', 'GK coach', 'S&C', 'Physio', 'Analyst', 'Team manager'] },
 ]
 
@@ -116,9 +116,9 @@ export default function TeamStaffScreen({ empty, teamType = 'juniors' }: { empty
         <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 340px', gap: 20 }}>
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: 24 }}>
             <div style={{ fontSize: 20, fontWeight: 700, color: INK, marginBottom: 8 }}>{"It's just you"}</div>
-            <div style={{ fontSize: 14, color: MUT, lineHeight: 1.6, marginBottom: 20 }}>Add a co-coach to share sessions and a team manager to handle meet times, the duty roster and messages to parents.</div>
+            <div style={{ fontSize: 14, color: MUT, lineHeight: 1.6, marginBottom: 20 }}>Add a assistant coach to share sessions and a team manager to handle meet times, the duty roster and messages to parents.</div>
             <div style={{ display: 'flex', gap: 10 }}>
-              <button onClick={() => openInvite()} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Invite a co-coach</button>
+              <button onClick={() => openInvite()} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Invite a assistant coach</button>
               <button onClick={() => openInvite()} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Invite a team manager</button>
             </div>
           </div>
@@ -126,7 +126,7 @@ export default function TeamStaffScreen({ empty, teamType = 'juniors' }: { empty
             <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, overflow: 'hidden' }}>
               <div style={{ padding: '10px 16px', borderBottom: `1px solid ${LN}`, fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', color: MUT }}>FILLS IN LIKE THIS</div>
               {[
-                { role: 'Co-coach',          desc: 'Everything you see' },
+                { role: 'Assistant coach',          desc: 'Everything you see' },
                 { role: 'Team manager',       desc: 'Availability, messages, roster and the first-aid card' },
                 { role: 'Club fitness lead',  desc: 'Growth, load and tests, if your club has one' },
               ].map((r, i) => (
@@ -288,7 +288,7 @@ export default function TeamStaffScreen({ empty, teamType = 'juniors' }: { empty
             <div style={{ marginBottom: 16 }}>
               <div style={{ fontSize: 12, fontWeight: 700, color: MUT, letterSpacing: '0.07em', marginBottom: 6 }}>ROLE</div>
               <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' as const }}>
-                {['Co-coach', 'Team manager', 'Fitness (club)', 'Other'].map(r => (
+                {['Assistant coach', 'Team manager', 'Fitness (club)', 'Other'].map(r => (
                   <button key={r} onClick={() => setSelectedRole(r)} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1.5px solid ${selectedRole === r ? G : LN}`, background: selectedRole === r ? PALE : '#f7f9f7', color: selectedRole === r ? G : MUT, fontSize: 13, fontWeight: selectedRole === r ? 700 : 400, cursor: 'pointer', fontFamily: 'inherit' }}>{r}</button>
                 ))}
               </div>

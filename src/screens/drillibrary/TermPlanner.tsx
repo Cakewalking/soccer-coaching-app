@@ -9,7 +9,7 @@ const WEEK_BLOCKS = [
 ]
 
 const TUE_SESSION = [
-  { slot:'Warm-up',         drill:'FIFA 11+ Kids warm-up',     min:20 },
+  { slot:'Warm-up',         drill:'11+ Kids warm-up',     min:20 },
   { slot:'Recognition game',drill:'Recognition game: 4 v 4 + 2', min:10 },
   { slot:'Skill breakdown', drill:'First touch away from pressure', min:10 },
   { slot:'Mini-games',      drill:'4 v 4 + 3 keep-ball',       min:15 },
@@ -94,7 +94,7 @@ export default function TermPlanner({ onBack }: { onBack: () => void }) {
               <div style={{ background:'#fff', borderRadius:8, padding:12, border:`1px solid ${LN}`, fontSize:13, color:INK, lineHeight:1.6, marginBottom:12 }}>
                 Saturday we gave the ball away 21 times in our half, so this block's games reward a first touch away from pressure.
               </div>
-              <div style={{ fontSize:13, color:MUT, lineHeight:1.6 }}>FIFA 11+ Kids warm-up planned at least once every week, as its trial did.</div>
+              <div style={{ fontSize:13, color:MUT, lineHeight:1.6 }}>11+ Kids warm-up planned at least once every week, as its trial did.</div>
             </div>
             <div style={{ fontSize:12, color:MUT, lineHeight:1.7 }}>Two-week blocks per core skill follow the curriculum's term planner for the Skill Acquisition Phase.</div>
           </div>

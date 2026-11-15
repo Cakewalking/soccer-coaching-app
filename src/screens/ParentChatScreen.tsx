@@ -262,7 +262,7 @@ function TeamChatView({ empty, onBack, onPoll, onAttach, onSettings, onReport, o
             <div style={{ marginBottom: 14 }}>
               <div style={{ display: 'flex', gap: 8, marginBottom: 4 }}>
                 <Ini s="JW" bg={G2} size={26}/>
-                <span style={{ fontSize: 12, color: MUT }}>Jess · co-coach · 7:55 pm</span>
+                <span style={{ fontSize: 12, color: MUT }}>Jess · assistant coach · 7:55 pm</span>
               </div>
               <div style={{ background: '#f5f6f4', borderRadius: 12, padding: '8px 12px', marginLeft: 34, maxWidth: 180 }}>
                 <VoiceRow dur="0:14"/>

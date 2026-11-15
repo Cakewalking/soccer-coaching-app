@@ -17,14 +17,14 @@ export default function CC1eCoachHomeEmpty(_: { onBack?: () => void }) {
         <div style={{ fontSize: 24, fontWeight: 900, letterSpacing: '-0.02em', color: INK, marginBottom: 4 }}>Hi Sam, welcome to your team</div>
         <div style={{ fontSize: 15, color: MUT, marginBottom: 32 }}>U12 Sam · Wattle Creek · season 2026</div>
 
-        {/* Co-coach not yet joined */}
+        {/* Assistant coach not yet joined */}
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 20px', marginBottom: 20, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
             <div style={{ width: 40, height: 40, borderRadius: '50%', background: PALE, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth="1.5" strokeLinecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
             </div>
             <div>
-              <div style={{ fontSize: 14, fontWeight: 700, color: INK }}>Jess Wu · co-coach</div>
+              <div style={{ fontSize: 14, fontWeight: 700, color: INK }}>Jess Wu · assistant coach</div>
               <div style={{ fontSize: 12, color: MUT }}>Invited · hasn't set up Clean Sheet yet</div>
             </div>
           </div>

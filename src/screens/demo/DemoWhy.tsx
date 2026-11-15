@@ -11,7 +11,7 @@ const PILLARS = [
   {
     heading: 'Backed by research',
     body: `The load caps, growth-spurt flags, and heading restrictions aren't defaults we made up. They follow the evidence on youth athlete development and the guidelines Football Australia publishes.\n\nFair-minutes rules, development goals, and the wellness check-in are based on what coaches at grassroots clubs actually need — not features designed for elite academies and scaled down.`,
-    items: ['FIFA 11+ Kids warm-up built in', 'Growth-spurt load capping (PHV model)', 'Heading restriction by age group', 'Fair-minutes tracking', 'Wellness flags, not scores'],
+    items: ['11+ Kids warm-up built in', 'Growth-spurt load capping (PHV model)', 'Heading restriction by age group', 'Fair-minutes tracking', 'Wellness flags, not scores'],
   },
   {
     heading: 'Safe for children',

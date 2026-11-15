@@ -4,7 +4,7 @@ const NAV = ['Home', 'Squad', 'Training', 'Match day', 'Clips']
 const SUBNAV = ["Tonight's session", 'This week', 'Drill library', 'Growth and load']
 const AGE_FILTERS = ['5–9', '9–12', 'Your team', '12–16', '16+', 'All ages']
 const DRILLS = [
-  { name: 'FIFA 11+ Kids warm-up', cat: 'Warm-up', time: '20 min' },
+  { name: '11+ Kids warm-up', cat: 'Warm-up', time: '20 min' },
   { name: 'Rondo, 5 v 2', cat: 'First touch', time: '10 min' },
   { name: '4 v 4 + 3 keep-ball', cat: 'First touch', time: '15 min' },
   { name: '1 v 1 to gates', cat: '1 v 1', time: '15 min' },

@@ -63,7 +63,7 @@ export const DRILLS: Drill[] = [
     whySuggested:'Checks: goal kicks played short and ball losses in our third.' },
   { id:'3',  name:'First touch away from pressure',   category:'First touch',      time:15, players:'Groups of 3', phases:['skill'], featured:true, tags:['Curriculum'],
     whySuggested:'Checks: first touches under pressure.' },
-  { id:'4',  name:'FIFA 11+ Kids warm-up',            category:'Warm-up',          time:20, players:'11 players', phases:['skill','discovery'], tags:['Tested in trials'] },
+  { id:'4',  name:'11+ Kids warm-up',            category:'Warm-up',          time:20, players:'11 players', phases:['skill','discovery'], tags:['Tested in trials'] },
   { id:'5',  name:'Perform+ warm-up',                 category:'Warm-up',          time:10, players:'Any',        phases:['skill','discovery'], tags:['Tested in trials'] },
   { id:'6',  name:'Ball mastery square',              category:'First touch',      time:15, players:'Any',        phases:['skill'], tags:['Curriculum'] },
   { id:'8',  name:'Recognition game: 4 v 4 + 2',     category:'First touch',      time:10, players:'10 players', phases:['skill'], tags:['Research-backed'] },

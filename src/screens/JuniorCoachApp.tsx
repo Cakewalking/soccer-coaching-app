@@ -206,7 +206,7 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
       askOpen={askOpen}
       onAskToggle={() => setAskOpen(o => !o)}
       askQuestions={['Who needs a rest this week?', 'What should we work on tonight?', 'Is everyone getting fair minutes?']}
-      askRole={coachRole === 'ccoach' ? 'co-coach' : 'head coach'}
+      askRole={coachRole === 'ccoach' ? 'assistant coach' : 'head coach'}
       showBadge={tab => !sbEmpty && !inSandbox && (tab === 'Messages' || tab === 'To check')}
     >
       {content}

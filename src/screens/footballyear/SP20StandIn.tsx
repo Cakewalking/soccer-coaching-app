@@ -28,7 +28,7 @@ export default function SP20StandIn(_: { onBack?: () => void }) {
             {[
               {
                 initials: 'JW', name: 'Jess Wu',
-                role: 'Co-coach · leads training and games',
+                role: 'Assistant coach · leads training and games',
                 badge: 'WWC checked',
                 badgeColor: G,
                 detail: 'Already on the team. Knows the players. Can see all sessions from September.',

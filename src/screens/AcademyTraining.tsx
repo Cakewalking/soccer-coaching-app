@@ -317,7 +317,7 @@ export function AcademySessionPlan({ onBack: _onBack, onNav }: { onBack?: () => 
                 </div>
               </div>
             ))}
-            <div style={{ fontSize: 12, color: MUT, marginTop: 10 }}>From each player's development goal. Visible to you and the co-coach.</div>
+            <div style={{ fontSize: 12, color: MUT, marginTop: 10 }}>From each player's development goal. Visible to you and the assistant coach.</div>
           </div>
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '14px 16px' }}>
             <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 12 }}>You need</div>

@@ -28,7 +28,7 @@ export default function TeamTab({ onToast }: { onToast: (m: string) => void }) {
         <BadgeRow title="Fair game time" desc="Equal time · set by the club" badge="Club rule" />
         <BadgeRow title="Heading in training" desc="No club policy chosen yet" badge="Club rule" />
         <ActionRow title="Team link for families" desc="17 of 17 families joined" label="Copy link" toast="Team link copied." onToast={onToast} />
-        <ActionRow title="Hand the team to another coach" desc="They become head coach. You stay as co-coach or leave" label="Hand over" toast="Pick who takes over. They have to accept." onToast={onToast} />
+        <ActionRow title="Hand the team to another coach" desc="They become head coach. You stay as assistant coach or leave" label="Hand over" toast="Pick who takes over. They have to accept." onToast={onToast} />
         <SectionNote text="Club rules are set by the director of football and apply to every team." />
       </section>
     </main>

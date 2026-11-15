@@ -32,7 +32,7 @@ export default function CoCoachHomeScreen({ empty, onNav, onAsk, askQuestions }:
 
   return (
     <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', minHeight: 0 }}>
-      <AskLine teamName="U12 Sam" questions={askQuestions ?? []} onAsk={onAsk} roleLabel="co-coach" />
+      <AskLine teamName="U12 Sam" questions={askQuestions ?? []} onAsk={onAsk} roleLabel="assistant coach" />
     <div style={{ flex: 1, overflowY: 'auto', padding: '28px 32px 36px', display: 'flex', flexDirection: 'column', gap: 20 }}>
 
       {/* Header */}

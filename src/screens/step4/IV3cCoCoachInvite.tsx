@@ -21,14 +21,14 @@ export default function IV3cCoCoachInvite() {
       {/* Header */}
       <div style={{ background: GD, padding: '52px 24px 24px', flexShrink: 0 }}>
         <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.5)', marginBottom: 2 }}>U12 Sam · Wattle Creek FC</div>
-        <div style={{ fontSize: 24, fontWeight: 800, color: '#fff', marginBottom: 2 }}>Join as co-coach</div>
+        <div style={{ fontSize: 24, fontWeight: 800, color: '#fff', marginBottom: 2 }}>Join as assistant coach</div>
         <div style={{ fontSize: 15, color: 'rgba(255,255,255,0.75)' }}>What you'll see</div>
       </div>
 
       {/* Context note */}
       <div style={{ background: '#fff', padding: '12px 24px', borderBottom: '1px solid #e9eae8', flexShrink: 0 }}>
         <div style={{ fontSize: 12, color: MUT, lineHeight: 1.5 }}>
-          Set by Wattle Creek FC for every co-coach. Only for U12 Sam.
+          Set by Wattle Creek FC for every assistant coach. Only for U12 Sam.
         </div>
       </div>
 
@@ -53,7 +53,7 @@ export default function IV3cCoCoachInvite() {
       {/* Footer note + CTA */}
       <div style={{ padding: '16px 24px 40px', flexShrink: 0, background: '#fff', borderTop: '1px solid #e9eae8' }}>
         <div style={{ fontSize: 12, color: MUT, marginBottom: 16, lineHeight: 1.5 }}>
-          The club can change these for every co-coach.
+          The club can change these for every assistant coach.
         </div>
         <button onClick={() => st('Confirmed.')} style={{ width: '100%', height: 52, borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 16, fontWeight: 700, cursor: 'pointer' }}>
           Looks right

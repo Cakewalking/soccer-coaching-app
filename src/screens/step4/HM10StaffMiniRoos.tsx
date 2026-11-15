@@ -37,7 +37,7 @@ export default function HM10StaffMiniRoos(_: { onBack?: () => void }) {
           <div style={{ fontSize: 17, fontWeight: 700, marginBottom: 6 }}>Who helps with this team</div>
           {[
             { init: 'TA', role: 'Head coach · you', note: 'Children check valid to Feb 2028', badge: 'Valid', badgeBg: G, badgeColor: '#fff' },
-            { init: 'JF', role: 'Co-coach',         note: 'Sees everything you see',         badge: 'Valid', badgeBg: G, badgeColor: '#fff' },
+            { init: 'JF', role: 'Assistant coach',         note: 'Sees everything you see',         badge: 'Valid', badgeBg: G, badgeColor: '#fff' },
             { init: 'KN', role: 'Team manager · Evie\'s mum', note: 'Who\'s coming, messages and the first-aid card', badge: 'Check due 30 Jun', badgeBg: '#cbbeb5', badgeColor: INK },
           ].map(s => (
             <div key={s.init} style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 68, borderTop: `1px solid ${LN}` }}>

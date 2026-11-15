@@ -14,7 +14,7 @@ const MUT = '#4a5a57'
 const LN  = '#e8edeb'
 
 const STARTER_DRILLS = [
-  { name: 'FIFA 11+ Kids warm-up',       cat: 'Warm-up · 20 min' },
+  { name: '11+ Kids warm-up',       cat: 'Warm-up · 20 min' },
   { name: 'Rondo, 5 v 2',                cat: 'First touch · 10 min' },
   { name: '4 v 4 + 3 keep-ball',         cat: 'First touch · 15 min' },
   { name: '1 v 1 to gates',              cat: '1 v 1 · 15 min' },

@@ -55,7 +55,7 @@ export default function D7U8Mixed(_: { onBack?: () => void }) {
               <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 8 }}>Staff</div>
               {[
                 { name: 'Hannah Reid', role: 'Coach', check: 'Valid · Sep 2027' },
-                { name: 'Raj Patel', role: 'Co-coach', check: 'Valid · May 2028' },
+                { name: 'Raj Patel', role: 'Assistant coach', check: 'Valid · May 2028' },
                 { name: 'Sue Lam', role: 'Team manager', check: 'Valid · Jul 2027' },
               ].map(s => (
                 <div key={s.name} style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 0', borderBottom: `1px solid ${LN}` }}>

@@ -257,7 +257,7 @@ function ChatPanel({ empty, selectedChat, onResults, onPoll, onMedia, onInfo, on
                 <ChatBubble ini="LT" iniColor={ROSE} sender="Linh Tran · Mia's mum" time="7:48 pm">
                   <VoiceMsg duration="0:21" text="Mia found her other boot! And she got to 14 juggles." reactions={[{emoji:'👍',count:6},{emoji:'🙌',count:3}]}/>
                 </ChatBubble>
-                <ChatBubble ini="JW" iniColor={G2} sender="Jess Wu · co-coach" time="7:55 pm">
+                <ChatBubble ini="JW" iniColor={G2} sender="Jess Wu · assistant coach" time="7:55 pm">
                   <VoiceMsg duration="0:14" text="" reactions={[]}/>
                 </ChatBubble>
               </>
@@ -799,7 +799,7 @@ function ChatInfoPanel({ onBack }: { onBack:()=>void }) {
           {[
             {ini:'RO', bg:MUT, name:'Rob Owusu', role:'Team manager · owner', badge:'Owner'},
             {ini:'SK', bg:G,   name:'Sam K (you)', role:'Head coach', badge:'Can manage'},
-            {ini:'JW', bg:G2,  name:'Jess Wu', role:'Co-coach', badge:'Can manage'},
+            {ini:'JW', bg:G2,  name:'Jess Wu', role:'Assistant coach', badge:'Can manage'},
             {ini:'LT', bg:ROSE, name:'Linh Tran', role:"Mia's mum", badge:'Remove'},
             {ini:'AM', bg:'#c3a84a', name:'Aroha Marsh', role:"Leo's mum", badge:'Remove'},
             {ini:'DC', bg:MUT, name:'Dan Chen', role:"Ruby's dad", badge:'Remove'},

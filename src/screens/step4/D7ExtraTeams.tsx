@@ -242,7 +242,7 @@ export function D7U10Mixed() {
           <StaffCard
             staff={[
               { initials: 'NR', name: 'Nadia Rahman', role: 'Coach', check: 'Valid · Feb 2028' },
-              { initials: 'BC', name: 'Ben Cole', role: 'Co-coach', check: 'Valid · Jun 2027' },
+              { initials: 'BC', name: 'Ben Cole', role: 'Assistant coach', check: 'Valid · Jun 2027' },
               { initials: 'AF', name: 'Amy Fox', role: 'Team manager', check: 'Valid · Aug 2027' },
             ]}
             fitness="Coach runs the 11+ Kids warm-up."
@@ -274,7 +274,7 @@ export function D7U12Girls() {
           <StaffCard
             staff={[
               { initials: 'AS', name: 'Ana Silva', role: 'Coach', check: 'Valid · Aug 2027' },
-              { initials: 'DM', name: 'Dee Moss', role: 'Co-coach', check: 'Valid · Feb 2027' },
+              { initials: 'DM', name: 'Dee Moss', role: 'Assistant coach', check: 'Valid · Feb 2027' },
               { initials: 'TW', name: 'Tina Wu', role: 'Team manager', check: 'Valid · Oct 2027' },
             ]}
             fitness="Coach runs the 11+ Kids warm-up."
@@ -341,7 +341,7 @@ export function D7U13Girls() {
           <StaffCard
             staff={[
               { initials: 'MD', name: 'Meg Doyle', role: 'Coach', check: 'Valid · Jul 2027' },
-              { initials: 'SR', name: 'Sian Ross', role: 'Co-coach', check: 'Valid · Jan 2028' },
+              { initials: 'SR', name: 'Sian Ross', role: 'Assistant coach', check: 'Valid · Jan 2028' },
               { initials: 'PS', name: 'Priya Shah', role: 'Fitness (club)', check: 'Ends in 29 days', warn: true },
             ]}
             fitness="Priya Shah, club fitness lead."

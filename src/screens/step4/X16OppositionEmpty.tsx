@@ -36,7 +36,7 @@ export default function X16OppositionEmpty(_: { onBack?: () => void }) {
         </div>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: 20 }}>
           <div style={{ fontSize: 14, fontWeight: 700, color: INK, marginBottom: 14 }}>What you'll see</div>
-          {[{ label: 'Their recent results', sub: 'From league results' }, { label: 'Your scouting notes', sub: 'Shared with your co-coach' }, { label: 'Clips from last time', sub: 'Only games you recorded' }].map((r, i) => (
+          {[{ label: 'Their recent results', sub: 'From league results' }, { label: 'Your scouting notes', sub: 'Shared with your assistant coach' }, { label: 'Clips from last time', sub: 'Only games you recorded' }].map((r, i) => (
             <div key={i} style={{ padding: '10px 0', borderBottom: `1px solid ${LN}` }}>
               <div style={{ fontSize: 13, fontWeight: 600, color: INK }}>{r.label}</div>
               <div style={{ fontSize: 12, color: MUT }}>{r.sub}</div>

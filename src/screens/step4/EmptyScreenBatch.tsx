@@ -245,7 +245,7 @@ export function HM9eFixturesMiniRoosEmpty() {
   return <HMShell navActive="Calendar" title="No fixtures yet" sub="Fixtures sync automatically once your club connects to Dribl. Or you can add them yourself." ctaLabel="Add a fixture" />
 }
 export function HM10eStaffMiniRoosEmpty() {
-  return <HMShell navActive="Squad" title="No staff listed" sub="Add helpers — a co-coach, manager or volunteer — so families know who's involved with the team." ctaLabel="Add a helper" />
+  return <HMShell navActive="Squad" title="No staff listed" sub="Add helpers — a assistant coach, manager or volunteer — so families know who's involved with the team." ctaLabel="Add a helper" />
 }
 export function HM11eComingMiniRoosEmpty() {
   return <HMShell navActive="Today" title="No availability yet" sub="Families answer who's coming once you post an upcoming session. No answers yet for this event." />

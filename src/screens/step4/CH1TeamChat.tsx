@@ -7,7 +7,7 @@ interface Msg { id: number; from: string; role: string; time: string; body: stri
 
 const TEAM: Msg[] = [
   { id: 1, from: 'Sam', role: 'Coach', time: '8:30 am', body: 'Great energy at training last night. Well done everyone.', type: 'text' },
-  { id: 2, from: 'Jess Wu', role: 'Co-coach', time: '8:34 am', body: 'Who can help carry the goals on Saturday? Meet at the reserve at 8:15.', type: 'text' },
+  { id: 2, from: 'Jess Wu', role: 'Assistant coach', time: '8:34 am', body: 'Who can help carry the goals on Saturday? Meet at the reserve at 8:15.', type: 'text' },
   { id: 3, from: 'Sam', role: 'Coach', time: '9:01 am', body: 'Who\'s bringing oranges this week?', type: 'poll', pollQ: 'Oranges this Saturday?', pollOpts: ['I can bring them', 'I\'ll help but can\'t buy', 'Can\'t help this week'], pollVotes: [3, 1, 4] },
   { id: 4, from: 'Mia\'s mum', role: 'Parent', time: '9:14 am', body: 'We can bring them! On our way to the reserve anyway.', type: 'text' },
 ]
