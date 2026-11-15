@@ -2183,6 +2183,7 @@ function renderScreenInner(key: string): ReactNode {
     case 'ST1-TeamStaff':              return <TeamStaffScreen empty={false} />
     case 'D7-SeasonPlan':              return <FY1SeasonPlan />
     case 'DrillFlow':                  return <DrillLibraryScreen empty={false} />
+    case 'DF0-Library':                return <DrillLibraryScreen empty={false} />
     case 'ACC8-AcademyRecord':         return <ACC11AcademyRecording />
     case 'FT1-FitnessHomeU12':         return <FitnessCoachScreen empty={false} />
     case 'DP1-Pathway':                return <DP1FairGameTime />

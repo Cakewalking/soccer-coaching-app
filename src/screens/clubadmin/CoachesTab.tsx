@@ -11,7 +11,7 @@ const COACHES_EMPTY: Partial<Record<CoachesView, { icon: string; title: string; 
   goalkeepers: { icon: 'M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75', title: 'No keepers named yet', desc: "From U12, coaches mark their keepers. Under 12s take turns, so they aren't listed.", cta: 'Add a keeper coach', items: [{ title: 'Keeper coaching', desc: 'Who gets how much' }, { title: 'Keeper drills', desc: 'In the club library' }] },
 }
 
-export default function CoachesTab({ empty }: { empty?: boolean }) {
+export default function CoachesTab({ empty, role = 'dof', onNav }: { empty?: boolean; role?: 'chair' | 'dof'; onNav?: (s: string) => void }) {
   const [view, setView] = useState<CoachesView>('allcoaches')
   const [selectedCoach, setSelectedCoach] = useState<string | null>(null)
   const [toast, setToast] = useState<string | null>(null)
@@ -225,7 +225,7 @@ export default function CoachesTab({ empty }: { empty?: boolean }) {
             {[{ team: 'U12 Sam', keeper: 'Leo Marsh', age: 12, status: 'Active' }, { team: 'U12 Girls Ana', keeper: 'Grace Owusu', age: 12, status: 'Active' }, { team: 'U13 Chris', keeper: 'Noah Ali', age: 13, status: 'Concussion' }, { team: 'U13 Girls Meg', keeper: 'Zara Costa', age: 13, status: 'Active' }, { team: 'U14 Josh', keeper: 'Harry Lee', age: 14, status: 'Active' }, { team: 'U15 Girls Bec', keeper: 'Priya Nair', age: 15, status: 'Active' }, { team: 'U16 Ollie', keeper: 'Tom Walsh', age: 16, status: 'Active' }].map((row, i) => (
               <div key={i} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr', padding: '10px 0', borderBottom: '1px solid #f0f1f0', gap: 8, alignItems: 'center' }}>
                 <div style={{ fontSize: 13, color: '#10211f' }}>{row.team}</div>
-                <div style={{ fontSize: 13, fontWeight: 600, color: '#10211f' }}>{row.keeper}</div>
+                <div style={{ fontSize: 13, fontWeight: 600, color: role === 'chair' ? '#6f7f7b' : '#10211f' }}>{role === 'chair' ? '1 keeper' : row.keeper}</div>
                 <div style={{ fontSize: 13, color: '#6f7f7b' }}>U{row.age}</div>
                 <span style={{ fontSize: 11, fontWeight: 700, color: row.status === 'Active' ? '#40826d' : '#c39797', background: row.status === 'Active' ? '#e4f2eb' : '#fdf4f4', borderRadius: 6, padding: '2px 8px' }}>{row.status}</span>
               </div>
@@ -247,11 +247,17 @@ export default function CoachesTab({ empty }: { empty?: boolean }) {
       )}
 
       {view === 'drilllib' && (
-        <div style={{ ...p, textAlign: 'center', padding: '48px 20px' }}>
-          <div style={{ fontSize: 32, marginBottom: 16 }}>📚</div>
-          <div style={{ fontSize: 18, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>Club drill library</div>
-          <div style={{ fontSize: 14, color: '#6f7f7b', maxWidth: 400, margin: '0 auto 20px' }}>The club drill library is managed in the coach Training tab. Coaches can access all shared drills from their session planner.</div>
-          <button onClick={() => showToast('Opening drill library.')} style={{ height: 44, padding: '0 20px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Go to drill library</button>
+        <div style={{ padding: p.padding, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+          <div style={{ background: '#fff', borderRadius: 14, padding: '18px 20px', border: '1px solid #e9eae8' }}>
+            <div style={{ fontSize: 16, fontWeight: 700, color: '#10211f', marginBottom: 6 }}>Club drill library</div>
+            <div style={{ fontSize: 13, color: '#6f7f7b', lineHeight: 1.5, marginBottom: 16 }}>Every drill shared across the club, by theme and age. Coaches pull from the same set in their session planner.</div>
+            <button onClick={() => onNav ? onNav('DF0-Library') : showToast('Opening the club drill library.')} style={{ height: 44, padding: '0 18px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Open drill library</button>
+          </div>
+          <div style={{ background: '#fff', borderRadius: 14, padding: '18px 20px', border: '1px solid #e9eae8' }}>
+            <div style={{ fontSize: 16, fontWeight: 700, color: '#10211f', marginBottom: 6 }}>Learn library</div>
+            <div style={{ fontSize: 13, color: '#6f7f7b', lineHeight: 1.5, marginBottom: 16 }}>Short coaching lessons built from the club's own clips, shared with every coach.</div>
+            <button onClick={() => onNav ? onNav('EDU4-ClubLibrary') : showToast('Opening the Learn library.')} style={{ height: 44, padding: '0 18px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Open Learn library</button>
+          </div>
         </div>
       )}
       {toast && <div style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', background: '#1f4a3e', color: '#fff', padding: '10px 20px', borderRadius: 999, fontSize: 13, fontWeight: 600, zIndex: 100 }}>{toast}</div>}

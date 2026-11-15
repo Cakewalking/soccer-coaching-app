@@ -138,9 +138,9 @@ export function RecordHub({ onBack: _onBack, noFrame, onNav }: { onBack?: () => 
       activeNav="record" activeSub="Record" subTabs={REC_SUBS}
       pageTitle="Record"
       pageSub="U12 Sam · camera kit 2 and 15 vests are ready"
-      pageRight={<BtnMore label="Devices" onClick={() => t('Opening device settings.')}/>}
+      pageRight={<BtnMore label="Devices" onClick={() => onNav ? onNav('SET4-Devices') : t('Opening device settings.')}/>}
       toast={toast}
-      onNavTab={(id) => t(id.startsWith('sub:') ? `${id.slice(4)} opens.` : `${id.charAt(0).toUpperCase() + id.slice(1)} tab opens.`)}
+      onNavTab={(id) => id === 'sub:Devices' ? (onNav ? onNav('SET4-Devices') : t('Devices opens.')) : t(id.startsWith('sub:') ? `${id.slice(4)} opens.` : `${id.charAt(0).toUpperCase() + id.slice(1)} tab opens.`)}
       noFrame={noFrame}
     >
       <div style={{ display: 'flex', gap: 16 }}>

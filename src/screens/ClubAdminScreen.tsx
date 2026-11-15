@@ -105,7 +105,7 @@ export default function ClubAdminScreen({ empty, role = 'chair', initials = 'RM'
         <div style={{ flex: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
           {tab === 'club'         && <ClubTab role={role === 'welfare' ? 'chair' : role} empty={empty} homeStory={homeStory} />}
           {tab === 'teams'        && <TeamsTab empty={empty} />}
-          {tab === 'coaches'      && <CoachesTab empty={empty} />}
+          {tab === 'coaches'      && <CoachesTab empty={empty} role={role === 'welfare' ? 'chair' : role} onNav={onNav} />}
           {tab === 'players'      && <PlayersTab empty={empty} onNav={onNav} />}
           {tab === 'safeguarding' && <SafeguardingTab empty={empty} />}
           {tab === 'reports'      && <ReportsTab empty={empty} />}
