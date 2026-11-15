@@ -503,7 +503,7 @@ function JoinTeamView({ onBack }: { onBack: () => void }) {
           <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)' }}>Wattle Creek FC · 11 a side</div>
         </div>
         <Row label="Coach" value="Reece Whitlam · the same coach as academy"/>
-        <Row label="Games" value="Starting Sat 7 Jun · 15 games"/>
+        <Row label="Games" value="Starting Sat 6 Jun · 15 games"/>
         <Row label="Kit" value="Included in the combined bill"/>
         <div style={{ padding: 14 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: MUT, marginBottom: 8, letterSpacing: '0.05em', textTransform: 'uppercase' as const }}>Combined bill</div>

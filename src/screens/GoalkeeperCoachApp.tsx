@@ -61,7 +61,7 @@ function HomeOverview({ onPlanSession, onKeeperDrills }: { onPlanSession: () => 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
         <div>
           <h1 style={{ margin: '0 0 2px', fontSize: 26, fontWeight: 700, letterSpacing: '-0.02em' }}>Hi Nick</h1>
-          <p style={{ margin: '0 0 14px', fontSize: 14, color: '#4a5a57' }}>Goalkeeper coach · 14 keepers across 9 teams · club session Tuesdays 6:00 pm</p>
+          <p style={{ margin: '0 0 14px', fontSize: 14, color: '#4a5a57' }}>Goalkeeper coach · 11 keepers across 9 teams · club session Tuesdays 6:00 pm</p>
           <div style={{ display: 'flex', gap: 8, marginBottom: 20 }}>
             <button onClick={onKeeperDrills} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Keeper drills</button>
             <button onClick={onPlanSession} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Plan Tuesday</button>
@@ -222,7 +222,7 @@ function KeepersTab({ empty }: { empty?: boolean }) {
   return (
     <div style={{ flexGrow: 1, minHeight: 0, overflowY: 'auto', padding: '20px 28px 28px' }}>
       <h1 style={{ margin: '0 0 4px', fontSize: 24, fontWeight: 700, letterSpacing: '-0.02em' }}>All keepers</h1>
-      <p style={{ margin: '0 0 20px', fontSize: 14, color: '#4a5a57' }}>14 keepers across 9 teams</p>
+      <p style={{ margin: '0 0 20px', fontSize: 14, color: '#4a5a57' }}>11 keepers across 9 teams</p>
       <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, overflow: 'hidden' }}>
         {KEEPERS.map((k, i) => (
           <div key={k.ini} style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '14px 18px', borderTop: i > 0 ? '1px solid #e9eae8' : 'none' }}>
@@ -262,9 +262,9 @@ function ClipsTab({ empty }: { empty?: boolean }) {
       <h1 style={{ margin: '0 0 4px', fontSize: 24, fontWeight: 700, letterSpacing: '-0.02em' }}>Keeper clips</h1>
       <p style={{ margin: '0 0 20px', fontSize: 14, color: '#4a5a57' }}>From the most recent games</p>
       {[
-        { ini: 'GO', name: 'Grace Owusu', event: 'Quick roll starts a goal', team: 'U12 Sam · v Ironbark United · Sat 7 Jun' },
-        { ini: 'JB', name: 'Jack Byrne',  event: 'Caught on his line',       team: 'U16 Ollie · through ball min 62 · Sat 7 Jun' },
-        { ini: 'HN', name: 'Holly Ng',    event: 'Claims two crosses',       team: 'U13 Girls Meg · both called early · Sat 7 Jun' },
+        { ini: 'GO', name: 'Grace Owusu', event: 'Quick roll starts a goal', team: 'U12 Sam · v Ironbark United · Sat 6 Jun' },
+        { ini: 'JB', name: 'Jack Byrne',  event: 'Caught on his line',       team: 'U16 Ollie · through ball min 62 · Sat 6 Jun' },
+        { ini: 'HN', name: 'Holly Ng',    event: 'Claims two crosses',       team: 'U13 Girls Meg · both called early · Sat 6 Jun' },
       ].map((c, i) => (
         <div key={i} style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '14px 16px', marginBottom: 10, display: 'flex', gap: 14, alignItems: 'center' }}>
           <span style={{ flex: 'none', width: 48, height: 48, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', fontSize: 13, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{c.ini}</span>

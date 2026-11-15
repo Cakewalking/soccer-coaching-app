@@ -161,7 +161,7 @@ export default function ReportsTab({ empty }: { empty?: boolean }) {
         <div style={p}>
           <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 300px', gap: 20 }}>
             <div>
-              <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f', marginBottom: 12 }}>League standing · Spring 2026</div>
+              <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f', marginBottom: 12 }}>League standing · Winter 2026</div>
               {[
                 { team: 'U12 Sam', coach: 'Sam K', record: '7W · 2D · 1L', pts: 23 },
                 { team: 'U12 Girls Ana', coach: 'Ana Silva', record: '6W · 2D · 1L', pts: 20 },
@@ -217,7 +217,7 @@ export default function ReportsTab({ empty }: { empty?: boolean }) {
         <div style={p}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 14 }}>
             <div>
-              <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>Season review · Spring 2026</div>
+              <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>Season review · Winter 2026</div>
               <div style={{ fontSize: 12, color: '#6f7f7b' }}>Generated from the season's data · 2 rounds left · share after the final</div>
             </div>
             <button onClick={() => showToast('Sharing season review.')} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Share season review</button>

@@ -60,7 +60,7 @@ export default function STMs5HomeMiniRoos({ onNav }: { onNav?: (s: string) => vo
               <span style={{ fontSize: 11, fontWeight: 700, color: MUT, letterSpacing: '0.07em' }}>LAST REVIEW</span>
               <button aria-label="Review" onClick={() => onNav?.('MS3-MiniRoosReview')} style={{ fontSize: 13, fontWeight: 700, color: G, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', height: 44, display: 'flex', alignItems: 'center' }}>Review</button>
             </div>
-            <div style={{ fontSize: 13, color: INK }}>Sat 7 June · Wattle Creek Reserve · 4 short games</div>
+            <div style={{ fontSize: 13, color: INK }}>Sat 6 June · Wattle Creek Reserve · 4 short games</div>
           </div>
 
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 20px' }}>

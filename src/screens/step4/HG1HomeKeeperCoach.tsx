@@ -9,9 +9,9 @@ const KEEPERS = [
   { ini: 'ST', name: 'Sophie Tan', sessions: 2, of: 4, ok: true },
 ]
 const CLIPS = [
-  { title: 'Ava — hesitant on crosses', team: 'U12 Sam', date: 'Sat 7 Jun' },
-  { title: 'Grace — good sweep positioning', team: 'U13 Girls Meg', date: 'Sat 7 Jun' },
-  { title: 'Jack — starting position too deep', team: 'U12 Sam', date: 'Sat 7 Jun' },
+  { title: 'Ava — hesitant on crosses', team: 'U12 Sam', date: 'Sat 6 Jun' },
+  { title: 'Grace — good sweep positioning', team: 'U13 Girls Meg', date: 'Sat 6 Jun' },
+  { title: 'Jack — starting position too deep', team: 'U12 Sam', date: 'Sat 6 Jun' },
 ]
 
 export default function HG1HomeKeeperCoach(_: { onBack?: () => void }) {

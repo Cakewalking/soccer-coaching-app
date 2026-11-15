@@ -274,7 +274,7 @@ export default function ClubTab({ role, empty, homeStory }: { role: 'chair' | 'd
 
         {view === 'calendar' && (
           <>
-            <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 10 }}>November 2026</div>
+            <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 10 }}>June 2026</div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 4, marginBottom: 16 }}>
               {['M','T','W','T','F','S','S'].map((d, i) => <div key={i} style={{ textAlign: 'center', fontSize: 11, fontWeight: 700, color: '#6f7f7b', padding: '4px 0' }}>{d}</div>)}
               {Array.from({ length: 30 }).map((_, i) => {

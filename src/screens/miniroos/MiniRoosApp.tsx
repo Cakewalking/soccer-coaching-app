@@ -161,7 +161,7 @@ function MiniRooFileOpen({ name, type, onBack }: { name: string; type: 'doc' | '
                 </tr></thead>
                 <tbody>
                   {[
-                    { date: 'Sat 7 June', can: 'Mia family', kit: 'Cal family', oranges: 'Harper family', wet: 'Bao family' },
+                    { date: 'Sat 6 June', can: 'Mia family', kit: 'Cal family', oranges: 'Harper family', wet: 'Bao family' },
                     { date: 'Sat 14 June', can: 'Lily family', kit: 'Noah family', oranges: 'Priya family', wet: 'Eli family' },
                     { date: 'Sat 21 June', can: 'Bao family', kit: 'Mia family', oranges: 'Cal family', wet: 'Noah family' },
                   ].map((row, i) => (
@@ -494,7 +494,7 @@ function RecordMiniRoosStart({ empty, onClips }: { empty?: boolean; onClips: () 
       <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, overflow: 'hidden' }}>
         <div style={{ padding: '10px 16px', borderBottom: `1px solid ${LN}`, fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT }}>What are you filming?</div>
         {[
-          { label: "Saturday's game", note: 'Sat 7 Jun vs Ironbark United' },
+          { label: "Saturday's game", note: 'Sat 6 Jun vs Ironbark United' },
           { label: 'A training game', note: 'Short game at the end of training' },
           { label: 'A skill challenge', note: 'Dribbling, passing or shooting' },
         ].map((opt, i) => (
@@ -590,7 +590,7 @@ function RecordMiniRoosClips({ empty, onBack }: { empty?: boolean; onBack: () =>
         </button>
         <div>
           <div style={{ fontSize: 20, fontWeight: 700, color: INK }}>{"Saturday's game · clips"}</div>
-          <div style={{ fontSize: 13, color: MUT }}>8 children · filmed Sat 7 Jun · 44 minutes</div>
+          <div style={{ fontSize: 13, color: MUT }}>8 children · filmed Sat 6 Jun · 44 minutes</div>
         </div>
         <div style={{ marginLeft: 'auto', display: 'flex', gap: 8 }}>
           <button onClick={() => showToast('Opening game picker for Tuesday.')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 700, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>Pick two for Tuesday</button>

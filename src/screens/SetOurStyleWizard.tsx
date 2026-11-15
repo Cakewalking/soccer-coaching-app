@@ -150,7 +150,7 @@ export default function SetOurStyleWizard({ onClose, initialStep = 'intro' }: { 
             <button onClick={next} style={{ height: 48, padding: '0 32px', borderRadius: '999px', border: 0, background: '#c3e6d4', color: '#1f4a3e', fontFamily: 'inherit', fontSize: 16, fontWeight: 800, cursor: 'pointer' }}>
               Set our style
             </button>
-            <button onClick={onClose} style={{ height: 48, padding: '0 24px', borderRadius: '999px', border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: '#ffffff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>
+            <button onClick={next} style={{ height: 48, padding: '0 24px', borderRadius: '999px', border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: '#ffffff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>
               Use a balanced default
             </button>
           </div>
