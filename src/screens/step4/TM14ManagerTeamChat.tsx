@@ -2,6 +2,10 @@ import { useState } from 'react'
 const G = '#2f6252', GD = '#1f4a3e', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 export default function TM14ManagerTeamChat(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string | null>(null)
+  const [activeNav, setActiveNav] = useState('Messages')
+  const [activeAction, setActiveAction] = useState<string | null>(null)
+  const [sent, setSent] = useState(false)
+  const [moved, setMoved] = useState(false)
   const t = (m: string) => { setToast(m); setTimeout(() => setToast(null), 3200) }
   const msgs = [
     { ini: 'LT', bg: '#cbbeb5', name: 'Linh', role: "Mia's mum", time: '7:48 pm', text: 'Mia found her other boot! And she got to 14 juggles.', media: true },
@@ -50,12 +54,12 @@ export default function TM14ManagerTeamChat(_: { onBack?: () => void }) {
                       <div style={{ fontSize: 15 }}>{msg.text}</div>
                     </div>
                   ) : (
-                    <div style={{ maxWidth: 258, background: '#fff', border: `1px solid ${LN}`, borderRadius: '14px 14px 14px 4px', padding: '8px 11px', fontSize: 15, lineHeight: 1.4 }}>{msg.text}</div>
+                    <div style={{ maxWidth: 258, background: moved && msg.flag ? '#f7f8f7' : '#fff', border: `1px solid ${LN}`, borderRadius: '14px 14px 14px 4px', padding: '8px 11px', fontSize: 15, lineHeight: 1.4, color: moved && msg.flag ? MUT : undefined, fontStyle: moved && msg.flag ? 'italic' : 'normal' }}>{moved && msg.flag ? 'Moved to a private thread with Dan.' : msg.text}</div>
                   )}
                 </div>
               </div>
-              {msg.flag && (
-                <button onClick={() => t('Opening moderation options for this message.')} style={{ alignSelf: 'flex-start', marginLeft: 34, marginTop: 6, minHeight: 44, padding: '0 12px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 6 }}>
+              {msg.flag && !moved && (
+                <button onClick={() => setMoved(true)} style={{ alignSelf: 'flex-start', marginLeft: 34, marginTop: 6, minHeight: 44, padding: '0 12px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 6 }}>
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={G} strokeWidth="2.2" strokeLinecap="round"><path d="M5 21V4h11l-2 4 2 4H5"/></svg>
                   Move this out of the group
                 </button>
@@ -67,22 +71,22 @@ export default function TM14ManagerTeamChat(_: { onBack?: () => void }) {
       <div style={{ background: '#fff', borderTop: `1px solid ${LN}` }}>
         <div style={{ display: 'flex', gap: 6, padding: '8px 12px 0' }}>
           {['Poll', 'Announce', 'Pinned'].map(action => (
-            <button key={action} onClick={() => t(`${action} opened.`)} style={{ flex: 1, height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4 }}>{action}</button>
+            <button key={action} onClick={() => setActiveAction(a => a === action ? null : action)} style={{ flex: 1, height: 44, borderRadius: 10, border: `1px solid ${activeAction === action ? G : LN}`, background: activeAction === action ? PALE : '#fff', color: activeAction === action ? G : undefined, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4 }}>{action}</button>
           ))}
         </div>
         <div style={{ display: 'flex', gap: 8, padding: '8px 12px 10px', alignItems: 'center' }}>
           <button onClick={() => t('Attachment options opened.')} style={{ width: 48, height: 48, borderRadius: 14, border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth="2.4" strokeLinecap="round"><path d="M12 5v14M5 12h14"/></svg>
           </button>
-          <div style={{ flexGrow: 1, minHeight: 48, border: `1px solid ${LN}`, borderRadius: 14, background: '#fff', padding: '0 14px', display: 'flex', alignItems: 'center', fontSize: 15, color: MUT }}>Write to the team chat</div>
-          <button onClick={() => t('Sent to U12 Sam team chat.')} style={{ width: 48, height: 48, borderRadius: 14, background: G, border: 0, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+          <div style={{ flexGrow: 1, minHeight: 48, border: `1px solid ${LN}`, borderRadius: 14, background: '#fff', padding: '0 14px', display: 'flex', alignItems: 'center', fontSize: 15, color: MUT }}>{sent ? 'Sent to the team chat ✓' : 'Write to the team chat'}</div>
+          <button onClick={() => setSent(true)} style={{ width: 48, height: 48, borderRadius: 14, background: sent ? '#40826d' : G, border: 0, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.4" strokeLinecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </button>
         </div>
       </div>
       <nav style={{ display: 'flex', borderTop: `1px solid ${LN}`, background: '#fff' }}>
-        {['Home', 'Game day', 'Messages', 'Roster'].map((label, i) => (
-          <button key={label} onClick={() => t(`${label} tab`)} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 2, minHeight: 56, fontSize: 11, fontWeight: 700, color: i === 2 ? G : MUT, background: 'none', border: 0, cursor: 'pointer' }}>{label}</button>
+        {['Home', 'Game day', 'Messages', 'Roster'].map(label => (
+          <button key={label} onClick={() => setActiveNav(label)} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 2, minHeight: 56, fontSize: 11, fontWeight: 700, color: label === activeNav ? G : MUT, background: 'none', border: 0, cursor: 'pointer' }}>{label}</button>
         ))}
       </nav>
       {toast && <div style={{ position: 'absolute', left: 16, right: 16, bottom: 72, background: GD, color: '#fff', padding: '12px 16px', borderRadius: 14, fontSize: 15, fontWeight: 600, zIndex: 60 }}>{toast}</div>}

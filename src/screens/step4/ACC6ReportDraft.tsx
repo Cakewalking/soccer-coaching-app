@@ -1,14 +1,13 @@
 import { useState } from 'react'
 
-const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
+const G = '#2f6252', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 export default function ACC6ReportDraft(_: { onBack?: () => void }) {
-  const [toast, setToast] = useState('')
-
-  const showToast = (msg: string) => {
-    setToast(msg)
-    setTimeout(() => setToast(''), 3000)
-  }
+  const [activeNav, setActiveNav] = useState('Players')
+  const [activeSub, setActiveSub] = useState('Term report')
+  const [done, setDone] = useState<string[]>([])
+  const mark = (k: string) => setDone(d => d.includes(k) ? d : [...d, k])
+  const is = (k: string) => done.includes(k)
 
   const skills: { name: string; filled: number; progress?: number; total: number }[] = [
     { name: 'Ball mastery', filled: 4, total: 5 },
@@ -40,26 +39,23 @@ export default function ACC6ReportDraft(_: { onBack?: () => void }) {
       <div style={{ background: G, height: 64, display: 'flex', alignItems: 'center', padding: '0 24px', flexShrink: 0 }}>
         <span style={{ color: '#fff', fontSize: 21, fontWeight: 700, marginRight: 32, letterSpacing: '-0.01em' }}>Clean Sheet</span>
         <div style={{ display: 'flex', gap: 4, flex: 1 }}>
-          {[{ label: 'Today', icon: '⌂' }, { label: 'Players', icon: '👥', active: true }, { label: 'Game day', icon: '⚽' }, { label: 'Library', icon: '📅' }].map(item => (
-            <button key={item.label} style={{ background: (item as any).active ? 'rgba(255,255,255,0.18)' : 'none', border: 'none', color: '#fff', fontSize: 14, fontWeight: (item as any).active ? 700 : 500, padding: '0 14px', height: 64, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6, borderRadius: 8 }}>
+          {[{ label: 'Today', icon: '⌂' }, { label: 'Players', icon: '👥' }, { label: 'Game day', icon: '⚽' }, { label: 'Library', icon: '📅' }].map(item => (
+            <button key={item.label} onClick={() => setActiveNav(item.label)} style={{ background: item.label === activeNav ? 'rgba(255,255,255,0.18)' : 'none', border: 'none', color: '#fff', fontSize: 14, fontWeight: item.label === activeNav ? 700 : 500, padding: '0 14px', height: 64, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6, borderRadius: 8 }}>
               <span style={{ fontSize: 16 }}>{item.icon}</span> {item.label}
             </button>
           ))}
         </div>
-        <button onClick={() => showToast('Opening academy selector.')} style={{ background: 'rgba(255,255,255,0.18)', border: 'none', color: '#fff', fontSize: 14, fontWeight: 500, padding: '0 14px', height: 44, borderRadius: 999, cursor: 'pointer', marginRight: 12 }}>Tall Timber Academy ▾</button>
+        <button onClick={() => mark('academy')} style={{ background: 'rgba(255,255,255,0.18)', border: 'none', color: '#fff', fontSize: 14, fontWeight: 500, padding: '0 14px', height: 44, borderRadius: 999, cursor: 'pointer', marginRight: 12 }}>Tall Timber Academy {is('academy') ? '▴' : '▾'}</button>
         <div style={{ width: 44, height: 44, borderRadius: 999, background: '#c39797', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 15, fontWeight: 700, color: INK }}>RW</div>
       </div>
 
       {/* Sub nav */}
       <div style={{ background: '#fff', height: 44, borderBottom: `1px solid #c5c8c4`, display: 'flex', alignItems: 'center', padding: '0 28px', flexShrink: 0 }}>
-        {['Player plan', 'Term report'].map(tab => {
-          const active = tab === 'Term report'
-          return (
-            <button key={tab} style={{ background: 'none', border: 'none', borderBottom: active ? `2px solid ${G}` : '2px solid transparent', color: active ? G : MUT, fontSize: 14, fontWeight: active ? 700 : 500, padding: '0 14px', height: 44, cursor: 'pointer', marginBottom: -1 }}>
+        {['Player plan', 'Term report'].map(tab => (
+            <button key={tab} onClick={() => setActiveSub(tab)} style={{ background: 'none', border: 'none', borderBottom: tab === activeSub ? `2px solid ${G}` : '2px solid transparent', color: tab === activeSub ? G : MUT, fontSize: 14, fontWeight: tab === activeSub ? 700 : 500, padding: '0 14px', height: 44, cursor: 'pointer', marginBottom: -1 }}>
               {tab}
             </button>
-          )
-        })}
+        ))}
         <div style={{ flex: 1 }} />
         <span style={{ height: 32, padding: '0 12px', borderRadius: 999, background: PALE, color: G, fontSize: 13, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 6 }}>Academy coach</span>
       </div>
@@ -71,8 +67,8 @@ export default function ACC6ReportDraft(_: { onBack?: () => void }) {
           <p style={{ margin: '4px 0 0', fontSize: 14, color: MUT }}>Drafted from your 5 session notes · check it, then send to Dani</p>
         </div>
         <div style={{ display: 'flex', gap: 8, paddingTop: 4 }}>
-          <button onClick={() => showToast('Opening Ana\'s. Too new for a report, so skipped.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, background: '#fff', border: `1px solid #c5c8c4`, color: INK, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Next draft</button>
-          <button onClick={() => showToast('Sent to Dani to approve. 3 more drafts to check.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, background: G, border: 'none', color: '#fff', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Looks right, send to Dani</button>
+          <button onClick={() => mark('next')} style={{ height: 44, padding: '0 16px', borderRadius: 10, background: is('next') ? PALE : '#fff', border: `1px solid ${is('next') ? G : '#c5c8c4'}`, color: is('next') ? G : INK, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>{is('next') ? 'Next draft ✓' : 'Next draft'}</button>
+          <button onClick={() => mark('send')} style={{ height: 44, padding: '0 16px', borderRadius: 10, background: is('send') ? '#40826d' : G, border: 'none', color: '#fff', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>{is('send') ? '✓ Sent to Dani' : 'Looks right, send to Dani'}</button>
         </div>
       </div>
 
@@ -93,9 +89,9 @@ export default function ACC6ReportDraft(_: { onBack?: () => void }) {
             </p>
           </div>
           <div style={{ display: 'flex', gap: 8, marginTop: 12 }}>
-            <button onClick={() => showToast('Shortened to three sentences.')} style={{ height: 44, padding: '0 14px', borderRadius: 8, background: '#fff', border: `1px solid #c5c8c4`, color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Make it shorter</button>
-            <button onClick={() => showToast('Tap any sentence to edit it.')} style={{ height: 44, padding: '0 14px', borderRadius: 8, background: '#fff', border: `1px solid #c5c8c4`, color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Change a word</button>
-            <button onClick={() => showToast('Pick from Kai\'s 4 clips this term.')} style={{ height: 44, padding: '0 14px', borderRadius: 8, background: '#fff', border: `1px solid #c5c8c4`, color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Add a clip</button>
+            <button onClick={() => mark('shorter')} style={{ height: 44, padding: '0 14px', borderRadius: 8, background: is('shorter') ? PALE : '#fff', border: `1px solid ${is('shorter') ? G : '#c5c8c4'}`, color: is('shorter') ? G : INK, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>{is('shorter') ? 'Shortened ✓' : 'Make it shorter'}</button>
+            <button onClick={() => mark('word')} style={{ height: 44, padding: '0 14px', borderRadius: 8, background: is('word') ? PALE : '#fff', border: `1px solid ${is('word') ? G : '#c5c8c4'}`, color: is('word') ? G : INK, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>{is('word') ? 'Editing on ✓' : 'Change a word'}</button>
+            <button onClick={() => mark('clip')} style={{ height: 44, padding: '0 14px', borderRadius: 8, background: is('clip') ? PALE : '#fff', border: `1px solid ${is('clip') ? G : '#c5c8c4'}`, color: is('clip') ? G : INK, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>{is('clip') ? 'Clip added ✓' : 'Add a clip'}</button>
           </div>
           <div style={{ marginTop: 'auto', paddingTop: 12, borderTop: `1px solid ${LN}`, fontSize: 12, color: MUT }}>
             Written from what you noted, in plain words. It never compares Kai with another child.
@@ -124,10 +120,6 @@ export default function ACC6ReportDraft(_: { onBack?: () => void }) {
           <div style={{ marginTop: 'auto', paddingTop: 10, fontSize: 12, color: MUT }}>The lighter dot is what moved this term.</div>
         </div>
       </div>
-
-      {toast && (
-        <div style={{ position: 'absolute', left: '50%', bottom: 28, transform: 'translateX(-50%)', background: GD, color: '#fff', padding: '12px 16px', borderRadius: 14, fontSize: 15, fontWeight: 600, zIndex: 60, whiteSpace: 'nowrap' as const }}>{toast}</div>
-      )}
     </div>
   )
 }
