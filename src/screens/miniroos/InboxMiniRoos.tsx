@@ -47,16 +47,42 @@ const DETAIL: Record<string, { title: string; from: string; time: string; body: 
   },
 }
 
+type DetailShape = (typeof DETAIL)[string]
+type SentMsg = { id: string; ini: string; bg: string; from: string; date: string; text: string; unread?: boolean; detail: DetailShape }
+
 export default function InboxMiniRoos({ empty, onChat }: { empty?: boolean; onChat?: () => void }) {
   const [selected, setSelected] = useState('omar')
   const [toast, setToast] = useState('')
+  const [composeOpen, setComposeOpen] = useState(false)
+  const [subject, setSubject] = useState('')
+  const [bodyText, setBodyText] = useState('')
+  const [sent, setSent] = useState<SentMsg[]>([])
 
   const showToast = (msg: string) => {
     setToast(msg)
     setTimeout(() => setToast(''), 3200)
   }
 
-  const detail = DETAIL[selected]
+  const allMessages = [...sent, ...MESSAGES]
+  const detail = sent.find(s => s.id === selected)?.detail ?? DETAIL[selected]
+  const selIni = allMessages.find(m => m.id === selected)?.ini
+
+  function sendToAll() {
+    const text = bodyText.trim()
+    if (!text) return
+    const id = `sent-${sent.length + 1}`
+    const title = subject.trim() || 'Message to all families'
+    const msg: SentMsg = {
+      id, ini: 'TA', bg: '#7a9e7e', from: 'You · to all 10 families', date: 'Now',
+      text: subject.trim() || text,
+      detail: { title, from: 'You → all U9 Tom families', time: 'Just now', body: text, reply: '', note: 'Sent to all 10 families. Replies come back to this inbox.', badge: 'Sent' },
+    }
+    setSent(prev => [msg, ...prev])
+    setSelected(id)
+    setComposeOpen(false)
+    setSubject(''); setBodyText('')
+    showToast('Sent to all 10 families.')
+  }
 
   if (empty) return <EmptyCard icon="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zM22 6l-10 7L2 6" title="No messages yet" desc="When a parent or the club writes to you, it lands here. You can message all your families at once." cta="Message all families" sidebarTitle="What arrives here" items={[{ title: 'Parents', desc: "Who's away, and questions" }, { title: 'The club', desc: 'Photo day, kit and ground changes' }, { title: 'Clean Sheet', desc: 'Only what needs you' }]} />
 
@@ -70,7 +96,7 @@ export default function InboxMiniRoos({ empty, onChat }: { empty?: boolean; onCh
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
           {onChat && <button onClick={onChat} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer', color: '#2f6252' }}>Family chat</button>}
-          <button onClick={() => showToast('New message to all 10 families.')} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: '1px solid #2f6252', background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>
+          <button onClick={() => setComposeOpen(true)} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: '1px solid #2f6252', background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>
             Message all families
           </button>
         </div>
@@ -82,7 +108,7 @@ export default function InboxMiniRoos({ empty, onChat }: { empty?: boolean; onCh
         {/* Message list */}
         <section style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, display: 'flex', flexDirection: 'column', gap: 0, overflow: 'hidden' }}>
           <div style={{ padding: '14px 16px 10px' }}><h2 style={{ margin: 0, fontSize: 17, fontWeight: 700 }}>This week</h2></div>
-          {MESSAGES.map(m => (
+          {allMessages.map(m => (
             <button key={m.id} onClick={() => setSelected(m.id)} style={{ display: 'flex', alignItems: 'flex-start', gap: 12, minHeight: 72, padding: '10px 16px', borderTop: '1px solid #e9eae8', textAlign: 'left', borderLeft: 0, borderRight: 0, borderBottom: 0, background: selected === m.id ? '#eef5f2' : '#fff', cursor: 'pointer', fontFamily: 'inherit', color: '#10211f', width: '100%' }}>
               <span style={{ flexShrink: 0, width: 36, height: 36, borderRadius: '999px', background: m.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }}>{m.ini}</span>
               <span style={{ flexGrow: 1, minWidth: 0 }}>
@@ -102,7 +128,7 @@ export default function InboxMiniRoos({ empty, onChat }: { empty?: boolean; onCh
           <section style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '16px', display: 'flex', flexDirection: 'column', gap: 12 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
               <span style={{ flexShrink: 0, width: 44, height: 44, borderRadius: '999px', background: '#e9eae8', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 700 }}>
-                {MESSAGES.find(m => m.id === selected)?.ini}
+                {selIni}
               </span>
               <span style={{ flexGrow: 1 }}>
                 <span style={{ display: 'block', fontSize: 19, fontWeight: 700, lineHeight: '25px' }}>{detail.title}</span>
@@ -128,6 +154,25 @@ export default function InboxMiniRoos({ empty, onChat }: { empty?: boolean; onCh
           </section>
         )}
       </main>
+
+      {composeOpen && (
+        <div onClick={() => setComposeOpen(false)} style={{ position: 'fixed', inset: 0, background: 'rgba(16,33,31,0.35)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 200 }}>
+          <div onClick={e => e.stopPropagation()} style={{ width: 540, maxWidth: '92%', maxHeight: '86%', overflowY: 'auto', background: '#fff', borderRadius: 16, boxShadow: '0 12px 40px rgba(16,33,31,0.3)', padding: 24 }}>
+            <div style={{ fontSize: 18, fontWeight: 800, color: '#10211f', marginBottom: 4 }}>Message all families</div>
+            <div style={{ fontSize: 13, color: '#4a5a57', marginBottom: 18, lineHeight: 1.5 }}>Goes to all 10 U9 Tom families. They reply to you here, not to your phone number.</div>
+
+            <input value={subject} onChange={e => setSubject(e.target.value)} placeholder="Subject (optional)"
+              style={{ width: '100%', height: 44, borderRadius: 10, border: '1.5px solid #e8edeb', padding: '0 12px', fontSize: 14, color: '#10211f', fontFamily: 'inherit', outline: 'none', boxSizing: 'border-box', marginBottom: 10 }} />
+            <textarea value={bodyText} onChange={e => setBodyText(e.target.value)} placeholder="Write your message to all families…"
+              style={{ width: '100%', minHeight: 170, borderRadius: 10, border: '1.5px solid #e8edeb', padding: '12px', fontSize: 14, lineHeight: 1.6, color: '#10211f', fontFamily: 'inherit', outline: 'none', boxSizing: 'border-box', resize: 'vertical' }} />
+
+            <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end', alignItems: 'center', marginTop: 18 }}>
+              <button onClick={() => setComposeOpen(false)} style={{ height: 40, padding: '0 18px', borderRadius: 999, border: '1.5px solid #e8edeb', background: '#fff', fontSize: 13, color: '#10211f', cursor: 'pointer', fontFamily: 'inherit' }}>Cancel</button>
+              <button onClick={sendToAll} disabled={!bodyText.trim()} style={{ height: 40, padding: '0 22px', borderRadius: 999, border: 'none', background: bodyText.trim() ? '#2f6252' : '#aebbb6', color: '#fff', fontSize: 13, fontWeight: 700, cursor: bodyText.trim() ? 'pointer' : 'default', fontFamily: 'inherit' }}>Send to 10 families</button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {toast && (
         <div role="status" style={{ position: 'fixed', left: '50%', bottom: 28, transform: 'translateX(-50%)', zIndex: 60, display: 'flex', alignItems: 'center', gap: 10, minHeight: 52, padding: '12px 16px', borderRadius: 14, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)' }}>
