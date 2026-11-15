@@ -12,19 +12,20 @@ const RESULTS = [
   { drill: 'Warm-up rondo', runs: 8, moved: 'Passing accuracy +2%', verdict: 'Partial', next: 'Adjust' },
 ]
 
-export default function SG5WhatWorked(_: { onBack?: () => void }) {
-  const [toast, setToast] = useState<string|null>(null)
-  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
+export default function SG5WhatWorked({ onBack }: { onBack?: () => void }) {
+  const [activeNav, setActiveNav] = useState('Training')
+  const [activeSub, setActiveSub] = useState('Suggested')
+  const [selectedRow, setSelectedRow] = useState<string | null>(null)
   return (
     <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       <div style={{ flex: 'none', background: '#fff', borderBottom: `1px solid ${LN}` }}>
         <div style={{ height: 64, boxSizing: 'border-box', padding: '0 28px', display: 'flex', alignItems: 'center', gap: 4, background: G }}>
           <div style={{ fontSize: 20, fontWeight: 700, color: '#fff', marginRight: 16, letterSpacing: '-0.02em' }}>Clean Sheet</div>
-          {NAV_ITEMS.map(n => <div key={n} style={{ height: 48, padding: '0 14px', borderRadius: 12, display: 'flex', alignItems: 'center', fontSize: 15, fontWeight: 600, color: n === 'Training' ? '#fff' : 'rgba(255,255,255,0.75)', background: n === 'Training' ? '#40826d' : 'transparent', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{n}</div>)}
-          <div style={{ marginLeft: 'auto' }}><button onClick={() => st('Opening team selector.')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: '1px solid #fff', background: '#fff', fontSize: 14, fontWeight: 600, color: INK, cursor: 'pointer' }}>U12 Sam · Wattle Creek ▾</button></div>
+          {NAV_ITEMS.map(n => <div key={n} onClick={() => setActiveNav(n)} style={{ height: 48, padding: '0 14px', borderRadius: 12, display: 'flex', alignItems: 'center', fontSize: 15, fontWeight: 600, color: n === activeNav ? '#fff' : 'rgba(255,255,255,0.75)', background: n === activeNav ? '#40826d' : 'transparent', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{n}</div>)}
+          <div style={{ marginLeft: 'auto' }}><button onClick={() => onBack?.()} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: '1px solid #fff', background: '#fff', fontSize: 14, fontWeight: 600, color: INK, cursor: 'pointer' }}>U12 Sam · Wattle Creek ▾</button></div>
         </div>
         <div style={{ height: 44, padding: '0 28px', display: 'flex', alignItems: 'flex-end', gap: 24 }}>
-          {SUBNAV.map(n => <div key={n} style={{ height: 44, display: 'flex', alignItems: 'center', fontSize: 14, fontWeight: 600, color: n === 'Suggested' ? INK : MUT, borderBottom: `3px solid ${n === 'Suggested' ? '#40826d' : 'transparent'}`, cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{n}</div>)}
+          {SUBNAV.map(n => <div key={n} onClick={() => setActiveSub(n)} style={{ height: 44, display: 'flex', alignItems: 'center', fontSize: 14, fontWeight: 600, color: n === activeSub ? INK : MUT, borderBottom: `3px solid ${n === activeSub ? '#40826d' : 'transparent'}`, cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{n}</div>)}
         </div>
       </div>
 
@@ -38,7 +39,7 @@ export default function SG5WhatWorked(_: { onBack?: () => void }) {
               ))}
             </div>
             {RESULTS.map(r => (
-              <div key={r.drill} style={{ display: 'grid', gridTemplateColumns: '1fr 60px 1fr 100px 80px', padding: '12px 18px', borderTop: `1px solid ${LN}`, alignItems: 'center' }}>
+              <div key={r.drill} onClick={() => setSelectedRow(r.drill)} style={{ display: 'grid', gridTemplateColumns: '1fr 60px 1fr 100px 80px', padding: '12px 18px', borderTop: `1px solid ${LN}`, alignItems: 'center', cursor: 'pointer', background: selectedRow === r.drill ? PALE : 'transparent' }}>
                 <div style={{ fontSize: 15, fontWeight: 600 }}>{r.drill}</div>
                 <div style={{ fontSize: 15, fontWeight: 700 }}>{r.runs}</div>
                 <div style={{ fontSize: 14, color: G, fontWeight: 600 }}>{r.moved}</div>
@@ -64,8 +65,6 @@ export default function SG5WhatWorked(_: { onBack?: () => void }) {
             ))}
           </div>
         </div>
-
-      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
       </main>
     </div>
   )

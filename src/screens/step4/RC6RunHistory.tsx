@@ -23,19 +23,20 @@ const BARS = [
   { label: 'Win rate (%)', vals: [46, 52, 68], max: 100, color: '#2f6252' },
 ]
 
-export default function RC6RunHistory(_: { onBack?: () => void }) {
-  const [toast, setToast] = useState<string|null>(null)
-  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
+export default function RC6RunHistory({ onBack }: { onBack?: () => void }) {
+  const [activeNav, setActiveNav] = useState('Training')
+  const [activeSub, setActiveSub] = useState('Record')
+  const [selectedRun, setSelectedRun] = useState<number | null>(null)
   return (
     <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       <div style={{ flex: 'none', background: '#fff', borderBottom: `1px solid ${LN}` }}>
         <div style={{ height: 64, boxSizing: 'border-box', padding: '0 28px', display: 'flex', alignItems: 'center', gap: 4, background: G }}>
           <div style={{ fontSize: 20, fontWeight: 700, color: '#fff', marginRight: 16, letterSpacing: '-0.02em' }}>Clean Sheet</div>
-          {NAV_ITEMS.map(n => <div key={n} style={{ height: 48, padding: '0 14px', borderRadius: 12, display: 'flex', alignItems: 'center', fontSize: 15, fontWeight: 600, color: n === 'Training' ? '#fff' : 'rgba(255,255,255,0.75)', background: n === 'Training' ? '#40826d' : 'transparent', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{n}</div>)}
-          <div style={{ marginLeft: 'auto' }}><button onClick={() => st('Opening team selector.')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: '1px solid #fff', background: '#fff', fontSize: 14, fontWeight: 600, color: INK, cursor: 'pointer' }}>U12 Sam · Wattle Creek ▾</button></div>
+          {NAV_ITEMS.map(n => <div key={n} onClick={() => setActiveNav(n)} style={{ height: 48, padding: '0 14px', borderRadius: 12, display: 'flex', alignItems: 'center', fontSize: 15, fontWeight: 600, color: n === activeNav ? '#fff' : 'rgba(255,255,255,0.75)', background: n === activeNav ? '#40826d' : 'transparent', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{n}</div>)}
+          <div style={{ marginLeft: 'auto' }}><button onClick={() => onBack?.()} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: '1px solid #fff', background: '#fff', fontSize: 14, fontWeight: 600, color: INK, cursor: 'pointer' }}>U12 Sam · Wattle Creek ▾</button></div>
         </div>
         <div style={{ height: 44, padding: '0 28px', display: 'flex', alignItems: 'flex-end', gap: 24 }}>
-          {SUBNAV.map(n => <div key={n} style={{ height: 44, display: 'flex', alignItems: 'center', fontSize: 14, fontWeight: 600, color: n === 'Record' ? INK : MUT, borderBottom: `3px solid ${n === 'Record' ? '#40826d' : 'transparent'}`, cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{n}</div>)}
+          {SUBNAV.map(n => <div key={n} onClick={() => setActiveSub(n)} style={{ height: 44, display: 'flex', alignItems: 'center', fontSize: 14, fontWeight: 600, color: n === activeSub ? INK : MUT, borderBottom: `3px solid ${n === activeSub ? '#40826d' : 'transparent'}`, cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{n}</div>)}
         </div>
       </div>
 
@@ -64,7 +65,7 @@ export default function RC6RunHistory(_: { onBack?: () => void }) {
               {['Date', 'Drill', 'Rounds', 'Average', 'Verdict'].map(h => <div key={h} style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT }}>{h}</div>)}
             </div>
             {HISTORY.map((r, i) => (
-              <div key={i} style={{ display: 'grid', gridTemplateColumns: '110px 1fr 60px 80px 100px', padding: '10px 18px', borderTop: `1px solid ${LN}`, alignItems: 'center' }}>
+              <div key={i} onClick={() => setSelectedRun(i)} style={{ display: 'grid', gridTemplateColumns: '110px 1fr 60px 80px 100px', padding: '10px 18px', borderTop: `1px solid ${LN}`, alignItems: 'center', cursor: 'pointer', background: selectedRun === i ? PALE : 'transparent' }}>
                 <div style={{ fontSize: 13, color: MUT }}>{r.date}</div>
                 <div style={{ fontSize: 15, fontWeight: 600 }}>{r.drill}</div>
                 <div style={{ fontSize: 15 }}>{r.rounds}</div>
@@ -92,8 +93,6 @@ export default function RC6RunHistory(_: { onBack?: () => void }) {
             <div style={{ fontSize: 14, lineHeight: '21px', color: MUT }}>After the first 2 runs, pressing wins went up 3 per game. Run 3 happened today — Saturday's data will show if it sticks.</div>
           </div>
         </div>
-
-      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
       </main>
     </div>
   )
