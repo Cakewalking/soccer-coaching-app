@@ -221,8 +221,8 @@ export default function FixturesScreen({ empty, teamType = 'juniors' }: { empty?
   const { active: inSandbox } = useSandbox()
   if (inSandbox) return <FixturesSandboxView />
   const [synced, setSynced] = useState(false)
-  const [toast, setToast] = useState<string | null>(null)
-  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
+  const [selectedResult, setSelectedResult] = useState<number | null>(null)
+  const [addOpen, setAddOpen] = useState(false)
   if (empty) return <FixturesEmpty />
   return (
     <>
@@ -236,7 +236,7 @@ export default function FixturesScreen({ empty, teamType = 'juniors' }: { empty?
         </div>
         <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
           <button onClick={() => setSynced(true)} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${synced ? '#2f6252' : '#c5c8c4'}`, background: synced ? '#e4f2eb' : '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: synced ? '#2f6252' : '#10211f' }}>{synced ? 'Synced to calendar' : 'Sync to my calendar'}</button>
-          <button onClick={() => showToast('Opening the add fixture form.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#ffffff' }}>+ Add a fixture</button>
+          <button onClick={() => setAddOpen(a => !a)} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#ffffff' }}>+ Add a fixture</button>
         </div>
 
         <div style={{ flex: '0 1 auto', minHeight: 0, overflow: 'auto', background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '0 16px' }}>
@@ -247,10 +247,17 @@ export default function FixturesScreen({ empty, teamType = 'juniors' }: { empty?
             <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#4a5a57' }}>Score</span>
             <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#4a5a57', textAlign: 'center' }}>Result</span>
           </div>
+          {addOpen && (
+            <div style={{ display: 'flex', gap: 8, padding: '10px 0', borderTop: '1px solid #f0f1ef' }}>
+              <input placeholder="Opponent" style={{ flex: 1, height: 40, borderRadius: 8, border: '1px solid #c5c8c4', padding: '0 12px', fontSize: 14, fontFamily: 'inherit', boxSizing: 'border-box' }} />
+              <input placeholder="Date" style={{ width: 120, height: 40, borderRadius: 8, border: '1px solid #c5c8c4', padding: '0 12px', fontSize: 14, fontFamily: 'inherit', boxSizing: 'border-box' }} />
+              <button onClick={() => setAddOpen(false)} style={{ height: 40, padding: '0 16px', borderRadius: 8, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Add</button>
+            </div>
+          )}
           {RESULTS.map((r, i) => {
             const c = resultDot(r.result)
             return (
-              <div key={i} style={{ display: 'grid', gridTemplateColumns: '110px minmax(0,1fr) 36px minmax(0,80px) 48px', gap: 12, alignItems: 'center', minHeight: 48, borderTop: '1px solid #f0f1ef', cursor: 'pointer' }}>
+              <div key={i} onClick={() => setSelectedResult(i)} style={{ display: 'grid', gridTemplateColumns: '110px minmax(0,1fr) 36px minmax(0,80px) 48px', gap: 12, alignItems: 'center', minHeight: 48, borderTop: '1px solid #f0f1ef', cursor: 'pointer', background: selectedResult === i ? '#eef5f2' : 'transparent' }}>
                 <span style={{ fontSize: 13, color: '#4a5a57' }}>{r.date}</span>
                 <span style={{ fontSize: 15, fontWeight: 600 }}>{r.opp}</span>
                 <span style={{ fontSize: 13, color: '#6f7f7b', textAlign: 'center' }}>{r.ha}</span>
@@ -310,7 +317,6 @@ export default function FixturesScreen({ empty, teamType = 'juniors' }: { empty?
         </div>
       </div>
     </main>
-    {toast && <div style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', background: '#1f4a3e', color: '#fff', padding: '10px 20px', borderRadius: 999, fontSize: 13, fontWeight: 600, zIndex: 100 }}>{toast}</div>}
   </>
   )
 }
