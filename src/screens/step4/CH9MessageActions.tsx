@@ -33,6 +33,11 @@ type Modal = 'delete' | 'reply' | null
 export default function CH9MessageActions(_: { onBack?: () => void }) {
   const [modal, setModal] = useState<Modal>(null)
   const [toast, setToast] = useState<string | null>(null)
+  const [activeChat, setActiveChat] = useState(1)
+  const [reaction, setReaction] = useState<string | null>(null)
+  const [pinned, setPinned] = useState(false)
+  const [deleted, setDeleted] = useState(false)
+  const [sent, setSent] = useState(false)
   const t = (m: string) => { setModal(null); setToast(m); setTimeout(() => setToast(null), 3200) }
   const emojis = ['👍', '❤️', '😂', '🙌', '😮', '🙏']
   return (
@@ -47,8 +52,8 @@ export default function CH9MessageActions(_: { onBack?: () => void }) {
             <button onClick={() => t('New chat setup opened.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 6 }}>+ New chat</button>
           </div>
           {chatList.map((c, i) => (
-            <button key={i} onClick={() => t(`${c.name} opened.`)} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 68, padding: '0 16px', borderTop: `1px solid ${LN}`, background: c.active ? PALE : '#fff', boxShadow: c.active ? `inset 3px 0 0 ${G}` : 'none', cursor: 'pointer', textAlign: 'left', fontFamily: 'inherit' }}>
-              <div style={{ flexShrink: 0, width: 40, height: 40, borderRadius: '50%', background: c.active ? '#c39797' : PALE, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: c.icon ? 16 : 13, fontWeight: 700 }}>
+            <button key={i} onClick={() => setActiveChat(i)} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 68, padding: '0 16px', borderTop: `1px solid ${LN}`, background: i === activeChat ? PALE : '#fff', boxShadow: i === activeChat ? `inset 3px 0 0 ${G}` : 'none', cursor: 'pointer', textAlign: 'left', fontFamily: 'inherit' }}>
+              <div style={{ flexShrink: 0, width: 40, height: 40, borderRadius: '50%', background: i === activeChat ? '#c39797' : PALE, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: c.icon ? 16 : 13, fontWeight: 700 }}>
                 {c.icon ? <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={G} strokeWidth="2" strokeLinecap="round"><path d="M4 10v4h3l7 4V6l-7 4zM18 9a4 4 0 010 6"/></svg> : c.ini}
               </div>
               <div style={{ flexGrow: 1, minWidth: 0 }}>
@@ -60,8 +65,8 @@ export default function CH9MessageActions(_: { onBack?: () => void }) {
         </div>
         <div style={{ background: '#fff', border: `1px solid #c5c8c4`, borderRadius: 16, display: 'flex', flexDirection: 'column', overflow: 'hidden', position: 'relative' }}>
           <div style={{ padding: '12px 18px', borderBottom: `1px solid ${LN}`, display: 'flex', alignItems: 'center', gap: 10 }}>
-            <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#c39797', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700 }}>U12</div>
-            <div style={{ flexGrow: 1, fontSize: 16, fontWeight: 700 }}>U12 Sam team chat</div>
+            <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#c39797', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700 }}>{chatList[activeChat].ini ?? 'U12'}</div>
+            <div style={{ flexGrow: 1, fontSize: 16, fontWeight: 700 }}>{chatList[activeChat].name}</div>
             <button onClick={() => t('Search this chat.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid #c5c8c4`, background: '#fff', fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Search</button>
             <button onClick={() => t('Media opened.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid #c5c8c4`, background: '#fff', fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Photos</button>
             <button onClick={() => t('Chat details opened.')} style={{ width: 44, height: 44, borderRadius: 10, border: `1px solid #c5c8c4`, background: '#fff', fontSize: 15, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -84,24 +89,25 @@ export default function CH9MessageActions(_: { onBack?: () => void }) {
             <div style={{ display: 'flex', gap: 8 }}>
               <div style={{ width: 28, height: 28, borderRadius: '50%', background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, flexShrink: 0 }}>DC</div>
               <div>
-                <div style={{ fontSize: 11, color: MUT, marginBottom: 2 }}>Dan · 8:02 pm</div>
-                <div style={{ maxWidth: 440, background: GD, border: `2px solid ${G}`, borderRadius: '14px 14px 14px 4px', padding: '8px 12px', fontSize: 15, lineHeight: 1.5, color: '#fff' }}>
-                  Why does Ruby only ever get one half? Some kids never come off.
+                <div style={{ fontSize: 11, color: MUT, marginBottom: 2 }}>Dan · 8:02 pm{pinned && <span style={{ marginLeft: 8, color: G, fontWeight: 700 }}>📌 Pinned</span>}</div>
+                <div style={{ maxWidth: 440, background: deleted ? '#f7f8f7' : GD, border: `2px solid ${deleted ? LN : G}`, borderRadius: '14px 14px 14px 4px', padding: '8px 12px', fontSize: 15, lineHeight: 1.5, color: deleted ? MUT : '#fff', fontStyle: deleted ? 'italic' : 'normal' }}>
+                  {deleted ? 'Message removed for everyone.' : 'Why does Ruby only ever get one half? Some kids never come off.'}
                 </div>
+                {reaction && <div style={{ marginTop: 4, fontSize: 13, color: MUT }}>You reacted {reaction}</div>}
                 <div style={{ marginTop: 8, display: 'flex', gap: 6, flexWrap: 'wrap' as const }}>
                   {emojis.map(em => (
-                    <button key={em} onClick={() => t(`Reacted ${em}`)} style={{ width: 44, height: 44, borderRadius: '50%', background: '#f7f8f7', border: 0, fontSize: 20, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{em}</button>
+                    <button key={em} onClick={() => setReaction(em)} style={{ width: 44, height: 44, borderRadius: '50%', background: reaction === em ? PALE : '#f7f8f7', border: reaction === em ? `2px solid ${G}` : 0, fontSize: 20, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{em}</button>
                   ))}
                 </div>
                 <div style={{ marginTop: 8, display: 'flex', gap: 6, flexWrap: 'wrap' as const }}>
                   {[
                     { label: 'Reply', action: () => t('Reply opened.') },
                     { label: 'Reply privately to Dan', action: () => setModal('reply') },
-                    { label: 'Pin', action: () => t("Dan's message pinned.") },
+                    { label: pinned ? 'Pinned ✓' : 'Pin', action: () => setPinned(p => !p) },
                     { label: 'Move out of group', action: () => t('Message moderation opened.') },
                     { label: 'Delete', action: () => setModal('delete') },
                   ].map(item => (
-                    <button key={item.label} onClick={item.action} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid #c5c8c4`, background: '#fff', fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', color: item.label === 'Delete' ? '#c03030' : INK }}>{item.label}</button>
+                    <button key={item.label} onClick={item.action} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${item.label === 'Pinned ✓' ? G : '#c5c8c4'}`, background: item.label === 'Pinned ✓' ? PALE : '#fff', fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', color: item.label === 'Delete' ? '#c03030' : item.label === 'Pinned ✓' ? G : INK }}>{item.label}</button>
                   ))}
                 </div>
               </div>
@@ -111,8 +117,8 @@ export default function CH9MessageActions(_: { onBack?: () => void }) {
             <button onClick={() => t('Attachment options opened.')} style={{ width: 44, height: 44, borderRadius: 10, border: `1px solid #c5c8c4`, background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth="2.4" strokeLinecap="round"><path d="M12 5v14M5 12h14"/></svg>
             </button>
-            <div style={{ flexGrow: 1, height: 44, border: `1px solid #c5c8c4`, borderRadius: 10, background: '#fff', padding: '0 14px', display: 'flex', alignItems: 'center', fontSize: 15, color: MUT }}>Write to the team chat</div>
-            <button onClick={() => t('Message sent.')} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: 0, background: G, color: '#fff', fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Send</button>
+            <div style={{ flexGrow: 1, height: 44, border: `1px solid #c5c8c4`, borderRadius: 10, background: '#fff', padding: '0 14px', display: 'flex', alignItems: 'center', fontSize: 15, color: MUT }}>{sent ? 'Sent ✓' : 'Write to the team chat'}</div>
+            <button onClick={() => setSent(true)} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: 0, background: sent ? '#40826d' : G, color: '#fff', fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{sent ? 'Sent' : 'Send'}</button>
           </div>
         </div>
       </main>
@@ -125,7 +131,7 @@ export default function CH9MessageActions(_: { onBack?: () => void }) {
             <div style={{ fontSize: 14, color: MUT }}>Dan and everyone else in this chat won't see it anymore. Dan gets a note that a message was removed.</div>
             <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
               <button onClick={() => setModal(null)} style={{ height: 48, padding: '0 18px', borderRadius: 10, border: `1px solid #c5c8c4`, background: '#fff', fontSize: 16, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Cancel</button>
-              <button onClick={() => t("Message deleted for everyone.")} style={{ height: 48, padding: '0 18px', borderRadius: 10, border: 0, background: '#c03030', color: '#fff', fontSize: 16, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Delete for everyone</button>
+              <button onClick={() => { setDeleted(true); setModal(null) }} style={{ height: 48, padding: '0 18px', borderRadius: 10, border: 0, background: '#c03030', color: '#fff', fontSize: 16, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Delete for everyone</button>
             </div>
           </div>
         </div>
