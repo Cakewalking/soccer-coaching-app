@@ -80,10 +80,10 @@ export const STO1: HomeCfg = {
     btn1: 'Open the games', btn1Target: 'HM3-TrainingMiniRoos', btn2: 'Swap one', btn2Target: 'SGm1-SuggestedMiniRoos',
   },
   moments: {
-    title: 'A moment for every child', link: 'All moments', faces: MINIROOS_FACES,
+    title: 'A moment for every child', link: 'All moments', linkDone: 'Every moment this term, by child, A to Z.', faces: MINIROOS_FACES,
     rows: [
-      { ini: 'AK', title: 'Arlo · first go in goal', sub: 'Saturday · 12 seconds of film', action: 'Send' },
-      { ini: 'PD', title: 'Poppy · took a player on', sub: 'Saturday · her goal for this term', action: 'Send' },
+      { ini: 'AK', title: 'Arlo · first go in goal', sub: 'Saturday · 12 seconds of film', action: 'Send', done: 'Sent to Arlo’s dad with your note. He can reply with a thank you.' },
+      { ini: 'PD', title: 'Poppy · took a player on', sub: 'Saturday · her goal for this term', action: 'Send', done: 'Sent to Poppy’s mum with your note.' },
     ],
     foot: '7 of 10 have had one this term. Ivy, Max and Sami are next.',
   },
@@ -99,10 +99,10 @@ export const STO2: HomeCfg = {
   ask: 'Ask about U9 Tom… What if only seven come tonight?', askTarget: 'ASKd2-HomeFocus',
   proof: PLACEHOLDER_PROOF, ready: { when: '', title: '', text: '', btn1: '' },
   moments: {
-    title: 'A moment for every child', link: 'All moments', faces: MINIROOS_FACES,
+    title: 'A moment for every child', link: 'All moments', linkDone: 'Every moment this term, by child, A to Z.', faces: MINIROOS_FACES,
     rows: [
-      { ini: 'IV', title: 'Ivy · none yet this term', sub: 'She is in goal on Saturday. Watch for one tonight', action: 'Watch for' },
-      { ini: 'MX', title: 'Max · none yet this term', sub: 'Loves Treasure island. Watch for one tonight', action: 'Watch for' },
+      { ini: 'IV', title: 'Ivy · none yet this term', sub: 'She is in goal on Saturday. Watch for one tonight', action: 'Watch for', done: 'Ivy is pinned for tonight. One tap during the session saves a moment for her.' },
+      { ini: 'MX', title: 'Max · none yet this term', sub: 'Loves Treasure island. Watch for one tonight', action: 'Watch for', done: 'Max is pinned for tonight.' },
     ],
     foot: '7 of 10 have had one. Three sent on Sunday: all three families replied.',
   },
@@ -121,10 +121,10 @@ export const STO3: HomeCfg = {
     btn1: 'Open the games', btn1Target: 'HM3-TrainingMiniRoos', btn2: 'Swap one', btn2Target: 'SGm1-SuggestedMiniRoos',
   },
   moments: {
-    title: 'A moment for every child', link: 'All moments', faces: MINIROOS_FACES,
+    title: 'A moment for every child', link: 'All moments', linkDone: 'Every moment this term, by child, A to Z.', faces: MINIROOS_FACES,
     rows: [
-      { ini: 'AK', title: 'Arlo · first go in goal', sub: 'Your note on Saturday', action: 'Send' },
-      { ini: 'PD', title: 'Poppy · took a player on', sub: 'Your note · Rob’s photo', action: 'Send' },
+      { ini: 'AK', title: 'Arlo · first go in goal', sub: 'Your note on Saturday', action: 'Send', done: 'Sent to Arlo’s dad with your note.' },
+      { ini: 'PD', title: 'Poppy · took a player on', sub: 'Your note · Rob’s photo', action: 'Send', done: 'Sent to Poppy’s mum with the photo and your note.' },
     ],
     foot: '7 of 10 have had one this term, from your notes and photos. Ivy, Max and Sami are next.',
   },
@@ -155,8 +155,8 @@ export const STO4: HomeCfg = {
   moments: {
     title: 'A clip for every player', link: 'All players', linkTarget: 'T4-SquadTab', faces: FACES10(['CD', 'DC', 'JB', 'LH', 'NO', 'RP', 'TV', 'AM', 'BW', '+11']),
     rows: [
-      { ini: 'LH', title: 'Liam Hart · made 4 chances', sub: 'Saturday · 3 clips, 34 seconds', action: 'Send' },
-      { ini: 'CD', title: 'Cal Dunn · won it back 9 times', sub: 'Saturday · 4 clips, 41 seconds', action: 'Send' },
+      { ini: 'LH', title: 'Liam Hart · made 4 chances', sub: 'Saturday · 3 clips, 34 seconds', action: 'Send', done: 'Sent to Liam with your note. Only he sees it.' },
+      { ini: 'CD', title: 'Cal Dunn · won it back 9 times', sub: 'Saturday · 4 clips, 41 seconds', action: 'Send', done: 'Sent to Cal with your note.' },
     ],
     foot: '17 of 21 have had a clip this month. Nico, Theo and Ben have not: worth a word on Thursday.',
   },
@@ -184,8 +184,8 @@ export const STO5: HomeCfg = {
   moments: {
     title: 'A clip for every player', link: 'All players', linkTarget: 'T4-SquadTab', faces: FACES10(['EB', 'MT', 'JP', 'NO', 'ZH', 'FW', 'LN', 'SD', 'RC', '+7']),
     rows: [
-      { ini: 'MT', title: 'Mia Tran · won it back 4 times', sub: 'Saturday · her goal this term', action: 'Send' },
-      { ini: 'NO', title: 'Noah Okafor · first assist', sub: 'Saturday · 9 seconds of film', action: 'Send' },
+      { ini: 'MT', title: 'Mia Tran · won it back 4 times', sub: 'Saturday · her goal this term', action: 'Send', done: 'Sent to Mia and her mum with your note.' },
+      { ini: 'NO', title: 'Noah Okafor · first assist', sub: 'Saturday · 9 seconds of film', action: 'Send', done: 'Sent to Noah and his family with your note.' },
     ],
     foot: '12 of 16 have had a clip this month. Finn, Lily, Sam and Ruby are next.',
   },
@@ -213,8 +213,8 @@ export const STO6: HomeCfg = {
   moments: {
     title: 'A clip for every player', link: 'All players', linkTarget: 'T4-SquadTab', faces: FACES10(['AK', 'BT', 'CR', 'DL', 'HS', 'LM', 'TW', 'JO', 'MV', '+7']),
     rows: [
-      { ini: 'HS', title: 'Hugo · made 3 chances', sub: 'Saturday · 3 clips, 28 seconds', action: 'Send' },
-      { ini: 'CR', title: 'Cal · 6% faster, a real change', sub: 'Vests · against his own last month', action: 'Send' },
+      { ini: 'HS', title: 'Hugo · made 3 chances', sub: 'Saturday · 3 clips, 28 seconds', action: 'Send', done: 'Sent to Hugo with your note. Only he sees it.' },
+      { ini: 'CR', title: 'Cal · 6% faster, a real change', sub: 'Vests · against his own last month', action: 'Send', done: 'Sent to Cal with your note.' },
     ],
     foot: '12 of 16 have had a clip this month. Players 15 and over see their own.',
   },
@@ -231,19 +231,19 @@ export const STO7: HomeCfg = {
     bars: [{ n: '12', when: 'Round 3' }, { n: '14', when: 'Round 6' }, { n: '16', when: 'Saturday', amber: true }],
     unit: 'players over half a game',
     reel: { duration: '1:00', chips: ['Press', 'Press', 'Win', 'Goal', '+1'], caption: 'Five clips from Saturday. Sam has put them in Thursday’s team talk.' }, reelTarget: R1,
-    mainBtn: 'Play 60 seconds', mainTarget: R1, outlineBtn: 'Reply to Sam',
+    mainBtn: 'Play 60 seconds', mainTarget: R1, outlineBtn: 'Reply to Sam', outlineBtnDone: 'Reply sent to Sam.',
   },
   ready: {
     when: 'THU 4 JUNE · 5:45 pm · WATTLE CREEK RESERVE', title: 'Thursday: you take the rondo',
     text: 'Sam leads the session. Your 10 minutes is the warm-up rondo, 5 v 2, Kai passing only.',
     chips: ['90 minutes', 'Your part: 6:00', 'Sam leads'], pale: 'Saturday: you run the warm-up and the subs again.',
-    btn1: 'Open the plan', btn1Target: 'T3-TrainingTab', btn2: 'Saturday warm-up',
+    btn1: 'Open the plan', btn1Target: 'T3-TrainingTab', btn2: 'Saturday warm-up', btn2Done: 'Your warm-up for Saturday, 12 minutes.',
   },
   moments: {
     title: 'A clip for every player', link: 'All players', linkTarget: 'T4-SquadTab', faces: FACES10(['EB', 'MT', 'JP', 'NO', 'ZH', 'FW', 'LN', 'SD', 'RC', '+7']),
     rows: [
-      { ini: 'MT', title: 'Mia Tran · won it back 4 times', sub: 'Saturday · Sam sends, you can add a note', action: 'Add note' },
-      { ini: 'FW', title: 'Finn Walsh · no clip this month', sub: 'On the bench first on Saturday. Watch for one', action: 'Watch for' },
+      { ini: 'MT', title: 'Mia Tran · won it back 4 times', sub: 'Saturday · Sam sends, you can add a note', action: 'Add note', done: 'Your note is added. Sam sends it.' },
+      { ini: 'FW', title: 'Finn Walsh · no clip this month', sub: 'On the bench first on Saturday. Watch for one', action: 'Watch for', done: 'Finn is pinned for Saturday.' },
     ],
     foot: '12 of 16 have had a clip this month. You and Sam see the same list.',
   },
@@ -274,12 +274,12 @@ export const STO8: HomeCfg = {
     when: 'TONIGHT · 5:45 pm · U12 SAM', title: 'Tonight’s block is ready',
     text: 'Fifteen minutes inside Sam’s session: short sprints with a ball, capped for Noah and Zoe.',
     chips: ['15 minutes', '16 players', '2 capped'], pale: 'Built from last week’s sprint counts and Monday’s check-ins.',
-    btn1: 'Open my part', btn1Target: 'F3-FitnessTraining', btn2: 'Tell Sam',
+    btn1: 'Open my part', btn1Target: 'F3-FitnessTraining', btn2: 'Tell Sam', btn2Done: 'Sam has your part of tonight’s plan.',
   },
   moments: {
     title: 'A real change for every player', link: 'All players', linkTarget: 'T4-SquadTab', faces: FACES10(['ZH', 'JP', 'RC', 'IM', 'MT', 'LM', 'CR', 'TW', 'DL', '+54']),
     rows: [
-      { ini: 'CR', title: 'Cal · U16 · 6% faster than last month', sub: 'Bigger than the noise in the vests', action: 'Send' },
+      { ini: 'CR', title: 'Cal · U16 · 6% faster than last month', sub: 'Bigger than the noise in the vests', action: 'Send', done: 'Sent to Cal and to Ollie.' },
       { ini: 'ZH', title: 'Zoe Hartley · U12 · grew 8 cm this year', sub: 'Sprints capped. Her coach and parent know', action: 'Open', target: 'GT1-Growth' },
     ],
     foot: '9 real changes this month across 63 players. Small moves are shown as “about the same”.',
@@ -307,13 +307,13 @@ export const STO9: HomeCfg = {
     when: 'TUE 9 JUNE · 6:00 pm · PITCH 2', title: 'Tuesday is ready',
     text: 'Quick restarts: catch, look, roll. Three keepers held the ball over six seconds on Saturday.',
     chips: ['40 minutes', '3 drills', '11 keepers'], pale: 'Built from every keeper’s clips this fortnight.',
-    btn1: 'Open the session', btn1Target: 'HG2-KeeperSession', btn2: 'Send the plan',
+    btn1: 'Open the session', btn1Target: 'HG2-KeeperSession', btn2: 'Send the plan', btn2Done: 'Session plan sent to all 11 keepers and their coaches.',
   },
   moments: {
     title: 'A clip for every keeper', link: 'All keepers', linkTarget: 'FK1-Goalkeepers', faces: FACES10(['GO', 'AL', 'TR', 'BT', 'KR', 'IM', 'OB', 'SD', 'FW', '+2']),
     rows: [
-      { ini: 'GO', title: 'Grace Owusu · quick roll started a goal', sub: 'Saturday · 11 seconds of film', action: 'Send' },
-      { ini: 'AL', title: 'Ava Lindqvist · first clean catch from a corner', sub: 'Saturday · 7 seconds of film', action: 'Send' },
+      { ini: 'GO', title: 'Grace Owusu · quick roll started a goal', sub: 'Saturday · 11 seconds of film', action: 'Send', done: 'Sent to Grace and to Sam.' },
+      { ini: 'AL', title: 'Ava Lindqvist · first clean catch from a corner', sub: 'Saturday · 7 seconds of film', action: 'Send', done: 'Sent to Ava and to her coach.' },
     ],
     foot: '9 of 11 have had a clip this month. Oscar and Sam D are next.',
   },
@@ -339,13 +339,13 @@ export const STO10: HomeCfg = {
     when: 'TUE 9 JUNE · 7:00 pm · CLUBROOMS', title: 'The coach meeting is ready',
     text: 'Agenda drafted from this week: pressing as a club, recording every game, cover for U9 Mark.',
     chips: ['45 minutes', '3 items', '11 clips'], pale: 'Three coaches are due a learning step. It is on the agenda.',
-    btn1: 'Open the agenda', btn1Target: 'DM1-CoachMeeting', btn2: 'Send to coaches',
+    btn1: 'Open the agenda', btn1Target: 'DM1-CoachMeeting', btn2: 'Send to coaches', btn2Done: 'Agenda sent to all 31 coaches.',
   },
   moments: {
     title: 'A highlight from every team', link: 'All teams', linkTarget: 'D2-Teams', faces: CLUB_TEAM_FACES(['U9', 'U9', 'U11', 'U12', 'U13', 'U13', 'U14', 'U15', 'U16', '+5']),
     rows: [
-      { ini: 'U12', title: 'U12 Sam · 13 wins of the ball in their half', sub: 'Best in the club this round', action: 'Share' },
-      { ini: 'U11', title: 'U11 Luke · every child has been captain', sub: 'First team to get there this season', action: 'Share' },
+      { ini: 'U12', title: 'U12 Sam · 13 wins of the ball in their half', sub: 'Best in the club this round', action: 'Share', done: 'Shared with Sam and on the club page for coaches.' },
+      { ini: 'U11', title: 'U11 Luke · every child has been captain', sub: 'First team to get there this season', action: 'Share', done: 'Shared with Luke and on the club page for coaches.' },
     ],
     foot: '11 of 14 teams recorded a game this fortnight. U9 Mark, U13 Chris and U15 Girls Bec did not.',
   },
@@ -376,7 +376,7 @@ export const STO11: HomeCfg = {
     when: 'WED 10 JUNE · 7:30 pm · CLUBROOMS', title: 'The board report is ready',
     text: 'One page, drafted from this month’s numbers. Rachel has checked the football; you add the money.',
     chips: ['1 page', '6 numbers', '2 decisions'], pale: 'The council grant report uses the same numbers. It is drafted too.',
-    btn1: 'Open the report', btn1Target: 'D6-BoardReport', btn2: 'Send to committee',
+    btn1: 'Open the report', btn1Target: 'D6-BoardReport', btn2: 'Send to committee', btn2Done: 'Report sent to the committee.',
   },
   moments: {
     title: 'What members will ask', link: 'All reports', linkTarget: 'D6-BoardReport', faces: [],
@@ -407,19 +407,20 @@ export const STO12: HomeCfg = {
       { label: 'Canteen', value: '5 of 6 shifts' }, { label: 'Kit', value: '2 bibs sets short' },
     ],
     statusCaption: 'Each line opens the list behind it.',
-    mainBtn: 'Saturday run sheet', outlineBtn: 'Remind the five',
+    statusDone: ['Game leaders: 13 of 14. Opening the one still open.', 'Pitches: 14 of 14 booked. Opening the grounds list.', 'Canteen: 5 of 6 shifts. Opening the shift that needs one.', 'Kit: 2 bib sets short. Opening the kit list.'],
+    mainBtn: 'Saturday run sheet', mainBtnDone: 'Run sheet opens: 14 games, by ground and time.', outlineBtn: 'Remind the five', outlineBtnDone: 'Reminder sent to 5 families.',
   },
   ready: {
     when: 'SAT 6 JUNE · FIRST GAME 8:30 am', title: 'The run sheet is ready',
     text: 'Fourteen games by ground and time, with who opens up, who referees and who locks up.',
     chips: ['3 grounds', '14 games', '26 volunteers'], pale: 'Built from fixtures, the roster and what families answered.',
-    btn1: 'Open the run sheet', btn2: 'Send to managers',
+    btn1: 'Open the run sheet', btn1Done: 'Run sheet opens.', btn2: 'Send to managers', btn2Done: 'Run sheet sent to 14 team managers.',
   },
   moments: {
-    title: 'Gaps to fill', link: 'Everything', faces: [],
+    title: 'Gaps to fill', link: 'Everything', linkDone: 'Everything for Saturday.', faces: [],
     rows: [
-      { ini: 'U9', title: 'U9 Mark · needs a game leader', sub: 'Four parents asked · none yet', action: 'Ask again' },
-      { ini: 'C', title: 'Canteen 10 to 11 · one more needed', sub: 'Posted on the volunteer board', action: 'Ask' },
+      { ini: 'U9', title: 'U9 Mark · needs a game leader', sub: 'Four parents asked · none yet', action: 'Ask again', done: 'Asked again. First to say yes gets it.' },
+      { ini: 'C', title: 'Canteen 10 to 11 · one more needed', sub: 'Posted on the volunteer board', action: 'Ask', done: 'Asked the 12 families at the ground at that time.' },
     ],
     foot: 'Two gaps left for Saturday. On Monday there were nine.',
   },
@@ -444,13 +445,13 @@ export const STO13: HomeCfg = {
       { label: 'Coaches cleared', value: '31 of 31' }, { label: 'Course done', value: '28 of 31' },
     ],
     statusCaption: 'The committee sees these counts. Never names or details.',
-    mainBtn: 'Read the new concern', mainTarget: 'DS1-Concerns', outlineBtn: 'Log one yourself',
+    mainBtn: 'Read the new concern', mainTarget: 'DS1-Concerns', outlineBtn: 'Log one yourself', outlineBtnDone: 'A blank concern, private to you.',
   },
   ready: {
     when: 'THU 4 JUNE · 4:00 pm · PHONE', title: 'Thursday’s check-in is ready',
     text: 'Your call with a parent from U13 Girls Meg: what was agreed last time and what to ask.',
     chips: ['15 minutes', 'Private notes', '2 agreed steps'], pale: 'Notes stay with you. Nothing is shared without your say.',
-    btn1: 'Open my notes', btn1Target: 'DS1-Concerns', btn2: 'Move it',
+    btn1: 'Open my notes', btn1Target: 'DS1-Concerns', btn2: 'Move it', btn2Done: 'Pick another time. The parent is asked, not told.',
   },
   moments: {
     title: 'People to check on', link: 'All concerns', linkTarget: 'DS1-Concerns', faces: [],
@@ -488,8 +489,8 @@ export const STO14: HomeCfg = {
   moments: {
     title: 'A step for every player', link: 'All players', linkTarget: 'AC4-AcademyPlayers', faces: FACES10(['KO', 'AM', 'LS', 'MC', 'JT', 'RB', 'SN', 'EV', 'DP', '+71']),
     rows: [
-      { ini: 'KO', title: 'Kai Okonkwo · weak-foot pass is now Strong', sub: 'Advanced · 15 seconds, before and after', action: 'Send' },
-      { ini: 'AM', title: 'Ana Moreno · first touch is now Getting There', sub: 'Development · 12 seconds', action: 'Send' },
+      { ini: 'KO', title: 'Kai Okonkwo · weak-foot pass is now Strong', sub: 'Advanced · 15 seconds, before and after', action: 'Send', done: 'Sent to Kai’s mum with Reece’s note.' },
+      { ini: 'AM', title: 'Ana Moreno · first touch is now Getting There', sub: 'Development · 12 seconds', action: 'Send', done: 'Sent to Ana’s family with Reece’s note.' },
     ],
     foot: '71 of 80 have moved a step. Nine have not: Reece has six one-on-ones booked.',
   },
@@ -521,8 +522,8 @@ export const STO15: HomeCfg = {
   moments: {
     title: 'A step for every player', link: 'All players', linkTarget: 'ACC4-PlayerPlan', faces: FACES10(['KO', 'MC', 'LS', 'JT', 'RB', 'SN', 'EV', 'DP', 'AW', '+11']),
     rows: [
-      { ini: 'KO', title: 'Kai Okonkwo · half-turn is now Strong', sub: 'Week 7 · 15 seconds, before and after', action: 'Send' },
-      { ini: 'SN', title: 'Sam Ng · still at Starting Out', sub: 'Missed two weeks. A one-on-one would help', action: 'Offer' },
+      { ini: 'KO', title: 'Kai Okonkwo · half-turn is now Strong', sub: 'Week 7 · 15 seconds, before and after', action: 'Send', done: 'Sent to Dani to approve, then to Kai’s mum.' },
+      { ini: 'SN', title: 'Sam Ng · still at Starting Out', sub: 'Missed two weeks. A one-on-one would help', action: 'Offer', done: 'One-on-one offered to Sam’s family.' },
     ],
     foot: '14 of 20 have moved a step. Dani sees the same list.',
   },

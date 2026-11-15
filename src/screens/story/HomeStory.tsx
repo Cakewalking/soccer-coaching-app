@@ -13,7 +13,7 @@ const GREY = '#4a5a57', FACEBG = '#eef5f2'
 type Bar = { n: string; when: string; amber?: boolean }
 type StatusLine = { label: string; value: string }
 type Face = { ini: string; has: boolean }
-type MomentRow = { ini: string; title: string; sub: string; action: string; target?: string }
+type MomentRow = { ini: string; title: string; sub: string; action: string; target?: string; done?: string }
 
 export type FrameNavItem = { label: string; target?: string; active?: boolean }
 export type HomeCfg = {
@@ -38,8 +38,11 @@ export type HomeCfg = {
     statusCaption?: string
     mainBtn: string
     mainTarget?: string
+    mainBtnDone?: string
     outlineBtn?: string
     outlineTarget?: string
+    outlineBtnDone?: string
+    statusDone?: string[]   // per status line: a confirmation line (opens the list behind it)
   }
   ready: {
     when: string
@@ -49,13 +52,16 @@ export type HomeCfg = {
     pale?: string
     btn1: string
     btn1Target?: string
+    btn1Done?: string
     btn2?: string
     btn2Target?: string
+    btn2Done?: string
   }
   moments: {
     title: string
     link: string
     linkTarget?: string
+    linkDone?: string
     faces: Face[]
     rows: MomentRow[]
     foot: string
@@ -97,8 +103,8 @@ function ProofInner({ p, nav, tool }: { p: HomeCfg['proof']; nav: (s: string) =>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginTop: 4, gap: 16 }}>
           {p.bars ? <Bars bars={p.bars} unit={p.unit} /> : <span />}
           <span style={{ display: 'flex', gap: 8, alignItems: 'flex-end' }}>
-            <button onClick={() => p.mainTarget ? nav(p.mainTarget) : tool(p.mainBtn)} style={mainBtn}>{p.mainBtn}</button>
-            {p.outlineBtn && <button onClick={() => p.outlineTarget ? nav(p.outlineTarget) : tool(p.outlineBtn!)} style={outBtn}>{p.outlineBtn}</button>}
+            <button onClick={() => p.mainTarget ? nav(p.mainTarget) : tool(p.mainBtnDone ?? p.mainBtn)} style={mainBtn}>{p.mainBtn}</button>
+            {p.outlineBtn && <button onClick={() => p.outlineTarget ? nav(p.outlineTarget) : tool(p.outlineBtnDone ?? p.outlineBtn!)} style={outBtn}>{p.outlineBtn}</button>}
           </span>
         </div>
       </div>
@@ -116,8 +122,8 @@ function ProofInner({ p, nav, tool }: { p: HomeCfg['proof']; nav: (s: string) =>
           </button>
         ) : p.status ? (
           <>
-            {p.status.map(s => (
-              <button key={s.label} onClick={() => tool(s.label)} style={{ minHeight: 44, padding: '0 12px', borderRadius: 10, background: 'rgba(255,255,255,0.10)', border: 'none', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: 14, cursor: 'pointer', fontFamily: 'inherit' }}>
+            {p.status.map((s, i) => (
+              <button key={s.label} onClick={() => tool(p.statusDone?.[i] ?? `${s.label}: ${s.value}. Opening the list behind it.`)} style={{ minHeight: 44, padding: '0 12px', borderRadius: 10, background: 'rgba(255,255,255,0.10)', border: 'none', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: 14, cursor: 'pointer', fontFamily: 'inherit' }}>
                 <span style={{ color: PALE }}>{s.label}</span><strong>{s.value}</strong>
               </button>
             ))}
@@ -142,8 +148,8 @@ function ReadyCard({ r, nav, tool }: { r: HomeCfg['ready']; nav: (s: string) => 
       {r.chips && <span style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>{r.chips.map(c => <span key={c} style={{ height: 28, padding: '0 10px', borderRadius: 999, background: 'rgba(255,255,255,0.18)', display: 'inline-flex', alignItems: 'center', fontSize: 13, fontWeight: 700 }}>{c}</span>)}</span>}
       {r.pale && <span style={{ fontSize: 13, lineHeight: '18px', color: PALEG, marginTop: 'auto' }}>{r.pale}</span>}
       <span style={{ display: 'flex', gap: 8, marginTop: r.pale ? 0 : 'auto' }}>
-        <button onClick={() => r.btn1Target ? nav(r.btn1Target) : tool(r.btn1)} style={{ flex: 1, height: 46, borderRadius: 12, background: '#fff', color: INK, border: 'none', fontSize: 15, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>{r.btn1}</button>
-        {r.btn2 && <button onClick={() => r.btn2Target ? nav(r.btn2Target) : tool(r.btn2!)} style={{ height: 46, padding: '0 16px', borderRadius: 12, background: 'transparent', color: '#fff', border: '1px solid rgba(255,255,255,0.6)', fontSize: 15, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>{r.btn2}</button>}
+        <button onClick={() => r.btn1Target ? nav(r.btn1Target) : tool(r.btn1Done ?? r.btn1)} style={{ flex: 1, height: 46, borderRadius: 12, background: '#fff', color: INK, border: 'none', fontSize: 15, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>{r.btn1}</button>
+        {r.btn2 && <button onClick={() => r.btn2Target ? nav(r.btn2Target) : tool(r.btn2Done ?? r.btn2!)} style={{ height: 46, padding: '0 16px', borderRadius: 12, background: 'transparent', color: '#fff', border: '1px solid rgba(255,255,255,0.6)', fontSize: 15, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>{r.btn2}</button>}
       </span>
     </div>
   )
@@ -154,7 +160,7 @@ function MomentsCard({ m, nav, tool }: { m: HomeCfg['moments']; nav: (s: string)
     <CardShell style={{ gap: 4 }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <strong style={{ fontSize: 17, lineHeight: '23px' }}>{m.title}</strong>
-        <button onClick={() => m.linkTarget ? nav(m.linkTarget) : tool(m.link)} style={{ minHeight: 44, display: 'flex', alignItems: 'center', fontSize: 14, fontWeight: 700, color: GREEN, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit' }}>{m.link}</button>
+        <button onClick={() => m.linkTarget ? nav(m.linkTarget) : tool(m.linkDone ?? m.link)} style={{ minHeight: 44, display: 'flex', alignItems: 'center', fontSize: 14, fontWeight: 700, color: GREEN, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit' }}>{m.link}</button>
       </div>
       <div style={{ display: 'flex', gap: 8, padding: '4px 4px 6px', flexWrap: 'wrap' }}>{m.faces.map((f, i) => <Face key={i} {...f} />)}</div>
       {m.rows.map((row, i) => (
@@ -164,7 +170,7 @@ function MomentsCard({ m, nav, tool }: { m: HomeCfg['moments']; nav: (s: string)
             <div style={{ fontSize: 15, lineHeight: '20px', fontWeight: 700, color: INK }}>{row.title}</div>
             <div style={{ fontSize: 13, lineHeight: '18px', color: GREY }}>{row.sub}</div>
           </span>
-          <button onClick={() => row.target ? nav(row.target) : tool(`${row.action}:${row.ini}`)} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${BORDER}`, background: '#fff', fontSize: 14, fontWeight: 700, color: INK, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>{row.action}</button>
+          <button onClick={() => row.target ? nav(row.target) : tool(row.done ?? `${row.action} done.`)} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${BORDER}`, background: '#fff', fontSize: 14, fontWeight: 700, color: INK, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>{row.action}</button>
         </div>
       ))}
       <span style={{ fontSize: 14, lineHeight: '20px', color: GREY, marginTop: 'auto', borderTop: `1px solid ${HAIR}`, paddingTop: 8 }}>{m.foot}</span>
@@ -227,10 +233,10 @@ function Frame({ cfg, nav, tool, children }: { cfg: HomeCfg; nav: (s: string) =>
 }
 
 // ---- Phone (STO16–STO22) ----
-export type PhoneTab = { label: string; target?: string }
-export type PhoneBtn = { label: string; target?: string }
+export type PhoneTab = { label: string; target?: string; done?: string }
+export type PhoneBtn = { label: string; target?: string; done?: string }
 export type PhoneBlock =
-  | { kind: 'proof'; label: string; headline: string; second: string; bars?: Bar[]; unit?: string; clip?: { duration: string; note: string }; btn: string; btnTarget?: string }
+  | { kind: 'proof'; label: string; headline: string; second: string; bars?: Bar[]; unit?: string; clip?: { duration: string; note: string }; btn: string; btnTarget?: string; btnDone?: string }
   | { kind: 'ready'; when?: string; title: string; text: string; btns: PhoneBtn[] }
   | { kind: 'list'; label?: string; title: string; text?: string; lines?: string[]; action?: string; actionTarget?: string }
   | { kind: 'done'; title: string; lines: string[] }
@@ -282,7 +288,7 @@ export function HomeStoryPhone({ cfg, onNav, renderTarget }: { cfg: PhoneCfg; on
                   <span style={{ fontSize: 12, lineHeight: '16px', color: PALE }}>{b.clip.note}</span>
                 </div>
               )}
-              <button onClick={() => b.btnTarget ? nav(b.btnTarget) : tool(b.btn)} style={amberBtn}>{b.btn}</button>
+              <button onClick={() => b.btnTarget ? nav(b.btnTarget) : tool(b.btnDone ?? b.btn)} style={amberBtn}>{b.btn}</button>
             </div>
           )
           if (b.kind === 'ready') return (
@@ -291,7 +297,7 @@ export function HomeStoryPhone({ cfg, onNav, renderTarget }: { cfg: PhoneCfg; on
               <strong style={{ fontSize: 18, lineHeight: '23px' }}>{b.title}</strong>
               <span style={{ fontSize: 13, lineHeight: '18px' }}>{b.text}</span>
               <span style={{ display: 'flex', gap: 8, marginTop: 3 }}>
-                {b.btns.map((t, j) => <button key={t.label} onClick={() => t.target ? nav(t.target) : tool(t.label)} style={{ flex: j === 0 ? 1 : undefined, height: 46, padding: '0 16px', borderRadius: 12, border: j === 0 ? 'none' : '1px solid rgba(255,255,255,0.6)', background: j === 0 ? '#fff' : 'transparent', color: j === 0 ? INK : '#fff', fontSize: 15, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>{t.label}</button>)}
+                {b.btns.map((t, j) => <button key={t.label} onClick={() => t.target ? nav(t.target) : tool(t.done ?? t.label)} style={{ flex: j === 0 ? 1 : undefined, height: 46, padding: '0 16px', borderRadius: 12, border: j === 0 ? 'none' : '1px solid rgba(255,255,255,0.6)', background: j === 0 ? '#fff' : 'transparent', color: j === 0 ? INK : '#fff', fontSize: 15, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>{t.label}</button>)}
               </span>
             </div>
           )
@@ -322,7 +328,7 @@ export function HomeStoryPhone({ cfg, onNav, renderTarget }: { cfg: PhoneCfg; on
       </div>
       <nav style={{ background: '#fff', borderTop: `1px solid ${HAIR}`, display: 'flex', flexShrink: 0 }}>
         {cfg.tabs.map((t, i) => (
-          <button key={t.label} onClick={() => t.target ? nav(t.target) : tool(t.label)} style={{ flex: 1, minHeight: 56, background: 'none', border: 'none', fontSize: 12, fontWeight: i === 0 ? 700 : 600, color: i === 0 ? GREEN : GREY, cursor: 'pointer', fontFamily: 'inherit' }}>{t.label}</button>
+          <button key={t.label} onClick={() => t.target ? nav(t.target) : tool(t.done ?? t.label)} style={{ flex: 1, minHeight: 56, background: 'none', border: 'none', fontSize: 12, fontWeight: i === 0 ? 700 : 600, color: i === 0 ? GREEN : GREY, cursor: 'pointer', fontFamily: 'inherit' }}>{t.label}</button>
         ))}
       </nav>
       {toast && <div role="status" style={{ position: 'fixed', bottom: 72, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '10px 16px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 13, fontWeight: 600, maxWidth: 340 }}>{toast}</div>}

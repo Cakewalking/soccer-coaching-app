@@ -344,6 +344,7 @@ import JuniorCoachApp        from '../JuniorCoachApp'
 import SignInFlow            from '../signin/SignInFlow'
 import { SB1SandboxEnding, SB2SandboxEnded, SB3NoSandbox, SB4KeepGoing } from '../signin/SandboxScreens'
 import { ER1SomethingWrong, ER2UploadFailed, ER3Loading, ER4NotFound, ER5NoAccess, ERp1SomethingWrong, ERp2NotFound } from '../signin/ErrorScreens'
+import ScreenErrorBoundary from '../ScreenErrorBoundary'
 import CoachPhoneApp, { CPh1CoachPhoneHome, CPh2CoachPhoneComing, CPh3CoachPhoneMessages, CPh4CoachPhoneGame, CPh5CoachPhonePlan, CPh1eCoachPhoneHomeEmpty, CPh2eCoachPhoneComingEmpty, CPh3eCoachPhoneMessagesEmpty, CPh4eCoachPhoneGameEmpty } from '../coachphone/CoachPhoneApp'
 import DemoStart             from './DemoStart'
 import DemoStartEmpty        from './DemoStartEmpty'
@@ -2228,7 +2229,8 @@ export function renderScreen(key: string): ReactNode {
   // minHeight keeps the wrapper measurable for screens whose root is a
   // position:fixed overlay (e.g. the add-game / set-style / settings flows),
   // so the data-screen hook stays visible to the acceptance check.
-  return <div data-screen={key} style={{ minHeight: '100vh' }}>{renderScreenInner(key)}</div>
+  const phone = /^(STO1[6-9]|STO2[0-2]|ERp|SIp|SB|TM\d|PA-|PS\d|PO\d|ACP|ACK|RF\d|MSGp|CPh)/.test(key)
+  return <div data-screen={key} style={{ minHeight: '100vh' }}><ScreenErrorBoundary key={key} phone={phone}>{renderScreenInner(key)}</ScreenErrorBoundary></div>
 }
 
 function viewToPath(view: DemoView, role: RoleId, screen?: string): string {

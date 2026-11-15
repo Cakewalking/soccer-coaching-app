@@ -7,8 +7,8 @@ export const STO16: PhoneCfg = {
   id: 'STO16-HomeStoryManager', roleLine: 'U12 Sam · Team manager', greeting: 'Hi Rob', avatar: 'RO',
   tabs: [{ label: 'Home', target: 'TM1-ManagerHome' }, { label: 'Game day', target: 'TM2-ManagerGameDay' }, { label: 'Messages', target: 'TM5-ManagerMessages' }, { label: 'Roster', target: 'TM4-DutyRoster' }],
   blocks: [
-    { kind: 'proof', label: 'SATURDAY · 9:30 AWAY v HARBOUR ROVERS', headline: 'Saturday is sorted. 14 are coming and every job is taken.', second: 'On Monday six families hadn’t answered. Two to go.', bars: [{ n: '6', when: 'Mon' }, { n: '4', when: 'Wed' }, { n: '2', when: 'Today', amber: true }], unit: 'families still to answer', btn: 'Nudge the two' },
-    { kind: 'ready', when: 'SAT 6 JUNE · MEET 8:45 am · REDGUM RESERVE', title: 'Game-day papers are ready', text: 'Team sheet, map to the ground, who has oranges and the hi-vis.', btns: [{ label: 'Open the papers', target: 'TM11-GameDayPapers' }, { label: 'Send' }] },
+    { kind: 'proof', label: 'SATURDAY · 9:30 AWAY v HARBOUR ROVERS', headline: 'Saturday is sorted. 14 are coming and every job is taken.', second: 'On Monday six families hadn’t answered. Two to go.', bars: [{ n: '6', when: 'Mon' }, { n: '4', when: 'Wed' }, { n: '2', when: 'Today', amber: true }], unit: 'families still to answer', btn: 'Nudge the two', btnDone: 'Nudge sent to the 2 families who haven’t answered.' },
+    { kind: 'ready', when: 'SAT 6 JUNE · MEET 8:45 am · REDGUM RESERVE', title: 'Game-day papers are ready', text: 'Team sheet, map to the ground, who has oranges and the hi-vis.', btns: [{ label: 'Open the papers', target: 'TM11-GameDayPapers' }, { label: 'Send', done: 'Sent to all 16 families.' }] },
     { kind: 'done', title: 'Done for you', lines: ['Reminder sent to six families', 'Oranges: the Patels · Hi-vis: Linh', 'Lift found for Jai', 'Sam has the numbers for his line-up'] },
     { kind: 'needs', count: 1, title: 'A parent asked about kit sizes', target: 'TM5-ManagerMessages' },
   ],
@@ -41,7 +41,7 @@ export const STO19: PhoneCfg = {
   tabs: [{ label: 'Home', target: 'PO1-OlderHome' }, { label: 'Clips', target: 'PA-Clip' }, { label: 'Body', target: 'PO4-OlderLoad' }, { label: 'Messages', target: 'PO2-OlderMessage' }],
   blocks: [
     { kind: 'proof', label: 'SAT 30 MAY · DREW 2–2 v TEALSIDE TOWN', headline: 'Your top speed is 6% up on last month. Ollie says that is a real change.', second: 'You also won the ball eight times, up from six. Three clips are ready.', bars: [{ n: '27.1', when: 'April' }, { n: '27.9', when: 'May' }, { n: '28.8', when: 'Saturday', amber: true }], unit: 'km/h top speed', btn: 'Watch my three clips', btnTarget: 'PA-Clip' },
-    { kind: 'ready', when: 'THURSDAY · 6:30 pm', title: 'Thursday: sprints are capped', text: 'Your load is high, so Priya has taken out the last block. 75 minutes.', btns: [{ label: 'I’m in' }, { label: 'Can’t' }] },
+    { kind: 'ready', when: 'THURSDAY · 6:30 pm', title: 'Thursday: sprints are capped', text: 'Your load is high, so Priya has taken out the last block. 75 minutes.', btns: [{ label: 'I’m in', done: 'You’re in for Thursday.' }, { label: 'Can’t', done: 'Ollie knows you can’t make Thursday.' }] },
     { kind: 'list', label: 'THIS WEEK', title: 'This week', lines: ['How you slept and feel: 3 taps, opens at 7:00 am', 'Sat 11:00 am · at home'] },
     { kind: 'note', text: 'You choose who else sees your numbers' },
   ],
@@ -49,10 +49,10 @@ export const STO19: PhoneCfg = {
 
 export const STO20: PhoneCfg = {
   id: 'STO20-HomeStoryReferee', roleLine: 'Wattle Creek FC · referees', greeting: 'Hi Zoe', avatar: 'ZP',
-  tabs: [{ label: 'My games', target: 'RF2-RefGames' }, { label: 'Report', target: 'RF3-RefReport' }, { label: 'Feedback', target: 'RF4-RefFeedback' }, { label: 'Me' }],
+  tabs: [{ label: 'My games', target: 'RF2-RefGames' }, { label: 'Report', target: 'RF3-RefReport' }, { label: 'Feedback', target: 'RF4-RefFeedback' }, { label: 'Me', done: 'Your details, level and children check.' }],
   blocks: [
     { kind: 'proof', label: 'SIX GAMES THIS SEASON', headline: 'Four coaches said thanks after your games. One wrote: “Calm and fair. The kids loved her.”', second: 'You have gone from one game to six since April.', bars: [{ n: '1', when: 'April' }, { n: '3', when: 'May' }, { n: '6', when: 'Now', amber: true }], unit: 'games you have led', btn: 'See the kind words', btnTarget: 'RF4-RefFeedback' },
-    { kind: 'ready', when: 'SAT 6 JUNE · 8:30 am · PITCH 6', title: 'Can you do U9 Tom v Northgate City?', text: 'Seven a side, 40 minutes, no score kept. Ruth is at the ground all morning.', btns: [{ label: 'Yes, I’ll do it' }, { label: 'Can’t' }] },
+    { kind: 'ready', when: 'SAT 6 JUNE · 8:30 am · PITCH 6', title: 'Can you do U9 Tom v Northgate City?', text: 'Seven a side, 40 minutes, no score kept. Ruth is at the ground all morning.', btns: [{ label: 'Yes, I’ll do it', done: 'Thanks, Zoe. Tom and Ruth know.' }, { label: 'Can’t', done: 'No problem. Ruth will ask someone else.' }] },
     { kind: 'done', title: 'Done for you', lines: ['Last week’s sideline report is closed', 'Your fee for May is with Bianca'] },
     { kind: 'note', text: 'A hi-vis vest steps in if a parent crosses the line' },
   ],

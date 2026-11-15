@@ -15,6 +15,8 @@ const PERMS = [
 export default function P2bParentConsentStep1() {
   const [answers, setAnswers] = useState<Record<string, boolean | null>>({})
   const [done, setDone] = useState(false)
+  const [toast, setToast] = useState<string | null>(null)
+  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   const allAnswered = PERMS.every(p => answers[p.key] !== undefined)
 
   if (done) return (
@@ -31,8 +33,6 @@ export default function P2bParentConsentStep1() {
     </div>
   )
 
-  const [toast, setToast] = useState<string|null>(null)
-  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 390, minHeight: '100%', background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', margin: '0 auto' }}>
       <div style={{ background: GD, padding: '16px 20px 20px' }}>
@@ -60,7 +60,7 @@ export default function P2bParentConsentStep1() {
             </div>
           </div>
         ))}
-        <button onClick={() => { if (allAnswered) setDone(true) }} style={{ width: '100%', height: 48, borderRadius: 14, border: 0, background: allAnswered ? G : LN, color: allAnswered ? '#fff' : MUT, fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer', marginTop: 8 }}>Save my choices</button>
+        <button onClick={() => { if (allAnswered) setDone(true); else st('Answer yes or no to each one first.') }} style={{ width: '100%', height: 48, borderRadius: 14, border: 0, background: allAnswered ? G : LN, color: allAnswered ? '#fff' : MUT, fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer', marginTop: 8 }}>Save my choices</button>
       {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
       </div>
     </div>
