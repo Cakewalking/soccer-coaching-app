@@ -15,6 +15,8 @@ const DETAILS = [
 
 export default function RC2RecordFriendly(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string|null>(null)
+  const [editing, setEditing] = useState<string|null>(null)
+  const [recording, setRecording] = useState(false)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
@@ -37,10 +39,17 @@ export default function RC2RecordFriendly(_: { onBack?: () => void }) {
           </div>
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, overflow: 'hidden' }}>
             {DETAILS.map(d => (
-              <div key={d.label} style={{ display: 'flex', alignItems: 'center', padding: '12px 18px', borderTop: `1px solid ${LN}`, gap: 16 }}>
-                <div style={{ width: 100, fontSize: 13, fontWeight: 700, color: MUT, flex: 'none' }}>{d.label}</div>
-                <div style={{ flex: 1, fontSize: 15, fontWeight: 600 }}>{d.value}</div>
-                <button onClick={() => st(`Changing ${d.label.toLowerCase()}.`)} style={{ fontSize: 13, color: G, fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer' }}>Change</button>
+              <div key={d.label} style={{ borderTop: `1px solid ${LN}` }}>
+                <div style={{ display: 'flex', alignItems: 'center', padding: '12px 18px', gap: 16 }}>
+                  <div style={{ width: 100, fontSize: 13, fontWeight: 700, color: MUT, flex: 'none' }}>{d.label}</div>
+                  <div style={{ flex: 1, fontSize: 15, fontWeight: 600 }}>{d.value}</div>
+                  <button onClick={() => setEditing(e => e === d.label ? null : d.label)} style={{ fontSize: 13, color: editing === d.label ? INK : G, fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer' }}>{editing === d.label ? 'Done' : 'Change'}</button>
+                </div>
+                {editing === d.label && (
+                  <div style={{ padding: '0 18px 12px 118px' }}>
+                    <input defaultValue={d.value} style={{ width: '70%', height: 40, borderRadius: 8, border: `1px solid ${LN}`, padding: '0 12px', fontSize: 14, fontFamily: 'inherit', boxSizing: 'border-box' }} />
+                  </div>
+                )}
               </div>
             ))}
           </div>
@@ -76,7 +85,8 @@ export default function RC2RecordFriendly(_: { onBack?: () => void }) {
               </div>
             ))}
           </div>
-          <button onClick={() => st('Recording started.')} style={{ height: 52, borderRadius: 12, border: 0, background: G, color: '#fff', fontSize: 16, fontWeight: 700, cursor: 'pointer' }}>Start recording →</button>
+          {recording && <div style={{ background: '#1f4a3e', color: '#fff', borderRadius: 10, padding: '10px 14px', fontSize: 14, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 8 }}><span style={{ width: 8, height: 8, borderRadius: '50%', background: '#c39797' }} />Recording… camera and vests are capturing.</div>}
+          <button onClick={() => setRecording(true)} style={{ height: 52, borderRadius: 12, border: 0, background: recording ? '#40826d' : G, color: '#fff', fontSize: 16, fontWeight: 700, cursor: 'pointer' }}>{recording ? 'Recording ✓' : 'Start recording →'}</button>
         </div>
       </main>
       {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
