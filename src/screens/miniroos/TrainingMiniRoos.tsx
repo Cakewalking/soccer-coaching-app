@@ -37,6 +37,9 @@ function tagColor(tag: string) {
 
 export default function TrainingMiniRoos({ empty }: { empty?: boolean }) {
   const [toast, setToast] = useState<string | null>(null)
+  const [selectedGame, setSelectedGame] = useState<number | null>(null)
+  const [started, setStarted] = useState(false)
+  const [swapMode, setSwapMode] = useState(false)
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   if (empty) {
     return (
@@ -63,9 +66,10 @@ export default function TrainingMiniRoos({ empty }: { empty?: boolean }) {
           <h1 style={{ margin: '0 0 2px', fontSize: 24, fontWeight: 700, letterSpacing: '-0.02em' }}>Training tonight · 5:00–5:45 pm</h1>
           <div style={{ fontSize: 14, color: '#4a5a57' }}>Wattle Creek Reserve · 9 coming · this fortnight: running with the ball</div>
         </div>
-        <button onClick={() => showToast('Opening the drill swap screen.')} style={{ height: 44, padding: '0 18px', borderRadius: 12, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>Swap a game</button>
-        <button onClick={() => showToast('Starting the training session timer.')} style={{ height: 44, padding: '0 22px', borderRadius: 12, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>Start</button>
+        <button onClick={() => setSwapMode(s => !s)} style={{ height: 44, padding: '0 18px', borderRadius: 12, border: `1px solid ${swapMode ? '#2f6252' : '#c5c8c4'}`, background: swapMode ? '#eef5f2' : '#ffffff', color: swapMode ? '#2f6252' : '#10211f', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>Swap a game</button>
+        <button onClick={() => setStarted(true)} style={{ height: 44, padding: '0 22px', borderRadius: 12, border: 0, background: started ? '#40826d' : '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>{started ? 'Started ✓' : 'Start'}</button>
       </div>
+      {swapMode && <div style={{ flex: 'none', padding: '8px 28px', background: '#eef5f2', color: '#2f6252', fontSize: 13, fontWeight: 600 }}>Swap mode: tap a game below to replace it with another from the library.</div>}
 
       {/* Main content */}
       <div style={{ flexGrow: 1, minHeight: 0, display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 300px', gap: 20, padding: '18px 28px 20px', overflow: 'hidden', boxSizing: 'border-box' }}>
@@ -73,7 +77,7 @@ export default function TrainingMiniRoos({ empty }: { empty?: boolean }) {
         {/* Drill list */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10, minHeight: 0, overflowY: 'auto' }}>
           {DRILLS.map((d, i) => (
-            <button key={i} onClick={() => showToast(`Opening ${d.name}.`)} style={{ display: 'grid', gridTemplateColumns: '56px minmax(0,1fr) 24px', gap: 0, background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 16, padding: 0, overflow: 'hidden', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
+            <button key={i} onClick={() => { setSelectedGame(i); if (swapMode) { setSwapMode(false); showToast(`${d.name} swapped from the library.`) } }} style={{ display: 'grid', gridTemplateColumns: '56px minmax(0,1fr) 24px', gap: 0, background: '#ffffff', border: `${selectedGame === i ? 2 : 1}px solid ${selectedGame === i ? '#2f6252' : '#c5c8c4'}`, borderRadius: 16, padding: 0, overflow: 'hidden', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
               {/* Time col */}
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '14px 0', background: '#f7f8f7', borderRight: '1px solid #e9eae8', gap: 2 }}>
                 <span style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>{d.time}</span>
