@@ -65,9 +65,11 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
   const sbEmptySession = inSandbox ? store.sessions.length === 0 : empty
   const sbEmptyFixture = inSandbox ? store.fixtures.length === 0 : empty
   const validNav = (s?: string): NavKey => (s === 'squad' || s === 'training' || s === 'matchday' || s === 'clips' || s === 'record') ? s : 'home'
-  const [nav, setNav]                 = useState<NavKey>(validNav(initialScreen))
+  const HOME_SUB_MAP: Record<string, number> = { messages: 1, inbox: 1, calendar: 2, fixtures: 3, ourstyle: 4, setstyle: 4, whereweat: 5, teamstaff: 6, files: 7 }
+  const initHomeTab = (initialScreen ? HOME_SUB_MAP[initialScreen] : 0) ?? 0
+  const [nav, setNav]                 = useState<NavKey>(initHomeTab ? 'home' : validNav(initialScreen))
   const [sub, setSub]                 = useState<Sub>(null)
-  const [homeTab, setHomeTab]         = useState(0)
+  const [homeTab, setHomeTab]         = useState(initHomeTab)
   const [squadTab, setSquadTab]       = useState(0)
   const [trainingTab, setTrainingTab] = useState(0)
   const [matchTab, setMatchTab]       = useState(0)

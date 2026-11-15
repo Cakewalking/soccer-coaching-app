@@ -1862,7 +1862,7 @@ function renderScreenInner(key: string): ReactNode {
     case 'IL1e-InjuriesEmpty':         return <IL1eInjuryLogEmpty />
     case 'TL3e-TestResultsEmpty':      return <TL3eSprintResultsEmpty />
     case 'CC1e-CoachHomeSharedEmpty':  return <CC1eCoachHomeEmpty />
-    case 'I1-Inbox':                   return <I1Inbox />
+    case 'I1-Inbox':                   return <JuniorCoachApp initialScreen="messages" />
 
     // Coach sub-screens (new)
     case 'wk1': case 'WK1-ThisWeek':           return <WK1ThisWeek />
