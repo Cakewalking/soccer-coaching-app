@@ -2,8 +2,9 @@ import { useState } from 'react'
 import { RaiseConcernView, ConcernSentView, TellSomeoneView, TellHelenView } from './playerapp/SafeguardingFlows'
 import ParentView from './playerapp/ParentView'
 import ParentChatScreen from './ParentChatScreen'
+import PlayerMeScreen from './playerapp/PlayerMeScreen'
 
-type PlayerView = 'home' | 'checkin' | 'checkin-sent' | 'clip' | 'goals' | 'parent' | 'parent-avail' | 'parent-chat' | 'young-news' | 'invite' | 'raise-concern' | 'concern-sent' | 'tell-someone' | 'tell-helen'
+type PlayerView = 'home' | 'checkin' | 'checkin-sent' | 'clip' | 'goals' | 'me' | 'parent' | 'parent-avail' | 'parent-chat' | 'young-news' | 'invite' | 'raise-concern' | 'concern-sent' | 'tell-someone' | 'tell-helen'
 
 interface WellnessOption { label: string; emoji: string; value: number }
 
@@ -360,6 +361,9 @@ export default function PlayerAppScreen({ empty, initialView = 'home' }: { empty
     )
   }
 
+  /* ── MY ME (PS4-PlayerMe) — the player's own settings, never the parent's ── */
+  if (view === 'me') return <PlayerMeScreen onBack={() => setView('home')} />
+
   /* ── PARENT AVAILABILITY ── */
   if (view === 'parent-avail') {
     return (
@@ -574,7 +578,7 @@ export default function PlayerAppScreen({ empty, initialView = 'home' }: { empty
           { label: 'Goals', icon: 'M12 2l2.4 7.4H22l-6.5 4.7 2.5 7.6L12 17l-6 4.7 2.5-7.6L3 9.4h7.6z', active: false },
           { label: 'Me',    icon: 'M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8', active: false },
         ]).map(tab => (
-          <button key={tab.label} onClick={() => { if (tab.label === 'Clips') setView('clip'); else if (tab.label === 'Goals') setView('goals'); else if (tab.label === 'Me') setView('parent'); else setView('home') }} style={{ flex: 1, border: 'none', background: 'transparent', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 3, fontFamily: 'inherit', fontSize: 10, fontWeight: 600, cursor: 'pointer', color: tab.active ? '#2f6252' : '#4a5a57' }}>
+          <button key={tab.label} onClick={() => { if (tab.label === 'Clips') setView('clip'); else if (tab.label === 'Goals') setView('goals'); else if (tab.label === 'Me') setView('me'); else setView('home') }} style={{ flex: 1, border: 'none', background: 'transparent', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 3, fontFamily: 'inherit', fontSize: 10, fontWeight: 600, cursor: 'pointer', color: tab.active ? '#2f6252' : '#4a5a57' }}>
             <svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"><path d={tab.icon}/></svg>
             {tab.label}
           </button>

@@ -2187,8 +2187,10 @@ function renderScreenInner(key: string): ReactNode {
     case 'FT1-FitnessHomeU12':         return <FitnessCoachScreen empty={false} />
     case 'DP1-Pathway':                return <DP1FairGameTime />
     case 'PA-ParentHome':              return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TwoChildrenApp onBack={noop} empty={false} /></div>
-    case 'PA-Clip':                    return <ClipsScreen empty={false} />
-    case 'PA-Goals':                   return <DevGoalsScreen />
+    // PA-Clip / PA-Goals are the player's OWN clip and goal — never the coach's
+    // whole-squad library (privacy; FIX-LIST item 2).
+    case 'PA-Clip':                    return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PlayerAppScreen empty={false} initialView="clip" /></div>
+    case 'PA-Goals':                   return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PlayerAppScreen empty={false} initialView="goals" /></div>
     case 'ACP4-ParentFees':            return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><AcademyParentApp onBack={noop} empty={false} initialNav="fees" initialModal="none" /></div>
     case 'ACP6-MakeUp':                return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><ACP6MakeUp /></div>
     case 'ACP8-BookClinic':            return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><AcademyParentApp onBack={noop} empty={false} initialNav="book" initialModal="none" /></div>
