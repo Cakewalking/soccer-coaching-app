@@ -20,19 +20,21 @@ const PLAYERS = [
   { name: 'Noah Okafor', pos: 'ST', thisSess: '6.4 s', lastSess: '6.9 s', change: '–0.5 s', up: true },
 ]
 
-export default function RC5RecordResults(_: { onBack?: () => void }) {
-  const [toast, setToast] = useState<string|null>(null)
-  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
+export default function RC5RecordResults({ onBack }: { onBack?: () => void }) {
+  const [activeNav, setActiveNav] = useState('Training')
+  const [activeSub, setActiveSub] = useState('Record')
+  const [selectedCard, setSelectedCard] = useState<string | null>(null)
+  const [selectedPlayer, setSelectedPlayer] = useState<string | null>(null)
   return (
     <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       <div style={{ flex: 'none', background: '#fff', borderBottom: `1px solid ${LN}` }}>
         <div style={{ height: 64, boxSizing: 'border-box', padding: '0 28px', display: 'flex', alignItems: 'center', gap: 4, background: G }}>
           <div style={{ fontSize: 20, fontWeight: 700, color: '#fff', marginRight: 16, letterSpacing: '-0.02em' }}>Clean Sheet</div>
-          {NAV_ITEMS.map(n => <div key={n} style={{ height: 48, padding: '0 14px', borderRadius: 12, display: 'flex', alignItems: 'center', fontSize: 15, fontWeight: 600, color: n === 'Training' ? '#fff' : 'rgba(255,255,255,0.75)', background: n === 'Training' ? '#40826d' : 'transparent', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{n}</div>)}
-          <div style={{ marginLeft: 'auto' }}><button onClick={() => st('Opening team selector.')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: '1px solid #fff', background: '#fff', fontSize: 14, fontWeight: 600, color: INK, cursor: 'pointer' }}>U12 Sam · Wattle Creek ▾</button></div>
+          {NAV_ITEMS.map(n => <div key={n} onClick={() => setActiveNav(n)} style={{ height: 48, padding: '0 14px', borderRadius: 12, display: 'flex', alignItems: 'center', fontSize: 15, fontWeight: 600, color: n === activeNav ? '#fff' : 'rgba(255,255,255,0.75)', background: n === activeNav ? '#40826d' : 'transparent', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{n}</div>)}
+          <div style={{ marginLeft: 'auto' }}><button onClick={() => onBack?.()} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: '1px solid #fff', background: '#fff', fontSize: 14, fontWeight: 600, color: INK, cursor: 'pointer' }}>U12 Sam · Wattle Creek ▾</button></div>
         </div>
         <div style={{ height: 44, padding: '0 28px', display: 'flex', alignItems: 'flex-end', gap: 24 }}>
-          {SUBNAV.map(n => <div key={n} style={{ height: 44, display: 'flex', alignItems: 'center', fontSize: 14, fontWeight: 600, color: n === 'Record' ? INK : MUT, borderBottom: `3px solid ${n === 'Record' ? '#40826d' : 'transparent'}`, cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{n}</div>)}
+          {SUBNAV.map(n => <div key={n} onClick={() => setActiveSub(n)} style={{ height: 44, display: 'flex', alignItems: 'center', fontSize: 14, fontWeight: 600, color: n === activeSub ? INK : MUT, borderBottom: `3px solid ${n === activeSub ? '#40826d' : 'transparent'}`, cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{n}</div>)}
         </div>
       </div>
 
@@ -43,7 +45,7 @@ export default function RC5RecordResults(_: { onBack?: () => void }) {
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, minmax(0,1fr))', gap: 12 }}>
           {STAT_CARDS.map(card => (
-            <div key={card.label} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 16px' }}>
+            <div key={card.label} onClick={() => setSelectedCard(card.label)} style={{ background: selectedCard === card.label ? PALE : '#fff', border: `${selectedCard === card.label ? 2 : 1}px solid ${selectedCard === card.label ? G : LN}`, borderRadius: 14, padding: '14px 16px', cursor: 'pointer' }}>
               <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 6 }}>{card.label}</div>
               <div style={{ fontSize: 28, fontWeight: 700, letterSpacing: '-0.02em', marginBottom: 4 }}>{card.val}</div>
               <div style={{ fontSize: 13, fontWeight: 600, color: G }}>{card.change}</div>
@@ -56,7 +58,7 @@ export default function RC5RecordResults(_: { onBack?: () => void }) {
               {['Player', 'Tonight', 'Last run', 'Change'].map(h => <div key={h} style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT }}>{h}</div>)}
             </div>
             {PLAYERS.map(p => (
-              <div key={p.name} style={{ display: 'grid', gridTemplateColumns: '1fr 90px 90px 80px', padding: '10px 18px', borderTop: `1px solid ${LN}`, alignItems: 'center' }}>
+              <div key={p.name} onClick={() => setSelectedPlayer(p.name)} style={{ display: 'grid', gridTemplateColumns: '1fr 90px 90px 80px', padding: '10px 18px', borderTop: `1px solid ${LN}`, alignItems: 'center', cursor: 'pointer', background: selectedPlayer === p.name ? PALE : 'transparent' }}>
                 <div>
                   <div style={{ fontSize: 15, fontWeight: 600 }}>{p.name}</div>
                   <div style={{ fontSize: 12, color: MUT }}>{p.pos}</div>
@@ -82,8 +84,6 @@ export default function RC5RecordResults(_: { onBack?: () => void }) {
             </div>
           </div>
         </div>
-
-      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
       </main>
     </div>
   )

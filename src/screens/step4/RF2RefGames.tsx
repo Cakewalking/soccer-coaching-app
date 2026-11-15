@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 const G = '#2f6252', INK = '#10211f', MUT = '#4a5a57'
 
 const WEEKS = [
@@ -8,14 +10,17 @@ const WEEKS = [
   ]},
 ]
 
-const NavItem = ({ icon, label, active }: { icon: string; label: string; active?: boolean }) => (
-  <div style={{ flex: 1, display: 'flex', flexDirection: 'column' as const, alignItems: 'center', justifyContent: 'center', gap: 2, minHeight: 56, fontSize: 11, fontWeight: 700, color: active ? G : MUT, cursor: 'pointer' }}>
+const NavItem = ({ icon, label, active, onClick }: { icon: string; label: string; active?: boolean; onClick?: () => void }) => (
+  <div onClick={onClick} style={{ flex: 1, display: 'flex', flexDirection: 'column' as const, alignItems: 'center', justifyContent: 'center', gap: 2, minHeight: 56, fontSize: 11, fontWeight: 700, color: active ? G : MUT, cursor: 'pointer' }}>
     <span style={{ fontSize: 20 }}>{icon}</span>
     {label}
   </div>
 )
 
 export default function RF2RefGames(_: { onBack?: () => void }) {
+  const [activeNav, setActiveNav] = useState('My games')
+  const [ruthAnswered, setRuthAnswered] = useState(false)
+  const [selectedGame, setSelectedGame] = useState<string | null>(null)
   return (
     <div style={{ width: 390, height: 844, background: '#f7f8f7', boxSizing: 'border-box' as const, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' as const, overflow: 'hidden' }}>
       <div style={{ flex: 'none', padding: '12px 18px', background: G, color: '#fff', display: 'flex', alignItems: 'center', gap: 10 }}>
@@ -26,18 +31,18 @@ export default function RF2RefGames(_: { onBack?: () => void }) {
         <span style={{ width: 40, height: 40, borderRadius: '50%', background: '#cbbeb5', color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>ZP</span>
       </div>
       <div style={{ flex: 1, minHeight: 0, overflowY: 'auto', padding: '12px 14px', display: 'flex', flexDirection: 'column' as const, gap: 10 }}>
-        <div style={{ background: '#cbbeb5', border: '1px solid #cbbeb5', borderRadius: 16, padding: '12px 14px', display: 'flex', alignItems: 'center', gap: 12 }}>
+        <div onClick={() => setRuthAnswered(a => !a)} style={{ background: ruthAnswered ? G : '#cbbeb5', border: `1px solid ${ruthAnswered ? G : '#cbbeb5'}`, borderRadius: 16, padding: '12px 14px', display: 'flex', alignItems: 'center', gap: 12, cursor: 'pointer', color: ruthAnswered ? '#fff' : INK }}>
           <div style={{ flex: 1 }}>
             <div style={{ fontSize: 16, fontWeight: 700 }}>Ruth asked: can you do 12:00 Saturday?</div>
-            <div style={{ fontSize: 13 }}>Assistant referee · U13 Girls Meg</div>
+            <div style={{ fontSize: 13 }}>{ruthAnswered ? "Replied: Yes, I can take it ✓" : 'Assistant referee · U13 Girls Meg'}</div>
           </div>
-          <span style={{ fontSize: 18 }}>›</span>
+          <span style={{ fontSize: 18 }}>{ruthAnswered ? '✓' : '›'}</span>
         </div>
         {WEEKS.map((w, wi) => (
           <div key={wi} style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '8px 14px' }}>
             <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, padding: '4px 0' }}>{w.date}</div>
             {w.games.map((g, gi) => (
-              <div key={gi} style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 60, borderTop: '1px solid #e9eae8' }}>
+              <div key={gi} onClick={() => setSelectedGame(g.name)} style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 60, borderTop: '1px solid #e9eae8', cursor: 'pointer', background: selectedGame === g.name ? '#eef5f2' : 'transparent', borderRadius: 8 }}>
                 <strong style={{ width: 48, fontSize: 15, fontVariantNumeric: 'tabular-nums', flexShrink: 0 }}>{g.t}</strong>
                 <div style={{ flex: 1 }}>
                   <div style={{ fontSize: 15, fontWeight: 700, lineHeight: '20px' }}>{g.name}</div>
@@ -59,10 +64,10 @@ export default function RF2RefGames(_: { onBack?: () => void }) {
         <span style={{ fontSize: 13, color: MUT, padding: '0 2px' }}>You see your games and nothing about the players.</span>
       </div>
       <nav style={{ flex: 'none', display: 'flex', borderTop: '1px solid #c5c8c4', background: '#fff' }}>
-        <NavItem icon="📅" label="My games" active />
-        <NavItem icon="📋" label="Report" />
-        <NavItem icon="💬" label="Feedback" />
-        <NavItem icon="👤" label="Me" />
+        <NavItem icon="📅" label="My games" active={activeNav === 'My games'} onClick={() => setActiveNav('My games')} />
+        <NavItem icon="📋" label="Report" active={activeNav === 'Report'} onClick={() => setActiveNav('Report')} />
+        <NavItem icon="💬" label="Feedback" active={activeNav === 'Feedback'} onClick={() => setActiveNav('Feedback')} />
+        <NavItem icon="👤" label="Me" active={activeNav === 'Me'} onClick={() => setActiveNav('Me')} />
       </nav>
     </div>
   )

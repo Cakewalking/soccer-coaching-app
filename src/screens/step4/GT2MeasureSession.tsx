@@ -21,16 +21,16 @@ const F = ({ v, active }: { v: string | null; active?: boolean }) => (
   </span>
 )
 
-export default function GT2MeasureSession(_: { onBack?: () => void }) {
-  const [toast, setToast] = useState<string|null>(null)
-  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
+export default function GT2MeasureSession({ onBack }: { onBack?: () => void }) {
+  const [measuringRow, setMeasuringRow] = useState(PLAYERS.findIndex(p => p.note === 'Now measuring'))
+  const [saved, setSaved] = useState(false)
   return (
     <div style={{ width: 1180, height: 820, overflow: 'hidden', background: '#f7f8f7', boxSizing: 'border-box' as const, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' as const }}>
       <div style={{ height: 64, background: G, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 20, flex: 'none' }}>
         <div style={{ fontSize: 21, fontWeight: 700, color: '#fff', letterSpacing: '-0.02em' }}>Clean Sheet</div>
         <div style={{ flex: 1, fontSize: 13, color: 'rgba(255,255,255,0.7)' }}>U12 Sam · Wattle Creek · Fitness coach</div>
-        <button onClick={() => st('Saving progress.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Finish later</button>
-        <button onClick={() => st('Growth data saved.')} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer', outline: `2px solid rgba(255,255,255,0.4)` }}>Save and update growth</button>
+        <button onClick={() => onBack?.()} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Finish later</button>
+        <button onClick={() => setSaved(true)} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: 0, background: saved ? '#40826d' : G, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer', outline: `2px solid rgba(255,255,255,0.4)` }}>{saved ? 'Growth updated ✓' : 'Save and update growth'}</button>
       </div>
       <div style={{ flex: 'none', padding: '14px 28px 0', display: 'flex', alignItems: 'baseline', gap: 14 }}>
         <h1 style={{ margin: 0, fontSize: 26, fontWeight: 700, letterSpacing: '-0.02em' }}>Measuring session</h1>
@@ -42,13 +42,13 @@ export default function GT2MeasureSession(_: { onBack?: () => void }) {
             {['Player','Last (Mar)','Height today','Sitting height','Weight',''].map(h => <span key={h}>{h}</span>)}
           </div>
           {PLAYERS.map((p, i) => (
-            <div key={i} style={{ display: 'grid', gridTemplateColumns: '200px 110px 150px 130px 120px 1fr', alignItems: 'center', minHeight: 46, borderTop: `1px solid ${LN}`, background: p.note === 'Now measuring' ? PALE : undefined, borderRadius: p.note === 'Now measuring' ? 8 : undefined }}>
+            <div key={i} onClick={() => setMeasuringRow(i)} style={{ display: 'grid', gridTemplateColumns: '200px 110px 150px 130px 120px 1fr', alignItems: 'center', minHeight: 46, borderTop: `1px solid ${LN}`, background: measuringRow === i ? PALE : undefined, borderRadius: measuringRow === i ? 8 : undefined, cursor: 'pointer' }}>
               <span style={{ display: 'flex', alignItems: 'center', gap: 10, fontWeight: 700 }}>
                 <span style={{ width: 26, height: 26, borderRadius: '50%', background: '#c39797', color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, flexShrink: 0 }}>{p.ini}</span>
                 {p.name}
               </span>
               <span style={{ fontSize: 14, color: MUT }}>{p.last} cm</span>
-              <F v={p.h} active={p.note === 'Now measuring'} />
+              <F v={p.h} active={measuringRow === i} />
               <F v={p.sit} />
               <F v={p.wt} />
               <span style={{ fontSize: 12, color: MUT }}>{p.note}</span>
@@ -67,7 +67,6 @@ export default function GT2MeasureSession(_: { onBack?: () => void }) {
           <div style={{ marginTop: 'auto', background: '#f6e9e9', borderRadius: 12, padding: '10px 12px', fontSize: 13, lineHeight: '19px' }}>Weight is optional and never shown to players or other parents. Only the growth rate appears in the app.</div>
         </div>
       </div>
-      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }
