@@ -3,8 +3,8 @@ const G='#2f6252',GD='#1f4a3e',INK='#10211f',MUT='#4a5a57',LN='#e8edeb',PALE='#e
 type Tab='home'|'training'|'matchday'
 export default function SP21StandInHome({onBack}:{onBack?:()=>void}){
   const [tab,setTab]=useState<Tab>('home')
-  const [toast,setToast]=useState<string|null>(null)
-  function t(m:string){setToast(m);setTimeout(()=>setToast(null),3200)}
+  const [selectedEvent,setSelectedEvent]=useState<string|null>(null)
+  const [handBack,setHandBack]=useState(false)
   const SCHEDULE=[
     {date:'Tue 29 Sep',what:'First session · Linh leading'},
     {date:'Thu 1 Oct',what:'Session · from Sam\'s plan'},
@@ -74,20 +74,20 @@ export default function SP21StandInHome({onBack}:{onBack?:()=>void}){
               <div style={{background:'#fff',border:`1px solid ${LN}`,borderRadius:16,padding:'14px 16px',marginBottom:16}}>
                 <div style={{fontSize:13,fontWeight:700,letterSpacing:'0.06em',textTransform:'uppercase' as const,color:MUT,marginBottom:8}}>Fortnight</div>
                 {SCHEDULE.map(ev=>(
-                  <div key={ev.date} style={{display:'flex',alignItems:'center',gap:12,padding:'8px 0',borderTop:`1px solid ${LN}`}}>
+                  <div key={ev.date} onClick={()=>setSelectedEvent(ev.date)} style={{display:'flex',alignItems:'center',gap:12,padding:'8px 6px',borderTop:`1px solid ${LN}`,cursor:'pointer',background:selectedEvent===ev.date?PALE:'transparent',borderRadius:8}}>
                     <div style={{fontSize:12,fontWeight:600,color:GD,width:72,flex:'none'}}>{ev.date}</div>
                     <div style={{fontSize:13,color:INK}}>{ev.what}</div>
                   </div>
                 ))}
               </div>
-              <button onClick={()=>t('Hand back early modal')} style={{width:'100%',height: 44,borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:MUT,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>Hand back early</button>
+              <button onClick={()=>setHandBack(h=>!h)} style={{width:'100%',height: 44,borderRadius:10,border:`1px solid ${handBack?G:LN}`,background:handBack?PALE:'#fff',color:handBack?G:MUT,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>{handBack?'Handing back to Sam ✓':'Hand back early'}</button>
+              {handBack&&<div style={{fontSize:12,color:G,marginTop:8,lineHeight:'17px'}}>Sam gets the team back from today. Confirm and we'll let families know.</div>}
             </div>
           </div>
         </div>
       )}
       {tab==='training'&&<div style={{padding:'40px 28px',textAlign:'center' as const,color:MUT,fontSize:15}}>Tonight's session plan. Tap a drill to tick it off.</div>}
       {tab==='matchday'&&<div style={{padding:'40px 28px',textAlign:'center' as const,color:MUT,fontSize:15}}>Pick your starting lineup for Saturday.</div>}
-      {toast&&<div style={{position:'fixed',bottom:24,left:'50%',transform:'translateX(-50%)',background:INK,color:'#fff',padding:'10px 20px',borderRadius:12,fontSize:14,fontWeight:600,zIndex:1000,whiteSpace:'nowrap' as const}}>{toast}</div>}
     </div>
   )
 }

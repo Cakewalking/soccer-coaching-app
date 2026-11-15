@@ -1,8 +1,12 @@
 import { useState } from 'react'
 const G='#2f6252',INK='#10211f',MUT='#4a5a57',LN='#e8edeb',PALE='#eef5f2'
 export default function SPy16YouthRestMonth({onBack}:{onBack?:()=>void}){
-  const [toast,setToast]=useState<string|null>(null)
-  function t(m:string){setToast(m);setTimeout(()=>setToast(null),3200)}
+  const [open,setOpen]=useState<string|null>(null)
+  const [selectedBreak,setSelectedBreak]=useState<string|null>(null)
+  const PANEL:Record<string,string>={
+    plan:'Next season\'s outline: pre-season 11 Jan, trial games late Jan, first fixture 14 Feb. Edit the phases once the fixture list lands.',
+    standin:'Pick an assistant to lead while you\'re away. They get the plan and match-day picks, nothing else.',
+  }
   return(
     <div style={{padding:'20px 28px 40px',background:'#f7f8f7',minHeight:'100%',boxSizing:'border-box',fontFamily:'var(--font-sans)',position:'relative'}}>
       <div style={{display:'flex',alignItems:'flex-start',justifyContent:'space-between',marginBottom:20}}>
@@ -28,7 +32,7 @@ export default function SPy16YouthRestMonth({onBack}:{onBack?:()=>void}){
               {name:'Cal West',weeks:'2 weeks, 2 to go',detail:'Taking 4 weeks total'},
               {name:'Ryan Petersen',weeks:'3 weeks, 1 to go',detail:'Taking 4 weeks total'},
             ].map(p=>(
-              <div key={p.name} style={{display:'flex',alignItems:'center',gap:12,padding:'12px 16px',borderBottom:`1px solid ${LN}`}}>
+              <div key={p.name} onClick={()=>setSelectedBreak(p.name)} style={{display:'flex',alignItems:'center',gap:12,padding:'12px 16px',borderBottom:`1px solid ${LN}`,cursor:'pointer',background:selectedBreak===p.name?PALE:'transparent'}}>
                 <div style={{width:36,height:36,borderRadius:'50%',background:PALE,display:'flex',alignItems:'center',justifyContent:'center',flex:'none'}}>
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={G} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                 </div>
@@ -51,12 +55,12 @@ export default function SPy16YouthRestMonth({onBack}:{onBack?:()=>void}){
           </div>
           <div style={{background:'#fff',border:`1px solid ${LN}`,borderRadius:14,padding:'14px 16px'}}>
             <div style={{fontSize:14,fontWeight:700,color:INK,marginBottom:8}}>While you wait</div>
-            <button onClick={()=>t('Opening next year\'s plan')} style={{width:'100%',height: 44,borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:G,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer',marginBottom:8}}>Plan next year</button>
-            <button onClick={()=>t('Opening stand-in')} style={{width:'100%',height: 44,borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:G,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>Set a stand-in</button>
+            <button onClick={()=>setOpen(o=>o==='plan'?null:'plan')} style={{width:'100%',height: 44,borderRadius:10,border:`1px solid ${open==='plan'?G:LN}`,background:open==='plan'?PALE:'#fff',color:G,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer',marginBottom:8}}>Plan next year</button>
+            <button onClick={()=>setOpen(o=>o==='standin'?null:'standin')} style={{width:'100%',height: 44,borderRadius:10,border:`1px solid ${open==='standin'?G:LN}`,background:open==='standin'?PALE:'#fff',color:G,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>Set a stand-in</button>
+            {(open==='plan'||open==='standin')&&<div style={{fontSize:13,color:MUT,marginTop:10,lineHeight:1.6}}>{PANEL[open]}</div>}
           </div>
         </div>
       </div>
-      {toast&&<div style={{position:'fixed',bottom:24,left:'50%',transform:'translateX(-50%)',background:INK,color:'#fff',padding:'10px 20px',borderRadius:12,fontSize:14,fontWeight:600,zIndex:1000,whiteSpace:'nowrap' as const}}>{toast}</div>}
     </div>
   )
 }

@@ -1,8 +1,12 @@
 import { useState } from 'react'
 const G='#2f6252',INK='#10211f',MUT='#4a5a57',LN='#e8edeb'
 export default function SPs16SeniorOffSeason({onBack}:{onBack?:()=>void}){
-  const [toast,setToast]=useState<string|null>(null)
-  function t(m:string){setToast(m);setTimeout(()=>setToast(null),3200)}
+  const [open,setOpen]=useState<string|null>(null)
+  const PANEL:Record<string,string>={
+    summer:'Priya has drafted six individual summer blocks — strength, running and a return-to-play plan each. Players run them at their own pace and check in weekly.',
+    plan:'Next season\'s outline: pre-season 11 Jan, trial games late Jan, first fixture 14 Feb. Edit the phases once the fixture list lands.',
+    standin:'Pick an assistant to lead while you\'re away. They get the plan and match-day picks, nothing else.',
+  }
   return(
     <div style={{padding:'20px 28px 40px',background:'#f7f8f7',minHeight:'100%',boxSizing:'border-box',fontFamily:'var(--font-sans)',position:'relative'}}>
       <div style={{display:'flex',alignItems:'flex-start',justifyContent:'space-between',marginBottom:20}}>
@@ -22,7 +26,8 @@ export default function SPs16SeniorOffSeason({onBack}:{onBack?:()=>void}){
           <div style={{background:'#fff',border:`1px solid ${LN}`,borderRadius:14,padding:'14px 16px',marginBottom:12}}>
             <div style={{fontSize:15,fontWeight:700,color:INK,marginBottom:6}}>Summer programmes</div>
             <div style={{fontSize:13,color:MUT,marginBottom:12}}>6 players asked Priya for a summer programme. She'll set those up with them directly.</div>
-            <button onClick={()=>t('Opening summer programme')} style={{height: 44,padding:'0 14px',borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:G,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>See what Priya has planned</button>
+            <button onClick={()=>setOpen(o=>o==='summer'?null:'summer')} style={{height: 44,padding:'0 14px',borderRadius:10,border:`1px solid ${open==='summer'?G:LN}`,background:open==='summer'?'#eef5f2':'#fff',color:G,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>See what Priya has planned</button>
+            {open==='summer'&&<div style={{fontSize:13,color:MUT,marginTop:10,lineHeight:1.6}}>{PANEL.summer}</div>}
           </div>
         </div>
         <div>
@@ -33,12 +38,12 @@ export default function SPs16SeniorOffSeason({onBack}:{onBack?:()=>void}){
           </div>
           <div style={{background:'#fff',border:`1px solid ${LN}`,borderRadius:14,padding:'14px 16px'}}>
             <div style={{fontSize:14,fontWeight:700,color:INK,marginBottom:8}}>While you wait</div>
-            <button onClick={()=>t('Opening next year\'s plan')} style={{width:'100%',height: 44,borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:G,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer',marginBottom:8}}>Plan next year</button>
-            <button onClick={()=>t('Opening stand-in')} style={{width:'100%',height: 44,borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:G,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>Set a stand-in</button>
+            <button onClick={()=>setOpen(o=>o==='plan'?null:'plan')} style={{width:'100%',height: 44,borderRadius:10,border:`1px solid ${open==='plan'?G:LN}`,background:open==='plan'?'#eef5f2':'#fff',color:G,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer',marginBottom:8}}>Plan next year</button>
+            <button onClick={()=>setOpen(o=>o==='standin'?null:'standin')} style={{width:'100%',height: 44,borderRadius:10,border:`1px solid ${open==='standin'?G:LN}`,background:open==='standin'?'#eef5f2':'#fff',color:G,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>Set a stand-in</button>
+            {(open==='plan'||open==='standin')&&<div style={{fontSize:13,color:MUT,marginTop:10,lineHeight:1.6}}>{PANEL[open]}</div>}
           </div>
         </div>
       </div>
-      {toast&&<div style={{position:'fixed',bottom:24,left:'50%',transform:'translateX(-50%)',background:INK,color:'#fff',padding:'10px 20px',borderRadius:12,fontSize:14,fontWeight:600,zIndex:1000,whiteSpace:'nowrap' as const}}>{toast}</div>}
     </div>
   )
 }
