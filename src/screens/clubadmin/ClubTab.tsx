@@ -1,7 +1,10 @@
 import { useState } from 'react'
 import { SubTabBar } from './ui'
+import { DirectorMessages } from '../MessagesScreens'
+import FilesTab from './FilesTab'
+import FeaturesTab from './FeaturesTab'
 
-type ClubView = 'overview' | 'inbox' | 'calendar' | 'seasonplan' | 'playingstyle' | 'headingpolicy' | 'kit' | 'settings'
+type ClubView = 'overview' | 'messages' | 'calendar' | 'seasonplan' | 'playingstyle' | 'headingpolicy' | 'kit' | 'files' | 'features' | 'settings'
 
 const MONTHS = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC']
 
@@ -28,13 +31,14 @@ export default function ClubTab({ role, empty, homeStory }: { role: 'chair' | 'd
       <SubTabBar
         items={[
           { id: 'overview', label: 'Overview' },
-          { id: 'inbox', label: 'Inbox' },
+          { id: 'messages', label: 'Messages' },
           { id: 'calendar', label: 'Calendar' },
           { id: 'seasonplan', label: 'Season plan' },
           { id: 'playingstyle', label: 'Playing style' },
           { id: 'headingpolicy', label: 'Heading policy' },
           { id: 'kit', label: 'Kit and cameras' },
-          { id: 'settings', label: 'Club settings' },
+          { id: 'files', label: 'Files' },
+          { id: 'features', label: 'Features and billing' },
         ]}
         active={view}
         onSelect={id => setView(id as ClubView)}
@@ -105,6 +109,12 @@ export default function ClubTab({ role, empty, homeStory }: { role: 'chair' | 'd
           </div>
         </div>
       )}
+
+      {/* Full-area Club sub-tabs (FIX-LIST item 3: Files, Features and billing and
+          Messages live under Club, not as their own top tabs) */}
+      {view === 'messages' && <div style={{ flex: 1, minHeight: 560, display: 'flex' }}><DirectorMessages embedded /></div>}
+      {view === 'files' && <FilesTab />}
+      {view === 'features' && <FeaturesTab />}
 
       <div style={pad}>
 
@@ -259,27 +269,6 @@ export default function ClubTab({ role, empty, homeStory }: { role: 'chair' | 'd
                 </div>
               </div>
             </div>
-          </>
-        )}
-
-        {view === 'inbox' && (
-          <>
-            <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', marginBottom: 14 }}>Inbox</div>
-            {[
-              { title: 'U11 Luke · Fair game time alert', body: 'Fewest player minutes at 28% — below the ½ game minimum for Kangaroos.', time: '2h ago', dot: '#c39797' },
-              { title: 'Coach meeting RSVP', body: '19 coaches confirmed for Tue 9 Jun · 7:30 pm.', time: '1 day ago', dot: '#40826d' },
-              { title: 'Kit 2 returned from repair', body: 'Camera kit 2 is back and ready to book.', time: '2 days ago', dot: '#40826d' },
-              { title: 'Registration closes Friday', body: '6 pending registrations. Chase before Fri 8 Nov.', time: '3 days ago', dot: '#c3a84a' },
-            ].map((n, i) => (
-              <div key={i} style={{ display: 'flex', gap: 12, padding: '12px 0', borderTop: i > 0 ? '1px solid #f0f1f0' : 'none' }}>
-                <div style={{ width: 8, height: 8, borderRadius: '999px', background: n.dot, marginTop: 6, flexShrink: 0 }} />
-                <div style={{ flexGrow: 1 }}>
-                  <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>{n.title}</div>
-                  <div style={{ fontSize: 13, color: '#4a5a57', marginTop: 2 }}>{n.body}</div>
-                  <div style={{ fontSize: 11, color: '#6f7f7b', marginTop: 4 }}>{n.time}</div>
-                </div>
-              </div>
-            ))}
           </>
         )}
 

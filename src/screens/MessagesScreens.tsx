@@ -406,11 +406,13 @@ export function CoachMessagesPersonCard({ onBack, onNav }: { onBack?: () => void
 }
 
 // MSG4 — Director messages
-export function DirectorMessages({ onBack: _onBack }: { onBack?: () => void }) {
+export function DirectorMessages({ onBack: _onBack, embedded }: { onBack?: () => void; embedded?: boolean }) {
   const [toast, setToast] = useState<string | null>(null)
   const [input, setInput] = useState('')
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
+  // When embedded as the Club › Messages sub-tab, the real ClubAdminScreen frame
+  // is already around us — don't draw a second (fake) director bar (FIX-LIST item 3).
   const DIRECTOR_NAV = ['Club', 'Teams', 'Coaches', 'Players', 'Safeguarding', 'Reports']
   const CLUB_SUBS = ['Overview', 'Messages', 'Calendar', 'Settings']
 
@@ -430,6 +432,7 @@ export function DirectorMessages({ onBack: _onBack }: { onBack?: () => void }) {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#f7f8f7' }}>
+      {!embedded && (<>
       {/* Director top bar */}
       <div style={{ background: GD, display: 'flex', alignItems: 'center', padding: '0 20px', gap: 2, height: 56, flexShrink: 0 }}>
         <span style={{ color: '#e9eae8', fontWeight: 800, fontSize: 16, marginRight: 10 }}>Clean Sheet</span>
@@ -456,6 +459,7 @@ export function DirectorMessages({ onBack: _onBack }: { onBack?: () => void }) {
           </button>
         ))}
       </div>
+      </>)}
       {/* Layout */}
       <div style={{ flex: 1, overflow: 'hidden', display: 'flex', minHeight: 0 }}>
         {/* Chat list */}

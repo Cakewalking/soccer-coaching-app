@@ -50,8 +50,11 @@ export default function ClubAdminScreen({ empty, role = 'chair', initials = 'RM'
     { id: 'files',        label: 'Files',          icon: 'M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8zM14 2v6h6' },
     { id: 'features',     label: 'Features and billing', icon: 'M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z' },
   ]
-  const CHAIR_TAB_IDS = new Set(['club', 'teams', 'coaches', 'safeguarding', 'reports', 'plan', 'calendar', 'messages', 'files', 'features'])
-  const DOF_TAB_IDS   = new Set(['club', 'teams', 'coaches', 'players', 'safeguarding', 'reports', 'files', 'features'])
+  // APP-MAP.md: director, chair and coordinator all get the SAME six tabs — no
+  // more. Files, Features and billing, Messages, Calendar etc. are sub-tabs of
+  // Club, not top tabs (FIX-LIST item 3).
+  const CHAIR_TAB_IDS = new Set(['club', 'teams', 'coaches', 'players', 'safeguarding', 'reports'])
+  const DOF_TAB_IDS   = new Set(['club', 'teams', 'coaches', 'players', 'safeguarding', 'reports'])
   const TABS = role === 'welfare' ? ALL_TABS.filter(t => t.id === 'welfare')
              : role === 'chair'   ? ALL_TABS.filter(t => CHAIR_TAB_IDS.has(t.id))
              :                      ALL_TABS.filter(t => DOF_TAB_IDS.has(t.id))
