@@ -39,13 +39,13 @@ function Dots({ n, active }: { n: number; active: boolean }) {
 }
 
 export default function ACC4PlayerPlan({ mode }: { mode?: 'new' } = {}) {
-  const [toast, setToast] = useState<string | null>(null)
   const isNew = mode === 'new'
-
-  function showToast(msg: string) {
-    setToast(msg)
-    setTimeout(() => setToast(null), 3200)
-  }
+  const [activeNav, setActiveNav] = useState('Players')
+  const [activeSub, setActiveSub] = useState('Player plan')
+  const [group, setGroup] = useState('Advanced')
+  const [done, setDone] = useState<string[]>([])
+  const mark = (k: string) => setDone(d => d.includes(k) ? d : [...d, k])
+  const is = (k: string) => done.includes(k)
 
   return (
     <div style={{ width: 1180, minHeight: 820, position: 'relative', background: '#f5f6f4', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
@@ -55,7 +55,7 @@ export default function ACC4PlayerPlan({ mode }: { mode?: 'new' } = {}) {
         <div style={{ fontSize: 21, fontWeight: 700, color: '#fff', letterSpacing: '-0.02em' }}>Clean Sheet</div>
         <nav style={{ display: 'flex', gap: 2, flexGrow: 1 }}>
           {['Today', 'Players', 'Training', 'Record', 'Library'].map(tab => (
-            <div key={tab} style={{ display: 'flex', alignItems: 'center', height: 40, padding: '0 14px', borderRadius: '999px', fontSize: 15, fontWeight: 600, background: tab === 'Players' ? '#40826d' : 'transparent', color: '#fff', cursor: 'default' }}>
+            <div key={tab} onClick={() => setActiveNav(tab)} style={{ display: 'flex', alignItems: 'center', height: 40, padding: '0 14px', borderRadius: '999px', fontSize: 15, fontWeight: 600, background: tab === activeNav ? '#40826d' : 'transparent', color: '#fff', cursor: 'pointer' }}>
               {tab}
             </div>
           ))}
@@ -70,7 +70,7 @@ export default function ACC4PlayerPlan({ mode }: { mode?: 'new' } = {}) {
       {/* Sub-tabs */}
       <div style={{ flex: 'none', height: 44, padding: '0 28px', background: '#fff', borderBottom: `1px solid ${LN}`, display: 'flex', alignItems: 'flex-end', gap: 24 }}>
         {['Player plan', 'Term report'].map(tab => (
-          <div key={tab} style={{ height: 44, padding: '0 4px', fontSize: 15, fontWeight: tab === 'Player plan' ? 600 : 400, color: tab === 'Player plan' ? INK : '#6f7f7b', borderBottom: tab === 'Player plan' ? '3px solid #40826d' : '3px solid transparent', display: 'flex', alignItems: 'center', boxSizing: 'border-box', cursor: 'default' }}>
+          <div key={tab} onClick={() => setActiveSub(tab)} style={{ height: 44, padding: '0 4px', fontSize: 15, fontWeight: tab === activeSub ? 600 : 400, color: tab === activeSub ? INK : '#6f7f7b', borderBottom: tab === activeSub ? '3px solid #40826d' : '3px solid transparent', display: 'flex', alignItems: 'center', boxSizing: 'border-box', cursor: 'pointer' }}>
             {tab}
           </div>
         ))}
@@ -93,13 +93,13 @@ export default function ACC4PlayerPlan({ mode }: { mode?: 'new' } = {}) {
         </div>
         {isNew ? (
           <>
-            <button onClick={() => showToast("New message to Luca's parents.")} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 14, fontWeight: 600, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Message Luca's parents</button>
-            <button onClick={() => showToast('Opening assessment.')} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: 0, background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Complete assessment</button>
+            <button onClick={() => mark('msgnew')} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: `1px solid ${is('msgnew') ? G : LN}`, background: is('msgnew') ? PALE : '#fff', fontSize: 14, fontWeight: 600, color: is('msgnew') ? G : INK, cursor: 'pointer', fontFamily: 'inherit' }}>{is('msgnew') ? '✓ Message sent' : "Message Luca's parents"}</button>
+            <button onClick={() => mark('assess')} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: 0, background: is('assess') ? '#40826d' : G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>{is('assess') ? 'Assessment open ✓' : 'Complete assessment'}</button>
           </>
         ) : (
           <>
-            <button onClick={() => showToast('New message to Tess Okonkwo.')} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 14, fontWeight: 600, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Message Kai's mum</button>
-            <button onClick={() => showToast('Writing term report.')} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: 0, background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Write term report</button>
+            <button onClick={() => mark('msgkai')} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: `1px solid ${is('msgkai') ? G : LN}`, background: is('msgkai') ? PALE : '#fff', fontSize: 14, fontWeight: 600, color: is('msgkai') ? G : INK, cursor: 'pointer', fontFamily: 'inherit' }}>{is('msgkai') ? '✓ Message sent' : "Message Kai's mum"}</button>
+            <button onClick={() => { mark('report'); setActiveSub('Term report') }} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: 0, background: is('report') ? '#40826d' : G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>{is('report') ? 'Writing report ✓' : 'Write term report'}</button>
           </>
         )}
       </div>
@@ -179,9 +179,9 @@ export default function ACC4PlayerPlan({ mode }: { mode?: 'new' } = {}) {
               <div style={{ background: '#fff', borderRadius: 16, border: `2px solid ${G}`, padding: '18px 20px' }}>
                 <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: G, marginBottom: 12 }}>SUGGESTED GROUP</div>
                 {['Advanced', 'Foundation'].map(grp => (
-                  <label key={grp} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 0', borderTop: `1px solid ${LN}`, cursor: 'default' }}>
-                    <div style={{ width: 20, height: 20, borderRadius: '50%', border: grp === 'Advanced' ? `6px solid ${G}` : `2px solid #c5c8c4`, flexShrink: 0 }} />
-                    <span style={{ fontSize: 15, fontWeight: grp === 'Advanced' ? 700 : 400, color: grp === 'Advanced' ? INK : MUT }}>{grp}</span>
+                  <label key={grp} onClick={() => setGroup(grp)} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 0', borderTop: `1px solid ${LN}`, cursor: 'pointer' }}>
+                    <div style={{ width: 20, height: 20, borderRadius: '50%', border: grp === group ? `6px solid ${G}` : `2px solid #c5c8c4`, flexShrink: 0 }} />
+                    <span style={{ fontSize: 15, fontWeight: grp === group ? 700 : 400, color: grp === group ? INK : MUT }}>{grp}</span>
                   </label>
                 ))}
                 <div style={{ fontSize: 12, color: MUT, marginTop: 10, lineHeight: '17px' }}>Based on 3 trial sessions — you can change this any time.</div>
@@ -237,13 +237,6 @@ export default function ACC4PlayerPlan({ mode }: { mode?: 'new' } = {}) {
           )}
         </div>
       </div>
-
-      {toast && (
-        <div role="status" style={{ position: 'absolute', left: 24, bottom: 24, zIndex: 60, display: 'flex', alignItems: 'center', gap: 10, minHeight: 52, padding: '12px 18px', borderRadius: 14, background: GD, color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)' }}>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12l5 5 9-10"/></svg>
-          {toast}
-        </div>
-      )}
     </div>
   )
 }
