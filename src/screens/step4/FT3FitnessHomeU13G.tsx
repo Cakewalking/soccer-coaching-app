@@ -1,3 +1,5 @@
+import { useState } from "react"
+
 const G = '#2f6252', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 const WATCH = [
@@ -17,13 +19,16 @@ const FELT = [58, 70, 52, 76, 68, 62, 72]
 const DAYS = ['M','T','W','T','F','S','S']
 
 export default function FT3FitnessHomeU13G(_: { onBack?: () => void }) {
+  const [activeNav, setActiveNav] = useState("Home")
+  const [watch, setWatch] = useState<number | null>(null)
+  const [tile, setTile] = useState<number | null>(null)
   return (
     <div style={{ width: 1180, height: 820, background: '#f7f8f7', boxSizing: 'border-box' as const, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' as const }}>
       <div style={{ height: 64, background: G, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 16, flex: 'none' }}>
         <div style={{ fontSize: 21, fontWeight: 700, color: '#fff', letterSpacing: '-0.02em' }}>Clean Sheet</div>
         <div style={{ flex: 1 }}><span style={{ fontSize: 12, color: 'rgba(255,255,255,0.65)', display: 'block' }}>Wattle Creek FC · Fitness coach</span><span style={{ fontSize: 16, fontWeight: 700, color: '#fff' }}>Hi Meg</span></div>
         {['Home','Squad','Training','Match day','Clips'].map(n => (
-          <a key={n} style={{ height: 44, padding: '0 14px', borderRadius: 8, display: 'flex', alignItems: 'center', fontSize: 15, fontWeight: n === 'Home' ? 700 : 500, color: '#fff', background: n === 'Home' ? 'rgba(255,255,255,0.18)' : 'transparent', textDecoration: 'none' }}>{n}</a>
+          <a key={n} onClick={() => setActiveNav(n)} style={{ height: 44, padding: '0 14px', borderRadius: 8, display: 'flex', alignItems: 'center', fontSize: 15, fontWeight: n === activeNav ? 700 : 500, color: '#fff', background: n === activeNav ? 'rgba(255,255,255,0.18)' : 'transparent', textDecoration: 'none', cursor: 'pointer' }}>{n}</a>
         ))}
       </div>
       <div style={{ flex: 1, minHeight: 0, padding: '14px 28px 18px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 300px', gap: 14 }}>
@@ -50,8 +55,8 @@ export default function FT3FitnessHomeU13G(_: { onBack?: () => void }) {
             </div>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 10 }}>
-            {TILES.map(t => (
-              <div key={t.n} style={{ background: '#fff', border: `1px solid #c5c8c4`, borderRadius: 14, padding: '12px 14px' }}>
+            {TILES.map((t, ti) => (
+              <div key={t.n} onClick={() => setTile(ti)} style={{ background: tile === ti ? PALE : '#fff', border: `${tile === ti ? 2 : 1}px solid ${tile === ti ? G : '#c5c8c4'}`, borderRadius: 14, padding: '12px 14px', cursor: 'pointer' }}>
                 <div style={{ fontSize: 26, fontWeight: 800, letterSpacing: '-0.02em' }}>{t.n}</div>
                 <div style={{ fontWeight: 700, fontSize: 14 }}>{t.label}</div>
                 <div style={{ fontSize: 12, color: MUT }}>{t.sub}</div>
@@ -62,7 +67,7 @@ export default function FT3FitnessHomeU13G(_: { onBack?: () => void }) {
         <div style={{ background: '#fff', border: `1px solid #c5c8c4`, borderRadius: 16, padding: '14px 16px', display: 'flex', flexDirection: 'column' as const, gap: 8 }}>
           <div style={{ fontSize: 15, fontWeight: 700 }}>Who to watch</div>
           {WATCH.map((p, i) => (
-            <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, borderTop: `1px solid ${LN}`, paddingTop: 8 }}>
+            <div key={i} onClick={() => setWatch(i)} style={{ display: 'flex', alignItems: 'center', gap: 10, borderTop: `1px solid ${LN}`, paddingTop: 8, cursor: 'pointer', background: watch === i ? PALE : 'transparent', borderRadius: 8 }}>
               <span style={{ width: 28, height: 28, borderRadius: '50%', background: PALE, color: G, fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{p.ini}</span>
               <span style={{ flex: 1, fontSize: 14, fontWeight: 600 }}>{p.name}</span>
               <span style={{ padding: '2px 8px', borderRadius: 99, background: p.col, color: p.tc, fontSize: 11, fontWeight: 700, whiteSpace: 'nowrap' as const }}>{p.tag}</span>
