@@ -41,15 +41,22 @@ function Avatar({ init }: { init: string }) {
 }
 
 export default function C2ClipsByGame() {
-  const [toast, setToast] = useState<string|null>(null)
-  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
+  const [activeNav, setActiveNav] = useState('Clips')
+  const [activeTab, setActiveTab] = useState('Browse')
+  const [activeView, setActiveView] = useState('By game')
+  const [activeFilter, setActiveFilter] = useState('All')
+  const [selectedGame, setSelectedGame] = useState('ironbark')
+  const [selectedClip, setSelectedClip] = useState(1)
+  const [done, setDone] = useState<string[]>([])
+  const mark = (k: string) => setDone(d => d.includes(k) ? d : [...d, k])
+  const is = (k: string) => done.includes(k)
   return (
     <div style={{ width: 1180, background: BG, fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' as const }}>
       {/* Top nav */}
       <div style={{ background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 24, height: 52, flexShrink: 0 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>Clean Sheet</div>
         {['Home', 'Squad', 'Training', 'Match day', 'Clips'].map(t => (
-          <div key={t} style={{ fontSize: 13, fontWeight: t === 'Clips' ? 700 : 500, color: t === 'Clips' ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>
+          <div key={t} onClick={() => setActiveNav(t)} style={{ display: 'flex', alignItems: 'center', fontSize: 13, fontWeight: t === activeNav ? 700 : 500, color: t === activeNav ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>
         ))}
         <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 10 }}>
           <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)' }}>U12 Sam · Wattle Creek</div>
@@ -60,7 +67,7 @@ export default function C2ClipsByGame() {
       {/* Sub-tabs */}
       <div style={{ background: '#fff', borderBottom: `1px solid ${LN}`, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 4, height: 44, flexShrink: 0 }}>
         {['Browse', 'Playlists', 'Shared with players'].map(t => (
-          <div key={t} style={{ padding: '0 16px', height: 44, display: 'flex', alignItems: 'center', fontSize: 14, fontWeight: t === 'Browse' ? 700 : 500, color: t === 'Browse' ? G : MUT, borderBottom: t === 'Browse' ? `2px solid ${G}` : '2px solid transparent', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>
+          <div key={t} onClick={() => setActiveTab(t)} style={{ padding: '0 16px', height: 44, display: 'flex', alignItems: 'center', fontSize: 14, fontWeight: t === activeTab ? 700 : 500, color: t === activeTab ? G : MUT, borderBottom: t === activeTab ? `2px solid ${G}` : '2px solid transparent', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>
         ))}
         <div style={{ padding: '0 16px', height: 44, display: 'flex', alignItems: 'center', gap: 6, fontSize: 14, fontWeight: 500, color: MUT, borderBottom: '2px solid transparent', cursor: 'pointer' }}>
           To check
@@ -73,7 +80,7 @@ export default function C2ClipsByGame() {
         <div style={{ fontSize: 14, fontWeight: 700, color: INK }}>22 clips · 4 games</div>
         <div style={{ flex: 1 }} />
         {['By game', 'By measure', 'By player'].map(v => (
-          <div key={v} style={{ padding: '6px 14px', borderRadius: 8, background: v === 'By game' ? PALE : 'transparent', border: v === 'By game' ? `1px solid ${G}` : `1px solid ${LN}`, fontSize: 13, fontWeight: v === 'By game' ? 700 : 500, color: v === 'By game' ? G : MUT, cursor: 'pointer' }}>{v}</div>
+          <div key={v} onClick={() => setActiveView(v)} style={{ padding: '6px 14px', borderRadius: 8, background: v === activeView ? PALE : 'transparent', border: v === activeView ? `1px solid ${G}` : `1px solid ${LN}`, fontSize: 13, fontWeight: v === activeView ? 700 : 500, color: v === activeView ? G : MUT, cursor: 'pointer' }}>{v}</div>
         ))}
         <div style={{ padding: '6px 14px', borderRadius: 8, border: `1px solid ${LN}`, fontSize: 13, color: MUT, cursor: 'pointer' }}>All games</div>
       </div>
@@ -83,7 +90,7 @@ export default function C2ClipsByGame() {
         {/* Game list */}
         <div style={{ background: '#fff', borderRight: `1px solid ${LN}`, overflowY: 'auto', padding: '8px 0' }}>
           {GAMES.map(g => (
-            <div key={g.id} style={{ padding: '12px 16px', cursor: 'pointer', background: g.id === 'ironbark' ? PALE : 'transparent', borderLeft: g.id === 'ironbark' ? `3px solid ${G}` : '3px solid transparent' }}>
+            <div key={g.id} onClick={() => setSelectedGame(g.id)} style={{ padding: '12px 16px', cursor: 'pointer', background: g.id === selectedGame ? PALE : 'transparent', borderLeft: g.id === selectedGame ? `3px solid ${G}` : '3px solid transparent' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
                 <ResChip res={g.res} />
                 <span style={{ fontSize: 14, fontWeight: 700, color: INK }}>{g.score}</span>
@@ -102,12 +109,12 @@ export default function C2ClipsByGame() {
             <div style={{ fontSize: 12, color: MUT }}>Full match recorded · highlights are 4 min · review ready</div>
             <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
               {['Highlights', 'All', 'Good', 'To work on'].map(f => (
-                <div key={f} style={{ padding: '4px 10px', borderRadius: 6, background: f === 'All' ? G : '#fff', border: `1px solid ${f === 'All' ? G : LN}`, fontSize: 12, fontWeight: f === 'All' ? 700 : 500, color: f === 'All' ? '#fff' : MUT, cursor: 'pointer' }}>{f}</div>
+                <div key={f} onClick={() => setActiveFilter(f)} style={{ padding: '4px 10px', borderRadius: 6, background: f === activeFilter ? G : '#fff', border: `1px solid ${f === activeFilter ? G : LN}`, fontSize: 12, fontWeight: f === activeFilter ? 700 : 500, color: f === activeFilter ? '#fff' : MUT, cursor: 'pointer' }}>{f}</div>
               ))}
             </div>
           </div>
           {CLIPS.map((c) => (
-            <div key={c.id} style={{ padding: '12px 16px', borderBottom: `1px solid ${LN}`, cursor: 'pointer', background: c.id === 1 ? PALE : '#fff' }}>
+            <div key={c.id} onClick={() => setSelectedClip(c.id)} style={{ padding: '12px 16px', borderBottom: `1px solid ${LN}`, cursor: 'pointer', background: c.id === selectedClip ? PALE : '#fff' }}>
               <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 8, marginBottom: 6 }}>
                 <div>
                   <LabelChip label={c.label} />
@@ -174,16 +181,15 @@ export default function C2ClipsByGame() {
           </div>
 
           <div style={{ display: 'flex', gap: 8 }}>
-            <button onClick={() => st("Added to Saturday's team talk.")} style={{ height: 44, flex: 1, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, cursor: 'pointer' }}>In Saturday's team talk</button>
-            <button onClick={() => st('Sent to 2 players.')} style={{ height: 44, flex: 1, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, cursor: 'pointer' }}>Send to 2 players</button>
+            <button onClick={() => mark('talk')} style={{ height: 44, flex: 1, borderRadius: 10, border: `1px solid ${is('talk') ? G : LN}`, background: is('talk') ? PALE : '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, cursor: 'pointer' }}>{is('talk') ? "✓ In team talk" : "In Saturday's team talk"}</button>
+            <button onClick={() => mark('send')} style={{ height: 44, flex: 1, borderRadius: 10, border: `1px solid ${is('send') ? G : LN}`, background: is('send') ? PALE : '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, cursor: 'pointer' }}>{is('send') ? '✓ Sent to 2' : 'Send to 2 players'}</button>
           </div>
           <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
-            <button onClick={() => st('Added to playlist.')} style={{ height: 44, flex: 1, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, cursor: 'pointer' }}>Add to playlist</button>
-            <button onClick={() => st('Opening drawing tool.')} style={{ height: 44, flex: 1, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, cursor: 'pointer' }}>Draw on it</button>
+            <button onClick={() => mark('playlist')} style={{ height: 44, flex: 1, borderRadius: 10, border: `1px solid ${is('playlist') ? G : LN}`, background: is('playlist') ? PALE : '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, cursor: 'pointer' }}>{is('playlist') ? '✓ In playlist' : 'Add to playlist'}</button>
+            <button onClick={() => mark('draw')} style={{ height: 44, flex: 1, borderRadius: 10, border: `1px solid ${is('draw') ? G : LN}`, background: is('draw') ? PALE : '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, cursor: 'pointer' }}>{is('draw') ? 'Drawing on ✓' : 'Draw on it'}</button>
           </div>
         </div>
       </div>
-      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }
