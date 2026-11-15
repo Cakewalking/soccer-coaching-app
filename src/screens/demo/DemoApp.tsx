@@ -2570,6 +2570,10 @@ export default function DemoApp() {
   }
 
   if (view === 'lookaround') {
+    // Unknown role (e.g. /look/nonsense): no role frame, just ER4 (FIX-LIST item 7)
+    if (!TOURS[role]) {
+      return <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#f7f9f7' }}><ER4NotFound /></div>
+    }
     const homeKey = TOURS[role].home
     let lookContent: ReactNode
     if (role === 'coach') {

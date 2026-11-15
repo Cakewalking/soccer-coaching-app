@@ -43,7 +43,7 @@ export const TOURS: Record<string, TourDef> = {
         { label: "Consent by player", caption: "First use: every screen says what to do next, so nothing starts blank.", screen: "P1-Consent" },
       ]},
       { title: "After a game", steps: [
-        { label: "Home on Sunday", caption: "The game goes in, and about 25 minutes later the review comes back with three things to work on.", screen: "T1s-HomeSunday" },
+        { label: "Home on Sunday", caption: "The game goes in, and about 25 minutes later the review comes back with three things to work on.", screen: "STO5-HomeStoryJuniors" },
         { label: "Add the game", caption: "The game goes in, and about 25 minutes later the review comes back with three things to work on.", screen: "addgame" },
         { label: "Match review", caption: "The game goes in, and about 25 minutes later the review comes back with three things to work on.", screen: "R1-MatchReview" },
         { label: "Check unsure moments", caption: "The game goes in, and about 25 minutes later the review comes back with three things to work on.", screen: "TC1-ToCheck" },
@@ -108,7 +108,7 @@ export const TOURS: Record<string, TourDef> = {
         { label: "Coach\u2019s Corner", caption: "Short reads for coaches: game model, player welfare, session design and working with parents. Five minutes before training.", screen: "EDU5-CoachCorner" },
       ]},
       { title: "Game day", steps: [
-        { label: "Home on game day", caption: "Game day: the team sheet, the talk, and fair minutes for every player.", screen: "T1g-HomeGameDay" },
+        { label: "Home on game day", caption: "Game day: the team sheet, the talk, and fair minutes for every player.", screen: "STO5-HomeStoryJuniors" },
         { label: "Team sheet", caption: "Game day: the team sheet, the talk, and fair minutes for every player.", screen: "teamsheet" },
         { label: "Opposition", caption: "Game day: the team sheet, the talk, and fair minutes for every player.", screen: "opposition" },
         { label: "Team talk", caption: "Game day: the team sheet, the talk, and fair minutes for every player.", screen: "matchday" },
@@ -145,7 +145,7 @@ export const TOURS: Record<string, TourDef> = {
         { label: "Add the training night", caption: "First use: share one link with families and add a training night. That\u2019s all the set-up there is.", screen: "HM3e-TrainingMiniRoosEmpty" },
       ]},
       { title: "Each week", steps: [
-        { label: "Home", caption: "Under 12 there are no scores, sensors or numbers. The week is four fun games, who\u2019s coming, and a turn for everyone. Filming is optional, for clips.", screen: "HM1-HomeMiniRoos" },
+        { label: "Home", caption: "Under 12 there are no scores, sensors or numbers. The week is four fun games, who\u2019s coming, and a turn for everyone. Filming is optional, for clips.", screen: "STO1-HomeStoryMiniRoos" },
         { label: "Squad and who\u2019s coming", caption: "Under 12 there are no scores, sensors or numbers. The week is four fun games, who\u2019s coming, and a turn for everyone. Filming is optional, for clips.", screen: "HM2-SquadMiniRoos" },
         { label: "Family chat", caption: "Under 12 there are no scores, sensors or numbers. The week is four fun games, who\u2019s coming, and a turn for everyone. Filming is optional, for clips.", screen: "CH1-TeamChat" },
         { label: "Tonight\u2019s four games", caption: "Under 12 there are no scores, sensors or numbers. The week is four fun games, who\u2019s coming, and a turn for everyone. Filming is optional, for clips.", screen: "HM3-TrainingMiniRoos" },
@@ -223,7 +223,7 @@ export const TOURS: Record<string, TourDef> = {
         { label: "Registration window and clearances", caption: "Senior teams add registration windows and clearances.", screen: "FN2-SeniorSquad" },
       ]},
       { title: "Each week", steps: [
-        { label: "Home", caption: "For adults the week is load, the opposition and the plan.", screen: "HS1-HomeSeniors" },
+        { label: "Home", caption: "For adults the week is load, the opposition and the plan.", screen: "STO4-HomeStorySeniors" },
         { label: "Squad load", caption: "For adults the week is load, the opposition and the plan.", screen: "FN2b-SeniorSquad" },
         { label: "Opposition", caption: "For adults the week is load, the opposition and the plan. This screen is shared with other ages, so it shows the under-12 team here.", screen: "opposition" },
         { label: "Tonight\u2019s plan", caption: "For adults the week is load, the opposition and the plan.", screen: "training" },
@@ -311,7 +311,7 @@ export const TOURS: Record<string, TourDef> = {
     sandboxHome: 'goalkeeper-e',
     sections: [
       { title: "Each week", steps: [
-        { label: "Home", caption: "One coach looks after every keeper in the club, across all teams.", screen: "HG1-HomeKeeperCoach" },
+        { label: "Home", caption: "One coach looks after every keeper in the club, across all teams.", screen: "STO9-HomeStoryKeepers" },
         { label: "Keepers by team", caption: "One coach looks after every keeper in the club, across all teams.", screen: "FK1-Goalkeepers" },
         { label: "Keeper drills", caption: "One coach looks after every keeper in the club, across all teams. This screen is shared with other ages, so it shows the under-12 team here.", screen: "drills" },
         { label: "Keeper clips", caption: "One coach looks after every keeper in the club, across all teams. This screen is shared with other ages, so it shows the under-12 team here.", screen: "clips" },
@@ -339,7 +339,7 @@ export const TOURS: Record<string, TourDef> = {
         { label: "You\u2019re in", caption: "Signing up takes a few minutes, and nobody sees a child\u2019s data until their children check is confirmed.", screen: "IV4-Invite" },
       ]},
       { title: "Each week", steps: [
-        { label: "Home", caption: "The weekly jobs, done from a phone in a minute or two.", screen: "TM1-ManagerHome" },
+        { label: "Home", caption: "The weekly jobs, done from a phone in a minute or two.", screen: "STO16-HomeStoryManager" },
         { label: "Who\u2019s coming", caption: "The weekly jobs, done from a phone in a minute or two.", screen: "TM6-ManagerWhosComing" },
         { label: "Tell parents about a change", caption: "The weekly jobs, done from a phone in a minute or two.", screen: "TM3-ManagerChange" },
         { label: "Messages", caption: "The weekly jobs, done from a phone in a minute or two.", screen: "TM5-ManagerMessages" },
@@ -452,7 +452,7 @@ export const TOURS: Record<string, TourDef> = {
         { label: "Own account, adult", caption: "From 15, players have their own account. Under 18, a parent can still read coach messages.", screen: "JN9a-Join" },
       ]},
       { title: "Each week", steps: [
-        { label: "Home for older players", caption: "Older players see their own load and tests, and say when they\u2019re available.", screen: "PO1-OlderHome" },
+        { label: "Home for older players", caption: "Older players see their own load and tests, and say when they\u2019re available.", screen: "STO19-HomeStoryPlayerOlder" },
         { label: "Messages", caption: "Older players see their own load and tests, and say when they\u2019re available.", screen: "PO6-OlderChats" },
         { label: "Players and coaches group", caption: "Older players see their own load and tests, and say when they\u2019re available.", screen: "PO7-OlderGroup" },
         { label: "Message the coach, parent copied", caption: "Older players see their own load and tests, and say when they\u2019re available.", screen: "PO2-OlderMessage" },
@@ -478,7 +478,7 @@ export const TOURS: Record<string, TourDef> = {
         { label: "Season plan", caption: "The club is set up once: import the players, choose how the club plays, set the rules.", screen: "FY1-SeasonPlan" },
       ]},
       { title: "Each week", steps: [
-        { label: "Club overview", caption: "Every team on one page. The director can open any team read-only, as its coach sees it.", screen: "D1-ClubOverview" },
+        { label: "Club overview", caption: "Every team on one page. The director can open any team read-only, as its coach sees it.", screen: "STO10-HomeStoryDirector" },
         { label: "Teams", caption: "Every team on one page. The director can open any team read-only, as its coach sees it.", screen: "D2-Teams" },
         { label: "One team, read-only", caption: "Every team on one page. The director can open any team read-only, as its coach sees it.", screen: "d7-u14" },
         { label: "Compare two teams", caption: "Every team on one page. The director can open any team read-only, as its coach sees it.", screen: "DX1-CompareTeams" },
@@ -569,7 +569,7 @@ export const TOURS: Record<string, TourDef> = {
         { label: "Import from PlayFootball", caption: "The coordinator starts by importing registrations.", screen: "FP1-PlayFootball" },
       ]},
       { title: "Each week", steps: [
-        { label: "Home", caption: "The jobs that keep a club running: registrations, fixtures, referees, kit and volunteers.", screen: "DCo1-CoordinatorHome" },
+        { label: "Home", caption: "The jobs that keep a club running: registrations, fixtures, referees, kit and volunteers.", screen: "STO12-HomeStoryCoordinator" },
         { label: "Registrations", caption: "The jobs that keep a club running: registrations, fixtures, referees, kit and volunteers.", screen: "DR1-Registrations" },
         { label: "Fixtures from Dribl", caption: "The jobs that keep a club running: registrations, fixtures, referees, kit and volunteers.", screen: "FF1-LeagueSync" },
         { label: "Referees and game leaders", caption: "The jobs that keep a club running: registrations, fixtures, referees, kit and volunteers.", screen: "FR1-Referees" },
@@ -598,7 +598,7 @@ export const TOURS: Record<string, TourDef> = {
         { label: "From the sideline", caption: "A concern can come from a parent, a child, a wellness alert or the sideline. Each goes only to the welfare officer.", screen: "TM8-SidelineReport" },
       ]},
       { title: "Handle it", steps: [
-        { label: "My cases", caption: "Only the welfare officer sees names. The director sees counts.", screen: "DW1-WelfareCases" },
+        { label: "My cases", caption: "Only the welfare officer sees names. The director sees counts.", screen: "STO13-HomeStoryWelfare" },
         { label: "Nothing open", caption: "Only the welfare officer sees names. The director sees counts.", screen: "DW1e-WelfareCasesEmpty" },
         { label: "What the director sees", caption: "Only the welfare officer sees names. The director sees counts.", screen: "D5-Safeguarding-concerns" },
         { label: "Sideline reports", caption: "Only the welfare officer sees names. The director sees counts.", screen: "FS1-Sideline" },
@@ -632,7 +632,7 @@ export const TOURS: Record<string, TourDef> = {
         { label: "Holiday clinic", caption: "Free trials are how academies grow. Every trial family is followed from booking to joining, so none drop off.", screen: "AC9-HolidayClinic" },
       ]},
       { title: "Each week", steps: [
-        { label: "Home: what needs you", caption: "Clean Sheet chases fees and trial families. The owner sees only what it couldn\u2019t settle.", screen: "AC1-AcademyHome" },
+        { label: "Home: what needs you", caption: "Clean Sheet chases fees and trial families. The owner sees only what it couldn\u2019t settle.", screen: "STO14-HomeStoryAcademyOwner" },
         { label: "Message families", caption: "Clean Sheet chases fees and trial families. The owner sees only what it couldn\u2019t settle.", screen: "AC12-AcademyBroadcast" },
         { label: "All players", caption: "Clean Sheet chases fees and trial families. The owner sees only what it couldn\u2019t settle.", screen: "AC4-AcademyPlayers" },
         { label: "Fees and late payers", caption: "Clean Sheet chases fees and trial families. The owner sees only what it couldn\u2019t settle.", screen: "AC5-Fees" },
@@ -703,7 +703,7 @@ export const TOURS: Record<string, TourDef> = {
         { label: "Before the first session", caption: "A parent books a free trial, gets an honest note and an offer, and can add Saturday games with the partner club on one bill.", screen: "acp3-home-e" },
       ]},
       { title: "Each week", steps: [
-        { label: "Home: Kai\u2019s week", caption: "The week on one screen: sessions, the goal, a note from the coach, and a make-up when they can\u2019t come.", screen: "ACP3-AcademyParentHome" },
+        { label: "Home: Kai\u2019s week", caption: "The week on one screen: sessions, the goal, a note from the coach, and a make-up when they can\u2019t come.", screen: "STO21-HomeStoryAcademyParent" },
         { label: "Group chat", caption: "The week on one screen: sessions, the goal, a note from the coach, and a make-up when they can\u2019t come.", screen: "ACP11-AcademyParentChat" },
         { label: "Away and make-up", caption: "The week on one screen: sessions, the goal, a note from the coach, and a make-up when they can\u2019t come.", screen: "acp6-makeup" },
         { label: "Fees", caption: "The week on one screen: sessions, the goal, a note from the coach, and a make-up when they can\u2019t come.", screen: "academyparent-fees" },
@@ -730,7 +730,7 @@ export const TOURS: Record<string, TourDef> = {
     sandboxHome: 'academyplayer-e',
     sections: [
       { title: "Each week", steps: [
-        { label: "Home: my goal and skills", caption: "Under 15s join with a code from a parent. One goal, their own skills, and ten minutes of practice at home.", screen: "ACK1-AcademyPlayerHome" },
+        { label: "Home: my goal and skills", caption: "Under 15s join with a code from a parent. One goal, their own skills, and ten minutes of practice at home.", screen: "STO22-HomeStoryAcademyPlayer" },
         { label: "Practice at home", caption: "Under 15s join with a code from a parent. One goal, their own skills, and ten minutes of practice at home.", screen: "ACK2-HomePractice" },
         { label: "Before a goal is set", caption: "Under 15s join with a code from a parent. One goal, their own skills, and ten minutes of practice at home.", screen: "ACK1e-AcademyPlayerHomeEmpty" },
       ]},
@@ -1084,7 +1084,7 @@ export const TOURS: Record<string, TourDef> = {
     home: '',
     sections: [
       { title: "The story", steps: [
-        { label: "Saturday: the game goes in", caption: "The club films the game on whatever camera it has. Cameras with a live feed can stream straight in.", screen: "T1s-HomeSunday" },
+        { label: "Saturday: the game goes in", caption: "The club films the game on whatever camera it has. Cameras with a live feed can stream straight in.", screen: "STO5-HomeStoryJuniors" },
         { label: "The review comes back", caption: "About 25 minutes later: what went well, and three things to work on, each with a clip.", screen: "R1-MatchReview" },
         { label: "Thursday: the plan is ready", caption: "Training is built from those three things, using drills written to the national curriculum.", screen: "T3-TrainingTab" },
         { label: "At the ground", caption: "Pitch-side, the coach sees what to set up and what to say. Growing players have their sprints capped.", screen: "TR1b-PitchSideDrill" },
