@@ -3,9 +3,17 @@ import { useState } from 'react'
 const G = '#2f6252', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 const STEPS = ['Your account', 'Children check', 'Team setup', 'Invite staff', 'Done']
+const STEP_BODY = [
+  { title: 'Create your account', desc: 'Your details as a coach. Players and parents join separately.' },
+  { title: 'Your children check', desc: 'Add your Working with Children Check number, or confirm you hold one.' },
+  { title: 'Set up your team', desc: 'Name your team, pick the age group and your home ground.' },
+  { title: 'Invite your staff', desc: 'Add an assistant coach and a team manager by email. They join with a link.' },
+  { title: "You're all set", desc: 'Your team is ready. Players and parents can join with the team link.' },
+]
 
 export default function OB1SignUp(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string|null>(null)
+  const [step, setStep] = useState(0)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
@@ -14,9 +22,9 @@ export default function OB1SignUp(_: { onBack?: () => void }) {
         <div style={{ display: 'flex', gap: 0, flex: 1 }}>
           {STEPS.map((s, i) => (
             <div key={s} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '4px 12px', borderRadius: 999, background: i === 0 ? '#fff' : 'transparent' }}>
-                <div style={{ width: 20, height: 20, borderRadius: '50%', background: i === 0 ? G : i < 0 ? '#40826d' : 'rgba(255,255,255,0.3)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }}>{i + 1}</div>
-                <div style={{ fontSize: 13, fontWeight: i === 0 ? 700 : 500, color: i === 0 ? INK : 'rgba(255,255,255,0.7)' }}>{s}</div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '4px 12px', borderRadius: 999, background: i === step ? '#fff' : 'transparent' }}>
+                <div style={{ width: 20, height: 20, borderRadius: '50%', background: i === step ? G : i < step ? '#40826d' : 'rgba(255,255,255,0.3)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }}>{i < step ? '✓' : i + 1}</div>
+                <div style={{ fontSize: 13, fontWeight: i === step ? 700 : 500, color: i === step ? INK : 'rgba(255,255,255,0.7)' }}>{s}</div>
               </div>
               {i < STEPS.length - 1 && <div style={{ width: 20, height: 1, background: 'rgba(255,255,255,0.3)' }} />}
             </div>
@@ -27,8 +35,8 @@ export default function OB1SignUp(_: { onBack?: () => void }) {
       <div style={{ flexGrow: 1, display: 'flex', gap: 0 }}>
         <div style={{ flex: 1, padding: '32px 48px', display: 'flex', flexDirection: 'column', gap: 20 }}>
           <div>
-            <div style={{ fontSize: 24, fontWeight: 700, letterSpacing: '-0.02em', marginBottom: 6 }}>Create your account</div>
-            <div style={{ fontSize: 15, color: MUT }}>Your details as a coach. Players and parents join separately.</div>
+            <div style={{ fontSize: 24, fontWeight: 700, letterSpacing: '-0.02em', marginBottom: 6 }}>{STEP_BODY[step].title}</div>
+            <div style={{ fontSize: 15, color: MUT }}>{STEP_BODY[step].desc}</div>
           </div>
 
           {[['First name', 'e.g. Sam'], ['Last name', 'e.g. Kowalski'], ['Email address', 'you@example.com']].map(([label, placeholder]) => (
@@ -60,8 +68,10 @@ export default function OB1SignUp(_: { onBack?: () => void }) {
       </div>
 
       <div style={{ flex: 'none', height: 68, background: '#fff', borderTop: `1px solid ${LN}`, padding: '0 48px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <button onClick={() => st('Going back.')} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 15, fontWeight: 600, color: INK, cursor: 'pointer' }}>Back</button>
-        <button onClick={() => st('Moving to next step.')} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 0, background: G, color: '#fff', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Next →</button>
+        <button onClick={() => setStep(s => Math.max(0, s - 1))} disabled={step === 0} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 15, fontWeight: 600, color: step === 0 ? '#c5c8c4' : INK, cursor: step === 0 ? 'default' : 'pointer' }}>Back</button>
+        {step < STEPS.length - 1
+          ? <button onClick={() => setStep(s => Math.min(STEPS.length - 1, s + 1))} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 0, background: G, color: '#fff', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>{step === STEPS.length - 2 ? 'Finish' : 'Next →'}</button>
+          : <button onClick={() => st('Taking you to your Home.')} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 0, background: G, color: '#fff', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Go to Home</button>}
       </div>
       {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
