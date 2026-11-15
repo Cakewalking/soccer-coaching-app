@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { OpeningPanel } from '../step4/directorParts'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
@@ -23,19 +24,18 @@ export default function FilesTab({ onNav }: { onNav?: (s: string) => void }) {
   function tool(name: string) { setLastTool(name) }
 
   return (
-    <div data-lasttool={lastTool} style={{ flex: 1, display: 'flex', gap: 24, padding: '24px 24px 32px' }}>
+    <div data-lasttool={lastTool} style={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: 0 }}>
+      <OpeningPanel
+        landing
+        heading="FILES · CLUB DOCUMENTS, TEMPLATES AND SPACE"
+        sentence="Three club documents are not yet opened by every family."
+        support="U16 Ollie is close to its 5 GB limit. Everything else has room."
+        figures={[{ num: '4', label: 'club documents' }, { num: '3', label: 'need a nudge', proof: true }, { num: '9', label: 'teams use templates' }]}
+        buttons={[{ label: 'New template', main: true, onClick: () => tool('New template') }, { label: 'Upload', onClick: () => tool('Upload') }]}
+      />
+    <div style={{ flex: 1, display: 'flex', gap: 24, padding: '16px 24px 32px', minHeight: 0 }}>
       {/* Main */}
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 20 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-          <div>
-            <div style={{ fontSize: 22, fontWeight: 800, color: INK }}>Files</div>
-            <div style={{ fontSize: 13, color: MUT }}>Wattle Creek FC · club documents, templates every team gets, and space used</div>
-          </div>
-          <div style={{ marginLeft: 'auto', display: 'flex', gap: 8 }}>
-            <button onClick={() => tool('Upload')} style={{ minHeight: 44, padding: '0 16px', borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 13, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Upload</button>
-            <button onClick={() => tool('New template')} style={{ minHeight: 44, padding: '0 16px', borderRadius: 999, background: G, color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>New template</button>
-          </div>
-        </div>
 
         {/* Club documents */}
         <div>
@@ -112,6 +112,7 @@ export default function FilesTab({ onNav }: { onNav?: (s: string) => void }) {
           <div style={{ fontSize: 12, color: MUT, lineHeight: 1.6 }}>Their files stay with the team. A coach who leaves loses access the same day.</div>
         </div>
       </div>
+    </div>
     </div>
   )
 }

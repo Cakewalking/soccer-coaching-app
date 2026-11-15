@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { FAIR_TIME } from './data'
 import { SubTabBar, EmptyCard, FOOTER_DEFAULT } from './ui'
+import { OpeningPanel } from '../step4/directorParts'
 
 type PlayersView = 'overview' | 'goals' | 'growthload' | 'fairtime' | 'playingacross' | 'registrations' | 'moves' | 'trials' | 'girls' | 'nominations'
 
@@ -285,18 +286,17 @@ function PlayingAcrossView({ onNav }: { onNav?: (s: string) => void }) {
   ]
 
   return (
-    <div style={{ display: 'flex', flex: 1, padding: '20px 20px 20px 20px', gap: 20 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', flex: 1, minHeight: 0 }}>
+      <OpeningPanel
+        landing
+        heading="PLAYING ACROSS · 192 PLAYERS CHECKED ON MONDAY"
+        sentence="Mia Tran has been ahead of her own team for eight weeks. She is ready to try the under 13s."
+        support="Two more are worth a look, and Leo’s four-week trial is reviewed on Thursday 18 June."
+        figures={[{ num: '3', label: 'worth a look', proof: true }, { num: '2', label: 'playing up now' }, { num: '1', label: 'held back by a rule' }]}
+        buttons={[{ label: 'Open Mia', main: true, onClick: () => onNav?.('PU2-PlayerReadiness') }, { label: 'Nominate a player', onClick: () => st('Pick any player. Their coach is asked for a view.') }]}
+      />
+    <div style={{ display: 'flex', flex: 1, padding: '16px 20px 20px 20px', gap: 20, minHeight: 0 }}>
       <div style={{ flex: 1, minWidth: 0 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 16 }}>
-          <div>
-            <div style={{ fontSize: 18, fontWeight: 800, color: INK }}>Playing across</div>
-            <div style={{ fontSize: 12, color: MUT }}>Wattle Creek FC · 192 players looked at each Monday</div>
-          </div>
-          <div style={{ marginLeft: 'auto' }}>
-            <button onClick={() => st('Opening nomination form.')} style={{ height: 36, padding: '0 16px', borderRadius: 999, background: G, color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Nominate a player</button>
-          </div>
-        </div>
-
         <div style={{ display: 'flex', gap: 8, marginBottom: 20, flexWrap: 'wrap' as const }}>
           {segments.map(s => (
             <button key={s.id} onClick={() => setSegment(s.id)} style={{ height: 36, padding: '0 16px', borderRadius: 999, border: `1.5px solid ${segment === s.id ? G : LN}`, background: segment === s.id ? '#eef5f2' : '#fff', fontSize: 13, color: segment === s.id ? G : MUT, fontWeight: segment === s.id ? 700 : 400, cursor: 'pointer', fontFamily: 'inherit' }}>{s.label} · {s.count}</button>
@@ -381,6 +381,7 @@ function PlayingAcrossView({ onNav }: { onNav?: (s: string) => void }) {
       </div>
 
       {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: GD, color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
+    </div>
     </div>
   )
 }
