@@ -1,5 +1,9 @@
 import { useState } from 'react'
 import { OpeningPanel, INK, MUT, HAIR, CTL, GREEN, PALEGREEN } from './directorParts'
+import FileEditor, { type FileContent } from './FileEditor'
+
+type CreatedFile = { id: string; name: string; type: 'doc' | 'sheet'; content: FileContent }
+type Editing = { type: 'doc' | 'sheet'; name?: string; content?: FileContent; id?: string }
 
 const GD = '#1f4a3e'
 
@@ -26,8 +30,15 @@ export default function FIL1Files({ onOpenSheet, onOpenDoc, onNav }: { onOpenShe
   const [filter, setFilter] = useState('All 7')
   const [nudged, setNudged] = useState(false)
   const [toast, setToast] = useState<string | null>(null)
+  const [created, setCreated] = useState<CreatedFile[]>([])
+  const [editing, setEditing] = useState<Editing | null>(null)
   function say(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   const go = (t: string) => { if (t === 'FIL2-Sheet' && onOpenSheet) onOpenSheet(); else if (t === 'FIL3-Doc' && onOpenDoc) onOpenDoc(); else onNav?.(t) }
+  function saveFile(name: string, content: FileContent) {
+    if (editing?.id) setCreated(prev => prev.map(f => f.id === editing.id ? { ...f, name, content } : f))
+    else setCreated(prev => [{ id: `c-${prev.length + 1}`, name, type: content.kind, content }, ...prev])
+    setEditing(null)
+  }
 
   return (
     <div data-lasttool="" style={{ width: 1180, height: 820, overflow: 'hidden', background: '#f7f8f7', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative', boxSizing: 'border-box' }}>
@@ -49,6 +60,10 @@ export default function FIL1Files({ onOpenSheet, onOpenDoc, onNav }: { onOpenShe
         ))}
       </div>
 
+      {editing ? (
+        <FileEditor type={editing.type} initialName={editing.name} initialContent={editing.content} onBack={() => setEditing(null)} onSave={saveFile} />
+      ) : (
+      <>
       <OpeningPanel
         landing
         heading="FILES · U12 SAM"
@@ -67,8 +82,8 @@ export default function FIL1Files({ onOpenSheet, onOpenDoc, onNav }: { onOpenShe
           <button key={f} onClick={() => { setFilter(f); say(f === 'All 7' ? 'All files.' : f === 'With families 5' ? 'Files shared with families.' : 'Files only the coaching team can see.') }} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${filter === f ? GREEN : CTL}`, background: filter === f ? PALEGREEN : '#fff', fontSize: 13, fontWeight: filter === f ? 700 : 500, color: filter === f ? GREEN : INK, cursor: 'pointer', fontFamily: 'inherit' }}>{f}</button>
         ))}
         <div style={{ flex: 1 }} />
-        <button onClick={() => go('FIL3-Doc')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${CTL}`, background: '#fff', fontSize: 14, fontWeight: 700, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>+ New doc</button>
-        <button onClick={() => go('FIL2-Sheet')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: GREEN, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>+ New sheet</button>
+        <button onClick={() => setEditing({ type: 'doc' })} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${CTL}`, background: '#fff', fontSize: 14, fontWeight: 700, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>+ New doc</button>
+        <button onClick={() => setEditing({ type: 'sheet' })} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: GREEN, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>+ New sheet</button>
       </div>
 
       <main style={{ flexGrow: 1, minHeight: 0, padding: '12px 28px 18px', boxSizing: 'border-box', display: 'grid', gap: 14, gridTemplateColumns: 'minmax(0,1fr) 300px', overflow: 'hidden' }}>
@@ -86,8 +101,15 @@ export default function FIL1Files({ onOpenSheet, onOpenDoc, onNav }: { onOpenShe
           </div>
           <span style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginTop: 4 }}>Everything else</span>
           <div style={{ background: '#fff', border: `1px solid ${CTL}`, borderRadius: 14, overflow: 'hidden' }}>
+            {created.map((f, i) => (
+              <button key={f.id} onClick={() => setEditing({ type: f.type, name: f.name, content: f.content, id: f.id })} style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 12, minHeight: 56, padding: '0 16px', borderTop: i ? `1px solid ${HAIR}` : 'none', background: '#fff', border: 'none', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
+                <span style={{ width: 32, height: 32, borderRadius: 8, background: PALEGREEN, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={GREEN} strokeWidth="1.8"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" /><polyline points="14 2 14 8 20 8" /></svg></span>
+                <span style={{ flex: 1 }}><span style={{ display: 'block', fontSize: 14, fontWeight: 700, color: INK }}>{f.name}</span><span style={{ display: 'block', fontSize: 12, color: MUT }}>{f.type === 'sheet' ? 'Sheet' : 'Doc'} · Only you · Just now</span></span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth="2.2" strokeLinecap="round"><path d="M9 6l6 6-6 6" /></svg>
+              </button>
+            ))}
             {OTHERS.map((f, i) => (
-              <button key={f.name} onClick={() => go(f.target)} style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 12, minHeight: 56, padding: '0 16px', borderTop: i ? `1px solid ${HAIR}` : 'none', background: '#fff', border: 'none', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
+              <button key={f.name} onClick={() => go(f.target)} style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 12, minHeight: 56, padding: '0 16px', borderTop: (i || created.length) ? `1px solid ${HAIR}` : 'none', background: '#fff', border: 'none', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
                 <span style={{ width: 32, height: 32, borderRadius: 8, background: PALEGREEN, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={GREEN} strokeWidth="1.8"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" /><polyline points="14 2 14 8 20 8" /></svg></span>
                 <span style={{ flex: 1 }}><span style={{ display: 'block', fontSize: 14, fontWeight: 700, color: INK }}>{f.name}</span><span style={{ display: 'block', fontSize: 12, color: MUT }}>{f.sub}</span></span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth="2.2" strokeLinecap="round"><path d="M9 6l6 6-6 6" /></svg>
@@ -119,6 +141,8 @@ export default function FIL1Files({ onOpenSheet, onOpenDoc, onNav }: { onOpenShe
           </button>
         </aside>
       </main>
+      </>
+      )}
       {toast && <div style={{ position: 'absolute', left: '50%', bottom: 28, transform: 'translateX(-50%)', maxWidth: 620, zIndex: 60, boxSizing: 'border-box', display: 'flex', alignItems: 'center', gap: 10, minHeight: 52, padding: '12px 16px', borderRadius: 14, background: '#1f4a3e', color: '#fff', fontSize: 15, lineHeight: '21px', fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)' }}>{toast}</div>}
     </div>
   )
