@@ -38,6 +38,7 @@ export default function TeamManagerScreen({ empty, initialScreen }: { empty?: bo
   const [gamedayPhase, setGamedayPhase] = useState<GamedayPhase>('before')
   const [checkedItems, setCheckedItems] = useState<Set<number>>(new Set())
   const [showHeadKnock, setShowHeadKnock] = useState(false)
+  const [askedDuty, setAskedDuty] = useState<number[]>([])
   const [showSideline, setShowSideline] = useState(false)
   const [showSignOff, setShowSignOff] = useState(false)
   const [showInjury, setShowInjury] = useState(false)
@@ -450,7 +451,7 @@ export default function TeamManagerScreen({ empty, initialScreen }: { empty?: bo
                     <span style={{ fontSize: 11, fontWeight: 700, color: '#2f6252', background: '#eef5f2', borderRadius: 6, padding: '2px 8px', flexShrink: 0 }}>You</span>
                   )}
                   {d.status === 'ask' && (
-                    <button onClick={() => showToast('Asking for a volunteer.')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer', flexShrink: 0 }}>Ask</button>
+                    <button onClick={() => setAskedDuty(a => a.includes(i) ? a : [...a, i])} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: askedDuty.includes(i) ? '#40826d' : '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer', flexShrink: 0 }}>{askedDuty.includes(i) ? 'Asked ✓' : 'Ask'}</button>
                   )}
                 </div>
               </div>
