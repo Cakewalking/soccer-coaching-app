@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import type { ReactNode } from 'react'
 import HomeScreen            from '../HomeScreen'
 import TrainingScreen        from '../TrainingScreen'
@@ -2358,6 +2358,9 @@ export default function DemoApp() {
   const [role, setRole] = useState<RoleId>(init.role)
   const [screen, setScreen] = useState<string | undefined>(init.screen)
   const [phase, setPhase] = useState<DemoPhase>('season')
+  // Bridge: the active role frame registers its tab-switcher here so an embedded
+  // Home story can open a deep-link as the frame's real tab instead of a layer.
+  const coachNavRef = useRef<(t: string) => boolean>(() => false)
   const [sbStore, setSbStore] = useState<SandboxStore>(() => readStore())
   const sbFilled = storeHasData(sbStore)
   const [isPhone, setIsPhone] = useState(() => window.innerWidth < 768)
@@ -2583,27 +2586,27 @@ export default function DemoApp() {
         const pc = phase === 'preseason' ? <SP2HomePreSeason onBack={noop} />
                  : phase === 'postseason' ? <SP10HomePostSeason onBack={noop} />
                  : phase === 'restmonth' ? <SP16RestMonth onBack={noop} />
-                 : <HomeStoryBody cfg={STO5} renderTarget={renderScreen} />
-        lookContent = <JuniorCoachApp phaseContent={pc} initialScreen={screen} onNavChange={setScreen} />
+                 : <HomeStoryBody cfg={STO5} renderTarget={renderScreen} frameNav={(t) => coachNavRef.current(t)} />
+        lookContent = <JuniorCoachApp phaseContent={pc} initialScreen={screen} onNavChange={setScreen} registerNav={(fn) => { coachNavRef.current = fn }} />
       }
     } else if (role === 'ccoach') {
       const pc = phase === 'preseason' ? <SPc2CoCoachPreSeason onBack={noop} />
                : phase === 'postseason' ? <SP10HomePostSeason onBack={noop} />
                : phase === 'restmonth' ? <SP16RestMonth onBack={noop} />
-               : <HomeStoryBody cfg={STO7} renderTarget={renderScreen} />
-      lookContent = <JuniorCoachApp phaseContent={pc} coachLabel="U12 Sam · Assistant coach" coachInitials="JM" initialScreen={screen} onNavChange={setScreen} coachRole="ccoach" />
+               : <HomeStoryBody cfg={STO7} renderTarget={renderScreen} frameNav={(t) => coachNavRef.current(t)} />
+      lookContent = <JuniorCoachApp phaseContent={pc} coachLabel="U12 Sam · Assistant coach" coachInitials="JM" initialScreen={screen} onNavChange={setScreen} coachRole="ccoach" registerNav={(fn) => { coachNavRef.current = fn }} />
     } else if (role === 'youth') {
       const pc = phase === 'preseason' ? <SPy2YouthPreSeason onBack={noop} />
                : phase === 'postseason' ? <SPy10YouthPostSeason onBack={noop} />
                : phase === 'restmonth' ? <SPy16YouthRestMonth onBack={noop} />
-               : <HomeStoryBody cfg={STO6} renderTarget={renderScreen} />
-      lookContent = <SeniorsYouthCoachApp teamType="youth" onBack={noop} phaseContent={pc} initialScreen={screen} onNavChange={setScreen} />
+               : <HomeStoryBody cfg={STO6} renderTarget={renderScreen} frameNav={(t) => coachNavRef.current(t)} />
+      lookContent = <SeniorsYouthCoachApp teamType="youth" onBack={noop} phaseContent={pc} initialScreen={screen} onNavChange={setScreen} registerNav={(fn) => { coachNavRef.current = fn }} />
     } else if (role === 'seniors') {
       const pc = phase === 'preseason' ? <SPs2SeniorPreSeason onBack={noop} />
                : phase === 'postseason' ? <SPs10SeniorPostSeason onBack={noop} />
                : phase === 'restmonth' ? <SPs16SeniorOffSeason onBack={noop} />
-               : <HomeStoryBody cfg={STO4} renderTarget={renderScreen} />
-      lookContent = <SeniorsYouthCoachApp teamType="seniors" onBack={noop} phaseContent={pc} initialScreen={screen} onNavChange={setScreen} />
+               : <HomeStoryBody cfg={STO4} renderTarget={renderScreen} frameNav={(t) => coachNavRef.current(t)} />
+      lookContent = <SeniorsYouthCoachApp teamType="seniors" onBack={noop} phaseContent={pc} initialScreen={screen} onNavChange={setScreen} registerNav={(fn) => { coachNavRef.current = fn }} />
     } else if (role === 'miniroos') {
       const pc = phase === 'preseason' ? <SPm2MiniRoosPreSeason onBack={noop} />
                : phase === 'postseason' ? <SPm10MiniRoosPostSeason onBack={noop} />

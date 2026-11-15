@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { COACH_TARGET_NAV } from './JuniorCoachApp'
 import { SENIORS_SQUAD_PLAYERS as SENIORS_SQUAD, YOUTH_SQUAD_PLAYERS as YOUTH_SQUAD } from '../data'
 import type { ReactNode } from 'react'
 import { AskLine } from './HomeScreen'
@@ -381,7 +382,7 @@ const TRAINING_TABS = ["Tonight's session", 'This week', 'Suggested', 'Drill lib
 const MATCHDAY_TABS = ['Team talk', 'Line-up and minutes', 'Opposition', 'Review']
 const CLIPS_TABS    = ['By measure', 'By game', 'By player', 'Playlists', 'To check', 'Learn']
 
-export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseContent, empty = false, initialScreen, onNavChange }: { teamType: TeamType; onBack: () => void; phaseContent?: ReactNode; empty?: boolean; initialScreen?: string; onNavChange?: (screen: string) => void }) {
+export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseContent, empty = false, initialScreen, onNavChange, registerNav }: { teamType: TeamType; onBack: () => void; phaseContent?: ReactNode; empty?: boolean; initialScreen?: string; onNavChange?: (screen: string) => void; registerNav?: (fn: (target: string) => boolean) => void }) {
   const data = teamType === 'seniors' ? SENIORS : YOUTH
   const { active: inSandbox, store } = useSandbox()
   const sbEmpty        = inSandbox ? !storeHasData(store)        : empty
@@ -414,6 +415,16 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
     if (s === 'teamtalk')  { setSub('teamtalk');  return }
     if (s === 'pitchside') { setSub('pitchside'); return }
   }
+
+  // Embedded Home story drives this frame: mapped deep-links switch the real tab.
+  useEffect(() => {
+    registerNav?.((target: string) => {
+      const key = COACH_TARGET_NAV[target]
+      if (!key) return false
+      handleNav(key)
+      return true
+    })
+  })
 
   if (sub === 'teamtalk')  return <TeamTalkScreen role="head" onClose={() => setSub(null)} />
   if (sub === 'pitchside') return <PitchSideScreen onClose={() => setSub(null)} empty={sbEmpty} />

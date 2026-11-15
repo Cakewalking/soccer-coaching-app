@@ -382,11 +382,13 @@ function TargetShell({ onBack, children }: { onBack: () => void; children: React
 
 // Content-only Home (ask line + four-part grid) for dropping inside a role's
 // existing frame (the role app supplies the top/sub nav and Ask panel).
-export function HomeStoryBody({ cfg, onNav, renderTarget }: { cfg: HomeCfg; onNav?: (s: string) => void; renderTarget?: (id: string) => ReactNode }) {
+export function HomeStoryBody({ cfg, onNav, renderTarget, frameNav }: { cfg: HomeCfg; onNav?: (s: string) => void; renderTarget?: (id: string) => ReactNode; frameNav?: (id: string) => boolean }) {
   const [lastTool, setLastTool] = useState('')
   const [toast, setToast] = useState<string | null>(null)
   const [open, setOpen] = useState<string | null>(null)
-  const nav = (s: string) => renderTarget ? setOpen(s) : (onNav ? onNav(s) : tool(s))
+  // Deep-links first try the surrounding role frame (switch its real tab, lit in the top bar).
+  // Only targets the frame can't place fall back to the in-place layer.
+  const nav = (s: string) => { if (frameNav?.(s)) return; renderTarget ? setOpen(s) : (onNav ? onNav(s) : tool(s)) }
   const tool = (s: string) => { setLastTool(s); setToast(s); setTimeout(() => setToast(null), 2500) }
   if (open && renderTarget) return <TargetShell onBack={() => setOpen(null)}>{renderTarget(open)}</TargetShell>
   return (

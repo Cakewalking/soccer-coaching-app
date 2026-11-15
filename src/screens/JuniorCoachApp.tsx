@@ -1,5 +1,15 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import type { ReactNode } from 'react'
+
+// Map a Home-story deep-link design-id to this frame's semantic nav key, so a
+// Home button switches the real tab (lit in the top bar) instead of a layer.
+// Returns null for targets the frame can't place as a tab (caller falls back).
+export const COACH_TARGET_NAV: Record<string, string> = {
+  'T1-TabletTraining': 'home', 'T4-SquadTab': 'squad', 'T3-TrainingTab': 'training',
+  'T2-TabletMatch': 'matchday', 'C1-ClipsTab': 'clips', 'REC1-RecordHub': 'record',
+  'I1-Inbox': 'inbox', 'CF1-Fixtures': 'fixtures', 'S1-PlayingStyle': 'setstyle',
+  'E-TeamTalk': 'teamtalk', 'ETeamTalk': 'teamtalk',
+}
 import HomeScreen            from './HomeScreen'
 import SquadScreen           from './SquadScreen'
 import TrainingScreen        from './TrainingScreen'
@@ -59,7 +69,7 @@ const TRAINING_TABS = ["Tonight's session", 'This week', 'Suggested', 'Drill lib
 const MATCHDAY_TABS = ['Team talk', 'Line-up and minutes', 'Opposition', 'Review']
 const CLIPS_TABS    = ['By measure', 'By game', 'By player', 'Playlists', 'To check', 'Learn']
 
-export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLabel, coachInitials, empty = false, initialScreen, onNavChange, coachRole = 'head' }: { onBack?: () => void; phaseContent?: ReactNode; coachLabel?: string; coachInitials?: string; empty?: boolean; initialScreen?: string; onNavChange?: (screen: string) => void; coachRole?: 'head' | 'ccoach' }) {
+export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLabel, coachInitials, empty = false, initialScreen, onNavChange, coachRole = 'head', registerNav }: { onBack?: () => void; phaseContent?: ReactNode; coachLabel?: string; coachInitials?: string; empty?: boolean; initialScreen?: string; onNavChange?: (screen: string) => void; coachRole?: 'head' | 'ccoach'; registerNav?: (fn: (target: string) => boolean) => void }) {
   const { active: inSandbox, store } = useSandbox()
   const sbEmpty        = inSandbox ? !storeHasData(store)        : empty
   const sbEmptySession = inSandbox ? store.sessions.length === 0 : empty
@@ -97,6 +107,18 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
     if (s === 'addgame')   { setSub('addgame');   return }
     if (s === 'call')      { alert('Opening the booking calendar.'); return }
   }
+
+  // Let an embedded Home story drive this frame: a deep-link whose design-id maps
+  // to a tab switches the real tab (returns true); unmapped targets return false
+  // so the Home story falls back to its in-place layer.
+  useEffect(() => {
+    registerNav?.((target: string) => {
+      const key = COACH_TARGET_NAV[target]
+      if (!key) return false
+      handleNav(key)
+      return true
+    })
+  })
 
   const subTabs  = nav === 'clips'    ? CLIPS_TABS
                  : nav === 'home'     ? HOME_TABS
