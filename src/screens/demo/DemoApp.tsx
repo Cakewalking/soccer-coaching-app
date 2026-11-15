@@ -2228,6 +2228,34 @@ function renderScreenInner(key: string): ReactNode {
   }
 }
 
+// Look-around data-screen hook (FIX-LIST item 9, 2nd bullet): the Look-around
+// DOM carried no design id (empty for most roles, a plain route name like
+// "clubadmin" for the rest). Map the current role + nav to the design id of the
+// screen on show so acceptance/check.mjs and manual checks can read it.
+const LOOK_HOME: Record<string, string> = {
+  coach: 'STO5-HomeStoryJuniors', ccoach: 'STO7-HomeStoryAssistant',
+  youth: 'STO6-HomeStoryYouth', seniors: 'STO4-HomeStorySeniors',
+  miniroos: 'STO1-HomeStoryMiniRoos', goalkeeper: 'STO9-HomeStoryKeepers',
+  fitness: 'STO8-HomeStoryFitness', academyowner: 'STO14-HomeStoryAcademyOwner',
+  academycoach: 'STO15-HomeStoryAcademyCoach', academyparent: 'STO21-HomeStoryAcademyParent',
+  academyplayer: 'STO22-HomeStoryAcademyPlayer', referee: 'STO20-HomeStoryReferee',
+  parent: 'STO17-HomeStoryParent', manager: 'STO16-HomeStoryManager',
+  playeryoung: 'STO18-HomeStoryPlayerYoung', playerolder: 'STO19-HomeStoryPlayerOlder',
+  director: 'STO10-HomeStoryDirector', chair: 'STO11-HomeStoryChair',
+  coordinator: 'STO12-HomeStoryCoordinator', welfare: 'STO13-HomeStoryWelfare',
+}
+const LOOK_COACH_NAV: Record<string, string> = {
+  squad: 'T4-SquadTab', training: 'T3-TrainingTab', matchday: 'T2-TabletMatch',
+  clips: 'C1-ClipsTab', record: 'REC1-RecordHub',
+}
+export function lookScreenId(role: string, screen?: string): string {
+  const home = LOOK_HOME[role] ?? ''
+  if (!screen || screen === 'home') return home
+  if (screen.includes('-')) return screen   // already a design id
+  if (['coach', 'ccoach', 'youth', 'seniors'].includes(role) && LOOK_COACH_NAV[screen]) return LOOK_COACH_NAV[screen]
+  return home
+}
+
 export function renderScreen(key: string): ReactNode {
   // minHeight keeps the wrapper measurable for screens whose root is a
   // position:fixed overlay (e.g. the add-game / set-style / settings flows),
@@ -2593,7 +2621,7 @@ export default function DemoApp() {
           phase={showPhase ? phase : undefined}
           onPhaseChange={showPhase ? setPhase : undefined}
         >
-          {lookContent}
+          <div data-screen={lookScreenId(role, screen)} style={{ display: 'contents' }}>{lookContent}</div>
         </DemoShellPhone>
       )
     }
@@ -2605,7 +2633,7 @@ export default function DemoApp() {
         phase={showPhase ? phase : undefined}
         onPhaseChange={showPhase ? setPhase : undefined}
       >
-        {lookContent}
+        <div data-screen={lookScreenId(role, screen)} style={{ display: 'contents' }}>{lookContent}</div>
       </DemoShell>
     )
   }
