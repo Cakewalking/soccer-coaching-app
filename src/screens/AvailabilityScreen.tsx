@@ -90,9 +90,9 @@ const GOOD_TO_KNOW = [
   'Noah and Zoe have sprint caps from Priya.',
 ]
 
-function PlayerPill({ ini, name, note }: { ini: string; name: string; note: string }) {
+function PlayerPill({ ini, name, note, selected, onClick }: { ini: string; name: string; note: string; selected?: boolean; onClick?: () => void }) {
   return (
-    <div style={{ padding: '10px 12px', background: '#ffffff', border: '1px solid #e9eae8', borderRadius: 10, display: 'flex', flexDirection: 'column', gap: 2 }}>
+    <div onClick={onClick} style={{ padding: '10px 12px', background: selected ? '#eef5f2' : '#ffffff', border: `1px solid ${selected ? '#2f6252' : '#e9eae8'}`, borderRadius: 10, display: 'flex', flexDirection: 'column', gap: 2, cursor: 'pointer' }}>
       <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
         <span style={{ flex: 'none', width: 28, height: 28, borderRadius: '999px', background: '#c39797', fontSize: 10, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#10211f' }}>{ini}</span>
         <span style={{ fontSize: 14, fontWeight: 600, color: '#10211f' }}>{name}</span>
@@ -102,14 +102,14 @@ function PlayerPill({ ini, name, note }: { ini: string; name: string; note: stri
   )
 }
 
-function Column({ title, count, items, accent }: { title: string; count: number; items: typeof IN; accent?: string }) {
+function Column({ title, count, items, accent, selectedName, onPick }: { title: string; count: number; items: typeof IN; accent?: string; selectedName?: string | null; onPick?: (name: string) => void }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 2 }}>
         <span style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>{title}</span>
         <span style={{ fontSize: 20, fontWeight: 700, color: accent ?? '#10211f', lineHeight: '26px' }}>{count}</span>
       </div>
-      {items.map((p, i) => <PlayerPill key={i} {...p} />)}
+      {items.map((p, i) => <PlayerPill key={i} {...p} selected={selectedName === p.name} onClick={() => onPick?.(p.name)} />)}
     </div>
   )
 }
@@ -117,8 +117,9 @@ function Column({ title, count, items, accent }: { title: string; count: number;
 export default function AvailabilityScreen({ empty }: { empty?: boolean }) {
   if (empty) return <AvailabilityEmpty />
   const [activeEvent, setActiveEvent] = useState(0)
-  const [toast, setToast] = useState<string | null>(null)
-  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
+  const [selectedName, setSelectedName] = useState<string | null>(null)
+  const [reminded, setReminded] = useState(false)
+  const [picking, setPicking] = useState(false)
   return (
     <div style={{ flexGrow: 1, padding: '14px 28px 18px', display: 'flex', flexDirection: 'column', gap: 10, boxSizing: 'border-box', minHeight: 0, overflow: 'hidden' }}>
 
@@ -149,22 +150,22 @@ export default function AvailabilityScreen({ empty }: { empty?: boolean }) {
 
         {/* Kanban columns */}
         <div style={{ overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 6 }}>
-          <Column title="In" count={IN.length} items={IN} accent="#2f6252" />
+          <Column title="In" count={IN.length} items={IN} accent="#2f6252" selectedName={selectedName} onPick={setSelectedName} />
         </div>
         <div style={{ overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 6 }}>
-          <Column title="Maybe" count={MAYBE.length} items={MAYBE} />
+          <Column title="Maybe" count={MAYBE.length} items={MAYBE} selectedName={selectedName} onPick={setSelectedName} />
         </div>
         <div style={{ overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 6 }}>
-          <Column title="Can't make it" count={CANT.length} items={CANT} accent="#c39797" />
+          <Column title="Can't make it" count={CANT.length} items={CANT} accent="#c39797" selectedName={selectedName} onPick={setSelectedName} />
         </div>
         <div style={{ overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 6 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 2 }}>
             <span style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>No answer</span>
             <span style={{ fontSize: 20, fontWeight: 700, lineHeight: '26px' }}>{NO_ANS.length}</span>
           </div>
-          {NO_ANS.map((p, i) => <PlayerPill key={i} {...p} />)}
-          <button onClick={() => showToast('Reminder sent to 2 families.')} style={{ height: 44, borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', marginTop: 'auto' }}>
-            Remind 2 families
+          {NO_ANS.map((p, i) => <PlayerPill key={i} {...p} selected={selectedName === p.name} onClick={() => setSelectedName(p.name)} />)}
+          <button onClick={() => setReminded(true)} style={{ height: 44, borderRadius: 10, border: 0, background: reminded ? '#40826d' : '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', marginTop: 'auto' }}>
+            {reminded ? '✓ Reminded 2 families' : 'Remind 2 families'}
           </button>
         </div>
 
@@ -177,9 +178,10 @@ export default function AvailabilityScreen({ empty }: { empty?: boolean }) {
             <div style={{ marginTop: 10, height: 6, borderRadius: 3, background: '#c5d8d0' }}>
               <div style={{ height: 6, borderRadius: 3, background: '#2f6252', width: `${(IN.length/17)*100}%` }} />
             </div>
-            <button onClick={() => showToast('Opening line-up for Saturday vs Harbour Rovers.')} style={{ marginTop: 12, width: '100%', height: 44, borderRadius: 10, border: '1px solid #2f6252', background: '#ffffff', color: '#2f6252', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>
-              Pick the line-up
+            <button onClick={() => setPicking(p => !p)} style={{ marginTop: 12, width: '100%', height: 44, borderRadius: 10, border: '1px solid #2f6252', background: picking ? '#2f6252' : '#ffffff', color: picking ? '#ffffff' : '#2f6252', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>
+              {picking ? 'Line-up open ✓' : 'Pick the line-up'}
             </button>
+            {picking && <div style={{ marginTop: 10, fontSize: 13, color: '#2f6252', lineHeight: '18px' }}>Starting XI drafted from the {IN.length} available — drag players in the line-up to adjust.</div>}
           </div>
 
           <div>
@@ -199,9 +201,6 @@ export default function AvailabilityScreen({ empty }: { empty?: boolean }) {
           </div>
         </aside>
       </div>
-      {toast && (
-        <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>
-      )}
     </div>
   )
 }
