@@ -1,145 +1,134 @@
 import { useState } from 'react'
+import { OpeningPanel, ChipRow, type ChipState, INK, MUT, HAIR, CTL, GREEN, PALEGREEN, AMBER } from './directorParts'
 
-const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
-
-function DirFrame({ onNav, active, tool }: { onNav?: (s: string) => void; active?: string; tool: (n: string) => void }) {
+function DirFrame({ onNav, tool }: { onNav?: (s: string) => void; tool: (n: string) => void }) {
   const tnb = { height: 56, padding: '0 10px', background: 'none' as const, color: 'rgba(255,255,255,0.75)', border: 'none' as const, fontSize: 13, fontWeight: 600, cursor: 'pointer' as const, fontFamily: 'inherit', flexShrink: 0 as const }
   const snb = { height: 44, padding: '0 14px', background: 'none' as const, color: MUT, border: 'none' as const, fontSize: 13, fontWeight: 600, cursor: 'pointer' as const, fontFamily: 'inherit', flexShrink: 0 as const }
-  const snba = { ...snb, color: G, fontWeight: 700, borderBottom: `2.5px solid ${G}` }
+  const snba = { ...snb, color: GREEN, fontWeight: 700, borderBottom: `2.5px solid ${GREEN}` }
   return (
     <>
-      <nav style={{ background: GD, height: 56, display: 'flex', alignItems: 'center', padding: '0 20px', flexShrink: 0 }}>
+      <nav style={{ background: '#1f4a3e', height: 56, display: 'flex', alignItems: 'center', padding: '0 20px', flexShrink: 0 }}>
         <span style={{ fontSize: 15, fontWeight: 900, color: '#fff', marginRight: 16, letterSpacing: '-0.02em' }}>Clean Sheet</span>
-        <button aria-label="Club" onClick={() => tool('Club › Overview')} style={tnb}>Club</button>
-        <button aria-label="Teams" onClick={() => tool('Teams')} style={tnb}>Teams</button>
-        <button aria-label="Coaches" onClick={() => tool('Coaches')} style={tnb}>Coaches</button>
-        <button aria-label="Players" onClick={() => tool('Players')} style={tnb}>Players</button>
-        <button aria-label="Safeguarding" onClick={() => tool('Safeguarding')} style={tnb}>Safeguarding</button>
-        <button aria-label="Reports" onClick={() => tool('Reports › Board report')} style={tnb}>Reports</button>
-        <button aria-label="Ask Clean Sheet" onClick={() => onNav?.('ASKd4-PanelFirst')} style={{ ...tnb, background: 'rgba(255,255,255,0.12)' as const }}>Ask Clean Sheet</button>
+        {['Club', 'Teams', 'Coaches', 'Players', 'Safeguarding', 'Reports'].map(t => <button key={t} onClick={() => tool(t)} style={tnb}>{t}</button>)}
+        <button onClick={() => onNav?.('ASKd4-PanelFirst')} style={{ ...tnb, background: 'rgba(255,255,255,0.12)' as const }}>Ask Clean Sheet</button>
         <div style={{ flex: 1 }} />
-        <button aria-label="Whole club" onClick={() => tool('switcher')} style={{ height: 44, padding: '0 14px', background: 'rgba(255,255,255,0.15)', color: '#fff', border: 'none', borderRadius: 22, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', marginRight: 12, flexShrink: 0 }}>Whole club</button>
+        <button onClick={() => onNav?.('VS1-SwitchView')} style={{ height: 44, padding: '0 14px', background: 'rgba(255,255,255,0.15)', color: '#fff', border: 'none', borderRadius: 22, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', marginRight: 12, flexShrink: 0 }}>Whole club</button>
         <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#c0a070', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, color: '#fff', flexShrink: 0 }}>RM</div>
       </nav>
-      <nav style={{ background: '#fff', borderBottom: `1px solid ${LN}`, height: 44, display: 'flex', alignItems: 'center', padding: '0 20px', flexShrink: 0 }}>
-        <button aria-label="All players" onClick={() => tool('Players')} style={snb}>All players</button>
-        <button aria-label="Pathway" onClick={() => tool('DP1-Pathway')} style={snb}>Pathway</button>
-        <button aria-label="Playing across" onClick={() => onNav?.('PU1-PlayingUp')} style={active === 'playing-across' ? snba : snb}>Playing across</button>
-        <button aria-label="Fair game time" onClick={() => tool('Players')} style={snb}>Fair game time</button>
+      <nav style={{ background: '#fff', borderBottom: `1px solid ${HAIR}`, height: 44, display: 'flex', alignItems: 'center', padding: '0 20px', flexShrink: 0 }}>
+        <button onClick={() => tool('All players')} style={snb}>All players</button>
+        <button onClick={() => onNav?.('DP1-Pathway')} style={snb}>Pathway</button>
+        <button onClick={() => onNav?.('PU1-PlayingUp')} style={snba}>Playing across</button>
+        <button onClick={() => tool('Fair game time')} style={snb}>Fair game time</button>
+        <div style={{ flex: 1 }} />
+        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, height: 32, padding: '0 12px', borderRadius: 999, background: PALEGREEN, color: GREEN, fontSize: 13, fontWeight: 700 }}>Director of football</span>
       </nav>
     </>
   )
 }
 
+type WorthRow = { ini: string; name: string; move: string; chips: ChipState[]; reason: string; btn: string; main?: boolean; target?: string; say?: string }
+const WORTH: WorthRow[] = [
+  { ini: 'MT', name: 'Mia Tran', move: 'U12 Sam → U13 Girls Meg', chips: ['strong', 'some', 'strong', 'strong', 'strong'], reason: 'Sam nominated her too', btn: 'Open Mia', main: true, target: 'PU2-PlayerReadiness' },
+  { ini: 'TA', name: 'Tane Waru', move: 'U14 Josh → U16 Ollie', chips: ['strong', 'strong', 'some', 'some', 'strong'], reason: 'Josh has not answered', btn: 'Ask Josh again', say: 'Josh is asked again for his three taps on Tane.' },
+  { ini: 'ZP', name: 'Zoe Park', move: 'U11 Luke → U12 Girls Ana', chips: ['strong', 'strong', 'strong', 'some', 'some'], reason: 'Her third team this year', btn: 'Talk to Luke first', say: 'A message to Luke opens, about Zoe.' },
+]
+
+const NOW = [
+  { ini: 'LC', name: 'Leo Costa', move: 'U13 Chris → U14 Josh', sub: 'Trains up on Tuesdays, plays his own age', done: 3, of: 4, btn: 'Review on 18 June', target: 'PU3-TrialPlan' },
+  { ini: 'AW', name: 'Ava Walsh', move: 'U12 Sam → U13 Girls Meg', sub: 'Moved up in May · going well', done: 6, of: 6, btn: 'Open her check-in', target: 'PU3-TrialPlan' },
+] as const
+
 export default function PU1PlayingUp({ onNav }: { onNav?: (s: string) => void }) {
   const [lastTool, setLastTool] = useState('')
+  const [toast, setToast] = useState<string | null>(null)
+  const [nudged, setNudged] = useState(false)
   function tool(name: string) { setLastTool(name) }
+  function say(m: string) { setToast(m); setTimeout(() => setToast(null), 3200) }
+  const outBtn = { flex: 'none' as const, width: 150, height: 44, padding: '0 14px', borderRadius: 10, boxSizing: 'border-box' as const, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap' as const, background: '#fff', color: INK, border: `1px solid ${CTL}` }
 
   return (
-    <div data-lasttool={lastTool} style={{ width: 1180, background: '#f4f6f5', fontFamily: 'var(--font-sans)', minHeight: 768, display: 'flex', flexDirection: 'column' }}>
-      <DirFrame onNav={onNav} active="playing-across" tool={tool} />
+    <div data-lasttool={lastTool} style={{ width: 1180, height: 820, overflow: 'hidden', boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
+      <DirFrame onNav={onNav} tool={tool} />
+      <OpeningPanel
+        landing
+        heading="PLAYING ACROSS · 192 PLAYERS CHECKED ON MONDAY"
+        sentence="Mia Tran has been ahead of her own team for eight weeks. She is ready to try the under 13s."
+        support="Two more are worth a look, and Leo’s four-week trial is reviewed on Thursday 18 June."
+        figures={[{ num: '3', label: 'worth a look', proof: true }, { num: '2', label: 'playing up now' }, { num: '1', label: 'held back by a rule' }]}
+        buttons={[{ label: 'Open Mia', main: true, onClick: () => onNav?.('PU2-PlayerReadiness') }, { label: 'Nominate a player', onClick: () => say('Pick any player. Their coach is asked for a view.') }]}
+      />
 
-      <div style={{ flex: 1, display: 'flex', gap: 20, padding: '20px', overflow: 'auto' }}>
-        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 16 }}>
-          <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 12 }}>
-            <div>
-              <div style={{ fontSize: 20, fontWeight: 900, color: INK }}>Playing across</div>
-              <div style={{ fontSize: 13, color: MUT }}>Wattle Creek FC · 192 players looked at each Monday</div>
-            </div>
-            <div style={{ display: 'flex', gap: 10 }}>
-              <button aria-label="What the club counts" onClick={() => onNav?.('PU5-Settings')} style={{ height: 44, padding: '0 18px', background: '#fff', color: G, border: `1.5px solid ${G}`, borderRadius: 8, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>What the club counts</button>
-              <button aria-label="Nominate a player" onClick={() => tool('Pick any player. Their coach is asked for a view.')} style={{ height: 44, padding: '0 18px', background: G, color: '#fff', border: 'none', borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Nominate a player</button>
-            </div>
-          </div>
-
-          <div style={{ display: 'flex', gap: 10 }}>
-            <button aria-label="An age group up · 3" onClick={() => onNav?.('PU1-PlayingUp')} style={{ height: 44, padding: '0 18px', background: PALE, color: G, border: `1.5px solid ${G}`, borderRadius: 22, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>An age group up · 3</button>
-            <button aria-label="An age group down · 2" onClick={() => onNav?.('PX1-PlayingDown')} style={{ height: 44, padding: '0 18px', background: '#fff', color: MUT, border: `1px solid ${LN}`, borderRadius: 22, fontSize: 13, cursor: 'pointer', fontFamily: 'inherit' }}>An age group down · 2</button>
-            <button aria-label="Mixed-age sessions" onClick={() => onNav?.('PX3-BandedNight')} style={{ height: 44, padding: '0 18px', background: '#fff', color: MUT, border: `1px solid ${LN}`, borderRadius: 22, fontSize: 13, cursor: 'pointer', fontFamily: 'inherit' }}>Mixed-age sessions</button>
-            <div style={{ flex: 1 }} />
-            <div style={{ fontSize: 12, color: MUT, display: 'flex', alignItems: 'center' }}>Up, down or mixed: the same idea. The right challenge for each player.</div>
-          </div>
-
-          <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 20px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', marginBottom: 6 }}>
-              <div style={{ fontSize: 15, fontWeight: 700, color: INK, flex: 1 }}>Worth a look</div>
-            </div>
-            <div style={{ fontSize: 12, color: MUT, marginBottom: 12 }}>A to Z · full dot: strong · ring: some · empty: not yet</div>
-
-            {[
-              { label: 'MT Mia Tran · U12 Sam → U13 Girls Meg Sam nominated her too · strong for 8 weeks · dots: F B H S L', ariaLabel: 'MT Mia Tran · U12 Sam → U13 Girls Meg Sam nominated her too · strong for 8 weeks · nothing says wait', name: 'Mia Tran', from: 'U12 Sam → U13 Girls Meg', sub: 'Sam nominated her too · strong for 8 weeks', status: 'Ready to try', target: 'PU2-PlayerReadiness' as const },
-              { label: 'TA Tane Waru · U14 Josh → U16 Ollie Head: coach has not answered yet · needs a view', ariaLabel: 'TA Tane Waru · U14 Josh → U16 Ollie Head: coach has not answered yet Needs a view · dots checked', name: 'Tane Waru', from: 'U14 Josh → U16 Ollie', sub: 'Head: coach has not answered yet', status: 'Needs a view', target: 'PU2-PlayerReadiness' as const },
-              { label: 'ZP Zoe Park · U11 Luke → U12 Girls Ana Would be her third team this year · talk first', ariaLabel: 'ZP Zoe Park · U11 Luke → U12 Girls Ana Would be her third team this year · talk first · dots', name: 'Zoe Park', from: 'U11 Luke → U12 Girls Ana', sub: 'Would be her third team this year', status: 'Talk first', target: 'PU2-PlayerReadiness' as const },
-            ].map((p) => (
-              <div key={p.name} style={{ position: 'relative', display: 'flex', alignItems: 'center', padding: '12px 0', borderBottom: `1px solid ${LN}`, gap: 12, minHeight: 56 }}>
-                <div style={{ width: 36, height: 36, borderRadius: '50%', background: G, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, color: '#fff', flexShrink: 0 }}>{p.name.split(' ').map(w => w[0]).join('').slice(0,2)}</div>
-                <div style={{ flex: 1 }}>
-                  <div style={{ fontSize: 13, fontWeight: 700, color: INK }}>{p.name}</div>
-                  <div style={{ fontSize: 12, color: MUT }}>{p.from}</div>
-                  <div style={{ fontSize: 11, color: MUT }}>{p.sub}</div>
-                </div>
-                <div style={{ fontSize: 12, fontWeight: 700, color: G }}>{p.status}</div>
-                <button aria-label={p.ariaLabel} onClick={() => onNav?.(p.target)} style={{ position: 'absolute', inset: 0, opacity: 0, cursor: 'pointer', border: 'none', background: 'transparent' }} />
-              </div>
-            ))}
-          </div>
-
-          <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 20px' }}>
-            <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 12 }}>Playing up now</div>
-            {[
-              { ariaLabel: 'LC Leo Costa · U13 Chris → U14 Josh Week 3 of 4 · training up, playing his own age · review 18 Jun', name: 'Leo Costa', from: 'U13 Chris → U14 Josh', sub: 'Week 3 of 4 · training up, playing his own age', status: 'Review 18 Jun', target: 'PU3-TrialPlan' as const },
-              { ariaLabel: 'AW Ava Walsh · U12 Sam → U13 Girls Meg Moved up in May · check-in every 6 weeks · going well', name: 'Ava Walsh', from: 'U12 Sam → U13 Girls Meg', sub: 'Moved up in May · check-in every 6 weeks', status: 'Going well', target: 'PU3-TrialPlan' as const },
-            ].map((p) => (
-              <div key={p.name} style={{ position: 'relative', display: 'flex', alignItems: 'center', padding: '12px 0', borderBottom: `1px solid ${LN}`, gap: 12, minHeight: 56 }}>
-                <div style={{ width: 36, height: 36, borderRadius: '50%', background: MUT, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, color: '#fff', flexShrink: 0 }}>{p.name.split(' ').map(w => w[0]).join('').slice(0,2)}</div>
-                <div style={{ flex: 1 }}>
-                  <div style={{ fontSize: 13, fontWeight: 700, color: INK }}>{p.name}</div>
-                  <div style={{ fontSize: 12, color: MUT }}>{p.from}</div>
-                  <div style={{ fontSize: 11, color: MUT }}>{p.sub}</div>
-                </div>
-                <div style={{ fontSize: 12, fontWeight: 700, color: G }}>{p.status}</div>
-                <button aria-label={p.ariaLabel} onClick={() => onNav?.(p.target)} style={{ position: 'absolute', inset: 0, opacity: 0, cursor: 'pointer', border: 'none', background: 'transparent' }} />
-              </div>
-            ))}
-          </div>
-
-          <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 20px' }}>
-            <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 4 }}>Held back by a rule</div>
-            <div style={{ display: 'flex', alignItems: 'center', padding: '12px 0', gap: 12 }}>
-              <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#c05050', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, color: '#fff', flexShrink: 0 }}>NO</div>
-              <div>
-                <div style={{ fontSize: 13, fontWeight: 700, color: INK }}>Noah Okafor</div>
-                <div style={{ fontSize: 12, color: MUT }}>Growing fast, knee pain. Looked at again in 8 weeks</div>
-              </div>
-            </div>
-          </div>
-
-          <div style={{ fontSize: 12, color: MUT }}>Not a ranking and not a score. It says who is worth a conversation. People decide.</div>
-        </div>
-
-        <div style={{ width: 280, flexShrink: 0, display: 'flex', flexDirection: 'column', gap: 14 }}>
-          <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 12, padding: '16px 18px' }}>
-            <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 10 }}>How a player gets here</div>
-            {[
-              { n: 1, t: 'Stretched for 6 weeks', s: 'Well above their own age group in games' },
-              { n: 2, t: 'Nothing says wait', s: 'Not in a growth spurt, not sore, not overloaded' },
-              { n: 3, t: "Their coach agrees", s: 'Or the coach nominates first' },
-            ].map(item => (
-              <div key={item.n} style={{ display: 'flex', gap: 10, padding: '8px 0', borderBottom: `1px solid ${LN}` }}>
-                <div style={{ width: 22, height: 22, borderRadius: '50%', background: PALE, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, color: G, flexShrink: 0 }}>{item.n}</div>
-                <div>
-                  <div style={{ fontSize: 12, fontWeight: 600, color: INK }}>{item.t}</div>
-                  <div style={{ fontSize: 11, color: MUT }}>{item.s}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div style={{ background: PALE, border: `1px solid ${LN}`, borderRadius: 12, padding: '14px 16px' }}>
-            <div style={{ fontSize: 12, fontWeight: 700, color: G, marginBottom: 4 }}>Never used</div>
-            <div style={{ fontSize: 12, color: MUT }}>Size alone, results, or what a parent has asked for.</div>
-          </div>
-        </div>
+      {/* Tabs */}
+      <div style={{ flex: 'none', padding: '10px 24px 0', display: 'flex', alignItems: 'center', gap: 12 }}>
+        <span style={{ display: 'flex', padding: 3, borderRadius: 10, background: HAIR }}>
+          {[{ l: 'An age group up · 3', on: true, t: 'PU1-PlayingUp' }, { l: 'An age group down · 2', on: false, t: 'PX1-PlayingDown' }, { l: 'Mixed-age sessions', on: false, t: 'PX3-BandedNight' }].map(tab => (
+            <button key={tab.l} onClick={() => onNav?.(tab.t)} style={{ height: 40, padding: '0 14px', borderRadius: 8, display: 'flex', alignItems: 'center', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', border: 'none', color: INK, background: tab.on ? '#fff' : 'transparent' }}>{tab.l}</button>
+          ))}
+        </span>
+        <span style={{ fontSize: 13, color: MUT }}>Up, down or mixed: the same idea. The right challenge for each player.</span>
       </div>
+
+      <main style={{ flexGrow: 1, minHeight: 0, padding: '12px 28px 18px', boxSizing: 'border-box', display: 'grid', gap: 14, gridTemplateColumns: 'minmax(0,1fr) 300px' }}>
+        <section style={{ background: '#fff', border: `1px solid ${CTL}`, borderRadius: 16, padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 0, overflow: 'hidden' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', minHeight: 36 }}>
+            <h2 style={{ margin: 0, fontSize: 17, fontWeight: 700, letterSpacing: '-0.01em' }}>Worth a look</h2>
+            <span style={{ fontSize: 13, color: MUT }}>Filled: strong · pale: some · dashed: not yet</span>
+          </div>
+          {WORTH.map((p) => (
+            <div key={p.name} style={{ display: 'grid', gridTemplateColumns: '44px minmax(0,1fr) 150px', columnGap: 10, alignItems: 'center', minHeight: 70, borderTop: `1px solid ${HAIR}`, padding: '4px 0', boxSizing: 'border-box' }}>
+              <span style={{ width: 40, height: 40, borderRadius: 999, background: PALEGREEN, color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 700 }}>{p.ini}</span>
+              <span style={{ minWidth: 0, display: 'flex', flexDirection: 'column', gap: 5 }}>
+                <span style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}><strong style={{ fontSize: 16, lineHeight: '22px' }}>{p.name}</strong><span style={{ fontSize: 14, lineHeight: '20px', color: MUT }}>{p.move}</span></span>
+                <span style={{ display: 'flex', alignItems: 'center', gap: 10 }}><ChipRow states={p.chips} /><span style={{ fontSize: 13, lineHeight: '18px', color: MUT }}>{p.reason}</span></span>
+              </span>
+              <button onClick={() => p.target ? onNav?.(p.target) : say(p.say!)} style={p.main ? { ...outBtn, background: GREEN, color: '#fff', border: `1px solid ${GREEN}` } : outBtn}>{p.btn}</button>
+            </div>
+          ))}
+          <h2 style={{ margin: '6px 0 0', fontSize: 17, fontWeight: 700, letterSpacing: '-0.01em', minHeight: 30, display: 'flex', alignItems: 'center' }}>Playing up now</h2>
+          {NOW.map((p) => (
+            <div key={p.name} style={{ display: 'grid', gridTemplateColumns: '44px minmax(0,1fr) 150px 150px', columnGap: 10, alignItems: 'center', minHeight: 56, borderTop: `1px solid ${HAIR}` }}>
+              <span style={{ width: 40, height: 40, borderRadius: 999, background: PALEGREEN, color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 700 }}>{p.ini}</span>
+              <span style={{ minWidth: 0, display: 'flex', flexDirection: 'column' }}>
+                <span style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}><strong style={{ fontSize: 16, lineHeight: '22px' }}>{p.name}</strong><span style={{ fontSize: 14, lineHeight: '20px', color: MUT }}>{p.move}</span></span>
+                <span style={{ fontSize: 13, lineHeight: '18px', color: MUT }}>{p.sub}</span>
+              </span>
+              <span style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+                <span style={{ display: 'flex', gap: 3 }}>{Array.from({ length: p.of }, (_, i) => <span key={i} style={{ flex: 1, height: 8, borderRadius: 4, background: i < p.done ? GREEN : HAIR }} />)}</span>
+                <span style={{ fontSize: 12, lineHeight: '16px', color: MUT }}>Week {p.done} of {p.of}</span>
+              </span>
+              <button onClick={() => onNav?.(p.target)} style={outBtn}>{p.btn}</button>
+            </div>
+          ))}
+          <span style={{ marginTop: 'auto', paddingTop: 6, fontSize: 13, color: MUT }}>Not a ranking and not a score. It says who is worth a conversation. People decide.</span>
+        </section>
+
+        <aside style={{ display: 'flex', flexDirection: 'column', gap: 12, minHeight: 0 }}>
+          <section style={{ background: '#fff', border: `1px solid ${CTL}`, borderRadius: 16, padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 4, flex: 'none' }}>
+            <span style={{ display: 'flex', alignItems: 'center', gap: 10, paddingBottom: 4 }}><span style={{ width: 32, height: 32, borderRadius: 999, background: AMBER, color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 15, fontWeight: 700 }}>{nudged ? 1 : 2}</span><h2 style={{ margin: 0, fontSize: 17, fontWeight: 700 }}>Needs you</h2></span>
+            {!nudged && (
+              <span style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 60, borderTop: `1px solid ${HAIR}` }}>
+                <span style={{ flexGrow: 1, minWidth: 0, display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 15, lineHeight: '20px' }}>Tane Waru</strong><span style={{ fontSize: 13, lineHeight: '18px', color: MUT }}>Josh’s view, asked 6 days ago</span></span>
+                <button onClick={() => { setNudged(true); say('Josh is asked again for his three taps on Tane.') }} style={{ ...outBtn, width: 'auto' }}>Nudge</button>
+              </span>
+            )}
+            <span style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 60, borderTop: `1px solid ${HAIR}` }}>
+              <span style={{ flexGrow: 1, minWidth: 0, display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 15, lineHeight: '20px' }}>Leo’s review</strong><span style={{ fontSize: 13, lineHeight: '18px', color: MUT }}>Thursday 18 June, Leo first</span></span>
+              <button onClick={() => onNav?.('PU6-Review')} style={{ ...outBtn, width: 'auto' }}>Open</button>
+            </span>
+          </section>
+          <section style={{ background: '#fff', border: `1px solid ${CTL}`, borderRadius: 16, padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 6, flexGrow: 1, minHeight: 0, overflow: 'hidden' }}>
+            <h2 style={{ margin: 0, fontSize: 17, fontWeight: 700 }}>Held back by a rule</h2>
+            <span style={{ display: 'flex', alignItems: 'center', gap: 10 }}><span style={{ width: 36, height: 36, borderRadius: 999, background: HAIR, color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }}>NO</span><span style={{ display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 15, lineHeight: '20px' }}>Noah Okafor</strong><span style={{ fontSize: 13, lineHeight: '18px', color: MUT }}>Growing fast, knee pain</span></span></span>
+            <span style={{ fontSize: 13, color: MUT, marginTop: 'auto' }}>Looked at again in 8 weeks.</span>
+          </section>
+          <button onClick={() => onNav?.('PU5-Settings')} style={{ background: '#fff', border: `1px solid ${CTL}`, borderRadius: 16, padding: '10px 14px', display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 10, cursor: 'pointer', fontFamily: 'inherit', color: INK, minHeight: 56, textAlign: 'left' }}>
+            <span style={{ flexGrow: 1, minWidth: 0, display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 15, lineHeight: '20px' }}>What the club counts</strong><span style={{ fontSize: 13, lineHeight: '18px', color: MUT }}>Never size alone, results, or a parent asking</span></span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </button>
+        </aside>
+      </main>
+      {toast && <div style={{ position: 'absolute', left: '50%', bottom: 28, transform: 'translateX(-50%)', maxWidth: 620, zIndex: 60, boxSizing: 'border-box', display: 'flex', alignItems: 'center', gap: 10, minHeight: 52, padding: '12px 16px', borderRadius: 14, background: '#1f4a3e', color: '#fff', fontSize: 15, lineHeight: '21px', fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)' }}>{toast}</div>}
     </div>
   )
 }
