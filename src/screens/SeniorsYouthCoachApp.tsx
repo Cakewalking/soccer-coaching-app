@@ -480,8 +480,8 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
   } else if (nav === 'squad') {
     switch (squadTab) {
       case 0: content = <SquadScreen role="head" onPlayerProfile={() => {}} empty={sbEmpty} players={teamType === 'seniors' ? SENIORS_SQUAD : YOUTH_SQUAD} />; break
-      case 1: content = <SquadLineups noFrame />; break
-      case 2: content = <DevGoalsScreen empty={sbEmpty} />; break
+      case 1: content = <SquadLineups noFrame teamType={teamType === 'seniors' ? 'seniors' : 'youth'} />; break
+      case 2: content = <DevGoalsScreen empty={sbEmpty} teamType={teamType === 'seniors' ? 'seniors' : 'youth'} />; break
       case 3: content = <WellnessScreen empty={sbEmpty} />; break
       case 4: content = <AvailabilityScreen empty={sbEmpty} />; break
       case 5: content = <ConsentScreen empty={sbEmpty} />; break

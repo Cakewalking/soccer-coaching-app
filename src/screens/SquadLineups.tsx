@@ -1,4 +1,7 @@
 import { useState } from 'react'
+import { YOUTH_SQUAD_PLAYERS, SENIORS_SQUAD_PLAYERS, type SquadPlayer } from '../data'
+
+export type LineupTeam = 'juniors' | 'youth' | 'seniors'
 
 const G    = '#2f6252'
 const G2   = '#40826d'
@@ -113,42 +116,76 @@ function BtnPrimary({ label, onClick }: { label: string; onClick?: () => void })
   return <button onClick={onClick} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: `1px solid ${G}`, background: G, color: '#fff', fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', display: 'inline-flex', alignItems: 'center', gap: 8, whiteSpace: 'nowrap' }}>{label}</button>
 }
 
+// Pitch coordinate slots (3-2-3-ish), shared across teams
+const PITCH_SLOTS = [
+  { top: '72%', left: '15%' }, { top: '72%', left: '50%' }, { top: '72%', left: '85%' },
+  { top: '48%', left: '20%' }, { top: '48%', left: '50%' }, { top: '48%', left: '80%' },
+  { top: '24%', left: '20%' }, { top: '24%', left: '50%' }, { top: '24%', left: '80%' },
+]
+const firstNm = (p: SquadPlayer) => p.fullName.split(' ')[0]
+
+// Team-specific line-ups, built from the squad so the youth and senior coaches
+// never see the U12 Sam children's names (FIX-LIST item 2).
+function lineupData(team: LineupTeam) {
+  if (team === 'juniors') {
+    return {
+      methods: [
+        { label: 'Most goals scored',      stat: '7 goals',      note: 'in 142 minutes together',  players: 'Ruby, Grace, Ava, Leo, Noah, Mia, Zoe, Jai, Ella' },
+        { label: 'Fewest goals against',   stat: '1 against',    note: 'in 118 minutes together',  players: 'Ruby, Grace, Ava, Isla, Noah, Mia, Zoe, Finn, Ella' },
+        { label: 'Longest time winning',   stat: '96 minutes',   note: 'ahead, of 142 together',   players: 'Ruby, Grace, Ava, Leo, Noah, Mia, Zoe, Jai, Ella' },
+        { label: 'Won the ball back fastest', stat: '4.6 seconds', note: 'team average is 7',       players: 'Ruby, Grace, Ava, Leo, Noah, Mia, Harper, Jai, Ella' },
+      ],
+      pitch: ['RW', 'GK', 'AW', 'LM', 'NS', 'MT', 'ZH', 'JP', 'EB'],
+      pairs: [
+        { ini: 'NM', names: 'Noah and Mia', note: 'In 8 of the 9 games recorded. Central midfield.' },
+        { ini: 'RE', names: 'Ruby and Ella', note: 'Right side · most goals scored and longest winning' },
+        { ini: 'AI', names: 'Ava and Isla', note: 'Centre back · fewest goals against' },
+      ],
+      thread: 'Noah and Mia in midfield together are the common thread in three of the four.',
+    }
+  }
+  const squad = team === 'youth' ? YOUTH_SQUAD_PLAYERS : SENIORS_SQUAD_PLAYERS
+  const nine = squad.slice(0, 9)
+  const names9 = nine.map(firstNm).join(', ')
+  const mids = squad.filter(p => p.pos.includes('Central'))
+  const defs = squad.filter(p => p.posGroup === 'defenders')
+  const fwds = squad.filter(p => p.posGroup === 'forwards')
+  const twoNames = (a?: SquadPlayer, b?: SquadPlayer) => a && b ? `${firstNm(a)} and ${firstNm(b)}` : (a ? firstNm(a) : '')
+  const inis = (a?: SquadPlayer, b?: SquadPlayer) => `${a?.ini[0] ?? ''}${b?.ini[0] ?? ''}`
+  return {
+    methods: [
+      { label: 'Most goals scored',         stat: team === 'youth' ? '6 goals' : '9 goals',       note: team === 'youth' ? 'in 118 minutes together' : 'in 140 minutes together', players: names9 },
+      { label: 'Fewest goals against',      stat: '1 against',                                    note: team === 'youth' ? 'in 96 minutes together'  : 'in 126 minutes together', players: names9 },
+      { label: 'Longest time winning',      stat: team === 'youth' ? '84 minutes' : '112 minutes', note: team === 'youth' ? 'ahead, of 118 together'  : 'ahead, of 140 together',  players: names9 },
+      { label: 'Won the ball back fastest', stat: team === 'youth' ? '5.1 seconds' : '4.9 seconds', note: 'team average is 7',                                                   players: names9 },
+    ],
+    pitch: nine.map(p => p.ini),
+    pairs: [
+      { ini: inis(mids[0], mids[1]), names: twoNames(mids[0], mids[1]), note: 'In most games recorded. Central midfield.' },
+      { ini: inis(fwds[0], defs[0]), names: twoNames(fwds[0], defs[0]), note: 'Right side · most goals scored and longest winning' },
+      { ini: inis(defs[0], defs[1]), names: twoNames(defs[0], defs[1]), note: 'Centre back · fewest goals against' },
+    ],
+    thread: mids[0] && mids[1] ? `${firstNm(mids[0])} and ${firstNm(mids[1])} in midfield together are the common thread in three of the four.` : '',
+  }
+}
+
 // SQ1 — Best lineups screen
-export function SquadLineups({ onBack: _onBack, noFrame, onNav }: { onBack?: () => void; noFrame?: boolean; onNav?: (s: string) => void }) {
+export function SquadLineups({ onBack: _onBack, noFrame, onNav, teamType = 'juniors' }: { onBack?: () => void; noFrame?: boolean; onNav?: (s: string) => void; teamType?: LineupTeam }) {
   const [toast, setToast] = useState<string | null>(null)
   const [active, setActive] = useState(0)
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
-  const methods = [
-    { label: 'Most goals scored',      stat: '7 goals',      note: 'in 142 minutes together',  players: 'Ruby, Grace, Ava, Leo, Noah, Mia, Zoe, Jai, Ella' },
-    { label: 'Fewest goals against',   stat: '1 against',    note: 'in 118 minutes together',  players: 'Ruby, Grace, Ava, Isla, Noah, Mia, Zoe, Finn, Ella' },
-    { label: 'Longest time winning',   stat: '96 minutes',   note: 'ahead, of 142 together',   players: 'Ruby, Grace, Ava, Leo, Noah, Mia, Zoe, Jai, Ella' },
-    { label: 'Won the ball back fastest', stat: '4.6 seconds', note: 'team average is 7',       players: 'Ruby, Grace, Ava, Leo, Noah, Mia, Harper, Jai, Ella' },
-  ]
-
-  const pitchPlayers = [
-    { ini: 'RW', top: '72%', left: '15%' },
-    { ini: 'GK', top: '72%', left: '50%' },
-    { ini: 'AW', top: '72%', left: '85%' },
-    { ini: 'LM', top: '48%', left: '20%' },
-    { ini: 'NS', top: '48%', left: '50%' },
-    { ini: 'MT', top: '48%', left: '80%' },
-    { ini: 'ZH', top: '24%', left: '20%' },
-    { ini: 'JP', top: '24%', left: '50%' },
-    { ini: 'EB', top: '24%', left: '80%' },
-  ]
-
-  const pairs = [
-    { ini: 'NM', names: 'Noah and Mia', note: 'In 8 of the 9 games recorded. Central midfield.' },
-    { ini: 'RE', names: 'Ruby and Ella', note: 'Right side · most goals scored and longest winning' },
-    { ini: 'AI', names: 'Ava and Isla', note: 'Centre back · fewest goals against' },
-  ]
+  const data = lineupData(teamType)
+  const methods = data.methods
+  const pitchPlayers = data.pitch.map((ini, i) => ({ ini, ...PITCH_SLOTS[i] }))
+  const pairs = data.pairs
+  const teamLabel = teamType === 'youth' ? 'U16 Ollie' : teamType === 'seniors' ? "Men's 1sts" : 'U12 Sam'
 
   return (
     <CoachFrame
       activeNav="squad" activeSub="Line-ups" subTabs={SQUAD_SUBS}
       pageTitle="Line-ups that worked"
-      pageSub="U12 Sam · from 9 recorded games this season"
+      pageSub={`${teamLabel} · from 9 recorded games this season`}
       pageRight={<><BtnMore label="This season" onClick={() => t('Season selector opens.')}/><BtnPrimary label="Try it on Saturday" onClick={() => onNav ? onNav('teamsheet') : t('Opening Saturday\'s team sheet.')}/></>}
       toast={toast}
       onNavTab={(id) => t(id.startsWith('sub:') ? `${id.slice(4)} opens.` : `${id.charAt(0).toUpperCase() + id.slice(1)} tab opens.`)}
@@ -186,7 +223,7 @@ export function SquadLineups({ onBack: _onBack, noFrame, onNav }: { onBack?: () 
                 <div key={p.ini} style={{ position: 'absolute', top: p.top, left: p.left, transform: 'translate(-50%,-50%)', width: 32, height: 32, borderRadius: '50%', background: '#2f6252', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 10, fontWeight: 800, border: '2px solid #fff' }}>{p.ini}</div>
               ))}
             </div>
-            <div style={{ fontSize: 13, color: MUT, lineHeight: 1.5 }}>Noah and Mia in midfield together are the common thread in three of the four.</div>
+            <div style={{ fontSize: 13, color: MUT, lineHeight: 1.5 }}>{data.thread}</div>
           </div>
           <div style={{ fontSize: 12, color: MUT, lineHeight: 1.5 }}>Built from recorded games only. Never shown to players, parents or the team manager. Not available for MiniRoos or any team younger than U12.</div>
         </div>

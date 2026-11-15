@@ -1,6 +1,10 @@
 import { useState } from 'react'
+import { YOUTH_SQUAD_PLAYERS, SENIORS_SQUAD_PLAYERS, type SquadPlayer } from '../data'
 
-const GOALS = [
+export type DevGoalsTeam = 'juniors' | 'youth' | 'seniors'
+type GoalRow = { ini: string; name: string; pos: string; goal: string; status: string; games: boolean[] }
+
+const JUNIOR_GOALS: GoalRow[] = [
   { ini: 'MT', name: 'Mia Tran',      pos: 'Central midfield', goal: 'Win the ball back within 5 seconds', status: 'on-track',   games: [true,true,true,true,true] },
   { ini: 'EB', name: 'Ella Brandt',   pos: 'Holding midfield', goal: 'Drive forward with the ball',        status: 'on-track',   games: [true,true,true,true,true] },
   { ini: 'KR', name: 'Kai Russo',     pos: 'Right back',       goal: "Defend 1 v 1 on his weak side",      status: 'on-track',   games: [true,true,true,false,true] },
@@ -19,7 +23,48 @@ const GOALS = [
   { ini: 'LN', name: 'Lily Nguyen',   pos: 'Right winger',     goal: 'No goal yet · suggestions ready',    status: 'to-set',     games: [] },
 ]
 
-const SEL_PLAYER = GOALS[11] // Leo Marsh
+// Deterministic last-5 ticks so there is no randomness across renders.
+function ticksFor(p: SquadPlayer): boolean[] {
+  if (p.devGoalStatus === 'on-track') {
+    const miss = p.ini.charCodeAt(0) % 5
+    return [0,1,2,3,4].map(i => i !== miss)
+  }
+  const hit = p.ini.charCodeAt(0) % 5
+  return [0,1,2,3,4].map(i => i === hit)
+}
+
+// Build the development-goals table from the team's own squad, so youth and
+// senior coaches never see the U12 Sam names/counts (FIX-LIST item 2).
+function devGoalsData(team: DevGoalsTeam) {
+  if (team === 'juniors') {
+    const sel = JUNIOR_GOALS[11] // Leo Marsh
+    return {
+      goals: JUNIOR_GOALS,
+      header: '11 of 16 on track · 3 need work · 2 to set · checked after every game',
+      sel, selFirst: 'Leo', selPoss: 'His', setDate: '22 Sep',
+      needsWorkNote: 'Met 1 of the last 5 games. Against Ironbark he lost the back-post runner twice.',
+      clipTitle: 'Min 24 · runner lost at the back post', clipSub: '2 clips from Ironbark',
+      helpNote: 'Back-post defending is in Thursday\'s plan. Ask him to say "shoulder" out loud before every cross.',
+      footNote: 'Leo and his parents see the goal and his ticks in the player app.',
+    }
+  }
+  const squad = team === 'youth' ? YOUTH_SQUAD_PLAYERS : SENIORS_SQUAD_PLAYERS
+  const lastOpp = team === 'youth' ? 'Tealside Town' : 'Glenview Park'
+  const goals: GoalRow[] = squad.map(p => ({ ini: p.ini, name: p.fullName, pos: p.pos, goal: p.devGoal, status: p.devGoalStatus, games: ticksFor(p) }))
+  const onTrack = goals.filter(g => g.status === 'on-track').length
+  const needsWork = goals.filter(g => g.status === 'needs-work').length
+  const sel = goals.find(g => g.status === 'needs-work') ?? goals[0]
+  const selFirst = sel.name.split(' ')[0]
+  return {
+    goals,
+    header: `${onTrack} of ${goals.length} on track · ${needsWork} need work · checked after every game`,
+    sel, selFirst, selPoss: 'Their', setDate: '22 Sep',
+    needsWorkNote: `Met 1 of the last 5 games. "${sel.goal}" is still coming against sides like ${lastOpp}.`,
+    clipTitle: `${sel.goal}`, clipSub: `2 clips from ${lastOpp}`,
+    helpNote: `This is in Thursday's plan. ${selFirst} works on it in small-sided games first.`,
+    footNote: `${selFirst} and their family see the goal and ticks in the player app.`,
+  }
+}
 function Illus() {
   return (
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 22px)', gap: 4, flex: 'none' }}>
@@ -112,10 +157,13 @@ function GameTick({ v }: { v: boolean }) {
   )
 }
 
-export default function DevGoalsScreen({ empty }: { empty?: boolean }) {
+export default function DevGoalsScreen({ empty, teamType = 'juniors' }: { empty?: boolean; teamType?: DevGoalsTeam }) {
   const [toast, setToast] = useState<string|null>(null)
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   if (empty) return <DevGoalsEmpty />
+  const td = devGoalsData(teamType)
+  const GOALS = td.goals
+  const SEL_PLAYER = td.sel
   return (
     <div style={{ flexGrow: 1, padding: '14px 28px 18px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 340px', gap: 16, boxSizing: 'border-box', minHeight: 0, overflow: 'hidden' }}>
 
@@ -123,7 +171,7 @@ export default function DevGoalsScreen({ empty }: { empty?: boolean }) {
       <div style={{ minHeight: 0, display: 'flex', flexDirection: 'column', gap: 10 }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 14 }}>
           <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, letterSpacing: '-0.02em' }}>Development goals</h1>
-          <span style={{ fontSize: 14, color: '#4a5a57' }}>11 of 16 on track · 3 need work · 2 to set · checked after every game</span>
+          <span style={{ fontSize: 14, color: '#4a5a57' }}>{td.header}</span>
         </div>
 
         <div style={{ flex: '0 1 auto', minHeight: 0, overflow: 'auto', background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 16 }}>
@@ -170,18 +218,18 @@ export default function DevGoalsScreen({ empty }: { empty?: boolean }) {
           <span style={{ flex: 'none', width: 44, height: 44, borderRadius: '999px', background: '#c39797', fontSize: 15, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#10211f' }}>{SEL_PLAYER.ini}</span>
           <span>
             <span style={{ display: 'block', fontSize: 18, fontWeight: 700, lineHeight: '24px' }}>{SEL_PLAYER.name}</span>
-            <span style={{ display: 'block', fontSize: 13, color: '#4a5a57' }}>{SEL_PLAYER.pos} · goal set 22 Sep</span>
+            <span style={{ display: 'block', fontSize: 13, color: '#4a5a57' }}>{SEL_PLAYER.pos} · goal set {td.setDate}</span>
           </span>
         </div>
 
         <div>
-          <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#4a5a57' }}>His goal</span>
+          <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#4a5a57' }}>{td.selPoss} goal</span>
           <div style={{ marginTop: 6, fontSize: 17, fontWeight: 700, lineHeight: '23px' }}>{SEL_PLAYER.goal}</div>
         </div>
 
         <div style={{ background: '#fdf0ee', borderRadius: 12, padding: '12px 14px' }}>
           <div style={{ fontSize: 14, fontWeight: 700, color: '#7a3030', marginBottom: 6 }}>Needs work</div>
-          <div style={{ fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>Met 1 of the last 5 games. Against Ironbark he lost the back-post runner twice.</div>
+          <div style={{ fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>{td.needsWorkNote}</div>
         </div>
 
         {/* Related clip */}
@@ -190,13 +238,13 @@ export default function DevGoalsScreen({ empty }: { empty?: boolean }) {
             <svg width="14" height="14" viewBox="0 0 24 24" fill="rgba(255,255,255,0.9)" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"/></svg>
           </div>
           <span style={{ flexGrow: 1, minWidth: 0 }}>
-            <span style={{ display: 'block', fontSize: 13, fontWeight: 700, lineHeight: '18px' }}>Min 24 · runner lost at the back post</span>
-            <span style={{ display: 'block', fontSize: 12, color: '#4a5a57', lineHeight: '16px' }}>2 clips from Ironbark</span>
+            <span style={{ display: 'block', fontSize: 13, fontWeight: 700, lineHeight: '18px' }}>{td.clipTitle}</span>
+            <span style={{ display: 'block', fontSize: 12, color: '#4a5a57', lineHeight: '16px' }}>{td.clipSub}</span>
           </span>
         </div>
 
         <div style={{ background: '#eef5f2', borderRadius: 12, padding: '12px 14px', fontSize: 13, lineHeight: '19px', color: '#2d3d3a' }}>
-          <strong>To help him:</strong> Back-post defending is in Thursday's plan. Ask him to say "shoulder" out loud before every cross.
+          <strong>To help {td.selFirst}:</strong> {td.helpNote}
         </div>
 
         <div style={{ display: 'flex', gap: 5, marginTop: 4 }}>
@@ -209,11 +257,11 @@ export default function DevGoalsScreen({ empty }: { empty?: boolean }) {
         </div>
 
         <div style={{ marginTop: 'auto' }}>
-          <button onClick={() => showToast("Opening Leo Marsh's player profile.")} style={{ width: '100%', height: 44, borderRadius: 12, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>
-            Open Leo's profile
+          <button onClick={() => showToast(`Opening ${SEL_PLAYER.name}'s player profile.`)} style={{ width: '100%', height: 44, borderRadius: 12, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>
+            Open {td.selFirst}'s profile
           </button>
           <div style={{ marginTop: 8, fontSize: 12, color: '#4a5a57', lineHeight: '17px', textAlign: 'center' }}>
-            Leo and his parents see the goal and his ticks in the player app.
+            {td.footNote}
           </div>
         </div>
       </aside>
