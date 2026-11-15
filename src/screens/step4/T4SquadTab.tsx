@@ -12,19 +12,26 @@ const GROUPS = [
   { title: 'Forwards', players: [{ ini: 'NO', name: 'Noah O.', flag: 'Growth spurt', dot: '#9d7c80', metric: '3.8' }, { ini: 'ZH', name: 'Zoe H.', flag: 'Growth spurt', dot: '#9d7c80', metric: '—' }, { ini: 'FW', name: 'Finn W.', flag: '', dot: '#40826d', metric: '4.3' }, { ini: 'LN', name: 'Lily N.', flag: 'Set a goal', dot: '#40826d', metric: '4.0' }] },
 ]
 
+const ALL_PLAYERS = GROUPS.flatMap(g => g.players)
+
 export default function T4SquadTab(_: { onBack?: () => void }) {
-  const [toast, setToast] = useState<string|null>(null)
-  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
+  const [activeNav, setActiveNav] = useState('Squad')
+  const [activeSub, setActiveSub] = useState('Players')
+  const [selectedPlayer, setSelectedPlayer] = useState('EB')
+  const [done, setDone] = useState<string[]>([])
+  const mark = (k: string) => setDone(d => d.includes(k) ? d : [...d, k])
+  const is = (k: string) => done.includes(k)
+  const sel = ALL_PLAYERS.find(p => p.ini === selectedPlayer) ?? ALL_PLAYERS[0]
   return (
     <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       <div style={{ flex: 'none', background: '#fff', borderBottom: `1px solid ${LN}` }}>
         <div style={{ height: 64, boxSizing: 'border-box', padding: '0 28px', display: 'flex', alignItems: 'center', gap: 4, background: G }}>
           <div style={{ fontSize: 20, fontWeight: 700, color: '#fff', marginRight: 16, letterSpacing: '-0.02em' }}>Clean Sheet</div>
-          {NAV_ITEMS.map(n => <div key={n} style={{ height: 48, padding: '0 14px', borderRadius: 12, display: 'flex', alignItems: 'center', fontSize: 15, fontWeight: 600, color: n === 'Squad' ? '#fff' : 'rgba(255,255,255,0.75)', background: n === 'Squad' ? '#40826d' : 'transparent', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{n}</div>)}
-          <div style={{ marginLeft: 'auto' }}><button onClick={() => st('Opening team selector.')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: '1px solid #fff', background: '#fff', fontSize: 14, fontWeight: 600, color: INK, cursor: 'pointer' }}>U12 Sam · Wattle Creek ▾</button></div>
+          {NAV_ITEMS.map(n => <div key={n} onClick={() => setActiveNav(n)} style={{ height: 48, padding: '0 14px', borderRadius: 12, display: 'flex', alignItems: 'center', fontSize: 15, fontWeight: 600, color: n === activeNav ? '#fff' : 'rgba(255,255,255,0.75)', background: n === activeNav ? '#40826d' : 'transparent', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{n}</div>)}
+          <div style={{ marginLeft: 'auto' }}><button onClick={() => mark('team')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: '1px solid #fff', background: '#fff', fontSize: 14, fontWeight: 600, color: INK, cursor: 'pointer' }}>U12 Sam · Wattle Creek {is('team') ? '▴' : '▾'}</button></div>
         </div>
         <div style={{ height: 44, padding: '0 28px', display: 'flex', alignItems: 'flex-end', gap: 24 }}>
-          {SUBNAV.map(n => <div key={n} style={{ height: 44, display: 'flex', alignItems: 'center', fontSize: 14, fontWeight: 600, color: n === 'Players' ? INK : MUT, borderBottom: `3px solid ${n === 'Players' ? '#40826d' : 'transparent'}`, cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{n}</div>)}
+          {SUBNAV.map(n => <div key={n} onClick={() => setActiveSub(n)} style={{ height: 44, display: 'flex', alignItems: 'center', fontSize: 14, fontWeight: 600, color: n === activeSub ? INK : MUT, borderBottom: `3px solid ${n === activeSub ? '#40826d' : 'transparent'}`, cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{n}</div>)}
         </div>
       </div>
 
@@ -34,8 +41,8 @@ export default function T4SquadTab(_: { onBack?: () => void }) {
           <div style={{ fontSize: 14, color: MUT }}>16 players · Thursday 4 Jun · 2 days to Harbour Rovers</div>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button onClick={() => st('Opening message to all parents.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 14, fontWeight: 600, color: INK, cursor: 'pointer' }}>Message parents</button>
-          <button onClick={() => st('Opening add player.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 14, fontWeight: 600, color: INK, cursor: 'pointer' }}>+ Add player</button>
+          <button onClick={() => mark('msgall')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${is('msgall') ? G : LN}`, background: is('msgall') ? '#eef5f2' : '#fff', fontSize: 14, fontWeight: 600, color: is('msgall') ? G : INK, cursor: 'pointer' }}>{is('msgall') ? '✓ Message sent' : 'Message parents'}</button>
+          <button onClick={() => mark('add')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${is('add') ? G : LN}`, background: is('add') ? '#eef5f2' : '#fff', fontSize: 14, fontWeight: 600, color: is('add') ? G : INK, cursor: 'pointer' }}>{is('add') ? 'Adding…' : '+ Add player'}</button>
         </div>
       </div>
 
@@ -48,7 +55,7 @@ export default function T4SquadTab(_: { onBack?: () => void }) {
                   <span>{g.title}</span><span>{g.players.length}</span>
                 </div>
                 {g.players.map(p => (
-                  <div key={p.ini} style={{ display: 'flex', alignItems: 'center', gap: 6, minHeight: 44, padding: '4px 6px', borderRadius: 10, border: `2px solid ${p.ini === 'EB' ? G : 'transparent'}`, background: p.ini === 'EB' ? '#f7f8f7' : '#fff', cursor: 'pointer' }}>
+                  <div key={p.ini} onClick={() => { setSelectedPlayer(p.ini); mark('row') }} style={{ display: 'flex', alignItems: 'center', gap: 6, minHeight: 44, padding: '4px 6px', borderRadius: 10, border: `2px solid ${p.ini === selectedPlayer ? G : 'transparent'}`, background: p.ini === selectedPlayer ? '#f7f8f7' : '#fff', cursor: 'pointer' }}>
                     <div style={{ position: 'relative', width: 28, height: 28, flex: 'none' }}>
                       <div style={{ width: 28, height: 28, borderRadius: '50%', background: '#c39797', color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700 }}>{p.ini}</div>
                       <div style={{ position: 'absolute', right: -1, bottom: -1, width: 10, height: 10, borderRadius: '50%', border: '1.5px solid #fff', background: p.dot }} />
@@ -92,10 +99,10 @@ export default function T4SquadTab(_: { onBack?: () => void }) {
 
         <aside style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '16px 18px', display: 'flex', flexDirection: 'column', gap: 12 }}>
           <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
-            <div style={{ width: 48, height: 48, borderRadius: '50%', background: '#c39797', color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 17, flex: 'none' }}>EB</div>
+            <div style={{ width: 48, height: 48, borderRadius: '50%', background: '#c39797', color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 17, flex: 'none' }}>{sel.ini}</div>
             <div>
-              <div style={{ fontSize: 20, fontWeight: 700 }}>Ella Brandt</div>
-              <div style={{ fontSize: 13, color: MUT }}>Holding midfield</div>
+              <div style={{ fontSize: 20, fontWeight: 700 }}>{sel.name}</div>
+              <div style={{ fontSize: 13, color: MUT }}>{sel.flag || 'Ready'}</div>
             </div>
           </div>
           <div style={{ background: '#c39797', borderRadius: 10, padding: '10px 12px' }}>
@@ -122,12 +129,11 @@ export default function T4SquadTab(_: { onBack?: () => void }) {
             <div style={{ fontSize: 12, color: MUT, marginTop: 4 }}>Carried the ball 30 m or more 5 times on Saturday.</div>
           </div>
           <div style={{ display: 'flex', gap: 8, marginTop: 'auto' }}>
-            <button onClick={() => st("Opening Ella's full profile.")} style={{ flex: 1, height: 44, borderRadius: 10, border: 0, background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Full profile</button>
-            <button onClick={() => st("Opening message to Ella's parent.")} style={{ flex: 1, height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Message parent</button>
+            <button onClick={() => mark('profile')} style={{ flex: 1, height: 44, borderRadius: 10, border: 0, background: is('profile') ? '#40826d' : G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>{is('profile') ? 'Profile open ✓' : 'Full profile'}</button>
+            <button onClick={() => mark('msgparent')} style={{ flex: 1, height: 44, borderRadius: 10, border: `1px solid ${is('msgparent') ? G : LN}`, background: is('msgparent') ? '#eef5f2' : '#fff', color: is('msgparent') ? G : INK, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>{is('msgparent') ? '✓ Message sent' : 'Message parent'}</button>
           </div>
         </aside>
       </main>
-      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }
