@@ -61,7 +61,7 @@ export default function P2bParentConsentStep1() {
           </div>
         ))}
         <button onClick={() => { if (allAnswered) setDone(true); else st('Answer yes or no to each one first.') }} style={{ width: '100%', height: 48, borderRadius: 14, border: 0, background: allAnswered ? G : LN, color: allAnswered ? '#fff' : MUT, fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer', marginTop: 8 }}>Save my choices</button>
-      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
+      {toast && <div style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
       </div>
     </div>
   )

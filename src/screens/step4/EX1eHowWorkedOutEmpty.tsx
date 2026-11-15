@@ -58,7 +58,7 @@ export default function EX1eHowWorkedOutEmpty(_: { onBack?: () => void }) {
             {['Set pieces, and times the ball went out of play.', "Times we lost it in their box, where pressing isn't the plan.", "Any minutes the camera couldn't see the ball."].map((s, i) => <div key={i} style={{ fontSize: 12, color: MUT, padding: '3px 0' }}>{s}</div>)}
           </div>
         </div>
-      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
+      {toast && <div style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
       </main>
     </div>
   )
