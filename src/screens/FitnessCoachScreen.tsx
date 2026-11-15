@@ -1,6 +1,19 @@
 import { useState } from 'react'
+import CoachTabletFrame from './CoachTabletFrame'
+import ClipsScreen from './ClipsScreen'
+import RecordHub from './RecordHub'
 
-type FitnessTab = 'home' | 'squad' | 'training' | 'matchday'
+type FitnessTab = 'home' | 'squad' | 'training' | 'matchday' | 'clips' | 'record'
+
+// Fitness coach uses the same six-tab coach frame (FIX-LIST item 3)
+const FITNESS_NAV = [
+  { id: 'home',     label: 'Home',      icon: 'M4 11l8-7 8 7v9H4z' },
+  { id: 'squad',    label: 'Squad',     icon: 'M9 11a3 3 0 100-6 3 3 0 000 6zM3 20c0-4 3-6 6-6s6 2 6 6M16 11a3 3 0 100-6M21 20c0-3-2-5-4-5.5' },
+  { id: 'training', label: 'Training',  icon: 'M6 5h12a2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V7a2 2 0 012-2zM4 10h16M9 3v4M15 3v4' },
+  { id: 'matchday', label: 'Match day', icon: 'M12 21a9 9 0 100-18 9 9 0 000 18zM12 7l4 3-1.5 5h-5L8 10z' },
+  { id: 'clips',    label: 'Clips',     icon: 'M12 21a9 9 0 100-18 9 9 0 000 18zM10 8l6 4-6 4z' },
+  { id: 'record',   label: 'Record',    icon: 'M12 21a9 9 0 100-18 9 9 0 000 18zM12 15a3 3 0 100-6 3 3 0 000 6z' },
+]
 type SquadSubTab = 'growth' | 'injuries' | 'test-results'
 type TrainingSubTab = 'tests' | 'her-part' | 'measuring' | 'sprint'
 type TeamId = 'u12' | 'u14' | 'u13g' | 'u16'
@@ -117,21 +130,6 @@ const STAT_CHIPS: Record<'u14' | 'u13g' | 'u16', StatChip[]> = {
   ],
 }
 
-function SubTabBar({ tabs, active, onSelect }: { tabs: { id: string; label: string }[]; active: string; onSelect: (id: string) => void }) {
-  return (
-    <div style={{ display: 'flex', borderBottom: '1px solid #e9eae8', background: '#fff', flexShrink: 0 }}>
-      {tabs.map(t => (
-        <button key={t.id} onClick={() => onSelect(t.id)} style={{
-          flex: 1, height: 44, border: 0, background: 'transparent', fontFamily: 'inherit',
-          fontSize: 13, fontWeight: active === t.id ? 700 : 400, cursor: 'pointer',
-          color: active === t.id ? '#1f4a3e' : '#6f7f7b',
-          borderBottom: active === t.id ? '2px solid #1f4a3e' : '2px solid transparent',
-          boxSizing: 'border-box',
-        }}>{t.label}</button>
-      ))}
-    </div>
-  )
-}
 
 function EffortChart({ data }: { data: { sessions: string[]; planned: number[]; actual: number[]; note: string; status: 'warn' | 'good'; coachLabel: string } }) {
   const W = 400, H = 80, PX = 14, PY = 6
@@ -209,6 +207,29 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
   ]
 
   const currentTeam = TEAMS.find(t => t.id === teamId)!
+  const [clipsTab, setClipsTab] = useState(0)
+
+  // Drive the frame's sub-tab bar from the active nav
+  const CLIPS_SUBS = ['By measure', 'By game', 'By player', 'Playlists', 'To check', 'Learn']
+  const HOME_SUBS: HomeSub[] = ['overview', 'fitnesslevel']
+  const SQUAD_SUBS: SquadSubTab[] = ['growth', 'injuries', 'test-results']
+  const TRAIN_SUBS: TrainingSubTab[] = ['tests', 'her-part', 'measuring', 'sprint']
+  const subTabs =
+    tab === 'home'     ? ['Overview', 'Fitness level'] :
+    tab === 'squad'    ? ['Growth', 'Injuries', 'Test results over time'] :
+    tab === 'training' ? ['Fitness tests', 'Her part tonight', 'Measuring session', 'Sprint race'] :
+    tab === 'clips'    ? CLIPS_SUBS : []
+  const subIndex =
+    tab === 'home'     ? HOME_SUBS.indexOf(homeSub) :
+    tab === 'squad'    ? SQUAD_SUBS.indexOf(squadSub) :
+    tab === 'training' ? TRAIN_SUBS.indexOf(trainSub) :
+    tab === 'clips'    ? clipsTab : 0
+  function onSubTab(i: number) {
+    if (tab === 'home')     setHomeSub(HOME_SUBS[i])
+    else if (tab === 'squad')    setSquadSub(SQUAD_SUBS[i])
+    else if (tab === 'training') setTrainSub(TRAIN_SUBS[i])
+    else if (tab === 'clips')    setClipsTab(i)
+  }
 
   if (empty) {
     return (
@@ -250,46 +271,28 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
   }
 
   return (
-    <div style={{ background: '#f7f9f7', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)', position: 'relative' }}>
-
-      {/* Header */}
-      <div style={{ background: '#1f4a3e', padding: '20px 24px 16px', flexShrink: 0 }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <div>
-            <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', marginBottom: 2 }}>{currentTeam.label} · {currentTeam.level} · Fitness coach</div>
-            <div style={{ fontSize: 20, fontWeight: 800, color: '#fff' }}>Fitness overview</div>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            <button onClick={() => setAskOpen(o => !o)} aria-label="Ask Clean Sheet" style={{ width: 44, height: 44, borderRadius: '50%', border: '1.5px solid #a9cfc0', background: askOpen ? '#fff' : 'transparent', color: askOpen ? '#10211f' : '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', flexShrink: 0 }}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg>
-            </button>
-            <div style={{ width: 36, height: 36, borderRadius: '999px', background: '#c39797', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700 }}>PS</div>
-          </div>
-        </div>
-      </div>
-
-      {/* Top tab nav */}
-      <div style={{ display: 'flex', borderBottom: '1px solid #e9eae8', background: '#fff', flexShrink: 0 }}>
-        {([
-          { id: 'home' as FitnessTab, label: 'Home' },
-          { id: 'squad' as FitnessTab, label: 'Squad' },
-          { id: 'training' as FitnessTab, label: 'Training' },
-          { id: 'matchday' as FitnessTab, label: 'Match day' },
-        ] as const).map(t => (
-          <button key={t.id} onClick={() => { setTab(t.id); onNavChange?.(t.id) }} style={{
-            flex: 1, height: 44, border: 0, background: 'transparent', fontFamily: 'inherit',
-            fontSize: 13, fontWeight: tab === t.id ? 700 : 400, cursor: 'pointer',
-            color: tab === t.id ? '#1f4a3e' : '#6f7f7b',
-            borderBottom: tab === t.id ? '2px solid #1f4a3e' : '2px solid transparent',
-          }}>{t.label}</button>
-        ))}
-      </div>
-
+    <>
+    <CoachTabletFrame
+      navTabs={FITNESS_NAV}
+      activeNav={tab}
+      onNav={(id) => { setTab(id as FitnessTab); onNavChange?.(id) }}
+      subTabs={subTabs}
+      activeSubTabIndex={subIndex}
+      onSubTab={onSubTab}
+      roleChip="Fitness coach"
+      teamLabel={currentTeam.label}
+      avatarLetters="PS"
+      showAsk={true}
+      askOpen={askOpen}
+      onAskToggle={() => setAskOpen(o => !o)}
+      askQuestions={['Who is growing fast?', 'Any load concerns this week?', 'Who needs a sprint limit review?']}
+      askRole="fitness coach"
+    >
       <div style={{ flexGrow: 1, overflowY: 'auto' }}>
 
         {/* ── HOME TAB ── */}
-        {tab === 'home' && !empty && homeStory}
-        {tab === 'home' && !(!empty && homeStory) && (
+        {tab === 'home' && homeSub === 'overview' && !empty && homeStory}
+        {tab === 'home' && !(homeSub === 'overview' && !empty && homeStory) && (
           <div>
             {/* Team picker */}
             <div style={{ padding: '14px 20px 0', display: 'flex', gap: 7, flexWrap: 'wrap' as const }}>
@@ -301,19 +304,6 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
                   color: teamId === t.id ? '#fff' : '#6f7f7b',
                   fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer',
                 }}>{t.label}</button>
-              ))}
-            </div>
-
-            {/* Home sub-tabs */}
-            <div style={{ display: 'flex', borderBottom: '1px solid #e9eae8', background: '#fff', margin: '12px 0 0' }}>
-              {([{ id: 'overview' as HomeSub, label: 'Overview' }, { id: 'fitnesslevel' as HomeSub, label: 'Fitness level' }] as const).map(s => (
-                <button key={s.id} onClick={() => setHomeSub(s.id)} style={{
-                  flex: 1, height: 44, border: 0, background: 'transparent', fontFamily: 'inherit',
-                  fontSize: 13, fontWeight: homeSub === s.id ? 700 : 400, cursor: 'pointer',
-                  color: homeSub === s.id ? '#1f4a3e' : '#6f7f7b',
-                  borderBottom: homeSub === s.id ? '2px solid #1f4a3e' : '2px solid transparent',
-                  boxSizing: 'border-box',
-                }}>{s.label}</button>
               ))}
             </div>
 
@@ -542,11 +532,6 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
         {/* ── SQUAD TAB ── */}
         {tab === 'squad' && (
           <div>
-            <SubTabBar
-              tabs={[{ id: 'growth', label: 'Growth' }, { id: 'injuries', label: 'Injuries' }, { id: 'test-results', label: 'Test results over time' }]}
-              active={squadSub}
-              onSelect={id => setSquadSub(id as SquadSubTab)}
-            />
             <div style={{ padding: '16px 20px' }}>
 
               {/* ── GROWTH ── */}
@@ -845,11 +830,6 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
         {/* ── TRAINING TAB ── */}
         {tab === 'training' && (
           <div>
-            <SubTabBar
-              tabs={[{ id: 'tests', label: 'Fitness tests' }, { id: 'her-part', label: 'Her part tonight' }, { id: 'measuring', label: 'Measuring session' }, { id: 'sprint', label: 'Sprint race' }]}
-              active={trainSub}
-              onSelect={id => setTrainSub(id as TrainingSubTab)}
-            />
             <div style={{ padding: '16px 20px' }}>
 
               {trainSub === 'tests' && (
@@ -1058,7 +1038,11 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
             </div>
           </div>
         )}
+
+        {tab === 'clips'  && <ClipsScreen activeTab={clipsTab} />}
+        {tab === 'record' && <RecordHub noFrame />}
       </div>
+    </CoachTabletFrame>
 
       {toast && (
         <div style={{ position: 'fixed', bottom: 32, left: '50%', transform: 'translateX(-50%)', background: '#10211f', color: '#fff', padding: '12px 22px', borderRadius: 12, fontSize: 14, fontWeight: 500, zIndex: 50, whiteSpace: 'nowrap' as const, pointerEvents: 'none' }}>{toast}</div>
@@ -1121,33 +1105,6 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
           </div>
         </div>
       )}
-      {askOpen && (
-        <aside role="dialog" aria-label="Ask Clean Sheet" style={{ position: 'fixed', top: 0, right: 0, bottom: 0, width: 380, background: '#eef5f2', borderLeft: '1px solid #e8edeb', boxShadow: '-6px 0 24px rgba(16,33,31,0.10)', zIndex: 50, display: 'flex', flexDirection: 'column' }}>
-          <div style={{ background: '#fff', padding: '14px 16px', borderBottom: '1px solid #e8edeb', display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2f6252" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg>
-            <span style={{ flex: 1, fontSize: 15, fontWeight: 700, color: '#10211f' }}>Ask Clean Sheet</span>
-            <button onClick={() => setAskOpen(false)} aria-label="Close" style={{ width: 44, height: 44, borderRadius: '50%', border: '1px solid #e8edeb', background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#4a5a57' }}>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
-            </button>
-          </div>
-          <div style={{ flex: 1, overflowY: 'auto', padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 10 }}>
-            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', color: '#4a5a57', textTransform: 'uppercase' as const, marginTop: 4 }}>About this screen</div>
-            {['Who is growing fast?', 'Any load concerns this week?', 'Who needs a sprint limit review?'].map(q => (
-              <button key={q} onClick={() => showToast(q)} style={{ width: '100%', textAlign: 'left', padding: '10px 14px', borderRadius: 10, border: '1px solid #e8edeb', background: '#fff', color: '#2f6252', fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{q}</button>
-            ))}
-            <div style={{ fontSize: 12, color: '#4a5a57', marginTop: 4 }}>Or anything else</div>
-          </div>
-          <div style={{ background: '#fff', padding: '10px 14px 12px', borderTop: '1px solid #e8edeb', flexShrink: 0 }}>
-            <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginBottom: 6 }}>
-              <input placeholder="Ask a follow-up…" style={{ flex: 1, height: 40, padding: '0 12px', borderRadius: 8, border: '1px solid #e8edeb', fontSize: 13, fontFamily: 'inherit', outline: 'none', color: '#10211f' }} />
-              <button onClick={() => showToast('Ask sent.')} style={{ width: 44, height: 44, borderRadius: 8, background: '#2f6252', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
-              </button>
-            </div>
-            <div style={{ fontSize: 11, color: '#4a5a57', lineHeight: 1.5 }}>Uses only what you can see as fitness coach. Never sends anything by itself.</div>
-          </div>
-        </aside>
-      )}
-    </div>
+    </>
   )
 }
