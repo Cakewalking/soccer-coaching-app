@@ -17,8 +17,9 @@ const REFS = [
 ]
 
 export default function FR1Referees(_: { onBack?: () => void }) {
-  const [toast, setToast] = useState<string | null>(null)
-  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
+  const [assignments, setAssignments] = useState<Record<number, string>>({})
+  const [picking, setPicking] = useState<number | null>(null)
+  const [ruthOpen, setRuthOpen] = useState(false)
   return (
     <div style={{ width: 1180, height: 820, background: '#f7f8f7', boxSizing: 'border-box' as const, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' as const }}>
       <div style={{ height: 64, background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 12, flex: 'none' }}>
@@ -38,18 +39,27 @@ export default function FR1Referees(_: { onBack?: () => void }) {
           <div style={{ display: 'grid', gridTemplateColumns: '56px 1fr 1fr 160px', fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, paddingBottom: 6 }}>
             {['Time','Game','Referee',''].map(h => <span key={h}>{h}</span>)}
           </div>
-          {GAMES.map((g, i) => (
-            <div key={i} style={{ display: 'grid', gridTemplateColumns: '56px 1fr 1fr 160px', alignItems: 'center', minHeight: 52, borderTop: `1px solid ${LN}`, gap: 8, background: !g.ref ? '#fef8f0' : undefined, borderRadius: !g.ref ? 8 : undefined, padding: !g.ref ? '0 4px' : undefined }}>
-              <strong style={{ fontSize: 14, fontVariantNumeric: 'tabular-nums' }}>{g.time}</strong>
-              <span style={{ fontSize: 14 }}><strong>{g.team}</strong><br /><span style={{ color: MUT, fontSize: 13 }}>v {g.opp}</span></span>
-              {g.ref
-                ? <span style={{ fontSize: 14 }}>{g.ref}</span>
-                : <span style={{ fontSize: 14, color: '#c00', fontStyle: 'italic' }}>Not assigned</span>}
-              {!g.ref
-                ? <button onClick={() => showToast('Opens referee assignment.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Assign ref</button>
-                : <button onClick={() => showToast('Opens referee change.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid #c5c8c4`, background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Change</button>}
+          {GAMES.map((g, i) => {
+            const ref = assignments[i] ?? g.ref
+            return (
+            <div key={i} style={{ borderTop: `1px solid ${LN}`, background: !ref ? '#fef8f0' : undefined, borderRadius: !ref ? 8 : undefined }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '56px 1fr 1fr 160px', alignItems: 'center', minHeight: 52, gap: 8, padding: !ref ? '0 4px' : undefined }}>
+                <strong style={{ fontSize: 14, fontVariantNumeric: 'tabular-nums' }}>{g.time}</strong>
+                <span style={{ fontSize: 14 }}><strong>{g.team}</strong><br /><span style={{ color: MUT, fontSize: 13 }}>v {g.opp}</span></span>
+                {ref
+                  ? <span style={{ fontSize: 14 }}>{ref}</span>
+                  : <span style={{ fontSize: 14, color: '#c00', fontStyle: 'italic' }}>Not assigned</span>}
+                <button onClick={() => setPicking(p => p === i ? null : i)} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: ref ? `1px solid #c5c8c4` : 0, background: ref ? '#fff' : G, color: ref ? undefined : '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: ref ? 600 : 700, cursor: 'pointer' }}>{ref ? 'Change' : 'Assign ref'}</button>
+              </div>
+              {picking === i && (
+                <div style={{ padding: '0 8px 10px 64px', display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+                  {REFS.map(r => (
+                    <button key={r.ini} onClick={() => { setAssignments(a => ({ ...a, [i]: r.name })); setPicking(null) }} style={{ height: 32, padding: '0 10px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: G, cursor: 'pointer', fontFamily: 'inherit' }}>{r.name}</button>
+                  ))}
+                </div>
+              )}
             </div>
-          ))}
+          )})}
           <div style={{ marginTop: 10, fontSize: 13, color: MUT }}>Feedback so far: 5 of 5 great or good ratings this season.</div>
         </div>
         <div style={{ background: '#fff', border: `1px solid #c5c8c4`, borderRadius: 16, padding: '14px 16px', display: 'flex', flexDirection: 'column' as const, gap: 8 }}>
@@ -63,10 +73,10 @@ export default function FR1Referees(_: { onBack?: () => void }) {
               </span>
             </div>
           ))}
-          <button onClick={() => showToast('Opens message to Ruth.')} style={{ height: 44, borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer', marginTop: 'auto' }}>Contact Ruth</button>
+          {ruthOpen && <div style={{ background: PALE, borderRadius: 10, padding: '10px 12px', fontSize: 13, color: G, marginTop: 'auto' }}>Message to Ruth Adeyemi (coordinator) opened.</div>}
+          <button onClick={() => setRuthOpen(true)} style={{ height: 44, borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer', marginTop: ruthOpen ? 8 : 'auto' }}>Contact Ruth</button>
         </div>
       </div>
-      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
   )
 }
