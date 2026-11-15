@@ -1,4 +1,5 @@
-const GD = '#1f4a3e', MUT = '#4a5a57', LN = '#e8edeb'
+import { useState } from 'react'
+const GD = '#1f4a3e', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2', G = '#2f6252'
 
 const TEAMS = [
   ['U7 Dan', 14, 0, 0], ['U8 Hannah', 16, 1, 0], ['U9 Mark', 16, 0, 1],
@@ -9,6 +10,8 @@ const TEAMS = [
 ]
 
 export default function DR1Registrations(_: { onBack?: () => void }) {
+  const [selectedTeam, setSelectedTeam] = useState<number | null>(null)
+  const [doneAction, setDoneAction] = useState<string[]>([])
   const total = TEAMS.reduce((a, t) => a + (t[1] as number), 0)
   const feeOwing = TEAMS.reduce((a, t) => a + (t[2] as number), 0)
   const noConsent = TEAMS.reduce((a, t) => a + (t[3] as number), 0)
@@ -43,7 +46,7 @@ export default function DR1Registrations(_: { onBack?: () => void }) {
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', columnGap: 20 }}>
               {TEAMS.map((t, i) => (
-                <div key={i} style={{ display: 'grid', gridTemplateColumns: '1fr 80px 100px 100px', alignItems: 'center', minHeight: 42, borderTop: `1px solid ${LN}`, fontSize: 14, gap: 4 }}>
+                <div key={i} onClick={() => setSelectedTeam(i)} style={{ display: 'grid', gridTemplateColumns: '1fr 80px 100px 100px', alignItems: 'center', minHeight: 42, borderTop: `1px solid ${LN}`, fontSize: 14, gap: 4, cursor: 'pointer', background: selectedTeam === i ? PALE : 'transparent' }}>
                   <strong>{t[0]}</strong>
                   <span style={{ color: MUT }}>{t[1]}</span>
                   <span style={{ color: (t[2] as number) > 0 ? '#c06000' : MUT, fontWeight: (t[2] as number) > 0 ? 700 : 400 }}>{(t[2] as number) > 0 ? t[2] : '—'}</span>
@@ -56,9 +59,11 @@ export default function DR1Registrations(_: { onBack?: () => void }) {
         <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 10 }}>
           <div style={{ background: '#fff', border: `1px solid #c5c8c4`, borderRadius: 16, padding: '14px 16px', display: 'flex', flexDirection: 'column' as const, gap: 8 }}>
             <div style={{ fontSize: 15, fontWeight: 700 }}>Quick actions</div>
-            {['Send fee reminder to 5 families','Chase consent from 7 families','Export full registration list'].map(a => (
-              <button key={a} style={{ height: 44, borderRadius: 10, border: `1px solid #c5c8c4`, background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', textAlign: 'left' as const, padding: '0 14px' }}>{a}</button>
-            ))}
+            {['Send fee reminder to 5 families','Chase consent from 7 families','Export full registration list'].map(a => {
+              const done = doneAction.includes(a)
+              return (
+              <button key={a} onClick={() => setDoneAction(d => d.includes(a) ? d : [...d, a])} style={{ height: 44, borderRadius: 10, border: `1px solid ${done ? G : '#c5c8c4'}`, background: done ? PALE : '#fff', color: done ? G : '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', textAlign: 'left' as const, padding: '0 14px' }}>{done ? `✓ ${a}` : a}</button>
+            )})}
           </div>
         </div>
       </div>
