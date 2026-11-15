@@ -1205,7 +1205,7 @@ function PlayersListView({ onPlayer, onReport }: { onPlayer: (name: string, isNe
 
 // ─── Main app ─────────────────────────────────────────────────────────────────
 
-export default function AcademyCoachApp({ onBack, empty = false, initialScreen, onNavChange, homeStory }: { onBack: () => void; empty?: boolean; initialScreen?: string; onNavChange?: (screen: string) => void; homeStory?: import('react').ReactNode }) {
+export default function AcademyCoachApp({ empty = false, initialScreen, onNavChange, homeStory }: { onBack?: () => void; empty?: boolean; initialScreen?: string; onNavChange?: (screen: string) => void; homeStory?: import('react').ReactNode }) {
   const [nav, setNav]               = useState<AcademyNav>((initialScreen as AcademyNav) ?? 'today')
   const [todayTab, setTodayTab]     = useState<TodayTab>('overview')
   const [trainingTab, setTrainingTab] = useState<TrainingTab>('week')
@@ -1279,7 +1279,6 @@ export default function AcademyCoachApp({ onBack, empty = false, initialScreen, 
             </button>
             <span style={{ fontSize: 14, fontWeight: 600, color: 'rgba(255,255,255,0.8)' }}>Tall Timber Academy</span>
             <div style={{ width: 40, height: 40, borderRadius: '50%', background: ROSE, color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>RW</div>
-            <button onClick={onBack} style={{ height: 44, padding: '0 12px', borderRadius: 999, border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: 'rgba(255,255,255,0.8)', fontSize: 12, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>← Coach view</button>
           </div>
         </div>
         {contextTabs.length > 0 && (

@@ -279,7 +279,7 @@ function ClipsTab({ empty }: { empty?: boolean }) {
   )
 }
 
-export default function GoalkeeperCoachApp({ onBack, empty = false, initialScreen, onNavChange, homeStory }: { onBack: () => void; empty?: boolean; initialScreen?: string; onNavChange?: (screen: string) => void; homeStory?: import('react').ReactNode }) {
+export default function GoalkeeperCoachApp({ empty = false, initialScreen, onNavChange, homeStory }: { onBack?: () => void; empty?: boolean; initialScreen?: string; onNavChange?: (screen: string) => void; homeStory?: import('react').ReactNode }) {
   const [nav, setNav]             = useState<GKNav>((initialScreen as GKNav) ?? 'home')
   const [homeTab, setHomeTab]     = useState<HomeTab>('overview')
   const [trainingTab, setTrainingTab] = useState<TrainingTab>('session')
@@ -342,7 +342,6 @@ export default function GoalkeeperCoachApp({ onBack, empty = false, initialScree
           </nav>
           <div style={{ display: 'flex', alignItems: 'center', height: 44, gap: 10 }}>
             <span style={{ fontSize: 13, fontWeight: 700, color: '#2f6252', background: '#eef5f2', borderRadius: '999px', padding: '4px 12px' }}>Goalkeeper coach</span>
-            <button onClick={onBack} style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Head coach view</button>
           </div>
         </div>
       </header>

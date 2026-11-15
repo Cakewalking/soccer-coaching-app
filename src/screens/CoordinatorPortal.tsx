@@ -220,7 +220,6 @@ export default function CoordinatorPortal({ onBack: _onBack, empty = false, home
           </nav>
           <div style={{ display: 'flex', alignItems: 'center', height: 44, gap: 10 }}>
             <span style={{ fontSize: 13, fontWeight: 700, color: '#2f6252', background: '#eef5f2', borderRadius: '999px', padding: '4px 12px' }}>Club coordinator</span>
-            <button onClick={() => showToast('Switching to the coach view on a connected device.')} style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>← Coach view</button>
           </div>
         </div>
       </header>

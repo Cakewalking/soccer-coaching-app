@@ -926,7 +926,7 @@ function AcademyYearView({ onBack }: { onBack: () => void }) {
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
-export default function AcademyOwnerApp({ onBack, empty = false, initialScreen, onNavChange, homeStory }: { onBack: () => void; empty?: boolean; initialScreen?: string; onNavChange?: (screen: string) => void; homeStory?: import('react').ReactNode }) {
+export default function AcademyOwnerApp({ empty = false, initialScreen, onNavChange, homeStory }: { onBack?: () => void; empty?: boolean; initialScreen?: string; onNavChange?: (screen: string) => void; homeStory?: import('react').ReactNode }) {
   const HOME_TAB_IDS: HomeTab[] = ['overview', 'trials', 'reports', 'safety', 'partner']
   const isHomeSub = HOME_TAB_IDS.includes(initialScreen as HomeTab)
   const [nav, setNav]             = useState<OwnerNav>(isHomeSub ? 'home' : (initialScreen as OwnerNav) ?? 'home')
@@ -988,7 +988,6 @@ export default function AcademyOwnerApp({ onBack, empty = false, initialScreen, 
             </button>
             <span style={{ fontSize: 14, fontWeight: 600, color: 'rgba(255,255,255,0.8)' }}>Tall Timber Academy</span>
             <div style={{ width: 40, height: 40, borderRadius: '50%', background: ROSE, color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>DO</div>
-            <button onClick={onBack} style={{ height: 44, padding: '0 12px', borderRadius: 999, border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: 'rgba(255,255,255,0.8)', fontSize: 12, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>← Coach view</button>
           </div>
         </div>
         {contextTabs.length > 0 && (
