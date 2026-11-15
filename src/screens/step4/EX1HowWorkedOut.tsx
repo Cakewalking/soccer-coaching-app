@@ -5,7 +5,10 @@ const SUBNAV = ['Where we\'re at', 'Opposition', 'Team talk', 'Line-up and minut
 
 const BARS = [4, 3, 7, 5, 12, 2, 8, 6, 9, 3, 11, 4, 5, 8, 7, 3, 9, 6, 4, 10, 8, 5, 7, 11, 3, 6, 4, 8, 5, 9, 7]
 
-export default function EX1HowWorkedOut(_: { onBack?: () => void }) {
+const NAV_MAP: Record<string, string> = { Home: 'T1-TabletTraining', Squad: 'T4-SquadTab', Training: 'T3-TrainingTab', 'Match day': 'T2-TabletMatch', Clips: 'C1-ClipsTab' }
+const SUBNAV_MAP: Record<string, string> = { "Where we're at": 'WA1-WhereWeAt', Opposition: 'OP1-Opposition', 'Team talk': 'T2-TabletMatch', 'Line-up and minutes': 'L1-LiveGame', Review: 'R1-MatchReview' }
+
+export default function EX1HowWorkedOut({ onNav }: { onBack?: () => void; onNav?: (s: string) => void }) {
   const [selectedBar, setSelectedBar] = useState<number | null>(14)
   const [toast, setToast] = useState<string | null>(null)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
@@ -13,12 +16,12 @@ export default function EX1HowWorkedOut(_: { onBack?: () => void }) {
     <div style={{ width: 1180, height: 820, boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative', overflowY: 'auto' }}>
       <div style={{ flex: 'none', background: G, height: 64, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 4 }}>
         <div style={{ fontSize: 20, fontWeight: 700, color: '#fff', marginRight: 16, letterSpacing: '-0.02em' }}>Clean Sheet</div>
-        {NAV.map(n => <div key={n} style={{ height: 48, padding: '0 14px', borderRadius: 12, display: 'flex', alignItems: 'center', fontSize: 15, fontWeight: 600, color: n === 'Match day' ? '#fff' : 'rgba(255,255,255,0.75)', background: n === 'Match day' ? G2 : 'transparent', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{n}</div>)}
+        {NAV.map(n => <div key={n} onClick={() => onNav?.(NAV_MAP[n])} style={{ height: 48, padding: '0 14px', borderRadius: 12, display: 'flex', alignItems: 'center', fontSize: 15, fontWeight: 600, color: n === 'Match day' ? '#fff' : 'rgba(255,255,255,0.75)', background: n === 'Match day' ? G2 : 'transparent', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{n}</div>)}
         <div style={{ marginLeft: 'auto' }}><div style={{ height: 44, padding: '0 14px', borderRadius: 999, background: 'rgba(255,255,255,0.15)', fontSize: 14, fontWeight: 600, color: '#fff', display: 'flex', alignItems: 'center' }}>U12 Sam · Wattle Creek ▾</div></div>
         <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#c0a070', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, color: '#fff', marginLeft: 8 }}>SK</div>
       </div>
       <div style={{ flex: 'none', background: '#fff', borderBottom: `1px solid ${LN}`, height: 44, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 24 }}>
-        {SUBNAV.map(n => <div key={n} style={{ height: 44, display: 'flex', alignItems: 'center', fontSize: 14, fontWeight: n === "Where we're at" ? 700 : 500, color: n === "Where we're at" ? INK : MUT, borderBottom: `3px solid ${n === "Where we're at" ? G2 : 'transparent'}`, cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{n}</div>)}
+        {SUBNAV.map(n => <div key={n} onClick={() => onNav?.(SUBNAV_MAP[n])} style={{ height: 44, display: 'flex', alignItems: 'center', fontSize: 14, fontWeight: n === "Where we're at" ? 700 : 500, color: n === "Where we're at" ? INK : MUT, borderBottom: `3px solid ${n === "Where we're at" ? G2 : 'transparent'}`, cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{n}</div>)}
         <div style={{ marginLeft: 'auto', fontSize: 13, color: MUT }}>Head coach</div>
       </div>
       <div style={{ flex: 'none', padding: '16px 28px 0' }}>

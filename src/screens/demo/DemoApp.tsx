@@ -785,6 +785,12 @@ function HomeStoryNav({ id }: { id: string }) {
   return <HomeStoryTablet cfg={cfg} onNav={(s) => setInner(s)} />
 }
 
+function EX1HowWorkedOutNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <EX1HowWorkedOut onNav={(x) => setInner(x)} />
+}
+
 function PhoneStoryNav({ id }: { id: string }) {
   const [inner, setInner] = useState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
@@ -2076,7 +2082,7 @@ function renderScreenInner(key: string): ReactNode {
     case 'ACC10-AcademyRecordResults':       return <ACC10AcademyRecordResults />
     case 'ACC10e-AcademyRecordResultsEmpty': return <ACC10eAcademyRecordResultsEmpty />
     // Match analysis (tablet)
-    case 'EX1-HowWorkedOut':               return <EX1HowWorkedOut />
+    case 'EX1-HowWorkedOut':               return <EX1HowWorkedOutNav />
     case 'EX1e-HowWorkedOutEmpty':         return <EX1eHowWorkedOutEmpty />
     case 'L1b-LiveGameSub':                return <L1bLiveGameSub />
     case 'I1b-InboxElla':                  return <I1bInboxElla />
