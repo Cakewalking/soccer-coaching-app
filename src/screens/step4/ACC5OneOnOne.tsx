@@ -1,14 +1,14 @@
 import { useState } from 'react'
 
-const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
+const G = '#2f6252', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 export default function ACC5OneOnOne(_: { onBack?: () => void }) {
-  const [toast, setToast] = useState('')
-
-  const showToast = (msg: string) => {
-    setToast(msg)
-    setTimeout(() => setToast(''), 3000)
-  }
+  const [activeNav, setActiveNav] = useState('Today')
+  const [activeSub, setActiveSub] = useState('One-on-one')
+  const [selectedPart, setSelectedPart] = useState<number | null>(null)
+  const [done, setDone] = useState<string[]>([])
+  const mark = (k: string) => setDone(d => d.includes(k) ? d : [...d, k])
+  const is = (k: string) => done.includes(k)
 
   const parts = [
     { mins: '10', title: 'Ball each, left foot only', desc: 'Touches, turns and a strike at the wall' },
@@ -30,25 +30,22 @@ export default function ACC5OneOnOne(_: { onBack?: () => void }) {
         <span style={{ color: '#fff', fontSize: 21, fontWeight: 700, marginRight: 32, letterSpacing: '-0.01em' }}>Clean Sheet</span>
         <div style={{ display: 'flex', gap: 4, flex: 1 }}>
           {[{ label: 'Today', icon: '⌂' }, { label: 'Players', icon: '👥' }, { label: 'Game day', icon: '⚽' }, { label: 'Library', icon: '📅' }].map(item => (
-            <button key={item.label} style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.82)', fontSize: 14, fontWeight: 500, padding: '0 14px', height: 64, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
+            <button key={item.label} onClick={() => setActiveNav(item.label)} style={{ background: item.label === activeNav ? 'rgba(255,255,255,0.18)' : 'none', borderRadius: 8, border: 'none', color: item.label === activeNav ? '#fff' : 'rgba(255,255,255,0.82)', fontSize: 14, fontWeight: item.label === activeNav ? 700 : 500, padding: '0 14px', height: 64, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
               <span style={{ fontSize: 16 }}>{item.icon}</span> {item.label}
             </button>
           ))}
         </div>
-        <button onClick={() => showToast('Opening academy selector.')} style={{ background: 'rgba(255,255,255,0.18)', border: 'none', color: '#fff', fontSize: 14, fontWeight: 500, padding: '0 14px', height: 44, borderRadius: 999, cursor: 'pointer', marginRight: 12 }}>Tall Timber Academy ▾</button>
+        <button onClick={() => mark('academy')} style={{ background: 'rgba(255,255,255,0.18)', border: 'none', color: '#fff', fontSize: 14, fontWeight: 500, padding: '0 14px', height: 44, borderRadius: 999, cursor: 'pointer', marginRight: 12 }}>Tall Timber Academy {is('academy') ? '▴' : '▾'}</button>
         <div style={{ width: 44, height: 44, borderRadius: 999, background: '#c39797', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 15, fontWeight: 700, color: INK }}>RW</div>
       </div>
 
       {/* Sub nav */}
       <div style={{ background: '#fff', height: 44, borderBottom: `1px solid #c5c8c4`, display: 'flex', alignItems: 'center', padding: '0 28px', flexShrink: 0 }}>
-        {['Today', 'Run a session', 'Trial player', 'One-on-one', 'Record', 'Suggested'].map(tab => {
-          const active = tab === 'One-on-one'
-          return (
-            <button key={tab} style={{ background: 'none', border: 'none', borderBottom: active ? `2px solid ${G}` : '2px solid transparent', color: active ? G : MUT, fontSize: 14, fontWeight: active ? 700 : 500, padding: '0 14px', height: 44, cursor: 'pointer', marginBottom: -1 }}>
+        {['Today', 'Run a session', 'Trial player', 'One-on-one', 'Record', 'Suggested'].map(tab => (
+            <button key={tab} onClick={() => setActiveSub(tab)} style={{ background: 'none', border: 'none', borderBottom: tab === activeSub ? `2px solid ${G}` : '2px solid transparent', color: tab === activeSub ? G : MUT, fontSize: 14, fontWeight: tab === activeSub ? 700 : 500, padding: '0 14px', height: 44, cursor: 'pointer', marginBottom: -1 }}>
               {tab}
             </button>
-          )
-        })}
+        ))}
         <div style={{ flex: 1 }} />
         <span style={{ height: 32, padding: '0 12px', borderRadius: 999, background: PALE, color: G, fontSize: 13, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 6 }}>Academy coach</span>
       </div>
@@ -60,8 +57,8 @@ export default function ACC5OneOnOne(_: { onBack?: () => void }) {
           <p style={{ margin: '4px 0 0', fontSize: 14, color: MUT }}>Thursday 6:45 to 7:30 · pitch 2</p>
         </div>
         <div style={{ display: 'flex', gap: 8, paddingTop: 4 }}>
-          <button onClick={() => showToast('Pick a new time. Kai\'s mum is asked to confirm.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, background: '#fff', border: `1px solid #c5c8c4`, color: INK, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Move the session</button>
-          <button onClick={() => showToast('Summary sent to Kai\'s mum, with one clip.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, background: G, border: 'none', color: '#fff', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Finish and send summary</button>
+          <button onClick={() => mark('move')} style={{ height: 44, padding: '0 16px', borderRadius: 10, background: is('move') ? PALE : '#fff', border: `1px solid ${is('move') ? G : '#c5c8c4'}`, color: is('move') ? G : INK, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>{is('move') ? 'Pick a time…' : 'Move the session'}</button>
+          <button onClick={() => mark('finish')} style={{ height: 44, padding: '0 16px', borderRadius: 10, background: is('finish') ? '#40826d' : G, border: 'none', color: '#fff', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>{is('finish') ? '✓ Summary sent' : 'Finish and send summary'}</button>
         </div>
       </div>
 
@@ -71,10 +68,10 @@ export default function ACC5OneOnOne(_: { onBack?: () => void }) {
         <div style={{ gridColumn: 'span 7', background: '#fff', border: `1px solid #c5c8c4`, borderRadius: 16, padding: '14px 18px', display: 'flex', flexDirection: 'column' as const, gap: 0 }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
             <span style={{ fontSize: 16, fontWeight: 700, color: INK }}>45 minutes, built from Kai's goal</span>
-            <button onClick={() => showToast('Filming on. The clip goes to Kai and his mum only.')} style={{ background: 'none', border: 'none', color: G, fontSize: 13, fontWeight: 600, cursor: 'pointer', padding: 0 }}>Film a finish</button>
+            <button onClick={() => mark('film')} style={{ background: 'none', border: 'none', color: G, fontSize: 13, fontWeight: 600, cursor: 'pointer', padding: 0 }}>{is('film') ? 'Filming on ●' : 'Film a finish'}</button>
           </div>
           {parts.map((part, i) => (
-            <div key={i} style={{ minHeight: 64, borderTop: `1px solid ${LN}`, display: 'flex', alignItems: 'center', gap: 14, padding: '8px 0' }}>
+            <div key={i} onClick={() => setSelectedPart(i)} style={{ minHeight: 64, borderTop: `1px solid ${LN}`, display: 'flex', alignItems: 'center', gap: 14, padding: '8px 6px', cursor: 'pointer', background: selectedPart === i ? PALE : 'transparent', borderRadius: 8 }}>
               <div style={{ width: 40, height: 40, borderRadius: 999, background: PALE, border: `1px solid ${LN}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700, color: G, flexShrink: 0 }}>{part.mins}</div>
               <div style={{ flex: 1 }}>
                 <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>{part.title}</div>
@@ -115,10 +112,6 @@ export default function ACC5OneOnOne(_: { onBack?: () => void }) {
           </div>
         </div>
       </div>
-
-      {toast && (
-        <div style={{ position: 'absolute', left: '50%', bottom: 28, transform: 'translateX(-50%)', background: GD, color: '#fff', padding: '12px 16px', borderRadius: 14, fontSize: 15, fontWeight: 600, zIndex: 60, whiteSpace: 'nowrap' as const }}>{toast}</div>
-      )}
     </div>
   )
 }
