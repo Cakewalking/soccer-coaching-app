@@ -1,6 +1,7 @@
 import { useState } from 'react'
+import { DARK, AMBER, PALEON } from './directorParts'
 
-const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
+const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb'
 
 export default function PU1ePlayingUpEmpty({ onNav }: { onNav?: (s: string) => void }) {
   const [lastTool, setLastTool] = useState('')
@@ -45,25 +46,19 @@ export default function PU1ePlayingUpEmpty({ onNav }: { onNav?: (s: string) => v
             </div>
           </div>
 
-          <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '48px 40px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16 }}>
-            <div style={{ width: 60, height: 60, borderRadius: '50%', background: PALE, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24 }}>→</div>
-            <div style={{ fontSize: 18, fontWeight: 800, color: INK }}>Nobody flagged yet</div>
-            <div style={{ fontSize: 14, color: MUT, maxWidth: 500, textAlign: 'center' }}>Clean Sheet needs 5 recorded games for a team before it says anything. Until then, coaches can nominate a player and you can plan a trial by hand.</div>
-            <div style={{ maxWidth: 500, width: '100%', display: 'flex', flexDirection: 'column', gap: 10, marginTop: 8 }}>
-              <div style={{ background: PALE, borderRadius: 10, padding: '14px 18px' }}>
-                <div style={{ fontSize: 13, fontWeight: 700, color: INK }}>How far ahead in games, for how long</div>
-                <div style={{ fontSize: 12, color: MUT }}>Well above their own age group, sustained over weeks.</div>
-              </div>
-              <div style={{ background: PALE, borderRadius: 10, padding: '14px 18px' }}>
-                <div style={{ fontSize: 13, fontWeight: 700, color: INK }}>Growth, pain, speed against the older group</div>
-                <div style={{ fontSize: 12, color: MUT }}>Nothing that should hold them back from a trial.</div>
-              </div>
-              <div style={{ background: PALE, borderRadius: 10, padding: '14px 18px' }}>
-                <div style={{ fontSize: 13, fontWeight: 700, color: INK }}>From the player and the coach</div>
-                <div style={{ fontSize: 12, color: MUT }}>Their own view matters as much as the numbers.</div>
-              </div>
+          <div style={{ background: DARK, borderRadius: 16, padding: '40px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16, color: '#fff' }}>
+            <div style={{ width: 56, height: 56, borderRadius: '50%', border: `1.5px solid ${AMBER}`, color: AMBER, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22 }}>→</div>
+            <div style={{ fontSize: 18, fontWeight: 700 }}>Nobody flagged yet</div>
+            <div style={{ fontSize: 14, color: PALEON, maxWidth: 500, textAlign: 'center', lineHeight: '21px' }}>Clean Sheet needs 5 recorded games for a team before it says anything. Until then, coaches can nominate a player and you can plan a trial by hand.</div>
+            <div style={{ maxWidth: 500, width: '100%', display: 'flex', flexDirection: 'column', gap: 10, marginTop: 4 }}>
+              {[['How far ahead in games, for how long', 'Well above their own age group, sustained over weeks.'], ['Growth, pain, speed against the older group', 'Nothing that should hold them back from a trial.'], ['From the player and the coach', 'Their own view matters as much as the numbers.']].map(([t, s]) => (
+                <div key={t} style={{ background: 'rgba(255,255,255,0.08)', borderRadius: 10, padding: '14px 18px' }}>
+                  <div style={{ fontSize: 13, fontWeight: 700, color: '#fff' }}>{t}</div>
+                  <div style={{ fontSize: 12, color: PALEON }}>{s}</div>
+                </div>
+              ))}
             </div>
-            <div style={{ fontSize: 13, color: MUT, maxWidth: 500, textAlign: 'center', borderTop: `1px solid ${LN}`, paddingTop: 16, marginTop: 4 }}>It suggests a conversation. It never moves a player.</div>
+            <div style={{ fontSize: 13, color: PALEON, maxWidth: 500, textAlign: 'center', borderTop: '1px solid rgba(255,255,255,0.15)', paddingTop: 16, marginTop: 4 }}>It suggests a conversation. It never moves a player.</div>
           </div>
         </div>
       </div>

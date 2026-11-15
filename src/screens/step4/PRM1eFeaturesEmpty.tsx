@@ -1,6 +1,7 @@
 import { useState } from 'react'
+import { DARK, AMBER, PALEON } from './directorParts'
 
-const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
+const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb'
 
 export default function PRM1eFeaturesEmpty({ onNav }: { onNav?: (s: string) => void }) {
   const [lastTool, setLastTool] = useState('')
@@ -36,33 +37,33 @@ export default function PRM1eFeaturesEmpty({ onNav }: { onNav?: (s: string) => v
         <button onClick={() => onNav?.('PRM1-FeaturesByTeam')} style={{ ...snb, color: G, fontWeight: 700, borderBottom: `2px solid ${G}`, height: 44 }}>Features and billing</button>
       </nav>
 
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '40px 60px' }}>
-        <div style={{ width: 68, height: 68, borderRadius: '50%', background: PALE, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}>
-          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke={G} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '40px 60px', background: DARK, margin: 24, borderRadius: 16, color: '#fff' }}>
+        <div style={{ width: 68, height: 68, borderRadius: '50%', border: `1.5px solid ${AMBER}`, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}>
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke={AMBER} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
             <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
             <rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/>
           </svg>
         </div>
-        <div style={{ fontSize: 20, fontWeight: 900, color: INK, marginBottom: 6 }}>Wattle Creek FC · no teams yet</div>
-        <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 10 }}>Add a team to choose what it gets</div>
-        <div style={{ fontSize: 14, color: MUT, maxWidth: 500, textAlign: 'center' as const, lineHeight: 1.7, marginBottom: 24 }}>
+        <div style={{ fontSize: 20, fontWeight: 800, color: '#fff', marginBottom: 6 }}>Wattle Creek FC · no teams yet</div>
+        <div style={{ fontSize: 15, fontWeight: 700, color: '#fff', marginBottom: 10 }}>Add a team to choose what it gets</div>
+        <div style={{ fontSize: 14, color: PALEON, maxWidth: 500, textAlign: 'center' as const, lineHeight: 1.7, marginBottom: 24 }}>
           Every team starts with what is in your club plan. You turn add-ons on team by team, and pay only for the teams that have them.
         </div>
 
-        <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '20px 24px', maxWidth: 500, width: '100%', marginBottom: 24 }}>
-          <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 12 }}>How it works</div>
+        <div style={{ background: 'rgba(255,255,255,0.08)', borderRadius: 14, padding: '20px 24px', maxWidth: 500, width: '100%', marginBottom: 24 }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#fff', marginBottom: 12 }}>How it works</div>
           <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 10 }}>
-            <div style={{ fontSize: 13, color: MUT }}>Coaches can ask. Only you and people you name can turn things on</div>
-            <div style={{ fontSize: 13, color: MUT }}>For example, live help from under 13 up</div>
-            <div style={{ fontSize: 13, color: MUT }}>Off today means not charged tomorrow</div>
+            <div style={{ fontSize: 13, color: PALEON }}>Coaches can ask. Only you and people you name can turn things on</div>
+            <div style={{ fontSize: 13, color: PALEON }}>For example, live help from under 13 up</div>
+            <div style={{ fontSize: 13, color: PALEON }}>Off today means not charged tomorrow</div>
           </div>
         </div>
 
         <div style={{ display: 'flex', gap: 12 }}>
           {/* Add a team [nth=1, existing → Teams] */}
-          <button onClick={() => tool('Teams')} style={{ height: 44, padding: '0 28px', background: G, color: '#fff', border: 'none', borderRadius: 8, fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Add a team</button>
+          <button onClick={() => tool('Teams')} style={{ height: 46, padding: '0 28px', background: AMBER, color: INK, border: 'none', borderRadius: 12, fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Add a team</button>
           {/* See what is in the plan [nth=1, change] */}
-          <button onClick={() => tool('Record and review, Ask Clean Sheet, Files and Messages are in the club plan.')} style={{ height: 44, padding: '0 24px', background: '#fff', color: G, border: `1.5px solid ${G}`, borderRadius: 8, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>See what is in the plan</button>
+          <button onClick={() => tool('Record and review, Ask Clean Sheet, Files and Messages are in the club plan.')} style={{ height: 46, padding: '0 24px', background: 'transparent', color: '#fff', border: `1px solid ${PALEON}`, borderRadius: 12, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>See what is in the plan</button>
         </div>
       </div>
     </div>
