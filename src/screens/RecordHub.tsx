@@ -199,14 +199,15 @@ export function RecordHub({ onBack: _onBack, noFrame, onNav }: { onBack?: () => 
 // REC2 — Record saved
 export function RecordSaved({ onBack, onNav }: { onBack?: () => void; onNav?: (s: string) => void }) {
   const [toast, setToast] = useState<string | null>(null)
+  const [moveRow, setMoveRow] = useState<string | null>(null)
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   const destinations = [
-    { icon: ICONS.training2, title: 'The session',           note: 'Video and your notes, on Tuesday\'s plan' },
-    { icon: ICONS.clips,     title: '6 clips',               note: 'Pressing on the whistle · tagged to 9 players' },
-    { icon: ICONS.test,      title: 'Load for 15 players',   note: 'Noah and Zoe stayed under their sprint cap' },
-    { icon: ICONS.squad,     title: 'Each player\'s profile',note: 'Their clips, minutes and load from tonight' },
-    { icon: ICONS.note,      title: 'A note about Ella',     note: '"Joined in half, seemed brighter." Only you and Priya' },
+    { icon: ICONS.training2, title: 'The session',           note: 'Video and your notes, on Tuesday\'s plan', target: 'T3-TrainingTab' },
+    { icon: ICONS.clips,     title: '6 clips',               note: 'Pressing on the whistle · tagged to 9 players', target: 'C1-ClipsTab' },
+    { icon: ICONS.test,      title: 'Load for 15 players',   note: 'Noah and Zoe stayed under their sprint cap', target: 'GT1-Growth' },
+    { icon: ICONS.squad,     title: 'Each player\'s profile',note: 'Their clips, minutes and load from tonight', target: 'T4-SquadTab' },
+    { icon: ICONS.note,      title: 'A note about Ella',     note: '"Joined in half, seemed brighter." Only you and Priya', target: 'I1-Inbox' },
   ]
 
   return (
@@ -225,18 +226,28 @@ export function RecordSaved({ onBack, onNav }: { onBack?: () => void; onNav?: (s
               <span style={{ fontSize: 15, fontWeight: 700, color: INK }}>Where it went</span>
             </div>
             {destinations.map((d, i) => (
-              <div key={d.title} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '14px 16px', borderBottom: i < destinations.length - 1 ? `1px solid ${LN}` : 'none' }}>
-                <div style={{ width: 36, height: 36, borderRadius: 10, background: PALE, color: G, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                  <Icon d={d.icon} size={18} stroke={G}/>
+              <div key={d.title} style={{ borderBottom: i < destinations.length - 1 ? `1px solid ${LN}` : 'none' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '14px 16px' }}>
+                  <div style={{ width: 36, height: 36, borderRadius: 10, background: PALE, color: G, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    <Icon d={d.icon} size={18} stroke={G}/>
+                  </div>
+                  <div style={{ flex: 1 }}>
+                    <div style={{ fontSize: 14, fontWeight: 700, color: INK }}>{d.title}</div>
+                    <div style={{ fontSize: 12, color: MUT }}>{d.note}</div>
+                  </div>
+                  <div style={{ display: 'flex', gap: 8 }}>
+                    <button onClick={() => onNav ? onNav(d.target) : t(`${d.title} opens.`)} style={{ height: 36, padding: '0 12px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Open</button>
+                    <button onClick={() => setMoveRow(r => r === d.title ? null : d.title)} style={{ height: 36, padding: '0 12px', borderRadius: 8, border: `1px solid ${moveRow === d.title ? G : LN}`, background: moveRow === d.title ? PALE : '#fff', fontSize: 13, fontWeight: 600, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Move</button>
+                  </div>
                 </div>
-                <div style={{ flex: 1 }}>
-                  <div style={{ fontSize: 14, fontWeight: 700, color: INK }}>{d.title}</div>
-                  <div style={{ fontSize: 12, color: MUT }}>{d.note}</div>
-                </div>
-                <div style={{ display: 'flex', gap: 8 }}>
-                  <button onClick={() => t(`${d.title} opens.`)} style={{ height: 36, padding: '0 12px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Open</button>
-                  <button onClick={() => t('Move destination opens.')} style={{ height: 36, padding: '0 12px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Move</button>
-                </div>
+                {moveRow === d.title && (
+                  <div style={{ padding: '0 16px 12px 64px', display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+                    <span style={{ fontSize: 12, color: MUT, width: '100%' }}>Move to:</span>
+                    {['Another session', 'A player profile', 'Shared with players', 'The team talk'].map(dest => (
+                      <button key={dest} onClick={() => { setMoveRow(null); t(`Moved to ${dest.toLowerCase()}.`) }} style={{ height: 32, padding: '0 10px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: G, cursor: 'pointer', fontFamily: 'inherit' }}>{dest}</button>
+                    ))}
+                  </div>
+                )}
               </div>
             ))}
           </div>
