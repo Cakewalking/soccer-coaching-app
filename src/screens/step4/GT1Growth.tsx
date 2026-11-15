@@ -41,8 +41,9 @@ function MiniChart() {
 
 export function GT1Growth() {
   const fitnessNav = ['Play level', 'Growth', 'Injuries', 'Wellness', 'Availability']
-  const [toast, setToast] = useState<string|null>(null)
-  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
+  const [activeNav, setActiveNav] = useState('Growth')
+  const [selectedPlayer, setSelectedPlayer] = useState<string | null>('NO')
+  const [measuring, setMeasuring] = useState(false)
   return (
     <div style={{ width: 1180, background: BG, fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' as const }}>
       {/* Top nav */}
@@ -61,13 +62,13 @@ export function GT1Growth() {
         {/* Left nav */}
         <div style={{ width: 200, background: '#fff', borderRight: `1px solid ${LN}`, flexShrink: 0, padding: '12px 0' }}>
           {fitnessNav.map(item => (
-            <div key={item} style={{
+            <div key={item} onClick={() => setActiveNav(item)} style={{
               padding: '10px 20px', fontSize: 14,
-              fontWeight: item === 'Growth' ? 700 : 500,
-              color: item === 'Growth' ? G : MUT,
-              background: item === 'Growth' ? PALE : 'transparent',
-              borderLeft: item === 'Growth' ? `3px solid ${G}` : '3px solid transparent',
-              cursor: 'pointer',
+              fontWeight: item === activeNav ? 700 : 500,
+              color: item === activeNav ? G : MUT,
+              background: item === activeNav ? PALE : 'transparent',
+              borderLeft: item === activeNav ? `3px solid ${G}` : '3px solid transparent',
+              cursor: 'pointer', minHeight: 44,
             }}>{item}</div>
           ))}
           <div style={{ marginTop: 8, padding: '8px 20px', fontSize: 11, color: MUT, borderTop: `1px solid ${LN}` }}>Fitness coach</div>
@@ -82,7 +83,7 @@ export function GT1Growth() {
                 <div style={{ fontSize: 13, color: MUT }}>U12 Sam · measured every 3 months · last 11 Mar · next due Thu 11 Jun</div>
                 <div style={{ fontSize: 12, color: MUT }}>Flag at 7 cm a year</div>
               </div>
-              <button onClick={() => st('Opening measuring session.')} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: 'none', background: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>Start measuring session</button>
+              <button onClick={() => setMeasuring(true)} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: 'none', background: measuring ? '#40826d' : G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>{measuring ? 'Measuring session started ✓' : 'Start measuring session'}</button>
             </div>
 
             <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, overflow: 'hidden' }}>
@@ -99,7 +100,7 @@ export function GT1Growth() {
                     const isFast = parseFloat(p.rate) >= 7
                     const hasInjury = p.flags.includes('pain')
                     return (
-                      <tr key={p.init} style={{ cursor: 'pointer', background: p.init === 'NO' ? PALE : 'transparent', borderBottom: `1px solid ${LN}` }}>
+                      <tr key={p.init} onClick={() => setSelectedPlayer(p.init)} style={{ cursor: 'pointer', background: selectedPlayer === p.init ? PALE : 'transparent', borderBottom: `1px solid ${LN}` }}>
                         <td style={{ padding: '10px 16px' }}>
                           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                             <div style={{ width: 32, height: 32, borderRadius: '50%', background: G, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, color: '#fff', flexShrink: 0 }}>{p.init}</div>
@@ -169,7 +170,6 @@ export function GT1Growth() {
           </div>
         </div>
       </div>
-      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }
