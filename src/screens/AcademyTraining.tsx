@@ -273,6 +273,8 @@ export function AcademyTrainingSuggested({ onBack: _onBack }: { onBack?: () => v
 // ACT3 — Academy Session Plan
 export function AcademySessionPlan({ onBack: _onBack, onNav }: { onBack?: () => void; onNav?: (s: string) => void }) {
   const [toast, setToast] = useState<string | null>(null)
+  const [editPart, setEditPart] = useState<string | null>(null)
+  const [sent, setSent] = useState(false)
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   const parts = [
@@ -293,26 +295,34 @@ export function AcademySessionPlan({ onBack: _onBack, onNav }: { onBack?: () => 
       activeSub="Session plan"
       pageTitle="Tuesday · Advanced"
       pageSub="3 June · 4:30pm · Messmate Primary School, pitch 1 · 60 min"
-      pageRight={<><BtnMore label="Send to families" onClick={() => t('Session summary sent to families.')}/><BtnPrimary label="Run it" onClick={() => onNav ? onNav('livegame') : t('Opening live session mode.')}/></>}
+      pageRight={<><BtnMore label={sent ? 'Sent to families ✓' : 'Send to families'} onClick={() => setSent(true)}/><BtnPrimary label="Run it" onClick={() => onNav ? onNav('livegame') : t('Opening live session mode.')}/></>}
       toast={toast}
       onNav={(id) => t(id.startsWith('sub:') ? `${id.slice(4)} opens.` : `${id.charAt(0).toUpperCase() + id.slice(1)} tab opens.`)}
     >
       <div style={{ display: 'flex', gap: 16 }}>
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 10 }}>
           {parts.map((p, i) => (
-            <div key={p.time} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 16px', display: 'flex', gap: 14, alignItems: 'flex-start' }}>
-              <div style={{ textAlign: 'center', flexShrink: 0, width: 40 }}>
-                <div style={{ fontSize: 11, fontWeight: 800, color: G }}>{p.time}</div>
-                <div style={{ width: 1, height: i < parts.length - 1 ? 20 : 0, background: LN, margin: '4px auto 0' }}/>
-              </div>
-              <div style={{ flex: 1 }}>
-                <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 4 }}>
-                  <span style={{ fontSize: 15, fontWeight: 700, color: INK }}>{p.title}</span>
-                  <span style={{ fontSize: 12, color: MUT }}>{p.duration}</span>
+            <div key={p.time} style={{ background: '#fff', border: `1px solid ${editPart === p.time ? G : LN}`, borderRadius: 14, padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 10 }}>
+              <div style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
+                <div style={{ textAlign: 'center', flexShrink: 0, width: 40 }}>
+                  <div style={{ fontSize: 11, fontWeight: 800, color: G }}>{p.time}</div>
+                  <div style={{ width: 1, height: i < parts.length - 1 ? 20 : 0, background: LN, margin: '4px auto 0' }}/>
                 </div>
-                <div style={{ fontSize: 13, color: MUT, lineHeight: 1.5 }}>{p.desc}</div>
+                <div style={{ flex: 1 }}>
+                  <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 4 }}>
+                    <span style={{ fontSize: 15, fontWeight: 700, color: INK }}>{p.title}</span>
+                    <span style={{ fontSize: 12, color: MUT }}>{p.duration}</span>
+                  </div>
+                  <div style={{ fontSize: 13, color: MUT, lineHeight: 1.5 }}>{p.desc}</div>
+                </div>
+                <button onClick={() => setEditPart(e => e === p.time ? null : p.time)} style={{ height: 32, padding: '0 10px', borderRadius: 8, border: `1px solid ${editPart === p.time ? G : LN}`, background: editPart === p.time ? PALE : '#fff', fontSize: 12, fontWeight: 600, color: INK, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>{editPart === p.time ? 'Done' : 'Edit'}</button>
               </div>
-              <button onClick={() => t(`${p.title} detail opens.`)} style={{ height: 32, padding: '0 10px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: INK, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>Edit</button>
+              {editPart === p.time && (
+                <div style={{ display: 'flex', gap: 8, paddingLeft: 54 }}>
+                  <input defaultValue={p.title} style={{ flex: 1, height: 38, borderRadius: 8, border: `1px solid ${LN}`, padding: '0 12px', fontSize: 13, fontFamily: 'inherit', boxSizing: 'border-box' }} />
+                  <input defaultValue={p.duration} style={{ width: 80, height: 38, borderRadius: 8, border: `1px solid ${LN}`, padding: '0 12px', fontSize: 13, fontFamily: 'inherit', boxSizing: 'border-box' }} />
+                </div>
+              )}
             </div>
           ))}
         </div>
