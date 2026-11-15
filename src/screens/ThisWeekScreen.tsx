@@ -108,6 +108,13 @@ function chipBg(t: 'rose' | 'stone') {
 
 export default function ThisWeekScreen({ empty, onDrillLibrary, onTonightsPlan, onGrowthLoad, nextOpponent = 'Harbour Rovers', lastOpponent = 'Ironbark' }: { empty?: boolean; onDrillLibrary?: () => void; onTonightsPlan?: () => void; onGrowthLoad?: () => void; nextOpponent?: string; lastOpponent?: string }) {
   if (empty) return <ThisWeekEmpty />
+  return <ThisWeekFull onDrillLibrary={onDrillLibrary} onTonightsPlan={onTonightsPlan} onGrowthLoad={onGrowthLoad} nextOpponent={nextOpponent} lastOpponent={lastOpponent} />
+}
+
+function ThisWeekFull({ onDrillLibrary, onTonightsPlan, onGrowthLoad, nextOpponent, lastOpponent }: { onDrillLibrary?: () => void; onTonightsPlan?: () => void; onGrowthLoad?: () => void; nextOpponent: string; lastOpponent: string }) {
+  const [selectedDay, setSelectedDay] = useState<number | null>(2)
+  const [selectedFocus, setSelectedFocus] = useState<number | null>(null)
+  const [selectedPlayer, setSelectedPlayer] = useState<number | null>(null)
   const days = DAYS.map(d => d.label === 'SATURDAY' ? { ...d, items: [`vs ${nextOpponent}`, ...d.items.slice(1)] } : d)
   return (
     <div style={{ flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
@@ -125,7 +132,7 @@ export default function ThisWeekScreen({ empty, onDrillLibrary, onTonightsPlan, 
         {/* 3 focus banners */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0,1fr))', gap: 10, marginBottom: 14 }}>
           {FOCUSES.map(f => (
-            <div key={f.n} style={{ background: '#2f6252', color: '#ffffff', borderRadius: 12, padding: '12px 16px', display: 'flex', alignItems: 'center', gap: 12 }}>
+            <div key={f.n} onClick={() => setSelectedFocus(s => s === f.n ? null : f.n)} style={{ background: '#2f6252', color: '#ffffff', borderRadius: 12, padding: '12px 16px', display: 'flex', alignItems: 'center', gap: 12, cursor: 'pointer', outline: selectedFocus === f.n ? '3px solid #f4c95d' : 'none', outlineOffset: -1 }}>
               <span style={{ flex: 'none', width: 28, height: 28, borderRadius: '999px', background: 'rgba(255,255,255,0.2)', fontSize: 14, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{f.n}</span>
               <span>
                 <span style={{ display: 'block', fontSize: 14, fontWeight: 700, lineHeight: '19px' }}>{f.label}</span>
@@ -142,10 +149,10 @@ export default function ThisWeekScreen({ empty, onDrillLibrary, onTonightsPlan, 
         {/* 5 day columns */}
         <div style={{ flexGrow: 1, minWidth: 0, display: 'grid', gridTemplateColumns: 'repeat(5, minmax(0,1fr))', gap: 10, overflow: 'hidden' }}>
           {days.map((d, i) => (
-            <div key={i} style={{
-              background: '#ffffff', border: `1px solid ${d.tag === 'Tonight' ? '#2f6252' : '#c5c8c4'}`,
+            <div key={i} onClick={() => setSelectedDay(i)} style={{
+              background: selectedDay === i ? '#eef5f2' : '#ffffff', border: `${selectedDay === i ? 2 : 1}px solid ${selectedDay === i ? '#2f6252' : d.tag === 'Tonight' ? '#2f6252' : '#c5c8c4'}`,
               borderRadius: 14, padding: '14px 14px', display: 'flex', flexDirection: 'column', gap: 6,
-              overflow: 'hidden',
+              overflow: 'hidden', cursor: 'pointer',
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 2 }}>
                 <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', color: '#4a5a57', flexGrow: 1 }}>{d.label}</span>
@@ -184,7 +191,7 @@ export default function ThisWeekScreen({ empty, onDrillLibrary, onTonightsPlan, 
           <div style={{ background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 14, padding: '14px 14px', flex: 'none' }}>
             <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 10, letterSpacing: '-0.01em' }}>Players to plan around</div>
             {PLAYERS_TO_PLAN.map((p, i) => (
-              <div key={i} style={{ display: 'flex', gap: 8, padding: '8px 0', borderTop: i > 0 ? '1px solid #e9eae8' : 'none', alignItems: 'flex-start' }}>
+              <div key={i} onClick={() => setSelectedPlayer(i)} style={{ display: 'flex', gap: 8, padding: '8px 6px', borderTop: i > 0 ? '1px solid #e9eae8' : 'none', alignItems: 'flex-start', cursor: 'pointer', background: selectedPlayer === i ? '#eef5f2' : 'transparent', borderRadius: 8 }}>
                 <span style={{ flex: 'none', width: 28, height: 28, borderRadius: '999px', background: chipBg(p.type), fontSize: 11, fontWeight: 700, color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{p.ini}</span>
                 <div style={{ flexGrow: 1, minWidth: 0 }}>
                   <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{p.label}</div>
