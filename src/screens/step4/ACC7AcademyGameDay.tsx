@@ -1,14 +1,13 @@
 import { useState } from 'react'
 
-const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
+const G = '#2f6252', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 export default function ACC7AcademyGameDay(_: { onBack?: () => void }) {
-  const [toast, setToast] = useState('')
-
-  const showToast = (msg: string) => {
-    setToast(msg)
-    setTimeout(() => setToast(''), 3000)
-  }
+  const [activeNav, setActiveNav] = useState('Game day')
+  const [activeSub, setActiveSub] = useState('This Saturday')
+  const [done, setDone] = useState<string[]>([])
+  const mark = (k: string) => setDone(d => d.includes(k) ? d : [...d, k])
+  const is = (k: string) => done.includes(k)
 
   return (
     <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, position: 'relative', display: 'flex', flexDirection: 'column' as const }}>
@@ -16,22 +15,21 @@ export default function ACC7AcademyGameDay(_: { onBack?: () => void }) {
       <div style={{ background: G, height: 64, display: 'flex', alignItems: 'center', padding: '0 24px', flexShrink: 0 }}>
         <span style={{ color: '#fff', fontSize: 21, fontWeight: 700, marginRight: 32, letterSpacing: '-0.01em' }}>Clean Sheet</span>
         <div style={{ display: 'flex', gap: 4, flex: 1 }}>
-          {[{ label: 'Today', icon: '⌂' }, { label: 'Players', icon: '👥' }, { label: 'Game day', icon: '⚽', active: true }, { label: 'Library', icon: '📅' }].map(item => (
-            <button key={item.label} style={{ background: (item as any).active ? 'rgba(255,255,255,0.18)' : 'none', border: 'none', color: '#fff', fontSize: 14, fontWeight: (item as any).active ? 700 : 500, padding: '0 14px', height: 64, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6, borderRadius: 8 }}>
+          {[{ label: 'Today', icon: '⌂' }, { label: 'Players', icon: '👥' }, { label: 'Game day', icon: '⚽' }, { label: 'Library', icon: '📅' }].map(item => (
+            <button key={item.label} onClick={() => setActiveNav(item.label)} style={{ background: item.label === activeNav ? 'rgba(255,255,255,0.18)' : 'none', border: 'none', color: '#fff', fontSize: 14, fontWeight: item.label === activeNav ? 700 : 500, padding: '0 14px', height: 64, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6, borderRadius: 8 }}>
               <span style={{ fontSize: 16 }}>{item.icon}</span> {item.label}
             </button>
           ))}
         </div>
-        <button onClick={() => showToast('Opening academy selector.')} style={{ background: 'rgba(255,255,255,0.18)', border: 'none', color: '#fff', fontSize: 14, fontWeight: 500, padding: '0 14px', height: 44, borderRadius: 999, cursor: 'pointer', marginRight: 12 }}>Tall Timber Academy ▾</button>
+        <button onClick={() => mark('academy')} style={{ background: 'rgba(255,255,255,0.18)', border: 'none', color: '#fff', fontSize: 14, fontWeight: 500, padding: '0 14px', height: 44, borderRadius: 999, cursor: 'pointer', marginRight: 12 }}>Tall Timber Academy {is('academy') ? '▴' : '▾'}</button>
         <div style={{ width: 44, height: 44, borderRadius: 999, background: '#c39797', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 15, fontWeight: 700, color: INK }}>RW</div>
       </div>
 
       {/* Sub nav */}
       <div style={{ background: '#fff', height: 44, borderBottom: `1px solid #c5c8c4`, display: 'flex', alignItems: 'center', padding: '0 28px', flexShrink: 0 }}>
         {['This Saturday', 'Team sheet', 'Live game', 'Review'].map(tab => {
-          const active = tab === 'This Saturday'
           return (
-            <button key={tab} style={{ background: 'none', border: 'none', borderBottom: active ? `2px solid ${G}` : '2px solid transparent', color: active ? G : MUT, fontSize: 14, fontWeight: active ? 700 : 500, padding: '0 14px', height: 44, cursor: 'pointer', marginBottom: -1 }}>
+            <button key={tab} onClick={() => setActiveSub(tab)} style={{ background: 'none', border: 'none', borderBottom: tab === activeSub ? `2px solid ${G}` : '2px solid transparent', color: tab === activeSub ? G : MUT, fontSize: 14, fontWeight: tab === activeSub ? 700 : 500, padding: '0 14px', height: 44, cursor: 'pointer', marginBottom: -1 }}>
               {tab}
             </button>
           )
@@ -47,8 +45,8 @@ export default function ACC7AcademyGameDay(_: { onBack?: () => void }) {
           <p style={{ margin: '4px 0 0', fontSize: 14, color: MUT }}>Sat 6 June · 11:00 vs Banksia Park · home, pitch 2</p>
         </div>
         <div style={{ display: 'flex', gap: 8, paddingTop: 4 }}>
-          <button onClick={() => showToast('New message to 16 families.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, background: '#fff', border: `1px solid #c5c8c4`, color: INK, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Message the team</button>
-          <button onClick={() => showToast('Starting live game...')} style={{ height: 44, padding: '0 16px', borderRadius: 10, background: G, border: 'none', color: '#fff', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Start the game</button>
+          <button onClick={() => mark('msg')} style={{ height: 44, padding: '0 16px', borderRadius: 10, background: is('msg') ? PALE : '#fff', border: `1px solid ${is('msg') ? G : '#c5c8c4'}`, color: is('msg') ? G : INK, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>{is('msg') ? '✓ Message sent to 16' : 'Message the team'}</button>
+          <button onClick={() => mark('start')} style={{ height: 44, padding: '0 16px', borderRadius: 10, background: is('start') ? '#40826d' : G, border: 'none', color: '#fff', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>{is('start') ? 'Game started ✓' : 'Start the game'}</button>
         </div>
       </div>
 
@@ -68,7 +66,7 @@ export default function ACC7AcademyGameDay(_: { onBack?: () => void }) {
               <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>Team sheet</div>
               <div style={{ fontSize: 13, color: MUT }}>14 of 16 can play · 2 still to register with the club</div>
             </div>
-            <button onClick={() => showToast('Opening team sheet...')} style={{ height: 44, padding: '0 12px', borderRadius: 8, background: '#fff', border: `1px solid #c5c8c4`, color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>Open</button>
+            <button onClick={() => mark('sheet')} style={{ height: 44, padding: '0 12px', borderRadius: 8, background: is('sheet') ? PALE : '#fff', border: `1px solid ${is('sheet') ? G : '#c5c8c4'}`, color: is('sheet') ? G : INK, fontSize: 13, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>{is('sheet') ? 'Opened' : 'Open'}</button>
           </div>
 
           {/* Item 2: check */}
@@ -78,7 +76,7 @@ export default function ACC7AcademyGameDay(_: { onBack?: () => void }) {
               <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>Minutes</div>
               <div style={{ fontSize: 13, color: MUT }}>Everyone gets at least half a game. The plan is ready</div>
             </div>
-            <button onClick={() => showToast('Minutes plan: 16 players, nobody under 35 of 70 minutes.')} style={{ height: 44, padding: '0 12px', borderRadius: 8, background: '#fff', border: `1px solid #c5c8c4`, color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>See plan</button>
+            <button onClick={() => mark('plan')} style={{ height: 44, padding: '0 12px', borderRadius: 8, background: is('plan') ? PALE : '#fff', border: `1px solid ${is('plan') ? G : '#c5c8c4'}`, color: is('plan') ? G : INK, fontSize: 13, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>{is('plan') ? 'Shown' : 'See plan'}</button>
           </div>
 
           {/* Item 3: check */}
@@ -88,7 +86,7 @@ export default function ACC7AcademyGameDay(_: { onBack?: () => void }) {
               <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>Team talk</div>
               <div style={{ fontSize: 13, color: MUT }}>3 slides from Thursday's session: finishing with the weaker foot</div>
             </div>
-            <button onClick={() => showToast('Opening team talk...')} style={{ height: 44, padding: '0 12px', borderRadius: 8, background: '#fff', border: `1px solid #c5c8c4`, color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>Open</button>
+            <button onClick={() => mark('talk')} style={{ height: 44, padding: '0 12px', borderRadius: 8, background: is('talk') ? PALE : '#fff', border: `1px solid ${is('talk') ? G : '#c5c8c4'}`, color: is('talk') ? G : INK, fontSize: 13, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>{is('talk') ? 'Opened' : 'Open'}</button>
           </div>
 
           {/* Item 4: check */}
@@ -132,14 +130,10 @@ export default function ACC7AcademyGameDay(_: { onBack?: () => void }) {
             <p style={{ margin: 0, fontSize: 14, color: MUT, lineHeight: 1.55 }}>
               The match review comes back in about 25 minutes. What it finds feeds next week's sessions and each player's plan.
             </p>
-            <button onClick={() => showToast('Opening last week\'s review...')} style={{ alignSelf: 'flex-start', background: 'none', border: 'none', color: G, fontSize: 13, fontWeight: 600, cursor: 'pointer', padding: 0, marginTop: 'auto' }}>See last week's review</button>
+            <button onClick={() => mark('review')} style={{ alignSelf: 'flex-start', background: 'none', border: 'none', color: G, fontSize: 13, fontWeight: 600, cursor: 'pointer', padding: 0, marginTop: 'auto' }}>{is('review') ? "Showing last week's review ✓" : "See last week's review"}</button>
           </div>
         </div>
       </div>
-
-      {toast && (
-        <div style={{ position: 'absolute', left: '50%', bottom: 28, transform: 'translateX(-50%)', background: GD, color: '#fff', padding: '12px 16px', borderRadius: 14, fontSize: 15, fontWeight: 600, zIndex: 60, whiteSpace: 'nowrap' as const }}>{toast}</div>
-      )}
     </div>
   )
 }
