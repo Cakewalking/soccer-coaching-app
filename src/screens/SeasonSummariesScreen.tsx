@@ -1,5 +1,7 @@
 import { useState } from 'react'
+import { YOUTH_SQUAD_PLAYERS, SENIORS_SQUAD_PLAYERS } from '../data'
 
+export type SummaryTeam = 'juniors' | 'youth' | 'seniors'
 type SummaryStatus = 'ready' | 'check' | 'write'
 
 interface PlayerRow {
@@ -12,7 +14,7 @@ interface PlayerRow {
   parent: string
 }
 
-const PLAYERS: PlayerRow[] = [
+const JUNIOR_PLAYERS: PlayerRow[] = [
   { ini: 'MT', name: 'Mia Tran',      status: 'ready', note: "Mia set out to use her left foot more, and by August she was scoring with it. She's the first to help a teammate up. Next year: keep looking before the ball comes.", goals: ['Use her left foot more', 'Look before the ball comes'], clip: 'Left foot, low across the keeper, v Ironbark United', parent: 'To Linh Tran, and to Mia\'s app' },
   { ini: 'NO', name: 'Noah Okafor',   status: 'ready', note: "Noah holds his position better than anyone and his reading of the game has jumped this season. He's ready to play up next year.", goals: ['Hold shape under pressure', 'Read the game earlier'], clip: 'Covering run, intercepted twice, v Harbour Rovers', parent: 'To Zara Okafor' },
   { ini: 'EB', name: 'Ella Brandt',   status: 'ready', note: "Ella started the season quietly but came alive in the second half. Her first touch under pressure is now a strength, not a worry.", goals: ['First touch under pressure', 'Shoot earlier'], clip: 'First-time finish from the edge, v Kestrel Park', parent: 'To Dagmar Brandt' },
@@ -23,6 +25,26 @@ const PLAYERS: PlayerRow[] = [
   { ini: 'HQ', name: 'Harper Quinn',  status: 'write', note: '', goals: ['Hold the ball up', 'Link play'], clip: '', parent: 'To Casey Quinn' },
 ]
 
+// Build season summaries from the team's own squad so youth and senior coaches
+// see their own players and no junior parent names (FIX-LIST item 2).
+function summaryData(team: SummaryTeam): { label: string; shown: string; players: PlayerRow[] } {
+  if (team === 'juniors') return { label: 'U12 Sam · season 2026', shown: '8 of 17 shown', players: JUNIOR_PLAYERS }
+  const squad = team === 'youth' ? YOUTH_SQUAD_PLAYERS : SENIORS_SQUAD_PLAYERS
+  const lastOpp = team === 'youth' ? 'Tealside Town' : 'Glenview Park'
+  const players: PlayerRow[] = squad.slice(0, 8).map((p, i) => {
+    const first = p.fullName.split(' ')[0]
+    const status: SummaryStatus = i >= 6 ? 'write' : p.devGoalStatus === 'on-track' ? 'ready' : 'check'
+    return {
+      ini: p.ini, name: p.fullName, status,
+      note: status === 'write' ? '' : `${first} set out to ${p.devGoal.toLowerCase()}, and it has come on this season. A steady, reliable ${p.pos.toLowerCase()}.`,
+      goals: [p.devGoal, 'Keep building on it'],
+      clip: status === 'write' ? '' : `Best moment v ${lastOpp}`,
+      parent: 'To the player and their family',
+    }
+  })
+  return { label: team === 'youth' ? 'U16 Ollie · season 2026' : "Men's 1sts · season 2026", shown: `8 of ${squad.length} shown`, players }
+}
+
 const STATUS_LABEL: Record<SummaryStatus, string> = { ready: 'Ready', check: 'Check', write: 'To write' }
 const STATUS_COLOR: Record<SummaryStatus, string> = { ready: '#2f6252', check: '#c39797', write: '#6f7f7b' }
 const STATUS_BG:    Record<SummaryStatus, string> = { ready: '#eef5f2', check: '#fdf5f0', write: '#f5f5f4' }
@@ -31,8 +53,10 @@ function StatusChip({ s }: { s: SummaryStatus }) {
   return <span style={{ fontSize: 12, fontWeight: 700, padding: '2px 8px', borderRadius: '999px', background: STATUS_BG[s], color: STATUS_COLOR[s] }}>{STATUS_LABEL[s]}</span>
 }
 
-export default function SeasonSummariesScreen({ empty }: { empty?: boolean }) {
-  const [selected, setSelected] = useState<string | null>('MT')
+export default function SeasonSummariesScreen({ empty, teamType = 'juniors' }: { empty?: boolean; teamType?: SummaryTeam }) {
+  const sd = summaryData(teamType)
+  const PLAYERS = sd.players
+  const [selected, setSelected] = useState<string | null>(PLAYERS[0]?.ini ?? null)
 
   if (empty) {
     return (
@@ -79,7 +103,7 @@ export default function SeasonSummariesScreen({ empty }: { empty?: boolean }) {
       <div style={{ flexShrink: 0, padding: '14px 28px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 20 }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 14 }}>
           <h1 style={{ margin: 0, fontSize: 26, lineHeight: '32px', fontWeight: 700, letterSpacing: '-0.02em' }}>Season summaries</h1>
-          <span style={{ fontSize: 14, color: '#4a5a57' }}>U12 Sam · season 2026 · {ready} ready, {check} to check, {write} to write</span>
+          <span style={{ fontSize: 14, color: '#4a5a57' }}>{sd.label} · {ready} ready, {check} to check, {write} to write</span>
         </div>
         <div style={{ display: 'flex', gap: 10 }}>
           <button onClick={() => showToast('Opening preview of what parents see.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>What parents see</button>
@@ -93,7 +117,7 @@ export default function SeasonSummariesScreen({ empty }: { empty?: boolean }) {
         <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', padding: '10px 16px 8px', borderBottom: '1px solid #e9eae8' }}>
             <span style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#4a5a57' }}>Players</span>
-            <span style={{ fontSize: 12, color: '#6f7f7b' }}>8 of 17 shown</span>
+            <span style={{ fontSize: 12, color: '#6f7f7b' }}>{sd.shown}</span>
           </div>
           <div style={{ overflowY: 'auto', flexGrow: 1 }}>
             {PLAYERS.map(p => (

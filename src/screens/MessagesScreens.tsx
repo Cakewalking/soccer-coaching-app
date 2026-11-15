@@ -258,13 +258,18 @@ export function CoachNewMessage({ onBack: _onBack, onNav }: { onBack?: () => voi
 }
 
 // MSG2 — Direct chat
-export function CoachMessages({ onBack: _onBack, onNav }: { onBack?: () => void; onNav?: (s: string) => void }) {
+export function CoachMessages({ onBack: _onBack, onNav, teamType = 'juniors' }: { onBack?: () => void; onNav?: (s: string) => void; teamType?: 'juniors' | 'youth' | 'seniors' }) {
   const [toast, setToast] = useState<string | null>(null)
   const [input, setInput] = useState('')
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
+  const teamChat = teamType === 'youth'
+    ? { ini: 'U1', name: 'U16 Ollie team', preview: 'Rhea: Can someone grab…', time: '2:30pm', unread: 2, group: true }
+    : teamType === 'seniors'
+    ? { ini: 'M1', name: "Men's 1sts team", preview: 'Grant: Can someone grab…', time: '2:30pm', unread: 2, group: true }
+    : { ini: 'U1', name: 'U12 Sam team', preview: 'Rob: Can someone grab…', time: '2:30pm', unread: 2, group: true }
   const chats = [
-    { ini: 'U1', name: 'U12 Sam team', preview: 'Rob: Can someone grab…', time: '2:30pm', unread: 2, group: true },
+    teamChat,
     { ini: 'BR', name: 'Bianca Rossi', preview: 'Yes pitch 2 from 9:00', time: '2:15pm', active: true },
     { ini: 'CT', name: 'Coaching team', preview: 'Priya: I\'ll have the data…', time: '11:40am', unread: 1 },
     { ini: 'LT', name: 'Linh Tran',    preview: 'Thanks so much', time: 'Mon' },
