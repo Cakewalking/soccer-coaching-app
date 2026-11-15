@@ -328,7 +328,8 @@ export function HomeStoryPhone({ cfg, onNav, renderTarget }: { cfg: PhoneCfg; on
       </div>
       <nav style={{ background: '#fff', borderTop: `1px solid ${HAIR}`, display: 'flex', flexShrink: 0 }}>
         {cfg.tabs.map((t, i) => (
-          <button key={t.label} onClick={() => t.target ? nav(t.target) : tool(t.done ?? t.label)} style={{ flex: 1, minHeight: 56, background: 'none', border: 'none', fontSize: 12, fontWeight: i === 0 ? 700 : 600, color: i === 0 ? GREEN : GREY, cursor: 'pointer', fontFamily: 'inherit' }}>{t.label}</button>
+          // First tab is Home: the story home IS the home, so stay here — never open the old home screen as a layer.
+          <button key={t.label} onClick={() => i === 0 ? setOpen(null) : (t.target ? nav(t.target) : tool(t.done ?? t.label))} style={{ flex: 1, minHeight: 56, background: 'none', border: 'none', fontSize: 12, fontWeight: i === 0 ? 700 : 600, color: i === 0 ? GREEN : GREY, cursor: 'pointer', fontFamily: 'inherit' }}>{t.label}</button>
         ))}
       </nav>
       {toast && <div role="status" style={{ position: 'fixed', bottom: 72, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '10px 16px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 13, fontWeight: 600, maxWidth: 340 }}>{toast}</div>}
