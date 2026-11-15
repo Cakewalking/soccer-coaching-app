@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { AMBER } from './directorParts'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
@@ -156,7 +157,7 @@ export default function FIL2Sheet({ onBack, onShare, onNav }: {
           </div>
           <button onClick={() => tool('History')}  style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 13, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>History</button>
           <button onClick={() => tool('Download')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 13, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Download</button>
-          <button onClick={() => onShare?.()}      style={{ height: 44, padding: '0 16px', borderRadius: 999, background: GD, color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Share</button>
+          <button onClick={() => onShare?.()}      style={{ height: 44, padding: '0 16px', borderRadius: 999, background: AMBER, color: INK, border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Share</button>
         </div>
       </div>
 

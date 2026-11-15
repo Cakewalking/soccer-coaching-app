@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { AMBER } from './directorParts'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
@@ -90,7 +91,7 @@ export default function FIL2bSheetLineup({ onBack, onShare, onNav }: {
         </div>
         <div style={{ marginLeft: 'auto', display: 'flex', gap: 6 }}>
           <button onClick={() => onNav?.('FIL2-Sheet')} style={{ minHeight: 44, padding: '0 12px', borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 12, cursor: 'pointer', fontFamily: 'inherit', color: MUT }}>Back to the table</button>
-          <button onClick={() => onShare?.()} style={{ minHeight: 44, padding: '0 12px', borderRadius: 999, background: G, color: '#fff', border: 'none', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Share</button>
+          <button onClick={() => onShare?.()} style={{ minHeight: 44, padding: '0 12px', borderRadius: 999, background: AMBER, color: INK, border: 'none', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Share</button>
         </div>
       </div>
 

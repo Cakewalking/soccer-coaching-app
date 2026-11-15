@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { DARK, AMBER, PALEON } from './directorParts'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb'
 
@@ -45,10 +46,12 @@ export default function EDUp1PlayerLearn({ onNav: _onNav }: { onNav?: (s: string
       {/* Content */}
       <div style={{ flex: 1, padding: '0 0 80px', overflowY: 'auto' }}>
         <div style={{ padding: '20px 20px 0' }}>
-          <div style={{ fontSize: 18, fontWeight: 800, color: INK, marginBottom: 4 }}>This week from Sam</div>
-          <div style={{ fontSize: 13, color: MUT, marginBottom: 8 }}>Short videos of your teammates. Watch them and try it at training.</div>
-          <div style={{ fontSize: 12, color: MUT, marginBottom: 4 }}>No likes, no comments, no counts of who watched most.</div>
-          <div style={{ fontSize: 12, color: MUT, marginBottom: 20 }}>Sam used your pass against Ironbark to show "playing forward first time". It is in the club library.</div>
+          <div style={{ background: DARK, borderRadius: 14, padding: '18px 18px', marginBottom: 20, color: '#fff' }}>
+            <div style={{ fontSize: 12, fontWeight: 700, color: AMBER, letterSpacing: '0.06em', textTransform: 'uppercase' as const, marginBottom: 8 }}>This week from Sam</div>
+            <div style={{ fontSize: 15, color: '#fff', lineHeight: 1.5, marginBottom: 8 }}>Short videos of your teammates. Watch them and try it at training.</div>
+            <div style={{ fontSize: 12, color: PALEON, marginBottom: 4 }}>No likes, no comments, no counts of who watched most.</div>
+            <div style={{ fontSize: 12, color: PALEON }}>Sam used your pass against Ironbark to show "playing forward first time". It is in the club library.</div>
+          </div>
 
           {lessons.map(l => {
             const isPlayed = played === l.id
@@ -68,7 +71,7 @@ export default function EDUp1PlayerLearn({ onNav: _onNav }: { onNav?: (s: string
                   {l.id === 'l2' && !didIt && (
                     <>
                       <div style={{ fontSize: 12, color: MUT, marginBottom: 8 }}>20 passes against a wall with your left foot. From "Passing with the other foot". Counts towards your goal.</div>
-                      <button onClick={() => { setDidIt(true); tool('I did it'); st('Nice one. Sam can see you practised. 2 of 3 this week.') }} style={{ height: 44, width: '100%', borderRadius: 10, background: G, color: '#fff', border: 'none', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', position: 'relative', zIndex: 2 }}>I did it</button>
+                      <button onClick={() => { setDidIt(true); tool('I did it'); st('Nice one. Sam can see you practised. 2 of 3 this week.') }} style={{ height: 44, width: '100%', borderRadius: 10, background: AMBER, color: INK, border: 'none', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', position: 'relative', zIndex: 2 }}>I did it</button>
                     </>
                   )}
                   {isPlayed && l.id !== 'l2' && (

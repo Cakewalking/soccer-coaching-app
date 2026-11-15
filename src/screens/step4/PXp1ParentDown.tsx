@@ -1,6 +1,7 @@
 import { useState } from 'react'
+import { DARK, AMBER, PALEON } from './directorParts'
 
-const G = '#2f6252', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
+const G = '#2f6252', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb'
 
 export default function PXp1ParentDown({ onNav }: { onNav?: (s: string) => void }) {
   const [lastTool, setLastTool] = useState('')
@@ -24,12 +25,12 @@ export default function PXp1ParentDown({ onNav }: { onNav?: (s: string) => void 
           <div style={{ fontSize: 13, color: INK, fontStyle: 'italic' }}>"Eli is one of our best on the ball. He is growing later than most of his year, which is normal, and right now games are a battle of size. We'd like him to have one night a week where he can play his game." Josh</div>
         </div>
 
-        <div style={{ background: PALE, border: `1px solid ${LN}`, borderRadius: 12, padding: '16px' }}>
-          <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 8 }}>What this means</div>
+        <div style={{ background: DARK, borderRadius: 12, padding: '18px 16px', color: '#fff' }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: AMBER, marginBottom: 10, letterSpacing: '0.04em', textTransform: 'uppercase' as const }}>What this means</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-            <div style={{ fontSize: 13, color: INK }}>Thursdays with U13 Chris for 6 weeks, 5:30 to 6:45.</div>
-            <div style={{ fontSize: 13, color: INK }}>He stays an under 14. Tuesdays and Saturdays don't change.</div>
-            <div style={{ fontSize: 13, color: INK }}>Players who grow late usually catch up at 15 to 17. This is about keeping football fun until then. He knows five of that group from last year.</div>
+            <div style={{ fontSize: 14, color: '#fff', lineHeight: 1.5 }}>Thursdays with U13 Chris for 6 weeks, 5:30 to 6:45.</div>
+            <div style={{ fontSize: 14, color: PALEON, lineHeight: 1.5 }}>He stays an under 14. Tuesdays and Saturdays don't change.</div>
+            <div style={{ fontSize: 14, color: PALEON, lineHeight: 1.5 }}>Players who grow late usually catch up at 15 to 17. This is about keeping football fun until then. He knows five of that group from last year.</div>
           </div>
         </div>
 
@@ -38,7 +39,7 @@ export default function PXp1ParentDown({ onNav }: { onNav?: (s: string) => void 
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 8 }}>
-          <button aria-label="Yes, we'd like to" onClick={() => tool('Thanks. Chris will say hello before Thursday.')} style={{ height: 56, background: G, color: '#fff', border: 'none', borderRadius: 12, fontSize: 16, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Yes, we'd like to</button>
+          <button aria-label="Yes, we'd like to" onClick={() => tool('Thanks. Chris will say hello before Thursday.')} style={{ height: 56, background: AMBER, color: INK, border: 'none', borderRadius: 12, fontSize: 16, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Yes, we'd like to</button>
           <button aria-label="Not for now" onClick={() => tool('Thanks. Nothing changes. Josh and Rachel have been told.')} style={{ height: 56, background: '#fff', color: INK, border: `1px solid ${LN}`, borderRadius: 12, fontSize: 16, cursor: 'pointer', fontFamily: 'inherit' }}>Not for now</button>
         </div>
       </div>

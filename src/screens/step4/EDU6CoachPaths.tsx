@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { OpeningPanel } from './directorParts'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
@@ -75,18 +76,19 @@ export default function EDU6CoachPaths({ onNav }: { onNav?: (s: string) => void 
       <div style={{ background: '#fff', borderBottom: `1px solid ${LN}`, padding: '0 32px', display: 'flex', alignItems: 'center', height: 44, gap: 0 }}>
         <button onClick={() => onNav?.('EDU4-ClubLibrary')} style={{ height: 44, padding: '0 20px', background: 'none', border: 'none', borderBottom: '2px solid transparent', fontSize: 13, fontWeight: 500, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>For players</button>
         <button onClick={() => tool('For coaches')} style={{ height: 44, padding: '0 20px', background: 'none', border: 'none', borderBottom: `2px solid ${G}`, fontSize: 13, fontWeight: 700, color: G, cursor: 'pointer', fontFamily: 'inherit' }}>For coaches</button>
-        <div style={{ marginLeft: 'auto', display: 'flex', gap: 10, alignItems: 'center' }}>
-          <button onClick={() => { tool('Make a path'); st('Pick lessons, put them in order, choose who gets it.') }} style={{ height: 44, padding: '0 16px', borderRadius: 999, background: G, color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Make a path</button>
-        </div>
       </div>
 
-      <div style={{ flex: 1, padding: '24px 32px', overflowY: 'auto' }}>
-        {/* Header */}
-        <div style={{ marginBottom: 20 }}>
-          <div style={{ fontSize: 20, fontWeight: 800, color: INK, marginBottom: 4 }}>For coaches · 14 lessons from 6 coaches · 3 paths</div>
-          <div style={{ fontSize: 13, color: MUT, lineHeight: 1.6 }}>Lessons are not a test and nothing is marked. "Done" means watched and tried once.</div>
-        </div>
+      <OpeningPanel
+        heading="Learn library · For coaches · 14 lessons, 3 paths"
+        sentence="Four of six coaches are part-way through a path. Chris has not started his."
+        support="Lessons are not a test and nothing is marked. 'Done' means watched and tried once."
+        buttons={[
+          { label: 'Nudge Chris', main: true, onClick: () => { tool('Nudge Chris'); st('A note goes to Chris.') } },
+          { label: 'Make a path', onClick: () => { tool('Make a path'); st('Pick lessons, put them in order, choose who gets it.') } },
+        ]}
+      />
 
+      <div style={{ flex: 1, padding: '20px 32px 24px', overflowY: 'auto' }}>
         {/* Path cards */}
         <div style={{ marginBottom: 28 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 12 }}>Paths</div>

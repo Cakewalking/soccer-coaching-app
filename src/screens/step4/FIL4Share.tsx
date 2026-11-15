@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { AMBER } from './directorParts'
 
 const G = '#2f6252', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
@@ -55,7 +56,7 @@ export default function FIL4Share({ onClose }: { onClose?: () => void }) {
 
         <div style={{ display: 'flex', gap: 10, marginTop: 24, justifyContent: 'flex-end' }}>
           <button onClick={() => onClose?.()} style={{ height: 44, padding: '0 24px', borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 14, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Cancel</button>
-          <button onClick={() => setShared(true)} style={{ height: 44, padding: '0 24px', borderRadius: 999, background: shared ? '#5a8a7a' : G, color: '#fff', border: 'none', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>
+          <button onClick={() => setShared(true)} style={{ height: 44, padding: '0 24px', borderRadius: 999, background: shared ? 'rgba(244,201,93,0.5)' : AMBER, color: INK, border: 'none', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>
             {shared ? 'Shared ✓' : 'Share'}
           </button>
         </div>

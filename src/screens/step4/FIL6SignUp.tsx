@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { DARK, AMBER, PALEON } from './directorParts'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
@@ -158,10 +159,10 @@ export default function FIL6SignUp({ onBack, onShare, onNav }: {
               <div key={j.label} style={{ fontSize: 12, color: MUT, padding: '4px 0', borderBottom: `1px solid ${LN}` }}>{j.label} · {j.places - j.taken.length} left</div>
             ))}
           </div>
-          <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px' }}>
-            <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 10 }}>6 families have not answered</div>
-            <button onClick={() => setReminded(true)} style={{ width: '100%', minHeight: 44, borderRadius: 999, background: reminded ? '#5a8a7a' : G, color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>{reminded ? 'Reminder sent ✓' : 'Remind the 6'}</button>
-            <div style={{ fontSize: 11, color: MUT, marginTop: 8 }}>Clean Sheet shows each family the jobs they have done least this season first. Nobody sees a tally of others.</div>
+          <div style={{ background: DARK, borderRadius: 14, padding: '16px', color: '#fff' }}>
+            <div style={{ fontSize: 16, fontWeight: 700, color: '#fff', marginBottom: 10 }}>6 families have not answered</div>
+            <button onClick={() => setReminded(true)} style={{ width: '100%', minHeight: 44, borderRadius: 10, background: reminded ? 'rgba(244,201,93,0.5)' : AMBER, color: INK, border: 'none', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>{reminded ? 'Reminder sent ✓' : 'Remind the 6'}</button>
+            <div style={{ fontSize: 11, color: PALEON, marginTop: 8 }}>Clean Sheet shows each family the jobs they have done least this season first. Nobody sees a tally of others.</div>
           </div>
         </div>
       </div>

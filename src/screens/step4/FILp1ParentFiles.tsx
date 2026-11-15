@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { DARK, AMBER, PALEON } from './directorParts'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
@@ -49,22 +50,26 @@ export default function FILp1ParentFiles({ onBack: _onBack, onNav }: {
           You see files shared with U12 Sam families. You can read and save them, not change them.
         </div>
 
-        {files.map((f) => (
+        {files.map((f) => {
+          const hero = f.id === 'doc1'
+          return (
           <div key={f.id} onClick={() => tool(f.id)}
-            style={{ background: lastTool === f.id ? PALE : '#fff', border: `1px solid ${lastTool === f.id ? G : LN}`, borderRadius: 14, padding: '14px 16px', marginBottom: 10, cursor: 'pointer' }}>
+            style={{ background: hero ? DARK : (lastTool === f.id ? PALE : '#fff'), border: hero ? 'none' : `1px solid ${lastTool === f.id ? G : LN}`, borderRadius: 14, padding: hero ? '16px' : '14px 16px', marginBottom: hero ? 14 : 10, cursor: 'pointer' }}>
+            {hero && <div style={{ fontSize: 11, fontWeight: 700, color: AMBER, letterSpacing: '0.06em', textTransform: 'uppercase' as const, marginBottom: 10 }}>New for Saturday</div>}
             <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
-              <div style={{ width: 36, height: 36, borderRadius: 8, background: PALE, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={G} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+              <div style={{ width: 36, height: 36, borderRadius: 8, background: hero ? 'rgba(255,255,255,0.12)' : PALE, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={hero ? AMBER : G} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/>
                 </svg>
               </div>
               <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontSize: 14, fontWeight: 600, color: INK }}>{f.name}</div>
-                <div style={{ fontSize: 12, color: MUT }}>{f.subtitle}</div>
+                <div style={{ fontSize: 14, fontWeight: hero ? 700 : 600, color: hero ? '#fff' : INK }}>{f.name}</div>
+                <div style={{ fontSize: 12, color: hero ? PALEON : MUT }}>{f.subtitle}</div>
               </div>
             </div>
           </div>
-        ))}
+          )
+        })}
       </div>
 
       {/* Bottom nav */}

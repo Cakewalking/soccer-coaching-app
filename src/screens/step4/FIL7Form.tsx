@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { AMBER } from './directorParts'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
@@ -98,7 +99,7 @@ export default function FIL7Form({ onBack, onShare, onAnswersSheet, onNav }: {
               {(['Questions', 'Answers', 'As a parent sees it'] as const).map(v => (
                 <button key={v} onClick={() => { setFormView(v); tool(v) }} style={{ minHeight: 44, padding: '0 14px', borderRadius: 999, border: `1.5px solid ${formView === v ? G : LN}`, background: formView === v ? PALE : '#fff', fontSize: 13, color: formView === v ? G : INK, fontWeight: formView === v ? 700 : 400, cursor: 'pointer', fontFamily: 'inherit' }}>{v}</button>
               ))}
-              <button onClick={() => setReminded(true)} style={{ minHeight: 44, padding: '0 16px', borderRadius: 999, background: reminded ? '#5a8a7a' : G, color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>{reminded ? 'Reminder sent ✓' : 'Remind the 4'}</button>
+              <button onClick={() => setReminded(true)} style={{ minHeight: 44, padding: '0 16px', borderRadius: 999, background: reminded ? 'rgba(244,201,93,0.5)' : AMBER, color: INK, border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>{reminded ? 'Reminder sent ✓' : 'Remind the 4'}</button>
             </div>
           </div>
 

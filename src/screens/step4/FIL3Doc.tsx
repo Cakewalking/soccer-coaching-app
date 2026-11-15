@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { DARK, AMBER, PALEON } from './directorParts'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
@@ -186,8 +187,14 @@ export default function FIL3Doc({ onBack, onShare, onNav }: {
             )}
             {sideTab === 'Opened' && (
               <div>
-                <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 4 }}>12 of 17 families opened</div>
-                <button onClick={() => sect('Nudge')} style={{ marginBottom: 12, minHeight: 44, padding: '0 14px', borderRadius: 999, background: lastSection === 'Nudge' ? G : PALE, color: lastSection === 'Nudge' ? '#fff' : G, border: 'none', fontSize: 12, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Nudge</button>
+                <div style={{ background: DARK, borderRadius: 14, padding: '16px', color: '#fff', marginBottom: 12 }}>
+                  <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginBottom: 2 }}>
+                    <span style={{ fontSize: 32, fontWeight: 800, color: AMBER, fontVariantNumeric: 'tabular-nums' }}>12</span>
+                    <span style={{ fontSize: 13, color: '#fff' }}>of 17 families have opened it</span>
+                  </div>
+                  <div style={{ fontSize: 12, color: PALEON, marginBottom: 12 }}>Five have not opened the doc yet.</div>
+                  <button onClick={() => sect('Nudge')} style={{ width: '100%', minHeight: 44, borderRadius: 10, background: lastSection === 'Nudge' ? 'rgba(244,201,93,0.5)' : AMBER, color: INK, border: 'none', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>{lastSection === 'Nudge' ? 'Nudge sent ✓' : 'Nudge the five'}</button>
+                </div>
                 <div style={{ fontSize: 12, color: MUT }}>1 comment from Jess Marsh</div>
               </div>
             )}

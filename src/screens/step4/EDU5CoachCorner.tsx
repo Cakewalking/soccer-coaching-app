@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { OpeningPanel } from './directorParts'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
@@ -94,23 +95,21 @@ export default function EDU5CoachCorner({ onNav }: { onNav?: (s: string) => void
         <button onClick={() => tool('For coaches')} style={{ height: 44, padding: '0 20px', background: 'none', border: 'none', borderBottom: `2px solid ${G}`, fontSize: 13, fontWeight: 700, color: G, cursor: 'pointer', fontFamily: 'inherit' }}>For coaches</button>
       </div>
 
-      <div style={{ flex: 1, padding: '24px 32px', overflowY: 'auto' }}>
+      <OpeningPanel
+        heading="Learn · For coaches · Your path, set by Rachel"
+        sentence="You are two lessons into 'New to coaching MiniRoos'. Next: reading who has had a turn, without an app."
+        support="50 seconds. Then try it on Saturday."
+        buttons={[
+          { label: 'Watch the next one', main: true, onClick: () => { tool('Watch the next one'); st('The lesson plays, then asks you to try one thing on Saturday.') } },
+          { label: 'All six', onClick: () => { tool('All six'); st('The six lessons in order.') } },
+        ]}
+      />
+
+      <div style={{ flex: 1, padding: '20px 32px 24px', overflowY: 'auto' }}>
         {/* Context banner */}
         <div style={{ background: GD, borderRadius: 12, padding: '12px 20px', marginBottom: 20 }}>
           <div style={{ fontSize: 12, fontWeight: 700, color: 'rgba(255,255,255,0.75)', letterSpacing: '0.07em', marginBottom: 4 }}>THIS WEEK, FROM YOUR REVIEW: CHILDREN BUNCHING ROUND THE BALL</div>
           <div style={{ fontSize: 13, color: '#fff' }}>Live game help is off for MiniRoos at Wattle Creek, so you learn to see it yourself. These show how other coaches here do that.</div>
-        </div>
-
-        <div style={{ display: 'flex', alignItems: 'flex-start', gap: 24, marginBottom: 20 }}>
-          <div style={{ flex: 1 }}>
-            <div style={{ fontSize: 20, fontWeight: 800, color: INK, marginBottom: 4 }}>For coaches · short clips of coaches at your club doing it well</div>
-            <div style={{ fontSize: 13, color: MUT, marginBottom: 8 }}>Watch one, then try one thing on Saturday.</div>
-            <div style={{ fontSize: 12, color: MUT }}>Coaches who said yes to being filmed coaching. Children are blurred unless their family has said yes to club examples.</div>
-          </div>
-          <div style={{ display: 'flex', gap: 10, alignItems: 'center', flexShrink: 0 }}>
-            <button onClick={() => { tool('Watch the next one'); st('The lesson plays, then asks you to try one thing on Saturday.') }} style={{ height: 44, padding: '0 16px', borderRadius: 999, background: G, color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Watch the next one</button>
-            <button onClick={() => { tool('All six'); st('The six lessons in order.') }} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 13, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>All six</button>
-          </div>
         </div>
 
         {/* Next up */}
