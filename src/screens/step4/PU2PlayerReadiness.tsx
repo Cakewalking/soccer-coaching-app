@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { OpeningPanel } from './directorParts'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
@@ -49,20 +50,15 @@ export default function PU2PlayerReadiness({ onNav }: { onNav?: (s: string) => v
         <div style={{ fontSize: 12, color: MUT }}>Director of football</div>
       </nav>
 
+      <OpeningPanel
+        heading="MIA TRAN · U12 SAM → U13 GIRLS MEG"
+        sentence="Ready to try. Ahead of her own team for eight weeks, and inside the under 13 range on 9 of 9 measures."
+        support="Born March 2014 · nominated by Sam on 1 June. Mia and her parents are asked first, and they can say no."
+        figures={[{ num: '9 of 9', label: 'inside the U13 range', proof: true }, { num: '8 weeks', label: 'ahead of her own team' }]}
+        buttons={[{ label: 'Plan a trial', main: true, onClick: () => onNav?.('PU3-TrialPlan') }, { label: 'Compare', onClick: () => onNav?.('PU4-Compare') }, { label: 'Not now', onClick: () => tool('Noted with your reason. Looked at again in 8 weeks. Mia and her family are not told.') }]}
+      />
       <div style={{ flex: 1, display: 'flex', gap: 0, overflow: 'auto' }}>
-        <div style={{ flex: 1, padding: '20px 20px 20px 20px', display: 'flex', flexDirection: 'column', gap: 16 }}>
-          {/* Header */}
-          <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 12 }}>
-            <div>
-              <div style={{ fontSize: 20, fontWeight: 900, color: INK }}>Mia Tran</div>
-              <div style={{ fontSize: 13, color: MUT }}>U12 Sam → U13 Girls Meg · born March 2014 · nominated by Sam on 1 June</div>
-            </div>
-            <div style={{ display: 'flex', gap: 10, flexShrink: 0 }}>
-              <button aria-label="Compare with U13" onClick={() => onNav?.('PU4-Compare')} style={{ height: 44, padding: '0 18px', background: '#fff', color: G, border: `1.5px solid ${G}`, borderRadius: 8, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Compare with U13</button>
-              <button aria-label="Not now" onClick={() => tool('Noted with your reason. Looked at again in 8 weeks. Mia and her family are not told.')} style={{ height: 44, padding: '0 18px', background: '#fff', color: MUT, border: `1px solid ${LN}`, borderRadius: 8, fontSize: 13, cursor: 'pointer', fontFamily: 'inherit' }}>Not now</button>
-              <button aria-label="Plan a trial" onClick={() => onNav?.('PU3-TrialPlan')} style={{ height: 44, padding: '0 24px', background: G, color: '#fff', border: 'none', borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Plan a trial</button>
-            </div>
-          </div>
+        <div style={{ flex: 1, padding: '16px 20px 20px 20px', display: 'flex', flexDirection: 'column', gap: 16 }}>
 
           {/* 6-card grid */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12 }}>
