@@ -3,8 +3,11 @@ import { useState } from 'react'
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 export default function AC11PartnerClub(_: { onBack?: () => void }) {
-  const [toast, setToast] = useState<string | null>(null)
-  function t(m: string) { setToast(m); setTimeout(() => setToast(null), 3200) }
+  const [activeNav, setActiveNav] = useState('Home')
+  const [activeSub, setActiveSub] = useState('Partner club')
+  const [done, setDone] = useState<string[]>([])
+  const mark = (k: string) => setDone(d => d.includes(k) ? d : [...d, k])
+  const is = (k: string) => done.includes(k)
 
   const rows = [
     {
@@ -53,13 +56,13 @@ export default function AC11PartnerClub(_: { onBack?: () => void }) {
             { label: 'Coaches', icon: '🎓' },
             { label: 'Money', icon: '$' },
           ].map(({ label, icon }) => (
-            <button key={label} style={{ background: label === 'Home' ? GD : 'transparent', color: '#fff', border: 'none', borderRadius: 8, padding: '0 14px', height: 44, fontSize: 14, fontWeight: label === 'Home' ? 700 : 500, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
+            <button key={label} onClick={() => setActiveNav(label)} style={{ background: label === activeNav ? GD : 'transparent', color: '#fff', border: 'none', borderRadius: 8, padding: '0 14px', height: 44, fontSize: 14, fontWeight: label === activeNav ? 700 : 500, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
               <span style={{ fontSize: 15 }}>{icon}</span>{label}
             </button>
           ))}
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <button onClick={() => t('Opening academy selector.')} style={{ background: '#fff', color: INK, border: 'none', borderRadius: 20, padding: '0 14px', height: 44, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Tall Timber Academy ▾</button>
+          <button onClick={() => mark('academy')} style={{ background: '#fff', color: INK, border: 'none', borderRadius: 20, padding: '0 14px', height: 44, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Tall Timber Academy {is('academy') ? '▴' : '▾'}</button>
           <div style={{ width: 44, height: 44, borderRadius: 22, background: '#c39797', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: 700, fontSize: 15 }}>DO</div>
         </div>
       </div>
@@ -67,7 +70,7 @@ export default function AC11PartnerClub(_: { onBack?: () => void }) {
       {/* SUB NAV */}
       <div style={{ background: '#fff', height: 44, display: 'flex', alignItems: 'center', padding: '0 28px', gap: 0, borderBottom: `1px solid ${LN}`, flexShrink: 0 }}>
         {['Overview', 'Trials', 'Reports', 'Child safety', 'Partner club'].map(tab => (
-          <button key={tab} style={{ background: 'none', border: 'none', borderBottom: tab === 'Partner club' ? `2px solid ${G}` : '2px solid transparent', color: tab === 'Partner club' ? G : MUT, fontWeight: tab === 'Partner club' ? 700 : 500, fontSize: 14, padding: '0 16px', height: 44, cursor: 'pointer' }}>
+          <button key={tab} onClick={() => setActiveSub(tab)} style={{ background: 'none', border: 'none', borderBottom: tab === activeSub ? `2px solid ${G}` : '2px solid transparent', color: tab === activeSub ? G : MUT, fontWeight: tab === activeSub ? 700 : 500, fontSize: 14, padding: '0 16px', height: 44, cursor: 'pointer' }}>
             {tab}
           </button>
         ))}
@@ -80,8 +83,8 @@ export default function AC11PartnerClub(_: { onBack?: () => void }) {
           <div style={{ color: MUT, fontSize: 14, marginTop: 2 }}>Your game team plays as part of Wattle Creek FC</div>
         </div>
         <div style={{ display: 'flex', gap: 10 }}>
-          <button onClick={() => t('New message to Rachel M, director of football.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Message the club</button>
-          <button onClick={() => t('Pick a group. The club is asked to enter it in a league.')} style={{ height: 44, padding: '0 18px', borderRadius: 10, background: G, color: '#fff', fontSize: 15, fontWeight: 600, border: 'none', cursor: 'pointer' }}>+ Add a game team</button>
+          <button onClick={() => mark('msgclub')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${is('msgclub') ? G : '#c5c8c4'}`, background: is('msgclub') ? PALE : '#fff', color: is('msgclub') ? G : INK, fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>{is('msgclub') ? '✓ Message sent' : 'Message the club'}</button>
+          <button onClick={() => mark('addteam')} style={{ height: 44, padding: '0 18px', borderRadius: 10, background: is('addteam') ? '#40826d' : G, color: '#fff', fontSize: 15, fontWeight: 600, border: 'none', cursor: 'pointer' }}>{is('addteam') ? 'Game team added ✓' : '+ Add a game team'}</button>
         </div>
       </div>
 
@@ -104,7 +107,7 @@ export default function AC11PartnerClub(_: { onBack?: () => void }) {
                 <span style={{ background: r.badgeBg, color: r.badgeColor, fontSize: 12, fontWeight: 600, padding: '3px 8px', borderRadius: 6, flexShrink: 0 }}>{r.badgeLabel}</span>
               )}
               {r.btnLabel && (
-                <button onClick={() => t(r.toastMsg)} style={{ height: 44, padding: '0 14px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>{r.btnLabel}</button>
+                <button onClick={() => mark(r.bold)} style={{ height: 44, padding: '0 14px', borderRadius: 8, border: `1px solid ${is(r.bold) ? G : '#c5c8c4'}`, background: is(r.bold) ? PALE : '#fff', color: is(r.bold) ? G : INK, fontSize: 13, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>{is(r.bold) ? '✓ Done' : r.btnLabel}</button>
               )}
             </div>
           ))}
@@ -120,7 +123,7 @@ export default function AC11PartnerClub(_: { onBack?: () => void }) {
             <div style={{ fontSize: 11, fontWeight: 700, color: MUT, textTransform: 'uppercase' as const, letterSpacing: 0.5 }}>Game team</div>
             <div style={{ fontSize: 20, fontWeight: 800, color: INK }}>U13 Timber</div>
             <div style={{ fontSize: 13, color: MUT, lineHeight: 1.5 }}>16 players from Advanced · Saturday league, 11 a side · entered by Wattle Creek FC</div>
-            <button onClick={() => t('Opening game day...')} style={{ height: 44, padding: '0 14px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer', alignSelf: 'flex-start' as const, marginTop: 4 }}>See Saturday</button>
+            <button onClick={() => mark('saturday')} style={{ height: 44, padding: '0 14px', borderRadius: 8, border: `1px solid ${is('saturday') ? G : '#c5c8c4'}`, background: is('saturday') ? PALE : '#fff', color: is('saturday') ? G : INK, fontSize: 13, fontWeight: 600, cursor: 'pointer', alignSelf: 'flex-start' as const, marginTop: 4 }}>{is('saturday') ? 'Showing Saturday ✓' : 'See Saturday'}</button>
           </div>
 
           {/* What each side sees tile */}
@@ -143,8 +146,6 @@ export default function AC11PartnerClub(_: { onBack?: () => void }) {
         </div>
 
       </div>
-
-      {toast && <div style={{ position: 'absolute', left: '50%', bottom: 28, transform: 'translateX(-50%)', background: GD, color: '#fff', padding: '12px 16px', borderRadius: 14, fontSize: 15, fontWeight: 600, zIndex: 60, whiteSpace: 'nowrap' as const }}>{toast}</div>}
     </div>
   )
 }
