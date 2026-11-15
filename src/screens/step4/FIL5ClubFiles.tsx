@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { OpeningPanel } from './directorParts'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
@@ -63,19 +64,15 @@ export default function FIL5ClubFiles({ onNav }: { onNav?: (s: string) => void }
         <div style={{ marginLeft: 'auto', fontSize: 12, color: MUT }}>Director of football</div>
       </div>
 
-      <div style={{ display: 'flex', flex: 1, padding: '24px 32px', gap: 24 }}>
+      <OpeningPanel
+        heading="CLUB FILES · WATTLE CREEK FC"
+        sentence="The child-safe policy has reached 171 of 192 families. Twenty-one have not opened it."
+        support="The sideline code is at 160 of 192. Hot weather rules: 29 of 31 coaches and managers."
+        figures={[{ num: '171 of 192', label: 'opened the child-safe policy', proof: true }, { num: '31 of 70 GB', label: 'space used' }]}
+        buttons={[{ label: 'Nudge the 21', main: true, onClick: () => tool('A reminder goes to the 21 families who have not opened the child-safe policy.') }, { label: 'New template', onClick: () => tool('New template') }, { label: 'Upload', onClick: () => tool('Pick a file from this device.') }]}
+      />
+      <div style={{ display: 'flex', flex: 1, padding: '12px 32px 24px', gap: 24, minHeight: 0 }}>
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 20 }}>
-          {/* Page header */}
-          <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 4 }}>
-              <div style={{ fontSize: 22, fontWeight: 800, color: INK }}>Club files</div>
-              <div style={{ marginLeft: 'auto', display: 'flex', gap: 8 }}>
-                <button onClick={() => tool('Upload')} style={{ minHeight: 44, padding: '0 16px', borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 13, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Upload</button>
-                <button onClick={() => tool('New template')} style={{ minHeight: 44, padding: '0 16px', borderRadius: 999, background: G, color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>New template</button>
-              </div>
-            </div>
-            <div style={{ fontSize: 13, color: MUT }}>Wattle Creek FC · club documents, templates every team gets, and space used</div>
-          </div>
 
           {/* Club documents */}
           <div>

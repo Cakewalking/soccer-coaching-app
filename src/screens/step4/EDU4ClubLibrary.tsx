@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { OpeningPanel } from './directorParts'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb'
 
@@ -66,12 +67,14 @@ export default function EDU4ClubLibrary({ onNav }: { onNav?: (s: string) => void
         </div>
       </div>
 
-      <div style={{ flex: 1, padding: '24px 32px', overflowY: 'auto' }}>
-        {/* Library stats */}
-        <div style={{ background: GD, borderRadius: 12, padding: '14px 20px', marginBottom: 20, display: 'flex', alignItems: 'center', gap: 24 }}>
-          <div style={{ fontSize: 13, fontWeight: 700, color: '#fff' }}>Wattle Creek FC · 38 lessons from 9 coaches · 3 waiting for you</div>
-          <div style={{ marginLeft: 'auto', fontSize: 12, color: 'rgba(255,255,255,0.75)' }}>41 players have been an example. 22 girls, 19 boys. No player more than 4 times.</div>
-        </div>
+      <OpeningPanel
+        heading="LEARN LIBRARY · 38 LESSONS FROM 9 COACHES"
+        sentence="Three lessons are waiting for your check. In two of them, everyone has already said yes."
+        support="Winning it back and building out are well covered. Counter-attacks and under 11 keepers are thin."
+        figures={[{ num: '3', label: 'waiting for you', proof: true }, { num: '38', label: 'lessons in the library' }]}
+        buttons={[{ label: 'Check the next one', main: true, onClick: () => onNav?.('EDU2-Lesson') }, { label: 'Add one', onClick: () => onNav?.('EDU3-MakeLesson') }]}
+      />
+      <div style={{ flex: 1, padding: '12px 32px 24px', overflowY: 'auto' }}>
 
         {/* Waiting for review */}
         <div style={{ marginBottom: 28 }}>

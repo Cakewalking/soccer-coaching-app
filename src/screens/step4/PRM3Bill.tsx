@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { OpeningPanel } from './directorParts'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
@@ -36,19 +37,16 @@ export default function PRM3Bill({ onNav }: { onNav?: (s: string) => void }) {
         <button onClick={() => onNav?.('PRM1-FeaturesByTeam')} style={{ ...snb, color: G, fontWeight: 700, borderBottom: `2px solid ${G}`, height: 44 }}>Features and billing</button>
       </nav>
 
-      <div style={{ flex: 1, display: 'flex', overflow: 'hidden' }}>
+      <OpeningPanel
+        heading="THIS MONTH’S BILL · JUNE 2026"
+        sentence="$384 for June: $280 for the club plan and $104 in add-ons across 14 teams."
+        support="Next payment 1 July, card ending 4821. A change during the month is charged by the day."
+        figures={[{ num: '$384', label: 'total for June', proof: true }, { num: '14', label: 'teams' }]}
+        buttons={[{ label: 'See what is used', main: true, onClick: () => onNav?.('PRM6-Usage') }, { label: 'By team', onClick: () => onNav?.('PRM1-FeaturesByTeam') }, { label: 'Download', onClick: () => tool('Invoice downloads as a PDF.') }]}
+      />
+      <div style={{ flex: 1, display: 'flex', overflow: 'hidden', paddingTop: 12 }}>
         {/* Main */}
-        <div style={{ flex: 1, padding: '24px 20px 24px 24px', overflowY: 'auto' }}>
-          <div style={{ display: 'flex', alignItems: 'center', marginBottom: 24, gap: 12 }}>
-            <div style={{ flex: 1 }}>
-              <div style={{ fontSize: 20, fontWeight: 900, color: INK }}>This month's bill</div>
-              <div style={{ fontSize: 13, color: MUT }}>June 2026 · next payment 1 July · card ending 4821</div>
-            </div>
-            {/* Controls 16-18 in DOM order */}
-            <button onClick={() => tool('Invoice downloads as a PDF.')} style={{ height: 44, padding: '0 16px', background: G, color: '#fff', border: 'none', borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Download</button>
-            <button onClick={() => onNav?.('PRM6-Usage')} style={{ height: 44, padding: '0 16px', background: '#fff', color: INK, border: `1px solid ${LN}`, borderRadius: 8, fontSize: 13, cursor: 'pointer', fontFamily: 'inherit' }}>Is it being used?</button>
-            <button onClick={() => onNav?.('PRM1-FeaturesByTeam')} style={{ height: 44, padding: '0 16px', background: '#fff', color: G, border: `1px solid ${G}`, borderRadius: 8, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Features by team</button>
-          </div>
+        <div style={{ flex: 1, padding: '0 20px 24px 24px', overflowY: 'auto' }}>
 
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, overflow: 'hidden', marginBottom: 12 }}>
             {/* Table header */}

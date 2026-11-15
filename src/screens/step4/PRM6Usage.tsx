@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { OpeningPanel } from './directorParts'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
@@ -36,18 +37,16 @@ export default function PRM6Usage({ onNav }: { onNav?: (s: string) => void }) {
         <button onClick={() => onNav?.('PRM1-FeaturesByTeam')} style={{ ...snb, color: G, fontWeight: 700, borderBottom: `2px solid ${G}`, height: 44 }}>Features and billing</button>
       </nav>
 
-      <div style={{ flex: 1, display: 'flex', overflow: 'hidden' }}>
+      <OpeningPanel
+        heading="IS IT BEING USED? · THE LAST 8 WEEKS"
+        sentence="Seven of nine add-ons are in use most weeks. Two are worth a conversation."
+        support="U15 Girls Bec have not worn a vest for 5 weeks. Men’s 1sts used live help in 2 of 8 games."
+        figures={[{ num: '7 of 9', label: 'in use most weeks', proof: true }, { num: '$10', label: 'a month you could save' }]}
+        buttons={[{ label: 'Ask Bec', main: true, onClick: () => tool('Bec is asked whether to keep vests on for U15 Girls.') }, { label: 'By team', onClick: () => onNav?.('PRM1-FeaturesByTeam') }, { label: 'The bill', onClick: () => onNav?.('PRM3-Bill') }]}
+      />
+      <div style={{ flex: 1, display: 'flex', overflow: 'hidden', paddingTop: 12 }}>
         {/* Main */}
-        <div style={{ flex: 1, padding: '24px 20px 24px 24px', overflowY: 'auto' }}>
-          <div style={{ display: 'flex', alignItems: 'center', marginBottom: 20, gap: 12 }}>
-            <div style={{ flex: 1 }}>
-              <div style={{ fontSize: 20, fontWeight: 900, color: INK }}>Is it being used?</div>
-              <div style={{ fontSize: 13, color: MUT }}>June 2026 · every add-on, team by team, over the last 8 weeks</div>
-            </div>
-            {/* Controls 16-17 in DOM order */}
-            <button onClick={() => onNav?.('PRM3-Bill')} style={{ height: 44, padding: '0 16px', background: '#fff', color: INK, border: `1px solid ${LN}`, borderRadius: 8, fontSize: 13, cursor: 'pointer', fontFamily: 'inherit' }}>This month's bill</button>
-            <button onClick={() => onNav?.('PRM1-FeaturesByTeam')} style={{ height: 44, padding: '0 16px', background: '#fff', color: G, border: `1px solid ${G}`, borderRadius: 8, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Features by team</button>
-          </div>
+        <div style={{ flex: 1, padding: '0 20px 24px 24px', overflowY: 'auto' }}>
 
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, overflow: 'hidden', marginBottom: 12 }}>
             <div style={{ display: 'grid', gridTemplateColumns: '150px 150px 1fr 120px 60px 100px', padding: '10px 20px', background: PALE, borderBottom: `1px solid ${LN}` }}>
