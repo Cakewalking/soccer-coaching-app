@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { OpeningPanel } from './directorParts'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
@@ -54,20 +55,16 @@ export default function PU7CoachView({ onNav }: { onNav?: (s: string) => void })
         <div style={{ fontSize: 12, color: MUT }}>Head coach</div>
       </nav>
 
+      <OpeningPanel
+        heading="RACHEL ASKED · ABOUT A MINUTE"
+        sentence="Mia has been well ahead in games for eight weeks. Three things only you can see."
+        support="The film shows what she does with the ball. It cannot show how she copes, learns or fits in."
+        buttons={[{ label: 'Send to Rachel', main: true, onClick: () => tool('Sent. Rachel and Meg can see your view. Mia and her family are not told yet.') }, { label: 'Not now', onClick: () => tool('Rachel is told you will answer later.') }]}
+      />
       <div style={{ flex: 1, display: 'flex', overflow: 'auto' }}>
-        <div style={{ flex: 1, padding: '20px' }}>
+        <div style={{ flex: 1, padding: '16px 20px 20px' }}>
           {/* Request card */}
           <div style={{ background: '#fff', border: `1.5px solid ${G}`, borderRadius: 14, padding: '20px', marginBottom: 0 }}>
-            <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 12, marginBottom: 16 }}>
-              <div>
-                <div style={{ fontSize: 15, fontWeight: 800, color: INK }}>Your view on Mia</div>
-                <div style={{ fontSize: 12, color: MUT }}>Rachel asked · Mia has been well ahead in games for 8 weeks · about a minute</div>
-              </div>
-              <div style={{ display: 'flex', gap: 10, flexShrink: 0 }}>
-                <button aria-label="Not now" onClick={() => tool('Rachel is told you will answer later.')} style={{ height: 44, padding: '0 16px', background: '#fff', color: MUT, border: `1px solid ${LN}`, borderRadius: 8, fontSize: 13, cursor: 'pointer', fontFamily: 'inherit' }}>Not now</button>
-                <button aria-label="Send to Rachel" onClick={() => tool('Sent. Rachel and Meg can see your view. Mia and her family are not told yet.')} style={{ height: 44, padding: '0 16px', background: G, color: '#fff', border: 'none', borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Send to Rachel</button>
-              </div>
-            </div>
 
             <div style={{ fontSize: 12, fontWeight: 700, color: MUT, letterSpacing: '0.07em', textTransform: 'uppercase' as const, marginBottom: 14 }}>Three things only you can see</div>
 

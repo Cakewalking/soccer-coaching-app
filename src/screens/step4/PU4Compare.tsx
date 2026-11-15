@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { OpeningPanel } from './directorParts'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
@@ -50,21 +51,14 @@ export default function PU4Compare({ onNav }: { onNav?: (s: string) => void }) {
         <div style={{ fontSize: 12, color: MUT }}>Director of football</div>
       </nav>
 
+      <OpeningPanel
+        heading="MIA AGAINST THE TEAM ABOVE · U13 GIRLS MEG, ALL 14 PLAYERS"
+        sentence="On 9 of 9 measures Mia sits inside or above the under 13 range. On 5 she is above their middle."
+        figures={[{ num: '9 of 9', label: 'inside the U13 range', proof: true }, { num: '5', label: 'above their middle' }]}
+        buttons={[{ label: 'Plan a trial', main: true, onClick: () => onNav?.('PU3-TrialPlan') }, { label: 'Midfielders', onClick: () => tool('Now compared with the 5 midfielders in U13 Girls Meg.') }, { label: 'Back', onClick: () => onNav?.('PU2-PlayerReadiness') }]}
+      />
       <div style={{ flex: 1, display: 'flex', overflow: 'auto' }}>
-        <div style={{ flex: 1, padding: '20px', display: 'flex', flexDirection: 'column', gap: 16 }}>
-          {/* Header */}
-          <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 12 }}>
-            <div>
-              <div style={{ fontSize: 20, fontWeight: 900, color: INK }}>Mia against the team above</div>
-              <div style={{ fontSize: 13, color: MUT }}>U12 Sam → U13 Girls Meg · all 14 players · per 60 minutes</div>
-            </div>
-            <div style={{ display: 'flex', gap: 10, flexShrink: 0 }}>
-              <button aria-label="Midfielders only" onClick={() => tool('Now compared with the 5 midfielders in U13 Girls Meg.')} style={{ height: 44, padding: '0 18px', background: '#fff', color: G, border: `1.5px solid ${G}`, borderRadius: 8, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Midfielders only</button>
-              <button aria-label="Back to Mia" onClick={() => onNav?.('PU2-PlayerReadiness')} style={{ height: 44, padding: '0 18px', background: '#fff', color: MUT, border: `1px solid ${LN}`, borderRadius: 8, fontSize: 13, cursor: 'pointer', fontFamily: 'inherit' }}>Back to Mia</button>
-              <button aria-label="Plan a trial" onClick={() => onNav?.('PU3-TrialPlan')} style={{ height: 44, padding: '0 18px', background: G, color: '#fff', border: 'none', borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Plan a trial</button>
-            </div>
-          </div>
-
+        <div style={{ flex: 1, padding: '16px 20px 20px', display: 'flex', flexDirection: 'column', gap: 16 }}>
           {/* Two sections */}
           <div style={{ display: 'flex', gap: 16 }}>
             {/* Body section */}

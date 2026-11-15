@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { OpeningPanel } from './directorParts'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
@@ -43,16 +44,15 @@ export default function PU6Review({ onNav }: { onNav?: (s: string) => void }) {
         <div style={{ fontSize: 12, color: MUT }}>Director of football</div>
       </nav>
 
+      <OpeningPanel
+        heading="LEO’S REVIEW · THURSDAY 18 JUNE"
+        sentence="Leo wants to keep Tuesdays and stay with his own team. Both coaches agree."
+        support="Josh: “Keeps up now. Talks more.” Chris: “Happy for Tuesdays.” Dad: “He comes home buzzing.”"
+        figures={[{ num: '4 of 4', label: 'measures in the U14 middle', proof: true }, { num: 'Fun', label: 'his word in week 4' }]}
+        buttons={[{ label: 'Do both', main: true, onClick: () => tool('Tuesdays kept and the plan is saved. Chris, Josh and Leo’s family are told.') }, { label: 'Back to the plan', onClick: () => onNav?.('PU3-TrialPlan') }]}
+      />
       <div style={{ flex: 1, display: 'flex', overflow: 'auto' }}>
-        <div style={{ flex: 1, padding: '20px', display: 'flex', flexDirection: 'column', gap: 16 }}>
-          {/* Header */}
-          <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
-            <button aria-label="Back to the plan" onClick={() => onNav?.('PU3-TrialPlan')} style={{ height: 44, padding: '0 16px', background: '#fff', color: MUT, border: `1px solid ${LN}`, borderRadius: 8, fontSize: 13, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>Back to the plan</button>
-            <div>
-              <div style={{ fontSize: 20, fontWeight: 900, color: INK }}>Leo's review</div>
-              <div style={{ fontSize: 13, color: MUT }}>U13 Chris → U14 Josh · 4 weeks of Tuesday training done · Thursday 18 June</div>
-            </div>
-          </div>
+        <div style={{ flex: 1, padding: '16px 20px 20px', display: 'flex', flexDirection: 'column', gap: 16 }}>
 
           {/* Main 3-column layout */}
           <div style={{ display: 'flex', gap: 16, flex: 1 }}>

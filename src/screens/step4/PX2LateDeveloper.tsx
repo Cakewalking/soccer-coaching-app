@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { OpeningPanel } from './directorParts'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
@@ -31,18 +32,15 @@ export default function PX2LateDeveloper({ onNav }: { onNav?: (s: string) => voi
         <button aria-label="Fair game time" onClick={() => tool('Players')} style={snb}>Fair game time</button>
       </nav>
 
-      <div style={{ flex: 1, display: 'flex', gap: 20, padding: '20px', overflow: 'auto' }}>
+      <OpeningPanel
+        heading="ELI WARD · U14 JOSH · BORN NOVEMBER 2012"
+        sentence="Worth a talk. Strong on the ball, growing later than his year, and starting to lose heart in games."
+        support="Thursdays with U13 Chris for 6 weeks, still playing under 14s. Eli and his parents are asked first."
+        figures={[{ num: '148 cm', label: 'his team’s middle is 162', proof: true }, { num: '7', label: 'recorded games' }]}
+        buttons={[{ label: 'Plan it', main: true, onClick: () => onNav?.('PU3-TrialPlan') }, { label: 'Not now', onClick: () => tool('Noted with your reason. Looked at again in 8 weeks. Eli and his family are not told.') }]}
+      />
+      <div style={{ flex: 1, display: 'flex', gap: 20, padding: '16px 20px 20px', overflow: 'auto' }}>
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 16 }}>
-          <div>
-            <div style={{ fontSize: 20, fontWeight: 900, color: INK }}>Eli Ward</div>
-            <div style={{ fontSize: 13, color: MUT }}>U14 Josh · born November 2012 · worth a talk about training with U13 Chris</div>
-          </div>
-
-          <div style={{ display: 'flex', gap: 12 }}>
-            <button aria-label="Not now" onClick={() => tool('Noted with your reason. Looked at again in 8 weeks. Eli and his family are not told.')} style={{ height: 44, padding: '0 18px', background: '#fff', color: MUT, border: `1px solid ${LN}`, borderRadius: 8, fontSize: 13, cursor: 'pointer', fontFamily: 'inherit' }}>Not now</button>
-            <div style={{ flex: 1 }} />
-            <button aria-label="Plan it" onClick={() => onNav?.('PU3-TrialPlan')} style={{ height: 44, padding: '0 24px', background: G, color: '#fff', border: 'none', borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Plan it</button>
-          </div>
 
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '20px' }}>
             <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 4 }}>What it sees</div>

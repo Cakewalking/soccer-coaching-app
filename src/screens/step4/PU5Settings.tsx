@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { OpeningPanel } from './directorParts'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
@@ -57,16 +58,14 @@ export default function PU5Settings({ onNav }: { onNav?: (s: string) => void }) 
         <div style={{ fontSize: 12, color: MUT }}>Director of football</div>
       </nav>
 
-      <div style={{ flex: 1, padding: '20px', overflow: 'auto' }}>
-        {/* Header */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
-          <button aria-label="Back" onClick={() => onNav?.('PU1-PlayingUp')} style={{ height: 44, padding: '0 16px', background: '#fff', color: MUT, border: `1px solid ${LN}`, borderRadius: 8, fontSize: 13, cursor: 'pointer', fontFamily: 'inherit' }}>Back</button>
-          <div style={{ flex: 1 }}>
-            <div style={{ fontSize: 20, fontWeight: 900, color: INK }}>What the club counts</div>
-            <div style={{ fontSize: 13, color: MUT }}>Playing up · these rules apply to every team from under 9</div>
-          </div>
-          <button aria-label="Save" onClick={() => tool('Saved. The list is worked out again tonight.')} style={{ height: 44, padding: '0 24px', background: G, color: '#fff', border: 'none', borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Save</button>
-        </div>
+      <OpeningPanel
+        heading="WHAT THE CLUB COUNTS · PLAYING UP"
+        sentence="With these rules, three players are worth a look and one is held back."
+        support="They apply to every team from under 9. Change one and the count updates before you save."
+        figures={[{ num: '3', label: 'worth a look', proof: true }, { num: '1', label: 'held back' }]}
+        buttons={[{ label: 'Save', main: true, onClick: () => tool('Saved. The list is worked out again tonight.') }, { label: 'Back', onClick: () => onNav?.('PU1-PlayingUp') }]}
+      />
+      <div style={{ flex: 1, padding: '16px 20px 20px', overflow: 'auto' }}>
 
         {/* Two columns */}
         <div style={{ display: 'flex', gap: 16 }}>

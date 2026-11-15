@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { OpeningPanel } from './directorParts'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
@@ -33,19 +34,15 @@ export default function PU3TrialPlan({ onNav }: { onNav?: (s: string) => void })
         <div style={{ fontSize: 12, color: MUT }}>Director of football</div>
       </nav>
 
+      <OpeningPanel
+        heading="LEO COSTA’S TRIAL · U13 CHRIS → U14 JOSH"
+        sentence="Week 3 of 4, and Leo has said “hard but fun” two weeks running. The review is on Thursday 18 June."
+        support="He trains up on Tuesdays and still plays with his own team. Going back is part of the plan, not a failure."
+        figures={[{ num: 'Week 3', label: 'of 4', proof: true }, { num: 'Up 20%', label: 'total load, inside his cap' }]}
+        buttons={[{ label: 'Do the review', main: true, onClick: () => onNav?.('PU6-Review') }, { label: 'Message coaches', onClick: () => tool('Chat with Chris and Josh opens.') }]}
+      />
       <div style={{ flex: 1, display: 'flex', overflow: 'auto' }}>
-        <div style={{ flex: 1, padding: '20px', display: 'flex', flexDirection: 'column', gap: 16 }}>
-          {/* Header */}
-          <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 12 }}>
-            <div>
-              <div style={{ fontSize: 20, fontWeight: 900, color: INK }}>Leo Costa's trial</div>
-              <div style={{ fontSize: 13, color: MUT }}>U13 Chris → U14 Josh · week 3 of 4 · review Thursday 18 June</div>
-            </div>
-            <div style={{ display: 'flex', gap: 10, flexShrink: 0 }}>
-              <button aria-label="Message both coaches" onClick={() => tool('Chat with Chris and Josh opens.')} style={{ height: 44, padding: '0 18px', background: '#fff', color: G, border: `1.5px solid ${G}`, borderRadius: 8, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Message both coaches</button>
-              <button aria-label="Do the review" onClick={() => tool("The review opens on 18 June: Leo's view, both coaches' views, the numbers.")} style={{ height: 44, padding: '0 24px', background: G, color: '#fff', border: 'none', borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Do the review</button>
-            </div>
-          </div>
+        <div style={{ flex: 1, padding: '16px 20px 20px', display: 'flex', flexDirection: 'column', gap: 16 }}>
 
           {/* Steps */}
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '20px' }}>

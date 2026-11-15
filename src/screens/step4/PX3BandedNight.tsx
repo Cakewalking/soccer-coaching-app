@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { OpeningPanel } from './directorParts'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
@@ -31,18 +32,15 @@ export default function PX3BandedNight({ onNav }: { onNav?: (s: string) => void 
         <button aria-label="Fair game time" onClick={() => tool('Players')} style={snb}>Fair game time</button>
       </nav>
 
-      <div style={{ flex: 1, display: 'flex', gap: 20, padding: '20px', overflow: 'auto' }}>
+      <OpeningPanel
+        heading="PLAYING ACROSS · MIXED-AGE SESSIONS"
+        sentence="Friday 19 June: 46 players in three groups, by where they are in their growth and not by birth year."
+        support="5:30 to 6:45 pm at Wattle Creek Reserve, once a month. Nobody is moved anywhere."
+        figures={[{ num: '46', label: 'players, under 12 to under 15', proof: true }, { num: '3', label: 'groups' }]}
+        buttons={[{ label: 'Plan the next one', main: true, onClick: () => tool('Pick a date. Coaches and families of the 46 players are asked.') }, { label: 'Who is where', onClick: () => tool('The full list, with each player’s growth stage and when it was last measured.') }]}
+      />
+      <div style={{ flex: 1, display: 'flex', gap: 20, padding: '16px 20px 20px', overflow: 'auto' }}>
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 16 }}>
-          <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 12 }}>
-            <div>
-              <div style={{ fontSize: 20, fontWeight: 900, color: INK }}>Mixed-age sessions</div>
-              <div style={{ fontSize: 13, color: MUT }}>46 players in three groups by where they are in their growth, not by birth year. Once a month.</div>
-            </div>
-            <div style={{ display: 'flex', gap: 10 }}>
-              <button aria-label="Who is in which group" onClick={() => tool('The full list, with each player\'s growth stage and when it was last measured.')} style={{ height: 44, padding: '0 18px', background: '#fff', color: G, border: `1.5px solid ${G}`, borderRadius: 8, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Who is in which group</button>
-              <button aria-label="Plan the next one" onClick={() => tool('Pick a date. Coaches and families of the 46 players are asked.')} style={{ height: 44, padding: '0 18px', background: G, color: '#fff', border: 'none', borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Plan the next one</button>
-            </div>
-          </div>
 
           <div style={{ display: 'flex', gap: 10 }}>
             <button aria-label="An age group up · 3" onClick={() => onNav?.('PU1-PlayingUp')} style={{ height: 44, padding: '0 18px', background: '#fff', color: MUT, border: `1px solid ${LN}`, borderRadius: 22, fontSize: 13, cursor: 'pointer', fontFamily: 'inherit' }}>An age group up · 3</button>
