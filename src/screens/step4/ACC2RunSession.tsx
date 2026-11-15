@@ -6,6 +6,12 @@ type Attendance = 'here' | 'away'
 
 export default function ACC2RunSession(_: { onBack?: () => void }) {
   const [toast, setToast] = useState('')
+  const [activeNav, setActiveNav] = useState('Today')
+  const [activeSub, setActiveSub] = useState('Run a session')
+  const [selectedDrill, setSelectedDrill] = useState<number | null>(1)
+  const [done, setDone] = useState<string[]>([])
+  const mark = (k: string) => setDone(d => d.includes(k) ? d : [...d, k])
+  const is = (k: string) => done.includes(k)
   const [attendance, setAttendance] = useState<Record<string, Attendance>>({
     kai: 'here', ana: 'here', jonah: 'here', lola: 'here', zane: 'here', mila: 'away', finn: 'here',
   })
@@ -43,27 +49,24 @@ export default function ACC2RunSession(_: { onBack?: () => void }) {
             { label: 'Game day', icon: '⚽' },
             { label: 'Library', icon: '📅' },
           ].map(item => (
-            <button key={item.label} style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.82)', fontSize: 14, fontWeight: 500, padding: '0 14px', height: 64, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
+            <button key={item.label} onClick={() => setActiveNav(item.label)} style={{ background: item.label === activeNav ? 'rgba(255,255,255,0.18)' : 'none', borderRadius: 8, border: 'none', color: item.label === activeNav ? '#fff' : 'rgba(255,255,255,0.82)', fontSize: 14, fontWeight: item.label === activeNav ? 700 : 500, padding: '0 14px', height: 64, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
               <span style={{ fontSize: 16 }}>{item.icon}</span> {item.label}
             </button>
           ))}
         </div>
-        <button onClick={() => showToast('Opening academy selector.')} style={{ background: 'rgba(255,255,255,0.18)', border: 'none', color: '#fff', fontSize: 14, fontWeight: 500, padding: '0 14px', height: 44, borderRadius: 999, cursor: 'pointer', marginRight: 12 }}>
-          Tall Timber Academy ▾
+        <button onClick={() => mark('academy')} style={{ background: 'rgba(255,255,255,0.18)', border: 'none', color: '#fff', fontSize: 14, fontWeight: 500, padding: '0 14px', height: 44, borderRadius: 999, cursor: 'pointer', marginRight: 12 }}>
+          Tall Timber Academy {is('academy') ? '▴' : '▾'}
         </button>
         <div style={{ width: 44, height: 44, borderRadius: 999, background: '#c39797', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 15, fontWeight: 700, color: INK }}>RW</div>
       </div>
 
       {/* Sub nav */}
       <div style={{ background: '#fff', height: 44, borderBottom: `1px solid #c5c8c4`, display: 'flex', alignItems: 'center', padding: '0 28px', gap: 0, flexShrink: 0 }}>
-        {['Today', 'Run a session', 'Trial player', 'One-on-one', 'Record', 'Suggested'].map(tab => {
-          const active = tab === 'Run a session'
-          return (
-            <button key={tab} style={{ background: 'none', border: 'none', borderBottom: active ? `2px solid ${G}` : '2px solid transparent', color: active ? G : MUT, fontSize: 14, fontWeight: active ? 700 : 500, padding: '0 14px', height: 44, cursor: 'pointer', marginBottom: -1 }}>
+        {['Today', 'Run a session', 'Trial player', 'One-on-one', 'Record', 'Suggested'].map(tab => (
+            <button key={tab} onClick={() => setActiveSub(tab)} style={{ background: 'none', border: 'none', borderBottom: tab === activeSub ? `2px solid ${G}` : '2px solid transparent', color: tab === activeSub ? G : MUT, fontSize: 14, fontWeight: tab === activeSub ? 700 : 500, padding: '0 14px', height: 44, cursor: 'pointer', marginBottom: -1 }}>
               {tab}
             </button>
-          )
-        })}
+        ))}
         <div style={{ flex: 1 }} />
         <span style={{ height: 32, padding: '0 12px', borderRadius: 999, background: PALE, color: G, fontSize: 13, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 6 }}>Academy coach</span>
       </div>
@@ -75,8 +78,8 @@ export default function ACC2RunSession(_: { onBack?: () => void }) {
           <p style={{ margin: '4px 0 0', fontSize: 14, color: MUT }}>Thursday 5:30 to 6:40 · finishing with the weaker foot</p>
         </div>
         <div style={{ display: 'flex', gap: 8, paddingTop: 4 }}>
-          <button onClick={() => showToast('Pick a replacement drill...')} style={{ height: 44, padding: '0 16px', borderRadius: 10, background: '#fff', border: `1px solid #c5c8c4`, color: INK, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Swap a drill</button>
-          <button onClick={() => showToast('Session closed. Two taps per player, then you\'re done.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, background: G, border: 'none', color: '#fff', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Finish and write notes</button>
+          <button onClick={() => mark('swap')} style={{ height: 44, padding: '0 16px', borderRadius: 10, background: is('swap') ? PALE : '#fff', border: `1px solid ${is('swap') ? G : '#c5c8c4'}`, color: is('swap') ? G : INK, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>{is('swap') ? 'Pick a drill…' : 'Swap a drill'}</button>
+          <button onClick={() => mark('finish')} style={{ height: 44, padding: '0 16px', borderRadius: 10, background: is('finish') ? '#40826d' : G, border: 'none', color: '#fff', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>{is('finish') ? 'Writing notes ✓' : 'Finish and write notes'}</button>
         </div>
       </div>
 
@@ -120,7 +123,7 @@ export default function ACC2RunSession(_: { onBack?: () => void }) {
         <div style={{ gridColumn: 'span 7', background: '#fff', border: `1px solid #c5c8c4`, borderRadius: 16, padding: '14px 18px', display: 'flex', flexDirection: 'column' as const, gap: 0 }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
             <span style={{ fontSize: 16, fontWeight: 700, color: INK }}>The plan</span>
-            <button onClick={() => showToast('Filming on. Only players whose parents agreed appear in clips.')} style={{ background: 'none', border: 'none', color: G, fontSize: 13, fontWeight: 600, cursor: 'pointer', padding: 0 }}>Film this drill</button>
+            <button onClick={() => mark('film')} style={{ background: 'none', border: 'none', color: G, fontSize: 13, fontWeight: 600, cursor: 'pointer', padding: 0 }}>{is('film') ? 'Filming on ●' : 'Film this drill'}</button>
           </div>
 
           {/* Drill rows */}
@@ -130,9 +133,9 @@ export default function ACC2RunSession(_: { onBack?: () => void }) {
             { time: '6:00', name: 'Finishing circuit · three stations', meta: '15 min', badge: null, badgeColor: '', active: false },
             { time: '6:15', name: '4v4 · a weaker-foot goal counts double', meta: '20 min', badge: null, badgeColor: '', active: false },
           ].map((drill, i) => (
-            <div key={i} style={{
-              minHeight: 74, borderTop: `1px solid ${LN}`, display: 'flex', alignItems: 'center', gap: 12, padding: '8px 0',
-              ...(drill.active ? { background: PALE, margin: '0 -10px', padding: '8px 10px', borderRadius: 12 } : {}),
+            <div key={i} onClick={() => setSelectedDrill(i)} style={{
+              minHeight: 74, borderTop: `1px solid ${LN}`, display: 'flex', alignItems: 'center', gap: 12, padding: '8px 0', cursor: 'pointer',
+              ...(selectedDrill === i ? { background: PALE, margin: '0 -10px', padding: '8px 10px', borderRadius: 12 } : {}),
             }}>
               <div style={{ width: 48, flexShrink: 0 }}>
                 <span style={{ fontSize: 13, fontWeight: 700, color: MUT }}>{drill.time}</span>
