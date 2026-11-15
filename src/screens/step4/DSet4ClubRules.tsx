@@ -19,8 +19,7 @@ const LEAGUE_RULES = [
 ]
 
 export default function DSet4ClubRules() {
-  const [toast, setToast] = useState<string|null>(null)
-  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
+  const [openRule, setOpenRule] = useState<number | null>(null)
   return (
     <div style={{ width: 1180, background: BG, fontFamily: 'var(--font-sans)', minHeight: 820 }}>
       <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 32, height: 52 }}>
@@ -52,15 +51,22 @@ export default function DSet4ClubRules() {
 
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '4px 0', marginBottom: 20 }}>
             <div style={{ padding: '12px 20px 8px', fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT }}>Rules the club sets · 6 rules · 2 need you</div>
-            {RULES.map((r, i) => (
-              <div key={r.n} style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '14px 20px', borderTop: i === 0 ? `1px solid ${LN}` : `1px solid ${LN}` }}>
-                <div style={{ width: 28, height: 28, borderRadius: '50%', background: r.warn ? '#fef2f2' : PALE, border: `2px solid ${r.warn ? '#c05' : G}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, color: r.warn ? '#c05' : G, flexShrink: 0 }}>{r.n}</div>
-                <div style={{ flexGrow: 1 }}>
-                  <div style={{ fontSize: 14, fontWeight: 600, color: INK }}>{r.title}</div>
-                  <div style={{ fontSize: 12, color: MUT }}>{r.desc}</div>
+            {RULES.map((r) => (
+              <div key={r.n} style={{ borderTop: `1px solid ${LN}` }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '14px 20px' }}>
+                  <div style={{ width: 28, height: 28, borderRadius: '50%', background: r.warn ? '#fef2f2' : PALE, border: `2px solid ${r.warn ? '#c05' : G}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, color: r.warn ? '#c05' : G, flexShrink: 0 }}>{r.n}</div>
+                  <div style={{ flexGrow: 1 }}>
+                    <div style={{ fontSize: 14, fontWeight: 600, color: INK }}>{r.title}</div>
+                    <div style={{ fontSize: 12, color: MUT }}>{r.desc}</div>
+                  </div>
+                  <div style={{ fontSize: 12, fontWeight: 600, color: r.warn ? '#c05' : MUT, flexShrink: 0 }}>{r.status}</div>
+                  <button onClick={() => setOpenRule(o => o === r.n ? null : r.n)} style={{ height: 44, padding: '0 16px', borderRadius: 8, border: `1px solid ${openRule === r.n ? G : LN}`, background: openRule === r.n ? PALE : '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, cursor: 'pointer', flexShrink: 0 }}>{r.action}</button>
                 </div>
-                <div style={{ fontSize: 12, fontWeight: 600, color: r.warn ? '#c05' : MUT, flexShrink: 0 }}>{r.status}</div>
-                <button onClick={() => st('Opening rule settings.')} style={{ height: 44, padding: '0 16px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, cursor: 'pointer', flexShrink: 0 }}>{r.action}</button>
+                {openRule === r.n && (
+                  <div style={{ padding: '0 20px 14px 64px', fontSize: 13, color: MUT, lineHeight: 1.6 }}>
+                    <strong style={{ color: INK }}>{r.title}:</strong> {r.desc}. Changing this emails every coach, and the families it affects.
+                  </div>
+                )}
               </div>
             ))}
           </div>
@@ -82,7 +88,6 @@ export default function DSet4ClubRules() {
           </div>
         </div>
       </div>
-      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }
