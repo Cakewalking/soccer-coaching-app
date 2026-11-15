@@ -15,8 +15,12 @@ function CapBar({ filled, total, pct }: { filled: number; total: number; pct: nu
 }
 
 export default function AC2Programs(_: { onBack?: () => void }) {
-  const [toast, setToast] = useState<string | null>(null)
-  function t(m: string) { setToast(m); setTimeout(() => setToast(null), 3200) }
+  const [activeNav, setActiveNav] = useState('Programs')
+  const [activeSub, setActiveSub] = useState('Term programs')
+  const [selectedProgram, setSelectedProgram] = useState<string | null>(null)
+  const [done, setDone] = useState<string[]>([])
+  const mark = (k: string) => setDone(d => d.includes(k) ? d : [...d, k])
+  const is = (k: string) => done.includes(k)
 
   const programs = [
     { name: 'Foundation', filled: 1, total: 28, pct: 4, waiting: null },
@@ -39,13 +43,13 @@ export default function AC2Programs(_: { onBack?: () => void }) {
             { label: 'Coaches', icon: '🎓' },
             { label: 'Money', icon: '$' },
           ].map(({ label, icon }) => (
-            <button key={label} style={{ background: label === 'Programs' ? GD : 'transparent', color: '#fff', border: 'none', borderRadius: 8, padding: '0 14px', height: 44, fontSize: 14, fontWeight: label === 'Programs' ? 700 : 500, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
+            <button key={label} onClick={() => setActiveNav(label)} style={{ background: label === activeNav ? GD : 'transparent', color: '#fff', border: 'none', borderRadius: 8, padding: '0 14px', height: 44, fontSize: 14, fontWeight: label === activeNav ? 700 : 500, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
               <span style={{ fontSize: 15 }}>{icon}</span>{label}
             </button>
           ))}
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <button onClick={() => t('Opening academy selector.')} style={{ background: '#fff', color: INK, border: 'none', borderRadius: 20, padding: '0 14px', height: 44, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Tall Timber Academy ▾</button>
+          <button onClick={() => mark('academy')} style={{ background: '#fff', color: INK, border: 'none', borderRadius: 20, padding: '0 14px', height: 44, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Tall Timber Academy {is('academy') ? '▴' : '▾'}</button>
           <div style={{ width: 44, height: 44, borderRadius: 22, background: '#c39797', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: 700, fontSize: 15 }}>DO</div>
         </div>
       </div>
@@ -53,7 +57,7 @@ export default function AC2Programs(_: { onBack?: () => void }) {
       {/* SUB NAV */}
       <div style={{ background: '#fff', height: 44, display: 'flex', alignItems: 'center', padding: '0 28px', gap: 0, borderBottom: `1px solid ${LN}`, flexShrink: 0 }}>
         {['Term programs', 'Holiday clinic'].map(tab => (
-          <button key={tab} style={{ background: 'none', border: 'none', borderBottom: tab === 'Term programs' ? `2px solid ${G}` : '2px solid transparent', color: tab === 'Term programs' ? G : MUT, fontWeight: tab === 'Term programs' ? 700 : 500, fontSize: 14, padding: '0 16px', height: 44, cursor: 'pointer' }}>
+          <button key={tab} onClick={() => setActiveSub(tab)} style={{ background: 'none', border: 'none', borderBottom: tab === activeSub ? `2px solid ${G}` : '2px solid transparent', color: tab === activeSub ? G : MUT, fontWeight: tab === activeSub ? 700 : 500, fontSize: 14, padding: '0 16px', height: 44, cursor: 'pointer' }}>
             {tab}
           </button>
         ))}
@@ -66,8 +70,8 @@ export default function AC2Programs(_: { onBack?: () => void }) {
           <div style={{ color: MUT, fontSize: 14, marginTop: 2 }}>Term 2 · 80 players across 3 programs</div>
         </div>
         <div style={{ display: 'flex', gap: 10 }}>
-          <button onClick={() => t('Link copied.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Copy enrolment link</button>
-          <button onClick={() => t('New program setup...')} style={{ height: 44, padding: '0 18px', borderRadius: 10, background: G, color: '#fff', fontSize: 15, fontWeight: 600, border: 'none', cursor: 'pointer' }}>+ New program</button>
+          <button onClick={() => mark('link')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${is('link') ? G : '#c5c8c4'}`, background: is('link') ? '#eef5f2' : '#fff', color: is('link') ? G : INK, fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>{is('link') ? '✓ Link copied' : 'Copy enrolment link'}</button>
+          <button onClick={() => mark('new')} style={{ height: 44, padding: '0 18px', borderRadius: 10, background: is('new') ? '#40826d' : G, color: '#fff', fontSize: 15, fontWeight: 600, border: 'none', cursor: 'pointer' }}>{is('new') ? 'New program started ✓' : '+ New program'}</button>
         </div>
       </div>
 
@@ -86,7 +90,7 @@ export default function AC2Programs(_: { onBack?: () => void }) {
             ))}
           </div>
           {programs.map((p) => (
-            <div key={p.name} style={{ display: 'grid', gridTemplateColumns: '1fr 160px 130px 1fr', padding: '0 18px', minHeight: 66, alignItems: 'center', borderTop: `1px solid #e9eae8` }}>
+            <div key={p.name} style={{ display: 'grid', gridTemplateColumns: '1fr 160px 130px 1fr', padding: '0 18px', minHeight: 66, alignItems: 'center', borderTop: `1px solid #e9eae8`, background: selectedProgram === p.name ? '#eef5f2' : 'transparent' }}>
               <div style={{ fontWeight: 600, fontSize: 15, color: INK }}>{p.name}</div>
               <CapBar filled={p.filled} total={p.total} pct={p.pct} />
               <div>
@@ -96,12 +100,12 @@ export default function AC2Programs(_: { onBack?: () => void }) {
                 }
               </div>
               <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' as const }}>
-                <button onClick={() => t(`Opening ${p.name}...`)} style={{ height: 44, padding: '0 14px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Open</button>
+                <button onClick={() => setSelectedProgram(p.name)} style={{ height: 44, padding: '0 14px', borderRadius: 8, border: `1px solid ${selectedProgram === p.name ? G : '#c5c8c4'}`, background: selectedProgram === p.name ? '#eef5f2' : '#fff', color: selectedProgram === p.name ? G : INK, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>{selectedProgram === p.name ? 'Open ✓' : 'Open'}</button>
                 {p.name === 'Development' && (
-                  <button onClick={() => t('Copying to term 3...')} style={{ height: 44, padding: '0 14px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Copy to term 3</button>
+                  <button onClick={() => mark('term3')} style={{ height: 44, padding: '0 14px', borderRadius: 8, border: `1px solid ${is('term3') ? G : '#c5c8c4'}`, background: is('term3') ? '#eef5f2' : '#fff', color: is('term3') ? G : INK, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>{is('term3') ? '✓ Copied to term 3' : 'Copy to term 3'}</button>
                 )}
                 {p.name === 'Advanced' && (
-                  <button onClick={() => t('Offer link copied.')} style={{ height: 44, padding: '0 14px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Offer link</button>
+                  <button onClick={() => mark('offerlink')} style={{ height: 44, padding: '0 14px', borderRadius: 8, border: `1px solid ${is('offerlink') ? G : '#c5c8c4'}`, background: is('offerlink') ? '#eef5f2' : '#fff', color: is('offerlink') ? G : INK, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>{is('offerlink') ? '✓ Offer link copied' : 'Offer link'}</button>
                 )}
               </div>
             </div>
@@ -117,20 +121,18 @@ export default function AC2Programs(_: { onBack?: () => void }) {
           <div style={{ background: '#fff', border: `1px solid #c5c8c4`, borderRadius: 16, padding: '14px 18px', display: 'flex', flexDirection: 'column' as const, gap: 10 }}>
             <div style={{ fontWeight: 700, fontSize: 15, color: INK }}>Waiting list</div>
             <div style={{ fontSize: 14, color: MUT }}>Advanced has 5 waiting</div>
-            <button onClick={() => t('Offer sent to 2 families.')} style={{ height: 44, padding: '0 18px', borderRadius: 10, background: G, color: '#fff', fontSize: 15, fontWeight: 600, border: 'none', cursor: 'pointer', alignSelf: 'flex-start' }}>Offer 2 places</button>
+            <button onClick={() => mark('offer2')} style={{ height: 44, padding: '0 18px', borderRadius: 10, background: is('offer2') ? '#40826d' : G, color: '#fff', fontSize: 15, fontWeight: 600, border: 'none', cursor: 'pointer', alignSelf: 'flex-start' }}>{is('offer2') ? '✓ Offered to 2 families' : 'Offer 2 places'}</button>
           </div>
           {/* Holiday clinic tile */}
           <div style={{ background: '#fff', border: `1px solid #c5c8c4`, borderRadius: 16, padding: '14px 18px', display: 'flex', flexDirection: 'column' as const, gap: 10 }}>
             <div style={{ fontWeight: 700, fontSize: 15, color: INK }}>Holiday clinic</div>
             <div style={{ fontSize: 24, fontWeight: 800, color: INK }}>31 <span style={{ fontSize: 14, fontWeight: 500, color: MUT }}>of 40 booked</span></div>
             <div style={{ fontSize: 13, color: MUT }}>July 6–8</div>
-            <button onClick={() => t('Opening holiday clinic...')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontSize: 15, fontWeight: 600, cursor: 'pointer', alignSelf: 'flex-start' }}>Open holiday clinic</button>
+            <button onClick={() => { setActiveSub('Holiday clinic'); mark('holiday') }} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${is('holiday') ? G : '#c5c8c4'}`, background: is('holiday') ? '#eef5f2' : '#fff', color: is('holiday') ? G : INK, fontSize: 15, fontWeight: 600, cursor: 'pointer', alignSelf: 'flex-start' }}>Open holiday clinic</button>
           </div>
         </div>
 
       </div>
-
-      {toast && <div style={{ position: 'absolute', left: '50%', bottom: 28, transform: 'translateX(-50%)', background: GD, color: '#fff', padding: '12px 16px', borderRadius: 14, fontSize: 15, fontWeight: 600, zIndex: 60, whiteSpace: 'nowrap' as const }}>{toast}</div>}
     </div>
   )
 }

@@ -35,6 +35,8 @@ const msgs = [
 ]
 export default function CH2Announcements(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string | null>(null)
+  const [activeChat, setActiveChat] = useState(0)
+  const [sent, setSent] = useState(false)
   const t = (m: string) => { setToast(m); setTimeout(() => setToast(null), 3200) }
   return (
     <div style={{ width: 1180, height: 820, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden' }}>
@@ -48,7 +50,7 @@ export default function CH2Announcements(_: { onBack?: () => void }) {
             <button onClick={() => t('New chat setup opened.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${G}`, background: G, color: '#fff', fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 6 }}>+ New chat</button>
           </div>
           {chats.map((c, i) => (
-            <button key={i} onClick={() => t(`${c.name} opened.`)} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 68, padding: '0 16px', borderTop: `1px solid ${LN}`, background: c.active ? PALE : '#fff', boxShadow: c.active ? `inset 3px 0 0 ${G}` : 'none', cursor: 'pointer', textAlign: 'left', fontFamily: 'inherit' }}>
+            <button key={i} onClick={() => setActiveChat(i)} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 68, padding: '0 16px', borderTop: `1px solid ${LN}`, background: i === activeChat ? PALE : '#fff', boxShadow: i === activeChat ? `inset 3px 0 0 ${G}` : 'none', cursor: 'pointer', textAlign: 'left', fontFamily: 'inherit' }}>
               <div style={{ flexShrink: 0, width: 40, height: 40, borderRadius: '50%', background: PALE, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700 }}>
                 {c.icon ? <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={G} strokeWidth="2" strokeLinecap="round"><path d="M4 10v4h3l7 4V6l-7 4zM18 9a4 4 0 010 6"/></svg> : c.ini}
               </div>
@@ -87,8 +89,8 @@ export default function CH2Announcements(_: { onBack?: () => void }) {
               <button onClick={() => t('Attachment options opened.')} style={{ width: 44, height: 44, borderRadius: 10, border: `1px solid #c5c8c4`, background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth="2.4" strokeLinecap="round"><path d="M12 5v14M5 12h14"/></svg>
               </button>
-              <div style={{ flexGrow: 1, height: 44, border: `1px solid #c5c8c4`, borderRadius: 10, background: '#fff', padding: '0 14px', display: 'flex', alignItems: 'center', fontSize: 15, color: MUT }}>Write an announcement</div>
-              <button onClick={() => t('Announcement sent to 17 families.')} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: 0, background: G, color: '#fff', fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Send</button>
+              <div style={{ flexGrow: 1, height: 44, border: `1px solid #c5c8c4`, borderRadius: 10, background: '#fff', padding: '0 14px', display: 'flex', alignItems: 'center', fontSize: 15, color: MUT }}>{sent ? 'Sent to 17 families ✓' : 'Write an announcement'}</div>
+              <button onClick={() => setSent(true)} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: 0, background: sent ? '#40826d' : G, color: '#fff', fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{sent ? 'Sent' : 'Send'}</button>
             </div>
           </div>
         </div>

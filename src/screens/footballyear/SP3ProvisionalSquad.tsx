@@ -3,9 +3,11 @@ import { useState } from 'react'
 const G = '#2f6252', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 export default function SP3ProvisionalSquad(_: { onBack?: () => void }) {
-  const [toast, setToast] = useState<string | null>(null)
-  const [_sheet, setSheet] = useState<string | null>(null)
-  function t(m: string) { setToast(m); setTimeout(() => setToast(null), 3200) }
+  const [decided, setDecided] = useState<Record<string, 'Confirmed' | 'Waitlisted'>>({})
+  const [done, setDone] = useState<string[]>([])
+  const [sent, setSent] = useState(false)
+  const mark = (k: string) => setDone(d => d.includes(k) ? d : [...d, k])
+  const is = (k: string) => done.includes(k)
 
   return (
     <div style={{ padding: '20px 28px 40px', background: '#f7f8f7', minHeight: '100%', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', position: 'relative' }}>
@@ -16,8 +18,8 @@ export default function SP3ProvisionalSquad(_: { onBack?: () => void }) {
           <div style={{ fontSize: 14, color: MUT }}>Thu 12 March · pre-season · 4 weeks to round 1 · squad list goes to the club on 27 March</div>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button onClick={() => t('Trial invite sent.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Run a trial</button>
-          <button onClick={() => setSheet('spsquad')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Send the squad list</button>
+          <button onClick={() => mark('trial')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${is('trial') ? G : LN}`, background: is('trial') ? PALE : '#fff', color: is('trial') ? G : INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>{is('trial') ? '✓ Trial invite sent' : 'Run a trial'}</button>
+          <button onClick={() => setSent(true)} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: sent ? '#40826d' : G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>{sent ? 'Squad list sent ✓' : 'Send the squad list'}</button>
         </div>
       </div>
 
@@ -37,10 +39,10 @@ export default function SP3ProvisionalSquad(_: { onBack?: () => void }) {
                 <div style={{ fontSize: 14, fontWeight: 600, color: INK }}>Harper Quinn</div>
                 <div style={{ fontSize: 12, color: MUT }}>New · moved from Northgate City</div>
               </div>
-              <button onClick={() => t('Opening Harper\'s profile')} style={{ height: 44, padding: '0 10px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>See</button>
+              <button onClick={() => mark('harper')} style={{ height: 44, padding: '0 10px', borderRadius: 8, border: `1px solid ${is('harper') ? G : LN}`, background: is('harper') ? PALE : '#fff', color: G, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>{is('harper') ? 'Seen' : 'See'}</button>
             </div>
             <div style={{ padding: '10px 16px' }}>
-              <button onClick={() => t('Showing all 14')} style={{ fontSize: 13, color: G, fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', padding: 0, fontFamily: 'inherit' }}>See all 14</button>
+              <button onClick={() => mark('all14')} style={{ fontSize: 13, color: G, fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', padding: 0, fontFamily: 'inherit' }}>{is('all14') ? 'Showing all 14 ✓' : 'See all 14'}</button>
               <div style={{ fontSize: 12, color: MUT, marginTop: 4 }}>Football Victoria allows 14 on a team sheet. With 17, three sit out each week in turn.</div>
             </div>
           </div>
@@ -54,14 +56,14 @@ export default function SP3ProvisionalSquad(_: { onBack?: () => void }) {
               { initials: 'BN', name: 'Billie Novak',  note: 'Midfield · born Nov · 2 sessions' },
               { initials: 'AM', name: 'Arjun Mehta',   note: 'Defender · born Mar · 2 sessions' },
             ].map(p => (
-              <div key={p.name} style={{ display: 'grid', gridTemplateColumns: '36px minmax(0,1fr) auto auto', gap: 10, padding: '10px 16px', alignItems: 'center', borderBottom: `1px solid ${LN}` }}>
+              <div key={p.name} style={{ display: 'grid', gridTemplateColumns: '36px minmax(0,1fr) auto auto', gap: 10, padding: '10px 16px', alignItems: 'center', borderBottom: `1px solid ${LN}`, background: decided[p.name] ? PALE : 'transparent' }}>
                 <div style={{ width: 32, height: 32, borderRadius: '50%', background: PALE, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, color: G }}>{p.initials}</div>
                 <div>
                   <div style={{ fontSize: 14, fontWeight: 600, color: INK }}>{p.name}</div>
-                  <div style={{ fontSize: 12, color: MUT }}>{p.note}</div>
+                  <div style={{ fontSize: 12, color: MUT }}>{decided[p.name] ? decided[p.name] : p.note}</div>
                 </div>
-                <button onClick={() => t(`${p.name} moved to the waitlist. Her parent gets a kind note.`)} style={{ height: 44, padding: '0 10px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Waitlist</button>
-                <button onClick={() => t(`${p.name} confirmed. Parent gets welcome and consent questions.`)} style={{ height: 44, padding: '0 10px', borderRadius: 8, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Confirm</button>
+                <button onClick={() => setDecided(d => ({ ...d, [p.name]: 'Waitlisted' }))} style={{ height: 44, padding: '0 10px', borderRadius: 8, border: `1px solid ${decided[p.name] === 'Waitlisted' ? G : LN}`, background: decided[p.name] === 'Waitlisted' ? PALE : '#fff', color: decided[p.name] === 'Waitlisted' ? G : MUT, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Waitlist</button>
+                <button onClick={() => setDecided(d => ({ ...d, [p.name]: 'Confirmed' }))} style={{ height: 44, padding: '0 10px', borderRadius: 8, border: 0, background: decided[p.name] === 'Confirmed' ? '#40826d' : G, color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>{decided[p.name] === 'Confirmed' ? '✓' : 'Confirm'}</button>
               </div>
             ))}
             <div style={{ padding: '10px 16px' }}>
@@ -78,8 +80,8 @@ export default function SP3ProvisionalSquad(_: { onBack?: () => void }) {
                 <div style={{ fontSize: 14, fontWeight: 600, color: INK }}>Jonah Park</div>
                 <div style={{ fontSize: 12, color: MUT }}>Keeper · trialled 1 March · offer a place here, or suggest U12 Luke</div>
               </div>
-              <button onClick={() => t('Suggested to Luke, who has 2 places.')} style={{ height: 44, padding: '0 10px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>U12 Luke</button>
-              <button onClick={() => t('Offer sent to Jonah\'s parent.')} style={{ height: 44, padding: '0 10px', borderRadius: 8, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Offer</button>
+              <button onClick={() => mark('luke')} style={{ height: 44, padding: '0 10px', borderRadius: 8, border: `1px solid ${is('luke') ? G : LN}`, background: is('luke') ? PALE : '#fff', color: is('luke') ? G : MUT, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>{is('luke') ? '✓ Suggested' : 'U12 Luke'}</button>
+              <button onClick={() => mark('offer')} style={{ height: 44, padding: '0 10px', borderRadius: 8, border: 0, background: is('offer') ? '#40826d' : G, color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>{is('offer') ? 'Offered ✓' : 'Offer'}</button>
             </div>
             <div style={{ fontSize: 12, color: MUT, marginTop: 8 }}>A waitlisted player hears as soon as a place opens, or is offered another team at the club.</div>
           </div>
@@ -120,12 +122,10 @@ export default function SP3ProvisionalSquad(_: { onBack?: () => void }) {
               </div>
             ))}
             <div style={{ fontSize: 12, color: MUT, marginTop: 10, marginBottom: 14 }}>You can send it again if it changes. The league's deadline is five working days before round 1.</div>
-            <button onClick={() => t('Squad list sent. Bianca registers anyone missing.')} style={{ width: '100%', height: 44, borderRadius: 12, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Send 14 names</button>
+            <button onClick={() => setSent(true)} style={{ width: '100%', height: 44, borderRadius: 12, border: 0, background: sent ? '#40826d' : G, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>{sent ? '✓ Squad list sent' : 'Send 14 names'}</button>
           </div>
         </div>
       </div>
-
-      {toast && <div style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', background: INK, color: '#fff', padding: '10px 20px', borderRadius: 12, fontSize: 14, fontWeight: 600, zIndex: 1000, whiteSpace: 'nowrap' as const }}>{toast}</div>}
     </div>
   )
 }
