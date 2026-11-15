@@ -4,11 +4,12 @@ const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8
 
 function CoachNav({ active }: { active: string }) {
   const tabs = ['Home', 'Squad', 'Training', 'Match day', 'Clips']
+  const [sel, setSel] = useState(active)
   return (
     <div style={{ background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 24, height: 52, flexShrink: 0 }}>
       <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>Clean Sheet</div>
       {tabs.map(t => (
-        <div key={t} style={{ fontSize: 13, fontWeight: t === active ? 700 : 500, color: t === active ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer', minHeight: 44, minWidth: 44, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', padding: '0 10px' }}>{t}</div>
+        <div key={t} onClick={() => setSel(t)} style={{ fontSize: 13, fontWeight: t === sel ? 700 : 500, color: t === sel ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer', minHeight: 44, minWidth: 44, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', padding: '0 10px' }}>{t}</div>
       ))}
       <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 10 }}>
         <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)' }}>U12 Sam · Wattle Creek</div>
@@ -19,15 +20,16 @@ function CoachNav({ active }: { active: string }) {
 }
 
 function SidebarNav({ items, active }: { items: string[]; active: string }) {
+  const [sel, setSel] = useState(active)
   return (
     <div style={{ width: 200, background: '#fff', borderRight: `1px solid ${LN}`, flexShrink: 0, padding: '12px 0', display: 'flex', flexDirection: 'column' as const }}>
       {items.map(item => (
-        <div key={item} style={{
+        <div key={item} onClick={() => setSel(item)} style={{
           padding: '10px 20px', fontSize: 14,
-          fontWeight: item === active ? 700 : 500,
-          color: item === active ? G : MUT,
-          background: item === active ? PALE : 'transparent',
-          borderLeft: item === active ? `3px solid ${G}` : '3px solid transparent',
+          fontWeight: item === sel ? 700 : 500,
+          color: item === sel ? G : MUT,
+          background: item === sel ? PALE : 'transparent',
+          borderLeft: item === sel ? `3px solid ${G}` : '3px solid transparent',
           cursor: 'pointer',
         }}>{item}</div>
       ))}
@@ -525,8 +527,11 @@ export function R1MatchReview() {
 // ─── SE1 Season Summaries ─────────────────────────────────────────────────────
 
 export function SE1SeasonSummaries() {
-  const [toast, setToast] = useState<string | null>(null)
-  function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
+  const [selected, setSelected] = useState('MT')
+  const [parentView, setParentView] = useState(false)
+  const [sentAll, setSentAll] = useState(false)
+  const [editing, setEditing] = useState(false)
+  const [sentOne, setSentOne] = useState(false)
   const squadNav = ['Players', 'Development goals', 'Wellness', 'Availability', 'Consent and privacy']
   const players = [
     { init: 'MT', name: 'Mia Tran', status: 'Ready' },
@@ -540,6 +545,7 @@ export function SE1SeasonSummaries() {
   ]
   const statusColor = (s: string) => s === 'Ready' ? '#16a34a' : s === 'Check' ? '#d97706' : MUT
   const statusBg = (s: string) => s === 'Ready' ? '#f0fdf4' : s === 'Check' ? '#fffbeb' : '#f5f5f5'
+  const selPlayer = players.find(p => p.init === selected)!
   return (
     <Shell navActive="Squad" sideItems={squadNav} sideActive="Players">
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 20 }}>
@@ -548,18 +554,19 @@ export function SE1SeasonSummaries() {
           <div style={{ fontSize: 13, color: MUT }}>U12 Sam · season 2026 · 9 ready, 5 to check, 3 to write</div>
         </div>
         <div style={{ display: 'flex', gap: 10 }}>
-          <button onClick={() => showToast('Opening parent view of summaries.')} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: G, cursor: 'pointer' }}>What parents see</button>
-          <button onClick={() => showToast('Sending 9 ready summaries.')} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: 'none', background: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>Send the 9 ready</button>
+          <button onClick={() => setParentView(v => !v)} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: `1px solid ${parentView ? G : LN}`, background: parentView ? PALE : '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: G, cursor: 'pointer' }}>{parentView ? 'Coach view' : 'What parents see'}</button>
+          <button onClick={() => setSentAll(true)} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: 'none', background: sentAll ? '#40826d' : G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>{sentAll ? '✓ 9 summaries sent' : 'Send the 9 ready'}</button>
         </div>
       </div>
+      {parentView && <div style={{ background: PALE, border: `1px solid ${G}`, borderRadius: 10, padding: '10px 14px', marginBottom: 16, fontSize: 13, color: G, fontWeight: 600 }}>Parent view: families see the note, goals met and the favourite clip — never running numbers, sprint counts or comparisons.</div>}
 
       <div style={{ display: 'grid', gridTemplateColumns: '260px 1fr', gap: 20 }}>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, overflow: 'hidden' }}>
           <div style={{ padding: '12px 16px', borderBottom: `1px solid ${LN}`, fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT }}>Players · 8 of 17 shown</div>
           {players.map((p, i) => (
-            <div key={p.init} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 16px', borderTop: i === 0 ? 'none' : `1px solid ${LN}`, cursor: 'pointer', background: p.init === 'MT' ? PALE : 'transparent' }}>
-              <div style={{ width: 32, height: 32, borderRadius: '50%', background: p.init === 'MT' ? G : '#d1d5db', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, color: '#fff', flexShrink: 0 }}>{p.init}</div>
-              <div style={{ flex: 1, fontSize: 13, fontWeight: p.init === 'MT' ? 700 : 500, color: INK }}>{p.name}</div>
+            <div key={p.init} onClick={() => { setSelected(p.init); setSentOne(false); setEditing(false) }} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 16px', borderTop: i === 0 ? 'none' : `1px solid ${LN}`, cursor: 'pointer', background: p.init === selected ? PALE : 'transparent' }}>
+              <div style={{ width: 32, height: 32, borderRadius: '50%', background: p.init === selected ? G : '#d1d5db', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, color: '#fff', flexShrink: 0 }}>{p.init}</div>
+              <div style={{ flex: 1, fontSize: 13, fontWeight: p.init === selected ? 700 : 500, color: INK }}>{p.name}</div>
               <span style={{ fontSize: 11, fontWeight: 700, padding: '1px 8px', borderRadius: 20, background: statusBg(p.status), color: statusColor(p.status) }}>{p.status}</span>
             </div>
           ))}
@@ -567,12 +574,12 @@ export function SE1SeasonSummaries() {
 
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '20px 24px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
-            <div style={{ width: 44, height: 44, borderRadius: '50%', background: G, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700, color: '#fff', flexShrink: 0 }}>MT</div>
+            <div style={{ width: 44, height: 44, borderRadius: '50%', background: G, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700, color: '#fff', flexShrink: 0 }}>{selPlayer.init}</div>
             <div>
-              <div style={{ fontSize: 16, fontWeight: 800, color: INK }}>Mia Tran</div>
-              <div style={{ fontSize: 12, color: MUT }}>To Linh Tran, and to Mia's app</div>
+              <div style={{ fontSize: 16, fontWeight: 800, color: INK }}>{selPlayer.name}</div>
+              <div style={{ fontSize: 12, color: MUT }}>To their family, and to {selPlayer.name.split(' ')[0]}'s app</div>
             </div>
-            <span style={{ marginLeft: 'auto', fontSize: 12, fontWeight: 700, padding: '3px 12px', borderRadius: 20, background: '#f0fdf4', color: '#16a34a' }}>Ready to send</span>
+            <span style={{ marginLeft: 'auto', fontSize: 12, fontWeight: 700, padding: '3px 12px', borderRadius: 20, background: statusBg(selPlayer.status), color: statusColor(selPlayer.status) }}>{selPlayer.status === 'Ready' ? 'Ready to send' : selPlayer.status === 'Check' ? 'Check before sending' : 'To write'}</span>
           </div>
 
           {[
@@ -605,13 +612,13 @@ export function SE1SeasonSummaries() {
 
           <div style={{ fontSize: 12, color: MUT, marginBottom: 16 }}>Left out on purpose: running numbers, sprint counts, wellness answers and anything that compares her with teammates.</div>
 
+          {editing && <div style={{ fontSize: 13, color: G, fontWeight: 600, marginBottom: 10 }}>Editing {selPlayer.name.split(' ')[0]}'s draft — change the note above before sending.</div>}
           <div style={{ display: 'flex', gap: 10 }}>
-            <button onClick={() => showToast("Opening draft editor for Mia.")} style={{ height: 44, flex: 1, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: G, cursor: 'pointer' }}>Edit</button>
-            <button onClick={() => showToast("Mia's summary sent.")} style={{ height: 44, flex: 1, borderRadius: 10, border: 'none', background: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>Send Mia's</button>
+            <button onClick={() => setEditing(e => !e)} style={{ height: 44, flex: 1, borderRadius: 10, border: `1px solid ${editing ? G : LN}`, background: editing ? PALE : '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: G, cursor: 'pointer' }}>{editing ? 'Done' : 'Edit'}</button>
+            <button onClick={() => setSentOne(true)} style={{ height: 44, flex: 1, borderRadius: 10, border: 'none', background: sentOne ? '#40826d' : G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>{sentOne ? `✓ Sent ${selPlayer.name.split(' ')[0]}'s` : `Send ${selPlayer.name.split(' ')[0]}'s`}</button>
           </div>
         </div>
       </div>
-      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </Shell>
   )
 }
