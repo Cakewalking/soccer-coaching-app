@@ -183,22 +183,37 @@ function MiniRooFileOpen({ name, type, onBack }: { name: string; type: 'doc' | '
   )
 }
 
-// A genuinely blank, editable doc/sheet the coach fills in and saves as a new file.
-function MiniRooNewFile({ type, onBack, onCreate }: { type: 'doc' | 'sheet'; onBack: () => void; onCreate: (name: string, type: 'doc' | 'sheet') => void }) {
-  const [title, setTitle]     = useState(type === 'sheet' ? 'Untitled sheet' : 'Untitled doc')
-  const [body, setBody]       = useState('')
-  const [headers, setHeaders] = useState<string[]>(['Player', 'Game 1', 'Game 2', 'Notes'])
-  const [grid, setGrid]       = useState<string[][]>(() => Array.from({ length: 5 }, () => ['', '', '', '']))
+// A genuinely blank/editable doc/sheet. Used to create a new file and to reopen a saved one.
+function MiniRooFileEditor({ type, initialName, initialContent, onBack, onSave }: {
+  type: 'doc' | 'sheet'
+  initialName?: string
+  initialContent?: FileContent
+  onBack: () => void
+  onSave: (name: string, content: FileContent) => void
+}) {
+  const isNew = !initialContent
+  const docInit   = initialContent?.kind === 'doc' ? initialContent.body : ''
+  const sheetInit = initialContent?.kind === 'sheet' ? initialContent : null
+
+  const [title, setTitle]     = useState(initialName ?? (type === 'sheet' ? 'Untitled sheet' : 'Untitled doc'))
+  const [body, setBody]       = useState(docInit)
+  const [headers, setHeaders] = useState<string[]>(sheetInit?.headers ?? ['Player', 'Game 1', 'Game 2', 'Notes'])
+  const [grid, setGrid]       = useState<string[][]>(sheetInit?.grid ?? Array.from({ length: 5 }, () => ['', '', '', '']))
   const [saved, setSaved]     = useState(false)
 
-  function addRow() { setGrid(g => [...g, headers.map(() => '')]) }
-  function addCol() { setHeaders(h => [...h, `Column ${h.length + 1}`]); setGrid(g => g.map(r => [...r, ''])) }
-  function setCell(r: number, c: number, v: string) { setGrid(g => g.map((row, ri) => ri === r ? row.map((cell, ci) => ci === c ? v : cell) : row)) }
-  function setHeader(c: number, v: string) { setHeaders(h => h.map((hh, ci) => ci === c ? v : hh)) }
+  function addRow() { setGrid(g => [...g, headers.map(() => '')]); setSaved(false) }
+  function addCol() { setHeaders(h => [...h, `Column ${h.length + 1}`]); setGrid(g => g.map(r => [...r, ''])); setSaved(false) }
+  function setCell(r: number, c: number, v: string) { setGrid(g => g.map((row, ri) => ri === r ? row.map((cell, ci) => ci === c ? v : cell) : row)); setSaved(false) }
+  function setHeader(c: number, v: string) { setHeaders(h => h.map((hh, ci) => ci === c ? v : hh)); setSaved(false) }
 
   const cellInput: React.CSSProperties = { width: '100%', border: 'none', background: 'transparent', fontSize: 13, color: INK, fontFamily: 'inherit', outline: 'none', padding: '8px 12px', boxSizing: 'border-box' }
 
-  function save() { setSaved(true); onCreate(title.trim() || (type === 'sheet' ? 'Untitled sheet' : 'Untitled doc'), type) }
+  function save() {
+    const name = title.trim() || (type === 'sheet' ? 'Untitled sheet' : 'Untitled doc')
+    const content: FileContent = type === 'doc' ? { kind: 'doc', body } : { kind: 'sheet', headers, grid }
+    setSaved(true)
+    onSave(name, content)
+  }
 
   return (
     <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', background: '#f4f6f5' }}>
@@ -216,7 +231,7 @@ function MiniRooNewFile({ type, onBack, onCreate }: { type: 'doc' | 'sheet'; onB
             <button onClick={addCol} style={{ height: 36, padding: '0 12px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>+ Column</button>
           </>
         )}
-        <button onClick={save} style={{ marginLeft: 'auto', height: 36, padding: '0 18px', borderRadius: 999, border: 'none', background: saved ? '#5a8a7a' : G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>{saved ? 'Saved ✓' : 'Create file'}</button>
+        <button onClick={save} style={{ marginLeft: 'auto', height: 36, padding: '0 18px', borderRadius: 999, border: 'none', background: saved ? '#5a8a7a' : G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>{saved ? 'Saved ✓' : isNew ? 'Create file' : 'Save'}</button>
       </div>
 
       <div style={{ flex: 1, overflowY: 'auto', padding: '28px 0', display: 'flex', justifyContent: 'center' }}>
@@ -262,12 +277,14 @@ function MiniRooNewFile({ type, onBack, onCreate }: { type: 'doc' | 'sheet'; onB
   )
 }
 
-const MR_FILES = [
-  { id: '1', name: 'Wattle Creek Reserve · where and when', type: 'doc' as const, who: 'U9 Tom families · 10 of 14 opened', changed: 'Today' },
-  { id: '2', name: 'Term 2 turns sheet', type: 'sheet' as const, who: 'U9 Tom families · 8 of 14 opened', changed: 'Tue' },
-  { id: '3', name: 'Duty roster, term 2', type: 'sheet' as const, who: 'Coaching team only', changed: '15 May' },
+type FileContent = { kind: 'doc'; body: string } | { kind: 'sheet'; headers: string[]; grid: string[][] }
+type MrFile = { id: string; name: string; type: 'doc' | 'sheet'; who: string; changed: string; content?: FileContent }
+
+const MR_FILES: MrFile[] = [
+  { id: '1', name: 'Wattle Creek Reserve · where and when', type: 'doc', who: 'U9 Tom families · 10 of 14 opened', changed: 'Today' },
+  { id: '2', name: 'Term 2 turns sheet', type: 'sheet', who: 'U9 Tom families · 8 of 14 opened', changed: 'Tue' },
+  { id: '3', name: 'Duty roster, term 2', type: 'sheet', who: 'Coaching team only', changed: '15 May' },
 ]
-type MrFile = typeof MR_FILES[number]
 
 function MrFileIcon({ type }: { type: 'doc' | 'sheet' }) {
   const color = type === 'sheet' ? G : '#6b7280'
@@ -282,7 +299,7 @@ function MrFileIcon({ type }: { type: 'doc' | 'sheet' }) {
   )
 }
 
-function MiniRooFilesContent({ files, onOpenFile, onNewFile }: { files: MrFile[]; onOpenFile: (name: string, type: 'doc' | 'sheet') => void; onNewFile: (type: 'doc' | 'sheet') => void }) {
+function MiniRooFilesContent({ files, onOpenFile, onNewFile }: { files: MrFile[]; onOpenFile: (file: MrFile) => void; onNewFile: (type: 'doc' | 'sheet') => void }) {
   const [toast, setToast] = useState<string | null>(null)
   const [uploadDone, setUploadDone] = useState(false)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 2500) }
@@ -312,7 +329,7 @@ function MiniRooFilesContent({ files, onOpenFile, onNewFile }: { files: MrFile[]
             ))}
           </div>
           {files.map((f, i) => (
-            <div key={f.id} onClick={() => onOpenFile(f.name, f.type)}
+            <div key={f.id} onClick={() => onOpenFile(f)}
               style={{ display: 'grid', gridTemplateColumns: '1fr 220px 100px', padding: '12px 20px', borderBottom: i < files.length - 1 ? `1px solid ${LN}` : 'none', alignItems: 'center', cursor: 'pointer' }}>
               <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
                 <MrFileIcon type={f.type} />
@@ -332,7 +349,7 @@ function MiniRooFilesContent({ files, onOpenFile, onNewFile }: { files: MrFile[]
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 18px' }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 12 }}>Start from</div>
           {templates.map(t => (
-            <div key={t.label} onClick={() => onOpenFile(t.label, 'doc')} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', marginBottom: 10, cursor: 'pointer' }}>
+            <div key={t.label} onClick={() => onOpenFile({ id: `tpl-${t.label}`, name: t.label, type: 'doc', who: '', changed: '' })} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', marginBottom: 10, cursor: 'pointer' }}>
               <div style={{ width: 28, height: 28, background: PALE, borderRadius: 6, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={G} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
               </div>
@@ -748,7 +765,7 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
   const [trainingTab, setTrainingTab] = useState<TrainingTab>('plan')
   const [recordView, setRecordView] = useState<RecordView>('start')
   const [askOpen, setAskOpen]       = useState(false)
-  const [filOpen, setFilOpen]       = useState<{ name: string; type: 'doc' | 'sheet' } | null>(null)
+  const [filOpen, setFilOpen]       = useState<MrFile | null>(null)
   const [filNew, setFilNew]         = useState<{ type: 'doc' | 'sheet' } | null>(null)
   const [files, setFiles]           = useState<MrFile[]>(MR_FILES)
   const { active: inSandbox, store } = useSandbox()
@@ -806,15 +823,18 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
     else if (homeTab === 'whereweat') content = <MS2MiniRoosWhereWeAt />
     else if (homeTab === 'staff')     content = <StaffMiniRoos empty={empty} />
     else if (homeTab === 'files' && filNew)
-      content = <MiniRooNewFile type={filNew.type} onBack={() => setFilNew(null)}
-        onCreate={(name, type) => {
-          setFiles(prev => [{ id: `new-${prev.length + 1}`, name, type, who: 'Only you · not shared yet', changed: 'Just now' }, ...prev])
+      content = <MiniRooFileEditor type={filNew.type} onBack={() => setFilNew(null)}
+        onSave={(name, content) => {
+          setFiles(prev => [{ id: `new-${prev.length + 1}`, name, type: filNew.type, who: 'Only you · not shared yet', changed: 'Just now', content }, ...prev])
           setFilNew(null)
         }} />
+    else if (homeTab === 'files' && filOpen?.content)
+      content = <MiniRooFileEditor type={filOpen.type} initialName={filOpen.name} initialContent={filOpen.content} onBack={() => setFilOpen(null)}
+        onSave={(name, content) => setFiles(prev => prev.map(f => f.id === filOpen.id ? { ...f, name, content, changed: 'Just now' } : f))} />
     else if (homeTab === 'files' && filOpen && filOpen.type === 'sheet' && !/duty|roster/i.test(filOpen.name))
       content = <TeamSheetBody cfg={u9TurnsSheetCfg(filOpen.name)} onBack={() => setFilOpen(null)} onShare={() => {}} />
     else if (homeTab === 'files' && filOpen) content = <MiniRooFileOpen name={filOpen.name} type={filOpen.type} onBack={() => setFilOpen(null)} />
-    else if (homeTab === 'files')            content = <MiniRooFilesContent files={files} onOpenFile={(name, type) => setFilOpen({ name, type })} onNewFile={(type) => setFilNew({ type })} />
+    else if (homeTab === 'files')            content = <MiniRooFilesContent files={files} onOpenFile={(file) => setFilOpen(file)} onNewFile={(type) => setFilNew({ type })} />
   } else if (nav === 'training') {
     if (trainingTab === 'plan')    content = <TrainingMiniRoos empty={empty} />
     else if (trainingTab === 'suggest') content = <SuggestedMiniRoos empty={empty} />
