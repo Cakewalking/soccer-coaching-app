@@ -737,14 +737,19 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
     else if (homeTab === 'whereweat') content = <MS2MiniRoosWhereWeAt />
     else if (homeTab === 'staff')     content = <StaffMiniRoos empty={empty} />
     else if (homeTab === 'files' && filNew)
-      content = <FileEditor type={filNew.type} onBack={() => setFilNew(null)}
+      content = <FileEditor type={filNew.type} audiences={['U9 Tom families', 'Coaching team only', 'Just me']} onBack={() => setFilNew(null)}
         onSave={(name, content) => {
           setFiles(prev => [{ id: `new-${prev.length + 1}`, name, type: filNew.type, who: 'Only you · not shared yet', changed: 'Just now', content }, ...prev])
           setFilNew(null)
+        }}
+        onShare={(name, content, audience) => {
+          setFiles(prev => [{ id: `new-${prev.length + 1}`, name, type: filNew.type, who: `Shared with ${audience}`, changed: 'Just now', content }, ...prev])
+          setFilNew(null)
         }} />
     else if (homeTab === 'files' && filOpen?.content)
-      content = <FileEditor type={filOpen.type} initialName={filOpen.name} initialContent={filOpen.content} onBack={() => setFilOpen(null)}
-        onSave={(name, content) => setFiles(prev => prev.map(f => f.id === filOpen.id ? { ...f, name, content, changed: 'Just now' } : f))} />
+      content = <FileEditor type={filOpen.type} initialName={filOpen.name} initialContent={filOpen.content} audiences={['U9 Tom families', 'Coaching team only', 'Just me']} onBack={() => setFilOpen(null)}
+        onSave={(name, content) => setFiles(prev => prev.map(f => f.id === filOpen.id ? { ...f, name, content, changed: 'Just now' } : f))}
+        onShare={(name, content, audience) => { setFiles(prev => prev.map(f => f.id === filOpen.id ? { ...f, name, content, who: `Shared with ${audience}`, changed: 'Just now' } : f)); setFilOpen(null) }} />
     else if (homeTab === 'files' && filOpen && filOpen.type === 'sheet' && !/duty|roster/i.test(filOpen.name))
       content = <TeamSheetBody cfg={u9TurnsSheetCfg(filOpen.name)} onBack={() => setFilOpen(null)} onShare={() => {}} />
     else if (homeTab === 'files' && filOpen) content = <MiniRooFileOpen name={filOpen.name} type={filOpen.type} onBack={() => setFilOpen(null)} />

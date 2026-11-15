@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { OpeningPanel, INK, MUT, HAIR, CTL, GREEN, PALEGREEN } from './directorParts'
 import FileEditor, { type FileContent } from './FileEditor'
 
-type CreatedFile = { id: string; name: string; type: 'doc' | 'sheet'; content: FileContent }
+type CreatedFile = { id: string; name: string; type: 'doc' | 'sheet'; content: FileContent; shared?: string }
 type Editing = { type: 'doc' | 'sheet'; name?: string; content?: FileContent; id?: string }
 
 const GD = '#1f4a3e'
@@ -39,6 +39,12 @@ export default function FIL1Files({ onOpenSheet, onOpenDoc, onNav }: { onOpenShe
     else setCreated(prev => [{ id: `c-${prev.length + 1}`, name, type: content.kind, content }, ...prev])
     setEditing(null)
   }
+  function shareFile(name: string, content: FileContent, audience: string) {
+    if (editing?.id) setCreated(prev => prev.map(f => f.id === editing.id ? { ...f, name, content, shared: audience } : f))
+    else setCreated(prev => [{ id: `c-${prev.length + 1}`, name, type: content.kind, content, shared: audience }, ...prev])
+    setEditing(null)
+    say(`“${name}” shared with ${audience}.`)
+  }
 
   return (
     <div data-lasttool="" style={{ width: 1180, height: 820, overflow: 'hidden', background: '#f7f8f7', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative', boxSizing: 'border-box' }}>
@@ -61,7 +67,7 @@ export default function FIL1Files({ onOpenSheet, onOpenDoc, onNav }: { onOpenShe
       </div>
 
       {editing ? (
-        <FileEditor type={editing.type} initialName={editing.name} initialContent={editing.content} onBack={() => setEditing(null)} onSave={saveFile} />
+        <FileEditor type={editing.type} initialName={editing.name} initialContent={editing.content} audiences={['U12 Sam families', 'Coaching team only', 'Just me']} onBack={() => setEditing(null)} onSave={saveFile} onShare={shareFile} />
       ) : (
       <>
       <OpeningPanel
@@ -104,7 +110,7 @@ export default function FIL1Files({ onOpenSheet, onOpenDoc, onNav }: { onOpenShe
             {created.map((f, i) => (
               <button key={f.id} onClick={() => setEditing({ type: f.type, name: f.name, content: f.content, id: f.id })} style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 12, minHeight: 56, padding: '0 16px', borderTop: i ? `1px solid ${HAIR}` : 'none', background: '#fff', border: 'none', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
                 <span style={{ width: 32, height: 32, borderRadius: 8, background: PALEGREEN, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={GREEN} strokeWidth="1.8"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" /><polyline points="14 2 14 8 20 8" /></svg></span>
-                <span style={{ flex: 1 }}><span style={{ display: 'block', fontSize: 14, fontWeight: 700, color: INK }}>{f.name}</span><span style={{ display: 'block', fontSize: 12, color: MUT }}>{f.type === 'sheet' ? 'Sheet' : 'Doc'} · Only you · Just now</span></span>
+                <span style={{ flex: 1 }}><span style={{ display: 'block', fontSize: 14, fontWeight: 700, color: INK }}>{f.name}</span><span style={{ display: 'block', fontSize: 12, color: MUT }}>{f.type === 'sheet' ? 'Sheet' : 'Doc'} · {f.shared ? `Shared with ${f.shared}` : 'Only you · Just now'}</span></span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth="2.2" strokeLinecap="round"><path d="M9 6l6 6-6 6" /></svg>
               </button>
             ))}
