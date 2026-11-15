@@ -2,21 +2,34 @@ import { useState } from 'react'
 
 const G = '#2f6252', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
-const DRILL = {
-  name: 'Win it back in 6 seconds',
-  tag: 'Focus 1',
-  mins: 25,
-  start: '6:00',
-  how: 'Play keep-ball. When a team loses it, they have 6 seconds to win it back. Win it in time: 1 point. Keep it for 6 seconds: 1 point to the other team.',
-  say: 'Count out loud: 1, 2, 3… Nearest player goes NOW.',
-  setup: ['8 v 8', '40 × 30 m', 'Bibs, cones, stopwatch'],
-  adjust: 'Noah and Zoe: 3 sprints max',
-}
+const DRILLS = [
+  {
+    name: 'Win it back in 6 seconds', tag: 'Focus 1', mins: 25, start: '6:00',
+    how: 'Play keep-ball. When a team loses it, they have 6 seconds to win it back. Win it in time: 1 point. Keep it for 6 seconds: 1 point to the other team.',
+    say: 'Count out loud: 1, 2, 3… Nearest player goes NOW.',
+    setup: ['8 v 8', '40 × 30 m', 'Bibs, cones, stopwatch'], adjust: 'Noah and Zoe: 3 sprints max',
+  },
+  {
+    name: 'Warm-up rondo 5 v 2', tag: 'Warm-up', mins: 10, start: '5:45',
+    how: 'Two in the middle. Keep the ball with two touches max. Lose it or a bad touch, you swap in.',
+    say: 'Show for the pass before it comes. Head up.',
+    setup: ['5 v 2 × 2 groups', '10 × 10 m', 'One ball each group'], adjust: 'Finn and Lily ease in',
+  },
+  {
+    name: 'Finish the press — 7 v 7 to goals', tag: 'Focus 2', mins: 20, start: '6:25',
+    how: 'Win the ball in their half and score within 8 seconds for a double. Reset after each goal.',
+    say: 'Win it high, go fast — decide before you get it.',
+    setup: ['7 v 7 + GKs', 'Half pitch', 'Two mini goals'], adjust: 'Zoe: no repeated sprints',
+  },
+]
 
 const STEPS = ['Attendance', 'Drill', 'Wrap up']
 
 export default function TR1bPitchSideDrill(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string|null>(null)
+  const [drillIdx, setDrillIdx] = useState(0)
+  const [tag, setTag] = useState<'good' | 'work' | null>(null)
+  const DRILL = DRILLS[drillIdx]
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
@@ -61,8 +74,8 @@ export default function TR1bPitchSideDrill(_: { onBack?: () => void }) {
           </div>
 
           <div style={{ display: 'flex', gap: 10 }}>
-            <button onClick={() => st('Opening previous drill.')} style={{ flex: 1, height: 48, borderRadius: 12, border: `1px solid ${LN}`, background: '#fff', fontSize: 15, fontWeight: 600, color: INK, cursor: 'pointer' }}>← Previous drill</button>
-            <button onClick={() => st('Opening next drill.')} style={{ flex: 1, height: 48, borderRadius: 12, border: 0, background: G, color: '#fff', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Next drill →</button>
+            <button onClick={() => setDrillIdx(i => Math.max(0, i - 1))} disabled={drillIdx === 0} style={{ flex: 1, height: 48, borderRadius: 12, border: `1px solid ${LN}`, background: '#fff', fontSize: 15, fontWeight: 600, color: drillIdx === 0 ? '#c5c8c4' : INK, cursor: drillIdx === 0 ? 'default' : 'pointer' }}>← Previous drill</button>
+            <button onClick={() => setDrillIdx(i => Math.min(DRILLS.length - 1, i + 1))} disabled={drillIdx === DRILLS.length - 1} style={{ flex: 1, height: 48, borderRadius: 12, border: 0, background: drillIdx === DRILLS.length - 1 ? '#9bbdb0' : G, color: '#fff', fontSize: 15, fontWeight: 700, cursor: drillIdx === DRILLS.length - 1 ? 'default' : 'pointer' }}>Next drill →</button>
           </div>
         </div>
 
@@ -83,8 +96,8 @@ export default function TR1bPitchSideDrill(_: { onBack?: () => void }) {
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '14px 16px' }}>
             <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 8 }}>Tag players</div>
             <div style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
-              <button onClick={() => st('Tagged as good.')} style={{ flex: 1, height: 44, borderRadius: 10, border: `1px solid ${G}`, background: PALE, color: G, fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Good</button>
-              <button onClick={() => st('Tagged to work on.')} style={{ flex: 1, height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Work on</button>
+              <button onClick={() => setTag('good')} style={{ flex: 1, height: 44, borderRadius: 10, border: `1px solid ${G}`, background: tag === 'good' ? G : PALE, color: tag === 'good' ? '#fff' : G, fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>{tag === 'good' ? 'Good ✓' : 'Good'}</button>
+              <button onClick={() => setTag('work')} style={{ flex: 1, height: 44, borderRadius: 10, border: `1px solid ${tag === 'work' ? G : LN}`, background: tag === 'work' ? PALE : '#fff', color: tag === 'work' ? G : MUT, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>{tag === 'work' ? 'Work on ✓' : 'Work on'}</button>
             </div>
             <div style={{ fontSize: 12, color: MUT, lineHeight: '17px' }}>Tags are added to the drill record and used in next session's suggestions.</div>
           </div>
