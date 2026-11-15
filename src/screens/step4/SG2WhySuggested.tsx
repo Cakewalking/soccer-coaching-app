@@ -12,6 +12,7 @@ const BARS = [
 
 export default function SG2WhySuggested(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string|null>(null)
+  const [added, setAdded] = useState(false)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
@@ -82,7 +83,8 @@ export default function SG2WhySuggested(_: { onBack?: () => void }) {
               </div>
             ))}
           </div>
-          <button onClick={() => st("Added to tonight's plan.")} style={{ height: 44, borderRadius: 10, border: 0, background: G, color: '#fff', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Add to tonight's plan</button>
+          {added && <div style={{ background: PALE, color: G, borderRadius: 10, padding: '10px 14px', fontSize: 14, fontWeight: 600 }}>Added to tonight's plan. It's now in the session.</div>}
+          <button onClick={() => setAdded(true)} style={{ height: 44, borderRadius: 10, border: 0, background: added ? PALE : G, color: added ? G : '#fff', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>{added ? 'Added ✓' : "Add to tonight's plan"}</button>
           <button onClick={() => st('Going back to suggestions.')} style={{ height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 15, fontWeight: 600, color: INK, cursor: 'pointer' }}>← Back to suggestions</button>
         </div>
       </main>
