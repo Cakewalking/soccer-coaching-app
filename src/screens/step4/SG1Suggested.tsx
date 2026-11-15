@@ -13,6 +13,8 @@ const DRILLS = [
 
 export default function SG1Suggested(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string|null>(null)
+  const [added, setAdded] = useState<number[]>([])
+  const [whyOpen, setWhyOpen] = useState<number | null>(null)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
@@ -44,10 +46,15 @@ export default function SG1Suggested(_: { onBack?: () => void }) {
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: 6, borderTop: `1px solid ${LN}` }}>
                 <div style={{ fontSize: 14, color: MUT }}>{d.drill}</div>
                 <div style={{ display: 'flex', gap: 8 }}>
-                  <button onClick={() => st(`Opening why ${d.name}.`)} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, cursor: 'pointer', color: INK }}>Why →</button>
-                  <button onClick={() => st(`Added ${d.name} to plan.`)} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Add to plan</button>
+                  <button onClick={() => setWhyOpen(w => w === d.rank ? null : d.rank)} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${whyOpen === d.rank ? G : LN}`, background: whyOpen === d.rank ? PALE : '#fff', fontSize: 13, fontWeight: 600, cursor: 'pointer', color: INK }}>Why →</button>
+                  <button onClick={() => setAdded(a => a.includes(d.rank) ? a : [...a, d.rank])} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: added.includes(d.rank) ? PALE : G, color: added.includes(d.rank) ? G : '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>{added.includes(d.rank) ? 'Added ✓' : 'Add to plan'}</button>
                 </div>
               </div>
+              {whyOpen === d.rank && (
+                <div style={{ fontSize: 13, color: MUT, lineHeight: 1.6, background: '#f7f8f7', borderRadius: 10, padding: '10px 12px' }}>
+                  Why {d.name}: {d.based.join(' and ')} point to this. The clips from Saturday show it, and three sessions of data back it up. Tap a clip in the drill to see the moment.
+                </div>
+              )}
             </div>
           ))}
         </div>
