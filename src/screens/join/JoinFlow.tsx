@@ -41,6 +41,8 @@ export default function JoinFlow({ initialStep = 'landing' }: { initialStep?: Jo
   function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   const [selectedRel, setSelectedRel] = useState<string>('Mum')
   const [selectedColor, setSelectedColor] = useState(0)
+  const [answered, setAnswered] = useState(false)
+  const [reminders, setReminders] = useState(false)
 
   /* ── JN: Landing ── */
   if (step === 'landing') {
@@ -95,11 +97,11 @@ export default function JoinFlow({ initialStep = 'landing' }: { initialStep?: Jo
           </div>
         </div>
         <div style={{ flex: 1, padding: '24px', overflowY: 'auto' }}>
-          <button onClick={() => showToast('Continuing with Apple.')} style={{ width: '100%', height: 50, borderRadius: '999px', border: '1.5px solid #d4d7d4', background: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, color: INK, cursor: 'pointer', marginBottom: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10 }}>
+          <button onClick={() => setStep('parent-child')} style={{ width: '100%', height: 50, borderRadius: '999px', border: '1.5px solid #d4d7d4', background: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, color: INK, cursor: 'pointer', marginBottom: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10 }}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={INK} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M4.93 4.93l14.14 14.14"/></svg>
             Continue with Apple
           </button>
-          <button onClick={() => showToast('Continuing with Google.')} style={{ width: '100%', height: 50, borderRadius: '999px', border: '1.5px solid #d4d7d4', background: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, color: INK, cursor: 'pointer', marginBottom: 18, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10 }}>
+          <button onClick={() => setStep('parent-child')} style={{ width: '100%', height: 50, borderRadius: '999px', border: '1.5px solid #d4d7d4', background: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, color: INK, cursor: 'pointer', marginBottom: 18, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10 }}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={INK} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 22a10 10 0 100-20 10 10 0 000 20z"/><path d="M15 9h-3v3h3V9zM9 9h3v9H9z"/></svg>
             Continue with Google
           </button>
@@ -326,8 +328,8 @@ export default function JoinFlow({ initialStep = 'landing' }: { initialStep?: Jo
             <div style={{ fontSize: 13, color: MUT, marginBottom: 12 }}>
               Home, pitch 2 · meet 8:40 · kick-off 9:30
             </div>
-            <button onClick={() => showToast('Opening game-day response.')} style={{ width: '100%', height: 44, borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>
-              Answer now
+            <button onClick={() => setAnswered(true)} style={{ width: '100%', height: 44, borderRadius: 10, border: 0, background: answered ? '#40826d' : G, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>
+              {answered ? "You're in — see you Saturday ✓" : 'Answer now'}
             </button>
           </div>
 
@@ -345,8 +347,8 @@ export default function JoinFlow({ initialStep = 'landing' }: { initialStep?: Jo
             </div>
           ))}
 
-          <button onClick={() => showToast('Game-day reminders turned on.')} style={{ marginTop: 20, width: '100%', height: 44, borderRadius: '999px', border: '1.5px solid #d4d7d4', background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', marginBottom: 10 }}>
-            Turn on game-day reminders
+          <button onClick={() => setReminders(r => !r)} style={{ marginTop: 20, width: '100%', height: 44, borderRadius: '999px', border: `1.5px solid ${reminders ? '#2f6252' : '#d4d7d4'}`, background: reminders ? '#eef5f2' : '#fff', color: reminders ? G : INK, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', marginBottom: 10 }}>
+            {reminders ? 'Game-day reminders on ✓' : 'Turn on game-day reminders'}
           </button>
           <button onClick={() => showToast("Opening Mia's week.")} style={{ width: '100%', height: 52, borderRadius: '999px', border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 16, fontWeight: 700, cursor: 'pointer' }}>
             Go to Mia's week
