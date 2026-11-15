@@ -14,8 +14,11 @@ function Bar({ pct, label }: { pct: number; label: string }) {
 }
 
 export default function AC9HolidayClinic(_: { onBack?: () => void }) {
-  const [toast, setToast] = useState<string | null>(null)
-  function t(m: string) { setToast(m); setTimeout(() => setToast(null), 3200) }
+  const [activeNav, setActiveNav] = useState('Programs')
+  const [activeSub, setActiveSub] = useState('Holiday clinic')
+  const [done, setDone] = useState<string[]>([])
+  const mark = (k: string) => setDone(d => d.includes(k) ? d : [...d, k])
+  const is = (k: string) => done.includes(k)
 
   return (
     <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box' as const, fontFamily: 'var(--font-sans)', minHeight: 820, position: 'relative', display: 'flex', flexDirection: 'column' as const }}>
@@ -31,13 +34,13 @@ export default function AC9HolidayClinic(_: { onBack?: () => void }) {
             { label: 'Coaches', icon: '🎓' },
             { label: 'Money', icon: '$' },
           ].map(({ label, icon }) => (
-            <button key={label} style={{ background: label === 'Programs' ? GD : 'transparent', color: '#fff', border: 'none', borderRadius: 8, padding: '0 14px', height: 44, fontSize: 14, fontWeight: label === 'Programs' ? 700 : 500, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
+            <button key={label} onClick={() => setActiveNav(label)} style={{ background: label === activeNav ? GD : 'transparent', color: '#fff', border: 'none', borderRadius: 8, padding: '0 14px', height: 44, fontSize: 14, fontWeight: label === activeNav ? 700 : 500, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
               <span style={{ fontSize: 15 }}>{icon}</span>{label}
             </button>
           ))}
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <button onClick={() => t('Opening academy selector.')} style={{ background: '#fff', color: INK, border: 'none', borderRadius: 20, padding: '0 14px', height: 44, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Tall Timber Academy ▾</button>
+          <button onClick={() => mark('academy')} style={{ background: '#fff', color: INK, border: 'none', borderRadius: 20, padding: '0 14px', height: 44, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Tall Timber Academy {is('academy') ? '▴' : '▾'}</button>
           <div style={{ width: 44, height: 44, borderRadius: 22, background: '#c39797', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: 700, fontSize: 15 }}>DO</div>
         </div>
       </div>
@@ -45,7 +48,7 @@ export default function AC9HolidayClinic(_: { onBack?: () => void }) {
       {/* SUB NAV */}
       <div style={{ background: '#fff', height: 44, display: 'flex', alignItems: 'center', padding: '0 28px', gap: 0, borderBottom: `1px solid ${LN}`, flexShrink: 0 }}>
         {['Term programs', 'Holiday clinic'].map(tab => (
-          <button key={tab} style={{ background: 'none', border: 'none', borderBottom: tab === 'Holiday clinic' ? `2px solid ${G}` : '2px solid transparent', color: tab === 'Holiday clinic' ? G : MUT, fontWeight: tab === 'Holiday clinic' ? 700 : 500, fontSize: 14, padding: '0 16px', height: 44, cursor: 'pointer' }}>
+          <button key={tab} onClick={() => setActiveSub(tab)} style={{ background: 'none', border: 'none', borderBottom: tab === activeSub ? `2px solid ${G}` : '2px solid transparent', color: tab === activeSub ? G : MUT, fontWeight: tab === activeSub ? 700 : 500, fontSize: 14, padding: '0 16px', height: 44, cursor: 'pointer' }}>
             {tab}
           </button>
         ))}
@@ -58,8 +61,8 @@ export default function AC9HolidayClinic(_: { onBack?: () => void }) {
           <div style={{ color: MUT, fontSize: 14, marginTop: 2 }}>Mon 6 to Wed 8 July · $180 · open to anyone</div>
         </div>
         <div style={{ display: 'flex', gap: 10 }}>
-          <button onClick={() => t('Clinic link copied.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Copy the booking link</button>
-          <button onClick={() => t('New message to 29 families.')} style={{ height: 44, padding: '0 18px', borderRadius: 10, background: G, color: '#fff', fontSize: 15, fontWeight: 600, border: 'none', cursor: 'pointer' }}>Message booked families</button>
+          <button onClick={() => mark('copy')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${is('copy') ? G : '#c5c8c4'}`, background: is('copy') ? PALE : '#fff', color: is('copy') ? G : INK, fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>{is('copy') ? '✓ Link copied' : 'Copy the booking link'}</button>
+          <button onClick={() => mark('msg')} style={{ height: 44, padding: '0 18px', borderRadius: 10, background: is('msg') ? '#40826d' : G, color: '#fff', fontSize: 15, fontWeight: 600, border: 'none', cursor: 'pointer' }}>{is('msg') ? '✓ Message sent' : 'Message booked families'}</button>
         </div>
       </div>
 
@@ -97,7 +100,7 @@ export default function AC9HolidayClinic(_: { onBack?: () => void }) {
               <div style={{ fontWeight: 700, fontSize: 14, color: INK }}>New to the academy</div>
               <div style={{ fontSize: 12, color: MUT, marginTop: 2 }}>12 of the 31 have never trained with you</div>
             </div>
-            <button onClick={() => t('After the clinic, these 12 families get a trial invite.')} style={{ height: 44, padding: '0 14px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>Invite to a trial</button>
+            <button onClick={() => mark('invite')} style={{ height: 44, padding: '0 14px', borderRadius: 8, border: `1px solid ${is('invite') ? G : '#c5c8c4'}`, background: is('invite') ? PALE : '#fff', color: is('invite') ? G : INK, fontSize: 13, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>{is('invite') ? '✓ 12 invited' : 'Invite to a trial'}</button>
           </div>
           <div style={{ padding: '10px 18px 14px', borderTop: `1px solid ${LN}` }}>
             <div style={{ color: MUT, fontSize: 13 }}>Clinic families pay when they book. A place can be cancelled for a full refund up to 7 days before.</div>
@@ -132,8 +135,6 @@ export default function AC9HolidayClinic(_: { onBack?: () => void }) {
         </div>
 
       </div>
-
-      {toast && <div style={{ position: 'absolute', left: '50%', bottom: 28, transform: 'translateX(-50%)', background: GD, color: '#fff', padding: '12px 16px', borderRadius: 14, fontSize: 15, fontWeight: 600, zIndex: 60, whiteSpace: 'nowrap' as const }}>{toast}</div>}
     </div>
   )
 }
