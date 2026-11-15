@@ -14,9 +14,13 @@ const ROLES = [
 
 const INVITE_ROWS = ['Assistant coach', 'Manager', 'Fitness']
 
-export default function OB4SignUp(_: { onBack?: () => void }) {
-  const [toast, setToast] = useState<string|null>(null)
-  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
+export default function OB4SignUp({ onBack }: { onBack?: () => void }) {
+  const [selectedRole, setSelectedRole] = useState('coach')
+  const [extra, setExtra] = useState(0)
+  const [done, setDone] = useState<string[]>([])
+  const mark = (k: string) => setDone(d => d.includes(k) ? d : [...d, k])
+  const is = (k: string) => done.includes(k)
+  const roleLabel = ROLES.find(r => r.id === selectedRole)?.label ?? '—'
   return (
     <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       {/* Top bar */}
@@ -51,8 +55,8 @@ export default function OB4SignUp(_: { onBack?: () => void }) {
           {/* Role picker */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             {ROLES.map(r => (
-              <label key={r.id} style={{ display: 'flex', gap: 12, alignItems: 'center', padding: '11px 16px', borderRadius: 10, border: `1px solid ${r.id === 'coach' ? G : LN}`, background: r.id === 'coach' ? PALE : '#fff', cursor: 'pointer' }}>
-                <input type="radio" name="role" defaultChecked={r.id === 'coach'} style={{ accentColor: G, flex: 'none', width: 16, height: 16 }} />
+              <label key={r.id} onClick={() => setSelectedRole(r.id)} style={{ display: 'flex', gap: 12, alignItems: 'center', padding: '11px 16px', borderRadius: 10, border: `1px solid ${r.id === selectedRole ? G : LN}`, background: r.id === selectedRole ? PALE : '#fff', cursor: 'pointer' }}>
+                <input type="radio" name="role" checked={r.id === selectedRole} onChange={() => setSelectedRole(r.id)} style={{ accentColor: G, flex: 'none', width: 16, height: 16 }} />
                 <div style={{ fontSize: 15, fontWeight: 600, color: INK }}>{r.label}</div>
                 <div style={{ fontSize: 13, color: MUT, marginLeft: 4 }}>{r.desc}</div>
               </label>
@@ -63,14 +67,14 @@ export default function OB4SignUp(_: { onBack?: () => void }) {
           <div>
             <div style={{ fontSize: 13, fontWeight: 700, color: MUT, marginBottom: 10 }}>Invite your team staff <span style={{ fontWeight: 400 }}>optional</span></div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              {INVITE_ROWS.map(role => (
-                <div key={role} style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+              {[...INVITE_ROWS, ...Array.from({ length: extra }, () => 'Staff')].map((role, i) => (
+                <div key={i} style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
                   <div style={{ width: 80, fontSize: 13, fontWeight: 600, color: MUT, flex: 'none' }}>{role}</div>
                   <input placeholder="email@example.com" style={{ flex: 1, height: 40, border: `1px solid ${LN}`, borderRadius: 8, padding: '0 12px', fontSize: 14, color: INK, background: '#fff', fontFamily: 'inherit' }} />
                 </div>
               ))}
             </div>
-            <button onClick={() => st('Opening extra invite field.')} style={{ marginTop: 10, fontSize: 14, fontWeight: 600, color: G, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>+ Add another</button>
+            <button onClick={() => setExtra(n => n + 1)} style={{ marginTop: 10, fontSize: 14, fontWeight: 600, color: G, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>+ Add another</button>
           </div>
 
           {/* Players and parents */}
@@ -79,8 +83,8 @@ export default function OB4SignUp(_: { onBack?: () => void }) {
             <div style={{ fontSize: 13, fontWeight: 600, color: INK, marginBottom: 4 }}>Your team link is ready</div>
             <div style={{ fontSize: 13, color: MUT, lineHeight: '19px', marginBottom: 14 }}>Parents join, add their child and give consent. Players under 15 join through a parent.</div>
             <div style={{ display: 'flex', gap: 10 }}>
-              <button onClick={() => st('Opening parent view.')} style={{ height: 44, padding: '0 16px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>What parents see</button>
-              <button onClick={() => st('Team link copied.')} style={{ height: 44, padding: '0 16px', borderRadius: 8, border: 0, background: G, fontSize: 13, fontWeight: 700, color: '#fff', cursor: 'pointer', fontFamily: 'inherit' }}>Copy link</button>
+              <button onClick={() => mark('parents')} style={{ height: 44, padding: '0 16px', borderRadius: 8, border: `1px solid ${is('parents') ? G : LN}`, background: is('parents') ? PALE : '#fff', fontSize: 13, fontWeight: 600, color: is('parents') ? G : INK, cursor: 'pointer', fontFamily: 'inherit' }}>What parents see</button>
+              <button onClick={() => mark('copy')} style={{ height: 44, padding: '0 16px', borderRadius: 8, border: 0, background: is('copy') ? '#40826d' : G, fontSize: 13, fontWeight: 700, color: '#fff', cursor: 'pointer', fontFamily: 'inherit' }}>{is('copy') ? '✓ Link copied' : 'Copy link'}</button>
             </div>
           </div>
 
@@ -94,8 +98,8 @@ export default function OB4SignUp(_: { onBack?: () => void }) {
             { label: 'Club',         value: 'Wattle Creek FC' },
             { label: 'Team',         value: 'U12 Sam · Division 1' },
             { label: 'Fitness level', value: 'Play' },
-            { label: 'Your role',    value: '—' },
-            { label: 'Team staff',   value: '—' },
+            { label: 'Your role',    value: roleLabel },
+            { label: 'Team staff',   value: extra > 0 ? `${3 + extra} invited` : '—' },
           ].map(row => (
             <div key={row.label} style={{ display: 'flex', justifyContent: 'space-between', fontSize: 14, borderBottom: `1px solid ${LN}`, paddingBottom: 10 }}>
               <span style={{ color: MUT }}>{row.label}</span>
@@ -106,13 +110,12 @@ export default function OB4SignUp(_: { onBack?: () => void }) {
       </div>
 
       <div style={{ flex: 'none', height: 68, background: '#fff', borderTop: `1px solid ${LN}`, padding: '0 40px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <button onClick={() => st('Going back.')} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 15, fontWeight: 600, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Back</button>
+        <button onClick={() => onBack?.()} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 15, fontWeight: 600, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Back</button>
         <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
           <span style={{ fontSize: 13, color: MUT }}>You can invite coaches and parents later too.</span>
-          <button onClick={() => st('Setup complete.')} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 0, background: G, color: '#fff', fontSize: 15, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Finish</button>
+          <button onClick={() => mark('finish')} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 0, background: is('finish') ? '#40826d' : G, color: '#fff', fontSize: 15, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>{is('finish') ? 'Setup complete ✓' : 'Finish'}</button>
         </div>
       </div>
-      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }
