@@ -1,9 +1,11 @@
 import { useState } from 'react'
+import { OpeningPanel, CTL } from './directorParts'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 export default function PRM1FeaturesByTeam({ onNav }: { onNav?: (s: string) => void }) {
   const [lastTool, setLastTool] = useState('')
+  const [bec, setBec] = useState(false)
   function tool(name: string) { setLastTool(name) }
 
   const tnb: React.CSSProperties = { height: 56, padding: '0 10px', background: 'none', color: 'rgba(255,255,255,0.75)', border: 'none', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }
@@ -42,18 +44,17 @@ export default function PRM1FeaturesByTeam({ onNav }: { onNav?: (s: string) => v
         <button onClick={() => onNav?.('PRM1-FeaturesByTeam')} style={{ ...snb, color: G, fontWeight: 700, borderBottom: `2px solid ${G}`, height: 44 }}>Features and billing</button>
       </nav>
 
-      <div style={{ flex: 1, display: 'flex', overflow: 'hidden' }}>
+      <OpeningPanel
+        landing
+        heading="FEATURES AND BILLING · JUNE"
+        sentence="Three teams used Live game help in 21 of their last 24 games. Sam wants it for U12 Sam."
+        support="“We have a tight run of games.” It is $15 a month for his team, charged by the day, and off again whenever you say."
+        figures={[{ num: '21 of 24', label: 'games with live help in use', proof: true }, { num: '$104', label: 'add-ons this month' }]}
+        buttons={[{ label: 'Turn it on for Sam · $15', main: true, onClick: () => onNav?.('PRM2-TurnOn') }, { label: 'The bill', onClick: () => onNav?.('PRM3-Bill') }]}
+      />
+      <div style={{ flex: 1, display: 'flex', overflow: 'hidden', paddingTop: 12 }}>
         {/* Main */}
-        <div style={{ flex: 1, padding: '24px 20px 24px 24px', overflowY: 'auto' }}>
-          <div style={{ display: 'flex', alignItems: 'center', marginBottom: 20, gap: 12 }}>
-            <div style={{ flex: 1 }}>
-              <span style={{ fontSize: 20, fontWeight: 900, color: INK }}>Features and billing</span>
-              <span style={{ fontSize: 13, color: MUT, marginLeft: 12 }}>Wattle Creek FC · you are the billing owner</span>
-            </div>
-            <button onClick={() => tool('A short page for each feature: what the coach sees with it on, and without.')} style={{ height: 44, padding: '0 16px', background: '#fff', color: INK, border: `1px solid ${LN}`, borderRadius: 8, fontSize: 13, cursor: 'pointer', fontFamily: 'inherit' }}>What each one does</button>
-            <button onClick={() => onNav?.('PRM3-Bill')} style={{ height: 44, padding: '0 16px', background: G, color: '#fff', border: 'none', borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>This month's bill</button>
-          </div>
-
+        <div style={{ flex: 1, padding: '0 20px 24px 24px', overflowY: 'auto' }}>
           {/* Table header */}
           <div style={{ ...grid, background: PALE, borderTop: `1px solid ${LN}` }}>
             <div style={{ padding: '10px 0', fontSize: 11, color: MUT, fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: '0.07em' }}>Team</div>
@@ -238,12 +239,17 @@ export default function PRM1FeaturesByTeam({ onNav }: { onNav?: (s: string) => v
 
         {/* Right sidebar */}
         <div style={{ width: 260, padding: '24px 20px', flexShrink: 0, display: 'flex', flexDirection: 'column', gap: 16 }}>
-          <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 18px' }}>
-            <div style={{ fontSize: 11, fontWeight: 700, color: MUT, letterSpacing: '0.08em', textTransform: 'uppercase' as const, marginBottom: 6 }}>Add-ons this month</div>
-            <div style={{ fontSize: 28, fontWeight: 900, color: INK }}>$104</div>
-            <div style={{ fontSize: 12, color: MUT, marginBottom: 14 }}>On top of your club plan. Next month at today's settings: $104.</div>
-            {/* Bill [nth=1] */}
-            <button onClick={() => onNav?.('PRM3-Bill')} style={{ width: '100%', height: 44, background: G, color: '#fff', border: 'none', borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Bill</button>
+          {/* One is not being used — same card shape as "needs you" */}
+          <div style={{ background: '#fff', border: `1px solid ${CTL}`, borderRadius: 14, padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 6 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}><span style={{ width: 32, height: 32, borderRadius: 999, background: '#f4c95d', color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 15, fontWeight: 700 }}>1</span><div style={{ fontSize: 16, fontWeight: 700 }}>One is not being used</div></div>
+            <div style={{ borderTop: `1px solid ${LN}`, paddingTop: 8 }}>
+              <div style={{ fontSize: 14, fontWeight: 700, color: INK }}>Vests and load · U15 Girls Bec</div>
+              <div style={{ fontSize: 12, color: MUT, marginBottom: 8 }}>No vest worn for 5 weeks · $10 a month</div>
+              <div style={{ display: 'flex', gap: 8 }}>
+                <button onClick={() => setBec(true)} style={{ height: 44, padding: '0 14px', background: bec ? PALE : '#fff', color: G, border: `1px solid ${bec ? G : CTL}`, borderRadius: 10, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>{bec ? '✓ Asked Bec' : 'Ask Bec'}</button>
+                <button onClick={() => onNav?.('PRM6-Usage')} style={{ height: 44, padding: '0 14px', background: '#fff', color: INK, border: `1px solid ${CTL}`, borderRadius: 10, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>See all use</button>
+              </div>
+            </div>
           </div>
 
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 18px' }}>
@@ -268,18 +274,10 @@ export default function PRM1FeaturesByTeam({ onNav }: { onNav?: (s: string) => v
             </div>
           </div>
 
-          <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 18px' }}>
-            <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 10 }}>1 coach has asked</div>
-            <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
-              <div style={{ width: 28, height: 28, borderRadius: '50%', background: '#7a9e7e', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, color: '#fff', flexShrink: 0 }}>SK</div>
-              <div style={{ flex: 1 }}>
-                <div style={{ fontSize: 12, fontWeight: 600, color: INK }}>Sam: Live game help</div>
-                <div style={{ fontSize: 11, color: MUT }}>U12 Sam · "A tight run of games."</div>
-              </div>
-              {/* Open [nth=1] */}
-              <button onClick={() => onNav?.('PRM2-TurnOn')} style={{ height: 44, padding: '0 12px', background: G, color: '#fff', border: 'none', borderRadius: 8, fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>Open</button>
-            </div>
-          </div>
+          <button onClick={() => onNav?.('PRM6-Usage')} style={{ background: '#fff', border: `1px solid ${CTL}`, borderRadius: 14, padding: '12px 16px', display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer', fontFamily: 'inherit', color: INK, textAlign: 'left' }}>
+            <span style={{ flex: 1 }}><span style={{ display: 'block', fontSize: 14, fontWeight: 700 }}>What each add-on does</span><span style={{ display: 'block', fontSize: 12, color: MUT }}>What a coach sees with it on, and without</span></span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><path d="M9 6l6 6-6 6" /></svg>
+          </button>
         </div>
       </div>
     </div>

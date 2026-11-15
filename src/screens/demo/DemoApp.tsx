@@ -482,6 +482,7 @@ import PX3BandedNight                 from '../step4/PX3BandedNight'
 import PXp1ParentDown                 from '../step4/PXp1ParentDown'
 // Step 4 — Learn (EDU)
 import EDU1Learn                      from '../step4/EDU1Learn'
+import EDU1fLearnFilter               from '../step4/EDU1fLearnFilter'
 import EDU1eLearnEmpty                from '../step4/EDU1eLearnEmpty'
 import EDU2Lesson                     from '../step4/EDU2Lesson'
 import EDU3MakeLesson                 from '../step4/EDU3MakeLesson'
@@ -911,6 +912,11 @@ function EDU1LearnNav() {
   const [inner, setInner] = useState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <EDU1Learn onNav={(s) => setInner(s)} />
+}
+function EDU1fLearnFilterNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <EDU1fLearnFilter onNav={(s) => setInner(s)} />
 }
 function EDU1eLearnEmptyNav() {
   const [inner, setInner] = useState<string | null>(null)
@@ -2169,6 +2175,7 @@ function renderScreenInner(key: string): ReactNode {
     case 'PXp1-ParentDown':       return <PXp1ParentDownNav />
     // Learn (EDU)
     case 'EDU1-Learn':            return <EDU1LearnNav />
+    case 'EDU1f-LearnFilter':     return <EDU1fLearnFilterNav />
     case 'EDU1e-LearnEmpty':      return <EDU1eLearnEmptyNav />
     case 'EDU2-Lesson':           return <EDU2LessonNav />
     case 'EDU3-MakeLesson':       return <EDU3MakeLessonNav />
