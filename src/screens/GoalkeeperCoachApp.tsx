@@ -378,7 +378,7 @@ export default function GoalkeeperCoachApp({ empty = false, initialScreen, onNav
             </div>
           </div>
         ) : <HomeOverview onPlanSession={() => setNav('training')} onKeeperDrills={() => { setNav('training'); setTrainingTab('drills') }} />)}
-        {nav === 'home'     && homeTab === 'messages' && <CoachMessages />}
+        {nav === 'home'     && homeTab === 'messages' && <CoachMessages embedded />}
         {nav === 'home'     && homeTab === 'calendar' && (
           <div style={{ padding: '20px 28px', color: '#4a5a57' }}>Calendar — not shown in this demo.</div>
         )}

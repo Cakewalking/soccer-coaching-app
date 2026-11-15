@@ -155,7 +155,7 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
     else if (homeTab === 1) {
       if (msgsView === 'MSG1-NewMessage') content = <CoachNewMessage onBack={() => setMsgsView(null)} onNav={setMsgsView} />
       else if (msgsView === 'MSG3-PersonCard') content = <CoachMessagesPersonCard onBack={() => setMsgsView(null)} onNav={setMsgsView} />
-      else content = <CoachMessages onNav={setMsgsView} />
+      else content = <CoachMessages onNav={setMsgsView} embedded />
     }
     else if (homeTab === 2) content = <FixturesScreen empty={sbEmpty} />
     else if (homeTab === 3) content = <FixturesScreen empty={sbEmpty} />

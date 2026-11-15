@@ -180,7 +180,7 @@ function OfflineView() {
           <span style={{ fontSize: 14 }}>{backOnline ? 'Everything from tonight has been sent.' : 'Carry on. Tonight\'s session is saved on this tablet.'}</span>
         </span>
         <span style={{ fontSize: 14, color: '#4a5a57', whiteSpace: 'nowrap' }}>Last updated {backOnline ? '7:22 pm' : '5:31 pm'}</span>
-        <button onClick={() => setBackOnline(o => !o)} style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>Demo: {backOnline ? 'go offline' : 'back online'}</button>
+        <button onClick={() => setBackOnline(o => !o)} style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>{backOnline ? 'Go offline' : 'Back online'}</button>
       </div>
       {/* Works without signal */}
       <section style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '14px 18px 10px', display: 'flex', flexDirection: 'column', minHeight: 0 }}>

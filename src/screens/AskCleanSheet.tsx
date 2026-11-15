@@ -321,7 +321,7 @@ export function AskOpenFirst({ onBack: _onBack }: { onBack?: () => void }) {
             <button onClick={() => t('Opening voice input.')} style={{ width: 44, height: 44, borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: MUT }}>
               <Icon d={MIC} size={16}/>
             </button>
-            <button onClick={() => t('Question sent — ASK3 panel opens with answer.')} style={{ width: 44, height: 44, borderRadius: 8, background: G, color: '#fff', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <button onClick={() => t('Question sent.')} style={{ width: 44, height: 44, borderRadius: 8, background: G, color: '#fff', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <Icon d={SEND} size={16} stroke="#fff"/>
             </button>
           </div>
@@ -370,7 +370,7 @@ export function AskPhoneButton({ onBack: _onBack }: { onBack?: () => void }) {
           </button>
         ))}
         {/* Floating round sparkle button above nav bar */}
-        <button onClick={() => t('Ask Clean Sheet opens — ASKp2.')}
+        <button onClick={() => t('Opening Ask Clean Sheet.')}
           aria-label="Ask Clean Sheet"
           style={{ position: 'absolute', top: -26, right: 20, width: 52, height: 52, borderRadius: '50%', background: GD, color: '#fff', border: '3px solid #fff', boxShadow: '0 4px 16px rgba(16,33,31,0.25)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <Icon d={SPARKLE} size={22} stroke="#fff"/>

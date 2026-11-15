@@ -213,7 +213,7 @@ export function AcademyTrainingSuggested({ onBack: _onBack }: { onBack?: () => v
         <button onClick={() => t('Opening Ask Clean Sheet panel.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', display: 'inline-flex', alignItems: 'center', gap: 8 }}>
           <Icon d={ICONS.sparkle} size={16} stroke={G}/> Ask in your own words
         </button>
-        <BtnPrimary label="Build the whole session" onClick={() => t('Building session — ACT3 Session plan opens.')}/>
+        <BtnPrimary label="Build the whole session" onClick={() => t('Session plan built from your answers.')}/>
       </>}
       toast={toast}
       onNav={(id) => t(id.startsWith('sub:') ? `${id.slice(4)} opens.` : `${id.charAt(0).toUpperCase() + id.slice(1)} tab opens.`)}

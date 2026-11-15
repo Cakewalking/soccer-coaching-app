@@ -258,9 +258,11 @@ export function CoachNewMessage({ onBack: _onBack, onNav }: { onBack?: () => voi
 }
 
 // MSG2 — Direct chat
-export function CoachMessages({ onBack: _onBack, onNav, teamType = 'juniors' }: { onBack?: () => void; onNav?: (s: string) => void; teamType?: 'juniors' | 'youth' | 'seniors' }) {
+export function CoachMessages({ onBack: _onBack, onNav, teamType = 'juniors', embedded }: { onBack?: () => void; onNav?: (s: string) => void; teamType?: 'juniors' | 'youth' | 'seniors'; embedded?: boolean }) {
   const [toast, setToast] = useState<string | null>(null)
   const [input, setInput] = useState('')
+  const [activeChat, setActiveChat] = useState(1)   // Bianca Rossi by default
+  const [sent, setSent] = useState<string[]>([])
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   const teamChat = teamType === 'youth'
@@ -287,8 +289,8 @@ export function CoachMessages({ onBack: _onBack, onNav, teamType = 'juniors' }: 
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#f7f8f7' }}>
-      <CoachTopBar onNav={(id) => t(`${id.charAt(0).toUpperCase() + id.slice(1)} tab opens.`)}/>
-      <CoachSubNav activeSub="Messages" onNav={(id) => t(id.startsWith('sub:') ? `${id.slice(4)} opens.` : `${id} opens.`)}/>
+      {!embedded && <CoachTopBar onNav={(id) => t(`${id.charAt(0).toUpperCase() + id.slice(1)} tab opens.`)}/>}
+      {!embedded && <CoachSubNav activeSub="Messages" onNav={(id) => t(id.startsWith('sub:') ? `${id.slice(4)} opens.` : `${id} opens.`)}/>}
       <div style={{ flex: 1, overflow: 'hidden', display: 'flex', minHeight: 0 }}>
         {/* Chat list */}
         <div style={{ width: 300, flexShrink: 0, borderRight: `1px solid ${LN}`, background: '#fff', display: 'flex', flexDirection: 'column' }}>
@@ -299,9 +301,9 @@ export function CoachMessages({ onBack: _onBack, onNav, teamType = 'juniors' }: 
             </div>
           </div>
           <div style={{ overflowY: 'auto', flex: 1 }}>
-            {chats.map(c => (
-              <button key={c.name} onClick={() => t(`${c.name} chat opens.`)}
-                style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 14px', width: '100%', background: 'active' in c && c.active ? PALE : 'transparent', border: 'none', borderBottom: `1px solid ${LN}`, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
+            {chats.map((c, i) => (
+              <button key={c.name} onClick={() => setActiveChat(i)}
+                style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 14px', width: '100%', background: i === activeChat ? PALE : 'transparent', border: 'none', borderBottom: `1px solid ${LN}`, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
                 <Ini s={c.ini} size={36} bg={PALE}/>
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
@@ -322,9 +324,9 @@ export function CoachMessages({ onBack: _onBack, onNav, teamType = 'juniors' }: 
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
           {/* Chat header */}
           <div style={{ padding: '12px 20px', borderBottom: `1px solid ${LN}`, background: '#fff', display: 'flex', alignItems: 'center', gap: 12 }}>
-            <Ini s="BR" size={36}/>
+            <Ini s={chats[activeChat].ini} size={36}/>
             <div>
-              <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>Bianca Rossi</div>
+              <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>{chats[activeChat].name}</div>
               <button onClick={() => onNav ? onNav('MSG3-PersonCard') : t('Person card opens.')} style={{ fontSize: 12, color: G, background: 'transparent', border: 'none', padding: 0, cursor: 'pointer', fontFamily: 'inherit' }}>Club co-ordinator · Wattle Creek FC</button>
             </div>
           </div>
@@ -338,6 +340,14 @@ export function CoachMessages({ onBack: _onBack, onNav, teamType = 'juniors' }: 
                 </div>
               </div>
             ))}
+            {sent.map((m, i) => (
+              <div key={`s${i}`} style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 12 }}>
+                <div style={{ maxWidth: '70%' }}>
+                  <div style={{ padding: '10px 14px', borderRadius: '14px 14px 2px 14px', background: GD, color: '#fff', fontSize: 14, lineHeight: 1.5 }}>{m}</div>
+                  <div style={{ fontSize: 11, color: MUT, textAlign: 'right', marginTop: 4 }}>now</div>
+                </div>
+              </div>
+            ))}
           </div>
           {/* Composer */}
           <div style={{ padding: '12px 20px', borderTop: `1px solid ${LN}`, background: '#fff', display: 'flex', gap: 8, alignItems: 'center' }}>
@@ -347,9 +357,9 @@ export function CoachMessages({ onBack: _onBack, onNav, teamType = 'juniors' }: 
             <button onClick={() => t('Voice message opens.')} style={{ width: 44, height: 44, borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: MUT }}>
               <Icon d={ICONS.mic} size={18}/>
             </button>
-            <input value={input} onChange={e => setInput(e.target.value)} placeholder="Message Bianca…"
+            <input value={input} onChange={e => setInput(e.target.value)} placeholder={`Message ${chats[activeChat].name.split(' ')[0]}…`}
               style={{ flex: 1, height: 40, padding: '0 14px', borderRadius: 8, border: `1px solid ${LN}`, fontSize: 14, fontFamily: 'inherit', outline: 'none' }}/>
-            <button onClick={() => { t('Message sent.'); setInput('') }} style={{ width: 44, height: 44, borderRadius: 8, background: G, color: '#fff', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <button onClick={() => { const v = input.trim() || 'Thanks!'; setSent(s => [...s, v]); setInput('') }} style={{ width: 44, height: 44, borderRadius: 8, background: G, color: '#fff', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <Icon d={ICONS.send} size={18} stroke="#fff"/>
             </button>
           </div>
@@ -576,7 +586,7 @@ export function ParentMessages({ onBack: _onBack }: { onBack?: () => void }) {
           {'unread' in c && (c.unread ?? 0) > 0 && <div style={{ width: 20, height: 20, borderRadius: '50%', background: G, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700 }}>{c.unread}</div>}
         </button>
       ))}
-      <button onClick={() => t('New message — MSGp2 opens.')} style={{ display: 'block', width: '100%', height: 48, borderRadius: 12, background: G, color: '#fff', border: 'none', fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', marginTop: 16 }}>+ New message</button>
+      <button onClick={() => t('Opening a new message.')} style={{ display: 'block', width: '100%', height: 48, borderRadius: 12, background: G, color: '#fff', border: 'none', fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', marginTop: 16 }}>+ New message</button>
     </PhoneShell>
   )
 }
@@ -596,7 +606,7 @@ export function ParentMessagesEmpty({ onBack: _onBack }: { onBack?: () => void }
         <div style={{ fontSize: 16, fontWeight: 700, color: INK, marginBottom: 8 }}>No messages yet</div>
         <div style={{ fontSize: 13, color: MUT, lineHeight: 1.6 }}>You'll hear from your team's coach when there's something to share. You can start a message any time.</div>
       </div>
-      <button onClick={() => t('New message — MSGp2 opens.')} style={{ display: 'block', width: '100%', height: 48, borderRadius: 12, background: G, color: '#fff', border: 'none', fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>+ New message</button>
+      <button onClick={() => t('Opening a new message.')} style={{ display: 'block', width: '100%', height: 48, borderRadius: 12, background: G, color: '#fff', border: 'none', fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>+ New message</button>
     </PhoneShell>
   )
 }

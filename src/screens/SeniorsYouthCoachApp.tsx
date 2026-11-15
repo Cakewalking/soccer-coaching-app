@@ -471,7 +471,7 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
       case 0: content = sbEmpty
         ? <SYCoachHomeEmpty coachFirst={data.coachFirst} teamLine={`${data.teamPicker} · let's get your team ready`} onNav={handleNav} />
         : (phaseContent ?? <CoachHome data={data} onTraining={() => goNav('training')} onMatchday={() => goNav('matchday')} onReview={() => { goNav('matchday'); setMatchTab(3) }} onCalendar={() => setHomeTab(2)} onInbox={() => setHomeTab(1)} onAsk={() => setAskOpen(true)} askQuestions={teamType === 'seniors' ? ["Who is one yellow from a ban?", "How do Banksia Park build out?", "Who is carrying a knock?"] : ["Who is over their load this week?", "What did Kingfisher United do to us?", "Who has exams coming up?"]} roleLabel={teamType === 'seniors' ? 'senior coach' : 'youth coach'} />); break
-      case 1: content = <CoachMessages teamType={teamType === 'seniors' ? 'seniors' : 'youth'} />; break
+      case 1: content = <CoachMessages teamType={teamType === 'seniors' ? 'seniors' : 'youth'} embedded />; break
       case 2: case 3: content = <FixturesScreen empty={sbEmpty} teamType={teamType === 'seniors' ? 'seniors' : 'youth'} />; break
       case 4: content = <OurStyleScreen setByLine={`Set 12 March by ${data.coachFirst}.`} />; break
       case 5: content = <WhereWeAtScreen teamType={teamType === 'seniors' ? 'seniors' : 'youth'} />; break

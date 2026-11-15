@@ -276,7 +276,7 @@ export default function TeamManagerScreen({ empty, initialScreen }: { empty?: bo
           <div>
             {/* Bye week toggle (demo) */}
             <div style={{ padding: '8px 16px', background: '#f7f9f7', borderBottom: '1px solid #f0f1f0', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <span style={{ fontSize: 12, color: '#6f7f7b' }}>Demo: bye week</span>
+              <span style={{ fontSize: 12, color: '#6f7f7b' }}>Bye week</span>
               <button onClick={() => setByeWeek(b => !b)} style={{ width: 40, height: 44, borderRadius: 12, border: 0, background: byeWeek ? '#40826d' : '#d6d9d7', cursor: 'pointer', position: 'relative' }}>
                 <div style={{ width: 16, height: 16, borderRadius: '999px', background: '#fff', position: 'absolute', top: 4, left: byeWeek ? 20 : 4 }} />
               </button>

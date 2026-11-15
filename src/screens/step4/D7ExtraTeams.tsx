@@ -50,7 +50,7 @@ function NeedsAttention({ items }: { items: Attention[] }) {
           <div>
             <div style={{ fontSize: 14, fontWeight: 600, color: INK }}>{item.text}</div>
             <div style={{ fontSize: 12, color: MUT }}>{item.sub}</div>
-            {item.action && <button onClick={() => st('Opening action.')} style={{ marginTop: 6, fontSize: 12, fontWeight: 600, color: G, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>{item.action}</button>}
+            {item.action && <button onClick={() => st(`${item.action}.`)} style={{ marginTop: 6, fontSize: 12, fontWeight: 600, color: G, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>{item.action}</button>}
           </div>
         </div>
       ))}
