@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { OpeningPanel } from './directorParts'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
@@ -46,6 +47,13 @@ export default function EDU3MakeLesson({ onNav }: { onNav?: (s: string) => void 
         <button onClick={() => onNav?.('EDU1-Learn')} style={{ height: 44, minWidth: 44, background: 'none', border: 'none', borderBottom: `2px solid ${G}`, fontSize: 13, fontWeight: 700, color: G, cursor: 'pointer', fontFamily: 'inherit', padding: '0 2px' }}>Learn</button>
         <div style={{ marginLeft: 'auto', fontSize: 12, color: MUT }}>Head coach</div>
       </div>
+
+      <OpeningPanel
+        heading="MAKE A LESSON · FROM YOUR CLIP"
+        sentence="Grace closes the space behind the press in 11 seconds. Clean Sheet has written the first two points."
+        support="v Tealside Town, 30 May. Grace and her mum have said yes. Rachel checks it before the whole club sees it."
+        buttons={[{ label: 'Send to Rachel', main: true, onClick: () => st('Sent to Rachel to check before the whole club sees it.') }, { label: 'Cancel', onClick: () => onNav?.('EDU1-Learn') }]}
+      />
 
       {/* Step header */}
       <div style={{ background: '#fff', borderBottom: `1px solid ${LN}`, padding: '0 32px', display: 'flex', alignItems: 'center', height: 52, gap: 16 }}>

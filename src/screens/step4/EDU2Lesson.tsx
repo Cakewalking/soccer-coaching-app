@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { OpeningPanel } from './directorParts'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
@@ -46,15 +47,12 @@ export default function EDU2Lesson({ onNav }: { onNav?: (s: string) => void }) {
         <div style={{ marginLeft: 'auto', fontSize: 12, color: MUT }}>Head coach</div>
       </div>
 
-      {/* Lesson header */}
-      <div style={{ background: '#fff', borderBottom: `1px solid ${LN}`, padding: '0 32px', display: 'flex', alignItems: 'center', height: 52, gap: 16 }}>
-        <div style={{ flex: 1 }}>
-          <div style={{ fontSize: 15, fontWeight: 800, color: INK }}>Stepping up together</div>
-          <div style={{ fontSize: 12, color: MUT }}>U14 Josh back four · v Ironbark, 23 May · 1 of 4 in "Staying compact"</div>
-        </div>
-        <button onClick={() => { tool('Add the drill to tonight'); st('"Step up together" added to tonight\'s plan as a draft.') }} style={{ height: 44, padding: '0 16px', borderRadius: 999, background: G, color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Add the drill to tonight</button>
-        <button onClick={() => { tool('Send to players'); st('Pick players, or send to all 16. Under 15s get it through their parent\'s app.') }} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 13, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Send to players</button>
-      </div>
+      <OpeningPanel
+        heading="STEPPING UP TOGETHER · U14 JOSH BACK FOUR V IRONBARK, 23 MAY"
+        sentence="When the ball goes back, all four step up at once. Watch for it at 0:03."
+        support="Lesson 1 of 4 in “Staying compact”. 9 of your 16 have watched it."
+        buttons={[{ label: 'Send to players', main: true, onClick: () => st('Pick players, or send to all 16. Under 15s get it through their parent’s app.') }, { label: 'Add the drill', onClick: () => st('“Step up together” added to tonight’s plan as a draft.') }]}
+      />
 
       <div style={{ flex: 1, display: 'flex', gap: 24, padding: '24px 32px', overflowY: 'auto' }}>
         {/* Left: video + controls */}
