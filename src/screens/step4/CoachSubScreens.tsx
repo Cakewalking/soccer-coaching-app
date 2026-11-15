@@ -57,6 +57,9 @@ function Shell({ navActive, sideItems, sideActive, children }: {
 // ─── WK1 This Week ───────────────────────────────────────────────────────────
 
 export function WK1ThisWeek() {
+  const [selFocus, setSelFocus] = useState<number | null>(null)
+  const [selDay, setSelDay] = useState<string | null>('THURSDAY')
+  const [selPlayer, setSelPlayer] = useState<string | null>(null)
   const trainingNav = ['Tonight\'s session', 'This week', 'Suggested', 'Drill library', 'Growth and load', 'Record']
   const focuses = [
     { n: 1, title: 'Win the ball back faster', stat: '7 s on Saturday · usual is 4' },
@@ -83,7 +86,7 @@ export function WK1ThisWeek() {
       <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 20px', marginBottom: 20 }}>
         <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 12 }}>Drill library</div>
         {focuses.map(f => (
-          <div key={f.n} style={{ display: 'flex', alignItems: 'flex-start', gap: 12, padding: '10px 0', borderTop: `1px solid ${LN}` }}>
+          <div key={f.n} onClick={() => setSelFocus(f.n)} style={{ display: 'flex', alignItems: 'flex-start', gap: 12, padding: '10px 6px', borderTop: `1px solid ${LN}`, cursor: 'pointer', background: selFocus === f.n ? PALE : 'transparent', borderRadius: 8 }}>
             <div style={{ width: 28, height: 28, borderRadius: '50%', background: G, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, color: '#fff', flexShrink: 0 }}>{f.n}</div>
             <div>
               <div style={{ fontSize: 14, fontWeight: 700, color: INK }}>{f.title}</div>
@@ -98,7 +101,7 @@ export function WK1ThisWeek() {
           const statusColor = d.status === 'Done' ? '#16a34a' : d.status === 'Tonight' ? G : d.status === 'Game' ? '#1d4ed8' : MUT
           const statusBg = d.status === 'Done' ? '#f0fdf4' : d.status === 'Tonight' ? PALE : d.status === 'Game' ? '#eff6ff' : '#f5f5f5'
           return (
-            <div key={d.day} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 12, padding: '14px 18px' }}>
+            <div key={d.day} onClick={() => setSelDay(d.day)} style={{ background: selDay === d.day ? PALE : '#fff', border: `${selDay === d.day ? 2 : 1}px solid ${selDay === d.day ? G : LN}`, borderRadius: 12, padding: '14px 18px', cursor: 'pointer' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
                 <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', color: MUT }}>{d.day} {d.date}</div>
                 <span style={{ fontSize: 11, fontWeight: 700, padding: '2px 8px', borderRadius: 20, background: statusBg, color: statusColor }}>{d.status}</span>
@@ -138,7 +141,7 @@ export function WK1ThisWeek() {
       <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 20px' }}>
         <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 12 }}>Players to plan around</div>
         {players.map(p => (
-          <div key={p.init} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '8px 0', borderTop: `1px solid ${LN}` }}>
+          <div key={p.init} onClick={() => setSelPlayer(p.init)} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '8px 6px', borderTop: `1px solid ${LN}`, cursor: 'pointer', background: selPlayer === p.init ? PALE : 'transparent', borderRadius: 8 }}>
             <div style={{ width: 32, height: 32, borderRadius: '50%', background: G, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, color: '#fff', flexShrink: 0 }}>{p.init}</div>
             <div>
               <div style={{ fontSize: 13, fontWeight: 700, color: INK }}>{p.name}</div>
@@ -154,8 +157,8 @@ export function WK1ThisWeek() {
 // ─── CF1 Fixtures and Results ─────────────────────────────────────────────────
 
 export function CF1Fixtures() {
-  const [toast, setToast] = useState<string | null>(null)
-  function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
+  const [synced, setSynced] = useState(false)
+  const [selectedResult, setSelectedResult] = useState<number | null>(null)
   const homeNav = ['Overview', 'Inbox', 'Calendar', 'Fixtures and results', 'Our style', 'Team staff']
   const results = [
     { date: 'Sat 30 May', opp: 'Ironbark United', ha: 'A', score: '3–1', res: 'W' },
@@ -190,7 +193,7 @@ export function CF1Fixtures() {
           <div style={{ fontSize: 20, fontWeight: 800, color: INK, marginBottom: 2 }}>Fixtures and results</div>
           <div style={{ fontSize: 13, color: MUT }}>U12 Sam · 3rd of 10 · 16 points from 8 games · 2 × 30 minutes, 9 a side</div>
         </div>
-        <button onClick={() => showToast('Syncing fixtures to your calendar.')} style={{ height: 44, padding: '0 16px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, cursor: 'pointer' }}>Sync to my calendar</button>
+        <button onClick={() => setSynced(true)} style={{ height: 44, padding: '0 16px', borderRadius: 8, border: `1px solid ${synced ? G : LN}`, background: synced ? PALE : '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, cursor: 'pointer' }}>{synced ? '✓ Synced to calendar' : 'Sync to my calendar'}</button>
       </div>
 
       <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, marginBottom: 20, overflow: 'hidden' }}>
@@ -205,7 +208,7 @@ export function CF1Fixtures() {
           </thead>
           <tbody>
             {results.map((r, i) => (
-              <tr key={i} style={{ cursor: 'pointer', borderTop: `1px solid ${LN}` }}>
+              <tr key={i} onClick={() => setSelectedResult(i)} style={{ cursor: 'pointer', borderTop: `1px solid ${LN}`, background: selectedResult === i ? PALE : 'transparent' }}>
                 <td style={{ padding: '12px 20px', fontSize: 13, color: MUT }}>{r.date}</td>
                 <td style={{ padding: '12px 20px', fontSize: 13, fontWeight: 600, color: INK }}>{r.opp}</td>
                 <td style={{ padding: '12px 20px', fontSize: 13, color: MUT }}>{r.ha}</td>
@@ -252,7 +255,6 @@ export function CF1Fixtures() {
           </div>
         ))}
       </div>
-      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </Shell>
   )
 }
@@ -260,6 +262,8 @@ export function CF1Fixtures() {
 // ─── AV1 Availability ─────────────────────────────────────────────────────────
 
 export function AV1Availability() {
+  const [selName, setSelName] = useState<string | null>(null)
+  const [selEvent, setSelEvent] = useState<string | null>(null)
   const squadNav = ['Players', 'Development goals', 'Wellness', 'Availability', 'Consent and privacy']
   const events = [
     {
@@ -301,7 +305,7 @@ export function AV1Availability() {
             </div>
             <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: 8 }}>
               {ev.ins.map(p => (
-                <div key={p.init} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '6px 12px', background: BG, borderRadius: 8, minWidth: 160 }}>
+                <div key={p.init} onClick={() => setSelName(p.init)} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '6px 12px', background: selName === p.init ? PALE : BG, border: `1px solid ${selName === p.init ? G : 'transparent'}`, borderRadius: 8, minWidth: 160, cursor: 'pointer' }}>
                   <div style={{ width: 28, height: 28, borderRadius: '50%', background: G, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, color: '#fff', flexShrink: 0 }}>{p.init}</div>
                   <div>
                     <div style={{ fontSize: 13, fontWeight: 600, color: INK }}>{p.name}</div>
@@ -317,7 +321,7 @@ export function AV1Availability() {
               <span style={{ fontSize: 12, fontWeight: 700, padding: '2px 10px', borderRadius: 20, background: '#fffbeb', color: '#d97706' }}>Maybe {ev.maybes.length}</span>
             </div>
             {ev.maybes.map(p => (
-              <div key={p.init} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '6px 12px', background: BG, borderRadius: 8 }}>
+              <div key={p.init} onClick={() => setSelName(p.init)} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '6px 12px', background: selName === p.init ? PALE : BG, border: `1px solid ${selName === p.init ? G : 'transparent'}`, borderRadius: 8, cursor: 'pointer' }}>
                 <div style={{ width: 28, height: 28, borderRadius: '50%', background: '#d97706', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, color: '#fff', flexShrink: 0 }}>{p.init}</div>
                 <div>
                   <div style={{ fontSize: 13, fontWeight: 600, color: INK }}>{p.name}</div>
@@ -332,7 +336,7 @@ export function AV1Availability() {
               <span style={{ fontSize: 12, fontWeight: 700, padding: '2px 10px', borderRadius: 20, background: '#fef2f2', color: '#dc2626' }}>Can't make it {ev.outs.length}</span>
             </div>
             {ev.outs.map(p => (
-              <div key={p.init} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '6px 12px', background: BG, borderRadius: 8, marginBottom: 6 }}>
+              <div key={p.init} onClick={() => setSelName(p.init)} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '6px 12px', background: selName === p.init ? PALE : BG, border: `1px solid ${selName === p.init ? G : 'transparent'}`, borderRadius: 8, marginBottom: 6, cursor: 'pointer' }}>
                 <div style={{ width: 28, height: 28, borderRadius: '50%', background: '#dc2626', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, color: '#fff', flexShrink: 0 }}>{p.init}</div>
                 <div>
                   <div style={{ fontSize: 13, fontWeight: 600, color: INK }}>{p.name}</div>
@@ -344,12 +348,12 @@ export function AV1Availability() {
         </div>
       ))}
 
-      <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 20px', marginBottom: 16 }}>
+      <div onClick={() => setSelEvent('tonight')} style={{ background: selEvent === 'tonight' ? PALE : '#fff', border: `${selEvent === 'tonight' ? 2 : 1}px solid ${selEvent === 'tonight' ? G : LN}`, borderRadius: 14, padding: '16px 20px', marginBottom: 16, cursor: 'pointer' }}>
         <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 4 }}>Tonight · 5:45</div>
         <div style={{ fontSize: 13, color: MUT }}>Training</div>
       </div>
 
-      <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 20px' }}>
+      <div onClick={() => setSelEvent('sat13')} style={{ background: selEvent === 'sat13' ? PALE : '#fff', border: `${selEvent === 'sat13' ? 2 : 1}px solid ${selEvent === 'sat13' ? G : LN}`, borderRadius: 14, padding: '16px 20px', cursor: 'pointer' }}>
         <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 4 }}>Sat 13 Jun · 9:00</div>
         <div style={{ fontSize: 13, color: MUT }}>at Kestrel Park</div>
       </div>
@@ -360,8 +364,9 @@ export function AV1Availability() {
 // ─── MS1 Team Sheet ───────────────────────────────────────────────────────────
 
 export function MS1TeamSheet() {
-  const [toast, setToast] = useState<string | null>(null)
-  function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
+  const [sent, setSent] = useState(false)
+  const [showAvail, setShowAvail] = useState(false)
+  const [swapInit, setSwapInit] = useState<string | null>(null)
   const matchNav = ['Team talk', 'Line-up and minutes', 'Opposition', 'Review']
   const onSheet = [
     { init: 'SD', name: 'Sam Delaney', satOut: 1 },
@@ -392,10 +397,11 @@ export function MS1TeamSheet() {
           <div style={{ fontSize: 13, color: MUT }}>Sat 6 Jun vs Harbour Rovers · 14 of 17 · due in Dribl by 9:00</div>
         </div>
         <div style={{ display: 'flex', gap: 10 }}>
-          <button onClick={() => showToast('Opening availability for this game.')} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: G, cursor: 'pointer' }}>Who's coming</button>
-          <button onClick={() => showToast('Team sheet sent to Dribl.')} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: 'none', background: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>Send to Dribl</button>
+          <button onClick={() => setShowAvail(v => !v)} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: `1px solid ${showAvail ? G : LN}`, background: showAvail ? PALE : '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: G, cursor: 'pointer' }}>Who's coming</button>
+          <button onClick={() => setSent(true)} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: 'none', background: sent ? '#40826d' : G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>{sent ? '✓ Sent to Dribl' : 'Send to Dribl'}</button>
         </div>
       </div>
+      {showAvail && <div style={{ background: PALE, border: `1px solid ${G}`, borderRadius: 10, padding: '10px 14px', marginBottom: 16, fontSize: 13, color: G, fontWeight: 600 }}>14 in · 3 sitting out (1 away, 1 sick, 1 on her turn). Enough for 9 a side with subs.</div>}
 
       <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, marginBottom: 20, overflow: 'hidden' }}>
         <div style={{ padding: '12px 20px', borderBottom: `1px solid ${LN}`, display: 'flex', justifyContent: 'space-between' }}>
@@ -420,13 +426,13 @@ export function MS1TeamSheet() {
           <div style={{ fontSize: 12, color: MUT }}>Tap to swap</div>
         </div>
         {sittingOut.map((p, i) => (
-          <div key={p.init} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 20px', borderTop: i === 0 ? 'none' : `1px solid ${LN}` }}>
+          <div key={p.init} onClick={() => setSwapInit(p.init)} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 20px', borderTop: i === 0 ? 'none' : `1px solid ${LN}`, cursor: 'pointer', background: swapInit === p.init ? PALE : 'transparent' }}>
             <div style={{ width: 36, height: 36, borderRadius: '50%', background: MUT, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, color: '#fff', flexShrink: 0 }}>{p.init}</div>
             <div style={{ flex: 1 }}>
               <div style={{ fontSize: 14, fontWeight: 600, color: INK }}>{p.name}</div>
-              <div style={{ fontSize: 12, color: MUT }}>{p.note}</div>
+              <div style={{ fontSize: 12, color: MUT }}>{swapInit === p.init ? 'Tap a player on the sheet to swap them in' : p.note}</div>
             </div>
-            <span style={{ fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20, background: PALE, color: G }}>{p.action}</span>
+            <span style={{ fontSize: 11, fontWeight: 700, padding: '2px 10px', borderRadius: 20, background: PALE, color: G }}>{swapInit === p.init ? 'Swapping' : p.action}</span>
           </div>
         ))}
         <div style={{ padding: '12px 20px', borderTop: `1px solid ${LN}` }}>
@@ -434,7 +440,6 @@ export function MS1TeamSheet() {
           <div style={{ fontSize: 12, color: MUT }}>1 · Away, sick or suspended — they come off first</div>
         </div>
       </div>
-      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </Shell>
   )
 }
@@ -442,8 +447,10 @@ export function MS1TeamSheet() {
 // ─── R1 Match Review ──────────────────────────────────────────────────────────
 
 export function R1MatchReview() {
-  const [toast, setToast] = useState<string | null>(null)
-  function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
+  const [highlights, setHighlights] = useState(false)
+  const [planOpen, setPlanOpen] = useState(false)
+  const [selectedStyle, setSelectedStyle] = useState<number | null>(null)
+  const [selectedClip, setSelectedClip] = useState<number | null>(null)
   const matchNav = ['Team talk', 'Line-up and minutes', 'Opposition', 'Review']
   const styleRows = [
     { label: 'Goal kicks played short', actual: '64%', aim: '70%+', status: 'Close', dir: 'with' },
@@ -473,8 +480,9 @@ export function R1MatchReview() {
         <div style={{ fontSize: 13, color: MUT, marginBottom: 8 }}>Sat 30 May · Mia, Jai and Zoe scored · 7 key clips</div>
         <div style={{ display: 'flex', gap: 10 }}>
           <div style={{ fontSize: 12, padding: '4px 12px', borderRadius: 20, background: PALE, color: G }}>Good data for 57 of 60 min</div>
-          <button onClick={() => showToast('Opening highlights reel.')} style={{ height: 32, padding: '0 16px', borderRadius: 20, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, cursor: 'pointer' }}>Highlights · 4 min</button>
+          <button onClick={() => setHighlights(h => !h)} style={{ height: 32, padding: '0 16px', borderRadius: 20, border: `1px solid ${highlights ? G : LN}`, background: highlights ? PALE : '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, cursor: 'pointer' }}>{highlights ? 'Highlights playing ▶' : 'Highlights · 4 min'}</button>
         </div>
+        {highlights && <div style={{ marginTop: 10, fontSize: 13, color: G, lineHeight: '19px' }}>A 4-minute reel of the 7 key clips, in order — the three goals, the eight-pass build-up and three pressing moments.</div>}
       </div>
 
       <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, marginBottom: 20, overflow: 'hidden' }}>
@@ -482,7 +490,7 @@ export function R1MatchReview() {
           <div style={{ fontSize: 13, fontWeight: 700, color: INK }}>How we played our style</div>
         </div>
         {styleRows.map((r, i) => (
-          <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 20px', borderTop: i === 0 ? 'none' : `1px solid ${LN}` }}>
+          <div key={i} onClick={() => setSelectedStyle(i)} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 20px', borderTop: i === 0 ? 'none' : `1px solid ${LN}`, cursor: 'pointer', background: selectedStyle === i ? PALE : 'transparent' }}>
             <div style={{ flex: 1 }}>
               <div style={{ fontSize: 13, fontWeight: 600, color: INK }}>{r.label}</div>
               <div style={{ fontSize: 12, color: MUT }}>Aim {r.aim}</div>
@@ -496,10 +504,11 @@ export function R1MatchReview() {
       <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 20px', marginBottom: 20 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: INK }}>Work on this week</div>
-          <button onClick={() => showToast("Opening Thursday's training plan.")} style={{ height: 32, padding: '0 14px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, color: G, cursor: 'pointer' }}>Open Thursday's plan</button>
+          <button onClick={() => setPlanOpen(p => !p)} style={{ height: 32, padding: '0 14px', borderRadius: 8, border: `1px solid ${planOpen ? G : LN}`, background: planOpen ? PALE : '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, color: G, cursor: 'pointer' }}>{planOpen ? "Thursday's plan open ✓" : "Open Thursday's plan"}</button>
         </div>
+        {planOpen && <div style={{ fontSize: 12, color: G, marginBottom: 10, lineHeight: '17px' }}>Thursday's session is drafted from these three: a pressing rondo, a shape drill on the gap between the lines, and a strong-finish conditioning game.</div>}
         {works.map((w, i) => (
-          <div key={i} style={{ display: 'flex', gap: 12, padding: '10px 0', borderTop: i === 0 ? 'none' : `1px solid ${LN}` }}>
+          <div key={i} onClick={() => setSelectedClip(i)} style={{ display: 'flex', gap: 12, padding: '10px 6px', borderTop: i === 0 ? 'none' : `1px solid ${LN}`, cursor: 'pointer', background: selectedClip === i ? PALE : 'transparent', borderRadius: 8 }}>
             <div style={{ width: 48, height: 44, borderRadius: 8, background: PALE, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, color: G, flexShrink: 0 }}>{w.clip}</div>
             <div style={{ flex: 1 }}>
               <div style={{ fontSize: 13, fontWeight: 700, color: INK }}>{w.title}</div>
@@ -519,7 +528,6 @@ export function R1MatchReview() {
           </div>
         ))}
       </div>
-      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </Shell>
   )
 }
@@ -626,8 +634,7 @@ export function SE1SeasonSummaries() {
 // ─── Empty states for SE1e and AV1e ──────────────────────────────────────────
 
 export function SE1eSeasonSummariesEmpty() {
-  const [toast, setToast] = useState<string | null>(null)
-  function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
+  const [checking, setChecking] = useState(false)
   const squadNav = ['Players', 'Development goals', 'Wellness', 'Availability', 'Consent and privacy']
   return (
     <Shell navActive="Squad" sideItems={squadNav} sideActive="Players">
@@ -636,16 +643,14 @@ export function SE1eSeasonSummariesEmpty() {
       <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '48px 24px', textAlign: 'center' as const }}>
         <div style={{ fontSize: 16, fontWeight: 700, color: INK, marginBottom: 8 }}>No summaries yet</div>
         <div style={{ fontSize: 14, color: MUT, marginBottom: 20 }}>Summaries are drafted from your session notes and goals as the season progresses.</div>
-        <button onClick={() => showToast('Opening draft summary.')} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 'none', background: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>Check a summary</button>
+        <button onClick={() => setChecking(true)} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 'none', background: checking ? '#40826d' : G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>{checking ? 'Opening a draft…' : 'Check a summary'}</button>
       </div>
-      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </Shell>
   )
 }
 
 export function AV1eAvailabilityEmpty() {
-  const [toast, setToast] = useState<string | null>(null)
-  function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
+  const [posted, setPosted] = useState(false)
   const squadNav = ['Players', 'Development goals', 'Wellness', 'Availability', 'Consent and privacy']
   return (
     <Shell navActive="Squad" sideItems={squadNav} sideActive="Availability">
@@ -654,9 +659,8 @@ export function AV1eAvailabilityEmpty() {
       <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '48px 24px', textAlign: 'center' as const }}>
         <div style={{ fontSize: 16, fontWeight: 700, color: INK, marginBottom: 8 }}>No availability yet</div>
         <div style={{ fontSize: 14, color: MUT, marginBottom: 20 }}>Parents and players answer availability through the app when you post upcoming sessions.</div>
-        <button onClick={() => showToast('Opening session planner.')} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 'none', background: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>Post upcoming sessions</button>
+        <button onClick={() => setPosted(true)} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 'none', background: posted ? '#40826d' : G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>{posted ? '✓ Sessions posted — questions sent' : 'Post upcoming sessions'}</button>
       </div>
-      {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </Shell>
   )
 }
