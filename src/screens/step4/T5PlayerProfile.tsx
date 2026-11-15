@@ -5,6 +5,13 @@ const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8
 const NAV_ITEMS = ['Home', 'Squad', 'Training', 'Match day', 'Clips']
 const PROFILE_TABS = ['Overview', 'Clips 6', 'Wearable data', 'Wellness', 'Development']
 
+const TAB_BLURB: Record<string, string> = {
+  'Clips 6': 'Six clips tagged this month — pressing, an assist and a goal against Ironbark. Tap a clip to open it or share it with Mia and her parents.',
+  'Wearable data': 'GPS vest and heart-rate history: distance, sprints, high-speed running and load, game by game across the season.',
+  'Wellness': 'Mia\'s daily check-ins — sleep, soreness and mood. Today she flagged heavy legs after two trainings, so her load plan is set to light.',
+  'Development': 'Her development goal is passing with her left foot. Left-foot passes per game have gone from 2 to 11 this season — on track.',
+}
+
 const GAMES = [
   { short: 'BAN', mins: 40, res: 'W', color: '#2f6252' },
   { short: 'RIV', mins: 38, res: 'L', color: '#c39797' },
@@ -23,20 +30,22 @@ const KPIS = [
   { label: 'Passes completed', value: '77%', change: '82% last game', src: 'Match camera' },
 ]
 
-export default function T5PlayerProfile(_: { onBack?: () => void }) {
-  const [toast, setToast] = useState<string|null>(null)
-  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
+export default function T5PlayerProfile({ onBack }: { onBack?: () => void }) {
+  const [activeNav, setActiveNav] = useState('Squad')
+  const [activeTab, setActiveTab] = useState('Overview')
+  const [selectedGame, setSelectedGame] = useState<string | null>(null)
+  const [selectedClip, setSelectedClip] = useState<string | null>(null)
   return (
     <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       <div style={{ flex: 'none', height: 64, boxSizing: 'border-box', padding: '0 28px', display: 'flex', alignItems: 'center', gap: 4, background: G }}>
         <div style={{ fontSize: 20, fontWeight: 700, color: '#fff', marginRight: 16, letterSpacing: '-0.02em' }}>Clean Sheet</div>
-        {NAV_ITEMS.map(n => <div key={n} style={{ height: 48, padding: '0 14px', borderRadius: 12, display: 'flex', alignItems: 'center', fontSize: 15, fontWeight: 600, color: n === 'Squad' ? '#fff' : 'rgba(255,255,255,0.75)', background: n === 'Squad' ? '#40826d' : 'transparent', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{n}</div>)}
-        <div style={{ marginLeft: 'auto' }}><button onClick={() => st('Opening team selector.')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: '1px solid #fff', background: '#fff', fontSize: 14, fontWeight: 600, color: INK, cursor: 'pointer' }}>U12 Sam · Wattle Creek ▾</button></div>
+        {NAV_ITEMS.map(n => <div key={n} onClick={() => setActiveNav(n)} style={{ height: 48, padding: '0 14px', borderRadius: 12, display: 'flex', alignItems: 'center', fontSize: 15, fontWeight: 600, color: n === activeNav ? '#fff' : 'rgba(255,255,255,0.75)', background: n === activeNav ? '#40826d' : 'transparent', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{n}</div>)}
+        <div style={{ marginLeft: 'auto' }}><button onClick={() => onBack?.()} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: '1px solid #fff', background: '#fff', fontSize: 14, fontWeight: 600, color: INK, cursor: 'pointer' }}>U12 Sam · Wattle Creek ▾</button></div>
       </div>
 
       <header style={{ flex: 'none', background: '#fff', padding: '12px 28px 0', display: 'flex', flexDirection: 'column', gap: 10 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-          <button onClick={() => st('Going back.')} style={{ width: 44, height: 44, borderRadius: '50%', border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16 }}>←</button>
+          <button onClick={() => onBack?.()} style={{ width: 44, height: 44, borderRadius: '50%', border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16 }}>←</button>
           <div style={{ width: 52, height: 52, borderRadius: '50%', background: '#c39797', color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 18, flex: 'none' }}>MT</div>
           <div style={{ flex: 1 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
@@ -55,11 +64,17 @@ export default function T5PlayerProfile(_: { onBack?: () => void }) {
           </div>
         </div>
         <nav style={{ display: 'flex', gap: 24, height: 44, borderTop: `1px solid ${LN}` }}>
-          {PROFILE_TABS.map(t => <div key={t} style={{ height: 44, display: 'flex', alignItems: 'center', fontSize: 14, fontWeight: t === 'Overview' ? 700 : 500, color: t === 'Overview' ? INK : MUT, borderBottom: `3px solid ${t === 'Overview' ? '#40826d' : 'transparent'}`, cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>)}
+          {PROFILE_TABS.map(t => <div key={t} onClick={() => setActiveTab(t)} style={{ height: 44, display: 'flex', alignItems: 'center', fontSize: 14, fontWeight: t === activeTab ? 700 : 500, color: t === activeTab ? INK : MUT, borderBottom: `3px solid ${t === activeTab ? '#40826d' : 'transparent'}`, cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>)}
         </nav>
       </header>
 
-      <main style={{ flexGrow: 1, minHeight: 0, padding: '14px 28px 18px', boxSizing: 'border-box', borderTop: `1px solid ${LN}`, display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 300px', gap: 14 }}>
+      <main style={{ flexGrow: 1, minHeight: 0, padding: '14px 28px 18px', boxSizing: 'border-box', borderTop: `1px solid ${LN}`, display: activeTab === 'Overview' ? 'grid' : 'block', gridTemplateColumns: 'minmax(0,1fr) 300px', gap: 14, overflowY: 'auto' }}>
+        {activeTab !== 'Overview' ? (
+          <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '20px 22px' }}>
+            <div style={{ fontSize: 18, fontWeight: 700, marginBottom: 8 }}>{activeTab}</div>
+            <div style={{ fontSize: 14, color: MUT, lineHeight: '21px', maxWidth: 560 }}>{TAB_BLURB[activeTab]}</div>
+          </div>
+        ) : (<>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10 }}>
             {KPIS.map(k => (
@@ -79,9 +94,9 @@ export default function T5PlayerProfile(_: { onBack?: () => void }) {
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(8, 1fr)', gap: 8, alignItems: 'flex-end', height: 100 }}>
               {GAMES.map(g => (
-                <div key={g.short} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-end', gap: 3, height: '100%' }}>
+                <div key={g.short} onClick={() => setSelectedGame(s => s === g.short ? null : g.short)} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-end', gap: 3, height: '100%', cursor: 'pointer', background: selectedGame === g.short ? '#eef5f2' : 'transparent', borderRadius: 6 }}>
                   <div style={{ fontSize: 12, fontWeight: 700 }}>{g.mins}</div>
-                  <div style={{ width: '100%', height: Math.round((g.mins / 60) * 60), background: G, borderRadius: '4px 4px 2px 2px' }} />
+                  <div style={{ width: '100%', height: Math.round((g.mins / 60) * 60), background: selectedGame === g.short ? GD : G, borderRadius: '4px 4px 2px 2px' }} />
                   <div style={{ fontSize: 10, color: MUT }}>{g.short}</div>
                   <div style={{ fontSize: 10, fontWeight: 700, background: g.color, color: '#fff', borderRadius: 3, padding: '0 4px' }}>{g.res}</div>
                 </div>
@@ -93,7 +108,7 @@ export default function T5PlayerProfile(_: { onBack?: () => void }) {
             <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 8 }}>Best recent clips</div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10, height: '100%' }}>
               {[{ when: 'Min 10 vs Ironbark', text: 'Presses with Jai and wins it back', tag: 'Pressing', tagColor: GD }, { when: 'Min 37 vs Ironbark', text: 'Left-foot pass splits their defence', tag: 'Assist', tagColor: '#40826d' }, { when: 'Min 47 vs Ironbark', text: 'Scores from edge of the box', tag: 'Goal', tagColor: '#40826d' }].map(c => (
-                <div key={c.when} style={{ border: `1px solid ${LN}`, borderRadius: 10, overflow: 'hidden', background: '#fff', display: 'flex', flexDirection: 'column' }}>
+                <div key={c.when} onClick={() => setSelectedClip(c.when)} style={{ border: `2px solid ${selectedClip === c.when ? '#40826d' : LN}`, borderRadius: 10, overflow: 'hidden', background: '#fff', display: 'flex', flexDirection: 'column', cursor: 'pointer' }}>
                   <div style={{ flex: 1, background: G, minHeight: 70, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' as const }}>
                     <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'rgba(255,255,255,0.9)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>▶</div>
                     <div style={{ position: 'absolute' as const, top: 8, left: 8, fontSize: 11, fontWeight: 700, background: c.tagColor, color: '#fff', borderRadius: 999, padding: '1px 7px' }}>{c.tag}</div>
@@ -134,8 +149,8 @@ export default function T5PlayerProfile(_: { onBack?: () => void }) {
             ))}
           </div>
         </div>
+        </>)}
       </main>
-      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }
