@@ -9,7 +9,10 @@ const PALE = '#eef5f2'
 const ROSE = '#c39797'
 const WARN = '#c3a84a'
 
-const STAFF = [
+export type StaffTeam = 'juniors' | 'youth' | 'seniors'
+type StaffRow = { ini: string; name: string; role: string; color: string; looks: string; wwc: { status: 'valid' | 'warn'; label: string }; parent: boolean }
+
+const JUNIOR_STAFF: StaffRow[] = [
   {
     ini: 'SK', name: 'Sam Kelly',   role: 'Head coach',      color: GD,
     looks: 'Plans, line-ups, clips, player goals',
@@ -17,7 +20,7 @@ const STAFF = [
     parent: false,
   },
   {
-    ini: 'JM', name: 'Jess Marsh',  role: 'Co-coach',        color: G,
+    ini: 'JM', name: 'Jess Marsh',  role: 'Assistant coach', color: G,
     looks: "Same as Sam · Leo's mum",
     wwc: { status: 'valid' as const, label: 'Valid · Jun 2027' },
     parent: true,
@@ -35,6 +38,39 @@ const STAFF = [
     parent: false,
   },
 ]
+
+// Team-specific staff so the youth and senior coaches see their own people, and
+// no junior parent/child wording (FIX-LIST item 2 + "no parent wording").
+function staffData(team: StaffTeam): { teamName: string; subline: string; emptySub: string; staff: StaffRow[] } {
+  if (team === 'juniors') return {
+    teamName: 'U12 Sam',
+    subline: 'U12 Sam · Play level · a usual community team: two coaches and a team manager',
+    emptySub: 'U12 Sam · just you so far',
+    staff: JUNIOR_STAFF,
+  }
+  if (team === 'youth') return {
+    teamName: 'U16 Ollie',
+    subline: 'U16 Ollie · Grow level · two coaches, a team manager and the club fitness lead',
+    emptySub: 'U16 Ollie · just you so far',
+    staff: [
+      { ini: 'OG', name: 'Ollie Grant',  role: 'Head coach',      color: GD,        looks: 'Plans, line-ups, clips, player goals',          wwc: { status: 'valid', label: 'Valid · Mar 2028' }, parent: false },
+      { ini: 'TH', name: 'Tom Hale',     role: 'Assistant coach', color: G,         looks: 'Same as Ollie',                                 wwc: { status: 'valid', label: 'Valid · Jun 2027' }, parent: false },
+      { ini: 'RB', name: 'Rhea Bell',    role: 'Team manager',    color: '#40826d', looks: 'Availability, messages, roster, first-aid card',  wwc: { status: 'valid', label: 'Valid · Feb 2028' }, parent: true },
+      { ini: 'PS', name: 'Priya Shah',   role: 'Fitness (club)',  color: WARN,      looks: 'Growth, load and tests for 4 teams',            wwc: { status: 'warn', label: 'Ends in 29 days' },   parent: false },
+    ],
+  }
+  return {
+    teamName: "Men's 1sts",
+    subline: "Men's 1sts · Perform level · head coach, assistant and a team manager",
+    emptySub: "Men's 1sts · just you so far",
+    staff: [
+      { ini: 'MP', name: 'Marko Petrov', role: 'Head coach',      color: GD,        looks: 'Plans, line-ups, clips, player goals',          wwc: { status: 'valid', label: 'Valid · Mar 2028' }, parent: false },
+      { ini: 'NR', name: 'Nico Russo',   role: 'Assistant coach', color: G,         looks: 'Same as Marko',                                 wwc: { status: 'valid', label: 'Valid · Jun 2027' }, parent: false },
+      { ini: 'GE', name: 'Grant Ellis',  role: 'Team manager',    color: '#40826d', looks: 'Availability, messages, roster, first-aid card',  wwc: { status: 'valid', label: 'Valid · Feb 2028' }, parent: false },
+      { ini: 'PS', name: 'Priya Shah',   role: 'Fitness (club)',  color: WARN,      looks: 'Growth, load and tests for 4 teams',            wwc: { status: 'warn', label: 'Ends in 29 days' },   parent: false },
+    ],
+  }
+}
 
 const ROLE_MATRIX = [
   { label: 'Training plans and drills',  coach: true,  coCo: true,  mgr: false, fit: false },
@@ -58,7 +94,9 @@ function Check({ yes }: { yes: boolean | string }) {
   return <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={G} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-label="yes"><polyline points="20 6 9 17 4 12"/></svg>
 }
 
-export default function TeamStaffScreen({ empty }: { empty?: boolean }) {
+export default function TeamStaffScreen({ empty, teamType = 'juniors' }: { empty?: boolean; teamType?: StaffTeam }) {
+  const td = staffData(teamType)
+  const STAFF = td.staff
   const [inviteOpen, setInviteOpen] = useState(false)
   const [selectedRole, setSelectedRole] = useState('')
   const [toast, setToast] = useState<string | null>(null)
@@ -71,7 +109,7 @@ export default function TeamStaffScreen({ empty }: { empty?: boolean }) {
         <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
           <div>
             <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, letterSpacing: '-0.02em', color: INK }}>Team staff</h1>
-            <div style={{ fontSize: 13, color: MUT, marginTop: 2 }}>U12 Sam · just you so far</div>
+            <div style={{ fontSize: 13, color: MUT, marginTop: 2 }}>{td.emptySub}</div>
           </div>
           <button onClick={() => openInvite()} style={{ height: 44, padding: '0 18px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>+ Invite</button>
         </div>
@@ -104,7 +142,7 @@ export default function TeamStaffScreen({ empty }: { empty?: boolean }) {
         {inviteOpen && (
           <div style={{ position: 'fixed', inset: 0, zIndex: 200, background: 'rgba(16,33,31,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <div style={{ background: '#fff', borderRadius: 20, padding: '24px', width: 400, fontFamily: 'inherit' }}>
-              <div style={{ fontSize: 18, fontWeight: 700, color: INK, marginBottom: 16 }}>Invite to U12 Sam</div>
+              <div style={{ fontSize: 18, fontWeight: 700, color: INK, marginBottom: 16 }}>Invite to {td.teamName}</div>
               {[{ label: 'Name', placeholder: 'e.g. Alex Brown' }, { label: 'Email', placeholder: 'alex.brown@example.com' }].map(f => (
                 <div key={f.label} style={{ marginBottom: 14 }}>
                   <div style={{ fontSize: 12, fontWeight: 700, color: MUT, letterSpacing: '0.07em', marginBottom: 6 }}>{f.label.toUpperCase()}</div>
@@ -129,7 +167,7 @@ export default function TeamStaffScreen({ empty }: { empty?: boolean }) {
       <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
         <div>
           <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, letterSpacing: '-0.02em', color: INK }}>Team staff</h1>
-          <div style={{ fontSize: 13, color: MUT, marginTop: 2 }}>U12 Sam · Play level · a usual community team: two coaches and a team manager</div>
+          <div style={{ fontSize: 13, color: MUT, marginTop: 2 }}>{td.subline}</div>
         </div>
         <button onClick={() => openInvite()} style={{ height: 44, padding: '0 18px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>+ Invite</button>
       </div>
@@ -240,7 +278,7 @@ export default function TeamStaffScreen({ empty }: { empty?: boolean }) {
       {inviteOpen && (
         <div style={{ position: 'fixed', inset: 0, zIndex: 200, background: 'rgba(16,33,31,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ background: '#fff', borderRadius: 20, padding: '24px', width: 400, fontFamily: 'inherit' }}>
-            <div style={{ fontSize: 18, fontWeight: 700, color: INK, marginBottom: 16 }}>Invite to U12 Sam</div>
+            <div style={{ fontSize: 18, fontWeight: 700, color: INK, marginBottom: 16 }}>Invite to {td.teamName}</div>
             {[{ label: 'Name', placeholder: 'e.g. Alex Brown' }, { label: 'Email', placeholder: 'alex.brown@example.com' }].map(f => (
               <div key={f.label} style={{ marginBottom: 14 }}>
                 <div style={{ fontSize: 12, fontWeight: 700, color: MUT, letterSpacing: '0.07em', marginBottom: 6 }}>{f.label.toUpperCase()}</div>

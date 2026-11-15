@@ -39,7 +39,7 @@ function QuestionCard({ q, onEdit }: { q: StyleQuestion; onEdit: () => void }) {
   )
 }
 
-export default function OurStyleScreen() {
+export default function OurStyleScreen({ setByLine = 'Set 12 March by Sam.' }: { setByLine?: string }) {
   const [values, setValues] = useState(STYLE_CLUB_VALUES)
   const [wizardStep, setWizardStep] = useState<WizardStep | null>(null)
 
@@ -62,7 +62,7 @@ export default function OurStyleScreen() {
               <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, letterSpacing: '-0.02em', color: '#10211f' }}>How we play</h1>
               <span style={{ fontSize: 13, fontWeight: 700, padding: '3px 10px', borderRadius: '999px', background: '#eef5f2', color: '#2f6252' }}>Saved</span>
             </div>
-            <p style={{ margin: 0, fontSize: 14, color: '#4a5a57' }}>Set 12 March by Sam. Every game since is scored against these answers. Tap any answer to change it.</p>
+            <p style={{ margin: 0, fontSize: 14, color: '#4a5a57' }}>{setByLine} Every game since is scored against these answers. Tap any answer to change it.</p>
           </div>
         </div>
 

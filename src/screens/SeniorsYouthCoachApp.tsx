@@ -473,9 +473,9 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
         : (phaseContent ?? <CoachHome data={data} onTraining={() => goNav('training')} onMatchday={() => goNav('matchday')} onReview={() => { goNav('matchday'); setMatchTab(3) }} onCalendar={() => setHomeTab(2)} onInbox={() => setHomeTab(1)} onAsk={() => setAskOpen(true)} askQuestions={teamType === 'seniors' ? ["Who is one yellow from a ban?", "How do Banksia Park build out?", "Who is carrying a knock?"] : ["Who is over their load this week?", "What did Kingfisher United do to us?", "Who has exams coming up?"]} roleLabel={teamType === 'seniors' ? 'senior coach' : 'youth coach'} />); break
       case 1: content = <CoachMessages />; break
       case 2: case 3: content = <FixturesScreen empty={sbEmpty} />; break
-      case 4: content = <OurStyleScreen />; break
+      case 4: content = <OurStyleScreen setByLine={`Set 12 March by ${data.coachFirst}.`} />; break
       case 5: content = <WhereWeAtScreen teamType={teamType === 'seniors' ? 'seniors' : 'youth'} />; break
-      case 6: content = <TeamStaffScreen empty={sbEmpty} />; break
+      case 6: content = <TeamStaffScreen empty={sbEmpty} teamType={teamType === 'seniors' ? 'seniors' : 'youth'} />; break
     }
   } else if (nav === 'squad') {
     switch (squadTab) {
