@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { AMBER } from './directorParts'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
@@ -57,25 +58,51 @@ export default function TeamSheetBody({ cfg, onBack, onShare, onTool }: {
   const [rows, setRows]           = useState<PlayerRow[]>(cfg.rows)
   const [sel, setSel]             = useState<{ ri: number; ci: number }>({ ri: Math.min(7, cfg.rows.length - 1), ci: 2 })
   const [lastTool, setLastTool]   = useState('')
+  const [past, setPast]           = useState<PlayerRow[][]>([])
+  const [future, setFuture]       = useState<PlayerRow[][]>([])
+  const [editNote, setEditNote]   = useState<number | null>(null)
 
   function tool(name: string) { setLastTool(name); onTool?.(name) }
 
-  function cycleCell(ri: number, ci: number) {
-    tool(`${colLetters[ci]}${ri + 1}`)
+  // Every structural edit goes through commit so Undo/Redo and the live totals stay honest.
+  function commit(next: PlayerRow[]) {
+    setPast(p => [...p, rows])
+    setFuture([])
+    setRows(next)
+  }
+
+  function setCell(ri: number, ci: number, status: PlayStatus) {
     setSel({ ri, ci })
-    setRows(prev => prev.map((r, i) => {
-      if (i !== ri) return r
-      const g = [...r.games]
-      g[ci] = g[ci] === 'start' ? 'ingoal' : g[ci] === 'ingoal' ? 'bench' : 'start'
-      return { ...r, games: g }
-    }))
+    tool(`${colLetters[ci]}${ri + 1}`)
+    if (rows[ri].games[ci] === status) return
+    commit(rows.map((r, i) => i !== ri ? r : { ...r, games: r.games.map((g, c) => c === ci ? status : g) }))
+  }
+
+  function cycleCell(ri: number, ci: number) {
+    const cur = rows[ri].games[ci]
+    setCell(ri, ci, cur === 'start' ? 'ingoal' : cur === 'ingoal' ? 'bench' : 'start')
+  }
+
+  function setNote(ri: number, text: string) {
+    commit(rows.map((r, i) => i !== ri ? r : { ...r, notes: text }))
+  }
+
+  function undo() {
+    if (!past.length) return
+    const prev = past[past.length - 1]
+    setFuture(f => [rows, ...f]); setPast(p => p.slice(0, -1)); setRows(prev); tool('Undo')
+  }
+  function redo() {
+    if (!future.length) return
+    const nxt = future[0]
+    setPast(p => [...p, rows]); setFuture(f => f.slice(1)); setRows(nxt); tool('Redo')
   }
 
   function handleSwap() {
     tool('Swap for me')
     if (!cfg.warn) return
     const gi = cfg.warn.game
-    setRows(prev => prev.map(r => {
+    commit(rows.map(r => {
       if (r.name === cfg.warn!.player)   { const g = [...r.games]; g[gi] = 'bench';  return { ...r, games: g } }
       if (r.name === cfg.warn!.swapWith) { const g = [...r.games]; g[gi] = 'ingoal'; return { ...r, games: g } }
       return r
@@ -96,6 +123,29 @@ export default function TeamSheetBody({ cfg, onBack, onShare, onTool }: {
   const selStatus = rows[sel.ri]?.games[sel.ci] ?? 'start'
   const selLabel  = selStatus === 'start' ? 'Start' : selStatus === 'ingoal' ? 'In goal' : 'Bench'
   const selRef    = `${colLetters[sel.ci]}${sel.ri + 1}`
+
+  // Live totals — recomputed from the current grid, not hard-coded.
+  const onPitch   = cfg.gameCols.map((_, ci) => rows.filter(r => r.games[ci] !== 'bench').length)
+  const pitchTarget = Math.max(...onPitch, 0)
+  const avgMins   = rows.length ? Math.round(rows.reduce((s, r) => s + minsFor(r.games), 0) / rows.length) : 0
+
+  // Live checks — reflect the grid as it is edited.
+  const benchRun  = rows.find(r => r.games.some((g, i) => i > 0 && g === 'bench' && r.games[i - 1] === 'bench'))
+  const goalieBad = cfg.gameCols.findIndex((_, ci) => rows.filter(r => r.games[ci] === 'ingoal').length !== 1)
+  const pitchBad  = onPitch.findIndex(n => n !== pitchTarget)
+  function liveCheck(c: CheckItem): CheckItem {
+    const t = c.title.toLowerCase()
+    if (t.includes('bench')) return benchRun
+      ? { icon: 'lock', title: `${benchRun.name.split(' ')[0]} is benched twice in a row`, sub: 'Give them a game back' }
+      : { icon: 'check', title: 'Nobody benched twice in a row', sub: '' }
+    if (t.includes('in goal') || t.includes('goal for')) return goalieBad >= 0
+      ? { icon: 'lock', title: `${cfg.gameCols[goalieBad].label} needs one keeper`, sub: 'Exactly one player in goal each game' }
+      : { icon: 'check', title: c.title, sub: c.sub }
+    if (t.includes('on the pitch') || t.includes('on the field')) return pitchBad >= 0
+      ? { icon: 'lock', title: `${cfg.gameCols[pitchBad].label}: ${onPitch[pitchBad]} on, not ${pitchTarget}`, sub: 'Check who is benched' }
+      : { icon: 'check', title: c.title, sub: c.sub }
+    return c
+  }
 
   const isActive = (v: ViewType, label: string) =>
     (v === 'table' && label === 'Table') || (v === 'lineup' && label === 'Line-up') || (v === 'print' && label === 'Print')
@@ -120,16 +170,16 @@ export default function TeamSheetBody({ cfg, onBack, onShare, onTool }: {
           </div>
           <button onClick={() => tool('History')}  style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 13, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>History</button>
           <button onClick={() => tool('Download')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 13, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Download</button>
-          <button onClick={() => onShare?.()}      style={{ height: 44, padding: '0 16px', borderRadius: 999, background: GD, color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Share</button>
+          <button onClick={() => onShare?.()}      style={{ height: 44, padding: '0 16px', borderRadius: 999, background: AMBER, color: INK, border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Share</button>
         </div>
       </div>
 
       {/* Toolbar */}
       <div style={{ background: '#fff', borderBottom: `1px solid ${LN}`, padding: '0 16px', display: 'flex', gap: 2, height: 44, alignItems: 'center', flexShrink: 0 }}>
-        <button aria-label="Undo" onClick={() => tool('Undo')} style={{ minHeight: 44, minWidth: 44, border: 'none', background: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 6 }}>
+        <button aria-label="Undo" onClick={undo} disabled={!past.length} style={{ minHeight: 44, minWidth: 44, border: 'none', background: 'none', cursor: past.length ? 'pointer' : 'default', opacity: past.length ? 1 : 0.35, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 6 }}>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth="2" strokeLinecap="round"><path d="M3 7v6h6"/><path d="M3 13C5.6 7.8 11 5 16 6.5a9 9 0 015 8"/></svg>
         </button>
-        <button aria-label="Redo" onClick={() => tool('Redo')} style={{ minHeight: 44, minWidth: 44, border: 'none', background: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 6 }}>
+        <button aria-label="Redo" onClick={redo} disabled={!future.length} style={{ minHeight: 44, minWidth: 44, border: 'none', background: 'none', cursor: future.length ? 'pointer' : 'default', opacity: future.length ? 1 : 0.35, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 6 }}>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth="2" strokeLinecap="round"><path d="M21 7v6h-6"/><path d="M21 13C18.4 7.8 13 5 8 6.5a9 9 0 00-5 8"/></svg>
         </button>
         <div style={{ width: 1, height: 20, background: LN, margin: '0 6px', flexShrink: 0 }} />
@@ -169,8 +219,8 @@ export default function TeamSheetBody({ cfg, onBack, onShare, onTool }: {
         <span style={{ fontSize: 11, fontWeight: 700, color: INK, background: PALE, padding: '2px 8px', borderRadius: 4 }}>{selRef}</span>
         <div style={{ width: 1, height: 16, background: LN, flexShrink: 0 }} />
         <span style={{ fontSize: 11, color: MUT, whiteSpace: 'nowrap' }}>Choice:</span>
-        {(['Start', 'In goal', 'Bench'] as const).map(c => (
-          <span key={c} style={{ fontSize: 11, fontWeight: 600, padding: '2px 10px', borderRadius: 999, background: c === selLabel ? GD : 'transparent', border: c === selLabel ? 'none' : `1.5px solid ${LN}`, color: c === selLabel ? '#fff' : INK, whiteSpace: 'nowrap' }}>{c}</span>
+        {([['Start', 'start'], ['In goal', 'ingoal'], ['Bench', 'bench']] as const).map(([label, status]) => (
+          <button key={label} onClick={() => setCell(sel.ri, sel.ci, status)} style={{ fontSize: 11, fontWeight: 600, padding: '4px 10px', minHeight: 28, borderRadius: 999, background: label === selLabel ? GD : 'transparent', border: label === selLabel ? 'none' : `1.5px solid ${LN}`, color: label === selLabel ? '#fff' : INK, whiteSpace: 'nowrap', cursor: 'pointer', fontFamily: 'inherit' }}>{label}</button>
         ))}
         <div style={{ marginLeft: 'auto', fontSize: 11, color: MUT, whiteSpace: 'nowrap' }}>Minutes = 15 for each Start or In goal</div>
       </div>
@@ -256,7 +306,20 @@ export default function TeamSheetBody({ cfg, onBack, onShare, onTool }: {
                             )
                           })}
                           <td style={{ padding: '8px 10px', borderRight: `1px solid ${LN}`, fontSize: 13, fontWeight: 700, color: warn ? '#c04' : INK, background: warn ? '#fdf5f5' : undefined }}>{mins}</td>
-                          <td style={{ padding: '8px 10px', fontSize: 12, color: MUT }}>{r.notes ?? ''}</td>
+                          <td onClick={() => setEditNote(ri)} style={{ padding: '4px 6px', fontSize: 12, color: MUT, cursor: 'text' }}>
+                            {editNote === ri ? (
+                              <input
+                                autoFocus
+                                defaultValue={r.notes ?? ''}
+                                placeholder="Add a note"
+                                onBlur={e => { setEditNote(null); if (e.target.value !== (r.notes ?? '')) setNote(ri, e.target.value) }}
+                                onKeyDown={e => { if (e.key === 'Enter') (e.target as HTMLInputElement).blur() }}
+                                style={{ width: '100%', border: `1.5px solid ${G}`, borderRadius: 6, padding: '4px 6px', fontSize: 12, color: INK, fontFamily: 'inherit', outline: 'none', boxSizing: 'border-box' }}
+                              />
+                            ) : (
+                              <span style={{ display: 'block', padding: '4px 4px', minHeight: 18, color: r.notes ? MUT : '#b8c2bf' }}>{r.notes ?? 'Add a note'}</span>
+                            )}
+                          </td>
                         </tr>
                       )
                     })}
@@ -264,10 +327,13 @@ export default function TeamSheetBody({ cfg, onBack, onShare, onTool }: {
                   <tfoot>
                     <tr style={{ background: '#f7f8f7', borderTop: `2px solid ${LN}` }}>
                       <td colSpan={3} style={{ padding: '8px 10px', borderRight: `1px solid ${LN}`, fontSize: 12, fontWeight: 700, color: MUT }}>On the pitch</td>
-                      {cfg.gameCols.map((_, ci) => (
-                        <td key={ci} style={{ padding: '8px 10px', borderRight: `1px solid ${LN}`, fontSize: 12, fontWeight: 700, color: INK }}>7 of 7</td>
-                      ))}
-                      <td style={{ padding: '8px 10px', borderRight: `1px solid ${LN}`, fontSize: 12, fontWeight: 700, color: INK }}>Avg 47</td>
+                      {cfg.gameCols.map((_, ci) => {
+                        const off = onPitch[ci] !== pitchTarget
+                        return (
+                          <td key={ci} style={{ padding: '8px 10px', borderRight: `1px solid ${LN}`, fontSize: 12, fontWeight: 700, color: off ? '#c04' : INK, background: off ? '#fdf5f5' : undefined }}>{onPitch[ci]} of {pitchTarget}</td>
+                        )
+                      })}
+                      <td style={{ padding: '8px 10px', borderRight: `1px solid ${LN}`, fontSize: 12, fontWeight: 700, color: INK }}>Avg {avgMins}</td>
                       <td />
                     </tr>
                   </tfoot>
@@ -343,20 +409,26 @@ export default function TeamSheetBody({ cfg, onBack, onShare, onTool }: {
                 </div>
               )}
 
-              {cfg.checks.map(c => (
-                <div key={c.title} style={{ display: 'flex', gap: 8, alignItems: 'flex-start', padding: '8px 0', borderTop: `1px solid ${LN}` }}>
-                  <div style={{ width: 20, height: 20, borderRadius: '50%', background: c.icon === 'check' ? PALE : '#f5f5f5', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 1 }}>
+              {cfg.checks.map((raw, idx) => {
+                const c = liveCheck(raw)
+                const flagged = c.icon === 'lock' && (c.title.includes('needs') || c.title.includes('benched twice') || c.title.includes('on, not'))
+                return (
+                <div key={idx} style={{ display: 'flex', gap: 8, alignItems: 'flex-start', padding: '8px 0', borderTop: `1px solid ${LN}` }}>
+                  <div style={{ width: 20, height: 20, borderRadius: '50%', background: c.icon === 'check' ? PALE : flagged ? '#fdecec' : '#f5f5f5', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 1 }}>
                     {c.icon === 'check'
                       ? <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke={G} strokeWidth="3" strokeLinecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                      : flagged
+                      ? <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#c04" strokeWidth="2.5" strokeLinecap="round"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>
                       : <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth="2" strokeLinecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
                     }
                   </div>
                   <div>
-                    <div style={{ fontSize: 12, fontWeight: 700, color: INK }}>{c.title}</div>
+                    <div style={{ fontSize: 12, fontWeight: 700, color: flagged ? '#c04' : INK }}>{c.title}</div>
                     {c.sub && <div style={{ fontSize: 11, color: MUT, lineHeight: 1.4 }}>{c.sub}</div>}
                   </div>
                 </div>
-              ))}
+                )
+              })}
 
               <div style={{ marginTop: 'auto', padding: '10px 0 0', borderTop: `1px solid ${LN}` }}>
                 <div style={{ fontSize: 11, fontWeight: 700, color: INK, marginBottom: 2 }}>Green columns are live</div>
