@@ -102,6 +102,8 @@ function BtnPrimary({ label, onClick }: { label: string; onClick?: () => void })
 // ACT1 — Academy Training Week
 export function AcademyTrainingWeek({ onBack: _onBack, onNav }: { onBack?: () => void; onNav?: (s: string) => void }) {
   const [toast, setToast] = useState<string | null>(null)
+  const [copied, setCopied] = useState(false)
+  const [selected, setSelected] = useState<string | null>(null)
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   const sessions = [
@@ -123,7 +125,7 @@ export function AcademyTrainingWeek({ onBack: _onBack, onNav }: { onBack?: () =>
       activeSub="This week"
       pageTitle="This week"
       pageSub="Tall Timber Academy · term 3, week 4 of 10 · Reece's groups"
-      pageRight={<><BtnMore label="Copy last week" onClick={() => t('Copying last week\'s sessions.')}/><BtnPrimary label="Plan a session" onClick={() => onNav ? onNav('ACT2-AcademySuggested') : t('Opening session planner.')}/></>}
+      pageRight={<><BtnMore label={copied ? 'Copied ✓' : 'Copy last week'} onClick={() => setCopied(true)}/><BtnPrimary label="Plan a session" onClick={() => onNav ? onNav('ACT2-AcademySuggested') : t('Opening session planner.')}/></>}
       toast={toast}
       onNav={(id) => t(id.startsWith('sub:') ? `${id.slice(4)} opens.` : `${id.charAt(0).toUpperCase() + id.slice(1)} tab opens.`)}
     >
@@ -134,14 +136,14 @@ export function AcademyTrainingWeek({ onBack: _onBack, onNav }: { onBack?: () =>
             {sessions.map((s, i) => {
               const st = statusStyle(s.status)
               return (
-                <div key={s.day} style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '14px 16px', borderBottom: i < sessions.length - 1 ? `1px solid ${LN}` : 'none' }}>
+                <div key={s.day} style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '14px 16px', borderBottom: i < sessions.length - 1 ? `1px solid ${LN}` : 'none', background: selected === s.day ? PALE : undefined }}>
                   <div style={{ width: 40, fontSize: 11, fontWeight: 800, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, flexShrink: 0 }}>{s.day}</div>
                   <div style={{ flex: 1 }}>
                     <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>{s.label}</div>
                     <div style={{ fontSize: 12, color: MUT }}>{s.note}</div>
                   </div>
                   <span style={{ padding: '4px 12px', borderRadius: 100, background: st.bg, color: st.color, fontSize: 12, fontWeight: 700 }}>{st.label}</span>
-                  <button onClick={() => s.link && onNav ? onNav(s.link === 'ACT2' ? 'ACT2-AcademySuggested' : 'ACT3-AcademySessionPlan') : t(`${s.label} session opens.`)}
+                  <button onClick={() => s.link && onNav ? onNav(s.link === 'ACT2' ? 'ACT2-AcademySuggested' : 'ACT3-AcademySessionPlan') : setSelected(sel => sel === s.day ? null : s.day)}
                     style={{ width: 44, height: 44, borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: MUT }}>
                     <Icon d={ICONS.chevright} size={16}/>
                   </button>
