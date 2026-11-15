@@ -13,8 +13,7 @@ const TEAMS = [
   { name: 'U9 Mark', coach: 'Mark D', last5: [0,1,0,0,1], pct: 55, turnout: 68 },
 ]
 export default function D1ClubOverview(_: { onBack?: () => void }) {
-  const [toast, setToast] = useState<string | null>(null)
-  function t(m: string) { setToast(m); setTimeout(() => setToast(null), 3200) }
+  const [done, setDone] = useState<number[]>([])
   return (
     <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, position: 'relative' }}>
       <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 32, height: 52 }}>
@@ -38,13 +37,14 @@ export default function D1ClubOverview(_: { onBack?: () => void }) {
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 400px', gap: 24 }}>
           <div>
             <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 10 }}>Needs you this week</div>
-            {ACTIONS.map((a, i) => (
+            {ACTIONS.map((a, i) => done.includes(i) ? null : (
               <div key={i} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 12, padding: '12px 16px', marginBottom: 8, display: 'flex', alignItems: 'center', gap: 12 }}>
                 <div style={{ width: 4, height: 44, borderRadius: 4, background: a.color, flexShrink: 0 }} />
                 <div style={{ fontSize: 13, color: INK, flex: 1 }}>{a.text}</div>
-                <div onClick={() => t('Marked done.')} style={{ fontSize: 12, color: MUT, cursor: 'pointer' }}>Done</div>
+                <button onClick={() => setDone(d => [...d, i])} style={{ fontSize: 12, color: MUT, cursor: 'pointer', background: 'none', border: 'none', fontFamily: 'inherit' }}>Done</button>
               </div>
             ))}
+            {ACTIONS.every((_, i) => done.includes(i)) && <div style={{ fontSize: 13, color: MUT, padding: '8px 2px' }}>All done for this week.</div>}
           </div>
           <div>
             <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 10 }}>Teams to watch</div>
@@ -65,7 +65,6 @@ export default function D1ClubOverview(_: { onBack?: () => void }) {
           </div>
         </div>
       </div>
-      {toast && <div style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', background: INK, color: '#fff', padding: '10px 20px', borderRadius: 12, fontSize: 14, fontWeight: 600, zIndex: 1000, whiteSpace: 'nowrap' as const }}>{toast}</div>}
     </div>
   )
 }
