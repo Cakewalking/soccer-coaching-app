@@ -27,7 +27,7 @@ export default function RF3RefReport(_: { onBack?: () => void }) {
     <div style={{ width: 390, height: 844, background: '#f7f8f7', boxSizing: 'border-box' as const, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' as const, overflow: 'hidden' }}>
       <div style={{ flex: 'none', padding: '12px 18px', background: G, color: '#fff', display: 'flex', alignItems: 'center', gap: 10 }}>
         <div style={{ flex: 1 }}>
-          <span style={{ display: 'block', fontSize: 12, color: 'rgba(255,255,255,0.7)' }}>U13 Girls Meg v Northgate City</span>
+          <span style={{ display: 'block', fontSize: 12, color: 'rgba(255,255,255,0.7)' }}>U9 Tom v Northgate City</span>
           <span style={{ display: 'block', fontSize: 19, fontWeight: 700 }}>Report something</span>
         </div>
       </div>

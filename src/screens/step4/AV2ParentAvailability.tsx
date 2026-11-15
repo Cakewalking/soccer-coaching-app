@@ -3,33 +3,36 @@ import { useState } from 'react'
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 type Answer = 'yes' | 'maybe' | 'no' | null
-const SESSIONS = [
-  { id: 'thu', day: 'THU 4', label: 'Training', sub: 'Tonight · 5:45 to 7:15 pm · Wattle Creek Reserve' },
-  { id: 'sat', day: 'SAT 6', label: 'vs Harbour Rovers', sub: 'Home · be there 8:40 for 9:30 · white kit' },
-  { id: 'tue', day: 'TUE 9', label: 'Training', sub: '5:45 to 7:15 pm · Wattle Creek Reserve' },
-]
 
-export default function AV2ParentAvailability() {
+// Design-id AV2 is Bao's availability (parent Linh answering for her younger child, in team U8 Hannah).
+// `self` renders the older-player reuse (PO3) where the player answers for themselves.
+export default function AV2ParentAvailability({ child = 'Bao', teamLabel = 'U8', coach = 'Hannah', self = false }: { child?: string; teamLabel?: string; coach?: string; self?: boolean } = {}) {
+  const SESSIONS = [
+    { id: 'thu', day: 'THU 4', label: 'Training', sub: 'Tonight · 5:45 to 7:15 pm · Wattle Creek Reserve' },
+    { id: 'sat', day: 'SAT 6', label: self ? 'Saturday game' : 'Saturday game · first go in goal', sub: 'Home · be there 8:40 for 9:30' },
+    { id: 'tue', day: 'TUE 9', label: 'Training', sub: '5:45 to 7:15 pm · Wattle Creek Reserve' },
+  ]
   const [answers, setAnswers] = useState<Record<string, Answer>>({ thu: 'yes', sat: 'yes', tue: null })
   const [toast, setToast] = useState<string | null>(null)
   function t(m: string) { setToast(m); setTimeout(() => setToast(null), 3200) }
 
+  const who = self ? 'You' : child
   function answer(id: string, val: Answer) {
     setAnswers(prev => ({ ...prev, [id]: val }))
-    if (val === 'yes') t("Mia's in. Thanks!")
-    else if (val === 'maybe') t("Got it. Sam will see.")
-    else t("No worries. Sam will see.")
+    if (val === 'yes') t(`${who === 'You' ? "You're" : who + "'s"} in. Thanks!`)
+    else if (val === 'maybe') t(`Got it. ${coach} will see.`)
+    else t(`No worries. ${coach} will see.`)
   }
 
   return (
     <div style={{ width: 390, minHeight: '100%', background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', margin: '0 auto', position: 'relative' }}>
       <div style={{ background: GD, padding: '16px 20px 20px' }}>
-        <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,0.6)', marginBottom: 4 }}>Wattle Creek U12 · parent</div>
-        <div style={{ fontSize: 20, fontWeight: 800, letterSpacing: '-0.02em', color: '#fff' }}>Can Mia make it?</div>
+        <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,0.6)', marginBottom: 4 }}>Wattle Creek {teamLabel} · {self ? 'player' : 'parent'}</div>
+        <div style={{ fontSize: 20, fontWeight: 800, letterSpacing: '-0.02em', color: '#fff' }}>{self ? 'Can you make it?' : `Can ${child} make it?`}</div>
       </div>
 
       <div style={{ padding: '16px 20px 32px' }}>
-        <div style={{ fontSize: 12, color: MUT, marginBottom: 16 }}>Sam sees your answer straight away. Change it any time before the day.</div>
+        <div style={{ fontSize: 12, color: MUT, marginBottom: 16 }}>{coach} sees your answer straight away. Change it any time before the day.</div>
 
         {SESSIONS.map(s => (
           <div key={s.id} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 16px', marginBottom: 12 }}>

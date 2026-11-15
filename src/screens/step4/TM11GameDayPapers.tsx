@@ -7,7 +7,7 @@ export default function TM11GameDayPapers(_: { onBack?: () => void }) {
     <div style={{ width: 390, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 844, display: 'flex', flexDirection: 'column', position: 'relative' }}>
       <div style={{ background: GD, padding: '14px 18px 12px', display: 'flex', alignItems: 'center', gap: 12 }}>
         <div style={{ flexGrow: 1 }}>
-          <div style={{ fontSize: 12, color: '#cfe6dc' }}>U13 Girls Meg · Sat 6 Jun · vs Northgate City</div>
+          <div style={{ fontSize: 12, color: '#cfe6dc' }}>U12 Sam · Sat 6 Jun · at Harbour Rovers</div>
           <div style={{ fontSize: 21, fontWeight: 700, color: '#fff' }}>Game-day papers</div>
         </div>
         <div style={{ width: 40, height: 40, borderRadius: '50%', background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>RO</div>
@@ -17,7 +17,7 @@ export default function TM11GameDayPapers(_: { onBack?: () => void }) {
           <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: MUT, padding: '8px 0 4px' }}>Before you send the team sheet</div>
           {[
             { title: 'No one is suspended', sub: 'Checked against Dribl last night' },
-            { title: '1 player needs her letter', sub: 'Tess Nolan · playing down from U14' },
+            { title: '1 player needs her letter', sub: 'Mila Novak · playing up from U11' },
           ].map((item, i) => (
             <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 50, borderTop: i > 0 ? `1px solid ${LN}` : 'none' }}>
               <div style={{ width: 24, height: 24, borderRadius: '50%', background: G, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
@@ -32,9 +32,9 @@ export default function TM11GameDayPapers(_: { onBack?: () => void }) {
         </div>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 8 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0 }}>TN</div>
+            <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0 }}>MN</div>
             <div style={{ flexGrow: 1 }}>
-              <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>Tess Nolan</div>
+              <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>Mila Novak</div>
               <div style={{ fontSize: 13, color: MUT }}>FV approval · 12 Mar 2026</div>
             </div>
             <div style={{ fontSize: 12, fontWeight: 700, padding: '0 9px', height: 24, borderRadius: 999, background: G, color: '#fff', display: 'flex', alignItems: 'center', flexShrink: 0 }}>Approved</div>

@@ -1347,7 +1347,7 @@ function renderScreenInner(key: string): ReactNode {
     // Design IDs — Older player phone screens (PO*)
     case 'PO1-OlderHome':          return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><OlderPlayerApp empty={false} initialView="home" /></div>
     case 'PO2-OlderMessage':       return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><OlderPlayerApp empty={false} initialView="messages" initialChat="private" /></div>
-    case 'PO3-OlderAvailability':  return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><AV2ParentAvailability /></div>
+    case 'PO3-OlderAvailability':  return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><AV2ParentAvailability self teamLabel="U16" coach="Ollie" /></div>
     case 'PO4-OlderLoad':          return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><OlderPlayerApp empty={false} initialView="body" /></div>
     case 'PO6-OlderChats':         return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><OlderPlayerApp empty={false} initialView="messages" initialChat="list" /></div>
     case 'PO7-OlderGroup':         return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><OlderPlayerApp empty={false} initialView="messages" initialChat="group" /></div>
