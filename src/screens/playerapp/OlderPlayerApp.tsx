@@ -279,8 +279,8 @@ function MessagesView({ initialChat = 'list' }: { initialChat?: MsgChat }) {
 }
 
 function BodyView() {
-  const [toast, setToast] = useState<string|null>(null)
-  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
+  const [picked, setPicked] = useState<string[]>([])
+  const [adding, setAdding] = useState(false)
   return (
     <div style={{ flexGrow: 1, overflowY: 'auto', padding: '20px 20px 20px', display: 'flex', flexDirection: 'column', gap: 14 }}>
       <div style={{ fontSize: 20, fontWeight: 800, letterSpacing: '-0.02em' }}>My body</div>
@@ -303,10 +303,13 @@ function BodyView() {
       <div style={{ background: '#fff', borderRadius: 16, padding: '14px 16px', border: '1px solid #e9eae8' }}>
         <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 8 }}>Other sport this week</div>
         <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' as const }}>
-          {['Basketball', 'Swimming', 'Tennis', 'Running', 'Gym', '+ Add'].map(s => (
-            <button key={s} onClick={() => st(s === '+ Add' ? 'Opening sport picker.' : `${s} added.`)} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: `1.5px solid ${s === '+ Add' ? '#2f6252' : '#c5c8c4'}`, background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 500, cursor: 'pointer', color: s === '+ Add' ? '#2f6252' : '#10211f' }}>{s}</button>
-          ))}
+          {['Basketball', 'Swimming', 'Tennis', 'Running', 'Gym', '+ Add'].map(s => {
+            const on = picked.includes(s)
+            return (
+            <button key={s} onClick={() => s === '+ Add' ? setAdding(a => !a) : setPicked(p => on ? p.filter(x => x !== s) : [...p, s])} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: `1.5px solid ${s === '+ Add' || on ? '#2f6252' : '#c5c8c4'}`, background: on ? '#eef5f2' : '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: on ? 700 : 500, cursor: 'pointer', color: s === '+ Add' || on ? '#2f6252' : '#10211f' }}>{on ? `${s} ✓` : s}</button>
+          )})}
         </div>
+        {adding && <input placeholder="Add another sport…" style={{ marginTop: 8, width: '100%', height: 40, borderRadius: 8, border: '1px solid #c5c8c4', padding: '0 12px', fontSize: 14, fontFamily: 'inherit', boxSizing: 'border-box' }} />}
       </div>
 
       {/* Tests */}
@@ -323,7 +326,6 @@ function BodyView() {
           </div>
         ))}
       </div>
-      {toast && <div role="status" style={{ position:'fixed', bottom:70, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'10px 18px', borderRadius:10, background:'#1f4a3e', color:'#fff', fontSize:14, fontWeight:600, whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }
