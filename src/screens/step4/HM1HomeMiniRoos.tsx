@@ -13,21 +13,24 @@ const WEEK = [
 ]
 
 export default function HM1HomeMiniRoos(_: { onBack?: () => void }) {
-  const [toast, setToast] = useState<string|null>(null)
-  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
+  const [activeNav, setActiveNav] = useState('Home')
+  const [activeSub, setActiveSub] = useState('Overview')
+  const [done, setDone] = useState<string[]>([])
+  const mark = (k: string) => setDone(d => d.includes(k) ? d : [...d, k])
+  const is = (k: string) => done.includes(k)
   return (
     <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }}>
       <div style={{ background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 20, height: 64 }}>
         <div style={{ fontSize: 21, fontWeight: 800, color: '#fff', letterSpacing: '-0.02em' }}>Clean Sheet</div>
         {['Home', 'Squad', 'Training', 'Game day'].map(t => (
-          <div key={t} style={{ height: 48, display: 'flex', alignItems: 'center', gap: 8, padding: '0 14px', borderRadius: 12, fontSize: 16, fontWeight: 600, background: t === 'Home' ? '#40826d' : 'transparent', color: t === 'Home' ? '#fff' : 'rgba(255,255,255,0.7)', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>
+          <div key={t} onClick={() => setActiveNav(t)} style={{ height: 48, display: 'flex', alignItems: 'center', gap: 8, padding: '0 14px', borderRadius: 12, fontSize: 16, fontWeight: 600, background: t === activeNav ? '#40826d' : 'transparent', color: t === activeNav ? '#fff' : 'rgba(255,255,255,0.7)', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>
         ))}
         <div style={{ marginLeft: 'auto', height: 44, padding: '0 14px', borderRadius: 999, background: '#fff', color: INK, fontSize: 15, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 8 }}>U9 Tom · Wattle Creek</div>
         <div style={{ width: 44, height: 44, borderRadius: 999, background: '#c39797', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 15, color: INK }}>TA</div>
       </div>
       <div style={{ background: '#fff', borderBottom: `1px solid ${LN}`, height: 44, padding: '0 28px', display: 'flex', alignItems: 'flex-end', gap: 24 }}>
         {['Overview', 'Inbox', 'Calendar', 'Team staff'].map(t => (
-          <div key={t} style={{ height: 44, display: 'flex', alignItems: 'center', fontSize: 15, fontWeight: 600, color: t === 'Overview' ? INK : MUT, borderBottom: t === 'Overview' ? `3px solid #40826d` : '3px solid transparent', boxSizing: 'border-box', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>
+          <div key={t} onClick={() => setActiveSub(t)} style={{ height: 44, display: 'flex', alignItems: 'center', fontSize: 15, fontWeight: 600, color: t === activeSub ? INK : MUT, borderBottom: t === activeSub ? `3px solid #40826d` : '3px solid transparent', boxSizing: 'border-box', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>
         ))}
       </div>
 
@@ -87,8 +90,8 @@ export default function HM1HomeMiniRoos(_: { onBack?: () => void }) {
               ))}
             </div>
             <div style={{ display: 'flex', gap: 8 }}>
-              <button onClick={() => st("Opening tonight's games.")} style={{ flex: 1, height: 44, borderRadius: 10, border: `1px solid #fff`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Open tonight's games</button>
-              <button onClick={() => st('Opening game swap.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid #fff`, background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Swap a game</button>
+              <button onClick={() => mark('games')} style={{ flex: 1, height: 44, borderRadius: 10, border: `1px solid #fff`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>{is('games') ? "Games open ✓" : "Open tonight's games"}</button>
+              <button onClick={() => mark('swap')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid #fff`, background: is('swap') ? '#fff' : 'transparent', color: is('swap') ? G : '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>{is('swap') ? 'Swapping ✓' : 'Swap a game'}</button>
             </div>
           </div>
 
@@ -121,8 +124,8 @@ export default function HM1HomeMiniRoos(_: { onBack?: () => void }) {
               </div>
             ))}
             <div style={{ display: 'flex', gap: 8, marginTop: 'auto' }}>
-              <button onClick={() => st('Opening session review.')} style={{ flex: 1, height: 44, borderRadius: 10, border: `1px solid ${G}`, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>What we saw</button>
-              <button onClick={() => st('Opening parent thank-you message.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Thank the parents</button>
+              <button onClick={() => mark('saw')} style={{ flex: 1, height: 44, borderRadius: 10, border: `1px solid ${G}`, background: is('saw') ? '#40826d' : G, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>{is('saw') ? 'Review open ✓' : 'What we saw'}</button>
+              <button onClick={() => mark('thank')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${is('thank') ? G : LN}`, background: is('thank') ? PALE : '#fff', color: is('thank') ? G : INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>{is('thank') ? '✓ Parents thanked' : 'Thank the parents'}</button>
             </div>
           </div>
         </div>
@@ -156,7 +159,6 @@ export default function HM1HomeMiniRoos(_: { onBack?: () => void }) {
           </div>
         </div>
       </div>
-      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }
