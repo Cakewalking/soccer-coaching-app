@@ -162,6 +162,9 @@ export default function ClipsScreen({ empty, activeTab = 0 }: { empty?: boolean;
   const [activeMeasure, setActiveMeasure] = useState<string | null>('Pressing high')
   const [activePlayer, setActivePlayer] = useState<string | null>(null)
   const [typeFilter, setTypeFilter] = useState<TypeFilter>('all')
+  const [chips, setChips] = useState<Record<string, string | null>>({})
+  const CHIP_VALUES: Record<string, string> = { Area: 'Attacking third', Half: '2nd half', Source: 'Match camera', 'Found by': 'Auto-tagged' }
+  const toggleChip = (k: string) => setChips(c => ({ ...c, [k]: c[k] ? null : CHIP_VALUES[k] }))
   const [selected, setSelected] = useState<GameClip>(CLIPS[0])
   const [toast, setToast] = useState<string | null>(null)
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
@@ -326,10 +329,10 @@ export default function ClipsScreen({ empty, activeTab = 0 }: { empty?: boolean;
           }}>{t === 'all' ? 'All' : t === 'good' ? 'Good' : 'To work on'}</button>
         ))}
         <div style={{ width: 1, height: 20, background: '#e9eae8', margin: '0 4px' }} />
-        <DropChip label="Area" onClick={() => showToast('Opening area filter.')} />
-        <DropChip label="Half" onClick={() => showToast('Opening half filter.')} />
-        <DropChip label="Source" onClick={() => showToast('Opening source filter.')} />
-        <DropChip label="Found by" onClick={() => showToast('Opening found-by filter.')} />
+        <DropChip label={chips.Area ?? 'Area'} active={!!chips.Area} onClick={() => toggleChip('Area')} />
+        <DropChip label={chips.Half ?? 'Half'} active={!!chips.Half} onClick={() => toggleChip('Half')} />
+        <DropChip label={chips.Source ?? 'Source'} active={!!chips.Source} onClick={() => toggleChip('Source')} />
+        <DropChip label={chips['Found by'] ?? 'Found by'} active={!!chips['Found by']} onClick={() => toggleChip('Found by')} />
         <div style={{ flexGrow: 1 }} />
         <span style={{ fontSize: 13, color: '#6f7f7b' }}>{filtered.length} clips</span>
       </div>
