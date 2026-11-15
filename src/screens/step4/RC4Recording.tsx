@@ -3,14 +3,16 @@ import { useState } from 'react'
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb'
 
 export default function RC4Recording(_: { onBack?: () => void }) {
-  const [toast, setToast] = useState<string|null>(null)
-  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
+  const [round, setRound] = useState(2)
+  const [moments, setMoments] = useState(0)
+  const [paused, setPaused] = useState(false)
+  const [stopped, setStopped] = useState(false)
   return (
     <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: GD, color: '#ffffff', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       <div style={{ flex: 'none', height: 64, boxSizing: 'border-box', padding: '0 28px', display: 'flex', alignItems: 'center', gap: 16 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#c39797', animation: 'pulse 1.5s infinite' }} />
-          <div style={{ fontSize: 15, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const }}>Recording</div>
+          <div style={{ width: 10, height: 10, borderRadius: '50%', background: stopped ? '#40826d' : paused ? '#cbbeb5' : '#c39797', animation: stopped || paused ? 'none' : 'pulse 1.5s infinite' }} />
+          <div style={{ fontSize: 15, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const }}>{stopped ? 'Saved' : paused ? 'Paused' : 'Recording'}</div>
         </div>
         <div style={{ fontSize: 18, fontWeight: 700 }}>Win it back in 6 seconds</div>
         <div style={{ marginLeft: 'auto', fontSize: 13, color: 'rgba(255,255,255,0.65)', display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -25,7 +27,7 @@ export default function RC4Recording(_: { onBack?: () => void }) {
             <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,0.6)' }}>Round</div>
             <div style={{ display: 'flex', gap: 8 }}>
               {[1, 2, 3].map(r => (
-                <div key={r} style={{ width: 36, height: 36, borderRadius: '50%', background: r === 2 ? '#40826d' : r < 2 ? 'rgba(255,255,255,0.3)' : 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 15, fontWeight: 700, border: r === 2 ? '2px solid #fff' : '2px solid transparent' }}>{r}</div>
+                <div key={r} style={{ width: 36, height: 36, borderRadius: '50%', background: r === round ? '#40826d' : r < round ? 'rgba(255,255,255,0.3)' : 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 15, fontWeight: 700, border: r === round ? '2px solid #fff' : '2px solid transparent' }}>{r}</div>
               ))}
             </div>
             <div style={{ marginLeft: 'auto', fontSize: 13, color: 'rgba(255,255,255,0.6)' }}>3 × 6 minutes</div>
@@ -33,7 +35,7 @@ export default function RC4Recording(_: { onBack?: () => void }) {
 
           <div style={{ textAlign: 'center' as const }}>
             <div style={{ fontSize: 72, fontWeight: 700, letterSpacing: '-0.04em', lineHeight: 1 }}>3:48</div>
-            <div style={{ fontSize: 15, color: 'rgba(255,255,255,0.6)', marginTop: 4 }}>of 6:00 · Round 2</div>
+            <div style={{ fontSize: 15, color: 'rgba(255,255,255,0.6)', marginTop: 4 }}>of 6:00 · Round {round}{moments > 0 ? ` · ${moments} moment${moments > 1 ? 's' : ''} marked` : ''}</div>
           </div>
 
           <div style={{ background: 'rgba(255,255,255,0.1)', borderRadius: 12, padding: '14px 18px' }}>
@@ -42,13 +44,13 @@ export default function RC4Recording(_: { onBack?: () => void }) {
           </div>
 
           <div style={{ display: 'flex', gap: 10 }}>
-            <button onClick={() => st('Moving to next round.')} style={{ flex: 1, height: 52, borderRadius: 12, border: '2px solid rgba(255,255,255,0.4)', background: 'transparent', color: '#fff', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Next round →</button>
-            <button onClick={() => st('Moment marked.')} style={{ height: 52, padding: '0 20px', borderRadius: 12, border: '2px solid rgba(255,255,255,0.4)', background: 'transparent', color: '#fff', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Mark a moment</button>
+            <button onClick={() => setRound(r => Math.min(3, r + 1))} style={{ flex: 1, height: 52, borderRadius: 12, border: '2px solid rgba(255,255,255,0.4)', background: 'transparent', color: '#fff', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Next round →</button>
+            <button onClick={() => setMoments(m => m + 1)} style={{ height: 52, padding: '0 20px', borderRadius: 12, border: '2px solid rgba(255,255,255,0.4)', background: 'transparent', color: '#fff', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Mark a moment</button>
           </div>
 
           <div style={{ display: 'flex', gap: 10 }}>
-            <button onClick={() => st('Recording paused.')} style={{ flex: 1, height: 48, borderRadius: 12, border: '2px solid rgba(255,255,255,0.3)', background: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.8)', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Pause</button>
-            <button onClick={() => st('Recording stopped and saved.')} style={{ flex: 1, height: 48, borderRadius: 12, border: '2px solid rgba(255,255,255,0.3)', background: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.8)', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Stop and save</button>
+            <button onClick={() => setPaused(p => !p)} style={{ flex: 1, height: 48, borderRadius: 12, border: '2px solid rgba(255,255,255,0.3)', background: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.8)', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>{paused ? 'Resume' : 'Pause'}</button>
+            <button onClick={() => setStopped(true)} style={{ flex: 1, height: 48, borderRadius: 12, border: '2px solid rgba(255,255,255,0.3)', background: stopped ? 'rgba(64,130,109,0.3)' : 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.8)', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>{stopped ? 'Saved ✓' : 'Stop and save'}</button>
           </div>
         </div>
 
@@ -74,7 +76,6 @@ export default function RC4Recording(_: { onBack?: () => void }) {
           </div>
         </div>
       </main>
-      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }
