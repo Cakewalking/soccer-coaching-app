@@ -5,8 +5,7 @@ function DirShell({ navActive = 'Teams', sideItems, sideActive, title, sub, ctaL
   navActive?: string; sideItems?: string[]; sideActive?: string; title: string; sub: string; ctaLabel?: string
 }) {
   const tabs = ['Club', 'Teams', 'Coaches', 'Players', 'Safeguarding', 'Reports']
-  const [toast, setToast] = useState<string|null>(null)
-  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
+  const [clicked, setClicked] = useState(false)
   return (
     <div style={{ width: 1180, background: BG, fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' as const }}>
       <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 32, height: 52, flexShrink: 0 }}>
@@ -26,19 +25,17 @@ function DirShell({ navActive = 'Teams', sideItems, sideActive, title, sub, ctaL
           <div style={{ textAlign: 'center' as const, maxWidth: 440 }}>
             <div style={{ fontSize: 18, fontWeight: 700, color: INK, marginBottom: 8 }}>{title}</div>
             <div style={{ fontSize: 14, color: MUT, marginBottom: ctaLabel ? 20 : 0 }}>{sub}</div>
-            {ctaLabel && <button onClick={() => st(`${ctaLabel}.`)} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 'none', background: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>{ctaLabel}</button>}
+            {ctaLabel && <button onClick={() => setClicked(true)} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 'none', background: clicked ? '#40826d' : G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>{clicked ? `Opening ${ctaLabel.toLowerCase()}…` : ctaLabel}</button>}
           </div>
         </div>
       </div>
-      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }
 
 function HMShell({ navActive = 'Today', title, sub, ctaLabel }: { navActive?: string; title: string; sub: string; ctaLabel?: string }) {
   const tabs = ['Today', 'Squad', 'Training', 'Game day', 'Messages', 'Calendar']
-  const [toast, setToast] = useState<string|null>(null)
-  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
+  const [clicked, setClicked] = useState(false)
   return (
     <div style={{ width: 1180, background: BG, fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' as const }}>
       <div style={{ background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 24, height: 52, flexShrink: 0 }}>
@@ -53,18 +50,16 @@ function HMShell({ navActive = 'Today', title, sub, ctaLabel }: { navActive?: st
         <div style={{ textAlign: 'center' as const, maxWidth: 440 }}>
           <div style={{ fontSize: 18, fontWeight: 700, color: INK, marginBottom: 8 }}>{title}</div>
           <div style={{ fontSize: 14, color: MUT, marginBottom: ctaLabel ? 20 : 0 }}>{sub}</div>
-          {ctaLabel && <button onClick={() => st(`${ctaLabel}.`)} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 'none', background: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>{ctaLabel}</button>}
+          {ctaLabel && <button onClick={() => setClicked(true)} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 'none', background: clicked ? '#40826d' : G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>{clicked ? `Opening ${ctaLabel.toLowerCase()}…` : ctaLabel}</button>}
         </div>
       </div>
-      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }
 
 function AcOwnerShell({ navActive = 'Home', title, sub, ctaLabel }: { navActive?: string; title: string; sub: string; ctaLabel?: string }) {
   const tabs = ['Home', 'Players', 'Trials', 'Coaches', 'Reports', 'Settings']
-  const [toast, setToast] = useState<string|null>(null)
-  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
+  const [clicked, setClicked] = useState(false)
   return (
     <div style={{ width: 1180, background: BG, fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' as const }}>
       <div style={{ background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 28, height: 52, flexShrink: 0 }}>
@@ -79,18 +74,16 @@ function AcOwnerShell({ navActive = 'Home', title, sub, ctaLabel }: { navActive?
         <div style={{ textAlign: 'center' as const, maxWidth: 440 }}>
           <div style={{ fontSize: 18, fontWeight: 700, color: INK, marginBottom: 8 }}>{title}</div>
           <div style={{ fontSize: 14, color: MUT, marginBottom: ctaLabel ? 20 : 0 }}>{sub}</div>
-          {ctaLabel && <button onClick={() => st(`${ctaLabel}.`)} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 'none', background: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>{ctaLabel}</button>}
+          {ctaLabel && <button onClick={() => setClicked(true)} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 'none', background: clicked ? '#40826d' : G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>{clicked ? `Opening ${ctaLabel.toLowerCase()}…` : ctaLabel}</button>}
         </div>
       </div>
-      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }
 
 function AcCoachShell({ title, sub, ctaLabel }: { title: string; sub: string; ctaLabel?: string }) {
   const sideItems = ['Today', 'Run a session', 'Trial player', 'One-on-one', 'Record', 'Suggested']
-  const [toast, setToast] = useState<string|null>(null)
-  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
+  const [clicked, setClicked] = useState(false)
   return (
     <div style={{ width: 1180, background: BG, fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' as const }}>
       <div style={{ background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 28, height: 52, flexShrink: 0 }}>
@@ -109,18 +102,16 @@ function AcCoachShell({ title, sub, ctaLabel }: { title: string; sub: string; ct
           <div style={{ textAlign: 'center' as const, maxWidth: 440 }}>
             <div style={{ fontSize: 18, fontWeight: 700, color: INK, marginBottom: 8 }}>{title}</div>
             <div style={{ fontSize: 14, color: MUT, marginBottom: ctaLabel ? 20 : 0 }}>{sub}</div>
-            {ctaLabel && <button onClick={() => st(`${ctaLabel}.`)} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 'none', background: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>{ctaLabel}</button>}
+            {ctaLabel && <button onClick={() => setClicked(true)} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 'none', background: clicked ? '#40826d' : G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>{clicked ? `Opening ${ctaLabel.toLowerCase()}…` : ctaLabel}</button>}
           </div>
         </div>
       </div>
-      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }
 
 function CoachShell({ navActive = 'Squad', title, sub, ctaLabel }: { navActive?: string; title: string; sub: string; ctaLabel?: string }) {
-  const [toast, setToast] = useState<string|null>(null)
-  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
+  const [clicked, setClicked] = useState(false)
   return (
     <div style={{ width: 1180, background: BG, fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' as const }}>
       <div style={{ background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 24, height: 52, flexShrink: 0 }}>
@@ -135,10 +126,9 @@ function CoachShell({ navActive = 'Squad', title, sub, ctaLabel }: { navActive?:
         <div style={{ textAlign: 'center' as const, maxWidth: 440 }}>
           <div style={{ fontSize: 18, fontWeight: 700, color: INK, marginBottom: 8 }}>{title}</div>
           <div style={{ fontSize: 14, color: MUT, marginBottom: ctaLabel ? 20 : 0 }}>{sub}</div>
-          {ctaLabel && <button onClick={() => st(`${ctaLabel}.`)} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 'none', background: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>{ctaLabel}</button>}
+          {ctaLabel && <button onClick={() => setClicked(true)} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 'none', background: clicked ? '#40826d' : G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>{clicked ? `Opening ${ctaLabel.toLowerCase()}…` : ctaLabel}</button>}
         </div>
       </div>
-      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }
@@ -459,8 +449,7 @@ export function MS1eTeamSheetEmpty() {
 // ─── Older player home (PO) ────────────────────────────────────────────────────
 
 function PlayerPhoneShell({ title, sub, ctaLabel }: { title: string; sub: string; ctaLabel?: string }) {
-  const [toast, setToast] = useState<string|null>(null)
-  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
+  const [clicked, setClicked] = useState(false)
   return (
     <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}>
       <div style={{ width: 390, background: '#fff', borderRadius: 24, border: `1px solid ${LN}`, overflow: 'hidden', fontFamily: 'var(--font-sans)' }}>
@@ -475,10 +464,9 @@ function PlayerPhoneShell({ title, sub, ctaLabel }: { title: string; sub: string
         <div style={{ padding: '48px 20px', textAlign: 'center' as const }}>
           <div style={{ fontSize: 16, fontWeight: 700, color: INK, marginBottom: 8 }}>{title}</div>
           <div style={{ fontSize: 14, color: MUT, marginBottom: ctaLabel ? 20 : 0 }}>{sub}</div>
-          {ctaLabel && <button onClick={() => st(`${ctaLabel}.`)} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 'none', background: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>{ctaLabel}</button>}
+          {ctaLabel && <button onClick={() => setClicked(true)} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 'none', background: clicked ? '#40826d' : G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>{clicked ? `Opening ${ctaLabel.toLowerCase()}…` : ctaLabel}</button>}
         </div>
       </div>
-      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }
