@@ -411,7 +411,6 @@ export default function PlayersTab({ empty, onNav }: { empty?: boolean; onNav?: 
           { id: 'moves', label: 'Moves' },
           { id: 'trials', label: 'Trials' },
           { id: 'girls', label: 'Girls and women' },
-          { id: 'nominations', label: 'Ready for more' },
         ]}
         active={view}
         onSelect={id => setView(id as PlayersView)}

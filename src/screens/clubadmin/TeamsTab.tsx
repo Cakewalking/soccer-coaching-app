@@ -264,7 +264,6 @@ export default function TeamsTab({ empty }: { empty?: boolean }) {
           { id: 'leaguesync', label: 'League sync' },
           { id: 'grading', label: 'Grading' },
           { id: 'referees', label: 'Referees' },
-          { id: 'teamkit', label: 'Kit and cameras' },
           { id: 'cards', label: 'Cards' },
         ]}
         active={view}
