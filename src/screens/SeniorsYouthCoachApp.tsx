@@ -377,9 +377,9 @@ type Sub = 'teamtalk' | 'pitchside' | null
 
 const NAV_KEYS: NavKey[] = ['home', 'squad', 'training', 'matchday', 'clips', 'record']
 const SQUAD_TABS    = ['Players', 'Line-ups', 'Development goals', 'Wellness', 'Availability', 'Consent and privacy', 'Season summaries', 'Fitness coach']
-const TRAINING_TABS = ["Tonight's session", 'This week', 'Suggested', 'Drill library', 'Growth and load', 'Fitness coach']
-const MATCHDAY_TABS = ['Team talk', 'Line-up and minutes', 'Opposition', 'Review', 'Fitness coach']
-const CLIPS_TABS    = ['Browse', 'Playlists', 'Shared with players', 'To check']
+const TRAINING_TABS = ["Tonight's session", 'This week', 'Suggested', 'Drill library', 'Growth and load']
+const MATCHDAY_TABS = ['Team talk', 'Line-up and minutes', 'Opposition', 'Review']
+const CLIPS_TABS    = ['By measure', 'By game', 'By player', 'Playlists', 'To check', 'Learn']
 
 export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseContent, empty = false, initialScreen, onNavChange }: { teamType: TeamType; onBack: () => void; phaseContent?: ReactNode; empty?: boolean; initialScreen?: string; onNavChange?: (screen: string) => void }) {
   const data = teamType === 'seniors' ? SENIORS : YOUTH

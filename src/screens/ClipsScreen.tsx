@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import EDU1Learn from './step4/EDU1Learn'
 import { CLIPS, CLIPS_GAMES, CLIPS_MEASURES, type GameClip } from '../data'
 import { PLAYERS, GAME_FULL, MEASURE_INFO, resultColor } from './clips/clipData'
 import { ClipCard, ClipDetail, DropChip } from './clips/ClipComponents'
@@ -165,9 +166,18 @@ export default function ClipsScreen({ empty, activeTab = 0 }: { empty?: boolean;
   const [toast, setToast] = useState<string | null>(null)
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
+  // Clips sub-tabs per APP-MAP: By measure, By game, By player, Playlists,
+  // To check, Learn (FIX-LIST item 3). Tabs 0-2 drive the browse grouping.
+  useEffect(() => {
+    if (activeTab === 0) setFilterMode('measure')
+    else if (activeTab === 1) setFilterMode('game')
+    else if (activeTab === 2) setFilterMode('player')
+  }, [activeTab])
+
   if (empty) return <ClipsEmpty activeTab={activeTab} />
-  if (activeTab === 1 || activeTab === 2) return <PlaylistsTab />
-  if (activeTab === 3) return <ToCheckTab />
+  if (activeTab === 3) return <PlaylistsTab />
+  if (activeTab === 4) return <ToCheckTab />
+  if (activeTab === 5) return <EDU1Learn />
 
   const baseFiltered = CLIPS.filter(c => {
     if (filterMode === 'game'    && activeGame)    return activeGame === 'all' || c.game === activeGame
