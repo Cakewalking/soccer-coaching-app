@@ -1027,7 +1027,7 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
             <div style={{ background: '#1f4a3e', borderRadius: 16, padding: '16px' }}>
               <div style={{ fontSize: 15, fontWeight: 700, color: '#fff', marginBottom: 6 }}>Pitch-side test mode</div>
               <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.75)', marginBottom: 14 }}>Record sprint times and jump results while standing on the pitch.</div>
-              <button onClick={() => setTrainSub('sprint')} style={{ height: 44, padding: '0 20px', borderRadius: '999px', border: 0, background: '#fff', color: '#1f4a3e', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Start test mode</button>
+              <button onClick={() => { setTab('training'); setTrainSub('sprint') }} style={{ height: 44, padding: '0 20px', borderRadius: '999px', border: 0, background: '#fff', color: '#1f4a3e', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Start test mode</button>
             </div>
             <div style={{ marginTop: 14, background: '#fff', borderRadius: 16, padding: '16px', border: '1px solid #e9eae8', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <div>

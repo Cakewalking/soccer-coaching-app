@@ -72,7 +72,9 @@ export default function ClubAdminScreen({ empty, role = 'chair', initials = 'RM'
   // Club, not top tabs (FIX-LIST item 3).
   const CHAIR_TAB_IDS = new Set(['club', 'teams', 'coaches', 'players', 'safeguarding', 'reports'])
   const DOF_TAB_IDS   = new Set(['club', 'teams', 'coaches', 'players', 'safeguarding', 'reports'])
-  const TABS = role === 'welfare' ? ALL_TABS.filter(t => t.id === 'welfare')
+  // The welfare officer gets her own three: concerns, children checks and private messages.
+  const WELFARE_TABS: { id: AdminTab; label: string }[] = [{ id: 'welfare', label: 'Concerns' }, { id: 'safeguarding', label: 'Children checks' }, { id: 'messages', label: 'Messages' }]
+  const TABS = role === 'welfare' ? WELFARE_TABS.map(w => ({ ...ALL_TABS.find(t => t.id === w.id)!, label: w.label }))
              : role === 'chair'   ? ALL_TABS.filter(t => CHAIR_TAB_IDS.has(t.id))
              :                      ALL_TABS.filter(t => DOF_TAB_IDS.has(t.id))
 
@@ -137,7 +139,7 @@ export default function ClubAdminScreen({ empty, role = 'chair', initials = 'RM'
           {tab === 'goalkeepers'  && <GoalkeepersTab empty={empty} />}
           {tab === 'footballyear' && <SP18ClubPhases onBack={() => setTab('club')} />}
           {tab === 'trialwindow'  && <SP19TrialWindow onBack={() => setTab('club')} />}
-          {tab === 'messages'     && <DirectorMessages />}
+          {tab === 'messages'     && (role === 'welfare' ? <div style={{ flex: 1, minHeight: 560, display: 'flex' }}><DirectorMessages embedded as="welfare" /></div> : <DirectorMessages />)}
           {tab === 'files'        && <FilesTab onNav={onNav} />}
           {tab === 'features'     && <FeaturesTab onNav={onNav} />}
         </div>

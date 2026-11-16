@@ -59,7 +59,7 @@ export default function SP21StandInHome({onBack}:{onBack?:()=>void}){
               <div style={{background:PALE,border:`1px solid #c0d8cc`,borderRadius:14,padding:'14px 16px'}}>
                 <div style={{fontSize:13,fontWeight:700,color:GD,marginBottom:8}}>Go easy on</div>
                 {[
-                  {name:'Ella Brooks',note:'Back from an injury. Keep it light in contact drills.'},
+                  {name:'Ella Brandt',note:'Back from an injury. Keep it light in contact drills.'},
                   {name:'Noah Singh',note:'Had a tough week. Keep him involved but don\'t push.'},
                 ].map(p=>(
                   <div key={p.name} style={{padding:'8px 0',borderTop:`1px solid #c0d8cc`}}>

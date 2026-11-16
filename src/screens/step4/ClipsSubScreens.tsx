@@ -179,7 +179,7 @@ export function TC1ToCheck() {
               <div style={{ fontSize: 12, fontWeight: 700, color: MUT, marginBottom: 8 }}>{c.question}</div>
               <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 6 }}>
                 {c.options.map((opt, j) => (
-                  <button key={j} style={{ height: 40, borderRadius: 8, border: `1px solid ${LN}`, background: j === 0 ? PALE : '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: j === 0 ? 700 : 500, color: j === 0 ? G : INK, cursor: 'pointer', textAlign: 'left' as const, paddingLeft: 14 }}>{opt}</button>
+                  <button key={j} style={{ height: 44, borderRadius: 8, border: `1px solid ${LN}`, background: j === 0 ? PALE : '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: j === 0 ? 700 : 500, color: j === 0 ? G : INK, cursor: 'pointer', textAlign: 'left' as const, paddingLeft: 14 }}>{opt}</button>
                 ))}
               </div>
               <button onClick={() => st('Confirmed.')} style={{ width: '100%', height: 44, marginTop: 10, borderRadius: 10, border: 'none', background: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>Confirm</button>

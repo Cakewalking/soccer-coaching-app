@@ -19,7 +19,7 @@ const TALK_SLIDES = [
   { label: 'WE LOVED', title: 'Everyone had a shot', color: '#40826d' },
   { label: 'TRY TODAY', title: 'Look up before you kick', color: '#6b4a4e' },
   { label: 'EVERYONE', title: 'Everyone gets a go', color: '#2f6252' },
-  { label: 'GO', title: 'vs Harbour Rovers', color: '#2f6252' },
+  { label: 'GO', title: 'vs Northgate City', color: '#2f6252' },
 ]
 
 export default function MiniRoosGameReady({ onPlayTeamTalk }: { onPlayTeamTalk: () => void }) {
@@ -46,7 +46,7 @@ export default function MiniRoosGameReady({ onPlayTeamTalk }: { onPlayTeamTalk: 
       <div style={{ flex: 'none', background: '#fff', borderBottom: `1px solid ${HAIR}`, padding: '14px 28px', display: 'flex', alignItems: 'center', gap: 16 }}>
         <div style={{ flexGrow: 1, minWidth: 0 }}>
           <div style={{ fontSize: 12, fontWeight: 600, color: MUT, letterSpacing: '0.02em', textTransform: 'uppercase' }}>Sat 6 Jun · 9:30 am · home · 9 playing</div>
-          <h1 style={{ margin: '2px 0 0', fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em', color: '#10211f' }}>vs Harbour Rovers</h1>
+          <h1 style={{ margin: '2px 0 0', fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em', color: '#10211f' }}>vs Northgate City</h1>
         </div>
         <div style={{ height: 36, padding: '0 14px', borderRadius: 999, border: `1px solid ${LEAF}`, background: '#edf8f2', display: 'flex', alignItems: 'center', gap: 7, fontSize: 14, fontWeight: 600, color: GREEN }}>
           <span style={{ width: 8, height: 8, borderRadius: 999, background: LEAF }} />Kick-off in 2 h 15 min
@@ -189,7 +189,7 @@ function SyncRow({ icon, title, sub, state, actionIdle, onAction }: { icon: stri
         <div style={{ fontSize: 13, fontWeight: 700 }}>{title}</div>
         <div style={{ fontSize: 12, color: '#4a5a57', lineHeight: '16px' }}>{sub}</div>
       </div>
-      <button onClick={onAction} disabled={state !== 'idle'} style={{ flex: 'none', height: 36, padding: '0 12px', borderRadius: 8, border: done ? 0 : '1px solid #c5c8c4', background: done ? '#edf8f2' : '#fff', color: '#2f6252', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: state === 'idle' ? 'pointer' : 'default', display: 'flex', alignItems: 'center', gap: 6 }}>
+      <button onClick={onAction} disabled={state !== 'idle'} style={{ flex: 'none', height: 44, padding: '0 12px', borderRadius: 8, border: done ? 0 : '1px solid #c5c8c4', background: done ? '#edf8f2' : '#fff', color: '#2f6252', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: state === 'idle' ? 'pointer' : 'default', display: 'flex', alignItems: 'center', gap: 6 }}>
         {state === 'syncing' && <span style={{ width: 11, height: 11, borderRadius: 999, border: '2px solid #cdd8d3', borderTopColor: '#2f6252', display: 'inline-block', animation: 'spin 0.7s linear infinite' }} />}
         {done ? '✓ Ready' : state === 'syncing' ? 'Connecting…' : actionIdle}
       </button>

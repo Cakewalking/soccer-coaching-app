@@ -69,7 +69,7 @@ export const GRADING: GradingRow[] = [
 
 export const CONCERNS: Concern[] = [
   { id: 'c1', date: '28 Oct', team: 'U14 Sam', subject: 'Player wellbeing — repeat low wellness', status: 'open', assignee: 'Club DSL' },
-  { id: 'c2', date: '12 Oct', team: 'U12 Sam', subject: 'Sideline language complaint', status: 'resolved', assignee: 'Sam Russo' },
+  { id: 'c2', date: '12 Oct', team: 'U12 Sam', subject: 'Sideline language complaint', status: 'resolved', assignee: 'Seth Russo' },
 ]
 
 export const CONCUSSIONS: Concussion[] = [

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { demoToast } from '../demoToast'
 import { OpeningPanel } from '../step4/directorParts'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
@@ -84,7 +85,7 @@ export default function FilesTab({ onNav }: { onNav?: (s: string) => void }) {
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: 20 }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
             <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>Space</div>
-            <button onClick={() => onNav?.('PRM1-FeaturesByTeam')} style={{ minHeight: 44, padding: '0 12px', background: 'none', border: 'none', fontSize: 13, color: G, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Add space</button>
+            <button onClick={() => onNav ? onNav('PRM1-FeaturesByTeam') : demoToast('Extra space is added under Club › Features and billing.')} style={{ minHeight: 44, padding: '0 12px', background: 'none', border: 'none', fontSize: 13, color: G, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Add space</button>
           </div>
           <div style={{ height: 8, background: LN, borderRadius: 999, overflow: 'hidden', marginBottom: 4 }}>
             <div style={{ height: '100%', width: '44%', background: GD, borderRadius: 999 }} />

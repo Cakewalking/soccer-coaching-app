@@ -23,6 +23,8 @@ import WellnessScreen        from './WellnessScreen'
 import AvailabilityScreen    from './AvailabilityScreen'
 import ConsentScreen         from './ConsentScreen'
 import FormationBuilder from './formation/FormationBuilder'
+import ScreenLayer, { isScreenId } from './ScreenLayer'
+import PlayerProfileScreen from './PlayerProfileScreen'
 import type { FormationPreset } from './formation/lineupInsights'
 import ThisWeekScreen        from './ThisWeekScreen'
 import SuggestionsScreen     from './SuggestionsScreen'
@@ -84,6 +86,8 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
   const [homeTab, setHomeTab]         = useState(initHomeTab)
   const [squadTab, setSquadTab]       = useState(0)
   const [formationPreset, setFormationPreset] = useState<FormationPreset | null>(null)
+  const [profileIni, setProfileIni] = useState<string | null>(null)
+  const [layer, setLayer] = useState<string | null>(null)   // a designed screen opened over the app
   const [trainingTab, setTrainingTab] = useState(0)
   const [matchTab, setMatchTab]       = useState(0)
   const [clipsTab, setClipsTab]       = useState(0)
@@ -107,8 +111,9 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
     if (s === 'setstyle')  { goNav('home');     setHomeTab(4);  return }
     if (s === 'teamtalk')  { setSub('teamtalk');  return }
     if (s === 'pitchside') { setSub('pitchside'); return }
-    if (s === 'addgame')   { setSub('addgame');   return }
     if (s === 'call')      { alert('Opening the booking calendar.'); return }
+    if (isScreenId(s))     { setLayer(s); return }
+    if (s === 'addgame')   { setSub('addgame');   return }
   }
 
   // Let an embedded Home story drive this frame: a deep-link whose design-id maps
@@ -189,7 +194,7 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
     else if (homeTab === 6) content = <TeamStaffScreen empty={sbEmpty} />
     else if (homeTab === 7) content = renderFiles()
   } else if (nav === 'squad') {
-    if (squadTab === 0) content = <SquadScreen role="head" onPlayerProfile={() => {}} empty={sbEmpty} />
+    if (squadTab === 0) content = profileIni ? <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, minHeight: 0 }}><div style={{ flex: 'none', padding: '10px 28px 0' }}><button onClick={() => setProfileIni(null)} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>← All players</button></div><PlayerProfileScreen playerIni={profileIni} /></div> : <SquadScreen role="head" onPlayerProfile={setProfileIni} empty={sbEmpty} />
     else if (squadTab === 1) content = <FormationBuilder key={formationPreset?.note ?? 'plain'} preset={formationPreset} team="juniors" onNav={(s) => { if (s === 'T2-TabletMatch') { goNav('matchday'); setMatchTab(1) } else if (s === 'SQ1-BestLineups') { setSquadTab(2) } else { handleNav(s) } }} />
     else if (squadTab === 2) content = <SquadLineups noFrame onNav={(s, preset) => { if (s === 'formation') { setFormationPreset(preset ?? null); setSquadTab(1) } else if (s === 'record') { goNav('record') } else if (s === 'teamsheet') { goNav('matchday'); setMatchTab(1) } }} />
     else if (squadTab === 3) content = <DevGoalsScreen empty={sbEmpty} />
@@ -205,7 +210,7 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
     else if (trainingTab === 5) content = <FitnessTrainingTab empty={sbEmptySession} />
   } else if (nav === 'record') {
     if (recView === 'REC2-RecordSaved') content = <RecordSaved noFrame onBack={() => setRecView(null)} onNav={(s) => { if (s === 'EX1-HowWorkedOut') { goNav('matchday'); setMatchTab(3) } else { handleNav(s) } }} />
-    else content = <RecordHub noFrame onNav={setRecView} />
+    else content = <RecordHub noFrame onNav={(s) => s === 'REC2-RecordSaved' ? setRecView(s) : handleNav(s)} />
   } else if (nav === 'matchday') {
     if (matchTab === 0) content = <MatchDayScreen onNav={handleNav} empty={sbEmptyFixture} />
     else if (matchTab === 1) content = <TeamSheetScreen empty={sbEmptyFixture} />
@@ -216,6 +221,8 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
   } else if (nav === 'clips') {
     content = <ClipsScreen empty={sbEmpty} activeTab={clipsTab} onNav={handleNav} />
   }
+
+  if (layer) return <ScreenLayer screenKey={layer} onClose={() => setLayer(null)} backLabel="Back to U12 Sam" />
 
   return (
     <CoachTabletFrame

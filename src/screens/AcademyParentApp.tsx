@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { demoToast } from './demoToast'
 
 const G    = '#2f6252'
 const G2   = '#40826d'
@@ -65,8 +66,9 @@ function Row({ label, value, sub, btn }: { label: string; value?: string; sub?: 
 }
 
 function PBtn({ label, primary, small, block, onClick }: { label: string; primary?: boolean; small?: boolean; block?: boolean; onClick?: () => void }) {
+  const says: Record<string, string> = { 'See what to bring': 'Boots, shin pads, a water bottle and a jumper.', 'Pay now': 'Opening secure payment for the balance.' }
   return (
-    <button onClick={onClick} style={{ height: small ? 44 : 48, padding: `0 ${small ? 14 : 20}px`, borderRadius: 999, border: primary ? 'none' : `1px solid ${LN}`, background: primary ? G : '#fff', color: primary ? '#fff' : MUT, fontSize: small ? 13 : 15, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0, width: block ? '100%' : undefined }}>{label}</button>
+    <button onClick={onClick ?? (() => demoToast(says[label] ?? (label.startsWith('Book for') ? 'Booked. A receipt is on its way.' : `${label}: done.`)))} style={{ height: small ? 44 : 48, padding: `0 ${small ? 14 : 20}px`, borderRadius: 999, border: primary ? 'none' : `1px solid ${LN}`, background: primary ? G : '#fff', color: primary ? '#fff' : MUT, fontSize: small ? 13 : 15, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0, width: block ? '100%' : undefined }}>{label}</button>
   )
 }
 
@@ -653,7 +655,7 @@ export default function AcademyParentApp({ onBack, empty = false, initialModal =
       <div style={{ background: GD, padding: '12px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexShrink: 0 }}>
         <span style={{ fontSize: 16, fontWeight: 800, color: '#fff', letterSpacing: '-0.02em' }}>Clean Sheet</span>
         <span style={{ fontSize: 12, fontWeight: 600, color: 'rgba(255,255,255,0.7)' }}>Kai's family</span>
-        <button onClick={onBack} style={{ height: 44, padding: '0 10px', borderRadius: 999, border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: 'rgba(255,255,255,0.75)', fontSize: 11, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>← Back</button>
+        <button onClick={() => nav !== 'home' || modal !== 'none' ? handleNav('home') : onBack?.()} style={{ height: 44, padding: '0 10px', borderRadius: 999, border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: 'rgba(255,255,255,0.75)', fontSize: 11, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>← Back</button>
       </div>
       {content}
     </div>

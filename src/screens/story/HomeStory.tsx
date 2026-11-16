@@ -447,7 +447,7 @@ function TargetShell({ onBack, children }: { onBack: () => void; children: React
   return (
     <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: 0, background: '#f4f6f5' }}>
       <div style={{ padding: '10px 28px', borderBottom: `1px solid ${HAIR}`, background: '#fff', flexShrink: 0 }}>
-        <button onClick={onBack} style={{ height: 36, padding: '0 14px', borderRadius: 8, border: `1px solid ${BORDER}`, background: '#fff', fontSize: 13, fontWeight: 600, color: INK, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 6 }}>
+        <button onClick={onBack} style={{ height: 44, padding: '0 14px', borderRadius: 8, border: `1px solid ${BORDER}`, background: '#fff', fontSize: 13, fontWeight: 600, color: INK, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 6 }}>
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7" /></svg>
           Back to Home
         </button>

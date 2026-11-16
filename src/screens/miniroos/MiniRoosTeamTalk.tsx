@@ -14,12 +14,12 @@ type Slide = {
 }
 
 const SLIDES: Slide[] = [
-  { label: 'START', title: 'Have fun today', message: 'We are playing Harbour Rovers at home. Smiles on — let us enjoy it and help each other.', clip: 'The whole team walking out together last Saturday.', say: 'Keep it short and warm. Everyone is here to have a go.' },
+  { label: 'START', title: 'Have fun today', message: 'We are playing Northgate City at their ground. Smiles on — let us enjoy it and help each other.', clip: 'The whole team walking out together last Saturday.', say: 'Keep it short and warm. Everyone is here to have a go.' },
   { label: 'WE LOVED', title: 'You passed to a friend 14 times', message: 'Last game you looked for a teammate again and again. That is how we play.', clip: 'Ivy passes across to Max, who passes it on.', stat: '14 passes to a teammate', say: 'Name two children who passed well. Ask the team: who else did it?' },
   { label: 'WE LOVED', title: 'Everyone had a shot', message: 'Every child had a go at scoring last week. Brilliant — keep sharing it around.', clip: "Poppy's shot from the edge of the box.", stat: '9 of 9 had a shot', say: 'Celebrate that everyone had a turn. No tally of who scored.' },
   { label: 'TRY TODAY', title: 'Look up before you kick', message: 'One thing to try: a quick look up to find a friend before you pass or shoot.', clip: 'Leo looks up, spots Zara, and finds her.', say: 'Make it a game, not a correction. "Can we beat 14 passes today?"' },
   { label: 'EVERYONE', title: 'Everyone gets a go', message: 'Equal time on the pitch and a turn in goal for every child — just like every week.', clip: 'The turns plan for today, child by child.', stat: 'Equal minutes · a turn in goal', say: 'Remind them nobody sits out more than anyone else. Point to the turns sheet.' },
-  { label: 'GO', title: 'vs Harbour Rovers', message: 'Have a go, look up, help each other, and enjoy it. Off we go!', clip: 'Last week’s team huddle before kick-off.', say: 'Build them up. Big cheer, then out they go.' },
+  { label: 'GO', title: 'vs Northgate City', message: 'Have a go, look up, help each other, and enjoy it. Off we go!', clip: 'Last week’s team huddle before kick-off.', say: 'Build them up. Big cheer, then out they go.' },
 ]
 
 export default function MiniRoosTeamTalk({ onClose }: { onClose: () => void }) {

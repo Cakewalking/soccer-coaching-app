@@ -81,7 +81,7 @@ function PhoneShell({ children, tab, onTab, onPlan, askOpen, onAskToggle }: {
         <span style={{ fontSize: 14, fontWeight: 800, letterSpacing: '-0.02em', color: '#fff' }}>Clean Sheet</span>
         <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
           {tab === 'home' && onPlan && (
-            <button onClick={onPlan} style={{ background: 'rgba(255,255,255,0.15)', border: 'none', borderRadius: 7, height: 32, padding: '0 10px', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>Tonight's plan</button>
+            <button onClick={onPlan} style={{ background: 'rgba(255,255,255,0.15)', border: 'none', borderRadius: 7, height: 44, padding: '0 10px', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>Tonight's plan</button>
           )}
           {tab !== 'home' && onAskToggle && (
             <button onClick={onAskToggle} aria-label="Ask Clean Sheet" style={{ width: 36, height: 36, borderRadius: '50%', border: '1.5px solid #a9cfc0', background: askOpen ? '#fff' : 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>

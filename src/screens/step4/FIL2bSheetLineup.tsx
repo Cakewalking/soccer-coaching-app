@@ -137,7 +137,7 @@ export default function FIL2bSheetLineup({ onBack, onShare, onNav, bare }: {
         {/* Right */}
         <div style={{ width: 260, flexShrink: 0, display: 'flex', flexDirection: 'column', gap: 12 }}>
           <div style={{ background: '#fff5f5', border: '1px solid #fca5a5', borderRadius: 14, padding: '14px 16px' }}>
-            <div style={{ fontSize: 13, fontWeight: 700, color: '#991b1b', marginBottom: 6 }}>Check · Ruby Lane</div>
+            <div style={{ fontSize: 13, fontWeight: 700, color: '#991b1b', marginBottom: 6 }}>Check · Ava Lindqvist</div>
             <div style={{ fontSize: 12, color: INK, lineHeight: 1.5, marginBottom: 10 }}>Ruby plays every game. Rest her in game 3 and Zoe goes in goal?</div>
             <div style={{ display: 'flex', gap: 8 }}>
               <button onClick={() => { tool('Swap for me'); st('Swapping Ruby in game 4.') }} style={{ flex: 1, minHeight: 44, borderRadius: 999, background: '#c05', color: '#fff', border: 'none', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Swap for me</button>

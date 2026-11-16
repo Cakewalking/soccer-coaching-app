@@ -41,12 +41,13 @@ function GrowthChart() {
     y: H - 16 - ((h - minH) / (maxH - minH)) * (H - 32),
   }))
   const pathD = pts.map((p, i) => `${i === 0 ? 'M' : 'L'}${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ')
-  const extPts = [...pts, { x: W - 12, y: pts[pts.length - 1].y - 8 }]
-  const extD = extPts.map((p, i) => `${i === 0 ? 'M' : 'L'}${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ')
+  // Dashed line: where the next measurement is expected to land.
+  const last = pts[pts.length - 1]
+  const extD = `M${last.x.toFixed(1)},${last.y.toFixed(1)} L${(W - 4).toFixed(1)},${(last.y - 8).toFixed(1)}`
   return (
     <svg width={W} height={H} viewBox={`0 0 ${W} ${H}`} aria-label="Height growth chart">
       <path d={pathD} fill="none" stroke="#40826d" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d={extD.slice(extD.indexOf('L', extD.length - 20))} fill="none" stroke="#40826d" strokeWidth="1.5" strokeDasharray="4 3" strokeLinecap="round"/>
+      <path d={extD} fill="none" stroke="#40826d" strokeWidth="1.5" strokeDasharray="4 3" strokeLinecap="round"/>
       {pts.map((p, i) => (
         <circle key={i} cx={p.x} cy={p.y} r={i === pts.length - 1 ? 5 : 3} fill={i === pts.length - 1 ? '#40826d' : '#ffffff'} stroke="#40826d" strokeWidth="2"/>
       ))}

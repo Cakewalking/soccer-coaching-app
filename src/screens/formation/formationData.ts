@@ -1,7 +1,7 @@
 // Formation builder data — shapes (per cent of pitch, other team's goal at top),
 // team rosters and checks. From the formation-v1 design handover (16 Nov 2026).
 
-import { YOUTH_SQUAD_PLAYERS } from '../../data'
+import { SQUAD_PLAYERS, SENIORS_SQUAD_PLAYERS, YOUTH_SQUAD_PLAYERS, type SquadPlayer } from '../../data'
 
 export type Slot = { x: number; y: number; pos: string }
 export type Shape = { name: string; slots: Slot[] }
@@ -62,36 +62,53 @@ export type TeamCfg = {
   posStyle: 'full' | 'loose'  // loose = MiniRoos "ANYWHERE"
 }
 
+// Rosters are built from the squad lists in data.ts, so the names on the pitch
+// are the names on Squad › Players. `set` adds what only this week knows.
+type Extra = { num: number; positions: string[]; captain?: boolean; note?: string; pitchNote?: string; out?: string }
+function fromSquad(prefix: string, squad: SquadPlayer[], set: Extra[]): Player[] {
+  const firsts = squad.map(p => p.name.split(' ')[0])
+  return squad.map((p, i) => {
+    const e = set[i], first = firsts[i]
+    return {
+      id: `${prefix}${i}`, num: e.num, full: p.fullName,
+      first: firsts.filter(f => f === first).length > 1 ? p.name.replace('.', '') : first,
+      positions: e.positions, captain: e.captain, pitchNote: e.pitchNote,
+      available: !e.out, reason: e.out, note: e.out ? undefined : e.note ?? 'Available',
+    }
+  })
+}
+
 // ── U12 Sam · juniors ──
 const JUNIOR: TeamCfg = {
   key: 'juniors', side: 9, teamLabel: 'U12 Sam · Wattle Creek',
   game: 'Sat 6 June · v Harbour Rovers', gameTarget: 'FB1l-FormationSaved',
-  meta: '9 a side · 14 of 16 can play · saved 2 minutes ago',
+  meta: '9 a side · 15 of 17 can play · saved 2 minutes ago',
   parts: [{ label: 'First half' }, { label: 'Second half' }],
   defaultShape: '3-3-2',
-  start: ['p1', 'p2', 'p4', 'p3', 'p8', 'p6', 'p7', 'p9', 'p10'],
-  roster: [
-    { id: 'p1', num: 1, first: 'Ruby', full: 'Ruby Shaw', positions: ['GK'], available: true, note: 'Available' },
-    { id: 'p2', num: 2, first: 'Grace', full: 'Grace Oni', positions: ['LB'], available: true, note: 'Available' },
-    { id: 'p4', num: 4, first: 'Leo', full: 'Leo Marsh', positions: ['CB'], captain: true, available: true, note: 'Available' },
-    { id: 'p3', num: 3, first: 'Sam D', full: 'Sam Dale', positions: ['RB'], available: true, note: 'Available' },
-    { id: 'p8', num: 8, first: 'Mia', full: 'Mia Tran', positions: ['LM'], available: true, note: 'Available' },
-    { id: 'p6', num: 6, first: 'Noah', full: 'Noah Okafor', positions: ['CM'], note: 'Available', pitchNote: 'First half only', available: true },
-    { id: 'p7', num: 7, first: 'Harper', full: 'Harper Quinn', positions: ['RM'], available: true, note: 'Available' },
-    { id: 'p9', num: 9, first: 'Jai', full: 'Jai Patel', positions: ['ST'], available: true, note: 'Available' },
-    { id: 'p10', num: 10, first: 'Zoe', full: 'Zoe Hart', positions: ['ST'], available: true, note: 'Available' },
-    { id: 'p11', num: 11, first: 'Finn', full: 'Finn Noble', positions: ['RM', 'CM'], note: 'Owed 25 minutes', available: true },
-    { id: 'p5', num: 5, first: 'Isla', full: 'Isla Byrne', positions: ['LB', 'LM'], note: 'Available', available: true },
-    { id: 'p12', num: 12, first: 'Ella', full: 'Ella Brooks', positions: ['ST'], note: 'Available', available: true },
-    { id: 'p13', num: 13, first: 'Kofi', full: 'Kofi Mensah', positions: ['CB'], note: 'Has played CB twice', available: true },
-    { id: 'p14', num: 14, first: 'Ben', full: 'Ben Carter', positions: ['GK', 'CB'], note: 'Available', available: true },
-    { id: 'p15', num: 15, first: 'Lucy', full: 'Lucy Vale', positions: ['CM'], available: false, reason: 'Away' },
-    { id: 'p16', num: 16, first: 'Max', full: 'Max Ito', positions: ['RB'], available: false, reason: 'Knee: back next week' },
-  ],
+  start: ['p0', 'p3', 'p2', 'p6', 'p7', 'p8', 'p10', 'p12', 'p13'],
+  roster: fromSquad('p', SQUAD_PLAYERS, [
+    { num: 1, positions: ['GK'] },                                           // Ava
+    { num: 12, positions: ['GK'] },                                          // Tom
+    { num: 4, positions: ['CB'], captain: true },                            // Leo
+    { num: 5, positions: ['CB', 'LB'] },                                     // Grace
+    { num: 2, positions: ['RB'], out: 'Away: family wedding' },              // Kai
+    { num: 3, positions: ['LB'], note: 'No answer yet' },                    // Sam
+    { num: 13, positions: ['RB'], note: 'Maybe: school concert' },           // Ruby
+    { num: 8, positions: ['LM', 'CM'] },                                     // Mia
+    { num: 6, positions: ['CM'] },                                           // Jai
+    { num: 14, positions: ['CM'], note: 'Low check-ins this week' },         // Ella
+    { num: 7, positions: ['RM', 'CM'] },                                     // Isla
+    { num: 15, positions: ['LM', 'CM'] },                                    // Oscar
+    { num: 9, positions: ['ST'], pitchNote: 'First half only' },             // Noah
+    { num: 10, positions: ['ST', 'RM'] },                                    // Zoe
+    { num: 11, positions: ['ST', 'LM'], note: 'Owed 25 minutes' },           // Finn
+    { num: 16, positions: ['ST'], out: 'Sick: back next week' },             // Lily
+    { num: 17, positions: ['ST'], note: 'New this term · no answer yet' },   // Harper
+  ]),
   checks: [
-    { ok: true, subject: 'Second half:', rest: 'all five on the bench come on. Everyone gets half a game or more.' },
+    { ok: true, subject: 'Second half:', rest: 'all six on the bench come on. Everyone gets half a game or more.' },
     { ok: false, subject: 'Noah:', rest: 'sprints are capped this week. First half only.' },
-    { ok: true, subject: 'Ruby', rest: 'is in goal for both halves. Ben has gloves if you want to share it.' },
+    { ok: true, subject: 'Ava', rest: 'is in goal for both halves. Tom has gloves if you want to share it.' },
   ],
   benchHeader: 'Bench', posStyle: 'full',
 }
@@ -100,31 +117,32 @@ const JUNIOR: TeamCfg = {
 const SENIORS: TeamCfg = {
   key: 'seniors', side: 11, teamLabel: "Men's 1sts",
   game: 'Sat 6 June · v Banksia Park SC', gameTarget: 'FB1l-FormationSaved',
-  meta: '11 a side · 18 fit, 1 suspended · saved 2 minutes ago',
+  meta: '11 a side · 16 fit, 1 suspended · saved 2 minutes ago',
   parts: [],
   defaultShape: '4-3-3',
-  start: ['s1', 's3', 's5', 's4', 's2', 's8', 's6', 's10', 's11', 's9', null],
-  roster: [
-    { id: 's1', num: 1, first: 'Jack', full: 'Jack Reid', positions: ['GK'], available: true, note: 'Available' },
-    { id: 's3', num: 3, first: 'Tyler', full: 'Tyler Boyd', positions: ['LB'], available: true, note: 'Available' },
-    { id: 's5', num: 5, first: 'Dev', full: 'Dev Sharma', positions: ['CB'], captain: true, available: true, note: 'Available' },
-    { id: 's4', num: 4, first: 'Reza', full: 'Reza Karimi', positions: ['CB'], available: true, note: 'Available' },
-    { id: 's2', num: 2, first: 'Hugo', full: 'Hugo Lane', positions: ['RB'], available: true, note: 'Available' },
-    { id: 's8', num: 8, first: 'Theo', full: 'Theo Walsh', positions: ['CM'], available: true, note: 'Sprints capped in training' },
-    { id: 's6', num: 6, first: 'Sione', full: 'Sione Tui', positions: ['DM'], available: true, note: 'Available' },
-    { id: 's10', num: 10, first: 'Luca', full: 'Luca Romano', positions: ['CM'], available: true, note: 'Available' },
-    { id: 's11', num: 11, first: 'Nate', full: 'Nate Price', positions: ['LW'], available: true, note: 'Available' },
-    { id: 's9', num: 9, first: 'Cal', full: 'Cal Webb', positions: ['ST'], available: true, note: 'Available' },
-    { id: 's7', num: 7, first: 'Eli', full: 'Eli Moss', positions: ['RW', 'ST'], note: 'Scored off the bench twice', available: true },
-    { id: 's14', num: 14, first: 'Marcus', full: 'Marcus Adeyemi', positions: ['RW', 'RB'], note: 'Available', available: true },
-    { id: 's16', num: 16, first: 'Ollie', full: 'Ollie Brandt', positions: ['CM'], note: 'Available', available: true },
-    { id: 's15', num: 15, first: 'Pat', full: 'Pat Nguyen', positions: ['CB', 'LB'], note: 'Available', available: true },
-    { id: 's12', num: 12, first: 'Will', full: 'Will Sato', positions: ['GK'], note: 'Available', available: true },
-    { id: 's17', num: 17, first: 'Ryan', full: 'Ryan Cole', positions: ['CM'], available: false, reason: 'Suspended: 1 game' },
-  ],
+  start: ['s0', 's5', 's2', 's3', 's4', 's7', 's9', 's8', 's12', 's13', null],
+  roster: fromSquad('s', SENIORS_SQUAD_PLAYERS, [
+    { num: 1, positions: ['GK'] },                                           // Ben
+    { num: 12, positions: ['GK'] },                                          // Dean
+    { num: 5, positions: ['CB'] },                                           // Luca
+    { num: 4, positions: ['CB'], captain: true },                            // Josh
+    { num: 2, positions: ['RB'], note: 'High load this week' },              // Marco
+    { num: 3, positions: ['LB'] },                                           // Pete
+    { num: 15, positions: ['CB'] },                                          // Sam
+    { num: 8, positions: ['CM'], note: 'Every minute of the last 4' },       // Dan
+    { num: 10, positions: ['CM'] },                                          // Tom
+    { num: 6, positions: ['DM'] },                                           // Alex
+    { num: 14, positions: ['CM', 'RW'], note: 'Tight hamstring' },           // Rico
+    { num: 7, positions: ['RW'], note: 'Back from a knock' },                // Chris
+    { num: 11, positions: ['LW'] },                                          // Mo
+    { num: 9, positions: ['ST'] },                                           // Harry
+    { num: 16, positions: ['CM'], out: 'Suspended: 1 game' },                // Ryan
+    { num: 17, positions: ['RW'], note: 'Scored off the bench twice' },      // Eli
+    { num: 18, positions: ['LW'] },                                          // Nate
+  ]),
   checks: [
-    { ok: false, subject: 'Right wing', rest: 'is empty. Eli and Marcus have both played there.' },
-    { ok: true, subject: 'Theo and Dev:', rest: 'sprints capped in training, fine to start.' },
+    { ok: false, subject: 'Right wing', rest: 'is empty. Chris and Eli have both played there.' },
+    { ok: true, subject: 'Dan and Marco:', rest: 'high load this week, fine to start.' },
     { ok: true, subject: 'Banksia Park', rest: 'build out short. This shape presses their back three.' },
   ],
   benchHeader: 'Bench', posStyle: 'full',
@@ -158,24 +176,37 @@ const MINIROOS: TeamCfg = {
   benchHeader: 'Waiting for a turn', posStyle: 'loose',
 }
 
-// ── U16 Ollie · youth ── built from the youth squad so the names match Squad › Players.
-const YOUTH_POS: Record<string, string> = { 'Goalkeeper': 'GK', 'Centre back': 'CB', 'Right back': 'RB', 'Left back': 'LB', 'Central midfield': 'CM', 'Holding midfield': 'DM', 'Attacking mid': 'CM', 'Right wing': 'RW', 'Left wing': 'LW', 'Centre forward': 'ST' }
-const YOUTH_NUM = [1, 5, 4, 2, 3, 8, 10, 6, 14, 7, 11, 9]
+// ── U16 Ollie · youth ──
 const YOUTH: TeamCfg = {
   key: 'youth', side: 11, teamLabel: 'U16 Ollie',
-  game: 'Sat 6 June · v Glenview Park', gameTarget: 'FB1l-FormationSaved',
-  meta: '11 a side · 11 fit, 1 suspended · saved 2 minutes ago',
+  game: 'Sat 6 June · at Harbour Rovers', gameTarget: 'FB1l-FormationSaved',
+  meta: '11 a side · 16 fit, 1 suspended · saved 2 minutes ago',
   parts: [],
   defaultShape: '4-3-3',
   start: ['y0', 'y4', null, 'y2', 'y3', 'y5', 'y7', 'y6', 'y10', 'y11', 'y9'],
-  roster: YOUTH_SQUAD_PLAYERS.map((p, i) => {
-    const suspended = p.note.startsWith('Suspended')
-    return { id: `y${i}`, num: YOUTH_NUM[i] ?? i + 1, first: p.fullName.split(' ')[0], full: p.fullName, positions: [YOUTH_POS[p.pos] ?? 'CM'], captain: i === 2, available: !suspended, note: suspended ? undefined : p.status === 'manage' ? p.note : 'Available', reason: suspended ? 'Suspended: 1 game' : undefined }
-  }),
+  roster: fromSquad('y', YOUTH_SQUAD_PLAYERS, [
+    { num: 1, positions: ['GK'] },                                           // Owen
+    { num: 5, positions: ['CB'], out: 'Suspended: 1 game' },                 // Ryan
+    { num: 4, positions: ['CB'], captain: true },                            // Jake
+    { num: 2, positions: ['RB'] },                                           // Erin
+    { num: 3, positions: ['LB'] },                                           // Nick
+    { num: 8, positions: ['CM'] },                                           // Theo
+    { num: 10, positions: ['CM'], note: 'Exam Friday' },                     // Cal
+    { num: 6, positions: ['DM'] },                                           // Ivan
+    { num: 14, positions: ['CM'] },                                          // Phil
+    { num: 7, positions: ['RW'] },                                           // Ari
+    { num: 11, positions: ['LW'], note: 'High load this week' },             // Luka
+    { num: 9, positions: ['ST'] },                                           // Seb
+    { num: 12, positions: ['GK'] },                                          // Marcus
+    { num: 15, positions: ['CB'], note: 'Has covered centre back twice' },   // Hugo
+    { num: 16, positions: ['CM'], note: 'Playing up from U15' },             // Tane
+    { num: 17, positions: ['ST'] },                                          // Jonah
+    { num: 18, positions: ['RW'] },                                          // Eddie
+  ]),
   checks: [
-    { ok: false, subject: 'Centre back', rest: 'is empty. Ryan is suspended this week. Ivan and Phil can both drop in.' },
-    { ok: true, subject: 'Leo K:', rest: 'high load this week, fine to start. Watch the last 20 minutes.' },
-    { ok: true, subject: 'Glenview Park', rest: 'play long. This shape keeps two in front of the centre backs.' },
+    { ok: false, subject: 'Centre back', rest: 'is empty. Ryan is suspended this week. Hugo has covered there twice.' },
+    { ok: true, subject: 'Luka:', rest: 'high load this week, fine to start. Watch the last 20 minutes.' },
+    { ok: true, subject: 'Harbour Rovers', rest: 'play long. This shape keeps two in front of the centre backs.' },
   ],
   benchHeader: 'Bench', posStyle: 'full',
 }

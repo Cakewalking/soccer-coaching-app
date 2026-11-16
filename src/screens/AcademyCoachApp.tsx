@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { demoToast } from './demoToast'
 import { AcademyTrainingWeek, AcademyTrainingSuggested, AcademySessionPlan, AcademyWhoComing } from './AcademyTraining'
 
 const G    = '#2f6252'
@@ -44,8 +45,9 @@ function Row({ label, value, action, onAction }: { label: string; value?: string
 }
 
 function Btn({ label, primary, onClick, small }: { label: string; primary?: boolean; onClick?: () => void; small?: boolean }) {
+  const says: Record<string, string> = { 'Message the team': 'A message to the U13 Timber families opens.', 'Start the game': 'Game started. The clock and the bench are ready.', 'Add to tonight': 'Added to tonight’s session.', 'Open': 'Opening it now.', 'See plan': 'The minutes plan opens: everyone gets at least half a game.' }
   return (
-    <button onClick={onClick} style={{ height: 44, padding: `0 ${small ? 12 : 18}px`, borderRadius: 999, border: primary ? 'none' : `1px solid ${LN}`, background: primary ? G : '#fff', color: primary ? '#fff' : MUT, fontSize: small ? 12 : 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>{label}</button>
+    <button onClick={onClick ?? (() => demoToast(says[label] ?? `${label}: done.`))} style={{ height: 44, padding: `0 ${small ? 12 : 18}px`, borderRadius: 999, border: primary ? 'none' : `1px solid ${LN}`, background: primary ? G : '#fff', color: primary ? '#fff' : MUT, fontSize: small ? 12 : 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>{label}</button>
   )
 }
 
@@ -1038,7 +1040,15 @@ function ChatView({ empty }: { empty: boolean }) {
     { ini: 'RW', name: 'You', time: '4:20 pm', isPoll: true, question: 'Make-up for Tuesday 9 June: which suits?', options: ['Wed 10 June, 5:30 · 3', 'Fri 12 June, 4:15 · 1'], footer: '4 of 22 families · your answer books the make-up', isMe: true },
   ]
 
-  if (activeChat === 'adv') return (
+  const OTHER_CHATS: Record<string, { sub: string; msgs: typeof advMessages }> = {
+    news: { sub: 'Everyone at Tall Timber · only coaches and Dani can post', msgs: [{ ini: 'DO', name: 'Dani Okafor · owner', time: 'Mon', isVoice: false, text: 'July clinic bookings are open. Current families get first go until Friday.', reactions: ['👍 12'], isMe: false }] },
+    u13:  { sub: '16 families and you · the game team', msgs: [{ ini: 'RW', name: 'You', time: 'Wed', isVoice: false, text: 'Team sheet for Saturday is up. Meet 8:15 at the ground.', reactions: ['👍 9'], isMe: true }] },
+    dani: { sub: 'Just the two of you', msgs: [{ ini: 'DO', name: 'Dani Okafor', time: 'Wed', isVoice: false, text: 'Can you take the 4:15 on Friday? Mel is away.', reactions: [], isMe: false }] },
+  }
+  const chat = chats.find(c => c.id === activeChat)
+  const chatMsgs = activeChat === 'adv' ? advMessages : OTHER_CHATS[activeChat ?? '']?.msgs ?? []
+
+  if (activeChat && chat) return (
     <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
       {/* Chat header */}
       <div style={{ padding: '12px 20px', borderBottom: `1px solid ${LN}`, background: '#fff', display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
@@ -1046,8 +1056,8 @@ function ChatView({ empty }: { empty: boolean }) {
           <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth={2.5} strokeLinecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
         </button>
         <div style={{ flex: 1 }}>
-          <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>Advanced · Tue and Thu</div>
-          <div style={{ fontSize: 12, color: MUT }}>22 families, Reece and Dani · parents can post · set up by Dani</div>
+          <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>{chat.label}</div>
+          <div style={{ fontSize: 12, color: MUT }}>{activeChat === 'adv' ? '22 families, Reece and Dani · parents can post · set up by Dani' : OTHER_CHATS[activeChat]?.sub}</div>
         </div>
       </div>
       {/* Messages */}
@@ -1057,7 +1067,7 @@ function ChatView({ empty }: { empty: boolean }) {
             <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>No messages in this group yet</div>
             <div style={{ fontSize: 13, color: MUT, maxWidth: 320, lineHeight: 1.5 }}>Send this week's home practice, or a poll for make-up times. Families see it as soon as they join.</div>
           </div>
-        ) : advMessages.map((m, i) => (
+        ) : chatMsgs.map((m, i) => (
           <div key={i} style={{ display: 'flex', gap: 10, flexDirection: m.isMe ? 'row-reverse' : 'row' }}>
             <div style={{ width: 32, height: 32, borderRadius: '50%', background: m.isMe ? G : ROSE, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, flexShrink: 0 }}>{m.ini}</div>
             <div style={{ maxWidth: 400 }}>
@@ -1114,7 +1124,7 @@ function ChatView({ empty }: { empty: boolean }) {
           <button onClick={() => showToast('Opening the home practice template.')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${G}`, background: PALE, fontSize: 12, fontWeight: 700, color: G, cursor: 'pointer', fontFamily: 'inherit' }}>Home practice</button>
         </div>
         <div style={{ display: 'flex', gap: 10 }}>
-          <input defaultValue="" placeholder="Write to the Advanced group" style={{ flex: 1, height: 44, padding: '0 14px', border: `1px solid ${LN}`, borderRadius: 999, fontFamily: 'inherit', fontSize: 14, outline: 'none' }}/>
+          <input defaultValue="" placeholder={activeChat === 'adv' ? 'Write to the Advanced group' : `Write to ${chat.label.split(' · ')[0]}`} style={{ flex: 1, height: 44, padding: '0 14px', border: `1px solid ${LN}`, borderRadius: 999, fontFamily: 'inherit', fontSize: 14, outline: 'none' }}/>
           <button onClick={() => showToast('Message sent.')} style={{ width: 44, height: 44, borderRadius: '50%', border: 'none', background: G, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <svg width={18} height={18} viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={2} strokeLinecap="round"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>
           </button>
@@ -1127,7 +1137,7 @@ function ChatView({ empty }: { empty: boolean }) {
 
   return (
     <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-      <PageHead title="Chats" right={<Btn label="New chat" small primary onClick={() => showToast('Opening new chat.')}/>}/>
+      <PageHead title="Chats" right={<Btn label="New chat" small primary onClick={() => demoToast('A new chat opens: pick a group or one family.')}/>}/>
       <div style={{ flex: 1, overflowY: 'auto', padding: '12px 28px 32px', display: 'flex', flexDirection: 'column', gap: 2 }}>
         {chats.map(c => (
           <button key={c.id} onClick={() => setActiveChat(c.id)} style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '14px 16px', border: `1px solid ${LN}`, borderRadius: 12, background: '#fff', cursor: 'pointer', textAlign: 'left', fontFamily: 'inherit', marginBottom: 6 }}>

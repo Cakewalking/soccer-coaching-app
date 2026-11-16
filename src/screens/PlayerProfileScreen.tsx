@@ -39,11 +39,11 @@ function statusChipColor(status: string) {
   return { bg: '#e8f2ee', color: '#2f6252', border: '#a3d4c0' }
 }
 
-export default function PlayerProfileScreen({ playerIni, empty }: Props) {
+export default function PlayerProfileScreen({ playerIni, empty, players = SQUAD_PLAYERS }: Props & { players?: typeof SQUAD_PLAYERS }) {
   const [activeTab, setActiveTab] = useState(0)
   const [toast, setToast] = useState<string|null>(null)
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
-  const player = SQUAD_PLAYERS.find(p => p.ini === playerIni) ?? SQUAD_PLAYERS[7]
+  const player = players.find(p => p.ini === playerIni) ?? players[7]
   const playerClips = CLIPS.filter(c => c.players.includes(player.ini))
   const statusChip = statusChipColor(player.status)
 

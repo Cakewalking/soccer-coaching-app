@@ -15,6 +15,9 @@ import WellnessScreen       from './WellnessScreen'
 import AvailabilityScreen   from './AvailabilityScreen'
 import ConsentScreen        from './ConsentScreen'
 import FormationBuilder from './formation/FormationBuilder'
+import ScreenLayer, { isScreenId } from './ScreenLayer'
+import PlayerProfileScreen from './PlayerProfileScreen'
+import { TeamText } from '../teamNames'
 import type { FormationPreset } from './formation/lineupInsights'
 import ThisWeekScreen       from './ThisWeekScreen'
 import SuggestionsScreen    from './SuggestionsScreen'
@@ -107,10 +110,10 @@ const SENIORS: TeamData = {
     { day: 'Sat 6', label: 'Banksia Park SC 3:00' },
     { day: 'Sun 7', label: 'Recovery' },
   ],
-  lastFive: [{ result: 'W' }, { result: 'W' }, { result: 'D' }, { result: 'L' }, { result: 'W' }],
+  lastFive: [{ result: 'W' }, { result: 'D' }, { result: 'L' }, { result: 'W' }, { result: 'D' }],
   lastFiveLabel: '4th of 12 · NPL 3',
-  nextGame: 'Next: Sat 3:00 at Banksia Park SC · Away · 18 in, 2 injured, 1 away',
-  squad: { total: 22, in: 18, label2: 'Injured', val2: 2, label3: 'Out', val3: 2 },
+  nextGame: 'Next: Sat 3:00 at Banksia Park SC · Away · 14 in, 2 managing a knock, 1 suspended',
+  squad: { total: 17, in: 14, label2: 'Managing', val2: 2, label3: 'Out', val3: 1 },
   roleNote: 'At senior level',
 }
 
@@ -154,9 +157,9 @@ const YOUTH: TeamData = {
     { day: 'Sun 7', label: 'Rest' },
   ],
   lastFive: [{ result: 'L' }, { result: 'D' }, { result: 'L' }, { result: 'W' }, { result: 'L' }],
-  lastFiveLabel: 'Division 1',
-  nextGame: 'Next: Sat 3:30 at Harbour Rovers · Away · 13 in, 1 suspended',
-  squad: { total: 14, in: 8, label2: 'Manage', val2: 5, label3: 'Out', val3: 1 },
+  lastFiveLabel: '5th of 12 · Division 1',
+  nextGame: 'Next: Sat 3:30 at Harbour Rovers · Away · 13 in, 3 to manage, 1 suspended',
+  squad: { total: 17, in: 13, label2: 'Manage', val2: 3, label3: 'Out', val3: 1 },
   roleNote: 'At this age',
 }
 
@@ -397,6 +400,8 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
   const [homeTab, setHomeTab]         = useState(0)
   const [squadTab, setSquadTab]       = useState(0)
   const [formationPreset, setFormationPreset] = useState<FormationPreset | null>(null)
+  const [profileIni, setProfileIni] = useState<string | null>(null)
+  const [layer, setLayer] = useState<string | null>(null)   // a designed screen opened over the app
   const [trainingTab, setTrainingTab] = useState(0)
   const [matchTab, setMatchTab]       = useState(0)
   const [clipsTab, setClipsTab]       = useState(0)
@@ -417,6 +422,7 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
     if (s === 'setstyle')  { setHomeTab(4);     return }
     if (s === 'teamtalk')  { setSub('teamtalk');  return }
     if (s === 'pitchside') { setSub('pitchside'); return }
+    if (isScreenId(s))     { setLayer(s); return }
   }
 
   // Embedded Home story drives this frame: mapped deep-links switch the real tab.
@@ -494,7 +500,7 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
     }
   } else if (nav === 'squad') {
     switch (squadTab) {
-      case 0: content = <SquadScreen role="head" onPlayerProfile={() => {}} empty={sbEmpty} players={teamType === 'seniors' ? SENIORS_SQUAD : YOUTH_SQUAD} />; break
+      case 0: content = profileIni ? <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, minHeight: 0 }}><div style={{ flex: 'none', padding: '10px 28px 0' }}><button onClick={() => setProfileIni(null)} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>← All players</button></div><PlayerProfileScreen playerIni={profileIni} players={teamType === 'seniors' ? SENIORS_SQUAD : YOUTH_SQUAD} /></div> : <SquadScreen role="head" onPlayerProfile={setProfileIni} empty={sbEmpty} players={teamType === 'seniors' ? SENIORS_SQUAD : YOUTH_SQUAD} />; break
       case 1: content = <FormationBuilder key={formationPreset?.note ?? 'plain'} preset={formationPreset} team={teamType === 'seniors' ? 'seniors' : 'youth'} onNav={(s) => { if (s === 'T2-TabletMatch') { goNav('matchday'); setMatchTab(1) } else if (s === 'SQ1-BestLineups') { setSquadTab(2) } else { handleNav(s) } }} />; break
       case 2: content = <SquadLineups noFrame teamType={teamType === 'seniors' ? 'seniors' : 'youth'} onNav={(s, preset) => { if (s === 'formation') { setFormationPreset(preset ?? null); setSquadTab(1) } }} />; break
       case 3: content = <DevGoalsScreen empty={sbEmpty} teamType={teamType === 'seniors' ? 'seniors' : 'youth'} />; break
@@ -504,15 +510,15 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
     }
   } else if (nav === 'training') {
     switch (trainingTab) {
-      case 0: content = <TrainingScreen role="head" onNav={handleNav} empty={sbEmptySession} nextOpponent={data.opponent} lastOpponent={teamType === 'seniors' ? 'Glenview Park' : 'Tealside Town'} />; break
-      case 1: content = <ThisWeekScreen empty={sbEmptySession} onDrillLibrary={() => setTrainingTab(3)} onTonightsPlan={() => setTrainingTab(0)} onGrowthLoad={() => setTrainingTab(4)} nextOpponent={data.opponent} lastOpponent={teamType === 'seniors' ? 'Glenview Park' : 'Tealside Town'} />; break
+      case 0: content = <TrainingScreen role="head" onNav={handleNav} empty={sbEmptySession} nextOpponent={data.opponent} lastOpponent={data.lastGame.opponent} />; break
+      case 1: content = <ThisWeekScreen empty={sbEmptySession} onDrillLibrary={() => setTrainingTab(3)} onTonightsPlan={() => setTrainingTab(0)} onGrowthLoad={() => setTrainingTab(4)} nextOpponent={data.opponent} lastOpponent={data.lastGame.opponent} />; break
       case 2: content = <SuggestionsScreen empty={sbEmptySession} onRecord={() => goNav('record')} />; break
       case 3: content = <DrillLibraryScreen empty={sbEmptySession} />; break
       case 4: content = <GrowthLoadScreen empty={sbEmptySession} />; break
       case 5: content = <FitnessTrainingTab empty={sbEmptySession} />; break
     }
   } else if (nav === 'record') {
-    content = <RecordHub noFrame />
+    content = <RecordHub noFrame onNav={handleNav} />
   } else if (nav === 'matchday') {
     switch (matchTab) {
       case 0: content = <MatchDayScreen onNav={handleNav} empty={sbEmptyFixture} opponent={data.opponent} />; break
@@ -530,6 +536,8 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
   }
 
   const navTabs = NAV_LABELS.map((label, i) => ({ id: NAV_KEYS[i], label, icon: NAV_ICONS[i] }))
+
+  if (layer) return <ScreenLayer screenKey={layer} onClose={() => setLayer(null)} backLabel={`Back to ${data.teamPicker.split(' · ')[0]}`} />
 
   return (
     <>
@@ -551,7 +559,8 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
         askRole={teamType === 'seniors' ? 'senior coach' : 'youth coach'}
         showBadge={tab => !sbEmpty && !inSandbox && (tab === 'Messages' || tab === 'To check')}
       >
-        {content}
+        {/* Shared screens still written with U12 Sam's players get this team's names. Screens that take a squad are left alone. */}
+        <TeamText team={(nav === 'squad' && squadTab <= 3) || (nav === 'home' && homeTab <= 3) ? null : teamType === 'seniors' ? 'seniors' : 'youth'}>{content}</TeamText>
       </CoachTabletFrame>
     </>
   )

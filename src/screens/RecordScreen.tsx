@@ -438,7 +438,7 @@ function ResultsView({ firstRun, onHistory, onHowWeMeasure }:
 
   const players = [
     { ini: 'AL', name: 'Ava Lindgren', note: 'Pressing sooner: 1.9 s to 1.4 s', status: 'Better' },
-    { ini: 'EB', name: 'Ella Brooks', note: 'Lighter night, 2 rounds only', status: 'Not compared' },
+    { ini: 'EB', name: 'Ella Brandt', note: 'Lighter night, 2 rounds only', status: 'Not compared' },
     { ini: 'JP', name: 'Jai Patel', note: 'Same as last run', status: 'Same' },
     { ini: 'MT', name: 'Mia Tran', note: 'Won it back 4 times, up from 2', status: 'Better' },
     { ini: 'NO', name: 'Noah Okafor', note: 'Kept to 3 sprints, as planned', status: 'Not compared' },

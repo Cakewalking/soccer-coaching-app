@@ -76,6 +76,7 @@ interface Props {
 
 export default function DrillLibraryMain({ filterTab, setFilterTab, agePhase, setAgePhase, onDrillClick, onSessionPlans, onTermPlanner, onAddDrill }: Props) {
   const [activeSugg, setActiveSugg] = useState(0)
+  const [pills, setPills] = useState<Record<string, number>>({})
   const [toast, setToast] = useState<string|null>(null)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
 
@@ -84,9 +85,22 @@ export default function DrillLibraryMain({ filterTab, setFilterTab, agePhase, se
   const allCount   = DRILLS.filter(d => phaseId === null || d.phases.includes(phaseId)).length
   const ourCount   = DRILLS.filter(d => d.isOurs && (phaseId === null || d.phases.includes(phaseId))).length
   const totalOurs  = DRILLS.filter(d => d.isOurs).length
-  const filtered   = DRILLS.filter(d =>
-    (phaseId === null || d.phases.includes(phaseId)) &&
-    (filterTab === 1 ? d.isOurs : filterTab === 2 ? false : true)
+  // The four filter pills step through their options on each tap.
+  const inPhase    = DRILLS.filter(d => phaseId === null || d.phases.includes(phaseId))
+  const OPTIONS: Record<string, string[]> = {
+    Skill:   ['Any', ...Array.from(new Set(inPhase.map(d => d.category)))],
+    Players: ['Any', ...Array.from(new Set(inPhase.map(d => d.players)))],
+    Time:    ['Any', '10 min or less', '15 min or less', '20 min or less'],
+    Goals:   ['Any', 'With goals', 'No goals'],
+  }
+  const pick = (f: string) => OPTIONS[f][(pills[f] ?? 0) % OPTIONS[f].length]
+  const usesGoals = (d: Drill) => /goal/i.test(`${d.kitStr ?? ''} ${d.name}`)
+  const filtered   = inPhase.filter(d =>
+    (filterTab === 1 ? d.isOurs : filterTab === 2 ? false : true) &&
+    (pick('Skill') === 'Any' || d.category === pick('Skill')) &&
+    (pick('Players') === 'Any' || d.players === pick('Players')) &&
+    (pick('Time') === 'Any' || d.time <= parseInt(pick('Time'), 10)) &&
+    (pick('Goals') === 'Any' || usesGoals(d) === (pick('Goals') === 'With goals'))
   )
   const mainDrills = filtered.filter(d => !d.featured)
   const activeFix  = FIX_ITEMS[activeSugg]
@@ -142,8 +156,8 @@ export default function DrillLibraryMain({ filterTab, setFilterTab, agePhase, se
         {/* Row 3: Filter dropdowns + drill count */}
         <div style={{ display:'flex', alignItems:'center', gap:8 }}>
           {(['Skill', 'Players', 'Time', 'Goals'] as const).map(f => (
-            <button key={f} style={{ height: 44, padding:'0 12px', borderRadius:999, border:`1px solid ${LN}`, background:'#fff', color:MUT, fontSize:13, cursor:'pointer', fontFamily:'inherit', display:'flex', alignItems:'center', gap:4, whiteSpace:'nowrap' }}>
-              {f} <span style={{ color:'#9cb5ae' }}>Any</span>
+            <button key={f} onClick={() => setPills(p => ({ ...p, [f]: ((p[f] ?? 0) + 1) % OPTIONS[f].length }))} aria-label={`${f}: ${pick(f)}. Tap to change.`} style={{ height: 44, padding:'0 12px', borderRadius:999, border:`1px solid ${pick(f) === 'Any' ? LN : G}`, background: pick(f) === 'Any' ? '#fff' : '#eef5f2', color: pick(f) === 'Any' ? MUT : G, fontSize:13, cursor:'pointer', fontFamily:'inherit', display:'flex', alignItems:'center', gap:4, whiteSpace:'nowrap' }}>
+              {f} <span style={{ color: pick(f) === 'Any' ? '#9cb5ae' : G, fontWeight: pick(f) === 'Any' ? 400 : 700 }}>{pick(f)}</span>
               <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round"><path d="M6 9l6 6 6-6"/></svg>
             </button>
           ))}

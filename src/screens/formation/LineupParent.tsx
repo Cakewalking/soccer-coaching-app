@@ -6,7 +6,7 @@ import { TEAMS, shapeByName, type Player } from './formationData'
 
 const INK = '#10211f', PITCH = '#1c3a33', GREEN = '#2f6252', LN = '#e8edeb', MUT = '#6f7f7b'
 
-export default function LineupParent({ childId = 'p8', onNav }: { childId?: string; onNav?: (s: string) => void }) {
+export default function LineupParent({ childId = 'p7', onNav }: { childId?: string; onNav?: (s: string) => void }) {
   const cfg = TEAMS.juniors
   const shape = shapeByName(cfg.side, cfg.defaultShape)!
   const byId = Object.fromEntries(cfg.roster.map(p => [p.id, p])) as Record<string, Player>
@@ -34,7 +34,7 @@ export default function LineupParent({ childId = 'p8', onNav }: { childId?: stri
       <div style={{ flexGrow: 1, padding: 16, display: 'flex', flexDirection: 'column', gap: 14 }}>
         {/* Message panel */}
         <div style={{ background: PITCH, color: '#fff', borderRadius: 16, padding: '16px 18px' }}>
-          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', color: '#e8c56a', marginBottom: 6 }}>SAT 6 JUNE · 9:30 AWAY v HARBOUR ROVERS</div>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', color: '#e8c56a', marginBottom: 6 }}>SAT 6 JUNE · 9:30 HOME v HARBOUR ROVERS</div>
           <div style={{ fontSize: 22, fontWeight: 800, letterSpacing: '-0.01em', lineHeight: 1.2 }}>{child.first} starts on {childPos ? posName[childPos] ?? 'the pitch' : 'the pitch'}.</div>
           <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.8)', marginTop: 6, lineHeight: 1.5 }}>She plays the whole first half and comes back on for the last ten minutes.</div>
         </div>
@@ -69,7 +69,7 @@ export default function LineupParent({ childId = 'p8', onNav }: { childId?: stri
           })}
         </div>
 
-        <div style={{ fontSize: 13, color: MUT, lineHeight: 1.6, textAlign: 'center' }}>On the bench to start: Finn, Isla, Ella, Kofi, Ben. Everyone plays at least half. Meet 8:45 am at Redgum Reserve.</div>
+        <div style={{ fontSize: 13, color: MUT, lineHeight: 1.6, textAlign: 'center' }}>On the bench to start: {cfg.roster.filter(p => p.available && !cfg.start.includes(p.id)).map(p => p.first).join(', ')}. Everyone plays at least half. Meet 8:40 am at Wattle Creek Reserve.</div>
       </div>
 
       {/* Actions */}

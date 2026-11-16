@@ -20,7 +20,7 @@ function ClipReel({ onClick }: { onClick?: () => void }) {
 
 type Lesson = { title: string; credit: string; watched: string | null; skill: string; position: string; age: string; from: string }
 const LESSONS: Lesson[] = [
-  { title: 'Closing the space behind the press', credit: 'Grace Reid, U12 Sam · v Tealside Town', watched: '5 of 16 watched', skill: 'Staying compact between the lines', position: 'Defender', age: 'Under 12', from: 'Your team' },
+  { title: 'Closing the space behind the press', credit: 'Grace Owusu, U12 Sam · v Tealside Town', watched: '5 of 16 watched', skill: 'Staying compact between the lines', position: 'Defender', age: 'Under 12', from: 'Your team' },
   { title: 'Scanning before the ball arrives', credit: 'From your club’s style', watched: null, skill: 'Playing out from the back', position: 'Midfielder', age: 'Under 12', from: 'The whole club' },
   { title: 'First touch away from pressure', credit: 'U12 Girls Ana · v Kestrel Park', watched: null, skill: 'Playing out from the back', position: 'Forward', age: 'Under 12', from: 'Your age group' },
   { title: 'Starting position for a through ball', credit: 'From the national curriculum', watched: null, skill: 'Attacking down the sides', position: 'Forward', age: 'Under 14', from: 'National curriculum' },

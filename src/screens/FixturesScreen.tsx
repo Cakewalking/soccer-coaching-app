@@ -178,32 +178,39 @@ function FixturesEmpty() {
   )
 }
 
-const RESULTS = [
-  { date: 'Sat 30 May', opp: 'Ironbark United', ha: 'A', score: '3–1', result: 'W' },
-  { date: 'Sat 23 May', opp: 'Saltmarsh',       ha: 'A', score: '1–2', result: 'L' },
-  { date: 'Sat 16 May', opp: 'Northgate',        ha: 'H', score: '1–1', result: 'D' },
-  { date: 'Sat 9 May',  opp: 'Tealside Town',     ha: 'A', score: '2–0', result: 'W' },
-  { date: 'Sat 2 May',  opp: 'Kestrel Park',     ha: 'H', score: '3–1', result: 'W' },
-  { date: 'Sat 25 Apr', opp: 'Lyndhurst SC',     ha: 'H', score: '2–1', result: 'W' },
-  { date: 'Sat 18 Apr', opp: 'Riverside',        ha: 'A', score: '0–2', result: 'L' },
-  { date: 'Sat 11 Apr', opp: 'Banksia FC',       ha: 'H', score: '4–2', result: 'W' },
-]
+type Team3 = 'juniors' | 'youth' | 'seniors'
+const R = (date: string, opp: string, ha: string, score: string, result: string) => ({ date, opp, ha, score, result })
+const C = (date: string, venue: string, sub: string, note = '') => ({ date, venue, sub, note })
+const L = (pos: number, name: string, played: number, pts: number, us = false) => ({ pos, name, played, pts, us })
 
-const COMING_UP = [
-  { date: 'SAT\n6',  venue: 'vs Harbour Rovers',  sub: '9:30 · meet 8:40 · white kit', note: 'Rob booked camera' },
-  { date: 'SAT\n13', venue: 'at Kestrel Park',     sub: '9:00 · their ground',           note: '' },
-  { date: 'SAT\n20', venue: 'at Banksia FC',        sub: '9:00',                           note: '' },
-  { date: 'SAT\n27', venue: 'vs Riverside',         sub: '9:30',                           note: '' },
-]
+// Each team has its own season. The last result and the last five here match that team's Home.
+const RESULTS_BY: Record<Team3, ReturnType<typeof R>[]> = {
+  juniors: [
+    R('Sat 30 May', 'Ironbark United', 'A', '3–1', 'W'), R('Sat 23 May', 'Saltmarsh', 'A', '1–2', 'L'), R('Sat 16 May', 'Northgate', 'H', '1–1', 'D'), R('Sat 9 May', 'Tealside Town', 'A', '2–0', 'W'),
+    R('Sat 2 May', 'Kestrel Park', 'H', '3–1', 'W'), R('Sat 25 Apr', 'Lyndhurst SC', 'H', '2–1', 'W'), R('Sat 18 Apr', 'Riverside', 'A', '0–2', 'L'), R('Sat 11 Apr', 'Banksia FC', 'H', '4–2', 'W'),
+  ],
+  youth: [
+    R('Sat 30 May', 'Glenview Park', 'H', '1–3', 'L'), R('Sat 23 May', 'Tealside Town', 'A', '2–1', 'W'), R('Sat 16 May', 'Kingfisher United', 'H', '0–2', 'L'), R('Sat 9 May', 'Saltmarsh', 'A', '1–1', 'D'),
+    R('Sat 2 May', 'Riverside', 'H', '1–2', 'L'), R('Sat 25 Apr', 'Kestrel Park', 'A', '3–0', 'W'), R('Sat 18 Apr', 'Northgate', 'H', '2–2', 'D'), R('Sat 11 Apr', 'Lyndhurst SC', 'A', '2–1', 'W'),
+  ],
+  seniors: [
+    R('Sat 30 May', 'Kingfisher United', 'H', '1–1', 'D'), R('Sat 23 May', 'Ironbark United', 'A', '2–0', 'W'), R('Sat 16 May', 'Saltmarsh', 'H', '0–1', 'L'), R('Sat 9 May', 'Tealside Town', 'A', '2–2', 'D'),
+    R('Sat 2 May', 'Kestrel Park', 'H', '3–1', 'W'), R('Sat 25 Apr', 'Lyndhurst SC', 'A', '2–1', 'W'), R('Sat 18 Apr', 'Riverside', 'H', '1–0', 'W'), R('Sat 11 Apr', 'Northgate', 'A', '3–1', 'W'),
+    R('Sat 4 Apr', 'Harbour Rovers', 'H', '2–2', 'D'), R('Sat 28 Mar', 'Glenview Park', 'A', '0–2', 'L'),
+  ],
+}
 
-const LADDER = [
-  { pos: 1, name: 'Saltmarsh',       played: 8, pts: 20 },
-  { pos: 2, name: 'Riverside',       played: 8, pts: 19 },
-  { pos: 3, name: 'Wattle Creek',    played: 8, pts: 16, us: true },
-  { pos: 4, name: 'Kestrel Park',    played: 8, pts: 14 },
-  { pos: 5, name: 'Tealside Town',   played: 8, pts: 12 },
-  { pos: 6, name: 'Harbour Rovers',  played: 8, pts: 11 },
-]
+const COMING_BY: Record<Team3, ReturnType<typeof C>[]> = {
+  juniors: [C('SAT\n6', 'vs Harbour Rovers', '9:30 · meet 8:40 · white kit', 'Rob booked camera'), C('SAT\n13', 'at Kestrel Park', '9:00 · their ground'), C('SAT\n20', 'at Banksia FC', '9:00'), C('SAT\n27', 'vs Riverside', '9:30')],
+  youth: [C('SAT\n6', 'at Harbour Rovers', '3:30 · Rovers Park · meet 2:40', 'Camera booked'), C('SAT\n13', 'vs Kestrel Park', '1:30 · home'), C('SAT\n20', 'at Northgate', '1:30'), C('SAT\n27', 'vs Saltmarsh', '3:30')],
+  seniors: [C('SAT\n6', 'at Banksia Park SC', '3:00 · meet 1:45 · away kit', 'Camera booked'), C('SAT\n13', 'vs Riverside', '3:00 · home'), C('SAT\n20', 'at Saltmarsh', '3:00'), C('SAT\n27', 'vs Kestrel Park', '3:00')],
+}
+
+const LADDER_BY: Record<Team3, ReturnType<typeof L>[]> = {
+  juniors: [L(1, 'Saltmarsh', 8, 20), L(2, 'Riverside', 8, 19), L(3, 'Wattle Creek', 8, 16, true), L(4, 'Kestrel Park', 8, 14), L(5, 'Tealside Town', 8, 12), L(6, 'Harbour Rovers', 8, 11)],
+  youth: [L(1, 'Saltmarsh', 8, 19), L(2, 'Kingfisher United', 8, 17), L(3, 'Riverside', 8, 15), L(4, 'Glenview Park', 8, 13), L(5, 'Wattle Creek', 8, 11, true), L(6, 'Harbour Rovers', 8, 10)],
+  seniors: [L(1, 'Riverside', 10, 23), L(2, 'Saltmarsh', 10, 21), L(3, 'Banksia Park SC', 10, 19), L(4, 'Wattle Creek', 10, 18, true), L(5, 'Kingfisher United', 10, 16), L(6, 'Ironbark United', 10, 14)],
+}
 
 function resultDot(r: string) {
   if (r === 'W') return { bg: '#2f6252', color: '#ffffff' }
@@ -213,8 +220,8 @@ function resultDot(r: string) {
 
 const FIXTURES_HEADER: Record<'juniors' | 'youth' | 'seniors', string> = {
   juniors: 'U12 Sam · 3rd of 10 · 16 points from 8 games · 2 × 30 minutes, 9 a side',
-  youth:   'U16 Ollie · 4th of 12 · 14 points from 8 games · 2 × 35 minutes, 11 a side',
-  seniors: "Men's 1sts · 2nd of 12 · 22 points from 10 games · 2 × 45 minutes, 11 a side",
+  youth:   'U16 Ollie · 5th of 12 · 11 points from 8 games · 2 × 40 minutes, 11 a side',
+  seniors: "Men's 1sts · 4th of 12 · 18 points from 10 games · 2 × 45 minutes, 11 a side",
 }
 
 export default function FixturesScreen({ empty, teamType = 'juniors' }: { empty?: boolean; teamType?: 'juniors' | 'youth' | 'seniors' }) {
@@ -224,6 +231,7 @@ export default function FixturesScreen({ empty, teamType = 'juniors' }: { empty?
   const [selectedResult, setSelectedResult] = useState<number | null>(null)
   const [addOpen, setAddOpen] = useState(false)
   if (empty) return <FixturesEmpty />
+  const RESULTS = RESULTS_BY[teamType], COMING_UP = COMING_BY[teamType], LADDER = LADDER_BY[teamType]
   return (
     <>
     <main style={{ flexGrow: 1, padding: '14px 28px 18px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 340px', gap: 16, boxSizing: 'border-box', minHeight: 0, overflow: 'hidden' }}>

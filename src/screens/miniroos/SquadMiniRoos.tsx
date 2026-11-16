@@ -1,9 +1,5 @@
 import { useState } from 'react'
-import ComingMiniRoos from './ComingMiniRoos'
-import ConsentMiniRoos from './ConsentMiniRoos'
-import SeasonNotesScreen from './SeasonNotesScreen'
 
-type SquadTab = 'players' | 'coming' | 'consent' | 'seasonnotes'
 type Avail = 'yes' | 'maybe' | 'away' | 'noreply'
 
 interface Player {
@@ -12,8 +8,8 @@ interface Player {
   history: { label: string; value: string }[]
 }
 
-const PLAYERS: Player[] = [
-  { ini: 'IC', name: 'Ivy Chen',    note: 'Loves to dribble',   avail: 'yes',     hadGoal: true,  hadCaptain: false,
+export const PLAYERS: Player[] = [
+  { ini: 'IC', name: 'Ivy Chen',    note: 'Loves to dribble',   avail: 'yes',     hadGoal: true,  hadCaptain: true,
     helpNote: 'Loves to dribble. Keep her wide so she gets space to run.',
     history: [{ label: 'Turn in goal', value: 'Sat 16 May' }, { label: 'Captain', value: 'Sat 2 May' }] },
   { ini: 'MB', name: 'Max Bailey',  note: 'Asks to go in goal', avail: 'yes',     hadGoal: false, hadCaptain: false,
@@ -34,7 +30,7 @@ const PLAYERS: Player[] = [
   { ini: 'TS', name: 'Theo Santos', note: 'Runs all day',        avail: 'yes',     hadGoal: true,  hadCaptain: false,
     helpNote: 'Endless energy. Keep him involved but remind him to look for a friend.',
     history: [{ label: 'Turn in goal', value: 'Sat 30 May' }, { label: 'Captain', value: 'Due this term' }] },
-  { ini: 'PD', name: 'Poppy Dunn',  note: 'Shy with the ball',  avail: 'maybe',   hadGoal: true,  hadCaptain: false,
+  { ini: 'PD', name: 'Poppy Dunn',  note: 'Shy with the ball',  avail: 'maybe',   hadGoal: true,  hadCaptain: true,
     helpNote: "She's shy with the ball. Pair her with Zara in the first game and give her the first kick-off.",
     history: [{ label: 'Turn in goal', value: 'Sat 16 May' }, { label: 'Captain', value: 'Sat 23 May' }, { label: 'Saturday', value: "7 — parent says maybe · school concert" }, { label: 'First-aid card', value: 'Nothing to know' }] },
   { ini: 'OH', name: 'Omar Haddad', note: 'Away next week',     avail: 'away',    hadGoal: false, hadCaptain: false,
@@ -58,7 +54,6 @@ const Check = () => (
 
 export default function SquadMiniRoos({ empty }: { empty?: boolean }) {
   const [sel, setSel] = useState<Player>(PLAYERS[7])
-  const [squadTab, setSquadTab] = useState<SquadTab>('players')
   const [toast, setToast] = useState<string | null>(null)
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
@@ -90,17 +85,9 @@ export default function SquadMiniRoos({ empty }: { empty?: boolean }) {
         <button onClick={() => showToast('Reminder sent to the 1 family who hasn\'t replied.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Remind 1 family</button>
         <button onClick={() => showToast('Opening the add player form.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>+ Add a player</button>
       </div>
-      <div style={{ display: 'flex', gap: 0, borderBottom: '1px solid #e9eae8', marginBottom: 10 }}>
-        {([['players', 'Players'], ['coming', "Who's coming"], ['consent', 'Consent'], ['seasonnotes', 'Season notes']] as [SquadTab, string][]).map(([id, label]) => (
-          <button key={id} onClick={() => setSquadTab(id)} style={{ height: 44, padding: '0 16px', border: 0, background: 'transparent', fontFamily: 'inherit', fontSize: 14, fontWeight: squadTab === id ? 700 : 500, color: squadTab === id ? '#10211f' : '#6f7f7b', cursor: 'pointer', borderBottom: squadTab === id ? '2px solid #40826d' : '2px solid transparent' }}>{label}</button>
-        ))}
-      </div>
     </div>
   )
 
-  if (squadTab === 'coming')  return <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, minHeight: 0, overflow: 'hidden' }}>{tabBar}<ComingMiniRoos empty={empty} /></div>
-  if (squadTab === 'consent') return <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, minHeight: 0, overflow: 'hidden' }}>{tabBar}<ConsentMiniRoos empty={empty} /></div>
-  if (squadTab === 'seasonnotes') return <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, minHeight: 0, overflow: 'hidden' }}>{tabBar}<SeasonNotesScreen empty={empty} onBack={() => setSquadTab('players')} /></div>
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, minHeight: 0, overflow: 'hidden' }}>
@@ -153,7 +140,7 @@ export default function SquadMiniRoos({ empty }: { empty?: boolean }) {
               <span style={{ flex: 'none', width: 40, height: 40, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', fontSize: 13, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{sel.ini}</span>
               <div>
                 <div style={{ fontSize: 16, fontWeight: 700, color: '#10211f' }}>{sel.name}</div>
-                <div style={{ fontSize: 13, color: '#4a5a57' }}>Second term · plays anywhere</div>
+                <div style={{ fontSize: 13, color: '#4a5a57' }}>{sel.note === 'New this term' ? 'First term' : 'Second term'} · plays anywhere</div>
               </div>
             </div>
             <div style={{ background: '#eef5f2', borderRadius: 10, padding: '10px 12px', fontSize: 13, lineHeight: '18px', color: '#1f4a3e' }}>
@@ -169,7 +156,7 @@ export default function SquadMiniRoos({ empty }: { empty?: boolean }) {
               </div>
             ))}
           </div>
-          <button onClick={() => showToast(`Message started to ${sel.name.split(' ')[0]}'s mum.`)} style={{ width: '100%', height: 44, borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Message her mum</button>
+          <button onClick={() => showToast(`Message started to ${sel.name.split(' ')[0]}’s family.`)} style={{ width: '100%', height: 44, borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Message {sel.name.split(' ')[0]}’s family</button>
           <button onClick={() => showToast(`Note added for ${sel.name.split(' ')[0]}.`)} style={{ width: '100%', height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Add a note</button>
         </div>
       </div>

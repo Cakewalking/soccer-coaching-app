@@ -15,14 +15,14 @@ const FIL2_CFG: TeamSheetConfig = {
     { label: 'Game 4', sub: '12:30 · Tealside' },
   ],
   rows: [
-    { row: 1, jersey: 7,  name: 'Ava Walsh',   spot: 'Mid', games: ['start',  'start',  'bench',  'start']  },
+    { row: 1, jersey: 7,  name: 'Isla Morgan', spot: 'Mid', games: ['start',  'start',  'bench',  'start']  },
     { row: 2, jersey: 4,  name: 'Ella Brandt',  spot: 'Def', games: ['start',  'bench',  'start',  'ingoal'] },
-    { row: 3, jersey: 9,  name: 'Finn Noble',   spot: 'Fwd', games: ['bench',  'start',  'start',  'start']  },
-    { row: 4, jersey: 5,  name: 'Grace Reid',   spot: 'Def', games: ['start',  'start',  'start',  'bench'],  notes: 'Captain, game 1' },
+    { row: 3, jersey: 9,  name: 'Finn Walsh',   spot: 'Fwd', games: ['bench',  'start',  'start',  'start']  },
+    { row: 4, jersey: 5,  name: 'Grace Owusu',  spot: 'Def', games: ['start',  'start',  'start',  'bench'],  notes: 'Captain, game 1' },
     { row: 5, jersey: 11, name: 'Jai Patel',    spot: 'Fwd', games: ['bench',  'start',  'start',  'start']  },
     { row: 6, jersey: 8,  name: 'Mia Tran',     spot: 'Mid', games: ['start',  'bench',  'start',  'start']  },
     { row: 7, jersey: 6,  name: 'Noah Okafor',  spot: 'Mid', games: ['start',  'start',  'bench',  'start'],  notes: 'Sprint cap: 12' },
-    { row: 8, jersey: 1,  name: 'Ruby Lane',    spot: 'GK',  games: ['ingoal', 'start',  'ingoal', 'start']  },
+    { row: 8, jersey: 1,  name: 'Ava Lindqvist', spot: 'GK',  games: ['ingoal', 'start',  'ingoal', 'start']  },
     { row: 9, jersey: 3,  name: 'Zoe Hartley',  spot: 'Def', games: ['start',  'ingoal', 'start',  'bench']  },
   ],
   initialSheets: ['Team sheets', 'Contacts', 'Kit sizes'],
@@ -33,7 +33,7 @@ const FIL2_CFG: TeamSheetConfig = {
     { icon: 'check', title: 'A turn in goal for everyone', sub: 'One in goal every game' },
     { icon: 'lock',  title: '2 players not on the sheet', sub: 'Kai and Lily are away' },
   ],
-  warn: { player: 'Ruby Lane', swapWith: 'Zoe Hartley', title: 'Ruby plays every game', body: '60 minutes; everyone else has 45. Rest her in game 3?', game: 2 },
+  warn: { player: 'Ava Lindqvist', swapWith: 'Zoe Hartley', title: 'Ava plays every game', body: '60 minutes; everyone else has 45. Rest her in game 3?', game: 2 },
   dataNote: "Player, Spot and Minutes come from your squad and this sheet's own choices. Change the squad and they change here.",
 }
 

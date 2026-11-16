@@ -52,7 +52,7 @@ export default function FileEditor({ type, initialName, initialContent, onBack, 
     <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', background: '#f4f6f5', minHeight: 0 }}>
       {/* Toolbar */}
       <div style={{ background: '#fff', borderBottom: `1px solid ${LN}`, padding: '0 20px', display: 'flex', gap: 8, height: 44, alignItems: 'center', flexShrink: 0 }}>
-        <button onClick={onBack} style={{ height: 36, padding: '0 14px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: INK, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 6, flexShrink: 0 }}>
+        <button onClick={onBack} style={{ height: 44, padding: '0 14px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: INK, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 6, flexShrink: 0 }}>
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
           Back to Files
         </button>
@@ -60,12 +60,12 @@ export default function FileEditor({ type, initialName, initialContent, onBack, 
         <span style={{ fontSize: 12, color: MUT }}>New {type} · only you can see it until you share</span>
         {type === 'sheet' && (
           <>
-            <button onClick={addRow} style={{ height: 36, padding: '0 12px', marginLeft: 8, borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>+ Row</button>
-            <button onClick={addCol} style={{ height: 36, padding: '0 12px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>+ Column</button>
+            <button onClick={addRow} style={{ height: 44, padding: '0 12px', marginLeft: 8, borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>+ Row</button>
+            <button onClick={addCol} style={{ height: 44, padding: '0 12px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>+ Column</button>
           </>
         )}
         <button onClick={() => setShareOpen(true)} style={{ marginLeft: 'auto', height: 36, padding: '0 16px', borderRadius: 999, border: `1px solid ${G}`, background: '#fff', color: G, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Share</button>
-        <button onClick={save} style={{ height: 36, padding: '0 18px', borderRadius: 999, border: 'none', background: saved ? '#5a8a7a' : G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>{saved ? 'Saved ✓' : isNew ? 'Create file' : 'Save'}</button>
+        <button onClick={save} style={{ height: 44, padding: '0 18px', borderRadius: 999, border: 'none', background: saved ? '#5a8a7a' : G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>{saved ? 'Saved ✓' : isNew ? 'Create file' : 'Save'}</button>
       </div>
 
       <div style={{ flex: 1, overflowY: 'auto', padding: '28px 0', display: 'flex', justifyContent: 'center' }}>
@@ -147,7 +147,7 @@ export default function FileEditor({ type, initialName, initialContent, onBack, 
 
             <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
               <button onClick={() => setShareOpen(false)} style={{ height: 40, padding: '0 18px', borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 13, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Cancel</button>
-              <button onClick={confirmShare} style={{ height: 40, padding: '0 22px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Share</button>
+              <button onClick={confirmShare} style={{ height: 44, padding: '0 22px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Share</button>
             </div>
           </div>
         </div>

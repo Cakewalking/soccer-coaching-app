@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { demoToast } from './demoToast'
 
 const G    = '#2f6252'
 const G2   = '#40826d'
@@ -33,9 +34,19 @@ function Badge({ label, color = G, bg = PALE }: { label: string; color?: string;
   return <span style={{ fontSize: 11, fontWeight: 700, color, background: bg, padding: '2px 8px', borderRadius: 999 }}>{label}</span>
 }
 
+const OWNER_SAYS: Record<string, string> = {
+  'Add a program': 'A new program opens: name, days, coach and price.', '+ New program': 'A new program opens: name, days, coach and price.',
+  'Copy to Term 3': 'Term 2 programs copied to Term 3. Check the dates and prices before you publish.',
+  'Offer': 'Offer sent to the family. They have 48 hours to take the place.',
+  'Plan a clinic': 'A new holiday clinic opens: dates, ages and places.',
+  'Copy the booking link': 'Booking link copied.', 'Message booked families': 'A message to every booked family opens.',
+  'Import a spreadsheet': 'Pick a spreadsheet of players. The columns are matched for you.',
+  'Export': 'The player list is saved as a spreadsheet.', 'Message all families': 'A message to all families opens.',
+  'Invite a coach': 'An invite opens: name, email and their children check number.', '+ Invite a coach': 'An invite opens: name, email and their children check number.',
+}
 function Btn({ label, primary, small, onClick }: { label: string; primary?: boolean; small?: boolean; onClick?: () => void }) {
   return (
-    <button onClick={onClick} style={{ height: 44, padding: `0 ${small ? 12 : 18}px`, borderRadius: 999, border: primary ? 'none' : `1px solid ${LN}`, background: primary ? G : '#fff', color: primary ? '#fff' : MUT, fontSize: small ? 12 : 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>{label}</button>
+    <button onClick={onClick ?? (() => demoToast(OWNER_SAYS[label] ?? `${label}: done.`))} style={{ height: 44, padding: `0 ${small ? 12 : 18}px`, borderRadius: 999, border: primary ? 'none' : `1px solid ${LN}`, background: primary ? G : '#fff', color: primary ? '#fff' : MUT, fontSize: small ? 12 : 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>{label}</button>
   )
 }
 

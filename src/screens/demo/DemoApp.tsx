@@ -48,6 +48,7 @@ import CoachFitnessScreen    from '../CoachFitnessScreen'
 import SettingsScreen        from '../SettingsScreen'
 import LiveGameScreen        from '../LiveGameScreen'
 import FormationBuilder      from '../formation/FormationBuilder'
+import { registerScreenRenderer } from '../ScreenLayer'
 import type { FormationPreset } from '../formation/lineupInsights'
 import LineupParent          from '../formation/LineupParent'
 import LiveGame11Screen      from '../LiveGame11Screen'
@@ -1565,6 +1566,9 @@ function renderScreenInner(key: string): ReactNode {
     case 'D5-Safeguarding':            return <ClubAdminScreenNav role="dof" initials="RM" initialTab="safeguarding" empty={false} />
     case 'D5-Safeguarding-concerns':   return <D5Safeguarding initialTab="concerns" />
     case 'DS1-Concerns':              return <ER5NoAccess />
+    case 'WF1-WelfareConcerns':       return <ClubAdminScreenNav role="welfare" initials="HP" initialTab="welfare" />
+    case 'WF2-WelfareChecks':         return <ClubAdminScreenNav role="welfare" initials="HP" initialTab="safeguarding" />
+    case 'WF3-WelfareMessages':       return <ClubAdminScreenNav role="welfare" initials="HP" initialTab="messages" />
     case 'DS2-DataRequests':          return <DS2DataRequests />
     case 'DB4-Grants':                return <DB4Grants />
     case 'DK1-Kit':                   return <DK1Kit />
@@ -2385,6 +2389,8 @@ export function renderScreen(key: string): ReactNode {
   const phone = /^(STO1[6-9]|STO2[0-2]|ERp|SIp|SB|TM\d|PA-|PS\d|PO\d|ACP|ACK|RF\d|MSGp|CPh)/.test(key)
   return <div data-screen={key} style={{ minHeight: '100vh' }}><ScreenErrorBoundary key={key} phone={phone}>{renderScreenInner(key)}</ScreenErrorBoundary></div>
 }
+
+registerScreenRenderer(renderScreen)
 
 function viewToPath(view: DemoView, role: RoleId, screen?: string): string {
   if (view === 'screendirect') return screen ? `/__screen/${screen}` : '/__screen'

@@ -298,7 +298,7 @@ export default function GoalkeeperCoachApp({ empty = false, initialScreen, onNav
           <nav style={{ display: 'flex', flexGrow: 1, height: 60 }}>
             {GK_NAV.map(tab => (
               <button key={tab.id} onClick={() => { setNav(tab.id); onNavChange?.(tab.id) }} style={{
-                height: 60, padding: '0 16px', border: 0, background: 'transparent',
+                height: 60, padding: '0 14px', border: 0, background: 'transparent', whiteSpace: 'nowrap', flexShrink: 0,
                 fontFamily: 'inherit', fontSize: 15, fontWeight: nav === tab.id ? 700 : 500,
                 color: nav === tab.id ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer',
                 borderBottom: nav === tab.id ? '3px solid #fff' : '3px solid transparent',

@@ -418,7 +418,7 @@ export function CoachMessagesPersonCard({ onBack, onNav }: { onBack?: () => void
 }
 
 // MSG4 — Director messages
-export function DirectorMessages({ onBack: _onBack, embedded }: { onBack?: () => void; embedded?: boolean }) {
+export function DirectorMessages({ onBack: _onBack, embedded, as = 'director' }: { onBack?: () => void; embedded?: boolean; as?: 'director' | 'welfare' }) {
   const [toast, setToast] = useState<string | null>(null)
   const [input, setInput] = useState('')
   const [activeChat, setActiveChat] = useState(1)   // Sam K by default
@@ -430,7 +430,13 @@ export function DirectorMessages({ onBack: _onBack, embedded }: { onBack?: () =>
   const DIRECTOR_NAV = ['Club', 'Teams', 'Coaches', 'Players', 'Safeguarding', 'Reports']
   const CLUB_SUBS = ['Overview', 'Messages', 'Calendar', 'Settings']
 
-  const chats = [
+  const chats = as === 'welfare' ? [
+    { ini: 'RM', name: 'Rachel M',      preview: 'You: Counts for the committee are in', time: 'Mon', unread: 0 },
+    { ini: 'LT', name: 'Linh Tran',     preview: 'Thank you for calling back', time: '2:15pm', unread: 1, private: true, welfare: true },
+    { ini: 'SK', name: 'Sam K',         preview: 'Understood, I’ll keep an eye out', time: '11:40am', unread: 0 },
+    { ini: 'BR', name: 'Bianca Rossi',  preview: 'Two children checks renewed', time: 'Yesterday', unread: 0 },
+    { ini: 'GL', name: 'Greg Lawson',   preview: 'Thanks Helen', time: 'Sat', unread: 0 },
+  ] : [
     { ini: 'AC', name: 'All coaches',    preview: 'You: Reminder — CWW training…', time: 'Mon', unread: 0 },
     { ini: 'SK', name: 'Sam K',         preview: 'Can we have a second ball bag…', time: '2:15pm', unread: 1, active: true },
     { ini: 'BR', name: 'Bianca Rossi',  preview: 'On it.', time: '11:40am', unread: 0 },
@@ -439,7 +445,10 @@ export function DirectorMessages({ onBack: _onBack, embedded }: { onBack?: () =>
     { ini: 'DK', name: 'Dan Kovac',     preview: 'U7 parent · Okay thank you', time: 'Tue', unread: 0 },
   ]
 
-  const transcript = [
+  const transcript = as === 'welfare' ? [
+    { from: 'LT', text: 'Thank you for calling back so quickly. It helped to talk it through.', mine: false, time: '2:08pm' },
+    { from: 'HP', text: 'Any time, Linh. I’ll check in again on Friday. Nobody else can read this.', mine: true, time: '2:15pm' },
+  ] : [
     { from: 'SK', text: 'Hi Rachel — could we get a second ball bag for training? The squad is up to 18 now.', mine: false, time: '2:08pm' },
     { from: 'RM', text: 'Absolutely — I\'ll ask Bianca to sort it before Thursday. Good catch.', mine: true, time: '2:15pm' },
   ]
@@ -479,7 +488,7 @@ export function DirectorMessages({ onBack: _onBack, embedded }: { onBack?: () =>
         {/* Chat list */}
         <div style={{ width: 300, flexShrink: 0, borderRight: `1px solid ${LN}`, background: '#fff', display: 'flex', flexDirection: 'column' }}>
           <div style={{ padding: '12px 14px', borderBottom: `1px solid ${LN}`, display: 'flex', gap: 8 }}>
-            <button onClick={() => t('Message all coaches opens.')} style={{ flex: 1, height: 36, borderRadius: 8, background: PALE, color: G, border: 'none', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Message all coaches</button>
+            <button onClick={() => t(as === 'welfare' ? 'A private message opens. Only you and the person you pick can read it.' : 'Message all coaches opens.')} style={{ flex: 1, height: 44, borderRadius: 8, background: PALE, color: G, border: 'none', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{as === 'welfare' ? 'Private message' : 'Message all coaches'}</button>
             <button onClick={() => t('New message opens.')} style={{ width: 44, height: 44, borderRadius: 8, background: G, color: '#fff', border: 'none', fontSize: 18, cursor: 'pointer' }}>+</button>
           </div>
           <div style={{ overflowY: 'auto', flex: 1 }}>

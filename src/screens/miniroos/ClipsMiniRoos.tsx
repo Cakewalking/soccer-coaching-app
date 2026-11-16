@@ -22,30 +22,30 @@ type Clip = {
 }
 
 const GAMES = [
-  { id: 'sat6',  label: 'Sat 6 Jun · Harbour',   sub: 'Filmed · 44 min' },
+  { id: 'sat6',  label: 'Sat 6 Jun · Northgate',   sub: 'Filmed · 44 min' },
   { id: 'tue',   label: 'Tue training',          sub: 'Filmed · 30 min' },
-  { id: 'may30', label: 'Sat 30 May · Ironbark', sub: 'Filmed · 40 min' },
+  { id: 'may30', label: 'Sat 30 May · Glenview', sub: 'Filmed · 40 min' },
 ]
 
 const SKILLS = ['First touch', 'Dribbling', 'Passing', 'Defending', 'Shooting', 'Never gives up']
 
-const CHILDREN = ['Ava Lindgren', 'Ella Brooks', 'Jai Patel', 'Mia Tran', 'Noah Okafor', 'Oscar Brennan', 'Lily Huang', 'Cal Wheeler', 'Grace Oni']
+const CHILDREN = ['Ivy Chen', 'Zara Moore', 'Max Bailey', 'Evie Nolan', 'Theo Santos', 'Poppy Dunn', 'Omar Haddad', 'Jude Lim']
 
 const CLIPS: Clip[] = [
-  { id: 'c1',  ini: 'AL', name: 'Ava Lindgren',  skill: 'First touch',    game: 'sat6',  min: 23, kind: 'great', note: 'Controls a bouncing ball under pressure', avatarShade: 0 },
-  { id: 'c2',  ini: 'EB', name: 'Ella Brooks',   skill: 'Dribbling',      game: 'sat6',  min: 11, kind: 'great', note: 'Dribbles past two defenders to set up a goal', avatarShade: 1 },
-  { id: 'c3',  ini: 'JP', name: 'Jai Patel',     skill: 'First touch',    game: 'sat6',  min: 34, kind: 'great', note: 'First touch out of feet into space', avatarShade: 2 },
-  { id: 'c4',  ini: 'MT', name: 'Mia Tran',      skill: 'Defending',      game: 'sat6',  min: 8,  kind: 'great', note: 'Tracks back and wins the ball near her own goal', avatarShade: 0 },
-  { id: 'c5',  ini: 'NO', name: 'Noah Okafor',   skill: 'Passing',        game: 'sat6',  min: 41, kind: 'great', note: 'Volleys the ball to a teammate rather than the wall', avatarShade: 1 },
-  { id: 'c6',  ini: 'OB', name: 'Oscar Brennan', skill: 'Shooting',       game: 'sat6',  min: 29, kind: 'try',   note: 'Takes a touch before shooting instead of first-time', avatarShade: 2 },
-  { id: 'c7',  ini: 'LH', name: 'Lily Huang',    skill: 'Passing',        game: 'sat6',  min: 17, kind: 'great', note: 'Finds the open player instead of forcing it', avatarShade: 0 },
-  { id: 'c8',  ini: 'CW', name: 'Cal Wheeler',   skill: 'Never gives up', game: 'sat6',  min: 38, kind: 'great', note: "Keeps going after losing the ball — doesn't stop", avatarShade: 1 },
-  { id: 'c9',  ini: 'GO', name: 'Grace Oni',     skill: 'Dribbling',      game: 'tue',   min: 12, kind: 'great', note: 'Runs with the ball with her head up', avatarShade: 2 },
-  { id: 'c10', ini: 'MT', name: 'Mia Tran',      skill: 'Shooting',       game: 'tue',   min: 20, kind: 'great', note: 'Lines up a shot after a quick turn', avatarShade: 0 },
-  { id: 'c11', ini: 'AL', name: 'Ava Lindgren',  skill: 'Passing',        game: 'tue',   min: 25, kind: 'try',   note: 'Can look up a little earlier before passing', avatarShade: 0 },
-  { id: 'c12', ini: 'NO', name: 'Noah Okafor',   skill: 'Defending',      game: 'may30', min: 14, kind: 'great', note: 'Jockeys the attacker instead of diving in', avatarShade: 1 },
-  { id: 'c13', ini: 'JP', name: 'Jai Patel',     skill: 'Never gives up', game: 'may30', min: 31, kind: 'great', note: 'Chases a lost cause and wins a throw', avatarShade: 2 },
-  { id: 'c14', ini: 'EB', name: 'Ella Brooks',   skill: 'First touch',    game: 'may30', min: 9,  kind: 'try',   note: 'A heavy first touch — soft cushion next time', avatarShade: 1 },
+  { id: 'c1',  ini: 'IC', name: 'Ivy Chen',  skill: 'First touch',    game: 'sat6',  min: 23, kind: 'great', note: 'Controls a bouncing ball under pressure', avatarShade: 0 },
+  { id: 'c2',  ini: 'ZM', name: 'Zara Moore',   skill: 'Dribbling',      game: 'sat6',  min: 11, kind: 'great', note: 'Dribbles past two defenders to set up a goal', avatarShade: 1 },
+  { id: 'c3',  ini: 'MB', name: 'Max Bailey',     skill: 'First touch',    game: 'sat6',  min: 34, kind: 'great', note: 'First touch out of feet into space', avatarShade: 2 },
+  { id: 'c4',  ini: 'EN', name: 'Evie Nolan',      skill: 'Defending',      game: 'sat6',  min: 8,  kind: 'great', note: 'Tracks back and wins the ball near her own goal', avatarShade: 0 },
+  { id: 'c5',  ini: 'TS', name: 'Theo Santos',   skill: 'Passing',        game: 'sat6',  min: 41, kind: 'great', note: 'Volleys the ball to a teammate rather than the wall', avatarShade: 1 },
+  { id: 'c6',  ini: 'PD', name: 'Poppy Dunn', skill: 'Shooting',       game: 'sat6',  min: 29, kind: 'try',   note: 'Takes a touch before shooting instead of first-time', avatarShade: 2 },
+  { id: 'c7',  ini: 'OH', name: 'Omar Haddad',    skill: 'Passing',        game: 'sat6',  min: 17, kind: 'great', note: 'Finds the open player instead of forcing it', avatarShade: 0 },
+  { id: 'c8',  ini: 'JL', name: 'Jude Lim',   skill: 'Never gives up', game: 'sat6',  min: 38, kind: 'great', note: "Keeps going after losing the ball — doesn't stop", avatarShade: 1 },
+  { id: 'c9',  ini: 'ZM', name: 'Zara Moore',     skill: 'Dribbling',      game: 'tue',   min: 12, kind: 'great', note: 'Runs with the ball with her head up', avatarShade: 2 },
+  { id: 'c10', ini: 'EN', name: 'Evie Nolan',      skill: 'Shooting',       game: 'tue',   min: 20, kind: 'great', note: 'Lines up a shot after a quick turn', avatarShade: 0 },
+  { id: 'c11', ini: 'IC', name: 'Ivy Chen',  skill: 'Passing',        game: 'tue',   min: 25, kind: 'try',   note: 'Can look up a little earlier before passing', avatarShade: 0 },
+  { id: 'c12', ini: 'TS', name: 'Theo Santos',   skill: 'Defending',      game: 'may30', min: 14, kind: 'great', note: 'Jockeys the attacker instead of diving in', avatarShade: 1 },
+  { id: 'c13', ini: 'MB', name: 'Max Bailey',     skill: 'Never gives up', game: 'may30', min: 31, kind: 'great', note: 'Chases a lost cause and wins a throw', avatarShade: 2 },
+  { id: 'c14', ini: 'ZM', name: 'Zara Moore',   skill: 'First touch',    game: 'may30', min: 9,  kind: 'try',   note: 'A heavy first touch — soft cushion next time', avatarShade: 1 },
 ]
 
 const SHADES = [G, GD, ROSE]
@@ -156,7 +156,7 @@ export default function ClipsMiniRoos({ empty, onBack }: { empty?: boolean; onBa
 
           <div style={{ background: PALE, borderRadius: 12, padding: '12px 16px', marginTop: 16 }}>
             <div style={{ fontSize: 13, fontWeight: 700, color: GD, marginBottom: 4 }}>Who had a go</div>
-            <div style={{ fontSize: 13, color: G, lineHeight: 1.5 }}>All 9 children have a clip this fortnight. Mia and Cal had the most touches. Harper and Bao aren't tracked — tap a child to film them Tuesday.</div>
+            <div style={{ fontSize: 13, color: G, lineHeight: 1.5 }}>All 8 children who can be filmed have a clip this fortnight. Evie and Cal had the most touches. Leo and Arlo aren't tracked — tap a child to film them Tuesday.</div>
           </div>
         </div>
 
@@ -173,7 +173,7 @@ export default function ClipsMiniRoos({ empty, onBack }: { empty?: boolean; onBa
 
 function Chip({ active, onClick, label, count, avatar, dim }: { active: boolean; onClick: () => void; label: string; count: number; avatar?: string; dim?: boolean }) {
   return (
-    <button onClick={onClick} style={{ height: 36, padding: '0 14px', borderRadius: 999, border: `1.5px solid ${active ? G2 : LN}`, background: active ? PALE : '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: dim ? '#9aa6a3' : INK, display: 'flex', alignItems: 'center', gap: 7, opacity: dim ? 0.7 : 1 }}>
+    <button onClick={onClick} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1.5px solid ${active ? G2 : LN}`, background: active ? PALE : '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: dim ? '#9aa6a3' : INK, display: 'flex', alignItems: 'center', gap: 7, opacity: dim ? 0.7 : 1 }}>
       {avatar && <span style={{ width: 20, height: 20, borderRadius: 999, background: dim ? '#d6ddda' : '#cbbeb5', color: INK, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10, fontWeight: 700 }}>{avatar}</span>}
       {label}
       <span style={{ fontSize: 12, color: MUT, fontWeight: 400 }}>{count}</span>

@@ -437,8 +437,8 @@ export const STO12: HomeCfg = {
 // ── Welfare (STO13) ──
 export const STO13: HomeCfg = {
   id: 'STO13-HomeStoryWelfare', role: 'Welfare officer', team: 'Whole club', teamTarget: SW, avatar: 'HP',
-  topNav: [{ label: 'Welfare', target: 'DS1-Concerns', active: true }],
-  subNav: [{ label: 'Overview', target: 'DS1-Concerns', active: true }, { label: 'Concerns', target: 'DS1-Concerns' }, { label: 'Children checks', target: 'D5-Safeguarding' }, { label: 'Messages', target: 'I1-Inbox' }],
+  topNav: [{ label: 'Welfare', target: 'WF1-WelfareConcerns', active: true }],
+  subNav: [{ label: 'Overview', target: 'WF1-WelfareConcerns', active: true }, { label: 'Concerns', target: 'WF1-WelfareConcerns' }, { label: 'Children checks', target: 'WF2-WelfareChecks' }, { label: 'Messages', target: 'WF3-WelfareMessages' }],
   ask: 'Ask about safeguarding… Whose children check runs out next?', askTarget: 'ASKd2-HomeFocus',
   proof: {
     label: 'SAFEGUARDING · WEEK OF 1 JUNE',
@@ -451,24 +451,24 @@ export const STO13: HomeCfg = {
       { label: 'Coaches cleared', value: '31 of 31' }, { label: 'Course done', value: '28 of 31' },
     ],
     statusCaption: 'The committee sees these counts. Never names or details.',
-    mainBtn: 'Read the new concern', mainTarget: 'DS1-Concerns', outlineBtn: 'Log one yourself', outlineBtnDone: 'A blank concern, private to you.',
+    mainBtn: 'Read the new concern', mainTarget: 'WF1-WelfareConcerns', outlineBtn: 'Log one yourself', outlineBtnDone: 'A blank concern, private to you.',
   },
   ready: {
     when: 'THU 4 JUNE · 4:00 pm · PHONE', title: 'Thursday’s check-in is ready',
     text: 'Your call with a parent from U13 Girls Meg: what was agreed last time and what to ask.',
     chips: ['15 minutes', 'Private notes', '2 agreed steps'], pale: 'Notes stay with you. Nothing is shared without your say.',
-    btn1: 'Open my notes', btn1Target: 'DS1-Concerns', btn2: 'Move it', btn2Done: 'Pick another time. The parent is asked, not told.',
+    btn1: 'Open my notes', btn1Target: 'WF1-WelfareConcerns', btn2: 'Move it', btn2Done: 'Pick another time. The parent is asked, not told.',
   },
   moments: {
-    title: 'People to check on', link: 'All concerns', linkTarget: 'DS1-Concerns', faces: [],
+    title: 'People to check on', link: 'All concerns', linkTarget: 'WF1-WelfareConcerns', faces: [],
     rows: [
-      { ini: '?', title: 'A player, U13 Girls Meg · check-in due Friday', sub: 'On track · two steps agreed', action: 'Open', target: 'DS1-Concerns' },
-      { ini: '?', title: 'Away spectator, U14 Josh · club replied', sub: 'On track · waiting on the other club', action: 'Open', target: 'DS1-Concerns' },
+      { ini: '?', title: 'A player, U13 Girls Meg · check-in due Friday', sub: 'On track · two steps agreed', action: 'Open', target: 'WF1-WelfareConcerns' },
+      { ini: '?', title: 'Away spectator, U14 Josh · club replied', sub: 'On track · waiting on the other club', action: 'Open', target: 'WF1-WelfareConcerns' },
     ],
     foot: 'Names show only when you open a concern, and never on a shared screen.',
   },
   done: { title: 'Done for you', lines: ['Four expiring checks chased', 'Course reminder sent to three coaches', 'Committee counts drafted', 'Report line checked: answered in 1 day'], next: 'Kids Helpline 1800 55 1800 is on every child’s screen' },
-  needs: { count: 1, title: 'One thing needs you', sub: 'A new concern to read', target: 'DS1-Concerns' },
+  needs: { count: 1, title: 'One thing needs you', sub: 'A new concern to read', target: 'WF1-WelfareConcerns' },
 }
 
 // ── Academy owner (STO14) ──

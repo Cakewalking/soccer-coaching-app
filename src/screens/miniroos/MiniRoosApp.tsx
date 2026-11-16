@@ -12,6 +12,7 @@ import MiniRoosTeamTalk  from './MiniRoosTeamTalk'
 import ClipsMiniRoos     from './ClipsMiniRoos'
 import ConsentMiniRoos   from './ConsentMiniRoos'
 import FormationBuilder  from '../formation/FormationBuilder'
+import { SkillsMiniRoos, FairTurnsMiniRoos, WeekMiniRoos, GamesLibraryMiniRoos } from './MiniRoosExtras'
 import WhatWeSawScreen   from './WhatWeSawScreen'
 import ThankParentsScreen from './ThankParentsScreen'
 import SeasonNotesScreen from './SeasonNotesScreen'
@@ -51,14 +52,14 @@ function u9TurnsSheetCfg(title: string): TeamSheetConfig {
       { label: 'Game 4', sub: '10:30 · Northgate' },
     ],
     rows: [
-      { row: 1, jersey: 7,  name: 'Mia Tran',    spot: 'Mid', games: ['start',  'start',  'bench',  'start']  },
-      { row: 2, jersey: 4,  name: 'Cal Reyes',   spot: 'Def', games: ['start',  'bench',  'start',  'start']  },
-      { row: 3, jersey: 9,  name: 'Harper Lee',  spot: 'Fwd', games: ['bench',  'start',  'start',  'start']  },
-      { row: 4, jersey: 5,  name: 'Bao Nguyen',  spot: 'Def', games: ['start',  'start',  'start',  'bench'],  notes: 'Captain, game 1' },
-      { row: 5, jersey: 11, name: 'Lily Park',   spot: 'Fwd', games: ['bench',  'start',  'start',  'start']  },
-      { row: 6, jersey: 8,  name: 'Noah Ali',    spot: 'Mid', games: ['start',  'bench',  'start',  'start']  },
-      { row: 7, jersey: 6,  name: 'Priya Shah',  spot: 'GK',  games: ['ingoal', 'start',  'ingoal', 'start']  },
-      { row: 8, jersey: 3,  name: 'Eli Brooks',  spot: 'Def', games: ['start',  'ingoal', 'start',  'bench']  },
+      { row: 1, jersey: 7,  name: 'Evie Nolan',    spot: 'Mid', games: ['start',  'start',  'bench',  'start']  },
+      { row: 2, jersey: 4,  name: 'Jude Lim',   spot: 'Def', games: ['start',  'bench',  'start',  'start']  },
+      { row: 3, jersey: 9,  name: 'Leo Wright',  spot: 'Fwd', games: ['bench',  'start',  'start',  'start']  },
+      { row: 4, jersey: 5,  name: 'Arlo Kaur',  spot: 'Def', games: ['start',  'start',  'start',  'bench'],  notes: 'Captain, game 1' },
+      { row: 5, jersey: 11, name: 'Omar Haddad',   spot: 'Fwd', games: ['bench',  'start',  'start',  'start']  },
+      { row: 6, jersey: 8,  name: 'Theo Santos',    spot: 'Mid', games: ['start',  'bench',  'start',  'start']  },
+      { row: 7, jersey: 6,  name: 'Ivy Chen',  spot: 'GK',  games: ['ingoal', 'start',  'ingoal', 'start']  },
+      { row: 8, jersey: 3,  name: 'Zara Moore',  spot: 'Def', games: ['start',  'ingoal', 'start',  'bench']  },
     ],
     initialSheets: ['Turns', 'Contacts', 'Shirt sizes'],
     footerNote: '8 players · 4 games · Sat 6 June, Northgate City',
@@ -66,9 +67,9 @@ function u9TurnsSheetCfg(title: string): TeamSheetConfig {
       { icon: 'check', title: 'A turn in goal for everyone', sub: 'One in goal every game' },
       { icon: 'check', title: 'Nobody benched twice in a row', sub: '' },
       { icon: 'check', title: 'Captain shared around', sub: 'A new captain each game' },
-      { icon: 'lock',  title: '2 families still to answer', sub: 'Harper and Bao not confirmed' },
+      { icon: 'lock',  title: '2 families still to answer', sub: 'Leo and Bao not confirmed' },
     ],
-    warn: { player: 'Priya Shah', swapWith: 'Cal Reyes', title: 'Priya plays every game', body: '60 minutes; everyone else has 45. Rest her in game 3?', game: 2 },
+    warn: { player: 'Ivy Chen', swapWith: 'Jude Lim', title: 'Ivy plays every game', body: '60 minutes; everyone else has 45. Rest her in game 3?', game: 2 },
     dataNote: "Player, Spot and Minutes come from your squad and this sheet's own choices. Change the squad and they change here.",
   }
 }
@@ -81,7 +82,7 @@ function MiniRooFileOpen({ name, type, onBack }: { name: string; type: 'doc' | '
     <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', background: '#f4f6f5' }}>
       {/* Toolbar */}
       <div style={{ background: '#fff', borderBottom: `1px solid ${LN}`, padding: '0 20px', display: 'flex', gap: 8, height: 44, alignItems: 'center', flexShrink: 0 }}>
-        <button onClick={onBack} style={{ height: 36, padding: '0 14px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: INK, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 6, flexShrink: 0 }}>
+        <button onClick={onBack} style={{ height: 44, padding: '0 14px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: INK, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 6, flexShrink: 0 }}>
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
           Back to Files
         </button>
@@ -141,14 +142,14 @@ function MiniRooFileOpen({ name, type, onBack }: { name: string; type: 'doc' | '
                 </tr></thead>
                 <tbody>
                   {[
-                    { name: 'Mia',    g: ['LW','CB','CF','RW'], goal: '—', cap: 'G2' },
-                    { name: 'Cal',    g: ['CB','LW','RW','CF'], goal: 'G3', cap: '—' },
-                    { name: 'Harper', g: ['CF','RW','LW','CB'], goal: '—', cap: '—' },
-                    { name: 'Bao',    g: ['RW','CF','CB','LW'], goal: '—', cap: 'G4' },
-                    { name: 'Lily',   g: ['CB','CF','RW','LW'], goal: 'G1', cap: '—' },
-                    { name: 'Noah',   g: ['LW','CB','CF','RW'], goal: '—', cap: 'G1' },
-                    { name: 'Priya',  g: ['CF','LW','CB','RW'], goal: '—', cap: 'G3' },
-                    { name: 'Eli',    g: ['RW','CF','LW','CB'], goal: 'G4', cap: '—' },
+                    { name: 'Evie',    g: ['LW','CB','CF','RW'], goal: '—', cap: 'G2' },
+                    { name: 'Jude',    g: ['CB','LW','RW','CF'], goal: 'G3', cap: '—' },
+                    { name: 'Leo', g: ['CF','RW','LW','CB'], goal: '—', cap: '—' },
+                    { name: 'Arlo',    g: ['RW','CF','CB','LW'], goal: '—', cap: 'G4' },
+                    { name: 'Omar',   g: ['CB','CF','RW','LW'], goal: 'G1', cap: '—' },
+                    { name: 'Theo',   g: ['LW','CB','CF','RW'], goal: '—', cap: 'G1' },
+                    { name: 'Ivy',  g: ['CF','LW','CB','RW'], goal: '—', cap: 'G3' },
+                    { name: 'Zara',    g: ['RW','CF','LW','CB'], goal: 'G4', cap: '—' },
                   ].map((p, i) => (
                     <tr key={p.name} style={{ borderBottom: `1px solid ${LN}`, background: i % 2 === 0 ? '#fff' : '#fafafa' }}>
                       <td style={{ padding: '10px 16px', fontSize: 13, fontWeight: 600, color: INK }}>{p.name}</td>
@@ -168,9 +169,9 @@ function MiniRooFileOpen({ name, type, onBack }: { name: string; type: 'doc' | '
                 </tr></thead>
                 <tbody>
                   {[
-                    { date: 'Sat 6 June', can: 'Mia family', kit: 'Cal family', oranges: 'Harper family', wet: 'Bao family' },
-                    { date: 'Sat 14 June', can: 'Lily family', kit: 'Noah family', oranges: 'Priya family', wet: 'Eli family' },
-                    { date: 'Sat 21 June', can: 'Bao family', kit: 'Mia family', oranges: 'Cal family', wet: 'Noah family' },
+                    { date: 'Sat 6 June', can: 'Evie family', kit: 'Jude family', oranges: 'Leo family', wet: 'Arlo family' },
+                    { date: 'Sat 14 June', can: 'Omar family', kit: 'Theo family', oranges: 'Ivy family', wet: 'Zara family' },
+                    { date: 'Sat 21 June', can: 'Arlo family', kit: 'Evie family', oranges: 'Jude family', wet: 'Theo family' },
                   ].map((row, i) => (
                     <tr key={row.date} style={{ borderBottom: `1px solid ${LN}`, background: i % 2 === 0 ? '#fff' : '#fafafa' }}>
                       {[row.date, row.can, row.kit, row.oranges, row.wet].map((v, j) => (
@@ -464,16 +465,16 @@ function RecordMiniRoosStart({ empty, onClips }: { empty?: boolean; onClips: () 
   const [toast, setToast] = useState<string | null>(null)
   function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   const children = [
-    { ini: 'AL', name: 'Ava L',    ok: true },
-    { ini: 'EB', name: 'Ella B',   ok: true },
-    { ini: 'JP', name: 'Jai P',    ok: true },
-    { ini: 'MT', name: 'Mia T',    ok: true },
-    { ini: 'NO', name: 'Noah O',   ok: true },
-    { ini: 'OB', name: 'Oscar B',  ok: true },
-    { ini: 'LH', name: 'Lily H',   ok: true },
-    { ini: 'CW', name: 'Cal W',    ok: true },
-    { ini: 'HR', name: 'Harper R', ok: false, reason: 'No consent' },
-    { ini: 'BT', name: 'Bao T',    ok: false, reason: 'No consent' },
+    { ini: 'IC', name: 'Ivy C',    ok: true },
+    { ini: 'ZM', name: 'Zara M',   ok: true },
+    { ini: 'MB', name: 'Max B',    ok: true },
+    { ini: 'EN', name: 'Evie N',    ok: true },
+    { ini: 'TS', name: 'Theo S',   ok: true },
+    { ini: 'PD', name: 'Poppy D',  ok: true },
+    { ini: 'OH', name: 'Omar H',   ok: true },
+    { ini: 'JL', name: 'Jude L',    ok: true },
+    { ini: 'LW', name: 'Leo W', ok: false, reason: 'No consent' },
+    { ini: 'AK', name: 'Arlo K',    ok: false, reason: 'No consent' },
   ]
 
   if (empty) return (
@@ -510,7 +511,7 @@ function RecordMiniRoosStart({ empty, onClips }: { empty?: boolean; onClips: () 
       <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, overflow: 'hidden' }}>
         <div style={{ padding: '10px 16px', borderBottom: `1px solid ${LN}`, fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT }}>What are you filming?</div>
         {[
-          { label: "Saturday's game", note: 'Sat 6 Jun vs Ironbark United' },
+          { label: "Saturday's game", note: 'Sat 6 Jun at Northgate City' },
           { label: 'A training game', note: 'Short game at the end of training' },
           { label: 'A skill challenge', note: 'Dribbling, passing or shooting' },
         ].map((opt, i) => (
@@ -546,7 +547,7 @@ function RecordMiniRoosStart({ empty, onClips }: { empty?: boolean; onClips: () 
                 </div>
               ))}
             </div>
-            <div style={{ fontSize: 12, color: MUT, marginTop: 8 }}>8 of 10 can be filmed · Harper and Bao are blurred and left out of clips</div>
+            <div style={{ fontSize: 12, color: MUT, marginTop: 8 }}>8 of 10 can be filmed · Leo and Bao are blurred and left out of clips</div>
           </div>
           <div style={{ padding: '12px 16px' }}>
             <div style={{ fontSize: 14, fontWeight: 700, color: INK, marginBottom: 4 }}>What you get</div>
@@ -577,14 +578,14 @@ function RecordMiniRoosClips({ empty, onBack }: { empty?: boolean; onBack: () =>
   const [toast, setToast] = useState<string|null>(null)
   function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   const clips = [
-    { ini: 'AL', name: 'Ava Lindgren',  note: 'Controls a bouncing ball under pressure, 23 min' },
-    { ini: 'EB', name: 'Ella Brooks',   note: 'Dribbles past two defenders to set up a goal, 11 min' },
-    { ini: 'JP', name: 'Jai Patel',     note: 'First touch out of feet into space, 34 min' },
-    { ini: 'MT', name: 'Mia Tran',      note: 'Tracks back and wins the ball near her own goal, 8 min' },
-    { ini: 'NO', name: 'Noah Okafor',   note: 'Volleys the ball to a teammate rather than the wall, 41 min' },
-    { ini: 'OB', name: 'Oscar Brennan', note: 'Takes a touch before shooting instead of first-time, 29 min' },
-    { ini: 'LH', name: 'Lily Huang',    note: 'Finds the open player instead of forcing it, 17 min' },
-    { ini: 'CW', name: 'Cal Wheeler',   note: "Keeps going after losing the ball — doesn't stop, 38 min" },
+    { ini: 'IC', name: 'Ivy Chen',  note: 'Controls a bouncing ball under pressure, 23 min' },
+    { ini: 'ZM', name: 'Zara Moore',   note: 'Dribbles past two defenders to set up a goal, 11 min' },
+    { ini: 'MB', name: 'Max Bailey',     note: 'First touch out of feet into space, 34 min' },
+    { ini: 'EN', name: 'Evie Nolan',      note: 'Tracks back and wins the ball near her own goal, 8 min' },
+    { ini: 'TS', name: 'Theo Santos',   note: 'Volleys the ball to a teammate rather than the wall, 41 min' },
+    { ini: 'PD', name: 'Poppy Dunn', note: 'Takes a touch before shooting instead of first-time, 29 min' },
+    { ini: 'OH', name: 'Omar Haddad',    note: 'Finds the open player instead of forcing it, 17 min' },
+    { ini: 'JL', name: 'Jude Lim',   note: "Keeps going after losing the ball — doesn't stop, 38 min" },
   ]
 
   if (empty) return (
@@ -637,7 +638,7 @@ function RecordMiniRoosClips({ empty, onBack }: { empty?: boolean; onBack: () =>
 
       <div style={{ background: PALE, borderRadius: 12, padding: '12px 16px' }}>
         <div style={{ fontSize: 13, fontWeight: 700, color: GD, marginBottom: 4 }}>Who had a go</div>
-        <div style={{ fontSize: 13, color: G, lineHeight: 1.5 }}>All 8 children touched the ball. Mia and Cal had the most touches. Harper and Bao aren't tracked.</div>
+        <div style={{ fontSize: 13, color: G, lineHeight: 1.5 }}>All 8 children touched the ball. Evie and Cal had the most touches. Leo and Arlo aren't tracked.</div>
       </div>
 
       <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 12, padding: '12px 16px', fontSize: 13, color: MUT, lineHeight: 1.5 }}>
@@ -651,8 +652,8 @@ function RecordMiniRoosClips({ empty, onBack }: { empty?: boolean; onBack: () =>
 type MiniNav = 'home' | 'squad' | 'training' | 'gameday' | 'clips' | 'record'
 type HomeTab = 'overview' | 'messages' | 'calendar' | 'fixtures' | 'style' | 'whereweat' | 'staff' | 'files'
 type GameDayTab = 'turns' | 'whoscoming' | 'getready' | 'live' | 'review' | 'whatisaw' | 'thankparents'
-type SquadTab = 'players' | 'formation' | 'coming' | 'consent' | 'seasonnotes'
-type TrainingTab = 'plan' | 'suggest'
+type SquadTab = 'players' | 'formation' | 'skills' | 'turns' | 'coming' | 'consent' | 'seasonnotes'
+type TrainingTab = 'plan' | 'week' | 'suggest' | 'library'
 type RecordView = 'start' | 'clips'
 
 const NAV: Array<{ id: MiniNav; label: string; icon: string }> = [
@@ -704,15 +705,19 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
 
   const TRAINING_TABS_MR: Array<{ id: TrainingTab; label: string }> = [
     { id: 'plan',    label: 'Tonight' },
+    { id: 'week',    label: 'This week' },
     { id: 'suggest', label: 'Suggested' },
+    { id: 'library', label: 'Games library' },
   ]
 
-  // APP-MAP: MiniRoos squad is Players, Formation, Who's coming, Consent, Season notes.
+  // MiniRoos squad: Players, Formation, Skills, Fair turns, Who's coming, Consent and privacy, Season notes.
   const SQUAD_TABS_MR: Array<{ id: SquadTab; label: string }> = [
     { id: 'players',     label: 'Players' },
     { id: 'formation',   label: 'Formation' },
+    { id: 'skills',      label: 'Skills' },
+    { id: 'turns',       label: 'Fair turns' },
     { id: 'coming',      label: "Who's coming" },
-    { id: 'consent',     label: 'Consent' },
+    { id: 'consent',     label: 'Consent and privacy' },
     { id: 'seasonnotes', label: 'Season notes' },
   ]
 
@@ -778,8 +783,12 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
   } else if (nav === 'training') {
     if (trainingTab === 'plan')    content = <TrainingMiniRoos empty={empty} />
     else if (trainingTab === 'suggest') content = <SuggestedMiniRoos empty={empty} />
+    else if (trainingTab === 'week')    content = <WeekMiniRoos empty={empty} onTonight={() => setTrainingTab('plan')} />
+    else if (trainingTab === 'library') content = <GamesLibraryMiniRoos empty={empty} />
   } else if (nav === 'squad') {
     if (squadTab === 'formation')        content = <FormationBuilder team="miniroos" onNav={(s) => { if (s === 'T2-TabletMatch') { setNav('gameday'); setGameDayTab('turns') } }} />
+    else if (squadTab === 'skills')      content = <SkillsMiniRoos empty={empty} />
+    else if (squadTab === 'turns')       content = <FairTurnsMiniRoos empty={empty} onTurns={() => { setNav('gameday'); setGameDayTab('turns') }} />
     else if (squadTab === 'coming')      content = <ComingMiniRoos empty={empty} />
     else if (squadTab === 'consent')     content = <ConsentMiniRoos empty={empty} />
     else if (squadTab === 'seasonnotes') content = <SeasonNotesScreen empty={empty} onBack={() => setSquadTab('players')} />

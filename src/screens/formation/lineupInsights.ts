@@ -79,11 +79,11 @@ export const thin = (a: Agg, gameLen: number) => a.mins < gameLen * 1.5
 // ── the recorded-game log (demo data, deterministic) ──
 type Hidden = { a: string; b: string; kind: 'attack' | 'defence' | 'control' }
 const PLAN: Record<string, { gameLen: number; used: string[]; seed: number; hidden: Hidden[] }> = {
-  juniors: { gameLen: 60, used: ['3-3-2', '3-2-3', '4-3-1'], seed: 93,
-    hidden: [{ a: 'p6', b: 'p8', kind: 'control' }, { a: 'p4', b: 'p2', kind: 'defence' }, { a: 'p9', b: 'p10', kind: 'attack' }] },
-  seniors: { gameLen: 90, used: ['4-3-3', '4-4-2', '4-2-3-1'], seed: 121,
-    hidden: [{ a: 's8', b: 's10', kind: 'control' }, { a: 's5', b: 's4', kind: 'defence' }, { a: 's11', b: 's9', kind: 'attack' }] },
-  youth: { gameLen: 80, used: ['4-3-3', '4-4-2', '4-2-3-1'], seed: 221,
+  juniors: { gameLen: 60, used: ['3-3-2', '3-2-3', '4-3-1'], seed: 255,
+    hidden: [{ a: 'p7', b: 'p8', kind: 'control' }, { a: 'p2', b: 'p3', kind: 'defence' }, { a: 'p12', b: 'p13', kind: 'attack' }] },
+  seniors: { gameLen: 90, used: ['4-3-3', '4-4-2', '4-2-3-1'], seed: 95,
+    hidden: [{ a: 's7', b: 's8', kind: 'control' }, { a: 's2', b: 's3', kind: 'defence' }, { a: 's12', b: 's13', kind: 'attack' }] },
+  youth: { gameLen: 80, used: ['4-3-3', '4-4-2', '4-2-3-1'], seed: 114,
     hidden: [{ a: 'y5', b: 'y6', kind: 'control' }, { a: 'y1', b: 'y2', kind: 'defence' }, { a: 'y10', b: 'y11', kind: 'attack' }] },
 }
 // How each shape tends to play: attack, goals let in, seconds to win it back.

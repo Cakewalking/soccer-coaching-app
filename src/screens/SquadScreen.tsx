@@ -372,7 +372,7 @@ export default function SquadScreen({ onPlayerProfile, empty, players: propPlaye
         {/* Header */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
           <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, letterSpacing: '-0.02em', color: '#10211f' }}>Squad</h1>
-          <span style={{ fontSize: 14, color: '#4a5a57' }}>16 players · Thursday 4 Jun · 2 days to Harbour Rovers</span>
+          <span style={{ fontSize: 14, color: '#4a5a57' }}>{players.length} players · Thursday 4 Jun · 2 days to Harbour Rovers</span>
           <div style={{ flexGrow: 1 }} />
           <button onClick={() => showToast('Message started to 16 parents.')} style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>Message parents</button>
           <button onClick={() => showToast('Added. Their parent gets the team link now.')} style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: 0, background: '#2f6252', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#ffffff' }}>+ Add player</button>
@@ -436,7 +436,7 @@ export default function SquadScreen({ onPlayerProfile, empty, players: propPlaye
           {/* Dev goals */}
           <div style={{ background: '#ffffff', border: '1px solid #e9eae8', borderRadius: 14, padding: 16 }}>
             <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#6f7f7b', marginBottom: 8 }}>Development goals</div>
-            <div style={{ fontSize: 24, fontWeight: 700, color: '#10211f', marginBottom: 4 }}>{devOnTrack} of 16 on track</div>
+            <div style={{ fontSize: 24, fontWeight: 700, color: '#10211f', marginBottom: 4 }}>{devOnTrack} of {players.length} on track</div>
             <div style={{ height: 6, borderRadius: 3, background: '#e9eae8', marginBottom: 6 }}>
               <div style={{ height: 6, borderRadius: 3, background: '#40826d', width: `${(devOnTrack/16)*100}%` }} />
             </div>
@@ -447,7 +447,7 @@ export default function SquadScreen({ onPlayerProfile, empty, players: propPlaye
           <div style={{ background: '#ffffff', border: '1px solid #e9eae8', borderRadius: 14, padding: 16 }}>
             <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#6f7f7b', marginBottom: 8 }}>Wellness this week</div>
             <div style={{ fontSize: 24, fontWeight: 700, color: '#10211f', marginBottom: 4 }}>{wellnessAvg} / 5</div>
-            <div style={{ fontSize: 13, color: '#4a5a57' }}>Up from 3.6 · 11 of 16 checked in today</div>
+            <div style={{ fontSize: 13, color: '#4a5a57' }}>Up from 3.6 · {players.filter(p => p.wellness).length} of {players.length} checked in today</div>
           </div>
 
           {/* Load */}

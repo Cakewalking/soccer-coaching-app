@@ -82,7 +82,7 @@ export default function EDU3MakeLesson({ onNav }: { onNav?: (s: string) => void 
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="rgba(255,255,255,0.7)"><polygon points="5 3 19 12 5 21 5 3"/></svg>
                 </div>
                 <div>
-                  <div style={{ fontSize: 13, fontWeight: 700, color: INK }}>From your clip: Grace Reid, v Tealside Town, 30 May · 11 seconds</div>
+                  <div style={{ fontSize: 13, fontWeight: 700, color: INK }}>From your clip: Grace Owusu, v Tealside Town, 30 May · 11 seconds</div>
                   <div style={{ fontSize: 11, color: MUT }}>Lessons only show something done well. No clip of a mistake leaves its own team.</div>
                 </div>
               </div>

@@ -168,7 +168,7 @@ export default function InboxMiniRoos({ empty, onChat }: { empty?: boolean; onCh
 
             <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end', alignItems: 'center', marginTop: 18 }}>
               <button onClick={() => setComposeOpen(false)} style={{ height: 40, padding: '0 18px', borderRadius: 999, border: '1.5px solid #e8edeb', background: '#fff', fontSize: 13, color: '#10211f', cursor: 'pointer', fontFamily: 'inherit' }}>Cancel</button>
-              <button onClick={sendToAll} disabled={!bodyText.trim()} style={{ height: 40, padding: '0 22px', borderRadius: 999, border: 'none', background: bodyText.trim() ? '#2f6252' : '#aebbb6', color: '#fff', fontSize: 13, fontWeight: 700, cursor: bodyText.trim() ? 'pointer' : 'default', fontFamily: 'inherit' }}>Send to 10 families</button>
+              <button onClick={sendToAll} disabled={!bodyText.trim()} style={{ height: 44, padding: '0 22px', borderRadius: 999, border: 'none', background: bodyText.trim() ? '#2f6252' : '#aebbb6', color: '#fff', fontSize: 13, fontWeight: 700, cursor: bodyText.trim() ? 'pointer' : 'default', fontFamily: 'inherit' }}>Send to 10 families</button>
             </div>
           </div>
         </div>
