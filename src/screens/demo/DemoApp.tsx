@@ -592,6 +592,12 @@ function MatchDayScreenNav() {
   return <MatchDayScreen onNav={(s) => setInner(s)} empty={false} />
 }
 
+function LiveGameScreenNav() {
+  const [closed, setClosed] = useState(false)
+  if (closed) return <>{renderScreen('T2-TabletMatch')}</>
+  return <LiveGameScreen onClose={() => setClosed(true)} />
+}
+
 function MessagesRulesNav() {
   const [inner, setInner] = useState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
@@ -1302,7 +1308,7 @@ function renderScreenInner(key: string): ReactNode {
 
     case 'JuniorCoachApp':      return <JuniorCoachApp />
     case 'L1-LiveGame':
-    case 'livegame':            return <LiveGameScreen onClose={noop} />
+    case 'livegame':            return <LiveGameScreenNav />
     case 'livegame11':          return <LiveGame11Screen onClose={noop} />
 
     // Football year SP screens
