@@ -9,6 +9,7 @@ import SquadMiniRoos     from './SquadMiniRoos'
 import GameDayMiniRoos   from './GameDayMiniRoos'
 import MiniRoosGameReady from './MiniRoosGameReady'
 import MiniRoosTeamTalk  from './MiniRoosTeamTalk'
+import ClipsMiniRoos     from './ClipsMiniRoos'
 import WhatWeSawScreen   from './WhatWeSawScreen'
 import ThankParentsScreen from './ThankParentsScreen'
 import SeasonNotesScreen from './SeasonNotesScreen'
@@ -781,9 +782,7 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
     else if (gameDayTab === 'thankparents')
       content = <ThankParentsScreen onBack={() => setGameDayTab('turns')} />
   } else if (nav === 'clips') {
-    content = recordView === 'clips'
-      ? <RecordMiniRoosClips empty={empty} onBack={() => setRecordView('start')} />
-      : <RecordMiniRoosClips empty={empty} onBack={() => setRecordView('start')} />
+    content = <ClipsMiniRoos empty={empty} />
   } else if (nav === 'record') {
     content = recordView === 'clips'
       ? <RecordMiniRoosClips empty={empty} onBack={() => setRecordView('start')} />
