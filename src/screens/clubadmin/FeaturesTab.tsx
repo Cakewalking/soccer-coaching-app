@@ -1,8 +1,23 @@
+import { useState } from 'react'
 import { DARK, AMBER, PALEON, INK } from '../step4/directorParts'
+import PRM1FeaturesByTeam from '../step4/PRM1FeaturesByTeam'
+import PRM2TurnOn from '../step4/PRM2TurnOn'
+import PRM3Bill from '../step4/PRM3Bill'
+import PRM6Usage from '../step4/PRM6Usage'
 
 const LN = '#e8edeb'
 
 export default function FeaturesTab({ onNav }: { onNav?: (s: string) => void }) {
+  // Prefer the frame's router; when there isn't one (e.g. rendered on its own),
+  // fall back to opening the PRM boards inline so the buttons always work.
+  const [inner, setInner] = useState<string | null>(null)
+  const go = (id: string) => { if (onNav) onNav(id); else setInner(id) }
+
+  if (inner === 'PRM1-FeaturesByTeam') return <PRM1FeaturesByTeam onNav={go} />
+  if (inner === 'PRM2-TurnOn') return <PRM2TurnOn onNav={go} />
+  if (inner === 'PRM3-Bill') return <PRM3Bill onNav={go} />
+  if (inner === 'PRM6-Usage') return <PRM6Usage onNav={go} />
+
   return (
     <div style={{ padding: '32px 28px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', flex: 1, minHeight: 400 }}>
       <div style={{ width: 520, background: DARK, border: `1px solid ${LN}`, borderRadius: 20, padding: 32, textAlign: 'center', color: '#fff' }}>
@@ -17,7 +32,7 @@ export default function FeaturesTab({ onNav }: { onNav?: (s: string) => void }) 
             { label: "This month's bill", nav: 'PRM3-Bill' },
             { label: 'Is it being used?', nav: 'PRM6-Usage' },
           ].map(btn => (
-            <button key={btn.label} onClick={() => onNav?.(btn.nav)}
+            <button key={btn.label} onClick={() => go(btn.nav)}
               style={{ height: 46, padding: '0 20px', borderRadius: 12, border: btn.main ? `1px solid ${AMBER}` : `1px solid ${PALEON}`, background: btn.main ? AMBER : 'transparent', color: btn.main ? INK : '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>
               {btn.label}
             </button>
