@@ -7,6 +7,8 @@ import CalendarMiniRoos  from './CalendarMiniRoos'
 import StaffMiniRoos     from './StaffMiniRoos'
 import SquadMiniRoos     from './SquadMiniRoos'
 import GameDayMiniRoos   from './GameDayMiniRoos'
+import MiniRoosGameReady from './MiniRoosGameReady'
+import MiniRoosTeamTalk  from './MiniRoosTeamTalk'
 import WhatWeSawScreen   from './WhatWeSawScreen'
 import ThankParentsScreen from './ThankParentsScreen'
 import SeasonNotesScreen from './SeasonNotesScreen'
@@ -645,7 +647,7 @@ function RecordMiniRoosClips({ empty, onBack }: { empty?: boolean; onBack: () =>
 
 type MiniNav = 'home' | 'squad' | 'training' | 'gameday' | 'clips' | 'record'
 type HomeTab = 'overview' | 'messages' | 'calendar' | 'fixtures' | 'style' | 'whereweat' | 'staff' | 'files'
-type GameDayTab = 'turns' | 'whoscoming' | 'live' | 'review' | 'whatisaw' | 'thankparents'
+type GameDayTab = 'turns' | 'whoscoming' | 'getready' | 'live' | 'review' | 'whatisaw' | 'thankparents'
 type TrainingTab = 'plan' | 'suggest'
 type RecordView = 'start' | 'clips'
 
@@ -675,6 +677,7 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
   const [nav, setNav]               = useState<MiniNav>(isHomeSub ? 'home' : ((initialScreen as MiniNav) ?? 'home'))
   const [homeTab, setHomeTab]       = useState<HomeTab>(isHomeSub ? (initialScreen as HomeTab) : 'overview')
   const [gameDayTab, setGameDayTab] = useState<GameDayTab>('turns')
+  const [teamTalkOpen, setTeamTalkOpen] = useState(false)
   const [homeSubView, setHomeSubView] = useState<'main' | 'seasonnotes' | 'teamchat' | 'footballyear'>('main')
   const [trainingTab, setTrainingTab] = useState<TrainingTab>('plan')
   const [recordView, setRecordView] = useState<RecordView>('start')
@@ -690,6 +693,7 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
   const GAMEDAY_TABS: Array<{ id: GameDayTab; label: string }> = [
     { id: 'turns',      label: 'Turns' },
     { id: 'whoscoming', label: "Who's coming" },
+    { id: 'getready',   label: 'Get ready' },
     { id: 'review',     label: 'Review' },
   ]
 
@@ -766,6 +770,8 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
       content = <GameDayMiniRoos onWhatWeSaw={() => setGameDayTab('whatisaw')} />
     else if (gameDayTab === 'whoscoming')
       content = <ComingMiniRoos empty={empty} />
+    else if (gameDayTab === 'getready')
+      content = <MiniRoosGameReady onPlayTeamTalk={() => setTeamTalkOpen(true)} />
     else if (gameDayTab === 'live')
       content = <LiveOffContent onAsk={() => setGameDayTab('turns')} />
     else if (gameDayTab === 'review')
@@ -783,6 +789,8 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
       ? <RecordMiniRoosClips empty={empty} onBack={() => setRecordView('start')} />
       : <RecordMiniRoosStart empty={empty} onClips={() => setRecordView('clips')} />
   }
+
+  if (teamTalkOpen) return <MiniRoosTeamTalk onClose={() => setTeamTalkOpen(false)} />
 
   return (
     <CoachTabletFrame
