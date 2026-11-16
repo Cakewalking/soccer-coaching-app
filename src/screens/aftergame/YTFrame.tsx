@@ -12,7 +12,7 @@ const PILLS: { id: YTPill; label: string; target: string }[] = [
 ]
 
 // Shared coach-frame chrome for the four tablet "Your take" boards.
-export default function YTFrame({ onNav, active, heading, sentence, support, figures, buttons, children, lastTool, screenId }: {
+export default function YTFrame({ onNav, active, heading, sentence, support, figures, buttons, children, lastTool, screenId, bare }: {
   onNav?: (s: string) => void
   active: YTPill
   heading: string; sentence: string; support?: string
@@ -20,6 +20,7 @@ export default function YTFrame({ onNav, active, heading, sentence, support, fig
   children: ReactNode
   lastTool?: string
   screenId?: string
+  bare?: boolean          // omit the top/sub nav when embedded in a role frame
 }) {
   const tnb = { height: 44, padding: '0 10px', background: 'none' as const, color: 'rgba(255,255,255,0.75)', border: 'none' as const, fontSize: 13, fontWeight: 600, cursor: 'pointer' as const, fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 6 }
   const tnbOn = { ...tnb, color: '#fff', fontWeight: 700 as const }
@@ -27,8 +28,9 @@ export default function YTFrame({ onNav, active, heading, sentence, support, fig
   const snbOn = { ...snb, color: GREEN, fontWeight: 700 as const, borderBottom: `2px solid ${GREEN}` }
 
   return (
-    <div data-screen={screenId ?? PILLS.find(p => p.id === active)?.target} data-lasttool={lastTool ?? ''} style={{ width: 1180, height: 820, overflow: 'hidden', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
+    <div data-screen={screenId ?? PILLS.find(p => p.id === active)?.target} data-lasttool={lastTool ?? ''} style={{ width: bare ? '100%' : 1180, height: bare ? '100%' : 820, flex: bare ? 1 : undefined, minHeight: 0, overflow: 'hidden', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       {/* Top nav */}
+      {!bare && <>
       <div style={{ background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 16, height: 52, flexShrink: 0 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff', marginRight: 6 }}>Clean Sheet</div>
         <button onClick={() => onNav?.('T1-TabletTraining')} style={tnb}>Home</button>
@@ -55,6 +57,7 @@ export default function YTFrame({ onNav, active, heading, sentence, support, fig
         <button onClick={() => onNav?.('YT1-YourTake')} style={snbOn}>Your take</button>
         <div style={{ marginLeft: 'auto', fontSize: 12, color: MUT }}>Head coach</div>
       </div>
+      </>}
 
       <OpeningPanel landing heading={heading} sentence={sentence} support={support} figures={figures} buttons={buttons} />
 

@@ -14,7 +14,7 @@ const READBACK = [
   { quote: 'We dropped off.', body: 'The gap between the lines grew to 26 metres. Three drills close it.' },
 ]
 
-export default function YT1YourTake({ onNav, startEmpty = false }: { onNav?: (s: string) => void; startEmpty?: boolean }) {
+export default function YT1YourTake({ onNav, startEmpty = false, bare = false }: { onNav?: (s: string) => void; startEmpty?: boolean; bare?: boolean }) {
   const [lastTool, setLastTool] = useState('')
   const [toast, setToast] = useState<string | null>(null)
   const [played, setPlayed] = useState<Rating | null>(startEmpty ? null : COACH_GAME.howWePlayed)
@@ -50,7 +50,7 @@ export default function YT1YourTake({ onNav, startEmpty = false }: { onNav?: (s:
 
   return (
     <YTFrame
-      onNav={onNav} active="take" lastTool={lastTool} screenId={startEmpty ? 'YT1e-YourTakeEmpty' : undefined}
+      onNav={onNav} active="take" lastTool={lastTool} bare={bare} screenId={startEmpty ? 'YT1e-YourTakeEmpty' : undefined}
       heading="Your take · Sat 30 May · Won 3-1 at Ironbark United"
       sentence="What did you see that the film missed?"
       support="About two minutes, or one tap. Only you see this. It shapes Thursday as much as the film does."

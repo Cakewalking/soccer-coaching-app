@@ -30,6 +30,7 @@ import GrowthLoadScreen      from './GrowthLoadScreen'
 import TeamSheetScreen       from './TeamSheetScreen'
 import OppositionScreen      from './OppositionScreen'
 import ReviewScreen          from './ReviewScreen'
+import YT1YourTake           from './aftergame/YT1YourTake'
 import TeamTalkScreen        from './TeamTalkScreen'
 import PitchSideScreen       from './PitchSideScreen'
 import AddGameScreen         from './AddGameScreen'
@@ -66,7 +67,7 @@ const NAV_TABS: Array<{ id: NavKey; label: string; icon: string }> = [
 const HOME_TABS     = ['Overview', 'Messages', 'Calendar', 'Fixtures and results', 'Our style', "Where we're at", 'Team staff', 'Files']
 const SQUAD_TABS    = ['Players', 'Line-ups', 'Development goals', 'Wellness', 'Availability', 'Consent and privacy', 'Season summaries', 'Fitness coach']
 const TRAINING_TABS = ["Tonight's session", 'This week', 'Suggested', 'Drill library', 'Growth and load']
-const MATCHDAY_TABS = ['Team talk', 'Line-up and minutes', 'Opposition', 'Review']
+const MATCHDAY_TABS = ['Team talk', 'Line-up and minutes', 'Opposition', 'Review', 'Your take']
 const CLIPS_TABS    = ['By measure', 'By game', 'By player', 'Playlists', 'To check', 'Learn']
 
 export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLabel, coachInitials, empty = false, initialScreen, onNavChange, coachRole = 'head', registerNav }: { onBack?: () => void; phaseContent?: ReactNode; coachLabel?: string; coachInitials?: string; empty?: boolean; initialScreen?: string; onNavChange?: (screen: string) => void; coachRole?: 'head' | 'ccoach'; registerNav?: (fn: (target: string) => boolean) => void }) {
@@ -208,7 +209,8 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
     else if (matchTab === 1) content = <TeamSheetScreen empty={sbEmptyFixture} />
     else if (matchTab === 2) content = <OppositionScreen empty={sbEmptyFixture} />
     else if (matchTab === 3) content = <ReviewScreen empty={sbEmptyFixture} />
-    else if (matchTab === 4) content = <FitnessMatchTab empty={sbEmptyFixture} />
+    else if (matchTab === 4) content = <YT1YourTake onNav={handleNav} bare />
+    else if (matchTab === 5) content = <FitnessMatchTab empty={sbEmptyFixture} />
   } else if (nav === 'clips') {
     content = <ClipsScreen empty={sbEmpty} activeTab={clipsTab} />
   }

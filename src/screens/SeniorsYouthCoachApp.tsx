@@ -22,6 +22,7 @@ import GrowthLoadScreen     from './GrowthLoadScreen'
 import TeamSheetScreen      from './TeamSheetScreen'
 import OppositionScreen     from './OppositionScreen'
 import ReviewScreen         from './ReviewScreen'
+import YT1YourTake          from './aftergame/YT1YourTake'
 import TeamTalkScreen       from './TeamTalkScreen'
 import PitchSideScreen      from './PitchSideScreen'
 import { FitnessSquadTab, FitnessTrainingTab, FitnessMatchTab } from './FitnessExtras'
@@ -379,7 +380,7 @@ type Sub = 'teamtalk' | 'pitchside' | null
 const NAV_KEYS: NavKey[] = ['home', 'squad', 'training', 'matchday', 'clips', 'record']
 const SQUAD_TABS    = ['Players', 'Line-ups', 'Development goals', 'Wellness', 'Availability', 'Consent and privacy', 'Season summaries', 'Fitness coach']
 const TRAINING_TABS = ["Tonight's session", 'This week', 'Suggested', 'Drill library', 'Growth and load']
-const MATCHDAY_TABS = ['Team talk', 'Line-up and minutes', 'Opposition', 'Review']
+const MATCHDAY_TABS = ['Team talk', 'Line-up and minutes', 'Opposition', 'Review', 'Your take']
 const CLIPS_TABS    = ['By measure', 'By game', 'By player', 'Playlists', 'To check', 'Learn']
 
 export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseContent, empty = false, initialScreen, onNavChange, registerNav }: { teamType: TeamType; onBack: () => void; phaseContent?: ReactNode; empty?: boolean; initialScreen?: string; onNavChange?: (screen: string) => void; registerNav?: (fn: (target: string) => boolean) => void }) {
@@ -519,7 +520,8 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
         scoreline={teamType === 'seniors' ? '2–0' : '2–2'}
         resultLine={teamType === 'seniors' ? 'Won at home v Glenview Park' : 'Drew at home with Tealside Town'}
         scorerLine={teamType === 'seniors' ? 'Sat 30 May · Harry and Mo scored · 26 key clips' : 'Sat 30 May · Theo and Leo scored · 22 key clips'} />; break
-      case 4: content = <FitnessMatchTab empty={sbEmptyFixture} />; break
+      case 4: content = <YT1YourTake onNav={handleNav} bare />; break
+      case 5: content = <FitnessMatchTab empty={sbEmptyFixture} />; break
     }
   } else if (nav === 'clips') {
     content = <ClipsScreen empty={sbEmpty} activeTab={clipsTab} />

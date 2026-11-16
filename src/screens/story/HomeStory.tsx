@@ -472,8 +472,8 @@ export function HomeStoryBody({ cfg, onNav, renderTarget, frameNav }: { cfg: Hom
     <div data-lasttool={lastTool} style={{ flex: 1, display: 'flex', flexDirection: 'column', background: '#f4f6f5', fontFamily: "'DM Sans',system-ui,sans-serif", overflowY: 'auto' }}>
       <AskLine cfg={cfg} nav={nav} />
       <div style={{ padding: '12px 28px 18px', display: 'grid', gap: 14, gridTemplateColumns: 'minmax(0,1fr) minmax(0,1.08fr) 300px', gridTemplateRows: 'auto minmax(0,1fr)', flex: 1 }}>
-        <div style={{ gridColumn: '1 / 4', background: DARK, borderRadius: 20, padding: '18px 24px' }}>
-          <ProofInner p={cfg.proof} nav={nav} tool={tool} />
+        <div style={{ gridColumn: '1 / 4', background: DARK, borderRadius: 20, padding: cfg.take ? '14px 24px' : '18px 24px' }}>
+          <ProofInner p={cfg.proof} take={cfg.take} nav={nav} tool={tool} />
         </div>
         <ReadyCard r={cfg.ready} nav={nav} tool={tool} />
         <MomentsCard m={cfg.moments} nav={nav} tool={tool} />
@@ -510,7 +510,7 @@ export function HomeStoryMiniRoosTraining({ cfg, onNav }: { cfg: HomeCfg; onNav?
       <Frame cfg={cfg} nav={nav} tool={tool}>
         <AskLine cfg={cfg} nav={nav} />
         <div style={{ padding: '12px 28px 18px', display: 'grid', gap: 14, gridTemplateColumns: 'minmax(0,1fr) minmax(0,1.08fr) 300px', gridTemplateRows: 'auto minmax(0,1fr)', flex: 1 }}>
-          <div style={{ gridColumn: '1 / 4', background: DARK, borderRadius: 20, padding: '18px 24px' }}>
+          <div style={{ gridColumn: '1 / 4', background: DARK, borderRadius: 20, padding: cfg.take ? '14px 24px' : '18px 24px' }}>
             <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 300px', gap: 28, alignItems: 'center' }}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
                 <span style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', color: AMBER }}>TONIGHT · 5:00 pm · WATTLE CREEK RESERVE</span>
@@ -533,6 +533,7 @@ export function HomeStoryMiniRoosTraining({ cfg, onNav }: { cfg: HomeCfg; onNav?
                 <span style={{ fontSize: 13, lineHeight: '18px', color: PALE }}>Why tonight: 25 seconds of Saturday’s bunching, to watch before you go.</span>
               </button>
             </div>
+            {cfg.take && <TakeRow take={cfg.take} nav={nav} tool={tool} />}
           </div>
           {/* Saturday in 40 seconds card */}
           <div style={{ background: GREEN, border: `1px solid ${GREEN}`, borderRadius: 16, padding: '14px 16px', color: '#fff', display: 'flex', flexDirection: 'column', gap: 8 }}>

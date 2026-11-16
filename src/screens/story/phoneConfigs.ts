@@ -19,6 +19,7 @@ export const STO17: PhoneCfg = {
   tabs: [{ label: 'Home', target: 'PA-ParentHome' }, { label: 'Clips', target: 'PA-Clip' }, { label: 'Messages', target: 'PM1-ParentChats' }, { label: 'Me', target: 'PS1-ParentSettings' }],
   blocks: [
     { kind: 'proof', label: 'MIA · U12 SAM · SATURDAY', headline: 'Mia won the ball back four times on Saturday. Sam sent you the clip.', second: 'Her goal this term is pressing as a pair. A month ago she did it once a game.', clip: { duration: '0:12', note: 'Only you, Mia and her coaches can see this.' }, btn: 'Watch Mia’s 12 seconds', btnTarget: 'PA-Clip' },
+    { kind: 'list', label: 'AFTER THE GAME', title: 'Rate Saturday’s game', text: '1 to 5 for any player. Closes Tuesday.', action: 'Rate the game', actionTarget: 'YTp1-ParentVotes' },
     { kind: 'list', label: 'THIS WEEK', title: 'Two things to be at', text: 'Thu 5:45 pm training. Sat 9:30 am away at Harbour Rovers: you said yes.' },
     { kind: 'list', title: 'Bao: answer for Saturday', text: 'Bao · U8 Hannah. First go in goal on Saturday. Hannah sent a photo', action: 'Bao: answer for Saturday', actionTarget: 'AV2-ParentAvailability' },
     { kind: 'done', title: 'Done for you', lines: ['Canteen shift Sat 10 to 11 is in your calendar'] },
