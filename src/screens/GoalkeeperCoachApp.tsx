@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import LearnTab from './learn/LearnTab'
 import RecordHub           from './RecordHub'
 import { CoachMessages }   from './MessagesScreens'
 
@@ -284,6 +285,7 @@ export default function GoalkeeperCoachApp({ empty = false, initialScreen, onNav
   const [nav, setNav]             = useState<GKNav>((initialScreen as GKNav) ?? 'home')
   const [homeTab, setHomeTab]     = useState<HomeTab>('overview')
   const [trainingTab, setTrainingTab] = useState<TrainingTab>('session')
+  const [clipsTab, setClipsTab] = useState<'clips' | 'learn'>('clips')
   const [toast, setToast]         = useState<string | null>(null)
   const [askOpen, setAskOpen]     = useState(false)
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
@@ -340,6 +342,15 @@ export default function GoalkeeperCoachApp({ empty = false, initialScreen, onNav
                 borderBottom: trainingTab === t.id ? '3px solid #40826d' : '3px solid transparent',
                 boxSizing: 'border-box',
               }}>{t.label}</button>
+            ))}
+            {nav === 'clips' && ([['clips', 'Keeper clips'], ['learn', 'Learn']] as const).map(([id, label]) => (
+              <button key={id} onClick={() => setClipsTab(id)} style={{
+                height: 44, padding: '0 16px', border: 0, background: 'transparent',
+                fontFamily: 'inherit', fontSize: 15, fontWeight: clipsTab === id ? 600 : 400,
+                color: clipsTab === id ? '#10211f' : '#6f7f7b', cursor: 'pointer',
+                borderBottom: clipsTab === id ? '3px solid #40826d' : '3px solid transparent',
+                boxSizing: 'border-box',
+              }}>{label}</button>
             ))}
           </nav>
           <div style={{ display: 'flex', alignItems: 'center', height: 44, gap: 10 }}>
@@ -423,7 +434,7 @@ export default function GoalkeeperCoachApp({ empty = false, initialScreen, onNav
         {nav === 'training' && trainingTab === 'drills'  && (
           <div style={{ padding: '20px 28px', color: '#4a5a57' }}>Keeper drills library — not shown in this demo.</div>
         )}
-        {nav === 'clips'    && <ClipsTab empty={empty} />}
+        {nav === 'clips'    && (clipsTab === 'learn' && !empty ? <LearnTab team="goalkeeper" /> : <ClipsTab empty={empty} />)}
         {askOpen && (
           <aside role="dialog" aria-label="Ask Clean Sheet" style={{ position: 'absolute', top: 0, right: 0, bottom: 0, width: 380, background: '#eef5f2', borderLeft: '1px solid #e8edeb', boxShadow: '-6px 0 24px rgba(16,33,31,0.10)', zIndex: 50, display: 'flex', flexDirection: 'column' }}>
             <div style={{ background: '#fff', padding: '14px 16px', borderBottom: '1px solid #e8edeb', display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>

@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { goSetup } from './sandbox/sandboxNav'
+import { demoToast } from './demoToast'
 import { SQUAD_PLAYERS, POS_GROUP_LABELS, type SquadPlayer, type PosGroup, type Role } from '../data'
 import { useSandbox } from './sandbox/SandboxContext'
 import { addPlayer } from './sandbox/sandboxStore'
@@ -109,7 +111,7 @@ function SquadEmpty() {
                   </div>
                   <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 4, lineHeight: '17px' }}>{opt.title}</div>
                   <div style={{ fontSize: 12, color: '#4a5a57', lineHeight: '16px', marginBottom: 10 }}>{opt.body}</div>
-                  <button onClick={'onClick' in opt ? opt.onClick : undefined} style={{ height: 44, padding: '0 14px', borderRadius: 8, border: opt.primary ? 0 : '1px solid #c5c8c4', background: opt.primary ? '#2f6252' : '#ffffff', color: opt.primary ? '#ffffff' : '#10211f', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>{opt.btn}</button>
+                  <button onClick={'onClick' in opt ? opt.onClick : opt.btn === 'Import' ? () => goSetup('players', 'Pick a spreadsheet of players. The columns are matched for you.') : () => { navigator.clipboard?.writeText(`${location.origin}/join/your-team`); demoToast('Invite link copied.') }} style={{ height: 44, padding: '0 14px', borderRadius: 8, border: opt.primary ? 0 : '1px solid #c5c8c4', background: opt.primary ? '#2f6252' : '#ffffff', color: opt.primary ? '#ffffff' : '#10211f', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>{opt.btn}</button>
                 </div>
               ))}
             </div>

@@ -119,7 +119,7 @@ export default function EDU1Learn({ onNav, skillOpen = false, bare = false, audi
         sentence="Your gap between the lines is 26 metres. Watch Josh’s back four close theirs in three seconds."
         support="14 seconds from the under 14s v Ironbark, three things to notice, and a drill for tonight."
         rightWidth={300}
-        right={<ClipReel onClick={() => onNav?.('EDU2-Lesson')} />}
+        right={<>{audience && <span style={{ display: 'flex', justifyContent: 'flex-end' }}>{audience}</span>}<ClipReel onClick={() => onNav?.('EDU2-Lesson')} /></>}
         buttons={[{ label: 'Watch it', main: true, onClick: () => onNav?.('EDU2-Lesson') }, { label: nudged ? '✓ Sent to 8' : 'Send to the other 8', onClick: () => { setNudged(true); say('Sent to Finn, Isla and 6 others, with tonight’s drill.') } }]}
       />
 
@@ -129,7 +129,6 @@ export default function EDU1Learn({ onNav, skillOpen = false, bare = false, audi
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth="2"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
           <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search 38 lessons" style={{ border: 'none', outline: 'none', background: 'transparent', fontSize: 13, color: INK, fontFamily: 'inherit', width: 130 }} />
         </div>
-        {audience}
         <button onClick={() => { setTeamOn(v => !v); say(teamOn ? 'Showing every lesson.' : 'Lessons picked for your team’s gaps.') }} style={pill(teamOn)}>For U12 Sam<Chevron /></button>
 
         {/* Skill — multi-select */}

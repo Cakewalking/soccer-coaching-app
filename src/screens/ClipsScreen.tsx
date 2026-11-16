@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { demoToast } from './demoToast'
 import LearnTab, { type LearnTeam } from './learn/LearnTab'
 import { CLIPS, CLIPS_GAMES, CLIPS_MEASURES, type GameClip } from '../data'
 import { PLAYERS, GAME_FULL, MEASURE_INFO, resultColor } from './clips/clipData'
@@ -9,8 +10,8 @@ type FilterMode = 'game' | 'measure' | 'player'
 type TypeFilter = 'all' | 'good' | 'work'
 
 function ClipsEmpty({ activeTab }: { activeTab: number }) {
-  const [toast, setToast] = useState<string | null>(null)
-  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
+  const [toast] = useState<string | null>(null)
+  function showToast(msg: string) { demoToast(msg) }
   if (activeTab === 1) {
     return (
       <main style={{ flexGrow: 1, padding: '14px 28px 18px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 340px', gap: 16, boxSizing: 'border-box', minHeight: 0, overflow: 'hidden' }}>
@@ -166,8 +167,8 @@ export default function ClipsScreen({ empty, activeTab = 0, onNav, team = 'junio
   const CHIP_VALUES: Record<string, string> = { Area: 'Attacking third', Half: '2nd half', Source: 'Match camera', 'Found by': 'Auto-tagged' }
   const toggleChip = (k: string) => setChips(c => ({ ...c, [k]: c[k] ? null : CHIP_VALUES[k] }))
   const [selected, setSelected] = useState<GameClip>(CLIPS[0])
-  const [toast, setToast] = useState<string | null>(null)
-  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
+  const [toast] = useState<string | null>(null)
+  function showToast(msg: string) { demoToast(msg) }
 
   // Clips sub-tabs per APP-MAP: By measure, By game, By player, Playlists,
   // To check, Learn (FIX-LIST item 3). Tabs 0-2 drive the browse grouping.

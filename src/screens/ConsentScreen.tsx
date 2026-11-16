@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { goSetup } from './sandbox/sandboxNav'
 
 const COLS = ['Filming in games', 'Boot sensors / GPS', 'Wellness check-ins', 'Clips to player', 'Club socials']
 
@@ -78,7 +79,7 @@ export default function ConsentScreen({ empty }: { empty?: boolean }) {
             ))}
             <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: 1.5, marginTop: 12, paddingTop: 10, borderTop: '1px solid #f0f1f0' }}>{"Invites go out by email and text as soon as you add a player with a parent contact."}</div>
           </div>
-          <button onClick={() => showToast('Opening the add players flow.')} style={{ height: 44, padding: '0 24px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Add players</button>
+          <button onClick={() => goSetup('players', 'Opening the add players flow.')} style={{ height: 44, padding: '0 24px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Add players</button>
         </div>
         <div>
           <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 14, padding: '16px' }}>

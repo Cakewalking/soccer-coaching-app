@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { setAnswer, niceDate } from '../sandbox/sandboxStore'
 import { useSandbox } from '../sandbox/SandboxContext'
 
 type ChildTab = 'both' | 'mia' | 'bao'
@@ -446,6 +447,71 @@ function ClipsView({ onBack }: { onBack: () => void }) {
   )
 }
 
+// The parent's view of a team the visitor set up in the sandbox: the week, and one
+// question per game. Answers are saved and show on the coach's Availability board.
+function SandboxParentHome() {
+  const { store, update } = useSandbox()
+  const team = store.teams[0]
+  const players = store.players.filter(p => p.teamId === team.id)
+  const [childId, setChildId] = useState(players[0]?.id ?? '')
+  const [reasons, setReasons] = useState<Record<string, string>>({})
+  const child = players.find(p => p.id === childId) ?? players[0]
+  const fixtures = [...store.fixtures].sort((a, b) => a.date.localeCompare(b.date))
+  const nights = team.trainingNights ?? []
+  const first = child?.name.split(' ')[0]
+  const fmt = (t?: string) => { if (!t) return ''; const [h, m] = t.split(':').map(Number); return `${((h + 11) % 12) + 1}:${String(m).padStart(2, '0')} ${h < 12 ? 'am' : 'pm'}` }
+  const card: React.CSSProperties = { background: '#fff', borderRadius: 16, border: '1px solid #e9eae8', padding: '14px 16px' }
+  return (
+    <>
+      <div style={{ background: '#2f6252', padding: '40px 20px 16px', flex: 'none' }}>
+        <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.8)', marginBottom: 2 }}>{team.name} · parent</div>
+        <div style={{ fontSize: 22, fontWeight: 800, color: '#fff' }}>{first ? `${first}’s week` : 'Your family’s week'}</div>
+      </div>
+      <div style={{ flexGrow: 1, overflowY: 'auto', padding: '14px 20px 32px', display: 'flex', flexDirection: 'column', gap: 12 }}>
+        {players.length === 0 ? (
+          <div style={card}><div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', marginBottom: 4 }}>{team.name}</div><div style={{ fontSize: 14, color: '#6f7f7b' }}>No players added yet. Switch role to the coach and add one.</div></div>
+        ) : (
+          <div style={card}>
+            <label htmlFor="sb-child" style={{ display: 'block', fontSize: 12, fontWeight: 700, color: '#4a5a57', marginBottom: 4 }}>Your child</label>
+            <select id="sb-child" value={child.id} onChange={e => setChildId(e.target.value)} style={{ width: '100%', height: 44, borderRadius: 10, border: '1px solid #c5c8c4', padding: '0 12px', fontFamily: 'inherit', fontSize: 15, color: '#10211f', background: '#fff' }}>
+              {players.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
+            </select>
+            <div style={{ fontSize: 13, color: '#4a5a57', marginTop: 8 }}>{nights.length ? `Training: ${nights.map(n => `${n.day} ${fmt(n.time)}`).join(', ')}${team.ground ? ` at ${team.ground}` : ''}` : 'The coach has not added training nights yet.'}</div>
+          </div>
+        )}
+        {child && fixtures.length === 0 && <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.5 }}>Games will appear here when the coach adds them, with one question for each: can {first} make it?</div>}
+        {child && fixtures.map(f => {
+          const key = `${f.id}:${child.id}`, a = store.availability?.[key]
+          const set = (v: 'in' | 'maybe' | 'cant', reason?: string) => update(setAnswer(store, f.id, child.id, { a: v, reason, by: 'parent' }))
+          return (
+            <div key={f.id} style={card}>
+              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', color: '#4a5a57' }}>{niceDate(f.date).toUpperCase()}{f.time ? ` · ${fmt(f.time)}` : ''}</div>
+              <div style={{ fontSize: 16, fontWeight: 700, color: '#10211f', margin: '2px 0 10px' }}>Can {first} make it {f.home ? 'v' : 'at'} {f.opponent}?</div>
+              <div style={{ display: 'flex', gap: 8 }}>
+                {([['in', 'Yes'], ['maybe', 'Maybe'], ['cant', 'No']] as const).map(([k, l]) => (
+                  <button key={k} aria-pressed={a?.a === k} onClick={() => set(k, k === 'in' ? undefined : a?.reason)} style={{ flex: 1, height: 44, borderRadius: 10, border: `1.5px solid ${a?.a === k ? '#2f6252' : '#c5c8c4'}`, background: a?.a === k ? '#2f6252' : '#fff', color: a?.a === k ? '#fff' : '#10211f', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>{l}</button>
+                ))}
+              </div>
+              {a && a.a !== 'in' && (
+                <div style={{ marginTop: 10 }}>
+                  <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 6 }}>
+                    {['Away', 'Sick', 'Injured', 'Family thing'].map(r => <button key={r} aria-pressed={a.reason === r} onClick={() => set(a.a, r)} style={{ height: 44, padding: '0 12px', borderRadius: 999, border: `1.5px solid ${a.reason === r ? '#2f6252' : '#c5c8c4'}`, background: a.reason === r ? '#eef5f2' : '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>{r}</button>)}
+                  </div>
+                  <div style={{ display: 'flex', gap: 6 }}>
+                    <input value={reasons[key] ?? ''} onChange={e => setReasons(x => ({ ...x, [key]: e.target.value }))} placeholder="Or a few words" aria-label="Reason" style={{ flex: 1, minWidth: 0, height: 44, borderRadius: 10, border: '1px solid #c5c8c4', padding: '0 12px', fontFamily: 'inherit', fontSize: 14, outline: 'none' }} />
+                    <button onClick={() => { const v = (reasons[key] ?? '').trim(); if (v) set(a.a, v) }} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Save</button>
+                  </div>
+                </div>
+              )}
+              {a && <div style={{ fontSize: 13, color: '#2f6252', fontWeight: 600, marginTop: 8 }}>The coach sees: {a.a === 'in' ? 'In' : a.a === 'maybe' ? 'Maybe' : 'Can’t make it'}{a.reason ? ` · ${a.reason}` : ''}</div>}
+            </div>
+          )
+        })}
+      </div>
+    </>
+  )
+}
+
 export default function TwoChildrenApp({ empty = false, initialView }: { onBack?: () => void; empty?: boolean; initialView?: AppView }) {
   const { active: inSandbox, store } = useSandbox()
   const [childTab, setChildTab] = useState<ChildTab>('both')
@@ -453,31 +519,12 @@ export default function TwoChildrenApp({ empty = false, initialView }: { onBack?
 
   const sbHasTeam = inSandbox && store.teams.length > 0
   const showEmpty = inSandbox ? !sbHasTeam : empty
-  const team0 = store.teams[0]
-  const teamPlayers = team0 ? store.players.filter(p => p.teamId === team0.id) : []
 
   return (
     <div style={{ width: 390, margin: '0 auto', background: '#f7f9f7', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)', position: 'relative' }}>
 
       {view === 'home' && (sbHasTeam ? (
-        <>
-          <div style={{ background: '#1f4a3e', padding: '48px 20px 16px', flex: 'none' }}>
-            <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', marginBottom: 2 }}>{team0!.name} · parent</div>
-            <div style={{ fontSize: 22, fontWeight: 800, color: '#fff' }}>Your family's week</div>
-          </div>
-          <div style={{ flexGrow: 1, overflowY: 'auto', padding: '14px 20px 32px', display: 'flex', flexDirection: 'column', gap: 12 }}>
-            <div style={{ background: '#fff', borderRadius: 16, border: '1px solid #e9eae8', padding: '14px 16px' }}>
-              <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>{team0!.name}</div>
-              {teamPlayers.length > 0
-                ? teamPlayers.map(p => (
-                    <div key={p.id} style={{ padding: '6px 0', borderTop: '1px solid #e9eae8', fontSize: 13, color: '#10211f' }}>{p.name}</div>
-                  ))
-                : <div style={{ fontSize: 14, color: '#6f7f7b', paddingTop: 4 }}>No players added yet</div>
-              }
-            </div>
-            <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.5 }}>Training and game days will appear here when the coach adds them.</div>
-          </div>
-        </>
+        <SandboxParentHome />
       ) : showEmpty ? (
         <div style={{ flexGrow: 1, padding: '48px 20px 20px', display: 'flex', flexDirection: 'column', gap: 16 }}>
           <div>

@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import { useUnreadTotal } from './messageUnread'
 import type { ReactNode } from 'react'
 
 const G    = '#2f6252'
@@ -236,6 +237,7 @@ export default function CoachTabletFrame({
   children,
 }: CoachTabletFrameProps) {
 
+  const unreadMessages = useUnreadTotal()
   const [askInput, setAskInput]   = useState('')
   const [messages, setMessages]   = useState<PanelMsg[]>([])
   const [scopeWide, setScopeWide] = useState(false)
@@ -372,8 +374,8 @@ export default function CoachTabletFrame({
                     boxSizing: 'border-box',
                   }}>
                     {tab}
-                    {showBadge?.(tab) && (
-                      <span style={{ background: '#c39797', color: INK, borderRadius: '999px', padding: '0 7px', fontSize: 12, lineHeight: '19px' }}>3</span>
+                    {showBadge?.(tab) && (tab !== 'Messages' || unreadMessages > 0) && (
+                      <span style={{ background: '#c39797', color: INK, borderRadius: '999px', padding: '0 7px', fontSize: 12, lineHeight: '19px' }}>{tab === 'Messages' ? unreadMessages : 3}</span>
                     )}
                   </button>
                 )

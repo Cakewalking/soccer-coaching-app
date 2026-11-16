@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { markRead, useUnread } from './messageUnread'
 
 const G    = '#2f6252'
 const G2   = '#40826d'
@@ -264,7 +265,8 @@ export function CoachMessages({ onBack: _onBack, onNav, teamType = 'juniors', em
   const [toast, setToast] = useState<string | null>(null)
   const [input, setInput] = useState('')
   const [activeChat, setActiveChat] = useState(1)   // Bianca Rossi by default
-  const [sent, setSent] = useState<string[]>([])
+  const [sent, setSent] = useState<Record<string, string[]>>({})
+  const unread = useUnread()
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   const teamChat = teamType === 'youth'
@@ -272,22 +274,42 @@ export function CoachMessages({ onBack: _onBack, onNav, teamType = 'juniors', em
     : teamType === 'seniors'
     ? { ini: 'M1', name: "Men's 1sts team", preview: 'Grant: Can someone grab…', time: '2:30pm', unread: 2, group: true }
     : { ini: 'U1', name: 'U12 Sam team', preview: 'Rob: Can someone grab…', time: '2:30pm', unread: 2, group: true }
-  const chats = [
-    teamChat,
-    { ini: 'BR', name: 'Bianca Rossi', preview: 'Yes pitch 2 from 9:00', time: '2:15pm', active: true },
-    { ini: 'CT', name: 'Coaching team', preview: 'Priya: I\'ll have the data…', time: '11:40am', unread: 1 },
-    { ini: 'LT', name: 'Linh Tran',    preview: 'Thanks so much', time: 'Mon' },
-    { ini: 'RT', name: 'Ruth Tan',     preview: 'Confirmed.', time: 'Mon' },
-    { ini: 'OG', name: 'Ollie Grant',  preview: 'No problem', time: 'Sun' },
-    { ini: 'HP', name: 'Helen Park',   preview: 'Private', time: 'Sat', private: true },
+  const teamName = teamType === 'youth' ? 'U16 Ollie' : teamType === 'seniors' ? 'Men’s 1sts' : 'U12 Sam'
+  const adults = teamType === 'seniors'
+  type Line = { text: string; mine?: boolean; who?: string; time: string }
+  const chats: { id: string; ini: string; name: string; preview: string; time: string; role: string; private?: boolean; lines: Line[] }[] = [
+    { id: 'team', ...teamChat, role: adults ? `${teamName} · players and staff` : `${teamName} · families and staff`, lines: [
+      { who: adults ? 'Grant' : teamType === 'youth' ? 'Rhea' : 'Rob', text: 'Can someone grab the spare bibs from the shed on Saturday?', time: '2:24pm' },
+      { who: adults ? 'Pete' : 'Linh', text: 'I can. I’m there early anyway.', time: '2:30pm' },
+    ] },
+    { id: 'bianca', ini: 'BR', name: 'Bianca Rossi', preview: 'Yes pitch 2 from 9:00', time: '2:15pm', role: 'Club co-ordinator · Wattle Creek FC', lines: [
+      { text: 'Hi Bianca, do you know which pitch we have this Saturday?', mine: true, time: '2:08pm' },
+      { text: 'Let me check for you…', time: '2:10pm' },
+      { text: 'Yes, pitch 2 from 9:00. I’ll put the cones out early.', time: '2:14pm' },
+      { text: 'Brilliant, thank you!', mine: true, time: '2:15pm' },
+    ] },
+    { id: 'coaching', ini: 'CT', name: 'Coaching team', preview: 'Priya: I’ll have the data…', time: '11:40am', role: `${teamName} · coaches only`, lines: [
+      { text: 'Can we look at sprint numbers before Thursday?', mine: true, time: '11:32am' },
+      { who: 'Priya', text: 'I’ll have the data from the vests ready by Wednesday night.', time: '11:40am' },
+    ] },
+    { id: 'linh', ini: 'LT', name: adults ? 'Pete Walsh' : 'Linh Tran', preview: 'Thanks so much', time: 'Mon', role: adults ? 'Player · Men’s 1sts' : 'Parent · Wattle Creek FC', lines: [
+      { text: adults ? 'Your clearance came through. You’re right for Saturday.' : 'The clip from Saturday is in the app now.', mine: true, time: 'Mon' },
+      { text: 'Thanks so much', time: 'Mon' },
+    ] },
+    { id: 'ruth', ini: 'RT', name: 'Ruth Tan', preview: 'Confirmed.', time: 'Mon', role: 'Referees co-ordinator · Wattle Creek FC', lines: [
+      { text: 'Is a referee booked for Saturday?', mine: true, time: 'Mon' },
+      { text: 'Confirmed.', time: 'Mon' },
+    ] },
+    { id: 'ollie', ini: teamType === 'youth' ? 'SK' : 'OG', name: teamType === 'youth' ? 'Sam K' : 'Ollie Grant', preview: 'No problem', time: 'Sun', role: teamType === 'youth' ? 'U12 Sam coach · Wattle Creek FC' : 'U16 Ollie coach · Wattle Creek FC', lines: [
+      { text: 'Could we swap pitches for Thursday training?', mine: true, time: 'Sun' },
+      { text: 'No problem', time: 'Sun' },
+    ] },
+    { id: 'helen', ini: 'HP', name: 'Helen Park', preview: 'Private', time: 'Sat', role: 'Welfare officer · private', private: true, lines: [
+      { text: 'Thanks for letting me know. I’ll take it from here. Nobody else can read this.', time: 'Sat' },
+    ] },
   ]
-
-  const transcript = [
-    { from: 'SK', text: 'Hi Bianca, do you know which pitch we have this Saturday?', mine: true, time: '2:08pm' },
-    { from: 'BR', text: 'Let me check for you…', mine: false, time: '2:10pm' },
-    { from: 'BR', text: 'Yes, pitch 2 from 9:00. I\'ll put the cones out early.', mine: false, time: '2:14pm' },
-    { from: 'SK', text: 'Brilliant, thank you!', mine: true, time: '2:15pm' },
-  ]
+  const chat = chats[activeChat]
+  const open = (i: number) => { setActiveChat(i); markRead(chats[i].id) }
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#f7f8f7' }}>
@@ -304,7 +326,7 @@ export function CoachMessages({ onBack: _onBack, onNav, teamType = 'juniors', em
           </div>
           <div style={{ overflowY: 'auto', flex: 1 }}>
             {chats.map((c, i) => (
-              <button key={c.name} onClick={() => setActiveChat(i)}
+              <button key={c.name} onClick={() => open(i)}
                 style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 14px', width: '100%', background: i === activeChat ? PALE : 'transparent', border: 'none', borderBottom: `1px solid ${LN}`, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
                 <Ini s={c.ini} size={36} bg={PALE}/>
                 <div style={{ flex: 1, minWidth: 0 }}>
@@ -314,7 +336,7 @@ export function CoachMessages({ onBack: _onBack, onNav, teamType = 'juniors', em
                   </div>
                   <div style={{ fontSize: 12, color: 'private' in c && c.private ? G : MUT, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{c.preview}</div>
                 </div>
-                {'unread' in c && c.unread && <div style={{ width: 20, height: 20, borderRadius: '50%', background: G, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, flexShrink: 0 }}>{c.unread}</div>}
+                {unread[c.id] > 0 && <div style={{ width: 20, height: 20, borderRadius: '50%', background: G, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, flexShrink: 0 }}>{unread[c.id]}</div>}
               </button>
             ))}
           </div>
@@ -329,20 +351,20 @@ export function CoachMessages({ onBack: _onBack, onNav, teamType = 'juniors', em
             <Ini s={chats[activeChat].ini} size={36}/>
             <div>
               <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>{chats[activeChat].name}</div>
-              <button onClick={() => onNav ? onNav('MSG3-PersonCard') : t('Person card opens.')} style={{ fontSize: 12, color: G, background: 'transparent', border: 'none', padding: 0, cursor: 'pointer', fontFamily: 'inherit' }}>Club co-ordinator · Wattle Creek FC</button>
+              <button onClick={() => onNav ? onNav('MSG3-PersonCard') : t('Person card opens.')} style={{ fontSize: 12, color: G, background: 'transparent', border: 'none', padding: 0, cursor: 'pointer', fontFamily: 'inherit' }}>{chat.role}</button>
             </div>
           </div>
           {/* Messages */}
           <div style={{ flex: 1, overflowY: 'auto', padding: '20px' }}>
-            {transcript.map((m, i) => (
+            {chat.lines.map((m, i) => (
               <div key={i} style={{ display: 'flex', justifyContent: m.mine ? 'flex-end' : 'flex-start', marginBottom: 12 }}>
                 <div style={{ maxWidth: '70%' }}>
-                  <div style={{ padding: '10px 14px', borderRadius: m.mine ? '14px 14px 2px 14px' : '14px 14px 14px 2px', background: m.mine ? GD : '#fff', border: m.mine ? 'none' : `1px solid ${LN}`, color: m.mine ? '#fff' : INK, fontSize: 14, lineHeight: 1.5 }}>{m.text}</div>
+                  <div style={{ padding: '10px 14px', borderRadius: m.mine ? '14px 14px 2px 14px' : '14px 14px 14px 2px', background: m.mine ? GD : '#fff', border: m.mine ? 'none' : `1px solid ${LN}`, color: m.mine ? '#fff' : INK, fontSize: 14, lineHeight: 1.5 }}>{m.who && <strong style={{ display: 'block', fontSize: 12, color: G }}>{m.who}</strong>}{m.text}</div>
                   <div style={{ fontSize: 11, color: MUT, textAlign: m.mine ? 'right' : 'left', marginTop: 4 }}>{m.time}</div>
                 </div>
               </div>
             ))}
-            {sent.map((m, i) => (
+            {(sent[chat.id] ?? []).map((m, i) => (
               <div key={`s${i}`} style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 12 }}>
                 <div style={{ maxWidth: '70%' }}>
                   <div style={{ padding: '10px 14px', borderRadius: '14px 14px 2px 14px', background: GD, color: '#fff', fontSize: 14, lineHeight: 1.5 }}>{m}</div>
@@ -361,7 +383,7 @@ export function CoachMessages({ onBack: _onBack, onNav, teamType = 'juniors', em
             </button>
             <input value={input} onChange={e => setInput(e.target.value)} placeholder={`Message ${chats[activeChat].name.split(' ')[0]}…`}
               style={{ flex: 1, height: 40, padding: '0 14px', borderRadius: 8, border: `1px solid ${LN}`, fontSize: 14, fontFamily: 'inherit', outline: 'none' }}/>
-            <button onClick={() => { const v = input.trim() || 'Thanks!'; setSent(s => [...s, v]); setInput('') }} style={{ width: 44, height: 44, borderRadius: 8, background: G, color: '#fff', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <button onClick={() => { const v = input.trim() || 'Thanks!'; setSent(s => ({ ...s, [chat.id]: [...(s[chat.id] ?? []), v] })); setInput('') }} style={{ width: 44, height: 44, borderRadius: 8, background: G, color: '#fff', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <Icon d={ICONS.send} size={18} stroke="#fff"/>
             </button>
           </div>

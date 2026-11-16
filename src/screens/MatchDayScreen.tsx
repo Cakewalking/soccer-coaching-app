@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { goSetup } from './sandbox/sandboxNav'
 
 type Screen = 'home' | 'training' | 'matchday' | 'teamtalk'
 
@@ -25,7 +26,7 @@ function MatchDayEmpty() {
         <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, letterSpacing: '-0.02em' }}>Match day</h1>
         <span style={{ fontSize: 14, color: '#4a5a57' }}>No game scheduled</span>
         <div style={{ flexGrow: 1 }} />
-        <button onClick={() => showToast('Opening the add fixture form.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
+        <button onClick={() => goSetup('fixtures', 'Opening the add fixture form.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
           Add a fixture
         </button>
@@ -67,7 +68,7 @@ function MatchDayEmpty() {
               <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 2 }}>Player check is off</div>
               <div style={{ fontSize: 12, color: '#4a5a57', lineHeight: '16px' }}>On game morning, players answer three quick questions. You'll see who is carrying a knock or feeling flat before kick-off.</div>
             </div>
-            <button onClick={() => showToast('Player check-ins turned on. Players will get reminders on game morning.')} style={{ flex: 'none', height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Turn on check-ins</button>
+            <button onClick={() => goSetup('kit', 'Player check-ins turned on. Players will get reminders on game morning.')} style={{ flex: 'none', height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Turn on check-ins</button>
           </div>
         </div>
 
@@ -82,7 +83,7 @@ function MatchDayEmpty() {
                 <div style={{ fontSize: 13, fontWeight: 700, lineHeight: '18px' }}>{item.title}</div>
                 <div style={{ fontSize: 12, color: '#4a5a57', lineHeight: '16px' }}>{item.sub}</div>
               </div>
-              <button onClick={() => showToast(`Opening: ${item.title}.`)} style={{ flex: 'none', height: 44, padding: '0 10px', borderRadius: 7, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer', color: '#2f6252' }}>{item.action}</button>
+              <button onClick={() => goSetup('kit', `Opening: ${item.title}.`)} style={{ flex: 'none', height: 44, padding: '0 10px', borderRadius: 7, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer', color: '#2f6252' }}>{item.action}</button>
             </div>
           ))}
           <button onClick={() => showToast('Playing the 2-minute setup guide.')} style={{ marginTop: 'auto', height: 44, borderRadius: 10, border: '1px solid #2f6252', background: '#ffffff', color: '#2f6252', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>

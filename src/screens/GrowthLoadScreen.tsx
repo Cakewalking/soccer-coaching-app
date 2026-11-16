@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { demoToast } from './demoToast'
+import { goSetup } from './sandbox/sandboxNav'
 
 const PLAYERS = [
   { ini: 'NO', name: 'Noah Okafor',   pos: 'Striker',  age: 12, height: 149.7, growth: 8.4, flag: 'Heel pain ×3',   flagColor: '#c39797' },
@@ -58,8 +60,8 @@ function GrowthChart() {
 
 export default function GrowthLoadScreen({ empty }: { empty?: boolean }) {
   const [selected, setSelected] = useState(PLAYERS[0])
-  const [toast, setToast] = useState<string|null>(null)
-  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
+  const [toast] = useState<string | null>(null)
+  function showToast(msg: string) { demoToast(msg) }
 
   if (empty) {
     return (
@@ -80,7 +82,7 @@ export default function GrowthLoadScreen({ empty }: { empty?: boolean }) {
                 Measure height every 3 months. Clean Sheet flags anyone growing fast, so you can cut jumps and sprints before knees and heels get sore.
               </div>
               <div style={{ display: 'flex', gap: 10 }}>
-                <button onClick={() => showToast('Opening the measuring session planner.')} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
+                <button onClick={() => goSetup('kit', 'Opening the measuring session planner.')} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
                   Plan a measuring session
                 </button>

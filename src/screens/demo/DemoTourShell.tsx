@@ -37,7 +37,7 @@ function ClosingCard({ onPickRole, onWhy }: { onPickRole: () => void; onWhy: () 
             </div>
           ))}
         </div>
-        <p style={{ margin: 0, fontSize: 17, lineHeight: '1.6', color: 'rgba(255,255,255,0.85)', maxWidth: 760 }}>One game in, one plan out, and proof the next week. Every player got a fair share of minutes along the way.</p>
+        <p style={{ margin: 0, fontSize: 17, lineHeight: '1.6', color: 'rgba(255,255,255,0.85)', maxWidth: 760 }}>One game in, one plan out, and proof the next week. Families answered once per game, players checked in before each session, the coach had the last word on the review, and every player got a fair share of minutes.</p>
         <div style={{ display: 'flex', gap: 12 }}>
           <button onClick={onPickRole} style={{ height: 48, padding: '0 22px', borderRadius: 10, border: 0, background: '#fff', color: '#2f6252', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Pick a role and look around</button>
           <button onClick={onWhy} style={{ height: 48, padding: '0 20px', borderRadius: 10, border: '1.5px solid rgba(255,255,255,0.5)', background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Why trust it</button>

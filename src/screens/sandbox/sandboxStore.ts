@@ -2,9 +2,12 @@ const STORE_KEY = 'cs_demo_sandbox_v2'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
-export interface SbTeam    { id: string; name: string; ageGroup: string }
-export interface SbPlayer  { id: string; teamId: string; name: string; position: string }
-export interface SbFixture { id: string; teamId: string; opponent: string; date: string; home: boolean }
+export interface SbTeam    { id: string; name: string; ageGroup: string; ground?: string; trainingNights?: { day: string; time: string }[] }
+export interface SbPlayer  { id: string; teamId: string; name: string; position: string; parent?: string; contact?: string }
+export interface SbFixture { id: string; teamId: string; opponent: string; date: string; home: boolean; time?: string }
+export interface SbStaff   { id: string; name: string; role: string }
+export interface SbSettings { checkins?: boolean; camera?: boolean; sensors?: boolean }
+export type SbAnswer = { a: 'in' | 'maybe' | 'cant'; reason?: string; by: 'parent' | 'coach' }
 export interface SbSession { id: string; teamId: string; date: string; focus: string }
 export interface SbMessage { id: string; from: string; text: string; timestamp: number }
 
@@ -14,6 +17,10 @@ export interface SandboxStore {
   fixtures: SbFixture[]
   sessions: SbSession[]
   messages: SbMessage[]
+  staff?:    SbStaff[]
+  settings?: SbSettings
+  /** One answer per game per player, keyed `${fixtureId}:${playerId}`. */
+  availability?: Record<string, SbAnswer>
 }
 
 // ─── Persistence ──────────────────────────────────────────────────────────────
@@ -107,4 +114,47 @@ export function addPlayer(s: SandboxStore, player: Omit<SbPlayer, 'id'>): Sandbo
 export function addFixture(s: SandboxStore, fixture: Omit<SbFixture, 'id'>): SandboxStore {
   const id = 'fixture-' + Date.now()
   return { ...s, fixtures: [...s.fixtures, { id, ...fixture }] }
+}
+
+// ─── Set-up helpers (everything a coach does in Team set-up) ──────────────────
+
+let seq = 0
+const newId = (p: string) => `${p}-${Date.now()}-${seq++}`
+
+export function updateTeam(s: SandboxStore, patch: Partial<Omit<SbTeam, 'id'>>): SandboxStore {
+  if (!s.teams.length) return { ...s, teams: [{ id: newId('team'), name: patch.name ?? 'My team', ageGroup: patch.ageGroup ?? '', ...patch }] }
+  return { ...s, teams: s.teams.map((t, i) => i === 0 ? { ...t, ...patch } : t) }
+}
+export function addPlayers(s: SandboxStore, list: Omit<SbPlayer, 'id' | 'teamId'>[]): SandboxStore {
+  const teamId = s.teams[0]?.id ?? 'sandbox-team'
+  return { ...s, players: [...s.players, ...list.map(p => ({ id: newId('player'), teamId, ...p }))] }
+}
+export function removePlayer(s: SandboxStore, id: string): SandboxStore {
+  const availability = Object.fromEntries(Object.entries(s.availability ?? {}).filter(([k]) => !k.endsWith(`:${id}`)))
+  return { ...s, players: s.players.filter(p => p.id !== id), availability }
+}
+export function removeFixture(s: SandboxStore, id: string): SandboxStore {
+  const availability = Object.fromEntries(Object.entries(s.availability ?? {}).filter(([k]) => !k.startsWith(`${id}:`)))
+  return { ...s, fixtures: s.fixtures.filter(f => f.id !== id), availability }
+}
+export function addFixtureFull(s: SandboxStore, f: Omit<SbFixture, 'id' | 'teamId'>): SandboxStore {
+  return { ...s, fixtures: [...s.fixtures, { id: newId('fixture'), teamId: s.teams[0]?.id ?? 'sandbox-team', ...f }].sort((a, b) => a.date.localeCompare(b.date)) }
+}
+export function addStaff(s: SandboxStore, m: Omit<SbStaff, 'id'>): SandboxStore { return { ...s, staff: [...(s.staff ?? []), { id: newId('staff'), ...m }] } }
+export function removeStaff(s: SandboxStore, id: string): SandboxStore { return { ...s, staff: (s.staff ?? []).filter(m => m.id !== id) } }
+export function setSettings(s: SandboxStore, patch: SbSettings): SandboxStore { return { ...s, settings: { ...(s.settings ?? {}), ...patch } } }
+export function setAnswer(s: SandboxStore, fixtureId: string, playerId: string, answer: SbAnswer | null): SandboxStore {
+  const availability = { ...(s.availability ?? {}) }
+  if (answer) availability[`${fixtureId}:${playerId}`] = answer; else delete availability[`${fixtureId}:${playerId}`]
+  return { ...s, availability }
+}
+/** The next game on or after today, else the first one listed. */
+export function nextFixture(s: SandboxStore): SbFixture | undefined {
+  const today = new Date().toISOString().slice(0, 10)
+  const sorted = [...s.fixtures].sort((a, b) => a.date.localeCompare(b.date))
+  return sorted.find(f => f.date >= today) ?? sorted[0]
+}
+export function niceDate(iso: string): string {
+  const d = new Date(`${iso}T12:00:00`)
+  return Number.isNaN(d.getTime()) ? iso : d.toLocaleDateString('en-AU', { weekday: 'short', day: 'numeric', month: 'short' })
 }

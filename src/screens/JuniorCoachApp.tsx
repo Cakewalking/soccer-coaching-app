@@ -1,4 +1,7 @@
 import { useState, useEffect } from 'react'
+import SandboxWaiting from './sandbox/SandboxWaiting'
+import TeamSetup from './sandbox/TeamSetup'
+import { registerSetupNav } from './sandbox/sandboxNav'
 import type { ReactNode } from 'react'
 
 // Map a Home-story deep-link design-id to this frame's semantic nav key, so a
@@ -131,6 +134,8 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
     if (s === 'teamtalk')  { setSub('teamtalk');  return }
     if (s === 'pitchside') { setSub('pitchside'); return }
     if (s === 'call')      { demoToast('Opening the booking calendar.'); return }
+    const tab = coachDeepTab(s)   // one of this app's own tabs: switch to it
+    if (tab) { goNav(tab.nav as NavKey); if (tab.nav === 'home') setHomeTab(tab.idx); else if (tab.nav === 'squad') setSquadTab(tab.idx); else if (tab.nav === 'training') setTrainingTab(tab.idx); else if (tab.nav === 'matchday') setMatchTab(tab.idx); else if (tab.nav === 'clips') setClipsTab(tab.idx); return }
     if (isScreenId(s))     { setLayer(s); return }
     if (s === 'addgame')   { setSub('addgame');   return }
   }
@@ -138,6 +143,13 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
   // Let an embedded Home story drive this frame: a deep-link whose design-id maps
   // to a tab switches the real tab (returns true); unmapped targets return false
   // so the Home story falls back to its in-place layer.
+  // In the sandbox, empty screens send the coach to the right part of Team set-up on Home.
+  useEffect(() => {
+    if (!inSandbox) return
+    registerSetupNav(() => { goNav('home'); setHomeTab(0) })
+    return () => registerSetupNav(null)
+  })
+
   useEffect(() => {
     registerNav?.((target: string) => {
       const key = COACH_TARGET_NAV[target]
@@ -205,7 +217,9 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
 
   let content = null
   if (nav === 'home') {
-    if (homeTab === 0) content = phaseContent ?? (coachRole === 'ccoach' ? <CoCoachHomeScreen empty={sbEmpty} onNav={handleNav} onAsk={() => setAskOpen(true)} askQuestions={['Who needs a rest this week?', 'What should we work on tonight?', 'Is everyone getting fair minutes?']} /> : <HomeScreen role="head" onRole={() => {}} onNav={handleNav} onCalendar={() => setHomeTab(2)} empty={sbEmpty} onAsk={() => setAskOpen(true)} askQuestions={['Who needs a rest this week?', 'What should we work on tonight?', 'Is everyone getting fair minutes?']} teamName={inSandbox ? (store.teams[0]?.name ?? 'your team') : 'U12 Sam'} />)
+    if (homeTab === 0 && inSandbox && sbEmpty) content = <TeamSetup onNav={handleNav} />
+    else if (homeTab === 0) content = phaseContent ?? (coachRole === 'ccoach' ? <CoCoachHomeScreen empty={sbEmpty} onNav={handleNav} onAsk={() => setAskOpen(true)} askQuestions={['Who needs a rest this week?', 'What should we work on tonight?', 'Is everyone getting fair minutes?']} /> : <HomeScreen role="head" onRole={() => {}} onNav={handleNav} onCalendar={() => setHomeTab(2)} empty={sbEmpty} onAsk={() => setAskOpen(true)} askQuestions={['Who needs a rest this week?', 'What should we work on tonight?', 'Is everyone getting fair minutes?']} teamName={inSandbox ? (store.teams[0]?.name ?? 'your team') : 'U12 Sam'} />)
+    else if (homeTab === 1 && inSandbox && sbEmpty) content = <SandboxWaiting kind="messages" />
     else if (homeTab === 1) {
       if (msgsView === 'MSG1-NewMessage') content = <CoachNewMessage onBack={() => setMsgsView(null)} onNav={setMsgsView} />
       else if (msgsView === 'MSG3-PersonCard') content = <CoachMessagesPersonCard onBack={() => setMsgsView(null)} onNav={setMsgsView} />
@@ -219,11 +233,13 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
     else if (homeTab === 7) content = renderFiles()
   } else if (nav === 'squad') {
     if (squadTab === 0) content = profileIni ? <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, minHeight: 0 }}><div style={{ flex: 'none', padding: '10px 28px 0' }}><button onClick={() => setProfileIni(null)} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>← All players</button></div><PlayerProfileScreen playerIni={profileIni} /></div> : <SquadScreen role="head" onPlayerProfile={setProfileIni} empty={sbEmpty} />
+    else if (squadTab === 1 && inSandbox && sbEmpty) content = <SandboxWaiting kind="formation" />
+    else if (squadTab === 2 && inSandbox && sbEmpty) content = <SandboxWaiting kind="lineups" />
     else if (squadTab === 1) content = <FormationBuilder key={formationPreset?.note ?? 'plain'} preset={formationPreset} team="juniors" onNav={(s) => { if (s === 'T2-TabletMatch') { goNav('matchday'); setMatchTab(1) } else if (s === 'SQ1-BestLineups') { setSquadTab(2) } else { handleNav(s) } }} />
     else if (squadTab === 2) content = <SquadLineups noFrame onNav={(s, preset) => { if (s === 'formation') { setFormationPreset(preset ?? null); setSquadTab(1) } else if (s === 'record') { goNav('record') } else if (s === 'teamsheet') { goNav('matchday'); setMatchTab(1) } }} />
     else if (squadTab === 3) content = <DevGoalsScreen empty={sbEmpty} />
-    else if (squadTab === 4) content = <WellnessScreen empty={sbEmpty} />
-    else if (squadTab === 5) content = <AvailabilityScreen empty={sbEmpty} />
+    else if (squadTab === 4) content = <WellnessScreen empty={sbEmpty} onNav={handleNav} />
+    else if (squadTab === 5) content = <AvailabilityScreen empty={sbEmpty} onNav={handleNav} />
     else if (squadTab === 6) content = <ConsentScreen empty={sbEmpty} />
   } else if (nav === 'training') {
     if (trainingTab === 0) content = <TrainingScreen role="head" onNav={handleNav} empty={sbEmptySession} />

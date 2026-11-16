@@ -1080,15 +1080,30 @@ export const TOURS: Record<string, TourDef> = {
     roleLabel: "The idea in one minute",
     persona: "one week with an under-12 team",
     device: 'tablet',
-    total: 6,
+    total: 13,
     home: '',
     sections: [
-      { title: "The story", steps: [
+      { title: "Before the game", steps: [
+        { label: "Who is coming", caption: "Every game, each family gets one question: can they make it? Answers, and reasons, land on the coach’s board.", screen: "AV1-Availability" },
+        { label: "The line-up", caption: "The coach picks from who is in. Shapes and pairs that worked before are one tap away.", screen: "FB1-Formation" },
+      ]},
+      { title: "Game day", steps: [
         { label: "Saturday: the game goes in", caption: "The club films the game on whatever camera it has. Cameras with a live feed can stream straight in.", screen: "STO5-HomeStoryJuniors" },
         { label: "The review comes back", caption: "About 25 minutes later: what went well, and three things to work on, each with a clip.", screen: "R1-MatchReview" },
+        { label: "The coach has the last word", caption: "The review is a first draft. The coach adds their own take, and that is what the team hears.", screen: "YT1-YourTake" },
+      ]},
+      { title: "The week", steps: [
         { label: "Thursday: the plan is ready", caption: "Training is built from those three things, using drills written to the national curriculum.", screen: "T3-TrainingTab" },
+        { label: "Players check in", caption: "Before every session and game, four quick questions on the player’s phone. The coach sees a flag, never a score.", screen: "PA-Check" },
         { label: "At the ground", caption: "Pitch-side, the coach sees what to set up and what to say. Growing players have their sprints capped.", screen: "TR1b-PitchSideDrill" },
-        { label: "Parents are in the loop", caption: "Meanwhile, families get one simple week view on their phone, and decide what\u2019s recorded.", screen: "PA-Parent" },
+      ]},
+      { title: "Around the team", steps: [
+        { label: "Parents are in the loop", caption: "Families get one simple week view on their phone, and decide what’s recorded.", screen: "PA-Parent" },
+        { label: "Players learn from it", caption: "Each player gets short clips and lessons picked for their position. Coaches get their own.", screen: "LEARN-PlayerYoung" },
+        { label: "The club keeps it safe", caption: "Children checks, consent and welfare concerns sit with the club, not with one coach.", screen: "D5-Safeguarding" },
+      ]},
+      { title: "The proof", steps: [
+        { label: "What worked", caption: "Over the season, the coach can see which shapes, pairs and line-ups did the job.", screen: "SQ1-BestLineups" },
         { label: "Next Saturday", caption: "The loop closes: game, plan, training, proof." },
       ]},
     ],

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { goSetup } from './sandbox/sandboxNav'
 
 function Illus() {
   return (
@@ -42,7 +43,7 @@ function OppositionEmpty() {
             <div style={{ fontSize: 20, fontWeight: 700, marginBottom: 6 }}>Know who you're playing</div>
             <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: '20px', marginBottom: 14 }}>Add a fixture to see the other team's results. After you've played them once, you'll have your own clips of them too.</div>
             <div style={{ display: 'flex', gap: 8 }}>
-              <button onClick={() => st('Opening add fixture.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Add a fixture</button>
+              <button onClick={() => goSetup('fixtures', 'Opening add fixture.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Add a fixture</button>
               <button onClick={() => st('Opening example.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>See an example</button>
             </div>
           </div>

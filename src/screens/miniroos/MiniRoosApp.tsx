@@ -14,6 +14,8 @@ import ConsentMiniRoos   from './ConsentMiniRoos'
 import FormationBuilder  from '../formation/FormationBuilder'
 import { SquadLineups } from '../SquadLineups'
 import LearnTab from '../learn/LearnTab'
+import TeamSetup from '../sandbox/TeamSetup'
+import { registerSetupNav } from '../sandbox/sandboxNav'
 import YT1YourTake from '../aftergame/YT1YourTake'
 import ScreenLayer, { isScreenId } from '../ScreenLayer'
 import type { FormationPreset } from '../formation/lineupInsights'
@@ -763,6 +765,12 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
     setFilOpen(null)
   }
 
+  useEffect(() => {
+    if (!inSandbox) return
+    registerSetupNav(() => { setNav('home'); setHomeTab('overview'); setHomeSubView('main') })
+    return () => registerSetupNav(null)
+  })
+
   // A Home button that points at one of this app's own screens opens that tab, lit in
   // the menu — not a second copy of the screen with its own heading underneath.
   useEffect(() => {
@@ -794,7 +802,9 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
 
   let content = null
   if (nav === 'home') {
-    if (homeTab === 'overview' && homeSubView === 'main')
+    if (homeTab === 'overview' && homeSubView === 'main' && inSandbox && empty)
+      content = <TeamSetup defaultAge="Under 9" onNav={(t) => { if (t === 'squad') setNav('squad'); else if (t === 'fixtures') setHomeTab('fixtures'); else if (t === 'AV1-Availability') { setNav('squad'); setSquadTab('coming') } }} />
+    else if (homeTab === 'overview' && homeSubView === 'main')
       content = phaseContent ?? <HomeMiniRoos empty={empty} onTraining={() => setNav('training')} onSeasonNotes={() => setHomeSubView('seasonnotes')} onFootballYear={() => setHomeSubView('footballyear')} onAllMessages={() => setHomeTab('messages')} onCalendar={() => setHomeTab('calendar')} onSwapGame={() => { setNav('training'); setTrainingTab('suggest') }} onWhatWeSaw={() => { setNav('gameday'); setGameDayTab('whatisaw') }} onThankParents={() => { setNav('gameday'); setGameDayTab('thankparents') }} onInboxItem={() => setHomeTab('messages')} onAsk={() => setAskOpen(true)} askQuestions={ASK_QUESTIONS} />
     else if (homeTab === 'overview' && homeSubView === 'seasonnotes')
       content = <SeasonNotesScreen empty={empty} onBack={() => setHomeSubView('main')} />

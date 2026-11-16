@@ -43,7 +43,7 @@ export default function DrillLibraryScreen({ empty }: { empty?: boolean }) {
   const openWiz   = () => { setView('wizard'); setWStep(1) }
   const closeWiz  = () => { setView('library'); setWStep(1) }
 
-  if (empty) {
+  if (empty && view === 'library') {
     return (
       <div style={{ flexGrow: 1, padding: '24px 28px', boxSizing: 'border-box' as const, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 20 }}>
         <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>

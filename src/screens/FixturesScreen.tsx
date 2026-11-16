@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { goSetup } from './sandbox/sandboxNav'
 import { useSandbox } from './sandbox/SandboxContext'
 import { addFixture } from './sandbox/sandboxStore'
 
@@ -148,7 +149,7 @@ function FixturesEmpty() {
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden="true"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1M16 8l-4-4-4 4M12 4v12"/></svg>
                 Import from the league
               </button>
-              <button onClick={() => showToast('Opening the add fixture form.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Add a fixture</button>
+              <button onClick={() => goSetup('fixtures', 'Opening the add fixture form.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Add a fixture</button>
             </div>
           </div>
         </div>

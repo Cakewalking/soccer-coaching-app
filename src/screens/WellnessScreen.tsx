@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { goSetup } from './sandbox/sandboxNav'
 
 function Illus() {
   return (
@@ -42,7 +43,7 @@ function WellnessEmpty() {
             <div style={{ fontSize: 20, fontWeight: 700, marginBottom: 6 }}>Know how they're feeling</div>
             <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: '20px', marginBottom: 14 }}>Players answer sleep, soreness, mood and energy on their phone before training and games. It takes 20 seconds.</div>
             <div style={{ display: 'flex', gap: 8 }}>
-              <button onClick={() => st('Turning on check-ins.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
+              <button onClick={() => goSetup('kit', 'Turning on check-ins.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden="true"><path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8zM6 1v3M10 1v3M14 1v3"/></svg>
                 Turn on check-ins
               </button>
@@ -117,8 +118,11 @@ function noteChipStyle(note: string) {
   return { bg: '#cbbeb5', color: '#10211f' }
 }
 
-export default function WellnessScreen({ empty }: { empty?: boolean }) {
+export default function WellnessScreen({ empty, onNav }: { empty?: boolean; onNav?: (s: string) => void }) {
   const [selIdx, setSelIdx] = useState(0)
+  // When the check-in goes out. It is tied to the calendar: every game and every session.
+  const [sheet, setSheet] = useState(false)
+  const [ask, setAsk] = useState({ games: true, training: true, rest: false })
   const [toast, setToast] = useState<string|null>(null)
   if (empty) return <WellnessEmpty />
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
@@ -134,10 +138,10 @@ export default function WellnessScreen({ empty }: { empty?: boolean }) {
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
           <div>
             <h1 style={{ margin: 0, fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em' }}>Wellness</h1>
-            <span style={{ fontSize: 13, color: '#4a5a57' }}>14 of 16 checked in today · 4 quick questions before training and games</span>
+            <span style={{ fontSize: 13, color: '#4a5a57' }}>14 of 16 checked in today · 4 quick questions, sent before every game and session</span>
           </div>
           <div style={{ display: 'flex', gap: 8 }}>
-            <button onClick={() => st('Opening what players answer.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>What players answer</button>
+            <button onClick={() => setSheet(true)} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>When it is asked</button>
             <button onClick={() => st('Reminder sent to Sam and Zoe.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#ffffff' }}>Remind Sam and Zoe</button>
           </div>
         </div>
@@ -225,6 +229,41 @@ export default function WellnessScreen({ empty }: { empty?: boolean }) {
           <span style={{ fontSize: 12, color: '#4a5a57', textAlign: 'center' }}>Answers are seen by her coaches and her parent. The club sees counts only.</span>
         </div>
       </aside>
+      {sheet && (
+        <>
+          <div onClick={() => setSheet(false)} style={{ position: 'fixed', inset: 0, background: 'rgba(16,33,31,0.35)', zIndex: 80 }} />
+          <aside role="dialog" aria-label="When players are asked" style={{ position: 'fixed', top: 0, right: 0, bottom: 0, width: 440, maxWidth: '100%', background: '#fff', zIndex: 90, display: 'flex', flexDirection: 'column', boxShadow: '-8px 0 30px rgba(16,33,31,0.2)', fontFamily: 'var(--font-sans)' }}>
+            <div style={{ flex: 'none', display: 'flex', alignItems: 'center', padding: '16px 20px', borderBottom: '1px solid #e9eae8' }}>
+              <span style={{ fontSize: 18, fontWeight: 700, color: '#10211f', flexGrow: 1 }}>The check-in</span>
+              <button onClick={() => setSheet(false)} aria-label="Close" style={{ width: 44, height: 44, borderRadius: 999, border: '1px solid #c5c8c4', background: '#fff', cursor: 'pointer', fontSize: 18, color: '#4a5a57' }}>×</button>
+            </div>
+            <div style={{ flexGrow: 1, overflowY: 'auto', padding: 20, display: 'flex', flexDirection: 'column', gap: 16 }}>
+              <div>
+                <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', color: '#4a5a57', marginBottom: 8 }}>WHEN IT IS SENT</div>
+                {([['games', 'Before every game', 'On the morning of the game, at 7:30 am'], ['training', 'Before every training session', 'Two hours before the start'], ['rest', 'On rest days', 'Off by default. Nobody is asked on a day off']] as const).map(([k, title, sub]) => (
+                  <button key={k} role="switch" aria-checked={ask[k]} onClick={() => { setAsk(a => ({ ...a, [k]: !a[k] })); st(`${title}: ${ask[k] ? 'off' : 'on'}.`) }} style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 12, minHeight: 56, padding: '8px 0', border: 0, borderTop: '1px solid #e9eae8', background: 'none', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
+                    <span style={{ flexGrow: 1 }}><span style={{ display: 'block', fontSize: 15, fontWeight: 700, color: '#10211f' }}>{title}</span><span style={{ display: 'block', fontSize: 13, color: '#4a5a57' }}>{sub}</span></span>
+                    <span style={{ flex: 'none', width: 46, height: 28, borderRadius: 999, background: ask[k] ? '#2f6252' : '#c5c8c4', position: 'relative' }}><span style={{ position: 'absolute', top: 3, left: ask[k] ? 21 : 3, width: 22, height: 22, borderRadius: '50%', background: '#fff' }} /></span>
+                  </button>
+                ))}
+              </div>
+              <div>
+                <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', color: '#4a5a57', marginBottom: 8 }}>NEXT TWO</div>
+                {[ask.training && 'Tonight · 3:45 pm · before training', ask.games && 'Saturday · 7:30 am · before the game', !ask.training && !ask.games && 'Nothing is scheduled. Turn one on above.'].filter(Boolean).map(l => <div key={String(l)} style={{ fontSize: 14, color: '#10211f', padding: '8px 0', borderTop: '1px solid #e9eae8' }}>{l}</div>)}
+              </div>
+              <div>
+                <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', color: '#4a5a57', marginBottom: 8 }}>THE FOUR QUESTIONS · 1 TO 5 EACH · ABOUT 20 SECONDS</div>
+                {['How did you sleep?', 'How sore is your body?', 'How is your mood?', 'How much energy do you have?'].map((q, i) => <div key={q} style={{ display: 'flex', gap: 10, fontSize: 14, color: '#10211f', padding: '8px 0', borderTop: '1px solid #e9eae8' }}><span style={{ color: '#4a5a57', width: 16 }}>{i + 1}</span>{q}</div>)}
+                <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: 1.5, marginTop: 8 }}>A player can add a few words. Anyone who has not answered an hour before is reminded once.</div>
+              </div>
+            </div>
+            <div style={{ flex: 'none', display: 'flex', gap: 8, padding: 16, borderTop: '1px solid #e9eae8' }}>
+              <button onClick={() => onNav ? onNav('PA-Check') : st('Opening the check-in as a player sees it.')} style={{ flex: 1, height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, color: '#10211f', cursor: 'pointer' }}>See what a player gets</button>
+              <button onClick={() => { setSheet(false); st('Saved. The check-in follows your calendar.') }} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Done</button>
+            </div>
+          </aside>
+        </>
+      )}
       {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </main>
   )

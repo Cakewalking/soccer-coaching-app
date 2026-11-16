@@ -1,4 +1,7 @@
 import { useState, useEffect } from 'react'
+import SandboxWaiting from './sandbox/SandboxWaiting'
+import TeamSetup from './sandbox/TeamSetup'
+import { registerSetupNav } from './sandbox/sandboxNav'
 import { COACH_TARGET_NAV } from './JuniorCoachApp'
 import { SENIORS_SQUAD_PLAYERS as SENIORS_SQUAD, YOUTH_SQUAD_PLAYERS as YOUTH_SQUAD } from '../data'
 import type { ReactNode } from 'react'
@@ -423,10 +426,19 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
     if (s === 'setstyle')  { setHomeTab(4);     return }
     if (s === 'teamtalk')  { setSub('teamtalk');  return }
     if (s === 'pitchside') { setSub('pitchside'); return }
+    const tab = coachDeepTab(s)   // one of this app's own tabs: switch to it
+    if (tab) { goNav(tab.nav as NavKey); if (tab.nav === 'home') setHomeTab(tab.idx); else if (tab.nav === 'squad') setSquadTab(tab.idx); else if (tab.nav === 'training') setTrainingTab(tab.idx); else if (tab.nav === 'matchday') setMatchTab(tab.idx); else if (tab.nav === 'clips') setClipsTab(tab.idx); return }
     if (isScreenId(s))     { setLayer(s); return }
   }
 
   // Embedded Home story drives this frame: mapped deep-links switch the real tab.
+  // In the sandbox, empty screens send the coach to the right part of Team set-up on Home.
+  useEffect(() => {
+    if (!inSandbox) return
+    registerSetupNav(() => { goNav('home'); setHomeTab(0) })
+    return () => registerSetupNav(null)
+  })
+
   useEffect(() => {
     registerNav?.((target: string) => {
       const key = COACH_TARGET_NAV[target]
@@ -494,10 +506,10 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
   let content = null
   if (nav === 'home') {
     switch (homeTab) {
-      case 0: content = sbEmpty
+      case 0: content = inSandbox && sbEmpty ? <TeamSetup defaultAge={teamType === 'seniors' ? 'Seniors' : 'Under 16'} onNav={handleNav} /> : sbEmpty
         ? <SYCoachHomeEmpty coachFirst={data.coachFirst} teamLine={`${data.teamPicker} · let's get your team ready`} onNav={handleNav} />
         : (phaseContent ?? <CoachHome data={data} onTraining={() => goNav('training')} onMatchday={() => goNav('matchday')} onReview={() => { goNav('matchday'); setMatchTab(3) }} onCalendar={() => setHomeTab(2)} onInbox={() => setHomeTab(1)} onAsk={() => setAskOpen(true)} askQuestions={teamType === 'seniors' ? ["Who is one yellow from a ban?", "How do Banksia Park build out?", "Who is carrying a knock?"] : ["Who is over their load this week?", "What did Kingfisher United do to us?", "Who has exams coming up?"]} roleLabel={teamType === 'seniors' ? 'senior coach' : 'youth coach'} />); break
-      case 1: content = <CoachMessages teamType={teamType === 'seniors' ? 'seniors' : 'youth'} embedded />; break
+      case 1: content = inSandbox && sbEmpty ? <SandboxWaiting kind="messages" /> : <CoachMessages teamType={teamType === 'seniors' ? 'seniors' : 'youth'} embedded />; break
       case 2: case 3: content = <FixturesScreen empty={sbEmpty} teamType={teamType === 'seniors' ? 'seniors' : 'youth'} />; break
       case 4: content = <OurStyleScreen setByLine={`Set 12 March by ${data.coachFirst}.`} />; break
       case 5: content = <WhereWeAtScreen teamType={teamType === 'seniors' ? 'seniors' : 'youth'} />; break
@@ -507,11 +519,11 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
   } else if (nav === 'squad') {
     switch (squadTab) {
       case 0: content = profileIni ? <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, minHeight: 0 }}><div style={{ flex: 'none', padding: '10px 28px 0' }}><button onClick={() => setProfileIni(null)} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>← All players</button></div><PlayerProfileScreen playerIni={profileIni} players={teamType === 'seniors' ? SENIORS_SQUAD : YOUTH_SQUAD} /></div> : <SquadScreen role="head" onPlayerProfile={setProfileIni} empty={sbEmpty} players={teamType === 'seniors' ? SENIORS_SQUAD : YOUTH_SQUAD} />; break
-      case 1: content = <FormationBuilder key={formationPreset?.note ?? 'plain'} preset={formationPreset} team={teamType === 'seniors' ? 'seniors' : 'youth'} onNav={(s) => { if (s === 'T2-TabletMatch') { goNav('matchday'); setMatchTab(1) } else if (s === 'SQ1-BestLineups') { setSquadTab(2) } else { handleNav(s) } }} />; break
-      case 2: content = <SquadLineups noFrame teamType={teamType === 'seniors' ? 'seniors' : 'youth'} onNav={(s, preset) => { if (s === 'formation') { setFormationPreset(preset ?? null); setSquadTab(1) } }} />; break
+      case 1: content = inSandbox && sbEmpty ? <SandboxWaiting kind="formation" /> : <FormationBuilder key={formationPreset?.note ?? 'plain'} preset={formationPreset} team={teamType === 'seniors' ? 'seniors' : 'youth'} onNav={(s) => { if (s === 'T2-TabletMatch') { goNav('matchday'); setMatchTab(1) } else if (s === 'SQ1-BestLineups') { setSquadTab(2) } else { handleNav(s) } }} />; break
+      case 2: content = inSandbox && sbEmpty ? <SandboxWaiting kind="lineups" /> : <SquadLineups noFrame teamType={teamType === 'seniors' ? 'seniors' : 'youth'} onNav={(s, preset) => { if (s === 'formation') { setFormationPreset(preset ?? null); setSquadTab(1) } }} />; break
       case 3: content = <DevGoalsScreen empty={sbEmpty} teamType={teamType === 'seniors' ? 'seniors' : 'youth'} />; break
-      case 4: content = <WellnessScreen empty={sbEmpty} />; break
-      case 5: content = <AvailabilityScreen empty={sbEmpty} />; break
+      case 4: content = <WellnessScreen empty={sbEmpty} onNav={handleNav} />; break
+      case 5: content = <AvailabilityScreen empty={sbEmpty} onNav={handleNav} teamType={teamType === 'seniors' ? 'seniors' : 'youth'} />; break
       case 6: content = <ConsentScreen empty={sbEmpty} />; break
     }
   } else if (nav === 'training') {
@@ -567,7 +579,7 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
       >
         {/* Shared screens still written with U12 Sam's players get this team's names. Screens that take a squad are left alone. */}
         <div data-screen={nav === 'home' && activeIdx === 0 ? (teamType === 'seniors' ? 'STO4-HomeStorySeniors' : 'STO6-HomeStoryYouth') : nav === 'home' && activeIdx === 5 ? (teamType === 'seniors' ? 'WA3-WhereWeAtSeniors' : 'WA2-WhereWeAtYouth') : nav === 'squad' && activeIdx === 1 && teamType === 'seniors' ? 'FB1s-FormationSeniors' : COACH_TAB_SCREEN[nav]?.[activeIdx] ?? COACH_TAB_SCREEN[nav]?.[0]} style={{ display: 'contents' }}>
-          <TeamText team={(nav === 'squad' && squadTab <= 3) || (nav === 'home' && homeTab <= 3) ? null : teamType === 'seniors' ? 'seniors' : 'youth'}>{content}</TeamText>
+          <TeamText team={(nav === 'squad' && (squadTab <= 3 || squadTab === 5)) || (nav === 'home' && homeTab <= 3) ? null : teamType === 'seniors' ? 'seniors' : 'youth'}>{content}</TeamText>
         </div>
       </CoachTabletFrame>
     </>

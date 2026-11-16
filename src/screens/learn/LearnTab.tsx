@@ -7,7 +7,7 @@ import { OpeningPanel } from '../step4/directorParts'
 //   For coaches — the coach's own path, set by the director of football
 // One component so no role is left with only half of it.
 
-export type LearnTeam = 'juniors' | 'youth' | 'seniors' | 'miniroos'
+export type LearnTeam = 'juniors' | 'youth' | 'seniors' | 'miniroos' | 'goalkeeper'
 type Mode = 'players' | 'coaches'
 
 const INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', G = '#2f6252', GD = '#1f4a3e', PALE = '#eef5f2', BORDER = '#c5c8c4', AMBER = '#f4c95d'
@@ -90,6 +90,13 @@ const COACH: Record<LearnTeam, CoachPath> = {
     dayLessons: [{ len: '0:40', title: 'A team talk they finish for you', credit: 'Marko Petrovic with Men’s 1sts', tag: 'Talking', watched: true }, { len: '0:50', title: 'When to make the first sub', credit: 'Luke Fraser with U11 Luke', tag: 'Minutes' }, { len: '0:44', title: 'What to say to the sideline', credit: 'Rachel Moore', tag: 'Parents' }],
     why: 'Your last three reviews show the team fading late. These show how other coaches here spread the work.',
   },
+  goalkeeper: {
+    path: 'Coaching keepers of every age', done: 'three', next: 'coaching a turn in goal for under 9s, in two minutes', support: '55 seconds. Then try it at Tuesday’s keeper session.',
+    week: 'keepers starting too deep on through balls', tried: '“start four metres higher”',
+    weekLessons: [{ len: '0:50', title: 'Starting position, taught with two cones', credit: 'Rachel Moore', tag: 'Starting spots' }, { len: '1:02', title: 'Sweeping without rushing out', credit: 'Marko Petrovic with Men’s 1sts', tag: 'Through balls', watched: true }, { len: '0:44', title: 'A keeper session inside team training', credit: 'Josh Kerr with U14 Josh', tag: 'Planning' }],
+    dayLessons: [{ len: '0:38', title: 'A warm-up that is not just shots', credit: 'Meg Doyle with U13 Girls Meg', tag: 'Warm-up', watched: true }, { len: '0:47', title: 'What to say after a mistake', credit: 'Rachel Moore', tag: 'Talking' }, { len: '0:41', title: 'Restarts in under six seconds', credit: 'Ollie Grant with U16 Ollie', tag: 'Distribution' }],
+    why: 'Saturday’s film shows three keepers starting deep. These show how coaches at Wattle Creek coach it without a keeper coach on the day.',
+  },
   seniors: {
     path: 'Leading a senior squad', done: 'four', next: 'using opposition film in ten minutes', support: '70 seconds. Then try it before Saturday.',
     week: 'chances given up from our own corners', tried: '“two stay back on corners”',
@@ -153,33 +160,64 @@ export function LearnForCoaches({ team, switchEl }: { team: LearnTeam; switchEl:
   )
 }
 
-// ── For players, MiniRoos: lessons go to families, not to the children ──────
-const MR_LESSONS: (Lesson & { sent: string | null })[] = [
-  { len: '0:09', title: 'Eyes up while you dribble', credit: 'Ivy, your team · v Glenview Park', tag: 'Running with the ball', sent: '6 of 10 families watched' },
-  { len: '0:08', title: 'Stop it with the sole', credit: 'A U9 Mark player', tag: 'First touch', sent: null },
-  { len: '0:11', title: 'Turn away from a defender', credit: 'A U11 Luke player', tag: 'Running with the ball', sent: null },
-  { len: '0:07', title: 'Pass to a friend, then move', credit: 'Zara, your team', tag: 'Passing', sent: '4 of 10 families watched' },
-]
-const MR_SERIES = [{ title: 'Running with the ball', of: 4, done: 2, sub: 'This fortnight' }, { title: 'First touch', of: 3, done: 0, sub: 'Next fortnight' }, { title: 'Having a shot', of: 3, done: 0, sub: 'Later this term' }]
+// ── For players, where the full lesson library does not fit ─────────────────
+// MiniRoos (lessons go to families) and the goalkeeper coach (lessons go to keepers).
+type SimpleLesson = Lesson & { sent: string | null }
+type PlayersCfg = { heading: string; sentence: string; support: string; lead: string; others: number; group: string; of: number; lessons: SimpleLesson[]; series: { title: string; of: number; done: number; sub: string }[]; statA: [number, string]; statB: [number, string]; statNote: string; fromTeam: string; makeNote: string }
+const PLAYERS_SIMPLE: Record<'miniroos' | 'goalkeeper', PlayersCfg> = {
+  miniroos: {
+    heading: 'Learn · for your players · this fortnight: running with the ball',
+    sentence: 'Ivy keeps her eyes up while she dribbles. Nine seconds every child can copy.',
+    support: 'It goes to families with one game to play at home. Children under 12 have no account of their own.',
+    lead: 'Eyes up while you dribble', others: 4, group: 'families', of: 10,
+    lessons: [
+      { len: '0:09', title: 'Eyes up while you dribble', credit: 'Ivy, your team · v Glenview Park', tag: 'Running with the ball', sent: '6 of 10 families watched' },
+      { len: '0:08', title: 'Stop it with the sole', credit: 'A U9 Mark player', tag: 'First touch', sent: null },
+      { len: '0:11', title: 'Turn away from a defender', credit: 'A U11 Luke player', tag: 'Running with the ball', sent: null },
+      { len: '0:07', title: 'Pass to a friend, then move', credit: 'Zara, your team', tag: 'Passing', sent: '4 of 10 families watched' },
+    ],
+    series: [{ title: 'Running with the ball', of: 4, done: 2, sub: 'This fortnight' }, { title: 'First touch', of: 3, done: 0, sub: 'Next fortnight' }, { title: 'Having a shot', of: 3, done: 0, sub: 'Later this term' }],
+    statA: [6, 'watched “Eyes up”'], statB: [4, 'played the game at home'], statNote: 'Counts only. Nobody is ranked, and no family sees another’s.',
+    fromTeam: 'Ivy and Zara are club examples this term. Each family said yes. Leo and Arlo are never shown.',
+    makeNote: 'Only something done well. Rachel checks it before the club sees it.',
+  },
+  goalkeeper: {
+    heading: 'Learn · for your keepers · this week: starting higher',
+    sentence: 'Ava started four metres higher on Saturday and swept up two through balls. Twelve seconds every keeper can copy.',
+    support: 'It goes to your eight keepers with one thing to try at Tuesday’s session. Under 12s get it through their family.',
+    lead: 'Starting spot for a through ball', others: 3, group: 'keepers', of: 8,
+    lessons: [
+      { len: '0:12', title: 'Starting spot for a through ball', credit: 'Ava, U12 Sam · v Ironbark United', tag: 'Starting spots', sent: '5 of 8 keepers watched' },
+      { len: '0:09', title: 'Call early, then come and claim', credit: 'A U14 Josh keeper', tag: 'Crosses', sent: null },
+      { len: '0:10', title: 'Roll it out in under six seconds', credit: 'Tom, U12 Sam', tag: 'Distribution', sent: '4 of 8 keepers watched' },
+      { len: '0:08', title: 'Set your feet before the shot', credit: 'A Men’s 1sts keeper', tag: 'Shot stopping', sent: null },
+    ],
+    series: [{ title: 'Starting spots', of: 3, done: 1, sub: 'This month' }, { title: 'Dealing with crosses', of: 4, done: 0, sub: 'Next month' }, { title: 'Playing out with your feet', of: 4, done: 0, sub: 'Later this term' }],
+    statA: [5, 'watched “Starting spot”'], statB: [3, 'tried it at training'], statNote: 'Each keeper sees only their own clips. Nobody is ranked.',
+    fromTeam: 'Ava and Tom are club examples this term. Each said yes, and so did a parent.',
+    makeNote: 'Only something done well. Rachel checks it before the club sees it.',
+  },
+}
 
-export function LearnForPlayersMiniRoos({ switchEl }: { switchEl: ReactNode }) {
+export function LearnForPlayersSimple({ team, switchEl }: { team: 'miniroos' | 'goalkeeper'; switchEl: ReactNode }) {
   const { say, el } = useToast()
   const [sent, setSent] = useState<string[]>([])
   const [nudged, setNudged] = useState(false)
   const [skill, setSkill] = useState('All')
-  const skills = ['All', ...Array.from(new Set(MR_LESSONS.map(l => l.tag)))]
+  const c = PLAYERS_SIMPLE[team]
+  const skills = ['All', ...Array.from(new Set(c.lessons.map(l => l.tag)))]
   return (
     <div data-screen="EDU1-Learn" style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, minHeight: 0, overflowY: 'auto', background: '#f7f8f7', fontFamily: 'var(--font-sans)' }}>
       <OpeningPanel
-        heading="Learn · for your players · this fortnight: running with the ball"
-        sentence="Ivy keeps her eyes up while she dribbles. Nine seconds every child can copy."
-        support="It goes to families with one game to play at home. Children under 12 have no account of their own."
+        heading={c.heading}
+        sentence={c.sentence}
+        support={c.support}
         rightWidth={330}
         right={<>
           <span style={{ display: 'flex', justifyContent: 'flex-end' }}>{switchEl}</span>
           <span style={{ display: 'flex', gap: 8 }}>
-            <button onClick={() => say('“Eyes up while you dribble” plays: watch, notice, try.')} style={{ flex: 1, height: 46, borderRadius: 12, border: 0, background: AMBER, color: INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Watch it</button>
-            <button onClick={() => { setNudged(true); say('Sent to the 4 families who have not watched, with the game to play at home.') }} style={{ height: 46, padding: '0 16px', borderRadius: 12, border: '1px solid rgba(255,255,255,0.7)', background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>{nudged ? 'Sent to 4' : 'Send to the other 4'}</button>
+            <button onClick={() => say(`“${c.lead}” plays: watch, notice, try.`)} style={{ flex: 1, height: 46, borderRadius: 12, border: 0, background: AMBER, color: INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Watch it</button>
+            <button onClick={() => { setNudged(true); say(`Sent to the ${c.others} ${c.group} who have not watched, with the thing to try.`) }} style={{ height: 46, padding: '0 16px', borderRadius: 12, border: '1px solid rgba(255,255,255,0.7)', background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>{nudged ? `Sent to ${c.others}` : `Send to the other ${c.others}`}</button>
           </span>
         </>}
       />
@@ -189,14 +227,14 @@ export function LearnForPlayersMiniRoos({ switchEl }: { switchEl: ReactNode }) {
             {skills.map(s => <button key={s} aria-pressed={s === skill} onClick={() => setSkill(s)} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: `1px solid ${s === skill ? G : BORDER}`, background: s === skill ? G : '#fff', color: s === skill ? '#fff' : INK, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>{s}</button>)}
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(190px, 1fr))', gap: 12, marginBottom: 14 }}>
-            {MR_LESSONS.filter(l => skill === 'All' || l.tag === skill).map(l => {
-              const isSent = l.sent ?? (sent.includes(l.title) ? 'Sent to 10 families just now' : null)
-              return <LessonCard key={l.title} l={l} onPlay={() => { if (!isSent) setSent(s => [...s, l.title]); say(isSent ? `“${l.title}” plays: watch, notice, try.` : `“${l.title}” sent to all 10 families.`) }} footer={<span style={{ fontSize: 13, color: isSent ? G : MUT, fontWeight: isSent ? 700 : 400 }}>{isSent ?? 'Not sent to families yet · tap to send'}</span>} />
+            {c.lessons.filter(l => skill === 'All' || l.tag === skill).map(l => {
+              const isSent = l.sent ?? (sent.includes(l.title) ? `Sent to ${c.of} ${c.group} just now` : null)
+              return <LessonCard key={l.title} l={l} onPlay={() => { if (!isSent) setSent(s => [...s, l.title]); say(isSent ? `“${l.title}” plays: watch, notice, try.` : `“${l.title}” sent to all ${c.of} ${c.group}.`) }} footer={<span style={{ fontSize: 13, color: isSent ? G : MUT, fontWeight: isSent ? 700 : 400 }}>{isSent ?? `Not sent to ${c.group} yet · tap to send`}</span>} />
             })}
           </div>
           <div style={rowLabel}>A few lessons in order</div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0,1fr))', gap: 12 }}>
-            {MR_SERIES.map(s => (
+            {c.series.map(s => (
               <button key={s.title} onClick={() => say(`${s.title}: ${s.of} short lessons, one a week.`)} style={{ ...side, padding: '12px 14px', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
                 <span style={{ display: 'flex', justifyContent: 'space-between', gap: 8 }}><strong style={{ fontSize: 15, color: INK }}>{s.title}</strong><span style={{ fontSize: 13, color: MUT, flexShrink: 0 }}>{s.done} of {s.of}</span></span>
                 <span style={{ display: 'flex', gap: 4, margin: '8px 0 6px' }}>{Array.from({ length: s.of }).map((_, i) => <span key={i} style={{ flex: 1, height: 6, borderRadius: 3, background: i < s.done ? G : LN }} />)}</span>
@@ -207,20 +245,19 @@ export function LearnForPlayersMiniRoos({ switchEl }: { switchEl: ReactNode }) {
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           <div style={side}>
-            <div style={{ fontSize: 16, fontWeight: 700, color: INK, marginBottom: 8 }}>Your families this fortnight</div>
+            <div style={{ fontSize: 16, fontWeight: 700, color: INK, marginBottom: 8 }}>Your {c.group} this {team === 'miniroos' ? 'fortnight' : 'week'}</div>
             <div style={{ display: 'flex', gap: 16 }}>
-              <div><div style={{ fontSize: 26, fontWeight: 700, color: INK }}>6 <span style={{ fontSize: 14, fontWeight: 400, color: MUT }}>of 10</span></div><div style={{ fontSize: 13, color: MUT, lineHeight: 1.35 }}>watched “Eyes up”</div></div>
-              <div><div style={{ fontSize: 26, fontWeight: 700, color: INK }}>4 <span style={{ fontSize: 14, fontWeight: 400, color: MUT }}>of 10</span></div><div style={{ fontSize: 13, color: MUT, lineHeight: 1.35 }}>played the game at home</div></div>
+              {[c.statA, c.statB].map(([n, t]) => <div key={t}><div style={{ fontSize: 26, fontWeight: 700, color: INK }}>{n} <span style={{ fontSize: 14, fontWeight: 400, color: MUT }}>of {c.of}</span></div><div style={{ fontSize: 13, color: MUT, lineHeight: 1.35 }}>{t}</div></div>)}
             </div>
-            <div style={{ fontSize: 13, color: MUT, marginTop: 10, lineHeight: 1.45 }}>Counts only. Nobody is ranked, and no family sees another’s.</div>
+            <div style={{ fontSize: 13, color: MUT, marginTop: 10, lineHeight: 1.45 }}>{c.statNote}</div>
           </div>
           <div style={side}>
-            <div style={{ fontSize: 16, fontWeight: 700, color: INK, marginBottom: 6 }}>From your team</div>
-            <div style={{ fontSize: 14, color: MUT, lineHeight: 1.5 }}>Ivy and Zara are club examples this term. Each family said yes. Leo and Arlo are never shown.</div>
+            <div style={{ fontSize: 16, fontWeight: 700, color: INK, marginBottom: 6 }}>From your {team === 'miniroos' ? 'team' : 'keepers'}</div>
+            <div style={{ fontSize: 14, color: MUT, lineHeight: 1.5 }}>{c.fromTeam}</div>
           </div>
-          <button onClick={() => say('Pick a best moment. Clean Sheet writes the first two points and Rachel checks it.')} style={{ ...side, background: G, border: 0, textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
+          <button onClick={() => say('Pick a clip. Clean Sheet writes the first two points and Rachel checks it.')} style={{ ...side, background: G, border: 0, textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
             <span style={{ display: 'block', fontSize: 16, fontWeight: 700, color: '#fff' }}>Make one from a clip</span>
-            <span style={{ display: 'block', fontSize: 14, color: '#dcefe8', lineHeight: 1.45, marginTop: 4 }}>Only something done well. Rachel checks it before the club sees it.</span>
+            <span style={{ display: 'block', fontSize: 14, color: '#dcefe8', lineHeight: 1.45, marginTop: 4 }}>{c.makeNote}</span>
           </button>
         </div>
       </div>
@@ -233,6 +270,6 @@ export default function LearnTab({ team = 'juniors', onNav, initialMode = 'playe
   const [mode, setMode] = useState<Mode>(initialMode)
   const sw = <AudienceSwitch mode={mode} onMode={setMode} dark />
   if (mode === 'coaches') return <LearnForCoaches team={team} switchEl={sw} />
-  if (team === 'miniroos') return <LearnForPlayersMiniRoos switchEl={sw} />
-  return <EDU1Learn bare onNav={onNav} audience={<AudienceSwitch mode={mode} onMode={setMode} />} />
+  if (team === 'miniroos' || team === 'goalkeeper') return <LearnForPlayersSimple team={team} switchEl={sw} />
+  return <EDU1Learn bare onNav={onNav} audience={sw} />
 }
