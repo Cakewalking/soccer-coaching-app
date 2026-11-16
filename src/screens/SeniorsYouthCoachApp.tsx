@@ -15,6 +15,7 @@ import WellnessScreen       from './WellnessScreen'
 import AvailabilityScreen   from './AvailabilityScreen'
 import ConsentScreen        from './ConsentScreen'
 import FormationBuilder from './formation/FormationBuilder'
+import type { FormationPreset } from './formation/lineupInsights'
 import ThisWeekScreen       from './ThisWeekScreen'
 import SuggestionsScreen    from './SuggestionsScreen'
 import DrillLibraryScreen   from './DrillLibraryScreen'
@@ -395,6 +396,7 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
   const [sub, setSub]                 = useState<Sub>(null)
   const [homeTab, setHomeTab]         = useState(0)
   const [squadTab, setSquadTab]       = useState(0)
+  const [formationPreset, setFormationPreset] = useState<FormationPreset | null>(null)
   const [trainingTab, setTrainingTab] = useState(0)
   const [matchTab, setMatchTab]       = useState(0)
   const [clipsTab, setClipsTab]       = useState(0)
@@ -493,8 +495,8 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
   } else if (nav === 'squad') {
     switch (squadTab) {
       case 0: content = <SquadScreen role="head" onPlayerProfile={() => {}} empty={sbEmpty} players={teamType === 'seniors' ? SENIORS_SQUAD : YOUTH_SQUAD} />; break
-      case 1: content = <FormationBuilder team={teamType === 'seniors' ? 'seniors' : 'youth'} onNav={(s) => { if (s === 'T2-TabletMatch') { goNav('matchday'); setMatchTab(1) } else if (s === 'SQ1-BestLineups') { setSquadTab(2) } else { handleNav(s) } }} />; break
-      case 2: content = <SquadLineups noFrame teamType={teamType === 'seniors' ? 'seniors' : 'youth'} />; break
+      case 1: content = <FormationBuilder key={formationPreset?.note ?? 'plain'} preset={formationPreset} team={teamType === 'seniors' ? 'seniors' : 'youth'} onNav={(s) => { if (s === 'T2-TabletMatch') { goNav('matchday'); setMatchTab(1) } else if (s === 'SQ1-BestLineups') { setSquadTab(2) } else { handleNav(s) } }} />; break
+      case 2: content = <SquadLineups noFrame teamType={teamType === 'seniors' ? 'seniors' : 'youth'} onNav={(s, preset) => { if (s === 'formation') { setFormationPreset(preset ?? null); setSquadTab(1) } }} />; break
       case 3: content = <DevGoalsScreen empty={sbEmpty} teamType={teamType === 'seniors' ? 'seniors' : 'youth'} />; break
       case 4: content = <WellnessScreen empty={sbEmpty} />; break
       case 5: content = <AvailabilityScreen empty={sbEmpty} />; break

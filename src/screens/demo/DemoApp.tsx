@@ -48,6 +48,7 @@ import CoachFitnessScreen    from '../CoachFitnessScreen'
 import SettingsScreen        from '../SettingsScreen'
 import LiveGameScreen        from '../LiveGameScreen'
 import FormationBuilder      from '../formation/FormationBuilder'
+import type { FormationPreset } from '../formation/lineupInsights'
 import LineupParent          from '../formation/LineupParent'
 import LiveGame11Screen      from '../LiveGame11Screen'
 // Step 4 screens — New (DSet1, DSet4, ACC1)
@@ -643,8 +644,10 @@ function AcademyTrainingWeekNav() {
 }
 function SquadLineupsNav() {
   const [inner, setInner] = useState<string | null>(null)
+  const [preset, setPreset] = useState<FormationPreset | null>(null)
+  if (preset) return <FormationBuilder team="juniors" preset={preset} onNav={(s) => { setPreset(null); setInner(s === 'SQ1-BestLineups' ? null : s) }} />
   if (inner) return <>{renderScreen(inner)}</>
-  return <SquadLineups onNav={(s) => setInner(s)} />
+  return <SquadLineups onNav={(s, p) => { if (s === 'formation' && p) setPreset(p); else setInner(s) }} />
 }
 function RecordSavedNav() {
   const [inner, setInner] = useState<string | null>(null)

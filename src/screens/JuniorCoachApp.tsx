@@ -23,6 +23,7 @@ import WellnessScreen        from './WellnessScreen'
 import AvailabilityScreen    from './AvailabilityScreen'
 import ConsentScreen         from './ConsentScreen'
 import FormationBuilder from './formation/FormationBuilder'
+import type { FormationPreset } from './formation/lineupInsights'
 import ThisWeekScreen        from './ThisWeekScreen'
 import SuggestionsScreen     from './SuggestionsScreen'
 import DrillLibraryScreen    from './DrillLibraryScreen'
@@ -82,6 +83,7 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
   const [sub, setSub]                 = useState<Sub>(null)
   const [homeTab, setHomeTab]         = useState(initHomeTab)
   const [squadTab, setSquadTab]       = useState(0)
+  const [formationPreset, setFormationPreset] = useState<FormationPreset | null>(null)
   const [trainingTab, setTrainingTab] = useState(0)
   const [matchTab, setMatchTab]       = useState(0)
   const [clipsTab, setClipsTab]       = useState(0)
@@ -188,8 +190,8 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
     else if (homeTab === 7) content = renderFiles()
   } else if (nav === 'squad') {
     if (squadTab === 0) content = <SquadScreen role="head" onPlayerProfile={() => {}} empty={sbEmpty} />
-    else if (squadTab === 1) content = <FormationBuilder team="juniors" onNav={(s) => { if (s === 'T2-TabletMatch') { goNav('matchday'); setMatchTab(1) } else if (s === 'SQ1-BestLineups') { setSquadTab(2) } else { handleNav(s) } }} />
-    else if (squadTab === 2) content = <SquadLineups noFrame onNav={(s) => { if (s === 'record') { goNav('record') } else if (s === 'teamsheet') { goNav('matchday'); setMatchTab(1) } }} />
+    else if (squadTab === 1) content = <FormationBuilder key={formationPreset?.note ?? 'plain'} preset={formationPreset} team="juniors" onNav={(s) => { if (s === 'T2-TabletMatch') { goNav('matchday'); setMatchTab(1) } else if (s === 'SQ1-BestLineups') { setSquadTab(2) } else { handleNav(s) } }} />
+    else if (squadTab === 2) content = <SquadLineups noFrame onNav={(s, preset) => { if (s === 'formation') { setFormationPreset(preset ?? null); setSquadTab(1) } else if (s === 'record') { goNav('record') } else if (s === 'teamsheet') { goNav('matchday'); setMatchTab(1) } }} />
     else if (squadTab === 3) content = <DevGoalsScreen empty={sbEmpty} />
     else if (squadTab === 4) content = <WellnessScreen empty={sbEmpty} />
     else if (squadTab === 5) content = <AvailabilityScreen empty={sbEmpty} />

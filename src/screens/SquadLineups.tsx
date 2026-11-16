@@ -1,5 +1,7 @@
-import { useState } from 'react'
-import { YOUTH_SQUAD_PLAYERS, SENIORS_SQUAD_PLAYERS, type SquadPlayer } from '../data'
+import { useMemo, useState } from 'react'
+import { PitchSvg } from './formation/Pitch'
+import { shapeByName } from './formation/formationData'
+import { getInsights, METRICS, metricOf, value, fmt, thin, pairsFor, bestLineup, forThisWeek, lineWord, type MetricKey, type FormationPreset, type PairStat } from './formation/lineupInsights'
 
 export type LineupTeam = 'juniors' | 'youth' | 'seniors'
 
@@ -10,6 +12,8 @@ const INK  = '#10211f'
 const MUT  = '#4a5a57'
 const LN   = '#e8edeb'
 const PALE = '#eef5f2'
+const SAND = '#cbbeb5'
+const SANDBG = '#f6f1e9'
 
 function Icon({ d, size = 20, stroke = 'currentColor', sw = 2 }: { d: string; size?: number; stroke?: string; sw?: number }) {
   return (
@@ -42,7 +46,7 @@ const NAV6 = [
   { id: 'record',   label: 'Record',    icon: ICONS.record },
 ]
 
-const SQUAD_SUBS = ['Players', 'Line-ups', 'Development goals', 'Wellness', 'Availability', 'Consent and privacy']
+const SQUAD_SUBS = ['Players', 'Formation', 'Line-ups that worked', 'Development goals', 'Wellness', 'Availability', 'Consent and privacy']
 
 function CoachFrame({ activeNav, activeSub, subTabs, pageTitle, pageSub, pageRight, children, toast, onNavTab, noFrame }: {
   activeNav: string; activeSub: string; subTabs: string[]; pageTitle: string; pageSub: string;
@@ -116,155 +120,247 @@ function BtnPrimary({ label, onClick }: { label: string; onClick?: () => void })
   return <button onClick={onClick} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: `1px solid ${G}`, background: G, color: '#fff', fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', display: 'inline-flex', alignItems: 'center', gap: 8, whiteSpace: 'nowrap' }}>{label}</button>
 }
 
-// Pitch coordinate slots (3-2-3-ish), shared across teams
-const PITCH_SLOTS = [
-  { top: '72%', left: '15%' }, { top: '72%', left: '50%' }, { top: '72%', left: '85%' },
-  { top: '48%', left: '20%' }, { top: '48%', left: '50%' }, { top: '48%', left: '80%' },
-  { top: '24%', left: '20%' }, { top: '24%', left: '50%' }, { top: '24%', left: '80%' },
-]
-const firstNm = (p: SquadPlayer) => p.fullName.split(' ')[0]
+// Team-specific insights come from the formation rosters, so every name on this
+// page is one the coach can place in the Formation builder.
+const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1)
+const LINE_NAME: Record<string, string> = { goal: 'In goal', back: 'Back line', midfield: 'Midfield', front: 'Up front' }
 
-// Team-specific line-ups, built from the squad so the youth and senior coaches
-// never see the U12 Sam children's names (FIX-LIST item 2).
-function lineupData(team: LineupTeam) {
-  if (team === 'juniors') {
-    return {
-      methods: [
-        { label: 'Most goals scored',      stat: '7 goals',      note: 'in 142 minutes together',  players: 'Ruby, Grace, Ava, Leo, Noah, Mia, Zoe, Jai, Ella' },
-        { label: 'Fewest goals against',   stat: '1 against',    note: 'in 118 minutes together',  players: 'Ruby, Grace, Ava, Isla, Noah, Mia, Zoe, Finn, Ella' },
-        { label: 'Longest time winning',   stat: '96 minutes',   note: 'ahead, of 142 together',   players: 'Ruby, Grace, Ava, Leo, Noah, Mia, Zoe, Jai, Ella' },
-        { label: 'Won the ball back fastest', stat: '4.6 seconds', note: 'team average is 7',       players: 'Ruby, Grace, Ava, Leo, Noah, Mia, Harper, Jai, Ella' },
-      ],
-      pitch: ['RW', 'GK', 'AW', 'LM', 'NS', 'MT', 'ZH', 'JP', 'EB'],
-      pairs: [
-        { ini: 'NM', names: 'Noah and Mia', note: 'In 8 of the 9 games recorded. Central midfield.' },
-        { ini: 'RE', names: 'Ruby and Ella', note: 'Right side · most goals scored and longest winning' },
-        { ini: 'AI', names: 'Ava and Isla', note: 'Centre back · fewest goals against' },
-      ],
-      thread: 'Noah and Mia in midfield together are the common thread in three of the four.',
-    }
-  }
-  const squad = team === 'youth' ? YOUTH_SQUAD_PLAYERS : SENIORS_SQUAD_PLAYERS
-  const nine = squad.slice(0, 9)
-  const names9 = nine.map(firstNm).join(', ')
-  const mids = squad.filter(p => p.pos.includes('Central'))
-  const defs = squad.filter(p => p.posGroup === 'defenders')
-  const fwds = squad.filter(p => p.posGroup === 'forwards')
-  const twoNames = (a?: SquadPlayer, b?: SquadPlayer) => a && b ? `${firstNm(a)} and ${firstNm(b)}` : (a ? firstNm(a) : '')
-  const inis = (a?: SquadPlayer, b?: SquadPlayer) => `${a?.ini[0] ?? ''}${b?.ini[0] ?? ''}`
-  return {
-    methods: [
-      { label: 'Most goals scored',         stat: team === 'youth' ? '6 goals' : '9 goals',       note: team === 'youth' ? 'in 118 minutes together' : 'in 140 minutes together', players: names9 },
-      { label: 'Fewest goals against',      stat: '1 against',                                    note: team === 'youth' ? 'in 96 minutes together'  : 'in 126 minutes together', players: names9 },
-      { label: 'Longest time winning',      stat: team === 'youth' ? '84 minutes' : '112 minutes', note: team === 'youth' ? 'ahead, of 118 together'  : 'ahead, of 140 together',  players: names9 },
-      { label: 'Won the ball back fastest', stat: team === 'youth' ? '5.1 seconds' : '4.9 seconds', note: 'team average is 7',                                                   players: names9 },
-    ],
-    pitch: nine.map(p => p.ini),
-    pairs: [
-      { ini: inis(mids[0], mids[1]), names: twoNames(mids[0], mids[1]), note: 'In most games recorded. Central midfield.' },
-      { ini: inis(fwds[0], defs[0]), names: twoNames(fwds[0], defs[0]), note: 'Right side · most goals scored and longest winning' },
-      { ini: inis(defs[0], defs[1]), names: twoNames(defs[0], defs[1]), note: 'Centre back · fewest goals against' },
-    ],
-    thread: mids[0] && mids[1] ? `${firstNm(mids[0])} and ${firstNm(mids[1])} in midfield together are the common thread in three of the four.` : '',
-  }
+function gainText(k: MetricKey, gain: number) {
+  if (k === 'scored') return `+${gain.toFixed(1)} goals a game`
+  if (k === 'against') return `${gain.toFixed(1)} fewer let in a game`
+  if (k === 'ahead') return `Ahead ${Math.round(gain)}% more of the time`
+  return `${gain.toFixed(1)} s quicker to win it back`
 }
 
-// SQ1 — Best lineups screen
-export function SquadLineups({ onBack: _onBack, noFrame, onNav, teamType = 'juniors' }: { onBack?: () => void; noFrame?: boolean; onNav?: (s: string) => void; teamType?: LineupTeam }) {
+function Card({ title, sub, right, children, style }: { title: string; sub?: string; right?: React.ReactNode; children: React.ReactNode; style?: React.CSSProperties }) {
+  return (
+    <section style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: 16, ...style }}>
+      <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 12 }}>
+        <h2 style={{ margin: 0, fontSize: 15, fontWeight: 700, color: INK }}>{title}</h2>
+        {right && <div style={{ fontSize: 12, color: MUT, textAlign: 'right' }}>{right}</div>}
+      </div>
+      {sub && <div style={{ fontSize: 12, color: MUT, lineHeight: 1.45, marginTop: 2 }}>{sub}</div>}
+      <div style={{ marginTop: 12 }}>{children}</div>
+    </section>
+  )
+}
+
+// SQ1 — Line-ups that worked
+export function SquadLineups({ onBack: _onBack, noFrame, onNav, teamType = 'juniors' }: { onBack?: () => void; noFrame?: boolean; onNav?: (s: string, preset?: FormationPreset) => void; teamType?: LineupTeam }) {
   const [toast, setToast] = useState<string | null>(null)
-  const [active, setActive] = useState(0)
+  const [metric, setMetric] = useState<MetricKey>('scored')
+  const [shapeSel, setShapeSel] = useState<string | null>(null)
+  const [hot, setHot] = useState<string | null>(null)
+  const [showAll, setShowAll] = useState(false)
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
-  const data = lineupData(teamType)
-  const methods = data.methods
-  const pitchPlayers = data.pitch.map((ini, i) => ({ ini, ...PITCH_SLOTS[i] }))
-  const pairs = data.pairs
-  const teamLabel = teamType === 'youth' ? 'U16 Ollie' : teamType === 'seniors' ? "Men's 1sts" : 'U12 Sam'
+  const ins = getInsights(teamType)!
+  const g = ins.gameLen
+  const m = metricOf(metric)
+  const byId = useMemo(() => Object.fromEntries(ins.cfg.roster.map(p => [p.id, p])), [ins])
+  const teamLabel = ins.cfg.teamLabel.split(' · ')[0]
+  const shapeName = shapeSel ?? ins.bestShape[metric]
+  const shape = shapeByName(ins.cfg.side, shapeName)!
+  const lineup = bestLineup(ins, metric, shapeName)!
+  const pairs = pairsFor(ins, metric)
+  const week = forThisWeek(ins, lineup, m.label)
+  const pairKey = (p: PairStat) => `${p.a}-${p.b}`
+  const stat = (name: string) => ins.shapes.find(s => s.shape === name)!
+  const day = ins.cfg.game.split(' ')[0] === 'Sat' ? 'Saturday' : 'this week'
+
+  const tokens = lineup.lineup.map((id, i) => ({
+    id, num: byId[id].num, name: byId[id].first, pos: shape.slots[i].pos, x: shape.slots[i].x, y: shape.slots[i].y,
+    out: !byId[id].available, ring: !!hot && hot.split('-').includes(id),
+  }))
+  const links = pairs.filter(p => lineup.lineup.includes(p.a) && lineup.lineup.includes(p.b)).map(p => ({ a: p.a, b: p.b, strong: hot === pairKey(p) }))
+
+  const sc = ins.bestShape.scored, ag = ins.bestShape.against
+  const story = sc === ag
+    ? `${sc} scores most (${fmt('scored', value(stat(sc).agg, 'scored', g))} a game) and lets in least (${fmt('against', value(stat(ag).agg, 'against', g))}).`
+    : `${sc} scores most (${fmt('scored', value(stat(sc).agg, 'scored', g))} a game) but lets in ${fmt('against', value(stat(sc).agg, 'against', g))}. ${ag} lets in least (${fmt('against', value(stat(ag).agg, 'against', g))}) and scores ${fmt('scored', value(stat(ag).agg, 'scored', g))}.`
+
+  const players = ins.cfg.roster
+    .map(p => ({ p, cells: ins.byPlayer[p.id] ?? [], mins: (ins.byPlayer[p.id] ?? []).reduce((n, c) => n + c.agg.mins, 0) }))
+    .filter(r => r.mins > 0).sort((x, y) => y.mins - x.mins)
+  const shownPlayers = showAll ? players : players.slice(0, 8)
+  const tryIt = () => onNav ? onNav('formation', week) : t(`Opening Formation with this line-up for ${day}.`)
 
   return (
     <CoachFrame
-      activeNav="squad" activeSub="Line-ups" subTabs={SQUAD_SUBS}
+      activeNav="squad" activeSub="Line-ups that worked" subTabs={SQUAD_SUBS}
       pageTitle="Line-ups that worked"
-      pageSub={`${teamLabel} · from 9 recorded games this season`}
-      pageRight={<><BtnMore label="This season" onClick={() => t('Season selector opens.')}/><BtnPrimary label="Try it on Saturday" onClick={() => onNav ? onNav('teamsheet') : t('Opening Saturday\'s team sheet.')}/></>}
+      pageSub={`${teamLabel} · from ${ins.games} recorded games this season`}
+      pageRight={<><BtnMore label="This season" onClick={() => t('Season selector opens.')}/><BtnPrimary label={`Try it on ${day}`} onClick={tryIt}/></>}
       toast={toast}
       onNavTab={(id) => t(id.startsWith('sub:') ? `${id.slice(4)} opens.` : `${id.charAt(0).toUpperCase() + id.slice(1)} tab opens.`)}
       noFrame={noFrame}
     >
-      <div style={{ display: 'flex', gap: 16 }}>
-        {/* Left: method cards + pitch */}
-        <div style={{ flex: 2, display: 'flex', flexDirection: 'column', gap: 16 }}>
-          {/* 4 method cards */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-            {methods.map((m, i) => (
-              <button key={m.label} onClick={() => setActive(i)}
-                style={{ background: '#fff', border: `1.5px solid ${i === active ? G : LN}`, borderRadius: 16, padding: '14px 16px', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit', boxSizing: 'border-box' }}>
-                <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase', color: MUT, marginBottom: 4 }}>{m.label}</div>
-                <div style={{ fontSize: 20, fontWeight: 800, color: INK }}>{m.stat}</div>
-                <div style={{ fontSize: 12, color: MUT }}>{m.note}</div>
-                <div style={{ fontSize: 12, color: G, marginTop: 6, lineHeight: 1.4 }}>{m.players}</div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }} data-screen="SQ1-BestLineups">
+        {/* What are you after? Each card names the shape that leads on it. */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, minmax(0, 1fr))', gap: 12 }}>
+          {METRICS.map(mm => {
+            const best = stat(ins.bestShape[mm.key]); const on = mm.key === metric
+            return (
+              <button key={mm.key} aria-pressed={on} onClick={() => { setMetric(mm.key); setShapeSel(null); setHot(null) }}
+                style={{ background: on ? PALE : '#fff', border: `1.5px solid ${on ? G : LN}`, borderRadius: 16, padding: '12px 14px', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit', boxSizing: 'border-box', minHeight: 44 }}>
+                <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: on ? G : MUT }}>{mm.label}</div>
+                <div style={{ fontSize: 22, fontWeight: 800, color: INK, marginTop: 4, letterSpacing: '-0.01em' }}>{best.shape}</div>
+                <div style={{ fontSize: 13, fontWeight: 600, color: INK }}>{fmt(mm.key, value(best.agg, mm.key, g))} {mm.unit}</div>
+                <div style={{ fontSize: 12, color: MUT, marginTop: 2 }}>{best.agg.mins} minutes · {best.agg.games.length} games</div>
               </button>
-            ))}
-          </div>
-          {/* Pitch diagram */}
-          <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '16px' }}>
-            <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 8 }}>
-              <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>{methods[active].label} · 3-2-3</div>
-              <div style={{ fontSize: 12, color: MUT }}>Played together in 6 of 9 games</div>
+            )
+          })}
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'minmax(300px, 380px) minmax(0, 1fr)', gap: 16, alignItems: 'start' }}>
+          {/* The line-up, on a pitch */}
+          <Card title={`${m.label} · ${shapeName}`} sub={`The ${shapeName} line-up that did best. Together for ${lineup.agg.mins} minutes over ${lineup.agg.games.length} ${lineup.agg.games.length === 1 ? 'game' : 'games'}.`}>
+            <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 10 }}>
+              {ins.usedShapes.map(name => {
+                const on = name === shapeName
+                return <button key={name} aria-pressed={on} onClick={() => setShapeSel(name)} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1.5px solid ${on ? G : LN}`, background: on ? G : '#fff', color: on ? '#fff' : INK, fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>{name}</button>
+              })}
             </div>
-            {/* Pitch */}
-            <div style={{ position: 'relative', background: '#1f6b3a', borderRadius: 12, height: 240, overflow: 'hidden', marginBottom: 10 }}>
-              {/* Pitch markings */}
-              <div style={{ position: 'absolute', top: '50%', left: '5%', right: '5%', height: 1, background: 'rgba(255,255,255,0.3)' }}/>
-              <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 60, height: 60, borderRadius: '50%', border: '1px solid rgba(255,255,255,0.3)' }}/>
-              <div style={{ position: 'absolute', top: '75%', left: '25%', right: '25%', height: '20%', border: '1px solid rgba(255,255,255,0.3)', background: 'transparent' }}/>
-              <div style={{ position: 'absolute', top: '5%', left: '25%', right: '25%', height: '20%', border: '1px solid rgba(255,255,255,0.3)', background: 'transparent' }}/>
-              {pitchPlayers.map(p => (
-                <div key={p.ini} style={{ position: 'absolute', top: p.top, left: p.left, transform: 'translate(-50%,-50%)', width: 32, height: 32, borderRadius: '50%', background: '#2f6252', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 10, fontWeight: 800, border: '2px solid #fff' }}>{p.ini}</div>
+            <PitchSvg tokens={tokens} links={links} label={`${shapeName}: ${tokens.map(k => `${k.name} ${k.pos}`).join(', ')}`} />
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 11, color: MUT, marginTop: 6 }}>
+              <span>Attacking up the page</span>
+              {links.length > 0 && <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><span style={{ width: 18, height: 5, borderRadius: 3, background: '#e2c77c' }}/>A pair that works</span>}
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 6, marginTop: 12 }}>
+              {METRICS.map(mm => (
+                <div key={mm.key} style={{ background: mm.key === metric ? PALE : '#f7f8f7', borderRadius: 10, padding: '8px 8px' }}>
+                  <div style={{ fontSize: 15, fontWeight: 800, color: mm.key === metric ? G : INK }}>{fmt(mm.key, value(lineup.agg, mm.key, g))}</div>
+                  <div style={{ fontSize: 11, color: MUT, lineHeight: 1.3 }}>{mm.short}</div>
+                </div>
               ))}
             </div>
-            <div style={{ fontSize: 13, color: MUT, lineHeight: 1.5 }}>{data.thread}</div>
+            {thin(lineup.agg, g) && <div style={{ fontSize: 12, color: MUT, marginTop: 8, lineHeight: 1.45 }}>Only {lineup.agg.mins} minutes together, so treat these numbers lightly.</div>}
+            {week.swaps.map(s => (
+              <div key={s.out.id} style={{ background: SANDBG, border: `1px solid ${SAND}`, borderRadius: 10, padding: '8px 10px', fontSize: 12.5, color: INK, lineHeight: 1.45, marginTop: 10 }}>
+                <strong>{s.out.first} cannot play {day}</strong> ({(s.out.reason ?? 'not available').toLowerCase()}). {s.in.first} is the closest fit who can play, and steps in.
+              </div>
+            ))}
+            <button onClick={tryIt} style={{ width: '100%', height: 44, marginTop: 12, borderRadius: 10, border: `1px solid ${G}`, background: '#fff', color: G, fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Open this line-up in Formation</button>
+          </Card>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 16, minWidth: 0 }}>
+            {/* Shapes compared */}
+            <Card title="Shapes compared" sub="For a full game in each shape. Tap a shape to see its best line-up.">
+              <div role="table" style={{ display: 'grid', gridTemplateColumns: 'minmax(96px, 1.25fr) repeat(4, minmax(0, 1fr))', rowGap: 4 }}>
+                <div style={{ display: 'contents' }} role="row">
+                  <div role="columnheader" style={th}>Shape</div>
+                  {METRICS.map(mm => <div key={mm.key} role="columnheader" style={{ ...th, textAlign: 'right', color: mm.key === metric ? G : MUT }}>{mm.short}</div>)}
+                </div>
+                {ins.shapes.map(s => {
+                  const on = s.shape === shapeName
+                  if (!s.agg.mins) return (
+                    <div key={s.shape} role="row" style={{ gridColumn: '1 / -1', display: 'flex', alignItems: 'center', gap: 10, minHeight: 44, padding: '0 10px', borderRadius: 10, border: `1px dashed ${LN}` }}>
+                      <span style={{ fontSize: 14, fontWeight: 700, color: MUT }}>{s.shape}</span>
+                      <span style={{ fontSize: 12, color: MUT }}>Not used in a recorded game yet</span>
+                    </div>
+                  )
+                  return (
+                    <button key={s.shape} role="row" aria-pressed={on} onClick={() => setShapeSel(s.shape)}
+                      style={{ gridColumn: '1 / -1', display: 'grid', gridTemplateColumns: 'subgrid', alignItems: 'center', minHeight: 52, padding: '4px 0', borderRadius: 10, border: `1.5px solid ${on ? G : 'transparent'}`, background: on ? '#fafcfb' : 'transparent', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
+                      <span role="cell" style={{ paddingLeft: 10 }}>
+                        <span style={{ display: 'block', fontSize: 15, fontWeight: 800, color: INK }}>{s.shape}</span>
+                        <span style={{ display: 'block', fontSize: 11, color: MUT }}>{s.agg.mins} min · {s.agg.games.length} games</span>
+                      </span>
+                      {METRICS.map(mm => {
+                        const best = ins.bestShape[mm.key] === s.shape
+                        return (
+                          <span key={mm.key} role="cell" style={{ textAlign: 'right', paddingRight: 8 }}>
+                            <span style={{ display: 'inline-block', padding: '3px 8px', borderRadius: 8, background: best ? PALE : 'transparent', color: best ? G : INK, fontSize: 14, fontWeight: best ? 800 : 500, fontVariantNumeric: 'tabular-nums' }}>{fmt(mm.key, value(s.agg, mm.key, g))}</span>
+                          </span>
+                        )
+                      })}
+                    </button>
+                  )
+                })}
+              </div>
+              <div style={{ fontSize: 13, color: INK, lineHeight: 1.5, marginTop: 12, paddingTop: 12, borderTop: `1px solid ${LN}` }}>{story}</div>
+              <div style={{ fontSize: 12, color: MUT, marginTop: 4 }}><span style={{ display: 'inline-block', width: 22, height: 12, borderRadius: 4, background: '#d3e6dd', marginRight: 6, verticalAlign: -2 }}/>Best of the shapes you have used.</div>
+            </Card>
+
+            {/* Pairs */}
+            <Card title="Pairs that work" sub={`For ${m.label.toLowerCase()}: the minutes two neighbours were on together, against the minutes they were not.`}>
+              {pairs.length === 0 && <div style={{ fontSize: 13, color: MUT, lineHeight: 1.5 }}>No pair stands out on this one yet. It needs a couple of games together and one apart.</div>}
+              {pairs.map((p, i) => {
+                const a = byId[p.a], b = byId[p.b], la = lineWord(p.posA), lb = lineWord(p.posB)
+                const where = la === lb ? LINE_NAME[la] : `${cap(la)} and ${lb}`
+                const out = [a, b].filter(x => !x.available)
+                const inShown = lineup.lineup.includes(p.a) && lineup.lineup.includes(p.b)
+                return (
+                  <div key={pairKey(p)} tabIndex={0} onMouseEnter={() => setHot(pairKey(p))} onMouseLeave={() => setHot(null)} onFocus={() => setHot(pairKey(p))} onBlur={() => setHot(null)}
+                    style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 8px', margin: '0 -8px', borderTop: i > 0 ? `1px solid ${LN}` : 'none', borderRadius: hot === pairKey(p) ? 10 : 0, background: hot === pairKey(p) ? '#fbf6e8' : 'transparent', outline: 'none' }}>
+                    <div style={{ display: 'flex', flexShrink: 0 }}>
+                      {[a, b].map((x, k) => <span key={x.id} style={{ width: 34, height: 34, borderRadius: '50%', background: PALE, color: G, border: '2px solid #fff', marginLeft: k ? -10 : 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 800 }}>{x.num}</span>)}
+                    </div>
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{ fontSize: 14, fontWeight: 700, color: INK }}>{a.first} and {b.first}</div>
+                      <div style={{ fontSize: 12, color: MUT, lineHeight: 1.4 }}>{where} · {p.together.mins} minutes together{!inShown ? ' · not both in this line-up' : ''}</div>
+                      {out.map(x => <div key={x.id} style={{ fontSize: 12, color: '#7a5f24', marginTop: 2 }}>{x.first} cannot play {day}.</div>)}
+                    </div>
+                    <div style={{ textAlign: 'right', flexShrink: 0 }}>
+                      <div style={{ fontSize: 13, fontWeight: 700, color: G }}>{gainText(metric, p.gain[metric])}</div>
+                      <div style={{ fontSize: 12, color: MUT, fontVariantNumeric: 'tabular-nums' }}>{fmt(metric, value(p.together, metric, g))} together · {fmt(metric, value(p.apart, metric, g))} apart</div>
+                    </div>
+                  </div>
+                )
+              })}
+            </Card>
           </div>
-          <div style={{ fontSize: 12, color: MUT, lineHeight: 1.5 }}>Built from recorded games only. Never shown to players, parents or the team manager. Not available for MiniRoos or any team younger than U12.</div>
         </div>
-        {/* Right: pairs aside */}
-        <div style={{ width: 280, flexShrink: 0, display: 'flex', flexDirection: 'column', gap: 12 }}>
-          <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '14px 16px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
-              <span style={{ fontSize: 15, fontWeight: 700, color: INK }}>Pairs that work</span>
+
+        {/* Players by shape */}
+        <Card title="Players and shapes" sub={`${m.noun} while each player was on the pitch in that shape, and where they played.`} right={`${players.length} players with recorded minutes`}>
+          <div role="table" style={{ display: 'grid', gridTemplateColumns: `minmax(120px, 1.2fr) repeat(${ins.usedShapes.length}, minmax(0, 1fr)) minmax(120px, 1.2fr)`, rowGap: 2 }}>
+            <div role="row" style={{ display: 'contents' }}>
+              <div role="columnheader" style={th}>Player</div>
+              {ins.usedShapes.map(name => <div key={name} role="columnheader" style={th}>{name}</div>)}
+              <div role="columnheader" style={th}>Best in</div>
             </div>
-            {pairs.map((p, i) => (
-              <div key={p.ini} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, paddingTop: i > 0 ? 12 : 0, borderTop: i > 0 ? `1px solid ${LN}` : 'none', paddingBottom: 12 }}>
-                <div style={{ width: 36, height: 36, borderRadius: '50%', background: PALE, color: G, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, flexShrink: 0 }}>{p.ini}</div>
-                <div>
-                  <div style={{ fontSize: 14, fontWeight: 700, color: INK }}>{p.names}</div>
-                  <div style={{ fontSize: 12, color: MUT, lineHeight: 1.4 }}>{p.note}</div>
+            {shownPlayers.map(({ p, cells }) => {
+              const ok = cells.filter(c => c.agg.mins >= g)
+              const best = ok.length > 1 ? ok.reduce((x, c) => (m.lowerIsBetter ? value(c.agg, metric, g) < value(x.agg, metric, g) : value(c.agg, metric, g) > value(x.agg, metric, g)) ? c : x, ok[0]) : undefined
+              return (
+                <div key={p.id} role="row" style={{ display: 'contents' }}>
+                  <div role="cell" style={td}>
+                    <span style={{ fontSize: 14, fontWeight: 700, color: INK }}>{p.first}</span>
+                    {!p.available && <span style={{ fontSize: 11, color: '#7a5f24', marginLeft: 6 }}>out {day}</span>}
+                  </div>
+                  {ins.usedShapes.map(name => {
+                    const c = cells.find(x => x.shape === name)
+                    if (!c) return <div key={name} role="cell" style={{ ...td, color: '#a9b3b0', fontSize: 13 }}>Not played</div>
+                    const few = c.agg.mins < g
+                    return (
+                      <div key={name} role="cell" style={td}>
+                        <span style={{ display: 'inline-block', minWidth: 44, padding: '2px 8px', borderRadius: 8, background: best === c ? PALE : 'transparent', color: few ? MUT : best === c ? G : INK, fontSize: 14, fontWeight: best === c ? 800 : 500, fontVariantNumeric: 'tabular-nums' }}>{few ? '–' : fmt(metric, value(c.agg, metric, g))}</span>
+                        <span style={{ fontSize: 11, color: MUT, marginLeft: 6 }}>{cap(lineWord(c.pos))} · {c.agg.mins} min</span>
+                      </div>
+                    )
+                  })}
+                  <div role="cell" style={{ ...td, fontSize: 13, color: best ? INK : MUT, fontWeight: best ? 600 : 400 }}>
+                    {best ? `${cap(lineWord(best.pos))}, ${best.shape}` : ok.length === 1 ? `Only ${ok[0].shape} so far` : 'Too few minutes yet'}
+                  </div>
                 </div>
-              </div>
-            ))}
-            <div style={{ fontSize: 12, color: MUT, borderTop: `1px solid ${LN}`, paddingTop: 10 }}>From the same method cards above. Tap a card to see who's in each.</div>
+              )
+            })}
           </div>
-          <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '14px 16px' }}>
-            <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 8 }}>How it works</div>
-            {[
-              { n: '1', t: 'From recorded games', n2: 'Each player who was on the pitch, and when' },
-              { n: '2', t: 'Four ways to look', n2: 'Attack, defence, control, and pressure' },
-              { n: '3', t: 'You make the call', n2: 'Availability, positions and fair minutes still come first' },
-            ].map(s => (
-              <div key={s.n} style={{ display: 'flex', gap: 10, marginBottom: 10 }}>
-                <div style={{ width: 24, height: 24, borderRadius: '50%', background: PALE, color: G, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, flexShrink: 0 }}>{s.n}</div>
-                <div>
-                  <div style={{ fontSize: 13, fontWeight: 600, color: INK }}>{s.t}</div>
-                  <div style={{ fontSize: 12, color: MUT }}>{s.n2}</div>
-                </div>
-              </div>
-            ))}
-          </div>
+          {players.length > 8 && <button onClick={() => setShowAll(v => !v)} style={{ height: 44, marginTop: 8, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{showAll ? 'Show fewer' : `Show all ${players.length}`}</button>}
+          <div style={{ fontSize: 12, color: MUT, marginTop: 8, lineHeight: 1.45 }}>A dash means under a game's worth of minutes in that shape. These are team numbers, not a mark for the player.</div>
+        </Card>
+
+        <div style={{ fontSize: 12, color: MUT, lineHeight: 1.5 }}>
+          Worked out from who was on the pitch, and when, in recorded games. It shows what happened, not why: the other team, the weather and who was missing all count, so you make the call. Never shown to players, parents or the team manager. Not available for MiniRoos or any team younger than U12.
         </div>
       </div>
     </CoachFrame>
   )
 }
+
+const th: React.CSSProperties = { fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: MUT, padding: '0 8px 6px 10px' }
+const td: React.CSSProperties = { display: 'flex', alignItems: 'center', minHeight: 40, padding: '0 8px 0 10px', borderTop: `1px solid ${LN}` }
 
 // SQ1e — Best lineups empty state
 export function SquadLineupsEmpty({ onBack: _onBack, onNav }: { onBack?: () => void; onNav?: (s: string) => void }) {
@@ -273,7 +369,7 @@ export function SquadLineupsEmpty({ onBack: _onBack, onNav }: { onBack?: () => v
 
   return (
     <CoachFrame
-      activeNav="squad" activeSub="Line-ups" subTabs={SQUAD_SUBS}
+      activeNav="squad" activeSub="Line-ups that worked" subTabs={SQUAD_SUBS}
       pageTitle="Line-ups that worked"
       pageSub="U12 Sam · 1 game recorded so far"
       toast={toast}

@@ -1,6 +1,8 @@
 // Formation builder data — shapes (per cent of pitch, other team's goal at top),
 // team rosters and checks. From the formation-v1 design handover (16 Nov 2026).
 
+import { YOUTH_SQUAD_PLAYERS } from '../../data'
+
 export type Slot = { x: number; y: number; pos: string }
 export type Shape = { name: string; slots: Slot[] }
 
@@ -156,8 +158,30 @@ const MINIROOS: TeamCfg = {
   benchHeader: 'Waiting for a turn', posStyle: 'loose',
 }
 
+// ── U16 Ollie · youth ── built from the youth squad so the names match Squad › Players.
+const YOUTH_POS: Record<string, string> = { 'Goalkeeper': 'GK', 'Centre back': 'CB', 'Right back': 'RB', 'Left back': 'LB', 'Central midfield': 'CM', 'Holding midfield': 'DM', 'Attacking mid': 'CM', 'Right wing': 'RW', 'Left wing': 'LW', 'Centre forward': 'ST' }
+const YOUTH_NUM = [1, 5, 4, 2, 3, 8, 10, 6, 14, 7, 11, 9]
+const YOUTH: TeamCfg = {
+  key: 'youth', side: 11, teamLabel: 'U16 Ollie',
+  game: 'Sat 6 June · v Glenview Park', gameTarget: 'FB1l-FormationSaved',
+  meta: '11 a side · 11 fit, 1 suspended · saved 2 minutes ago',
+  parts: [],
+  defaultShape: '4-3-3',
+  start: ['y0', 'y4', null, 'y2', 'y3', 'y5', 'y7', 'y6', 'y10', 'y11', 'y9'],
+  roster: YOUTH_SQUAD_PLAYERS.map((p, i) => {
+    const suspended = p.note.startsWith('Suspended')
+    return { id: `y${i}`, num: YOUTH_NUM[i] ?? i + 1, first: p.fullName.split(' ')[0], full: p.fullName, positions: [YOUTH_POS[p.pos] ?? 'CM'], captain: i === 2, available: !suspended, note: suspended ? undefined : p.status === 'manage' ? p.note : 'Available', reason: suspended ? 'Suspended: 1 game' : undefined }
+  }),
+  checks: [
+    { ok: false, subject: 'Centre back', rest: 'is empty. Ryan is suspended this week. Ivan and Phil can both drop in.' },
+    { ok: true, subject: 'Leo K:', rest: 'high load this week, fine to start. Watch the last 20 minutes.' },
+    { ok: true, subject: 'Glenview Park', rest: 'play long. This shape keeps two in front of the centre backs.' },
+  ],
+  benchHeader: 'Bench', posStyle: 'full',
+}
+
 export const TEAMS: Record<string, TeamCfg> = {
-  juniors: JUNIOR, seniors: SENIORS, youth: SENIORS, miniroos: MINIROOS,
+  juniors: JUNIOR, seniors: SENIORS, youth: YOUTH, miniroos: MINIROOS,
 }
 
 export function shapesFor(side: number): Shape[] { return SHAPES[side] ?? SHAPES[9] }

@@ -1,5 +1,6 @@
 import { useMemo, useRef, useState } from 'react'
 import { TEAMS, shapesFor, shapeByName, remap, type TeamCfg, type Shape, type Player } from './formationData'
+import { getInsights, keyPairs, bestLineup, forThisWeek, shapeLine, metricOf, value, fmt, METRICS, type FormationPreset, type Insights, type MetricKey } from './lineupInsights'
 
 // Squad › Formation builder (tablet). Pick a shape, place players from the bench
 // onto the pitch by tap-then-tap OR drag, move and swap them, run the checks, and
@@ -15,14 +16,18 @@ const clamp = (v: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, v
 
 type Snap = { placed: (string | null)[]; custom: Record<string, XY> | null; mode: Mode; shapeName: string }
 
-export default function FormationBuilder({ team = 'juniors', onNav, empty }: { team?: string; onNav?: (s: string) => void; empty?: boolean }) {
+export default function FormationBuilder({ team = 'juniors', onNav, empty, preset }: { team?: string; onNav?: (s: string) => void; empty?: boolean; preset?: FormationPreset | null }) {
   const cfg: TeamCfg = TEAMS[team] ?? TEAMS.juniors
   const shapes = shapesFor(cfg.side)
   const loose = cfg.posStyle === 'loose'
-  const [shapeName, setShapeName] = useState(cfg.defaultShape)
+  // What recorded games say about each shape and pair (null for MiniRoos and under 12s).
+  const ins = useMemo(() => empty ? null : getInsights(team), [team, empty])
+  const pairsToKeep = useMemo(() => ins ? keyPairs(ins) : [], [ins])
+  const [loaded, setLoaded] = useState<string | null>(preset?.note ?? null)
+  const [shapeName, setShapeName] = useState(preset?.shape ?? cfg.defaultShape)
   const [mode, setMode] = useState<Mode>('builder')
   const [part, setPart] = useState(0)
-  const [placed, setPlaced] = useState<(string | null)[]>(() => empty ? new Array(shapeByName(cfg.side, cfg.defaultShape)!.slots.length).fill(null) : [...cfg.start])
+  const [placed, setPlaced] = useState<(string | null)[]>(() => preset ? [...preset.placed] : empty ? new Array(shapeByName(cfg.side, cfg.defaultShape)!.slots.length).fill(null) : [...cfg.start])
   const [custom, setCustom] = useState<Record<string, XY> | null>(null)
   const [picked, setPicked] = useState<string | null>(null)
   const [, setHistory] = useState<Snap[]>([])
@@ -213,6 +218,16 @@ export default function FormationBuilder({ team = 'juniors', onNav, empty }: { t
     })
   }
 
+  // Load a line-up that worked, made ready for this week (anyone out is swapped).
+  function loadWorked(k: MetricKey) {
+    if (!ins) return
+    const l = bestLineup(ins, k, ins.bestShape[k]); if (!l) return
+    const w = forThisWeek(ins, l, metricOf(k).label)
+    pushHistory()
+    setShapeName(w.shape); setPlaced([...w.placed]); setCustom(null); setMode('builder'); setPicked(null); setLoaded(w.note)
+    say(`Loaded: ${w.note}`)
+  }
+
   const onPitchCount = onPitch.length
   const canPlayCount = cfg.roster.filter(p => p.available).length
 
@@ -246,7 +261,7 @@ export default function FormationBuilder({ team = 'juniors', onNav, empty }: { t
 
       {/* Shape tabs */}
       <div style={{ flex: 'none', padding: '10px 28px 0', display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
-        {shapes.map(s => <ShapeTab key={s.name} name={s.name} selected={mode === 'builder' && shapeName === s.name} onClick={() => switchShape(s.name)} />)}
+        {shapes.map(s => <ShapeTab key={s.name} name={s.name} tags={(ins?.shapeTags[s.name] ?? []).map(k => metricOf(k).tag)} selected={mode === 'builder' && shapeName === s.name} onClick={() => switchShape(s.name)} />)}
         {savedTabs.map(n => <ShapeTab key={n} name={n} selected={false} onClick={() => say(`${n}: your saved shape.`)} />)}
         <button onClick={enterOwn} style={{ height: 44, padding: '0 14px', borderRadius: 12, border: `1.5px ${mode === 'own' ? 'solid' : 'dashed'} ${mode === 'own' ? LEAF : '#c5ccca'}`, background: mode === 'own' ? GREEN : '#fff', color: mode === 'own' ? '#fff' : INK, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 7 }}>
           <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z" /></svg>{mode === 'own' ? 'Custom' : 'Your own'}
@@ -254,6 +269,20 @@ export default function FormationBuilder({ team = 'juniors', onNav, empty }: { t
         <div style={{ flexGrow: 1 }} />
         <button onClick={() => say('More shapes for this many players, and any you have saved.')} style={{ height: 44, padding: '0 14px', borderRadius: 12, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 6 }}>More shapes <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round"><path d="M6 9l6 6 6-6" /></svg></button>
       </div>
+
+      {/* From recorded games: how this shape has gone, and the pairs worth keeping together */}
+      {ins && (
+        <div data-fb="insight" style={{ flex: 'none', margin: '10px 28px 0', padding: '8px 12px', borderRadius: 12, background: PALE, display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+          <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.07em', color: GREEN, flexShrink: 0 }}>FROM RECORDED GAMES</span>
+          <span style={{ fontSize: 13, color: INK, lineHeight: 1.4, flex: '1 1 320px', minWidth: 0 }}>{loaded ? <><strong>Loaded:</strong> {loaded} </> : null}{mode === 'own' ? 'Your own shape has no recorded games yet.' : shapeLine(ins, shapeName)}</span>
+          {pairsToKeep.map(p => {
+            const a = byId[p.a], b = byId[p.b]; if (!a || !b) return null
+            const both = onPitchIds.has(p.a) && onPitchIds.has(p.b)
+            return <span key={p.a + p.b} title={both ? 'Both on the pitch' : 'Not both on the pitch'} style={{ flexShrink: 0, fontSize: 12, fontWeight: 700, padding: '4px 9px', borderRadius: 999, background: both ? '#fff' : SANDBG, border: `1px solid ${both ? LN : SAND}`, color: INK, whiteSpace: 'nowrap' }}>{a.first} + {b.first}: {both ? 'together' : 'split'}</span>
+          })}
+          <button onClick={() => onNav ? onNav('SQ1-BestLineups') : say('Opening Line-ups that worked.')} style={{ flexShrink: 0, height: 44, padding: '0 6px', border: 'none', background: 'none', color: GREEN, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', textDecoration: 'underline' }}>See why</button>
+        </div>
+      )}
 
       {/* Body */}
       <div style={{ flexGrow: 1, minHeight: 0, display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 316px', gap: 14, padding: '12px 28px 14px', overflow: 'hidden' }}>
@@ -321,7 +350,7 @@ export default function FormationBuilder({ team = 'juniors', onNav, empty }: { t
         </div>
       </div>
 
-      {menuOpen && <GamePicker cfg={cfg} onClose={() => setMenuOpen(false)} onNav={onNav} say={say} />}
+      {menuOpen && <GamePicker cfg={cfg} ins={ins} onLoad={loadWorked} onClose={() => setMenuOpen(false)} onNav={onNav} say={say} />}
       {shareOpen && <ShareSheet cfg={cfg} onPitch={onPitch} byId={byId} when={shareWhen} setWhen={setShareWhen} who={shareWho} setWho={setShareWho} onClose={() => setShareOpen(false)} say={say} />}
 
       <div style={{ position: 'absolute', bottom: 8, left: 28, fontSize: 11, color: MUT }}>{onPitchCount} on the pitch · {canPlayCount} can play</div>
@@ -355,7 +384,7 @@ function IconBtn({ label, onClick, path }: { label: string; onClick: () => void;
   )
 }
 
-function ShapeTab({ name, selected, onClick }: { name: string; selected: boolean; onClick: () => void }) {
+function ShapeTab({ name, selected, onClick, tags = [] }: { name: string; selected: boolean; onClick: () => void; tags?: string[] }) {
   const rows = name.split('-').map(Number)
   return (
     <button onClick={onClick} style={{ height: 44, padding: '0 14px', borderRadius: 12, border: `1.5px solid ${selected ? LEAF : LN}`, background: selected ? GREEN : '#fff', color: selected ? '#fff' : INK, fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 9 }}>
@@ -366,6 +395,7 @@ function ShapeTab({ name, selected, onClick }: { name: string; selected: boolean
         <circle cx={11} cy={23} r={1.7} fill={selected ? '#fff' : LEAF} />
       </svg>
       {name}
+      {tags.length > 0 && <span title={tags.join(' · ')} style={{ fontSize: 11, fontWeight: 700, padding: '2px 7px', borderRadius: 999, background: selected ? 'rgba(255,255,255,0.18)' : PALE, color: selected ? '#fff' : GREEN, whiteSpace: 'nowrap' }}>{tags[0]}{tags.length > 1 ? ` +${tags.length - 1}` : ''}</span>}
     </button>
   )
 }
@@ -431,7 +461,7 @@ function BenchRow({ p, picked, dragging, onClick, onPointerDown, loose }: { p: P
   )
 }
 
-function GamePicker({ cfg, onClose, onNav, say }: { cfg: TeamCfg; onClose: () => void; onNav?: (s: string) => void; say: (m: string) => void }) {
+function GamePicker({ cfg, ins, onLoad, onClose, onNav, say }: { cfg: TeamCfg; ins: Insights | null; onLoad: (k: MetricKey) => void; onClose: () => void; onNav?: (s: string) => void; say: (m: string) => void }) {
   const Row = ({ title, sub, tag, onClick }: { title: string; sub: string; tag?: string; onClick: () => void }) => (
     <button onClick={onClick} style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 10, padding: '12px 14px', border: 'none', borderTop: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
       <span style={{ flexGrow: 1 }}><span style={{ display: 'block', fontSize: 14, fontWeight: 700, color: INK }}>{title}</span><span style={{ display: 'block', fontSize: 12, color: MUT }}>{sub}</span></span>
@@ -446,8 +476,10 @@ function GamePicker({ cfg, onClose, onNav, say }: { cfg: TeamCfg; onClose: () =>
         <Row title={cfg.game} sub={`${cfg.defaultShape} · both halves set`} tag="Editing" onClick={() => { onClose(); say('Editing this game.') }} />
         <Row title="Sat 13 June · at Kestrel Park" sub="Not started" onClick={() => { onClose(); say('New game — pick a shape and start placing.') }} />
         <div style={{ padding: '12px 14px 6px', fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', color: MUT }}>START FROM ONE THAT WORKED</div>
-        <Row title="Most goals scored" sub="3-3-2 · 7 goals in 142 minutes together" tag="From film" onClick={() => { onClose(); say('Copied the most-goals line-up into this game.') }} />
-        <Row title="Fewest goals let in" sub="4-3-1 · 1 goal in 96 minutes together" tag="From film" onClick={() => { onClose(); say('Copied the fewest-conceded line-up into this game.') }} />
+        {ins ? METRICS.map(m => {
+          const l = bestLineup(ins, m.key, ins.bestShape[m.key]); if (!l) return null
+          return <Row key={m.key} title={m.label} sub={`${l.shape} · ${fmt(m.key, value(l.agg, m.key, ins.gameLen))} ${m.unit} · ${l.agg.mins} minutes together`} tag="From film" onClick={() => { onClose(); onLoad(m.key) }} />
+        }) : <div style={{ padding: '10px 14px', borderTop: `1px solid ${LN}`, fontSize: 12, color: MUT }}>Nothing from recorded games for this team.</div>}
         <Row title="Last Saturday at Ironbark" sub="3-3-2 · won 3–1" tag="Used" onClick={() => { onClose(); say('Copied last Saturday’s line-up into this game.') }} />
         <div style={{ display: 'flex', gap: 8, padding: 12, borderTop: `1px solid ${LN}` }}>
           <button onClick={() => { onClose(); onNav ? onNav('SQ1-BestLineups') : say('Opening Line-ups that worked.') }} style={{ ...btnOutline, flex: 1 }}>All that worked</button>

@@ -27,3 +27,11 @@ Built from the 16 Nov 2026 handover (`formation-v1.zip`).
 ## Verified (headless, happy-dom)
 
 Juniors: render, bench + not-available, checks, full pitch, tap-swap (Finn↔Harper), Clear→9 empty, Undo restore, Fill repopulate, shape switch, Share sheet + Send, game picker. Seniors: 4-3-3, one empty RW, suspended Ryan Cole, right-wing check, no parts. MiniRoos: quarters, "Waiting for a turn", Ivy first-go-in-goal, 2-3-1. Parent: child sentence, first-names-only bench, is-coming. 24/24 pass.
+
+## Line-ups that worked, and what it tells the builder (16 Nov 2026)
+
+- `lineupInsights.ts` holds one log of recorded-game stints (shape, who was on, minutes, goals, time ahead, win-back) and works everything out from it: shapes compared on four measures, best line-up per measure, pairs (together against apart), players by shape. The log is seeded demo data; replace `recordedStints` with the real log.
+- `SquadLineups.tsx` rebuilt on it, with a to-scale pitch (`Pitch.tsx`). "Try it on Saturday" opens Formation with the line-up loaded and anyone unavailable swapped.
+- Formation builder reads the same module: a tag on each shape tab, a "From recorded games" strip (how this shape has gone, key pairs together or split), and the game picker's "Start from one that worked" rows now load real line-ups.
+- Youth (`U16 Ollie`) now has its own formation roster built from `YOUTH_SQUAD_PLAYERS`; it used to borrow the seniors' roster.
+- Gap: the seniors' formation roster (Jack Reid…) still differs from Squad › Players (Ben Kowalski…). Line-ups that worked follows the formation roster so line-ups can be loaded.
