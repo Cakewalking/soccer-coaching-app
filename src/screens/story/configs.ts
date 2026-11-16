@@ -89,6 +89,7 @@ export const STO1: HomeCfg = {
   },
   done: { title: 'Done for you', lines: ['Reminder sent to 2 families', 'Saturday’s turns lined up', 'Four parents asked to be game leader', 'Thank-you to parents drafted'], next: 'Next: Sat 13 June, 8:30 at home' },
   needs: { count: 2, title: 'Two things need you', sub: 'Game leader for Saturday · one message', target: 'HM7-InboxMiniRoos' },
+  take: { kind: 'miniroos', title: 'Your take · three taps done', sub: 'Brave on the ball, finding a friend, a go in goal', showRate: true },
 }
 
 // ── MiniRoos training-day (STO2) and no-film (STO3): bespoke renderers; frame/moments reused ──
@@ -108,6 +109,7 @@ export const STO2: HomeCfg = {
   },
   done: { title: 'Done for you', lines: ['Reminder goes to 2 families at 3:00 pm', 'Kit list sent to Rob', 'Game leader found: Dan Kovac', 'Heat checked: 24°, play as normal'], next: 'Next: Sat 13 June, 8:30 at home' },
   needs: { count: 1, title: 'One thing needs you', sub: 'A message from Omar’s dad', target: 'HM7-InboxMiniRoos' },
+  take: { kind: 'miniroostraining', title: 'After tonight: three taps', sub: 'One tap each for brave, friends, and a go' },
 }
 export const STO3: HomeCfg = {
   id: 'STO3-HomeStoryMiniRoosNoFilm', role: 'Coach · MiniRoos', team: 'U9 Tom · Wattle Creek', teamTarget: SW, avatar: 'TA',
@@ -149,7 +151,7 @@ export const STO4: HomeCfg = {
   ready: {
     when: 'THU 4 JUNE · 7:30 pm · WATTLE CREEK RESERVE', title: 'Thursday is ready',
     text: 'Corners to the back post are the gap. Banksia Park scored two that way last week.',
-    chips: ['75 minutes', '5 drills', 'Shorter: load is high'], pale: 'Banksia Park scouted from their last two games.',
+    chips: ['75 minutes', '5 drills', 'Film, vests and your notes'], pale: 'Banksia Park scouted from their last two games.',
     btn1: 'Open the plan', btn1Target: 'T3-TrainingTab', btn2: 'Team talk', btn2Target: 'T2-TabletMatch',
   },
   moments: {
@@ -162,6 +164,7 @@ export const STO4: HomeCfg = {
   },
   done: { title: 'Done for you', lines: ['Team sheet drafted: 18 fit', 'Sprints capped for Theo and Dev', 'Saturday’s clips cut and named', 'Availability asked: 14 in so far'], next: 'Next: Sat 6 June, 3:00 pm away' },
   needs: { count: 2, title: 'Two things need you', sub: 'Ryan’s suspension · 2 clearances pending', target: 'I1-Inbox' },
+  take: { kind: 'after', title: 'Your take · 4 of 5', note: 'Compact but slow to break. Both goals came from winning it high.', meta: ['Used in Tuesday’s plan', '9 of 14 players rated'], score: 4 },
 }
 export const STO5: HomeCfg = {
   id: 'STO5-HomeStoryJuniors', role: 'Head coach', team: 'U12 Sam', avatar: 'SK', ...coachFrame('PH1-HomeJuniorsSame'),
@@ -191,6 +194,7 @@ export const STO5: HomeCfg = {
   },
   done: { title: 'Done for you', lines: ['Check-ins sent: 14 of 16 answered', 'Line-up drafted, all over half a game', 'Clips cut and named', 'Availability asked for Saturday'], next: 'Next: Sat 6 June, 9:30 away' },
   needs: { count: 3, title: 'Three things need you', sub: 'Ella low two days running · 3 vests', target: 'I1-Inbox' },
+  take: { kind: 'before', title: 'Your take on Saturday', sub: 'What did the film miss? One tap is enough.', showRate: true },
 }
 export const STO6: HomeCfg = {
   id: 'STO6-HomeStoryYouth', role: 'Head coach', team: 'U16 Ollie', avatar: 'OG', ...coachFrame('PH2-HomeYouthSame'),
@@ -220,6 +224,7 @@ export const STO6: HomeCfg = {
   },
   done: { title: 'Done for you', lines: ['Sprints capped for four players', 'Team sheet drafted: 15 fit', 'Clips sent to 6 players', 'Exam fortnight marked: 5 away'], next: 'Next: Sat 6 June, 11:00 at home' },
   needs: { count: 2, title: 'Two things need you', sub: 'Tane’s playing-up view · 1 message', target: 'I1-Inbox' },
+  take: { kind: 'before', title: 'Your take on Saturday', sub: 'What did the film miss? One tap is enough.', showRate: true },
 }
 export const STO7: HomeCfg = {
   id: 'STO7-HomeStoryAssistant', role: 'Assistant coach', team: 'U12 Sam', avatar: 'JM', ...coachFrame('PH4-HomeAssistantSame'),
@@ -249,6 +254,7 @@ export const STO7: HomeCfg = {
   },
   done: { title: 'Done for you', lines: ['Hand-over note from Sam saved', 'Sub plan drafted for Saturday', 'Warm-up cones list sent to Rob', 'Availability: 12 in, 2 to answer'], next: 'Next: Sat 6 June, 9:30 away' },
   needs: { count: 1, title: 'One thing needs you', sub: 'Sam asked: can you lead on Tue 9 June?', target: 'I1-Inbox' },
+  take: { kind: 'before', title: 'Your take on Saturday', sub: 'What did the film miss? One tap is enough.', showRate: false },
 }
 
 // ── Fitness (STO8) ──

@@ -465,6 +465,12 @@ import FILp1ParentFiles               from '../step4/FILp1ParentFiles'
 import FILp2ParentSignUp              from '../step4/FILp2ParentSignUp'
 import FILp3ParentForm                from '../step4/FILp3ParentForm'
 // Step 4 — Playing Up (PU)
+import YT1YourTake                    from '../aftergame/YT1YourTake'
+import YT1eYourTakeEmpty              from '../aftergame/YT1eYourTakeEmpty'
+import YT2MatchReport                 from '../aftergame/YT2MatchReport'
+import YT3PlayerNotes                 from '../aftergame/YT3PlayerNotes'
+import YT4VotesAwards                 from '../aftergame/YT4VotesAwards'
+import YTp1ParentVotes                from '../aftergame/YTp1ParentVotes'
 import PU1PlayingUp                   from '../step4/PU1PlayingUp'
 import PU1ePlayingUpEmpty             from '../step4/PU1ePlayingUpEmpty'
 import PU2PlayerReadiness             from '../step4/PU2PlayerReadiness'
@@ -657,6 +663,36 @@ function ClubAdminScreenNav({ role, initials, initialTab, empty, homeStory }: { 
   return <ClubAdminScreen role={role} initials={initials} initialTab={initialTab as Parameters<typeof ClubAdminScreen>[0]['initialTab']} empty={empty} onNav={(s) => setInner(s)} homeStory={homeStory} />
 }
 
+function YT1YourTakeNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <YT1YourTake onNav={(s) => setInner(s)} />
+}
+function YT1eYourTakeEmptyNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <YT1eYourTakeEmpty onNav={(s) => setInner(s)} />
+}
+function YT2MatchReportNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <YT2MatchReport onNav={(s) => setInner(s)} />
+}
+function YT3PlayerNotesNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <YT3PlayerNotes onNav={(s) => setInner(s)} />
+}
+function YT4VotesAwardsNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <YT4VotesAwards onNav={(s) => setInner(s)} />
+}
+function YTp1ParentVotesNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <YTp1ParentVotes onNav={(s) => setInner(s)} />
+}
 function PU1PlayingUpNav() {
   const [inner, setInner] = useState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
@@ -2158,6 +2194,12 @@ function renderScreenInner(key: string): ReactNode {
     case 'FILp2-ParentSignUp':    return <FILp2ParentSignUpNav />
     case 'FILp3-ParentForm':      return <FILp3ParentFormNav />
     // Playing Up (PU)
+    case 'YT1-YourTake':          return <YT1YourTakeNav />
+    case 'YT1e-YourTakeEmpty':    return <YT1eYourTakeEmptyNav />
+    case 'YT2-MatchReport':       return <YT2MatchReportNav />
+    case 'YT3-PlayerNotes':       return <YT3PlayerNotesNav />
+    case 'YT4-VotesAwards':       return <YT4VotesAwardsNav />
+    case 'YTp1-ParentVotes':      return <YTp1ParentVotesNav />
     case 'PU1-PlayingUp':         return <PU1PlayingUpNav />
     case 'PU1e-PlayingUpEmpty':   return <PU1ePlayingUpEmptyNav />
     case 'PU2-PlayerReadiness':   return <PU2PlayerReadinessNav />

@@ -16,6 +16,21 @@ type Face = { ini: string; has: boolean }
 type MomentRow = { ini: string; title: string; sub: string; action: string; target?: string; done?: string }
 
 export type FrameNavItem = { label: string; target?: string; active?: boolean }
+
+// The "Your take" row inside the dark panel (after-game pack).
+export type TakeCfg = {
+  kind: 'before' | 'after' | 'miniroos' | 'miniroostraining' | 'parent'
+  title: string
+  sub?: string
+  note?: string          // after: the coach's note, in quotes
+  meta?: string[]         // after: e.g. "Used in Tuesday's plan", "9 of 14 players rated"
+  score?: number          // after/miniroos: N (of 5)
+  showRate?: boolean      // before: show "Rate players"
+  addNoteTarget?: string  // default YT1-YourTake
+  rateTarget?: string     // default YT3-PlayerNotes
+  parentTarget?: string   // parent: YTp1-ParentVotes
+}
+
 export type HomeCfg = {
   id: string
   role: string            // role chip text e.g. "Coach · MiniRoos"
@@ -68,6 +83,7 @@ export type HomeCfg = {
   }
   done: { title: string; lines: string[]; next: string }
   needs: { count: number; title: string; sub?: string; target?: string }
+  take?: TakeCfg
 }
 
 function Face({ ini, has }: Face) {
@@ -91,7 +107,67 @@ function Bars({ bars, unit }: { bars: Bar[]; unit?: string }) {
   )
 }
 
-function ProofInner({ p, nav, tool }: { p: HomeCfg['proof']; nav: (s: string) => void; tool: (s: string) => void }) {
+// The "Your take" row that sits inside the dark panel, full width.
+function TakeRow({ take, nav, tool }: { take: TakeCfg; nav: (s: string) => void; tool: (s: string) => void }) {
+  const [played, setPlayed] = useState<number | null>(take.kind === 'after' || take.kind === 'miniroos' ? (take.score ?? null) : null)
+  const addNote = take.addNoteTarget ?? 'YT1-YourTake'
+  const rate = take.rateTarget ?? 'YT3-PlayerNotes'
+  const iconDone = played != null || take.kind === 'after' || take.kind === 'miniroos'
+
+  const circle = (
+    <span style={{ width: 36, height: 36, borderRadius: '50%', background: 'rgba(255,255,255,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+      {iconDone
+        ? <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={AMBER} strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12l5 5 9-10"/></svg>
+        : <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z"/></svg>}
+    </span>
+  )
+  const clearBtn: React.CSSProperties = { height: 44, padding: '0 14px', borderRadius: 10, background: 'transparent', border: `1px solid ${PALE}`, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }
+  const square = (n: number): React.CSSProperties => ({ width: 44, height: 44, borderRadius: 12, border: `1px solid ${PALE}`, background: played === n ? '#fff' : 'transparent', color: played === n ? INK : '#fff', fontSize: 16, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' })
+
+  const title = (t: string, s?: string) => (
+    <span style={{ minWidth: 0 }}>
+      <span style={{ display: 'block', fontSize: 16, fontWeight: 700, color: '#fff' }}>{t}</span>
+      {s && <span style={{ display: 'block', fontSize: 14, color: PALE, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{s}</span>}
+    </span>
+  )
+
+  let right: React.ReactNode = null
+  if (take.kind === 'parent') {
+    right = <button onClick={() => nav(take.parentTarget ?? 'YTp1-ParentVotes')} style={{ ...clearBtn, background: AMBER, border: 'none', color: INK }}>Rate the game</button>
+  } else if (take.kind === 'miniroostraining') {
+    right = <span style={{ display: 'flex', gap: 8 }}><button onClick={() => nav(addNote)} style={clearBtn}>Open the taps</button><button onClick={() => nav(addNote)} style={clearBtn}>Add a note</button></span>
+  } else if (take.kind === 'after') {
+    right = <span style={{ display: 'flex', gap: 8 }}><button onClick={() => nav(addNote)} style={clearBtn}>Edit</button><button onClick={() => nav(rate)} style={clearBtn}>Rate the rest</button></span>
+  } else if (take.kind === 'miniroos') {
+    right = <span style={{ display: 'flex', gap: 8 }}><button onClick={() => nav(addNote)} style={clearBtn}>Change them</button><button onClick={() => nav(addNote)} style={clearBtn}>Add a note</button>{take.showRate !== false && <button onClick={() => nav(rate)} style={clearBtn}>Rate players</button>}</span>
+  } else {
+    // before: 1–5 squares then buttons; once tapped, show saved + buttons
+    right = (
+      <span style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+        <span style={{ fontSize: 13, color: PALE, whiteSpace: 'nowrap' }}>How did we play?</span>
+        <span style={{ display: 'flex', gap: 6 }}>{[1, 2, 3, 4, 5].map(n => <button key={n} onClick={() => { setPlayed(n); tool(`How did we play? ${n} of 5. Saved.`) }} style={square(n)}>{n}</button>)}</span>
+        <button onClick={() => nav(addNote)} style={clearBtn}>Add a note</button>
+        {take.showRate && <button onClick={() => nav(rate)} style={clearBtn}>Rate players</button>}
+      </span>
+    )
+  }
+
+  // after-state content differs: show the note + meta when a take exists
+  const showAfterText = take.kind === 'after' || take.kind === 'miniroos'
+  return (
+    <div style={{ gridColumn: '1 / -1', borderTop: '1px solid rgba(255,255,255,0.16)', marginTop: 10, paddingTop: 10, display: 'flex', alignItems: 'center', gap: 12 }}>
+      {circle}
+      <span style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: 2 }}>
+        {title(played != null && take.kind === 'before' ? `Your take · ${played} of 5` : take.title, take.sub)}
+        {showAfterText && take.note && <span style={{ fontSize: 14, color: PALE, fontStyle: 'italic', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>“{take.note}”</span>}
+        {showAfterText && take.meta && <span style={{ fontSize: 13, color: PALE }}>{take.meta.join(' · ')}</span>}
+      </span>
+      {right}
+    </div>
+  )
+}
+
+function ProofInner({ p, take, nav, tool }: { p: HomeCfg['proof']; take?: TakeCfg; nav: (s: string) => void; tool: (s: string) => void }) {
   const mainBtn: React.CSSProperties = { height: 46, padding: '0 18px', borderRadius: 12, fontSize: 15, fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: 8, border: 'none', background: AMBER, color: INK, cursor: 'pointer', fontFamily: 'inherit' }
   const outBtn: React.CSSProperties = { height: 46, padding: '0 18px', borderRadius: 12, fontSize: 15, fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: 8, background: 'transparent', border: `1px solid ${PALE}`, color: '#fff', cursor: 'pointer', fontFamily: 'inherit' }
   return (
@@ -131,6 +207,7 @@ function ProofInner({ p, nav, tool }: { p: HomeCfg['proof']; nav: (s: string) =>
           </>
         ) : null}
       </div>
+      {take && <TakeRow take={take} nav={nav} tool={tool} />}
     </div>
   )
 }
@@ -352,8 +429,8 @@ export function HomeStoryTablet({ cfg, onNav }: { cfg: HomeCfg; onNav?: (s: stri
           </button>
         </div>
         <div style={{ padding: '12px 28px 18px', display: 'grid', gap: 14, gridTemplateColumns: 'minmax(0,1fr) minmax(0,1.08fr) 300px', gridTemplateRows: 'auto minmax(0,1fr)', flex: 1 }}>
-          <div style={{ gridColumn: '1 / 4', background: DARK, borderRadius: 20, padding: '18px 24px' }}>
-            <ProofInner p={cfg.proof} nav={nav} tool={tool} />
+          <div style={{ gridColumn: '1 / 4', background: DARK, borderRadius: 20, padding: cfg.take ? '14px 24px' : '18px 24px' }}>
+            <ProofInner p={cfg.proof} take={cfg.take} nav={nav} tool={tool} />
           </div>
           <ReadyCard r={cfg.ready} nav={nav} tool={tool} />
           <MomentsCard m={cfg.moments} nav={nav} tool={tool} />
