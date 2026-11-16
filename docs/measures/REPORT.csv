@@ -1,0 +1,462 @@
+control id,screen,control,own / shared / behind the sheet,does,target or line,status: works / line of text only / missing / wrong target (say where)
+PU2-PlayerReadiness#1,PU2-PlayerReadiness,Club,shared,opens,D1-ClubOverview,works
+PU2-PlayerReadiness#2,PU2-PlayerReadiness,Teams,shared,opens,D2-Teams,works
+PU2-PlayerReadiness#3,PU2-PlayerReadiness,Coaches,shared,opens,D3-Coaches,works
+PU2-PlayerReadiness#4,PU2-PlayerReadiness,Players,shared,opens,D4-Players,works
+PU2-PlayerReadiness#5,PU2-PlayerReadiness,Safeguarding,shared,opens,D5-Safeguarding,works
+PU2-PlayerReadiness#6,PU2-PlayerReadiness,Reports,shared,opens,D6-BoardReport,works
+PU2-PlayerReadiness#7,PU2-PlayerReadiness,Ask Clean Sheet,shared,opens,ASKd4-PanelFirst,works
+PU2-PlayerReadiness#8,PU2-PlayerReadiness,Whole club,shared,opens,VS1-SwitchView,works
+PU2-PlayerReadiness#9,PU2-PlayerReadiness,All players,shared,opens,D4-Players,works
+PU2-PlayerReadiness#10,PU2-PlayerReadiness,Pathway,shared,opens,DP1-Pathway,works
+PU2-PlayerReadiness#11,PU2-PlayerReadiness,Playing across,shared,opens,PU1-PlayingUp,works
+PU2-PlayerReadiness#12,PU2-PlayerReadiness,Fair game time,shared,opens,D4-Players,works
+PU2-PlayerReadiness#13,PU2-PlayerReadiness,Plan a trial,own,opens,PU3-TrialPlan,works
+PU2-PlayerReadiness#14,PU2-PlayerReadiness,Compare,own,opens,PU4-Compare,works
+PU2-PlayerReadiness#15,PU2-PlayerReadiness,Not now,own,says,Noted with your reason. Looked at again in 8 weeks. Mia and her family are not told.,works
+PU2-PlayerReadiness#16,PU2-PlayerReadiness,Duels won Film,own,opens,PU8a-MeasureFilm,works
+PU2-PlayerReadiness#17,PU2-PlayerReadiness,Forward passes Film,own,opens,PU8d-MeasurePasses,works
+PU2-PlayerReadiness#18,PU2-PlayerReadiness,Wins of the ball Film,own,opens,PU8e-MeasureWins,works
+PU2-PlayerReadiness#19,PU2-PlayerReadiness,All 9 measures,own,opens,PU4-Compare,works
+PU2-PlayerReadiness#20,PU2-PlayerReadiness,"Steady growth, 4 cm this year. No pain flags. Measured by hand",own,opens,PU8k-MeasureGrowth,works
+PU2-PlayerReadiness#21,PU2-PlayerReadiness,Top speed Vest,own,opens,PU8b-MeasureVest,works
+PU2-PlayerReadiness#22,PU2-PlayerReadiness,10 m sprint Timed test,own,opens,PU8g-MeasureTest,works
+PU2-PlayerReadiness#23,PU2-PlayerReadiness,Distance Vest,own,opens,PU8f-MeasureDistance,works
+PU2-PlayerReadiness#24,PU2-PlayerReadiness,All 9 measures,own,opens,PU4-Compare,works
+PU2-PlayerReadiness#25,PU2-PlayerReadiness,Sam: “Asks for the ball after a mistake. Takes feedback.”,own,opens,PU8c-MeasureSaid,works
+PU2-PlayerReadiness#26,PU2-PlayerReadiness,Mia: “I want harder games.”,own,opens,PU8c-MeasureSaid,works
+PU2-PlayerReadiness#27,PU2-PlayerReadiness,"Mia: “Can’t wait.” Picked Ava, Bella, Dani and Frankie.",own,opens,PU8h-MeasureSettling,works
+PU2-PlayerReadiness#28,PU2-PlayerReadiness,"Load, week by week: open the data",own,opens,PU8j-MeasureLoad,works
+PU2-PlayerReadiness#29,PU2-PlayerReadiness,Meg: “Yes. We are short in midfield.”,own,opens,PU8i-MeasurePlace,works
+PU8a-MeasureFilm#1,PU8a-MeasureFilm,Club,behind the sheet,opens,D1-ClubOverview,
+PU8a-MeasureFilm#2,PU8a-MeasureFilm,Teams,behind the sheet,opens,D2-Teams,
+PU8a-MeasureFilm#3,PU8a-MeasureFilm,Coaches,behind the sheet,opens,D3-Coaches,
+PU8a-MeasureFilm#4,PU8a-MeasureFilm,Players,behind the sheet,opens,D4-Players,
+PU8a-MeasureFilm#5,PU8a-MeasureFilm,Safeguarding,behind the sheet,opens,D5-Safeguarding,
+PU8a-MeasureFilm#6,PU8a-MeasureFilm,Reports,behind the sheet,opens,D6-BoardReport,
+PU8a-MeasureFilm#7,PU8a-MeasureFilm,Ask Clean Sheet,behind the sheet,opens,ASKd4-PanelFirst,
+PU8a-MeasureFilm#8,PU8a-MeasureFilm,Whole club,behind the sheet,opens,VS1-SwitchView,
+PU8a-MeasureFilm#9,PU8a-MeasureFilm,All players,behind the sheet,opens,D4-Players,
+PU8a-MeasureFilm#10,PU8a-MeasureFilm,Pathway,behind the sheet,opens,DP1-Pathway,
+PU8a-MeasureFilm#11,PU8a-MeasureFilm,Playing across,behind the sheet,opens,PU1-PlayingUp,
+PU8a-MeasureFilm#12,PU8a-MeasureFilm,Fair game time,behind the sheet,opens,D4-Players,
+PU8a-MeasureFilm#13,PU8a-MeasureFilm,Plan a trial,behind the sheet,opens,PU3-TrialPlan,
+PU8a-MeasureFilm#14,PU8a-MeasureFilm,Compare,behind the sheet,opens,PU4-Compare,
+PU8a-MeasureFilm#15,PU8a-MeasureFilm,Not now,behind the sheet,says,Noted with your reason. Looked at again in 8 weeks. Mia and her family are not told.,
+PU8a-MeasureFilm#16,PU8a-MeasureFilm,Duels won Film,behind the sheet,opens,PU8a-MeasureFilm,
+PU8a-MeasureFilm#17,PU8a-MeasureFilm,Forward passes Film,behind the sheet,opens,PU8d-MeasurePasses,
+PU8a-MeasureFilm#18,PU8a-MeasureFilm,Wins of the ball Film,behind the sheet,opens,PU8e-MeasureWins,
+PU8a-MeasureFilm#19,PU8a-MeasureFilm,All 9 measures,behind the sheet,opens,PU4-Compare,
+PU8a-MeasureFilm#20,PU8a-MeasureFilm,"Steady growth, 4 cm this year. No pain flags. Measured by hand",behind the sheet,opens,PU8k-MeasureGrowth,
+PU8a-MeasureFilm#21,PU8a-MeasureFilm,Top speed Vest,behind the sheet,opens,PU8b-MeasureVest,
+PU8a-MeasureFilm#22,PU8a-MeasureFilm,10 m sprint Timed test,behind the sheet,opens,PU8g-MeasureTest,
+PU8a-MeasureFilm#23,PU8a-MeasureFilm,Distance Vest,behind the sheet,opens,PU8f-MeasureDistance,
+PU8a-MeasureFilm#24,PU8a-MeasureFilm,All 9 measures,behind the sheet,opens,PU4-Compare,
+PU8a-MeasureFilm#25,PU8a-MeasureFilm,Sam: “Asks for the ball after a mistake. Takes feedback.”,behind the sheet,opens,PU8c-MeasureSaid,
+PU8a-MeasureFilm#26,PU8a-MeasureFilm,Mia: “I want harder games.”,behind the sheet,opens,PU8c-MeasureSaid,
+PU8a-MeasureFilm#27,PU8a-MeasureFilm,"Mia: “Can’t wait.” Picked Ava, Bella, Dani and Frankie.",behind the sheet,opens,PU8h-MeasureSettling,
+PU8a-MeasureFilm#28,PU8a-MeasureFilm,"Load, week by week: open the data",behind the sheet,opens,PU8j-MeasureLoad,
+PU8a-MeasureFilm#29,PU8a-MeasureFilm,Meg: “Yes. We are short in midfield.”,behind the sheet,opens,PU8i-MeasurePlace,
+PU8a-MeasureFilm#30,PU8a-MeasureFilm,Close,own,opens,PU2-PlayerReadiness,works
+PU8a-MeasureFilm#31,PU8a-MeasureFilm,Saturday 6,own,says,Saturday 6.,works
+PU8a-MeasureFilm#32,PU8a-MeasureFilm,All 41,own,says,All 41.,works
+PU8a-MeasureFilm#33,PU8a-MeasureFilm,Lost 12,own,says,Lost 12.,works
+PU8a-MeasureFilm#34,PU8a-MeasureFilm,0:06 7′ · Won v Ironbark,own,says,"Playing: minute 7, v Ironbark. Won.",works
+PU8a-MeasureFilm#35,PU8a-MeasureFilm,0:06 19′ · Won v Ironbark,own,says,"Playing: minute 19, v Ironbark. Won.",works
+PU8a-MeasureFilm#36,PU8a-MeasureFilm,0:06 31′ · Lost v Ironbark,own,says,"Playing: minute 31, v Ironbark. Lost.",works
+PU8a-MeasureFilm#37,PU8a-MeasureFilm,0:06 47′ · Won v Ironbark,own,says,"Playing: minute 47, v Ironbark. Won.",works
+PU8a-MeasureFilm#38,PU8a-MeasureFilm,Play all 6 from Saturday,own,says,"Playing the clips from Saturday, one after another.",works
+PU8a-MeasureFilm#39,PU8a-MeasureFilm,This one is wrong,own,says,Pick the clip. It goes to Sam’s To check list and the count is redone.,works
+PU8a-MeasureFilm#40,PU8a-MeasureFilm,Before: Where she would go,own,opens,PU8i-MeasurePlace,works
+PU8a-MeasureFilm#41,PU8a-MeasureFilm,Forward passes,own,opens,PU8d-MeasurePasses,works
+PU8d-MeasurePasses#1,PU8d-MeasurePasses,Club,behind the sheet,opens,D1-ClubOverview,
+PU8d-MeasurePasses#2,PU8d-MeasurePasses,Teams,behind the sheet,opens,D2-Teams,
+PU8d-MeasurePasses#3,PU8d-MeasurePasses,Coaches,behind the sheet,opens,D3-Coaches,
+PU8d-MeasurePasses#4,PU8d-MeasurePasses,Players,behind the sheet,opens,D4-Players,
+PU8d-MeasurePasses#5,PU8d-MeasurePasses,Safeguarding,behind the sheet,opens,D5-Safeguarding,
+PU8d-MeasurePasses#6,PU8d-MeasurePasses,Reports,behind the sheet,opens,D6-BoardReport,
+PU8d-MeasurePasses#7,PU8d-MeasurePasses,Ask Clean Sheet,behind the sheet,opens,ASKd4-PanelFirst,
+PU8d-MeasurePasses#8,PU8d-MeasurePasses,Whole club,behind the sheet,opens,VS1-SwitchView,
+PU8d-MeasurePasses#9,PU8d-MeasurePasses,All players,behind the sheet,opens,D4-Players,
+PU8d-MeasurePasses#10,PU8d-MeasurePasses,Pathway,behind the sheet,opens,DP1-Pathway,
+PU8d-MeasurePasses#11,PU8d-MeasurePasses,Playing across,behind the sheet,opens,PU1-PlayingUp,
+PU8d-MeasurePasses#12,PU8d-MeasurePasses,Fair game time,behind the sheet,opens,D4-Players,
+PU8d-MeasurePasses#13,PU8d-MeasurePasses,Plan a trial,behind the sheet,opens,PU3-TrialPlan,
+PU8d-MeasurePasses#14,PU8d-MeasurePasses,Compare,behind the sheet,opens,PU4-Compare,
+PU8d-MeasurePasses#15,PU8d-MeasurePasses,Not now,behind the sheet,says,Noted with your reason. Looked at again in 8 weeks. Mia and her family are not told.,
+PU8d-MeasurePasses#16,PU8d-MeasurePasses,Duels won Film,behind the sheet,opens,PU8a-MeasureFilm,
+PU8d-MeasurePasses#17,PU8d-MeasurePasses,Forward passes Film,behind the sheet,opens,PU8d-MeasurePasses,
+PU8d-MeasurePasses#18,PU8d-MeasurePasses,Wins of the ball Film,behind the sheet,opens,PU8e-MeasureWins,
+PU8d-MeasurePasses#19,PU8d-MeasurePasses,All 9 measures,behind the sheet,opens,PU4-Compare,
+PU8d-MeasurePasses#20,PU8d-MeasurePasses,"Steady growth, 4 cm this year. No pain flags. Measured by hand",behind the sheet,opens,PU8k-MeasureGrowth,
+PU8d-MeasurePasses#21,PU8d-MeasurePasses,Top speed Vest,behind the sheet,opens,PU8b-MeasureVest,
+PU8d-MeasurePasses#22,PU8d-MeasurePasses,10 m sprint Timed test,behind the sheet,opens,PU8g-MeasureTest,
+PU8d-MeasurePasses#23,PU8d-MeasurePasses,Distance Vest,behind the sheet,opens,PU8f-MeasureDistance,
+PU8d-MeasurePasses#24,PU8d-MeasurePasses,All 9 measures,behind the sheet,opens,PU4-Compare,
+PU8d-MeasurePasses#25,PU8d-MeasurePasses,Sam: “Asks for the ball after a mistake. Takes feedback.”,behind the sheet,opens,PU8c-MeasureSaid,
+PU8d-MeasurePasses#26,PU8d-MeasurePasses,Mia: “I want harder games.”,behind the sheet,opens,PU8c-MeasureSaid,
+PU8d-MeasurePasses#27,PU8d-MeasurePasses,"Mia: “Can’t wait.” Picked Ava, Bella, Dani and Frankie.",behind the sheet,opens,PU8h-MeasureSettling,
+PU8d-MeasurePasses#28,PU8d-MeasurePasses,"Load, week by week: open the data",behind the sheet,opens,PU8j-MeasureLoad,
+PU8d-MeasurePasses#29,PU8d-MeasurePasses,Meg: “Yes. We are short in midfield.”,behind the sheet,opens,PU8i-MeasurePlace,
+PU8d-MeasurePasses#30,PU8d-MeasurePasses,Close,own,opens,PU2-PlayerReadiness,works
+PU8d-MeasurePasses#31,PU8d-MeasurePasses,Saturday 9,own,says,Saturday 9.,works
+PU8d-MeasurePasses#32,PU8d-MeasurePasses,All 72,own,says,All 72.,works
+PU8d-MeasurePasses#33,PU8d-MeasurePasses,Did not arrive 15,own,says,Did not arrive 15.,works
+PU8d-MeasurePasses#34,PU8d-MeasurePasses,0:06 4′ · Arrived v Ironbark,own,says,"Playing: minute 4, v Ironbark. Arrived.",works
+PU8d-MeasurePasses#35,PU8d-MeasurePasses,0:06 12′ · Arrived v Ironbark,own,says,"Playing: minute 12, v Ironbark. Arrived.",works
+PU8d-MeasurePasses#36,PU8d-MeasurePasses,0:06 26′ · Did not arrive v Ironbark,own,says,"Playing: minute 26, v Ironbark. Did not arrive.",works
+PU8d-MeasurePasses#37,PU8d-MeasurePasses,0:06 38′ · Arrived v Ironbark,own,says,"Playing: minute 38, v Ironbark. Arrived.",works
+PU8d-MeasurePasses#38,PU8d-MeasurePasses,Play all 9 from Saturday,own,says,"Playing the clips from Saturday, one after another.",works
+PU8d-MeasurePasses#39,PU8d-MeasurePasses,This one is wrong,own,says,Pick the clip. It goes to Sam’s To check list and the count is redone.,works
+PU8d-MeasurePasses#40,PU8d-MeasurePasses,Before: Duels won,own,opens,PU8a-MeasureFilm,works
+PU8d-MeasurePasses#41,PU8d-MeasurePasses,Wins of the ball,own,opens,PU8e-MeasureWins,works
+PU8e-MeasureWins#1,PU8e-MeasureWins,Club,behind the sheet,opens,D1-ClubOverview,
+PU8e-MeasureWins#2,PU8e-MeasureWins,Teams,behind the sheet,opens,D2-Teams,
+PU8e-MeasureWins#3,PU8e-MeasureWins,Coaches,behind the sheet,opens,D3-Coaches,
+PU8e-MeasureWins#4,PU8e-MeasureWins,Players,behind the sheet,opens,D4-Players,
+PU8e-MeasureWins#5,PU8e-MeasureWins,Safeguarding,behind the sheet,opens,D5-Safeguarding,
+PU8e-MeasureWins#6,PU8e-MeasureWins,Reports,behind the sheet,opens,D6-BoardReport,
+PU8e-MeasureWins#7,PU8e-MeasureWins,Ask Clean Sheet,behind the sheet,opens,ASKd4-PanelFirst,
+PU8e-MeasureWins#8,PU8e-MeasureWins,Whole club,behind the sheet,opens,VS1-SwitchView,
+PU8e-MeasureWins#9,PU8e-MeasureWins,All players,behind the sheet,opens,D4-Players,
+PU8e-MeasureWins#10,PU8e-MeasureWins,Pathway,behind the sheet,opens,DP1-Pathway,
+PU8e-MeasureWins#11,PU8e-MeasureWins,Playing across,behind the sheet,opens,PU1-PlayingUp,
+PU8e-MeasureWins#12,PU8e-MeasureWins,Fair game time,behind the sheet,opens,D4-Players,
+PU8e-MeasureWins#13,PU8e-MeasureWins,Plan a trial,behind the sheet,opens,PU3-TrialPlan,
+PU8e-MeasureWins#14,PU8e-MeasureWins,Compare,behind the sheet,opens,PU4-Compare,
+PU8e-MeasureWins#15,PU8e-MeasureWins,Not now,behind the sheet,says,Noted with your reason. Looked at again in 8 weeks. Mia and her family are not told.,
+PU8e-MeasureWins#16,PU8e-MeasureWins,Duels won Film,behind the sheet,opens,PU8a-MeasureFilm,
+PU8e-MeasureWins#17,PU8e-MeasureWins,Forward passes Film,behind the sheet,opens,PU8d-MeasurePasses,
+PU8e-MeasureWins#18,PU8e-MeasureWins,Wins of the ball Film,behind the sheet,opens,PU8e-MeasureWins,
+PU8e-MeasureWins#19,PU8e-MeasureWins,All 9 measures,behind the sheet,opens,PU4-Compare,
+PU8e-MeasureWins#20,PU8e-MeasureWins,"Steady growth, 4 cm this year. No pain flags. Measured by hand",behind the sheet,opens,PU8k-MeasureGrowth,
+PU8e-MeasureWins#21,PU8e-MeasureWins,Top speed Vest,behind the sheet,opens,PU8b-MeasureVest,
+PU8e-MeasureWins#22,PU8e-MeasureWins,10 m sprint Timed test,behind the sheet,opens,PU8g-MeasureTest,
+PU8e-MeasureWins#23,PU8e-MeasureWins,Distance Vest,behind the sheet,opens,PU8f-MeasureDistance,
+PU8e-MeasureWins#24,PU8e-MeasureWins,All 9 measures,behind the sheet,opens,PU4-Compare,
+PU8e-MeasureWins#25,PU8e-MeasureWins,Sam: “Asks for the ball after a mistake. Takes feedback.”,behind the sheet,opens,PU8c-MeasureSaid,
+PU8e-MeasureWins#26,PU8e-MeasureWins,Mia: “I want harder games.”,behind the sheet,opens,PU8c-MeasureSaid,
+PU8e-MeasureWins#27,PU8e-MeasureWins,"Mia: “Can’t wait.” Picked Ava, Bella, Dani and Frankie.",behind the sheet,opens,PU8h-MeasureSettling,
+PU8e-MeasureWins#28,PU8e-MeasureWins,"Load, week by week: open the data",behind the sheet,opens,PU8j-MeasureLoad,
+PU8e-MeasureWins#29,PU8e-MeasureWins,Meg: “Yes. We are short in midfield.”,behind the sheet,opens,PU8i-MeasurePlace,
+PU8e-MeasureWins#30,PU8e-MeasureWins,Close,own,opens,PU2-PlayerReadiness,works
+PU8e-MeasureWins#31,PU8e-MeasureWins,Saturday 7,own,says,Saturday 7.,works
+PU8e-MeasureWins#32,PU8e-MeasureWins,All 58,own,says,All 58.,works
+PU8e-MeasureWins#33,PU8e-MeasureWins,In their half 31,own,says,In their half 31.,works
+PU8e-MeasureWins#34,PU8e-MeasureWins,0:06 9′ · In their half v Ironbark,own,says,"Playing: minute 9, v Ironbark. In their half.",works
+PU8e-MeasureWins#35,PU8e-MeasureWins,0:06 22′ · In their half v Ironbark,own,says,"Playing: minute 22, v Ironbark. In their half.",works
+PU8e-MeasureWins#36,PU8e-MeasureWins,0:06 35′ · Own half v Ironbark,own,says,"Playing: minute 35, v Ironbark. Own half.",works
+PU8e-MeasureWins#37,PU8e-MeasureWins,0:06 51′ · In their half v Ironbark,own,says,"Playing: minute 51, v Ironbark. In their half.",works
+PU8e-MeasureWins#38,PU8e-MeasureWins,Play all 7 from Saturday,own,says,"Playing the clips from Saturday, one after another.",works
+PU8e-MeasureWins#39,PU8e-MeasureWins,This one is wrong,own,says,Pick the clip. It goes to Sam’s To check list and the count is redone.,works
+PU8e-MeasureWins#40,PU8e-MeasureWins,Before: Forward passes,own,opens,PU8d-MeasurePasses,works
+PU8e-MeasureWins#41,PU8e-MeasureWins,Growth,own,opens,PU8k-MeasureGrowth,works
+PU8k-MeasureGrowth#1,PU8k-MeasureGrowth,Club,behind the sheet,opens,D1-ClubOverview,
+PU8k-MeasureGrowth#2,PU8k-MeasureGrowth,Teams,behind the sheet,opens,D2-Teams,
+PU8k-MeasureGrowth#3,PU8k-MeasureGrowth,Coaches,behind the sheet,opens,D3-Coaches,
+PU8k-MeasureGrowth#4,PU8k-MeasureGrowth,Players,behind the sheet,opens,D4-Players,
+PU8k-MeasureGrowth#5,PU8k-MeasureGrowth,Safeguarding,behind the sheet,opens,D5-Safeguarding,
+PU8k-MeasureGrowth#6,PU8k-MeasureGrowth,Reports,behind the sheet,opens,D6-BoardReport,
+PU8k-MeasureGrowth#7,PU8k-MeasureGrowth,Ask Clean Sheet,behind the sheet,opens,ASKd4-PanelFirst,
+PU8k-MeasureGrowth#8,PU8k-MeasureGrowth,Whole club,behind the sheet,opens,VS1-SwitchView,
+PU8k-MeasureGrowth#9,PU8k-MeasureGrowth,All players,behind the sheet,opens,D4-Players,
+PU8k-MeasureGrowth#10,PU8k-MeasureGrowth,Pathway,behind the sheet,opens,DP1-Pathway,
+PU8k-MeasureGrowth#11,PU8k-MeasureGrowth,Playing across,behind the sheet,opens,PU1-PlayingUp,
+PU8k-MeasureGrowth#12,PU8k-MeasureGrowth,Fair game time,behind the sheet,opens,D4-Players,
+PU8k-MeasureGrowth#13,PU8k-MeasureGrowth,Plan a trial,behind the sheet,opens,PU3-TrialPlan,
+PU8k-MeasureGrowth#14,PU8k-MeasureGrowth,Compare,behind the sheet,opens,PU4-Compare,
+PU8k-MeasureGrowth#15,PU8k-MeasureGrowth,Not now,behind the sheet,says,Noted with your reason. Looked at again in 8 weeks. Mia and her family are not told.,
+PU8k-MeasureGrowth#16,PU8k-MeasureGrowth,Duels won Film,behind the sheet,opens,PU8a-MeasureFilm,
+PU8k-MeasureGrowth#17,PU8k-MeasureGrowth,Forward passes Film,behind the sheet,opens,PU8d-MeasurePasses,
+PU8k-MeasureGrowth#18,PU8k-MeasureGrowth,Wins of the ball Film,behind the sheet,opens,PU8e-MeasureWins,
+PU8k-MeasureGrowth#19,PU8k-MeasureGrowth,All 9 measures,behind the sheet,opens,PU4-Compare,
+PU8k-MeasureGrowth#20,PU8k-MeasureGrowth,"Steady growth, 4 cm this year. No pain flags. Measured by hand",behind the sheet,opens,PU8k-MeasureGrowth,
+PU8k-MeasureGrowth#21,PU8k-MeasureGrowth,Top speed Vest,behind the sheet,opens,PU8b-MeasureVest,
+PU8k-MeasureGrowth#22,PU8k-MeasureGrowth,10 m sprint Timed test,behind the sheet,opens,PU8g-MeasureTest,
+PU8k-MeasureGrowth#23,PU8k-MeasureGrowth,Distance Vest,behind the sheet,opens,PU8f-MeasureDistance,
+PU8k-MeasureGrowth#24,PU8k-MeasureGrowth,All 9 measures,behind the sheet,opens,PU4-Compare,
+PU8k-MeasureGrowth#25,PU8k-MeasureGrowth,Sam: “Asks for the ball after a mistake. Takes feedback.”,behind the sheet,opens,PU8c-MeasureSaid,
+PU8k-MeasureGrowth#26,PU8k-MeasureGrowth,Mia: “I want harder games.”,behind the sheet,opens,PU8c-MeasureSaid,
+PU8k-MeasureGrowth#27,PU8k-MeasureGrowth,"Mia: “Can’t wait.” Picked Ava, Bella, Dani and Frankie.",behind the sheet,opens,PU8h-MeasureSettling,
+PU8k-MeasureGrowth#28,PU8k-MeasureGrowth,"Load, week by week: open the data",behind the sheet,opens,PU8j-MeasureLoad,
+PU8k-MeasureGrowth#29,PU8k-MeasureGrowth,Meg: “Yes. We are short in midfield.”,behind the sheet,opens,PU8i-MeasurePlace,
+PU8k-MeasureGrowth#30,PU8k-MeasureGrowth,Close,own,opens,PU2-PlayerReadiness,works
+PU8k-MeasureGrowth#31,PU8k-MeasureGrowth,Download all,own,says,"A file with every row: date, who measured, both readings.",works
+PU8k-MeasureGrowth#32,PU8k-MeasureGrowth,Before: Wins of the ball,own,opens,PU8e-MeasureWins,works
+PU8k-MeasureGrowth#33,PU8k-MeasureGrowth,Top speed,own,opens,PU8b-MeasureVest,works
+PU8b-MeasureVest#1,PU8b-MeasureVest,Club,behind the sheet,opens,D1-ClubOverview,
+PU8b-MeasureVest#2,PU8b-MeasureVest,Teams,behind the sheet,opens,D2-Teams,
+PU8b-MeasureVest#3,PU8b-MeasureVest,Coaches,behind the sheet,opens,D3-Coaches,
+PU8b-MeasureVest#4,PU8b-MeasureVest,Players,behind the sheet,opens,D4-Players,
+PU8b-MeasureVest#5,PU8b-MeasureVest,Safeguarding,behind the sheet,opens,D5-Safeguarding,
+PU8b-MeasureVest#6,PU8b-MeasureVest,Reports,behind the sheet,opens,D6-BoardReport,
+PU8b-MeasureVest#7,PU8b-MeasureVest,Ask Clean Sheet,behind the sheet,opens,ASKd4-PanelFirst,
+PU8b-MeasureVest#8,PU8b-MeasureVest,Whole club,behind the sheet,opens,VS1-SwitchView,
+PU8b-MeasureVest#9,PU8b-MeasureVest,All players,behind the sheet,opens,D4-Players,
+PU8b-MeasureVest#10,PU8b-MeasureVest,Pathway,behind the sheet,opens,DP1-Pathway,
+PU8b-MeasureVest#11,PU8b-MeasureVest,Playing across,behind the sheet,opens,PU1-PlayingUp,
+PU8b-MeasureVest#12,PU8b-MeasureVest,Fair game time,behind the sheet,opens,D4-Players,
+PU8b-MeasureVest#13,PU8b-MeasureVest,Plan a trial,behind the sheet,opens,PU3-TrialPlan,
+PU8b-MeasureVest#14,PU8b-MeasureVest,Compare,behind the sheet,opens,PU4-Compare,
+PU8b-MeasureVest#15,PU8b-MeasureVest,Not now,behind the sheet,says,Noted with your reason. Looked at again in 8 weeks. Mia and her family are not told.,
+PU8b-MeasureVest#16,PU8b-MeasureVest,Duels won Film,behind the sheet,opens,PU8a-MeasureFilm,
+PU8b-MeasureVest#17,PU8b-MeasureVest,Forward passes Film,behind the sheet,opens,PU8d-MeasurePasses,
+PU8b-MeasureVest#18,PU8b-MeasureVest,Wins of the ball Film,behind the sheet,opens,PU8e-MeasureWins,
+PU8b-MeasureVest#19,PU8b-MeasureVest,All 9 measures,behind the sheet,opens,PU4-Compare,
+PU8b-MeasureVest#20,PU8b-MeasureVest,"Steady growth, 4 cm this year. No pain flags. Measured by hand",behind the sheet,opens,PU8k-MeasureGrowth,
+PU8b-MeasureVest#21,PU8b-MeasureVest,Top speed Vest,behind the sheet,opens,PU8b-MeasureVest,
+PU8b-MeasureVest#22,PU8b-MeasureVest,10 m sprint Timed test,behind the sheet,opens,PU8g-MeasureTest,
+PU8b-MeasureVest#23,PU8b-MeasureVest,Distance Vest,behind the sheet,opens,PU8f-MeasureDistance,
+PU8b-MeasureVest#24,PU8b-MeasureVest,All 9 measures,behind the sheet,opens,PU4-Compare,
+PU8b-MeasureVest#25,PU8b-MeasureVest,Sam: “Asks for the ball after a mistake. Takes feedback.”,behind the sheet,opens,PU8c-MeasureSaid,
+PU8b-MeasureVest#26,PU8b-MeasureVest,Mia: “I want harder games.”,behind the sheet,opens,PU8c-MeasureSaid,
+PU8b-MeasureVest#27,PU8b-MeasureVest,"Mia: “Can’t wait.” Picked Ava, Bella, Dani and Frankie.",behind the sheet,opens,PU8h-MeasureSettling,
+PU8b-MeasureVest#28,PU8b-MeasureVest,"Load, week by week: open the data",behind the sheet,opens,PU8j-MeasureLoad,
+PU8b-MeasureVest#29,PU8b-MeasureVest,Meg: “Yes. We are short in midfield.”,behind the sheet,opens,PU8i-MeasurePlace,
+PU8b-MeasureVest#30,PU8b-MeasureVest,Close,own,opens,PU2-PlayerReadiness,works
+PU8b-MeasureVest#31,PU8b-MeasureVest,Download all,own,says,"A file with every row: date, session, value, vest, signal.",works
+PU8b-MeasureVest#32,PU8b-MeasureVest,Before: Growth,own,opens,PU8k-MeasureGrowth,works
+PU8b-MeasureVest#33,PU8b-MeasureVest,10 m sprint,own,opens,PU8g-MeasureTest,works
+PU8g-MeasureTest#1,PU8g-MeasureTest,Club,behind the sheet,opens,D1-ClubOverview,
+PU8g-MeasureTest#2,PU8g-MeasureTest,Teams,behind the sheet,opens,D2-Teams,
+PU8g-MeasureTest#3,PU8g-MeasureTest,Coaches,behind the sheet,opens,D3-Coaches,
+PU8g-MeasureTest#4,PU8g-MeasureTest,Players,behind the sheet,opens,D4-Players,
+PU8g-MeasureTest#5,PU8g-MeasureTest,Safeguarding,behind the sheet,opens,D5-Safeguarding,
+PU8g-MeasureTest#6,PU8g-MeasureTest,Reports,behind the sheet,opens,D6-BoardReport,
+PU8g-MeasureTest#7,PU8g-MeasureTest,Ask Clean Sheet,behind the sheet,opens,ASKd4-PanelFirst,
+PU8g-MeasureTest#8,PU8g-MeasureTest,Whole club,behind the sheet,opens,VS1-SwitchView,
+PU8g-MeasureTest#9,PU8g-MeasureTest,All players,behind the sheet,opens,D4-Players,
+PU8g-MeasureTest#10,PU8g-MeasureTest,Pathway,behind the sheet,opens,DP1-Pathway,
+PU8g-MeasureTest#11,PU8g-MeasureTest,Playing across,behind the sheet,opens,PU1-PlayingUp,
+PU8g-MeasureTest#12,PU8g-MeasureTest,Fair game time,behind the sheet,opens,D4-Players,
+PU8g-MeasureTest#13,PU8g-MeasureTest,Plan a trial,behind the sheet,opens,PU3-TrialPlan,
+PU8g-MeasureTest#14,PU8g-MeasureTest,Compare,behind the sheet,opens,PU4-Compare,
+PU8g-MeasureTest#15,PU8g-MeasureTest,Not now,behind the sheet,says,Noted with your reason. Looked at again in 8 weeks. Mia and her family are not told.,
+PU8g-MeasureTest#16,PU8g-MeasureTest,Duels won Film,behind the sheet,opens,PU8a-MeasureFilm,
+PU8g-MeasureTest#17,PU8g-MeasureTest,Forward passes Film,behind the sheet,opens,PU8d-MeasurePasses,
+PU8g-MeasureTest#18,PU8g-MeasureTest,Wins of the ball Film,behind the sheet,opens,PU8e-MeasureWins,
+PU8g-MeasureTest#19,PU8g-MeasureTest,All 9 measures,behind the sheet,opens,PU4-Compare,
+PU8g-MeasureTest#20,PU8g-MeasureTest,"Steady growth, 4 cm this year. No pain flags. Measured by hand",behind the sheet,opens,PU8k-MeasureGrowth,
+PU8g-MeasureTest#21,PU8g-MeasureTest,Top speed Vest,behind the sheet,opens,PU8b-MeasureVest,
+PU8g-MeasureTest#22,PU8g-MeasureTest,10 m sprint Timed test,behind the sheet,opens,PU8g-MeasureTest,
+PU8g-MeasureTest#23,PU8g-MeasureTest,Distance Vest,behind the sheet,opens,PU8f-MeasureDistance,
+PU8g-MeasureTest#24,PU8g-MeasureTest,All 9 measures,behind the sheet,opens,PU4-Compare,
+PU8g-MeasureTest#25,PU8g-MeasureTest,Sam: “Asks for the ball after a mistake. Takes feedback.”,behind the sheet,opens,PU8c-MeasureSaid,
+PU8g-MeasureTest#26,PU8g-MeasureTest,Mia: “I want harder games.”,behind the sheet,opens,PU8c-MeasureSaid,
+PU8g-MeasureTest#27,PU8g-MeasureTest,"Mia: “Can’t wait.” Picked Ava, Bella, Dani and Frankie.",behind the sheet,opens,PU8h-MeasureSettling,
+PU8g-MeasureTest#28,PU8g-MeasureTest,"Load, week by week: open the data",behind the sheet,opens,PU8j-MeasureLoad,
+PU8g-MeasureTest#29,PU8g-MeasureTest,Meg: “Yes. We are short in midfield.”,behind the sheet,opens,PU8i-MeasurePlace,
+PU8g-MeasureTest#30,PU8g-MeasureTest,Close,own,opens,PU2-PlayerReadiness,works
+PU8g-MeasureTest#31,PU8g-MeasureTest,Watch the 14 May test,own,says,"Playing both goes from 14 May, filmed on the tablet.",works
+PU8g-MeasureTest#32,PU8g-MeasureTest,Before: Top speed,own,opens,PU8b-MeasureVest,works
+PU8g-MeasureTest#33,PU8g-MeasureTest,Distance,own,opens,PU8f-MeasureDistance,works
+PU8f-MeasureDistance#1,PU8f-MeasureDistance,Club,behind the sheet,opens,D1-ClubOverview,
+PU8f-MeasureDistance#2,PU8f-MeasureDistance,Teams,behind the sheet,opens,D2-Teams,
+PU8f-MeasureDistance#3,PU8f-MeasureDistance,Coaches,behind the sheet,opens,D3-Coaches,
+PU8f-MeasureDistance#4,PU8f-MeasureDistance,Players,behind the sheet,opens,D4-Players,
+PU8f-MeasureDistance#5,PU8f-MeasureDistance,Safeguarding,behind the sheet,opens,D5-Safeguarding,
+PU8f-MeasureDistance#6,PU8f-MeasureDistance,Reports,behind the sheet,opens,D6-BoardReport,
+PU8f-MeasureDistance#7,PU8f-MeasureDistance,Ask Clean Sheet,behind the sheet,opens,ASKd4-PanelFirst,
+PU8f-MeasureDistance#8,PU8f-MeasureDistance,Whole club,behind the sheet,opens,VS1-SwitchView,
+PU8f-MeasureDistance#9,PU8f-MeasureDistance,All players,behind the sheet,opens,D4-Players,
+PU8f-MeasureDistance#10,PU8f-MeasureDistance,Pathway,behind the sheet,opens,DP1-Pathway,
+PU8f-MeasureDistance#11,PU8f-MeasureDistance,Playing across,behind the sheet,opens,PU1-PlayingUp,
+PU8f-MeasureDistance#12,PU8f-MeasureDistance,Fair game time,behind the sheet,opens,D4-Players,
+PU8f-MeasureDistance#13,PU8f-MeasureDistance,Plan a trial,behind the sheet,opens,PU3-TrialPlan,
+PU8f-MeasureDistance#14,PU8f-MeasureDistance,Compare,behind the sheet,opens,PU4-Compare,
+PU8f-MeasureDistance#15,PU8f-MeasureDistance,Not now,behind the sheet,says,Noted with your reason. Looked at again in 8 weeks. Mia and her family are not told.,
+PU8f-MeasureDistance#16,PU8f-MeasureDistance,Duels won Film,behind the sheet,opens,PU8a-MeasureFilm,
+PU8f-MeasureDistance#17,PU8f-MeasureDistance,Forward passes Film,behind the sheet,opens,PU8d-MeasurePasses,
+PU8f-MeasureDistance#18,PU8f-MeasureDistance,Wins of the ball Film,behind the sheet,opens,PU8e-MeasureWins,
+PU8f-MeasureDistance#19,PU8f-MeasureDistance,All 9 measures,behind the sheet,opens,PU4-Compare,
+PU8f-MeasureDistance#20,PU8f-MeasureDistance,"Steady growth, 4 cm this year. No pain flags. Measured by hand",behind the sheet,opens,PU8k-MeasureGrowth,
+PU8f-MeasureDistance#21,PU8f-MeasureDistance,Top speed Vest,behind the sheet,opens,PU8b-MeasureVest,
+PU8f-MeasureDistance#22,PU8f-MeasureDistance,10 m sprint Timed test,behind the sheet,opens,PU8g-MeasureTest,
+PU8f-MeasureDistance#23,PU8f-MeasureDistance,Distance Vest,behind the sheet,opens,PU8f-MeasureDistance,
+PU8f-MeasureDistance#24,PU8f-MeasureDistance,All 9 measures,behind the sheet,opens,PU4-Compare,
+PU8f-MeasureDistance#25,PU8f-MeasureDistance,Sam: “Asks for the ball after a mistake. Takes feedback.”,behind the sheet,opens,PU8c-MeasureSaid,
+PU8f-MeasureDistance#26,PU8f-MeasureDistance,Mia: “I want harder games.”,behind the sheet,opens,PU8c-MeasureSaid,
+PU8f-MeasureDistance#27,PU8f-MeasureDistance,"Mia: “Can’t wait.” Picked Ava, Bella, Dani and Frankie.",behind the sheet,opens,PU8h-MeasureSettling,
+PU8f-MeasureDistance#28,PU8f-MeasureDistance,"Load, week by week: open the data",behind the sheet,opens,PU8j-MeasureLoad,
+PU8f-MeasureDistance#29,PU8f-MeasureDistance,Meg: “Yes. We are short in midfield.”,behind the sheet,opens,PU8i-MeasurePlace,
+PU8f-MeasureDistance#30,PU8f-MeasureDistance,Close,own,opens,PU2-PlayerReadiness,works
+PU8f-MeasureDistance#31,PU8f-MeasureDistance,Download all,own,says,"A file with every row: date, game, distance, minutes, signal.",works
+PU8f-MeasureDistance#32,PU8f-MeasureDistance,Before: 10 m sprint,own,opens,PU8g-MeasureTest,works
+PU8f-MeasureDistance#33,PU8f-MeasureDistance,Head,own,opens,PU8c-MeasureSaid,works
+PU8c-MeasureSaid#1,PU8c-MeasureSaid,Club,behind the sheet,opens,D1-ClubOverview,
+PU8c-MeasureSaid#2,PU8c-MeasureSaid,Teams,behind the sheet,opens,D2-Teams,
+PU8c-MeasureSaid#3,PU8c-MeasureSaid,Coaches,behind the sheet,opens,D3-Coaches,
+PU8c-MeasureSaid#4,PU8c-MeasureSaid,Players,behind the sheet,opens,D4-Players,
+PU8c-MeasureSaid#5,PU8c-MeasureSaid,Safeguarding,behind the sheet,opens,D5-Safeguarding,
+PU8c-MeasureSaid#6,PU8c-MeasureSaid,Reports,behind the sheet,opens,D6-BoardReport,
+PU8c-MeasureSaid#7,PU8c-MeasureSaid,Ask Clean Sheet,behind the sheet,opens,ASKd4-PanelFirst,
+PU8c-MeasureSaid#8,PU8c-MeasureSaid,Whole club,behind the sheet,opens,VS1-SwitchView,
+PU8c-MeasureSaid#9,PU8c-MeasureSaid,All players,behind the sheet,opens,D4-Players,
+PU8c-MeasureSaid#10,PU8c-MeasureSaid,Pathway,behind the sheet,opens,DP1-Pathway,
+PU8c-MeasureSaid#11,PU8c-MeasureSaid,Playing across,behind the sheet,opens,PU1-PlayingUp,
+PU8c-MeasureSaid#12,PU8c-MeasureSaid,Fair game time,behind the sheet,opens,D4-Players,
+PU8c-MeasureSaid#13,PU8c-MeasureSaid,Plan a trial,behind the sheet,opens,PU3-TrialPlan,
+PU8c-MeasureSaid#14,PU8c-MeasureSaid,Compare,behind the sheet,opens,PU4-Compare,
+PU8c-MeasureSaid#15,PU8c-MeasureSaid,Not now,behind the sheet,says,Noted with your reason. Looked at again in 8 weeks. Mia and her family are not told.,
+PU8c-MeasureSaid#16,PU8c-MeasureSaid,Duels won Film,behind the sheet,opens,PU8a-MeasureFilm,
+PU8c-MeasureSaid#17,PU8c-MeasureSaid,Forward passes Film,behind the sheet,opens,PU8d-MeasurePasses,
+PU8c-MeasureSaid#18,PU8c-MeasureSaid,Wins of the ball Film,behind the sheet,opens,PU8e-MeasureWins,
+PU8c-MeasureSaid#19,PU8c-MeasureSaid,All 9 measures,behind the sheet,opens,PU4-Compare,
+PU8c-MeasureSaid#20,PU8c-MeasureSaid,"Steady growth, 4 cm this year. No pain flags. Measured by hand",behind the sheet,opens,PU8k-MeasureGrowth,
+PU8c-MeasureSaid#21,PU8c-MeasureSaid,Top speed Vest,behind the sheet,opens,PU8b-MeasureVest,
+PU8c-MeasureSaid#22,PU8c-MeasureSaid,10 m sprint Timed test,behind the sheet,opens,PU8g-MeasureTest,
+PU8c-MeasureSaid#23,PU8c-MeasureSaid,Distance Vest,behind the sheet,opens,PU8f-MeasureDistance,
+PU8c-MeasureSaid#24,PU8c-MeasureSaid,All 9 measures,behind the sheet,opens,PU4-Compare,
+PU8c-MeasureSaid#25,PU8c-MeasureSaid,Sam: “Asks for the ball after a mistake. Takes feedback.”,behind the sheet,opens,PU8c-MeasureSaid,
+PU8c-MeasureSaid#26,PU8c-MeasureSaid,Mia: “I want harder games.”,behind the sheet,opens,PU8c-MeasureSaid,
+PU8c-MeasureSaid#27,PU8c-MeasureSaid,"Mia: “Can’t wait.” Picked Ava, Bella, Dani and Frankie.",behind the sheet,opens,PU8h-MeasureSettling,
+PU8c-MeasureSaid#28,PU8c-MeasureSaid,"Load, week by week: open the data",behind the sheet,opens,PU8j-MeasureLoad,
+PU8c-MeasureSaid#29,PU8c-MeasureSaid,Meg: “Yes. We are short in midfield.”,behind the sheet,opens,PU8i-MeasurePlace,
+PU8c-MeasureSaid#30,PU8c-MeasureSaid,Close,own,opens,PU2-PlayerReadiness,works
+PU8c-MeasureSaid#31,PU8c-MeasureSaid,Before: Distance,own,opens,PU8f-MeasureDistance,works
+PU8c-MeasureSaid#32,PU8c-MeasureSaid,Settling in,own,opens,PU8h-MeasureSettling,works
+PU8h-MeasureSettling#1,PU8h-MeasureSettling,Club,behind the sheet,opens,D1-ClubOverview,
+PU8h-MeasureSettling#2,PU8h-MeasureSettling,Teams,behind the sheet,opens,D2-Teams,
+PU8h-MeasureSettling#3,PU8h-MeasureSettling,Coaches,behind the sheet,opens,D3-Coaches,
+PU8h-MeasureSettling#4,PU8h-MeasureSettling,Players,behind the sheet,opens,D4-Players,
+PU8h-MeasureSettling#5,PU8h-MeasureSettling,Safeguarding,behind the sheet,opens,D5-Safeguarding,
+PU8h-MeasureSettling#6,PU8h-MeasureSettling,Reports,behind the sheet,opens,D6-BoardReport,
+PU8h-MeasureSettling#7,PU8h-MeasureSettling,Ask Clean Sheet,behind the sheet,opens,ASKd4-PanelFirst,
+PU8h-MeasureSettling#8,PU8h-MeasureSettling,Whole club,behind the sheet,opens,VS1-SwitchView,
+PU8h-MeasureSettling#9,PU8h-MeasureSettling,All players,behind the sheet,opens,D4-Players,
+PU8h-MeasureSettling#10,PU8h-MeasureSettling,Pathway,behind the sheet,opens,DP1-Pathway,
+PU8h-MeasureSettling#11,PU8h-MeasureSettling,Playing across,behind the sheet,opens,PU1-PlayingUp,
+PU8h-MeasureSettling#12,PU8h-MeasureSettling,Fair game time,behind the sheet,opens,D4-Players,
+PU8h-MeasureSettling#13,PU8h-MeasureSettling,Plan a trial,behind the sheet,opens,PU3-TrialPlan,
+PU8h-MeasureSettling#14,PU8h-MeasureSettling,Compare,behind the sheet,opens,PU4-Compare,
+PU8h-MeasureSettling#15,PU8h-MeasureSettling,Not now,behind the sheet,says,Noted with your reason. Looked at again in 8 weeks. Mia and her family are not told.,
+PU8h-MeasureSettling#16,PU8h-MeasureSettling,Duels won Film,behind the sheet,opens,PU8a-MeasureFilm,
+PU8h-MeasureSettling#17,PU8h-MeasureSettling,Forward passes Film,behind the sheet,opens,PU8d-MeasurePasses,
+PU8h-MeasureSettling#18,PU8h-MeasureSettling,Wins of the ball Film,behind the sheet,opens,PU8e-MeasureWins,
+PU8h-MeasureSettling#19,PU8h-MeasureSettling,All 9 measures,behind the sheet,opens,PU4-Compare,
+PU8h-MeasureSettling#20,PU8h-MeasureSettling,"Steady growth, 4 cm this year. No pain flags. Measured by hand",behind the sheet,opens,PU8k-MeasureGrowth,
+PU8h-MeasureSettling#21,PU8h-MeasureSettling,Top speed Vest,behind the sheet,opens,PU8b-MeasureVest,
+PU8h-MeasureSettling#22,PU8h-MeasureSettling,10 m sprint Timed test,behind the sheet,opens,PU8g-MeasureTest,
+PU8h-MeasureSettling#23,PU8h-MeasureSettling,Distance Vest,behind the sheet,opens,PU8f-MeasureDistance,
+PU8h-MeasureSettling#24,PU8h-MeasureSettling,All 9 measures,behind the sheet,opens,PU4-Compare,
+PU8h-MeasureSettling#25,PU8h-MeasureSettling,Sam: “Asks for the ball after a mistake. Takes feedback.”,behind the sheet,opens,PU8c-MeasureSaid,
+PU8h-MeasureSettling#26,PU8h-MeasureSettling,Mia: “I want harder games.”,behind the sheet,opens,PU8c-MeasureSaid,
+PU8h-MeasureSettling#27,PU8h-MeasureSettling,"Mia: “Can’t wait.” Picked Ava, Bella, Dani and Frankie.",behind the sheet,opens,PU8h-MeasureSettling,
+PU8h-MeasureSettling#28,PU8h-MeasureSettling,"Load, week by week: open the data",behind the sheet,opens,PU8j-MeasureLoad,
+PU8h-MeasureSettling#29,PU8h-MeasureSettling,Meg: “Yes. We are short in midfield.”,behind the sheet,opens,PU8i-MeasurePlace,
+PU8h-MeasureSettling#30,PU8h-MeasureSettling,Close,own,opens,PU2-PlayerReadiness,works
+PU8h-MeasureSettling#31,PU8h-MeasureSettling,Before: Head,own,opens,PU8c-MeasureSaid,works
+PU8h-MeasureSettling#32,PU8h-MeasureSettling,Load,own,opens,PU8j-MeasureLoad,works
+PU8j-MeasureLoad#1,PU8j-MeasureLoad,Club,behind the sheet,opens,D1-ClubOverview,
+PU8j-MeasureLoad#2,PU8j-MeasureLoad,Teams,behind the sheet,opens,D2-Teams,
+PU8j-MeasureLoad#3,PU8j-MeasureLoad,Coaches,behind the sheet,opens,D3-Coaches,
+PU8j-MeasureLoad#4,PU8j-MeasureLoad,Players,behind the sheet,opens,D4-Players,
+PU8j-MeasureLoad#5,PU8j-MeasureLoad,Safeguarding,behind the sheet,opens,D5-Safeguarding,
+PU8j-MeasureLoad#6,PU8j-MeasureLoad,Reports,behind the sheet,opens,D6-BoardReport,
+PU8j-MeasureLoad#7,PU8j-MeasureLoad,Ask Clean Sheet,behind the sheet,opens,ASKd4-PanelFirst,
+PU8j-MeasureLoad#8,PU8j-MeasureLoad,Whole club,behind the sheet,opens,VS1-SwitchView,
+PU8j-MeasureLoad#9,PU8j-MeasureLoad,All players,behind the sheet,opens,D4-Players,
+PU8j-MeasureLoad#10,PU8j-MeasureLoad,Pathway,behind the sheet,opens,DP1-Pathway,
+PU8j-MeasureLoad#11,PU8j-MeasureLoad,Playing across,behind the sheet,opens,PU1-PlayingUp,
+PU8j-MeasureLoad#12,PU8j-MeasureLoad,Fair game time,behind the sheet,opens,D4-Players,
+PU8j-MeasureLoad#13,PU8j-MeasureLoad,Plan a trial,behind the sheet,opens,PU3-TrialPlan,
+PU8j-MeasureLoad#14,PU8j-MeasureLoad,Compare,behind the sheet,opens,PU4-Compare,
+PU8j-MeasureLoad#15,PU8j-MeasureLoad,Not now,behind the sheet,says,Noted with your reason. Looked at again in 8 weeks. Mia and her family are not told.,
+PU8j-MeasureLoad#16,PU8j-MeasureLoad,Duels won Film,behind the sheet,opens,PU8a-MeasureFilm,
+PU8j-MeasureLoad#17,PU8j-MeasureLoad,Forward passes Film,behind the sheet,opens,PU8d-MeasurePasses,
+PU8j-MeasureLoad#18,PU8j-MeasureLoad,Wins of the ball Film,behind the sheet,opens,PU8e-MeasureWins,
+PU8j-MeasureLoad#19,PU8j-MeasureLoad,All 9 measures,behind the sheet,opens,PU4-Compare,
+PU8j-MeasureLoad#20,PU8j-MeasureLoad,"Steady growth, 4 cm this year. No pain flags. Measured by hand",behind the sheet,opens,PU8k-MeasureGrowth,
+PU8j-MeasureLoad#21,PU8j-MeasureLoad,Top speed Vest,behind the sheet,opens,PU8b-MeasureVest,
+PU8j-MeasureLoad#22,PU8j-MeasureLoad,10 m sprint Timed test,behind the sheet,opens,PU8g-MeasureTest,
+PU8j-MeasureLoad#23,PU8j-MeasureLoad,Distance Vest,behind the sheet,opens,PU8f-MeasureDistance,
+PU8j-MeasureLoad#24,PU8j-MeasureLoad,All 9 measures,behind the sheet,opens,PU4-Compare,
+PU8j-MeasureLoad#25,PU8j-MeasureLoad,Sam: “Asks for the ball after a mistake. Takes feedback.”,behind the sheet,opens,PU8c-MeasureSaid,
+PU8j-MeasureLoad#26,PU8j-MeasureLoad,Mia: “I want harder games.”,behind the sheet,opens,PU8c-MeasureSaid,
+PU8j-MeasureLoad#27,PU8j-MeasureLoad,"Mia: “Can’t wait.” Picked Ava, Bella, Dani and Frankie.",behind the sheet,opens,PU8h-MeasureSettling,
+PU8j-MeasureLoad#28,PU8j-MeasureLoad,"Load, week by week: open the data",behind the sheet,opens,PU8j-MeasureLoad,
+PU8j-MeasureLoad#29,PU8j-MeasureLoad,Meg: “Yes. We are short in midfield.”,behind the sheet,opens,PU8i-MeasurePlace,
+PU8j-MeasureLoad#30,PU8j-MeasureLoad,Close,own,opens,PU2-PlayerReadiness,works
+PU8j-MeasureLoad#31,PU8j-MeasureLoad,Download all,own,says,"A file with every row: week, sessions, minutes, check-in, other sport.",works
+PU8j-MeasureLoad#32,PU8j-MeasureLoad,Before: Settling in,own,opens,PU8h-MeasureSettling,works
+PU8j-MeasureLoad#33,PU8j-MeasureLoad,Where she would go,own,opens,PU8i-MeasurePlace,works
+PU8i-MeasurePlace#1,PU8i-MeasurePlace,Club,behind the sheet,opens,D1-ClubOverview,
+PU8i-MeasurePlace#2,PU8i-MeasurePlace,Teams,behind the sheet,opens,D2-Teams,
+PU8i-MeasurePlace#3,PU8i-MeasurePlace,Coaches,behind the sheet,opens,D3-Coaches,
+PU8i-MeasurePlace#4,PU8i-MeasurePlace,Players,behind the sheet,opens,D4-Players,
+PU8i-MeasurePlace#5,PU8i-MeasurePlace,Safeguarding,behind the sheet,opens,D5-Safeguarding,
+PU8i-MeasurePlace#6,PU8i-MeasurePlace,Reports,behind the sheet,opens,D6-BoardReport,
+PU8i-MeasurePlace#7,PU8i-MeasurePlace,Ask Clean Sheet,behind the sheet,opens,ASKd4-PanelFirst,
+PU8i-MeasurePlace#8,PU8i-MeasurePlace,Whole club,behind the sheet,opens,VS1-SwitchView,
+PU8i-MeasurePlace#9,PU8i-MeasurePlace,All players,behind the sheet,opens,D4-Players,
+PU8i-MeasurePlace#10,PU8i-MeasurePlace,Pathway,behind the sheet,opens,DP1-Pathway,
+PU8i-MeasurePlace#11,PU8i-MeasurePlace,Playing across,behind the sheet,opens,PU1-PlayingUp,
+PU8i-MeasurePlace#12,PU8i-MeasurePlace,Fair game time,behind the sheet,opens,D4-Players,
+PU8i-MeasurePlace#13,PU8i-MeasurePlace,Plan a trial,behind the sheet,opens,PU3-TrialPlan,
+PU8i-MeasurePlace#14,PU8i-MeasurePlace,Compare,behind the sheet,opens,PU4-Compare,
+PU8i-MeasurePlace#15,PU8i-MeasurePlace,Not now,behind the sheet,says,Noted with your reason. Looked at again in 8 weeks. Mia and her family are not told.,
+PU8i-MeasurePlace#16,PU8i-MeasurePlace,Duels won Film,behind the sheet,opens,PU8a-MeasureFilm,
+PU8i-MeasurePlace#17,PU8i-MeasurePlace,Forward passes Film,behind the sheet,opens,PU8d-MeasurePasses,
+PU8i-MeasurePlace#18,PU8i-MeasurePlace,Wins of the ball Film,behind the sheet,opens,PU8e-MeasureWins,
+PU8i-MeasurePlace#19,PU8i-MeasurePlace,All 9 measures,behind the sheet,opens,PU4-Compare,
+PU8i-MeasurePlace#20,PU8i-MeasurePlace,"Steady growth, 4 cm this year. No pain flags. Measured by hand",behind the sheet,opens,PU8k-MeasureGrowth,
+PU8i-MeasurePlace#21,PU8i-MeasurePlace,Top speed Vest,behind the sheet,opens,PU8b-MeasureVest,
+PU8i-MeasurePlace#22,PU8i-MeasurePlace,10 m sprint Timed test,behind the sheet,opens,PU8g-MeasureTest,
+PU8i-MeasurePlace#23,PU8i-MeasurePlace,Distance Vest,behind the sheet,opens,PU8f-MeasureDistance,
+PU8i-MeasurePlace#24,PU8i-MeasurePlace,All 9 measures,behind the sheet,opens,PU4-Compare,
+PU8i-MeasurePlace#25,PU8i-MeasurePlace,Sam: “Asks for the ball after a mistake. Takes feedback.”,behind the sheet,opens,PU8c-MeasureSaid,
+PU8i-MeasurePlace#26,PU8i-MeasurePlace,Mia: “I want harder games.”,behind the sheet,opens,PU8c-MeasureSaid,
+PU8i-MeasurePlace#27,PU8i-MeasurePlace,"Mia: “Can’t wait.” Picked Ava, Bella, Dani and Frankie.",behind the sheet,opens,PU8h-MeasureSettling,
+PU8i-MeasurePlace#28,PU8i-MeasurePlace,"Load, week by week: open the data",behind the sheet,opens,PU8j-MeasureLoad,
+PU8i-MeasurePlace#29,PU8i-MeasurePlace,Meg: “Yes. We are short in midfield.”,behind the sheet,opens,PU8i-MeasurePlace,
+PU8i-MeasurePlace#30,PU8i-MeasurePlace,Close,own,opens,PU2-PlayerReadiness,works
+PU8i-MeasurePlace#31,PU8i-MeasurePlace,Before: Load,own,opens,PU8j-MeasureLoad,works
+PU8i-MeasurePlace#32,PU8i-MeasurePlace,Duels won,own,opens,PU8a-MeasureFilm,works
+PU4-Compare#1,PU4-Compare,Club,shared,opens,D1-ClubOverview,works
+PU4-Compare#2,PU4-Compare,Teams,shared,opens,D2-Teams,works
+PU4-Compare#3,PU4-Compare,Coaches,shared,opens,D3-Coaches,works
+PU4-Compare#4,PU4-Compare,Players,shared,opens,D4-Players,works
+PU4-Compare#5,PU4-Compare,Safeguarding,shared,opens,D5-Safeguarding,works
+PU4-Compare#6,PU4-Compare,Reports,shared,opens,D6-BoardReport,works
+PU4-Compare#7,PU4-Compare,Ask Clean Sheet,shared,opens,ASKd4-PanelFirst,works
+PU4-Compare#8,PU4-Compare,Whole club,shared,opens,VS1-SwitchView,works
+PU4-Compare#9,PU4-Compare,All players,shared,opens,D4-Players,works
+PU4-Compare#10,PU4-Compare,Pathway,shared,opens,DP1-Pathway,works
+PU4-Compare#11,PU4-Compare,Playing across,shared,opens,PU1-PlayingUp,works
+PU4-Compare#12,PU4-Compare,Fair game time,shared,opens,D4-Players,works
+PU4-Compare#13,PU4-Compare,Plan a trial,own,opens,PU3-TrialPlan,works
+PU4-Compare#14,PU4-Compare,Back,own,opens,PU2-PlayerReadiness,works
+PU4-Compare#15,PU4-Compare,Midfielders,own,says,Now compared with the 5 midfielders in U13 Girls Meg.,works
+PU4-Compare#16,PU4-Compare,Top speed Vest · open 24.1 km/h 22.0 to 27.5 · 24.6 Middle,own,opens,PU8b-MeasureVest,works
+PU4-Compare#17,PU4-Compare,10 m sprint Timed test · open 2.08 s 1.95 to 2.25 · 2.10 Middle,own,opens,PU8g-MeasureTest,works
+PU4-Compare#18,PU4-Compare,Sprints a game Vest · open 11 8 to 19 · 13 Middle,own,says,"Sprints a game: the vest sheet, with every reading.",works (opens the nearest vest/film sheet; that measure is not drawn yet)
+PU4-Compare#19,PU4-Compare,Distance Vest · open 4.4 km 4.0 to 5.6 · 4.8 Lower third,own,opens,PU8f-MeasureDistance,works
+PU4-Compare#20,PU4-Compare,Duels won Film · open 71% 38% to 66% · 52% Above,own,opens,PU8a-MeasureFilm,works
+PU4-Compare#21,PU4-Compare,Forward passes under pressure Film · open 9 4 to 12 · 7 Upper third,own,opens,PU8d-MeasurePasses,works
+PU4-Compare#22,PU4-Compare,Wins of the ball Film · open 7 3 to 9 · 6 Upper third,own,opens,PU8e-MeasureWins,works
+PU4-Compare#23,PU4-Compare,Goals and assists Film · open 0.9 0.1 to 1.1 · 0.4 Upper third,own,says,"Goals and assists: the film sheet, with the clip of each one.",works (opens the nearest vest/film sheet; that measure is not drawn yet)
+PU4-Compare#24,PU4-Compare,Touches Film · open 48 30 to 58 · 44 Middle,own,says,"Touches: the film sheet. Too many to list, so it shows a sample of 20 from each game.",works (opens the nearest vest/film sheet; that measure is not drawn yet)
+PU4-Compare#25,PU4-Compare,Plan a trial,own,opens,PU3-TrialPlan,works
+PX2-LateDeveloper#1,PX2-LateDeveloper,Club,shared,opens,D1-ClubOverview,works (opens Mia’s sheet; Eli’s own data is not built yet)
+PX2-LateDeveloper#2,PX2-LateDeveloper,Teams,shared,opens,D2-Teams,works (opens Mia’s sheet; Eli’s own data is not built yet)
+PX2-LateDeveloper#3,PX2-LateDeveloper,Coaches,shared,opens,D3-Coaches,works (opens Mia’s sheet; Eli’s own data is not built yet)
+PX2-LateDeveloper#4,PX2-LateDeveloper,Players,shared,opens,D4-Players,works (opens Mia’s sheet; Eli’s own data is not built yet)
+PX2-LateDeveloper#5,PX2-LateDeveloper,Safeguarding,shared,opens,D5-Safeguarding,works (opens Mia’s sheet; Eli’s own data is not built yet)
+PX2-LateDeveloper#6,PX2-LateDeveloper,Reports,shared,opens,D6-BoardReport,works (opens Mia’s sheet; Eli’s own data is not built yet)
+PX2-LateDeveloper#7,PX2-LateDeveloper,Ask Clean Sheet,shared,opens,ASKd4-PanelFirst,works (opens Mia’s sheet; Eli’s own data is not built yet)
+PX2-LateDeveloper#8,PX2-LateDeveloper,Whole club,shared,opens,VS1-SwitchView,works (opens Mia’s sheet; Eli’s own data is not built yet)
+PX2-LateDeveloper#9,PX2-LateDeveloper,All players,shared,opens,D4-Players,works (opens Mia’s sheet; Eli’s own data is not built yet)
+PX2-LateDeveloper#10,PX2-LateDeveloper,Pathway,shared,opens,DP1-Pathway,works (opens Mia’s sheet; Eli’s own data is not built yet)
+PX2-LateDeveloper#11,PX2-LateDeveloper,Playing across,shared,opens,PU1-PlayingUp,works (opens Mia’s sheet; Eli’s own data is not built yet)
+PX2-LateDeveloper#12,PX2-LateDeveloper,Fair game time,shared,opens,D4-Players,works (opens Mia’s sheet; Eli’s own data is not built yet)
+PX2-LateDeveloper#13,PX2-LateDeveloper,Plan it,own,opens,PU3-TrialPlan,works (opens Mia’s sheet; Eli’s own data is not built yet)
+PX2-LateDeveloper#14,PX2-LateDeveloper,Not now,own,says,Noted with your reason. Looked at again in 8 weeks. Eli and his family are not told.,works (opens Mia’s sheet; Eli’s own data is not built yet)
+PX2-LateDeveloper#15,PX2-LateDeveloper,Forward passes Film,own,says,"Forward passes: the same sheet as for Mia, with Eli’s graph, how it was captured and the clips.",works (opens Mia’s sheet; Eli’s own data is not built yet)
+PX2-LateDeveloper#16,PX2-LateDeveloper,Kept it Film,own,says,"Kept it under pressure: the same sheet as for Mia, with Eli’s graph, how it was captured and the clips.",works (opens Mia’s sheet; Eli’s own data is not built yet)
+PX2-LateDeveloper#17,PX2-LateDeveloper,Duels won Film,own,says,"Duels won: the same sheet as for Mia, with Eli’s graph, how it was captured and the clips.",works (opens Mia’s sheet; Eli’s own data is not built yet)
+PX2-LateDeveloper#18,PX2-LateDeveloper,Against own age Vest,own,says,"Top speed: the same sheet as for Mia, with Eli’s graph, how the vest reads it and every reading.",works (opens Mia’s sheet; Eli’s own data is not built yet)
+PX2-LateDeveloper#19,PX2-LateDeveloper,Against year below Vest,own,says,"Top speed: the same sheet as for Mia, with Eli’s graph, how the vest reads it and every reading.",works (opens Mia’s sheet; Eli’s own data is not built yet)
+PX2-LateDeveloper#20,PX2-LateDeveloper,Josh: “Getting quieter. Stays out of contact.”,own,says,"Who said it, when and how: the same sheet as for Mia.",works (opens Mia’s sheet; Eli’s own data is not built yet)
+PX2-LateDeveloper#21,PX2-LateDeveloper,Eli: “I can’t get near them.”,own,says,"Who said it, when and how: the same sheet as for Mia.",works (opens Mia’s sheet; Eli’s own data is not built yet)
+PX2-LateDeveloper#22,PX2-LateDeveloper,Josh: “He’d see it as a step back unless we frame it well.”,own,says,"Who said it, when and how: the same sheet as for Mia.",works (opens Mia’s sheet; Eli’s own data is not built yet)
+PX2-LateDeveloper#23,PX2-LateDeveloper,Chris: “Happy to have him. He makes others better.”,own,says,"Who said it, when and how: the same sheet as for Mia.",works (opens Mia’s sheet; Eli’s own data is not built yet)
