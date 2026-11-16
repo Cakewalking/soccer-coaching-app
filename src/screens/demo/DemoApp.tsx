@@ -2381,9 +2381,9 @@ function pathToState(path: string): { view: DemoView; role: RoleId; screen?: str
         ccoach:       new Set(['home', 'squad', 'training', 'matchday', 'clips', 'record']),
         youth:        new Set(['home', 'squad', 'training', 'matchday', 'clips', 'record']),
         seniors:      new Set(['home', 'squad', 'training', 'matchday', 'clips', 'record']),
-        miniroos:     new Set(['home', 'squad', 'training', 'gameday']),
-        goalkeeper:   new Set(['home', 'keepers', 'training', 'clips']),
-        fitness:      new Set(['home', 'squad', 'training', 'matchday']),
+        miniroos:     new Set(['home', 'squad', 'training', 'gameday', 'clips', 'record']),
+        goalkeeper:   new Set(['home', 'keepers', 'training', 'matchday', 'clips', 'record']),
+        fitness:      new Set(['home', 'squad', 'training', 'matchday', 'clips', 'record']),
         academyowner: new Set(['home', 'programs', 'players', 'coaches', 'money']),
         academycoach: new Set(['today', 'training', 'players', 'gameday', 'record']),
       }
