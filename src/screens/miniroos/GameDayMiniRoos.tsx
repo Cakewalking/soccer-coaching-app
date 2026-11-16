@@ -46,7 +46,7 @@ export default function GameDayMiniRoos({ onWhatWeSaw, empty }: { onWhatWeSaw: (
     return (
       <div style={{ flexGrow: 1, padding: '28px 32px', overflowY: 'auto', fontFamily: 'var(--font-sans)' }}>
         <div style={{ maxWidth: 500 }}>
-          <h1 style={{ margin: '0 0 4px', fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em', color: '#10211f' }}>Game day</h1>
+          <h1 style={{ margin: '0 0 4px', fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em', color: '#10211f' }}>Match day</h1>
           <div style={{ fontSize: 14, color: '#4a5a57', marginBottom: 20 }}>No game scheduled yet</div>
           <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 16, padding: 24, marginBottom: 16 }}>
             <div style={{ fontSize: 18, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>Turns appear once a game is added</div>
@@ -63,7 +63,7 @@ export default function GameDayMiniRoos({ onWhatWeSaw, empty }: { onWhatWeSaw: (
 
       {/* Header */}
       <div style={{ flex: 'none', padding: '14px 28px 0', display: 'flex', alignItems: 'baseline', gap: 14, marginBottom: 14 }}>
-        <h1 style={{ margin: 0, fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em' }}>Game day</h1>
+        <h1 style={{ margin: 0, fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em' }}>Match day</h1>
         <span style={{ fontSize: 14, color: '#4a5a57' }}>Saturday 6 Jun · vs Harbour Rovers · Home · 9 playing</span>
         <div style={{ flexGrow: 1 }} />
         <button onClick={() => showToast('Turns sheet sent to the printer.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Print turns</button>
