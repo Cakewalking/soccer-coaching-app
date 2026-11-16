@@ -22,7 +22,7 @@ import DevGoalsScreen        from './DevGoalsScreen'
 import WellnessScreen        from './WellnessScreen'
 import AvailabilityScreen    from './AvailabilityScreen'
 import ConsentScreen         from './ConsentScreen'
-import SeasonSummariesScreen from './SeasonSummariesScreen'
+import FormationBuilder from './formation/FormationBuilder'
 import ThisWeekScreen        from './ThisWeekScreen'
 import SuggestionsScreen     from './SuggestionsScreen'
 import DrillLibraryScreen    from './DrillLibraryScreen'
@@ -34,7 +34,7 @@ import YT1YourTake           from './aftergame/YT1YourTake'
 import TeamTalkScreen        from './TeamTalkScreen'
 import PitchSideScreen       from './PitchSideScreen'
 import AddGameScreen         from './AddGameScreen'
-import { FitnessSquadTab, FitnessTrainingTab, FitnessMatchTab } from './FitnessExtras'
+import { FitnessTrainingTab, FitnessMatchTab } from './FitnessExtras'
 import CoCoachHomeScreen from './CoCoachHomeScreen'
 import RecordHub           from './RecordHub'
 import { RecordSaved }     from './RecordHub'
@@ -65,7 +65,7 @@ const NAV_TABS: Array<{ id: NavKey; label: string; icon: string }> = [
 ]
 
 const HOME_TABS     = ['Overview', 'Messages', 'Calendar', 'Fixtures and results', 'Our style', "Where we're at", 'Team staff', 'Files']
-const SQUAD_TABS    = ['Players', 'Line-ups', 'Development goals', 'Wellness', 'Availability', 'Consent and privacy', 'Season summaries', 'Fitness coach']
+const SQUAD_TABS    = ['Players', 'Formation', 'Line-ups that worked', 'Development goals', 'Wellness', 'Availability', 'Consent and privacy']
 const TRAINING_TABS = ["Tonight's session", 'This week', 'Suggested', 'Drill library', 'Growth and load']
 const MATCHDAY_TABS = ['Team talk', 'Line-up and minutes', 'Opposition', 'Review', 'Your take']
 const CLIPS_TABS    = ['By measure', 'By game', 'By player', 'Playlists', 'To check', 'Learn']
@@ -188,13 +188,12 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
     else if (homeTab === 7) content = renderFiles()
   } else if (nav === 'squad') {
     if (squadTab === 0) content = <SquadScreen role="head" onPlayerProfile={() => {}} empty={sbEmpty} />
-    else if (squadTab === 1) content = <SquadLineups noFrame onNav={(s) => { if (s === 'record') { goNav('record') } else if (s === 'teamsheet') { goNav('matchday'); setMatchTab(1) } }} />
-    else if (squadTab === 2) content = <DevGoalsScreen empty={sbEmpty} />
-    else if (squadTab === 3) content = <WellnessScreen empty={sbEmpty} />
-    else if (squadTab === 4) content = <AvailabilityScreen empty={sbEmpty} />
-    else if (squadTab === 5) content = <ConsentScreen empty={sbEmpty} />
-    else if (squadTab === 6) content = <SeasonSummariesScreen empty={sbEmpty} />
-    else if (squadTab === 7) content = <FitnessSquadTab empty={sbEmpty} />
+    else if (squadTab === 1) content = <FormationBuilder team="juniors" onNav={(s) => { if (s === 'T2-TabletMatch') { goNav('matchday'); setMatchTab(1) } else if (s === 'SQ1-BestLineups') { setSquadTab(2) } else { handleNav(s) } }} />
+    else if (squadTab === 2) content = <SquadLineups noFrame onNav={(s) => { if (s === 'record') { goNav('record') } else if (s === 'teamsheet') { goNav('matchday'); setMatchTab(1) } }} />
+    else if (squadTab === 3) content = <DevGoalsScreen empty={sbEmpty} />
+    else if (squadTab === 4) content = <WellnessScreen empty={sbEmpty} />
+    else if (squadTab === 5) content = <AvailabilityScreen empty={sbEmpty} />
+    else if (squadTab === 6) content = <ConsentScreen empty={sbEmpty} />
   } else if (nav === 'training') {
     if (trainingTab === 0) content = <TrainingScreen role="head" onNav={handleNav} empty={sbEmptySession} />
     else if (trainingTab === 1) content = <ThisWeekScreen empty={sbEmptySession} onDrillLibrary={() => setTrainingTab(3)} onTonightsPlan={() => setTrainingTab(0)} onGrowthLoad={() => setTrainingTab(4)} />

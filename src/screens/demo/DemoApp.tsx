@@ -47,6 +47,8 @@ import PACheckScreen         from '../PACheckScreen'
 import CoachFitnessScreen    from '../CoachFitnessScreen'
 import SettingsScreen        from '../SettingsScreen'
 import LiveGameScreen        from '../LiveGameScreen'
+import FormationBuilder      from '../formation/FormationBuilder'
+import LineupParent          from '../formation/LineupParent'
 import LiveGame11Screen      from '../LiveGame11Screen'
 // Step 4 screens — New (DSet1, DSet4, ACC1)
 import DSet1ClubSettings          from '../step4/DSet1ClubSettings'
@@ -596,6 +598,17 @@ function LiveGameScreenNav() {
   const [closed, setClosed] = useState(false)
   if (closed) return <>{renderScreen('T2-TabletMatch')}</>
   return <LiveGameScreen onClose={() => setClosed(true)} />
+}
+
+function FormationNav({ team, empty }: { team?: string; empty?: boolean }) {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <FormationBuilder team={team} empty={empty} onNav={(s) => setInner(s)} />
+}
+function LineupParentNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <LineupParent onNav={(s) => setInner(s)} />
 }
 
 function MessagesRulesNav() {
@@ -2089,6 +2102,18 @@ function renderScreenInner(key: string): ReactNode {
     // Squad line-ups (section 18)
     case 'SQ1-BestLineups':            return <SquadLineupsNav />
     case 'SQ1e-BestLineupsEmpty':      return <SquadLineupsEmpty onBack={noop} />
+
+    // Squad › Formation (formation-v1)
+    case 'FB1-Formation':
+    case 'FB1d-FormationDrag':
+    case 'FB1t-FormationTap':
+    case 'FB1x-FormationOwn':
+    case 'FB1l-FormationSaved':
+    case 'FB1c-FormationShare':        return <FormationNav team="juniors" />
+    case 'FB1s-FormationSeniors':      return <FormationNav team="seniors" />
+    case 'FB1m-FormationMiniRoos':     return <FormationNav team="miniroos" />
+    case 'FB1e-FormationEmpty':        return <FormationNav team="juniors" empty />
+    case 'FBp2-LineupParent':          return <LineupParentNav />
 
     // Where we're at (item 12)
     case 'WA1-WhereWeAt':              return <STWa1WhereWeAtNav />

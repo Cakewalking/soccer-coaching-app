@@ -14,7 +14,7 @@ import DevGoalsScreen       from './DevGoalsScreen'
 import WellnessScreen       from './WellnessScreen'
 import AvailabilityScreen   from './AvailabilityScreen'
 import ConsentScreen        from './ConsentScreen'
-import SeasonSummariesScreen from './SeasonSummariesScreen'
+import FormationBuilder from './formation/FormationBuilder'
 import ThisWeekScreen       from './ThisWeekScreen'
 import SuggestionsScreen    from './SuggestionsScreen'
 import DrillLibraryScreen   from './DrillLibraryScreen'
@@ -25,7 +25,7 @@ import ReviewScreen         from './ReviewScreen'
 import YT1YourTake          from './aftergame/YT1YourTake'
 import TeamTalkScreen       from './TeamTalkScreen'
 import PitchSideScreen      from './PitchSideScreen'
-import { FitnessSquadTab, FitnessTrainingTab, FitnessMatchTab } from './FitnessExtras'
+import { FitnessTrainingTab, FitnessMatchTab } from './FitnessExtras'
 import RecordHub           from './RecordHub'
 import { CoachMessages }   from './MessagesScreens'
 import { SquadLineups }    from './SquadLineups'
@@ -378,7 +378,7 @@ type NavKey = 'home' | 'squad' | 'training' | 'matchday' | 'clips' | 'record'
 type Sub = 'teamtalk' | 'pitchside' | null
 
 const NAV_KEYS: NavKey[] = ['home', 'squad', 'training', 'matchday', 'clips', 'record']
-const SQUAD_TABS    = ['Players', 'Line-ups', 'Development goals', 'Wellness', 'Availability', 'Consent and privacy', 'Season summaries', 'Fitness coach']
+const SQUAD_TABS    = ['Players', 'Formation', 'Line-ups that worked', 'Development goals', 'Wellness', 'Availability', 'Consent and privacy']
 const TRAINING_TABS = ["Tonight's session", 'This week', 'Suggested', 'Drill library', 'Growth and load']
 const MATCHDAY_TABS = ['Team talk', 'Line-up and minutes', 'Opposition', 'Review', 'Your take']
 const CLIPS_TABS    = ['By measure', 'By game', 'By player', 'Playlists', 'To check', 'Learn']
@@ -493,13 +493,12 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
   } else if (nav === 'squad') {
     switch (squadTab) {
       case 0: content = <SquadScreen role="head" onPlayerProfile={() => {}} empty={sbEmpty} players={teamType === 'seniors' ? SENIORS_SQUAD : YOUTH_SQUAD} />; break
-      case 1: content = <SquadLineups noFrame teamType={teamType === 'seniors' ? 'seniors' : 'youth'} />; break
-      case 2: content = <DevGoalsScreen empty={sbEmpty} teamType={teamType === 'seniors' ? 'seniors' : 'youth'} />; break
-      case 3: content = <WellnessScreen empty={sbEmpty} />; break
-      case 4: content = <AvailabilityScreen empty={sbEmpty} />; break
-      case 5: content = <ConsentScreen empty={sbEmpty} />; break
-      case 6: content = <SeasonSummariesScreen empty={sbEmpty} teamType={teamType === 'seniors' ? 'seniors' : 'youth'} />; break
-      case 7: content = <FitnessSquadTab empty={sbEmpty} />; break
+      case 1: content = <FormationBuilder team={teamType === 'seniors' ? 'seniors' : 'youth'} onNav={(s) => { if (s === 'T2-TabletMatch') { goNav('matchday'); setMatchTab(1) } else if (s === 'SQ1-BestLineups') { setSquadTab(2) } else { handleNav(s) } }} />; break
+      case 2: content = <SquadLineups noFrame teamType={teamType === 'seniors' ? 'seniors' : 'youth'} />; break
+      case 3: content = <DevGoalsScreen empty={sbEmpty} teamType={teamType === 'seniors' ? 'seniors' : 'youth'} />; break
+      case 4: content = <WellnessScreen empty={sbEmpty} />; break
+      case 5: content = <AvailabilityScreen empty={sbEmpty} />; break
+      case 6: content = <ConsentScreen empty={sbEmpty} />; break
     }
   } else if (nav === 'training') {
     switch (trainingTab) {
