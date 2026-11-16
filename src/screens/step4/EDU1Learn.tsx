@@ -18,12 +18,20 @@ function ClipReel({ onClick }: { onClick?: () => void }) {
   )
 }
 
-const LESSONS = [
-  { title: 'Closing the space behind the press', credit: 'Grace Reid, U12 Sam · v Tealside Town', watched: '5 of 16 watched' },
-  { title: 'Scanning before the ball arrives', credit: 'From your club’s style', watched: null },
-  { title: 'First touch away from pressure', credit: 'U12 Girls Ana · v Kestrel Park', watched: null },
-  { title: 'Starting position for a through ball', credit: 'From the national curriculum', watched: null },
+type Lesson = { title: string; credit: string; watched: string | null; skill: string; position: string; age: string; from: string }
+const LESSONS: Lesson[] = [
+  { title: 'Closing the space behind the press', credit: 'Grace Reid, U12 Sam · v Tealside Town', watched: '5 of 16 watched', skill: 'Staying compact between the lines', position: 'Defender', age: 'Under 12', from: 'Your team' },
+  { title: 'Scanning before the ball arrives', credit: 'From your club’s style', watched: null, skill: 'Playing out from the back', position: 'Midfielder', age: 'Under 12', from: 'The whole club' },
+  { title: 'First touch away from pressure', credit: 'U12 Girls Ana · v Kestrel Park', watched: null, skill: 'Playing out from the back', position: 'Forward', age: 'Under 12', from: 'Your age group' },
+  { title: 'Starting position for a through ball', credit: 'From the national curriculum', watched: null, skill: 'Attacking down the sides', position: 'Forward', age: 'Under 14', from: 'National curriculum' },
+  { title: 'Winning it back in six seconds', credit: 'U14 Josh · v Ironbark', watched: null, skill: 'Winning it back in six seconds', position: 'Midfielder', age: 'Under 14', from: 'Your age group' },
+  { title: 'Defending the back post', credit: 'From your club’s style', watched: null, skill: 'Defending crosses', position: 'Defender', age: 'Seniors', from: 'The whole club' },
+  { title: 'The keeper’s starting spot', credit: 'From the national curriculum', watched: null, skill: 'Staying compact between the lines', position: 'Keeper', age: 'Under 9', from: 'National curriculum' },
 ]
+const POSITIONS = ['Keeper', 'Defender', 'Midfielder', 'Forward']
+const AGES = ['Under 9', 'Under 12', 'Under 14', 'Seniors']
+const FROMS = ['Your team', 'Your age group', 'The whole club', 'National curriculum']
+type FilterKey = 'skill' | 'position' | 'age' | 'from'
 const SERIES = [
   { title: 'Staying compact', sub: '4 lessons in order · about 2 minutes', done: 1, of: 4 },
   { title: 'Playing out from the back', sub: '3 lessons · about 90 seconds', done: 0, of: 3 },
@@ -38,11 +46,44 @@ export default function EDU1Learn({ onNav, skillOpen = false, bare = false }: { 
   const [toast, setToast] = useState<string | null>(null)
   const [nudged, setNudged] = useState(false)
   const [ticked, setTicked] = useState<number[]>(skillOpen ? [0] : [])
+  const [openFilter, setOpenFilter] = useState<FilterKey | null>(skillOpen ? 'skill' : null)
+  const [filters, setFilters] = useState<{ position: string | null; age: string | null; from: string | null }>({ position: null, age: null, from: null })
+  const [teamOn, setTeamOn] = useState(true)
+  const [search, setSearch] = useState('')
   function say(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   const toggle = (i: number) => setTicked(t => t.includes(i) ? t.filter(x => x !== i) : [...t, i])
-  const filterBtn = (label: string, on: boolean, onClick: () => void) => (
-    <button onClick={onClick} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${on ? GREEN : CTL}`, background: on ? PALEGREEN : '#fff', fontSize: 13, fontWeight: on ? 700 : 500, color: on ? GREEN : INK, cursor: 'pointer', fontFamily: 'inherit', display: 'inline-flex', alignItems: 'center', gap: 6 }}>{label}<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4"><path d="M6 9l6 6 6-6" /></svg></button>
+
+  const tickedSkills = ticked.map(i => SKILLS[i][0] as string)
+  const filtered = LESSONS.filter(l =>
+    (!teamOn || l.age === 'Under 12' || l.from === 'Your team') &&
+    (tickedSkills.length === 0 || tickedSkills.includes(l.skill)) &&
+    (!filters.position || l.position === filters.position) &&
+    (!filters.age || l.age === filters.age) &&
+    (!filters.from || l.from === filters.from) &&
+    (!search.trim() || l.title.toLowerCase().includes(search.toLowerCase())),
   )
+
+  const pill = (on: boolean): React.CSSProperties => ({ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${on ? GREEN : CTL}`, background: on ? PALEGREEN : '#fff', fontSize: 13, fontWeight: on ? 700 : 500, color: on ? GREEN : INK, cursor: 'pointer', fontFamily: 'inherit', display: 'inline-flex', alignItems: 'center', gap: 6, whiteSpace: 'nowrap' })
+  const Chevron = () => <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4"><path d="M6 9l6 6 6-6" /></svg>
+
+  // single-select dropdown for Position / Age group / From
+  function Dropdown({ fk, label, options }: { fk: 'position' | 'age' | 'from'; label: string; options: string[] }) {
+    const val = filters[fk]
+    const open = openFilter === fk
+    return (
+      <div style={{ position: 'relative' }}>
+        <button onClick={() => setOpenFilter(open ? null : fk)} style={pill(!!val)}>{val ?? label}<Chevron /></button>
+        {open && (
+          <div style={{ position: 'absolute', top: 50, left: 0, minWidth: 190, background: '#fff', border: `1px solid ${CTL}`, borderRadius: 12, boxShadow: '0 12px 32px rgba(16,33,31,0.18)', zIndex: 40, padding: '6px', display: 'flex', flexDirection: 'column', gap: 2 }}>
+            {options.map(o => (
+              <button key={o} onClick={() => { setFilters(f => ({ ...f, [fk]: o })); setOpenFilter(null) }} style={{ height: 40, padding: '0 10px', borderRadius: 8, border: 'none', background: val === o ? PALEGREEN : 'none', fontSize: 13, fontWeight: val === o ? 700 : 500, color: val === o ? GREEN : INK, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>{o}</button>
+            ))}
+            {val && <button onClick={() => { setFilters(f => ({ ...f, [fk]: null })); setOpenFilter(null) }} style={{ height: 40, padding: '0 10px', borderRadius: 8, border: 'none', borderTop: `1px solid ${HAIR}`, background: 'none', fontSize: 13, color: MUT, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>Clear</button>}
+          </div>
+        )}
+      </div>
+    )
+  }
 
   return (
     <div data-screen={skillOpen ? 'EDU1f-LearnFilter' : 'EDU1-Learn'} style={{ width: bare ? '100%' : 1180, height: bare ? '100%' : 820, flex: bare ? 1 : undefined, minHeight: 0, overflow: 'hidden', background: '#f7f8f7', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative', boxSizing: 'border-box', color: INK }}>
@@ -76,38 +117,48 @@ export default function EDU1Learn({ onNav, skillOpen = false, bare = false }: { 
       />
 
       {/* Filter row */}
-      <div style={{ flex: 'none', padding: '12px 28px 0', display: 'flex', alignItems: 'center', gap: 8, position: 'relative' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 6, height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${CTL}`, background: '#fff', fontSize: 13, color: MUT }}>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth="2"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>Search 38 lessons
+      <div style={{ flex: 'none', padding: '12px 28px 0', display: 'flex', alignItems: 'center', gap: 8, position: 'relative', zIndex: 30, flexWrap: 'wrap' as const }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6, height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${CTL}`, background: '#fff' }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth="2"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
+          <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search 38 lessons" style={{ border: 'none', outline: 'none', background: 'transparent', fontSize: 13, color: INK, fontFamily: 'inherit', width: 130 }} />
         </div>
-        {filterBtn('For U12 Sam', true, () => say('Lessons picked for your team’s gaps. Tap again for every lesson.'))}
-        {filterBtn('Skill', skillOpen, () => onNav?.('EDU1f-LearnFilter'))}
-        {filterBtn('Position', false, () => say('Keeper, defender, midfielder, forward.'))}
-        {filterBtn('Age group', false, () => say('Under 9 to seniors.'))}
-        {filterBtn('From', false, () => say('Your team, your age group, the whole club.'))}
-        {skillOpen && (
-          <div style={{ position: 'absolute', top: 58, left: 'calc(28px + 180px)', width: 300, background: '#fff', border: `1px solid ${CTL}`, borderRadius: 12, boxShadow: '0 12px 32px rgba(16,33,31,0.18)', zIndex: 40, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 2 }}>
-            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.04em', color: MUT, marginBottom: 4 }}>FROM YOUR CLUB’S STYLE · 9 SKILLS</div>
-            {SKILLS.map(([name, n], i) => (
-              <button key={name as string} onClick={() => toggle(i)} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 40, padding: '0 4px', background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
-                <span style={{ width: 20, height: 20, borderRadius: 5, border: `2px solid ${ticked.includes(i) ? GREEN : CTL}`, background: ticked.includes(i) ? GREEN : '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{ticked.includes(i) && <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round"><path d="M5 12l5 5 9-10" /></svg>}</span>
-                <span style={{ flex: 1, fontSize: 13, fontWeight: 600, color: INK }}>{name}</span>
-                <span style={{ fontSize: 12, color: MUT }}>{n}</span>
-              </button>
-            ))}
-            <div style={{ fontSize: 12, color: MUT, padding: '4px 0' }}>more: scroll</div>
-            <div style={{ display: 'flex', gap: 8, borderTop: `1px solid ${HAIR}`, paddingTop: 10, marginTop: 4 }}>
-              <button onClick={() => setTicked([])} style={{ height: 40, padding: '0 14px', borderRadius: 8, border: `1px solid ${CTL}`, background: '#fff', fontSize: 13, fontWeight: 700, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Clear</button>
-              <button onClick={() => onNav?.('EDU1-Learn')} style={{ flex: 1, height: 40, borderRadius: 8, border: 0, background: GREEN, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Show {Math.max(1, 12 - ticked.length * 2)} lessons</button>
+        <button onClick={() => { setTeamOn(v => !v); say(teamOn ? 'Showing every lesson.' : 'Lessons picked for your team’s gaps.') }} style={pill(teamOn)}>For U12 Sam<Chevron /></button>
+
+        {/* Skill — multi-select */}
+        <div style={{ position: 'relative' }}>
+          <button onClick={() => setOpenFilter(openFilter === 'skill' ? null : 'skill')} style={pill(tickedSkills.length > 0)}>{tickedSkills.length ? `${tickedSkills.length} skill${tickedSkills.length === 1 ? '' : 's'}` : 'Skill'}<Chevron /></button>
+          {openFilter === 'skill' && (
+            <div style={{ position: 'absolute', top: 50, left: 0, width: 300, background: '#fff', border: `1px solid ${CTL}`, borderRadius: 12, boxShadow: '0 12px 32px rgba(16,33,31,0.18)', zIndex: 40, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 2 }}>
+              <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.04em', color: MUT, marginBottom: 4 }}>FROM YOUR CLUB’S STYLE · 6 SKILLS</div>
+              {SKILLS.map(([name, n], i) => (
+                <button key={name as string} onClick={() => toggle(i)} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 40, padding: '0 4px', background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
+                  <span style={{ width: 20, height: 20, borderRadius: 5, border: `2px solid ${ticked.includes(i) ? GREEN : CTL}`, background: ticked.includes(i) ? GREEN : '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{ticked.includes(i) && <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round"><path d="M5 12l5 5 9-10" /></svg>}</span>
+                  <span style={{ flex: 1, fontSize: 13, fontWeight: 600, color: INK }}>{name}</span>
+                  <span style={{ fontSize: 12, color: MUT }}>{n}</span>
+                </button>
+              ))}
+              <div style={{ display: 'flex', gap: 8, borderTop: `1px solid ${HAIR}`, paddingTop: 10, marginTop: 4 }}>
+                <button onClick={() => setTicked([])} style={{ height: 40, padding: '0 14px', borderRadius: 8, border: `1px solid ${CTL}`, background: '#fff', fontSize: 13, fontWeight: 700, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Clear</button>
+                <button onClick={() => setOpenFilter(null)} style={{ flex: 1, height: 40, borderRadius: 8, border: 0, background: GREEN, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Show {filtered.length} lesson{filtered.length === 1 ? '' : 's'}</button>
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
+
+        <Dropdown fk="position" label="Position" options={POSITIONS} />
+        <Dropdown fk="age" label="Age group" options={AGES} />
+        <Dropdown fk="from" label="From" options={FROMS} />
+
+        <span style={{ marginLeft: 'auto', fontSize: 13, color: MUT }}>{filtered.length} of {LESSONS.length} shown</span>
       </div>
 
       <main style={{ flexGrow: 1, minHeight: 0, padding: '12px 28px 18px', boxSizing: 'border-box', display: 'grid', gap: 14, gridTemplateColumns: 'minmax(0,1fr) 300px', overflow: 'hidden' }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10, minHeight: 0, overflow: 'hidden' }}>
+          {filtered.length === 0 && (
+            <div style={{ background: '#fff', border: `1px solid ${CTL}`, borderRadius: 14, padding: '24px', textAlign: 'center', color: MUT, fontSize: 14 }}>No lessons match those filters. Clear one to see more.</div>
+          )}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 10 }}>
-            {LESSONS.map(l => (
+            {filtered.map(l => (
               <button key={l.title} onClick={() => onNav?.('EDU2-Lesson')} style={{ background: '#fff', border: `1px solid ${CTL}`, borderRadius: 14, overflow: 'hidden', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left', padding: 0, display: 'flex', flexDirection: 'column' }}>
                 <span style={{ height: 70, background: DARK, display: 'flex', alignItems: 'center', justifyContent: 'center' }}><span style={{ width: 32, height: 32, borderRadius: 999, border: '2px solid rgba(255,255,255,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><svg width="13" height="13" viewBox="0 0 24 24" fill="#fff"><polygon points="5 3 19 12 5 21 5 3" /></svg></span></span>
                 <span style={{ padding: '10px 12px', display: 'flex', flexDirection: 'column', gap: 4 }}>
