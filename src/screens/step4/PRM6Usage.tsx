@@ -1,14 +1,41 @@
 import { useState } from 'react'
 import { OpeningPanel } from './directorParts'
+import { getGroups, setGroups as persist, cloneGroups, type FKey, type Group } from './featuresData'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
+type Usage = { team: string; fk: FKey; label: string; pct: number; text: string; last: string; price: number; low?: boolean; turnOff?: boolean; ask?: string }
+const USAGE: Usage[] = [
+  { team: 'U13 Chris', fk: 'live', label: 'Live game help', pct: 87, text: '7 of 8 games', last: 'Sat 30 May', price: 15 },
+  { team: 'U15 Girls Bec', fk: 'live', label: 'Live game help', pct: 100, text: '8 of 8 games', last: 'Sat 30 May', price: 15 },
+  { team: 'U16 Ollie', fk: 'live', label: 'Live game help', pct: 75, text: '6 of 8 games', last: 'Sat 30 May', price: 15 },
+  { team: "Men's 1sts", fk: 'live', label: 'Live game help', pct: 25, text: '2 of 8 games', last: 'Sat 2 May', price: 15, low: true, ask: 'Marko' },
+  { team: 'U12 Sam', fk: 'vests', label: 'Vests and load', pct: 94, text: '15 of 16 sessions', last: 'Tue 2 June', price: 10 },
+  { team: 'U13 Chris', fk: 'vests', label: 'Vests and load', pct: 81, text: '13 of 16 sessions', last: 'Tue 2 June', price: 10 },
+  { team: 'U15 Girls Bec', fk: 'vests', label: 'Vests and load', pct: 0, text: 'Not used for 5 weeks', last: 'Thu 30 April', price: 10, low: true, turnOff: true },
+  { team: 'U16 Ollie', fk: 'vests', label: 'Vests and load', pct: 69, text: '11 of 16 sessions', last: 'Tue 2 June', price: 10 },
+  { team: 'U16 Ollie', fk: 'space', label: 'Extra space', pct: 23, text: '4.6 of 20 GB extra used', last: 'Today', price: 4 },
+]
+
 export default function PRM6Usage({ onNav }: { onNav?: (s: string) => void }) {
   const [lastTool, setLastTool] = useState('')
+  const [groups, setGroupsLocal] = useState<Group[]>(() => cloneGroups(getGroups()))
   function tool(name: string) { setLastTool(name) }
+  function update(next: Group[]) { setGroupsLocal(next); persist(next) }
+
+  const isOn = (team: string, fk: FKey) => groups.flatMap(g => g.teams).find(t => t.id === team)?.[fk] === true
+  function turnOff(team: string, fk: FKey, label: string) {
+    update(groups.map(g => ({ ...g, teams: g.teams.map(t => t.id === team ? { ...t, [fk]: false } : t) })))
+    tool(`${label} turned off for ${team} from tomorrow. ${team === "Men's 1sts" ? 'Marko' : 'The coach'} has been told. Nothing recorded is lost.`)
+  }
+
+  const live = USAGE.filter(u => isOn(u.team, u.fk))
+  const inUse = live.filter(u => !u.low).length          // "in use most weeks" = everything not flagged low
+  const canSave = live.filter(u => u.turnOff).reduce((s, u) => s + u.price, 0)
 
   const tnb: React.CSSProperties = { height: 56, padding: '0 10px', background: 'none', color: 'rgba(255,255,255,0.75)', border: 'none', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }
   const snb: React.CSSProperties = { height: 44, padding: '0 14px', background: 'none', color: MUT, border: 'none', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }
+  const cols = '150px 150px 1fr 120px 60px 100px'
 
   return (
     <div data-lasttool={lastTool} style={{ width: 1180, background: '#f4f6f5', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }}>
@@ -39,152 +66,52 @@ export default function PRM6Usage({ onNav }: { onNav?: (s: string) => void }) {
 
       <OpeningPanel
         heading="IS IT BEING USED? · THE LAST 8 WEEKS"
-        sentence="Seven of nine add-ons are in use most weeks. Two are worth a conversation."
+        sentence={`${inUse} of ${live.length} add-ons are in use most weeks.${canSave > 0 ? ' Two are worth a conversation.' : ' Nothing is sitting unused.'}`}
         support="U15 Girls Bec have not worn a vest for 5 weeks. Men’s 1sts used live help in 2 of 8 games."
-        figures={[{ num: '7 of 9', label: 'in use most weeks', proof: true }, { num: '$10', label: 'a month you could save' }]}
+        figures={[{ num: `${inUse} of ${live.length}`, label: 'in use most weeks', proof: true }, { num: `$${canSave}`, label: 'a month you could save' }]}
         buttons={[{ label: 'Ask Bec', main: true, onClick: () => tool('Bec is asked whether to keep vests on for U15 Girls.') }, { label: 'By team', onClick: () => onNav?.('PRM1-FeaturesByTeam') }, { label: 'The bill', onClick: () => onNav?.('PRM3-Bill') }]}
       />
       <div style={{ flex: 1, display: 'flex', overflow: 'hidden', paddingTop: 12 }}>
-        {/* Main */}
         <div style={{ flex: 1, padding: '0 20px 24px 24px', overflowY: 'auto' }}>
-
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, overflow: 'hidden', marginBottom: 12 }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '150px 150px 1fr 120px 60px 100px', padding: '10px 20px', background: PALE, borderBottom: `1px solid ${LN}` }}>
-              {['Team', 'Add-on', 'Used', 'Last used', '', ''].map((h, i) => (
-                <div key={i} style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT }}>{h}</div>
-              ))}
+            <div style={{ display: 'grid', gridTemplateColumns: cols, padding: '10px 20px', background: PALE, borderBottom: `1px solid ${LN}` }}>
+              {['Team', 'Add-on', 'Used', 'Last used', '', ''].map((h, i) => <div key={i} style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT }}>{h}</div>)}
             </div>
-
-            {/* U13 Chris — Live game help */}
-            <div style={{ display: 'grid', gridTemplateColumns: '150px 150px 1fr 120px 60px 100px', padding: '12px 20px', borderBottom: `1px solid ${LN}`, alignItems: 'center' }}>
-              <div style={{ fontSize: 13, fontWeight: 600, color: INK }}>U13 Chris</div>
-              <div style={{ fontSize: 12, color: MUT }}>Live game help</div>
-              <div>
-                <div style={{ height: 6, background: LN, borderRadius: 3, overflow: 'hidden', marginBottom: 4 }}><div style={{ height: '100%', width: '87%', background: G, borderRadius: 3 }} /></div>
-                <div style={{ fontSize: 11, color: MUT }}>7 of 8 games</div>
-              </div>
-              <div style={{ fontSize: 12, color: MUT }}>Sat 30 May</div>
-              <div style={{ fontSize: 12, color: MUT }}>$15</div>
-              <div />
-            </div>
-
-            {/* U15 Girls Bec — Live game help */}
-            <div style={{ display: 'grid', gridTemplateColumns: '150px 150px 1fr 120px 60px 100px', padding: '12px 20px', borderBottom: `1px solid ${LN}`, alignItems: 'center' }}>
-              <div style={{ fontSize: 13, fontWeight: 600, color: INK }}>U15 Girls Bec</div>
-              <div style={{ fontSize: 12, color: MUT }}>Live game help</div>
-              <div>
-                <div style={{ height: 6, background: LN, borderRadius: 3, overflow: 'hidden', marginBottom: 4 }}><div style={{ height: '100%', width: '100%', background: G, borderRadius: 3 }} /></div>
-                <div style={{ fontSize: 11, color: MUT }}>8 of 8 games</div>
-              </div>
-              <div style={{ fontSize: 12, color: MUT }}>Sat 30 May</div>
-              <div style={{ fontSize: 12, color: MUT }}>$15</div>
-              <div />
-            </div>
-
-            {/* U16 Ollie — Live game help */}
-            <div style={{ display: 'grid', gridTemplateColumns: '150px 150px 1fr 120px 60px 100px', padding: '12px 20px', borderBottom: `1px solid ${LN}`, alignItems: 'center' }}>
-              <div style={{ fontSize: 13, fontWeight: 600, color: INK }}>U16 Ollie</div>
-              <div style={{ fontSize: 12, color: MUT }}>Live game help</div>
-              <div>
-                <div style={{ height: 6, background: LN, borderRadius: 3, overflow: 'hidden', marginBottom: 4 }}><div style={{ height: '100%', width: '75%', background: '#f59e0b', borderRadius: 3 }} /></div>
-                <div style={{ fontSize: 11, color: MUT }}>6 of 8 games</div>
-              </div>
-              <div style={{ fontSize: 12, color: MUT }}>Sat 30 May</div>
-              <div style={{ fontSize: 12, color: MUT }}>$15</div>
-              <div />
-            </div>
-
-            {/* Men's 1sts — Live game help (Ask Marko = control 18) */}
-            <div style={{ display: 'grid', gridTemplateColumns: '150px 150px 1fr 120px 60px 100px', padding: '12px 20px', borderBottom: `1px solid ${LN}`, alignItems: 'center', background: '#fffbf0' }}>
-              <div style={{ fontSize: 13, fontWeight: 600, color: INK }}>Men's 1sts</div>
-              <div style={{ fontSize: 12, color: MUT }}>Live game help</div>
-              <div>
-                <div style={{ height: 6, background: LN, borderRadius: 3, overflow: 'hidden', marginBottom: 4 }}><div style={{ height: '100%', width: '25%', background: '#f59e0b', borderRadius: 3 }} /></div>
-                <div style={{ fontSize: 11, color: '#d97706' }}>2 of 8 games</div>
-              </div>
-              <div style={{ fontSize: 12, color: MUT }}>Sat 2 May</div>
-              <div style={{ fontSize: 12, color: MUT }}>$15</div>
-              <div>
-                <button onClick={() => tool('A note goes to Marko: "Is Live game help still useful?"')} style={{ height: 44, padding: '0 12px', background: '#fff', color: G, border: `1px solid ${G}`, borderRadius: 8, fontSize: 12, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Ask Marko</button>
-              </div>
-            </div>
-
-            {/* U12 Sam — Vests and load */}
-            <div style={{ display: 'grid', gridTemplateColumns: '150px 150px 1fr 120px 60px 100px', padding: '12px 20px', borderBottom: `1px solid ${LN}`, alignItems: 'center' }}>
-              <div style={{ fontSize: 13, fontWeight: 600, color: INK }}>U12 Sam</div>
-              <div style={{ fontSize: 12, color: MUT }}>Vests and load</div>
-              <div>
-                <div style={{ height: 6, background: LN, borderRadius: 3, overflow: 'hidden', marginBottom: 4 }}><div style={{ height: '100%', width: '94%', background: G, borderRadius: 3 }} /></div>
-                <div style={{ fontSize: 11, color: MUT }}>15 of 16 sessions</div>
-              </div>
-              <div style={{ fontSize: 12, color: MUT }}>Tue 2 June</div>
-              <div style={{ fontSize: 12, color: MUT }}>$10</div>
-              <div />
-            </div>
-
-            {/* U13 Chris — Vests and load */}
-            <div style={{ display: 'grid', gridTemplateColumns: '150px 150px 1fr 120px 60px 100px', padding: '12px 20px', borderBottom: `1px solid ${LN}`, alignItems: 'center' }}>
-              <div style={{ fontSize: 13, fontWeight: 600, color: INK }}>U13 Chris</div>
-              <div style={{ fontSize: 12, color: MUT }}>Vests and load</div>
-              <div>
-                <div style={{ height: 6, background: LN, borderRadius: 3, overflow: 'hidden', marginBottom: 4 }}><div style={{ height: '100%', width: '81%', background: G, borderRadius: 3 }} /></div>
-                <div style={{ fontSize: 11, color: MUT }}>13 of 16 sessions</div>
-              </div>
-              <div style={{ fontSize: 12, color: MUT }}>Tue 2 June</div>
-              <div style={{ fontSize: 12, color: MUT }}>$10</div>
-              <div />
-            </div>
-
-            {/* U15 Girls Bec — Vests and load (Turn off = control 19) */}
-            <div style={{ display: 'grid', gridTemplateColumns: '150px 150px 1fr 120px 60px 100px', padding: '12px 20px', borderBottom: `1px solid ${LN}`, alignItems: 'center', background: '#fff5f5' }}>
-              <div style={{ fontSize: 13, fontWeight: 600, color: INK }}>U15 Girls Bec</div>
-              <div style={{ fontSize: 12, color: MUT }}>Vests and load</div>
-              <div>
-                <div style={{ fontSize: 12, color: '#dc2626' }}>Not used for 5 weeks</div>
-              </div>
-              <div style={{ fontSize: 12, color: MUT }}>Thu 30 April</div>
-              <div style={{ fontSize: 12, color: MUT }}>$10</div>
-              <div>
-                <button onClick={() => tool('Vests and load turned off for U15 Girls Bec from tomorrow. Bec has been told. Nothing recorded is lost.')} style={{ height: 44, padding: '0 12px', background: '#fff', color: '#dc2626', border: '1px solid #fca5a5', borderRadius: 8, fontSize: 12, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Turn off</button>
-              </div>
-            </div>
-
-            {/* U16 Ollie — Vests and load */}
-            <div style={{ display: 'grid', gridTemplateColumns: '150px 150px 1fr 120px 60px 100px', padding: '12px 20px', borderBottom: `1px solid ${LN}`, alignItems: 'center' }}>
-              <div style={{ fontSize: 13, fontWeight: 600, color: INK }}>U16 Ollie</div>
-              <div style={{ fontSize: 12, color: MUT }}>Vests and load</div>
-              <div>
-                <div style={{ height: 6, background: LN, borderRadius: 3, overflow: 'hidden', marginBottom: 4 }}><div style={{ height: '100%', width: '69%', background: G, borderRadius: 3 }} /></div>
-                <div style={{ fontSize: 11, color: MUT }}>11 of 16 sessions</div>
-              </div>
-              <div style={{ fontSize: 12, color: MUT }}>Tue 2 June</div>
-              <div style={{ fontSize: 12, color: MUT }}>$10</div>
-              <div />
-            </div>
-
-            {/* U16 Ollie — Extra space */}
-            <div style={{ display: 'grid', gridTemplateColumns: '150px 150px 1fr 120px 60px 100px', padding: '12px 20px', alignItems: 'center' }}>
-              <div style={{ fontSize: 13, fontWeight: 600, color: INK }}>U16 Ollie</div>
-              <div style={{ fontSize: 12, color: MUT }}>Extra space</div>
-              <div>
-                <div style={{ height: 6, background: LN, borderRadius: 3, overflow: 'hidden', marginBottom: 4 }}><div style={{ height: '100%', width: '23%', background: G, borderRadius: 3 }} /></div>
-                <div style={{ fontSize: 11, color: MUT }}>4.6 of 20 GB extra used</div>
-              </div>
-              <div style={{ fontSize: 12, color: MUT }}>Today</div>
-              <div style={{ fontSize: 12, color: MUT }}>$4</div>
-              <div />
-            </div>
+            {USAGE.map((u, i) => {
+              const on = isOn(u.team, u.fk)
+              const warn = u.pct < 50 && u.pct > 0
+              const bg = !on ? '#f7f8f7' : u.turnOff ? '#fff5f5' : u.ask ? '#fffbf0' : '#fff'
+              return (
+                <div key={i} style={{ display: 'grid', gridTemplateColumns: cols, padding: '12px 20px', borderBottom: i < USAGE.length - 1 ? `1px solid ${LN}` : 'none', alignItems: 'center', background: bg }}>
+                  <div style={{ fontSize: 13, fontWeight: 600, color: on ? INK : MUT }}>{u.team}</div>
+                  <div style={{ fontSize: 12, color: MUT }}>{u.label}</div>
+                  <div>
+                    {!on ? <div style={{ fontSize: 12, color: MUT }}>Turned off · nothing lost</div>
+                      : u.pct === 0 ? <div style={{ fontSize: 12, color: '#dc2626' }}>{u.text}</div>
+                      : <>
+                          <div style={{ height: 6, background: LN, borderRadius: 3, overflow: 'hidden', marginBottom: 4 }}><div style={{ height: '100%', width: `${u.pct}%`, background: warn ? '#f59e0b' : G, borderRadius: 3 }} /></div>
+                          <div style={{ fontSize: 11, color: warn ? '#d97706' : MUT }}>{u.text}</div>
+                        </>}
+                  </div>
+                  <div style={{ fontSize: 12, color: MUT }}>{on ? u.last : '—'}</div>
+                  <div style={{ fontSize: 12, color: MUT }}>${u.price}</div>
+                  <div>
+                    {on && u.turnOff && <button onClick={() => turnOff(u.team, u.fk, u.label)} style={{ height: 44, padding: '0 12px', background: '#fff', color: '#dc2626', border: '1px solid #fca5a5', borderRadius: 8, fontSize: 12, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Turn off</button>}
+                    {on && u.ask && <button onClick={() => tool(`A note goes to ${u.ask}: "Is ${u.label} still useful?"`)} style={{ height: 44, padding: '0 12px', background: '#fff', color: G, border: `1px solid ${G}`, borderRadius: 8, fontSize: 12, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Ask {u.ask}</button>}
+                  </div>
+                </div>
+              )
+            })}
           </div>
-
-          <div style={{ fontSize: 12, color: MUT }}>"Used" means a coach opened it during a game or session. Prices are placeholders.</div>
+          <div style={{ fontSize: 12, color: MUT }}>“Used” means a coach opened it during a game or session. Prices are placeholders.</div>
         </div>
 
         {/* Right sidebar */}
         <div style={{ width: 260, padding: '24px 20px', flexShrink: 0, display: 'flex', flexDirection: 'column', gap: 16 }}>
-          <div style={{ background: '#fff', border: `2px solid #f59e0b`, borderRadius: 14, padding: '16px 18px' }}>
+          <div style={{ background: '#fff', border: `2px solid ${canSave > 0 ? '#f59e0b' : LN}`, borderRadius: 14, padding: '16px 18px' }}>
             <div style={{ fontSize: 12, color: MUT, marginBottom: 4 }}>You could save</div>
-            <div style={{ fontSize: 24, fontWeight: 900, color: INK }}>$10 a month</div>
-            <div style={{ fontSize: 12, color: MUT, marginTop: 6 }}>One add-on has not been used for 5 weeks. One more is used in a quarter of games.</div>
+            <div style={{ fontSize: 24, fontWeight: 900, color: INK }}>${canSave} a month</div>
+            <div style={{ fontSize: 12, color: MUT, marginTop: 6 }}>{canSave > 0 ? 'One add-on has not been used for 5 weeks. One more is used in a quarter of games.' : 'Nothing is sitting unused right now.'}</div>
           </div>
 
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 18px' }}>
@@ -192,20 +119,18 @@ export default function PRM6Usage({ onNav }: { onNav?: (s: string) => void }) {
             <div style={{ marginBottom: 14 }}>
               <div style={{ fontSize: 12, fontWeight: 600, color: INK, marginBottom: 6 }}>An add-on is unused for</div>
               <div style={{ fontSize: 12, color: MUT, marginBottom: 8 }}>A note in your Needs you</div>
-              {/* 4 weeks button [nth=1, control 20] */}
-              <button onClick={() => tool('Choose: can edit, can see, or no access.')} style={{ height: 44, padding: '0 16px', background: PALE, color: G, border: `1px solid ${G}`, borderRadius: 8, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>4 weeks</button>
+              <button onClick={() => tool('Alert when an add-on is unused for 4 weeks: on.')} style={{ height: 44, padding: '0 16px', background: PALE, color: G, border: `1px solid ${G}`, borderRadius: 8, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>4 weeks</button>
             </div>
             <div>
               <div style={{ fontSize: 12, fontWeight: 600, color: INK, marginBottom: 4 }}>A coach stops using one</div>
               <div style={{ fontSize: 12, color: MUT, marginBottom: 8 }}>So you can ask why</div>
-              {/* On button [nth=1, control 21] */}
-              <button onClick={() => tool('Tell me when a coach stops: turned off.')} style={{ height: 44, padding: '0 16px', background: PALE, color: G, border: `1px solid ${G}`, borderRadius: 8, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>On</button>
+              <button onClick={() => tool('Tell me when a coach stops: turned on.')} style={{ height: 44, padding: '0 16px', background: PALE, color: G, border: `1px solid ${G}`, borderRadius: 8, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>On</button>
             </div>
           </div>
 
           <div style={{ background: PALE, border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 18px' }}>
             <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 8 }}>What coaches see</div>
-            <div style={{ fontSize: 12, color: MUT, lineHeight: 1.6 }}>Nothing here. A coach is never shown as "not using" something to anyone but you.</div>
+            <div style={{ fontSize: 12, color: MUT, lineHeight: 1.6 }}>Nothing here. A coach is never shown as “not using” something to anyone but you.</div>
           </div>
         </div>
       </div>

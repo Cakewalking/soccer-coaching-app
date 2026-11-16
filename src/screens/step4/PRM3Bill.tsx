@@ -1,11 +1,33 @@
 import { useState } from 'react'
 import { OpeningPanel } from './directorParts'
+import { getGroups, setGroups as persist, cloneGroups, billLines, grandTotal, addOnsTotal, PLAN_TEAMS, type Group } from './featuresData'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 export default function PRM3Bill({ onNav }: { onNav?: (s: string) => void }) {
   const [lastTool, setLastTool] = useState('')
+  const [groups, setGroupsLocal] = useState<Group[]>(() => cloneGroups(getGroups()))
+  const [people, setPeople] = useState<string[]>([])
+  const [samOn, setSamOn] = useState(false)
   function tool(name: string) { setLastTool(name) }
+  function update(next: Group[]) { setGroupsLocal(next); persist(next) }
+
+  const lines = billLines(groups)
+  const total = grandTotal(groups)
+  const addOns = addOnsTotal(groups)
+  const samAsked = groups.flatMap(g => g.teams).find(t => t.id === 'U12 Sam')?.live !== true && !samOn
+
+  function turnSamOn() {
+    update(groups.map(g => ({ ...g, teams: g.teams.map(t => t.id === 'U12 Sam' ? { ...t, live: true } : t) })))
+    setSamOn(true)
+    tool('Live game help turned on for U12 Sam · $15 a month, charged by the day.')
+  }
+  function addSomeone() {
+    const names = ['Ben Ryan, secretary', 'Priya Shah, assistant', 'Marko Vale, manager']
+    const next = names[people.length % names.length]
+    setPeople(p => [...p, next])
+    tool(`${next} can now turn features on and off.`)
+  }
 
   const tnb: React.CSSProperties = { height: 56, padding: '0 10px', background: 'none', color: 'rgba(255,255,255,0.75)', border: 'none', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }
   const snb: React.CSSProperties = { height: 44, padding: '0 14px', background: 'none', color: MUT, border: 'none', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }
@@ -39,9 +61,9 @@ export default function PRM3Bill({ onNav }: { onNav?: (s: string) => void }) {
 
       <OpeningPanel
         heading="THIS MONTH’S BILL · JUNE 2026"
-        sentence="$384 for June: $280 for the club plan and $104 in add-ons across 14 teams."
+        sentence={`$${total} for June: $280 for the club plan and $${addOns} in add-ons across ${PLAN_TEAMS} teams.`}
         support="Next payment 1 July, card ending 4821. A change during the month is charged by the day."
-        figures={[{ num: '$384', label: 'total for June', proof: true }, { num: '14', label: 'teams' }]}
+        figures={[{ num: `$${total}`, label: 'total for June', proof: true }, { num: `${PLAN_TEAMS}`, label: 'teams' }]}
         buttons={[{ label: 'See what is used', main: true, onClick: () => onNav?.('PRM6-Usage') }, { label: 'By team', onClick: () => onNav?.('PRM1-FeaturesByTeam') }, { label: 'Download', onClick: () => tool('Invoice downloads as a PDF.') }]}
       />
       <div style={{ flex: 1, display: 'flex', overflow: 'hidden', paddingTop: 12 }}>
@@ -55,51 +77,22 @@ export default function PRM3Bill({ onNav }: { onNav?: (s: string) => void }) {
                 <div key={h} style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT }}>{h}</div>
               ))}
             </div>
-            {/* Club plan row */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 160px 80px 80px', padding: '14px 20px', borderBottom: `1px solid ${LN}` }}>
-              <div>
-                <div style={{ fontSize: 14, fontWeight: 600, color: INK }}>Club plan</div>
-                <div style={{ fontSize: 12, color: MUT }}>Record and review, Ask Clean Sheet, Files, Messages</div>
+            {lines.map(l => (
+              <div key={l.item} style={{ display: 'grid', gridTemplateColumns: '1fr 160px 80px 80px', padding: '14px 20px', borderBottom: `1px solid ${LN}` }}>
+                <div>
+                  <div style={{ fontSize: 14, fontWeight: 600, color: INK }}>{l.item}</div>
+                  <div style={{ fontSize: 12, color: MUT }}>{l.desc}</div>
+                </div>
+                <div style={{ fontSize: 13, color: INK, alignSelf: 'center' }}>{l.teams} team{l.teams === 1 ? '' : 's'}</div>
+                <div style={{ fontSize: 13, color: INK, alignSelf: 'center' }}>${l.each}</div>
+                <div style={{ fontSize: 14, fontWeight: 700, color: l.total === 0 ? MUT : INK, alignSelf: 'center' }}>${l.total}</div>
               </div>
-              <div style={{ fontSize: 13, color: INK, alignSelf: 'center' }}>14 teams</div>
-              <div style={{ fontSize: 13, color: INK, alignSelf: 'center' }}>$20</div>
-              <div style={{ fontSize: 14, fontWeight: 700, color: INK, alignSelf: 'center' }}>$280</div>
-            </div>
-            {/* Live game help row */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 160px 80px 80px', padding: '14px 20px', borderBottom: `1px solid ${LN}` }}>
-              <div>
-                <div style={{ fontSize: 14, fontWeight: 600, color: INK }}>Live game help</div>
-                <div style={{ fontSize: 12, color: MUT }}>U13 Chris, U15 Girls Bec, U16 Ollie, Men's 1sts</div>
-              </div>
-              <div style={{ fontSize: 13, color: INK, alignSelf: 'center' }}>4 teams</div>
-              <div style={{ fontSize: 13, color: INK, alignSelf: 'center' }}>$15</div>
-              <div style={{ fontSize: 14, fontWeight: 700, color: INK, alignSelf: 'center' }}>$60</div>
-            </div>
-            {/* Vests and load row */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 160px 80px 80px', padding: '14px 20px', borderBottom: `1px solid ${LN}` }}>
-              <div>
-                <div style={{ fontSize: 14, fontWeight: 600, color: INK }}>Vests and load</div>
-                <div style={{ fontSize: 12, color: MUT }}>U12 Sam, U13 Chris, U15 Girls Bec, U16 Ollie</div>
-              </div>
-              <div style={{ fontSize: 13, color: INK, alignSelf: 'center' }}>4 teams</div>
-              <div style={{ fontSize: 13, color: INK, alignSelf: 'center' }}>$10</div>
-              <div style={{ fontSize: 14, fontWeight: 700, color: INK, alignSelf: 'center' }}>$40</div>
-            </div>
-            {/* Extra space row */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 160px 80px 80px', padding: '14px 20px', borderBottom: `1px solid ${LN}` }}>
-              <div>
-                <div style={{ fontSize: 14, fontWeight: 600, color: INK }}>Extra space</div>
-                <div style={{ fontSize: 12, color: MUT }}>U16 Ollie</div>
-              </div>
-              <div style={{ fontSize: 13, color: INK, alignSelf: 'center' }}>1 team</div>
-              <div style={{ fontSize: 13, color: INK, alignSelf: 'center' }}>$4</div>
-              <div style={{ fontSize: 14, fontWeight: 700, color: INK, alignSelf: 'center' }}>$4</div>
-            </div>
+            ))}
             {/* Total row */}
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 160px 80px 80px', padding: '14px 20px', background: PALE, borderTop: `2px solid ${LN}` }}>
               <div style={{ fontSize: 15, fontWeight: 800, color: INK }}>Total for June</div>
               <div /><div />
-              <div style={{ fontSize: 18, fontWeight: 800, color: INK }}>$384</div>
+              <div style={{ fontSize: 18, fontWeight: 800, color: INK }}>${total}</div>
             </div>
           </div>
           <div style={{ fontSize: 12, color: MUT }}>All prices are placeholders, before GST. Changes during a month are charged by the day.</div>
@@ -123,21 +116,29 @@ export default function PRM3Bill({ onNav }: { onNav?: (s: string) => void }) {
                 <div style={{ fontSize: 11, color: MUT }}>Can turn features on and off</div>
               </div>
             </div>
-            {/* + Add someone [nth=1] */}
-            <button onClick={() => tool('Pick a person at the club. They must be 18 or over.')} style={{ marginTop: 10, width: '100%', height: 44, background: '#fff', color: INK, border: `1px solid ${LN}`, borderRadius: 8, fontSize: 13, cursor: 'pointer', fontFamily: 'inherit' }}>+ Add someone</button>
+            {people.map((p, i) => (
+              <div key={i} style={{ display: 'flex', gap: 10, padding: '8px 0', borderBottom: `1px solid ${LN}` }}>
+                <div style={{ width: 32, height: 32, borderRadius: '50%', background: '#9a8fb0', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, color: '#fff', flexShrink: 0 }}>{p.split(' ').map(w => w[0]).slice(0, 2).join('')}</div>
+                <div><div style={{ fontSize: 12, fontWeight: 600, color: INK }}>{p.split(',')[0]}</div><div style={{ fontSize: 11, color: MUT }}>Can turn features on and off</div></div>
+              </div>
+            ))}
+            {/* + Add someone */}
+            <button onClick={addSomeone} style={{ marginTop: 10, width: '100%', height: 44, background: '#fff', color: INK, border: `1px solid ${LN}`, borderRadius: 8, fontSize: 13, cursor: 'pointer', fontFamily: 'inherit' }}>+ Add someone</button>
           </div>
 
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 18px' }}>
-            <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 10 }}>1 coach has asked</div>
+            <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 10 }}>{samAsked ? '1 coach has asked' : 'Asks resolved'}</div>
             <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
               <div style={{ width: 28, height: 28, borderRadius: '50%', background: '#7a9e7e', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, color: '#fff', flexShrink: 0 }}>SK</div>
               <div style={{ flex: 1 }}>
                 <div style={{ fontSize: 12, fontWeight: 600, color: INK }}>Sam: Live game help</div>
-                <div style={{ fontSize: 11, color: MUT }}>U12 Sam · "A tight run of games."</div>
+                <div style={{ fontSize: 11, color: MUT }}>{samAsked ? 'U12 Sam · "A tight run of games."' : 'U12 Sam · turned on · +$15 this month'}</div>
               </div>
-              {/* Open [nth=1] */}
-              <button onClick={() => onNav?.('PRM2-TurnOn')} style={{ height: 44, padding: '0 12px', background: G, color: '#fff', border: 'none', borderRadius: 8, fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>Open</button>
+              {samAsked
+                ? <button onClick={turnSamOn} style={{ height: 44, padding: '0 12px', background: G, color: '#fff', border: 'none', borderRadius: 8, fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>Turn it on</button>
+                : <span style={{ height: 44, padding: '0 12px', display: 'flex', alignItems: 'center', color: G, fontSize: 12, fontWeight: 700, flexShrink: 0 }}>✓ On</span>}
             </div>
+            <button onClick={() => onNav?.('PRM2-TurnOn')} style={{ marginTop: 8, width: '100%', height: 40, background: '#fff', color: INK, border: `1px solid ${LN}`, borderRadius: 8, fontSize: 12, cursor: 'pointer', fontFamily: 'inherit' }}>Open the full turn-on screen</button>
           </div>
         </div>
       </div>
