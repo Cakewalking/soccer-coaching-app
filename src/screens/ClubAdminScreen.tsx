@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, cloneElement, isValidElement } from 'react'
+import type { ReactElement } from 'react'
 import type { AdminTab } from './clubadmin/data'
 import { DirectorMessages } from './MessagesScreens'
 import ClubTab from './clubadmin/ClubTab'
@@ -27,6 +28,22 @@ export default function ClubAdminScreen({ empty, role = 'chair', initials = 'RM'
   const [askOpen, setAskOpen] = useState(false)
   const [toast, setToast] = useState<string|null>(null)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
+
+  // Home-story deep-links that match a real frame tab switch the outer nav
+  // (lit in the top bar) instead of rendering a nested, double-framed screen.
+  const FRAME_TABS: Partial<Record<string, AdminTab>> = {
+    'D1-ClubOverview': 'club', 'D1b-ClubChair': 'club',
+    'D2-Teams': 'teams', 'D3-Coaches': 'coaches', 'D4-Players': 'players',
+    'D5-Safeguarding': 'safeguarding', 'D6-BoardReport': 'reports',
+  }
+  function frameNav(s: string): boolean {
+    const t = FRAME_TABS[s]
+    if (t) { setTab(t); return true }
+    return false
+  }
+  const story = isValidElement(homeStory)
+    ? cloneElement(homeStory as ReactElement<{ frameNav?: (s: string) => boolean }>, { frameNav })
+    : homeStory
 
   const ALL_TABS: { id: AdminTab; label: string; icon: string }[] = [
     { id: 'club',         label: 'Club',          icon: 'M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z' },
@@ -103,7 +120,7 @@ export default function ClubAdminScreen({ empty, role = 'chair', initials = 'RM'
       {/* Content */}
       <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden' }}>
         <div style={{ flex: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
-          {tab === 'club'         && <ClubTab role={role === 'welfare' ? 'chair' : role} empty={empty} homeStory={homeStory} />}
+          {tab === 'club'         && <ClubTab role={role === 'welfare' ? 'chair' : role} empty={empty} homeStory={story} />}
           {tab === 'teams'        && <TeamsTab empty={empty} />}
           {tab === 'coaches'      && <CoachesTab empty={empty} role={role === 'welfare' ? 'chair' : role} onNav={onNav} />}
           {tab === 'players'      && <PlayersTab empty={empty} onNav={onNav} />}
