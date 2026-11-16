@@ -40,6 +40,7 @@ import AvailabilityScreen    from './AvailabilityScreen'
 import ConsentScreen         from './ConsentScreen'
 import FormationBuilder from './formation/FormationBuilder'
 import ScreenLayer, { isScreenId } from './ScreenLayer'
+import { demoToast } from './demoToast'
 import PlayerProfileScreen from './PlayerProfileScreen'
 import type { FormationPreset } from './formation/lineupInsights'
 import ThisWeekScreen        from './ThisWeekScreen'
@@ -129,7 +130,7 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
     if (s === 'setstyle')  { goNav('home');     setHomeTab(4);  return }
     if (s === 'teamtalk')  { setSub('teamtalk');  return }
     if (s === 'pitchside') { setSub('pitchside'); return }
-    if (s === 'call')      { alert('Opening the booking calendar.'); return }
+    if (s === 'call')      { demoToast('Opening the booking calendar.'); return }
     if (isScreenId(s))     { setLayer(s); return }
     if (s === 'addgame')   { setSub('addgame');   return }
   }
@@ -143,7 +144,8 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
       if (key) { handleNav(key); return true }
       // Any other id that is one of this app's tabs opens that tab, lit in the menu, not a layer.
       const d = coachDeepTab(target)
-      if (!d) return false
+      // Not one of this app's tabs: open it over the app with a way back, so there is one heading, not two.
+      if (!d) { if (isScreenId(target)) { setLayer(target); return true } return false }
       goNav(d.nav as NavKey)
       if (d.nav === 'home') setHomeTab(d.idx); else if (d.nav === 'squad') setSquadTab(d.idx); else if (d.nav === 'training') setTrainingTab(d.idx); else if (d.nav === 'matchday') setMatchTab(d.idx); else if (d.nav === 'clips') setClipsTab(d.idx)
       return true

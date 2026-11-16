@@ -28,7 +28,7 @@ export const STO17: PhoneCfg = {
 
 export const STO18: PhoneCfg = {
   id: 'STO18-HomeStoryPlayerYoung', roleLine: 'U12 Sam', greeting: 'Hi Mia', avatar: 'MT',
-  tabs: [{ label: 'Home', target: 'PA-PlayerApp' }, { label: 'Clips', target: 'PA-Clip' }, { label: 'Goals', target: 'PA-Goals' }, { label: 'Me', target: 'PS4-PlayerMe' }],
+  tabs: [{ label: 'Home', target: 'PA-PlayerApp' }, { label: 'Clips', target: 'PA-Clip' }, { label: 'Learn', target: 'LEARN-PlayerYoung' }, { label: 'Goals', target: 'PA-Goals' }, { label: 'Me', target: 'PS4-PlayerMe' }],
   blocks: [
     { kind: 'proof', label: 'SATURDAY AT IRONBARK UNITED', headline: 'You won the ball back four times. That is your goal, and it is your best yet.', second: 'Sam says: “Great pressing. Watch how you and Jai close together.”', bars: [{ n: '1', when: '9 May' }, { n: '2', when: '23 May' }, { n: '4', when: 'Saturday', amber: true }], unit: 'times you won it back', btn: 'Watch my clip', btnTarget: 'PA-Clip' },
     { kind: 'ready', when: 'THURSDAY · 5:45 pm', title: 'Your one thing for training', text: 'Press as a pair with Jai. When he goes, you go.', btns: [{ label: 'See my goal', target: 'PA-Goals' }] },
@@ -39,7 +39,7 @@ export const STO18: PhoneCfg = {
 
 export const STO19: PhoneCfg = {
   id: 'STO19-HomeStoryPlayerOlder', roleLine: 'U16 Ollie', greeting: 'Hi Cal', avatar: 'CW',
-  tabs: [{ label: 'Home', target: 'PO1-OlderHome' }, { label: 'Clips', target: 'PA-Clip' }, { label: 'Body', target: 'PO4-OlderLoad' }, { label: 'Messages', target: 'PO2-OlderMessage' }],
+  tabs: [{ label: 'Home', target: 'PO1-OlderHome' }, { label: 'Clips', target: 'PA-Clip' }, { label: 'Learn', target: 'LEARN-PlayerOlder' }, { label: 'Body', target: 'PO4-OlderLoad' }, { label: 'Messages', target: 'PO2-OlderMessage' }],
   blocks: [
     { kind: 'proof', label: 'SAT 30 MAY · DREW 2–2 v TEALSIDE TOWN', headline: 'Your top speed is 6% up on last month. Ollie says that is a real change.', second: 'You also won the ball eight times, up from six. Three clips are ready.', bars: [{ n: '27.1', when: 'April' }, { n: '27.9', when: 'May' }, { n: '28.8', when: 'Saturday', amber: true }], unit: 'km/h top speed', btn: 'Watch my three clips', btnTarget: 'PA-Clip' },
     { kind: 'ready', when: 'THURSDAY · 6:30 pm', title: 'Thursday: sprints are capped', text: 'Your load is high, so Priya has taken out the last block. 75 minutes.', btns: [{ label: 'I’m in', done: 'You’re in for Thursday.' }, { label: 'Can’t', done: 'Ollie knows you can’t make Thursday.' }] },

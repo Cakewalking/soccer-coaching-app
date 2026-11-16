@@ -20,7 +20,7 @@ function ClipReel({ onClick }: { onClick?: () => void }) {
 
 type Lesson = { title: string; credit: string; watched: string | null; skill: string; position: string; age: string; from: string }
 const LESSONS: Lesson[] = [
-  { title: 'Closing the space behind the press', credit: 'Grace Owusu, U12 Sam · v Tealside Town', watched: '5 of 16 watched', skill: 'Staying compact between the lines', position: 'Defender', age: 'Under 12', from: 'Your team' },
+  { title: 'Closing the space behind the press', credit: 'Grace Owusu, U12 Sam · v Tealside Town', watched: '5 of 17 watched', skill: 'Staying compact between the lines', position: 'Defender', age: 'Under 12', from: 'Your team' },
   { title: 'Scanning before the ball arrives', credit: 'From your club’s style', watched: null, skill: 'Playing out from the back', position: 'Midfielder', age: 'Under 12', from: 'The whole club' },
   { title: 'First touch away from pressure', credit: 'U12 Girls Ana · v Kestrel Park', watched: null, skill: 'Playing out from the back', position: 'Forward', age: 'Under 12', from: 'Your age group' },
   { title: 'Starting position for a through ball', credit: 'From the national curriculum', watched: null, skill: 'Attacking down the sides', position: 'Forward', age: 'Under 14', from: 'National curriculum' },
@@ -42,7 +42,7 @@ const SKILLS = [
   ['Counter-attacking', 4], ['Attacking down the sides', 5], ['Defending crosses', 3],
 ]
 
-export default function EDU1Learn({ onNav, skillOpen = false, bare = false }: { onNav?: (s: string) => void; skillOpen?: boolean; bare?: boolean }) {
+export default function EDU1Learn({ onNav, skillOpen = false, bare = false, audience }: { onNav?: (s: string) => void; skillOpen?: boolean; bare?: boolean; audience?: React.ReactNode }) {
   const [toast, setToast] = useState<string | null>(null)
   const [nudged, setNudged] = useState(false)
   const [ticked, setTicked] = useState<number[]>(skillOpen ? [0] : [])
@@ -120,7 +120,7 @@ export default function EDU1Learn({ onNav, skillOpen = false, bare = false }: { 
         support="14 seconds from the under 14s v Ironbark, three things to notice, and a drill for tonight."
         rightWidth={300}
         right={<ClipReel onClick={() => onNav?.('EDU2-Lesson')} />}
-        buttons={[{ label: 'Watch it', main: true, onClick: () => onNav?.('EDU2-Lesson') }, { label: nudged ? '✓ Sent to 7' : 'Send to the other 7', onClick: () => { setNudged(true); say('Sent to Finn, Isla and 5 others, with tonight’s drill.') } }]}
+        buttons={[{ label: 'Watch it', main: true, onClick: () => onNav?.('EDU2-Lesson') }, { label: nudged ? '✓ Sent to 8' : 'Send to the other 8', onClick: () => { setNudged(true); say('Sent to Finn, Isla and 6 others, with tonight’s drill.') } }]}
       />
 
       {/* Filter row */}
@@ -129,6 +129,7 @@ export default function EDU1Learn({ onNav, skillOpen = false, bare = false }: { 
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth="2"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
           <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search 38 lessons" style={{ border: 'none', outline: 'none', background: 'transparent', fontSize: 13, color: INK, fontFamily: 'inherit', width: 130 }} />
         </div>
+        {audience}
         <button onClick={() => { setTeamOn(v => !v); say(teamOn ? 'Showing every lesson.' : 'Lessons picked for your team’s gaps.') }} style={pill(teamOn)}>For U12 Sam<Chevron /></button>
 
         {/* Skill — multi-select */}
@@ -193,9 +194,9 @@ export default function EDU1Learn({ onNav, skillOpen = false, bare = false }: { 
         <aside style={{ display: 'flex', flexDirection: 'column', gap: 12, minHeight: 0 }}>
           <div style={{ background: '#fff', border: `1px solid ${CTL}`, borderRadius: 16, padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 10 }}>
             <h2 style={{ margin: 0, fontSize: 17, fontWeight: 700 }}>Your players this week</h2>
-            <div><div style={{ fontSize: 24, fontWeight: 800 }}>9 of 16</div><div style={{ fontSize: 13, color: MUT }}>watched “Stepping up together”</div></div>
-            <div><div style={{ fontSize: 24, fontWeight: 800 }}>5 of 16</div><div style={{ fontSize: 13, color: MUT }}>tried the drill at home</div></div>
-            <button onClick={() => { setNudged(true); say('Sent to Finn, Isla and 5 others, with tonight’s drill.') }} style={{ height: 44, borderRadius: 10, border: `1px solid ${CTL}`, background: '#fff', fontSize: 14, fontWeight: 700, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>{nudged ? '✓ Nudged the 7' : 'Nudge the 7 who have not'}</button>
+            <div><div style={{ fontSize: 24, fontWeight: 800 }}>9 of 17</div><div style={{ fontSize: 13, color: MUT }}>watched “Stepping up together”</div></div>
+            <div><div style={{ fontSize: 24, fontWeight: 800 }}>5 of 17</div><div style={{ fontSize: 13, color: MUT }}>tried the drill at home</div></div>
+            <button onClick={() => { setNudged(true); say('Sent to Finn, Isla and 6 others, with tonight’s drill.') }} style={{ height: 44, borderRadius: 10, border: `1px solid ${CTL}`, background: '#fff', fontSize: 14, fontWeight: 700, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>{nudged ? '✓ Nudged the 7' : 'Nudge the 8 who have not'}</button>
           </div>
           <div style={{ background: '#fff', border: `1px solid ${CTL}`, borderRadius: 16, padding: '14px 16px', flexGrow: 1, minHeight: 0, overflow: 'hidden' }}>
             <h2 style={{ margin: '0 0 6px', fontSize: 17, fontWeight: 700 }}>From your team</h2>

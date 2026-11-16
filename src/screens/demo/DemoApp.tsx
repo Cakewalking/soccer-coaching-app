@@ -49,6 +49,7 @@ import SettingsScreen        from '../SettingsScreen'
 import LiveGameScreen        from '../LiveGameScreen'
 import FormationBuilder      from '../formation/FormationBuilder'
 import { registerScreenRenderer, isScreenId } from '../ScreenLayer'
+import { confirmDialog } from '../confirmDialog'
 import { SCREEN_ALIAS, renderExtraScreen } from './extraScreens'
 import type { FormationPreset } from '../formation/lineupInsights'
 import LineupParent          from '../formation/LineupParent'
@@ -2587,11 +2588,11 @@ export default function DemoApp() {
           setSbStore(filled)
         }}
         onReset={() => {
-          if (window.confirm("Remove everything you've added and start again?")) {
+          confirmDialog('Remove everything you’ve added and start again?', 'Remove it all', 'Keep it').then(yes => {
+            if (!yes) return
             clearStore()
-            const empty = readStore()
-            setSbStore(empty)
-          }
+            setSbStore(readStore())
+          })
         }}
         onKeepGoing={() => {}}
       />
@@ -2645,11 +2646,11 @@ export default function DemoApp() {
           setSbStore(filled)
         }}
         onReset={() => {
-          if (window.confirm("Remove everything you've added and start again?")) {
+          confirmDialog('Remove everything you’ve added and start again?', 'Remove it all', 'Keep it').then(yes => {
+            if (!yes) return
             clearStore()
-            const empty = readStore()
-            setSbStore(empty)
-          }
+            setSbStore(readStore())
+          })
         }}
       >
         <SandboxContext.Provider value={{
@@ -2720,8 +2721,8 @@ export default function DemoApp() {
       const pc = phase === 'preseason' ? <SPm2MiniRoosPreSeason onBack={noop} />
                : phase === 'postseason' ? <SPm10MiniRoosPostSeason onBack={noop} />
                : phase === 'restmonth' ? <SPm16MiniRoosRest onBack={noop} />
-               : <HomeStoryBody cfg={STO1} renderTarget={renderScreen} />
-      lookContent = <div style={{ width: 1180, background: 'var(--surface-100)' }}><MiniRoosApp onBack={() => setRole('coach')} empty={false} phaseContent={pc} initialScreen={screen} onNavChange={setScreen} /></div>
+               : <HomeStoryBody cfg={STO1} renderTarget={renderScreen} frameNav={(t) => coachNavRef.current(t)} />
+      lookContent = <div style={{ width: 1180, background: 'var(--surface-100)' }}><MiniRoosApp onBack={() => setRole('coach')} empty={false} phaseContent={pc} initialScreen={screen} onNavChange={setScreen} registerNav={(fn) => { coachNavRef.current = fn }} /></div>
     } else if (role === 'goalkeeper') {
       lookContent = <GoalkeeperCoachApp onBack={() => setRole('coach')} empty={false} initialScreen={screen} onNavChange={setScreen} homeStory={<HomeStoryBody cfg={STO9} renderTarget={renderScreen} />} />
     } else if (role === 'fitness') {

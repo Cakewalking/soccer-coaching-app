@@ -4,7 +4,9 @@ import { DARK, AMBER, PALEON } from './directorParts'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb'
 
-export default function EDUp1PlayerLearn({ onNav: _onNav }: { onNav?: (s: string) => void }) {
+export default function EDUp1PlayerLearn({ onNav: _onNav, embedded = false, older = false }: { onNav?: (s: string) => void; embedded?: boolean; older?: boolean }) {
+  // The same tab for both player ages. A player 15 and over sees their own team and coach.
+  const who = older ? { team: 'U16 Ollie', ini: 'CW', coach: 'Ollie' } : { team: 'U12 Sam', ini: 'MT', coach: 'Sam' }
   const [lastTool, setLastTool] = useState('')
   const [played, setPlayed] = useState<string | null>(null)
   const [didIt, setDidIt] = useState(false)
@@ -39,19 +41,22 @@ export default function EDUp1PlayerLearn({ onNav: _onNav }: { onNav?: (s: string
   return (
     <div data-lasttool={lastTool} style={{ width: 390, background: '#f7f8f7', fontFamily: 'var(--font-sans)', minHeight: 844, display: 'flex', flexDirection: 'column', borderRadius: 24, overflow: 'hidden' }}>
       {/* Header */}
-      <div style={{ background: GD, padding: '14px 20px 10px', display: 'flex', alignItems: 'center', gap: 8 }}>
-        <div style={{ fontSize: 15, fontWeight: 800, color: '#fff', flex: 1 }}>Learn</div>
-        <div style={{ width: 28, height: 28, borderRadius: '50%', background: 'rgba(255,255,255,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, color: '#fff' }}>S</div>
+      <div style={{ background: G, padding: '12px 16px 14px', display: 'flex', alignItems: 'center', gap: 10 }}>
+        <div style={{ flex: 1 }}>
+          <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.82)' }}>{who.team}</div>
+          <div style={{ fontSize: 21, fontWeight: 700, color: '#fff', letterSpacing: '-0.01em' }}>Learn</div>
+        </div>
+        <div style={{ width: 38, height: 38, borderRadius: '50%', background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, color: INK }}>{who.ini}</div>
       </div>
 
       {/* Content */}
       <div style={{ flex: 1, padding: '0 0 80px', overflowY: 'auto' }}>
         <div style={{ padding: '20px 20px 0' }}>
           <div style={{ background: DARK, borderRadius: 14, padding: '18px 18px', marginBottom: 20, color: '#fff' }}>
-            <div style={{ fontSize: 12, fontWeight: 700, color: AMBER, letterSpacing: '0.06em', textTransform: 'uppercase' as const, marginBottom: 8 }}>This week from Sam</div>
+            <div style={{ fontSize: 12, fontWeight: 700, color: AMBER, letterSpacing: '0.06em', textTransform: 'uppercase' as const, marginBottom: 8 }}>This week from {who.coach}</div>
             <div style={{ fontSize: 15, color: '#fff', lineHeight: 1.5, marginBottom: 8 }}>Short videos of your teammates. Watch them and try it at training.</div>
             <div style={{ fontSize: 12, color: PALEON, marginBottom: 4 }}>No likes, no comments, no counts of who watched most.</div>
-            <div style={{ fontSize: 12, color: PALEON }}>Sam used your pass against Ironbark to show "playing forward first time". It is in the club library.</div>
+            <div style={{ fontSize: 12, color: PALEON }}>{who.coach} used your pass against {older ? 'Tealside Town' : 'Ironbark'} to show "playing forward first time". It is in the club library.</div>
           </div>
 
           {lessons.map(l => {
@@ -72,7 +77,7 @@ export default function EDUp1PlayerLearn({ onNav: _onNav }: { onNav?: (s: string
                   {l.id === 'l2' && !didIt && (
                     <>
                       <div style={{ fontSize: 12, color: MUT, marginBottom: 8 }}>20 passes against a wall with your left foot. From "Passing with the other foot". Counts towards your goal.</div>
-                      <button onClick={() => { setDidIt(true); tool('I did it'); st('Nice one. Sam can see you practised. 2 of 3 this week.') }} style={{ height: 44, width: '100%', borderRadius: 10, background: AMBER, color: INK, border: 'none', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', position: 'relative', zIndex: 2 }}>I did it</button>
+                      <button onClick={() => { setDidIt(true); tool('I did it'); st(`Nice one. ${who.coach} can see you practised. 2 of 3 this week.`) }} style={{ height: 44, width: '100%', borderRadius: 10, background: AMBER, color: INK, border: 'none', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', position: 'relative', zIndex: 2 }}>I did it</button>
                     </>
                   )}
                   {isPlayed && l.id !== 'l2' && (
@@ -86,18 +91,18 @@ export default function EDUp1PlayerLearn({ onNav: _onNav }: { onNav?: (s: string
       </div>
 
       {/* Bottom nav */}
-      <div style={{ position: 'fixed', bottom: 0, left: 0, width: 390, background: '#fff', borderTop: `1px solid ${LN}`, padding: '10px 0 20px', display: 'flex', justifyContent: 'space-around' }}>
+      {!embedded && <div style={{ position: 'sticky', bottom: 0, width: 390, background: '#fff', borderTop: `1px solid ${LN}`, padding: '10px 0 20px', display: 'flex', justifyContent: 'space-around' }}>
         {navItems.map(n => (
           <button
             key={n.label}
-            onClick={() => n.active ? tool('Learn') : tool(n.label)}
+            onClick={() => { const to = ({ Home: older ? 'STO19-HomeStoryPlayerOlder' : 'STO18-HomeStoryPlayerYoung', Clips: 'PA-Clip', Goals: 'PA-Goals', Me: 'PS4-PlayerMe' } as Record<string, string>)[n.label]; if (to && _onNav) _onNav(to); else tool(n.label) }}
             style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', minWidth: 44, minHeight: 44, justifyContent: 'center' }}
           >
             <NavIcon icon={n.icon} active={n.active} />
             <span style={{ fontSize: 11, color: n.active ? G : MUT, fontWeight: n.active ? 700 : 400 }}>{n.label}</span>
           </button>
         ))}
-      </div>
+      </div>}
 
       {toast && (
         <div role="status" style={{ position: 'fixed', bottom: 80, left: '50%', transform: 'translateX(-50%)', background: GD, color: '#fff', padding: '10px 20px', borderRadius: 999, fontSize: 13, fontWeight: 600, zIndex: 100, whiteSpace: 'nowrap' }}>{toast}</div>

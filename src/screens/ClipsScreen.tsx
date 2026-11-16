@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import EDU1Learn from './step4/EDU1Learn'
+import LearnTab, { type LearnTeam } from './learn/LearnTab'
 import { CLIPS, CLIPS_GAMES, CLIPS_MEASURES, type GameClip } from '../data'
 import { PLAYERS, GAME_FULL, MEASURE_INFO, resultColor } from './clips/clipData'
 import { ClipCard, ClipDetail, DropChip } from './clips/ClipComponents'
@@ -156,7 +156,7 @@ function ClipsEmpty({ activeTab }: { activeTab: number }) {
   )
 }
 
-export default function ClipsScreen({ empty, activeTab = 0, onNav }: { empty?: boolean; activeTab?: number; onNav?: (s: string) => void }) {
+export default function ClipsScreen({ empty, activeTab = 0, onNav, team = 'juniors' }: { empty?: boolean; activeTab?: number; onNav?: (s: string) => void; team?: LearnTeam }) {
   const [filterMode, setFilterMode] = useState<FilterMode>('measure')
   const [activeGame, setActiveGame] = useState<string>('all')
   const [activeMeasure, setActiveMeasure] = useState<string | null>('Pressing high')
@@ -180,7 +180,7 @@ export default function ClipsScreen({ empty, activeTab = 0, onNav }: { empty?: b
   if (empty) return <ClipsEmpty activeTab={activeTab} />
   if (activeTab === 3) return <PlaylistsTab />
   if (activeTab === 4) return <ToCheckTab />
-  if (activeTab === 5) return <EDU1Learn bare onNav={onNav} />
+  if (activeTab === 5) return <LearnTab team={team} onNav={onNav} />
 
   const baseFiltered = CLIPS.filter(c => {
     if (filterMode === 'game'    && activeGame)    return activeGame === 'all' || c.game === activeGame

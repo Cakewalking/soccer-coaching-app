@@ -433,7 +433,8 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
       if (key) { handleNav(key); return true }
       // Any other id that is one of this app's tabs opens that tab, lit in the menu, not a layer.
       const d = coachDeepTab(target)
-      if (!d) return false
+      // Not one of this app's tabs: open it over the app with a way back, so there is one heading, not two.
+      if (!d) { if (isScreenId(target)) { setLayer(target); return true } return false }
       goNav(d.nav as NavKey)
       if (d.nav === 'home') setHomeTab(d.idx); else if (d.nav === 'squad') setSquadTab(d.idx); else if (d.nav === 'training') setTrainingTab(d.idx); else if (d.nav === 'matchday') setMatchTab(d.idx); else if (d.nav === 'clips') setClipsTab(d.idx)
       return true
@@ -537,7 +538,7 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
       case 5: content = <FitnessMatchTab empty={sbEmptyFixture} />; break
     }
   } else if (nav === 'clips') {
-    content = <ClipsScreen empty={sbEmpty} activeTab={clipsTab} onNav={handleNav} />
+    content = <ClipsScreen empty={sbEmpty} activeTab={clipsTab} onNav={handleNav} team={teamType === 'seniors' ? 'seniors' : 'youth'} />
   }
 
   const navTabs = NAV_LABELS.map((label, i) => ({ id: NAV_KEYS[i], label, icon: NAV_ICONS[i] }))

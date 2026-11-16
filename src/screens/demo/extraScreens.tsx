@@ -19,6 +19,8 @@ import SessionPlans from '../drillibrary/SessionPlans'
 import TermPlanner from '../drillibrary/TermPlanner'
 import MeasureSheet from '../measures/MeasureSheet'
 import { MEASURE } from '../measures/data'
+import EDUp1PlayerLearn from '../step4/EDUp1PlayerLearn'
+import MiniRoosApp from '../miniroos/MiniRoosApp'
 import JuniorCoachApp, { coachDeepTab } from '../JuniorCoachApp'
 
 // Design ids from the master handover that had no address of their own.
@@ -66,6 +68,10 @@ export function renderExtraScreen(key: string): ReactNode | undefined {
   // coach app's own tab is the built screen, so the id opens that tab, in its frame.
   if (LIVE_COACH_TAB.has(key) && coachDeepTab(key)) return <JuniorCoachApp initialScreen={key} />
   switch (key) {
+    // The player's Learn tab, opened from the phone home (which keeps its own tab bar)
+    case 'LEARN-PlayerYoung':    return phone(<EDUp1PlayerLearn embedded />)
+    case 'LEARN-PlayerOlder':    return phone(<EDUp1PlayerLearn embedded older />)
+    case 'EDU5-CoachCorner':     return <div style={{ width: 1180, margin: '0 auto', background: 'var(--surface-100)' }}><MiniRoosApp onBack={noop} initialScreen="learncoaches" /></div>
     case 'X2-SquadEmpty':        return page(<SquadScreen role="head" onPlayerProfile={noop} empty />)
     case 'ST1e-TeamStaffEmpty':  return page(<TeamStaffScreen empty />)
     case 'X5-ProfileEmpty':      return page(<PlayerProfileScreen playerIni="MT" empty />)
