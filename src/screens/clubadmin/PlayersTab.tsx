@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { FAIR_TIME } from './data'
 import { SubTabBar, EmptyCard, FOOTER_DEFAULT } from './ui'
-import { OpeningPanel } from '../step4/directorParts'
+import { OpeningPanel, ChipRow, type ChipState, AMBER, PALEGREEN, CTL, HAIR } from '../step4/directorParts'
 
 type PlayersView = 'overview' | 'goals' | 'growthload' | 'fairtime' | 'playingacross' | 'registrations' | 'moves' | 'trials' | 'girls' | 'nominations'
 
@@ -229,61 +229,32 @@ function NominationsView() {
   )
 }
 
-type PUDot = 'full' | 'ring' | 'empty'
-type PUPlayer = { initials: string; bg: string; name: string; from: string; to: string; sub: string; dots: [PUDot,PUDot,PUDot,PUDot,PUDot]; status: string; statusColor: string; target?: string }
-const DOT_LABELS = ['Football', 'Body', 'Head', 'Settling in', 'Load']
-
-function PUDotMark({ d, label }: { d: PUDot; label: string }) {
-  return <div title={label} aria-label={label} style={{ width: 14, height: 14, borderRadius: '50%', border: `2px solid ${d === 'empty' ? '#c8d4d0' : G}`, background: d === 'full' ? G : 'transparent', flexShrink: 0 }} />
-}
+type WorthRow = { ini: string; name: string; move: string; chips: ChipState[]; reason: string; btn: string; main?: boolean; target?: string; say?: string }
+type NowRow = { ini: string; name: string; move: string; sub: string; done: number; of: number; btn: string; target: string }
 
 function PlayingAcrossView({ onNav }: { onNav?: (s: string) => void }) {
-  const [ageFilter, setAgeFilter] = useState<'All ages' | 'Girls' | 'Boys'>('All ages')
   const [segment, setSegment] = useState<'up' | 'down' | 'mixed'>('up')
   const [toast, setToast] = useState<string | null>(null)
+  const [nudged, setNudged] = useState(false)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 2500) }
 
-  const worthLook: PUPlayer[] = [
-    { initials: 'MT', bg: '#7a9e7e', name: 'Mia Tran', from: 'U12 Sam', to: 'U13 Girls Meg', sub: 'Sam nominated her too · strong for 8 weeks', dots: ['full','full','full','ring','full'], status: 'Ready to try', statusColor: G, target: 'PU2-PlayerReadiness' },
-    { initials: 'TA', bg: '#8fa09b', name: 'Tane Waru', from: 'U14 Josh', to: 'U16 Ollie', sub: 'Head: coach has not answered yet', dots: ['full','full','ring','empty','ring'], status: 'Needs a view', statusColor: WARN, target: 'PU2-PlayerReadiness' },
-    { initials: 'ZP', bg: '#c0a070', name: 'Zoe Park', from: 'U11 Luke', to: 'U12 Girls Ana', sub: 'Would be her third team this year', dots: ['full','ring','ring','ring','ring'], status: 'Talk first', statusColor: MUT, target: 'PU2-PlayerReadiness' },
+  const WORTH: WorthRow[] = [
+    { ini: 'MT', name: 'Mia Tran', move: 'U12 Sam → U13 Girls Meg', chips: ['strong', 'some', 'strong', 'strong', 'strong'], reason: 'Sam nominated her too', btn: 'Open Mia', main: true, target: 'PU2-PlayerReadiness' },
+    { ini: 'TA', name: 'Tane Waru', move: 'U14 Josh → U16 Ollie', chips: ['strong', 'strong', 'some', 'notyet', 'strong'], reason: 'Josh has not answered', btn: 'Ask Josh again', say: 'Josh is asked again for his three taps on Tane.' },
+    { ini: 'ZP', name: 'Zoe Park', move: 'U11 Luke → U12 Girls Ana', chips: ['strong', 'strong', 'strong', 'some', 'some'], reason: 'Her third team this year', btn: 'Talk to Luke first', say: 'A message to Luke opens, about Zoe.' },
   ]
-  const playingNow: PUPlayer[] = [
-    { initials: 'LC', bg: '#6b9eab', name: 'Leo Costa', from: 'U13 Chris', to: 'U14 Josh', sub: 'Week 3 of 4 · training up, playing his own age', dots: ['full','full','full','full','ring'], status: 'Review 18 Jun', statusColor: G, target: 'PU3-TrialPlan' },
-    { initials: 'AW', bg: '#a09080', name: 'Ava Walsh', from: 'U12 Sam', to: 'U13 Girls Meg', sub: 'Moved up in May · check-in every 6 weeks', dots: ['full','full','full','full','full'], status: 'Going well', statusColor: G, target: 'PU3-TrialPlan' },
+  const NOW: NowRow[] = [
+    { ini: 'LC', name: 'Leo Costa', move: 'U13 Chris → U14 Josh', sub: 'Trains up on Tuesdays, plays his own age', done: 3, of: 4, btn: 'Review on 18 June', target: 'PU3-TrialPlan' },
+    { ini: 'AW', name: 'Ava Walsh', move: 'U12 Sam → U13 Girls Meg', sub: 'Moved up in May · going well', done: 6, of: 6, btn: 'Open her check-in', target: 'PU3-TrialPlan' },
   ]
-  const heldBack: PUPlayer[] = [
-    { initials: 'NO', bg: '#c05050', name: 'Noah Okafor', from: 'U14 Josh', to: '', sub: 'Growing fast, knee pain. Looked at in 8 weeks.', dots: ['full','empty','full','full','ring'], status: '', statusColor: '' },
-  ]
-
-  function PUPlayerRow({ p }: { p: PUPlayer }) {
-    return (
-      <div onClick={() => p.target ? onNav?.(p.target) : st(`Opening ${p.name}'s readiness profile.`)} style={{ display: 'flex', alignItems: 'center', padding: '12px 0', borderBottom: `1px solid ${LN}`, cursor: 'pointer', gap: 12 }}
-        onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = '#eef5f2' }}
-        onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = 'transparent' }}
-      >
-        <div style={{ width: 36, height: 36, borderRadius: '50%', background: p.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, color: '#fff', flexShrink: 0 }}>{p.initials}</div>
-        <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ fontSize: 14, fontWeight: 700, color: INK }}>{p.name}</div>
-          <div style={{ fontSize: 12, color: MUT }}>{p.from}{p.to ? ` → ${p.to}` : ''}</div>
-          <div style={{ fontSize: 11, color: MUT }}>{p.sub}</div>
-        </div>
-        <div style={{ display: 'flex', gap: 4, alignItems: 'center' }}>
-          {p.dots.map((d, i) => <PUDotMark key={i} d={d} label={DOT_LABELS[i]} />)}
-        </div>
-        {p.status && (
-          <div style={{ height: 28, padding: '0 12px', borderRadius: 999, background: p.statusColor === G ? '#eef5f2' : p.statusColor === WARN ? '#fffbeb' : '#f7f8f7', color: p.statusColor, fontSize: 12, fontWeight: 700, display: 'flex', alignItems: 'center', flexShrink: 0 }}>{p.status}</div>
-        )}
-        <div style={{ color: MUT, fontSize: 16 }}>›</div>
-      </div>
-    )
-  }
 
   const segments: { id: 'up'|'down'|'mixed'; label: string; count: number }[] = [
     { id: 'up', label: 'An age group up', count: 3 },
     { id: 'down', label: 'An age group down', count: 2 },
     { id: 'mixed', label: 'Mixed-age sessions', count: 0 },
   ]
+  const avatar: React.CSSProperties = { width: 40, height: 40, borderRadius: 999, background: PALEGREEN, color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 700, flexShrink: 0 }
+  const outBtn: React.CSSProperties = { flex: 'none', width: 150, height: 44, padding: '0 14px', borderRadius: 10, boxSizing: 'border-box', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap', background: '#fff', color: INK, border: `1px solid ${CTL}` }
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', flex: 1, minHeight: 0 }}>
@@ -295,9 +266,9 @@ function PlayingAcrossView({ onNav }: { onNav?: (s: string) => void }) {
         figures={[{ num: '3', label: 'worth a look', proof: true }, { num: '2', label: 'playing up now' }, { num: '1', label: 'held back by a rule' }]}
         buttons={[{ label: 'Open Mia', main: true, onClick: () => onNav?.('PU2-PlayerReadiness') }, { label: 'Nominate a player', onClick: () => st('Pick any player. Their coach is asked for a view.') }]}
       />
-    <div style={{ display: 'flex', flex: 1, padding: '16px 20px 20px 20px', gap: 20, minHeight: 0 }}>
+    <div style={{ display: 'flex', flex: 1, padding: '16px 20px 20px 20px', gap: 20, minHeight: 0, overflow: 'auto' }}>
       <div style={{ flex: 1, minWidth: 0 }}>
-        <div style={{ display: 'flex', gap: 8, marginBottom: 20, flexWrap: 'wrap' as const }}>
+        <div style={{ display: 'flex', gap: 8, marginBottom: 16, flexWrap: 'wrap' as const }}>
           {segments.map(s => (
             <button key={s.id} onClick={() => setSegment(s.id)} style={{ height: 36, padding: '0 16px', borderRadius: 999, border: `1.5px solid ${segment === s.id ? G : LN}`, background: segment === s.id ? '#eef5f2' : '#fff', fontSize: 13, color: segment === s.id ? G : MUT, fontWeight: segment === s.id ? 700 : 400, cursor: 'pointer', fontFamily: 'inherit' }}>{s.label} · {s.count}</button>
           ))}
@@ -305,40 +276,42 @@ function PlayingAcrossView({ onNav }: { onNav?: (s: string) => void }) {
 
         {segment === 'up' && (
           <>
-            <div style={{ display: 'flex', alignItems: 'center', padding: '0 0 8px 60px', gap: 12 }}>
-              <div style={{ flex: 1 }} />
-              <div style={{ display: 'flex', gap: 4 }}>
-                {['F','B','H','S','L'].map(l => (
-                  <div key={l} style={{ width: 14, textAlign: 'center' as const, fontSize: 11, fontWeight: 700, color: MUT }}>{l}</div>
-                ))}
+            <div style={{ background: '#fff', border: `1px solid ${CTL}`, borderRadius: 16, padding: '14px 16px', marginBottom: 14 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', minHeight: 36 }}>
+                <h2 style={{ margin: 0, fontSize: 17, fontWeight: 700 }}>Worth a look</h2>
+                <span style={{ fontSize: 13, color: MUT }}>Filled: strong · pale: some · dashed: not yet</span>
               </div>
-              <div style={{ width: 100 }} /><div style={{ width: 24 }} />
-            </div>
-
-            <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 20px', marginBottom: 14 }}>
-              <div style={{ display: 'flex', alignItems: 'center', marginBottom: 4 }}>
-                <div style={{ fontSize: 15, fontWeight: 700, color: INK, flex: 1 }}>Worth a look</div>
-                <div style={{ display: 'flex', gap: 8 }}>
-                  {(['All ages','Girls','Boys'] as const).map(f => (
-                    <button key={f} onClick={() => setAgeFilter(f)} style={{ height: 28, padding: '0 12px', borderRadius: 999, border: `1.5px solid ${ageFilter === f ? G : LN}`, background: ageFilter === f ? '#eef5f2' : '#fff', fontSize: 12, color: ageFilter === f ? G : MUT, fontWeight: ageFilter === f ? 700 : 400, cursor: 'pointer', fontFamily: 'inherit' }}>{f}</button>
-                  ))}
+              {WORTH.map(p => (
+                <div key={p.name} style={{ display: 'grid', gridTemplateColumns: '44px minmax(0,1fr) 150px', columnGap: 10, alignItems: 'center', minHeight: 70, borderTop: `1px solid ${HAIR}`, padding: '4px 0' }}>
+                  <span style={avatar}>{p.ini}</span>
+                  <span style={{ minWidth: 0, display: 'flex', flexDirection: 'column', gap: 5 }}>
+                    <span style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}><strong style={{ fontSize: 16, lineHeight: '22px' }}>{p.name}</strong><span style={{ fontSize: 14, lineHeight: '20px', color: MUT }}>{p.move}</span></span>
+                    <span style={{ display: 'flex', alignItems: 'center', gap: 10 }}><ChipRow states={p.chips} /><span style={{ fontSize: 13, lineHeight: '18px', color: MUT }}>{p.reason}</span></span>
+                  </span>
+                  <button onClick={() => p.target ? onNav?.(p.target) : st(p.say!)} style={p.main ? { ...outBtn, background: G, color: '#fff', border: `1px solid ${G}` } : outBtn}>{p.btn}</button>
                 </div>
-              </div>
-              <div style={{ fontSize: 11, color: MUT, marginBottom: 12 }}>Full dot: strong · ring: some · empty: not yet</div>
-              {worthLook.map(p => <PUPlayerRow key={p.name} p={p} />)}
+              ))}
             </div>
 
-            <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 20px', marginBottom: 14 }}>
-              <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 12 }}>Playing up now</div>
-              {playingNow.map(p => <PUPlayerRow key={p.name} p={p} />)}
+            <div style={{ background: '#fff', border: `1px solid ${CTL}`, borderRadius: 16, padding: '14px 16px', marginBottom: 14 }}>
+              <h2 style={{ margin: 0, fontSize: 17, fontWeight: 700, marginBottom: 2 }}>Playing up now</h2>
+              {NOW.map(p => (
+                <div key={p.name} style={{ display: 'grid', gridTemplateColumns: '44px minmax(0,1fr) 150px 150px', columnGap: 10, alignItems: 'center', minHeight: 56, borderTop: `1px solid ${HAIR}` }}>
+                  <span style={avatar}>{p.ini}</span>
+                  <span style={{ minWidth: 0, display: 'flex', flexDirection: 'column' }}>
+                    <span style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}><strong style={{ fontSize: 16, lineHeight: '22px' }}>{p.name}</strong><span style={{ fontSize: 14, lineHeight: '20px', color: MUT }}>{p.move}</span></span>
+                    <span style={{ fontSize: 13, lineHeight: '18px', color: MUT }}>{p.sub}</span>
+                  </span>
+                  <span style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+                    <span style={{ display: 'flex', gap: 3 }}>{Array.from({ length: p.of }, (_, i) => <span key={i} style={{ flex: 1, height: 8, borderRadius: 4, background: i < p.done ? G : HAIR }} />)}</span>
+                    <span style={{ fontSize: 12, lineHeight: '16px', color: MUT }}>Week {p.done} of {p.of}</span>
+                  </span>
+                  <button onClick={() => onNav?.(p.target)} style={outBtn}>{p.btn}</button>
+                </div>
+              ))}
             </div>
 
-            <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 20px' }}>
-              <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 12 }}>Held back by a rule</div>
-              {heldBack.map(p => <PUPlayerRow key={p.name} p={p} />)}
-            </div>
-
-            <div style={{ marginTop: 12, fontSize: 12, color: MUT }}>Not a ranking and not a score. It says who is worth a conversation. People decide.</div>
+            <div style={{ fontSize: 12, color: MUT }}>Not a ranking and not a score. It says who is worth a conversation. People decide.</div>
           </>
         )}
 
@@ -357,27 +330,30 @@ function PlayingAcrossView({ onNav }: { onNav?: (s: string) => void }) {
         )}
       </div>
 
-      <div style={{ width: 240, flexShrink: 0, display: 'flex', flexDirection: 'column', gap: 14 }}>
-        <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px' }}>
-          <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 12 }}>How a player gets here</div>
-          {[
-            { n: 1, label: 'Stretched for 6 weeks', sub: 'Well above their own age group in games' },
-            { n: 2, label: 'Nothing says wait', sub: 'Not in a growth spurt, not sore, not overloaded' },
-            { n: 3, label: "Their coach agrees", sub: 'Or the coach nominates first' },
-          ].map(item => (
-            <div key={item.n} style={{ display: 'flex', gap: 10, padding: '8px 0', borderBottom: `1px solid ${LN}` }}>
-              <div style={{ width: 24, height: 24, borderRadius: '50%', background: '#eef5f2', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, color: G, flexShrink: 0 }}>{item.n}</div>
-              <div>
-                <div style={{ fontSize: 12, fontWeight: 600, color: INK }}>{item.label}</div>
-                <div style={{ fontSize: 11, color: MUT }}>{item.sub}</div>
-              </div>
-            </div>
-          ))}
+      {/* Right rail — Needs you / Held back / What the club counts */}
+      <div style={{ width: 280, flexShrink: 0, display: 'flex', flexDirection: 'column', gap: 12 }}>
+        <div style={{ background: '#fff', border: `1px solid ${CTL}`, borderRadius: 16, padding: '14px 16px' }}>
+          <span style={{ display: 'flex', alignItems: 'center', gap: 10, paddingBottom: 4 }}><span style={{ width: 32, height: 32, borderRadius: 999, background: AMBER, color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 15, fontWeight: 700 }}>{nudged ? 1 : 2}</span><h2 style={{ margin: 0, fontSize: 17, fontWeight: 700 }}>Needs you</h2></span>
+          {!nudged && (
+            <span style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 60, borderTop: `1px solid ${HAIR}` }}>
+              <span style={{ flexGrow: 1, minWidth: 0, display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 15, lineHeight: '20px' }}>Tane Waru</strong><span style={{ fontSize: 13, lineHeight: '18px', color: MUT }}>Josh’s view, asked 6 days ago</span></span>
+              <button onClick={() => { setNudged(true); st('Josh is asked again for his three taps on Tane.') }} style={{ ...outBtn, width: 'auto' }}>Nudge</button>
+            </span>
+          )}
+          <span style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 60, borderTop: `1px solid ${HAIR}` }}>
+            <span style={{ flexGrow: 1, minWidth: 0, display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 15, lineHeight: '20px' }}>Leo’s review</strong><span style={{ fontSize: 13, lineHeight: '18px', color: MUT }}>Thursday 18 June, Leo first</span></span>
+            <button onClick={() => onNav?.('PU6-Review')} style={{ ...outBtn, width: 'auto' }}>Open</button>
+          </span>
         </div>
-        <div style={{ background: '#eef5f2', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 16px' }}>
-          <div style={{ fontSize: 12, fontWeight: 700, color: G, marginBottom: 6 }}>Never used</div>
-          <div style={{ fontSize: 12, color: MUT, lineHeight: 1.5 }}>Size alone, results, or what a parent has asked for.</div>
+        <div style={{ background: '#fff', border: `1px solid ${CTL}`, borderRadius: 16, padding: '14px 16px' }}>
+          <h2 style={{ margin: 0, fontSize: 17, fontWeight: 700, marginBottom: 8 }}>Held back by a rule</h2>
+          <span style={{ display: 'flex', alignItems: 'center', gap: 10 }}><span style={{ width: 36, height: 36, borderRadius: 999, background: HAIR, color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }}>NO</span><span style={{ display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 15, lineHeight: '20px' }}>Noah Okafor</strong><span style={{ fontSize: 13, lineHeight: '18px', color: MUT }}>Growing fast, knee pain</span></span></span>
+          <div style={{ fontSize: 13, color: MUT, marginTop: 10 }}>Looked at again in 8 weeks.</div>
         </div>
+        <button onClick={() => onNav?.('PU5-Settings')} style={{ background: '#fff', border: `1px solid ${CTL}`, borderRadius: 16, padding: '12px 14px', display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer', fontFamily: 'inherit', color: INK, minHeight: 56, textAlign: 'left' }}>
+          <span style={{ flexGrow: 1, minWidth: 0, display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 15, lineHeight: '20px' }}>What the club counts</strong><span style={{ fontSize: 13, lineHeight: '18px', color: MUT }}>Never size alone, results, or a parent asking</span></span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+        </button>
       </div>
 
       {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: GD, color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
