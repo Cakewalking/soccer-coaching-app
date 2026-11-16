@@ -197,7 +197,7 @@ export function RecordHub({ onBack: _onBack, noFrame, onNav }: { onBack?: () => 
 }
 
 // REC2 — Record saved
-export function RecordSaved({ onBack, onNav }: { onBack?: () => void; onNav?: (s: string) => void }) {
+export function RecordSaved({ onBack, onNav, noFrame }: { onBack?: () => void; onNav?: (s: string) => void; noFrame?: boolean }) {
   const [toast, setToast] = useState<string | null>(null)
   const [moveRow, setMoveRow] = useState<string | null>(null)
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
@@ -212,6 +212,7 @@ export function RecordSaved({ onBack, onNav }: { onBack?: () => void; onNav?: (s
 
   return (
     <CoachFrame
+      noFrame={noFrame}
       activeNav="record" activeSub="Record" subTabs={REC_SUBS}
       pageTitle="Saved: Tuesday training"
       pageSub="2 June · 58 minutes · camera kit 2 and 15 vests"
