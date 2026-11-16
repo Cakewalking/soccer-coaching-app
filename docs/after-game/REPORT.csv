@@ -1,0 +1,401 @@
+control id,screen,control,own or shared,does,target or line,status: works / line of text only / missing / wrong target (say where)
+YT1-YourTake#1,YT1-YourTake,Home,shared,opens,T1-TabletTraining,works
+YT1-YourTake#2,YT1-YourTake,Squad,shared,opens,T4-SquadTab,works
+YT1-YourTake#3,YT1-YourTake,Training,shared,opens,T3-TrainingTab,works
+YT1-YourTake#4,YT1-YourTake,Match day,shared,opens,T2-TabletMatch,works
+YT1-YourTake#5,YT1-YourTake,Clips,shared,opens,C1-ClipsTab,works
+YT1-YourTake#6,YT1-YourTake,Record,shared,opens,REC1-RecordHub,works
+YT1-YourTake#7,YT1-YourTake,Ask Clean Sheet,own,opens,ASKd4-PanelFirst,works
+YT1-YourTake#8,YT1-YourTake,U12 Sam,own,opens,VS1-SwitchView,works
+YT1-YourTake#9,YT1-YourTake,Team talk,own,opens,T2-TabletMatch,works
+YT1-YourTake#10,YT1-YourTake,Line-up and minutes,own,opens,T2-TabletMatch,works
+YT1-YourTake#11,YT1-YourTake,Opposition,own,opens,OP1-Opposition,works
+YT1-YourTake#12,YT1-YourTake,Review,own,opens,R1-MatchReview,works
+YT1-YourTake#13,YT1-YourTake,Your take,own,opens,YT1-YourTake,works
+YT1-YourTake#14,YT1-YourTake,Save,own,says,Saved. Thursday’s plan and three players’ goals have been updated from it.,works
+YT1-YourTake#15,YT1-YourTake,Skip this game,own,says,Skipped. You can come back to it from Match day at any time.,works
+YT1-YourTake#16,YT1-YourTake,Your take,own,opens,YT1-YourTake,works
+YT1-YourTake#17,YT1-YourTake,Match report,own,opens,YT2-MatchReport,works
+YT1-YourTake#18,YT1-YourTake,Players: notes and ratings,own,opens,YT3-PlayerNotes,works
+YT1-YourTake#19,YT1-YourTake,Ratings and awards,own,opens,YT4-VotesAwards,works
+YT1-YourTake#20,YT1-YourTake,1,own,says,How we played: 1 of 5. Saved.,works
+YT1-YourTake#21,YT1-YourTake,2,own,says,How we played: 2 of 5. Saved.,works
+YT1-YourTake#22,YT1-YourTake,3,own,says,How we played: 3 of 5. Saved.,works
+YT1-YourTake#23,YT1-YourTake,4,own,says,How we played: 4 of 5. Saved.,works
+YT1-YourTake#24,YT1-YourTake,5,own,says,How we played: 5 of 5. Saved.,works
+YT1-YourTake#25,YT1-YourTake,Yes,own,says,Yes. Saved.,works
+YT1-YourTake#26,YT1-YourTake,Partly,own,says,Partly. Saved.,works
+YT1-YourTake#27,YT1-YourTake,No,own,says,No. Saved.,works
+YT1-YourTake#28,YT1-YourTake,Winning it back,own,says,Winning it back: taken off.,works
+YT1-YourTake#29,YT1-YourTake,Finishing,own,says,Finishing: taken off.,works
+YT1-YourTake#30,YT1-YourTake,Staying compact,own,says,Staying compact: added.,works
+YT1-YourTake#31,YT1-YourTake,Talking,own,says,Talking: added.,works
+YT1-YourTake#32,YT1-YourTake,Legs late on,own,says,Legs late on: taken off.,works
+YT1-YourTake#33,YT1-YourTake,Switching play,own,says,Switching play: added.,works
+YT1-YourTake#34,YT1-YourTake,Set pieces,own,says,Set pieces: added.,works
+YT1-YourTake#35,YT1-YourTake,Say it,own,says,Listening. Say it as you would in the car park. Tap again to stop.,works
+YT1-YourTake#36,YT1-YourTake,5 of 5,own,says,"Mia Tran: tap to rate, 1 to 5. Tap again to change.",works (tap cycles the rating)
+YT1-YourTake#37,YT1-YourTake,5 of 5,own,says,"Jai Patel: tap to rate, 1 to 5. Tap again to change.",works (tap cycles the rating)
+YT1-YourTake#38,YT1-YourTake,3 of 5,own,says,"Noah Okafor: tap to rate, 1 to 5. Tap again to change.",works (tap cycles the rating)
+YT1-YourTake#39,YT1-YourTake,2 of 5,own,says,"Zoe Hartley: tap to rate, 1 to 5. Tap again to change.",works (tap cycles the rating)
+YT1-YourTake#40,YT1-YourTake,Rate,own,says,"Finn Noble: tap to rate, 1 to 5. Tap again to change.",works (tap cycles the rating)
+YT1-YourTake#41,YT1-YourTake,Rate,own,says,"Grace Reid: tap to rate, 1 to 5. Tap again to change.",works (tap cycles the rating)
+YT1-YourTake#42,YT1-YourTake,All 16: notes and ratings,own,opens,YT3-PlayerNotes,works
+YT1e-YourTakeEmpty#1,YT1e-YourTakeEmpty,Home,shared,opens,T1-TabletTraining,works
+YT1e-YourTakeEmpty#2,YT1e-YourTakeEmpty,Squad,shared,opens,T4-SquadTab,works
+YT1e-YourTakeEmpty#3,YT1e-YourTakeEmpty,Training,shared,opens,T3-TrainingTab,works
+YT1e-YourTakeEmpty#4,YT1e-YourTakeEmpty,Match day,shared,opens,T2-TabletMatch,works
+YT1e-YourTakeEmpty#5,YT1e-YourTakeEmpty,Clips,shared,opens,C1-ClipsTab,works
+YT1e-YourTakeEmpty#6,YT1e-YourTakeEmpty,Record,shared,opens,REC1-RecordHub,works
+YT1e-YourTakeEmpty#7,YT1e-YourTakeEmpty,Ask Clean Sheet,own,opens,ASKd4-PanelFirst,works
+YT1e-YourTakeEmpty#8,YT1e-YourTakeEmpty,U12 Sam,own,opens,VS1-SwitchView,works
+YT1e-YourTakeEmpty#9,YT1e-YourTakeEmpty,Team talk,own,opens,T2-TabletMatch,works
+YT1e-YourTakeEmpty#10,YT1e-YourTakeEmpty,Line-up and minutes,own,opens,T2-TabletMatch,works
+YT1e-YourTakeEmpty#11,YT1e-YourTakeEmpty,Opposition,own,opens,OP1-Opposition,works
+YT1e-YourTakeEmpty#12,YT1e-YourTakeEmpty,Review,own,opens,R1-MatchReview,works
+YT1e-YourTakeEmpty#13,YT1e-YourTakeEmpty,Your take,own,opens,YT1-YourTake,works
+YT1e-YourTakeEmpty#14,YT1e-YourTakeEmpty,Save when ready,own,says,Saved. Thursday’s plan and three players’ goals have been updated from it.,works
+YT1e-YourTakeEmpty#15,YT1e-YourTakeEmpty,Skip this game,own,says,Skipped. You can come back to it from Match day at any time.,works
+YT1e-YourTakeEmpty#16,YT1e-YourTakeEmpty,Your take,own,opens,YT1-YourTake,works
+YT1e-YourTakeEmpty#17,YT1e-YourTakeEmpty,Match report,own,opens,YT2-MatchReport,works
+YT1e-YourTakeEmpty#18,YT1e-YourTakeEmpty,Players: notes and ratings,own,opens,YT3-PlayerNotes,works
+YT1e-YourTakeEmpty#19,YT1e-YourTakeEmpty,Ratings and awards,own,opens,YT4-VotesAwards,works
+YT1e-YourTakeEmpty#20,YT1e-YourTakeEmpty,1,own,says,How we played: 1 of 5. Saved.,works
+YT1e-YourTakeEmpty#21,YT1e-YourTakeEmpty,2,own,says,How we played: 2 of 5. Saved.,works
+YT1e-YourTakeEmpty#22,YT1e-YourTakeEmpty,3,own,says,How we played: 3 of 5. Saved.,works
+YT1e-YourTakeEmpty#23,YT1e-YourTakeEmpty,4,own,says,How we played: 4 of 5. Saved.,works
+YT1e-YourTakeEmpty#24,YT1e-YourTakeEmpty,5,own,says,How we played: 5 of 5. Saved.,works
+YT1e-YourTakeEmpty#25,YT1e-YourTakeEmpty,Yes,own,says,Yes. Saved.,works
+YT1e-YourTakeEmpty#26,YT1e-YourTakeEmpty,Partly,own,says,Partly. Saved.,works
+YT1e-YourTakeEmpty#27,YT1e-YourTakeEmpty,No,own,says,No. Saved.,works
+YT1e-YourTakeEmpty#28,YT1e-YourTakeEmpty,Winning it back,own,says,Winning it back: added.,works
+YT1e-YourTakeEmpty#29,YT1e-YourTakeEmpty,Finishing,own,says,Finishing: added.,works
+YT1e-YourTakeEmpty#30,YT1e-YourTakeEmpty,Staying compact,own,says,Staying compact: added.,works
+YT1e-YourTakeEmpty#31,YT1e-YourTakeEmpty,Talking,own,says,Talking: added.,works
+YT1e-YourTakeEmpty#32,YT1e-YourTakeEmpty,Legs late on,own,says,Legs late on: added.,works
+YT1e-YourTakeEmpty#33,YT1e-YourTakeEmpty,Switching play,own,says,Switching play: added.,works
+YT1e-YourTakeEmpty#34,YT1e-YourTakeEmpty,Set pieces,own,says,Set pieces: added.,works
+YT1e-YourTakeEmpty#35,YT1e-YourTakeEmpty,Say it,own,says,Listening. Say it as you would in the car park. Tap again to stop.,works
+YT1e-YourTakeEmpty#36,YT1e-YourTakeEmpty,Rate,own,says,"Mia Tran: tap to rate, 1 to 5. Tap again to change.",works (tap cycles the rating)
+YT1e-YourTakeEmpty#37,YT1e-YourTakeEmpty,Rate,own,says,"Jai Patel: tap to rate, 1 to 5. Tap again to change.",works (tap cycles the rating)
+YT1e-YourTakeEmpty#38,YT1e-YourTakeEmpty,Rate,own,says,"Noah Okafor: tap to rate, 1 to 5. Tap again to change.",works (tap cycles the rating)
+YT1e-YourTakeEmpty#39,YT1e-YourTakeEmpty,Rate,own,says,"Zoe Hartley: tap to rate, 1 to 5. Tap again to change.",works (tap cycles the rating)
+YT1e-YourTakeEmpty#40,YT1e-YourTakeEmpty,Rate,own,says,"Finn Noble: tap to rate, 1 to 5. Tap again to change.",works (tap cycles the rating)
+YT1e-YourTakeEmpty#41,YT1e-YourTakeEmpty,Rate,own,says,"Grace Reid: tap to rate, 1 to 5. Tap again to change.",works (tap cycles the rating)
+YT1e-YourTakeEmpty#42,YT1e-YourTakeEmpty,All 16: notes and ratings,own,opens,YT3-PlayerNotes,works
+YT2-MatchReport#1,YT2-MatchReport,Home,shared,opens,T1-TabletTraining,works
+YT2-MatchReport#2,YT2-MatchReport,Squad,shared,opens,T4-SquadTab,works
+YT2-MatchReport#3,YT2-MatchReport,Training,shared,opens,T3-TrainingTab,works
+YT2-MatchReport#4,YT2-MatchReport,Match day,shared,opens,T2-TabletMatch,works
+YT2-MatchReport#5,YT2-MatchReport,Clips,shared,opens,C1-ClipsTab,works
+YT2-MatchReport#6,YT2-MatchReport,Record,shared,opens,REC1-RecordHub,works
+YT2-MatchReport#7,YT2-MatchReport,Ask Clean Sheet,own,opens,ASKd4-PanelFirst,works
+YT2-MatchReport#8,YT2-MatchReport,U12 Sam,own,opens,VS1-SwitchView,works
+YT2-MatchReport#9,YT2-MatchReport,Team talk,own,opens,T2-TabletMatch,works
+YT2-MatchReport#10,YT2-MatchReport,Line-up and minutes,own,opens,T2-TabletMatch,works
+YT2-MatchReport#11,YT2-MatchReport,Opposition,own,opens,OP1-Opposition,works
+YT2-MatchReport#12,YT2-MatchReport,Review,own,opens,R1-MatchReview,works
+YT2-MatchReport#13,YT2-MatchReport,Your take,own,opens,YT1-YourTake,works
+YT2-MatchReport#14,YT2-MatchReport,Send to 17 families,own,says,Sent to 17 families of U12 Sam. It is also saved under Files.,works
+YT2-MatchReport#15,YT2-MatchReport,Keep it for me,own,says,Saved. Only you can read it.,works
+YT2-MatchReport#16,YT2-MatchReport,Your take,own,opens,YT1-YourTake,works
+YT2-MatchReport#17,YT2-MatchReport,Match report,own,opens,YT2-MatchReport,works
+YT2-MatchReport#18,YT2-MatchReport,Players: notes and ratings,own,opens,YT3-PlayerNotes,works
+YT2-MatchReport#19,YT2-MatchReport,Ratings and awards,own,opens,YT4-VotesAwards,works
+YT2-MatchReport#20,YT2-MatchReport,"Write it again, shorter",own,says,A shorter draft: one paragraph and the scorers.,works
+YT2-MatchReport#21,YT2-MatchReport,Say it instead,own,says,Listening. Talk it through and Clean Sheet writes it up.,works
+YT2-MatchReport#22,YT2-MatchReport,"U12 Sam families 17 families, in the app",own,says,U12 Sam families: off.,works
+YT2-MatchReport#23,YT2-MatchReport,Club news Rachel checks it first,own,says,Club news: on.,works
+YT2-MatchReport#24,YT2-MatchReport,Players 15 and over Not this team,own,says,Players 15 and over: on.,works
+YT2-MatchReport#25,YT2-MatchReport,"Start from a blank page Write your own, top to bottom",own,says,A blank report opens. The clips stay.,works
+YT3-PlayerNotes#1,YT3-PlayerNotes,Home,shared,opens,T1-TabletTraining,works
+YT3-PlayerNotes#2,YT3-PlayerNotes,Squad,shared,opens,T4-SquadTab,works
+YT3-PlayerNotes#3,YT3-PlayerNotes,Training,shared,opens,T3-TrainingTab,works
+YT3-PlayerNotes#4,YT3-PlayerNotes,Match day,shared,opens,T2-TabletMatch,works
+YT3-PlayerNotes#5,YT3-PlayerNotes,Clips,shared,opens,C1-ClipsTab,works
+YT3-PlayerNotes#6,YT3-PlayerNotes,Record,shared,opens,REC1-RecordHub,works
+YT3-PlayerNotes#7,YT3-PlayerNotes,Ask Clean Sheet,own,opens,ASKd4-PanelFirst,works
+YT3-PlayerNotes#8,YT3-PlayerNotes,U12 Sam,own,opens,VS1-SwitchView,works
+YT3-PlayerNotes#9,YT3-PlayerNotes,Team talk,own,opens,T2-TabletMatch,works
+YT3-PlayerNotes#10,YT3-PlayerNotes,Line-up and minutes,own,opens,T2-TabletMatch,works
+YT3-PlayerNotes#11,YT3-PlayerNotes,Opposition,own,opens,OP1-Opposition,works
+YT3-PlayerNotes#12,YT3-PlayerNotes,Review,own,opens,R1-MatchReview,works
+YT3-PlayerNotes#13,YT3-PlayerNotes,Your take,own,opens,YT1-YourTake,works
+YT3-PlayerNotes#14,YT3-PlayerNotes,Save,own,says,Saved. Season summaries and the awards count are updated.,works
+YT3-PlayerNotes#15,YT3-PlayerNotes,Rate the rest 3,own,says,The 7 without a rating are set to 3. Change any of them.,works
+YT3-PlayerNotes#16,YT3-PlayerNotes,Your take,own,opens,YT1-YourTake,works
+YT3-PlayerNotes#17,YT3-PlayerNotes,Match report,own,opens,YT2-MatchReport,works
+YT3-PlayerNotes#18,YT3-PlayerNotes,Players: notes and ratings,own,opens,YT3-PlayerNotes,works
+YT3-PlayerNotes#19,YT3-PlayerNotes,Ratings and awards,own,opens,YT4-VotesAwards,works
+YT3-PlayerNotes#20,YT3-PlayerNotes,1,own,says,Mia Tran: 1 of 5. Saved.,works
+YT3-PlayerNotes#21,YT3-PlayerNotes,2,own,says,Mia Tran: 2 of 5. Saved.,works
+YT3-PlayerNotes#22,YT3-PlayerNotes,3,own,says,Mia Tran: 3 of 5. Saved.,works
+YT3-PlayerNotes#23,YT3-PlayerNotes,4,own,says,Mia Tran: 4 of 5. Saved.,works
+YT3-PlayerNotes#24,YT3-PlayerNotes,5,own,says,Mia Tran: 5 of 5. Saved.,works
+YT3-PlayerNotes#25,YT3-PlayerNotes,Pressed as a pair all game. Best yet.,own,says,Mia Tran: type or say a note. Only you see it.,works
+YT3-PlayerNotes#26,YT3-PlayerNotes,1,own,says,Jai Patel: 1 of 5. Saved.,works
+YT3-PlayerNotes#27,YT3-PlayerNotes,2,own,says,Jai Patel: 2 of 5. Saved.,works
+YT3-PlayerNotes#28,YT3-PlayerNotes,3,own,says,Jai Patel: 3 of 5. Saved.,works
+YT3-PlayerNotes#29,YT3-PlayerNotes,4,own,says,Jai Patel: 4 of 5. Saved.,works
+YT3-PlayerNotes#30,YT3-PlayerNotes,5,own,says,Jai Patel: 5 of 5. Saved.,works
+YT3-PlayerNotes#31,YT3-PlayerNotes,Led the press. Talks more now.,own,says,Jai Patel: type or say a note. Only you see it.,works
+YT3-PlayerNotes#32,YT3-PlayerNotes,1,own,says,Zoe Hartley: 1 of 5. Saved.,works
+YT3-PlayerNotes#33,YT3-PlayerNotes,2,own,says,Zoe Hartley: 2 of 5. Saved.,works
+YT3-PlayerNotes#34,YT3-PlayerNotes,3,own,says,Zoe Hartley: 3 of 5. Saved.,works
+YT3-PlayerNotes#35,YT3-PlayerNotes,4,own,says,Zoe Hartley: 4 of 5. Saved.,works
+YT3-PlayerNotes#36,YT3-PlayerNotes,5,own,says,Zoe Hartley: 5 of 5. Saved.,works
+YT3-PlayerNotes#37,YT3-PlayerNotes,Quiet after the knock. Check in Thursday.,own,says,Zoe Hartley: type or say a note. Only you see it.,works
+YT3-PlayerNotes#38,YT3-PlayerNotes,1,own,says,Noah Okafor: 1 of 5. Saved.,works
+YT3-PlayerNotes#39,YT3-PlayerNotes,2,own,says,Noah Okafor: 2 of 5. Saved.,works
+YT3-PlayerNotes#40,YT3-PlayerNotes,3,own,says,Noah Okafor: 3 of 5. Saved.,works
+YT3-PlayerNotes#41,YT3-PlayerNotes,4,own,says,Noah Okafor: 4 of 5. Saved.,works
+YT3-PlayerNotes#42,YT3-PlayerNotes,5,own,says,Noah Okafor: 5 of 5. Saved.,works
+YT3-PlayerNotes#43,YT3-PlayerNotes,From the film: first assist. Add it?,own,says,Noah Okafor: type or say a note. Only you see it.,works
+YT3-PlayerNotes#44,YT3-PlayerNotes,1,own,says,Grace Reid: 1 of 5. Saved.,works
+YT3-PlayerNotes#45,YT3-PlayerNotes,2,own,says,Grace Reid: 2 of 5. Saved.,works
+YT3-PlayerNotes#46,YT3-PlayerNotes,3,own,says,Grace Reid: 3 of 5. Saved.,works
+YT3-PlayerNotes#47,YT3-PlayerNotes,4,own,says,Grace Reid: 4 of 5. Saved.,works
+YT3-PlayerNotes#48,YT3-PlayerNotes,5,own,says,Grace Reid: 5 of 5. Saved.,works
+YT3-PlayerNotes#49,YT3-PlayerNotes,Calm at the back.,own,says,Grace Reid: type or say a note. Only you see it.,works
+YT3-PlayerNotes#50,YT3-PlayerNotes,1,own,says,Finn Noble: 1 of 5. Saved.,works
+YT3-PlayerNotes#51,YT3-PlayerNotes,2,own,says,Finn Noble: 2 of 5. Saved.,works
+YT3-PlayerNotes#52,YT3-PlayerNotes,3,own,says,Finn Noble: 3 of 5. Saved.,works
+YT3-PlayerNotes#53,YT3-PlayerNotes,4,own,says,Finn Noble: 4 of 5. Saved.,works
+YT3-PlayerNotes#54,YT3-PlayerNotes,5,own,says,Finn Noble: 5 of 5. Saved.,works
+YT3-PlayerNotes#55,YT3-PlayerNotes,From the film: 3 forward passes under pressure. Add it?,own,says,Finn Noble: type or say a note. Only you see it.,works
+YT3-PlayerNotes#56,YT3-PlayerNotes,1,own,says,Ruby Lane: 1 of 5. Saved.,works
+YT3-PlayerNotes#57,YT3-PlayerNotes,2,own,says,Ruby Lane: 2 of 5. Saved.,works
+YT3-PlayerNotes#58,YT3-PlayerNotes,3,own,says,Ruby Lane: 3 of 5. Saved.,works
+YT3-PlayerNotes#59,YT3-PlayerNotes,4,own,says,Ruby Lane: 4 of 5. Saved.,works
+YT3-PlayerNotes#60,YT3-PlayerNotes,5,own,says,Ruby Lane: 5 of 5. Saved.,works
+YT3-PlayerNotes#61,YT3-PlayerNotes,Add a note,own,says,Ruby Lane: type or say a note. Only you see it.,works
+YT4-VotesAwards#1,YT4-VotesAwards,Home,shared,opens,T1-TabletTraining,works
+YT4-VotesAwards#2,YT4-VotesAwards,Squad,shared,opens,T4-SquadTab,works
+YT4-VotesAwards#3,YT4-VotesAwards,Training,shared,opens,T3-TrainingTab,works
+YT4-VotesAwards#4,YT4-VotesAwards,Match day,shared,opens,T2-TabletMatch,works
+YT4-VotesAwards#5,YT4-VotesAwards,Clips,shared,opens,C1-ClipsTab,works
+YT4-VotesAwards#6,YT4-VotesAwards,Record,shared,opens,REC1-RecordHub,works
+YT4-VotesAwards#7,YT4-VotesAwards,Ask Clean Sheet,own,opens,ASKd4-PanelFirst,works
+YT4-VotesAwards#8,YT4-VotesAwards,U12 Sam,own,opens,VS1-SwitchView,works
+YT4-VotesAwards#9,YT4-VotesAwards,Team talk,own,opens,T2-TabletMatch,works
+YT4-VotesAwards#10,YT4-VotesAwards,Line-up and minutes,own,opens,T2-TabletMatch,works
+YT4-VotesAwards#11,YT4-VotesAwards,Opposition,own,opens,OP1-Opposition,works
+YT4-VotesAwards#12,YT4-VotesAwards,Review,own,opens,R1-MatchReview,works
+YT4-VotesAwards#13,YT4-VotesAwards,Your take,own,opens,YT1-YourTake,works
+YT4-VotesAwards#14,YT4-VotesAwards,Remind the 6,own,says,A reminder goes to the 6 families who have not rated.,works
+YT4-VotesAwards#15,YT4-VotesAwards,Rate players,own,opens,YT3-PlayerNotes,works
+YT4-VotesAwards#16,YT4-VotesAwards,Your take,own,opens,YT1-YourTake,works
+YT4-VotesAwards#17,YT4-VotesAwards,Match report,own,opens,YT2-MatchReport,works
+YT4-VotesAwards#18,YT4-VotesAwards,Players: notes and ratings,own,opens,YT3-PlayerNotes,works
+YT4-VotesAwards#19,YT4-VotesAwards,Ratings and awards,own,opens,YT4-VotesAwards,works
+YT4-VotesAwards#20,YT4-VotesAwards,Season,own,says,The whole season.,works
+YT4-VotesAwards#21,YT4-VotesAwards,Saturday,own,says,Saturday only.,works
+YT4-VotesAwards#22,YT4-VotesAwards,"Take it to awards night A printable list, when you are ready",own,says,"A list for awards night: your picks, with the reasons. Only you can open it.",works
+YTp1-ParentVotes#1,YTp1-ParentVotes,Back,own,opens,STO17-HomeStoryParent,works
+YTp1-ParentVotes#2,YTp1-ParentVotes,Ask Clean Sheet,own,opens,ASKp2-PhoneAskOpen,works
+YTp1-ParentVotes#3,YTp1-ParentVotes,1,own,says,Mia Tran: 1 of 5. Tap again to clear.,works
+YTp1-ParentVotes#4,YTp1-ParentVotes,2,own,says,Mia Tran: 2 of 5. Tap again to clear.,works
+YTp1-ParentVotes#5,YTp1-ParentVotes,3,own,says,Mia Tran: 3 of 5. Tap again to clear.,works
+YTp1-ParentVotes#6,YTp1-ParentVotes,4,own,says,Mia Tran: 4 of 5. Tap again to clear.,works
+YTp1-ParentVotes#7,YTp1-ParentVotes,5,own,says,Mia Tran: 5 of 5. Tap again to clear.,works
+YTp1-ParentVotes#8,YTp1-ParentVotes,1,own,says,Grace Reid: 1 of 5. Tap again to clear.,works
+YTp1-ParentVotes#9,YTp1-ParentVotes,2,own,says,Grace Reid: 2 of 5. Tap again to clear.,works
+YTp1-ParentVotes#10,YTp1-ParentVotes,3,own,says,Grace Reid: 3 of 5. Tap again to clear.,works
+YTp1-ParentVotes#11,YTp1-ParentVotes,4,own,says,Grace Reid: 4 of 5. Tap again to clear.,works
+YTp1-ParentVotes#12,YTp1-ParentVotes,5,own,says,Grace Reid: 5 of 5. Tap again to clear.,works
+YTp1-ParentVotes#13,YTp1-ParentVotes,1,own,says,Jai Patel: 1 of 5. Tap again to clear.,works
+YTp1-ParentVotes#14,YTp1-ParentVotes,2,own,says,Jai Patel: 2 of 5. Tap again to clear.,works
+YTp1-ParentVotes#15,YTp1-ParentVotes,3,own,says,Jai Patel: 3 of 5. Tap again to clear.,works
+YTp1-ParentVotes#16,YTp1-ParentVotes,4,own,says,Jai Patel: 4 of 5. Tap again to clear.,works
+YTp1-ParentVotes#17,YTp1-ParentVotes,5,own,says,Jai Patel: 5 of 5. Tap again to clear.,works
+YTp1-ParentVotes#18,YTp1-ParentVotes,1,own,says,Noah Okafor: 1 of 5. Tap again to clear.,works
+YTp1-ParentVotes#19,YTp1-ParentVotes,2,own,says,Noah Okafor: 2 of 5. Tap again to clear.,works
+YTp1-ParentVotes#20,YTp1-ParentVotes,3,own,says,Noah Okafor: 3 of 5. Tap again to clear.,works
+YTp1-ParentVotes#21,YTp1-ParentVotes,4,own,says,Noah Okafor: 4 of 5. Tap again to clear.,works
+YTp1-ParentVotes#22,YTp1-ParentVotes,5,own,says,Noah Okafor: 5 of 5. Tap again to clear.,works
+YTp1-ParentVotes#23,YTp1-ParentVotes,1,own,says,Ruby Lane: 1 of 5. Tap again to clear.,works
+YTp1-ParentVotes#24,YTp1-ParentVotes,2,own,says,Ruby Lane: 2 of 5. Tap again to clear.,works
+YTp1-ParentVotes#25,YTp1-ParentVotes,3,own,says,Ruby Lane: 3 of 5. Tap again to clear.,works
+YTp1-ParentVotes#26,YTp1-ParentVotes,4,own,says,Ruby Lane: 4 of 5. Tap again to clear.,works
+YTp1-ParentVotes#27,YTp1-ParentVotes,5,own,says,Ruby Lane: 5 of 5. Tap again to clear.,works
+YTp1-ParentVotes#28,YTp1-ParentVotes,Skip this week,own,says,Skipped. Nothing is counted.,works
+YTp1-ParentVotes#29,YTp1-ParentVotes,Send my ratings,own,says,Thanks. Only you and Sam can see them.,works
+STO5-HomeStoryJuniors#1,STO5-HomeStoryJuniors,Home,shared,opens,T1-TabletTraining,works
+STO5-HomeStoryJuniors#2,STO5-HomeStoryJuniors,Squad,shared,opens,T4-SquadTab,works
+STO5-HomeStoryJuniors#3,STO5-HomeStoryJuniors,Training,shared,opens,T3-TrainingTab,works
+STO5-HomeStoryJuniors#4,STO5-HomeStoryJuniors,Match day,shared,opens,T2-TabletMatch,works
+STO5-HomeStoryJuniors#5,STO5-HomeStoryJuniors,Clips,shared,opens,C1-ClipsTab,works
+STO5-HomeStoryJuniors#6,STO5-HomeStoryJuniors,Record,shared,opens,REC1-RecordHub,works
+STO5-HomeStoryJuniors#7,STO5-HomeStoryJuniors,U12 Sam,own,opens,VS1-SwitchView,works
+STO5-HomeStoryJuniors#8,STO5-HomeStoryJuniors,Overview,own,opens,PH1-HomeJuniorsSame,works
+STO5-HomeStoryJuniors#9,STO5-HomeStoryJuniors,Messages,own,opens,I1-Inbox,works
+STO5-HomeStoryJuniors#10,STO5-HomeStoryJuniors,Calendar,own,opens,CF1-Fixtures,works
+STO5-HomeStoryJuniors#11,STO5-HomeStoryJuniors,Fixtures and results,own,opens,CF1-Fixtures,works
+STO5-HomeStoryJuniors#12,STO5-HomeStoryJuniors,Our style,own,opens,S1-PlayingStyle,works
+STO5-HomeStoryJuniors#13,STO5-HomeStoryJuniors,Where we’re at,own,opens,WA1-WhereWeAt,works
+STO5-HomeStoryJuniors#14,STO5-HomeStoryJuniors,Team staff,own,opens,ST1-TeamStaff,works
+STO5-HomeStoryJuniors#15,STO5-HomeStoryJuniors,Ask about U12 Sam… Who needs a rest this week?,own,opens,ASKd2-HomeFocus,works
+STO5-HomeStoryJuniors#16,STO5-HomeStoryJuniors,Play 60 seconds,own,opens,R1-MatchReview,works
+STO5-HomeStoryJuniors#17,STO5-HomeStoryJuniors,Full review,own,opens,R1-MatchReview,works
+STO5-HomeStoryJuniors#18,STO5-HomeStoryJuniors,1:00 Press Press Win Goal +1 Five clips: four wins of the ball and the goal that,own,opens,R1-MatchReview,works
+STO5-HomeStoryJuniors#19,STO5-HomeStoryJuniors,1,own,says,How we played: 1 of 5. Saved.,works
+STO5-HomeStoryJuniors#20,STO5-HomeStoryJuniors,2,own,says,How we played: 2 of 5. Saved.,works
+STO5-HomeStoryJuniors#21,STO5-HomeStoryJuniors,3,own,says,How we played: 3 of 5. Saved.,works
+STO5-HomeStoryJuniors#22,STO5-HomeStoryJuniors,4,own,says,How we played: 4 of 5. Saved.,works
+STO5-HomeStoryJuniors#23,STO5-HomeStoryJuniors,5,own,says,How we played: 5 of 5. Saved.,works
+STO5-HomeStoryJuniors#24,STO5-HomeStoryJuniors,Add a note,own,opens,YT1-YourTake,works
+STO5-HomeStoryJuniors#25,STO5-HomeStoryJuniors,Rate players,own,opens,YT3-PlayerNotes,works
+STO5-HomeStoryJuniors#26,STO5-HomeStoryJuniors,Open the plan,own,opens,T3-TrainingTab,works
+STO5-HomeStoryJuniors#27,STO5-HomeStoryJuniors,Team talk,own,opens,T2-TabletMatch,works
+STO5-HomeStoryJuniors#28,STO5-HomeStoryJuniors,All players,own,opens,T4-SquadTab,works
+STO5-HomeStoryJuniors#29,STO5-HomeStoryJuniors,Send,own,says,Sent to Mia and her mum with your note.,works
+STO5-HomeStoryJuniors#30,STO5-HomeStoryJuniors,Send,own,says,Sent to Noah and his family with your note.,works
+STO5-HomeStoryJuniors#31,STO5-HomeStoryJuniors,3 Three things need you Ella low two days running · 3 vests,own,opens,I1-Inbox,works
+STO6-HomeStoryYouth#1,STO6-HomeStoryYouth,Home,shared,opens,T1-TabletTraining,works
+STO6-HomeStoryYouth#2,STO6-HomeStoryYouth,Squad,shared,opens,T4-SquadTab,works
+STO6-HomeStoryYouth#3,STO6-HomeStoryYouth,Training,shared,opens,T3-TrainingTab,works
+STO6-HomeStoryYouth#4,STO6-HomeStoryYouth,Match day,shared,opens,T2-TabletMatch,works
+STO6-HomeStoryYouth#5,STO6-HomeStoryYouth,Clips,shared,opens,C1-ClipsTab,works
+STO6-HomeStoryYouth#6,STO6-HomeStoryYouth,Record,shared,opens,REC1-RecordHub,works
+STO6-HomeStoryYouth#7,STO6-HomeStoryYouth,U16 Ollie,own,opens,VS1-SwitchView,works
+STO6-HomeStoryYouth#8,STO6-HomeStoryYouth,Overview,own,opens,PH2-HomeYouthSame,works
+STO6-HomeStoryYouth#9,STO6-HomeStoryYouth,Messages,own,opens,I1-Inbox,works
+STO6-HomeStoryYouth#10,STO6-HomeStoryYouth,Calendar,own,opens,CF1-Fixtures,works
+STO6-HomeStoryYouth#11,STO6-HomeStoryYouth,Fixtures and results,own,opens,CF1-Fixtures,works
+STO6-HomeStoryYouth#12,STO6-HomeStoryYouth,Our style,own,opens,S1-PlayingStyle,works
+STO6-HomeStoryYouth#13,STO6-HomeStoryYouth,Where we’re at,own,opens,WA1-WhereWeAt,works
+STO6-HomeStoryYouth#14,STO6-HomeStoryYouth,Team staff,own,opens,ST1-TeamStaff,works
+STO6-HomeStoryYouth#15,STO6-HomeStoryYouth,Ask about U16 Ollie… Who has exams coming up?,own,opens,ASKd2-HomeFocus,works
+STO6-HomeStoryYouth#16,STO6-HomeStoryYouth,Play 90 seconds,own,opens,R1-MatchReview,works
+STO6-HomeStoryYouth#17,STO6-HomeStoryYouth,Full review,own,opens,R1-MatchReview,works
+STO6-HomeStoryYouth#18,STO6-HomeStoryYouth,1:30 Build Build Build Counter +2 Six clips: four clean build-outs and the two c,own,opens,R1-MatchReview,works
+STO6-HomeStoryYouth#19,STO6-HomeStoryYouth,1,own,says,How we played: 1 of 5. Saved.,works
+STO6-HomeStoryYouth#20,STO6-HomeStoryYouth,2,own,says,How we played: 2 of 5. Saved.,works
+STO6-HomeStoryYouth#21,STO6-HomeStoryYouth,3,own,says,How we played: 3 of 5. Saved.,works
+STO6-HomeStoryYouth#22,STO6-HomeStoryYouth,4,own,says,How we played: 4 of 5. Saved.,works
+STO6-HomeStoryYouth#23,STO6-HomeStoryYouth,5,own,says,How we played: 5 of 5. Saved.,works
+STO6-HomeStoryYouth#24,STO6-HomeStoryYouth,Add a note,own,opens,YT1-YourTake,works
+STO6-HomeStoryYouth#25,STO6-HomeStoryYouth,Rate players,own,opens,YT3-PlayerNotes,works
+STO6-HomeStoryYouth#26,STO6-HomeStoryYouth,Open the plan,own,opens,T3-TrainingTab,works
+STO6-HomeStoryYouth#27,STO6-HomeStoryYouth,Team talk,own,opens,T2-TabletMatch,works
+STO6-HomeStoryYouth#28,STO6-HomeStoryYouth,All players,own,opens,T4-SquadTab,works
+STO6-HomeStoryYouth#29,STO6-HomeStoryYouth,Send,own,says,Sent to Hugo with your note. Only he sees it.,works
+STO6-HomeStoryYouth#30,STO6-HomeStoryYouth,Send,own,says,Sent to Cal with your note.,works
+STO6-HomeStoryYouth#31,STO6-HomeStoryYouth,2 Two things need you Tane’s playing-up view · 1 message,own,opens,I1-Inbox,works
+STO4-HomeStorySeniors#1,STO4-HomeStorySeniors,Home,shared,opens,T1-TabletTraining,works
+STO4-HomeStorySeniors#2,STO4-HomeStorySeniors,Squad,shared,opens,T4-SquadTab,works
+STO4-HomeStorySeniors#3,STO4-HomeStorySeniors,Training,shared,opens,T3-TrainingTab,works
+STO4-HomeStorySeniors#4,STO4-HomeStorySeniors,Match day,shared,opens,T2-TabletMatch,works
+STO4-HomeStorySeniors#5,STO4-HomeStorySeniors,Clips,shared,opens,C1-ClipsTab,works
+STO4-HomeStorySeniors#6,STO4-HomeStorySeniors,Record,shared,opens,REC1-RecordHub,works
+STO4-HomeStorySeniors#7,STO4-HomeStorySeniors,Men’s 1sts,own,opens,VS1-SwitchView,works
+STO4-HomeStorySeniors#8,STO4-HomeStorySeniors,Overview,own,opens,PH3-HomeSeniorsSame,works
+STO4-HomeStorySeniors#9,STO4-HomeStorySeniors,Messages,own,opens,I1-Inbox,works
+STO4-HomeStorySeniors#10,STO4-HomeStorySeniors,Calendar,own,opens,CF1-Fixtures,works
+STO4-HomeStorySeniors#11,STO4-HomeStorySeniors,Fixtures and results,own,opens,CF1-Fixtures,works
+STO4-HomeStorySeniors#12,STO4-HomeStorySeniors,Our style,own,opens,S1-PlayingStyle,works
+STO4-HomeStorySeniors#13,STO4-HomeStorySeniors,Where we’re at,own,opens,WA1-WhereWeAt,works
+STO4-HomeStorySeniors#14,STO4-HomeStorySeniors,Team staff,own,opens,ST1-TeamStaff,works
+STO4-HomeStorySeniors#15,STO4-HomeStorySeniors,Ask about Men’s 1sts… How do Banksia Park build out?,own,opens,ASKd2-HomeFocus,works
+STO4-HomeStorySeniors#16,STO4-HomeStorySeniors,Play 90 seconds,own,opens,R1-MatchReview,works
+STO4-HomeStorySeniors#17,STO4-HomeStorySeniors,Full review,own,opens,R1-MatchReview,works
+STO4-HomeStorySeniors#18,STO4-HomeStorySeniors,"1:30 Shape Shape Goal Goal +2 Six clips: the middle closing four times, both goa",own,opens,R1-MatchReview,works
+STO4-HomeStorySeniors#19,STO4-HomeStorySeniors,Edit,own,opens,YT1-YourTake,works
+STO4-HomeStorySeniors#20,STO4-HomeStorySeniors,Rate the rest,own,opens,YT3-PlayerNotes,works
+STO4-HomeStorySeniors#21,STO4-HomeStorySeniors,Open the plan,own,opens,T3-TrainingTab,works
+STO4-HomeStorySeniors#22,STO4-HomeStorySeniors,Team talk,own,opens,T2-TabletMatch,works
+STO4-HomeStorySeniors#23,STO4-HomeStorySeniors,All players,own,opens,T4-SquadTab,works
+STO4-HomeStorySeniors#24,STO4-HomeStorySeniors,Send,own,says,Sent to Liam with your note. Only he sees it.,works
+STO4-HomeStorySeniors#25,STO4-HomeStorySeniors,Send,own,says,Sent to Cal with your note.,works
+STO4-HomeStorySeniors#26,STO4-HomeStorySeniors,2 Two things need you Ryan’s suspension · 2 clearances pending,own,opens,I1-Inbox,works
+STO7-HomeStoryAssistant#1,STO7-HomeStoryAssistant,Home,shared,opens,T1-TabletTraining,works
+STO7-HomeStoryAssistant#2,STO7-HomeStoryAssistant,Squad,shared,opens,T4-SquadTab,works
+STO7-HomeStoryAssistant#3,STO7-HomeStoryAssistant,Training,shared,opens,T3-TrainingTab,works
+STO7-HomeStoryAssistant#4,STO7-HomeStoryAssistant,Match day,shared,opens,T2-TabletMatch,works
+STO7-HomeStoryAssistant#5,STO7-HomeStoryAssistant,Clips,shared,opens,C1-ClipsTab,works
+STO7-HomeStoryAssistant#6,STO7-HomeStoryAssistant,Record,shared,opens,REC1-RecordHub,works
+STO7-HomeStoryAssistant#7,STO7-HomeStoryAssistant,U12 Sam,own,opens,VS1-SwitchView,works
+STO7-HomeStoryAssistant#8,STO7-HomeStoryAssistant,Overview,own,opens,PH4-HomeAssistantSame,works
+STO7-HomeStoryAssistant#9,STO7-HomeStoryAssistant,Messages,own,opens,I1-Inbox,works
+STO7-HomeStoryAssistant#10,STO7-HomeStoryAssistant,Calendar,own,opens,CF1-Fixtures,works
+STO7-HomeStoryAssistant#11,STO7-HomeStoryAssistant,Fixtures and results,own,opens,CF1-Fixtures,works
+STO7-HomeStoryAssistant#12,STO7-HomeStoryAssistant,Our style,own,opens,S1-PlayingStyle,works
+STO7-HomeStoryAssistant#13,STO7-HomeStoryAssistant,Where we’re at,own,opens,WA1-WhereWeAt,works
+STO7-HomeStoryAssistant#14,STO7-HomeStoryAssistant,Team staff,own,opens,ST1-TeamStaff,works
+STO7-HomeStoryAssistant#15,STO7-HomeStoryAssistant,Ask about U12 Sam… Who has had the least game time?,own,opens,ASKd2-HomeFocus,works
+STO7-HomeStoryAssistant#16,STO7-HomeStoryAssistant,Play 60 seconds,own,opens,R1-MatchReview,works
+STO7-HomeStoryAssistant#17,STO7-HomeStoryAssistant,Reply to Sam,own,says,Reply sent to Sam.,works
+STO7-HomeStoryAssistant#18,STO7-HomeStoryAssistant,1:00 Press Press Win Goal +1 Five clips from Saturday. Sam has put them in Thurs,own,opens,R1-MatchReview,works
+STO7-HomeStoryAssistant#19,STO7-HomeStoryAssistant,1,own,says,How we played: 1 of 5. Saved.,works
+STO7-HomeStoryAssistant#20,STO7-HomeStoryAssistant,2,own,says,How we played: 2 of 5. Saved.,works
+STO7-HomeStoryAssistant#21,STO7-HomeStoryAssistant,3,own,says,How we played: 3 of 5. Saved.,works
+STO7-HomeStoryAssistant#22,STO7-HomeStoryAssistant,4,own,says,How we played: 4 of 5. Saved.,works
+STO7-HomeStoryAssistant#23,STO7-HomeStoryAssistant,5,own,says,How we played: 5 of 5. Saved.,works
+STO7-HomeStoryAssistant#24,STO7-HomeStoryAssistant,Add a note,own,opens,YT1-YourTake,works
+STO7-HomeStoryAssistant#25,STO7-HomeStoryAssistant,Open the plan,own,opens,T3-TrainingTab,works
+STO7-HomeStoryAssistant#26,STO7-HomeStoryAssistant,Saturday warm-up,own,says,"Your warm-up for Saturday, 12 minutes.",works
+STO7-HomeStoryAssistant#27,STO7-HomeStoryAssistant,All players,own,opens,T4-SquadTab,works
+STO7-HomeStoryAssistant#28,STO7-HomeStoryAssistant,Add note,own,says,Your note is added. Sam sends it.,works
+STO7-HomeStoryAssistant#29,STO7-HomeStoryAssistant,Watch for,own,says,Finn is pinned for Saturday.,works
+STO7-HomeStoryAssistant#30,STO7-HomeStoryAssistant,1 One thing needs you Sam asked: can you lead on Tue 9 June?,own,opens,I1-Inbox,works
+STO1-HomeStoryMiniRoos#1,STO1-HomeStoryMiniRoos,Home,own,opens,MS5-HomeMiniRoosSame,works
+STO1-HomeStoryMiniRoos#2,STO1-HomeStoryMiniRoos,Squad,own,opens,HM2-SquadMiniRoos,works
+STO1-HomeStoryMiniRoos#3,STO1-HomeStoryMiniRoos,Training,own,opens,HM3-TrainingMiniRoos,works
+STO1-HomeStoryMiniRoos#4,STO1-HomeStoryMiniRoos,Game day,own,opens,HM4-GameDayMiniRoos,works
+STO1-HomeStoryMiniRoos#5,STO1-HomeStoryMiniRoos,Clips,own,opens,RCm2-MiniRoosClips,works
+STO1-HomeStoryMiniRoos#6,STO1-HomeStoryMiniRoos,Record,own,opens,RCm1-RecordMiniRoos,works
+STO1-HomeStoryMiniRoos#7,STO1-HomeStoryMiniRoos,U9 Tom · Wattle Creek,own,opens,VS1-SwitchView,works
+STO1-HomeStoryMiniRoos#8,STO1-HomeStoryMiniRoos,Overview,own,opens,MS5-HomeMiniRoosSame,works
+STO1-HomeStoryMiniRoos#9,STO1-HomeStoryMiniRoos,Messages,own,opens,HM7-InboxMiniRoos,works
+STO1-HomeStoryMiniRoos#10,STO1-HomeStoryMiniRoos,Calendar,own,opens,HM8-CalendarMiniRoos,works
+STO1-HomeStoryMiniRoos#11,STO1-HomeStoryMiniRoos,Fixtures,own,opens,HM9-FixturesMiniRoos,works
+STO1-HomeStoryMiniRoos#12,STO1-HomeStoryMiniRoos,Our style,own,opens,MS1-MiniRoosStyle,works
+STO1-HomeStoryMiniRoos#13,STO1-HomeStoryMiniRoos,Where we’re at,own,opens,MS2-MiniRoosWhereWeAt,works
+STO1-HomeStoryMiniRoos#14,STO1-HomeStoryMiniRoos,Team staff,own,opens,HM10-StaffMiniRoos,works
+STO1-HomeStoryMiniRoos#15,STO1-HomeStoryMiniRoos,Ask about U9 Tom… Who hasn’t had a moment this term?,own,opens,ASKd2-HomeFocus,works
+STO1-HomeStoryMiniRoos#16,STO1-HomeStoryMiniRoos,Play 40 seconds,own,opens,RCm2-MiniRoosClips,works
+STO1-HomeStoryMiniRoos#17,STO1-HomeStoryMiniRoos,What we saw,own,opens,MS3-MiniRoosReview,works
+STO1-HomeStoryMiniRoos#18,STO1-HomeStoryMiniRoos,"0:40 Arlo Poppy Ella Jai +3 Seven moments, one from each child who did it. Made ",own,opens,RCm2-MiniRoosClips,works
+STO1-HomeStoryMiniRoos#19,STO1-HomeStoryMiniRoos,Change them,own,opens,HM5-WhatWeSaw,works
+STO1-HomeStoryMiniRoos#20,STO1-HomeStoryMiniRoos,Add a note,own,opens,HM1n-QuickNotes,works
+STO1-HomeStoryMiniRoos#21,STO1-HomeStoryMiniRoos,Rate players,own,opens,YT3-PlayerNotes,works
+STO1-HomeStoryMiniRoos#22,STO1-HomeStoryMiniRoos,Open the games,own,opens,HM3-TrainingMiniRoos,works
+STO1-HomeStoryMiniRoos#23,STO1-HomeStoryMiniRoos,Swap one,own,opens,SGm1-SuggestedMiniRoos,works
+STO1-HomeStoryMiniRoos#24,STO1-HomeStoryMiniRoos,All moments,own,says,"Every moment this term, by child, A to Z.",works
+STO1-HomeStoryMiniRoos#25,STO1-HomeStoryMiniRoos,Send,own,says,Sent to Arlo’s dad with your note. He can reply with a thank you.,works
+STO1-HomeStoryMiniRoos#26,STO1-HomeStoryMiniRoos,Send,own,says,Sent to Poppy’s mum with your note.,works
+STO1-HomeStoryMiniRoos#27,STO1-HomeStoryMiniRoos,2 Two things need you Game leader for Saturday · one message,own,opens,HM7-InboxMiniRoos,works
+STO2-HomeStoryMiniRoosTraining#1,STO2-HomeStoryMiniRoosTraining,Home,own,opens,MS5-HomeMiniRoosSame,works
+STO2-HomeStoryMiniRoosTraining#2,STO2-HomeStoryMiniRoosTraining,Squad,own,opens,HM2-SquadMiniRoos,works
+STO2-HomeStoryMiniRoosTraining#3,STO2-HomeStoryMiniRoosTraining,Training,own,opens,HM3-TrainingMiniRoos,works
+STO2-HomeStoryMiniRoosTraining#4,STO2-HomeStoryMiniRoosTraining,Game day,own,opens,HM4-GameDayMiniRoos,works
+STO2-HomeStoryMiniRoosTraining#5,STO2-HomeStoryMiniRoosTraining,Clips,own,opens,RCm2-MiniRoosClips,works
+STO2-HomeStoryMiniRoosTraining#6,STO2-HomeStoryMiniRoosTraining,Record,own,opens,RCm1-RecordMiniRoos,works
+STO2-HomeStoryMiniRoosTraining#7,STO2-HomeStoryMiniRoosTraining,U9 Tom · Wattle Creek,own,opens,VS1-SwitchView,works
+STO2-HomeStoryMiniRoosTraining#8,STO2-HomeStoryMiniRoosTraining,Overview,own,opens,MS5-HomeMiniRoosSame,works
+STO2-HomeStoryMiniRoosTraining#9,STO2-HomeStoryMiniRoosTraining,Messages,own,opens,HM7-InboxMiniRoos,works
+STO2-HomeStoryMiniRoosTraining#10,STO2-HomeStoryMiniRoosTraining,Calendar,own,opens,HM8-CalendarMiniRoos,works
+STO2-HomeStoryMiniRoosTraining#11,STO2-HomeStoryMiniRoosTraining,Fixtures,own,opens,HM9-FixturesMiniRoos,works
+STO2-HomeStoryMiniRoosTraining#12,STO2-HomeStoryMiniRoosTraining,Our style,own,opens,MS1-MiniRoosStyle,works
+STO2-HomeStoryMiniRoosTraining#13,STO2-HomeStoryMiniRoosTraining,Where we’re at,own,opens,MS2-MiniRoosWhereWeAt,works
+STO2-HomeStoryMiniRoosTraining#14,STO2-HomeStoryMiniRoosTraining,Team staff,own,opens,HM10-StaffMiniRoos,works
+STO2-HomeStoryMiniRoosTraining#15,STO2-HomeStoryMiniRoosTraining,Ask about U9 Tom… What if only seven come tonight?,own,opens,ASKd2-HomeFocus,works
+STO2-HomeStoryMiniRoosTraining#16,STO2-HomeStoryMiniRoosTraining,Start tonight,own,opens,HM3-TrainingMiniRoos,works
+STO2-HomeStoryMiniRoosTraining#17,STO2-HomeStoryMiniRoosTraining,Swap a game,own,opens,SGm1-SuggestedMiniRoos,works
+STO2-HomeStoryMiniRoosTraining#18,STO2-HomeStoryMiniRoosTraining,"0:25 Bunching Space A friend Why tonight: 25 seconds of Saturday’s bunching, to ",own,opens,RCm2-MiniRoosClips,works
+STO2-HomeStoryMiniRoosTraining#19,STO2-HomeStoryMiniRoosTraining,Open the taps,own,opens,HM5-WhatWeSaw,works
+STO2-HomeStoryMiniRoosTraining#20,STO2-HomeStoryMiniRoosTraining,Add a note,own,opens,HM1n-QuickNotes,works
+STO2-HomeStoryMiniRoosTraining#21,STO2-HomeStoryMiniRoosTraining,0:40,own,opens,RCm2-MiniRoosClips,works
+STO2-HomeStoryMiniRoosTraining#22,STO2-HomeStoryMiniRoosTraining,What we saw,own,opens,MS3-MiniRoosReview,works
+STO2-HomeStoryMiniRoosTraining#23,STO2-HomeStoryMiniRoosTraining,Film tonight,own,opens,RCm1-RecordMiniRoos,works
+STO2-HomeStoryMiniRoosTraining#24,STO2-HomeStoryMiniRoosTraining,All moments,own,says,"Every moment this term, by child, A to Z.",works
+STO2-HomeStoryMiniRoosTraining#25,STO2-HomeStoryMiniRoosTraining,Watch for,own,says,Ivy is pinned for tonight. One tap during the session saves a moment for her.,works
+STO2-HomeStoryMiniRoosTraining#26,STO2-HomeStoryMiniRoosTraining,Watch for,own,says,Max is pinned for tonight.,works
+STO2-HomeStoryMiniRoosTraining#27,STO2-HomeStoryMiniRoosTraining,1 One thing needs you A message from Omar’s dad,own,opens,HM7-InboxMiniRoos,works
+STO17-HomeStoryParent#1,STO17-HomeStoryParent,Watch Mia’s 12 seconds,own,opens,PA-Clip,works
+STO17-HomeStoryParent#2,STO17-HomeStoryParent,Rate Saturday’s game 1 to 5 for any player. Closes Tuesday,own,opens,YTp1-ParentVotes,works
+STO17-HomeStoryParent#3,STO17-HomeStoryParent,Bao: answer for Saturday,own,opens,AV2-ParentAvailability,works
+STO17-HomeStoryParent#4,STO17-HomeStoryParent,Home,own,opens,PA-ParentHome,works
+STO17-HomeStoryParent#5,STO17-HomeStoryParent,Clips,own,opens,PA-Clip,works
+STO17-HomeStoryParent#6,STO17-HomeStoryParent,Messages,own,opens,PM1-ParentChats,works
+STO17-HomeStoryParent#7,STO17-HomeStoryParent,Me,own,opens,PS1-ParentSettings,works
