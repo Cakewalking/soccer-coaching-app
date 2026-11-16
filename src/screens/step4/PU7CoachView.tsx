@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { toolTarget } from '../toolTargets'
 import { OpeningPanel } from './directorParts'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
@@ -8,7 +9,7 @@ export default function PU7CoachView({ onNav }: { onNav?: (s: string) => void })
   const [q1, setQ1] = useState('')
   const [q2, setQ2] = useState('')
   const [q3, setQ3] = useState('')
-  function tool(name: string) { setLastTool(name) }
+  function tool(name: string) { const to = toolTarget(name); if (to && onNav) { onNav(to); return } setLastTool(name) }
 
   const tnb: React.CSSProperties = { height: 56, padding: '0 10px', background: 'none', color: 'rgba(255,255,255,0.75)', border: 'none', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }
   const snb: React.CSSProperties = { height: 44, padding: '0 12px', background: 'none', color: MUT, border: 'none', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }

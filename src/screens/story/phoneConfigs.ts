@@ -20,8 +20,8 @@ export const STO17: PhoneCfg = {
   blocks: [
     { kind: 'proof', label: 'MIA · U12 SAM · SATURDAY', headline: 'Mia won the ball back four times on Saturday. Sam sent you the clip.', second: 'Her goal this term is pressing as a pair. A month ago she did it once a game.', clip: { duration: '0:12', note: 'Only you, Mia and her coaches can see this.' }, btn: 'Watch Mia’s 12 seconds', btnTarget: 'PA-Clip' },
     { kind: 'list', label: 'AFTER THE GAME', title: 'Rate Saturday’s game', text: '1 to 5 for any player. Closes Tuesday.', action: 'Rate the game', actionTarget: 'YTp1-ParentVotes' },
-    { kind: 'list', label: 'THIS WEEK', title: 'Two things to be at', text: 'Thu 5:45 pm training. Sat 9:30 am away at Harbour Rovers: you said yes.' },
-    { kind: 'list', title: 'Bao: answer for Saturday', text: 'Bao · U8 Hannah. First go in goal on Saturday. Hannah sent a photo', action: 'Bao: answer for Saturday', actionTarget: 'AV2-ParentAvailability' },
+    { kind: 'ready', when: 'THIS WEEK', title: 'Two things to be at', text: 'Thu 5:45 pm training. Sat 9:30 am at home to Harbour Rovers: you said yes.', btns: [{ label: 'Bao: answer for Saturday', target: 'AV2-ParentAvailability' }] },
+    { kind: 'done', title: 'Bao · U8 Hannah', lines: ['First go in goal on Saturday. Hannah sent a photo'] },
     { kind: 'done', title: 'Done for you', lines: ['Canteen shift Sat 10 to 11 is in your calendar'] },
   ],
 }
@@ -32,7 +32,7 @@ export const STO18: PhoneCfg = {
   blocks: [
     { kind: 'proof', label: 'SATURDAY AT IRONBARK UNITED', headline: 'You won the ball back four times. That is your goal, and it is your best yet.', second: 'Sam says: “Great pressing. Watch how you and Jai close together.”', bars: [{ n: '1', when: '9 May' }, { n: '2', when: '23 May' }, { n: '4', when: 'Saturday', amber: true }], unit: 'times you won it back', btn: 'Watch my clip', btnTarget: 'PA-Clip' },
     { kind: 'ready', when: 'THURSDAY · 5:45 pm', title: 'Your one thing for training', text: 'Press as a pair with Jai. When he goes, you go.', btns: [{ label: 'See my goal', target: 'PA-Goals' }] },
-    { kind: 'list', label: 'THIS WEEK', title: 'This week', lines: ['Thu 5:45 pm · training at Wattle Creek Reserve', 'Sat 9:30 am · away at Harbour Rovers'] },
+    { kind: 'list', label: 'THIS WEEK', title: 'This week', lines: ['Thu 5:45 pm · training at Wattle Creek Reserve', 'Sat 9:30 am · at home to Harbour Rovers'] },
     { kind: 'note', text: 'Mum can see everything here too' },
   ],
 }

@@ -206,7 +206,7 @@ function ThisWeekFull({ onDrillLibrary, onTonightsPlan, onGrowthLoad, nextOppone
       {/* Footer bar */}
       <div style={{ flex: 'none', borderTop: '1px solid #e9eae8', padding: '10px 28px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#ffffff' }}>
         <span style={{ fontSize: 13, color: '#4a5a57' }}>Load: two 90-minute sessions and a 60-minute game.</span>
-        <button onClick={onGrowthLoad} style={{ border: 0, background: 'transparent', color: '#2f6252', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Growth and load →</button>
+        {onGrowthLoad && <button onClick={onGrowthLoad} style={{ border: 0, background: 'transparent', color: '#2f6252', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', minHeight: 44 }}>Growth and load →</button>}
       </div>
     </div>
   )

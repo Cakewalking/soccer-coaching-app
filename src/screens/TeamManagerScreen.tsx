@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useSandbox } from './sandbox/SandboxContext'
 import HeatScreen from './teammanager/HeatScreen'
 import GameDayPapersScreen from './teammanager/GameDayPapersScreen'
 import MessagesTab from './teammanager/MessagesTab'
@@ -33,6 +34,9 @@ const RSVP = [
 
 
 export default function TeamManagerScreen({ empty, initialScreen }: { empty?: boolean; initialScreen?: ManagerTab }) {
+  // In a visitor's own sandbox the empty screens carry their team's name, not the demo team's.
+  const { active: inSandbox, store: sbStore } = useSandbox()
+  const sbTeam = inSandbox ? (sbStore.teams[0]?.name ?? 'Your team') : 'U12 Sam'
   const [tab, setTab] = useState<ManagerTab>(initialScreen ?? 'home')
   const [showChange, setShowChange] = useState(false)
   const [gamedayPhase, setGamedayPhase] = useState<GamedayPhase>('before')
@@ -96,7 +100,7 @@ export default function TeamManagerScreen({ empty, initialScreen }: { empty?: bo
             <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
               <div>
                 <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', marginBottom: 2 }}>
-                  {tab === 'gameday' ? 'U12 Sam' : tab === 'roster' ? 'U12 Sam · Saturdays' : 'U12 Sam · Team manager'}
+                  {tab === 'gameday' ? sbTeam : tab === 'roster' ? `${sbTeam} · Saturdays` : `${sbTeam} · Team manager`}
                 </div>
                 <div style={{ fontSize: 24, fontWeight: 800 }}>
                   {tab === 'gameday' ? 'Game day' : tab === 'roster' ? 'Duty roster' : 'Welcome, Rob'}

@@ -18,6 +18,7 @@ import FormationBuilder from './formation/FormationBuilder'
 import ScreenLayer, { isScreenId } from './ScreenLayer'
 import PlayerProfileScreen from './PlayerProfileScreen'
 import { TeamText } from '../teamNames'
+import { COACH_TAB_SCREEN, coachDeepTab } from './JuniorCoachApp'
 import type { FormationPreset } from './formation/lineupInsights'
 import ThisWeekScreen       from './ThisWeekScreen'
 import SuggestionsScreen    from './SuggestionsScreen'
@@ -34,7 +35,7 @@ import RecordHub           from './RecordHub'
 import { CoachMessages }   from './MessagesScreens'
 import { SquadLineups }    from './SquadLineups'
 import { useSandbox }      from './sandbox/SandboxContext'
-import { storeHasData }   from './sandbox/sandboxStore'
+import { storeIsSample }  from './sandbox/sandboxStore'
 import CoachTabletFrame   from './CoachTabletFrame'
 import { WhereWeAtScreen } from './WhereWeAtScreen'
 import FIL1Files       from './step4/FIL1Files'
@@ -390,9 +391,9 @@ const CLIPS_TABS    = ['By measure', 'By game', 'By player', 'Playlists', 'To ch
 export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseContent, empty = false, initialScreen, onNavChange, registerNav }: { teamType: TeamType; onBack: () => void; phaseContent?: ReactNode; empty?: boolean; initialScreen?: string; onNavChange?: (screen: string) => void; registerNav?: (fn: (target: string) => boolean) => void }) {
   const data = teamType === 'seniors' ? SENIORS : YOUTH
   const { active: inSandbox, store } = useSandbox()
-  const sbEmpty        = inSandbox ? !storeHasData(store)        : empty
-  const sbEmptySession = inSandbox ? store.sessions.length === 0 : empty
-  const sbEmptyFixture = inSandbox ? store.fixtures.length === 0 : empty
+  const sbEmpty        = inSandbox ? !storeIsSample(store)       : empty
+  const sbEmptySession = inSandbox ? !storeIsSample(store)       : empty
+  const sbEmptyFixture = inSandbox ? !storeIsSample(store)       : empty
   const validNav = (s?: string): NavKey => (s === 'squad' || s === 'training' || s === 'matchday' || s === 'clips' || s === 'record') ? s : 'home'
 
   const [nav, setNav]                 = useState<NavKey>(validNav(initialScreen))
@@ -429,8 +430,12 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
   useEffect(() => {
     registerNav?.((target: string) => {
       const key = COACH_TARGET_NAV[target]
-      if (!key) return false
-      handleNav(key)
+      if (key) { handleNav(key); return true }
+      // Any other id that is one of this app's tabs opens that tab, lit in the menu, not a layer.
+      const d = coachDeepTab(target)
+      if (!d) return false
+      goNav(d.nav as NavKey)
+      if (d.nav === 'home') setHomeTab(d.idx); else if (d.nav === 'squad') setSquadTab(d.idx); else if (d.nav === 'training') setTrainingTab(d.idx); else if (d.nav === 'matchday') setMatchTab(d.idx); else if (d.nav === 'clips') setClipsTab(d.idx)
       return true
     })
   })
@@ -441,7 +446,7 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
   const subTabs  = nav === 'clips'    ? CLIPS_TABS
                  : nav === 'home'     ? HOME_TABS
                  : nav === 'squad'    ? SQUAD_TABS
-                 : nav === 'training' ? TRAINING_TABS
+                 : nav === 'training' ? (teamType === 'seniors' ? TRAINING_TABS.slice(0, 4) : TRAINING_TABS)   // adults are not growing: no Growth and load
                  : nav === 'record'   ? []
                  : MATCHDAY_TABS
 
@@ -511,7 +516,7 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
   } else if (nav === 'training') {
     switch (trainingTab) {
       case 0: content = <TrainingScreen role="head" onNav={handleNav} empty={sbEmptySession} nextOpponent={data.opponent} lastOpponent={data.lastGame.opponent} />; break
-      case 1: content = <ThisWeekScreen empty={sbEmptySession} onDrillLibrary={() => setTrainingTab(3)} onTonightsPlan={() => setTrainingTab(0)} onGrowthLoad={() => setTrainingTab(4)} nextOpponent={data.opponent} lastOpponent={data.lastGame.opponent} />; break
+      case 1: content = <ThisWeekScreen empty={sbEmptySession} onDrillLibrary={() => setTrainingTab(3)} onTonightsPlan={() => setTrainingTab(0)} onGrowthLoad={teamType === 'seniors' ? undefined : () => setTrainingTab(4)} nextOpponent={data.opponent} lastOpponent={data.lastGame.opponent} />; break
       case 2: content = <SuggestionsScreen empty={sbEmptySession} onRecord={() => goNav('record')} />; break
       case 3: content = <DrillLibraryScreen empty={sbEmptySession} />; break
       case 4: content = <GrowthLoadScreen empty={sbEmptySession} />; break
@@ -560,7 +565,9 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
         showBadge={tab => !sbEmpty && !inSandbox && (tab === 'Messages' || tab === 'To check')}
       >
         {/* Shared screens still written with U12 Sam's players get this team's names. Screens that take a squad are left alone. */}
-        <TeamText team={(nav === 'squad' && squadTab <= 3) || (nav === 'home' && homeTab <= 3) ? null : teamType === 'seniors' ? 'seniors' : 'youth'}>{content}</TeamText>
+        <div data-screen={nav === 'home' && activeIdx === 0 ? (teamType === 'seniors' ? 'STO4-HomeStorySeniors' : 'STO6-HomeStoryYouth') : nav === 'home' && activeIdx === 5 ? (teamType === 'seniors' ? 'WA3-WhereWeAtSeniors' : 'WA2-WhereWeAtYouth') : nav === 'squad' && activeIdx === 1 && teamType === 'seniors' ? 'FB1s-FormationSeniors' : COACH_TAB_SCREEN[nav]?.[activeIdx] ?? COACH_TAB_SCREEN[nav]?.[0]} style={{ display: 'contents' }}>
+          <TeamText team={(nav === 'squad' && squadTab <= 3) || (nav === 'home' && homeTab <= 3) ? null : teamType === 'seniors' ? 'seniors' : 'youth'}>{content}</TeamText>
+        </div>
       </CoachTabletFrame>
     </>
   )

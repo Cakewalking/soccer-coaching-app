@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { toolTarget } from '../toolTargets'
 import { AMBER } from './directorParts'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
@@ -29,7 +30,7 @@ export default function FIL2bSheetLineup({ onBack, onShare, onNav, bare }: {
   const [lastTool, setLastTool] = useState('')
   const [toast, setToast] = useState<string | null>(null)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 2500) }
-  function tool(name: string) { setLastTool(name) }
+  function tool(name: string) { const to = toolTarget(name); if (to && onNav) { onNav(to); return } setLastTool(name) }
 
   const games = ['Game 1 · 11 Oct', 'Game 2 · 18 Oct', 'Game 3 · Northgate', 'Game 4 · 1 Nov']
 

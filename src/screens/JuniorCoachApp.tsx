@@ -10,6 +10,22 @@ export const COACH_TARGET_NAV: Record<string, string> = {
   'I1-Inbox': 'inbox', 'CF1-Fixtures': 'fixtures', 'S1-PlayingStyle': 'setstyle',
   'E-TeamTalk': 'teamtalk', 'ETeamTalk': 'teamtalk',
 }
+// Design id of the screen each tab shows, so `data-screen` reports what is on screen
+// (master handover part 4) and a link or a test can tell tabs apart.
+export const COACH_TAB_SCREEN: Record<string, string[]> = {
+  home:     ['STO5-HomeStoryJuniors', 'I1-Inbox', 'CF1-Fixtures', 'CF1-Fixtures', 'S1-PlayingStyle', 'WA1-WhereWeAt', 'ST1-TeamStaff', 'FIL1-Files'],
+  squad:    ['T4-SquadTab', 'FB1-Formation', 'SQ1-BestLineups', 'DG1-Goals', 'WL1-Wellness', 'AV1-Availability', 'P1-Consent'],
+  training: ['T3-TrainingTab', 'WK1-ThisWeek', 'SG1-Suggested', 'DF0-Library', 'GT1-Growth'],
+  matchday: ['T2-TabletMatch', 'MS1-TeamSheet', 'OP1-Opposition', 'R1-MatchReview', 'YT1-YourTake'],
+  clips:    ['C1-ClipsTab', 'C2-ClipsByGame', 'C3-ClipsByPlayer', 'CL1-Playlists', 'TC1-ToCheck', 'EDU1-Learn'],
+  record:   ['REC1-RecordHub'],
+}
+/** Where a design id lives in the coach app: which top tab and which sub-tab. */
+export function coachDeepTab(id?: string): { nav: string; idx: number } | null {
+  if (!id) return null
+  for (const [nav, ids] of Object.entries(COACH_TAB_SCREEN)) { const idx = ids.indexOf(id); if (idx >= 0) return { nav, idx } }
+  return null
+}
 import HomeScreen            from './HomeScreen'
 import SquadScreen           from './SquadScreen'
 import TrainingScreen        from './TrainingScreen'
@@ -44,7 +60,7 @@ import { RecordSaved }     from './RecordHub'
 import { CoachMessages, CoachNewMessage, CoachMessagesPersonCard } from './MessagesScreens'
 import { SquadLineups }    from './SquadLineups'
 import { useSandbox }      from './sandbox/SandboxContext'
-import { storeHasData }   from './sandbox/sandboxStore'
+import { storeIsSample }  from './sandbox/sandboxStore'
 import CoachTabletFrame   from './CoachTabletFrame'
 import { WhereWeAtScreen } from './WhereWeAtScreen'
 import FIL1Files       from './step4/FIL1Files'
@@ -75,22 +91,24 @@ const CLIPS_TABS    = ['By measure', 'By game', 'By player', 'Playlists', 'To ch
 
 export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLabel, coachInitials, empty = false, initialScreen, onNavChange, coachRole = 'head', registerNav }: { onBack?: () => void; phaseContent?: ReactNode; coachLabel?: string; coachInitials?: string; empty?: boolean; initialScreen?: string; onNavChange?: (screen: string) => void; coachRole?: 'head' | 'ccoach'; registerNav?: (fn: (target: string) => boolean) => void }) {
   const { active: inSandbox, store } = useSandbox()
-  const sbEmpty        = inSandbox ? !storeHasData(store)        : empty
-  const sbEmptySession = inSandbox ? store.sessions.length === 0 : empty
-  const sbEmptyFixture = inSandbox ? store.fixtures.length === 0 : empty
+  const sbEmpty        = inSandbox ? !storeIsSample(store)       : empty
+  const sbEmptySession = inSandbox ? !storeIsSample(store)       : empty
+  const sbEmptyFixture = inSandbox ? !storeIsSample(store)       : empty
   const validNav = (s?: string): NavKey => (s === 'squad' || s === 'training' || s === 'matchday' || s === 'clips' || s === 'record') ? s : 'home'
   const HOME_SUB_MAP: Record<string, number> = { messages: 1, inbox: 1, calendar: 2, fixtures: 3, ourstyle: 4, setstyle: 4, whereweat: 5, teamstaff: 6, files: 7 }
   const initHomeTab = (initialScreen ? HOME_SUB_MAP[initialScreen] : 0) ?? 0
-  const [nav, setNav]                 = useState<NavKey>(initHomeTab ? 'home' : validNav(initialScreen))
+  const deep = coachDeepTab(initialScreen)   // opened by design id, e.g. "AV1-Availability"
+  const deepIdx = (n: string) => deep?.nav === n ? deep.idx : 0
+  const [nav, setNav]                 = useState<NavKey>(deep ? deep.nav as NavKey : initHomeTab ? 'home' : validNav(initialScreen))
   const [sub, setSub]                 = useState<Sub>(null)
-  const [homeTab, setHomeTab]         = useState(initHomeTab)
-  const [squadTab, setSquadTab]       = useState(0)
+  const [homeTab, setHomeTab]         = useState(deep?.nav === 'home' ? deep.idx : initHomeTab)
+  const [squadTab, setSquadTab]       = useState(deepIdx('squad'))
   const [formationPreset, setFormationPreset] = useState<FormationPreset | null>(null)
   const [profileIni, setProfileIni] = useState<string | null>(null)
   const [layer, setLayer] = useState<string | null>(null)   // a designed screen opened over the app
-  const [trainingTab, setTrainingTab] = useState(0)
-  const [matchTab, setMatchTab]       = useState(0)
-  const [clipsTab, setClipsTab]       = useState(0)
+  const [trainingTab, setTrainingTab] = useState(deepIdx('training'))
+  const [matchTab, setMatchTab]       = useState(deepIdx('matchday'))
+  const [clipsTab, setClipsTab]       = useState(deepIdx('clips'))
 
   const [askOpen, setAskOpen] = useState(false)
   const [msgsView, setMsgsView] = useState<string | null>(null)
@@ -122,8 +140,12 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
   useEffect(() => {
     registerNav?.((target: string) => {
       const key = COACH_TARGET_NAV[target]
-      if (!key) return false
-      handleNav(key)
+      if (key) { handleNav(key); return true }
+      // Any other id that is one of this app's tabs opens that tab, lit in the menu, not a layer.
+      const d = coachDeepTab(target)
+      if (!d) return false
+      goNav(d.nav as NavKey)
+      if (d.nav === 'home') setHomeTab(d.idx); else if (d.nav === 'squad') setSquadTab(d.idx); else if (d.nav === 'training') setTrainingTab(d.idx); else if (d.nav === 'matchday') setMatchTab(d.idx); else if (d.nav === 'clips') setClipsTab(d.idx)
       return true
     })
   })
@@ -242,7 +264,7 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
       askRole={coachRole === 'ccoach' ? 'assistant coach' : 'head coach'}
       showBadge={tab => !sbEmpty && !inSandbox && (tab === 'Messages' || tab === 'To check')}
     >
-      {content}
+      <div data-screen={nav === 'home' && activeIdx === 0 ? (coachRole === 'ccoach' ? 'STO7-HomeStoryAssistant' : 'STO5-HomeStoryJuniors') : COACH_TAB_SCREEN[nav]?.[activeIdx] ?? COACH_TAB_SCREEN[nav]?.[0]} style={{ display: 'contents' }}>{content}</div>
     </CoachTabletFrame>
   )
 }

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { PLAYERS } from './SquadMiniRoos'
+import { PLAYERS } from './squadData'
 
 // MiniRoos versions of what the older teams' coaches get under Squad and Training:
 // Skills (their Development goals), Fair turns (their minutes), This week and
@@ -47,8 +47,8 @@ function Empty({ title, body }: { title: string; body: string }) {
 
 // ── Squad › Skills ──────────────────────────────────────────────────────────
 // One small thing per child, in words a seven-year-old would use. Three steps, no marks.
-const STEPS = ['Having a go', 'Does it at training', 'Does it in games'] as const
-const SKILLS: Record<string, { skill: string; step: 0 | 1 | 2; say: string; saw: string }> = {
+export const STEPS = ['Having a go', 'Does it at training', 'Does it in games'] as const
+export const SKILLS: Record<string, { skill: string; step: 0 | 1 | 2; say: string; saw: string }> = {
   IC: { skill: 'Look up while dribbling', step: 2, say: 'Eyes up, Ivy. Who is free?', saw: 'Sat 30 May: beat one and found Zara' },
   MB: { skill: 'Soft first touch', step: 1, say: 'Cushion it, Max. Like catching an egg.', saw: 'Tuesday: stopped 6 of 8 dead' },
   AK: { skill: 'Stop the ball with the sole', step: 0, say: 'Foot on top, Arlo. Squash it.', saw: 'New this term: second week of trying' },
@@ -122,7 +122,7 @@ export function SkillsMiniRoos({ empty }: { empty?: boolean }) {
 
 // ── Squad › Fair turns ──────────────────────────────────────────────────────
 // Five games so far this term, four quarters each. Who has played, been in goal, been captain.
-const TURNS: Record<string, { games: number; quarters: number; goal: number; started: number }> = {
+export const TURNS: Record<string, { games: number; quarters: number; goal: number; started: number }> = {
   IC: { games: 5, quarters: 15, goal: 1, started: 4 }, MB: { games: 5, quarters: 15, goal: 0, started: 5 },
   AK: { games: 2, quarters: 6, goal: 0, started: 2 },  ZM: { games: 5, quarters: 16, goal: 1, started: 4 },
   LW: { games: 5, quarters: 14, goal: 0, started: 3 }, EN: { games: 5, quarters: 15, goal: 1, started: 5 },

@@ -138,10 +138,10 @@ const PLAYER_CHECKS = [
 ]
 
 export default function MatchDayScreen({ onNav, empty, opponent = 'Harbour Rovers' }: Props) {
-  if (empty) return <MatchDayEmpty />
   const SLIDES = makeSlides(opponent)
   const [slide, setSlide] = useState(0)
   const [toast, setToast] = useState<string | null>(null)
+  if (empty) return <MatchDayEmpty />
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   const s = SLIDES[slide]
 

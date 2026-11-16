@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { toolTarget } from '../toolTargets'
 import { OpeningPanel } from './directorParts'
 import { getGroups, setGroups as persist, cloneGroups, billLines, grandTotal, addOnsTotal, PLAN_TEAMS, type Group } from './featuresData'
 
@@ -9,7 +10,7 @@ export default function PRM3Bill({ onNav }: { onNav?: (s: string) => void }) {
   const [groups, setGroupsLocal] = useState<Group[]>(() => cloneGroups(getGroups()))
   const [people, setPeople] = useState<string[]>([])
   const [samOn, setSamOn] = useState(false)
-  function tool(name: string) { setLastTool(name) }
+  function tool(name: string) { const to = toolTarget(name); if (to && onNav) { onNav(to); return } setLastTool(name) }
   function update(next: Group[]) { setGroupsLocal(next); persist(next) }
 
   const lines = billLines(groups)

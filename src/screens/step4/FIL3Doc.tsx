@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { toolTarget } from '../toolTargets'
 import { DARK, AMBER, PALEON } from './directorParts'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
@@ -15,7 +16,7 @@ export default function FIL3Doc({ onBack, onShare, onNav, bare }: {
   const [sideTab, setSideTab] = useState<SideTab>('Live')
   const [lastTool, setLastTool] = useState('')
   const [lastSection, setLastSection] = useState('')
-  function tool(name: string) { setLastTool(name) }
+  function tool(name: string) { const to = toolTarget(name); if (to && onNav) { onNav(to); return } setLastTool(name) }
   function sect(name: string) { setLastSection(name) }
 
   return (

@@ -39,7 +39,7 @@ function Row({ label, value, action, onAction }: { label: string; value?: string
     <div style={{ display: 'flex', alignItems: 'center', padding: '10px 16px', borderBottom: `1px solid ${LN}` }}>
       <span style={{ fontSize: 14, color: MUT, flex: 1 }}>{label}</span>
       {value && <span style={{ fontSize: 14, fontWeight: 600, color: INK }}>{value}</span>}
-      {action && <button onClick={onAction} style={{ marginLeft: 10, fontSize: 13, fontWeight: 700, color: G2, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: '0 4px', minHeight: 44, display: 'flex', alignItems: 'center' }}>{action}</button>}
+      {action && <button onClick={onAction ?? (() => demoToast(action === 'Check view' ? 'The camera view opens so you can check the whole area is in shot.' : `Change ${label.toLowerCase()} here. It is saved for this recording.`))} style={{ marginLeft: 10, fontSize: 13, fontWeight: 700, color: G2, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: '0 4px', minHeight: 44, display: 'flex', alignItems: 'center' }}>{action}</button>}
     </div>
   )
 }
@@ -805,7 +805,7 @@ function LiveRecordingView({ onStop }: { onStop: () => void }) {
       </div>
       <div style={{ padding: '0 20px 20px', display: 'flex', gap: 8 }}>
         {['Next round', 'Mark a moment', 'Pause'].map(a => (
-          <button key={a} style={{ flex: 1, height: 44, borderRadius: 10, border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.08)', color: '#fff', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{a}</button>
+          <button key={a} onClick={() => demoToast(a === 'Next round' ? 'Round marked. The next one starts now.' : a === 'Mark a moment' ? 'Moment marked at this second. It will be a clip.' : 'Paused. Nothing is recorded until you carry on.')} style={{ flex: 1, height: 44, borderRadius: 10, border: '1px solid rgba(255,255,255,0.2)', background: 'rgba(255,255,255,0.08)', color: '#fff', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{a}</button>
         ))}
         <button onClick={onStop} style={{ flex: 1, height: 44, borderRadius: 10, border: 'none', background: ROSE, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Stop and save</button>
       </div>

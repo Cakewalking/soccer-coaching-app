@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { demoToast } from './demoToast'
 import TeamsTab        from './clubadmin/TeamsTab'
 import CoachesTab      from './clubadmin/CoachesTab'
 import PlayersTab      from './clubadmin/PlayersTab'
@@ -149,14 +150,19 @@ export default function CoordinatorPortal({ onBack: _onBack, empty = false, home
             </div>
           </div>
         </header>
-        <div style={{ flexGrow: 1, padding: '28px 32px' }}>
+        {activeNav !== 'Club' && (
+          <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+            {activeNav === 'Teams' ? <TeamsTab empty /> : activeNav === 'Coaches' ? <CoachesTab empty /> : activeNav === 'Players' ? <PlayersTab empty /> : activeNav === 'Safeguarding' ? <SafeguardingTab empty /> : <ReportsTab empty />}
+          </div>
+        )}
+        <div style={{ flexGrow: 1, padding: '28px 32px', display: activeNav === 'Club' ? 'block' : 'none' }}>
           <div style={{ maxWidth: 560 }}>
             <h1 style={{ margin: '0 0 2px', fontSize: 24, fontWeight: 700, letterSpacing: '-0.02em', color: '#10211f' }}>Welcome, Bianca</h1>
             <div style={{ fontSize: 14, color: '#4a5a57', marginBottom: 20 }}>Club coordinator · nothing set up yet</div>
             <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 16, padding: 24, marginBottom: 20 }}>
               <div style={{ fontSize: 20, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>Your weekly jobs land here</div>
               <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.6, marginBottom: 16 }}>Once teams are imported and fixtures sync from Dribl, this page lists what needs doing before each Saturday.</div>
-              <button onClick={() => showToast('Opening the PlayFootball import. This syncs registrations and team lists.')} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Import from PlayFootball</button>
+              <button onClick={() => demoToast('Opening the PlayFootball import. This syncs registrations and team lists.')} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Import from PlayFootball</button>
             </div>
             <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: '#6f7f7b', marginBottom: 10 }}>What you will see</div>
             {[

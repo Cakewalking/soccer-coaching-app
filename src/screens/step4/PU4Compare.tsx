@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { toolTarget } from '../toolTargets'
 import { OpeningPanel } from './directorParts'
 import MeasureSheet from '../measures/MeasureSheet'
 import { MEASURE } from '../measures/data'
@@ -28,7 +29,7 @@ function RangeRow({ label, src, mia, range, mid, where, onOpen }: { label: strin
 export default function PU4Compare({ onNav }: { onNav?: (s: string) => void }) {
   const [lastTool, setLastTool] = useState('')
   const [measure, setMeasure] = useState<string | null>(null)
-  function tool(name: string) { setLastTool(name) }
+  function tool(name: string) { const to = toolTarget(name); if (to && onNav) { onNav(to); return } setLastTool(name) }
   const open = (id: string) => { setMeasure(id); setLastTool(id) }
 
   const tnb: React.CSSProperties = { height: 56, padding: '0 10px', background: 'none', color: 'rgba(255,255,255,0.75)', border: 'none', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }

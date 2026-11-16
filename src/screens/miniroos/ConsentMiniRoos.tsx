@@ -3,7 +3,7 @@ import { EmptyCard } from '../clubadmin/ui'
 
 type ConsentVal = 'yes' | 'no' | 'waiting'
 
-const PLAYERS: { ini: string; name: string; photos: ConsentVal; firstAid: ConsentVal; news: ConsentVal }[] = [
+export const CONSENT: { ini: string; name: string; photos: ConsentVal; firstAid: ConsentVal; news: ConsentVal }[] = [
   { ini: 'IC', name: 'Ivy Chen',    photos: 'yes',     firstAid: 'yes',     news: 'yes' },
   { ini: 'MB', name: 'Max Bailey',  photos: 'yes',     firstAid: 'yes',     news: 'yes' },
   { ini: 'AK', name: 'Arlo Kaur',   photos: 'waiting', firstAid: 'yes',     news: 'waiting' },
@@ -35,15 +35,15 @@ export default function ConsentMiniRoos({ empty }: { empty?: boolean }) {
 
   if (empty) return <EmptyCard icon="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" title="Parents answer when they join" desc="Each parent gets three yes-or-no questions when they add their child. Until they answer, it's treated as no." cta="Copy the team link" sidebarTitle="What parents are asked" items={[{ title: 'Team photos', desc: 'Can their child be in them?' }, { title: 'First-aid card', desc: 'Allergies and who to call' }, { title: 'Club news', desc: 'First name only' }]} />
 
-  const waiting = PLAYERS.filter(p => p.photos === 'waiting' || p.firstAid === 'waiting' || p.news === 'waiting')
-  const answered = PLAYERS.length - waiting.length
+  const waiting = CONSENT.filter(p => p.photos === 'waiting' || p.firstAid === 'waiting' || p.news === 'waiting')
+  const answered = CONSENT.length - waiting.length
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, minHeight: 0 }}>
       <div style={{ flexShrink: 0, padding: '14px 28px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 20 }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 14 }}>
           <h1 style={{ margin: 0, fontSize: 26, lineHeight: '32px', fontWeight: 700, letterSpacing: '-0.02em' }}>Consent</h1>
-          <span style={{ fontSize: 14, color: '#4a5a57' }}>U9 Tom · {answered} of {PLAYERS.length} families have answered everything</span>
+          <span style={{ fontSize: 14, color: '#4a5a57' }}>U9 Tom · {answered} of {CONSENT.length} families have answered everything</span>
         </div>
         <button onClick={() => showToast('Reminder sent to 2 families.')} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: '1px solid #2f6252', background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Remind 2 families</button>
       </div>
@@ -58,7 +58,7 @@ export default function ConsentMiniRoos({ empty }: { empty?: boolean }) {
             ))}
           </div>
 
-          {PLAYERS.map((p, i) => (
+          {CONSENT.map((p, i) => (
             <div key={i} style={{ display: 'grid', gridTemplateColumns: '1.6fr 1fr 1fr 1fr', gap: 10, alignItems: 'center', minHeight: 50, borderTop: '1px solid #e9eae8' }}>
               <span style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                 <span style={{ flexShrink: 0, width: 30, height: 30, borderRadius: '999px', background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700 }}>{p.ini}</span>

@@ -125,8 +125,8 @@ const PLAYERS_TO_KNOW = [
 ]
 
 export default function ReviewScreen({ empty, scoreline = '3–1', resultLine = 'Won away at Ironbark United', scorerLine = 'Sat 31 Oct · Mia, Jai and Zoe scored · 24 key clips' }: { empty?: boolean; scoreline?: string; resultLine?: string; scorerLine?: string }) {
-  if (empty) return <ReviewEmpty />
   const [toast, setToast] = useState('')
+  if (empty) return <ReviewEmpty />
   const showToast = (msg: string) => { setToast(msg); setTimeout(() => setToast(''), 2500) }
   return (
     <div style={{ flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>

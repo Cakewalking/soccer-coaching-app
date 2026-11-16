@@ -1,11 +1,12 @@
 import { useState } from 'react'
+import { toolTarget } from '../toolTargets'
 import { OpeningPanel } from './directorParts'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 export default function FIL5ClubFiles({ onNav }: { onNav?: (s: string) => void }) {
   const [lastTool, setLastTool] = useState('')
-  function tool(name: string) { setLastTool(name) }
+  function tool(name: string) { const to = toolTarget(name); if (to && onNav) { onNav(to); return } setLastTool(name) }
 
   const docs = [
     { name: 'Code of behaviour on the sideline', to: 'All coaches, managers', opened: 10, of: 31 },

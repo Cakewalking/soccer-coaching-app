@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { toolTarget } from '../toolTargets'
 import TeamSheetBody, { type TeamSheetConfig } from './TeamSheetBody'
 
 const G = '#2f6252', GD = '#1f4a3e', MUT = '#4a5a57', LN = '#e8edeb'
@@ -44,7 +45,7 @@ export default function FIL2Sheet({ onBack, onShare, onNav, bare }: {
   bare?: boolean
 }) {
   const [lastTool, setLastTool] = useState('')
-  function tool(name: string) { setLastTool(name) }
+  function tool(name: string) { const to = toolTarget(name); if (to && onNav) { onNav(to); return } setLastTool(name) }
 
   const NavBtn = ({ label, target }: { label: string; target: string }) => (
     <button onClick={() => onNav?.(target)} style={{ fontSize: 13, fontWeight: 500, color: 'rgba(255,255,255,0.65)', cursor: 'pointer', minHeight: 44, padding: '0 10px', display: 'flex', alignItems: 'center', background: 'none', border: 'none', fontFamily: 'inherit' }}>{label}</button>

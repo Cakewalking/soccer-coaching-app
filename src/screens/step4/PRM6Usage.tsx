@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { toolTarget } from '../toolTargets'
 import { OpeningPanel } from './directorParts'
 import { getGroups, setGroups as persist, cloneGroups, type FKey, type Group } from './featuresData'
 
@@ -20,7 +21,7 @@ const USAGE: Usage[] = [
 export default function PRM6Usage({ onNav }: { onNav?: (s: string) => void }) {
   const [lastTool, setLastTool] = useState('')
   const [groups, setGroupsLocal] = useState<Group[]>(() => cloneGroups(getGroups()))
-  function tool(name: string) { setLastTool(name) }
+  function tool(name: string) { const to = toolTarget(name); if (to && onNav) { onNav(to); return } setLastTool(name) }
   function update(next: Group[]) { setGroupsLocal(next); persist(next) }
 
   const isOn = (team: string, fk: FKey) => groups.flatMap(g => g.teams).find(t => t.id === team)?.[fk] === true

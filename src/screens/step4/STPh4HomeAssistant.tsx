@@ -1,10 +1,11 @@
 import { useState } from 'react'
+import { toolTarget } from '../toolTargets'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 export default function STPh4HomeAssistant({ onNav }: { onNav?: (s: string) => void }) {
   const [lastTool, setLastTool] = useState('')
-  function tool(name: string) { setLastTool(name) }
+  function tool(name: string) { const to = toolTarget(name); if (to && onNav) { onNav(to); return } setLastTool(name) }
 
   const tnb = { height: 56, padding: '0 14px', background: 'none' as const, color: 'rgba(255,255,255,0.75)', border: 'none' as const, fontSize: 13, fontWeight: 600, cursor: 'pointer' as const, fontFamily: 'inherit', flexShrink: 0 as const }
   const tnba = { ...tnb, background: 'rgba(255,255,255,0.15)' as const, color: '#fff', fontWeight: 700 }

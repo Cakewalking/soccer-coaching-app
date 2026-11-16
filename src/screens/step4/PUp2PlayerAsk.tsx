@@ -1,10 +1,11 @@
 import { useState } from 'react'
+import { toolTarget } from '../toolTargets'
 
 const G = '#2f6252', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 export default function PUp2PlayerAsk({ onNav }: { onNav?: (s: string) => void }) {
   const [lastTool, setLastTool] = useState('')
-  function tool(name: string) { setLastTool(name) }
+  function tool(name: string) { const to = toolTarget(name); if (to && onNav) { onNav(to); return } setLastTool(name) }
 
   const players = [
     { code: 'AW', label: 'AW Ava', name: 'Ava', target: 'Ava: taken off.' },

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { toolTarget } from '../toolTargets'
 import { getGroups, setGroups as persist, cloneGroups, grandTotal, type Group } from './featuresData'
 
 const GD = '#1f4a3e', G = '#2f6252', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
@@ -6,7 +7,7 @@ const GD = '#1f4a3e', G = '#2f6252', INK = '#10211f', MUT = '#4a5a57', LN = '#e8
 export default function PRM2TurnOn({ onNav }: { onNav?: (s: string) => void }) {
   const [lastTool, setLastTool] = useState('')
   const [done, setDone] = useState(false)
-  function tool(name: string) { setLastTool(name) }
+  function tool(name: string) { const to = toolTarget(name); if (to && onNav) { onNav(to); return } setLastTool(name) }
 
   const groups = getGroups()
   const sam = groups.flatMap(g => g.teams).find(t => t.id === 'U12 Sam')

@@ -563,7 +563,7 @@ export default function CoachTabletFrame({
                   style={{ flex: 1, height: 40, padding: '0 12px', borderRadius: 8, border: `1px solid ${LN}`, fontSize: 13, fontFamily: 'inherit', outline: 'none', color: INK }}
                 />
                 <button
-                  onClick={() => { if (askInput.trim()) askQuestion(askInput.trim()) }}
+                  onClick={() => askQuestion(askInput.trim() || questions[0])}
                   aria-label="Send"
                   style={{ width: 44, height: 44, borderRadius: 8, background: askInput.trim() ? G : LN, border: 'none', cursor: askInput.trim() ? 'pointer' : 'default', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}
                 >

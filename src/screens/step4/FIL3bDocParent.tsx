@@ -1,10 +1,11 @@
 import { useState } from 'react'
+import { toolTarget } from '../toolTargets'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 export default function FIL3bDocParent({ onNav }: { onNav?: (s: string) => void }) {
   const [lastTool, setLastTool] = useState('')
-  function tool(name: string) { setLastTool(name) }
+  function tool(name: string) { const to = toolTarget(name); if (to && onNav) { onNav(to); return } setLastTool(name) }
 
   return (
     <div style={{ width: 390, background: '#f7f8f7', fontFamily: 'var(--font-sans)', minHeight: 844, display: 'flex', flexDirection: 'column' }} data-lasttool={lastTool}>

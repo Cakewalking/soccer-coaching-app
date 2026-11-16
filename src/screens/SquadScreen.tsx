@@ -325,13 +325,13 @@ function RightPanel({ p, onProfile }: { p: SquadPlayer; onProfile: () => void })
 
 export default function SquadScreen({ onPlayerProfile, empty, players: propPlayers }: Props) {
   const { active: inSandbox } = useSandbox()
-  if (empty || inSandbox) return <SquadEmpty />
   const players = propPlayers ?? SQUAD_PLAYERS
   const [filter, setFilter] = useState<Filter>('all')
   const [selected, setSelected] = useState<SquadPlayer>(
     players.find(p => p.status === 'checkin' || p.status === 'missing') ?? players[0]
   )
   const [toast, setToast] = useState<string | null>(null)
+  if (empty || inSandbox) return <SquadEmpty />
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   const counts = {

@@ -251,7 +251,7 @@ export default function TrainingScreen({ role, onNav, empty, nextOpponent = 'Har
             <div style={{ fontSize: 13, color: '#6f7f7b', marginTop: 2 }}>Thu 4 Jun · Wattle Creek Reserve · <strong>offline</strong></div>
           </div>
           <div style={{ display: 'flex', gap: 8 }}>
-            <button onClick={() => showToast('Opening pitch-side mode.')} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #2f6252', background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Open pitch-side</button>
+            <button onClick={() => onNav('pitchside')} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #2f6252', background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Open pitch-side</button>
             <button onClick={() => setOffline(false)} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', color: '#6f7f7b' }}>Exit offline demo</button>
           </div>
         </div>

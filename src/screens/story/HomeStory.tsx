@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { toolTarget } from '../toolTargets'
 import type { ReactNode } from 'react'
 
 // Home that tells a story (STO1–STO22). Shared four-part layout driven by a
@@ -84,6 +85,23 @@ export type HomeCfg = {
   done: { title: string; lines: string[]; next: string }
   needs: { count: number; title: string; sub?: string; target?: string }
   take?: TakeCfg
+}
+
+/** The clip preview as drawn: the move on a pitch, a play button, and how long it runs. */
+function ClipThumb({ height, duration }: { height: number; duration: string }) {
+  return (
+    <span style={{ height, borderRadius: 12, background: 'rgba(255,255,255,0.07)', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', color: '#fff', overflow: 'hidden' }}>
+      <svg viewBox="0 0 330 92" preserveAspectRatio="none" aria-hidden="true" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}>
+        <g fill="none" stroke="rgba(255,255,255,0.28)" strokeWidth="1.5"><rect x="26" y="12" width="278" height="100" /><line x1="165" y1="12" x2="165" y2="92" /><circle cx="165" cy="46" r="58" /></g>
+        <line x1="72" y1="60" x2="244" y2="64" stroke="#7fd6b5" strokeWidth="2" strokeLinecap="round" />
+        <g fill="#fff"><circle cx="72" cy="60" r="5" /><circle cx="124" cy="50" r="5" /><circle cx="182" cy="53" r="5" /><circle cx="244" cy="38" r="5" /></g>
+      </svg>
+      <span style={{ position: 'relative', width: 40, height: 40, borderRadius: '50%', background: 'rgba(16,33,31,0.55)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.4" strokeLinejoin="round" aria-hidden="true"><path d="M8 5l11 7-11 7z" /></svg>
+      </span>
+      <span style={{ position: 'absolute', right: 10, bottom: 8, fontSize: 13, fontWeight: 700 }}>{duration}</span>
+    </span>
+  )
 }
 
 function Face({ ini, has }: Face) {
@@ -187,10 +205,7 @@ function ProofInner({ p, take, nav, tool }: { p: HomeCfg['proof']; take?: TakeCf
       <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
         {p.reel ? (
           <button onClick={() => p.reelTarget ? nav(p.reelTarget) : tool(p.reel!.caption)} style={{ display: 'flex', flexDirection: 'column', gap: 6, background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
-            <span style={{ height: 132, borderRadius: 12, background: 'rgba(255,255,255,0.10)', border: `1px solid ${PALE}`, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700, position: 'relative' }}>
-              <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style={{ opacity: 0.85 }}><path d="M8 5l11 7-11 7z" /></svg>
-              <span style={{ position: 'absolute', left: 10, bottom: 10, fontSize: 12, fontWeight: 700, background: 'rgba(0,0,0,0.35)', padding: '2px 8px', borderRadius: 6 }}>{p.reel.duration}</span>
-            </span>
+            <ClipThumb height={132} duration={p.reel.duration} />
             <span style={{ display: 'flex', gap: 6 }}>
               {p.reel.chips.map(c => <span key={c} style={{ flex: 1, height: 30, borderRadius: 6, background: 'rgba(255,255,255,0.14)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, color: '#fff' }}>{c}</span>)}
             </span>
@@ -239,7 +254,7 @@ function MomentsCard({ m, nav, tool }: { m: HomeCfg['moments']; nav: (s: string)
         <strong style={{ fontSize: 17, lineHeight: '23px' }}>{m.title}</strong>
         <button onClick={() => m.linkTarget ? nav(m.linkTarget) : tool(m.linkDone ?? m.link)} style={{ minHeight: 44, display: 'flex', alignItems: 'center', fontSize: 14, fontWeight: 700, color: GREEN, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit' }}>{m.link}</button>
       </div>
-      <div style={{ display: 'flex', gap: 8, padding: '4px 4px 6px', flexWrap: 'wrap' }}>{m.faces.map((f, i) => <Face key={i} {...f} />)}</div>
+      <div style={{ display: 'flex', gap: 4, padding: '4px 0 6px', overflow: 'hidden' }}>{m.faces.map((f, i) => <Face key={i} {...f} />)}</div>
       {m.rows.map((row, i) => (
         <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'center', minHeight: 54, borderTop: `1px solid ${HAIR}`, paddingTop: 8 }}>
           <span style={{ width: 32, height: 32, borderRadius: '50%', background: FACEBG, color: GREEN, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, flexShrink: 0 }}>{row.ini}</span>
@@ -325,7 +340,7 @@ export function HomeStoryPhone({ cfg, onNav, renderTarget }: { cfg: PhoneCfg; on
   const [lastTool, setLastTool] = useState('')
   const [toast, setToast] = useState<string | null>(null)
   const [open, setOpen] = useState<string | null>(null)
-  const tool = (s: string) => { setLastTool(s); setToast(s); setTimeout(() => setToast(null), 2200) }
+  const tool = (s: string) => { const to = toolTarget(s); if (to && onNav) { onNav(to); return } setLastTool(s); setToast(s); setTimeout(() => setToast(null), 2200) }
   const nav = (s: string) => renderTarget ? setOpen(s) : (onNav ? onNav(s) : tool(s))
   if (open && renderTarget) return (
     <div style={{ width: 390, minHeight: 844, margin: '0 auto', background: '#f4f5f3', display: 'flex', flexDirection: 'column' }}>
@@ -341,12 +356,13 @@ export function HomeStoryPhone({ cfg, onNav, renderTarget }: { cfg: PhoneCfg; on
   const amberBtn: React.CSSProperties = { height: 46, borderRadius: 12, border: 'none', background: AMBER, color: INK, fontSize: 15, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', width: '100%' }
   return (
     <div data-lasttool={lastTool} style={{ width: 390, minHeight: 844, background: '#f4f5f3', fontFamily: "'DM Sans',system-ui,sans-serif", display: 'flex', flexDirection: 'column' }}>
-      <header style={{ background: '#fff', borderBottom: `1px solid ${HAIR}`, padding: '12px 16px', display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
+      {/* Green bar with the greeting, as drawn on every phone home */}
+      <header style={{ background: GREEN, padding: '12px 16px 14px', display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
         <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.04em', color: GREY, textTransform: 'uppercase' }}>{cfg.roleLine}</div>
-          <div style={{ fontSize: 20, fontWeight: 700, color: INK }}>{cfg.greeting}</div>
+          <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.82)' }}>{cfg.roleLine}</div>
+          <div style={{ fontSize: 21, fontWeight: 700, color: '#fff', letterSpacing: '-0.01em' }}>{cfg.greeting}</div>
         </div>
-        <div style={{ width: 38, height: 38, borderRadius: '50%', background: '#b9777a', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, flexShrink: 0 }}>{cfg.avatar}</div>
+        <div style={{ width: 38, height: 38, borderRadius: '50%', background: '#cbbeb5', color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, flexShrink: 0 }}>{cfg.avatar}</div>
       </header>
       <div style={{ flex: 1, padding: 16, display: 'flex', flexDirection: 'column', gap: 12 }}>
         {cfg.blocks.map((b, i) => {
@@ -358,10 +374,7 @@ export function HomeStoryPhone({ cfg, onNav, renderTarget }: { cfg: PhoneCfg; on
               {b.bars && <div style={{ padding: '4px 0' }}><Bars bars={b.bars} unit={b.unit} /></div>}
               {b.clip && (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                  <span style={{ height: 92, borderRadius: 12, background: 'rgba(255,255,255,0.10)', border: `1px solid ${PALE}`, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', color: '#fff' }}>
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5l11 7-11 7z" /></svg>
-                    <span style={{ position: 'absolute', left: 10, bottom: 8, fontSize: 12, fontWeight: 700, background: 'rgba(0,0,0,0.35)', padding: '2px 8px', borderRadius: 6 }}>{b.clip.duration}</span>
-                  </span>
+                  <ClipThumb height={92} duration={b.clip.duration} />
                   <span style={{ fontSize: 12, lineHeight: '16px', color: PALE }}>{b.clip.note}</span>
                 </div>
               )}

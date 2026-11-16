@@ -15,11 +15,12 @@ export type OtherTeam = 'youth' | 'seniors'
 const TEAM: Record<OtherTeam, { squad: SquadPlayer[]; label: string; coach: [string, string, string]; phrases: [string, string][] }> = {
   youth: {
     squad: YOUTH_SQUAD_PLAYERS, label: 'U16 Ollie', coach: ['Ollie', 'Ollie G', 'OG'],
-    phrases: [['9:30 vs Harbour Rovers', '3:30 at Harbour Rovers'], ['home to Harbour Rovers', 'away at Harbour Rovers'], ['9 a side', '11 a side'], ['under 12s', 'under 16s']],
+    phrases: [['She wrote:', 'They wrote:'], ['if she wants', 'if they want'], ['her parent', 'their parent'], ['her coaches', 'their coaches'], ['9:30 vs Harbour Rovers', '3:30 at Harbour Rovers'], ['home to Harbour Rovers', 'away at Harbour Rovers'], ['9 a side', '11 a side'], ['under 12s', 'under 16s']],
   },
   seniors: {
     squad: SENIORS_SQUAD_PLAYERS, label: 'Men’s 1sts', coach: ['Marko', 'Marko P', 'MP'],
-    phrases: [['9:30 vs Harbour Rovers', '3:00 at Banksia Park SC'], ['home to Harbour Rovers', 'away at Banksia Park SC'], ['Harbour Rovers', 'Banksia Park SC'], ['9 a side', '11 a side'], ['under 12s', 'seniors']],
+    // Adults: no parent wording anywhere, and no assumed pronoun.
+    phrases: [['She wrote:', 'He wrote:'], ['if she wants', 'if he wants'], ['Message her parent', 'Message him'], ['Opening message to her parent.', 'Opening a message to him.'], ['Answers are seen by her coaches and her parent.', 'Answers are seen by the coaches.'], ['her coaches', 'the coaches'], ['9:30 vs Harbour Rovers', '3:00 at Banksia Park SC'], ['home to Harbour Rovers', 'away at Banksia Park SC'], ['Harbour Rovers', 'Banksia Park SC'], ['9 a side', '11 a side'], ['under 12s', 'seniors']],
   },
 }
 

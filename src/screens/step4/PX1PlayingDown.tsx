@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { toolTarget } from '../toolTargets'
 import { OpeningPanel, ChipRow, type ChipState, INK, MUT, HAIR, CTL, GREEN, PALEGREEN, AMBER } from './directorParts'
 
 function DirFrame({ onNav, tool }: { onNav?: (s: string) => void; tool: (n: string) => void }) {
@@ -37,7 +38,7 @@ export default function PX1PlayingDown({ onNav }: { onNav?: (s: string) => void 
   const [lastTool, setLastTool] = useState('')
   const [toast, setToast] = useState<string | null>(null)
   const [asked, setAsked] = useState(false)
-  function tool(name: string) { setLastTool(name) }
+  function tool(name: string) { const to = toolTarget(name); if (to && onNav) { onNav(to); return } setLastTool(name) }
   function say(m: string) { setToast(m); setTimeout(() => setToast(null), 3200) }
   const outBtn = { flex: 'none' as const, width: 150, height: 44, padding: '0 14px', borderRadius: 10, boxSizing: 'border-box' as const, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap' as const, background: '#fff', color: INK, border: `1px solid ${CTL}` }
 

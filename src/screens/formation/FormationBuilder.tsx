@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState } from 'react'
 import { TEAMS, shapesFor, shapeByName, remap, type TeamCfg, type Shape, type Player } from './formationData'
-import { getInsights, keyPairs, bestLineup, forThisWeek, shapeLine, metricOf, value, fmt, METRICS, type FormationPreset, type Insights, type MetricKey } from './lineupInsights'
+import { getInsights, keyPairs, bestLineup, forThisWeek, shapeLine, wordsFor, value, fmt, type FormationPreset, type Insights, type MetricKey } from './lineupInsights'
 
 // Squad › Formation builder (tablet). Pick a shape, place players from the bench
 // onto the pitch by tap-then-tap OR drag, move and swap them, run the checks, and
@@ -222,7 +222,7 @@ export default function FormationBuilder({ team = 'juniors', onNav, empty, prese
   function loadWorked(k: MetricKey) {
     if (!ins) return
     const l = bestLineup(ins, k, ins.bestShape[k]); if (!l) return
-    const w = forThisWeek(ins, l, metricOf(k).label)
+    const w = forThisWeek(ins, l, wordsFor(team).find(x => x.key === k)!.label)
     pushHistory()
     setShapeName(w.shape); setPlaced([...w.placed]); setCustom(null); setMode('builder'); setPicked(null); setLoaded(w.note)
     say(`Loaded: ${w.note}`)
@@ -261,7 +261,7 @@ export default function FormationBuilder({ team = 'juniors', onNav, empty, prese
 
       {/* Shape tabs */}
       <div style={{ flex: 'none', padding: '10px 28px 0', display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
-        {shapes.map(s => <ShapeTab key={s.name} name={s.name} tags={(ins?.shapeTags[s.name] ?? []).map(k => metricOf(k).tag)} selected={mode === 'builder' && shapeName === s.name} onClick={() => switchShape(s.name)} />)}
+        {shapes.map(s => <ShapeTab key={s.name} name={s.name} tags={(ins?.shapeTags[s.name] ?? []).map(k => wordsFor(team).find(x => x.key === k)!.tag)} selected={mode === 'builder' && shapeName === s.name} onClick={() => switchShape(s.name)} />)}
         {savedTabs.map(n => <ShapeTab key={n} name={n} selected={false} onClick={() => say(`${n}: your saved shape.`)} />)}
         <button onClick={enterOwn} style={{ height: 44, padding: '0 14px', borderRadius: 12, border: `1.5px ${mode === 'own' ? 'solid' : 'dashed'} ${mode === 'own' ? LEAF : '#c5ccca'}`, background: mode === 'own' ? GREEN : '#fff', color: mode === 'own' ? '#fff' : INK, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 7 }}>
           <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z" /></svg>{mode === 'own' ? 'Custom' : 'Your own'}
@@ -476,7 +476,7 @@ function GamePicker({ cfg, ins, onLoad, onClose, onNav, say }: { cfg: TeamCfg; i
         <Row title={cfg.game} sub={`${cfg.defaultShape} · both halves set`} tag="Editing" onClick={() => { onClose(); say('Editing this game.') }} />
         <Row title="Sat 13 June · at Kestrel Park" sub="Not started" onClick={() => { onClose(); say('New game — pick a shape and start placing.') }} />
         <div style={{ padding: '12px 14px 6px', fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', color: MUT }}>START FROM ONE THAT WORKED</div>
-        {ins ? METRICS.map(m => {
+        {ins ? wordsFor(cfg.key).map(m => {
           const l = bestLineup(ins, m.key, ins.bestShape[m.key]); if (!l) return null
           return <Row key={m.key} title={m.label} sub={`${l.shape} · ${fmt(m.key, value(l.agg, m.key, ins.gameLen))} ${m.unit} · ${l.agg.mins} minutes together`} tag="From film" onClick={() => { onClose(); onLoad(m.key) }} />
         }) : <div style={{ padding: '10px 14px', borderTop: `1px solid ${LN}`, fontSize: 12, color: MUT }}>Nothing from recorded games for this team.</div>}

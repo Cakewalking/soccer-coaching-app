@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { toolTarget } from '../toolTargets'
 import { AMBER } from './directorParts'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
@@ -22,7 +23,7 @@ export default function FIL7Form({ onBack, onShare, onAnswersSheet, onNav, bare 
     { q: 'Shirt number preference (not guaranteed)?', type: 'Choice' },
     { q: 'Can your child be in the team photo on Sat 20 June?', type: 'Yes or no', note: 'Families who said no to photos in consent are not asked this. Their answer is already "no".' },
   ])
-  function tool(name: string) { setLastTool(name) }
+  function tool(name: string) { const to = toolTarget(name); if (to && onNav) { onNav(to); return } setLastTool(name) }
 
   function cycleType(i: number) {
     const order: QType[] = ['Choice', 'Yes or no', 'Short answer']

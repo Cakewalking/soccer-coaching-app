@@ -58,6 +58,8 @@ export default function SeasonSummariesScreen({ empty, teamType = 'juniors' }: {
   const PLAYERS = sd.players
   const [selected, setSelected] = useState<string | null>(PLAYERS[0]?.ini ?? null)
 
+  const [toast, setToast] = useState('')
+  const showToast = (msg: string) => { setToast(msg); setTimeout(() => setToast(''), 3000) }
   if (empty) {
     return (
       <div style={{ flexGrow: 1, minHeight: 0, overflowY: 'auto', padding: '28px 32px' }}>
@@ -89,8 +91,6 @@ export default function SeasonSummariesScreen({ empty, teamType = 'juniors' }: {
       </div>
     )
   }
-  const [toast, setToast] = useState('')
-  const showToast = (msg: string) => { setToast(msg); setTimeout(() => setToast(''), 3000) }
 
   const player = PLAYERS.find(p => p.ini === selected)
   const ready  = PLAYERS.filter(p => p.status === 'ready').length

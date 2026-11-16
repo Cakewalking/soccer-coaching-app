@@ -38,6 +38,13 @@ export function clearStore(): void {
   // keep META_KEY (expiry) intact; only wipe data
 }
 
+/** True once "Fill with sample data" has loaded the sample club. Screens that are not
+ *  yet driven by the sandbox's own data show the demo club only then; a club the
+ *  visitor is building themselves never gets another club's players mixed in. */
+export function storeIsSample(s: SandboxStore): boolean {
+  return s.teams.some(t => t.id === 'wc-u12')
+}
+
 export function storeHasData(s: SandboxStore): boolean {
   return s.teams.length > 0 || s.players.length > 0 || s.fixtures.length > 0
 }

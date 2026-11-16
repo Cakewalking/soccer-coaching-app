@@ -226,10 +226,10 @@ const FIXTURES_HEADER: Record<'juniors' | 'youth' | 'seniors', string> = {
 
 export default function FixturesScreen({ empty, teamType = 'juniors' }: { empty?: boolean; teamType?: 'juniors' | 'youth' | 'seniors' }) {
   const { active: inSandbox } = useSandbox()
-  if (inSandbox) return <FixturesSandboxView />
   const [synced, setSynced] = useState(false)
   const [selectedResult, setSelectedResult] = useState<number | null>(null)
   const [addOpen, setAddOpen] = useState(false)
+  if (inSandbox) return <FixturesSandboxView />
   if (empty) return <FixturesEmpty />
   const RESULTS = RESULTS_BY[teamType], COMING_UP = COMING_BY[teamType], LADDER = LADDER_BY[teamType]
   return (

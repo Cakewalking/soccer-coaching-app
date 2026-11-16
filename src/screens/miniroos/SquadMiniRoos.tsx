@@ -1,45 +1,8 @@
 import { useState } from 'react'
 
-type Avail = 'yes' | 'maybe' | 'away' | 'noreply'
-
-interface Player {
-  ini: string; name: string; note: string; avail: Avail
-  hadGoal: boolean; hadCaptain: boolean; helpNote: string
-  history: { label: string; value: string }[]
-}
-
-export const PLAYERS: Player[] = [
-  { ini: 'IC', name: 'Ivy Chen',    note: 'Loves to dribble',   avail: 'yes',     hadGoal: true,  hadCaptain: true,
-    helpNote: 'Loves to dribble. Keep her wide so she gets space to run.',
-    history: [{ label: 'Turn in goal', value: 'Sat 16 May' }, { label: 'Captain', value: 'Sat 2 May' }] },
-  { ini: 'MB', name: 'Max Bailey',  note: 'Asks to go in goal', avail: 'yes',     hadGoal: false, hadCaptain: false,
-    helpNote: 'Keen and loud. Wants to try every position. Remind him to listen first.',
-    history: [{ label: 'Turn in goal', value: 'Due this week' }, { label: 'Started', value: 'All 5 games' }] },
-  { ini: 'AK', name: 'Arlo Kaur',   note: 'New this term',      avail: 'yes',     hadGoal: false, hadCaptain: false,
-    helpNote: 'New this term. Show him each game before it starts. Pair with Ivy.',
-    history: [{ label: 'First game', value: 'Sat 30 May' }, { label: 'Started', value: '2 of 2' }] },
-  { ini: 'ZM', name: 'Zara Moore',  note: 'Passes early',       avail: 'yes',     hadGoal: true,  hadCaptain: true,
-    helpNote: 'Natural passer. Put her in the middle so she can link the team.',
-    history: [{ label: 'Turn in goal', value: 'Sat 23 May' }, { label: 'Captain', value: 'Sat 16 May' }] },
-  { ini: 'LW', name: 'Leo Wright',  note: 'Quiet, likes a job', avail: 'yes',     hadGoal: false, hadCaptain: false,
-    helpNote: 'Quiet but reliable. Give him a specific job each game — he loves it.',
-    history: [{ label: 'Turn in goal', value: 'Due this week' }, { label: 'Captain', value: 'Due this term' }] },
-  { ini: 'EN', name: 'Evie Nolan',  note: 'Left footer',        avail: 'yes',     hadGoal: false, hadCaptain: false,
-    helpNote: 'Dominant left foot. Encourage right side touches in games.',
-    history: [{ label: 'Turn in goal', value: 'Sat 9 May' }, { label: 'Started', value: 'All 5 games' }] },
-  { ini: 'TS', name: 'Theo Santos', note: 'Runs all day',        avail: 'yes',     hadGoal: true,  hadCaptain: false,
-    helpNote: 'Endless energy. Keep him involved but remind him to look for a friend.',
-    history: [{ label: 'Turn in goal', value: 'Sat 30 May' }, { label: 'Captain', value: 'Due this term' }] },
-  { ini: 'PD', name: 'Poppy Dunn',  note: 'Shy with the ball',  avail: 'maybe',   hadGoal: true,  hadCaptain: true,
-    helpNote: "She's shy with the ball. Pair her with Zara in the first game and give her the first kick-off.",
-    history: [{ label: 'Turn in goal', value: 'Sat 16 May' }, { label: 'Captain', value: 'Sat 23 May' }, { label: 'Saturday', value: "7 — parent says maybe · school concert" }, { label: 'First-aid card', value: 'Nothing to know' }] },
-  { ini: 'OH', name: 'Omar Haddad', note: 'Away next week',     avail: 'away',    hadGoal: false, hadCaptain: false,
-    helpNote: 'Away this week. Back from Mon 9 Jun.',
-    history: [{ label: 'Last game', value: 'Sat 23 May' }, { label: 'Turn in goal', value: 'Due this week' }] },
-  { ini: 'JL', name: 'Jude Lim',    note: 'Plays futsal too',   avail: 'noreply', hadGoal: false, hadCaptain: false,
-    helpNote: 'Plays futsal on Fridays. Check he is not too tired.',
-    history: [{ label: 'Turn in goal', value: 'Due this week' }, { label: 'No reply yet', value: 'for Saturday' }] },
-]
+import { PLAYERS, type Player, type Avail } from './squadData'
+import PlayerProfileMiniRoos from './PlayerProfileMiniRoos'
+export { PLAYERS }
 
 function availStyle(a: Avail) {
   if (a === 'yes')     return { bg: '#40826d', color: '#fff',    label: 'Yes'      }
@@ -52,8 +15,9 @@ const Check = () => (
   <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
 )
 
-export default function SquadMiniRoos({ empty }: { empty?: boolean }) {
+export default function SquadMiniRoos({ empty, onSeasonNotes }: { empty?: boolean; onSeasonNotes?: () => void }) {
   const [sel, setSel] = useState<Player>(PLAYERS[7])
+  const [profile, setProfile] = useState<string | null>(null)
   const [toast, setToast] = useState<string | null>(null)
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
@@ -88,6 +52,8 @@ export default function SquadMiniRoos({ empty }: { empty?: boolean }) {
     </div>
   )
 
+
+  if (profile) return <PlayerProfileMiniRoos ini={profile} onPick={setProfile} onBack={() => setProfile(null)} onSeasonNotes={onSeasonNotes} />
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, minHeight: 0, overflow: 'hidden' }}>
@@ -156,7 +122,8 @@ export default function SquadMiniRoos({ empty }: { empty?: boolean }) {
               </div>
             ))}
           </div>
-          <button onClick={() => showToast(`Message started to ${sel.name.split(' ')[0]}’s family.`)} style={{ width: '100%', height: 44, borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Message {sel.name.split(' ')[0]}’s family</button>
+          <button onClick={() => setProfile(sel.ini)} style={{ width: '100%', height: 44, borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Open {sel.name.split(' ')[0]}’s profile</button>
+          <button onClick={() => showToast(`Message started to ${sel.name.split(' ')[0]}’s family.`)} style={{ width: '100%', height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Message {sel.name.split(' ')[0]}’s family</button>
           <button onClick={() => showToast(`Note added for ${sel.name.split(' ')[0]}.`)} style={{ width: '100%', height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Add a note</button>
         </div>
       </div>

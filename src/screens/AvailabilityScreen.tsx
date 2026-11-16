@@ -115,11 +115,11 @@ function Column({ title, count, items, accent, selectedName, onPick }: { title: 
 }
 
 export default function AvailabilityScreen({ empty }: { empty?: boolean }) {
-  if (empty) return <AvailabilityEmpty />
   const [activeEvent, setActiveEvent] = useState(0)
   const [selectedName, setSelectedName] = useState<string | null>(null)
   const [reminded, setReminded] = useState(false)
   const [picking, setPicking] = useState(false)
+  if (empty) return <AvailabilityEmpty />
   return (
     <div style={{ flexGrow: 1, padding: '14px 28px 18px', display: 'flex', flexDirection: 'column', gap: 10, boxSizing: 'border-box', minHeight: 0, overflow: 'hidden' }}>
 

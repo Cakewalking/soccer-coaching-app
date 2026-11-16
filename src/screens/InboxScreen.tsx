@@ -209,10 +209,10 @@ function LinhPanelContent() {
 }
 
 export default function InboxScreen({ empty }: { empty?: boolean }) {
-  if (empty) return <InboxEmpty />
   const [sel, setSel] = useState(0)
   const [filterTab, setFilterTab] = useState(0)
   const [toast, setToast] = useState<string | null>(null)
+  if (empty) return <InboxEmpty />
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   return (

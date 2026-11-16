@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { toolTarget } from '../toolTargets'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb'
 
@@ -7,7 +8,7 @@ export default function ASKd8PhoneHome({ onNav }: { onNav?: (s: string) => void 
   const [coming, setComing] = useState(false)
   const [toast, setToast] = useState<string | null>(null)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 2500) }
-  function tool(name: string) { setLastTool(name) }
+  function tool(name: string) { const to = toolTarget(name); if (to && onNav) { onNav(to); return } setLastTool(name) }
 
   function NavIcon({ icon, active }: { icon: string; active?: boolean }) {
     const c = active ? G : MUT

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { toolTarget } from '../toolTargets'
 import { OpeningPanel, CTL } from './directorParts'
 import { COLS, FEATURE_LABEL, getGroups, setGroups as persist, cloneGroups, addOnsTotal, type FKey, type Group, type Team } from './featuresData'
 
@@ -8,7 +9,7 @@ export default function PRM1FeaturesByTeam({ onNav }: { onNav?: (s: string) => v
   const [lastTool, setLastTool] = useState('')
   const [bec, setBec] = useState(false)
   const [groups, setGroupsLocal] = useState<Group[]>(() => cloneGroups(getGroups()))
-  function tool(name: string) { setLastTool(name) }
+  function tool(name: string) { const to = toolTarget(name); if (to && onNav) { onNav(to); return } setLastTool(name) }
   function update(next: Group[]) { setGroupsLocal(next); persist(next) }   // write through to the shared store
 
   function setTeam(tid: string, key: FKey, on: boolean) {

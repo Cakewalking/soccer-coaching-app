@@ -12,7 +12,7 @@ const ROSE = '#c39797'
 type ChatId = 'announce' | 'u9' | 'sami'
 
 const CHATS: Array<{ id: ChatId; ini: string; bg: string; label: string; time: string; preview: string; unread: number }> = [
-  { id: 'announce', ini: '📢', bg: GD,   label: 'Announcements',           time: 'Mon',     preview: 'You: Photo day is Saturday 20 June', unread: 0 },
+  { id: 'announce', ini: 'All', bg: GD,  label: 'Announcements',           time: 'Mon',     preview: 'You: Photo day is Saturday 20 June', unread: 0 },
   { id: 'u9',       ini: 'U9', bg: G,    label: 'U9 Tom families',         time: '6:40 pm', preview: 'Sami: Omar says thanks for the goalie turn', unread: 2 },
   { id: 'sami',     ini: 'SH', bg: '#e9eae8', label: 'Sami Haddad · Omar\'s dad', time: 'Mon', preview: 'Omar\'s away this week', unread: 0 },
 ]
@@ -125,6 +125,38 @@ export default function TeamChatMiniRoos({ empty, onBack }: { empty?: boolean; o
 
   if (activeChat === 'u9') {
     return <U9GroupChat empty={empty} onBack={() => setActiveChat(null)}/>
+  }
+  if (activeChat) {
+    const chat = CHATS.find(c => c.id === activeChat)!
+    const lines = activeChat === 'announce'
+      ? [{ me: true, who: 'You · Mon', text: 'Photo day is Saturday 20 June. Full kit please, and arrive ten minutes early.' }, { me: true, who: 'You · last Mon', text: 'No training in the school holidays. Back on Tuesday 14 July.' }]
+      : [{ me: false, who: 'Sami · Mon', text: 'Omar’s away this week, back for training on Tuesday.' }, { me: true, who: 'You · Mon', text: 'Thanks Sami. He keeps his turn in goal for when he is back.' }]
+    return (
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+        <div style={{ padding: '12px 20px', borderBottom: `1px solid ${LN}`, background: '#fff', display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
+          <button onClick={() => setActiveChat(null)} aria-label="Back to chats" style={{ width: 44, height: 44, border: 'none', background: LN, borderRadius: '50%', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth={2.5} strokeLinecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+          </button>
+          <div style={{ flex: 1 }}>
+            <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>{chat.label}</div>
+            <div style={{ fontSize: 12, color: MUT }}>{activeChat === 'announce' ? 'All 10 families · only coaches can post' : 'Just the two of you'}</div>
+          </div>
+        </div>
+        <div style={{ flex: 1, overflowY: 'auto', padding: '16px 20px', display: 'flex', flexDirection: 'column', gap: 12 }}>
+          {lines.map((l, i) => (
+            <div key={i} style={{ alignSelf: l.me ? 'flex-end' : 'flex-start', maxWidth: 440 }}>
+              <div style={{ fontSize: 11, color: MUT, marginBottom: 2, textAlign: l.me ? 'right' : 'left' }}>{l.who}</div>
+              <div style={{ background: l.me ? GD : '#fff', color: l.me ? '#fff' : INK, border: l.me ? 'none' : `1px solid ${LN}`, borderRadius: 12, padding: '10px 14px', fontSize: 14, lineHeight: 1.5 }}>{l.text}</div>
+            </div>
+          ))}
+        </div>
+        <div style={{ padding: '12px 20px', borderTop: `1px solid ${LN}`, background: '#fff', display: 'flex', gap: 10, flexShrink: 0 }}>
+          <input placeholder={activeChat === 'announce' ? 'Write an announcement' : 'Write to Sami'} style={{ flex: 1, height: 44, padding: '0 14px', border: `1px solid ${LN}`, borderRadius: 999, fontFamily: 'inherit', fontSize: 14, outline: 'none' }}/>
+          <button onClick={() => showToast('Message sent.')} style={{ height: 44, padding: '0 18px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Send</button>
+        </div>
+        {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600 }}>{toast}</div>}
+      </div>
+    )
   }
 
   return (

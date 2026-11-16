@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { toolTarget } from '../toolTargets'
 import { MUT, HAIR, GREEN, PALEGREEN } from './directorParts'
 import PlayingAcrossBody from './PlayingAcrossBody'
 
@@ -32,7 +33,7 @@ function DirFrame({ onNav, tool }: { onNav?: (s: string) => void; tool: (n: stri
 // (PlayingAcrossBody is the single source, also used by the in-frame PlayersTab).
 export default function PU1PlayingUp({ onNav }: { onNav?: (s: string) => void }) {
   const [lastTool, setLastTool] = useState('')
-  function tool(name: string) { setLastTool(name) }
+  function tool(name: string) { const to = toolTarget(name); if (to && onNav) { onNav(to); return } setLastTool(name) }
   return (
     <div data-screen="PU1-PlayingUp" data-lasttool={lastTool} style={{ width: 1180, height: 820, overflow: 'hidden', boxSizing: 'border-box', background: '#f7f8f7', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
       <DirFrame onNav={onNav} tool={tool} />

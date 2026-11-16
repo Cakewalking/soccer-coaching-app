@@ -1,9 +1,9 @@
 import { useMemo, useState } from 'react'
 import { PitchSvg } from './formation/Pitch'
 import { shapeByName } from './formation/formationData'
-import { getInsights, METRICS, metricOf, value, fmt, thin, pairsFor, bestLineup, forThisWeek, lineWord, type MetricKey, type FormationPreset, type PairStat } from './formation/lineupInsights'
+import { getInsights, wordsFor, value, fmt, thin, pairsFor, bestLineup, forThisWeek, lineWord, type MetricKey, type FormationPreset, type PairStat } from './formation/lineupInsights'
 
-export type LineupTeam = 'juniors' | 'youth' | 'seniors'
+export type LineupTeam = 'juniors' | 'youth' | 'seniors' | 'miniroos'
 
 const G    = '#2f6252'
 const G2   = '#40826d'
@@ -125,13 +125,6 @@ function BtnPrimary({ label, onClick }: { label: string; onClick?: () => void })
 const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1)
 const LINE_NAME: Record<string, string> = { goal: 'In goal', back: 'Back line', midfield: 'Midfield', front: 'Up front' }
 
-function gainText(k: MetricKey, gain: number) {
-  if (k === 'scored') return `+${gain.toFixed(1)} goals a game`
-  if (k === 'against') return `${gain.toFixed(1)} fewer let in a game`
-  if (k === 'ahead') return `Ahead ${Math.round(gain)}% more of the time`
-  return `${gain.toFixed(1)} s quicker to win it back`
-}
-
 function Card({ title, sub, right, children, style }: { title: string; sub?: string; right?: React.ReactNode; children: React.ReactNode; style?: React.CSSProperties }) {
   return (
     <section style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: 16, ...style }}>
@@ -156,7 +149,8 @@ export function SquadLineups({ onBack: _onBack, noFrame, onNav, teamType = 'juni
 
   const ins = getInsights(teamType)!
   const g = ins.gameLen
-  const m = metricOf(metric)
+  const MX = wordsFor(teamType), mini = teamType === 'miniroos'
+  const m = MX.find(x => x.key === metric)!
   const byId = useMemo(() => Object.fromEntries(ins.cfg.roster.map(p => [p.id, p])), [ins])
   const teamLabel = ins.cfg.teamLabel.split(' · ')[0]
   const shapeName = shapeSel ?? ins.bestShape[metric]
@@ -175,9 +169,10 @@ export function SquadLineups({ onBack: _onBack, noFrame, onNav, teamType = 'juni
   const links = pairs.filter(p => lineup.lineup.includes(p.a) && lineup.lineup.includes(p.b)).map(p => ({ a: p.a, b: p.b, strong: hot === pairKey(p) }))
 
   const sc = ins.bestShape.scored, ag = ins.bestShape.against
-  const story = sc === ag
-    ? `${sc} scores most (${fmt('scored', value(stat(sc).agg, 'scored', g))} a game) and lets in least (${fmt('against', value(stat(ag).agg, 'against', g))}).`
-    : `${sc} scores most (${fmt('scored', value(stat(sc).agg, 'scored', g))} a game) but lets in ${fmt('against', value(stat(sc).agg, 'against', g))}. ${ag} lets in least (${fmt('against', value(stat(ag).agg, 'against', g))}) and scores ${fmt('scored', value(stat(ag).agg, 'scored', g))}.`
+  const f = (name: string, k: MetricKey) => fmt(k, value(stat(name).agg, k, g))
+  const story = mini
+    ? (sc === ag ? `${sc} gives the most best moments (${f(sc, 'scored')} a game) and loses the ball least near your goal.` : `${sc} gives the most best moments (${f(sc, 'scored')} a game) but loses it near your goal ${f(sc, 'against')} times. ${ag} is safest at the back (${f(ag, 'against')}) with ${f(ag, 'scored')} best moments.`)
+    : (sc === ag ? `${sc} scores most (${f(sc, 'scored')} a game) and lets in least (${f(ag, 'against')}).` : `${sc} scores most (${f(sc, 'scored')} a game) but lets in ${f(sc, 'against')}. ${ag} lets in least (${f(ag, 'against')}) and scores ${f(ag, 'scored')}.`)
 
   const players = ins.cfg.roster
     .map(p => ({ p, cells: ins.byPlayer[p.id] ?? [], mins: (ins.byPlayer[p.id] ?? []).reduce((n, c) => n + c.agg.mins, 0) }))
@@ -198,7 +193,7 @@ export function SquadLineups({ onBack: _onBack, noFrame, onNav, teamType = 'juni
       <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }} data-screen="SQ1-BestLineups">
         {/* What are you after? Each card names the shape that leads on it. */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, minmax(0, 1fr))', gap: 12 }}>
-          {METRICS.map(mm => {
+          {MX.map(mm => {
             const best = stat(ins.bestShape[mm.key]); const on = mm.key === metric
             return (
               <button key={mm.key} aria-pressed={on} onClick={() => { setMetric(mm.key); setShapeSel(null); setHot(null) }}
@@ -227,7 +222,7 @@ export function SquadLineups({ onBack: _onBack, noFrame, onNav, teamType = 'juni
               {links.length > 0 && <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}><span style={{ width: 18, height: 5, borderRadius: 3, background: '#e2c77c' }}/>A pair that works</span>}
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 6, marginTop: 12 }}>
-              {METRICS.map(mm => (
+              {MX.map(mm => (
                 <div key={mm.key} style={{ background: mm.key === metric ? PALE : '#f7f8f7', borderRadius: 10, padding: '8px 8px' }}>
                   <div style={{ fontSize: 15, fontWeight: 800, color: mm.key === metric ? G : INK }}>{fmt(mm.key, value(lineup.agg, mm.key, g))}</div>
                   <div style={{ fontSize: 11, color: MUT, lineHeight: 1.3 }}>{mm.short}</div>
@@ -249,7 +244,7 @@ export function SquadLineups({ onBack: _onBack, noFrame, onNav, teamType = 'juni
               <div role="table" style={{ display: 'grid', gridTemplateColumns: 'minmax(96px, 1.25fr) repeat(4, minmax(0, 1fr))', rowGap: 4 }}>
                 <div style={{ display: 'contents' }} role="row">
                   <div role="columnheader" style={th}>Shape</div>
-                  {METRICS.map(mm => <div key={mm.key} role="columnheader" style={{ ...th, textAlign: 'right', color: mm.key === metric ? G : MUT }}>{mm.short}</div>)}
+                  {MX.map(mm => <div key={mm.key} role="columnheader" style={{ ...th, textAlign: 'right', color: mm.key === metric ? G : MUT }}>{mm.short}</div>)}
                 </div>
                 {ins.shapes.map(s => {
                   const on = s.shape === shapeName
@@ -266,7 +261,7 @@ export function SquadLineups({ onBack: _onBack, noFrame, onNav, teamType = 'juni
                         <span style={{ display: 'block', fontSize: 15, fontWeight: 800, color: INK }}>{s.shape}</span>
                         <span style={{ display: 'block', fontSize: 11, color: MUT }}>{s.agg.mins} min · {s.agg.games.length} games</span>
                       </span>
-                      {METRICS.map(mm => {
+                      {MX.map(mm => {
                         const best = ins.bestShape[mm.key] === s.shape
                         return (
                           <span key={mm.key} role="cell" style={{ textAlign: 'right', paddingRight: 8 }}>
@@ -302,7 +297,7 @@ export function SquadLineups({ onBack: _onBack, noFrame, onNav, teamType = 'juni
                       {out.map(x => <div key={x.id} style={{ fontSize: 12, color: '#7a5f24', marginTop: 2 }}>{x.first} cannot play {day}.</div>)}
                     </div>
                     <div style={{ textAlign: 'right', flexShrink: 0 }}>
-                      <div style={{ fontSize: 13, fontWeight: 700, color: G }}>{gainText(metric, p.gain[metric])}</div>
+                      <div style={{ fontSize: 13, fontWeight: 700, color: G }}>{m.gain(p.gain[metric])}</div>
                       <div style={{ fontSize: 12, color: MUT, fontVariantNumeric: 'tabular-nums' }}>{fmt(metric, value(p.together, metric, g))} together · {fmt(metric, value(p.apart, metric, g))} apart</div>
                     </div>
                   </div>
@@ -348,11 +343,13 @@ export function SquadLineups({ onBack: _onBack, noFrame, onNav, teamType = 'juni
             })}
           </div>
           {players.length > 8 && <button onClick={() => setShowAll(v => !v)} style={{ height: 44, marginTop: 8, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{showAll ? 'Show fewer' : `Show all ${players.length}`}</button>}
-          <div style={{ fontSize: 12, color: MUT, marginTop: 8, lineHeight: 1.45 }}>A dash means under a game's worth of minutes in that shape. These are team numbers, not a mark for the player.</div>
+          <div style={{ fontSize: 12, color: MUT, marginTop: 8, lineHeight: 1.45 }}>A dash means under a game's worth of minutes in that shape. These are team numbers, not a mark for the {mini ? 'child' : 'player'}.</div>
         </Card>
 
         <div style={{ fontSize: 12, color: MUT, lineHeight: 1.5 }}>
-          Worked out from who was on the pitch, and when, in recorded games. It shows what happened, not why: the other team, the weather and who was missing all count, so you make the call. Never shown to players, parents or the team manager. Not available for MiniRoos or any team younger than U12.
+          {mini
+            ? 'Worked out from film of recorded games: who was on, and what happened with the ball. No scores are kept or shown at this age. Turns come first: every child still plays every part of the pitch over the term, so use this to try things, not to pick favourites. Never shown to children or families.'
+            : 'Worked out from who was on the pitch, and when, in recorded games. It shows what happened, not why: the other team, the weather and who was missing all count, so you make the call. Never shown to players, parents or the team manager.'}
         </div>
       </div>
     </CoachFrame>

@@ -17,6 +17,24 @@ export const METRICS: { key: MetricKey; noun: string; label: string; short: stri
 ]
 export const metricOf = (k: MetricKey) => METRICS.find(m => m.key === k)!
 
+export type MetricWords = (typeof METRICS)[number] & { gain: (g: number) => string }
+const GAIN: Record<MetricKey, (g: number) => string> = {
+  scored: g => `+${g.toFixed(1)} goals a game`, against: g => `${g.toFixed(1)} fewer let in a game`,
+  ahead: g => `Ahead ${Math.round(g)}% more of the time`, winback: g => `${g.toFixed(1)} s quicker to win it back`,
+}
+// MiniRoos keep no scores. The same four sums are read from film as things an
+// under 9 coach cares about: moments, keeping the ball, and getting it back.
+const MINIROOS_WORDS: Record<MetricKey, Omit<MetricWords, 'key' | 'lowerIsBetter'>> = {
+  scored:  { noun: 'Best moments a game', label: 'Most best moments', short: 'Best moments', tag: 'Most moments', unit: 'best moments a game', gain: g => `+${g.toFixed(1)} best moments a game` },
+  against: { noun: 'Times the ball was lost near our goal, a game', label: 'Lost it least near our goal', short: 'Lost at the back', tag: 'Safest at the back', unit: 'lost near our goal a game', gain: g => `${g.toFixed(1)} fewer a game` },
+  ahead:   { noun: 'Share of the time with the ball', label: 'Most time with the ball', short: 'With the ball', tag: 'Keeps the ball', unit: 'of the time with the ball', gain: g => `${Math.round(g)}% more of the ball` },
+  winback: { noun: 'Seconds to get the ball back', label: 'Got the ball back quickest', short: 'Get it back', tag: 'Gets it back quickest', unit: 'to get it back', gain: g => `${g.toFixed(1)} s quicker to get it back` },
+}
+/** The words for each measure, for this team's age. */
+export function wordsFor(team: string): MetricWords[] {
+  return METRICS.map(m => team === 'miniroos' ? { ...m, ...MINIROOS_WORDS[m.key] } : { ...m, gain: GAIN[m.key] })
+}
+
 export type Stint = {
   game: number; shape: string
   lineup: string[]        // player id per slot of the shape
@@ -83,11 +101,14 @@ const PLAN: Record<string, { gameLen: number; used: string[]; seed: number; hidd
     hidden: [{ a: 'p7', b: 'p8', kind: 'control' }, { a: 'p2', b: 'p3', kind: 'defence' }, { a: 'p12', b: 'p13', kind: 'attack' }] },
   seniors: { gameLen: 90, used: ['4-3-3', '4-4-2', '4-2-3-1'], seed: 95,
     hidden: [{ a: 's7', b: 's8', kind: 'control' }, { a: 's2', b: 's3', kind: 'defence' }, { a: 's12', b: 's13', kind: 'attack' }] },
+  miniroos: { gameLen: 40, used: ['2-3-1', '3-2-1', '2-2-2'], seed: 36,
+    hidden: [{ a: 'm4', b: 'm3', kind: 'control' }, { a: 'm5', b: 'm7', kind: 'defence' }, { a: 'm9', b: 'm8', kind: 'attack' }] },
   youth: { gameLen: 80, used: ['4-3-3', '4-4-2', '4-2-3-1'], seed: 114,
     hidden: [{ a: 'y5', b: 'y6', kind: 'control' }, { a: 'y1', b: 'y2', kind: 'defence' }, { a: 'y10', b: 'y11', kind: 'attack' }] },
 }
 // How each shape tends to play: attack, goals let in, seconds to win it back.
 const SHAPE_FEEL: Record<string, [number, number, number]> = {
+  '2-3-1': [1.0, 1.0, 0.95], '3-2-1': [0.75, 0.55, 1.1], '2-2-2': [1.45, 1.3, 0.88],
   '3-3-2': [1.0, 1.0, 1.0], '3-2-3': [1.5, 1.25, 0.84], '2-4-2': [1.1, 1.3, 0.9], '4-3-1': [0.7, 0.45, 1.12],
   '4-3-3': [1.4, 1.15, 0.84], '4-4-2': [1.0, 0.95, 1.0], '4-2-3-1': [0.95, 0.5, 0.94], '3-5-2': [1.15, 1.25, 0.9],
 }
@@ -235,7 +256,7 @@ export function buildInsights(team: string, seed?: number): Insights | null {
 }
 
 const cache: Record<string, Insights | null> = {}
-/** Insights for a team, or null where they are not offered (MiniRoos and under 12s). */
+/** Insights for a team, or null if it has no recorded games. */
 export function getInsights(team: string): Insights | null {
   if (team in cache) return cache[team]
   return (cache[team] = buildInsights(team))
@@ -292,7 +313,10 @@ export function forThisWeek(ins: Insights, l: LineupStat, label: string): Format
 export function shapeLine(ins: Insights, shape: string): string {
   const s = ins.shapes.find(x => x.shape === shape)
   if (!s || !s.agg.mins) return `${shape} has not been used in a recorded game yet.`
-  const g = ins.gameLen, a = s.agg
-  const line = `${shape} in ${a.games.length} recorded ${a.games.length === 1 ? 'game' : 'games'}: ${fmt('scored', value(a, 'scored', g))} scored and ${fmt('against', value(a, 'against', g))} let in a game, ahead ${fmt('ahead', value(a, 'ahead', g))} of the time.`
+  const g = ins.gameLen, a = s.agg, n = a.games.length, games = `${shape} in ${n} recorded ${n === 1 ? 'game' : 'games'}`
+  const v = (k: MetricKey) => fmt(k, value(a, k, g))
+  const line = ins.cfg.key === 'miniroos'
+    ? `${games}: ${v('scored')} best moments a game, the ball ${v('ahead')} of the time, ${v('winback')} to get it back.`
+    : `${games}: ${v('scored')} scored and ${v('against')} let in a game, ahead ${v('ahead')} of the time.`
   return thin(a, g) ? `${line} Only ${a.mins} minutes, so treat it lightly.` : line
 }

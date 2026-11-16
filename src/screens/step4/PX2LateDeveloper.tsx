@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { toolTarget } from '../toolTargets'
 import { OpeningPanel } from './directorParts'
 import MeasureSheet from '../measures/MeasureSheet'
 import { MEASURE } from '../measures/data'
@@ -43,7 +44,7 @@ function QuoteBtn({ text, onOpen }: { text: string; onOpen: () => void }) {
 export default function PX2LateDeveloper({ onNav }: { onNav?: (s: string) => void }) {
   const [lastTool, setLastTool] = useState('')
   const [measure, setMeasure] = useState<string | null>(null)
-  function tool(name: string) { setLastTool(name) }
+  function tool(name: string) { const to = toolTarget(name); if (to && onNav) { onNav(to); return } setLastTool(name) }
   const open = (id: string) => { setMeasure(id); setLastTool(id) }
 
   const tnb = { height: 56, padding: '0 10px', background: 'none' as const, color: 'rgba(255,255,255,0.75)', border: 'none' as const, fontSize: 13, fontWeight: 600, cursor: 'pointer' as const, fontFamily: 'inherit', flexShrink: 0 as const }

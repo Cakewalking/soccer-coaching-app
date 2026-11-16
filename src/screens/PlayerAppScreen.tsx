@@ -230,7 +230,7 @@ export default function PlayerAppScreen({ empty, initialView = 'home' }: { empty
 
   /* ── CHECK-IN SENT ── */
   if (view === 'checkin-sent') {
-    const avg = checkinAnswers.reduce((a, b) => a + b, 0) / checkinAnswers.length
+    const avg = checkinAnswers.length ? checkinAnswers.reduce((a, b) => a + b, 0) / checkinAnswers.length : 4
     return (
       <div style={{ width: 390, margin: '0 auto', background: '#1f4a3e', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-sans)', padding: '0 32px', gap: 20, textAlign: 'center' }}>
         <div style={{ width: 80, height: 80, borderRadius: '999px', background: '#2f6252', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>

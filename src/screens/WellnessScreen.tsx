@@ -118,9 +118,9 @@ function noteChipStyle(note: string) {
 }
 
 export default function WellnessScreen({ empty }: { empty?: boolean }) {
-  if (empty) return <WellnessEmpty />
   const [selIdx, setSelIdx] = useState(0)
   const [toast, setToast] = useState<string|null>(null)
+  if (empty) return <WellnessEmpty />
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   const sel = PLAYERS[selIdx]
 

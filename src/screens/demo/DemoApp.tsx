@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef } from 'react'
-import type { ReactNode } from 'react'
+import { useState, useEffect, useRef, isValidElement, cloneElement } from 'react'
+import type { ReactNode, ReactElement } from 'react'
 import HomeScreen            from '../HomeScreen'
 import TrainingScreen        from '../TrainingScreen'
 import MatchDayScreen        from '../MatchDayScreen'
@@ -48,7 +48,8 @@ import CoachFitnessScreen    from '../CoachFitnessScreen'
 import SettingsScreen        from '../SettingsScreen'
 import LiveGameScreen        from '../LiveGameScreen'
 import FormationBuilder      from '../formation/FormationBuilder'
-import { registerScreenRenderer } from '../ScreenLayer'
+import { registerScreenRenderer, isScreenId } from '../ScreenLayer'
+import { SCREEN_ALIAS, renderExtraScreen } from './extraScreens'
 import type { FormationPreset } from '../formation/lineupInsights'
 import LineupParent          from '../formation/LineupParent'
 import LiveGame11Screen      from '../LiveGame11Screen'
@@ -363,7 +364,7 @@ import DemoShell, { type DemoPhase } from './DemoShell'
 import DemoShellPhone        from './DemoShellPhone'
 import DemoShellSandbox      from './DemoShellSandbox'
 import { TOURS, type RoleId } from './tours'
-import { readStore, writeStore, clearStore, storeHasData, sampleStore, type SandboxStore } from '../sandbox/sandboxStore'
+import { readStore, writeStore, clearStore, storeHasData, storeIsSample, sampleStore, type SandboxStore } from '../sandbox/sandboxStore'
 import { SandboxContext } from '../sandbox/SandboxContext'
 import { AskPhoneOpen } from '../AskCleanSheet'
 import { MessagesRules, CoachNewMessage, CoachMessages, CoachMessagesPersonCard, DirectorMessages, ParentMessages, ParentMessagesEmpty, ParentNewMessage, RefereeMessages } from '../MessagesScreens'
@@ -565,14 +566,13 @@ const DAYS = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Satur
 const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December']
 function sandboxExpiryLabel(): string {
   const sb = getSandbox()
-  if (!sb) return ''
-  const exp = new Date(sb.createdAt + 14 * 86400000)
+  // Opened by address before a sandbox exists: it would start now, so count from today.
+  const exp = new Date((sb?.createdAt ?? Date.now()) + 14 * 86400000)
   return `${DAYS[exp.getDay()]} ${exp.getDate()} ${MONTHS[exp.getMonth()]}`
 }
 function sandboxExpiryShort(): string {
   const sb = getSandbox()
-  if (!sb) return ''
-  const exp = new Date(sb.createdAt + 14 * 86400000)
+  const exp = new Date((sb?.createdAt ?? Date.now()) + 14 * 86400000)
   return `${DAYS[exp.getDay()].slice(0,3)} ${exp.getDate()} ${MONTHS[exp.getMonth()]}`
 }
 
@@ -1500,14 +1500,14 @@ function renderScreenInner(key: string): ReactNode {
     case 'HM2-SquadMiniRoos':         return <MiniRoosApp onBack={noop} empty={false} initialScreen="squad" />
     case 'HM3-TrainingMiniRoos':      return <MiniRoosApp onBack={noop} empty={false} initialScreen="training" />
     case 'HM4-GameDayMiniRoos':       return <MiniRoosApp onBack={noop} empty={false} initialScreen="gameday" />
-    case 'HM5-WhatWeSaw':             return <MiniRoosApp onBack={noop} empty={false} initialScreen="gameday" />
+    case 'HM5-WhatWeSaw':             return <MiniRoosApp onBack={noop} empty={false} initialScreen="whatisaw" />
     case 'HM5b-ThankParents':         return <HM5bThankParents />
     case 'HM6-SeasonNotes':           return <HM6SeasonNotes />
     case 'HM7-InboxMiniRoos':         return <MiniRoosApp onBack={noop} empty={false} initialScreen="messages" />
     case 'HM8-CalendarMiniRoos':      return <MiniRoosApp onBack={noop} empty={false} initialScreen="calendar" />
     case 'HM9-FixturesMiniRoos':      return <MiniRoosApp onBack={noop} empty={false} initialScreen="fixtures" />
     case 'HM10-StaffMiniRoos':        return <MiniRoosApp onBack={noop} empty={false} initialScreen="staff" />
-    case 'HM11-ComingMiniRoos':       return <MiniRoosApp onBack={noop} empty={false} initialScreen="gameday" />
+    case 'HM11-ComingMiniRoos':       return <MiniRoosApp onBack={noop} empty={false} initialScreen="whoscoming" />
     case 'HM12-ConsentMiniRoos':      return <HM12ConsentMiniRoos />
     case 'HM3e-TrainingMiniRoosEmpty': return <HM3eTrainingMiniRoosEmpty />
     case 'HM2e-SquadMiniRoosEmpty':   return <MiniRoosApp onBack={noop} empty={true} />
@@ -2382,12 +2382,31 @@ export function lookScreenId(role: string, screen?: string): string {
   return home
 }
 
+// Many screens take an `onNav(screenId)` prop but were registered without one, so
+// every "opens another screen" button on them did nothing. AutoNav supplies it:
+// the screen opens the target in its place. Screens that already have `onNav`
+// (or do not take one) are left exactly as they were.
+function AutoNav({ el }: { el: ReactNode }) {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  const give = (node: ReactNode): ReactNode => {
+    if (!isValidElement(node)) return node
+    const props = node.props as { onNav?: unknown; children?: ReactNode }
+    if (typeof node.type === 'function') return props.onNav ? node : cloneElement(node as ReactElement<{ onNav?: (s: string) => void }>, { onNav: (s: string) => { if (isScreenId(s) || s in SCREEN_ALIAS) setInner(s) } })
+    // a plain wrapper (the phone-centring div): look one level in
+    if (typeof node.type === 'string' && isValidElement(props.children)) return cloneElement(node as ReactElement<{ children?: ReactNode }>, { children: give(props.children) })
+    return node
+  }
+  return <>{give(el)}</>
+}
+
 export function renderScreen(key: string): ReactNode {
   // minHeight keeps the wrapper measurable for screens whose root is a
   // position:fixed overlay (e.g. the add-game / set-style / settings flows),
   // so the data-screen hook stays visible to the acceptance check.
   const phone = /^(STO1[6-9]|STO2[0-2]|ERp|SIp|SB|TM\d|PA-|PS\d|PO\d|ACP|ACK|RF\d|MSGp|CPh)/.test(key)
-  return <div data-screen={key} style={{ minHeight: '100vh' }}><ScreenErrorBoundary key={key} phone={phone}>{renderScreenInner(key)}</ScreenErrorBoundary></div>
+  const real = SCREEN_ALIAS[key] ?? key
+  return <div data-screen={key} style={{ minHeight: '100vh' }}><ScreenErrorBoundary key={key} phone={phone}><AutoNav el={renderExtraScreen(real) ?? renderScreenInner(real)} /></ScreenErrorBoundary></div>
 }
 
 registerScreenRenderer(renderScreen)
@@ -2580,7 +2599,8 @@ export default function DemoApp() {
   }
 
   if (view === 'sandboxlook') {
-    const sbEmpty = !sbFilled
+    // Demo content shows only once the sample club is loaded; a club the visitor is building stays theirs.
+    const sbEmpty = !storeIsSample(sbStore)
     let sbApp: ReactNode
     if (role === 'coach') {
       sbApp = <JuniorCoachApp empty={sbEmpty} initialScreen={screen} onNavChange={setScreen} />
@@ -2601,7 +2621,7 @@ export default function DemoApp() {
     } else if (role === 'academyowner') {
       sbApp = <AcademyOwnerApp onBack={noop} empty={sbEmpty} initialScreen={screen} onNavChange={setScreen} />
     } else {
-      const homeKey = sbFilled
+      const homeKey = !sbEmpty
         ? (TOURS[role].home ?? TOURS[role].sandboxHome)
         : (TOURS[role].sandboxHome ?? TOURS[role].home)
       sbApp = homeKey ? renderScreen(homeKey) : (

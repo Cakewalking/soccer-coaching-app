@@ -71,7 +71,8 @@ interface Props {
 export default function DemoTourShell({ roleId, onBack, onWhy, renderScreen, initialStep, onStepChange }: Props) {
   const tour = TOURS[roleId]
   const steps = flattenSteps(roleId)
-  const [idx, setIdx] = useState(initialStep ?? 0)
+  // A step number past the end (an old link, a typed address) lands on the last step, not a blank page.
+  const [idx, setIdx] = useState(Math.max(0, Math.min(steps.length - 1, initialStep ?? 0)))
 
   function goStep(n: number) { setIdx(n); onStepChange?.(n) }
 

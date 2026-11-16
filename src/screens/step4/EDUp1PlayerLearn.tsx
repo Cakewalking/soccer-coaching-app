@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { toolTarget } from '../toolTargets'
 import { DARK, AMBER, PALEON } from './directorParts'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb'
@@ -9,7 +10,7 @@ export default function EDUp1PlayerLearn({ onNav: _onNav }: { onNav?: (s: string
   const [didIt, setDidIt] = useState(false)
   const [toast, setToast] = useState<string | null>(null)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 2500) }
-  function tool(name: string) { setLastTool(name) }
+  function tool(name: string) { const to = toolTarget(name); if (to && _onNav) { _onNav(to); return } setLastTool(name) }
 
   const lessons = [
     { id: 'l1', al: 'Weak-foot finish across the keeper Leo, U13 · 7 seconds', title: 'Weak-foot finish across the keeper', credit: 'Leo, U13', dur: '7 seconds' },

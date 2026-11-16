@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
+const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb'
 
 const PERMS = [
   { key: 'filming', label: 'Filming in games and training', sub: 'Coaches use clips to show what worked. If no: Harper is blurred.' },
@@ -35,12 +35,19 @@ export default function P2bParentConsentStep1() {
 
   return (
     <div style={{ width: 390, minHeight: '100%', background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', margin: '0 auto' }}>
-      <div style={{ background: GD, padding: '16px 20px 20px' }}>
-        <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,0.6)', marginBottom: 4 }}>Wattle Creek FC · U12</div>
-        <div style={{ fontSize: 18, fontWeight: 800, color: '#fff', marginBottom: 2 }}>What can we record?</div>
-        <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)' }}>Each one is separate. Say yes to some and no to others.</div>
+      {/* Top bar, as drawn: back, name, how many are answered */}
+      <div style={{ background: G, height: 56, padding: '0 16px', display: 'flex', alignItems: 'center', gap: 8, position: 'sticky', top: 0, zIndex: 5 }}>
+        <button aria-label="Back" onClick={() => st('Your answers so far are kept.')} style={{ width: 44, height: 44, border: 0, background: 'transparent', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <span style={{ fontSize: 17, fontWeight: 800, color: '#fff', flexGrow: 1 }}>Clean Sheet</span>
+        <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.8)' }}>{allAnswered ? 'All answered' : `${PERMS.filter(q => answers[q.key] !== undefined).length} of ${PERMS.length} answered`}</span>
       </div>
-      <div style={{ padding: '16px 20px 100px' }}>
+      <div style={{ padding: '18px 20px 0' }}>
+        <h1 style={{ margin: 0, fontSize: 22, fontWeight: 800, color: INK, letterSpacing: '-0.01em' }}>What can we record?</h1>
+        <div style={{ fontSize: 14, color: MUT, marginTop: 6, lineHeight: 1.45 }}>Each one is separate. Say yes to some and no to others.</div>
+      </div>
+      <div style={{ padding: '14px 20px 120px' }}>
         {PERMS.map(p => (
           <div key={p.key} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '12px 14px', marginBottom: 10 }}>
             <div style={{ fontSize: 14, fontWeight: 700, color: INK, marginBottom: 4 }}>{p.label}</div>
@@ -49,10 +56,10 @@ export default function P2bParentConsentStep1() {
               {[true, false].map(val => (
                 <button key={String(val)} onClick={() => setAnswers(prev => ({ ...prev, [p.key]: val }))} style={{
                   flex: 1, height: 44, borderRadius: 10,
-                  border: `1.5px solid ${answers[p.key] === val ? G : LN}`,
-                  background: answers[p.key] === val ? PALE : '#fff',
-                  color: answers[p.key] === val ? GD : MUT,
-                  fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer',
+                  border: `1.5px solid ${answers[p.key] === val ? G : '#c5c8c4'}`,
+                  background: answers[p.key] === val ? G : '#fff',
+                  color: answers[p.key] === val ? '#fff' : INK,
+                  fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer',
                 }}>
                   {val ? 'Yes' : 'No'}
                 </button>
@@ -60,7 +67,10 @@ export default function P2bParentConsentStep1() {
             </div>
           </div>
         ))}
-        <button onClick={() => { if (allAnswered) setDone(true); else st('Answer yes or no to each one first.') }} style={{ width: '100%', height: 48, borderRadius: 14, border: 0, background: allAnswered ? G : LN, color: allAnswered ? '#fff' : MUT, fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer', marginTop: 8 }}>Save my choices</button>
+        <div style={{ position: 'fixed', left: '50%', transform: 'translateX(-50%)', bottom: 0, width: 390, boxSizing: 'border-box', background: '#fff', borderTop: `1px solid ${LN}`, padding: '12px 16px 14px', zIndex: 6 }}>
+          <button onClick={() => { if (allAnswered) setDone(true); else st('Answer yes or no to each one first.') }} style={{ width: '100%', height: 52, borderRadius: 14, border: 0, background: allAnswered ? G : LN, color: allAnswered ? '#fff' : MUT, fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer', marginTop: 8 }}>Save my choices</button>
+          <div style={{ fontSize: 12, color: MUT, textAlign: 'center', marginTop: 8 }}>You can change these any time.</div>
+        </div>
       {toast && <div style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
       </div>
     </div>

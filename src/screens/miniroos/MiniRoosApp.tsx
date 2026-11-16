@@ -12,6 +12,8 @@ import MiniRoosTeamTalk  from './MiniRoosTeamTalk'
 import ClipsMiniRoos     from './ClipsMiniRoos'
 import ConsentMiniRoos   from './ConsentMiniRoos'
 import FormationBuilder  from '../formation/FormationBuilder'
+import { SquadLineups } from '../SquadLineups'
+import type { FormationPreset } from '../formation/lineupInsights'
 import { SkillsMiniRoos, FairTurnsMiniRoos, WeekMiniRoos, GamesLibraryMiniRoos } from './MiniRoosExtras'
 import WhatWeSawScreen   from './WhatWeSawScreen'
 import ThankParentsScreen from './ThankParentsScreen'
@@ -652,8 +654,17 @@ function RecordMiniRoosClips({ empty, onBack }: { empty?: boolean; onBack: () =>
 type MiniNav = 'home' | 'squad' | 'training' | 'gameday' | 'clips' | 'record'
 type HomeTab = 'overview' | 'messages' | 'calendar' | 'fixtures' | 'style' | 'whereweat' | 'staff' | 'files'
 type GameDayTab = 'turns' | 'whoscoming' | 'getready' | 'live' | 'review' | 'whatisaw' | 'thankparents'
-type SquadTab = 'players' | 'formation' | 'skills' | 'turns' | 'coming' | 'consent' | 'seasonnotes'
+type SquadTab = 'players' | 'formation' | 'lineups' | 'skills' | 'turns' | 'coming' | 'consent' | 'seasonnotes'
 type TrainingTab = 'plan' | 'week' | 'suggest' | 'library'
+// Design id of the screen each MiniRoos tab shows (master handover part 4).
+const MR_SCREEN: Record<string, string> = {
+  overview: 'STO1-HomeStoryMiniRoos', messages: 'HM7-InboxMiniRoos', calendar: 'HM8-CalendarMiniRoos', fixtures: 'HM9-FixturesMiniRoos',
+  style: 'MS1-MiniRoosStyle', whereweat: 'MS2-MiniRoosWhereWeAt', staff: 'HM10-StaffMiniRoos', files: 'FIL1-Files',
+  'squad:players': 'HM2-SquadMiniRoos', 'squad:formation': 'FB1m-FormationMiniRoos', 'squad:lineups': 'SQ1-BestLineups', 'squad:coming': 'HM11-ComingMiniRoos', 'squad:consent': 'HM12-ConsentMiniRoos', 'squad:seasonnotes': 'HM6-SeasonNotes',
+  'training:plan': 'HM3-TrainingMiniRoos', 'training:suggest': 'SGm1-SuggestedMiniRoos',
+  'gameday:turns': 'HM4-GameDayMiniRoos', 'gameday:whoscoming': 'HM11-ComingMiniRoos', 'gameday:review': 'MS3-MiniRoosReview', 'gameday:whatisaw': 'HM5-WhatWeSaw', 'gameday:thankparents': 'HM5b-ThankParents',
+  clips: 'RCm2-MiniRoosClips', record: 'RCm1-RecordMiniRoos',
+}
 type RecordView = 'start' | 'clips'
 
 const NAV: Array<{ id: MiniNav; label: string; icon: string }> = [
@@ -679,10 +690,14 @@ const HOME_TABS: Array<{ id: HomeTab; label: string }> = [
 export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, initialScreen, onNavChange }: { onBack: () => void; empty?: boolean; phaseContent?: ReactNode; initialScreen?: string; onNavChange?: (screen: string) => void }) {
   const HOME_SUBTABS: HomeTab[] = ['messages', 'calendar', 'fixtures', 'style', 'whereweat', 'staff', 'files']
   const isHomeSub = !!initialScreen && (HOME_SUBTABS as string[]).includes(initialScreen)
-  const [nav, setNav]               = useState<MiniNav>(isHomeSub ? 'home' : ((initialScreen as MiniNav) ?? 'home'))
+  // Deep links into Match day: "whatisaw", "thankparents", "review", "whoscoming", "getready" open that part.
+  const GAMEDAY_PARTS = ['whatisaw', 'thankparents', 'review', 'whoscoming', 'getready']
+  const isGameDayPart = !!initialScreen && GAMEDAY_PARTS.includes(initialScreen)
+  const [nav, setNav]               = useState<MiniNav>(isHomeSub ? 'home' : isGameDayPart ? 'gameday' : ((initialScreen as MiniNav) ?? 'home'))
   const [homeTab, setHomeTab]       = useState<HomeTab>(isHomeSub ? (initialScreen as HomeTab) : 'overview')
-  const [gameDayTab, setGameDayTab] = useState<GameDayTab>('turns')
+  const [gameDayTab, setGameDayTab] = useState<GameDayTab>(isGameDayPart ? (initialScreen as GameDayTab) : 'turns')
   const [squadTab, setSquadTab]     = useState<SquadTab>('players')
+  const [formationPreset, setFormationPreset] = useState<FormationPreset | null>(null)
   const [teamTalkOpen, setTeamTalkOpen] = useState(false)
   const [homeSubView, setHomeSubView] = useState<'main' | 'seasonnotes' | 'teamchat' | 'footballyear'>('main')
   const [trainingTab, setTrainingTab] = useState<TrainingTab>('plan')
@@ -714,10 +729,11 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
   const SQUAD_TABS_MR: Array<{ id: SquadTab; label: string }> = [
     { id: 'players',     label: 'Players' },
     { id: 'formation',   label: 'Formation' },
+    { id: 'lineups',     label: 'Line-ups' },
     { id: 'skills',      label: 'Skills' },
     { id: 'turns',       label: 'Fair turns' },
     { id: 'coming',      label: "Who's coming" },
-    { id: 'consent',     label: 'Consent and privacy' },
+    { id: 'consent',     label: 'Consent' },
     { id: 'seasonnotes', label: 'Season notes' },
   ]
 
@@ -786,13 +802,15 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
     else if (trainingTab === 'week')    content = <WeekMiniRoos empty={empty} onTonight={() => setTrainingTab('plan')} />
     else if (trainingTab === 'library') content = <GamesLibraryMiniRoos empty={empty} />
   } else if (nav === 'squad') {
-    if (squadTab === 'formation')        content = <FormationBuilder team="miniroos" onNav={(s) => { if (s === 'T2-TabletMatch') { setNav('gameday'); setGameDayTab('turns') } }} />
+    if (squadTab === 'formation')        content = <FormationBuilder key={formationPreset?.note ?? 'plain'} preset={formationPreset} team="miniroos" onNav={(s) => { if (s === 'T2-TabletMatch') { setNav('gameday'); setGameDayTab('turns') } else if (s === 'SQ1-BestLineups') setSquadTab('lineups') }} />
+    else if (squadTab === 'lineups' && empty) content = <div style={{ padding: '28px 32px' }}><div style={{ maxWidth: 500, background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: 24 }}><div style={{ fontSize: 18, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>Record 3 games to see this</div><div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.6 }}>Once a few games are filmed, this shows which shapes and pairs gave the children the most good moments. No scores are kept.</div></div></div>
+    else if (squadTab === 'lineups')     content = <SquadLineups noFrame teamType="miniroos" onNav={(s, preset) => { if (s === 'formation') { setFormationPreset(preset ?? null); setSquadTab('formation') } }} />
     else if (squadTab === 'skills')      content = <SkillsMiniRoos empty={empty} />
     else if (squadTab === 'turns')       content = <FairTurnsMiniRoos empty={empty} onTurns={() => { setNav('gameday'); setGameDayTab('turns') }} />
     else if (squadTab === 'coming')      content = <ComingMiniRoos empty={empty} />
     else if (squadTab === 'consent')     content = <ConsentMiniRoos empty={empty} />
     else if (squadTab === 'seasonnotes') content = <SeasonNotesScreen empty={empty} onBack={() => setSquadTab('players')} />
-    else                                 content = <SquadMiniRoos empty={empty} />
+    else                                 content = <SquadMiniRoos empty={empty} onSeasonNotes={() => setSquadTab('seasonnotes')} />
   } else if (nav === 'gameday') {
     if (empty)
       content = <GameDayMiniRoos empty={true} onWhatWeSaw={() => {}} />
@@ -836,7 +854,7 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
       askQuestions={ASK_QUESTIONS}
       askRole="MiniRoos coach"
     >
-      {content}
+      <div data-screen={MR_SCREEN[nav === 'home' ? homeTab : nav === 'squad' ? `squad:${squadTab}` : nav === 'training' ? `training:${trainingTab}` : nav === 'gameday' ? `gameday:${gameDayTab}` : nav] ?? undefined} style={{ display: 'contents' }}>{content}</div>
     </CoachTabletFrame>
   )
 }
