@@ -18,15 +18,6 @@ export default function PRM1FeaturesByTeam({ onNav }: { onNav?: (s: string) => v
     setTeam(tid, key, !cur)
     tool(`${tid} ${FEATURE_LABEL[key]}: turned ${cur ? 'off' : 'on'}.`)
   }
-  function toggleGroup(gName: string, key: FKey) {
-    const g = groups.find(x => x.name === gName)!
-    const members = g.teams.filter(t => t[key] !== null)
-    const allOn = members.length > 0 && members.every(t => t[key] === true)
-    const next = !allOn   // all on -> turn all off; otherwise turn all on
-    update(groups.map(gr => gr.name !== gName ? gr : { ...gr, teams: gr.teams.map(t => t[key] !== null ? { ...t, [key]: next } : t) }))
-    tool(`${gName}: ${FEATURE_LABEL[key]} turned ${next ? 'on' : 'off'} for every team in this group.`)
-  }
-
   // Live add-ons total across the shown teams.
   const addOns = addOnsTotal(groups)
 
@@ -37,14 +28,6 @@ export default function PRM1FeaturesByTeam({ onNav }: { onNav?: (s: string) => v
   const grid: React.CSSProperties = { display: 'grid', gridTemplateColumns: '200px 1fr 1fr 1fr 1fr', borderBottom: `1px solid ${LN}` }
   const cell: React.CSSProperties = { padding: '12px 10px', display: 'flex', alignItems: 'center', borderLeft: `1px solid ${LN}` }
 
-  const groupCell = (g: Group, fk: FKey) => {
-    const members = g.teams.filter(t => t[fk] !== null)
-    if (members.length === 0) return <div key={fk} style={{ ...cell, fontSize: 12, color: MUT, fontStyle: 'italic' }}>Not for this age</div>
-    const onCount = members.filter(t => t[fk] === true).length
-    const label = onCount === members.length ? 'All on' : onCount === 0 ? 'All off' : 'Mixed'
-    const allOn = onCount === members.length
-    return <div key={fk} style={cell}><button onClick={() => toggleGroup(g.name, fk)} style={allOn ? onStyle : offStyle}>{label}</button></div>
-  }
   const teamCell = (t: Team, fk: FKey) => {
     if (t[fk] === null) return <div key={fk} style={{ ...cell, fontSize: 12, color: MUT }}>—</div>
     const on = t[fk] === true
@@ -102,13 +85,10 @@ export default function PRM1FeaturesByTeam({ onNav }: { onNav?: (s: string) => v
 
           {groups.map(g => (
             <div key={g.name}>
-              {/* Group header row */}
-              <div style={{ ...grid, background: '#f8faf9', borderTop: `1px solid ${LN}` }}>
-                <div style={{ padding: '12px 0' }}>
-                  <div style={{ fontSize: 13, fontWeight: 700, color: INK }}>{g.name}</div>
-                  <div style={{ fontSize: 11, color: MUT }}>{g.sub}</div>
-                </div>
-                {COLS.map(c => groupCell(g, c.key))}
+              {/* Group header — a section label only. Each team is toggled on its own row. */}
+              <div style={{ background: '#f8faf9', borderTop: `1px solid ${LN}`, borderBottom: `1px solid ${LN}`, padding: '10px 20px' }}>
+                <span style={{ fontSize: 13, fontWeight: 700, color: INK }}>{g.name}</span>
+                <span style={{ fontSize: 11, color: MUT, marginLeft: 8 }}>{g.sub}</span>
               </div>
               {/* Team rows */}
               {g.teams.map(t => (
