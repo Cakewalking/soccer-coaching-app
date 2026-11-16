@@ -33,7 +33,8 @@ export type Player = {
   full: string           // full name shown on bench
   positions: string[]    // positions they can play, e.g. ['RM','CM']
   captain?: boolean
-  note?: string          // bench "why it matters" line / pitch note
+  note?: string          // bench "why it matters" line (Available, Owed 25 minutes…)
+  pitchNote?: string     // shown under the token on the pitch (First half only…)
   available: boolean
   reason?: string        // not-available reason
 }
@@ -73,7 +74,7 @@ const JUNIOR: TeamCfg = {
     { id: 'p4', num: 4, first: 'Leo', full: 'Leo Marsh', positions: ['CB'], captain: true, available: true, note: 'Available' },
     { id: 'p3', num: 3, first: 'Sam D', full: 'Sam Dale', positions: ['RB'], available: true, note: 'Available' },
     { id: 'p8', num: 8, first: 'Mia', full: 'Mia Tran', positions: ['LM'], available: true, note: 'Available' },
-    { id: 'p6', num: 6, first: 'Noah', full: 'Noah Okafor', positions: ['CM'], note: 'First half only', available: true },
+    { id: 'p6', num: 6, first: 'Noah', full: 'Noah Okafor', positions: ['CM'], note: 'Available', pitchNote: 'First half only', available: true },
     { id: 'p7', num: 7, first: 'Harper', full: 'Harper Quinn', positions: ['RM'], available: true, note: 'Available' },
     { id: 'p9', num: 9, first: 'Jai', full: 'Jai Patel', positions: ['ST'], available: true, note: 'Available' },
     { id: 'p10', num: 10, first: 'Zoe', full: 'Zoe Hart', positions: ['ST'], available: true, note: 'Available' },
@@ -136,7 +137,7 @@ const MINIROOS: TeamCfg = {
   defaultShape: '2-3-1',
   start: ['m2', 'm5', 'm7', 'm4', 'm9', 'm6', 'm8'],
   roster: [
-    { id: 'm2', num: 2, first: 'Ivy', full: 'Ivy Chen', positions: ['Goal'], note: 'First go in goal', available: true },
+    { id: 'm2', num: 2, first: 'Ivy', full: 'Ivy Chen', positions: ['Goal'], note: 'Available', pitchNote: 'First go in goal', available: true },
     { id: 'm5', num: 5, first: 'Max', full: 'Max Bailey', positions: ['Back'], available: true, note: 'Available' },
     { id: 'm7', num: 7, first: 'Leo', full: 'Leo Wright', positions: ['Back'], available: true, note: 'Available' },
     { id: 'm4', num: 4, first: 'Zara', full: 'Zara Moore', positions: ['Mid'], available: true, note: 'Available' },

@@ -244,15 +244,21 @@ function Pitch({ shape, placed, picked, byId, loose, onSlot }: { shape: Shape; p
       {/* stripes */}
       {[0, 2, 4, 6].map(i => <div key={i} style={{ position: 'absolute', left: 0, right: 0, top: `${i * 12.5}%`, height: '12.5%', background: 'rgba(255,255,255,0.035)' }} />)}
       {/* markings */}
-      <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }} viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-        <rect x="3" y="3.5" width="94" height="93" fill="none" stroke="rgba(255,255,255,0.34)" strokeWidth="0.4" />
-        <line x1="3" y1="50" x2="97" y2="50" stroke="rgba(255,255,255,0.34)" strokeWidth="0.4" />
-        <circle cx="50" cy="50" r="9" fill="none" stroke="rgba(255,255,255,0.34)" strokeWidth="0.4" />
-        <circle cx="50" cy="50" r="0.6" fill="rgba(255,255,255,0.4)" />
-        <rect x="26" y="3" width="48" height="13" fill="none" stroke="rgba(255,255,255,0.34)" strokeWidth="0.4" />
-        <rect x="38" y="3" width="24" height="5" fill="none" stroke="rgba(255,255,255,0.34)" strokeWidth="0.4" />
-        <rect x="26" y="84" width="48" height="13" fill="none" stroke="rgba(255,255,255,0.34)" strokeWidth="0.4" />
-        <rect x="38" y="92" width="24" height="5" fill="none" stroke="rgba(255,255,255,0.34)" strokeWidth="0.4" />
+      <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }} viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" stroke="rgba(255,255,255,0.32)" strokeWidth="0.35" fill="none">
+        <rect x="3" y="3.5" width="94" height="93" rx="1.5" />
+        <line x1="3" y1="50" x2="97" y2="50" />
+        <ellipse cx="50" cy="50" rx="11" ry="9" />
+        {/* top end (other team's goal) */}
+        <rect x="24" y="3.5" width="52" height="15" />
+        <rect x="38" y="3.5" width="24" height="6" />
+        <rect x="43" y="2" width="14" height="1.5" />
+        {/* bottom end */}
+        <rect x="24" y="81.5" width="52" height="15" />
+        <rect x="38" y="90.5" width="24" height="6" />
+        <rect x="43" y="96.5" width="14" height="1.5" />
+      </svg>
+      <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }} viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" fill="rgba(255,255,255,0.38)">
+        <circle cx="50" cy="50" r="0.5" /><circle cx="50" cy="12" r="0.5" /><circle cx="50" cy="88" r="0.5" />
       </svg>
       <div style={{ position: 'absolute', top: 10, left: 14, fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', color: 'rgba(255,255,255,0.6)' }}>ATTACKING THIS WAY ↑</div>
       {/* tokens / empty spots */}
@@ -281,7 +287,7 @@ function Token({ slot, player, picked, isTarget, loose, onClick }: { slot: { x: 
       ) : (
         <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.55)' }}>Empty</span>
       )}
-      {player?.note && <span style={{ fontSize: 10, fontWeight: 700, color: 'rgba(255,255,255,0.75)', whiteSpace: 'nowrap' }}>{player.note}</span>}
+      {player?.pitchNote && <span style={{ fontSize: 10, fontWeight: 700, color: 'rgba(255,255,255,0.72)', whiteSpace: 'nowrap' }}>{player.pitchNote}</span>}
     </button>
   )
 }

@@ -19,7 +19,7 @@ Built from the 16 Nov 2026 handover (`formation-v1.zip`).
 ## Deferred / honest gaps
 
 - **True pointer drag** (lifted token following the finger, drop-target highlight, 150 ms glide). The spec's tap-then-tap path is fully implemented and is the tested, accessible primary interaction; live drag is a visual enhancement not yet added.
-- **MiniRoos squad-nav restructure** (Players · Formation · Who's coming · Consent · Season notes). The MiniRoos Formation board itself works and is reachable via the `FB1m` route, but the MiniRoos app's Squad tab is still its single screen — adding its 5 sub-tabs is a separate nav change.
+- ~~MiniRoos squad-nav restructure~~ — **done**: MiniRoos Squad is now Players · Formation · Who's coming · Consent · Season notes, with the Formation board wired in.
 - **Coach phone** `FBp1-FormationPhone` — not built.
 - **Season summaries / Fitness coach** were dropped from the Squad nav per the handover. Both screens still exist and keep their own `/look` routes, but they no longer appear in the Squad menu. Flag if they need a new home.
 - Per handover "Not designed yet": More-shapes list, second-half/quarter *distinct* line-ups (parts share one placement in this build), full checks on phone, printed page / saved picture, MiniRoos family turns view, player's own view, live-game subs.
