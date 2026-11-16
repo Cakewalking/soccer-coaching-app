@@ -1,7 +1,34 @@
 import { useState } from 'react'
 import { OpeningPanel } from './directorParts'
+import MeasureSheet from '../measures/MeasureSheet'
+import { MEASURE } from '../measures/data'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
+
+const Arrow = () => <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9aa6a2" strokeWidth="2.2" strokeLinecap="round" style={{ flexShrink: 0 }}><path d="M9 6l6 6-6 6" /></svg>
+
+// A measure row on the readiness page: label + source, then its range bar, then
+// an arrow. The whole row opens the evidence sheet.
+function MeasureRow({ label, src, pct, first, onOpen }: { label: string; src: string; pct: number; first?: boolean; onOpen: () => void }) {
+  return (
+    <button onClick={onOpen} style={{ width: '100%', minHeight: 44, display: 'flex', alignItems: 'center', gap: 10, padding: '6px 0', background: 'none', border: 'none', borderTop: first ? 'none' : `1px solid ${LN}`, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
+      <span style={{ width: 92, flexShrink: 0 }}>
+        <span style={{ display: 'block', fontSize: 13, fontWeight: 700, color: INK, lineHeight: '16px' }}>{label}</span>
+        <span style={{ display: 'block', fontSize: 11, color: MUT }}>{src}</span>
+      </span>
+      <RangeBar pct={pct} />
+      <Arrow />
+    </button>
+  )
+}
+function QuoteBtn({ text, onOpen }: { text: string; onOpen: () => void }) {
+  return (
+    <button onClick={onOpen} style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 8, background: PALE, borderRadius: 8, padding: '10px 12px', border: 'none', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
+      <span style={{ flex: 1, fontSize: 12, color: INK }}>{text}</span>
+      <Arrow />
+    </button>
+  )
+}
 
 function Badge({ label, strong }: { label: string; strong?: boolean }) {
   return (
@@ -21,7 +48,9 @@ function RangeBar({ pct }: { pct: number }) {
 
 export default function PU2PlayerReadiness({ onNav }: { onNav?: (s: string) => void }) {
   const [lastTool, setLastTool] = useState('')
+  const [measure, setMeasure] = useState<string | null>(null)
   function tool(name: string) { setLastTool(name) }
+  const open = (id: string) => { setMeasure(id); setLastTool(id) }
 
   const tnb: React.CSSProperties = { height: 56, padding: '0 10px', background: 'none', color: 'rgba(255,255,255,0.75)', border: 'none', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }
   const snb: React.CSSProperties = { height: 44, padding: '0 14px', background: 'none', color: MUT, border: 'none', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }
@@ -70,14 +99,11 @@ export default function PU2PlayerReadiness({ onNav }: { onNav?: (s: string) => v
               </div>
               <div style={{ fontSize: 12, color: MUT, marginBottom: 10 }}>Ahead of her own team for 8 weeks. Against the U13 girls:</div>
               {[
-                { label: 'Duels won', pct: 72 },
-                { label: 'Forward passes', pct: 68 },
-                { label: 'Wins of the ball', pct: 63 },
-              ].map(m => (
-                <div key={m.label} style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
-                  <div style={{ fontSize: 11, color: MUT, width: 110, flexShrink: 0 }}>{m.label}</div>
-                  <RangeBar pct={m.pct} />
-                </div>
+                { label: 'Duels won', src: 'Film', pct: 72, id: 'PU8a-MeasureFilm' },
+                { label: 'Forward passes', src: 'Film', pct: 68, id: 'PU8d-MeasurePasses' },
+                { label: 'Wins of the ball', src: 'Film', pct: 63, id: 'PU8e-MeasureWins' },
+              ].map((m, i) => (
+                <MeasureRow key={m.label} label={m.label} src={m.src} pct={m.pct} first={i === 0} onOpen={() => open(m.id)} />
               ))}
               <div style={{ display: 'flex', alignItems: 'center', marginTop: 8, borderTop: `1px solid ${LN}`, paddingTop: 8, gap: 8 }}>
                 <span style={{ fontSize: 11, color: MUT }}>9 recorded games ·</span>
@@ -91,16 +117,16 @@ export default function PU2PlayerReadiness({ onNav }: { onNav?: (s: string) => v
                 <div style={{ fontSize: 13, fontWeight: 700, color: INK }}>Body</div>
                 <Badge label="Fine" />
               </div>
-              <div style={{ fontSize: 12, color: MUT, marginBottom: 10 }}>Steady growth, 4 cm this year. No pain flags. Against the U13 girls:</div>
+              <button onClick={() => open('PU8k-MeasureGrowth')} style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 8, background: 'none', border: 'none', padding: '0 0 10px', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
+                <span style={{ flex: 1, fontSize: 12, color: MUT }}>Steady growth, 4 cm this year. No pain flags. <span style={{ color: G, fontWeight: 600 }}>Measured by hand</span></span>
+                <Arrow />
+              </button>
               {[
-                { label: 'Top speed', pct: 54 },
-                { label: '10 m sprint', pct: 48 },
-                { label: 'Distance', pct: 58 },
-              ].map(m => (
-                <div key={m.label} style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
-                  <div style={{ fontSize: 11, color: MUT, width: 110, flexShrink: 0 }}>{m.label}</div>
-                  <RangeBar pct={m.pct} />
-                </div>
+                { label: 'Top speed', src: 'Vest', pct: 54, id: 'PU8b-MeasureVest' },
+                { label: '10 m sprint', src: 'Timed test', pct: 48, id: 'PU8g-MeasureTest' },
+                { label: 'Distance', src: 'Vest', pct: 58, id: 'PU8f-MeasureDistance' },
+              ].map((m, i) => (
+                <MeasureRow key={m.label} label={m.label} src={m.src} pct={m.pct} first={i === 0} onOpen={() => open(m.id)} />
               ))}
               <div style={{ display: 'flex', alignItems: 'center', marginTop: 8, borderTop: `1px solid ${LN}`, paddingTop: 8, gap: 8 }}>
                 <span style={{ fontSize: 11, color: MUT }}>Heights, tests, vests ·</span>
@@ -115,8 +141,10 @@ export default function PU2PlayerReadiness({ onNav }: { onNav?: (s: string) => v
                 <Badge label="Strong" strong />
               </div>
               <div style={{ fontSize: 12, color: MUT, marginBottom: 10 }}>Copes with mistakes and wants a harder game.</div>
-              <div style={{ background: PALE, borderRadius: 8, padding: '10px 12px', marginBottom: 6, fontSize: 12, color: INK }}>Sam: "Asks for the ball after a mistake. Takes feedback."</div>
-              <div style={{ background: PALE, borderRadius: 8, padding: '10px 12px', fontSize: 12, color: INK }}>Mia: "I want harder games."</div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                <QuoteBtn text={'Sam: "Asks for the ball after a mistake. Takes feedback."'} onOpen={() => open('PU8c-MeasureSaid')} />
+                <QuoteBtn text={'Mia: "I want harder games."'} onOpen={() => open('PU8c-MeasureSaid')} />
+              </div>
               <div style={{ fontSize: 11, color: MUT, marginTop: 8, borderTop: `1px solid ${LN}`, paddingTop: 8 }}>Coach's view, 1 June · her goal check-in</div>
             </div>
 
@@ -127,7 +155,7 @@ export default function PU2PlayerReadiness({ onNav }: { onNav?: (s: string) => v
                 <Badge label="Good" />
               </div>
               <div style={{ fontSize: 12, color: MUT, marginBottom: 10 }}>Knows 4 of the 14. Trained with this group at the July clinic.</div>
-              <div style={{ background: PALE, borderRadius: 8, padding: '10px 12px', fontSize: 12, color: INK }}>Mia: "Can't wait." Picked Ava, Bella, Dani and Frankie.</div>
+              <QuoteBtn text={'Mia: "Can\'t wait." Picked Ava, Bella, Dani and Frankie.'} onOpen={() => open('PU8h-MeasureSettling')} />
               <div style={{ fontSize: 11, color: MUT, marginTop: 8, borderTop: `1px solid ${LN}`, paddingTop: 8 }}>Mia's own answers · shared sessions · coach's view</div>
             </div>
 
@@ -138,15 +166,15 @@ export default function PU2PlayerReadiness({ onNav }: { onNav?: (s: string) => v
                 <Badge label="Room for it" />
               </div>
               <div style={{ fontSize: 12, color: MUT, marginBottom: 10 }}>Two sessions and a game a week. No other sport this term. Wellness steady.</div>
-              <div style={{ display: 'flex', gap: 3, alignItems: 'flex-end', height: 44, marginBottom: 8 }}>
+              <button onClick={() => open('PU8j-MeasureLoad')} style={{ width: '100%', display: 'flex', gap: 3, alignItems: 'flex-end', height: 44, marginBottom: 8, background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>
                 {[20, 28, 24, 30, 26, 22].map((h, i) => (
                   <div key={i} style={{ flex: 1, background: '#c8ddd8', borderRadius: '2px 2px 0 0', height: `${h * 1.1}px` }} />
                 ))}
                 {[18, 24].map((h, i) => (
                   <div key={'t' + i} style={{ flex: 1, background: G, borderRadius: '2px 2px 0 0', height: `${h * 1.1}px`, opacity: 0.7 }} />
                 ))}
-              </div>
-              <div style={{ fontSize: 11, color: MUT, borderTop: `1px solid ${LN}`, paddingTop: 8 }}>Last 6 weeks, then 2 trial weeks as planned; up 20%</div>
+              </button>
+              <button onClick={() => open('PU8j-MeasureLoad')} style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 8, fontSize: 11, color: MUT, borderTop: `1px solid ${LN}`, paddingTop: 8, background: 'none', border: 'none', borderBottom: 0, borderLeft: 0, borderRight: 0, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}><span style={{ flex: 1 }}>Last 6 weeks, then 2 trial weeks as planned; up 20%</span><Arrow /></button>
             </div>
 
             {/* Where she would go */}
@@ -156,7 +184,7 @@ export default function PU2PlayerReadiness({ onNav }: { onNav?: (s: string) => v
                 <Badge label="A real place" />
               </div>
               <div style={{ fontSize: 12, color: MUT, marginBottom: 10 }}>U13 Girls Meg has 14. She would get at least half of every game.</div>
-              <div style={{ background: PALE, borderRadius: 8, padding: '10px 12px', fontSize: 12, color: INK }}>Meg: "Yes. We are short in midfield."</div>
+              <QuoteBtn text={'Meg: "Yes. We are short in midfield."'} onOpen={() => open('PU8i-MeasurePlace')} />
               <div style={{ fontSize: 11, color: MUT, marginTop: 8, borderTop: `1px solid ${LN}`, paddingTop: 8 }}>Squad size · fair game time · receiving coach</div>
             </div>
           </div>
@@ -193,6 +221,10 @@ export default function PU2PlayerReadiness({ onNav }: { onNav?: (s: string) => v
           </div>
         </div>
       </div>
+
+      {measure && MEASURE(measure) && (
+        <MeasureSheet cfg={MEASURE(measure)!} onClose={() => setMeasure(null)} onOpen={open} onNav={onNav} />
+      )}
     </div>
   )
 }
