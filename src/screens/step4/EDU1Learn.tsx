@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { OpeningPanel, INK, MUT, HAIR, CTL, GREEN, PALEGREEN } from './directorParts'
 
 const GD = '#1f4a3e', DARK = '#1c3a33'
@@ -50,6 +50,13 @@ export default function EDU1Learn({ onNav, skillOpen = false, bare = false }: { 
   const [filters, setFilters] = useState<{ position: string | null; age: string | null; from: string | null }>({ position: null, age: null, from: null })
   const [teamOn, setTeamOn] = useState(true)
   const [search, setSearch] = useState('')
+  const filterRowRef = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    if (!openFilter) return
+    const onDown = (e: MouseEvent) => { if (filterRowRef.current && !filterRowRef.current.contains(e.target as Node)) setOpenFilter(null) }
+    document.addEventListener('mousedown', onDown)
+    return () => document.removeEventListener('mousedown', onDown)
+  }, [openFilter])
   function say(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   const toggle = (i: number) => setTicked(t => t.includes(i) ? t.filter(x => x !== i) : [...t, i])
 
@@ -117,7 +124,7 @@ export default function EDU1Learn({ onNav, skillOpen = false, bare = false }: { 
       />
 
       {/* Filter row */}
-      <div style={{ flex: 'none', padding: '12px 28px 0', display: 'flex', alignItems: 'center', gap: 8, position: 'relative', zIndex: 30, flexWrap: 'wrap' as const }}>
+      <div ref={filterRowRef} style={{ flex: 'none', padding: '12px 28px 0', display: 'flex', alignItems: 'center', gap: 8, position: 'relative', zIndex: 30, flexWrap: 'wrap' as const }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 6, height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${CTL}`, background: '#fff' }}>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth="2"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
           <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search 38 lessons" style={{ border: 'none', outline: 'none', background: 'transparent', fontSize: 13, color: INK, fontFamily: 'inherit', width: 130 }} />
