@@ -156,7 +156,7 @@ function ClipsEmpty({ activeTab }: { activeTab: number }) {
   )
 }
 
-export default function ClipsScreen({ empty, activeTab = 0 }: { empty?: boolean; activeTab?: number }) {
+export default function ClipsScreen({ empty, activeTab = 0, onNav }: { empty?: boolean; activeTab?: number; onNav?: (s: string) => void }) {
   const [filterMode, setFilterMode] = useState<FilterMode>('measure')
   const [activeGame, setActiveGame] = useState<string>('all')
   const [activeMeasure, setActiveMeasure] = useState<string | null>('Pressing high')
@@ -180,7 +180,7 @@ export default function ClipsScreen({ empty, activeTab = 0 }: { empty?: boolean;
   if (empty) return <ClipsEmpty activeTab={activeTab} />
   if (activeTab === 3) return <PlaylistsTab />
   if (activeTab === 4) return <ToCheckTab />
-  if (activeTab === 5) return <EDU1Learn />
+  if (activeTab === 5) return <EDU1Learn bare onNav={onNav} />
 
   const baseFiltered = CLIPS.filter(c => {
     if (filterMode === 'game'    && activeGame)    return activeGame === 'all' || c.game === activeGame

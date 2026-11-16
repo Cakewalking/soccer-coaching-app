@@ -524,7 +524,7 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
       case 5: content = <FitnessMatchTab empty={sbEmptyFixture} />; break
     }
   } else if (nav === 'clips') {
-    content = <ClipsScreen empty={sbEmpty} activeTab={clipsTab} />
+    content = <ClipsScreen empty={sbEmpty} activeTab={clipsTab} onNav={handleNav} />
   }
 
   const navTabs = NAV_LABELS.map((label, i) => ({ id: NAV_KEYS[i], label, icon: NAV_ICONS[i] }))

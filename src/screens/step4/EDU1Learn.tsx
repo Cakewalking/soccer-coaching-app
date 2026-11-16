@@ -34,7 +34,7 @@ const SKILLS = [
   ['Counter-attacking', 4], ['Attacking down the sides', 5], ['Defending crosses', 3],
 ]
 
-export default function EDU1Learn({ onNav, skillOpen = false }: { onNav?: (s: string) => void; skillOpen?: boolean }) {
+export default function EDU1Learn({ onNav, skillOpen = false, bare = false }: { onNav?: (s: string) => void; skillOpen?: boolean; bare?: boolean }) {
   const [toast, setToast] = useState<string | null>(null)
   const [nudged, setNudged] = useState(false)
   const [ticked, setTicked] = useState<number[]>(skillOpen ? [0] : [])
@@ -45,8 +45,9 @@ export default function EDU1Learn({ onNav, skillOpen = false }: { onNav?: (s: st
   )
 
   return (
-    <div data-screen={skillOpen ? 'EDU1f-LearnFilter' : 'EDU1-Learn'} style={{ width: 1180, height: 820, overflow: 'hidden', background: '#f7f8f7', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative', boxSizing: 'border-box', color: INK }}>
-      {/* Coach frame */}
+    <div data-screen={skillOpen ? 'EDU1f-LearnFilter' : 'EDU1-Learn'} style={{ width: bare ? '100%' : 1180, height: bare ? '100%' : 820, flex: bare ? 1 : undefined, minHeight: 0, overflow: 'hidden', background: '#f7f8f7', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative', boxSizing: 'border-box', color: INK }}>
+      {/* Coach frame — omitted when embedded in a role frame (bare) to avoid a second nav */}
+      {!bare && <>
       <div style={{ background: '#2f6252', padding: '0 28px', display: 'flex', alignItems: 'center', gap: 20, height: 56, flexShrink: 0 }}>
         <div style={{ fontSize: 15, fontWeight: 900, color: '#fff', marginRight: 8 }}>Clean Sheet</div>
         {[['Home', 'T1-TabletTraining'], ['Squad', 'T4-SquadTab'], ['Training', 'T3-TrainingTab'], ['Match day', 'T2-TabletMatch'], ['Clips', 'C1-ClipsTab'], ['Record', 'REC1-RecordHub']].map(([l, t]) => (
@@ -62,6 +63,7 @@ export default function EDU1Learn({ onNav, skillOpen = false }: { onNav?: (s: st
           <button key={l} onClick={() => onNav?.(t)} style={{ height: 44, background: 'none', border: 'none', borderBottom: l === 'Learn' ? `2.5px solid ${GREEN}` : '2px solid transparent', fontSize: 13, fontWeight: l === 'Learn' ? 700 : 600, color: l === 'Learn' ? INK : MUT, cursor: 'pointer', fontFamily: 'inherit' }}>{l}</button>
         ))}
       </div>
+      </>}
 
       <OpeningPanel
         landing

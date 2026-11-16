@@ -212,7 +212,7 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
     else if (matchTab === 4) content = <YT1YourTake onNav={handleNav} bare />
     else if (matchTab === 5) content = <FitnessMatchTab empty={sbEmptyFixture} />
   } else if (nav === 'clips') {
-    content = <ClipsScreen empty={sbEmpty} activeTab={clipsTab} />
+    content = <ClipsScreen empty={sbEmpty} activeTab={clipsTab} onNav={handleNav} />
   }
 
   return (
