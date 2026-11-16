@@ -18,7 +18,7 @@ Built from the 16 Nov 2026 handover (`formation-v1.zip`).
 
 ## Deferred / honest gaps
 
-- **True pointer drag** (lifted token following the finger, drop-target highlight, 150 ms glide). The spec's tap-then-tap path is fully implemented and is the tested, accessible primary interaction; live drag is a visual enhancement not yet added.
+- ~~True pointer drag~~ — **done**: pointer-events drag (mouse/touch/pen) with a lifted ghost token, 150 ms glide, drop-to-swap, drop-off-pitch-to-bench, and **drop between spots → custom ("Your own") shape** with free coordinates. Tap-then-tap still works as the accessible path.
 - ~~MiniRoos squad-nav restructure~~ — **done**: MiniRoos Squad is now Players · Formation · Who's coming · Consent · Season notes, with the Formation board wired in.
 - **Coach phone** `FBp1-FormationPhone` — not built.
 - **Season summaries / Fitness coach** were dropped from the Squad nav per the handover. Both screens still exist and keep their own `/look` routes, but they no longer appear in the Squad menu. Flag if they need a new home.

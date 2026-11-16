@@ -1,24 +1,31 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import { TEAMS, shapesFor, shapeByName, remap, type TeamCfg, type Shape, type Player } from './formationData'
 
 // Squad › Formation builder (tablet). Pick a shape, place players from the bench
-// onto the pitch by tap-then-tap (drag also supported), move and swap them, run
-// the checks, and send to the team sheet or families. From formation-v1 handover.
+// onto the pitch by tap-then-tap OR drag, move and swap them, run the checks, and
+// send to the team sheet or families. Dragging a player to a free spot drops into
+// a custom ("Your own") shape. From formation-v1 handover.
 
 const INK = '#10211f', PITCH = '#1c3a33', GREEN = '#2f6252', LEAF = '#40826d'
 const MUT = '#6f7f7b', LN = '#e8edeb', PALE = '#eef5f2', SAND = '#cbbeb5', SANDBG = '#f6f1e9'
 
 type Mode = 'builder' | 'own'
+type XY = { x: number; y: number }
+const clamp = (v: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, v))
+
+type Snap = { placed: (string | null)[]; custom: Record<string, XY> | null; mode: Mode; shapeName: string }
 
 export default function FormationBuilder({ team = 'juniors', onNav, empty }: { team?: string; onNav?: (s: string) => void; empty?: boolean }) {
   const cfg: TeamCfg = TEAMS[team] ?? TEAMS.juniors
   const shapes = shapesFor(cfg.side)
+  const loose = cfg.posStyle === 'loose'
   const [shapeName, setShapeName] = useState(cfg.defaultShape)
   const [mode, setMode] = useState<Mode>('builder')
   const [part, setPart] = useState(0)
   const [placed, setPlaced] = useState<(string | null)[]>(() => empty ? new Array(shapeByName(cfg.side, cfg.defaultShape)!.slots.length).fill(null) : [...cfg.start])
+  const [custom, setCustom] = useState<Record<string, XY> | null>(null)
   const [picked, setPicked] = useState<string | null>(null)
-  const [, setHistory] = useState<(string | null)[][]>([])
+  const [, setHistory] = useState<Snap[]>([])
   const [toast, setToast] = useState<string | null>(null)
   const [menuOpen, setMenuOpen] = useState(false)
   const [shareOpen, setShareOpen] = useState(false)
@@ -26,88 +33,188 @@ export default function FormationBuilder({ team = 'juniors', onNav, empty }: { t
   const [savedTabs, setSavedTabs] = useState<string[]>([])
   const [shareWhen, setShareWhen] = useState('Friday 6:00 pm')
   const [shareWho, setShareWho] = useState<'families' | 'coaches'>('families')
+  const [drag, setDrag] = useState<{ id: string; x: number; y: number } | null>(null)
+  const pitchRef = useRef<HTMLDivElement>(null)
+  const benchRef = useRef<HTMLDivElement>(null)
+  const didDrag = useRef(false)
   function say(m: string) { setToast(m); setTimeout(() => setToast(null), 2800) }
 
   const shape: Shape = useMemo(() => shapeByName(cfg.side, shapeName) ?? shapes[0], [cfg.side, shapeName, shapes])
   const byId = useMemo(() => Object.fromEntries(cfg.roster.map(p => [p.id, p])) as Record<string, Player>, [cfg.roster])
 
-  const placedIds = new Set(placed.filter(Boolean) as string[])
-  const benchPlayers = cfg.roster.filter(p => p.available && !placedIds.has(p.id))
+  // Who is on the pitch, with coordinates, in either mode.
+  const onPitch: { id: string; x: number; y: number; pos: string; slotIdx?: number }[] = mode === 'own' && custom
+    ? Object.entries(custom).map(([id, p]) => ({ id, x: p.x, y: p.y, pos: ownLabel(byId[id], p.y, loose) }))
+    : (placed.map((id, i) => id ? { id, x: shape.slots[i].x, y: shape.slots[i].y, pos: shape.slots[i].pos, slotIdx: i } : null).filter(Boolean) as any)
+
+  const onPitchIds = new Set(onPitch.map(p => p.id))
+  const benchPlayers = cfg.roster.filter(p => p.available && !onPitchIds.has(p.id))
   const unavailable = cfg.roster.filter(p => !p.available)
   const toPlace = benchPlayers.length
 
-  function pushHistory() { setHistory(h => [...h.slice(-19), [...placed]]) }
-  function commit(next: (string | null)[]) { pushHistory(); setPlaced(next) }
+  function snapshot(): Snap { return { placed: [...placed], custom: custom ? { ...custom } : null, mode, shapeName } }
+  function pushHistory() { setHistory(h => [...h.slice(-19), snapshot()]) }
 
-  // Tap model: pick a token (bench or pitch), then tap a target (slot or player).
+  // ── tap-then-tap ──
   function tapBench(p: Player) {
     if (!p.available) { say(`${p.full}: not available, so cannot be placed.`); return }
-    if (picked === p.id) { setPicked(null); return }
-    setPicked(p.id)
-    say(`${p.full}: drag onto the pitch. Or tap, then tap a spot.`)
+    setPicked(cur => cur === p.id ? null : p.id)
+    if (picked !== p.id) say(`${p.full}: drag onto the pitch. Or tap, then tap a spot.`)
   }
-
-  function tapSlot(slotIdx: number) {
-    const occupant = placed[slotIdx]
-    if (picked) {
-      const next = [...placed]
-      const fromIdx = placed.indexOf(picked)
-      if (fromIdx >= 0) {            // moving a pitch player
-        next[fromIdx] = occupant ?? null   // swap or vacate
-        next[slotIdx] = picked
-      } else {                       // placing a bench player
-        next[slotIdx] = picked       // occupant (if any) returns to bench automatically
-      }
-      commit(next)
-      const name = byId[picked]?.first
-      say(occupant && occupant !== picked ? `${name} swapped with ${byId[occupant].first}.` : `${name} to ${shape.slots[slotIdx].pos}.`)
-      setPicked(null)
-    } else if (occupant) {           // pick the player in this slot
-      setPicked(occupant)
-      say(`${byId[occupant].first}: drag to move or swap. Or tap, then tap where they go.`)
-    } else {
-      say(`${shape.slots[slotIdx].pos}: empty. Pick a player, then tap here.`)
-    }
+  function tapPitchPlayer(id: string) {
+    if (picked && picked !== id) { pushHistory(); swapPlayers(picked, id); setPicked(null); say(`${byId[picked].first} swapped with ${byId[id].first}.`); return }
+    setPicked(cur => cur === id ? null : id)
+    if (picked !== id) say(`${byId[id].first}: drag to move or swap. Or tap, then tap where they go.`)
   }
-
+  function tapSlot(i: number) {           // builder empty slot
+    if (!picked) { say(`${shape.slots[i].pos}: empty. Pick a player, then tap here.`); return }
+    pushHistory()
+    const next = [...placed]; const from = placed.indexOf(picked)
+    if (from >= 0) next[from] = null
+    next[i] = picked
+    setPlaced(next); say(`${byId[picked].first} to ${shape.slots[i].pos}.`); setPicked(null)
+  }
   function tapBenchArea() {
-    if (picked && placed.includes(picked)) {   // send picked pitch player to bench
-      commit(placed.map(x => x === picked ? null : x))
-      say(`${byId[picked].first} to the bench.`)
-      setPicked(null)
-    }
+    if (picked && onPitchIds.has(picked)) { pushHistory(); returnToBench(picked); say(`${byId[picked].first} to the bench.`); setPicked(null) }
   }
 
+  // ── placement primitives (work in both modes) ──
+  function swapPlayers(a: string, b: string) {   // a may be bench or pitch; b is on pitch
+    const aOnPitch = onPitchIds.has(a)
+    if (mode === 'own' && custom) {
+      const cp = { ...custom }
+      if (aOnPitch) { const t = cp[a]; cp[a] = cp[b]; cp[b] = t } else { cp[a] = cp[b]; delete cp[b] }
+      setCustom(cp)
+    } else {
+      const next = [...placed]; const bi = placed.indexOf(b)
+      if (aOnPitch) { const ai = placed.indexOf(a); next[ai] = b; next[bi] = a } else { next[bi] = a }
+      setPlaced(next)
+    }
+  }
+  function returnToBench(id: string) {
+    if (mode === 'own' && custom) { const cp = { ...custom }; delete cp[id]; setCustom(cp) }
+    else setPlaced(placed.map(p => p === id ? null : p))
+  }
+  function freePlace(id: string, x: number, y: number) {   // → custom mode, free coords
+    const base: Record<string, XY> = mode === 'own' && custom ? { ...custom } : {}
+    if (mode !== 'own') placed.forEach((pid, i) => { if (pid) base[pid] = { x: shape.slots[i].x, y: shape.slots[i].y } })
+    base[id] = { x: clamp(x, 7, 93), y: clamp(y, 7, 93) }
+    setCustom(base); setMode('own')
+    say(mode !== 'own' ? `${byId[id].first} placed. This is now your own shape — fine-tune anyone.` : `${byId[id].first} moved.`)
+  }
+
+  // ── drag (pointer events: mouse, touch, pen) ──
+  function startDrag(e: React.PointerEvent, id: string) {
+    const p = byId[id]
+    if (!p?.available) { say(`${p?.full}: not available, so cannot be placed.`); return }
+    const sx = e.clientX, sy = e.clientY
+    let moved = false
+    const move = (ev: PointerEvent) => {
+      if (!moved && Math.hypot(ev.clientX - sx, ev.clientY - sy) > 6) { moved = true; pushHistory() }
+      if (moved) { ev.preventDefault(); setDrag({ id, x: ev.clientX, y: ev.clientY }) }
+    }
+    const up = (ev: PointerEvent) => {
+      window.removeEventListener('pointermove', move); window.removeEventListener('pointerup', up)
+      setDrag(null)
+      if (moved) { didDrag.current = true; handleDrop(id, ev.clientX, ev.clientY) }
+    }
+    window.addEventListener('pointermove', move, { passive: false }); window.addEventListener('pointerup', up)
+  }
+  function handleDrop(id: string, cx: number, cy: number) {
+    const r = pitchRef.current?.getBoundingClientRect()
+    const br = benchRef.current?.getBoundingClientRect()
+    const overBench = !!br && cx >= br.left && cx <= br.right && cy >= br.top && cy <= br.bottom
+    const inside = !!r && cx >= r.left && cx <= r.right && cy >= r.top && cy <= r.bottom
+    if (!inside || overBench) { returnToBench(id); setPicked(null); if (overBench || !inside) say(`${byId[id].first} to the bench.`); return }
+    const x = ((cx - r!.left) / r!.width) * 100, y = ((cy - r!.top) / r!.height) * 100
+    setPicked(null)
+    if (mode === 'own') {
+      const t = nearestPitch(x, y, id, 9)
+      if (t) { swapPlayers(id, t); say(`${byId[id].first} swapped with ${byId[t].first}.`) }
+      else { const cp = { ...(custom || {}) }; cp[id] = { x: clamp(x, 7, 93), y: clamp(y, 7, 93) }; setCustom(cp); say(onPitchIds.has(id) ? `${byId[id].first} moved.` : `${byId[id].first} placed anywhere.`) }
+      return
+    }
+    // builder: snap to nearest slot (swap/fill); else free → custom
+    const si = nearestSlot(x, y, 11)
+    if (si >= 0) {
+      const occ = placed[si]
+      if (occ === id) return
+      const next = [...placed]; const from = placed.indexOf(id)
+      if (from >= 0) next[from] = occ ?? null
+      next[si] = id
+      setPlaced(next)
+      say(occ ? `${byId[id].first} swapped with ${byId[occ].first}.` : `${byId[id].first} to ${shape.slots[si].pos}.`)
+    } else freePlace(id, x, y)
+  }
+  function nearestSlot(x: number, y: number, thresh: number): number {
+    let best = -1, bd = thresh * thresh
+    shape.slots.forEach((s, i) => { const d = (s.x - x) ** 2 + (s.y - y) ** 2; if (d < bd) { bd = d; best = i } })
+    return best
+  }
+  function nearestPitch(x: number, y: number, exclude: string, thresh: number): string | null {
+    let best: string | null = null, bd = thresh * thresh
+    onPitch.forEach(p => { if (p.id === exclude) return; const d = (p.x - x) ** 2 + (p.y - y) ** 2; if (d < bd) { bd = d; best = p.id } })
+    return best
+  }
+
+  // ── shape / tools ──
   function switchShape(name: string) {
     if (name === shapeName && mode === 'builder') { say(`${name} is showing.`); return }
     const newShape = shapeByName(cfg.side, name)!
     pushHistory()
-    setPlaced(remap(shape, newShape, placed))
-    setShapeName(name); setMode('builder'); setPicked(null)
+    // from custom, snap everyone to nearest slot of the chosen shape
+    const current = mode === 'own' && custom
+      ? newShape.slots.map(() => null as string | null) // filled below
+      : remap(shape, newShape, placed)
+    if (mode === 'own' && custom) {
+      const next: (string | null)[] = new Array(newShape.slots.length).fill(null)
+      const used = new Set<number>()
+      Object.entries(custom).forEach(([id, p]) => {
+        let bi = -1, bd = Infinity
+        newShape.slots.forEach((s, j) => { if (used.has(j)) return; const d = (s.x - p.x) ** 2 + (s.y - p.y) ** 2; if (d < bd) { bd = d; bi = j } })
+        if (bi >= 0) { next[bi] = id; used.add(bi) }
+      })
+      setPlaced(next)
+    } else setPlaced(current)
+    setCustom(null); setShapeName(name); setMode('builder'); setPicked(null)
     say(`${name} is showing.`)
   }
-
+  function enterOwn() {
+    pushHistory()
+    const base: Record<string, XY> = {}
+    onPitch.forEach(p => { base[p.id] = { x: p.x, y: p.y } })
+    setCustom(base); setMode('own'); setPicked(null)
+    say('Your own: drag anyone anywhere. A guide line shows when they are level.')
+  }
   function fillForMe() {
     pushHistory()
-    const next = [...placed]
-    let pool = cfg.roster.filter(p => p.available && !next.includes(p.id))
+    if (mode === 'own' && custom) {
+      const cp = { ...custom }; let pool = cfg.roster.filter(p => p.available && !(p.id in cp))
+      const zones: XY[] = [{ x: 50, y: 85 }, { x: 25, y: 68 }, { x: 50, y: 70 }, { x: 75, y: 68 }, { x: 30, y: 46 }, { x: 70, y: 46 }, { x: 35, y: 24 }, { x: 65, y: 24 }, { x: 50, y: 34 }]
+      for (const z of zones) { if (!pool.length) break; cp[pool[0].id] = z; pool = pool.slice(1) }
+      setCustom(cp); say('Filled your own shape from who is coming. Drag to fine-tune.')
+      return
+    }
+    const next = [...placed]; let pool = cfg.roster.filter(p => p.available && !next.includes(p.id))
     next.forEach((pid, i) => {
       if (pid) return
-      const slotPos = shape.slots[i].pos
-      // prefer a bench player whose positions include this spot
-      let idx = pool.findIndex(p => p.positions.includes(slotPos))
-      if (idx < 0) idx = 0
+      let idx = pool.findIndex(p => p.positions.includes(shape.slots[i].pos)); if (idx < 0) idx = 0
       if (pool.length) { next[i] = pool[idx].id; pool = pool.filter((_, k) => k !== idx) }
     })
     setPlaced(next); setPicked(null)
     say('Filled from who is coming, where each plays best and who is owed minutes. Change anything.')
   }
+  function clearAll() { pushHistory(); if (mode === 'own') setCustom({}); else setPlaced(new Array(shape.slots.length).fill(null)); setPicked(null); say('Everyone is back on the bench.') }
+  function undo() {
+    setHistory(h => {
+      if (!h.length) { say('Nothing to undo.'); return h }
+      const s = h[h.length - 1]; setPlaced(s.placed); setCustom(s.custom); setMode(s.mode); setShapeName(s.shapeName); setPicked(null)
+      say('The last move is undone.'); return h.slice(0, -1)
+    })
+  }
 
-  function clearAll() { commit(new Array(shape.slots.length).fill(null)); setPicked(null); say('Everyone is back on the bench.') }
-  function undo() { setHistory(h => { if (!h.length) { say('Nothing to undo.'); return h } setPlaced(h[h.length - 1]); setPicked(null); say('The last move is undone.'); return h.slice(0, -1) }) }
-
+  const onPitchCount = onPitch.length
   const canPlayCount = cfg.roster.filter(p => p.available).length
-  const onPitchCount = placed.filter(Boolean).length
 
   return (
     <div style={{ flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden', fontFamily: 'var(--font-sans)', position: 'relative' }} data-screen={mode === 'own' ? 'FB1x-FormationOwn' : empty ? 'FB1e-FormationEmpty' : 'FB1-Formation'}>
@@ -124,7 +231,7 @@ export default function FormationBuilder({ team = 'juniors', onNav, empty }: { t
           <div style={{ fontSize: 12, color: MUT, marginTop: 3 }}>{mode === 'own' ? `${cfg.side} a side · your own shape · not saved yet` : cfg.meta}</div>
         </div>
         <div style={{ flexGrow: 1 }} />
-        {cfg.parts.length > 0 && mode !== 'own' && (
+        {cfg.parts.length > 0 && (
           <div style={{ display: 'flex', gap: 2, background: '#f4f6f5', borderRadius: 10, padding: 3 }}>
             {cfg.parts.map((p, i) => (
               <button key={p.label} onClick={() => { setPart(i); say(`${p.label}: its own line-up. Minutes add up across them.`) }} style={{ height: 34, padding: '0 14px', borderRadius: 8, border: 0, background: part === i ? GREEN : 'transparent', color: part === i ? '#fff' : MUT, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>{p.label}</button>
@@ -141,18 +248,32 @@ export default function FormationBuilder({ team = 'juniors', onNav, empty }: { t
       <div style={{ flex: 'none', padding: '10px 28px 0', display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
         {shapes.map(s => <ShapeTab key={s.name} name={s.name} selected={mode === 'builder' && shapeName === s.name} onClick={() => switchShape(s.name)} />)}
         {savedTabs.map(n => <ShapeTab key={n} name={n} selected={false} onClick={() => say(`${n}: your saved shape.`)} />)}
-        <button onClick={() => { setMode('own'); setPicked(null); say('Your own: put players anywhere. A guide line shows when they are level.') }} style={{ height: 44, padding: '0 14px', borderRadius: 12, border: `1.5px ${mode === 'own' ? 'solid' : 'dashed'} ${mode === 'own' ? LEAF : '#c5ccca'}`, background: mode === 'own' ? GREEN : '#fff', color: mode === 'own' ? '#fff' : INK, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 7 }}>
-          <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z" /></svg>Your own
+        <button onClick={enterOwn} style={{ height: 44, padding: '0 14px', borderRadius: 12, border: `1.5px ${mode === 'own' ? 'solid' : 'dashed'} ${mode === 'own' ? LEAF : '#c5ccca'}`, background: mode === 'own' ? GREEN : '#fff', color: mode === 'own' ? '#fff' : INK, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 7 }}>
+          <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z" /></svg>{mode === 'own' ? 'Custom' : 'Your own'}
         </button>
         <div style={{ flexGrow: 1 }} />
         <button onClick={() => say('More shapes for this many players, and any you have saved.')} style={{ height: 44, padding: '0 14px', borderRadius: 12, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 6 }}>More shapes <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round"><path d="M6 9l6 6 6-6" /></svg></button>
       </div>
 
-      {/* Body: pitch + bench */}
+      {/* Body */}
       <div style={{ flexGrow: 1, minHeight: 0, display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 316px', gap: 14, padding: '12px 28px 14px', overflow: 'hidden' }}>
-        {/* Builder column */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10, minHeight: 0 }}>
-          <Pitch shape={shape} placed={placed} picked={picked} byId={byId} loose={cfg.posStyle === 'loose'} onSlot={tapSlot} />
+          {/* Pitch */}
+          <div ref={pitchRef} data-fb="pitch" style={{ flexGrow: 1, minHeight: 0, position: 'relative', background: PITCH, borderRadius: 18, overflow: 'hidden', touchAction: 'none' }}>
+            {[0, 2, 4, 6].map(i => <div key={i} style={{ position: 'absolute', left: 0, right: 0, top: `${i * 12.5}%`, height: '12.5%', background: 'rgba(255,255,255,0.035)' }} />)}
+            <PitchMarks />
+            <div style={{ position: 'absolute', top: 10, left: 14, fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', color: 'rgba(255,255,255,0.6)' }}>ATTACKING THIS WAY ↑</div>
+            {mode === 'own' && custom && <div style={{ position: 'absolute', left: '6%', right: '6%', top: '50%', height: 1, background: 'rgba(255,255,255,0.14)' }} />}
+            {/* empty slots (builder only) */}
+            {mode !== 'own' && shape.slots.map((slot, i) => placed[i] ? null : <EmptySpot key={`e${i}`} slot={slot} onClick={() => tapSlot(i)} />)}
+            {/* tokens */}
+            {onPitch.map(p => (
+              <Token key={p.id} player={byId[p.id]} x={p.x} y={p.y} pos={p.pos}
+                picked={picked === p.id} isTarget={!!picked && picked !== p.id} dragging={drag?.id === p.id}
+                onClick={() => { if (didDrag.current) { didDrag.current = false; return } tapPitchPlayer(p.id) }}
+                onPointerDown={e => startDrag(e, p.id)} />
+            ))}
+          </div>
           {/* Checks */}
           <div style={{ flex: 'none', display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 10 }}>
             {cfg.checks.map((c, i) => (
@@ -166,24 +287,24 @@ export default function FormationBuilder({ team = 'juniors', onNav, empty }: { t
           </div>
         </div>
 
-        {/* Bench column */}
+        {/* Bench */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10, minHeight: 0 }}>
-          <div onClick={tapBenchArea} style={{ flexGrow: 1, minHeight: 0, background: '#fff', border: `1.5px solid ${picked && placed.includes(picked) ? LEAF : LN}`, borderRadius: 16, padding: '12px 14px', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+          <div ref={benchRef} data-fb="bench" onClick={tapBenchArea} style={{ flexGrow: 1, minHeight: 0, background: '#fff', border: `1.5px solid ${picked && onPitchIds.has(picked) ? LEAF : LN}`, borderRadius: 16, padding: '12px 14px', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
             <div style={{ flex: 'none', display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 8 }}>
               <span style={{ fontSize: 15, fontWeight: 700, color: INK }}>{cfg.benchHeader}</span>
               <span style={{ fontSize: 12, color: MUT }}>{toPlace} to place</span>
             </div>
             <div style={{ flexGrow: 1, overflowY: 'auto', margin: '0 -4px', padding: '0 4px' }}>
-              {benchPlayers.map(p => <BenchRow key={p.id} p={p} picked={picked === p.id} onClick={() => tapBench(p)} loose={cfg.posStyle === 'loose'} />)}
+              {benchPlayers.map(p => <BenchRow key={p.id} p={p} picked={picked === p.id} dragging={drag?.id === p.id} onClick={() => { if (didDrag.current) { didDrag.current = false; return } tapBench(p) }} onPointerDown={e => startDrag(e, p.id)} loose={loose} />)}
               {unavailable.length > 0 && (
                 <>
                   <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.07em', color: MUT, margin: '10px 0 4px' }}>NOT AVAILABLE SATURDAY</div>
-                  {unavailable.map(p => <BenchRow key={p.id} p={p} picked={false} onClick={() => tapBench(p)} loose={cfg.posStyle === 'loose'} />)}
+                  {unavailable.map(p => <BenchRow key={p.id} p={p} picked={false} dragging={false} onClick={() => tapBench(p)} onPointerDown={() => {}} loose={loose} />)}
                 </>
               )}
             </div>
             <div style={{ flex: 'none', fontSize: 12, color: MUT, lineHeight: 1.4, borderTop: `1px solid ${LN}`, paddingTop: 8, marginTop: 8 }}>
-              {picked ? 'Tap a spot on the pitch, or a player to swap.' : cfg.posStyle === 'loose' ? 'Spots are only “back, middle, front”. Children swap every quarter.' : 'Tap a player, then a spot. Or drag onto the pitch.'}
+              {picked ? 'Tap a spot on the pitch, or a player to swap.' : mode === 'own' ? 'Drag anyone anywhere on the pitch. Drop on a player to swap.' : 'Tap a player, then a spot. Or drag onto the pitch — drop between spots for your own shape.'}
             </div>
           </div>
           {mode === 'own' ? (
@@ -200,15 +321,27 @@ export default function FormationBuilder({ team = 'juniors', onNav, empty }: { t
         </div>
       </div>
 
-      {/* Game picker menu */}
       {menuOpen && <GamePicker cfg={cfg} onClose={() => setMenuOpen(false)} onNav={onNav} say={say} />}
-      {/* Share sheet */}
-      {shareOpen && <ShareSheet cfg={cfg} shape={shape} placed={placed} byId={byId} when={shareWhen} setWhen={setShareWhen} who={shareWho} setWho={setShareWho} onClose={() => setShareOpen(false)} say={say} />}
+      {shareOpen && <ShareSheet cfg={cfg} onPitch={onPitch} byId={byId} when={shareWhen} setWhen={setShareWhen} who={shareWho} setWho={setShareWho} onClose={() => setShareOpen(false)} say={say} />}
 
       <div style={{ position: 'absolute', bottom: 8, left: 28, fontSize: 11, color: MUT }}>{onPitchCount} on the pitch · {canPlayCount} can play</div>
       {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 200, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', maxWidth: 560, textAlign: 'center' }}>{toast}</div>}
+
+      {/* Drag ghost */}
+      {drag && byId[drag.id] && (
+        <div style={{ position: 'fixed', left: drag.x, top: drag.y, transform: 'translate(-50%,-50%) rotate(4deg)', zIndex: 300, pointerEvents: 'none', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
+          <div style={{ width: 56, height: 56, borderRadius: '50%', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20, fontWeight: 800, color: INK, boxShadow: '0 10px 24px rgba(0,0,0,0.4)' }}>{byId[drag.id].num}</div>
+          <span style={{ background: 'rgba(16,33,31,0.8)', borderRadius: 999, padding: '2px 9px', fontSize: 13, fontWeight: 700, color: '#fff' }}>{byId[drag.id].first}</span>
+        </div>
+      )}
     </div>
   )
+}
+
+function ownLabel(p: Player | undefined, y: number, loose: boolean): string {
+  if (p && (p.positions.includes('GK') || p.positions.includes('Goal'))) return loose ? 'GOAL' : 'GK'
+  if (loose) return y < 36 ? 'FRONT' : y < 66 ? 'MID' : 'BACK'
+  return y < 36 ? 'F' : y < 66 ? 'M' : 'D'
 }
 
 const btnOutline: React.CSSProperties = { height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }
@@ -223,7 +356,6 @@ function IconBtn({ label, onClick, path }: { label: string; onClick: () => void;
 }
 
 function ShapeTab({ name, selected, onClick }: { name: string; selected: boolean; onClick: () => void }) {
-  // dot picture: rows per number in the name, keeper at bottom
   const rows = name.split('-').map(Number)
   return (
     <button onClick={onClick} style={{ height: 44, padding: '0 14px', borderRadius: 12, border: `1.5px solid ${selected ? LEAF : LN}`, background: selected ? GREEN : '#fff', color: selected ? '#fff' : INK, fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 9 }}>
@@ -238,21 +370,16 @@ function ShapeTab({ name, selected, onClick }: { name: string; selected: boolean
   )
 }
 
-function Pitch({ shape, placed, picked, byId, loose, onSlot }: { shape: Shape; placed: (string | null)[]; picked: string | null; byId: Record<string, Player>; loose: boolean; onSlot: (i: number) => void }) {
+function PitchMarks() {
   return (
-    <div style={{ flexGrow: 1, minHeight: 0, position: 'relative', background: PITCH, borderRadius: 18, overflow: 'hidden' }}>
-      {/* stripes */}
-      {[0, 2, 4, 6].map(i => <div key={i} style={{ position: 'absolute', left: 0, right: 0, top: `${i * 12.5}%`, height: '12.5%', background: 'rgba(255,255,255,0.035)' }} />)}
-      {/* markings */}
+    <>
       <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }} viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" stroke="rgba(255,255,255,0.32)" strokeWidth="0.35" fill="none">
         <rect x="3" y="3.5" width="94" height="93" rx="1.5" />
         <line x1="3" y1="50" x2="97" y2="50" />
         <ellipse cx="50" cy="50" rx="11" ry="9" />
-        {/* top end (other team's goal) */}
         <rect x="24" y="3.5" width="52" height="15" />
         <rect x="38" y="3.5" width="24" height="6" />
         <rect x="43" y="2" width="14" height="1.5" />
-        {/* bottom end */}
         <rect x="24" y="81.5" width="52" height="15" />
         <rect x="38" y="90.5" width="24" height="6" />
         <rect x="43" y="96.5" width="14" height="1.5" />
@@ -260,42 +387,39 @@ function Pitch({ shape, placed, picked, byId, loose, onSlot }: { shape: Shape; p
       <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }} viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" fill="rgba(255,255,255,0.38)">
         <circle cx="50" cy="50" r="0.5" /><circle cx="50" cy="12" r="0.5" /><circle cx="50" cy="88" r="0.5" />
       </svg>
-      <div style={{ position: 'absolute', top: 10, left: 14, fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', color: 'rgba(255,255,255,0.6)' }}>ATTACKING THIS WAY ↑</div>
-      {/* tokens / empty spots */}
-      {shape.slots.map((slot, i) => {
-        const pid = placed[i]
-        const p = pid ? byId[pid] : null
-        return <Token key={i} slot={slot} player={p} picked={!!pid && picked === pid} isTarget={!!picked && picked !== pid} loose={loose} onClick={() => onSlot(i)} />
-      })}
-    </div>
+    </>
   )
 }
 
-function Token({ slot, player, picked, isTarget, loose, onClick }: { slot: { x: number; y: number; pos: string }; player: Player | null; picked: boolean; isTarget: boolean; loose: boolean; onClick: () => void }) {
-  const size = 46
+function EmptySpot({ slot, onClick }: { slot: { x: number; y: number; pos: string }; onClick: () => void }) {
   return (
     <button onClick={onClick} style={{ position: 'absolute', left: `${slot.x}%`, top: `${slot.y}%`, transform: 'translate(-50%,-50%)', background: 'none', border: 'none', cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4, padding: 8, fontFamily: 'inherit' }}>
-      <div style={{ position: 'relative', width: size, height: size, borderRadius: '50%', background: player ? '#fff' : 'transparent', border: player ? (picked ? '3px solid #fff' : 'none') : '2px dashed rgba(255,255,255,0.5)', boxShadow: player ? (picked ? '0 0 0 3px rgba(31,74,62,0.9), 0 4px 10px rgba(0,0,0,0.3)' : isTarget ? '0 0 0 2px rgba(255,255,255,0.5)' : '0 3px 8px rgba(0,0,0,0.3)') : 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        {player ? <span style={{ fontSize: 17, fontWeight: 800, color: INK }}>{player.num}</span> : <span style={{ fontSize: 11, fontWeight: 700, color: 'rgba(255,255,255,0.6)' }}>{slot.pos}</span>}
-        {player?.captain && <span style={{ position: 'absolute', top: -2, left: -2, width: 16, height: 16, borderRadius: '50%', background: '#fff', color: INK, fontSize: 9, fontWeight: 800, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 1px 3px rgba(0,0,0,0.3)' }}>C</span>}
-      </div>
-      {player ? (
-        <span style={{ display: 'flex', alignItems: 'center', gap: 5, background: 'rgba(16,33,31,0.62)', borderRadius: 999, padding: '2px 8px', whiteSpace: 'nowrap' }}>
-          <span style={{ fontSize: 13, fontWeight: 700, color: '#fff' }}>{player.first}</span>
-          <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.04em', color: 'rgba(255,255,255,0.65)' }}>{loose ? slot.pos.toUpperCase() : slot.pos}</span>
-        </span>
-      ) : (
-        <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.55)' }}>Empty</span>
-      )}
-      {player?.pitchNote && <span style={{ fontSize: 10, fontWeight: 700, color: 'rgba(255,255,255,0.72)', whiteSpace: 'nowrap' }}>{player.pitchNote}</span>}
+      <div style={{ width: 46, height: 46, borderRadius: '50%', border: '2px dashed rgba(255,255,255,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><span style={{ fontSize: 11, fontWeight: 700, color: 'rgba(255,255,255,0.6)' }}>{slot.pos}</span></div>
+      <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.55)' }}>Empty</span>
     </button>
   )
 }
 
-function BenchRow({ p, picked, onClick, loose }: { p: Player; picked: boolean; onClick: () => void; loose: boolean }) {
+function Token({ player, x, y, pos, picked, isTarget, dragging, onClick, onPointerDown }: { player: Player; x: number; y: number; pos: string; picked: boolean; isTarget: boolean; dragging: boolean; onClick: () => void; onPointerDown: (e: React.PointerEvent) => void }) {
+  return (
+    <button onClick={onClick} onPointerDown={onPointerDown} style={{ position: 'absolute', left: `${x}%`, top: `${y}%`, transform: 'translate(-50%,-50%)', background: 'none', border: 'none', cursor: 'grab', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4, padding: 8, fontFamily: 'inherit', opacity: dragging ? 0.3 : 1, touchAction: 'none', transition: dragging ? 'none' : 'left 150ms, top 150ms' }}>
+      <div style={{ position: 'relative', width: 46, height: 46, borderRadius: '50%', background: '#fff', border: picked ? '3px solid #fff' : 'none', boxShadow: picked ? '0 0 0 3px rgba(31,74,62,0.9), 0 4px 10px rgba(0,0,0,0.3)' : isTarget ? '0 0 0 2px rgba(255,255,255,0.5)' : '0 3px 8px rgba(0,0,0,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <span style={{ fontSize: 17, fontWeight: 800, color: INK }}>{player.num}</span>
+        {player.captain && <span style={{ position: 'absolute', top: -2, left: -2, width: 16, height: 16, borderRadius: '50%', background: '#fff', color: INK, fontSize: 9, fontWeight: 800, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 1px 3px rgba(0,0,0,0.3)' }}>C</span>}
+      </div>
+      <span style={{ display: 'flex', alignItems: 'center', gap: 5, background: 'rgba(16,33,31,0.62)', borderRadius: 999, padding: '2px 8px', whiteSpace: 'nowrap' }}>
+        <span style={{ fontSize: 13, fontWeight: 700, color: '#fff' }}>{player.first}</span>
+        <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.04em', color: 'rgba(255,255,255,0.65)' }}>{pos}</span>
+      </span>
+      {player.pitchNote && <span style={{ fontSize: 10, fontWeight: 700, color: 'rgba(255,255,255,0.72)', whiteSpace: 'nowrap' }}>{player.pitchNote}</span>}
+    </button>
+  )
+}
+
+function BenchRow({ p, picked, dragging, onClick, onPointerDown, loose }: { p: Player; picked: boolean; dragging: boolean; onClick: () => void; onPointerDown: (e: React.PointerEvent) => void; loose: boolean }) {
   const na = !p.available
   return (
-    <button onClick={onClick} style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 10, minHeight: 48, padding: '6px 8px', borderRadius: 10, background: picked ? PALE : 'transparent', border: 'none', cursor: na ? 'default' : 'pointer', fontFamily: 'inherit', textAlign: 'left', opacity: na ? 0.55 : 1 }}>
+    <button onClick={onClick} onPointerDown={na ? undefined : onPointerDown} style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 10, minHeight: 48, padding: '6px 8px', borderRadius: 10, background: picked ? PALE : dragging ? '#f4f6f5' : 'transparent', border: dragging ? `1px dashed ${LEAF}` : 'none', cursor: na ? 'default' : 'grab', fontFamily: 'inherit', textAlign: 'left', opacity: na ? 0.55 : dragging ? 0.5 : 1, touchAction: 'none' }}>
       {!na && <svg width={12} height={16} viewBox="0 0 12 16" aria-hidden="true" style={{ flexShrink: 0 }}>{[0, 1, 2].map(r => [0, 1].map(c => <circle key={`${r}-${c}`} cx={2 + c * 8} cy={3 + r * 5} r={1.3} fill="#c5ccca" />))}</svg>}
       <span style={{ width: 28, height: 28, borderRadius: '50%', border: `1.5px solid ${picked ? LEAF : '#c5ccca'}`, background: picked ? LEAF : '#fff', color: picked ? '#fff' : INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0 }}>{p.num}</span>
       <span style={{ flexGrow: 1, minWidth: 0 }}>
@@ -334,7 +458,7 @@ function GamePicker({ cfg, onClose, onNav, say }: { cfg: TeamCfg; onClose: () =>
   )
 }
 
-function ShareSheet({ cfg, shape, placed, byId, when, setWhen, who, setWho, onClose, say }: { cfg: TeamCfg; shape: Shape; placed: (string | null)[]; byId: Record<string, Player>; when: string; setWhen: (s: string) => void; who: 'families' | 'coaches'; setWho: (w: 'families' | 'coaches') => void; onClose: () => void; say: (m: string) => void }) {
+function ShareSheet({ cfg, onPitch, byId, when, setWhen, who, setWho, onClose, say }: { cfg: TeamCfg; onPitch: { id: string; x: number; y: number }[]; byId: Record<string, Player>; when: string; setWhen: (s: string) => void; who: 'families' | 'coaches'; setWho: (w: 'families' | 'coaches') => void; onClose: () => void; say: (m: string) => void }) {
   return (
     <>
       <div onClick={onClose} style={{ position: 'absolute', inset: 0, background: 'rgba(16,33,31,0.35)', zIndex: 80 }} />
@@ -344,13 +468,12 @@ function ShareSheet({ cfg, shape, placed, byId, when, setWhen, who, setWho, onCl
           <button onClick={onClose} aria-label="Close" style={{ width: 36, height: 36, borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', fontSize: 18, color: MUT }}>×</button>
         </div>
         <div style={{ flexGrow: 1, overflowY: 'auto', padding: 20 }}>
-          {/* mini pitch preview */}
           <div style={{ position: 'relative', aspectRatio: '4 / 3', background: PITCH, borderRadius: 14, overflow: 'hidden', marginBottom: 16 }}>
             <div style={{ position: 'absolute', top: 8, left: 12, fontSize: 9, fontWeight: 700, letterSpacing: '0.08em', color: 'rgba(255,255,255,0.6)' }}>ATTACKING THIS WAY ↑</div>
-            {shape.slots.map((s, i) => { const pid = placed[i]; const p = pid ? byId[pid] : null; return (
-              <div key={i} style={{ position: 'absolute', left: `${s.x}%`, top: `${s.y}%`, transform: 'translate(-50%,-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
-                <span style={{ width: 30, height: 30, borderRadius: '50%', background: p ? '#fff' : 'transparent', border: p ? 'none' : '1.5px dashed rgba(255,255,255,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 800, color: INK }}>{p?.num ?? ''}</span>
-                {p && <span style={{ fontSize: 9, fontWeight: 700, color: '#fff' }}>{p.first}</span>}
+            {onPitch.map(p => { const pl = byId[p.id]; return (
+              <div key={p.id} style={{ position: 'absolute', left: `${p.x}%`, top: `${p.y}%`, transform: 'translate(-50%,-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
+                <span style={{ width: 30, height: 30, borderRadius: '50%', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 800, color: INK }}>{pl.num}</span>
+                <span style={{ fontSize: 9, fontWeight: 700, color: '#fff' }}>{pl.first}</span>
               </div>
             ) })}
           </div>
