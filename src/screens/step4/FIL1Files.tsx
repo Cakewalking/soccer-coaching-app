@@ -26,7 +26,7 @@ const STARTS = [
   { label: 'Letter to families', sub: 'Your words, club header' },
 ]
 
-export default function FIL1Files({ onOpenSheet, onOpenDoc, onNav }: { onOpenSheet?: () => void; onOpenDoc?: () => void; onNav?: (s: string) => void }) {
+export default function FIL1Files({ onOpenSheet, onOpenDoc, onNav, bare }: { onOpenSheet?: () => void; onOpenDoc?: () => void; onNav?: (s: string) => void; bare?: boolean }) {
   const [filter, setFilter] = useState('All 7')
   const [nudged, setNudged] = useState(false)
   const [toast, setToast] = useState<string | null>(null)
@@ -47,7 +47,8 @@ export default function FIL1Files({ onOpenSheet, onOpenDoc, onNav }: { onOpenShe
   }
 
   return (
-    <div data-lasttool="" style={{ width: 1180, height: 820, overflow: 'hidden', background: '#f7f8f7', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative', boxSizing: 'border-box' }}>
+    <div data-lasttool="" style={{ width: bare ? '100%' : 1180, height: bare ? '100%' : 820, flex: bare ? 1 : undefined, minHeight: bare ? 0 : undefined, overflow: 'hidden', background: '#f7f8f7', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative', boxSizing: 'border-box' }}>
+      {!bare && (<>
       {/* Top nav (coach frame) */}
       <div style={{ background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 20, height: 56, flexShrink: 0 }}>
         <div style={{ fontSize: 15, fontWeight: 900, color: '#fff', marginRight: 8 }}>Clean Sheet</div>
@@ -65,6 +66,7 @@ export default function FIL1Files({ onOpenSheet, onOpenDoc, onNav }: { onOpenShe
           <button key={l} onClick={() => onNav?.(t)} style={{ height: 44, background: 'none', border: 'none', borderBottom: l === 'Files' ? `2.5px solid ${GREEN}` : '2px solid transparent', fontSize: 13, fontWeight: l === 'Files' ? 700 : 600, color: l === 'Files' ? GREEN : MUT, cursor: 'pointer', fontFamily: 'inherit' }}>{l}</button>
         ))}
       </div>
+      </>)}
 
       {editing ? (
         <FileEditor type={editing.type} initialName={editing.name} initialContent={editing.content} audiences={['U12 Sam families', 'Coaching team only', 'Just me']} onBack={() => setEditing(null)} onSave={saveFile} onShare={shareFile} />

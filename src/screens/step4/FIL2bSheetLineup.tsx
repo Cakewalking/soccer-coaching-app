@@ -19,10 +19,11 @@ const PLAYERS: Position[] = [
   { name: 'Ava', x: 65, y: 72, mins: 50 },
 ]
 
-export default function FIL2bSheetLineup({ onBack, onShare, onNav }: {
+export default function FIL2bSheetLineup({ onBack, onShare, onNav, bare }: {
   onBack?: () => void
   onShare?: () => void
   onNav?: (s: string) => void
+  bare?: boolean
 }) {
   const [gameIdx, setGameIdx] = useState(0)
   const [lastTool, setLastTool] = useState('')
@@ -33,7 +34,8 @@ export default function FIL2bSheetLineup({ onBack, onShare, onNav }: {
   const games = ['Game 1 · 11 Oct', 'Game 2 · 18 Oct', 'Game 3 · Northgate', 'Game 4 · 1 Nov']
 
   return (
-    <div style={{ width: 1180, background: '#f7f8f7', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }} data-lasttool={lastTool}>
+    <div style={{ width: bare ? '100%' : 1180, flex: bare ? 1 : undefined, background: '#f7f8f7', fontFamily: 'var(--font-sans)', minHeight: bare ? 0 : 820, display: 'flex', flexDirection: 'column' }} data-lasttool={lastTool}>
+      {!bare && (<>
       {/* Top nav */}
       <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 24, height: 52, flexShrink: 0 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>Clean Sheet</div>
@@ -72,6 +74,7 @@ export default function FIL2bSheetLineup({ onBack, onShare, onNav }: {
         ))}
         <div style={{ marginLeft: 'auto', fontSize: 12, color: MUT }}>Head coach</div>
       </div>
+      </>)}
 
       {/* File toolbar */}
       <div style={{ background: '#fff', borderBottom: `1px solid ${LN}`, padding: '0 16px', display: 'flex', gap: 6, height: 44, alignItems: 'center', flexShrink: 0 }}>

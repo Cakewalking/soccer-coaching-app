@@ -152,20 +152,20 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
     setHomeTab(0); setFilView(null)
   }
 
-  if (homeTab === 7) {
+  function renderFiles() {
     const fv = filView ?? 'FIL1-Files'
     if (fv === 'FIL4-Share') return (
-      <div style={{ position: 'relative' }}>
-        <FIL2Sheet onBack={() => setFilView('FIL1-Files')} onShare={() => setFilView('FIL4-Share')} onNav={filNav} />
+      <div style={{ position: 'relative', flex: 1, minHeight: 0, display: 'flex' }}>
+        <FIL2Sheet bare onBack={() => setFilView('FIL1-Files')} onShare={() => setFilView('FIL4-Share')} onNav={filNav} />
         <FIL4Share onClose={() => setFilView('FIL2-Sheet')} />
       </div>
     )
-    if (fv === 'FIL2-Sheet')       return <FIL2Sheet onBack={() => setFilView('FIL1-Files')} onShare={() => setFilView('FIL4-Share')} onNav={filNav} />
-    if (fv === 'FIL2b-SheetLineup') return <FIL2bSheetLineup onBack={() => setFilView('FIL1-Files')} onShare={() => setFilView('FIL4-Share')} onNav={filNav} />
-    if (fv === 'FIL3-Doc')         return <FIL3Doc onBack={() => setFilView('FIL1-Files')} onShare={() => setFilView('FIL4-Share')} onNav={filNav} />
-    if (fv === 'FIL6-SignUp')      return <FIL6SignUp onBack={() => setFilView('FIL1-Files')} onShare={() => setFilView('FIL4-Share')} onNav={filNav} />
-    if (fv === 'FIL7-Form')        return <FIL7Form onBack={() => setFilView('FIL1-Files')} onShare={() => setFilView('FIL4-Share')} onAnswersSheet={() => setFilView('FIL2-Sheet')} onNav={filNav} />
-    return <FIL1Files onOpenSheet={() => setFilView('FIL2-Sheet')} onOpenDoc={() => setFilView('FIL3-Doc')} onNav={filNav} />
+    if (fv === 'FIL2-Sheet')       return <FIL2Sheet bare onBack={() => setFilView('FIL1-Files')} onShare={() => setFilView('FIL4-Share')} onNav={filNav} />
+    if (fv === 'FIL2b-SheetLineup') return <FIL2bSheetLineup bare onBack={() => setFilView('FIL1-Files')} onShare={() => setFilView('FIL4-Share')} onNav={filNav} />
+    if (fv === 'FIL3-Doc')         return <FIL3Doc bare onBack={() => setFilView('FIL1-Files')} onShare={() => setFilView('FIL4-Share')} onNav={filNav} />
+    if (fv === 'FIL6-SignUp')      return <FIL6SignUp bare onBack={() => setFilView('FIL1-Files')} onShare={() => setFilView('FIL4-Share')} onNav={filNav} />
+    if (fv === 'FIL7-Form')        return <FIL7Form bare onBack={() => setFilView('FIL1-Files')} onShare={() => setFilView('FIL4-Share')} onAnswersSheet={() => setFilView('FIL2-Sheet')} onNav={filNav} />
+    return <FIL1Files bare onOpenSheet={() => setFilView('FIL2-Sheet')} onOpenDoc={() => setFilView('FIL3-Doc')} onNav={filNav} />
   }
 
   if (sub === 'teamtalk')  return <TeamTalkScreen role="head" onClose={() => setSub(null)} />
@@ -185,6 +185,7 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
     else if (homeTab === 4) content = <OurStyleScreen />
     else if (homeTab === 5) content = <WhereWeAtScreen teamType="juniors" />
     else if (homeTab === 6) content = <TeamStaffScreen empty={sbEmpty} />
+    else if (homeTab === 7) content = renderFiles()
   } else if (nav === 'squad') {
     if (squadTab === 0) content = <SquadScreen role="head" onPlayerProfile={() => {}} empty={sbEmpty} />
     else if (squadTab === 1) content = <SquadLineups noFrame onNav={(s) => { if (s === 'record') { goNav('record') } else if (s === 'teamsheet') { goNav('matchday'); setMatchTab(1) } }} />

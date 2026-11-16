@@ -5,10 +5,11 @@ const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8
 
 type Job = { label: string; time: string; places: number; taken: string[] }
 
-export default function FIL6SignUp({ onBack, onShare, onNav }: {
+export default function FIL6SignUp({ onBack, onShare, onNav, bare }: {
   onBack?: () => void
   onShare?: () => void
   onNav?: (s: string) => void
+  bare?: boolean
 }) {
   const [view, setView] = useState<'Jobs' | 'By family'>('Jobs')
   const [reminded, setReminded] = useState(false)
@@ -30,7 +31,8 @@ export default function FIL6SignUp({ onBack, onShare, onNav }: {
   const open = totalPlaces - filled
 
   return (
-    <div style={{ width: 1180, background: '#f7f8f7', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }} data-lasttool={lastTool}>
+    <div style={{ width: bare ? '100%' : 1180, flex: bare ? 1 : undefined, background: '#f7f8f7', fontFamily: 'var(--font-sans)', minHeight: bare ? 0 : 820, display: 'flex', flexDirection: 'column' }} data-lasttool={lastTool}>
+      {!bare && (<>
       {/* Top nav */}
       <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 24, height: 52, flexShrink: 0 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>Clean Sheet</div>
@@ -69,6 +71,7 @@ export default function FIL6SignUp({ onBack, onShare, onNav }: {
         ))}
         <div style={{ marginLeft: 'auto', fontSize: 12, color: MUT }}>Head coach</div>
       </div>
+      </>)}
 
       {/* File toolbar */}
       <div style={{ background: '#fff', borderBottom: `1px solid ${LN}`, padding: '0 16px', display: 'flex', gap: 6, height: 44, alignItems: 'center', flexShrink: 0 }}>

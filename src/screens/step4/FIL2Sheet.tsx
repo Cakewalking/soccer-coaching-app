@@ -37,10 +37,11 @@ const FIL2_CFG: TeamSheetConfig = {
   dataNote: "Player, Spot and Minutes come from your squad and this sheet's own choices. Change the squad and they change here.",
 }
 
-export default function FIL2Sheet({ onBack, onShare, onNav }: {
+export default function FIL2Sheet({ onBack, onShare, onNav, bare }: {
   onBack?: () => void
   onShare?: () => void
   onNav?: (s: string) => void
+  bare?: boolean
 }) {
   const [lastTool, setLastTool] = useState('')
   function tool(name: string) { setLastTool(name) }
@@ -54,8 +55,9 @@ export default function FIL2Sheet({ onBack, onShare, onNav }: {
   )
 
   return (
-    <div data-screen="FIL2-Sheet" data-lasttool={lastTool} style={{ width: 1180, height: 820, background: '#f7f8f7', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+    <div data-screen="FIL2-Sheet" data-lasttool={lastTool} style={{ width: bare ? '100%' : 1180, height: bare ? '100%' : 820, flex: bare ? 1 : undefined, minHeight: bare ? 0 : undefined, background: '#f7f8f7', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
 
+      {!bare && (<>
       {/* Top nav */}
       <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 20, height: 52, flexShrink: 0 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>Clean Sheet</div>
@@ -86,6 +88,7 @@ export default function FIL2Sheet({ onBack, onShare, onNav }: {
         <SubBtn label="Files"              target="FIL1-Files" />
         <div style={{ marginLeft: 'auto', fontSize: 12, color: MUT }}>Head coach</div>
       </div>
+      </>)}
 
       <TeamSheetBody cfg={FIL2_CFG} onBack={onBack} onShare={onShare} onTool={tool} />
     </div>

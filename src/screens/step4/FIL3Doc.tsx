@@ -5,10 +5,11 @@ const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8
 
 type SideTab = 'Comments' | 'Live' | 'Opened'
 
-export default function FIL3Doc({ onBack, onShare, onNav }: {
+export default function FIL3Doc({ onBack, onShare, onNav, bare }: {
   onBack?: () => void
   onShare?: () => void
   onNav?: (s: string) => void
+  bare?: boolean
 }) {
   const [parentView, setParentView] = useState(false)
   const [sideTab, setSideTab] = useState<SideTab>('Live')
@@ -18,7 +19,8 @@ export default function FIL3Doc({ onBack, onShare, onNav }: {
   function sect(name: string) { setLastSection(name) }
 
   return (
-    <div style={{ width: 1180, background: '#f7f8f7', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }} data-lasttool={lastTool} data-lastsection={lastSection}>
+    <div style={{ width: bare ? '100%' : 1180, flex: bare ? 1 : undefined, background: '#f7f8f7', fontFamily: 'var(--font-sans)', minHeight: bare ? 0 : 820, display: 'flex', flexDirection: 'column' }} data-lasttool={lastTool} data-lastsection={lastSection}>
+      {!bare && (<>
       {/* Top nav */}
       <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 24, height: 52, flexShrink: 0 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>Clean Sheet</div>
@@ -57,6 +59,7 @@ export default function FIL3Doc({ onBack, onShare, onNav }: {
         ))}
         <div style={{ marginLeft: 'auto', fontSize: 12, color: MUT }}>Head coach</div>
       </div>
+      </>)}
 
       {/* Doc metadata */}
       <div style={{ background: '#fff', padding: '4px 24px', borderBottom: `1px solid ${LN}`, flexShrink: 0 }}>
