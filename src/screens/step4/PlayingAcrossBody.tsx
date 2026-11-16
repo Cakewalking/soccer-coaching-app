@@ -24,8 +24,15 @@ const SEGMENTS: { id: 'up'|'down'|'mixed'; label: string; count: number }[] = [
   { id: 'mixed', label: 'Mixed-age sessions', count: 0 },
 ]
 
-export default function PlayingAcrossBody({ onNav }: { onNav?: (s: string) => void }) {
+export default function PlayingAcrossBody({ onNav, tabTargets }: {
+  onNav?: (s: string) => void
+  // When set, the up/down/mixed tabs navigate to these boards (and the body
+  // always shows "up"). When absent, they toggle the segment inline.
+  tabTargets?: { up: string; down: string; mixed: string }
+}) {
+  const routeMode = !!tabTargets
   const [segment, setSegment] = useState<'up' | 'down' | 'mixed'>('up')
+  const activeSeg = routeMode ? 'up' : segment
   const [toast, setToast] = useState<string | null>(null)
   const [nudged, setNudged] = useState(false)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 2500) }
@@ -45,13 +52,16 @@ export default function PlayingAcrossBody({ onNav }: { onNav?: (s: string) => vo
       />
       <div style={{ display: 'flex', flex: 1, padding: '16px 20px 20px 20px', gap: 20, minHeight: 0, overflow: 'auto' }}>
         <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ display: 'flex', gap: 8, marginBottom: 16, flexWrap: 'wrap' as const }}>
-            {SEGMENTS.map(s => (
-              <button key={s.id} onClick={() => setSegment(s.id)} style={{ height: 36, padding: '0 16px', borderRadius: 999, border: `1.5px solid ${segment === s.id ? G : LN}`, background: segment === s.id ? '#eef5f2' : '#fff', fontSize: 13, color: segment === s.id ? G : MUT, fontWeight: segment === s.id ? 700 : 400, cursor: 'pointer', fontFamily: 'inherit' }}>{s.label} · {s.count}</button>
-            ))}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16, flexWrap: 'wrap' as const }}>
+            <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' as const }}>
+              {SEGMENTS.map(s => (
+                <button key={s.id} onClick={() => routeMode ? onNav?.(tabTargets![s.id]) : setSegment(s.id)} style={{ height: 36, padding: '0 16px', borderRadius: 999, border: `1.5px solid ${activeSeg === s.id ? G : LN}`, background: activeSeg === s.id ? '#eef5f2' : '#fff', fontSize: 13, color: activeSeg === s.id ? G : MUT, fontWeight: activeSeg === s.id ? 700 : 400, cursor: 'pointer', fontFamily: 'inherit' }}>{s.label} · {s.count}</button>
+              ))}
+            </div>
+            {routeMode && <span style={{ fontSize: 13, color: MUT }}>Up, down or mixed: the same idea. The right challenge for each player.</span>}
           </div>
 
-          {segment === 'up' && (
+          {activeSeg === 'up' && (
             <>
               <div style={{ background: '#fff', border: `1px solid ${CTL}`, borderRadius: 16, padding: '14px 16px', marginBottom: 14 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', minHeight: 36 }}>
@@ -92,14 +102,14 @@ export default function PlayingAcrossBody({ onNav }: { onNav?: (s: string) => vo
             </>
           )}
 
-          {segment === 'down' && (
+          {activeSeg === 'down' && (
             <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '32px', textAlign: 'center' as const }}>
               <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 8 }}>Playing down · 2 players</div>
               <div style={{ fontSize: 13, color: MUT }}>Growing later than their year. One training night a week in a matched group — they stay in their own team for games.</div>
             </div>
           )}
 
-          {segment === 'mixed' && (
+          {activeSeg === 'mixed' && (
             <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '32px', textAlign: 'center' as const }}>
               <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 8 }}>No mixed-age sessions yet</div>
               <div style={{ fontSize: 13, color: MUT }}>Mixed-age banded sessions appear here once your club sets one up.</div>

@@ -36,7 +36,7 @@ export default function PU1PlayingUp({ onNav }: { onNav?: (s: string) => void })
   return (
     <div data-screen="PU1-PlayingUp" data-lasttool={lastTool} style={{ width: 1180, height: 820, overflow: 'hidden', boxSizing: 'border-box', background: '#f7f8f7', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
       <DirFrame onNav={onNav} tool={tool} />
-      <PlayingAcrossBody onNav={onNav} />
+      <PlayingAcrossBody onNav={onNav} tabTargets={{ up: 'PU1-PlayingUp', down: 'PX1-PlayingDown', mixed: 'PX3-BandedNight' }} />
     </div>
   )
 }
