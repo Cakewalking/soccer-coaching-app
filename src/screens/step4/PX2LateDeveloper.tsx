@@ -1,11 +1,15 @@
 import { useState } from 'react'
 import { OpeningPanel } from './directorParts'
+import MeasureSheet from '../measures/MeasureSheet'
+import { MEASURE } from '../measures/data'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 export default function PX2LateDeveloper({ onNav }: { onNav?: (s: string) => void }) {
   const [lastTool, setLastTool] = useState('')
+  const [measure, setMeasure] = useState<string | null>(null)
   function tool(name: string) { setLastTool(name) }
+  const open = (id: string) => { setMeasure(id); setLastTool(id) }
 
   const tnb = { height: 56, padding: '0 10px', background: 'none' as const, color: 'rgba(255,255,255,0.75)', border: 'none' as const, fontSize: 13, fontWeight: 600, cursor: 'pointer' as const, fontFamily: 'inherit', flexShrink: 0 as const }
   const snb = { height: 44, padding: '0 14px', background: 'none' as const, color: MUT, border: 'none' as const, fontSize: 13, fontWeight: 600, cursor: 'pointer' as const, fontFamily: 'inherit', flexShrink: 0 as const }
@@ -47,25 +51,26 @@ export default function PX2LateDeveloper({ onNav }: { onNav?: (s: string) => voi
             <div style={{ fontSize: 13, color: MUT, marginBottom: 12 }}>Upper third of his team for forward passes and for keeping it under pressure.</div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10 }}>
               {[
-                { label: 'Forward passes', val: 'Upper third', trend: '↑' },
-                { label: 'Ball under pressure', val: 'Upper third', trend: '↑' },
-                { label: 'Duels won', val: 'Lower third', trend: '↓' },
-                { label: 'Sprint speed', val: 'Lower third', trend: '↓' },
-                { label: 'Game minutes', val: '22 min avg', trend: '↓' },
-                { label: 'Wellness', val: 'Steady', trend: '→' },
+                { label: 'Forward passes', src: 'Film', val: 'Upper third', trend: '↑', id: 'PU8d-MeasurePasses' },
+                { label: 'Ball under pressure', src: 'Film', val: 'Upper third', trend: '↑', id: 'PU8d-MeasurePasses' },
+                { label: 'Duels won', src: 'Film', val: 'Lower third', trend: '↓', id: 'PU8a-MeasureFilm' },
+                { label: 'Sprint speed', src: 'Vest', val: 'Lower third', trend: '↓', id: 'PU8b-MeasureVest' },
+                { label: 'Game minutes', src: 'Mixed', val: '22 min avg', trend: '↓', id: 'PU8j-MeasureLoad' },
+                { label: 'Wellness', src: 'Check-ins', val: 'Steady', trend: '→', id: 'PU8j-MeasureLoad' },
               ].map(m => (
-                <div key={m.label} style={{ background: PALE, borderRadius: 10, padding: '12px 14px' }}>
-                  <div style={{ fontSize: 12, color: MUT }}>{m.label}</div>
+                <button key={m.label} onClick={() => open(m.id)} style={{ background: PALE, borderRadius: 10, padding: '12px 14px', border: 'none', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
+                  <div style={{ fontSize: 12, color: MUT }}>{m.label} · {m.src} ›</div>
                   <div style={{ fontSize: 14, fontWeight: 700, color: INK }}>{m.val} {m.trend}</div>
-                </div>
+                </button>
               ))}
             </div>
+            <div style={{ fontSize: 11, color: MUT, marginTop: 10 }}>Each opens the same evidence sheet as for Mia. Eli’s own data is not built yet.</div>
           </div>
 
-          <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '20px' }}>
-            <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 4 }}>Load</div>
+          <button onClick={() => open('PU8j-MeasureLoad')} style={{ width: '100%', background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '20px', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
+            <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 4 }}>Load ›</div>
             <div style={{ fontSize: 13, color: MUT, marginBottom: 6 }}>Two sessions and a game. Game time has fallen from 40 to 22 minutes since March.</div>
-          </div>
+          </button>
 
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '20px' }}>
             <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 4 }}>What to consider</div>
@@ -80,6 +85,10 @@ export default function PX2LateDeveloper({ onNav }: { onNav?: (s: string) => voi
           </div>
         </div>
       </div>
+
+      {measure && MEASURE(measure) && (
+        <MeasureSheet cfg={MEASURE(measure)!} onClose={() => setMeasure(null)} onOpen={open} onNav={onNav} />
+      )}
     </div>
   )
 }

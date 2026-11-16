@@ -1,13 +1,18 @@
 import { useState } from 'react'
 import { OpeningPanel } from './directorParts'
+import MeasureSheet from '../measures/MeasureSheet'
+import { MEASURE } from '../measures/data'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
-function RangeRow({ label, mia, range, mid, where }: { label: string; mia: string; range: string; mid: string; where: string }) {
+function RangeRow({ label, src, mia, range, mid, where, onOpen }: { label: string; src: string; mia: string; range: string; mid: string; where: string; onOpen: () => void }) {
   const pct = where === 'Lower third' ? 22 : where === 'Middle' ? 52 : where === 'Upper third' || where === 'Above' ? 73 : 52
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '6px 0', borderBottom: `1px solid ${LN}` }}>
-      <div style={{ width: 170, fontSize: 12, color: INK, flexShrink: 0 }}>{label}</div>
+    <button onClick={onOpen} style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 8, padding: '8px 0', borderTop: `1px solid ${LN}`, border: 'none', borderBottom: 0, borderLeft: 0, borderRight: 0, borderTopColor: LN, background: 'none', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
+      <div style={{ width: 170, flexShrink: 0 }}>
+        <div style={{ fontSize: 12, color: INK, fontWeight: 600 }}>{label}</div>
+        <div style={{ fontSize: 10, color: MUT }}>{src} · open ›</div>
+      </div>
       <div style={{ width: 70, fontSize: 12, fontWeight: 600, color: G, flexShrink: 0 }}>{mia}</div>
       <div style={{ width: 110, fontSize: 11, color: MUT, flexShrink: 0 }}>{range}</div>
       <div style={{ flex: 1, position: 'relative', height: 16 }}>
@@ -16,13 +21,15 @@ function RangeRow({ label, mia, range, mid, where }: { label: string; mia: strin
         <div style={{ position: 'absolute', left: `${pct}%`, top: 1, width: 14, height: 14, borderRadius: '50%', background: G, border: '2px solid #fff', transform: 'translateX(-50%)' }} />
       </div>
       <div style={{ width: 80, fontSize: 12, fontWeight: 600, color: pct >= 65 ? G : MUT, textAlign: 'right' as const, flexShrink: 0 }}>{where}</div>
-    </div>
+    </button>
   )
 }
 
 export default function PU4Compare({ onNav }: { onNav?: (s: string) => void }) {
   const [lastTool, setLastTool] = useState('')
+  const [measure, setMeasure] = useState<string | null>(null)
   function tool(name: string) { setLastTool(name) }
+  const open = (id: string) => { setMeasure(id); setLastTool(id) }
 
   const tnb: React.CSSProperties = { height: 56, padding: '0 10px', background: 'none', color: 'rgba(255,255,255,0.75)', border: 'none', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }
   const snb: React.CSSProperties = { height: 44, padding: '0 14px', background: 'none', color: MUT, border: 'none', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }
@@ -74,10 +81,10 @@ export default function PU4Compare({ onNav }: { onNav?: (s: string) => void }) {
                 <div style={{ flex: 1 }} />
                 <div style={{ width: 80, fontSize: 10, fontWeight: 600, color: MUT, textTransform: 'uppercase' as const, letterSpacing: '0.06em', textAlign: 'right' as const }}>Where she sits</div>
               </div>
-              <RangeRow label="Top speed" mia="24.1 km/h" range="22.0 to 27.5 · 24.6" mid="45" where="Middle" />
-              <RangeRow label="10 m sprint" mia="2.08 s" range="1.95 to 2.25 · 2.10" mid="45" where="Middle" />
-              <RangeRow label="Sprints a game" mia="11" range="8 to 9 to 13" mid="30" where="Middle" />
-              <RangeRow label="Distance" mia="4.4 km" range="4.0 to 5.6 · 4.8" mid="40" where="Lower third" />
+              <RangeRow label="Top speed" src="Vest" mia="24.1 km/h" range="22.0 to 27.5 · 24.6" mid="45" where="Middle" onOpen={() => open('PU8b-MeasureVest')} />
+              <RangeRow label="10 m sprint" src="Timed test" mia="2.08 s" range="1.95 to 2.25 · 2.10" mid="45" where="Middle" onOpen={() => open('PU8g-MeasureTest')} />
+              <RangeRow label="Sprints a game" src="Vest" mia="11" range="8 to 9 to 13" mid="30" where="Middle" onOpen={() => open('PU8b-MeasureVest')} />
+              <RangeRow label="Distance" src="Vest" mia="4.4 km" range="4.0 to 5.6 · 4.8" mid="40" where="Lower third" onOpen={() => open('PU8f-MeasureDistance')} />
               <div style={{ fontSize: 11, color: MUT, marginTop: 10 }}>Green band: the U13 girls, slowest to fastest. Dark line: their middle player. Dot: Mia. No U13 player is named.</div>
             </div>
 
@@ -87,11 +94,11 @@ export default function PU4Compare({ onNav }: { onNav?: (s: string) => void }) {
                 <div style={{ fontSize: 13, fontWeight: 700, color: INK }}>Football: her games against under 12s</div>
                 <span style={{ fontSize: 11, fontWeight: 700, padding: '3px 10px', borderRadius: 20, background: PALE, color: MUT, border: `1px solid ${LN}` }}>Compare with care</span>
               </div>
-              <RangeRow label="Duels won" mia="71%" range="38 to 66% · 52%" mid="40" where="Above" />
-              <RangeRow label="Forward passes under pressure" mia="9" range="4 to 12 · 7" mid="40" where="Upper third" />
-              <RangeRow label="Wins of the ball" mia="7" range="3 to 9 · 6" mid="50" where="Upper third" />
-              <RangeRow label="Goals and assists" mia="0.9" range="0.1 to 11 · 0.4" mid="30" where="Upper third" />
-              <RangeRow label="Touches" mia="48" range="30 to 58 · 44" mid="47" where="Middle" />
+              <RangeRow label="Duels won" src="Film" mia="71%" range="38 to 66% · 52%" mid="40" where="Above" onOpen={() => open('PU8a-MeasureFilm')} />
+              <RangeRow label="Forward passes under pressure" src="Film" mia="9" range="4 to 12 · 7" mid="40" where="Upper third" onOpen={() => open('PU8d-MeasurePasses')} />
+              <RangeRow label="Wins of the ball" src="Film" mia="7" range="3 to 9 · 6" mid="50" where="Upper third" onOpen={() => open('PU8e-MeasureWins')} />
+              <RangeRow label="Goals and assists" src="Film" mia="0.9" range="0.1 to 11 · 0.4" mid="30" where="Upper third" onOpen={() => open('PU8a-MeasureFilm')} />
+              <RangeRow label="Touches" src="Film" mia="48" range="30 to 58 · 44" mid="47" where="Middle" onOpen={() => open('PU8a-MeasureFilm')} />
               <div style={{ fontSize: 11, color: MUT, marginTop: 10 }}>Her game numbers were made against under 12s, so they flatter her. Goals depend on position and team. Tests and vests compare fairly.</div>
             </div>
           </div>
@@ -117,6 +124,10 @@ export default function PU4Compare({ onNav }: { onNav?: (s: string) => void }) {
           </div>
         </div>
       </div>
+
+      {measure && MEASURE(measure) && (
+        <MeasureSheet cfg={MEASURE(measure)!} onClose={() => setMeasure(null)} onOpen={open} onNav={onNav} />
+      )}
     </div>
   )
 }
