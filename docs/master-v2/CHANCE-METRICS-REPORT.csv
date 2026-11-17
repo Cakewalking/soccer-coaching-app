@@ -2,7 +2,11 @@ control id,screen,control,does,target or line,status: works / line of text only 
 XG1-ChancesGame#7,XG1-ChancesGame,U12 Sam · Wattle Creek,Opens,VS1-SwitchView,works
 XG1-ChancesGame#15,XG1-ChancesGame,How we measure,Opens,QC10-HowWeMeasure,works
 XG1-ChancesGame#16,XG1-ChancesGame,Season so far,Opens,XG2-ChancesSeason,works
-XG1-ChancesGame#17,XG1-ChancesGame,"Source 13, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 13
+XG1-ChancesGame#17,XG1-ChancesGame,"12’ · Noah Okafor · goal · Six metres out, in front of goal · · 1 in 2",Says,The clip opens at this shot.,works
+XG1-ChancesGame#18,XG1-ChancesGame,"27’ · Jai Patel · One on one, shot saved · · 2 in 5",Says,The clip opens at this shot.,works
+XG1-ChancesGame#19,XG1-ChancesGame,"31’ · Mia Tran · goal · Cut-back, first time · · 1 in 3",Says,The clip opens at this shot.,works
+XG1-ChancesGame#20,XG1-ChancesGame,44’ · Zoe Hart · goal · From the edge of the box · · 1 in 8,Says,The clip opens at this shot.,works
+XG1-ChancesGame#21,XG1-ChancesGame,"Source 13, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 13
 XG1e-ChancesNoFilm#7,XG1e-ChancesNoFilm,U12 Sam · Wattle Creek,Opens,VS1-SwitchView,works
 XG1e-ChancesNoFilm#15,XG1e-ChancesNoFilm,How we measure,Opens,QC10-HowWeMeasure,works
 XG1e-ChancesNoFilm#16,XG1e-ChancesNoFilm,Open your take on the game,Opens,YT1-YourTake,works
@@ -20,7 +24,10 @@ XG3-LadderPPI#16,XG3-LadderPPI,Fixtures and results,Opens,CF1-Fixtures,works
 XG4-ThreatMap#7,XG4-ThreatMap,U12 Sam · Wattle Creek,Opens,VS1-SwitchView,works
 XG4-ThreatMap#15,XG4-ThreatMap,How we measure,Opens,QC10-HowWeMeasure,works
 XG4-ThreatMap#16,XG4-ThreatMap,Chances this season,Opens,XG2-ChancesSeason,works
-XG4-ThreatMap#17,XG4-ThreatMap,"Source 15, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 15
+XG4-ThreatMap#17,XG4-ThreatMap,"31’ · Harper to Mia · Pass inside the full-back, left side · · Clip",Says,The clip opens at this shot.,works
+XG4-ThreatMap#18,XG4-ThreatMap,12’ · Leo to Harper · Long pass from the back to the left wing · · Clip,Says,The clip opens at this shot.,works
+XG4-ThreatMap#19,XG4-ThreatMap,44’ · Mia’s run · Carried the ball 20 metres into the box · · Clip,Says,The clip opens at this shot.,works
+XG4-ThreatMap#20,XG4-ThreatMap,"Source 15, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 15
 XG5-ClubChances#7,XG5-ClubChances,Ask Clean Sheet,Opens,ASKd4-PanelFirst,"works, different target: opens the working Ask panel in place"
 XG5-ClubChances#8,XG5-ClubChances,Whole club,Opens,VS1-SwitchView,works
 XG5-ClubChances#11,XG5-ClubChances,How we measure,Opens,QC10-HowWeMeasure,works
@@ -41,7 +48,10 @@ XG5-ClubChances#25,XG5-ClubChances,"Source 8, on How we measure",Opens,QC10-HowW
 XGm1-ChancesMiniRoos#7,XGm1-ChancesMiniRoos,U9 Tom · Wattle Creek,Opens,VS1-SwitchView,works
 XGm1-ChancesMiniRoos#11,XGm1-ChancesMiniRoos,How we measure,Opens,QC10-HowWeMeasure,works
 XGm1-ChancesMiniRoos#12,XGm1-ChancesMiniRoos,Season so far,Opens,XGm2-ChancesSeasonMiniRoos,works
-XGm1-ChancesMiniRoos#13,XGm1-ChancesMiniRoos,"Source 13, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 13
+XGm1-ChancesMiniRoos#13,XGm1-ChancesMiniRoos,"8’ · Cut-back from the left · First-time shot, close in · · 1 in 2",Says,The clip opens at this shot.,works
+XGm1-ChancesMiniRoos#14,XGm1-ChancesMiniRoos,19’ · Won it back high · Shot from the edge · · 2 in 5,Says,The clip opens at this shot.,works
+XGm1-ChancesMiniRoos#15,XGm1-ChancesMiniRoos,26’ · Pass through the middle · One on one · · 2 in 5,Says,The clip opens at this shot.,works
+XGm1-ChancesMiniRoos#16,XGm1-ChancesMiniRoos,"Source 13, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 13
 XGm2-ChancesSeasonMiniRoos#7,XGm2-ChancesSeasonMiniRoos,U9 Tom · Wattle Creek,Opens,VS1-SwitchView,works
 XGm2-ChancesSeasonMiniRoos#11,XGm2-ChancesSeasonMiniRoos,Saturday’s game,Opens,XGm1-ChancesMiniRoos,works
 XGm2-ChancesSeasonMiniRoos#12,XGm2-ChancesSeasonMiniRoos,Where the danger comes from,Opens,XG4-ThreatMap,works
@@ -49,11 +59,73 @@ XGm2-ChancesSeasonMiniRoos#13,XGm2-ChancesSeasonMiniRoos,"Source 14, on How we m
 XGp1-ChancesParent#1,XGp1-ChancesParent,Back,Opens,STO17-HomeStoryParent,works
 XGp1-ChancesParent#2,XGp1-ChancesParent,Ask Clean Sheet,Opens,ASKp2-PhoneAskOpen,works
 XGp1-ChancesParent#3,XGp1-ChancesParent,What this means,Opens,QC10-HowWeMeasure,works
+XGp1-ChancesParent#4,XGp1-ChancesParent,Ella’s clip of the week,Says,Ella’s clip opens.,works
 QC11-ClubCaptureRules#7,QC11-ClubCaptureRules,Ask Clean Sheet,Opens,ASKd4-PanelFirst,"works, different target: opens the working Ask panel in place"
 QC11-ClubCaptureRules#8,QC11-ClubCaptureRules,Whole club,Opens,VS1-SwitchView,works
 QC11-ClubCaptureRules#16,QC11-ClubCaptureRules,How we measure,Opens,QC10-HowWeMeasure,works
-QC11-ClubCaptureRules#17,QC11-ClubCaptureRules,"Source 10, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 10
+QC11-ClubCaptureRules#17,QC11-ClubCaptureRules,Save,Says,Saved. 14 teams follow these rules from their next recording.,works
+QC11-ClubCaptureRules#18,QC11-ClubCaptureRules,On [switch],Says,Film games and training: turned off.,works
+QC11-ClubCaptureRules#19,QC11-ClubCaptureRules,On [switch],Says,Film games and training: turned off.,works
+QC11-ClubCaptureRules#20,QC11-ClubCaptureRules,On [switch],Says,Film games and training: turned off.,works
+QC11-ClubCaptureRules#21,QC11-ClubCaptureRules,On [switch],Says,Film games and training: turned off.,works
+QC11-ClubCaptureRules#22,QC11-ClubCaptureRules,On [switch],Says,Film games and training: turned off.,works
+QC11-ClubCaptureRules#23,QC11-ClubCaptureRules,On [switch],Says,Film games and training: turned off.,works
+QC11-ClubCaptureRules#24,QC11-ClubCaptureRules,Off [switch],Says,Distance and load from vests: turned on.,works: saves and confirms
+QC11-ClubCaptureRules#25,QC11-ClubCaptureRules,Off [switch],Says,Distance and load from vests: turned on.,works: saves and confirms
+QC11-ClubCaptureRules#26,QC11-ClubCaptureRules,On [switch],Says,Distance and load from vests: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#27,QC11-ClubCaptureRules,On [switch],Says,Distance and load from vests: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#28,QC11-ClubCaptureRules,On [switch],Says,Distance and load from vests: turned off.,works
+QC11-ClubCaptureRules#29,QC11-ClubCaptureRules,On [switch],Says,Distance and load from vests: turned off.,works
+QC11-ClubCaptureRules#30,QC11-ClubCaptureRules,Off [switch],Says,Chances for the coach: turned on.,works: saves and confirms
+QC11-ClubCaptureRules#31,QC11-ClubCaptureRules,On [switch],Says,Chances for the coach: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#32,QC11-ClubCaptureRules,On [switch],Says,Chances for the coach: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#33,QC11-ClubCaptureRules,On [switch],Says,Chances for the coach: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#34,QC11-ClubCaptureRules,On [switch],Says,Chances for the coach: turned off.,works
+QC11-ClubCaptureRules#35,QC11-ClubCaptureRules,On [switch],Says,Chances for the coach: turned off.,works
+QC11-ClubCaptureRules#36,QC11-ClubCaptureRules,Off [switch],Says,Name who set up a chance: turned on.,works: saves and confirms
+QC11-ClubCaptureRules#37,QC11-ClubCaptureRules,Off [switch],Says,Name who set up a chance: turned on.,works: saves and confirms
+QC11-ClubCaptureRules#38,QC11-ClubCaptureRules,On [switch],Says,Name who set up a chance: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#39,QC11-ClubCaptureRules,On [switch],Says,Name who set up a chance: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#40,QC11-ClubCaptureRules,On [switch],Says,Name who set up a chance: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#41,QC11-ClubCaptureRules,On [switch],Says,Name who set up a chance: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#42,QC11-ClubCaptureRules,Off [switch],Says,Show speed numbers to players: turned on.,works: saves and confirms
+QC11-ClubCaptureRules#43,QC11-ClubCaptureRules,Off [switch],Says,Show speed numbers to players: turned on.,works: saves and confirms
+QC11-ClubCaptureRules#44,QC11-ClubCaptureRules,Off [switch],Says,Show speed numbers to players: turned on.,works: saves and confirms
+QC11-ClubCaptureRules#45,QC11-ClubCaptureRules,On [switch],Says,Show speed numbers to players: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#46,QC11-ClubCaptureRules,On [switch],Says,Show speed numbers to players: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#47,QC11-ClubCaptureRules,On [switch],Says,Show speed numbers to players: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#48,QC11-ClubCaptureRules,Off [switch],Says,Rank players against each other: turned on.,works: saves and confirms
+QC11-ClubCaptureRules#49,QC11-ClubCaptureRules,On [switch],Says,Rank players against each other: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#50,QC11-ClubCaptureRules,On [switch],Says,Ladder and points: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#51,QC11-ClubCaptureRules,On [switch],Says,Ladder and points: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#52,QC11-ClubCaptureRules,On [switch],Says,Ladder and points: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#53,QC11-ClubCaptureRules,On [switch],Says,Share clips with families: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#54,QC11-ClubCaptureRules,On [switch],Says,Share clips with families: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#55,QC11-ClubCaptureRules,On [switch],Says,Share clips with families: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#56,QC11-ClubCaptureRules,On [switch],Says,Share clips with families: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#57,QC11-ClubCaptureRules,On [switch],Says,Share clips with families: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#58,QC11-ClubCaptureRules,On [switch],Says,Share clips with families: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#59,QC11-ClubCaptureRules,Off [switch],Says,Show team numbers to families: turned on.,works: saves and confirms
+QC11-ClubCaptureRules#60,QC11-ClubCaptureRules,Off [switch],Says,Show team numbers to families: turned on.,works: saves and confirms
+QC11-ClubCaptureRules#61,QC11-ClubCaptureRules,On [switch],Says,Show team numbers to families: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#62,QC11-ClubCaptureRules,On [switch],Says,Show team numbers to families: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#63,QC11-ClubCaptureRules,On [switch],Says,Show team numbers to families: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#64,QC11-ClubCaptureRules,On [switch],Says,Show team numbers to families: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#65,QC11-ClubCaptureRules,On [switch],Says,Parents’ ratings: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#66,QC11-ClubCaptureRules,On [switch],Says,Parents’ ratings: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#67,QC11-ClubCaptureRules,On [switch],Says,Parents’ ratings: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#68,QC11-ClubCaptureRules,On [switch],Says,Parents’ ratings: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#69,QC11-ClubCaptureRules,On [switch],Says,Parents’ ratings: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#70,QC11-ClubCaptureRules,Off [switch],Says,Parents’ ratings: turned on.,works: saves and confirms
+QC11-ClubCaptureRules#71,QC11-ClubCaptureRules,2 games [radio],Says,2 games. The pitch plan is redrawn.,works: saves and confirms
+QC11-ClubCaptureRules#72,QC11-ClubCaptureRules,3 games [radio],Says,3 games. The pitch plan is redrawn.,works: saves and confirms
+QC11-ClubCaptureRules#73,QC11-ClubCaptureRules,5 games [radio],Says,5 games. The pitch plan is redrawn.,works: saves and confirms
+QC11-ClubCaptureRules#74,QC11-ClubCaptureRules,Keep [radio],Says,Keep. The pitch plan is redrawn.,works: saves and confirms
+QC11-ClubCaptureRules#75,QC11-ClubCaptureRules,Clips only [radio],Says,Clips only. The pitch plan is redrawn.,works: saves and confirms
+QC11-ClubCaptureRules#76,QC11-ClubCaptureRules,Delete [radio],Says,Delete. The pitch plan is redrawn.,works: saves and confirms
+QC11-ClubCaptureRules#77,QC11-ClubCaptureRules,"Source 10, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 10
 QC10-HowWeMeasure#7,QC10-HowWeMeasure,U12 Sam · Wattle Creek,Opens,VS1-SwitchView,works
+QC10-HowWeMeasure#12,QC10-HowWeMeasure,Tell us a number looks wrong,Says,Tell us which number and why. We check and write back within a day.,works
 STA1-StartPage#1,STA1-StartPage,Why trust it,Opens,DEMO-Why,works
 STA1-StartPage#2,STA1-StartPage,Start the demo,Opens,STA3-PickRole,works
 STA1-StartPage#3,STA1-StartPage,Start the demo,Opens,STA3-PickRole,works
@@ -76,17 +148,3 @@ STA2-StartPagePhone#4,STA2-StartPagePhone,How we measure,Opens,QC10-HowWeMeasure
 STA2-StartPagePhone#5,STA2-StartPagePhone,Start the demo,Opens,STA3-PickRole,works: opens STA3p-PickRolePhone under 700px
 STA2-StartPagePhone#6,STA2-StartPagePhone,Start with an empty club,Opens,STA3e-PickRoleEmpty,works
 STA2-StartPagePhone#7,STA2-StartPagePhone,Why trust it,Opens,DEMO-Why,works
-build,,,,,chance-metrics-v2 built on a094165 (uncommitted when written). Checked on a local production build at 1180x820 and 390x844
-done 1,,A game with film shows XG1; without film shows XG1e,,,works: a game picker on the Chances tab chooses between Saturday and the friendly with no film
-done 2,,xG - xGA = xGD; season totals equal the games shown,,,"works for U12, U16, Seniors and U9: every figure is summed from one data file"
-done 3,,"PPI the same on XG2, XG3 and XG5",,,"works: U12 2.46, U16 1.92, Seniors 2.71"
-done 4,,"MiniRoos has Chances, no Ladder; turning the band off removes the tab",,,works
-done 5,,Parent sees XGp1 only when the band allows it; never a child number,,,works: link on the parent home appears and disappears with the rule
-done 6,,xA off: no screen names who set up a chance,,,works: the panel becomes How the chances were made
-done 7,,Every chance number carries Estimate,,,"works on XG1, XG2, XG5, XGm1, XGm2, XGp1, QC1, QC8 and the match review line"
-tuning,,Which age groups have enough shots to tune chance values,,,NONE. The demo has no shot data and no model: every chance value here is typed in. Each chance screen says Being tuned for this age group
-changed,QC11,"ten rules, six age bands",,,"done. Morning wellness check-in and Show Estimate numbers to families are no longer rows, as drawn. Saved rules from the earlier version are reset"
-changed,MiniRoos Game day tabs,"Game day, Chances, Your take",,,"kept the app’s five tabs (Turns, Who’s coming, Get ready, Review, Your take) and added Chances before Your take"
-not as drawn,XG5,team names,,,"changed on instruction: teams are named for the coach’s first name (Men’s 1sts, U16 Ollie, U15 Girls Bec, U14 Josh, U13 Chris, U11 Luke, U10 Nadia), not the drawn U16 Boys, U15 Girls and so on"
-made up,"U16, Seniors, and the five teams with no board","games, ladders, readings",,,mine: built so each team matches its row on XG5. U16 and Seniors reuse the U12 shot positions with their own totals
-made up,XGp1 for the demo parent,"Mia, U12 Sam",,,"mine: uses Saturday’s U12 totals (about 2.1 and 0.8) and a how-they-made-them split of 5, 4, 2"

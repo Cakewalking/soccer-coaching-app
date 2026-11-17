@@ -216,6 +216,8 @@ interface CoachTabletFrameProps {
   onSubTab?: (i: number) => void
   roleChip: string
   teamLabel: string
+  /** the team pill opens the view switcher */
+  onTeam?: () => void
   avatarLetters: string
   avatarBg?: string
   showAsk?: boolean
@@ -230,7 +232,7 @@ interface CoachTabletFrameProps {
 export default function CoachTabletFrame({
   navTabs, activeNav, onNav,
   subTabs = [], activeSubTabIndex = 0, onSubTab,
-  roleChip, teamLabel, avatarLetters, avatarBg = '#c39797',
+  roleChip, teamLabel, onTeam, avatarLetters, avatarBg = '#c39797',
   showAsk = true, askOpen = false, onAskToggle,
   askQuestions, askRole = 'head coach',
   showBadge,
@@ -351,22 +353,23 @@ export default function CoachTabletFrame({
             </button>
           )}
           {/* Team pill — name only */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8, height: 44, padding: '0 16px', borderRadius: '999px', background: 'rgba(255,255,255,0.15)', fontSize: 15, fontWeight: 600, color: '#fff', flexShrink: 0, cursor: 'default' }}>
+          <button onClick={onTeam} disabled={!onTeam} aria-label={teamLabel} style={{ display: 'flex', alignItems: 'center', gap: 8, height: 44, padding: '0 16px', borderRadius: '999px', border: 0, background: 'rgba(255,255,255,0.15)', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, color: '#fff', flexShrink: 0, cursor: onTeam ? 'pointer' : 'default' }}>
             {teamName}
             <S d={CHEVD} size={16} />
-          </div>
+          </button>
           <div style={{ width: 44, height: 44, borderRadius: '999px', background: avatarBg, color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 15, flexShrink: 0 }}>{avatarLetters}</div>
         </div>
 
         {/* 44px white sub-tabs bar */}
         {subTabs.length > 0 && (
           <div style={{ height: 44, padding: '0 28px', display: 'flex', alignItems: 'flex-end', gap: 24 }}>
-            <nav style={{ display: 'flex', flexGrow: 1, height: 44, overflowX: 'auto', scrollbarWidth: 'none' }}>
+            <nav style={{ display: 'flex', flexGrow: 1, minWidth: 0, height: 44, overflowX: 'auto', scrollbarWidth: 'none' }}>
               {subTabs.map((tab, i) => {
                 const active = i === activeSubTabIndex
                 return (
-                  <button key={tab} onClick={() => onSubTab?.(i)} style={{
-                    height: 44, padding: '0 16px', border: 0, background: 'transparent',
+                  <button key={tab} onClick={() => onSubTab?.(i)} ref={active ? el => { if (el?.parentElement) { const n = el.parentElement, r = el.offsetLeft + el.offsetWidth - n.clientWidth; if (r > n.scrollLeft) n.scrollLeft = r; else if (el.offsetLeft < n.scrollLeft) n.scrollLeft = el.offsetLeft } } : undefined} style={{
+                    height: 44, padding: '0 16px', border: 0, background: 'transparent', whiteSpace: 'nowrap', flexShrink: 0,   // a long row of tabs scrolls sideways, it never wraps
+
                     fontFamily: 'inherit', fontSize: 15, fontWeight: active ? 600 : 400,
                     color: active ? INK : MUT, cursor: 'pointer',
                     borderBottom: active ? `3px solid ${G2}` : '3px solid transparent',

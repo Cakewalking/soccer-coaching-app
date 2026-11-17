@@ -1,23 +1,23 @@
-control id,screen,control,does,target,status: works / missing / wrong target (say where)
+control id,screen,control,does,target or line,status: works / line of text only / missing / wrong target (say where)
 STA1-StartPage#1,STA1-StartPage,Why trust it,Opens,DEMO-Why,works: opens /why
 STA1-StartPage#2,STA1-StartPage,Start the demo,Opens,STA3-PickRole,works: opens /start (STA3-PickRole)
 STA1-StartPage#3,STA1-StartPage,Start the demo,Opens,STA3-PickRole,works: opens /start (STA3-PickRole)
 STA1-StartPage#4,STA1-StartPage,The idea in one minute,Opens,DEMO-Story,works: opens /tour/story at step 1
-STA1-StartPage#5,STA1-StartPage,"See all of this working · A made-up club, mid-season. No sign-in. · Start the demo",Opens,STA3-PickRole,works: opens /start (STA3-PickRole)
-STA1-StartPage#6,STA1-StartPage,MiniRoos to seniors · A coach · Walk into Tuesday knowing exactly what to fix. · See it,Opens,STA3-PickRole,works: opens /start (STA3-PickRole)
-STA1-StartPage#7,STA1-StartPage,"On your phone · A parent or player · See your child getting better, with the clip to prove it. · See it",Opens,STA3-PickRole,works: opens /start (STA3-PickRole)
-STA1-StartPage#8,STA1-StartPage,"Director, chair, coordinator · Running the club · Every team playing the club way, and a story to tell new families. · See it",Opens,STA3-PickRole,works: opens /start (STA3-PickRole)
-STA1-StartPage#9,STA1-StartPage,"Owner, coach, family · An academy · Progress families can see, and a reason to re-enrol. · See it",Opens,STA3-PickRole,works: opens /start (STA3-PickRole)
-STA1-StartPage#10,STA1-StartPage,All 20 roles,Opens,STA3-PickRole,works: opens /start (STA3-PickRole)
-STA1-StartPage#11,STA1-StartPage,Start the demo,Opens,STA3-PickRole,works: opens /start (STA3-PickRole)
-STA1-StartPage#12,STA1-StartPage,Start with an empty club,Opens,STA3e-PickRoleEmpty,works: opens /sandbox (STA3e-PickRoleEmpty)
-STA1-StartPage#13,STA1-StartPage,Open my sandbox,Opens,STA3e-PickRoleEmpty,works: opens /sandbox (STA3e-PickRoleEmpty); makes a new empty sandbox if this browser has none
-STA1-StartPage#14,STA1-StartPage,Why trust it,Opens,DEMO-Why,works: opens /why
+STA1-StartPage#5,STA1-StartPage,How we measure,Opens,QC10-HowWeMeasure,works
+STA1-StartPage#6,STA1-StartPage,"See all of this working · A made-up club, mid-season. No sign-in. · Start the demo",Opens,STA3-PickRole,works: opens /start (STA3-PickRole)
+STA1-StartPage#7,STA1-StartPage,MiniRoos to seniors · A coach · Walk into Tuesday knowing exactly what to fix. · See it,Opens,STA3-PickRole,works: opens /start (STA3-PickRole)
+STA1-StartPage#8,STA1-StartPage,"On your phone · A parent or player · See your child getting better, with the clip to prove it. · See it",Opens,STA3-PickRole,works: opens /start (STA3-PickRole)
+STA1-StartPage#9,STA1-StartPage,"Director, chair, coordinator · Running the club · Every team playing the club way, and a story to tell new families. · See it",Opens,STA3-PickRole,works: opens /start (STA3-PickRole)
+STA1-StartPage#10,STA1-StartPage,"Owner, coach, family · An academy · Progress families can see, and a reason to re-enrol. · See it",Opens,STA3-PickRole,works: opens /start (STA3-PickRole)
+STA1-StartPage#11,STA1-StartPage,All 20 roles,Opens,STA3-PickRole,works: opens /start (STA3-PickRole)
+STA1-StartPage#12,STA1-StartPage,Start the demo,Opens,STA3-PickRole,works: opens /start (STA3-PickRole)
+STA1-StartPage#13,STA1-StartPage,Start with an empty club,Opens,STA3e-PickRoleEmpty,works: opens /sandbox (STA3e-PickRoleEmpty)
+STA1-StartPage#14,STA1-StartPage,Open my sandbox,Opens,STA3e-PickRoleEmpty,works: opens /sandbox (STA3e-PickRoleEmpty); makes a new empty sandbox if this browser has none
+STA1-StartPage#15,STA1-StartPage,Why trust it,Opens,DEMO-Why,works: opens /why
 STA2-StartPagePhone#1,STA2-StartPagePhone,Start,Opens,STA3-PickRole,works: opens /start (STA3p-PickRolePhone under 700px)
 STA2-StartPagePhone#2,STA2-StartPagePhone,Start the demo,Opens,STA3-PickRole,works: opens /start (STA3p-PickRolePhone under 700px)
 STA2-StartPagePhone#3,STA2-StartPagePhone,The idea in one minute,Opens,DEMO-Story,works: opens /tour/story at step 1
-STA2-StartPagePhone#4,STA2-StartPagePhone,Start the demo,Opens,STA3-PickRole,works: opens /start (STA3p-PickRolePhone under 700px)
-STA2-StartPagePhone#5,STA2-StartPagePhone,Start with an empty club,Opens,STA3e-PickRoleEmpty,works: opens /sandbox (STA3e-PickRoleEmpty)
-STA2-StartPagePhone#6,STA2-StartPagePhone,Why trust it,Opens,DEMO-Why,works: opens /why
-build,,,,,start-page-v2 built on b9298e7; / opens STA1-StartPage (STA2-StartPagePhone under 700px). Checked at 1180x820 and 390x844 on a local production build
-added,demo bar,Clean Sheet logo,Opens,/,"works: added to the demo, phone demo and sandbox bars; Switch role still opens the picker"
+STA2-StartPagePhone#4,STA2-StartPagePhone,How we measure,Opens,QC10-HowWeMeasure,works
+STA2-StartPagePhone#5,STA2-StartPagePhone,Start the demo,Opens,STA3-PickRole,works: opens /start (STA3p-PickRolePhone under 700px)
+STA2-StartPagePhone#6,STA2-StartPagePhone,Start with an empty club,Opens,STA3e-PickRoleEmpty,works: opens /sandbox (STA3e-PickRoleEmpty)
+STA2-StartPagePhone#7,STA2-StartPagePhone,Why trust it,Opens,DEMO-Why,works: opens /why

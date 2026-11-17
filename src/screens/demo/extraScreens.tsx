@@ -32,6 +32,7 @@ import QCp1BeforeKickOffPhone from '../capture/QCp1BeforeKickOffPhone'
 import ChancesFlow, { isChanceId } from '../chances/ChancesFlow'
 import XGp1ChancesParent, { miaU12 } from '../chances/XGp1ChancesParent'
 import TrialPackPhone from '../trial/TrialPackPhone'
+import { CNp1PlayerSelfReview, CNp3SessionFeedback, CNp5PlayerGoal, CNp9SeasonReportParent, CNp10BookCatchUp, CNp11FamilyView, CNp12PulseSurvey, CNp14PlayerPassport, CNp16WeekElsewhere, CNp18IncidentLog, CNp19SidelineRating } from '../connected/CnPhone'
 import { TEAM } from '../trial/trialStore'
 
 // Design ids from the master handover that had no address of their own.
@@ -41,6 +42,7 @@ import { TEAM } from '../trial/trialStore'
 const noop = () => {}
 
 const LIVE_COACH_TAB = new Set([
+  'CN9-SeasonReport', 'CN10-CatchUps', 'CN13-Handover', 'CN4-SessionsLanded', 'CN8-WhatWorked', 'CN17-SetPieces',   // the connected club: coach tabs
   'CF1-Fixtures', 'S1-PlayingStyle', 'ST1-TeamStaff', 'FB1-Formation', 'DG1-Goals', 'WL1-Wellness', 'AV1-Availability', 'P1-Consent',
   'WK1-ThisWeek', 'SG1-Suggested', 'DF0-Library', 'GT1-Growth', 'MS1-TeamSheet', 'OP1-Opposition', 'R1-MatchReview',
   'C2-ClipsByGame', 'C3-ClipsByPlayer', 'CL1-Playlists',
@@ -82,6 +84,17 @@ export function renderExtraScreen(key: string): ReactNode | undefined {
   if (isCaptureId(key)) return <CaptureFlow framed start={key} kitless={key === 'QC1e-CapturePlanNoKit'} />
   // Chances and points (17 Nov, v2): the coach screens in their frame; MiniRoos ids open the under-9 team.
   if (isChanceId(key)) return <ChancesFlow framed start={key} team={key.startsWith('XGm') ? 'u9' : 'u12'} />
+  // The connected club (17 Nov): phone screens, and tablet screens in the frame they live in.
+  const cnPhone: Record<string, ReactNode> = {
+    'CNp1-PlayerSelfReview': <CNp1PlayerSelfReview />, 'CNp3-SessionFeedback': <CNp3SessionFeedback />, 'CNp5-PlayerGoal': <CNp5PlayerGoal />, 'CNp9-SeasonReportParent': <CNp9SeasonReportParent />,
+    'CNp10-BookCatchUp': <CNp10BookCatchUp />, 'CNp11-FamilyView': <CNp11FamilyView />, 'CNp12-PulseSurvey': <CNp12PulseSurvey />, 'CNp14-PlayerPassport': <CNp14PlayerPassport />, 'CNp14o-PlayerPassportOwn': <CNp14PlayerPassport own />,
+    'CNp16-WeekElsewhere': <CNp16WeekElsewhere />, 'CNp18-IncidentLog': <CNp18IncidentLog />, 'CNp19-SidelineRating': <CNp19SidelineRating />,
+  }
+  if (key in cnPhone) return <div style={{ display: 'flex', justifyContent: 'center' }}>{cnPhone[key]}</div>
+  if (key === 'CN2-SelfVsCoach') return <JuniorCoachApp initialScreen={key} />
+  if (key === 'CN15-PositionHistory') return <div style={{ width: 1180, margin: '0 auto', background: 'var(--surface-100)' }}><MiniRoosApp onBack={noop} empty={false} initialScreen="positions" /></div>
+  if (key === 'CN6-Observation' || key === 'CN7-CoachLoad') return <ClubAdminScreen role="dof" initials="RM" initialTab="coaches" initialSub={key === 'CN6-Observation' ? 'observations' : 'coachload'} />
+  if (['CN12-ClubClimate', 'CN20-Sponsors', 'CN21-Pitches', 'CN22-LanguageAccess', 'CN23-AskLimits'].includes(key)) return <ClubAdminScreen role="dof" initials="RM" initialTab="club" initialSub={key} />
   switch (key) {
     case 'XG5-ClubChances': return <ClubAdminScreen role="dof" initials="RM" initialTab="teams" initialTeamsView="chances" />
     // Trial pack on the family's phone: Mia's parent, and Cal (under 16) on his own phone

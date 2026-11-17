@@ -1,10 +1,11 @@
 import { useState } from 'react'
+import CnScreen from '../connected/CnScreen'
 import { SubTabBar } from './ui'
 import { DirectorMessages } from '../MessagesScreens'
 import FilesTab from './FilesTab'
 import FeaturesTab from './FeaturesTab'
 
-type ClubView = 'overview' | 'messages' | 'calendar' | 'seasonplan' | 'playingstyle' | 'headingpolicy' | 'kit' | 'files' | 'features' | 'settings'
+type ClubView = 'climate' | 'sponsors' | 'pitches' | 'language' | 'asklimits' | 'overview' | 'messages' | 'calendar' | 'seasonplan' | 'playingstyle' | 'headingpolicy' | 'kit' | 'files' | 'features' | 'settings'
 
 const MONTHS = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC']
 
@@ -17,8 +18,12 @@ const GANTT_ROWS = [
   { label: 'Registrations', bars: [{ s: 0, e: 0, label: 'Winter', c: '#cbbeb5' }, { s: 7, e: 7, label: 'Futsal', c: '#cbbeb5' }] },
 ]
 
-export default function ClubTab({ role, empty, homeStory }: { role: 'chair' | 'dof'; empty?: boolean; homeStory?: import('react').ReactNode }) {
-  const [view, setView] = useState<ClubView>('overview')
+const CN_VIEW: Record<string, ClubView> = { 'CN12-ClubClimate': 'climate', 'CN20-Sponsors': 'sponsors', 'CN21-Pitches': 'pitches', 'CN22-LanguageAccess': 'language', 'CN23-AskLimits': 'asklimits' }
+const CN_ID = Object.fromEntries(Object.entries(CN_VIEW).map(([k, v]) => [v, k])) as Record<string, string>
+
+export default function ClubTab({ role, empty, homeStory, onNav, initialView }: { role: 'chair' | 'dof'; empty?: boolean; homeStory?: import('react').ReactNode; onNav?: (s: string) => void; initialView?: string }) {
+  const [view, setView] = useState<ClubView>((initialView && CN_VIEW[initialView]) || 'overview')
+  const cnNav = (t: string) => CN_VIEW[t] ? setView(CN_VIEW[t]) : onNav?.(t)
   const [headingPolicy, setHeadingPolicy] = useState<'england' | 'own' | 'none' | null>(null)
   const [toast, setToast] = useState<string | null>(null)
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
@@ -31,6 +36,11 @@ export default function ClubTab({ role, empty, homeStory }: { role: 'chair' | 'd
       <SubTabBar
         items={[
           { id: 'overview', label: 'Overview' },
+          { id: 'climate', label: 'Club climate' },
+          { id: 'sponsors', label: 'Sponsors' },
+          { id: 'pitches', label: 'Pitches' },
+          { id: 'language', label: 'Language and access' },
+          { id: 'asklimits', label: 'How often we ask' },
           { id: 'messages', label: 'Messages' },
           { id: 'calendar', label: 'Calendar' },
           { id: 'seasonplan', label: 'Season plan' },
@@ -44,6 +54,7 @@ export default function ClubTab({ role, empty, homeStory }: { role: 'chair' | 'd
         onSelect={id => setView(id as ClubView)}
       />
 
+      {view in CN_ID && (empty ? <div style={{ padding: '28px 20px', fontSize: 14, color: '#4a5a57' }}>Nothing here until your club has teams playing.</div> : <CnScreen id={CN_ID[view]} onNav={cnNav} />)}
       {view === 'overview' && !empty && homeStory}
 
       {empty && view === 'overview' && (

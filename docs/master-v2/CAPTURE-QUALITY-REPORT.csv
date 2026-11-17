@@ -1,84 +1,173 @@
 control id,screen,control,does,target or line,status: works / line of text only / missing / wrong target (say where)
 QC1-CapturePlan#7,QC1-CapturePlan,U12 Sam · Wattle Creek,Opens,VS1-SwitchView,works
-QC1-CapturePlan#11,QC1-CapturePlan,Choose what to capture,Opens,QC2-CaptureChoices,works
-QC1-CapturePlan#12,QC1-CapturePlan,1 · What you will get,Opens,QC1-CapturePlan,works
-QC1-CapturePlan#13,QC1-CapturePlan,2 · Pitch,Opens,QC3-PitchCheck,works
-QC1-CapturePlan#14,QC1-CapturePlan,3 · Camera and vests,Opens,QC4-SetUpGuide,works
-QC1-CapturePlan#15,QC1-CapturePlan,4 · Who is who,Opens,QC5-WhoIsWho,works
-QC1-CapturePlan#16,QC1-CapturePlan,5 · Test,Opens,QC6-TestResult,works
-QC1-CapturePlan#17,QC1-CapturePlan,Give spares,Opens,QC5-WhoIsWho,works
-QC1-CapturePlan#18,QC1-CapturePlan,"Source 2, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 2
-QC1-CapturePlan#19,QC1-CapturePlan,"Source 9, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 9
-QC1-CapturePlan#20,QC1-CapturePlan,"How we measure, and what we don’t",Opens,QC10-HowWeMeasure,works
-QC1-CapturePlan#21,QC1-CapturePlan,Back,Opens,REC1-RecordHub,works
-QC1-CapturePlan#22,QC1-CapturePlan,Start set-up · 2 minutes,Opens,QC3-PitchCheck,works
+QC1-CapturePlan#12,QC1-CapturePlan,Choose what to capture,Opens,QC2-CaptureChoices,works
+QC1-CapturePlan#13,QC1-CapturePlan,1 · What you will get,Opens,QC1-CapturePlan,works
+QC1-CapturePlan#14,QC1-CapturePlan,2 · Pitch,Opens,QC3-PitchCheck,works
+QC1-CapturePlan#15,QC1-CapturePlan,3 · Camera and vests,Opens,QC4-SetUpGuide,works
+QC1-CapturePlan#16,QC1-CapturePlan,4 · Who is who,Opens,QC5-WhoIsWho,works
+QC1-CapturePlan#17,QC1-CapturePlan,5 · Test,Opens,QC6-TestResult,works
+QC1-CapturePlan#18,QC1-CapturePlan,Remind me,Says,We’ll remind you on Friday at 6 pm to charge 3 vests.,works
+QC1-CapturePlan#19,QC1-CapturePlan,Give spares,Opens,QC5-WhoIsWho,works
+QC1-CapturePlan#20,QC1-CapturePlan,Fine,Says,Left as it is. Touches come from film for those four.,works
+QC1-CapturePlan#21,QC1-CapturePlan,"Source 2, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 2
+QC1-CapturePlan#22,QC1-CapturePlan,"Source 9, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 9
+QC1-CapturePlan#23,QC1-CapturePlan,"How we measure, and what we don’t",Opens,QC10-HowWeMeasure,works
+QC1-CapturePlan#24,QC1-CapturePlan,Back,Opens,REC1-RecordHub,works
+QC1-CapturePlan#25,QC1-CapturePlan,Start set-up · 2 minutes,Opens,QC3-PitchCheck,works
 QC1e-CapturePlanNoKit#7,QC1e-CapturePlanNoKit,U12 Sam · Wattle Creek,Opens,VS1-SwitchView,works
-QC1e-CapturePlanNoKit#11,QC1e-CapturePlanNoKit,Devices,Opens,SET4-Devices,works
-QC1e-CapturePlanNoKit#12,QC1e-CapturePlanNoKit,Record without kit,Opens,YT1-YourTake,works
-QC1e-CapturePlanNoKit#13,QC1e-CapturePlanNoKit,"Source 4, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 4
-QC1e-CapturePlanNoKit#14,QC1e-CapturePlanNoKit,"Source 5, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 5
+QC1e-CapturePlanNoKit#12,QC1e-CapturePlanNoKit,Devices,Opens,SET4-Devices,works
+QC1e-CapturePlanNoKit#13,QC1e-CapturePlanNoKit,Record without kit,Opens,YT1-YourTake,works
+QC1e-CapturePlanNoKit#14,QC1e-CapturePlanNoKit,"Source 4, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 4
+QC1e-CapturePlanNoKit#15,QC1e-CapturePlanNoKit,"Source 5, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 5
 QC2-CaptureChoices#7,QC2-CaptureChoices,U12 Sam · Wattle Creek,Opens,VS1-SwitchView,works
-QC2-CaptureChoices#11,QC2-CaptureChoices,Consent and privacy,Opens,P1-Consent,works
-QC2-CaptureChoices#12,QC2-CaptureChoices,Back,Opens,QC1-CapturePlan,works
-QC2-CaptureChoices#13,QC2-CaptureChoices,Save,Opens,QC1-CapturePlan,works
+QC2-CaptureChoices#12,QC2-CaptureChoices,Use the club’s settings,Says,Back to the club’s settings for under-12s.,works
+QC2-CaptureChoices#13,QC2-CaptureChoices,"Record the game · Needed for clips, passes and shape [switch]",Says,Record the game: turned off for this recording.,works
+QC2-CaptureChoices#14,QC2-CaptureChoices,Cut a clip for each player · Their best moment and one to work on [switch],Says,Cut a clip for each player: turned off for this recording.,works
+QC2-CaptureChoices#15,QC2-CaptureChoices,Touches · How often each player is on the ball [switch],Says,Touches: turned off for this recording.,works
+QC2-CaptureChoices#16,QC2-CaptureChoices,"Which foot · Left and right, for each player [switch]",Says,Which foot: turned off for this recording.,works
+QC2-CaptureChoices#17,QC2-CaptureChoices,Distance and load · To watch for a sudden jump in work [switch],Says,Distance and load: turned off for this recording.,works
+QC2-CaptureChoices#18,QC2-CaptureChoices,Sprint numbers · Each player sees their own. No ranking [switch],Says,Sprint numbers: turned off for this recording.,works
+QC2-CaptureChoices#19,QC2-CaptureChoices,How hard it felt · One question to each player after the game [switch],Says,How hard it felt: turned off for this recording.,works
+QC2-CaptureChoices#20,QC2-CaptureChoices,Parents’ ratings · Only you and that parent see them [switch],Says,Parents’ ratings: turned off for this recording.,works
+QC2-CaptureChoices#21,QC2-CaptureChoices,Consent and privacy,Opens,P1-Consent,works
+QC2-CaptureChoices#22,QC2-CaptureChoices,Back,Opens,QC1-CapturePlan,works
+QC2-CaptureChoices#23,QC2-CaptureChoices,Save,Opens,QC1-CapturePlan,works
 QC3-PitchCheck#7,QC3-PitchCheck,U12 Sam · Wattle Creek,Opens,VS1-SwitchView,works
-QC3-PitchCheck#11,QC3-PitchCheck,What you will get,Opens,QC1-CapturePlan,works
-QC3-PitchCheck#12,QC3-PitchCheck,2 · Pitch,Opens,QC3-PitchCheck,works
-QC3-PitchCheck#13,QC3-PitchCheck,3 · Camera and vests,Opens,QC4-SetUpGuide,works
-QC3-PitchCheck#14,QC3-PitchCheck,4 · Who is who,Opens,QC5-WhoIsWho,works
-QC3-PitchCheck#15,QC3-PitchCheck,5 · Test,Opens,QC6-TestResult,works
-QC3-PitchCheck#16,QC3-PitchCheck,"Source 8, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 8
-QC3-PitchCheck#17,QC3-PitchCheck,Back,Opens,QC1-CapturePlan,works
-QC3-PitchCheck#18,QC3-PitchCheck,Looks right,Opens,QC4-SetUpGuide,works
+QC3-PitchCheck#12,QC3-PitchCheck,What you will get,Opens,QC1-CapturePlan,works
+QC3-PitchCheck#13,QC3-PitchCheck,2 · Pitch,Opens,QC3-PitchCheck,works
+QC3-PitchCheck#14,QC3-PitchCheck,3 · Camera and vests,Opens,QC4-SetUpGuide,works
+QC3-PitchCheck#15,QC3-PitchCheck,4 · Who is who,Opens,QC5-WhoIsWho,works
+QC3-PitchCheck#16,QC3-PitchCheck,5 · Test,Opens,QC6-TestResult,works
+QC3-PitchCheck#17,QC3-PitchCheck,7 v 7 [radio],Says,7 v 7. The pitch plan is redrawn.,works
+QC3-PitchCheck#18,QC3-PitchCheck,9 v 9 [radio],Says,9 v 9. The pitch plan is redrawn.,works
+QC3-PitchCheck#19,QC3-PitchCheck,11 v 11 [radio],Says,11 v 11. The pitch plan is redrawn.,works
+QC3-PitchCheck#20,QC3-PitchCheck,Length: one metre less,Says,Length: one metre less.,"works: saved and shown on the screen, no separate line"
+QC3-PitchCheck#21,QC3-PitchCheck,Length: one metre more,Says,Length: one metre more.,"works: saved and shown on the screen, no separate line"
+QC3-PitchCheck#22,QC3-PitchCheck,Width: one metre less,Says,Width: one metre less.,"works: saved and shown on the screen, no separate line"
+QC3-PitchCheck#23,QC3-PitchCheck,Width: one metre more,Says,Width: one metre more.,"works: saved and shown on the screen, no separate line"
+QC3-PitchCheck#24,QC3-PitchCheck,"Saved: Wattle Creek Reserve, pitch 2 · Checked 3 May · 67 × 46 m · used 4 times · · Use saved",Says,"Wattle Creek Reserve, pitch 2: saved size used. 67 by 46 metres.",works: shown once the size typed differs from the saved one
+QC3-PitchCheck#25,QC3-PitchCheck,"Source 8, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 8
+QC3-PitchCheck#26,QC3-PitchCheck,Back,Opens,QC1-CapturePlan,works
+QC3-PitchCheck#27,QC3-PitchCheck,Looks right,Opens,QC4-SetUpGuide,works
 QC4-SetUpGuide#7,QC4-SetUpGuide,U12 Sam · Wattle Creek,Opens,VS1-SwitchView,works
-QC4-SetUpGuide#11,QC4-SetUpGuide,What you will get,Opens,QC1-CapturePlan,works
-QC4-SetUpGuide#12,QC4-SetUpGuide,Pitch,Opens,QC3-PitchCheck,works
-QC4-SetUpGuide#13,QC4-SetUpGuide,3 · Camera and vests,Opens,QC4-SetUpGuide,works
-QC4-SetUpGuide#14,QC4-SetUpGuide,4 · Who is who,Opens,QC5-WhoIsWho,works
-QC4-SetUpGuide#15,QC4-SetUpGuide,5 · Test,Opens,QC6-TestResult,works
-QC4-SetUpGuide#16,QC4-SetUpGuide,"Source 9, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 9
-QC4-SetUpGuide#17,QC4-SetUpGuide,"Source 1, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 1
-QC4-SetUpGuide#18,QC4-SetUpGuide,Back,Opens,QC3-PitchCheck,works
-QC4-SetUpGuide#19,QC4-SetUpGuide,Next: who is who,Opens,QC5-WhoIsWho,works
+QC4-SetUpGuide#12,QC4-SetUpGuide,What you will get,Opens,QC1-CapturePlan,works
+QC4-SetUpGuide#13,QC4-SetUpGuide,Pitch,Opens,QC3-PitchCheck,works
+QC4-SetUpGuide#14,QC4-SetUpGuide,3 · Camera and vests,Opens,QC4-SetUpGuide,works
+QC4-SetUpGuide#15,QC4-SetUpGuide,4 · Who is who,Opens,QC5-WhoIsWho,works
+QC4-SetUpGuide#16,QC4-SetUpGuide,5 · Test,Opens,QC6-TestResult,works
+QC4-SetUpGuide#17,QC4-SetUpGuide,"Source 9, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 9
+QC4-SetUpGuide#18,QC4-SetUpGuide,"Source 1, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 1
+QC4-SetUpGuide#19,QC4-SetUpGuide,Back,Opens,QC3-PitchCheck,works
+QC4-SetUpGuide#20,QC4-SetUpGuide,Next: who is who,Opens,QC5-WhoIsWho,works
 QC5-WhoIsWho#7,QC5-WhoIsWho,U12 Sam · Wattle Creek,Opens,VS1-SwitchView,works
-QC5-WhoIsWho#11,QC5-WhoIsWho,From Saturday’s line-up,Opens,FB1-Formation,works
-QC5-WhoIsWho#12,QC5-WhoIsWho,What you will get,Opens,QC1-CapturePlan,works
-QC5-WhoIsWho#13,QC5-WhoIsWho,Pitch,Opens,QC3-PitchCheck,works
-QC5-WhoIsWho#14,QC5-WhoIsWho,Camera and vests,Opens,QC4-SetUpGuide,works
-QC5-WhoIsWho#15,QC5-WhoIsWho,4 · Who is who,Opens,QC5-WhoIsWho,works
-QC5-WhoIsWho#16,QC5-WhoIsWho,5 · Test,Opens,QC6-TestResult,works
-QC5-WhoIsWho#17,QC5-WhoIsWho,"Source 9, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 9
-QC5-WhoIsWho#18,QC5-WhoIsWho,Back,Opens,QC4-SetUpGuide,works
-QC5-WhoIsWho#19,QC5-WhoIsWho,Confirm 16 players,Opens,QC6-TestResult,works
+QC5-WhoIsWho#12,QC5-WhoIsWho,From Saturday’s line-up,Opens,FB1-Formation,works
+QC5-WhoIsWho#13,QC5-WhoIsWho,What you will get,Opens,QC1-CapturePlan,works
+QC5-WhoIsWho#14,QC5-WhoIsWho,Pitch,Opens,QC3-PitchCheck,works
+QC5-WhoIsWho#15,QC5-WhoIsWho,Camera and vests,Opens,QC4-SetUpGuide,works
+QC5-WhoIsWho#16,QC5-WhoIsWho,4 · Who is who,Opens,QC5-WhoIsWho,works
+QC5-WhoIsWho#17,QC5-WhoIsWho,5 · Test,Opens,QC6-TestResult,works
+QC5-WhoIsWho#18,QC5-WhoIsWho,Change Finn’s,Says,Finn’s shirt: pick a number. 13 is free.,works
+QC5-WhoIsWho#19,QC5-WhoIsWho,Undo,Says,Spare vests taken back from Ella and Kofi.,works: shown once the spare vests have been given out
+QC5-WhoIsWho#20,QC5-WhoIsWho,"Source 9, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 9
+QC5-WhoIsWho#21,QC5-WhoIsWho,Back,Opens,QC4-SetUpGuide,works
+QC5-WhoIsWho#22,QC5-WhoIsWho,Confirm 16 players,Opens,QC6-TestResult,works
 QC6-TestResult#7,QC6-TestResult,U12 Sam · Wattle Creek,Opens,VS1-SwitchView,works
-QC6-TestResult#11,QC6-TestResult,What you will get,Opens,QC1-CapturePlan,works
-QC6-TestResult#12,QC6-TestResult,Pitch,Opens,QC3-PitchCheck,works
-QC6-TestResult#13,QC6-TestResult,Camera and vests,Opens,QC4-SetUpGuide,works
-QC6-TestResult#14,QC6-TestResult,Who is who,Opens,QC5-WhoIsWho,works
-QC6-TestResult#15,QC6-TestResult,5 · Test,Opens,QC6-TestResult,works
-QC6-TestResult#16,QC6-TestResult,Record anyway,Opens,QC7-LiveQuality,works
-QC6-TestResult#17,QC6-TestResult,Back,Opens,QC5-WhoIsWho,works
-QC6-TestResult#18,QC6-TestResult,Start recording,Opens,QC7-LiveQuality,works
+QC6-TestResult#12,QC6-TestResult,What you will get,Opens,QC1-CapturePlan,works
+QC6-TestResult#13,QC6-TestResult,Pitch,Opens,QC3-PitchCheck,works
+QC6-TestResult#14,QC6-TestResult,Camera and vests,Opens,QC4-SetUpGuide,works
+QC6-TestResult#15,QC6-TestResult,Who is who,Opens,QC5-WhoIsWho,works
+QC6-TestResult#16,QC6-TestResult,5 · Test,Opens,QC6-TestResult,works
+QC6-TestResult#17,QC6-TestResult,Test again,Says,Testing for ten seconds.,works
+QC6-TestResult#18,QC6-TestResult,Record anyway,Opens,QC7-LiveQuality,works
+QC6-TestResult#19,QC6-TestResult,Back,Opens,QC5-WhoIsWho,works
+QC6-TestResult#20,QC6-TestResult,Start recording,Opens,QC7-LiveQuality,works
 QC7-LiveQuality#7,QC7-LiveQuality,U12 Sam · Wattle Creek,Opens,VS1-SwitchView,works
-QC7-LiveQuality#11,QC7-LiveQuality,Stop and save,Opens,QC8-QualityReport,works
-QC7-LiveQuality#12,QC7-LiveQuality,"Source 7, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 7
+QC7-LiveQuality#12,QC7-LiveQuality,Stop and save,Opens,QC8-QualityReport,works
+QC7-LiveQuality#13,QC7-LiveQuality,Goal,Says,Marked at 23:10: Goal.,works
+QC7-LiveQuality#14,QC7-LiveQuality,Good moment,Says,Marked at 23:10: Good moment.,works
+QC7-LiveQuality#15,QC7-LiveQuality,Look at later,Says,Marked at 23:10: Look at later.,works
+QC7-LiveQuality#16,QC7-LiveQuality,Sub,Says,Marked at 23:10: Sub.,works
+QC7-LiveQuality#17,QC7-LiveQuality,"Source 7, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 7
 QC8-QualityReport#7,QC8-QualityReport,U12 Sam · Wattle Creek,Opens,VS1-SwitchView,works
-QC8-QualityReport#11,QC8-QualityReport,How we measure,Opens,QC10-HowWeMeasure,works
-QC8-QualityReport#12,QC8-QualityReport,Open the match review,Opens,R1-MatchReview,works
-QC8-QualityReport#13,QC8-QualityReport,See set-up,Opens,QC4-SetUpGuide,works
-QC8-QualityReport#14,QC8-QualityReport,Show me,Opens,QC9-MeasureConfidence,works
-QC8-QualityReport#15,QC8-QualityReport,"Source 3, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 3
+QC8-QualityReport#12,QC8-QualityReport,How we measure,Opens,QC10-HowWeMeasure,works
+QC8-QualityReport#13,QC8-QualityReport,Open the match review,Opens,R1-MatchReview,works
+QC8-QualityReport#14,QC8-QualityReport,See set-up,Opens,QC4-SetUpGuide,works
+QC8-QualityReport#15,QC8-QualityReport,Remind me Friday,Says,We’ll remind you on Friday at 6 pm to charge the vests.,works
+QC8-QualityReport#16,QC8-QualityReport,Check 3,Says,Three clips to check: tap the right player on each.,"works: saved and shown on the screen, no separate line"
+QC8-QualityReport#17,QC8-QualityReport,Show me,Opens,QC9-MeasureConfidence,works
+QC8-QualityReport#18,QC8-QualityReport,"Source 3, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 3
 QC9-MeasureConfidence#7,QC9-MeasureConfidence,U12 Sam · Wattle Creek,Opens,VS1-SwitchView,works
-QC9-MeasureConfidence#11,QC9-MeasureConfidence,See the 14 clips,Opens,PU8a-MeasureFilm,works
-QC9-MeasureConfidence#12,QC9-MeasureConfidence,"Source 6, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 6
-QC9-MeasureConfidence#13,QC9-MeasureConfidence,"Source 8, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 8
-QC9-MeasureConfidence#14,QC9-MeasureConfidence,"How we measure, with sources",Opens,QC10-HowWeMeasure,works
+QC9-MeasureConfidence#12,QC9-MeasureConfidence,That’s not right,Says,Tell us what looks wrong. We check the clips and write back within a day.,works
+QC9-MeasureConfidence#13,QC9-MeasureConfidence,See the 14 clips,Opens,PU8a-MeasureFilm,works
+QC9-MeasureConfidence#14,QC9-MeasureConfidence,"Source 6, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 6
+QC9-MeasureConfidence#15,QC9-MeasureConfidence,"Source 8, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 8
+QC9-MeasureConfidence#16,QC9-MeasureConfidence,"How we measure, with sources",Opens,QC10-HowWeMeasure,works
 QC10-HowWeMeasure#7,QC10-HowWeMeasure,U12 Sam · Wattle Creek,Opens,VS1-SwitchView,works
+QC10-HowWeMeasure#12,QC10-HowWeMeasure,Tell us a number looks wrong,Says,Tell us which number and why. We check and write back within a day.,works
 QC11-ClubCaptureRules#7,QC11-ClubCaptureRules,Ask Clean Sheet,Opens,ASKd4-PanelFirst,"works, different target: opens the working Ask panel in place, not the ASKd4 board"
 QC11-ClubCaptureRules#8,QC11-ClubCaptureRules,Whole club,Opens,VS1-SwitchView,works
 QC11-ClubCaptureRules#16,QC11-ClubCaptureRules,How we measure,Opens,QC10-HowWeMeasure,works
-QC11-ClubCaptureRules#17,QC11-ClubCaptureRules,"Source 3, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 3
-QC11-ClubCaptureRules#18,QC11-ClubCaptureRules,"Source 10, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 10
+QC11-ClubCaptureRules#17,QC11-ClubCaptureRules,Save,Says,Saved. 14 teams follow these rules from their next recording.,works
+QC11-ClubCaptureRules#18,QC11-ClubCaptureRules,On [switch],Says,Film games and training: turned off.,works
+QC11-ClubCaptureRules#19,QC11-ClubCaptureRules,On [switch],Says,Film games and training: turned off.,works
+QC11-ClubCaptureRules#20,QC11-ClubCaptureRules,On [switch],Says,Film games and training: turned off.,works
+QC11-ClubCaptureRules#21,QC11-ClubCaptureRules,On [switch],Says,Film games and training: turned off.,works
+QC11-ClubCaptureRules#22,QC11-ClubCaptureRules,On [switch],Says,Film games and training: turned off.,works
+QC11-ClubCaptureRules#23,QC11-ClubCaptureRules,On [switch],Says,Film games and training: turned off.,works
+QC11-ClubCaptureRules#24,QC11-ClubCaptureRules,Off [switch],Says,Distance and load from vests: turned on.,works: saves and confirms
+QC11-ClubCaptureRules#25,QC11-ClubCaptureRules,Off [switch],Says,Distance and load from vests: turned on.,works: saves and confirms
+QC11-ClubCaptureRules#26,QC11-ClubCaptureRules,On [switch],Says,Distance and load from vests: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#27,QC11-ClubCaptureRules,On [switch],Says,Distance and load from vests: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#28,QC11-ClubCaptureRules,On [switch],Says,Distance and load from vests: turned off.,works
+QC11-ClubCaptureRules#29,QC11-ClubCaptureRules,On [switch],Says,Distance and load from vests: turned off.,works
+QC11-ClubCaptureRules#30,QC11-ClubCaptureRules,Off [switch],Says,Chances for the coach: turned on.,works: saves and confirms
+QC11-ClubCaptureRules#31,QC11-ClubCaptureRules,On [switch],Says,Chances for the coach: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#32,QC11-ClubCaptureRules,On [switch],Says,Chances for the coach: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#33,QC11-ClubCaptureRules,On [switch],Says,Chances for the coach: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#34,QC11-ClubCaptureRules,On [switch],Says,Chances for the coach: turned off.,works
+QC11-ClubCaptureRules#35,QC11-ClubCaptureRules,On [switch],Says,Chances for the coach: turned off.,works
+QC11-ClubCaptureRules#36,QC11-ClubCaptureRules,Off [switch],Says,Name who set up a chance: turned on.,works: saves and confirms
+QC11-ClubCaptureRules#37,QC11-ClubCaptureRules,Off [switch],Says,Name who set up a chance: turned on.,works: saves and confirms
+QC11-ClubCaptureRules#38,QC11-ClubCaptureRules,On [switch],Says,Name who set up a chance: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#39,QC11-ClubCaptureRules,On [switch],Says,Name who set up a chance: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#40,QC11-ClubCaptureRules,On [switch],Says,Name who set up a chance: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#41,QC11-ClubCaptureRules,On [switch],Says,Name who set up a chance: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#42,QC11-ClubCaptureRules,Off [switch],Says,Show speed numbers to players: turned on.,works: saves and confirms
+QC11-ClubCaptureRules#43,QC11-ClubCaptureRules,Off [switch],Says,Show speed numbers to players: turned on.,works: saves and confirms
+QC11-ClubCaptureRules#44,QC11-ClubCaptureRules,Off [switch],Says,Show speed numbers to players: turned on.,works: saves and confirms
+QC11-ClubCaptureRules#45,QC11-ClubCaptureRules,On [switch],Says,Show speed numbers to players: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#46,QC11-ClubCaptureRules,On [switch],Says,Show speed numbers to players: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#47,QC11-ClubCaptureRules,On [switch],Says,Show speed numbers to players: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#48,QC11-ClubCaptureRules,Off [switch],Says,Rank players against each other: turned on.,works: saves and confirms
+QC11-ClubCaptureRules#49,QC11-ClubCaptureRules,On [switch],Says,Rank players against each other: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#50,QC11-ClubCaptureRules,On [switch],Says,Ladder and points: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#51,QC11-ClubCaptureRules,On [switch],Says,Ladder and points: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#52,QC11-ClubCaptureRules,On [switch],Says,Ladder and points: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#53,QC11-ClubCaptureRules,On [switch],Says,Share clips with families: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#54,QC11-ClubCaptureRules,On [switch],Says,Share clips with families: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#55,QC11-ClubCaptureRules,On [switch],Says,Share clips with families: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#56,QC11-ClubCaptureRules,On [switch],Says,Share clips with families: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#57,QC11-ClubCaptureRules,On [switch],Says,Share clips with families: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#58,QC11-ClubCaptureRules,On [switch],Says,Share clips with families: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#59,QC11-ClubCaptureRules,Off [switch],Says,Show team numbers to families: turned on.,works: saves and confirms
+QC11-ClubCaptureRules#60,QC11-ClubCaptureRules,Off [switch],Says,Show team numbers to families: turned on.,works: saves and confirms
+QC11-ClubCaptureRules#61,QC11-ClubCaptureRules,On [switch],Says,Show team numbers to families: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#62,QC11-ClubCaptureRules,On [switch],Says,Show team numbers to families: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#63,QC11-ClubCaptureRules,On [switch],Says,Show team numbers to families: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#64,QC11-ClubCaptureRules,On [switch],Says,Show team numbers to families: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#65,QC11-ClubCaptureRules,On [switch],Says,Parents’ ratings: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#66,QC11-ClubCaptureRules,On [switch],Says,Parents’ ratings: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#67,QC11-ClubCaptureRules,On [switch],Says,Parents’ ratings: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#68,QC11-ClubCaptureRules,On [switch],Says,Parents’ ratings: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#69,QC11-ClubCaptureRules,On [switch],Says,Parents’ ratings: turned off.,works: saves and confirms
+QC11-ClubCaptureRules#70,QC11-ClubCaptureRules,Off [switch],Says,Parents’ ratings: turned on.,works: saves and confirms
+QC11-ClubCaptureRules#71,QC11-ClubCaptureRules,2 games [radio],Says,2 games. The pitch plan is redrawn.,works: saves and confirms
+QC11-ClubCaptureRules#72,QC11-ClubCaptureRules,3 games [radio],Says,3 games. The pitch plan is redrawn.,works: saves and confirms
+QC11-ClubCaptureRules#73,QC11-ClubCaptureRules,5 games [radio],Says,5 games. The pitch plan is redrawn.,works: saves and confirms
+QC11-ClubCaptureRules#74,QC11-ClubCaptureRules,Keep [radio],Says,Keep. The pitch plan is redrawn.,works: saves and confirms
+QC11-ClubCaptureRules#75,QC11-ClubCaptureRules,Clips only [radio],Says,Clips only. The pitch plan is redrawn.,works: saves and confirms
+QC11-ClubCaptureRules#76,QC11-ClubCaptureRules,Delete [radio],Says,Delete. The pitch plan is redrawn.,works: saves and confirms
+QC11-ClubCaptureRules#77,QC11-ClubCaptureRules,"Source 10, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 10
 QCp1-BeforeKickOffPhone#1,QCp1-BeforeKickOffPhone,Home,Opens,CPh1-CoachPhoneHome,works
 QCp1-BeforeKickOffPhone#2,QCp1-BeforeKickOffPhone,What the marks mean,Opens,QC10-HowWeMeasure,works
 QCp1-BeforeKickOffPhone#3,QCp1-BeforeKickOffPhone,Pitch · Saved for this ground. 67 × 46 m,Opens,QC3-PitchCheck,works
@@ -87,29 +176,3 @@ QCp1-BeforeKickOffPhone#5,QCp1-BeforeKickOffPhone,3 · Who is who · Two players
 QCp1-BeforeKickOffPhone#6,QCp1-BeforeKickOffPhone,4 · Ten-second test · Not done yet,Opens,QC6-TestResult,works
 QCp1-BeforeKickOffPhone#7,QCp1-BeforeKickOffPhone,Record now,Opens,QC7-LiveQuality,works
 QCp1-BeforeKickOffPhone#8,QCp1-BeforeKickOffPhone,Sort shirt 7,Opens,QC5-WhoIsWho,works
-build,,,,,capture-quality-v1 first pushed as 133c7c8; review and Where we’re at marks added after. Checked on a local production build at 1180x820 and 390x844
-flow,REC1-RecordHub,A game,Opens,QC1-CapturePlan,"works: A game, step 5 Test, Start recording is 3 taps. Every step can be skipped"
-flow,RC1-RecordStart,League game / Friendly,Opens,QC1-CapturePlan,works
-tab,Record,How we measure (fourth tab),Opens,QC10-HowWeMeasure,"works in the junior, youth and senior coach apps. MiniRoos coach Record is unchanged"
-says,QC1,Remind me / Fine,Says,"reminder saved, line shown",works
-says,QC2,"9 switches, Use the club’s settings",Says,"saved in this browser, line shown",works: locked rows cannot be changed
-says,QC3,"format, length, width, Use saved, corners",Says,"saved, line shown",works: size saved for the ground on Looks right
-says,QC4,7 checklist lines,Says,saved,"works: no line of text in the design, the tick changes"
-says,QC5,"Change Finn’s, Undo, Give spares",Says,"saved, line shown",works: free shirt numbers offered
-says,QC6,Test again,Says,line shown,works: second test clears the cut-off corner
-says,QC7,"Goal, Good moment, Look at later, Sub",Says,"moment saved, line shown",works
-says,QC8,"Remind me Friday, Check 3",Says,"saved, line shown","works: Check 3 also opens Clips, To check"
-says,QC9 / PU8a to PU8k,That’s not right,Says,"flag saved, line shown",works
-says,QC11,"31 switches, trend rule, poor-recording rule, Save",Says,"saved, line shown","works: changes reach QC2 locks, QC8, QC9 and the measure sheets"
-marks,PU8a to PU8k,mark beside the number,,,"done: mark, trend note, usual swing lines, That’s not right"
-marks,"PU2, PU4, PX2",mark beside each number,,,done: dot shape and word in each row
-marks,R1-MatchReview,mark beside each number,,,done: each style point and work-on figure; links to the quality report and How we measure
-marks,WA1-WhereWeAt,mark beside each number,,,"done: marks follow the view (season, last month, last game); one game shows no trend word"
-marks,review fitness section and GT1-Growth,mark beside each number,,,done: sprint and fade figures Estimate; load and distance Strong; height (by hand) Strong
-marks,home stories (STO*),proof figure must be Strong,,,"checked: all 14 tablet proofs are counts, team-sheet or told figures. No mark is drawn on them"
-marks,other screens with numbers,mark beside each number,,,"NOT done: the fitness coach's own tabs and the squad list carry no mark yet"
-marks,STO19 older player home,proof figure must be Strong,,,changed: top speed (Estimate) replaced with wins of the ball (counted from film). New wording needs sign-off
-mark unclear,"PU8c, PU8h, PU8i","what people said, settling in, where she would go",,,"marked Strong as ""told by a person"". Not numbers; confirm a mark is wanted here"
-mark unclear,PU8j,minutes of football a week (mixed sources),,,"marked Strong. Mixed attendance, vest on-time and check-ins: confirm"
-mark unclear,PU4 rows,"Goals and assists, Touches, Sprints a game",,,"take the mark of the sheet they open (PU8a, PU8a, PU8b): no sheet of their own"
-server rules,,part 5,,,NOT built: the demo has no server. Shown in the screens only

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import QCp1BeforeKickOffPhone from '../capture/QCp1BeforeKickOffPhone'
 import CaptureFlow, { isCaptureId } from '../capture/CaptureFlow'
+import { CNp18IncidentLog } from '../connected/CnPhone'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', PALE = '#eef5f2'
 
@@ -276,7 +277,7 @@ function PhoneAskLine({ onAsk }: { onAsk: () => void }) {
   )
 }
 
-function CoachPhoneHomeTab({ onPlan, onAsk, onKick }: { onPlan: () => void; onAsk: () => void; onKick?: () => void }) {
+function CoachPhoneHomeTab({ onPlan, onAsk, onKick, onIncident }: { onPlan: () => void; onAsk: () => void; onKick?: () => void; onIncident?: () => void }) {
   const [toast, setToast] = useState<string|null>(null)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
@@ -306,6 +307,18 @@ function CoachPhoneHomeTab({ onPlan, onAsk, onKick }: { onPlan: () => void; onAs
             <span style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
               <strong style={{ fontSize: 15 }}>Before kick-off</strong>
               <span style={{ fontSize: 13, color: MUT }}>Saturday v Harbour Rovers · four checks, about 2 minutes</span>
+            </span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </button>
+        </Card>
+      )}
+
+      {onIncident && (
+        <Card>
+          <button onClick={onIncident} style={{ width: '100%', minHeight: 60, padding: '10px 14px', display: 'flex', alignItems: 'center', gap: 12, textAlign: 'left', background: 'none', border: 0, fontFamily: 'inherit', color: INK, cursor: 'pointer' }}>
+            <span style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+              <strong style={{ fontSize: 15 }}>Log an incident</strong>
+              <span style={{ fontSize: 13, color: MUT }}>A knock, a head knock, behaviour or the sideline. Goes to Helen</span>
             </span>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
           </button>
@@ -610,8 +623,10 @@ export default function CoachPhoneApp({ initialTab = 'home', phase = 'season' as
   const [askOpen, setAskOpen] = useState(false)
   // Before kick-off (QCp1) and the step it opens. Anything else goes home.
   const [kick, setKick] = useState<string | null>(null)
+  const [incident, setIncident] = useState(false)   // CNp18: log an incident, from the home
   const kickNav = (s: string) => setKick(isCaptureId(s) ? s : s === 'QCp1-BeforeKickOffPhone' ? s : null)
 
+  if (incident) return <CNp18IncidentLog onNav={() => setIncident(false)} />
   if (kick === 'QCp1-BeforeKickOffPhone') return <QCp1BeforeKickOffPhone onNav={kickNav} />
   if (kick) return (
     <div style={{ width: 390, minHeight: 844, margin: '0 auto', background: '#f7f8f7', display: 'flex', flexDirection: 'column' }}>
@@ -630,7 +645,7 @@ export default function CoachPhoneApp({ initialTab = 'home', phase = 'season' as
       {tab === 'home' && phase === 'preseason'  && <CoachPhonePreSeasonHome />}
       {tab === 'home' && phase === 'postseason' && <CoachPhonePostSeasonHome />}
       {tab === 'home' && phase === 'restmonth'  && <CoachPhoneRestMonthHome />}
-      {tab === 'home' && phase === 'season'     && <CoachPhoneHomeTab onPlan={() => setShowPlan(true)} onAsk={() => setAskOpen(true)} onKick={() => setKick('QCp1-BeforeKickOffPhone')} />}
+      {tab === 'home' && phase === 'season'     && <CoachPhoneHomeTab onPlan={() => setShowPlan(true)} onAsk={() => setAskOpen(true)} onKick={() => setKick('QCp1-BeforeKickOffPhone')} onIncident={() => setIncident(true)} />}
       {tab === 'coming'   && <CoachPhoneComingTab />}
       {tab === 'messages' && <CoachPhoneMessagesTab />}
       {tab === 'game'     && <CoachPhoneGameTab />}

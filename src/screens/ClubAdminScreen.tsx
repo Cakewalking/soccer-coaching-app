@@ -22,7 +22,7 @@ import SP19TrialWindow from './footballyear/SP19TrialWindow'
 import FilesTab from './clubadmin/FilesTab'
 import FeaturesTab from './clubadmin/FeaturesTab'
 
-export default function ClubAdminScreen({ empty, role = 'chair', initials = 'RM', initialTab = 'club', onNav, homeStory, initialFeature, initialTeamsView }: { initialFeature?: string; initialTeamsView?: string; empty?: boolean; role?: 'chair' | 'dof' | 'welfare'; initials?: string; initialTab?: AdminTab; onNav?: (s: string) => void; homeStory?: import('react').ReactNode }) {
+export default function ClubAdminScreen({ empty, role = 'chair', initials = 'RM', initialTab = 'club', onNav, homeStory, initialFeature, initialTeamsView, initialSub }: { initialFeature?: string; initialTeamsView?: string; /** a sub-tab to open on: a Coaches view, or a Club screen id */ initialSub?: string; empty?: boolean; role?: 'chair' | 'dof' | 'welfare'; initials?: string; initialTab?: AdminTab; onNav?: (s: string) => void; homeStory?: import('react').ReactNode }) {
   const safeInitial: AdminTab = initialTab === 'welfare' && role !== 'welfare' ? 'club' : initialTab
   const [tab, setTab] = useState<AdminTab>(safeInitial)
   const [askOpen, setAskOpen] = useState(false)
@@ -122,9 +122,9 @@ export default function ClubAdminScreen({ empty, role = 'chair', initials = 'RM'
       {/* Content */}
       <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden' }}>
         <div style={{ flex: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
-          {tab === 'club'         && <ClubTab role={role === 'welfare' ? 'chair' : role} empty={empty} homeStory={story} />}
+          {tab === 'club'         && <ClubTab role={role === 'welfare' ? 'chair' : role} empty={empty} homeStory={story} onNav={onNav} initialView={initialSub} />}
           {tab === 'teams'        && <TeamsTab empty={empty} initialView={initialTeamsView} onNav={onNav} />}
-          {tab === 'coaches'      && <CoachesTab empty={empty} role={role === 'welfare' ? 'chair' : role} onNav={onNav} />}
+          {tab === 'coaches'      && <CoachesTab empty={empty} role={role === 'welfare' ? 'chair' : role} onNav={onNav} initialView={initialSub} />}
           {tab === 'players'      && <PlayersTab empty={empty} onNav={onNav} />}
           {tab === 'safeguarding' && <SafeguardingTab empty={empty} />}
           {tab === 'reports'      && <ReportsTab empty={empty} />}

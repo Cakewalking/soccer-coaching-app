@@ -1,0 +1,291 @@
+control id,screen,control,does,target or line,status: works / line of text only / missing / wrong target (say where)
+CN10-CatchUps#7,CN10-CatchUps,U12 Sam · Wattle Creek,Opens,VS1-SwitchView,works
+CN10-CatchUps#13,CN10-CatchUps,Change my times,Says,Pick the times you are free.,works
+CN10-CatchUps#14,CN10-CatchUps,Nudge the other 7,Says,One reminder goes to 7 families. No more after that.,works
+CN12-ClubClimate#7,CN12-ClubClimate,Ask Clean Sheet,Opens,ASKd4-PanelFirst,"works, different target: opens the working Ask panel in place, not the ASKd4 board"
+CN12-ClubClimate#8,CN12-ClubClimate,Whole club,Opens,VS1-SwitchView,works
+CN12-ClubClimate#15,CN12-ClubClimate,How often we ask,Opens,CN23-AskLimits,works
+CN12-ClubClimate#16,CN12-ClubClimate,Board report,Opens,D6-BoardReport,works
+CN12-ClubClimate#17,CN12-ClubClimate,Ask Dee,Says,Message drafted to Dee Walsh about three families.,works
+CN12-ClubClimate#18,CN12-ClubClimate,Call them,Says,Added to your jobs: call one U13 Boys family.,works
+CN12-ClubClimate#19,CN12-ClubClimate,Tell Helen,Opens,PC2b-TellHelen,works
+CN13-Handover#7,CN13-Handover,U12 Sam · Wattle Creek,Opens,VS1-SwitchView,works
+CN13-Handover#13,CN13-Handover,What the family sees,Says,"The family sees this page, word for word, before it is passed on.",works
+CN13-Handover#14,CN13-Handover,Pass on Mia’s,Says,Passed to Kate R. It appears on her squad page when the new season opens.,"works: saves, and says “The family sees this page, word for word, before it is passed on.”"
+CN15-PositionHistory#7,CN15-PositionHistory,U9 Tom · Wattle Creek,Opens,VS1-SwitchView,works
+CN15-PositionHistory#10,CN15-PositionHistory,Game time,Opens,HM4-GameDayMiniRoos,works
+CN15-PositionHistory#11,CN15-PositionHistory,Plan Saturday’s turns,Opens,FB1m-FormationMiniRoos,works
+CN15-PositionHistory#12,CN15-PositionHistory,Add,Says,Ari is up front for the first half on Saturday.,works
+CN15-PositionHistory#13,CN15-PositionHistory,Swap,Says,Remy starts in goal on Saturday. Hamza plays in the middle.,works
+CN17-SetPieces#7,CN17-SetPieces,U12 Sam · Wattle Creek,Opens,VS1-SwitchView,works
+CN17-SetPieces#16,CN17-SetPieces,How we measure,Opens,QC10-HowWeMeasure,works
+CN17-SetPieces#17,CN17-SetPieces,Practise on Thursday,Says,Added to Thursday: 15 minutes defending corners.,works
+CN17-SetPieces#18,CN17-SetPieces,"Corner: short, then cross · Harper and Mia · · 14 · 6 · 2 · 0.5",Says,The clips for this routine open.,works
+CN17-SetPieces#19,CN17-SetPieces,Corner: straight to the far post · · · 17 · 3 · 0 · 0.2,Says,The clips for this routine open.,works
+CN17-SetPieces#20,CN17-SetPieces,"Free kick: wide, crossed in · · · 9 · 2 · 0 · 0.2",Says,The clips for this routine open.,works
+CN17-SetPieces#21,CN17-SetPieces,Corners to the near post · Nobody on the post · · 12 · 8 · 3 · 1.3,Says,The clips for this routine open.,works
+CN17-SetPieces#22,CN17-SetPieces,Corners to the far post · · · 10 · 3 · 0 · 0.3,Says,The clips for this routine open.,works
+CN2-SelfVsCoach#7,CN2-SelfVsCoach,U12 Sam · Wattle Creek,Opens,VS1-SwitchView,works
+CN2-SelfVsCoach#16,CN2-SelfVsCoach,Remind the other 7,Says,A reminder goes to 7 players tomorrow morning. Only one reminder is ever sent.,works
+CN2-SelfVsCoach#17,CN2-SelfVsCoach,Your ratings,Opens,YT4-VotesAwards,works
+CN2-SelfVsCoach#18,CN2-SelfVsCoach,Add to Tuesday,Says,Added to Tuesday’s session notes: a word with Noah and Grace.,works
+CN2-SelfVsCoach#19,CN2-SelfVsCoach,Add to Tuesday,Says,Added to Tuesday’s session notes: a word with Jai.,works
+CN20-Sponsors#7,CN20-Sponsors,Ask Clean Sheet,Opens,ASKd4-PanelFirst,"works, different target: opens the working Ask panel in place, not the ASKd4 board"
+CN20-Sponsors#8,CN20-Sponsors,Whole club,Opens,VS1-SwitchView,works
+CN20-Sponsors#15,CN20-Sponsors,Add a sponsor,Says,"Add a sponsor: name, logo, where it shows, and the renewal date.",works
+CN20-Sponsors#16,CN20-Sponsors,Board report,Opens,D6-BoardReport,works
+CN20-Sponsors#17,CN20-Sponsors,Report,Says,Harbour Bakery: a one-page report is ready to send.,works
+CN20-Sponsors#18,CN20-Sponsors,Report,Says,Ridgeline Physio: a one-page report is ready to send.,works
+CN20-Sponsors#19,CN20-Sponsors,Report,Says,Kestrel Sports: a one-page report is ready to send.,works
+CN20-Sponsors#20,CN20-Sponsors,Remind me,Says,Reminder set for 1 February.,works
+CN20-Sponsors#21,CN20-Sponsors,Set rules,Says,Choose which pages a sponsor may show on.,works
+CN21-Pitches#7,CN21-Pitches,Ask Clean Sheet,Opens,ASKd4-PanelFirst,"works, different target: opens the working Ask panel in place, not the ASKd4 board"
+CN21-Pitches#8,CN21-Pitches,Whole club,Opens,VS1-SwitchView,works
+CN21-Pitches#15,CN21-Pitches,Pitch 1,Says,Pitch 1 this week.,works
+CN21-Pitches#16,CN21-Pitches,Pitch 3,Says,Pitch 3 this week.,works
+CN21-Pitches#17,CN21-Pitches,Tell coaches,Says,This week’s pitch plan sent to 14 coaches.,works
+CN21-Pitches#18,CN21-Pitches,U9 Tom · Half pitch,Says,U9 Tom: change or swap this slot.,works
+CN21-Pitches#19,CN21-Pitches,U12 Sam · Full,Says,U12 Sam: change or swap this slot.,works
+CN21-Pitches#20,CN21-Pitches,U8 Green · Half pitch,Says,U8 Green: change or swap this slot.,works
+CN21-Pitches#21,CN21-Pitches,U12 Sam · Full,Says,U12 Sam: change or swap this slot.,works
+CN21-Pitches#22,CN21-Pitches,U11 Mixed · Full,Says,U11 Mixed: change or swap this slot.,works
+CN21-Pitches#23,CN21-Pitches,U13 Boys + U14 Mixed · Both booked,Says,U13 Boys + U14 Mixed: change or swap this slot.,works
+CN21-Pitches#24,CN21-Pitches,U10 Mixed · Full,Says,U10 Mixed: change or swap this slot.,works
+CN21-Pitches#25,CN21-Pitches,U13 Boys · Full,Says,U13 Boys: change or swap this slot.,works
+CN21-Pitches#26,CN21-Pitches,U15 Girls · Full,Says,U15 Girls: change or swap this slot.,works
+CN21-Pitches#27,CN21-Pitches,U16 Boys · Full,Says,U16 Boys: change or swap this slot.,works
+CN21-Pitches#28,CN21-Pitches,Free · Lights until 8,Says,Free: change or swap this slot.,works
+CN21-Pitches#29,CN21-Pitches,U15 Girls · Full,Says,U15 Girls: change or swap this slot.,works
+CN21-Pitches#30,CN21-Pitches,Free,Says,Free: change or swap this slot.,works
+CN21-Pitches#31,CN21-Pitches,"Seniors · Full, lights",Says,Seniors: change or swap this slot.,works
+CN21-Pitches#32,CN21-Pitches,Free,Says,Free: change or swap this slot.,works
+CN21-Pitches#33,CN21-Pitches,"Seniors · Full, lights",Says,Seniors: change or swap this slot.,works
+CN21-Pitches#34,CN21-Pitches,Move U14,Says,U14 Mixed moved to Wednesday 6:30. Dee Walsh and the families are told.,works
+CN21-Pitches#35,CN21-Pitches,Offer it,Says,Monday 7:30 offered to Ollie Grant.,works
+CN22-LanguageAccess#7,CN22-LanguageAccess,Ask Clean Sheet,Opens,ASKd4-PanelFirst,"works, different target: opens the working Ask panel in place, not the ASKd4 board"
+CN22-LanguageAccess#8,CN22-LanguageAccess,Whole club,Opens,VS1-SwitchView,works
+CN22-LanguageAccess#15,CN22-LanguageAccess,Ask families their language,Says,One question goes to every family: which language do you read most easily?,works
+CN22-LanguageAccess#16,CN22-LanguageAccess,Save,Says,Saved.,works
+CN22-LanguageAccess#17,CN22-LanguageAccess,On [switch],Says,English: translation off.,works
+CN22-LanguageAccess#18,CN22-LanguageAccess,On [switch],Says,Vietnamese: translation off.,works
+CN22-LanguageAccess#19,CN22-LanguageAccess,On [switch],Says,Mandarin: translation off.,works
+CN22-LanguageAccess#20,CN22-LanguageAccess,On [switch],Says,Arabic: translation off.,works
+CN22-LanguageAccess#21,CN22-LanguageAccess,Off [switch],Says,Greek: translation on.,"works: saves, and says “English: translation off.”"
+CN22-LanguageAccess#22,CN22-LanguageAccess,Off [switch],Says,8 others: translation on.,"works: saves, and says “Vietnamese: translation off.”"
+CN23-AskLimits#7,CN23-AskLimits,Ask Clean Sheet,Opens,ASKd4-PanelFirst,"works, different target: opens the working Ask panel in place, not the ASKd4 board"
+CN23-AskLimits#8,CN23-AskLimits,Whole club,Opens,VS1-SwitchView,works
+CN23-AskLimits#15,CN23-AskLimits,Club climate,Opens,CN12-ClubClimate,works
+CN23-AskLimits#16,CN23-AskLimits,Save,Says,Saved. The limits apply from tomorrow.,works
+CN23-AskLimits#17,CN23-AskLimits,On [switch],Says,How hard did it feel?: turned off for the whole club.,works
+CN23-AskLimits#18,CN23-AskLimits,On [switch],Says,How do you feel today?: turned off for the whole club.,works
+CN23-AskLimits#19,CN23-AskLimits,On [switch],Says,How was training?: turned off for the whole club.,works
+CN23-AskLimits#20,CN23-AskLimits,On [switch],Says,How did you go?: turned off for the whole club.,works
+CN23-AskLimits#21,CN23-AskLimits,On [switch],Says,What else did you do?: turned off for the whole club.,works
+CN23-AskLimits#22,CN23-AskLimits,On [switch],Says,Rate the game: turned off for the whole club.,works
+CN23-AskLimits#23,CN23-AskLimits,On [switch],Says,Two quick questions: turned off for the whole club.,works
+CN23-AskLimits#24,CN23-AskLimits,On [switch],Says,How was the sideline?: turned off for the whole club.,works
+CN23-AskLimits#25,CN23-AskLimits,On [switch],Says,Three taps after the game: turned off for the whole club.,works
+CN23-AskLimits#26,CN23-AskLimits,1 a day [radio],Says,1 a day. The pitch plan is redrawn.,"works: saves, and says “A player is asked at most 1 a day.”"
+CN23-AskLimits#27,CN23-AskLimits,2 a day [radio],Says,2 a day. The pitch plan is redrawn.,"works: saves, and says “A player is asked at most 2 a day.”"
+CN23-AskLimits#28,CN23-AskLimits,3 [radio],Says,3. The pitch plan is redrawn.,"works: saves, and says “A player is asked at most 3 times a week.”"
+CN23-AskLimits#29,CN23-AskLimits,4 [radio],Says,4. The pitch plan is redrawn.,"works: saves, and says “A player is asked at most 4 times a week.”"
+CN23-AskLimits#30,CN23-AskLimits,5 [radio],Says,5. The pitch plan is redrawn.,"works: saves, and says “A player is asked at most 5 times a week.”"
+CN23-AskLimits#31,CN23-AskLimits,1 [radio],Says,1. The pitch plan is redrawn.,"works: saves, and says “A parent is asked at most 1 time a week.”"
+CN23-AskLimits#32,CN23-AskLimits,2 [radio],Says,2. The pitch plan is redrawn.,"works: saves, and says “A parent is asked at most 2 times a week.”"
+CN23-AskLimits#33,CN23-AskLimits,3 [radio],Says,3. The pitch plan is redrawn.,"works: saves, and says “A parent is asked at most 3 times a week.”"
+CN4-SessionsLanded#7,CN4-SessionsLanded,U12 Sam · Wattle Creek,Opens,VS1-SwitchView,works
+CN4-SessionsLanded#11,CN4-SessionsLanded,Plan Thursday,Opens,T3-TrainingTab,works
+CN4-SessionsLanded#12,CN4-SessionsLanded,Cut-backs and finishing · Tue 16 June · · 12 of 16 · · · 83% · · · · 75% · · · · 92% · · Landed best,Opens,T1-TabletTraining,works
+CN4-SessionsLanded#13,CN4-SessionsLanded,"Rondo 5 v 2, then a game · Thu 11 June · · 11 of 16 · · · 73% · · · · 82% · · · · 64%",Opens,T1-TabletTraining,works
+CN4-SessionsLanded#14,CN4-SessionsLanded,Pressing in threes · Tue 9 June · · 11 of 16 · · · 36% · · · · 27% · · · · 55% · · Too hard for 6,Opens,T1-TabletTraining,works
+CN4-SessionsLanded#15,CN4-SessionsLanded,Small-sided games · Thu 4 June · · 13 of 16 · · · 85% · · · · 77% · · · · 54%,Opens,T1-TabletTraining,works
+CN4-SessionsLanded#16,CN4-SessionsLanded,Playing out from the back · Tue 2 June · · 10 of 16 · · · 50% · · · · 60% · · · · 80%,Opens,T1-TabletTraining,works
+CN4-SessionsLanded#17,CN4-SessionsLanded,Shooting circuit · Thu 28 May · · 9 of 16 · · · 78% · · · · 44% · · · · 33% · · Too easy for 5,Opens,T1-TabletTraining,works
+CN4-SessionsLanded#18,CN4-SessionsLanded,Add,Says,"Added to Thursday: pressing in threes, easier version.",works
+CN6-Observation#7,CN6-Observation,Ask Clean Sheet,Opens,ASKd4-PanelFirst,"works, different target: opens the working Ask panel in place, not the ASKd4 board"
+CN6-Observation#8,CN6-Observation,Whole club,Opens,VS1-SwitchView,works
+CN6-Observation#12,CN6-Observation,Save draft,Says,Saved. Tom can’t see it yet.,works
+CN6-Observation#13,CN6-Observation,Send to Tom,Says,Sent to Tom. Only the two of you can see it.,works
+CN6-Observation#14,CN6-Observation,Seen often [radio],Says,Every child on the ball: Seen often.,works
+CN6-Observation#15,CN6-Observation,Sometimes [radio],Says,Every child on the ball: Sometimes.,works
+CN6-Observation#16,CN6-Observation,Not yet [radio],Says,Every child on the ball: Not yet.,works
+CN6-Observation#17,CN6-Observation,Seen often [radio],Says,"Short, clear instructions: Seen often.",works
+CN6-Observation#18,CN6-Observation,Sometimes [radio],Says,"Short, clear instructions: Sometimes.",works
+CN6-Observation#19,CN6-Observation,Not yet [radio],Says,"Short, clear instructions: Not yet.",works
+CN6-Observation#20,CN6-Observation,Seen often [radio],Says,Praise that names what was good: Seen often.,works
+CN6-Observation#21,CN6-Observation,Sometimes [radio],Says,Praise that names what was good: Sometimes.,works
+CN6-Observation#22,CN6-Observation,Not yet [radio],Says,Praise that names what was good: Not yet.,works
+CN6-Observation#23,CN6-Observation,Seen often [radio],Says,Practice that looks like the game: Seen often.,works
+CN6-Observation#24,CN6-Observation,Sometimes [radio],Says,Practice that looks like the game: Sometimes.,works
+CN6-Observation#25,CN6-Observation,Not yet [radio],Says,Practice that looks like the game: Not yet.,works
+CN6-Observation#26,CN6-Observation,Seen often [radio],Says,Every child spoken to by name: Seen often.,works
+CN6-Observation#27,CN6-Observation,Sometimes [radio],Says,Every child spoken to by name: Sometimes.,works
+CN6-Observation#28,CN6-Observation,Not yet [radio],Says,Every child spoken to by name: Not yet.,works
+CN7-CoachLoad#7,CN7-CoachLoad,Ask Clean Sheet,Opens,ASKd4-PanelFirst,"works, different target: opens the working Ask panel in place, not the ASKd4 board"
+CN7-CoachLoad#8,CN7-CoachLoad,Whole club,Opens,VS1-SwitchView,works
+CN7-CoachLoad#12,CN7-CoachLoad,Watch a session,Opens,CN6-Observation,works
+CN7-CoachLoad#13,CN7-CoachLoad,Message all coaches,Opens,MSG4-DirectorMessages,works
+CN7-CoachLoad#14,CN7-CoachLoad,Sam K · U12 Sam · · 5 hrs · 2 · 1 · 76% · 2 June · Fine,Opens,D3-Coaches,works: switches to the All coaches tab in place
+CN7-CoachLoad#15,CN7-CoachLoad,Tom Albers · U9 Tom · · 3 hrs · 0 · 0 · 83% · 16 June · Fine,Opens,D3-Coaches,works: switches to the All coaches tab in place
+CN7-CoachLoad#16,CN7-CoachLoad,"Dee Walsh · U14 Mixed · U10 Mixed · · 11 hrs · 14 · 6 · 58% · Not yet · Two teams, falling behind",Opens,D3-Coaches,works: switches to the All coaches tab in place
+CN7-CoachLoad#17,CN7-CoachLoad,Ollie Grant · U16 Boys · · 6 hrs · 3 · 2 · 70% · 9 May · Fine,Opens,D3-Coaches,works: switches to the All coaches tab in place
+CN7-CoachLoad#18,CN7-CoachLoad,Kate R · U13 Boys · · 4 hrs · 9 · 4 · 74% · Not yet · Messages piling up,Opens,D3-Coaches,works: switches to the All coaches tab in place
+CN7-CoachLoad#19,CN7-CoachLoad,Marko Petrovic · Seniors · · 8 hrs · 1 · 0 · — · 20 May · Fine,Opens,D3-Coaches,works: switches to the All coaches tab in place
+CN7-CoachLoad#20,CN7-CoachLoad,Find an assistant,Opens,D3-Coaches,works: switches to the All coaches tab in place
+CN7-CoachLoad#21,CN7-CoachLoad,Ask Rob,Says,"Message drafted to Rob Owusu, team manager.",works
+CN8-WhatWorked#7,CN8-WhatWorked,U12 Sam · Wattle Creek,Opens,VS1-SwitchView,works
+CN8-WhatWorked#11,CN8-WhatWorked,Share one of yours,Says,Pick a session to offer to other coaches.,works
+CN8-WhatWorked#12,CN8-WhatWorked,Use on Thursday,Says,"Added to Thursday’s plan, sized for 9 v 9 and 16 players.",works
+CN8-WhatWorked#13,CN8-WhatWorked,See it,Opens,T1-TabletTraining,works
+CN8-WhatWorked#14,CN8-WhatWorked,Use on Thursday,Says,"Added to Thursday’s plan, sized for 9 v 9 and 16 players.",works
+CN8-WhatWorked#15,CN8-WhatWorked,See it,Opens,T1-TabletTraining,works
+CN8-WhatWorked#16,CN8-WhatWorked,Use on Thursday,Says,"Added to Thursday’s plan, sized for 9 v 9 and 16 players.",works
+CN8-WhatWorked#17,CN8-WhatWorked,See it,Opens,T1-TabletTraining,works
+CN9-SeasonReport#7,CN9-SeasonReport,U12 Sam · Wattle Creek,Opens,VS1-SwitchView,works
+CN9-SeasonReport#13,CN9-SeasonReport,Preview as a parent,Opens,CNp9-SeasonReportParent,works
+CN9-SeasonReport#14,CN9-SeasonReport,Send Mia’s,Says,Sent to the Tran family. They can book a catch-up from it.,works
+CN9-SeasonReport#15,CN9-SeasonReport,R3 · turns away from two,Says,The clip plays.,works
+CN9-SeasonReport#16,CN9-SeasonReport,R6 · left-foot pass,Says,The clip plays.,works
+CN9-SeasonReport#17,CN9-SeasonReport,R8 · cut-back goal,Says,The clip plays.,works
+CNp1-PlayerSelfReview#1,CNp1-PlayerSelfReview,Back,Opens,STO19-HomeStoryPlayerOlder,works
+CNp1-PlayerSelfReview#2,CNp1-PlayerSelfReview,Ask Clean Sheet,Opens,ASKp2-PhoneAskOpen,works
+CNp1-PlayerSelfReview#3,CNp1-PlayerSelfReview,1 [radio],Says,How hard did you work? 1 of 5.,"works: saved and shown on the screen, no separate line"
+CNp1-PlayerSelfReview#4,CNp1-PlayerSelfReview,2 [radio],Says,How hard did you work? 2 of 5.,"works: saved and shown on the screen, no separate line"
+CNp1-PlayerSelfReview#5,CNp1-PlayerSelfReview,3 [radio],Says,How hard did you work? 3 of 5.,"works: saved and shown on the screen, no separate line"
+CNp1-PlayerSelfReview#6,CNp1-PlayerSelfReview,4 [radio],Says,How hard did you work? 4 of 5.,"works: this is the answer already picked when the screen opens, so pressing it changes nothing"
+CNp1-PlayerSelfReview#7,CNp1-PlayerSelfReview,5 [radio],Says,How hard did you work? 5 of 5.,"works: saved and shown on the screen, no separate line"
+CNp1-PlayerSelfReview#8,CNp1-PlayerSelfReview,Winning it back [radio],Says,Winning it back: taken off.,"works: this is the answer already picked when the screen opens, so pressing it changes nothing"
+CNp1-PlayerSelfReview#9,CNp1-PlayerSelfReview,Passing forward [radio],Says,Passing forward: picked.,"works: saved and shown on the screen, no separate line"
+CNp1-PlayerSelfReview#10,CNp1-PlayerSelfReview,Talking [radio],Says,Talking: picked.,"works: saved and shown on the screen, no separate line"
+CNp1-PlayerSelfReview#11,CNp1-PlayerSelfReview,First touch [radio],Says,First touch: picked.,"works: saved and shown on the screen, no separate line"
+CNp1-PlayerSelfReview#12,CNp1-PlayerSelfReview,Staying calm [radio],Says,Staying calm: picked.,"works: saved and shown on the screen, no separate line"
+CNp1-PlayerSelfReview#13,CNp1-PlayerSelfReview,Weaker foot [radio],Says,Weaker foot: picked.,"works: saved and shown on the screen, no separate line"
+CNp1-PlayerSelfReview#14,CNp1-PlayerSelfReview,Scanning [radio],Says,Scanning: taken off.,"works: this is the answer already picked when the screen opens, so pressing it changes nothing"
+CNp1-PlayerSelfReview#15,CNp1-PlayerSelfReview,Shooting early [radio],Says,Shooting early: picked.,"works: saved and shown on the screen, no separate line"
+CNp1-PlayerSelfReview#16,CNp1-PlayerSelfReview,Positioning [radio],Says,Positioning: picked.,"works: saved and shown on the screen, no separate line"
+CNp1-PlayerSelfReview#17,CNp1-PlayerSelfReview,Something else [radio],Says,Something else: picked.,"works: saved and shown on the screen, no separate line"
+CNp1-PlayerSelfReview#18,CNp1-PlayerSelfReview,Skip,Says,Skipped. Nothing is sent.,works
+CNp1-PlayerSelfReview#19,CNp1-PlayerSelfReview,Send to Ollie,Says,Sent. Only you and Ollie can see it.,works
+CNp10-BookCatchUp#1,CNp10-BookCatchUp,Back,Opens,CNp9-SeasonReportParent,works
+CNp10-BookCatchUp#2,CNp10-BookCatchUp,Ask Clean Sheet,Opens,ASKp2-PhoneAskOpen,works
+CNp10-BookCatchUp#3,CNp10-BookCatchUp,4:40 [radio],Says,4:40 picked.,works
+CNp10-BookCatchUp#4,CNp10-BookCatchUp,4:50 [radio],Says,4:50 picked.,works
+CNp10-BookCatchUp#5,CNp10-BookCatchUp,5:10 [radio],Says,5:10 picked.,works
+CNp10-BookCatchUp#6,CNp10-BookCatchUp,5:20 [radio],Says,5:20 picked.,works
+CNp10-BookCatchUp#7,CNp10-BookCatchUp,7:00 [radio],Says,7:00 picked.,works
+CNp10-BookCatchUp#8,CNp10-BookCatchUp,7:20 [radio],Says,7:20 picked.,works
+CNp10-BookCatchUp#9,CNp10-BookCatchUp,Her confidence [checkbox],Says,Her confidence: taken off.,"works: saved and shown on the screen, no separate line"
+CNp10-BookCatchUp#10,CNp10-BookCatchUp,Position [checkbox],Says,Position: picked.,"works: ticks on and off, more than one allowed; saved with Send"
+CNp10-BookCatchUp#11,CNp10-BookCatchUp,Next season [checkbox],Says,Next season: picked.,"works: ticks on and off, more than one allowed; saved with Send"
+CNp10-BookCatchUp#12,CNp10-BookCatchUp,Something else [checkbox],Says,Something else: picked.,"works: ticks on and off, more than one allowed; saved with Send"
+CNp10-BookCatchUp#13,CNp10-BookCatchUp,No thanks,Says,No catch-up booked. You can book later from the report.,works
+CNp10-BookCatchUp#14,CNp10-BookCatchUp,Book 4:50 Tuesday,Says,"Booked: Tuesday 23 June, 4:50 pm at the clubrooms. It is in your calendar.",works
+CNp11-FamilyView#1,CNp11-FamilyView,Back,Opens,STO17-HomeStoryParent,works
+CNp11-FamilyView#2,CNp11-FamilyView,Ask Clean Sheet,Opens,ASKp2-PhoneAskOpen,works
+CNp11-FamilyView#3,CNp11-FamilyView,"MT · Mia · U12 Sam · · · · Sat 9:30 · home, pitch 2 · New clip from Sam. Mid-season report is ready.",Opens,STO17-HomeStoryParent,works
+CNp11-FamilyView#4,CNp11-FamilyView,"LT · Leo · U9 Tom · MiniRoos · · · · Sat 9:30 · away, Ridgeway Reserve · Oranges are yours this week.",Opens,STO17-HomeStoryParent,"not built as drawn: the demo family has two children (Mia and Bao), so there is one row for Bao in place of Leo and Kim"
+CNp11-FamilyView#5,CNp11-FamilyView,"KT · Kim · U15 Girls · · · · Sat 11:00 · home, pitch 1 · Check-in not answered since Monday.",Opens,STO17-HomeStoryParent,"not built as drawn: the demo family has two children (Mia and Bao), so there is one row for Bao in place of Leo and Kim"
+CNp11-FamilyView#6,CNp11-FamilyView,Fees · Two paid. Kim’s term 3 is due 1 July,Says,Fees for all three children open.,"works: saves, and says “Fees for both children open.”"
+CNp11-FamilyView#7,CNp11-FamilyView,One calendar,Says,All three children added to one calendar feed.,"works: saves, and says “Both children added to one calendar feed.”"
+CNp11-FamilyView#8,CNp11-FamilyView,Ask for a lift,Says,Lift request sent to U9 Tom’s parents for Saturday.,works
+CNp12-PulseSurvey#1,CNp12-PulseSurvey,Back,Opens,STO17-HomeStoryParent,works
+CNp12-PulseSurvey#2,CNp12-PulseSurvey,Ask Clean Sheet,Opens,ASKp2-PhoneAskOpen,works
+CNp12-PulseSurvey#3,CNp12-PulseSurvey,1 [radio],Says,Is Mia enjoying her football? 1 of 5.,"works: saved and shown on the screen, no separate line"
+CNp12-PulseSurvey#4,CNp12-PulseSurvey,2 [radio],Says,Is Mia enjoying her football? 2 of 5.,"works: saved and shown on the screen, no separate line"
+CNp12-PulseSurvey#5,CNp12-PulseSurvey,3 [radio],Says,Is Mia enjoying her football? 3 of 5.,"works: saved and shown on the screen, no separate line"
+CNp12-PulseSurvey#6,CNp12-PulseSurvey,4 [radio],Says,Is Mia enjoying her football? 4 of 5.,"works: saved and shown on the screen, no separate line"
+CNp12-PulseSurvey#7,CNp12-PulseSurvey,5 [radio],Says,Is Mia enjoying her football? 5 of 5.,"works: this is the answer already picked when the screen opens, so pressing it changes nothing"
+CNp12-PulseSurvey#8,CNp12-PulseSurvey,1 [radio],Says,Do you feel you know how she is going? 1 of 5.,"works: saved and shown on the screen, no separate line"
+CNp12-PulseSurvey#9,CNp12-PulseSurvey,2 [radio],Says,Do you feel you know how she is going? 2 of 5.,"works: saved and shown on the screen, no separate line"
+CNp12-PulseSurvey#10,CNp12-PulseSurvey,3 [radio],Says,Do you feel you know how she is going? 3 of 5.,"works: this is the answer already picked when the screen opens, so pressing it changes nothing"
+CNp12-PulseSurvey#11,CNp12-PulseSurvey,4 [radio],Says,Do you feel you know how she is going? 4 of 5.,"works: saved and shown on the screen, no separate line"
+CNp12-PulseSurvey#12,CNp12-PulseSurvey,5 [radio],Says,Do you feel you know how she is going? 5 of 5.,"works: saved and shown on the screen, no separate line"
+CNp12-PulseSurvey#13,CNp12-PulseSurvey,Training times [checkbox],Says,Training times: taken off.,"works: saved and shown on the screen, no separate line"
+CNp12-PulseSurvey#14,CNp12-PulseSurvey,Cost [checkbox],Says,Cost: picked.,"works: ticks on and off, more than one allowed; saved with Send"
+CNp12-PulseSurvey#15,CNp12-PulseSurvey,Game time [checkbox],Says,Game time: picked.,"works: ticks on and off, more than one allowed; saved with Send"
+CNp12-PulseSurvey#16,CNp12-PulseSurvey,Travel [checkbox],Says,Travel: picked.,"works: ticks on and off, more than one allowed; saved with Send"
+CNp12-PulseSurvey#17,CNp12-PulseSurvey,Nothing [checkbox],Says,Nothing: picked.,"works: ticks on and off, more than one allowed; saved with Send"
+CNp12-PulseSurvey#18,CNp12-PulseSurvey,Not now,Says,Skipped. We won’t ask again this term.,works
+CNp12-PulseSurvey#19,CNp12-PulseSurvey,Send,Says,Thanks. Sent without your name.,works
+CNp14-PlayerPassport#1,CNp14-PlayerPassport,Back,Opens,STO17-HomeStoryParent,works
+CNp14-PlayerPassport#2,CNp14-PlayerPassport,Ask Clean Sheet,Opens,ASKp2-PhoneAskOpen,works
+CNp14-PlayerPassport#3,CNp14-PlayerPassport,Season reports · 5 reports from 2 coaches [switch],Says,Season reports: left out.,works
+CNp14-PlayerPassport#4,CNp14-PlayerPassport,"Her goals and how they went · 7 goals, 5 met [switch]",Says,Her goals and how they went: left out.,works
+CNp14-PlayerPassport#5,CNp14-PlayerPassport,Clips · 24 clips where Mia is the subject [switch],Says,Clips: left out.,works
+CNp14-PlayerPassport#6,CNp14-PlayerPassport,Games and minutes · 41 games [switch],Says,Games and minutes: left out.,works
+CNp14-PlayerPassport#7,CNp14-PlayerPassport,"Health notes · Growth, injuries, check-ins [switch]",Says,Health notes: added.,works
+CNp14-PlayerPassport#8,CNp14-PlayerPassport,Send a link,Says,A private link is ready. It works for 30 days.,works
+CNp14-PlayerPassport#9,CNp14-PlayerPassport,Download,Says,Mia’s passport is saved to your phone: one PDF and a folder of 24 clips.,works
+CNp16-WeekElsewhere#1,CNp16-WeekElsewhere,Back,Opens,STO19-HomeStoryPlayerOlder,works
+CNp16-WeekElsewhere#2,CNp16-WeekElsewhere,Ask Clean Sheet,Opens,ASKp2-PhoneAskOpen,works
+CNp16-WeekElsewhere#3,CNp16-WeekElsewhere,School sport: one less,Says,School sport: one less.,works
+CNp16-WeekElsewhere#4,CNp16-WeekElsewhere,School sport: one more,Says,School sport: one more.,works
+CNp16-WeekElsewhere#5,CNp16-WeekElsewhere,Futsal: one less,Says,Futsal: one less.,works
+CNp16-WeekElsewhere#6,CNp16-WeekElsewhere,Futsal: one more,Says,Futsal: one more.,works
+CNp16-WeekElsewhere#7,CNp16-WeekElsewhere,Other club or rep team: one less,Says,Other club or rep team: one less.,works
+CNp16-WeekElsewhere#8,CNp16-WeekElsewhere,Other club or rep team: one more,Says,Other club or rep team: one more.,works
+CNp16-WeekElsewhere#9,CNp16-WeekElsewhere,Anything else active: one less,Says,Anything else active: one less.,works
+CNp16-WeekElsewhere#10,CNp16-WeekElsewhere,Anything else active: one more,Says,Anything else active: one more.,works
+CNp16-WeekElsewhere#11,CNp16-WeekElsewhere,Normal [radio],Says,Normal: picked.,"works: saved and shown on the screen, no separate line"
+CNp16-WeekElsewhere#12,CNp16-WeekElsewhere,Exams [radio],Says,Exams: taken off.,"works: this is the answer already picked when the screen opens, so pressing it changes nothing"
+CNp16-WeekElsewhere#13,CNp16-WeekElsewhere,Camp [radio],Says,Camp: picked.,"works: saved and shown on the screen, no separate line"
+CNp16-WeekElsewhere#14,CNp16-WeekElsewhere,Away [radio],Says,Away: picked.,"works: saved and shown on the screen, no separate line"
+CNp16-WeekElsewhere#15,CNp16-WeekElsewhere,Same as last week,Says,Copied from last week.,works
+CNp16-WeekElsewhere#16,CNp16-WeekElsewhere,Save,Says,"Saved. Your week is 9 hours, up from 6.",works
+CNp18-IncidentLog#1,CNp18-IncidentLog,Back,Opens,CPh1-CoachPhoneHome,works
+CNp18-IncidentLog#2,CNp18-IncidentLog,Ask Clean Sheet,Opens,ASKp2-PhoneAskOpen,works
+CNp18-IncidentLog#3,CNp18-IncidentLog,Knock or injury [radio],Says,Knock or injury: taken off.,"works: this is the answer already picked when the screen opens, so pressing it changes nothing"
+CNp18-IncidentLog#4,CNp18-IncidentLog,Head knock [radio],Says,Head knock: picked.,"works: saved and shown on the screen, no separate line"
+CNp18-IncidentLog#5,CNp18-IncidentLog,Behaviour [radio],Says,Behaviour: picked.,"works: saved and shown on the screen, no separate line"
+CNp18-IncidentLog#6,CNp18-IncidentLog,Sideline [radio],Says,Sideline: picked.,"works: saved and shown on the screen, no separate line"
+CNp18-IncidentLog#7,CNp18-IncidentLog,Something else [radio],Says,Something else: picked.,"works: saved and shown on the screen, no separate line"
+CNp18-IncidentLog#8,CNp18-IncidentLog,Who · Jai Patel,Says,Pick a player.,works
+CNp18-IncidentLog#9,CNp18-IncidentLog,"When · Today, 27th minute",Says,Change the time.,works
+CNp18-IncidentLog#10,CNp18-IncidentLog,"What you did · Ice, sat out 10 minutes, back on",Says,Add what you did.,works
+CNp18-IncidentLog#11,CNp18-IncidentLog,Add a photo,Says,Camera opens.,works
+CNp18-IncidentLog#12,CNp18-IncidentLog,Send to Helen,Says,Logged. Helen and Jai’s parent have it.,works
+CNp19-SidelineRating#1,CNp19-SidelineRating,Back,Opens,STO16-HomeStoryManager,works
+CNp19-SidelineRating#2,CNp19-SidelineRating,Ask Clean Sheet,Opens,ASKp2-PhoneAskOpen,works
+CNp19-SidelineRating#3,CNp19-SidelineRating,1 [radio],Says,Our sideline 1 of 5.,"works: saved and shown on the screen, no separate line"
+CNp19-SidelineRating#4,CNp19-SidelineRating,2 [radio],Says,Our sideline 2 of 5.,"works: saved and shown on the screen, no separate line"
+CNp19-SidelineRating#5,CNp19-SidelineRating,3 [radio],Says,Our sideline 3 of 5.,"works: saved and shown on the screen, no separate line"
+CNp19-SidelineRating#6,CNp19-SidelineRating,4 [radio],Says,Our sideline 4 of 5.,"works: this is the answer already picked when the screen opens, so pressing it changes nothing"
+CNp19-SidelineRating#7,CNp19-SidelineRating,5 [radio],Says,Our sideline 5 of 5.,"works: saved and shown on the screen, no separate line"
+CNp19-SidelineRating#8,CNp19-SidelineRating,1 [radio],Says,Their sideline 1 of 5.,"works: saved and shown on the screen, no separate line"
+CNp19-SidelineRating#9,CNp19-SidelineRating,2 [radio],Says,Their sideline 2 of 5.,"works: this is the answer already picked when the screen opens, so pressing it changes nothing"
+CNp19-SidelineRating#10,CNp19-SidelineRating,3 [radio],Says,Their sideline 3 of 5.,"works: saved and shown on the screen, no separate line"
+CNp19-SidelineRating#11,CNp19-SidelineRating,4 [radio],Says,Their sideline 4 of 5.,"works: saved and shown on the screen, no separate line"
+CNp19-SidelineRating#12,CNp19-SidelineRating,5 [radio],Says,Their sideline 5 of 5.,"works: saved and shown on the screen, no separate line"
+CNp19-SidelineRating#13,CNp19-SidelineRating,Shouting at the referee [checkbox],Says,Shouting at the referee: taken off.,"works: saved and shown on the screen, no separate line"
+CNp19-SidelineRating#14,CNp19-SidelineRating,Coaching from the line [checkbox],Says,Coaching from the line: picked.,"works: ticks on and off, more than one allowed; saved with Send"
+CNp19-SidelineRating#15,CNp19-SidelineRating,Great support [checkbox],Says,Great support: picked.,"works: ticks on and off, more than one allowed; saved with Send"
+CNp19-SidelineRating#16,CNp19-SidelineRating,Nothing [checkbox],Says,Nothing: picked.,"works: ticks on and off, more than one allowed; saved with Send"
+CNp19-SidelineRating#17,CNp19-SidelineRating,Tell Helen,Opens,PC2b-TellHelen,works
+CNp19-SidelineRating#18,CNp19-SidelineRating,Send,Says,Thanks. Added to this season’s picture for U12 Sam.,works
+CNp3-SessionFeedback#1,CNp3-SessionFeedback,Back,Opens,STO18-HomeStoryPlayerYoung,works
+CNp3-SessionFeedback#2,CNp3-SessionFeedback,Ask Clean Sheet,Opens,ASKp2-PhoneAskOpen,works
+CNp3-SessionFeedback#3,CNp3-SessionFeedback,Loved it [radio],Says,Loved it.,"works: this is the answer already picked when the screen opens, so pressing it changes nothing"
+CNp3-SessionFeedback#4,CNp3-SessionFeedback,It was OK [radio],Says,It was OK.,"works: saved and shown on the screen, no separate line"
+CNp3-SessionFeedback#5,CNp3-SessionFeedback,Not much [radio],Says,Not much.,"works: saved and shown on the screen, no separate line"
+CNp3-SessionFeedback#6,CNp3-SessionFeedback,Easy [radio],Says,Easy.,"works: saved and shown on the screen, no separate line"
+CNp3-SessionFeedback#7,CNp3-SessionFeedback,About right [radio],Says,About right.,"works: this is the answer already picked when the screen opens, so pressing it changes nothing"
+CNp3-SessionFeedback#8,CNp3-SessionFeedback,Too hard [radio],Says,Too hard.,"works: saved and shown on the screen, no separate line"
+CNp3-SessionFeedback#9,CNp3-SessionFeedback,Yes [radio],Says,Yes.,"works: this is the answer already picked when the screen opens, so pressing it changes nothing"
+CNp3-SessionFeedback#10,CNp3-SessionFeedback,A bit [radio],Says,A bit.,"works: saved and shown on the screen, no separate line"
+CNp3-SessionFeedback#11,CNp3-SessionFeedback,Not really [radio],Says,Not really.,"works: saved and shown on the screen, no separate line"
+CNp3-SessionFeedback#12,CNp3-SessionFeedback,Not tonight,Says,Skipped.,works
+CNp3-SessionFeedback#13,CNp3-SessionFeedback,Send,Says,Thanks. Sam sees the team’s answers once five players have replied.,works
+CNp5-PlayerGoal#1,CNp5-PlayerGoal,Back,Opens,STO19-HomeStoryPlayerOlder,works
+CNp5-PlayerGoal#2,CNp5-PlayerGoal,Ask Clean Sheet,Opens,ASKp2-PhoneAskOpen,works
+CNp5-PlayerGoal#3,CNp5-PlayerGoal,Scan before I receive [radio],Says,Scan before I receive: taken off.,"works: this is the answer already picked when the screen opens, so pressing it changes nothing"
+CNp5-PlayerGoal#4,CNp5-PlayerGoal,Use my left foot [radio],Says,Use my left foot: picked.,"works: saved and shown on the screen, no separate line"
+CNp5-PlayerGoal#5,CNp5-PlayerGoal,Win more headers [radio],Says,Win more headers: picked.,"works: saved and shown on the screen, no separate line"
+CNp5-PlayerGoal#6,CNp5-PlayerGoal,Talk more [radio],Says,Talk more: picked.,"works: saved and shown on the screen, no separate line"
+CNp5-PlayerGoal#7,CNp5-PlayerGoal,Write my own [radio],Says,Write my own: picked.,"works: saved and shown on the screen, no separate line"
+CNp5-PlayerGoal#8,CNp5-PlayerGoal,Save for later,Says,Saved as a draft.,works
+CNp5-PlayerGoal#9,CNp5-PlayerGoal,Send to Ollie,Says,Sent to Ollie. He usually answers within two days.,works
+CNp9-SeasonReportParent#1,CNp9-SeasonReportParent,Back,Opens,STO17-HomeStoryParent,works
+CNp9-SeasonReportParent#2,CNp9-SeasonReportParent,Ask Clean Sheet,Opens,ASKp2-PhoneAskOpen,works
+CNp9-SeasonReportParent#3,CNp9-SeasonReportParent,Three clips that show it · Chosen by Sam,Says,The three clips open.,works
+CNp9-SeasonReportParent#4,CNp9-SeasonReportParent,Save as PDF,Says,Saved to your phone.,works
+CNp9-SeasonReportParent#5,CNp9-SeasonReportParent,Book a chat with Sam,Opens,CNp10-BookCatchUp,works

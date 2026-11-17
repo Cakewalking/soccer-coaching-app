@@ -18,9 +18,9 @@ export const COACH_TARGET_NAV: Record<string, string> = {
 // (master handover part 4) and a link or a test can tell tabs apart.
 export const COACH_TAB_SCREEN: Record<string, string[]> = {
   home:     ['STO5-HomeStoryJuniors', 'I1-Inbox', 'CF1-Fixtures', 'CF1-Fixtures', 'S1-PlayingStyle', 'WA1-WhereWeAt', 'ST1-TeamStaff', 'FIL1-Files'],
-  squad:    ['T4-SquadTab', 'FB1-Formation', 'SQ1-BestLineups', 'DG1-Goals', 'WL1-Wellness', 'AV1-Availability', 'P1-Consent'],
-  training: ['T3-TrainingTab', 'WK1-ThisWeek', 'SG1-Suggested', 'DF0-Library', 'GT1-Growth'],
-  matchday: ['T2-TabletMatch', 'MS1-TeamSheet', 'OP1-Opposition', 'R1-MatchReview', 'XG1-ChancesGame', 'XG3-LadderPPI', 'YT1-YourTake'],
+  squad:    ['T4-SquadTab', 'FB1-Formation', 'SQ1-BestLineups', 'DG1-Goals', 'WL1-Wellness', 'AV1-Availability', 'P1-Consent', 'CN9-SeasonReport', 'CN10-CatchUps', 'CN13-Handover'],
+  training: ['T3-TrainingTab', 'WK1-ThisWeek', 'SG1-Suggested', 'DF0-Library', 'GT1-Growth', 'CN4-SessionsLanded', 'CN8-WhatWorked'],
+  matchday: ['T2-TabletMatch', 'MS1-TeamSheet', 'OP1-Opposition', 'R1-MatchReview', 'XG1-ChancesGame', 'XG3-LadderPPI', 'YT1-YourTake', 'CN17-SetPieces'],
   clips:    ['C1-ClipsTab', 'C2-ClipsByGame', 'C3-ClipsByPlayer', 'CL1-Playlists', 'TC1-ToCheck', 'EDU1-Learn'],
   record:   ['REC1-RecordHub'],
 }
@@ -63,6 +63,7 @@ import CoCoachHomeScreen from './CoCoachHomeScreen'
 import RecordHub           from './RecordHub'
 import CaptureFlow, { isCaptureId, captureSubTab } from './capture/CaptureFlow'
 import ChancesFlow, { isChanceId } from './chances/ChancesFlow'
+import CnScreen from './connected/CnScreen'
 import { useCapture, allowed } from './capture/captureStore'
 import { RecordSaved }     from './RecordHub'
 import { CoachMessages, CoachNewMessage, CoachMessagesPersonCard } from './MessagesScreens'
@@ -92,9 +93,9 @@ const NAV_TABS: Array<{ id: NavKey; label: string; icon: string }> = [
 ]
 
 const HOME_TABS     = ['Overview', 'Messages', 'Calendar', 'Fixtures and results', 'Our style', "Where we're at", 'Team staff', 'Files']
-const SQUAD_TABS    = ['Players', 'Formation', 'Line-ups that worked', 'Development goals', 'Wellness', 'Availability', 'Consent and privacy']
-const TRAINING_TABS = ["Tonight's session", 'This week', 'Suggested', 'Drill library', 'Growth and load']
-const MATCHDAY_TABS = ['Team talk', 'Line-up and minutes', 'Opposition', 'Review', 'Chances', 'Ladder', 'Your take']   // Chances and Ladder follow the club's rules for this age band
+const SQUAD_TABS    = ['Players', 'Formation', 'Line-ups that worked', 'Development goals', 'Wellness', 'Availability', 'Consent and privacy', 'Season reports', 'Catch-ups', 'Handover']
+const TRAINING_TABS = ["Tonight's session", 'This week', 'Suggested', 'Drill library', 'Growth and load', 'What landed', 'Worked elsewhere']
+const MATCHDAY_TABS = ['Team talk', 'Line-up and minutes', 'Opposition', 'Review', 'Chances', 'Ladder', 'Your take', 'Set pieces']   // Chances and Ladder follow the club's rules for this age band
 const CLIPS_TABS    = ['By measure', 'By game', 'By player', 'Playlists', 'To check', 'Learn']
 
 const REC_TABS = ['Record', 'Recorded lately', 'Devices', 'How we measure']
@@ -109,7 +110,7 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
   const initHomeTab = (initialScreen ? HOME_SUB_MAP[initialScreen] : 0) ?? 0
   const deep = coachDeepTab(initialScreen)   // opened by design id, e.g. "AV1-Availability"
   const deepIdx = (n: string) => deep?.nav === n ? deep.idx : 0
-  const [nav, setNav]                 = useState<NavKey>(deep ? deep.nav as NavKey : initHomeTab ? 'home' : validNav(initialScreen))
+  const [nav, setNav]                 = useState<NavKey>(initialScreen === 'CN2-SelfVsCoach' ? 'matchday' : deep ? deep.nav as NavKey : initHomeTab ? 'home' : validNav(initialScreen))
   const [sub, setSub]                 = useState<Sub>(null)
   const [homeTab, setHomeTab]         = useState(deep?.nav === 'home' ? deep.idx : initHomeTab)
   const [squadTab, setSquadTab]       = useState(deepIdx('squad'))
@@ -117,13 +118,15 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
   const [profileIni, setProfileIni] = useState<string | null>(null)
   const [layer, setLayer] = useState<string | null>(null)   // a designed screen opened over the app
   const [trainingTab, setTrainingTab] = useState(deepIdx('training'))
-  const [matchTab, setMatchTab]       = useState(deepIdx('matchday'))
+  const [matchTab, setMatchTab]       = useState(initialScreen === 'CN2-SelfVsCoach' ? 6 : deepIdx('matchday'))
   const [clipsTab, setClipsTab]       = useState(deepIdx('clips'))
 
   const [askOpen, setAskOpen] = useState(false)
   const [msgsView, setMsgsView] = useState<string | null>(null)
   const [recView, setRecView] = useState<string | null>(null)
   const [xgView, setXgView] = useState('XG1-ChancesGame')
+  const [take, setTake] = useState<'yours' | 'theirs'>(initialScreen === 'CN2-SelfVsCoach' ? 'theirs' : 'yours')   // Your take: the coach's own ratings, or the players' beside them
+  const cnEmpty = inSandbox && sbEmpty
   const may = allowed(useCapture(), 'juniors')
   // Match day tabs this team may see: Chances (4) and Ladder (5) follow the club's rules. A new team has no ladder yet.
   const matchVisible = MATCHDAY_TABS.map((_, i) => i).filter(i => (i !== 4 || may.chances) && (i !== 5 || (may.ladder && !(inSandbox && sbEmpty))))
@@ -132,6 +135,8 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
   function goNav(n: NavKey) { setNav(n); setSub(null); setAskOpen(false); onNavChange?.(n); setMsgsView(null); setRecView(null); setFilView(null) }
 
   function handleNav(s: string) {
+    if (s === 'CN2-SelfVsCoach') { goNav('matchday'); setMatchTab(6); setTake('theirs'); return }
+    if (s === 'YT1-YourTake') setTake('yours')
     if (isChanceId(s)) { goNav('matchday'); openChance(s); return }   // chances and the ladder live under Match day
     if (isCaptureId(s) || s === 'REC2-RecordSaved') { goNav('record'); setRecView(s); return }   // capture quality steps live under Record
     if (s === 'training')  { goNav('training'); return }
@@ -260,13 +265,15 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
     else if (squadTab === 4) content = <WellnessScreen empty={sbEmpty} onNav={handleNav} />
     else if (squadTab === 5) content = <AvailabilityScreen empty={sbEmpty} onNav={handleNav} />
     else if (squadTab === 6) content = <ConsentScreen empty={sbEmpty} />
+    else if (squadTab >= 7) content = <CnScreen empty={cnEmpty} id={['CN9-SeasonReport', 'CN10-CatchUps', 'CN13-Handover'][squadTab - 7]} onNav={handleNav} />
   } else if (nav === 'training') {
     if (trainingTab === 0) content = <TrainingScreen role="head" onNav={handleNav} empty={sbEmptySession} />
     else if (trainingTab === 1) content = <ThisWeekScreen empty={sbEmptySession} onDrillLibrary={() => setTrainingTab(3)} onTonightsPlan={() => setTrainingTab(0)} onGrowthLoad={() => setTrainingTab(4)} />
     else if (trainingTab === 2) content = <SuggestionsScreen empty={sbEmptySession} onRecord={() => goNav('record')} />
     else if (trainingTab === 3) content = <DrillLibraryScreen empty={sbEmptySession} />
     else if (trainingTab === 4) content = <GrowthLoadScreen empty={sbEmptySession} />
-    else if (trainingTab === 5) content = <FitnessTrainingTab empty={sbEmptySession} />
+    else if (trainingTab === 5 || trainingTab === 6) content = <CnScreen empty={cnEmpty} id={trainingTab === 5 ? 'CN4-SessionsLanded' : 'CN8-WhatWorked'} onNav={handleNav} />
+    else if (trainingTab === 7) content = <FitnessTrainingTab empty={sbEmptySession} />
   } else if (nav === 'record') {
     if (recView && isCaptureId(recView)) content = <CaptureFlow step={recView} onStep={setRecView} onNav={handleNav} kitless={inSandbox && sbEmpty} team={inSandbox ? (store.teams[0]?.name ?? 'your team') : 'U12 Sam'} />
     else if (recView === 'REC2-RecordSaved') content = <RecordSaved noFrame onBack={() => setRecView(null)} onNav={(s) => { if (s === 'EX1-HowWorkedOut') { goNav('matchday'); setMatchTab(3) } else { handleNav(s) } }} />
@@ -277,8 +284,9 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
     else if (matchTab === 2) content = <OppositionScreen empty={sbEmptyFixture} />
     else if (matchTab === 3) content = <ReviewScreen empty={sbEmptyFixture} />
     else if (matchTab === 4 || matchTab === 5) content = <ChancesFlow team="u12" step={matchTab === 5 ? 'XG3-LadderPPI' : xgView} onStep={openChance} onNav={handleNav} noFilmYet={inSandbox && sbEmpty} />
-    else if (matchTab === 6) content = inSandbox && sbEmpty ? <SandboxWaiting kind="yourtake" /> : <YT1YourTake onNav={handleNav} bare />
-    else if (matchTab === 7) content = <FitnessMatchTab empty={sbEmptyFixture} />
+    else if (matchTab === 6) content = inSandbox && sbEmpty ? <SandboxWaiting kind="yourtake" /> : take === 'theirs' ? <CnScreen id="CN2-SelfVsCoach" onNav={handleNav} /> : <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, minHeight: 0 }}><div style={{ flex: 'none', padding: '10px 28px 0' }}><button onClick={() => setTake('theirs')} style={{ minHeight: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Their take, next to yours</button></div><YT1YourTake onNav={handleNav} bare /></div>
+    else if (matchTab === 7) content = <CnScreen empty={cnEmpty} id="CN17-SetPieces" onNav={handleNav} />
+    else if (matchTab === 8) content = <FitnessMatchTab empty={sbEmptyFixture} />
   } else if (nav === 'clips') {
     content = <ClipsScreen empty={sbEmpty} activeTab={clipsTab} onNav={handleNav} />
   }
@@ -295,6 +303,7 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
       onSubTab={handleSubTab}
       roleChip={coachRole === 'ccoach' ? 'Assistant coach' : 'Head coach'}
       teamLabel={coachLabel ?? (inSandbox ? (store.teams[0]?.name ?? 'My team') : 'U12 Sam · Wattle Creek')}
+      onTeam={inSandbox ? undefined : () => handleNav('VS1-SwitchView')}
       avatarLetters={coachInitials ?? 'SK'}
       showAsk={true}
       askOpen={askOpen}
