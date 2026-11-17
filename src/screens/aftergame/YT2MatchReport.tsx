@@ -11,7 +11,8 @@ Legs went a little after half time and Ironbark had their best spell. We will ke
 
 Goals: Mia, Jai, Zoe. Everyone played at least half the game.`
 
-export default function YT2MatchReport({ onNav, bare = false }: { onNav?: (s: string) => void; bare?: boolean }) {
+// `seniors`: an adult team's report goes to the squad, not to families.
+export default function YT2MatchReport({ onNav, bare = false, seniors = false }: { onNav?: (s: string) => void; bare?: boolean; seniors?: boolean }) {
   const [lastTool, setLastTool] = useState('')
   const [toast, setToast] = useState<string | null>(null)
   const [title, setTitle] = useState(DRAFT_TITLE)
@@ -23,7 +24,7 @@ export default function YT2MatchReport({ onNav, bare = false }: { onNav?: (s: st
   function toggleGroup(k: string) { setGroups(prev => ({ ...prev, [k]: !prev[k] })); setLastTool(k) }
   function send() {
     const to: string[] = []
-    if (groups.families) to.push('17 families')
+    if (groups.families) to.push(seniors ? 'the squad' : '17 families')
     if (groups.club) to.push('club news (Rachel checks it first)')
     if (groups.players) to.push('players 15 and over')
     if (!to.length) { say('Tick at least one group to send to.'); return }
@@ -32,19 +33,19 @@ export default function YT2MatchReport({ onNav, bare = false }: { onNav?: (s: st
   }
 
   const GROUPS = [
-    { k: 'families', title: 'U12 Sam families', sub: '17 families, in the app' },
+    seniors ? { k: 'families', title: 'The squad', sub: '18 players, in the app' } : { k: 'families', title: 'U12 Sam families', sub: '17 families, in the app' },
     { k: 'club', title: 'Club news', sub: 'Rachel checks it first' },
     { k: 'players', title: 'Players 15 and over', sub: 'Not this team' },
-  ]
+  ].filter(g => !(seniors && g.k === 'players'))   // for an adult team the squad is the players
 
   return (
     <YTFrame
       onNav={onNav} active="report" lastTool={lastTool} bare={bare}
       heading="Match report · Sat 30 May · Won 3-1 at Ironbark United"
       sentence="Your match report is drafted. Change anything, then share it."
-      support="Written from your take, the film and the vests, in your words where you gave them. Nothing goes to families until you send it."
+      support={`Written from your take, the film and the vests, in your words where you gave them. Nothing goes to ${seniors ? 'the squad' : 'families'} until you send it.`}
       buttons={[
-        { label: sent ? '✓ Sent' : 'Send to 17 families', main: true, onClick: send },
+        { label: sent ? '✓ Sent' : seniors ? 'Send to the squad' : 'Send to 17 families', main: true, onClick: send },
         { label: 'Keep it for me', onClick: () => say('Kept. Only you can see it until you send it.') },
       ]}
     >
@@ -81,7 +82,7 @@ export default function YT2MatchReport({ onNav, bare = false }: { onNav?: (s: st
           <div style={{ background: '#fff', border: `1px solid ${CTL}`, borderRadius: 16, padding: '14px 16px' }}>
             <div style={{ fontSize: 14, fontWeight: 700, color: INK, marginBottom: 8 }}>Written from</div>
             <div style={{ fontSize: 13, color: MUT, lineHeight: 1.6 }}>Your take (4 of 5, and your note), 9 clips, the vests, and the score.</div>
-            <div style={{ fontSize: 13, color: MUT, lineHeight: 1.6, marginTop: 8 }}>A report never includes a rating or anything about one child’s body or wellbeing.</div>
+            <div style={{ fontSize: 13, color: MUT, lineHeight: 1.6, marginTop: 8 }}>A report never includes a rating or anything about one {seniors ? 'player' : 'child'}’s body or wellbeing.</div>
           </div>
           <button onClick={() => { setBody(''); setTitle(''); say('Blank page. Write your own, top to bottom.') }} style={{ background: '#fff', border: `1px solid ${CTL}`, borderRadius: 16, padding: '12px 14px', display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer', fontFamily: 'inherit', color: INK, textAlign: 'left' }}>
             <span style={{ width: 28, height: 28, borderRadius: 6, background: PALEGREEN, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={GREEN} strokeWidth="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span>

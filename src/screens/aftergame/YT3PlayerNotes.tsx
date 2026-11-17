@@ -6,7 +6,7 @@ import { YT_PLAYERS, COACH_GAME_RATINGS, COACH_NOTES, parentAverage, type Rating
 const GD = '#1f4a3e'
 const ROWS = YT_PLAYERS.slice(0, 7)
 
-export default function YT3PlayerNotes({ onNav, bare = false }: { onNav?: (s: string) => void; bare?: boolean }) {
+export default function YT3PlayerNotes({ onNav, bare = false, seniors = false }: { onNav?: (s: string) => void; bare?: boolean; seniors?: boolean }) {
   const [lastTool, setLastTool] = useState('')
   const [toast, setToast] = useState<string | null>(null)
   const [ratings, setRatings] = useState<Record<string, Rating>>({ ...COACH_GAME_RATINGS })
@@ -56,7 +56,7 @@ export default function YT3PlayerNotes({ onNav, bare = false }: { onNav?: (s: st
                       <td style={{ padding: '12px 14px' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                           <span style={{ width: 34, height: 34, borderRadius: '50%', background: PALEGREEN, color: GREEN, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0 }}>{p.ini}</span>
-                          <span><span style={{ display: 'block', fontSize: 14, fontWeight: 700, color: INK }}>{p.name}</span><span style={{ display: 'block', fontSize: 12, color: MUT }}>{p.minutes} min · parents {pa == null ? '—' : pa.toFixed(1)}</span></span>
+                          <span><span style={{ display: 'block', fontSize: 14, fontWeight: 700, color: INK }}>{p.name}</span><span style={{ display: 'block', fontSize: 12, color: MUT }}>{p.minutes} min{seniors ? '' : ` · parents ${pa == null ? '—' : pa.toFixed(1)}`}</span></span>
                         </div>
                       </td>
                       <td style={{ padding: '12px 14px' }}>
@@ -86,7 +86,7 @@ export default function YT3PlayerNotes({ onNav, bare = false }: { onNav?: (s: st
         <aside style={{ display: 'flex', flexDirection: 'column', gap: 12, minHeight: 0 }}>
           <div style={{ background: '#fff', border: `1px solid ${CTL}`, borderRadius: 16, padding: '14px 16px' }}>
             <div style={{ fontSize: 14, fontWeight: 700, color: INK, marginBottom: 10 }}>Where these go</div>
-            {[['Season summaries', 'Your notes become the first draft'], ['Awards night', "Yours and parents', counted for you"], ['Thursday', 'A low rating twice asks if you want a check-in']].map(([t, s], i) => (
+            {[['Season summaries', 'Your notes become the first draft'], ['Awards night', seniors ? 'Your ratings, counted for you' : "Yours and parents', counted for you"], ['Thursday', 'A low rating twice asks if you want a check-in']].map(([t, s], i) => (
               <div key={t} style={{ display: 'flex', gap: 10, padding: '8px 0', borderTop: i ? `1px solid ${HAIR}` : 'none' }}>
                 <span style={{ width: 22, height: 22, borderRadius: '50%', background: PALEGREEN, color: GREEN, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, flexShrink: 0 }}>{i + 1}</span>
                 <span><span style={{ display: 'block', fontSize: 13, fontWeight: 700, color: INK }}>{t}</span><span style={{ display: 'block', fontSize: 12, color: MUT }}>{s}</span></span>
@@ -95,8 +95,8 @@ export default function YT3PlayerNotes({ onNav, bare = false }: { onNav?: (s: st
           </div>
           <div style={{ background: '#fff', border: `1px solid ${CTL}`, borderRadius: 16, padding: '14px 16px' }}>
             <div style={{ fontSize: 14, fontWeight: 700, color: INK, marginBottom: 8 }}>Who sees them</div>
-            <div style={{ fontSize: 13, color: MUT, lineHeight: 1.6 }}>Your ratings and notes: only you. A parent’s ratings: that parent and you.</div>
-            <div style={{ fontSize: 13, color: MUT, lineHeight: 1.6, marginTop: 8 }}>Nobody else, at any age: not players, other parents, other coaches or the club.</div>
+            <div style={{ fontSize: 13, color: MUT, lineHeight: 1.6 }}>{seniors ? 'Your ratings and notes: only you.' : 'Your ratings and notes: only you. A parent’s ratings: that parent and you.'}</div>
+            <div style={{ fontSize: 13, color: MUT, lineHeight: 1.6, marginTop: 8 }}>{seniors ? 'Nobody else: not players, other coaches or the club.' : 'Nobody else, at any age: not players, other parents, other coaches or the club.'}</div>
           </div>
         </aside>
       </div>
