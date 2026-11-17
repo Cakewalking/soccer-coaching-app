@@ -2472,10 +2472,10 @@ export default function DemoApp() {
   const coachNavRef = useRef<(t: string) => boolean>(() => false)
   const [sbStore, setSbStore] = useState<SandboxStore>(() => readStore())
   const sbFilled = storeHasData(sbStore)
-  const [isPhone, setIsPhone] = useState(() => window.innerWidth < 768)
+  const [isPhone, setIsPhone] = useState(() => window.innerWidth < 700)
 
   useEffect(() => {
-    const onResize = () => setIsPhone(window.innerWidth < 768)
+    const onResize = () => setIsPhone(window.innerWidth < 700)
     window.addEventListener('resize', onResize)
     return () => window.removeEventListener('resize', onResize)
   }, [])
@@ -2579,7 +2579,11 @@ export default function DemoApp() {
     }
     return (
       <DemoStartEmpty
-        onRole={(roleId) => { setRole(roleId); setView('sandboxlook') }}
+        onRole={(roleId, scr) => { setRole(roleId); setScreen(scr); setView('sandboxlook') }}
+        teamName={sbStore.teams[0]?.name}
+        hasPlayers={sbStore.players.length > 0}
+        hasGame={sbStore.fixtures.length > 0}
+        isSample={storeIsSample(sbStore)}
         onSwitchToDemo={() => setView('start')}
         expiryDate={sandboxExpiryLabel()}
         onFill={() => {
@@ -2594,7 +2598,6 @@ export default function DemoApp() {
             setSbStore(readStore())
           })
         }}
-        onKeepGoing={() => {}}
       />
     )
   }

@@ -1,101 +1,92 @@
-import { ROLE_GROUPS, type RoleId } from './tours'
-import Logo from '../Logo'
+import { type RoleId } from './tours'
+import { COLUMNS, RoleColumn, Chevron, useColumns, INK, MUT, G, BORDER, PALE, BG } from './rolePicker'
+import { demoToast } from '../demoToast'
+import { wantSetup } from '../sandbox/sandboxNav'
+
+// STA3e-PickRoleEmpty: the sandbox picker. The three first steps come before the
+// roles, and step 1 is the one filled green button.
 
 interface Props {
-  onRole: (role: RoleId) => void
+  onRole: (role: RoleId, screen?: string) => void
   onSwitchToDemo: () => void
   expiryDate?: string
   onFill?: () => void
   onReset?: () => void
-  onKeepGoing?: () => void
+  /** What is in the sandbox now, so the heading and steps tell the truth. */
+  teamName?: string
+  hasPlayers?: boolean
+  hasGame?: boolean
+  isSample?: boolean
 }
 
-export default function DemoStartEmpty({ onRole, onSwitchToDemo, expiryDate = 'Thursday 18 June', onFill, onReset, onKeepGoing }: Props) {
+export default function DemoStartEmpty({ onRole, onSwitchToDemo, expiryDate = 'Thursday 18 June', onFill, onReset, teamName, hasPlayers, hasGame, isSample }: Props) {
+  const cols = useColumns()
+  const started = !!teamName
+  const steps = [
+    { n: 1, title: started && hasPlayers ? `Carry on setting up ${teamName}` : 'Set up a team and add players', sub: started && hasPlayers ? 'Players, games, training nights and helpers' : 'About 3 minutes. Made-up names only', go: () => onRole('coach'), done: !!(started && hasPlayers) },
+    { n: 2, title: 'Plan this week’s training', sub: 'Pick from the drill library', go: () => onRole('coach', 'training'), done: false },
+    { n: 3, title: 'Add a game', sub: hasGame ? 'Then record it, or use our sample recording' : 'No camera? Use our sample recording', go: () => { if (hasGame) onRole('coach', 'record'); else { wantSetup('fixtures'); onRole('coach') } }, done: !!hasGame },
+  ]
+  const first = steps.find(s => !s.done)?.n ?? 2
+  const strip = [
+    { title: 'Fill with sample data', sub: isSample ? 'The sample club is loaded' : 'A squad, four games, messages', btn: isSample ? 'Filled' : 'Fill', act: onFill, off: isSample, icon: 'M12 5v14M5 12h14' },
+    { title: 'Empty it and start again', sub: 'Removes everything you’ve added', btn: 'Reset', act: onReset, off: !started, icon: 'M20 11a8 8 0 10-2.3 5.7M20 4v7h-7' },
+    { title: 'Keep it going', sub: 'Make it a real club account', btn: 'Ask us', act: () => demoToast('We will be in touch. In this demo nothing is sent.'), off: false, icon: 'M12 12a4 4 0 100-8 4 4 0 000 8zM5 20a7 7 0 0114 0' },
+  ]
   return (
-    <div style={{ minHeight: '100vh', background: '#f5f6f4', fontFamily: 'var(--font-sans)' }}>
+    <div data-screen="STA3e-PickRoleEmpty" style={{ minHeight: '100vh', background: BG, fontFamily: 'var(--font-sans)', color: INK, display: 'flex', flexDirection: 'column' }}>
+      <div style={{ flex: 'none', background: INK, minHeight: 44, display: 'flex', alignItems: 'center', gap: 10, padding: '0 32px' }}>
+        <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', padding: '3px 10px', borderRadius: 999, background: '#fff', color: INK }}>SANDBOX</span>
+        <span style={{ fontSize: 14, color: '#fff', flexGrow: 1, minWidth: 0 }}>Your own club, kept on this device. Yours until {expiryDate}.</span>
+        <button onClick={onSwitchToDemo} style={{ flex: 'none', height: 44, padding: 0, border: 0, background: 'none', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, textDecoration: 'underline', cursor: 'pointer', whiteSpace: 'nowrap' }}>Switch to the demo</button>
+      </div>
 
-      {/* Sandbox bar */}
-      <div style={{ background: '#10211f', padding: '0 32px', height: 48, display: 'flex', alignItems: 'center', justifyContent: 'space-between', flex: 'none' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-          <span style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)' }}>Sandbox · Your data</span>
-          <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)' }}>Your own empty club, as a coach. What you add is saved until {expiryDate}.</span>
+      <div style={{ flexGrow: 1, width: '100%', maxWidth: 1280, margin: '0 auto', padding: '18px 32px 14px', boxSizing: 'border-box', display: 'flex', flexDirection: 'column' }}>
+        <h1 style={{ margin: 0, fontSize: 34, fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1.15 }}>{isSample ? 'Your club has the sample data in it.' : started ? `${teamName} is under way.` : 'Your club is empty. Start here.'}</h1>
+        <p style={{ margin: '4px 0 14px', fontSize: 16, color: MUT }}>{isSample ? 'Open any role to see it full. Reset to build your own instead.' : 'Do these three as the coach, then open any role to see what they see.'}</p>
+
+        <div style={{ display: 'grid', gridTemplateColumns: `repeat(${cols === 1 ? 1 : 3}, minmax(0, 1fr))`, gap: 12 }}>
+          {steps.map(s => {
+            const main = s.n === first && !isSample
+            return (
+              <button key={s.n} onClick={s.go} style={{ minHeight: 64, display: 'flex', alignItems: 'center', gap: 12, padding: '8px 14px', borderRadius: 16, border: main ? 0 : `1px solid ${BORDER}`, background: main ? G : '#fff', color: main ? '#fff' : INK, fontFamily: 'inherit', textAlign: 'left', cursor: 'pointer' }}>
+                <span style={{ flex: 'none', width: 30, height: 30, borderRadius: '50%', background: main ? '#fff' : PALE, color: main ? G : INK, fontSize: 14, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  {s.done ? <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={G} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-label="Done"><path d="M20 6L9 17l-5-5" /></svg> : s.n}
+                </span>
+                <span style={{ flexGrow: 1, minWidth: 0 }}>
+                  <span style={{ display: 'block', fontSize: 15, fontWeight: 700, lineHeight: 1.25 }}>{s.title}</span>
+                  <span style={{ display: 'block', fontSize: 13, color: main ? '#fff' : MUT, lineHeight: 1.3 }}>{s.sub}</span>
+                </span>
+                <Chevron color={main ? '#fff' : INK} />
+              </button>
+            )
+          })}
         </div>
-        <button onClick={onSwitchToDemo} style={{ height: 44, padding: '0 14px', borderRadius: 8, border: '1px solid rgba(255,255,255,0.3)', background: 'none', color: 'rgba(255,255,255,0.8)', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Switch to the demo</button>
-      </div>
 
-      {/* Hero */}
-      <div style={{ maxWidth: 1180, margin: '0 auto', padding: '40px 48px 24px', boxSizing: 'border-box' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
-          <Logo size={28} />
-          <span style={{ fontSize: 15, fontWeight: 800, letterSpacing: '-0.02em', color: '#10211f' }}>Clean Sheet</span>
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, flexWrap: 'wrap', margin: '16px 0 10px' }}>
+          <h2 style={{ margin: 0, fontSize: 17, fontWeight: 700, flexGrow: 1 }}>Or open any role</h2>
+          <span style={{ fontSize: 13, color: MUT }}>You play every role. What you set up as the coach shows up for everyone else.</span>
         </div>
-        <h1 style={{ margin: '0 0 6px', fontSize: 28, fontWeight: 800, letterSpacing: '-0.03em', color: '#10211f' }}>Your club is empty. Where do you want to start?</h1>
-        <p style={{ margin: '0 0 8px', fontSize: 14, color: '#4a5a57' }}>You play every role. What you set up as the coach shows up for the parent, the team manager and the club.</p>
-      </div>
+        <div style={{ display: 'grid', gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`, gap: 16, alignItems: 'start' }}>
+          {COLUMNS.map(col => <RoleColumn key={col.key} col={col} rowHeight={46} showSub={false} doing="Opens their first screen in your sandbox." onPick={id => onRole(id)} />)}
+        </div>
 
-      {/* Role groups */}
-      <div style={{ maxWidth: 1180, margin: '0 auto', padding: '0 48px', boxSizing: 'border-box' }}>
-        {ROLE_GROUPS.filter(g => g.section !== 'A YEAR AT THE CLUB' && g.section !== 'SETTINGS').map(group => (
-          <div key={group.section} style={{ marginBottom: 28 }}>
-            <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', color: '#6f7f7b', textTransform: 'uppercase', marginBottom: 10 }}>{group.section}</div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 10 }}>
-              {group.roles.map(role => (
-                <button key={role.id} onClick={() => onRole(role.id)} style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 14, padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 6, textAlign: 'left', fontFamily: 'inherit', cursor: 'pointer' }}>
-                  <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>{role.name}</div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-                    <span style={{ fontSize: 11, fontWeight: 700, padding: '1px 7px', borderRadius: '999px', background: '#f0f1ef', color: '#6f7f7b' }}>{role.device}</span>
-                  </div>
-                </button>
-              ))}
-            </div>
-          </div>
-        ))}
-
-        <div style={{ fontSize: 12, color: '#6f7f7b', marginBottom: 20 }}>Most people start as a coach or the director. Each role opens on its first-use screen, with the next step spelled out.</div>
-      </div>
-
-      {/* Three things to try + sandbox controls */}
-      <div style={{ maxWidth: 1180, margin: '0 auto', padding: '0 48px 48px', boxSizing: 'border-box', display: 'grid', gridTemplateColumns: '1fr auto', gap: 20, alignItems: 'start' }}>
-        <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '20px 24px' }}>
-          <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', marginBottom: 14 }}>Three things to try first</div>
-          {[
-            { n: '1', label: 'Set up a team and add players', note: 'About 3 minutes. Made-up names only' },
-            { n: '2', label: "Plan this week's training",      note: 'Pick from the drill library' },
-            { n: '3', label: 'Add a game',                    note: 'No camera? Use our sample recording' },
-          ].map(item => (
-            <div key={item.n} style={{ display: 'flex', gap: 12, alignItems: 'flex-start', marginBottom: 12 }}>
-              <div style={{ width: 24, height: 24, borderRadius: '50%', background: '#eef5f2', display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 'none', fontSize: 12, fontWeight: 700, color: '#2f6252' }}>{item.n}</div>
-              <div>
-                <div style={{ fontSize: 14, fontWeight: 600, color: '#10211f' }}>{item.label}</div>
-                <div style={{ fontSize: 13, color: '#6f7f7b' }}>{item.note}</div>
-              </div>
+        <div style={{ flexGrow: 1, minHeight: 14 }} />
+        <div style={{ display: 'grid', gridTemplateColumns: `repeat(${cols === 1 ? 1 : 3}, minmax(0, 1fr))`, gap: '8px 20px', background: '#fff', border: `1px solid ${BORDER}`, borderRadius: 16, padding: '10px 14px' }}>
+          {strip.map(s => (
+            <div key={s.title} style={{ display: 'flex', alignItems: 'center', gap: 10, minWidth: 0 }}>
+              <span style={{ flex: 'none', width: 32, height: 32, borderRadius: '50%', background: PALE, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={G} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={s.icon} /></svg>
+              </span>
+              <span style={{ flexGrow: 1, minWidth: 0 }}>
+                <span style={{ display: 'block', fontSize: 14, fontWeight: 700 }}>{s.title}</span>
+                <span style={{ display: 'block', fontSize: 13, color: MUT }}>{s.sub}</span>
+              </span>
+              <button onClick={s.act} disabled={s.off} aria-label={`${s.btn}: ${s.title}`} style={{ flex: 'none', height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${BORDER}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: s.off ? 'default' : 'pointer', opacity: s.off ? 0.5 : 1 }}>{s.btn}</button>
             </div>
           ))}
         </div>
-
-        <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '20px 24px', minWidth: 260 }}>
-          <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#6f7f7b', marginBottom: 14 }}>Your sandbox</div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-            <div>
-              <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f', marginBottom: 2 }}>Fill with sample data</div>
-              <div style={{ fontSize: 13, color: '#6f7f7b', marginBottom: 8 }}>A squad, three games and recordings, marked as samples</div>
-              <button onClick={onFill} style={{ height: 44, padding: '0 16px', borderRadius: 8, border: '1.5px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: '#10211f', cursor: 'pointer' }}>Fill</button>
-            </div>
-            <div style={{ borderTop: '1px solid #e9eae8', paddingTop: 10 }}>
-              <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f', marginBottom: 2 }}>Empty it and start again</div>
-              <div style={{ fontSize: 13, color: '#6f7f7b', marginBottom: 8 }}>Removes everything you've added</div>
-              <button onClick={onReset} style={{ height: 44, padding: '0 16px', borderRadius: 8, border: '1.5px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: '#10211f', cursor: 'pointer' }}>Reset</button>
-            </div>
-            <div style={{ borderTop: '1px solid #e9eae8', paddingTop: 10 }}>
-              <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f', marginBottom: 2 }}>Keep it going</div>
-              <div style={{ fontSize: 13, color: '#6f7f7b', marginBottom: 8 }}>Turn the sandbox into a real club account</div>
-              <button onClick={onKeepGoing} style={{ height: 44, padding: '0 16px', borderRadius: 8, border: '1.5px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: '#10211f', cursor: 'pointer' }}>Ask us</button>
-            </div>
-          </div>
-          <div style={{ marginTop: 14, padding: '10px 12px', background: '#f5f6f4', borderRadius: 10, fontSize: 12, color: '#6f7f7b', lineHeight: 1.5 }}>
-            <strong style={{ color: '#10211f' }}>Good to know.</strong> Nobody is invited or messaged from a sandbox. Please don't enter real children's details. Everything is deleted on {expiryDate}.
-          </div>
-        </div>
+        <p style={{ margin: '8px 0 0', fontSize: 13, color: INK }}><strong>Use made-up names.</strong> Please don’t enter real children’s details. Nobody is invited or messaged from a sandbox, and everything is deleted on {expiryDate}.</p>
       </div>
     </div>
   )

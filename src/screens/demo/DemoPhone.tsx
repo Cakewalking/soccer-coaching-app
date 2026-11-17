@@ -1,67 +1,67 @@
 import { type RoleId } from './tours'
-import Logo from '../Logo'
+import { Chevron, DeviceIcon, ROLE_COUNT, INK, MUT, BORDER, LN, PALE, BG, GD } from './rolePicker'
 
-const PHONE_ROLES: Array<{ id: RoleId; name: string; desc: string }> = [
-  { id: 'coach',        name: 'Head coach',        desc: 'As Sam K, U12 Sam' },
-  { id: 'parent',       name: 'Parent',           desc: 'As Linh Tran, Mia\'s mum' },
-  { id: 'manager',      name: 'Team manager',      desc: 'As Rob Owusu, U12 Sam' },
-  { id: 'playeryoung',  name: 'Player under 15',   desc: 'As Mia Tran, 11' },
-  { id: 'playerolder',  name: 'Player 15 and over',desc: 'As Cal West, 16' },
-  { id: 'referee',      name: 'Referee',            desc: 'As Zoe Park, 16' },
-  { id: 'academyparent', name: 'Academy parent',   desc: 'As Tess Okonkwo, mum of Kai, 13' },
-  { id: 'academyplayer', name: 'Academy player',   desc: 'As Kai Okonkwo, 13' },
+// STA3p-PickRolePhone: the roles made for a phone, one tap each. No switch here:
+// guided tours need a bigger screen, so every row opens that role's home.
+
+const GROUPS: { title: string; roles: { id: RoleId; name: string; desc: string }[] }[] = [
+  { title: 'At a club', roles: [
+    { id: 'parent',       name: 'Parent',             desc: 'as Linh Tran, Mia’s mum' },
+    { id: 'manager',      name: 'Team manager',       desc: 'as Rob Owusu, U12 Sam' },
+    { id: 'playeryoung',  name: 'Player under 15',    desc: 'as Mia Tran, 11' },
+    { id: 'playerolder',  name: 'Player 15 and over', desc: 'as Cal West, 16' },
+    { id: 'referee',      name: 'Referee',            desc: 'as Zoe Park, 16' },
+    // Not in the drawn picker, but the coach's phone view is built, so it stays reachable.
+    { id: 'coach',        name: 'Junior coach, pitch-side', desc: 'as Sam K, U12 Sam' },
+  ] },
+  { title: 'At a private academy', roles: [
+    { id: 'academyparent', name: 'Academy parent', desc: 'as Tess Okonkwo, mum of Kai, 13' },
+    { id: 'academyplayer', name: 'Academy player', desc: 'as Kai Okonkwo, 13' },
+  ] },
 ]
+const COUNT = GROUPS.reduce((n, g) => n + g.roles.length, 0)
 
 interface Props {
   onLook: (role: RoleId) => void
   onWhy: () => void
   onSandbox: () => void
+  /** Shown on a big screen that opened the phone start: a way back to every role. */
+  onAllRoles?: () => void
 }
 
-export default function DemoPhone({ onLook, onWhy, onSandbox }: Props) {
+export default function DemoPhone({ onLook, onWhy, onSandbox, onAllRoles }: Props) {
+  const btn: React.CSSProperties = { flex: 1, height: 48, borderRadius: 12, border: `1px solid ${BORDER}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }
   return (
-    <div style={{ minHeight: '100vh', background: '#f5f6f4', fontFamily: 'var(--font-sans)' }}>
-
-      {/* Top bar */}
-      <div style={{ background: '#1f4a3e', padding: '0 20px', height: 44, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-          <span style={{ fontSize: 14, fontWeight: 800, letterSpacing: '-0.02em', color: '#fff' }}>Demo.</span>
-          <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)' }}>Everyone here is made up. Nothing you tap is saved.</span>
-        </div>
-      </div>
-
-      {/* Hero */}
-      <div style={{ padding: '24px 20px 16px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
-          <Logo size={24} />
-          <span style={{ fontSize: 14, fontWeight: 800, letterSpacing: '-0.02em', color: '#10211f' }}>Clean Sheet</span>
-        </div>
-        <h1 style={{ margin: '0 0 4px', fontSize: 26, fontWeight: 800, letterSpacing: '-0.02em', color: '#10211f' }}>Pick who you are</h1>
-        <p style={{ margin: 0, fontSize: 14, color: '#4a5a57' }}>These are the roles that live on a phone.</p>
-      </div>
-
-      {/* Phone roles */}
-      <div style={{ padding: '0 20px 24px', display: 'flex', flexDirection: 'column' as const, gap: 10 }}>
-        {PHONE_ROLES.map(role => (
-          <button key={role.id} onClick={() => onLook(role.id)} style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 14, padding: '14px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', textAlign: 'left' as const, fontFamily: 'inherit', cursor: 'pointer', width: '100%', boxSizing: 'border-box' as const }}>
-            <div>
-              <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', marginBottom: 2 }}>{role.name}</div>
-              <div style={{ fontSize: 13, color: '#6f7f7b' }}>{role.desc}</div>
+    <div data-screen="STA3p-PickRolePhone" style={{ minHeight: '100dvh', background: BG, fontFamily: 'var(--font-sans)', color: INK, display: 'flex', flexDirection: 'column' }}>
+      <div style={{ flex: 'none', background: INK, padding: '10px 16px', fontSize: 14, color: '#fff', lineHeight: 1.35 }}><strong>Demo.</strong> Everyone here is made up. Nothing you tap is saved.</div>
+      <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', padding: '14px 16px 16px' }}>
+        <h1 style={{ margin: 0, fontSize: 28, fontWeight: 800, letterSpacing: '-0.03em' }}>Pick who you are</h1>
+        <p style={{ margin: '4px 0 0', fontSize: 15, color: MUT, lineHeight: 1.35 }}>The {COUNT} roles made for a phone. One tap opens their home.</p>
+        {GROUPS.map(g => (
+          <section key={g.title} aria-label={g.title}>
+            <h2 style={{ margin: '12px 2px 6px', fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' }}>{g.title}</h2>
+            <div style={{ background: '#fff', border: `1px solid ${BORDER}`, borderRadius: 16, overflow: 'hidden' }}>
+              {g.roles.map((r, i) => (
+                <button key={r.id} onClick={() => onLook(r.id)} aria-label={`${r.name}, ${r.desc}. Opens their home screen.`} style={{ width: '100%', minHeight: 54, display: 'flex', alignItems: 'center', gap: 10, padding: '6px 14px', border: 0, borderTop: i ? `1px solid ${LN}` : 0, background: '#fff', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left', boxSizing: 'border-box' }}>
+                  <span style={{ flexGrow: 1, minWidth: 0 }}>
+                    <span style={{ display: 'block', fontSize: 16, fontWeight: 700, lineHeight: 1.25 }}>{r.name}</span>
+                    <span style={{ display: 'block', fontSize: 13, color: MUT, lineHeight: 1.3 }}>{r.desc}</span>
+                  </span>
+                  <Chevron />
+                </button>
+              ))}
             </div>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6f7f7b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </button>
+          </section>
         ))}
-      </div>
-
-      {/* Links */}
-      <div style={{ padding: '0 20px 20px', display: 'flex', gap: 16 }}>
-        <button onClick={onWhy} style={{ background: 'none', border: 'none', color: '#2f6252', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', padding: 0 }}>Why trust it</button>
-        <button onClick={onSandbox} style={{ background: 'none', border: 'none', color: '#2f6252', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', padding: 0 }}>Start empty</button>
-      </div>
-
-      {/* Footer */}
-      <div style={{ margin: '0 20px 32px', padding: '14px 16px', background: '#fff', border: '1px solid #c5c8c4', borderRadius: 12 }}>
-        <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: 1.5 }}>Head coaches have a phone app too — it's at the top of this list. Other coaching roles and club staff use a tablet or laptop. Open this address on a bigger screen for those, and for the guided tours.</div>
+        <div style={{ flexGrow: 1, minHeight: 12 }} />
+        <div style={{ display: 'flex', gap: 12, alignItems: 'center', background: PALE, borderRadius: 14, padding: '10px 14px', fontSize: 13, color: GD, lineHeight: 1.4, marginBottom: 10 }}>
+          <span style={{ flex: 'none' }}><DeviceIcon phone={false} color={GD} /></span>
+          <span><strong>{ROLE_COUNT - COUNT} more roles on a bigger screen.</strong> Coaches, the club and the guided tours need a tablet or laptop. Open this address there.</span>
+        </div>
+        <div style={{ display: 'flex', gap: 10 }}>
+          {onAllRoles ? <button style={btn} onClick={onAllRoles}>All {ROLE_COUNT} roles</button> : <button style={btn} onClick={onWhy}>Why trust it</button>}
+          <button style={btn} onClick={onSandbox}>Start empty</button>
+        </div>
       </div>
     </div>
   )

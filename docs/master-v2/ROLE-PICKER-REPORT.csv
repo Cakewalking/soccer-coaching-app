@@ -1,0 +1,90 @@
+control id,screen,control,does,target or line,status: works / line of text only / missing / wrong target (say where)
+STA3-PickRole#1,STA3-PickRole,Start with an empty club instead,Opens,DEMO-SignIn,works
+STA3-PickRole#2,STA3-PickRole,Why trust it,Opens,DEMO-Why,works
+STA3-PickRole#3,STA3-PickRole,The idea in one minute,Opens,DEMO-Story,works
+STA3-PickRole#4,STA3-PickRole,Guided tour · walk me through their week,Opens,STA3-PickRole,"works: same address, the switch changes and is remembered for the visit"
+STA3-PickRole#5,STA3-PickRole,Look around · open their home screen,Opens,STA3l-PickRoleLook,"works: same address, the switch changes and is remembered for the visit"
+STA3-PickRole#6,STA3-PickRole,MiniRoos coach · Under 6 to 11 · as Tom Albers,Opens,DEMO-TourCoachMiniroos,works
+STA3-PickRole#7,STA3-PickRole,Junior coach · Under 12 and 13 · as Sam K,Opens,DEMO-TourCoach,works
+STA3-PickRole#8,STA3-PickRole,Youth coach · Under 14 to 18 · as Ollie Grant,Opens,DEMO-TourCoachYouth,works
+STA3-PickRole#9,STA3-PickRole,Senior coach · Adults · as Marko Petrovic,Opens,DEMO-TourCoachSeniors,works
+STA3-PickRole#10,STA3-PickRole,Assistant coach · as Jess Marsh,Opens,DEMO-TourCoCoach,works
+STA3-PickRole#11,STA3-PickRole,Fitness coach · as Priya Shah,Opens,DEMO-TourFitness,works
+STA3-PickRole#12,STA3-PickRole,Goalkeeper coach · as Nick Ward,Opens,DEMO-TourKeeperCoach,works
+STA3-PickRole#13,STA3-PickRole,Team manager · as Rob Owusu,Opens,DEMO-TourManager,works
+STA3-PickRole#14,STA3-PickRole,Parent · as Linh Tran,Opens,DEMO-TourParent,works
+STA3-PickRole#15,STA3-PickRole,Player under 15 · as Mia Tran,Opens,DEMO-TourPlayerYoung,works
+STA3-PickRole#16,STA3-PickRole,Player 15 and over · as Cal West,Opens,DEMO-TourPlayerOlder,works
+STA3-PickRole#17,STA3-PickRole,"Scan, or open the phone start",Opens,STA3p-PickRolePhone,works as a link: opens the phone start. No QR code is drawn (needs a QR library); the address is shown as text instead
+STA3-PickRole#18,STA3-PickRole,Director of football · as Rachel M,Opens,DEMO-TourDirector,works
+STA3-PickRole#19,STA3-PickRole,Chair · as Greg Lawson,Opens,DEMO-TourChair,works
+STA3-PickRole#20,STA3-PickRole,Club coordinator · as Bianca Rossi,Opens,DEMO-TourCoordinator,works
+STA3-PickRole#21,STA3-PickRole,Welfare officer · as Helen Park,Opens,DEMO-TourWelfare,works
+STA3-PickRole#22,STA3-PickRole,Referee · as Zoe Park,Opens,DEMO-TourReferee,works
+STA3-PickRole#23,STA3-PickRole,Start as the junior coach,Opens,DEMO-TourCoach,works
+STA3-PickRole#24,STA3-PickRole,Academy owner · as Dani Okafor,Opens,DEMO-TourAcademyOwner,works
+STA3-PickRole#25,STA3-PickRole,Academy coach · as Reece Whitlam,Opens,DEMO-TourAcademyCoach,works
+STA3-PickRole#26,STA3-PickRole,Academy parent · as Tess Okonkwo,Opens,DEMO-TourAcademyParent,works
+STA3-PickRole#27,STA3-PickRole,Academy player · as Kai Okonkwo,Opens,DEMO-TourAcademyPlayer,works
+STA3l-PickRoleLook#1,STA3l-PickRoleLook,Start with an empty club instead,Opens,DEMO-SignIn,works
+STA3l-PickRoleLook#2,STA3l-PickRoleLook,Why trust it,Opens,DEMO-Why,works
+STA3l-PickRoleLook#3,STA3l-PickRoleLook,The idea in one minute,Opens,DEMO-Story,works
+STA3l-PickRoleLook#4,STA3l-PickRoleLook,Guided tour · walk me through their week,Opens,STA3-PickRole,"works: same address, the switch changes and is remembered for the visit"
+STA3l-PickRoleLook#5,STA3l-PickRoleLook,Look around · open their home screen,Opens,STA3l-PickRoleLook,"works: same address, the switch changes and is remembered for the visit"
+STA3l-PickRoleLook#6,STA3l-PickRoleLook,MiniRoos coach · Under 6 to 11 · as Tom Albers,Opens,STO1-HomeStoryMiniRoos,works
+STA3l-PickRoleLook#7,STA3l-PickRoleLook,Junior coach · Under 12 and 13 · as Sam K,Opens,STO5-HomeStoryJuniors,works
+STA3l-PickRoleLook#8,STA3l-PickRoleLook,Youth coach · Under 14 to 18 · as Ollie Grant,Opens,STO6-HomeStoryYouth,works
+STA3l-PickRoleLook#9,STA3l-PickRoleLook,Senior coach · Adults · as Marko Petrovic,Opens,STO4-HomeStorySeniors,works
+STA3l-PickRoleLook#10,STA3l-PickRoleLook,Assistant coach · as Jess Marsh,Opens,STO7-HomeStoryAssistant,works
+STA3l-PickRoleLook#11,STA3l-PickRoleLook,Fitness coach · as Priya Shah,Opens,STO8-HomeStoryFitness,works
+STA3l-PickRoleLook#12,STA3l-PickRoleLook,Goalkeeper coach · as Nick Ward,Opens,STO9-HomeStoryKeepers,works
+STA3l-PickRoleLook#13,STA3l-PickRoleLook,Team manager · as Rob Owusu,Opens,STO16-HomeStoryManager,works
+STA3l-PickRoleLook#14,STA3l-PickRoleLook,Parent · as Linh Tran,Opens,STO17-HomeStoryParent,works
+STA3l-PickRoleLook#15,STA3l-PickRoleLook,Player under 15 · as Mia Tran,Opens,STO18-HomeStoryPlayerYoung,works
+STA3l-PickRoleLook#16,STA3l-PickRoleLook,Player 15 and over · as Cal West,Opens,STO19-HomeStoryPlayerOlder,works
+STA3l-PickRoleLook#17,STA3l-PickRoleLook,"Scan, or open the phone start",Opens,STA3p-PickRolePhone,works as a link: opens the phone start. No QR code is drawn (needs a QR library); the address is shown as text instead
+STA3l-PickRoleLook#18,STA3l-PickRoleLook,Director of football · as Rachel M,Opens,STO10-HomeStoryDirector,works
+STA3l-PickRoleLook#19,STA3l-PickRoleLook,Chair · as Greg Lawson,Opens,STO11-HomeStoryChair,works
+STA3l-PickRoleLook#20,STA3l-PickRoleLook,Club coordinator · as Bianca Rossi,Opens,STO12-HomeStoryCoordinator,works
+STA3l-PickRoleLook#21,STA3l-PickRoleLook,Welfare officer · as Helen Park,Opens,STO13-HomeStoryWelfare,works
+STA3l-PickRoleLook#22,STA3l-PickRoleLook,Referee · as Zoe Park,Opens,STO20-HomeStoryReferee,works
+STA3l-PickRoleLook#23,STA3l-PickRoleLook,Start as the junior coach,Opens,STO5-HomeStoryJuniors,works
+STA3l-PickRoleLook#24,STA3l-PickRoleLook,Academy owner · as Dani Okafor,Opens,STO14-HomeStoryAcademyOwner,works
+STA3l-PickRoleLook#25,STA3l-PickRoleLook,Academy coach · as Reece Whitlam,Opens,STO15-HomeStoryAcademyCoach,works
+STA3l-PickRoleLook#26,STA3l-PickRoleLook,Academy parent · as Tess Okonkwo,Opens,STO21-HomeStoryAcademyParent,works
+STA3l-PickRoleLook#27,STA3l-PickRoleLook,Academy player · as Kai Okonkwo,Opens,STO22-HomeStoryAcademyPlayer,works
+STA3e-PickRoleEmpty#1,STA3e-PickRoleEmpty,Switch to the demo,Opens,STA3-PickRole,works
+STA3e-PickRoleEmpty#2,STA3e-PickRoleEmpty,1 Set up a team and add players · About 3 minutes. Made-up names only,Opens,X1-HomeEmpty,works: opens Team set-up (the sandbox Home)
+STA3e-PickRoleEmpty#3,STA3e-PickRoleEmpty,2 Plan this week’s training · Pick from the drill library,Opens,X3-TrainingEmpty,works: opens the coach Training tab in the sandbox
+STA3e-PickRoleEmpty#4,STA3e-PickRoleEmpty,3 Add a game · No camera? Use our sample recording,Opens,GameIn,"works: opens the Fixtures step of Team set-up, or Record once a game exists (GameIn is not a separate screen in the sandbox)"
+STA3e-PickRoleEmpty#5,STA3e-PickRoleEmpty,MiniRoos coach,Opens,HM1e-HomeMiniRoosEmpty,works: opens that role in the sandbox on its first-use screen
+STA3e-PickRoleEmpty#6,STA3e-PickRoleEmpty,Junior coach,Opens,X1-HomeEmpty,works: opens that role in the sandbox on its first-use screen
+STA3e-PickRoleEmpty#7,STA3e-PickRoleEmpty,Youth coach,Opens,X1-HomeEmpty,works: opens that role in the sandbox on its first-use screen
+STA3e-PickRoleEmpty#8,STA3e-PickRoleEmpty,Senior coach,Opens,X1-HomeEmpty,works: opens that role in the sandbox on its first-use screen
+STA3e-PickRoleEmpty#9,STA3e-PickRoleEmpty,Assistant coach,Opens,CC1e-CoachHomeSharedEmpty,works: opens that role in the sandbox on its first-use screen
+STA3e-PickRoleEmpty#10,STA3e-PickRoleEmpty,Fitness coach,Opens,FT1e-FitnessHomeEmpty,works: opens that role in the sandbox on its first-use screen
+STA3e-PickRoleEmpty#11,STA3e-PickRoleEmpty,Goalkeeper coach,Opens,HG1e-HomeKeeperCoachEmpty,works: opens that role in the sandbox on its first-use screen
+STA3e-PickRoleEmpty#12,STA3e-PickRoleEmpty,Team manager,Opens,TM1e-ManagerHomeEmpty,works: opens that role in the sandbox on its first-use screen
+STA3e-PickRoleEmpty#13,STA3e-PickRoleEmpty,Parent,Opens,PAe-ParentEmpty,works: opens that role in the sandbox on its first-use screen
+STA3e-PickRoleEmpty#14,STA3e-PickRoleEmpty,Player under 15,Opens,XP1-PlayerEmpty,works: opens that role in the sandbox on its first-use screen
+STA3e-PickRoleEmpty#15,STA3e-PickRoleEmpty,Player 15 and over,Opens,PO1e-OlderHomeEmpty,works: opens that role in the sandbox on its first-use screen
+STA3e-PickRoleEmpty#16,STA3e-PickRoleEmpty,Director of football,Opens,D0-ClubEmpty,works: opens that role in the sandbox on its first-use screen
+STA3e-PickRoleEmpty#17,STA3e-PickRoleEmpty,Chair,Opens,D0c-ChairWelcome,works: opens that role in the sandbox on its first-use screen
+STA3e-PickRoleEmpty#18,STA3e-PickRoleEmpty,Club coordinator,Opens,DCo1e-CoordinatorHomeEmpty,works: opens that role in the sandbox on its first-use screen
+STA3e-PickRoleEmpty#19,STA3e-PickRoleEmpty,Welfare officer,Opens,DW1e-WelfareCasesEmpty,works: opens that role in the sandbox on its first-use screen
+STA3e-PickRoleEmpty#20,STA3e-PickRoleEmpty,Referee,Opens,RF2e-RefGamesEmpty,works: opens that role in the sandbox on its first-use screen
+STA3e-PickRoleEmpty#21,STA3e-PickRoleEmpty,Academy owner,Opens,AC1e-AcademyHomeEmpty,works: opens that role in the sandbox on its first-use screen
+STA3e-PickRoleEmpty#22,STA3e-PickRoleEmpty,Academy coach,Opens,ACC1e-CoachTodayEmpty,works: opens that role in the sandbox on its first-use screen
+STA3e-PickRoleEmpty#23,STA3e-PickRoleEmpty,Academy parent,Opens,ACP3e-AcademyParentHomeEmpty,works: opens that role in the sandbox on its first-use screen
+STA3e-PickRoleEmpty#24,STA3e-PickRoleEmpty,Academy player,Opens,ACK1e-AcademyPlayerHomeEmpty,works: opens that role in the sandbox on its first-use screen
+STA3p-PickRolePhone#1,STA3p-PickRolePhone,"Parent · as Linh Tran, Mia’s mum",Opens,STO17-HomeStoryParent,works
+STA3p-PickRolePhone#2,STA3p-PickRolePhone,"Team manager · as Rob Owusu, U12 Sam",Opens,STO16-HomeStoryManager,works
+STA3p-PickRolePhone#3,STA3p-PickRolePhone,"Player under 15 · as Mia Tran, 11",Opens,STO18-HomeStoryPlayerYoung,works
+STA3p-PickRolePhone#4,STA3p-PickRolePhone,"Player 15 and over · as Cal West, 16",Opens,STO19-HomeStoryPlayerOlder,works
+STA3p-PickRolePhone#5,STA3p-PickRolePhone,"Referee · as Zoe Park, 16",Opens,STO20-HomeStoryReferee,works
+STA3p-PickRolePhone#6,STA3p-PickRolePhone,"Academy parent · as Tess Okonkwo, mum of Kai, 13",Opens,STO21-HomeStoryAcademyParent,works
+STA3p-PickRolePhone#7,STA3p-PickRolePhone,"Academy player · as Kai Okonkwo, 13",Opens,STO22-HomeStoryAcademyPlayer,works
+STA3p-PickRolePhone#8,STA3p-PickRolePhone,Why trust it,Opens,DEMO-Why,works
+STA3p-PickRolePhone#9,STA3p-PickRolePhone,Start empty,Opens,DEMO-SignIn,works
+extra,STA3p-PickRolePhone,"Junior coach, pitch-side · as Sam K, U12 Sam",Opens,coach phone home,"added: the coach phone view is built, so it is kept as an eighth row"
+extra,STA3-PickRole,"Longer tours: The year (coach, club, family), Settings",Opens,tours,"added: four built tours the picker does not draw, kept as links in the footer"

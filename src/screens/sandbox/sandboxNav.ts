@@ -16,6 +16,8 @@ export function goSetup(section: SetupSection, fallback: string) {
   handler(section)
   subs.forEach(f => f())
 }
+/** Ask Team set-up to open on a section the next time it is shown. */
+export function wantSetup(section: SetupSection) { wanted = section }
 export function takeWanted(): SetupSection | null { const w = wanted; wanted = null; return w }
 export function onWanted(f: () => void) { subs.add(f); return () => { subs.delete(f) } }
 

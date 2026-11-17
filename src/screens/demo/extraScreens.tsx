@@ -1,4 +1,9 @@
 import type { ReactNode } from 'react'
+import DemoStart from './DemoStart'
+import DemoStartEmpty from './DemoStartEmpty'
+import DemoPhone from './DemoPhone'
+
+const to = (path: string) => window.location.assign(path)
 import ConsentScreen from '../ConsentScreen'
 import ReviewScreen from '../ReviewScreen'
 import DevGoalsScreen from '../DevGoalsScreen'
@@ -68,6 +73,14 @@ export function renderExtraScreen(key: string): ReactNode | undefined {
   // coach app's own tab is the built screen, so the id opens that tab, in its frame.
   if (LIVE_COACH_TAB.has(key) && coachDeepTab(key)) return <JuniorCoachApp initialScreen={key} />
   switch (key) {
+    // The role pickers, and the three older ids they replace.
+    case 'STA3-PickRole': case 'DEMO-Start':
+    case 'STA3l-PickRoleLook':
+      return <DemoStart initialMode={key === 'STA3l-PickRoleLook' ? 'look' : undefined} onTour={r => to(`/tour/${r}`)} onLook={r => to(`/look/${r}`)} onStory={() => to('/tour/story')} onWhy={() => to('/why')} onSandbox={() => to('/sandbox')} />
+    case 'STA3e-PickRoleEmpty': case 'DEMO-StartEmpty':
+      return <DemoStartEmpty onRole={(r, scr) => to(scr ? `/sandbox/${r}/${scr}` : `/sandbox/${r}`)} onSwitchToDemo={() => to('/start')} />
+    case 'STA3p-PickRolePhone': case 'DEMO-Phone':
+      return <div style={{ width: 390, margin: '0 auto' }}><DemoPhone onLook={r => to(`/look/${r}`)} onWhy={() => to('/why')} onSandbox={() => to('/sandbox')} /></div>
     // The player's Learn tab, opened from the phone home (which keeps its own tab bar)
     case 'LEARN-PlayerYoung':    return phone(<EDUp1PlayerLearn embedded />)
     case 'LEARN-PlayerOlder':    return phone(<EDUp1PlayerLearn embedded older />)
