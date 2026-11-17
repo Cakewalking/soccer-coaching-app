@@ -2,8 +2,9 @@ import { useState } from 'react'
 import { MINIROOS, JUNIORS, GRADING } from './data'
 import { SubTabBar, ResultChip, BackBtn, EmptyCard, FOOTER_DEFAULT } from './ui'
 import CardsTab from './CardsTab'
+import ClubChances from '../chances/ClubChances'
 
-type TeamsView = 'allteams' | 'seniors' | 'fixtures' | 'leaguesync' | 'grading' | 'referees' | 'teamkit' | 'cards'
+type TeamsView = 'allteams' | 'chances' | 'seniors' | 'fixtures' | 'leaguesync' | 'grading' | 'referees' | 'teamkit' | 'cards'
 
 const TEAM_DETAILS: Record<string, { coach: string; div: string; players: number; turnout: number; style: number; lastFive: string[]; fewest: number; staff: { ini: string; name: string; role: string; check: string }[] }> = {
   'U12 Girls Ana': { coach: 'Ana Silva', div: 'Division 1 · Juniors', players: 15, turnout: 94, style: 74, lastFive: ['W','D','W','W','W'], fewest: 60, staff: [{ ini: 'AS', name: 'Ana Silva', role: 'Coach', check: 'Valid Aug 2027' }, { ini: 'DM', name: 'Dee Moss', role: 'Assistant coach', check: 'Valid Feb 2027' }, { ini: 'TW', name: 'Tina Wu', role: 'Team manager', check: 'Valid Oct 2027' }] },
@@ -236,8 +237,8 @@ const TEAMS_EMPTY: Partial<Record<TeamsView, { icon: string; title: string; desc
   cards:      { icon: 'M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8zM14 2v6h6', title: 'No cards this season', desc: 'Yellow and red cards come in from Dribl the night after each game. Anyone suspended is taken out of line-ups for you.', items: [{ title: 'Red card', desc: 'Misses the next game automatically' }, { title: '5, 10 and 15 yellows', desc: 'Each one brings a suspension' }] },
 }
 
-export default function TeamsTab({ empty }: { empty?: boolean }) {
-  const [view, setView] = useState<TeamsView>('allteams')
+export default function TeamsTab({ empty, initialView, onNav }: { empty?: boolean; initialView?: string; onNav?: (s: string) => void }) {
+  const [view, setView] = useState<TeamsView>(initialView === 'chances' ? 'chances' : 'allteams')
   const [selectedTeam, setSelectedTeam] = useState<string | null>(null)
   const [showCompare, setShowCompare] = useState(false)
   const [filter, setFilter] = useState<'all' | 'attention' | 'girls' | 'recording'>('all')
@@ -259,6 +260,7 @@ export default function TeamsTab({ empty }: { empty?: boolean }) {
       <SubTabBar
         items={[
           { id: 'allteams', label: 'All teams' },
+          { id: 'chances', label: 'Chances and points' },
           { id: 'seniors', label: 'Seniors' },
           { id: 'fixtures', label: 'Fixtures' },
           { id: 'leaguesync', label: 'League sync' },
@@ -335,6 +337,8 @@ export default function TeamsTab({ empty }: { empty?: boolean }) {
           )}
         </div>
       )}
+
+      {view === 'chances' && <ClubChances onNav={onNav} />}
 
       {view === 'seniors' && (
         <div style={p}>

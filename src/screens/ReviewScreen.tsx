@@ -2,7 +2,8 @@ import { useState } from 'react'
 import { goApp } from './sandbox/sandboxNav'
 import { FitnessReviewSection } from './FitnessExtras'
 import { MarkDot, kindFromLabel } from './capture/marks'
-import { useCapture, gameMark } from './capture/captureStore'
+import { useCapture, gameMark, allowed } from './capture/captureStore'
+import { CHANCES, satGame, aboutGoals } from './chances/chanceData'
 
 function ReviewEmpty() {
   const [toast, setToast] = useState('')
@@ -184,6 +185,15 @@ export default function ReviewScreen({ empty, scoreline = '3–1', resultLine = 
               ))}
             </div>
           </div>
+
+          {/* Chances: one line, linking to the Chances tab */}
+          {allowed(cap, 'juniors').chances && (
+            <button onClick={() => goApp('XG1-ChancesGame', 'Opening Chances.')} style={{ width: '100%', minHeight: 48, marginBottom: 20, padding: '8px 14px', borderRadius: 12, border: '1px solid #c5c8c4', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, textAlign: 'left', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 10 }}>
+              <span style={{ flexGrow: 1 }}><strong>Your chances were worth {aboutGoals(satGame(CHANCES.u12).xg)}. You scored {CHANCES.u12.sat.scored}.</strong> <span style={{ color: '#4a5a57' }}>See where they came from</span></span>
+              <MarkDot kind="estimate" />
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+            </button>
+          )}
 
           {/* Work on this week */}
           <div style={{ marginBottom: 20 }}>

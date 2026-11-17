@@ -13,6 +13,7 @@ const PAGE = '#f4f5f3', BORDER = '#c5c8c4', ICONBG = '#eef5f2'
 type Handlers = {
   onDemo: () => void
   onWhy: () => void
+  onMeasure: () => void
   onStory: () => void
   onSandbox: () => void
   onOpenSandbox: () => void
@@ -109,6 +110,7 @@ const ROLE_CARDS = [
   { who: 'Director, chair, coordinator', name: 'Running the club', d: 'Every team playing the club way, and a story to tell new families.' },
   { who: 'Owner, coach, family', name: 'An academy', d: 'Progress families can see, and a reason to re-enrol.' },
 ]
+const ANALYST = ['Expected goals (xG)', 'Chances given up (xGA)', 'Chance difference (xGD)', 'Chances set up (xA)', 'Threat added (xT)', 'Opponent-weighted points (PPI)']
 const CHIPS = ['Film', 'Vests and boot sensors', 'Wellness check-ins', 'Coach’s taps', 'Other coaches’ notes', 'Who turned up']
 const BARS = [
   { n: '11', h: 34, when: 'Round 3', amber: false },
@@ -224,6 +226,14 @@ function Desktop(h: Handlers) {
                 <span style={{ fontSize: 16, lineHeight: '24px', color: GREY }}>{c.d}</span>
               </div>
             ))}
+          </div>
+          {/* The numbers an analyst asks for (chance-metrics-v2) */}
+          <div style={{ marginTop: 22, paddingTop: 18, borderTop: `1px solid ${BORDER}`, display: 'flex', flexDirection: 'column', gap: 10 }}>
+            <span style={{ fontSize: 15, lineHeight: '21px', color: '#2d3d3a' }}><strong style={{ color: INK }}>The numbers an analyst asks for are in there too.</strong> Each one is marked for how far to trust it, and opens to show how it was worked out.</span>
+            <span style={{ display: 'flex', flexWrap: 'wrap', gap: 8, alignItems: 'center' }}>
+              {ANALYST.map(m => <span key={m} style={{ height: 32, padding: '0 12px', borderRadius: 999, background: ICONBG, display: 'inline-flex', alignItems: 'center', fontSize: 13, fontWeight: 700, whiteSpace: 'nowrap' }}>{m}</span>)}
+              <Btn onClick={h.onMeasure} style={{ minHeight: 44, display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 14, fontWeight: 700, padding: '0 4px', background: 'none', border: 'none', color: GREEN, textDecoration: 'underline' }}>How we measure {arrow(14, 2.4)}</Btn>
+            </span>
           </div>
         </div>
       </section>
@@ -420,7 +430,7 @@ function Phone(h: Handlers) {
         <WorksWith phone />
       </section>
 
-      <section aria-label="What you get" style={{ background: '#fff', padding: '28px 16px 12px', display: 'flex', flexDirection: 'column', gap: 8 }}>
+      <section aria-label="What you get" style={{ background: '#fff', padding: '28px 16px 20px', display: 'flex', flexDirection: 'column', gap: 8 }}>
         <span style={label(GREY)}>WHAT YOU GET</span>
         <h2 style={{ margin: 0, fontSize: 24, lineHeight: '30px', letterSpacing: '-0.015em', color: INK }}>Every club is looking for an edge. This is where it comes from.</h2>
         <div>
@@ -431,6 +441,14 @@ function Phone(h: Handlers) {
               <span style={{ fontSize: 15, lineHeight: '22px', color: GREY }}>{c.d}</span>
             </div>
           ))}
+        </div>
+        {/* The numbers an analyst asks for (chance-metrics-v2) */}
+        <div style={{ marginTop: 14, paddingTop: 14, borderTop: `1px solid ${BORDER}`, display: 'flex', flexDirection: 'column', gap: 10 }}>
+          <span style={{ fontSize: 14, lineHeight: '21px', color: '#2d3d3a' }}><strong style={{ color: INK }}>The numbers an analyst asks for are in there too.</strong> Each one is marked for how far to trust it, and opens to show how it was worked out.</span>
+          <span style={{ display: 'flex', flexWrap: 'wrap', gap: 8, alignItems: 'center' }}>
+            {ANALYST.map(m => <span key={m} style={{ height: 32, padding: '0 12px', borderRadius: 999, background: ICONBG, display: 'inline-flex', alignItems: 'center', fontSize: 13, fontWeight: 700, whiteSpace: 'nowrap' }}>{m}</span>)}
+            <Btn onClick={h.onMeasure} style={{ minHeight: 44, display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 14, fontWeight: 700, padding: '0 4px', background: 'none', border: 'none', color: GREEN, textDecoration: 'underline' }}>How we measure {arrow(14, 2.4)}</Btn>
+          </span>
         </div>
       </section>
 

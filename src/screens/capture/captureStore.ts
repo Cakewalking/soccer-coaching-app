@@ -6,11 +6,14 @@ import { useSyncExternalStore } from 'react'
 import { markFor, partLabel, type MarkKind, type NumberKind } from './marks'
 
 export type Format = '7 v 7' | '9 v 9' | '11 v 11'
-export type Age = 'miniroos' | 'juniors' | 'youth' | 'seniors'
-export const AGES: Age[] = ['miniroos', 'juniors', 'youth', 'seniors']
+// Age bands (chance-metrics-v2): the club sets its rules once for each.
+export type Age = 'u6' | 'u8' | 'u10' | 'juniors' | 'youth' | 'seniors'
+export const AGES: Age[] = ['u6', 'u8', 'u10', 'juniors', 'youth', 'seniors']
+export const AGE_LABEL: Record<Age, [string, string]> = { u6: ['U6, U7', '4 v 4'], u8: ['U8, U9', '7 v 7'], u10: ['U10, U11', '9 v 9'], juniors: ['U12, U13', 'Juniors'], youth: ['U14–U18', 'Youth'], seniors: ['Seniors', ''] }
 
 export type ChoiceKey = 'record' | 'clipEach' | 'shareClips' | 'touches' | 'foot' | 'distance' | 'sprints' | 'rank' | 'felt' | 'parentRatings'
-export type RuleKey = 'film' | 'vests' | 'sprints' | 'rank' | 'shareClips' | 'parentRatings' | 'estimateToFamilies' | 'checkin'
+export type RuleKey = 'film' | 'vests' | 'chances' | 'xa' | 'speed' | 'rank' | 'ladder' | 'shareClips' | 'teamToFamilies' | 'parentRatings'
+type Six = [boolean, boolean, boolean, boolean, boolean, boolean]
 export type GuideKey = 'halfway' | 'high' | 'corners' | 'sun' | 'battery' | 'vestsOn' | 'bootsOn'
 
 export interface CapPlayer { ini: string; name: string; first: string; shirt: number; vest: string | null; flat?: boolean; spare?: 'A' | 'B'; boots: boolean; film: boolean }
@@ -49,7 +52,7 @@ export interface CapState {
   whoDone: boolean
   test: 'none' | 'cut' | 'clear'
   choices: Record<ChoiceKey, boolean>
-  rules: Record<RuleKey, [boolean, boolean, boolean, boolean]>
+  rules: Record<RuleKey, Six>
   trendAfter: 2 | 3 | 5
   poor: 'keep' | 'clips' | 'none'
   grounds: Record<string, { length: number; width: number; format: Format; checked: string; used: number }>
@@ -68,21 +71,24 @@ const FRESH: CapState = {
   whoDone: false, test: 'none',
   choices: { record: true, clipEach: true, shareClips: true, touches: true, foot: true, distance: true, sprints: true, rank: false, felt: true, parentRatings: true },
   rules: {
-    film: [true, true, true, true],
-    vests: [false, true, true, true],
-    sprints: [false, true, true, true],
-    rank: [false, false, false, true],
-    shareClips: [true, true, true, true],
-    parentRatings: [true, true, true, false],
-    estimateToFamilies: [false, false, false, true],
-    checkin: [false, true, true, true],
+    //            U6,7   U8,9   U10,11 U12,13 U14-18 Seniors
+    film:           [true,  true,  true,  true,  true,  true],
+    vests:          [false, false, true,  true,  true,  true],
+    chances:        [false, true,  true,  true,  true,  true],   // xG, xGA, xGD and threat added, for the team
+    xa:             [false, false, true,  true,  true,  true],   // name who set up a chance. Coach only
+    speed:          [false, false, false, true,  true,  true],
+    rank:           [false, false, false, false, false, true],
+    ladder:         [false, false, false, true,  true,  true],   // PPI, from league results
+    shareClips:     [true,  true,  true,  true,  true,  true],
+    teamToFamilies: [false, false, true,  true,  true,  true],   // chances and other estimates, in plain words. Never one child's
+    parentRatings:  [true,  true,  true,  true,  true,  false],
   },
   trendAfter: 3, poor: 'clips',
   grounds: { [GROUND]: { length: 67, width: 46, format: '9 v 9', checked: '3 May', used: 4 } },
   reminders: [], moments: [], flagged: [], recorded: false,
 }
 
-const KEY = 'cs_capture_v1'
+const KEY = 'cs_capture_v2'
 let state: CapState = load()
 const subs = new Set<() => void>()
 
@@ -107,7 +113,14 @@ export function useCapture(): CapState {
 // ── What follows from it ─────────────────────────────────────────────────────
 
 /** Never rank under 12s. Locked, not a switch. */
-export const rankLocked = (age: Age) => age === 'miniroos' || age === 'juniors'
+export const rankLocked = (age: Age) => age !== 'youth' && age !== 'seniors'
+/** MiniRoos (under 6 to under 11) has no ladder, so no PPI. Locked. */
+export const ladderLocked = (age: Age) => age === 'u6' || age === 'u8' || age === 'u10'
+/** What a team in this band may see. One place, so every screen agrees. */
+export function allowed(s: CapState, age: Age) {
+  const i = AGES.indexOf(age)
+  return { chances: s.rules.film[i] && s.rules.chances[i], xa: s.rules.chances[i] && s.rules.xa[i], ladder: !ladderLocked(age) && s.rules.ladder[i], families: s.rules.chances[i] && s.rules.teamToFamilies[i] }
+}
 
 /** A coach can turn things off, never turn a locked one on. */
 export function choiceAllowed(s: CapState, k: ChoiceKey, age: Age = 'juniors'): boolean {
@@ -116,7 +129,7 @@ export function choiceAllowed(s: CapState, k: ChoiceKey, age: Age = 'juniors'): 
     case 'record': case 'clipEach': return s.rules.film[i]
     case 'shareClips': return s.rules.film[i] && s.rules.shareClips[i]
     case 'distance': return s.rules.vests[i]
-    case 'sprints': return s.rules.vests[i] && s.rules.sprints[i]
+    case 'sprints': return s.rules.vests[i] && s.rules.speed[i]
     case 'rank': return !rankLocked(age) && s.rules.rank[i]
     case 'felt': return true
     case 'parentRatings': return s.rules.parentRatings[i]
@@ -149,7 +162,7 @@ export const noKit = (s: CapState) => !s.camera && !s.guide.vestsOn
 export interface Measure { id: string; source: 'Film' | 'Vests' | 'Boot sensors' | 'Check-in' | 'You'; mark: MarkKind; label: string }
 
 /** The mark for each thing today's recording can measure. The same on every screen. */
-export function measures(s: CapState, age: Age = 'juniors'): Record<'events' | 'distance' | 'touches' | 'felt' | 'you' | 'positions' | 'speed' | 'speedNoVest', Measure> {
+export function measures(s: CapState, age: Age = 'juniors'): Record<'events' | 'distance' | 'touches' | 'felt' | 'you' | 'positions' | 'chances' | 'speed' | 'speedNoVest', Measure> {
   const q = quality(s, age)
   const m = (id: string, source: Measure['source'], mark: MarkKind, n?: number): Measure => ({ id, source, mark, label: n === undefined ? partLabel(mark, 1, 1) : partLabel(mark, n, SQUAD) })
   return {
@@ -160,6 +173,8 @@ export function measures(s: CapState, age: Age = 'juniors'): Record<'events' | '
     felt: m('felt', 'Check-in', markFor({ kind: 'told', captured: chosen(s, 'felt', age) })),
     you: m('you', 'You', markFor({ kind: 'told', captured: true })),
     positions: m('positions', 'Film', markFor({ kind: 'position', captured: q.film })),
+    // xG and xGA rest on where each shot was taken: a position, so an Estimate. Off where the club has chances off.
+    chances: m('chances', 'Film', markFor({ kind: 'position', captured: q.film && allowed(s, age).chances })),
     speed: m('speed', 'Vests', markFor({ kind: 'speed', captured: q.vests > 0 && chosen(s, 'sprints', age) })),
     // No speed or distance is derived from a single camera.
     speedNoVest: m('speedNoVest', 'Film', 'not'),

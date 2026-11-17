@@ -29,6 +29,8 @@ import MiniRoosApp from '../miniroos/MiniRoosApp'
 import JuniorCoachApp, { coachDeepTab } from '../JuniorCoachApp'
 import CaptureFlow, { isCaptureId } from '../capture/CaptureFlow'
 import QCp1BeforeKickOffPhone from '../capture/QCp1BeforeKickOffPhone'
+import ChancesFlow, { isChanceId } from '../chances/ChancesFlow'
+import XGp1ChancesParent, { miaU12 } from '../chances/XGp1ChancesParent'
 
 // Design ids from the master handover that had no address of their own.
 // Either the screen existed under an older key (ALIAS), or it is a state of a
@@ -76,7 +78,12 @@ export function renderExtraScreen(key: string): ReactNode | undefined {
   if (LIVE_COACH_TAB.has(key) && coachDeepTab(key)) return <JuniorCoachApp initialScreen={key} />
   // Capture quality (17 Nov): the set-up steps, the report and How we measure, in the coach frame.
   if (isCaptureId(key)) return <CaptureFlow framed start={key} kitless={key === 'QC1e-CapturePlanNoKit'} />
+  // Chances and points (17 Nov, v2): the coach screens in their frame; MiniRoos ids open the under-9 team.
+  if (isChanceId(key)) return <ChancesFlow framed start={key} team={key.startsWith('XGm') ? 'u9' : 'u12'} />
   switch (key) {
+    case 'XG5-ClubChances': return <ClubAdminScreen role="dof" initials="RM" initialTab="teams" initialTeamsView="chances" />
+    case 'XGp1-ChancesParentMia': return <div style={{ display: 'flex', justifyContent: 'center' }}><XGp1ChancesParent data={miaU12()} initials="LT" /></div>
+    case 'XGp1-ChancesParent': return <div style={{ display: 'flex', justifyContent: 'center' }}><XGp1ChancesParent /></div>
     case 'QC11-ClubCaptureRules': return <ClubAdminScreen role="dof" initials="RM" initialTab="features" initialFeature="QC11-ClubCaptureRules" />
     case 'QCp1-BeforeKickOffPhone': return <div style={{ display: 'flex', justifyContent: 'center' }}><QCp1BeforeKickOffPhone /></div>
     // The role pickers, and the three older ids they replace.

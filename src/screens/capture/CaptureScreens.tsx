@@ -42,7 +42,7 @@ function Stepper({ at, go }: { at: number; go: Go }) {
   )
 }
 
-function Page({ id, title, sub, right, step, go, cols, children, foot }: { id: string; title: string; sub: string; right?: ReactNode; step?: number; go: Go; cols: string; children: ReactNode; foot?: ReactNode }) {
+export function Page({ id, title, sub, right, step, go, cols, children, foot }: { id: string; title: string; sub: string; right?: ReactNode; step?: number; go: Go; cols: string; children: ReactNode; foot?: ReactNode }) {
   const narrow = useContext(NarrowCtx)
   if (narrow) { cols = 'minmax(0,1fr)'; step = undefined }
   return (
@@ -61,9 +61,9 @@ function Page({ id, title, sub, right, step, go, cols, children, foot }: { id: s
   )
 }
 const footNote = (t: string) => <span style={{ ...cap, flex: '1 1 200px', fontSize: 13 }}>{t}</span>
-const col: CSSProperties = { display: 'flex', flexDirection: 'column', gap: 12, minHeight: 0, minWidth: 0 }
+export const col: CSSProperties = { display: 'flex', flexDirection: 'column', gap: 12, minHeight: 0, minWidth: 0 }
 
-function FixRow({ title, sub, children }: { title: string; sub: string; children: ReactNode }) {
+export function FixRow({ title, sub, children }: { title: string; sub: string; children: ReactNode }) {
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 56, padding: '6px 0', borderTop: `1px solid ${LINE}` }}>
       <span style={{ flexGrow: 1, minWidth: 0, display: 'flex', flexDirection: 'column' }}>
@@ -103,6 +103,7 @@ export function QC1CapturePlan({ s, go, say, age }: ScreenProps) {
     { m: m.felt, t: 'How hard it felt, and how they feel tomorrow', d: m.felt.mark === 'not' ? 'Turned off for today.' : `Sent to all ${SQUAD} after the game. Takes a player ten seconds.` },
     { m: m.you, t: 'Your ratings, notes and match report', d: 'Always counted. Nothing else can record what you saw.' },
     { m: m.positions, t: 'Where each player stood, and the team’s shape', d: 'One camera. The far side of the pitch is less exact.' },
+    { m: m.chances, t: 'Chances made and given up', d: m.chances.mark === 'not' ? 'Needs film, and chances turned on for this age.' : 'From where each shot was taken. Being tuned for this age group.' },
     { m: m.speed, t: 'Top speed', d: 'The faster the run, the less exact any tracker is.' },
     { m: m.speedNoVest, t: 'Speed and distance for players with no vest', d: 'We do not work these out from one camera.' },
   ]
@@ -124,7 +125,7 @@ export function QC1CapturePlan({ s, go, say, age }: ScreenProps) {
           <span style={{ display: 'flex', gap: 6 }}><Mark kind="strong" /><Mark kind="estimate" /><Mark kind="not" /></span>
         </div>
         {rows.map((r, i) => (
-          <div key={r.t} data-measure={r.m.id} style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 50, padding: '3px 0', borderBottom: i < rows.length - 1 ? `1px solid ${LINE}` : undefined }}>
+          <div key={r.t} data-measure={r.m.id} style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 46, padding: '2px 0', borderBottom: i < rows.length - 1 ? `1px solid ${LINE}` : undefined }}>
             <span style={{ flex: 'none', width: 112, display: 'flex', alignItems: 'center', gap: 6, fontSize: 13, fontWeight: 700, color: '#2d3d3a' }}>
               <span style={{ flex: 'none', width: 28, height: 28, borderRadius: 8, background: PALE, color: G, display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Ico d={SRC_ICON[r.m.source]} /></span>{r.m.source}
             </span>
@@ -150,7 +151,7 @@ export function QC1CapturePlan({ s, go, say, age }: ScreenProps) {
 
 // ── QC1e · no camera or vests ────────────────────────────────────────────────
 
-function ListRow({ ok, title, sub }: { ok: boolean; title: string; sub: string }) {
+export function ListRow({ ok, title, sub }: { ok: boolean; title: string; sub: string }) {
   return (
     <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10, padding: '8px 0', borderTop: `1px solid ${LINE}` }}>
       <Dot ok={ok} />
@@ -576,6 +577,7 @@ export function QC8QualityReport({ s, go, say, age }: ScreenProps) {
     { t: 'Touches and which foot', by: 'boot sensors', d: q.boots > 0 ? 'The other four are counted from film' : 'No boot sensors were on. Counted from film', mark: m.touches.mark, l: m.touches.label },
     { t: 'How hard it felt', by: 'check-in', d: 'Two players have not answered yet', mark: m.felt.mark, l: m.felt.mark === 'strong' ? `Strong · ${answered} of ${SQUAD}` : undefined },
     { t: 'Where things happened', by: 'film', d: cut ? 'Far left corner was out of the picture for 8 minutes' : 'One camera. The far side of the pitch is less exact', mark: m.positions.mark },
+    { t: 'Chances made and given up', by: 'film', d: 'From where each shot was taken', mark: m.chances.mark },
     { t: 'Top speed', by: 'vests', d: 'Fast, short runs are the least exact number a vest gives', mark: m.speed.mark },
   ]
   const games = 6
@@ -599,7 +601,7 @@ export function QC8QualityReport({ s, go, say, age }: ScreenProps) {
         <section aria-label="Each measure" style={{ ...tile, gap: 0, padding: '10px 18px 4px' }}>
           <h2 style={{ ...h2, padding: '4px 0 6px' }}>How far to trust each measure</h2>
           {rows.map((r, i) => (
-            <div key={r.t} style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) auto', alignItems: 'center', gap: 10, minHeight: 48, padding: '4px 0', borderTop: i ? `1px solid ${LINE}` : undefined }}>
+            <div key={r.t} style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) auto', alignItems: 'center', gap: 10, minHeight: 44, padding: '3px 0', borderTop: i ? `1px solid ${LINE}` : undefined }}>
               <span style={{ display: 'flex', flexDirection: 'column' }}>
                 <span style={{ fontSize: 14, lineHeight: '19px' }}><strong>{r.t}</strong> <span style={{ color: MUT }}>· {r.by}</span></span>
                 <span style={{ fontSize: 13, lineHeight: '17px', color: MUT }}>{r.d}</span>

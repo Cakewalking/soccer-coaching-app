@@ -885,7 +885,7 @@ function StartPageNav({ phone }: { phone?: boolean }) {
   const [inner, setInner] = useState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   const go = (dest: string) => () => setInner(dest)
-  return <StartPage phone={phone} onDemo={go(phone ? 'STA3p-PickRolePhone' : 'STA3-PickRole')} onStory={go('DEMO-Story')} onSandbox={go('STA3e-PickRoleEmpty')} onOpenSandbox={go('STA3e-PickRoleEmpty')} onWhy={go('DEMO-Why')} />
+  return <StartPage phone={phone} onDemo={go(phone ? 'STA3p-PickRolePhone' : 'STA3-PickRole')} onStory={go('DEMO-Story')} onSandbox={go('STA3e-PickRoleEmpty')} onOpenSandbox={go('STA3e-PickRoleEmpty')} onWhy={go('DEMO-Why')} onMeasure={go('QC10-HowWeMeasure')} />
 }
 function FIL2SheetNav() {
   const [inner, setInner] = useState<string | null>(null)
@@ -2519,6 +2519,7 @@ export default function DemoApp() {
         onSandbox={() => { createSandbox(); setSbStore(readStore()); setView('sandbox') }}
         onOpenSandbox={() => { if (!getSandbox()) { createSandbox(); setSbStore(readStore()) } setView('sandbox') }}
         onWhy={() => setView('why')}
+        onMeasure={() => { setScreen('QC10-HowWeMeasure'); setView('screendirect') }}
       />
     )
   }

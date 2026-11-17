@@ -30,6 +30,8 @@ import TeamChatMiniRoos  from './TeamChatMiniRoos'
 import FootballYearScreen from './FootballYearScreen'
 import CoachTabletFrame  from '../CoachTabletFrame'
 import { useSandbox }   from '../sandbox/SandboxContext'
+import ChancesFlow, { isChanceId } from '../chances/ChancesFlow'
+import { useCapture, allowed } from '../capture/captureStore'
 import { MS1MiniRoosStyle } from './MiniRoosStyleScreen'
 import { MS2MiniRoosWhereWeAt, MS2eMiniRoosWhereWeAtEmpty } from './MiniRoosWhereWeAt'
 import { MS3MiniRoosReview } from './MiniRoosReview'
@@ -658,7 +660,7 @@ function RecordMiniRoosClips({ empty, onBack }: { empty?: boolean; onBack: () =>
 
 type MiniNav = 'home' | 'squad' | 'training' | 'gameday' | 'clips' | 'record'
 type HomeTab = 'overview' | 'messages' | 'calendar' | 'fixtures' | 'style' | 'whereweat' | 'staff' | 'files'
-type GameDayTab = 'turns' | 'whoscoming' | 'getready' | 'live' | 'review' | 'yourtake' | 'whatisaw' | 'thankparents'
+type GameDayTab = 'turns' | 'whoscoming' | 'getready' | 'live' | 'review' | 'chances' | 'yourtake' | 'whatisaw' | 'thankparents'
 type SquadTab = 'players' | 'formation' | 'lineups' | 'skills' | 'turns' | 'coming' | 'consent' | 'seasonnotes'
 type TrainingTab = 'plan' | 'week' | 'suggest' | 'library'
 // Design id of the screen each MiniRoos tab shows (master handover part 4).
@@ -667,7 +669,7 @@ const MR_SCREEN: Record<string, string> = {
   style: 'MS1-MiniRoosStyle', whereweat: 'MS2-MiniRoosWhereWeAt', staff: 'HM10-StaffMiniRoos', files: 'FIL1-Files',
   'squad:players': 'HM2-SquadMiniRoos', 'squad:formation': 'FB1m-FormationMiniRoos', 'squad:lineups': 'SQ1-BestLineups', 'squad:coming': 'HM11-ComingMiniRoos', 'squad:consent': 'HM12-ConsentMiniRoos', 'squad:seasonnotes': 'HM6-SeasonNotes',
   'training:plan': 'HM3-TrainingMiniRoos', 'training:suggest': 'SGm1-SuggestedMiniRoos',
-  'gameday:turns': 'HM4-GameDayMiniRoos', 'gameday:whoscoming': 'HM11-ComingMiniRoos', 'gameday:review': 'MS3-MiniRoosReview', 'gameday:yourtake': 'YT1-YourTake', 'gameday:whatisaw': 'HM5-WhatWeSaw', 'gameday:thankparents': 'HM5b-ThankParents',
+  'gameday:turns': 'HM4-GameDayMiniRoos', 'gameday:whoscoming': 'HM11-ComingMiniRoos', 'gameday:review': 'MS3-MiniRoosReview', 'gameday:chances': 'XGm1-ChancesMiniRoos', 'gameday:yourtake': 'YT1-YourTake', 'gameday:whatisaw': 'HM5-WhatWeSaw', 'gameday:thankparents': 'HM5b-ThankParents',
   clips: 'RCm2-MiniRoosClips', 'clips:learn': 'EDU1-Learn', record: 'RCm1-RecordMiniRoos',
 }
 type RecordView = 'start' | 'clips'
@@ -704,6 +706,9 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
   const [squadTab, setSquadTab]     = useState<SquadTab>('players')
   const [formationPreset, setFormationPreset] = useState<FormationPreset | null>(null)
   const [layer, setLayer] = useState<string | null>(null)
+  const [xgView, setXgView] = useState('XGm1-ChancesMiniRoos')
+  // Chances for the coach follow the club's rule for under 8 and under 9. MiniRoos never has a ladder.
+  const mayChances = allowed(useCapture(), 'u8').chances && !empty
   const isLearn = initialScreen === 'learn' || initialScreen === 'learncoaches'
   const [clipsTab, setClipsTab] = useState<'clips' | 'learn'>(isLearn ? 'learn' : 'clips')
   const [teamTalkOpen, setTeamTalkOpen] = useState(false)
@@ -724,6 +729,7 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
     { id: 'whoscoming', label: "Who's coming" },
     { id: 'getready',   label: 'Get ready' },
     { id: 'review',     label: 'Review' },
+    ...(mayChances ? [{ id: 'chances' as GameDayTab, label: 'Chances' }] : []),
     { id: 'yourtake',   label: 'Your take' },
   ]
 
@@ -871,6 +877,8 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
       content = <GameDayMiniRoos empty={true} onWhatWeSaw={() => {}} />
     else if (gameDayTab === 'turns')
       content = <GameDayMiniRoos onWhatWeSaw={() => setGameDayTab('whatisaw')} />
+    else if (gameDayTab === 'chances' && mayChances)
+      content = <ChancesFlow team="u9" step={xgView} onStep={setXgView} onNav={(t) => { if (isChanceId(t)) setXgView(t); else if (isScreenId(t)) setLayer(t) }} />
     else if (gameDayTab === 'yourtake')
       content = <YT1YourTake bare onNav={(t) => { if (isScreenId(t)) setLayer(t) }} />
     else if (gameDayTab === 'whoscoming')

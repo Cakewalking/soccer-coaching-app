@@ -1,0 +1,92 @@
+control id,screen,control,does,target or line,status: works / line of text only / missing / wrong target (say where)
+XG1-ChancesGame#7,XG1-ChancesGame,U12 Sam · Wattle Creek,Opens,VS1-SwitchView,works
+XG1-ChancesGame#15,XG1-ChancesGame,How we measure,Opens,QC10-HowWeMeasure,works
+XG1-ChancesGame#16,XG1-ChancesGame,Season so far,Opens,XG2-ChancesSeason,works
+XG1-ChancesGame#17,XG1-ChancesGame,"Source 13, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 13
+XG1e-ChancesNoFilm#7,XG1e-ChancesNoFilm,U12 Sam · Wattle Creek,Opens,VS1-SwitchView,works
+XG1e-ChancesNoFilm#15,XG1e-ChancesNoFilm,How we measure,Opens,QC10-HowWeMeasure,works
+XG1e-ChancesNoFilm#16,XG1e-ChancesNoFilm,Open your take on the game,Opens,YT1-YourTake,works
+XG1e-ChancesNoFilm#17,XG1e-ChancesNoFilm,Film the next one,Opens,QC1-CapturePlan,works
+XG2-ChancesSeason#7,XG2-ChancesSeason,U12 Sam · Wattle Creek,Opens,VS1-SwitchView,works
+XG2-ChancesSeason#15,XG2-ChancesSeason,Saturday’s game,Opens,XG1-ChancesGame,works
+XG2-ChancesSeason#16,XG2-ChancesSeason,Where the danger comes from,Opens,XG4-ThreatMap,works
+XG2-ChancesSeason#17,XG2-ChancesSeason,"Points · PPI · · Your points a game, weighted by who you played",Opens,XG3-LadderPPI,works
+XG2-ChancesSeason#18,XG2-ChancesSeason,"Source 14, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 14
+XG2-ChancesSeason#19,XG2-ChancesSeason,"Source 6, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 6
+XG2-ChancesSeason#20,XG2-ChancesSeason,"Source 14, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 14
+XG3-LadderPPI#7,XG3-LadderPPI,U12 Sam · Wattle Creek,Opens,VS1-SwitchView,works
+XG3-LadderPPI#15,XG3-LadderPPI,Chances this season,Opens,XG2-ChancesSeason,works
+XG3-LadderPPI#16,XG3-LadderPPI,Fixtures and results,Opens,CF1-Fixtures,works
+XG4-ThreatMap#7,XG4-ThreatMap,U12 Sam · Wattle Creek,Opens,VS1-SwitchView,works
+XG4-ThreatMap#15,XG4-ThreatMap,How we measure,Opens,QC10-HowWeMeasure,works
+XG4-ThreatMap#16,XG4-ThreatMap,Chances this season,Opens,XG2-ChancesSeason,works
+XG4-ThreatMap#17,XG4-ThreatMap,"Source 15, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 15
+XG5-ClubChances#7,XG5-ClubChances,Ask Clean Sheet,Opens,ASKd4-PanelFirst,"works, different target: opens the working Ask panel in place"
+XG5-ClubChances#8,XG5-ClubChances,Whole club,Opens,VS1-SwitchView,works
+XG5-ClubChances#11,XG5-ClubChances,How we measure,Opens,QC10-HowWeMeasure,works
+XG5-ClubChances#12,XG5-ClubChances,What teams may capture,Opens,QC11-ClubCaptureRules,works
+XG5-ClubChances#13,XG5-ClubChances,Seniors · State League 3 · · 9 · +0.6 · +7 · 2.71 · 2nd of 12 · Estimate,Opens,XG2-ChancesSeason,works
+XG5-ClubChances#14,XG5-ClubChances,U16 Boys · Division 1 · · 8 · +0.2 · +1 · 1.92 · 5th of 10 · Estimate,Opens,XG2-ChancesSeason,works
+XG5-ClubChances#15,XG5-ClubChances,U15 Girls · Division 2 · · 8 · +0.9 · +11 · 3.02 · 1st of 8 · Estimate,Opens,XG2-ChancesSeason,works
+XG5-ClubChances#16,XG5-ClubChances,U14 Mixed · Division 3 · · 7 · −0.4 · −5 · 1.21 · 6th of 8 · Estimate,Opens,XG2-ChancesSeason,works
+XG5-ClubChances#17,XG5-ClubChances,U13 Boys · Division 2 · Results ahead of chances · · 8 · −0.1 · +2 · 1.84 · 4th of 10 · Estimate,Opens,XG2-ChancesSeason,works
+XG5-ClubChances#18,XG5-ClubChances,U12 Sam · Division 2 · · 8 · +0.4 · +5 · 2.46 · 2nd of 8 · Estimate,Opens,XG2-ChancesSeason,works
+XG5-ClubChances#19,XG5-ClubChances,"U11 Mixed · MiniRoos · 9 v 9 · · 7 · +0.3 · · No scores kept, no ladder · Estimate",Opens,XG2-ChancesSeason,"works, different target: a MiniRoos team opens XGm2-ChancesSeasonMiniRoos (no ladder), not XG2"
+XG5-ClubChances#20,XG5-ClubChances,"U10 Mixed · MiniRoos · 9 v 9 · · 6 · −0.2 · · No scores kept, no ladder · Estimate",Opens,XG2-ChancesSeason,"works, different target: a MiniRoos team opens XGm2-ChancesSeasonMiniRoos (no ladder), not XG2"
+XG5-ClubChances#21,XG5-ClubChances,"U9 Tom · MiniRoos · 7 v 7 · · 6 · +0.5 · · No scores kept, no ladder · Estimate",Opens,XG2-ChancesSeason,"works, different target: a MiniRoos team opens XGm2-ChancesSeasonMiniRoos (no ladder), not XG2"
+XG5-ClubChances#22,XG5-ClubChances,Change the rules,Opens,QC11-ClubCaptureRules,works
+XG5-ClubChances#23,XG5-ClubChances,Open,Opens,XG2-ChancesSeason,works
+XG5-ClubChances#24,XG5-ClubChances,Open,Opens,XG2-ChancesSeason,works
+XG5-ClubChances#25,XG5-ClubChances,"Source 8, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 8
+XGm1-ChancesMiniRoos#7,XGm1-ChancesMiniRoos,U9 Tom · Wattle Creek,Opens,VS1-SwitchView,works
+XGm1-ChancesMiniRoos#11,XGm1-ChancesMiniRoos,How we measure,Opens,QC10-HowWeMeasure,works
+XGm1-ChancesMiniRoos#12,XGm1-ChancesMiniRoos,Season so far,Opens,XGm2-ChancesSeasonMiniRoos,works
+XGm1-ChancesMiniRoos#13,XGm1-ChancesMiniRoos,"Source 13, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 13
+XGm2-ChancesSeasonMiniRoos#7,XGm2-ChancesSeasonMiniRoos,U9 Tom · Wattle Creek,Opens,VS1-SwitchView,works
+XGm2-ChancesSeasonMiniRoos#11,XGm2-ChancesSeasonMiniRoos,Saturday’s game,Opens,XGm1-ChancesMiniRoos,works
+XGm2-ChancesSeasonMiniRoos#12,XGm2-ChancesSeasonMiniRoos,Where the danger comes from,Opens,XG4-ThreatMap,works
+XGm2-ChancesSeasonMiniRoos#13,XGm2-ChancesSeasonMiniRoos,"Source 14, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 14
+XGp1-ChancesParent#1,XGp1-ChancesParent,Back,Opens,STO17-HomeStoryParent,works
+XGp1-ChancesParent#2,XGp1-ChancesParent,Ask Clean Sheet,Opens,ASKp2-PhoneAskOpen,works
+XGp1-ChancesParent#3,XGp1-ChancesParent,What this means,Opens,QC10-HowWeMeasure,works
+QC11-ClubCaptureRules#7,QC11-ClubCaptureRules,Ask Clean Sheet,Opens,ASKd4-PanelFirst,"works, different target: opens the working Ask panel in place"
+QC11-ClubCaptureRules#8,QC11-ClubCaptureRules,Whole club,Opens,VS1-SwitchView,works
+QC11-ClubCaptureRules#16,QC11-ClubCaptureRules,How we measure,Opens,QC10-HowWeMeasure,works
+QC11-ClubCaptureRules#17,QC11-ClubCaptureRules,"Source 10, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 10
+QC10-HowWeMeasure#7,QC10-HowWeMeasure,U12 Sam · Wattle Creek,Opens,VS1-SwitchView,works
+STA1-StartPage#1,STA1-StartPage,Why trust it,Opens,DEMO-Why,works
+STA1-StartPage#2,STA1-StartPage,Start the demo,Opens,STA3-PickRole,works
+STA1-StartPage#3,STA1-StartPage,Start the demo,Opens,STA3-PickRole,works
+STA1-StartPage#4,STA1-StartPage,The idea in one minute,Opens,DEMO-Story,works
+STA1-StartPage#5,STA1-StartPage,How we measure,Opens,QC10-HowWeMeasure,works
+STA1-StartPage#6,STA1-StartPage,"See all of this working · A made-up club, mid-season. No sign-in. · Start the demo",Opens,STA3-PickRole,works
+STA1-StartPage#7,STA1-StartPage,MiniRoos to seniors · A coach · Walk into Tuesday knowing exactly what to fix. · See it,Opens,STA3-PickRole,works
+STA1-StartPage#8,STA1-StartPage,"On your phone · A parent or player · See your child getting better, with the clip to prove it. · See it",Opens,STA3-PickRole,works
+STA1-StartPage#9,STA1-StartPage,"Director, chair, coordinator · Running the club · Every team playing the club way, and a story to tell new families. · See it",Opens,STA3-PickRole,works
+STA1-StartPage#10,STA1-StartPage,"Owner, coach, family · An academy · Progress families can see, and a reason to re-enrol. · See it",Opens,STA3-PickRole,works
+STA1-StartPage#11,STA1-StartPage,All 20 roles,Opens,STA3-PickRole,works
+STA1-StartPage#12,STA1-StartPage,Start the demo,Opens,STA3-PickRole,works
+STA1-StartPage#13,STA1-StartPage,Start with an empty club,Opens,STA3e-PickRoleEmpty,works
+STA1-StartPage#14,STA1-StartPage,Open my sandbox,Opens,STA3e-PickRoleEmpty,works
+STA1-StartPage#15,STA1-StartPage,Why trust it,Opens,DEMO-Why,works
+STA2-StartPagePhone#1,STA2-StartPagePhone,Start,Opens,STA3-PickRole,works: opens STA3p-PickRolePhone under 700px
+STA2-StartPagePhone#2,STA2-StartPagePhone,Start the demo,Opens,STA3-PickRole,works: opens STA3p-PickRolePhone under 700px
+STA2-StartPagePhone#3,STA2-StartPagePhone,The idea in one minute,Opens,DEMO-Story,works
+STA2-StartPagePhone#4,STA2-StartPagePhone,How we measure,Opens,QC10-HowWeMeasure,works
+STA2-StartPagePhone#5,STA2-StartPagePhone,Start the demo,Opens,STA3-PickRole,works: opens STA3p-PickRolePhone under 700px
+STA2-StartPagePhone#6,STA2-StartPagePhone,Start with an empty club,Opens,STA3e-PickRoleEmpty,works
+STA2-StartPagePhone#7,STA2-StartPagePhone,Why trust it,Opens,DEMO-Why,works
+build,,,,,chance-metrics-v2 built on a094165 (uncommitted when written). Checked on a local production build at 1180x820 and 390x844
+done 1,,A game with film shows XG1; without film shows XG1e,,,works: a game picker on the Chances tab chooses between Saturday and the friendly with no film
+done 2,,xG - xGA = xGD; season totals equal the games shown,,,"works for U12, U16, Seniors and U9: every figure is summed from one data file"
+done 3,,"PPI the same on XG2, XG3 and XG5",,,"works: U12 2.46, U16 1.92, Seniors 2.71"
+done 4,,"MiniRoos has Chances, no Ladder; turning the band off removes the tab",,,works
+done 5,,Parent sees XGp1 only when the band allows it; never a child number,,,works: link on the parent home appears and disappears with the rule
+done 6,,xA off: no screen names who set up a chance,,,works: the panel becomes How the chances were made
+done 7,,Every chance number carries Estimate,,,"works on XG1, XG2, XG5, XGm1, XGm2, XGp1, QC1, QC8 and the match review line"
+tuning,,Which age groups have enough shots to tune chance values,,,NONE. The demo has no shot data and no model: every chance value here is typed in. Each chance screen says Being tuned for this age group
+changed,QC11,"ten rules, six age bands",,,"done. Morning wellness check-in and Show Estimate numbers to families are no longer rows, as drawn. Saved rules from the earlier version are reset"
+changed,MiniRoos Game day tabs,"Game day, Chances, Your take",,,"kept the app’s five tabs (Turns, Who’s coming, Get ready, Review, Your take) and added Chances before Your take"
+not as drawn,XG5,team names,,,"changed on instruction: teams are named for the coach’s first name (Men’s 1sts, U16 Ollie, U15 Girls Bec, U14 Josh, U13 Chris, U11 Luke, U10 Nadia), not the drawn U16 Boys, U15 Girls and so on"
+made up,"U16, Seniors, and the five teams with no board","games, ladders, readings",,,mine: built so each team matches its row on XG5. U16 and Seniors reuse the U12 shot positions with their own totals
+made up,XGp1 for the demo parent,"Mia, U12 Sam",,,"mine: uses Saturday’s U12 totals (about 2.1 and 0.8) and a how-they-made-them split of 5, 4, 2"

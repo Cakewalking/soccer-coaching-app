@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { toolTarget } from '../toolTargets'
+import { useCapture, allowed, type Age } from '../capture/captureStore'
 import type { ReactNode } from 'react'
 
 // Home that tells a story (STO1–STO22). Shared four-part layout driven by a
@@ -330,7 +331,7 @@ export type PhoneBtn = { label: string; target?: string; done?: string }
 export type PhoneBlock =
   | { kind: 'proof'; label: string; headline: string; second: string; bars?: Bar[]; unit?: string; clip?: { duration: string; note: string }; btn: string; btnTarget?: string; btnDone?: string }
   | { kind: 'ready'; when?: string; title: string; text: string; btns: PhoneBtn[] }
-  | { kind: 'list'; label?: string; title: string; text?: string; lines?: string[]; action?: string; actionTarget?: string }
+  | { kind: 'list'; label?: string; title: string; text?: string; lines?: string[]; action?: string; actionTarget?: string; /** shown only where this age band has "Show team numbers to families" on */ familiesBand?: Age }
   | { kind: 'done'; title: string; lines: string[] }
   | { kind: 'needs'; count: number; title: string; target?: string }
   | { kind: 'note'; text: string }
@@ -340,6 +341,7 @@ export function HomeStoryPhone({ cfg, onNav, renderTarget }: { cfg: PhoneCfg; on
   const [lastTool, setLastTool] = useState('')
   const [toast, setToast] = useState<string | null>(null)
   const [open, setOpen] = useState<string | null>(null)
+  const cap = useCapture()   // the club's rules decide which family blocks show
   const tool = (s: string) => { const to = toolTarget(s); if (to && onNav) { onNav(to); return } setLastTool(s); setToast(s); setTimeout(() => setToast(null), 2200) }
   const nav = (s: string) => renderTarget ? setOpen(s) : (onNav ? onNav(s) : tool(s))
   if (open && renderTarget) return (
@@ -366,6 +368,7 @@ export function HomeStoryPhone({ cfg, onNav, renderTarget }: { cfg: PhoneCfg; on
       </header>
       <div style={{ flex: 1, padding: 16, display: 'flex', flexDirection: 'column', gap: 12 }}>
         {cfg.blocks.map((b, i) => {
+          if (b.kind === 'list' && b.familiesBand && !allowed(cap, b.familiesBand).families) return null
           if (b.kind === 'proof') return (
             <div key={i} style={{ background: DARK, borderRadius: 18, padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 8, color: '#fff' }}>
               <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', color: AMBER }}>{b.label}</span>

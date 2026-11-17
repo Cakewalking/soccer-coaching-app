@@ -13,6 +13,7 @@ const STRONG = [
   ['Touches and which foot', 'From boot sensors.'],
   ['How hard it felt, how they feel', 'From the player. Ten seconds after the session.'],
   ['Your ratings, notes and marks', 'From you. Nothing else records what you saw.'],
+  ['Points, weighted by who you played (PPI)', 'From league results. No camera needed.'],
 ]
 const ESTIMATE = [
   ['Where each player stood', 'From one camera. The far side is less exact.'],
@@ -20,6 +21,8 @@ const ESTIMATE = [
   ['Top speed and sprint counts', 'Fast, short runs are the hardest thing to measure.'],
   ['Anything from a recording with a problem', 'A cut-off corner, faded lines, a vest that dropped out.'],
   ['Any trend with fewer than six games', 'Shown from three games, marked until six.'],
+  ['Chances: xG, xGA, xGD and xA', 'From where each shot was taken. For the team, over a run of games.'],
+  ['Threat added (xT)', 'A team map over five games. Never for one player.'],
 ]
 const DONT = [
   ['Recognise faces', 'Not for children. Not ever.'],
@@ -27,6 +30,8 @@ const DONT = [
   ['Predict injuries', 'We show a jump in load and ask a person.'],
   ['Rank children under 12', 'No scores, no league tables of players.'],
   ['Compare your players with other clubs', 'Different pitches, different kit, different games.'],
+  ['Count opponents taken out by a pass', 'Needs every player’s exact position. We count passes that break a line.'],
+  ['Track limbs or skeletons', 'Needs a ring of stadium cameras.'],
 ]
 const RESEARCH: [string, string, string, string][] = [
   ['Vests are best at total distance and weakest at short, fast bursts. Vests that take ten readings a second do better than older ones.', 'Distance and load are marked Strong. Top speed and sprint counts are marked Estimate.', 'Scott, Scott & Kelly (2016)', 'Journal of Strength and Conditioning Research 30(5)'],
@@ -41,6 +46,9 @@ const RESEARCH: [string, string, string, string][] = [
   ['Children of the same age can be years apart in physical maturity.', 'Each player is compared with their own past, not with team-mates.', 'Cumming, Lloyd, Oliver, Eisenmann & Malina (2017)', 'Strength and Conditioning Journal 39(2)'],
   ['A popular load ratio has no good evidence behind it as a way to prevent injury.', 'Clean Sheet does not predict injuries. It shows a jump in load and asks the coach and parent.', 'Impellizzeri, Tenan, Kempton, Novak & Coutts (2020)', 'International Journal of Sports Physiology and Performance 15(6)'],
   ['How hard a session felt, times its length, tracked heart-rate measures of load in young soccer players.', 'With no vests, load comes from one question and the minutes played.', 'Impellizzeri, Rampinini, Coutts, Sassi & Marcora (2004)', 'Medicine & Science in Sports & Exercise 36(6)'],
+  ['A basic expected-goals model needs only where a shot was taken, its distance and angle to goal, and the body part used.', 'Chance numbers (xG, xGA, xGD, xA) come from film and the pitch check. They are marked Estimate, and worked out for each age group’s own pitch and goals.', 'Robberechts & Davis, KU Leuven', 'Workshop paper on the data that expected-goals models need'],
+  ['Goals are rare and shot outcomes vary a lot, so judging one player’s finishing takes a very large number of shots.', 'Chance numbers are shown for the team over a run of games. They are never a mark for one child.', 'KU Leuven DTAI Sports (2024)', 'arXiv preprint 2401.09940'],
+  ['Expected threat gives each zone of the pitch a value, and values a pass or run by the change in value from where it started to where it ended.', 'Shown as a team map over five games, marked Estimate. Not shown for one player.', 'Singh (2018)', 'Blog post. The method is used in later peer-reviewed research'],
 ]
 
 function Column({ title, pill, rows }: { title: string; pill: React.ReactNode; rows: string[][] }) {
