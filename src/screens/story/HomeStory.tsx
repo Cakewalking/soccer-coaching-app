@@ -335,7 +335,18 @@ export type PhoneBlock =
   | { kind: 'done'; title: string; lines: string[] }
   | { kind: 'needs'; count: number; title: string; target?: string }
   | { kind: 'note'; text: string }
-export type PhoneCfg = { id: string; roleLine: string; greeting: string; avatar: string; tabs: PhoneTab[]; blocks: PhoneBlock[] }
+export type PhoneCfg = { id: string; roleLine: string; greeting: string; avatar: string; tabs: PhoneTab[]; blocks: PhoneBlock[]; /** a parent's children, shown as chips under the greeting */ kids?: { ini: string; label: string }[] }
+
+// Phone home: colour and icons come from the palette (pale green, sand, rose). Amber stays for the proof button.
+const TONES = [{ bg: '#eef5f2', fg: '#2f6252' }, { bg: '#f1e9df', fg: '#6b5646' }, { bg: '#f6e9e7', fg: '#8a4b47' }]
+const ICON = {
+  chart: 'M5 19V9M12 19V5M19 19v-7', star: 'M12 4l2.5 5 5.5.8-4 3.9.9 5.5L12 16.6 7.1 19.2l.9-5.5-4-3.9 5.5-.8z', film: 'M4 7h11v10H4zM15 10l5-3v10l-5-3',
+  cal: 'M6 5h12a2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V7a2 2 0 012-2zM4 10h16M9 3v4M15 3v4', chat: 'M4 5h16v11H9l-5 4z', arrow: 'M5 12h14M13 6l6 6-6 6',
+  home: 'M4 11l8-7 8 7v9H4z', play: 'M12 21a9 9 0 100-18 9 9 0 000 18zM10 8l6 4-6 4z', me: 'M12 12a4 4 0 100-8 4 4 0 000 8zM5 21a7 7 0 0114 0', book: 'M4 5h6a3 3 0 013 3v11a3 3 0 00-3-3H4zM20 5h-4a3 3 0 00-3 3v11a3 3 0 013-3h4z', heart: 'M12 20s-7-4.5-7-10a4 4 0 017-2.6A4 4 0 0119 10c0 5.5-7 10-7 10z', dot: 'M12 15a3 3 0 100-6 3 3 0 000 6z',
+}
+const iconFor = (t: string) => /team|played|chance/i.test(t) ? ICON.chart : /rate|vote/i.test(t) ? ICON.star : /trial|clip|film|watch/i.test(t) ? ICON.film : /week|calendar|saturday|training/i.test(t) ? ICON.cal : /message|chat|reply/i.test(t) ? ICON.chat : ICON.arrow
+const tabIcon = (l: string) => /home/i.test(l) ? ICON.home : /clip/i.test(l) ? ICON.play : /message|chat/i.test(l) ? ICON.chat : /^me$|profile/i.test(l) ? ICON.me : /learn/i.test(l) ? ICON.book : /body|load/i.test(l) ? ICON.heart : /game|fixture|calendar/i.test(l) ? ICON.cal : ICON.dot
+const Glyph = ({ d, size = 20, color = 'currentColor' }: { d: string; size?: number; color?: string }) => <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ flex: 'none' }}><path d={d} /></svg>
 
 export function HomeStoryPhone({ cfg, onNav, renderTarget }: { cfg: PhoneCfg; onNav?: (s: string) => void; renderTarget?: (id: string) => ReactNode }) {
   const [lastTool, setLastTool] = useState('')
@@ -359,10 +370,13 @@ export function HomeStoryPhone({ cfg, onNav, renderTarget }: { cfg: PhoneCfg; on
   return (
     <div data-lasttool={lastTool} style={{ width: 390, minHeight: 844, background: '#f4f5f3', fontFamily: "'DM Sans',system-ui,sans-serif", display: 'flex', flexDirection: 'column' }}>
       {/* Green bar with the greeting, as drawn on every phone home */}
-      <header style={{ background: GREEN, padding: '12px 16px 14px', display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
+      <header style={{ background: GREEN, padding: '12px 16px 14px', display: 'flex', alignItems: cfg.kids ? 'flex-start' : 'center', gap: 10, flexShrink: 0 }}>
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.82)' }}>{cfg.roleLine}</div>
           <div style={{ fontSize: 21, fontWeight: 700, color: '#fff', letterSpacing: '-0.01em' }}>{cfg.greeting}</div>
+          {cfg.kids && <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginTop: 8 }}>
+            {cfg.kids.map((k, n) => <span key={k.label} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, height: 28, padding: '0 10px 0 4px', borderRadius: 999, background: 'rgba(255,255,255,0.16)', color: '#fff', fontSize: 12, fontWeight: 700 }}><span style={{ width: 20, height: 20, borderRadius: 999, background: n % 2 ? '#cbbeb5' : '#c39797', color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11 }}>{k.ini}</span>{k.label}</span>)}
+          </div>}
         </div>
         <div style={{ width: 38, height: 38, borderRadius: '50%', background: '#cbbeb5', color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, flexShrink: 0 }}>{cfg.avatar}</div>
       </header>
@@ -394,19 +408,30 @@ export function HomeStoryPhone({ cfg, onNav, renderTarget }: { cfg: PhoneCfg; on
               </span>
             </div>
           )
-          if (b.kind === 'list') return (
-            <div key={i} style={{ background: '#fff', border: `1px solid ${BORDER}`, borderRadius: 16, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 6 }}>
-              {b.label && <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', color: GREY }}>{b.label}</span>}
-              <strong style={{ fontSize: 15, lineHeight: '20px' }}>{b.title}</strong>
-              {b.text && <span style={{ fontSize: 14, lineHeight: '19px', color: GREY }}>{b.text}</span>}
-              {b.lines?.map(l => <span key={l} style={{ display: 'flex', gap: 8, fontSize: 14, lineHeight: '19px' }}><span style={{ flexShrink: 0, display: 'flex', marginTop: 1 }}><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={GREEN} strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10" /></svg></span><span>{l}</span></span>)}
-              {b.action && <button onClick={() => b.actionTarget ? nav(b.actionTarget) : tool(b.action!)} style={{ minHeight: 44, borderRadius: 10, border: `1px solid ${BORDER}`, background: '#fff', fontSize: 14, fontWeight: 700, color: INK, cursor: 'pointer', fontFamily: 'inherit', marginTop: 2 }}>{b.action}</button>}
-            </div>
-          )
+          if (b.kind === 'list') {
+            const tone = TONES[cfg.blocks.slice(0, i).filter(x => x.kind === 'list').length % TONES.length]
+            const tick = (l: string) => <span key={l} style={{ display: 'flex', gap: 8, fontSize: 14, lineHeight: '19px' }}><span style={{ flexShrink: 0, display: 'flex', marginTop: 1 }}><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={GREEN} strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10" /></svg></span><span>{l}</span></span>
+            const body = <>
+              <span style={{ flex: 'none', width: 44, height: 44, borderRadius: 14, background: tone.bg, color: tone.fg, display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Glyph d={iconFor(`${b.title} ${b.label ?? ''}`)} size={22} /></span>
+              <span style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: 2, textAlign: 'left' }}>
+                {b.label && <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', color: tone.fg }}>{b.label}</span>}
+                <strong style={{ fontSize: 16, lineHeight: '21px', color: INK }}>{b.title}</strong>
+                {b.text && <span style={{ fontSize: 13, lineHeight: '18px', color: GREY, fontWeight: 400 }}>{b.text}</span>}
+                {b.lines?.map(tick)}
+                {b.action && <span style={{ fontSize: 13, fontWeight: 700, color: GREEN, marginTop: 2 }}>{b.action}</span>}
+              </span>
+              {b.action && <Glyph d="M9 6l6 6-6 6" size={18} color={GREY} />}
+            </>
+            const st: React.CSSProperties = { background: '#fff', border: `1px solid ${BORDER}`, borderRadius: 16, padding: '12px 14px', minHeight: 68, display: 'flex', alignItems: 'center', gap: 12, fontFamily: 'inherit' }
+            // one tap target for the whole card, not a button under the text
+            return b.action
+              ? <button key={i} onClick={() => b.actionTarget ? nav(b.actionTarget) : tool(b.action!)} style={{ ...st, cursor: 'pointer' }}>{body}</button>
+              : <div key={i} style={st}>{body}</div>
+          }
           if (b.kind === 'done') return (
-            <div key={i} style={{ background: '#fff', border: `1px solid ${BORDER}`, borderRadius: 16, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 6 }}>
-              <strong style={{ fontSize: 15, lineHeight: '20px' }}>{b.title}</strong>
-              {b.lines.map(l => <span key={l} style={{ display: 'flex', gap: 8, fontSize: 14, lineHeight: '19px' }}><span style={{ flexShrink: 0, display: 'flex', marginTop: 1 }}><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={GREEN} strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10" /></svg></span><span>{l}</span></span>)}
+            <div key={i} style={{ background: '#f6f1e9', borderRadius: 16, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 6 }}>
+              <strong style={{ fontSize: 14, lineHeight: '19px', color: '#6b5646' }}>{b.title}</strong>
+              {b.lines.map(l => <span key={l} style={{ display: 'flex', gap: 8, fontSize: 14, lineHeight: '19px' }}><span style={{ flexShrink: 0, width: 20, height: 20, borderRadius: 999, background: GREEN, display: 'flex', alignItems: 'center', justifyContent: 'center' }}><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10" /></svg></span><span>{l}</span></span>)}
             </div>
           )
           if (b.kind === 'needs') return (
@@ -422,7 +447,7 @@ export function HomeStoryPhone({ cfg, onNav, renderTarget }: { cfg: PhoneCfg; on
       <nav style={{ background: '#fff', borderTop: `1px solid ${HAIR}`, display: 'flex', flexShrink: 0 }}>
         {cfg.tabs.map((t, i) => (
           // First tab is Home: the story home IS the home, so stay here — never open the old home screen as a layer.
-          <button key={t.label} onClick={() => i === 0 ? setOpen(null) : (t.target ? nav(t.target) : tool(t.done ?? t.label))} style={{ flex: 1, minHeight: 56, background: 'none', border: 'none', fontSize: 12, fontWeight: i === 0 ? 700 : 600, color: i === 0 ? GREEN : GREY, cursor: 'pointer', fontFamily: 'inherit' }}>{t.label}</button>
+          <button key={t.label} onClick={() => i === 0 ? setOpen(null) : (t.target ? nav(t.target) : tool(t.done ?? t.label))} style={{ flex: 1, minHeight: 60, padding: '6px 0', background: 'none', border: 'none', borderTop: `3px solid ${i === 0 ? GREEN : 'transparent'}`, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 3, fontSize: 12, fontWeight: i === 0 ? 700 : 600, color: i === 0 ? GREEN : GREY, cursor: 'pointer', fontFamily: 'inherit' }}><Glyph d={tabIcon(t.label)} size={22} />{t.label}</button>
         ))}
       </nav>
       {toast && <div role="status" style={{ position: 'fixed', bottom: 72, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '10px 16px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 13, fontWeight: 600, maxWidth: 340 }}>{toast}</div>}
