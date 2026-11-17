@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import { createContext, type ReactNode } from 'react'
 import { SandboxContext } from './sandbox/SandboxContext'
 
 const DEMO_CTX = { store: { teams: [], players: [], fixtures: [], sessions: [], messages: [] }, update: () => {}, active: false }
@@ -7,6 +7,9 @@ const DEMO_CTX = { store: { teams: [], players: [], fixtures: [], sessions: [], 
 // way back. The role apps use it for deep links that are not one of their own
 // tabs (a lesson, a head-knock form, device settings), so no button is a dead end.
 // DemoApp registers the renderer; this file stays free of screen imports.
+
+/** Set while a screen is shown as a layer, so a screen with its own Done or Close button can take the coach back. */
+export const LayerCloseContext = createContext<(() => void) | null>(null)
 
 let renderer: ((key: string) => ReactNode) | null = null
 export function registerScreenRenderer(fn: (key: string) => ReactNode) { renderer = fn }
@@ -26,7 +29,7 @@ export default function ScreenLayer({ screenKey, onClose, backLabel = 'Back', ex
           {backLabel}
         </button>
       </div>
-      <div style={{ flexGrow: 1, minHeight: 0, overflow: 'auto' }}>{example ? <SandboxContext.Provider value={DEMO_CTX}>{body}</SandboxContext.Provider> : body}</div>
+      <div style={{ flexGrow: 1, minHeight: 0, overflow: 'auto' }}><LayerCloseContext.Provider value={onClose}>{example ? <SandboxContext.Provider value={DEMO_CTX}>{body}</SandboxContext.Provider> : body}</LayerCloseContext.Provider></div>
     </div>
   )
 }

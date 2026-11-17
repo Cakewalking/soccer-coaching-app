@@ -46,6 +46,8 @@ import SetOurStyleWizard     from '../SetOurStyleWizard'
 import PACheckScreen         from '../PACheckScreen'
 import CoachFitnessScreen    from '../CoachFitnessScreen'
 import SettingsScreen        from '../SettingsScreen'
+// Settings opened on its own page (a demo address or a tour step): Done goes back a page, so it is never a dead end.
+const settingsBack = () => { if (window.history.length > 1) window.history.back() }
 import LiveGameScreen        from '../LiveGameScreen'
 import FormationBuilder      from '../formation/FormationBuilder'
 import { registerScreenRenderer, isScreenId } from '../ScreenLayer'
@@ -1322,7 +1324,7 @@ function renderScreenInner(key: string): ReactNode {
     case 'coachfitness':
       return <CoachFitnessScreen />
     case 'settings':
-      return <SettingsScreen onDone={noop} />
+      return <SettingsScreen onDone={settingsBack} />
 
     case 'JuniorCoachApp':      return <JuniorCoachApp />
     case 'L1-LiveGame':
@@ -1925,12 +1927,12 @@ function renderScreenInner(key: string): ReactNode {
     case 'D7-U14Mixed':  return <D7U14Mixed />
     case 'D7-U15Girls':  return <D7U15Girls />
     // Design ID aliases — Settings (open on specific tab)
-    case 'SET1-Account':       return <SettingsScreen onDone={noop} initialTab="account" />
-    case 'SET2-Team':          return <SettingsScreen onDone={noop} initialTab="team" />
-    case 'SET3-Notifications': return <SettingsScreen onDone={noop} initialTab="notifications" />
-    case 'SET4-Devices':       return <SettingsScreen onDone={noop} initialTab="devices" />
-    case 'SET5-Privacy':       return <SettingsScreen onDone={noop} initialTab="privacy" />
-    case 'SET7-Help':          return <SettingsScreen onDone={noop} initialTab="help" />
+    case 'SET1-Account':       return <SettingsScreen onDone={settingsBack} initialTab="account" />
+    case 'SET2-Team':          return <SettingsScreen onDone={settingsBack} initialTab="team" />
+    case 'SET3-Notifications': return <SettingsScreen onDone={settingsBack} initialTab="notifications" />
+    case 'SET4-Devices':       return <SettingsScreen onDone={settingsBack} initialTab="devices" />
+    case 'SET5-Privacy':       return <SettingsScreen onDone={settingsBack} initialTab="privacy" />
+    case 'SET7-Help':          return <SettingsScreen onDone={settingsBack} initialTab="help" />
     // Design ID aliases — Football year (SP* tablet, pre-season and season)
     case 'SP1-FootballYear':           return <SP1FootballYear onBack={noop} />
     case 'SP1e-FootballYearEmpty':     return <SP1eFootballYearEmpty onBack={noop} />
@@ -2339,12 +2341,12 @@ function renderScreenInner(key: string): ReactNode {
     case 'SF6-Review':                 return <SetOurStyleWizard onClose={noop} initialStep="review" />
     case 'SF7-Saved':                  return <SetOurStyleWizard onClose={noop} initialStep="saved" />
     // Settings (SET1–SET7) → SettingsScreen tabs
-    case 'SET1-Account':               return <SettingsScreen onDone={noop} initialTab="account" />
-    case 'SET2-Team':                  return <SettingsScreen onDone={noop} initialTab="team" />
-    case 'SET3-Notifications':         return <SettingsScreen onDone={noop} initialTab="notifications" />
-    case 'SET4-Devices':               return <SettingsScreen onDone={noop} initialTab="devices" />
-    case 'SET5-Privacy':               return <SettingsScreen onDone={noop} initialTab="privacy" />
-    case 'SET7-Help':                  return <SettingsScreen onDone={noop} initialTab="help" />
+    case 'SET1-Account':               return <SettingsScreen onDone={settingsBack} initialTab="account" />
+    case 'SET2-Team':                  return <SettingsScreen onDone={settingsBack} initialTab="team" />
+    case 'SET3-Notifications':         return <SettingsScreen onDone={settingsBack} initialTab="notifications" />
+    case 'SET4-Devices':               return <SettingsScreen onDone={settingsBack} initialTab="devices" />
+    case 'SET5-Privacy':               return <SettingsScreen onDone={settingsBack} initialTab="privacy" />
+    case 'SET7-Help':                  return <SettingsScreen onDone={settingsBack} initialTab="help" />
 
     default:
       return (

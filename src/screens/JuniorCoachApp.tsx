@@ -64,6 +64,7 @@ import RecordHub           from './RecordHub'
 import CaptureFlow, { isCaptureId, captureSubTab } from './capture/CaptureFlow'
 import ChancesFlow, { isChanceId } from './chances/ChancesFlow'
 import CnScreen from './connected/CnScreen'
+import DevicesTab from './settings/DevicesTab'
 import { useCapture, allowed } from './capture/captureStore'
 import { RecordSaved }     from './RecordHub'
 import { CoachMessages, CoachNewMessage, CoachMessagesPersonCard } from './MessagesScreens'
@@ -138,7 +139,7 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
     if (s === 'CN2-SelfVsCoach') { goNav('matchday'); setMatchTab(6); setTake('theirs'); return }
     if (s === 'YT1-YourTake') setTake('yours')
     if (isChanceId(s)) { goNav('matchday'); openChance(s); return }   // chances and the ladder live under Match day
-    if (isCaptureId(s) || s === 'REC2-RecordSaved') { goNav('record'); setRecView(s); return }   // capture quality steps live under Record
+    if (isCaptureId(s) || s === 'REC2-RecordSaved' || s === 'SET4-Devices') { goNav('record'); setRecView(s); return }   // capture quality steps live under Record
     if (s === 'training')  { goNav('training'); return }
     if (s === 'matchday')  { goNav('matchday'); return }
     if (s === 'squad')     { goNav('squad');    return }
@@ -198,7 +199,7 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
                   : nav === 'squad'    ? squadTab
                   : nav === 'training' ? trainingTab
                   : nav === 'matchday' ? Math.max(0, matchVisible.indexOf(matchTab))
-                  : nav === 'record'   ? (recView === 'REC2-RecordSaved' ? 1 : recView ? captureSubTab(recView) : 0)
+                  : nav === 'record'   ? (recView === 'REC2-RecordSaved' ? 1 : recView === 'SET4-Devices' ? 2 : recView ? captureSubTab(recView) : 0)
                   : clipsTab
 
   function handleSubTab(i: number) {
@@ -276,6 +277,7 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
     else if (trainingTab === 7) content = <FitnessTrainingTab empty={sbEmptySession} />
   } else if (nav === 'record') {
     if (recView && isCaptureId(recView)) content = <CaptureFlow step={recView} onStep={setRecView} onNav={handleNav} kitless={inSandbox && sbEmpty} team={inSandbox ? (store.teams[0]?.name ?? 'your team') : 'U12 Sam'} />
+    else if (recView === 'SET4-Devices') content = <DevicesTab onToast={demoToast} />   // Devices stays inside Record: the tab is lit and the coach never leaves the app
     else if (recView === 'REC2-RecordSaved') content = <RecordSaved noFrame onBack={() => setRecView(null)} onNav={(s) => { if (s === 'EX1-HowWorkedOut') { goNav('matchday'); setMatchTab(3) } else { handleNav(s) } }} />
     else content = <RecordHub noFrame onNav={handleNav} />
   } else if (nav === 'matchday') {

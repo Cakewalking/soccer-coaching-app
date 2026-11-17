@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { LayerCloseContext } from './ScreenLayer'
 import AccountTab from './settings/AccountTab'
 import TeamTab from './settings/TeamTab'
 import NotificationsTab from './settings/NotificationsTab'
@@ -21,6 +22,9 @@ const TABS: Array<{ id: SettingsTab; label: string }> = [
 
 export default function SettingsScreen({ onDone, initialTab }: { onDone: () => void; initialTab?: SettingsTab }) {
   const [tab, setTab] = useState<SettingsTab>(initialTab ?? 'account')
+  // Settings fills the window, so Done must always lead somewhere: close the layer it was opened in, or go back a page.
+  const closeLayer = useContext(LayerCloseContext)
+  const done = closeLayer ?? onDone
   const [toast, setToast] = useState('')
   const [toastKey, setToastKey] = useState(0)
 
@@ -41,7 +45,7 @@ export default function SettingsScreen({ onDone, initialTab }: { onDone: () => v
         <span style={{ flexShrink: 0, padding: '4px 12px', borderRadius: '999px', background: 'rgba(255,255,255,0.15)', color: '#cfe6dc', fontSize: 12, fontWeight: 700 }}>Settings</span>
         <div style={{ display: 'flex', gap: 10, flexShrink: 0 }}>
           <button onClick={() => showToast('Saved.')} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: 'none', background: '#2f6252', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>Save</button>
-          <button onClick={onDone} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>Done</button>
+          <button onClick={done} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>Done</button>
         </div>
       </div>
 
