@@ -491,7 +491,7 @@ function RecordMiniRoosStart({ empty, onClips }: { empty?: boolean; onClips: () 
       </div>
       <div style={{ fontSize: 20, fontWeight: 700, color: INK }}>Film something</div>
       <div style={{ fontSize: 14, color: MUT, lineHeight: 1.6, maxWidth: 400 }}>Film a Saturday game, a training game, or a skill challenge. Set the camera up and tap Start filming.</div>
-      <button onClick={() => goApp('example:RC1-RecordStart', 'Opening the recording screen.')} style={{ height: 44, padding: '0 24px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Start filming</button>
+      <button onClick={() => goApp('example:RCm1-RecordMiniRoos', 'Opening the recording screen.')} style={{ height: 44, padding: '0 24px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Start filming</button>
       <div style={{ marginTop: 16, maxWidth: 400, textAlign: 'left' as const, padding: '14px 16px', background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, width: '100%' }}>
         <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 10 }}>Good to know</div>
         {[

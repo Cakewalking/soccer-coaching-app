@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import SandboxWaiting from './sandbox/SandboxWaiting'
+import SandboxTeamTalk from './sandbox/SandboxTeamTalk'
 import TeamSetup from './sandbox/TeamSetup'
 import { registerSetupNav, registerAppNav, goSetup } from './sandbox/sandboxNav'
 import { COACH_TARGET_NAV } from './JuniorCoachApp'
@@ -459,7 +460,7 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
     })
   })
 
-  if (sub === 'teamtalk')  return <TeamTalkScreen role="head" onClose={() => setSub(null)} />
+  if (sub === 'teamtalk')  return inSandbox && sbEmpty ? <SandboxTeamTalk onClose={() => setSub(null)} /> : <TeamTalkScreen role="head" onClose={() => setSub(null)} />
   if (sub === 'pitchside') return <PitchSideScreen onClose={() => setSub(null)} empty={sbEmpty} />
 
   const subTabs  = nav === 'clips'    ? CLIPS_TABS
@@ -561,7 +562,7 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
 
   const navTabs = NAV_LABELS.map((label, i) => ({ id: NAV_KEYS[i], label, icon: NAV_ICONS[i] }))
 
-  if (layer) return <ScreenLayer screenKey={layer.replace(/^example:/, '')} example={layer.startsWith('example:')} onClose={() => setLayer(null)} backLabel={layer.startsWith('example:') && inSandbox ? `Back to ${store.teams[0]?.name ?? 'your team'} · this is an example from the demo club` : `Back to ${data.teamPicker.split(' · ')[0]}`} />
+  if (layer) return <TeamText team={layer.startsWith('example:') ? (teamType === 'seniors' ? 'seniors' : 'youth') : null}><ScreenLayer screenKey={layer.replace(/^example:/, '')} example={layer.startsWith('example:')} onClose={() => setLayer(null)} backLabel={layer.startsWith('example:') && inSandbox ? `Back to ${store.teams[0]?.name ?? 'your team'} · this is an example from the demo club` : `Back to ${data.teamPicker.split(' · ')[0]}`} /></TeamText>
 
   return (
     <>

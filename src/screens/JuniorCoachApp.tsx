@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import SandboxWaiting from './sandbox/SandboxWaiting'
+import SandboxTeamTalk from './sandbox/SandboxTeamTalk'
 import TeamSetup from './sandbox/TeamSetup'
 import { registerSetupNav, registerAppNav, goSetup } from './sandbox/sandboxNav'
 import type { ReactNode } from 'react'
@@ -216,7 +217,7 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
     return <FIL1Files bare onOpenSheet={() => setFilView('FIL2-Sheet')} onOpenDoc={() => setFilView('FIL3-Doc')} onNav={filNav} />
   }
 
-  if (sub === 'teamtalk')  return <TeamTalkScreen role="head" onClose={() => setSub(null)} />
+  if (sub === 'teamtalk')  return inSandbox && sbEmpty ? <SandboxTeamTalk onClose={() => setSub(null)} /> : <TeamTalkScreen role="head" onClose={() => setSub(null)} />
   if (sub === 'pitchside') return <PitchSideScreen onClose={() => setSub(null)} empty={sbEmpty} />
   if (sub === 'addgame')   return <AddGameScreen onClose={() => setSub(null)} />
 

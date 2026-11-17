@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { goApp } from '../sandbox/sandboxNav'
+import { useSandbox } from '../sandbox/SandboxContext'
 
 const G    = '#2f6252'
 const G2   = '#40826d'
@@ -64,6 +65,9 @@ export function MS1MiniRoosStyle() {
     })
   }
 
+  const [parentView, setParentView] = useState(false)
+  const sb = useSandbox()
+  const teamName = sb.active && sb.store.teams[0] && sb.store.teams[0].id !== 'wc-u12' ? sb.store.teams[0].name : 'U9 Tom'
   const pickedLabels = CHOICES.filter(c => picked.has(c.id)).map(c => c.label)
 
   return (
@@ -79,11 +83,25 @@ export function MS1MiniRoosStyle() {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
           <div style={{ fontSize: 13, color: G2, fontWeight: 600 }}>{picked.size} of {MAX} picked</div>
           <div style={{ display: 'flex', gap: 8 }}>
-            <button onClick={() => goApp('example:PA-Parent', 'Opening parent view.')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>See what parents see</button>
+            <button onClick={() => setParentView(v => !v)} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>See what parents see</button>
             <button onClick={() => showToast('Style saved.')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 'none', background: G, fontSize: 13, fontWeight: 700, color: '#fff', cursor: 'pointer', fontFamily: 'inherit' }}>Save</button>
           </div>
         </div>
 
+        {parentView && (
+          <div data-panel="parents" style={{ background: '#fff', border: `1.5px solid ${G}`, borderRadius: 16, padding: 16, marginBottom: 16, maxWidth: 420 }}>
+            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', color: MUT, marginBottom: 6 }}>WHAT PARENTS SEE ON THEIR PHONE</div>
+            <div style={{ fontSize: 17, fontWeight: 700, color: INK, marginBottom: 8 }}>{teamName}: what we are working on</div>
+            {CHOICES.filter(c => picked.has(c.id)).map(c => (
+              <div key={c.id} style={{ padding: '8px 0', borderTop: `1px solid ${LN}` }}>
+                <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>{c.label}</div>
+                <div style={{ fontSize: 13, color: MUT }}>{c.desc}</div>
+              </div>
+            ))}
+            {picked.size === 0 && <div style={{ fontSize: 14, color: MUT }}>Pick up to three things and they show here.</div>}
+            <div style={{ fontSize: 13, color: GD, background: PALE, borderRadius: 10, padding: '8px 10px', marginTop: 8 }}>No scores, no ladder and no counts. Parents see the words, never the numbers.</div>
+          </div>
+        )}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
           {CHOICES.map(c => {
             const isPicked = picked.has(c.id)
