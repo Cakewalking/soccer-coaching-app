@@ -128,7 +128,7 @@ const PLAYERS_TO_KNOW = [
   { ini: 'EB', name: 'Ella Brandt', chip: 'Wellness',chipColor: '#c39797', note: 'Felt low two days running. Quick chat tonight.' },
 ]
 
-export default function ReviewScreen({ empty, scoreline = '3–1', resultLine = 'Won away at Ironbark United', scorerLine = 'Sat 31 Oct · Mia, Jai and Zoe scored · 24 key clips' }: { empty?: boolean; scoreline?: string; resultLine?: string; scorerLine?: string }) {
+export default function ReviewScreen({ seniors = false, empty, scoreline = '3–1', resultLine = 'Won away at Ironbark United', scorerLine = 'Sat 31 Oct · Mia, Jai and Zoe scored · 24 key clips' }: { empty?: boolean; scoreline?: string; resultLine?: string; seniors?: boolean; scorerLine?: string }) {
   const [toast, setToast] = useState('')
   const cap = useCapture()
   if (empty) return <ReviewEmpty />
@@ -170,7 +170,7 @@ export default function ReviewScreen({ empty, scoreline = '3–1', resultLine = 
               <button onClick={() => showToast('Opens team style page')} style={{ minHeight: 44, border: 0, background: 'transparent', color: '#2f6252', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Our style →</button>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-              {STYLE_POINTS.map((s, i) => (
+              {STYLE_POINTS.filter(s => !(seniors && s.label === 'Minutes shared evenly')).map((s, i) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '8px 0', borderTop: i === 0 ? 'none' : '1px solid #f0f1ef' }}>
                   <span style={{ flex: 'none', width: 8, height: 8, borderRadius: '999px', background: s.status === 'on-target' ? '#40826d' : s.status === 'close' ? '#cbbeb5' : '#c39797' }} />
                   <span style={{ flexGrow: 1, fontSize: 14, lineHeight: '19px' }}>{s.label}</span>
@@ -249,13 +249,13 @@ export default function ReviewScreen({ empty, scoreline = '3–1', resultLine = 
                   <span style={{ fontSize: 14, fontWeight: 700 }}>{p.name}</span>
                   <span style={{ fontSize: 11, fontWeight: 700, padding: '1px 7px', borderRadius: '999px', background: p.chipColor + '22', color: p.chipColor }}>{p.chip}</span>
                 </div>
-                <div style={{ fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>{p.note}</div>
+                <div style={{ fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>{seniors && p.chip === 'Minutes' ? '27 min off the bench. Fresh for Saturday.' : p.note}</div>
               </div>
             </div>
           ))}
 
           <div style={{ marginTop: 10 }}>
-            <span style={{ fontSize: 13, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>Minutes played (fair share 37) <MarkDot kind={gameMark(cap, 'told')} /></span>
+            <span style={{ fontSize: 13, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>{seniors ? 'Minutes played' : 'Minutes played (fair share 37)'} <MarkDot kind={gameMark(cap, 'told')} /></span>
             {[
               { ini: 'MT', name: 'Mia Tran',   mins: 44, bar: '#c39797' },
               { ini: 'JP', name: 'Jai Patel',  mins: 43, bar: '#cbbeb5' },

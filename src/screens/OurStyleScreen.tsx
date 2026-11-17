@@ -6,7 +6,6 @@ import { MarkDot, markFor, kindFromLabel } from './capture/marks'
 // "Playing our way" is the share of these targets a team hits in a game. Only
 // measures marked Strong count towards it; an Estimate is shown but left out.
 const styleMark = (label: string) => markFor({ kind: kindFromLabel(label) ?? 'count', captured: true })
-const COUNTED = STYLE_MEASURES.filter(m => styleMark(m.label) === 'strong').length
 
 type WizardStep = 'intro' | 1 | 2 | 3 | 4 | 5 | 'review' | 'saved'
 
@@ -45,8 +44,13 @@ function QuestionCard({ q, onEdit }: { q: StyleQuestion; onEdit: () => void }) {
   )
 }
 
-export default function OurStyleScreen({ setByLine = 'Set 12 March by Sam.' }: { setByLine?: string }) {
-  const [values, setValues] = useState(STYLE_CLUB_VALUES)
+// Equal minutes is the coach's choice for juniors and youth, encouraged for MiniRoos, and not offered to a senior team.
+export default function OurStyleScreen({ setByLine = 'Set 12 March by Sam.', seniors = false }: { setByLine?: string; seniors?: boolean }) {
+  const [values, setValues] = useState(() => STYLE_CLUB_VALUES.filter(v => !(seniors && v.label === 'Equal minutes')))
+  // A value that is not picked brings no measure with it.
+  const picked = (label: string) => values.some(v => v.label === label && v.checked)
+  const measures = STYLE_MEASURES.filter(m => m.label === 'Minutes shared evenly' ? picked('Equal minutes') : m.label === 'Weaker-foot touches' ? picked('Use both feet') : true)
+  const COUNTED = measures.filter(m => styleMark(m.label) === 'strong').length
   const [wizardStep, setWizardStep] = useState<WizardStep | null>(null)
 
   function toggleValue(vi: number) {
@@ -54,7 +58,7 @@ export default function OurStyleScreen({ setByLine = 'Set 12 March by Sam.' }: {
   }
 
   if (wizardStep !== null) {
-    return <SetOurStyleWizard onClose={() => setWizardStep(null)} initialStep={wizardStep} />
+    return <SetOurStyleWizard onClose={() => setWizardStep(null)} initialStep={wizardStep} seniors={seniors} />
   }
 
   return (
@@ -85,7 +89,7 @@ export default function OurStyleScreen({ setByLine = 'Set 12 March by Sam.' }: {
             <h2 style={{ margin: 0, fontSize: 17, fontWeight: 700, color: '#10211f' }}>Values</h2>
             <span style={{ fontSize: 13, color: '#6f7f7b' }}>· pick any</span>
           </div>
-          <p style={{ margin: '0 0 14px', fontSize: 14, color: '#4a5a57' }}>The four answers above are yours. Equal minutes is a club rule up to U13.</p>
+          <p style={{ margin: '0 0 14px', fontSize: 14, color: '#4a5a57' }}>{seniors ? 'The four answers above are yours. So are these.' : 'The four answers above are yours. So are these: equal minutes is your choice, not a rule.'}</p>
           <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
             {values.map((v, vi) => (
               <button key={v.label} onClick={() => { toggleValue(vi); setWizardStep(5) }} style={{
@@ -111,9 +115,9 @@ export default function OurStyleScreen({ setByLine = 'Set 12 March by Sam.' }: {
       {/* Right: What Clean Sheet will measure */}
       <div style={{ width: 310, flex: 'none', borderLeft: '1px solid #e9eae8', padding: '24px 20px', overflowY: 'auto', background: '#fafafa' }}>
         <h2 style={{ margin: '0 0 4px', fontSize: 16, fontWeight: 700, color: '#10211f' }}>What Clean Sheet measures</h2>
-        <p style={{ margin: '0 0 16px', fontSize: 13, color: '#4a5a57' }}>{STYLE_MEASURES.length} measures · shown in Where we're at</p>
+        <p style={{ margin: '0 0 16px', fontSize: 13, color: '#4a5a57' }}>{measures.length} measures · shown in Where we're at</p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-          {STYLE_MEASURES.map((m, i) => (
+          {measures.map((m, i) => (
             <div key={i} style={{
               display: 'flex', alignItems: 'flex-start', gap: 10,
               padding: '10px 0', borderTop: i > 0 ? '1px solid #e9eae8' : 'none',
@@ -129,7 +133,7 @@ export default function OurStyleScreen({ setByLine = 'Set 12 March by Sam.' }: {
         </div>
         <div style={{ marginTop: 16, padding: '12px 14px', background: '#fff', border: '1px solid #c5c8c4', borderRadius: 10, fontSize: 13, color: '#10211f', lineHeight: '18px' }}>
           <strong style={{ display: 'block', marginBottom: 2 }}>How “playing our way” is worked out</strong>
-          It is the share of these targets the team hits in a game. The {COUNTED} marked Strong count. {STYLE_MEASURES.length - COUNTED === 1 ? 'The one marked Estimate is shown but left out.' : `The ${STYLE_MEASURES.length - COUNTED} marked Estimate are shown but left out.`}
+          It is the share of these targets the team hits in a game. The {COUNTED} marked Strong count. {measures.length - COUNTED === 1 ? 'The one marked Estimate is shown but left out.' : `The ${measures.length - COUNTED} marked Estimate are shown but left out.`}
         </div>
         <div style={{ marginTop: 10, padding: '12px 14px', background: '#e8f2ee', borderRadius: 10, fontSize: 13, color: '#2f6252', lineHeight: '18px' }}>
           If you change your style, past games are re-scored against the new answers. Nothing is lost.

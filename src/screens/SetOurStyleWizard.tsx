@@ -79,7 +79,7 @@ function getLabel(step: StepNum, id: string | null): string {
   return STEP_OPTIONS[step].find(o => o.id === id)?.title ?? '—'
 }
 
-export default function SetOurStyleWizard({ onClose, initialStep = 'intro' }: { onClose: () => void; initialStep?: Step }) {
+export default function SetOurStyleWizard({ onClose, initialStep = 'intro', seniors = false }: { onClose: () => void; initialStep?: Step; seniors?: boolean }) {
   const [step, setStep] = useState<Step>(initialStep)
   const [answers, setAnswers] = useState<StyleAnswers>({ s1: null, s2: null, s3: null, s4: null, s5: [] })
 
@@ -259,7 +259,7 @@ export default function SetOurStyleWizard({ onClose, initialStep = 'intro' }: { 
 
   // Question steps 1–5
   const sn = step as StepNum
-  const opts = STEP_OPTIONS[sn]
+  const opts = STEP_OPTIONS[sn].filter(o => !(seniors && o.id === 'equal'))   // equal minutes is not offered to a senior team
   const selectedVal = sn === 5 ? null : answers[`s${sn}` as keyof StyleAnswers] as string | null
   const isMulti = sn === 5
 
