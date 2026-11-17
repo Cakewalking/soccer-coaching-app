@@ -4,13 +4,15 @@
 
 import { useState } from 'react'
 import type { SquadPlayer } from '../../data'
-import { Mark, MarkDot, G, INK, MUT, LINE, PALE, DARK, tile, h2, cap, label } from '../capture/marks'
+import { Mark, MarkDot, INK, MUT, LINE, PALE, DARK, tile, h2, cap, label } from '../capture/marks'
 import Logo from '../Logo'
+import { ReelPlayer, ClipList } from './Reel'
 import { usePack, hasPack, factsFor, factMark, historyFor, clipLength, clipById, linkEnds, linkLive, TEAM, packKey, type Pack, type TeamKey } from './trialStore'
 
 export function TrialShareBody({ player, team, pack, preview, demo, coach = 'Sam K' }: { player: SquadPlayer; team: string; pack: Pack; preview?: boolean; demo?: boolean; coach?: string }) {
   const clips = pack.clips.map(id => clipById(id)!).filter(Boolean)
   const [at, setAt] = useState(0)
+  const [playing, setPlaying] = useState(false)
   const facts = factsFor(player).filter(f => pack.facts.includes(f.id))
   const live = preview || demo || linkLive(pack)
   if (!live) return (
@@ -46,15 +48,8 @@ export function TrialShareBody({ player, team, pack, preview, demo, coach = 'Sam
           <section aria-label="Highlights reel" style={{ ...tile, padding: '14px 16px', gap: 10 }}>
             <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}><h2 style={h2}>Highlights</h2><span style={{ ...cap, fontSize: 13 }}>{clips.length} clips · {clipLength(pack.clips)}</span></div>
             {cur ? <>
-              <div role="img" aria-label={`Clip ${at + 1} of ${clips.length}: ${cur.title}`} style={{ aspectRatio: '16 / 9', borderRadius: 12, background: G, position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <svg viewBox="0 0 320 180" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }} aria-hidden="true"><g stroke="rgba(255,255,255,0.5)" strokeWidth="1.5" fill="none"><rect x="14" y="12" width="292" height="156" /><path d="M160 12v156" /><circle cx="160" cy="90" r="24" /></g></svg>
-                <span style={{ width: 56, height: 56, borderRadius: 999, background: 'rgba(16,33,31,0.55)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5l11 7-11 7z" /></svg></span>
-                <span style={{ position: 'absolute', left: 10, bottom: 8, right: 10, display: 'flex', justifyContent: 'space-between', color: '#fff', fontSize: 12, fontWeight: 700 }}><span>{cur.gameLabel} · min {cur.min}</span><span>{cur.duration}</span></span>
-              </div>
-              <span style={{ display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 15 }}>{cur.title}</strong><span style={{ ...cap, fontSize: 13 }}>Other players are blurred. Sound is off.</span></span>
-              <div role="group" aria-label="Clips in this reel" style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-                {clips.map((c, i) => <button key={c.id} onClick={() => setAt(i)} aria-pressed={i === at} style={{ minWidth: 44, height: 44, padding: '0 12px', borderRadius: 10, border: `1px solid ${i === at ? G : LINE}`, background: i === at ? G : '#fff', color: i === at ? '#fff' : INK, fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>{i + 1}</button>)}
-              </div>
+              <ReelPlayer clips={clips} at={at} setAt={setAt} playing={playing} setPlaying={setPlaying} />
+              <ClipList clips={clips} chosen={pack.clips} at={at} playing={playing} onPlay={i => { setAt(i); setPlaying(true) }} />
             </> : <span style={cap}>No clips were added to this pack.</span>}
           </section>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>

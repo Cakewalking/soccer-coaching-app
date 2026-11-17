@@ -5,25 +5,22 @@
 
 import { useState } from 'react'
 import type { SquadPlayer } from '../../data'
-import { Mark, MarkDot, Btn, Note, Dot, tile, h2, cap, label, G, INK, MUT, LINE, PALE } from '../capture/marks'
+import { Mark, MarkDot, Btn, Note, Dot, tile, h2, cap, label, G, INK, MUT, LINE } from '../capture/marks'
 import type { Age } from '../capture/captureStore'
 import { usePack, setPack, reelChoices, clipById, clipLength, factsFor, factMark, historyFor, approver, linkEnds, linkLive, teamKeyOf, packKey, MAX_CLIPS, NEVER, DRAFT_RULE, type Pack, type TeamKey } from './trialStore'
 import { TrialShareBody } from './TrialShare'
+import { ReelPlayer, ClipList } from './Reel'
 
-/** The clips in the reel. The family can change them; everyone else sees the list. */
+/** The reel: a player with the clips as thumbnails. In "change it" mode the list is every clip that could go in. */
 export function ClipPicker({ pk, ini, team, onToggle }: { pk: Pack; ini: string; team: TeamKey; onToggle?: (id: number) => void }) {
-  const list = onToggle ? reelChoices(ini, team) : pk.clips.map(id => clipById(id)!).filter(Boolean)
+  const [at, setAt] = useState(0)
+  const [playing, setPlaying] = useState(false)
+  const chosen = pk.clips.map(id => clipById(id)!).filter(Boolean)
+  if (onToggle) return <ClipList clips={reelChoices(ini, team)} chosen={pk.clips} onToggle={onToggle} />
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(210px,1fr))', gap: 8 }}>
-      {list.map(c => {
-        const on = pk.clips.includes(c.id), order = pk.clips.indexOf(c.id) + 1
-        const inner = <>
-          <span style={{ flex: 'none', width: 26, height: 26, borderRadius: 999, boxSizing: 'border-box', background: on ? G : '#fff', border: on ? 0 : `1.5px solid ${MUT}`, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700 }}>{on ? order : ''}</span>
-          <span style={{ display: 'flex', flexDirection: 'column', minWidth: 0 }}><strong style={{ fontSize: 14, lineHeight: '18px' }}>{c.title}</strong><span style={{ fontSize: 12, color: MUT }}>{c.gameLabel} · min {c.min} · {c.duration}</span></span>
-        </>
-        const st = { display: 'flex', alignItems: 'center', gap: 10, minHeight: 60, padding: '8px 10px', borderRadius: 12, border: `1.5px solid ${on ? G : LINE}`, background: on ? PALE : '#fff', color: INK, fontFamily: 'inherit', textAlign: 'left' } as const
-        return onToggle ? <button key={c.id} onClick={() => onToggle(c.id)} aria-pressed={on} style={{ ...st, cursor: 'pointer' }}>{inner}</button> : <div key={c.id} style={st}>{inner}</div>
-      })}
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+      <div style={{ maxWidth: 520 }}><ReelPlayer clips={chosen} at={at} setAt={setAt} playing={playing} setPlaying={setPlaying} /></div>
+      <ClipList clips={chosen} chosen={pk.clips} at={at} playing={playing} onPlay={i => { setAt(i); setPlaying(true) }} />
     </div>
   )
 }
