@@ -201,10 +201,10 @@ export const STO6: HomeCfg = {
   ask: 'Ask about U16 Ollie… Who has exams coming up?', askTarget: 'ASKd2-HomeFocus',
   proof: {
     label: 'SAT 30 MAY · DREW 2–2 v TEALSIDE TOWN · 4TH OF 12',
-    headline: 'You worked on building out under pressure. On Saturday you reached halfway 68% of the time. In April, 58%.',
-    second: 'The cost is counter-attacks: six a game, four from losing it in midfield.',
-    bars: [{ n: '58', when: 'Round 3' }, { n: '63', when: 'Round 6' }, { n: '68', when: 'Saturday', amber: true }],
-    unit: '% of build-outs that reached halfway',
+    headline: 'You worked on building out under pressure. In your last three games, 41 of 60 short goal kicks got over halfway with the ball. In the first three, 27 of 60.',
+    second: 'That is outside the usual swing, so it is a real change. The cost is counter-attacks: six a game, four from losing it in midfield.',
+    bars: [{ n: '45', when: 'First 3' }, { n: '68', when: 'Last 3', amber: true }],
+    unit: '% of short goal kicks that got over halfway with the ball. Long kicks are not counted',
     reel: { duration: '1:30', chips: ['Build', 'Build', 'Build', 'Counter', '+2'], caption: 'Six clips: four clean build-outs and the two counters that cost goals.' }, reelTarget: R1,
     mainBtn: 'Play 90 seconds', mainTarget: R1, outlineBtn: 'Full review', outlineTarget: R1,
   },
@@ -266,7 +266,7 @@ export const STO8: HomeCfg = {
   proof: {
     label: 'FOUR TEAMS · WEEK OF 1 JUNE',
     headline: 'You capped sprints for the U16s two weeks ago. Sore legs are down from six players to two, and they finished Saturday strong.',
-    second: 'Last-15-minute sprints dropped by 18%, not 30%. Ollie kept the full squad available.',
+    second: 'Last-15-minute sprints dropped by about 18%, not 30%. That figure is an estimate. Ollie kept the full squad available.',
     bars: [{ n: '6', when: '18 May' }, { n: '4', when: '25 May' }, { n: '2', when: 'This week', amber: true }],
     unit: 'U16 players reporting sore legs',
     status: [
@@ -334,10 +334,10 @@ export const STO10: HomeCfg = {
   ask: 'Ask about Wattle Creek FC… Which teams are outside fair game time?', askTarget: 'ASKd2-HomeFocus',
   proof: {
     label: 'WATTLE CREEK FC · 14 TEAMS · ROUND 8',
-    headline: 'You asked every team to play the club way. In April, half of their games looked like it. This week, two in three.',
+    headline: 'You asked every team to play the club way. In the last three rounds, teams hit 67% of the targets on their Our style page. In rounds 1 to 3, 51%.',
     second: 'Biggest movers: U12 Sam and U16 Ollie. U9 Mark and U13 Chris need a hand.',
-    bars: [{ n: '51', when: 'Round 2' }, { n: '58', when: 'Round 5' }, { n: '67', when: 'Round 8', amber: true }],
-    unit: '% of games played our way',
+    bars: [{ n: '51', when: 'Rounds 1–3' }, { n: '58', when: 'Rounds 4–5' }, { n: '67', when: 'Rounds 6–8', amber: true }],
+    unit: '% of style targets hit, all 14 teams',
     reel: { duration: '2:00', chips: ['U9', 'U12', 'U16', '1sts', '+7'], caption: 'One clip from each team that recorded a game. Ready for Tuesday’s coach meeting.' }, reelTarget: 'C1-ClipsTab',
     mainBtn: 'Play 2 minutes', mainTarget: 'C1-ClipsTab', outlineBtn: 'By team', outlineTarget: 'D2-Teams',
   },

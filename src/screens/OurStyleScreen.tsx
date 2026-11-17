@@ -1,6 +1,12 @@
 import { useState } from 'react'
 import { STYLE_QUESTIONS, STYLE_CLUB_VALUES, STYLE_MEASURES, type StyleQuestion } from '../data'
 import SetOurStyleWizard from './SetOurStyleWizard'
+import { MarkDot, markFor, kindFromLabel } from './capture/marks'
+
+// "Playing our way" is the share of these targets a team hits in a game. Only
+// measures marked Strong count towards it; an Estimate is shown but left out.
+const styleMark = (label: string) => markFor({ kind: kindFromLabel(label) ?? 'count', captured: true })
+const COUNTED = STYLE_MEASURES.filter(m => styleMark(m.label) === 'strong').length
 
 type WizardStep = 'intro' | 1 | 2 | 3 | 4 | 5 | 'review' | 'saved'
 
@@ -115,13 +121,17 @@ export default function OurStyleScreen({ setByLine = 'Set 12 March by Sam.' }: {
               <span style={{ flex: 'none', width: 8, height: 8, borderRadius: '999px', background: '#40826d', marginTop: 5 }} />
               <span style={{ flexGrow: 1, minWidth: 0 }}>
                 <span style={{ display: 'block', fontSize: 14, fontWeight: 600, color: '#10211f', lineHeight: '18px' }}>{m.label}</span>
-                <span style={{ fontSize: 12, color: '#6f7f7b' }}>{m.source}</span>
+                <span style={{ fontSize: 12, color: '#6f7f7b', display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>{m.source}<MarkDot kind={styleMark(m.label)} /></span>
               </span>
               <span style={{ flex: 'none', fontSize: 13, fontWeight: 700, color: '#2f6252', whiteSpace: 'nowrap' }}>{m.value}</span>
             </div>
           ))}
         </div>
-        <div style={{ marginTop: 16, padding: '12px 14px', background: '#e8f2ee', borderRadius: 10, fontSize: 13, color: '#2f6252', lineHeight: '18px' }}>
+        <div style={{ marginTop: 16, padding: '12px 14px', background: '#fff', border: '1px solid #c5c8c4', borderRadius: 10, fontSize: 13, color: '#10211f', lineHeight: '18px' }}>
+          <strong style={{ display: 'block', marginBottom: 2 }}>How “playing our way” is worked out</strong>
+          It is the share of these targets the team hits in a game. The {COUNTED} marked Strong count. {STYLE_MEASURES.length - COUNTED === 1 ? 'The one marked Estimate is shown but left out.' : `The ${STYLE_MEASURES.length - COUNTED} marked Estimate are shown but left out.`}
+        </div>
+        <div style={{ marginTop: 10, padding: '12px 14px', background: '#e8f2ee', borderRadius: 10, fontSize: 13, color: '#2f6252', lineHeight: '18px' }}>
           If you change your style, past games are re-scored against the new answers. Nothing is lost.
         </div>
       </div>
