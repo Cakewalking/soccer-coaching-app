@@ -1,5 +1,8 @@
 import { useState } from 'react'
 import { SQUAD_PLAYERS, CLIPS } from '../data'
+import TrialPack from './trial/TrialPack'
+import { offered } from './trial/trialStore'
+import type { Age } from './capture/captureStore'
 
 interface Props {
   playerIni: string
@@ -14,7 +17,7 @@ const SETUP_STEPS = [
   { label: 'Set a development goal',  desc: 'One goal, checked every game', cta: 'Set goal' },
 ]
 
-const PROFILE_TABS = ['Overview', 'Clips', 'Wearable data', 'Wellness', 'Development']
+const PROFILE_TABS = ['Overview', 'Clips', 'Wearable data', 'Wellness', 'Development', 'Trial pack']
 
 const GAME_RESULTS = [
   { opp: 'BAN', result: 'W', mins: 40 },
@@ -39,7 +42,7 @@ function statusChipColor(status: string) {
   return { bg: '#e8f2ee', color: '#2f6252', border: '#a3d4c0' }
 }
 
-export default function PlayerProfileScreen({ playerIni, empty, players = SQUAD_PLAYERS }: Props & { players?: typeof SQUAD_PLAYERS }) {
+export default function PlayerProfileScreen({ playerIni, empty, players = SQUAD_PLAYERS, band = 'juniors', team = 'U12 Sam', coach = 'Sam K' }: Props & { players?: typeof SQUAD_PLAYERS; band?: Age; team?: string; coach?: string }) {
   const [activeTab, setActiveTab] = useState(0)
   const [toast, setToast] = useState<string|null>(null)
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
@@ -209,6 +212,10 @@ export default function PlayerProfileScreen({ playerIni, empty, players = SQUAD_
           </div>
         </div>
 
+        {activeTab === 5 && (offered(band)
+          ? <TrialPack player={player} team={team} band={band} coach={coach} parent={band === 'juniors' && player.ini === 'MT' ? 'Linh' : undefined} />
+          : <div style={{ padding: '24px 32px', fontSize: 14, color: '#4a5a57' }}>Trial packs are for under 12 and older.</div>)}
+
         {activeTab === 0 && (
           <div style={{ padding: '24px 32px' }}>
             {/* Metric cards */}
@@ -275,7 +282,7 @@ export default function PlayerProfileScreen({ playerIni, empty, players = SQUAD_
           </div>
         )}
 
-        {activeTab !== 0 && (
+        {activeTab !== 0 && activeTab !== 5 && (
           <div style={{ padding: 40, textAlign: 'center', color: '#6f7f7b', fontSize: 15 }}>
             {PROFILE_TABS[activeTab]} — coming soon
           </div>
@@ -283,7 +290,7 @@ export default function PlayerProfileScreen({ playerIni, empty, players = SQUAD_
       </div>
 
       {/* Right sidebar */}
-      <div style={{ width: 300, flex: 'none', borderLeft: '1px solid #e9eae8', padding: '24px 20px', overflowY: 'auto', background: '#ffffff' }}>
+      <div style={{ width: 300, flex: 'none', borderLeft: '1px solid #e9eae8', padding: '24px 20px', overflowY: 'auto', background: '#ffffff', display: activeTab === 5 ? 'none' : undefined }}>
         <h2 style={{ margin: '0 0 16px', fontSize: 16, fontWeight: 700, color: '#10211f' }}>Right now</h2>
 
         {/* Load */}

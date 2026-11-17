@@ -21,6 +21,7 @@ export const STO17: PhoneCfg = {
     { kind: 'proof', label: 'MIA · U12 SAM · SATURDAY', headline: 'Mia won the ball back four times on Saturday. Sam sent you the clip.', second: 'Her goal this term is pressing as a pair. A month ago she did it once a game.', clip: { duration: '0:12', note: 'Only you, Mia and her coaches can see this.' }, btn: 'Watch Mia’s 12 seconds', btnTarget: 'PA-Clip' },
     { kind: 'list', label: 'THE TEAM, NOT ONE CHILD', title: 'How the team played', text: 'Saturday’s chances for Mia’s team, in plain words.', action: 'See how they played', actionTarget: 'XGp1-ChancesParentMia', familiesBand: 'juniors' },
     { kind: 'list', label: 'AFTER THE GAME', title: 'Rate Saturday’s game', text: '1 to 5 for any player. Closes Tuesday.', action: 'Rate the game', actionTarget: 'YTp1-ParentVotes' },
+    { kind: 'list', label: 'MOVING CLUBS OR GOING TO A TRIAL?', title: 'Mia’s trial pack is ready', text: 'A highlights reel and her season, made for you. Share it in two taps.', action: 'Open the trial pack', actionTarget: 'TPp1-TrialPackParent' },
     { kind: 'ready', when: 'THIS WEEK', title: 'Two things to be at', text: 'Thu 5:45 pm training. Sat 9:30 am at home to Harbour Rovers: you said yes.', btns: [{ label: 'Bao: answer for Saturday', target: 'AV2-ParentAvailability' }] },
     { kind: 'done', title: 'Bao · U8 Hannah', lines: ['First go in goal on Saturday. Hannah sent a photo'] },
     { kind: 'done', title: 'Done for you', lines: ['Canteen shift Sat 10 to 11 is in your calendar'] },
@@ -45,6 +46,7 @@ export const STO19: PhoneCfg = {
     { kind: 'proof', label: 'SAT 30 MAY · DREW 2–2 v TEALSIDE TOWN', headline: 'You won the ball eight times on Saturday. A month ago it was six.', second: 'Ollie says your pressing is the difference. Three clips are ready.', bars: [{ n: '5', when: 'April' }, { n: '6', when: 'May' }, { n: '8', when: 'Saturday', amber: true }], unit: 'times you won the ball', btn: 'Watch my three clips', btnTarget: 'PA-Clip' },
     { kind: 'ready', when: 'THURSDAY · 6:30 pm', title: 'Thursday: sprints are capped', text: 'Your load is high, so Priya has taken out the last block. 75 minutes.', btns: [{ label: 'I’m in', done: 'You’re in for Thursday.' }, { label: 'Can’t', done: 'Ollie knows you can’t make Thursday.' }] },
     { kind: 'list', label: 'THIS WEEK', title: 'This week', lines: ['How you slept and feel: 3 taps, opens at 7:00 am', 'Sat 11:00 am · at home'] },
+    { kind: 'list', label: 'GOING TO A TRIAL?', title: 'Your trial pack is ready', text: 'A highlights reel and your season, made for you. A parent shares it.', action: 'Open my trial pack', actionTarget: 'TPp1-TrialPackPlayer' },
     { kind: 'note', text: 'You choose who else sees your numbers' },
   ],
 }
