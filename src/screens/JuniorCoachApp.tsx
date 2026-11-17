@@ -61,6 +61,7 @@ import AddGameScreen         from './AddGameScreen'
 import { FitnessTrainingTab, FitnessMatchTab } from './FitnessExtras'
 import CoCoachHomeScreen from './CoCoachHomeScreen'
 import RecordHub           from './RecordHub'
+import CaptureFlow, { isCaptureId, captureSubTab } from './capture/CaptureFlow'
 import { RecordSaved }     from './RecordHub'
 import { CoachMessages, CoachNewMessage, CoachMessagesPersonCard } from './MessagesScreens'
 import { SquadLineups }    from './SquadLineups'
@@ -94,6 +95,8 @@ const TRAINING_TABS = ["Tonight's session", 'This week', 'Suggested', 'Drill lib
 const MATCHDAY_TABS = ['Team talk', 'Line-up and minutes', 'Opposition', 'Review', 'Your take']
 const CLIPS_TABS    = ['By measure', 'By game', 'By player', 'Playlists', 'To check', 'Learn']
 
+const REC_TABS = ['Record', 'Recorded lately', 'Devices', 'How we measure']
+
 export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLabel, coachInitials, empty = false, initialScreen, onNavChange, coachRole = 'head', registerNav }: { onBack?: () => void; phaseContent?: ReactNode; coachLabel?: string; coachInitials?: string; empty?: boolean; initialScreen?: string; onNavChange?: (screen: string) => void; coachRole?: 'head' | 'ccoach'; registerNav?: (fn: (target: string) => boolean) => void }) {
   const { active: inSandbox, store } = useSandbox()
   const sbEmpty        = inSandbox ? !storeIsSample(store)       : empty
@@ -122,6 +125,7 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
   function goNav(n: NavKey) { setNav(n); setSub(null); setAskOpen(false); onNavChange?.(n); setMsgsView(null); setRecView(null); setFilView(null) }
 
   function handleNav(s: string) {
+    if (isCaptureId(s) || s === 'REC2-RecordSaved') { goNav('record'); setRecView(s); return }   // capture quality steps live under Record
     if (s === 'training')  { goNav('training'); return }
     if (s === 'matchday')  { goNav('matchday'); return }
     if (s === 'squad')     { goNav('squad');    return }
@@ -174,14 +178,14 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
                  : nav === 'home'     ? HOME_TABS
                  : nav === 'squad'    ? SQUAD_TABS
                  : nav === 'training' ? TRAINING_TABS
-                 : nav === 'record'   ? []
+                 : nav === 'record'   ? REC_TABS
                  : MATCHDAY_TABS
 
   const activeIdx = nav === 'home'     ? homeTab
                   : nav === 'squad'    ? squadTab
                   : nav === 'training' ? trainingTab
                   : nav === 'matchday' ? matchTab
-                  : nav === 'record'   ? 0
+                  : nav === 'record'   ? (recView === 'REC2-RecordSaved' ? 1 : recView ? captureSubTab(recView) : 0)
                   : clipsTab
 
   function handleSubTab(i: number) {
@@ -191,6 +195,7 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
     if (nav === 'training') setTrainingTab(i)
     if (nav === 'matchday') setMatchTab(i)
     if (nav === 'clips')    setClipsTab(i)
+    if (nav === 'record')   { if (i === 2) handleNav('SET4-Devices'); else setRecView(i === 1 ? 'REC2-RecordSaved' : i === 3 ? 'QC10-HowWeMeasure' : null) }
   }
 
   function filNav(s: string) {
@@ -255,8 +260,9 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
     else if (trainingTab === 4) content = <GrowthLoadScreen empty={sbEmptySession} />
     else if (trainingTab === 5) content = <FitnessTrainingTab empty={sbEmptySession} />
   } else if (nav === 'record') {
-    if (recView === 'REC2-RecordSaved') content = <RecordSaved noFrame onBack={() => setRecView(null)} onNav={(s) => { if (s === 'EX1-HowWorkedOut') { goNav('matchday'); setMatchTab(3) } else { handleNav(s) } }} />
-    else content = <RecordHub noFrame onNav={(s) => s === 'REC2-RecordSaved' ? setRecView(s) : handleNav(s)} />
+    if (recView && isCaptureId(recView)) content = <CaptureFlow step={recView} onStep={setRecView} onNav={handleNav} kitless={inSandbox && sbEmpty} team={inSandbox ? (store.teams[0]?.name ?? 'your team') : 'U12 Sam'} />
+    else if (recView === 'REC2-RecordSaved') content = <RecordSaved noFrame onBack={() => setRecView(null)} onNav={(s) => { if (s === 'EX1-HowWorkedOut') { goNav('matchday'); setMatchTab(3) } else { handleNav(s) } }} />
+    else content = <RecordHub noFrame onNav={handleNav} />
   } else if (nav === 'matchday') {
     if (matchTab === 0) content = <MatchDayScreen onNav={handleNav} empty={sbEmptyFixture} />
     else if (matchTab === 1) content = <TeamSheetScreen empty={sbEmptyFixture} />
@@ -288,7 +294,7 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
       askRole={coachRole === 'ccoach' ? 'assistant coach' : 'head coach'}
       showBadge={tab => !sbEmpty && !inSandbox && (tab === 'Messages' || tab === 'To check')}
     >
-      <div data-screen={nav === 'home' && activeIdx === 0 ? (coachRole === 'ccoach' ? 'STO7-HomeStoryAssistant' : 'STO5-HomeStoryJuniors') : COACH_TAB_SCREEN[nav]?.[activeIdx] ?? COACH_TAB_SCREEN[nav]?.[0]} style={{ display: 'contents' }}>{content}</div>
+      <div data-screen={nav === 'record' && recView ? recView.split('#')[0] : nav === 'home' && activeIdx === 0 ? (coachRole === 'ccoach' ? 'STO7-HomeStoryAssistant' : 'STO5-HomeStoryJuniors') : COACH_TAB_SCREEN[nav]?.[activeIdx] ?? COACH_TAB_SCREEN[nav]?.[0]} style={{ display: 'contents' }}>{content}</div>
     </CoachTabletFrame>
   )
 }

@@ -27,6 +27,8 @@ import { MEASURE } from '../measures/data'
 import EDUp1PlayerLearn from '../step4/EDUp1PlayerLearn'
 import MiniRoosApp from '../miniroos/MiniRoosApp'
 import JuniorCoachApp, { coachDeepTab } from '../JuniorCoachApp'
+import CaptureFlow, { isCaptureId } from '../capture/CaptureFlow'
+import QCp1BeforeKickOffPhone from '../capture/QCp1BeforeKickOffPhone'
 
 // Design ids from the master handover that had no address of their own.
 // Either the screen existed under an older key (ALIAS), or it is a state of a
@@ -72,7 +74,11 @@ export function renderExtraScreen(key: string): ReactNode | undefined {
   // These ids used to open an older standalone copy with few working controls. The
   // coach app's own tab is the built screen, so the id opens that tab, in its frame.
   if (LIVE_COACH_TAB.has(key) && coachDeepTab(key)) return <JuniorCoachApp initialScreen={key} />
+  // Capture quality (17 Nov): the set-up steps, the report and How we measure, in the coach frame.
+  if (isCaptureId(key)) return <CaptureFlow framed start={key} kitless={key === 'QC1e-CapturePlanNoKit'} />
   switch (key) {
+    case 'QC11-ClubCaptureRules': return <ClubAdminScreen role="dof" initials="RM" initialTab="features" initialFeature="QC11-ClubCaptureRules" />
+    case 'QCp1-BeforeKickOffPhone': return <div style={{ display: 'flex', justifyContent: 'center' }}><QCp1BeforeKickOffPhone /></div>
     // The role pickers, and the three older ids they replace.
     case 'STA3-PickRole': case 'DEMO-Start':
     case 'STA3l-PickRoleLook':

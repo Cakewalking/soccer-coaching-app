@@ -3,6 +3,7 @@ import { toolTarget } from '../toolTargets'
 import { OpeningPanel } from './directorParts'
 import MeasureSheet from '../measures/MeasureSheet'
 import { MEASURE } from '../measures/data'
+import { RowMark } from '../measures/sheetMark'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
@@ -20,12 +21,13 @@ function RangeBar({ pct }: { pct: number }) {
     </div>
   )
 }
-function MeasureRow({ label, src, pct, first, onOpen }: { label: string; src: string; pct: number; first?: boolean; onOpen: () => void }) {
+function MeasureRow({ label, src, pct, first, onOpen, sheet }: { label: string; src: string; pct: number; first?: boolean; onOpen: () => void; sheet?: string }) {
   return (
     <button onClick={onOpen} style={{ width: '100%', minHeight: 44, display: 'flex', alignItems: 'center', gap: 10, padding: '6px 0', background: 'none', border: 'none', borderTop: first ? 'none' : `1px solid ${LN}`, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
       <span style={{ width: 118, flexShrink: 0 }}>
         <span style={{ display: 'block', fontSize: 13, fontWeight: 700, color: INK, lineHeight: '16px' }}>{label}</span>
         <span style={{ display: 'block', fontSize: 11, color: MUT }}>{src}</span>
+        <span style={{ display: 'block', fontSize: 11 }}><RowMark sheet={sheet} /></span>
       </span>
       <RangeBar pct={pct} />
       <Arrow />
@@ -96,17 +98,17 @@ export default function PX2LateDeveloper({ onNav }: { onNav?: (s: string) => voi
             <div style={card}>
               {cardHead('Football', 'Strong on the ball', true)}
               <div style={{ fontSize: 12, color: MUT, marginBottom: 6 }}>Upper third of his team for all three.</div>
-              <MeasureRow label="Forward passes" src="Film" pct={73} first onOpen={() => open('PU8d-MeasurePasses')} />
-              <MeasureRow label="Kept it" src="Film" pct={70} onOpen={() => open('PU8e-MeasureWins')} />
-              <MeasureRow label="Duels won" src="Film" pct={24} onOpen={() => open('PU8a-MeasureFilm')} />
+              <MeasureRow label="Forward passes" src="Film" pct={73} first sheet="PU8d-MeasurePasses" onOpen={() => open('PU8d-MeasurePasses')} />
+              <MeasureRow label="Kept it" src="Film" pct={70} sheet="PU8e-MeasureWins" onOpen={() => open('PU8e-MeasureWins')} />
+              <MeasureRow label="Duels won" src="Film" pct={24} sheet="PU8a-MeasureFilm" onOpen={() => open('PU8a-MeasureFilm')} />
               {foot('7 recorded games')}
             </div>
             {/* Body */}
             <div style={card}>
               {cardHead('Body', 'Growing later')}
               <div style={{ fontSize: 12, color: MUT, marginBottom: 6 }}>148 cm, 3 cm this year. His team’s middle is 162 cm. Top speed:</div>
-              <MeasureRow label="Against year up" src="Vest" pct={28} first onOpen={() => open('PU8b-MeasureVest')} />
-              <MeasureRow label="Against year below" src="Vest" pct={62} onOpen={() => open('PU8b-MeasureVest')} />
+              <MeasureRow label="Against year up" src="Vest" pct={28} first sheet="PU8b-MeasureVest" onOpen={() => open('PU8b-MeasureVest')} />
+              <MeasureRow label="Against year below" src="Vest" pct={62} sheet="PU8b-MeasureVest" onOpen={() => open('PU8b-MeasureVest')} />
               {foot('Heights each month · tests in May')}
             </div>
             {/* Head */}

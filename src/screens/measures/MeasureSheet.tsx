@@ -1,11 +1,15 @@
 import { useState, useEffect } from 'react'
 import { INK, MUT, GREEN, HAIR, PALEGREEN } from '../step4/directorParts'
 import { type MeasureCfg, nextMeasure, prevMeasure } from './data'
+import { Mark } from '../capture/marks'
+import { useCapture, setCapture } from '../capture/captureStore'
+import { sheetMark, trendNote, usualSwing } from './sheetMark'
 
 const GD = '#1f4a3e', BAND = '#d4e6df', PALE = '#eef5f2'
 
 // ---------- graphs ----------
 function LineGraph({ cfg }: { cfg: MeasureCfg }) {
+  const showAfter = useCapture().trendAfter   // the club's rule: no trend line until this many games
   const g = cfg.graph
   const s = g.series ?? []
   const [top, , bot] = g.axis ?? [100, 50, 0]
@@ -14,6 +18,8 @@ function LineGraph({ cfg }: { cfg: MeasureCfg }) {
   const x = (i: number) => padL + (s.length <= 1 ? plotW / 2 : (i / (s.length - 1)) * plotW)
   const pts = s.map((v, i) => `${x(i)},${y(v)}`).join(' ')
   const gridVals = g.axis ?? []
+  const swing = s.length >= showAfter ? usualSwing(s) : null
+  const last = s.length - 1, outside = !!swing && (s[last] < swing[0] || s[last] > swing[1])
   return (
     <svg viewBox={`0 0 ${W} ${H}`} style={{ width: '100%', height: 150 }}>
       {g.rangeHigh != null && g.rangeLow != null && <rect x={padL} y={y(g.rangeHigh)} width={plotW} height={Math.max(0, y(g.rangeLow) - y(g.rangeHigh))} fill={BAND} opacity={0.7} />}
@@ -24,8 +30,12 @@ function LineGraph({ cfg }: { cfg: MeasureCfg }) {
         </g>
       ))}
       {g.mid != null && <line x1={padL} x2={W - padR} y1={y(g.mid)} y2={y(g.mid)} stroke={GD} strokeWidth={1.5} strokeDasharray="5 4" />}
-      <polyline points={pts} fill="none" stroke={GREEN} strokeWidth={2.5} />
-      {s.map((v, i) => <circle key={i} cx={x(i)} cy={y(v)} r={i === s.length - 1 ? 5 : 3} fill={GREEN} />)}
+      {/* the usual swing between games, from her own earlier games (QC9) */}
+      {swing && <path d={`M${padL} ${y(swing[1])}H${W - padR}M${padL} ${y(swing[0])}H${W - padR}`} stroke={GREEN} strokeWidth={1.5} strokeDasharray="2 4" fill="none" />}
+      {s.length >= showAfter && <polyline points={pts} fill="none" stroke={GREEN} strokeWidth={2.5} />}
+      {s.map((v, i) => i === last && outside
+        ? <circle key={i} cx={x(i)} cy={y(v)} r={6} fill="#f4c95d" stroke="#10211f" strokeWidth={2} />
+        : <circle key={i} cx={x(i)} cy={y(v)} r={i === last ? 5 : 3} fill={GREEN} />)}
       {g.labels && g.labels.map((l, i) => (
         <text key={i} x={x(i)} y={H - 4} fontSize={10} fill={MUT} textAnchor={i === 0 ? 'start' : i === g.labels!.length - 1 ? 'end' : 'middle'}>{l}</text>
       ))}
@@ -226,6 +236,8 @@ export default function MeasureSheet({ cfg, onClose, onOpen, onNav }: {
 }) {
   const [toast, setToast] = useState<string | null>(null)
   function say(m: string) { setToast(m); setTimeout(() => setToast(null), 2600) }
+  const cap = useCapture()
+  const mark = sheetMark(cfg), trend = trendNote(cfg, cap.trendAfter), flagged = cap.flagged.includes(cfg.id)
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
@@ -245,7 +257,9 @@ export default function MeasureSheet({ cfg, onClose, onOpen, onNav }: {
             <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', color: MUT }}>{cfg.area} · {cfg.source} · {cfg.pos} OF 11</div>
             <h1 style={{ margin: '4px 0 2px', fontSize: 24, fontWeight: 800, lineHeight: 1.15 }}>{cfg.title}</h1>
             <div style={{ fontSize: 13, color: MUT }}>{cfg.sub}</div>
+            <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginTop: 6 }}><Mark kind={mark} />{trend && <Mark kind={trend.mark} label={trend.label} />}</div>
           </div>
+          <button aria-pressed={flagged} onClick={() => { setCapture(c => ({ flagged: [...new Set([...c.flagged, cfg.id])] })); say('Tell us what looks wrong. We check and write back within a day.') }} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid #c5c8c4`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer', flexShrink: 0, whiteSpace: 'nowrap' }}>That’s not right</button>
           <button aria-label="Close" onClick={onClose} style={{ width: 44, height: 44, borderRadius: '50%', border: `1px solid ${HAIR}`, background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth="2.2" strokeLinecap="round"><path d="M18 6 6 18M6 6l12 12" /></svg>
           </button>
@@ -259,6 +273,7 @@ export default function MeasureSheet({ cfg, onClose, onOpen, onNav }: {
             <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}><span style={{ width: 14, height: 3, background: GREEN, borderRadius: 2 }} />Mia</span>
             <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}><span style={{ width: 14, height: 10, background: BAND, borderRadius: 2 }} />U13 girls, lowest to highest</span>
             <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}><span style={{ width: 14, height: 0, borderTop: `2px dashed ${GD}` }} />their middle{cfg.lowerBetter ? ' · lower is better' : ''}</span>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}><span style={{ width: 14, height: 0, borderTop: `2px dotted ${GREEN}` }} />her usual swing between games</span>
           </div>
         )}
 

@@ -51,7 +51,7 @@ const NAV6 = [
   { id: 'record',   label: 'Record',    icon: ICONS.record },
 ]
 
-const REC_SUBS = ['Record', 'Recorded lately', 'Devices']
+const REC_SUBS = ['Record', 'Recorded lately', 'Devices', 'How we measure']
 
 function CoachFrame({ activeNav, activeSub, subTabs, pageTitle, pageSub, pageRight, children, toast, onNavTab, noFrame }: {
   activeNav: string; activeSub: string; subTabs: string[]; pageTitle: string; pageSub: string;
@@ -206,7 +206,7 @@ export function RecordHub({ onBack: _onBack, noFrame, onNav }: { onBack?: () => 
   const sb = useSandbox()
 
   const options = [
-    { icon: ICONS.game,     title: 'A game',            sub: 'Video, sensors, or both',       goes: 'Match review, Clips, each player\'s minutes and load',  onClick: () => onNav ? onNav('RC1-RecordStart') : t('Opening the game recording flow.') },
+    { icon: ICONS.game,     title: 'A game',            sub: 'Video, sensors, or both',       goes: 'Match review, Clips, each player\'s minutes and load',  onClick: () => onNav ? onNav('QC1-CapturePlan') : t('Opening the game recording flow.') },
     { icon: ICONS.training2,title: 'Training',          sub: 'Tonight\'s session',             goes: 'Session notes, Clips, Growth and load',                  link: true },
     { icon: ICONS.test,     title: 'A test',            sub: 'Sprints, juggles, jumps, beep test', goes: 'Fitness tests, and each player\'s own trend',         onClick: () => onNav ? onNav('TL2-TestMode') : t('Opening the test recording flow.') },
     { icon: ICONS.note,     title: 'A quick note',      sub: 'Say it or type it',              goes: 'The player or game you name. You check it first',        onClick: () => setPanel(p => p === 'note' ? null : 'note') },
@@ -221,7 +221,7 @@ export function RecordHub({ onBack: _onBack, noFrame, onNav }: { onBack?: () => 
       pageSub={sb.active && sb.store.teams[0] && sb.store.teams[0].id !== 'wc-u12' ? `${sb.store.teams[0].name} · pick what you are recording` : 'U12 Sam · camera kit 2 and 15 vests are ready'}
       pageRight={<BtnMore label="Devices" onClick={() => onNav ? onNav('SET4-Devices') : t('Opening device settings.')}/>}
       toast={toast}
-      onNavTab={(id) => id === 'sub:Devices' ? (onNav ? onNav('SET4-Devices') : t('Devices opens.')) : t(id.startsWith('sub:') ? `${id.slice(4)} opens.` : `${id.charAt(0).toUpperCase() + id.slice(1)} tab opens.`)}
+      onNavTab={(id) => id === 'sub:Devices' ? (onNav ? onNav('SET4-Devices') : t('Devices opens.')) : id === 'sub:How we measure' && onNav ? onNav('QC10-HowWeMeasure') : id === 'sub:Recorded lately' && onNav ? onNav('REC2-RecordSaved') : t(id.startsWith('sub:') ? `${id.slice(4)} opens.` : `${id.charAt(0).toUpperCase() + id.slice(1)} tab opens.`)}
       noFrame={noFrame}
     >
       <div style={{ display: 'flex', gap: 16 }}>

@@ -3,6 +3,7 @@ import { toolTarget } from '../toolTargets'
 import { OpeningPanel } from './directorParts'
 import MeasureSheet from '../measures/MeasureSheet'
 import { MEASURE } from '../measures/data'
+import { RowMark } from '../measures/sheetMark'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
@@ -10,12 +11,13 @@ const Arrow = () => <svg width="14" height="14" viewBox="0 0 24 24" fill="none" 
 
 // A measure row on the readiness page: label + source, then its range bar, then
 // an arrow. The whole row opens the evidence sheet.
-function MeasureRow({ label, src, pct, first, onOpen }: { label: string; src: string; pct: number; first?: boolean; onOpen: () => void }) {
+function MeasureRow({ label, src, pct, first, onOpen, sheet }: { label: string; src: string; pct: number; first?: boolean; onOpen: () => void; sheet?: string }) {
   return (
     <button onClick={onOpen} style={{ width: '100%', minHeight: 44, display: 'flex', alignItems: 'center', gap: 10, padding: '6px 0', background: 'none', border: 'none', borderTop: first ? 'none' : `1px solid ${LN}`, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
       <span style={{ width: 92, flexShrink: 0 }}>
         <span style={{ display: 'block', fontSize: 13, fontWeight: 700, color: INK, lineHeight: '16px' }}>{label}</span>
         <span style={{ display: 'block', fontSize: 11, color: MUT }}>{src}</span>
+        <span style={{ display: 'block', fontSize: 11 }}><RowMark sheet={sheet} /></span>
       </span>
       <RangeBar pct={pct} />
       <Arrow />
@@ -104,7 +106,7 @@ export default function PU2PlayerReadiness({ onNav }: { onNav?: (s: string) => v
                 { label: 'Forward passes', src: 'Film', pct: 68, id: 'PU8d-MeasurePasses' },
                 { label: 'Wins of the ball', src: 'Film', pct: 63, id: 'PU8e-MeasureWins' },
               ].map((m, i) => (
-                <MeasureRow key={m.label} label={m.label} src={m.src} pct={m.pct} first={i === 0} onOpen={() => open(m.id)} />
+                <MeasureRow key={m.label} label={m.label} src={m.src} pct={m.pct} first={i === 0} sheet={m.id} onOpen={() => open(m.id)} />
               ))}
               <div style={{ display: 'flex', alignItems: 'center', marginTop: 8, borderTop: `1px solid ${LN}`, paddingTop: 8, gap: 8 }}>
                 <span style={{ fontSize: 11, color: MUT }}>9 recorded games ·</span>
@@ -127,7 +129,7 @@ export default function PU2PlayerReadiness({ onNav }: { onNav?: (s: string) => v
                 { label: '10 m sprint', src: 'Timed test', pct: 48, id: 'PU8g-MeasureTest' },
                 { label: 'Distance', src: 'Vest', pct: 58, id: 'PU8f-MeasureDistance' },
               ].map((m, i) => (
-                <MeasureRow key={m.label} label={m.label} src={m.src} pct={m.pct} first={i === 0} onOpen={() => open(m.id)} />
+                <MeasureRow key={m.label} label={m.label} src={m.src} pct={m.pct} first={i === 0} sheet={m.id} onOpen={() => open(m.id)} />
               ))}
               <div style={{ display: 'flex', alignItems: 'center', marginTop: 8, borderTop: `1px solid ${LN}`, paddingTop: 8, gap: 8 }}>
                 <span style={{ fontSize: 11, color: MUT }}>Heights, tests, vests ·</span>

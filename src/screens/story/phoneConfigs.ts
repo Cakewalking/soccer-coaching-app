@@ -41,7 +41,7 @@ export const STO19: PhoneCfg = {
   id: 'STO19-HomeStoryPlayerOlder', roleLine: 'U16 Ollie', greeting: 'Hi Cal', avatar: 'CW',
   tabs: [{ label: 'Home', target: 'PO1-OlderHome' }, { label: 'Clips', target: 'PA-Clip' }, { label: 'Learn', target: 'LEARN-PlayerOlder' }, { label: 'Body', target: 'PO4-OlderLoad' }, { label: 'Messages', target: 'PO2-OlderMessage' }],
   blocks: [
-    { kind: 'proof', label: 'SAT 30 MAY · DREW 2–2 v TEALSIDE TOWN', headline: 'Your top speed is 6% up on last month. Ollie says that is a real change.', second: 'You also won the ball eight times, up from six. Three clips are ready.', bars: [{ n: '27.1', when: 'April' }, { n: '27.9', when: 'May' }, { n: '28.8', when: 'Saturday', amber: true }], unit: 'km/h top speed', btn: 'Watch my three clips', btnTarget: 'PA-Clip' },
+    { kind: 'proof', label: 'SAT 30 MAY · DREW 2–2 v TEALSIDE TOWN', headline: 'You won the ball eight times on Saturday. A month ago it was six.', second: 'Ollie says your pressing is the difference. Three clips are ready.', bars: [{ n: '5', when: 'April' }, { n: '6', when: 'May' }, { n: '8', when: 'Saturday', amber: true }], unit: 'times you won the ball', btn: 'Watch my three clips', btnTarget: 'PA-Clip' },
     { kind: 'ready', when: 'THURSDAY · 6:30 pm', title: 'Thursday: sprints are capped', text: 'Your load is high, so Priya has taken out the last block. 75 minutes.', btns: [{ label: 'I’m in', done: 'You’re in for Thursday.' }, { label: 'Can’t', done: 'Ollie knows you can’t make Thursday.' }] },
     { kind: 'list', label: 'THIS WEEK', title: 'This week', lines: ['How you slept and feel: 3 taps, opens at 7:00 am', 'Sat 11:00 am · at home'] },
     { kind: 'note', text: 'You choose who else sees your numbers' },

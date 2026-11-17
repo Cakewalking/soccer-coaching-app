@@ -88,8 +88,8 @@ function StepList({ steps }: { steps: { n: string; title: string; note?: string 
 
 // ─── RC1 — Record Start ───────────────────────────────────────────────────────
 
-function StartView({ empty, onFriendly, onDrill, onRecorded, onHowWeMeasure, onRunAgain }:
-  { empty: boolean; onFriendly: () => void; onDrill: () => void; onRecorded: () => void; onHowWeMeasure: () => void; onRunAgain: () => void }) {
+function StartView({ empty, onFriendly, onDrill, onRecorded, onHowWeMeasure, onRunAgain, onLeague }:
+  { empty: boolean; onLeague: () => void; onFriendly: () => void; onDrill: () => void; onRecorded: () => void; onHowWeMeasure: () => void; onRunAgain: () => void }) {
   const [svToast, setSvToast] = useState<string|null>(null)
   function showToast(m: string) { setSvToast(m); setTimeout(() => setSvToast(null), 3000) }
 
@@ -117,7 +117,7 @@ function StartView({ empty, onFriendly, onDrill, onRecorded, onHowWeMeasure, onR
   )
 
   const recordOptions = [
-    { label: 'A league game', note: 'Sat 6 Jun vs Harbour Rovers · matched to your fixture', onClick: onDrill },
+    { label: 'A league game', note: 'Sat 6 Jun vs Harbour Rovers · matched to your fixture', onClick: onLeague },
     { label: 'A friendly', note: 'Any game outside the fixture list. You choose whether it counts', onClick: onFriendly },
     { label: 'A training drill', note: '4 tonight', onClick: onDrill },
     { label: 'A warm-up', note: 'The same warm-up each week shows how sharp they are', onClick: onDrill },
@@ -796,7 +796,7 @@ function HowWeMeasureView() {
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
-export default function RecordScreen({ empty = false }: { empty?: boolean }) {
+export default function RecordScreen({ empty = false, onNav }: { empty?: boolean; onNav?: (s: string) => void }) {
   const [view, setView] = useState<View>('start')
 
   const goStart = () => setView('start')
@@ -832,8 +832,8 @@ export default function RecordScreen({ empty = false }: { empty?: boolean }) {
   return (
     <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
       <PageHeader title={title} sub={sub} onBack={showBack ? goStart : undefined}/>
-      {view === 'start'          && <StartView empty={empty} onFriendly={() => setView('friendly')} onDrill={() => setView('drill')} onRecorded={() => setView('recorded')} onHowWeMeasure={() => setView('howwemeasure')} onRunAgain={() => setView('drill')}/>}
-      {view === 'friendly'       && <FriendlyView onStart={() => setView('recording-error')}/>}
+      {view === 'start'          && <StartView empty={empty} onLeague={() => onNav ? onNav('QC1-CapturePlan') : setView('drill')} onFriendly={() => setView('friendly')} onDrill={() => setView('drill')} onRecorded={() => setView('recorded')} onHowWeMeasure={() => setView('howwemeasure')} onRunAgain={() => setView('drill')}/>}
+      {view === 'friendly'       && <FriendlyView onStart={() => onNav ? onNav('QC1-CapturePlan') : setView('recording-error')}/>}
       {view === 'drill'          && <DrillView onStart={() => setView('recording')}/>}
       {view === 'results'        && <ResultsView firstRun={false} onHistory={() => setView('history')} onHowWeMeasure={() => setView('howwemeasure')}/>}
       {view === 'results-first'  && <ResultsView firstRun={true}  onHistory={() => setView('history-first')} onHowWeMeasure={() => setView('howwemeasure')}/>}

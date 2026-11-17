@@ -4,14 +4,21 @@ import PRM1FeaturesByTeam from '../step4/PRM1FeaturesByTeam'
 import PRM2TurnOn from '../step4/PRM2TurnOn'
 import PRM3Bill from '../step4/PRM3Bill'
 import PRM6Usage from '../step4/PRM6Usage'
+import QC11ClubCaptureRules from '../capture/QC11ClubCaptureRules'
+import QC10HowWeMeasure from '../capture/QC10HowWeMeasure'
 
 const LN = '#e8edeb'
 
-export default function FeaturesTab({ onNav }: { onNav?: (s: string) => void }) {
+export default function FeaturesTab({ onNav, initial }: { onNav?: (s: string) => void; initial?: string }) {
   // Prefer the frame's router; when there isn't one (e.g. rendered on its own),
   // fall back to opening the PRM boards inline so the buttons always work.
-  const [inner, setInner] = useState<string | null>(null)
-  const go = (id: string) => { if (onNav) onNav(id); else setInner(id) }
+  const [inner, setInner] = useState<string | null>(initial ?? null)
+  // The capture rules and their sources stay inside this tab, so the director keeps the club frame.
+  const go = (id: string) => { if (id.startsWith('QC1')) setInner(id); else if (onNav) onNav(id); else setInner(id) }
+  const back = (to: string | null, label: string) => <button onClick={() => setInner(to)} style={{ alignSelf: 'flex-start', margin: '10px 24px 0', height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>{label}</button>
+
+  if (inner === 'QC11-ClubCaptureRules') return <div style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>{back(null, 'Back to Features and billing')}<QC11ClubCaptureRules onNav={go} /></div>
+  if (inner?.startsWith('QC10-HowWeMeasure')) return <div style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>{back('QC11-ClubCaptureRules', 'Back to What teams may capture')}<QC10HowWeMeasure source={inner.includes('#src') ? Number(inner.split('#src')[1]) : undefined} /></div>
 
   if (inner === 'PRM1-FeaturesByTeam') return <PRM1FeaturesByTeam onNav={go} />
   if (inner === 'PRM2-TurnOn') return <PRM2TurnOn onNav={go} />
@@ -31,6 +38,7 @@ export default function FeaturesTab({ onNav }: { onNav?: (s: string) => void }) 
             { label: 'Features by team', nav: 'PRM1-FeaturesByTeam', main: true },
             { label: "This month's bill", nav: 'PRM3-Bill' },
             { label: 'Is it being used?', nav: 'PRM6-Usage' },
+            { label: 'What teams may capture', nav: 'QC11-ClubCaptureRules' },
           ].map(btn => (
             <button key={btn.label} onClick={() => go(btn.nav)}
               style={{ height: 46, padding: '0 20px', borderRadius: 12, border: btn.main ? `1px solid ${AMBER}` : `1px solid ${PALEON}`, background: btn.main ? AMBER : 'transparent', color: btn.main ? INK : '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>

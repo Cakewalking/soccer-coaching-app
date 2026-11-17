@@ -13,7 +13,7 @@ const RECORD_TYPES = [
   { label: 'Test', desc: 'Sprint or bleep test', icon: 'M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6' },
 ]
 
-export default function RC1RecordStart(_: { onBack?: () => void }) {
+export default function RC1RecordStart({ onNav }: { onBack?: () => void; onNav?: (s: string) => void }) {
   const [toast, setToast] = useState<string|null>(null)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
@@ -34,7 +34,7 @@ export default function RC1RecordStart(_: { onBack?: () => void }) {
           <div style={{ fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em' }}>What are you recording?</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             {RECORD_TYPES.map((t, i) => (
-              <button key={t.label} style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '14px 18px', background: i === 2 ? PALE : '#fff', border: `1px solid ${i === 2 ? G : LN}`, borderRadius: 12, cursor: 'pointer', textAlign: 'left' as const }}>
+              <button key={t.label} onClick={() => i < 2 ? (onNav ? onNav('QC1-CapturePlan') : st('Opening what today will measure.')) : st(`${t.label}: opening the recording set-up.`)} style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '14px 18px', background: i === 2 ? PALE : '#fff', border: `1px solid ${i === 2 ? G : LN}`, borderRadius: 12, cursor: 'pointer', textAlign: 'left' as const }}>
                 <svg width={22} height={22} viewBox="0 0 24 24" fill="none" stroke={i === 2 ? G : MUT} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                   <path d={t.icon} />
                 </svg>

@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import QCp1BeforeKickOffPhone from '../capture/QCp1BeforeKickOffPhone'
+import CaptureFlow, { isCaptureId } from '../capture/CaptureFlow'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', PALE = '#eef5f2'
 
@@ -274,7 +276,7 @@ function PhoneAskLine({ onAsk }: { onAsk: () => void }) {
   )
 }
 
-function CoachPhoneHomeTab({ onPlan, onAsk }: { onPlan: () => void; onAsk: () => void }) {
+function CoachPhoneHomeTab({ onPlan, onAsk, onKick }: { onPlan: () => void; onAsk: () => void; onKick?: () => void }) {
   const [toast, setToast] = useState<string|null>(null)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
@@ -296,6 +298,19 @@ function CoachPhoneHomeTab({ onPlan, onAsk }: { onPlan: () => void; onAsk: () =>
           <button onClick={() => st("Opening tonight's availability.")} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #d4d6d4', background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Coming</button>
         </div>
       </Card>
+
+      {/* Saturday's game: the four checks before recording */}
+      {onKick && (
+        <Card>
+          <button onClick={onKick} style={{ width: '100%', minHeight: 60, padding: '10px 14px', display: 'flex', alignItems: 'center', gap: 12, textAlign: 'left', background: 'none', border: 0, fontFamily: 'inherit', color: INK, cursor: 'pointer' }}>
+            <span style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+              <strong style={{ fontSize: 15 }}>Before kick-off</strong>
+              <span style={{ fontSize: 13, color: MUT }}>Saturday v Harbour Rovers · four checks, about 2 minutes</span>
+            </span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </button>
+        </Card>
+      )}
 
       {/* Needs you */}
       <SectionHead>Needs you</SectionHead>
@@ -593,7 +608,21 @@ export default function CoachPhoneApp({ initialTab = 'home', phase = 'season' as
   const [tab, setTab] = useState<Tab>(initialTab)
   const [showPlan, setShowPlan] = useState(false)
   const [askOpen, setAskOpen] = useState(false)
+  // Before kick-off (QCp1) and the step it opens. Anything else goes home.
+  const [kick, setKick] = useState<string | null>(null)
+  const kickNav = (s: string) => setKick(isCaptureId(s) ? s : s === 'QCp1-BeforeKickOffPhone' ? s : null)
 
+  if (kick === 'QCp1-BeforeKickOffPhone') return <QCp1BeforeKickOffPhone onNav={kickNav} />
+  if (kick) return (
+    <div style={{ width: 390, minHeight: 844, margin: '0 auto', background: '#f7f8f7', display: 'flex', flexDirection: 'column' }}>
+      <div style={{ flex: 'none', background: '#2f6252', padding: '4px 16px' }}>
+        <button onClick={() => setKick('QCp1-BeforeKickOffPhone')} style={{ minHeight: 44, display: 'flex', alignItems: 'center', gap: 6, fontFamily: 'inherit', fontSize: 14, fontWeight: 700, color: '#fff', background: 'none', border: 0, padding: 0, cursor: 'pointer' }}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" /></svg>Before kick-off
+        </button>
+      </div>
+      <CaptureFlow narrow step={kick} onStep={setKick} onNav={s => setKick(s === 'REC1-RecordHub' || s === 'R1-MatchReview' ? null : 'QCp1-BeforeKickOffPhone')} />
+    </div>
+  )
   if (showPlan) return <CoachPhonePlanScreen onBack={() => setShowPlan(false)} />
 
   return (
@@ -601,7 +630,7 @@ export default function CoachPhoneApp({ initialTab = 'home', phase = 'season' as
       {tab === 'home' && phase === 'preseason'  && <CoachPhonePreSeasonHome />}
       {tab === 'home' && phase === 'postseason' && <CoachPhonePostSeasonHome />}
       {tab === 'home' && phase === 'restmonth'  && <CoachPhoneRestMonthHome />}
-      {tab === 'home' && phase === 'season'     && <CoachPhoneHomeTab onPlan={() => setShowPlan(true)} onAsk={() => setAskOpen(true)} />}
+      {tab === 'home' && phase === 'season'     && <CoachPhoneHomeTab onPlan={() => setShowPlan(true)} onAsk={() => setAskOpen(true)} onKick={() => setKick('QCp1-BeforeKickOffPhone')} />}
       {tab === 'coming'   && <CoachPhoneComingTab />}
       {tab === 'messages' && <CoachPhoneMessagesTab />}
       {tab === 'game'     && <CoachPhoneGameTab />}

@@ -1,0 +1,111 @@
+control id,screen,control,does,target or line,status: works / line of text only / missing / wrong target (say where)
+QC1-CapturePlan#7,QC1-CapturePlan,U12 Sam · Wattle Creek,Opens,VS1-SwitchView,works
+QC1-CapturePlan#11,QC1-CapturePlan,Choose what to capture,Opens,QC2-CaptureChoices,works
+QC1-CapturePlan#12,QC1-CapturePlan,1 · What you will get,Opens,QC1-CapturePlan,works
+QC1-CapturePlan#13,QC1-CapturePlan,2 · Pitch,Opens,QC3-PitchCheck,works
+QC1-CapturePlan#14,QC1-CapturePlan,3 · Camera and vests,Opens,QC4-SetUpGuide,works
+QC1-CapturePlan#15,QC1-CapturePlan,4 · Who is who,Opens,QC5-WhoIsWho,works
+QC1-CapturePlan#16,QC1-CapturePlan,5 · Test,Opens,QC6-TestResult,works
+QC1-CapturePlan#17,QC1-CapturePlan,Give spares,Opens,QC5-WhoIsWho,works
+QC1-CapturePlan#18,QC1-CapturePlan,"Source 2, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 2
+QC1-CapturePlan#19,QC1-CapturePlan,"Source 9, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 9
+QC1-CapturePlan#20,QC1-CapturePlan,"How we measure, and what we don’t",Opens,QC10-HowWeMeasure,works
+QC1-CapturePlan#21,QC1-CapturePlan,Back,Opens,REC1-RecordHub,works
+QC1-CapturePlan#22,QC1-CapturePlan,Start set-up · 2 minutes,Opens,QC3-PitchCheck,works
+QC1e-CapturePlanNoKit#7,QC1e-CapturePlanNoKit,U12 Sam · Wattle Creek,Opens,VS1-SwitchView,works
+QC1e-CapturePlanNoKit#11,QC1e-CapturePlanNoKit,Devices,Opens,SET4-Devices,works
+QC1e-CapturePlanNoKit#12,QC1e-CapturePlanNoKit,Record without kit,Opens,YT1-YourTake,works
+QC1e-CapturePlanNoKit#13,QC1e-CapturePlanNoKit,"Source 4, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 4
+QC1e-CapturePlanNoKit#14,QC1e-CapturePlanNoKit,"Source 5, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 5
+QC2-CaptureChoices#7,QC2-CaptureChoices,U12 Sam · Wattle Creek,Opens,VS1-SwitchView,works
+QC2-CaptureChoices#11,QC2-CaptureChoices,Consent and privacy,Opens,P1-Consent,works
+QC2-CaptureChoices#12,QC2-CaptureChoices,Back,Opens,QC1-CapturePlan,works
+QC2-CaptureChoices#13,QC2-CaptureChoices,Save,Opens,QC1-CapturePlan,works
+QC3-PitchCheck#7,QC3-PitchCheck,U12 Sam · Wattle Creek,Opens,VS1-SwitchView,works
+QC3-PitchCheck#11,QC3-PitchCheck,What you will get,Opens,QC1-CapturePlan,works
+QC3-PitchCheck#12,QC3-PitchCheck,2 · Pitch,Opens,QC3-PitchCheck,works
+QC3-PitchCheck#13,QC3-PitchCheck,3 · Camera and vests,Opens,QC4-SetUpGuide,works
+QC3-PitchCheck#14,QC3-PitchCheck,4 · Who is who,Opens,QC5-WhoIsWho,works
+QC3-PitchCheck#15,QC3-PitchCheck,5 · Test,Opens,QC6-TestResult,works
+QC3-PitchCheck#16,QC3-PitchCheck,"Source 8, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 8
+QC3-PitchCheck#17,QC3-PitchCheck,Back,Opens,QC1-CapturePlan,works
+QC3-PitchCheck#18,QC3-PitchCheck,Looks right,Opens,QC4-SetUpGuide,works
+QC4-SetUpGuide#7,QC4-SetUpGuide,U12 Sam · Wattle Creek,Opens,VS1-SwitchView,works
+QC4-SetUpGuide#11,QC4-SetUpGuide,What you will get,Opens,QC1-CapturePlan,works
+QC4-SetUpGuide#12,QC4-SetUpGuide,Pitch,Opens,QC3-PitchCheck,works
+QC4-SetUpGuide#13,QC4-SetUpGuide,3 · Camera and vests,Opens,QC4-SetUpGuide,works
+QC4-SetUpGuide#14,QC4-SetUpGuide,4 · Who is who,Opens,QC5-WhoIsWho,works
+QC4-SetUpGuide#15,QC4-SetUpGuide,5 · Test,Opens,QC6-TestResult,works
+QC4-SetUpGuide#16,QC4-SetUpGuide,"Source 9, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 9
+QC4-SetUpGuide#17,QC4-SetUpGuide,"Source 1, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 1
+QC4-SetUpGuide#18,QC4-SetUpGuide,Back,Opens,QC3-PitchCheck,works
+QC4-SetUpGuide#19,QC4-SetUpGuide,Next: who is who,Opens,QC5-WhoIsWho,works
+QC5-WhoIsWho#7,QC5-WhoIsWho,U12 Sam · Wattle Creek,Opens,VS1-SwitchView,works
+QC5-WhoIsWho#11,QC5-WhoIsWho,From Saturday’s line-up,Opens,FB1-Formation,works
+QC5-WhoIsWho#12,QC5-WhoIsWho,What you will get,Opens,QC1-CapturePlan,works
+QC5-WhoIsWho#13,QC5-WhoIsWho,Pitch,Opens,QC3-PitchCheck,works
+QC5-WhoIsWho#14,QC5-WhoIsWho,Camera and vests,Opens,QC4-SetUpGuide,works
+QC5-WhoIsWho#15,QC5-WhoIsWho,4 · Who is who,Opens,QC5-WhoIsWho,works
+QC5-WhoIsWho#16,QC5-WhoIsWho,5 · Test,Opens,QC6-TestResult,works
+QC5-WhoIsWho#17,QC5-WhoIsWho,"Source 9, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 9
+QC5-WhoIsWho#18,QC5-WhoIsWho,Back,Opens,QC4-SetUpGuide,works
+QC5-WhoIsWho#19,QC5-WhoIsWho,Confirm 16 players,Opens,QC6-TestResult,works
+QC6-TestResult#7,QC6-TestResult,U12 Sam · Wattle Creek,Opens,VS1-SwitchView,works
+QC6-TestResult#11,QC6-TestResult,What you will get,Opens,QC1-CapturePlan,works
+QC6-TestResult#12,QC6-TestResult,Pitch,Opens,QC3-PitchCheck,works
+QC6-TestResult#13,QC6-TestResult,Camera and vests,Opens,QC4-SetUpGuide,works
+QC6-TestResult#14,QC6-TestResult,Who is who,Opens,QC5-WhoIsWho,works
+QC6-TestResult#15,QC6-TestResult,5 · Test,Opens,QC6-TestResult,works
+QC6-TestResult#16,QC6-TestResult,Record anyway,Opens,QC7-LiveQuality,works
+QC6-TestResult#17,QC6-TestResult,Back,Opens,QC5-WhoIsWho,works
+QC6-TestResult#18,QC6-TestResult,Start recording,Opens,QC7-LiveQuality,works
+QC7-LiveQuality#7,QC7-LiveQuality,U12 Sam · Wattle Creek,Opens,VS1-SwitchView,works
+QC7-LiveQuality#11,QC7-LiveQuality,Stop and save,Opens,QC8-QualityReport,works
+QC7-LiveQuality#12,QC7-LiveQuality,"Source 7, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 7
+QC8-QualityReport#7,QC8-QualityReport,U12 Sam · Wattle Creek,Opens,VS1-SwitchView,works
+QC8-QualityReport#11,QC8-QualityReport,How we measure,Opens,QC10-HowWeMeasure,works
+QC8-QualityReport#12,QC8-QualityReport,Open the match review,Opens,R1-MatchReview,works
+QC8-QualityReport#13,QC8-QualityReport,See set-up,Opens,QC4-SetUpGuide,works
+QC8-QualityReport#14,QC8-QualityReport,Show me,Opens,QC9-MeasureConfidence,works
+QC8-QualityReport#15,QC8-QualityReport,"Source 3, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 3
+QC9-MeasureConfidence#7,QC9-MeasureConfidence,U12 Sam · Wattle Creek,Opens,VS1-SwitchView,works
+QC9-MeasureConfidence#11,QC9-MeasureConfidence,See the 14 clips,Opens,PU8a-MeasureFilm,works
+QC9-MeasureConfidence#12,QC9-MeasureConfidence,"Source 6, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 6
+QC9-MeasureConfidence#13,QC9-MeasureConfidence,"Source 8, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 8
+QC9-MeasureConfidence#14,QC9-MeasureConfidence,"How we measure, with sources",Opens,QC10-HowWeMeasure,works
+QC10-HowWeMeasure#7,QC10-HowWeMeasure,U12 Sam · Wattle Creek,Opens,VS1-SwitchView,works
+QC11-ClubCaptureRules#7,QC11-ClubCaptureRules,Ask Clean Sheet,Opens,ASKd4-PanelFirst,"works, different target: opens the working Ask panel in place, not the ASKd4 board"
+QC11-ClubCaptureRules#8,QC11-ClubCaptureRules,Whole club,Opens,VS1-SwitchView,works
+QC11-ClubCaptureRules#16,QC11-ClubCaptureRules,How we measure,Opens,QC10-HowWeMeasure,works
+QC11-ClubCaptureRules#17,QC11-ClubCaptureRules,"Source 3, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 3
+QC11-ClubCaptureRules#18,QC11-ClubCaptureRules,"Source 10, on How we measure",Opens,QC10-HowWeMeasure,works: opens How we measure at row 10
+QCp1-BeforeKickOffPhone#1,QCp1-BeforeKickOffPhone,Home,Opens,CPh1-CoachPhoneHome,works
+QCp1-BeforeKickOffPhone#2,QCp1-BeforeKickOffPhone,What the marks mean,Opens,QC10-HowWeMeasure,works
+QCp1-BeforeKickOffPhone#3,QCp1-BeforeKickOffPhone,Pitch · Saved for this ground. 67 × 46 m,Opens,QC3-PitchCheck,works
+QCp1-BeforeKickOffPhone#4,QCp1-BeforeKickOffPhone,"Camera and vests · On halfway, high. 3 vests flat",Opens,QC4-SetUpGuide,works
+QCp1-BeforeKickOffPhone#5,QCp1-BeforeKickOffPhone,3 · Who is who · Two players in shirt 7,Opens,QC5-WhoIsWho,works
+QCp1-BeforeKickOffPhone#6,QCp1-BeforeKickOffPhone,4 · Ten-second test · Not done yet,Opens,QC6-TestResult,works
+QCp1-BeforeKickOffPhone#7,QCp1-BeforeKickOffPhone,Record now,Opens,QC7-LiveQuality,works
+QCp1-BeforeKickOffPhone#8,QCp1-BeforeKickOffPhone,Sort shirt 7,Opens,QC5-WhoIsWho,works
+build,,,,,capture-quality-v1 built on 8766575 (uncommitted when written). Checked on a local production build at 1180x820 and 390x844
+flow,REC1-RecordHub,A game,Opens,QC1-CapturePlan,"works: A game, step 5 Test, Start recording is 3 taps. Every step can be skipped"
+flow,RC1-RecordStart,League game / Friendly,Opens,QC1-CapturePlan,works
+tab,Record,How we measure (fourth tab),Opens,QC10-HowWeMeasure,"works in the junior, youth and senior coach apps. MiniRoos coach Record is unchanged"
+says,QC1,Remind me / Fine,Says,"reminder saved, line shown",works
+says,QC2,"9 switches, Use the club’s settings",Says,"saved in this browser, line shown",works: locked rows cannot be changed
+says,QC3,"format, length, width, Use saved, corners",Says,"saved, line shown",works: size saved for the ground on Looks right
+says,QC4,7 checklist lines,Says,saved,"works: no line of text in the design, the tick changes"
+says,QC5,"Change Finn’s, Undo, Give spares",Says,"saved, line shown",works: free shirt numbers offered
+says,QC6,Test again,Says,line shown,works: second test clears the cut-off corner
+says,QC7,"Goal, Good moment, Look at later, Sub",Says,"moment saved, line shown",works
+says,QC8,"Remind me Friday, Check 3",Says,"saved, line shown","works: Check 3 also opens Clips, To check"
+says,QC9 / PU8a to PU8k,That’s not right,Says,"flag saved, line shown",works
+says,QC11,"31 switches, trend rule, poor-recording rule, Save",Says,"saved, line shown","works: changes reach QC2 locks, QC8, QC9 and the measure sheets"
+marks,PU8a to PU8k,mark beside the number,,,"done: mark, trend note, usual swing lines, That’s not right"
+marks,"PU2, PU4, PX2",mark beside each number,,,done: dot shape and word in each row
+marks,other screens with numbers,mark beside each number,,,"NOT done: match review, Where we’re at, Growth and load, clips counts and home stories carry no mark yet"
+marks,STO19 older player home,proof figure must be Strong,,,changed: top speed (Estimate) replaced with wins of the ball (counted from film). New wording needs sign-off
+mark unclear,"PU8c, PU8h, PU8i","what people said, settling in, where she would go",,,"marked Strong as ""told by a person"". Not numbers; confirm a mark is wanted here"
+mark unclear,PU8j,minutes of football a week (mixed sources),,,"marked Strong. Mixed attendance, vest on-time and check-ins: confirm"
+mark unclear,PU4 rows,"Goals and assists, Touches, Sprints a game",,,"take the mark of the sheet they open (PU8a, PU8a, PU8b): no sheet of their own"
+server rules,,part 5,,,NOT built: the demo has no server. Shown in the screens only
