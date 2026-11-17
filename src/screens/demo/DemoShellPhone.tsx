@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import type { ReactNode } from 'react'
+import Logo from '../Logo'
 import { TOURS, type RoleId } from './tours'
 import { type DemoPhase } from './DemoShell'
 
@@ -31,6 +32,7 @@ function shortPersona(roleId: RoleId): string {
 interface Props {
   roleId: RoleId
   onBack: () => void
+  onHome?: () => void
   onStartTour: () => void
   children: ReactNode
   phase?: DemoPhase
@@ -44,7 +46,7 @@ const PHASE_SUBS: Record<DemoPhase, string> = {
   restmonth:  'December · nothing to do',
 }
 
-export default function DemoShellPhone({ roleId, onBack, onStartTour, children, phase, onPhaseChange }: Props) {
+export default function DemoShellPhone({ roleId, onBack, onHome, onStartTour, children, phase, onPhaseChange }: Props) {
   const persona = shortPersona(roleId)
   const [sheetOpen, setSheetOpen] = useState(false)
 
@@ -52,7 +54,12 @@ export default function DemoShellPhone({ roleId, onBack, onStartTour, children, 
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', fontFamily: 'var(--font-sans)', background: '#e8e9e7' }}>
 
       {/* Demo bar — single row */}
-      <div style={{ flex: 'none', background: '#1f4a3e', height: 44, display: 'flex', alignItems: 'center', padding: '0 0 0 14px', gap: 8, zIndex: 20 }}>
+      <div style={{ flex: 'none', background: '#1f4a3e', height: 44, display: 'flex', alignItems: 'center', padding: '0 0 0 4px', gap: 8, zIndex: 20 }}>
+        {onHome && (
+          <button onClick={onHome} aria-label="Clean Sheet start page" title="Clean Sheet start page" style={{ flex: 'none', alignSelf: 'stretch', minWidth: 44, minHeight: 44, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>
+            <Logo size={28} />
+          </button>
+        )}
         <button onClick={onBack} style={{ display: 'flex', alignItems: 'center', gap: 5, alignSelf: 'stretch', background: 'none', border: 'none', cursor: 'pointer', color: 'rgba(255,255,255,0.75)', fontFamily: 'inherit', fontSize: 12, fontWeight: 500, padding: '0 8px 0 0', flexShrink: 0 }}>
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
           Roles

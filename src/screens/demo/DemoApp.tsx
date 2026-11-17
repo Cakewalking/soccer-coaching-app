@@ -885,7 +885,7 @@ function StartPageNav({ phone }: { phone?: boolean }) {
   const [inner, setInner] = useState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   const go = (dest: string) => () => setInner(dest)
-  return <StartPage phone={phone} onDemo={go('DEMO-Start')} onStory={go('DEMO-Story')} onSandbox={go('DEMO-StartEmpty')} onOpenSandbox={go('DEMO-StartEmpty')} onWhy={go('DEMO-Why')} />
+  return <StartPage phone={phone} onDemo={go(phone ? 'STA3p-PickRolePhone' : 'STA3-PickRole')} onStory={go('DEMO-Story')} onSandbox={go('STA3e-PickRoleEmpty')} onOpenSandbox={go('STA3e-PickRoleEmpty')} onWhy={go('DEMO-Why')} />
 }
 function FIL2SheetNav() {
   const [inner, setInner] = useState<string | null>(null)
@@ -2517,7 +2517,7 @@ export default function DemoApp() {
         onDemo={() => setView('start')}
         onStory={() => startTour('story')}
         onSandbox={() => { createSandbox(); setSbStore(readStore()); setView('sandbox') }}
-        onOpenSandbox={() => { getSandbox() ? setView('sandbox') : setView('nosandbox') }}
+        onOpenSandbox={() => { if (!getSandbox()) { createSandbox(); setSbStore(readStore()) } setView('sandbox') }}
         onWhy={() => setView('why')}
       />
     )
@@ -2555,7 +2555,7 @@ export default function DemoApp() {
     )
     if (isPhoneRole) {
       return (
-        <DemoShellPhone roleId={role} onBack={() => setView('start')} onStartTour={() => setView('tour')}>
+        <DemoShellPhone onHome={() => setView('signin')} roleId={role} onBack={() => setView('start')} onStartTour={() => setView('tour')}>
           <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px', width: '100%' }}>
             <div style={{ width: 390, background: '#fff', borderRadius: 20 }}>{noAccessContent}</div>
           </div>
@@ -2563,7 +2563,7 @@ export default function DemoApp() {
       )
     }
     return (
-      <DemoShell roleId={role} onBack={() => setView('start')} onStartTour={() => setView('tour')}>
+      <DemoShell onHome={() => setView('signin')} roleId={role} onBack={() => setView('start')} onStartTour={() => setView('tour')}>
         {noAccessContent}
       </DemoShell>
     )
@@ -2635,7 +2635,7 @@ export default function DemoApp() {
       )
     }
     return (
-      <DemoShellSandbox
+      <DemoShellSandbox onHome={() => setView('signin')}
         roleId={role}
         onSwitchRole={() => setView('sandbox')}
         onSwitchToDemo={() => setView('start')}
@@ -2773,7 +2773,7 @@ export default function DemoApp() {
     const showPhase = PHASE_ROLES.has(role)
     if (isPhoneRole) {
       return (
-        <DemoShellPhone
+        <DemoShellPhone onHome={() => setView('signin')}
           roleId={role}
           onBack={() => setView('start')}
           onStartTour={() => setView('tour')}
@@ -2785,7 +2785,7 @@ export default function DemoApp() {
       )
     }
     return (
-      <DemoShell
+      <DemoShell onHome={() => setView('signin')}
         roleId={role}
         onBack={() => setView('start')}
         onStartTour={() => setView('tour')}

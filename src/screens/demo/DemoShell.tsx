@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import Logo from '../Logo'
 import { TOURS, type RoleId } from './tours'
 
 export type DemoPhase = 'preseason' | 'season' | 'postseason' | 'restmonth'
@@ -13,20 +14,26 @@ const PHASE_LABELS: Record<DemoPhase, string> = {
 interface Props {
   roleId: RoleId
   onBack: () => void
+  onHome?: () => void
   onStartTour: () => void
   children: ReactNode
   phase?: DemoPhase
   onPhaseChange?: (p: DemoPhase) => void
 }
 
-export default function DemoShell({ roleId, onBack, onStartTour, children, phase, onPhaseChange }: Props) {
+export default function DemoShell({ roleId, onBack, onHome, onStartTour, children, phase, onPhaseChange }: Props) {
   const tour = TOURS[roleId]
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', fontFamily: 'var(--font-sans)' }}>
 
       {/* Demo bar */}
-      <div style={{ flex: 'none', background: '#1f4a3e', height: 48, display: 'flex', alignItems: 'center', padding: '0 0 0 16px', gap: 10, zIndex: 20 }}>
+      <div style={{ flex: 'none', background: '#1f4a3e', height: 48, display: 'flex', alignItems: 'center', padding: '0 0 0 4px', gap: 10, zIndex: 20 }}>
+        {onHome && (
+          <button onClick={onHome} aria-label="Clean Sheet start page" title="Clean Sheet start page" style={{ flex: 'none', alignSelf: 'stretch', minWidth: 44, minHeight: 44, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>
+            <Logo size={28} />
+          </button>
+        )}
         <button onClick={onBack} style={{ display: 'flex', alignItems: 'center', gap: 6, alignSelf: 'stretch', background: 'none', border: 'none', cursor: 'pointer', color: 'rgba(255,255,255,0.75)', fontFamily: 'inherit', fontSize: 13, fontWeight: 500, padding: '0 8px 0 0', flexShrink: 0 }}>
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
           Switch role

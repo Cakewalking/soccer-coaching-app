@@ -3,7 +3,7 @@ import Logo from '../Logo'
 
 // Start page (STA1 desktop / STA2 phone). Ported pixel-for-pixel from
 // source/STA1-StartPage.dc.html and source/STA2-StartPagePhone.dc.html.
-// Colours per HANDOVER-START.md. Amber #f4c95d appears only in the five
+// Copy and order per start-page-v2 (17 Nov). Colours per HANDOVER-START.md. Amber #f4c95d appears only in the five
 // listed places. DM Sans, weights 400/700.
 
 const DARK = '#1c3a33', GREEN = '#2f6252', INK = '#10211f', GREY = '#4a5a57'
@@ -43,8 +43,34 @@ const reasonIcons = [
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>,
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M8 11a3 3 0 100-6 3 3 0 000 6zM16 11a3 3 0 100-6 3 3 0 000 6zM2 20c0-3 3-5 6-5s6 2 6 5M14 15c3 0 8 1 8 5"/></svg>,
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></svg>,
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M12 5v14"/></svg>,
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 20h4l10-10-4-4L4 16zM13 7l4 4"/></svg>,
 ]
+const kitIcon = (d: string) => <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={d}/></svg>
+const WORKS_WITH = [
+  { icon: 'M4 7h11v10H4zM15 10l5-3v10l-5-3', t: 'Any camera', d: 'The one your club already films with, or a phone' },
+  { icon: 'M8 4l4 3 4-3 3 4-3 2v10H8V10L5 8z', t: 'Any vests or boot sensors', d: 'Bring the numbers you already collect' },
+  { icon: 'M9 11V5a2 2 0 014 0v6M13 9a2 2 0 014 0v6a6 6 0 01-12 0v-2l4-2', t: 'No kit at all', d: 'Three taps after the game is enough to start' },
+  { icon: 'M5 12h14M12 5v14', t: 'Add more when you are ready', d: 'Nothing to replace, nothing to buy from us' },
+]
+
+function WorksWith({ phone }: { phone?: boolean }) {
+  return (
+    <>
+      <span style={label(GREY)}>WORKS WITH WHAT YOUR CLUB ALREADY HAS</span>
+      <div style={{ display: 'grid', gridTemplateColumns: phone ? '1fr' : 'repeat(4,minmax(0,1fr))', gap: phone ? 12 : 20 }}>
+        {WORKS_WITH.map(w => (
+          <span key={w.t} style={{ display: 'flex', gap: 12, alignItems: 'center', minWidth: 0 }}>
+            <span style={{ flex: 'none', width: 40, height: 40, borderRadius: 12, background: ICONBG, display: 'flex', alignItems: 'center', justifyContent: 'center', color: GREEN }}>{kitIcon(w.icon)}</span>
+            <span style={{ display: 'flex', flexDirection: 'column', minWidth: 0 }}>
+              <strong style={{ fontSize: 16, lineHeight: '21px' }}>{w.t}</strong>
+              <span style={{ fontSize: 13, lineHeight: '18px', color: GREY }}>{w.d}</span>
+            </span>
+          </span>
+        ))}
+      </div>
+    </>
+  )
+}
 
 const label = (color: string): CSSProperties => ({ fontSize: 12, fontWeight: 700, letterSpacing: '0.1em', color })
 const band = (bg: string): CSSProperties => ({ background: bg, width: '100%' })
@@ -61,9 +87,9 @@ const PROBLEMS = [
   { t: 'The club runs on five apps and a group chat', d: 'Film in one place, vest numbers in another, check-ins in a third, messages in a group chat. Nothing joins up.' },
 ]
 const SLICES = [
-  { t: 'Cameras', d: 'Record the game and tag the goals.', stop: 'what happened' },
-  { t: 'Wearables', d: 'Count sprints, distance and load.', stop: 'how much' },
+  { t: 'Camera and wearable platforms', d: 'Built for an analyst with hours to study the numbers.', stop: 'the data' },
   { t: 'Team apps', d: 'Messages, rosters and who is coming.', stop: 'who’s there' },
+  { t: 'Spreadsheets and group chats', d: 'Where a coach’s own judgement lives today.', stop: 'one person’s head' },
 ]
 const ALERTS = [
   { src: 'FILM', t: 'Noah fades after minute 45' },
@@ -71,11 +97,11 @@ const ALERTS = [
   { src: 'CHECK-IN', t: 'Sore knee, two days running' },
 ]
 const REASONS = [
-  { t: 'It proves what works', d: 'Every plan comes from your last game, and the next game is checked against the plan. Keep what moved the numbers. Drop what didn’t.' },
+  { t: 'It proves what works', d: 'Every plan comes from your last game, and the next game is checked against it. Every number opens to show where it came from: the clips, the vest data, or who said it.' },
   { t: 'The work is done before you open it', d: 'Sessions built, clips cut, reminders sent, line-ups drafted. A volunteer coach gets a professional’s preparation.' },
   { t: 'One app for the whole club', d: 'Coaches, parents, players, the director and the committee. Twenty roles, one set of facts, and no more chasing five apps.' },
-  { t: 'Right for every age', d: 'MiniRoos: no scores, a turn for every child. Youth: growth and load watched. Seniors: results, the ladder and the opposition scouted. Consent and child safety built in throughout.' },
-  { t: 'No new kit needed', d: 'Any camera, any vests, or none at all. A team with nothing starts with three taps after the game, and adds feeds later.' },
+  { t: 'Made for soccer here', d: 'MiniRoos: no scores, a turn for every child. Youth: growth and load watched. Seniors: the ladder and the opposition scouted. Academy terms and fees. Consent and child safety built in throughout.' },
+  { t: 'Your coaches’ judgement counts', d: 'A coach’s rating, a match report, a parent’s rating, a wellness check-in. What people tell Clean Sheet matters as much as what a camera sees. It is the part no camera can record.' },
 ]
 const ROLE_CARDS = [
   { who: 'MiniRoos to seniors', name: 'A coach', d: 'Walk into Tuesday knowing exactly what to fix.' },
@@ -162,9 +188,9 @@ function Desktop(h: Handlers) {
       <section aria-label="What Clean Sheet is" style={band(DARK)}>
         <div style={{ ...inner('36px'), paddingTop: 36, paddingBottom: 48, color: '#fff', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 420px', gap: 48, alignItems: 'center' }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-            <span style={label(AMBER)}>SMARTER COACHING FOR EVERY SOCCER CLUB</span>
-            <h1 style={{ margin: 0, fontSize: 42, lineHeight: '49px', letterSpacing: '-0.025em', fontWeight: 700 }}>Clean Sheet reads everything your club records, lifts performance on and off the pitch, and proves what works.</h1>
-            <p style={{ margin: 0, fontSize: 18, lineHeight: '27px', color: PALE }}>Film, vests, wellness check-ins, a coach’s three taps, a note from the fitness coach. Alone, each tells you a little. Read together, they show what Tuesday’s session needs and back every decision, on and off the pitch.</p>
+            <span style={label(AMBER)}>FOR COMMUNITY CLUBS AND ACADEMIES · MINIROOS TO SENIORS</span>
+            <h1 style={{ margin: 0, fontSize: 42, lineHeight: '49px', letterSpacing: '-0.025em', fontWeight: 700 }}>Every player improving. Every coach prepared. Every family able to see it.</h1>
+            <p style={{ margin: 0, fontSize: 18, lineHeight: '27px', color: PALE }}>Clean Sheet is the coaching and player development system for Australian soccer clubs and academies. It turns what your club already records into Tuesday’s session, a goal for every player and progress a parent can see. It works with the camera and wearables you own, or none at all.</p>
             <span style={{ display: 'flex', gap: 10, marginTop: 6 }}>
               <Btn onClick={h.onDemo} style={panelBtn('#fff', INK, '#fff')}>Start the demo</Btn>
               <Btn onClick={h.onStory} style={panelBtn('transparent', '#fff', PALE)}>{play}The idea in one minute</Btn>
@@ -175,6 +201,13 @@ function Desktop(h: Handlers) {
             <StepTiles />
             <span style={{ fontSize: 13, lineHeight: '18px', color: PALE }}>From the demo club: U12 Sam worked on winning it back fast, using film, vests and check-ins.</span>
           </div>
+        </div>
+      </section>
+
+      {/* Works with what you have */}
+      <section aria-label="Works with what you have" style={{ ...band('#fff'), borderBottom: `1px solid ${BORDER}` }}>
+        <div style={{ ...inner('22px'), paddingTop: 22, paddingBottom: 22, display: 'flex', flexDirection: 'column', gap: 14 }}>
+          <WorksWith />
         </div>
       </section>
 
@@ -230,7 +263,7 @@ function Desktop(h: Handlers) {
       <section aria-label="Why Clean Sheet is different" style={band('#fff')}>
         <div style={{ ...inner('56px'), paddingTop: 56, paddingBottom: 56, display: 'flex', flexDirection: 'column', gap: 18 }}>
           <span style={label(GREY)}>WHY CLEAN SHEET IS DIFFERENT</span>
-          <h2 style={{ margin: 0, fontSize: 36, lineHeight: '43px', letterSpacing: '-0.02em', maxWidth: 900, color: INK }}>Every other tool sees one slice. Clean Sheet reads them together.</h2>
+          <h2 style={{ margin: 0, fontSize: 36, lineHeight: '43px', letterSpacing: '-0.02em', maxWidth: 900, color: INK }}>Other tools are built for analysts. Clean Sheet is built for the people who run a club.</h2>
           {/* Slices row */}
           <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 56px minmax(0,1fr)', alignItems: 'stretch', marginTop: 10 }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -247,7 +280,7 @@ function Desktop(h: Handlers) {
             <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: GREEN }}><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             <div style={{ borderRadius: 18, background: DARK, color: '#fff', padding: '24px 26px', display: 'flex', flexDirection: 'column', gap: 8, justifyContent: 'center' }}>
               <strong style={{ fontSize: 26, lineHeight: '32px' }}>Clean Sheet</strong>
-              <span style={{ fontSize: 16, lineHeight: '23px', color: PALE }}>Sits on top of all of them, plus what coaches and players tell it. Plans the next session, then checks the next game against the plan.</span>
+              <span style={{ fontSize: 16, lineHeight: '23px', color: PALE }}>Built for a volunteer coach with an hour a week. It takes whatever your club records, on any kit, plus what coaches, players and parents tell it. Then it plans the next session and checks the next game against the plan.</span>
               <span style={{ marginTop: 6, fontSize: 13, color: PALE }}>Tells you</span>
               <strong style={{ fontSize: 22, lineHeight: '28px', color: AMBER }}>what to do next, and what works</strong>
             </div>
@@ -307,7 +340,7 @@ function Desktop(h: Handlers) {
               </Btn>
             ))}
           </div>
-          <Btn onClick={h.onDemo} style={{ alignSelf: 'flex-start', minHeight: 44, display: 'flex', alignItems: 'center', fontSize: 15, fontWeight: 700, color: '#fff', background: 'none', border: 'none' }}>All 20 roles</Btn>
+          <Btn onClick={h.onDemo} style={{ alignSelf: 'flex-start', minHeight: 44, display: 'flex', alignItems: 'center', fontSize: 15, fontWeight: 700, color: '#fff', background: 'none', border: 'none', padding: 0 }}>All 20 roles</Btn>
         </div>
       </section>
 
@@ -315,7 +348,7 @@ function Desktop(h: Handlers) {
       <section aria-label="Two ways in" style={band(PAGE)}>
         <div style={{ ...inner('52px'), paddingTop: 52, paddingBottom: 48, display: 'flex', flexDirection: 'column', gap: 18 }}>
           <span style={label(GREY)}>SEE IT FOR YOURSELF</span>
-          <h2 style={{ margin: 0, fontSize: 36, lineHeight: '43px', letterSpacing: '-0.02em', maxWidth: 1060, color: INK }}>Ten minutes in the demo will tell you more than this page.</h2>
+          <h2 style={{ margin: 0, fontSize: 36, lineHeight: '43px', letterSpacing: '-0.02em', maxWidth: 900, color: INK }}>Ten minutes in the demo will tell you more than this page.</h2>
           <div style={{ display: 'flex', gap: 14, marginTop: 6 }}>
             <div style={{ flex: 1, minWidth: 0, borderRadius: 18, background: '#fff', border: `1px solid ${BORDER}`, padding: 22, display: 'flex', flexDirection: 'column', gap: 8 }}>
               <span style={label(GREY)}>NO SIGN-IN · BEST FOR A FIRST LOOK</span>
@@ -356,10 +389,10 @@ function Desktop(h: Handlers) {
 function Phone(h: Handlers) {
   const pBtn = (bg: string, color: string, borderC: string): CSSProperties => ({ height: 52, padding: '0 22px', borderRadius: 14, boxSizing: 'border-box', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 8, fontSize: 16, fontWeight: 700, whiteSpace: 'nowrap', background: bg, color, border: `1px solid ${borderC}`, width: '100%' })
   const PHONE_SLICES = [
-    { t: 'Cameras', s: 'stops at what happened' },
-    { t: 'Wearables', s: 'stops at how much' },
-    { t: 'Check-in apps', s: 'stops at how they feel' },
+    { t: 'Camera platforms', s: 'stops at the data' },
+    { t: 'Wearable platforms', s: 'stops at the numbers' },
     { t: 'Team apps', s: 'stops at who’s there' },
+    { t: 'Spreadsheets and chats', s: 'stops at one person’s head' },
   ]
   const PHONE_REASONS = [...REASONS]
   return (
@@ -373,14 +406,18 @@ function Phone(h: Handlers) {
       </header>
 
       <section aria-label="What Clean Sheet is" style={{ background: DARK, color: '#fff', padding: '18px 16px 26px', display: 'flex', flexDirection: 'column', gap: 12 }}>
-        <span style={label(AMBER)}>SMARTER COACHING FOR EVERY SOCCER CLUB</span>
-        <h1 style={{ margin: 0, fontSize: 27, lineHeight: '33px', letterSpacing: '-0.02em', fontWeight: 700 }}>Clean Sheet reads everything your club records, lifts performance on and off the pitch, and proves what works.</h1>
-        <p style={{ margin: 0, fontSize: 16, lineHeight: '23px', color: PALE }}>Film, vests, wellness check-ins, a coach’s three taps, a note from the fitness coach. Alone, each tells you a little. Read together, they show what Tuesday’s session needs and back every decision, on and off the pitch.</p>
+        <span style={label(AMBER)}>FOR COMMUNITY CLUBS AND ACADEMIES · MINIROOS TO SENIORS</span>
+        <h1 style={{ margin: 0, fontSize: 27, lineHeight: '33px', letterSpacing: '-0.02em', fontWeight: 700 }}>Every player improving. Every coach prepared. Every family able to see it.</h1>
+        <p style={{ margin: 0, fontSize: 16, lineHeight: '23px', color: PALE }}>Clean Sheet is the coaching and player development system for Australian soccer clubs and academies. It turns what your club already records into Tuesday’s session, a goal for every player and progress a parent can see. It works with the camera and wearables you own, or none at all.</p>
         <span style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
           <Btn onClick={h.onDemo} style={pBtn('#fff', INK, '#fff')}>Start the demo</Btn>
           <Btn onClick={h.onStory} style={pBtn('transparent', '#fff', PALE)}>{play}The idea in one minute</Btn>
         </span>
         <span style={{ display: 'flex', flexDirection: 'column', gap: 8, marginTop: 6 }}><StepTiles /></span>
+      </section>
+
+      <section aria-label="Works with what you have" style={{ background: '#fff', borderBottom: `1px solid ${BORDER}`, padding: '20px 16px', display: 'flex', flexDirection: 'column', gap: 14 }}>
+        <WorksWith phone />
       </section>
 
       <section aria-label="What you get" style={{ background: '#fff', padding: '28px 16px 12px', display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -418,7 +455,7 @@ function Phone(h: Handlers) {
 
       <section aria-label="Why Clean Sheet is different" style={{ background: '#fff', padding: '28px 16px', display: 'flex', flexDirection: 'column', gap: 10 }}>
         <span style={label(GREY)}>WHY CLEAN SHEET IS DIFFERENT</span>
-        <h2 style={{ margin: 0, fontSize: 24, lineHeight: '30px', letterSpacing: '-0.015em', color: INK }}>Every other tool sees one slice. Clean Sheet reads them together.</h2>
+        <h2 style={{ margin: 0, fontSize: 24, lineHeight: '30px', letterSpacing: '-0.015em', color: INK }}>Other tools are built for analysts. Clean Sheet is built for the people who run a club.</h2>
         <div style={{ borderRadius: 16, background: PAGE, border: `1px solid ${BORDER}`, padding: '4px 16px', display: 'flex', flexDirection: 'column' }}>
           {PHONE_SLICES.map(s => (
             <span key={s.t} style={{ display: 'flex', justifyContent: 'space-between', gap: 12, minHeight: 44, alignItems: 'center', borderBottom: `1px solid ${BORDER}`, fontSize: 15 }}>
