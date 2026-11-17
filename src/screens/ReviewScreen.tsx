@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { goApp } from './sandbox/sandboxNav'
 import { FitnessReviewSection } from './FitnessExtras'
+import { MarkDot, kindFromLabel } from './capture/marks'
+import { useCapture, gameMark } from './capture/captureStore'
 
 function ReviewEmpty() {
   const [toast, setToast] = useState('')
@@ -127,8 +129,11 @@ const PLAYERS_TO_KNOW = [
 
 export default function ReviewScreen({ empty, scoreline = '3–1', resultLine = 'Won away at Ironbark United', scorerLine = 'Sat 31 Oct · Mia, Jai and Zoe scored · 24 key clips' }: { empty?: boolean; scoreline?: string; resultLine?: string; scorerLine?: string }) {
   const [toast, setToast] = useState('')
+  const cap = useCapture()
   if (empty) return <ReviewEmpty />
   const showToast = (msg: string) => { setToast(msg); setTimeout(() => setToast(''), 2500) }
+  // Each number carries the mark its kind earns from Saturday's recording (capture quality).
+  const mk = (label: string) => { const k = kindFromLabel(label); return k ? <MarkDot kind={gameMark(cap, k)} /> : null }
   return (
     <div style={{ flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
 
@@ -142,7 +147,7 @@ export default function ReviewScreen({ empty, scoreline = '3–1', resultLine = 
           </div>
         </div>
         <div style={{ flexGrow: 1 }} />
-        <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.75)' }}>Good data for 47 of 50 min</span>
+        <button onClick={() => goApp('QC8-QualityReport', 'Opening the recording quality report.')} style={{ height: 44, padding: '0 4px', border: 0, background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, textDecoration: 'underline', cursor: 'pointer' }}>Good data for 47 of 50 min · recording quality</button>
         {toast && <span style={{ fontSize: 13, color: '#10211f', background: '#ffffff', padding: '6px 12px', borderRadius: 8 }}>{toast}</span>}
         <button onClick={() => showToast('Opens highlights video')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid rgba(255,255,255,0.4)', background: 'transparent', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"/></svg>
@@ -160,7 +165,8 @@ export default function ReviewScreen({ empty, scoreline = '3–1', resultLine = 
           <div style={{ marginBottom: 20 }}>
             <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: 12 }}>
               <span style={{ fontSize: 16, fontWeight: 700 }}>How we played our style</span>
-              <button onClick={() => showToast('Opens team style page')} style={{ border: 0, background: 'transparent', color: '#2f6252', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Our style →</button>
+              <button onClick={() => goApp('QC10-HowWeMeasure', 'Opening How we measure.')} style={{ border: 0, background: 'transparent', color: '#2f6252', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', minHeight: 44 }}>What the marks mean</button>
+              <button onClick={() => showToast('Opens team style page')} style={{ minHeight: 44, border: 0, background: 'transparent', color: '#2f6252', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Our style →</button>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
               {STYLE_POINTS.map((s, i) => (
@@ -168,6 +174,7 @@ export default function ReviewScreen({ empty, scoreline = '3–1', resultLine = 
                   <span style={{ flex: 'none', width: 8, height: 8, borderRadius: '999px', background: s.status === 'on-target' ? '#40826d' : s.status === 'close' ? '#cbbeb5' : '#c39797' }} />
                   <span style={{ flexGrow: 1, fontSize: 14, lineHeight: '19px' }}>{s.label}</span>
                   <span style={{ fontSize: 15, fontWeight: 700, color: '#10211f', flexShrink: 0 }}>{s.value}</span>
+                  <span style={{ flexShrink: 0, width: 66 }}>{mk(s.label)}</span>
                   <span style={{ fontSize: 12, color: '#4a5a57', flexShrink: 0 }}>aim {s.aim}</span>
                   <span style={{ fontSize: 11, fontWeight: 700, padding: '2px 8px', borderRadius: '999px', flexShrink: 0,
                     background: s.status === 'on-target' ? '#eef5f2' : s.status === 'close' ? '#f0f1ef' : '#fdf0ee',
@@ -186,7 +193,7 @@ export default function ReviewScreen({ empty, scoreline = '3–1', resultLine = 
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {WORK_ON.map((w, i) => (
-                <div key={i} style={{ background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 12, padding: '12px 14px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 48px', gap: 10, alignItems: 'center' }}>
+                <div key={i} style={{ background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 12, padding: '12px 14px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) auto', gap: 10, alignItems: 'center' }}>
                   <div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
                       <span style={{ flex: 'none', width: 36, height: 24, borderRadius: 6, background: '#2f6252', color: '#ffffff', fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{w.clip}</span>
@@ -194,7 +201,7 @@ export default function ReviewScreen({ empty, scoreline = '3–1', resultLine = 
                     </div>
                     <span style={{ fontSize: 13, color: '#4a5a57', lineHeight: '18px' }}>{w.note}</span>
                   </div>
-                  <span style={{ fontSize: 24, fontWeight: 700, letterSpacing: '-0.02em', textAlign: 'right', color: '#10211f' }}>{w.value}</span>
+                  <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 2 }}><span style={{ fontSize: 24, fontWeight: 700, letterSpacing: '-0.02em', textAlign: 'right', color: '#10211f', whiteSpace: 'nowrap' }}>{w.value}</span>{mk(w.label)}</span>
                 </div>
               ))}
             </div>
@@ -238,7 +245,7 @@ export default function ReviewScreen({ empty, scoreline = '3–1', resultLine = 
           ))}
 
           <div style={{ marginTop: 10 }}>
-            <span style={{ fontSize: 13, fontWeight: 700, display: 'block', marginBottom: 6 }}>Minutes played (fair share 37)</span>
+            <span style={{ fontSize: 13, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>Minutes played (fair share 37) <MarkDot kind={gameMark(cap, 'told')} /></span>
             {[
               { ini: 'MT', name: 'Mia Tran',   mins: 44, bar: '#c39797' },
               { ini: 'JP', name: 'Jai Patel',  mins: 43, bar: '#cbbeb5' },
@@ -257,7 +264,7 @@ export default function ReviewScreen({ empty, scoreline = '3–1', resultLine = 
                 <span style={{ fontSize: 12, fontWeight: 700, width: 24, textAlign: 'right' }}>{p.mins}</span>
               </div>
             ))}
-            <button onClick={() => showToast('Shows all 16 players')} style={{ marginTop: 8, fontSize: 13, color: '#2f6252', fontWeight: 600, border: 0, background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>All 16 players →</button>
+            <button onClick={() => showToast('Shows all 16 players')} style={{ minHeight: 44, marginTop: 8, fontSize: 13, color: '#2f6252', fontWeight: 600, border: 0, background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>All 16 players →</button>
           </div>
         </div>
       </div>

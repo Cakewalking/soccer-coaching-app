@@ -87,7 +87,7 @@ QCp1-BeforeKickOffPhone#5,QCp1-BeforeKickOffPhone,3 · Who is who · Two players
 QCp1-BeforeKickOffPhone#6,QCp1-BeforeKickOffPhone,4 · Ten-second test · Not done yet,Opens,QC6-TestResult,works
 QCp1-BeforeKickOffPhone#7,QCp1-BeforeKickOffPhone,Record now,Opens,QC7-LiveQuality,works
 QCp1-BeforeKickOffPhone#8,QCp1-BeforeKickOffPhone,Sort shirt 7,Opens,QC5-WhoIsWho,works
-build,,,,,capture-quality-v1 built on 8766575 (uncommitted when written). Checked on a local production build at 1180x820 and 390x844
+build,,,,,capture-quality-v1 first pushed as 133c7c8; review and Where we’re at marks added after. Checked on a local production build at 1180x820 and 390x844
 flow,REC1-RecordHub,A game,Opens,QC1-CapturePlan,"works: A game, step 5 Test, Start recording is 3 taps. Every step can be skipped"
 flow,RC1-RecordStart,League game / Friendly,Opens,QC1-CapturePlan,works
 tab,Record,How we measure (fourth tab),Opens,QC10-HowWeMeasure,"works in the junior, youth and senior coach apps. MiniRoos coach Record is unchanged"
@@ -103,7 +103,11 @@ says,QC9 / PU8a to PU8k,That’s not right,Says,"flag saved, line shown",works
 says,QC11,"31 switches, trend rule, poor-recording rule, Save",Says,"saved, line shown","works: changes reach QC2 locks, QC8, QC9 and the measure sheets"
 marks,PU8a to PU8k,mark beside the number,,,"done: mark, trend note, usual swing lines, That’s not right"
 marks,"PU2, PU4, PX2",mark beside each number,,,done: dot shape and word in each row
-marks,other screens with numbers,mark beside each number,,,"NOT done: match review, Where we’re at, Growth and load, clips counts and home stories carry no mark yet"
+marks,R1-MatchReview,mark beside each number,,,done: each style point and work-on figure; links to the quality report and How we measure
+marks,WA1-WhereWeAt,mark beside each number,,,"done: marks follow the view (season, last month, last game); one game shows no trend word"
+marks,review fitness section and GT1-Growth,mark beside each number,,,done: sprint and fade figures Estimate; load and distance Strong; height (by hand) Strong
+marks,home stories (STO*),proof figure must be Strong,,,"checked: all 14 tablet proofs are counts, team-sheet or told figures. No mark is drawn on them"
+marks,other screens with numbers,mark beside each number,,,"NOT done: the fitness coach's own tabs and the squad list carry no mark yet"
 marks,STO19 older player home,proof figure must be Strong,,,changed: top speed (Estimate) replaced with wins of the ball (counted from film). New wording needs sign-off
 mark unclear,"PU8c, PU8h, PU8i","what people said, settling in, where she would go",,,"marked Strong as ""told by a person"". Not numbers; confirm a mark is wanted here"
 mark unclear,PU8j,minutes of football a week (mixed sources),,,"marked Strong. Mixed attendance, vest on-time and check-ins: confirm"

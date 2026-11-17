@@ -78,6 +78,22 @@ export function Mark({ kind, label, style }: { kind: MarkKind; label?: string; s
   )
 }
 
+/** The mark in a tight row or beside a figure: its dot shape and its word, no pill. */
+export function MarkDot({ kind, style }: { kind: MarkKind; style?: CSSProperties }) {
+  return <span data-mark={kind} style={{ display: 'inline-flex', alignItems: 'center', gap: 3, fontSize: 11, fontWeight: 700, color: INK, whiteSpace: 'nowrap', ...style }}><svg width="10" height="10" viewBox="0 0 16 16" aria-hidden="true">{DOT[kind]}</svg>{MARK_WORD[kind]}</span>
+}
+
+/** For screens whose numbers are listed by name: which kind of number a label is. Null means it is not a measure (an admin line, say). */
+export function kindFromLabel(label: string): NumberKind | null {
+  if (/registration|clearance|card count/i.test(label)) return null
+  if (/sprint|speed|last (15|20) minutes/i.test(label)) return 'speed'
+  if (/gap|shape|compact|between the lines|closer/i.test(label)) return 'position'
+  if (/distance|load/i.test(label)) return 'distance'
+  if (/minutes|fair/i.test(label)) return 'told'          // from the team sheet
+  if (/weaker-foot|touches/i.test(label)) return 'touch'
+  return 'count'
+}
+
 /** "Strong · 13 of 16" where a mark covers some players only. */
 export const partLabel = (kind: MarkKind, n: number, of: number) => n >= of || kind !== 'strong' ? MARK_WORD[kind] : `${MARK_WORD[kind]} · ${n} of ${of}`
 

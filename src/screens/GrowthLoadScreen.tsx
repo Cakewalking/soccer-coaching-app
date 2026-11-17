@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { demoToast } from './demoToast'
+import { MarkDot, markFor } from './capture/marks'
 import { goSetup, goApp } from './sandbox/sandboxNav'
 
 const PLAYERS = [
@@ -146,7 +147,7 @@ export default function GrowthLoadScreen({ empty }: { empty?: boolean }) {
         <div style={{ background: '#ffffff', borderRadius: 16, border: '1px solid #e9eae8', overflow: 'hidden' }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 100px 1fr 110px', padding: '8px 16px', borderBottom: '1px solid #e9eae8' }}>
             {['Player', 'Height', 'Growing (cm a year)', 'Flag'].map(h => (
-              <div key={h} style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase', color: '#6f7f7b' }}>{h}</div>
+              <div key={h} style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase', color: '#6f7f7b', display: 'flex', alignItems: 'center', gap: 8 }}>{h}{h === 'Height' && <MarkDot kind={markFor({ kind: 'count', captured: true })} style={{ textTransform: 'none', letterSpacing: 0 }} />}</div>
             ))}
           </div>
           {PLAYERS.map((p, i) => (

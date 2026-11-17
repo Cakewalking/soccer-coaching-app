@@ -1,5 +1,7 @@
 // F2 · F3/F3e · F4/F4e · F5 — fitness-coach tabs added to main Squad/Training/Matchday/Review screens
 import { useState } from 'react'
+import { MarkDot } from './capture/marks'
+import { useCapture, gameMark } from './capture/captureStore'
 
 const G    = '#2f6252'
 const G2   = '#40826d'
@@ -407,6 +409,7 @@ export function FitnessMatchTab({ empty }: { empty: boolean }) {
 // ─── F5 — Fitness section on Review screen ────────────────────────────────────
 
 export function FitnessReviewSection() {
+  const cap = useCapture()   // each figure carries the mark its kind earns from the recording
   const [toast, setToast] = useState<string | null>(null)
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   return (
@@ -414,9 +417,9 @@ export function FitnessReviewSection() {
       <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: MUT }}>Load and fitness this week</div>
 
       {[
-        { min: 'Min 44', label: 'Late-game fade',              note: 'Five players ran a quarter less in the last 10 min',   pct: '−24%', color: ROSE },
-        { min: 'Min 25', label: 'Growing players over sprint cap', note: 'Noah and Zoe 30% over their safe limit',           pct: '+30%', color: ROSE },
-        { min: 'Season', label: 'Team load above plan',        note: 'Two weeks running',                                   pct: '118%', color: WARN },
+        { min: 'Min 44', label: 'Late-game fade',              note: 'Five players ran a quarter less in the last 10 min',   pct: '−24%', color: ROSE, kind: 'speed' as const },
+        { min: 'Min 25', label: 'Growing players over sprint cap', note: 'Noah and Zoe 30% over their safe limit',           pct: '+30%', color: ROSE, kind: 'speed' as const },
+        { min: 'Season', label: 'Team load above plan',        note: 'Two weeks running',                                   pct: '118%', color: WARN, kind: 'distance' as const },
       ].map(r => (
         <div key={r.label} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 12px', background: '#fff', border: `1px solid ${LN}`, borderRadius: 10 }}>
           <span style={{ fontSize: 11, fontWeight: 700, color: MUT, width: 50, flexShrink: 0 }}>{r.min}</span>
@@ -424,26 +427,26 @@ export function FitnessReviewSection() {
             <div style={{ fontSize: 13, fontWeight: 700, color: INK }}>{r.label}</div>
             <div style={{ fontSize: 11, color: MUT }}>{r.note}</div>
           </div>
-          <span style={{ fontSize: 14, fontWeight: 800, color: r.color }}>{r.pct}</span>
+          <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 2 }}><span style={{ fontSize: 14, fontWeight: 800, color: r.color }}>{r.pct}</span><MarkDot kind={gameMark(cap, r.kind)} /></span>
         </div>
       ))}
 
       <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: MUT }}>Load flags</div>
       {[
-        { ini: 'NO', name: 'Noah Okafor', label: 'Sprints', note: '26 this week, safe limit 20. Partial data (vest stopped).', color: ROSE },
-        { ini: 'ZH', name: 'Zoe Hartley', label: 'Sprints', note: '24 this week, safe limit 20. Growth spurt.', color: ROSE },
-        { ini: 'MT', name: 'Mia Tran',    label: 'Load',    note: 'Highest distance: 6.1 km. Light on Thursday.', color: WARN },
+        { ini: 'NO', name: 'Noah Okafor', label: 'Sprints', note: '26 this week, safe limit 20. Partial data (vest stopped).', color: ROSE, kind: 'speed' as const },
+        { ini: 'ZH', name: 'Zoe Hartley', label: 'Sprints', note: '24 this week, safe limit 20. Growth spurt.', color: ROSE, kind: 'speed' as const },
+        { ini: 'MT', name: 'Mia Tran',    label: 'Load',    note: 'Highest distance: 6.1 km. Light on Thursday.', color: WARN, kind: 'distance' as const },
       ].map(f => (
         <div key={f.ini} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 12px', background: '#fff', border: `1px solid ${LN}`, borderRadius: 10 }}>
           <Ini ini={f.ini} color={f.color}/>
           <div>
-            <div style={{ fontSize: 13, fontWeight: 700, color: INK }}>{f.name} · {f.label}</div>
+            <div style={{ fontSize: 13, fontWeight: 700, color: INK, display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>{f.name} · {f.label} <MarkDot kind={gameMark(cap, f.kind)} /></div>
             <div style={{ fontSize: 11, color: MUT }}>{f.note}</div>
           </div>
         </div>
       ))}
 
-      <button onClick={() => showToast("Opens Thursday's fitness block.")} style={{ alignSelf: 'flex-start', fontSize: 13, fontWeight: 700, color: G2, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>Open Thursday's fitness block →</button>
+      <button onClick={() => showToast("Opens Thursday's fitness block.")} style={{ alignSelf: 'flex-start', minHeight: 44, fontSize: 13, fontWeight: 700, color: G2, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>Open Thursday's fitness block →</button>
     {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
   )

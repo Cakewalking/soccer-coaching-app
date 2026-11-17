@@ -3,7 +3,7 @@
 // same facts. In the live app these come from the paired kit and the server.
 
 import { useSyncExternalStore } from 'react'
-import { markFor, partLabel, type MarkKind } from './marks'
+import { markFor, partLabel, type MarkKind, type NumberKind } from './marks'
 
 export type Format = '7 v 7' | '9 v 9' | '11 v 11'
 export type Age = 'miniroos' | 'juniors' | 'youth' | 'seniors'
@@ -164,6 +164,12 @@ export function measures(s: CapState, age: Age = 'juniors'): Record<'events' | '
     // No speed or distance is derived from a single camera.
     speedNoVest: m('speedNoVest', 'Film', 'not'),
   }
+}
+
+/** The mark for one number from Saturday's recording, by the kind of number it is. */
+export function gameMark(s: CapState, kind: NumberKind, age: Age = 'juniors'): MarkKind {
+  const m = measures(s, age)
+  return kind === 'count' ? m.events.mark : kind === 'position' ? m.positions.mark : kind === 'speed' ? m.speed.mark : kind === 'distance' ? m.distance.mark : kind === 'touch' ? m.touches.mark : m.you.mark
 }
 
 /** Free shirt numbers for a player who clashes. */

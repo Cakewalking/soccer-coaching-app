@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { useSandbox } from './sandbox/SandboxContext'
 import { goApp } from './sandbox/sandboxNav'
+import { Mark, MarkDot, markFor, kindFromLabel } from './capture/marks'
+import { useCapture } from './capture/captureStore'
 const G    = '#2f6252'
 const G2   = '#40826d'
 const INK  = '#10211f'
@@ -109,6 +111,11 @@ function statusColor(s: string) {
 export function WhereWeAtScreen({ teamType = 'juniors' }: { teamType?: TeamType }) {
   const d = DATA[teamType]
   const [period, setPeriod] = useState(0)
+  // How many games each view rests on: the season's recorded games, about four in a month, or one.
+  const { trendAfter } = useCapture()
+  const seasonGames = Number(d.teamLine.match(/from (\d+) recorded/)?.[1] ?? 6)
+  const games = period === 0 ? seasonGames : period === 1 ? 4 : 1
+  const markOf = (label: string) => { const k = kindFromLabel(label); return k ? markFor({ kind: k, captured: true, games: period === 2 ? undefined : games, trendAfter }) : null }
   return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '20px 28px 32px', display: 'flex', gap: 20, fontFamily: 'var(--font-sans)' }}>
 
@@ -121,7 +128,7 @@ export function WhereWeAtScreen({ teamType = 'juniors' }: { teamType?: TeamType 
 
         <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
           {['This season', 'Last month', 'Last game'].map((p, idx) => { const i = idx === period ? 0 : 1; return (
-            <button key={p} aria-pressed={idx === period} onClick={() => setPeriod(idx)} style={{ height: 36, padding: '0 14px', borderRadius: 8, border: `1px solid ${i === 0 ? G : LN}`, background: i === 0 ? PALE : '#fff', fontSize: 13, fontWeight: i === 0 ? 700 : 500, color: i === 0 ? G : MUT, cursor: 'pointer', fontFamily: 'inherit' }}>{p}</button>
+            <button key={p} aria-pressed={idx === period} onClick={() => setPeriod(idx)} style={{ height: 44, padding: '0 14px', borderRadius: 8, border: `1px solid ${i === 0 ? G : LN}`, background: i === 0 ? PALE : '#fff', fontSize: 13, fontWeight: i === 0 ? 700 : 500, color: i === 0 ? G : MUT, cursor: 'pointer', fontFamily: 'inherit' }}>{p}</button>
           )})}
         </div>
 
@@ -132,10 +139,11 @@ export function WhereWeAtScreen({ teamType = 'juniors' }: { teamType?: TeamType 
               <div key={m.label} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 16px', display: 'grid', gridTemplateColumns: '1fr auto', gap: 12, alignItems: 'start' }}>
                 <div>
                   <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', color: MUT, marginBottom: 4 }}>{m.label}</div>
-                  <div style={{ fontSize: 20, fontWeight: 800, color: INK, marginBottom: 4 }}>{m.value}</div>
+                  <div style={{ fontSize: 20, fontWeight: 800, color: INK, marginBottom: 4, display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>{m.value}{markOf(m.label) && <Mark kind={markOf(m.label)!} label={markOf(m.label) === 'needs' ? `${games} of ${trendAfter} games` : undefined} />}</div>
                   <div style={{ fontSize: 13, color: MUT }}>{m.detail}</div>
                 </div>
-                <span style={{ fontSize: 12, fontWeight: 700, padding: '3px 10px', borderRadius: 999, background: sc.bg, color: sc.color, whiteSpace: 'nowrap', flexShrink: 0 }}>{m.status}</span>
+                {/* one game is never called a trend */}
+                {!(period === 2 && /better|same/i.test(m.status)) && <span style={{ fontSize: 12, fontWeight: 700, padding: '3px 10px', borderRadius: 999, background: sc.bg, color: sc.color, whiteSpace: 'nowrap', flexShrink: 0 }}>{m.status}</span>}
               </div>
             )
           })}
@@ -145,13 +153,14 @@ export function WhereWeAtScreen({ teamType = 'juniors' }: { teamType?: TeamType 
           <div style={{ fontSize: 13, fontWeight: 700, color: G, marginBottom: 4 }}>What to do with it</div>
           <div style={{ fontSize: 14, color: INK, lineHeight: 1.6 }}>{d.summary}</div>
           <div style={{ display: 'flex', gap: 8, marginTop: 12 }}>
-            <button onClick={() => goApp('training', "Opening tonight's plan.")} style={{ height: 40, padding: '0 14px', borderRadius: 10, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Open tonight's plan</button>
-            <button onClick={() => goApp('R1-MatchReview', 'Opening last review.')} style={{ height: 40, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Last review</button>
-            <button onClick={() => goApp('setstyle', 'Opening style settings.')} style={{ height: 40, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Change our style</button>
+            <button onClick={() => goApp('training', "Opening tonight's plan.")} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Open tonight's plan</button>
+            <button onClick={() => goApp('R1-MatchReview', 'Opening last review.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Last review</button>
+            <button onClick={() => goApp('setstyle', 'Opening style settings.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Change our style</button>
           </div>
         </div>
 
         <div style={{ fontSize: 13, color: MUT }}>{d.lastFive}</div>
+        <div style={{ fontSize: 13, color: MUT, marginTop: 6, lineHeight: 1.5 }}>{period === 0 ? `Trends rest on ${seasonGames} games on the same format.` : period === 1 ? `About ${games} games in a month. A trend is marked “Estimate” until it rests on six.` : 'One game tells you what happened. It is not called a trend.'} <button onClick={() => goApp('QC10-HowWeMeasure', 'Opening How we measure.')} style={{ minHeight: 44, padding: 0, border: 0, background: 'none', color: G, fontFamily: 'inherit', fontSize: 13, fontWeight: 700, textDecoration: 'underline', cursor: 'pointer' }}>What the marks mean</button></div>
       </div>
 
       {/* Right: Every player */}
@@ -165,12 +174,12 @@ export function WhereWeAtScreen({ teamType = 'juniors' }: { teamType?: TeamType 
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ fontSize: 13, fontWeight: 700, color: INK }}>{p.name}</div>
                 <div style={{ fontSize: 12, color: MUT }}>{p.metric}</div>
-                <div style={{ fontSize: 12, color: G2 }}>{p.val}</div>
+                <div style={{ fontSize: 12, color: G2, display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>{p.val}{/\d/.test(p.val) && kindFromLabel(p.metric) && <MarkDot kind={markFor({ kind: kindFromLabel(p.metric)!, captured: true })} />}</div>
               </div>
             </div>
           ))}
           <div style={{ padding: '10px 14px', borderTop: `1px solid ${LN}` }}>
-            <button onClick={() => goApp('squad', 'Opening all players.')} style={{ fontSize: 13, color: G, fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>All {teamType === 'juniors' ? 16 : teamType === 'youth' ? 14 : 22} players</button>
+            <button onClick={() => goApp('squad', 'Opening all players.')} style={{ fontSize: 13, color: G, fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', padding: 0, minHeight: 44 }}>All {teamType === 'juniors' ? 16 : teamType === 'youth' ? 14 : 22} players</button>
           </div>
         </div>
         <div style={{ fontSize: 12, color: MUT, marginTop: 8, lineHeight: 1.5 }}>In name order, never ranked. Players see only their own.</div>
