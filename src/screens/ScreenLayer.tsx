@@ -10,6 +10,8 @@ const DEMO_CTX = { store: { teams: [], players: [], fixtures: [], sessions: [], 
 
 /** Set while a screen is shown as a layer, so a screen with its own Done or Close button can take the coach back. */
 export const LayerCloseContext = createContext<(() => void) | null>(null)
+/** Who is signed in to the app the layer was opened from, as "Name · role, team". Settings shows it. */
+export const LayerWhoContext = createContext<string | null>(null)
 
 let renderer: ((key: string) => ReactNode) | null = null
 export function registerScreenRenderer(fn: (key: string) => ReactNode) { renderer = fn }
@@ -19,7 +21,7 @@ export const isScreenId = (s: string) => /^[A-Z][A-Za-z0-9]*-[A-Za-z0-9]/.test(s
 
 // `example`: show the filled demo version even inside the sandbox, where the same
 // screen would otherwise read the visitor's own (empty) team.
-export default function ScreenLayer({ screenKey, onClose, backLabel = 'Back', example = false }: { screenKey: string; onClose: () => void; backLabel?: string; example?: boolean }) {
+export default function ScreenLayer({ screenKey, onClose, backLabel = 'Back', example = false, who = null }: { screenKey: string; onClose: () => void; backLabel?: string; example?: boolean; who?: string | null }) {
   const body = renderer ? renderer(screenKey) : null
   return (
     <div data-layer={screenKey} style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, minHeight: 0, height: '100%', background: '#f7f8f7', fontFamily: 'var(--font-sans)' }}>
@@ -29,7 +31,7 @@ export default function ScreenLayer({ screenKey, onClose, backLabel = 'Back', ex
           {backLabel}
         </button>
       </div>
-      <div style={{ flexGrow: 1, minHeight: 0, overflow: 'auto' }}><LayerCloseContext.Provider value={onClose}>{example ? <SandboxContext.Provider value={DEMO_CTX}>{body}</SandboxContext.Provider> : body}</LayerCloseContext.Provider></div>
+      <div style={{ flexGrow: 1, minHeight: 0, overflow: 'auto' }}><LayerCloseContext.Provider value={onClose}><LayerWhoContext.Provider value={who}>{example ? <SandboxContext.Provider value={DEMO_CTX}>{body}</SandboxContext.Provider> : body}</LayerWhoContext.Provider></LayerCloseContext.Provider></div>
     </div>
   )
 }

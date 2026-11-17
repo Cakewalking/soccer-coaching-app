@@ -1,14 +1,17 @@
+import { useContext } from 'react'
+import { LayerWhoContext } from '../ScreenLayer'
 import { TILE, ActionRow, BadgeRow, SectionNote } from './shared'
 
 export default function AccountTab({ onToast }: { onToast: (m: string) => void }) {
+  const name = (useContext(LayerWhoContext) ?? 'Sam Kelly').split(' · ')[0]   // the coach whose app opened Settings
   return (
     <main style={{ flexGrow: 1, minHeight: 0, padding: '12px 28px 18px', boxSizing: 'border-box' as const, display: 'grid', gap: 14, gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr)' }}>
       <section style={TILE} aria-label="You">
         <h2 style={{ margin: '0 0 6px', fontSize: 17, fontWeight: 700 }}>You</h2>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10, paddingBottom: 8 }}>
           {[
-            { label: 'Name', value: 'Sam Kelly' },
-            { label: 'Email', value: 'sam.kelly@example.com' },
+            { label: 'Name', value: name },
+            { label: 'Email', value: `${name.toLowerCase().replace(/[^a-z ]/g, '').trim().replace(/ +/g, '.')}@example.com` },
             { label: 'Mobile', value: '0412 555 014' },
           ].map(f => (
             <div key={f.label} style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>

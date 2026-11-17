@@ -569,7 +569,7 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
     }
   } else if (nav === 'record') {
     if (recView && isCaptureId(recView)) content = <CaptureFlow step={recView} onStep={setRecView} onNav={handleNav} kitless={inSandbox && sbEmpty} age={teamType === 'seniors' ? 'seniors' : 'youth'} team={inSandbox ? (store.teams[0]?.name ?? 'your team') : teamType === 'seniors' ? 'Men’s 1sts' : 'U16 Ollie'} />
-    else if (recView === 'SET4-Devices') content = <DevicesTab onToast={demoToast} />   // Devices stays inside Record: the tab is lit and the coach never leaves the app
+    else if (recView === 'SET4-Devices') content = <DevicesTab onToast={demoToast} inRecord />   // Devices stays inside Record: the tab is lit and the coach never leaves the app
     else if (recView === 'REC2-RecordSaved') content = <RecordSaved noFrame onBack={() => setRecView(null)} onNav={handleNav} />
     else content = <RecordHub noFrame onNav={handleNav} />
   } else if (nav === 'matchday') {
@@ -592,7 +592,7 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
 
   const navTabs = NAV_LABELS.map((label, i) => ({ id: NAV_KEYS[i], label, icon: NAV_ICONS[i] }))
 
-  if (layer) return <TeamText team={layer.startsWith('example:') ? (teamType === 'seniors' ? 'seniors' : 'youth') : null}><ScreenLayer screenKey={layer.replace(/^example:/, '')} example={layer.startsWith('example:')} onClose={() => setLayer(null)} backLabel={layer.startsWith('example:') && inSandbox ? `Back to ${store.teams[0]?.name ?? 'your team'} · this is an example from the demo club` : `Back to ${data.teamPicker.split(' · ')[0]}`} /></TeamText>
+  if (layer) return <TeamText team={layer.startsWith('example:') ? (teamType === 'seniors' ? 'seniors' : 'youth') : null}><ScreenLayer who={inSandbox ? null : teamType === 'seniors' ? 'Marko Petrovic · head coach, Men’s 1sts' : 'Ollie Grant · head coach, U16 Ollie'} screenKey={layer.replace(/^example:/, '')} example={layer.startsWith('example:')} onClose={() => setLayer(null)} backLabel={layer.startsWith('example:') && inSandbox ? `Back to ${store.teams[0]?.name ?? 'your team'} · this is an example from the demo club` : `Back to ${data.teamPicker.split(' · ')[0]}`} /></TeamText>
 
   return (
     <>

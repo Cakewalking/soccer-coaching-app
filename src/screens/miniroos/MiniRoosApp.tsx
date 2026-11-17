@@ -906,7 +906,7 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
 
   if (teamTalkOpen) return <MiniRoosTeamTalk onClose={() => setTeamTalkOpen(false)} />
 
-  if (layer) return <ScreenLayer screenKey={layer.replace(/^example:/, '')} example={layer.startsWith('example:')} onClose={() => setLayer(null)} backLabel={layer.startsWith('example:') && inSandbox ? `Back to ${store.teams[0]?.name ?? 'your team'} · this is an example from the demo club` : 'Back to U9 Tom'} />
+  if (layer) return <ScreenLayer who={inSandbox ? null : 'Tom Albers · coach, U9 Tom'} screenKey={layer.replace(/^example:/, '')} example={layer.startsWith('example:')} onClose={() => setLayer(null)} backLabel={layer.startsWith('example:') && inSandbox ? `Back to ${store.teams[0]?.name ?? 'your team'} · this is an example from the demo club` : 'Back to U9 Tom'} />
 
   return (
     <CoachTabletFrame

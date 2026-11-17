@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react'
-import { LayerCloseContext } from './ScreenLayer'
+import { LayerCloseContext, LayerWhoContext } from './ScreenLayer'
 import AccountTab from './settings/AccountTab'
 import TeamTab from './settings/TeamTab'
 import NotificationsTab from './settings/NotificationsTab'
@@ -24,6 +24,7 @@ export default function SettingsScreen({ onDone, initialTab }: { onDone: () => v
   const [tab, setTab] = useState<SettingsTab>(initialTab ?? 'account')
   // Settings fills the window, so Done must always lead somewhere: close the layer it was opened in, or go back a page.
   const closeLayer = useContext(LayerCloseContext)
+  const who = useContext(LayerWhoContext) ?? 'Sam Kelly · head coach, U12 Sam'
   const done = closeLayer ?? onDone
   const [toast, setToast] = useState('')
   const [toastKey, setToastKey] = useState(0)
@@ -39,7 +40,7 @@ export default function SettingsScreen({ onDone, initialTab }: { onDone: () => v
       {/* Top bar */}
       <div style={{ background: '#1f4a3e', flexShrink: 0, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 16, minHeight: 72 }}>
         <div style={{ flexGrow: 1, minWidth: 0 }}>
-          <div style={{ fontSize: 12, color: '#cfe6dc', fontWeight: 500, lineHeight: '16px' }}>Sam Kelly · head coach, U12 Sam</div>
+          <div style={{ fontSize: 12, color: '#cfe6dc', fontWeight: 500, lineHeight: '16px' }}>{who}</div>
           <div style={{ fontSize: 24, color: '#fff', fontWeight: 700, lineHeight: '30px' }}>Settings</div>
         </div>
         <span style={{ flexShrink: 0, padding: '4px 12px', borderRadius: '999px', background: 'rgba(255,255,255,0.15)', color: '#cfe6dc', fontSize: 12, fontWeight: 700 }}>Settings</span>
