@@ -17,7 +17,7 @@ import LearnTab from '../learn/LearnTab'
 import TeamSetup from '../sandbox/TeamSetup'
 import SandboxWaiting from '../sandbox/SandboxWaiting'
 import { registerSetupNav, registerAppNav, goApp } from '../sandbox/sandboxNav'
-import YT1YourTake from '../aftergame/YT1YourTake'
+import YourTakeBoards from '../aftergame/YourTakeBoards'
 import ScreenLayer, { isScreenId } from '../ScreenLayer'
 import type { FormationPreset } from '../formation/lineupInsights'
 import { SkillsMiniRoos, FairTurnsMiniRoos, WeekMiniRoos, GamesLibraryMiniRoos } from './MiniRoosExtras'
@@ -883,7 +883,7 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
     else if (gameDayTab === 'chances' && mayChances)
       content = <ChancesFlow team="u9" step={xgView} onStep={setXgView} onNav={(t) => { if (isChanceId(t)) setXgView(t); else if (isScreenId(t)) setLayer(t) }} />
     else if (gameDayTab === 'yourtake')
-      content = <YT1YourTake bare onNav={(t) => { if (isScreenId(t)) setLayer(t) }} />
+      content = <YourTakeBoards onNav={(t) => { if (isScreenId(t)) setLayer(t) }} />
     else if (gameDayTab === 'whoscoming')
       content = <ComingMiniRoos empty={empty} />
     else if (gameDayTab === 'getready')

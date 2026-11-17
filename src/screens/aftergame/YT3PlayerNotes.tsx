@@ -6,7 +6,7 @@ import { YT_PLAYERS, COACH_GAME_RATINGS, COACH_NOTES, parentAverage, type Rating
 const GD = '#1f4a3e'
 const ROWS = YT_PLAYERS.slice(0, 7)
 
-export default function YT3PlayerNotes({ onNav }: { onNav?: (s: string) => void }) {
+export default function YT3PlayerNotes({ onNav, bare = false }: { onNav?: (s: string) => void; bare?: boolean }) {
   const [lastTool, setLastTool] = useState('')
   const [toast, setToast] = useState<string | null>(null)
   const [ratings, setRatings] = useState<Record<string, Rating>>({ ...COACH_GAME_RATINGS })
@@ -30,7 +30,7 @@ export default function YT3PlayerNotes({ onNav }: { onNav?: (s: string) => void 
 
   return (
     <YTFrame
-      onNav={onNav} active="players" lastTool={lastTool}
+      onNav={onNav} active="players" lastTool={lastTool} bare={bare}
       heading="Players · Sat 30 May · Won 3-1 at Ironbark United"
       sentence="Nine of sixteen have a rating. Four have a note."
       support="One tap rates a player. Only you see your ratings and notes. They feed season summaries and awards."

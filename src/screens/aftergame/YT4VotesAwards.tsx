@@ -5,7 +5,7 @@ import { SEASON, PLAYER, awards, familiesRated, YT_TEAM } from './data'
 
 const GD = '#1f4a3e'
 
-export default function YT4VotesAwards({ onNav }: { onNav?: (s: string) => void }) {
+export default function YT4VotesAwards({ onNav, bare = false }: { onNav?: (s: string) => void; bare?: boolean }) {
   const [lastTool, setLastTool] = useState('')
   const [toast, setToast] = useState<string | null>(null)
   const [scope, setScope] = useState<'season' | 'saturday'>('season')
@@ -28,7 +28,7 @@ export default function YT4VotesAwards({ onNav }: { onNav?: (s: string) => void 
 
   return (
     <YTFrame
-      onNav={onNav} active="awards" lastTool={lastTool}
+      onNav={onNav} active="awards" lastTool={lastTool} bare={bare}
       heading="Ratings and awards · Sat 30 May · Won 3-1 at Ironbark United"
       sentence="Eleven of seventeen families have rated Saturday. Their ratings sit beside yours."
       support="Each parent sees only their own ratings. You see them all. Nobody else sees any of it."

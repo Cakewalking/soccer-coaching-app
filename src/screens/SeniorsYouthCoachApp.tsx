@@ -31,7 +31,7 @@ import GrowthLoadScreen     from './GrowthLoadScreen'
 import TeamSheetScreen      from './TeamSheetScreen'
 import OppositionScreen     from './OppositionScreen'
 import ReviewScreen         from './ReviewScreen'
-import YT1YourTake          from './aftergame/YT1YourTake'
+import YourTakeBoards, { isYourTakeId } from './aftergame/YourTakeBoards'
 import TeamTalkScreen       from './TeamTalkScreen'
 import PitchSideScreen      from './PitchSideScreen'
 import { FitnessTrainingTab, FitnessMatchTab } from './FitnessExtras'
@@ -420,6 +420,7 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
   const [xgView, setXgView] = useState('XG1-ChancesGame')
   const [take, setTake] = useState<'yours' | 'theirs'>('yours')   // Your take: the coach's own ratings, or the players' beside them
   const cnEmpty = inSandbox && sbEmpty
+  const [ytView, setYtView] = useState('YT1-YourTake')
   const cnTeam = teamType === 'seniors' ? 'seniors' as const : 'u16' as const
   const may = allowed(useCapture(), teamType === 'seniors' ? 'seniors' : 'youth')
   // Match day tabs this team may see: Chances (4) and Ladder (5) follow the club's rules. A new team has no ladder yet.
@@ -435,7 +436,7 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
 
   function handleNav(s: string) {
     if (s === 'CN2-SelfVsCoach') { goNav('matchday'); setMatchTab(6); setTake('theirs'); return }
-    if (s === 'YT1-YourTake') setTake('yours')
+    if (isYourTakeId(s)) { goNav('matchday'); setMatchTab(6); setTake('yours'); setYtView(s); return }   // the four Your take boards stay inside Match day
     if (isChanceId(s)) { goNav('matchday'); openChance(s); return }   // chances and the ladder live under Match day
     if (isCaptureId(s) || s === 'REC2-RecordSaved' || s === 'SET4-Devices') { goNav('record'); setRecView(s); return }   // capture quality steps live under Record
     if (s === 'training')  { goNav('training'); return }
@@ -504,7 +505,7 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
     if (nav === 'home')     { setHomeTab(i); if (i !== 7) setFilView(null) }
     if (nav === 'squad')    setSquadTab(i)
     if (nav === 'training') setTrainingTab(i)
-    if (nav === 'matchday') setMatchTab(matchVisible[i])
+    if (nav === 'matchday') { setMatchTab(matchVisible[i]); if (matchVisible[i] === 6) { setYtView('YT1-YourTake'); setTake('yours') } }   // the Your take tab always opens on its first board
     if (nav === 'clips')    setClipsTab(i)
     if (nav === 'record')   { if (i === 2) handleNav('SET4-Devices'); else setRecView(i === 1 ? 'REC2-RecordSaved' : i === 3 ? 'QC10-HowWeMeasure' : null) }
   }
@@ -582,7 +583,7 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
         resultLine={teamType === 'seniors' ? 'Won at home v Glenview Park' : 'Drew at home with Tealside Town'}
         scorerLine={teamType === 'seniors' ? 'Sat 30 May · Harry and Mo scored · 26 key clips' : 'Sat 30 May · Theo and Leo scored · 22 key clips'} />; break
       case 4: case 5: content = <ChancesFlow team={teamType === 'seniors' ? 'seniors' : 'u16'} step={matchTab === 5 ? 'XG3-LadderPPI' : xgView} onStep={openChance} onNav={handleNav} noFilmYet={inSandbox && sbEmpty} />; break
-      case 6: content = inSandbox && sbEmpty ? <SandboxWaiting kind="yourtake" /> : take === 'theirs' ? <CnScreen id="CN2-SelfVsCoach" onNav={handleNav} team={cnTeam} /> : <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, minHeight: 0 }}><div style={{ flex: 'none', padding: '10px 28px 0' }}><button onClick={() => setTake('theirs')} style={{ minHeight: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Their take, next to yours</button></div><YT1YourTake onNav={handleNav} bare /></div>; break
+      case 6: content = inSandbox && sbEmpty ? <SandboxWaiting kind="yourtake" /> : take === 'theirs' ? <CnScreen id="CN2-SelfVsCoach" onNav={handleNav} team={cnTeam} /> : <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, minHeight: 0 }}><div style={{ flex: 'none', padding: '10px 28px 0' }}><button onClick={() => setTake('theirs')} style={{ minHeight: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Their take, next to yours</button></div><YourTakeBoards view={ytView} onView={setYtView} onNav={handleNav} /></div>; break
       case 7: content = <CnScreen empty={cnEmpty} id="CN17-SetPieces" onNav={handleNav} team={cnTeam} />; break
       case 8: content = <FitnessMatchTab empty={sbEmptyFixture} />; break
     }

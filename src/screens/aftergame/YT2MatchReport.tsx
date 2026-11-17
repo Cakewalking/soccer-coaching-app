@@ -11,7 +11,7 @@ Legs went a little after half time and Ironbark had their best spell. We will ke
 
 Goals: Mia, Jai, Zoe. Everyone played at least half the game.`
 
-export default function YT2MatchReport({ onNav }: { onNav?: (s: string) => void }) {
+export default function YT2MatchReport({ onNav, bare = false }: { onNav?: (s: string) => void; bare?: boolean }) {
   const [lastTool, setLastTool] = useState('')
   const [toast, setToast] = useState<string | null>(null)
   const [title, setTitle] = useState(DRAFT_TITLE)
@@ -39,7 +39,7 @@ export default function YT2MatchReport({ onNav }: { onNav?: (s: string) => void 
 
   return (
     <YTFrame
-      onNav={onNav} active="report" lastTool={lastTool}
+      onNav={onNav} active="report" lastTool={lastTool} bare={bare}
       heading="Match report · Sat 30 May · Won 3-1 at Ironbark United"
       sentence="Your match report is drafted. Change anything, then share it."
       support="Written from your take, the film and the vests, in your words where you gave them. Nothing goes to families until you send it."
