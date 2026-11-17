@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { goApp } from './sandbox/sandboxNav'
 
 const G    = '#2f6252'
 const G2   = '#40826d'
@@ -71,8 +72,8 @@ function MainView({ empty, onWhy, onAsk, onWhatItUses, onWhatWorked }:
         <div style={{ fontSize: 18, fontWeight: 700, color: GD, marginBottom: 8 }}>Not enough to go on yet</div>
         <div style={{ fontSize: 14, color: G, lineHeight: 1.6, marginBottom: 16 }}>Suggestions start after your first game. Until then, your plan follows the national curriculum for under 12s. Add a game or record a drill and Clean Sheet starts to tailor it.</div>
         <div style={{ display: 'flex', gap: 10, justifyContent: 'center' }}>
-          <button onClick={() => showToast('Opening record screen.')} style={{ height: 44, padding: '0 20px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Add a game</button>
-          <button onClick={() => showToast('Opening drill recorder.')} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Record a drill</button>
+          <button onClick={() => goApp('record', 'Opening record screen.')} style={{ height: 44, padding: '0 20px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Add a game</button>
+          <button onClick={() => goApp('record', 'Opening drill recorder.')} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Record a drill</button>
         </div>
       </div>
       <SectionHead label="What it will use"/>

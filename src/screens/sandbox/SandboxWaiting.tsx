@@ -8,6 +8,7 @@ const COPY = {
   formation: { title: 'Formation', empty: 'Your line-up goes here', body: 'Drag your players onto the pitch for the next game. The builder opens once you have enough players for a team.', btn: 'Add players', section: 'players' },
   lineups: { title: 'Line-ups that worked', empty: 'Nothing to compare yet', body: 'After a few recorded games this shows which shapes, pairs and line-ups worked best for your team, and feeds the Formation builder.', btn: 'Add a game', section: 'fixtures' },
   files: { title: 'Files', empty: 'No files yet', body: 'Team sheets, permission forms and notes you share with your coaching team are kept here.', btn: 'Add helpers', section: 'staff' },
+  yourtake: { title: 'Your take', empty: 'No game to look back on yet', body: 'After each game you say how it went in your own words. Your take sits on top of the review and shapes the next training plan.', btn: 'Add a game', section: 'fixtures' },
 } as const
 
 export default function SandboxWaiting({ kind }: { kind: keyof typeof COPY }) {

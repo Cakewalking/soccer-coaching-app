@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { goApp } from './sandbox/sandboxNav'
 import { demoToast } from './demoToast'
 import LearnTab, { type LearnTeam } from './learn/LearnTab'
 import { CLIPS, CLIPS_GAMES, CLIPS_MEASURES, type GameClip } from '../data'
@@ -11,7 +12,6 @@ type TypeFilter = 'all' | 'good' | 'work'
 
 function ClipsEmpty({ activeTab }: { activeTab: number }) {
   const [toast] = useState<string | null>(null)
-  function showToast(msg: string) { demoToast(msg) }
   if (activeTab === 1) {
     return (
       <main style={{ flexGrow: 1, padding: '14px 28px 18px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 340px', gap: 16, boxSizing: 'border-box', minHeight: 0, overflow: 'hidden' }}>
@@ -28,11 +28,11 @@ function ClipsEmpty({ activeTab }: { activeTab: number }) {
               <div style={{ fontSize: 20, fontWeight: 700, marginBottom: 6 }}>Save the clips that teach</div>
               <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: '20px', marginBottom: 14 }}>Group clips into playlists for team talks, or send a clip to one player with a note. They arrive after your first recorded game.</div>
               <div style={{ display: 'flex', gap: 8 }}>
-                <button onClick={() => showToast('Opening recording setup.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
+                <button onClick={() => goApp('record', 'Opening recording setup.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="#fff"/></svg>
                   Record your first game
                 </button>
-                <button onClick={() => showToast('Opening an example clip from last season.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>See an example</button>
+                <button onClick={() => goApp('example:C2-ClipsByGame', 'Opening an example clip from last season.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>See an example</button>
               </div>
             </div>
           </div>
@@ -75,7 +75,7 @@ function ClipsEmpty({ activeTab }: { activeTab: number }) {
           </span>
           <div style={{ fontSize: 20, fontWeight: 700 }}>Nothing to check</div>
           <div style={{ fontSize: 14, color: '#4a5a57', textAlign: 'center', lineHeight: '20px', maxWidth: 320 }}>After each recorded game, the few moments Clean Sheet isn't sure about wait here for a quick yes or no from you.</div>
-          <button onClick={() => showToast('Opening recording setup.')} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
+          <button onClick={() => goApp('record', 'Opening recording setup.')} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
             <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="#fff"/></svg>
             Record your first game
           </button>
@@ -109,11 +109,11 @@ function ClipsEmpty({ activeTab }: { activeTab: number }) {
           <span style={{ fontSize: 14, color: '#4a5a57' }}>No clips yet</span>
         </div>
         <div style={{ flexGrow: 1 }} />
-        <button onClick={() => showToast('Opening the video upload flow.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f', display: 'flex', alignItems: 'center', gap: 6 }}>
+        <button onClick={() => goApp('record', 'Opening the video upload flow.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f', display: 'flex', alignItems: 'center', gap: 6 }}>
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden="true"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1M16 8l-4-4-4 4M12 4v12"/></svg>
           Upload a video
         </button>
-        <button onClick={() => showToast('Opening the game recording flow.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#ffffff', display: 'flex', alignItems: 'center', gap: 6 }}>
+        <button onClick={() => goApp('record', 'Opening the game recording flow.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#ffffff', display: 'flex', alignItems: 'center', gap: 6 }}>
           <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="#fff"/></svg>
           Record a game
         </button>
@@ -127,7 +127,7 @@ function ClipsEmpty({ activeTab }: { activeTab: number }) {
             <div style={{ flexGrow: 1 }}>
               <div style={{ fontSize: 20, fontWeight: 700, marginBottom: 6 }}>Clips start after your first game</div>
               <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: '20px', marginBottom: 14 }}>Your match camera records games and finds the clips for you. They're sorted by what your style says matters.</div>
-              <button onClick={() => showToast('Opening the game recording flow.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Record a game</button>
+              <button onClick={() => goApp('record', 'Opening the game recording flow.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Record a game</button>
             </div>
           </div>
           <div style={{ fontSize: 13, fontWeight: 600, color: '#6f7f7b', textTransform: 'uppercase', letterSpacing: '0.05em' }}>What you'll get clips of</div>

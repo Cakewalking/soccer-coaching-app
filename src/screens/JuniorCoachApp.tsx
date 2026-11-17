@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import SandboxWaiting from './sandbox/SandboxWaiting'
 import TeamSetup from './sandbox/TeamSetup'
-import { registerSetupNav } from './sandbox/sandboxNav'
+import { registerSetupNav, registerAppNav, goSetup } from './sandbox/sandboxNav'
 import type { ReactNode } from 'react'
 
 // Map a Home-story deep-link design-id to this frame's semantic nav key, so a
@@ -66,7 +66,7 @@ import { SquadLineups }    from './SquadLineups'
 import { useSandbox }      from './sandbox/SandboxContext'
 import { storeIsSample }  from './sandbox/sandboxStore'
 import CoachTabletFrame   from './CoachTabletFrame'
-import { WhereWeAtScreen } from './WhereWeAtScreen'
+import { WhereWeAtScreen, WhereWeAtScreenEmpty } from './WhereWeAtScreen'
 import FIL1Files       from './step4/FIL1Files'
 import FIL2Sheet       from './step4/FIL2Sheet'
 import FIL2bSheetLineup from './step4/FIL2bSheetLineup'
@@ -137,12 +137,17 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
     const tab = coachDeepTab(s)   // one of this app's own tabs: switch to it
     if (tab) { goNav(tab.nav as NavKey); if (tab.nav === 'home') setHomeTab(tab.idx); else if (tab.nav === 'squad') setSquadTab(tab.idx); else if (tab.nav === 'training') setTrainingTab(tab.idx); else if (tab.nav === 'matchday') setMatchTab(tab.idx); else if (tab.nav === 'clips') setClipsTab(tab.idx); return }
     if (isScreenId(s))     { setLayer(s); return }
-    if (s === 'addgame')   { setSub('addgame');   return }
+    if (s === 'addgame')   { if (inSandbox) goSetup('fixtures', ''); else setSub('addgame'); return }
   }
 
   // Let an embedded Home story drive this frame: a deep-link whose design-id maps
   // to a tab switches the real tab (returns true); unmapped targets return false
   // so the Home story falls back to its in-place layer.
+  useEffect(() => {
+    registerAppNav(t => t.startsWith('example:') ? setLayer(t) : handleNav(t))
+    return () => registerAppNav(null)
+  })
+
   // In the sandbox, empty screens send the coach to the right part of Team set-up on Home.
   useEffect(() => {
     if (!inSandbox) return
@@ -228,7 +233,7 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
     else if (homeTab === 2) content = <FixturesScreen empty={sbEmpty} />
     else if (homeTab === 3) content = <FixturesScreen empty={sbEmpty} />
     else if (homeTab === 4) content = <OurStyleScreen />
-    else if (homeTab === 5) content = <WhereWeAtScreen teamType="juniors" />
+    else if (homeTab === 5) content = inSandbox && sbEmpty ? <WhereWeAtScreenEmpty teamType="juniors" /> : <WhereWeAtScreen teamType="juniors" />
     else if (homeTab === 6) content = <TeamStaffScreen empty={sbEmpty} />
     else if (homeTab === 7) content = renderFiles()
   } else if (nav === 'squad') {
@@ -256,13 +261,13 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
     else if (matchTab === 1) content = <TeamSheetScreen empty={sbEmptyFixture} />
     else if (matchTab === 2) content = <OppositionScreen empty={sbEmptyFixture} />
     else if (matchTab === 3) content = <ReviewScreen empty={sbEmptyFixture} />
-    else if (matchTab === 4) content = <YT1YourTake onNav={handleNav} bare />
+    else if (matchTab === 4) content = inSandbox && sbEmpty ? <SandboxWaiting kind="yourtake" /> : <YT1YourTake onNav={handleNav} bare />
     else if (matchTab === 5) content = <FitnessMatchTab empty={sbEmptyFixture} />
   } else if (nav === 'clips') {
     content = <ClipsScreen empty={sbEmpty} activeTab={clipsTab} onNav={handleNav} />
   }
 
-  if (layer) return <ScreenLayer screenKey={layer} onClose={() => setLayer(null)} backLabel="Back to U12 Sam" />
+  if (layer) return <ScreenLayer screenKey={layer.replace(/^example:/, '')} example={layer.startsWith('example:')} onClose={() => setLayer(null)} backLabel={layer.startsWith('example:') && inSandbox ? `Back to ${store.teams[0]?.name ?? 'your team'} · this is an example from the demo club` : 'Back to U12 Sam'} />
 
   return (
     <CoachTabletFrame

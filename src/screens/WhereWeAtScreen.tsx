@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { useSandbox } from './sandbox/SandboxContext'
+import { goApp } from './sandbox/sandboxNav'
 const G    = '#2f6252'
 const G2   = '#40826d'
 const INK  = '#10211f'
@@ -106,8 +108,7 @@ function statusColor(s: string) {
 
 export function WhereWeAtScreen({ teamType = 'juniors' }: { teamType?: TeamType }) {
   const d = DATA[teamType]
-  const [toast, setToast] = useState<string|null>(null)
-  function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
+  const [period, setPeriod] = useState(0)
   return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '20px 28px 32px', display: 'flex', gap: 20, fontFamily: 'var(--font-sans)' }}>
 
@@ -119,9 +120,9 @@ export function WhereWeAtScreen({ teamType = 'juniors' }: { teamType?: TeamType 
         </div>
 
         <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
-          {['This season', 'Last month', 'Last game'].map((p, i) => (
-            <button key={p} onClick={() => showToast(`Showing ${p.toLowerCase()}.`)} style={{ height: 36, padding: '0 14px', borderRadius: 8, border: `1px solid ${i === 0 ? G : LN}`, background: i === 0 ? PALE : '#fff', fontSize: 13, fontWeight: i === 0 ? 700 : 500, color: i === 0 ? G : MUT, cursor: 'pointer', fontFamily: 'inherit' }}>{p}</button>
-          ))}
+          {['This season', 'Last month', 'Last game'].map((p, idx) => { const i = idx === period ? 0 : 1; return (
+            <button key={p} aria-pressed={idx === period} onClick={() => setPeriod(idx)} style={{ height: 36, padding: '0 14px', borderRadius: 8, border: `1px solid ${i === 0 ? G : LN}`, background: i === 0 ? PALE : '#fff', fontSize: 13, fontWeight: i === 0 ? 700 : 500, color: i === 0 ? G : MUT, cursor: 'pointer', fontFamily: 'inherit' }}>{p}</button>
+          )})}
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 20 }}>
@@ -144,9 +145,9 @@ export function WhereWeAtScreen({ teamType = 'juniors' }: { teamType?: TeamType 
           <div style={{ fontSize: 13, fontWeight: 700, color: G, marginBottom: 4 }}>What to do with it</div>
           <div style={{ fontSize: 14, color: INK, lineHeight: 1.6 }}>{d.summary}</div>
           <div style={{ display: 'flex', gap: 8, marginTop: 12 }}>
-            <button onClick={() => showToast("Opening tonight's plan.")} style={{ height: 40, padding: '0 14px', borderRadius: 10, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Open tonight's plan</button>
-            <button onClick={() => showToast('Opening last review.')} style={{ height: 40, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Last review</button>
-            <button onClick={() => showToast('Opening style settings.')} style={{ height: 40, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Change our style</button>
+            <button onClick={() => goApp('training', "Opening tonight's plan.")} style={{ height: 40, padding: '0 14px', borderRadius: 10, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Open tonight's plan</button>
+            <button onClick={() => goApp('R1-MatchReview', 'Opening last review.')} style={{ height: 40, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Last review</button>
+            <button onClick={() => goApp('setstyle', 'Opening style settings.')} style={{ height: 40, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Change our style</button>
           </div>
         </div>
 
@@ -169,20 +170,19 @@ export function WhereWeAtScreen({ teamType = 'juniors' }: { teamType?: TeamType 
             </div>
           ))}
           <div style={{ padding: '10px 14px', borderTop: `1px solid ${LN}` }}>
-            <button onClick={() => showToast('Opening all players.')} style={{ fontSize: 13, color: G, fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>All {teamType === 'juniors' ? 16 : teamType === 'youth' ? 14 : 22} players</button>
+            <button onClick={() => goApp('squad', 'Opening all players.')} style={{ fontSize: 13, color: G, fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>All {teamType === 'juniors' ? 16 : teamType === 'youth' ? 14 : 22} players</button>
           </div>
         </div>
         <div style={{ fontSize: 12, color: MUT, marginTop: 8, lineHeight: 1.5 }}>In name order, never ranked. Players see only their own.</div>
       </div>
-      {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )
 }
 
 export function WhereWeAtScreenEmpty({ teamType = 'juniors' }: { teamType?: TeamType }) {
-  const teamLine = teamType === 'juniors' ? 'U12 Sam' : teamType === 'youth' ? 'U16 Ollie' : "Men's 1sts"
-  const [emptyToast, setEmptyToast] = useState<string|null>(null)
-  function showToast(m: string) { setEmptyToast(m); setTimeout(() => setEmptyToast(null), 3000) }
+  const { active: inSandbox, store } = useSandbox()
+  const teamLine = inSandbox ? (store.teams[0]?.name ?? 'Your team') : teamType === 'juniors' ? 'U12 Sam' : teamType === 'youth' ? 'U16 Ollie' : "Men's 1sts"
+  const [emptyToast] = useState<string|null>(null)
   return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '20px 28px 32px', fontFamily: 'var(--font-sans)' }}>
       <div style={{ marginBottom: 16 }}>
@@ -194,8 +194,8 @@ export function WhereWeAtScreenEmpty({ teamType = 'juniors' }: { teamType?: Team
         <div style={{ fontSize: 18, fontWeight: 700, color: INK, marginBottom: 8 }}>Record one game to start</div>
         <div style={{ fontSize: 14, color: MUT, lineHeight: 1.6, marginBottom: 20 }}>Clean Sheet measures the style you set and shows it here the day after. It gets clearer after three games.</div>
         <div style={{ display: 'flex', gap: 10, justifyContent: 'center' }}>
-          <button onClick={() => showToast("Opening Saturday's game recorder.")} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Record Saturday's game</button>
-          <button onClick={() => showToast('Opening style settings.')} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Set our style</button>
+          <button onClick={() => goApp('record', "Opening Saturday's game recorder.")} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Record Saturday's game</button>
+          <button onClick={() => goApp('setstyle', 'Opening style settings.')} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Set our style</button>
         </div>
       </div>
 

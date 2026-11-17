@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { goSetup } from './sandbox/sandboxNav'
+import { goSetup, goApp } from './sandbox/sandboxNav'
 
 type Screen = 'home' | 'training' | 'matchday' | 'teamtalk'
 
@@ -10,8 +10,7 @@ interface Props {
 }
 
 function MatchDayEmpty() {
-  const [toast, setToast] = useState<string | null>(null)
-  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
+  const [toast] = useState<string | null>(null)
   const setupItems = [
     { title: 'Charge the match camera', sub: 'Takes about 3 hours from flat', action: 'How to' },
     { title: 'Plan where it goes', sub: 'Halfway line, raised, facing the pitch', action: 'How to' },
@@ -47,8 +46,8 @@ function MatchDayEmpty() {
             <div style={{ fontSize: 20, fontWeight: 700, letterSpacing: '-0.01em' }}>Clips of what went well, and what to fix</div>
             <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: '20px', maxWidth: 400 }}>After each game, Clean Sheet picks the clips and numbers for a 4-minute talk, with notes on what to say.</div>
             <div style={{ display: 'flex', gap: 8 }}>
-              <button onClick={() => showToast('Opening the recording guide.')} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>How to record a game</button>
-              <button onClick={() => showToast('Opening the manual team talk builder.')} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Build one yourself</button>
+              <button onClick={() => goApp('record', 'Opening the recording guide.')} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>How to record a game</button>
+              <button onClick={() => goApp('teamtalk', 'Opening the manual team talk builder.')} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Build one yourself</button>
             </div>
           </div>
 
@@ -86,7 +85,7 @@ function MatchDayEmpty() {
               <button onClick={() => goSetup('kit', `Opening: ${item.title}.`)} style={{ flex: 'none', height: 44, padding: '0 10px', borderRadius: 7, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer', color: '#2f6252' }}>{item.action}</button>
             </div>
           ))}
-          <button onClick={() => showToast('Playing the 2-minute setup guide.')} style={{ marginTop: 'auto', height: 44, borderRadius: 10, border: '1px solid #2f6252', background: '#ffffff', color: '#2f6252', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
+          <button onClick={() => goApp('record', 'Playing the 2-minute setup guide.')} style={{ marginTop: 'auto', height: 44, borderRadius: 10, border: '1px solid #2f6252', background: '#ffffff', color: '#2f6252', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
             <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"/></svg>
             Watch the 2-minute setup guide
           </button>

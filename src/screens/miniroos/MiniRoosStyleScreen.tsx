@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { goApp } from '../sandbox/sandboxNav'
 
 const G    = '#2f6252'
 const G2   = '#40826d'
@@ -78,7 +79,7 @@ export function MS1MiniRoosStyle() {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
           <div style={{ fontSize: 13, color: G2, fontWeight: 600 }}>{picked.size} of {MAX} picked</div>
           <div style={{ display: 'flex', gap: 8 }}>
-            <button onClick={() => showToast('Opening parent view.')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>See what parents see</button>
+            <button onClick={() => goApp('example:PA-Parent', 'Opening parent view.')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>See what parents see</button>
             <button onClick={() => showToast('Style saved.')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 'none', background: G, fontSize: 13, fontWeight: 700, color: '#fff', cursor: 'pointer', fontFamily: 'inherit' }}>Save</button>
           </div>
         </div>
@@ -162,7 +163,7 @@ export function MS1eMiniRoosStyleEmpty() {
         <div style={{ fontSize: 18, fontWeight: 700, color: INK, marginBottom: 8 }}>What do you want to see on Saturday?</div>
         <div style={{ fontSize: 14, color: MUT, lineHeight: 1.6, marginBottom: 20 }}>Pick up to three things, in words the children use. Clean Sheet looks for them in games and builds Tuesday around them.</div>
         <div style={{ display: 'flex', gap: 10 }}>
-          <button onClick={() => showToast('Opening style picker.')} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Pick our three things</button>
+          <button onClick={() => goApp('setstyle', 'Opening style picker.')} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Pick our three things</button>
           <button onClick={() => showToast('Setting balanced style.')} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Use a balanced style for now</button>
         </div>
       </div>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import SandboxWaiting from './sandbox/SandboxWaiting'
 import TeamSetup from './sandbox/TeamSetup'
-import { registerSetupNav } from './sandbox/sandboxNav'
+import { registerSetupNav, registerAppNav, goSetup } from './sandbox/sandboxNav'
 import { COACH_TARGET_NAV } from './JuniorCoachApp'
 import { SENIORS_SQUAD_PLAYERS as SENIORS_SQUAD, YOUTH_SQUAD_PLAYERS as YOUTH_SQUAD } from '../data'
 import type { ReactNode } from 'react'
@@ -40,7 +40,7 @@ import { SquadLineups }    from './SquadLineups'
 import { useSandbox }      from './sandbox/SandboxContext'
 import { storeIsSample }  from './sandbox/sandboxStore'
 import CoachTabletFrame   from './CoachTabletFrame'
-import { WhereWeAtScreen } from './WhereWeAtScreen'
+import { WhereWeAtScreen, WhereWeAtScreenEmpty } from './WhereWeAtScreen'
 import FIL1Files       from './step4/FIL1Files'
 import FIL2Sheet       from './step4/FIL2Sheet'
 import FIL2bSheetLineup from './step4/FIL2bSheetLineup'
@@ -423,7 +423,8 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
     if (s === 'inbox')     { setHomeTab(1);     return }
     if (s === 'fixtures')  { setHomeTab(3);     return }
     if (s === 'metric')    { goNav('squad'); setSquadTab(3); return }
-    if (s === 'setstyle')  { setHomeTab(4);     return }
+    if (s === 'setstyle')  { goNav('home'); setHomeTab(4); return }
+    if (s === 'addgame')   { if (inSandbox) goSetup('fixtures', ''); else { goNav('home'); setHomeTab(3) } return }
     if (s === 'teamtalk')  { setSub('teamtalk');  return }
     if (s === 'pitchside') { setSub('pitchside'); return }
     const tab = coachDeepTab(s)   // one of this app's own tabs: switch to it
@@ -432,6 +433,11 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
   }
 
   // Embedded Home story drives this frame: mapped deep-links switch the real tab.
+  useEffect(() => {
+    registerAppNav(t => t.startsWith('example:') ? setLayer(t) : handleNav(t))
+    return () => registerAppNav(null)
+  })
+
   // In the sandbox, empty screens send the coach to the right part of Team set-up on Home.
   useEffect(() => {
     if (!inSandbox) return
@@ -512,7 +518,7 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
       case 1: content = inSandbox && sbEmpty ? <SandboxWaiting kind="messages" /> : <CoachMessages teamType={teamType === 'seniors' ? 'seniors' : 'youth'} embedded />; break
       case 2: case 3: content = <FixturesScreen empty={sbEmpty} teamType={teamType === 'seniors' ? 'seniors' : 'youth'} />; break
       case 4: content = <OurStyleScreen setByLine={`Set 12 March by ${data.coachFirst}.`} />; break
-      case 5: content = <WhereWeAtScreen teamType={teamType === 'seniors' ? 'seniors' : 'youth'} />; break
+      case 5: content = inSandbox && sbEmpty ? <WhereWeAtScreenEmpty teamType={teamType === 'seniors' ? 'seniors' : 'youth'} /> : <WhereWeAtScreen teamType={teamType === 'seniors' ? 'seniors' : 'youth'} />; break
       case 6: content = <TeamStaffScreen empty={sbEmpty} teamType={teamType === 'seniors' ? 'seniors' : 'youth'} />; break
       case 7: content = renderFiles(); break
     }
@@ -546,7 +552,7 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
         scoreline={teamType === 'seniors' ? '2–0' : '2–2'}
         resultLine={teamType === 'seniors' ? 'Won at home v Glenview Park' : 'Drew at home with Tealside Town'}
         scorerLine={teamType === 'seniors' ? 'Sat 30 May · Harry and Mo scored · 26 key clips' : 'Sat 30 May · Theo and Leo scored · 22 key clips'} />; break
-      case 4: content = <YT1YourTake onNav={handleNav} bare />; break
+      case 4: content = inSandbox && sbEmpty ? <SandboxWaiting kind="yourtake" /> : <YT1YourTake onNav={handleNav} bare />; break
       case 5: content = <FitnessMatchTab empty={sbEmptyFixture} />; break
     }
   } else if (nav === 'clips') {
@@ -555,7 +561,7 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
 
   const navTabs = NAV_LABELS.map((label, i) => ({ id: NAV_KEYS[i], label, icon: NAV_ICONS[i] }))
 
-  if (layer) return <ScreenLayer screenKey={layer} onClose={() => setLayer(null)} backLabel={`Back to ${data.teamPicker.split(' · ')[0]}`} />
+  if (layer) return <ScreenLayer screenKey={layer.replace(/^example:/, '')} example={layer.startsWith('example:')} onClose={() => setLayer(null)} backLabel={layer.startsWith('example:') && inSandbox ? `Back to ${store.teams[0]?.name ?? 'your team'} · this is an example from the demo club` : `Back to ${data.teamPicker.split(' · ')[0]}`} />
 
   return (
     <>

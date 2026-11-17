@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { useSandbox } from './sandbox/SandboxContext'
+import { addNote, removeNote, type SbNote } from './sandbox/sandboxStore'
 
 const G    = '#2f6252'
 const G2   = '#40826d'
@@ -119,17 +121,96 @@ function BtnPrimary({ label, onClick }: { label: string; onClick?: () => void })
   return <button onClick={onClick} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: `1px solid ${G}`, background: G, color: '#fff', fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', display: 'inline-flex', alignItems: 'center', gap: 8, whiteSpace: 'nowrap' }}>{label}</button>
 }
 
+// A quick note: typed, tagged to a player or the team, and kept. In the sandbox it
+// is saved with the visitor's team; in the demo it lasts for the visit.
+function QuickNote({ onClose }: { onClose: () => void }) {
+  const { active: inSandbox, store, update } = useSandbox()
+  const [text, setText] = useState('')
+  const [about, setAbout] = useState('The team')
+  const [local, setLocal] = useState<SbNote[]>([])
+  const names = inSandbox ? store.players.map(p => p.name) : ['Mia Tran', 'Josh Barker', 'Harper Quinn']
+  const notes = inSandbox ? (store.notes ?? []) : local
+  function save(e: React.FormEvent) {
+    e.preventDefault()
+    const v = text.trim(); if (!v) return
+    if (inSandbox) update(addNote(store, { text: v, about })); else setLocal(l => [{ id: String(Date.now()), at: Date.now(), text: v, about }, ...l])
+    setText('')
+  }
+  const drop = (id: string) => inSandbox ? update(removeNote(store, id)) : setLocal(l => l.filter(n => n.id !== id))
+  return (
+    <div data-panel="note" style={{ marginTop: 12, background: '#fff', border: `1.5px solid ${G}`, borderRadius: 16, padding: 16 }}>
+      <div style={{ display: 'flex', alignItems: 'center', marginBottom: 10 }}>
+        <strong style={{ fontSize: 16, color: INK, flexGrow: 1 }}>A quick note</strong>
+        <button onClick={onClose} style={{ height: 44, padding: '0 12px', border: 0, background: 'none', color: MUT, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Close</button>
+      </div>
+      <form onSubmit={save} style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 180px auto', gap: 8, alignItems: 'end' }}>
+        <div><label htmlFor="qn-text" style={{ display: 'block', fontSize: 12, fontWeight: 700, color: MUT, marginBottom: 4 }}>What did you see?</label><input id="qn-text" value={text} onChange={e => setText(e.target.value)} placeholder="e.g. Pressed well after losing the ball" style={{ width: '100%', height: 44, padding: '0 12px', border: `1px solid ${LN}`, borderRadius: 10, fontFamily: 'inherit', fontSize: 14, boxSizing: 'border-box', outline: 'none' }} /></div>
+        <div><label htmlFor="qn-about" style={{ display: 'block', fontSize: 12, fontWeight: 700, color: MUT, marginBottom: 4 }}>About</label><select id="qn-about" value={about} onChange={e => setAbout(e.target.value)} style={{ width: '100%', height: 44, padding: '0 10px', border: `1px solid ${LN}`, borderRadius: 10, fontFamily: 'inherit', fontSize: 14, background: '#fff' }}>{['The team', ...names].map(n => <option key={n}>{n}</option>)}</select></div>
+        <button type="submit" style={{ height: 44, padding: '0 18px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Save note</button>
+      </form>
+      {notes.length === 0
+        ? <div style={{ fontSize: 13, color: MUT, marginTop: 10 }}>Notes you save are listed here. Only you see them until you choose to share one.</div>
+        : notes.map(n => (
+          <div key={n.id} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 48, borderTop: `1px solid ${LN}`, marginTop: 10, paddingTop: 6 }}>
+            <div style={{ flexGrow: 1, minWidth: 0 }}><div style={{ fontSize: 14, fontWeight: 600, color: INK }}>{n.text}</div><div style={{ fontSize: 12, color: MUT }}>{n.about} · {new Date(n.at).toLocaleDateString('en-AU', { weekday: 'short', day: 'numeric', month: 'short' })}</div></div>
+            <button onClick={() => drop(n.id)} aria-label={`Remove note: ${n.text}`} style={{ height: 44, padding: '0 12px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Remove</button>
+          </div>
+        ))}
+    </div>
+  )
+}
+
+// Photos for families: picked from this device and shown here only. Nothing is uploaded.
+function FamilyPhotos({ onClose }: { onClose: () => void }) {
+  const [shots, setShots] = useState<{ url: string; name: string }[]>([])
+  function pick(e: React.ChangeEvent<HTMLInputElement>) {
+    const files = [...(e.target.files ?? [])].filter(f => f.type.startsWith('image/'))
+    setShots(s => [...s, ...files.map(f => ({ url: URL.createObjectURL(f), name: f.name }))])
+    e.target.value = ''
+  }
+  return (
+    <div data-panel="photos" style={{ marginTop: 12, background: '#fff', border: `1.5px solid ${G}`, borderRadius: 16, padding: 16 }}>
+      <div style={{ display: 'flex', alignItems: 'center', marginBottom: 6 }}>
+        <strong style={{ fontSize: 16, color: INK, flexGrow: 1 }}>Photos for families</strong>
+        <button onClick={onClose} style={{ height: 44, padding: '0 12px', border: 0, background: 'none', color: MUT, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Close</button>
+      </div>
+      <div style={{ fontSize: 13, color: MUT, lineHeight: 1.5, marginBottom: 10 }}>Each photo is checked against every family’s consent before it goes to the team chat. Here the photos stay on this device: nothing is uploaded.</div>
+      <label style={{ display: 'inline-flex', alignItems: 'center', height: 44, padding: '0 18px', borderRadius: 10, background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>
+        {shots.length ? 'Add more photos' : 'Choose photos'}
+        <input type="file" accept="image/*" multiple onChange={pick} style={{ position: 'absolute', width: 1, height: 1, opacity: 0 }} />
+      </label>
+      {shots.length > 0 && (
+        <>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(96px, 1fr))', gap: 8, marginTop: 12 }}>
+            {shots.map((s, i) => (
+              <div key={s.url} style={{ position: 'relative' }}>
+                <img src={s.url} alt={s.name} style={{ width: '100%', aspectRatio: '1', objectFit: 'cover', borderRadius: 10, display: 'block' }} />
+                <button onClick={() => setShots(x => x.filter((_, k) => k !== i))} aria-label={`Remove ${s.name}`} style={{ position: 'absolute', top: 0, right: 0, width: 44, height: 44, border: 0, background: 'none', cursor: 'pointer', display: 'flex', alignItems: 'flex-start', justifyContent: 'flex-end', padding: 4 }}>
+                  <span style={{ width: 24, height: 24, borderRadius: '50%', background: 'rgba(16,33,31,0.8)', color: '#fff', fontSize: 14, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>×</span>
+                </button>
+              </div>
+            ))}
+          </div>
+          <div style={{ fontSize: 13, color: INK, fontWeight: 600, marginTop: 10 }}>{shots.length} {shots.length === 1 ? 'photo' : 'photos'} ready. In the live app the next step is the consent check, then you send them.</div>
+        </>
+      )}
+    </div>
+  )
+}
+
 // REC1 — Record hub
 export function RecordHub({ onBack: _onBack, noFrame, onNav }: { onBack?: () => void; noFrame?: boolean; onNav?: (s: string) => void }) {
   const [toast, setToast] = useState<string | null>(null)
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
+  const [panel, setPanel] = useState<'note' | 'photos' | null>(null)
+  const sb = useSandbox()
 
   const options = [
     { icon: ICONS.game,     title: 'A game',            sub: 'Video, sensors, or both',       goes: 'Match review, Clips, each player\'s minutes and load',  onClick: () => onNav ? onNav('RC1-RecordStart') : t('Opening the game recording flow.') },
     { icon: ICONS.training2,title: 'Training',          sub: 'Tonight\'s session',             goes: 'Session notes, Clips, Growth and load',                  link: true },
     { icon: ICONS.test,     title: 'A test',            sub: 'Sprints, juggles, jumps, beep test', goes: 'Fitness tests, and each player\'s own trend',         onClick: () => onNav ? onNav('TL2-TestMode') : t('Opening the test recording flow.') },
-    { icon: ICONS.note,     title: 'A quick note',      sub: 'Say it or type it',              goes: 'The player or game you name. You check it first',        onClick: () => t('Opening the quick note flow.') },
-    { icon: ICONS.photo,    title: 'Photos for families',sub: 'Checked against consent',       goes: 'The team chat, once you send',                           onClick: () => t('Opening the photos flow.') },
+    { icon: ICONS.note,     title: 'A quick note',      sub: 'Say it or type it',              goes: 'The player or game you name. You check it first',        onClick: () => setPanel(p => p === 'note' ? null : 'note') },
+    { icon: ICONS.photo,    title: 'Photos for families',sub: 'Checked against consent',       goes: 'The team chat, once you send',                           onClick: () => setPanel(p => p === 'photos' ? null : 'photos') },
     { icon: ICONS.injury,   title: 'Head knock / injury',sub: 'Linked to the club welfare officer', goes: 'Head knock log, and welfare officer',               onClick: () => onNav ? onNav('TM7-HeadKnock') : t('Opening the head knock log.') },
   ]
 
@@ -137,7 +218,7 @@ export function RecordHub({ onBack: _onBack, noFrame, onNav }: { onBack?: () => 
     <CoachFrame
       activeNav="record" activeSub="Record" subTabs={REC_SUBS}
       pageTitle="Record"
-      pageSub="U12 Sam · camera kit 2 and 15 vests are ready"
+      pageSub={sb.active && sb.store.teams[0] && sb.store.teams[0].id !== 'wc-u12' ? `${sb.store.teams[0].name} · pick what you are recording` : 'U12 Sam · camera kit 2 and 15 vests are ready'}
       pageRight={<BtnMore label="Devices" onClick={() => onNav ? onNav('SET4-Devices') : t('Opening device settings.')}/>}
       toast={toast}
       onNavTab={(id) => id === 'sub:Devices' ? (onNav ? onNav('SET4-Devices') : t('Devices opens.')) : t(id.startsWith('sub:') ? `${id.slice(4)} opens.` : `${id.charAt(0).toUpperCase() + id.slice(1)} tab opens.`)}
@@ -162,6 +243,8 @@ export function RecordHub({ onBack: _onBack, noFrame, onNav }: { onBack?: () => 
               </button>
             ))}
           </div>
+          {panel === 'note' && <QuickNote onClose={() => setPanel(null)} />}
+          {panel === 'photos' && <FamilyPhotos onClose={() => setPanel(null)} />}
         </div>
         {/* Right aside: devices */}
         <div style={{ width: 260, flexShrink: 0, display: 'flex', flexDirection: 'column', gap: 12 }}>

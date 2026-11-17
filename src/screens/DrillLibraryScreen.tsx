@@ -26,6 +26,7 @@ const STARTER_DRILLS = [
 
 export default function DrillLibraryScreen({ empty }: { empty?: boolean }) {
   const [view, setView]       = useState<View>('library')
+  const [showAll, setShowAll] = useState(false)
   const [drill, setDrill]     = useState<Drill | null>(null)
   const [filterTab, setFTab]  = useState(0)
   const [agePhase, setAge]    = useState('9–12')
@@ -36,14 +37,13 @@ export default function DrillLibraryScreen({ empty }: { empty?: boolean }) {
   const [wizArea, setWA]      = useState('30 × 25 m')
   const [wizAges, setWAges]   = useState<string[]>([])
   const [wizKit, setWKit]     = useState<string[]>(['Balls'])
-  const [toast, setToast]     = useState<string | null>(null)
-  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
+  const [toast]     = useState<string | null>(null)
 
   const openDrill = (d: Drill) => { setDrill(d); setView('detail') }
   const openWiz   = () => { setView('wizard'); setWStep(1) }
   const closeWiz  = () => { setView('library'); setWStep(1) }
 
-  if (empty && view === 'library') {
+  if (empty && view === 'library' && !showAll) {
     return (
       <div style={{ flexGrow: 1, padding: '24px 28px', boxSizing: 'border-box' as const, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 20 }}>
         <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
@@ -69,7 +69,7 @@ export default function DrillLibraryScreen({ empty }: { empty?: boolean }) {
                   </div>
                 ))}
               </div>
-              <button onClick={() => st('Showing all 24 drills.')} style={{ marginTop: 12, height: 44, padding: '0 16px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>See all 24</button>
+              <button onClick={() => setShowAll(true)} style={{ marginTop: 12, height: 44, padding: '0 16px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>See all 24</button>
             </div>
             <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '20px 24px' }}>
               <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 4 }}>Our drills</div>

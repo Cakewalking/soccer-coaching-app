@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { goSetup } from './sandbox/sandboxNav'
+import { goSetup, goApp } from './sandbox/sandboxNav'
 import { YOUTH_SQUAD_PLAYERS, SENIORS_SQUAD_PLAYERS, type SquadPlayer } from '../data'
 
 export type DevGoalsTeam = 'juniors' | 'youth' | 'seniors'
@@ -93,8 +93,7 @@ function Skel({ rows = 7 }: { rows?: number }) {
 }
 
 function DevGoalsEmpty() {
-  const [toast, setToast] = useState<string|null>(null)
-  function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
+  const [toast] = useState<string|null>(null)
   return (
     <main style={{ flexGrow: 1, padding: '14px 28px 18px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 340px', gap: 16, boxSizing: 'border-box', minHeight: 0, overflow: 'hidden' }}>
       <div style={{ minHeight: 0, display: 'flex', flexDirection: 'column', gap: 16, overflowY: 'auto' }}>
@@ -109,7 +108,7 @@ function DevGoalsEmpty() {
             <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: '20px', marginBottom: 14 }}>After the first recorded game, Clean Sheet suggests a goal for each player from what the video and sensors show. You pick or change it.</div>
             <div style={{ display: 'flex', gap: 8 }}>
               <button onClick={() => goSetup('players', 'Opening the add players flow.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Add players first</button>
-              <button onClick={() => showToast('Showing a sample development goals board.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>See an example</button>
+              <button onClick={() => goApp('example:DG1-Goals', 'Showing a sample development goals board.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>See an example</button>
             </div>
           </div>
         </div>

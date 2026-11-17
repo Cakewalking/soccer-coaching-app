@@ -15,7 +15,8 @@ import FormationBuilder  from '../formation/FormationBuilder'
 import { SquadLineups } from '../SquadLineups'
 import LearnTab from '../learn/LearnTab'
 import TeamSetup from '../sandbox/TeamSetup'
-import { registerSetupNav } from '../sandbox/sandboxNav'
+import SandboxWaiting from '../sandbox/SandboxWaiting'
+import { registerSetupNav, registerAppNav, goApp } from '../sandbox/sandboxNav'
 import YT1YourTake from '../aftergame/YT1YourTake'
 import ScreenLayer, { isScreenId } from '../ScreenLayer'
 import type { FormationPreset } from '../formation/lineupInsights'
@@ -30,7 +31,7 @@ import FootballYearScreen from './FootballYearScreen'
 import CoachTabletFrame  from '../CoachTabletFrame'
 import { useSandbox }   from '../sandbox/SandboxContext'
 import { MS1MiniRoosStyle } from './MiniRoosStyleScreen'
-import { MS2MiniRoosWhereWeAt } from './MiniRoosWhereWeAt'
+import { MS2MiniRoosWhereWeAt, MS2eMiniRoosWhereWeAtEmpty } from './MiniRoosWhereWeAt'
 import { MS3MiniRoosReview } from './MiniRoosReview'
 import TeamSheetBody from '../step4/TeamSheetBody'
 import type { TeamSheetConfig } from '../step4/TeamSheetBody'
@@ -358,7 +359,7 @@ function SuggestedMiniRoos({ empty }: { empty?: boolean }) {
       <div style={{ background: PALE, borderRadius: 16, padding: '24px', textAlign: 'center' as const }}>
         <div style={{ fontSize: 18, fontWeight: 700, color: GD, marginBottom: 8 }}>U9 Tom · nothing to go on yet</div>
         <div style={{ fontSize: 14, color: G, lineHeight: 1.6, marginBottom: 16 }}>Ideas start after your first game. Tap three things you saw after a game and Clean Sheet picks games to match. Until then it follows the under 9 curriculum.</div>
-        <button onClick={() => st('Opening what you saw.')} style={{ height: 44, padding: '0 20px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Tap what you saw</button>
+        <button onClick={() => goApp('whatisaw', 'Opening what you saw.')} style={{ height: 44, padding: '0 20px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Tap what you saw</button>
       </div>
       <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 8 }}>It uses</div>
       {[
@@ -469,8 +470,7 @@ function SuggestedMiniRoos({ empty }: { empty?: boolean }) {
 }
 
 function RecordMiniRoosStart({ empty, onClips }: { empty?: boolean; onClips: () => void }) {
-  const [toast, setToast] = useState<string | null>(null)
-  function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
+  const [toast] = useState<string | null>(null)
   const children = [
     { ini: 'IC', name: 'Ivy C',    ok: true },
     { ini: 'ZM', name: 'Zara M',   ok: true },
@@ -491,7 +491,7 @@ function RecordMiniRoosStart({ empty, onClips }: { empty?: boolean; onClips: () 
       </div>
       <div style={{ fontSize: 20, fontWeight: 700, color: INK }}>Film something</div>
       <div style={{ fontSize: 14, color: MUT, lineHeight: 1.6, maxWidth: 400 }}>Film a Saturday game, a training game, or a skill challenge. Set the camera up and tap Start filming.</div>
-      <button onClick={() => showToast('Opening the recording screen.')} style={{ height: 44, padding: '0 24px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Start filming</button>
+      <button onClick={() => goApp('example:RC1-RecordStart', 'Opening the recording screen.')} style={{ height: 44, padding: '0 24px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Start filming</button>
       <div style={{ marginTop: 16, maxWidth: 400, textAlign: 'left' as const, padding: '14px 16px', background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, width: '100%' }}>
         <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 10 }}>Good to know</div>
         {[
@@ -771,6 +771,19 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
     return () => registerSetupNav(null)
   })
 
+  useEffect(() => {
+    registerAppNav(t => {
+      setFilOpen(null)
+      if (t.startsWith('example:')) setLayer(t)
+      else if (t === 'training') setNav('training')
+      else if (t === 'squad') setNav('squad')
+      else if (t === 'record') setNav('record')
+      else if (t === 'review' || t === 'whatisaw') { setNav('gameday'); setGameDayTab(t) }
+      else if (t === 'setstyle') { setNav('home'); setHomeTab('style'); setHomeSubView('main') }
+    })
+    return () => registerAppNav(null)
+  })
+
   // A Home button that points at one of this app's own screens opens that tab, lit in
   // the menu — not a second copy of the screen with its own heading underneath.
   useEffect(() => {
@@ -817,7 +830,7 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
     else if (homeTab === 'calendar')  content = <CalendarMiniRoos empty={empty} />
     else if (homeTab === 'fixtures')  content = <FixturesMiniRoos empty={empty} />
     else if (homeTab === 'style')     content = <MS1MiniRoosStyle />
-    else if (homeTab === 'whereweat') content = <MS2MiniRoosWhereWeAt />
+    else if (homeTab === 'whereweat') content = inSandbox && empty ? <MS2eMiniRoosWhereWeAtEmpty /> : <MS2MiniRoosWhereWeAt />
     else if (homeTab === 'staff')     content = <StaffMiniRoos empty={empty} />
     else if (homeTab === 'files' && filNew)
       content = <FileEditor type={filNew.type} audiences={['U9 Tom families', 'Coaching team only', 'Just me']} onBack={() => setFilNew(null)}
@@ -843,7 +856,8 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
     else if (trainingTab === 'week')    content = <WeekMiniRoos empty={empty} onTonight={() => setTrainingTab('plan')} />
     else if (trainingTab === 'library') content = <GamesLibraryMiniRoos empty={empty} />
   } else if (nav === 'squad') {
-    if (squadTab === 'formation')        content = <FormationBuilder key={formationPreset?.note ?? 'plain'} preset={formationPreset} team="miniroos" onNav={(s) => { if (s === 'T2-TabletMatch') { setNav('gameday'); setGameDayTab('turns') } else if (s === 'SQ1-BestLineups') setSquadTab('lineups') }} />
+    if (squadTab === 'formation' && inSandbox && empty) content = <SandboxWaiting kind="formation" />
+    else if (squadTab === 'formation')   content = <FormationBuilder key={formationPreset?.note ?? 'plain'} preset={formationPreset} team="miniroos" onNav={(s) => { if (s === 'T2-TabletMatch') { setNav('gameday'); setGameDayTab('turns') } else if (s === 'SQ1-BestLineups') setSquadTab('lineups') }} />
     else if (squadTab === 'lineups' && empty) content = <div style={{ padding: '28px 32px' }}><div style={{ maxWidth: 500, background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: 24 }}><div style={{ fontSize: 18, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>Record 3 games to see this</div><div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.6 }}>Once a few games are filmed, this shows which shapes and pairs gave the children the most good moments. No scores are kept.</div></div></div>
     else if (squadTab === 'lineups')     content = <SquadLineups noFrame teamType="miniroos" onNav={(s, preset) => { if (s === 'formation') { setFormationPreset(preset ?? null); setSquadTab('formation') } }} />
     else if (squadTab === 'skills')      content = <SkillsMiniRoos empty={empty} />
@@ -881,7 +895,7 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
 
   if (teamTalkOpen) return <MiniRoosTeamTalk onClose={() => setTeamTalkOpen(false)} />
 
-  if (layer) return <ScreenLayer screenKey={layer} onClose={() => setLayer(null)} backLabel="Back to U9 Tom" />
+  if (layer) return <ScreenLayer screenKey={layer.replace(/^example:/, '')} example={layer.startsWith('example:')} onClose={() => setLayer(null)} backLabel={layer.startsWith('example:') && inSandbox ? `Back to ${store.teams[0]?.name ?? 'your team'} · this is an example from the demo club` : 'Back to U9 Tom'} />
 
   return (
     <CoachTabletFrame

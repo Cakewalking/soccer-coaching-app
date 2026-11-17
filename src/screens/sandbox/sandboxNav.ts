@@ -18,3 +18,12 @@ export function goSetup(section: SetupSection, fallback: string) {
 }
 export function takeWanted(): SetupSection | null { const w = wanted; wanted = null; return w }
 export function onWanted(f: () => void) { subs.add(f); return () => { subs.delete(f) } }
+
+// Any screen can ask the coach app to open one of its tabs, the Record screen,
+// or a filled example ("example:<screen id>") over the top with a Back bar.
+let appNav: ((target: string) => void) | null = null
+export function registerAppNav(fn: ((target: string) => void) | null) { appNav = fn }
+export function goApp(target: string, fallback: string) {
+  if (!appNav) { demoToast(fallback); return }
+  appNav(target)
+}

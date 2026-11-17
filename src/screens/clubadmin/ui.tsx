@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { goSetup } from '../sandbox/sandboxNav'
 
 interface EmptyItem { title: string; desc: string }
 
@@ -16,8 +17,7 @@ export interface EmptyCardProps {
 export const FOOTER_DEFAULT = 'This page fills in on its own once there\'s something to show.'
 
 export function EmptyCard({ icon, title, desc, cta, sidebarTitle = 'What you\'ll see', sidebarBody, items = [], footer }: EmptyCardProps) {
-  const [toast, setToast] = useState<string | null>(null)
-  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
+  const [toast] = useState<string | null>(null)
   return (
     <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 320px', gap: 16, padding: '16px 20px 20px', boxSizing: 'border-box', alignContent: 'start', flexGrow: 1 }}>
       <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: 380, padding: '40px 48px', textAlign: 'center', gap: 10 }}>
@@ -26,7 +26,7 @@ export function EmptyCard({ icon, title, desc, cta, sidebarTitle = 'What you\'ll
         </div>
         <div style={{ fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em', color: '#10211f' }}>{title}</div>
         <div style={{ fontSize: 15, color: '#4a5a57', lineHeight: '22px', maxWidth: 380 }}>{desc}</div>
-        {cta && <button onClick={() => st('Opening setup.')} style={{ marginTop: 6, height: 44, padding: '0 24px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>{cta}</button>}
+        {cta && <button onClick={() => goSetup(/train/i.test(String(cta)) ? 'training' : /invite|staff/i.test(String(cta)) ? 'staff' : /game|fixture/i.test(String(cta)) ? 'fixtures' : 'players', 'Opening setup.')} style={{ marginTop: 6, height: 44, padding: '0 24px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>{cta}</button>}
       </div>
       <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '16px 18px', display: 'flex', flexDirection: 'column' }}>
         <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 10 }}>{sidebarTitle}</div>

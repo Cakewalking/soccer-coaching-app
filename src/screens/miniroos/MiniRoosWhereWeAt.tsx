@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { goApp } from '../sandbox/sandboxNav'
 
 const G    = '#2f6252'
 const G2   = '#40826d'
@@ -35,9 +36,8 @@ function trendColor(t: string) {
 }
 
 export function MS2MiniRoosWhereWeAt() {
-  const [toast, setToast] = useState<string | null>(null)
+  const [toast] = useState<string | null>(null)
   const [period, setPeriod] = useState('This term')
-  function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '20px 28px 32px', display: 'flex', gap: 20, fontFamily: 'var(--font-sans)' }}>
 
@@ -75,9 +75,9 @@ export function MS2MiniRoosWhereWeAt() {
           <div style={{ fontSize: 13, fontWeight: 700, color: G, marginBottom: 4 }}>What to do with it</div>
           <div style={{ fontSize: 14, color: INK, lineHeight: 1.6 }}>Bravery is up, so keep praising it. Passing has not moved: Tuesday has two games where a pass to a friend scores double.</div>
           <div style={{ display: 'flex', gap: 8, marginTop: 12 }}>
-            <button onClick={() => showToast("Opening Tuesday's games.")} style={{ height: 40, padding: '0 14px', borderRadius: 10, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>{"Open Tuesday's games"}</button>
-            <button onClick={() => showToast("Opening Saturday's review.")} style={{ height: 40, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{"Saturday's review"}</button>
-            <button onClick={() => showToast('Opening style picker.')} style={{ height: 40, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Change our three things</button>
+            <button onClick={() => goApp('training', "Opening Tuesday's games.")} style={{ height: 40, padding: '0 14px', borderRadius: 10, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>{"Open Tuesday's games"}</button>
+            <button onClick={() => goApp('review', "Opening Saturday's review.")} style={{ height: 40, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{"Saturday's review"}</button>
+            <button onClick={() => goApp('setstyle', 'Opening style picker.')} style={{ height: 40, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Change our three things</button>
           </div>
         </div>
       </div>
@@ -98,7 +98,7 @@ export function MS2MiniRoosWhereWeAt() {
             </div>
           ))}
           <div style={{ padding: '10px 14px', borderTop: `1px solid ${LN}` }}>
-            <button onClick={() => showToast('Showing all 10 children.')} style={{ fontSize: 13, color: G, fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>All 10 children</button>
+            <button onClick={() => goApp('squad', 'Showing all 10 children.')} style={{ fontSize: 13, color: G, fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>All 10 children</button>
           </div>
         </div>
         <div style={{ fontSize: 12, color: MUT, marginTop: 8, lineHeight: 1.5 }}>In name order, never ranked. No scores or results are kept.</div>
@@ -109,8 +109,7 @@ export function MS2MiniRoosWhereWeAt() {
 }
 
 export function MS2eMiniRoosWhereWeAtEmpty() {
-  const [toast, setToast] = useState<string | null>(null)
-  function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
+  const [toast] = useState<string | null>(null)
   return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '20px 28px 32px', fontFamily: 'var(--font-sans)' }}>
       <div style={{ marginBottom: 16 }}>
@@ -122,8 +121,8 @@ export function MS2eMiniRoosWhereWeAtEmpty() {
         <div style={{ fontSize: 18, fontWeight: 700, color: INK, marginBottom: 8 }}>Film a game to get started</div>
         <div style={{ fontSize: 14, color: MUT, lineHeight: 1.6, marginBottom: 20 }}>After each filmed game Clean Sheet counts your three things and shows you here how they're going. No scores, never ranked.</div>
         <div style={{ display: 'flex', gap: 10 }}>
-          <button onClick={() => showToast('Opening Record screen.')} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Record a game</button>
-          <button onClick={() => showToast('Opening style picker.')} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Pick our three things</button>
+          <button onClick={() => goApp('record', 'Opening Record screen.')} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Record a game</button>
+          <button onClick={() => goApp('setstyle', 'Opening style picker.')} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Pick our three things</button>
         </div>
       </div>
 

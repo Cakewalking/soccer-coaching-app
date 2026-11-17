@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { goSetup } from '../sandbox/sandboxNav'
 
 import { PLAYERS, type Player, type Avail } from './squadData'
 import PlayerProfileMiniRoos from './PlayerProfileMiniRoos'
@@ -32,7 +33,7 @@ export default function SquadMiniRoos({ empty, onSeasonNotes }: { empty?: boolea
           <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 16, padding: 24, marginBottom: 16 }}>
             <div style={{ fontSize: 18, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>Players appear here once registered</div>
             <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.6, marginBottom: 16 }}>The director or coordinator registers players to the club. Each player then gets game notifications and their turn in goal and as captain is tracked automatically.</div>
-            <button onClick={() => showToast('Opening the add player form.')} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>+ Add a player</button>
+            <button onClick={() => goSetup('players', 'Opening the add player form.')} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>+ Add a player</button>
           </div>
         </div>
         {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
@@ -47,7 +48,7 @@ export default function SquadMiniRoos({ empty, onSeasonNotes }: { empty?: boolea
         <span style={{ fontSize: 14, color: '#4a5a57' }}>10 players · U9 Tom · 7 coming Saturday, 1 maybe, 1 away, 1 to answer</span>
         <div style={{ flexGrow: 1 }} />
         <button onClick={() => showToast('Reminder sent to the 1 family who hasn\'t replied.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Remind 1 family</button>
-        <button onClick={() => showToast('Opening the add player form.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>+ Add a player</button>
+        <button onClick={() => goSetup('players', 'Opening the add player form.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>+ Add a player</button>
       </div>
     </div>
   )

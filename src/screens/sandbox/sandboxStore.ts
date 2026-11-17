@@ -6,6 +6,7 @@ export interface SbTeam    { id: string; name: string; ageGroup: string; ground?
 export interface SbPlayer  { id: string; teamId: string; name: string; position: string; parent?: string; contact?: string }
 export interface SbFixture { id: string; teamId: string; opponent: string; date: string; home: boolean; time?: string }
 export interface SbStaff   { id: string; name: string; role: string }
+export interface SbNote    { id: string; text: string; about: string; at: number }
 export interface SbSettings { checkins?: boolean; camera?: boolean; sensors?: boolean }
 export type SbAnswer = { a: 'in' | 'maybe' | 'cant'; reason?: string; by: 'parent' | 'coach' }
 export interface SbSession { id: string; teamId: string; date: string; focus: string }
@@ -21,6 +22,7 @@ export interface SandboxStore {
   settings?: SbSettings
   /** One answer per game per player, keyed `${fixtureId}:${playerId}`. */
   availability?: Record<string, SbAnswer>
+  notes?: SbNote[]
 }
 
 // ─── Persistence ──────────────────────────────────────────────────────────────
@@ -158,3 +160,5 @@ export function niceDate(iso: string): string {
   const d = new Date(`${iso}T12:00:00`)
   return Number.isNaN(d.getTime()) ? iso : d.toLocaleDateString('en-AU', { weekday: 'short', day: 'numeric', month: 'short' })
 }
+export function addNote(s: SandboxStore, n: Omit<SbNote, 'id' | 'at'>): SandboxStore { return { ...s, notes: [{ id: newId('note'), at: Date.now(), ...n }, ...(s.notes ?? [])] } }
+export function removeNote(s: SandboxStore, id: string): SandboxStore { return { ...s, notes: (s.notes ?? []).filter(n => n.id !== id) } }

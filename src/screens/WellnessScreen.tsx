@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { goSetup } from './sandbox/sandboxNav'
+import { goSetup, goApp } from './sandbox/sandboxNav'
 
 function Illus() {
   return (
@@ -28,8 +28,7 @@ function Skel({ rows = 7 }: { rows?: number }) {
 }
 
 function WellnessEmpty() {
-  const [toast, setToast] = useState<string|null>(null)
-  function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
+  const [toast] = useState<string|null>(null)
   return (
     <main style={{ flexGrow: 1, padding: '14px 28px 18px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 340px', gap: 16, boxSizing: 'border-box', minHeight: 0, overflow: 'hidden' }}>
       <div style={{ minHeight: 0, display: 'flex', flexDirection: 'column', gap: 16, overflowY: 'auto' }}>
@@ -47,7 +46,7 @@ function WellnessEmpty() {
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden="true"><path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8zM6 1v3M10 1v3M14 1v3"/></svg>
                 Turn on check-ins
               </button>
-              <button onClick={() => st('Opening example check-in.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>See an example</button>
+              <button onClick={() => goApp('example:WL1-Wellness', 'Opening example check-in.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>See an example</button>
             </div>
           </div>
         </div>
