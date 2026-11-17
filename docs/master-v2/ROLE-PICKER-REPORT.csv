@@ -15,7 +15,7 @@ STA3-PickRole#13,STA3-PickRole,Team manager · as Rob Owusu,Opens,DEMO-TourManag
 STA3-PickRole#14,STA3-PickRole,Parent · as Linh Tran,Opens,DEMO-TourParent,works
 STA3-PickRole#15,STA3-PickRole,Player under 15 · as Mia Tran,Opens,DEMO-TourPlayerYoung,works
 STA3-PickRole#16,STA3-PickRole,Player 15 and over · as Cal West,Opens,DEMO-TourPlayerOlder,works
-STA3-PickRole#17,STA3-PickRole,"Scan, or open the phone start",Opens,STA3p-PickRolePhone,works as a link: opens the phone start. No QR code is drawn (needs a QR library); the address is shown as text instead
+STA3-PickRole#17,STA3-PickRole,"Scan, or open the phone start",Opens,STA3p-PickRolePhone,works: a real QR code for /start, and the link opens the phone start
 STA3-PickRole#18,STA3-PickRole,Director of football · as Rachel M,Opens,DEMO-TourDirector,works
 STA3-PickRole#19,STA3-PickRole,Chair · as Greg Lawson,Opens,DEMO-TourChair,works
 STA3-PickRole#20,STA3-PickRole,Club coordinator · as Bianca Rossi,Opens,DEMO-TourCoordinator,works
@@ -42,7 +42,7 @@ STA3l-PickRoleLook#13,STA3l-PickRoleLook,Team manager · as Rob Owusu,Opens,STO1
 STA3l-PickRoleLook#14,STA3l-PickRoleLook,Parent · as Linh Tran,Opens,STO17-HomeStoryParent,works
 STA3l-PickRoleLook#15,STA3l-PickRoleLook,Player under 15 · as Mia Tran,Opens,STO18-HomeStoryPlayerYoung,works
 STA3l-PickRoleLook#16,STA3l-PickRoleLook,Player 15 and over · as Cal West,Opens,STO19-HomeStoryPlayerOlder,works
-STA3l-PickRoleLook#17,STA3l-PickRoleLook,"Scan, or open the phone start",Opens,STA3p-PickRolePhone,works as a link: opens the phone start. No QR code is drawn (needs a QR library); the address is shown as text instead
+STA3l-PickRoleLook#17,STA3l-PickRoleLook,"Scan, or open the phone start",Opens,STA3p-PickRolePhone,works: a real QR code for /start, and the link opens the phone start
 STA3l-PickRoleLook#18,STA3l-PickRoleLook,Director of football · as Rachel M,Opens,STO10-HomeStoryDirector,works
 STA3l-PickRoleLook#19,STA3l-PickRoleLook,Chair · as Greg Lawson,Opens,STO11-HomeStoryChair,works
 STA3l-PickRoleLook#20,STA3l-PickRoleLook,Club coordinator · as Bianca Rossi,Opens,STO12-HomeStoryCoordinator,works

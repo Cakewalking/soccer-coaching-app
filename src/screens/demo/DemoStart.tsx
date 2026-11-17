@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
+import qrcode from 'qrcode-generator'
 import { type RoleId } from './tours'
 import DemoPhone from './DemoPhone'
 import { COLUMNS, MORE_TOURS, ROLE_COUNT, RoleColumn, DeviceIcon, useColumns, INK, MUT, G, GD, BORDER, PALE, BG } from './rolePicker'
@@ -19,6 +20,21 @@ type Mode = 'tour' | 'look'
 const KEY = 'cs_pick_mode'
 // Remembered for the visit only: a new visit starts on Guided tour again.
 const readMode = (): Mode => { try { return sessionStorage.getItem(KEY) === 'look' ? 'look' : 'tour' } catch { return 'tour' } }
+
+// A real, scannable code for this site's own start address. Drawn as one SVG path.
+function QrCode({ text }: { text: string }) {
+  const d = useMemo(() => {
+    const qr = qrcode(0, 'M'); qr.addData(text); qr.make()
+    const n = qr.getModuleCount(); let path = ''
+    for (let r = 0; r < n; r++) for (let c = 0; c < n; c++) if (qr.isDark(r, c)) path += `M${c} ${r}h1v1h-1z`
+    return { n, path }
+  }, [text])
+  return (
+    <span style={{ flex: 'none', width: 76, height: 76, padding: 6, background: '#fff', border: `1px solid ${BORDER}`, borderRadius: 10, boxSizing: 'border-box', display: 'block' }}>
+      <svg viewBox={`0 0 ${d.n} ${d.n}`} width="100%" height="100%" shapeRendering="crispEdges" role="img" aria-label="QR code that opens the phone start"><path d={d.path} fill={INK} /></svg>
+    </span>
+  )
+}
 
 const note: React.CSSProperties = { background: PALE, borderRadius: 16, padding: '14px 14px', marginTop: 10, fontSize: 13, color: INK, lineHeight: 1.45 }
 const link: React.CSSProperties = { display: 'inline-flex', alignItems: 'center', minHeight: 44, padding: 0, border: 0, background: 'none', color: G, fontFamily: 'inherit', fontSize: 13, fontWeight: 700, textDecoration: 'underline', cursor: 'pointer', textAlign: 'left' }
@@ -41,10 +57,12 @@ export default function DemoStart({ onTour, onLook, onStory, onWhy, onSandbox, i
 
   const extra: Record<string, React.ReactNode> = {
     families: (
-      <div style={note}>
-        <div style={{ fontSize: 15, fontWeight: 700 }}>Try these on your phone</div>
-        <div style={{ color: MUT }}>Open this address on a phone and it starts on the phone roles: <strong style={{ color: INK, wordBreak: 'break-all' }}>{window.location.host}/start</strong></div>
-        <button style={link} onClick={() => setPhoneStart(true)}>Open the phone start here</button>
+      <div style={{ ...note, display: 'flex', gap: 12, alignItems: 'center' }}>
+        <QrCode text={`${window.location.origin}/start`} />
+        <div style={{ minWidth: 0 }}>
+          <div style={{ fontSize: 15, fontWeight: 700, lineHeight: 1.3 }}>Try these on your phone</div>
+          <button style={link} onClick={() => setPhoneStart(true)}>Scan, or open the phone start</button>
+        </div>
       </div>
     ),
     'running-the-club': (
