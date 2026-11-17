@@ -17,7 +17,7 @@ export const STO16: PhoneCfg = {
 export const STO17: PhoneCfg = {
   id: 'STO17-HomeStoryParent', roleLine: 'Wattle Creek FC · parent', greeting: 'Mia and Bao', avatar: 'LT',
   kids: [{ ini: 'M', label: 'Mia · U12 Sam' }, { ini: 'B', label: 'Bao · U8 Hannah' }],
-  tabs: [{ label: 'Home', target: 'PA-ParentHome' }, { label: 'Clips', target: 'PA-Clip' }, { label: 'Messages', target: 'PM1-ParentChats' }, { label: 'Me', target: 'PS1-ParentSettings' }],
+  tabs: [{ label: 'Home', target: 'PA-ParentHome' }, { label: 'Clips', target: 'PA-Clip' }, { label: 'Learn', target: 'LEARN-Parent' }, { label: 'Messages', target: 'PM1-ParentChats' }, { label: 'Me', target: 'PS1-ParentSettings' }],
   blocks: [
     { kind: 'proof', label: 'MIA · U12 SAM · SATURDAY', headline: 'Mia won the ball back four times on Saturday. Sam sent you the clip.', second: 'Her goal this term is pressing as a pair. A month ago she did it once a game.', clip: { duration: '0:12', note: 'Only you, Mia and her coaches can see this.' }, btn: 'Watch Mia’s 12 seconds', btnTarget: 'PA-Clip' },
     { kind: 'list', label: 'THE TEAM, NOT ONE CHILD', title: 'How the team played', text: 'Saturday’s chances for Mia’s team, in plain words.', action: 'See how they played', actionTarget: 'XGp1-ChancesParentMia', familiesBand: 'juniors' },
@@ -65,7 +65,7 @@ export const STO20: PhoneCfg = {
 
 export const STO21: PhoneCfg = {
   id: 'STO21-HomeStoryAcademyParent', roleLine: 'Tall Timber · Advanced', greeting: 'Kai’s week', avatar: 'TO',
-  tabs: [{ label: 'Home', target: 'ACP3-AcademyParentHome' }, { label: 'Progress', target: 'ACP5-ProgressReport' }, { label: 'Book', target: 'ACP8-BookClinic' }, { label: 'Fees', target: 'ACP4-ParentFees' }],
+  tabs: [{ label: 'Home', target: 'ACP3-AcademyParentHome' }, { label: 'Progress', target: 'ACP5-ProgressReport' }, { label: 'Learn', target: 'LEARN-AcademyParent' }, { label: 'Book', target: 'ACP8-BookClinic' }, { label: 'Fees', target: 'ACP4-ParentFees' }],
   blocks: [
     { kind: 'proof', label: 'KAI · ADVANCED · WEEK 7 OF 10', headline: 'Kai’s weak-foot pass has moved from Getting There to Strong.', second: 'Reece filmed the same drill in week 3 and week 7. Here are both.', clip: { duration: '0:15', note: 'Before and after. Only you, Kai and his coaches can see this.' }, btn: 'Watch 15 seconds', btnTarget: 'ACP5-ProgressReport' },
     { kind: 'list', label: 'THIS WEEK', title: 'Thursday and Saturday', text: 'Thu 5:30 pm at Messmate Primary. Sat 10:00 am game with U13 Timber.', action: 'Kai can’t make one', actionTarget: 'ACP6-MakeUp' },

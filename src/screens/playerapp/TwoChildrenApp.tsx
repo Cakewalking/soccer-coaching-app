@@ -1,9 +1,10 @@
 import { useState } from 'react'
+import EDUp1PlayerLearn from '../step4/EDUp1PlayerLearn'
 import { setAnswer, niceDate } from '../sandbox/sandboxStore'
 import { useSandbox } from '../sandbox/SandboxContext'
 
 type ChildTab = 'both' | 'mia' | 'bao'
-type AppView = 'home' | 'seasonsummary' | 'settings' | 'notifications' | 'data' | 'availability' | 'clips'
+type AppView = 'home' | 'seasonsummary' | 'settings' | 'notifications' | 'data' | 'availability' | 'clips' | 'learn'
 
 interface ChildCard {
   ini: string
@@ -545,6 +546,7 @@ export default function TwoChildrenApp({ empty = false, initialView }: { onBack?
       {view === 'data'          && <DataView onBack={() => setView('settings')} />}
       {view === 'availability'  && <AvailabilityAnswerView onBack={() => setView('home')} />}
       {view === 'clips'         && <ClipsView onBack={() => setView('home')} />}
+      {view === 'learn'         && <div style={{ flexGrow: 1 }}><button onClick={() => setView('home')} style={{ margin: '10px 16px 0', minHeight: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, color: '#10211f', cursor: 'pointer' }}>Back to Home</button><EDUp1PlayerLearn embedded bare audience="parent" /></div>}
 
       {/* Bottom nav (home only) */}
       {view === 'home' && (
@@ -552,6 +554,7 @@ export default function TwoChildrenApp({ empty = false, initialView }: { onBack?
           {[
             { label: 'Home', icon: 'M4 11l8-7 8 7v9H4z', active: true, onClick: undefined as (() => void) | undefined },
             { label: 'Clips', icon: 'M12 21a9 9 0 100-18 9 9 0 000 18zM10 8l6 4-6 4z', active: false, onClick: () => setView('clips') },
+            { label: 'Learn', icon: 'M4 5h6a3 3 0 013 3v11a3 3 0 00-3-3H4zM20 5h-4a3 3 0 00-3 3v11a3 3 0 013-3h4z', active: false, onClick: () => setView('learn') },
             { label: 'Settings', icon: 'M12 12a4 4 0 100-8 4 4 0 000 8zM5 21a7 7 0 0114 0', active: false, onClick: () => setView('settings') },
           ].map(tab => (
             <button key={tab.label} onClick={tab.onClick} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', padding: '4px 20px' }}>

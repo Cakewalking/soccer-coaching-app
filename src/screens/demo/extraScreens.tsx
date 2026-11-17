@@ -102,6 +102,10 @@ export function renderExtraScreen(key: string): ReactNode | undefined {
     // The player's Learn tab, opened from the phone home (which keeps its own tab bar)
     case 'LEARN-PlayerYoung':    return phone(<EDUp1PlayerLearn embedded />)
     case 'LEARN-PlayerOlder':    return phone(<EDUp1PlayerLearn embedded older />)
+    // Learn is on every parent account and every player account from 15 up
+    case 'LEARN-Parent':         return phone(<EDUp1PlayerLearn embedded audience="parent" />)
+    case 'LEARN-AcademyParent':  return phone(<EDUp1PlayerLearn embedded audience="academyparent" />)
+    case 'LEARN-PlayerAdult':    return phone(<EDUp1PlayerLearn embedded audience="adult" />)
     case 'EDU5-CoachCorner':     return <div style={{ width: 1180, margin: '0 auto', background: 'var(--surface-100)' }}><MiniRoosApp onBack={noop} initialScreen="learncoaches" /></div>
     case 'X2-SquadEmpty':        return page(<SquadScreen role="head" onPlayerProfile={noop} empty />)
     case 'ST1e-TeamStaffEmpty':  return page(<TeamStaffScreen empty />)

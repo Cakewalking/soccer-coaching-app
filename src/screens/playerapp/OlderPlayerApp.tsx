@@ -1,6 +1,7 @@
 import { useState } from 'react'
+import EDUp1PlayerLearn from '../step4/EDUp1PlayerLearn'
 
-type View = 'home' | 'messages' | 'body' | 'adult'
+type View = 'home' | 'messages' | 'body' | 'adult' | 'learn' | 'adultlearn'
 type Avail = 'in' | 'out' | null
 
 const THIS_WEEK = [
@@ -41,6 +42,7 @@ const SEASON_STATS = [
 function BottomNav({ view, setView }: { view: View; setView: (v: View) => void }) {
   const tabs: Array<{ id: View; label: string; icon: string }> = [
     { id: 'home',     label: 'Home',     icon: 'M4 11l8-7 8 7v9H4z' },
+    { id: 'learn',    label: 'Learn',    icon: 'M4 5h6a3 3 0 013 3v11a3 3 0 00-3-3H4zM20 5h-4a3 3 0 00-3 3v11a3 3 0 013-3h4z' },
     { id: 'body',     label: 'Body',     icon: 'M12 2a5 5 0 100 10 5 5 0 000-10zM4 20a8 8 0 0116 0' },
     { id: 'messages', label: 'Messages', icon: 'M4 5h16v11H8l-4 4z' },
   ]
@@ -434,11 +436,13 @@ export default function OlderPlayerApp({ empty = false, initialView, initialChat
             <button onClick={() => st('Opening sport picker.')} style={{ height: 44, borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Add other sport</button>
           </div>
         ) : <BodyView />)}
-        {view === 'adult'    && <AdultView />}
+        {view === 'adult'    && <><AdultView /><div style={{ padding: '0 16px 16px' }}><button onClick={() => setView('adultlearn')} style={{ width: '100%', minHeight: 48, borderRadius: 12, border: '1px solid #c5c8c4', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Learn: this week’s lessons</button></div></>}
+        {view === 'learn'      && (empty ? <div style={{ padding: 24, fontSize: 14, color: '#4a5a57' }}>Lessons from your coach will show here once your team has filmed a game.</div> : <EDUp1PlayerLearn embedded bare audience="older" />)}
+        {view === 'adultlearn' && <><div style={{ padding: '10px 16px 0' }}><button onClick={() => setView('adult')} style={{ minHeight: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, color: '#10211f', cursor: 'pointer' }}>Back</button></div><EDUp1PlayerLearn embedded bare audience="adult" /></>}
       </div>
 
       {/* Bottom nav (hide for adult view which has its own feel) */}
-      {view !== 'adult' && <BottomNav view={view} setView={setView} />}
+      {view !== 'adult' && view !== 'adultlearn' && <BottomNav view={view} setView={setView} />}
       {toast && <div role="status" style={{ position:'fixed', bottom:70, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'10px 18px', borderRadius:10, background:'#1f4a3e', color:'#fff', fontSize:14, fontWeight:600, whiteSpace:'nowrap' }}>{toast}</div>}
     </div>
   )

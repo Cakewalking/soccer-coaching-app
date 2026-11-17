@@ -358,7 +358,7 @@ export function HomeStoryPhone({ cfg, onNav, renderTarget }: { cfg: PhoneCfg; on
   if (open && renderTarget) return (
     <div style={{ width: 390, minHeight: 844, margin: '0 auto', background: '#f4f5f3', display: 'flex', flexDirection: 'column' }}>
       <div style={{ padding: '10px 16px', borderBottom: `1px solid ${HAIR}`, background: '#fff', flexShrink: 0 }}>
-        <button onClick={() => setOpen(null)} style={{ height: 36, padding: '0 14px', borderRadius: 8, border: `1px solid ${BORDER}`, background: '#fff', fontSize: 13, fontWeight: 600, color: INK, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 6 }}>
+        <button onClick={() => setOpen(null)} style={{ height: 44, padding: '0 14px', borderRadius: 8, border: `1px solid ${BORDER}`, background: '#fff', fontSize: 13, fontWeight: 600, color: INK, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 6 }}>
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7" /></svg>
           Back to Home
         </button>

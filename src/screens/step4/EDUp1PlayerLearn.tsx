@@ -4,9 +4,48 @@ import { DARK, AMBER, PALEON } from './directorParts'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb'
 
-export default function EDUp1PlayerLearn({ onNav: _onNav, embedded = false, older = false }: { onNav?: (s: string) => void; embedded?: boolean; older?: boolean }) {
-  // The same tab for both player ages. A player 15 and over sees their own team and coach.
-  const who = older ? { team: 'U16 Ollie', ini: 'CW', coach: 'Ollie' } : { team: 'U12 Sam', ini: 'MT', coach: 'Sam' }
+// Who is watching. Players see their own lessons. A parent sees each child's
+// lessons, so they can watch together and help at home. Players under 15 have no
+// account of their own, so the parent's phone is where those lessons live.
+export type LearnAudience = 'young' | 'older' | 'adult' | 'parent' | 'academyparent'
+type Lesson = { id: string; al: string; title: string; credit: string; dur: string }
+const lesson = (id: string, title: string, credit: string, dur: string): Lesson => ({ id, al: `${title} ${credit} · ${dur}`, title, credit, dur })
+const CLUB_LESSONS = [
+  lesson('l1', 'Weak-foot finish across the keeper', 'Leo, U13', '7 seconds'),
+  lesson('l2', 'Passing with the other foot', 'Ava, U13 Girls', '9 seconds'),
+  lesson('l3', 'Stepping up together', 'U14 back four', '14 seconds'),
+  lesson('l4', 'Closing the space behind the press', 'Grace, your team', '11 seconds'),
+]
+const MINIROOS_LESSONS = [
+  lesson('l1', 'Eyes up while you dribble', 'A U9 Tom player', '9 seconds'),
+  lesson('l2', 'Stop it with the sole', 'A U9 Mark player', '8 seconds'),
+  lesson('l3', 'Turn away from a defender', 'A U11 Luke player', '11 seconds'),
+  lesson('l4', 'Pass to a friend, then move', 'A U8 Hannah player', '7 seconds'),
+]
+const ACADEMY_LESSONS = [
+  lesson('l1', 'Receiving on the half-turn', 'An Advanced player', '8 seconds'),
+  lesson('l2', 'Weak-foot pass against a wall', 'A Development player', '9 seconds'),
+  lesson('l3', 'Looking before the ball arrives', 'An Advanced player', '10 seconds'),
+  lesson('l4', 'First touch away from pressure', 'A Development player', '7 seconds'),
+]
+type Learner = { name?: string; team: string; coach: string; lessons: Lesson[]; used?: string; practice: string }
+const LEARNERS: Record<LearnAudience, { head: string; ini: string; kids: Learner[] }> = {
+  young: { head: 'U12 Sam', ini: 'MT', kids: [{ team: 'U12 Sam', coach: 'Sam', lessons: CLUB_LESSONS, used: 'Ironbark', practice: '20 passes against a wall with your left foot. From "Passing with the other foot". Counts towards your goal.' }] },
+  older: { head: 'U16 Ollie', ini: 'CW', kids: [{ team: 'U16 Ollie', coach: 'Ollie', lessons: CLUB_LESSONS, used: 'Tealside Town', practice: '20 passes against a wall with your left foot. From "Passing with the other foot". Counts towards your goal.' }] },
+  adult: { head: 'Men’s 1sts', ini: 'JW', kids: [{ team: 'Men’s 1sts', coach: 'Marko', lessons: CLUB_LESSONS, used: 'Glenview Park', practice: '20 passes against a wall with your weaker foot. From "Passing with the other foot". Counts towards your goal.' }] },
+  parent: { head: 'Wattle Creek FC · parent', ini: 'LT', kids: [
+    { name: 'Mia', team: 'U12 Sam', coach: 'Sam', lessons: CLUB_LESSONS, used: 'Ironbark', practice: '20 passes against a wall with her left foot. From "Passing with the other foot". Counts towards Mia’s goal.' },
+    { name: 'Bao', team: 'U8 Hannah', coach: 'Hannah', lessons: MINIROOS_LESSONS, practice: 'One game to play at home: stop the ball with the sole ten times, then swap feet.' },
+  ] },
+  academyparent: { head: 'Tall Timber Academy · parent', ini: 'PB', kids: [{ name: 'Kai', team: 'Advanced · 12 to 14', coach: 'Reece', lessons: ACADEMY_LESSONS, practice: '20 passes against a wall with his weaker foot. From "Weak-foot pass against a wall". Counts towards Kai’s goal.' }] },
+}
+
+export default function EDUp1PlayerLearn({ onNav: _onNav, embedded = false, older = false, audience, bare = false }: { onNav?: (s: string) => void; embedded?: boolean; older?: boolean; audience?: LearnAudience; /** no green header: the app it sits in already has one */ bare?: boolean }) {
+  const aud: LearnAudience = audience ?? (older ? 'older' : 'young')
+  const cfg = LEARNERS[aud]
+  const [kid, setKid] = useState(0)
+  const me = cfg.kids[kid], forChild = !!me.name
+  const who = { team: cfg.head, ini: cfg.ini, coach: me.coach }
   const [lastTool, setLastTool] = useState('')
   const [played, setPlayed] = useState<string | null>(null)
   const [didIt, setDidIt] = useState(false)
@@ -14,12 +53,7 @@ export default function EDUp1PlayerLearn({ onNav: _onNav, embedded = false, olde
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 2500) }
   function tool(name: string) { const to = toolTarget(name); if (to && _onNav) { _onNav(to); return } setLastTool(name) }
 
-  const lessons = [
-    { id: 'l1', al: 'Weak-foot finish across the keeper Leo, U13 · 7 seconds', title: 'Weak-foot finish across the keeper', credit: 'Leo, U13', dur: '7 seconds' },
-    { id: 'l2', al: 'Passing with the other foot Ava, U13 Girls · 9 seconds', title: 'Passing with the other foot', credit: 'Ava, U13 Girls', dur: '9 seconds' },
-    { id: 'l3', al: 'Stepping up together U14 back four · 14 seconds', title: 'Stepping up together', credit: 'U14 back four', dur: '14 seconds' },
-    { id: 'l4', al: 'Closing the space behind the press Grace, your team · 11 seconds', title: 'Closing the space behind the press', credit: 'Grace, your team', dur: '11 seconds' },
-  ]
+  const lessons = me.lessons
 
   const navItems = [
     { label: 'Home', icon: 'home' },
@@ -41,22 +75,28 @@ export default function EDUp1PlayerLearn({ onNav: _onNav, embedded = false, olde
   return (
     <div data-lasttool={lastTool} style={{ width: 390, background: '#f7f8f7', fontFamily: 'var(--font-sans)', minHeight: 844, display: 'flex', flexDirection: 'column', borderRadius: 24, overflow: 'hidden' }}>
       {/* Header */}
-      <div style={{ background: G, padding: '12px 16px 14px', display: 'flex', alignItems: 'center', gap: 10 }}>
+      {!bare && <div style={{ background: G, padding: '12px 16px 14px', display: 'flex', alignItems: 'center', gap: 10 }}>
         <div style={{ flex: 1 }}>
           <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.82)' }}>{who.team}</div>
           <div style={{ fontSize: 21, fontWeight: 700, color: '#fff', letterSpacing: '-0.01em' }}>Learn</div>
         </div>
         <div style={{ width: 38, height: 38, borderRadius: '50%', background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, color: INK }}>{who.ini}</div>
-      </div>
+      </div>}
 
       {/* Content */}
       <div style={{ flex: 1, padding: '0 0 80px', overflowY: 'auto' }}>
         <div style={{ padding: '20px 20px 0' }}>
+          {/* A parent with more than one child picks whose lessons to see */}
+          {cfg.kids.length > 1 && (
+            <div role="group" aria-label="Whose lessons" style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
+              {cfg.kids.map((k, n) => <button key={k.name} aria-pressed={n === kid} onClick={() => { setKid(n); setPlayed(null); setDidIt(false) }} style={{ flex: 1, minHeight: 44, borderRadius: 999, border: `1.5px solid ${n === kid ? G : LN}`, background: n === kid ? G : '#fff', color: n === kid ? '#fff' : INK, fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>{k.name} · {k.team}</button>)}
+            </div>
+          )}
           <div style={{ background: DARK, borderRadius: 14, padding: '18px 18px', marginBottom: 20, color: '#fff' }}>
-            <div style={{ fontSize: 12, fontWeight: 700, color: AMBER, letterSpacing: '0.06em', textTransform: 'uppercase' as const, marginBottom: 8 }}>This week from {who.coach}</div>
-            <div style={{ fontSize: 15, color: '#fff', lineHeight: 1.5, marginBottom: 8 }}>Short videos of your teammates. Watch them and try it at training.</div>
+            <div style={{ fontSize: 12, fontWeight: 700, color: AMBER, letterSpacing: '0.06em', textTransform: 'uppercase' as const, marginBottom: 8 }}>This week from {who.coach}{forChild ? `, for ${me.name}` : ''}</div>
+            <div style={{ fontSize: 15, color: '#fff', lineHeight: 1.5, marginBottom: 8 }}>{forChild ? `Short videos picked for ${me.name}. Watch them together and try it at home.` : 'Short videos of your teammates. Watch them and try it at training.'}</div>
             <div style={{ fontSize: 12, color: PALEON, marginBottom: 4 }}>No likes, no comments, no counts of who watched most.</div>
-            <div style={{ fontSize: 12, color: PALEON }}>{who.coach} used your pass against {older ? 'Tealside Town' : 'Ironbark'} to show "playing forward first time". It is in the club library.</div>
+            {me.used && <div style={{ fontSize: 12, color: PALEON }}>{who.coach} used {forChild ? `${me.name}’s` : 'your'} pass against {me.used} to show "playing forward first time". It is in the club library.</div>}
           </div>
 
           {lessons.map(l => {
@@ -76,8 +116,8 @@ export default function EDUp1PlayerLearn({ onNav: _onNav, embedded = false, olde
                   <div style={{ fontSize: 12, color: MUT, marginBottom: l.id === 'l2' ? 10 : 0 }}>{l.credit} · {l.dur}</div>
                   {l.id === 'l2' && !didIt && (
                     <>
-                      <div style={{ fontSize: 12, color: MUT, marginBottom: 8 }}>20 passes against a wall with your left foot. From "Passing with the other foot". Counts towards your goal.</div>
-                      <button onClick={() => { setDidIt(true); tool('I did it'); st(`Nice one. ${who.coach} can see you practised. 2 of 3 this week.`) }} style={{ height: 44, width: '100%', borderRadius: 10, background: AMBER, color: INK, border: 'none', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', position: 'relative', zIndex: 2 }}>I did it</button>
+                      <div style={{ fontSize: 12, color: MUT, marginBottom: 8 }}>{me.practice}</div>
+                      <button onClick={() => { setDidIt(true); tool('I did it'); st(`Nice one. ${who.coach} can see ${forChild ? me.name : 'you'} practised. 2 of 3 this week.`) }} style={{ height: 44, width: '100%', borderRadius: 10, background: AMBER, color: INK, border: 'none', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', position: 'relative', zIndex: 2 }}>{forChild ? `${me.name} did it` : 'I did it'}</button>
                     </>
                   )}
                   {isPlayed && l.id !== 'l2' && (
@@ -95,7 +135,7 @@ export default function EDUp1PlayerLearn({ onNav: _onNav, embedded = false, olde
         {navItems.map(n => (
           <button
             key={n.label}
-            onClick={() => { const to = ({ Home: older ? 'STO19-HomeStoryPlayerOlder' : 'STO18-HomeStoryPlayerYoung', Clips: 'PA-Clip', Goals: 'PA-Goals', Me: 'PS4-PlayerMe' } as Record<string, string>)[n.label]; if (to && _onNav) _onNav(to); else tool(n.label) }}
+            onClick={() => { const to = ({ Home: aud === 'older' ? 'STO19-HomeStoryPlayerOlder' : 'STO18-HomeStoryPlayerYoung', Clips: 'PA-Clip', Goals: 'PA-Goals', Me: 'PS4-PlayerMe' } as Record<string, string>)[n.label]; if (to && _onNav) _onNav(to); else tool(n.label) }}
             style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', minWidth: 44, minHeight: 44, justifyContent: 'center' }}
           >
             <NavIcon icon={n.icon} active={n.active} />

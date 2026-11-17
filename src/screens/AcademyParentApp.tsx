@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import EDUp1PlayerLearn from './step4/EDUp1PlayerLearn'
 import { demoToast } from './demoToast'
 
 const G    = '#2f6252'
@@ -10,7 +11,7 @@ const LN   = '#e8edeb'
 const PALE = '#eef5f2'
 const ROSE = '#c39797'
 
-type Nav    = 'home' | 'progress' | 'book' | 'fees'
+type Nav    = 'home' | 'progress' | 'learn' | 'book' | 'fees'
 type Modal  = 'none' | 'trial' | 'trialBooked' | 'offer' | 'cantcome' | 'share' | 'concern' | 'chat' | 'bookClinic' | 'joinTeam'
 
 // ─── Shared phone components ──────────────────────────────────────────────────
@@ -19,6 +20,7 @@ function PhoneNav({ active, onChange }: { active: Nav; onChange: (n: Nav) => voi
   const tabs: Array<{ id: Nav; label: string; icon: string }> = [
     { id: 'home',     label: 'Home',     icon: 'M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z' },
     { id: 'progress', label: 'Progress', icon: 'M18 20V10M12 20V4M6 20v-6' },
+    { id: 'learn',    label: 'Learn',    icon: 'M4 5h6a3 3 0 013 3v11a3 3 0 00-3-3H4zM20 5h-4a3 3 0 00-3 3v11a3 3 0 013-3h4z' },
     { id: 'book',     label: 'Book',     icon: 'M8 7V3m8 4V3M3 11h18M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z' },
     { id: 'fees',     label: 'Fees',     icon: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z' },
   ]
@@ -676,6 +678,7 @@ export default function AcademyParentApp({ onBack, empty = false, initialModal =
       <div style={{ flex: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
         {nav === 'home'     && <ParentHome empty={empty} onCantCome={() => setModal('cantcome')} onShare={() => setModal('share')} onConcern={() => setModal('concern')} onChat={() => setModal('chat')}/>}
         {nav === 'progress' && <ProgressView empty={empty}/>}
+        {nav === 'learn'    && (empty ? <div style={{ padding: 24, fontSize: 14, color: '#4a5a57' }}>Lessons from the coach will show here after Kai’s first session.</div> : <EDUp1PlayerLearn embedded bare audience="academyparent" />)}
         {nav === 'book'     && <BookTab onClinic={() => setModal('bookClinic')} onTeam={() => setModal('joinTeam')}/>}
         {nav === 'fees'     && <FeesView empty={empty}/>}
       </div>
