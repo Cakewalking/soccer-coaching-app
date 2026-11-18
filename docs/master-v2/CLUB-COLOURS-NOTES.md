@@ -1,6 +1,14 @@
-# Club colours: report back (18 Nov)
+# Club colours v2: report back (18 Nov, evening)
 
-Build: the commit that adds this file. All 160 controls in `CLUB-COLOURS-REPORT.csv` were pressed on a local production build: 156 work as written, 4 (Ask Clean Sheet on the director's screens) open the Ask panel in place.
+Build: the commit that adds this version of the file. All 229 controls in `CLUB-COLOURS-REPORT.csv` were pressed on a local production build: 218 work as written; 5 (Ask Clean Sheet on the director's screens) open the Ask panel in place; 4 on the two Home boards open Your take, which replaced those screens earlier; 2 (the team switcher on the Home boards) are present under a longer label and were not pressed.
+
+## What v2 changed
+
+- The big dark tiles take the club's colours. `club-tile-big`: the darker club colour when white reads on it at 9 to 1 or better, otherwise charcoal. `club-tile-next`: the main colour, unless it is close to amber.
+- Big tiles setting on the Club colours screen: "In your colours" (default) or "Charcoal".
+- The sample club, Redgum United, is red and black.
+- On those tiles, muted writing and film thumbnails go neutral, and a pale next tile gets dark writing.
+- Tiles are found the same way as the older bars: while colours are on, the darkest green block is a story or lead tile, and a large green block that is not a bar or a control is a next tile. With red and black set, 152 of the 766 master screens have a recoloured tile and no large green surface is left outside pitches.
 
 ## How it is built
 
@@ -15,7 +23,7 @@ Build: the commit that adds this file. All 160 controls in `CLUB-COLOURS-REPORT.
 - The live season report (Coach › Squad › Season reports): band, crest and "Made with Clean Sheet". Every PDF the app saves: the band, a line in the second colour and the footer.
 - The share page a trial pack opens (`/share/...`).
 - The academy is its own club: Owner › Home › Academy colours sets it for the academy's coach, parent and player.
-- The boards: KC2, KC5 to KC8, KCp1 to KCp3.
+- The boards: KC1c, KC2, KC5 to KC10, KCp1 to KCp3.
 
 ## Left alone on purpose
 
@@ -35,4 +43,5 @@ None. A pale main colour gets dark writing, and two colours closer than 1.5 to 1
 ## Decisions for Booker
 
 - The handover says the demo club stays green. The demo starts green, but a director in the demo can pick and save colours for this browser, so the feature can be shown. Say if the demo should be locked to green.
+- The check notes ("Easy to read", "The line under the bar and the active tab stand out", "Nothing can be mistaken for proof") show in every state; boards KC3 and KC4 draw some rows without them.
 - Wording not in the pack: the check shown when two colours are very close, the crest line once a crest is added, and "Academy colours" with "Save for the whole academy".

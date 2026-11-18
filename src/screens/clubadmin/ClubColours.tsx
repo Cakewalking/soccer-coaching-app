@@ -3,7 +3,7 @@
 
 import { useRef, useState } from 'react'
 import { demoToast } from '../demoToast'
-import { AMBER, CS_GREEN, ClubScope, Crest, INK, derive, isHex, nearAmber, saveClub, useSaved } from '../../clubTheme'
+import { AMBER, CHARCOAL, CHARCOAL_NEXT, CS_GREEN, ClubScope, Crest, INK, contrast, derive, isHex, nearAmber, saveClub, useSaved, type Tiles } from '../../clubTheme'
 
 const G = '#2f6252', MUT = '#4a5a57', LINE = '#c5c8c4', HAIR = '#e9eae8', PALE = '#eef5f2', DARK = '#1c3a33'
 
@@ -36,23 +36,25 @@ const Tick = () => <span style={{ flex: 'none', width: 24, height: 24, borderRad
 const Check = ({ a, b }: { a: string; b?: string }) => <div style={{ display: 'flex', gap: 10, padding: '9px 0', borderTop: `1px solid ${LINE}`, alignItems: 'flex-start' }}><Tick /><span><strong style={{ display: 'block', fontSize: 15, lineHeight: '20px' }}>{a}</strong>{b && <span style={{ display: 'block', fontSize: 13, lineHeight: '18px', color: MUT }}>{b}</span>}</span></div>
 
 /** `storeKey` is the club being set. `start` is the state a board is drawn in. */
-export default function ClubColours({ storeKey = 'demo', club = 'Wattle Creek FC', start, title = 'Club colours', by = 'the director or the chair', whole = 'club' }: { storeKey?: string; club?: string; start?: { main: string; second: string }; title?: string; by?: string; whole?: string }) {
+export default function ClubColours({ storeKey = 'demo', club = 'Wattle Creek FC', start, title = 'Club colours', by = 'the director or the chair', whole = 'club' }: { storeKey?: string; club?: string; start?: { main: string; second: string; tiles?: Tiles }; title?: string; by?: string; whole?: string }) {
   const saved = useSaved(storeKey)
   const [main, setMain] = useState(saved?.main ?? start?.main ?? CS_GREEN)
   const [second, setSecond] = useState(saved?.second ?? start?.second ?? '#ffffff')
   const [crest, setCrest] = useState<string | undefined>(saved?.crest)
+  const [tiles, setTiles] = useState<Tiles>(saved?.tiles ?? start?.tiles ?? 'colours')
   const file = useRef<HTMLInputElement>(null)
   const untouched = main === CS_GREEN && second === '#ffffff' && !saved?.on && !start   // nothing picked yet
-  const c = derive(main, second, crest, club)
+  const c = derive(main, second, crest, club, tiles), inColours = derive(main, second, crest, club, 'colours')
+  const bothWhite = !c.pale && second.toLowerCase() !== '#ffffff' && contrast('#ffffff', second) >= 4.5
   const mn = nameOf(main), sn = nameOf(second), gold = nearAmber(main) ? mn : nearAmber(second) ? sn : null
 
   return (
     <div data-screen-colours={untouched ? 'not-set' : 'set'} style={{ padding: '14px 24px 28px', display: 'flex', flexDirection: 'column', gap: 12, fontFamily: "'DM Sans',system-ui,sans-serif", color: INK, background: '#f7f8f7' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
         <h1 style={{ margin: 0, fontSize: 26, fontWeight: 700, letterSpacing: '-0.01em' }}>{title}</h1>
-        <span style={{ flexGrow: 1, fontSize: 14, color: MUT }}>{untouched ? `${club} · not set yet · you are on Clean Sheet green` : `${club} · set once by ${by} · everyone at the ${whole} sees it`}</span>
-        <button style={btn()} onClick={() => { saveClub(storeKey, { main, second, crest, on: false }); demoToast('Back to Clean Sheet green. Your colours are kept in case you change your mind.') }}>Back to green</button>
-        <button style={btn(true)} onClick={() => { saveClub(storeKey, { main, second, crest, on: true }); demoToast(`Saved. Everyone at the ${whole} sees the new colours next time they open Clean Sheet.`) }}>Save for the whole {whole}</button>
+        <span style={{ flexGrow: 1, fontSize: 14, color: MUT }}>{untouched ? `${club} · not set yet · you are on Clean Sheet green` : tiles === 'charcoal' ? `${club} · big tiles set to charcoal` : `${club} · set once by ${by} · everyone at the ${whole} sees it`}</span>
+        <button style={btn()} onClick={() => { saveClub(storeKey, { main, second, crest, tiles, on: false }); demoToast('Back to Clean Sheet green. Your colours are kept in case you change your mind.') }}>Back to green</button>
+        <button style={btn(true)} onClick={() => { saveClub(storeKey, { main, second, crest, tiles, on: true }); demoToast(`Saved. Everyone at the ${whole} sees the new colours next time they open Clean Sheet.`) }}>Save for the whole {whole}</button>
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 348px', gap: 14, alignItems: 'start' }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
@@ -65,6 +67,15 @@ export default function ClubColours({ storeKey = 'demo', club = 'Wattle Creek FC
             <h2 style={h2}>Your two colours</h2>
             <Picker label="Main colour" value={main} onPick={setMain} />
             <Picker label="Second colour" value={second} onPick={setSecond} />
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+              <strong style={{ fontSize: 15 }}>Big tiles</strong>
+              <div role="radiogroup" aria-label="Big tiles" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+                {([['colours', 'In your colours', 'Darker colour on the story tile', inColours.tileBig, inColours.tileNext], ['charcoal', 'Charcoal', 'Colours on the bar and crest only', CHARCOAL, CHARCOAL_NEXT]] as [Tiles, string, string, string, string][]).map(([id, t, d, a, b]) => <button key={id} role="radio" aria-checked={tiles === id} onClick={() => { setTiles(id); demoToast(`Big tiles: ${t}. The preview changes straight away.`) }} style={{ minHeight: 56, borderRadius: 10, border: tiles === id ? `2px solid ${INK}` : `1px solid ${LINE}`, background: '#fff', display: 'flex', alignItems: 'center', gap: 10, padding: '8px 12px', textAlign: 'left', fontFamily: 'inherit', color: INK, cursor: 'pointer' }}>
+                  <span style={{ display: 'flex', gap: 3, flex: 'none' }}><span style={{ width: 26, height: 34, borderRadius: 5, background: a, border: '1px solid #8d9794' }} /><span style={{ width: 18, height: 34, borderRadius: 5, background: b, border: '1px solid #8d9794' }} /></span>
+                  <span><strong style={{ display: 'block', fontSize: 14 }}>{t}</strong><span style={{ display: 'block', fontSize: 12, color: MUT }}>{d}</span></span>
+                </button>)}
+              </div>
+            </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 14, borderTop: `1px solid ${HAIR}`, paddingTop: 10 }}>
               <Crest size={34} club={c} />
               <span style={{ flexGrow: 1 }}><strong style={{ display: 'block', fontSize: 15 }}>Club crest</strong><span style={{ display: 'block', fontSize: 13, color: MUT }}>{crest ? 'Your crest is on. It shows beside the club’s name.' : 'No crest yet. We draw a shield in your colours until you add one.'}</span></span>
@@ -76,10 +87,14 @@ export default function ClubColours({ storeKey = 'demo', club = 'Wattle Creek FC
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           <section aria-label="How it will look" style={{ ...tile, padding: '14px 16px', gap: 10 }}>
             <h2 style={h2}>How it will look</h2>
-            <ClubScope main={main} second={second} crest={crest} name={club}>
+            <ClubScope main={main} second={second} crest={crest} name={club} tiles={tiles}>
               <div data-club-bar="" style={{ height: 42, borderRadius: '10px 10px 0 0', display: 'flex', alignItems: 'center', gap: 4, padding: '0 0 0 14px', background: G, color: '#fff', overflow: 'hidden' }}>
                 <strong style={{ fontSize: 15, marginRight: 8 }}>Clean Sheet</strong>
                 {['Home', 'Squad', 'Training'].map((t, i) => <span key={t} data-club-tab={i === 2 ? 'on' : 'off'} style={{ fontSize: 13, fontWeight: 600, padding: '7px 10px' }}>{t}</span>)}
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: '1.8fr 1fr', gap: 8 }}>
+                <div style={{ background: untouched ? DARK : c.tileBig, color: '#fff', borderRadius: 8, padding: '8px 10px', display: 'flex', flexDirection: 'column', gap: 5, alignItems: 'flex-start' }}><strong style={{ fontSize: 10 }}>Seven of your ten took a player on</strong><span style={{ background: AMBER, color: INK, borderRadius: 4, fontSize: 9, fontWeight: 700, padding: '1px 6px' }}>7</span></div>
+                <div style={{ background: untouched ? G : c.tileNext, color: untouched ? '#fff' : c.onNext, borderRadius: 8, padding: '8px 10px' }}><strong style={{ fontSize: 10 }}>Tuesday is ready</strong></div>
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
                 <div style={{ border: `1px solid ${LINE}`, borderRadius: 12, overflow: 'hidden' }}>
@@ -96,8 +111,8 @@ export default function ClubColours({ storeKey = 'demo', club = 'Wattle Creek FC
           <section aria-label="We checked" style={{ ...tile, padding: '14px 16px 6px' }}>
             <h2 style={{ ...h2, paddingBottom: 8 }}>We checked</h2>
             {untouched ? <><Check a="You are on Clean Sheet green" b="Nothing to check" /><Check a={crest ? 'Your crest is on' : 'No crest yet'} b={crest ? undefined : 'A shield stands in'} /></> : <>
-              {c.pale ? <Check a={`${mn} is too light for white writing`} b="We use dark writing on it instead. Nothing for you to do" /> : <Check a={`White writing on your ${lower(mn)}`} b="Easy to read" />}
-              {c.tooClose ? <Check a={`${mn} and ${lower(sn)} are very close`} b={`The trim line and the active tab use ${c.pale ? 'dark' : 'white'} instead, so they still stand out`} /> : <Check a={`${mn} and ${lower(sn)} are far enough apart`} b="The trim line and the active tab stand out" />}
+              {c.pale ? <Check a={`${mn} is too light for white writing`} b="We use dark writing on it instead. Nothing for you to do" /> : <Check a={bothWhite ? `White writing on your ${lower(mn)} and your ${lower(sn)}` : `White writing on your ${lower(mn)}`} b="Easy to read" />}
+              {c.tooClose ? <Check a={`${mn} and ${lower(sn)} are very close`} b={`The line under the bar and the active tab use ${c.pale ? 'dark' : 'white'} instead, so they still stand out`} /> : <Check a={`${mn} and ${lower(sn)} are far enough apart`} b="The line under the bar and the active tab stand out" />}
               {gold ? <Check a={`Your ${lower(gold)} is close to our amber, so we keep them apart`} b={`Amber is how Clean Sheet marks proof. Your ${lower(gold)} stays on the bar, crest and kit, and out of the tiles`} /> : <Check a="Not close to amber" b="Nothing can be mistaken for proof" />}
             </>}
           </section>

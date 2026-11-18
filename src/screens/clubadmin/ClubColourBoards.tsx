@@ -24,13 +24,13 @@ const MiniPitch = ({ w = 132 }: { w?: number }) => <svg width={w} height={w * 0.
 
 // ── KC2: the same screen at five clubs ───────────────────────────────────────
 const FIVE: Array<{ name: string; line: string; main: string; second: string }> = [
-  { ...REDGUM, line: 'Red and white' }, { ...HARBOUR, line: 'Navy and gold' }, { ...IRONBARK, line: 'Black and white' }, { ...BAYSIDE, line: 'Sky blue and navy' },
+  { ...REDGUM, line: 'Red and black' }, { ...HARBOUR, line: 'Navy and gold' }, { ...IRONBARK, line: 'Black and white' }, { ...BAYSIDE, line: 'Sky blue and navy' },
   { name: 'Wattle Creek FC', line: 'Not set: Clean Sheet green', main: CS_GREEN, second: '#ffffff' },
 ]
 export function KC2FiveClubs() {
   return (
     <div data-screen="KC2-FiveClubs" style={{ width: 1180, margin: '0 auto', padding: '18px 28px 24px', boxSizing: 'border-box', background: '#f7f8f7', fontFamily: "'DM Sans',system-ui,sans-serif", color: INK, display: 'flex', flexDirection: 'column', gap: 10 }}>
-      <div style={{ display: 'flex', alignItems: 'baseline', gap: 14 }}><h1 style={{ margin: 0, fontSize: 26, fontWeight: 700 }}>The same screen at five clubs</h1><span style={{ fontSize: 14, color: MUT }}>The bar, crest, players and kit change. The green button and the amber proof never do.</span></div>
+      <div style={{ display: 'flex', alignItems: 'baseline', gap: 14 }}><h1 style={{ margin: 0, fontSize: 26, fontWeight: 700 }}>The same screen at five clubs</h1><span style={{ fontSize: 14, color: MUT }}>Bar, crest, kit and the two big tiles change. Green buttons and amber proof never do.</span></div>
       {FIVE.map(c => <ClubScope key={c.name} main={c.main} second={c.second} name={c.name}>
         <section aria-label={c.name} style={{ ...tile, overflow: 'hidden' }}>
           <div data-club-bar="" style={{ height: 44, display: 'flex', alignItems: 'center', gap: 4, padding: '0 14px', background: G, color: '#fff' }}>
@@ -40,9 +40,11 @@ export function KC2FiveClubs() {
             <span data-club-pill="" style={{ display: 'flex', alignItems: 'center', gap: 6, height: 30, padding: '0 12px', borderRadius: 999, fontSize: 12, fontWeight: 700, background: '#fff' }}><Crest size={16} />U11 · {c.name}</span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 20, padding: '14px' }}>
-            <span style={{ width: 208 }}><strong style={{ display: 'block', fontSize: 15 }}>{c.name}</strong><span style={{ fontSize: 13, color: MUT }}>{c.line}</span></span>
+            <span style={{ width: 150 }}><strong style={{ display: 'block', fontSize: 15 }}>{c.name}</strong><span style={{ fontSize: 13, color: MUT }}>{c.line}</span></span>
             <MiniPitch />
             <span style={{ display: 'flex' }}>{['AD', 'JP', 'PS'].map((p, i) => <span key={p} data-club-badge="" style={{ width: 30, height: 30, borderRadius: 999, marginLeft: i ? -2 : 0, background: G, color: '#fff', fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{p}</span>)}</span>
+            {/* the two big tiles: a club on green keeps today's greens */}
+            {(['big', 'next'] as const).map(k => <span key={k} data-club-tile={c.name === 'Wattle Creek FC' ? undefined : k} style={{ flex: 'none', width: 74, height: 44, borderRadius: 8, background: k === 'big' ? '#1c3a33' : G, color: c.name === 'Bayside Rovers' && k === 'next' ? INK : '#fff', display: 'flex', alignItems: 'flex-end', padding: '0 0 5px 7px', boxSizing: 'border-box', fontSize: 9, fontWeight: 700 }}>{k === 'big' ? 'Story tile' : 'Next tile'}</span>)}
             <span style={{ flexGrow: 1, fontSize: 14 }}>Lost the ball <strong style={{ background: AMBER, color: INK, borderRadius: 6, padding: '2px 7px' }}>9 times</strong> playing out</span>
             <button onClick={() => openScreen('GS3-RunSheet')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Open the run sheet</button>
           </div>

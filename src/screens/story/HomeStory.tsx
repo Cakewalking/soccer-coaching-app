@@ -1,3 +1,4 @@
+import { Crest } from '../../clubTheme'
 import { openScreen } from '../openThing'
 import { useBackState } from '../../backState'
 import { useState } from 'react'
@@ -316,7 +317,7 @@ function Frame({ cfg, nav, tool, children }: { cfg: HomeCfg; nav: (s: string) =>
         <span style={{ fontSize: 15, fontWeight: 900, color: '#fff', marginRight: 16 }}>Clean Sheet</span>
         {cfg.topNav.map(it => <button key={it.label} data-club-tab={it.active ? 'on' : 'off'} onClick={click(it)} style={tnb(it)}>{it.label}</button>)}
         <div style={{ flex: 1 }} />
-        <button onClick={() => cfg.teamTarget ? nav(cfg.teamTarget) : tool('switcher')} style={{ height: 44, padding: '0 14px', background: 'rgba(255,255,255,0.15)', color: '#fff', border: 'none', borderRadius: 22, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', marginRight: 12 }}>{cfg.team}</button>
+        <button data-club-pill="" onClick={() => cfg.teamTarget ? nav(cfg.teamTarget) : tool('switcher')} style={{ height: 44, padding: '0 14px', background: 'rgba(255,255,255,0.15)', color: '#fff', border: 'none', borderRadius: 22, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', marginRight: 12, display: 'flex', alignItems: 'center', gap: 6 }}><Crest size={18} />{cfg.team}</button>
         <button onClick={() => openScreen('SET1-Account', STORY_WHO[cfg.avatar])} aria-label="Your account and settings" data-club-keep="" style={{ width: 44, height: 44, border: 0, padding: 0, background: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><span style={{ width: 36, height: 36, borderRadius: '50%', background: '#b9777a', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "'DM Sans',system-ui,sans-serif", fontSize: 13, fontWeight: 700, color: '#fff' }}>{cfg.avatar}</span></button>
       </nav>
       <nav style={{ background: '#fff', borderBottom: `1px solid ${HAIR}`, height: 44, display: 'flex', alignItems: 'center', padding: '0 20px', flexShrink: 0 }}>

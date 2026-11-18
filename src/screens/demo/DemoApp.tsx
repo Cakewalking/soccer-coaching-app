@@ -1,3 +1,4 @@
+import { SwapText } from '../../teamNames'
 import { useBackState, pushPath } from '../../backState'
 import { useState, useEffect, useRef, isValidElement, cloneElement } from 'react'
 import type { ReactNode, ReactElement } from 'react'
@@ -384,7 +385,7 @@ import { WK1ThisWeek, CF1Fixtures, AV1Availability, MS1TeamSheet, R1MatchReview,
 import { DSet5ClubPlan, DRo1Rollover, DRo1eRolloverEmpty } from '../step4/DirScreens2'
 import { B1CoachAndFitness, PO1OlderHome, CH8ChatInfo, PS2ParentNotifications, PS3ParentData } from '../step4/MiscScreens'
 import PhoneMe, { type PhoneMeWho } from '../settings/PhoneMe'
-import { setClubInView } from '../../clubTheme'
+import { setClubInView, ClubScope, REDGUM } from '../../clubTheme'
 import {
   D2eTeamsEmpty, D3eCoachesEmpty, D4ePlayersEmpty, D5eSafeguardingEmpty, D6eBoardReportEmpty,
   DB2eSeasonReviewEmpty, DB3eLeagueReturnsEmpty, DB4eGrantsEmpty, DC1eCalendarEmpty, DCo1eCoordinatorHomeEmpty,
@@ -2292,6 +2293,8 @@ function renderScreenInner(key: string): ReactNode {
     case 'STA1-StartPage':        return <StartPageNav />
     case 'STA2-StartPagePhone':   return <StartPageNav phone />
     // Home that tells a story (STO)
+    case 'KC9-HomeClubTiles': case 'KC10-HomeCharcoalTiles':   // the MiniRoos coach's Home at a red and black club, in each tile style
+      return <div data-screen={key}><ClubScope {...REDGUM} tiles={key === 'KC9-HomeClubTiles' ? 'colours' : 'charcoal'}><SwapText pairs={[['Wattle Creek', 'Redgum United'], ['WATTLE CREEK', 'REDGUM UNITED']]}>{renderScreenInner('STO1-HomeStoryMiniRoos')}</SwapText></ClubScope></div>
     case 'STO1-HomeStoryMiniRoos':
     case 'STO2-HomeStoryMiniRoosTraining':
     case 'STO3-HomeStoryMiniRoosNoFilm':

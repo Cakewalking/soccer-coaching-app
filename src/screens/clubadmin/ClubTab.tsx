@@ -30,8 +30,8 @@ const CN_ID = Object.fromEntries(Object.entries(CN_VIEW).map(([k, v]) => [v, k])
 export default function ClubTab({ role, empty, homeStory, onNav, initialView }: { role: 'chair' | 'dof'; empty?: boolean; homeStory?: import('react').ReactNode; onNav?: (s: string) => void; initialView?: string }) {
   const clubKey = useClubInView()
   // Opened by a board's own id, the screen is drawn at that board's club; under the Club tab it sets this club.
-  const board = initialView === 'KC1-ClubColours' ? REDGUM : initialView === 'KC3-PaleColour' ? BAYSIDE : initialView === 'KC4-GoldColour' ? HARBOUR : null
-  const [view, setView] = useBackState<ClubView>((initialView && CN_VIEW[initialView]) || (initialView && /^KC[134]/.test(initialView) ? 'colours' : initialView === 'seasonplan' ? 'seasonplan' : 'overview'))
+  const board = initialView === 'KC1-ClubColours' ? REDGUM : initialView === 'KC1c-ClubColoursCharcoal' ? { ...REDGUM, tiles: 'charcoal' as const } : initialView === 'KC3-PaleColour' ? BAYSIDE : initialView === 'KC4-GoldColour' ? HARBOUR : null
+  const [view, setView] = useBackState<ClubView>((initialView && CN_VIEW[initialView]) || (initialView && /^KC[134]/.test(initialView) && !/^KC10/.test(initialView) ? 'colours' : initialView === 'seasonplan' ? 'seasonplan' : 'overview'))
   const needs = useDoneAll()
   const cnNav = (t: string) => CN_VIEW[t] ? setView(CN_VIEW[t]) : onNav?.(t)
   const [headingPolicy, setHeadingPolicy] = useState<'england' | 'own' | 'none' | null>(null)

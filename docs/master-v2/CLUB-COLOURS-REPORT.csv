@@ -28,8 +28,43 @@ KC1-ClubColours#40,KC1-ClubColours,Navy [radio],Says,Navy picked. The preview ch
 KC1-ClubColours#41,KC1-ClubColours,Purple [radio],Says,Purple picked. The preview changes straight away.,works
 KC1-ClubColours#42,KC1-ClubColours,Black [radio],Says,Black picked. The preview changes straight away.,works
 KC1-ClubColours#43,KC1-ClubColours,White [radio],Says,White picked. The preview changes straight away.,works
-KC1-ClubColours#44,KC1-ClubColours,Exact colour: #FFFFFF,Says,"Type a colour code, or pick from a colour wheel.",works
-KC1-ClubColours#45,KC1-ClubColours,Add a crest,Says,Pick an image. Square works best.,works
+KC1-ClubColours#44,KC1-ClubColours,Exact colour: #111111,Says,"Type a colour code, or pick from a colour wheel.",works
+KC1-ClubColours#45,KC1-ClubColours,In your colours · Darker colour on the story tile [radio],Says,Big tiles: In your colours. The preview changes straight away.,works
+KC1-ClubColours#46,KC1-ClubColours,Charcoal · Colours on the bar and crest only [radio],Says,Big tiles: Charcoal. The preview changes straight away.,works
+KC1-ClubColours#47,KC1-ClubColours,Add a crest,Says,Pick an image. Square works best.,works
+KC1c-ClubColoursCharcoal#7,KC1c-ClubColoursCharcoal,Ask Clean Sheet,Opens,ASKd4-PanelFirst,works: opens the Ask panel on the same screen (the director's existing Ask), not ASKd4 as a separate screen
+KC1c-ClubColoursCharcoal#8,KC1c-ClubColoursCharcoal,Whole club,Opens,VS1-SwitchView,works
+KC1c-ClubColoursCharcoal#17,KC1c-ClubColoursCharcoal,Back to green,Says,Back to Clean Sheet green. Your colours are kept in case you change your mind.,works
+KC1c-ClubColoursCharcoal#18,KC1c-ClubColoursCharcoal,Save for the whole club,Says,Saved. Everyone at the club sees the new colours next time they open Clean Sheet.,works
+KC1c-ClubColoursCharcoal#19,KC1c-ClubColoursCharcoal,Red [radio],Says,Red picked. The preview changes straight away.,works
+KC1c-ClubColoursCharcoal#20,KC1c-ClubColoursCharcoal,Maroon [radio],Says,Maroon picked. The preview changes straight away.,works
+KC1c-ClubColoursCharcoal#21,KC1c-ClubColoursCharcoal,Orange [radio],Says,Orange picked. The preview changes straight away.,works
+KC1c-ClubColoursCharcoal#22,KC1c-ClubColoursCharcoal,Gold [radio],Says,Gold picked. The preview changes straight away.,works
+KC1c-ClubColoursCharcoal#23,KC1c-ClubColoursCharcoal,Green [radio],Says,Green picked. The preview changes straight away.,works
+KC1c-ClubColoursCharcoal#24,KC1c-ClubColoursCharcoal,Dark green [radio],Says,Dark green picked. The preview changes straight away.,works
+KC1c-ClubColoursCharcoal#25,KC1c-ClubColoursCharcoal,Sky blue [radio],Says,Sky blue picked. The preview changes straight away.,works
+KC1c-ClubColoursCharcoal#26,KC1c-ClubColoursCharcoal,Royal blue [radio],Says,Royal blue picked. The preview changes straight away.,works
+KC1c-ClubColoursCharcoal#27,KC1c-ClubColoursCharcoal,Navy [radio],Says,Navy picked. The preview changes straight away.,works
+KC1c-ClubColoursCharcoal#28,KC1c-ClubColoursCharcoal,Purple [radio],Says,Purple picked. The preview changes straight away.,works
+KC1c-ClubColoursCharcoal#29,KC1c-ClubColoursCharcoal,Black [radio],Says,Black picked. The preview changes straight away.,works
+KC1c-ClubColoursCharcoal#30,KC1c-ClubColoursCharcoal,White [radio],Says,White picked. The preview changes straight away.,works
+KC1c-ClubColoursCharcoal#31,KC1c-ClubColoursCharcoal,Exact colour: #C8102E,Says,"Type a colour code, or pick from a colour wheel.",works
+KC1c-ClubColoursCharcoal#32,KC1c-ClubColoursCharcoal,Red [radio],Says,Red picked. The preview changes straight away.,works
+KC1c-ClubColoursCharcoal#33,KC1c-ClubColoursCharcoal,Maroon [radio],Says,Maroon picked. The preview changes straight away.,works
+KC1c-ClubColoursCharcoal#34,KC1c-ClubColoursCharcoal,Orange [radio],Says,Orange picked. The preview changes straight away.,works
+KC1c-ClubColoursCharcoal#35,KC1c-ClubColoursCharcoal,Gold [radio],Says,Gold picked. The preview changes straight away.,works
+KC1c-ClubColoursCharcoal#36,KC1c-ClubColoursCharcoal,Green [radio],Says,Green picked. The preview changes straight away.,works
+KC1c-ClubColoursCharcoal#37,KC1c-ClubColoursCharcoal,Dark green [radio],Says,Dark green picked. The preview changes straight away.,works
+KC1c-ClubColoursCharcoal#38,KC1c-ClubColoursCharcoal,Sky blue [radio],Says,Sky blue picked. The preview changes straight away.,works
+KC1c-ClubColoursCharcoal#39,KC1c-ClubColoursCharcoal,Royal blue [radio],Says,Royal blue picked. The preview changes straight away.,works
+KC1c-ClubColoursCharcoal#40,KC1c-ClubColoursCharcoal,Navy [radio],Says,Navy picked. The preview changes straight away.,works
+KC1c-ClubColoursCharcoal#41,KC1c-ClubColoursCharcoal,Purple [radio],Says,Purple picked. The preview changes straight away.,works
+KC1c-ClubColoursCharcoal#42,KC1c-ClubColoursCharcoal,Black [radio],Says,Black picked. The preview changes straight away.,works
+KC1c-ClubColoursCharcoal#43,KC1c-ClubColoursCharcoal,White [radio],Says,White picked. The preview changes straight away.,works
+KC1c-ClubColoursCharcoal#44,KC1c-ClubColoursCharcoal,Exact colour: #111111,Says,"Type a colour code, or pick from a colour wheel.",works
+KC1c-ClubColoursCharcoal#45,KC1c-ClubColoursCharcoal,In your colours · Darker colour on the story tile [radio],Says,Big tiles: In your colours. The preview changes straight away.,works
+KC1c-ClubColoursCharcoal#46,KC1c-ClubColoursCharcoal,Charcoal · Colours on the bar and crest only [radio],Says,Big tiles: Charcoal. The preview changes straight away.,works
+KC1c-ClubColoursCharcoal#47,KC1c-ClubColoursCharcoal,Add a crest,Says,Pick an image. Square works best.,works
 KC1e-ClubColoursNotSet#7,KC1e-ClubColoursNotSet,Ask Clean Sheet,Opens,ASKd4-PanelFirst,works: opens the Ask panel on the same screen (the director's existing Ask), not ASKd4 as a separate screen
 KC1e-ClubColoursNotSet#8,KC1e-ClubColoursNotSet,Whole club,Opens,VS1-SwitchView,works
 KC1e-ClubColoursNotSet#17,KC1e-ClubColoursNotSet,Back to green,Says,Back to Clean Sheet green. Your colours are kept in case you change your mind.,works
@@ -60,7 +95,9 @@ KC1e-ClubColoursNotSet#41,KC1e-ClubColoursNotSet,Purple [radio],Says,Purple pick
 KC1e-ClubColoursNotSet#42,KC1e-ClubColoursNotSet,Black [radio],Says,Black picked. The preview changes straight away.,works
 KC1e-ClubColoursNotSet#43,KC1e-ClubColoursNotSet,White [radio],Says,White picked. The preview changes straight away.,works
 KC1e-ClubColoursNotSet#44,KC1e-ClubColoursNotSet,Exact colour: #FFFFFF,Says,"Type a colour code, or pick from a colour wheel.",works
-KC1e-ClubColoursNotSet#45,KC1e-ClubColoursNotSet,Add a crest,Says,Pick an image. Square works best.,works
+KC1e-ClubColoursNotSet#45,KC1e-ClubColoursNotSet,In your colours · Darker colour on the story tile [radio],Says,Big tiles: In your colours. The preview changes straight away.,works
+KC1e-ClubColoursNotSet#46,KC1e-ClubColoursNotSet,Charcoal · Colours on the bar and crest only [radio],Says,Big tiles: Charcoal. The preview changes straight away.,works
+KC1e-ClubColoursNotSet#47,KC1e-ClubColoursNotSet,Add a crest,Says,Pick an image. Square works best.,works
 KC3-PaleColour#7,KC3-PaleColour,Ask Clean Sheet,Opens,ASKd4-PanelFirst,works: opens the Ask panel on the same screen (the director's existing Ask), not ASKd4 as a separate screen
 KC3-PaleColour#8,KC3-PaleColour,Whole club,Opens,VS1-SwitchView,works
 KC3-PaleColour#17,KC3-PaleColour,Back to green,Says,Back to Clean Sheet green. Your colours are kept in case you change your mind.,works
@@ -91,7 +128,9 @@ KC3-PaleColour#41,KC3-PaleColour,Purple [radio],Says,Purple picked. The preview 
 KC3-PaleColour#42,KC3-PaleColour,Black [radio],Says,Black picked. The preview changes straight away.,works
 KC3-PaleColour#43,KC3-PaleColour,White [radio],Says,White picked. The preview changes straight away.,works
 KC3-PaleColour#44,KC3-PaleColour,Exact colour: #14213D,Says,"Type a colour code, or pick from a colour wheel.",works
-KC3-PaleColour#45,KC3-PaleColour,Add a crest,Says,Pick an image. Square works best.,works
+KC3-PaleColour#45,KC3-PaleColour,In your colours · Darker colour on the story tile [radio],Says,Big tiles: In your colours. The preview changes straight away.,works
+KC3-PaleColour#46,KC3-PaleColour,Charcoal · Colours on the bar and crest only [radio],Says,Big tiles: Charcoal. The preview changes straight away.,works
+KC3-PaleColour#47,KC3-PaleColour,Add a crest,Says,Pick an image. Square works best.,works
 KC4-GoldColour#7,KC4-GoldColour,Ask Clean Sheet,Opens,ASKd4-PanelFirst,works: opens the Ask panel on the same screen (the director's existing Ask), not ASKd4 as a separate screen
 KC4-GoldColour#8,KC4-GoldColour,Whole club,Opens,VS1-SwitchView,works
 KC4-GoldColour#17,KC4-GoldColour,Back to green,Says,Back to Clean Sheet green. Your colours are kept in case you change your mind.,works
@@ -122,7 +161,37 @@ KC4-GoldColour#41,KC4-GoldColour,Purple [radio],Says,Purple picked. The preview 
 KC4-GoldColour#42,KC4-GoldColour,Black [radio],Says,Black picked. The preview changes straight away.,works
 KC4-GoldColour#43,KC4-GoldColour,White [radio],Says,White picked. The preview changes straight away.,works
 KC4-GoldColour#44,KC4-GoldColour,Exact colour: #F2B705,Says,"Type a colour code, or pick from a colour wheel.",works
-KC4-GoldColour#45,KC4-GoldColour,Add a crest,Says,Pick an image. Square works best.,works
+KC4-GoldColour#45,KC4-GoldColour,In your colours · Darker colour on the story tile [radio],Says,Big tiles: In your colours. The preview changes straight away.,works
+KC4-GoldColour#46,KC4-GoldColour,Charcoal · Colours on the bar and crest only [radio],Says,Big tiles: Charcoal. The preview changes straight away.,works
+KC4-GoldColour#47,KC4-GoldColour,Add a crest,Says,Pick an image. Square works best.,works
+KC9-HomeClubTiles#7,KC9-HomeClubTiles,U9 Tom,Opens,VS1-SwitchView,present but labelled "U9 Tom · Redgum United" on this board; not pressed by the check
+KC9-HomeClubTiles#15,KC9-HomeClubTiles,Ask about U9 Tom… Who hasn’t had a moment this term?,Opens,ASKd2-HomeFocus,works
+KC9-HomeClubTiles#16,KC9-HomeClubTiles,Play 40 seconds,Opens,RCm2-MiniRoosClips,works
+KC9-HomeClubTiles#17,KC9-HomeClubTiles,What we saw,Opens,MS3-MiniRoosReview,works
+KC9-HomeClubTiles#18,KC9-HomeClubTiles,"0:40 · · Arlo · Poppy · Ella · Jai · +3 · · Seven moments, one from each child who did it. Made from Saturday’s film.",Opens,RCm2-MiniRoosClips,works
+KC9-HomeClubTiles#19,KC9-HomeClubTiles,Change them,Opens,HM5-WhatWeSaw,wrong target: opens YT1-YourTake (the Your take boards replaced this screen in an earlier pack)
+KC9-HomeClubTiles#20,KC9-HomeClubTiles,Add a note,Opens,HM1n-QuickNotes,wrong target: opens YT1-YourTake (the Your take boards replaced this screen in an earlier pack)
+KC9-HomeClubTiles#21,KC9-HomeClubTiles,Rate players,Opens,YT3-PlayerNotes,works
+KC9-HomeClubTiles#22,KC9-HomeClubTiles,Open the games,Opens,HM3-TrainingMiniRoos,works
+KC9-HomeClubTiles#23,KC9-HomeClubTiles,Swap one,Opens,SGm1-SuggestedMiniRoos,works
+KC9-HomeClubTiles#24,KC9-HomeClubTiles,All moments,Says,"Every moment this term, by child, A to Z.",works
+KC9-HomeClubTiles#25,KC9-HomeClubTiles,Send,Says,Sent to Arlo’s dad with your note. He can reply with a thank you.,works
+KC9-HomeClubTiles#26,KC9-HomeClubTiles,Send,Says,Sent to Poppy’s mum with your note.,works
+KC9-HomeClubTiles#27,KC9-HomeClubTiles,2 · Two things need you · Game leader for Saturday · one message,Opens,HM7-InboxMiniRoos,works
+KC10-HomeCharcoalTiles#7,KC10-HomeCharcoalTiles,U9 Tom,Opens,VS1-SwitchView,present but labelled "U9 Tom · Redgum United" on this board; not pressed by the check
+KC10-HomeCharcoalTiles#15,KC10-HomeCharcoalTiles,Ask about U9 Tom… Who hasn’t had a moment this term?,Opens,ASKd2-HomeFocus,works
+KC10-HomeCharcoalTiles#16,KC10-HomeCharcoalTiles,Play 40 seconds,Opens,RCm2-MiniRoosClips,works
+KC10-HomeCharcoalTiles#17,KC10-HomeCharcoalTiles,What we saw,Opens,MS3-MiniRoosReview,works
+KC10-HomeCharcoalTiles#18,KC10-HomeCharcoalTiles,"0:40 · · Arlo · Poppy · Ella · Jai · +3 · · Seven moments, one from each child who did it. Made from Saturday’s film.",Opens,RCm2-MiniRoosClips,works
+KC10-HomeCharcoalTiles#19,KC10-HomeCharcoalTiles,Change them,Opens,HM5-WhatWeSaw,wrong target: opens YT1-YourTake (the Your take boards replaced this screen in an earlier pack)
+KC10-HomeCharcoalTiles#20,KC10-HomeCharcoalTiles,Add a note,Opens,HM1n-QuickNotes,wrong target: opens YT1-YourTake (the Your take boards replaced this screen in an earlier pack)
+KC10-HomeCharcoalTiles#21,KC10-HomeCharcoalTiles,Rate players,Opens,YT3-PlayerNotes,works
+KC10-HomeCharcoalTiles#22,KC10-HomeCharcoalTiles,Open the games,Opens,HM3-TrainingMiniRoos,works
+KC10-HomeCharcoalTiles#23,KC10-HomeCharcoalTiles,Swap one,Opens,SGm1-SuggestedMiniRoos,works
+KC10-HomeCharcoalTiles#24,KC10-HomeCharcoalTiles,All moments,Says,"Every moment this term, by child, A to Z.",works
+KC10-HomeCharcoalTiles#25,KC10-HomeCharcoalTiles,Send,Says,Sent to Arlo’s dad with your note. He can reply with a thank you.,works
+KC10-HomeCharcoalTiles#26,KC10-HomeCharcoalTiles,Send,Says,Sent to Poppy’s mum with your note.,works
+KC10-HomeCharcoalTiles#27,KC10-HomeCharcoalTiles,2 · Two things need you · Game leader for Saturday · one message,Opens,HM7-InboxMiniRoos,works
 KC5-SessionRedClub#7,KC5-SessionRedClub,U11 Luke,Opens,VS1-SwitchView,works
 KC5-SessionRedClub#14,KC5-SessionRedClub,Showing: new to coaching,Opens,GS5-CoachLevel,works
 KC5-SessionRedClub#15,KC5-SessionRedClub,Open the run sheet,Opens,GS3-RunSheet,works
