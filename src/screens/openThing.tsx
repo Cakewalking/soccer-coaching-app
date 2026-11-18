@@ -71,7 +71,7 @@ const TABLES: Record<Where, Route[]> = { coach: COACH, mini: [...MINI, ...COACH]
 
 // ── what is showing ──────────────────────────────────────────────────────────
 type Sheet = { kind: 'message' | 'form'; title: string; to?: string; said: string }
-type State = { screen?: string; sheet?: Sheet } | null
+type State = { screen?: string; who?: string; sheet?: Sheet } | null
 let state: State = null
 const subs = new Set<() => void>()
 const show = (s: State) => { state = s; subs.forEach(f => f()) }
@@ -85,7 +85,7 @@ registerOverlay(id => set({ screen: id }))
 export function sayOrOpen(said: string, where: Where, sayIt: (m: string) => void = demoToast) { if (/^Opening\s|\sopens\.+$|^A (private )?message .* opens\./i.test(said)) openThing(said.replace(/^A (private )?message (to )?/i, 'message to ').replace(/\. Only you.*$/, ''), where); else sayIt(said) }
 
 /** Open a screen by its id: in the app when it can, or over the top with a Back bar. */
-export function openScreen(id: string) { if (hasAppNav()) goApp(id, ''); else set({ screen: id }) }
+export function openScreen(id: string, who?: string) { if (hasAppNav()) goApp(id, ''); else set({ screen: id, who }) }   // `who`: the person signed in, for screens that name them
 
 const tidy = (m: string) => m.replace(/^sub:/, '').replace(/^Opening\s+/i, '').replace(/\s+opens\.?$/i, '').replace(/[.…]+$/, '').replace(/^(the|a|an)\s+/i, '').trim()
 const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1)
@@ -113,7 +113,7 @@ export function OpenHost() {
   useEffect(() => { setText(sheet ? kept[key] ?? '' : '') /* open on what was saved last time */ }, [sheet]) // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => { if (!s) return; const k = (e: KeyboardEvent) => { if (e.key === 'Escape') set(null) }; window.addEventListener('keydown', k); return () => window.removeEventListener('keydown', k) }, [s])
   if (!s) return null
-  if (s.screen) return <div data-open-screen={s.screen} style={{ position: 'fixed', inset: 0, zIndex: 450, background: '#f7f8f7', display: 'flex', flexDirection: 'column' }}><ScreenLayer screenKey={s.screen} onClose={() => set(null)} backLabel="Back" /></div>
+  if (s.screen) return <div data-open-screen={s.screen} style={{ position: 'fixed', inset: 0, zIndex: 450, background: '#f7f8f7', display: 'flex', flexDirection: 'column' }}><ScreenLayer screenKey={s.screen} who={s.who ?? null} onClose={() => set(null)} backLabel="Back" /></div>
   if (!sheet) return null
   const msg = sheet.kind === 'message'
   const save = () => {

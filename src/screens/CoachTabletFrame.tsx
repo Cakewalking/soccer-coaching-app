@@ -1,4 +1,5 @@
 import { setHash, slugOf } from '../backState'
+import { openScreen } from './openThing'
 import { useEffect, useRef, useState } from 'react'
 import { useUnreadTotal } from './messageUnread'
 import type { ReactNode } from 'react'
@@ -219,6 +220,8 @@ interface CoachTabletFrameProps {
   teamLabel: string
   /** the team pill opens the view switcher */
   onTeam?: () => void
+  /** the avatar opens account and settings; the app can say how */
+  onAvatar?: () => void
   avatarLetters: string
   avatarBg?: string
   showAsk?: boolean
@@ -233,7 +236,7 @@ interface CoachTabletFrameProps {
 export default function CoachTabletFrame({
   navTabs, activeNav, onNav,
   subTabs = [], activeSubTabIndex = 0, onSubTab,
-  roleChip, teamLabel, onTeam, avatarLetters, avatarBg = '#c39797',
+  roleChip, teamLabel, onTeam, onAvatar, avatarLetters, avatarBg = '#c39797',
   showAsk = true, askOpen = false, onAskToggle,
   askQuestions, askRole = 'head coach',
   showBadge,
@@ -367,7 +370,8 @@ export default function CoachTabletFrame({
             {teamName}
             <S d={CHEVD} size={16} />
           </button>
-          <div style={{ width: 44, height: 44, borderRadius: '999px', background: avatarBg, color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 15, flexShrink: 0 }}>{avatarLetters}</div>
+          {/* The avatar opens the coach's account and settings */}
+          <button onClick={() => onAvatar ? onAvatar() : openScreen('SET1-Account')} aria-label="Your account and settings" style={{ width: 44, height: 44, borderRadius: '999px', border: 0, padding: 0, background: avatarBg, color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'inherit', fontWeight: 700, fontSize: 15, flexShrink: 0, cursor: 'pointer' }}>{avatarLetters}</button>
         </div>
 
         {/* 44px white sub-tabs bar */}

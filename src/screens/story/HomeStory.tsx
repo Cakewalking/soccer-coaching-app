@@ -312,7 +312,7 @@ function Frame({ cfg, nav, tool, children }: { cfg: HomeCfg; nav: (s: string) =>
         {cfg.topNav.map(it => <button key={it.label} onClick={click(it)} style={tnb(it)}>{it.label}</button>)}
         <div style={{ flex: 1 }} />
         <button onClick={() => cfg.teamTarget ? nav(cfg.teamTarget) : tool('switcher')} style={{ height: 44, padding: '0 14px', background: 'rgba(255,255,255,0.15)', color: '#fff', border: 'none', borderRadius: 22, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', marginRight: 12 }}>{cfg.team}</button>
-        <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#b9777a', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, color: '#fff' }}>{cfg.avatar}</div>
+        <button onClick={() => nav('SET1-Account')} aria-label="Your account and settings" style={{ width: 44, height: 44, border: 0, padding: 0, background: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><span style={{ width: 36, height: 36, borderRadius: '50%', background: '#b9777a', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "'DM Sans',system-ui,sans-serif", fontSize: 13, fontWeight: 700, color: '#fff' }}>{cfg.avatar}</span></button>
       </nav>
       <nav style={{ background: '#fff', borderBottom: `1px solid ${HAIR}`, height: 44, display: 'flex', alignItems: 'center', padding: '0 20px', flexShrink: 0 }}>
         {cfg.subNav.map(it => <button key={it.label} onClick={click(it)} style={snb(it)}>{it.label}</button>)}
@@ -379,7 +379,8 @@ export function HomeStoryPhone({ cfg, onNav, renderTarget }: { cfg: PhoneCfg; on
             {cfg.kids.map((k, n) => <span key={k.label} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, height: 28, padding: '0 10px 0 4px', borderRadius: 999, background: 'rgba(255,255,255,0.16)', color: '#fff', fontSize: 12, fontWeight: 700 }}><span style={{ width: 20, height: 20, borderRadius: 999, background: n % 2 ? '#cbbeb5' : '#c39797', color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11 }}>{k.ini}</span>{k.label}</span>)}
           </div>}
         </div>
-        <div style={{ width: 38, height: 38, borderRadius: '50%', background: '#cbbeb5', color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, flexShrink: 0 }}>{cfg.avatar}</div>
+        {/* The avatar opens this person's own settings */}
+        <button onClick={() => nav(/Player/.test(cfg.id) ? 'PS4-PlayerMe' : /Parent/.test(cfg.id) ? 'PS1-ParentSettings' : 'SET1-Account')} aria-label="Your account and settings" style={{ width: 44, height: 44, border: 0, padding: 0, background: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}><span style={{ width: 38, height: 38, borderRadius: '50%', background: '#cbbeb5', color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "'DM Sans',system-ui,sans-serif", fontSize: 13, fontWeight: 700 }}>{cfg.avatar}</span></button>
       </header>
       <div style={{ flex: 1, padding: 16, display: 'flex', flexDirection: 'column', gap: 12 }}>
         {cfg.blocks.map((b, i) => {

@@ -1,3 +1,4 @@
+import { openScreen } from './openThing'
 import { useBackState } from '../backState'
 import { openThing } from './openThing'
 import { useState, cloneElement, isValidElement } from 'react'
@@ -98,7 +99,7 @@ export default function ClubAdminScreen({ empty, role = 'chair', initials = 'RM'
               Whole club
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9l6 6 6-6"/></svg>
             </button>
-            <div style={{ width: 32, height: 32, borderRadius: '999px', background: '#c39797', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }}>{initials}</div>
+            <button onClick={() => openScreen('SET1-Account', role === 'chair' ? 'Greg Lawson · chair, Wattle Creek FC' : role === 'welfare' ? 'Helen Park · welfare officer, Wattle Creek FC' : 'Rachel M · director of football, Wattle Creek FC')} aria-label="Your account and settings" style={{ width: 44, height: 44, border: 0, padding: 0, background: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><span style={{ width: 32, height: 32, borderRadius: '999px', background: '#c39797', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'inherit', fontSize: 12, fontWeight: 700 }}>{initials}</span></button>
           </div>
         </div>
 

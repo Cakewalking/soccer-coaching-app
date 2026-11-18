@@ -946,6 +946,7 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
       roleChip="Coach · MiniRoos"
       teamLabel={inSandbox ? (store.teams[0]?.name ?? 'My team') : 'U9 Tom · Wattle Creek'}
       onTeam={inSandbox ? undefined : () => setLayer('VS1-SwitchView')}
+      onAvatar={() => setLayer('SET1-Account')}
       avatarLetters={inSandbox ? 'MC' : 'TA'}
       askOpen={askOpen}
       onAskToggle={() => setAskOpen(o => !o)}
