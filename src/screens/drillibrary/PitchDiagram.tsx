@@ -11,7 +11,7 @@ export default function PitchDiagram({ id, w = 110, h = 72 }: { id: string; w?: 
         <line key={i} x1={w*x1} y1={h*y1} x2={w*x2} y2={h*y2} stroke={G} strokeWidth={1.2} strokeDasharray="4 2" opacity={.6}/>
       ))}
       {pts.map(([x,y,t], i) => (
-        <circle key={i} cx={w*x} cy={h*y} r={r}
+        <circle key={i} {...(t==='g' ? { 'data-club-home': '' } : t==='r' ? { 'data-club-away': '' } : {})} cx={w*x} cy={h*y} r={r}
           fill={t==='g'?G : t==='r'?ROSE : t==='k'?'#1a1a1a' : '#888'}
           stroke="#fff" strokeWidth={.8}/>
       ))}

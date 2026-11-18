@@ -140,12 +140,12 @@ export default function CoordinatorPortal({ onBack: _onBack, empty = false, home
   if (empty) {
     return (
       <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
-        <header style={{ flex: 'none', background: '#1f4a3e', color: '#fff' }}>
+        <header data-club-bar="" style={{ flex: 'none', background: '#1f4a3e', color: '#fff' }}>
           <div style={{ height: 60, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 20 }}>
             <span style={{ fontSize: 17, fontWeight: 800, letterSpacing: '-0.03em' }}>Clean Sheet</span>
             <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,0.5)', paddingLeft: 4 }}>CLUB</div>
             {['Club', 'Teams', 'Coaches', 'Players', 'Safeguarding', 'Reports'].map(n => (
-              <button key={n} onClick={() => setActiveNav(n)} style={{ height: 60, padding: '0 14px', border: 0, background: 'transparent', fontFamily: 'inherit', fontSize: 15, fontWeight: activeNav === n ? 700 : 500, color: activeNav === n ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer', borderBottom: activeNav === n ? '3px solid #fff' : '3px solid transparent', boxSizing: 'border-box' as const }}>{n}</button>
+              <button key={n} data-club-tab={activeNav === n ? 'on' : 'off'} onClick={() => setActiveNav(n)} style={{ height: 60, padding: '0 14px', border: 0, background: 'transparent', fontFamily: 'inherit', fontSize: 15, fontWeight: activeNav === n ? 700 : 500, color: activeNav === n ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer', borderBottom: activeNav === n ? '3px solid #fff' : '3px solid transparent', boxSizing: 'border-box' as const }}>{n}</button>
             ))}
             <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 10 }}>
               <span style={{ fontSize: 13, fontWeight: 700, color: '#2f6252', background: '#eef5f2', borderRadius: '999px', padding: '4px 12px' }}>Club coordinator</span>
@@ -192,13 +192,13 @@ export default function CoordinatorPortal({ onBack: _onBack, empty = false, home
     <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
 
       {/* Top nav */}
-      <header style={{ flex: 'none', background: '#1f4a3e', color: '#fff' }}>
+      <header data-club-bar="" style={{ flex: 'none', background: '#1f4a3e', color: '#fff' }}>
         <div style={{ height: 60, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 20 }}>
           <span style={{ fontSize: 17, fontWeight: 800, letterSpacing: '-0.03em', flexShrink: 0 }}>Clean Sheet</span>
           <div style={{ flex: 'none', fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.5)', paddingLeft: 4 }}>CLUB</div>
           <nav style={{ display: 'flex', flexGrow: 1, height: 60 }}>
             {CLUB_NAV.map(n => (
-              <button key={n} onClick={() => setActiveNav(n)} style={{
+              <button key={n} data-club-tab={activeNav === n ? 'on' : 'off'} onClick={() => setActiveNav(n)} style={{
                 height: 60, padding: '0 14px', border: 0, background: 'transparent',
                 fontFamily: 'inherit', fontSize: 15, fontWeight: activeNav === n ? 700 : 500,
                 color: activeNav === n ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer',
@@ -211,7 +211,7 @@ export default function CoordinatorPortal({ onBack: _onBack, empty = false, home
             Whole club
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9l6 6 6-6"/></svg>
           </button>
-          <button onClick={() => openScreen('SET1-Account', 'Bianca Rossi · club coordinator, Wattle Creek FC')} aria-label="Your account and settings" style={{ width: 44, height: 44, border: 0, padding: 0, background: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontFamily: 'inherit' }}><span style={{ width: 44, height: 44, borderRadius: '999px', background: '#c39797', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 15, flexShrink: 0 }}>BR</span></button>
+          <button onClick={() => openScreen('SET1-Account', 'Bianca Rossi · club coordinator, Wattle Creek FC')} aria-label="Your account and settings" data-club-keep="" style={{ width: 44, height: 44, border: 0, padding: 0, background: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontFamily: 'inherit' }}><span style={{ width: 44, height: 44, borderRadius: '999px', background: '#c39797', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 15, flexShrink: 0 }}>BR</span></button>
         </div>
 
         {/* Sub-tab row */}

@@ -1,5 +1,6 @@
 import { setHash, slugOf } from '../backState'
 import { openScreen } from './openThing'
+import { Crest } from '../clubTheme'
 import { useEffect, useRef, useState } from 'react'
 import { useUnreadTotal } from './messageUnread'
 import type { ReactNode } from 'react'
@@ -339,13 +340,13 @@ export default function CoachTabletFrame({
       <div style={{ flex: 'none', background: '#ffffff', borderBottom: `1px solid ${LN}` }}>
 
         {/* 64px green nav bar */}
-        <div style={{ height: 64, padding: '0 28px', background: G, display: 'flex', alignItems: 'center', gap: 14 }}>
+        <div data-club-bar="" style={{ height: 64, padding: '0 28px', background: G, display: 'flex', alignItems: 'center', gap: 14 }}>
           <button onClick={() => onNav('home')} style={{ fontSize: 21, fontWeight: 700, color: '#fff', letterSpacing: '-0.02em', border: 0, background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: '0 8px', alignSelf: 'stretch', display: 'flex', alignItems: 'center', flexShrink: 0 }}>
             Clean Sheet
           </button>
           <nav style={{ display: 'flex', gap: 2, flexGrow: 1 }}>
             {navTabs.map(t => (
-              <button key={t.id} onClick={() => onNav(t.id)} style={{
+              <button key={t.id} data-club-tab={activeNav === t.id ? 'on' : 'off'} onClick={() => onNav(t.id)} style={{
                 display: 'flex', alignItems: 'center', gap: 7, height: 44, padding: '0 14px', borderRadius: '999px',
                 border: 0, fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer',
                 background: activeNav === t.id ? G2 : 'transparent', color: '#fff',
@@ -359,19 +360,19 @@ export default function CoachTabletFrame({
           {showAsk && !onHome && (
             <button
               onClick={onAskToggle}
-              aria-label="Ask Clean Sheet"
+              aria-label="Ask Clean Sheet" data-club-keep={askOpen ? '' : undefined}
               style={{ ...btnBase, background: askOpen ? '#fff' : 'transparent', color: askOpen ? INK : '#fff' }}
             >
               <S d={SPARKLE} size={18} stroke={askOpen ? INK : '#fff'} />
             </button>
           )}
           {/* Team pill — name only */}
-          <button onClick={onTeam} disabled={!onTeam} aria-label={teamLabel} style={{ display: 'flex', alignItems: 'center', gap: 8, height: 44, padding: '0 16px', borderRadius: '999px', border: 0, background: 'rgba(255,255,255,0.15)', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, color: '#fff', flexShrink: 0, cursor: onTeam ? 'pointer' : 'default' }}>
-            {teamName}
+          <button data-club-pill="" onClick={onTeam} disabled={!onTeam} aria-label={teamLabel} style={{ display: 'flex', alignItems: 'center', gap: 8, height: 44, padding: '0 16px', borderRadius: '999px', border: 0, background: 'rgba(255,255,255,0.15)', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, color: '#fff', flexShrink: 0, cursor: onTeam ? 'pointer' : 'default' }}>
+            <Crest size={20} />{teamName}
             <S d={CHEVD} size={16} />
           </button>
           {/* The avatar opens the coach's account and settings */}
-          <button onClick={() => onAvatar ? onAvatar() : openScreen('SET1-Account')} aria-label="Your account and settings" style={{ width: 44, height: 44, borderRadius: '999px', border: 0, padding: 0, background: avatarBg, color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'inherit', fontWeight: 700, fontSize: 15, flexShrink: 0, cursor: 'pointer' }}>{avatarLetters}</button>
+          <button onClick={() => onAvatar ? onAvatar() : openScreen('SET1-Account')} aria-label="Your account and settings" data-club-keep="" style={{ width: 44, height: 44, borderRadius: '999px', border: 0, padding: 0, background: avatarBg, color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'inherit', fontWeight: 700, fontSize: 15, flexShrink: 0, cursor: 'pointer' }}>{avatarLetters}</button>
         </div>
 
         {/* 44px white sub-tabs bar */}

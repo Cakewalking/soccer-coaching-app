@@ -384,6 +384,7 @@ import { WK1ThisWeek, CF1Fixtures, AV1Availability, MS1TeamSheet, R1MatchReview,
 import { DSet5ClubPlan, DRo1Rollover, DRo1eRolloverEmpty } from '../step4/DirScreens2'
 import { B1CoachAndFitness, PO1OlderHome, CH8ChatInfo, PS2ParentNotifications, PS3ParentData } from '../step4/MiscScreens'
 import PhoneMe, { type PhoneMeWho } from '../settings/PhoneMe'
+import { setClubInView } from '../../clubTheme'
 import {
   D2eTeamsEmpty, D3eCoachesEmpty, D4ePlayersEmpty, D5eSafeguardingEmpty, D6eBoardReportEmpty,
   DB2eSeasonReviewEmpty, DB3eLeagueReturnsEmpty, DB4eGrantsEmpty, DC1eCalendarEmpty, DCo1eCoordinatorHomeEmpty,
@@ -2495,6 +2496,7 @@ export default function DemoApp() {
   useEffect(() => {
     if (view === 'notfound') return
     const path = viewToPath(view, role, screen)
+    setClubInView(view === 'sandboxlook' ? 'sandbox' : role.startsWith('academy') && view !== 'screendirect' ? 'academy' : 'demo')   // the theme follows the club in view
     if (window.location.pathname !== path) pushPath(path)   // one history entry with whatever else changed in the same click
   }, [view, role, screen])
 

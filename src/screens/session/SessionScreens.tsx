@@ -28,7 +28,7 @@ const Line = ({ a, b, v }: { a: string; b?: string; v: ReactNode }) => <div styl
 
 // ── Set-up pictures: drawn from the kind of drill, sized by how many squares ──
 function Picture({ drill, big }: { drill: Drill; big?: boolean }) {
-  const dot = (x: number, y: number, on = true, key?: string) => <circle key={key ?? `${x}-${y}`} cx={x} cy={y} r={big ? 7 : 5} fill={on ? '#fff' : 'none'} stroke="#fff" strokeWidth="1.8" />
+  const dot = (x: number, y: number, on = true, key?: string) => <circle key={key ?? `${x}-${y}`} {...(on ? { 'data-club-home': '' } : { 'data-club-away': '' })} cx={x} cy={y} r={big ? 7 : 5} fill={on ? '#fff' : 'none'} stroke="#fff" strokeWidth="1.8" />
   const w = 200, h = big ? 112 : 104
   const body = drill.kind === 'game' || drill.kind === 'all'
     ? <><rect x="18" y="12" width={w - 36} height={h - 24} fill="none" stroke="#fff" strokeOpacity="0.6" strokeWidth="1.5" /><path d={`M${w / 2} 12v${h - 24}`} stroke="#fff" strokeOpacity="0.6" strokeWidth="1.5" />{drill.kind === 'game' && <><rect x="12" y={h / 2 - 12} width="6" height="24" fill="none" stroke="#fff" strokeOpacity="0.7" /><rect x={w - 18} y={h / 2 - 12} width="6" height="24" fill="none" stroke="#fff" strokeOpacity="0.7" /></>}

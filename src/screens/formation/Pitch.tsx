@@ -48,8 +48,8 @@ export function PitchSvg({ tokens, links = [], label }: { tokens: PitchToken[]; 
       {tokens.map(t => (
         <g key={t.id} transform={`translate(${px(t.x)} ${py(t.y)})`} opacity={t.out ? 0.6 : 1}>
           {t.ring && <circle r={41} fill="none" stroke={LINK} strokeWidth={6} />}
-          <circle r={33} fill="#fff" stroke={t.out ? '#10211f' : 'none'} strokeWidth={3} strokeDasharray={t.out ? '7 6' : undefined} />
-          <text y={10} textAnchor="middle" fontSize={29} fontWeight={800} fill="#10211f">{t.num}</text>
+          <circle {...(t.out ? {} : { 'data-club-home': '' })} r={33} fill="#fff" stroke={t.out ? '#10211f' : 'none'} strokeWidth={3} strokeDasharray={t.out ? '7 6' : undefined} />
+          <text {...(t.out ? {} : { 'data-club-on': '' })} y={10} textAnchor="middle" fontSize={29} fontWeight={800} fill="#10211f">{t.num}</text>
           <text y={64} textAnchor="middle" fontSize={25} fontWeight={700} fill="#fff" stroke="rgba(16,33,31,0.75)" strokeWidth={7} strokeLinejoin="round" style={{ paintOrder: 'stroke' }}>
             {t.name}<tspan fontSize={19} fill="rgba(255,255,255,0.78)" dx={7}>{t.pos}</tspan>
           </text>

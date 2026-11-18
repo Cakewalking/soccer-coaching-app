@@ -1,3 +1,5 @@
+import ClubColours from './ClubColours'
+import { useClubInView, REDGUM, BAYSIDE, HARBOUR } from '../../clubTheme'
 import { useBackState } from '../../backState'
 import { openThing } from '../openThing'
 import { glyph } from '../Glyph'
@@ -9,7 +11,7 @@ import { DirectorMessages } from '../MessagesScreens'
 import FilesTab from './FilesTab'
 import FeaturesTab from './FeaturesTab'
 
-type ClubView = 'climate' | 'sponsors' | 'pitches' | 'language' | 'asklimits' | 'overview' | 'messages' | 'calendar' | 'seasonplan' | 'playingstyle' | 'headingpolicy' | 'kit' | 'files' | 'features' | 'settings'
+type ClubView = 'climate' | 'sponsors' | 'pitches' | 'language' | 'asklimits' | 'overview' | 'messages' | 'calendar' | 'seasonplan' | 'playingstyle' | 'headingpolicy' | 'kit' | 'files' | 'features' | 'colours' | 'settings'
 
 const MONTHS = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC']
 
@@ -26,7 +28,10 @@ const CN_VIEW: Record<string, ClubView> = { 'CN12-ClubClimate': 'climate', 'CN20
 const CN_ID = Object.fromEntries(Object.entries(CN_VIEW).map(([k, v]) => [v, k])) as Record<string, string>
 
 export default function ClubTab({ role, empty, homeStory, onNav, initialView }: { role: 'chair' | 'dof'; empty?: boolean; homeStory?: import('react').ReactNode; onNav?: (s: string) => void; initialView?: string }) {
-  const [view, setView] = useBackState<ClubView>((initialView && CN_VIEW[initialView]) || (initialView === 'seasonplan' ? 'seasonplan' : 'overview'))
+  const clubKey = useClubInView()
+  // Opened by a board's own id, the screen is drawn at that board's club; under the Club tab it sets this club.
+  const board = initialView === 'KC1-ClubColours' ? REDGUM : initialView === 'KC3-PaleColour' ? BAYSIDE : initialView === 'KC4-GoldColour' ? HARBOUR : null
+  const [view, setView] = useBackState<ClubView>((initialView && CN_VIEW[initialView]) || (initialView && /^KC[134]/.test(initialView) ? 'colours' : initialView === 'seasonplan' ? 'seasonplan' : 'overview'))
   const needs = useDoneAll()
   const cnNav = (t: string) => CN_VIEW[t] ? setView(CN_VIEW[t]) : onNav?.(t)
   const [headingPolicy, setHeadingPolicy] = useState<'england' | 'own' | 'none' | null>(null)
@@ -54,6 +59,7 @@ export default function ClubTab({ role, empty, homeStory, onNav, initialView }: 
           { id: 'kit', label: 'Kit and cameras' },
           { id: 'files', label: 'Files' },
           { id: 'features', label: 'Features and billing' },
+          { id: 'colours', label: 'Club colours' },
         ]}
         active={view}
         onSelect={id => setView(id as ClubView)}
@@ -131,6 +137,7 @@ export default function ClubTab({ role, empty, homeStory, onNav, initialView }: 
       {view === 'messages' && <div style={{ flex: 1, minHeight: 560, display: 'flex' }}><DirectorMessages embedded /></div>}
       {view === 'files' && <FilesTab />}
       {view === 'features' && <FeaturesTab />}
+      {view === 'colours' && (board ? <ClubColours storeKey={`board:${initialView}`} club={board.name} start={board} /> : <ClubColours storeKey={clubKey} club={clubKey === 'demo' ? 'Wattle Creek FC' : 'Your club'} />)}
 
       <div style={view in CN_ID ? undefined : pad}>
 

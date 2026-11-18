@@ -140,12 +140,12 @@ export default function PhoneMe({ who, onNav }: { who: PhoneMeWho; onNav?: (s: s
   const card: React.CSSProperties = { background: '#fff', border: `1px solid ${LINE}`, borderRadius: 14 }
   return (
     <div data-screen-me={who} style={{ width: 390, minHeight: 760, margin: '0 auto', background: '#f7f8f7', color: INK, fontFamily: "'DM Sans',system-ui,sans-serif", display: 'flex', flexDirection: 'column' }}>
-      <div style={{ flex: 'none', padding: '12px 18px', background: G, color: '#fff', display: 'flex', alignItems: 'center', gap: 10 }}>
+      <div data-club-bar="" style={{ flex: 'none', padding: '12px 18px', background: G, color: '#fff', display: 'flex', alignItems: 'center', gap: 10 }}>
         <div style={{ flexGrow: 1 }}>
           <span style={{ display: 'block', fontSize: 12, lineHeight: '16px', color: '#cfe6dc' }}>{p.head}</span>
           <span style={{ display: 'block', fontSize: 21, lineHeight: '27px', fontWeight: 700 }}>{p.title}</span>
         </div>
-        <span style={{ flex: 'none', width: 40, height: 40, borderRadius: 999, background: '#cbbeb5', color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>{p.ini}</span>
+        <span data-club-keep="" style={{ flex: 'none', width: 40, height: 40, borderRadius: 999, background: '#cbbeb5', color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>{p.ini}</span>
       </div>
       <div style={{ flexGrow: 1, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 10 }}>
         <div style={{ ...card, padding: 14, display: 'flex', alignItems: 'center', gap: 12 }}>

@@ -95,7 +95,7 @@ export default function DemoTourShell({ roleId, onBack, onWhy, renderScreen, ini
     <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', fontFamily: 'var(--font-sans)', background: '#f5f6f4', overflow: 'hidden' }}>
 
       {/* Top bar */}
-      <div style={{ flex: 'none', background: '#1f4a3e', height: 48, display: 'flex', alignItems: 'center', padding: '0 20px', gap: 16, zIndex: 10 }}>
+      <div data-club-none="" style={{ flex: 'none', background: '#1f4a3e', height: 48, display: 'flex', alignItems: 'center', padding: '0 20px', gap: 16, zIndex: 10 }}>
         <button onClick={onBack} style={{ display: 'flex', alignItems: 'center', gap: 7, alignSelf: 'stretch', background: 'none', border: 'none', cursor: 'pointer', color: 'rgba(255,255,255,0.65)', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, padding: '0 8px 0 0', flexShrink: 0 }}>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
           All roles

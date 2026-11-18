@@ -1,3 +1,4 @@
+import { useClub, Crest } from '../../clubTheme'
 import { openThing } from '../openThing'
 // The connected club: the coach's tablet screens.
 // CN2 their take next to yours · CN4 what landed · CN8 worked elsewhere ·
@@ -157,18 +158,21 @@ export function CN8WhatWorked({ s, go, say, team = 'u12' }: CnProps) {
 const Five = ({ n, was }: { n: number; was: number }) => <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}><span role="img" aria-label={`${n} of 5, was ${was}`} style={{ display: 'inline-flex', gap: 3 }}>{[1, 2, 3, 4, 5].map(i => <span key={i} style={{ width: 16, height: 8, borderRadius: 3, background: i <= n ? G : '#e9eae8' }} />)}</span><span style={{ fontSize: 12, color: MUT }}>was {was}</span></span>
 export function CN9SeasonReport({ s, go, say, team = 'u12' }: CnProps) {
   const c = ctxFor(team), others = nm(team, 'Noah, Zoe, Jai, Harper')
+  const club = useClub()   // set: the report carries the club's band and crest
   const [clips, setClips] = useState([true, true, true])
   const sent = s.reportSent ? 5 : 4
   return (
     <Page id="CN9-SeasonReport" title="Season reports" sub={`${c.team} · mid-season · 11 of 16 drafted, ${sent} sent`} go={go} cols="minmax(0,1fr) 348px"
       right={<><Btn big onClick={() => go('CNp9-SeasonReportParent')}>Preview as a parent</Btn><Btn primary big aria-pressed={s.reportSent} onClick={() => { setCn({ reportSent: true }); say(`Sent to the ${c.fam} family. They can book a catch-up from it.`) }}>{s.reportSent ? `Sent to the ${c.fams}` : `Send ${c.first}’s`}</Btn></>}>
       <div style={col}>
-        <section aria-label={`${c.first}’s report`} style={{ ...tile, padding: '12px 16px 14px', gap: 8 }}>
+        <section aria-label={`${c.first}’s report`} style={{ ...tile, padding: '12px 16px 14px', gap: 8, overflow: 'hidden' }}>
+          {club && <div data-club-band="" style={{ margin: '-12px -16px 4px', padding: '12px 16px', display: 'flex', alignItems: 'center', gap: 12 }}><Crest size={34} /><span><strong style={{ display: 'block', fontSize: 17 }}>Wattle Creek FC</strong><span style={{ fontSize: 13 }}>Season report 2026 · {c.team}</span></span></div>}
           <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}><h2 style={h2}>{c.full} · drafted for you</h2><span style={{ ...cap, fontSize: 13 }}>From 14 notes, 8 ratings, 3 clips</span></div>
           <span style={label}>In one line</span><strong style={{ fontSize: 18, lineHeight: '24px' }}>{c.first} is braver on the ball than {c.she} was in March.</strong>
           <span style={label}>What has changed</span><span style={{ fontSize: 14, lineHeight: '20px' }}>{c.She} asks for it under pressure now, and uses {c.her} left foot without thinking about it. {c.She} is still quiet on the pitch.</span>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10 }}>{([['Asking for the ball', 4, 2], ['Left foot', 3, 2], ['Talking', 3, 3]] as [string, number, number][]).map(([t, n, was]) => <span key={t} style={{ borderRadius: 10, background: PALE, padding: '8px 10px', display: 'flex', flexDirection: 'column', gap: 4 }}><strong style={{ fontSize: 13 }}>{t}</strong><Five n={n} was={was} /></span>)}</div>
           <span style={label}>Next</span><span style={{ fontSize: 14 }}>Look over {c.her} shoulder before the ball comes.</span>
+          {club && <div style={{ borderTop: `1px solid ${LINE}`, paddingTop: 8, display: 'flex', justifyContent: 'space-between', fontSize: 11, color: MUT }}><span>Wattle Creek FC</span><span>Made with <strong style={{ color: '#2f6252' }}>Clean Sheet</strong></span></div>}
         </section>
         <section aria-label="Clips to include" style={{ ...tile, padding: '12px 16px 14px', gap: 8 }}>
           <h2 style={h2}>Clips to include</h2>

@@ -1,3 +1,4 @@
+import { clubNowColours } from '../clubTheme'
 // Hand the person a real file to keep: a readings table as CSV, a report as text.
 // Everything is made in the browser; nothing is sent anywhere.
 export function saveFile(name: string, text: string, type = 'text/csv') {
@@ -15,7 +16,12 @@ const pdfText = (s: string) => [...s].map(ch => { const c = CP1252[ch] ?? ch.cha
 const wrap = (s: string, n = 92) => { const out: string[] = []; let cur = ''; for (const w of s.split(' ')) { if ((cur + ' ' + w).trim().length > n) { out.push(cur); cur = w } else cur = (cur + ' ' + w).trim() } out.push(cur); return out }
 export function savePdf(name: string, title: string, lines: string[]) {
   const body = lines.flatMap(l => l === '' ? [''] : wrap(l)).slice(0, 48)
-  const stream = `BT /F2 18 Tf 56 782 Td (${pdfText(title)}) Tj ET\nBT /F1 11 Tf 56 752 Td 15 TL\n${body.map(l => `(${pdfText(l)}) Tj T*`).join('\n')}\nET`
+  // A club with colours gets its band across the top, a line in its second colour, and "Made with Clean Sheet" in green at the foot.
+  const club = clubNowColours(), pc = (hex: string) => [1, 3, 5].map(i => (parseInt(hex.slice(i, i + 2), 16) / 255).toFixed(3)).join(' ')
+  const text = `BT /F1 11 Tf 56 ${club ? 736 : 752} Td 15 TL\n${body.slice(0, club ? 44 : 48).map(l => `(${pdfText(l)}) Tj T*`).join('\n')}\nET`
+  const stream = club
+    ? `${pc(club.main)} rg 0 772 595 70 re f\n${pc(club.line)} rg 0 766 595 6 re f\n${pc(club.onMain)} rg BT /F2 18 Tf 56 800 Td (${pdfText(title)}) Tj ET\n0.063 0.129 0.122 rg ${text}\n0.29 0.353 0.341 rg BT /F1 9 Tf 56 40 Td (Made with ) Tj ET\n0.184 0.384 0.322 rg BT /F2 9 Tf 101 40 Td (Clean Sheet) Tj ET`
+    : `BT /F2 18 Tf 56 782 Td (${pdfText(title)}) Tj ET\n${text}`
   const objs = [
     '<< /Type /Catalog /Pages 2 0 R >>',
     '<< /Type /Pages /Kids [3 0 R] /Count 1 >>',

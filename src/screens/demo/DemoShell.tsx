@@ -28,7 +28,7 @@ export default function DemoShell({ roleId, onBack, onHome, onStartTour, childre
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', fontFamily: 'var(--font-sans)' }}>
 
       {/* Demo bar */}
-      <div style={{ flex: 'none', background: '#1f4a3e', height: 48, display: 'flex', alignItems: 'center', padding: '0 0 0 4px', gap: 10, zIndex: 20 }}>
+      <div data-club-none="" style={{ flex: 'none', background: '#1f4a3e', height: 48, display: 'flex', alignItems: 'center', padding: '0 0 0 4px', gap: 10, zIndex: 20 }}>
         {onHome && (
           <button onClick={onHome} aria-label="Clean Sheet start page" title="Clean Sheet start page" style={{ flex: 'none', alignSelf: 'stretch', minWidth: 44, minHeight: 44, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>
             <Logo size={28} />

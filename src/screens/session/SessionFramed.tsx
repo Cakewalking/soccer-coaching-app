@@ -5,7 +5,7 @@ import { useBackState } from '../../backState'
 import CoachTabletFrame from '../CoachTabletFrame'
 import SessionTab from './SessionTab'
 
-const NAV = [
+export const NAV = [
   { id: 'home', label: 'Home', icon: 'M4 11l8-7 8 7v9H4z', to: 'MS5-HomeMiniRoosSame' }, { id: 'squad', label: 'Squad', icon: 'M9 11a3 3 0 100-6 3 3 0 000 6zM3 20c0-4 3-6 6-6s6 2 6 6M16 11a3 3 0 100-6M21 20c0-3-2-5-4-5.5', to: 'HM2-SquadMiniRoos' },
   { id: 'training', label: 'Training', icon: 'M6 5h12a2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V7a2 2 0 012-2zM4 10h16M9 3v4M15 3v4', to: 'GS1-ProposedSession' }, { id: 'matchday', label: 'Match day', icon: 'M12 21a9 9 0 100-18 9 9 0 000 18zM12 7l4 3-1.5 5h-5L8 10z', to: 'HM4-GameDayMiniRoos' },
   { id: 'clips', label: 'Clips', icon: 'M12 21a9 9 0 100-18 9 9 0 000 18zM10 8l6 4-6 4z', to: 'RCm2-MiniRoosClips' }, { id: 'record', label: 'Record', icon: 'M12 21a9 9 0 100-18 9 9 0 000 18zM12 15a3 3 0 100-6 3 3 0 000 6z', to: 'RCm1-RecordMiniRoos' },

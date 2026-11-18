@@ -297,12 +297,12 @@ export default function GoalkeeperCoachApp({ empty = false, initialScreen, onNav
     <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
 
       {/* Top nav */}
-      <header style={{ flex: 'none', background: '#1f4a3e', color: '#fff' }}>
+      <header data-club-bar="" style={{ flex: 'none', background: '#1f4a3e', color: '#fff' }}>
         <div style={{ height: 60, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 24 }}>
           <span style={{ fontSize: 17, fontWeight: 800, letterSpacing: '-0.03em', flexShrink: 0 }}>Clean Sheet</span>
           <nav style={{ display: 'flex', flexGrow: 1, height: 60 }}>
             {GK_NAV.map(tab => (
-              <button key={tab.id} onClick={() => { setNav(tab.id); onNavChange?.(tab.id) }} style={{
+              <button key={tab.id} data-club-tab={nav === tab.id ? 'on' : 'off'} onClick={() => { setNav(tab.id); onNavChange?.(tab.id) }} style={{
                 height: 60, padding: '0 14px', border: 0, background: 'transparent', whiteSpace: 'nowrap', flexShrink: 0,
                 fontFamily: 'inherit', fontSize: 15, fontWeight: nav === tab.id ? 700 : 500,
                 color: nav === tab.id ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer',
@@ -322,7 +322,7 @@ export default function GoalkeeperCoachApp({ empty = false, initialScreen, onNav
             {empty ? 'All keepers' : 'All keepers · Wattle Creek'}
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9l6 6 6-6"/></svg>
           </div>
-          <button onClick={() => openScreen('SET1-Account', 'Nick Ward · goalkeeper coach, Wattle Creek FC')} aria-label="Your account and settings" style={{ width: 44, height: 44, border: 0, padding: 0, background: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontFamily: 'inherit' }}><span style={{ width: 44, height: 44, borderRadius: '999px', background: '#40826d', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 15, flexShrink: 0 }}>{empty ? 'GK' : 'NW'}</span></button>
+          <button onClick={() => openScreen('SET1-Account', 'Nick Ward · goalkeeper coach, Wattle Creek FC')} aria-label="Your account and settings" data-club-keep="" style={{ width: 44, height: 44, border: 0, padding: 0, background: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontFamily: 'inherit' }}><span style={{ width: 44, height: 44, borderRadius: '999px', background: '#40826d', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 15, flexShrink: 0 }}>{empty ? 'GK' : 'NW'}</span></button>
         </div>
 
         {/* Sub-tabs row */}

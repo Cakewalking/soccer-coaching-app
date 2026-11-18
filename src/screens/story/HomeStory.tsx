@@ -312,12 +312,12 @@ function Frame({ cfg, nav, tool, children }: { cfg: HomeCfg; nav: (s: string) =>
   const click = (it: FrameNavItem) => () => it.target ? nav(it.target) : tool(it.label)
   return (
     <div data-lasttool="" style={{ width: 1180, minHeight: 820, background: '#f4f6f5', fontFamily: "'DM Sans',system-ui,sans-serif", display: 'flex', flexDirection: 'column' }}>
-      <nav style={{ background: DARK, height: 56, display: 'flex', alignItems: 'center', padding: '0 20px', flexShrink: 0 }}>
+      <nav data-club-bar="" style={{ background: DARK, height: 56, display: 'flex', alignItems: 'center', padding: '0 20px', flexShrink: 0 }}>
         <span style={{ fontSize: 15, fontWeight: 900, color: '#fff', marginRight: 16 }}>Clean Sheet</span>
-        {cfg.topNav.map(it => <button key={it.label} onClick={click(it)} style={tnb(it)}>{it.label}</button>)}
+        {cfg.topNav.map(it => <button key={it.label} data-club-tab={it.active ? 'on' : 'off'} onClick={click(it)} style={tnb(it)}>{it.label}</button>)}
         <div style={{ flex: 1 }} />
         <button onClick={() => cfg.teamTarget ? nav(cfg.teamTarget) : tool('switcher')} style={{ height: 44, padding: '0 14px', background: 'rgba(255,255,255,0.15)', color: '#fff', border: 'none', borderRadius: 22, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', marginRight: 12 }}>{cfg.team}</button>
-        <button onClick={() => openScreen('SET1-Account', STORY_WHO[cfg.avatar])} aria-label="Your account and settings" style={{ width: 44, height: 44, border: 0, padding: 0, background: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><span style={{ width: 36, height: 36, borderRadius: '50%', background: '#b9777a', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "'DM Sans',system-ui,sans-serif", fontSize: 13, fontWeight: 700, color: '#fff' }}>{cfg.avatar}</span></button>
+        <button onClick={() => openScreen('SET1-Account', STORY_WHO[cfg.avatar])} aria-label="Your account and settings" data-club-keep="" style={{ width: 44, height: 44, border: 0, padding: 0, background: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><span style={{ width: 36, height: 36, borderRadius: '50%', background: '#b9777a', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "'DM Sans',system-ui,sans-serif", fontSize: 13, fontWeight: 700, color: '#fff' }}>{cfg.avatar}</span></button>
       </nav>
       <nav style={{ background: '#fff', borderBottom: `1px solid ${HAIR}`, height: 44, display: 'flex', alignItems: 'center', padding: '0 20px', flexShrink: 0 }}>
         {cfg.subNav.map(it => <button key={it.label} onClick={click(it)} style={snb(it)}>{it.label}</button>)}
@@ -376,7 +376,7 @@ export function HomeStoryPhone({ cfg, onNav, renderTarget }: { cfg: PhoneCfg; on
   return (
     <div data-lasttool={lastTool} style={{ width: 390, minHeight: 844, background: '#f4f5f3', fontFamily: "'DM Sans',system-ui,sans-serif", display: 'flex', flexDirection: 'column' }}>
       {/* Green bar with the greeting, as drawn on every phone home */}
-      <header style={{ background: GREEN, padding: '12px 16px 14px', display: 'flex', alignItems: cfg.kids ? 'flex-start' : 'center', gap: 10, flexShrink: 0 }}>
+      <header data-club-bar="" style={{ background: GREEN, padding: '12px 16px 14px', display: 'flex', alignItems: cfg.kids ? 'flex-start' : 'center', gap: 10, flexShrink: 0 }}>
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.82)' }}>{cfg.roleLine}</div>
           <div style={{ fontSize: 21, fontWeight: 700, color: '#fff', letterSpacing: '-0.01em' }}>{cfg.greeting}</div>
@@ -385,7 +385,7 @@ export function HomeStoryPhone({ cfg, onNav, renderTarget }: { cfg: PhoneCfg; on
           </div>}
         </div>
         {/* The avatar opens this person's own settings */}
-        <button onClick={() => nav(PHONE_ME[cfg.id] ?? 'PS1-ParentSettings')} aria-label="Your account and settings" style={{ width: 44, height: 44, border: 0, padding: 0, background: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}><span style={{ width: 38, height: 38, borderRadius: '50%', background: '#cbbeb5', color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "'DM Sans',system-ui,sans-serif", fontSize: 13, fontWeight: 700 }}>{cfg.avatar}</span></button>
+        <button onClick={() => nav(PHONE_ME[cfg.id] ?? 'PS1-ParentSettings')} aria-label="Your account and settings" data-club-keep="" style={{ width: 44, height: 44, border: 0, padding: 0, background: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}><span style={{ width: 38, height: 38, borderRadius: '50%', background: '#cbbeb5', color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "'DM Sans',system-ui,sans-serif", fontSize: 13, fontWeight: 700 }}>{cfg.avatar}</span></button>
       </header>
       <div style={{ flex: 1, padding: 16, display: 'flex', flexDirection: 'column', gap: 12 }}>
         {cfg.blocks.map((b, i) => {

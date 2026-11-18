@@ -1,0 +1,161 @@
+control id,screen,control,does,target or line,status: works / line of text only / missing / wrong target (say where)
+KC1-ClubColours#7,KC1-ClubColours,Ask Clean Sheet,Opens,ASKd4-PanelFirst,works: opens the Ask panel on the same screen (the director's existing Ask), not ASKd4 as a separate screen
+KC1-ClubColours#8,KC1-ClubColours,Whole club,Opens,VS1-SwitchView,works
+KC1-ClubColours#17,KC1-ClubColours,Back to green,Says,Back to Clean Sheet green. Your colours are kept in case you change your mind.,works
+KC1-ClubColours#18,KC1-ClubColours,Save for the whole club,Says,Saved. Everyone at the club sees the new colours next time they open Clean Sheet.,works
+KC1-ClubColours#19,KC1-ClubColours,Red [radio],Says,Red picked. The preview changes straight away.,works
+KC1-ClubColours#20,KC1-ClubColours,Maroon [radio],Says,Maroon picked. The preview changes straight away.,works
+KC1-ClubColours#21,KC1-ClubColours,Orange [radio],Says,Orange picked. The preview changes straight away.,works
+KC1-ClubColours#22,KC1-ClubColours,Gold [radio],Says,Gold picked. The preview changes straight away.,works
+KC1-ClubColours#23,KC1-ClubColours,Green [radio],Says,Green picked. The preview changes straight away.,works
+KC1-ClubColours#24,KC1-ClubColours,Dark green [radio],Says,Dark green picked. The preview changes straight away.,works
+KC1-ClubColours#25,KC1-ClubColours,Sky blue [radio],Says,Sky blue picked. The preview changes straight away.,works
+KC1-ClubColours#26,KC1-ClubColours,Royal blue [radio],Says,Royal blue picked. The preview changes straight away.,works
+KC1-ClubColours#27,KC1-ClubColours,Navy [radio],Says,Navy picked. The preview changes straight away.,works
+KC1-ClubColours#28,KC1-ClubColours,Purple [radio],Says,Purple picked. The preview changes straight away.,works
+KC1-ClubColours#29,KC1-ClubColours,Black [radio],Says,Black picked. The preview changes straight away.,works
+KC1-ClubColours#30,KC1-ClubColours,White [radio],Says,White picked. The preview changes straight away.,works
+KC1-ClubColours#31,KC1-ClubColours,Exact colour: #C8102E,Says,"Type a colour code, or pick from a colour wheel.",works
+KC1-ClubColours#32,KC1-ClubColours,Red [radio],Says,Red picked. The preview changes straight away.,works
+KC1-ClubColours#33,KC1-ClubColours,Maroon [radio],Says,Maroon picked. The preview changes straight away.,works
+KC1-ClubColours#34,KC1-ClubColours,Orange [radio],Says,Orange picked. The preview changes straight away.,works
+KC1-ClubColours#35,KC1-ClubColours,Gold [radio],Says,Gold picked. The preview changes straight away.,works
+KC1-ClubColours#36,KC1-ClubColours,Green [radio],Says,Green picked. The preview changes straight away.,works
+KC1-ClubColours#37,KC1-ClubColours,Dark green [radio],Says,Dark green picked. The preview changes straight away.,works
+KC1-ClubColours#38,KC1-ClubColours,Sky blue [radio],Says,Sky blue picked. The preview changes straight away.,works
+KC1-ClubColours#39,KC1-ClubColours,Royal blue [radio],Says,Royal blue picked. The preview changes straight away.,works
+KC1-ClubColours#40,KC1-ClubColours,Navy [radio],Says,Navy picked. The preview changes straight away.,works
+KC1-ClubColours#41,KC1-ClubColours,Purple [radio],Says,Purple picked. The preview changes straight away.,works
+KC1-ClubColours#42,KC1-ClubColours,Black [radio],Says,Black picked. The preview changes straight away.,works
+KC1-ClubColours#43,KC1-ClubColours,White [radio],Says,White picked. The preview changes straight away.,works
+KC1-ClubColours#44,KC1-ClubColours,Exact colour: #FFFFFF,Says,"Type a colour code, or pick from a colour wheel.",works
+KC1-ClubColours#45,KC1-ClubColours,Add a crest,Says,Pick an image. Square works best.,works
+KC1e-ClubColoursNotSet#7,KC1e-ClubColoursNotSet,Ask Clean Sheet,Opens,ASKd4-PanelFirst,works: opens the Ask panel on the same screen (the director's existing Ask), not ASKd4 as a separate screen
+KC1e-ClubColoursNotSet#8,KC1e-ClubColoursNotSet,Whole club,Opens,VS1-SwitchView,works
+KC1e-ClubColoursNotSet#17,KC1e-ClubColoursNotSet,Back to green,Says,Back to Clean Sheet green. Your colours are kept in case you change your mind.,works
+KC1e-ClubColoursNotSet#18,KC1e-ClubColoursNotSet,Save for the whole club,Says,Saved. Everyone at the club sees the new colours next time they open Clean Sheet.,works
+KC1e-ClubColoursNotSet#19,KC1e-ClubColoursNotSet,Red [radio],Says,Red picked. The preview changes straight away.,works
+KC1e-ClubColoursNotSet#20,KC1e-ClubColoursNotSet,Maroon [radio],Says,Maroon picked. The preview changes straight away.,works
+KC1e-ClubColoursNotSet#21,KC1e-ClubColoursNotSet,Orange [radio],Says,Orange picked. The preview changes straight away.,works
+KC1e-ClubColoursNotSet#22,KC1e-ClubColoursNotSet,Gold [radio],Says,Gold picked. The preview changes straight away.,works
+KC1e-ClubColoursNotSet#23,KC1e-ClubColoursNotSet,Green [radio],Says,Green picked. The preview changes straight away.,works
+KC1e-ClubColoursNotSet#24,KC1e-ClubColoursNotSet,Dark green [radio],Says,Dark green picked. The preview changes straight away.,works
+KC1e-ClubColoursNotSet#25,KC1e-ClubColoursNotSet,Sky blue [radio],Says,Sky blue picked. The preview changes straight away.,works
+KC1e-ClubColoursNotSet#26,KC1e-ClubColoursNotSet,Royal blue [radio],Says,Royal blue picked. The preview changes straight away.,works
+KC1e-ClubColoursNotSet#27,KC1e-ClubColoursNotSet,Navy [radio],Says,Navy picked. The preview changes straight away.,works
+KC1e-ClubColoursNotSet#28,KC1e-ClubColoursNotSet,Purple [radio],Says,Purple picked. The preview changes straight away.,works
+KC1e-ClubColoursNotSet#29,KC1e-ClubColoursNotSet,Black [radio],Says,Black picked. The preview changes straight away.,works
+KC1e-ClubColoursNotSet#30,KC1e-ClubColoursNotSet,White [radio],Says,White picked. The preview changes straight away.,works
+KC1e-ClubColoursNotSet#31,KC1e-ClubColoursNotSet,Exact colour: #2F6252,Says,"Type a colour code, or pick from a colour wheel.",works
+KC1e-ClubColoursNotSet#32,KC1e-ClubColoursNotSet,Red [radio],Says,Red picked. The preview changes straight away.,works
+KC1e-ClubColoursNotSet#33,KC1e-ClubColoursNotSet,Maroon [radio],Says,Maroon picked. The preview changes straight away.,works
+KC1e-ClubColoursNotSet#34,KC1e-ClubColoursNotSet,Orange [radio],Says,Orange picked. The preview changes straight away.,works
+KC1e-ClubColoursNotSet#35,KC1e-ClubColoursNotSet,Gold [radio],Says,Gold picked. The preview changes straight away.,works
+KC1e-ClubColoursNotSet#36,KC1e-ClubColoursNotSet,Green [radio],Says,Green picked. The preview changes straight away.,works
+KC1e-ClubColoursNotSet#37,KC1e-ClubColoursNotSet,Dark green [radio],Says,Dark green picked. The preview changes straight away.,works
+KC1e-ClubColoursNotSet#38,KC1e-ClubColoursNotSet,Sky blue [radio],Says,Sky blue picked. The preview changes straight away.,works
+KC1e-ClubColoursNotSet#39,KC1e-ClubColoursNotSet,Royal blue [radio],Says,Royal blue picked. The preview changes straight away.,works
+KC1e-ClubColoursNotSet#40,KC1e-ClubColoursNotSet,Navy [radio],Says,Navy picked. The preview changes straight away.,works
+KC1e-ClubColoursNotSet#41,KC1e-ClubColoursNotSet,Purple [radio],Says,Purple picked. The preview changes straight away.,works
+KC1e-ClubColoursNotSet#42,KC1e-ClubColoursNotSet,Black [radio],Says,Black picked. The preview changes straight away.,works
+KC1e-ClubColoursNotSet#43,KC1e-ClubColoursNotSet,White [radio],Says,White picked. The preview changes straight away.,works
+KC1e-ClubColoursNotSet#44,KC1e-ClubColoursNotSet,Exact colour: #FFFFFF,Says,"Type a colour code, or pick from a colour wheel.",works
+KC1e-ClubColoursNotSet#45,KC1e-ClubColoursNotSet,Add a crest,Says,Pick an image. Square works best.,works
+KC3-PaleColour#7,KC3-PaleColour,Ask Clean Sheet,Opens,ASKd4-PanelFirst,works: opens the Ask panel on the same screen (the director's existing Ask), not ASKd4 as a separate screen
+KC3-PaleColour#8,KC3-PaleColour,Whole club,Opens,VS1-SwitchView,works
+KC3-PaleColour#17,KC3-PaleColour,Back to green,Says,Back to Clean Sheet green. Your colours are kept in case you change your mind.,works
+KC3-PaleColour#18,KC3-PaleColour,Save for the whole club,Says,Saved. Everyone at the club sees the new colours next time they open Clean Sheet.,works
+KC3-PaleColour#19,KC3-PaleColour,Red [radio],Says,Red picked. The preview changes straight away.,works
+KC3-PaleColour#20,KC3-PaleColour,Maroon [radio],Says,Maroon picked. The preview changes straight away.,works
+KC3-PaleColour#21,KC3-PaleColour,Orange [radio],Says,Orange picked. The preview changes straight away.,works
+KC3-PaleColour#22,KC3-PaleColour,Gold [radio],Says,Gold picked. The preview changes straight away.,works
+KC3-PaleColour#23,KC3-PaleColour,Green [radio],Says,Green picked. The preview changes straight away.,works
+KC3-PaleColour#24,KC3-PaleColour,Dark green [radio],Says,Dark green picked. The preview changes straight away.,works
+KC3-PaleColour#25,KC3-PaleColour,Sky blue [radio],Says,Sky blue picked. The preview changes straight away.,works
+KC3-PaleColour#26,KC3-PaleColour,Royal blue [radio],Says,Royal blue picked. The preview changes straight away.,works
+KC3-PaleColour#27,KC3-PaleColour,Navy [radio],Says,Navy picked. The preview changes straight away.,works
+KC3-PaleColour#28,KC3-PaleColour,Purple [radio],Says,Purple picked. The preview changes straight away.,works
+KC3-PaleColour#29,KC3-PaleColour,Black [radio],Says,Black picked. The preview changes straight away.,works
+KC3-PaleColour#30,KC3-PaleColour,White [radio],Says,White picked. The preview changes straight away.,works
+KC3-PaleColour#31,KC3-PaleColour,Exact colour: #7CC4EE,Says,"Type a colour code, or pick from a colour wheel.",works
+KC3-PaleColour#32,KC3-PaleColour,Red [radio],Says,Red picked. The preview changes straight away.,works
+KC3-PaleColour#33,KC3-PaleColour,Maroon [radio],Says,Maroon picked. The preview changes straight away.,works
+KC3-PaleColour#34,KC3-PaleColour,Orange [radio],Says,Orange picked. The preview changes straight away.,works
+KC3-PaleColour#35,KC3-PaleColour,Gold [radio],Says,Gold picked. The preview changes straight away.,works
+KC3-PaleColour#36,KC3-PaleColour,Green [radio],Says,Green picked. The preview changes straight away.,works
+KC3-PaleColour#37,KC3-PaleColour,Dark green [radio],Says,Dark green picked. The preview changes straight away.,works
+KC3-PaleColour#38,KC3-PaleColour,Sky blue [radio],Says,Sky blue picked. The preview changes straight away.,works
+KC3-PaleColour#39,KC3-PaleColour,Royal blue [radio],Says,Royal blue picked. The preview changes straight away.,works
+KC3-PaleColour#40,KC3-PaleColour,Navy [radio],Says,Navy picked. The preview changes straight away.,works
+KC3-PaleColour#41,KC3-PaleColour,Purple [radio],Says,Purple picked. The preview changes straight away.,works
+KC3-PaleColour#42,KC3-PaleColour,Black [radio],Says,Black picked. The preview changes straight away.,works
+KC3-PaleColour#43,KC3-PaleColour,White [radio],Says,White picked. The preview changes straight away.,works
+KC3-PaleColour#44,KC3-PaleColour,Exact colour: #14213D,Says,"Type a colour code, or pick from a colour wheel.",works
+KC3-PaleColour#45,KC3-PaleColour,Add a crest,Says,Pick an image. Square works best.,works
+KC4-GoldColour#7,KC4-GoldColour,Ask Clean Sheet,Opens,ASKd4-PanelFirst,works: opens the Ask panel on the same screen (the director's existing Ask), not ASKd4 as a separate screen
+KC4-GoldColour#8,KC4-GoldColour,Whole club,Opens,VS1-SwitchView,works
+KC4-GoldColour#17,KC4-GoldColour,Back to green,Says,Back to Clean Sheet green. Your colours are kept in case you change your mind.,works
+KC4-GoldColour#18,KC4-GoldColour,Save for the whole club,Says,Saved. Everyone at the club sees the new colours next time they open Clean Sheet.,works
+KC4-GoldColour#19,KC4-GoldColour,Red [radio],Says,Red picked. The preview changes straight away.,works
+KC4-GoldColour#20,KC4-GoldColour,Maroon [radio],Says,Maroon picked. The preview changes straight away.,works
+KC4-GoldColour#21,KC4-GoldColour,Orange [radio],Says,Orange picked. The preview changes straight away.,works
+KC4-GoldColour#22,KC4-GoldColour,Gold [radio],Says,Gold picked. The preview changes straight away.,works
+KC4-GoldColour#23,KC4-GoldColour,Green [radio],Says,Green picked. The preview changes straight away.,works
+KC4-GoldColour#24,KC4-GoldColour,Dark green [radio],Says,Dark green picked. The preview changes straight away.,works
+KC4-GoldColour#25,KC4-GoldColour,Sky blue [radio],Says,Sky blue picked. The preview changes straight away.,works
+KC4-GoldColour#26,KC4-GoldColour,Royal blue [radio],Says,Royal blue picked. The preview changes straight away.,works
+KC4-GoldColour#27,KC4-GoldColour,Navy [radio],Says,Navy picked. The preview changes straight away.,works
+KC4-GoldColour#28,KC4-GoldColour,Purple [radio],Says,Purple picked. The preview changes straight away.,works
+KC4-GoldColour#29,KC4-GoldColour,Black [radio],Says,Black picked. The preview changes straight away.,works
+KC4-GoldColour#30,KC4-GoldColour,White [radio],Says,White picked. The preview changes straight away.,works
+KC4-GoldColour#31,KC4-GoldColour,Exact colour: #14213D,Says,"Type a colour code, or pick from a colour wheel.",works
+KC4-GoldColour#32,KC4-GoldColour,Red [radio],Says,Red picked. The preview changes straight away.,works
+KC4-GoldColour#33,KC4-GoldColour,Maroon [radio],Says,Maroon picked. The preview changes straight away.,works
+KC4-GoldColour#34,KC4-GoldColour,Orange [radio],Says,Orange picked. The preview changes straight away.,works
+KC4-GoldColour#35,KC4-GoldColour,Gold [radio],Says,Gold picked. The preview changes straight away.,works
+KC4-GoldColour#36,KC4-GoldColour,Green [radio],Says,Green picked. The preview changes straight away.,works
+KC4-GoldColour#37,KC4-GoldColour,Dark green [radio],Says,Dark green picked. The preview changes straight away.,works
+KC4-GoldColour#38,KC4-GoldColour,Sky blue [radio],Says,Sky blue picked. The preview changes straight away.,works
+KC4-GoldColour#39,KC4-GoldColour,Royal blue [radio],Says,Royal blue picked. The preview changes straight away.,works
+KC4-GoldColour#40,KC4-GoldColour,Navy [radio],Says,Navy picked. The preview changes straight away.,works
+KC4-GoldColour#41,KC4-GoldColour,Purple [radio],Says,Purple picked. The preview changes straight away.,works
+KC4-GoldColour#42,KC4-GoldColour,Black [radio],Says,Black picked. The preview changes straight away.,works
+KC4-GoldColour#43,KC4-GoldColour,White [radio],Says,White picked. The preview changes straight away.,works
+KC4-GoldColour#44,KC4-GoldColour,Exact colour: #F2B705,Says,"Type a colour code, or pick from a colour wheel.",works
+KC4-GoldColour#45,KC4-GoldColour,Add a crest,Says,Pick an image. Square works best.,works
+KC5-SessionRedClub#7,KC5-SessionRedClub,U11 Luke,Opens,VS1-SwitchView,works
+KC5-SessionRedClub#14,KC5-SessionRedClub,Showing: new to coaching,Opens,GS5-CoachLevel,works
+KC5-SessionRedClub#15,KC5-SessionRedClub,Open the run sheet,Opens,GS3-RunSheet,works
+KC5-SessionRedClub#16,KC5-SessionRedClub,Why this,Opens,GS2-DrillWhy,works
+KC5-SessionRedClub#17,KC5-SessionRedClub,Swap,Says,Three other games for the same reason. Pick one and the session changes.,works
+KC5-SessionRedClub#18,KC5-SessionRedClub,Why this,Opens,GS2-DrillWhy,works
+KC5-SessionRedClub#19,KC5-SessionRedClub,Swap,Says,Three other games for the same reason. Pick one and the session changes.,works
+KC5-SessionRedClub#20,KC5-SessionRedClub,Why this,Opens,GS2-DrillWhy,works
+KC5-SessionRedClub#21,KC5-SessionRedClub,Swap,Says,Three other games for the same reason. Pick one and the session changes.,works
+KC5-SessionRedClub#22,KC5-SessionRedClub,Why this,Opens,GS2-DrillWhy,works
+KC5-SessionRedClub#23,KC5-SessionRedClub,Swap,Says,Three other games for the same reason. Pick one and the session changes.,works
+KC5-SessionRedClub#24,KC5-SessionRedClub,Two minutes before Tuesday · How to coach a keep-ball game without stopping it,Opens,GS8-WelcomeCourse,works
+KC6-DrillGoldClub#7,KC6-DrillGoldClub,U11 Luke,Opens,VS1-SwitchView,works
+KC6-DrillGoldClub#14,KC6-DrillGoldClub,Swap for another,Says,Three other games for the same reason. Pick one and the session changes.,works
+KC6-DrillGoldClub#15,KC6-DrillGoldClub,Back to the session,Opens,GS1-ProposedSession,works
+KC6-DrillGoldClub#16,KC6-DrillGoldClub,See it happen · 3 clips from Saturday · 34 seconds,Says,"Three clips play, 34 seconds in all.",works
+KC7-SessionPaleClub#7,KC7-SessionPaleClub,U11 Luke,Opens,VS1-SwitchView,works
+KC7-SessionPaleClub#14,KC7-SessionPaleClub,Nudge the 2,Says,One reminder goes to 2 families. No more after that.,works
+KC7-SessionPaleClub#15,KC7-SessionPaleClub,I am at the pitch: tap who is here,Says,Tap each player as they arrive. The session resizes as you go.,works
+KC8-ReportClubColours#7,KC8-ReportClubColours,U11 Luke,Opens,VS1-SwitchView,works
+KC8-ReportClubColours#13,KC8-ReportClubColours,Change the wording,Opens,CN9-SeasonReport,works
+KC8-ReportClubColours#14,KC8-ReportClubColours,Send to the family,Says,Sent to Dana and Kerem. They can read it in the app or save it as a PDF.,works
+KCp1-ParentRedClub#1,KCp1-ParentRedClub,Ask Clean Sheet,Opens,ASKp2-PhoneAskOpen,works
+KCp1-ParentRedClub#2,KCp1-ParentRedClub,Ari is coming,Says,Luke can see Ari is coming.,works
+KCp1-ParentRedClub#3,KCp1-ParentRedClub,Football at home,Opens,GSp9-HomeLibrary,works
+KCp1-ParentRedClub#4,KCp1-ParentRedClub,Message Luke,Opens,MSGp1-ParentMessages,works
+KCp1-ParentRedClub#5,KCp1-ParentRedClub,Switch child,Opens,KCp3-TwoClubs,works
+KCp2-ParentPaleClub#1,KCp2-ParentPaleClub,Ask Clean Sheet,Opens,ASKp2-PhoneAskOpen,works
+KCp2-ParentPaleClub#2,KCp2-ParentPaleClub,Mia is coming,Says,Luke can see Mia is coming.,works
+KCp2-ParentPaleClub#3,KCp2-ParentPaleClub,Football at home,Opens,GSp9-HomeLibrary,works
+KCp2-ParentPaleClub#4,KCp2-ParentPaleClub,Message Luke,Opens,MSGp1-ParentMessages,works
+KCp2-ParentPaleClub#5,KCp2-ParentPaleClub,Switch child,Opens,KCp3-TwoClubs,works
+KCp3-TwoClubs#1,KCp3-TwoClubs,Back,Opens,KCp1-ParentRedClub,works
+KCp3-TwoClubs#2,KCp3-TwoClubs,Ask Clean Sheet,Opens,ASKp2-PhoneAskOpen,works
+KCp3-TwoClubs#3,KCp3-TwoClubs,Redgum United · · Ari · U11 Luke · next game Saturday 9:30 [radio],Opens,KCp1-ParentRedClub,works
+KCp3-TwoClubs#4,KCp3-TwoClubs,Bayside Rovers · · Mia · U14 Girls · next game Sunday 11:00 [radio],Opens,KCp2-ParentPaleClub,works

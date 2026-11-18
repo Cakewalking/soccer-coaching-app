@@ -27,7 +27,7 @@ export function TrialShareBody({ player, team, pack, preview, demo, coach = 'Sam
   const cur = clips[at]
   return (
     <div data-screen="TP2-TrialShare" style={{ minHeight: '100vh', background: '#f7f8f7', color: INK, fontFamily: "'DM Sans',system-ui,sans-serif" }}>
-      <header style={{ background: DARK, color: '#fff' }}>
+      <header data-club-bar="" style={{ background: DARK, color: '#fff' }}>
         <div style={{ maxWidth: 980, margin: '0 auto', padding: '14px 16px', display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
           <Logo size={32} /><strong style={{ fontSize: 17 }}>Clean Sheet</strong>
           <span style={{ flexGrow: 1 }} />

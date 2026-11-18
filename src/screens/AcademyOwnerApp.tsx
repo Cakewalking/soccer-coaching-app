@@ -1,3 +1,4 @@
+import ClubColours from './clubadmin/ClubColours'
 import { openScreen } from './openThing'
 import { useBackState } from '../backState'
 import { openThing, sayOrOpen } from './openThing'
@@ -13,7 +14,7 @@ const PALE = '#eef5f2'
 const ROSE = '#c39797'
 
 type OwnerNav = 'home' | 'programs' | 'players' | 'coaches' | 'money'
-type HomeTab  = 'overview' | 'trials' | 'reports' | 'safety' | 'partner'
+type HomeTab  = 'overview' | 'trials' | 'reports' | 'safety' | 'partner' | 'colours'
 type ProgramsTab = 'term' | 'clinic'
 
 // ─── Shared ──────────────────────────────────────────────────────────────────
@@ -961,6 +962,7 @@ export default function AcademyOwnerApp({ empty = false, initialScreen, onNavCha
     { id: 'reports',  label: 'Reports' },
     { id: 'safety',   label: 'Child safety' },
     { id: 'partner',  label: 'Partner club' },
+    { id: 'colours',  label: 'Academy colours' },
   ]
 
   const PROGRAMS_TABS: Array<{ id: ProgramsTab; label: string }> = [
@@ -990,21 +992,21 @@ export default function AcademyOwnerApp({ empty = false, initialScreen, onNavCha
   return (
     <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       <header style={{ flex: 'none', background: GD, color: '#fff' }}>
-        <div style={{ height: 60, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 16 }}>
+        <div data-club-bar="" style={{ height: 60, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 16 }}>
           <span style={{ fontSize: 17, fontWeight: 800, letterSpacing: '-0.03em', color: '#fff', flexShrink: 0 }}>Clean Sheet</span>
           <nav style={{ display: 'flex', flexGrow: 1, height: 60 }}>
             {(['home', 'programs', 'players', 'coaches', 'money'] as OwnerNav[]).map(id => (
-              <button key={id} onClick={() => { setNav(id); onNavChange?.(id) }} style={{ height: 60, padding: '0 16px', border: 0, background: 'transparent', fontFamily: 'inherit', fontSize: 15, fontWeight: nav === id ? 700 : 500, color: nav === id ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer', borderBottom: nav === id ? '3px solid #fff' : '3px solid transparent', textTransform: 'capitalize', boxSizing: 'border-box' as const }}>
+              <button key={id} data-club-tab={nav === id ? 'on' : 'off'} onClick={() => { setNav(id); onNavChange?.(id) }} style={{ height: 60, padding: '0 16px', border: 0, background: 'transparent', fontFamily: 'inherit', fontSize: 15, fontWeight: nav === id ? 700 : 500, color: nav === id ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer', borderBottom: nav === id ? '3px solid #fff' : '3px solid transparent', textTransform: 'capitalize', boxSizing: 'border-box' as const }}>
                 {id === 'money' ? 'Money' : id.charAt(0).toUpperCase() + id.slice(1)}
               </button>
             ))}
           </nav>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
-            <button onClick={() => setAskOpen(o => !o)} aria-label="Ask Clean Sheet" style={{ width: 44, height: 44, borderRadius: '50%', border: '1.5px solid #a9cfc0', background: askOpen ? '#fff' : 'transparent', color: askOpen ? INK : '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', flexShrink: 0 }}>
+            <button onClick={() => setAskOpen(o => !o)} aria-label="Ask Clean Sheet" data-club-keep={askOpen ? '' : undefined} style={{ width: 44, height: 44, borderRadius: '50%', border: '1.5px solid #a9cfc0', background: askOpen ? '#fff' : 'transparent', color: askOpen ? INK : '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', flexShrink: 0 }}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg>
             </button>
             <span style={{ fontSize: 14, fontWeight: 600, color: 'rgba(255,255,255,0.8)' }}>Tall Timber Academy</span>
-            <button onClick={() => openScreen('SET1-Account', 'Dani Okafor · owner, ' + 'Tall Timber Academy')} aria-label="Your account and settings" style={{ width: 44, height: 44, border: 0, padding: 0, background: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontFamily: 'inherit' }}><span style={{ width: 40, height: 40, borderRadius: '50%', background: ROSE, color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>DO</span></button>
+            <button onClick={() => openScreen('SET1-Account', 'Dani Okafor · owner, ' + 'Tall Timber Academy')} aria-label="Your account and settings" data-club-keep="" style={{ width: 44, height: 44, border: 0, padding: 0, background: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontFamily: 'inherit' }}><span style={{ width: 40, height: 40, borderRadius: '50%', background: ROSE, color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>DO</span></button>
           </div>
         </div>
         {contextTabs.length > 0 && (
@@ -1034,6 +1036,7 @@ export default function AcademyOwnerApp({ empty = false, initialScreen, onNavCha
         {nav === 'home' && homeTab === 'reports'  && <ReportsView empty={empty}/>}
         {nav === 'home' && homeTab === 'safety'   && <SafetyView empty={empty}/>}
         {nav === 'home' && homeTab === 'partner'  && <PartnerClubView empty={empty}/>}
+        {nav === 'home' && homeTab === 'colours'  && <div style={{ overflow: 'auto' }}><ClubColours storeKey="academy" club="Tall Timber Academy" title="Academy colours" by="the owner" whole="academy" /></div>}
         {nav === 'programs' && programsTab === 'term'   && <ProgramsView empty={empty}/>}
         {nav === 'programs' && programsTab === 'clinic' && <ClinicView empty={empty}/>}
         {nav === 'players'  && <PlayersView empty={empty}/>}
