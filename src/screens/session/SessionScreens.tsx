@@ -47,7 +47,6 @@ function SessionBody({ s, k, go, say, setPart, ses, id }: GsProps & { ses: Sessi
   const t = TEAMS[k], ts = s.teams[k], level = s.level, c = counts(ts), bye = ses.from === 'bye'
   const [swap, setSwap] = useState<number | null>(null)
   const [asked, setAsked] = useState<number | null>(null)
-  const main = ses.parts.find(p => p.chips.some(x => x.kind === 'film' || x.kind === 'note')) ?? ses.parts[1]
   return (
     <Page id={id} title={`${day(t)}’s session`} sub={bye ? `${t.label} · ${k === 'u11' ? 'Tue 30 June' : t.day}, ${t.time} · no game last weekend` : `${t.label} · ${t.day}, ${t.time} · ${t.place}`} go={go} cols="minmax(0,1fr) 348px"
       right={<><Btn big onClick={() => go('GS5-CoachLevel')}>Showing: {LEVEL_NAME[level].toLowerCase()}</Btn><Btn primary big onClick={() => go('GS3-RunSheet')}>Open the run sheet</Btn></>}>
@@ -74,7 +73,7 @@ function SessionBody({ s, k, go, say, setPart, ses, id }: GsProps & { ses: Sessi
                   <span style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>{p.chips.map(ch => <ChipTag key={ch.text} c={ch} />)}</span>
                 </span>
                 <span style={{ display: 'flex', gap: 6 }}>
-                  <Btn primary={p === main && !bye} aria-label={`Why this: ${p.drill.name}`} onClick={() => { setPart(i); go('GS2-DrillWhy') }}>Why this</Btn>
+                  <Btn primary aria-label={`Why this: ${p.drill.name}`} onClick={() => { setPart(i); go('GS2-DrillWhy') }}>Why this</Btn>
                   <Btn aria-label={`Swap ${p.drill.name}`} aria-pressed={swap === i} onClick={() => { setSwap(swap === i ? null : i); setAsked(null); if (swap !== i) say(others.length ? 'Three other games for the same reason. Pick one and the session changes.' : 'Nothing else in your club’s sources fits this reason yet.') }}>Swap</Btn>
                 </span>
               </div>
