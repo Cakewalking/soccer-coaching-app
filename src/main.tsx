@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import DevScreens from './screens/dev/DevScreens.tsx'
 import TrialShare from './screens/trial/TrialShare.tsx'
+import { ClipSheetHost } from './screens/clips/clipSheet.tsx'
 
 // /share/<slug> is the page a new club opens from a trial pack link: no demo bar, no app frame.
 const share = window.location.pathname.match(/^\/share\/([a-z0-9-]+)\/?$/)
@@ -13,5 +14,5 @@ const root = share
   : <App />
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>{root}</StrictMode>,
+  <StrictMode>{root}<ClipSheetHost /></StrictMode>,
 )

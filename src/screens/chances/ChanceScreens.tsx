@@ -3,6 +3,7 @@
 // so xG − xGA = xGD and season totals equal the games shown.
 // No amber on a chance number: they are estimates.
 
+import { playClips } from '../clips/clipSheet'
 import type { ReactNode } from 'react'
 import { Mark, Src, Ico, IC, Btn, Note, tile, h2, cap, label, G, INK, MUT, LINE, PALE, DARK } from '../capture/marks'
 import { Page, col, ListRow } from '../capture/CaptureScreens'
@@ -42,18 +43,18 @@ function Dot({ sh, onOpen, what }: { sh: Shot; onOpen: () => void; what: string 
     </g>
   )
 }
-function ShotMap({ t, say }: { t: TeamChances; say: (m: string) => void }) {
+function ShotMap({ t }: { t: TeamChances }) {
   const mini = isMini(t), g = t.sat
   const goals = (n: number) => mini ? '' : `, ${n} ${n === 1 ? 'goal' : 'goals'}`
-  const open = () => say('The clip opens at this shot.')
+  const open = (whose: string, sh: Shot) => playClips([{ title: `${whose}, ${odds(sh.v)}${sh.goal ? ', went in' : ''}`, sub: 'From the match film, starting five seconds before the shot.', len: 10 }], 'Saturday’s shots')
   const odds = (v: number) => `about 1 in ${Math.max(2, Math.round(1 / v))}`
   return (
     <svg viewBox="0 0 710 362" role="group" aria-label={`Shot map. Your team, attacking right: ${g.ours.length} shots${goals(g.scored)}. The other team, attacking left: ${g.theirs.length} shots${goals(g.theirGoals)}. Bigger circles are better chances. Filled circles with a tick ${mini ? 'went in' : 'are goals'}.`} style={{ display: 'block', width: '100%', height: 'auto', borderRadius: 14, background: G }}>
       <g stroke="#fff" strokeWidth="2.5" fill="none" opacity="0.9"><rect x="22" y="30" width="666" height="306" /><path d="M355 30v306" /><circle cx="355" cy="183" r="38" /><rect x="22" y="113" width="70" height="140" /><rect x="618" y="113" width="70" height="140" /></g>
       <text x="28" y="20" fontSize="13" fontWeight="700" fill="#fff">Their chances · {g.theirs.length} shots{goals(g.theirGoals)}</text>
       <text x="682" y="20" textAnchor="end" fontSize="13" fontWeight="700" fill="#fff">Your chances · {g.ours.length} shots{goals(g.scored)}</text>
-      {g.theirs.map((sh, i) => <Dot key={`t${i}`} sh={sh} onOpen={open} what={`Their shot, ${odds(sh.v)}${sh.goal ? ', went in' : ''}. Open the clip`} />)}
-      {g.ours.map((sh, i) => <Dot key={`o${i}`} sh={sh} onOpen={open} what={`Your shot, ${odds(sh.v)}${sh.goal ? ', went in' : ''}. Open the clip`} />)}
+      {g.theirs.map((sh, i) => <Dot key={`t${i}`} sh={sh} onOpen={() => open('Their shot', sh)} what={`Their shot, ${odds(sh.v)}${sh.goal ? ', went in' : ''}. Open the clip`} />)}
+      {g.ours.map((sh, i) => <Dot key={`o${i}`} sh={sh} onOpen={() => open('Your shot', sh)} what={`Your shot, ${odds(sh.v)}${sh.goal ? ', went in' : ''}. Open the clip`} />)}
       <circle cx="237" cy="349" r="5" fill="rgba(255,255,255,0.14)" stroke="#fff" strokeWidth="2" /><circle cx="255" cy="349" r="9" fill="rgba(255,255,255,0.14)" stroke="#fff" strokeWidth="2" />
       <text x="271" y="353" fontSize="12" fontWeight="700" fill="#dcefe8">Bigger = better chance</text><circle cx="427" cy="349" r="8" fill="#fff" /><text x="441" y="353" fontSize="12" fontWeight="700" fill="#dcefe8">Goal</text>
     </svg>
@@ -65,7 +66,7 @@ const play = <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke=
 
 // ── XG1 / XGm1 · one game ────────────────────────────────────────────────────
 
-export function XG1ChancesGame({ t, s, go, say, game, setGame }: ChanceProps) {
+export function XG1ChancesGame({ t, s, go, game, setGame }: ChanceProps) {
   const mini = isMini(t), g = t.sat, n = satGame(t), may = allowed(s, t.band)
   const names = may.xa && g.setUp.length > 0
   const better = n.xgd > 0
@@ -98,14 +99,14 @@ export function XG1ChancesGame({ t, s, go, say, game, setGame }: ChanceProps) {
             <h2 style={h2}>Where the chances came from</h2>
             <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}><span style={{ ...cap, fontSize: 13 }}>Being tuned for this age group</span><Mark kind="estimate" /></span>
           </div>
-          <ShotMap t={t} say={say} />
+          <ShotMap t={t} />
         </section>
       </div>
       <div style={col}>
         <section aria-label="Your best chances" style={{ ...tile, gap: 0, padding: '12px 16px 4px' }}>
           <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 8, paddingBottom: 6 }}><h2 style={{ ...h2, whiteSpace: 'nowrap' }}>Your best chances</h2><span style={{ ...cap, fontSize: 12, whiteSpace: 'nowrap' }}>How often a shot like it goes in</span></div>
           {g.best.map(b => (
-            <button key={b.min} style={rowBtn} onClick={() => say('The clip opens at this shot.')}>
+            <button key={b.min} style={rowBtn} onClick={() => playClips(g.best.map(x => ({ title: `${x.min} · ${x.who}${x.goal && !mini ? ' · goal' : ''}`, sub: `${x.what}.`, len: 11 })), 'Your best chances', g.best.indexOf(b))}>
               <strong style={{ fontSize: 14, color: MUT }}>{b.min}</strong>
               <span style={{ display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 14, lineHeight: '19px' }}>{b.who}{b.goal && !mini ? ' · goal' : ''}</strong><span style={{ fontSize: 13, lineHeight: '17px', color: MUT }}>{b.what}</span></span>
               <strong style={{ fontSize: 14, textAlign: 'right', whiteSpace: 'nowrap' }}>{b.odds}</strong>{play}
@@ -312,7 +313,7 @@ export function XG3LadderPPI({ t, go }: ChanceProps) {
 
 // ── XG4 · where the danger comes from (team xT) ──────────────────────────────
 
-export function XG4ThreatMap({ t, go, say }: ChanceProps) {
+export function XG4ThreatMap({ t, go }: ChanceProps) {
   const filmed = t.games.filter(g => g.film).length, enough = filmed >= 5
   return (
     <Page id="XG4-ThreatMap" title="Where the danger comes from" sub={`${t.name} · last 5 games with film · threat added (xT)`} go={go} cols="minmax(0,1fr) 372px"
@@ -343,7 +344,7 @@ export function XG4ThreatMap({ t, go, say }: ChanceProps) {
         <section aria-label="Moves that added most" style={{ ...tile, gap: 0, padding: '12px 16px 4px' }}>
           <h2 style={{ ...h2, paddingBottom: 6 }}>Moves that added most on Saturday</h2>
           {t.threat.moves.map(m => (
-            <button key={m.min} style={rowBtn} onClick={() => say('The clip opens at this shot.')}>
+            <button key={m.min} style={rowBtn} onClick={() => playClips(t.threat.moves.map(x => ({ title: `${x.min} · ${x.who}`, sub: `${x.what}.`, len: 9 })), 'Moves that added most', t.threat.moves.indexOf(m))}>
               <strong style={{ fontSize: 14, color: MUT }}>{m.min}</strong>
               <span style={{ display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 14, lineHeight: '19px' }}>{m.who}</strong><span style={{ fontSize: 13, lineHeight: '17px', color: MUT }}>{m.what}</span></span>
               <strong style={{ fontSize: 14, textAlign: 'right' }}>Clip</strong>{play}

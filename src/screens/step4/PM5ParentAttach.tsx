@@ -1,3 +1,4 @@
+import { Glyph, glyph } from '../Glyph'
 import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
@@ -11,11 +12,11 @@ export default function PM5ParentAttach(_: { onBack?: () => void }) {
   const waveHeights = [14, 20, 28, 18, 32, 24, 16, 30, 22, 26]
 
   const attachOptions = [
-    { icon: '🖼️', label: 'Photo', action: () => { setSheet(null); t('Opening photo consent...') } },
-    { icon: '🎥', label: 'Video', action: () => { setSheet(null); t('Pick from camera roll or record') } },
-    { icon: '🎙️', label: 'Voice note', action: () => { setSheet(null); t('Recording...') } },
-    { icon: '📍', label: 'Place', action: () => { setSheet(null); t('Share your location') } },
-    { icon: '📎', label: 'File', action: () => { setSheet(null); t('Pick a file from this device') } },
+    { icon: glyph('image'), label: 'Photo', action: () => { setSheet(null); t('Opening photo consent...') } },
+    { icon: glyph('video'), label: 'Video', action: () => { setSheet(null); t('Pick from camera roll or record') } },
+    { icon: glyph('mic'), label: 'Voice note', action: () => { setSheet(null); t('Recording...') } },
+    { icon: glyph('place'), label: 'Place', action: () => { setSheet(null); t('Share your location') } },
+    { icon: glyph('clip'), label: 'File', action: () => { setSheet(null); t('Pick a file from this device') } },
   ]
 
   return (
@@ -38,18 +39,18 @@ export default function PM5ParentAttach(_: { onBack?: () => void }) {
             <div style={{ fontSize: 15, color: '#fff', marginBottom: 8 }}>Who's bringing oranges on Saturday?</div>
             <div style={{ display: 'flex', gap: 6 }}>
               {[0, 1].map(i => (
-                <div key={i} style={{ width: 72, height: 52, borderRadius: 8, background: 'rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18 }}>🖼️</div>
+                <div key={i} style={{ width: 72, height: 52, borderRadius: 8, background: 'rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18 }}><Glyph n="image" /></div>
               ))}
             </div>
           </div>
-          <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 999, padding: '2px 10px', fontSize: 13 }}>👍 3</div>
+          <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 999, padding: '2px 10px', fontSize: 13 }}><Glyph n="like" /> 3</div>
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column' as const, alignItems: 'flex-start', gap: 4 }}>
           <div style={{ fontSize: 12, color: MUT, paddingLeft: 52 }}>Sam K · 10:21 am</div>
           <div style={{ display: 'flex', alignItems: 'flex-end', gap: 8 }}>
             <div style={{ width: 36, height: 36, borderRadius: 999, background: '#d4b896', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 12, color: INK, flexShrink: 0 }}>SK</div>
-            <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: '4px 16px 16px 16px', padding: '10px 14px', maxWidth: 240, fontSize: 15, color: INK }}>I'll sort oranges! Mia, great left foot work this week 🎉</div>
+            <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: '4px 16px 16px 16px', padding: '10px 14px', maxWidth: 240, fontSize: 15, color: INK }}>I'll sort oranges! Mia, great left foot work this week</div>
           </div>
         </div>
 
@@ -102,7 +103,7 @@ export default function PM5ParentAttach(_: { onBack?: () => void }) {
 
             {/* Poll — locked */}
             <div style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '14px 20px', borderTop: `1px solid ${LN}`, opacity: 0.5 }}>
-              <div style={{ width: 42, height: 42, borderRadius: 12, background: '#f0f0f0', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20, flexShrink: 0 }}>🔒</div>
+              <div style={{ width: 42, height: 42, borderRadius: 12, background: '#f0f0f0', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20, flexShrink: 0 }}><Glyph n="lock" /></div>
               <div style={{ flex: 1 }}>
                 <div style={{ fontSize: 16, fontWeight: 500, color: INK }}>Poll</div>
                 <div style={{ fontSize: 12, color: MUT }}>Polls are set by the coach or manager</div>

@@ -1,3 +1,4 @@
+import { glyph } from '../Glyph'
 import { useState } from 'react'
 
 const G = '#2f6252', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
@@ -39,7 +40,7 @@ export default function ACC6ReportDraft(_: { onBack?: () => void }) {
       <div style={{ background: G, height: 64, display: 'flex', alignItems: 'center', padding: '0 24px', flexShrink: 0 }}>
         <span style={{ color: '#fff', fontSize: 21, fontWeight: 700, marginRight: 32, letterSpacing: '-0.01em' }}>Clean Sheet</span>
         <div style={{ display: 'flex', gap: 4, flex: 1 }}>
-          {[{ label: 'Today', icon: '⌂' }, { label: 'Players', icon: '👥' }, { label: 'Game day', icon: '⚽' }, { label: 'Library', icon: '📅' }].map(item => (
+          {[{ label: 'Today', icon: '⌂' }, { label: 'Players', icon: glyph('people') }, { label: 'Game day', icon: glyph('ball') }, { label: 'Library', icon: glyph('calendar') }].map(item => (
             <button key={item.label} onClick={() => setActiveNav(item.label)} style={{ background: item.label === activeNav ? 'rgba(255,255,255,0.18)' : 'none', border: 'none', color: '#fff', fontSize: 14, fontWeight: item.label === activeNav ? 700 : 500, padding: '0 14px', height: 64, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6, borderRadius: 8 }}>
               <span style={{ fontSize: 16 }}>{item.icon}</span> {item.label}
             </button>

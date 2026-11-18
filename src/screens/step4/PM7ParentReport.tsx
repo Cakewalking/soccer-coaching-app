@@ -1,3 +1,4 @@
+import { Glyph } from '../Glyph'
 import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
@@ -58,7 +59,7 @@ export default function PM7ParentReport(_: { onBack?: () => void }) {
 
         {/* Privacy note */}
         <div style={{ background: PALE, border: `1px solid ${LN}`, borderRadius: 12, padding: '12px 14px', display: 'flex', alignItems: 'flex-start', gap: 8 }}>
-          <span style={{ fontSize: 16, flexShrink: 0, marginTop: 1 }}>🔒</span>
+          <span style={{ fontSize: 16, flexShrink: 0, marginTop: 1 }}><Glyph n="lock" /></span>
           <div style={{ fontSize: 14, color: G, lineHeight: 1.5 }}>
             Only the welfare officer Helen Park and the coach will see this report.
           </div>

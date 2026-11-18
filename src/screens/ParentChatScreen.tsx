@@ -1,3 +1,4 @@
+import { Glyph, glyph } from './Glyph'
 import { useState } from 'react'
 
 const G    = '#2f6252'
@@ -57,11 +58,11 @@ function VoiceRow({ dur }: { dur: string }) {
   )
 }
 
-function Reactions({ items }: { items: { emoji: string; count: number }[] }) {
+function Reactions({ items }: { items: { emoji: import('react').ReactNode; count: number }[] }) {
   return (
     <div style={{ display: 'flex', gap: 5, marginTop: 4 }}>
-      {items.map(r => (
-        <span key={r.emoji} style={{ display: 'inline-flex', alignItems: 'center', gap: 3, background: '#f0f4f2', borderRadius: 999, padding: '1px 7px', fontSize: 12 }}>
+      {items.map((r, i) => (
+        <span key={i} style={{ display: 'inline-flex', alignItems: 'center', gap: 3, background: '#f0f4f2', borderRadius: 999, padding: '1px 7px', fontSize: 12 }}>
           {r.emoji} <span style={{ fontSize: 11, color: MUT }}>{r.count}</span>
         </span>
       ))}
@@ -198,7 +199,7 @@ function TeamChatView({ empty, onBack, onPoll, onAttach, onSettings, onReport, o
         </div>
         {/* Pinned */}
         <div style={{ marginTop: 6, padding: '7px 10px', background: 'rgba(255,255,255,0.12)', borderRadius: 8, fontSize: 12, color: 'rgba(255,255,255,0.75)' }}>
-          📌 Saturday, be there 8:40 at pitch 2. White kit.
+          <Glyph n="pin" /> Saturday, be there 8:40 at pitch 2. White kit.
         </div>
       </div>
 
@@ -241,7 +242,7 @@ function TeamChatView({ empty, onBack, onPoll, onAttach, onSettings, onReport, o
                 <VoiceRow dur="0:21"/>
                 <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.75)', marginTop: 2 }}>Mia found her other boot! And she got to 14 juggles.</div>
               </div>
-              <Reactions items={[{ emoji: '👍', count: 6 }, { emoji: '🙌', count: 3 }]}/>
+              <Reactions items={[{ emoji: glyph('like'), count: 6 }, { emoji: glyph('cheer'), count: 3 }]}/>
             </div>
             {/* Sam's reply */}
             <div style={{ marginBottom: 14 }}>
@@ -255,7 +256,7 @@ function TeamChatView({ empty, onBack, onPoll, onAttach, onSettings, onReport, o
                   Mia found her other boot!
                 </div>
                 <div style={{ background: '#f5f6f4', borderRadius: 12, padding: '8px 12px', fontSize: 14, color: INK, lineHeight: 1.5 }}>14 is a new best. Tell her I said so.</div>
-                <Reactions items={[{ emoji: '❤️', count: 2 }]}/>
+                <Reactions items={[{ emoji: glyph('heart'), count: 2 }]}/>
               </div>
             </div>
             {/* Jess's voice */}
@@ -324,7 +325,7 @@ function AnnouncementsView({ onBack, onPrivate }: { onBack: () => void; onPrivat
             <div><div style={{ fontSize: 12, fontWeight: 600, color: INK }}>U12 fixtures, term 3.pdf</div><div style={{ fontSize: 11, color: MUT }}>1 page · 84 KB</div></div>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 3, background: '#f0f4f2', borderRadius: 999, padding: '2px 8px', fontSize: 13 }}>👍 <span style={{ fontSize: 11, color: MUT }}>11</span></span>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 3, background: '#f0f4f2', borderRadius: 999, padding: '2px 8px', fontSize: 13 }}><Glyph n="like" /> <span style={{ fontSize: 11, color: MUT }}>11</span></span>
             <span style={{ fontSize: 12, color: G2, fontWeight: 700 }}>You've seen this</span>
           </div>
         </div>
@@ -349,7 +350,7 @@ function AnnouncementsView({ onBack, onPrivate }: { onBack: () => void; onPrivat
             <div><div style={{ fontSize: 12, fontWeight: 600, color: INK }}>Pitch 2, Wattle Creek Reserve</div><div style={{ fontSize: 11, color: MUT }}>Gate on Banksia Street · tap for directions</div></div>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 3, background: '#f0f4f2', borderRadius: 999, padding: '2px 8px', fontSize: 13 }}>👍 <span style={{ fontSize: 11, color: MUT }}>11</span></span>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 3, background: '#f0f4f2', borderRadius: 999, padding: '2px 8px', fontSize: 13 }}><Glyph n="like" /> <span style={{ fontSize: 11, color: MUT }}>11</span></span>
             <button onClick={() => st('Got it — noted.')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 700, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Got it</button>
           </div>
         </div>
@@ -562,7 +563,7 @@ function ReadOnlyView({ onBack }: { onBack: () => void }) {
       <TopBar title="U10 Mixed team chat" sub="14 families, Ben and Aroha" onBack={onBack} right={<Ini s="LT" bg={ROSE} size={30}/>}/>
       <div style={{ flex: 1, overflowY: 'auto', padding: '16px' }}>
         {/* Pinned */}
-        <div style={{ background: '#f5f6f4', borderRadius: 10, padding: '8px 12px', marginBottom: 14, fontSize: 12, color: MUT }}>📌 Training is Wednesdays 5:00 at pitch 4.</div>
+        <div style={{ background: '#f5f6f4', borderRadius: 10, padding: '8px 12px', marginBottom: 14, fontSize: 12, color: MUT }}><Glyph n="pin" /> Training is Wednesdays 5:00 at pitch 4.</div>
         {/* Poll */}
         <div style={{ marginBottom: 14 }}>
           <div style={{ display: 'flex', gap: 8, marginBottom: 6 }}>
@@ -593,7 +594,7 @@ function ReadOnlyView({ onBack }: { onBack: () => void }) {
           <div style={{ background: '#f5f6f4', borderRadius: 12, padding: '8px 12px', marginLeft: 34, fontSize: 14, color: INK, lineHeight: 1.5 }}>
             New bibs have arrived. Thanks to the canteen crew for paying for them.
           </div>
-          <Reactions items={[{ emoji: '👍', count: 9 }, { emoji: '🙌', count: 4 }]}/>
+          <Reactions items={[{ emoji: glyph('like'), count: 9 }, { emoji: glyph('cheer'), count: 4 }]}/>
         </div>
       </div>
       <div style={{ background: '#fff', borderTop: `1px solid ${LN}`, padding: '12px 16px 20px', flexShrink: 0 }}>
@@ -644,7 +645,7 @@ function PrivateChatView({ empty, onBack }: { empty: boolean; onBack: () => void
                 <VoiceRow dur="0:12"/>
                 <div style={{ fontSize: 12, color: MUT, marginTop: 2 }}>One for Mia to watch. Her first touch set up the second goal.</div>
               </div>
-              <Reactions items={[{ emoji: '❤️', count: 1 }]}/>
+              <Reactions items={[{ emoji: glyph('heart'), count: 1 }]}/>
             </div>
             <div style={{ marginBottom: 14 }}>
               <div style={{ fontSize: 12, color: MUT, marginBottom: 4, textAlign: 'right' as const }}>You · Tue 6:05 pm</div>

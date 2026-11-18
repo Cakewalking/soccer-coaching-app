@@ -8,6 +8,7 @@ import { Mark, Btn, Note, Switch, Ico, tile, h2, cap, label, G, INK, MUT, LINE, 
 import { Page, col, FixRow } from '../capture/CaptureScreens'
 import { setCn, addJob, underFive, HELD_BASE, TEAMS, type QuestionId } from './cnStore'
 import type { CnProps } from './CnCoach'
+import { savePdf } from '../saveFile'
 
 const th = { fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: MUT, lineHeight: '15px' } as const
 const row = (grid: string, i: number, extra?: object) => ({ display: 'grid', gridTemplateColumns: grid, alignItems: 'center', gap: 8, minHeight: 44, padding: '2px 8px', borderTop: i ? `1px solid ${LINE}` : undefined, fontSize: 14, ...extra } as const)
@@ -135,6 +136,7 @@ export function CN12ClubClimate({ s, go, say }: CnProps) {
 // ── CN20 · sponsors and fundraising. Sponsors get totals only. ───────────────
 const SPONSORS: [string, string, number, string, number, string][] = [['Harbour Bakery', 'Clip pages · U12 to U16', 148, '3,920', 86, '1 March'], ['Ridgeline Physio', 'Injury and return-to-play pages', 61, '540', 44, '1 March'], ['Kestrel Sports', 'Weekly club message', 196, '2,210', 132, '15 August']]
 export function CN20Sponsors({ s, go, say }: CnProps) {
+  const [rules, setRules] = useState(false)
   const grid = 'minmax(0,1.3fr) 110px 110px 110px 120px 110px'
   const raise = (t: string, got: number, of: number, sub: string) => <span style={{ display: 'flex', flexDirection: 'column', gap: 6 }}><strong style={{ fontSize: 15 }}>{t}</strong><span role="img" aria-label={`$${got} of $${of}`} style={{ height: 10, borderRadius: 999, background: '#e9eae8', position: 'relative' }}><span style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: `${(got / of) * 100}%`, borderRadius: 999, background: G }} /></span><span style={{ fontSize: 13, color: MUT }}>${got.toLocaleString('en-AU')} of ${of.toLocaleString('en-AU')} · {sub}</span></span>
   return (
@@ -143,7 +145,7 @@ export function CN20Sponsors({ s, go, say }: CnProps) {
         <section aria-label="What each sponsor got" style={{ ...tile, gap: 0, padding: '12px 8px 10px' }}>
           <h2 style={{ ...h2, padding: '0 8px 6px' }}>What each sponsor got</h2>
           <div style={{ ...row(grid, 0), ...th, minHeight: 22 }}><span>Sponsor</span><span>Families reached</span><span>Times seen</span><span>Taps</span><span>Renews</span><span /></div>
-          {SPONSORS.map((r, i) => <div key={r[0]} style={row(grid, i + 1, { minHeight: 52 })}><Two a={r[0]} b={r[1]} /><span>{r[2]}</span><span>{r[3]}</span><span>{r[4]}</span><span>{r[5]}</span><Btn onClick={() => say(`${r[0]}: a one-page report is ready to send.`)} aria-label={`Report for ${r[0]}`}>Report</Btn></div>)}
+          {SPONSORS.map((r, i) => <div key={r[0]} style={row(grid, i + 1, { minHeight: 52 })}><Two a={r[0]} b={r[1]} /><span>{r[2]}</span><span>{r[3]}</span><span>{r[4]}</span><span>{r[5]}</span><Btn onClick={() => { savePdf(`${r[0].toLowerCase().replace(/[^a-z]+/g, '-')}-report.pdf`, `${r[0]}: sponsor report`, ['Wattle Creek FC, this season.', '', `Where it showed: ${r[1]}`, `Families reached: ${r[2]}`, `Times seen: ${r[3]}`, `Taps: ${r[4]}`, `Renews: ${r[5]}`, '', 'Families reached is how many families saw the sponsor at least once.', 'Totals only: no child’s name, face, film or numbers, and no family’s contact details.']); say(`${r[0]}: a one-page report is ready to send.`) }} aria-label={`Report for ${r[0]}`}>Report</Btn></div>)}
           <span style={{ ...cap, fontSize: 13, padding: '8px 8px 0' }}>Families reached is how many families saw the sponsor at least once.</span>
         </section>
         <section aria-label="Fundraising" style={{ ...tile, padding: '12px 16px 14px', gap: 10 }}><h2 style={h2}>Fundraising</h2><div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>{raise('New goals for pitch 3', 2150, 3000, '41 families gave')}{raise('Fee help for six families', 1350, 3000, 'closes 30 June')}</div></section>
@@ -152,7 +154,8 @@ export function CN20Sponsors({ s, go, say }: CnProps) {
         <section aria-label="Coming up" style={{ ...tile, gap: 0, padding: '12px 16px 4px' }}>
           <h2 style={{ ...h2, paddingBottom: 6 }}>Coming up</h2>
           <FixRow title="Harbour Bakery renews on 1 March" sub="Send the report a month before"><Btn primary aria-pressed={s.jobs.includes('remind-bakery')} onClick={() => { addJob('remind-bakery'); say('Reminder set for 1 February.') }}>{s.jobs.includes('remind-bakery') ? 'Reminder set' : 'Remind me'}</Btn></FixRow>
-          <FixRow title="A sponsor for MiniRoos" sub="No sponsor shows on under-12 pages yet"><Btn onClick={() => say('Choose which pages a sponsor may show on.')}>Set rules</Btn></FixRow>
+          <FixRow title="A sponsor for MiniRoos" sub="No sponsor shows on under-12 pages yet"><Btn aria-expanded={rules} onClick={() => { setRules(r => !r); if (!rules) say('Choose which pages a sponsor may show on.') }}>{rules ? 'Done' : 'Set rules'}</Btn></FixRow>
+          {rules && <div role="group" aria-label="Where a sponsor may show" style={{ borderTop: `1px solid ${LINE}`, padding: '6px 0 8px' }}>{Object.entries(s.sponsorPages).map(([k, on]) => <div key={k} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', minHeight: 46 }}><span style={{ fontSize: 14 }}>{k}</span><span style={{ display: 'flex', alignItems: 'center' }}><Switch on={on} label={k} onChange={() => { setCn(c => ({ sponsorPages: { ...c.sponsorPages, [k]: !on } })); say(`${k}: sponsors ${on ? 'off' : 'on'}.`) }} /><strong style={{ fontSize: 13 }}>{on ? 'On' : 'Off'}</strong></span></div>)}</div>}
         </section>
         <Note title="What sponsors never get">No child’s name, face, film or numbers. No family’s contact details. They get totals only.</Note>
         <Note title="Where a sponsor shows">A line of text and a logo on pages you choose. Never inside a child’s report or a private message.</Note>
@@ -171,14 +174,24 @@ const PLAN: [string, [string, string][]][] = [
 ]
 export function CN21Pitches({ s, go, say }: CnProps) {
   const [pitch, setPitch] = useState(2)
+  const [sel, setSel] = useState<string | null>(null)   // the slot being moved, as "time|day"
   // The two fixes on the right change the plan itself.
   const plan = PLAN.map(([t, cells]) => [t, cells.map((c, d) => {
     if (s.moved && t === '5:30' && d === 1) return [TEAMS.u13, 'Full'] as [string, string]
     if (s.moved && t === '6:30' && d === 2) return [TEAMS.u14, 'Full, lights'] as [string, string]
     if (s.offered && t === '7:30' && d === 0) return [TEAMS.u16, 'Offered, lights'] as [string, string]
     return c
-  })] as [string, [string, string][]])
+  }).map((c, d) => s.pitch[`${t}|${d}`] ?? c)] as [string, [string, string][]])
   const used = plan.flatMap(p => p[1]).filter(c => c[0] !== 'Free').length
+  const cell = (key: string): [string, string] => { const [t, d] = key.split('|'); return plan.find(p => p[0] === t)![1][Number(d)] }
+  function tapSlot(t: string, d: number, team: string, note: string) {
+    const key = `${t}|${d}`
+    if (!sel) { if (team === 'Free') { say(`${DAYS[d]} ${t} is free. Tap a team first, then tap here to move it.`); return } setSel(key); say(`${team}: now tap a free slot to move it there, or another team to swap.`); return }
+    if (sel === key) { setSel(null); say(`${team}: left where it is.`); return }
+    const from = cell(sel), [ft, fd] = sel.split('|')
+    setCn(c => ({ pitch: { ...c.pitch, [key]: from, [sel]: [team, note] } })); setSel(null)
+    say(team === 'Free' ? `${from[0]} moved to ${DAYS[d]} ${t}. The coach and the families are told.` : `${from[0]} and ${team} swapped: ${DAYS[Number(fd)]} ${ft} and ${DAYS[d]} ${t}. Both coaches and the families are told.`)
+  }
   return (
     <Page id="CN21-Pitches" title="Pitches" sub={`Wattle Creek Reserve · this week · pitch ${pitch}`} go={go} cols="minmax(0,1fr) 348px"
       right={<>{[1, 2, 3].filter(n => n !== pitch).map(n => <Btn key={n} big onClick={() => { setPitch(n); say(`Pitch ${n} this week.`) }}>Pitch {n}</Btn>)}<Btn primary big onClick={() => say('This week’s pitch plan sent to 14 coaches.')}>Tell coaches</Btn></>}>
@@ -190,7 +203,7 @@ export function CN21Pitches({ s, go, say }: CnProps) {
             <div key={t} style={{ display: 'grid', gridTemplateColumns: '60px repeat(4,minmax(0,1fr))', gap: 6, alignItems: 'stretch' }}>
               <strong style={{ fontSize: 14, alignSelf: 'center' }}>{t}</strong>
               {cells.map(([team, note], d) => { const free = team === 'Free', clash = note === 'Both booked'; return (
-                <button key={d} onClick={() => say(`${team}: change or swap this slot.`)} aria-label={`${DAYS[d]} ${t}: ${team}${note ? `, ${note}` : ''}`} style={{ minHeight: 56, padding: '6px 10px', borderRadius: 10, textAlign: 'left', fontFamily: 'inherit', cursor: 'pointer', display: 'flex', flexDirection: 'column', justifyContent: 'center', background: free ? '#fff' : PALE, color: INK, border: clash ? `2px solid ${INK}` : free ? `1.5px dashed ${MUT}` : `1px solid ${PALE}` }}>
+                <button key={d} aria-pressed={sel === `${t}|${d}`} onClick={() => tapSlot(t, d, team, note)} aria-label={`${DAYS[d]} ${t}: ${team}${note ? `, ${note}` : ''}`} style={{ outline: sel === `${t}|${d}` ? `3px solid ${G}` : undefined, outlineOffset: 1, minHeight: 56, padding: '6px 10px', borderRadius: 10, textAlign: 'left', fontFamily: 'inherit', cursor: 'pointer', display: 'flex', flexDirection: 'column', justifyContent: 'center', background: free ? '#fff' : PALE, color: INK, border: clash ? `2px solid ${INK}` : free ? `1.5px dashed ${MUT}` : `1px solid ${PALE}` }}>
                   <strong style={{ fontSize: 13, lineHeight: '17px', color: free ? MUT : INK }}>{pitch === 1 && !free ? team.replace(/^U(\d+)/, (_, n) => `U${n}`) : team}</strong><span style={{ fontSize: 12, color: MUT }}>{note}</span>
                 </button>) })}
             </div>
@@ -263,24 +276,26 @@ export function CN23AskLimits({ s, go, say }: CnProps) {
   const held = HELD_BASE + s.held.length
   return (
     <Page id="CN23-AskLimits" title="How often we ask" sub="Wattle Creek FC · every question Clean Sheet puts to a person" go={go} cols="minmax(0,1fr) 348px" right={<><Btn big onClick={() => go('CN12-ClubClimate')}>Club climate</Btn><Btn primary big onClick={() => say('Saved. The limits apply from tomorrow.')}>Save</Btn></>}>
-      <section aria-label="Everything we ask" style={{ ...tile, gap: 0, padding: '12px 8px 6px' }}>
-        <h2 style={{ ...h2, padding: '0 8px 6px' }}>Everything we ask</h2>
-        <div style={{ ...row(grid, 0), ...th, minHeight: 22 }}><span>Question</span><span>Who</span><span>When</span><span>Answered</span><span /></div>
-        {ASKS.map(([id, q, who, when, a], i) => { const on = s.questions[id]; return <div key={id} style={row(grid, i + 1, { minHeight: 46 })}><strong>{q}</strong><span>{who}</span><span>{when}</span><span>{a}</span><span style={{ display: 'flex', alignItems: 'center', marginLeft: -6 }}><Switch on={on} label={q} onChange={() => { setCn(c => ({ questions: { ...c.questions, [id]: !on } })); say(`${q}: turned ${on ? 'off' : 'on'} for the whole club.`) }} /><strong style={{ fontSize: 13 }}>{on ? 'On' : 'Off'}</strong></span></div> })}
-      </section>
       <div style={col}>
-        <section aria-label="The limits" style={{ ...tile, padding: '12px 16px 14px', gap: 8 }}>
+      <section aria-label="Everything we ask" style={{ ...tile, gap: 0, padding: '10px 8px 4px' }}>
+        <h2 style={{ ...h2, padding: '0 8px 2px' }}>Everything we ask</h2>
+        <div style={{ ...row(grid, 0), ...th, minHeight: 22 }}><span>Question</span><span>Who</span><span>When</span><span>Answered</span><span /></div>
+        {ASKS.map(([id, q, who, when, a], i) => { const on = s.questions[id]; return <div key={id} style={row(grid, i + 1, { minHeight: 44, padding: '0 8px' })}><strong>{q}</strong><span>{who}</span><span>{when}</span><span>{a}</span><span style={{ display: 'flex', alignItems: 'center', marginLeft: -6 }}><Switch on={on} label={q} onChange={() => { setCn(c => ({ questions: { ...c.questions, [id]: !on } })); say(`${q}: turned ${on ? 'off' : 'on'} for the whole club.`) }} /><strong style={{ fontSize: 13 }}>{on ? 'On' : 'Off'}</strong></span></div> })}
+      </section>
+        <Note title="Fewer questions, better answers">A few questions answered well are worth more than many answered badly. Turn off what you will not use.</Note>
+      </div>
+      <div style={col}>
+        <section aria-label="The limits" style={{ ...tile, padding: '10px 16px 10px', gap: 5 }}>
           <h2 style={h2}>The limits</h2>
           <span style={label}>A player is asked at most</span><Seg what="A player is asked at most, in a day" value={s.perDay} options={[[1, '1 a day'], [2, '2 a day']]} onPick={v => { setCn({ perDay: v }); say(`A player is asked at most ${v} a day.`) }} />
           <span style={label}>And in a week</span><Seg what="A player, in a week" value={s.perWeek} options={[[3, '3'], [4, '4'], [5, '5']]} onPick={v => { setCn({ perWeek: v }); say(`A player is asked at most ${v} times a week.`) }} />
           <span style={label}>A parent, in a week</span><Seg what="A parent, in a week" value={s.parentWeek} options={[[1, '1'], [2, '2'], [3, '3']]} onPick={v => { setCn({ parentWeek: v }); say(`A parent is asked at most ${v} ${v === 1 ? 'time' : 'times'} a week.`) }} />
           <span style={{ ...cap, fontSize: 13 }}>When two questions fall due together, the one tied to a game goes first and the other waits.</span>
         </section>
-        <section aria-label="This week" style={{ ...tile, gap: 0, padding: '12px 16px 4px' }}>
-          <h2 style={{ ...h2, paddingBottom: 6 }}>This week</h2>
+        <section aria-label="This week" style={{ ...tile, gap: 0, padding: '10px 16px 2px' }}>
+          <h2 style={{ ...h2, paddingBottom: 4 }}>This week</h2>
           <Line a="The average player was asked" b={`Limit is ${s.perWeek}`} v="2.4 times" /><Line a="Held back by the limit" b={s.held.length ? `Latest: “${s.held[s.held.length - 1]}”` : 'Mostly “What else did you do?”'} v={<span data-held>{held} asks</span>} /><Line a="Quiet hours" b="And all of exam weeks" v="8 pm to 7 am" />
         </section>
-        <Note title="Fewer questions, better answers">A few questions answered well are worth more than many answered badly. Turn off what you will not use.</Note>
       </div>
     </Page>
   )

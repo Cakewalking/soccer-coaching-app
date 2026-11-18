@@ -1,3 +1,4 @@
+import { Glyph, glyph } from './Glyph'
 import { useState } from 'react'
 import { goSetup } from './sandbox/sandboxNav'
 import { demoToast } from './demoToast'
@@ -200,12 +201,12 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
 
   const RPE_PLAYERS = ['Mia T', 'Noah O', 'Ella B', 'Jai P', 'Zoe H', 'Grace O', 'Liam H', 'Finn W', 'Ruby C', 'Isla M', 'Leo M']
   const RPE_EMOJIS = [
-    { v: 0,  label: 'Nothing',    emoji: '😴' },
-    { v: 2,  label: 'Very light', emoji: '🙂' },
-    { v: 4,  label: 'Moderate',   emoji: '😐' },
-    { v: 6,  label: 'Hard',       emoji: '😤' },
-    { v: 8,  label: 'Very hard',  emoji: '😰' },
-    { v: 10, label: 'Max',        emoji: '🤯' },
+    { v: 0,  label: 'Nothing',    emoji: glyph('tired') },
+    { v: 2,  label: 'Very light', emoji: glyph('smile') },
+    { v: 4,  label: 'Moderate',   emoji: glyph('neutral') },
+    { v: 6,  label: 'Hard',       emoji: glyph('sad') },
+    { v: 8,  label: 'Very hard',  emoji: glyph('sad') },
+    { v: 10, label: 'Max',        emoji: glyph('surprised') },
   ]
 
   const currentTeam = TEAMS.find(t => t.id === teamId)!
@@ -412,7 +413,7 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
                     {/* U16-only alert */}
                     {teamId === 'u16' && (
                       <div style={{ background: '#fdf4f4', borderRadius: 12, padding: '10px 14px', marginBottom: 14, border: '1px solid #f0d8d8', display: 'flex', gap: 10, alignItems: 'flex-start' }}>
-                        <span style={{ fontSize: 16, flexShrink: 0, lineHeight: '20px' }}>⚠</span>
+                        <span style={{ fontSize: 16, flexShrink: 0, lineHeight: '20px' }}><Glyph n="warn" /></span>
                         <div>
                           <div style={{ fontSize: 13, fontWeight: 700, color: '#9d7c80' }}>Heavy legs two weeks running</div>
                           <div style={{ fontSize: 12, color: '#6f7f7b', marginTop: 1 }}>Load +30% on their usual. Keep Wednesday short.</div>
@@ -568,7 +569,7 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
                             </div>
                             <span style={{ fontSize: 12, color: '#6f7f7b' }}>{p.cm}</span>
                             <span style={{ fontSize: 13, fontWeight: 700, color: p.growthCm >= 7 ? '#c39797' : '#10211f' }}>+{p.growthCm}</span>
-                            <span style={{ fontSize: 11, color: p.pain ? '#c39797' : '#c5c8c4' }}>{p.pain ? '⚠' : '—'}</span>
+                            <span style={{ fontSize: 11, color: p.pain ? '#c39797' : '#c5c8c4' }}>{p.pain ? glyph('warn') : '—'}</span>
                           </button>
                         )
                       })}
@@ -1084,9 +1085,9 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
             <div style={{ fontSize: 22, fontWeight: 800, color: '#fff', marginBottom: 20 }}>Was it fun?</div>
             <div style={{ display: 'flex', gap: 12, marginBottom: 36 }}>
               {([
-                { v: 'nope' as const, label: 'Not really', emoji: '😑' },
-                { v: 'ok' as const, label: 'OK', emoji: '🙂' },
-                { v: 'loved' as const, label: 'Loved it', emoji: '🤩' },
+                { v: 'nope' as const, label: 'Not really', emoji: glyph('neutral') },
+                { v: 'ok' as const, label: 'OK', emoji: glyph('smile') },
+                { v: 'loved' as const, label: 'Loved it', emoji: glyph('smile') },
               ]).map(opt => (
                 <button key={opt.v} onClick={() => setRpeFun(opt.v)} style={{ flex: 1, padding: '12px 8px', borderRadius: 16, border: `2px solid ${rpeFun === opt.v ? '#fff' : 'rgba(255,255,255,0.2)'}`, background: rpeFun === opt.v ? 'rgba(255,255,255,0.15)' : 'transparent', cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
                   <span style={{ fontSize: 28 }}>{opt.emoji}</span>

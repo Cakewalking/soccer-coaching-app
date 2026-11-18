@@ -1,3 +1,4 @@
+import { glyph } from '../Glyph'
 import { useState } from 'react'
 
 const G = '#2f6252', INK = '#10211f', MUT = '#4a5a57'
@@ -10,7 +11,7 @@ const WEEKS = [
   ]},
 ]
 
-const NavItem = ({ icon, label, active, onClick }: { icon: string; label: string; active?: boolean; onClick?: () => void }) => (
+const NavItem = ({ icon, label, active, onClick }: { icon: import('react').ReactNode; label: string; active?: boolean; onClick?: () => void }) => (
   <div onClick={onClick} style={{ flex: 1, display: 'flex', flexDirection: 'column' as const, alignItems: 'center', justifyContent: 'center', gap: 2, minHeight: 56, fontSize: 11, fontWeight: 700, color: active ? G : MUT, cursor: 'pointer' }}>
     <span style={{ fontSize: 20 }}>{icon}</span>
     {label}
@@ -64,10 +65,10 @@ export default function RF2RefGames(_: { onBack?: () => void }) {
         <span style={{ fontSize: 13, color: MUT, padding: '0 2px' }}>You see your games and nothing about the players.</span>
       </div>
       <nav style={{ flex: 'none', display: 'flex', borderTop: '1px solid #c5c8c4', background: '#fff' }}>
-        <NavItem icon="📅" label="My games" active={activeNav === 'My games'} onClick={() => setActiveNav('My games')} />
-        <NavItem icon="📋" label="Report" active={activeNav === 'Report'} onClick={() => setActiveNav('Report')} />
-        <NavItem icon="💬" label="Feedback" active={activeNav === 'Feedback'} onClick={() => setActiveNav('Feedback')} />
-        <NavItem icon="👤" label="Me" active={activeNav === 'Me'} onClick={() => setActiveNav('Me')} />
+        <NavItem icon={glyph('calendar')} label="My games" active={activeNav === 'My games'} onClick={() => setActiveNav('My games')} />
+        <NavItem icon={glyph('clipboard')} label="Report" active={activeNav === 'Report'} onClick={() => setActiveNav('Report')} />
+        <NavItem icon={glyph('chat')} label="Feedback" active={activeNav === 'Feedback'} onClick={() => setActiveNav('Feedback')} />
+        <NavItem icon={glyph('person')} label="Me" active={activeNav === 'Me'} onClick={() => setActiveNav('Me')} />
       </nav>
     </div>
   )

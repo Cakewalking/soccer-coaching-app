@@ -587,7 +587,7 @@ function ParentChatView({ empty, onBack }: { empty: boolean; onBack: () => void 
     { name: 'Dani', ini: 'DO', bg: GD, text: "Hi everyone — just a note that Thursday this week we'll finish at 5:20 instead of 5:25.", time: 'Mon 2:30 pm' },
     { name: 'Priya', ini: 'PR', bg: '#c5bbd0', text: 'Thanks Dani. Quick question — is there parking at the school on Thursdays?', time: 'Mon 2:38 pm' },
     { name: 'Dani', ini: 'DO', bg: GD, text: 'Yes — the main gate off Church Street is open from 4pm.', time: 'Mon 2:41 pm' },
-    { name: 'You', ini: 'MI', bg: ROSE, text: 'Thanks! See you Thursday 🙌', time: 'Mon 2:50 pm', me: true },
+    { name: 'You', ini: 'MI', bg: ROSE, text: 'Thanks! See you Thursday', time: 'Mon 2:50 pm', me: true },
   ]
 
   return (

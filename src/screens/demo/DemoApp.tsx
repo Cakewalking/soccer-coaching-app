@@ -55,6 +55,7 @@ import { confirmDialog } from '../confirmDialog'
 import { SCREEN_ALIAS, renderExtraScreen } from './extraScreens'
 import type { FormationPreset } from '../formation/lineupInsights'
 import LineupParent          from '../formation/LineupParent'
+import FormationPhone from '../formation/FormationPhone'
 import LiveGame11Screen      from '../LiveGame11Screen'
 // Step 4 screens — New (DSet1, DSet4, ACC1)
 import DSet1ClubSettings          from '../step4/DSet1ClubSettings'
@@ -605,10 +606,15 @@ function LiveGameScreenNav() {
   return <LiveGameScreen onClose={() => setClosed(true)} />
 }
 
-function FormationNav({ team, empty }: { team?: string; empty?: boolean }) {
+function FormationNav({ team, empty, open }: { team?: string; empty?: boolean; open?: 'share' | 'drag' | 'tap' | 'own' | 'saved' }) {
   const [inner, setInner] = useState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
-  return <FormationBuilder team={team} empty={empty} onNav={(s) => setInner(s)} />
+  return <FormationBuilder team={team} empty={empty} open={open} onNav={(s) => setInner(s)} />
+}
+function FormationPhoneNav() {
+  const [inner, setInner] = useState<string | null>(null)
+  if (inner) return <>{renderScreen(inner)}</>
+  return <FormationPhone onNav={(s) => setInner(s)} />
 }
 function LineupParentNav() {
   const [inner, setInner] = useState<string | null>(null)
@@ -2114,15 +2120,16 @@ function renderScreenInner(key: string): ReactNode {
     case 'SQ1e-BestLineupsEmpty':      return <SquadLineupsEmpty onBack={noop} />
 
     // Squad › Formation (formation-v1)
-    case 'FB1-Formation':
-    case 'FB1d-FormationDrag':
-    case 'FB1t-FormationTap':
-    case 'FB1x-FormationOwn':
-    case 'FB1l-FormationSaved':
-    case 'FB1c-FormationShare':        return <FormationNav team="juniors" />
+    case 'FB1-Formation':              return <FormationNav team="juniors" />
+    case 'FB1d-FormationDrag':         return <FormationNav key="drag" team="juniors" open="drag" />
+    case 'FB1t-FormationTap':          return <FormationNav key="tap" team="juniors" open="tap" />
+    case 'FB1x-FormationOwn':          return <FormationNav key="own" team="juniors" open="own" />
+    case 'FB1l-FormationSaved':        return <FormationNav key="saved" team="juniors" open="saved" />
+    case 'FB1c-FormationShare':        return <FormationNav key="share" team="juniors" open="share" />
     case 'FB1s-FormationSeniors':      return <FormationNav team="seniors" />
     case 'FB1m-FormationMiniRoos':     return <FormationNav team="miniroos" />
     case 'FB1e-FormationEmpty':        return <FormationNav team="juniors" empty />
+    case 'FBp1-FormationPhone':        return <FormationPhoneNav />
     case 'FBp2-LineupParent':          return <LineupParentNav />
 
     // Where we're at (item 12)

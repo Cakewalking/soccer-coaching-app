@@ -1,3 +1,4 @@
+import { Glyph } from '../Glyph'
 import { useState } from 'react'
 
 type Chip = 'Meet time' | 'Venue or pitch' | 'Cancelled' | 'Kit or other'
@@ -150,8 +151,8 @@ function ManagerTeamChatView({ onBack, onNewPoll, onSetup }: { onBack: () => voi
             <div style={{ fontSize: 12, color: MUT, marginTop: 3 }}>Mia found her other boot! And she got to 14 juggles.</div>
           </div>
           <div style={{ display: 'flex', gap: 5, marginLeft: 34, marginTop: 3 }}>
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 3, background: '#f0f4f2', borderRadius: 999, padding: '1px 7px', fontSize: 12 }}>👍 <span style={{ fontSize: 11, color: MUT }}>6</span></span>
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 3, background: '#f0f4f2', borderRadius: 999, padding: '1px 7px', fontSize: 12 }}>🙌 <span style={{ fontSize: 11, color: MUT }}>3</span></span>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 3, background: '#f0f4f2', borderRadius: 999, padding: '1px 7px', fontSize: 12 }}><Glyph n="like" /> <span style={{ fontSize: 11, color: MUT }}>6</span></span>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 3, background: '#f0f4f2', borderRadius: 999, padding: '1px 7px', fontSize: 12 }}><Glyph n="cheer" /> <span style={{ fontSize: 11, color: MUT }}>3</span></span>
           </div>
         </div>
         {/* Sam's reply */}

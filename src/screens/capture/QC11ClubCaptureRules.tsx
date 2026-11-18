@@ -48,7 +48,7 @@ export default function QC11ClubCaptureRules({ onNav }: { onNav?: (s: string) =>
   const grid = 'minmax(0,1fr) repeat(6,86px)'
   return (
     <div data-screen="QC11-ClubCaptureRules" style={{ display: 'flex', flexDirection: 'column', minHeight: '100%', boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: "'DM Sans',system-ui,sans-serif" }}>
-      <div style={{ flex: 'none', padding: '14px 24px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 14 }}>
+      <div style={{ flex: 'none', padding: '10px 24px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 14 }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 14, flexWrap: 'wrap' }}>
           <h1 style={{ margin: 0, fontSize: 26, lineHeight: '32px', fontWeight: 700, letterSpacing: '-0.02em' }}>What teams may capture</h1>
           <span style={cap}>Wattle Creek FC · your rules, by age. Coaches can turn things off, not on</span>
@@ -58,14 +58,14 @@ export default function QC11ClubCaptureRules({ onNav }: { onNav?: (s: string) =>
           <Btn primary big onClick={() => say('Saved. 14 teams follow these rules from their next recording.')}>Save</Btn>
         </div>
       </div>
-      <main style={{ flexGrow: 1, padding: '12px 24px 18px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 300px', gap: 14, alignItems: 'start' }}>
-        <section aria-label="By age group" style={{ ...tile, gap: 0, padding: '12px 18px 14px', alignSelf: 'stretch', minHeight: 560 }}>
+      <main style={{ flexGrow: 1, padding: '10px 24px 10px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 300px', gap: 14, alignItems: 'start' }}>
+        <section aria-label="By age group" style={{ ...tile, gap: 0, padding: '10px 18px 8px', alignSelf: 'stretch' }}>
           <div style={{ display: 'grid', gridTemplateColumns: grid, alignItems: 'end', paddingBottom: 8 }}>
             <h2 style={h2}>By age group</h2>
             {AGES.map(a => <span key={a} style={{ display: 'flex', flexDirection: 'column', fontSize: 13, lineHeight: '17px' }}><strong>{AGE_LABEL[a][0]}</strong><span style={{ color: MUT }}>{AGE_LABEL[a][1]}</span></span>)}
           </div>
           {ROWS.map(r => (
-            <div key={r.k} style={{ display: 'grid', gridTemplateColumns: grid, alignItems: 'center', minHeight: 50, padding: '1px 0', borderTop: `1px solid ${LINE}` }}>
+            <div key={r.k} style={{ display: 'grid', gridTemplateColumns: grid, alignItems: 'center', minHeight: 46, padding: 0, borderTop: `1px solid ${LINE}` }}>
               <span style={{ display: 'flex', flexDirection: 'column', paddingRight: 12 }}>
                 <strong style={{ fontSize: 14, lineHeight: '19px' }}>{r.t}</strong>
                 <span style={{ fontSize: 13, lineHeight: '17px', color: MUT }}>{r.d}</span>

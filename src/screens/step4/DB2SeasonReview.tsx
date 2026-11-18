@@ -1,10 +1,11 @@
+import { glyph } from '../Glyph'
 import { useState } from 'react'
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb'
 const HIGHLIGHTS = [
-  { icon: '🏆', text: 'U15 Girls Bec won the state league mid-season cup — first title in 7 years' },
-  { icon: '📈', text: 'Playing our way up from 51% to 67% over the season — biggest jump in the club\'s history' },
-  { icon: '👥', text: 'Registrations up 16 on last year · strongest MiniRoos intake ever' },
-  { icon: '✅', text: 'All 31 coaches hold current children\'s checks for the first time' },
+  { icon: glyph('trophy'), text: 'U15 Girls Bec won the state league mid-season cup — first title in 7 years' },
+  { icon: glyph('chart'), text: 'Playing our way up from 51% to 67% over the season — biggest jump in the club\'s history' },
+  { icon: glyph('people'), text: 'Registrations up 16 on last year · strongest MiniRoos intake ever' },
+  { icon: glyph('check'), text: 'All 31 coaches hold current children\'s checks for the first time' },
 ]
 const TO_FIX = [
   { text: 'Chris Pham\'s children\'s check expires before season end', urgent: true },

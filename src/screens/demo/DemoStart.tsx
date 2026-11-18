@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import qrcode from 'qrcode-generator'
 import { type RoleId } from './tours'
 import DemoPhone from './DemoPhone'
-import { COLUMNS, MORE_TOURS, ROLE_COUNT, RoleColumn, DeviceIcon, useColumns, INK, MUT, G, GD, BORDER, PALE, BG } from './rolePicker'
+import { COLUMNS, MORE_TOURS, ROLE_COUNT, RoleColumn, DeviceIcon, useColumns, useTight, INK, MUT, G, GD, BORDER, PALE, BG } from './rolePicker'
 
 // STA3-PickRole (and STA3l, the same screen with "Look around" chosen).
 // Every role in one view: four columns, one row per role, one tap each.
@@ -42,7 +42,7 @@ const link: React.CSSProperties = { display: 'inline-flex', alignItems: 'center'
 export default function DemoStart({ onTour, onLook, onStory, onWhy, onSandbox, initialMode }: Props) {
   const [mode, setModeState] = useState<Mode>(() => initialMode ?? readMode())
   const [phoneStart, setPhoneStart] = useState(false)
-  const cols = useColumns()
+  const cols = useColumns(), tight = useTight()
   const setMode = (m: Mode) => { setModeState(m); try { sessionStorage.setItem(KEY, m) } catch { /* private window */ } }
   const pick = (id: RoleId) => mode === 'tour' ? onTour(id) : onLook(id)
   const doing = mode === 'tour' ? 'Opens the guided tour.' : 'Opens their home screen.'
@@ -114,7 +114,7 @@ export default function DemoStart({ onTour, onLook, onStory, onWhy, onSandbox, i
         <div style={{ display: 'grid', gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`, gap: 16, alignItems: 'start' }}>
           {COLUMNS.map(col => (
             <div key={col.key} style={{ minWidth: 0 }}>
-              <RoleColumn col={col} rowHeight={60} showSub doing={doing} onPick={pick} />
+              <RoleColumn col={col} rowHeight={cols === 4 && tight ? 52 : 60} showSub doing={doing} onPick={pick} />
               {extra[col.key]}
             </div>
           ))}

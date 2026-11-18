@@ -104,9 +104,9 @@ const SENIORS: TeamData = {
   opponent: 'Banksia Park SC',
   lastGame: {
     label: 'Sat 30 May · home',
-    opponent: 'Kingfisher United',
-    scorer: 'Josh Barker scored',
-    score: '1–1',
+    opponent: 'Glenview Park',
+    scorer: 'Harry and Mo scored',
+    score: '2–0',
     bullets: [
       { text: 'Pressing high won it 15 times in their half', tag: 'Keep' },
       { text: 'Two chances given up from our own corners', tag: 'Tonight' },
@@ -150,9 +150,9 @@ const YOUTH: TeamData = {
   opponent: 'Harbour Rovers',
   lastGame: {
     label: 'Sat 30 May · home',
-    opponent: 'Glenview Park',
-    scorer: 'Theo Ortiz scored',
-    score: '1–3',
+    opponent: 'Tealside Town',
+    scorer: 'Theo and Leo scored',
+    score: '2–2',
     bullets: [
       { text: 'Lost the ball 9 times playing out', tag: 'Saturday' },
       { text: 'Sprints fell 31% in the last 20 minutes', tag: 'Load' },
@@ -575,7 +575,7 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
     else content = <RecordHub noFrame onNav={handleNav} />
   } else if (nav === 'matchday') {
     switch (matchTab) {
-      case 0: content = <MatchDayScreen onNav={handleNav} empty={sbEmptyFixture} opponent={data.opponent} />; break
+      case 0: content = <MatchDayScreen onNav={handleNav} empty={sbEmptyFixture} opponent={data.opponent} away when={teamType === 'seniors' ? 'Sat 6 Jun · 3:00 pm · away' : 'Sat 6 Jun · 3:30 pm · away'} lastResult={teamType === 'seniors' ? 'won 2–0' : 'drew 2–2'} />; break
       case 1: content = <TeamSheetScreen empty={sbEmptyFixture} teamType={teamType === 'seniors' ? 'seniors' : 'youth'} />; break
       case 2: content = <OppositionScreen empty={sbEmptyFixture} opponent={data.opponent} scout={teamType === 'seniors' ? 'Nico' : 'Tom'} />; break
       case 3: content = <ReviewScreen empty={sbEmptyFixture} seniors={teamType === 'seniors'}

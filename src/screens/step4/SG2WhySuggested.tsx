@@ -1,3 +1,4 @@
+import { glyph } from '../Glyph'
 import { useState } from 'react'
 
 const G = '#2f6252', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
@@ -56,9 +57,9 @@ export default function SG2WhySuggested(_: { onBack?: () => void }) {
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 10 }}>
             <div style={{ fontSize: 14, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT }}>Evidence</div>
             {[
-              { icon: '📋', label: 'Coach note', text: 'Min 16 · "Lost it on halfway. 9 seconds to win it back."' },
-              { icon: '🧤', label: 'GPS vest', text: 'Sprints dropped 18% when we lost the ball.' },
-              { icon: '🎥', label: 'Match camera', text: '4 clips of slow pressing · ', link: 'Watch' },
+              { icon: glyph('clipboard'), label: 'Coach note', text: 'Min 16 · "Lost it on halfway. 9 seconds to win it back."' },
+              { icon: glyph('hand'), label: 'GPS vest', text: 'Sprints dropped 18% when we lost the ball.' },
+              { icon: glyph('video'), label: 'Match camera', text: '4 clips of slow pressing · ', link: 'Watch' },
             ].map(e => (
               <div key={e.label} style={{ display: 'flex', gap: 12, padding: '8px 0', borderTop: `1px solid ${LN}` }}>
                 <div style={{ fontSize: 18, flex: 'none', width: 24 }}>{e.icon}</div>

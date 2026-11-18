@@ -1,3 +1,4 @@
+import { Glyph } from '../Glyph'
 import { useState } from 'react'
 import { toolTarget } from '../toolTargets'
 import { DARK, AMBER, PALEON } from './directorParts'
@@ -123,7 +124,7 @@ export default function FIL3Doc({ onBack, onShare, onNav, bare }: {
             <div style={{ fontSize: 13, color: MUT, marginBottom: 24 }}>From Sam, your coach · touch 8</div>
 
             <div onClick={() => sect('Meet and kick-off')} style={{ background: '#f0faf5', border: `1.5px solid ${G}`, borderRadius: 10, padding: '14px 18px', marginBottom: 20, cursor: 'pointer', outline: lastSection === 'Meet and kick-off' ? `2px solid ${G}` : 'none' }}>
-              <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: G, marginBottom: 6 }}>📍 Live · kick-off and meet time</div>
+              <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: G, marginBottom: 6 }}><Glyph n="place" /> Live · kick-off and meet time</div>
               <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>Meet 8:40</div>
               <div style={{ fontSize: 13, color: MUT }}>Kick-off 9:00 am</div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 6 }}>
@@ -133,7 +134,7 @@ export default function FIL3Doc({ onBack, onShare, onNav, bare }: {
             </div>
 
             <div onClick={() => sect('Ground')} style={{ background: '#f0faf5', border: `1.5px solid ${G}`, borderRadius: 10, padding: '14px 18px', marginBottom: 20, cursor: 'pointer', outline: lastSection === 'Ground' ? `2px solid ${G}` : 'none' }}>
-              <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: G, marginBottom: 6 }}>📍 Live · ground</div>
+              <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: G, marginBottom: 6 }}><Glyph n="place" /> Live · ground</div>
               <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>Wattle Creek Reserve, pitch 2</div>
               <div style={{ fontSize: 13, color: MUT }}>34 Reserve Road, Wattle Creek</div>
             </div>

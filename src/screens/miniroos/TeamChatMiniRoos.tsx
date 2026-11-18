@@ -1,3 +1,4 @@
+import { Glyph, glyph } from '../Glyph'
 import { useState } from 'react'
 
 const G    = '#2f6252'
@@ -76,7 +77,7 @@ function U9GroupChat({ empty, onBack }: { empty?: boolean; onBack: () => void })
                 <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 12, padding: '10px 14px' }}>
                   <div style={{ fontSize: 14, color: INK, lineHeight: 1.4 }}>Ivy drew the whole team. Arlo is the one with the cape.</div>
                 </div>
-                <div style={{ fontSize: 12, marginTop: 4 }}>❤️ 7</div>
+                <div style={{ fontSize: 12, marginTop: 4 }}><Glyph n="heart" /> 7</div>
               </div>
             </div>
 
@@ -88,7 +89,7 @@ function U9GroupChat({ empty, onBack }: { empty?: boolean; onBack: () => void })
                 <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 12, padding: '10px 14px' }}>
                   <div style={{ fontSize: 14, color: INK, lineHeight: 1.4 }}>Omar says thanks for the goalie turn. He's still talking about it.</div>
                 </div>
-                <div style={{ fontSize: 12, marginTop: 4 }}>👍 3</div>
+                <div style={{ fontSize: 12, marginTop: 4 }}><Glyph n="like" /> 3</div>
               </div>
             </div>
           </>
@@ -98,7 +99,7 @@ function U9GroupChat({ empty, onBack }: { empty?: boolean; onBack: () => void })
       {/* Compose */}
       <div style={{ padding: '12px 20px', borderTop: `1px solid ${LN}`, background: '#fff', flexShrink: 0 }}>
         <div style={{ display: 'flex', gap: 8, marginBottom: 10 }}>
-          {(['📷', '🎥', '🎤', '📊', '📍', '📄'] as const).map((icon, i) => {
+          {([glyph('camera'), glyph('video'), glyph('mic'), glyph('chart'), glyph('place'), glyph('doc')] as const).map((icon, i) => {
             const labels = ['Adding a photo.', 'Adding a video.', 'Recording a voice message.', 'Creating a poll.', 'Sharing a location.', 'Attaching a file.']
             return <button key={i} onClick={() => showToast(labels[i])} style={{ width: 36, height: 36, borderRadius: '50%', border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', fontSize: 15 }}>{icon}</button>
           })}

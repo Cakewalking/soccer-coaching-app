@@ -30,7 +30,7 @@ const chats = [
   { ini: 'JR', name: 'Jess & Rob', sub: 'You: See you at 8:30 then', time: '5:44 pm', active: false },
 ]
 const msgs = [
-  { ini: 'RO', bg: '#cbbeb5', name: 'Rob', role: 'Team manager', time: '7:12 pm', text: 'Meet time now 8:40 on Saturday. Need to allow extra time to get parked. Warm up starts 9:00. ☀️' },
+  { ini: 'RO', bg: '#cbbeb5', name: 'Rob', role: 'Team manager', time: '7:12 pm', text: 'Meet time now 8:40 on Saturday. Need to allow extra time to get parked. Warm up starts 9:00.' },
   { ini: 'SK', bg: '#c39797', name: 'Sam', role: 'Head coach', time: '7:08 pm', text: 'Kit bags and training bibs ready. Everyone bring a full drink bottle.' },
 ]
 export default function CH2Announcements(_: { onBack?: () => void }) {

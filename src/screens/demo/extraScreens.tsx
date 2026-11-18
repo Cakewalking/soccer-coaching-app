@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import { useState, type ReactNode } from 'react'
 import DemoStart from './DemoStart'
 import DemoStartEmpty from './DemoStartEmpty'
 import DemoPhone from './DemoPhone'
@@ -72,14 +72,23 @@ export const SCREEN_ALIAS: Record<string, string> = {
 const page = (node: ReactNode) => <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', background: '#f7f8f7', fontFamily: 'var(--font-sans)' }}>{node}</div>
 const phone = (node: ReactNode) => <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}>{node}</div>
 
+// A measure sheet opened by its own address has no page behind it, so Close and Back go to the player's readiness page and the next-measure link opens that sheet here.
+function MeasurePage({ id, onNav }: { id: string; onNav?: (s: string) => void }) {
+  const [cur, setCur] = useState(id)
+  const cfg = MEASURE(cur)
+  return cfg ? page(<MeasureSheet cfg={cfg} onClose={() => onNav?.('PU2-PlayerReadiness')} onOpen={setCur} onNav={onNav} />) : null
+}
+
 export function renderExtraScreen(key: string): ReactNode | undefined {
   if (key.startsWith('PU8')) {
     const cfg = MEASURE(key)
-    return cfg ? page(<MeasureSheet cfg={cfg} onClose={noop} onOpen={noop} />) : undefined
+    return cfg ? <MeasurePage id={key} /> : undefined
   }
   // These ids used to open an older standalone copy with few working controls. The
   // coach app's own tab is the built screen, so the id opens that tab, in its frame.
   if (LIVE_COACH_TAB.has(key) && coachDeepTab(key)) return <JuniorCoachApp initialScreen={key} />
+  if (key === 'T5-PlayerProfile') return <JuniorCoachApp initialScreen={key} />              // Mia's profile, inside Squad
+  if (key === 'FY1-SeasonPlan') return <ClubAdminScreen role="dof" initials="RM" initialTab="club" initialSub="seasonplan" />   // the director's Club › Season plan
   // Capture quality (17 Nov): the set-up steps, the report and How we measure, in the coach frame.
   if (isCaptureId(key)) return <CaptureFlow framed start={key} kitless={key === 'QC1e-CapturePlanNoKit'} />
   // Chances and points (17 Nov, v2): the coach screens in their frame; MiniRoos ids open the under-9 team.

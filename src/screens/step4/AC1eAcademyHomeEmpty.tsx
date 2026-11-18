@@ -1,3 +1,4 @@
+import { Glyph, glyph } from '../Glyph'
 import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
@@ -15,9 +16,9 @@ export default function AC1eAcademyHomeEmpty(_: { onBack?: () => void }) {
         <div style={{ display: 'flex', gap: 4, flex: 1 }}>
           {[
             { label: 'Home', icon: '⌂' },
-            { label: 'Programs', icon: '☰' },
-            { label: 'Players', icon: '👤' },
-            { label: 'Coaches', icon: '🎓' },
+            { label: 'Programs', icon: glyph('menu') },
+            { label: 'Players', icon: glyph('person') },
+            { label: 'Coaches', icon: glyph('cap') },
             { label: 'Money', icon: '$' },
           ].map(({ label, icon }) => (
             <button key={label} style={{ background: label === 'Home' ? GD : 'transparent', color: '#fff', border: 'none', borderRadius: 8, padding: '0 14px', height: 44, fontSize: 14, fontWeight: label === 'Home' ? 700 : 500, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
@@ -56,7 +57,7 @@ export default function AC1eAcademyHomeEmpty(_: { onBack?: () => void }) {
         {/* Left 8 cols: empty state tile */}
         <div style={{ gridColumn: 'span 8', background: '#fff', border: `1px solid #c5c8c4`, borderRadius: 16, padding: '14px 18px', display: 'flex', flexDirection: 'column' as const, gap: 8, alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ display: 'flex', flexDirection: 'column' as const, alignItems: 'center', gap: 16, maxWidth: 400, textAlign: 'center' as const, margin: 'auto' }}>
-            <div style={{ width: 60, height: 60, borderRadius: 30, background: PALE, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28 }}>📋</div>
+            <div style={{ width: 60, height: 60, borderRadius: 30, background: PALE, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28 }}><Glyph n="clipboard" /></div>
             <div>
               <div style={{ fontSize: 20, fontWeight: 700, color: INK, marginBottom: 8 }}>Add your first program</div>
               <div style={{ fontSize: 15, color: MUT, lineHeight: 1.5 }}>A program is a group that trains together — Foundation, Development, or one-on-one sessions.</div>

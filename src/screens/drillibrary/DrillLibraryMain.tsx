@@ -1,3 +1,4 @@
+import { playClips } from '../clips/clipSheet'
 import { useState } from 'react'
 import type { Drill } from './data'
 import { G, G2, GD, INK, MUT, LN, DRILLS, FIX_ITEMS, PHASE_LABEL_TO_ID } from './data'
@@ -186,7 +187,7 @@ export default function DrillLibraryMain({ filterTab, setFilterTab, agePhase, se
                 <div style={{ fontSize:13, fontWeight:700, color:G, marginBottom:3 }}>Suggested · {activeFix.stat}</div>
                 <div style={{ fontSize:12, color:MUT, lineHeight:1.5, maxWidth:520 }}>Most were short passes under pressure from their front three. Keep-ball games build calm first touches and scanning.</div>
               </div>
-              <button onClick={() => st('Watching 6 clips.')} style={{ height: 44, padding:'0 13px', borderRadius:999, border:`1px solid ${LN}`, background:'#fff', color:MUT, fontSize:12, fontWeight:600, cursor:'pointer', fontFamily:'inherit', whiteSpace:'nowrap', flexShrink:0, marginLeft:16 }}>Watch 6 clips</button>
+              <button onClick={() => { playClips(Array.from({ length: 6 }, (_, k) => ({ title: `Clip ${k + 1} of 6`, sub: 'From your games, where this drill’s problem showed.', len: 8 })), 'What the film showed'); st('Watching 6 clips.') }} style={{ height: 44, padding:'0 13px', borderRadius:999, border:`1px solid ${LN}`, background:'#fff', color:MUT, fontSize:12, fontWeight:600, cursor:'pointer', fontFamily:'inherit', whiteSpace:'nowrap', flexShrink:0, marginLeft:16 }}>Watch 6 clips</button>
             </div>
             <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:10 }}>
               {featured.map(d => <SuggestedCard key={d.id} drill={d} onClick={() => onDrillClick(d)}/>)}

@@ -1,3 +1,4 @@
+import { glyph } from '../Glyph'
 import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb'
@@ -29,9 +30,9 @@ export default function AC5Fees(_: { onBack?: () => void }) {
         <div style={{ display: 'flex', gap: 4, flex: 1 }}>
           {[
             { label: 'Home', icon: '⌂' },
-            { label: 'Programs', icon: '☰' },
-            { label: 'Players', icon: '👤' },
-            { label: 'Coaches', icon: '🎓' },
+            { label: 'Programs', icon: glyph('menu') },
+            { label: 'Players', icon: glyph('person') },
+            { label: 'Coaches', icon: glyph('cap') },
             { label: 'Money', icon: '$' },
           ].map(({ label, icon }) => (
             <button key={label} style={{ background: label === 'Money' ? GD : 'transparent', color: '#fff', border: 'none', borderRadius: 8, padding: '0 14px', height: 44, fontSize: 14, fontWeight: label === 'Money' ? 700 : 500, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>

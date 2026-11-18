@@ -1,3 +1,4 @@
+import { Glyph, glyph } from '../Glyph'
 import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
@@ -35,9 +36,9 @@ export default function AC12AcademyBroadcast(_: { onBack?: () => void }) {
         <div style={{ display: 'flex', gap: 4, flex: 1 }}>
           {[
             { label: 'Home', icon: '⌂' },
-            { label: 'Programs', icon: '☰' },
-            { label: 'Players', icon: '👤' },
-            { label: 'Coaches', icon: '🎓' },
+            { label: 'Programs', icon: glyph('menu') },
+            { label: 'Players', icon: glyph('person') },
+            { label: 'Coaches', icon: glyph('cap') },
             { label: 'Money', icon: '$' },
           ].map(({ label, icon }) => (
             <button key={label} onClick={() => setActiveNav(label)} style={{ background: label === activeNav ? GD : 'transparent', color: '#fff', border: 'none', borderRadius: 8, padding: '0 14px', height: 44, fontSize: 14, fontWeight: label === activeNav ? 700 : 500, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
@@ -99,11 +100,11 @@ export default function AC12AcademyBroadcast(_: { onBack?: () => void }) {
 
             {/* Attach row */}
             <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' as const, paddingTop: 4 }}>
-              <button onClick={() => mark('photo')} style={{ height: 44, padding: '0 14px', borderRadius: 8, border: `1px solid ${is('photo') ? G : '#c5c8c4'}`, background: is('photo') ? PALE : '#fff', color: is('photo') ? G : INK, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>📷 {is('photo') ? 'Photo added ✓' : 'Photo'}</button>
-              <button onClick={() => setSheet('cvideo')} style={{ height: 44, padding: '0 14px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>🎥 Video</button>
-              <button onClick={() => setSheet('cfile')} style={{ height: 44, padding: '0 14px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>📎 File</button>
-              <button onClick={() => setSheet('cacadpoll')} style={{ height: 44, padding: '0 14px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>📊 Poll</button>
-              <button onClick={() => mark('link')} style={{ height: 44, padding: '0 14px', borderRadius: 8, border: `1px solid ${is('link') ? G : '#c5c8c4'}`, background: is('link') ? PALE : '#fff', color: is('link') ? G : INK, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>🔗 {is('link') ? 'Booking link added ✓' : 'Booking link'}</button>
+              <button onClick={() => mark('photo')} style={{ height: 44, padding: '0 14px', borderRadius: 8, border: `1px solid ${is('photo') ? G : '#c5c8c4'}`, background: is('photo') ? PALE : '#fff', color: is('photo') ? G : INK, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}><Glyph n="camera" /> {is('photo') ? 'Photo added ✓' : 'Photo'}</button>
+              <button onClick={() => setSheet('cvideo')} style={{ height: 44, padding: '0 14px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}><Glyph n="video" /> Video</button>
+              <button onClick={() => setSheet('cfile')} style={{ height: 44, padding: '0 14px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}><Glyph n="clip" /> File</button>
+              <button onClick={() => setSheet('cacadpoll')} style={{ height: 44, padding: '0 14px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}><Glyph n="chart" /> Poll</button>
+              <button onClick={() => mark('link')} style={{ height: 44, padding: '0 14px', borderRadius: 8, border: `1px solid ${is('link') ? G : '#c5c8c4'}`, background: is('link') ? PALE : '#fff', color: is('link') ? G : INK, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}><Glyph n="link" /> {is('link') ? 'Booking link added ✓' : 'Booking link'}</button>
             </div>
           </div>
         </div>
@@ -134,7 +135,7 @@ export default function AC12AcademyBroadcast(_: { onBack?: () => void }) {
             {sentMessages.map((m, i) => (
               <div key={i} style={{ paddingTop: i === 0 ? 0 : 12, paddingBottom: 12, borderBottom: i < sentMessages.length - 1 ? `1px solid ${LN}` : 'none' }}>
                 <div style={{ display: 'flex', gap: 8, alignItems: 'flex-start' }}>
-                  <span style={{ fontSize: 16, flexShrink: 0 }}>📢</span>
+                  <span style={{ fontSize: 16, flexShrink: 0 }}><Glyph n="megaphone" /></span>
                   <div style={{ flex: 1 }}>
                     <div style={{ fontSize: 13, fontWeight: 600, color: INK }}>{m.text}</div>
                     <div style={{ fontSize: 12, color: MUT, marginTop: 2 }}>{m.sub}</div>
@@ -159,7 +160,7 @@ export default function AC12AcademyBroadcast(_: { onBack?: () => void }) {
             <div style={{ fontWeight: 700, fontSize: 18, color: INK }}>Add a video</div>
             {['Take now', 'Pick from device', 'Clip from game'].map(opt => (
               <div key={opt} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 14px', borderRadius: 10, border: `1px solid ${LN}`, cursor: 'pointer' }}>
-                <div style={{ width: 36, height: 36, borderRadius: 18, background: PALE, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16 }}>🎥</div>
+                <div style={{ width: 36, height: 36, borderRadius: 18, background: PALE, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16 }}><Glyph n="video" /></div>
                 <div style={{ fontWeight: 600, fontSize: 14, color: INK }}>{opt}</div>
               </div>
             ))}
@@ -179,7 +180,7 @@ export default function AC12AcademyBroadcast(_: { onBack?: () => void }) {
             <div style={{ fontWeight: 700, fontSize: 18, color: INK }}>Add a file</div>
             {['U12 fixtures PDF', 'Canteen roster PDF', 'Pick another'].map(opt => (
               <div key={opt} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 14px', borderRadius: 10, border: `1px solid ${LN}`, cursor: 'pointer' }}>
-                <div style={{ width: 36, height: 36, borderRadius: 18, background: PALE, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16 }}>📄</div>
+                <div style={{ width: 36, height: 36, borderRadius: 18, background: PALE, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16 }}><Glyph n="doc" /></div>
                 <div style={{ fontWeight: 600, fontSize: 14, color: INK }}>{opt}</div>
               </div>
             ))}

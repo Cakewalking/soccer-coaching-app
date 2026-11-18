@@ -1,3 +1,4 @@
+import { Glyph, glyph } from './Glyph'
 import { useState } from 'react'
 
 const G    = '#2f6252'
@@ -169,7 +170,7 @@ function PollCard({ onResults }: { onResults:()=>void }) {
   )
 }
 
-function VoiceMsg({ duration, text, reactions }: { duration:string; text:string; reactions:{emoji:string; count:number}[] }) {
+function VoiceMsg({ duration, text, reactions }: { duration:string; text:string; reactions:{emoji:import('react').ReactNode; count:number}[] }) {
   const [vmToast, setVmToast] = useState<string|null>(null)
   if (vmToast) setTimeout(() => setVmToast(null), 3000)
   return (
@@ -185,8 +186,8 @@ function VoiceMsg({ duration, text, reactions }: { duration:string; text:string;
       </div>
       {text && <div style={{ fontSize:13, color:MUT, lineHeight:1.5, marginBottom:4 }}>{text}</div>}
       <div style={{ display:'flex', gap:6 }}>
-        {reactions.map(r => (
-          <span key={r.emoji} style={{ display:'inline-flex', alignItems:'center', gap:4, background:'#f0f4f2', borderRadius:999, padding:'2px 8px', fontSize:13 }}>
+        {reactions.map((r, i) => (
+          <span key={i} style={{ display:'inline-flex', alignItems:'center', gap:4, background:'#f0f4f2', borderRadius:999, padding:'2px 8px', fontSize:13 }}>
             {r.emoji} <span style={{ fontSize:12, color:MUT, fontWeight:600 }}>{r.count}</span>
           </span>
         ))}
@@ -255,7 +256,7 @@ function ChatPanel({ empty, selectedChat, onResults, onPoll, onMedia, onInfo, on
                   <PollCard onResults={onResults}/>
                 </ChatBubble>
                 <ChatBubble ini="LT" iniColor={ROSE} sender="Linh Tran · Mia's mum" time="7:48 pm">
-                  <VoiceMsg duration="0:21" text="Mia found her other boot! And she got to 14 juggles." reactions={[{emoji:'👍',count:6},{emoji:'🙌',count:3}]}/>
+                  <VoiceMsg duration="0:21" text="Mia found her other boot! And she got to 14 juggles." reactions={[{emoji:glyph('like'),count:6},{emoji:glyph('cheer'),count:3}]}/>
                 </ChatBubble>
                 <ChatBubble ini="JW" iniColor={G2} sender="Jess Wu · assistant coach" time="7:55 pm">
                   <VoiceMsg duration="0:14" text="" reactions={[]}/>
@@ -322,7 +323,7 @@ function ChatPanel({ empty, selectedChat, onResults, onPoll, onMedia, onInfo, on
 // ─── Announcements panel (CH2 / CH2e) ────────────────────────────────────────
 
 function AnnouncementCard({ ini, name, time, seen, total, subject, body, attach, reactions, canNudge, nudgeCount }:
-  { ini:string; name:string; time:string; seen:number; total:number; subject:string; body:string; attach?:{icon:string;label:string;sub:string}; reactions:{emoji:string;count:number}[]; canNudge?:boolean; nudgeCount?:number }) {
+  { ini:string; name:string; time:string; seen:number; total:number; subject:string; body:string; attach?:{icon:string;label:string;sub:string}; reactions:{emoji:import('react').ReactNode;count:number}[]; canNudge?:boolean; nudgeCount?:number }) {
   const [acToast, setAcToast] = useState<string|null>(null)
   if (acToast) setTimeout(() => setAcToast(null), 3000)
   const allSeen = seen===total
@@ -353,8 +354,8 @@ function AnnouncementCard({ ini, name, time, seen, total, subject, body, attach,
       )}
       <div style={{ display:'flex', alignItems:'center', gap:8 }}>
         <div style={{ display:'flex', gap:6, flex:1 }}>
-          {reactions.map(r => (
-            <span key={r.emoji} style={{ display:'inline-flex', alignItems:'center', gap:4, background:'#f0f4f2', borderRadius:999, padding:'3px 10px', fontSize:13 }}>
+          {reactions.map((r, i) => (
+            <span key={i} style={{ display:'inline-flex', alignItems:'center', gap:4, background:'#f0f4f2', borderRadius:999, padding:'3px 10px', fontSize:13 }}>
               {r.emoji} <span style={{ fontSize:12, color:MUT, fontWeight:600 }}>{r.count}</span>
             </span>
           ))}
@@ -397,14 +398,14 @@ function AnnouncementsPanel({ empty }: { empty:boolean }) {
               seen={17} total={17} subject="Fixture list for term 3"
               body="Six games, three at home."
               attach={{ icon:'M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8zM14 2v6h6', label:'U12 fixtures, term 3.pdf', sub:'1 page · 84 KB' }}
-              reactions={[{emoji:'👍',count:9}]}
+              reactions={[{emoji:glyph('like'),count:9}]}
             />
             <AnnouncementCard
               ini="RO" name="Rob Owusu · team manager" time="Today 7:12 pm"
               seen={14} total={17} subject="Meet time now 8:40 on Saturday"
               body="We're on pitch 2, not pitch 4. White kit. The calendar is already updated."
               attach={{ icon:'M12 2a7 7 0 017 7c0 5-7 13-7 13S5 14 5 9a7 7 0 017-7zM12 9a2 2 0 100-4 2 2 0 000 4', label:'Pitch 2, Wattle Creek Reserve', sub:'Gate on Banksia Street' }}
-              reactions={[{emoji:'👍',count:11},{emoji:'❤️',count:2}]}
+              reactions={[{emoji:glyph('like'),count:11},{emoji:glyph('heart'),count:2}]}
               canNudge nudgeCount={3}
             />
           </>
@@ -915,7 +916,7 @@ function PhotoCheckOverlay({ onDone }: { onDone:()=>void }) {
 // ─── Message actions overlay (CH9) ───────────────────────────────────────────
 
 function MessageActionsOverlay({ onDone }: { onDone:()=>void }) {
-  const reactions = ['👍','❤️','😂','🙌','😮','🙏']
+  const reactions = [glyph('like'),glyph('heart'),glyph('laugh'),glyph('cheer'),glyph('surprised'),glyph('heart')]
   const actions = [
     {label:'Reply', note:'Quotes the message in the chat', icon:'M3 10a7 7 0 0114 0v1a7 7 0 01-7 7H3l3-3M3 10H0'},
     {label:'Reply privately', note:'Only Dan sees it', icon:'M18 2l3 3-3 3M15 5h6M9 18H3l3-3M3 18v-6a7 7 0 0114 0'},
@@ -938,8 +939,8 @@ function MessageActionsOverlay({ onDone }: { onDone:()=>void }) {
         </div>
         {/* Emoji row */}
         <div style={{ display:'flex', gap:8, padding:'14px 20px', borderBottom:`1px solid ${LN}` }}>
-          {reactions.map(r => (
-            <button key={r} onClick={onDone} style={{ width:44, height:44, borderRadius:999, border:`1px solid ${LN}`, background:'#fff', fontSize:22, cursor:'pointer', display:'flex', alignItems:'center', justifyContent:'center' }}>{r}</button>
+          {reactions.map((r, i) => (
+            <button key={i} onClick={onDone} style={{ width:44, height:44, borderRadius:999, border:`1px solid ${LN}`, background:'#fff', fontSize:22, cursor:'pointer', display:'flex', alignItems:'center', justifyContent:'center' }}>{r}</button>
           ))}
         </div>
         {/* Actions */}
@@ -1125,10 +1126,10 @@ export default function TeamChatScreen({ empty = false, miniRoos = false }: { em
                     <ChatBubble ini="MC" iniColor={'#c3a84a'} sender="Mei Chen · Ivy's mum" time="6:22 pm">
                       <div>
                         <div style={{ width:'100%', height:80, background:'#e8edeb', borderRadius:10, display:'flex', alignItems:'center', justifyContent:'center', marginBottom:6 }}>
-                          <span style={{ fontSize:12, color:MUT }}>📸 Ivy drew the whole team. Arlo is the one with the cape.</span>
+                          <span style={{ fontSize:12, color:MUT }}><Glyph n="camera" /> Ivy drew the whole team. Arlo is the one with the cape.</span>
                         </div>
                         <div style={{ display:'flex', gap:6 }}>
-                          <span style={{ display:'inline-flex', alignItems:'center', gap:4, background:'#f0f4f2', borderRadius:999, padding:'2px 8px', fontSize:13 }}>❤️ <span style={{ fontSize:12, color:MUT, fontWeight:600 }}>7</span></span>
+                          <span style={{ display:'inline-flex', alignItems:'center', gap:4, background:'#f0f4f2', borderRadius:999, padding:'2px 8px', fontSize:13 }}><Glyph n="heart" /> <span style={{ fontSize:12, color:MUT, fontWeight:600 }}>7</span></span>
                         </div>
                       </div>
                     </ChatBubble>
@@ -1136,7 +1137,7 @@ export default function TeamChatScreen({ empty = false, miniRoos = false }: { em
                       <div>
                         <div style={{ fontSize:14, color:INK, lineHeight:1.5, marginBottom:6 }}>Omar says thanks for the goalie turn. He's still talking about it.</div>
                         <div style={{ display:'flex', gap:6 }}>
-                          <span style={{ display:'inline-flex', alignItems:'center', gap:4, background:'#f0f4f2', borderRadius:999, padding:'2px 8px', fontSize:13 }}>👍 <span style={{ fontSize:12, color:MUT, fontWeight:600 }}>3</span></span>
+                          <span style={{ display:'inline-flex', alignItems:'center', gap:4, background:'#f0f4f2', borderRadius:999, padding:'2px 8px', fontSize:13 }}><Glyph n="like" /> <span style={{ fontSize:12, color:MUT, fontWeight:600 }}>3</span></span>
                         </div>
                       </div>
                     </ChatBubble>

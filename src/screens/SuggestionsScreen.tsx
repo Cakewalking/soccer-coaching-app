@@ -1,3 +1,4 @@
+import { useDoneAll, markDone } from './doneStore'
 import { useState } from 'react'
 import { goApp } from './sandbox/sandboxNav'
 
@@ -63,6 +64,7 @@ function MainView({ empty, onWhy, onAsk, onWhatItUses, onWhatWorked }:
   const [card1dismissed, setCard1dismissed] = useState(false)
   const [card3watching, setCard3watching] = useState(false)
   const [toast, setToast] = useState<string|null>(null)
+  const tuesday = useDoneAll()
   function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
 
   if (empty) return (
@@ -131,7 +133,7 @@ function MainView({ empty, onWhy, onAsk, onWhatItUses, onWhatWorked }:
           <div style={{ padding: '12px 16px', display: 'flex', gap: 8 }}>
             <button onClick={onWhy} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Why</button>
             <button onClick={() => setCard1dismissed(true)} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Not relevant</button>
-            <button onClick={() => showToast("'Win it back' added to Tuesday.")} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', marginLeft: 'auto' }}>Add to Tuesday</button>
+            <button onClick={() => { markDone('tuesday:Win it back'); showToast("'Win it back' added to Tuesday.") }} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', marginLeft: 'auto' }}>{tuesday['tuesday:Win it back'] ? 'In Tuesday’s plan' : 'Add to Tuesday'}</button>
           </div>
         </div>
       )}
@@ -159,7 +161,7 @@ function MainView({ empty, onWhy, onAsk, onWhatItUses, onWhatWorked }:
         <div style={{ padding: '12px 16px', display: 'flex', gap: 8 }}>
           <button onClick={onWhy} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Why</button>
           <button onClick={() => showToast('Dismissed from suggestions.')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Not relevant</button>
-          <button onClick={() => showToast("'Small game' added to Tuesday.")} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', marginLeft: 'auto' }}>Add to Tuesday</button>
+          <button onClick={() => { markDone('tuesday:Small game'); showToast("'Small game' added to Tuesday.") }} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', marginLeft: 'auto' }}>{tuesday['tuesday:Small game'] ? 'In Tuesday’s plan' : 'Add to Tuesday'}</button>
         </div>
       </div>
 
@@ -185,7 +187,7 @@ function MainView({ empty, onWhy, onAsk, onWhatItUses, onWhatWorked }:
         </div>
         <div style={{ padding: '12px 16px', display: 'flex', gap: 8 }}>
           <button onClick={() => setCard3watching(!card3watching)} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${card3watching ? G : LN}`, background: card3watching ? PALE : '#fff', fontSize: 13, fontWeight: 600, color: card3watching ? G : MUT, cursor: 'pointer', fontFamily: 'inherit' }}>{card3watching ? 'Watching ✓' : 'Keep watching'}</button>
-          <button onClick={() => showToast('Opening drill suggestion for left-side play.')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>Suggest a drill anyway</button>
+          <button onClick={() => goApp('DF0-Library', 'Opening the drill library.')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>Suggest a drill anyway</button>
         </div>
       </div>
 
@@ -224,6 +226,7 @@ function MainView({ empty, onWhy, onAsk, onWhatItUses, onWhatWorked }:
 
 function WhyView({ onBack }: { onBack: () => void }) {
   const [toast, setToast] = useState<string|null>(null)
+  const tuesday = useDoneAll()
   function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '20px 28px 32px', display: 'flex', flexDirection: 'column', gap: 16 }}>
@@ -235,7 +238,7 @@ function WhyView({ onBack }: { onBack: () => void }) {
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
           <button onClick={() => showToast('Opening drill swap.')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Swap the drill</button>
-          <button onClick={() => showToast("Drill added to Tuesday.")} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Add to Tuesday</button>
+          <button onClick={() => { markDone('tuesday:Drill'); showToast("Drill added to Tuesday.") }} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>{tuesday['tuesday:Drill'] ? 'In Tuesday’s plan' : 'Add to Tuesday'}</button>
         </div>
       </div>
 

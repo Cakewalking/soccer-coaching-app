@@ -1,3 +1,4 @@
+import { glyph } from '../Glyph'
 import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
@@ -134,9 +135,9 @@ export default function PM6ParentChatSettings(_: { onBack?: () => void }) {
             </div>
             <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 2 }}>
               {[
-                { icon: '🖼️', label: 'Pre-season photo · 12 Jan · tap to view' },
-                { icon: '🎥', label: 'Training video · 3 Mar · 0:28' },
-                { icon: '📄', label: 'Fixture PDF · 2 Jun · 84 KB' },
+                { icon: glyph('image'), label: 'Pre-season photo · 12 Jan · tap to view' },
+                { icon: glyph('video'), label: 'Training video · 3 Mar · 0:28' },
+                { icon: glyph('doc'), label: 'Fixture PDF · 2 Jun · 84 KB' },
               ].map((item, i) => (
                 <div key={item.label} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 0', borderBottom: i < 2 ? `1px solid ${LN}` : 'none' }}>
                   <span style={{ fontSize: 20 }}>{item.icon}</span>

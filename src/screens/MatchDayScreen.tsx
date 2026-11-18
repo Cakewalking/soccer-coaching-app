@@ -1,3 +1,4 @@
+import { useDoneAll, markDone } from './doneStore'
 import { useState } from 'react'
 import { goSetup, goApp } from './sandbox/sandboxNav'
 
@@ -7,6 +8,12 @@ interface Props {
   onNav: (s: Screen) => void
   empty?: boolean
   opponent?: string
+  /** the game is away: the heading reads "at", not "vs" */
+  away?: boolean
+  /** kick-off line above the heading */
+  when?: string
+  /** how the last game went, as in "won 3–1" */
+  lastResult?: string
 }
 
 function MatchDayEmpty() {
@@ -96,15 +103,15 @@ function MatchDayEmpty() {
   )
 }
 
-function makeSlides(opponent: string) {
+function makeSlides(opponent: string, vs: string, lastResult: string) {
   return [
-    { id: 0, label: 'START',     title: `${opponent} today`,           text: 'Last game we won 3–1. Here is what worked, and three things we fix today.',  color: '#2f6252' },
+    { id: 0, label: 'START',     title: `${opponent} today`,           text: `Last game we ${lastResult}. Here is what worked, and three things we fix today.`,  color: '#2f6252' },
     { id: 1, label: 'WENT WELL', title: 'Pressing high worked',        text: '+18% more ball wins in their half vs our average.',                           color: '#40826d' },
     { id: 2, label: 'WENT WELL', title: 'We scored when attacked fast',text: '2 of 3 fast attacks ended in a goal. Best rate all season.',                  color: '#40826d' },
     { id: 3, label: 'FIX THIS',  title: 'Win the ball back faster',    text: '7 seconds average on Saturday. Our best is 4.',                               color: '#6b4a4e' },
     { id: 4, label: 'FIX THIS',  title: 'Keep our lines close',        text: '26 m gap between lines. Under 20 m is our target.',                           color: '#6b4a4e' },
     { id: 5, label: 'FIX THIS',  title: 'Keep running to the whistle', text: 'Sprint speed dropped 22% after minute 50. Hold it.',                          color: '#6b4a4e' },
-    { id: 6, label: 'TODAY',     title: `vs ${opponent}`,              text: 'Press early. Win it back fast. Keep the shape in the last 20.',                color: '#2f6252' },
+    { id: 6, label: 'TODAY',     title: `${vs} ${opponent}`,              text: 'Press early. Win it back fast. Keep the shape in the last 20.',                color: '#2f6252' },
   ]
 }
 
@@ -137,8 +144,12 @@ const PLAYER_CHECKS = [
   { ini: 'NO', name: 'Noah', badge: 'Sore knees',      rating: 3.8, bg: '#fdf0ee', textColor: '#7a3030' },
 ]
 
-export default function MatchDayScreen({ onNav, empty, opponent = 'Harbour Rovers' }: Props) {
-  const SLIDES = makeSlides(opponent)
+export default function MatchDayScreen({ onNav, empty, opponent = 'Harbour Rovers', away = false, when = 'Sat 6 Jun · 9:30 am · home', lastResult = 'won 3–1' }: Props) {
+  const vs = away ? 'at' : 'vs'
+  const edits = useDoneAll()
+  const SLIDES = makeSlides(opponent, vs, lastResult).map(sl => ({ ...sl, title: edits[`talk:${opponent}:${sl.id}:title`] ?? sl.title, text: edits[`talk:${opponent}:${sl.id}:text`] ?? sl.text }))
+  const [editing, setEditing] = useState(false)
+  const reminded = !!edits['matchday:remind']
   const [slide, setSlide] = useState(0)
   const [toast, setToast] = useState<string | null>(null)
   if (empty) return <MatchDayEmpty />
@@ -152,10 +163,10 @@ export default function MatchDayScreen({ onNav, empty, opponent = 'Harbour Rover
         <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
           <div style={{ flexGrow: 1, minWidth: 0 }}>
             <div style={{ fontSize: 12, fontWeight: 600, color: '#6f7f7b', letterSpacing: '0.02em', textTransform: 'uppercase', marginBottom: 2 }}>
-              Sat 6 Jun · 9:30 am · home
+              {when}
             </div>
             <h1 style={{ margin: 0, fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em', color: '#10211f', lineHeight: '28px' }}>
-              vs {opponent}
+              {vs} {opponent}
             </h1>
           </div>
           <div style={{ display: 'flex', gap: 8, alignItems: 'center', flex: 'none' }}>
@@ -179,7 +190,7 @@ export default function MatchDayScreen({ onNav, empty, opponent = 'Harbour Rover
               <span style={{ width: 8, height: 8, borderRadius: '999px', background: '#d4a844', display: 'block', flexShrink: 0 }} />
               3 of 5 ready
             </div>
-            <button onClick={() => showToast(`Opening minutes plan for Saturday vs ${opponent}.`)} style={{
+            <button onClick={() => showToast(`Opening minutes plan for Saturday ${vs} ${opponent}.`)} style={{
               height: 36, padding: '0 14px', borderRadius: '999px', border: '1px solid #c5c8c4',
               background: '#ffffff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer',
             }}>Minutes plan</button>
@@ -206,7 +217,7 @@ export default function MatchDayScreen({ onNav, empty, opponent = 'Harbour Rover
             <span style={{ fontSize: 17, fontWeight: 700, color: '#10211f' }}>Team talk</span>
             <span style={{ fontSize: 14, color: '#6f7f7b' }}>7 slides · 4 min · from the last 5 games</span>
             <div style={{ flexGrow: 1 }} />
-            <button onClick={() => showToast('Edit mode on. Tap a slide to change it.')} style={{ border: 0, background: 'transparent', color: '#2f6252', fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Edit talk</button>
+            <button aria-pressed={editing} onClick={() => { setEditing(e => !e); showToast(editing ? 'Saved. The talk plays with your words.' : 'Edit mode on. Tap a slide to change it.') }} style={{ border: 0, background: 'transparent', color: '#2f6252', fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{editing ? 'Done editing' : 'Edit talk'}</button>
           </div>
 
           {/* Filmstrip */}
@@ -238,8 +249,13 @@ export default function MatchDayScreen({ onNav, empty, opponent = 'Harbour Rover
           }}>
             <div style={{ flexGrow: 1, minWidth: 0, color: '#ffffff' }}>
               <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.65)', marginBottom: 10 }}>{s.label}</div>
+              {editing ? <>
+                <input aria-label="Slide heading" value={s.title} onChange={e => markDone(`talk:${opponent}:${s.id}:title`, e.target.value)} style={{ width: '100%', boxSizing: 'border-box', height: 44, padding: '0 10px', marginBottom: 8, borderRadius: 10, border: '2px solid rgba(255,255,255,0.8)', background: 'rgba(255,255,255,0.12)', color: '#fff', fontFamily: 'inherit', fontSize: 22, fontWeight: 700 }} />
+                <textarea aria-label="Slide words" value={s.text} onChange={e => markDone(`talk:${opponent}:${s.id}:text`, e.target.value)} style={{ width: '100%', boxSizing: 'border-box', minHeight: 64, padding: '8px 10px', borderRadius: 10, border: '2px solid rgba(255,255,255,0.8)', background: 'rgba(255,255,255,0.12)', color: '#fff', fontFamily: 'inherit', fontSize: 15, lineHeight: '22px' }} />
+              </> : <>
               <div style={{ fontSize: 26, fontWeight: 700, letterSpacing: '-0.02em', lineHeight: '32px', marginBottom: 10 }}>{s.title}</div>
               <div style={{ fontSize: 15, lineHeight: '22px', color: 'rgba(255,255,255,0.85)' }}>{s.text}</div>
+              </>}
             </div>
             <button onClick={() => onNav('teamtalk')} style={{
               flex: 'none', width: 72, height: 72, borderRadius: '999px',
@@ -267,11 +283,11 @@ export default function MatchDayScreen({ onNav, empty, opponent = 'Harbour Rover
             <span style={{ fontSize: 14, color: '#6f7f7b' }}>14 of 16 done this morning · squad average 3.6</span>
             <div style={{ flexGrow: 1 }} />
             <span style={{ fontSize: 14, color: '#6f7f7b' }}>Not filled in: <strong style={{ color: '#10211f' }}>Zoe and Sam</strong></span>
-            <button onClick={() => showToast('Reminder sent to Zoe and Sam.')} style={{
+            <button aria-pressed={reminded} onClick={() => { markDone('matchday:remind'); showToast(reminded ? 'Zoe and Sam were already reminded this morning. One reminder only.' : 'Reminder sent to Zoe and Sam.') }} style={{
               height: 32, padding: '0 14px', borderRadius: '999px',
               border: '1px solid #c5c8c4', background: '#ffffff',
               fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', color: '#10211f',
-            }}>Remind</button>
+            }}>{reminded ? 'Reminded' : 'Remind'}</button>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 10 }}>
             {PLAYER_CHECKS.map(p => (

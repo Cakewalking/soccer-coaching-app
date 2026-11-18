@@ -8,6 +8,7 @@ import { Page, col, FixRow } from '../capture/CaptureScreens'
 import { useCn, setCn, addJob, enough, MIN_ANSWERS, TEAMS, type CnState } from './cnStore'
 
 import { teamText } from '../../teamNames'
+import { playClips } from '../clips/clipSheet'
 
 export type Go = (target: string) => void
 type Tm = 'u12' | 'u16' | 'seniors'
@@ -307,7 +308,7 @@ export function CN17SetPieces({ s, go, say, team = 'u12' }: CnProps) {
     <section aria-label={t} style={{ ...tile, gap: 0, padding: '12px 8px 6px' }}>
       <h2 style={{ ...h2, padding: '0 8px 6px' }}>{t}</h2>
       <div style={{ ...row(grid, 0), ...th, minHeight: 22 }}><span>{t.startsWith('What you') ? 'Routine' : 'From'}</span><span>Times</span><span>Shots</span><span>Goals</span><span>{last}</span><span /></div>
-      {list.map((r, i) => <button key={r[0]} onClick={() => say('The clips for this routine open.')} style={{ ...row(grid, i + 1, { minHeight: 46 }), width: '100%', background: 'none', border: 0, borderTop: `1px solid ${LINE}`, fontFamily: 'inherit', color: INK, textAlign: 'left', cursor: 'pointer' }}><Two a={r[0]} b={nm(team, r[1])} /><span>{r[2]}</span><span>{r[3]}</span><strong>{r[4]}</strong><span>{r[5].toFixed(1)}</span><Ico d={IC.chev} size={16} sw={2.4} /></button>)}
+      {list.map((r, i) => <button key={r[0]} onClick={() => playClips(Array.from({ length: Math.min(r[2], 5) }, (_, k) => ({ title: `${r[0]} · ${k + 1} of ${r[2]}`, sub: k < r[4] ? 'Ended in a goal.' : k < r[3] ? 'Ended in a shot.' : 'No shot.', len: 9 })), r[0])} style={{ ...row(grid, i + 1, { minHeight: 46 }), width: '100%', background: 'none', border: 0, borderTop: `1px solid ${LINE}`, fontFamily: 'inherit', color: INK, textAlign: 'left', cursor: 'pointer' }}><Two a={r[0]} b={nm(team, r[1])} /><span>{r[2]}</span><span>{r[3]}</span><strong>{r[4]}</strong><span>{r[5].toFixed(1)}</span><Ico d={IC.chev} size={16} sw={2.4} /></button>)}
     </section>
   )
   return (

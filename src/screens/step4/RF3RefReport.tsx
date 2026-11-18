@@ -1,3 +1,4 @@
+import { glyph } from '../Glyph'
 import { useState } from 'react'
 const G = '#2f6252', INK = '#10211f', MUT = '#4a5a57', PALE = '#eef5f2'
 
@@ -9,7 +10,7 @@ const Chip = ({ label, active, onToggle }: { label: string; active?: boolean; on
   <button onClick={onToggle} style={{ height: 44, padding: '0 14px', borderRadius: 99, border: `2px solid ${active ? G : '#c5c8c4'}`, background: active ? PALE : '#fff', display: 'flex', alignItems: 'center', fontSize: 14, fontWeight: active ? 700 : 500, color: active ? G : INK, cursor: 'pointer', whiteSpace: 'nowrap' as const, fontFamily: 'inherit' }}>{label}</button>
 )
 
-const NavItem = ({ icon, label, active }: { icon: string; label: string; active?: boolean }) => (
+const NavItem = ({ icon, label, active }: { icon: import('react').ReactNode; label: string; active?: boolean }) => (
   <div style={{ flex: 1, display: 'flex', flexDirection: 'column' as const, alignItems: 'center', justifyContent: 'center', gap: 2, minHeight: 56, fontSize: 11, fontWeight: 700, color: active ? G : MUT, cursor: 'pointer' }}>
     <span style={{ fontSize: 20 }}>{icon}</span>
     {label}
@@ -59,10 +60,10 @@ export default function RF3RefReport(_: { onBack?: () => void }) {
         </div>
       </div>
       <nav style={{ flex: 'none', display: 'flex', borderTop: '1px solid #c5c8c4', background: '#fff' }}>
-        <NavItem icon="📅" label="My games" />
-        <NavItem icon="📋" label="Report" active />
-        <NavItem icon="💬" label="Feedback" />
-        <NavItem icon="👤" label="Me" />
+        <NavItem icon={glyph('calendar')} label="My games" />
+        <NavItem icon={glyph('clipboard')} label="Report" active />
+        <NavItem icon={glyph('chat')} label="Feedback" />
+        <NavItem icon={glyph('person')} label="Me" />
       </nav>
       {toast && <div style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>

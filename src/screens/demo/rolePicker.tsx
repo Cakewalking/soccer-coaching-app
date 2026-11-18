@@ -51,10 +51,18 @@ export function RoleColumn({ col, rowHeight, showSub, showDevice = true, doing, 
   )
 }
 
-/** Four columns from 1180 wide, two by two from 700, one below that. */
+/** Four columns from 1000 wide (a laptop window is often about 1145), two by two from 700, one below that. */
 export function useColumns(): 1 | 2 | 4 {
-  const calc = () => (window.innerWidth >= 1180 ? 4 : window.innerWidth >= 700 ? 2 : 1) as 1 | 2 | 4
+  const calc = () => (window.innerWidth >= 1000 ? 4 : window.innerWidth >= 700 ? 2 : 1) as 1 | 2 | 4
   const [n, setN] = useState(calc)
   useEffect(() => { const f = () => setN(calc()); window.addEventListener('resize', f); return () => window.removeEventListener('resize', f) }, [])
   return n
+}
+
+/** True below 1280 wide, where the picker's rows are shortened so all four columns fit one view. */
+export function useTight(): boolean {
+  const calc = () => window.innerWidth < 1280
+  const [t, setT] = useState(calc)
+  useEffect(() => { const f = () => setT(calc()); window.addEventListener('resize', f); return () => window.removeEventListener('resize', f) }, [])
+  return t
 }

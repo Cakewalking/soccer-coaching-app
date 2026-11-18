@@ -1,3 +1,4 @@
+import { Glyph, glyph } from '../Glyph'
 import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
@@ -11,11 +12,11 @@ export default function PM9ParentPrivateChat(_: { onBack?: () => void }) {
   const waveHeights = [10, 16, 22, 14, 26, 18, 12, 24, 16, 20, 14, 10]
 
   const attachOptions = [
-    { icon: '🖼️', label: 'Photo', action: () => { setSheet(null); t('Opening photo consent...') } },
-    { icon: '🎥', label: 'Video', action: () => { setSheet(null); t('Pick from camera roll or record') } },
-    { icon: '🎙️', label: 'Voice note', action: () => { setSheet(null); t('Recording...') } },
-    { icon: '📍', label: 'Place', action: () => { setSheet(null); t('Share your location') } },
-    { icon: '📎', label: 'File', action: () => { setSheet(null); t('Pick a file from this device') } },
+    { icon: glyph('image'), label: 'Photo', action: () => { setSheet(null); t('Opening photo consent...') } },
+    { icon: glyph('video'), label: 'Video', action: () => { setSheet(null); t('Pick from camera roll or record') } },
+    { icon: glyph('mic'), label: 'Voice note', action: () => { setSheet(null); t('Recording...') } },
+    { icon: glyph('place'), label: 'Place', action: () => { setSheet(null); t('Share your location') } },
+    { icon: glyph('clip'), label: 'File', action: () => { setSheet(null); t('Pick a file from this device') } },
   ]
 
   return (
@@ -32,7 +33,7 @@ export default function PM9ParentPrivateChat(_: { onBack?: () => void }) {
 
       {/* Privacy banner */}
       <div style={{ background: PALE, borderBottom: `1px solid ${LN}`, padding: '10px 16px', display: 'flex', alignItems: 'flex-start', gap: 8, flexShrink: 0 }}>
-        <span style={{ fontSize: 14, flexShrink: 0, marginTop: 1 }}>🔒</span>
+        <span style={{ fontSize: 14, flexShrink: 0, marginTop: 1 }}><Glyph n="lock" /></span>
         <span style={{ fontSize: 13, color: G, lineHeight: 1.4 }}>This is private between you and Sam. Sam's employer can read it.</span>
       </div>
 
@@ -72,7 +73,7 @@ export default function PM9ParentPrivateChat(_: { onBack?: () => void }) {
               <div style={{ width: 36, height: 36, borderRadius: 999, background: 'rgba(255,255,255,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18 }}>▶️</div>
               <div style={{ position: 'absolute', bottom: 6, right: 8, background: 'rgba(0,0,0,0.5)', color: '#fff', fontSize: 11, fontWeight: 600, borderRadius: 4, padding: '1px 5px' }}>0:28</div>
             </div>
-            <div style={{ fontSize: 15, color: INK }}>Mia's left-foot work from today 🎉</div>
+            <div style={{ fontSize: 15, color: INK }}>Mia's left-foot work from today</div>
           </div>
         </div>
 

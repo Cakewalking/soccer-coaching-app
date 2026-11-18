@@ -1,3 +1,5 @@
+import { Glyph, glyph } from './Glyph'
+import { goApp } from './sandbox/sandboxNav'
 import { useState } from 'react'
 import { demoToast } from './demoToast'
 import { AcademyTrainingWeek, AcademyTrainingSuggested, AcademySessionPlan, AcademyWhoComing } from './AcademyTraining'
@@ -122,7 +124,7 @@ function TodayOverview({ empty, onRun, onTrials, onReport }: { empty: boolean; o
   return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '20px 28px 32px', display: 'flex', flexDirection: 'column', gap: 16 }}>
       <PageHead title="Hi Reece" sub="Thursday 4 June · 3 sessions today at Messmate Primary School"
-        right={<><Btn label="Group chats" small onClick={() => showToast('Opening group chats.')}/><Btn label="Message Dani" small primary onClick={() => showToast('New message to Dani.')}/></>}/>
+        right={<><Btn label="Group chats" small onClick={() => showToast('Opening group chats.')}/><Btn label="Message Dani" small primary onClick={() => goApp('ACC13-AcademyChat', 'New message to Dani.')}/></>}/>
 
       <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: MUT }}>Today · Tap a session to run it</div>
 
@@ -1035,14 +1037,14 @@ function ChatView({ empty }: { empty: boolean }) {
   ]
 
   const advMessages = [
-    { ini: 'RW', name: 'You', time: '3:30 pm', isVoice: true, dur: '0:48', text: "This week's home practice: 20 left-foot finishes against a wall.", reactions: ['👍 8'], isMe: true },
-    { ini: 'TO', name: 'Tess Okonkwo · Kai\'s mum', time: '4:15 pm', isVoice: false, text: 'Kai did all three! Any make-up for next Tuesday?', reactions: ['🙌 2'], isMe: false },
+    { ini: 'RW', name: 'You', time: '3:30 pm', isVoice: true, dur: '0:48', text: "This week's home practice: 20 left-foot finishes against a wall.", reactions: [<span key="r"><Glyph n="like" /> 8</span>], isMe: true },
+    { ini: 'TO', name: 'Tess Okonkwo · Kai\'s mum', time: '4:15 pm', isVoice: false, text: 'Kai did all three! Any make-up for next Tuesday?', reactions: [<span key="r"><Glyph n="cheer" /> 2</span>], isMe: false },
     { ini: 'RW', name: 'You', time: '4:20 pm', isPoll: true, question: 'Make-up for Tuesday 9 June: which suits?', options: ['Wed 10 June, 5:30 · 3', 'Fri 12 June, 4:15 · 1'], footer: '4 of 22 families · your answer books the make-up', isMe: true },
   ]
 
   const OTHER_CHATS: Record<string, { sub: string; msgs: typeof advMessages }> = {
-    news: { sub: 'Everyone at Tall Timber · only coaches and Dani can post', msgs: [{ ini: 'DO', name: 'Dani Okafor · owner', time: 'Mon', isVoice: false, text: 'July clinic bookings are open. Current families get first go until Friday.', reactions: ['👍 12'], isMe: false }] },
-    u13:  { sub: '16 families and you · the game team', msgs: [{ ini: 'RW', name: 'You', time: 'Wed', isVoice: false, text: 'Team sheet for Saturday is up. Meet 8:15 at the ground.', reactions: ['👍 9'], isMe: true }] },
+    news: { sub: 'Everyone at Tall Timber · only coaches and Dani can post', msgs: [{ ini: 'DO', name: 'Dani Okafor · owner', time: 'Mon', isVoice: false, text: 'July clinic bookings are open. Current families get first go until Friday.', reactions: [<span key="r"><Glyph n="like" /> 12</span>], isMe: false }] },
+    u13:  { sub: '16 families and you · the game team', msgs: [{ ini: 'RW', name: 'You', time: 'Wed', isVoice: false, text: 'Team sheet for Saturday is up. Meet 8:15 at the ground.', reactions: [<span key="r"><Glyph n="like" /> 9</span>], isMe: true }] },
     dani: { sub: 'Just the two of you', msgs: [{ ini: 'DO', name: 'Dani Okafor', time: 'Wed', isVoice: false, text: 'Can you take the 4:15 on Friday? Mel is away.', reactions: [], isMe: false }] },
   }
   const chat = chats.find(c => c.id === activeChat)
@@ -1109,7 +1111,7 @@ function ChatView({ empty }: { empty: boolean }) {
                   <div style={{ padding: '8px 14px', fontSize: 12, color: MUT }}>{m.footer}</div>
                 </div>
               )}
-              {m.reactions && <div style={{ fontSize: 12, marginTop: 4, textAlign: m.isMe ? 'right' : 'left' }}>{m.reactions.join(' ')}</div>}
+              {m.reactions && <div style={{ fontSize: 12, marginTop: 4, textAlign: m.isMe ? 'right' : 'left' }}>{m.reactions}</div>}
             </div>
           </div>
         ))}
@@ -1117,7 +1119,7 @@ function ChatView({ empty }: { empty: boolean }) {
       {/* Compose */}
       <div style={{ padding: '12px 20px', borderTop: `1px solid ${LN}`, background: '#fff', flexShrink: 0 }}>
         <div style={{ display: 'flex', gap: 10, marginBottom: 10 }}>
-          {(['📷', '🎥', '🎤', '📊', '📄', '🏃'] as const).map((icon, i) => {
+          {([glyph('camera'), glyph('video'), glyph('mic'), glyph('chart'), glyph('doc'), glyph('run')] as const).map((icon, i) => {
             const labels = ['Adding a photo.', 'Adding a video.', 'Recording a voice message.', 'Creating a poll.', 'Attaching a file.', 'Setting home practice.']
             return <button key={i} onClick={() => showToast(labels[i])} style={{ width: 44, height: 44, borderRadius: '50%', border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', fontSize: 16 }}>{icon}</button>
           })}

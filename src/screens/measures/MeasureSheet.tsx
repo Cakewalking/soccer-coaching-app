@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react'
+import { playClips } from '../clips/clipSheet'
+import { saveFile, csv } from '../saveFile'
 import { INK, MUT, GREEN, HAIR, PALEGREEN } from '../step4/directorParts'
 import { type MeasureCfg, nextMeasure, prevMeasure } from './data'
 import { Mark } from '../capture/marks'
@@ -108,6 +110,8 @@ function Graph({ cfg }: { cfg: MeasureCfg }) {
 }
 
 // ---------- evidence ----------
+const clipOf = (c: { minute: string; outcome: string; game: string; dur: string }) => ({ title: `${c.minute} · ${c.outcome}`, sub: `${c.game}.`, len: Number(c.dur.split(':')[1]) || 6 })
+
 function Evidence({ cfg, say, onNav }: { cfg: MeasureCfg; say: (m: string) => void; onNav?: (s: string) => void }) {
   const [filter, setFilter] = useState<'sat' | 'all' | 'lost'>('sat')
   const ev = cfg.evidence
@@ -131,7 +135,7 @@ function Evidence({ cfg, say, onNav }: { cfg: MeasureCfg; say: (m: string) => vo
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 8 }}>
           {shown.map((c, i) => (
-            <button key={i} onClick={() => say(`Playing… ${c.minute} ${c.outcome}, ${c.game}.`)} style={{ border: 'none', padding: 0, borderRadius: 10, overflow: 'hidden', cursor: 'pointer', background: GD, position: 'relative', height: 76 }}>
+            <button key={i} aria-label={`Play ${c.minute} ${c.outcome}, ${c.game}`} onClick={() => playClips(shown.map(clipOf), cfg.title, i)} style={{ border: 'none', padding: 0, borderRadius: 10, overflow: 'hidden', cursor: 'pointer', background: GD, position: 'relative', height: 76 }}>
               <span style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}><span style={{ width: 26, height: 26, borderRadius: '50%', border: '2px solid rgba(255,255,255,0.6)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><svg width="10" height="10" viewBox="0 0 24 24" fill="#fff"><polygon points="5 3 19 12 5 21 5 3" /></svg></span></span>
               <span style={{ position: 'absolute', left: 6, bottom: 5, fontSize: 10, fontWeight: 700, color: '#fff' }}>{c.minute} · {c.outcome}</span>
               <span style={{ position: 'absolute', right: 6, bottom: 5, fontSize: 10, fontWeight: 700, color: '#fff', background: 'rgba(0,0,0,0.4)', borderRadius: 3, padding: '0 4px' }}>{c.dur}</span>
@@ -139,7 +143,7 @@ function Evidence({ cfg, say, onNav }: { cfg: MeasureCfg; say: (m: string) => vo
           ))}
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button onClick={() => say(`Playing all ${shown.length} clips in a row.`)} style={{ height: 40, padding: '0 16px', borderRadius: 10, border: 'none', background: GREEN, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Play all {shown.length}{filter === 'sat' ? ' from Saturday' : ''}</button>
+          <button onClick={() => { playClips(shown.map(clipOf), cfg.title); say(`Playing all ${shown.length} clips in a row.`) }} style={{ height: 40, padding: '0 16px', borderRadius: 10, border: 'none', background: GREEN, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Play all {shown.length}{filter === 'sat' ? ' from Saturday' : ''}</button>
           <button onClick={() => { say('Pick a clip — it goes to the coach’s To check list, and the count is redone.'); onNav?.('TC1-ToCheck') }} style={{ height: 40, padding: '0 16px', borderRadius: 10, border: `1px solid #c5c8c4`, background: '#fff', fontSize: 13, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>This one is wrong</button>
         </div>
       </div>
@@ -150,7 +154,7 @@ function Evidence({ cfg, say, onNav }: { cfg: MeasureCfg; say: (m: string) => vo
       <div style={{ display: 'flex', flexDirection: 'column', gap: 9, minHeight: 0, flex: 1 }}>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.05em', textTransform: 'uppercase', color: MUT, flex: 1 }}>The numbers as recorded · newest first</div>
-          <button onClick={() => say('Downloaded every reading as a file.')} style={{ height: 32, padding: '0 12px', borderRadius: 999, border: `1px solid #c5c8c4`, background: '#fff', fontSize: 12, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Download all</button>
+          <button onClick={() => { saveFile(`${cfg.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}-readings.csv`, csv([['Date', 'Session', cfg.title, 'Vest', 'Signal', 'Counted'], ...ev.rows.map(r => [r.date, r.session, r.value, r.vest, r.signal, r.out ? 'left out' : 'yes'])])); say('Downloaded every reading as a file.') }} style={{ height: 32, padding: '0 12px', borderRadius: 999, border: `1px solid #c5c8c4`, background: '#fff', fontSize: 12, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Download all</button>
         </div>
         <div style={{ overflowY: 'auto' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>
@@ -180,7 +184,7 @@ function Evidence({ cfg, say, onNav }: { cfg: MeasureCfg; say: (m: string) => vo
             <tr key={i}><td style={td}>{r.date}</td><td style={td}>{r.timer}</td><td style={{ ...td, textAlign: 'right', fontWeight: 700 }}>{r.counted}</td><td style={{ ...td, textAlign: 'right', color: MUT }}>{r.gos}</td></tr>
           ))}</tbody>
         </table>
-        <button onClick={() => say('Playing… the film of the latest test.')} style={{ alignSelf: 'flex-start', height: 40, padding: '0 16px', borderRadius: 10, border: `1px solid #c5c8c4`, background: '#fff', fontSize: 13, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Watch the latest test</button>
+        <button onClick={() => { playClips([{ title: `${cfg.title}: latest test`, sub: `${ev.rows[0]?.date ?? ''}, timed by ${ev.rows[0]?.timer ?? 'the coach'}.`, len: 12 }], cfg.title); say('Playing the film of the latest test.') }} style={{ alignSelf: 'flex-start', height: 40, padding: '0 16px', borderRadius: 10, border: `1px solid #c5c8c4`, background: '#fff', fontSize: 13, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Watch the latest test</button>
         <div style={{ fontSize: 12, color: MUT }}>{ev.note}</div>
       </div>
     )

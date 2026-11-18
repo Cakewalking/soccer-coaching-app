@@ -1,3 +1,4 @@
+import { Glyph, glyph } from './Glyph'
 import { useState } from 'react'
 import { RaiseConcernView, ConcernSentView, TellSomeoneView, TellHelenView } from './playerapp/SafeguardingFlows'
 import ParentView from './playerapp/ParentView'
@@ -6,34 +7,34 @@ import PlayerMeScreen from './playerapp/PlayerMeScreen'
 
 type PlayerView = 'home' | 'checkin' | 'checkin-sent' | 'clip' | 'goals' | 'me' | 'parent' | 'parent-avail' | 'parent-chat' | 'young-news' | 'invite' | 'raise-concern' | 'concern-sent' | 'tell-someone' | 'tell-helen'
 
-interface WellnessOption { label: string; emoji: string; value: number }
+interface WellnessOption { label: string; emoji: import('react').ReactNode; value: number }
 
 const WELLNESS_QUESTIONS: { q: string; options: WellnessOption[] }[] = [
   {
     q: 'How is your body feeling?',
     options: [
-      { label: 'Great', emoji: '💪', value: 4 },
-      { label: 'Good', emoji: '👍', value: 3 },
-      { label: 'OK',   emoji: '😐', value: 2 },
-      { label: 'Sore', emoji: '😬', value: 1 },
+      { label: 'Great', emoji: glyph('bolt'), value: 4 },
+      { label: 'Good', emoji: glyph('like'), value: 3 },
+      { label: 'OK',   emoji: glyph('neutral'), value: 2 },
+      { label: 'Sore', emoji: glyph('sad'), value: 1 },
     ],
   },
   {
     q: 'How tired are you?',
     options: [
-      { label: 'Rested',    emoji: '😴', value: 4 },
-      { label: 'Fine',      emoji: '🙂', value: 3 },
-      { label: 'Bit tired', emoji: '😪', value: 2 },
-      { label: 'Very tired',emoji: '😩', value: 1 },
+      { label: 'Rested',    emoji: glyph('tired'), value: 4 },
+      { label: 'Fine',      emoji: glyph('smile'), value: 3 },
+      { label: 'Bit tired', emoji: glyph('tired'), value: 2 },
+      { label: 'Very tired',emoji: glyph('sad'), value: 1 },
     ],
   },
   {
     q: 'How is your mood?',
     options: [
-      { label: 'Buzzing', emoji: '🎉', value: 4 },
-      { label: 'Good',    emoji: '😊', value: 3 },
-      { label: 'Meh',     emoji: '😶', value: 2 },
-      { label: 'Down',    emoji: '😔', value: 1 },
+      { label: 'Buzzing', emoji: glyph('cheer'), value: 4 },
+      { label: 'Good',    emoji: glyph('smile'), value: 3 },
+      { label: 'Meh',     emoji: glyph('neutral'), value: 2 },
+      { label: 'Down',    emoji: glyph('sad'), value: 1 },
     ],
   },
 ]
@@ -289,7 +290,7 @@ export default function PlayerAppScreen({ empty, initialView = 'home' }: { empty
           </div>
 
           <div style={{ display: 'flex', gap: 10 }}>
-            <button onClick={() => showToast('Thanks sent to Sam.')} style={{ flex: 1, height: 44, borderRadius: 12, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>👍 Thanks Sam</button>
+            <button onClick={() => showToast('Thanks sent to Sam.')} style={{ flex: 1, height: 44, borderRadius: 12, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}><Glyph n="like" /> Thanks Sam</button>
             <button onClick={() => showToast('Opening reply.')} style={{ height: 44, padding: '0 16px', borderRadius: 12, border: '1px solid rgba(255,255,255,0.2)', background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Reply</button>
           </div>
         </div>
@@ -452,8 +453,8 @@ export default function PlayerAppScreen({ empty, initialView = 'home' }: { empty
                 </div>
               )}
               <div style={{ display: 'flex', gap: 8, marginTop: 10 }}>
-                {['👍', '😀', '⚽'].map(emoji => (
-                  <button key={emoji} onClick={() => showToast('Reaction sent.')} style={{ width: 44, height: 44, borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontSize: 18, cursor: 'pointer' }}>{emoji}</button>
+                {[glyph('like'), glyph('smile'), glyph('ball')].map((emoji, i) => (
+                  <button key={i} onClick={() => showToast('Reaction sent.')} style={{ width: 44, height: 44, borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontSize: 18, cursor: 'pointer' }}>{emoji}</button>
                 ))}
               </div>
             </div>

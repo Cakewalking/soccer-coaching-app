@@ -1,3 +1,4 @@
+import { Glyph } from '../Glyph'
 import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
@@ -158,7 +159,7 @@ export default function PAParent(_: { onBack?: () => void }) {
           </div>
           <div style={{ marginTop: 10 }}>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: 4, background: PALE, borderRadius: 20, padding: '4px 10px', fontSize: 13, color: INK }}>
-              <span>🎉</span>
+              <span><Glyph n="cheer" /></span>
               <span style={{ fontWeight: 600 }}>4</span>
             </div>
           </div>

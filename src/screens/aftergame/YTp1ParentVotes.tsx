@@ -1,3 +1,4 @@
+import { kept, keep } from '../kept'
 import { useState } from 'react'
 import { INK, MUT, GREEN, CTL, PALEON, DARK, PALEGREEN } from '../step4/directorParts'
 import { YT_PLAYERS, PARENT_RATINGS, type Rating } from './data'
@@ -11,7 +12,9 @@ const SHOWN = ['mia', 'grace', 'jai', 'noah', 'ruby'].map(id => YT_PLAYERS.find(
 export default function YTp1ParentVotes({ onNav }: { onNav?: (s: string) => void }) {
   const [lastTool, setLastTool] = useState('')
   const [toast, setToast] = useState<string | null>(null)
-  const [ratings, setRatings] = useState<Record<string, Rating>>({ ...ME.ratings })
+  const saved = kept('cs_parent_ratings_v1', { ratings: { ...ME.ratings } as Record<string, Rating>, state: '' as '' | 'sent' | 'skipped' })
+  const [ratings, setRatings] = useState<Record<string, Rating>>(saved.ratings)
+  const [state, setState] = useState(saved.state)
   function say(m: string) { setToast(m); setTimeout(() => setToast(null), 2600) }
   function setRating(id: string, n: Rating) {
     setRatings(prev => { const c = { ...prev }; if (c[id] === n) delete c[id]; else c[id] = n; return c })
@@ -67,8 +70,8 @@ export default function YTp1ParentVotes({ onNav }: { onNav?: (s: string) => void
 
       {/* Bottom bar */}
       <div style={{ position: 'sticky', bottom: 0, background: '#fff', borderTop: `1px solid ${CTL}`, padding: '12px 16px 20px', display: 'flex', gap: 10, flexShrink: 0 }}>
-        <button onClick={() => say('Skipped this week. Nothing is sent.')} style={{ flex: 1, height: 52, borderRadius: 12, border: `1.5px solid ${CTL}`, background: '#fff', fontSize: 15, fontWeight: 700, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Skip this week</button>
-        <button onClick={() => say('Sent. You can change them until rating closes on Tuesday.')} style={{ flex: 1.4, height: 52, borderRadius: 12, border: 'none', background: GREEN, color: '#fff', fontSize: 15, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Send my ratings</button>
+        <button aria-pressed={state === 'skipped'} onClick={() => { setState('skipped'); keep('cs_parent_ratings_v1', { ratings: {}, state: 'skipped' }); say('Skipped this week. Nothing is sent.') }} style={{ flex: 1, height: 52, borderRadius: 12, border: `1.5px solid ${CTL}`, background: '#fff', fontSize: 15, fontWeight: 700, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Skip this week</button>
+        <button aria-pressed={state === 'sent'} onClick={() => { setState('sent'); keep('cs_parent_ratings_v1', { ratings, state: 'sent' }); say('Sent. You can change them until rating closes on Tuesday.') }} style={{ flex: 1.4, height: 52, borderRadius: 12, border: 'none', background: GREEN, color: '#fff', fontSize: 15, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>{state === 'sent' ? 'Sent. Send again' : 'Send my ratings'}</button>
       </div>
 
       {toast && <div role="status" style={{ position: 'fixed', left: '50%', bottom: 96, transform: 'translateX(-50%)', zIndex: 60, maxWidth: 340, padding: '12px 16px', borderRadius: 14, background: GD, color: '#fff', fontSize: 14, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', textAlign: 'center' }}>{toast}</div>}

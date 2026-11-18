@@ -1,3 +1,4 @@
+import { Glyph } from '../Glyph'
 import React, { useState } from 'react'
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2', BG = '#f5f6f4'
 
@@ -113,7 +114,7 @@ export function PO1OlderHome() {
 
       {/* Load alert */}
       <div style={{ background: '#fffbeb', borderBottom: `1px solid ${LN}`, padding: '12px 20px', display: 'flex', gap: 10 }}>
-        <div style={{ fontSize: 16, flexShrink: 0 }}>⚠</div>
+        <div style={{ fontSize: 16, flexShrink: 0 }}><Glyph n="warn" /></div>
         <div>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#d97706' }}>Big week for your legs</div>
           <div style={{ fontSize: 12, color: MUT }}>Club, school footy and a test. Priya's made Wednesday a rest day for you.</div>

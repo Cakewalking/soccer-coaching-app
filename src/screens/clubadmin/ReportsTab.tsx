@@ -1,3 +1,5 @@
+import { glyph } from '../Glyph'
+import { useDone, markDone } from '../doneStore'
 import { useState } from 'react'
 import { SubTabBar, EmptyCard, FOOTER_DEFAULT } from './ui'
 
@@ -16,6 +18,7 @@ export default function ReportsTab({ empty }: { empty?: boolean }) {
   const [activeChip, setActiveChip] = useState(0)
   const [toast, setToast] = useState<string | null>(null)
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
+  const sentTo = useDone('report:committee')
 
   const p = { padding: '16px 20px' }
 
@@ -44,7 +47,7 @@ export default function ReportsTab({ empty }: { empty?: boolean }) {
             </div>
             <div style={{ display: 'flex', gap: 8 }}>
               <button onClick={() => showToast('Opens report editor.')} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>Edit</button>
-              <button onClick={() => showToast('Report sent to committee.')} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Send to committee</button>
+              <button aria-pressed={!!sentTo} onClick={() => { markDone('report:committee', new Date().toISOString()); showToast('Report sent to committee.') }} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>{sentTo ? 'Sent to committee' : 'Send to committee'}</button>
             </div>
           </div>
 
@@ -229,7 +232,7 @@ export default function ReportsTab({ empty }: { empty?: boolean }) {
                 <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', color: '#6f7f7b', marginBottom: 10 }}>WHAT WENT WELL</div>
                 {[
                   { icon: '↑', text: "Girls' football grew fastest. Up 22 players from last year — the biggest gain in any age group.", bold: true },
-                  { icon: '★', text: "U12 Girls Ana unbeaten at home all season. First time for any Wattle Creek team.", bold: true },
+                  { icon: glyph('star'), text: "U12 Girls Ana unbeaten at home all season. First time for any Wattle Creek team.", bold: true },
                   { icon: '↑', text: 'More teams recording matches. 5 teams on video this season, up from 3.', bold: false },
                   { icon: '↓', text: 'Fewer injuries. 14 this year against 22 last year. Fewer games missed too.', bold: false },
                 ].map((h, i) => (

@@ -1,3 +1,4 @@
+import { glyph } from '../Glyph'
 import { useState } from 'react'
 
 const GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', G = '#2f6252'
@@ -29,7 +30,7 @@ export default function PK1YoungNews(_: { onBack?: () => void }) {
             {msg.extra && <div style={{ background: '#f0f4f2', borderRadius: 8, padding: '8px 10px', marginTop: 8, fontSize: 13, color: MUT, whiteSpace: 'pre-line' as const }}>{msg.extra}</div>}
             {msg.reaction && (
               <div style={{ display: 'flex', gap: 8, marginTop: 10 }}>
-                {['👍', '😀', '⚽'].map(e => <button key={e} style={{ width: 44, height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 20, cursor: 'pointer' }}>{e}</button>)}
+                {[glyph('like'), glyph('smile'), glyph('ball')].map((e, i) => <button key={i} style={{ width: 44, height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 20, cursor: 'pointer' }}>{e}</button>)}
               </div>
             )}
           </div>

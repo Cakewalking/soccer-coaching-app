@@ -1,14 +1,15 @@
+import { glyph } from '../Glyph'
 import { useState } from 'react'
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 export default function TM4DutyRoster(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string | null>(null)
   const t = (m: string) => { setToast(m); setTimeout(() => setToast(null), 3200) }
   const duties = [
-    { icon: '🍊', title: 'Oranges at half-time', sub: 'Morgan family (Isla) · confirmed', badge: 'Done', badgeBg: PALE, badgeColor: G },
-    { icon: '🏪', title: 'Canteen 10 to 11', sub: 'Linh Tran (Mia) · confirmed', badge: 'Done', badgeBg: PALE, badgeColor: G },
-    { icon: '🚩', title: 'Club linesman', sub: 'Needs someone over 16 · flag in the blue bag', badge: 'Ask', badgeBg: '#c39797', badgeColor: INK, action: true },
-    { icon: '🛡️', title: 'Ground marshal', sub: 'Hi-vis vest · over 18 · every game, home and away', badge: 'Brennan family', badgeBg: LN, badgeColor: INK },
-    { icon: '📹', title: 'Camera on the halfway line', sub: 'You · kit 1, picked up Friday', badge: 'You', badgeBg: LN, badgeColor: INK },
+    { icon: glyph('orange'), title: 'Oranges at half-time', sub: 'Morgan family (Isla) · confirmed', badge: 'Done', badgeBg: PALE, badgeColor: G },
+    { icon: glyph('shop'), title: 'Canteen 10 to 11', sub: 'Linh Tran (Mia) · confirmed', badge: 'Done', badgeBg: PALE, badgeColor: G },
+    { icon: glyph('flag'), title: 'Club linesman', sub: 'Needs someone over 16 · flag in the blue bag', badge: 'Ask', badgeBg: '#c39797', badgeColor: INK, action: true },
+    { icon: glyph('shield'), title: 'Ground marshal', sub: 'Hi-vis vest · over 18 · every game, home and away', badge: 'Brennan family', badgeBg: LN, badgeColor: INK },
+    { icon: glyph('video'), title: 'Camera on the halfway line', sub: 'You · kit 1, picked up Friday', badge: 'You', badgeBg: LN, badgeColor: INK },
   ]
   const fair = [
     { ini: 'LT', name: 'Tran family', sub: 'Canteen ×2, oranges ×1', count: 3 },

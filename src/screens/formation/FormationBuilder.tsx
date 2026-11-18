@@ -1,5 +1,5 @@
-import { useMemo, useRef, useState } from 'react'
-import { TEAMS, shapesFor, shapeByName, remap, type TeamCfg, type Shape, type Player } from './formationData'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { TEAMS, shapesFor, shapeByName as staticShape, remap, MORE_SHAPES, lineShape, type TeamCfg, type Shape, type Player } from './formationData'
 import { getInsights, keyPairs, bestLineup, forThisWeek, shapeLine, wordsFor, value, fmt, type FormationPreset, type Insights, type MetricKey } from './lineupInsights'
 
 // Squad › Formation builder (tablet). Pick a shape, place players from the bench
@@ -16,9 +16,17 @@ const clamp = (v: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, v
 
 type Snap = { placed: (string | null)[]; custom: Record<string, XY> | null; mode: Mode; shapeName: string }
 
-export default function FormationBuilder({ team = 'juniors', onNav, empty, preset }: { team?: string; onNav?: (s: string) => void; empty?: boolean; preset?: FormationPreset | null }) {
+/** A state of the board to open on, so each designed state has its own address. */
+export type FormationOpen = 'share' | 'drag' | 'tap' | 'own' | 'saved'
+
+export default function FormationBuilder({ team = 'juniors', onNav, empty, preset, open }: { team?: string; onNav?: (s: string) => void; empty?: boolean; preset?: FormationPreset | null; open?: FormationOpen }) {
   const cfg: TeamCfg = TEAMS[team] ?? TEAMS.juniors
-  const shapes = shapesFor(cfg.side)
+  const [added, setAdded] = useState<Shape[]>([])                 // shapes brought in from "More shapes"
+  const [moreOpen, setMoreOpen] = useState(false)
+  const shapes = useMemo(() => [...shapesFor(cfg.side), ...added], [cfg.side, added])
+  const shapeByName = (_side: number, name: string) => shapes.find(s => s.name === name) ?? staticShape(cfg.side, name)
+  const [others, setOthers] = useState<Record<number, (string | null)[]>>({})   // the line-up of each part of the game that is not showing
+  const [slotPick, setSlotPick] = useState<number | null>(null)   // an empty spot tapped first, waiting for a player
   const loose = cfg.posStyle === 'loose'
   // What recorded games say about each shape and pair (null for MiniRoos and under 12s).
   const ins = useMemo(() => empty ? null : getInsights(team), [team, empty])
@@ -32,9 +40,9 @@ export default function FormationBuilder({ team = 'juniors', onNav, empty, prese
   const [picked, setPicked] = useState<string | null>(null)
   const [, setHistory] = useState<Snap[]>([])
   const [toast, setToast] = useState<string | null>(null)
-  const [menuOpen, setMenuOpen] = useState(false)
-  const [shareOpen, setShareOpen] = useState(false)
-  const [ownName, setOwnName] = useState('')
+  const [menuOpen, setMenuOpen] = useState(open === 'saved')
+  const [shareOpen, setShareOpen] = useState(open === 'share')
+  const [ownName, setOwnName] = useState(open === 'own' ? 'Diamond, wide mids' : '')
   const [savedTabs, setSavedTabs] = useState<string[]>([])
   const [shareWhen, setShareWhen] = useState('Friday 6:00 pm')
   const [shareWho, setShareWho] = useState<'families' | 'coaches'>('families')
@@ -44,7 +52,26 @@ export default function FormationBuilder({ team = 'juniors', onNav, empty, prese
   const didDrag = useRef(false)
   function say(m: string) { setToast(m); setTimeout(() => setToast(null), 2800) }
 
-  const shape: Shape = useMemo(() => shapeByName(cfg.side, shapeName) ?? shapes[0], [cfg.side, shapeName, shapes])
+  // Open on a designed state: a bench player picked (tap), held over a spot (drag), or the coach's own shape.
+  useEffect(() => {
+    if (!open || open === 'share' || open === 'saved') return
+    const sh = shapeByName(cfg.side, cfg.defaultShape) ?? shapes[0]
+    const onIds = new Set(cfg.start.filter(Boolean) as string[])
+    const bench = cfg.roster.find(p => p.available && !onIds.has(p.id))
+    if (open === 'own') {
+      const base: Record<string, XY> = {}
+      cfg.start.forEach((id, i) => { if (id) base[id] = i === 0 ? { x: sh.slots[0].x, y: sh.slots[0].y } : { x: sh.slots[i].x + (i % 2 ? 3 : -3), y: sh.slots[i].y + (i % 3 === 0 ? 0 : i % 3 === 1 ? -4 : 2) } })
+      setCustom(base); setMode('own'); return
+    }
+    if (!bench) return
+    if (open === 'tap') { setPicked(bench.id); return }
+    const r = pitchRef.current?.getBoundingClientRect()
+    const target = sh.slots.reduce((best, s2, i) => s2.x > sh.slots[best].x ? i : best, 0)   // the right-most spot
+    if (r) setDrag({ id: bench.id, x: r.left + (r.width * sh.slots[target].x) / 100 + 46, y: r.top + (r.height * sh.slots[target].y) / 100 - 40 })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open])
+
+  const shape: Shape = useMemo(() => shapes.find(s => s.name === shapeName) ?? staticShape(cfg.side, shapeName) ?? shapes[0], [cfg.side, shapeName, shapes])
   const byId = useMemo(() => Object.fromEntries(cfg.roster.map(p => [p.id, p])) as Record<string, Player>, [cfg.roster])
 
   // Who is on the pitch, with coordinates, in either mode.
@@ -63,6 +90,7 @@ export default function FormationBuilder({ team = 'juniors', onNav, empty, prese
   // ── tap-then-tap ──
   function tapBench(p: Player) {
     if (!p.available) { say(`${p.full}: not available, so cannot be placed.`); return }
+    if (slotPick !== null && mode !== 'own' && !placed[slotPick]) { pushHistory(); const next = [...placed]; next[slotPick] = p.id; setPlaced(next); say(`${p.first} to ${shape.slots[slotPick].pos}.`); setSlotPick(null); setPicked(null); return }
     setPicked(cur => cur === p.id ? null : p.id)
     if (picked !== p.id) say(`${p.full}: drag onto the pitch. Or tap, then tap a spot.`)
   }
@@ -72,7 +100,8 @@ export default function FormationBuilder({ team = 'juniors', onNav, empty, prese
     if (picked !== id) say(`${byId[id].first}: drag to move or swap. Or tap, then tap where they go.`)
   }
   function tapSlot(i: number) {           // builder empty slot
-    if (!picked) { say(`${shape.slots[i].pos}: empty. Pick a player, then tap here.`); return }
+    if (!picked) { setSlotPick(cur => cur === i ? null : i); say(slotPick === i ? `${shape.slots[i].pos}: no longer picked.` : `${shape.slots[i].pos} is picked. Now tap a player on the bench.`); return }
+    setSlotPick(null)
     pushHistory()
     const next = [...placed]; const from = placed.indexOf(picked)
     if (from >= 0) next[from] = null
@@ -209,6 +238,21 @@ export default function FormationBuilder({ team = 'juniors', onNav, empty, prese
     setPlaced(next); setPicked(null)
     say('Filled from who is coming, where each plays best and who is owed minutes. Change anything.')
   }
+  // Each part of the game keeps its own line-up. The second half starts with the bench brought on for the outfield players who started.
+  function switchPart(i: number, label: string) {
+    if (i === part) { say(`${label} is showing.`); return }
+    if (mode === 'own') { say('Save your own shape as a tab first, then set each half.'); return }
+    const fresh = () => { const next = [...placed]; const bench = cfg.roster.filter(p => p.available && !placed.includes(p.id)); let b = 0; for (let k = next.length - 1; k > 0 && b < bench.length; k--) if (next[k]) next[k] = bench[b++].id; return next }
+    setOthers(o => ({ ...o, [part]: placed })); setPlaced(others[i] ?? fresh()); setPart(i); setPicked(null); setSlotPick(null); setHistory([])
+    say(`${label}: its own line-up. Minutes add up across them.`)
+  }
+  function addShape(name: string) {
+    if (!shapes.some(s => s.name === name)) setAdded(a => [...a, lineShape(name)])
+    setMoreOpen(false)
+    const to = shapes.find(s => s.name === name) ?? lineShape(name)
+    pushHistory(); setPlaced(remap(shape, to, mode === 'own' && custom ? shape.slots.map((_, k) => placed[k] ?? null) : placed)); setCustom(null); setShapeName(name); setMode('builder'); setPicked(null)
+    say(`${name} added to your shapes and showing.`)
+  }
   function clearAll() { pushHistory(); if (mode === 'own') setCustom({}); else setPlaced(new Array(shape.slots.length).fill(null)); setPicked(null); say('Everyone is back on the bench.') }
   function undo() {
     setHistory(h => {
@@ -232,7 +276,7 @@ export default function FormationBuilder({ team = 'juniors', onNav, empty, prese
   const canPlayCount = cfg.roster.filter(p => p.available).length
 
   return (
-    <div style={{ flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden', fontFamily: 'var(--font-sans)', position: 'relative' }} data-screen={mode === 'own' ? 'FB1x-FormationOwn' : empty ? 'FB1e-FormationEmpty' : 'FB1-Formation'}>
+    <div style={{ flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden', fontFamily: 'var(--font-sans)', position: 'relative' }} data-screen={mode === 'own' ? 'FB1x-FormationOwn' : empty ? 'FB1e-FormationEmpty' : shareOpen ? 'FB1c-FormationShare' : menuOpen ? 'FB1l-FormationSaved' : drag ? 'FB1d-FormationDrag' : picked ? 'FB1t-FormationTap' : 'FB1-Formation'}>
       {/* Header */}
       <div style={{ flex: 'none', padding: '12px 28px', display: 'flex', alignItems: 'center', gap: 14, borderBottom: `1px solid ${LN}`, background: '#fff' }}>
         <div style={{ minWidth: 0 }}>
@@ -249,7 +293,7 @@ export default function FormationBuilder({ team = 'juniors', onNav, empty, prese
         {cfg.parts.length > 0 && (
           <div style={{ display: 'flex', gap: 2, background: '#f4f6f5', borderRadius: 10, padding: 3 }}>
             {cfg.parts.map((p, i) => (
-              <button key={p.label} onClick={() => { setPart(i); say(`${p.label}: its own line-up. Minutes add up across them.`) }} style={{ height: 34, padding: '0 14px', borderRadius: 8, border: 0, background: part === i ? GREEN : 'transparent', color: part === i ? '#fff' : MUT, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>{p.label}</button>
+              <button key={p.label} aria-pressed={part === i} onClick={() => switchPart(i, p.label)} style={{ height: 34, padding: '0 14px', borderRadius: 8, border: 0, background: part === i ? GREEN : 'transparent', color: part === i ? '#fff' : MUT, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>{p.label}</button>
             ))}
           </div>
         )}
@@ -267,7 +311,18 @@ export default function FormationBuilder({ team = 'juniors', onNav, empty, prese
           <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z" /></svg>{mode === 'own' ? 'Custom' : 'Your own'}
         </button>
         <div style={{ flexGrow: 1 }} />
-        <button onClick={() => say('More shapes for this many players, and any you have saved.')} style={{ height: 44, padding: '0 14px', borderRadius: 12, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 6 }}>More shapes <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round"><path d="M6 9l6 6 6-6" /></svg></button>
+        <span style={{ position: 'relative' }}>
+          <button aria-expanded={moreOpen} onClick={() => setMoreOpen(o => !o)} style={{ height: 44, padding: '0 14px', borderRadius: 12, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 6 }}>More shapes <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round"><path d="M6 9l6 6 6-6" /></svg></button>
+          {moreOpen && (
+            <div role="menu" aria-label="More shapes" style={{ position: 'absolute', right: 0, top: 50, zIndex: 40, width: 250, background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, boxShadow: '0 12px 32px rgba(16,33,31,0.18)', padding: 8, display: 'flex', flexDirection: 'column', gap: 2 }}>
+              <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', color: MUT, padding: '6px 8px' }}>FOR {cfg.side} A SIDE</span>
+              {(MORE_SHAPES[cfg.side] ?? []).map(n => { const has = shapes.some(x => x.name === n); return <button key={n} role="menuitem" onClick={() => addShape(n)} style={{ minHeight: 44, padding: '0 10px', borderRadius: 10, border: 0, background: 'none', color: INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 700, textAlign: 'left', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>{n}<span style={{ fontSize: 12, fontWeight: 600, color: MUT }}>{has ? 'In your tabs' : 'Add'}</span></button> })}
+              {!(MORE_SHAPES[cfg.side] ?? []).length && <span style={{ fontSize: 13, color: MUT, padding: '6px 8px' }}>Every shape for this many players is already a tab.</span>}
+              {savedTabs.length > 0 && <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', color: MUT, padding: '8px 8px 4px' }}>YOURS</span>}
+              {savedTabs.map(n => <span key={n} style={{ minHeight: 36, padding: '0 10px', display: 'flex', alignItems: 'center', fontSize: 14, color: INK }}>{n}</span>)}
+            </div>
+          )}
+        </span>
       </div>
 
       {/* From recorded games: how this shape has gone, and the pairs worth keeping together */}
@@ -294,7 +349,7 @@ export default function FormationBuilder({ team = 'juniors', onNav, empty, prese
             <div style={{ position: 'absolute', top: 10, left: 14, fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', color: 'rgba(255,255,255,0.6)' }}>ATTACKING THIS WAY ↑</div>
             {mode === 'own' && custom && <div style={{ position: 'absolute', left: '6%', right: '6%', top: '50%', height: 1, background: 'rgba(255,255,255,0.14)' }} />}
             {/* empty slots (builder only) */}
-            {mode !== 'own' && shape.slots.map((slot, i) => placed[i] ? null : <EmptySpot key={`e${i}`} slot={slot} onClick={() => tapSlot(i)} />)}
+            {mode !== 'own' && shape.slots.map((slot, i) => placed[i] ? null : <EmptySpot key={`e${i}`} slot={slot} on={slotPick === i} onClick={() => tapSlot(i)} />)}
             {/* tokens */}
             {onPitch.map(p => (
               <Token key={p.id} player={byId[p.id]} x={p.x} y={p.y} pos={p.pos}
@@ -421,11 +476,11 @@ function PitchMarks() {
   )
 }
 
-function EmptySpot({ slot, onClick }: { slot: { x: number; y: number; pos: string }; onClick: () => void }) {
+function EmptySpot({ slot, onClick, on }: { slot: { x: number; y: number; pos: string }; onClick: () => void; on?: boolean }) {
   return (
-    <button onClick={onClick} style={{ position: 'absolute', left: `${slot.x}%`, top: `${slot.y}%`, transform: 'translate(-50%,-50%)', background: 'none', border: 'none', cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4, padding: 8, fontFamily: 'inherit' }}>
-      <div style={{ width: 46, height: 46, borderRadius: '50%', border: '2px dashed rgba(255,255,255,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><span style={{ fontSize: 11, fontWeight: 700, color: 'rgba(255,255,255,0.6)' }}>{slot.pos}</span></div>
-      <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.55)' }}>Empty</span>
+    <button onClick={onClick} aria-pressed={!!on} aria-label={`${slot.pos}: empty${on ? ', picked' : ''}`} style={{ position: 'absolute', left: `${slot.x}%`, top: `${slot.y}%`, transform: 'translate(-50%,-50%)', background: 'none', border: 'none', cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4, padding: 8, fontFamily: 'inherit' }}>
+      <div style={{ width: 46, height: 46, borderRadius: '50%', border: on ? '3px solid #fff' : '2px dashed rgba(255,255,255,0.5)', boxSizing: 'border-box', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><span style={{ fontSize: 11, fontWeight: 700, color: on ? '#fff' : 'rgba(255,255,255,0.6)' }}>{slot.pos}</span></div>
+      <span style={{ fontSize: 11, color: on ? '#fff' : 'rgba(255,255,255,0.55)' }}>{on ? 'Tap a player' : 'Empty'}</span>
     </button>
   )
 }

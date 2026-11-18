@@ -443,7 +443,7 @@ function CoachPhoneComingTab() {
 /* ---- CPh3 Messages (populated) ---- */
 function CoachPhoneMessagesTab() {
   const threads = [
-    { initials: 'U1', name: 'U12 Sam · Team', last: 'You: Good run tonight everyone 🙌', time: '8:14 pm', unread: 0, isGroup: true },
+    { initials: 'U1', name: 'U12 Sam · Team', last: 'You: Good run tonight everyone', time: '8:14 pm', unread: 0, isGroup: true },
     { initials: 'BM', name: 'Ben Mills (parent)', last: 'Is Isla recovered for Saturday?', time: '6:40 pm', unread: 1, isGroup: false },
     { initials: 'HP', name: 'Helen Park · Welfare', last: 'All clear for Sat', time: 'Thu', unread: 0, isGroup: false },
     { initials: 'RC', name: 'Rhys Cooper (parent)', last: 'Thanks for today!', time: 'Wed', unread: 0, isGroup: false },

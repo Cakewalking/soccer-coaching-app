@@ -111,12 +111,12 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
   const initHomeTab = (initialScreen ? HOME_SUB_MAP[initialScreen] : 0) ?? 0
   const deep = coachDeepTab(initialScreen)   // opened by design id, e.g. "AV1-Availability"
   const deepIdx = (n: string) => deep?.nav === n ? deep.idx : 0
-  const [nav, setNav]                 = useState<NavKey>(initialScreen === 'CN2-SelfVsCoach' ? 'matchday' : deep ? deep.nav as NavKey : initHomeTab ? 'home' : validNav(initialScreen))
+  const [nav, setNav]                 = useState<NavKey>(initialScreen === 'CN2-SelfVsCoach' ? 'matchday' : initialScreen === 'T5-PlayerProfile' ? 'squad' : deep ? deep.nav as NavKey : initHomeTab ? 'home' : validNav(initialScreen))
   const [sub, setSub]                 = useState<Sub>(null)
   const [homeTab, setHomeTab]         = useState(deep?.nav === 'home' ? deep.idx : initHomeTab)
   const [squadTab, setSquadTab]       = useState(deepIdx('squad'))
   const [formationPreset, setFormationPreset] = useState<FormationPreset | null>(null)
-  const [profileIni, setProfileIni] = useState<string | null>(null)
+  const [profileIni, setProfileIni] = useState<string | null>(initialScreen === 'T5-PlayerProfile' ? 'MT' : null)
   const [layer, setLayer] = useState<string | null>(null)   // a designed screen opened over the app
   const [trainingTab, setTrainingTab] = useState(deepIdx('training'))
   const [matchTab, setMatchTab]       = useState(initialScreen === 'CN2-SelfVsCoach' ? 6 : deepIdx('matchday'))

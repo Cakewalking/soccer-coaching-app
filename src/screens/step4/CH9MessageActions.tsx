@@ -1,3 +1,4 @@
+import { Glyph, glyph } from '../Glyph'
 import { useState } from 'react'
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 const NAV_BG = '#40826d'
@@ -39,7 +40,7 @@ export default function CH9MessageActions(_: { onBack?: () => void }) {
   const [deleted, setDeleted] = useState(false)
   const [sent, setSent] = useState(false)
   const t = (m: string) => { setModal(null); setToast(m); setTimeout(() => setToast(null), 3200) }
-  const emojis = ['👍', '❤️', '😂', '🙌', '😮', '🙏']
+  const emojis = [glyph('like'), glyph('heart'), glyph('laugh'), glyph('cheer'), glyph('surprised'), glyph('heart')]
   return (
     <div style={{ width: 1180, height: 820, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden' }}>
       <TopBar />
@@ -89,14 +90,14 @@ export default function CH9MessageActions(_: { onBack?: () => void }) {
             <div style={{ display: 'flex', gap: 8 }}>
               <div style={{ width: 28, height: 28, borderRadius: '50%', background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, flexShrink: 0 }}>DC</div>
               <div>
-                <div style={{ fontSize: 11, color: MUT, marginBottom: 2 }}>Dan · 8:02 pm{pinned && <span style={{ marginLeft: 8, color: G, fontWeight: 700 }}>📌 Pinned</span>}</div>
+                <div style={{ fontSize: 11, color: MUT, marginBottom: 2 }}>Dan · 8:02 pm{pinned && <span style={{ marginLeft: 8, color: G, fontWeight: 700 }}><Glyph n="pin" /> Pinned</span>}</div>
                 <div style={{ maxWidth: 440, background: deleted ? '#f7f8f7' : GD, border: `2px solid ${deleted ? LN : G}`, borderRadius: '14px 14px 14px 4px', padding: '8px 12px', fontSize: 15, lineHeight: 1.5, color: deleted ? MUT : '#fff', fontStyle: deleted ? 'italic' : 'normal' }}>
                   {deleted ? 'Message removed for everyone.' : 'Why does Ruby only ever get one half? Some kids never come off.'}
                 </div>
-                {reaction && <div style={{ marginTop: 4, fontSize: 13, color: MUT }}>You reacted {reaction}</div>}
+                {reaction && <div style={{ marginTop: 4, fontSize: 13, color: MUT }}>You reacted {emojis[Number(reaction)]}</div>}
                 <div style={{ marginTop: 8, display: 'flex', gap: 6, flexWrap: 'wrap' as const }}>
-                  {emojis.map(em => (
-                    <button key={em} onClick={() => setReaction(em)} style={{ width: 44, height: 44, borderRadius: '50%', background: reaction === em ? PALE : '#f7f8f7', border: reaction === em ? `2px solid ${G}` : 0, fontSize: 20, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{em}</button>
+                  {emojis.map((em, i) => (
+                    <button key={i} aria-pressed={reaction === String(i)} onClick={() => setReaction(String(i))} style={{ width: 44, height: 44, borderRadius: '50%', background: reaction === String(i) ? PALE : '#f7f8f7', border: reaction === String(i) ? `2px solid ${G}` : 0, fontSize: 20, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{em}</button>
                   ))}
                 </div>
                 <div style={{ marginTop: 8, display: 'flex', gap: 6, flexWrap: 'wrap' as const }}>

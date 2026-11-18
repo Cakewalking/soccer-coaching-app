@@ -1,3 +1,4 @@
+import { Glyph, glyph } from './Glyph'
 import { useState } from 'react'
 
 type Step = 'intro' | 1 | 2 | 3 | 4 | 5 | 'review' | 'saved'
@@ -13,10 +14,10 @@ interface StyleAnswers {
 }
 
 const TOPICS = [
-  { icon: '⚽', title: 'Possession',  sub: 'How we keep and move it' },
-  { icon: '🛡',  title: 'Defending',  sub: 'Where we win it back' },
-  { icon: '⚡', title: 'Transitions', sub: 'What we do first' },
-  { icon: '🌟', title: 'Extras',      sub: 'Values and priorities' },
+  { icon: glyph('ball'), title: 'Possession',  sub: 'How we keep and move it' },
+  { icon: glyph('shield'),  title: 'Defending',  sub: 'Where we win it back' },
+  { icon: glyph('bolt'), title: 'Transitions', sub: 'What we do first' },
+  { icon: glyph('star'), title: 'Extras',      sub: 'Values and priorities' },
 ]
 
 const STEP_TITLES: Record<StepNum, string> = {
@@ -128,7 +129,7 @@ export default function SetOurStyleWizard({ onClose, initialStep = 'intro', seni
         </button>
 
         <div style={{ maxWidth: 540, padding: '0 32px', textAlign: 'center' }}>
-          <div style={{ width: 72, height: 72, borderRadius: '999px', background: 'rgba(255,255,255,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px', fontSize: 32 }}>⚽</div>
+          <div style={{ width: 72, height: 72, borderRadius: '999px', background: 'rgba(255,255,255,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px', fontSize: 32 }}><Glyph n="ball" /></div>
           <h1 style={{ margin: '0 0 12px', fontSize: 30, fontWeight: 800, letterSpacing: '-0.03em', color: '#ffffff', lineHeight: '36px' }}>How do you want your team to play?</h1>
           <p style={{ margin: '0 0 32px', fontSize: 16, color: 'rgba(255,255,255,0.7)', lineHeight: '24px' }}>
             Answer 5 quick questions and we'll set targets across four areas of the game — trackable from your very first match.

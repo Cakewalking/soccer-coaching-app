@@ -29,9 +29,11 @@ export interface CnState {
   handover: 'none' | 'family' | 'passed'
   // club operations
   observation: { marks: number[]; working: string; trying: string; sent: boolean }
-  incident: { kind: string; sent: boolean }
+  incident: { kind: string; sent: boolean; who?: string; when?: string; did?: string; photos?: number }
   sideline: { ours: number; theirs: number; note: string; sent: boolean }
   moved: boolean; offered: boolean         // pitches: U14 moved to Wednesday, Monday offered to the U16s
+  pitch: Record<string, [string, string]>  // slots the director has moved by hand, keyed "time|day"
+  sponsorPages: Record<string, boolean>    // which kinds of page a sponsor may show on
   translate: Record<string, boolean>
   jobs: string[]                           // things added to a plan, a job list or a reminder
 }
@@ -45,7 +47,7 @@ const FRESH: CnState = {
   handover: 'none',
   observation: { marks: [0, 1, 0, 2, 0], working: 'The children are busy from the first minute. Nobody stood still for long.', trying: 'Swap the passing lines for a 3 v 1. Same skill, with an opponent.', sent: false },
   incident: { kind: 'Knock or injury', sent: false }, sideline: { ours: 4, theirs: 2, note: 'Shouting at the referee', sent: false },
-  moved: false, offered: false,
+  moved: false, offered: false, pitch: {}, sponsorPages: { 'Clip pages, under 12 and over': true, 'Weekly club message': true, 'MiniRoos pages (under 12)': false, 'Injury and return-to-play pages': true },
   translate: { English: true, Vietnamese: true, Mandarin: true, Arabic: true, Greek: false, '8 others': false },
   jobs: [],
 }

@@ -1,3 +1,4 @@
+import { Glyph, glyph } from '../Glyph'
 import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
@@ -64,7 +65,7 @@ export default function ACC13AcademyChat(_: { onBack?: () => void }) {
       <div style={{ background: G, height: 64, display: 'flex', alignItems: 'center', padding: '0 24px', flexShrink: 0 }}>
         <span style={{ color: '#fff', fontSize: 21, fontWeight: 700, marginRight: 32, letterSpacing: '-0.01em' }}>Clean Sheet</span>
         <div style={{ display: 'flex', gap: 4, flex: 1 }}>
-          {[{ label: 'Today', icon: '⌂', active: true }, { label: 'Players', icon: '👥' }, { label: 'Game day', icon: '⚽' }, { label: 'Library', icon: '📅' }].map(item => (
+          {[{ label: 'Today', icon: '⌂', active: true }, { label: 'Players', icon: glyph('people') }, { label: 'Game day', icon: glyph('ball') }, { label: 'Library', icon: glyph('calendar') }].map(item => (
             <button key={item.label} style={{ background: (item as any).active ? 'rgba(255,255,255,0.18)' : 'none', border: 'none', color: '#fff', fontSize: 14, fontWeight: (item as any).active ? 700 : 500, padding: '0 14px', height: 64, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6, borderRadius: 8 }}>
               <span style={{ fontSize: 16 }}>{item.icon}</span> {item.label}
             </button>
@@ -101,7 +102,7 @@ export default function ACC13AcademyChat(_: { onBack?: () => void }) {
           {/* Chat rows */}
           {[
             {
-              icon: '📣', iconBg: PALE, iconIsEmoji: true,
+              icon: glyph('megaphone'), iconBg: PALE, iconIsEmoji: true,
               name: 'Tall Timber news', time: 'Mon', preview: 'Dani: July clinic bookings are open',
               sheet: 'cacadnews' as Sheet, unread: 0, active: false
             },
@@ -178,7 +179,7 @@ export default function ACC13AcademyChat(_: { onBack?: () => void }) {
                   </div>
                   <span style={{ fontSize: 14 }}>This week's home practice: 20 left-foot finishes against a wall.</span>
                 </div>
-                <span style={{ fontSize: 13, padding: '4px 10px', borderRadius: 999, background: '#fff', border: `1px solid ${LN}`, color: INK }}>👍 8</span>
+                <span style={{ fontSize: 13, padding: '4px 10px', borderRadius: 999, background: '#fff', border: `1px solid ${LN}`, color: INK }}><Glyph n="like" /> 8</span>
               </div>
             </div>
 
@@ -190,7 +191,7 @@ export default function ACC13AcademyChat(_: { onBack?: () => void }) {
                 <div style={{ background: '#fff', border: `1px solid #c5c8c4`, borderRadius: '14px 14px 14px 4px', padding: '10px 12px', fontSize: 14, color: INK }}>
                   Kai did all three! Any make-up for next Tuesday?
                 </div>
-                <span style={{ fontSize: 13, padding: '4px 10px', borderRadius: 999, background: '#fff', border: `1px solid ${LN}`, color: INK, alignSelf: 'flex-start' as const }}>🙌 2</span>
+                <span style={{ fontSize: 13, padding: '4px 10px', borderRadius: 999, background: '#fff', border: `1px solid ${LN}`, color: INK, alignSelf: 'flex-start' as const }}><Glyph n="cheer" /> 2</span>
               </div>
             </div>
 
@@ -458,7 +459,7 @@ export default function ACC13AcademyChat(_: { onBack?: () => void }) {
             { name: 'Academy code of conduct.pdf', size: '56 KB' },
           ].map((f, i) => (
             <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 0', borderTop: `1px solid ${LN}` }}>
-              <div style={{ width: 36, height: 36, borderRadius: 8, background: PALE, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, flexShrink: 0 }}>📄</div>
+              <div style={{ width: 36, height: 36, borderRadius: 8, background: PALE, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, flexShrink: 0 }}><Glyph n="doc" /></div>
               <div>
                 <div style={{ fontSize: 14, fontWeight: 600, color: INK }}>{f.name}</div>
                 <div style={{ fontSize: 12, color: MUT }}>{f.size}</div>

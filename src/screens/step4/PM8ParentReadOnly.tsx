@@ -1,3 +1,4 @@
+import { Glyph } from '../Glyph'
 import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
@@ -28,7 +29,7 @@ export default function PM8ParentReadOnly(_: { onBack?: () => void }) {
 
       {/* Pinned banner */}
       <div style={{ background: PALE, borderBottom: `1px solid ${LN}`, padding: '10px 16px', display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
-        <span style={{ fontSize: 14 }}>📌</span>
+        <span style={{ fontSize: 14 }}><Glyph n="pin" /></span>
         <span style={{ fontSize: 13, color: G, fontWeight: 600 }}>Pinned: Canteen slots — 3 spots left</span>
       </div>
 
@@ -65,7 +66,7 @@ export default function PM8ParentReadOnly(_: { onBack?: () => void }) {
           <div style={{ display: 'flex', alignItems: 'flex-end', gap: 8 }}>
             <div style={{ width: 36, height: 36, borderRadius: 999, background: '#d4b896', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 12, color: INK, flexShrink: 0 }}>CB</div>
             <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: '4px 16px 16px 16px', padding: '10px 14px', maxWidth: 240 }}>
-              <div style={{ width: 160, height: 90, borderRadius: 8, background: '#d8e0de', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24, marginBottom: 8 }}>🖼️</div>
+              <div style={{ width: 160, height: 90, borderRadius: 8, background: '#d8e0de', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24, marginBottom: 8 }}><Glyph n="image" /></div>
               <div style={{ fontSize: 15, color: INK }}>Great defending on Saturday!</div>
             </div>
           </div>
@@ -76,7 +77,7 @@ export default function PM8ParentReadOnly(_: { onBack?: () => void }) {
 
       {/* Bottom bar — read only */}
       <div style={{ background: '#fff', borderTop: `1px solid ${LN}`, padding: '12px 14px', display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
-        <span style={{ fontSize: 16, flexShrink: 0 }}>🔒</span>
+        <span style={{ fontSize: 16, flexShrink: 0 }}><Glyph n="lock" /></span>
         <span style={{ fontSize: 13, color: MUT, flex: 1 }}>Only coaches and manager can post</span>
         <button onClick={() => t('Message sent privately.')} style={{ height: 44, padding: '0 12px', borderRadius: 20, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', color: INK, whiteSpace: 'nowrap' as const }}>Message Sam K</button>
         <button onClick={() => t('Message sent privately.')} style={{ height: 44, padding: '0 12px', borderRadius: 20, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap' as const }}>Message Ben</button>

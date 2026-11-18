@@ -295,7 +295,6 @@ export default function TrainingScreen({ role, onNav, empty, nextOpponent = 'Har
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"/></svg>
               Start session
             </button>
-            <button onClick={() => setOffline(true)} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer', color: '#6f7f7b' }}>Offline demo</button>
           </div>
         </div>
       </div>

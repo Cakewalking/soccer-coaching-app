@@ -12,7 +12,7 @@ type NowRow = { ini: string; name: string; move: string; sub: string; done: numb
 const WORTH: WorthRow[] = [
   { ini: 'MT', name: 'Mia Tran', move: 'U12 Sam → U13 Girls Meg', chips: ['strong', 'some', 'strong', 'strong', 'strong'], reason: 'Sam nominated her too', btn: 'Open Mia', main: true, target: 'PU2-PlayerReadiness' },
   { ini: 'TA', name: 'Tane Waru', move: 'U14 Josh → U16 Ollie', chips: ['strong', 'strong', 'some', 'notyet', 'strong'], reason: 'Josh has not answered', btn: 'Ask Josh again', say: 'Josh is asked again for his three taps on Tane.' },
-  { ini: 'ZP', name: 'Zoe Park', move: 'U11 Luke → U12 Girls Ana', chips: ['strong', 'strong', 'strong', 'some', 'some'], reason: 'Her third team this year', btn: 'Talk to Luke first', say: 'A message to Luke opens, about Zoe.' },
+  { ini: 'ZP', name: 'Zoe Park', move: 'U11 Luke → U12 Girls Ana', chips: ['strong', 'strong', 'strong', 'some', 'some'], reason: 'Her third team this year', btn: 'Talk to Luke first', target: 'MSG1-NewMessage' },
 ]
 const NOW: NowRow[] = [
   { ini: 'LC', name: 'Leo Costa', move: 'U13 Chris → U14 Josh', sub: 'Trains up on Tuesdays, plays his own age', done: 3, of: 4, btn: 'Review on 18 June', target: 'PU3-TrialPlan' },

@@ -239,3 +239,22 @@ export function remap(oldShape: Shape, newShape: Shape, placed: (string | null)[
   }
   return result
 }
+
+// More shapes than the tabs show. Each is built from its name: a row for each number, back to front, with the keeper behind them.
+export const MORE_SHAPES: Record<number, string[]> = { 7: ['3-1-2', '1-3-2', '3-2-1-0'].slice(0, 2), 9: ['3-4-1', '2-3-3', '4-2-2'], 11: ['4-1-4-1', '3-4-3', '5-3-2'] }
+const ROW_POS: Record<string, string[][]> = {
+  back: [[], ['CB'], ['CB', 'CB'], ['LB', 'CB', 'RB'], ['LB', 'CB', 'CB', 'RB'], ['LB', 'CB', 'CB', 'CB', 'RB']],
+  mid: [[], ['CM'], ['CM', 'CM'], ['LM', 'CM', 'RM'], ['LM', 'CM', 'CM', 'RM'], ['LM', 'CM', 'CM', 'CM', 'RM']],
+  front: [[], ['ST'], ['ST', 'ST'], ['LW', 'ST', 'RW'], ['LW', 'ST', 'ST', 'RW']],
+}
+export function lineShape(name: string): Shape {
+  const rows = name.split('-').map(Number).filter(n => n > 0)
+  const slots: Slot[] = [{ x: 50, y: 90, pos: 'GK' }]
+  rows.forEach((n, r) => {
+    const y = rows.length === 1 ? 45 : 72 - (r * (72 - 20)) / (rows.length - 1)
+    const kind = r === 0 ? 'back' : r === rows.length - 1 ? 'front' : 'mid'
+    const names = ROW_POS[kind][n] ?? Array.from({ length: n }, () => (kind === 'back' ? 'CB' : kind === 'mid' ? 'CM' : 'ST'))
+    for (let k = 0; k < n; k++) slots.push({ x: n === 1 ? 50 : 16 + (k * 68) / (n - 1), y, pos: names[k] })
+  })
+  return { name, slots }
+}

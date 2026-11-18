@@ -21,7 +21,7 @@ export default function FIL6SignUp({ onBack, onShare, onNav, bare }: {
     { label: 'Canteen set-up', time: 'Sat 13 Dec · 8:00 am', places: 2, taken: ['Jess Marsh'] },
     { label: 'Canteen during games', time: 'Sat 13 Dec · 8:30–1:00', places: 3, taken: ['Ryan Chen', 'Priya Shah'] },
     { label: 'Oranges and water', time: 'Sat 13 Dec · all day', places: 2, taken: ['Lee Walsh', 'Dana Fox'] },
-    { label: 'Car pool from oval', time: 'Sat 13 Dec · 8:00 am', places: 4, taken: ['Jess Marsh', 'Ryan Chen'] },
+    { label: 'Car pool from the ground', time: 'Sat 13 Dec · 8:00 am', places: 4, taken: ['Jess Marsh', 'Ryan Chen'] },
     { label: 'Pack-up canteen', time: 'Sat 13 Dec · 1:00 pm', places: 2, taken: [] },
     { label: 'First-aid kit', time: 'Sat 13 Dec · all day', places: 1, taken: ['Lee Walsh'] },
     { label: 'Photos', time: 'Sat 13 Dec · 9:00 am', places: 1, taken: [] },

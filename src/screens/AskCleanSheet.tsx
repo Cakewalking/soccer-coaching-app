@@ -1,3 +1,4 @@
+import { glyph } from './Glyph'
 import { useState } from 'react'
 
 const G    = '#2f6252'
@@ -125,9 +126,9 @@ export function AskHome({ onBack: _onBack }: { onBack?: () => void }) {
         {/* Rest of home page (placeholder tiles) */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 14 }}>
           {[
-            { title: 'Tonight\'s session', sub: '17 coming · Messmate Primary', emoji: '📋' },
-            { title: 'Squad available', sub: '15 of 18 · 3 responses pending', emoji: '👥' },
-            { title: 'Last Saturday', sub: 'Wattle Creek 2–1 Glen Waverley', emoji: '⚽' },
+            { title: 'Tonight\'s session', sub: '17 coming · Messmate Primary', emoji: glyph('clipboard') },
+            { title: 'Squad available', sub: '15 of 18 · 3 responses pending', emoji: glyph('people') },
+            { title: 'Last Saturday', sub: 'Wattle Creek 2–1 Glen Waverley', emoji: glyph('ball') },
           ].map(card => (
             <div key={card.title} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '16px' }}>
               <div style={{ fontSize: 24, marginBottom: 8 }}>{card.emoji}</div>
@@ -350,9 +351,9 @@ export function AskPhoneButton({ onBack: _onBack }: { onBack?: () => void }) {
       {/* Phone content */}
       <div style={{ flex: 1, overflowY: 'auto', padding: 16 }}>
         {[
-          { emoji: '📋', t: 'Tonight\'s training', s: '5:00pm · Messmate Primary' },
-          { emoji: '👥', t: '17 of 18 coming', s: '1 no answer' },
-          { emoji: '📅', t: 'Calendar', s: 'No fixture this Saturday' },
+          { emoji: glyph('clipboard'), t: 'Tonight\'s training', s: '5:00pm · Messmate Primary' },
+          { emoji: glyph('people'), t: '17 of 18 coming', s: '1 no answer' },
+          { emoji: glyph('calendar'), t: 'Calendar', s: 'No fixture this Saturday' },
         ].map(card => (
           <div key={card.t} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 16px', marginBottom: 10 }}>
             <div style={{ fontSize: 20, marginBottom: 6 }}>{card.emoji}</div>

@@ -1,3 +1,4 @@
+import { glyph } from '../Glyph'
 import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
@@ -45,9 +46,9 @@ export default function ACC2RunSession(_: { onBack?: () => void }) {
         <div style={{ display: 'flex', gap: 4, flex: 1 }}>
           {[
             { label: 'Today', icon: '⌂' },
-            { label: 'Players', icon: '👥' },
-            { label: 'Game day', icon: '⚽' },
-            { label: 'Library', icon: '📅' },
+            { label: 'Players', icon: glyph('people') },
+            { label: 'Game day', icon: glyph('ball') },
+            { label: 'Library', icon: glyph('calendar') },
           ].map(item => (
             <button key={item.label} onClick={() => setActiveNav(item.label)} style={{ background: item.label === activeNav ? 'rgba(255,255,255,0.18)' : 'none', borderRadius: 8, border: 'none', color: item.label === activeNav ? '#fff' : 'rgba(255,255,255,0.82)', fontSize: 14, fontWeight: item.label === activeNav ? 700 : 500, padding: '0 14px', height: 64, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
               <span style={{ fontSize: 16 }}>{item.icon}</span> {item.label}

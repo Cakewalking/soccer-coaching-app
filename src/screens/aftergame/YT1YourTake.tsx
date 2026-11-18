@@ -1,3 +1,4 @@
+import { kept, keep } from '../kept'
 import { useState } from 'react'
 import YTFrame from './YTFrame'
 import { INK, MUT, GREEN, CTL, HAIR, PALEGREEN } from '../step4/directorParts'
@@ -16,6 +17,7 @@ const READBACK = [
 
 export default function YT1YourTake({ onNav, startEmpty = false, bare = false }: { onNav?: (s: string) => void; startEmpty?: boolean; bare?: boolean }) {
   const [lastTool, setLastTool] = useState('')
+  const [skipped, setSkipped] = useState(() => kept('cs_yourtake_v1', { skipped: false }).skipped)
   const [toast, setToast] = useState<string | null>(null)
   const [played, setPlayed] = useState<Rating | null>(startEmpty ? null : COACH_GAME.howWePlayed)
   const [plan, setPlan] = useState<'yes' | 'partly' | 'no' | null>(startEmpty ? null : COACH_GAME.planWorked)
@@ -56,7 +58,7 @@ export default function YT1YourTake({ onNav, startEmpty = false, bare = false }:
       support="About two minutes, or one tap. Only you see this. It shapes Thursday as much as the film does."
       buttons={[
         { label: 'Save', main: true, onClick: () => say('Saved. Thursday’s plan and three players’ goals have been updated from it.') },
-        { label: 'Skip this game', onClick: () => say('Skipped. You can come back to it from Match day at any time.') },
+        { label: skipped ? 'Skipped: take it up again' : 'Skip this game', onClick: () => { const v = !skipped; setSkipped(v); keep('cs_yourtake_v1', { skipped: v }); say(v ? 'Skipped. You can come back to it from Match day at any time.' : 'Back on your list for this game.') } },
       ]}
     >
       <div style={{ height: '100%', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,1.05fr) 320px', gap: 14, minHeight: 0 }}>

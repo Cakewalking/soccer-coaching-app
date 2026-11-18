@@ -1,3 +1,4 @@
+import { glyph } from '../Glyph'
 import { useState } from 'react'
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 const NAV_ITEMS = [
@@ -50,10 +51,10 @@ export default function TM1ManagerHome(_: { onBack?: () => void }) {
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '4px 14px' }}>
           <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: MUT, padding: '8px 0 4px' }}>To do this week</div>
           {[
-            { icon: '📋', title: 'Duty roster for Saturday', sub: 'Linesman still needed · marshal and canteen done', badge: '1 gap', badgeBg: '#c39797' },
-            { icon: '📹', title: 'Camera kit 1 booked', sub: 'Pick up from the clubrooms Fri after 5 pm', badge: 'Booked', badgeBg: PALE },
-            { icon: '📄', title: 'Team sheet', sub: 'Sam picks the 14 Fri night, you put it in Dribl', badge: 'Fri', badgeBg: LN },
-            { icon: '🛡️', title: "Harper's consent form", sub: "New player · parent hasn't finished it", badge: 'Chase', badgeBg: '#cbbeb5' },
+            { icon: glyph('clipboard'), title: 'Duty roster for Saturday', sub: 'Linesman still needed · marshal and canteen done', badge: '1 gap', badgeBg: '#c39797' },
+            { icon: glyph('video'), title: 'Camera kit 1 booked', sub: 'Pick up from the clubrooms Fri after 5 pm', badge: 'Booked', badgeBg: PALE },
+            { icon: glyph('doc'), title: 'Team sheet', sub: 'Sam picks the 14 Fri night, you put it in Dribl', badge: 'Fri', badgeBg: LN },
+            { icon: glyph('shield'), title: "Harper's consent form", sub: "New player · parent hasn't finished it", badge: 'Chase', badgeBg: '#cbbeb5' },
           ].map((item, i) => (
             <button key={i} onClick={() => mark(item.title)} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 50, width: '100%', background: is(item.title) ? PALE : 'none', border: 0, borderTop: `1px solid ${LN}`, padding: '0 6px', cursor: 'pointer', textAlign: 'left' }}>
               <div style={{ width: 36, height: 36, borderRadius: 10, background: PALE, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, flexShrink: 0 }}>{item.icon}</div>

@@ -1,3 +1,4 @@
+import { glyph } from '../Glyph'
 const G = '#2f6252', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb'
 
 const QUOTES = [
@@ -6,7 +7,7 @@ const QUOTES = [
   { from: 'U7 Dan coach', q: 'The kids love having a young ref. Really patient with the little ones.' },
 ]
 
-const NavItem = ({ icon, label, active }: { icon: string; label: string; active?: boolean }) => (
+const NavItem = ({ icon, label, active }: { icon: import('react').ReactNode; label: string; active?: boolean }) => (
   <div style={{ flex: 1, display: 'flex', flexDirection: 'column' as const, alignItems: 'center', justifyContent: 'center', gap: 2, minHeight: 56, fontSize: 11, fontWeight: 700, color: active ? G : MUT, cursor: 'pointer' }}>
     <span style={{ fontSize: 20 }}>{icon}</span>
     {label}
@@ -46,10 +47,10 @@ export default function RF4RefFeedback(_: { onBack?: () => void }) {
         <span style={{ fontSize: 13, color: MUT, padding: '0 2px', lineHeight: '18px' }}>Only kind feedback is shown here. Coaching tips come from Ruth directly.</span>
       </div>
       <nav style={{ flex: 'none', display: 'flex', borderTop: '1px solid #c5c8c4', background: '#fff' }}>
-        <NavItem icon="📅" label="My games" />
-        <NavItem icon="📋" label="Report" />
-        <NavItem icon="💬" label="Feedback" active />
-        <NavItem icon="👤" label="Me" />
+        <NavItem icon={glyph('calendar')} label="My games" />
+        <NavItem icon={glyph('clipboard')} label="Report" />
+        <NavItem icon={glyph('chat')} label="Feedback" active />
+        <NavItem icon={glyph('person')} label="Me" />
       </nav>
     </div>
   )

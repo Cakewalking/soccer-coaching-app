@@ -1,3 +1,4 @@
+import { Glyph } from '../Glyph'
 import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
@@ -21,7 +22,7 @@ export default function PM2ParentTeamChat(_: { onBack?: () => void }) {
 
       {/* Pinned banner */}
       <div onClick={() => setSheet('pinned')} style={{ background: PALE, borderBottom: `1px solid ${LN}`, padding: '10px 16px', display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', flexShrink: 0 }}>
-        <span style={{ fontSize: 14 }}>📌</span>
+        <span style={{ fontSize: 14 }}><Glyph n="pin" /></span>
         <span style={{ fontSize: 13, color: G, fontWeight: 600, flex: 1 }}>Pinned: Saturday 7 June vs Riverside FC · 9:30 am</span>
         <span style={{ fontSize: 13, color: G, fontWeight: 600 }}>›</span>
       </div>
@@ -35,11 +36,11 @@ export default function PM2ParentTeamChat(_: { onBack?: () => void }) {
             <div style={{ fontSize: 15, color: '#fff', marginBottom: 8 }}>Who's bringing oranges on Saturday?</div>
             <div style={{ display: 'flex', gap: 6 }}>
               {[0, 1].map(i => (
-                <div key={i} style={{ width: 72, height: 52, borderRadius: 8, background: 'rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18 }}>🖼️</div>
+                <div key={i} style={{ width: 72, height: 52, borderRadius: 8, background: 'rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18 }}><Glyph n="image" /></div>
               ))}
             </div>
           </div>
-          <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 999, padding: '2px 10px', fontSize: 13 }}>👍 3</div>
+          <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 999, padding: '2px 10px', fontSize: 13 }}><Glyph n="like" /> 3</div>
         </div>
 
         {/* Incoming — Sam K */}
@@ -48,10 +49,10 @@ export default function PM2ParentTeamChat(_: { onBack?: () => void }) {
           <div style={{ display: 'flex', alignItems: 'flex-end', gap: 8 }}>
             <div style={{ width: 36, height: 36, borderRadius: 999, background: '#d4b896', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 12, color: INK, flexShrink: 0 }}>SK</div>
             <div>
-              <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: '4px 16px 16px 16px', padding: '10px 14px', maxWidth: 260, fontSize: 15, color: INK }}>I'll sort oranges! Mia, great left foot work this week 🎉</div>
+              <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: '4px 16px 16px 16px', padding: '10px 14px', maxWidth: 260, fontSize: 15, color: INK }}>I'll sort oranges! Mia, great left foot work this week</div>
             </div>
           </div>
-          <div style={{ marginLeft: 44, background: '#fff', border: `1px solid ${LN}`, borderRadius: 999, padding: '2px 10px', fontSize: 13 }}>🙌 5</div>
+          <div style={{ marginLeft: 44, background: '#fff', border: `1px solid ${LN}`, borderRadius: 999, padding: '2px 10px', fontSize: 13 }}><Glyph n="cheer" /> 5</div>
         </div>
 
         {/* Incoming — voice note (Jess) */}
@@ -70,7 +71,7 @@ export default function PM2ParentTeamChat(_: { onBack?: () => void }) {
               </div>
             </div>
           </div>
-          <div style={{ marginLeft: 44, background: '#fff', border: `1px solid ${LN}`, borderRadius: 999, padding: '2px 10px', fontSize: 13 }}>👍 2</div>
+          <div style={{ marginLeft: 44, background: '#fff', border: `1px solid ${LN}`, borderRadius: 999, padding: '2px 10px', fontSize: 13 }}><Glyph n="like" /> 2</div>
         </div>
 
         <div style={{ height: 16 }} />
@@ -90,11 +91,11 @@ export default function PM2ParentTeamChat(_: { onBack?: () => void }) {
             <div style={{ fontWeight: 700, fontSize: 17, color: INK }}>Pinned messages</div>
             <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 2 }}>
               <div style={{ padding: '12px 0', borderBottom: `1px solid ${LN}` }}>
-                <div style={{ fontWeight: 600, fontSize: 14, color: INK, marginBottom: 2 }}>📌 Saturday game details</div>
+                <div style={{ fontWeight: 600, fontSize: 14, color: INK, marginBottom: 2 }}><Glyph n="pin" /> Saturday game details</div>
                 <div style={{ fontSize: 13, color: MUT }}>7 June vs Riverside FC · 9:30 am · Riverside Reserve</div>
               </div>
               <div style={{ padding: '12px 0' }}>
-                <div style={{ fontWeight: 600, fontSize: 14, color: INK, marginBottom: 2 }}>📌 Thursday training</div>
+                <div style={{ fontWeight: 600, fontSize: 14, color: INK, marginBottom: 2 }}><Glyph n="pin" /> Thursday training</div>
                 <div style={{ fontSize: 13, color: MUT }}>5 June · 4:30 pm · Wattle Creek Reserve, Pitch 2</div>
               </div>
             </div>

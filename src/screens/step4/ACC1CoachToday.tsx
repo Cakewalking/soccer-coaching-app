@@ -1,3 +1,4 @@
+import { Glyph } from '../Glyph'
 import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', BG = '#f5f6f4'
@@ -18,7 +19,7 @@ function Session({ time, group, detail, plan, tag }: { time: string; group: stri
   )
 }
 
-export default function ACC1CoachToday() {
+export default function ACC1CoachToday({ onNav }: { onNav?: (s: string) => void } = {}) {
   const [toast, setToast] = useState<string|null>(null)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
@@ -59,7 +60,7 @@ export default function ACC1CoachToday() {
             <div style={{ fontSize: 13, color: MUT }}>Thursday 4 June · 3 sessions today at Messmate Primary School</div>
             <div style={{ display: 'flex', gap: 12, marginTop: 8 }}>
               <button onClick={() => st('Opening group chats.')} style={{ height: 44, padding: '0 16px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, cursor: 'pointer' }}>Group chats</button>
-              <button onClick={() => st('Opening message to Dani.')} style={{ height: 44, padding: '0 16px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, cursor: 'pointer' }}>Message Dani</button>
+              <button onClick={() => onNav ? onNav('ACC13-AcademyChat') : st('Opening message to Dani.')} style={{ height: 44, padding: '0 16px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, cursor: 'pointer' }}>Message Dani</button>
             </div>
           </div>
 
@@ -82,7 +83,7 @@ export default function ACC1CoachToday() {
           {/* Alerts */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 20 }}>
             <div style={{ background: '#fff', border: `1px solid #fca5a5`, borderRadius: 10, padding: '12px 16px', display: 'flex', gap: 10 }}>
-              <div style={{ fontSize: 16, flexShrink: 0 }}>⚠</div>
+              <div style={{ fontSize: 16, flexShrink: 0 }}><Glyph n="warn" /></div>
               <div>
                 <div style={{ fontSize: 13, fontWeight: 700, color: INK }}>Zane: easy on sprints</div>
                 <div style={{ fontSize: 12, color: MUT }}>5 sessions this week across club and academy</div>

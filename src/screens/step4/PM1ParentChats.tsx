@@ -1,8 +1,11 @@
+import { Glyph } from '../Glyph'
 import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
-export default function PM1ParentChats(_: { onBack?: () => void }) {
+export default function PM1ParentChats({ onNav }: { onBack?: () => void; onNav?: (s: string) => void }) {
+  // every chat row is pressable, by tap or keyboard
+  const row = (go: () => void) => ({ role: 'button' as const, tabIndex: 0, onClick: go, onKeyDown: (e: React.KeyboardEvent) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go() } } })
   const [sheet, setSheet] = useState<string | null>(null)
   const [toast, setToast] = useState<string | null>(null)
   const [msgText, setMsgText] = useState('Hi Rob, quick question about the roster—')
@@ -29,8 +32,8 @@ export default function PM1ParentChats(_: { onBack?: () => void }) {
         <div style={{ background: '#fff', border: `1px solid #c5c8c4`, borderRadius: 16, overflow: 'hidden', marginBottom: 20 }}>
 
           {/* Announcements */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '14px 16px', borderBottom: `1px solid ${LN}` }}>
-            <div style={{ width: 44, height: 44, borderRadius: 999, background: PALE, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20, flexShrink: 0 }}>📢</div>
+          <div {...row(() => onNav?.('PM3-ParentAnnouncements'))} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '14px 16px', borderBottom: `1px solid ${LN}`, cursor: 'pointer' }}>
+            <div style={{ width: 44, height: 44, borderRadius: 999, background: PALE, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20, flexShrink: 0, color: G }}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 10v4h3l8 4V6l-8 4zM18 9a4 4 0 010 6" /></svg></div>
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 2 }}>
                 <span style={{ fontWeight: 700, fontSize: 15, color: INK }}>Announcements</span>
@@ -42,7 +45,7 @@ export default function PM1ParentChats(_: { onBack?: () => void }) {
           </div>
 
           {/* U12 Sam — selected */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '14px 16px', borderBottom: `1px solid ${LN}`, background: PALE, borderLeft: `3px solid ${G}` }}>
+          <div {...row(() => onNav?.('PM2-ParentTeamChat'))} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '14px 16px', cursor: 'pointer', borderBottom: `1px solid ${LN}`, background: PALE, borderLeft: `3px solid ${G}` }}>
             <div style={{ width: 44, height: 44, borderRadius: 999, background: '#d4b896', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 14, color: INK, flexShrink: 0 }}>U12</div>
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 2 }}>
@@ -55,7 +58,7 @@ export default function PM1ParentChats(_: { onBack?: () => void }) {
           </div>
 
           {/* Sam K */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '14px 16px', borderBottom: `1px solid ${LN}` }}>
+          <div {...row(() => onNav?.('PM9-ParentPrivateChat'))} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '14px 16px', borderBottom: `1px solid ${LN}`, cursor: 'pointer' }}>
             <div style={{ width: 44, height: 44, borderRadius: 999, background: '#d4b896', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 14, color: INK, flexShrink: 0 }}>SK</div>
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ fontWeight: 700, fontSize: 15, color: INK, marginBottom: 2 }}>Sam K</div>
@@ -65,7 +68,7 @@ export default function PM1ParentChats(_: { onBack?: () => void }) {
           </div>
 
           {/* Rob Owusu */}
-          <div onClick={() => setSheet('robprivate')} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '14px 16px', cursor: 'pointer' }}>
+          <div {...row(() => setSheet('robprivate'))} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '14px 16px', cursor: 'pointer' }}>
             <div style={{ width: 44, height: 44, borderRadius: 999, background: '#d4b896', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 14, color: INK, flexShrink: 0 }}>RO</div>
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ fontWeight: 700, fontSize: 15, color: INK, marginBottom: 2 }}>Rob Owusu</div>
@@ -78,8 +81,8 @@ export default function PM1ParentChats(_: { onBack?: () => void }) {
         {/* Club section */}
         <div style={{ fontSize: 11, fontWeight: 700, color: MUT, letterSpacing: '0.08em', textTransform: 'uppercase' as const, marginBottom: 8, paddingLeft: 4 }}>Club</div>
         <div style={{ background: '#fff', border: `1px solid #c5c8c4`, borderRadius: 16, overflow: 'hidden', marginBottom: 20 }}>
-          <div onClick={() => setSheet('clubnews')} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '14px 16px', cursor: 'pointer' }}>
-            <div style={{ width: 44, height: 44, borderRadius: 999, background: PALE, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20, flexShrink: 0 }}>🛡️</div>
+          <div {...row(() => setSheet('clubnews'))} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '14px 16px', cursor: 'pointer' }}>
+            <div style={{ width: 44, height: 44, borderRadius: 999, background: PALE, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20, flexShrink: 0, color: G }}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z" /></svg></div>
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ fontWeight: 700, fontSize: 15, color: INK, marginBottom: 2 }}>Wattle Creek FC</div>
               <div style={{ fontSize: 13, color: MUT }}>Announcements and club news</div>
@@ -122,14 +125,14 @@ export default function PM1ParentChats(_: { onBack?: () => void }) {
             </div>
             <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 2 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 0', borderBottom: `1px solid ${LN}` }}>
-                <span style={{ fontSize: 20 }}>📄</span>
+                <span style={{ fontSize: 20 }}><Glyph n="doc" /></span>
                 <div>
                   <div style={{ fontWeight: 600, fontSize: 14, color: INK }}>U12 fixtures, term 2.pdf</div>
                   <div style={{ fontSize: 12, color: MUT }}>84 KB · fixture schedule</div>
                 </div>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 0' }}>
-                <span style={{ fontSize: 20 }}>🍔</span>
+                <span style={{ fontSize: 20 }}><Glyph n="shop" /></span>
                 <div>
                   <div style={{ fontWeight: 600, fontSize: 14, color: INK }}>Canteen update</div>
                   <div style={{ fontSize: 12, color: MUT }}>New menu from Round 5</div>

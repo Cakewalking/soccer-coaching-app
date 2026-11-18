@@ -2,9 +2,10 @@
 // Every question has Skip, and skipping stores nothing. A question over the
 // week's limit is held, not asked.
 
-import { useEffect, useState, type ReactNode } from 'react'
+import { saveFile, savePdf } from '../saveFile'
+import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { Ico, IC, G, INK, MUT, LINE, PALE, DARK, tile } from '../capture/marks'
-import { useCn, setCn, mayAsk, countAsk, holdBack, TEAMS, type QuestionId, type Fun, type Hard, type Learned } from './cnStore'
+import { useCn, setCn, addJob, mayAsk, countAsk, holdBack, TEAMS, type QuestionId, type Fun, type Hard, type Learned } from './cnStore'
 
 type Nav = (s: string) => void
 const SPARK = 'M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z'
@@ -132,8 +133,8 @@ export function CNp5PlayerGoal({ onNav = () => {} }: { onNav?: Nav }) {
     <Phone id="CNp5-PlayerGoal" over={`${TEAMS.u16} · my goals`} title="Set your own goal" ini="CW" home="STO19-HomeStoryPlayerOlder" onNav={onNav} toast={toast}
       intro={['YOUR GOAL, YOUR WORDS', 'What do you want to get better at by the end of term?', s.goal?.sent ? 'Sent to Ollie. He reads it, may tweak it with you, and builds it into training.' : 'Ollie reads it, may tweak it with you, and builds it into training.']}
       foot="Your coach’s goal for you stays too. You can have one of each."
-      left={{ t: 'Save for later', on: () => { setCn({ goal: { text, know, sent: false } }); say('Saved as a draft.') } }}
-      right={{ t: 'Send to Ollie', on: () => { if (!text.trim()) return say('Write your goal first.'); setCn({ goal: { text, know, sent: true } }); say('Sent to Ollie. He usually answers within two days.') } }}>
+      left={{ t: s.goal && !s.goal.sent && s.goal.text === text ? 'Saved as a draft' : 'Save for later', on: () => { setCn({ goal: { text, know, sent: false } }); say('Saved as a draft.') } }}
+      right={{ t: s.goal?.sent && s.goal.text === text ? 'Sent to Ollie' : 'Send to Ollie', on: () => { if (!text.trim()) return say('Write your goal first.'); setCn({ goal: { text, know, sent: true } }); say('Sent to Ollie. He usually answers within two days.') } }}>
       <Card t="Start from one of these"><Chips what="Start from one of these" value={pick} onPick={v => { setPick(v); setText(GOAL_TEXT[v][0]); setKnow(GOAL_TEXT[v][1]) }} options={Object.keys(GOAL_TEXT)} /></Card>
       <Card>
         <label htmlFor="g-text" style={{ fontSize: 15, fontWeight: 700 }}>In your words</label><textarea id="g-text" value={text} onChange={e => setText(e.target.value)} style={area} />
@@ -158,7 +159,7 @@ export function CNp9SeasonReportParent({ onNav = () => {} }: { onNav?: Nav }) {
     <Phone id="CNp9-SeasonReportParent" over={`${TEAMS.u12} · mid-season report`} title="Mia’s season so far" ini="LT" home="STO17-HomeStoryParent" onNav={onNav} toast={toast}
       intro={['FROM SAM K, HEAD COACH · 20 JUNE', 'Mia is braver on the ball than she was in March.', 'She asks for it under pressure now. Next: looking up before she receives.']}
       foot="Written by Sam from the season’s notes, ratings and film. Only your family sees it."
-      left={{ t: 'Save as PDF', on: () => say('Saved to your phone.') }} right={{ t: s.catchUp ? `Booked: ${s.catchUp}` : 'Book a chat with Sam', on: () => onNav('CNp10-BookCatchUp') }}>
+      left={{ t: 'Save as PDF', on: () => { savePdf('mia-tran-season-report.pdf', 'Mia Tran: season so far', ['From Sam K, head coach, U12 Sam. 20 June.', '', 'Mia is braver on the ball than she was in March.', 'She asks for it under pressure now. Next: looking up before she receives.', '', 'What has changed (Sam’s rating out of 5)', 'Asking for the ball: was 2, now 4', 'Using her left foot: was 2, now 3', 'Talking to team-mates: was 3, now 3', '', '9 of 10 sessions. 7 of 8 games, with a fair share of minutes in every game.', 'Her goal for term 3: look over her shoulder before the ball comes.', '', 'Written by Sam from the season’s notes, ratings and film. Only your family sees it.']); say('Saved to your phone.') } }} right={{ t: s.catchUp ? `Booked: ${s.catchUp}` : 'Book a chat with Sam', on: () => onNav('CNp10-BookCatchUp') }}>
       <Card t="What has changed"><Bar t="Asking for the ball" was={2} now={4} /><Bar t="Using her left foot" was={2} now={3} /><Bar t="Talking to team-mates" was={3} now={3} /><span style={{ fontSize: 12, color: MUT }}>Sam’s rating out of 5. The line is where she started.</span></Card>
       <section style={{ ...tile, padding: '4px 14px', gap: 0 }}>
         <Row icon="M8 5l11 7-11 7z" t="Three clips that show it" d="Chosen by Sam" on={() => say('The three clips open.')} />
@@ -179,7 +180,7 @@ export function CNp10BookCatchUp({ onNav = () => {} }: { onNav?: Nav }) {
     <Phone id="CNp10-BookCatchUp" over={`${TEAMS.u12} · mid-season catch-ups`} title="Book ten minutes with Sam" ini="LT" home="CNp9-SeasonReportParent" onNav={onNav} toast={toast}
       intro={['TWICE A SEASON', 'Ten minutes about Mia, with her report in front of you both.', s.catchUp ? `You are booked: ${s.catchUp}.` : 'At the clubrooms before training, or on a call.']}
       foot="Sam gets your topic beforehand. Mia can come too."
-      left={{ t: 'No thanks', on: () => { setCn({ catchUp: null }); say('No catch-up booked. You can book later from the report.') } }}
+      left={{ t: 'No thanks', on: () => { setCn({ catchUp: null }); say('No catch-up booked. You can book later from the report.'); setTimeout(() => onNav('CNp9-SeasonReportParent'), 1100) } }}
       right={{ t: `Book ${slot} ${short}`, on: () => { setCn({ catchUp: `${short} ${slot}`, catchTopic: topic || 'Nothing in particular' }); say(`Booked: ${day.split(' · ')[0]}, ${slot} pm ${call ? 'on a call' : 'at the clubrooms'}. It is in your calendar.`) } }}>
       <Card>
         {SLOTS.map(([d, list]) => <div key={d} style={{ display: 'flex', flexDirection: 'column', gap: 8 }}><strong style={{ fontSize: 15 }}>{d}</strong>
@@ -193,16 +194,17 @@ export function CNp10BookCatchUp({ onNav = () => {} }: { onNav?: Nav }) {
 }
 
 // ── CNp11 · family view (two or more children) ───────────────────────────────
+const FAMILY_ICS = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Clean Sheet//Family//EN', ...[['Mia: U12 Sam v Harbour Rovers (home, pitch 2)', '20260606T093000'], ['Bao: U8 Hannah at Ridgeway Reserve (away)', '20260606T093000'], ['Mia: U12 Sam training', '20260604T174500']].flatMap(([t, d], i) => ['BEGIN:VEVENT', `UID:cs-family-${i}@cleansheet.demo`, `DTSTART:${d}`, `SUMMARY:${t}`, 'END:VEVENT']), 'END:VCALENDAR'].join('\r\n')
 export function CNp11FamilyView({ onNav = () => {} }: { onNav?: Nav }) {
   const s = useCn(), { toast, say } = useToast()
   const kids = [
     { ini: 'MT', n: 'Mia', team: TEAMS.u12, when: 'Sat 9:30 · home, pitch 2', note: s.reportSent ? 'New clip from Sam. Mid-season report is ready.' : 'New clip from Sam.' },
-    { ini: 'BT', n: 'Bao', team: `${TEAMS.u8} · MiniRoos`, when: 'Sat 9:30 · away, Ridgeway Reserve', note: 'Oranges are yours this week.' },
+    { ini: 'BT', n: 'Bao', team: `${TEAMS.u8} · MiniRoos`, when: 'Sat 9:30 · away, Ridgeway Reserve', note: s.jobs.includes('lift') ? 'Lift asked for Saturday. Oranges are yours this week.' : 'Oranges are yours this week.' },
   ]
   return (
     <Phone id="CNp11-FamilyView" over="Wattle Creek FC" title="The Tran family" ini="LT" home="STO17-HomeStoryParent" onNav={onNav} toast={toast}
       intro={[`THIS WEEK · ${kids.length} CHILDREN`, 'Saturday clashes: Mia and Bao both kick off at 9:30.', 'Mia is at home, Bao is away at Ridgeway.']}
-      left={{ t: 'One calendar', on: () => say('Both children added to one calendar feed.') }} right={{ t: 'Ask for a lift', on: () => say(`Lift request sent to ${TEAMS.u8}’s parents for Saturday.`) }}>
+      left={{ t: s.jobs.includes('one-calendar') ? 'Calendar added' : 'One calendar', on: () => { saveFile('tran-family-football.ics', FAMILY_ICS, 'text/calendar'); addJob('one-calendar'); say('Both children added to one calendar feed.') } }} right={{ t: s.jobs.includes('lift') ? 'Lift asked' : 'Ask for a lift', on: () => { addJob('lift'); say(`Lift request sent to ${TEAMS.u8}’s parents for Saturday.`) } }}>
       {kids.map(k => (
         <button key={k.n} onClick={() => onNav('STO17-HomeStoryParent')} style={{ ...tile, padding: '12px 14px', gap: 4, textAlign: 'left', fontFamily: 'inherit', color: INK, cursor: 'pointer' }}>
           <span style={{ display: 'flex', alignItems: 'center', gap: 10 }}><span style={{ width: 36, height: 36, borderRadius: 999, background: PALE, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }}>{k.ini}</span><span style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 16 }}>{k.n}</strong><span style={{ fontSize: 13, color: MUT }}>{k.team}</span></span><Ico d={IC.chev} size={18} sw={2.4} /></span>
@@ -234,13 +236,15 @@ export function CNp12PulseSurvey({ onNav = () => {} }: { onNav?: Nav }) {
 // ── CNp14 · the player passport. The family owns the file. ───────────────────
 const PASS: [keyof ReturnType<typeof useCn>['passport'], string, string][] = [['reports', 'Season reports', '5 reports from 2 coaches'], ['goals', 'Her goals and how they went', '7 goals, 5 met'], ['clips', 'Clips', '24 clips where Mia is the subject'], ['games', 'Games and minutes', '41 games'], ['health', 'Health notes', 'Growth, injuries, check-ins']]
 // `own`: a player of 15 or over opening their own passport, from their own home.
+const PASS_LINK = 'https://soccer-coaching-app-six.vercel.app/share/wattle-creek-passport'
 export function CNp14PlayerPassport({ onNav = () => {}, own }: { onNav?: Nav; own?: boolean }) {
   const s = useCn(), { toast, say } = useToast()
   return (
     <Phone id={own ? 'CNp14o-PlayerPassportOwn' : 'CNp14-PlayerPassport'} over={own ? 'Cal West · since 2024' : 'Mia Tran · since 2024'} title={own ? 'Your passport' : 'Mia’s passport'} ini={own ? 'CW' : 'LT'} home={own ? 'STO19-HomeStoryPlayerOlder' : 'STO17-HomeStoryParent'} onNav={onNav} toast={toast}
       intro={[own ? 'YOURS TO KEEP' : 'HERS TO KEEP', own ? 'Three seasons of your football, in one file you own.' : 'Three seasons of Mia’s football, in one file you own.', 'Take it to a new club, a school or a trial. Wattle Creek keeps nothing you don’t want it to.']}
       foot="Clips only show other children whose families allow sharing. Coaches’ private notes and parents’ ratings never go in."
-      left={{ t: 'Send a link', on: () => say('A private link is ready. It works for 30 days.') }} right={{ t: 'Download', on: () => say(`${own ? 'Your' : 'Mia’s'} passport is saved to your phone: one PDF${s.passport.clips ? ' and a folder of 24 clips' : ''}.`) }}>
+      left={{ t: s.jobs.includes('passport-link') ? 'Link copied' : 'Send a link', on: () => { addJob('passport-link'); try { void navigator.clipboard?.writeText(PASS_LINK) } catch { /* no clipboard here: the link is shown on the page */ } say('A private link is ready. It works for 30 days.') } }} right={{ t: 'Download', on: () => { savePdf(own ? 'cal-west-passport.pdf' : 'mia-tran-passport.pdf', own ? 'Cal West: player passport' : 'Mia Tran: player passport', ['Wattle Creek FC, since 2024. This file belongs to the family.', '', ...PASS.filter(([k]) => s.passport[k]).map(([, t, d]) => `${t}: ${d}`), '', 'Left out: coaches’ private notes, parents’ ratings, and other children unless their family allows sharing.']); say(`${own ? 'Your' : 'Mia’s'} passport is saved to your phone: one PDF${s.passport.clips ? ' and a folder of 24 clips' : ''}.`) } }}>
+      {s.jobs.includes('passport-link') && <Card t="Your private link"><span style={{ fontSize: 14, lineHeight: '20px', wordBreak: 'break-all' }}>{PASS_LINK}</span><span style={{ fontSize: 13, color: MUT }}>Copied. It works for 30 days, and you can switch it off here.</span></Card>}
       <section style={{ ...tile, padding: '10px 14px 2px', gap: 0 }}>
         <strong style={{ fontSize: 15, paddingBottom: 6 }}>What goes in</strong>
         {PASS.map(([k, t, d]) => { const on = s.passport[k]; return (
@@ -265,7 +269,7 @@ export function CNp16WeekElsewhere({ onNav = () => {} }: { onNav?: Nav }) {
       intro={['SO YOUR COACH SEES THE WHOLE WEEK', 'Football here is only part of your week.', 'Tell us the rest and Priya can keep your load sensible.']}
       foot={`${['No', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten'][total] ?? total} ${total === 1 ? 'hour' : 'hours'} added to your week. Your coach and fitness coach see the total, not the detail.`}
       left={{ t: 'Same as last week', on: () => { setCn({ elsewhere: { hours: [2, 0, 0, 1], week: 'Normal', saved: false } }); say('Copied from last week.') } }}
-      right={{ t: 'Save', on: () => { if (!s.elsewhere.saved) ask.done(); setCn({ elsewhere: { ...s.elsewhere, saved: true } }); say(`Saved. Your week is ${5 + total} hours, up from 6.`) } }}>
+      right={{ t: s.elsewhere.saved ? 'Saved' : 'Save', on: () => { if (!s.elsewhere.saved) ask.done(); setCn({ elsewhere: { ...s.elsewhere, saved: true } }); say(`Saved. Your week is ${5 + total} hours, up from 6.`) } }}>
       <Card t="This week, outside Wattle Creek">
         {ELSE.map((t, i) => <div key={t} style={{ display: 'flex', alignItems: 'center', gap: 8, minHeight: 48, borderTop: i ? `1px solid ${LINE}` : undefined }}><span style={{ flexGrow: 1, fontSize: 15, fontWeight: 600 }}>{t}</span>
           <button style={sb} aria-label={`${t}: one less`} onClick={() => step(i, -1)}><Ico d={IC.minus} size={16} sw={2.6} /></button><strong style={{ width: 52, textAlign: 'center', fontVariantNumeric: 'tabular-nums' }}>{h[i]} {h[i] === 1 ? 'hr' : 'hrs'}</strong><button style={sb} aria-label={`${t}: one more`} onClick={() => step(i, 1)}><Ico d={IC.plus} size={16} sw={2.6} /></button></div>)}
@@ -280,16 +284,22 @@ export function CNp18IncidentLog({ onNav = () => {} }: { onNav?: Nav }) {
   const s = useCn(), { toast, say } = useToast()
   const [kind, setKind] = useState(s.incident.kind), [text, setText] = useState('Clash of knees going for the ball. Walked it off, no swelling.')
   const head = kind === 'Head knock'
+  const [edit, setEdit] = useState<'who' | 'when' | 'did' | null>(null)
+  const inc = s.incident, who = inc.who ?? 'Jai Patel', when = inc.when ?? 'Today, 27th minute', did = inc.did ?? 'Ice, sat out 10 minutes, back on', photos = inc.photos ?? 0
+  const OPTS = { who: ['Jai Patel', 'Mia Tran', 'Noah Okafor', 'Zoe Hart', 'Grace Reid'], when: ['Today, 27th minute', 'Today, first half', 'Today, second half', 'At training'], did: ['Ice, sat out 10 minutes, back on', 'Came off, did not go back on', 'Checked, played on', 'Parent called'] }
+  const pickPhoto = useRef<HTMLInputElement>(null)
   return (
     <Phone id="CNp18-IncidentLog" over={`${TEAMS.u12} · Saturday game`} title="Log an incident" ini="SK" home="CPh1-CoachPhoneHome" onNav={onNav} toast={toast}
       intro={['GOES TO HELEN, WELFARE OFFICER', 'Write down what happened while it is fresh.', s.incident.sent ? 'Logged. Helen and Jai’s parent have it.' : 'One minute now saves a hard conversation later.']}
       foot="Jai’s parent is told. A head knock opens the concussion steps."
-      left={{ t: 'Add a photo', on: () => say('Camera opens.') }}
-      right={{ t: head ? 'Open the concussion steps' : 'Send to Helen', on: () => { setCn({ incident: { kind, sent: true } }); if (head) onNav('FC1-Concussion'); else say('Logged. Helen and Jai’s parent have it.') } }}>
+      left={{ t: photos ? `${photos} ${photos === 1 ? 'photo' : 'photos'} added` : 'Add a photo', on: () => pickPhoto.current?.click() }}
+      right={{ t: head ? 'Open the concussion steps' : 'Send to Helen', on: () => { setCn(c => ({ incident: { ...c.incident, kind, sent: true } })); if (head) onNav('FC1-Concussion'); else say('Logged. Helen and Jai’s parent have it.') } }}>
       <Card t="What kind?"><Chips what="What kind?" value={kind} onPick={setKind} options={['Knock or injury', 'Head knock', 'Behaviour', 'Sideline', 'Something else']} /></Card>
       <section style={{ ...tile, padding: '2px 14px', gap: 0 }}>
-        <Row icon={IC.person} t="Who" d="Jai Patel" on={() => say('Pick a player.')} /><Row icon={IC.clock} t="When" d="Today, 27th minute" on={() => say('Change the time.')} /><Row icon={IC.tick} t="What you did" d="Ice, sat out 10 minutes, back on" on={() => say('Add what you did.')} />
+        <Row icon={IC.person} t="Who" d={who} on={() => setEdit(e => e === 'who' ? null : 'who')} /><Row icon={IC.clock} t="When" d={when} on={() => setEdit(e => e === 'when' ? null : 'when')} /><Row icon={IC.tick} t="What you did" d={did} on={() => setEdit(e => e === 'did' ? null : 'did')} />
       </section>
+      {edit && <Card t={edit === 'who' ? 'Who was it?' : edit === 'when' ? 'When did it happen?' : 'What did you do?'}><Chips what={edit} value={edit === 'who' ? who : edit === 'when' ? when : did} onPick={v => { setCn(c => ({ incident: { ...c.incident, [edit]: v } })); setEdit(null); say(`${edit === 'who' ? 'Who' : edit === 'when' ? 'When' : 'What you did'}: ${v}.`) }} options={OPTS[edit]} /></Card>}
+      <input ref={pickPhoto} type="file" accept="image/*" capture="environment" multiple hidden onChange={e => { const n = e.target.files?.length ?? 0; if (n) { setCn(c => ({ incident: { ...c.incident, photos: (c.incident.photos ?? 0) + n } })); say(`${n} ${n === 1 ? 'photo' : 'photos'} added. Only Helen and the parent see them.`) } }} />
       <Card><label htmlFor="inc" style={{ fontSize: 15, fontWeight: 700 }}>In a sentence</label><textarea id="inc" value={text} onChange={e => setText(e.target.value)} style={{ width: '100%', boxSizing: 'border-box', minHeight: 70, padding: '10px 12px', borderRadius: 10, border: `1px solid ${LINE}`, fontFamily: 'inherit', fontSize: 14, lineHeight: '20px', color: INK }} /></Card>
     </Phone>
   )

@@ -191,11 +191,11 @@ const RESULTS_BY: Record<Team3, ReturnType<typeof R>[]> = {
     R('Sat 2 May', 'Kestrel Park', 'H', '3–1', 'W'), R('Sat 25 Apr', 'Lyndhurst SC', 'H', '2–1', 'W'), R('Sat 18 Apr', 'Riverside', 'A', '0–2', 'L'), R('Sat 11 Apr', 'Banksia FC', 'H', '4–2', 'W'),
   ],
   youth: [
-    R('Sat 30 May', 'Glenview Park', 'H', '1–3', 'L'), R('Sat 23 May', 'Tealside Town', 'A', '2–1', 'W'), R('Sat 16 May', 'Kingfisher United', 'H', '0–2', 'L'), R('Sat 9 May', 'Saltmarsh', 'A', '1–1', 'D'),
+    R('Sat 30 May', 'Tealside Town', 'H', '2–2', 'D'), R('Sat 23 May', 'Glenview Park', 'A', '2–1', 'W'), R('Sat 16 May', 'Kingfisher United', 'H', '0–2', 'L'), R('Sat 9 May', 'Saltmarsh', 'A', '1–1', 'D'),
     R('Sat 2 May', 'Riverside', 'H', '1–2', 'L'), R('Sat 25 Apr', 'Kestrel Park', 'A', '3–0', 'W'), R('Sat 18 Apr', 'Northgate', 'H', '2–2', 'D'), R('Sat 11 Apr', 'Lyndhurst SC', 'A', '2–1', 'W'),
   ],
   seniors: [
-    R('Sat 30 May', 'Kingfisher United', 'H', '1–1', 'D'), R('Sat 23 May', 'Ironbark United', 'A', '2–0', 'W'), R('Sat 16 May', 'Saltmarsh', 'H', '0–1', 'L'), R('Sat 9 May', 'Tealside Town', 'A', '2–2', 'D'),
+    R('Sat 30 May', 'Glenview Park', 'H', '2–0', 'W'), R('Sat 23 May', 'Ironbark United', 'A', '2–0', 'W'), R('Sat 16 May', 'Saltmarsh', 'H', '0–1', 'L'), R('Sat 9 May', 'Tealside Town', 'A', '2–2', 'D'),
     R('Sat 2 May', 'Kestrel Park', 'H', '3–1', 'W'), R('Sat 25 Apr', 'Lyndhurst SC', 'A', '2–1', 'W'), R('Sat 18 Apr', 'Riverside', 'H', '1–0', 'W'), R('Sat 11 Apr', 'Northgate', 'A', '3–1', 'W'),
     R('Sat 4 Apr', 'Harbour Rovers', 'H', '2–2', 'D'), R('Sat 28 Mar', 'Glenview Park', 'A', '0–2', 'L'),
   ],

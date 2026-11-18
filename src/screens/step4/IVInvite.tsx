@@ -1,3 +1,4 @@
+import { Glyph } from '../Glyph'
 import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
@@ -61,7 +62,7 @@ export default function IVInvite(_: { onBack?: () => void }) {
 
         {/* Privacy note */}
         <div style={{ background: PALE, borderRadius: 12, padding: '12px 14px', display: 'flex', gap: 10, alignItems: 'flex-start' }}>
-          <span style={{ fontSize: 16, marginTop: 1 }}>🔒</span>
+          <span style={{ fontSize: 16, marginTop: 1 }}><Glyph n="lock" /></span>
           <span style={{ fontSize: 13, color: MUT, lineHeight: 1.5 }}>
             No parent phone numbers are shared. Everything stays inside the app.
           </span>

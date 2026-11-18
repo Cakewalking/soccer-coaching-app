@@ -1,3 +1,4 @@
+import { glyph } from '../Glyph'
 import { useState } from 'react'
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb'
 type ChangeType = 'Meet time' | 'Venue or pitch' | 'Cancelled' | 'Kit or other'
@@ -47,9 +48,9 @@ export default function TM3ManagerChange(_: { onBack?: () => void }) {
         </div>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '4px 14px' }}>
           {[
-            { icon: '👥', title: 'All U12 parents and players', sub: '17 families · parents get players\' copies', badge: '17' },
-            { icon: '👤', title: 'Sam and Jess', sub: 'Coaches see it in their inbox', badge: '2' },
-            { icon: '📅', title: 'Updates the calendar', sub: 'The new meet time, for everyone', badge: 'On' },
+            { icon: glyph('people'), title: 'All U12 parents and players', sub: '17 families · parents get players\' copies', badge: '17' },
+            { icon: glyph('person'), title: 'Sam and Jess', sub: 'Coaches see it in their inbox', badge: '2' },
+            { icon: glyph('calendar'), title: 'Updates the calendar', sub: 'The new meet time, for everyone', badge: 'On' },
           ].map((row, i) => (
             <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 50, borderTop: i > 0 ? `1px solid ${LN}` : 'none' }}>
               <div style={{ width: 36, height: 36, borderRadius: 10, background: '#eef5f2', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, flexShrink: 0 }}>{row.icon}</div>

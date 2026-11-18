@@ -1,3 +1,4 @@
+import { Glyph } from '../Glyph'
 import { useState } from 'react'
 import EDUp1PlayerLearn from '../step4/EDUp1PlayerLearn'
 
@@ -68,7 +69,7 @@ function HomeView({ setView }: { setView: (v: View) => void }) {
     <div style={{ flexGrow: 1, overflowY: 'auto', padding: '20px 20px 0', display: 'flex', flexDirection: 'column', gap: 14 }}>
       {/* Greeting */}
       <div>
-        <div style={{ fontSize: 24, fontWeight: 800, letterSpacing: '-0.02em' }}>Hi Cal 👋</div>
+        <div style={{ fontSize: 24, fontWeight: 800, letterSpacing: '-0.02em' }}>Hi Cal</div>
         <div style={{ fontSize: 14, color: '#4a5a57', marginTop: 2 }}>Wattle Creek U16 · this week</div>
       </div>
 
@@ -219,7 +220,7 @@ function MessagesView({ initialChat = 'list' }: { initialChat?: MsgChat }) {
           </div>
           <div style={{ background: '#f5f6f4', borderRadius: 12, padding: '8px 12px', marginLeft: 34, fontSize: 14, color: '#10211f' }}>who's got the spare shin pads</div>
           <div style={{ display: 'flex', gap: 4, marginLeft: 34, marginTop: 3 }}>
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 3, background: '#f0f4f2', borderRadius: 999, padding: '1px 7px', fontSize: 12 }}>😂 <span style={{ fontSize: 11, color: '#4a5a57' }}>3</span></span>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 3, background: '#f0f4f2', borderRadius: 999, padding: '1px 7px', fontSize: 12 }}><Glyph n="laugh" /> <span style={{ fontSize: 11, color: '#4a5a57' }}>3</span></span>
           </div>
         </div>
         {/* You (player) sent a voice note */}
@@ -337,7 +338,7 @@ function AdultView() {
   return (
     <div style={{ flexGrow: 1, overflowY: 'auto', padding: '20px 20px 20px', display: 'flex', flexDirection: 'column', gap: 14 }}>
       <div>
-        <div style={{ fontSize: 24, fontWeight: 800, letterSpacing: '-0.02em' }}>Hi Josh 👋</div>
+        <div style={{ fontSize: 24, fontWeight: 800, letterSpacing: '-0.02em' }}>Hi Josh</div>
         <div style={{ fontSize: 14, color: '#4a5a57', marginTop: 2 }}>Wattle Creek Men's 1sts · NPL3</div>
       </div>
 

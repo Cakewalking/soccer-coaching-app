@@ -1,3 +1,5 @@
+import { glyph } from '../Glyph'
+import { useDoneAll, markDone } from '../doneStore'
 import { useState } from 'react'
 import CnScreen from '../connected/CnScreen'
 import { SubTabBar } from './ui'
@@ -22,7 +24,8 @@ const CN_VIEW: Record<string, ClubView> = { 'CN12-ClubClimate': 'climate', 'CN20
 const CN_ID = Object.fromEntries(Object.entries(CN_VIEW).map(([k, v]) => [v, k])) as Record<string, string>
 
 export default function ClubTab({ role, empty, homeStory, onNav, initialView }: { role: 'chair' | 'dof'; empty?: boolean; homeStory?: import('react').ReactNode; onNav?: (s: string) => void; initialView?: string }) {
-  const [view, setView] = useState<ClubView>((initialView && CN_VIEW[initialView]) || 'overview')
+  const [view, setView] = useState<ClubView>((initialView && CN_VIEW[initialView]) || (initialView === 'seasonplan' ? 'seasonplan' : 'overview'))
+  const needs = useDoneAll()
   const cnNav = (t: string) => CN_VIEW[t] ? setView(CN_VIEW[t]) : onNav?.(t)
   const [headingPolicy, setHeadingPolicy] = useState<'england' | 'own' | 'none' | null>(null)
   const [toast, setToast] = useState<string | null>(null)
@@ -127,7 +130,7 @@ export default function ClubTab({ role, empty, homeStory, onNav, initialView }: 
       {view === 'files' && <FilesTab />}
       {view === 'features' && <FeaturesTab />}
 
-      <div style={pad}>
+      <div style={view in CN_ID ? undefined : pad}>
 
         {view === 'overview' && role === 'chair' && !empty && !homeStory && (
           <>
@@ -238,7 +241,12 @@ export default function ClubTab({ role, empty, homeStory, onNav, initialView }: 
                       <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{item.text}</div>
                       <div style={{ fontSize: 12, color: '#6f7f7b', marginTop: 2 }}>{item.sub}</div>
                     </div>
-                    <button onClick={() => showToast(`${item.cta} sent.`)} style={{ flexShrink: 0, height: 44, padding: '0 12px', borderRadius: '999px', border: '1px solid #2f6252', background: '#fff', color: '#2f6252', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>{item.cta}</button>
+                    <button aria-pressed={!!needs[`needs:${needs[`needs:${item.cta}`] ? (item.cta === 'Remind' ? 'Reminded' : 'Asked') : item.cta}`]} onClick={() => {
+                      if (item.cta === 'Fix kit') { setView('kit'); return }
+                      if (item.cta === 'See load') { if (onNav) onNav('D2-Teams'); else showToast('Opening U16 Ollie’s load.'); return }
+                      if (item.cta === 'Open') { if (onNav) onNav('D3-Coaches'); else showToast('Opening the coach meeting.'); return }
+                      markDone(`needs:${item.cta}`); showToast(item.cta === 'Remind' ? 'Reminder sent to the four coaches. One reminder only.' : 'Tom Albers is asked to cover U9 Mark on Saturday.')
+                    }} style={{ flexShrink: 0, height: 44, padding: '0 12px', borderRadius: '999px', border: '1px solid #2f6252', background: '#fff', color: '#2f6252', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>{item.cta}</button>
                   </div>
                 ))}
               </div>
@@ -387,9 +395,9 @@ export default function ClubTab({ role, empty, homeStory, onNav, initialView }: 
             <div style={card}>
               <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 12 }}>What changes when you choose</div>
               {[
-                { icon: '📚', title: 'Drill library', desc: 'Heading drills are hidden or marked for the ages you pick' },
-                { icon: '📊', title: 'Header counts', desc: "Older teams' sessions count headers, so coaches stay inside the limit" },
-                { icon: '👨‍👩‍👧', title: 'Parents', desc: 'Parents see the policy on the team page' },
+                { icon: glyph('cap'), title: 'Drill library', desc: 'Heading drills are hidden or marked for the ages you pick' },
+                { icon: glyph('chart'), title: 'Header counts', desc: "Older teams' sessions count headers, so coaches stay inside the limit" },
+                { icon: glyph('people'), title: 'Parents', desc: 'Parents see the policy on the team page' },
               ].map((item, i) => (
                 <div key={i} style={{ display: 'flex', gap: 10, padding: '10px 0', borderTop: i > 0 ? '1px solid #f0f1f0' : 'none' }}>
                   <span style={{ fontSize: 20 }}>{item.icon}</span>

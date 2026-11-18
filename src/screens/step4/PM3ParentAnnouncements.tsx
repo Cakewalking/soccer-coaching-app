@@ -1,3 +1,4 @@
+import { Glyph } from '../Glyph'
 import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
@@ -39,7 +40,7 @@ export default function PM3ParentAnnouncements(_: { onBack?: () => void }) {
           </div>
           <div style={{ fontWeight: 700, fontSize: 16, color: INK }}>Fixture PDF for Term 2</div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, background: '#f4f7f5', borderRadius: 10, padding: '10px 12px' }}>
-            <span style={{ fontSize: 22 }}>📄</span>
+            <span style={{ fontSize: 22 }}><Glyph n="doc" /></span>
             <div style={{ flex: 1 }}>
               <div style={{ fontWeight: 600, fontSize: 14, color: INK }}>U12 fixtures, term 2.pdf</div>
               <div style={{ fontSize: 12, color: MUT }}>84 KB</div>
@@ -47,9 +48,9 @@ export default function PM3ParentAnnouncements(_: { onBack?: () => void }) {
             <span style={{ fontSize: 16, color: G }}>↓</span>
           </div>
           <div style={{ display: 'flex', gap: 8 }}>
-            <div style={{ background: '#f4f7f5', border: `1px solid ${LN}`, borderRadius: 999, padding: '4px 12px', fontSize: 13, fontWeight: 600 }}>👍 11</div>
+            <div style={{ background: '#f4f7f5', border: `1px solid ${LN}`, borderRadius: 999, padding: '4px 12px', fontSize: 13, fontWeight: 600 }}><Glyph n="like" /> 11</div>
             <div style={{ background: PALE, border: `1px solid ${G}`, borderRadius: 999, padding: '4px 12px', fontSize: 13, fontWeight: 600, color: G, display: 'flex', alignItems: 'center', gap: 4 }}>
-              <span>👁</span> Seen
+              <span><Glyph n="eye" /></span> Seen
             </div>
           </div>
         </div>
@@ -63,10 +64,10 @@ export default function PM3ParentAnnouncements(_: { onBack?: () => void }) {
           <div style={{ fontWeight: 700, fontSize: 16, color: INK }}>Meet time for Saturday: 9:15</div>
           <div style={{ fontSize: 15, color: INK, lineHeight: 1.5 }}>Be at Riverside Reserve 15 minutes before kickoff.</div>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: '#f4f7f5', border: `1px solid ${LN}`, borderRadius: 999, padding: '5px 12px', alignSelf: 'flex-start' as const, fontSize: 13, fontWeight: 600, color: INK }}>
-            📍 Riverside Reserve
+            <Glyph n="place" /> Riverside Reserve
           </div>
           <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-            <div style={{ background: '#f4f7f5', border: `1px solid ${LN}`, borderRadius: 999, padding: '4px 12px', fontSize: 13, fontWeight: 600 }}>👍 11</div>
+            <div style={{ background: '#f4f7f5', border: `1px solid ${LN}`, borderRadius: 999, padding: '4px 12px', fontSize: 13, fontWeight: 600 }}><Glyph n="like" /> 11</div>
             <button onClick={() => t('Got it.')} style={{ background: PALE, border: `1px solid ${G}`, borderRadius: 999, padding: '4px 14px', fontSize: 13, fontWeight: 700, color: G, cursor: 'pointer', fontFamily: 'inherit' }}>Got it</button>
           </div>
         </div>
@@ -74,7 +75,7 @@ export default function PM3ParentAnnouncements(_: { onBack?: () => void }) {
 
       {/* Bottom bar */}
       <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: '#fff', borderTop: `1px solid ${LN}`, padding: '12px 16px', display: 'flex', alignItems: 'center', gap: 10 }}>
-        <span style={{ fontSize: 16 }}>🔒</span>
+        <span style={{ fontSize: 16 }}><Glyph n="lock" /></span>
         <span style={{ fontSize: 13, color: MUT, flex: 1 }}>You can't write here.</span>
         <button onClick={() => setSheet('robprivate')} style={{ height: 44, padding: '0 16px', borderRadius: 20, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Message Rob</button>
       </div>

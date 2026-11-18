@@ -1,3 +1,4 @@
+import { Glyph, glyph } from './Glyph'
 import { useState } from 'react'
 import { useSandbox } from './sandbox/SandboxContext'
 import HeatScreen from './teammanager/HeatScreen'
@@ -8,10 +9,10 @@ type ManagerTab = 'home' | 'gameday' | 'messages' | 'roster'
 type GamedayPhase = 'before' | 'during' | 'after'
 
 const TODO = [
-  { icon: '📋', title: 'Duty roster for Saturday', sub: 'Linesman still needed · oranges and canteen done', tag: '1 gap', tagColor: '#c39797' },
-  { icon: '📷', title: 'Camera kit 1 booked',      sub: 'Pick up from the clubrooms Fri after 5 pm',      tag: 'Booked', tagColor: '#40826d' },
-  { icon: '📝', title: 'Team sheet',               sub: 'Sam picks the line-up Fri night, you send it',    tag: 'Fri', tagColor: '#6f7f7b' },
-  { icon: '📄', title: "Harper's consent form",    sub: "New player · parent hasn't finished it",          tag: 'Chase', tagColor: '#c39797' },
+  { icon: glyph('clipboard'), title: 'Duty roster for Saturday', sub: 'Linesman still needed · oranges and canteen done', tag: '1 gap', tagColor: '#c39797' },
+  { icon: glyph('camera'), title: 'Camera kit 1 booked',      sub: 'Pick up from the clubrooms Fri after 5 pm',      tag: 'Booked', tagColor: '#40826d' },
+  { icon: glyph('clipboard'), title: 'Team sheet',               sub: 'Sam picks the line-up Fri night, you send it',    tag: 'Fri', tagColor: '#6f7f7b' },
+  { icon: glyph('doc'), title: "Harper's consent form",    sub: "New player · parent hasn't finished it",          tag: 'Chase', tagColor: '#c39797' },
 ]
 const SAT_DUTIES = [
   { ini: 'IM', name: 'Isla (Morgan family)',  duty: 'Oranges at half-time',  status: 'confirmed' as const },
@@ -290,7 +291,7 @@ export default function TeamManagerScreen({ empty, initialScreen }: { empty?: bo
             {byeWeek ? (
               <div style={{ padding: '24px 16px' }}>
                 <div style={{ border: '2px dashed #d6d9d7', borderRadius: 16, padding: '32px 20px', textAlign: 'center' }}>
-                  <div style={{ fontSize: 40, marginBottom: 12 }}>☕</div>
+                  <div style={{ fontSize: 40, marginBottom: 12 }}><Glyph n="cup" /></div>
                   <div style={{ fontSize: 18, fontWeight: 800, color: '#10211f', marginBottom: 6 }}>No game this week</div>
                   <div style={{ fontSize: 14, color: '#6f7f7b', marginBottom: 20 }}>Bye round · SAT 14 JUN. Use this week for extra training or a break.</div>
                   <div style={{ display: 'flex', gap: 10, justifyContent: 'center' }}>

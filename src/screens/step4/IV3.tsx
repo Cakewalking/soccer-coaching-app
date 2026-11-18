@@ -1,3 +1,4 @@
+import { glyph } from '../Glyph'
 import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb'
@@ -7,11 +8,11 @@ export default function IV3(_: { onBack?: () => void }) {
   function t(m: string) { setToast(m); setTimeout(() => setToast(null), 3200) }
 
   const features = [
-    { icon: '👥', title: 'The team and families', sub: 'Names and contact through the app only' },
-    { icon: '📅', title: 'Fixtures and attendance', sub: "Who's coming to each game" },
-    { icon: '📢', title: 'Post announcements', sub: 'Goes to all 17 families at once' },
-    { icon: '💬', title: 'Team chat', sub: 'You can read and post in U12 Sam chat' },
-    { icon: '🛡️', title: 'Child safety', sub: 'Any concern goes to Helen Park, welfare officer' },
+    { icon: glyph('people'), title: 'The team and families', sub: 'Names and contact through the app only' },
+    { icon: glyph('calendar'), title: 'Fixtures and attendance', sub: "Who's coming to each game" },
+    { icon: glyph('megaphone'), title: 'Post announcements', sub: 'Goes to all 17 families at once' },
+    { icon: glyph('chat'), title: 'Team chat', sub: 'You can read and post in U12 Sam chat' },
+    { icon: glyph('shield'), title: 'Child safety', sub: 'Any concern goes to Helen Park, welfare officer' },
   ]
 
   const wontSee = [
