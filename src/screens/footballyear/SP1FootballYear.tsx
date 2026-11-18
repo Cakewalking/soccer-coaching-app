@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
@@ -90,7 +91,7 @@ export default function SP1FootballYear({ onBack }: { onBack?: () => void }) {
               <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>{item.title}</div>
               <div style={{ fontSize: 13, color: MUT }}>{item.sub}</div>
             </div>
-            <button onClick={() => t(`Opening ${item.title} view`)} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Open</button>
+            <button onClick={() => openThing(`${item.title} view`, 'coach')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Open</button>
           </div>
         ))}
       </div>

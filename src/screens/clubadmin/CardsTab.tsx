@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 
 const CARDS_DATA = [
@@ -17,6 +18,7 @@ function CardRect({ c }: { c: 'Y' | 'R' }) {
 
 export default function CardsTab() {
   const [toast, setToast] = useState<string|null>(null)
+  void st   // kept for lines this screen may still need to say
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
 
   return (
@@ -27,7 +29,7 @@ export default function CardsTab() {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
           <h2 style={{ margin: 0, fontSize: 17, fontWeight: 700 }}>Cards and suspensions</h2>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-            <button style={{ fontSize: 13, fontWeight: 600, color: '#2f6252', background: 'transparent', border: 0, cursor: 'pointer', fontFamily: 'inherit', padding: 0 }} onClick={() => st('Opening sideline reports.')}>Sideline reports</button>
+            <button style={{ fontSize: 13, fontWeight: 600, color: '#2f6252', background: 'transparent', border: 0, cursor: 'pointer', fontFamily: 'inherit', padding: 0 }} onClick={() => openThing('sideline reports', 'club')}>Sideline reports</button>
             <span style={{ fontSize: 14, color: '#4a5a57' }}>U12 and up · season 2026 · from Dribl</span>
           </div>
         </div>

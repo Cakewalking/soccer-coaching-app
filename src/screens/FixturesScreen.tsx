@@ -1,3 +1,4 @@
+import { openThing } from './openThing'
 import { useState } from 'react'
 import { goSetup } from './sandbox/sandboxNav'
 import { useSandbox } from './sandbox/SandboxContext'
@@ -131,6 +132,7 @@ function FixturesSandboxView() {
 
 function FixturesEmpty() {
   const [toast, setToast] = useState<string | null>(null)
+  void showToast   // kept for lines this screen may still need to say
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   return (
     <main style={{ flexGrow: 1, padding: '14px 28px 18px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 340px', gap: 16, boxSizing: 'border-box', minHeight: 0, overflow: 'hidden', position: 'relative' }}>
@@ -145,7 +147,7 @@ function FixturesEmpty() {
             <div style={{ fontSize: 20, fontWeight: 700, marginBottom: 6 }}>Add your season</div>
             <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: '20px', marginBottom: 14 }}>Import the fixture list from your league, or add games one by one. Training is planned around your game days.</div>
             <div style={{ display: 'flex', gap: 8 }}>
-              <button onClick={() => showToast('Opening league import.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
+              <button onClick={() => openThing('league import', 'coach')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden="true"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1M16 8l-4-4-4 4M12 4v12"/></svg>
                 Import from the league
               </button>

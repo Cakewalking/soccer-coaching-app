@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
@@ -35,7 +36,7 @@ export default function TM1eManagerHomeEmpty(_: { onBack?: () => void }) {
           <div style={{ fontSize: 18, fontWeight: 800, color: INK, marginBottom: 8 }}>Get your families in</div>
           <div style={{ fontSize: 14, color: MUT, lineHeight: 1.6, marginBottom: 20 }}>Send the team link to parents. Once they join, you can share meet times, ask who's coming and fill the duty roster.</div>
           <button onClick={() => st('Team link copied.')} style={{ width: '100%', height: 48, borderRadius: 12, background: GD, color: '#fff', border: 'none', fontSize: 15, fontWeight: 700, cursor: 'pointer', marginBottom: 10 }}>Copy the team link</button>
-          <button onClick={() => st('Opening parent view.')} style={{ width: '100%', height: 44, borderRadius: 12, background: '#fff', color: INK, border: `1.5px solid ${LN}`, fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>See what parents see</button>
+          <button onClick={() => openThing('parent view', 'phone')} style={{ width: '100%', height: 44, borderRadius: 12, background: '#fff', color: INK, border: `1.5px solid ${LN}`, fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>See what parents see</button>
         </div>
         {[{ label: 'NEXT GAME', items: [null, null] }, { label: 'TO DO THIS WEEK', items: [null, null, null] }].map(section => (
           <div key={section.label} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '12px 14px' }}>

@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 import { EmptyCard } from '../clubadmin/ui'
 
@@ -118,7 +119,7 @@ export default function SeasonNotesScreen({ empty, onBack }: { empty?: boolean; 
 
         {/* Detail */}
         {selected === 'Arlo' ? (
-          <ArloDetail onSend={() => showToast("Sent to Arlo's dad, Raj.")} onEdit={() => showToast("Opening draft editor for Arlo.")} />
+          <ArloDetail onSend={() => showToast("Sent to Arlo's dad, Raj.")} onEdit={() => openThing("draft editor for Arlo", 'mini')} />
         ) : (
           <aside style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '28px 24px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 12, textAlign: 'center' }}>
             <div style={{ width: 48, height: 48, borderRadius: '999px', background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 700 }}>
@@ -128,12 +129,12 @@ export default function SeasonNotesScreen({ empty, onBack }: { empty?: boolean; 
             {PLAYERS.find(p => p.name === selected)?.status === 'todo' ? (
               <>
                 <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: '20px' }}>The draft for {selected} builds from what you tap after each game.</div>
-                <button style={{ height: 44, padding: '0 20px', borderRadius: 10, border: 0, background: '#2f6252', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, color: '#fff', cursor: 'pointer' }} onClick={() => showToast('Opening draft for ' + selected + '.')}>Start a draft</button>
+                <button style={{ height: 44, padding: '0 20px', borderRadius: 10, border: 0, background: '#2f6252', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, color: '#fff', cursor: 'pointer' }} onClick={() => openThing('draft for ' + selected + '.', 'mini')}>Start a draft</button>
               </>
             ) : (
               <>
                 <div style={{ fontSize: 14, color: '#4a5a57' }}>Draft ready to review.</div>
-                <button style={{ height: 44, padding: '0 20px', borderRadius: 10, border: 0, background: '#2f6252', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, color: '#fff', cursor: 'pointer' }} onClick={() => showToast('Opening draft for ' + selected + '.')}>Review draft</button>
+                <button style={{ height: 44, padding: '0 20px', borderRadius: 10, border: 0, background: '#2f6252', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, color: '#fff', cursor: 'pointer' }} onClick={() => openThing('draft for ' + selected + '.', 'mini')}>Review draft</button>
               </>
             )}
           </aside>

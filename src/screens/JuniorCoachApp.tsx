@@ -1,3 +1,4 @@
+import { openThing } from './openThing'
 import { useState, useEffect } from 'react'
 import SandboxWaiting from './sandbox/SandboxWaiting'
 import SandboxTeamTalk from './sandbox/SandboxTeamTalk'
@@ -19,7 +20,7 @@ export const COACH_TARGET_NAV: Record<string, string> = {
 export const COACH_TAB_SCREEN: Record<string, string[]> = {
   home:     ['STO5-HomeStoryJuniors', 'I1-Inbox', 'CF1-Fixtures', 'CF1-Fixtures', 'S1-PlayingStyle', 'WA1-WhereWeAt', 'ST1-TeamStaff', 'FIL1-Files'],
   squad:    ['T4-SquadTab', 'FB1-Formation', 'SQ1-BestLineups', 'DG1-Goals', 'WL1-Wellness', 'AV1-Availability', 'P1-Consent', 'CN9-SeasonReport', 'CN10-CatchUps', 'CN13-Handover'],
-  training: ['T3-TrainingTab', 'WK1-ThisWeek', 'SG1-Suggested', 'DF0-Library', 'GT1-Growth', 'CN4-SessionsLanded', 'CN8-WhatWorked'],
+  training: ['GS1-ProposedSession', 'GS3-RunSheet', 'GS4-ResizeAttendance', 'GS7-SeasonLookBack', 'WK1-ThisWeek', 'DF0-Library', 'GT1-Growth', 'CN4-SessionsLanded', 'CN8-WhatWorked', 'GS8-WelcomeCourse'],
   matchday: ['T2-TabletMatch', 'MS1-TeamSheet', 'OP1-Opposition', 'R1-MatchReview', 'XG1-ChancesGame', 'XG3-LadderPPI', 'YT1-YourTake', 'CN17-SetPieces'],
   clips:    ['C1-ClipsTab', 'C2-ClipsByGame', 'C3-ClipsByPlayer', 'CL1-Playlists', 'TC1-ToCheck', 'EDU1-Learn'],
   record:   ['REC1-RecordHub'],
@@ -48,7 +49,6 @@ import { demoToast } from './demoToast'
 import PlayerProfileScreen from './PlayerProfileScreen'
 import type { FormationPreset } from './formation/lineupInsights'
 import ThisWeekScreen        from './ThisWeekScreen'
-import SuggestionsScreen     from './SuggestionsScreen'
 import DrillLibraryScreen    from './DrillLibraryScreen'
 import GrowthLoadScreen      from './GrowthLoadScreen'
 import TeamSheetScreen       from './TeamSheetScreen'
@@ -58,12 +58,13 @@ import YourTakeBoards, { isYourTakeId } from './aftergame/YourTakeBoards'
 import TeamTalkScreen        from './TeamTalkScreen'
 import PitchSideScreen       from './PitchSideScreen'
 import AddGameScreen         from './AddGameScreen'
-import { FitnessTrainingTab, FitnessMatchTab } from './FitnessExtras'
+import { FitnessMatchTab } from './FitnessExtras'
 import CoCoachHomeScreen from './CoCoachHomeScreen'
 import RecordHub           from './RecordHub'
 import CaptureFlow, { isCaptureId, captureSubTab } from './capture/CaptureFlow'
 import ChancesFlow, { isChanceId } from './chances/ChancesFlow'
 import CnScreen from './connected/CnScreen'
+import SessionTab from './session/SessionTab'
 import DevicesTab from './settings/DevicesTab'
 import { useCapture, allowed } from './capture/captureStore'
 import { RecordSaved }     from './RecordHub'
@@ -95,7 +96,9 @@ const NAV_TABS: Array<{ id: NavKey; label: string; icon: string }> = [
 
 const HOME_TABS     = ['Overview', 'Messages', 'Calendar', 'Fixtures and results', 'Our style', "Where we're at", 'Team staff', 'Files']
 const SQUAD_TABS    = ['Players', 'Formation', 'Line-ups that worked', 'Development goals', 'Wellness', 'Availability', 'Consent and privacy', 'Season reports', 'Catch-ups', 'Handover']
-const TRAINING_TABS = ["Tonight's session", 'This week', 'Suggested', 'Drill library', 'Growth and load', 'What landed', 'Worked elsewhere']
+// The session proposed from the last game comes first; the old "Tonight's session" and "Suggested" tabs are folded into it.
+const TRAINING_TABS = ['Tuesday’s session', 'Run sheet', 'Who’s coming', 'Season so far', 'This week', 'Drill library', 'Growth and load', 'What landed', 'Worked elsewhere', 'Learn to coach']
+const GS_TAB: Record<string, number> = { 'GS1-ProposedSession': 0, 'GS2-DrillWhy': 0, 'GS5-CoachLevel': 0, 'GS6-NothingToGoOn': 0, 'GS3-RunSheet': 1, 'GS4-ResizeAttendance': 2, 'GS7-SeasonLookBack': 3, 'GS8-WelcomeCourse': 9, 'SG1-Suggested': 0, 'T3-TrainingTab': 0 }
 const MATCHDAY_TABS = ['Team talk', 'Line-up and minutes', 'Opposition', 'Review', 'Chances', 'Ladder', 'Your take', 'Set pieces']   // Chances and Ladder follow the club's rules for this age band
 const CLIPS_TABS    = ['By measure', 'By game', 'By player', 'Playlists', 'To check', 'Learn']
 
@@ -129,6 +132,7 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
   const [take, setTake] = useState<'yours' | 'theirs'>(initialScreen === 'CN2-SelfVsCoach' ? 'theirs' : 'yours')   // Your take: the coach's own ratings, or the players' beside them
   const cnEmpty = inSandbox && sbEmpty
   const [ytView, setYtView] = useState('YT1-YourTake')
+  const [gsView, setGsView] = useState(initialScreen && GS_TAB[initialScreen] === 0 && initialScreen.startsWith('GS') ? initialScreen : 'GS1-ProposedSession')   // which of the session screens the first Training tab shows
   const may = allowed(useCapture(), 'juniors')
   // Match day tabs this team may see: Chances (4) and Ladder (5) follow the club's rules. A new team has no ladder yet.
   const matchVisible = MATCHDAY_TABS.map((_, i) => i).filter(i => (i !== 4 || may.chances) && (i !== 5 || (may.ladder && !(inSandbox && sbEmpty))))
@@ -137,6 +141,7 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
   function goNav(n: NavKey) { setNav(n); setSub(null); setAskOpen(false); onNavChange?.(n); setMsgsView(null); setRecView(null); setFilView(null) }
 
   function handleNav(s: string) {
+    if (s in GS_TAB) { goNav('training'); setTrainingTab(GS_TAB[s]); if (GS_TAB[s] === 0) setGsView(s.startsWith('GS') ? s : 'GS1-ProposedSession'); return }   // the justified session lives under Training
     if (s === 'CN2-SelfVsCoach') { goNav('matchday'); setMatchTab(6); setTake('theirs'); return }
     if (isYourTakeId(s)) { goNav('matchday'); setMatchTab(6); setTake('yours'); setYtView(s); return }   // the four Your take boards stay inside Match day
     if (isChanceId(s)) { goNav('matchday'); openChance(s); return }   // chances and the ladder live under Match day
@@ -153,7 +158,7 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
     if (s === 'setstyle')  { goNav('home');     setHomeTab(4);  return }
     if (s === 'teamtalk')  { setSub('teamtalk');  return }
     if (s === 'pitchside') { setSub('pitchside'); return }
-    if (s === 'call')      { demoToast('Opening the booking calendar.'); return }
+    if (s === 'call')      { openThing('the booking calendar', 'coach'); return }
     const tab = coachDeepTab(s)   // one of this app's own tabs: switch to it
     if (tab) { goNav(tab.nav as NavKey); if (tab.nav === 'home') setHomeTab(tab.idx); else if (tab.nav === 'squad') setSquadTab(tab.idx); else if (tab.nav === 'training') setTrainingTab(tab.idx); else if (tab.nav === 'matchday') setMatchTab(tab.idx); else if (tab.nav === 'clips') setClipsTab(tab.idx); return }
     if (isScreenId(s))     { setLayer(s); return }
@@ -207,7 +212,7 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
     setSub(null)
     if (nav === 'home')     { setHomeTab(i); if (i !== 7) setFilView(null) }
     if (nav === 'squad')    setSquadTab(i)
-    if (nav === 'training') setTrainingTab(i)
+    if (nav === 'training') { setTrainingTab(i); if (i === 0) setGsView('GS1-ProposedSession') }
     if (nav === 'matchday') { setMatchTab(matchVisible[i]); if (matchVisible[i] === 6) { setYtView('YT1-YourTake'); setTake('yours') } }   // the Your take tab always opens on its first board
     if (nav === 'clips')    setClipsTab(i)
     if (nav === 'record')   { if (i === 2) handleNav('SET4-Devices'); else setRecView(i === 1 ? 'REC2-RecordSaved' : i === 3 ? 'QC10-HowWeMeasure' : null) }
@@ -269,13 +274,16 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
     else if (squadTab === 6) content = <ConsentScreen empty={sbEmpty} />
     else if (squadTab >= 7) content = <CnScreen empty={cnEmpty} id={['CN9-SeasonReport', 'CN10-CatchUps', 'CN13-Handover'][squadTab - 7]} onNav={handleNav} />
   } else if (nav === 'training') {
-    if (trainingTab === 0) content = <TrainingScreen role="head" onNav={handleNav} empty={sbEmptySession} />
-    else if (trainingTab === 1) content = <ThisWeekScreen empty={sbEmptySession} onDrillLibrary={() => setTrainingTab(3)} onTonightsPlan={() => setTrainingTab(0)} onGrowthLoad={() => setTrainingTab(4)} />
-    else if (trainingTab === 2) content = <SuggestionsScreen empty={sbEmptySession} onRecord={() => goNav('record')} />
-    else if (trainingTab === 3) content = <DrillLibraryScreen empty={sbEmptySession} />
-    else if (trainingTab === 4) content = <GrowthLoadScreen empty={sbEmptySession} />
-    else if (trainingTab === 5 || trainingTab === 6) content = <CnScreen empty={cnEmpty} id={trainingTab === 5 ? 'CN4-SessionsLanded' : 'CN8-WhatWorked'} onNav={handleNav} />
-    else if (trainingTab === 7) content = <FitnessTrainingTab empty={sbEmptySession} />
+    const gs = (id: string) => sbEmptySession ? <TrainingScreen role="head" onNav={handleNav} empty /> : <SessionTab id={id} team="u12" onNav={handleNav} onStart={() => handleNav('pitchside')} />   // an empty club keeps its set-up prompts
+    if (trainingTab === 0) content = gs(gsView)
+    else if (trainingTab === 1) content = gs('GS3-RunSheet')
+    else if (trainingTab === 2) content = gs('GS4-ResizeAttendance')
+    else if (trainingTab === 3) content = gs('GS7-SeasonLookBack')
+    else if (trainingTab === 4) content = <ThisWeekScreen empty={sbEmptySession} onDrillLibrary={() => setTrainingTab(5)} onTonightsPlan={() => setTrainingTab(0)} onGrowthLoad={() => setTrainingTab(6)} />
+    else if (trainingTab === 5) content = <DrillLibraryScreen empty={sbEmptySession} />
+    else if (trainingTab === 6) content = <GrowthLoadScreen empty={sbEmptySession} />
+    else if (trainingTab === 7 || trainingTab === 8) content = <CnScreen empty={cnEmpty} id={trainingTab === 7 ? 'CN4-SessionsLanded' : 'CN8-WhatWorked'} onNav={handleNav} />
+    else if (trainingTab === 9) content = gs('GS8-WelcomeCourse')
   } else if (nav === 'record') {
     if (recView && isCaptureId(recView)) content = <CaptureFlow step={recView} onStep={setRecView} onNav={handleNav} kitless={inSandbox && sbEmpty} team={inSandbox ? (store.teams[0]?.name ?? 'your team') : 'U12 Sam'} />
     else if (recView === 'SET4-Devices') content = <DevicesTab onToast={demoToast} inRecord />   // Devices stays inside Record: the tab is lit and the coach never leaves the app

@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { TEAMS, shapesFor, shapeByName as staticShape, remap, MORE_SHAPES, lineShape, type TeamCfg, type Shape, type Player } from './formationData'
 import { getInsights, keyPairs, bestLineup, forThisWeek, shapeLine, wordsFor, value, fmt, type FormationPreset, type Insights, type MetricKey } from './lineupInsights'
@@ -300,7 +301,7 @@ export default function FormationBuilder({ team = 'juniors', onNav, empty, prese
         <IconBtn label="Undo" onClick={undo} path="M3 7v6h6M3 13a9 9 0 103-7.7L3 8" />
         <IconBtn label="Share or print" onClick={() => setShareOpen(true)} path="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8M16 6l-4-4-4 4M12 2v13" />
         <button onClick={() => say("Saved as Saturday's line-up.")} style={btnOutline}>Save</button>
-        <button onClick={() => onNav ? onNav('T2-TabletMatch') : say('Opening Match day · Line-up and minutes.')} style={btnPrimary}>Use on the team sheet</button>
+        <button onClick={() => onNav ? onNav('T2-TabletMatch') : openThing('Match day · Line-up and minutes', 'coach')} style={btnPrimary}>Use on the team sheet</button>
       </div>
 
       {/* Shape tabs */}
@@ -335,7 +336,7 @@ export default function FormationBuilder({ team = 'juniors', onNav, empty, prese
             const both = onPitchIds.has(p.a) && onPitchIds.has(p.b)
             return <span key={p.a + p.b} title={both ? 'Both on the pitch' : 'Not both on the pitch'} style={{ flexShrink: 0, fontSize: 12, fontWeight: 700, padding: '4px 9px', borderRadius: 999, background: both ? '#fff' : SANDBG, border: `1px solid ${both ? LN : SAND}`, color: INK, whiteSpace: 'nowrap' }}>{a.first} + {b.first}: {both ? 'together' : 'split'}</span>
           })}
-          <button onClick={() => onNav ? onNav('SQ1-BestLineups') : say('Opening Line-ups that worked.')} style={{ flexShrink: 0, height: 44, padding: '0 6px', border: 'none', background: 'none', color: GREEN, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', textDecoration: 'underline' }}>See why</button>
+          <button onClick={() => onNav ? onNav('SQ1-BestLineups') : openThing('Line-ups that worked', 'coach')} style={{ flexShrink: 0, height: 44, padding: '0 6px', border: 'none', background: 'none', color: GREEN, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', textDecoration: 'underline' }}>See why</button>
         </div>
       )}
 
@@ -537,7 +538,7 @@ function GamePicker({ cfg, ins, onLoad, onClose, onNav, say }: { cfg: TeamCfg; i
         }) : <div style={{ padding: '10px 14px', borderTop: `1px solid ${LN}`, fontSize: 12, color: MUT }}>Nothing from recorded games for this team.</div>}
         <Row title="Last Saturday at Ironbark" sub="3-3-2 · won 3–1" tag="Used" onClick={() => { onClose(); say('Copied last Saturday’s line-up into this game.') }} />
         <div style={{ display: 'flex', gap: 8, padding: 12, borderTop: `1px solid ${LN}` }}>
-          <button onClick={() => { onClose(); onNav ? onNav('SQ1-BestLineups') : say('Opening Line-ups that worked.') }} style={{ ...btnOutline, flex: 1 }}>All that worked</button>
+          <button onClick={() => { onClose(); onNav ? onNav('SQ1-BestLineups') : openThing('Line-ups that worked', 'coach') }} style={{ ...btnOutline, flex: 1 }}>All that worked</button>
           <button onClick={() => { onClose(); say('Blank line-up — everyone on the bench.') }} style={{ ...btnPrimary, flex: 1 }}>New blank line-up</button>
         </div>
       </div>

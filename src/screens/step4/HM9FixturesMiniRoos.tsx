@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
@@ -84,7 +85,7 @@ export default function HM9FixturesMiniRoos(_: { onBack?: () => void }) {
                 </div>
               </div>
             ))}
-            <button onClick={() => st("Opening Saturday's turns.")} style={{ marginTop: 'auto', height: 44, borderRadius: 10, border: `1px solid ${G}`, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Open Saturday's turns</button>
+            <button onClick={() => openThing("Saturday's turns", 'mini')} style={{ marginTop: 'auto', height: 44, borderRadius: 10, border: `1px solid ${G}`, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Open Saturday's turns</button>
           </div>
         </div>
       </div>

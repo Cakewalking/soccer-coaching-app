@@ -1,3 +1,4 @@
+import { openThing } from './openThing'
 import { useDoneAll, markDone } from './doneStore'
 import { useState } from 'react'
 import { goApp } from './sandbox/sandboxNav'
@@ -237,7 +238,7 @@ function WhyView({ onBack }: { onBack: () => void }) {
           <div style={{ fontSize: 13, color: MUT }}>Still slow to win the ball back in games</div>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button onClick={() => showToast('Opening drill swap.')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Swap the drill</button>
+          <button onClick={() => openThing('drill swap', 'coach')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Swap the drill</button>
           <button onClick={() => { markDone('tuesday:Drill'); showToast("Drill added to Tuesday.") }} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>{tuesday['tuesday:Drill'] ? 'In Tuesday’s plan' : 'Add to Tuesday'}</button>
         </div>
       </div>
@@ -284,7 +285,7 @@ function WhyView({ onBack }: { onBack: () => void }) {
           <span style={{ fontSize: 11, fontWeight: 700, color: G2, background: PALE, padding: '2px 8px', borderRadius: 999 }}>Vests</span>
           Only 3 players sprint in the first 3 seconds after losing it
         </div>
-        <button onClick={() => showToast('Opening 6 clips.')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: PALE, fontSize: 13, fontWeight: 700, color: G, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 6 }}>
+        <button onClick={() => openThing('6 clips', 'coach')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: PALE, fontSize: 13, fontWeight: 700, color: G, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 6 }}>
           <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
           6 clips · Watch
         </button>
@@ -351,7 +352,7 @@ function AskView({ onBack }: { onBack: () => void }) {
           <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
           Ask
         </button>
-        <button onClick={() => showToast('Opening voice input.')} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 8 }}>
+        <button onClick={() => openThing('voice input', 'coach')} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 8 }}>
           <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3zM19 10v2a7 7 0 01-14 0v-2M12 19v4M8 23h8"/></svg>
           Mic
         </button>
@@ -400,7 +401,7 @@ function AskView({ onBack }: { onBack: () => void }) {
             <span key={t} style={{ fontSize: 12, fontWeight: 600, color: G, background: '#fff', padding: '3px 10px', borderRadius: 999, border: `1px solid ${G2}44` }}>{t}</span>
           ))}
         </div>
-        <button onClick={() => showToast('Opening 5 clips.')} style={{ marginTop: 10, height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 6 }}>
+        <button onClick={() => openThing('5 clips', 'coach')} style={{ marginTop: 10, height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 6 }}>
           <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
           Watch the 5 clips
         </button>

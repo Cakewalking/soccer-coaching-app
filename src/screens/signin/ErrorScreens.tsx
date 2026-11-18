@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', PALE = '#eef5f2'
@@ -120,7 +121,7 @@ export function ER1SomethingWrong() {
             </p>
             <div style={{ display: 'flex', gap: 10 }}>
               <button onClick={() => showToast('Trying again.')} style={BTN_GREEN}>Try again</button>
-              <button onClick={() => showToast('Opening feedback form.')} style={BTN_OUTLINE}>Tell us what happened</button>
+              <button onClick={() => openThing('feedback form', 'entry')} style={BTN_OUTLINE}>Tell us what happened</button>
             </div>
           </>
         }
@@ -292,7 +293,7 @@ export function ER4NotFound() {
               The link may be old, or the page has moved. Nothing is wrong with your team.
             </p>
             <div style={{ display: 'flex', gap: 10 }}>
-              <button onClick={() => showToast('Opening Home.')} style={BTN_GREEN}>Go to Home</button>
+              <button onClick={() => openThing('Home', 'entry')} style={BTN_GREEN}>Go to Home</button>
               <button onClick={() => showToast('Going back.')} style={BTN_OUTLINE}>Go back</button>
             </div>
           </>
@@ -316,6 +317,7 @@ export function ER4NotFound() {
 /* ER5 — No access (director trying to open welfare cases) */
 export function ER5NoAccess() {
   const [toast, setToast] = useState<string | null>(null)
+  void showToast   // kept for lines this screen may still need to say
   function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ minHeight: '100vh', background: '#f5f6f4', fontFamily: 'var(--font-sans)' }}>
@@ -364,8 +366,8 @@ export function ER5NoAccess() {
               Concerns are read by Helen Park and nobody else, so families and children can speak freely. As director you see how many are open and how long they take.
             </p>
             <div style={{ display: 'flex', gap: 10 }}>
-              <button onClick={() => showToast('Opening safeguarding overview.')} style={BTN_GREEN}>See the counts</button>
-              <button onClick={() => showToast('Opening message to Helen Park.')} style={BTN_OUTLINE}>Message Helen</button>
+              <button onClick={() => openThing('safeguarding overview', 'entry')} style={BTN_GREEN}>See the counts</button>
+              <button onClick={() => openThing('message to Helen Park', 'entry')} style={BTN_OUTLINE}>Message Helen</button>
             </div>
           </>
         }
@@ -404,7 +406,7 @@ export function ERp1SomethingWrong() {
     <div style={{ width: 390, minHeight: 844, background: '#f5f6f4', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       <div style={{ background: '#f5f6f4', height: 44, display: 'flex', alignItems: 'center', padding: '0 20px', justifyContent: 'space-between' }}>
         <span style={{ color: G, fontWeight: 800, fontSize: 15 }}>Clean Sheet</span>
-        <button onClick={() => showToast('Opening help.')} style={{ background: 'none', border: 'none', color: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Help</button>
+        <button onClick={() => openThing('help', 'entry')} style={{ background: 'none', border: 'none', color: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Help</button>
       </div>
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '32px 24px' }}>
         <div style={{ width: 68, height: 68, borderRadius: '50%', background: PALE, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}>
@@ -419,7 +421,7 @@ export function ERp1SomethingWrong() {
       </div>
       <div style={{ padding: '0 20px 32px', display: 'flex', flexDirection: 'column', gap: 10 }}>
         <button onClick={() => showToast('Trying again.')} style={{ width: '100%', height: 52, borderRadius: 14, border: 0, background: GD, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Try again</button>
-        <button onClick={() => showToast('Opening feedback form.')} style={{ width: '100%', height: 52, borderRadius: 14, border: '1.5px solid #d4d6d4', background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Tell us what happened</button>
+        <button onClick={() => openThing('feedback form', 'entry')} style={{ width: '100%', height: 52, borderRadius: 14, border: '1.5px solid #d4d6d4', background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Tell us what happened</button>
       </div>
       {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
@@ -429,12 +431,13 @@ export function ERp1SomethingWrong() {
 /* ERp2 — Not found / not yours (phone) */
 export function ERp2NotFound() {
   const [toast, setToast] = useState<string | null>(null)
+  void showToast   // kept for lines this screen may still need to say
   function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 390, minHeight: 844, background: '#f5f6f4', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       <div style={{ background: '#f5f6f4', height: 44, display: 'flex', alignItems: 'center', padding: '0 20px', justifyContent: 'space-between' }}>
         <span style={{ color: G, fontWeight: 800, fontSize: 15 }}>Clean Sheet</span>
-        <button onClick={() => showToast('Opening help.')} style={{ background: 'none', border: 'none', color: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Help</button>
+        <button onClick={() => openThing('help', 'entry')} style={{ background: 'none', border: 'none', color: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Help</button>
       </div>
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '32px 24px' }}>
         <div style={{ width: 68, height: 68, borderRadius: '50%', background: PALE, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}>
@@ -448,8 +451,8 @@ export function ERp2NotFound() {
         </p>
       </div>
       <div style={{ padding: '0 20px 32px', display: 'flex', flexDirection: 'column', gap: 10 }}>
-        <button onClick={() => showToast('Opening Home.')} style={{ width: '100%', height: 52, borderRadius: 14, border: 0, background: GD, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Go to Home</button>
-        <button onClick={() => showToast('Opening sign-in.')} style={{ width: '100%', height: 52, borderRadius: 14, border: '1.5px solid #d4d6d4', background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Sign in as someone else</button>
+        <button onClick={() => openThing('Home', 'entry')} style={{ width: '100%', height: 52, borderRadius: 14, border: 0, background: GD, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Go to Home</button>
+        <button onClick={() => openThing('sign-in', 'entry')} style={{ width: '100%', height: 52, borderRadius: 14, border: '1.5px solid #d4d6d4', background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Sign in as someone else</button>
       </div>
       {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>

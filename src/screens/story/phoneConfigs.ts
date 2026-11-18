@@ -26,6 +26,7 @@ export const STO17: PhoneCfg = {
     { kind: 'list', label: 'THE TEAM, NOT ONE CHILD', title: 'How the team played', text: 'Saturday’s chances for Mia’s team, in plain words.', action: 'See how they played', actionTarget: 'XGp1-ChancesParentMia', familiesBand: 'juniors' },
     { kind: 'list', label: 'AFTER THE GAME', title: 'Rate Saturday’s game', text: '1 to 5 for any player. Closes Tuesday.', action: 'Rate the game', actionTarget: 'YTp1-ParentVotes' },
     { kind: 'list', label: 'MOVING CLUBS OR GOING TO A TRIAL?', title: 'Mia’s trial pack is ready', text: 'A highlights reel and her season, made for you. Share it in two taps.', action: 'Open the trial pack', actionTarget: 'TPp1-TrialPackParent' },
+    { kind: 'list', label: 'FROM SAM THIS WEEK', title: 'Football at home', text: 'Two short films to try before Tuesday. A ball and a wall is enough.', action: 'See the films', actionTarget: 'GSp9m-HomeLibraryMia' },
     { kind: 'list', label: 'HERS TO KEEP', title: 'Mia’s passport', text: 'Three seasons of her football in one file you own.', action: 'Open the passport', actionTarget: 'CNp14-PlayerPassport' },
     { kind: 'list', label: 'ONCE A TERM · NO NAMES', title: 'Two quick questions', text: 'How is the season going for your family?', action: 'Answer', actionTarget: 'CNp12-PulseSurvey' },
     { kind: 'ready', when: 'THIS WEEK', title: 'Two things to be at', text: 'Thu 5:45 pm training. Sat 9:30 am at home to Harbour Rovers: you said yes.', btns: [{ label: 'Bao: answer for Saturday', target: 'AV2-ParentAvailability' }] },

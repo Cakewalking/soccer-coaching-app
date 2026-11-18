@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { playClips } from '../clips/clipSheet'
 import { useState } from 'react'
 import type { Drill } from './data'
@@ -173,7 +174,7 @@ export default function DrillLibraryMain({ filterTab, setFilterTab, agePhase, se
               {f.label}
             </button>
           ))}
-          <button onClick={() => st('Opening all suggestions.')} style={{ marginLeft:'auto', height: 44, padding:'0 12px', borderRadius:999, border:'1px solid rgba(255,255,255,0.25)', background:'transparent', color:'rgba(255,255,255,0.7)', fontSize:12, fontWeight:500, cursor:'pointer', fontFamily:'inherit', whiteSpace:'nowrap', flexShrink:0, display:'flex', alignItems:'center', gap:4 }}>
+          <button onClick={() => openThing('all suggestions', 'coach')} style={{ marginLeft:'auto', height: 44, padding:'0 12px', borderRadius:999, border:'1px solid rgba(255,255,255,0.25)', background:'transparent', color:'rgba(255,255,255,0.7)', fontSize:12, fontWeight:500, cursor:'pointer', fontFamily:'inherit', whiteSpace:'nowrap', flexShrink:0, display:'flex', alignItems:'center', gap:4 }}>
             All suggestions
             <svg width={11} height={11} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.2} strokeLinecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </button>

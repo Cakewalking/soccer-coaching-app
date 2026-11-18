@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 
 interface Props { onBack: () => void }
@@ -54,7 +55,7 @@ export default function GameDayPapersScreen({ onBack }: Props) {
               <span key={i} style={{ display: 'block', height: 8, borderRadius: 4, background: '#e9eae8', width: `${w}%` }} />
             ))}
           </div>
-          <button onClick={() => showToast('Opening full-screen letter for the referee.')} style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', height: 44, padding: '0 16px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', color: '#10211f', fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Show the referee</button>
+          <button onClick={() => openThing('full-screen letter for the referee', 'phone')} style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', height: 44, padding: '0 16px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', color: '#10211f', fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Show the referee</button>
         </div>
 
         <span style={{ fontSize: 13, lineHeight: '18px', color: '#4a5a57', padding: '0 2px' }}>FV asks for the letter at every game. It stays on this phone, even with no signal.</span>

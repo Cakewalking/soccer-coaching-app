@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { Glyph, glyph } from '../Glyph'
 import { useState } from 'react'
 
@@ -12,7 +13,7 @@ export default function PM5ParentAttach(_: { onBack?: () => void }) {
   const waveHeights = [14, 20, 28, 18, 32, 24, 16, 30, 22, 26]
 
   const attachOptions = [
-    { icon: glyph('image'), label: 'Photo', action: () => { setSheet(null); t('Opening photo consent...') } },
+    { icon: glyph('image'), label: 'Photo', action: () => { setSheet(null); openThing('photo consent', 'phone') } },
     { icon: glyph('video'), label: 'Video', action: () => { setSheet(null); t('Pick from camera roll or record') } },
     { icon: glyph('mic'), label: 'Voice note', action: () => { setSheet(null); t('Recording...') } },
     { icon: glyph('place'), label: 'Place', action: () => { setSheet(null); t('Share your location') } },

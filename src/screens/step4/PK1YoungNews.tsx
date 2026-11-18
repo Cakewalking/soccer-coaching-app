@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { glyph } from '../Glyph'
 import { useState } from 'react'
 
@@ -5,6 +6,7 @@ const GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', G = '#2f
 
 export default function PK1YoungNews(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string|null>(null)
+  void st   // kept for lines this screen may still need to say
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 390, minHeight: 844, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
@@ -36,7 +38,7 @@ export default function PK1YoungNews(_: { onBack?: () => void }) {
           </div>
         ))}
         <div style={{ background: '#fffbf0', border: '1px solid #f0e0a0', borderRadius: 12, padding: '10px 14px', fontSize: 13, color: '#7a6020' }}>No chat until you're 15. You get news from your coach here. Mum or Dad writes for you.</div>
-        <button style={{ height: 44, borderRadius: 12, background: '#fff', border: `1.5px solid ${LN}`, color: INK, fontSize: 14, fontWeight: 600, cursor: 'pointer' }} onClick={() => st('Opening welfare report.')}>Something not right? You can tell someone</button>
+        <button style={{ height: 44, borderRadius: 12, background: '#fff', border: `1.5px solid ${LN}`, color: INK, fontSize: 14, fontWeight: 600, cursor: 'pointer' }} onClick={() => openThing('welfare report', 'phone')}>Something not right? You can tell someone</button>
       </div>
       <div style={{ display: 'flex', borderTop: `1px solid ${LN}`, background: '#fff' }}>
         {[{ label: 'Home', icon: 'M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z' }, { label: 'Clips', icon: 'M23 7l-7 5 7 5V7zM1 5h15v14H1z' }, { label: 'Goals', icon: 'M18 20V10M12 20V4M6 20v-6' }, { label: 'Me', icon: 'M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8z' }].map((item, i) => (

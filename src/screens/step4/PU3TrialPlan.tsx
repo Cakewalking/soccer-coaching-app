@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 import { toolTarget } from '../toolTargets'
 import { OpeningPanel } from './directorParts'
@@ -40,7 +41,7 @@ export default function PU3TrialPlan({ onNav }: { onNav?: (s: string) => void })
         sentence="Week 3 of 4, and Leo has said “hard but fun” two weeks running. The review is on Thursday 18 June."
         support="He trains up on Tuesdays and still plays with his own team. Going back is part of the plan, not a failure."
         figures={[{ num: 'Week 3', label: 'of 4', proof: true }, { num: 'Up 20%', label: 'total load, inside his cap' }]}
-        buttons={[{ label: 'Do the review', main: true, onClick: () => onNav?.('PU6-Review') }, { label: 'Message coaches', onClick: () => tool('Chat with Chris and Josh opens.') }]}
+        buttons={[{ label: 'Do the review', main: true, onClick: () => onNav?.('PU6-Review') }, { label: 'Message coaches', onClick: () => openThing('Chat with Chris and Josh', 'coach') }]}
       />
       <div style={{ flex: 1, display: 'flex', overflow: 'auto' }}>
         <div style={{ flex: 1, padding: '16px 20px 20px', display: 'flex', flexDirection: 'column', gap: 16 }}>

@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 const DISPS = [
@@ -36,7 +37,7 @@ export default function FD3Dispensations(_: { onBack?: () => void }) {
               <div style={{ fontSize: 20, fontWeight: 800, letterSpacing: '-0.02em', color: INK }}>Dispensations</div>
               <div style={{ fontSize: 13, color: MUT }}>4 this season · 1 awaiting FV approval</div>
             </div>
-            <button onClick={() => t('Opening dispensation request form…')} style={{ height: 44, padding: '0 16px', borderRadius: 9, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>+ New request</button>
+            <button onClick={() => openThing('dispensation request form', 'club')} style={{ height: 44, padding: '0 16px', borderRadius: 9, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>+ New request</button>
           </div>
           {DISPS.map(d => (
             <div key={d.player} style={{ background: '#fff', border: `1px solid ${d.status === 'Waiting FV' ? '#ffe0b2' : LN}`, borderRadius: 14, padding: '14px 18px', marginBottom: 10 }}>

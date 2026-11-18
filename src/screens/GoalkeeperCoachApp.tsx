@@ -1,3 +1,4 @@
+import { openThing } from './openThing'
 import { useState } from 'react'
 import LearnTab from './learn/LearnTab'
 import RecordHub           from './RecordHub'
@@ -151,7 +152,7 @@ function TrainingSession() {
             <p style={{ margin: 0, fontSize: 14, color: '#4a5a57' }}>Tue 9 Jun · 6:00 to 6:45 pm · 11 of 14 coming</p>
           </div>
           <div style={{ display: 'flex', gap: 8 }}>
-            <button onClick={() => showToast('Opening the drill swap screen.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Swap a drill</button>
+            <button onClick={() => openThing('the drill swap screen', 'coach')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Swap a drill</button>
             <button onClick={() => showToast('Session plan sent to all 11 keepers.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Send the plan</button>
           </div>
         </div>
@@ -426,7 +427,7 @@ export default function GoalkeeperCoachApp({ empty = false, initialScreen, onNav
               <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 16, padding: 24 }}>
                 <div style={{ fontSize: 18, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>Pick a night for keepers</div>
                 <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.6, marginBottom: 16 }}>Set a weekly keeper session and Clean Sheet drafts it from that week's keeper clips.</div>
-                <button onClick={() => showToast('Opening the keeper night scheduler.')} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Set a keeper night</button>
+                <button onClick={() => openThing('the keeper night scheduler', 'coach')} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Set a keeper night</button>
               </div>
             </div>
           </div>

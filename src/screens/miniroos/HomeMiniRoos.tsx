@@ -1,3 +1,4 @@
+import { sayOrOpen } from '../openThing'
 import { useState } from 'react'
 import { AskLine } from '../HomeScreen'
 
@@ -54,7 +55,7 @@ function HomeMiniRoosEmpty() {
           <div key={step} style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '14px 16px', borderRadius: 12, background: '#f7f9f7', border: '1px solid #e9eae8' }}>
             <span style={{ flexShrink: 0, width: 32, height: 32, borderRadius: '999px', background: '#eef5f2', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700, color: '#2f6252' }}>{step}</span>
             <span style={{ flexGrow: 1, fontSize: 16, fontWeight: 600, color: '#10211f' }}>{label}</span>
-            <button onClick={() => showToast(STEP_TOASTS[i])} style={{ height: 44, padding: '0 16px', borderRadius: 8, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer', flexShrink: 0 }}>{cta}</button>
+            <button onClick={() => sayOrOpen(STEP_TOASTS[i], 'mini', showToast)} style={{ height: 44, padding: '0 16px', borderRadius: 8, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer', flexShrink: 0 }}>{cta}</button>
           </div>
         ))}
       </div>

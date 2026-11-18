@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 
 const GD = '#1f4a3e', G = '#2f6252', INK = '#10211f', MUT = '#4a5a57'
@@ -75,7 +76,7 @@ export default function JoinFlow({ initialStep = 'landing' }: { initialStep?: Jo
             Players under 15 join through a parent. Coaches never message a player without their parent copied in.
           </div>
 
-          <button onClick={() => showToast('Opening staff invite.')} style={{ border: 0, background: 'none', cursor: 'pointer', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: 'rgba(255,255,255,0.55)', padding: 0 }}>
+          <button onClick={() => openThing('staff invite', 'entry')} style={{ border: 0, background: 'none', cursor: 'pointer', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: 'rgba(255,255,255,0.55)', padding: 0 }}>
             Invited as a coach, team manager or fitness coach? Open your staff invite
           </button>
         </div>
@@ -157,7 +158,7 @@ export default function JoinFlow({ initialStep = 'landing' }: { initialStep?: Jo
                 <button key={rel} onClick={() => setSelectedRel(rel)} style={{ marginRight: 8, height: 44, padding: '0 16px', borderRadius: 20, border: rel === selectedRel ? '2px solid #2f6252' : '1.5px solid #d4d7d4', background: rel === selectedRel ? '#eef5f2' : '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: rel === selectedRel ? 700 : 400, color: rel === selectedRel ? G : INK, cursor: 'pointer' }}>{rel}</button>
               ))}
             </div>
-            <button onClick={() => showToast('Opening child form.')} style={{ display: 'flex', alignItems: 'center', gap: 6, border: 0, background: 'none', cursor: 'pointer', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, padding: 0 }}>
+            <button onClick={() => openThing('child form', 'entry')} style={{ display: 'flex', alignItems: 'center', gap: 6, border: 0, background: 'none', cursor: 'pointer', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, padding: 0 }}>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
               + Another child in this club
             </button>
@@ -350,7 +351,7 @@ export default function JoinFlow({ initialStep = 'landing' }: { initialStep?: Jo
           <button onClick={() => setReminders(r => !r)} style={{ marginTop: 20, width: '100%', height: 44, borderRadius: '999px', border: `1.5px solid ${reminders ? '#2f6252' : '#d4d7d4'}`, background: reminders ? '#eef5f2' : '#fff', color: reminders ? G : INK, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', marginBottom: 10 }}>
             {reminders ? 'Game-day reminders on ✓' : 'Turn on game-day reminders'}
           </button>
-          <button onClick={() => showToast("Opening Mia's week.")} style={{ width: '100%', height: 52, borderRadius: '999px', border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 16, fontWeight: 700, cursor: 'pointer' }}>
+          <button onClick={() => openThing("Mia's week", 'entry')} style={{ width: '100%', height: 52, borderRadius: '999px', border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 16, fontWeight: 700, cursor: 'pointer' }}>
             Go to Mia's week
           </button>
           <div style={{ fontSize: 12, color: MUT, textAlign: 'center', marginTop: 10, lineHeight: 1.5 }}>

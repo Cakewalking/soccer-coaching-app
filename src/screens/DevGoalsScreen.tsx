@@ -1,3 +1,4 @@
+import { openThing } from './openThing'
 import { useState } from 'react'
 import { goSetup, goApp } from './sandbox/sandboxNav'
 import { YOUTH_SQUAD_PLAYERS, SENIORS_SQUAD_PLAYERS, type SquadPlayer } from '../data'
@@ -159,6 +160,7 @@ function GameTick({ v }: { v: boolean }) {
 
 export default function DevGoalsScreen({ empty, teamType = 'juniors' }: { empty?: boolean; teamType?: DevGoalsTeam }) {
   const [toast, setToast] = useState<string|null>(null)
+  void showToast   // kept for lines this screen may still need to say
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   if (empty) return <DevGoalsEmpty />
   const td = devGoalsData(teamType)
@@ -257,7 +259,7 @@ export default function DevGoalsScreen({ empty, teamType = 'juniors' }: { empty?
         </div>
 
         <div style={{ marginTop: 'auto' }}>
-          <button onClick={() => showToast(`Opening ${SEL_PLAYER.name}'s player profile.`)} style={{ width: '100%', height: 44, borderRadius: 12, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>
+          <button onClick={() => openThing(`${SEL_PLAYER.name}'s player profile`, 'coach')} style={{ width: '100%', height: 44, borderRadius: 12, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>
             Open {td.selFirst}'s profile
           </button>
           <div style={{ marginTop: 8, fontSize: 12, color: '#4a5a57', lineHeight: '17px', textAlign: 'center' }}>

@@ -1,3 +1,4 @@
+import { openThing } from './openThing'
 import { useState } from 'react'
 
 interface Props { onClose: () => void }
@@ -87,7 +88,7 @@ export default function MetricDetailScreen({ onClose }: Props) {
               <div style={{ flexGrow: 1, fontSize: 13, color: '#10211f' }}>
                 <strong>Min 15 · 12 seconds</strong> — one player pressed, the rest watched
               </div>
-              <button onClick={() => st('Opening all 4 clips.')} style={{ fontSize: 13, fontWeight: 600, color: '#2f6252', border: 0, background: 'transparent', cursor: 'pointer', fontFamily: 'inherit' }}>All 4 clips</button>
+              <button onClick={() => openThing('all 4 clips', 'coach')} style={{ fontSize: 13, fontWeight: 600, color: '#2f6252', border: 0, background: 'transparent', cursor: 'pointer', fontFamily: 'inherit' }}>All 4 clips</button>
             </div>
           </div>
         </div>
@@ -128,7 +129,7 @@ export default function MetricDetailScreen({ onClose }: Props) {
             <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: '18px', marginTop: 4 }}>From 57 of 60 minutes of clear camera view.</div>
           </div>
 
-          <button onClick={() => st('Opening report.')} style={{ width: '100%', height: 44, borderRadius: 10, border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>
+          <button onClick={() => openThing('report', 'coach')} style={{ width: '100%', height: 44, borderRadius: 10, border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>
             Something look wrong? Report it
           </button>
         </div>

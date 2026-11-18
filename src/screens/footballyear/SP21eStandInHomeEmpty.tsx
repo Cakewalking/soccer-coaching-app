@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 const G='#2f6252',GD='#1f4a3e',INK='#10211f',MUT='#4a5a57',LN='#e8edeb',PALE='#eef5f2'
 export default function SP21eStandInHomeEmpty({onBack}:{onBack?:()=>void}){
@@ -45,7 +46,7 @@ export default function SP21eStandInHomeEmpty({onBack}:{onBack?:()=>void}){
         </div>
         <div style={{marginTop:16}}>
           <div style={{fontSize:13,color:MUT}}>Questions? Message Sam directly.</div>
-          <button onClick={()=>t('Opening message to Sam')} style={{marginTop:8,height: 44,padding:'0 16px',borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:GD,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>Message Sam</button>
+          <button onClick={()=>openThing('message to Sam', 'coach')} style={{marginTop:8,height: 44,padding:'0 16px',borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:GD,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>Message Sam</button>
         </div>
       </div>
       {toast&&<div style={{position:'fixed',bottom:24,left:'50%',transform:'translateX(-50%)',background:INK,color:'#fff',padding:'10px 20px',borderRadius:12,fontSize:14,fontWeight:600,zIndex:1000,whiteSpace:'nowrap' as const}}>{toast}</div>}

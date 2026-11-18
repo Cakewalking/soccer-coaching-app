@@ -1,5 +1,5 @@
+import { openThing, sayOrOpen } from './openThing'
 import { useState } from 'react'
-import { demoToast } from './demoToast'
 
 const G    = '#2f6252'
 const G2   = '#40826d'
@@ -38,15 +38,15 @@ const OWNER_SAYS: Record<string, string> = {
   'Add a program': 'A new program opens: name, days, coach and price.', '+ New program': 'A new program opens: name, days, coach and price.',
   'Copy to Term 3': 'Term 2 programs copied to Term 3. Check the dates and prices before you publish.',
   'Offer': 'Offer sent to the family. They have 48 hours to take the place.',
-  'Plan a clinic': 'A new holiday clinic opens: dates, ages and places.',
-  'Copy the booking link': 'Booking link copied.', 'Message booked families': 'A message to every booked family opens.',
+  'Plan a clinic': 'Opening new holiday clinic.',
+  'Copy the booking link': 'Booking link copied.', 'Message booked families': 'Opening message to every booked family.',
   'Import a spreadsheet': 'Pick a spreadsheet of players. The columns are matched for you.',
-  'Export': 'The player list is saved as a spreadsheet.', 'Message all families': 'A message to all families opens.',
+  'Export': 'The player list is saved as a spreadsheet.', 'Message all families': 'Opening message to all families.',
   'Invite a coach': 'An invite opens: name, email and their children check number.', '+ Invite a coach': 'An invite opens: name, email and their children check number.',
 }
 function Btn({ label, primary, small, onClick }: { label: string; primary?: boolean; small?: boolean; onClick?: () => void }) {
   return (
-    <button onClick={onClick ?? (() => demoToast(OWNER_SAYS[label] ?? `${label}: done.`))} style={{ height: 44, padding: `0 ${small ? 12 : 18}px`, borderRadius: 999, border: primary ? 'none' : `1px solid ${LN}`, background: primary ? G : '#fff', color: primary ? '#fff' : MUT, fontSize: small ? 12 : 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>{label}</button>
+    <button onClick={onClick ?? (() => sayOrOpen(OWNER_SAYS[label] ?? `${label}: done.`, 'academy'))} style={{ height: 44, padding: `0 ${small ? 12 : 18}px`, borderRadius: 999, border: primary ? 'none' : `1px solid ${LN}`, background: primary ? G : '#fff', color: primary ? '#fff' : MUT, fontSize: small ? 12 : 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>{label}</button>
   )
 }
 
@@ -112,7 +112,7 @@ function Overview({ empty, onBroadcast, onTrials, onFees, onReports, onFootballY
   return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '20px 28px 32px', display: 'flex', flexDirection: 'column', gap: 16 }}>
       <PageHead title="Hi Dani" sub="Thursday 4 June · Term 2, week 7 of 10"
-        right={<><Btn label="Message families" small onClick={onBroadcast}/><Btn label="Share the trial link" small onClick={() => showToast('Trial link copied. Anyone with it can book a free trial.')}/><Btn label="+ New program" small primary onClick={() => showToast('Opening the new program form.')}/></>}/>
+        right={<><Btn label="Message families" small onClick={onBroadcast}/><Btn label="Share the trial link" small onClick={() => showToast('Trial link copied. Anyone with it can book a free trial.')}/><Btn label="+ New program" small primary onClick={() => openThing('the new program form', 'academy')}/></>}/>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10 }}>
         {stats.map(s => <Stat key={s.label} {...s}/>)}
@@ -227,7 +227,7 @@ function ReportsView({ empty }: { empty: boolean }) {
       <Card><div style={{ padding: 20, textAlign: 'center' }}>
         <div style={{ fontSize: 16, fontWeight: 700, color: INK, marginBottom: 6 }}>Reports build up from session notes</div>
         <div style={{ fontSize: 13, color: MUT, lineHeight: 1.5, marginBottom: 14 }}>After each session the coach taps two things per player. By week 8 there's enough for a first draft.</div>
-        <Btn label="See an example report" primary onClick={() => showToast('Opening example report.')}/>
+        <Btn label="See an example report" primary onClick={() => openThing('example report', 'academy')}/>
       </div></Card>
       {[{ n: '1', t: 'Coaches note', d: 'Two taps per player, per session' }, { n: '2', t: 'Clean Sheet drafts', d: 'From the notes, in week 8' }, { n: '3', t: 'You approve', d: 'Then it goes to the family' }].map(s => (
         <div key={s.n} style={{ display: 'flex', gap: 12 }}>
@@ -247,7 +247,7 @@ function ReportsView({ empty }: { empty: boolean }) {
   return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '20px 28px 32px', display: 'flex', flexDirection: 'column', gap: 16 }}>
       <PageHead title="Term reports" sub="Term 2 · due to families in week 9"
-        right={<><Btn label="See a finished report" small onClick={() => showToast('Opening report.')}/><Btn label="Approve 5 and send" small primary onClick={() => showToast('5 reports approved and sent.')}/></>}/>
+        right={<><Btn label="See a finished report" small onClick={() => openThing('report', 'academy')}/><Btn label="Approve 5 and send" small primary onClick={() => showToast('5 reports approved and sent.')}/></>}/>
 
       <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: MUT }}>By program · 12 of 80 drafted</div>
       <Card>
@@ -260,7 +260,7 @@ function ReportsView({ empty }: { empty: boolean }) {
                 <div style={{ height: 4, background: G, borderRadius: 2, width: `${g.drafted / g.total * 100}%` }}/>
               </div>
             </div>
-            <Btn label="Open" small primary onClick={() => showToast(`Opening ${g.label} reports.`)}/>
+            <Btn label="Open" small primary onClick={() => openThing(`${g.label} reports`, 'academy')}/>
           </div>
         ))}
       </Card>
@@ -284,12 +284,13 @@ function ReportsView({ empty }: { empty: boolean }) {
 
 function SafetyView({ empty }: { empty: boolean }) {
   const [toast, setToast] = useState<string | null>(null)
+  void showToast   // kept for lines this screen may still need to say
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   if (empty) return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '20px 28px 32px', display: 'flex', flexDirection: 'column', gap: 16 }}>
       <PageHead title="Child safety" sub="Nothing set up yet · six things, about ten minutes"/>
       <div style={{ background: PALE, borderRadius: 14, padding: '14px 16px', fontSize: 13, color: G, lineHeight: 1.5 }}>Three are rules Clean Sheet keeps for you. Three need you: your children check, a person for concerns and your policy.</div>
-      <Btn label="Start" primary onClick={() => showToast('Opening child safety setup.')}/>
+      <Btn label="Start" primary onClick={() => openThing('child safety setup', 'academy')}/>
       {[{ n: '1', t: 'One-on-ones in open view', d: 'The parent is told where' }, { n: '2', t: 'No messaging a child alone', d: 'A parent is always copied in' }, { n: '3', t: 'Filming needs a yes', d: 'From the parent, at any age' }].map(s => (
         <div key={s.n} style={{ display: 'flex', gap: 12 }}>
           <div style={{ width: 26, height: 26, borderRadius: '50%', background: G, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0 }}>✓</div>
@@ -325,7 +326,7 @@ function SafetyView({ empty }: { empty: boolean }) {
             </div>
             <div style={{ display: 'flex', gap: 6, flexShrink: 0 }}>
               <Badge label={c.ok ? (c.label.includes('view') || c.label.includes('alone') ? 'Rule' : 'Rule') : 'Needs you'} color={c.ok ? G : ROSE} bg={c.ok ? PALE : '#fdf4f4'}/>
-              {!c.ok && <Btn label="Open" small onClick={() => showToast(`Opening ${c.label.toLowerCase()}.`)}/>}
+              {!c.ok && <Btn label="Open" small onClick={() => openThing(`${c.label.toLowerCase()}`, 'academy')}/>}
             </div>
           </div>
         ))}
@@ -356,7 +357,7 @@ function PartnerClubView({ empty }: { empty: boolean }) {
       <Card><div style={{ padding: 20, textAlign: 'center' }}>
         <div style={{ fontSize: 16, fontWeight: 700, color: INK, marginBottom: 6 }}>Do your players play games through a club?</div>
         <div style={{ fontSize: 13, color: MUT, lineHeight: 1.5, marginBottom: 14 }}>Link the club and your game team gets fixtures, team sheets and match reviews, with no double entry.</div>
-        <div style={{ display: 'flex', gap: 8, justifyContent: 'center' }}><Btn label="Invite a club to link" primary onClick={() => showToast('Opening club invite.')}/><Btn label="We only train" onClick={() => showToast('Noted — training only setup.')}/></div>
+        <div style={{ display: 'flex', gap: 8, justifyContent: 'center' }}><Btn label="Invite a club to link" primary onClick={() => openThing('club invite', 'academy')}/><Btn label="We only train" onClick={() => showToast('Noted — training only setup.')}/></div>
       </div></Card>
       {[{ n: '1', t: 'Game day in the same app', d: 'Fixtures, team sheet, live game' }, { n: '2', t: 'One bill for families', d: 'Club registration and your fee' }, { n: '3', t: 'The whole week', d: 'Training and games, without asking parents' }].map(s => (
         <div key={s.n} style={{ display: 'flex', gap: 12 }}>
@@ -378,7 +379,7 @@ function PartnerClubView({ empty }: { empty: boolean }) {
   return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '20px 28px 32px', display: 'flex', flexDirection: 'column', gap: 16 }}>
       <PageHead title="Partner club" sub="Your game team plays as part of Wattle Creek FC"
-        right={<><Btn label="Message the club" small onClick={() => showToast('Opening message to club.')}/><Btn label="+ Add a game team" small primary onClick={() => showToast('Opening add game team form.')}/></>}/>
+        right={<><Btn label="Message the club" small onClick={() => openThing('message to club', 'academy')}/><Btn label="+ Add a game team" small primary onClick={() => openThing('add game team form', 'academy')}/></>}/>
 
       <Card>
         <div style={{ padding: '10px 16px', borderBottom: `1px solid ${LN}`, fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: MUT }}>How the partnership runs</div>
@@ -389,7 +390,7 @@ function PartnerClubView({ empty }: { empty: boolean }) {
               <div style={{ fontSize: 13, fontWeight: 700, color: INK }}>{h.t}</div>
               <div style={{ fontSize: 12, color: MUT }}>{h.v}</div>
             </div>
-            <button onClick={() => showToast(`${h.cta} opens.`)} style={{ fontSize: 12, fontWeight: 700, color: G2, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>{h.cta}</button>
+            <button onClick={() => openThing(`${h.cta}`, 'academy')} style={{ fontSize: 12, fontWeight: 700, color: G2, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 }}>{h.cta}</button>
           </div>
         ))}
         <div style={{ padding: '10px 16px', borderTop: `1px solid ${LN}`, fontSize: 12, color: MUT, lineHeight: 1.5 }}>You train the players and run the team. The club holds the registrations and the place in the league, so its rules apply on game day.</div>
@@ -402,7 +403,7 @@ function PartnerClubView({ empty }: { empty: boolean }) {
             <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>U13 Timber</div>
             <div style={{ fontSize: 12, color: MUT }}>16 players from Advanced · Saturday league, 11 a side · entered by Wattle Creek FC</div>
           </div>
-          <Btn label="See Saturday" small onClick={() => showToast('Opening Saturday game day.')}/>
+          <Btn label="See Saturday" small onClick={() => openThing('Saturday game day', 'academy')}/>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
           <div style={{ background: PALE, borderRadius: 10, padding: '10px 12px' }}>
@@ -491,6 +492,7 @@ function ProgramsView({ empty }: { empty: boolean }) {
 
 function ClinicView({ empty }: { empty: boolean }) {
   const [toast, setToast] = useState<string | null>(null)
+  void showToast   // kept for lines this screen may still need to say
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   if (empty) return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '20px 28px 32px', display: 'flex', flexDirection: 'column', gap: 16 }}>
@@ -547,7 +549,7 @@ function ClinicView({ empty }: { empty: boolean }) {
       </Card>
 
       <div style={{ fontSize: 12, color: MUT, lineHeight: 1.5 }}>Clinic families pay when they book. A place can be cancelled for a full refund up to 7 days before.</div>
-      <button onClick={() => showToast('Opening the trial invite form.')} style={{ alignSelf: 'flex-start', fontSize: 13, fontWeight: 700, color: G2, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>Invite new families to a trial →</button>
+      <button onClick={() => openThing('the trial invite form', 'academy')} style={{ alignSelf: 'flex-start', fontSize: 13, fontWeight: 700, color: G2, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>Invite new families to a trial →</button>
       {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
   )
@@ -619,6 +621,7 @@ function PlayersView({ empty }: { empty: boolean }) {
 
 function CoachesView({ empty }: { empty: boolean }) {
   const [toast, setToast] = useState<string | null>(null)
+  void showToast   // kept for lines this screen may still need to say
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   if (empty) return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '20px 28px 32px', display: 'flex', flexDirection: 'column', gap: 16 }}>
@@ -684,7 +687,7 @@ function CoachesView({ empty }: { empty: boolean }) {
         <div style={{ padding: '10px 16px', borderTop: `1px solid ${LN}`, fontSize: 12, color: MUT, lineHeight: 1.5 }}>Each note is two taps per player. At the end of term they become the progress report, so nobody writes 80 reports from memory.</div>
       </Card>
 
-      <button onClick={() => showToast('Opening term reports.')} style={{ alignSelf: 'flex-start', fontSize: 13, fontWeight: 700, color: G2, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>See term reports →</button>
+      <button onClick={() => openThing('term reports', 'academy')} style={{ alignSelf: 'flex-start', fontSize: 13, fontWeight: 700, color: G2, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>See term reports →</button>
       {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
   )
@@ -701,7 +704,7 @@ function FeesView({ empty }: { empty: boolean }) {
       <Card><div style={{ padding: 20, textAlign: 'center' }}>
         <div style={{ fontSize: 16, fontWeight: 700, color: INK, marginBottom: 6 }}>Connect your bank to take payments</div>
         <div style={{ fontSize: 13, color: MUT, lineHeight: 1.5, marginBottom: 14 }}>Families pay by card when they enrol, and the money reaches your account each Friday. Set-up takes about ten minutes.</div>
-        <Btn label="Connect a bank account" primary onClick={() => showToast('Opening bank account setup.')}/>
+        <Btn label="Connect a bank account" primary onClick={() => openThing('bank account setup', 'academy')}/>
       </div></Card>
       {[{ n: '1', t: 'Bills each family', d: "For the weeks they'll attend" }, { n: '2', t: 'Sends reminders', d: 'At 3, 7 and 14 days' }, { n: '3', t: 'Offers a plan', d: 'In 3 parts, when you agree' }].map(s => (
         <div key={s.n} style={{ display: 'flex', gap: 12 }}>
@@ -791,7 +794,7 @@ function BroadcastView({ empty, onBack }: { empty: boolean; onBack: () => void }
       <Card><div style={{ padding: 20, textAlign: 'center' }}>
         <div style={{ fontSize: 16, fontWeight: 700, color: INK, marginBottom: 6 }}>Nothing sent yet</div>
         <div style={{ fontSize: 13, color: MUT, lineHeight: 1.5, marginBottom: 14 }}>Use this for term dates, clinic bookings and wet-weather calls. Pick all families or one program, and see who has seen it.</div>
-        <Btn label="Write your first message" primary onClick={() => showToast('Opening message composer.')}/>
+        <Btn label="Write your first message" primary onClick={() => openThing('message composer', 'academy')}/>
       </div></Card>
     </div>
   )
@@ -828,7 +831,7 @@ function BroadcastView({ empty, onBack }: { empty: boolean; onBack: () => void }
           </div>
           <div style={{ padding: '12px 16px', display: 'flex', gap: 8, borderBottom: `1px solid ${LN}` }}>
             {['Photo', 'Video', 'File', 'Poll', 'Booking link'].map(a => (
-              <button key={a} onClick={() => showToast(`${a} picker opens.`)} style={{ height: 44, padding: '0 10px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>{a}</button>
+              <button key={a} onClick={() => openThing(`${a} picker`, 'academy')} style={{ height: 44, padding: '0 10px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>{a}</button>
             ))}
           </div>
           <div style={{ padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: 8, fontSize: 13 }}>
@@ -875,6 +878,7 @@ function BroadcastView({ empty, onBack }: { empty: boolean; onBack: () => void }
 
 function AcademyYearView({ onBack }: { onBack: () => void }) {
   const [toast, setToast] = useState<string | null>(null)
+  void showToast   // kept for lines this screen may still need to say
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   const terms = [
     { term: 'Term 1', when: 'Feb to Apr', clubs: 'Club pre-season', what: 'Academy leads on skill. Club load is building, so academy sprints are capped' },
@@ -894,7 +898,7 @@ function AcademyYearView({ onBack }: { onBack: () => void }) {
           <div style={{ fontSize: 24, fontWeight: 700, color: INK, letterSpacing: '-0.02em' }}>The football year</div>
           <div style={{ fontSize: 13, color: MUT }}>Tall Timber · your terms beside the clubs' year</div>
         </div>
-        <Btn label="Change term dates" small onClick={() => showToast('Opening term dates editor.')}/>
+        <Btn label="Change term dates" small onClick={() => openThing('term dates editor', 'academy')}/>
       </div>
 
       <div style={{ background: PALE, borderRadius: 12, padding: '12px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>

@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
@@ -37,8 +38,8 @@ export default function HM7InboxMiniRoos(_: { onBack?: () => void }) {
           <span style={{ fontSize: 14, color: MUT }}>U9 Tom · 2 new · 4 this week</span>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button onClick={() => st('Opening family chat.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Family chat</button>
-          <button onClick={() => st('Opening message to all families.')} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: `1px solid ${G}`, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Message all families</button>
+          <button onClick={() => openThing('family chat', 'mini')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Family chat</button>
+          <button onClick={() => openThing('message to all families', 'mini')} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: `1px solid ${G}`, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Message all families</button>
         </div>
       </div>
 

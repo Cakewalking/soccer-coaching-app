@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb'
 
@@ -17,6 +18,7 @@ function BottomNav({ active }: { active: string }) {
 
 export default function TM4eDutyRosterEmpty(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string | null>(null)
+  void st   // kept for lines this screen may still need to say
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 390, minHeight: 844, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
@@ -29,8 +31,8 @@ export default function TM4eDutyRosterEmpty(_: { onBack?: () => void }) {
           <div style={{ fontSize: 16, fontWeight: 700, color: INK, marginBottom: 8 }}>No duties yet</div>
           <div style={{ fontSize: 14, color: MUT, lineHeight: 1.6, marginBottom: 20 }}>Pick the jobs your team needs each week. Families sign up from their phone, and swap if they can't make it.</div>
           <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 8 }}>
-            <button onClick={() => st('Opening usual jobs picker.')} style={{ height: 48, borderRadius: 12, background: GD, color: '#fff', border: 'none', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Add the usual jobs</button>
-            <button onClick={() => st('Opening custom job creator.')} style={{ height: 44, borderRadius: 12, background: '#fff', color: INK, border: `1.5px solid ${LN}`, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Choose my own</button>
+            <button onClick={() => openThing('usual jobs picker', 'phone')} style={{ height: 48, borderRadius: 12, background: GD, color: '#fff', border: 'none', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Add the usual jobs</button>
+            <button onClick={() => openThing('custom job creator', 'phone')} style={{ height: 44, borderRadius: 12, background: '#fff', color: INK, border: `1.5px solid ${LN}`, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Choose my own</button>
           </div>
         </div>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px' }}>

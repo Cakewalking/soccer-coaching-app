@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb'
 export default function TM5ManagerMessages(_: { onBack?: () => void }) {
@@ -22,9 +23,9 @@ export default function TM5ManagerMessages(_: { onBack?: () => void }) {
         <div style={{ width: 40, height: 40, borderRadius: '50%', background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>RO</div>
       </div>
       <div style={{ flexGrow: 1, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 10, overflowY: 'auto' }}>
-        <button onClick={() => mark('tell')} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 52, padding: '0 14px', borderRadius: 14, background: GD, color: '#fff', border: 0, cursor: 'pointer', textAlign: 'left' }}>
+        <button onClick={() => { mark('tell'); openThing('message to parents', 'phone') }} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 52, padding: '0 14px', borderRadius: 14, background: GD, color: '#fff', border: 0, cursor: 'pointer', textAlign: 'left' }}>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><path d="M12 9v4M12 17h.01M10.3 3.9L2 18a2 2 0 001.7 3h16.6a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/></svg>
-          <span style={{ flexGrow: 1, fontSize: 16, fontWeight: 700 }}>{is('tell') ? 'Opening a message to parents…' : 'Something changed? Tell parents'}</span>
+          <span style={{ flexGrow: 1, fontSize: 16, fontWeight: 700 }}>{is('tell') ? 'Message to parents started' : 'Something changed? Tell parents'}</span>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"><path d="M9 6l6 6-6 6"/></svg>
         </button>
         <div style={{ background: '#fff', border: `2px solid ${G}`, borderRadius: 16, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 8 }}>

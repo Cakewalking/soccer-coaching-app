@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 const TOP_NAV = ['Club', 'Teams', 'Coaches', 'Players', 'Safeguarding', 'Reports']
@@ -6,6 +7,7 @@ const SUB_NAV = ['Overview', 'Goals', 'Growth and load', 'Fair game time', 'Regi
 
 export default function FM1eMovesEmpty(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string | null>(null)
+  void st   // kept for lines this screen may still need to say
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, minHeight: 820, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
@@ -29,7 +31,7 @@ export default function FM1eMovesEmpty(_: { onBack?: () => void }) {
           <div style={{ fontSize: 20, fontWeight: 800, color: INK }}>Nothing here yet</div>
           <div style={{ fontSize: 15, fontWeight: 600, color: MUT }}>No moves this month</div>
           <div style={{ fontSize: 14, color: MUT, lineHeight: 1.6, maxWidth: 400 }}>Move a player to another team, or let them play up for a game. The parent is asked first.</div>
-          <button onClick={() => st('Opening move player flow.')} style={{ height: 48, padding: '0 28px', borderRadius: 12, background: GD, color: '#fff', border: 'none', fontSize: 15, fontWeight: 700, cursor: 'pointer', marginTop: 8 }}>Move a player</button>
+          <button onClick={() => openThing('move player flow', 'club')} style={{ height: 48, padding: '0 28px', borderRadius: 12, background: GD, color: '#fff', border: 'none', fontSize: 15, fontWeight: 700, cursor: 'pointer', marginTop: 8 }}>Move a player</button>
           <div style={{ fontSize: 13, color: MUT, marginTop: 4 }}>This page fills in on its own once there's something to show.</div>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>

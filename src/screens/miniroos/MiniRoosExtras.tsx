@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 import { PLAYERS } from './squadData'
 
@@ -138,7 +139,7 @@ export function FairTurnsMiniRoos({ empty, onTurns }: { empty?: boolean; onTurns
   const low = rows.filter(r => r.share < 0.72)
   return (
     <Page title="Fair turns" sub="5 games this term · quarters of 10 minutes · 7 on the pitch, 10 in the squad"
-      right={<><button style={btn} onClick={() => say('A one-page summary is ready to share with families: turns only, no scores.')}>Share with families</button><button style={btnP} onClick={() => onTurns ? onTurns() : say('Opening Saturday’s turns.')}>Set Saturday’s turns</button></>}
+      right={<><button style={btn} onClick={() => say('A one-page summary is ready to share with families: turns only, no scores.')}>Share with families</button><button style={btnP} onClick={() => onTurns ? onTurns() : openThing('Saturday’s turns', 'mini')}>Set Saturday’s turns</button></>}
       foot="Everyone plays at least half of every game they come to. Turns in goal and as captain go round the whole squad each term.">
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0,1fr))', gap: 10, marginBottom: 12 }}>
         <div style={{ ...card, padding: '12px 14px' }}>
@@ -204,7 +205,7 @@ export function WeekMiniRoos({ empty, onTonight }: { empty?: boolean; onTonight?
   ]
   return (
     <Page title="This week" sub="Mon 1 to Sun 7 June · two sessions and one game · fortnight focus: running with the ball"
-      right={<button style={btnP} onClick={() => onTonight ? onTonight() : say('Opening tonight’s session.')}>Open tonight</button>}>
+      right={<button style={btnP} onClick={() => onTonight ? onTonight() : openThing('tonight’s session', 'mini')}>Open tonight</button>}>
       <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 320px', gap: 20, alignItems: 'start' }}>
         <div style={{ ...card, padding: 0, overflow: 'hidden' }}>
           {WEEK.map((d, i) => (

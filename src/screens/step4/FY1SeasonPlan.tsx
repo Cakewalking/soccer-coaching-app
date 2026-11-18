@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
@@ -12,6 +13,7 @@ const ROWS = [
 ]
 export default function FY1SeasonPlan(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string | null>(null)
+  void t   // kept for lines this screen may still need to say
   function t(m: string) { setToast(m); setTimeout(() => setToast(null), 3200) }
   const COL_W = 74
   const LEFT_W = 140
@@ -30,7 +32,7 @@ export default function FY1SeasonPlan(_: { onBack?: () => void }) {
             <div style={{ fontSize: 20, fontWeight: 800, letterSpacing: '-0.02em', color: INK }}>Season plan 2026</div>
             <div style={{ fontSize: 13, color: MUT }}>Thu 4 Jun · Round 9 of 18</div>
           </div>
-          <button onClick={() => t('Opening grading planner…')} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Plan grading days</button>
+          <button onClick={() => openThing('grading planner', 'club')} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Plan grading days</button>
         </div>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, overflow: 'hidden', padding: '20px 20px' }}>
           <div style={{ display: 'flex', marginBottom: 8 }}>

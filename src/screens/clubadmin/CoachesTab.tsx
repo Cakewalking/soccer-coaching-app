@@ -1,9 +1,11 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 import { COACHES_DATA } from './data'
 import { SubTabBar, BackBtn, EmptyCard, FOOTER_DEFAULT } from './ui'
 import CnScreen from '../connected/CnScreen'
+import SessionTab from '../session/SessionTab'
 
-type CoachesView = 'allcoaches' | 'observations' | 'coachload' | 'training' | 'meetings' | 'goalkeepers' | 'drilllib'
+type CoachesView = 'allcoaches' | 'observations' | 'coachload' | 'sources' | 'training' | 'meetings' | 'goalkeepers' | 'drilllib'
 
 const COACHES_EMPTY: Partial<Record<CoachesView, { icon: string; title: string; desc: string; cta?: string; items: { title: string; desc: string }[] }>> = {
   allcoaches:  { icon: 'M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8z', title: 'No coaches yet', desc: "Invite your coaches by email. They can't see any player until their children check is confirmed.", cta: 'Invite coaches', items: [{ title: 'Children checks', desc: 'Expiry dates and reminders' }, { title: "Who's using it", desc: 'Sessions planned, games recorded' }] },
@@ -13,9 +15,9 @@ const COACHES_EMPTY: Partial<Record<CoachesView, { icon: string; title: string; 
 }
 
 export default function CoachesTab({ empty, role = 'dof', onNav, initialView }: { empty?: boolean; role?: 'chair' | 'dof'; onNav?: (s: string) => void; initialView?: string }) {
-  const [view, setView] = useState<CoachesView>(initialView === 'observations' || initialView === 'coachload' ? initialView : 'allcoaches')
+  const [view, setView] = useState<CoachesView>(initialView === 'observations' || initialView === 'coachload' || initialView === 'sources' ? initialView : 'allcoaches')
   // Observations and coach load stay in this tab; "All coaches" and each other are a tab switch, not a new page.
-  const cnNav = (t: string) => t === 'CN6-Observation' ? setView('observations') : t === 'CN7-CoachLoad' ? setView('coachload') : t === 'D3-Coaches' ? setView('allcoaches') : onNav?.(t)
+  const cnNav = (t: string) => t === 'CN6-Observation' ? setView('observations') : t === 'CN7-CoachLoad' ? setView('coachload') : t === 'GS11-DrillSources' ? setView('sources') : t === 'DF0-Library' ? setView('drilllib') : t === 'D3-Coaches' ? setView('allcoaches') : onNav?.(t)
   const [selectedCoach, setSelectedCoach] = useState<string | null>(null)
   const [toast, setToast] = useState<string | null>(null)
   function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
@@ -29,6 +31,7 @@ export default function CoachesTab({ empty, role = 'dof', onNav, initialView }: 
           { id: 'allcoaches', label: 'All coaches' },
           { id: 'observations', label: 'Observations' },
           { id: 'coachload', label: 'Coach load' },
+          { id: 'sources', label: 'Suggestion sources' },
           { id: 'training', label: 'Training and courses' },
           { id: 'meetings', label: 'Coach meetings' },
           { id: 'goalkeepers', label: 'Goalkeepers' },
@@ -40,6 +43,7 @@ export default function CoachesTab({ empty, role = 'dof', onNav, initialView }: 
 
       {!empty && view === 'observations' && <CnScreen id="CN6-Observation" onNav={cnNav} />}
       {!empty && view === 'coachload' && <CnScreen id="CN7-CoachLoad" onNav={cnNav} />}
+      {view === 'sources' && <SessionTab id="GS11-DrillSources" onNav={cnNav} />}
       {empty && (view === 'observations' || view === 'coachload') && <div style={{ padding: '28px 20px', fontSize: 14, color: '#4a5a57' }}>Nothing here until your coaches have run a few sessions.</div>}
 
       {empty && view in COACHES_EMPTY && <EmptyCard {...COACHES_EMPTY[view]!} footer={FOOTER_DEFAULT} />}
@@ -51,8 +55,8 @@ export default function CoachesTab({ empty, role = 'dof', onNav, initialView }: 
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
               <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>Coaches · {COACHES_DATA.length} coaches · 9 shown · sorted by what needs doing</div>
               <div style={{ display: 'flex', gap: 8 }}>
-                <button onClick={() => showToast('Opening join requests.')} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>1 request to join</button>
-                <button onClick={() => showToast('Opening invite form.')} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>+ Invite a coach</button>
+                <button onClick={() => openThing('join requests', 'club')} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>1 request to join</button>
+                <button onClick={() => openThing('invite form', 'club')} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>+ Invite a coach</button>
               </div>
             </div>
             <div style={{ background: '#fff', borderRadius: 14, border: '1px solid #e9eae8', overflow: 'hidden' }}>
@@ -111,7 +115,7 @@ export default function CoachesTab({ empty, role = 'dof', onNav, initialView }: 
                   </div>
                 )}
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginTop: 16 }}>
-                  <button onClick={() => showToast(`Opening message to ${c.name.split(' ')[0]}.`)} style={{ height: 44, borderRadius: '999px', border: 0, background: '#1f4a3e', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Message {c.name.split(' ')[0]}</button>
+                  <button onClick={() => openThing(`message to ${c.name.split(' ')[0]}`, 'club')} style={{ height: 44, borderRadius: '999px', border: 0, background: '#1f4a3e', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Message {c.name.split(' ')[0]}</button>
                   <button onClick={() => showToast('Renewal link sent.')} style={{ height: 44, borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 14, cursor: 'pointer' }}>Send check renewal link</button>
                 </div>
               </div>
@@ -156,7 +160,7 @@ export default function CoachesTab({ empty, role = 'dof', onNav, initialView }: 
                     <div style={{ width: 24, height: 24, borderRadius: '999px', background: '#e4f2eb', color: '#2f6252', fontSize: 10, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{item.ini}</div>
                     <div><div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{item.label}</div><div style={{ fontSize: 11, color: '#6f7f7b' }}>{item.desc}</div></div>
                   </div>
-                  <button onClick={() => showToast(`Opening ${item.label}.`)} style={{ flexShrink: 0, height: 44, padding: '0 12px', borderRadius: '999px', border: '1px solid #2f6252', background: '#fff', color: '#2f6252', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>{item.cta}</button>
+                  <button onClick={() => openThing(`${item.label}`, 'club')} style={{ flexShrink: 0, height: 44, padding: '0 12px', borderRadius: '999px', border: '1px solid #2f6252', background: '#fff', color: '#2f6252', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>{item.cta}</button>
                 </div>
               ))}
             </div>
@@ -173,7 +177,7 @@ export default function CoachesTab({ empty, role = 'dof', onNav, initialView }: 
                 <div style={{ fontSize: 12, color: '#6f7f7b' }}>Tue 9 Jun · 7:30 pm · clubrooms and online</div>
               </div>
               <div style={{ display: 'flex', gap: 8 }}>
-                <button onClick={() => showToast('Opening agenda editor.')} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>Edit agenda</button>
+                <button onClick={() => openThing('agenda editor', 'club')} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>Edit agenda</button>
                 <button onClick={() => showToast('Agenda sent to coaches.')} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Send agenda</button>
               </div>
             </div>
@@ -250,7 +254,7 @@ export default function CoachesTab({ empty, role = 'dof', onNav, initialView }: 
                 <span style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{row.value}</span>
               </div>
             ))}
-            <button onClick={() => showToast('Opening message to Lee.')} style={{ marginTop: 12, width: '100%', height: 44, borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Message Lee</button>
+            <button onClick={() => openThing('message to Lee', 'club')} style={{ marginTop: 12, width: '100%', height: 44, borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Message Lee</button>
           </div>
         </div>
       )}
@@ -260,12 +264,12 @@ export default function CoachesTab({ empty, role = 'dof', onNav, initialView }: 
           <div style={{ background: '#fff', borderRadius: 14, padding: '18px 20px', border: '1px solid #e9eae8' }}>
             <div style={{ fontSize: 16, fontWeight: 700, color: '#10211f', marginBottom: 6 }}>Club drill library</div>
             <div style={{ fontSize: 13, color: '#6f7f7b', lineHeight: 1.5, marginBottom: 16 }}>Every drill shared across the club, by theme and age. Coaches pull from the same set in their session planner.</div>
-            <button onClick={() => onNav ? onNav('DF0-Library') : showToast('Opening the club drill library.')} style={{ height: 44, padding: '0 18px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Open drill library</button>
+            <button onClick={() => onNav ? onNav('DF0-Library') : openThing('the club drill library', 'club')} style={{ height: 44, padding: '0 18px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Open drill library</button>
           </div>
           <div style={{ background: '#fff', borderRadius: 14, padding: '18px 20px', border: '1px solid #e9eae8' }}>
             <div style={{ fontSize: 16, fontWeight: 700, color: '#10211f', marginBottom: 6 }}>Learn library</div>
             <div style={{ fontSize: 13, color: '#6f7f7b', lineHeight: 1.5, marginBottom: 16 }}>Short coaching lessons built from the club's own clips, shared with every coach.</div>
-            <button onClick={() => onNav ? onNav('EDU4-ClubLibrary') : showToast('Opening the Learn library.')} style={{ height: 44, padding: '0 18px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Open Learn library</button>
+            <button onClick={() => onNav ? onNav('EDU4-ClubLibrary') : openThing('the Learn library', 'club')} style={{ height: 44, padding: '0 18px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Open Learn library</button>
           </div>
         </div>
       )}

@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 const G='#2f6252',GD='#1f4a3e',INK='#10211f',MUT='#4a5a57',LN='#e8edeb',PALE='#eef5f2'
 const CHECKLIST=[
@@ -23,7 +24,7 @@ export default function SPy2YouthPreSeason({onBack}:{onBack?:()=>void}){
         </div>
         <div style={{display:'flex',gap:8}}>
           <button onClick={onBack} style={{height: 44,padding:'0 14px',borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:INK,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>The football year</button>
-          <button onClick={()=>t('Opening tonight\'s session')} style={{height: 44,padding:'0 14px',borderRadius:10,border:0,background:G,color:'#fff',fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>Tonight's session</button>
+          <button onClick={()=>openThing('tonight\'s session', 'coach')} style={{height: 44,padding:'0 14px',borderRadius:10,border:0,background:G,color:'#fff',fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>Tonight's session</button>
         </div>
       </div>
       <div style={{display:'grid',gridTemplateColumns:'minmax(0,1fr) 340px',gap:16}}>
@@ -53,7 +54,7 @@ export default function SPy2YouthPreSeason({onBack}:{onBack?:()=>void}){
           <div style={{background:'#fff',border:`1px solid ${LN}`,borderRadius:14,padding:'14px 16px',marginBottom:16}}>
             <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:8}}>
               <div style={{fontSize:15,fontWeight:700,color:INK}}>Building up · week 6 of 10</div>
-              <button onClick={()=>t('Opening load plan')} style={{height: 44,padding:'0 12px',borderRadius:8,border:`1px solid ${LN}`,background:'#fff',color:G,fontFamily:'inherit',fontSize:12,fontWeight:600,cursor:'pointer'}}>See the plan</button>
+              <button onClick={()=>openThing('load plan', 'coach')} style={{height: 44,padding:'0 12px',borderRadius:8,border:`1px solid ${LN}`,background:'#fff',color:G,fontFamily:'inherit',fontSize:12,fontWeight:600,cursor:'pointer'}}>See the plan</button>
             </div>
             <div style={{fontSize:13,color:MUT}}>Two sessions and a friendly this week, about 75% of a mid-season week.</div>
             <div style={{fontSize:12,color:MUT,marginTop:4}}>Theo and Ryan are in a growth spurt and do one sprint round less. Priya set this.</div>

@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { Glyph } from '../Glyph'
 import { useState } from 'react'
 
@@ -21,6 +22,7 @@ function Session({ time, group, detail, plan, tag }: { time: string; group: stri
 
 export default function ACC1CoachToday({ onNav }: { onNav?: (s: string) => void } = {}) {
   const [toast, setToast] = useState<string|null>(null)
+  void st   // kept for lines this screen may still need to say
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, background: BG, fontFamily: 'var(--font-sans)', minHeight: 820 }}>
@@ -59,8 +61,8 @@ export default function ACC1CoachToday({ onNav }: { onNav?: (s: string) => void 
             <div style={{ fontSize: 22, fontWeight: 800, color: INK, marginBottom: 2 }}>Hi Reece</div>
             <div style={{ fontSize: 13, color: MUT }}>Thursday 4 June · 3 sessions today at Messmate Primary School</div>
             <div style={{ display: 'flex', gap: 12, marginTop: 8 }}>
-              <button onClick={() => st('Opening group chats.')} style={{ height: 44, padding: '0 16px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, cursor: 'pointer' }}>Group chats</button>
-              <button onClick={() => onNav ? onNav('ACC13-AcademyChat') : st('Opening message to Dani.')} style={{ height: 44, padding: '0 16px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, cursor: 'pointer' }}>Message Dani</button>
+              <button onClick={() => openThing('group chats', 'academy')} style={{ height: 44, padding: '0 16px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, cursor: 'pointer' }}>Group chats</button>
+              <button onClick={() => onNav ? onNav('ACC13-AcademyChat') : openThing('message to Dani', 'academy')} style={{ height: 44, padding: '0 16px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, cursor: 'pointer' }}>Message Dani</button>
             </div>
           </div>
 
@@ -102,7 +104,7 @@ export default function ACC1CoachToday({ onNav }: { onNav?: (s: string) => void 
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 18px' }}>
             <div style={{ fontSize: 14, fontWeight: 700, color: INK, marginBottom: 4 }}>Term reports</div>
             <div style={{ fontSize: 13, color: MUT, marginBottom: 10 }}>8 of your 52 are drafted from your notes. 4 are ready for you to check.</div>
-            <button onClick={() => st('Opening draft report.')} style={{ height: 44, padding: '0 16px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, cursor: 'pointer' }}>Check a draft</button>
+            <button onClick={() => openThing('draft report', 'academy')} style={{ height: 44, padding: '0 16px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, cursor: 'pointer' }}>Check a draft</button>
           </div>
         </div>
       </div>

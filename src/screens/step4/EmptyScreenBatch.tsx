@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import React, { useState } from 'react'
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2', BG = '#f5f6f4'
 
@@ -25,7 +26,7 @@ function DirShell({ navActive = 'Teams', sideItems, sideActive, title, sub, ctaL
           <div style={{ textAlign: 'center' as const, maxWidth: 440 }}>
             <div style={{ fontSize: 18, fontWeight: 700, color: INK, marginBottom: 8 }}>{title}</div>
             <div style={{ fontSize: 14, color: MUT, marginBottom: ctaLabel ? 20 : 0 }}>{sub}</div>
-            {ctaLabel && <button onClick={() => setClicked(true)} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 'none', background: clicked ? '#40826d' : G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>{clicked ? `Opening ${ctaLabel.toLowerCase()}…` : ctaLabel}</button>}
+            {ctaLabel && <button onClick={() => { setClicked(true); openThing(ctaLabel, 'coach') }} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 'none', background: clicked ? '#40826d' : G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>{clicked ? `${ctaLabel}: opened` : ctaLabel}</button>}
           </div>
         </div>
       </div>
@@ -50,7 +51,7 @@ function HMShell({ navActive = 'Today', title, sub, ctaLabel }: { navActive?: st
         <div style={{ textAlign: 'center' as const, maxWidth: 440 }}>
           <div style={{ fontSize: 18, fontWeight: 700, color: INK, marginBottom: 8 }}>{title}</div>
           <div style={{ fontSize: 14, color: MUT, marginBottom: ctaLabel ? 20 : 0 }}>{sub}</div>
-          {ctaLabel && <button onClick={() => setClicked(true)} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 'none', background: clicked ? '#40826d' : G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>{clicked ? `Opening ${ctaLabel.toLowerCase()}…` : ctaLabel}</button>}
+          {ctaLabel && <button onClick={() => { setClicked(true); openThing(ctaLabel, 'coach') }} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 'none', background: clicked ? '#40826d' : G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>{clicked ? `${ctaLabel}: opened` : ctaLabel}</button>}
         </div>
       </div>
     </div>
@@ -74,7 +75,7 @@ function AcOwnerShell({ navActive = 'Home', title, sub, ctaLabel }: { navActive?
         <div style={{ textAlign: 'center' as const, maxWidth: 440 }}>
           <div style={{ fontSize: 18, fontWeight: 700, color: INK, marginBottom: 8 }}>{title}</div>
           <div style={{ fontSize: 14, color: MUT, marginBottom: ctaLabel ? 20 : 0 }}>{sub}</div>
-          {ctaLabel && <button onClick={() => setClicked(true)} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 'none', background: clicked ? '#40826d' : G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>{clicked ? `Opening ${ctaLabel.toLowerCase()}…` : ctaLabel}</button>}
+          {ctaLabel && <button onClick={() => { setClicked(true); openThing(ctaLabel, 'coach') }} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 'none', background: clicked ? '#40826d' : G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>{clicked ? `${ctaLabel}: opened` : ctaLabel}</button>}
         </div>
       </div>
     </div>
@@ -102,7 +103,7 @@ function AcCoachShell({ title, sub, ctaLabel }: { title: string; sub: string; ct
           <div style={{ textAlign: 'center' as const, maxWidth: 440 }}>
             <div style={{ fontSize: 18, fontWeight: 700, color: INK, marginBottom: 8 }}>{title}</div>
             <div style={{ fontSize: 14, color: MUT, marginBottom: ctaLabel ? 20 : 0 }}>{sub}</div>
-            {ctaLabel && <button onClick={() => setClicked(true)} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 'none', background: clicked ? '#40826d' : G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>{clicked ? `Opening ${ctaLabel.toLowerCase()}…` : ctaLabel}</button>}
+            {ctaLabel && <button onClick={() => { setClicked(true); openThing(ctaLabel, 'coach') }} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 'none', background: clicked ? '#40826d' : G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>{clicked ? `${ctaLabel}: opened` : ctaLabel}</button>}
           </div>
         </div>
       </div>
@@ -126,7 +127,7 @@ function CoachShell({ navActive = 'Squad', title, sub, ctaLabel }: { navActive?:
         <div style={{ textAlign: 'center' as const, maxWidth: 440 }}>
           <div style={{ fontSize: 18, fontWeight: 700, color: INK, marginBottom: 8 }}>{title}</div>
           <div style={{ fontSize: 14, color: MUT, marginBottom: ctaLabel ? 20 : 0 }}>{sub}</div>
-          {ctaLabel && <button onClick={() => setClicked(true)} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 'none', background: clicked ? '#40826d' : G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>{clicked ? `Opening ${ctaLabel.toLowerCase()}…` : ctaLabel}</button>}
+          {ctaLabel && <button onClick={() => { setClicked(true); openThing(ctaLabel, 'coach') }} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 'none', background: clicked ? '#40826d' : G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>{clicked ? `${ctaLabel}: opened` : ctaLabel}</button>}
         </div>
       </div>
     </div>
@@ -464,7 +465,7 @@ function PlayerPhoneShell({ title, sub, ctaLabel }: { title: string; sub: string
         <div style={{ padding: '48px 20px', textAlign: 'center' as const }}>
           <div style={{ fontSize: 16, fontWeight: 700, color: INK, marginBottom: 8 }}>{title}</div>
           <div style={{ fontSize: 14, color: MUT, marginBottom: ctaLabel ? 20 : 0 }}>{sub}</div>
-          {ctaLabel && <button onClick={() => setClicked(true)} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 'none', background: clicked ? '#40826d' : G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>{clicked ? `Opening ${ctaLabel.toLowerCase()}…` : ctaLabel}</button>}
+          {ctaLabel && <button onClick={() => { setClicked(true); openThing(ctaLabel, 'coach') }} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 'none', background: clicked ? '#40826d' : G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>{clicked ? `${ctaLabel}: opened` : ctaLabel}</button>}
         </div>
       </div>
     </div>

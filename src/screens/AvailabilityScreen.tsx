@@ -1,3 +1,4 @@
+import { openThing } from './openThing'
 import { useState } from 'react'
 import { useSandbox } from './sandbox/SandboxContext'
 import { setAnswer, niceDate, type SbAnswer } from './sandbox/sandboxStore'
@@ -205,7 +206,7 @@ export default function AvailabilityScreen({ empty, teamType = 'juniors', onNav 
               {!ev.game ? `${cols.cant.length} can’t make it, ${noneN} still to answer.` : inN >= t.side ? `Enough for ${t.side} a side with ${subs} ${subs === 1 ? 'sub' : 'subs'}.${teamType === 'seniors' ? '' : ` Fair share is about ${Math.round((t.side * t.gameMins) / inN)} minutes each.`}` : `${t.side - inN} short of ${t.side} a side so far. ${noneN} still to answer.`}
             </div>
             <div style={{ marginTop: 10, height: 6, borderRadius: 3, background: '#c5d8d0' }}><div style={{ height: 6, borderRadius: 3, background: '#2f6252', width: `${(inN / n) * 100}%` }} /></div>
-            {ev.game && <button onClick={() => onNav ? onNav('FB1-Formation') : say('Opening Formation with the players who are in.')} style={{ marginTop: 12, width: '100%', height: 44, borderRadius: 10, border: '1px solid #2f6252', background: '#ffffff', color: '#2f6252', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Pick the line-up</button>}
+            {ev.game && <button onClick={() => onNav ? onNav('FB1-Formation') : openThing('Formation with the players who are in', 'coach')} style={{ marginTop: 12, width: '100%', height: 44, borderRadius: 10, border: '1px solid #2f6252', background: '#ffffff', color: '#2f6252', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Pick the line-up</button>}
           </div>
 
           {sel && selIn ? (
@@ -230,7 +231,7 @@ export default function AvailabilityScreen({ empty, teamType = 'juniors', onNav 
           <div style={{ borderTop: '1px solid #e9eae8', paddingTop: 12 }}>
             <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 4 }}>How they are asked</div>
             <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: '18px' }}>One question per game and session, five days before: In, Maybe or Can’t. Can’t and Maybe ask for a reason. {t.adults ? 'Each player answers for himself.' : teamType === 'youth' ? 'Players 15 and over answer themselves; a parent answers for the rest.' : 'A parent answers for each child.'}</div>
-            <button onClick={() => onNav ? onNav(t.adults || teamType === 'youth' ? 'PO3-OlderAvailability' : 'AV2-ParentAvailability') : say('Opening what they see.')} style={{ marginTop: 10, width: '100%', minHeight: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#10211f', cursor: 'pointer' }}>See what {t.adults || teamType === 'youth' ? 'a player' : 'a parent'} gets</button>
+            <button onClick={() => onNav ? onNav(t.adults || teamType === 'youth' ? 'PO3-OlderAvailability' : 'AV2-ParentAvailability') : openThing('what they see', 'coach')} style={{ marginTop: 10, width: '100%', minHeight: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#10211f', cursor: 'pointer' }}>See what {t.adults || teamType === 'youth' ? 'a player' : 'a parent'} gets</button>
           </div>
 
           <div style={{ marginTop: 'auto', fontSize: 12, color: '#4a5a57', lineHeight: '17px' }}>{ev.closes}</div>

@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', PALE = '#eef5f2'
@@ -114,6 +115,7 @@ export function SB1SandboxEnding({ onSwitchToDemo }: { onSwitchToDemo?: () => vo
 /* SB2 — Sandbox has ended */
 export function SB2SandboxEnded({ onStartSandbox, onDemo }: { onStartSandbox?: () => void; onDemo?: () => void }) {
   const [toast, setToast] = useState<string|null>(null)
+  void st   // kept for lines this screen may still need to say
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <AuthShell>
@@ -133,7 +135,7 @@ export function SB2SandboxEnded({ onStartSandbox, onDemo }: { onStartSandbox?: (
           <button style={BTN_GREEN} onClick={onStartSandbox}>Start a new sandbox</button>
           <button style={BTN_OUTLINE} onClick={onDemo}>Follow the demo</button>
         </div>
-        <button onClick={() => st('Opening club setup.')} style={{ background: 'none', border: 'none', color: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', padding: 0, display: 'block' }}>
+        <button onClick={() => openThing('club setup', 'entry')} style={{ background: 'none', border: 'none', color: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', padding: 0, display: 'block' }}>
           Ready for the real thing? Set up your club
         </button>
       </div>
@@ -145,6 +147,7 @@ export function SB2SandboxEnded({ onStartSandbox, onDemo }: { onStartSandbox?: (
 /* SB3 — No sandbox in this browser */
 export function SB3NoSandbox({ onStartSandbox, onDemo }: { onStartSandbox?: () => void; onDemo?: () => void }) {
   const [toast, setToast] = useState<string|null>(null)
+  void st   // kept for lines this screen may still need to say
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <AuthShell>
@@ -159,7 +162,7 @@ export function SB3NoSandbox({ onStartSandbox, onDemo }: { onStartSandbox?: () =
           <button style={{ ...BTN_GREEN, width: '100%' }} onClick={onStartSandbox}>Start with an empty club</button>
           <button style={{ ...BTN_OUTLINE, width: '100%' }} onClick={onDemo}>Follow the demo</button>
         </div>
-        <button onClick={() => st('Opening club setup.')} style={LINK}>Ready for the real thing? Set up your club</button>
+        <button onClick={() => openThing('club setup', 'entry')} style={LINK}>Ready for the real thing? Set up your club</button>
         <p style={{ margin: '16px 0 0', fontSize: 13, color: MUT, lineHeight: 1.5 }}>
           Cleared your browser data, or used a private window? That removes the sandbox too. A new one lasts 14 days.
         </p>

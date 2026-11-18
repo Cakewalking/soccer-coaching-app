@@ -1,0 +1,81 @@
+control id,screen,control,does,target or line,status: works / line of text only / missing / wrong target (say where)
+GS1-ProposedSession#7,GS1-ProposedSession,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+GS1-ProposedSession#14,GS1-ProposedSession,Showing: new to coaching,Opens,GS5-CoachLevel,works
+GS1-ProposedSession#15,GS1-ProposedSession,Open the run sheet,Opens,GS3-RunSheet,works
+GS1-ProposedSession#16,GS1-ProposedSession,Why this,Opens,GS2-DrillWhy,works
+GS1-ProposedSession#17,GS1-ProposedSession,Swap,Says,Three other games for the same reason. Pick one and the session changes.,works
+GS1-ProposedSession#18,GS1-ProposedSession,Why this,Opens,GS2-DrillWhy,works
+GS1-ProposedSession#19,GS1-ProposedSession,Swap,Says,Three other games for the same reason. Pick one and the session changes.,works
+GS1-ProposedSession#20,GS1-ProposedSession,Why this,Opens,GS2-DrillWhy,works
+GS1-ProposedSession#21,GS1-ProposedSession,Swap,Says,Three other games for the same reason. Pick one and the session changes.,works
+GS1-ProposedSession#22,GS1-ProposedSession,Why this,Opens,GS2-DrillWhy,works
+GS1-ProposedSession#23,GS1-ProposedSession,Swap,Says,Three other games for the same reason. Pick one and the session changes.,works
+GS1-ProposedSession#24,GS1-ProposedSession,Two minutes before Tuesday · How to coach a keep-ball game without stopping it,Opens,GS8-WelcomeCourse,works
+GS2-DrillWhy#7,GS2-DrillWhy,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+GS2-DrillWhy#14,GS2-DrillWhy,Swap for another,Says,Three other games for the same reason. Pick one and the session changes.,works
+GS2-DrillWhy#15,GS2-DrillWhy,Back to the session,Opens,GS1-ProposedSession,works
+GS2-DrillWhy#16,GS2-DrillWhy,See it happen · 3 clips from Saturday · 34 seconds,Says,"Three clips play, 34 seconds in all.",works
+GS3-RunSheet#7,GS3-RunSheet,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+GS3-RunSheet#14,GS3-RunSheet,Print,Says,The run sheet is ready to print on one page.,works
+GS3-RunSheet#15,GS3-RunSheet,Send to my phone,Says,Sent. It opens from your phone’s Home at 4:30 on Tuesday.,works
+GS3-RunSheet#16,GS3-RunSheet,Change the groups,Says,Drag a name between groups. The run sheet updates.,"works: does it, and says “Tap a name, then the square to move them to. The run sheet updates.”"
+GS4-ResizeAttendance#7,GS4-ResizeAttendance,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+GS4-ResizeAttendance#14,GS4-ResizeAttendance,Nudge the 2,Says,One reminder goes to 2 families. No more after that.,works
+GS4-ResizeAttendance#15,GS4-ResizeAttendance,I am at the pitch: tap who is here,Says,Tap each player as they arrive. The session resizes as you go.,works
+GS5-CoachLevel#7,GS5-CoachLevel,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+GS5-CoachLevel#14,GS5-CoachLevel,Back to the session,Opens,GS1-ProposedSession,works
+GS5-CoachLevel#15,GS5-CoachLevel,"New to coaching · Explain everything: why, what to say, how to set up, what to look for. [radio]",Says,Level set to: New to coaching.,works
+GS5-CoachLevel#16,GS5-CoachLevel,A few seasons in · Give me the why and the set-up. I know how to run it. [radio],Says,Level set to: A few seasons in.,works
+GS5-CoachLevel#17,GS5-CoachLevel,Experienced · One line of why. I will build most sessions myself. [radio],Says,Level set to: Experienced.,works
+GS6-NothingToGoOn#7,GS6-NothingToGoOn,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+GS6-NothingToGoOn#14,GS6-NothingToGoOn,Showing: new to coaching,Opens,GS5-CoachLevel,works
+GS6-NothingToGoOn#15,GS6-NothingToGoOn,Open the run sheet,Opens,GS3-RunSheet,works
+GS6-NothingToGoOn#16,GS6-NothingToGoOn,Why this,Opens,GS2-DrillWhy,works
+GS6-NothingToGoOn#17,GS6-NothingToGoOn,Swap,Says,Three other games for the same reason. Pick one and the session changes.,works
+GS6-NothingToGoOn#18,GS6-NothingToGoOn,Why this,Opens,GS2-DrillWhy,works
+GS6-NothingToGoOn#19,GS6-NothingToGoOn,Swap,Says,Three other games for the same reason. Pick one and the session changes.,works
+GS6-NothingToGoOn#20,GS6-NothingToGoOn,Why this,Opens,GS2-DrillWhy,works
+GS6-NothingToGoOn#21,GS6-NothingToGoOn,Swap,Says,Three other games for the same reason. Pick one and the session changes.,works
+GS6-NothingToGoOn#22,GS6-NothingToGoOn,Why this,Opens,GS2-DrillWhy,works
+GS6-NothingToGoOn#23,GS6-NothingToGoOn,Swap,Says,Three other games for the same reason. Pick one and the session changes.,works
+GS6-NothingToGoOn#24,GS6-NothingToGoOn,See your season so far,Opens,GS7-SeasonLookBack,works
+GS7-SeasonLookBack#7,GS7-SeasonLookBack,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+GS7-SeasonLookBack#14,GS7-SeasonLookBack,What the curriculum says,Opens,DL1-SessionPlans,works
+GS7-SeasonLookBack#15,GS7-SeasonLookBack,Tuesday’s session,Opens,GS1-ProposedSession,works
+GS8-WelcomeCourse#7,GS8-WelcomeCourse,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+GS8-WelcomeCourse#14,GS8-WelcomeCourse,Federation courses near you,Opens,DT1-Courses,works
+GS8-WelcomeCourse#15,GS8-WelcomeCourse,Watch the next one,Says,The lesson plays: How to coach a keep-ball game without stopping it.,"works: does it, and says “The lesson plays: Asking a question, not giving an answer.”"
+GS8-WelcomeCourse#16,GS8-WelcomeCourse,"What a good under-11 session looks like · Busy, lots of touches, ends with a game · · 2:10",Says,The lesson plays: What a good under-11 session looks like.,works
+GS8-WelcomeCourse#17,GS8-WelcomeCourse,"How to read your session in Clean Sheet · The why, the set-up, what to say · · 1:45",Says,The lesson plays: How to read your session in Clean Sheet.,works
+GS8-WelcomeCourse#18,GS8-WelcomeCourse,"Setting up before the players arrive · Cones once, not four times · · 2:00",Says,The lesson plays: Setting up before the players arrive.,works
+GS8-WelcomeCourse#19,GS8-WelcomeCourse,"4 · Asking a question, not giving an answer · “Where is the space?” beats “pass it wide” · · 2:15",Says,"The lesson plays: Asking a question, not giving an answer.",works
+GS8-WelcomeCourse#20,GS8-WelcomeCourse,"5 · When it is not working · Make it easier, make it harder, or move on · · 1:50",Says,The lesson plays: When it is not working.,works
+GS8-WelcomeCourse#21,GS8-WelcomeCourse,1 · Coaching a keep-ball game without stopping it · Mark Dunn with U9 Mark · · 1:55,Says,The lesson plays: Coaching a keep-ball game without stopping it.,works
+GS8-WelcomeCourse#22,GS8-WelcomeCourse,2 · What “first touch away from pressure” looks like · Three clips from your own team · · 0:34,Says,The lesson plays: What “first touch away from pressure” looks like.,works
+GS11-DrillSources#7,GS11-DrillSources,Ask Clean Sheet,Opens,ASKd4-PanelFirst,"works, different target: opens the working Ask panel in place, not the ASKd4 board"
+GS11-DrillSources#8,GS11-DrillSources,Whole club,Opens,VS1-SwitchView,works
+GS11-DrillSources#13,GS11-DrillSources,Club drill library,Opens,DF0-Library,works: switches to the Club drill library tab in place
+GS11-DrillSources#14,GS11-DrillSources,Save,Says,Saved. Suggestions use these sources from tonight.,works
+GS11-DrillSources#15,GS11-DrillSources,On [switch],Says,National curriculum: turned off for suggestions.,left off and locked on purpose: the handover says the national curriculum stays switched off until the federation agrees. Pressing it says so
+GS11-DrillSources#16,GS11-DrillSources,On [switch],Says,Wattle Creek’s own: turned off for suggestions.,works
+GS11-DrillSources#17,GS11-DrillSources,On [switch],Says,Sessions that worked here: turned off for suggestions.,works
+GS11-DrillSources#18,GS11-DrillSources,On [switch],Says,Clean Sheet’s library: turned off for suggestions.,works
+GS11-DrillSources#19,GS11-DrillSources,On [switch],Says,Warm-up for injury prevention: turned off for suggestions.,works
+GSp9-HomeLibrary#1,GSp9-HomeLibrary,Back,Opens,STO17-HomeStoryParent,works
+GSp9-HomeLibrary#2,GSp9-HomeLibrary,Ask Clean Sheet,Opens,ASKp2-PhoneAskOpen,works
+GSp9-HomeLibrary#3,GSp9-HomeLibrary,Just a ball [checkbox],Says,Just a ball: taken off.,works
+GSp9-HomeLibrary#4,GSp9-HomeLibrary,Small space [checkbox],Says,Small space: taken off.,works
+GSp9-HomeLibrary#5,GSp9-HomeLibrary,5 minutes [checkbox],Says,5 minutes: picked.,works
+GSp9-HomeLibrary#6,GSp9-HomeLibrary,With a parent [checkbox],Says,With a parent: picked.,works
+GSp9-HomeLibrary#7,GSp9-HomeLibrary,Indoors [checkbox],Says,Indoors: picked.,works
+GSp9-HomeLibrary#8,GSp9-HomeLibrary,First touch off a wall · Skill · 4 min · Just a ball · Matches Tuesday,Opens,GSp10-HomeVideo,works
+GSp9-HomeLibrary#9,GSp9-HomeLibrary,"Look, then touch · Game for two · 5 min · With a parent · Matches Tuesday",Opens,GSp10-HomeVideo,works
+GSp9-HomeLibrary#10,GSp9-HomeLibrary,Toe taps and rolls · Warm-up · 3 min · Just a ball · Indoors,Opens,GSp10-HomeVideo,works
+GSp9-HomeLibrary#11,GSp9-HomeLibrary,The step-over · Trick · 4 min · Just a ball · Small space,Opens,GSp10-HomeVideo,works
+GSp9-HomeLibrary#12,GSp9-HomeLibrary,Warm-ups,Says,"12 warm-ups, all with just a ball.",works
+GSp9-HomeLibrary#13,GSp9-HomeLibrary,All 64 films,Says,"All 64 films, with your filters kept.",works
+GSp10-HomeVideo#1,GSp10-HomeVideo,Back,Opens,GSp9-HomeLibrary,works
+GSp10-HomeVideo#2,GSp10-HomeVideo,Ask Clean Sheet,Opens,ASKp2-PhoneAskOpen,works
+GSp10-HomeVideo#3,GSp10-HomeVideo,Watch it first · 1:10,Says,The film plays: 1 minute 10.,works
+GSp10-HomeVideo#4,GSp10-HomeVideo,Another one,Opens,GSp9-HomeLibrary,works
+GSp10-HomeVideo#5,GSp10-HomeVideo,We did it,Says,"Nice. Luke sees a tick beside this film for Ari, and nothing else.",works

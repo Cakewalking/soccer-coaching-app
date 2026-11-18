@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
@@ -20,7 +21,7 @@ export default function RCm2eClipsEmpty(_: { onBack?: () => void }) {
         </div>
         <div style={{ fontSize: 20, fontWeight: 800, color: INK }}>Nothing filmed yet</div>
         <div style={{ fontSize: 15, color: MUT, lineHeight: 1.6, maxWidth: 300 }}>Film a game or a training game and each child gets a best moment to take home. You don't need a camera to coach.</div>
-        <button onClick={() => st('Opening camera setup.')} style={{ height: 48, padding: '0 28px', borderRadius: 12, background: GD, color: '#fff', border: 'none', fontSize: 15, fontWeight: 700, cursor: 'pointer', width: '100%' }}>Film something</button>
+        <button onClick={() => openThing('camera setup', 'mini')} style={{ height: 48, padding: '0 28px', borderRadius: 12, background: GD, color: '#fff', border: 'none', fontSize: 15, fontWeight: 700, cursor: 'pointer', width: '100%' }}>Film something</button>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 18px', width: '100%', textAlign: 'left' as const }}>
           <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 10 }}>Good to know</div>
           {['Any camera works', 'Each child gets their best moment', 'No scores or rankings — MiniRoos'].map((item, i) => (

@@ -1,6 +1,7 @@
+import { openThing, sayOrOpen } from './openThing'
 import { useState } from 'react'
 import EDUp1PlayerLearn from './step4/EDUp1PlayerLearn'
-import { demoToast } from './demoToast'
+
 
 const G    = '#2f6252'
 const G2   = '#40826d'
@@ -70,7 +71,7 @@ function Row({ label, value, sub, btn }: { label: string; value?: string; sub?: 
 function PBtn({ label, primary, small, block, onClick }: { label: string; primary?: boolean; small?: boolean; block?: boolean; onClick?: () => void }) {
   const says: Record<string, string> = { 'See what to bring': 'Boots, shin pads, a water bottle and a jumper.', 'Pay now': 'Opening secure payment for the balance.' }
   return (
-    <button onClick={onClick ?? (() => demoToast(says[label] ?? (label.startsWith('Book for') ? 'Booked. A receipt is on its way.' : `${label}: done.`)))} style={{ height: small ? 44 : 48, padding: `0 ${small ? 14 : 20}px`, borderRadius: 999, border: primary ? 'none' : `1px solid ${LN}`, background: primary ? G : '#fff', color: primary ? '#fff' : MUT, fontSize: small ? 13 : 15, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0, width: block ? '100%' : undefined }}>{label}</button>
+    <button onClick={onClick ?? (() => sayOrOpen(says[label] ?? (label.startsWith('Book for') ? 'Booked. A receipt is on its way.' : `${label}: done.`), 'phone'))} style={{ height: small ? 44 : 48, padding: `0 ${small ? 14 : 20}px`, borderRadius: 999, border: primary ? 'none' : `1px solid ${LN}`, background: primary ? G : '#fff', color: primary ? '#fff' : MUT, fontSize: small ? 13 : 15, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0, width: block ? '100%' : undefined }}>{label}</button>
   )
 }
 
@@ -536,6 +537,7 @@ function JoinTeamView({ onBack }: { onBack: () => void }) {
 
 function ConcernView({ onBack }: { onBack: () => void }) {
   const [toast, setToast] = useState<string|null>(null)
+  void st   // kept for lines this screen may still need to say
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '20px 16px 24px', display: 'flex', flexDirection: 'column', gap: 14 }}>
@@ -561,7 +563,7 @@ function ConcernView({ onBack }: { onBack: () => void }) {
       <div style={{ background: '#fffaf8', border: `1px solid ${ROSE}22`, borderRadius: 14, padding: '12px 14px' }}>
         <div style={{ fontSize: 13, fontWeight: 700, color: ROSE, marginBottom: 4 }}>Victoria's Social Services Regulator</div>
         <div style={{ fontSize: 12, color: MUT, lineHeight: 1.5, marginBottom: 8 }}>If your concern is about the owner or you're not comfortable raising it here, contact the regulator directly.</div>
-        <button onClick={() => st('Opening regulator contact information.')} style={{ fontSize: 13, fontWeight: 700, color: ROSE, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: '0 4px', minHeight: 44, display: 'flex', alignItems: 'center' }}>How to contact the regulator →</button>
+        <button onClick={() => openThing('regulator contact information', 'phone')} style={{ fontSize: 13, fontWeight: 700, color: ROSE, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: '0 4px', minHeight: 44, display: 'flex', alignItems: 'center' }}>How to contact the regulator →</button>
       </div>
       {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </div>

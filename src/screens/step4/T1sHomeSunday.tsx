@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
@@ -59,7 +60,7 @@ export default function T1sHomeSunday(_: { onBack?: () => void }) {
             <div style={{ fontSize: 16, fontWeight: 800, color: INK, marginBottom: 4 }}>Match review · rest day</div>
             <div style={{ fontSize: 13, color: MUT, marginBottom: 10 }}>Review Saturday · plan next week · 7 clips to tag</div>
             <div style={{ display: 'flex', gap: 10, marginTop: 14 }}>
-              <button onClick={() => st('Opening the review.')} style={{ flex: 1, height: 44, borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Open the review</button>
+              <button onClick={() => openThing('the review', 'coach')} style={{ flex: 1, height: 44, borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Open the review</button>
               <button onClick={() => st('Planning next week.')} style={{ flex: 1, height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Plan next week</button>
             </div>
           </div>

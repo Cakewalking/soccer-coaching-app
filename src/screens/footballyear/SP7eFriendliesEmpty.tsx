@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 
 const G = '#2f6252', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
@@ -22,7 +23,7 @@ export default function SP7eFriendliesEmpty(_: { onBack?: () => void }) {
         <div style={{ fontSize: 14, color: MUT, lineHeight: 1.6, marginBottom: 20 }}>Say when you're free and which pitch you have. Clubs on Clean Sheet within 20 km see it, and you're told when one says yes.</div>
         <div style={{ display: 'flex', gap: 10 }}>
           <button onClick={() => setSheet('spfree')} style={{ height: 44, padding: '0 20px', borderRadius: 12, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Say when you're free</button>
-          <button onClick={() => t('Opening \'add one yourself\'')} style={{ height: 44, padding: '0 20px', borderRadius: 12, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Add one yourself</button>
+          <button onClick={() => openThing('\'add one yourself\'', 'coach')} style={{ height: 44, padding: '0 20px', borderRadius: 12, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Add one yourself</button>
         </div>
       </div>
 

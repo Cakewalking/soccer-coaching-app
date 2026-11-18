@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 const G = '#2f6252', GD = '#1f4a3e', G2 = '#40826d', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 const NAV = ['Home', 'Squad', 'Training', 'Game day']
@@ -5,6 +6,7 @@ const SUBNAV = ["Tonight's games", 'This term', 'Game library', 'Suggested']
 
 export default function SGm1eSuggestedMiniRoosEmpty(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string | null>(null)
+  void st   // kept for lines this screen may still need to say
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, height: 820, boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
@@ -30,7 +32,7 @@ export default function SGm1eSuggestedMiniRoosEmpty(_: { onBack?: () => void }) 
           <div style={{ fontSize: 20, fontWeight: 800, color: INK }}>Ideas start after your first game</div>
           <div style={{ fontSize: 15, fontWeight: 600, color: MUT }}>Tap what you saw</div>
           <div style={{ fontSize: 14, color: MUT, lineHeight: 1.6, maxWidth: 440 }}>Tap three things you saw after a game and Clean Sheet picks games to match. Until then it follows the under 9 curriculum.</div>
-          <button onClick={() => st('Opening post-game taps.')} style={{ height: 48, padding: '0 28px', borderRadius: 12, background: GD, color: '#fff', border: 'none', fontSize: 15, fontWeight: 700, cursor: 'pointer', marginTop: 4 }}>Tap what you saw</button>
+          <button onClick={() => openThing('post-game taps', 'mini')} style={{ height: 48, padding: '0 28px', borderRadius: 12, background: GD, color: '#fff', border: 'none', fontSize: 15, fontWeight: 700, cursor: 'pointer', marginTop: 4 }}>Tap what you saw</button>
         </div>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: 20 }}>
           <div style={{ fontSize: 14, fontWeight: 700, color: INK, marginBottom: 14 }}>It uses</div>

@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 const G   = '#2f6252'
 const G2  = '#40826d'
 const GD  = '#1f4a3e'
@@ -36,6 +37,7 @@ const PARTS = [
 import { useState } from 'react'
 export default function FootballYearScreen({ onBack }: { onBack: () => void }) {
   const [toast, setToast] = useState<string|null>(null)
+  void st   // kept for lines this screen may still need to say
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '20px 28px 32px', display: 'flex', flexDirection: 'column', gap: 16 }}>
@@ -48,7 +50,7 @@ export default function FootballYearScreen({ onBack }: { onBack: () => void }) {
           <div style={{ fontSize: 24, fontWeight: 700, color: INK, letterSpacing: '-0.02em' }}>The football year</div>
           <div style={{ fontSize: 13, color: MUT }}>U9 Tom · MiniRoos keep it simpler</div>
         </div>
-        <button onClick={() => st('Opening gala day form.')} style={{ marginLeft: 'auto', height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', color: G2, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Add a gala day</button>
+        <button onClick={() => openThing('gala day form', 'mini')} style={{ marginLeft: 'auto', height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', color: G2, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Add a gala day</button>
       </div>
 
       {/* Come-and-try note */}
@@ -57,7 +59,7 @@ export default function FootballYearScreen({ onBack }: { onBack: () => void }) {
           <div style={{ fontSize: 14, fontWeight: 700, color: GD }}>Come-and-try day</div>
           <div style={{ fontSize: 12, color: G }}>Sat 28 March · Wattle Creek Reserve</div>
         </div>
-        <button onClick={() => st('Opening come-and-try details.')} style={{ height: 44, padding: '0 12px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Details</button>
+        <button onClick={() => openThing('come-and-try details', 'mini')} style={{ height: 44, padding: '0 12px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Details</button>
       </div>
 
       {/* Four parts heading */}

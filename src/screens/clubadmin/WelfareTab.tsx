@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 
 type CaseStatus = 'new' | 'ontrack'
@@ -65,7 +66,7 @@ export default function WelfareTab({ empty }: { empty?: boolean }) {
             <h2 style={{ margin: 0, fontSize: 17, fontWeight: 700 }}>My cases</h2>
             <span style={{ fontSize: 14, color: '#4a5a57' }}>Welfare officer · 3 open · only you see names and details</span>
           </div>
-          <button onClick={() => showToast('Opening concern form.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', marginBottom: 10 }}>Log a concern yourself</button>
+          <button onClick={() => openThing('concern form', 'club')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', marginBottom: 10 }}>Log a concern yourself</button>
 
           <div style={{ fontSize: 13, color: '#4a5a57', fontWeight: 700, marginBottom: 6 }}>Open · Newest first</div>
           {CASES.map((c, i) => (
@@ -116,9 +117,9 @@ export default function WelfareTab({ empty }: { empty?: boolean }) {
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginTop: 14 }}>
-            <button onClick={() => showToast('Opening call with Linh.')} style={{ height: 44, borderRadius: 10, border: 0, background: '#2f6252', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>Call Linh</button>
+            <button onClick={() => openThing('call with Linh', 'club')} style={{ height: 44, borderRadius: 10, border: 0, background: '#2f6252', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>Call Linh</button>
             <button onClick={() => showToast('Adding a note.')} style={{ height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Add a note</button>
-            <button onClick={() => showToast('Opening mandatory reporting guide.')} style={{ height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Must this be reported?</button>
+            <button onClick={() => openThing('mandatory reporting guide', 'club')} style={{ height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Must this be reported?</button>
           </div>
         </aside>
       ) : (
@@ -126,7 +127,7 @@ export default function WelfareTab({ empty }: { empty?: boolean }) {
           <StatusBadge status={CASES[selected].status} />
           <div style={{ fontSize: 15, fontWeight: 700 }}>{CASES[selected].name}</div>
           <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: '19px' }}>{CASES[selected].from}</div>
-          <button onClick={() => showToast('Opening case details.')} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: 0, background: '#2f6252', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>View details</button>
+          <button onClick={() => openThing('case details', 'club')} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: 0, background: '#2f6252', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>View details</button>
         </aside>
       )}
 

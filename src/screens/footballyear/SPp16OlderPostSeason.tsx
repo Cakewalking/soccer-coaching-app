@@ -1,9 +1,11 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 const G='#2f6252',GD='#1f4a3e',INK='#10211f',MUT='#4a5a57',LN='#e8edeb',PALE='#eef5f2'
 type Tab='home'|'clips'|'body'|'messages'
 export default function SPp16OlderPostSeason(){
   const [tab,setTab]=useState<Tab>('home')
   const [toast,setToast]=useState<string|null>(null)
+  void t   // kept for lines this screen may still need to say
   function t(m:string){setToast(m);setTimeout(()=>setToast(null),3200)}
   return(
     <div style={{width:390,minHeight:812,background:'#fff',borderRadius:28,overflow:'hidden',boxShadow:'0 8px 40px rgba(0,0,0,0.14)',display:'flex',flexDirection:'column',fontFamily:'var(--font-sans)',position:'relative'}}>
@@ -19,11 +21,11 @@ export default function SPp16OlderPostSeason(){
               <div style={{fontSize:12,fontWeight:700,color:MUT,marginBottom:6,letterSpacing:'0.06em',textTransform:'uppercase' as const}}>From Ollie</div>
               <div style={{fontSize:14,color:INK,lineHeight:1.6}}>"Cal has had a great season. The improvement in his defensive work rate was noticeable from round 6 onwards."</div>
             </div>
-            <button onClick={()=>t('Opening season summary')} style={{display:'flex',alignItems:'center',justifyContent:'space-between',width:'100%',padding:'14px',borderRadius:12,border:`1px solid ${LN}`,background:'#fff',fontFamily:'inherit',cursor:'pointer',marginBottom:10}}>
+            <button onClick={()=>openThing('season summary', 'phone')} style={{display:'flex',alignItems:'center',justifyContent:'space-between',width:'100%',padding:'14px',borderRadius:12,border:`1px solid ${LN}`,background:'#fff',fontFamily:'inherit',cursor:'pointer',marginBottom:10}}>
               <span style={{fontSize:14,fontWeight:600,color:INK}}>See my season</span>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
             </button>
-            <button onClick={()=>t('Opening coming back survey')} style={{display:'flex',alignItems:'center',justifyContent:'space-between',width:'100%',padding:'14px',borderRadius:12,border:`1.5px solid ${G}`,background:'#fff',fontFamily:'inherit',cursor:'pointer',marginBottom:16}}>
+            <button onClick={()=>openThing('coming back survey', 'phone')} style={{display:'flex',alignItems:'center',justifyContent:'space-between',width:'100%',padding:'14px',borderRadius:12,border:`1.5px solid ${G}`,background:'#fff',fontFamily:'inherit',cursor:'pointer',marginBottom:16}}>
               <div style={{textAlign:'left' as const}}>
                 <div style={{fontSize:14,fontWeight:700,color:GD}}>Are you coming back?</div>
                 <div style={{fontSize:12,color:MUT}}>You answer yourself · parent gets a copy</div>
@@ -33,7 +35,7 @@ export default function SPp16OlderPostSeason(){
             <div style={{background:'#f5f6f4',borderRadius:12,padding:'12px 14px',marginBottom:10}}>
               <div style={{fontSize:13,fontWeight:600,color:INK,marginBottom:4}}>Marko asked about you</div>
               <div style={{fontSize:13,color:MUT}}>Men's 1sts coach Marko invited you to train with his squad. Talk to Ollie first.</div>
-              <button onClick={()=>t('Opening Marko invite')} style={{marginTop:8,height: 44,padding:'0 12px',borderRadius:8,border:`1px solid ${LN}`,background:'#fff',color:G,fontFamily:'inherit',fontSize:12,fontWeight:600,cursor:'pointer'}}>See invite</button>
+              <button onClick={()=>openThing('Marko invite', 'phone')} style={{marginTop:8,height: 44,padding:'0 12px',borderRadius:8,border:`1px solid ${LN}`,background:'#fff',color:G,fontFamily:'inherit',fontSize:12,fontWeight:600,cursor:'pointer'}}>See invite</button>
             </div>
             <div style={{background:'#f5f6f4',borderRadius:12,padding:'12px 14px'}}>
               <div style={{fontSize:12,fontWeight:600,color:MUT}}>Exams until 20 Nov — Ollie knows</div>

@@ -1,3 +1,4 @@
+import { openThing } from './openThing'
 import { useState } from 'react'
 import { YOUTH_SQUAD_PLAYERS, SENIORS_SQUAD_PLAYERS } from '../data'
 
@@ -106,7 +107,7 @@ export default function SeasonSummariesScreen({ empty, teamType = 'juniors' }: {
           <span style={{ fontSize: 14, color: '#4a5a57' }}>{sd.label} · {ready} ready, {check} to check, {write} to write</span>
         </div>
         <div style={{ display: 'flex', gap: 10 }}>
-          <button onClick={() => showToast('Opening preview of what parents see.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>What parents see</button>
+          <button onClick={() => openThing('preview of what parents see', 'coach')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>What parents see</button>
           <button onClick={() => showToast(`Sending ${ready} ready summaries.`)} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Send the {ready} ready</button>
         </div>
       </div>

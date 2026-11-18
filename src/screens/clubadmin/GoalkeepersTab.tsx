@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 // FK1 / FK1e — Goalkeepers across the club
 const G    = '#2f6252'
@@ -38,7 +39,7 @@ export default function GoalkeepersTab({ empty }: { empty?: boolean }) {
         <div style={{ fontSize: 13, color: MUT, marginTop: 2 }}>Nothing here yet · No keepers named yet</div>
       </div>
       <div style={{ background: PALE, borderRadius: 14, padding: '14px 16px', fontSize: 14, color: G, lineHeight: 1.5 }}>From U12, coaches mark their keepers. Under 12s take turns, so they are not listed.</div>
-      <button onClick={() => showToast('Opening add keeper coach form.')} style={{ alignSelf: 'flex-start', height: 44, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Add a keeper coach</button>
+      <button onClick={() => openThing('add keeper coach form', 'club')} style={{ alignSelf: 'flex-start', height: 44, padding: '0 16px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Add a keeper coach</button>
       <Card>
         <div style={{ padding: '10px 14px', borderBottom: `1px solid ${LN}`, fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: MUT }}>What you will see</div>
         {[
@@ -124,7 +125,7 @@ export default function GoalkeepersTab({ empty }: { empty?: boolean }) {
 
           <div style={{ display: 'flex', gap: 8 }}>
             <button onClick={() => showToast('Sharing Foundation of Goalkeeping course.')} style={{ flex: 1, height: 44, borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Share the course</button>
-            <button onClick={() => showToast('Opening keeper drills.')} style={{ flex: 1, height: 44, borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Keeper drills</button>
+            <button onClick={() => openThing('keeper drills', 'club')} style={{ flex: 1, height: 44, borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Keeper drills</button>
           </div>
         </div>
       </div>

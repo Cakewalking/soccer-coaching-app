@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 const G = '#2f6252', GD = '#1f4a3e', G2 = '#40826d', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb'
 const NAV = ['Home', 'Squad', 'Training', 'Match day', 'Clips']
@@ -17,6 +18,7 @@ const DRILLS = [
 export default function X10DrillsEmpty(_: { onBack?: () => void }) {
   const [ageFilter, setAgeFilter] = useState('Your team')
   const [toast, setToast] = useState<string | null>(null)
+  void st   // kept for lines this screen may still need to say
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, height: 820, boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
@@ -35,7 +37,7 @@ export default function X10DrillsEmpty(_: { onBack?: () => void }) {
           <div style={{ fontSize: 22, fontWeight: 800, letterSpacing: '-0.02em' }}>Drill library</div>
           <div style={{ fontSize: 13, color: MUT, marginTop: 2 }}>44 drills · none of your own yet</div>
         </div>
-        <button onClick={() => st('Opening drill creator.')} style={{ height: 44, padding: '0 20px', borderRadius: 10, background: GD, color: '#fff', border: 'none', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Add your own drill</button>
+        <button onClick={() => openThing('drill creator', 'coach')} style={{ height: 44, padding: '0 20px', borderRadius: 10, background: GD, color: '#fff', border: 'none', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Add your own drill</button>
       </div>
       <div style={{ flex: 'none', padding: '10px 28px', display: 'flex', gap: 8 }}>
         {AGE_FILTERS.map(f => (
@@ -48,7 +50,7 @@ export default function X10DrillsEmpty(_: { onBack?: () => void }) {
           <div style={{ fontSize: 13, fontWeight: 700, color: MUT, marginBottom: 10 }}>Good first drills for ages 9 to 12</div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: 10, marginBottom: 20 }}>
             {DRILLS.map((d, i) => (
-              <button key={i} onClick={() => st(`Opening ${d.name}.`)} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 12, padding: '14px 16px', textAlign: 'left' as const, cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <button key={i} onClick={() => openThing(`${d.name}`, 'coach')} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 12, padding: '14px 16px', textAlign: 'left' as const, cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div>
                   <div style={{ fontSize: 14, fontWeight: 600, color: INK, marginBottom: 2 }}>{d.name}</div>
                   <div style={{ fontSize: 12, color: MUT }}>{d.cat} · {d.time}</div>
@@ -61,7 +63,7 @@ export default function X10DrillsEmpty(_: { onBack?: () => void }) {
             <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 6 }}>Our drills</div>
             <div style={{ fontSize: 14, fontWeight: 600, color: MUT, marginBottom: 6 }}>No drills of your own yet</div>
             <div style={{ fontSize: 13, color: MUT, lineHeight: 1.6, marginBottom: 14 }}>Draw one, pick a clip, or snap your whiteboard. Clean Sheet suggests it when it fits.</div>
-            <button onClick={() => st('Opening drill creator.')} style={{ height: 44, padding: '0 20px', borderRadius: 10, background: GD, color: '#fff', border: 'none', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Add your own drill</button>
+            <button onClick={() => openThing('drill creator', 'coach')} style={{ height: 44, padding: '0 20px', borderRadius: 10, background: GD, color: '#fff', border: 'none', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Add your own drill</button>
           </div>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>

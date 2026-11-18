@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 const GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2', G = '#2f6252'
 const TOP_NAV = ['Home', 'Programs', 'Players', 'Coaches', 'Money']
@@ -13,6 +14,7 @@ const TERMS = [
 
 export default function SPa1AcademyYear(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string | null>(null)
+  void st   // kept for lines this screen may still need to say
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, minHeight: 820, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
@@ -33,7 +35,7 @@ export default function SPa1AcademyYear(_: { onBack?: () => void }) {
           <div style={{ fontSize: 22, fontWeight: 800, letterSpacing: '-0.02em', color: INK }}>The football year</div>
           <div style={{ fontSize: 13, color: MUT, marginTop: 2 }}>Tall Timber · your terms beside the clubs' year</div>
         </div>
-        <button onClick={() => st('Opening term date editor.')} style={{ height: 44, padding: '0 18px', borderRadius: 10, background: GD, color: '#fff', border: 'none', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Change term dates</button>
+        <button onClick={() => openThing('term date editor', 'academy')} style={{ height: 44, padding: '0 18px', borderRadius: 10, background: GD, color: '#fff', border: 'none', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Change term dates</button>
       </div>
       <main style={{ flexGrow: 1, padding: '16px 32px 32px', display: 'flex', flexDirection: 'column', gap: 20 }}>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, overflow: 'hidden' }}>
@@ -67,7 +69,7 @@ export default function SPa1AcademyYear(_: { onBack?: () => void }) {
                 <div>
                   <div style={{ fontSize: 14, fontWeight: 600, color: INK }}>{r.label}</div>
                   <div style={{ fontSize: 12, color: MUT }}>{r.sub}</div>
-                  {r.action && <button onClick={() => st('Opening trials.')} style={{ marginTop: 4, height: 32, padding: '0 12px', borderRadius: 8, background: G, color: '#fff', border: 'none', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>{r.action}</button>}
+                  {r.action && <button onClick={() => openThing('trials', 'academy')} style={{ marginTop: 4, height: 32, padding: '0 12px', borderRadius: 8, background: G, color: '#fff', border: 'none', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>{r.action}</button>}
                 </div>
               </div>
             ))}

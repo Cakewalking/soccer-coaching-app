@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 
 const G = '#2f6252', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
@@ -22,7 +23,7 @@ export default function RC1RecordStart({ onNav }: { onBack?: () => void; onNav?:
         <div style={{ height: 64, boxSizing: 'border-box', padding: '0 28px', display: 'flex', alignItems: 'center', gap: 4, background: G }}>
           <div style={{ fontSize: 20, fontWeight: 700, color: '#fff', marginRight: 16, letterSpacing: '-0.02em' }}>Clean Sheet</div>
           {NAV_ITEMS.map(n => <div key={n} style={{ height: 48, padding: '0 14px', borderRadius: 12, display: 'flex', alignItems: 'center', fontSize: 15, fontWeight: 600, color: n === 'Training' ? '#fff' : 'rgba(255,255,255,0.75)', background: n === 'Training' ? '#40826d' : 'transparent', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{n}</div>)}
-          <div style={{ marginLeft: 'auto' }}><button onClick={() => st('Opening team selector.')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: '1px solid #fff', background: '#fff', fontSize: 14, fontWeight: 600, color: INK, cursor: 'pointer' }}>U12 Sam · Wattle Creek ▾</button></div>
+          <div style={{ marginLeft: 'auto' }}><button onClick={() => openThing('team selector', 'coach')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: '1px solid #fff', background: '#fff', fontSize: 14, fontWeight: 600, color: INK, cursor: 'pointer' }}>U12 Sam · Wattle Creek ▾</button></div>
         </div>
         <div style={{ height: 44, padding: '0 28px', display: 'flex', alignItems: 'flex-end', gap: 24 }}>
           {SUBNAV.map(n => <div key={n} style={{ height: 44, display: 'flex', alignItems: 'center', fontSize: 14, fontWeight: 600, color: n === 'Record' ? INK : MUT, borderBottom: `3px solid ${n === 'Record' ? '#40826d' : 'transparent'}`, cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{n}</div>)}
@@ -34,7 +35,7 @@ export default function RC1RecordStart({ onNav }: { onBack?: () => void; onNav?:
           <div style={{ fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em' }}>What are you recording?</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             {RECORD_TYPES.map((t, i) => (
-              <button key={t.label} onClick={() => i < 2 ? (onNav ? onNav('QC1-CapturePlan') : st('Opening what today will measure.')) : st(`${t.label}: opening the recording set-up.`)} style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '14px 18px', background: i === 2 ? PALE : '#fff', border: `1px solid ${i === 2 ? G : LN}`, borderRadius: 12, cursor: 'pointer', textAlign: 'left' as const }}>
+              <button key={t.label} onClick={() => i < 2 ? (onNav ? onNav('QC1-CapturePlan') : openThing('what today will measure', 'coach')) : st(`${t.label}: opening the recording set-up.`)} style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '14px 18px', background: i === 2 ? PALE : '#fff', border: `1px solid ${i === 2 ? G : LN}`, borderRadius: 12, cursor: 'pointer', textAlign: 'left' as const }}>
                 <svg width={22} height={22} viewBox="0 0 24 24" fill="none" stroke={i === 2 ? G : MUT} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                   <path d={t.icon} />
                 </svg>
@@ -67,7 +68,7 @@ export default function RC1RecordStart({ onNav }: { onBack?: () => void; onNav?:
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '14px 16px' }}>
             <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 8 }}>Run one again</div>
             <div style={{ fontSize: 14, color: MUT, marginBottom: 10 }}>Re-run the last drill from Tuesday to compare.</div>
-            <button onClick={() => st('Opening Rondo 5 v 2 from Tue 2 Jun.')} style={{ width: '100%', height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 14, fontWeight: 600, color: G, cursor: 'pointer' }}>Rondo 5 v 2 · Tue 2 Jun</button>
+            <button onClick={() => openThing('Rondo 5 v 2 from Tue 2 Jun', 'coach')} style={{ width: '100%', height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 14, fontWeight: 600, color: G, cursor: 'pointer' }}>Rondo 5 v 2 · Tue 2 Jun</button>
           </div>
         </div>
       </main>

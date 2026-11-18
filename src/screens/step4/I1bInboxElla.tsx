@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 const G = '#2f6252', GD = '#1f4a3e', G2 = '#40826d', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 const NAV = ['Home', 'Squad', 'Training', 'Match day', 'Clips']
@@ -31,7 +32,7 @@ export default function I1bInboxElla(_: { onBack?: () => void }) {
         <div style={{ borderRight: `1px solid ${LN}`, display: 'flex', flexDirection: 'column' }}>
           <div style={{ padding: '12px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: `1px solid ${LN}` }}>
             <div style={{ fontSize: 18, fontWeight: 800, color: INK }}>Inbox</div>
-            <button onClick={() => st('Opening new message.')} style={{ height: 44, padding: '0 14px', borderRadius: 999, background: G, color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>New message</button>
+            <button onClick={() => openThing('new message', 'coach')} style={{ height: 44, padding: '0 14px', borderRadius: 999, background: G, color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>New message</button>
           </div>
           <div style={{ display: 'flex', gap: 0, borderBottom: `1px solid ${LN}` }}>
             {['All', 'Unread 2', 'People', 'Clean Sheet'].map((f, i) => <button key={f} style={{ flex: 1, height: 44, border: 'none', borderBottom: i === 0 ? `2px solid ${G}` : '2px solid transparent', background: 'transparent', fontSize: 12, fontWeight: i === 0 ? 700 : 500, color: i === 0 ? G : MUT, cursor: 'pointer' }}>{f}</button>)}

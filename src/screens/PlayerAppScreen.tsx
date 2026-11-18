@@ -1,3 +1,4 @@
+import { openThing } from './openThing'
 import { Glyph, glyph } from './Glyph'
 import { useState } from 'react'
 import { RaiseConcernView, ConcernSentView, TellSomeoneView, TellHelenView } from './playerapp/SafeguardingFlows'
@@ -90,7 +91,7 @@ export default function PlayerAppScreen({ empty, initialView = 'home' }: { empty
             </div>
             <div style={{ padding: '0 28px 48px', display: 'flex', flexDirection: 'column', gap: 10 }}>
               <button onClick={() => setInviteStep('toggles')} style={{ height: 52, borderRadius: '999px', border: 0, background: '#fff', color: '#1f4a3e', fontFamily: 'inherit', fontSize: 16, fontWeight: 700, cursor: 'pointer' }}>Join for Mia</button>
-              <button onClick={() => showToast("Opening Mia's own account setup.")} style={{ height: 48, borderRadius: '999px', border: '1px solid rgba(255,255,255,0.4)', background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Mia will set up her own account</button>
+              <button onClick={() => openThing("Mia's own account setup", 'phone')} style={{ height: 48, borderRadius: '999px', border: '1px solid rgba(255,255,255,0.4)', background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Mia will set up her own account</button>
             </div>
           </>
         )}
@@ -179,7 +180,7 @@ export default function PlayerAppScreen({ empty, initialView = 'home' }: { empty
         </div>
         <div style={{ background: '#fff', borderTop: '1px solid #e9eae8', display: 'flex', height: 56, flexShrink: 0 }}>
           {([{ label: 'Home', icon: 'M4 11l8-7 8 7v9H4z', active: true }, { label: 'Clips', icon: 'M12 21a9 9 0 100-18 9 9 0 000 18zM10 8l6 4-6 4z', active: false }, { label: 'Goals', icon: 'M12 2l2.4 7.4H22l-6.5 4.7 2.5 7.6L12 17l-6 4.7 2.5-7.6L3 9.4h7.6z', active: false }, { label: 'Me', icon: 'M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8', active: false }]).map(tab => (
-            <button key={tab.label} onClick={() => showToast(`Opening ${tab.label}.`)} style={{ flex: 1, border: 'none', background: 'transparent', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 3, fontFamily: 'inherit', fontSize: 10, fontWeight: 600, cursor: 'pointer', color: tab.active ? '#2f6252' : '#4a5a57' }}>
+            <button key={tab.label} onClick={() => openThing(`${tab.label}`, 'phone')} style={{ flex: 1, border: 'none', background: 'transparent', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 3, fontFamily: 'inherit', fontSize: 10, fontWeight: 600, cursor: 'pointer', color: tab.active ? '#2f6252' : '#4a5a57' }}>
               <svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"><path d={tab.icon}/></svg>
               {tab.label}
             </button>
@@ -291,7 +292,7 @@ export default function PlayerAppScreen({ empty, initialView = 'home' }: { empty
 
           <div style={{ display: 'flex', gap: 10 }}>
             <button onClick={() => showToast('Thanks sent to Sam.')} style={{ flex: 1, height: 44, borderRadius: 12, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}><Glyph n="like" /> Thanks Sam</button>
-            <button onClick={() => showToast('Opening reply.')} style={{ height: 44, padding: '0 16px', borderRadius: 12, border: '1px solid rgba(255,255,255,0.2)', background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Reply</button>
+            <button onClick={() => openThing('reply', 'phone')} style={{ height: 44, padding: '0 16px', borderRadius: 12, border: '1px solid rgba(255,255,255,0.2)', background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Reply</button>
           </div>
         </div>
         {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}

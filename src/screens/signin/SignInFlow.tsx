@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', PALE = '#eef5f2'
@@ -18,7 +19,7 @@ function AuthShell({ children, phone }: { children: React.ReactNode; phone?: boo
     <div style={{ minHeight: '100vh', background: BG, fontFamily: 'var(--font-sans)', position: 'relative' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: phone ? '0 20px' : '0 32px', height: 56 }}>
         <span style={{ color: G, fontWeight: 800, fontSize: 15, letterSpacing: '-0.02em' }}>Clean Sheet</span>
-        <button onClick={() => { setHelpToast('Opening help.'); setTimeout(() => setHelpToast(null), 3000) }} style={{ background: 'none', border: 'none', color: G, fontWeight: 600, fontSize: 14, cursor: 'pointer', padding: 0 }}>Help</button>
+        <button onClick={() => { openThing('help', 'entry'); setTimeout(() => setHelpToast(null), 3000) }} style={{ background: 'none', border: 'none', color: G, fontWeight: 600, fontSize: 14, cursor: 'pointer', padding: 0 }}>Help</button>
       </div>
       {helpToast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{helpToast}</div>}
       <div style={{ display: 'flex', justifyContent: 'center', padding: phone ? '32px 20px 40px' : '48px 20px 60px' }}>
@@ -176,7 +177,7 @@ export default function SignInFlow({ initialState = 'email', phone, onDemo, onBa
           <>
             <div style={{ height: 1, background: '#e8e9e7', margin: '20px 0' }} />
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <button style={LINK} onClick={() => st('Opening team setup.')}>New here? Set up your team</button>
+              <button style={LINK} onClick={() => openThing('team setup', 'entry')}>New here? Set up your team</button>
               <button style={{ ...LINK, textAlign: 'right' }} onClick={onDemo}>Just looking? Try the demo</button>
             </div>
             <p style={{ margin: '16px 0 0', fontSize: 13, color: MUT, lineHeight: 1.5 }}>
@@ -200,7 +201,7 @@ export default function SignInFlow({ initialState = 'email', phone, onDemo, onBa
               Invited by a coach or your club? Use the link in your invite instead.
             </p>
             <div style={{ height: 1, background: '#e8e9e7', margin: '32px 0 20px' }} />
-            <button style={{ ...LINK, display: 'block', marginBottom: 20 }} onClick={() => st('Opening invite join.')}>New here? Join with an invite</button>
+            <button style={{ ...LINK, display: 'block', marginBottom: 20 }} onClick={() => openThing('invite join', 'entry')}>New here? Join with an invite</button>
             <button style={{ ...LINK, display: 'block' }} onClick={onDemo}>Just looking? Try the demo</button>
           </>
         )}
@@ -315,7 +316,7 @@ export default function SignInFlow({ initialState = 'email', phone, onDemo, onBa
         <button style={BTN_GREEN} onClick={() => st('Signing in.')}>Finish signing in</button>
         <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 16 }}>
           <button style={LINK} onClick={() => st('New code sent.')}>Text it again</button>
-          <button style={LINK} onClick={() => st("Opening number change.")}>I've changed my number</button>
+          <button style={LINK} onClick={() => openThing("number change", 'entry')}>I've changed my number</button>
         </div>
         <p style={{ margin: '16px 0 0', fontSize: 13, color: MUT, lineHeight: 1.5 }}>
           You asked for this in Settings › Account. You can turn it off there.

@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
@@ -6,6 +7,7 @@ export default function PP1TwoChildren(_: { onBack?: () => void }) {
   const [filter, setFilter] = useState('both')
   const [toast, setToast] = useState<string | null>(null)
 
+  void t   // kept for lines this screen may still need to say
   function t(m: string) { setToast(m); setTimeout(() => setToast(null), 3200) }
 
   const filters = [
@@ -105,7 +107,7 @@ export default function PP1TwoChildren(_: { onBack?: () => void }) {
                   <div style={{ fontSize: 13, color: MUT, marginTop: 2 }}>U8 Hannah</div>
                 </div>
                 <button
-                  onClick={() => t("Opening Bao's availability...")}
+                  onClick={() => openThing("Bao's availability", 'coach')}
                   style={{
                     background: '#f59e0b',
                     borderRadius: 20,

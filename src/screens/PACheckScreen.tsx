@@ -1,3 +1,4 @@
+import { openThing } from './openThing'
 import { useState } from 'react'
 
 const G = '#2f6252'
@@ -41,6 +42,7 @@ export default function PACheckScreen({ onClose }: { onClose?: () => void }) {
   const [soreAreas, setSore]    = useState<string[]>([])
   const [sent, setSent]         = useState(false)
   const [toast, setToast]       = useState<string | null>(null)
+  void st   // kept for lines this screen may still need to say
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
 
   const bodySore = body !== null && body <= 2
@@ -73,7 +75,7 @@ export default function PACheckScreen({ onClose }: { onClose?: () => void }) {
             <div style={{ background: '#f7f8f7', borderRadius: 12, padding: '14px 16px', marginBottom: 12 }}>
               <div style={{ fontSize: 14, color: INK, fontWeight: 600, marginBottom: 4 }}>Something really wrong? Tell Sam, Priya or a parent. You can always talk to them, not just in the app.</div>
             </div>
-            <button onClick={() => st('Opening support contacts.')} style={{ width: '100%', height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>
+            <button onClick={() => openThing('support contacts', 'phone')} style={{ width: '100%', height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>
               Don't want to tell them? Other people can help
             </button>
           </div>

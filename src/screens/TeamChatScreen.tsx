@@ -1,3 +1,4 @@
+import { openThing } from './openThing'
 import { Glyph, glyph } from './Glyph'
 import { useState } from 'react'
 
@@ -53,6 +54,7 @@ function Btn({ label, primary, onClick, small }: { label:string; primary?:boolea
 function Sidebar({ selectedChat, panelView, onChat, onAnnouncements, onNewChat }:
   { selectedChat:ChatId; panelView:PanelView; onChat:(id:ChatId)=>void; onAnnouncements:()=>void; onNewChat:()=>void }) {
   const [sbToast, setSbToast] = useState<string|null>(null)
+  void st   // kept for lines this screen may still need to say
   function st(m: string) { setSbToast(m); setTimeout(() => setSbToast(null), 3000) }
   return (
     <div style={{ width:264, flexShrink:0, borderRight:`1px solid ${LN}`, display:'flex', flexDirection:'column', background:'#fff' }}>
@@ -60,7 +62,7 @@ function Sidebar({ selectedChat, panelView, onChat, onAnnouncements, onNewChat }
       <div style={{ padding:'14px 16px 10px', borderBottom:`1px solid ${LN}` }}>
         <div style={{ fontSize:17, fontWeight:700, color:INK, marginBottom:10 }}>Chats</div>
         <div style={{ display:'flex', gap:6 }}>
-          <button onClick={() => st('Opening inbox.')} style={{ flex:1, height: 44, borderRadius:999, border:`1px solid ${panelView==='chat'?G:LN}`, background:panelView==='chat'?PALE:'#fff', color:panelView==='chat'?G:MUT, fontSize:13, fontWeight:panelView==='chat'?700:400, cursor:'pointer', fontFamily:'inherit' }}>
+          <button onClick={() => openThing('inbox', 'coach')} style={{ flex:1, height: 44, borderRadius:999, border:`1px solid ${panelView==='chat'?G:LN}`, background:panelView==='chat'?PALE:'#fff', color:panelView==='chat'?G:MUT, fontSize:13, fontWeight:panelView==='chat'?700:400, cursor:'pointer', fontFamily:'inherit' }}>
             Inbox
           </button>
           <button onClick={onNewChat} style={{ flex:1, height: 44, borderRadius:999, border:`1px solid ${panelView==='newchat'?G:LN}`, background:panelView==='newchat'?PALE:'#fff', color:panelView==='newchat'?G:MUT, fontSize:13, fontWeight:600, cursor:'pointer', fontFamily:'inherit' }}>
@@ -129,7 +131,7 @@ function ComposeBar({ onPoll, hint, placeholder='Write to the team chat' }: { on
       {/* Attachment row */}
       <div style={{ display:'flex', gap:0, padding:'8px 16px 0', overflowX:'auto' }}>
         {attachIcons.map(a => (
-          <button key={a.label} onClick={a.label==='Poll'?onPoll:()=>setAttachToast(a.label+' picker opens.')} style={{ display:'flex', flexDirection:'column', alignItems:'center', gap:3, padding:'4px 10px', border:'none', background:'transparent', cursor:'pointer', fontFamily:'inherit' }}>
+          <button key={a.label} onClick={a.label==='Poll'?onPoll:()=>openThing(a.label+' picker', 'coach')} style={{ display:'flex', flexDirection:'column', alignItems:'center', gap:3, padding:'4px 10px', border:'none', background:'transparent', cursor:'pointer', fontFamily:'inherit' }}>
             <svg width={18} height={18} viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round"><path d={a.icon}/></svg>
             <span style={{ fontSize:10, color:MUT }}>{a.label}</span>
           </button>
@@ -360,7 +362,7 @@ function AnnouncementCard({ ini, name, time, seen, total, subject, body, attach,
             </span>
           ))}
         </div>
-        <button onClick={() => setAcToast('Opening seen list.')} style={{ fontSize:12, fontWeight:600, color:MUT, border:'none', background:'transparent', cursor:'pointer', fontFamily:'inherit' }}>Who has seen it</button>
+        <button onClick={() => openThing('seen list', 'coach')} style={{ fontSize:12, fontWeight:600, color:MUT, border:'none', background:'transparent', cursor:'pointer', fontFamily:'inherit' }}>Who has seen it</button>
       </div>
       {canNudge && nudgeCount && (
         <div style={{ marginTop:10, padding:'10px 12px', background:'#fdf5f0', borderRadius:10, display:'flex', alignItems:'center', justifyContent:'space-between' }}>
@@ -447,7 +449,7 @@ function NewChatPanel({ onCancel, onCreate }: { onCancel:()=>void; onCreate:()=>
               <span style={{ fontSize:14, color:INK }}>{label}</span>
             </label>
           ))}
-          <button onClick={() => setNcToast('Opening the people picker.')} style={{ display:'flex', alignItems:'center', gap:6, border:'none', background:'transparent', cursor:'pointer', fontFamily:'inherit', fontSize:13, fontWeight:600, color:G2, padding:'10px 0' }}>
+          <button onClick={() => openThing('the people picker', 'coach')} style={{ display:'flex', alignItems:'center', gap:6, border:'none', background:'transparent', cursor:'pointer', fontFamily:'inherit', fontSize:13, fontWeight:600, color:G2, padding:'10px 0' }}>
             <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round"><path d="M12 5v14M5 12h14"/></svg>
             Pick people
           </button>
@@ -590,7 +592,7 @@ function NewPollPanel({ onCancel, onSend }: { onCancel:()=>void; onSend:()=>void
             <div style={{ fontSize:11, fontWeight:700, letterSpacing:'0.06em', textTransform:'uppercase' as const, color:MUT, marginBottom:8 }}>Closes</div>
             <div style={{ display:'flex', alignItems:'center', gap:8 }}>
               <span style={{ fontSize:14, color:INK }}>Friday 6 pm</span>
-              <button onClick={() => setNpToast('Opening date picker.')} style={{ fontSize:12, fontWeight:600, color:G2, border:'none', background:'transparent', cursor:'pointer', fontFamily:'inherit' }}>Change</button>
+              <button onClick={() => openThing('date picker', 'coach')} style={{ fontSize:12, fontWeight:600, color:G2, border:'none', background:'transparent', cursor:'pointer', fontFamily:'inherit' }}>Change</button>
             </div>
           </div>
         </div>
@@ -760,7 +762,7 @@ function MediaPanel({ empty, onBack }: { empty:boolean; onBack:()=>void }) {
               <div style={{ fontSize:13, fontWeight:700, color:ROSE, marginBottom:4 }}>Held back · 1</div>
               <div style={{ fontSize:13, color:INK, marginBottom:6 }}>A photo with Harper in it</div>
               <div style={{ fontSize:12, color:MUT, marginBottom:8 }}>Harper's parent hasn't answered about photos yet. Only you can see it.</div>
-              <Btn label="Look" small onClick={() => setMpToast('Opening held-back photo.')} />
+              <Btn label="Look" small onClick={() => openThing('held-back photo', 'coach')} />
             </div>
             <div style={{ marginTop:16, fontSize:12, color:MUT, lineHeight:1.5 }}>Kept how long: until the season ends, then photos and videos are deleted unless the club saves them to its own albums. A parent can ask for any photo of their child to be removed.</div>
           </>
@@ -787,7 +789,7 @@ function ChatInfoPanel({ onBack }: { onBack:()=>void }) {
         </div>
         <div style={{ display:'flex', gap:8 }}>
           <Btn label="Back to chat" onClick={onBack}/>
-          <Btn label="Change settings" onClick={() => setCiToast('Opening chat settings.')}/>
+          <Btn label="Change settings" onClick={() => openThing('chat settings', 'coach')}/>
         </div>
       </div>
       <div style={{ flex:1, overflowY:'auto', padding:'20px 24px' }}>
@@ -851,7 +853,7 @@ function ChatInfoPanel({ onBack }: { onBack:()=>void }) {
                 {item.note && <div style={{ fontSize:12, color:MUT }}>{item.note}</div>}
               </div>
               {item.action
-                ? <button onClick={() => setCiToast(`Opening ${item.action?.toLowerCase()}.`)} style={{ fontSize:12, fontWeight:600, color:G2, border:'none', background:'transparent', cursor:'pointer', fontFamily:'inherit' }}>{item.action}</button>
+                ? <button onClick={() => openThing(`${item.action?.toLowerCase()}`, 'coach')} style={{ fontSize:12, fontWeight:600, color:G2, border:'none', background:'transparent', cursor:'pointer', fontFamily:'inherit' }}>{item.action}</button>
                 : <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth={2} strokeLinecap="round"><path d="M9 18l6-6-6-6"/></svg>
               }
             </div>
@@ -984,18 +986,18 @@ export default function TeamChatScreen({ empty = false, miniRoos = false }: { em
           <div style={{ padding:'14px 16px 10px', borderBottom:`1px solid ${LN}` }}>
             <div style={{ fontSize:17, fontWeight:700, color:INK, marginBottom:10 }}>Chats</div>
             <div style={{ display:'flex', gap:6 }}>
-              <button onClick={() => showToast('Opening inbox.')} style={{ flex:1, height: 44, borderRadius:999, border:`1px solid ${G}`, background:PALE, color:G, fontSize:13, fontWeight:700, cursor:'pointer', fontFamily:'inherit' }}>Inbox</button>
-              <button onClick={() => showToast('Opening new chat.')} style={{ flex:1, height: 44, borderRadius:999, border:`1px solid ${LN}`, background:'#fff', color:MUT, fontSize:13, fontWeight:600, cursor:'pointer', fontFamily:'inherit' }}>New chat</button>
+              <button onClick={() => openThing('inbox', 'coach')} style={{ flex:1, height: 44, borderRadius:999, border:`1px solid ${G}`, background:PALE, color:G, fontSize:13, fontWeight:700, cursor:'pointer', fontFamily:'inherit' }}>Inbox</button>
+              <button onClick={() => openThing('new chat', 'coach')} style={{ flex:1, height: 44, borderRadius:999, border:`1px solid ${LN}`, background:'#fff', color:MUT, fontSize:13, fontWeight:600, cursor:'pointer', fontFamily:'inherit' }}>New chat</button>
             </div>
           </div>
-          <button onClick={() => showToast('Opening announcements.')} style={{ padding:'10px 16px', borderBottom:`1px solid ${LN}`, background:'transparent', border:'none', textAlign:'left', cursor:'pointer', fontFamily:'inherit', display:'block', width:'100%' }}>
+          <button onClick={() => openThing('announcements', 'coach')} style={{ padding:'10px 16px', borderBottom:`1px solid ${LN}`, background:'transparent', border:'none', textAlign:'left', cursor:'pointer', fontFamily:'inherit', display:'block', width:'100%' }}>
             <div style={{ display:'flex', justifyContent:'space-between', marginBottom:2 }}>
               <span style={{ fontSize:13, fontWeight:700, color:INK }}>Announcements</span>
             </div>
             <div style={{ fontSize:12, color:MUT }}>No messages yet</div>
           </button>
           <div style={{ flex:1, overflowY:'auto', padding:'6px 0' }}>
-            <button onClick={() => showToast('Opening U12 Sam team chat.')} style={{ display:'flex', alignItems:'flex-start', gap:10, padding:'10px 16px', border:'none', borderBottom:`1px solid ${LN}`, background:PALE, textAlign:'left', cursor:'pointer', fontFamily:'inherit', width:'100%' }}>
+            <button onClick={() => openThing('U12 Sam team chat', 'coach')} style={{ display:'flex', alignItems:'flex-start', gap:10, padding:'10px 16px', border:'none', borderBottom:`1px solid ${LN}`, background:PALE, textAlign:'left', cursor:'pointer', fontFamily:'inherit', width:'100%' }}>
               <Ini s="U12" bg={G} size={36}/>
               <div style={{ flex:1, minWidth:0 }}>
                 <div style={{ display:'flex', justifyContent:'space-between', marginBottom:2 }}>
@@ -1020,7 +1022,7 @@ export default function TeamChatScreen({ empty = false, miniRoos = false }: { em
             <div style={{ fontSize:14, color:MUT, lineHeight:1.5, maxWidth:340 }}>Families see this chat as soon as they join Clean Sheet. Try a poll for Saturday, or a photo from training.</div>
             <div style={{ display:'flex', gap:8, flexWrap:'wrap', justifyContent:'center', marginTop:4 }}>
               {['Photo','Video','Voice','Poll','Place','File','Clip or drill'].map(label => (
-                <button key={label} onClick={() => showToast(`${label} picker opens.`)} style={{ height: 44, padding:'0 12px', borderRadius:999, border:`1px solid ${LN}`, background:'#fff', color:MUT, fontSize:12, fontWeight:600, cursor:'pointer', fontFamily:'inherit' }}>{label}</button>
+                <button key={label} onClick={() => openThing(`${label} picker`, 'coach')} style={{ height: 44, padding:'0 12px', borderRadius:999, border:`1px solid ${LN}`, background:'#fff', color:MUT, fontSize:12, fontWeight:600, cursor:'pointer', fontFamily:'inherit' }}>{label}</button>
               ))}
             </div>
           </div>
@@ -1043,7 +1045,7 @@ export default function TeamChatScreen({ empty = false, miniRoos = false }: { em
           <div style={{ padding:'14px 16px 10px', borderBottom:`1px solid ${LN}` }}>
             <div style={{ fontSize:17, fontWeight:700, color:INK, marginBottom:10 }}>Chats</div>
             <div style={{ display:'flex', gap:6 }}>
-              <button onClick={() => showToast('Opening inbox.')} style={{ flex:1, height: 44, borderRadius:999, border:`1px solid ${G}`, background:PALE, color:G, fontSize:13, fontWeight:700, cursor:'pointer', fontFamily:'inherit' }}>Inbox</button>
+              <button onClick={() => openThing('inbox', 'coach')} style={{ flex:1, height: 44, borderRadius:999, border:`1px solid ${G}`, background:PALE, color:G, fontSize:13, fontWeight:700, cursor:'pointer', fontFamily:'inherit' }}>Inbox</button>
               <button onClick={() => setPanelView('newchat')} style={{ flex:1, height: 44, borderRadius:999, border:`1px solid ${LN}`, background:'#fff', color:MUT, fontSize:13, fontWeight:600, cursor:'pointer', fontFamily:'inherit' }}>New chat</button>
             </div>
           </div>
@@ -1068,7 +1070,7 @@ export default function TeamChatScreen({ empty = false, miniRoos = false }: { em
                 </div>
               </div>
             </button>
-            <button onClick={() => showToast("Opening chat with Sami Haddad.")} style={{ display:'flex', alignItems:'flex-start', gap:10, padding:'10px 16px', border:'none', borderBottom:`1px solid ${LN}`, background:'transparent', textAlign:'left', cursor:'pointer', fontFamily:'inherit', width:'100%' }}>
+            <button onClick={() => openThing("chat with Sami Haddad", 'coach')} style={{ display:'flex', alignItems:'flex-start', gap:10, padding:'10px 16px', border:'none', borderBottom:`1px solid ${LN}`, background:'transparent', textAlign:'left', cursor:'pointer', fontFamily:'inherit', width:'100%' }}>
               <Ini s="SH" bg={ROSE} size={36}/>
               <div style={{ flex:1 }}>
                 <div style={{ display:'flex', justifyContent:'space-between', marginBottom:2 }}>

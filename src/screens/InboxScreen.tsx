@@ -1,3 +1,4 @@
+import { openThing } from './openThing'
 import { useState } from 'react'
 
 function InboxEmpty() {
@@ -9,10 +10,10 @@ function InboxEmpty() {
       {/* Left: empty message list */}
       <div style={{ borderRight: '1px solid #e9eae8', display: 'flex', flexDirection: 'column', minHeight: 0, overflow: 'hidden', background: '#ffffff' }}>
         <div style={{ flex: 'none', padding: '12px 16px', display: 'flex', alignItems: 'center', gap: 8, borderBottom: '1px solid #f0f1ef' }}>
-          <button onClick={() => showToast('Opening message search.')} aria-label="Search messages" style={{ width: 44, height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', flexShrink: 0 }}>
+          <button onClick={() => openThing('message search', 'coach')} aria-label="Search messages" style={{ width: 44, height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', flexShrink: 0 }}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10211f" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
           </button>
-          <button onClick={() => showToast('Opening a new message.')} style={{ flexGrow: 1, height: 44, borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
+          <button onClick={() => openThing('a new message', 'coach')} style={{ flexGrow: 1, height: 44, borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
             New message
           </button>
@@ -65,7 +66,7 @@ function InboxEmpty() {
               <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 2 }}>Bring in your coaching team</div>
               <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: '18px' }}>Invite an assistant or fitness coach to message them here. Parents can message you once they've joined.</div>
             </div>
-            <button onClick={() => showToast('Opening the invite flow for coaches.')} style={{ flex: 'none', height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap' }}>+ Invite coaches</button>
+            <button onClick={() => openThing('the invite flow for coaches', 'coach')} style={{ flex: 'none', height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap' }}>+ Invite coaches</button>
           </div>
         </div>
 
@@ -139,7 +140,7 @@ function EllaPanelContent() {
         <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 14, padding: '14px 16px' }}>
           <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 4 }}>Message Ella's parent</div>
           <div style={{ fontSize: 14, lineHeight: '20px', color: '#4a5a57', marginBottom: 10 }}>Let them know you've seen the check-in and are keeping it light tonight.</div>
-          <button onClick={() => showToast("Opening a message to Ella's parent.")} style={{ width: '100%', height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Message Ella's parent</button>
+          <button onClick={() => openThing("a message to Ella's parent", 'coach')} style={{ width: '100%', height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Message Ella's parent</button>
         </div>
         <div style={{ fontSize: 12, color: '#6f7f7b', lineHeight: '17px', textAlign: 'center' }}>Low check-ins stay private to your coaching team. Ella's classmates and parents do not see the detail.</div>
       </div>
@@ -221,10 +222,10 @@ export default function InboxScreen({ empty }: { empty?: boolean }) {
       {/* Left: message list */}
       <div style={{ borderRight: '1px solid #e9eae8', display: 'flex', flexDirection: 'column', minHeight: 0, overflow: 'hidden', background: '#ffffff' }}>
         <div style={{ flex: 'none', padding: '12px 16px', display: 'flex', alignItems: 'center', gap: 8, borderBottom: '1px solid #f0f1ef' }}>
-          <button onClick={() => showToast('Opening message search.')} aria-label="Search messages" style={{ width: 44, height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', flexShrink: 0 }}>
+          <button onClick={() => openThing('message search', 'coach')} aria-label="Search messages" style={{ width: 44, height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', flexShrink: 0 }}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10211f" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
           </button>
-          <button onClick={() => showToast('Opening a new message.')} style={{ flexGrow: 1, height: 44, borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
+          <button onClick={() => openThing('a new message', 'coach')} style={{ flexGrow: 1, height: 44, borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
             New message
           </button>
@@ -281,7 +282,7 @@ export default function InboxScreen({ empty }: { empty?: boolean }) {
               {THREAD_MSGS.map((msg, i) => {
                 if (msg.isPlayer) {
                   return (
-                    <div key={i} onClick={() => showToast(`Opening ${msg.sub}'s profile.`)} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 12px', background: '#ffffff', border: '1px solid #e9eae8', borderRadius: 10, cursor: 'pointer' }}>
+                    <div key={i} onClick={() => openThing(`${msg.sub}'s profile`, 'coach')} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 12px', background: '#ffffff', border: '1px solid #e9eae8', borderRadius: 10, cursor: 'pointer' }}>
                       <span style={{ flex: 'none', width: 28, height: 28, borderRadius: '999px', background: '#cbbeb5', fontSize: 10, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#10211f' }}>
                         {msg.sub === 'Noah Okafor' ? 'NO' : 'ZH'}
                       </span>

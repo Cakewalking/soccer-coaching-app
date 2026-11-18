@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 // The connected club: the coach's tablet screens.
 // CN2 their take next to yours · CN4 what landed · CN8 worked elsewhere ·
 // CN9 season reports · CN10 catch-ups · CN13 handover · CN15 positions · CN17 set pieces.
@@ -227,7 +228,7 @@ export function CN13Handover({ s, go, say, team = 'u12' }: CnProps) {
   const passed = s.handover === 'passed', withFamily = s.handover === 'family'
   const pass = () => {
     if (s.handover === 'none') { setCn({ handover: 'family' }); setFamily(true); say('The family sees this page, word for word, before it is passed on.') }
-    else if (withFamily) { setCn({ handover: 'passed' }); setFamily(false); say(`Passed to ${c.nextCoach}. It appears on ${team === 'u12' ? 'her' : 'his'} squad page when the new season opens.`) }
+    else if (withFamily) { setCn({ handover: 'passed' }); setFamily(false); openThing(`Passed to ${c.nextCoach}. It appears on ${team === 'u12' ? 'her' : 'his'} squad page when the new season`, 'coach') }
   }
   return (
     <Page id="CN13-Handover" title="Handover" sub={`End of season · 12 of 16 written · ${c.full} moves up to ${c.next}`} go={go} cols="minmax(0,1fr) 348px"

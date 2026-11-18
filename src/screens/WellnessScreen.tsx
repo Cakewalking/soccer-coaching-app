@@ -1,3 +1,4 @@
+import { openThing } from './openThing'
 import { useState } from 'react'
 import { goSetup, goApp } from './sandbox/sandboxNav'
 
@@ -222,7 +223,7 @@ export default function WellnessScreen({ empty, onNav }: { empty?: boolean; onNa
         </div>
 
         <div style={{ marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: 8 }}>
-          <button onClick={() => st('Opening message to her parent.')} style={{ height: 44, borderRadius: 12, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>
+          <button onClick={() => openThing('message to her parent', 'coach')} style={{ height: 44, borderRadius: 12, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>
             Message her parent
           </button>
           <span style={{ fontSize: 12, color: '#4a5a57', textAlign: 'center' }}>Answers are seen by her coaches and her parent. The club sees counts only.</span>
@@ -257,7 +258,7 @@ export default function WellnessScreen({ empty, onNav }: { empty?: boolean; onNa
               </div>
             </div>
             <div style={{ flex: 'none', display: 'flex', gap: 8, padding: 16, borderTop: '1px solid #e9eae8' }}>
-              <button onClick={() => onNav ? onNav('PA-Check') : st('Opening the check-in as a player sees it.')} style={{ flex: 1, height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, color: '#10211f', cursor: 'pointer' }}>See what a player gets</button>
+              <button onClick={() => onNav ? onNav('PA-Check') : openThing('the check-in as a player sees it', 'coach')} style={{ flex: 1, height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, color: '#10211f', cursor: 'pointer' }}>See what a player gets</button>
               <button onClick={() => { setSheet(false); st('Saved. The check-in follows your calendar.') }} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Done</button>
             </div>
           </aside>

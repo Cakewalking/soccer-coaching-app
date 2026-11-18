@@ -1,7 +1,9 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 const G='#2f6252',GD='#1f4a3e',INK='#10211f',MUT='#4a5a57',LN='#e8edeb',PALE='#eef5f2'
 export default function HM1rNotesBack({onBack}:{onBack?:()=>void}){
   const [toast,setToast]=useState<string|null>(null)
+  void t   // kept for lines this screen may still need to say
   function t(m:string){setToast(m);setTimeout(()=>setToast(null),3200)}
   return(
     <div style={{padding:'20px 28px 40px',background:'#f7f8f7',minHeight:'100%',boxSizing:'border-box',fontFamily:'var(--font-sans)',position:'relative'}}>
@@ -34,8 +36,8 @@ export default function HM1rNotesBack({onBack}:{onBack?:()=>void}){
           <div style={{fontSize:15,color:INK,lineHeight:1.6}}>Check in with Zara's parent at the start. Keep her involved but watch how she goes in the first contact drill.</div>
         </div>
         <div style={{marginTop:16,display:'flex',gap:8}}>
-          <button onClick={()=>t('Opening this Saturday\'s notes')} style={{height: 44,padding:'0 16px',borderRadius:10,border:0,background:G,color:'#fff',fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>Note this Saturday</button>
-          <button onClick={()=>t('Opening all notes')} style={{height: 44,padding:'0 16px',borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:GD,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>All notes</button>
+          <button onClick={()=>openThing('this Saturday\'s notes', 'mini')} style={{height: 44,padding:'0 16px',borderRadius:10,border:0,background:G,color:'#fff',fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>Note this Saturday</button>
+          <button onClick={()=>openThing('all notes', 'mini')} style={{height: 44,padding:'0 16px',borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:GD,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>All notes</button>
         </div>
       </div>
       {toast&&<div style={{position:'fixed',bottom:24,left:'50%',transform:'translateX(-50%)',background:INK,color:'#fff',padding:'10px 20px',borderRadius:12,fontSize:14,fontWeight:600,zIndex:1000,whiteSpace:'nowrap' as const}}>{toast}</div>}

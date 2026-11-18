@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { Glyph } from '../Glyph'
 import { useState } from 'react'
 
@@ -71,7 +72,7 @@ export default function IVInvite(_: { onBack?: () => void }) {
         {/* Buttons */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10, paddingBottom: 32, marginTop: 4 }}>
           <button
-            onClick={() => t('Opening account setup...')}
+            onClick={() => openThing('account setup', 'entry')}
             style={{ width: '100%', padding: '15px 0', background: G, color: '#fff', border: 'none', borderRadius: 12, fontSize: 16, fontWeight: 700, cursor: 'pointer' }}
           >
             Create your account

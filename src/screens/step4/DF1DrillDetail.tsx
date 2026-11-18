@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 const G = '#2f6252', GD = '#1f4a3e', G2 = '#40826d', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 const NAV = ['Home', 'Squad', 'Training', 'Match day', 'Clips']
@@ -26,7 +27,7 @@ export default function DF1DrillDetail(_: { onBack?: () => void }) {
         </div>
         <div style={{ display: 'flex', gap: 8, marginTop: 4 }}>
           <button onClick={() => st('Saved to your library.')} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: `1.5px solid ${LN}`, background: '#fff', color: INK, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Save</button>
-          <button onClick={() => st('Opening add to session.')} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: 'none', background: GD, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Add to a session</button>
+          <button onClick={() => openThing('add to session', 'club')} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: 'none', background: GD, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Add to a session</button>
         </div>
       </div>
       <main style={{ flexGrow: 1, padding: '14px 28px 28px', display: 'grid', gridTemplateColumns: '340px minmax(0,1fr)', gap: 24 }}>

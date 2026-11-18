@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { glyph } from '../Glyph'
 import { useDoneAll, markDone } from '../doneStore'
 import { useState } from 'react'
@@ -89,7 +90,7 @@ export default function ClubTab({ role, empty, homeStory, onNav, initialView }: 
               ))}
             </div>
             <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: 1.5, marginBottom: 10 }}>Coaches can start before you finish. Each team can set itself up from a coach link.</div>
-            <button onClick={() => showToast('Opening setup call booking.')} style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Book a setup call</button>
+            <button onClick={() => openThing('setup call booking', 'club')} style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Book a setup call</button>
           </div>
           <div>
             <div style={{ background: '#fff', borderRadius: 16, border: '1px solid #e9eae8', padding: '16px', marginBottom: 14 }}>
@@ -243,8 +244,8 @@ export default function ClubTab({ role, empty, homeStory, onNav, initialView }: 
                     </div>
                     <button aria-pressed={!!needs[`needs:${needs[`needs:${item.cta}`] ? (item.cta === 'Remind' ? 'Reminded' : 'Asked') : item.cta}`]} onClick={() => {
                       if (item.cta === 'Fix kit') { setView('kit'); return }
-                      if (item.cta === 'See load') { if (onNav) onNav('D2-Teams'); else showToast('Opening U16 Ollie’s load.'); return }
-                      if (item.cta === 'Open') { if (onNav) onNav('D3-Coaches'); else showToast('Opening the coach meeting.'); return }
+                      if (item.cta === 'See load') { if (onNav) onNav('D2-Teams'); else openThing('U16 Ollie’s load', 'club'); return }
+                      if (item.cta === 'Open') { if (onNav) onNav('D3-Coaches'); else openThing('the coach meeting', 'club'); return }
                       markDone(`needs:${item.cta}`); showToast(item.cta === 'Remind' ? 'Reminder sent to the four coaches. One reminder only.' : 'Tom Albers is asked to cover U9 Mark on Saturday.')
                     }} style={{ flexShrink: 0, height: 44, padding: '0 12px', borderRadius: '999px', border: '1px solid #2f6252', background: '#fff', color: '#2f6252', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>{item.cta}</button>
                   </div>
@@ -253,7 +254,7 @@ export default function ClubTab({ role, empty, homeStory, onNav, initialView }: 
               <div style={card}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 12 }}>
                   <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>Teams to watch</div>
-                  <button onClick={() => showToast('Opening all teams view.')} style={{ fontSize: 12, color: '#2f6252', background: 'none', border: 0, cursor: 'pointer', fontFamily: 'inherit' }}>All 14 teams</button>
+                  <button onClick={() => openThing('all teams view', 'club')} style={{ fontSize: 12, color: '#2f6252', background: 'none', border: 0, cursor: 'pointer', fontFamily: 'inherit' }}>All 14 teams</button>
                 </div>
                 <div style={{ display: 'grid', gridTemplateColumns: 'auto 1fr auto auto', gap: '6px 12px', fontSize: 12 }}>
                   <div style={{ color: '#6f7f7b', fontWeight: 700 }}>TEAM</div>

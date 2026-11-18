@@ -1,9 +1,11 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 export default function HM4eGameDayMiniRoosEmpty(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string|null>(null)
+  void st   // kept for lines this screen may still need to say
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820 }}>
@@ -24,7 +26,7 @@ export default function HM4eGameDayMiniRoosEmpty(_: { onBack?: () => void }) {
             </div>
             <div style={{ fontSize: 22, fontWeight: 900, letterSpacing: '-0.02em', color: INK, marginBottom: 8 }}>No game this week</div>
             <div style={{ fontSize: 14, color: MUT, lineHeight: 1.6, marginBottom: 20 }}>Fixtures, turns and the captain's armband appear here once a game is booked.</div>
-            <button style={{ height: 44, padding: '0 24px', borderRadius: 12, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }} onClick={() => st('Opening fixtures.')}>Fixtures</button>
+            <button style={{ height: 44, padding: '0 24px', borderRadius: 12, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }} onClick={() => openThing('fixtures', 'mini')}>Fixtures</button>
           </div>
         </div>
 

@@ -1,9 +1,11 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 const G='#2f6252',GD='#1f4a3e',INK='#10211f',MUT='#4a5a57',LN='#e8edeb',PALE='#eef5f2'
 type Tab='home'|'clips'|'goals'|'me'
 export default function SPp14PlayerPostSeason(){
   const [tab,setTab]=useState<Tab>('home')
   const [toast,setToast]=useState<string|null>(null)
+  void t   // kept for lines this screen may still need to say
   function t(m:string){setToast(m);setTimeout(()=>setToast(null),3200)}
   return(
     <div style={{width:390,minHeight:812,background:'#fff',borderRadius:28,overflow:'hidden',boxShadow:'0 8px 40px rgba(0,0,0,0.14)',display:'flex',flexDirection:'column',fontFamily:'var(--font-sans)',position:'relative'}}>
@@ -39,7 +41,7 @@ export default function SPp14PlayerPostSeason(){
                 <span style={{fontSize:14,color:INK}}>{ev}</span>
               </div>
             ))}
-            <button onClick={()=>t('Opening rest month view')} style={{display:'block',width:'100%',marginTop:12,padding:'12px',borderRadius:10,border:`1px solid ${LN}`,background:'#fff',textAlign:'center' as const,fontFamily:'inherit',fontSize:13,color:MUT,cursor:'pointer'}}>Then rest in December</button>
+            <button onClick={()=>openThing('rest month view', 'phone')} style={{display:'block',width:'100%',marginTop:12,padding:'12px',borderRadius:10,border:`1px solid ${LN}`,background:'#fff',textAlign:'center' as const,fontFamily:'inherit',fontSize:13,color:MUT,cursor:'pointer'}}>Then rest in December</button>
           </>
         )}
         {tab!=='home'&&<div style={{padding:'40px 0',textAlign:'center' as const,color:MUT,fontSize:14}}>{tab.charAt(0).toUpperCase()+tab.slice(1)} tab</div>}

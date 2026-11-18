@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
@@ -20,7 +21,7 @@ export default function DF7OwnSaved(_: { onBack?: () => void }) {
         <div style={{ fontSize: 26, fontWeight: 800, color: INK, letterSpacing: '-0.02em' }}>Gate passing is in Our drills</div>
         <div style={{ fontSize: 15, color: MUT, lineHeight: 1.6 }}>Every coach at Wattle Creek can use it now. Clean Sheet will suggest it after a game when the problem shows up.</div>
         <div style={{ display: 'flex', gap: 12 }}>
-          <button onClick={() => st('Opening add to session.')} style={{ height: 48, padding: '0 24px', borderRadius: 12, background: GD, color: '#fff', border: 'none', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Add to a session</button>
+          <button onClick={() => openThing('add to session', 'club')} style={{ height: 48, padding: '0 24px', borderRadius: 12, background: GD, color: '#fff', border: 'none', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Add to a session</button>
           <button onClick={() => st('Going back to library.')} style={{ height: 44, padding: '0 20px', borderRadius: 12, background: '#fff', color: INK, border: `1.5px solid ${LN}`, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Back to library</button>
         </div>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '16px 20px', width: '100%', textAlign: 'left' as const }}>

@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 
 const G = '#2f6252', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
@@ -23,7 +24,7 @@ export default function SP7Friendlies(_: { onBack?: () => void }) {
           <div style={{ fontSize: 14, color: MUT }}>Thu 12 March · pre-season · 4 weeks to round 1 · other Clean Sheet clubs looking for a game</div>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button onClick={() => t('Opening \'add one yourself\'')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Add one yourself</button>
+          <button onClick={() => openThing('\'add one yourself\'', 'coach')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Add one yourself</button>
           <button onClick={() => setSheet('spfree')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Say when you're free</button>
         </div>
       </div>

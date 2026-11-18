@@ -1,3 +1,4 @@
+import { openThing } from './openThing'
 import { Glyph, glyph } from './Glyph'
 import { useState } from 'react'
 import { useSandbox } from './sandbox/SandboxContext'
@@ -117,7 +118,7 @@ export default function TeamManagerScreen({ empty, initialScreen }: { empty?: bo
             <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.5, marginBottom: 16 }}>Send the team link to parents. Once they join, you can share meet times, ask who's coming and fill the duty roster.</div>
             <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 10, marginBottom: 20 }}>
               <button onClick={() => showToast('Team link copied.')} style={{ height: 44, borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Copy the team link</button>
-              <button onClick={() => showToast('Opening parent view.')} style={{ height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>See what parents see</button>
+              <button onClick={() => openThing('parent view', 'phone')} style={{ height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>See what parents see</button>
             </div>
             <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.07em', color: '#6f7f7b', marginBottom: 8 }}>NEXT GAME</div>
             <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 12, padding: '12px 14px', fontSize: 13, color: '#4a5a57', marginBottom: 10 }}>Fixtures appear here once Sam or the club adds them.</div>
@@ -127,7 +128,7 @@ export default function TeamManagerScreen({ empty, initialScreen }: { empty?: bo
             <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 14, padding: '20px', marginBottom: 16 }}>
               <div style={{ fontSize: 16, fontWeight: 700, color: '#10211f', marginBottom: 6 }}>No game this week</div>
               <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.5, marginBottom: 14 }}>{"It's a bye round. Your game-day checklist opens here on the morning of the next game."}</div>
-              <button onClick={() => showToast('Opening fixtures.')} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: '1px solid #e9eae8', background: '#fff', color: '#2f6252', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>See fixtures</button>
+              <button onClick={() => openThing('fixtures', 'phone')} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: '1px solid #e9eae8', background: '#fff', color: '#2f6252', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>See fixtures</button>
             </div>
             {[
               { title: 'ON THE DAY', items: ['Arrival text', 'Duty roster', 'Who signed on', 'First-aid card', 'Head knock form', 'Sign-off after the game'] },
@@ -145,7 +146,7 @@ export default function TeamManagerScreen({ empty, initialScreen }: { empty?: bo
             <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 14, padding: '20px', marginBottom: 16 }}>
               <div style={{ fontSize: 16, fontWeight: 700, color: '#10211f', marginBottom: 6 }}>No messages yet</div>
               <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.5, marginBottom: 14 }}>Tell every family about a change in one go. You'll see who has read it, and nudge anyone who hasn't.</div>
-              <button onClick={() => showToast('Opening change message.')} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Tell parents about a change</button>
+              <button onClick={() => openThing('change message', 'phone')} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Tell parents about a change</button>
             </div>
             <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.07em', color: '#6f7f7b', marginBottom: 8 }}>CONVERSATIONS</div>
             <div style={{ padding: '12px 14px', background: '#fff', border: '1px solid #e9eae8', borderRadius: 10, fontSize: 13, color: '#4a5a57' }}>Messages to a player always go to their parents too. Coaches see team messages in their inbox.</div>
@@ -156,7 +157,7 @@ export default function TeamManagerScreen({ empty, initialScreen }: { empty?: bo
               <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.5, marginBottom: 14 }}>{"Pick the jobs your team needs each week. Families sign up from their phone, and swap if they can't make it."}</div>
               <div style={{ display: 'flex', gap: 10 }}>
                 <button onClick={() => showToast('Adding usual jobs.')} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Add the usual jobs</button>
-                <button onClick={() => showToast('Opening custom jobs.')} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: '1px solid #e9eae8', background: '#fff', color: '#4a5a57', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Choose my own</button>
+                <button onClick={() => openThing('custom jobs', 'phone')} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: '1px solid #e9eae8', background: '#fff', color: '#4a5a57', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Choose my own</button>
               </div>
             </div>
             <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.07em', color: '#6f7f7b', marginBottom: 8 }}>FILLS IN LIKE THIS</div>
@@ -295,7 +296,7 @@ export default function TeamManagerScreen({ empty, initialScreen }: { empty?: bo
                   <div style={{ fontSize: 18, fontWeight: 800, color: '#10211f', marginBottom: 6 }}>No game this week</div>
                   <div style={{ fontSize: 14, color: '#6f7f7b', marginBottom: 20 }}>Bye round · SAT 14 JUN. Use this week for extra training or a break.</div>
                   <div style={{ display: 'flex', gap: 10, justifyContent: 'center' }}>
-                    <button onClick={() => showToast('Opening extra session planner.')} style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#4a5a57', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Extra training session?</button>
+                    <button onClick={() => openThing('extra session planner', 'phone')} style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#4a5a57', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Extra training session?</button>
                     <button onClick={() => showToast('Sending bye week message.')} style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Tell parents</button>
                   </div>
                 </div>

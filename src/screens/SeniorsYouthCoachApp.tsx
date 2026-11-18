@@ -25,7 +25,6 @@ import { TeamText } from '../teamNames'
 import { COACH_TAB_SCREEN, coachDeepTab } from './JuniorCoachApp'
 import type { FormationPreset } from './formation/lineupInsights'
 import ThisWeekScreen       from './ThisWeekScreen'
-import SuggestionsScreen    from './SuggestionsScreen'
 import DrillLibraryScreen   from './DrillLibraryScreen'
 import GrowthLoadScreen     from './GrowthLoadScreen'
 import TeamSheetScreen      from './TeamSheetScreen'
@@ -34,12 +33,13 @@ import ReviewScreen         from './ReviewScreen'
 import YourTakeBoards, { isYourTakeId } from './aftergame/YourTakeBoards'
 import TeamTalkScreen       from './TeamTalkScreen'
 import PitchSideScreen      from './PitchSideScreen'
-import { FitnessTrainingTab, FitnessMatchTab } from './FitnessExtras'
+import { FitnessMatchTab } from './FitnessExtras'
 import RecordHub           from './RecordHub'
 import { RecordSaved }     from './RecordHub'
 import CaptureFlow, { isCaptureId, captureSubTab } from './capture/CaptureFlow'
 import ChancesFlow, { isChanceId } from './chances/ChancesFlow'
 import CnScreen from './connected/CnScreen'
+import SessionTab from './session/SessionTab'
 import DevicesTab from './settings/DevicesTab'
 import { demoToast } from './demoToast'
 import { useCapture, allowed } from './capture/captureStore'
@@ -395,7 +395,8 @@ type Sub = 'teamtalk' | 'pitchside' | null
 
 const NAV_KEYS: NavKey[] = ['home', 'squad', 'training', 'matchday', 'clips', 'record']
 const SQUAD_TABS    = ['Players', 'Formation', 'Line-ups that worked', 'Development goals', 'Wellness', 'Availability', 'Consent and privacy', 'Season reports', 'Catch-ups', 'Handover']
-const TRAINING_TABS = ["Tonight's session", 'This week', 'Suggested', 'Drill library', 'Growth and load', 'What landed', 'Worked elsewhere']
+const TRAINING_TABS = ['Tuesday’s session', 'Run sheet', 'Who’s coming', 'Season so far', 'This week', 'Drill library', 'Growth and load', 'What landed', 'Worked elsewhere', 'Learn to coach']
+const GS_TAB: Record<string, number> = { 'GS1-ProposedSession': 0, 'GS2-DrillWhy': 0, 'GS5-CoachLevel': 0, 'GS6-NothingToGoOn': 0, 'GS3-RunSheet': 1, 'GS4-ResizeAttendance': 2, 'GS7-SeasonLookBack': 3, 'GS8-WelcomeCourse': 9, 'SG1-Suggested': 0, 'T3-TrainingTab': 0 }
 const MATCHDAY_TABS = ['Team talk', 'Line-up and minutes', 'Opposition', 'Review', 'Chances', 'Ladder', 'Your take', 'Set pieces']   // Chances and Ladder follow the club's rules for this age band
 const CLIPS_TABS    = ['By measure', 'By game', 'By player', 'Playlists', 'To check', 'Learn']
 
@@ -421,6 +422,7 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
   const [take, setTake] = useState<'yours' | 'theirs'>('yours')   // Your take: the coach's own ratings, or the players' beside them
   const cnEmpty = inSandbox && sbEmpty
   const [ytView, setYtView] = useState('YT1-YourTake')
+  const [gsView, setGsView] = useState('GS1-ProposedSession')   // which of the session screens the first Training tab shows
   const cnTeam = teamType === 'seniors' ? 'seniors' as const : 'u16' as const
   const may = allowed(useCapture(), teamType === 'seniors' ? 'seniors' : 'youth')
   // Match day tabs this team may see: Chances (4) and Ladder (5) follow the club's rules. A new team has no ladder yet.
@@ -435,6 +437,7 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
   function goNav(n: NavKey) { setNav(n); setSub(null); setAskOpen(false); onNavChange?.(n); setFilView(null); setRecView(null) }
 
   function handleNav(s: string) {
+    if (s in GS_TAB) { const i = GS_TAB[s]; goNav('training'); setTrainingTab(teamType === 'seniors' && i > 6 ? i - 1 : i); if (i === 0) setGsView(s.startsWith('GS') ? s : 'GS1-ProposedSession'); return }   // the justified session lives under Training
     if (s === 'CN2-SelfVsCoach') { goNav('matchday'); setMatchTab(6); setTake('theirs'); return }
     if (isYourTakeId(s)) { goNav('matchday'); setMatchTab(6); setTake('yours'); setYtView(s); return }   // the four Your take boards stay inside Match day
     if (isChanceId(s)) { goNav('matchday'); openChance(s); return }   // chances and the ladder live under Match day
@@ -489,7 +492,7 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
   const subTabs  = nav === 'clips'    ? CLIPS_TABS
                  : nav === 'home'     ? HOME_TABS
                  : nav === 'squad'    ? (teamType === 'seniors' ? SQUAD_TABS.slice(0, 7) : SQUAD_TABS)   // season reports, catch-ups and handover are for families
-                 : nav === 'training' ? (teamType === 'seniors' ? [...TRAINING_TABS.slice(0, 4), ...TRAINING_TABS.slice(5)] : TRAINING_TABS)   // adults are not growing: no Growth and load
+                 : nav === 'training' ? (teamType === 'seniors' ? TRAINING_TABS.filter(t => t !== 'Growth and load') : TRAINING_TABS)   // adults are not growing: no Growth and load
                  : nav === 'record'   ? REC_TABS
                  : matchVisible.map(i => MATCHDAY_TABS[i])
 
@@ -504,7 +507,7 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
     setSub(null)
     if (nav === 'home')     { setHomeTab(i); if (i !== 7) setFilView(null) }
     if (nav === 'squad')    setSquadTab(i)
-    if (nav === 'training') setTrainingTab(i)
+    if (nav === 'training') { setTrainingTab(i); if (i === 0) setGsView('GS1-ProposedSession') }
     if (nav === 'matchday') { setMatchTab(matchVisible[i]); if (matchVisible[i] === 6) { setYtView('YT1-YourTake'); setTake('yours') } }   // the Your take tab always opens on its first board
     if (nav === 'clips')    setClipsTab(i)
     if (nav === 'record')   { if (i === 2) handleNav('SET4-Devices'); else setRecView(i === 1 ? 'REC2-RecordSaved' : i === 3 ? 'QC10-HowWeMeasure' : null) }
@@ -559,14 +562,19 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
       case 7: case 8: case 9: content = <CnScreen empty={cnEmpty} id={['CN9-SeasonReport', 'CN10-CatchUps', 'CN13-Handover'][squadTab - 7]} onNav={handleNav} team={cnTeam} />; break
     }
   } else if (nav === 'training') {
-    switch (teamType === 'seniors' && trainingTab >= 4 ? trainingTab + 1 : trainingTab) {   // seniors have no Growth and load tab
-      case 0: content = <TrainingScreen role="head" onNav={handleNav} empty={sbEmptySession} nextOpponent={data.opponent} lastOpponent={data.lastGame.opponent} />; break
-      case 1: content = <ThisWeekScreen empty={sbEmptySession} onDrillLibrary={() => setTrainingTab(3)} onTonightsPlan={() => setTrainingTab(0)} onGrowthLoad={teamType === 'seniors' ? undefined : () => setTrainingTab(4)} nextOpponent={data.opponent} lastOpponent={data.lastGame.opponent} />; break
-      case 2: content = <SuggestionsScreen empty={sbEmptySession} onRecord={() => goNav('record')} />; break
-      case 3: content = <DrillLibraryScreen empty={sbEmptySession} />; break
-      case 4: content = <GrowthLoadScreen empty={sbEmptySession} />; break
-      case 5: case 6: content = <CnScreen empty={cnEmpty} id={(teamType === 'seniors' ? trainingTab + 1 : trainingTab) === 5 ? 'CN4-SessionsLanded' : 'CN8-WhatWorked'} onNav={handleNav} team={cnTeam} />; break
-      case 7: content = <FitnessTrainingTab empty={sbEmptySession} />; break
+    // Seniors have no Growth and load tab, so their tabs after it sit one place earlier.
+    const tt = teamType === 'seniors' && trainingTab >= 6 ? trainingTab + 1 : trainingTab
+    const gs = (id: string) => sbEmptySession ? <TrainingScreen role="head" onNav={handleNav} empty nextOpponent={data.opponent} lastOpponent={data.lastGame.opponent} /> : <SessionTab id={id} team={cnTeam} onNav={handleNav} onStart={() => handleNav('pitchside')} />
+    switch (tt) {
+      case 0: content = gs(gsView); break
+      case 1: content = gs('GS3-RunSheet'); break
+      case 2: content = gs('GS4-ResizeAttendance'); break
+      case 3: content = gs('GS7-SeasonLookBack'); break
+      case 4: content = <ThisWeekScreen empty={sbEmptySession} onDrillLibrary={() => setTrainingTab(5)} onTonightsPlan={() => setTrainingTab(0)} onGrowthLoad={teamType === 'seniors' ? undefined : () => setTrainingTab(6)} nextOpponent={data.opponent} lastOpponent={data.lastGame.opponent} />; break
+      case 5: content = <DrillLibraryScreen empty={sbEmptySession} />; break
+      case 6: content = <GrowthLoadScreen empty={sbEmptySession} />; break
+      case 7: case 8: content = <CnScreen empty={cnEmpty} id={tt === 7 ? 'CN4-SessionsLanded' : 'CN8-WhatWorked'} onNav={handleNav} team={cnTeam} />; break
+      case 9: content = gs('GS8-WelcomeCourse'); break
     }
   } else if (nav === 'record') {
     if (recView && isCaptureId(recView)) content = <CaptureFlow step={recView} onStep={setRecView} onNav={handleNav} kitless={inSandbox && sbEmpty} age={teamType === 'seniors' ? 'seniors' : 'youth'} team={inSandbox ? (store.teams[0]?.name ?? 'your team') : teamType === 'seniors' ? 'Men’s 1sts' : 'U16 Ollie'} />
@@ -618,7 +626,7 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
       >
         {/* Shared screens still written with U12 Sam's players get this team's names. Screens that take a squad are left alone. */}
         <div data-screen={nav === 'record' && recView ? recView.split('#')[0] : nav === 'home' && activeIdx === 0 ? (teamType === 'seniors' ? 'STO4-HomeStorySeniors' : 'STO6-HomeStoryYouth') : nav === 'home' && activeIdx === 5 ? (teamType === 'seniors' ? 'WA3-WhereWeAtSeniors' : 'WA2-WhereWeAtYouth') : nav === 'squad' && activeIdx === 1 && teamType === 'seniors' ? 'FB1s-FormationSeniors' : COACH_TAB_SCREEN[nav]?.[nav === 'matchday' ? matchTab : activeIdx] ?? COACH_TAB_SCREEN[nav]?.[0]} style={{ display: 'contents' }}>
-          <TeamText team={(nav === 'squad' && (squadTab <= 3 || squadTab === 5 || squadTab >= 7)) || (nav === 'training' && (teamType === 'seniors' ? trainingTab === 4 || trainingTab === 5 : trainingTab === 5 || trainingTab === 6)) || (nav === 'matchday' && (matchTab === 7 || (matchTab === 6 && take === 'theirs'))) || (nav === 'home' && homeTab <= 3) ? null : teamType === 'seniors' ? 'seniors' : 'youth'}>{content}</TeamText>
+          <TeamText team={(nav === 'squad' && (squadTab <= 3 || squadTab === 5 || squadTab >= 7)) || (nav === 'training' && ![4, 5, 6].includes(teamType === 'seniors' && trainingTab >= 6 ? trainingTab + 1 : trainingTab)) || (nav === 'matchday' && (matchTab === 7 || (matchTab === 6 && take === 'theirs'))) || (nav === 'home' && homeTab <= 3) ? null : teamType === 'seniors' ? 'seniors' : 'youth'}>{content}</TeamText>
         </div>
       </CoachTabletFrame>
     </>

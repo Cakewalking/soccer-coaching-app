@@ -1,9 +1,11 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 export default function HM3eTrainingMiniRoosEmpty(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string|null>(null)
+  void st   // kept for lines this screen may still need to say
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820 }}>
@@ -24,7 +26,7 @@ export default function HM3eTrainingMiniRoosEmpty(_: { onBack?: () => void }) {
           <div style={{ fontSize: 22, fontWeight: 900, letterSpacing: '-0.02em', color: INK, marginBottom: 8 }}>No session set for tonight</div>
           <div style={{ fontSize: 15, color: MUT, lineHeight: 1.6, marginBottom: 24 }}>Tell us your training night and Clean Sheet lines up four fun games for under 9s, with a new skill each fortnight.</div>
 
-          <button style={{ height: 48, padding: '0 28px', borderRadius: 14, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer', marginBottom: 32 }} onClick={() => st('Opening training night setup.')}>Add your training night</button>
+          <button style={{ height: 48, padding: '0 28px', borderRadius: 14, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer', marginBottom: 32 }} onClick={() => openThing('training night setup', 'mini')}>Add your training night</button>
 
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 20px', textAlign: 'left' as const }}>
             <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 8 }}>What you'll see</div>

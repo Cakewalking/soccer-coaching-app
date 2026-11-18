@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', G2 = '#40826d', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
@@ -6,6 +7,7 @@ const SUBNAV = ["Tonight's session", 'This week', 'Suggested', 'Drill library', 
 
 export default function SG5eWhatWorkedEmpty(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string|null>(null)
+  void st   // kept for lines this screen may still need to say
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, height: 820, boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
@@ -30,7 +32,7 @@ export default function SG5eWhatWorkedEmpty(_: { onBack?: () => void }) {
           <div style={{ fontSize: 20, fontWeight: 800, color: INK }}>No drill recorded more than once yet</div>
           <div style={{ fontSize: 15, fontWeight: 600, color: MUT }}>Record a drill three times</div>
           <div style={{ fontSize: 14, color: MUT, lineHeight: 1.6, maxWidth: 440 }}>With three runs of the same set-up, Clean Sheet can tell you whether a drill is working for your team, and stop suggesting the ones that aren't.</div>
-          <button style={{ height: 48, padding: '0 28px', borderRadius: 12, background: GD, color: '#fff', border: 'none', fontSize: 15, fontWeight: 700, cursor: 'pointer', marginTop: 4 }} onClick={() => st('Opening drill recorder.')}>Record a drill</button>
+          <button style={{ height: 48, padding: '0 28px', borderRadius: 12, background: GD, color: '#fff', border: 'none', fontSize: 15, fontWeight: 700, cursor: 'pointer', marginTop: 4 }} onClick={() => openThing('drill recorder', 'coach')}>Record a drill</button>
         </div>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: 20 }}>
           <div style={{ fontSize: 14, fontWeight: 700, color: INK, marginBottom: 14 }}>Then you'll see</div>

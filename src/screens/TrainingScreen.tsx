@@ -1,3 +1,4 @@
+import { openThing } from './openThing'
 import { useState } from 'react'
 import { goSetup } from './sandbox/sandboxNav'
 import { DATA, COLOR_MAP, type Role } from '../data'
@@ -238,6 +239,7 @@ function OfflineView() {
 export default function TrainingScreen({ role, onNav, empty, nextOpponent = 'Harbour Rovers', lastOpponent = 'Ironbark United' }: Props) {
   const [offline, setOffline] = useState(false)
   const [toast, setToast] = useState<string | null>(null)
+  void showToast   // kept for lines this screen may still need to say
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   if (empty) return <TrainingEmpty onNav={onNav} />
   if (offline) {
@@ -283,7 +285,7 @@ export default function TrainingScreen({ role, onNav, empty, nextOpponent = 'Har
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>
               Team talk
             </button>
-            <button onClick={() => showToast('Opening the session plan editor.')} style={{
+            <button onClick={() => openThing('the session plan editor', 'coach')} style={{
               height: 36, padding: '0 14px', borderRadius: '999px', border: '1px solid #c5c8c4',
               background: '#ffffff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer',
             }}>Edit plan</button>

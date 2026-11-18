@@ -1,7 +1,9 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 const G='#2f6252',GD='#1f4a3e',INK='#10211f',MUT='#4a5a57',LN='#e8edeb',PALE='#eef5f2'
 export default function SE2PlayerSummary({onBack}:{onBack?:()=>void}){
   const [toast,setToast]=useState<string|null>(null)
+  void t   // kept for lines this screen may still need to say
   function t(m:string){setToast(m);setTimeout(()=>setToast(null),3200)}
   return(
     <div style={{padding:'20px 28px 40px',background:'#f7f8f7',minHeight:'100%',boxSizing:'border-box',fontFamily:'var(--font-sans)',position:'relative'}}>
@@ -77,7 +79,7 @@ export default function SE2PlayerSummary({onBack}:{onBack?:()=>void}){
             <div style={{fontSize:12,fontWeight:600,color:MUT,marginBottom:4}}>Left out on purpose</div>
             <div style={{fontSize:12,color:MUT,lineHeight:1.5}}>Specific game events, comparisons to other players, and anything from wellness check-ins.</div>
           </div>
-          <button onClick={()=>t('Opening message to family')} style={{marginTop:12,width:'100%',height: 44,borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:GD,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>Send to family</button>
+          <button onClick={()=>openThing('message to family', 'coach')} style={{marginTop:12,width:'100%',height: 44,borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:GD,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>Send to family</button>
         </div>
       </div>
       {toast&&<div style={{position:'fixed',bottom:24,left:'50%',transform:'translateX(-50%)',background:INK,color:'#fff',padding:'10px 20px',borderRadius:12,fontSize:14,fontWeight:600,zIndex:1000,whiteSpace:'nowrap' as const}}>{toast}</div>}

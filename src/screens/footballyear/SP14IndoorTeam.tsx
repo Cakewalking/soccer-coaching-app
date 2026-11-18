@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 
 const G = '#2f6252', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
@@ -26,7 +27,7 @@ export default function SP14IndoorTeam(_: { onBack?: () => void }) {
           <div style={{ fontSize: 14, color: MUT }}>Indoor league · Monday nights at Elderberry Park Indoor Centre · 14 September to 30 November</div>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button onClick={() => t('Opening fixtures')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Fixtures</button>
+          <button onClick={() => openThing('fixtures', 'coach')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Fixtures</button>
           <button onClick={() => t("Monday's five and three subs sent to 8 families.")} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Monday's five</button>
         </div>
       </div>

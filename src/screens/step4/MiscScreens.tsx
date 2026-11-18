@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { Glyph } from '../Glyph'
 import React, { useState } from 'react'
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2', BG = '#f5f6f4'
@@ -196,7 +197,7 @@ export function CH8ChatInfo() {
 
           <div style={{ display: 'flex', gap: 10, marginBottom: 24 }}>
             <button onClick={() => st('Going back to chat.')} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: G, cursor: 'pointer' }}>Back to chat</button>
-            <button onClick={() => st('Opening chat settings.')} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: G, cursor: 'pointer' }}>Change settings</button>
+            <button onClick={() => openThing('chat settings', 'coach')} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: G, cursor: 'pointer' }}>Change settings</button>
           </div>
 
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, overflow: 'hidden' }}>

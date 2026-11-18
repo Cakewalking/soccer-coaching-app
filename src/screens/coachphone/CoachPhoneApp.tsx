@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 import QCp1BeforeKickOffPhone from '../capture/QCp1BeforeKickOffPhone'
 import CaptureFlow, { isCaptureId } from '../capture/CaptureFlow'
@@ -186,7 +187,7 @@ function CoachPhonePreSeasonHome() {
           <div style={{ fontSize: 16, fontWeight: 800, color: INK }}>U12 Sam · Wattle Creek</div>
         </div>
         <div style={{ borderTop: '1px solid #f0f1f0', padding: '10px 14px' }}>
-          <button onClick={() => st('Opening tonight\'s session plan.')} style={{ width: '100%', height: 44, borderRadius: 10, border: 0, background: GD, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Tonight's session</button>
+          <button onClick={() => openThing('tonight\'s session plan', 'phone')} style={{ width: '100%', height: 44, borderRadius: 10, border: 0, background: GD, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Tonight's session</button>
         </div>
       </Card>
       {toast && <div role="status" style={{ position: 'fixed', bottom: 80, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '10px 18px', borderRadius: 10, background: '#1f4a3e', color: '#fff', fontSize: 14, fontWeight: 600, whiteSpace: 'nowrap' }}>{toast}</div>}
@@ -196,6 +197,7 @@ function CoachPhonePreSeasonHome() {
 
 function CoachPhonePostSeasonHome() {
   const [toast, setToast] = useState<string | null>(null)
+  void st   // kept for lines this screen may still need to say
   function st(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   return (
     <>
@@ -207,7 +209,7 @@ function CoachPhonePostSeasonHome() {
           <div style={{ fontSize: 14, color: MUT }}>3rd place · Division 1 · 10 wins, 3 draws, 3 losses</div>
         </div>
         <div style={{ borderTop: '1px solid #f0f1f0', padding: '10px 14px' }}>
-          <button onClick={() => st('Opening the season review.')} style={{ width: '100%', height: 44, borderRadius: 10, border: 0, background: GD, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>See the season review</button>
+          <button onClick={() => openThing('the season review', 'phone')} style={{ width: '100%', height: 44, borderRadius: 10, border: 0, background: GD, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>See the season review</button>
         </div>
       </Card>
       <SectionHead>Next up</SectionHead>
@@ -217,14 +219,14 @@ function CoachPhonePostSeasonHome() {
           label="Roll the squad over to 2027"
           sub="Move players up and confirm staff"
           right={<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6l6 6-6 6"/></svg>}
-          onPress={() => st('Opening the season rollover.')}
+          onPress={() => openThing('the season rollover', 'phone')}
         />
         <Row
           icon={<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={G} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"/><path d="M20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/><path d="M9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5z"/><path d="M3.5 14H5v1.5c0 .83-.67 1.5-1.5 1.5S2 16.33 2 15.5 2.67 14 3.5 14z"/><path d="M14 14.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5z"/><path d="M15.5 19H14v1.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z"/><path d="M10 9.5c0 .83-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5S2.67 8 3.5 8h5c.83 0 1.5.67 1.5 1.5z"/><path d="M8.5 5H10V3.5c0-.83-.67-1.5-1.5-1.5S7 2.67 7 3.5 7.67 5 8.5 5z"/></svg>}
           label="Tournaments and gala days"
           sub="2 available in October"
           right={<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6l6 6-6 6"/></svg>}
-          onPress={() => st('Opening tournament options.')}
+          onPress={() => openThing('tournament options', 'phone')}
         />
       </Card>
       {toast && <div role="status" style={{ position: 'fixed', bottom: 80, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '10px 18px', borderRadius: 10, background: '#1f4a3e', color: '#fff', fontSize: 14, fontWeight: 600, whiteSpace: 'nowrap' }}>{toast}</div>}
@@ -234,6 +236,7 @@ function CoachPhonePostSeasonHome() {
 
 function CoachPhoneRestMonthHome() {
   const [toast, setToast] = useState<string | null>(null)
+  void st   // kept for lines this screen may still need to say
   function st(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   return (
     <>
@@ -249,14 +252,14 @@ function CoachPhoneRestMonthHome() {
           label="Plan pre-season"
           sub="Set goals and sessions for March"
           right={<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6l6 6-6 6"/></svg>}
-          onPress={() => st('Opening the pre-season planner.')}
+          onPress={() => openThing('the pre-season planner', 'phone')}
         />
         <Row
           icon={<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={G} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>}
           label="Check in with parents"
           sub="Let them know when pre-season starts"
           right={<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6l6 6-6 6"/></svg>}
-          onPress={() => st('Opening the message to parents.')}
+          onPress={() => openThing('the message to parents', 'phone')}
         />
       </Card>
       <div style={{ margin: '0 12px 20px', padding: '12px 14px', borderRadius: 12, background: '#f0f1f0', fontSize: 13, color: MUT, lineHeight: 1.5 }}>
@@ -279,6 +282,7 @@ function PhoneAskLine({ onAsk }: { onAsk: () => void }) {
 
 function CoachPhoneHomeTab({ onPlan, onAsk, onKick, onIncident }: { onPlan: () => void; onAsk: () => void; onKick?: () => void; onIncident?: () => void }) {
   const [toast, setToast] = useState<string|null>(null)
+  void st   // kept for lines this screen may still need to say
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <>
@@ -296,7 +300,7 @@ function CoachPhoneHomeTab({ onPlan, onAsk, onKick, onIncident }: { onPlan: () =
         </div>
         <div style={{ borderTop: '1px solid #f0f1f0', padding: '10px 14px', display: 'flex', gap: 8 }}>
           <button onClick={onPlan} style={{ flex: 1, height: 44, borderRadius: 10, border: 0, background: GD, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Tonight's plan</button>
-          <button onClick={() => st("Opening tonight's availability.")} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #d4d6d4', background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Coming</button>
+          <button onClick={() => openThing("tonight's availability", 'phone')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #d4d6d4', background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Coming</button>
         </div>
       </Card>
 
@@ -351,8 +355,8 @@ function CoachPhoneHomeTab({ onPlan, onAsk, onKick, onIncident }: { onPlan: () =
           <div style={{ fontSize: 14, color: MUT }}>Home · Wattle Creek Reserve</div>
         </div>
         <div style={{ borderTop: '1px solid #f0f1f0', padding: '10px 14px', display: 'flex', gap: 8 }}>
-          <button onClick={() => st('Opening team sheet.')} style={{ flex: 1, height: 44, borderRadius: 10, border: '1px solid #d4d6d4', background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Team sheet</button>
-          <button onClick={() => st('Opening game day.')} style={{ flex: 1, height: 44, borderRadius: 10, border: '1px solid #d4d6d4', background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Game day</button>
+          <button onClick={() => openThing('team sheet', 'phone')} style={{ flex: 1, height: 44, borderRadius: 10, border: '1px solid #d4d6d4', background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Team sheet</button>
+          <button onClick={() => openThing('game day', 'phone')} style={{ flex: 1, height: 44, borderRadius: 10, border: '1px solid #d4d6d4', background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Game day</button>
         </div>
       </Card>
 
@@ -669,7 +673,7 @@ export function CPh1eCoachPhoneHomeEmpty() {
         title="Nothing on yet"
         sub="When you add a session or game, the details appear here."
         action="Add a session"
-        onAction={() => { setToast('Opening session creator.'); setTimeout(() => setToast(null), 3000) }}
+        onAction={() => { openThing('session creator', 'phone'); setTimeout(() => setToast(null), 3000) }}
       />
       {toast && <div role="status" style={{ position: 'fixed', bottom: 80, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '10px 18px', borderRadius: 10, background: '#1f4a3e', color: '#fff', fontSize: 14, fontWeight: 600, whiteSpace: 'nowrap' }}>{toast}</div>}
     </PhoneShell>

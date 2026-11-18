@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { glyph } from '../Glyph'
 import { useState } from 'react'
 
@@ -10,6 +11,7 @@ export default function PM6ParentChatSettings(_: { onBack?: () => void }) {
   const [quietHours, setQuietHours] = useState(true)
   const [savePhotos, setSavePhotos] = useState(false)
 
+  void t   // kept for lines this screen may still need to say
   function t(m: string) { setToast(m); setTimeout(() => setToast(null), 3200) }
 
   const notifOptions = [
@@ -84,7 +86,7 @@ export default function PM6ParentChatSettings(_: { onBack?: () => void }) {
             <span style={{ flex: 1, fontSize: 15, fontWeight: 500, color: INK }}>Photos, videos and files</span>
             <span style={{ fontSize: 18, color: MUT }}>›</span>
           </div>
-          <div onClick={() => t('Opening report flow...')} style={{ display: 'flex', alignItems: 'center', padding: '16px 18px', cursor: 'pointer' }}>
+          <div onClick={() => openThing('report flow', 'phone')} style={{ display: 'flex', alignItems: 'center', padding: '16px 18px', cursor: 'pointer' }}>
             <span style={{ flex: 1, fontSize: 15, fontWeight: 500, color: '#c0392b' }}>Report a message</span>
             <span style={{ fontSize: 18, color: MUT }}>›</span>
           </div>

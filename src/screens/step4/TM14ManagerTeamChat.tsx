@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 const G = '#2f6252', GD = '#1f4a3e', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 export default function TM14ManagerTeamChat(_: { onBack?: () => void }) {
@@ -22,7 +23,7 @@ export default function TM14ManagerTeamChat(_: { onBack?: () => void }) {
         <div style={{ width: 40, height: 40, borderRadius: '50%', background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>RO</div>
       </div>
       <div style={{ flexGrow: 1, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 8, overflowY: 'auto' }}>
-        <button onClick={() => t('Opening chat settings...')} style={{ display: 'flex', alignItems: 'center', gap: 8, minHeight: 44, padding: '0 12px', borderRadius: 12, background: PALE, border: 0, cursor: 'pointer', textAlign: 'left' }}>
+        <button onClick={() => openThing('chat settings', 'phone')} style={{ display: 'flex', alignItems: 'center', gap: 8, minHeight: 44, padding: '0 12px', borderRadius: 12, background: PALE, border: 0, cursor: 'pointer', textAlign: 'left' }}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={G} strokeWidth="2.2" strokeLinecap="round"><path d="M6 11h12v9H6zM9 11V8a3 3 0 016 0v3"/></svg>
           <span style={{ flexGrow: 1, fontSize: 13 }}><strong>You own this chat.</strong> Parents can post.</span>
           <strong style={{ color: G, fontSize: 13 }}>Change</strong>

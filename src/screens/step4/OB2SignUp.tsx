@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 
 const G = '#2f6252', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
@@ -65,7 +66,7 @@ export default function OB2SignUp(_: { onBack?: () => void }) {
             You're the first from Wattle Creek FC. You'll be its admin until a director of football joins.
           </div>
 
-          <button onClick={() => st("Opening add club form.")} style={{ alignSelf: 'flex-start', fontSize: 14, fontWeight: 600, color: G, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
+          <button onClick={() => openThing("add club form", 'entry')} style={{ alignSelf: 'flex-start', fontSize: 14, fontWeight: 600, color: G, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
             Can't find it? Add your club
           </button>
         </div>

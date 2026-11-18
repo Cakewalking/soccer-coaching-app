@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 const G='#2f6252',INK='#10211f',MUT='#4a5a57',LN='#e8edeb'
 export default function PO5sAdultSettings({onBack}:{onBack?:()=>void}){
@@ -41,8 +42,8 @@ export default function PO5sAdultSettings({onBack}:{onBack?:()=>void}){
           ))}
         </div>
         <div style={{display:'flex',flexDirection:'column' as const,gap:8}}>
-          <button onClick={()=>t('Opening data download')} style={{height:44,borderRadius:12,border:`1px solid ${LN}`,background:'#fff',color:INK,fontFamily:'inherit',fontSize:14,fontWeight:600,cursor:'pointer'}}>Get a copy of my data</button>
-          <button onClick={()=>t('Opening leave squad')} style={{height:44,borderRadius:12,border:`1px solid ${LN}`,background:'#fff',color:'#c0392b',fontFamily:'inherit',fontSize:14,fontWeight:600,cursor:'pointer'}}>Leave the squad</button>
+          <button onClick={()=>openThing('data download', 'phone')} style={{height:44,borderRadius:12,border:`1px solid ${LN}`,background:'#fff',color:INK,fontFamily:'inherit',fontSize:14,fontWeight:600,cursor:'pointer'}}>Get a copy of my data</button>
+          <button onClick={()=>openThing('leave squad', 'phone')} style={{height:44,borderRadius:12,border:`1px solid ${LN}`,background:'#fff',color:'#c0392b',fontFamily:'inherit',fontSize:14,fontWeight:600,cursor:'pointer'}}>Leave the squad</button>
           <button onClick={()=>t('Signing out')} style={{height:44,borderRadius:12,border:`1px solid ${LN}`,background:'#fff',color:MUT,fontFamily:'inherit',fontSize:14,fontWeight:400,cursor:'pointer'}}>Sign out</button>
         </div>
       </div>

@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 
 const G = '#2f6252', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
@@ -34,7 +35,7 @@ export default function SP12TournamentDay({ onBack }: { onBack?: () => void }) {
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
           <button onClick={onBack} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Squad</button>
-          <button onClick={() => t('Opening game 3')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Start game 3</button>
+          <button onClick={() => openThing('game 3', 'coach')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Start game 3</button>
         </div>
       </div>
 
@@ -93,7 +94,7 @@ export default function SP12TournamentDay({ onBack }: { onBack?: () => void }) {
                 </div>
               </div>
             ))}
-            <button onClick={() => t('Opening line-up for game 3')} style={{ width: '100%', height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', marginTop: 10 }}>See it</button>
+            <button onClick={() => openThing('line-up for game 3', 'coach')} style={{ width: '100%', height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', marginTop: 10 }}>See it</button>
           </div>
         </div>
       </div>

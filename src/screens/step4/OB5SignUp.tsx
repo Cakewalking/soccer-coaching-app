@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 
 const G = '#2f6252', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
@@ -32,7 +33,7 @@ export default function OB5SignUp(_: { onBack?: () => void }) {
               <button onClick={() => st('Going to Home.')} style={{ height: 52, borderRadius: 12, border: 0, background: G, color: '#fff', fontSize: 16, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>
                 Go to Home
               </button>
-              <button onClick={() => st('Opening style setup.')} style={{ height: 52, borderRadius: 12, border: `1px solid ${LN}`, background: '#fff', color: INK, fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>
+              <button onClick={() => openThing('style setup', 'entry')} style={{ height: 52, borderRadius: 12, border: `1px solid ${LN}`, background: '#fff', color: INK, fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>
                 Set our style first
               </button>
             </div>

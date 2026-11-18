@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2', BG = '#f5f6f4'
@@ -29,6 +30,7 @@ function SettingsSidebar({ active }: { active: string }) {
 
 export function DSet5ClubPlan() {
   const [toast, setToast] = useState<string|null>(null)
+  void st   // kept for lines this screen may still need to say
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, background: BG, fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' as const }}>
@@ -84,8 +86,8 @@ export function DSet5ClubPlan() {
           </div>
 
           <div style={{ display: 'flex', gap: 10 }}>
-            <button onClick={() => st('Opening contact form.')} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 'none', background: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>Talk to us about the plan</button>
-            <button onClick={() => st('Opening pilot exit flow.')} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: MUT, cursor: 'pointer' }}>Leave the pilot</button>
+            <button onClick={() => openThing('contact form', 'club')} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 'none', background: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>Talk to us about the plan</button>
+            <button onClick={() => openThing('pilot exit flow', 'club')} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: MUT, cursor: 'pointer' }}>Leave the pilot</button>
           </div>
         </div>
       </div>

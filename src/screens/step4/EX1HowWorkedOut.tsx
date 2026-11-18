@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 const G = '#2f6252', GD = '#1f4a3e', G2 = '#40826d', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 const NAV = ['Home', 'Squad', 'Training', 'Match day', 'Clips']
@@ -62,7 +63,7 @@ export default function EX1HowWorkedOut({ onNav }: { onBack?: () => void; onNav?
               <div style={{ marginTop: 10, background: PALE, borderRadius: 10, padding: '10px 12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div>
                   <div style={{ fontSize: 13, fontWeight: 700, color: INK }}>Min {selectedBar + 1} · {BARS[selectedBar]} seconds · one player pressed, the rest watched</div>
-                  <button onClick={() => st('Opening clip.')} style={{ fontSize: 12, color: G, fontWeight: 700, background: 'none', border: 'none', cursor: 'pointer', padding: 0, fontFamily: 'inherit' }}>All 4 clips →</button>
+                  <button onClick={() => openThing('clip', 'coach')} style={{ fontSize: 12, color: G, fontWeight: 700, background: 'none', border: 'none', cursor: 'pointer', padding: 0, fontFamily: 'inherit' }}>All 4 clips →</button>
                 </div>
               </div>
             )}

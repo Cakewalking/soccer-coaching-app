@@ -17,9 +17,9 @@ function useToast() {
 }
 
 /** The shared frame: green header, dark intro card, sections, two buttons. */
-function Phone({ id, over, title, ini, home, onNav, intro, children, foot, left, right, toast, held }: {
+export function Phone({ id, over, title, ini, home, onNav, intro, children, foot, left, right, toast, held }: {
   id: string; over: string; title: string; ini: string; home: string; onNav: Nav
-  intro: [string, string, string]; children: ReactNode; foot?: string
+  intro?: [string, string, string]; children: ReactNode; foot?: string
   left?: { t: string; on: () => void }; right?: { t: string; on: () => void }
   toast: string | null; held?: ReactNode
 }) {
@@ -33,11 +33,11 @@ function Phone({ id, over, title, ini, home, onNav, intro, children, foot, left,
         <span style={{ flex: 'none', width: 40, height: 40, borderRadius: 999, background: '#cbbeb5', color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, marginLeft: 6 }}>{ini}</span>
       </header>
       <div style={{ flexGrow: 1, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 12 }}>
-        <section style={{ borderRadius: 16, background: DARK, color: '#fff', padding: '14px 16px 16px', display: 'flex', flexDirection: 'column', gap: 6 }}>
+{intro && <section style={{ borderRadius: 16, background: DARK, color: '#fff', padding: '14px 16px 16px', display: 'flex', flexDirection: 'column', gap: 6 }}>
           <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', color: '#a9cfc0' }}>{intro[0]}</span>
           <strong style={{ fontSize: 20, lineHeight: '26px', letterSpacing: '-0.01em' }}>{intro[1]}</strong>
           <span style={{ fontSize: 14, lineHeight: '20px', color: '#a9cfc0' }}>{intro[2]}</span>
-        </section>
+        </section>}
         {held ?? children}
         {foot && !held && <span style={{ fontSize: 13, lineHeight: '18px', color: MUT, textAlign: 'center' }}>{foot}</span>}
       </div>

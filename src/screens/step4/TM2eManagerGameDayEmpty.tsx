@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb'
 
@@ -17,6 +18,7 @@ function BottomNav({ active }: { active: string }) {
 
 export default function TM2eManagerGameDayEmpty(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string | null>(null)
+  void st   // kept for lines this screen may still need to say
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 390, minHeight: 844, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
@@ -31,7 +33,7 @@ export default function TM2eManagerGameDayEmpty(_: { onBack?: () => void }) {
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '24px 20px', textAlign: 'center' as const }}>
           <div style={{ fontSize: 16, fontWeight: 700, color: INK, marginBottom: 8 }}>No game this week</div>
           <div style={{ fontSize: 14, color: MUT, lineHeight: 1.6, marginBottom: 16 }}>It's a bye round. Your game-day checklist opens here on the morning of the next game.</div>
-          <button onClick={() => st('Opening fixtures.')} style={{ height: 44, padding: '0 24px', borderRadius: 10, background: GD, color: '#fff', border: 'none', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>See fixtures</button>
+          <button onClick={() => openThing('fixtures', 'phone')} style={{ height: 44, padding: '0 24px', borderRadius: 10, background: GD, color: '#fff', border: 'none', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>See fixtures</button>
         </div>
         {[{ label: 'ON THE DAY' }, { label: 'FIRST AID CARD' }].map(section => (
           <div key={section.label} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '12px 14px' }}>

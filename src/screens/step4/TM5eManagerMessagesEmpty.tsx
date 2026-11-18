@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
@@ -17,6 +18,7 @@ function BottomNav({ active }: { active: string }) {
 
 export default function TM5eManagerMessagesEmpty(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string | null>(null)
+  void st   // kept for lines this screen may still need to say
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 390, minHeight: 844, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
@@ -25,7 +27,7 @@ export default function TM5eManagerMessagesEmpty(_: { onBack?: () => void }) {
           <div style={{ fontSize: 12, color: '#cfe6dc' }}>U12 Sam · Team manager</div>
           <div style={{ fontSize: 20, fontWeight: 700, color: '#fff' }}>Messages</div>
         </div>
-        <button onClick={() => st('Opening new message.')} style={{ width: 44, height: 44, borderRadius: '50%', background: 'rgba(255,255,255,0.15)', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <button onClick={() => openThing('new message', 'phone')} style={{ width: 44, height: 44, borderRadius: '50%', background: 'rgba(255,255,255,0.15)', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
         </button>
       </div>
@@ -36,7 +38,7 @@ export default function TM5eManagerMessagesEmpty(_: { onBack?: () => void }) {
           </div>
           <div style={{ fontSize: 16, fontWeight: 700, color: INK, marginBottom: 8 }}>No messages yet</div>
           <div style={{ fontSize: 14, color: MUT, lineHeight: 1.6, marginBottom: 20 }}>Tell every family about a change in one go. You'll see who has read it, and nudge anyone who hasn't.</div>
-          <button onClick={() => st('Opening message composer.')} style={{ width: '100%', height: 48, borderRadius: 12, background: GD, color: '#fff', border: 'none', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Tell parents about a change</button>
+          <button onClick={() => openThing('message composer', 'phone')} style={{ width: '100%', height: 48, borderRadius: 12, background: GD, color: '#fff', border: 'none', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Tell parents about a change</button>
         </div>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 16px' }}>
           <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 8 }}>Conversations</div>

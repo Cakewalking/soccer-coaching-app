@@ -420,7 +420,7 @@ export const STO12: HomeCfg = {
     when: 'SAT 6 JUNE · FIRST GAME 8:30 am', title: 'The run sheet is ready',
     text: 'Fourteen games by ground and time, with who opens up, who referees and who locks up.',
     chips: ['3 grounds', '14 games', '26 volunteers'], pale: 'Built from fixtures, the roster and what families answered.',
-    btn1: 'Open the run sheet', btn1Done: 'Run sheet opens.', btn2: 'Send to managers', btn2Done: 'Run sheet sent to 14 team managers.',
+    btn1: 'Open the run sheet', btn1Done: 'The run sheet is ready on your phone.', btn2: 'Send to managers', btn2Done: 'Run sheet sent to 14 team managers.',
   },
   moments: {
     title: 'Gaps to fill', link: 'Everything', linkDone: 'Everything for Saturday.', faces: [],

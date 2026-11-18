@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 import { EmptyCard, FOOTER_DEFAULT } from './ui'
 
@@ -19,6 +20,7 @@ const CLUB_REFS = [
 
 export default function RefereesTab({ empty }: { empty?: boolean }) {
   const [toastMsg, setToastMsg] = useState('')
+  void showToast   // kept for lines this screen may still need to say
   function showToast(m: string) { setToastMsg(m); setTimeout(() => setToastMsg(''), 3000) }
 
   if (empty) return <EmptyCard icon="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" title="No club referees yet" desc="Add your game leaders and referees. On Thursday, Clean Sheet shows which home games still need one." cta="Add a referee" items={[{ title: 'Home games covered', desc: 'Or who to ask' }, { title: 'Kind feedback only', desc: 'For young referees' }]} footer={FOOTER_DEFAULT} />
@@ -47,7 +49,7 @@ export default function RefereesTab({ empty }: { empty?: boolean }) {
               <span style={{ fontSize: 13, color: '#4a5a57' }}>{g.role}</span>
               <span style={{ fontSize: 14, color: g.needed ? '#c39797' : '#10211f', fontWeight: g.needed ? 700 : 400 }}>{g.needed ? 'Needed' : g.who}</span>
               {g.needed && (
-                <button onClick={() => showToast('Opening referee requests.')} style={{ height: 44, padding: '0 10px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Ask</button>
+                <button onClick={() => openThing('referee requests', 'club')} style={{ height: 44, padding: '0 10px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Ask</button>
               )}
             </div>
           ))}
@@ -57,7 +59,7 @@ export default function RefereesTab({ empty }: { empty?: boolean }) {
         {/* Feedback */}
         <div style={{ background: '#eef5f2', border: '1px solid #c5c8c4', borderRadius: 16, padding: '12px 18px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <span style={{ fontSize: 15, fontWeight: 600 }}>Feedback this week · 5 · all positive</span>
-          <button onClick={() => showToast('Opening referee feedback.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>View</button>
+          <button onClick={() => openThing('referee feedback', 'club')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>View</button>
         </div>
       </section>
 
@@ -74,7 +76,7 @@ export default function RefereesTab({ empty }: { empty?: boolean }) {
           </div>
         ))}
         <div style={{ marginTop: 12, borderTop: '1px solid #e9eae8', paddingTop: 12 }}>
-          <button onClick={() => showToast('Opening add referee form.')} style={{ height: 44, width: '100%', borderRadius: 10, border: 0, background: '#2f6252', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>Add a referee</button>
+          <button onClick={() => openThing('add referee form', 'club')} style={{ height: 44, width: '100%', borderRadius: 10, border: 0, background: '#2f6252', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>Add a referee</button>
         </div>
       </aside>
 

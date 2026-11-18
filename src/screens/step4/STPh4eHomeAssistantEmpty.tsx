@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 import { toolTarget } from '../toolTargets'
 
@@ -47,7 +48,7 @@ export default function STPh4eHomeAssistantEmpty({ onNav }: { onNav?: (s: string
             <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 12 }}>Sam added you to U12 Sam. Nothing needs you yet. As the squad, games and sessions go in, this becomes the same Home Sam sees.</div>
             <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' as const }}>
               <button aria-label="See who does what" onClick={() => tool('Home › Team staff')} style={{ height: 44, padding: '0 20px', background: PALE, color: G, border: 'none', borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>See who does what</button>
-              <button aria-label="Message Sam" onClick={() => tool('Chat with Sam opens.')} style={{ height: 44, padding: '0 20px', background: '#fff', color: G, border: `1.5px solid ${LN}`, borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Message Sam</button>
+              <button aria-label="Message Sam" onClick={() => openThing('Chat with Sam', 'coach')} style={{ height: 44, padding: '0 20px', background: '#fff', color: G, border: `1.5px solid ${LN}`, borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Message Sam</button>
             </div>
           </div>
 

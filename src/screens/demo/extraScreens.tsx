@@ -32,6 +32,8 @@ import QCp1BeforeKickOffPhone from '../capture/QCp1BeforeKickOffPhone'
 import ChancesFlow, { isChanceId } from '../chances/ChancesFlow'
 import XGp1ChancesParent, { miaU12 } from '../chances/XGp1ChancesParent'
 import TrialPackPhone from '../trial/TrialPackPhone'
+import SessionFramed from '../session/SessionFramed'
+import { GSp9HomeLibrary, GSp10HomeVideo } from '../session/HomeLibrary'
 import { CNp1PlayerSelfReview, CNp3SessionFeedback, CNp5PlayerGoal, CNp9SeasonReportParent, CNp10BookCatchUp, CNp11FamilyView, CNp12PulseSurvey, CNp14PlayerPassport, CNp16WeekElsewhere, CNp18IncidentLog, CNp19SidelineRating } from '../connected/CnPhone'
 import { TEAM } from '../trial/trialStore'
 
@@ -100,6 +102,14 @@ export function renderExtraScreen(key: string): ReactNode | undefined {
     'CNp16-WeekElsewhere': <CNp16WeekElsewhere />, 'CNp18-IncidentLog': <CNp18IncidentLog />, 'CNp19-SidelineRating': <CNp19SidelineRating />,
   }
   if (key in cnPhone) return <div style={{ display: 'flex', justifyContent: 'center' }}>{cnPhone[key]}</div>
+  // The justified session (18 Nov): coach screens in U11 Luke's frame, as drawn; the director's sources; the parent's films.
+  if (/^GS(1|2|3|4|5|6|7|8)-/.test(key)) return <SessionFramed start={key} />
+  if (key === 'SG1-Suggested') return <JuniorCoachApp initialScreen="GS1-ProposedSession" />   // Suggested is folded into Tuesday’s session
+  if (key === 'GS11-DrillSources') return <ClubAdminScreen role="dof" initials="RM" initialTab="coaches" initialSub="sources" />
+  if (key === 'GSp9-HomeLibrary') return <div style={{ display: 'flex', justifyContent: 'center' }}><GSp9HomeLibrary /></div>
+  if (key === 'GSp10-HomeVideo') return <div style={{ display: 'flex', justifyContent: 'center' }}><GSp10HomeVideo /></div>
+  if (key === 'GSp10m-HomeVideoMia') return <div style={{ display: 'flex', justifyContent: 'center' }}><GSp10HomeVideo team="u12" child="Mia" ini="LT" /></div>
+  if (key === 'GSp9m-HomeLibraryMia') return <div style={{ display: 'flex', justifyContent: 'center' }}><GSp9HomeLibrary team="u12" child="Mia" ini="LT" /></div>
   if (key === 'CN2-SelfVsCoach') return <JuniorCoachApp initialScreen={key} />
   if (key === 'CN15-PositionHistory') return <div style={{ width: 1180, margin: '0 auto', background: 'var(--surface-100)' }}><MiniRoosApp onBack={noop} empty={false} initialScreen="positions" /></div>
   if (key === 'CN6-Observation' || key === 'CN7-CoachLoad') return <ClubAdminScreen role="dof" initials="RM" initialTab="coaches" initialSub={key === 'CN6-Observation' ? 'observations' : 'coachload'} />

@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 import { FAIR_TIME } from './data'
 import { SubTabBar, EmptyCard, FOOTER_DEFAULT } from './ui'
@@ -68,6 +69,7 @@ function GoalDot({ filled }: { filled: boolean }) {
 function GoalsView() {
   const [sel, setSel] = useState(0)
   const [toast, setToast] = useState<string|null>(null)
+  void showToast   // kept for lines this screen may still need to say
   function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   const player = GOALS_DATA[sel]!
   const st = statusStyle(player.status)
@@ -151,8 +153,8 @@ function GoalsView() {
               </div>
             )}
             <div style={{ padding: '10px 14px', display: 'flex', gap: 8 }}>
-              <button onClick={() => showToast(`Opening message to ${player.name}'s coach.`)} style={{ flex: 1, height: 44, borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Message coach</button>
-              <button onClick={() => showToast(`Opening clips for ${player.name}.`)} style={{ flex: 1, height: 44, borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>View clips</button>
+              <button onClick={() => openThing(`message to ${player.name}'s coach`, 'club')} style={{ flex: 1, height: 44, borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Message coach</button>
+              <button onClick={() => openThing(`clips for ${player.name}`, 'club')} style={{ flex: 1, height: 44, borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>View clips</button>
             </div>
           </div>
         </div>
@@ -218,8 +220,8 @@ function NominationsView() {
             <div style={{ fontSize: 13, color: MUT, lineHeight: 1.5, marginBottom: 8, paddingLeft: 48 }}>{nom.why}</div>
             <div style={{ fontSize: 11, color: G, fontWeight: 600, background: PALE, borderRadius: 8, padding: '5px 10px', marginBottom: 10, marginLeft: 48 }}>{nom.numbers}</div>
             <div style={{ display: 'flex', gap: 8, paddingLeft: 48 }}>
-              <button onClick={() => showToast(`Opening message to ${nom.coach}.`)} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Message {nom.coach}</button>
-              <button onClick={() => showToast(`Opening message to ${nom.name}'s family.`)} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Talk to family</button>
+              <button onClick={() => openThing(`message to ${nom.coach}`, 'club')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Message {nom.coach}</button>
+              <button onClick={() => openThing(`message to ${nom.name}'s family`, 'club')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Talk to family</button>
             </div>
           </div>
         ))}
@@ -390,7 +392,7 @@ export default function PlayersTab({ empty, onNav }: { empty?: boolean; onNav?: 
               <div style={{ fontSize: 18, fontWeight: 800, color: '#10211f' }}>Player moves</div>
               <div style={{ fontSize: 13, color: '#6f7f7b' }}>7 moves this season · 2 pending coach approval</div>
             </div>
-            <button onClick={() => showToast('Opening move proposal form.')} style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>+ Propose a move</button>
+            <button onClick={() => openThing('move proposal form', 'club')} style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>+ Propose a move</button>
           </div>
           {[
             { ini: 'EB', name: 'Ella Brennan', from: 'U12 Sam', to: 'U14 Sam', reason: 'Growth spurt — competing better in older age group', status: 'approved', date: '12 May' },
@@ -458,7 +460,7 @@ export default function PlayersTab({ empty, onNav }: { empty?: boolean; onNav?: 
                   </span>
                 </div>
               ))}
-              <button onClick={() => showToast('Opening dispensation request form.')} style={{ marginTop: 12, height: 44, padding: '0 12px', borderRadius: 10, border: '1px solid #2f6252', background: '#2f6252', color: '#fff', fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', width: '100%' }}>Start a request</button>
+              <button onClick={() => openThing('dispensation request form', 'club')} style={{ marginTop: 12, height: 44, padding: '0 12px', borderRadius: 10, border: '1px solid #2f6252', background: '#2f6252', color: '#fff', fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', width: '100%' }}>Start a request</button>
             </div>
           </div>
         </div>
@@ -471,7 +473,7 @@ export default function PlayersTab({ empty, onNav }: { empty?: boolean; onNav?: 
               <div style={{ fontSize: 18, fontWeight: 800, color: '#10211f' }}>Trials and talent days</div>
               <div style={{ fontSize: 13, color: '#6f7f7b' }}>Next: Sat 14 Jun · 23 players registered</div>
             </div>
-            <button onClick={() => showToast('Opening trial creation form.')} style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>+ New trial</button>
+            <button onClick={() => openThing('trial creation form', 'club')} style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>+ New trial</button>
           </div>
           <div style={{ background: '#1f4a3e', borderRadius: 14, padding: '16px', marginBottom: 16, color: '#fff' }}>
             <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 4 }}>Sat 14 Jun · 10:00 am</div>
@@ -485,7 +487,7 @@ export default function PlayersTab({ empty, onNav }: { empty?: boolean; onNav?: 
               ))}
             </div>
             <div style={{ display: 'flex', gap: 10 }}>
-              <button onClick={() => showToast('Opening trial attendee list.')} style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: '1px solid rgba(255,255,255,0.4)', background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>View list</button>
+              <button onClick={() => openThing('trial attendee list', 'club')} style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: '1px solid rgba(255,255,255,0.4)', background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>View list</button>
               <button onClick={() => showToast('Sending reminder to 12 unregistered players.')} style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: 0, background: '#fff', color: '#1f4a3e', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Send reminder to 12 unregistered</button>
             </div>
           </div>
@@ -510,7 +512,7 @@ export default function PlayersTab({ empty, onNav }: { empty?: boolean; onNav?: 
                 <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{t.date}</div>
                 <div style={{ fontSize: 12, color: '#6f7f7b' }}>{t.label}</div>
               </div>
-              <button onClick={() => showToast(`Opening ${t.date} trial report.`)} style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 12, cursor: 'pointer' }}>View</button>
+              <button onClick={() => openThing(`${t.date} trial report`, 'club')} style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 12, cursor: 'pointer' }}>View</button>
             </div>
           ))}
         </div>

@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
@@ -15,6 +16,7 @@ export default function I1Inbox(_: { onBack?: () => void }) {
   const [selected, setSelected] = useState(0)
 
   const [toast, setToast] = useState<string|null>(null)
+  void st   // kept for lines this screen may still need to say
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' as const }}>
@@ -32,7 +34,7 @@ export default function I1Inbox(_: { onBack?: () => void }) {
         <div style={{ width: 380, background: '#fff', borderRight: `1px solid ${LN}`, display: 'flex', flexDirection: 'column' as const }}>
           <div style={{ padding: '12px 16px', borderBottom: `1px solid ${LN}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>Inbox</div>
-            <button style={{ height: 44, padding: '0 12px', borderRadius: 8, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }} onClick={() => st('Opening new message.')}>New message</button>
+            <button style={{ height: 44, padding: '0 12px', borderRadius: 8, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }} onClick={() => openThing('new message', 'coach')}>New message</button>
           </div>
           <div style={{ padding: '0 16px', borderBottom: `1px solid ${LN}`, display: 'flex', gap: 16, height: 40, alignItems: 'center' }}>
             {['All', 'Unread 2', 'People', 'Clean Sheet'].map(t => (

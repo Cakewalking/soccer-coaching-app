@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 import { EmptyCard, FOOTER_DEFAULT } from './ui'
 
@@ -67,7 +68,7 @@ export default function SidelineTab({ empty }: { empty?: boolean }) {
         ))}
         <div style={{ display: 'flex', gap: 8, marginTop: 14 }}>
           <button onClick={() => showToast('Sending reminder to 15 parents.')} style={{ flexGrow: 1, height: 44, borderRadius: 10, border: 0, background: '#2f6252', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>Remind 15 parents</button>
-          <button onClick={() => showToast('Opening code of conduct.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Edit the code</button>
+          <button onClick={() => openThing('code of conduct', 'club')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Edit the code</button>
         </div>
       </aside>
 

@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 // XGp1 · Parent phone: how the team played, in plain words.
 // The team, never one child. Shown only where the child's age band has
 // "Show team numbers to families" on.
@@ -64,7 +65,7 @@ export default function XGp1ChancesParent({ data = ELLA_U11, onNav = () => {}, i
       </div>
       <div style={{ flex: 'none', borderTop: `1px solid ${LINE}`, padding: '10px 14px 16px', display: 'flex', gap: 8 }}>
         {may && <button onClick={() => onNav('QC10-HowWeMeasure')} style={{ flex: 1, height: 48, borderRadius: 10, border: `1px solid ${LINE}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>What this means</button>}
-        <button onClick={() => { setToast(`${data.child}’s clip opens.`); setTimeout(() => setToast(null), 3000) }} style={{ flex: 1.2, height: 48, borderRadius: 10, border: `1px solid ${G}`, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>{data.child}’s clip of the week</button>
+        <button onClick={() => { openThing(`${data.child}’s clip`, 'coach'); setTimeout(() => setToast(null), 3000) }} style={{ flex: 1.2, height: 48, borderRadius: 10, border: `1px solid ${G}`, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>{data.child}’s clip of the week</button>
       </div>
       {toast && <div role="status" style={{ position: 'fixed', left: '50%', bottom: 84, transform: 'translateX(-50%)', zIndex: 60, padding: '12px 16px', borderRadius: 14, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>

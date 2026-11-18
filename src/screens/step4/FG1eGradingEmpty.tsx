@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 const TOP_NAV = ['Club', 'Teams', 'Coaches', 'Players', 'Safeguarding', 'Reports']
@@ -6,6 +7,7 @@ const SUB_NAV = ['All teams', 'Seniors', 'Fixtures', 'League sync', 'Grading', '
 
 export default function FG1eGradingEmpty(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string | null>(null)
+  void st   // kept for lines this screen may still need to say
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, minHeight: 820, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
@@ -29,7 +31,7 @@ export default function FG1eGradingEmpty(_: { onBack?: () => void }) {
           <div style={{ fontSize: 20, fontWeight: 800, color: INK }}>Nothing here yet</div>
           <div style={{ fontSize: 15, fontWeight: 600, color: MUT }}>Grading hasn't started</div>
           <div style={{ fontSize: 14, color: MUT, lineHeight: 1.6, maxWidth: 440 }}>Grading games run in March. After them you'll see where the league placed each team and whether to ask for a change.</div>
-          <button onClick={() => st('Opening grading day planner.')} style={{ height: 48, padding: '0 28px', borderRadius: 12, background: GD, color: '#fff', border: 'none', fontSize: 15, fontWeight: 700, cursor: 'pointer', marginTop: 8 }}>Plan grading days</button>
+          <button onClick={() => openThing('grading day planner', 'club')} style={{ height: 48, padding: '0 28px', borderRadius: 12, background: GD, color: '#fff', border: 'none', fontSize: 15, fontWeight: 700, cursor: 'pointer', marginTop: 8 }}>Plan grading days</button>
           <div style={{ fontSize: 13, color: MUT, marginTop: 4 }}>This page fills in on its own once there's something to show.</div>
         </div>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: 20 }}>

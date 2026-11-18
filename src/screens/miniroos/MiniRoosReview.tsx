@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 
 const G    = '#2f6252'
@@ -39,10 +40,10 @@ export function MS3MiniRoosReview({ onWhatWeSaw, onThankParents }: { onWhatWeSaw
         </div>
 
         <div style={{ display: 'flex', gap: 8, marginTop: 14, marginBottom: 20 }}>
-          <button onClick={() => showToast('Opening a best moment for each child.')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>A best moment each</button>
+          <button onClick={() => openThing('a best moment for each child', 'mini')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>A best moment each</button>
           <button onClick={() => showToast('Building Tuesday plan from this review.')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Build Tuesday from this</button>
-          <button onClick={() => onWhatWeSaw ? onWhatWeSaw() : showToast('Opening what we saw.')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>What we saw</button>
-          <button onClick={() => onThankParents ? onThankParents() : showToast('Opening thank the parents.')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Thank the parents</button>
+          <button onClick={() => onWhatWeSaw ? onWhatWeSaw() : openThing('what we saw', 'mini')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>What we saw</button>
+          <button onClick={() => onThankParents ? onThankParents() : openThing('thank the parents', 'mini')} style={{ height: 36, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Thank the parents</button>
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 20 }}>
@@ -88,7 +89,7 @@ export function MS3MiniRoosReview({ onWhatWeSaw, onThankParents }: { onWhatWeSaw
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 16px', marginBottom: 16 }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
             <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>Your taps</div>
-            <button onClick={() => showToast('Opening tap editor.')} style={{ fontSize: 13, color: G, fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>Change</button>
+            <button onClick={() => openThing('tap editor', 'mini')} style={{ fontSize: 13, color: G, fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>Change</button>
           </div>
           <div style={{ fontSize: 13, color: MUT }}>You tapped "Brave dribbling" and "Bunching round the ball". The film agrees with both.</div>
         </div>
@@ -104,7 +105,7 @@ export function MS3MiniRoosReview({ onWhatWeSaw, onThankParents }: { onWhatWeSaw
       <div style={{ width: 280, flexShrink: 0 }}>
         <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 12 }}>For Tuesday</div>
         <div style={{ background: PALE, borderRadius: 14, padding: '12px 14px', marginBottom: 10 }}>
-          <button onClick={() => showToast('Opening Tuesday session plan.')} style={{ fontSize: 13, fontWeight: 700, color: G, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>Open</button>
+          <button onClick={() => openThing('Tuesday session plan', 'mini')} style={{ fontSize: 13, fontWeight: 700, color: G, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>Open</button>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
           {DRILLS.map(d => (
@@ -125,6 +126,7 @@ export function MS3MiniRoosReview({ onWhatWeSaw, onThankParents }: { onWhatWeSaw
 
 export function MS3eMiniRoosReviewEmpty() {
   const [toast, setToast] = useState<string | null>(null)
+  void showToast   // kept for lines this screen may still need to say
   function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '20px 28px 32px', fontFamily: 'var(--font-sans)' }}>
@@ -136,7 +138,7 @@ export function MS3eMiniRoosReviewEmpty() {
       <div style={{ background: PALE, borderRadius: 16, padding: '32px 24px', maxWidth: 480, marginBottom: 24 }}>
         <div style={{ fontSize: 18, fontWeight: 700, color: INK, marginBottom: 8 }}>Film Saturday to get this</div>
         <div style={{ fontSize: 14, color: MUT, lineHeight: 1.6, marginBottom: 20 }}>After a filmed game Clean Sheet shows your three things, the turns check and suggests games for Tuesday. No score kept.</div>
-        <button onClick={() => showToast('Opening Record screen.')} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Go to Record</button>
+        <button onClick={() => openThing('Record screen', 'mini')} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Go to Record</button>
       </div>
 
       {[

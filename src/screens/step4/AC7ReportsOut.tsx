@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { glyph } from '../Glyph'
 import { useState } from 'react'
 
@@ -48,7 +49,7 @@ export default function AC7ReportsOut(_: { onBack?: () => void }) {
           ))}
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <button onClick={() => t('Opening academy selector.')} style={{ background: '#fff', color: INK, border: 'none', borderRadius: 20, padding: '0 14px', height: 44, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Tall Timber Academy ▾</button>
+          <button onClick={() => openThing('academy selector', 'academy')} style={{ background: '#fff', color: INK, border: 'none', borderRadius: 20, padding: '0 14px', height: 44, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Tall Timber Academy ▾</button>
           <div style={{ width: 44, height: 44, borderRadius: 22, background: '#c39797', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: 700, fontSize: 15 }}>DO</div>
         </div>
       </div>
@@ -69,7 +70,7 @@ export default function AC7ReportsOut(_: { onBack?: () => void }) {
           <div style={{ color: MUT, fontSize: 14, marginTop: 2 }}>Term 2 · due to families in week 9</div>
         </div>
         <div style={{ display: 'flex', gap: 10 }}>
-          <button onClick={() => t('Opening sample report...')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>See a finished report</button>
+          <button onClick={() => openThing('sample report', 'academy')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>See a finished report</button>
           <button onClick={() => t('5 reports sent to families.')} style={{ height: 44, padding: '0 18px', borderRadius: 10, background: G, color: '#fff', fontSize: 15, fontWeight: 600, border: 'none', cursor: 'pointer' }}>Approve 5 and send</button>
         </div>
       </div>
@@ -96,7 +97,7 @@ export default function AC7ReportsOut(_: { onBack?: () => void }) {
                 <span style={{ background: p.waitBg, color: p.waitColor, fontSize: 11, fontWeight: 600, padding: '3px 8px', borderRadius: 6 }}>{p.waiting}</span>
               </div>
               <div>
-                <button onClick={() => t(`Opening ${p.name} reports...`)} style={{ height: 44, padding: '0 14px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Open</button>
+                <button onClick={() => openThing(`${p.name} reports`, 'academy')} style={{ height: 44, padding: '0 14px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Open</button>
               </div>
             </div>
           ))}

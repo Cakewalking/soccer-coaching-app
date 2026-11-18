@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
@@ -15,7 +16,7 @@ export default function SP20StandIn(_: { onBack?: () => void }) {
           <div style={{ fontSize: 14, color: MUT }}>26 September to 11 October · 3 games</div>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button onClick={() => t('Opening message to Jess')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Message Jess</button>
+          <button onClick={() => openThing('message to Jess', 'coach')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Message Jess</button>
           <button onClick={() => t('Hand-over confirmed. Jess, Rob and families have been told.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Confirm hand-over</button>
         </div>
       </div>

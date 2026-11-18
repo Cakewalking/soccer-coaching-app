@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 import type { Drill } from './data'
 import { G, G2, GD, INK, MUT, LN } from './data'
@@ -133,7 +134,7 @@ export default function DrillDetail({ drill, onBack }: { drill: Drill; onBack: (
               <div style={{ fontSize:13, fontWeight:600, color:'#fff' }}>Show the team before you start</div>
               <div style={{ fontSize:11, color:'rgba(255,255,255,.6)', marginTop:2 }}>Opens the diagram and a clip of us doing it well against Ironbark.</div>
             </div>
-            <button onClick={() => st('Opening drill preview.')} style={{ height: 44, padding:'0 12px', border:'1px solid rgba(255,255,255,.3)', borderRadius:999, background:'transparent', color:'#fff', fontSize:12, fontWeight:600, cursor:'pointer', fontFamily:'inherit', flexShrink:0 }}>Show</button>
+            <button onClick={() => openThing('drill preview', 'coach')} style={{ height: 44, padding:'0 12px', border:'1px solid rgba(255,255,255,.3)', borderRadius:999, background:'transparent', color:'#fff', fontSize:12, fontWeight:600, cursor:'pointer', fontFamily:'inherit', flexShrink:0 }}>Show</button>
           </div>
         </div>
 

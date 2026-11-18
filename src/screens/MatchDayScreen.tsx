@@ -1,3 +1,4 @@
+import { openThing } from './openThing'
 import { useDoneAll, markDone } from './doneStore'
 import { useState } from 'react'
 import { goSetup, goApp } from './sandbox/sandboxNav'
@@ -190,7 +191,7 @@ export default function MatchDayScreen({ onNav, empty, opponent = 'Harbour Rover
               <span style={{ width: 8, height: 8, borderRadius: '999px', background: '#d4a844', display: 'block', flexShrink: 0 }} />
               3 of 5 ready
             </div>
-            <button onClick={() => showToast(`Opening minutes plan for Saturday ${vs} ${opponent}.`)} style={{
+            <button onClick={() => openThing(`minutes plan for Saturday ${vs} ${opponent}`, 'coach')} style={{
               height: 36, padding: '0 14px', borderRadius: '999px', border: '1px solid #c5c8c4',
               background: '#ffffff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer',
             }}>Minutes plan</button>

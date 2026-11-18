@@ -1,3 +1,4 @@
+import { openThing } from './openThing'
 import { useState } from 'react'
 import { SQUAD_PLAYERS, CLIPS } from '../data'
 import TrialPack from './trial/TrialPack'
@@ -257,7 +258,7 @@ export default function PlayerProfileScreen({ playerIni, empty, players = SQUAD_
             <div>
               <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 14 }}>
                 <h2 style={{ margin: 0, fontSize: 17, fontWeight: 700, color: '#10211f' }}>Best recent clips</h2>
-                <button onClick={() => showToast(`Opening all ${playerClips.length} clips for ${player.fullName}.`)} style={{ border: 0, background: 'transparent', color: '#2f6252', fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>See all {playerClips.length}</button>
+                <button onClick={() => openThing(`all ${playerClips.length} clips for ${player.fullName}`, 'coach')} style={{ border: 0, background: 'transparent', color: '#2f6252', fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>See all {playerClips.length}</button>
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14 }}>
                 {playerClips.slice(0, 3).map(clip => (

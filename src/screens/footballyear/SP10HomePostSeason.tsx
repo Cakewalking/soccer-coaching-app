@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
@@ -26,9 +27,9 @@ export default function SP10HomePostSeason({ onBack, onNav }: { onBack?: () => v
           <div style={{ fontSize: 14, color: MUT }}>Thu 15 October · post-season · season finished 30 August</div>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button onClick={() => t('Opening \'going away\'')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Going away?</button>
+          <button onClick={() => openThing('\'going away\'', 'coach')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Going away?</button>
           <button onClick={onBack} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>The football year</button>
-          <button onClick={() => onNav ? onNav('SP3-ProvisionalSquad') : t('Opening next year\'s squad.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Next year's squad</button>
+          <button onClick={() => onNav ? onNav('SP3-ProvisionalSquad') : openThing('next year\'s squad', 'coach')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Next year's squad</button>
         </div>
       </div>
 
@@ -87,7 +88,7 @@ export default function SP10HomePostSeason({ onBack, onNav }: { onBack?: () => v
           <div style={{ background: '#fff', border: `1px solid #f0c0c0`, borderRadius: 12, padding: '12px 14px' }}>
             <div style={{ fontSize: 13, fontWeight: 700, color: '#8b3a3a', marginBottom: 4 }}>Rest month starts 1 December</div>
             <div style={{ fontSize: 13, color: '#7a4a4a', lineHeight: 1.5, marginBottom: 10 }}>Zoe and Mia will have had no four-week break this year if they play on.</div>
-            <button onClick={() => onNav ? onNav('SP16-RestMonth') : t('Opening rest month view.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid #f0c0c0`, background: '#fff', color: '#8b3a3a', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>See who needs a break</button>
+            <button onClick={() => onNav ? onNav('SP16-RestMonth') : openThing('rest month view', 'coach')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid #f0c0c0`, background: '#fff', color: '#8b3a3a', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>See who needs a break</button>
           </div>
         </div>
       </div>

@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
@@ -5,6 +6,7 @@ const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8
 export default function D5Safeguarding({ initialTab = 'consent' }: { onBack?: () => void; initialTab?: 'consent' | 'concerns' | 'data' }) {
   const [tab, setTab] = useState<'consent' | 'concerns' | 'data'>(initialTab)
   const [toast, setToast] = useState<string | null>(null)
+  void st   // kept for lines this screen may still need to say
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
 
   const todos = [
@@ -120,7 +122,7 @@ export default function D5Safeguarding({ initialTab = 'consent' }: { onBack?: ()
               </p>
               <div style={{ display: 'flex', gap: 10 }}>
                 <button onClick={() => setTab('consent')} style={{ height: 44, padding: '0 20px', borderRadius: 999, background: G, color: '#fff', border: 'none', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>See the counts</button>
-                <button onClick={() => st('Opening a message to Helen Park.')} style={{ height: 44, padding: '0 20px', borderRadius: 999, background: '#fff', color: G, border: `1.5px solid ${G}`, fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Message Helen</button>
+                <button onClick={() => openThing('a message to Helen Park', 'club')} style={{ height: 44, padding: '0 20px', borderRadius: 999, background: '#fff', color: G, border: `1.5px solid ${G}`, fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Message Helen</button>
               </div>
             </div>
             {/* Right: who sees what */}

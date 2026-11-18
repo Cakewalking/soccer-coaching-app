@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
@@ -28,7 +29,7 @@ export default function SP2HomePreSeason({ onBack, onNav }: { onBack?: () => voi
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
           <button onClick={onBack} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>The football year</button>
-          <button onClick={() => t('Opening tonight\'s session')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Tonight's session</button>
+          <button onClick={() => openThing('tonight\'s session', 'coach')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Tonight's session</button>
         </div>
       </div>
 
@@ -65,7 +66,7 @@ export default function SP2HomePreSeason({ onBack, onNav }: { onBack?: () => voi
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 16px', marginBottom: 16 }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
               <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>Building up · week 6 of 10</div>
-              <button onClick={() => onNav ? onNav('SP6-LoadBuild') : t('Opening load build.')} style={{ height: 44, padding: '0 12px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>See the plan</button>
+              <button onClick={() => onNav ? onNav('SP6-LoadBuild') : openThing('load build', 'coach')} style={{ height: 44, padding: '0 12px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>See the plan</button>
             </div>
             <div style={{ fontSize: 13, color: MUT }}>Two sessions of 60 minutes this week, about 70% of a mid-season week.</div>
             <div style={{ fontSize: 12, color: MUT, marginTop: 4 }}>3 players had a longer break and do one round less.</div>
@@ -100,7 +101,7 @@ export default function SP2HomePreSeason({ onBack, onNav }: { onBack?: () => voi
           <div style={{ background: PALE, borderRadius: 14, padding: '14px 16px' }}>
             <div style={{ fontSize: 14, fontWeight: 700, color: GD, marginBottom: 4 }}>Suggestions in pre-season</div>
             <div style={{ fontSize: 13, color: G, lineHeight: 1.5, marginBottom: 10 }}>With no league games yet, suggestions follow your playing style and the build-up, not last Saturday.</div>
-            <button onClick={() => onNav ? onNav('SG1-Suggested') : t('Opening suggestions.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Open suggestions</button>
+            <button onClick={() => onNav ? onNav('SG1-Suggested') : openThing('suggestions', 'coach')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Open suggestions</button>
           </div>
         </div>
       </div>

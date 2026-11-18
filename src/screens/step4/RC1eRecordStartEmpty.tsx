@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
@@ -6,6 +7,7 @@ const SUBNAV = ["Tonight's session", 'This week', 'Suggested', 'Drill library', 
 
 export default function RC1eRecordStartEmpty(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string|null>(null)
+  void st   // kept for lines this screen may still need to say
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, height: 820, boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
@@ -29,8 +31,8 @@ export default function RC1eRecordStartEmpty(_: { onBack?: () => void }) {
           <div style={{ fontSize: 22, fontWeight: 800, color: INK }}>Pair a camera, or start with your phone</div>
           <div style={{ fontSize: 15, color: MUT, maxWidth: 420, lineHeight: 1.6 }}>Any camera that saves a video file works. With no kit at all you can still record a test with a phone timer.</div>
           <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 10, width: '100%', maxWidth: 280, marginTop: 8 }}>
-            <button onClick={() => st('Opening camera pairing.')} style={{ height: 48, borderRadius: 12, background: GD, color: '#fff', border: 'none', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Pair a camera</button>
-            <button onClick={() => st('Opening phone recording setup.')} style={{ height: 48, borderRadius: 12, background: '#fff', color: INK, border: `1.5px solid ${LN}`, fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Record with a phone</button>
+            <button onClick={() => openThing('camera pairing', 'coach')} style={{ height: 48, borderRadius: 12, background: GD, color: '#fff', border: 'none', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Pair a camera</button>
+            <button onClick={() => openThing('phone recording setup', 'coach')} style={{ height: 48, borderRadius: 12, background: '#fff', color: INK, border: `1.5px solid ${LN}`, fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Record with a phone</button>
           </div>
         </div>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '20px' }}>

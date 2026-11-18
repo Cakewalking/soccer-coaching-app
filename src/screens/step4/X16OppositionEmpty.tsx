@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 const G = '#2f6252', GD = '#1f4a3e', G2 = '#40826d', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 const NAV = ['Home', 'Squad', 'Training', 'Match day', 'Clips']
@@ -5,6 +6,7 @@ const SUBNAV = ['Team talk', 'Line-up and minutes', 'Opposition', 'Review']
 
 export default function X16OppositionEmpty(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string | null>(null)
+  void st   // kept for lines this screen may still need to say
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, height: 820, boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
@@ -30,8 +32,8 @@ export default function X16OppositionEmpty(_: { onBack?: () => void }) {
           <div style={{ fontSize: 15, fontWeight: 600, color: MUT }}>Know who you're playing</div>
           <div style={{ fontSize: 14, color: MUT, lineHeight: 1.6, maxWidth: 440 }}>Add a fixture to see the other team's results. After you've played them once, you'll have your own clips of them too.</div>
           <div style={{ display: 'flex', gap: 10 }}>
-            <button onClick={() => st('Opening fixture form.')} style={{ height: 48, padding: '0 24px', borderRadius: 12, background: GD, color: '#fff', border: 'none', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Add a fixture</button>
-            <button onClick={() => st('Opening example opposition view.')} style={{ height: 44, padding: '0 20px', borderRadius: 12, background: '#fff', color: INK, border: `1.5px solid ${LN}`, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>See an example</button>
+            <button onClick={() => openThing('fixture form', 'coach')} style={{ height: 48, padding: '0 24px', borderRadius: 12, background: GD, color: '#fff', border: 'none', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Add a fixture</button>
+            <button onClick={() => openThing('example opposition view', 'coach')} style={{ height: 44, padding: '0 20px', borderRadius: 12, background: '#fff', color: INK, border: `1.5px solid ${LN}`, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>See an example</button>
           </div>
         </div>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: 20 }}>

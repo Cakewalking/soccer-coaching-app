@@ -1,3 +1,4 @@
+import { openThing } from './openThing'
 import { useDone, markDone } from './doneStore'
 import { useState } from 'react'
 import { goSetup } from './sandbox/sandboxNav'
@@ -226,6 +227,7 @@ function PlayerCard({ p, selected, onClick }: { p: SquadPlayer; selected: boolea
 
 function RightPanel({ p, onProfile }: { p: SquadPlayer; onProfile: () => void }) {
   const [toast, setToast] = useState<string | null>(null)
+  void showToast   // kept for lines this screen may still need to say
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   const alertColors: Record<string, { bg: string; text: string; label: string }> = {
     checkin: { bg: '#fdf0ee', text: '#7a3030', label: 'Check in · Low wellness' },
@@ -316,7 +318,7 @@ function RightPanel({ p, onProfile }: { p: SquadPlayer; onProfile: () => void })
           flex: 1, height: 44, borderRadius: 10, border: 0, background: '#2f6252',
           fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#ffffff',
         }}>Full profile</button>
-        <button onClick={() => showToast('Opening message to parent.')} style={{
+        <button onClick={() => openThing('message to parent', 'coach')} style={{
           flex: 1, height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#ffffff',
           fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f',
         }}>Message parent</button>

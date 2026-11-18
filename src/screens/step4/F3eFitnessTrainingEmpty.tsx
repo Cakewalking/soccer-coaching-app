@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 const G = '#2f6252', GD = '#1f4a3e', G2 = '#40826d', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 const NAV = ['Home', 'Squad', 'Training', 'Match day', 'Clips']
@@ -34,7 +35,7 @@ export default function F3eFitnessTrainingEmpty(_: { onBack?: () => void }) {
           <div style={{ fontSize: 14, color: MUT, lineHeight: 1.6, maxWidth: 440 }}>Once the head coach sets tonight's training, you'll see the warm-up, who to go easy on, and where your 15 minutes fit.</div>
           <div style={{ display: 'flex', gap: 10 }}>
             <button onClick={() => st('Sending message to Sam.')} style={{ height: 48, padding: '0 24px', borderRadius: 12, background: GD, color: '#fff', border: 'none', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Ask Sam to plan it</button>
-            <button onClick={() => st('Opening warm-up drills.')} style={{ height: 44, padding: '0 20px', borderRadius: 12, background: '#fff', color: INK, border: `1.5px solid ${LN}`, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Browse warm-ups</button>
+            <button onClick={() => openThing('warm-up drills', 'coach')} style={{ height: 44, padding: '0 20px', borderRadius: 12, background: '#fff', color: INK, border: `1.5px solid ${LN}`, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Browse warm-ups</button>
           </div>
         </div>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: 20 }}>

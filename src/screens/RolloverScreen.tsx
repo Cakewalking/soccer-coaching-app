@@ -1,3 +1,4 @@
+import { openThing } from './openThing'
 const TEAMS = [
   { now: 'U7 Dan',       next: 'U8 Dan',        players: 7,  change: '4 a side → 7 a side',          coach: 'Coach staying',     needsCoach: false },
   { now: 'U8 Hannah',    next: 'U9 Hannah',      players: 10, change: 'No change',                    coach: 'Coach staying',     needsCoach: false },
@@ -26,6 +27,7 @@ import { useState } from 'react'
 
 export default function RolloverScreen({ onBack, empty = false }: { onBack: () => void; empty?: boolean }) {
   const [toast, setToast] = useState<string|null>(null)
+  void showToast   // kept for lines this screen may still need to say
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   if (empty) {
     return (
@@ -81,7 +83,7 @@ export default function RolloverScreen({ onBack, empty = false }: { onBack: () =
             <h1 style={{ margin: '0 0 4px', fontSize: 24, fontWeight: 700, letterSpacing: '-0.02em' }}>Next season</h1>
             <p style={{ margin: 0, fontSize: 14, color: '#4a5a57' }}>Roll every team up a year for 2027 · nothing changes until you press the button</p>
           </div>
-          <button onClick={() => showToast('Opening season rollover — teams will move up after you confirm.')} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Start 2027</button>
+          <button onClick={() => openThing('season rollover — teams will move up after you confirm', 'club')} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Start 2027</button>
         </div>
 
         {/* 2-col layout */}
@@ -130,7 +132,7 @@ export default function RolloverScreen({ onBack, empty = false }: { onBack: () =
             <div style={{ background: '#fdf5f3', border: '1px solid #e8d5d0', borderRadius: 16, padding: '14px 16px' }}>
               <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 6, color: '#10211f' }}>To sort first</div>
               <div style={{ fontSize: 14, color: '#4a5a57', marginBottom: 12 }}>1 team needs a coach</div>
-              <button onClick={() => showToast('Opening coach recruitment for U10 Mark.')} style={{ width: '100%', height: 44, borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Find a coach for U10 Mark</button>
+              <button onClick={() => openThing('coach recruitment for U10 Mark', 'club')} style={{ width: '100%', height: 44, borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Find a coach for U10 Mark</button>
             </div>
           </div>
         </div>

@@ -1,9 +1,11 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 export default function DSet6ePartnerAcademyEmpty(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string|null>(null)
+  void st   // kept for lines this screen may still need to say
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820 }}>
@@ -28,7 +30,7 @@ export default function DSet6ePartnerAcademyEmpty(_: { onBack?: () => void }) {
           </div>
           <div style={{ fontSize: 22, fontWeight: 900, letterSpacing: '-0.02em', color: INK, marginBottom: 8 }}>Partner academies · none linked</div>
           <div style={{ fontSize: 15, color: MUT, lineHeight: 1.6, marginBottom: 24 }}>Does an academy play its games through your club? Link it and its team shows up beside your own, under your rules, with no double entry of players or team sheets.</div>
-          <button style={{ height: 48, padding: '0 28px', borderRadius: 14, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer', marginBottom: 24 }} onClick={() => st('Opening academy link.')}>Link an academy</button>
+          <button style={{ height: 48, padding: '0 28px', borderRadius: 14, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer', marginBottom: 24 }} onClick={() => openThing('academy link', 'club')}>Link an academy</button>
 
           <div style={{ background: PALE, borderRadius: 12, padding: '14px 16px', textAlign: 'left' as const }}>
             <div style={{ fontSize: 13, fontWeight: 700, color: GD, marginBottom: 4 }}>You stay in charge of</div>

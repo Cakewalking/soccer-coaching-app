@@ -1,3 +1,4 @@
+import { openThing } from './openThing'
 import { useState } from 'react'
 import { markRead, useUnread } from './messageUnread'
 
@@ -150,8 +151,8 @@ export function MessagesRules({ onBack, onNav }: { onBack?: () => void; onNav?: 
           <strong>These rules apply everywhere.</strong> Every screen that shows a person's name has a card with a Message button — the right rules apply automatically, so you never have to work out what's allowed.
         </div>
         <div style={{ display: 'flex', gap: 10, justifyContent: 'center' }}>
-          <button onClick={() => onNav ? onNav('MSG1-NewMessage') : t('Coach messages view opens.')} style={{ height: 44, padding: '0 18px', borderRadius: 10, background: G, color: '#fff', border: 'none', fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>See it as a coach</button>
-          <button onClick={() => t('Parent messages view opens.')} style={{ height: 44, padding: '0 18px', borderRadius: 10, background: '#fff', color: INK, border: `1px solid ${LN}`, fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>See it as a parent</button>
+          <button onClick={() => onNav ? onNav('MSG1-NewMessage') : openThing('Coach messages view', 'coach')} style={{ height: 44, padding: '0 18px', borderRadius: 10, background: G, color: '#fff', border: 'none', fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>See it as a coach</button>
+          <button onClick={() => openThing('Parent messages view', 'coach')} style={{ height: 44, padding: '0 18px', borderRadius: 10, background: '#fff', color: INK, border: `1px solid ${LN}`, fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>See it as a parent</button>
         </div>
       </div>
       {toast && <Toast msg={toast}/>}
@@ -160,7 +161,7 @@ export function MessagesRules({ onBack, onNav }: { onBack?: () => void; onNav?: 
 }
 
 // MSG1 — New message picker
-export function CoachNewMessage({ onBack: _onBack, onNav, embedded }: { onBack?: () => void; onNav?: (s: string) => void; /** inside a coach app: the app's own header is the only one */ embedded?: boolean }) {
+export function CoachNewMessage({ onBack, onNav, embedded }: { onBack?: () => void; onNav?: (s: string) => void; /** inside a coach app: the app's own header is the only one */ embedded?: boolean }) {
   const [toast, setToast] = useState<string | null>(null)
   const [picked, setPicked] = useState<string | null>(null)
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
@@ -212,12 +213,13 @@ export function CoachNewMessage({ onBack: _onBack, onNav, embedded }: { onBack?:
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#f7f8f7' }}>
-      {!embedded && <CoachTopBar onNav={(id) => t(`${id.charAt(0).toUpperCase() + id.slice(1)} tab opens.`)}/>}
-      {!embedded && <CoachSubNav activeSub="Messages" onNav={(id) => t(id.startsWith('sub:') ? `${id.slice(4)} opens.` : `${id} opens.`)}/>}
+      {!embedded && <CoachTopBar onNav={(id) => openThing(`${id.charAt(0).toUpperCase() + id.slice(1)} tab`, 'coach')}/>}
+      {!embedded && <CoachSubNav activeSub="Messages" onNav={(id) => openThing(`${id} tab`, 'coach')}/>}
       <div style={{ flex: 1, overflow: 'hidden', display: 'flex', gap: 0 }}>
         {/* Left: new message picker */}
         <div style={{ flex: 1, overflowY: 'auto', padding: '24px 24px 24px 28px', display: 'flex', gap: 16 }}>
           <div style={{ flex: 1, maxWidth: 560 }}>
+            {embedded && onBack && <button onClick={onBack} style={{ height: 44, padding: '0 14px 0 10px', marginBottom: 12, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: 6 }}><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7" /></svg>Back to messages</button>}
             <h2 style={{ margin: '0 0 12px', fontSize: 20, fontWeight: 700, color: INK }}>New message</h2>
             {picked && <div style={{ marginBottom: 12, padding: '8px 12px', borderRadius: 10, background: PALE, color: G, fontSize: 13, fontWeight: 700 }}>To: {picked}</div>}
             <div style={{ position: 'relative', marginBottom: 20 }}>
@@ -239,7 +241,7 @@ export function CoachNewMessage({ onBack: _onBack, onNav, embedded }: { onBack?:
                       {'welfare' in c && c.welfare && <span style={{ fontSize: 11, fontWeight: 700, color: G, background: PALE, padding: '2px 8px', borderRadius: 100 }}>Private</span>}
                     </button>
                   ))}
-                  {g.showAll && <button onClick={() => t('All parents list opens.')} style={{ display: 'block', width: '100%', padding: '10px 14px', background: 'transparent', border: 'none', fontSize: 13, fontWeight: 600, color: G, cursor: 'pointer', textAlign: 'left', fontFamily: 'inherit' }}>{g.showAll}</button>}
+                  {g.showAll && <button onClick={() => openThing('All parents list', 'coach')} style={{ display: 'block', width: '100%', padding: '10px 14px', background: 'transparent', border: 'none', fontSize: 13, fontWeight: 600, color: G, cursor: 'pointer', textAlign: 'left', fontFamily: 'inherit' }}>{g.showAll}</button>}
                 </div>
                 {g.note && <div style={{ fontSize: 12, color: MUT, marginTop: 4 }}>{g.note}</div>}
               </div>
@@ -313,8 +315,8 @@ export function CoachMessages({ onBack: _onBack, onNav, teamType = 'juniors', em
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#f7f8f7' }}>
-      {!embedded && <CoachTopBar onNav={(id) => t(`${id.charAt(0).toUpperCase() + id.slice(1)} tab opens.`)}/>}
-      {!embedded && <CoachSubNav activeSub="Messages" onNav={(id) => t(id.startsWith('sub:') ? `${id.slice(4)} opens.` : `${id} opens.`)}/>}
+      {!embedded && <CoachTopBar onNav={(id) => openThing(`${id.charAt(0).toUpperCase() + id.slice(1)} tab`, 'coach')}/>}
+      {!embedded && <CoachSubNav activeSub="Messages" onNav={(id) => openThing(`${id} tab`, 'coach')}/>}
       <div style={{ flex: 1, overflow: 'hidden', display: 'flex', minHeight: 0 }}>
         {/* Chat list */}
         <div style={{ width: 300, flexShrink: 0, borderRight: `1px solid ${LN}`, background: '#fff', display: 'flex', flexDirection: 'column' }}>
@@ -351,7 +353,7 @@ export function CoachMessages({ onBack: _onBack, onNav, teamType = 'juniors', em
             <Ini s={chats[activeChat].ini} size={36}/>
             <div>
               <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>{chats[activeChat].name}</div>
-              <button onClick={() => onNav ? onNav('MSG3-PersonCard') : t('Person card opens.')} style={{ fontSize: 12, color: G, background: 'transparent', border: 'none', padding: 0, cursor: 'pointer', fontFamily: 'inherit' }}>{chat.role}</button>
+              <button onClick={() => onNav ? onNav('MSG3-PersonCard') : openThing('Person card', 'coach')} style={{ fontSize: 12, color: G, background: 'transparent', border: 'none', padding: 0, cursor: 'pointer', fontFamily: 'inherit' }}>{chat.role}</button>
             </div>
           </div>
           {/* Messages */}
@@ -375,10 +377,10 @@ export function CoachMessages({ onBack: _onBack, onNav, teamType = 'juniors', em
           </div>
           {/* Composer */}
           <div style={{ padding: '12px 20px', borderTop: `1px solid ${LN}`, background: '#fff', display: 'flex', gap: 8, alignItems: 'center' }}>
-            <button onClick={() => t('Attachment picker opens.')} style={{ width: 44, height: 44, borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: MUT }}>
+            <button onClick={() => openThing('Attachment picker', 'coach')} style={{ width: 44, height: 44, borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: MUT }}>
               <Icon d={ICONS.attach} size={18}/>
             </button>
-            <button onClick={() => t('Voice message opens.')} style={{ width: 44, height: 44, borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: MUT }}>
+            <button onClick={() => openThing('Voice message', 'coach')} style={{ width: 44, height: 44, borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: MUT }}>
               <Icon d={ICONS.mic} size={18}/>
             </button>
             <input value={input} onChange={e => setInput(e.target.value)} placeholder={`Message ${chats[activeChat].name.split(' ')[0]}…`}
@@ -401,22 +403,22 @@ export function CoachMessagesPersonCard({ onBack, onNav, embedded }: { onBack?: 
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#f7f8f7', position: 'relative' }}>
-      {!embedded && <CoachTopBar onNav={() => t('Tab opens.')}/>}
-      {!embedded && <CoachSubNav activeSub="Messages" onNav={() => t('Tab opens.')}/>}
+      {!embedded && <CoachTopBar onNav={(id) => openThing(`${id} tab`, 'coach')}/>}
+      {!embedded && <CoachSubNav activeSub="Messages" onNav={(id) => openThing(`${id} tab`, 'coach')}/>}
       {/* MSG2 background (blurred) */}
       <div style={{ flex: 1, background: '#f7f8f7', filter: 'blur(2px)', opacity: 0.5, position: 'absolute', inset: '112px 0 0 0' }}/>
       {/* Person card dialog */}
       <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', zIndex: 10, background: '#fff', borderRadius: 20, border: `1px solid ${LN}`, boxShadow: '0 20px 60px rgba(16,33,31,0.18)', width: 380, padding: '28px 24px' }}>
-        <button onClick={() => t('Card closed.')} style={{ position: 'absolute', top: 16, right: 16, width: 44, height: 44, borderRadius: '50%', border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', fontSize: 16, color: MUT, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>✕</button>
+        <button aria-label="Close" onClick={() => onBack ? onBack() : t('Card closed.')} style={{ position: 'absolute', top: 16, right: 16, width: 44, height: 44, borderRadius: '50%', border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', fontSize: 16, color: MUT, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>✕</button>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 20 }}>
           <Ini s="BR" size={64} bg={PALE}/>
           <div style={{ fontSize: 20, fontWeight: 800, color: INK, marginTop: 10 }}>Bianca Rossi</div>
           <div style={{ fontSize: 13, color: MUT }}>Club co-ordinator · Wattle Creek FC</div>
         </div>
-        <button onClick={() => onNav ? onNav('MSG2-DirectChat') : (onBack ? onBack() : t('Message opens.'))} style={{ display: 'block', width: '100%', height: 44, borderRadius: 10, background: G, color: '#fff', border: 'none', fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', marginBottom: 10 }}>Message</button>
+        <button onClick={() => onNav ? onNav('MSG2-DirectChat') : (onBack ? onBack() : openThing('Message', 'coach'))} style={{ display: 'block', width: '100%', height: 44, borderRadius: 10, background: G, color: '#fff', border: 'none', fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', marginBottom: 10 }}>Message</button>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, marginBottom: 20 }}>
-          <button onClick={() => t('Add to group opens.')} style={{ height: 40, borderRadius: 10, background: '#fff', color: INK, border: `1px solid ${LN}`, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Add to group</button>
-          <button onClick={() => t('Role info opens.')} style={{ height: 40, borderRadius: 10, background: '#fff', color: INK, border: `1px solid ${LN}`, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Role info</button>
+          <button onClick={() => openThing('Add to group', 'coach')} style={{ height: 40, borderRadius: 10, background: '#fff', color: INK, border: `1px solid ${LN}`, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Add to group</button>
+          <button onClick={() => openThing('Role info', 'coach')} style={{ height: 40, borderRadius: 10, background: '#fff', color: INK, border: `1px solid ${LN}`, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Role info</button>
         </div>
         <div style={{ background: PALE, borderRadius: 12, padding: '12px 14px', marginBottom: 12 }}>
           <div style={{ fontSize: 12, fontWeight: 700, color: MUT, marginBottom: 6, letterSpacing: '0.07em', textTransform: 'uppercase' as const }}>Looks after</div>
@@ -428,7 +430,7 @@ export function CoachMessagesPersonCard({ onBack, onNav, embedded }: { onBack?: 
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
           <button onClick={() => t('Notifications muted.')} style={{ height: 36, padding: '0 12px', borderRadius: 8, background: '#fff', color: MUT, border: `1px solid ${LN}`, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', flex: 1 }}>Mute</button>
-          <button onClick={() => t('Block and report opens.')} style={{ height: 36, padding: '0 12px', borderRadius: 8, background: '#fff', color: '#b04', border: `1px solid ${LN}`, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', flex: 1 }}>Block and report</button>
+          <button onClick={() => openThing('Block and report', 'coach')} style={{ height: 36, padding: '0 12px', borderRadius: 8, background: '#fff', color: '#b04', border: `1px solid ${LN}`, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', flex: 1 }}>Block and report</button>
         </div>
         <div style={{ fontSize: 11, color: MUT, textAlign: 'center', marginTop: 12, lineHeight: 1.5 }}>
           Every person has this card, on every screen where their name shows. No phone number or email is shown.
@@ -482,7 +484,7 @@ export function DirectorMessages({ onBack: _onBack, embedded, as = 'director' }:
       <div style={{ background: GD, display: 'flex', alignItems: 'center', padding: '0 20px', gap: 2, height: 56, flexShrink: 0 }}>
         <span style={{ color: '#e9eae8', fontWeight: 800, fontSize: 16, marginRight: 10 }}>Clean Sheet</span>
         {DIRECTOR_NAV.map(tab => (
-          <button key={tab} onClick={() => t(`${tab} opens.`)}
+          <button key={tab} onClick={() => openThing(`${tab}`, 'coach')}
             style={{ height: 48, padding: '0 14px', borderRadius: 12, background: tab === 'Club' ? G2 : 'transparent', color: '#e9eae8', fontSize: 15, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 8, border: 'none', cursor: 'pointer', fontFamily: 'inherit' }}>
             {tab}
           </button>
@@ -498,7 +500,7 @@ export function DirectorMessages({ onBack: _onBack, embedded, as = 'director' }:
       {/* Sub nav */}
       <div style={{ background: '#fff', borderBottom: `1px solid ${LN}`, display: 'flex', alignItems: 'center', padding: '0 20px', gap: 4, flexShrink: 0 }}>
         {CLUB_SUBS.map(tab => (
-          <button key={tab} onClick={() => t(`${tab} opens.`)}
+          <button key={tab} onClick={() => openThing(`${tab}`, 'coach')}
             style={{ height: 44, padding: '0 4px', marginRight: 16, fontSize: 15, fontWeight: 600, color: tab === 'Messages' ? G : MUT, background: 'transparent', border: 'none', borderBottom: `3px solid ${tab === 'Messages' ? G : 'transparent'}`, cursor: 'pointer', fontFamily: 'inherit', boxSizing: 'border-box' }}>
             {tab}
           </button>
@@ -510,8 +512,8 @@ export function DirectorMessages({ onBack: _onBack, embedded, as = 'director' }:
         {/* Chat list */}
         <div style={{ width: 300, flexShrink: 0, borderRight: `1px solid ${LN}`, background: '#fff', display: 'flex', flexDirection: 'column' }}>
           <div style={{ padding: '12px 14px', borderBottom: `1px solid ${LN}`, display: 'flex', gap: 8 }}>
-            <button onClick={() => t(as === 'welfare' ? 'A private message opens. Only you and the person you pick can read it.' : 'Message all coaches opens.')} style={{ flex: 1, height: 44, borderRadius: 8, background: PALE, color: G, border: 'none', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{as === 'welfare' ? 'Private message' : 'Message all coaches'}</button>
-            <button onClick={() => t('New message opens.')} style={{ width: 44, height: 44, borderRadius: 8, background: G, color: '#fff', border: 'none', fontSize: 18, cursor: 'pointer' }}>+</button>
+            <button onClick={() => openThing(as === 'welfare' ? 'new message' : 'message to all coaches', 'club')} style={{ flex: 1, height: 44, borderRadius: 8, background: PALE, color: G, border: 'none', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{as === 'welfare' ? 'Private message' : 'Message all coaches'}</button>
+            <button onClick={() => openThing('New message', 'coach')} style={{ width: 44, height: 44, borderRadius: 8, background: G, color: '#fff', border: 'none', fontSize: 18, cursor: 'pointer' }}>+</button>
           </div>
           <div style={{ overflowY: 'auto', flex: 1 }}>
             {chats.map((c, i) => (
@@ -631,7 +633,7 @@ export function ParentMessages({ onBack: _onBack }: { onBack?: () => void }) {
           {'unread' in c && (c.unread ?? 0) > 0 && <div style={{ width: 20, height: 20, borderRadius: '50%', background: G, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700 }}>{c.unread}</div>}
         </button>
       ))}
-      <button onClick={() => t('Opening a new message.')} style={{ display: 'block', width: '100%', height: 48, borderRadius: 12, background: G, color: '#fff', border: 'none', fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', marginTop: 16 }}>+ New message</button>
+      <button onClick={() => openThing('a new message', 'coach')} style={{ display: 'block', width: '100%', height: 48, borderRadius: 12, background: G, color: '#fff', border: 'none', fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', marginTop: 16 }}>+ New message</button>
     </PhoneShell>
   )
 }
@@ -651,7 +653,7 @@ export function ParentMessagesEmpty({ onBack: _onBack }: { onBack?: () => void }
         <div style={{ fontSize: 16, fontWeight: 700, color: INK, marginBottom: 8 }}>No messages yet</div>
         <div style={{ fontSize: 13, color: MUT, lineHeight: 1.6 }}>You'll hear from your team's coach when there's something to share. You can start a message any time.</div>
       </div>
-      <button onClick={() => t('Opening a new message.')} style={{ display: 'block', width: '100%', height: 48, borderRadius: 12, background: G, color: '#fff', border: 'none', fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>+ New message</button>
+      <button onClick={() => openThing('a new message', 'coach')} style={{ display: 'block', width: '100%', height: 48, borderRadius: 12, background: G, color: '#fff', border: 'none', fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>+ New message</button>
     </PhoneShell>
   )
 }
@@ -714,7 +716,7 @@ export function ParentNewMessage({ onBack: _onBack }: { onBack?: () => void }) {
           {g.note && <div style={{ fontSize: 12, color: MUT, marginTop: 4 }}>{g.note}</div>}
         </div>
       ))}
-      <button onClick={() => t('New group chat opens.')} style={{ display: 'block', width: '100%', height: 44, borderRadius: 12, background: '#fff', border: `1px solid ${LN}`, color: INK, fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>New group</button>
+      <button onClick={() => openThing('New group chat', 'coach')} style={{ display: 'block', width: '100%', height: 44, borderRadius: 12, background: '#fff', border: `1px solid ${LN}`, color: INK, fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>New group</button>
     </PhoneShell>
   )
 }
@@ -762,9 +764,9 @@ export function RefereeMessages({ onBack: _onBack }: { onBack?: () => void }) {
             <div style={{ fontSize: 12, color: MUT }}>Private · you can always write to Helen</div>
           </div>
         </div>
-        <button onClick={() => t('Opening welfare chat.')} style={{ marginTop: 10, width: '100%', height: 40, borderRadius: 10, background: '#fff', border: `1px solid ${LN}`, color: G, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Write to Helen privately</button>
+        <button onClick={() => openThing('welfare chat', 'coach')} style={{ marginTop: 10, width: '100%', height: 40, borderRadius: 10, background: '#fff', border: `1px solid ${LN}`, color: G, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Write to Helen privately</button>
       </div>
-      <button onClick={() => t('Opening a new message. Ruth adds your contacts.')} style={{ display: 'block', width: '100%', height: 48, borderRadius: 12, background: G, color: '#fff', border: 'none', fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>+ New message</button>
+      <button onClick={() => openThing('a new message. Ruth adds your contacts', 'coach')} style={{ display: 'block', width: '100%', height: 48, borderRadius: 12, background: G, color: '#fff', border: 'none', fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>+ New message</button>
     </PhoneShell>
   )
 }

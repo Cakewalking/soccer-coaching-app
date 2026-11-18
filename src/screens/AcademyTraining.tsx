@@ -1,3 +1,4 @@
+import { openThing } from './openThing'
 import { useState } from 'react'
 
 const G    = '#2f6252'
@@ -104,6 +105,7 @@ export function AcademyTrainingWeek({ onBack: _onBack, onNav }: { onBack?: () =>
   const [toast, setToast] = useState<string | null>(null)
   const [copied, setCopied] = useState(false)
   const [selected, setSelected] = useState<string | null>(null)
+  void t   // kept for lines this screen may still need to say
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   const sessions = [
@@ -125,9 +127,9 @@ export function AcademyTrainingWeek({ onBack: _onBack, onNav }: { onBack?: () =>
       activeSub="This week"
       pageTitle="This week"
       pageSub="Tall Timber Academy · term 3, week 4 of 10 · Reece's groups"
-      pageRight={<><BtnMore label={copied ? 'Copied ✓' : 'Copy last week'} onClick={() => setCopied(true)}/><BtnPrimary label="Plan a session" onClick={() => onNav ? onNav('ACT2-AcademySuggested') : t('Opening session planner.')}/></>}
+      pageRight={<><BtnMore label={copied ? 'Copied ✓' : 'Copy last week'} onClick={() => setCopied(true)}/><BtnPrimary label="Plan a session" onClick={() => onNav ? onNav('ACT2-AcademySuggested') : openThing('session planner', 'academy')}/></>}
       toast={toast}
-      onNav={(id) => t(id.startsWith('sub:') ? `${id.slice(4)} opens.` : `${id.charAt(0).toUpperCase() + id.slice(1)} tab opens.`)}
+      onNav={(id) => openThing(`${id} tab`, 'academy')}
     >
       <div style={{ display: 'flex', gap: 16 }}>
         {/* Sessions list */}
@@ -215,13 +217,13 @@ export function AcademyTrainingSuggested({ onBack: _onBack }: { onBack?: () => v
       pageTitle="Suggested for Development"
       pageSub="Wed 4 June · 14 players · 60 min"
       pageRight={<>
-        <button onClick={() => t('Opening Ask Clean Sheet panel.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+        <button onClick={() => openThing('Ask Clean Sheet panel', 'academy')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', display: 'inline-flex', alignItems: 'center', gap: 8 }}>
           <Icon d={ICONS.sparkle} size={16} stroke={G}/> Ask in your own words
         </button>
         <BtnPrimary label="Build the whole session" onClick={() => t('Session plan built from your answers.')}/>
       </>}
       toast={toast}
-      onNav={(id) => t(id.startsWith('sub:') ? `${id.slice(4)} opens.` : `${id.charAt(0).toUpperCase() + id.slice(1)} tab opens.`)}
+      onNav={(id) => openThing(`${id} tab`, 'academy')}
     >
       <div style={{ display: 'flex', gap: 16 }}>
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 12 }}>
@@ -277,6 +279,7 @@ export function AcademySessionPlan({ onBack: _onBack, onNav }: { onBack?: () => 
   const [toast, setToast] = useState<string | null>(null)
   const [editPart, setEditPart] = useState<string | null>(null)
   const [sent, setSent] = useState(false)
+  void t   // kept for lines this screen may still need to say
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   const parts = [
@@ -297,9 +300,9 @@ export function AcademySessionPlan({ onBack: _onBack, onNav }: { onBack?: () => 
       activeSub="Session plan"
       pageTitle="Tuesday · Advanced"
       pageSub="3 June · 4:30pm · Messmate Primary School, pitch 1 · 60 min"
-      pageRight={<><BtnMore label={sent ? 'Sent to families ✓' : 'Send to families'} onClick={() => setSent(true)}/><BtnPrimary label="Run it" onClick={() => onNav ? onNav('livegame') : t('Opening live session mode.')}/></>}
+      pageRight={<><BtnMore label={sent ? 'Sent to families ✓' : 'Send to families'} onClick={() => setSent(true)}/><BtnPrimary label="Run it" onClick={() => onNav ? onNav('livegame') : openThing('live session mode', 'academy')}/></>}
       toast={toast}
-      onNav={(id) => t(id.startsWith('sub:') ? `${id.slice(4)} opens.` : `${id.charAt(0).toUpperCase() + id.slice(1)} tab opens.`)}
+      onNav={(id) => openThing(`${id} tab`, 'academy')}
     >
       <div style={{ display: 'flex', gap: 16 }}>
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 10 }}>
@@ -392,9 +395,9 @@ export function AcademyWhoComing({ onBack: _onBack, onNav }: { onBack?: () => vo
       activeSub="Who's coming"
       pageTitle="Who's coming"
       pageSub="Tue 3 June · Advanced · 4:30pm"
-      pageRight={<><BtnMore label="Remind 2" onClick={() => t('Reminder sent to Marco and Jai\'s families.')}/><BtnPrimary label="Check in at the gate" onClick={() => onNav ? onNav('livegame11') : t('Opening live check-in screen.')}/></>}
+      pageRight={<><BtnMore label="Remind 2" onClick={() => t('Reminder sent to Marco and Jai\'s families.')}/><BtnPrimary label="Check in at the gate" onClick={() => onNav ? onNav('livegame11') : openThing('live check-in screen', 'academy')}/></>}
       toast={toast}
-      onNav={(id) => t(id.startsWith('sub:') ? `${id.slice(4)} opens.` : `${id.charAt(0).toUpperCase() + id.slice(1)} tab opens.`)}
+      onNav={(id) => openThing(`${id} tab`, 'academy')}
     >
       <div style={{ display: 'flex', gap: 16 }}>
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 16 }}>
@@ -457,6 +460,7 @@ export function AcademyWhoComing({ onBack: _onBack, onNav }: { onBack?: () => vo
 // ACT1e — Academy Week Empty
 export function AcademyTrainingWeekEmpty({ onBack: _onBack, onNav }: { onBack?: () => void; onNav?: (s: string) => void }) {
   const [toast, setToast] = useState<string | null>(null)
+  void t   // kept for lines this screen may still need to say
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   return (
@@ -465,7 +469,7 @@ export function AcademyTrainingWeekEmpty({ onBack: _onBack, onNav }: { onBack?: 
       pageTitle="This week"
       pageSub="Tall Timber Academy · term 3, week 4 of 10 · Reece's groups"
       toast={toast}
-      onNav={(id) => t(id.startsWith('sub:') ? `${id.slice(4)} opens.` : `${id.charAt(0).toUpperCase() + id.slice(1)} tab opens.`)}
+      onNav={(id) => openThing(`${id} tab`, 'academy')}
     >
       <div style={{ display: 'flex', gap: 16 }}>
         <div style={{ flex: 1 }}>
@@ -476,8 +480,8 @@ export function AcademyTrainingWeekEmpty({ onBack: _onBack, onNav }: { onBack?: 
               Plan each session in advance and Clean Sheet will suggest drills, track who's coming, and monitor load automatically.
             </div>
             <div style={{ display: 'flex', gap: 8, justifyContent: 'center' }}>
-              <BtnPrimary label="Plan a session" onClick={() => onNav ? onNav('ACT2-AcademySuggested') : t('Opening session planner.')}/>
-              <BtnMore label="Open the drill library" onClick={() => t('Opening drill library.')}/>
+              <BtnPrimary label="Plan a session" onClick={() => onNav ? onNav('ACT2-AcademySuggested') : openThing('session planner', 'academy')}/>
+              <BtnMore label="Open the drill library" onClick={() => openThing('drill library', 'academy')}/>
             </div>
           </div>
         </div>

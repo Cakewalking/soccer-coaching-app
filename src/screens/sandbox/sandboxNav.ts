@@ -25,7 +25,13 @@ export function onWanted(f: () => void) { subs.add(f); return () => { subs.delet
 // or a filled example ("example:<screen id>") over the top with a Back bar.
 let appNav: ((target: string) => void) | null = null
 export function registerAppNav(fn: ((target: string) => void) | null) { appNav = fn }
+/** True while a coach app is on screen and can open a target itself. */
+export const hasAppNav = () => !!appNav
+// A screen opened by its own address has no app around it. Then the target opens over the top with a Back bar.
+let overlay: ((id: string) => void) | null = null
+export function registerOverlay(fn: (id: string) => void) { overlay = fn }
+const STANDALONE: Record<string, string> = { record: 'REC1-RecordHub', setstyle: 'SF0-Intro', squad: 'T4-SquadTab', teamtalk: 'E-TeamTalk', training: 'T3-TrainingTab', matchday: 'T2-TabletMatch', clips: 'C1-ClipsTab', home: 'T1-TabletTraining', whatisaw: 'HM5-WhatWeSaw', metric: 'DG1-Goals', fixtures: 'CF1-Fixtures', inbox: 'I1-Inbox' }
 export function goApp(target: string, fallback: string) {
-  if (!appNav) { demoToast(fallback); return }
+  if (!appNav) { const id = STANDALONE[target] ?? target.replace(/^example:/, '').split('#')[0]; if (overlay && /^[A-Z][A-Za-z0-9]*-[A-Za-z0-9]/.test(id)) overlay(id); else if (fallback) demoToast(fallback); return }
   appNav(target)
 }

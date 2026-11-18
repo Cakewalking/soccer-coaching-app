@@ -1,3 +1,4 @@
+import { openThing } from './openThing'
 import { useState } from 'react'
 
 const G    = '#2f6252'
@@ -82,6 +83,7 @@ const NOTES = [
 
 export default function PAR0SameTools() {
   const [toast, setToast] = useState<string|null>(null)
+  void st   // kept for lines this screen may still need to say
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
 
   return (
@@ -139,7 +141,7 @@ export default function PAR0SameTools() {
           ))}
         </div>
         <div style={{ marginTop: 14 }}>
-          <button style={{ fontSize: 14, color: G, fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }} onClick={() => st('Opening MiniRoos view.')}>See it for MiniRoos →</button>
+          <button style={{ fontSize: 14, color: G, fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }} onClick={() => openThing('MiniRoos view', 'coach')}>See it for MiniRoos →</button>
         </div>
       {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
       </div>

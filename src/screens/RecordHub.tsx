@@ -1,3 +1,4 @@
+import { openThing } from './openThing'
 import { useState } from 'react'
 import { useSandbox } from './sandbox/SandboxContext'
 import { addNote, removeNote, type SbNote } from './sandbox/sandboxStore'
@@ -201,17 +202,18 @@ function FamilyPhotos({ onClose }: { onClose: () => void }) {
 // REC1 — Record hub
 export function RecordHub({ onBack: _onBack, noFrame, onNav }: { onBack?: () => void; noFrame?: boolean; onNav?: (s: string) => void }) {
   const [toast, setToast] = useState<string | null>(null)
+  void t   // kept for lines this screen may still need to say
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   const [panel, setPanel] = useState<'note' | 'photos' | null>(null)
   const sb = useSandbox()
 
   const options = [
-    { icon: ICONS.game,     title: 'A game',            sub: 'Video, sensors, or both',       goes: 'Match review, Clips, each player\'s minutes and load',  onClick: () => onNav ? onNav('QC1-CapturePlan') : t('Opening the game recording flow.') },
+    { icon: ICONS.game,     title: 'A game',            sub: 'Video, sensors, or both',       goes: 'Match review, Clips, each player\'s minutes and load',  onClick: () => onNav ? onNav('QC1-CapturePlan') : openThing('the game recording flow', 'coach') },
     { icon: ICONS.training2,title: 'Training',          sub: 'Tonight\'s session',             goes: 'Session notes, Clips, Growth and load',                  link: true },
-    { icon: ICONS.test,     title: 'A test',            sub: 'Sprints, juggles, jumps, beep test', goes: 'Fitness tests, and each player\'s own trend',         onClick: () => onNav ? onNav('TL2-TestMode') : t('Opening the test recording flow.') },
+    { icon: ICONS.test,     title: 'A test',            sub: 'Sprints, juggles, jumps, beep test', goes: 'Fitness tests, and each player\'s own trend',         onClick: () => onNav ? onNav('TL2-TestMode') : openThing('the test recording flow', 'coach') },
     { icon: ICONS.note,     title: 'A quick note',      sub: 'Say it or type it',              goes: 'The player or game you name. You check it first',        onClick: () => setPanel(p => p === 'note' ? null : 'note') },
     { icon: ICONS.photo,    title: 'Photos for families',sub: 'Checked against consent',       goes: 'The team chat, once you send',                           onClick: () => setPanel(p => p === 'photos' ? null : 'photos') },
-    { icon: ICONS.injury,   title: 'Head knock / injury',sub: 'Linked to the club welfare officer', goes: 'Head knock log, and welfare officer',               onClick: () => onNav ? onNav('TM7-HeadKnock') : t('Opening the head knock log.') },
+    { icon: ICONS.injury,   title: 'Head knock / injury',sub: 'Linked to the club welfare officer', goes: 'Head knock log, and welfare officer',               onClick: () => onNav ? onNav('TM7-HeadKnock') : openThing('the head knock log', 'coach') },
   ]
 
   return (
@@ -219,9 +221,9 @@ export function RecordHub({ onBack: _onBack, noFrame, onNav }: { onBack?: () => 
       activeNav="record" activeSub="Record" subTabs={REC_SUBS}
       pageTitle="Record"
       pageSub={sb.active && sb.store.teams[0] && sb.store.teams[0].id !== 'wc-u12' ? `${sb.store.teams[0].name} · pick what you are recording` : 'U12 Sam · camera kit 2 and 15 vests are ready'}
-      pageRight={<BtnMore label="Devices" onClick={() => onNav ? onNav('SET4-Devices') : t('Opening device settings.')}/>}
+      pageRight={<BtnMore label="Devices" onClick={() => onNav ? onNav('SET4-Devices') : openThing('device settings', 'coach')}/>}
       toast={toast}
-      onNavTab={(id) => id === 'sub:Devices' ? (onNav ? onNav('SET4-Devices') : t('Devices opens.')) : id === 'sub:How we measure' && onNav ? onNav('QC10-HowWeMeasure') : id === 'sub:Recorded lately' && onNav ? onNav('REC2-RecordSaved') : t(id.startsWith('sub:') ? `${id.slice(4)} opens.` : `${id.charAt(0).toUpperCase() + id.slice(1)} tab opens.`)}
+      onNavTab={(id) => id === 'sub:Devices' ? (onNav ? onNav('SET4-Devices') : openThing('Devices', 'coach')) : id === 'sub:How we measure' && onNav ? onNav('QC10-HowWeMeasure') : id === 'sub:Recorded lately' && onNav ? onNav('REC2-RecordSaved') : openThing(`${id} tab`, 'coach')}
       noFrame={noFrame}
     >
       <div style={{ display: 'flex', gap: 16 }}>
@@ -230,7 +232,7 @@ export function RecordHub({ onBack: _onBack, noFrame, onNav }: { onBack?: () => 
           <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 12 }}>What are you recording?</div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
             {options.map(opt => (
-              <button key={opt.title} onClick={opt.link ? () => onNav ? onNav('REC2-RecordSaved') : t('Opening the training recording flow.') : opt.onClick}
+              <button key={opt.title} onClick={opt.link ? () => onNav ? onNav('REC2-RecordSaved') : openThing('the training recording flow', 'coach') : opt.onClick}
                 style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '16px', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit', display: 'flex', flexDirection: 'column', gap: 6, boxSizing: 'border-box', minHeight: 120 }}>
                 <span style={{ color: G }}>
                   <Icon d={opt.icon} size={22} stroke={G}/>
@@ -299,9 +301,9 @@ export function RecordSaved({ onBack, onNav, noFrame }: { onBack?: () => void; o
       activeNav="record" activeSub="Record" subTabs={REC_SUBS}
       pageTitle="Saved: Tuesday training"
       pageSub="2 June · 58 minutes · camera kit 2 and 15 vests"
-      pageRight={<><BtnMore label="Record something else" onClick={() => onBack ? onBack() : t('Back to Record hub.')}/><BtnPrimary label="How did it go?" onClick={() => onNav ? onNav('EX1-HowWorkedOut') : t('Opening the training review.')} /></>}
+      pageRight={<><BtnMore label="Record something else" onClick={() => onBack ? onBack() : t('Back to Record hub.')}/><BtnPrimary label="How did it go?" onClick={() => onNav ? onNav('EX1-HowWorkedOut') : openThing('the training review', 'coach')} /></>}
       toast={toast}
-      onNavTab={(id) => t(id.startsWith('sub:') ? `${id.slice(4)} opens.` : `${id.charAt(0).toUpperCase() + id.slice(1)} tab opens.`)}
+      onNavTab={(id) => openThing(`${id} tab`, 'coach')}
     >
       <div style={{ display: 'flex', gap: 16 }}>
         <div style={{ flex: 1 }}>
@@ -320,7 +322,7 @@ export function RecordSaved({ onBack, onNav, noFrame }: { onBack?: () => void; o
                     <div style={{ fontSize: 12, color: MUT }}>{d.note}</div>
                   </div>
                   <div style={{ display: 'flex', gap: 8 }}>
-                    <button onClick={() => onNav ? onNav(d.target) : t(`${d.title} opens.`)} style={{ height: 36, padding: '0 12px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Open</button>
+                    <button onClick={() => onNav ? onNav(d.target) : openThing(`${d.title}`, 'coach')} style={{ height: 36, padding: '0 12px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Open</button>
                     <button onClick={() => setMoveRow(r => r === d.title ? null : d.title)} style={{ height: 36, padding: '0 12px', borderRadius: 8, border: `1px solid ${moveRow === d.title ? G : LN}`, background: moveRow === d.title ? PALE : '#fff', fontSize: 13, fontWeight: 600, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Move</button>
                   </div>
                 </div>
@@ -368,6 +370,7 @@ export function RecordSaved({ onBack, onNav, noFrame }: { onBack?: () => void; o
 // REC1e — Record hub empty state
 export function RecordHubEmpty({ onBack: _onBack }: { onBack?: () => void }) {
   const [toast, setToast] = useState<string | null>(null)
+  void t   // kept for lines this screen may still need to say
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   return (
@@ -376,7 +379,7 @@ export function RecordHubEmpty({ onBack: _onBack }: { onBack?: () => void }) {
       pageTitle="Record"
       pageSub="U12 Sam · nothing recorded yet"
       toast={toast}
-      onNavTab={(id) => t(id.startsWith('sub:') ? `${id.slice(4)} opens.` : `${id.charAt(0).toUpperCase() + id.slice(1)} tab opens.`)}
+      onNavTab={(id) => openThing(`${id} tab`, 'coach')}
     >
       <div style={{ display: 'flex', gap: 16 }}>
         <div style={{ flex: 1 }}>
@@ -387,8 +390,8 @@ export function RecordHubEmpty({ onBack: _onBack }: { onBack?: () => void }) {
               This tablet's camera is enough to start. A match camera and sensor vests can come later.
             </div>
             <div style={{ display: 'flex', gap: 8, justifyContent: 'center' }}>
-              <BtnPrimary label="Record with this tablet" onClick={() => t('Opening the tablet camera recording flow.')}/>
-              <BtnMore label="Pair a camera or vests" onClick={() => t('Opening device pairing.')}/>
+              <BtnPrimary label="Record with this tablet" onClick={() => openThing('the tablet camera recording flow', 'coach')}/>
+              <BtnMore label="Pair a camera or vests" onClick={() => openThing('device pairing', 'coach')}/>
             </div>
           </div>
         </div>

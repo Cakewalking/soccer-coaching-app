@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 const GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2', G = '#2f6252', ROSE = '#c39797'
 const SUBNAV = ['Today', 'Run a session', 'Trial player', 'One-on-one', 'Record', 'Suggested']
@@ -88,7 +89,7 @@ export default function ACC10AcademyRecordResults(_: { onBack?: () => void }) {
                   <div style={{ fontSize: 13, fontWeight: 600, color: INK }}>{r.label}</div>
                   <div style={{ fontSize: 12, color: MUT }}>{r.sub}</div>
                 </div>
-                {r.action && <button onClick={() => st(`Opening ${r.label}.`)} style={{ height: 44, padding: '0 12px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 700, color: G, cursor: 'pointer' }}>{r.action}</button>}
+                {r.action && <button onClick={() => openThing(`${r.label}`, 'academy')} style={{ height: 44, padding: '0 12px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 700, color: G, cursor: 'pointer' }}>{r.action}</button>}
               </div>
             ))}
           </div>

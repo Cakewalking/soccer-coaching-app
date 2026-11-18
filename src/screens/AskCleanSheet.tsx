@@ -1,3 +1,4 @@
+import { openThing } from './openThing'
 import { glyph } from './Glyph'
 import { useState } from 'react'
 
@@ -89,12 +90,13 @@ function CoachSubNav({ activeSub, onNav }: { activeSub: string; onNav: (id: stri
 export function AskHome({ onBack: _onBack }: { onBack?: () => void }) {
   const [toast, setToast] = useState<string | null>(null)
   const [input, setInput] = useState('')
+  void t
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#f7f8f7' }}>
-      <CoachTopBar onNav={(id) => t(`${id.charAt(0).toUpperCase() + id.slice(1)} tab opens.`)}/>
-      <CoachSubNav activeSub="Overview" onNav={(id) => t(id.startsWith('sub:') ? `${id.slice(4)} opens.` : `${id} opens.`)}/>
+      <CoachTopBar onNav={(id) => openThing(`${id.charAt(0).toUpperCase() + id.slice(1)} tab`, 'coach')}/>
+      <CoachSubNav activeSub="Overview" onNav={(id) => openThing(`${id} tab`, 'coach')}/>
       {/* Page content */}
       <div style={{ flex: 1, overflowY: 'auto', padding: '24px 28px' }}>
         {/* Ask box — top of content area */}
@@ -109,14 +111,14 @@ export function AskHome({ onBack: _onBack }: { onBack?: () => void }) {
               placeholder="Ask Clean Sheet about your team…"
               style={{ flex: 1, height: 44, padding: '0 14px', borderRadius: 10, border: `1.5px solid ${LN}`, fontSize: 14, fontFamily: 'inherit', outline: 'none', color: INK }}
             />
-            <button onClick={() => t('Voice input opens.')} style={{ width: 44, height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: MUT }}>
+            <button onClick={() => openThing('Voice input', 'coach')} style={{ width: 44, height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: MUT }}>
               <Icon d={MIC} size={18}/>
             </button>
-            <button onClick={() => t('Opening Ask Clean Sheet panel (ASK3).')} style={{ height: 44, padding: '0 18px', borderRadius: 10, background: G, color: '#fff', border: 'none', fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Ask</button>
+            <button onClick={() => openThing('Ask Clean Sheet panel (ASK3)', 'coach')} style={{ height: 44, padding: '0 18px', borderRadius: 10, background: G, color: '#fff', border: 'none', fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Ask</button>
           </div>
           <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: 8 }}>
             {EXAMPLE_QUESTIONS.map(q => (
-              <button key={q} onClick={() => { setInput(q); t('Opening Ask Clean Sheet panel (ASK3).') }}
+              <button key={q} onClick={() => { setInput(q); openThing('Ask Clean Sheet panel (ASK3)', 'coach') }}
                 style={{ padding: '6px 12px', borderRadius: 100, border: `1px solid ${LN}`, background: PALE, color: G, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>
                 {q}
               </button>
@@ -150,8 +152,8 @@ export function AskMinimised({ onBack: _onBack }: { onBack?: () => void }) {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#f7f8f7', position: 'relative' }}>
-      <CoachTopBar onNav={(id) => t(`${id.charAt(0).toUpperCase() + id.slice(1)} tab opens.`)}/>
-      <CoachSubNav activeSub="Overview" onNav={() => t('Tab opens.')}/>
+      <CoachTopBar onNav={(id) => openThing(`${id.charAt(0).toUpperCase() + id.slice(1)} tab`, 'coach')}/>
+      <CoachSubNav activeSub="Overview" onNav={(id) => openThing(`${id} tab`, 'coach')}/>
       {/* Background content (player summary placeholder) */}
       <div style={{ flex: 1, overflowY: 'auto', padding: '24px 28px' }}>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '20px', marginBottom: 14 }}>
@@ -194,8 +196,8 @@ export function AskOpen({ onBack: _onBack }: { onBack?: () => void }) {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#f7f8f7', position: 'relative' }}>
-      <CoachTopBar onNav={(id) => t(`${id.charAt(0).toUpperCase() + id.slice(1)} tab opens.`)}/>
-      <CoachSubNav activeSub="Overview" onNav={() => t('Tab opens.')}/>
+      <CoachTopBar onNav={(id) => openThing(`${id.charAt(0).toUpperCase() + id.slice(1)} tab`, 'coach')}/>
+      <CoachSubNav activeSub="Overview" onNav={(id) => openThing(`${id} tab`, 'coach')}/>
       <div style={{ flex: 1, overflow: 'hidden', display: 'flex', minHeight: 0 }}>
         {/* Background content */}
         <div style={{ flex: 1, overflowY: 'auto', padding: '24px 28px', opacity: 0.4, pointerEvents: 'none', userSelect: 'none' as const }}>
@@ -256,7 +258,7 @@ export function AskOpen({ onBack: _onBack }: { onBack?: () => void }) {
           <div style={{ padding: '12px 14px', borderTop: `1px solid ${LN}`, display: 'flex', gap: 8, alignItems: 'center' }}>
             <input value={input} onChange={e => setInput(e.target.value)} placeholder="Ask something else…"
               style={{ flex: 1, height: 40, padding: '0 12px', borderRadius: 8, border: `1px solid ${LN}`, fontSize: 13, fontFamily: 'inherit', outline: 'none' }}/>
-            <button onClick={() => t('Opening voice input.')} style={{ width: 44, height: 44, borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: MUT }}>
+            <button onClick={() => openThing('voice input', 'coach')} style={{ width: 44, height: 44, borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: MUT }}>
               <Icon d={MIC} size={16}/>
             </button>
             <button onClick={() => t('Question sent.')} style={{ width: 44, height: 44, borderRadius: 8, background: G, color: '#fff', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -278,8 +280,8 @@ export function AskOpenFirst({ onBack: _onBack }: { onBack?: () => void }) {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#f7f8f7', position: 'relative' }}>
-      <CoachTopBar onNav={(id) => t(`${id.charAt(0).toUpperCase() + id.slice(1)} tab opens.`)}/>
-      <CoachSubNav activeSub="Overview" onNav={() => t('Tab opens.')}/>
+      <CoachTopBar onNav={(id) => openThing(`${id.charAt(0).toUpperCase() + id.slice(1)} tab`, 'coach')}/>
+      <CoachSubNav activeSub="Overview" onNav={(id) => openThing(`${id} tab`, 'coach')}/>
       <div style={{ flex: 1, overflow: 'hidden', display: 'flex', minHeight: 0 }}>
         {/* Background */}
         <div style={{ flex: 1, overflowY: 'auto', padding: '24px 28px', opacity: 0.4, pointerEvents: 'none', userSelect: 'none' as const }}>
@@ -319,7 +321,7 @@ export function AskOpenFirst({ onBack: _onBack }: { onBack?: () => void }) {
           <div style={{ padding: '12px 14px', borderTop: `1px solid ${LN}`, display: 'flex', gap: 8, alignItems: 'center' }}>
             <input value={input} onChange={e => setInput(e.target.value)} placeholder="Ask your first question…"
               style={{ flex: 1, height: 40, padding: '0 12px', borderRadius: 8, border: `1px solid ${LN}`, fontSize: 13, fontFamily: 'inherit', outline: 'none' }}/>
-            <button onClick={() => t('Opening voice input.')} style={{ width: 44, height: 44, borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: MUT }}>
+            <button onClick={() => openThing('voice input', 'coach')} style={{ width: 44, height: 44, borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: MUT }}>
               <Icon d={MIC} size={16}/>
             </button>
             <button onClick={() => t('Question sent.')} style={{ width: 44, height: 44, borderRadius: 8, background: G, color: '#fff', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -365,13 +367,13 @@ export function AskPhoneButton({ onBack: _onBack }: { onBack?: () => void }) {
       {/* Phone bottom bar + floating sparkle */}
       <div style={{ background: '#fff', borderTop: `1px solid ${LN}`, height: 60, display: 'flex', alignItems: 'center', justifyContent: 'space-around', padding: '0 20px', flexShrink: 0, position: 'relative' }}>
         {['Home', 'Squad', 'Training', 'Clips'].map(tab => (
-          <button key={tab} onClick={() => t(`${tab} opens.`)} style={{ background: 'transparent', border: 'none', fontSize: 11, fontWeight: 600, color: tab === 'Home' ? G : MUT, cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, fontFamily: 'inherit' }}>
+          <button key={tab} onClick={() => openThing(`${tab}`, 'coach')} style={{ background: 'transparent', border: 'none', fontSize: 11, fontWeight: 600, color: tab === 'Home' ? G : MUT, cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, fontFamily: 'inherit' }}>
             <div style={{ width: 20, height: 20, borderRadius: 4, background: tab === 'Home' ? PALE : 'transparent' }}/>
             {tab}
           </button>
         ))}
         {/* Floating round sparkle button above nav bar */}
-        <button onClick={() => t('Opening Ask Clean Sheet.')}
+        <button onClick={() => openThing('Ask Clean Sheet', 'coach')}
           aria-label="Ask Clean Sheet"
           style={{ position: 'absolute', top: -26, right: 20, width: 52, height: 52, borderRadius: '50%', background: GD, color: '#fff', border: '3px solid #fff', boxShadow: '0 4px 16px rgba(16,33,31,0.25)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <Icon d={SPARKLE} size={22} stroke="#fff"/>
@@ -439,7 +441,7 @@ export function AskPhoneOpen({ onBack: _onBack }: { onBack?: () => void }) {
         <div style={{ padding: '10px 16px 0', display: 'flex', gap: 8, alignItems: 'center' }}>
           <input value={input} onChange={e => setInput(e.target.value)} placeholder="Ask something else…"
             style={{ flex: 1, height: 40, padding: '0 12px', borderRadius: 8, border: `1px solid ${LN}`, fontSize: 13, fontFamily: 'inherit', outline: 'none' }}/>
-          <button onClick={() => t('Opening voice input.')} style={{ width: 44, height: 44, borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: MUT }}>
+          <button onClick={() => openThing('voice input', 'coach')} style={{ width: 44, height: 44, borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: MUT }}>
             <Icon d={MIC} size={16}/>
           </button>
           <button onClick={() => t('Question sent.')} style={{ width: 44, height: 44, borderRadius: 8, background: G, color: '#fff', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>

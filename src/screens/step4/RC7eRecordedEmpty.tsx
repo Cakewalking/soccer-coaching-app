@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
@@ -6,6 +7,7 @@ const SUBNAV = ["Tonight's session", 'This week', 'Suggested', 'Drill library', 
 
 export default function RC7eRecordedEmpty(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string|null>(null)
+  void st   // kept for lines this screen may still need to say
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, height: 820, boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
@@ -31,7 +33,7 @@ export default function RC7eRecordedEmpty(_: { onBack?: () => void }) {
           </div>
           <div style={{ fontSize: 20, fontWeight: 800, color: INK }}>Nothing recorded yet</div>
           <div style={{ fontSize: 15, color: MUT, maxWidth: 380, lineHeight: 1.6 }}>Record a game, a friendly, a drill, a warm-up or a test. Each one lands here, ready to open or run again.</div>
-          <button style={{ height: 48, padding: '0 28px', borderRadius: 12, background: GD, color: '#fff', border: 'none', fontSize: 15, fontWeight: 700, cursor: 'pointer', marginTop: 8 }} onClick={() => st('Opening recording setup.')}>Record something</button>
+          <button style={{ height: 48, padding: '0 28px', borderRadius: 12, background: GD, color: '#fff', border: 'none', fontSize: 15, fontWeight: 700, cursor: 'pointer', marginTop: 8 }} onClick={() => openThing('recording setup', 'coach')}>Record something</button>
         </div>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '20px' }}>
           <div style={{ fontSize: 14, fontWeight: 700, color: INK, marginBottom: 12 }}>What you can record</div>

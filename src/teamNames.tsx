@@ -105,3 +105,21 @@ export function TeamText({ team, children }: { team?: OtherTeam | null; children
   if (!team) return <>{children}</>
   return <div ref={ref} data-team-text={team} style={{ display: 'contents' }}>{children}</div>
 }
+
+/** A plain word-for-word swap for a screen written with another team's names: the under-9s' Your take boards. */
+export function SwapText({ pairs, children }: { pairs: [string, string][]; children: ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null)
+  useLayoutEffect(() => {
+    const root = ref.current
+    if (!root) return
+    const map = new Map(pairs), esc = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+    const re = new RegExp(`(?<![A-Za-z])(${[...map.keys()].sort((a, b) => b.length - a.length).map(esc).join('|')})(?![A-Za-z])`, 'g')
+    const fix = (n: Node) => { const v = n.nodeValue; if (!v) return; const next = v.replace(re, m => map.get(m) ?? m); if (next !== v) n.nodeValue = next }
+    const walk = (n: Node) => { if (n.nodeType === Node.TEXT_NODE) { fix(n); return } if (n.nodeType !== Node.ELEMENT_NODE) return; const tw = document.createTreeWalker(n, NodeFilter.SHOW_TEXT); for (let c = tw.nextNode(); c; c = tw.nextNode()) fix(c) }
+    walk(root)
+    const mo = new MutationObserver(list => { for (const m of list) { if (m.type === 'characterData') fix(m.target); else m.addedNodes.forEach(walk) } })
+    mo.observe(root, { childList: true, subtree: true, characterData: true })
+    return () => mo.disconnect()
+  }, [pairs])
+  return <div ref={ref} style={{ display: 'contents' }}>{children}</div>
+}

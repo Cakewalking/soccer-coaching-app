@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { Glyph } from '../Glyph'
 import { useState } from 'react'
 import EDUp1PlayerLearn from '../step4/EDUp1PlayerLearn'
@@ -434,7 +435,7 @@ export default function OlderPlayerApp({ empty = false, initialView, initialChat
           <div style={{ flexGrow: 1, padding: '24px 20px', display: 'flex', flexDirection: 'column', gap: 12 }}>
             <div style={{ fontSize: 16, fontWeight: 700, color: '#10211f' }}>Nothing measured yet</div>
             <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.5 }}>{"After your first week with a vest, you'll see how much you've done and when to rest. Add school sport so the picture is whole."}</div>
-            <button onClick={() => st('Opening sport picker.')} style={{ height: 44, borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Add other sport</button>
+            <button onClick={() => openThing('sport picker', 'phone')} style={{ height: 44, borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Add other sport</button>
           </div>
         ) : <BodyView />)}
         {view === 'adult'    && <><AdultView /><div style={{ padding: '0 16px 16px' }}><button onClick={() => setView('adultlearn')} style={{ width: '100%', minHeight: 48, borderRadius: 12, border: '1px solid #c5c8c4', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Learn: this week’s lessons</button></div></>}

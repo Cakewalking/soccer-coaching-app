@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 import EDUp1PlayerLearn from '../step4/EDUp1PlayerLearn'
 import { setAnswer, niceDate } from '../sandbox/sandboxStore'
@@ -375,7 +376,7 @@ function DataView({ onBack }: { onBack: () => void }) {
         <div style={{ background: '#fff', borderRadius: 16, border: '2px solid #e8d5d0', padding: '16px' }}>
           <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 6, color: '#10211f' }}>Leave and delete everything</div>
           <div style={{ fontSize: 13, color: '#6f7f7b', lineHeight: '18px', marginBottom: 12 }}>Removes your account and your children's data within 7 days. The club keeps only what the law says it must, such as a head-knock record.</div>
-          <button onClick={() => st('Opening deletion confirmation.')} style={{ width: '100%', height: 44, borderRadius: 10, border: '1px solid #e8d5d0', background: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer', color: '#c39797' }}>Delete everything</button>
+          <button onClick={() => openThing('deletion confirmation', 'phone')} style={{ width: '100%', height: 44, borderRadius: 10, border: '1px solid #e8d5d0', background: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer', color: '#c39797' }}>Delete everything</button>
         </div>
 
         <div style={{ fontSize: 12, color: '#6f7f7b', lineHeight: '17px', textAlign: 'center' }}>Mia can still play. Deleting data never affects her place in the team.</div>

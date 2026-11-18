@@ -1,9 +1,11 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 const G='#2f6252',GD='#1f4a3e',INK='#10211f',MUT='#4a5a57',LN='#e8edeb',PALE='#eef5f2'
 type Tab='home'|'clips'|'body'|'messages'
 export default function SPp17OlderRestMonth(){
   const [tab,setTab]=useState<Tab>('home')
   const [toast,setToast]=useState<string|null>(null)
+  void t   // kept for lines this screen may still need to say
   function t(m:string){setToast(m);setTimeout(()=>setToast(null),3200)}
   return(
     <div style={{width:390,minHeight:812,background:'#fff',borderRadius:28,overflow:'hidden',boxShadow:'0 8px 40px rgba(0,0,0,0.14)',display:'flex',flexDirection:'column',fontFamily:'var(--font-sans)',position:'relative'}}>
@@ -25,14 +27,14 @@ export default function SPp17OlderRestMonth(){
               </div>
             </div>
             <div style={{fontSize:14,fontWeight:700,color:INK,marginBottom:12}}>Still here</div>
-            <button onClick={()=>t('Opening message to Ollie')} style={{display:'flex',alignItems:'center',justifyContent:'space-between',width:'100%',padding:'14px',borderRadius:12,border:`1px solid ${LN}`,background:'#fff',fontFamily:'inherit',cursor:'pointer',marginBottom:8}}>
+            <button onClick={()=>openThing('message to Ollie', 'phone')} style={{display:'flex',alignItems:'center',justifyContent:'space-between',width:'100%',padding:'14px',borderRadius:12,border:`1px solid ${LN}`,background:'#fff',fontFamily:'inherit',cursor:'pointer',marginBottom:8}}>
               <div style={{textAlign:'left' as const}}>
                 <div style={{fontSize:14,fontWeight:600,color:INK}}>Message Ollie</div>
                 <div style={{fontSize:12,color:MUT}}>Parent gets a copy</div>
               </div>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
             </button>
-            <button onClick={()=>t('Opening welfare contact')} style={{display:'flex',alignItems:'center',justifyContent:'space-between',width:'100%',padding:'14px',borderRadius:12,border:`1px solid ${LN}`,background:'#fff',fontFamily:'inherit',cursor:'pointer',marginBottom:16}}>
+            <button onClick={()=>openThing('welfare contact', 'phone')} style={{display:'flex',alignItems:'center',justifyContent:'space-between',width:'100%',padding:'14px',borderRadius:12,border:`1px solid ${LN}`,background:'#fff',fontFamily:'inherit',cursor:'pointer',marginBottom:16}}>
               <div style={{textAlign:'left' as const}}>
                 <div style={{fontSize:14,fontWeight:600,color:INK}}>Contact welfare officer</div>
                 <div style={{fontSize:12,color:MUT}}>Private, not shared with Ollie</div>

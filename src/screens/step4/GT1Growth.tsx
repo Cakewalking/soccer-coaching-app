@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2', BG = '#f5f6f4'
@@ -177,6 +178,7 @@ export function GT1Growth() {
 export function GT1eGrowthEmpty() {
   const fitnessNav = ['Play level', 'Growth', 'Injuries', 'Wellness', 'Availability']
   const [toast, setToast] = useState<string|null>(null)
+  void st   // kept for lines this screen may still need to say
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, background: BG, fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' as const }}>
@@ -200,7 +202,7 @@ export function GT1eGrowthEmpty() {
           <div style={{ textAlign: 'center' as const, maxWidth: 420 }}>
             <div style={{ fontSize: 18, fontWeight: 700, color: INK, marginBottom: 8 }}>No growth data yet</div>
             <div style={{ fontSize: 14, color: MUT, marginBottom: 24 }}>Run a measuring session to record your squad's heights. Clean Sheet will track growth rates and flag fast growers.</div>
-            <button onClick={() => st('Opening measuring session.')} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 'none', background: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>Start measuring session</button>
+            <button onClick={() => openThing('measuring session', 'coach')} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 'none', background: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>Start measuring session</button>
           </div>
         </div>
       </div>

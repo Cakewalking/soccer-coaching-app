@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { Glyph } from '../Glyph'
 import { useState } from 'react'
 
@@ -67,6 +68,7 @@ function SetUpChatView({ onDone }: { onDone: () => void }) {
 function NewPollView({ onBack }: { onBack: () => void }) {
   const [preset, setPreset] = useState("Who can help?")
   const [toast, setToast] = useState<string | null>(null)
+  void showToast   // kept for lines this screen may still need to say
   function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 10 }}>
@@ -90,7 +92,7 @@ function NewPollView({ onBack }: { onBack: () => void }) {
           <input defaultValue={a} style={{ flex: 1, height: 40, padding: '0 12px', borderRadius: 8, border: `1px solid ${LN}`, fontSize: 14, fontFamily: 'inherit', outline: 'none', color: INK }}/>
         </div>
       ))}
-      <button onClick={() => showToast('Opening new answer field.')} style={{ display: 'flex', alignItems: 'center', gap: 6, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G2, padding: '2px 0' }}>
+      <button onClick={() => openThing('new answer field', 'phone')} style={{ display: 'flex', alignItems: 'center', gap: 6, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G2, padding: '2px 0' }}>
         <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round"><path d="M12 5v14M5 12h14"/></svg>
         Add an answer
       </button>
@@ -131,7 +133,7 @@ function ManagerTeamChatView({ onBack, onNewPoll, onSetup }: { onBack: () => voi
       {/* Poll indicator */}
       <div style={{ padding: '10px 14px', background: '#f5f9f7', borderBottom: `1px solid ${LN}`, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <div style={{ fontSize: 13, color: GD }}>Your poll: oranges. 4 of 17 so far</div>
-        <button onClick={() => showToast('Opening poll responses.')} style={{ fontSize: 12, fontWeight: 700, color: G2, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit' }}>See who</button>
+        <button onClick={() => openThing('poll responses', 'phone')} style={{ fontSize: 12, fontWeight: 700, color: G2, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit' }}>See who</button>
       </div>
       <div style={{ flexGrow: 1, overflowY: 'auto', padding: '14px' }}>
         {/* Linh's voice */}
@@ -172,13 +174,13 @@ function ManagerTeamChatView({ onBack, onNewPoll, onSetup }: { onBack: () => voi
           <div style={{ background: '#f5f6f4', borderRadius: 12, padding: '8px 12px', marginLeft: 34, fontSize: 14, color: INK, lineHeight: 1.5 }}>Why does Ruby only ever get one half? Some kids never come off.</div>
         </div>
         <div style={{ marginLeft: 34, marginBottom: 14 }}>
-          <button onClick={() => showToast('Opening private thread with Dan.')} style={{ height: 44, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: ROSE, cursor: 'pointer', fontFamily: 'inherit' }}>Move this out of the group</button>
+          <button onClick={() => openThing('private thread with Dan', 'phone')} style={{ height: 44, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: ROSE, cursor: 'pointer', fontFamily: 'inherit' }}>Move this out of the group</button>
         </div>
       </div>
       <div style={{ background: '#fff', borderTop: `1px solid ${LN}`, padding: '8px 14px 10px', flexShrink: 0 }}>
         <div style={{ display: 'flex', gap: 6, marginBottom: 6 }}>
           <button onClick={onNewPoll} style={{ height: 44, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>Poll</button>
-          <button onClick={() => showToast('Opening announcement compose.')} style={{ height: 44, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>Announce</button>
+          <button onClick={() => openThing('announcement compose', 'phone')} style={{ height: 44, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>Announce</button>
           <button onClick={() => showToast('Viewing pinned messages.')} style={{ height: 44, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>Pinned</button>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>

@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 import { EmptyCard } from '../clubadmin/ui'
 
@@ -71,7 +72,7 @@ export default function FixturesMiniRoos({ empty }: { empty?: boolean }) {
                 </span>
               </div>
             ))}
-            <button onClick={() => showToast('Opening Saturday\'s turns')} style={{ marginTop: 'auto', height: 44, padding: '0 18px', borderRadius: 10, border: '1px solid #2f6252', background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Open Saturday's turns</button>
+            <button onClick={() => openThing('Saturday\'s turns', 'mini')} style={{ marginTop: 'auto', height: 44, padding: '0 18px', borderRadius: 10, border: '1px solid #2f6252', background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Open Saturday's turns</button>
           </section>
         </div>
       </main>

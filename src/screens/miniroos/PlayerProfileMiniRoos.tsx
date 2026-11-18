@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 import { PLAYERS } from './squadData'
 import { SKILLS, STEPS, TURNS } from './MiniRoosExtras'
@@ -164,7 +165,7 @@ export default function PlayerProfileMiniRoos({ ini, onPick, onBack, onSeasonNot
 
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap', marginTop: 'auto', paddingTop: 4 }}>
             <span style={{ flexGrow: 1, fontSize: 13, color: MUT }}>No scores, ratings or rankings for under 12s.</span>
-            <button onClick={() => onSeasonNotes ? onSeasonNotes() : say(`Opening ${name}’s season note.`)} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${BORDER}`, background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, color: INK, cursor: 'pointer' }}>Write {a.her} season note</button>
+            <button onClick={() => onSeasonNotes ? onSeasonNotes() : openThing(`${name}’s season note`, 'mini')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${BORDER}`, background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, color: INK, cursor: 'pointer' }}>Write {a.her} season note</button>
           </div>
         </div>
       </div>

@@ -1,3 +1,4 @@
+import { openThing } from './openThing'
 import { useState } from 'react'
 
 const G    = '#2f6252'
@@ -63,7 +64,7 @@ function InfoRow({ label, value, action }: { label: string; value?: string; acti
     <div style={{ display: 'flex', alignItems: 'center', padding: '10px 0', borderBottom: `1px solid ${LN}` }}>
       <span style={{ fontSize: 14, color: MUT, flex: 1 }}>{label}</span>
       <span style={{ fontSize: 14, fontWeight: 600, color: INK }}>{value}</span>
-      {action && <button onClick={() => { setIrToast(`Opening ${action.toLowerCase()}.`); setTimeout(() => setIrToast(null), 3000) }} style={{ marginLeft: 10, fontSize: 13, fontWeight: 700, color: G2, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>{action}</button>}
+      {action && <button onClick={() => { openThing(`${action.toLowerCase()}`, 'coach'); setTimeout(() => setIrToast(null), 3000) }} style={{ marginLeft: 10, fontSize: 13, fontWeight: 700, color: G2, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>{action}</button>}
       {irToast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{irToast}</div>}
     </div>
   )
@@ -91,6 +92,7 @@ function StepList({ steps }: { steps: { n: string; title: string; note?: string 
 function StartView({ empty, onFriendly, onDrill, onRecorded, onHowWeMeasure, onRunAgain, onLeague }:
   { empty: boolean; onLeague: () => void; onFriendly: () => void; onDrill: () => void; onRecorded: () => void; onHowWeMeasure: () => void; onRunAgain: () => void }) {
   const [svToast, setSvToast] = useState<string|null>(null)
+  void showToast   // kept for lines this screen may still need to say
   function showToast(m: string) { setSvToast(m); setTimeout(() => setSvToast(null), 3000) }
 
   if (empty) return (
@@ -102,8 +104,8 @@ function StartView({ empty, onFriendly, onDrill, onRecorded, onHowWeMeasure, onR
         <div style={{ fontSize: 18, fontWeight: 700, color: INK }}>No camera or sensors paired yet</div>
         <div style={{ fontSize: 14, color: MUT, lineHeight: 1.5, maxWidth: 400 }}>Pair a camera, or start with your phone. Any camera that saves a video file works. With no kit at all you can still record a test with a phone timer.</div>
         <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
-          <button onClick={() => showToast('Opening camera pairing.')} style={{ height: 44, padding: '0 20px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Pair a camera</button>
-          <button onClick={() => showToast('Opening phone recording.')} style={{ height: 44, padding: '0 20px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Record with a phone</button>
+          <button onClick={() => openThing('camera pairing', 'coach')} style={{ height: 44, padding: '0 20px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Pair a camera</button>
+          <button onClick={() => openThing('phone recording', 'coach')} style={{ height: 44, padding: '0 20px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Record with a phone</button>
         </div>
       </div>
       <SectionHead label="What each bit of kit adds"/>
@@ -199,6 +201,7 @@ function StartView({ empty, onFriendly, onDrill, onRecorded, onHowWeMeasure, onR
 function FriendlyView({ onStart }: { onStart: () => void }) {
   const [counts, setCounts] = useState<'separate' | 'league'>('separate')
   const [fvToast, setFvToast] = useState<string|null>(null)
+  void showToast   // kept for lines this screen may still need to say
   function showToast(m: string) { setFvToast(m); setTimeout(() => setFvToast(null), 3000) }
   return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '20px 28px 32px', display: 'flex', flexDirection: 'column', gap: 16 }}>
@@ -216,7 +219,7 @@ function FriendlyView({ onStart }: { onStart: () => void }) {
         <div style={{ padding: '10px 16px' }}>
           <div style={{ fontSize: 14, color: MUT, marginBottom: 6 }}>Trying out</div>
           <div style={{ fontSize: 14, color: INK }}>A back three, and Mia in midfield</div>
-          <button onClick={() => showToast('Opening notes editor.')} style={{ fontSize: 13, fontWeight: 600, color: G2, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: 0, marginTop: 4 }}>Edit</button>
+          <button onClick={() => openThing('notes editor', 'coach')} style={{ fontSize: 13, fontWeight: 600, color: G2, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: 0, marginTop: 4 }}>Edit</button>
         </div>
       </div>
 
@@ -279,6 +282,7 @@ function FriendlyView({ onStart }: { onStart: () => void }) {
 
 function DrillView({ onStart }: { onStart: () => void }) {
   const [dvToast, setDvToast] = useState<string|null>(null)
+  void showToast   // kept for lines this screen may still need to say
   function showToast(m: string) { setDvToast(m); setTimeout(() => setDvToast(null), 3000) }
   return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '20px 28px 32px', display: 'flex', flexDirection: 'column', gap: 16 }}>
@@ -286,7 +290,7 @@ function DrillView({ onStart }: { onStart: () => void }) {
         <div style={{ fontSize: 15, fontWeight: 700, color: '#fff', marginBottom: 2 }}>Win it back in 6 seconds</div>
         <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.65)', marginBottom: 10 }}>Third on tonight's plan</div>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button onClick={() => showToast('Opening drill picker.')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: 'rgba(255,255,255,0.75)', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Pick another drill</button>
+          <button onClick={() => openThing('drill picker', 'coach')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: 'rgba(255,255,255,0.75)', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Pick another drill</button>
           <button onClick={onStart} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 'none', background: '#fff', color: GD, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Start recording →</button>
         </div>
       </div>
@@ -327,7 +331,7 @@ function DrillView({ onStart }: { onStart: () => void }) {
               <span style={{ fontSize: 11, fontWeight: 600, color: G2, background: PALE, padding: '2px 8px', borderRadius: 999 }}>{m.src}</span>
             </div>
           ))}
-          <button onClick={() => showToast('Opening hand counter.')} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '12px 16px', border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G2 }}>
+          <button onClick={() => openThing('hand counter', 'coach')} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '12px 16px', border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G2 }}>
             <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round"><path d="M12 5v14M5 12h14"/></svg>
             Count something by hand
           </button>
@@ -452,7 +456,7 @@ function ResultsView({ firstRun, onHistory, onHowWeMeasure }:
       <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
         <div style={{ fontSize: 13, color: MUT }}>Tonight · 12 players · your starting point</div>
         <button onClick={() => showToast('Added to next week.')} style={{ marginLeft: 'auto', height: 44, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Add to next week</button>
-        <button onClick={() => showToast('Opening clips.')} style={{ height: 44, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>Clips · 4</button>
+        <button onClick={() => openThing('clips', 'coach')} style={{ height: 44, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>Clips · 4</button>
       </div>
       <div style={{ background: PALE, borderRadius: 14, padding: '14px 16px' }}>
         <div style={{ fontSize: 15, fontWeight: 700, color: GD, marginBottom: 4 }}>This is your starting point</div>
@@ -481,7 +485,7 @@ function ResultsView({ firstRun, onHistory, onHowWeMeasure }:
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' as const }}>
         <div style={{ fontSize: 13, color: MUT, flex: 1 }}>Tonight · 12 players · same set-up as run 2</div>
         <button onClick={onHistory} style={{ height: 44, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>All runs</button>
-        <button onClick={() => showToast('Opening clips.')} style={{ height: 44, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Clips · 6</button>
+        <button onClick={() => openThing('clips', 'coach')} style={{ height: 44, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Clips · 6</button>
         <button onClick={() => showToast('Added to next week.')} style={{ height: 44, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Add to next week</button>
       </div>
 
@@ -537,6 +541,7 @@ function ResultsView({ firstRun, onHistory, onHowWeMeasure }:
 
 function HistoryView({ firstRun, onRunAgain }: { firstRun: boolean; onRunAgain: () => void }) {
   const [hvToast, setHvToast] = useState<string|null>(null)
+  void showToast   // kept for lines this screen may still need to say
   function showToast(m: string) { setHvToast(m); setTimeout(() => setHvToast(null), 3000) }
 
   const runs = [
@@ -553,7 +558,7 @@ function HistoryView({ firstRun, onRunAgain }: { firstRun: boolean; onRunAgain: 
         <div style={{ fontSize: 13, color: G, lineHeight: 1.5, marginBottom: 12 }}>Run it again with the same set-up and the two line up here. Three runs make a trend.</div>
         <div style={{ display: 'flex', gap: 8, justifyContent: 'center' }}>
           <button onClick={onRunAgain} style={{ height: 44, padding: '0 20px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Run it again</button>
-          <button onClick={() => showToast('Opening run 1 results.')} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>See run 1</button>
+          <button onClick={() => openThing('run 1 results', 'coach')} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>See run 1</button>
         </div>
       </div>
       <SectionHead label="What makes it fair"/>
@@ -571,7 +576,7 @@ function HistoryView({ firstRun, onRunAgain }: { firstRun: boolean; onRunAgain: 
       <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
         <div style={{ fontSize: 13, color: MUT, flex: 1 }}>3 runs since 12 May · same set-up each time</div>
         <button onClick={onRunAgain} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Run it again</button>
-        <button onClick={() => showToast('Opening set-up editor.')} style={{ height: 44, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Change the set-up</button>
+        <button onClick={() => openThing('set-up editor', 'coach')} style={{ height: 44, padding: '0 12px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Change the set-up</button>
       </div>
 
       {/* Trend charts */}
@@ -633,7 +638,7 @@ function HistoryView({ firstRun, onRunAgain }: { firstRun: boolean; onRunAgain: 
         <div style={{ marginTop: 12, padding: '10px 12px', background: PALE, borderRadius: 10 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: GD }}>Does it show on Saturday?</div>
           <div style={{ fontSize: 12, color: G, marginTop: 2 }}>In league games the same measure went from 7 seconds to 5 over those four weeks.</div>
-          <button onClick={() => showToast('Opening last review.')} style={{ marginTop: 6, fontSize: 12, fontWeight: 600, color: G2, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>See it in the last review</button>
+          <button onClick={() => openThing('last review', 'coach')} style={{ marginTop: 6, fontSize: 12, fontWeight: 600, color: G2, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>See it in the last review</button>
         </div>
       </div>
       {hvToast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{hvToast}</div>}

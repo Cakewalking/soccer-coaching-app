@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 
 const GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb'
@@ -86,6 +87,7 @@ const FOOTER_NOTES = [
 
 export default function SKRoles() {
   const [toast, setToast] = useState<string|null>(null)
+  void st   // kept for lines this screen may still need to say
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ background: '#f5f7f5', minHeight: '100vh', fontFamily: 'var(--font-sans)' }}>
@@ -160,7 +162,7 @@ export default function SKRoles() {
                       <div key={i} style={{ fontSize: 11, color: '#2f6252', fontWeight: 600 }}>{s}</div>
                     ))}
                   </div>
-                  <button onClick={() => st('Opening preview.')} style={{ marginTop: 10, width: '100%', height: 44, borderRadius: 8, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 11, fontWeight: 700, cursor: 'pointer' }}>
+                  <button onClick={() => openThing('preview', 'coach')} style={{ marginTop: 10, width: '100%', height: 44, borderRadius: 8, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 11, fontWeight: 700, cursor: 'pointer' }}>
                     {role.ctaLabel}
                   </button>
                 </div>

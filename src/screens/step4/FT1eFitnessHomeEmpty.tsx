@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 const G = '#2f6252', GD = '#1f4a3e', G2 = '#40826d', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 const NAV = ['Home', 'Squad', 'Training', 'Match day', 'Clips']
@@ -5,6 +6,7 @@ const SUBNAV = ['Overview', 'Inbox', 'Calendar', 'Fitness level']
 
 export default function FT1eFitnessHomeEmpty(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string | null>(null)
+  void st   // kept for lines this screen may still need to say
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, height: 820, boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
@@ -32,8 +34,8 @@ export default function FT1eFitnessHomeEmpty(_: { onBack?: () => void }) {
             <div style={{ fontSize: 20, fontWeight: 800, color: INK }}>Start with heights</div>
             <div style={{ fontSize: 14, color: MUT, lineHeight: 1.6, maxWidth: 440 }}>Measure the squad once, then Clean Sheet flags anyone growing fast and sets safe sprint and jump limits. Effort and pain check-ins start after the first session.</div>
             <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' as const, justifyContent: 'center' }}>
-              <button onClick={() => st('Opening measuring session planner.')} style={{ height: 48, padding: '0 24px', borderRadius: 12, background: GD, color: '#fff', border: 'none', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Plan a measuring session</button>
-              <button onClick={() => st('Opening fitness level settings.')} style={{ height: 44, padding: '0 20px', borderRadius: 12, background: '#fff', color: INK, border: `1.5px solid ${LN}`, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Check the fitness level</button>
+              <button onClick={() => openThing('measuring session planner', 'club')} style={{ height: 48, padding: '0 24px', borderRadius: 12, background: GD, color: '#fff', border: 'none', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Plan a measuring session</button>
+              <button onClick={() => openThing('fitness level settings', 'club')} style={{ height: 44, padding: '0 20px', borderRadius: 12, background: '#fff', color: INK, border: `1.5px solid ${LN}`, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Check the fitness level</button>
             </div>
           </div>
         </div>

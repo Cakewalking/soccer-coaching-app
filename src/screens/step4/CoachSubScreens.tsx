@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2', BG = '#f5f6f4'
@@ -643,7 +644,7 @@ export function SE1eSeasonSummariesEmpty() {
       <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '48px 24px', textAlign: 'center' as const }}>
         <div style={{ fontSize: 16, fontWeight: 700, color: INK, marginBottom: 8 }}>No summaries yet</div>
         <div style={{ fontSize: 14, color: MUT, marginBottom: 20 }}>Summaries are drafted from your session notes and goals as the season progresses.</div>
-        <button onClick={() => setChecking(true)} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 'none', background: checking ? '#40826d' : G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>{checking ? 'Opening a draft…' : 'Check a summary'}</button>
+        <button onClick={() => { setChecking(true); openThing('season summary', 'coach') }} style={{ height: 44, padding: '0 24px', borderRadius: 10, border: 'none', background: checking ? '#40826d' : G, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#fff', cursor: 'pointer' }}>{checking ? 'Draft opened' : 'Check a summary'}</button>
       </div>
     </Shell>
   )

@@ -1,3 +1,4 @@
+import { openThing } from './openThing'
 import { useState } from 'react'
 
 const ALERTS = [
@@ -27,6 +28,7 @@ const RESULTS = ['W', 'W', 'D', 'L', 'W']
 
 export default function CoachFitnessScreen() {
   const [toast, setToast] = useState<string|null>(null)
+  void st   // kept for lines this screen may still need to say
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ flexGrow: 1, minHeight: 0, display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 340px', gap: 16, padding: '16px 28px 20px', boxSizing: 'border-box', overflow: 'hidden' }}>
@@ -56,7 +58,7 @@ export default function CoachFitnessScreen() {
             </div>
           ))}
           <div style={{ padding: '10px 16px', borderTop: '1px solid #e9eae8' }}>
-            <button onClick={() => st('Opening all messages.')} style={{ border: 0, background: 'transparent', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#2f6252', cursor: 'pointer', padding: 0 }}>All messages · 3 more</button>
+            <button onClick={() => openThing('all messages', 'coach')} style={{ border: 0, background: 'transparent', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#2f6252', cursor: 'pointer', padding: 0 }}>All messages · 3 more</button>
           </div>
         </div>
 
@@ -96,8 +98,8 @@ export default function CoachFitnessScreen() {
             ))}
           </div>
           <div style={{ display: 'flex', gap: 10 }}>
-            <button onClick={() => st('Opening training plan.')} style={{ flex: 1, height: 44, borderRadius: 10, border: 0, background: '#40826d', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Open training plan</button>
-            <button onClick={() => st('Opening team talk.')} style={{ flex: 1, height: 44, borderRadius: 10, border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Team talk</button>
+            <button onClick={() => openThing('training plan', 'coach')} style={{ flex: 1, height: 44, borderRadius: 10, border: 0, background: '#40826d', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Open training plan</button>
+            <button onClick={() => openThing('team talk', 'coach')} style={{ flex: 1, height: 44, borderRadius: 10, border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Team talk</button>
           </div>
         </div>
 
@@ -123,7 +125,7 @@ export default function CoachFitnessScreen() {
               </div>
             ))}
           </div>
-          <button onClick={() => st('Opening the review.')} style={{ marginTop: 12, height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>Open the review</button>
+          <button onClick={() => openThing('the review', 'coach')} style={{ marginTop: 12, height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>Open the review</button>
           <span style={{ marginLeft: 12, fontSize: 13, color: '#6f7f7b' }}>Clips · 7</span>
         </div>
       </div>

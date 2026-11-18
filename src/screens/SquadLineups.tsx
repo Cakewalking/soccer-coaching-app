@@ -1,3 +1,4 @@
+import { openThing } from './openThing'
 import { useMemo, useState } from 'react'
 import { PitchSvg } from './formation/Pitch'
 import { shapeByName } from './formation/formationData'
@@ -145,6 +146,7 @@ export function SquadLineups({ onBack: _onBack, noFrame, onNav, teamType = 'juni
   const [shapeSel, setShapeSel] = useState<string | null>(null)
   const [hot, setHot] = useState<string | null>(null)
   const [showAll, setShowAll] = useState(false)
+  void t   // kept for lines this screen may still need to say
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   const ins = getInsights(teamType)!
@@ -178,16 +180,16 @@ export function SquadLineups({ onBack: _onBack, noFrame, onNav, teamType = 'juni
     .map(p => ({ p, cells: ins.byPlayer[p.id] ?? [], mins: (ins.byPlayer[p.id] ?? []).reduce((n, c) => n + c.agg.mins, 0) }))
     .filter(r => r.mins > 0).sort((x, y) => y.mins - x.mins)
   const shownPlayers = showAll ? players : players.slice(0, 8)
-  const tryIt = () => onNav ? onNav('formation', week) : t(`Opening Formation with this line-up for ${day}.`)
+  const tryIt = () => onNav ? onNav('formation', week) : openThing(`Formation with this line-up for ${day}`, 'coach')
 
   return (
     <CoachFrame
       activeNav="squad" activeSub="Line-ups that worked" subTabs={SQUAD_SUBS}
       pageTitle="Line-ups that worked"
       pageSub={`${teamLabel} · from ${ins.games} recorded games this season`}
-      pageRight={<><BtnMore label="This season" onClick={() => t('Season selector opens.')}/><BtnPrimary label={`Try it on ${day}`} onClick={tryIt}/></>}
+      pageRight={<><BtnMore label="This season" onClick={() => openThing('Season selector', 'coach')}/><BtnPrimary label={`Try it on ${day}`} onClick={tryIt}/></>}
       toast={toast}
-      onNavTab={(id) => t(id.startsWith('sub:') ? `${id.slice(4)} opens.` : `${id.charAt(0).toUpperCase() + id.slice(1)} tab opens.`)}
+      onNavTab={(id) => openThing(`${id} tab`, 'coach')}
       noFrame={noFrame}
     >
       <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }} data-screen="SQ1-BestLineups">
@@ -362,6 +364,7 @@ const td: React.CSSProperties = { display: 'flex', alignItems: 'center', minHeig
 // SQ1e — Best lineups empty state
 export function SquadLineupsEmpty({ onBack: _onBack, onNav }: { onBack?: () => void; onNav?: (s: string) => void }) {
   const [toast, setToast] = useState<string | null>(null)
+  void t   // kept for lines this screen may still need to say
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   return (
@@ -370,7 +373,7 @@ export function SquadLineupsEmpty({ onBack: _onBack, onNav }: { onBack?: () => v
       pageTitle="Line-ups that worked"
       pageSub="U12 Sam · 1 game recorded so far"
       toast={toast}
-      onNavTab={(id) => t(id.startsWith('sub:') ? `${id.slice(4)} opens.` : `${id.charAt(0).toUpperCase() + id.slice(1)} tab opens.`)}
+      onNavTab={(id) => openThing(`${id} tab`, 'coach')}
     >
       <div style={{ display: 'flex', gap: 16 }}>
         <div style={{ flex: 2 }}>
@@ -383,8 +386,8 @@ export function SquadLineupsEmpty({ onBack: _onBack, onNav }: { onBack?: () => v
               Clean Sheet needs to see who was on the pitch together, for long enough to mean something. You have 1 of 3.
             </div>
             <div style={{ display: 'flex', gap: 8, justifyContent: 'center' }}>
-              <BtnPrimary label="Record Saturday's game" onClick={() => onNav ? onNav('record') : t('Opening the Record tab.')}/>
-              <BtnMore label="Set Saturday's line-up" onClick={() => onNav ? onNav('teamsheet') : t('Opening the team sheet.')}/>
+              <BtnPrimary label="Record Saturday's game" onClick={() => onNav ? onNav('record') : openThing('the Record tab', 'coach')}/>
+              <BtnMore label="Set Saturday's line-up" onClick={() => onNav ? onNav('teamsheet') : openThing('the team sheet', 'coach')}/>
             </div>
           </div>
         </div>

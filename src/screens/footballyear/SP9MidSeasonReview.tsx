@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
@@ -61,7 +62,7 @@ export default function SP9MidSeasonReview({ onBack }: { onBack?: () => void }) 
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 16px', marginBottom: 12 }}>
             <div style={{ fontSize: 14, fontWeight: 700, color: INK, marginBottom: 6 }}>The league's regrade window opens Monday</div>
             <div style={{ fontSize: 13, color: MUT, marginBottom: 10 }}>One request per team, mid-season. U12 Sam is fine where it is.</div>
-            <button onClick={() => t('Opening grading')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Open grading</button>
+            <button onClick={() => openThing('grading', 'coach')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Open grading</button>
           </div>
 
           {/* Also at halfway */}

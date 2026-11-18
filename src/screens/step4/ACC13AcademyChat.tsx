@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { Glyph, glyph } from '../Glyph'
 import { useState } from 'react'
 
@@ -71,7 +72,7 @@ export default function ACC13AcademyChat(_: { onBack?: () => void }) {
             </button>
           ))}
         </div>
-        <button onClick={() => showToast('Opening academy selector.')} style={{ background: 'rgba(255,255,255,0.18)', border: 'none', color: '#fff', fontSize: 14, fontWeight: 500, padding: '0 14px', height: 44, borderRadius: 999, cursor: 'pointer', marginRight: 12 }}>Tall Timber Academy ▾</button>
+        <button onClick={() => openThing('academy selector', 'academy')} style={{ background: 'rgba(255,255,255,0.18)', border: 'none', color: '#fff', fontSize: 14, fontWeight: 500, padding: '0 14px', height: 44, borderRadius: 999, cursor: 'pointer', marginRight: 12 }}>Tall Timber Academy ▾</button>
         <div style={{ width: 44, height: 44, borderRadius: 999, background: '#c39797', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 15, fontWeight: 700, color: INK }}>RW</div>
       </div>
 

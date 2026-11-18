@@ -1,3 +1,4 @@
+import { openThing } from '../openThing'
 import { useState } from 'react'
 const G='#2f6252',GD='#1f4a3e',INK='#10211f',MUT='#4a5a57',LN='#e8edeb'
 export default function HM2cPlayerCardMiniRoos({onBack,onNote}:{onBack?:()=>void,onNote?:()=>void}){
@@ -63,7 +64,7 @@ export default function HM2cPlayerCardMiniRoos({onBack,onNote}:{onBack?:()=>void
               </div>
             ))}
           </div>
-          <button onClick={onNote ?? (() => t('Opening season note'))} style={{width:'100%',height:48,borderRadius:12,border:0,background:G,color:'#fff',fontFamily:'inherit',fontSize:14,fontWeight:700,cursor:'pointer'}}>Write her season note</button>
+          <button onClick={onNote ?? (() => openThing('season note', 'mini'))} style={{width:'100%',height:48,borderRadius:12,border:0,background:G,color:'#fff',fontFamily:'inherit',fontSize:14,fontWeight:700,cursor:'pointer'}}>Write her season note</button>
         </div>
       </div>
       {toast&&<div style={{position:'fixed',bottom:24,left:'50%',transform:'translateX(-50%)',background:INK,color:'#fff',padding:'10px 20px',borderRadius:12,fontSize:14,fontWeight:600,zIndex:1000,whiteSpace:'nowrap' as const}}>{toast}</div>}
