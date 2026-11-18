@@ -1,3 +1,4 @@
+import { useBackState } from '../backState'
 import { openThing } from './openThing'
 import { useState, useEffect } from 'react'
 import SandboxWaiting from './sandbox/SandboxWaiting'
@@ -114,30 +115,30 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
   const initHomeTab = (initialScreen ? HOME_SUB_MAP[initialScreen] : 0) ?? 0
   const deep = coachDeepTab(initialScreen)   // opened by design id, e.g. "AV1-Availability"
   const deepIdx = (n: string) => deep?.nav === n ? deep.idx : 0
-  const [nav, setNav]                 = useState<NavKey>(initialScreen === 'CN2-SelfVsCoach' ? 'matchday' : initialScreen === 'T5-PlayerProfile' ? 'squad' : deep ? deep.nav as NavKey : initHomeTab ? 'home' : validNav(initialScreen))
-  const [sub, setSub]                 = useState<Sub>(null)
-  const [homeTab, setHomeTab]         = useState(deep?.nav === 'home' ? deep.idx : initHomeTab)
-  const [squadTab, setSquadTab]       = useState(deepIdx('squad'))
+  const [nav, setNav]                 = useBackState<NavKey>(initialScreen === 'CN2-SelfVsCoach' ? 'matchday' : initialScreen === 'T5-PlayerProfile' ? 'squad' : deep ? deep.nav as NavKey : initHomeTab ? 'home' : validNav(initialScreen))
+  const [sub, setSub]                 = useBackState<Sub>(null)
+  const [homeTab, setHomeTab]         = useBackState(deep?.nav === 'home' ? deep.idx : initHomeTab)
+  const [squadTab, setSquadTab]       = useBackState(deepIdx('squad'))
   const [formationPreset, setFormationPreset] = useState<FormationPreset | null>(null)
-  const [profileIni, setProfileIni] = useState<string | null>(initialScreen === 'T5-PlayerProfile' ? 'MT' : null)
-  const [layer, setLayer] = useState<string | null>(null)   // a designed screen opened over the app
-  const [trainingTab, setTrainingTab] = useState(deepIdx('training'))
-  const [matchTab, setMatchTab]       = useState(initialScreen === 'CN2-SelfVsCoach' ? 6 : deepIdx('matchday'))
-  const [clipsTab, setClipsTab]       = useState(deepIdx('clips'))
+  const [profileIni, setProfileIni] = useBackState<string | null>(initialScreen === 'T5-PlayerProfile' ? 'MT' : null)
+  const [layer, setLayer] = useBackState<string | null>(null)   // a designed screen opened over the app
+  const [trainingTab, setTrainingTab] = useBackState(deepIdx('training'))
+  const [matchTab, setMatchTab]       = useBackState(initialScreen === 'CN2-SelfVsCoach' ? 6 : deepIdx('matchday'))
+  const [clipsTab, setClipsTab]       = useBackState(deepIdx('clips'))
 
-  const [askOpen, setAskOpen] = useState(false)
-  const [msgsView, setMsgsView] = useState<string | null>(null)
-  const [recView, setRecView] = useState<string | null>(null)
-  const [xgView, setXgView] = useState('XG1-ChancesGame')
-  const [take, setTake] = useState<'yours' | 'theirs'>(initialScreen === 'CN2-SelfVsCoach' ? 'theirs' : 'yours')   // Your take: the coach's own ratings, or the players' beside them
+  const [askOpen, setAskOpen] = useBackState(false)
+  const [msgsView, setMsgsView] = useBackState<string | null>(null)
+  const [recView, setRecView] = useBackState<string | null>(null)
+  const [xgView, setXgView] = useBackState('XG1-ChancesGame')
+  const [take, setTake] = useBackState<'yours' | 'theirs'>(initialScreen === 'CN2-SelfVsCoach' ? 'theirs' : 'yours')   // Your take: the coach's own ratings, or the players' beside them
   const cnEmpty = inSandbox && sbEmpty
-  const [ytView, setYtView] = useState('YT1-YourTake')
-  const [gsView, setGsView] = useState(initialScreen && GS_TAB[initialScreen] === 0 && initialScreen.startsWith('GS') ? initialScreen : 'GS1-ProposedSession')   // which of the session screens the first Training tab shows
+  const [ytView, setYtView] = useBackState('YT1-YourTake')
+  const [gsView, setGsView] = useBackState(initialScreen && GS_TAB[initialScreen] === 0 && initialScreen.startsWith('GS') ? initialScreen : 'GS1-ProposedSession')   // which of the session screens the first Training tab shows
   const may = allowed(useCapture(), 'juniors')
   // Match day tabs this team may see: Chances (4) and Ladder (5) follow the club's rules. A new team has no ladder yet.
   const matchVisible = MATCHDAY_TABS.map((_, i) => i).filter(i => (i !== 4 || may.chances) && (i !== 5 || (may.ladder && !(inSandbox && sbEmpty))))
   const openChance = (id: string) => { if (id.startsWith('XG3')) setMatchTab(5); else { setMatchTab(4); setXgView(id) } }
-  const [filView, setFilView] = useState<string | null>(null)
+  const [filView, setFilView] = useBackState<string | null>(null)
   function goNav(n: NavKey) { setNav(n); setSub(null); setAskOpen(false); onNavChange?.(n); setMsgsView(null); setRecView(null); setFilView(null) }
 
   function handleNav(s: string) {

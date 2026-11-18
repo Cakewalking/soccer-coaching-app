@@ -1,3 +1,4 @@
+import { useBackState } from '../../backState'
 import { openThing } from '../openThing'
 import { useState } from 'react'
 import EDUp1PlayerLearn from '../step4/EDUp1PlayerLearn'
@@ -517,7 +518,7 @@ function SandboxParentHome() {
 export default function TwoChildrenApp({ empty = false, initialView }: { onBack?: () => void; empty?: boolean; initialView?: AppView }) {
   const { active: inSandbox, store } = useSandbox()
   const [childTab, setChildTab] = useState<ChildTab>('both')
-  const [view, setView] = useState<AppView>(initialView ?? 'home')
+  const [view, setView] = useBackState<AppView>(initialView ?? 'home')
 
   const sbHasTeam = inSandbox && store.teams.length > 0
   const showEmpty = inSandbox ? !sbHasTeam : empty

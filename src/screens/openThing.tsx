@@ -12,6 +12,7 @@ import { goApp, hasAppNav, registerOverlay } from './sandbox/sandboxNav'
 import { playClips } from './clips/clipSheet'
 import { markDone, useDoneAll } from './doneStore'
 import { demoToast } from './demoToast'
+import { record, onBack, isOpenInHistory } from '../backState'
 
 export type Where = 'coach' | 'mini' | 'club' | 'academy' | 'phone' | 'entry'
 type Route = [RegExp, string]
@@ -73,7 +74,10 @@ type Sheet = { kind: 'message' | 'form'; title: string; to?: string; said: strin
 type State = { screen?: string; sheet?: Sheet } | null
 let state: State = null
 const subs = new Set<() => void>()
-const set = (s: State) => { state = s; subs.forEach(f => f()) }
+const show = (s: State) => { state = s; subs.forEach(f => f()) }
+// Opening adds a history entry; closing goes back to it, so the browser's Back and the Close button do the same thing.
+const set = (s: State) => { if (s) { show(s); record('ov:open', JSON.stringify(s)) } else if (isOpenInHistory('ov:open')) window.history.back(); else show(null) }
+if (typeof window !== 'undefined') onBack(bag => { const v = bag['ov:open']; if (!v && state) show(null); else if (typeof v === 'string' && v !== JSON.stringify(state)) show(JSON.parse(v) as State) })
 
 registerOverlay(id => set({ screen: id }))
 

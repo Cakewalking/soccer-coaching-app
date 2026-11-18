@@ -1,3 +1,4 @@
+import { useBackState } from '../../backState'
 import { glyph } from '../Glyph'
 import { useDone, markDone } from '../doneStore'
 import { useState } from 'react'
@@ -14,7 +15,7 @@ const REPORTS_EMPTY: Record<ReportsView, { icon: string; title: string; desc: st
 }
 
 export default function ReportsTab({ empty }: { empty?: boolean }) {
-  const [view, setView] = useState<ReportsView>('board')
+  const [view, setView] = useBackState<ReportsView>('board')
   const [activeChip, setActiveChip] = useState(0)
   const [toast, setToast] = useState<string | null>(null)
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }

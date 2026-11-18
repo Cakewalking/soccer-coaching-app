@@ -1,3 +1,4 @@
+import { useBackState } from '../backState'
 import { openThing } from './openThing'
 import { Glyph, glyph } from './Glyph'
 import { useState } from 'react'
@@ -39,7 +40,7 @@ export default function TeamManagerScreen({ empty, initialScreen }: { empty?: bo
   // In a visitor's own sandbox the empty screens carry their team's name, not the demo team's.
   const { active: inSandbox, store: sbStore } = useSandbox()
   const sbTeam = inSandbox ? (sbStore.teams[0]?.name ?? 'Your team') : 'U12 Sam'
-  const [tab, setTab] = useState<ManagerTab>(initialScreen ?? 'home')
+  const [tab, setTab] = useBackState<ManagerTab>(initialScreen ?? 'home')
   const [showChange, setShowChange] = useState(false)
   const [gamedayPhase, setGamedayPhase] = useState<GamedayPhase>('before')
   const [checkedItems, setCheckedItems] = useState<Set<number>>(new Set())

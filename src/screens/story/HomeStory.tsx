@@ -1,3 +1,4 @@
+import { useBackState } from '../../backState'
 import { useState } from 'react'
 import { toolTarget } from '../toolTargets'
 import { useCapture, allowed, type Age } from '../capture/captureStore'
@@ -351,7 +352,7 @@ const Glyph = ({ d, size = 20, color = 'currentColor' }: { d: string; size?: num
 export function HomeStoryPhone({ cfg, onNav, renderTarget }: { cfg: PhoneCfg; onNav?: (s: string) => void; renderTarget?: (id: string) => ReactNode }) {
   const [lastTool, setLastTool] = useState('')
   const [toast, setToast] = useState<string | null>(null)
-  const [open, setOpen] = useState<string | null>(null)
+  const [open, setOpen] = useBackState<string | null>(null)
   const cap = useCapture()   // the club's rules decide which family blocks show
   const tool = (s: string) => { const to = toolTarget(s); if (to && onNav) { onNav(to); return } setLastTool(s); setToast(s); setTimeout(() => setToast(null), 2200) }
   const nav = (s: string) => renderTarget ? setOpen(s) : (onNav ? onNav(s) : tool(s))
@@ -503,7 +504,7 @@ function TargetShell({ onBack, children }: { onBack: () => void; children: React
 export function HomeStoryBody({ cfg, onNav, renderTarget, frameNav }: { cfg: HomeCfg; onNav?: (s: string) => void; renderTarget?: (id: string) => ReactNode; frameNav?: (id: string) => boolean }) {
   const [lastTool, setLastTool] = useState('')
   const [toast, setToast] = useState<string | null>(null)
-  const [open, setOpen] = useState<string | null>(null)
+  const [open, setOpen] = useBackState<string | null>(null)
   // Deep-links first try the surrounding role frame (switch its real tab, lit in the top bar).
   // Only targets the frame can't place fall back to the in-place layer.
   const nav = (s: string) => { if (frameNav?.(s)) return; renderTarget ? setOpen(s) : (onNav ? onNav(s) : tool(s)) }

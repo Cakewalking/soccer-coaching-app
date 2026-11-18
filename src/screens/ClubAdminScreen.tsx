@@ -1,3 +1,4 @@
+import { useBackState } from '../backState'
 import { openThing } from './openThing'
 import { useState, cloneElement, isValidElement } from 'react'
 import type { ReactElement } from 'react'
@@ -25,7 +26,7 @@ import FeaturesTab from './clubadmin/FeaturesTab'
 
 export default function ClubAdminScreen({ empty, role = 'chair', initials = 'RM', initialTab = 'club', onNav, homeStory, initialFeature, initialTeamsView, initialSub }: { initialFeature?: string; initialTeamsView?: string; /** a sub-tab to open on: a Coaches view, or a Club screen id */ initialSub?: string; empty?: boolean; role?: 'chair' | 'dof' | 'welfare'; initials?: string; initialTab?: AdminTab; onNav?: (s: string) => void; homeStory?: import('react').ReactNode }) {
   const safeInitial: AdminTab = initialTab === 'welfare' && role !== 'welfare' ? 'club' : initialTab
-  const [tab, setTab] = useState<AdminTab>(safeInitial)
+  const [tab, setTab] = useBackState<AdminTab>(safeInitial)
   const [askOpen, setAskOpen] = useState(false)
   const [toast, setToast] = useState<string|null>(null)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }

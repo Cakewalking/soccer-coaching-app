@@ -1,3 +1,4 @@
+import { useBackState } from '../backState'
 import { openThing, sayOrOpen } from './openThing'
 import { Glyph, glyph } from './Glyph'
 import { goApp } from './sandbox/sandboxNav'
@@ -1222,7 +1223,7 @@ function PlayersListView({ onPlayer, onReport }: { onPlayer: (name: string, isNe
 // ─── Main app ─────────────────────────────────────────────────────────────────
 
 export default function AcademyCoachApp({ empty = false, initialScreen, onNavChange, homeStory }: { onBack?: () => void; empty?: boolean; initialScreen?: string; onNavChange?: (screen: string) => void; homeStory?: import('react').ReactNode }) {
-  const [nav, setNav]               = useState<AcademyNav>((initialScreen as AcademyNav) ?? 'today')
+  const [nav, setNav]               = useBackState<AcademyNav>((initialScreen as AcademyNav) ?? 'today')
   const [todayTab, setTodayTab]     = useState<TodayTab>('overview')
   const [trainingTab, setTrainingTab] = useState<TrainingTab>('week')
   const [gameDayTab, setGameDayTab] = useState<GameDayTab>('saturday')

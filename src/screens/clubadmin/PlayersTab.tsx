@@ -1,3 +1,4 @@
+import { useBackState } from '../../backState'
 import { openThing } from '../openThing'
 import { useState } from 'react'
 import { FAIR_TIME } from './data'
@@ -236,7 +237,7 @@ function PlayingAcrossView({ onNav }: { onNav?: (s: string) => void }) {
 }
 
 export default function PlayersTab({ empty, onNav }: { empty?: boolean; onNav?: (s: string) => void }) {
-  const [view, setView] = useState<PlayersView>('overview')
+  const [view, setView] = useBackState<PlayersView>('overview')
   const [toast, setToast] = useState<string|null>(null)
   function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
 

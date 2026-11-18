@@ -1,7 +1,7 @@
+import { useBackState } from '../../backState'
 // The session screens opened by their own address, in the frame they were drawn in: U11 Luke's.
 // In the live apps the same screens sit under each coach's own Training tab.
 
-import { useState } from 'react'
 import CoachTabletFrame from '../CoachTabletFrame'
 import SessionTab from './SessionTab'
 
@@ -14,7 +14,7 @@ const TABS: [string, string][] = [['Tuesday’s session', 'GS1-ProposedSession']
 const UNDER: Record<string, number> = { 'GS1-ProposedSession': 0, 'GS2-DrillWhy': 0, 'GS5-CoachLevel': 0, 'GS6-NothingToGoOn': 0, 'GS3-RunSheet': 1, 'GS4-ResizeAttendance': 2, 'GS7-SeasonLookBack': 3, 'GS8-WelcomeCourse': 5 }
 
 export default function SessionFramed({ start, onNav }: { start: string; onNav?: (s: string) => void }) {
-  const [id, setId] = useState(start)
+  const [id, setId] = useBackState(start)
   const go = (t: string) => { if (t in UNDER) setId(t); else onNav?.(t) }
   return (
     <div style={{ width: 1180, margin: '0 auto', background: 'var(--surface-100)' }}>

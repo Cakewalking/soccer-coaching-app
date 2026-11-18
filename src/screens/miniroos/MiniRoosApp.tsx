@@ -1,3 +1,4 @@
+import { useBackState } from '../../backState'
 import { openThing } from '../openThing'
 import { useState, useEffect } from 'react'
 import type { ReactNode } from 'react'
@@ -714,26 +715,26 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
   // Deep links into Match day: "whatisaw", "thankparents", "review", "whoscoming", "getready" open that part.
   const GAMEDAY_PARTS = ['whatisaw', 'thankparents', 'review', 'whoscoming', 'getready']
   const isGameDayPart = !!initialScreen && GAMEDAY_PARTS.includes(initialScreen)
-  const [nav, setNav]               = useState<MiniNav>(initialScreen === 'positions' ? 'squad' : isHomeSub ? 'home' : isGameDayPart ? 'gameday' : (initialScreen === 'learn' || initialScreen === 'learncoaches') ? 'clips' : ((initialScreen as MiniNav) ?? 'home'))
-  const [homeTab, setHomeTab]       = useState<HomeTab>(isHomeSub ? (initialScreen as HomeTab) : 'overview')
-  const [gameDayTab, setGameDayTab] = useState<GameDayTab>(isGameDayPart ? (initialScreen as GameDayTab) : 'turns')
-  const [squadTab, setSquadTab]     = useState<SquadTab>(initialScreen === 'positions' ? 'positions' : 'players')
-  const [ytView, setYtView]         = useState('YT1-YourTake')
+  const [nav, setNav]               = useBackState<MiniNav>(initialScreen === 'positions' ? 'squad' : isHomeSub ? 'home' : isGameDayPart ? 'gameday' : (initialScreen === 'learn' || initialScreen === 'learncoaches') ? 'clips' : ((initialScreen as MiniNav) ?? 'home'))
+  const [homeTab, setHomeTab]       = useBackState<HomeTab>(isHomeSub ? (initialScreen as HomeTab) : 'overview')
+  const [gameDayTab, setGameDayTab] = useBackState<GameDayTab>(isGameDayPart ? (initialScreen as GameDayTab) : 'turns')
+  const [squadTab, setSquadTab]     = useBackState<SquadTab>(initialScreen === 'positions' ? 'positions' : 'players')
+  const [ytView, setYtView]         = useBackState('YT1-YourTake')
   const [formationPreset, setFormationPreset] = useState<FormationPreset | null>(null)
-  const [layer, setLayer] = useState<string | null>(null)
-  const [xgView, setXgView] = useState('XGm1-ChancesMiniRoos')
+  const [layer, setLayer] = useBackState<string | null>(null)
+  const [xgView, setXgView] = useBackState('XGm1-ChancesMiniRoos')
   // Chances for the coach follow the club's rule for under 8 and under 9. MiniRoos never has a ladder.
   const mayChances = allowed(useCapture(), 'u8').chances && !empty
   const isLearn = initialScreen === 'learn' || initialScreen === 'learncoaches'
-  const [clipsTab, setClipsTab] = useState<'clips' | 'learn'>(isLearn ? 'learn' : 'clips')
+  const [clipsTab, setClipsTab] = useBackState<'clips' | 'learn'>(isLearn ? 'learn' : 'clips')
   const [teamTalkOpen, setTeamTalkOpen] = useState(false)
-  const [homeSubView, setHomeSubView] = useState<'main' | 'seasonnotes' | 'teamchat' | 'footballyear'>('main')
-  const [trainingTab, setTrainingTab] = useState<TrainingTab>(initialScreen && GS_TRAIN[initialScreen] ? GS_TRAIN[initialScreen] : 'session')
-  const [gsView, setGsView] = useState(initialScreen && GS_TRAIN[initialScreen] === 'session' && initialScreen.startsWith('GS') ? initialScreen : 'GS1-ProposedSession')
+  const [homeSubView, setHomeSubView] = useBackState<'main' | 'seasonnotes' | 'teamchat' | 'footballyear'>('main')
+  const [trainingTab, setTrainingTab] = useBackState<TrainingTab>(initialScreen && GS_TRAIN[initialScreen] ? GS_TRAIN[initialScreen] : 'session')
+  const [gsView, setGsView] = useBackState(initialScreen && GS_TRAIN[initialScreen] === 'session' && initialScreen.startsWith('GS') ? initialScreen : 'GS1-ProposedSession')
   // The justified session lives under Training. Its screens move between the tabs; anything else opens over the app.
   const gsNav = (t: string) => { const tab = GS_TRAIN[t]; if (tab) { setNav('training'); setTrainingTab(tab); if (tab === 'session') setGsView(t.startsWith('GS') ? t : 'GS1-ProposedSession') } else if (isScreenId(t)) setLayer(t) }
   const [recordView, setRecordView] = useState<RecordView>('start')
-  const [askOpen, setAskOpen]       = useState(false)
+  const [askOpen, setAskOpen]       = useBackState(false)
   const [filOpen, setFilOpen]       = useState<MrFile | null>(null)
   const [filNew, setFilNew]         = useState<{ type: 'doc' | 'sheet' } | null>(null)
   const [files, setFiles]           = useState<MrFile[]>(MR_FILES)

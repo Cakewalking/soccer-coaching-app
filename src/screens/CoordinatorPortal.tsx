@@ -1,3 +1,4 @@
+import { useBackState } from '../backState'
 import { openThing } from './openThing'
 import { useState } from 'react'
 
@@ -130,8 +131,8 @@ function PlaceholderTab({ label }: { label: string }) {
 }
 
 export default function CoordinatorPortal({ onBack: _onBack, empty = false, homeStory }: { onBack: () => void; empty?: boolean; homeStory?: import('react').ReactNode }) {
-  const [tab, setTab] = useState<CoTab>('thisweek')
-  const [activeNav, setActiveNav] = useState('Club')
+  const [tab, setTab] = useBackState<CoTab>('thisweek')
+  const [activeNav, setActiveNav] = useBackState('Club')
   const [toast, setToast] = useState<string | null>(null)
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 

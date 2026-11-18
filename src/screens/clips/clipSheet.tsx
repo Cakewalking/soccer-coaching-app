@@ -3,6 +3,7 @@
 // so playing runs the clip's length on a progress bar and moves to the next clip.
 
 import { useEffect, useState, useSyncExternalStore } from 'react'
+import { record, onBack, isOpenInHistory } from '../../backState'
 
 export type Clip = { title: string; sub?: string; /** seconds */ len?: number }
 type State = { clips: Clip[]; at: number; heading: string } | null
@@ -12,8 +13,10 @@ const subs = new Set<() => void>()
 const set = (s: State) => { state = s; subs.forEach(f => f()) }
 
 /** Open the player on these clips. `heading` names where they came from, such as "Corner: short, then cross". */
-export function playClips(clips: Clip[], heading = 'Clip', at = 0) { if (clips.length) set({ clips, at, heading }) }
-export const closeClips = () => set(null)
+export function playClips(clips: Clip[], heading = 'Clip', at = 0) { if (clips.length) { set({ clips, at, heading }); record('ov:clip', true) } }
+/** Close the player. If opening it added a history entry, going back is what closes it, so Back and the Close button agree. */
+export const closeClips = () => { if (isOpenInHistory('ov:clip')) window.history.back(); else set(null) }
+if (typeof window !== 'undefined') onBack(bag => { if (!bag['ov:clip'] && state) set(null) })
 
 const G = '#2f6252', INK = '#10211f', MUT = '#4a5a57', LINE = '#c5c8c4'
 const mmss = (s: number) => `0:${String(Math.round(s)).padStart(2, '0')}`

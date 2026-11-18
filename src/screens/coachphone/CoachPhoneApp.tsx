@@ -1,3 +1,4 @@
+import { useBackState } from '../../backState'
 import { openThing } from '../openThing'
 import { useState } from 'react'
 import QCp1BeforeKickOffPhone from '../capture/QCp1BeforeKickOffPhone'
@@ -622,12 +623,12 @@ function EmptyState({ icon, title, sub, action, onAction }: { icon: React.ReactN
 
 /* ---- Main component (full app, tabs) ---- */
 export default function CoachPhoneApp({ initialTab = 'home', phase = 'season' as Phase }: { initialTab?: Tab; phase?: Phase }) {
-  const [tab, setTab] = useState<Tab>(initialTab)
+  const [tab, setTab] = useBackState<Tab>(initialTab)
   const [showPlan, setShowPlan] = useState(false)
   const [askOpen, setAskOpen] = useState(false)
   // Before kick-off (QCp1) and the step it opens. Anything else goes home.
-  const [kick, setKick] = useState<string | null>(null)
-  const [incident, setIncident] = useState(false)   // CNp18: log an incident, from the home
+  const [kick, setKick] = useBackState<string | null>(null)
+  const [incident, setIncident] = useBackState(false)   // CNp18: log an incident, from the home
   const kickNav = (s: string) => setKick(isCaptureId(s) ? s : s === 'QCp1-BeforeKickOffPhone' ? s : null)
 
   if (incident) return <CNp18IncidentLog onNav={() => setIncident(false)} />

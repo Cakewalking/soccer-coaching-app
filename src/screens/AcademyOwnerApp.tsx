@@ -1,3 +1,4 @@
+import { useBackState } from '../backState'
 import { openThing, sayOrOpen } from './openThing'
 import { useState } from 'react'
 
@@ -944,7 +945,7 @@ function AcademyYearView({ onBack }: { onBack: () => void }) {
 export default function AcademyOwnerApp({ empty = false, initialScreen, onNavChange, homeStory }: { onBack?: () => void; empty?: boolean; initialScreen?: string; onNavChange?: (screen: string) => void; homeStory?: import('react').ReactNode }) {
   const HOME_TAB_IDS: HomeTab[] = ['overview', 'trials', 'reports', 'safety', 'partner']
   const isHomeSub = HOME_TAB_IDS.includes(initialScreen as HomeTab)
-  const [nav, setNav]             = useState<OwnerNav>(isHomeSub ? 'home' : (initialScreen as OwnerNav) ?? 'home')
+  const [nav, setNav]             = useBackState<OwnerNav>(isHomeSub ? 'home' : (initialScreen as OwnerNav) ?? 'home')
   const [homeTab, setHomeTab]     = useState<HomeTab>(isHomeSub ? (initialScreen as HomeTab) : 'overview')
   const [programsTab, setProgramsTab] = useState<ProgramsTab>('term')
   const [toast, setToast] = useState<string | null>(null)

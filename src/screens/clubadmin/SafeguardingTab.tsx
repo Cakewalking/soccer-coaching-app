@@ -1,3 +1,4 @@
+import { useBackState } from '../../backState'
 import { openThing } from '../openThing'
 import { useState } from 'react'
 import { COACHES_DATA, CONCERNS, CONCUSSIONS } from './data'
@@ -16,7 +17,7 @@ const SG_EMPTY: Partial<Record<SafeguardingView, { icon: string; title: string; 
 }
 
 export default function SafeguardingTab({ empty }: { empty?: boolean }) {
-  const [view, setView] = useState<SafeguardingView>('checks')
+  const [view, setView] = useBackState<SafeguardingView>('checks')
   const [toast, setToast] = useState<string | null>(null)
   function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
 

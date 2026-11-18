@@ -1,3 +1,4 @@
+import { useBackState } from '../backState'
 import { openThing } from './openThing'
 import { Glyph, glyph } from './Glyph'
 import { useState } from 'react'
@@ -48,7 +49,7 @@ const GOALS = [
 
 
 export default function PlayerAppScreen({ empty, initialView = 'home' }: { empty?: boolean; initialView?: PlayerView }) {
-  const [view, setView] = useState<PlayerView>(initialView)
+  const [view, setView] = useBackState<PlayerView>(initialView)
   const [checkinAnswers, setCheckinAnswers] = useState<number[]>([])
   const [checkinQ, setCheckinQ] = useState(0)
   const [playClip, setPlayClip] = useState(false)

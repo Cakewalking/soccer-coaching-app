@@ -1,3 +1,4 @@
+import { useBackState } from '../backState'
 import { useState, useEffect } from 'react'
 import SandboxWaiting from './sandbox/SandboxWaiting'
 import SandboxTeamTalk from './sandbox/SandboxTeamTalk'
@@ -410,30 +411,30 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
   const sbEmptyFixture = inSandbox ? !storeIsSample(store)       : empty
   const validNav = (s?: string): NavKey => (s === 'squad' || s === 'training' || s === 'matchday' || s === 'clips' || s === 'record') ? s : 'home'
 
-  const [nav, setNav]                 = useState<NavKey>(validNav(initialScreen))
-  const [sub, setSub]                 = useState<Sub>(null)
-  const [homeTab, setHomeTab]         = useState(0)
-  const [squadTab, setSquadTab]       = useState(0)
+  const [nav, setNav]                 = useBackState<NavKey>(validNav(initialScreen))
+  const [sub, setSub]                 = useBackState<Sub>(null)
+  const [homeTab, setHomeTab]         = useBackState(0)
+  const [squadTab, setSquadTab]       = useBackState(0)
   const [formationPreset, setFormationPreset] = useState<FormationPreset | null>(null)
-  const [profileIni, setProfileIni] = useState<string | null>(null)
-  const [layer, setLayer] = useState<string | null>(null)   // a designed screen opened over the app
-  const [recView, setRecView] = useState<string | null>(null)
-  const [xgView, setXgView] = useState('XG1-ChancesGame')
-  const [take, setTake] = useState<'yours' | 'theirs'>('yours')   // Your take: the coach's own ratings, or the players' beside them
+  const [profileIni, setProfileIni] = useBackState<string | null>(null)
+  const [layer, setLayer] = useBackState<string | null>(null)   // a designed screen opened over the app
+  const [recView, setRecView] = useBackState<string | null>(null)
+  const [xgView, setXgView] = useBackState('XG1-ChancesGame')
+  const [take, setTake] = useBackState<'yours' | 'theirs'>('yours')   // Your take: the coach's own ratings, or the players' beside them
   const cnEmpty = inSandbox && sbEmpty
-  const [ytView, setYtView] = useState('YT1-YourTake')
-  const [gsView, setGsView] = useState('GS1-ProposedSession')   // which of the session screens the first Training tab shows
+  const [ytView, setYtView] = useBackState('YT1-YourTake')
+  const [gsView, setGsView] = useBackState('GS1-ProposedSession')   // which of the session screens the first Training tab shows
   const cnTeam = teamType === 'seniors' ? 'seniors' as const : 'u16' as const
   const may = allowed(useCapture(), teamType === 'seniors' ? 'seniors' : 'youth')
   // Match day tabs this team may see: Chances (4) and Ladder (5) follow the club's rules. A new team has no ladder yet.
   const matchVisible = MATCHDAY_TABS.map((_, i) => i).filter(i => (i !== 4 || may.chances) && (i !== 5 || (may.ladder && !(inSandbox && sbEmpty))))
   const openChance = (id: string) => { if (id.startsWith('XG3')) setMatchTab(5); else { setMatchTab(4); setXgView(id) } }
-  const [trainingTab, setTrainingTab] = useState(0)
-  const [matchTab, setMatchTab]       = useState(0)
-  const [clipsTab, setClipsTab]       = useState(0)
+  const [trainingTab, setTrainingTab] = useBackState(0)
+  const [matchTab, setMatchTab]       = useBackState(0)
+  const [clipsTab, setClipsTab]       = useBackState(0)
 
-  const [askOpen, setAskOpen] = useState(false)
-  const [filView, setFilView] = useState<string | null>(null)
+  const [askOpen, setAskOpen] = useBackState(false)
+  const [filView, setFilView] = useBackState<string | null>(null)
   function goNav(n: NavKey) { setNav(n); setSub(null); setAskOpen(false); onNavChange?.(n); setFilView(null); setRecView(null) }
 
   function handleNav(s: string) {

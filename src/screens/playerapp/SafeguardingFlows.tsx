@@ -1,3 +1,4 @@
+import { useBackState } from '../../backState'
 import { useState } from 'react'
 
 type Goto = (v: string) => void
@@ -204,6 +205,6 @@ export function TellHelenView({ onBack }: { onBack: () => void }) {
 }
 
 export function useGoto(initial: string): [string, Goto] {
-  const [view, setView] = useState(initial)
+  const [view, setView] = useBackState(initial)
   return [view, setView]
 }

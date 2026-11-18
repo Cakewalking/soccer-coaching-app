@@ -1,3 +1,4 @@
+import { useBackState } from '../../backState'
 import { openThing } from '../openThing'
 import { useState } from 'react'
 import { COACHES_DATA } from './data'
@@ -15,7 +16,7 @@ const COACHES_EMPTY: Partial<Record<CoachesView, { icon: string; title: string; 
 }
 
 export default function CoachesTab({ empty, role = 'dof', onNav, initialView }: { empty?: boolean; role?: 'chair' | 'dof'; onNav?: (s: string) => void; initialView?: string }) {
-  const [view, setView] = useState<CoachesView>(initialView === 'observations' || initialView === 'coachload' || initialView === 'sources' ? initialView : 'allcoaches')
+  const [view, setView] = useBackState<CoachesView>(initialView === 'observations' || initialView === 'coachload' || initialView === 'sources' ? initialView : 'allcoaches')
   // Observations and coach load stay in this tab; "All coaches" and each other are a tab switch, not a new page.
   const cnNav = (t: string) => t === 'CN6-Observation' ? setView('observations') : t === 'CN7-CoachLoad' ? setView('coachload') : t === 'GS11-DrillSources' ? setView('sources') : t === 'DF0-Library' ? setView('drilllib') : t === 'D3-Coaches' ? setView('allcoaches') : onNav?.(t)
   const [selectedCoach, setSelectedCoach] = useState<string | null>(null)

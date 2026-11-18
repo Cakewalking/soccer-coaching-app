@@ -1,3 +1,4 @@
+import { useBackState, pushPath } from '../../backState'
 import { useState, useEffect, useRef, isValidElement, cloneElement } from 'react'
 import type { ReactNode, ReactElement } from 'react'
 import HomeScreen            from '../HomeScreen'
@@ -595,7 +596,7 @@ function SignupWithSignIn() {
 }
 
 function MatchDayScreenNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <MatchDayScreen onNav={(s) => setInner(s)} empty={false} />
 }
@@ -607,206 +608,206 @@ function LiveGameScreenNav() {
 }
 
 function FormationNav({ team, empty, open }: { team?: string; empty?: boolean; open?: 'share' | 'drag' | 'tap' | 'own' | 'saved' }) {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <FormationBuilder team={team} empty={empty} open={open} onNav={(s) => setInner(s)} />
 }
 function FormationPhoneNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <FormationPhone onNav={(s) => setInner(s)} />
 }
 function LineupParentNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <LineupParent onNav={(s) => setInner(s)} />
 }
 
 function MessagesRulesNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <MessagesRules onNav={(s) => setInner(s)} />
 }
 function CoachNewMessageNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <CoachNewMessage onNav={(s) => setInner(s)} />
 }
 function CoachMessagesNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <CoachMessages onNav={(s) => setInner(s)} />
 }
 function CoachMessagesPersonCardNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <CoachMessagesPersonCard onNav={(s) => setInner(s)} />
 }
 function RecordHubNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <RecordHub onNav={(s) => setInner(s)} />
 }
 function AcademyTrainingWeekNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <AcademyTrainingWeek onNav={(s) => setInner(s)} />
 }
 function SquadLineupsNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   const [preset, setPreset] = useState<FormationPreset | null>(null)
   if (preset) return <FormationBuilder team="juniors" preset={preset} onNav={(s) => { setPreset(null); setInner(s === 'SQ1-BestLineups' ? null : s) }} />
   if (inner) return <>{renderScreen(inner)}</>
   return <SquadLineups onNav={(s, p) => { if (s === 'formation' && p) setPreset(p); else setInner(s) }} />
 }
 function RecordSavedNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <RecordSaved onNav={(s) => setInner(s)} />
 }
 function AcademySessionPlanNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <AcademySessionPlan onNav={(s) => setInner(s)} />
 }
 function AcademyWhoComingNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <AcademyWhoComing onNav={(s) => setInner(s)} />
 }
 function AcademyTrainingWeekEmptyNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <AcademyTrainingWeekEmpty onNav={(s) => setInner(s)} />
 }
 function SP2HomePreSeasonNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <SP2HomePreSeason onNav={(s) => setInner(s)} />
 }
 function SP10HomePostSeasonNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <SP10HomePostSeason onNav={(s) => setInner(s)} />
 }
 function ClubAdminScreenNav({ role, initials, initialTab, empty, homeStory }: { role?: 'chair'|'dof'|'welfare'; initials?: string; initialTab?: string; empty?: boolean; homeStory?: ReactNode }) {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <ClubAdminScreen role={role} initials={initials} initialTab={initialTab as Parameters<typeof ClubAdminScreen>[0]['initialTab']} empty={empty} onNav={(s) => setInner(s)} homeStory={homeStory} />
 }
 
 function YT1YourTakeNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <YT1YourTake onNav={(s) => setInner(s)} />
 }
 function YT1eYourTakeEmptyNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <YT1eYourTakeEmpty onNav={(s) => setInner(s)} />
 }
 function YT2MatchReportNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <YT2MatchReport onNav={(s) => setInner(s)} />
 }
 function YT3PlayerNotesNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <YT3PlayerNotes onNav={(s) => setInner(s)} />
 }
 function YT4VotesAwardsNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <YT4VotesAwards onNav={(s) => setInner(s)} />
 }
 function YTp1ParentVotesNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <YTp1ParentVotes onNav={(s) => setInner(s)} />
 }
 function PU1PlayingUpNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <PU1PlayingUp onNav={(s) => setInner(s)} />
 }
 function PU1ePlayingUpEmptyNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <PU1ePlayingUpEmpty onNav={(s) => setInner(s)} />
 }
 function PU2PlayerReadinessNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <PU2PlayerReadiness onNav={(s) => setInner(s)} />
 }
 function PU3TrialPlanNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <PU3TrialPlan onNav={(s) => setInner(s)} />
 }
 function PU4CompareNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <PU4Compare onNav={(s) => setInner(s)} />
 }
 function PU5SettingsNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <PU5Settings onNav={(s) => setInner(s)} />
 }
 function PU6ReviewNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <PU6Review onNav={(s) => setInner(s)} />
 }
 function PU7CoachViewNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <PU7CoachView onNav={(s) => setInner(s)} />
 }
 function PUp1ParentAskNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PUp1ParentAsk onNav={(s) => setInner(s)} /></div>
 }
 function PUp2PlayerAskNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PUp2PlayerAsk onNav={(s) => setInner(s)} /></div>
 }
 function PX1PlayingDownNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <PX1PlayingDown onNav={(s) => setInner(s)} />
 }
 function PX2LateDeveloperNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <PX2LateDeveloper onNav={(s) => setInner(s)} />
 }
 function PX3BandedNightNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <PX3BandedNight onNav={(s) => setInner(s)} />
 }
 function PXp1ParentDownNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PXp1ParentDown onNav={(s) => setInner(s)} /></div>
 }
 function PRM1FeaturesByTeamNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <PRM1FeaturesByTeam onNav={(s) => setInner(s)} />
 }
 function PRM1eFeaturesEmptyNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <PRM1eFeaturesEmpty onNav={(s) => setInner(s)} />
 }
 function PRM2TurnOnWithBg() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return (
     <div style={{ position: 'relative' }}>
@@ -816,28 +817,28 @@ function PRM2TurnOnWithBg() {
   )
 }
 function PRM3BillNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <PRM3Bill onNav={(s) => setInner(s)} />
 }
 function PRM4CoachOffNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <PRM4CoachOff onNav={(s) => setInner(s)} />
 }
 function PRM5CoachAskNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <PRM5CoachAsk onNav={(s) => setInner(s)} />
 }
 function PRM6UsageNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <PRM6Usage onNav={(s) => setInner(s)} />
 }
 
 function FIL1FilesNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <FIL1Files onOpenSheet={() => setInner('FIL2-Sheet')} onOpenDoc={() => setInner('FIL3-Doc')} onNav={(s) => setInner(s)} />
 }
@@ -846,7 +847,7 @@ function FIL1FilesNav() {
 // status line so the acceptance check sees the page change. In the real app
 // (view 'signin') StartPage is wired to the actual navigation handlers.
 function HomeStoryNav({ id }: { id: string }) {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   const cfg = TABLET_CONFIGS[id]
   if (!cfg) return <div style={{ padding: 48 }}>Home story "{id}" not yet built.</div>
@@ -856,13 +857,13 @@ function HomeStoryNav({ id }: { id: string }) {
 }
 
 function EX1HowWorkedOutNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <EX1HowWorkedOut onNav={(x) => setInner(x)} />
 }
 
 function PhoneStoryNav({ id }: { id: string }) {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <HomeStoryPhone cfg={PHONE_CONFIGS[id]} onNav={(s) => setInner(s)} />
 }
@@ -890,18 +891,18 @@ function SwitchViewScreen() {
 }
 
 function StartPageNav({ phone }: { phone?: boolean }) {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   const go = (dest: string) => () => setInner(dest)
   return <StartPage phone={phone} onDemo={go(phone ? 'STA3p-PickRolePhone' : 'STA3-PickRole')} onStory={go('DEMO-Story')} onSandbox={go('STA3e-PickRoleEmpty')} onOpenSandbox={go('STA3e-PickRoleEmpty')} onWhy={go('DEMO-Why')} onMeasure={go('QC10-HowWeMeasure')} />
 }
 function FIL2SheetNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <FIL2Sheet onBack={() => setInner('FIL1-Files')} onShare={() => setInner('FIL4-Share')} onNav={(s) => setInner(s)} />
 }
 function FIL4ShareWithFIL2Bg() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return (
     <div style={{ position: 'relative' }}>
@@ -911,37 +912,37 @@ function FIL4ShareWithFIL2Bg() {
   )
 }
 function FIL3DocNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <FIL3Doc onBack={() => setInner('FIL1-Files')} onShare={() => setInner('FIL4-Share')} onNav={(s) => setInner(s)} />
 }
 function FIL2bSheetLineupNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <FIL2bSheetLineup onBack={() => setInner('FIL1-Files')} onShare={() => setInner('FIL4-Share')} onNav={(s) => setInner(s)} />
 }
 function FIL6SignUpNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <FIL6SignUp onBack={() => setInner('FIL1-Files')} onShare={() => setInner('FIL4-Share')} onNav={(s) => setInner(s)} />
 }
 function FIL7FormNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <FIL7Form onBack={() => setInner('FIL1-Files')} onShare={() => setInner('FIL4-Share')} onAnswersSheet={() => setInner('FIL2-Sheet')} onNav={(s) => setInner(s)} />
 }
 function FIL5ClubFilesNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <FIL5ClubFiles onNav={(s) => setInner(s)} />
 }
 function FIL1eFilesEmptyNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <FIL1eFilesEmpty onNav={(s) => setInner(s)} onOpenSheet={() => setInner('FIL2-Sheet')} />
 }
 function FIL3bDocParentNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return (
     <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}>
@@ -950,7 +951,7 @@ function FIL3bDocParentNav() {
   )
 }
 function FILp1ParentFilesNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return (
     <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}>
@@ -959,7 +960,7 @@ function FILp1ParentFilesNav() {
   )
 }
 function FILp2ParentSignUpNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return (
     <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}>
@@ -968,7 +969,7 @@ function FILp2ParentSignUpNav() {
   )
 }
 function FILp3ParentFormNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return (
     <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}>
@@ -977,47 +978,47 @@ function FILp3ParentFormNav() {
   )
 }
 function EDU1LearnNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <EDU1Learn onNav={(s) => setInner(s)} />
 }
 function EDU1fLearnFilterNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <EDU1fLearnFilter onNav={(s) => setInner(s)} />
 }
 function EDU1eLearnEmptyNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <EDU1eLearnEmpty onNav={(s) => setInner(s)} />
 }
 function EDU2LessonNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <EDU2Lesson onNav={(s) => setInner(s)} />
 }
 function EDU3MakeLessonNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <EDU3MakeLesson onNav={(s) => setInner(s)} />
 }
 function EDU4ClubLibraryNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <EDU4ClubLibrary onNav={(s) => setInner(s)} />
 }
 function EDU5CoachCornerNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <EDU5CoachCorner onNav={(s) => setInner(s)} />
 }
 function EDU6CoachPathsNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <EDU6CoachPaths onNav={(s) => setInner(s)} />
 }
 function EDUp1PlayerLearnNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return (
     <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}>
@@ -1027,42 +1028,42 @@ function EDUp1PlayerLearnNav() {
 }
 
 function ASKd1HomeRestNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <ASKd1HomeRest onNav={(s) => setInner(s)} />
 }
 function ASKd2HomeFocusNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <ASKd2HomeFocus onNav={(s) => setInner(s)} />
 }
 function ASKd3AnyScreenNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <ASKd3AnyScreen onNav={(s) => setInner(s)} />
 }
 function ASKd4PanelFirstNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <ASKd4PanelFirst onNav={(s) => setInner(s)} />
 }
 function ASKd5PanelAnswerNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <ASKd5PanelAnswer onNav={(s) => setInner(s)} />
 }
 function ASKd6StatesNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <ASKd6States onNav={(s) => setInner(s)} />
 }
 function ASKd7OtherRoleNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <ASKd7OtherRole onNav={(s) => setInner(s)} />
 }
 function ASKd8PhoneHomeNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return (
     <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}>
@@ -1071,7 +1072,7 @@ function ASKd8PhoneHomeNav() {
   )
 }
 function ASKd9PhoneScreenNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return (
     <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}>
@@ -1080,7 +1081,7 @@ function ASKd9PhoneScreenNav() {
   )
 }
 function ASKp2PhoneAskOpenNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return (
     <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}>
@@ -1090,92 +1091,92 @@ function ASKp2PhoneAskOpenNav() {
 }
 
 function STPh1HomeJuniorsNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <STPh1HomeJuniors onNav={(s) => setInner(s)} />
 }
 function STPh2HomeYouthNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <STPh2HomeYouth onNav={(s) => setInner(s)} />
 }
 function STPh3HomeSeniorsNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <STPh3HomeSeniors onNav={(s) => setInner(s)} />
 }
 function STPh4HomeAssistantNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <STPh4HomeAssistant onNav={(s) => setInner(s)} />
 }
 function STPh4eHomeAssistantEmptyNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <STPh4eHomeAssistantEmpty onNav={(s) => setInner(s)} />
 }
 function STWa1WhereWeAtNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <STWa1WhereWeAt onNav={(s) => setInner(s)} />
 }
 function STWa1eWhereWeAtEmptyNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <STWa1eWhereWeAtEmpty onNav={(s) => setInner(s)} />
 }
 function STWa2WhereWeAtYouthNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <STWa2WhereWeAtYouth onNav={(s) => setInner(s)} />
 }
 function STWa3WhereWeAtSeniorsNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <STWa3WhereWeAtSeniors onNav={(s) => setInner(s)} />
 }
 function STMs1MiniRoosStyleNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <STMs1MiniRoosStyle onNav={(s) => setInner(s)} />
 }
 function STMs1eMiniRoosStyleEmptyNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <STMs1eMiniRoosStyleEmpty onNav={(s) => setInner(s)} />
 }
 function STMs2MiniRoosWhereWeAtNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <STMs2MiniRoosWhereWeAt onNav={(s) => setInner(s)} />
 }
 function STMs2eMiniRoosWhereWeAtEmptyNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <STMs2eMiniRoosWhereWeAtEmpty onNav={(s) => setInner(s)} />
 }
 function STMs3MiniRoosReviewNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <STMs3MiniRoosReview onNav={(s) => setInner(s)} />
 }
 function STMs3eMiniRoosReviewEmptyNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <STMs3eMiniRoosReviewEmpty onNav={(s) => setInner(s)} />
 }
 function STMs4MiniRoosChildNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <STMs4MiniRoosChild onNav={(s) => setInner(s)} />
 }
 function STMs4eMiniRoosChildEmptyNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <STMs4eMiniRoosChildEmpty onNav={(s) => setInner(s)} />
 }
 function STMs5HomeMiniRoosNav() {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   return <STMs5HomeMiniRoos onNav={(s) => setInner(s)} />
 }
@@ -2397,7 +2398,7 @@ export function lookScreenId(role: string, screen?: string): string {
 // the screen opens the target in its place. Screens that already have `onNav`
 // (or do not take one) are left exactly as they were.
 function AutoNav({ el }: { el: ReactNode }) {
-  const [inner, setInner] = useState<string | null>(null)
+  const [inner, setInner] = useBackState<string | null>(null)
   if (inner) return <>{renderScreen(inner)}</>
   const give = (node: ReactNode): ReactNode => {
     if (!isValidElement(node)) return node
@@ -2492,8 +2493,7 @@ export default function DemoApp() {
   useEffect(() => {
     if (view === 'notfound') return
     const path = viewToPath(view, role, screen)
-    if (window.location.pathname !== path)
-      window.history.pushState(null, '', path)
+    if (window.location.pathname !== path) pushPath(path)   // one history entry with whatever else changed in the same click
   }, [view, role, screen])
 
   useEffect(() => {

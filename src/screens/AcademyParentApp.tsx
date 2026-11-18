@@ -1,3 +1,4 @@
+import { useBackState } from '../backState'
 import { openThing, sayOrOpen } from './openThing'
 import { useState } from 'react'
 import EDUp1PlayerLearn from './step4/EDUp1PlayerLearn'
@@ -649,7 +650,7 @@ function BookTab({ onClinic, onTeam }: { onClinic: () => void; onTeam: () => voi
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
 export default function AcademyParentApp({ onBack, empty = false, initialModal = 'trial', initialNav = 'home' }: { onBack: () => void; empty?: boolean; initialModal?: Modal; initialNav?: Nav }) {
-  const [nav, setNav]     = useState<Nav>(initialNav)
+  const [nav, setNav]     = useBackState<Nav>(initialNav)
   const [modal, setModal] = useState<Modal>(initialModal)
 
   const handleNav = (n: Nav) => { setNav(n); setModal('none') }

@@ -1,3 +1,4 @@
+import { useBackState } from '../../backState'
 import { openThing } from '../openThing'
 import { useState } from 'react'
 import { MINIROOS, JUNIORS, GRADING } from './data'
@@ -240,7 +241,7 @@ const TEAMS_EMPTY: Partial<Record<TeamsView, { icon: string; title: string; desc
 }
 
 export default function TeamsTab({ empty, initialView, onNav }: { empty?: boolean; initialView?: string; onNav?: (s: string) => void }) {
-  const [view, setView] = useState<TeamsView>(initialView === 'chances' ? 'chances' : 'allteams')
+  const [view, setView] = useBackState<TeamsView>(initialView === 'chances' ? 'chances' : 'allteams')
   const [selectedTeam, setSelectedTeam] = useState<string | null>(null)
   const [showCompare, setShowCompare] = useState(false)
   const [filter, setFilter] = useState<'all' | 'attention' | 'girls' | 'recording'>('all')

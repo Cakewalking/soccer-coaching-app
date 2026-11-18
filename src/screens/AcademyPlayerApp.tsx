@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useBackState } from '../backState'
+
 
 const G    = '#2f6252'
 const G2   = '#40826d'
@@ -120,7 +121,7 @@ function PlayerHome({ empty }: { empty: boolean }) {
 // ─── ACK2 — Practice ─────────────────────────────────────────────────────────
 
 function PracticeView({ empty }: { empty: boolean }) {
-  const [view, setView] = useState<PracView>('list')
+  const [view, setView] = useBackState<PracView>('list')
 
   if (empty) return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '20px 16px 24px', display: 'flex', flexDirection: 'column', gap: 16 }}>
@@ -243,7 +244,7 @@ function PracticeView({ empty }: { empty: boolean }) {
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
 export default function AcademyPlayerApp({ onBack, empty = false, initialNav = 'home' }: { onBack: () => void; empty?: boolean; initialNav?: Nav }) {
-  const [nav, setNav] = useState<Nav>(initialNav)
+  const [nav, setNav] = useBackState<Nav>(initialNav)
 
   const tabs: Array<{ id: Nav; label: string; icon: string }> = [
     { id: 'home',     label: 'Home',     icon: 'M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z' },

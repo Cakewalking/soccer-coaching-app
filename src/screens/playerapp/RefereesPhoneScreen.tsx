@@ -1,3 +1,4 @@
+import { useBackState } from '../../backState'
 import { useState } from 'react'
 
 type RefView = 'asked' | 'games' | 'report' | 'feedback' | 'me'
@@ -192,7 +193,7 @@ function RefReport({ onSend }: { onSend: () => void }) {
 }
 
 export default function RefereesPhoneScreen({ empty = false }: { empty?: boolean }) {
-  const [view, setView] = useState<RefView>(empty ? 'games' : 'asked')
+  const [view, setView] = useBackState<RefView>(empty ? 'games' : 'asked')
   const [toast, setToast] = useState('')
   function showToast(m: string) { setToast(m); setTimeout(() => setToast(''), 2800) }
 

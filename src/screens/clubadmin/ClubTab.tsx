@@ -1,3 +1,4 @@
+import { useBackState } from '../../backState'
 import { openThing } from '../openThing'
 import { glyph } from '../Glyph'
 import { useDoneAll, markDone } from '../doneStore'
@@ -25,7 +26,7 @@ const CN_VIEW: Record<string, ClubView> = { 'CN12-ClubClimate': 'climate', 'CN20
 const CN_ID = Object.fromEntries(Object.entries(CN_VIEW).map(([k, v]) => [v, k])) as Record<string, string>
 
 export default function ClubTab({ role, empty, homeStory, onNav, initialView }: { role: 'chair' | 'dof'; empty?: boolean; homeStory?: import('react').ReactNode; onNav?: (s: string) => void; initialView?: string }) {
-  const [view, setView] = useState<ClubView>((initialView && CN_VIEW[initialView]) || (initialView === 'seasonplan' ? 'seasonplan' : 'overview'))
+  const [view, setView] = useBackState<ClubView>((initialView && CN_VIEW[initialView]) || (initialView === 'seasonplan' ? 'seasonplan' : 'overview'))
   const needs = useDoneAll()
   const cnNav = (t: string) => CN_VIEW[t] ? setView(CN_VIEW[t]) : onNav?.(t)
   const [headingPolicy, setHeadingPolicy] = useState<'england' | 'own' | 'none' | null>(null)

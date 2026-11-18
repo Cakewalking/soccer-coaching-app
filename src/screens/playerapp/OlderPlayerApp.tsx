@@ -1,3 +1,4 @@
+import { useBackState } from '../../backState'
 import { openThing } from '../openThing'
 import { Glyph } from '../Glyph'
 import { useState } from 'react'
@@ -386,7 +387,7 @@ function AdultView() {
 }
 
 export default function OlderPlayerApp({ empty = false, initialView, initialChat }: { empty?: boolean; initialView?: View; initialChat?: MsgChat }) {
-  const [view, setView] = useState<View>(initialView ?? 'home')
+  const [view, setView] = useBackState<View>(initialView ?? 'home')
   const [toast, setToast] = useState<string|null>(null)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
 

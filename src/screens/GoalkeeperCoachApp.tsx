@@ -1,3 +1,4 @@
+import { useBackState } from '../backState'
 import { openThing } from './openThing'
 import { useState } from 'react'
 import LearnTab from './learn/LearnTab'
@@ -283,7 +284,7 @@ function ClipsTab({ empty }: { empty?: boolean }) {
 }
 
 export default function GoalkeeperCoachApp({ empty = false, initialScreen, onNavChange, homeStory }: { onBack?: () => void; empty?: boolean; initialScreen?: string; onNavChange?: (screen: string) => void; homeStory?: import('react').ReactNode }) {
-  const [nav, setNav]             = useState<GKNav>((initialScreen as GKNav) ?? 'home')
+  const [nav, setNav]             = useBackState<GKNav>((initialScreen as GKNav) ?? 'home')
   const [homeTab, setHomeTab]     = useState<HomeTab>('overview')
   const [trainingTab, setTrainingTab] = useState<TrainingTab>('session')
   const [clipsTab, setClipsTab] = useState<'clips' | 'learn'>('clips')

@@ -1,3 +1,4 @@
+import { useBackState } from '../backState'
 import { Glyph, glyph } from './Glyph'
 import { useState } from 'react'
 import { goSetup } from './sandbox/sandboxNav'
@@ -178,7 +179,7 @@ function EffortChart({ data }: { data: { sessions: string[]; planned: number[]; 
 }
 
 export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, homeStory }: { empty?: boolean; initialScreen?: string; onNavChange?: (screen: string) => void; homeStory?: import('react').ReactNode }) {
-  const [tab, setTab]           = useState<FitnessTab>((initialScreen as FitnessTab) ?? 'home')
+  const [tab, setTab]           = useBackState<FitnessTab>((initialScreen as FitnessTab) ?? 'home')
   const [squadSub, setSquadSub] = useState<SquadSubTab>('growth')
   const [trainSub, setTrainSub] = useState<TrainingSubTab>('tests')
   const [teamId, setTeamId]     = useState<TeamId>('u12')

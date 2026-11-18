@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useBackState } from '../../backState'
+
 import { DARK, AMBER, PALEON, INK } from '../step4/directorParts'
 import PRM1FeaturesByTeam from '../step4/PRM1FeaturesByTeam'
 import PRM2TurnOn from '../step4/PRM2TurnOn'
@@ -12,7 +13,7 @@ const LN = '#e8edeb'
 export default function FeaturesTab({ onNav, initial }: { onNav?: (s: string) => void; initial?: string }) {
   // Prefer the frame's router; when there isn't one (e.g. rendered on its own),
   // fall back to opening the PRM boards inline so the buttons always work.
-  const [inner, setInner] = useState<string | null>(initial ?? null)
+  const [inner, setInner] = useBackState<string | null>(initial ?? null)
   // The capture rules and their sources stay inside this tab, so the director keeps the club frame.
   const go = (id: string) => { if (id.startsWith('QC1')) setInner(id); else if (onNav) onNav(id); else setInner(id) }
   const back = (to: string | null, label: string) => <button onClick={() => setInner(to)} style={{ alignSelf: 'flex-start', margin: '10px 24px 0', height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>{label}</button>

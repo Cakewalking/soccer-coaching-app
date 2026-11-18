@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef } from 'react'
+import { setHash, slugOf } from '../backState'
+import { useEffect, useRef, useState } from 'react'
 import { useUnreadTotal } from './messageUnread'
 import type { ReactNode } from 'react'
 
@@ -305,6 +306,15 @@ export default function CoachTabletFrame({
 
   // team name without club suffix
   const teamName  = teamLabel.split(' · ')[0]
+  // The sub-tab is part of the address ("/look/youth/training#run-sheet"), so a link opens it and the address says where you are.
+  const subKey = subTabs.join('|')
+  useEffect(() => {          // opened from a link: go to the sub-tab it names
+    const want = window.location.hash.slice(1), i = subTabs.findIndex(t => slugOf(t) === want)
+    if (want && i >= 0 && i !== activeSubTabIndex) onSubTab?.(i)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [subKey])
+  useEffect(() => () => setHash(null), [])   // leaving the app clears it
+  useEffect(() => { setHash(subTabs.length && activeSubTabIndex > 0 ? slugOf(subTabs[activeSubTabIndex] ?? '') : null) }, [subKey, activeSubTabIndex])   // eslint-disable-line react-hooks/exhaustive-deps
 
   // scope chip label: active sub-tab or nav tab label
   const screenName = subTabs.length > 0 && activeSubTabIndex < subTabs.length
