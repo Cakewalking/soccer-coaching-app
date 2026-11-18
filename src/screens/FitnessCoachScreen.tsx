@@ -1,3 +1,4 @@
+import { openScreen } from './openThing'
 import { useBackState } from '../backState'
 import { Glyph, glyph } from './Glyph'
 import { useState } from 'react'
@@ -286,6 +287,7 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
       roleChip="Fitness coach"
       teamLabel={currentTeam.label}
       avatarLetters="PS"
+      onAvatar={() => openScreen('SET1-Account', 'Priya Shah · fitness coach, Wattle Creek FC')}
       showAsk={true}
       askOpen={askOpen}
       onAskToggle={() => setAskOpen(o => !o)}

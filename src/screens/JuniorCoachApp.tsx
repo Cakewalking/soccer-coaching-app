@@ -303,7 +303,7 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
     content = <ClipsScreen empty={sbEmpty} activeTab={clipsTab} onNav={handleNav} />
   }
 
-  if (layer) return <ScreenLayer screenKey={layer.replace(/^example:/, '')} example={layer.startsWith('example:')} onClose={() => setLayer(null)} backLabel={layer.startsWith('example:') && inSandbox ? `Back to ${store.teams[0]?.name ?? 'your team'} · this is an example from the demo club` : 'Back to U12 Sam'} />
+  if (layer) return <ScreenLayer screenKey={layer.replace(/^example:/, '')} example={layer.startsWith('example:')} who={coachRole === 'ccoach' && !inSandbox ? 'Jess Marsh · assistant coach, U12 Sam' : null} onClose={() => setLayer(null)} backLabel={layer.startsWith('example:') && inSandbox ? `Back to ${store.teams[0]?.name ?? 'your team'} · this is an example from the demo club` : 'Back to U12 Sam'} />
 
   return (
     <CoachTabletFrame

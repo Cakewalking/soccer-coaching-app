@@ -382,7 +382,8 @@ import { C3ClipsByPlayer, CL1Playlists, TC1ToCheck, TC1bToCheckDone, TC1eToCheck
 import { GT1Growth, GT1eGrowthEmpty }    from '../step4/GT1Growth'
 import { WK1ThisWeek, CF1Fixtures, AV1Availability, MS1TeamSheet, R1MatchReview, SE1SeasonSummaries, SE1eSeasonSummariesEmpty, AV1eAvailabilityEmpty } from '../step4/CoachSubScreens'
 import { DSet5ClubPlan, DRo1Rollover, DRo1eRolloverEmpty } from '../step4/DirScreens2'
-import { B1CoachAndFitness, PO1OlderHome, CH8ChatInfo, PS2ParentNotifications, PS3ParentData, PS4PlayerMe } from '../step4/MiscScreens'
+import { B1CoachAndFitness, PO1OlderHome, CH8ChatInfo, PS2ParentNotifications, PS3ParentData } from '../step4/MiscScreens'
+import PhoneMe, { type PhoneMeWho } from '../settings/PhoneMe'
 import {
   D2eTeamsEmpty, D3eCoachesEmpty, D4ePlayersEmpty, D5eSafeguardingEmpty, D6eBoardReportEmpty,
   DB2eSeasonReviewEmpty, DB3eLeagueReturnsEmpty, DB4eGrantsEmpty, DC1eCalendarEmpty, DCo1eCoordinatorHomeEmpty,
@@ -2089,7 +2090,8 @@ function renderScreenInner(key: string): ReactNode {
     case 'ps1': case 'PS1-ParentSettings':     return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TwoChildrenApp onBack={noop} empty={false} initialView="settings" /></div>
     case 'ps2': case 'PS2-ParentNotifications': return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PS2ParentNotifications /></div>
     case 'ps3': case 'PS3-ParentData':         return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PS3ParentData /></div>
-    case 'ps4': case 'PS4-PlayerMe':           return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PS4PlayerMe /></div>
+    case 'ps4': case 'PS4-PlayerMe':           return <PhoneMe who="playeryoung" />
+    case 'ME-playerolder': case 'ME-manager': case 'ME-referee': case 'ME-academyparent': case 'ME-academyplayer': return <PhoneMe who={key.slice(3) as PhoneMeWho} />
     // Ask phone sheet (still stands per spec)
     case 'ASKp2-PhoneAskOpen': return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0' }}><AskPhoneOpen onBack={noop} /></div>
 

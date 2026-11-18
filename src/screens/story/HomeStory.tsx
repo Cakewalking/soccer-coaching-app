@@ -1,3 +1,4 @@
+import { openScreen } from '../openThing'
 import { useBackState } from '../../backState'
 import { useState } from 'react'
 import { toolTarget } from '../toolTargets'
@@ -301,6 +302,10 @@ function RightColumn({ done, needs, nav, tool }: { done: HomeCfg['done']; needs:
   )
 }
 
+// The page each avatar opens, and the name the tablet settings page is under.
+const PHONE_ME: Record<string, string> = { 'STO16-HomeStoryManager': 'ME-manager', 'STO17-HomeStoryParent': 'PS1-ParentSettings', 'STO18-HomeStoryPlayerYoung': 'PS4-PlayerMe', 'STO19-HomeStoryPlayerOlder': 'ME-playerolder', 'STO20-HomeStoryReferee': 'ME-referee', 'STO21-HomeStoryAcademyParent': 'ME-academyparent', 'STO22-HomeStoryAcademyPlayer': 'ME-academyplayer' }
+const STORY_WHO: Record<string, string> = { HP: 'Helen Park · welfare officer, Wattle Creek FC', PS: 'Priya Shah · fitness coach, Wattle Creek FC', JM: 'Jess Marsh · assistant coach, U12 Sam', BR: 'Bianca Rossi · club coordinator, Wattle Creek FC', NW: 'Nick Ward · goalkeeper coach, Wattle Creek FC' }
+
 function Frame({ cfg, nav, tool, children }: { cfg: HomeCfg; nav: (s: string) => void; tool: (s: string) => void; children: React.ReactNode }) {
   const tnb = (it: FrameNavItem): React.CSSProperties => ({ height: 56, padding: '0 12px', background: it.active ? 'rgba(255,255,255,0.14)' : 'none', color: it.active ? '#fff' : 'rgba(255,255,255,0.75)', border: 'none', borderRadius: it.active ? 10 : 0, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0, display: 'flex', alignItems: 'center', gap: 6 })
   const snb = (it: FrameNavItem): React.CSSProperties => ({ height: 44, minWidth: 44, padding: '0 10px', background: 'none', color: it.active ? GREEN : GREY, borderBottom: it.active ? `2px solid ${GREEN}` : '2px solid transparent', border: 'none', fontSize: 13, fontWeight: it.active ? 700 : 600, cursor: 'pointer', fontFamily: 'inherit', flexShrink: 0 })
@@ -312,7 +317,7 @@ function Frame({ cfg, nav, tool, children }: { cfg: HomeCfg; nav: (s: string) =>
         {cfg.topNav.map(it => <button key={it.label} onClick={click(it)} style={tnb(it)}>{it.label}</button>)}
         <div style={{ flex: 1 }} />
         <button onClick={() => cfg.teamTarget ? nav(cfg.teamTarget) : tool('switcher')} style={{ height: 44, padding: '0 14px', background: 'rgba(255,255,255,0.15)', color: '#fff', border: 'none', borderRadius: 22, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', marginRight: 12 }}>{cfg.team}</button>
-        <button onClick={() => nav('SET1-Account')} aria-label="Your account and settings" style={{ width: 44, height: 44, border: 0, padding: 0, background: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><span style={{ width: 36, height: 36, borderRadius: '50%', background: '#b9777a', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "'DM Sans',system-ui,sans-serif", fontSize: 13, fontWeight: 700, color: '#fff' }}>{cfg.avatar}</span></button>
+        <button onClick={() => openScreen('SET1-Account', STORY_WHO[cfg.avatar])} aria-label="Your account and settings" style={{ width: 44, height: 44, border: 0, padding: 0, background: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><span style={{ width: 36, height: 36, borderRadius: '50%', background: '#b9777a', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "'DM Sans',system-ui,sans-serif", fontSize: 13, fontWeight: 700, color: '#fff' }}>{cfg.avatar}</span></button>
       </nav>
       <nav style={{ background: '#fff', borderBottom: `1px solid ${HAIR}`, height: 44, display: 'flex', alignItems: 'center', padding: '0 20px', flexShrink: 0 }}>
         {cfg.subNav.map(it => <button key={it.label} onClick={click(it)} style={snb(it)}>{it.label}</button>)}
@@ -380,7 +385,7 @@ export function HomeStoryPhone({ cfg, onNav, renderTarget }: { cfg: PhoneCfg; on
           </div>}
         </div>
         {/* The avatar opens this person's own settings */}
-        <button onClick={() => nav(/Player/.test(cfg.id) ? 'PS4-PlayerMe' : /Parent/.test(cfg.id) ? 'PS1-ParentSettings' : 'SET1-Account')} aria-label="Your account and settings" style={{ width: 44, height: 44, border: 0, padding: 0, background: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}><span style={{ width: 38, height: 38, borderRadius: '50%', background: '#cbbeb5', color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "'DM Sans',system-ui,sans-serif", fontSize: 13, fontWeight: 700 }}>{cfg.avatar}</span></button>
+        <button onClick={() => nav(PHONE_ME[cfg.id] ?? 'PS1-ParentSettings')} aria-label="Your account and settings" style={{ width: 44, height: 44, border: 0, padding: 0, background: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}><span style={{ width: 38, height: 38, borderRadius: '50%', background: '#cbbeb5', color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "'DM Sans',system-ui,sans-serif", fontSize: 13, fontWeight: 700 }}>{cfg.avatar}</span></button>
       </header>
       <div style={{ flex: 1, padding: 16, display: 'flex', flexDirection: 'column', gap: 12 }}>
         {cfg.blocks.map((b, i) => {

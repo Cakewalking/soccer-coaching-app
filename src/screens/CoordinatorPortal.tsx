@@ -1,3 +1,4 @@
+import { openScreen } from './openThing'
 import { useBackState } from '../backState'
 import { openThing } from './openThing'
 import { useState } from 'react'
@@ -210,7 +211,7 @@ export default function CoordinatorPortal({ onBack: _onBack, empty = false, home
             Whole club
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9l6 6 6-6"/></svg>
           </button>
-          <div style={{ width: 44, height: 44, borderRadius: '999px', background: '#c39797', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 15, flexShrink: 0 }}>BR</div>
+          <button onClick={() => openScreen('SET1-Account', 'Bianca Rossi · club coordinator, Wattle Creek FC')} aria-label="Your account and settings" style={{ width: 44, height: 44, border: 0, padding: 0, background: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontFamily: 'inherit' }}><span style={{ width: 44, height: 44, borderRadius: '999px', background: '#c39797', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 15, flexShrink: 0 }}>BR</span></button>
         </div>
 
         {/* Sub-tab row */}

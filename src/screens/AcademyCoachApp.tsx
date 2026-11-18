@@ -1,3 +1,4 @@
+import { openScreen } from './openThing'
 import { useBackState } from '../backState'
 import { openThing, sayOrOpen } from './openThing'
 import { Glyph, glyph } from './Glyph'
@@ -1295,7 +1296,7 @@ export default function AcademyCoachApp({ empty = false, initialScreen, onNavCha
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg>
             </button>
             <span style={{ fontSize: 14, fontWeight: 600, color: 'rgba(255,255,255,0.8)' }}>Tall Timber Academy</span>
-            <div style={{ width: 40, height: 40, borderRadius: '50%', background: ROSE, color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>RW</div>
+            <button onClick={() => openScreen('SET1-Account', 'Reece Whitlam · coach, ' + 'Tall Timber Academy')} aria-label="Your account and settings" style={{ width: 44, height: 44, border: 0, padding: 0, background: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontFamily: 'inherit' }}><span style={{ width: 40, height: 40, borderRadius: '50%', background: ROSE, color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>RW</span></button>
           </div>
         </div>
         {contextTabs.length > 0 && (

@@ -1,3 +1,4 @@
+import { openScreen } from './openThing'
 import { useBackState } from '../backState'
 import { openThing } from './openThing'
 import { useState } from 'react'
@@ -321,7 +322,7 @@ export default function GoalkeeperCoachApp({ empty = false, initialScreen, onNav
             {empty ? 'All keepers' : 'All keepers · Wattle Creek'}
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9l6 6 6-6"/></svg>
           </div>
-          <div style={{ width: 44, height: 44, borderRadius: '999px', background: '#40826d', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 15, flexShrink: 0 }}>{empty ? 'GK' : 'NW'}</div>
+          <button onClick={() => openScreen('SET1-Account', 'Nick Ward · goalkeeper coach, Wattle Creek FC')} aria-label="Your account and settings" style={{ width: 44, height: 44, border: 0, padding: 0, background: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontFamily: 'inherit' }}><span style={{ width: 44, height: 44, borderRadius: '999px', background: '#40826d', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 15, flexShrink: 0 }}>{empty ? 'GK' : 'NW'}</span></button>
         </div>
 
         {/* Sub-tabs row */}
