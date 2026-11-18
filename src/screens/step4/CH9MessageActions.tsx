@@ -40,7 +40,7 @@ export default function CH9MessageActions(_: { onBack?: () => void }) {
   const [deleted, setDeleted] = useState(false)
   const [sent, setSent] = useState(false)
   const t = (m: string) => { setModal(null); setToast(m); setTimeout(() => setToast(null), 3200) }
-  const emojis = [glyph('like'), glyph('heart'), glyph('laugh'), glyph('cheer'), glyph('surprised'), glyph('heart')]
+  const emojis = [glyph('like'), glyph('heart'), glyph('laugh'), glyph('cheer'), glyph('surprised'), glyph('hand')]
   return (
     <div style={{ width: 1180, height: 820, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden' }}>
       <TopBar />

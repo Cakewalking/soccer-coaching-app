@@ -160,7 +160,7 @@ export function MessagesRules({ onBack, onNav }: { onBack?: () => void; onNav?: 
 }
 
 // MSG1 — New message picker
-export function CoachNewMessage({ onBack: _onBack, onNav }: { onBack?: () => void; onNav?: (s: string) => void }) {
+export function CoachNewMessage({ onBack: _onBack, onNav, embedded }: { onBack?: () => void; onNav?: (s: string) => void; /** inside a coach app: the app's own header is the only one */ embedded?: boolean }) {
   const [toast, setToast] = useState<string | null>(null)
   const [picked, setPicked] = useState<string | null>(null)
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
@@ -212,8 +212,8 @@ export function CoachNewMessage({ onBack: _onBack, onNav }: { onBack?: () => voi
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#f7f8f7' }}>
-      <CoachTopBar onNav={(id) => t(`${id.charAt(0).toUpperCase() + id.slice(1)} tab opens.`)}/>
-      <CoachSubNav activeSub="Messages" onNav={(id) => t(id.startsWith('sub:') ? `${id.slice(4)} opens.` : `${id} opens.`)}/>
+      {!embedded && <CoachTopBar onNav={(id) => t(`${id.charAt(0).toUpperCase() + id.slice(1)} tab opens.`)}/>}
+      {!embedded && <CoachSubNav activeSub="Messages" onNav={(id) => t(id.startsWith('sub:') ? `${id.slice(4)} opens.` : `${id} opens.`)}/>}
       <div style={{ flex: 1, overflow: 'hidden', display: 'flex', gap: 0 }}>
         {/* Left: new message picker */}
         <div style={{ flex: 1, overflowY: 'auto', padding: '24px 24px 24px 28px', display: 'flex', gap: 16 }}>
@@ -395,14 +395,14 @@ export function CoachMessages({ onBack: _onBack, onNav, teamType = 'juniors', em
 }
 
 // MSG3 — Person card overlay on MSG2
-export function CoachMessagesPersonCard({ onBack, onNav }: { onBack?: () => void; onNav?: (s: string) => void }) {
+export function CoachMessagesPersonCard({ onBack, onNav, embedded }: { onBack?: () => void; onNav?: (s: string) => void; embedded?: boolean }) {
   const [toast, setToast] = useState<string | null>(null)
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#f7f8f7', position: 'relative' }}>
-      <CoachTopBar onNav={() => t('Tab opens.')}/>
-      <CoachSubNav activeSub="Messages" onNav={() => t('Tab opens.')}/>
+      {!embedded && <CoachTopBar onNav={() => t('Tab opens.')}/>}
+      {!embedded && <CoachSubNav activeSub="Messages" onNav={() => t('Tab opens.')}/>}
       {/* MSG2 background (blurred) */}
       <div style={{ flex: 1, background: '#f7f8f7', filter: 'blur(2px)', opacity: 0.5, position: 'absolute', inset: '112px 0 0 0' }}/>
       {/* Person card dialog */}

@@ -247,8 +247,8 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
     else if (homeTab === 0) content = phaseContent ?? (coachRole === 'ccoach' ? <CoCoachHomeScreen empty={sbEmpty} onNav={handleNav} onAsk={() => setAskOpen(true)} askQuestions={['Who needs a rest this week?', 'What should we work on tonight?', 'Is everyone getting fair minutes?']} /> : <HomeScreen role="head" onRole={() => {}} onNav={handleNav} onCalendar={() => setHomeTab(2)} empty={sbEmpty} onAsk={() => setAskOpen(true)} askQuestions={['Who needs a rest this week?', 'What should we work on tonight?', 'Is everyone getting fair minutes?']} teamName={inSandbox ? (store.teams[0]?.name ?? 'your team') : 'U12 Sam'} />)
     else if (homeTab === 1 && inSandbox && sbEmpty) content = <SandboxWaiting kind="messages" />
     else if (homeTab === 1) {
-      if (msgsView === 'MSG1-NewMessage') content = <CoachNewMessage onBack={() => setMsgsView(null)} onNav={setMsgsView} />
-      else if (msgsView === 'MSG3-PersonCard') content = <CoachMessagesPersonCard onBack={() => setMsgsView(null)} onNav={setMsgsView} />
+      if (msgsView === 'MSG1-NewMessage') content = <CoachNewMessage embedded onBack={() => setMsgsView(null)} onNav={setMsgsView} />
+      else if (msgsView === 'MSG3-PersonCard') content = <CoachMessagesPersonCard embedded onBack={() => setMsgsView(null)} onNav={setMsgsView} />
       else content = <CoachMessages onNav={setMsgsView} embedded />
     }
     else if (homeTab === 2) content = <FixturesScreen empty={sbEmpty} />

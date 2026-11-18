@@ -1,4 +1,7 @@
-import type { ReactNode } from 'react'
+import { createContext, useContext, type ReactNode } from 'react'
+
+/** The game line for the team whose app is showing these boards, in place of U12 Sam's. MiniRoos never show a result. */
+export const YTFixtureContext = createContext<string | null>(null)
 import { OpeningPanel, type Figure, type PanelBtn, GREEN, INK, MUT, HAIR } from '../step4/directorParts'
 
 const GD = '#1f4a3e'
@@ -22,6 +25,7 @@ export default function YTFrame({ onNav, active, heading, sentence, support, fig
   screenId?: string
   bare?: boolean          // omit the top/sub nav when embedded in a role frame
 }) {
+  const fixture = useContext(YTFixtureContext)
   const tnb = { height: 44, padding: '0 10px', background: 'none' as const, color: 'rgba(255,255,255,0.75)', border: 'none' as const, fontSize: 13, fontWeight: 600, cursor: 'pointer' as const, fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 6 }
   const tnbOn = { ...tnb, color: '#fff', fontWeight: 700 as const }
   const snb = { height: 44, padding: '0 2px', background: 'none' as const, color: MUT, border: 'none' as const, borderBottom: '2px solid transparent', fontSize: 13, fontWeight: 600, cursor: 'pointer' as const, fontFamily: 'inherit', minWidth: 44 }
@@ -59,7 +63,7 @@ export default function YTFrame({ onNav, active, heading, sentence, support, fig
       </div>
       </>}
 
-      <OpeningPanel landing heading={heading} sentence={sentence} support={support} figures={figures} buttons={buttons} />
+      <OpeningPanel landing heading={fixture ? heading.replace(/Sat 30 May · Won 3[-–]1 at Ironbark United/, fixture) : heading} sentence={sentence} support={support} figures={figures} buttons={buttons} />
 
       {/* Pills */}
       <div style={{ flex: 'none', padding: '12px 28px 0', display: 'flex', gap: 8 }}>

@@ -17,7 +17,7 @@ import LearnTab from '../learn/LearnTab'
 import TeamSetup from '../sandbox/TeamSetup'
 import SandboxWaiting from '../sandbox/SandboxWaiting'
 import { registerSetupNav, registerAppNav, goApp } from '../sandbox/sandboxNav'
-import YourTakeBoards from '../aftergame/YourTakeBoards'
+import YourTakeBoards, { isYourTakeId } from '../aftergame/YourTakeBoards'
 import ScreenLayer, { isScreenId } from '../ScreenLayer'
 import type { FormationPreset } from '../formation/lineupInsights'
 import { SkillsMiniRoos, FairTurnsMiniRoos, WeekMiniRoos, GamesLibraryMiniRoos } from './MiniRoosExtras'
@@ -705,6 +705,7 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
   const [homeTab, setHomeTab]       = useState<HomeTab>(isHomeSub ? (initialScreen as HomeTab) : 'overview')
   const [gameDayTab, setGameDayTab] = useState<GameDayTab>(isGameDayPart ? (initialScreen as GameDayTab) : 'turns')
   const [squadTab, setSquadTab]     = useState<SquadTab>(initialScreen === 'positions' ? 'positions' : 'players')
+  const [ytView, setYtView]         = useState('YT1-YourTake')
   const [formationPreset, setFormationPreset] = useState<FormationPreset | null>(null)
   const [layer, setLayer] = useState<string | null>(null)
   const [xgView, setXgView] = useState('XGm1-ChancesMiniRoos')
@@ -798,6 +799,7 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
     registerNav?.((target: string) => {
       const key = target === 'SGm1-SuggestedMiniRoos' ? 'training:suggest' : target === 'EDU5-CoachCorner' ? 'clips:learn' : Object.keys(MR_SCREEN).find(k => MR_SCREEN[k] === target)
       // Anything else that is a designed screen opens over the app with a way back: one heading, not two.
+      if (!key && isYourTakeId(target)) { setNav('gameday'); setGameDayTab('yourtake'); setYtView(target); return true }   // the Your take boards open inside Game day, not as a separate page
       if (!key) { if (isScreenId(target)) { setLayer(target); return true } return false }
       const [a, b] = key.split(':')
       if (!b && (HOME_TABS as Array<{ id: string }>).some(t => t.id === a)) { setNav('home'); setHomeTab(a as HomeTab); setHomeSubView('main') }
@@ -816,7 +818,7 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
   function handleSubTab(i: number) {
     if (nav === 'home')     { setHomeTab(HOME_TABS[i].id); setHomeSubView('main'); setFilOpen(null) }
     if (nav === 'squad')    { setSquadTab(SQUAD_TABS_MR[i].id) }
-    if (nav === 'gameday')  { setGameDayTab(GAMEDAY_TABS[i].id) }
+    if (nav === 'gameday')  { setGameDayTab(GAMEDAY_TABS[i].id); if (GAMEDAY_TABS[i].id === 'yourtake') setYtView('YT1-YourTake') }
     if (nav === 'training') { setTrainingTab(TRAINING_TABS_MR[i].id) }
     if (nav === 'clips')    { setClipsTab(i === 1 ? 'learn' : 'clips') }
   }
@@ -883,7 +885,7 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
     else if (gameDayTab === 'chances' && mayChances)
       content = <ChancesFlow team="u9" step={xgView} onStep={setXgView} onNav={(t) => { if (isChanceId(t)) setXgView(t); else if (isScreenId(t)) setLayer(t) }} />
     else if (gameDayTab === 'yourtake')
-      content = <YourTakeBoards onNav={(t) => { if (isScreenId(t)) setLayer(t) }} />
+      content = <YourTakeBoards fixture="Sat 6 June at Northgate City · no score kept" view={ytView} onView={setYtView} onNav={(t) => { if (isScreenId(t)) setLayer(t) }} />
     else if (gameDayTab === 'whoscoming')
       content = <ComingMiniRoos empty={empty} />
     else if (gameDayTab === 'getready')
