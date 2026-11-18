@@ -133,7 +133,8 @@ export function GS2DrillWhy({ s, k, go, say, part }: GsProps) {
   const kitList = d.kind === 'all' ? [`${d.theme === 'warmup' ? 8 : 4} cones`, `${ses.n} balls`, ...(z.bibs ? [`${z.bibs} bibs`] : [])] : d.kind === 'game' ? ['4 cones', '1 ball', `${z.bibs} bibs`, '2 small goals'] : isSq ? [`${4 * sq + (d.kind === 'gate' ? 2 : 0)} cones`, `${sq} ball${sq > 1 ? 's' : ''}`, `${2 * sq} bibs`] : ['8 cones', `${z.balls} balls`, `${z.bibs} bibs`]
   const first = present(k, ts)[0]?.name ?? t.squad[0].name
   const last = [...t.season].reverse().find((w, i) => i > 0 && w.theme === d.theme)?.wk
-  const full = level === 'new' || all, mid = level !== 'experienced' || all
+  // Only an experienced coach gets the short page; for everyone else there is too little here to be worth hiding.
+  const full = level !== 'experienced' || all, mid = full
   const long = ev?.long ? ev.long.split('{num}') : null
   return (
     <Page id="GS2-DrillWhy" title={d.name} sub={`${day(t)}, ${p.at} · ${p.mins} minutes · ${p.tag.toLowerCase()}`} go={go} cols="minmax(0,1fr) 348px"
@@ -158,7 +159,7 @@ export function GS2DrillWhy({ s, k, go, say, part }: GsProps) {
             <span style={{ display: 'flex', flexDirection: 'column', gap: 8 }}><span style={label}>Leave alone</span>{about.leave.map(x => <span key={x} style={{ fontSize: 15, lineHeight: '21px' }}>{x}</span>)}</span>
           </div>
         </section>}
-        {!full && <Btn big onClick={() => setAll(true)}>{level === 'experienced' ? 'Tap for the evidence and clips, and the rest' : 'Show what to say and what to look for'}</Btn>}
+        {!full && <Btn big onClick={() => setAll(true)}>Tap for the evidence and clips, and the rest</Btn>}
       </div>
       <div style={col}>
         {mid && <section aria-label="Set it up" style={{ ...tile, padding: '14px 16px 16px' }}>
