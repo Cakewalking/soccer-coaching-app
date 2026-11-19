@@ -1,0 +1,341 @@
+control id,screen,control,does,target or line,status: works / line of text only / missing / wrong target (say where)
+LN1-LearnHome#7,LN1-LearnHome,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+LN1-LearnHome#14,LN1-LearnHome,Why we teach this,Opens,LN8-WhyWeTeachThis,works
+LN1-LearnHome#15,LN1-LearnHome,Carry on: asking a question,Opens,LN4-Lesson,works
+LN1-LearnHome#16,LN1-LearnHome,Built from your answers,Opens,LN2-StartingPoint,works
+LN1-LearnHome#17,LN1-LearnHome,Before your first session · Walk on to the pitch with a plan · · · · · · · · Done,Opens,LN3m1-Module,works
+LN1-LearnHome#18,LN1-LearnHome,"Keeping players safe · Head knocks, heat, injuries, who to tell · · · · · · · · Done",Opens,LN3m2-Module,works
+LN1-LearnHome#19,LN1-LearnHome,"Running the session · Start fast, keep them busy, stop it less · · · · · · · · Done",Opens,LN3m3-Module,works
+LN1-LearnHome#20,LN1-LearnHome,"4 · Talking to players · Ask, praise and correct so it sticks · · · · · · · · · You are here",Opens,LN3-Module,works
+LN1-LearnHome#21,LN1-LearnHome,"5 · Match day · Team talk, fair turns, your own sideline · · · · · · · · Next",Opens,LN3m5-Module,works
+LN1-LearnHome#22,LN1-LearnHome,6 · Parents and your helpers · Set it up once so the season runs · · · · · · · Later,Opens,LN3m6-Module,works
+LN1-LearnHome#23,LN1-LearnHome,"Asking a question, not giving an answer · Lesson 2 of 6 · 6 minutes",Opens,LN4-Lesson,works
+LN1-LearnHome#24,LN1-LearnHome,Your season,Opens,LN7-YourProgress,works
+LN1-LearnHome#25,LN1-LearnHome,Ask anything · “What do I do when nobody answers?”,Says,Ask opens with your team and this week’s session already in view.,works
+LN1-LearnHome#26,LN1-LearnHome,"The game itself · Rules, positions and words for under 11",Opens,LN6-TheGameItself,works
+LN1-LearnHome#27,LN1-LearnHome,Talk to Rachel · Your club’s coach mentor,Says,Message to Rachel Moore started. She sees only what you write.,works
+LN2-StartingPoint#7,LN2-StartingPoint,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+LN2-StartingPoint#14,LN2-StartingPoint,"Skip, give me the standard course",Opens,LN1-LearnHome,works
+LN2-StartingPoint#15,LN2-StartingPoint,Build my course,Opens,LN1-LearnHome,works
+LN2-StartingPoint#16,LN2-StartingPoint,Never [radio],Says,Never: taken off.,works
+LN2-StartingPoint#17,LN2-StartingPoint,As a kid [radio],Says,As a kid: picked.,works
+LN2-StartingPoint#18,LN2-StartingPoint,For years [radio],Says,For years: picked.,works
+LN2-StartingPoint#19,LN2-StartingPoint,This is my first season [radio],Says,This is my first season: picked.,works
+LN2-StartingPoint#20,LN2-StartingPoint,A season or two [radio],Says,A season or two: taken off.,works
+LN2-StartingPoint#21,LN2-StartingPoint,Three or more [radio],Says,Three or more: picked.,works
+LN2-StartingPoint#22,LN2-StartingPoint,Planning sessions [checkbox],Says,Planning sessions: taken off.,works
+LN2-StartingPoint#23,LN2-StartingPoint,Getting them to listen [checkbox],Says,Getting them to listen: picked.,"works: three worries are already picked on this board, so a fourth says “Three is the most. Take one off first.”"
+LN2-StartingPoint#24,LN2-StartingPoint,Knowing the rules [checkbox],Says,Knowing the rules: taken off.,works
+LN2-StartingPoint#25,LN2-StartingPoint,What to say [checkbox],Says,What to say: taken off.,works
+LN2-StartingPoint#26,LN2-StartingPoint,Match day [checkbox],Says,Match day: picked.,"works: three worries are already picked on this board, so a fourth says “Three is the most. Take one off first.”"
+LN2-StartingPoint#27,LN2-StartingPoint,Parents [checkbox],Says,Parents: picked.,"works: three worries are already picked on this board, so a fourth says “Three is the most. Take one off first.”"
+LN2-StartingPoint#28,LN2-StartingPoint,5 minutes [radio],Says,5 minutes: picked.,works
+LN2-StartingPoint#29,LN2-StartingPoint,10 minutes [radio],Says,10 minutes: taken off.,works
+LN2-StartingPoint#30,LN2-StartingPoint,20 minutes [radio],Says,20 minutes: picked.,works
+LN2-StartingPoint#31,LN2-StartingPoint,Source 1,Opens,LN8-WhyWeTeachThis,works
+LN3-Module#7,LN3-Module,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+LN3-Module#14,LN3-Module,All modules,Opens,LN1-LearnHome,works
+LN3-Module#15,LN3-Module,Start lesson 2,Opens,LN4-Lesson,works
+LN3-Module#16,LN3-Module,"Say less · Thirty seconds, then let them play · · Tried 16 June · went well · 5 min",Opens,LNL41-Lesson,works
+LN3-Module#17,LN3-Module,"2 · Asking a question, not giving an answer · “Where is the space?” beats “pass it wide” · · To try this Tuesday · 6 min",Opens,LN4-Lesson,works
+LN3-Module#18,LN3-Module,3 · Wait for the answer · Count to five. Silence is thinking · · · 5 min,Opens,LNL43-Lesson,works
+LN3-Module#19,LN3-Module,"4 · Praise the effort, name the action · “Great first touch away from him” beats “well done” · · · 6 min",Opens,LNL44-Lesson,works
+LN3-Module#20,LN3-Module,5 · Fixing a mistake without stopping the game · A word to one player while the rest play on · · · 6 min,Opens,LNL45-Lesson,works
+LN3-Module#21,LN3-Module,"6 · One thing at a time · One focus per game, even when you see five · · · 5 min",Opens,LNL46-Lesson,works
+LN3-Module#22,LN3-Module,Source 3,Opens,LN8-WhyWeTeachThis,works
+LN3-Module#23,LN3-Module,Source 4,Opens,LN8-WhyWeTeachThis,works
+LN3m1-Module#7,LN3m1-Module,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+LN3m1-Module#14,LN3m1-Module,All modules,Opens,LN1-LearnHome,works
+LN3m1-Module#15,LN3m1-Module,Watch again,Opens,LNL11-Lesson,works
+LN3m1-Module#16,LN3m1-Module,"What a good session looks like at this age · Busy, lots of touches, ends with a game · · Tried 12 May · went well · 5 min",Opens,LNL11-Lesson,works
+LN3m1-Module#17,LN3m1-Module,"How to read your session in Clean Sheet · The why, the set-up, what to say · · Read every week now · 4 min",Opens,LNL12-Lesson,works
+LN3m1-Module#18,LN3m1-Module,"Setting up before the players arrive · Cones once, not four times · · Tried 19 May · use it weekly · 5 min",Opens,LNL13-Lesson,works
+LN3m1-Module#19,LN3m1-Module,"Your first two minutes · Names, one signal, straight into a game · · Tried 19 May · went well · 5 min",Opens,LNL14-Lesson,works
+LN3m1-Module#20,LN3m1-Module,"When it is not working · Make it easier, make it harder, or move on · · Tried 26 May · didn’t need it · 5 min",Opens,LNL15-Lesson,works
+LN3m1-Module#21,LN3m1-Module,Source 2,Opens,LN8-WhyWeTeachThis,works
+LN3m1-Module#22,LN3m1-Module,Source 8,Opens,LN8-WhyWeTeachThis,works
+LN3m2-Module#7,LN3m2-Module,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+LN3m2-Module#14,LN3m2-Module,All modules,Opens,LN1-LearnHome,works
+LN3m2-Module#15,LN3m2-Module,Watch again,Opens,LNL21-Lesson,works
+LN3m2-Module#16,LN3m2-Module,"Head knocks: if in doubt, sit them out · Off straight away, and no game for at least 21 days · · Done 14 May · 6 min",Opens,LNL21-Lesson,works
+LN3m2-Module#17,LN3m2-Module,"Heat, storms and bad air · Check before you leave home · · Done 14 May · 5 min",Opens,LNL22-Lesson,works
+LN3m2-Module#18,LN3m2-Module,"Injuries: what you do and what you don’t · Stop, stay calm, get help, write it down · · Done 20 May · 5 min",Opens,LNL23-Lesson,works
+LN3m2-Module#19,LN3m2-Module,"Being a safe adult · In view, in the open, through the club · · Done 20 May · 5 min",Opens,LNL24-Lesson,works
+LN3m2-Module#20,LN3m2-Module,When something worries you · You don’t investigate. You tell the right person today · · Done 21 May · 5 min,Opens,LNL25-Lesson,works
+LN3m2-Module#21,LN3m2-Module,Source 9,Opens,LN8-WhyWeTeachThis,works
+LN3m3-Module#7,LN3m3-Module,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+LN3m3-Module#14,LN3m3-Module,All modules,Opens,LN1-LearnHome,works
+LN3m3-Module#15,LN3m3-Module,Watch again,Opens,LNL31-Lesson,works
+LN3m3-Module#16,LN3m3-Module,Starting with a game · They play from the minute they arrive · · Tried 26 May · went well · 5 min,Opens,LNL31-Lesson,works
+LN3m3-Module#17,LN3m3-Module,"Keeping everyone busy · More balls, smaller groups, no queues · · Tried 2 June · went well · 6 min",Opens,LNL32-Lesson,works
+LN3m3-Module#18,LN3m3-Module,"Getting their attention without shouting · One signal, wait, then speak · · Tried 2 June · took a while · 5 min",Opens,LNL33-Lesson,works
+LN3m3-Module#19,LN3m3-Module,"One game, three versions · Change the space, the numbers or a rule · · Tried 9 June · went well · 6 min",Opens,LNL34-Lesson,works
+LN3m3-Module#20,LN3m3-Module,"Finishing on a game · Let them play, then two minutes together · · Tried 9 June · stayed quiet · 5 min",Opens,LNL35-Lesson,works
+LN3m3-Module#21,LN3m3-Module,Source 3,Opens,LN8-WhyWeTeachThis,works
+LN3m3-Module#22,LN3m3-Module,Source 6,Opens,LN8-WhyWeTeachThis,works
+LN3m5-Module#7,LN3m5-Module,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+LN3m5-Module#14,LN3m5-Module,All modules,Opens,LN1-LearnHome,works
+LN3m5-Module#15,LN3m5-Module,Start lesson 1,Opens,LNL51-Lesson,works
+LN3m5-Module#16,LN3m5-Module,"1 · The team talk in one minute · One idea, from Tuesday · · · 5 min",Opens,LNL51-Lesson,works
+LN3m5-Module#17,LN3m5-Module,2 · Fair turns · Decide before you leave home · · · 6 min,Opens,LNL52-Lesson,works
+LN3m5-Module#18,LN3m5-Module,3 · Your own sideline · Let them play. Say less than you want to · · · 5 min,Opens,LNL53-Lesson,works
+LN3m5-Module#19,LN3m5-Module,"4 · Half-time in three minutes · Drink, one question, one thing · · · 5 min",Opens,LNL54-Lesson,works
+LN3m5-Module#20,LN3m5-Module,"5 · After the whistle · Win or lose, the same three things · · · 5 min",Opens,LNL55-Lesson,works
+LN3m5-Module#21,LN3m5-Module,Source 5,Opens,LN8-WhyWeTeachThis,works
+LN3m6-Module#7,LN3m6-Module,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+LN3m6-Module#14,LN3m6-Module,All modules,Opens,LN1-LearnHome,works
+LN3m6-Module#15,LN3m6-Module,Start lesson 1,Opens,LNL61-Lesson,works
+LN3m6-Module#16,LN3m6-Module,1 · Your first message to parents · What to expect from you this season · · · 5 min,Opens,LNL61-Lesson,works
+LN3m6-Module#17,LN3m6-Module,"2 · The parents’ sideline · Ask them to cheer, not to coach · · · 5 min",Opens,LNL62-Lesson,works
+LN3m6-Module#18,LN3m6-Module,3 · Sharing the load · Ask for one small job each · · · 5 min,Opens,LNL63-Lesson,works
+LN3m6-Module#19,LN3m6-Module,"4 · A hard conversation · Listen first, use the record, offer a time · · · 6 min",Opens,LNL64-Lesson,works
+LN3m6-Module#20,LN3m6-Module,Source 6,Opens,LN8-WhyWeTeachThis,works
+LN4-Lesson#7,LN4-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+LN4-Lesson#14,LN4-Lesson,Back,Opens,LN3-Module,works
+LN4-Lesson#15,LN4-Lesson,Add to Tuesday’s run sheet,Says,Added to your run sheet for Tuesday. It shows as a reminder at the right moment.,works
+LN4-Lesson#16,LN4-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
+LN4-Lesson#17,LN4-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LN4-Lesson#18,LN4-Lesson,"Saturday, 14th minute · 0:11",Says,The clip plays.,works
+LN4-Lesson#19,LN4-Lesson,Source 4,Opens,LN8-WhyWeTeachThis,works
+LN5-HowItWent#7,LN5-HowItWent,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+LN5-HowItWent#14,LN5-HowItWent,Not now,Opens,LN1-LearnHome,works
+LN5-HowItWent#15,LN5-HowItWent,Save,Says,Saved. Your next lesson is “Wait for the answer”.,works
+LN5-HowItWent#16,LN5-HowItWent,Yes [radio],Says,Yes: taken off.,works
+LN5-HowItWent#17,LN5-HowItWent,Sort of [radio],Says,Sort of: picked.,works
+LN5-HowItWent#18,LN5-HowItWent,Didn’t get to it [radio],Says,Didn’t get to it: picked.,works
+LN5-HowItWent#19,LN5-HowItWent,They answered [radio],Says,They answered: picked.,works
+LN5-HowItWent#20,LN5-HowItWent,Silence [radio],Says,Silence: taken off.,works
+LN5-HowItWent#21,LN5-HowItWent,The same two answered [radio],Says,The same two answered: picked.,works
+LN5-HowItWent#22,LN5-HowItWent,I answered for them [radio],Says,I answered for them: picked.,works
+LN5-HowItWent#23,LN5-HowItWent,1 [radio],Says,How did it feel? 1 of 5.,works
+LN5-HowItWent#24,LN5-HowItWent,2 [radio],Says,How did it feel? 2 of 5.,works
+LN5-HowItWent#25,LN5-HowItWent,3 [radio],Says,How did it feel? 3 of 5.,works
+LN5-HowItWent#26,LN5-HowItWent,4 [radio],Says,How did it feel? 4 of 5.,works
+LN5-HowItWent#27,LN5-HowItWent,5 [radio],Says,How did it feel? 5 of 5.,works
+LN5-HowItWent#28,LN5-HowItWent,Preview the lesson,Opens,LN4-Lesson,"wrong target on purpose: opens LNL43-Lesson, “Wait for the answer”, the lesson the answer points to (the rule), not LN4"
+LN5-HowItWent#29,LN5-HowItWent,Source 7,Opens,LN8-WhyWeTeachThis,works
+LN6-TheGameItself#7,LN6-TheGameItself,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+LN6-TheGameItself#14,LN6-TheGameItself,Back to the course,Opens,LN1-LearnHome,works
+LN6-TheGameItself#15,LN6-TheGameItself,Ask a question,Says,Ask opens. Try: “What is a goal kick at under 11?”,works
+LN6-TheGameItself#16,LN6-TheGameItself,All the rules,Says,Your competition’s rule sheet opens.,works
+LN6-TheGameItself#17,LN6-TheGameItself,Other shapes for 9 a side,Opens,LN6s-Shapes,works
+LN6-TheGameItself#18,LN6-TheGameItself,All 60,Opens,LN6w-AllWords,works
+LN6s-Shapes#7,LN6s-Shapes,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+LN6s-Shapes#14,LN6s-Shapes,Back,Opens,LN6-TheGameItself,works
+LN6s-Shapes#15,LN6s-Shapes,Use this on Saturday,Says,3-3-2 set for Saturday. Your turns plan is redrawn to fit.,works
+LN6s-Shapes#16,LN6s-Shapes,Use this on Saturday,Says,3-2-3 set for Saturday. Your turns plan is redrawn to fit.,works
+LN6s-Shapes#17,LN6s-Shapes,Use this on Saturday,Says,2-3-3 set for Saturday. Your turns plan is redrawn to fit.,works
+LN6w-AllWords#7,LN6w-AllWords,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+LN6w-AllWords#14,LN6w-AllWords,Back,Opens,LN6-TheGameItself,works
+LN6w-AllWords#15,LN6w-AllWords,Ask about a word,Says,Ask opens. Try: “What is a half-space?”,works
+LN7-YourProgress#7,LN7-YourProgress,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+LN7-YourProgress#14,LN7-YourProgress,Back to the course,Opens,LN1-LearnHome,works
+LN7-YourProgress#15,LN7-YourProgress,Rate yourself again,Says,Five quick ratings. About 30 seconds.,works
+LN7-YourProgress#16,LN7-YourProgress,Federation course near you · Sat 8 August · Wattle Creek Reserve · 3 hours,Opens,DT1-Courses,works
+LN7-YourProgress#17,LN7-YourProgress,"Ask Rachel to watch a session · A friendly visit. Two things that went well, one idea",Opens,CN6-Observation,works
+LN7-YourProgress#18,LN7-YourProgress,Share this page with my mentor · Off. Rachel sees nothing unless you turn this on [switch],Says,Share this page with my mentor: added.,works
+LN8-WhyWeTeachThis#7,LN8-WhyWeTeachThis,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+LN8-WhyWeTeachThis#14,LN8-WhyWeTeachThis,Back to the course,Opens,LN1-LearnHome,works
+LN9-ClubCoachLearning#7,LN9-ClubCoachLearning,Ask Clean Sheet,Opens,ASKd4-PanelFirst,"works: opens the Ask panel on the same screen (the director's existing Ask), not ASKd4 as a separate screen"
+LN9-ClubCoachLearning#8,LN9-ClubCoachLearning,Whole club,Opens,VS1-SwitchView,works
+LN9-ClubCoachLearning#13,LN9-ClubCoachLearning,Add a club film,Opens,EDU5-CoachCorner,works
+LN9-ClubCoachLearning#14,LN9-ClubCoachLearning,Save,Says,Saved. Coaches see the change on their next visit.,works
+LN9-ClubCoachLearning#15,LN9-ClubCoachLearning,"Ask every new coach to do “Keeping players safe” · By round 3. We remind them, not you [switch]",Says,Ask every new coach to do “Keeping players safe”: left out.,works
+LN9-ClubCoachLearning#16,LN9-ClubCoachLearning,Show club films first · Six films from your own coaches [switch],Says,Show club films first: left out.,works
+LN9-ClubCoachLearning#17,LN9-ClubCoachLearning,Offer a mentor · Rachel Moore. A coach chooses whether to share [switch],Says,Offer a mentor: left out.,works
+LNL11-Lesson#7,LNL11-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+LNL11-Lesson#14,LNL11-Lesson,Back,Opens,LN3m1-Module,works
+LNL11-Lesson#15,LNL11-Lesson,Add to Tuesday’s run sheet,Says,Added to your run sheet for Tuesday. It shows as a reminder at the right moment.,works
+LNL11-Lesson#16,LNL11-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
+LNL11-Lesson#17,LNL11-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL11-Lesson#18,LNL11-Lesson,Source 2,Opens,LN8-WhyWeTeachThis,works
+LNL11-Lesson#19,LNL11-Lesson,Source 8,Opens,LN8-WhyWeTeachThis,works
+LNL12-Lesson#7,LNL12-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+LNL12-Lesson#14,LNL12-Lesson,Back,Opens,LN3m1-Module,works
+LNL12-Lesson#15,LNL12-Lesson,Remind me,Says,We’ll remind you: before Tuesday.,works
+LNL12-Lesson#16,LNL12-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
+LNL13-Lesson#7,LNL13-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+LNL13-Lesson#14,LNL13-Lesson,Back,Opens,LN3m1-Module,works
+LNL13-Lesson#15,LNL13-Lesson,Add to Tuesday’s run sheet,Says,Added to your run sheet for Tuesday. It shows as a reminder at the right moment.,works
+LNL13-Lesson#16,LNL13-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
+LNL13-Lesson#17,LNL13-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL14-Lesson#7,LNL14-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+LNL14-Lesson#14,LNL14-Lesson,Back,Opens,LN3m1-Module,works
+LNL14-Lesson#15,LNL14-Lesson,Add to Tuesday’s run sheet,Says,Added to your run sheet for Tuesday. It shows as a reminder at the right moment.,works
+LNL14-Lesson#16,LNL14-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
+LNL14-Lesson#17,LNL14-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL15-Lesson#7,LNL15-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+LNL15-Lesson#14,LNL15-Lesson,Back,Opens,LN3m1-Module,works
+LNL15-Lesson#15,LNL15-Lesson,Add to Tuesday’s run sheet,Says,Added to your run sheet for Tuesday. It shows as a reminder at the right moment.,works
+LNL15-Lesson#16,LNL15-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
+LNL15-Lesson#17,LNL15-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL15-Lesson#18,LNL15-Lesson,Source 8,Opens,LN8-WhyWeTeachThis,works
+LNL21-Lesson#7,LNL21-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+LNL21-Lesson#14,LNL21-Lesson,Back,Opens,LN3m2-Module,works
+LNL21-Lesson#15,LNL21-Lesson,Remind me,Says,We’ll remind you: before Tuesday.,works
+LNL21-Lesson#16,LNL21-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
+LNL21-Lesson#17,LNL21-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL21-Lesson#18,LNL21-Lesson,Source 9,Opens,LN8-WhyWeTeachThis,works
+LNL22-Lesson#7,LNL22-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+LNL22-Lesson#14,LNL22-Lesson,Back,Opens,LN3m2-Module,works
+LNL22-Lesson#15,LNL22-Lesson,Remind me,Says,We’ll remind you: before Tuesday.,works
+LNL22-Lesson#16,LNL22-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
+LNL22-Lesson#17,LNL22-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL22-Lesson#18,LNL22-Lesson,Source 10,Opens,LN8-WhyWeTeachThis,works
+LNL23-Lesson#7,LNL23-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+LNL23-Lesson#14,LNL23-Lesson,Back,Opens,LN3m2-Module,works
+LNL23-Lesson#15,LNL23-Lesson,Remind me,Says,We’ll remind you: before Tuesday.,works
+LNL23-Lesson#16,LNL23-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
+LNL23-Lesson#17,LNL23-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL24-Lesson#7,LNL24-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+LNL24-Lesson#14,LNL24-Lesson,Back,Opens,LN3m2-Module,works
+LNL24-Lesson#15,LNL24-Lesson,Remind me,Says,We’ll remind you: before Tuesday.,works
+LNL24-Lesson#16,LNL24-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
+LNL24-Lesson#17,LNL24-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL24-Lesson#18,LNL24-Lesson,Source 11,Opens,LN8-WhyWeTeachThis,works
+LNL25-Lesson#7,LNL25-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+LNL25-Lesson#14,LNL25-Lesson,Back,Opens,LN3m2-Module,works
+LNL25-Lesson#15,LNL25-Lesson,Remind me,Says,We’ll remind you: before Tuesday.,works
+LNL25-Lesson#16,LNL25-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
+LNL25-Lesson#17,LNL25-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL25-Lesson#18,LNL25-Lesson,Source 11,Opens,LN8-WhyWeTeachThis,works
+LNL31-Lesson#7,LNL31-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+LNL31-Lesson#14,LNL31-Lesson,Back,Opens,LN3m3-Module,works
+LNL31-Lesson#15,LNL31-Lesson,Add to Tuesday’s run sheet,Says,Added to your run sheet for Tuesday. It shows as a reminder at the right moment.,works
+LNL31-Lesson#16,LNL31-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
+LNL31-Lesson#17,LNL31-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL31-Lesson#18,LNL31-Lesson,Tuesday 5:02 · 0:14,Says,The clip plays.,works
+LNL31-Lesson#19,LNL31-Lesson,Source 2,Opens,LN8-WhyWeTeachThis,works
+LNL31-Lesson#20,LNL31-Lesson,Source 8,Opens,LN8-WhyWeTeachThis,works
+LNL32-Lesson#7,LNL32-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+LNL32-Lesson#14,LNL32-Lesson,Back,Opens,LN3m3-Module,works
+LNL32-Lesson#15,LNL32-Lesson,Add to Tuesday’s run sheet,Says,Added to your run sheet for Tuesday. It shows as a reminder at the right moment.,works
+LNL32-Lesson#16,LNL32-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
+LNL32-Lesson#17,LNL32-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL32-Lesson#18,LNL32-Lesson,Tuesday 5:27 · 0:16,Says,The clip plays.,works
+LNL32-Lesson#19,LNL32-Lesson,Source 2,Opens,LN8-WhyWeTeachThis,works
+LNL32-Lesson#20,LNL32-Lesson,Source 3,Opens,LN8-WhyWeTeachThis,works
+LNL33-Lesson#7,LNL33-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+LNL33-Lesson#14,LNL33-Lesson,Back,Opens,LN3m3-Module,works
+LNL33-Lesson#15,LNL33-Lesson,Add to Tuesday’s run sheet,Says,Added to your run sheet for Tuesday. It shows as a reminder at the right moment.,works
+LNL33-Lesson#16,LNL33-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
+LNL33-Lesson#17,LNL33-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL33-Lesson#18,LNL33-Lesson,Source 3,Opens,LN8-WhyWeTeachThis,works
+LNL34-Lesson#7,LNL34-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+LNL34-Lesson#14,LNL34-Lesson,Back,Opens,LN3m3-Module,works
+LNL34-Lesson#15,LNL34-Lesson,Add to Tuesday’s run sheet,Says,Added to your run sheet for Tuesday. It shows as a reminder at the right moment.,works
+LNL34-Lesson#16,LNL34-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
+LNL34-Lesson#17,LNL34-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL34-Lesson#18,LNL34-Lesson,Source 8,Opens,LN8-WhyWeTeachThis,works
+LNL35-Lesson#7,LNL35-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+LNL35-Lesson#14,LNL35-Lesson,Back,Opens,LN3m3-Module,works
+LNL35-Lesson#15,LNL35-Lesson,Add to Tuesday’s run sheet,Says,Added to your run sheet for Tuesday. It shows as a reminder at the right moment.,works
+LNL35-Lesson#16,LNL35-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
+LNL35-Lesson#17,LNL35-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL35-Lesson#18,LNL35-Lesson,Tuesday 5:44 · 0:20,Says,The clip plays.,works
+LNL35-Lesson#19,LNL35-Lesson,Source 2,Opens,LN8-WhyWeTeachThis,works
+LNL41-Lesson#7,LNL41-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+LNL41-Lesson#14,LNL41-Lesson,Back,Opens,LN3-Module,works
+LNL41-Lesson#15,LNL41-Lesson,Add to Tuesday’s run sheet,Says,Added to your run sheet for Tuesday. It shows as a reminder at the right moment.,works
+LNL41-Lesson#16,LNL41-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
+LNL41-Lesson#17,LNL41-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL41-Lesson#18,LNL41-Lesson,Tuesday 5:18 · 1:05,Says,The clip plays.,works
+LNL41-Lesson#19,LNL41-Lesson,Source 3,Opens,LN8-WhyWeTeachThis,works
+LNL43-Lesson#7,LNL43-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+LNL43-Lesson#14,LNL43-Lesson,Back,Opens,LN3-Module,works
+LNL43-Lesson#15,LNL43-Lesson,Add to Tuesday’s run sheet,Says,Added to your run sheet for Tuesday. It shows as a reminder at the right moment.,works
+LNL43-Lesson#16,LNL43-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
+LNL43-Lesson#17,LNL43-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL43-Lesson#18,LNL43-Lesson,Source 4,Opens,LN8-WhyWeTeachThis,works
+LNL44-Lesson#7,LNL44-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+LNL44-Lesson#14,LNL44-Lesson,Back,Opens,LN3-Module,works
+LNL44-Lesson#15,LNL44-Lesson,Add to Tuesday’s run sheet,Says,Added to your run sheet for Tuesday. It shows as a reminder at the right moment.,works
+LNL44-Lesson#16,LNL44-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
+LNL44-Lesson#17,LNL44-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL44-Lesson#18,LNL44-Lesson,"Saturday, 31st minute · 0:09",Says,The clip plays.,works
+LNL44-Lesson#19,LNL44-Lesson,Source 5,Opens,LN8-WhyWeTeachThis,works
+LNL45-Lesson#7,LNL45-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+LNL45-Lesson#14,LNL45-Lesson,Back,Opens,LN3-Module,works
+LNL45-Lesson#15,LNL45-Lesson,Add to Tuesday’s run sheet,Says,Added to your run sheet for Tuesday. It shows as a reminder at the right moment.,works
+LNL45-Lesson#16,LNL45-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
+LNL45-Lesson#17,LNL45-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL45-Lesson#18,LNL45-Lesson,Source 3,Opens,LN8-WhyWeTeachThis,works
+LNL46-Lesson#7,LNL46-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+LNL46-Lesson#14,LNL46-Lesson,Back,Opens,LN3-Module,works
+LNL46-Lesson#15,LNL46-Lesson,Add to Tuesday’s run sheet,Says,Added to your run sheet for Tuesday. It shows as a reminder at the right moment.,works
+LNL46-Lesson#16,LNL46-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
+LNL46-Lesson#17,LNL46-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL46-Lesson#18,LNL46-Lesson,Source 6,Opens,LN8-WhyWeTeachThis,works
+LNL51-Lesson#7,LNL51-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+LNL51-Lesson#14,LNL51-Lesson,Back,Opens,LN3m5-Module,works
+LNL51-Lesson#15,LNL51-Lesson,Add to Saturday’s run sheet,Says,Added to your run sheet for Saturday. It shows as a reminder at the right moment.,works
+LNL51-Lesson#16,LNL51-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
+LNL51-Lesson#17,LNL51-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL51-Lesson#18,LNL51-Lesson,Source 6,Opens,LN8-WhyWeTeachThis,works
+LNL52-Lesson#7,LNL52-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+LNL52-Lesson#14,LNL52-Lesson,Back,Opens,LN3m5-Module,works
+LNL52-Lesson#15,LNL52-Lesson,Add to Saturday’s run sheet,Says,Added to your run sheet for Saturday. It shows as a reminder at the right moment.,works
+LNL52-Lesson#16,LNL52-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
+LNL52-Lesson#17,LNL52-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL52-Lesson#18,LNL52-Lesson,Source 5,Opens,LN8-WhyWeTeachThis,works
+LNL53-Lesson#7,LNL53-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+LNL53-Lesson#14,LNL53-Lesson,Back,Opens,LN3m5-Module,works
+LNL53-Lesson#15,LNL53-Lesson,Add to Saturday’s run sheet,Says,Added to your run sheet for Saturday. It shows as a reminder at the right moment.,works
+LNL53-Lesson#16,LNL53-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
+LNL53-Lesson#17,LNL53-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL53-Lesson#18,LNL53-Lesson,"Saturday, 8th to 9th minute · 0:40",Says,The clip plays.,works
+LNL53-Lesson#19,LNL53-Lesson,Source 5,Opens,LN8-WhyWeTeachThis,works
+LNL54-Lesson#7,LNL54-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+LNL54-Lesson#14,LNL54-Lesson,Back,Opens,LN3m5-Module,works
+LNL54-Lesson#15,LNL54-Lesson,Add to Saturday’s run sheet,Says,Added to your run sheet for Saturday. It shows as a reminder at the right moment.,works
+LNL54-Lesson#16,LNL54-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
+LNL54-Lesson#17,LNL54-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL54-Lesson#18,LNL54-Lesson,Source 4,Opens,LN8-WhyWeTeachThis,works
+LNL55-Lesson#7,LNL55-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+LNL55-Lesson#14,LNL55-Lesson,Back,Opens,LN3m5-Module,works
+LNL55-Lesson#15,LNL55-Lesson,Add to Saturday’s run sheet,Says,Added to your run sheet for Saturday. It shows as a reminder at the right moment.,works
+LNL55-Lesson#16,LNL55-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
+LNL55-Lesson#17,LNL55-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL55-Lesson#18,LNL55-Lesson,Source 5,Opens,LN8-WhyWeTeachThis,works
+LNL61-Lesson#7,LNL61-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+LNL61-Lesson#14,LNL61-Lesson,Back,Opens,LN3m6-Module,works
+LNL61-Lesson#15,LNL61-Lesson,Remind me,Says,We’ll remind you: this week.,works
+LNL61-Lesson#16,LNL61-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
+LNL61-Lesson#17,LNL61-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL62-Lesson#7,LNL62-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+LNL62-Lesson#14,LNL62-Lesson,Back,Opens,LN3m6-Module,works
+LNL62-Lesson#15,LNL62-Lesson,Add to Saturday’s run sheet,Says,Added to your run sheet for Saturday. It shows as a reminder at the right moment.,works
+LNL62-Lesson#16,LNL62-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
+LNL62-Lesson#17,LNL62-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL62-Lesson#18,LNL62-Lesson,Source 5,Opens,LN8-WhyWeTeachThis,works
+LNL63-Lesson#7,LNL63-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+LNL63-Lesson#14,LNL63-Lesson,Back,Opens,LN3m6-Module,works
+LNL63-Lesson#15,LNL63-Lesson,Remind me,Says,We’ll remind you: this week.,works
+LNL63-Lesson#16,LNL63-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
+LNL63-Lesson#17,LNL63-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL64-Lesson#7,LNL64-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+LNL64-Lesson#14,LNL64-Lesson,Back,Opens,LN3m6-Module,works
+LNL64-Lesson#15,LNL64-Lesson,Remind me,Says,We’ll remind you: when it comes up.,works
+LNL64-Lesson#16,LNL64-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
+LNL64-Lesson#17,LNL64-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNp1-LessonPhone#1,LNp1-LessonPhone,Back,Opens,LN1-LearnHome,works
+LNp1-LessonPhone#2,LNp1-LessonPhone,Ask Clean Sheet,Opens,ASKp2-PhoneAskOpen,works
+LNp1-LessonPhone#3,LNp1-LessonPhone,Watch · 2:15,Says,The film plays: 2 minutes 15.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
+LNp1-LessonPhone#4,LNp1-LessonPhone,Run sheet,Opens,GS3-RunSheet,works
+LNp1-LessonPhone#5,LNp1-LessonPhone,Got it,Says,Good luck tonight. We’ll ask how it went at 6:15.,works
+LNp2-HowItWentPhone#1,LNp2-HowItWentPhone,Back,Opens,LN1-LearnHome,works
+LNp2-HowItWentPhone#2,LNp2-HowItWentPhone,Ask Clean Sheet,Opens,ASKp2-PhoneAskOpen,works
+LNp2-HowItWentPhone#3,LNp2-HowItWentPhone,Yes [radio],Says,Yes: taken off.,works
+LNp2-HowItWentPhone#4,LNp2-HowItWentPhone,Sort of [radio],Says,Sort of: picked.,works
+LNp2-HowItWentPhone#5,LNp2-HowItWentPhone,Didn’t get to it [radio],Says,Didn’t get to it: picked.,works
+LNp2-HowItWentPhone#6,LNp2-HowItWentPhone,They answered [radio],Says,They answered: picked.,works
+LNp2-HowItWentPhone#7,LNp2-HowItWentPhone,Silence [radio],Says,Silence: taken off.,works
+LNp2-HowItWentPhone#8,LNp2-HowItWentPhone,The same two answered [radio],Says,The same two answered: picked.,works
+LNp2-HowItWentPhone#9,LNp2-HowItWentPhone,I answered for them [radio],Says,I answered for them: picked.,works
+LNp2-HowItWentPhone#10,LNp2-HowItWentPhone,1 [radio],Says,How did it feel? 1 of 5.,works
+LNp2-HowItWentPhone#11,LNp2-HowItWentPhone,2 [radio],Says,How did it feel? 2 of 5.,works
+LNp2-HowItWentPhone#12,LNp2-HowItWentPhone,3 [radio],Says,How did it feel? 3 of 5.,works
+LNp2-HowItWentPhone#13,LNp2-HowItWentPhone,4 [radio],Says,How did it feel? 4 of 5.,works
+LNp2-HowItWentPhone#14,LNp2-HowItWentPhone,5 [radio],Says,How did it feel? 5 of 5.,works
+LNp2-HowItWentPhone#15,LNp2-HowItWentPhone,Skip,Says,Skipped. We won’t ask again for this session.,works
+LNp2-HowItWentPhone#16,LNp2-HowItWentPhone,Save,Says,Saved. Next week: “Wait for the answer”.,works

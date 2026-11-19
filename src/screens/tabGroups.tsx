@@ -20,7 +20,7 @@ const SETS: Set[] = [
   // director and coordinator: Teams
   [['Teams', ['All teams', 'Seniors', 'Girls']], ['Fixtures', ['Fixtures', 'League sync', 'Referees', 'Cards']], ['Results', ['Chances and points', 'Grading']]],
   // director and coordinator: Coaches
-  [['Coaches', ['All coaches', 'Coach load', 'Goalkeepers']], ['Development', ['Observations', 'Training and courses', 'Coach meetings']], ['Drills', ['Suggestion sources', 'Club drill library']]],
+  [['Coaches', ['All coaches', 'Coach load', 'Goalkeepers']], ['Development', ['Observations', 'Training and courses', 'Coach meetings', 'Coach learning']], ['Drills', ['Suggestion sources', 'Club drill library']]],
   // director and coordinator: Players
   [['Development', ['Goals', 'Growth and load', 'Fair game time', 'Girls and women']], ['Joining and moving', ['Registrations', 'Playing across', 'Moves', 'Trials']]],
 ]

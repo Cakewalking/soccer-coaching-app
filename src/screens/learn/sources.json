@@ -1,0 +1,106 @@
+{
+ "sources": [
+  {
+   "n": 1,
+   "does": "Asks where you are starting, and adds “The game itself” if you never played.",
+   "found": "A coach’s confidence has four parts: motivating players, game strategy, teaching technique and building character. Confidence predicted how coaches behaved and how satisfied players were. A later study of 395 youth coaches found playing experience predicted confidence in strategy and technique.",
+   "limit": "Mostly school and college coaches in the United States. A link, not proof of cause.",
+   "ref": "Feltz, Chase, Moritz & Sullivan (1999). Journal of Educational Psychology, 91(4), 765–776. Second finding: Michigan State University thesis using the same scale.",
+   "safety": false
+  },
+  {
+   "n": 2,
+   "does": "Builds sessions around games, and teaches you to run them.",
+   "found": "Across 70 sessions by 25 youth soccer coaches, about 65% of time went on drills and fitness and 35% on game-like play, the kind judged more relevant to matches.",
+   "limit": "English coaches, many in academies. It shows what coaches do, not what works best for under-11s in a community club.",
+   "ref": "Ford, Yates & Williams (2010). Journal of Sports Sciences, 28(5), 483–495.",
+   "safety": false
+  },
+  {
+   "n": 3,
+   "does": "Lesson “Say less”.",
+   "found": "Observations of youth sessions found players inactive, listening to the coach, for roughly 30% of the session.",
+   "limit": "One line of studies, reported in a 2022 review. Sessions and ages varied.",
+   "ref": "O’Connor, Larkin & Williams (2018), as reported in Frontiers in Sports and Active Living (2022), 4:957086.",
+   "safety": false
+  },
+  {
+   "n": 4,
+   "does": "Lessons on asking questions and waiting.",
+   "found": "Youth soccer coaches ask mostly closed questions. A close study of five academy coaches found questions were used to check for a quick right answer more than to make players think.",
+   "limit": "Small studies of professional academy coaches.",
+   "ref": "Cope, Partington, Cushion & Harvey (2016). Qualitative Research in Sport, Exercise and Health, 8(4), 380–393.",
+   "safety": false
+  },
+  {
+   "n": 5,
+   "does": "Lessons on praise and on mistakes.",
+   "found": "Children whose coaches had a short workshop on encouragement and effort were far more likely to come back: 5% did not return the next season, against 26% for untrained coaches. A later trial found lower anxiety across a season.",
+   "limit": "Baseball and basketball in the United States, decades ago. Small numbers of coaches.",
+   "ref": "Barnett, Smoll & Smith (1992). The Sport Psychologist, 6(2), 111–127. Smith, Smoll & Cumming (2007). Journal of Sport and Exercise Psychology, 29(1), 39–59.",
+   "safety": false
+  },
+  {
+   "n": 6,
+   "does": "Every lesson ends in something to try at your own session.",
+   "found": "Coaches take up new ideas when they can test them in their own setting and see that they work. Ideas that don’t fit what they already believe or do tend to be dropped.",
+   "limit": "An interview study of 25 English youth soccer coaches.",
+   "ref": "Stodter & Cushion (2017). Qualitative Research in Sport, Exercise and Health, 9(3), 321–338.",
+   "safety": false
+  },
+  {
+   "n": 7,
+   "does": "Two taps straight after training, plus what your players said.",
+   "found": "Coaches have limited awareness of how they actually coach. What they say they do and what observers record often differ.",
+   "limit": "Elite youth coaches in England.",
+   "ref": "Partington & Cushion (2013). Scandinavian Journal of Medicine & Science in Sports, 23(3), 374–382.",
+   "safety": false
+  },
+  {
+   "n": 8,
+   "does": "Uses the session shapes and age phases your federation uses.",
+   "found": "Under 6 to 9: discovery. Under 10 to 13: skill acquisition. Under 14 to 17: game training. Each has its own session parts.",
+   "limit": "A curriculum, not a research finding.",
+   "ref": "Football Federation Australia. The National Football Curriculum: the roadmap to international success.",
+   "safety": false
+  },
+  {
+   "n": 9,
+   "does": "Lesson “Head knocks”, and the head-knock log.",
+   "found": "For under-19s and all community sport: 14 days free of symptoms before contact training, and at least 21 days from the concussion before a game.",
+   "limit": "Minimums. A doctor decides for each player.",
+   "ref": "Australian Institute of Sport (2024). Australian Concussion Guidelines for Youth and Community Sport.",
+   "safety": true
+  },
+  {
+   "n": 10,
+   "does": "Lesson “Heat, storms and bad air”.",
+   "found": "Heat risk is worked out from temperature and humidity together, with set actions at each level. Football on grass is in sport risk class 3.",
+   "limit": "Your federation’s own heat policy is the rule on the day.",
+   "ref": "Sports Medicine Australia. Extreme Heat Policy (2021), and Extreme Heat Risk and Response Guidelines and web tool (2025).",
+   "safety": true
+  },
+  {
+   "n": 11,
+   "does": "Lessons “Being a safe adult” and “When something worries you”.",
+   "found": "National principles for organisations that work with children, and your state’s Working with Children Check.",
+   "limit": "A framework and the law, not research. Your club’s safeguarding policy sets the detail.",
+   "ref": "National Principles for Child Safe Organisations (Australian Human Rights Commission; endorsed by Australian governments in 2019).",
+   "safety": true
+  }
+ ],
+ "tail": [
+  [
+   "What is ours, not research",
+   "The six modules, the order, one lesson a week and six weeks between self-ratings are our choices."
+  ],
+  [
+   "What we don’t know yet",
+   "Whether this course makes community coaches more confident, or players happier. We will measure both in the first clubs and publish it here."
+  ],
+  [
+   "Not a qualification",
+   "It sits beside your federation’s courses and does not replace them."
+  ]
+ ]
+}

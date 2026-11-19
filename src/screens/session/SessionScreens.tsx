@@ -9,10 +9,11 @@ const AMBER = '#f4c95d'   // proof figures marked Strong, and nothing else
 import { Page, col } from '../capture/CaptureScreens'
 import { playClips } from '../clips/clipSheet'
 import { TEAMS, ABOUT, TAG, menu, size, groups, proposeSession, whatChanged, kit, type Chip, type Drill, type Level, type Part, type Player, type Session, type Team, type TeamKey } from './sessionEngine'
+import { useCoach } from '../learn/course'
 import { useSession, setSession, setTeam, present, counts, sessionFor, type Answer, type SessionState } from './sessionStore'
 
 export type Go = (target: string) => void
-export interface GsProps { s: SessionState; k: TeamKey; go: Go; say: (m: string) => void; part: number; setPart: (i: number) => void; /** start the session at the pitch, where the app has a pitch-side mode */ start?: () => void }
+export interface GsProps { s: SessionState; k: TeamKey; go: Go; say: (m: string) => void; part: number; setPart: (i: number) => void; /** a club the visitor is building: nothing has happened yet */ isNew?: boolean; /** start the session at the pitch, where the app has a pitch-side mode */ start?: () => void }
 const LEVEL_NAME: Record<Level, string> = { new: 'New to coaching', some: 'A few seasons in', experienced: 'Experienced' }
 const day = (t: Team) => t.day.startsWith('Tue') ? 'Tuesday' : 'Thursday'
 const ICON: Record<Chip['kind'], string> = {
@@ -184,6 +185,12 @@ function useGroups(k: TeamKey, s: SessionState, ses: Session) {
   return out
 }
 const names = (g: Player[]) => g.map(p => p.name).join(', ')
+/** One thing to try from Learn to coach, added to this run sheet by the coach. Only the coach sees it. */
+function LearnReminders({ k }: { k: TeamKey }) {
+  const c = useCoach(k), mine = Object.entries(c.reminders).filter(([id, v]) => id !== 'shape' && /^\d+:\d\d · /.test(v))
+  if (!mine.length) return null
+  return <div data-learn-reminders="" style={{ borderTop: `1px solid ${LINE}`, padding: '8px 0 10px', display: 'flex', flexDirection: 'column', gap: 4 }}><span style={label}>To try, from Learn to coach</span>{mine.map(([id, v]) => <span key={id} style={{ fontSize: 14, lineHeight: '20px' }}><strong>{v.split(' · ')[0]}</strong> · {v.split(' · ').slice(1).join(' · ')}</span>)}</div>
+}
 export function GS3RunSheet({ s, k, go, say, start }: GsProps) {
   const t = TEAMS[k], ts = s.teams[k], ses = sessionFor(s, k), gs = useGroups(k, s, ses), kt = kit(ses)
   const [edit, setEdit] = useState(false), [pick, setPick] = useState<string | null>(null)
@@ -206,6 +213,7 @@ export function GS3RunSheet({ s, k, go, say, start }: GsProps) {
       right={<>{start && <Btn big onClick={start}>Start session</Btn>}<Btn big onClick={() => { say('The run sheet is ready to print on one page.'); setTimeout(() => window.print(), 300) }}>Print</Btn><Btn primary big aria-pressed={ts.phone} onClick={() => { setTeam(k, { phone: true }); say(`Sent. It opens from your phone’s Home at ${ses.parts[0].at.replace(/:(\d\d)$/, (_, m) => `:${String(Math.max(0, Number(m) - 30)).padStart(2, '0')}`).replace(/^(\d+):(\d\d)$/, (_, h, m) => Number(m) === 0 && ses.parts[0].at.endsWith(':00') ? `${Number(h) - 1}:30` : `${h}:${m}`)} on ${day(t)}.`) }}>{ts.phone ? 'On your phone' : 'Send to my phone'}</Btn></>}>
       <section aria-label="What happens when" style={{ ...tile, gap: 0, padding: '14px 18px 6px' }}>
         <h2 style={{ ...h2, paddingBottom: 8 }}>What happens when</h2>
+        <LearnReminders k={k} />
         {ses.parts.map((p, i) => (
           <div key={i} style={{ display: 'grid', gridTemplateColumns: '62px 150px minmax(0,1fr)', gap: 14, alignItems: 'center', padding: '10px 0', borderTop: `1px solid ${LINE}` }}>
             <strong style={{ fontSize: 17, fontVariantNumeric: 'tabular-nums' }}>{p.at}</strong><Picture drill={p.drill} />

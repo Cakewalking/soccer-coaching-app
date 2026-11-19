@@ -1,3 +1,5 @@
+import { isLearnId } from '../session/SessionTab'
+import { openLearn } from '../learn/course'
 import { useBackState } from '../../backState'
 import { openThing } from '../openThing'
 import { useState, useEffect } from 'react'
@@ -732,7 +734,7 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
   const [trainingTab, setTrainingTab] = useBackState<TrainingTab>(initialScreen && GS_TRAIN[initialScreen] ? GS_TRAIN[initialScreen] : 'session')
   const [gsView, setGsView] = useBackState(initialScreen && GS_TRAIN[initialScreen] === 'session' && initialScreen.startsWith('GS') ? initialScreen : 'GS1-ProposedSession')
   // The justified session lives under Training. Its screens move between the tabs; anything else opens over the app.
-  const gsNav = (t: string) => { const tab = GS_TRAIN[t]; if (tab) { setNav('training'); setTrainingTab(tab); if (tab === 'session') setGsView(t.startsWith('GS') ? t : 'GS1-ProposedSession') } else if (isScreenId(t)) setLayer(t) }
+  const gsNav = (t0: string) => { let t = t0; if (isLearnId(t)) { openLearn(t); t = 'GS8-WelcomeCourse' } const tab = GS_TRAIN[t]; if (tab) { setNav('training'); setTrainingTab(tab); if (tab === 'session') setGsView(t.startsWith('GS') ? t : 'GS1-ProposedSession') } else if (isScreenId(t)) setLayer(t) }
   const [recordView, setRecordView] = useState<RecordView>('start')
   const [askOpen, setAskOpen]       = useBackState(false)
   const [filOpen, setFilOpen]       = useState<MrFile | null>(null)
@@ -887,7 +889,7 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
     else if (trainingTab === 'runsheet') content = gs('GS3-RunSheet')
     else if (trainingTab === 'coming')   content = gs('GS4-ResizeAttendance')
     else if (trainingTab === 'season')   content = gs('GS7-SeasonLookBack')
-    else if (trainingTab === 'learn')    content = gs('GS8-WelcomeCourse')
+    else if (trainingTab === 'learn')    content = <SessionTab id="GS8-WelcomeCourse" team="u9" onNav={gsNav} />   // the course needs nothing set up
     else if (trainingTab === 'week')    content = <WeekMiniRoos empty={empty} onTonight={() => setTrainingTab('session')} />
     else if (trainingTab === 'library') content = <GamesLibraryMiniRoos empty={empty} />
   } else if (nav === 'squad') {

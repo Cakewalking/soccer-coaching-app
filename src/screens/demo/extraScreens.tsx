@@ -1,3 +1,4 @@
+import LearnPhone from '../learn/LearnPhone'
 import { useState, type ReactNode } from 'react'
 import DemoStart from './DemoStart'
 import DemoStartEmpty from './DemoStartEmpty'
@@ -104,9 +105,11 @@ export function renderExtraScreen(key: string): ReactNode | undefined {
   }
   if (key in cnPhone) return <div style={{ display: 'flex', justifyContent: 'center' }}>{cnPhone[key]}</div>
   // The justified session (18 Nov): coach screens in U11 Luke's frame, as drawn; the director's sources; the parent's films.
-  if (/^GS(1|2|3|4|5|6|7|8)-/.test(key)) return <SessionFramed start={key} />
+  if (/^GS(1|2|3|4|5|6|7|8)-/.test(key) || (/^LN(\d|L\d)/.test(key) && !key.startsWith('LN9'))) return <SessionFramed start={key} />
   // Club colours: the setting screen in its four states, and the boards that show the theme at other clubs.
   if (/^KC(1|1c|1e|3|4)-/.test(key)) return <ClubAdminScreen role="dof" initials="RM" initialTab="club" initialSub={key} />
+  if (key === 'LN9-ClubCoachLearning') return <ClubAdminScreen role="dof" initials="RM" initialTab="coaches" initialSub="learning" />
+  if (key === 'LNp1-LessonPhone' || key === 'LNp2-HowItWentPhone') return <LearnPhone start={key} />
   if (key === 'KC2-FiveClubs') return <KC2FiveClubs />
   if (isSessionBoard(key)) return <KCSession id={key} />
   if (key === 'KC8-ReportClubColours') return <KC8Report />

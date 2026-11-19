@@ -3,7 +3,7 @@ import { useBackState } from '../../backState'
 // In the live apps the same screens sit under each coach's own Training tab.
 
 import CoachTabletFrame from '../CoachTabletFrame'
-import SessionTab from './SessionTab'
+import SessionTab, { isLearnId } from './SessionTab'
 
 export const NAV = [
   { id: 'home', label: 'Home', icon: 'M4 11l8-7 8 7v9H4z', to: 'MS5-HomeMiniRoosSame' }, { id: 'squad', label: 'Squad', icon: 'M9 11a3 3 0 100-6 3 3 0 000 6zM3 20c0-4 3-6 6-6s6 2 6 6M16 11a3 3 0 100-6M21 20c0-3-2-5-4-5.5', to: 'HM2-SquadMiniRoos' },
@@ -15,10 +15,10 @@ const UNDER: Record<string, number> = { 'GS1-ProposedSession': 0, 'GS2-DrillWhy'
 
 export default function SessionFramed({ start, onNav }: { start: string; onNav?: (s: string) => void }) {
   const [id, setId] = useBackState(start)
-  const go = (t: string) => { if (t in UNDER) setId(t); else onNav?.(t) }
+  const go = (t: string) => { if (t in UNDER || isLearnId(t)) setId(t); else onNav?.(t) }
   return (
     <div style={{ width: 1180, margin: '0 auto', background: 'var(--surface-100)' }}>
-      <CoachTabletFrame navTabs={NAV} activeNav="training" onNav={n => go(NAV.find(x => x.id === n)?.to ?? 'GS1-ProposedSession')} subTabs={TABS.map(t => t[0])} activeSubTabIndex={UNDER[id] ?? 0} onSubTab={i => go(TABS[i][1])}
+      <CoachTabletFrame navTabs={NAV} activeNav="training" onNav={n => go(NAV.find(x => x.id === n)?.to ?? 'GS1-ProposedSession')} subTabs={TABS.map(t => t[0])} activeSubTabIndex={isLearnId(id) ? 5 : UNDER[id] ?? 0} onSubTab={i => go(TABS[i][1])}
         roleChip="Coach · MiniRoos" teamLabel="U11 Luke · Wattle Creek" onTeam={() => onNav?.('VS1-SwitchView')} avatarLetters="LF" showAsk={false}>
         <SessionTab id={id} team="u11" onNav={go} />
       </CoachTabletFrame>

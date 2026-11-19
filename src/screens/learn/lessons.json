@@ -1,0 +1,1362 @@
+{
+ "course": "Your first season as a coach",
+ "modules": [
+  {
+   "number": 1,
+   "title": "Before your first session",
+   "summary": "Walk on to the pitch with a plan",
+   "outcome": "You can walk on to the pitch knowing what happens in each of the 60 minutes, and why.",
+   "why": [
+    {
+     "text": "Across 70 sessions by 25 youth soccer coaches, about two-thirds of the time went on drills and fitness, and a third on game-like play.",
+     "source": 2
+    },
+    {
+     "text": "Your federation’s curriculum builds every session for this age around games.",
+     "source": 8
+    }
+   ],
+   "leave_with": "A session you can read in one minute, a set-up you do once, and a plan B.",
+   "own_team_tiles": [
+    "Session plans opened before training",
+    "Minutes from arrival to first game"
+   ],
+   "lessons": [
+    {
+     "id": "1.1",
+     "screen": "LNL11-Lesson",
+     "title": "What a good session looks like at this age",
+     "one_line": "Busy, lots of touches, ends with a game",
+     "minutes": 5,
+     "idea": "A good session is one where every child is moving with a ball for most of the hour. Games do that. Queues do not.",
+     "steps": [
+      "Start with a game as they arrive.",
+      "Play two short games on one idea.",
+      "Finish with a real game."
+     ],
+     "words_to_use": [
+      "Grab a ball and join in.",
+      "Same game, one new rule.",
+      "Last game. Go and play."
+     ],
+     "instead_of": "Laps. Lines. Long talks.",
+     "try_when": "Tuesday",
+     "try_at": "Three times in the hour",
+     "try_task": "Look up and count how many players are standing still. Do it at 5:10, 5:30 and 5:50.",
+     "answers": [
+      {
+       "answer": "Hardly anyone standing",
+       "then": "Carry on in order"
+      },
+      {
+       "answer": "A few queues",
+       "then": "“Keeping everyone busy” moves up to next week"
+      },
+      {
+       "answer": "Lots standing",
+       "then": "“Keeping everyone busy” next, with your own session picked apart"
+      }
+     ],
+     "own_team_clip": null,
+     "film_brief": "Three 20-second looks at one real under-11 session: the arrival game, the middle, the final game. Wide shot. A counter on screen shows how many players are moving.",
+     "sources": [
+      2,
+      8
+     ]
+    },
+    {
+     "id": "1.2",
+     "screen": "LNL12-Lesson",
+     "title": "How to read your session in Clean Sheet",
+     "one_line": "The why, the set-up, what to say",
+     "minutes": 4,
+     "idea": "Each part of your session has a reason, a picture and a few words to say. Read them in that order and you are ready.",
+     "steps": [
+      "Read the “Why” for each part.",
+      "Look at the set-up picture and the kit list.",
+      "Pick one thing to say and one thing to look for."
+     ],
+     "words_to_use": [],
+     "instead_of": "",
+     "try_when": "Before Tuesday",
+     "try_at": "Your run sheet",
+     "try_task": "Open Tuesday’s run sheet and say the “Why” for each part out loud, in one sentence each.",
+     "answers": [
+      {
+       "answer": "All clear",
+       "then": "Carry on in order"
+      },
+      {
+       "answer": "One part I didn’t get",
+       "then": "That drill’s full explanation opens"
+      },
+      {
+       "answer": "Didn’t open it",
+       "then": "A reminder two hours before training"
+      }
+     ],
+     "own_team_clip": null,
+     "film_brief": "A screen recording of one real proposed session with a coach’s voice reading it as they would in the car park. No presenter on camera.",
+     "sources": []
+    },
+    {
+     "id": "1.3",
+     "screen": "LNL13-Lesson",
+     "title": "Setting up before the players arrive",
+     "one_line": "Cones once, not four times",
+     "minutes": 5,
+     "idea": "If you lay out the biggest area first and build the smaller ones inside it, you set up once and never stop the session to move cones.",
+     "steps": [
+      "Arrive ten minutes early.",
+      "Mark the game pitch first, then the squares inside it.",
+      "Balls and bibs in one pile by the gate."
+     ],
+     "words_to_use": [
+      "Balls are by the gate. Grab one."
+     ],
+     "instead_of": "Setting up each game while they wait.",
+     "try_when": "Tuesday",
+     "try_at": "4:50, before they arrive",
+     "try_task": "Lay out the final game pitch and both squares before 5:00. Don’t move a cone until the game.",
+     "answers": [
+      {
+       "answer": "Set up once",
+       "then": "Carry on in order"
+      },
+      {
+       "answer": "Had to move things",
+       "then": "A one-page set-up picture is added to your run sheets"
+      },
+      {
+       "answer": "Ran out of time",
+       "then": "Your sessions are proposed with a simpler set-up for three weeks"
+      }
+     ],
+     "own_team_clip": null,
+     "film_brief": "Overhead or high-angle time-lapse of a coach laying out one pitch with two squares inside it, in under four minutes. Captions name each step.",
+     "sources": []
+    },
+    {
+     "id": "1.4",
+     "screen": "LNL14-Lesson",
+     "title": "Your first two minutes",
+     "one_line": "Names, one signal, straight into a game",
+     "minutes": 5,
+     "idea": "Children decide in the first two minutes whether tonight is fun. Greet them by name, give one signal, and get them playing.",
+     "steps": [
+      "Say hello to each player by name at the gate.",
+      "Teach one signal: hand up means ball under your foot.",
+      "First game running inside two minutes."
+     ],
+     "words_to_use": [
+      "Hi Ari. Grab a ball.",
+      "When my hand goes up, ball under your foot.",
+      "Off you go."
+     ],
+     "instead_of": "Waiting for everyone before you start.",
+     "try_when": "Tuesday",
+     "try_at": "5:00, as they arrive",
+     "try_task": "Use the hand-up signal three times in the arrival game. Wait until every ball is still before you speak.",
+     "answers": [
+      {
+       "answer": "They all stopped",
+       "then": "Carry on in order"
+      },
+      {
+       "answer": "Some did",
+       "then": "A tip is added to next week’s run sheet"
+      },
+      {
+       "answer": "It was chaos",
+       "then": "“Getting their attention without shouting” moves up to next week"
+      }
+     ],
+     "own_team_clip": null,
+     "film_brief": "A real coach at the gate greeting players by name, then the hand-up signal working. Shot from behind the coach so we see the players’ response.",
+     "sources": []
+    },
+    {
+     "id": "1.5",
+     "screen": "LNL15-Lesson",
+     "title": "When it is not working",
+     "one_line": "Make it easier, make it harder, or move on",
+     "minutes": 5,
+     "idea": "Every game can be changed in three ways: the space, the numbers or one rule. If a change doesn’t fix it, move on. That is not failing.",
+     "steps": [
+      "Watch for two minutes before you change anything.",
+      "Change one thing: space, numbers or a rule.",
+      "Still not working? Go to the next game."
+     ],
+     "words_to_use": [
+      "Same game, bigger square.",
+      "Now you only get two touches.",
+      "Good effort. Next game."
+     ],
+     "instead_of": "Stopping to explain it again, slower.",
+     "try_when": "Tuesday",
+     "try_at": "Any part of the session",
+     "try_task": "Use the “too hard” or “too easy” line from your run sheet on one game, even if it is going fine.",
+     "answers": [
+      {
+       "answer": "Made it easier and it worked",
+       "then": "Carry on in order"
+      },
+      {
+       "answer": "Made it harder and it worked",
+       "then": "Carry on in order"
+      },
+      {
+       "answer": "Moved on",
+       "then": "That drill is swapped out of your suggestions for a month"
+      },
+      {
+       "answer": "Didn’t need to",
+       "then": "We ask again next week"
+      }
+     ],
+     "own_team_clip": null,
+     "film_brief": "One keep-ball game failing, then the same game with a bigger square working. Split screen before and after, 15 seconds each.",
+     "sources": [
+      8
+     ]
+    }
+   ]
+  },
+  {
+   "number": 2,
+   "title": "Keeping players safe",
+   "summary": "Head knocks, heat, injuries, who to tell",
+   "outcome": "You know what to do, and who to tell, when a child is hurt or something worries you.",
+   "why": [
+    {
+     "text": "Australian guidelines say a child with a suspected concussion sits out, and does not play a game for at least 21 days.",
+     "source": 9
+    },
+    {
+     "text": "Your club asks every new coach to finish this module by round 3.",
+     "source": null
+    }
+   ],
+   "leave_with": "The head-knock rule, your club’s heat rule, and the name and number of your welfare officer, saved to your phone.",
+   "own_team_tiles": [
+    "Your Working with Children Check",
+    "Emergency contacts on file"
+   ],
+   "lessons": [
+    {
+     "id": "2.1",
+     "screen": "LNL21-Lesson",
+     "title": "Head knocks: if in doubt, sit them out",
+     "one_line": "Off straight away, and no game for at least 21 days",
+     "minutes": 6,
+     "idea": "You don’t have to decide whether it is a concussion. If a player takes a knock to the head and anything seems off, they stop for the day and a doctor decides.",
+     "steps": [
+      "Take them off straight away. They don’t go back on today.",
+      "Tell the parent and log it in the app.",
+      "They need 14 days with no symptoms before contact training, and at least 21 days before a game."
+     ],
+     "words_to_use": [
+      "You’re sitting out now. That’s my call, not yours.",
+      "It may be nothing. The rule is that a doctor checks first."
+     ],
+     "instead_of": "“Shake it off.” “See how you feel in five minutes.”",
+     "try_when": "Before Tuesday",
+     "try_at": "In the app",
+     "try_task": "Find “Log a head knock” on your phone and find out who your club’s first-aider is.",
+     "answers": [
+      {
+       "answer": "Found both",
+       "then": "Carry on in order"
+      },
+      {
+       "answer": "I don’t know our first-aider",
+       "then": "A message to your club is drafted for you"
+      },
+      {
+       "answer": "Not yet",
+       "then": "A reminder before Saturday’s game"
+      }
+     ],
+     "own_team_clip": null,
+     "film_brief": "A club first-aider and a coach walking through a staged sideline moment with an adult standing in for the player. Calm tone. The three steps on screen.",
+     "sources": [
+      9
+     ]
+    },
+    {
+     "id": "2.2",
+     "screen": "LNL22-Lesson",
+     "title": "Heat, storms and bad air",
+     "one_line": "Check before you leave home",
+     "minutes": 5,
+     "idea": "Heat risk depends on temperature and humidity together. Sports Medicine Australia publishes a tool for it and your federation sets the rule. Your job is to check and follow it.",
+     "steps": [
+      "Check the heat rating for your ground before you leave.",
+      "Do what it says: more breaks and shade, a shorter session, or stop.",
+      "Thunder or lightning: everyone off, and follow your federation’s rule to restart."
+     ],
+     "words_to_use": [
+      "Drinks break. Everyone, now.",
+      "We’re finishing early today. It’s too hot to be fair on you."
+     ],
+     "instead_of": "Pushing on because parents drove a long way.",
+     "try_when": "Before Tuesday",
+     "try_at": "On your phone",
+     "try_task": "Open your club’s heat rule from the Home screen and add a drinks break to Tuesday’s run sheet.",
+     "answers": [
+      {
+       "answer": "Done",
+       "then": "Carry on in order"
+      },
+      {
+       "answer": "Couldn’t find our rule",
+       "then": "Your director is told a coach couldn’t find it, without your name"
+      },
+      {
+       "answer": "Not yet",
+       "then": "A reminder on the next day over 30 degrees"
+      }
+     ],
+     "own_team_clip": null,
+     "film_brief": "A sports doctor or club official explaining the heat tool in plain words over footage of a shaded drinks break. Under two minutes.",
+     "sources": [
+      10
+     ]
+    },
+    {
+     "id": "2.3",
+     "screen": "LNL23-Lesson",
+     "title": "Injuries: what you do and what you don’t",
+     "one_line": "Stop, stay calm, get help, write it down",
+     "minutes": 5,
+     "idea": "You are not the medic. Your job is to stop the game, keep the player still and calm, get the right person, and record what happened.",
+     "steps": [
+      "Stop play and go to the player.",
+      "Neck or back pain, or they can’t get up: don’t move them. Call 000.",
+      "For knocks and cuts: first-aid kit, tell the parent, log it."
+     ],
+     "words_to_use": [
+      "Stay still. I’m here.",
+      "Everyone else, ball under your foot and wait with Sam."
+     ],
+     "instead_of": "Carrying a player off. Guessing what the injury is.",
+     "try_when": "Before Tuesday",
+     "try_at": "Your kit bag",
+     "try_task": "Check there is a first-aid kit in your bag and that you can open your squad’s emergency contacts on your phone.",
+     "answers": [
+      {
+       "answer": "Both there",
+       "then": "Carry on in order"
+      },
+      {
+       "answer": "No kit",
+       "then": "A request to your club is sent for you"
+      },
+      {
+       "answer": "Can’t find the contacts",
+       "then": "A short guide opens"
+      }
+     ],
+     "own_team_clip": null,
+     "film_brief": "A club first-aider showing the kit and the three steps beside a pitch. No staged injuries with children.",
+     "sources": []
+    },
+    {
+     "id": "2.4",
+     "screen": "LNL24-Lesson",
+     "title": "Being a safe adult",
+     "one_line": "In view, in the open, through the club",
+     "minutes": 5,
+     "idea": "A few plain rules protect children and protect you. Stay in view, keep messages inside the club’s channels with a parent included, and keep your check current.",
+     "steps": [
+      "Never be alone and out of sight with a child.",
+      "Message players under 15 through a parent. Clean Sheet does this for you.",
+      "Photos and film only where the family has agreed."
+     ],
+     "words_to_use": [
+      "Let’s talk over here where your dad can see us."
+     ],
+     "instead_of": "Private messages. Lifts with one child. Changing rooms.",
+     "try_when": "Before Tuesday",
+     "try_at": "In the app",
+     "try_task": "Check that your Working with Children Check shows as current, and read your club’s code of conduct.",
+     "answers": [
+      {
+       "answer": "Both done",
+       "then": "Carry on in order"
+      },
+      {
+       "answer": "My check has expired or isn’t recorded",
+       "then": "Your club’s welfare officer is told, and you get the renewal link"
+      },
+      {
+       "answer": "Not yet",
+       "then": "A reminder in three days"
+      }
+     ],
+     "own_team_clip": null,
+     "film_brief": "Your club’s welfare officer, to camera, giving the three rules and why they protect the coach as well. Under two minutes.",
+     "sources": [
+      11
+     ]
+    },
+    {
+     "id": "2.5",
+     "screen": "LNL25-Lesson",
+     "title": "When something worries you",
+     "one_line": "You don’t investigate. You tell the right person today",
+     "minutes": 5,
+     "idea": "If a child tells you something, or you see something that doesn’t sit right, your job is to listen, write it down and pass it on the same day.",
+     "steps": [
+      "Listen. Don’t promise to keep it secret.",
+      "Write down what they said, in their words.",
+      "Tell your welfare officer today. Immediate danger: call 000."
+     ],
+     "words_to_use": [
+      "Thank you for telling me.",
+      "I can’t keep this to myself. I need to tell someone who can help."
+     ],
+     "instead_of": "Asking lots of questions. Confronting anyone yourself.",
+     "try_when": "Before Tuesday",
+     "try_at": "In the app",
+     "try_task": "Find your welfare officer’s name and the “Raise a concern” button, and save their number.",
+     "answers": [
+      {
+       "answer": "Found and saved",
+       "then": "Module finished. Your club is told the module is done, nothing else"
+      },
+      {
+       "answer": "We don’t seem to have one",
+       "then": "Your director is told a coach couldn’t find the welfare officer"
+      },
+      {
+       "answer": "Not yet",
+       "then": "A reminder in three days"
+      }
+     ],
+     "own_team_clip": null,
+     "film_brief": "Your club’s welfare officer explaining what happens after a coach reports, so it feels safe to do. No case details.",
+     "sources": [
+      11
+     ]
+    }
+   ]
+  },
+  {
+   "number": 3,
+   "title": "Running the session",
+   "summary": "Start fast, keep them busy, stop it less",
+   "outcome": "You can run an hour where players are busy, listening when it matters, and playing the rest of the time.",
+   "why": [
+    {
+     "text": "In one study of youth sessions, players spent about a third of the time standing and listening.",
+     "source": 3
+    },
+    {
+     "text": "Coaches take up an idea when they can try it in their own sessions and see it work.",
+     "source": 6
+    }
+   ],
+   "leave_with": "An arrival game, one attention signal, and three ways to change any game on the spot.",
+   "own_team_tiles": [
+    "Players standing still, your three counts",
+    "“I had fun”"
+   ],
+   "lessons": [
+    {
+     "id": "3.1",
+     "screen": "LNL31-Lesson",
+     "title": "Starting with a game",
+     "one_line": "They play from the minute they arrive",
+     "minutes": 5,
+     "idea": "An arrival game means the first child to turn up is playing within a minute, and late arrivals just join in. Nobody waits.",
+     "steps": [
+      "Pick a game that works with any number.",
+      "Start it with the first two players.",
+      "Add each arrival without stopping."
+     ],
+     "words_to_use": [
+      "Jump in. You’re with the blues.",
+      "Keep going, I’ll add people."
+     ],
+     "instead_of": "Standing in a circle until everyone is here.",
+     "try_when": "Tuesday",
+     "try_at": "5:00 · the arrival game",
+     "try_task": "Start the arrival game with whoever is there at 5:00, even if it is two players.",
+     "answers": [
+      {
+       "answer": "Started on time",
+       "then": "Carry on in order"
+      },
+      {
+       "answer": "Waited for more players",
+       "then": "An arrival game for two is added to your library"
+      },
+      {
+       "answer": "Hardly anyone was there at 5:00",
+       "then": "Your poll message to families is changed to ask for 4:55"
+      }
+     ],
+     "own_team_clip": {
+      "example_moment": "Tuesday 5:02 · 0:14",
+      "example_caption": "Four players passing in a circle while they wait. A game would have had them moving."
+     },
+     "film_brief": "A real session at 5:00 with two players, then five, then nine, the same game growing. Time on screen.",
+     "sources": [
+      2,
+      8
+     ]
+    },
+    {
+     "id": "3.2",
+     "screen": "LNL32-Lesson",
+     "title": "Keeping everyone busy",
+     "one_line": "More balls, smaller groups, no queues",
+     "minutes": 6,
+     "idea": "If you can see a queue, split it. Two small games beat one big one, and a ball each beats one between ten.",
+     "steps": [
+      "Count the balls in play. Add more.",
+      "Split any group bigger than six.",
+      "Give spare players a job: target, scorer or joker."
+     ],
+     "words_to_use": [
+      "Two games now. You four over there.",
+      "Edie, you play for whoever has the ball."
+     ],
+     "instead_of": "One line, one ball, one go each.",
+     "try_when": "Tuesday",
+     "try_at": "5:10 and 5:25",
+     "try_task": "Run both middle games in two squares, not one. Use the spare player as a joker.",
+     "answers": [
+      {
+       "answer": "Two squares worked",
+       "then": "Carry on in order"
+      },
+      {
+       "answer": "Hard to watch both",
+       "then": "A tip on where to stand is added"
+      },
+      {
+       "answer": "Not enough players to split",
+       "then": "Your sessions are proposed for one group until numbers rise"
+      }
+     ],
+     "own_team_clip": {
+      "example_moment": "Tuesday 5:27 · 0:16",
+      "example_caption": "Seven players in a line waiting for a shot. Each gets one touch a minute."
+     },
+     "film_brief": "The same shooting practice two ways: one line of ten, then three small games. A touch counter on each.",
+     "sources": [
+      2,
+      3
+     ]
+    },
+    {
+     "id": "3.3",
+     "screen": "LNL33-Lesson",
+     "title": "Getting their attention without shouting",
+     "one_line": "One signal, wait, then speak",
+     "minutes": 5,
+     "idea": "Shouting over noise teaches them that noise is fine. One signal, a pause until it is quiet, then a few words works better and saves your voice.",
+     "steps": [
+      "Give your signal. Say nothing.",
+      "Wait until every ball is still.",
+      "Speak for 20 seconds, then restart."
+     ],
+     "words_to_use": [
+      "Thank you, Leo, ball under your foot.",
+      "Eyes here. One thing."
+     ],
+     "instead_of": "Talking while balls are still moving.",
+     "try_when": "Tuesday",
+     "try_at": "Each time you stop a game",
+     "try_task": "Use the signal and count in your head until it is quiet before you speak. Notice how long it takes.",
+     "answers": [
+      {
+       "answer": "Under ten seconds",
+       "then": "Carry on in order"
+      },
+      {
+       "answer": "It took a while",
+       "then": "We suggest practising the signal as a game next week"
+      },
+      {
+       "answer": "Had to shout",
+       "then": "A 30-second film on making the signal a game"
+      }
+     ],
+     "own_team_clip": null,
+     "film_brief": "A coach raising a hand and waiting, in real time, with a counter. Then the same coach shouting, for contrast. Shot from the players’ side.",
+     "sources": [
+      3
+     ]
+    },
+    {
+     "id": "3.4",
+     "screen": "LNL34-Lesson",
+     "title": "One game, three versions",
+     "one_line": "Change the space, the numbers or a rule",
+     "minutes": 6,
+     "idea": "You don’t need more drills. You need one game and three ways to change it. Your federation’s courses teach the same idea.",
+     "steps": [
+      "Too hard: bigger space or fewer defenders.",
+      "Too easy: smaller space or fewer touches.",
+      "Uneven: move one player or add a joker."
+     ],
+     "words_to_use": [
+      "Same game. This time the square is smaller.",
+      "Blues get an extra player."
+     ],
+     "instead_of": "Changing to a different drill every five minutes.",
+     "try_when": "Tuesday",
+     "try_at": "5:10 · Keep-ball 4 v 2",
+     "try_task": "Play keep-ball three ways in fifteen minutes: as planned, then two touches, then a smaller square.",
+     "answers": [
+      {
+       "answer": "All three worked",
+       "then": "Carry on in order"
+      },
+      {
+       "answer": "One version fell flat",
+       "then": "That version is dropped from your run sheets"
+      },
+      {
+       "answer": "Stayed with the first",
+       "then": "We ask again next week"
+      }
+     ],
+     "own_team_clip": null,
+     "film_brief": "One keep-ball game filmed from above, changed three times with a caption for each change. No talking head.",
+     "sources": [
+      8
+     ]
+    },
+    {
+     "id": "3.5",
+     "screen": "LNL35-Lesson",
+     "title": "Finishing on a game",
+     "one_line": "Let them play, then two minutes together",
+     "minutes": 5,
+     "idea": "The last game is theirs. Say almost nothing while it runs. Then two minutes together: one question, one thing they did well, and everyone carries something in.",
+     "steps": [
+      "Start the final game on time, whatever happened before.",
+      "Stay quiet. Let them solve it.",
+      "End with one question and one thing done well."
+     ],
+     "words_to_use": [
+      "What did we get better at tonight?",
+      "I saw lots of you look before the ball came. Brilliant."
+     ],
+     "instead_of": "Coaching every pass of the final game.",
+     "try_when": "Tuesday",
+     "try_at": "5:40 · the final game",
+     "try_task": "Give yourself a limit of three comments in the whole final game.",
+     "answers": [
+      {
+       "answer": "Stayed quiet",
+       "then": "Carry on in order"
+      },
+      {
+       "answer": "Couldn’t help myself",
+       "then": "“Your own sideline” moves up in Match day"
+      },
+      {
+       "answer": "Ran out of time for the game",
+       "then": "Your sessions are proposed with shorter middle parts"
+      }
+     ],
+     "own_team_clip": {
+      "example_moment": "Tuesday 5:44 · 0:20",
+      "example_caption": "The final game. Count the instructions from the sideline in these 20 seconds."
+     },
+     "film_brief": "A final game with the coach silent on the touchline, then the two-minute huddle. Audio of the players, not the coach.",
+     "sources": [
+      2
+     ]
+    }
+   ]
+  },
+  {
+   "number": 4,
+   "title": "Talking to players",
+   "summary": "Ask, praise and correct so it sticks",
+   "outcome": "You can ask, praise and correct in a few words, without stopping the game.",
+   "why": [
+    {
+     "text": "In one study of youth sessions, players spent about a third of the time standing and listening.",
+     "source": 3
+    },
+    {
+     "text": "Coaches mostly ask closed questions that want a quick right answer.",
+     "source": 4
+    }
+   ],
+   "leave_with": "Three questions, three ways to praise and one way to correct, saved to your run sheet in your own words.",
+   "own_team_tiles": [
+    "“I knew what to do”",
+    "Before you tried “Say less”"
+   ],
+   "lessons": [
+    {
+     "id": "4.1",
+     "screen": "LNL41-Lesson",
+     "title": "Say less",
+     "one_line": "Thirty seconds, then let them play",
+     "minutes": 5,
+     "idea": "Every minute you talk is a minute they are not playing. Say the one thing, in under thirty seconds, and get out of the way.",
+     "steps": [
+      "Decide your one point before you stop the game.",
+      "Say it in two sentences.",
+      "Restart. Add the next point later."
+     ],
+     "words_to_use": [
+      "One thing: look before it comes. Play."
+     ],
+     "instead_of": "Three points in one stop.",
+     "try_when": "Tuesday",
+     "try_at": "Each time you stop a game",
+     "try_task": "Ask your helper to time your three longest talks. Aim for under thirty seconds each.",
+     "answers": [
+      {
+       "answer": "All under 30 seconds",
+       "then": "Carry on in order"
+      },
+      {
+       "answer": "One ran long",
+       "then": "Carry on, with a timer tip on your run sheet"
+      },
+      {
+       "answer": "Most ran long",
+       "then": "This lesson repeats in three weeks"
+      }
+     ],
+     "own_team_clip": {
+      "example_moment": "Tuesday 5:18 · 1:05",
+      "example_caption": "A stop that ran for just over a minute. Nine players standing."
+     },
+     "film_brief": "A coach giving the same point twice: once in 90 seconds, once in 20. A clock on screen. Players’ faces in shot.",
+     "sources": [
+      3
+     ]
+    },
+    {
+     "id": "4.2",
+     "screen": "LN4-Lesson",
+     "title": "Asking a question, not giving an answer",
+     "one_line": "“Where is the space?” beats “pass it wide”",
+     "minutes": 6,
+     "idea": "When you tell a player the answer, they do it once. When they find it, they keep it.",
+     "steps": [
+      "Let the game run for two minutes.",
+      "Ask one open question to the group.",
+      "Count to five. Take any answer. Play on."
+     ],
+     "words_to_use": [
+      "Where is the space?",
+      "What did you see before it came?",
+      "Who could have helped?",
+      "What would you try next time?"
+     ],
+     "instead_of": "“Pass it wide.” “Spread out.” “Look up.”",
+     "try_when": "Tuesday",
+     "try_at": "5:10 · Keep-ball 4 v 2",
+     "try_task": "After the second swap, stop both squares for 20 seconds and ask “Where is the space?” Then play on. Once is enough.",
+     "answers": [
+      {
+       "answer": "They answered",
+       "then": "Carry on in order"
+      },
+      {
+       "answer": "Silence",
+       "then": "“Wait for the answer” is next"
+      },
+      {
+       "answer": "The same two answered",
+       "then": "“One thing at a time” moves up, with a tip on asking one player by name"
+      },
+      {
+       "answer": "I answered for them",
+       "then": "“Wait for the answer” is next"
+      }
+     ],
+     "own_team_clip": {
+      "example_moment": "Saturday, 14th minute · 0:11",
+      "example_caption": "Ari has space on his left and doesn’t see it. A moment like this is where the question helps."
+     },
+     "film_brief": "Mark Dunn with U9 Mark: the same moment coached by telling, then by asking. We hear the players’ answers.",
+     "sources": [
+      4
+     ]
+    },
+    {
+     "id": "4.3",
+     "screen": "LNL43-Lesson",
+     "title": "Wait for the answer",
+     "one_line": "Count to five. Silence is thinking",
+     "minutes": 5,
+     "idea": "Silence after a question feels long to you and short to them. If you fill it, they learn to wait for you. Count to five in your head.",
+     "steps": [
+      "Ask the question once.",
+      "Count to five. Don’t rephrase.",
+      "Still nothing? Ask them to tell a partner first."
+     ],
+     "words_to_use": [
+      "Take your time.",
+      "Tell the person next to you, then tell me."
+     ],
+     "instead_of": "Answering your own question.",
+     "try_when": "Tuesday",
+     "try_at": "The first question you ask",
+     "try_task": "Ask one question and count to five before you say anything else. Notice who speaks first.",
+     "answers": [
+      {
+       "answer": "Someone answered",
+       "then": "Carry on in order"
+      },
+      {
+       "answer": "I got to five and nothing",
+       "then": "A tip on “tell a partner” is added"
+      },
+      {
+       "answer": "I couldn’t wait",
+       "then": "This lesson repeats next week"
+      }
+     ],
+     "own_team_clip": null,
+     "film_brief": "One question asked, then five full seconds of silence on screen before a child answers. The counter is the film.",
+     "sources": [
+      4
+     ]
+    },
+    {
+     "id": "4.4",
+     "screen": "LNL44-Lesson",
+     "title": "Praise the effort, name the action",
+     "one_line": "“Great first touch away from him” beats “well done”",
+     "minutes": 6,
+     "idea": "“Well done” tells a child you’re pleased. Naming what they did tells them what to do again. Praise the try as much as the result.",
+     "steps": [
+      "Catch them doing the thing you are working on.",
+      "Say their name and name the action.",
+      "Praise the attempt even when it didn’t come off."
+     ],
+     "words_to_use": [
+      "Jun, great look over your shoulder.",
+      "Good idea, Poppy. Wrong pass, right idea.",
+      "I love that you tried it."
+     ],
+     "instead_of": "“Well done.” “Unlucky.” Praise only for goals.",
+     "try_when": "Tuesday",
+     "try_at": "All session",
+     "try_task": "Give every player one piece of named praise. Tick them off on your run sheet as you go.",
+     "answers": [
+      {
+       "answer": "All nine",
+       "then": "Carry on in order"
+      },
+      {
+       "answer": "Most of them",
+       "then": "The players you missed are shown first next week"
+      },
+      {
+       "answer": "I forgot",
+       "then": "A reminder is pinned to the top of your run sheet"
+      }
+     ],
+     "own_team_clip": {
+      "example_moment": "Saturday, 31st minute · 0:09",
+      "example_caption": "Poppy tries to turn her defender and loses it. This is the try to praise."
+     },
+     "film_brief": "A run of named praise from a real coach, each matched to the action it praises in slow motion.",
+     "sources": [
+      5
+     ]
+    },
+    {
+     "id": "4.5",
+     "screen": "LNL45-Lesson",
+     "title": "Fixing a mistake without stopping the game",
+     "one_line": "A word to one player while the rest play on",
+     "minutes": 6,
+     "idea": "Most mistakes need one player to hear one thing. Stopping everyone for it costs eight others their game. Walk alongside and say it quietly.",
+     "steps": [
+      "Let the mistake go once. Is it a pattern?",
+      "Step in next to the player as play goes on.",
+      "One question or one cue. Step away."
+     ],
+     "words_to_use": [
+      "Next time, where could your first touch go?",
+      "Try opening your body. Go again."
+     ],
+     "instead_of": "Freezing the game to show everyone what one player did wrong.",
+     "try_when": "Tuesday",
+     "try_at": "5:25 · Find the free player",
+     "try_task": "Correct two players this way without stopping the game at all.",
+     "answers": [
+      {
+       "answer": "Did it twice",
+       "then": "Carry on in order"
+      },
+      {
+       "answer": "Once",
+       "then": "Carry on in order"
+      },
+      {
+       "answer": "Kept stopping the game",
+       "then": "“Say less” repeats, with your stop count from the run sheet"
+      }
+     ],
+     "own_team_clip": null,
+     "film_brief": "A coach walking beside a player mid-game, lapel microphone on, six seconds of talk, game never stops.",
+     "sources": [
+      3
+     ]
+    },
+    {
+     "id": "4.6",
+     "screen": "LNL46-Lesson",
+     "title": "One thing at a time",
+     "one_line": "One focus per game, even when you see five",
+     "minutes": 5,
+     "idea": "You will always see five things to fix. Players can hold one. Pick the one your session is built on and let the rest go until next week.",
+     "steps": [
+      "Write tonight’s one thing at the top of your run sheet.",
+      "Praise and correct only that.",
+      "Note the others for next week’s session."
+     ],
+     "words_to_use": [
+      "Tonight is all about your first touch."
+     ],
+     "instead_of": "A different coaching point every minute.",
+     "try_when": "Tuesday",
+     "try_at": "All session",
+     "try_task": "Coach only the session’s main idea. Put everything else you notice into your three taps afterwards.",
+     "answers": [
+      {
+       "answer": "Stuck to one",
+       "then": "Module finished"
+      },
+      {
+       "answer": "Drifted to two or three",
+       "then": "Carry on, with the one thing pinned on your run sheet"
+      },
+      {
+       "answer": "Coached everything",
+       "then": "This lesson repeats in a fortnight"
+      }
+     ],
+     "own_team_clip": null,
+     "film_brief": "The same two minutes of a game twice: once with five different instructions shouted, once with one. Players’ reactions.",
+     "sources": [
+      6
+     ]
+    }
+   ]
+  },
+  {
+   "number": 5,
+   "title": "Match day",
+   "summary": "Team talk, fair turns, your own sideline",
+   "outcome": "You can run a match day that is calm, fair to every player, and ties back to training.",
+   "why": [
+    {
+     "text": "Children whose coaches were trained to encourage effort were far more likely to come back the next season.",
+     "source": 5
+    },
+    {
+     "text": "Your club’s fair-turns rule applies to every team at this age.",
+     "source": null
+    }
+   ],
+   "leave_with": "A one-minute team talk, a turns plan made before you leave home, and a rule for your own voice.",
+   "own_team_tiles": [
+    "Minutes on the pitch, most and least",
+    "Players who have tried in goal"
+   ],
+   "lessons": [
+    {
+     "id": "5.1",
+     "screen": "LNL51-Lesson",
+     "title": "The team talk in one minute",
+     "one_line": "One idea, from Tuesday",
+     "minutes": 5,
+     "idea": "Before a game, players can hold one idea. Make it the thing you worked on at training, and say it in a sentence they could repeat.",
+     "steps": [
+      "Say who starts where. Clean Sheet has it ready.",
+      "Give the one idea from training.",
+      "Finish with something about enjoying it."
+     ],
+     "words_to_use": [
+      "Today, see if you can look before the ball comes.",
+      "Try things. Mistakes are fine."
+     ],
+     "instead_of": "Tactics on a whiteboard. Talk about the other team.",
+     "try_when": "Saturday",
+     "try_at": "9:20, before kick-off",
+     "try_task": "Give your team talk in under a minute. Ask one player to say the one idea back to you.",
+     "answers": [
+      {
+       "answer": "Under a minute, and they knew it",
+       "then": "Carry on in order"
+      },
+      {
+       "answer": "It ran long",
+       "then": "“Say less” is added to your Saturday reminders"
+      },
+      {
+       "answer": "Forgot the idea from training",
+       "then": "Tuesday’s idea is shown on your match-day screen"
+      }
+     ],
+     "own_team_clip": null,
+     "film_brief": "A real pre-game huddle, 50 seconds, uncut. Then one player repeating the idea to camera.",
+     "sources": [
+      6
+     ]
+    },
+    {
+     "id": "5.2",
+     "screen": "LNL52-Lesson",
+     "title": "Fair turns",
+     "one_line": "Decide before you leave home",
+     "minutes": 6,
+     "idea": "Fair playing time is easy to believe in and hard to do in the moment. Decide the changes before the game and let the plan make the calls.",
+     "steps": [
+      "Open Saturday’s turns. They are lined up for you.",
+      "Check who has played least and who hasn’t been in goal.",
+      "Follow the plan, whatever the score."
+     ],
+     "words_to_use": [
+      "Mack, you’re on at the next break.",
+      "Everyone plays the same today."
+     ],
+     "instead_of": "Leaving your strongest players on because it’s close.",
+     "try_when": "Saturday",
+     "try_at": "Before you leave home",
+     "try_task": "Open the turns plan, make any swaps, and follow it for the whole game.",
+     "answers": [
+      {
+       "answer": "Followed it",
+       "then": "Carry on in order"
+      },
+      {
+       "answer": "Changed it during the game",
+       "then": "We show what the change did to minutes, and ask why"
+      },
+      {
+       "answer": "Didn’t use it",
+       "then": "A two-minute film on reading the turns plan"
+      }
+     ],
+     "own_team_clip": null,
+     "film_brief": "A coach at the kitchen table on Friday night setting the turns in two minutes, then the bench on Saturday running to plan.",
+     "sources": [
+      5
+     ]
+    },
+    {
+     "id": "5.3",
+     "screen": "LNL53-Lesson",
+     "title": "Your own sideline",
+     "one_line": "Let them play. Say less than you want to",
+     "minutes": 5,
+     "idea": "During a game, instructions arrive too late to help and take the decision away from the player. Encourage, and save the coaching for the breaks.",
+     "steps": [
+      "Stand still, near halfway.",
+      "Praise effort and good ideas by name.",
+      "Keep instructions for half-time."
+     ],
+     "words_to_use": [
+      "Great idea, Sol.",
+      "Unlucky. Try it again."
+     ],
+     "instead_of": "“Pass!” “Shoot!” “Man on!” Telling the player on the ball what to do.",
+     "try_when": "Saturday",
+     "try_at": "During the game",
+     "try_task": "Give no instructions to the player on the ball in the first half. Praise only.",
+     "answers": [
+      {
+       "answer": "Managed it",
+       "then": "Carry on in order"
+      },
+      {
+       "answer": "Mostly",
+       "then": "Carry on in order"
+      },
+      {
+       "answer": "Couldn’t",
+       "then": "We suggest asking your assistant to tap your arm each time"
+      }
+     ],
+     "own_team_clip": {
+      "example_moment": "Saturday, 8th to 9th minute · 0:40",
+      "example_caption": "Listen to the touchline in this minute. Count the instructions."
+     },
+     "film_brief": "Match footage with sideline audio isolated: first with constant instruction, then with praise only. Same team.",
+     "sources": [
+      5
+     ]
+    },
+    {
+     "id": "5.4",
+     "screen": "LNL54-Lesson",
+     "title": "Half-time in three minutes",
+     "one_line": "Drink, one question, one thing",
+     "minutes": 5,
+     "idea": "Half-time is short and they are tired. A drink, one question to them, one thing from you, and back out.",
+     "steps": [
+      "Drinks first. Say nothing for a minute.",
+      "Ask: what is working?",
+      "Give the one idea again, and the changes."
+     ],
+     "words_to_use": [
+      "What’s working out there?",
+      "Second half, same idea: look before it comes."
+     ],
+     "instead_of": "A list of everything that went wrong.",
+     "try_when": "Saturday",
+     "try_at": "Half-time",
+     "try_task": "Ask “what’s working?” before you say anything about the game.",
+     "answers": [
+      {
+       "answer": "They had answers",
+       "then": "Carry on in order"
+      },
+      {
+       "answer": "Silence",
+       "then": "“Wait for the answer” is offered again"
+      },
+      {
+       "answer": "I did the talking",
+       "then": "“Say less” is added to your Saturday reminders"
+      }
+     ],
+     "own_team_clip": null,
+     "film_brief": "A real half-time, three minutes, uncut, with a clock in the corner.",
+     "sources": [
+      4
+     ]
+    },
+    {
+     "id": "5.5",
+     "screen": "LNL55-Lesson",
+     "title": "After the whistle",
+     "one_line": "Win or lose, the same three things",
+     "minutes": 5,
+     "idea": "What you do in the five minutes after a game teaches them what mattered. Make it the same every week, whatever the result.",
+     "steps": [
+      "Shake hands with the other team and the referee.",
+      "Name one thing the team did that came from training.",
+      "Do your three taps before you drive home."
+     ],
+     "words_to_use": [
+      "Thank you, ref.",
+      "I saw so many of you look before the ball came."
+     ],
+     "instead_of": "The score. The referee. What went wrong.",
+     "try_when": "Saturday",
+     "try_at": "Straight after the game",
+     "try_task": "Name one thing from training that you saw, then do your three taps in the car park.",
+     "answers": [
+      {
+       "answer": "Did both",
+       "then": "Module finished. Tuesday’s session is built from your taps"
+      },
+      {
+       "answer": "Forgot the taps",
+       "then": "A reminder at 6 pm"
+      },
+      {
+       "answer": "Hard day",
+       "then": "A short film on talking to a team after a heavy loss"
+      }
+     ],
+     "own_team_clip": null,
+     "film_brief": "The five minutes after a loss, handled well. Handshakes, one sentence, players leaving smiling.",
+     "sources": [
+      5
+     ]
+    }
+   ]
+  },
+  {
+   "number": 6,
+   "title": "Parents and your helpers",
+   "summary": "Set it up once so the season runs",
+   "outcome": "You have told parents what to expect, shared the jobs, and know how to handle a hard conversation.",
+   "why": [
+    {
+     "text": "Coaches take up an idea when they can try it in their own setting and see it work.",
+     "source": 6
+    },
+    {
+     "text": "Your club’s rules on who can message whom apply to everything here.",
+     "source": null
+    }
+   ],
+   "leave_with": "A welcome message in your words, a jobs list with names on it, and a way to answer a complaint.",
+   "own_team_tiles": [
+    "Families who have read your welcome",
+    "Jobs shared out"
+   ],
+   "lessons": [
+    {
+     "id": "6.1",
+     "screen": "LNL61-Lesson",
+     "title": "Your first message to parents",
+     "one_line": "What to expect from you this season",
+     "minutes": 5,
+     "idea": "Most trouble with parents comes from surprise. Tell them at the start how you coach, how turns work and how to reach you.",
+     "steps": [
+      "Open the draft Clean Sheet has written for you.",
+      "Change it into your own words.",
+      "Send it before the first game."
+     ],
+     "words_to_use": [
+      "Everyone gets fair time, in every position.",
+      "I’ll ask questions more than I give answers.",
+      "The best way to reach me is a message here."
+     ],
+     "instead_of": "Saying nothing and hoping it goes well.",
+     "try_when": "This week",
+     "try_at": "In Messages",
+     "try_task": "Edit the welcome draft and send it to your families.",
+     "answers": [
+      {
+       "answer": "Sent",
+       "then": "Carry on in order"
+      },
+      {
+       "answer": "Edited, not sent",
+       "then": "A reminder in two days"
+      },
+      {
+       "answer": "Not yet",
+       "then": "A reminder before your next game"
+      }
+     ],
+     "own_team_clip": null,
+     "film_brief": "A coach reading their own welcome message aloud, over shots of the season starting. Under 90 seconds.",
+     "sources": []
+    },
+    {
+     "id": "6.2",
+     "screen": "LNL62-Lesson",
+     "title": "The parents’ sideline",
+     "one_line": "Ask them to cheer, not to coach",
+     "minutes": 5,
+     "idea": "Players can’t listen to you and a parent at once. Ask parents early, and kindly, to cheer for effort and leave the coaching to training.",
+     "steps": [
+      "Ask once, to everyone, in your welcome.",
+      "Thank parents who do it well.",
+      "If one keeps coaching, have a quiet word, or ask your manager to."
+     ],
+     "words_to_use": [
+      "Could you help me? Cheer everything, coach nothing.",
+      "They hear you more than me. That’s why I’m asking."
+     ],
+     "instead_of": "Calling a parent out in front of the team.",
+     "try_when": "Saturday",
+     "try_at": "Before kick-off",
+     "try_task": "Thank the parents as a group for cheering, before the game starts.",
+     "answers": [
+      {
+       "answer": "Went fine",
+       "then": "Carry on in order"
+      },
+      {
+       "answer": "One parent is still coaching",
+       "then": "A short script for a quiet word, and your manager’s number"
+      },
+      {
+       "answer": "It got heated",
+       "then": "Your club’s welfare officer is suggested. You choose whether to contact them"
+      }
+     ],
+     "own_team_clip": null,
+     "film_brief": "A team manager talking about the one conversation that changed their sideline. No footage of real parents behaving badly.",
+     "sources": [
+      5
+     ]
+    },
+    {
+     "id": "6.3",
+     "screen": "LNL63-Lesson",
+     "title": "Sharing the load",
+     "one_line": "Ask for one small job each",
+     "minutes": 5,
+     "idea": "People say yes to a small, named job and no to “can anyone help?”. Five jobs, five names, and you can coach.",
+     "steps": [
+      "Open the jobs list for your team.",
+      "Ask one person for one job, by name.",
+      "Thank them in front of the group."
+     ],
+     "words_to_use": [
+      "Kerem, could you be game leader this Saturday? It’s 50 minutes.",
+      "Thanks, Dana, for the kit this week."
+     ],
+     "instead_of": "Doing it all yourself. A general call for volunteers.",
+     "try_when": "This week",
+     "try_at": "In Team staff",
+     "try_task": "Fill the one job that is still open by asking one person directly.",
+     "answers": [
+      {
+       "answer": "Filled",
+       "then": "Carry on in order"
+      },
+      {
+       "answer": "They said no",
+       "then": "Two more names are suggested from who comes most often"
+      },
+      {
+       "answer": "Not yet",
+       "then": "A reminder on Thursday"
+      }
+     ],
+     "own_team_clip": null,
+     "film_brief": "A coach asking one parent for one job at pick-up. Fifteen seconds. Then the same pitch on Saturday with five people helping.",
+     "sources": []
+    },
+    {
+     "id": "6.4",
+     "screen": "LNL64-Lesson",
+     "title": "A hard conversation",
+     "one_line": "Listen first, use the record, offer a time",
+     "minutes": 6,
+     "idea": "When a parent is unhappy, usually about game time or position, they want to be heard. Listen, show what the record says, and offer a proper time to talk.",
+     "steps": [
+      "Not on the sideline. Offer a catch-up.",
+      "Listen all the way through before you answer.",
+      "Show the turns record. Say what you will do next."
+     ],
+     "words_to_use": [
+      "I can hear this matters. Can we talk properly on Tuesday at 4:45?",
+      "Here are the minutes for the last five games.",
+      "Here’s what I’ll do."
+     ],
+     "instead_of": "Defending yourself on the spot. Promising a position.",
+     "try_when": "When it comes up",
+     "try_at": "In Catch-ups",
+     "try_task": "Find where to offer a catch-up time and where the turns record is, so you are ready.",
+     "answers": [
+      {
+       "answer": "Found both",
+       "then": "Course finished. Your season page shows what you have tried"
+      },
+      {
+       "answer": "I have one of these now",
+       "then": "A catch-up is drafted, and your mentor is suggested"
+      },
+      {
+       "answer": "Not yet",
+       "then": "No reminder. It’s here when you need it"
+      }
+     ],
+     "own_team_clip": null,
+     "film_brief": "Two coaches role-playing the conversation both ways: defensive, then listening. No real families.",
+     "sources": []
+    }
+   ]
+  }
+ ]
+}

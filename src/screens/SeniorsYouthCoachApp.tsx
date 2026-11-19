@@ -1,3 +1,5 @@
+import { isLearnId } from './session/SessionTab'
+import { openLearn } from './learn/course'
 import { useBackState } from '../backState'
 import { useState, useEffect } from 'react'
 import SandboxWaiting from './sandbox/SandboxWaiting'
@@ -438,6 +440,7 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
   function goNav(n: NavKey) { setNav(n); setSub(null); setAskOpen(false); onNavChange?.(n); setFilView(null); setRecView(null) }
 
   function handleNav(s: string) {
+    if (isLearnId(s)) { openLearn(s); s = 'GS8-WelcomeCourse' }   // a lesson or module: it opens inside Learn to coach
     if (s in GS_TAB) { const i = GS_TAB[s]; goNav('training'); setTrainingTab(teamType === 'seniors' && i > 6 ? i - 1 : i); if (i === 0) setGsView(s.startsWith('GS') ? s : 'GS1-ProposedSession'); return }   // the justified session lives under Training
     if (s === 'CN2-SelfVsCoach') { goNav('matchday'); setMatchTab(6); setTake('theirs'); return }
     if (isYourTakeId(s)) { goNav('matchday'); setMatchTab(6); setTake('yours'); setYtView(s); return }   // the four Your take boards stay inside Match day
@@ -575,7 +578,7 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
       case 5: content = <DrillLibraryScreen empty={sbEmptySession} />; break
       case 6: content = <GrowthLoadScreen empty={sbEmptySession} />; break
       case 7: case 8: content = <CnScreen empty={cnEmpty} id={tt === 7 ? 'CN4-SessionsLanded' : 'CN8-WhatWorked'} onNav={handleNav} team={cnTeam} />; break
-      case 9: content = gs('GS8-WelcomeCourse'); break
+      case 9: content = <SessionTab id="GS8-WelcomeCourse" team={cnTeam} onNav={handleNav} />; break   // the course needs nothing set up
     }
   } else if (nav === 'record') {
     if (recView && isCaptureId(recView)) content = <CaptureFlow step={recView} onStep={setRecView} onNav={handleNav} kitless={inSandbox && sbEmpty} age={teamType === 'seniors' ? 'seniors' : 'youth'} team={inSandbox ? (store.teams[0]?.name ?? 'your team') : teamType === 'seniors' ? 'Men’s 1sts' : 'U16 Ollie'} />

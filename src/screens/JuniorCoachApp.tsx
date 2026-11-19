@@ -1,3 +1,5 @@
+import { isLearnId } from './session/SessionTab'
+import { openLearn } from './learn/course'
 import { useBackState } from '../backState'
 import { openThing } from './openThing'
 import { useState, useEffect } from 'react'
@@ -142,6 +144,7 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
   function goNav(n: NavKey) { setNav(n); setSub(null); setAskOpen(false); onNavChange?.(n); setMsgsView(null); setRecView(null); setFilView(null) }
 
   function handleNav(s: string) {
+    if (isLearnId(s)) { openLearn(s); s = 'GS8-WelcomeCourse' }   // a lesson or module: it opens inside Learn to coach
     if (s in GS_TAB) { goNav('training'); setTrainingTab(GS_TAB[s]); if (GS_TAB[s] === 0) setGsView(s.startsWith('GS') ? s : 'GS1-ProposedSession'); return }   // the justified session lives under Training
     if (s === 'CN2-SelfVsCoach') { goNav('matchday'); setMatchTab(6); setTake('theirs'); return }
     if (isYourTakeId(s)) { goNav('matchday'); setMatchTab(6); setTake('yours'); setYtView(s); return }   // the four Your take boards stay inside Match day
@@ -284,7 +287,7 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
     else if (trainingTab === 5) content = <DrillLibraryScreen empty={sbEmptySession} />
     else if (trainingTab === 6) content = <GrowthLoadScreen empty={sbEmptySession} />
     else if (trainingTab === 7 || trainingTab === 8) content = <CnScreen empty={cnEmpty} id={trainingTab === 7 ? 'CN4-SessionsLanded' : 'CN8-WhatWorked'} onNav={handleNav} />
-    else if (trainingTab === 9) content = gs('GS8-WelcomeCourse')
+    else if (trainingTab === 9) content = <SessionTab id="GS8-WelcomeCourse" team="u12" onNav={handleNav} />   // the course needs nothing set up: a new coach starts here
   } else if (nav === 'record') {
     if (recView && isCaptureId(recView)) content = <CaptureFlow step={recView} onStep={setRecView} onNav={handleNav} kitless={inSandbox && sbEmpty} team={inSandbox ? (store.teams[0]?.name ?? 'your team') : 'U12 Sam'} />
     else if (recView === 'SET4-Devices') content = <DevicesTab onToast={demoToast} inRecord />   // Devices stays inside Record: the tab is lit and the coach never leaves the app
