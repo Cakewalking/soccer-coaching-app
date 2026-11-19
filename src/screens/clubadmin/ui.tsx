@@ -1,3 +1,4 @@
+import { groupTabs, landing, remember, TabSwitches } from '../tabGroups'
 import { useState } from 'react'
 import { goSetup } from '../sandbox/sandboxNav'
 
@@ -47,13 +48,20 @@ export function EmptyCard({ icon, title, desc, cta, sidebarTitle = 'What you\'ll
   )
 }
 
-export const SubTabBar = ({ items, active, onSelect }: { items: { id: string; label: string }[]; active: string; onSelect: (id: string) => void }) => (
+export const SubTabBar = ({ items, active, onSelect }: { items: { id: string; label: string }[]; active: string; onSelect: (id: string) => void }) => {
+  // A long row is folded into a few groups; the group you are in shows its screens as switches underneath.
+  const labels = items.map(t => t.label), at = items.findIndex(t => t.id === active)
+  const groups = groupTabs(labels), inGroup = groups.find(g => g.members.includes(at))
+  if (inGroup) remember(inGroup, at)
+  return (<>
   <div style={{ display: 'flex', borderBottom: '1px solid #e9eae8', background: '#fff', overflowX: 'auto', flexShrink: 0 }}>
-    {items.map(t => (
-      <button key={t.id} onClick={() => onSelect(t.id)} style={{ flexShrink: 0, padding: '0 14px', height: 44, border: 0, background: 'transparent', fontFamily: 'inherit', fontSize: 13, fontWeight: active === t.id ? 700 : 400, cursor: 'pointer', color: active === t.id ? '#1f4a3e' : '#6f7f7b', borderBottom: active === t.id ? '2px solid #1f4a3e' : '2px solid transparent', whiteSpace: 'nowrap', boxSizing: 'border-box' }}>{t.label}</button>
+    {groups.map(g => ({ id: items[landing(g)].id, label: g.label, on: g.members.includes(at) })).map(t => (
+      <button key={t.label} onClick={() => onSelect(t.id)} style={{ flexShrink: 0, padding: '0 14px', height: 44, border: 0, background: 'transparent', fontFamily: 'inherit', fontSize: 13, fontWeight: t.on ? 700 : 400, cursor: 'pointer', color: t.on ? '#1f4a3e' : '#6f7f7b', borderBottom: t.on ? '2px solid #1f4a3e' : '2px solid transparent', whiteSpace: 'nowrap', boxSizing: 'border-box' }}>{t.label}</button>
     ))}
   </div>
-)
+  {inGroup && inGroup.members.length > 1 && <div style={{ flexShrink: 0, borderBottom: '1px solid #e9eae8' }}><TabSwitches group={inGroup} labels={labels} active={at} onPick={n => onSelect(items[n].id)} pad="0 14px" /></div>}
+  </>)
+}
 
 export const ResultChip = ({ r }: { r: string }) => (
   <span style={{ width: 18, height: 18, borderRadius: 4, fontSize: 10, fontWeight: 800, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', background: r === 'W' ? '#2f6252' : r === 'D' ? '#c3a84a' : '#c39797', color: '#fff', flexShrink: 0 }}>{r}</span>

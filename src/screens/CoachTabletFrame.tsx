@@ -1,3 +1,4 @@
+import { groupTabs, landing, remember, TabSwitches } from './tabGroups'
 import { setHash, slugOf } from '../backState'
 import { openScreen } from './openThing'
 import { Crest } from '../clubTheme'
@@ -312,6 +313,9 @@ export default function CoachTabletFrame({
   const teamName  = teamLabel.split(' · ')[0]
   // The sub-tab is part of the address ("/look/youth/training#run-sheet"), so a link opens it and the address says where you are.
   const subKey = subTabs.join('|')
+  // A long row of sub-tabs is folded into a few groups; the group you are in shows its screens as switches.
+  const groups = groupTabs(subTabs), inGroup = groups.find(g => g.members.includes(activeSubTabIndex))
+  if (inGroup) remember(inGroup, activeSubTabIndex)
   useEffect(() => {          // opened from a link: go to the sub-tab it names
     const want = window.location.hash.slice(1), i = subTabs.findIndex(t => slugOf(t) === want)
     if (want && i >= 0 && i !== activeSubTabIndex) onSubTab?.(i)
@@ -379,10 +383,10 @@ export default function CoachTabletFrame({
         {subTabs.length > 0 && (
           <div style={{ height: 44, padding: '0 28px', display: 'flex', alignItems: 'flex-end', gap: 24 }}>
             <nav style={{ display: 'flex', flexGrow: 1, minWidth: 0, height: 44, overflowX: 'auto', scrollbarWidth: 'none' }}>
-              {subTabs.map((tab, i) => {
-                const active = i === activeSubTabIndex
+              {groups.map(g => {
+                const active = g.members.includes(activeSubTabIndex), tab = g.label
                 return (
-                  <button key={tab} onClick={() => onSubTab?.(i)} ref={active ? el => { if (el?.parentElement) { const n = el.parentElement, r = el.offsetLeft + el.offsetWidth - n.clientWidth; if (r > n.scrollLeft) n.scrollLeft = r; else if (el.offsetLeft < n.scrollLeft) n.scrollLeft = el.offsetLeft } } : undefined} style={{
+                  <button key={tab} onClick={() => onSubTab?.(landing(g))} ref={active ? el => { if (el?.parentElement) { const n = el.parentElement, r = el.offsetLeft + el.offsetWidth - n.clientWidth; if (r > n.scrollLeft) n.scrollLeft = r; else if (el.offsetLeft < n.scrollLeft) n.scrollLeft = el.offsetLeft } } : undefined} style={{
                     height: 44, padding: '0 16px', border: 0, background: 'transparent', whiteSpace: 'nowrap', flexShrink: 0,   // a long row of tabs scrolls sideways, it never wraps
 
                     fontFamily: 'inherit', fontSize: 15, fontWeight: active ? 600 : 400,
@@ -392,7 +396,7 @@ export default function CoachTabletFrame({
                     boxSizing: 'border-box',
                   }}>
                     {tab}
-                    {showBadge?.(tab) && (tab !== 'Messages' || unreadMessages > 0) && (
+                    {g.members.some(n => showBadge?.(subTabs[n])) && (tab !== 'Messages' || unreadMessages > 0) && (
                       <span style={{ background: '#c39797', color: INK, borderRadius: '999px', padding: '0 7px', fontSize: 12, lineHeight: '19px' }}>{tab === 'Messages' ? unreadMessages : 3}</span>
                     )}
                   </button>
@@ -407,6 +411,8 @@ export default function CoachTabletFrame({
             </div>
           </div>
         )}
+        {/* the screens inside the group you are in */}
+        <TabSwitches group={inGroup} labels={subTabs} active={activeSubTabIndex} onPick={n => onSubTab?.(n)} />
       </div>
 
       {/* Content + Ask panel */}
