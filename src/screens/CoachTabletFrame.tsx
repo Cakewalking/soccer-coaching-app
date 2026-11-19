@@ -387,7 +387,7 @@ export default function CoachTabletFrame({
                 const active = g.members.includes(activeSubTabIndex), tab = g.label
                 return (
                   <button key={tab} onClick={() => onSubTab?.(landing(g))} ref={active ? el => { if (el?.parentElement) { const n = el.parentElement, r = el.offsetLeft + el.offsetWidth - n.clientWidth; if (r > n.scrollLeft) n.scrollLeft = r; else if (el.offsetLeft < n.scrollLeft) n.scrollLeft = el.offsetLeft } } : undefined} style={{
-                    height: 44, padding: '0 16px', border: 0, background: 'transparent', whiteSpace: 'nowrap', flexShrink: 0,   // a long row of tabs scrolls sideways, it never wraps
+                    height: 44, padding: '0 16px', border: 0, background: 'transparent', whiteSpace: 'nowrap', flexShrink: 0, outlineOffset: -3,   // a long row of tabs scrolls sideways, it never wraps
 
                     fontFamily: 'inherit', fontSize: 15, fontWeight: active ? 600 : 400,
                     color: active ? INK : MUT, cursor: 'pointer',

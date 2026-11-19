@@ -42,7 +42,7 @@ function Stepper({ at, go }: { at: number; go: Go }) {
   )
 }
 
-export function Page({ id, title, sub, right, step, go, cols, children, foot }: { id: string; title: string; sub: string; right?: ReactNode; step?: number; go: Go; cols: string; children: ReactNode; foot?: ReactNode }) {
+export function Page({ id, title, sub, right, step, go, cols, children, foot, smallSub }: { id: string; title: string; sub: string; right?: ReactNode; step?: number; go: Go; cols: string; children: ReactNode; foot?: ReactNode; /** a long title: the line beside it is set a size smaller so both stay on one line */ smallSub?: boolean }) {
   const narrow = useContext(NarrowCtx)
   if (narrow) { cols = 'minmax(0,1fr)'; step = undefined }
   return (
@@ -50,12 +50,12 @@ export function Page({ id, title, sub, right, step, go, cols, children, foot }: 
       <div style={{ flex: 'none', padding: narrow ? '12px 16px 0' : '14px 24px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: narrow ? 8 : 14, flexWrap: narrow ? 'wrap' : undefined }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: narrow ? 4 : 14, flexWrap: 'wrap', minWidth: 0 }}>
           <h1 style={{ margin: 0, fontSize: 26, lineHeight: '32px', fontWeight: 700, letterSpacing: '-0.02em' }}>{title}</h1>
-          <span style={cap}>{sub}</span>
+          <span style={smallSub ? { ...cap, fontSize: 13 } : cap}>{sub}</span>
         </div>
         {right && <div style={{ flex: 'none', display: 'flex', gap: 8, flexWrap: 'wrap' }}>{right}</div>}
       </div>
       {step !== undefined && <Stepper at={step} go={go} />}
-      <main style={{ flexGrow: 1, minHeight: 0, padding: narrow ? '12px 16px 12px' : foot ? '12px 24px 0' : '12px 24px 18px', display: 'grid', gridTemplateColumns: cols, gap: 14, alignItems: 'start' }}>{children}</main>
+      <main style={{ flexGrow: 1, minHeight: 0, padding: narrow ? '12px 16px 12px' : foot ? '12px 24px 0' : '12px 24px 18px', display: 'grid', gridTemplateColumns: cols, gap: 14, alignItems: 'start', alignContent: 'start' }}>{children}</main>
       {foot && <div style={{ flex: 'none', marginTop: 'auto', padding: narrow ? '6px 16px 16px' : '10px 24px 16px', display: 'flex', alignItems: 'center', gap: 10, flexWrap: narrow ? 'wrap' : undefined }}>{foot}</div>}
     </div>
   )

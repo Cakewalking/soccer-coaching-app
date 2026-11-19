@@ -15,7 +15,7 @@ import { ALL, CONFIDENCE, COURSE_NAME, GLOSSARY, MODULES, MODULE_SCREEN, OWN_TEA
 type Props = { s: SessionState; k: TeamKey; go: (id: string) => void; say: (m: string) => void; start?: string; isNew?: boolean }
 const HAIR = '#e9eae8'
 /** A small numbered mark beside a claim. It opens Why we teach this. */
-const Src = ({ n, onOpen }: { n: number; onOpen: () => void }) => <span style={{ position: 'relative', display: 'inline-block', margin: '0 2px' }}><span aria-hidden="true" style={{ display: 'inline-block', minWidth: 18, padding: '0 5px', boxSizing: 'border-box', borderRadius: 6, background: '#fff', border: `1px solid ${G}`, color: G, fontSize: 12, lineHeight: '18px', fontWeight: 700, textAlign: 'center' }}>{n}</span><button onClick={onOpen} aria-label={`Source ${n}`} style={{ position: 'absolute', left: '50%', top: '50%', width: 44, height: 44, transform: 'translate(-50%,-50%)', padding: 0, border: 0, borderRadius: 8, background: 'none', cursor: 'pointer' }} /></span>
+const Src = ({ n, onOpen }: { n: number; onOpen: () => void }) => <span style={{ position: 'relative', display: 'inline-block', margin: '0 3px', whiteSpace: 'nowrap' }}><span aria-hidden="true" style={{ display: 'inline-block', minWidth: 20, padding: '0 6px', boxSizing: 'border-box', borderRadius: 999, background: PALE, color: INK, fontSize: 11, lineHeight: '18px', fontWeight: 700, textAlign: 'center' }}>{n}</span><button onClick={onOpen} aria-label={`Source ${n}`} style={{ position: 'absolute', left: '50%', top: '50%', width: 44, height: 44, transform: 'translate(-50%,-50%)', padding: 0, border: 0, borderRadius: 8, background: 'none', cursor: 'pointer' }} /></span>
 const COLS = 'minmax(0,1fr) 348px'
 const lower = (t: string) => t.charAt(0).toLowerCase() + t.slice(1)
 const NUM = ['No', 'One', 'Two', 'Three', 'Four', 'Five', 'Six']
@@ -279,7 +279,7 @@ function LessonPage({ l, m, i, own, x, c, go, say, open, at, source }: Sub & { l
   const remind = () => { setCoach(x.who, v => ({ reminders: { ...v.reminders, [l.id]: `${at(l) || l.try_when} · ${l.title}` } })); say(isDay(l) ? `Added to your run sheet for ${l.try_when}. It shows as a reminder at the right moment.` : `We’ll remind you: ${lower(l.try_when)}.`) }
   const steps = ['Watch', 'The idea', ...(clip ? ['See it in your team'] : []), heading, 'How it went']
   return (
-    <Page id={l.screen} title={l.title} sub={`${m.title} · lesson ${i + 1} of ${m.lessons.length} · ${l.minutes} min`} go={go} cols={COLS}
+    <Page id={l.screen} title={l.title} smallSub sub={`${m.title} · lesson ${i + 1} of ${m.lessons.length} · ${l.minutes} min`} go={go} cols={COLS}
       right={<><Btn big onClick={() => open(`m:${m.number}`)}>Back</Btn><Btn primary big aria-pressed={reminded} onClick={remind}>{isDay(l) ? `Add to ${l.try_when}’s run sheet` : 'Remind me'}</Btn></>}>
       <div style={{ gridColumn: '1 / -1', display: 'grid', gridTemplateColumns: `repeat(${steps.length}, minmax(0,1fr))`, gap: 8 }}>
         {steps.map((st, n) => { const on = n === 1, last = n === steps.length - 1; const inner = <><span style={{ flex: 'none', width: 20, height: 20, borderRadius: 999, background: on ? '#fff' : PALE, color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700 }}>{n + 1}</span><strong style={{ fontSize: 13 }}>{st}</strong></>; const st2: React.CSSProperties = { minHeight: 44, borderRadius: 10, border: on ? 0 : `1px solid ${LINE}`, background: on ? INK : '#fff', color: on ? '#fff' : INK, display: 'flex', alignItems: 'center', gap: 8, padding: '0 12px', fontFamily: 'inherit' }
@@ -324,7 +324,7 @@ function LessonPage({ l, m, i, own, x, c, go, say, open, at, source }: Sub & { l
           <h2 style={{ ...h2, paddingBottom: 8 }}>Afterwards, your answer picks what comes next</h2>
           {l.answers.map(a => <div key={a.answer} style={{ display: 'grid', gridTemplateColumns: '130px minmax(0,1fr)', gap: 12, alignItems: 'center', minHeight: 44, padding: '6px 0', borderTop: `1px solid ${HAIR}` }}><strong style={{ fontSize: 13 }}>{a.answer}</strong><span style={{ fontSize: 13, lineHeight: '18px' }}>{a.then}</span></div>)}
         </section>
-        <Note title="Where this comes from">{l.sources.length ? <>The research and guidance behind this lesson. {l.sources.map(n => <Src key={n} n={n} onOpen={source} />)}</> : 'This is how Clean Sheet works, or common coaching practice. No research claim is made.'}</Note>
+        <Note title="Where this comes from">{l.sources.length ? <>The research and guidance behind this lesson.<span style={{ whiteSpace: 'nowrap' }}>{l.sources.map(n => <Src key={n} n={n} onOpen={source} />)}</span></> : 'This is how Clean Sheet works, or common coaching practice. No research claim is made.'}</Note>
       </div>
     </Page>)
 }
