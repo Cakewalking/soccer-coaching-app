@@ -30,7 +30,7 @@ const Hero = ({ over, head, sub, stats }: { over: string; head: string; sub: str
       <strong style={{ fontSize: 22, lineHeight: '28px', letterSpacing: '-0.01em' }}>{head}</strong>
       <span style={{ fontSize: 13, lineHeight: '19px', color: '#cfe6dc' }}>{sub}</span>
     </span>
-    {stats?.map(([n, a, b]) => <span key={a} style={{ flex: 'none', display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 34, lineHeight: '40px', letterSpacing: '-0.03em', fontVariantNumeric: 'tabular-nums' }}>{n}</strong><strong style={{ fontSize: 13 }}>{a}</strong>{b && <span style={{ fontSize: 12, color: '#cfe6dc' }}>{b}</span>}</span>)}
+    {stats?.map(([n, a, b]) => <span key={a} style={{ flex: 'none', display: 'flex', flexDirection: 'column', gap: 2 }}><strong style={{ fontSize: 34, lineHeight: '38px', letterSpacing: '-0.02em', fontVariantNumeric: 'tabular-nums', whiteSpace: 'nowrap' }}>{n}</strong><strong style={{ fontSize: 13, lineHeight: '17px', whiteSpace: 'nowrap' }}>{a}</strong><span style={{ fontSize: 12, lineHeight: '16px', minHeight: 16, color: '#cfe6dc', whiteSpace: 'nowrap' }}>{b}</span></span>)}
   </section>
 )
 const Pair = ({ a, b, v }: { a: string; b?: string; v: ReactNode }) => <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, minHeight: 46, padding: '6px 0', borderTop: `1px solid ${LINE}` }}><span style={{ display: 'flex', flexDirection: 'column', minWidth: 0 }}><strong style={{ fontSize: 14, lineHeight: '19px' }}>{a}</strong>{b && <span style={{ fontSize: 13, lineHeight: '18px', color: MUT }}>{b}</span>}</span><strong style={{ flex: 'none', fontSize: 14, textAlign: 'right' }}>{v}</strong></div>
