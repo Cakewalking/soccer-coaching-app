@@ -1,3 +1,4 @@
+import { isRead, markRead } from '../readStore'
 import { openThing } from '../openThing'
 import { Glyph } from '../Glyph'
 import { useState } from 'react'
@@ -345,8 +346,8 @@ export default function MessagesTab({ showChange, setShowChange }: { showChange:
         {/* Conversations */}
         <div style={{ border: '1px solid #c5c8c4', borderRadius: 16, padding: '4px 14px', background: '#fff', display: 'flex', flexDirection: 'column' }}>
           <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#4a5a57', padding: '8px 0 4px' }}>Conversations</span>
-          {THREADS.map(t => (
-            <button key={t.id} onClick={() => t.id === 'all' ? setMgrView('teamchat') : setSheet(t.id)} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 62, borderLeft: 0, borderRight: 0, borderBottom: 0, borderTop: '1px solid #e9eae8', background: 'transparent', padding: '0', cursor: 'pointer', textAlign: 'left' as const, fontFamily: 'inherit', color: '#10211f', width: '100%' }}>
+          {THREADS.map(t0 => ({ ...t0, unread: t0.unread && !isRead(`mgr:${t0.id}`) })).map(t => (
+            <button key={t.id} onClick={() => { markRead(`mgr:${t.id}`); if (t.id === 'all') setMgrView('teamchat'); else setSheet(t.id) }} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 62, borderLeft: 0, borderRight: 0, borderBottom: 0, borderTop: '1px solid #e9eae8', background: 'transparent', padding: '0', cursor: 'pointer', textAlign: 'left' as const, fontFamily: 'inherit', color: '#10211f', width: '100%' }}>
               <span style={{ flexShrink: 0, width: 36, height: 36, borderRadius: '999px', background: t.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }}>{t.ini}</span>
               <span style={{ flexGrow: 1, minWidth: 0 }}>
                 <span style={{ display: 'flex', justifyContent: 'space-between', gap: 8 }}>

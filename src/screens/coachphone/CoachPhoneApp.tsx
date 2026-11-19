@@ -1,3 +1,4 @@
+import { useRead, markRead } from '../readStore'
 import { useBackState } from '../../backState'
 import { openThing } from '../openThing'
 import { useState } from 'react'
@@ -447,6 +448,7 @@ function CoachPhoneComingTab() {
 
 /* ---- CPh3 Messages (populated) ---- */
 function CoachPhoneMessagesTab() {
+  const read = useRead()
   const threads = [
     { initials: 'U1', name: 'U12 Sam · Team', last: 'You: Good run tonight everyone', time: '8:14 pm', unread: 0, isGroup: true },
     { initials: 'BM', name: 'Ben Mills (parent)', last: 'Is Isla recovered for Saturday?', time: '6:40 pm', unread: 1, isGroup: false },
@@ -458,8 +460,8 @@ function CoachPhoneMessagesTab() {
     <>
       <SectionHead>Messages</SectionHead>
       <Card>
-        {threads.map((t, i) => (
-          <div key={t.name} style={{ display: 'flex', gap: 10, padding: '12px 14px', borderTop: i > 0 ? '1px solid #f0f1f0' : 'none', cursor: 'pointer', alignItems: 'center' }}>
+        {threads.map(t0 => ({ ...t0, unread: read(`cph:${t0.name}`) ? 0 : t0.unread })).map((t, i) => (
+          <div key={t.name} role="button" tabIndex={0} onClick={() => markRead(`cph:${t.name}`)} style={{ display: 'flex', gap: 10, padding: '12px 14px', borderTop: i > 0 ? '1px solid #f0f1f0' : 'none', cursor: 'pointer', alignItems: 'center' }}>
             <div style={{ width: 40, height: 40, borderRadius: t.isGroup ? 10 : '50%', background: GD, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, color: '#fff', flex: 'none' }}>{t.initials}</div>
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 2 }}>

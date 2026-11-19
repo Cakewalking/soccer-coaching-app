@@ -1,3 +1,4 @@
+import { isRead, markRead } from '../readStore'
 import { openThing } from '../openThing'
 import { useState } from 'react'
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb'
@@ -12,7 +13,7 @@ export default function TM5ManagerMessages(_: { onBack?: () => void }) {
     { ini: 'LT', name: 'Linh Tran (Mia)', preview: "Can I swap canteen to 11 to 12? Mia's dentist", time: '6:02 pm', unread: true },
     { ini: 'U12', name: 'U12 Sam team chat', preview: 'Linh: Mia found her other boot!', time: '7:48 pm', unread: false },
     { ini: 'WC', name: 'Wattle Creek FC', preview: 'Wet weather: grounds decision by 7 am Saturday', time: 'Tue', unread: false },
-  ]
+  ].map((c, i) => ({ ...c, unread: c.unread && !isRead(`tm5:${i}`) }))
   return (
     <div style={{ width: 390, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 844, display: 'flex', flexDirection: 'column', position: 'relative' }}>
       <div style={{ background: GD, padding: '14px 18px 12px', display: 'flex', alignItems: 'center', gap: 12 }}>
@@ -44,7 +45,7 @@ export default function TM5ManagerMessages(_: { onBack?: () => void }) {
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '4px 14px' }}>
           <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: MUT, padding: '8px 0 4px' }}>Conversations</div>
           {convos.map((c, i) => (
-            <button key={i} onClick={() => setSelectedConvo(i)} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 62, width: '100%', background: selectedConvo === i ? '#eef5f2' : 'none', border: 0, borderTop: `1px solid ${LN}`, padding: '0 6px', cursor: 'pointer', textAlign: 'left' }}>
+            <button key={i} onClick={() => { markRead(`tm5:${i}`); setSelectedConvo(i) }} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 62, width: '100%', background: selectedConvo === i ? '#eef5f2' : 'none', border: 0, borderTop: `1px solid ${LN}`, padding: '0 6px', cursor: 'pointer', textAlign: 'left' }}>
               <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0 }}>{c.ini}</div>
               <div style={{ flexGrow: 1, minWidth: 0 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8 }}>

@@ -1,3 +1,4 @@
+import { isRead, markRead } from './readStore'
 import { openThing } from './openThing'
 import { Glyph, glyph } from './Glyph'
 import { useState } from 'react'
@@ -83,10 +84,11 @@ function Sidebar({ selectedChat, panelView, onChat, onAnnouncements, onNewChat }
       {/* Chat list */}
       <div style={{ flex:1, overflowY:'auto' }}>
         <div style={{ padding:'6px 16px 4px', fontSize:11, fontWeight:700, letterSpacing:'0.06em', textTransform:'uppercase', color:MUT }}>Direct messages</div>
-        {CHATS.map(c => {
+        {CHATS.map(c0 => ({ ...c0, unread: isRead(`teamchat:${c0.id}`) ? undefined : c0.unread })).map(c => {
           const active = selectedChat===c.id && panelView==='chat'
+          if (active) markRead(`teamchat:${c.id}`)
           return (
-            <button key={c.id} onClick={() => onChat(c.id)} style={{ display:'flex', alignItems:'flex-start', gap:10, padding:'10px 16px', border:'none', borderBottom:`1px solid ${LN}`, background:active?PALE:'transparent', textAlign:'left', cursor:'pointer', fontFamily:'inherit', width:'100%' }}>
+            <button key={c.id} onClick={() => { markRead(`teamchat:${c.id}`); onChat(c.id) }} style={{ display:'flex', alignItems:'flex-start', gap:10, padding:'10px 16px', border:'none', borderBottom:`1px solid ${LN}`, background:active?PALE:'transparent', textAlign:'left', cursor:'pointer', fontFamily:'inherit', width:'100%' }}>
               <Ini s={c.ini} bg={c.iniColor} size={36}/>
               <div style={{ flex:1, minWidth:0 }}>
                 <div style={{ display:'flex', alignItems:'baseline', justifyContent:'space-between', marginBottom:2 }}>

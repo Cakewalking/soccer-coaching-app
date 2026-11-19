@@ -1,3 +1,4 @@
+import { useRead, markRead } from '../readStore'
 import { useState } from 'react'
 import { EmptyCard } from '../clubadmin/ui'
 
@@ -63,7 +64,9 @@ export default function InboxMiniRoos({ empty, onChat }: { empty?: boolean; onCh
     setTimeout(() => setToast(''), 3200)
   }
 
-  const allMessages = [...sent, ...MESSAGES]
+  const read = useRead(); markRead(`mini-inbox:${selected}`)   // the message that is open has been read
+  const allMessages = [...sent, ...MESSAGES].map(m => ({ ...m, unread: !!m.unread && !read(`mini-inbox:${m.id}`) }))
+  const fresh = allMessages.filter(m => m.unread).length
   const detail = sent.find(s => s.id === selected)?.detail ?? DETAIL[selected]
   const selIni = allMessages.find(m => m.id === selected)?.ini
 
@@ -92,7 +95,7 @@ export default function InboxMiniRoos({ empty, onChat }: { empty?: boolean; onCh
       <div style={{ flexShrink: 0, padding: '14px 28px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 20 }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 14 }}>
           <h1 style={{ margin: 0, fontSize: 26, lineHeight: '32px', fontWeight: 700, letterSpacing: '-0.02em' }}>Inbox</h1>
-          <span style={{ fontSize: 14, color: '#4a5a57' }}>U9 Tom · 2 new · 4 this week</span>
+          <span style={{ fontSize: 14, color: '#4a5a57' }}>U9 Tom · {fresh ? `${fresh} new · ` : ''}4 this week</span>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
           {onChat && <button onClick={onChat} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer', color: '#2f6252' }}>Family chat</button>}
@@ -115,7 +118,7 @@ export default function InboxMiniRoos({ empty, onChat }: { empty?: boolean; onCh
                 <span style={{ display: 'flex', justifyContent: 'space-between', gap: 8, fontSize: 13, color: '#4a5a57' }}>
                   <span>{m.from}</span><span>{m.date}</span>
                 </span>
-                <span style={{ display: 'block', fontSize: 15, fontWeight: 700, lineHeight: '21px' }}>{m.text}</span>
+                <span style={{ display: 'block', fontSize: 15, fontWeight: m.unread ? 700 : 600, lineHeight: '21px' }}>{m.text}</span>
               </span>
               {m.unread && <span style={{ flexShrink: 0, width: 10, height: 10, borderRadius: '999px', background: '#40826d', marginTop: 6 }} />}
             </button>

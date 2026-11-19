@@ -1,3 +1,4 @@
+import { isRead, markRead } from '../readStore'
 import { openThing } from '../openThing'
 import { Glyph, glyph } from '../Glyph'
 import { useState } from 'react'
@@ -179,8 +180,8 @@ export default function TeamChatMiniRoos({ empty, onBack }: { empty?: boolean; o
 
       {/* Chat list */}
       <div style={{ flex: 1, overflowY: 'auto', padding: '8px 28px 32px', display: 'flex', flexDirection: 'column', gap: 4 }}>
-        {CHATS.map(c => (
-          <button key={c.id} onClick={() => setActiveChat(c.id)} style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '14px 16px', border: `1px solid ${LN}`, borderRadius: 12, background: '#fff', cursor: 'pointer', textAlign: 'left', fontFamily: 'inherit', marginBottom: 2 }}>
+        {CHATS.map(c0 => ({ ...c0, unread: isRead(`minichat:${c0.id}`) ? 0 : c0.unread })).map(c => (
+          <button key={c.id} onClick={() => { markRead(`minichat:${c.id}`); setActiveChat(c.id) }} style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '14px 16px', border: `1px solid ${LN}`, borderRadius: 12, background: '#fff', cursor: 'pointer', textAlign: 'left', fontFamily: 'inherit', marginBottom: 2 }}>
             <div style={{ width: 42, height: 42, borderRadius: '50%', background: c.bg, color: c.id === 'sami' ? INK : '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: c.id === 'announce' ? 18 : 12, fontWeight: 700, flexShrink: 0 }}>{c.ini}</div>
             <div style={{ flex: 1 }}>
               <div style={{ fontSize: 14, fontWeight: 700, color: INK }}>{c.label}</div>

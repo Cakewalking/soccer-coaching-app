@@ -1,3 +1,4 @@
+import { isRead, markRead } from './readStore'
 import { openScreen } from './openThing'
 import { useBackState } from '../backState'
 import { openThing, sayOrOpen } from './openThing'
@@ -1147,8 +1148,8 @@ function ChatView({ empty }: { empty: boolean }) {
     <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
       <PageHead title="Chats" right={<Btn label="New chat" small primary onClick={() => demoToast('A new chat opens: pick a group or one family.')}/>}/>
       <div style={{ flex: 1, overflowY: 'auto', padding: '12px 28px 32px', display: 'flex', flexDirection: 'column', gap: 2 }}>
-        {chats.map(c => (
-          <button key={c.id} onClick={() => setActiveChat(c.id)} style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '14px 16px', border: `1px solid ${LN}`, borderRadius: 12, background: '#fff', cursor: 'pointer', textAlign: 'left', fontFamily: 'inherit', marginBottom: 6 }}>
+        {chats.map(c0 => ({ ...c0, unread: isRead(`acchat:${c0.id}`) ? 0 : c0.unread })).map(c => (
+          <button key={c.id} onClick={() => { markRead(`acchat:${c.id}`); setActiveChat(c.id) }} style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '14px 16px', border: `1px solid ${LN}`, borderRadius: 12, background: '#fff', cursor: 'pointer', textAlign: 'left', fontFamily: 'inherit', marginBottom: 6 }}>
             <div style={{ width: 42, height: 42, borderRadius: '50%', background: c.id === 'news' ? GD : c.id === 'adv' ? G : c.id === 'u13' ? G2 : ROSE, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0 }}>
               {c.id === 'news' ? 'TT' : c.id === 'adv' ? 'ADV' : c.id === 'u13' ? 'U13' : 'DO'}
             </div>

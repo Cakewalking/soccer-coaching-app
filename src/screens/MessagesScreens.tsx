@@ -1,3 +1,4 @@
+import { isRead, markRead as markSeen } from './readStore'
 import { openThing } from './openThing'
 import { useState } from 'react'
 import { markRead, useUnread } from './messageUnread'
@@ -516,8 +517,8 @@ export function DirectorMessages({ onBack: _onBack, embedded, as = 'director' }:
             <button onClick={() => openThing('New message', 'coach')} style={{ width: 44, height: 44, borderRadius: 8, background: G, color: '#fff', border: 'none', fontSize: 18, cursor: 'pointer' }}>+</button>
           </div>
           <div style={{ overflowY: 'auto', flex: 1 }}>
-            {chats.map((c, i) => (
-              <button key={c.name} onClick={() => setActiveChat(i)}
+            {chats.map((c0, n) => { if (n === activeChat) markSeen(`dir:${as}:${c0.name}`); return { ...c0, unread: isRead(`dir:${as}:${c0.name}`) ? 0 : (c0.unread ?? 0) } }).map((c, i) => (
+              <button key={c.name} onClick={() => { markSeen(`dir:${as}:${c.name}`); setActiveChat(i) }}
                 style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 14px', width: '100%', background: i === activeChat ? PALE : 'transparent', border: 'none', borderBottom: `1px solid ${LN}`, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
                 <Ini s={c.ini} size={36} bg={'welfare' in c && c.welfare ? '#f0f4f0' : PALE}/>
                 <div style={{ flex: 1, minWidth: 0 }}>
@@ -619,8 +620,8 @@ export function ParentMessages({ onBack: _onBack }: { onBack?: () => void }) {
         <strong>Mia and Bao are under 15,</strong> so they have no chats. Anything a coach sends them comes to you too.
       </div>
       {selected && <div style={{ background: GD, color: '#fff', borderRadius: 12, padding: '10px 14px', marginBottom: 10, fontSize: 13, fontWeight: 600 }}>Opened: {selected}</div>}
-      {chats.map(c => (
-        <button key={c.name} onClick={() => setSelected(c.name)}
+      {chats.map(c0 => ({ ...c0, unread: isRead(`phone-msgs:${c0.name}`) ? 0 : ('unread' in c0 ? c0.unread ?? 0 : 0) })).map(c => (
+        <button key={c.name} onClick={() => { markSeen(`phone-msgs:${c.name}`); setSelected(c.name) }}
           style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 14px', width: '100%', background: selected === c.name ? PALE : '#fff', border: `none`, borderBottom: `1px solid ${LN}`, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left', borderRadius: 0 }}>
           <Ini s={c.ini} size={40} bg={'private' in c && c.private ? '#f0f4f0' : PALE}/>
           <div style={{ flex: 1, minWidth: 0 }}>
@@ -739,8 +740,8 @@ export function RefereeMessages({ onBack: _onBack }: { onBack?: () => void }) {
         You're 16, so your mum is copied on messages from adults and can read these chats. Other adults can't start a chat with you: Ruth adds them.
       </div>
       {selected && <div style={{ background: GD, color: '#fff', borderRadius: 12, padding: '10px 14px', marginBottom: 10, fontSize: 13, fontWeight: 600 }}>Opened: {selected}</div>}
-      {chats.map(c => (
-        <button key={c.name} onClick={() => setSelected(c.name)}
+      {chats.map(c0 => ({ ...c0, unread: isRead(`phone-msgs:${c0.name}`) ? 0 : ('unread' in c0 ? c0.unread ?? 0 : 0) })).map(c => (
+        <button key={c.name} onClick={() => { markSeen(`phone-msgs:${c.name}`); setSelected(c.name) }}
           style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 14px', width: '100%', background: selected === c.name ? PALE : '#fff', border: 'none', borderBottom: `1px solid ${LN}`, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
           <Ini s={c.ini} size={40} bg={PALE}/>
           <div style={{ flex: 1, minWidth: 0 }}>

@@ -1,3 +1,4 @@
+import { useRead, markRead } from './readStore'
 import { openThing } from './openThing'
 import { useState } from 'react'
 
@@ -211,6 +212,8 @@ function LinhPanelContent() {
 
 export default function InboxScreen({ empty }: { empty?: boolean }) {
   const [sel, setSel] = useState(0)
+  const read = useRead(); markRead(`inbox:${sel}`)   // the message that is open has been read
+  const msgs = MESSAGES.map((m, i) => ({ ...m, unread: m.unread && !read(`inbox:${i}`) }))
   const [filterTab, setFilterTab] = useState(0)
   const [toast, setToast] = useState<string | null>(null)
   if (empty) return <InboxEmpty />
@@ -239,7 +242,7 @@ export default function InboxScreen({ empty }: { empty?: boolean }) {
           ))}
         </div>
         <div style={{ flexGrow: 1, overflowY: 'auto' }}>
-          {MESSAGES.map((m, i) => (
+          {msgs.map((m, i) => (
             <button key={i} onClick={() => setSel(i)} style={{
               width: '100%', padding: '12px 16px', display: 'flex', alignItems: 'flex-start', gap: 10,
               border: 0, borderTop: '1px solid #f0f1ef', background: sel === i ? '#eef5f2' : m.unread ? '#ffffff' : '#fafafa',

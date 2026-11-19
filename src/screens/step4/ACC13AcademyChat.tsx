@@ -1,3 +1,4 @@
+import { isRead, markRead } from '../readStore'
 import { openThing } from '../openThing'
 import { Glyph, glyph } from '../Glyph'
 import { useState } from 'react'
@@ -122,10 +123,10 @@ export default function ACC13AcademyChat(_: { onBack?: () => void }) {
               name: 'Dani Okafor · owner', time: 'Wed', preview: 'Can you take the 4:15 on Friday?',
               sheet: 'cdani' as Sheet, unread: 1, active: false
             },
-          ].map((row, i) => (
+          ].map((r0, n) => { if (r0.active) markRead(`acc13:${n}`); return { ...r0, unread: isRead(`acc13:${n}`) ? 0 : r0.unread } }).map((row, i) => (
             <button
               key={i}
-              onClick={() => row.sheet && setSheet(row.sheet)}
+              onClick={() => { markRead(`acc13:${i}`); if (row.sheet) setSheet(row.sheet) }}
               style={{
                 minHeight: 68, padding: '0 16px', borderTop: `1px solid ${LN}`, display: 'flex', alignItems: 'center', gap: 10,
                 background: row.active ? PALE : 'none', borderLeft: row.active ? `3px solid ${G}` : '3px solid transparent',
