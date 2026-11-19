@@ -3,22 +3,24 @@
 // LN5 how it went · LN6 the game itself, LN6w all the words, LN6s shapes · LN7 your season · LN8 why we teach this.
 // One template per kind of page; the words come from lessons.json, words.json and sources.json unchanged.
 
-import { useEffect, useState, type ReactNode } from 'react'
+import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { Btn, Note, Ico, tile, h2, cap, label, G, INK, MUT, LINE, PALE, DARK } from '../capture/marks'
 import { Page, col } from '../capture/CaptureScreens'
 import { playClips } from '../clips/clipSheet'
+import LearnPlayer, { Thumb, chaptersFor, lengthOf, type PlayerHandle } from './LearnPlayer'
 import { useBackState } from '../../backState'
 import { sessionFor, type SessionState } from '../session/sessionStore'
 import type { TeamKey } from '../session/sessionEngine'
-import { ALL, CONFIDENCE, COURSE_NAME, GLOSSARY, MODULES, MODULE_SCREEN, OWN_TEAM, RESEARCH, WORRIES, addsGame, ctxFor, effectOf, isDay, lesson, moduleOf, moduleOrder, nextLesson, paceLine, setCoach, takeWanted, tryHeading, useCoach, useWanted, type Coach, type Ctx, type Lesson, type Module } from './course'
+import { ALL, CONFIDENCE, GLOSSARY, MODULES, MODULE_SCREEN, OWN_TEAM, RESEARCH, WORRIES, addsGame, ctxFor, effectOf, isDay, lesson, moduleOf, moduleOrder, nextLesson, paceLine, setCoach, takeWanted, tryHeading, useCoach, useWanted, type Coach, type Ctx, type Lesson, type Module } from './course'
 
 type Props = { s: SessionState; k: TeamKey; go: (id: string) => void; say: (m: string) => void; start?: string; isNew?: boolean }
 const HAIR = '#e9eae8'
 /** A small numbered mark beside a claim. It opens Why we teach this. */
 const Src = ({ n, onOpen }: { n: number; onOpen: () => void }) => <span style={{ position: 'relative', display: 'inline-block', margin: '0 3px', whiteSpace: 'nowrap' }}><span aria-hidden="true" style={{ display: 'inline-block', minWidth: 20, padding: '0 6px', boxSizing: 'border-box', borderRadius: 999, background: PALE, color: INK, fontSize: 11, lineHeight: '18px', fontWeight: 700, textAlign: 'center' }}>{n}</span><button onClick={onOpen} aria-label={`Source ${n}`} style={{ position: 'absolute', left: '50%', top: '50%', width: 44, height: 44, transform: 'translate(-50%,-50%)', padding: 0, border: 0, borderRadius: 8, background: 'none', cursor: 'pointer' }} /></span>
 const COLS = 'minmax(0,1fr) 348px'
+/** The player and what sits beside it: 716 to 400 on the boards. */
+const PLAY = 'minmax(0,1.79fr) minmax(0,1fr)'
 const lower = (t: string) => t.charAt(0).toLowerCase() + t.slice(1)
-const NUM = ['No', 'One', 'Two', 'Three', 'Four', 'Five', 'Six']
 const chip = (on: boolean): React.CSSProperties => ({ minHeight: 44, padding: '0 16px', borderRadius: 999, border: on ? 0 : `1px solid ${LINE}`, background: on ? G : '#fff', color: on ? '#fff' : INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' })
 const rowBtn: React.CSSProperties = { display: 'flex', alignItems: 'center', gap: 14, width: '100%', minHeight: 58, padding: '6px 0', border: 0, borderTop: `1px solid ${LINE}`, background: 'none', fontFamily: 'inherit', color: INK, textAlign: 'left', cursor: 'pointer' }
 const Round = ({ done, n, here }: { done: boolean; n: number; here?: boolean }) => <span style={{ flex: 'none', width: 34, height: 34, borderRadius: 999, boxSizing: 'border-box', background: done ? G : '#fff', border: done ? 0 : `${here ? 2 : 1}px solid ${here ? INK : LINE}`, color: done ? '#fff' : INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>{done ? <Ico d="M5 12l5 5 9-10" size={15} sw={3} /> : n}</span>
@@ -35,6 +37,25 @@ const Hero = ({ over, head, sub, stats }: { over: string; head: string; sub: str
 )
 const Pair = ({ a, b, v }: { a: string; b?: string; v: ReactNode }) => <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, minHeight: 46, padding: '6px 0', borderTop: `1px solid ${LINE}` }}><span style={{ display: 'flex', flexDirection: 'column', minWidth: 0 }}><strong style={{ fontSize: 14, lineHeight: '19px' }}>{a}</strong>{b && <span style={{ fontSize: 13, lineHeight: '18px', color: MUT }}>{b}</span>}</span><strong style={{ flex: 'none', fontSize: 14, textAlign: 'right' }}>{v}</strong></div>
 
+const link: React.CSSProperties = { minHeight: 44, border: 0, background: 'none', padding: 0, fontFamily: 'inherit', fontSize: 13, fontWeight: 700, color: G, textDecoration: 'underline', cursor: 'pointer' }
+/** "Try it", pinned beside the player with its button. */
+function TryIt({ l, when, done, onAdd }: { l: Lesson; when: string; done: boolean; onAdd: () => void }) {
+  return (
+    <section aria-label="Try it" style={{ borderRadius: 16, background: '#fff', border: `2.5px solid ${INK}`, padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: 6 }}>
+      <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, flexWrap: 'wrap' }}><h2 style={h2}>{tryHeading(l)}</h2>{when && <span style={{ display: 'inline-flex', alignItems: 'center', minHeight: 24, padding: '0 9px', borderRadius: 999, boxSizing: 'border-box', fontSize: 12, fontWeight: 700, background: G, color: '#fff' }}>{when}</span>}</span>
+      <span style={{ fontSize: 14, lineHeight: '20px' }}>{l.try_task}</span>
+      <span style={{ display: 'flex' }}><Btn primary aria-pressed={done} onClick={onAdd}>{isDay(l) ? `Add to ${l.try_when}’s run sheet` : 'Remind me'}</Btn></span>
+    </section>)
+}
+/** One row of "Up next": a still with its length, what it is, and one line about it. */
+function NextRow({ over, title, sub, kind, len, onClick, top = true }: { over: string; title: string; sub: string; kind: 'team' | 'drawn'; len: number; onClick: () => void; top?: boolean }) {
+  return (
+    <button onClick={onClick} style={{ display: 'flex', gap: 10, alignItems: 'center', width: '100%', minHeight: 84, padding: '7px 0', border: 0, borderTop: top ? `1px solid ${HAIR}` : 0, background: 'none', fontFamily: 'inherit', color: INK, textAlign: 'left', cursor: 'pointer' }}>
+      <Thumb kind={kind} len={len} />
+      <span style={{ minWidth: 0, display: 'flex', flexDirection: 'column', gap: 1 }}><span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.05em', color: MUT }}>{over}</span><strong style={{ fontSize: 14, lineHeight: '18px' }}>{title}</strong><span style={{ fontSize: 12, lineHeight: '16px', color: MUT }}>{sub}</span></span>
+    </button>)
+}
+
 /** The confidence rows: round 1 in grey, now in green. The coach's own ratings, never amber, never compared. */
 function Confidence({ c }: { c: Coach }) {
   const bar = (n: number, colour: string) => <span style={{ display: 'flex', gap: 3 }}>{[1, 2, 3, 4, 5].map(i => <span key={i} style={{ width: 17, height: 7, borderRadius: 2, background: i <= n ? colour : HAIR }} />)}</span>
@@ -47,7 +68,7 @@ function Confidence({ c }: { c: Coach }) {
 
 export default function LearnCourse({ s, k, go, say, start, isNew = false }: Props) {
   const x = ctxFor(k, isNew), c = useCoach(x.who)
-  const first = (id?: string): string => !id || id === 'GS8-WelcomeCourse' || id === 'LN1-LearnHome' ? (c.built ? 'home' : 'start') : id === 'LN2-StartingPoint' ? 'start' : id === 'LN5-HowItWent' ? 'went:4.2' : id === 'LN6-TheGameItself' ? 'game' : id === 'LN6w-AllWords' ? 'words' : id === 'LN6s-Shapes' ? 'shapes' : id === 'LN7-YourProgress' ? 'season' : id === 'LN8-WhyWeTeachThis' ? 'why' : MODULE_SCREEN.includes(id) ? `m:${MODULE_SCREEN.indexOf(id) + 1}` : lesson(id) ? `l:${lesson(id)!.id}` : 'home'
+  const first = (id?: string): string => !id || id === 'GS8-WelcomeCourse' || id === 'LN1-LearnHome' ? (c.built ? 'home' : 'start') : id === 'LN1n-LearnHomeNoFilm' ? 'home' : id === 'LN4n-Lesson' ? 'l:4.2' : id === 'LN2-StartingPoint' ? 'start' : id === 'LN5-HowItWent' ? 'went:4.2' : id === 'LN6-TheGameItself' ? 'game' : id === 'LN6w-AllWords' ? 'words' : id === 'LN6s-Shapes' ? 'shapes' : id === 'LN7-YourProgress' ? 'season' : id === 'LN8-WhyWeTeachThis' ? 'why' : MODULE_SCREEN.includes(id) ? `m:${MODULE_SCREEN.indexOf(id) + 1}` : lesson(id) ? `l:${lesson(id)!.id}` : 'home'
   const [view, setView] = useBackState(() => first(start))
   const wanted = useWanted()
   useEffect(() => { if (wanted) { const w = takeWanted(); if (w) setView(first(w)) } })   // a link from elsewhere in the app
@@ -57,6 +78,14 @@ export default function LearnCourse({ s, k, go, say, start, isNew = false }: Pro
   /** "5:10 · Keep-ball 4 v 2" names a part of the under-11s' session: show the same part of this coach's own. */
   const at = (l: Lesson) => { const m = l.try_at.match(/^(\d+:\d\d) · /); const i = m ? u11.parts.findIndex(p => p.at === m[1]) : -1; const p = i >= 0 ? tuesday.parts[i] : undefined; if (m && isNew) return ''; return p && k !== 'u11' ? `${p.at} · ${p.drill.name}` : l.try_at }   // a club with no session yet: no part to name
   const now = nextLesson(c), order = moduleOrder(c)
+  /** Put the lesson's one thing on the run sheet (a day lesson) or set a reminder (any other). */
+  const remind = (l: Lesson, named = false) => {
+    setCoach(x.who, v => ({ reminders: { ...v.reminders, [l.id]: `${at(l) || l.try_when} · ${l.title}` } }))
+    const part = at(l).match(/^(\d+:\d\d) · (.+)$/)
+    say(!isDay(l) ? `We’ll remind you: ${lower(l.try_when)}.` : named && part ? `Added to ${part[2]} at ${part[1]}. It shows as a reminder on your run sheet.` : `Added to your run sheet for ${l.try_when}. It shows as a reminder at the right moment.`)
+  }
+  const captions = c.captions !== false, setCaptions = (on: boolean) => setCoach(x.who, { captions: on })
+  const player = useRef<PlayerHandle>(null)
   const doneCount = ALL.filter(l => c.done[l.id]).length, tried = Object.values(c.done).filter(d => d.tried === 'Yes').length
 
   // ── LN2 · where you are starting ───────────────────────────────────────────
@@ -223,48 +252,51 @@ export default function LearnCourse({ s, k, go, say, start, isNew = false }: Pro
   // ── LN4 and LNL11 to LNL64 · a lesson ──────────────────────────────────────
   if (view.startsWith('l:')) {
     const l = lesson(view.slice(2)) ?? ALL[0], m = moduleOf(l), i = m.lessons.indexOf(l), own = c.ownWords[l.id] ?? []
-    return <LessonPage key={l.id} l={l} m={m} i={i} own={own} x={x} c={c} go={go} say={say} open={open} at={at} source={source} />
+    return <LessonPage key={l.id} l={l} m={m} i={i} own={own} x={x} c={c} go={go} say={say} open={open} at={at} source={source} remind={() => remind(l)} captions={captions} setCaptions={setCaptions} />
   }
 
-  // ── LN1 · the course ───────────────────────────────────────────────────────
-  const hereModule = now ? moduleOf(now) : null, modulesDone = MODULES.filter(m => m.lessons.every(l => c.done[l.id])).length
-  const head = !now ? 'Course finished. Your season page shows what you have tried.' : `${NUM[modulesDone]} module${modulesDone === 1 ? '' : 's'} done. Now: ${hereModule!.number === 4 ? 'how to talk to players so it sticks' : lower(hereModule!.summary)}.`
+  // ── LN1 · the course, led by the player ────────────────────────────────────
+  const hereModule = now ? moduleOf(now) : null
   const keepBall = tuesday.parts.some(p => /keep-ball/i.test(p.drill.name))
+  const clip = now?.own_team_clip && x.hasFilm ? now.own_team_clip : null   // only ever this coach's own players
+  const chapters = now ? chaptersFor(now, !!clip, 'The set-up, drawn') : []
+  const after = now ? order.flatMap(m => m.lessons).filter(l => !c.done[l.id] && l.id !== now.id).slice(0, 2) : []
+  const why = !now ? '' : c.next === now.id ? 'your last answer pointed here.' : now.id === '4.2' && keepBall ? 'Tuesday’s keep-ball game works when players find the answer themselves.' : 'it is next in your course.'
   return (
-    <Page id="LN1-LearnHome" title="Learn to coach" sub={`${x.coach} · your first season · only you see this`} go={go} cols={COLS}
-      right={<><Btn big onClick={() => open('why')}>Why we teach this</Btn>{now && <Btn primary big onClick={() => open(`l:${now.id}`)}>Carry on: {lower(now.title.split(',')[0])}</Btn>}</>}>
-      <div style={col}>
-        <Hero over={`${COURSE_NAME.toUpperCase()} · MODULE ${hereModule ? order.indexOf(hereModule) + 1 : MODULES.length} OF ${MODULES.length}`} head={head} sub="Every lesson is one thing to try at your next session, then two taps on how it went." stats={[[`${doneCount} of ${ALL.length}`, 'lessons'], [String(tried), 'things tried', 'at training']]} />
-        <section aria-label="The course" style={{ ...tile, gap: 0, padding: '12px 18px 2px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingBottom: 6 }}><h2 style={h2}>The course</h2><button onClick={() => open('start')} style={{ minHeight: 44, border: 0, background: 'none', padding: 0, fontFamily: 'inherit', fontSize: 13, fontWeight: 700, color: G, textDecoration: 'underline', cursor: 'pointer' }}>Built from your answers</button></div>
-          {order.map((m, n) => { const done = m.lessons.every(l => c.done[l.id]), here = hereModule === m, after = hereModule ? order.indexOf(hereModule) : -1; const state = done ? 'Done' : here ? 'You are here' : n === after + 1 ? 'Next' : 'Later'; return (
-            <button key={m.number} onClick={() => open(`m:${m.number}`)} style={rowBtn}>
-              <Round done={done} n={n + 1} here={here} />
-              <span style={{ flexGrow: 1, minWidth: 0, display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 15, lineHeight: '21px' }}>{m.title}</strong><span style={{ fontSize: 13, color: MUT }}>{m.summary}</span></span>
-              <span aria-hidden="true" style={{ flex: 'none', width: 78, display: 'flex', gap: 3 }}>{m.lessons.map(l => <span key={l.id} style={{ width: 9, height: 9, borderRadius: 999, boxSizing: 'border-box', background: c.done[l.id] ? G : '#fff', border: c.done[l.id] ? 0 : `1.3px solid #9aa5a1` }} />)}</span>
-              <span style={{ flex: 'none', width: 104 }}><span style={{ display: 'inline-block', fontSize: 12, fontWeight: 700, borderRadius: 999, padding: '4px 10px', background: here ? INK : done ? G : HAIR, color: here || done ? '#fff' : INK }}>{state}</span></span><Chev />
-            </button>) })}
-        </section>
-      </div>
-      <div style={col}>
-        {now && <section aria-label="This week’s lesson" style={tile}>
-          <h2 style={h2}>{isDay(now) ? `This week, matched to ${now.try_when}` : 'This week'}</h2>
-          <button onClick={() => open(`l:${now.id}`)} style={{ display: 'flex', gap: 12, alignItems: 'center', minHeight: 60, border: 0, background: 'none', padding: 0, fontFamily: 'inherit', color: INK, textAlign: 'left', cursor: 'pointer' }}>
-            <span style={{ flex: 'none', width: 76, height: 60, borderRadius: 10, background: G, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Ico d="M8 5l11 7-11 7z" size={16} /></span>
-            <span style={{ display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 15, lineHeight: '20px' }}>{now.title}</strong><span style={{ fontSize: 13, color: MUT }}>Lesson {moduleOf(now).lessons.indexOf(now) + 1} of {moduleOf(now).lessons.length} · {now.minutes} minutes</span></span>
-          </button>
-          <span style={{ fontSize: 13, lineHeight: '19px' }}><strong>Why now: </strong>{c.next === now.id ? 'your last answer pointed here.' : now.id === '4.2' && keepBall ? 'Tuesday’s keep-ball game works when players find the answer themselves.' : 'it is next in your course.'}</span>
-        </section>}
-        <section aria-label="How confident you feel" style={{ ...tile, gap: 0, padding: '14px 16px 10px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingBottom: 6 }}><h2 style={h2}>How confident you feel</h2><button onClick={() => open('season')} style={{ minHeight: 44, border: 0, background: 'none', padding: 0, fontFamily: 'inherit', fontSize: 13, fontWeight: 700, color: G, textDecoration: 'underline', cursor: 'pointer' }}>Your season</button></div>
-          <Confidence c={c} />
-          <span style={{ fontSize: 12, color: MUT, paddingTop: 6 }}>Your own ratings: round 1 in grey, now in green.</span>
-        </section>
-        <section aria-label="Stuck on something?" style={{ ...tile, gap: 0, padding: '12px 16px 4px' }}>
-          <h2 style={{ ...h2, paddingBottom: 4 }}>Stuck on something?</h2>
-          {([['Ask anything', '“What do I do when nobody answers?”', 'M4 5h16v11H9l-5 4z', () => say('Ask opens with your team and this week’s session already in view.')], ...(addsGame(c) ? [['The game itself', `Rules, positions and words for ${x.age}`, 'M6 4h12v16H6zM10 4v16', () => open('game')]] : []), [`Talk to ${x.mentor}`, 'Your club’s coach mentor', 'M12 12a4 4 0 100-8 4 4 0 000 8zM5 21a7 7 0 0114 0', () => say('Message to Rachel Moore started. She sees only what you write.')]] as [string, string, string, () => void][]).map(([a, b, d, on]) => (
-            <button key={a} onClick={on} style={{ ...rowBtn, minHeight: 46, borderTop: `1px solid ${HAIR}`, gap: 10 }}><span style={{ flex: 'none', width: 32, height: 32, borderRadius: 8, background: PALE, color: G, display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Ico d={d} size={15} /></span><span style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 14 }}>{a}</strong><span style={{ fontSize: 13, color: MUT }}>{b}</span></span><Chev /></button>))}
-        </section>
+    <Page id="LN1-LearnHome" title="Learn to coach" sub={`${x.coach} · your first season · only you see this`} go={go} cols={PLAY}
+      right={<><Btn big onClick={() => say('Ask opens with your team and this week’s session already in view.')}>Ask anything</Btn>{addsGame(c) && <Btn big onClick={() => open('game')}>The game itself</Btn>}<Btn big onClick={() => open('season')}>Your season</Btn></>}>
+      {now ? <>
+        <div style={{ ...col, gap: 10 }}>
+          <LearnPlayer ref={player} key={now.id} chapters={chapters} ratio="716 / 380" chips={[`This week · lesson ${now.id}`, clip ? 'Film coming. Showing your own team' : 'Film coming']} captions={captions} onCaptions={setCaptions} say={say}
+            tryCard={{ heading: tryHeading(now), at: at(now), task: now.try_task, button: isDay(now) ? `Add to ${now.try_when}’s run sheet` : 'Remind me', done: !!c.reminders[now.id], onAdd: () => remind(now, true) }} />
+          <div style={{ display: 'flex', alignItems: 'center', gap: 14, flexWrap: 'wrap' }}>
+            <span style={{ flex: '1 1 320px', minWidth: 0, display: 'flex', flexDirection: 'column' }}>
+              <strong style={{ fontSize: 20, lineHeight: '26px', letterSpacing: '-0.01em' }}>{now.title}</strong>
+              <span style={{ fontSize: 14, lineHeight: '20px', color: MUT }}>{clip ? 'Your own clip and the set-up, drawn' : 'The set-up, drawn'} · <strong style={{ color: INK }}>Why now:</strong> {why}</span>
+            </span>
+            <Btn big onClick={() => open(`l:${now.id}`)}>Open the lesson</Btn>
+          </div>
+        </div>
+        <div style={col}>
+          <TryIt l={now} when={at(now)} done={!!c.reminders[now.id]} onAdd={() => remind(now, true)} />
+          {(clip || after.length > 0) && <section aria-label="Up next" style={{ ...tile, gap: 0, padding: '4px 16px 4px' }}>
+            <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}><h2 style={h2}>Up next</h2><button onClick={() => open(`m:${hereModule!.number}`)} style={link}>All of module {hereModule!.number}</button></span>
+            {clip && <NextRow over="FROM YOUR OWN TEAM" title={clip.example_moment} sub={clip.example_caption} kind="team" len={11} onClick={() => { player.current?.play('team'); say('The clip plays in the player.') }} />}
+            {after.map(l => <NextRow key={l.id} over={`LESSON ${l.id}`} title={l.title} sub={l.one_line} kind="drawn" len={lengthOf(chaptersFor(l, false))} onClick={() => open(`l:${l.id}`)} />)}
+          </section>}
+        </div>
+      </> : <section aria-label="Course finished" style={{ ...tile, gridColumn: '1 / -1' }}><h2 style={h2}>Course finished</h2><span style={{ fontSize: 15, lineHeight: '22px' }}>Your season page shows what you have tried.</span></section>}
+      {/* progress: one strip of the six modules, in this coach's order. Each opens its module. */}
+      <nav aria-label="The course" style={{ gridColumn: '1 / -1', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: 8 }}>
+        {order.map((m, n) => { const got = m.lessons.filter(l => c.done[l.id]).length, done = got === m.lessons.length, here = hereModule === m; return (
+          <button key={m.number} onClick={() => open(`m:${m.number}`)} title={m.title} aria-current={here ? 'step' : undefined} style={{ minWidth: 0, minHeight: 64, borderRadius: 14, boxSizing: 'border-box', padding: '8px 10px', display: 'flex', alignItems: 'center', gap: 8, background: '#fff', border: here ? `2.5px solid ${INK}` : `1px solid ${LINE}`, fontFamily: 'inherit', color: INK, textAlign: 'left', cursor: 'pointer' }}>
+            <span style={{ flex: 'none', width: 28, height: 28, borderRadius: 999, boxSizing: 'border-box', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, background: done ? G : '#fff', color: done ? '#fff' : INK, border: done ? 0 : '1.5px solid #9aa5a2' }}>{done ? <Ico d="M5 12l5 5 9-10" size={13} sw={3} /> : n + 1}</span>
+            <span style={{ minWidth: 0, display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 13, lineHeight: '16px' }}>{m.title}</strong><span style={{ fontSize: 12, lineHeight: '16px', color: MUT }}>{done ? 'Done' : here ? `You are here · ${got} of ${m.lessons.length}` : `${m.lessons.length} lessons`}</span></span>
+          </button>) })}
+      </nav>
+      <div style={{ gridColumn: '1 / -1', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap', fontSize: 13, color: MUT }}>
+        <span>{doneCount} of {ALL.length} lessons · {tried} things tried at training · films are being made; lessons work without them</span>
+        <span style={{ display: 'flex', gap: 18 }}><button onClick={() => open('start')} style={link}>Built from your answers</button><button onClick={() => open('why')} style={link}>Why we teach this</button></span>
       </div>
     </Page>)
 }
@@ -272,68 +304,41 @@ export default function LearnCourse({ s, k, go, say, start, isNew = false }: Pro
 type Sub = { x: Ctx; c: Coach; go: (id: string) => void; say: (m: string) => void; open: (v: string) => void }
 
 // ── A lesson ─────────────────────────────────────────────────────────────────
-function LessonPage({ l, m, i, own, x, c, go, say, open, at, source }: Sub & { l: Lesson; m: Module; i: number; own: string[]; at: (l: Lesson) => string; source: () => void }) {
+function LessonPage({ l, m, i, own, x, c, go, say, open, at, source, remind, captions, setCaptions }: Sub & { l: Lesson; m: Module; i: number; own: string[]; at: (l: Lesson) => string; source: () => void; remind: () => void; captions: boolean; setCaptions: (on: boolean) => void }) {
   const [writing, setWriting] = useState(false), [mine, setMine] = useState('')
   const clip = l.own_team_clip && x.hasFilm ? l.own_team_clip : null   // only ever this coach's own players
-  const reminded = !!c.reminders[l.id], heading = tryHeading(l)
-  const remind = () => { setCoach(x.who, v => ({ reminders: { ...v.reminders, [l.id]: `${at(l) || l.try_when} · ${l.title}` } })); say(isDay(l) ? `Added to your run sheet for ${l.try_when}. It shows as a reminder at the right moment.` : `We’ll remind you: ${lower(l.try_when)}.`) }
-  const steps = ['Watch', 'The idea', ...(clip ? ['See it in your team'] : []), heading, 'How it went']
-  // each step is a button: it moves to that part of the lesson and marks it
-  const [step, setStep] = useState(1)
-  const ring = (name: string): React.CSSProperties => steps[step] === name ? { boxShadow: `0 0 0 2px ${G}` } : {}
-  const toStep = (n: number) => {
-    setStep(n); const name = steps[n]
-    document.getElementById(`ln-part-${n}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' })
-    say(name === 'Watch' ? 'The film for this lesson is not made yet. Start at “The idea”.' : `${name}.`)
-  }
-  const part = (name: string) => `ln-part-${steps.indexOf(name)}`
+  const reminded = !!c.reminders[l.id], heading = tryHeading(l), next = m.lessons[i + 1]
   return (
-    <Page id={l.screen} title={l.title} smallSub sub={`${m.title} · lesson ${i + 1} of ${m.lessons.length} · ${l.minutes} min`} go={go} cols={COLS}
-      right={<><Btn big onClick={() => open(`m:${m.number}`)}>Back</Btn><Btn primary big aria-pressed={reminded} onClick={remind}>{isDay(l) ? `Add to ${l.try_when}’s run sheet` : 'Remind me'}</Btn></>}>
-      <div style={{ gridColumn: '1 / -1', display: 'grid', gridTemplateColumns: `repeat(${steps.length}, minmax(0,1fr))`, gap: 8 }}>
-        {steps.map((st, n) => { const on = n === step, last = n === steps.length - 1; const inner = <><span style={{ flex: 'none', width: 20, height: 20, borderRadius: 999, background: on ? '#fff' : PALE, color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700 }}>{n + 1}</span><strong style={{ fontSize: 13 }}>{st}</strong></>; const st2: React.CSSProperties = { minHeight: 44, borderRadius: 10, border: on ? 0 : `1px solid ${LINE}`, background: on ? INK : '#fff', color: on ? '#fff' : INK, display: 'flex', alignItems: 'center', gap: 8, padding: '0 12px', fontFamily: 'inherit' }
-          return last ? <button key={st} onClick={() => open(`went:${l.id}`)} style={{ ...st2, cursor: 'pointer' }}>{inner}</button> : <button key={st} aria-current={on ? 'step' : undefined} onClick={() => toStep(n)} style={{ ...st2, cursor: 'pointer', textAlign: 'left' }}>{inner}</button> })}
-      </div>
-      <div style={col}>
-        <div style={{ display: 'grid', gridTemplateColumns: '260px minmax(0,1fr)', gap: 12 }}>
-          {/* Films are not made yet: say so, and never show a tile that plays nothing */}
-          <section id={part('Watch')} aria-label="The film" style={{ ...ring('Watch'), borderRadius: 16, background: DARK, color: '#fff', padding: 16, minHeight: 150, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-            <span style={{ alignSelf: 'flex-start', fontSize: 12, fontWeight: 700, background: 'rgba(255,255,255,0.16)', borderRadius: 999, padding: '3px 10px' }}>Film · about 2 minutes</span>
-            <strong style={{ fontSize: 16 }}>Film coming</strong>
-          </section>
-          <section id={part('The idea')} aria-label="The idea" style={{ ...tile, ...ring('The idea') }}>
+    <Page id={l.screen} title={l.title} smallSub sub={`${m.title} · lesson ${i + 1} of ${m.lessons.length}`} go={go} cols={PLAY}
+      right={<><Btn big onClick={() => open(`m:${m.number}`)}>Back</Btn><Btn big onClick={() => open(`went:${l.id}`)}>How it went</Btn></>}>
+      <div style={{ ...col, gap: 10 }}>
+        {/* no film is made yet: the player runs the coach's own clip, when one fits, then the lesson drawn */}
+        <LearnPlayer chapters={chaptersFor(l, !!clip)} ratio="716 / 352" chips={[`Lesson ${l.id}`, 'Film coming']} captions={captions} onCaptions={setCaptions} say={say}
+          tryCard={{ heading, at: at(l), task: l.try_task, button: isDay(l) ? `Add to ${l.try_when}’s run sheet` : 'Remind me', done: reminded, onAdd: remind }} />
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 12, alignItems: 'start' }}>
+          <section aria-label="The idea" style={tile}>
             <h2 style={h2}>The idea</h2>
             <span style={{ fontSize: 15, lineHeight: '22px' }}>{l.idea}</span>
             <span style={{ display: 'flex', flexDirection: 'column', gap: 2, fontSize: 14, lineHeight: '20px' }}>{l.steps.map((t, n) => <span key={t}><strong>{n + 1}. </strong>{t}</span>)}</span>
           </section>
+          {(l.words_to_use.length > 0 || own.length > 0 || l.instead_of) && <section aria-label="Words you can use" style={tile}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}><h2 style={h2}>{l.words_to_use.length || own.length ? 'Words you can use' : 'Leave these out'}</h2>{l.words_to_use.length > 0 && <Btn onClick={() => { setWriting(true); say('Type your own words. They are saved with this lesson and show on your run sheet.') }}>Write my own</Btn>}</div>
+            {writing && <form onSubmit={e => { e.preventDefault(); const t = mine.trim(); if (!t) return; setCoach(x.who, v => ({ ownWords: { ...v.ownWords, [l.id]: [t, ...(v.ownWords[l.id] ?? [])] } })); setMine(''); setWriting(false); say('Saved. Your own words show first.') }} style={{ display: 'flex', gap: 8 }}>
+              <input aria-label="Your own words" autoFocus value={mine} onChange={e => setMine(e.target.value)} placeholder="What you would say" style={{ flexGrow: 1, minWidth: 0, height: 44, padding: '0 12px', borderRadius: 10, border: `1px solid ${LINE}`, fontFamily: 'inherit', fontSize: 15, color: INK }} /><Btn primary big>Save</Btn>
+            </form>}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>{[...own, ...l.words_to_use].map((w, n) => <span key={w + n} style={{ display: 'flex', gap: 8, alignItems: 'baseline', fontSize: 14, lineHeight: '20px' }}><span style={{ color: G }}><Ico d="M4 5h16v11H9l-5 4z" size={13} /></span>“{w}”{n < own.length && <span style={{ fontSize: 12, color: MUT }}>yours</span>}</span>)}</div>
+            {l.instead_of && <span style={{ fontSize: 13, color: MUT }}>Instead of: {l.instead_of}</span>}
+          </section>}
         </div>
-        {(l.words_to_use.length > 0 || own.length > 0 || l.instead_of) && <section aria-label="Words you can use" style={tile}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}><h2 style={h2}>{l.words_to_use.length || own.length ? 'Words you can use' : 'Leave these out'}</h2>{l.words_to_use.length > 0 && <Btn onClick={() => { setWriting(true); say('Type your own words. They are saved with this lesson and show on your run sheet.') }}>Write my own</Btn>}</div>
-          {writing && <form onSubmit={e => { e.preventDefault(); const t = mine.trim(); if (!t) return; setCoach(x.who, v => ({ ownWords: { ...v.ownWords, [l.id]: [t, ...(v.ownWords[l.id] ?? [])] } })); setMine(''); setWriting(false); say('Saved. Your own words show first.') }} style={{ display: 'flex', gap: 8 }}>
-            <input aria-label="Your own words" autoFocus value={mine} onChange={e => setMine(e.target.value)} placeholder="What you would say" style={{ flexGrow: 1, height: 44, padding: '0 12px', borderRadius: 10, border: `1px solid ${LINE}`, fontFamily: 'inherit', fontSize: 15, color: INK }} /><Btn primary big>Save</Btn>
-          </form>}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6px 18px' }}>{[...own, ...l.words_to_use].map((w, n) => <span key={w + n} style={{ display: 'flex', gap: 8, alignItems: 'baseline', fontSize: 14, lineHeight: '20px' }}><span style={{ color: G }}><Ico d="M4 5h16v11H9l-5 4z" size={13} /></span>“{w}”{n < own.length && <span style={{ fontSize: 12, color: MUT }}>yours</span>}</span>)}</div>
-          {l.instead_of && <span style={{ fontSize: 13, color: MUT }}>Instead of: {l.instead_of}</span>}
-        </section>}
-        <section id={part(heading)} aria-label={heading} style={{ ...tile, ...ring(heading) }}>
-          <h2 style={h2}>{heading}</h2>
-          {at(l) && <span style={{ alignSelf: 'flex-start', fontSize: 12, fontWeight: 700, background: G, color: '#fff', borderRadius: 999, padding: '3px 10px' }}>{at(l)}</span>}
-          <span style={{ fontSize: 15, lineHeight: '22px' }}>{l.try_task}</span>
-        </section>
       </div>
       <div style={col}>
-        {clip && <section id={part('See it in your team')} aria-label="See it in your own team" style={{ ...tile, ...ring('See it in your team') }}>
-          <h2 style={h2}>See it in your own team</h2>
-          <button onClick={() => { playClips([{ title: clip.example_moment, sub: clip.example_caption, len: 11 }], 'See it in your own team'); say('The clip plays.') }} style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 76, borderRadius: 12, border: 0, background: '#2e3231', color: '#fff', padding: '0 14px', fontFamily: 'inherit', cursor: 'pointer' }}>
-            <span style={{ flex: 'none', width: 36, height: 36, borderRadius: 999, border: '1.5px solid #fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Ico d="M8 5l11 7-11 7z" size={13} /></span><strong style={{ fontSize: 14 }}>{clip.example_moment}</strong>
-          </button>
-          <span style={{ fontSize: 14, lineHeight: '20px' }}>{clip.example_caption}</span>
-        </section>}
+        <TryIt l={l} when={at(l)} done={reminded} onAdd={remind} />
         <section aria-label="What comes next" style={{ ...tile, gap: 0, padding: '14px 16px 6px' }}>
           <h2 style={{ ...h2, paddingBottom: 8 }}>Afterwards, your answer picks what comes next</h2>
-          {l.answers.map(a => <div key={a.answer} style={{ display: 'grid', gridTemplateColumns: '130px minmax(0,1fr)', gap: 12, alignItems: 'center', minHeight: 44, padding: '6px 0', borderTop: `1px solid ${HAIR}` }}><strong style={{ fontSize: 13 }}>{a.answer}</strong><span style={{ fontSize: 13, lineHeight: '18px' }}>{a.then}</span></div>)}
+          {l.answers.map(a => <div key={a.answer} style={{ display: 'grid', gridTemplateColumns: '116px minmax(0,1fr)', gap: 12, alignItems: 'center', minHeight: 42, padding: '5px 0', borderTop: `1px solid ${HAIR}` }}><strong style={{ fontSize: 13, lineHeight: '17px' }}>{a.answer}</strong><span style={{ fontSize: 13, lineHeight: '18px' }}>{a.then}</span></div>)}
         </section>
-        <Note title="Where this comes from">{l.sources.length ? <>The research and guidance behind this lesson.<span style={{ whiteSpace: 'nowrap' }}>{l.sources.map(n => <Src key={n} n={n} onOpen={source} />)}</span></> : 'This is how Clean Sheet works, or common coaching practice. No research claim is made.'}</Note>
+        {next && <section aria-label="Up next" style={{ ...tile, padding: '0 10px' }}><NextRow top={false} over={`UP NEXT · LESSON ${next.id}`} title={next.title} sub={next.one_line} kind="drawn" len={lengthOf(chaptersFor(next, false))} onClick={() => open(`l:${next.id}`)} /></section>}
+        <span style={{ fontSize: 13, lineHeight: '20px', color: MUT, padding: '0 4px' }}>{l.sources.length ? <>Research and guidance behind this lesson: <span style={{ whiteSpace: 'nowrap' }}>{l.sources.map(n => <Src key={n} n={n} onOpen={source} />)}</span></> : 'This is how Clean Sheet works, or common coaching practice. No research claim is made.'}</span>
       </div>
     </Page>)
 }

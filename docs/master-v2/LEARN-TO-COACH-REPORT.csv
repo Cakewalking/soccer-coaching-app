@@ -1,19 +1,54 @@
 control id,screen,control,does,target or line,status: works / line of text only / missing / wrong target (say where)
 LN1-LearnHome#7,LN1-LearnHome,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
-LN1-LearnHome#14,LN1-LearnHome,Why we teach this,Opens,LN8-WhyWeTeachThis,works
-LN1-LearnHome#15,LN1-LearnHome,Carry on: asking a question,Opens,LN4-Lesson,works
-LN1-LearnHome#16,LN1-LearnHome,Built from your answers,Opens,LN2-StartingPoint,works
-LN1-LearnHome#17,LN1-LearnHome,Before your first session · Walk on to the pitch with a plan · · · · · · · · Done,Opens,LN3m1-Module,works
-LN1-LearnHome#18,LN1-LearnHome,"Keeping players safe · Head knocks, heat, injuries, who to tell · · · · · · · · Done",Opens,LN3m2-Module,works
-LN1-LearnHome#19,LN1-LearnHome,"Running the session · Start fast, keep them busy, stop it less · · · · · · · · Done",Opens,LN3m3-Module,works
-LN1-LearnHome#20,LN1-LearnHome,"4 · Talking to players · Ask, praise and correct so it sticks · · · · · · · · · You are here",Opens,LN3-Module,works
-LN1-LearnHome#21,LN1-LearnHome,"5 · Match day · Team talk, fair turns, your own sideline · · · · · · · · Next",Opens,LN3m5-Module,works
-LN1-LearnHome#22,LN1-LearnHome,6 · Parents and your helpers · Set it up once so the season runs · · · · · · · Later,Opens,LN3m6-Module,works
-LN1-LearnHome#23,LN1-LearnHome,"Asking a question, not giving an answer · Lesson 2 of 6 · 6 minutes",Opens,LN4-Lesson,works
-LN1-LearnHome#24,LN1-LearnHome,Your season,Opens,LN7-YourProgress,works
-LN1-LearnHome#25,LN1-LearnHome,Ask anything · “What do I do when nobody answers?”,Says,Ask opens with your team and this week’s session already in view.,works
-LN1-LearnHome#26,LN1-LearnHome,"The game itself · Rules, positions and words for under 11",Opens,LN6-TheGameItself,works
-LN1-LearnHome#27,LN1-LearnHome,Talk to Rachel · Your club’s coach mentor,Says,Message to Rachel Moore started. She sees only what you write.,works
+LN1-LearnHome#14,LN1-LearnHome,Ask anything,Says,Ask opens with your team and this week’s session already in view.,works
+LN1-LearnHome#15,LN1-LearnHome,The game itself,Opens,LN6-TheGameItself,works
+LN1-LearnHome#16,LN1-LearnHome,Your season,Opens,LN7-YourProgress,works
+LN1-LearnHome#17,LN1-LearnHome,Play,Says,"Plays here, in the page. Tap again to pause.",works
+LN1-LearnHome#18,LN1-LearnHome,Play,Says,"Plays here, in the page.",works
+LN1-LearnHome#19,LN1-LearnHome,The film 2:15,Says,Jumps to: The film.,"missing: left out on purpose, no film exists"
+LN1-LearnHome#20,LN1-LearnHome,Your team 0:11,Says,Jumps to: Your team.,works
+LN1-LearnHome#21,LN1-LearnHome,Try it,Says,Jumps to: Try it.,works
+LN1-LearnHome#22,LN1-LearnHome,Captions [switch],Says,Captions off. They are on by default.,works
+LN1-LearnHome#23,LN1-LearnHome,Full screen,Says,Full screen.,works
+LN1-LearnHome#24,LN1-LearnHome,Open the lesson,Opens,LN4-Lesson,works
+LN1-LearnHome#25,LN1-LearnHome,Add to Tuesday’s run sheet,Says,Added to Keep-ball 4 v 2 at 5:10. It shows as a reminder on your run sheet.,works
+LN1-LearnHome#26,LN1-LearnHome,All of module 4,Opens,LN3-Module,works
+LN1-LearnHome#27,LN1-LearnHome,"0:11 · · FROM YOUR OWN TEAM · Saturday, 14th minute · Ari has space on his left",Says,The clip plays in the player.,works; the length on the still differs because no film exists
+LN1-LearnHome#28,LN1-LearnHome,2:05 · · LESSON 4.3 · Wait for the answer · Count to five. Silence is thinking,Opens,LNL43-Lesson,works; the length on the still differs because no film exists
+LN1-LearnHome#29,LN1-LearnHome,"2:30 · · LESSON 4.4 · Praise the effort, name the action · Not just “well done”",Opens,LNL44-Lesson,works; the length on the still differs because no film exists
+LN1-LearnHome#30,LN1-LearnHome,Before your first session · Done,Opens,LN3m1-Module,works
+LN1-LearnHome#31,LN1-LearnHome,Keeping players safe · Done,Opens,LN3m2-Module,works
+LN1-LearnHome#32,LN1-LearnHome,Running the session · Done,Opens,LN3m3-Module,works
+LN1-LearnHome#33,LN1-LearnHome,4 · Talking to players · You are here · 1 of 6,Opens,LN3-Module,works
+LN1-LearnHome#34,LN1-LearnHome,5 · Match day · 5 lessons,Opens,LN3m5-Module,works
+LN1-LearnHome#35,LN1-LearnHome,6 · Parents and your helpers · 4 lessons,Opens,LN3m6-Module,works
+LN1-LearnHome#36,LN1-LearnHome,Built from your answers,Opens,LN2-StartingPoint,works
+LN1-LearnHome#37,LN1-LearnHome,Why we teach this,Opens,LN8-WhyWeTeachThis,works
+LN1n-LearnHomeNoFilm#7,LN1n-LearnHomeNoFilm,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+LN1n-LearnHomeNoFilm#14,LN1n-LearnHomeNoFilm,Ask anything,Says,Ask opens with your team and this week’s session already in view.,works
+LN1n-LearnHomeNoFilm#15,LN1n-LearnHomeNoFilm,The game itself,Opens,LN6-TheGameItself,works
+LN1n-LearnHomeNoFilm#16,LN1n-LearnHomeNoFilm,Your season,Opens,LN7-YourProgress,works
+LN1n-LearnHomeNoFilm#17,LN1n-LearnHomeNoFilm,Play,Says,"Plays here, in the page. Tap again to pause.",works
+LN1n-LearnHomeNoFilm#18,LN1n-LearnHomeNoFilm,Play,Says,"Plays here, in the page.",works
+LN1n-LearnHomeNoFilm#19,LN1n-LearnHomeNoFilm,Your team 0:11,Says,Jumps to: Your team.,works
+LN1n-LearnHomeNoFilm#20,LN1n-LearnHomeNoFilm,"The set-up, drawn 0:40",Says,"Jumps to: The set-up, drawn.",works
+LN1n-LearnHomeNoFilm#21,LN1n-LearnHomeNoFilm,Try it,Says,Jumps to: Try it.,works
+LN1n-LearnHomeNoFilm#22,LN1n-LearnHomeNoFilm,Captions [switch],Says,Captions off. They are on by default.,works
+LN1n-LearnHomeNoFilm#23,LN1n-LearnHomeNoFilm,Full screen,Says,Full screen.,works
+LN1n-LearnHomeNoFilm#24,LN1n-LearnHomeNoFilm,Open the lesson,Opens,LN4n-Lesson,"works; every lesson is in the no-film state, so it opens under the id LN4-Lesson"
+LN1n-LearnHomeNoFilm#25,LN1n-LearnHomeNoFilm,Add to Tuesday’s run sheet,Says,Added to Keep-ball 4 v 2 at 5:10. It shows as a reminder on your run sheet.,works
+LN1n-LearnHomeNoFilm#26,LN1n-LearnHomeNoFilm,All of module 4,Opens,LN3-Module,works
+LN1n-LearnHomeNoFilm#27,LN1n-LearnHomeNoFilm,"0:11 · · FROM YOUR OWN TEAM · Saturday, 14th minute · Ari has space on his left",Says,The clip plays in the player.,works; the length on the still differs because no film exists
+LN1n-LearnHomeNoFilm#28,LN1n-LearnHomeNoFilm,0:35 · · LESSON 4.3 · Wait for the answer · Count to five. Silence is thinking,Opens,LNL43-Lesson,works; the length on the still differs because no film exists
+LN1n-LearnHomeNoFilm#29,LN1n-LearnHomeNoFilm,"0:40 · · LESSON 4.4 · Praise the effort, name the action · Not just “well done”",Opens,LNL44-Lesson,works; the length on the still differs because no film exists
+LN1n-LearnHomeNoFilm#30,LN1n-LearnHomeNoFilm,Before your first session · Done,Opens,LN3m1-Module,works
+LN1n-LearnHomeNoFilm#31,LN1n-LearnHomeNoFilm,Keeping players safe · Done,Opens,LN3m2-Module,works
+LN1n-LearnHomeNoFilm#32,LN1n-LearnHomeNoFilm,Running the session · Done,Opens,LN3m3-Module,works
+LN1n-LearnHomeNoFilm#33,LN1n-LearnHomeNoFilm,4 · Talking to players · You are here · 1 of 6,Opens,LN3-Module,works
+LN1n-LearnHomeNoFilm#34,LN1n-LearnHomeNoFilm,5 · Match day · 5 lessons,Opens,LN3m5-Module,works
+LN1n-LearnHomeNoFilm#35,LN1n-LearnHomeNoFilm,6 · Parents and your helpers · 4 lessons,Opens,LN3m6-Module,works
+LN1n-LearnHomeNoFilm#36,LN1n-LearnHomeNoFilm,Built from your answers,Opens,LN2-StartingPoint,works
+LN1n-LearnHomeNoFilm#37,LN1n-LearnHomeNoFilm,Why we teach this,Opens,LN8-WhyWeTeachThis,works
 LN2-StartingPoint#7,LN2-StartingPoint,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
 LN2-StartingPoint#14,LN2-StartingPoint,"Skip, give me the standard course",Opens,LN1-LearnHome,works
 LN2-StartingPoint#15,LN2-StartingPoint,Build my course,Opens,LN1-LearnHome,works
@@ -24,11 +59,11 @@ LN2-StartingPoint#19,LN2-StartingPoint,This is my first season [radio],Says,This
 LN2-StartingPoint#20,LN2-StartingPoint,A season or two [radio],Says,A season or two: taken off.,works
 LN2-StartingPoint#21,LN2-StartingPoint,Three or more [radio],Says,Three or more: picked.,works
 LN2-StartingPoint#22,LN2-StartingPoint,Planning sessions [checkbox],Says,Planning sessions: taken off.,works
-LN2-StartingPoint#23,LN2-StartingPoint,Getting them to listen [checkbox],Says,Getting them to listen: picked.,"works: three worries are already picked on this board, so a fourth says “Three is the most. Take one off first.”"
+LN2-StartingPoint#23,LN2-StartingPoint,Getting them to listen [checkbox],Says,Getting them to listen: picked.,works; a fourth worry is refused because three is the most
 LN2-StartingPoint#24,LN2-StartingPoint,Knowing the rules [checkbox],Says,Knowing the rules: taken off.,works
 LN2-StartingPoint#25,LN2-StartingPoint,What to say [checkbox],Says,What to say: taken off.,works
-LN2-StartingPoint#26,LN2-StartingPoint,Match day [checkbox],Says,Match day: picked.,"works: three worries are already picked on this board, so a fourth says “Three is the most. Take one off first.”"
-LN2-StartingPoint#27,LN2-StartingPoint,Parents [checkbox],Says,Parents: picked.,"works: three worries are already picked on this board, so a fourth says “Three is the most. Take one off first.”"
+LN2-StartingPoint#26,LN2-StartingPoint,Match day [checkbox],Says,Match day: picked.,works; a fourth worry is refused because three is the most
+LN2-StartingPoint#27,LN2-StartingPoint,Parents [checkbox],Says,Parents: picked.,works; a fourth worry is refused because three is the most
 LN2-StartingPoint#28,LN2-StartingPoint,5 minutes [radio],Says,5 minutes: picked.,works
 LN2-StartingPoint#29,LN2-StartingPoint,10 minutes [radio],Says,10 minutes: taken off.,works
 LN2-StartingPoint#30,LN2-StartingPoint,20 minutes [radio],Says,20 minutes: picked.,works
@@ -92,11 +127,30 @@ LN3m6-Module#19,LN3m6-Module,"4 · A hard conversation · Listen first, use the 
 LN3m6-Module#20,LN3m6-Module,Source 6,Opens,LN8-WhyWeTeachThis,works
 LN4-Lesson#7,LN4-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
 LN4-Lesson#14,LN4-Lesson,Back,Opens,LN3-Module,works
-LN4-Lesson#15,LN4-Lesson,Add to Tuesday’s run sheet,Says,Added to your run sheet for Tuesday. It shows as a reminder at the right moment.,works
-LN4-Lesson#16,LN4-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
-LN4-Lesson#17,LN4-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
-LN4-Lesson#18,LN4-Lesson,"Saturday, 14th minute · 0:11",Says,The clip plays.,works
-LN4-Lesson#19,LN4-Lesson,Source 4,Opens,LN8-WhyWeTeachThis,works
+LN4-Lesson#15,LN4-Lesson,Play,Says,"Plays here, in the page. Tap again to pause.",works
+LN4-Lesson#16,LN4-Lesson,Play,Says,"Plays here, in the page.",works
+LN4-Lesson#17,LN4-Lesson,The film 2:15,Says,Jumps to: The film.,"missing: left out on purpose, no film exists"
+LN4-Lesson#18,LN4-Lesson,Your team 0:11,Says,Jumps to: Your team.,works
+LN4-Lesson#19,LN4-Lesson,Try it,Says,Jumps to: Try it.,works
+LN4-Lesson#20,LN4-Lesson,Captions [switch],Says,Captions off. They are on by default.,works
+LN4-Lesson#21,LN4-Lesson,Full screen,Says,Full screen.,works
+LN4-Lesson#22,LN4-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LN4-Lesson#23,LN4-Lesson,Add to Tuesday’s run sheet,Says,Added to your run sheet for Tuesday. It shows as a reminder at the right moment.,works
+LN4-Lesson#24,LN4-Lesson,2:05 · · UP NEXT · LESSON 4.3 · Wait for the answer · Count to five. Silence is thinking,Opens,LNL43-Lesson,works; the length on the still differs because no film exists
+LN4-Lesson#25,LN4-Lesson,Source 4,Opens,LN8-WhyWeTeachThis,works
+LN4n-Lesson#7,LN4n-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
+LN4n-Lesson#14,LN4n-Lesson,Back,Opens,LN3-Module,works
+LN4n-Lesson#15,LN4n-Lesson,Play,Says,"Plays here, in the page. Tap again to pause.",works
+LN4n-Lesson#16,LN4n-Lesson,Play,Says,"Plays here, in the page.",works
+LN4n-Lesson#17,LN4n-Lesson,Your team 0:11,Says,Jumps to: Your team.,works
+LN4n-Lesson#18,LN4n-Lesson,"The idea, drawn 0:40",Says,"Jumps to: The idea, drawn.",works
+LN4n-Lesson#19,LN4n-Lesson,Try it,Says,Jumps to: Try it.,works
+LN4n-Lesson#20,LN4n-Lesson,Captions [switch],Says,Captions off. They are on by default.,works
+LN4n-Lesson#21,LN4n-Lesson,Full screen,Says,Full screen.,works
+LN4n-Lesson#22,LN4n-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LN4n-Lesson#23,LN4n-Lesson,Add to Tuesday’s run sheet,Says,Added to your run sheet for Tuesday. It shows as a reminder at the right moment.,works
+LN4n-Lesson#24,LN4n-Lesson,0:40 · · UP NEXT · LESSON 4.3 · Wait for the answer · Count to five. Silence is thinking,Opens,LNL43-Lesson,works
+LN4n-Lesson#25,LN4n-Lesson,Source 4,Opens,LN8-WhyWeTeachThis,works
 LN5-HowItWent#7,LN5-HowItWent,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
 LN5-HowItWent#14,LN5-HowItWent,Not now,Opens,LN1-LearnHome,works
 LN5-HowItWent#15,LN5-HowItWent,Save,Says,Saved. Your next lesson is “Wait for the answer”.,works
@@ -112,7 +166,7 @@ LN5-HowItWent#24,LN5-HowItWent,2 [radio],Says,How did it feel? 2 of 5.,works
 LN5-HowItWent#25,LN5-HowItWent,3 [radio],Says,How did it feel? 3 of 5.,works
 LN5-HowItWent#26,LN5-HowItWent,4 [radio],Says,How did it feel? 4 of 5.,works
 LN5-HowItWent#27,LN5-HowItWent,5 [radio],Says,How did it feel? 5 of 5.,works
-LN5-HowItWent#28,LN5-HowItWent,Preview the lesson,Opens,LN4-Lesson,"wrong target on purpose: opens LNL43-Lesson, “Wait for the answer”, the lesson the answer points to (the rule), not LN4"
+LN5-HowItWent#28,LN5-HowItWent,Preview the lesson,Opens,LN4-Lesson,wrong target on purpose: opens the lesson the answer points to (LNL43-Lesson)
 LN5-HowItWent#29,LN5-HowItWent,Source 7,Opens,LN8-WhyWeTeachThis,works
 LN6-TheGameItself#7,LN6-TheGameItself,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
 LN6-TheGameItself#14,LN6-TheGameItself,Back to the course,Opens,LN1-LearnHome,works
@@ -136,193 +190,367 @@ LN7-YourProgress#17,LN7-YourProgress,"Ask Rachel to watch a session · A friendl
 LN7-YourProgress#18,LN7-YourProgress,Share this page with my mentor · Off. Rachel sees nothing unless you turn this on [switch],Says,Share this page with my mentor: added.,works
 LN8-WhyWeTeachThis#7,LN8-WhyWeTeachThis,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
 LN8-WhyWeTeachThis#14,LN8-WhyWeTeachThis,Back to the course,Opens,LN1-LearnHome,works
-LN9-ClubCoachLearning#7,LN9-ClubCoachLearning,Ask Clean Sheet,Opens,ASKd4-PanelFirst,"works: opens the Ask panel on the same screen (the director's existing Ask), not ASKd4 as a separate screen"
+LN9-ClubCoachLearning#7,LN9-ClubCoachLearning,Ask Clean Sheet,Opens,ASKd4-PanelFirst,works; the Ask panel opens in place
 LN9-ClubCoachLearning#8,LN9-ClubCoachLearning,Whole club,Opens,VS1-SwitchView,works
 LN9-ClubCoachLearning#13,LN9-ClubCoachLearning,Add a club film,Opens,EDU5-CoachCorner,works
 LN9-ClubCoachLearning#14,LN9-ClubCoachLearning,Save,Says,Saved. Coaches see the change on their next visit.,works
-LN9-ClubCoachLearning#15,LN9-ClubCoachLearning,"Ask every new coach to do “Keeping players safe” · By round 3. We remind them, not you [switch]",Says,Ask every new coach to do “Keeping players safe”: left out.,works
-LN9-ClubCoachLearning#16,LN9-ClubCoachLearning,Show club films first · Six films from your own coaches [switch],Says,Show club films first: left out.,works
-LN9-ClubCoachLearning#17,LN9-ClubCoachLearning,Offer a mentor · Rachel Moore. A coach chooses whether to share [switch],Says,Offer a mentor: left out.,works
+LN9-ClubCoachLearning#15,LN9-ClubCoachLearning,"Ask every new coach to do “Keeping players safe” · By round 3. We remind them, not you [switch]",Says,Ask every new coach to do “Keeping players safe”: left out.,not pressed by this check: the control on the page is labelled differently. Unchanged from v2
+LN9-ClubCoachLearning#16,LN9-ClubCoachLearning,Show club films first · Six films from your own coaches [switch],Says,Show club films first: left out.,not pressed by this check: the control on the page is labelled differently. Unchanged from v2
+LN9-ClubCoachLearning#17,LN9-ClubCoachLearning,Offer a mentor · Rachel Moore. A coach chooses whether to share [switch],Says,Offer a mentor: left out.,not pressed by this check: the control on the page is labelled differently. Unchanged from v2
 LNL11-Lesson#7,LNL11-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
 LNL11-Lesson#14,LNL11-Lesson,Back,Opens,LN3m1-Module,works
-LNL11-Lesson#15,LNL11-Lesson,Add to Tuesday’s run sheet,Says,Added to your run sheet for Tuesday. It shows as a reminder at the right moment.,works
-LNL11-Lesson#16,LNL11-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
-LNL11-Lesson#17,LNL11-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
-LNL11-Lesson#18,LNL11-Lesson,Source 2,Opens,LN8-WhyWeTeachThis,works
-LNL11-Lesson#19,LNL11-Lesson,Source 8,Opens,LN8-WhyWeTeachThis,works
+LNL11-Lesson#15,LNL11-Lesson,Play,Says,"Plays here, in the page. Tap again to pause.",works
+LNL11-Lesson#16,LNL11-Lesson,Play,Says,"Plays here, in the page.",works
+LNL11-Lesson#17,LNL11-Lesson,The film 2:15,Says,Jumps to: The film.,"missing: left out on purpose, no film exists"
+LNL11-Lesson#18,LNL11-Lesson,Try it,Says,Jumps to: Try it.,works
+LNL11-Lesson#19,LNL11-Lesson,Captions [switch],Says,Captions off. They are on by default.,works
+LNL11-Lesson#20,LNL11-Lesson,Full screen,Says,Full screen.,works
+LNL11-Lesson#21,LNL11-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL11-Lesson#22,LNL11-Lesson,Add to Tuesday’s run sheet,Says,Added to your run sheet for Tuesday. It shows as a reminder at the right moment.,works
+LNL11-Lesson#23,LNL11-Lesson,"2:05 · · UP NEXT · LESSON 1.2 · How to read your session in Clean Sheet · The why, the set-up, what to say",Opens,LNL12-Lesson,works; the length on the still differs because no film exists
+LNL11-Lesson#24,LNL11-Lesson,Source 2,Opens,LN8-WhyWeTeachThis,works
+LNL11-Lesson#25,LNL11-Lesson,Source 8,Opens,LN8-WhyWeTeachThis,works
 LNL12-Lesson#7,LNL12-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
 LNL12-Lesson#14,LNL12-Lesson,Back,Opens,LN3m1-Module,works
-LNL12-Lesson#15,LNL12-Lesson,Remind me,Says,We’ll remind you: before Tuesday.,works
-LNL12-Lesson#16,LNL12-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
+LNL12-Lesson#15,LNL12-Lesson,Play,Says,"Plays here, in the page. Tap again to pause.",works
+LNL12-Lesson#16,LNL12-Lesson,Play,Says,"Plays here, in the page.",works
+LNL12-Lesson#17,LNL12-Lesson,The film 2:15,Says,Jumps to: The film.,"missing: left out on purpose, no film exists"
+LNL12-Lesson#18,LNL12-Lesson,Try it,Says,Jumps to: Try it.,works
+LNL12-Lesson#19,LNL12-Lesson,Captions [switch],Says,Captions off. They are on by default.,works
+LNL12-Lesson#20,LNL12-Lesson,Full screen,Says,Full screen.,works
+LNL12-Lesson#21,LNL12-Lesson,Remind me,Says,We’ll remind you: before Tuesday.,works
+LNL12-Lesson#22,LNL12-Lesson,"2:05 · · UP NEXT · LESSON 1.3 · Setting up before the players arrive · Cones once, not four times",Opens,LNL13-Lesson,works; the length on the still differs because no film exists
 LNL13-Lesson#7,LNL13-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
 LNL13-Lesson#14,LNL13-Lesson,Back,Opens,LN3m1-Module,works
-LNL13-Lesson#15,LNL13-Lesson,Add to Tuesday’s run sheet,Says,Added to your run sheet for Tuesday. It shows as a reminder at the right moment.,works
-LNL13-Lesson#16,LNL13-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
-LNL13-Lesson#17,LNL13-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL13-Lesson#15,LNL13-Lesson,Play,Says,"Plays here, in the page. Tap again to pause.",works
+LNL13-Lesson#16,LNL13-Lesson,Play,Says,"Plays here, in the page.",works
+LNL13-Lesson#17,LNL13-Lesson,The film 2:15,Says,Jumps to: The film.,"missing: left out on purpose, no film exists"
+LNL13-Lesson#18,LNL13-Lesson,Try it,Says,Jumps to: Try it.,works
+LNL13-Lesson#19,LNL13-Lesson,Captions [switch],Says,Captions off. They are on by default.,works
+LNL13-Lesson#20,LNL13-Lesson,Full screen,Says,Full screen.,works
+LNL13-Lesson#21,LNL13-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL13-Lesson#22,LNL13-Lesson,Add to Tuesday’s run sheet,Says,Added to your run sheet for Tuesday. It shows as a reminder at the right moment.,works
+LNL13-Lesson#23,LNL13-Lesson,"2:05 · · UP NEXT · LESSON 1.4 · Your first two minutes · Names, one signal, straight into a game",Opens,LNL14-Lesson,works; the length on the still differs because no film exists
 LNL14-Lesson#7,LNL14-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
 LNL14-Lesson#14,LNL14-Lesson,Back,Opens,LN3m1-Module,works
-LNL14-Lesson#15,LNL14-Lesson,Add to Tuesday’s run sheet,Says,Added to your run sheet for Tuesday. It shows as a reminder at the right moment.,works
-LNL14-Lesson#16,LNL14-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
-LNL14-Lesson#17,LNL14-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL14-Lesson#15,LNL14-Lesson,Play,Says,"Plays here, in the page. Tap again to pause.",works
+LNL14-Lesson#16,LNL14-Lesson,Play,Says,"Plays here, in the page.",works
+LNL14-Lesson#17,LNL14-Lesson,The film 2:15,Says,Jumps to: The film.,"missing: left out on purpose, no film exists"
+LNL14-Lesson#18,LNL14-Lesson,Try it,Says,Jumps to: Try it.,works
+LNL14-Lesson#19,LNL14-Lesson,Captions [switch],Says,Captions off. They are on by default.,works
+LNL14-Lesson#20,LNL14-Lesson,Full screen,Says,Full screen.,works
+LNL14-Lesson#21,LNL14-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL14-Lesson#22,LNL14-Lesson,Add to Tuesday’s run sheet,Says,Added to your run sheet for Tuesday. It shows as a reminder at the right moment.,works
+LNL14-Lesson#23,LNL14-Lesson,"2:05 · · UP NEXT · LESSON 1.5 · When it is not working · Make it easier, make it harder, or move on",Opens,LNL15-Lesson,works; the length on the still differs because no film exists
 LNL15-Lesson#7,LNL15-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
 LNL15-Lesson#14,LNL15-Lesson,Back,Opens,LN3m1-Module,works
-LNL15-Lesson#15,LNL15-Lesson,Add to Tuesday’s run sheet,Says,Added to your run sheet for Tuesday. It shows as a reminder at the right moment.,works
-LNL15-Lesson#16,LNL15-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
-LNL15-Lesson#17,LNL15-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
-LNL15-Lesson#18,LNL15-Lesson,Source 8,Opens,LN8-WhyWeTeachThis,works
+LNL15-Lesson#15,LNL15-Lesson,Play,Says,"Plays here, in the page. Tap again to pause.",works
+LNL15-Lesson#16,LNL15-Lesson,Play,Says,"Plays here, in the page.",works
+LNL15-Lesson#17,LNL15-Lesson,The film 2:15,Says,Jumps to: The film.,"missing: left out on purpose, no film exists"
+LNL15-Lesson#18,LNL15-Lesson,Try it,Says,Jumps to: Try it.,works
+LNL15-Lesson#19,LNL15-Lesson,Captions [switch],Says,Captions off. They are on by default.,works
+LNL15-Lesson#20,LNL15-Lesson,Full screen,Says,Full screen.,works
+LNL15-Lesson#21,LNL15-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL15-Lesson#22,LNL15-Lesson,Add to Tuesday’s run sheet,Says,Added to your run sheet for Tuesday. It shows as a reminder at the right moment.,works
+LNL15-Lesson#23,LNL15-Lesson,Source 8,Opens,LN8-WhyWeTeachThis,works
 LNL21-Lesson#7,LNL21-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
 LNL21-Lesson#14,LNL21-Lesson,Back,Opens,LN3m2-Module,works
-LNL21-Lesson#15,LNL21-Lesson,Remind me,Says,We’ll remind you: before Tuesday.,works
-LNL21-Lesson#16,LNL21-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
-LNL21-Lesson#17,LNL21-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
-LNL21-Lesson#18,LNL21-Lesson,Source 9,Opens,LN8-WhyWeTeachThis,works
+LNL21-Lesson#15,LNL21-Lesson,Play,Says,"Plays here, in the page. Tap again to pause.",works
+LNL21-Lesson#16,LNL21-Lesson,Play,Says,"Plays here, in the page.",works
+LNL21-Lesson#17,LNL21-Lesson,The film 2:15,Says,Jumps to: The film.,"missing: left out on purpose, no film exists"
+LNL21-Lesson#18,LNL21-Lesson,Try it,Says,Jumps to: Try it.,works
+LNL21-Lesson#19,LNL21-Lesson,Captions [switch],Says,Captions off. They are on by default.,works
+LNL21-Lesson#20,LNL21-Lesson,Full screen,Says,Full screen.,works
+LNL21-Lesson#21,LNL21-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL21-Lesson#22,LNL21-Lesson,Remind me,Says,We’ll remind you: before Tuesday.,works
+LNL21-Lesson#23,LNL21-Lesson,"2:05 · · UP NEXT · LESSON 2.2 · Heat, storms and bad air · Check before you leave home",Opens,LNL22-Lesson,works; the length on the still differs because no film exists
+LNL21-Lesson#24,LNL21-Lesson,Source 9,Opens,LN8-WhyWeTeachThis,works
 LNL22-Lesson#7,LNL22-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
 LNL22-Lesson#14,LNL22-Lesson,Back,Opens,LN3m2-Module,works
-LNL22-Lesson#15,LNL22-Lesson,Remind me,Says,We’ll remind you: before Tuesday.,works
-LNL22-Lesson#16,LNL22-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
-LNL22-Lesson#17,LNL22-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
-LNL22-Lesson#18,LNL22-Lesson,Source 10,Opens,LN8-WhyWeTeachThis,works
+LNL22-Lesson#15,LNL22-Lesson,Play,Says,"Plays here, in the page. Tap again to pause.",works
+LNL22-Lesson#16,LNL22-Lesson,Play,Says,"Plays here, in the page.",works
+LNL22-Lesson#17,LNL22-Lesson,The film 2:15,Says,Jumps to: The film.,"missing: left out on purpose, no film exists"
+LNL22-Lesson#18,LNL22-Lesson,Try it,Says,Jumps to: Try it.,works
+LNL22-Lesson#19,LNL22-Lesson,Captions [switch],Says,Captions off. They are on by default.,works
+LNL22-Lesson#20,LNL22-Lesson,Full screen,Says,Full screen.,works
+LNL22-Lesson#21,LNL22-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL22-Lesson#22,LNL22-Lesson,Remind me,Says,We’ll remind you: before Tuesday.,works
+LNL22-Lesson#23,LNL22-Lesson,"2:05 · · UP NEXT · LESSON 2.3 · Injuries: what you do and what you don’t · Stop, stay calm, get help, write it down",Opens,LNL23-Lesson,works; the length on the still differs because no film exists
+LNL22-Lesson#24,LNL22-Lesson,Source 10,Opens,LN8-WhyWeTeachThis,works
 LNL23-Lesson#7,LNL23-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
 LNL23-Lesson#14,LNL23-Lesson,Back,Opens,LN3m2-Module,works
-LNL23-Lesson#15,LNL23-Lesson,Remind me,Says,We’ll remind you: before Tuesday.,works
-LNL23-Lesson#16,LNL23-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
-LNL23-Lesson#17,LNL23-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL23-Lesson#15,LNL23-Lesson,Play,Says,"Plays here, in the page. Tap again to pause.",works
+LNL23-Lesson#16,LNL23-Lesson,Play,Says,"Plays here, in the page.",works
+LNL23-Lesson#17,LNL23-Lesson,The film 2:15,Says,Jumps to: The film.,"missing: left out on purpose, no film exists"
+LNL23-Lesson#18,LNL23-Lesson,Try it,Says,Jumps to: Try it.,works
+LNL23-Lesson#19,LNL23-Lesson,Captions [switch],Says,Captions off. They are on by default.,works
+LNL23-Lesson#20,LNL23-Lesson,Full screen,Says,Full screen.,works
+LNL23-Lesson#21,LNL23-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL23-Lesson#22,LNL23-Lesson,Remind me,Says,We’ll remind you: before Tuesday.,works
+LNL23-Lesson#23,LNL23-Lesson,"2:05 · · UP NEXT · LESSON 2.4 · Being a safe adult · In view, in the open, through the club",Opens,LNL24-Lesson,works; the length on the still differs because no film exists
 LNL24-Lesson#7,LNL24-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
 LNL24-Lesson#14,LNL24-Lesson,Back,Opens,LN3m2-Module,works
-LNL24-Lesson#15,LNL24-Lesson,Remind me,Says,We’ll remind you: before Tuesday.,works
-LNL24-Lesson#16,LNL24-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
-LNL24-Lesson#17,LNL24-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
-LNL24-Lesson#18,LNL24-Lesson,Source 11,Opens,LN8-WhyWeTeachThis,works
+LNL24-Lesson#15,LNL24-Lesson,Play,Says,"Plays here, in the page. Tap again to pause.",works
+LNL24-Lesson#16,LNL24-Lesson,Play,Says,"Plays here, in the page.",works
+LNL24-Lesson#17,LNL24-Lesson,The film 2:15,Says,Jumps to: The film.,"missing: left out on purpose, no film exists"
+LNL24-Lesson#18,LNL24-Lesson,Try it,Says,Jumps to: Try it.,works
+LNL24-Lesson#19,LNL24-Lesson,Captions [switch],Says,Captions off. They are on by default.,works
+LNL24-Lesson#20,LNL24-Lesson,Full screen,Says,Full screen.,works
+LNL24-Lesson#21,LNL24-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL24-Lesson#22,LNL24-Lesson,Remind me,Says,We’ll remind you: before Tuesday.,works
+LNL24-Lesson#23,LNL24-Lesson,2:05 · · UP NEXT · LESSON 2.5 · When something worries you · You don’t investigate. You tell the right person today,Opens,LNL25-Lesson,works; the length on the still differs because no film exists
+LNL24-Lesson#24,LNL24-Lesson,Source 11,Opens,LN8-WhyWeTeachThis,works
 LNL25-Lesson#7,LNL25-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
 LNL25-Lesson#14,LNL25-Lesson,Back,Opens,LN3m2-Module,works
-LNL25-Lesson#15,LNL25-Lesson,Remind me,Says,We’ll remind you: before Tuesday.,works
-LNL25-Lesson#16,LNL25-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
-LNL25-Lesson#17,LNL25-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
-LNL25-Lesson#18,LNL25-Lesson,Source 11,Opens,LN8-WhyWeTeachThis,works
+LNL25-Lesson#15,LNL25-Lesson,Play,Says,"Plays here, in the page. Tap again to pause.",works
+LNL25-Lesson#16,LNL25-Lesson,Play,Says,"Plays here, in the page.",works
+LNL25-Lesson#17,LNL25-Lesson,The film 2:15,Says,Jumps to: The film.,"missing: left out on purpose, no film exists"
+LNL25-Lesson#18,LNL25-Lesson,Try it,Says,Jumps to: Try it.,works
+LNL25-Lesson#19,LNL25-Lesson,Captions [switch],Says,Captions off. They are on by default.,works
+LNL25-Lesson#20,LNL25-Lesson,Full screen,Says,Full screen.,works
+LNL25-Lesson#21,LNL25-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL25-Lesson#22,LNL25-Lesson,Remind me,Says,We’ll remind you: before Tuesday.,works
+LNL25-Lesson#23,LNL25-Lesson,Source 11,Opens,LN8-WhyWeTeachThis,works
 LNL31-Lesson#7,LNL31-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
 LNL31-Lesson#14,LNL31-Lesson,Back,Opens,LN3m3-Module,works
-LNL31-Lesson#15,LNL31-Lesson,Add to Tuesday’s run sheet,Says,Added to your run sheet for Tuesday. It shows as a reminder at the right moment.,works
-LNL31-Lesson#16,LNL31-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
-LNL31-Lesson#17,LNL31-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
-LNL31-Lesson#18,LNL31-Lesson,Tuesday 5:02 · 0:14,Says,The clip plays.,works
-LNL31-Lesson#19,LNL31-Lesson,Source 2,Opens,LN8-WhyWeTeachThis,works
-LNL31-Lesson#20,LNL31-Lesson,Source 8,Opens,LN8-WhyWeTeachThis,works
+LNL31-Lesson#15,LNL31-Lesson,Play,Says,"Plays here, in the page. Tap again to pause.",works
+LNL31-Lesson#16,LNL31-Lesson,Play,Says,"Plays here, in the page.",works
+LNL31-Lesson#17,LNL31-Lesson,The film 2:15,Says,Jumps to: The film.,"missing: left out on purpose, no film exists"
+LNL31-Lesson#18,LNL31-Lesson,Your team 0:14,Says,Jumps to: Your team.,"works; the clip is 0:11, the board shows another length"
+LNL31-Lesson#19,LNL31-Lesson,Try it,Says,Jumps to: Try it.,works
+LNL31-Lesson#20,LNL31-Lesson,Captions [switch],Says,Captions off. They are on by default.,works
+LNL31-Lesson#21,LNL31-Lesson,Full screen,Says,Full screen.,works
+LNL31-Lesson#22,LNL31-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL31-Lesson#23,LNL31-Lesson,Add to Tuesday’s run sheet,Says,Added to your run sheet for Tuesday. It shows as a reminder at the right moment.,works
+LNL31-Lesson#24,LNL31-Lesson,"2:05 · · UP NEXT · LESSON 3.2 · Keeping everyone busy · More balls, smaller groups, no queues",Opens,LNL32-Lesson,works; the length on the still differs because no film exists
+LNL31-Lesson#25,LNL31-Lesson,Source 2,Opens,LN8-WhyWeTeachThis,works
+LNL31-Lesson#26,LNL31-Lesson,Source 8,Opens,LN8-WhyWeTeachThis,works
 LNL32-Lesson#7,LNL32-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
 LNL32-Lesson#14,LNL32-Lesson,Back,Opens,LN3m3-Module,works
-LNL32-Lesson#15,LNL32-Lesson,Add to Tuesday’s run sheet,Says,Added to your run sheet for Tuesday. It shows as a reminder at the right moment.,works
-LNL32-Lesson#16,LNL32-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
-LNL32-Lesson#17,LNL32-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
-LNL32-Lesson#18,LNL32-Lesson,Tuesday 5:27 · 0:16,Says,The clip plays.,works
-LNL32-Lesson#19,LNL32-Lesson,Source 2,Opens,LN8-WhyWeTeachThis,works
-LNL32-Lesson#20,LNL32-Lesson,Source 3,Opens,LN8-WhyWeTeachThis,works
+LNL32-Lesson#15,LNL32-Lesson,Play,Says,"Plays here, in the page. Tap again to pause.",works
+LNL32-Lesson#16,LNL32-Lesson,Play,Says,"Plays here, in the page.",works
+LNL32-Lesson#17,LNL32-Lesson,The film 2:15,Says,Jumps to: The film.,"missing: left out on purpose, no film exists"
+LNL32-Lesson#18,LNL32-Lesson,Your team 0:16,Says,Jumps to: Your team.,"works; the clip is 0:11, the board shows another length"
+LNL32-Lesson#19,LNL32-Lesson,Try it,Says,Jumps to: Try it.,works
+LNL32-Lesson#20,LNL32-Lesson,Captions [switch],Says,Captions off. They are on by default.,works
+LNL32-Lesson#21,LNL32-Lesson,Full screen,Says,Full screen.,works
+LNL32-Lesson#22,LNL32-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL32-Lesson#23,LNL32-Lesson,Add to Tuesday’s run sheet,Says,Added to your run sheet for Tuesday. It shows as a reminder at the right moment.,works
+LNL32-Lesson#24,LNL32-Lesson,"2:05 · · UP NEXT · LESSON 3.3 · Getting their attention without shouting · One signal, wait, then speak",Opens,LNL33-Lesson,works; the length on the still differs because no film exists
+LNL32-Lesson#25,LNL32-Lesson,Source 2,Opens,LN8-WhyWeTeachThis,works
+LNL32-Lesson#26,LNL32-Lesson,Source 3,Opens,LN8-WhyWeTeachThis,works
 LNL33-Lesson#7,LNL33-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
 LNL33-Lesson#14,LNL33-Lesson,Back,Opens,LN3m3-Module,works
-LNL33-Lesson#15,LNL33-Lesson,Add to Tuesday’s run sheet,Says,Added to your run sheet for Tuesday. It shows as a reminder at the right moment.,works
-LNL33-Lesson#16,LNL33-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
-LNL33-Lesson#17,LNL33-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
-LNL33-Lesson#18,LNL33-Lesson,Source 3,Opens,LN8-WhyWeTeachThis,works
+LNL33-Lesson#15,LNL33-Lesson,Play,Says,"Plays here, in the page. Tap again to pause.",works
+LNL33-Lesson#16,LNL33-Lesson,Play,Says,"Plays here, in the page.",works
+LNL33-Lesson#17,LNL33-Lesson,The film 2:15,Says,Jumps to: The film.,"missing: left out on purpose, no film exists"
+LNL33-Lesson#18,LNL33-Lesson,Try it,Says,Jumps to: Try it.,works
+LNL33-Lesson#19,LNL33-Lesson,Captions [switch],Says,Captions off. They are on by default.,works
+LNL33-Lesson#20,LNL33-Lesson,Full screen,Says,Full screen.,works
+LNL33-Lesson#21,LNL33-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL33-Lesson#22,LNL33-Lesson,Add to Tuesday’s run sheet,Says,Added to your run sheet for Tuesday. It shows as a reminder at the right moment.,works
+LNL33-Lesson#23,LNL33-Lesson,"2:05 · · UP NEXT · LESSON 3.4 · One game, three versions · Change the space, the numbers or a rule",Opens,LNL34-Lesson,works; the length on the still differs because no film exists
+LNL33-Lesson#24,LNL33-Lesson,Source 3,Opens,LN8-WhyWeTeachThis,works
 LNL34-Lesson#7,LNL34-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
 LNL34-Lesson#14,LNL34-Lesson,Back,Opens,LN3m3-Module,works
-LNL34-Lesson#15,LNL34-Lesson,Add to Tuesday’s run sheet,Says,Added to your run sheet for Tuesday. It shows as a reminder at the right moment.,works
-LNL34-Lesson#16,LNL34-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
-LNL34-Lesson#17,LNL34-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
-LNL34-Lesson#18,LNL34-Lesson,Source 8,Opens,LN8-WhyWeTeachThis,works
+LNL34-Lesson#15,LNL34-Lesson,Play,Says,"Plays here, in the page. Tap again to pause.",works
+LNL34-Lesson#16,LNL34-Lesson,Play,Says,"Plays here, in the page.",works
+LNL34-Lesson#17,LNL34-Lesson,The film 2:15,Says,Jumps to: The film.,"missing: left out on purpose, no film exists"
+LNL34-Lesson#18,LNL34-Lesson,Try it,Says,Jumps to: Try it.,works
+LNL34-Lesson#19,LNL34-Lesson,Captions [switch],Says,Captions off. They are on by default.,works
+LNL34-Lesson#20,LNL34-Lesson,Full screen,Says,Full screen.,works
+LNL34-Lesson#21,LNL34-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL34-Lesson#22,LNL34-Lesson,Add to Tuesday’s run sheet,Says,Added to your run sheet for Tuesday. It shows as a reminder at the right moment.,works
+LNL34-Lesson#23,LNL34-Lesson,"2:05 · · UP NEXT · LESSON 3.5 · Finishing on a game · Let them play, then two minutes together",Opens,LNL35-Lesson,works; the length on the still differs because no film exists
+LNL34-Lesson#24,LNL34-Lesson,Source 8,Opens,LN8-WhyWeTeachThis,works
 LNL35-Lesson#7,LNL35-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
 LNL35-Lesson#14,LNL35-Lesson,Back,Opens,LN3m3-Module,works
-LNL35-Lesson#15,LNL35-Lesson,Add to Tuesday’s run sheet,Says,Added to your run sheet for Tuesday. It shows as a reminder at the right moment.,works
-LNL35-Lesson#16,LNL35-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
-LNL35-Lesson#17,LNL35-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
-LNL35-Lesson#18,LNL35-Lesson,Tuesday 5:44 · 0:20,Says,The clip plays.,works
-LNL35-Lesson#19,LNL35-Lesson,Source 2,Opens,LN8-WhyWeTeachThis,works
+LNL35-Lesson#15,LNL35-Lesson,Play,Says,"Plays here, in the page. Tap again to pause.",works
+LNL35-Lesson#16,LNL35-Lesson,Play,Says,"Plays here, in the page.",works
+LNL35-Lesson#17,LNL35-Lesson,The film 2:15,Says,Jumps to: The film.,"missing: left out on purpose, no film exists"
+LNL35-Lesson#18,LNL35-Lesson,Your team 0:20,Says,Jumps to: Your team.,"works; the clip is 0:11, the board shows another length"
+LNL35-Lesson#19,LNL35-Lesson,Try it,Says,Jumps to: Try it.,works
+LNL35-Lesson#20,LNL35-Lesson,Captions [switch],Says,Captions off. They are on by default.,works
+LNL35-Lesson#21,LNL35-Lesson,Full screen,Says,Full screen.,works
+LNL35-Lesson#22,LNL35-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL35-Lesson#23,LNL35-Lesson,Add to Tuesday’s run sheet,Says,Added to your run sheet for Tuesday. It shows as a reminder at the right moment.,works
+LNL35-Lesson#24,LNL35-Lesson,Source 2,Opens,LN8-WhyWeTeachThis,works
 LNL41-Lesson#7,LNL41-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
 LNL41-Lesson#14,LNL41-Lesson,Back,Opens,LN3-Module,works
-LNL41-Lesson#15,LNL41-Lesson,Add to Tuesday’s run sheet,Says,Added to your run sheet for Tuesday. It shows as a reminder at the right moment.,works
-LNL41-Lesson#16,LNL41-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
-LNL41-Lesson#17,LNL41-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
-LNL41-Lesson#18,LNL41-Lesson,Tuesday 5:18 · 1:05,Says,The clip plays.,works
-LNL41-Lesson#19,LNL41-Lesson,Source 3,Opens,LN8-WhyWeTeachThis,works
+LNL41-Lesson#15,LNL41-Lesson,Play,Says,"Plays here, in the page. Tap again to pause.",works
+LNL41-Lesson#16,LNL41-Lesson,Play,Says,"Plays here, in the page.",works
+LNL41-Lesson#17,LNL41-Lesson,The film 2:15,Says,Jumps to: The film.,"missing: left out on purpose, no film exists"
+LNL41-Lesson#18,LNL41-Lesson,Your team 1:05,Says,Jumps to: Your team.,"works; the clip is 0:11, the board shows another length"
+LNL41-Lesson#19,LNL41-Lesson,Try it,Says,Jumps to: Try it.,works
+LNL41-Lesson#20,LNL41-Lesson,Captions [switch],Says,Captions off. They are on by default.,works
+LNL41-Lesson#21,LNL41-Lesson,Full screen,Says,Full screen.,works
+LNL41-Lesson#22,LNL41-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL41-Lesson#23,LNL41-Lesson,Add to Tuesday’s run sheet,Says,Added to your run sheet for Tuesday. It shows as a reminder at the right moment.,works
+LNL41-Lesson#24,LNL41-Lesson,"2:05 · · UP NEXT · LESSON 4.2 · Asking a question, not giving an answer · “Where is the space?” beats “pass it wide”",Opens,LN4-Lesson,works; the length on the still differs because no film exists
+LNL41-Lesson#25,LNL41-Lesson,Source 3,Opens,LN8-WhyWeTeachThis,works
 LNL43-Lesson#7,LNL43-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
 LNL43-Lesson#14,LNL43-Lesson,Back,Opens,LN3-Module,works
-LNL43-Lesson#15,LNL43-Lesson,Add to Tuesday’s run sheet,Says,Added to your run sheet for Tuesday. It shows as a reminder at the right moment.,works
-LNL43-Lesson#16,LNL43-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
-LNL43-Lesson#17,LNL43-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
-LNL43-Lesson#18,LNL43-Lesson,Source 4,Opens,LN8-WhyWeTeachThis,works
+LNL43-Lesson#15,LNL43-Lesson,Play,Says,"Plays here, in the page. Tap again to pause.",works
+LNL43-Lesson#16,LNL43-Lesson,Play,Says,"Plays here, in the page.",works
+LNL43-Lesson#17,LNL43-Lesson,The film 2:15,Says,Jumps to: The film.,"missing: left out on purpose, no film exists"
+LNL43-Lesson#18,LNL43-Lesson,Try it,Says,Jumps to: Try it.,works
+LNL43-Lesson#19,LNL43-Lesson,Captions [switch],Says,Captions off. They are on by default.,works
+LNL43-Lesson#20,LNL43-Lesson,Full screen,Says,Full screen.,works
+LNL43-Lesson#21,LNL43-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL43-Lesson#22,LNL43-Lesson,Add to Tuesday’s run sheet,Says,Added to your run sheet for Tuesday. It shows as a reminder at the right moment.,works
+LNL43-Lesson#23,LNL43-Lesson,"2:05 · · UP NEXT · LESSON 4.4 · Praise the effort, name the action · “Great first touch away from him” beats “well done”",Opens,LNL44-Lesson,works; the length on the still differs because no film exists
+LNL43-Lesson#24,LNL43-Lesson,Source 4,Opens,LN8-WhyWeTeachThis,works
 LNL44-Lesson#7,LNL44-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
 LNL44-Lesson#14,LNL44-Lesson,Back,Opens,LN3-Module,works
-LNL44-Lesson#15,LNL44-Lesson,Add to Tuesday’s run sheet,Says,Added to your run sheet for Tuesday. It shows as a reminder at the right moment.,works
-LNL44-Lesson#16,LNL44-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
-LNL44-Lesson#17,LNL44-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
-LNL44-Lesson#18,LNL44-Lesson,"Saturday, 31st minute · 0:09",Says,The clip plays.,works
-LNL44-Lesson#19,LNL44-Lesson,Source 5,Opens,LN8-WhyWeTeachThis,works
+LNL44-Lesson#15,LNL44-Lesson,Play,Says,"Plays here, in the page. Tap again to pause.",works
+LNL44-Lesson#16,LNL44-Lesson,Play,Says,"Plays here, in the page.",works
+LNL44-Lesson#17,LNL44-Lesson,The film 2:15,Says,Jumps to: The film.,"missing: left out on purpose, no film exists"
+LNL44-Lesson#18,LNL44-Lesson,Your team 0:09,Says,Jumps to: Your team.,"works; the clip is 0:11, the board shows another length"
+LNL44-Lesson#19,LNL44-Lesson,Try it,Says,Jumps to: Try it.,works
+LNL44-Lesson#20,LNL44-Lesson,Captions [switch],Says,Captions off. They are on by default.,works
+LNL44-Lesson#21,LNL44-Lesson,Full screen,Says,Full screen.,works
+LNL44-Lesson#22,LNL44-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL44-Lesson#23,LNL44-Lesson,Add to Tuesday’s run sheet,Says,Added to your run sheet for Tuesday. It shows as a reminder at the right moment.,works
+LNL44-Lesson#24,LNL44-Lesson,2:05 · · UP NEXT · LESSON 4.5 · Fixing a mistake without stopping the game · A word to one player while the rest play on,Opens,LNL45-Lesson,works; the length on the still differs because no film exists
+LNL44-Lesson#25,LNL44-Lesson,Source 5,Opens,LN8-WhyWeTeachThis,works
 LNL45-Lesson#7,LNL45-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
 LNL45-Lesson#14,LNL45-Lesson,Back,Opens,LN3-Module,works
-LNL45-Lesson#15,LNL45-Lesson,Add to Tuesday’s run sheet,Says,Added to your run sheet for Tuesday. It shows as a reminder at the right moment.,works
-LNL45-Lesson#16,LNL45-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
-LNL45-Lesson#17,LNL45-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
-LNL45-Lesson#18,LNL45-Lesson,Source 3,Opens,LN8-WhyWeTeachThis,works
+LNL45-Lesson#15,LNL45-Lesson,Play,Says,"Plays here, in the page. Tap again to pause.",works
+LNL45-Lesson#16,LNL45-Lesson,Play,Says,"Plays here, in the page.",works
+LNL45-Lesson#17,LNL45-Lesson,The film 2:15,Says,Jumps to: The film.,"missing: left out on purpose, no film exists"
+LNL45-Lesson#18,LNL45-Lesson,Try it,Says,Jumps to: Try it.,works
+LNL45-Lesson#19,LNL45-Lesson,Captions [switch],Says,Captions off. They are on by default.,works
+LNL45-Lesson#20,LNL45-Lesson,Full screen,Says,Full screen.,works
+LNL45-Lesson#21,LNL45-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL45-Lesson#22,LNL45-Lesson,Add to Tuesday’s run sheet,Says,Added to your run sheet for Tuesday. It shows as a reminder at the right moment.,works
+LNL45-Lesson#23,LNL45-Lesson,"2:05 · · UP NEXT · LESSON 4.6 · One thing at a time · One focus per game, even when you see five",Opens,LNL46-Lesson,works; the length on the still differs because no film exists
+LNL45-Lesson#24,LNL45-Lesson,Source 3,Opens,LN8-WhyWeTeachThis,works
 LNL46-Lesson#7,LNL46-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
 LNL46-Lesson#14,LNL46-Lesson,Back,Opens,LN3-Module,works
-LNL46-Lesson#15,LNL46-Lesson,Add to Tuesday’s run sheet,Says,Added to your run sheet for Tuesday. It shows as a reminder at the right moment.,works
-LNL46-Lesson#16,LNL46-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
-LNL46-Lesson#17,LNL46-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
-LNL46-Lesson#18,LNL46-Lesson,Source 6,Opens,LN8-WhyWeTeachThis,works
+LNL46-Lesson#15,LNL46-Lesson,Play,Says,"Plays here, in the page. Tap again to pause.",works
+LNL46-Lesson#16,LNL46-Lesson,Play,Says,"Plays here, in the page.",works
+LNL46-Lesson#17,LNL46-Lesson,The film 2:15,Says,Jumps to: The film.,"missing: left out on purpose, no film exists"
+LNL46-Lesson#18,LNL46-Lesson,Try it,Says,Jumps to: Try it.,works
+LNL46-Lesson#19,LNL46-Lesson,Captions [switch],Says,Captions off. They are on by default.,works
+LNL46-Lesson#20,LNL46-Lesson,Full screen,Says,Full screen.,works
+LNL46-Lesson#21,LNL46-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL46-Lesson#22,LNL46-Lesson,Add to Tuesday’s run sheet,Says,Added to your run sheet for Tuesday. It shows as a reminder at the right moment.,works
+LNL46-Lesson#23,LNL46-Lesson,Source 6,Opens,LN8-WhyWeTeachThis,works
 LNL51-Lesson#7,LNL51-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
 LNL51-Lesson#14,LNL51-Lesson,Back,Opens,LN3m5-Module,works
-LNL51-Lesson#15,LNL51-Lesson,Add to Saturday’s run sheet,Says,Added to your run sheet for Saturday. It shows as a reminder at the right moment.,works
-LNL51-Lesson#16,LNL51-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
-LNL51-Lesson#17,LNL51-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
-LNL51-Lesson#18,LNL51-Lesson,Source 6,Opens,LN8-WhyWeTeachThis,works
+LNL51-Lesson#15,LNL51-Lesson,Play,Says,"Plays here, in the page. Tap again to pause.",works
+LNL51-Lesson#16,LNL51-Lesson,Play,Says,"Plays here, in the page.",works
+LNL51-Lesson#17,LNL51-Lesson,The film 2:15,Says,Jumps to: The film.,"missing: left out on purpose, no film exists"
+LNL51-Lesson#18,LNL51-Lesson,Try it,Says,Jumps to: Try it.,works
+LNL51-Lesson#19,LNL51-Lesson,Captions [switch],Says,Captions off. They are on by default.,works
+LNL51-Lesson#20,LNL51-Lesson,Full screen,Says,Full screen.,works
+LNL51-Lesson#21,LNL51-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL51-Lesson#22,LNL51-Lesson,Add to Saturday’s run sheet,Says,Added to your run sheet for Saturday. It shows as a reminder at the right moment.,works
+LNL51-Lesson#23,LNL51-Lesson,2:05 · · UP NEXT · LESSON 5.2 · Fair turns · Decide before you leave home,Opens,LNL52-Lesson,works; the length on the still differs because no film exists
+LNL51-Lesson#24,LNL51-Lesson,Source 6,Opens,LN8-WhyWeTeachThis,works
 LNL52-Lesson#7,LNL52-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
 LNL52-Lesson#14,LNL52-Lesson,Back,Opens,LN3m5-Module,works
-LNL52-Lesson#15,LNL52-Lesson,Add to Saturday’s run sheet,Says,Added to your run sheet for Saturday. It shows as a reminder at the right moment.,works
-LNL52-Lesson#16,LNL52-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
-LNL52-Lesson#17,LNL52-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
-LNL52-Lesson#18,LNL52-Lesson,Source 5,Opens,LN8-WhyWeTeachThis,works
+LNL52-Lesson#15,LNL52-Lesson,Play,Says,"Plays here, in the page. Tap again to pause.",works
+LNL52-Lesson#16,LNL52-Lesson,Play,Says,"Plays here, in the page.",works
+LNL52-Lesson#17,LNL52-Lesson,The film 2:15,Says,Jumps to: The film.,"missing: left out on purpose, no film exists"
+LNL52-Lesson#18,LNL52-Lesson,Try it,Says,Jumps to: Try it.,works
+LNL52-Lesson#19,LNL52-Lesson,Captions [switch],Says,Captions off. They are on by default.,works
+LNL52-Lesson#20,LNL52-Lesson,Full screen,Says,Full screen.,works
+LNL52-Lesson#21,LNL52-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL52-Lesson#22,LNL52-Lesson,Add to Saturday’s run sheet,Says,Added to your run sheet for Saturday. It shows as a reminder at the right moment.,works
+LNL52-Lesson#23,LNL52-Lesson,2:05 · · UP NEXT · LESSON 5.3 · Your own sideline · Let them play. Say less than you want to,Opens,LNL53-Lesson,works; the length on the still differs because no film exists
+LNL52-Lesson#24,LNL52-Lesson,Source 5,Opens,LN8-WhyWeTeachThis,works
 LNL53-Lesson#7,LNL53-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
 LNL53-Lesson#14,LNL53-Lesson,Back,Opens,LN3m5-Module,works
-LNL53-Lesson#15,LNL53-Lesson,Add to Saturday’s run sheet,Says,Added to your run sheet for Saturday. It shows as a reminder at the right moment.,works
-LNL53-Lesson#16,LNL53-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
-LNL53-Lesson#17,LNL53-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
-LNL53-Lesson#18,LNL53-Lesson,"Saturday, 8th to 9th minute · 0:40",Says,The clip plays.,works
-LNL53-Lesson#19,LNL53-Lesson,Source 5,Opens,LN8-WhyWeTeachThis,works
+LNL53-Lesson#15,LNL53-Lesson,Play,Says,"Plays here, in the page. Tap again to pause.",works
+LNL53-Lesson#16,LNL53-Lesson,Play,Says,"Plays here, in the page.",works
+LNL53-Lesson#17,LNL53-Lesson,The film 2:15,Says,Jumps to: The film.,"missing: left out on purpose, no film exists"
+LNL53-Lesson#18,LNL53-Lesson,Your team 0:40,Says,Jumps to: Your team.,"works; the clip is 0:11, the board shows another length"
+LNL53-Lesson#19,LNL53-Lesson,Try it,Says,Jumps to: Try it.,works
+LNL53-Lesson#20,LNL53-Lesson,Captions [switch],Says,Captions off. They are on by default.,works
+LNL53-Lesson#21,LNL53-Lesson,Full screen,Says,Full screen.,works
+LNL53-Lesson#22,LNL53-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL53-Lesson#23,LNL53-Lesson,Add to Saturday’s run sheet,Says,Added to your run sheet for Saturday. It shows as a reminder at the right moment.,works
+LNL53-Lesson#24,LNL53-Lesson,"2:05 · · UP NEXT · LESSON 5.4 · Half-time in three minutes · Drink, one question, one thing",Opens,LNL54-Lesson,works; the length on the still differs because no film exists
+LNL53-Lesson#25,LNL53-Lesson,Source 5,Opens,LN8-WhyWeTeachThis,works
 LNL54-Lesson#7,LNL54-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
 LNL54-Lesson#14,LNL54-Lesson,Back,Opens,LN3m5-Module,works
-LNL54-Lesson#15,LNL54-Lesson,Add to Saturday’s run sheet,Says,Added to your run sheet for Saturday. It shows as a reminder at the right moment.,works
-LNL54-Lesson#16,LNL54-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
-LNL54-Lesson#17,LNL54-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
-LNL54-Lesson#18,LNL54-Lesson,Source 4,Opens,LN8-WhyWeTeachThis,works
+LNL54-Lesson#15,LNL54-Lesson,Play,Says,"Plays here, in the page. Tap again to pause.",works
+LNL54-Lesson#16,LNL54-Lesson,Play,Says,"Plays here, in the page.",works
+LNL54-Lesson#17,LNL54-Lesson,The film 2:15,Says,Jumps to: The film.,"missing: left out on purpose, no film exists"
+LNL54-Lesson#18,LNL54-Lesson,Try it,Says,Jumps to: Try it.,works
+LNL54-Lesson#19,LNL54-Lesson,Captions [switch],Says,Captions off. They are on by default.,works
+LNL54-Lesson#20,LNL54-Lesson,Full screen,Says,Full screen.,works
+LNL54-Lesson#21,LNL54-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL54-Lesson#22,LNL54-Lesson,Add to Saturday’s run sheet,Says,Added to your run sheet for Saturday. It shows as a reminder at the right moment.,works
+LNL54-Lesson#23,LNL54-Lesson,"2:05 · · UP NEXT · LESSON 5.5 · After the whistle · Win or lose, the same three things",Opens,LNL55-Lesson,works; the length on the still differs because no film exists
+LNL54-Lesson#24,LNL54-Lesson,Source 4,Opens,LN8-WhyWeTeachThis,works
 LNL55-Lesson#7,LNL55-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
 LNL55-Lesson#14,LNL55-Lesson,Back,Opens,LN3m5-Module,works
-LNL55-Lesson#15,LNL55-Lesson,Add to Saturday’s run sheet,Says,Added to your run sheet for Saturday. It shows as a reminder at the right moment.,works
-LNL55-Lesson#16,LNL55-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
-LNL55-Lesson#17,LNL55-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
-LNL55-Lesson#18,LNL55-Lesson,Source 5,Opens,LN8-WhyWeTeachThis,works
+LNL55-Lesson#15,LNL55-Lesson,Play,Says,"Plays here, in the page. Tap again to pause.",works
+LNL55-Lesson#16,LNL55-Lesson,Play,Says,"Plays here, in the page.",works
+LNL55-Lesson#17,LNL55-Lesson,The film 2:15,Says,Jumps to: The film.,"missing: left out on purpose, no film exists"
+LNL55-Lesson#18,LNL55-Lesson,Try it,Says,Jumps to: Try it.,works
+LNL55-Lesson#19,LNL55-Lesson,Captions [switch],Says,Captions off. They are on by default.,works
+LNL55-Lesson#20,LNL55-Lesson,Full screen,Says,Full screen.,works
+LNL55-Lesson#21,LNL55-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL55-Lesson#22,LNL55-Lesson,Add to Saturday’s run sheet,Says,Added to your run sheet for Saturday. It shows as a reminder at the right moment.,works
+LNL55-Lesson#23,LNL55-Lesson,Source 5,Opens,LN8-WhyWeTeachThis,works
 LNL61-Lesson#7,LNL61-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
 LNL61-Lesson#14,LNL61-Lesson,Back,Opens,LN3m6-Module,works
-LNL61-Lesson#15,LNL61-Lesson,Remind me,Says,We’ll remind you: this week.,works
-LNL61-Lesson#16,LNL61-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
-LNL61-Lesson#17,LNL61-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL61-Lesson#15,LNL61-Lesson,Play,Says,"Plays here, in the page. Tap again to pause.",works
+LNL61-Lesson#16,LNL61-Lesson,Play,Says,"Plays here, in the page.",works
+LNL61-Lesson#17,LNL61-Lesson,The film 2:15,Says,Jumps to: The film.,"missing: left out on purpose, no film exists"
+LNL61-Lesson#18,LNL61-Lesson,Try it,Says,Jumps to: Try it.,works
+LNL61-Lesson#19,LNL61-Lesson,Captions [switch],Says,Captions off. They are on by default.,works
+LNL61-Lesson#20,LNL61-Lesson,Full screen,Says,Full screen.,works
+LNL61-Lesson#21,LNL61-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL61-Lesson#22,LNL61-Lesson,Remind me,Says,We’ll remind you: this week.,works
+LNL61-Lesson#23,LNL61-Lesson,"2:05 · · UP NEXT · LESSON 6.2 · The parents’ sideline · Ask them to cheer, not to coach",Opens,LNL62-Lesson,works; the length on the still differs because no film exists
 LNL62-Lesson#7,LNL62-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
 LNL62-Lesson#14,LNL62-Lesson,Back,Opens,LN3m6-Module,works
-LNL62-Lesson#15,LNL62-Lesson,Add to Saturday’s run sheet,Says,Added to your run sheet for Saturday. It shows as a reminder at the right moment.,works
-LNL62-Lesson#16,LNL62-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
-LNL62-Lesson#17,LNL62-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
-LNL62-Lesson#18,LNL62-Lesson,Source 5,Opens,LN8-WhyWeTeachThis,works
+LNL62-Lesson#15,LNL62-Lesson,Play,Says,"Plays here, in the page. Tap again to pause.",works
+LNL62-Lesson#16,LNL62-Lesson,Play,Says,"Plays here, in the page.",works
+LNL62-Lesson#17,LNL62-Lesson,The film 2:15,Says,Jumps to: The film.,"missing: left out on purpose, no film exists"
+LNL62-Lesson#18,LNL62-Lesson,Try it,Says,Jumps to: Try it.,works
+LNL62-Lesson#19,LNL62-Lesson,Captions [switch],Says,Captions off. They are on by default.,works
+LNL62-Lesson#20,LNL62-Lesson,Full screen,Says,Full screen.,works
+LNL62-Lesson#21,LNL62-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL62-Lesson#22,LNL62-Lesson,Add to Saturday’s run sheet,Says,Added to your run sheet for Saturday. It shows as a reminder at the right moment.,works
+LNL62-Lesson#23,LNL62-Lesson,2:05 · · UP NEXT · LESSON 6.3 · Sharing the load · Ask for one small job each,Opens,LNL63-Lesson,works; the length on the still differs because no film exists
+LNL62-Lesson#24,LNL62-Lesson,Source 5,Opens,LN8-WhyWeTeachThis,works
 LNL63-Lesson#7,LNL63-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
 LNL63-Lesson#14,LNL63-Lesson,Back,Opens,LN3m6-Module,works
-LNL63-Lesson#15,LNL63-Lesson,Remind me,Says,We’ll remind you: this week.,works
-LNL63-Lesson#16,LNL63-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
-LNL63-Lesson#17,LNL63-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL63-Lesson#15,LNL63-Lesson,Play,Says,"Plays here, in the page. Tap again to pause.",works
+LNL63-Lesson#16,LNL63-Lesson,Play,Says,"Plays here, in the page.",works
+LNL63-Lesson#17,LNL63-Lesson,The film 2:15,Says,Jumps to: The film.,"missing: left out on purpose, no film exists"
+LNL63-Lesson#18,LNL63-Lesson,Try it,Says,Jumps to: Try it.,works
+LNL63-Lesson#19,LNL63-Lesson,Captions [switch],Says,Captions off. They are on by default.,works
+LNL63-Lesson#20,LNL63-Lesson,Full screen,Says,Full screen.,works
+LNL63-Lesson#21,LNL63-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL63-Lesson#22,LNL63-Lesson,Remind me,Says,We’ll remind you: this week.,works
+LNL63-Lesson#23,LNL63-Lesson,"2:05 · · UP NEXT · LESSON 6.4 · A hard conversation · Listen first, use the record, offer a time",Opens,LNL64-Lesson,works; the length on the still differs because no film exists
 LNL64-Lesson#7,LNL64-Lesson,U11 Luke · Wattle Creek,Opens,VS1-SwitchView,works
 LNL64-Lesson#14,LNL64-Lesson,Back,Opens,LN3m6-Module,works
-LNL64-Lesson#15,LNL64-Lesson,Remind me,Says,We’ll remind you: when it comes up.,works
-LNL64-Lesson#16,LNL64-Lesson,Film · about 2 minutes · · Watch,Says,The film plays.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
-LNL64-Lesson#17,LNL64-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL64-Lesson#15,LNL64-Lesson,Play,Says,"Plays here, in the page. Tap again to pause.",works
+LNL64-Lesson#16,LNL64-Lesson,Play,Says,"Plays here, in the page.",works
+LNL64-Lesson#17,LNL64-Lesson,The film 2:15,Says,Jumps to: The film.,"missing: left out on purpose, no film exists"
+LNL64-Lesson#18,LNL64-Lesson,Try it,Says,Jumps to: Try it.,works
+LNL64-Lesson#19,LNL64-Lesson,Captions [switch],Says,Captions off. They are on by default.,works
+LNL64-Lesson#20,LNL64-Lesson,Full screen,Says,Full screen.,works
+LNL64-Lesson#21,LNL64-Lesson,Write my own,Says,Type your own words. They are saved with this lesson and show on your run sheet.,works
+LNL64-Lesson#22,LNL64-Lesson,Remind me,Says,We’ll remind you: when it comes up.,works
 LNp1-LessonPhone#1,LNp1-LessonPhone,Back,Opens,LN1-LearnHome,works
 LNp1-LessonPhone#2,LNp1-LessonPhone,Ask Clean Sheet,Opens,ASKp2-PhoneAskOpen,works
-LNp1-LessonPhone#3,LNp1-LessonPhone,Watch · 2:15,Says,The film plays: 2 minutes 15.,"missing on purpose: no film exists yet, so the tile says “Film coming” and nothing plays (handover rule)"
-LNp1-LessonPhone#4,LNp1-LessonPhone,Run sheet,Opens,GS3-RunSheet,works
-LNp1-LessonPhone#5,LNp1-LessonPhone,Got it,Says,Good luck tonight. We’ll ask how it went at 6:15.,works
+LNp1-LessonPhone#3,LNp1-LessonPhone,Play,Says,"Plays here, in the page. Tap again to pause.",works
+LNp1-LessonPhone#4,LNp1-LessonPhone,Play,Says,"Plays here, in the page.",works
+LNp1-LessonPhone#5,LNp1-LessonPhone,Film,Says,Jumps to: Film.,"missing: left out on purpose, no film exists"
+LNp1-LessonPhone#6,LNp1-LessonPhone,Your team,Says,Jumps to: Your team.,works
+LNp1-LessonPhone#7,LNp1-LessonPhone,Try it,Says,Jumps to: Try it.,works
+LNp1-LessonPhone#8,LNp1-LessonPhone,Captions [switch],Says,Captions off. They are on by default.,works
+LNp1-LessonPhone#9,LNp1-LessonPhone,Full screen,Says,Full screen.,works
+LNp1-LessonPhone#10,LNp1-LessonPhone,Run sheet,Opens,GS3-RunSheet,works
+LNp1-LessonPhone#11,LNp1-LessonPhone,Got it,Says,Good luck tonight. We’ll ask how it went at 6:15.,works
 LNp2-HowItWentPhone#1,LNp2-HowItWentPhone,Back,Opens,LN1-LearnHome,works
 LNp2-HowItWentPhone#2,LNp2-HowItWentPhone,Ask Clean Sheet,Opens,ASKp2-PhoneAskOpen,works
 LNp2-HowItWentPhone#3,LNp2-HowItWentPhone,Yes [radio],Says,Yes: taken off.,works

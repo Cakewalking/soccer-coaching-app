@@ -5,9 +5,10 @@ import { useState } from 'react'
 import { demoToast } from '../demoToast'
 import { openScreen } from '../openThing'
 import { useBackState } from '../../backState'
+import LearnPlayer, { chaptersFor } from './LearnPlayer'
 import { ALL, ctxFor, effectOf, lesson, moduleOf, moduleOrder, nextLesson, setCoach, useCoach } from './course'
 
-const G = '#2f6252', INK = '#10211f', MUT = '#4a5a57', LINE = '#c5c8c4', PALE = '#eef5f2'
+const G = '#2f6252', INK = '#10211f', MUT = '#4a5a57', LINE = '#c5c8c4'
 const SPARK = 'M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z'
 const round: React.CSSProperties = { flex: 'none', width: 44, height: 44, borderRadius: 999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 0, cursor: 'pointer' }
 const chip = (on: boolean): React.CSSProperties => ({ minHeight: 44, padding: '0 14px', borderRadius: 999, border: on ? 0 : `1px solid ${LINE}`, background: on ? G : '#fff', color: on ? '#fff' : INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' })
@@ -54,15 +55,20 @@ export default function LearnPhone({ start = 'LNp1-LessonPhone', onNav }: { star
         </div>
       </div>)
   }
+  const time = l.try_at.match(/^(\d+:\d\d) · (.+)$/), tonight = l.id === '4.2' ? 'After the second swap, stop for 20 seconds. Ask one question. Count to five. Play on.' : l.try_task
   return (
     <div data-screen="LNp1-LessonPhone" style={phone}>
       {head(`${m.title} · ${m.lessons.indexOf(l) + 1} of ${m.lessons.length}`, short)}
       <div style={{ flexGrow: 1, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 10 }}>
-        {/* the film is not made yet: say so, never a tile that plays nothing */}
-        <section style={{ borderRadius: 14, background: '#1c3a33', color: '#fff', minHeight: 150, padding: 16, display: 'flex', alignItems: 'flex-end' }}><strong style={{ fontSize: 16 }}>Film coming</strong></section>
-        <section style={card}><strong style={{ fontSize: 16 }}>{l.id === '4.2' ? 'Tonight, in Keep-ball at 5:10' : `Tonight: ${l.try_at}`}</strong><span style={{ fontSize: 15, lineHeight: '21px' }}>{l.id === '4.2' ? 'After the second swap, stop for 20 seconds. Ask one question. Count to five. Play on.' : l.try_task}</span></section>
-        {l.words_to_use.length > 0 && <section style={card}><strong style={{ fontSize: 15 }}>Words you can use</strong>{[...(c.ownWords[l.id] ?? []), ...l.words_to_use].slice(0, 3).map(w => <span key={w} style={{ background: PALE, borderRadius: 10, padding: '8px 12px', fontSize: 15 }}>“{w}”</span>)}</section>}
-        <span style={{ fontSize: 13, color: MUT, textAlign: 'center' }}>Training starts in 40 minutes. This lesson takes six.</span>
+        {/* no film is made yet: the player runs the coach's own clip, when one fits, then the lesson drawn */}
+        <LearnPlayer phone chapters={chaptersFor(l, x.hasFilm)} ratio="362 / 215" chips={[`Lesson ${l.id}`, 'Film coming']} captions={c.captions !== false} onCaptions={on => setCoach(x.who, { captions: on })} say={demoToast}
+          tryCard={{ heading: 'Tonight', at: '', task: tonight, button: '', done: false, onAdd: () => {} }} />
+        <section style={{ ...card, border: `2.5px solid ${INK}`, gap: 6 }}>
+          <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, flexWrap: 'wrap' }}><strong style={{ fontSize: 17 }}>{time ? `Tonight, ${time[1]}` : 'Tonight'}</strong><span style={{ display: 'inline-flex', alignItems: 'center', minHeight: 24, padding: '0 9px', borderRadius: 999, background: G, color: '#fff', fontSize: 12, fontWeight: 700 }}>{time ? time[2] : l.try_at}</span></span>
+          <span style={{ fontSize: 15, lineHeight: '21px' }}>{tonight}</span>
+        </section>
+        {l.words_to_use.length > 0 && <section style={card}><strong style={{ fontSize: 15 }}>Words you can use</strong>{[...(c.ownWords[l.id] ?? []), ...l.words_to_use].slice(0, 3).map(w => <span key={w} style={{ display: 'flex', gap: 8, alignItems: 'baseline', fontSize: 15, lineHeight: '21px' }}><span style={{ color: G }}><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z" /></svg></span>“{w}”</span>)}</section>}
+        <span style={{ fontSize: 13, lineHeight: '18px', color: MUT, textAlign: 'center' }}>Training starts in 40 minutes. This lesson takes six. Captions are on, so you can watch with the sound off.</span>
       </div>
       <div style={{ flex: 'none', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, padding: '12px 14px 16px', borderTop: `1px solid ${LINE}`, background: '#fff' }}>
         <button style={wide()} onClick={() => go('GS3-RunSheet')}>Run sheet</button>

@@ -1,14 +1,44 @@
-# Learn to coach v2: report back (19 Nov)
+# Learn to coach v3, player-led: report back (19 Nov)
 
-Build: the commit that adds this file. The 30 lessons, 60 words and 11 sources are loaded from data and shown as written. **No lesson text was changed.** A check opens all 30 lessons and compares the title, idea, steps, words, "instead of", task and every answer against `lessons.json`.
+Build: the commit that adds this file. v3 replaces v1 and v2. The 30 lessons, 60 words and 11 sources are loaded from data and shown as written. **No lesson text was changed**; `lessons.json` and `words.json` in v3 are identical to v2. A check opens all 30 lessons and compares the title, idea, steps, words, "instead of", task and every answer against `lessons.json`.
+
+## The player
+
+One component (`src/screens/learn/LearnPlayer.tsx`) on the course home, every lesson and the phone lesson.
+
+- It plays in the page, with play and pause, chapters on the scrubber that jump when pressed, the time, a captions switch and full screen.
+- Captions are on by default. The choice is kept against the coach.
+- When it ends it shows the "Try it" still with its button. The next lesson does not start by itself.
+- "Try it" is pinned at the top of the right column on the home and the lesson. At 1180 by 820 the player and "Try it" are both fully visible on both.
+- Up next: the coach's own clip first when there is one (it plays in the player), then the next two lessons; on a lesson, the next lesson in the module.
+- Progress is one strip of six module chips. Confidence ratings are on "Your season" only.
+
+**No film exists, so every lesson is in the boards' "film coming" state** (`LN1n`, `LN4n`). There is no "The film" chapter anywhere. The chapters are: "Your team" when a clip fits, the lesson drawn, then "Try it". `LN1-LearnHome` and `LN4-Lesson` open as their no-film versions.
+
+Things to know about the drawn chapter:
+
+- The pack has no drawing per lesson, so it is the same animated practice square for all 30 lessons. Its captions are that lesson's own idea and steps, ten seconds each, which is also its length.
+- "Your team" shows only for U11 Luke, on the lessons that carry a clip. It is drawn the way clips are drawn elsewhere in the app, with the lesson's example caption.
+- A lesson always has an idea, so the player is never hidden. The rule "if neither exists, hide the player" never applies yet.
 
 ## The controls
 
-All 340 controls in `LEARN-TO-COACH-REPORT.csv` were pressed on a local production build.
+All 568 controls in `LEARN-TO-COACH-REPORT.csv` were pressed on a local production build.
 
-- 308 work as written. That includes the director's Ask button, which opens the Ask panel in place, and a fourth worry on the starting page, which is refused because three is the most.
-- 31 are the Watch button on each lesson and the phone lesson. Left out on purpose: no film exists yet.
-- 1 opens a different screen on purpose: "Preview the lesson" on How it went opens the lesson the answer points to, not lesson 4.2.
+- 496 work as written.
+- 36 work, but the check could not match them by label because the length shown differs from the board (no film exists): the "Up next" rows and six "Your team" chapters. The same controls are covered by a separate test.
+- 32 are "The film" chapter on each lesson, the home and the phone. Left out on purpose: no film exists.
+- 3 are the club settings switches on the director's page, labelled differently on the page. Unchanged from v2.
+- 1 opens a different screen on purpose: "Preview the lesson" on How it went opens the lesson the answer points to.
+
+## Kept from before, not on the v3 boards
+
+- A "How it went" button beside "Back" on each lesson. The v3 lesson board drops the row of steps, which was the only way to reach that page by hand; nothing in the demo prompts it.
+- Module names in the strip wrap onto two lines instead of being cut off.
+
+## Gone from the home, as the v3 board draws it
+
+- The course list, the confidence tile and "Talk to Rachel". The mentor is still named on the director's settings; nothing on the coach's home opens a message to her now.
 
 ## Where it lives
 
@@ -77,9 +107,9 @@ All 340 controls in `LEARN-TO-COACH-REPORT.csv` were pressed on a local producti
 
 ## Rules followed where the board differs
 
-- **Films.** None exist, so the Watch tile says "Film coming" and nothing plays. The boards draw a Watch button; the handover says never show a film tile that plays nothing.
+- **Films.** None exist. See "The player" above.
 - **No count below 3 on the director's page.** The board shows 1 and 2 for the last two modules; the page shows "Fewer than 3".
-- **See it in your own team** shows only for U11 Luke, whose clip is the board's example. Other teams have no fitting clip, so the tile is hidden.
+- **The coach's own clip** shows only for U11 Luke, whose clip is the board's example. Other teams have no fitting clip, so there is no "Your team" chapter and no clip in "Up next".
 - **The game itself.** The rules show only for under 10 and 11; other ages say "Ask your club". Positions and "Other shapes" show only for 9 a side.
 - **Try it** names the same part of the coach's own next session, with its own time, when the lesson's example names a part of the under-11s' session.
 
@@ -88,6 +118,7 @@ All 340 controls in `LEARN-TO-COACH-REPORT.csv` were pressed on a local producti
 - "Because" lines on the starting page for answers the board does not show (other worries, 5 and 20 minutes, other age groups).
 - The headline on the course page for modules other than 4, and "Why now" for lessons other than 4.2.
 - "What comes next, and why" for answers other than Silence on lesson 4.2.
+- "Paused." and "Captions on." from the player, and "films are being made; lessons work without them" on every home, not only the no-film board.
 - "What happened?" as the second question on lessons other than 4.2 (the phone board's wording).
 - The team numbers on the module, progress and how-it-went pages are the boards' examples. A new club's coach sees none of them.
 

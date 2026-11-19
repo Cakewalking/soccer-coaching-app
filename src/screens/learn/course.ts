@@ -43,6 +43,7 @@ export type Coach = {
   /** what the course did because of an answer, newest first */ did: string[]
   ownWords: Record<string, string[]>; reminders: Record<string, string>
   ratings: number[][]; share: boolean
+  /** captions in the player: on unless the coach turned them off */ captions?: boolean
   /** sessions the coach said not to ask about again */ skipped: string[]
 }
 const fresh = (): Coach => ({ built: false, played: 'Never', seasons: 'This is my first season', worries: [], minutes: '10 minutes', done: {}, next: null, did: [], ownWords: {}, reminders: {}, ratings: [], share: false, skipped: [] })
