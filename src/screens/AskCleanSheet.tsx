@@ -29,7 +29,6 @@ const HOME    = 'M4 11l8-7 8 7v9H4z'
 const SQUAD   = 'M9 11a3 3 0 100-6 3 3 0 000 6zM3 20c0-4 3-6 6-6s6 2 6 6M16 11a3 3 0 100-6M21 20c0-3-2-5-4-5.5'
 const TRAIN   = 'M6 5h12a2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V7a2 2 0 012-2zM4 10h16M9 3v4M15 3v4'
 const MATCH   = 'M12 21a9 9 0 100-18 9 9 0 000 18zM12 7l4 3-1.5 5h-5L8 10z'
-const CLIPS   = 'M12 21a9 9 0 100-18 9 9 0 000 18zM10 8l6 4-6 4z'
 const RECORD  = 'M12 21a9 9 0 100-18 9 9 0 000 18zM12 15a3 3 0 100-6 3 3 0 000 6z'
 const MIC     = 'M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3zM19 10v2a7 7 0 01-14 0v-2M12 19v4M8 23h8'
 const SEND    = 'M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z'
@@ -40,8 +39,8 @@ const NAV6 = [
   { id: 'squad',    label: 'Squad',     icon: SQUAD },
   { id: 'training', label: 'Training',  icon: TRAIN },
   { id: 'matchday', label: 'Match day', icon: MATCH },
-  { id: 'clips',    label: 'Clips',     icon: CLIPS },
   { id: 'record',   label: 'Record',    icon: RECORD },
+  { id: 'learn',    label: 'Learn',     icon: 'M2 4h6a4 4 0 014 4v13a3 3 0 00-3-3H2zM22 4h-6a4 4 0 00-4 4v13a3 3 0 013-3h7z' },
 ]
 
 const HOME_SUBS = ['Overview', 'Messages', 'Calendar', 'Fixtures and results', 'Our style', 'Team staff']

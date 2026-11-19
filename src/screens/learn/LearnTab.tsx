@@ -2,7 +2,7 @@ import { useState, type ReactNode } from 'react'
 import EDU1Learn from '../step4/EDU1Learn'
 import { OpeningPanel } from '../step4/directorParts'
 
-// Clips › Learn, for every coach. Two sides, as drawn on EDU1 and EDU5:
+// Learn › Education centre, for every coach. Two sides, as drawn on EDU1 and EDU5:
 //   For players — lessons the coach sends to the squad (or, under 12, to families)
 //   For coaches — the coach's own path, set by the director of football
 // One component so no role is left with only half of it.

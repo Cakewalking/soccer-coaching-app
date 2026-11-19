@@ -6,7 +6,7 @@ import LearnTab from './learn/LearnTab'
 import RecordHub           from './RecordHub'
 import { CoachMessages }   from './MessagesScreens'
 
-type GKNav = 'home' | 'keepers' | 'training' | 'matchday' | 'clips' | 'record'
+type GKNav = 'home' | 'keepers' | 'training' | 'matchday' | 'clips' | 'record' | 'learn'   // Clips shows under the Record tab
 type HomeTab = 'overview' | 'messages' | 'calendar'
 type TrainingTab = 'session' | 'drills'
 
@@ -37,8 +37,8 @@ const GK_NAV: Array<{ id: GKNav; label: string; icon: string }> = [
   { id: 'keepers',  label: 'Keepers',  icon: 'M9 11a3 3 0 100-6 3 3 0 000 6zM3 20c0-4 3-6 6-6s6 2 6 6M16 11a3 3 0 100-6M21 20c0-3-2-5-4-5.5' },
   { id: 'training', label: 'Training', icon: 'M6 5h12a2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V7a2 2 0 012-2zM4 10h16M9 3v4M15 3v4' },
   { id: 'matchday', label: 'Match day', icon: 'M12 21a9 9 0 100-18 9 9 0 000 18zM12 7l4 3-1.5 5h-5L8 10z' },
-  { id: 'clips',    label: 'Clips',    icon: 'M12 21a9 9 0 100-18 9 9 0 000 18zM10 8l6 4-6 4z' },
   { id: 'record',   label: 'Record',   icon: 'M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z' },
+  { id: 'learn',    label: 'Learn',    icon: 'M2 4h6a4 4 0 014 4v13a3 3 0 00-3-3H2zM22 4h-6a4 4 0 00-4 4v13a3 3 0 013-3h7z' },
 ]
 
 const HOME_TABS: Array<{ id: HomeTab; label: string }> = [
@@ -288,7 +288,7 @@ export default function GoalkeeperCoachApp({ empty = false, initialScreen, onNav
   const [nav, setNav]             = useBackState<GKNav>((initialScreen as GKNav) ?? 'home')
   const [homeTab, setHomeTab]     = useState<HomeTab>('overview')
   const [trainingTab, setTrainingTab] = useState<TrainingTab>('session')
-  const [clipsTab, setClipsTab] = useState<'clips' | 'learn'>('clips')
+  const top = (id: GKNav) => (nav === 'clips' ? 'record' : nav) === id   // which top tab is lit
   const [toast, setToast]         = useState<string | null>(null)
   const [askOpen, setAskOpen]     = useState(false)
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
@@ -302,11 +302,11 @@ export default function GoalkeeperCoachApp({ empty = false, initialScreen, onNav
           <span style={{ fontSize: 17, fontWeight: 800, letterSpacing: '-0.03em', flexShrink: 0 }}>Clean Sheet</span>
           <nav style={{ display: 'flex', flexGrow: 1, height: 60 }}>
             {GK_NAV.map(tab => (
-              <button key={tab.id} data-club-tab={nav === tab.id ? 'on' : 'off'} onClick={() => { setNav(tab.id); onNavChange?.(tab.id) }} style={{
+              <button key={tab.id} data-club-tab={top(tab.id) ? 'on' : 'off'} onClick={() => { setNav(tab.id); onNavChange?.(tab.id) }} style={{
                 height: 60, padding: '0 14px', border: 0, background: 'transparent', whiteSpace: 'nowrap', flexShrink: 0,
-                fontFamily: 'inherit', fontSize: 15, fontWeight: nav === tab.id ? 700 : 500,
-                color: nav === tab.id ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer',
-                borderBottom: nav === tab.id ? '3px solid #fff' : '3px solid transparent',
+                fontFamily: 'inherit', fontSize: 15, fontWeight: top(tab.id) ? 700 : 500,
+                color: top(tab.id) ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer',
+                borderBottom: top(tab.id) ? '3px solid #fff' : '3px solid transparent',
                 display: 'flex', alignItems: 'center', gap: 7, boxSizing: 'border-box',
               }}>
                 <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={tab.icon}/></svg>
@@ -346,12 +346,12 @@ export default function GoalkeeperCoachApp({ empty = false, initialScreen, onNav
                 boxSizing: 'border-box',
               }}>{t.label}</button>
             ))}
-            {nav === 'clips' && ([['clips', 'Keeper clips'], ['learn', 'Learn']] as const).map(([id, label]) => (
-              <button key={id} onClick={() => setClipsTab(id)} style={{
+            {(nav === 'clips' || nav === 'record') && ([['record', 'Record'], ['clips', 'Keeper clips']] as const).map(([id, label]) => (
+              <button key={id} onClick={() => { setNav(id); onNavChange?.(id) }} style={{
                 height: 44, padding: '0 16px', border: 0, background: 'transparent',
-                fontFamily: 'inherit', fontSize: 15, fontWeight: clipsTab === id ? 600 : 400,
-                color: clipsTab === id ? '#10211f' : '#6f7f7b', cursor: 'pointer',
-                borderBottom: clipsTab === id ? '3px solid #40826d' : '3px solid transparent',
+                fontFamily: 'inherit', fontSize: 15, fontWeight: nav === id ? 600 : 400,
+                color: nav === id ? '#10211f' : '#6f7f7b', cursor: 'pointer',
+                borderBottom: nav === id ? '3px solid #40826d' : '3px solid transparent',
                 boxSizing: 'border-box',
               }}>{label}</button>
             ))}
@@ -437,7 +437,8 @@ export default function GoalkeeperCoachApp({ empty = false, initialScreen, onNav
         {nav === 'training' && trainingTab === 'drills'  && (
           <div style={{ padding: '20px 28px', color: '#4a5a57' }}>Keeper drills library — not shown in this demo.</div>
         )}
-        {nav === 'clips'    && (clipsTab === 'learn' && !empty ? <LearnTab team="goalkeeper" /> : <ClipsTab empty={empty} />)}
+        {nav === 'clips'    && <ClipsTab empty={empty} />}
+        {nav === 'learn'    && (empty ? <ClipsTab empty /> : <LearnTab team="goalkeeper" />)}
         {askOpen && (
           <aside role="dialog" aria-label="Ask Clean Sheet" style={{ position: 'absolute', top: 0, right: 0, bottom: 0, width: 380, background: '#eef5f2', borderLeft: '1px solid #e8edeb', boxShadow: '-6px 0 24px rgba(16,33,31,0.10)', zIndex: 50, display: 'flex', flexDirection: 'column' }}>
             <div style={{ background: '#fff', padding: '14px 16px', borderBottom: '1px solid #e8edeb', display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>

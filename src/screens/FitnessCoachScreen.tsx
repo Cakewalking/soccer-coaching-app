@@ -9,7 +9,7 @@ import CoachTabletFrame from './CoachTabletFrame'
 import ClipsScreen from './ClipsScreen'
 import RecordHub from './RecordHub'
 
-type FitnessTab = 'home' | 'squad' | 'training' | 'matchday' | 'clips' | 'record'
+type FitnessTab = 'home' | 'squad' | 'training' | 'matchday' | 'clips' | 'record' | 'learn'   // Clips shows under the Record tab
 
 // Fitness coach uses the same six-tab coach frame (FIX-LIST item 3)
 const FITNESS_NAV = [
@@ -17,8 +17,8 @@ const FITNESS_NAV = [
   { id: 'squad',    label: 'Squad',     icon: 'M9 11a3 3 0 100-6 3 3 0 000 6zM3 20c0-4 3-6 6-6s6 2 6 6M16 11a3 3 0 100-6M21 20c0-3-2-5-4-5.5' },
   { id: 'training', label: 'Training',  icon: 'M6 5h12a2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V7a2 2 0 012-2zM4 10h16M9 3v4M15 3v4' },
   { id: 'matchday', label: 'Match day', icon: 'M12 21a9 9 0 100-18 9 9 0 000 18zM12 7l4 3-1.5 5h-5L8 10z' },
-  { id: 'clips',    label: 'Clips',     icon: 'M12 21a9 9 0 100-18 9 9 0 000 18zM10 8l6 4-6 4z' },
   { id: 'record',   label: 'Record',    icon: 'M12 21a9 9 0 100-18 9 9 0 000 18zM12 15a3 3 0 100-6 3 3 0 000 6z' },
+  { id: 'learn',    label: 'Learn',     icon: 'M2 4h6a4 4 0 014 4v13a3 3 0 00-3-3H2zM22 4h-6a4 4 0 00-4 4v13a3 3 0 013-3h7z' },
 ]
 type SquadSubTab = 'growth' | 'injuries' | 'test-results'
 type TrainingSubTab = 'tests' | 'her-part' | 'measuring' | 'sprint'
@@ -216,7 +216,8 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
   const [clipsTab, setClipsTab] = useState(0)
 
   // Drive the frame's sub-tab bar from the active nav
-  const CLIPS_SUBS = ['By measure', 'By game', 'By player', 'Playlists', 'To check', 'Learn']
+  const FILM_SUBS = ['Record', 'Clips by measure', 'Clips by game', 'Clips by player', 'Playlists', 'To check']   // Clips sit inside Record
+  const film = tab === 'clips' || tab === 'record'
   const HOME_SUBS: HomeSub[] = ['overview', 'fitnesslevel', 'messages']
   const chatWanted = useChatWanted('fitness')   // "Tell Sam" on Home opens the chat with Sam
   useEffect(() => { if (chatWanted) { setTab('home'); setHomeSub('messages') } }, [chatWanted, setTab, setHomeSub])
@@ -226,17 +227,18 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
     tab === 'home'     ? ['Overview', 'Fitness level', 'Messages'] :
     tab === 'squad'    ? ['Growth', 'Injuries', 'Test results over time'] :
     tab === 'training' ? ['Fitness tests', 'Her part tonight', 'Measuring session', 'Sprint race'] :
-    tab === 'clips'    ? CLIPS_SUBS : []
+    film               ? FILM_SUBS :
+    tab === 'learn'    ? ['Education centre'] : []
   const subIndex =
     tab === 'home'     ? HOME_SUBS.indexOf(homeSub) :
     tab === 'squad'    ? SQUAD_SUBS.indexOf(squadSub) :
     tab === 'training' ? TRAIN_SUBS.indexOf(trainSub) :
-    tab === 'clips'    ? clipsTab : 0
+    tab === 'clips'    ? clipsTab + 1 : 0
   function onSubTab(i: number) {
     if (tab === 'home')     setHomeSub(HOME_SUBS[i])
     else if (tab === 'squad')    setSquadSub(SQUAD_SUBS[i])
     else if (tab === 'training') setTrainSub(TRAIN_SUBS[i])
-    else if (tab === 'clips')    setClipsTab(i)
+    else if (film) { const to = i === 0 ? 'record' : 'clips'; if (i > 0) setClipsTab(i - 1); if (to !== tab) { setTab(to); onNavChange?.(to) } }
   }
 
   if (empty) {
@@ -282,7 +284,7 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
     <>
     <CoachTabletFrame
       navTabs={FITNESS_NAV}
-      activeNav={tab}
+      activeNav={film ? 'record' : tab}
       onNav={(id) => { setTab(id as FitnessTab); onNavChange?.(id) }}
       subTabs={subTabs}
       activeSubTabIndex={subIndex}
@@ -1050,6 +1052,7 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
         )}
 
         {tab === 'clips'  && <ClipsScreen activeTab={clipsTab} />}
+        {tab === 'learn'  && <ClipsScreen activeTab={5} />}
         {tab === 'record' && <RecordHub noFrame />}
       </div>
     </CoachTabletFrame>

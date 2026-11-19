@@ -49,8 +49,8 @@ const NAV6 = [
   { id: 'squad',    label: 'Squad',     icon: ICONS.squad },
   { id: 'training', label: 'Training',  icon: ICONS.training },
   { id: 'matchday', label: 'Match day', icon: ICONS.matchday },
-  { id: 'clips',    label: 'Clips',     icon: ICONS.clips },
   { id: 'record',   label: 'Record',    icon: ICONS.record },
+  { id: 'learn',    label: 'Learn',     icon: 'M2 4h6a4 4 0 014 4v13a3 3 0 00-3-3H2zM22 4h-6a4 4 0 00-4 4v13a3 3 0 013-3h7z' },
 ]
 
 const HOME_SUBS = ['Overview', 'Messages', 'Calendar', 'Fixtures and results', 'Our style', 'Team staff']

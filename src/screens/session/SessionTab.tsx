@@ -19,7 +19,7 @@ const SCREENS: Record<string, (p: GsProps) => React.ReactNode> = {
 export const isLearnId = (id: string) => /^LN(\d|L\d)/.test(id) && !id.startsWith('LN9')
 export const isSessionId = (id: string) => id in SCREENS || isLearnId(id)
 /** Which Training tab a session screen sits under. GS2, GS5 and GS6 open on the first tab. */
-export const SESSION_TAB: Record<string, number> = { 'GS1-ProposedSession': 0, 'GS2-DrillWhy': 0, 'GS5-CoachLevel': 0, 'GS6-NothingToGoOn': 0, 'GS3-RunSheet': 1, 'GS4-ResizeAttendance': 2, 'GS7-SeasonLookBack': 3, 'GS8-WelcomeCourse': 5 }
+export const SESSION_TAB: Record<string, number> = { 'GS1-ProposedSession': 0, 'GS2-DrillWhy': 0, 'GS5-CoachLevel': 0, 'GS6-NothingToGoOn': 0, 'GS3-RunSheet': 1, 'GS4-ResizeAttendance': 2, 'GS7-SeasonLookBack': 3 }
 
 let openPart = 1   // the part "Why this" was pressed on; kept across the move from GS1 to GS2
 export default function SessionTab({ id, team = 'u12', onNav, onStart }: { id: string; team?: TeamKey; onNav?: (s: string) => void; onStart?: () => void }) {

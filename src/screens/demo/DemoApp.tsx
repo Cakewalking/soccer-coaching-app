@@ -2392,7 +2392,7 @@ const LOOK_HOME: Record<string, string> = {
 }
 const LOOK_COACH_NAV: Record<string, string> = {
   squad: 'T4-SquadTab', training: 'T3-TrainingTab', matchday: 'T2-TabletMatch',
-  clips: 'C1-ClipsTab', record: 'REC1-RecordHub',
+  clips: 'C1-ClipsTab', record: 'REC1-RecordHub', learn: 'GS8-WelcomeCourse',
 }
 export function lookScreenId(role: string, screen?: string): string {
   const home = LOOK_HOME[role] ?? ''
@@ -2456,13 +2456,13 @@ function pathToState(path: string): { view: DemoView; role: RoleId; screen?: str
     const lookScreen = m1[2]
     if (lookScreen !== undefined) {
       const LOOK_SCREENS: Partial<Record<RoleId, Set<string>>> = {
-        coach:        new Set(['home', 'squad', 'training', 'matchday', 'clips', 'record']),
-        ccoach:       new Set(['home', 'squad', 'training', 'matchday', 'clips', 'record']),
-        youth:        new Set(['home', 'squad', 'training', 'matchday', 'clips', 'record']),
-        seniors:      new Set(['home', 'squad', 'training', 'matchday', 'clips', 'record']),
-        miniroos:     new Set(['home', 'squad', 'training', 'gameday', 'clips', 'record']),
-        goalkeeper:   new Set(['home', 'keepers', 'training', 'matchday', 'clips', 'record']),
-        fitness:      new Set(['home', 'squad', 'training', 'matchday', 'clips', 'record']),
+        coach:        new Set(['home', 'squad', 'training', 'matchday', 'clips', 'record', 'learn']),
+        ccoach:       new Set(['home', 'squad', 'training', 'matchday', 'clips', 'record', 'learn']),
+        youth:        new Set(['home', 'squad', 'training', 'matchday', 'clips', 'record', 'learn']),
+        seniors:      new Set(['home', 'squad', 'training', 'matchday', 'clips', 'record', 'learn']),
+        miniroos:     new Set(['home', 'squad', 'training', 'gameday', 'clips', 'record', 'learn']),
+        goalkeeper:   new Set(['home', 'keepers', 'training', 'matchday', 'clips', 'record', 'learn']),
+        fitness:      new Set(['home', 'squad', 'training', 'matchday', 'clips', 'record', 'learn']),
         academyowner: new Set(['home', 'programs', 'players', 'coaches', 'money']),
         academycoach: new Set(['today', 'training', 'players', 'gameday', 'record']),
       }

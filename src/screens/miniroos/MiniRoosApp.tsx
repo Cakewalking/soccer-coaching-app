@@ -1,4 +1,5 @@
 import { isLearnId } from '../session/SessionTab'
+import { LEARN_TABS, LEARN_ICON } from '../JuniorCoachApp'
 import { openLearn } from '../learn/course'
 import { useBackState } from '../../backState'
 import { openThing } from '../openThing'
@@ -674,20 +675,21 @@ function RecordMiniRoosClips({ empty, onBack }: { empty?: boolean; onBack: () =>
   )
 }
 
-type MiniNav = 'home' | 'squad' | 'training' | 'gameday' | 'clips' | 'record'
+type MiniNav = 'home' | 'squad' | 'training' | 'gameday' | 'clips' | 'record' | 'learn'   // Clips shows under the Record tab
+type LearnPart = 'course' | 'centre'
 type HomeTab = 'overview' | 'messages' | 'calendar' | 'fixtures' | 'style' | 'whereweat' | 'staff' | 'files'
 type GameDayTab = 'turns' | 'whoscoming' | 'getready' | 'live' | 'review' | 'chances' | 'yourtake' | 'whatisaw' | 'thankparents'
 type SquadTab = 'players' | 'positions' | 'formation' | 'lineups' | 'skills' | 'turns' | 'coming' | 'consent' | 'seasonnotes'
-type TrainingTab = 'session' | 'runsheet' | 'coming' | 'season' | 'week' | 'library' | 'learn'
-const GS_TRAIN: Record<string, TrainingTab> = { 'GS1-ProposedSession': 'session', 'GS2-DrillWhy': 'session', 'GS5-CoachLevel': 'session', 'GS6-NothingToGoOn': 'session', 'GS3-RunSheet': 'runsheet', 'GS4-ResizeAttendance': 'coming', 'GS7-SeasonLookBack': 'season', 'GS8-WelcomeCourse': 'learn', 'HM3-TrainingMiniRoos': 'session', 'SGm1-SuggestedMiniRoos': 'session', 'DF0-Library': 'library' }
+type TrainingTab = 'session' | 'runsheet' | 'coming' | 'season' | 'week' | 'library'
+const GS_TRAIN: Record<string, TrainingTab> = { 'GS1-ProposedSession': 'session', 'GS2-DrillWhy': 'session', 'GS5-CoachLevel': 'session', 'GS6-NothingToGoOn': 'session', 'GS3-RunSheet': 'runsheet', 'GS4-ResizeAttendance': 'coming', 'GS7-SeasonLookBack': 'season', 'HM3-TrainingMiniRoos': 'session', 'SGm1-SuggestedMiniRoos': 'session', 'DF0-Library': 'library' }
 // Design id of the screen each MiniRoos tab shows (master handover part 4).
 const MR_SCREEN: Record<string, string> = {
   overview: 'STO1-HomeStoryMiniRoos', messages: 'HM7-InboxMiniRoos', calendar: 'HM8-CalendarMiniRoos', fixtures: 'HM9-FixturesMiniRoos',
   style: 'MS1-MiniRoosStyle', whereweat: 'MS2-MiniRoosWhereWeAt', staff: 'HM10-StaffMiniRoos', files: 'FIL1-Files',
   'squad:players': 'HM2-SquadMiniRoos', 'squad:positions': 'CN15-PositionHistory', 'squad:formation': 'FB1m-FormationMiniRoos', 'squad:lineups': 'SQ1-BestLineups', 'squad:coming': 'HM11-ComingMiniRoos', 'squad:consent': 'HM12-ConsentMiniRoos', 'squad:seasonnotes': 'HM6-SeasonNotes',
-  'training:session': 'GS1-ProposedSession', 'training:runsheet': 'GS3-RunSheet', 'training:coming': 'GS4-ResizeAttendance', 'training:season': 'GS7-SeasonLookBack', 'training:learn': 'GS8-WelcomeCourse',
+  'training:session': 'GS1-ProposedSession', 'training:runsheet': 'GS3-RunSheet', 'training:coming': 'GS4-ResizeAttendance', 'training:season': 'GS7-SeasonLookBack',
   'gameday:turns': 'HM4-GameDayMiniRoos', 'gameday:whoscoming': 'HM11-ComingMiniRoos', 'gameday:review': 'MS3-MiniRoosReview', 'gameday:chances': 'XGm1-ChancesMiniRoos', 'gameday:yourtake': 'YT1-YourTake', 'gameday:whatisaw': 'HM5-WhatWeSaw', 'gameday:thankparents': 'HM5b-ThankParents',
-  clips: 'RCm2-MiniRoosClips', 'clips:learn': 'EDU1-Learn', record: 'RCm1-RecordMiniRoos',
+  clips: 'RCm2-MiniRoosClips', record: 'RCm1-RecordMiniRoos', 'learn:course': 'GS8-WelcomeCourse', 'learn:centre': 'EDU1-Learn',
 }
 type RecordView = 'start' | 'clips'
 
@@ -696,8 +698,8 @@ const NAV: Array<{ id: MiniNav; label: string; icon: string }> = [
   { id: 'squad',    label: 'Squad',    icon: 'M9 11a3 3 0 100-6 3 3 0 000 6zM3 20c0-4 3-6 6-6s6 2 6 6M16 11a3 3 0 100-6M21 20c0-3-2-5-4-5.5' },
   { id: 'training', label: 'Training', icon: 'M6 5h12a2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V7a2 2 0 012-2zM4 10h16M9 3v4M15 3v4' },
   { id: 'gameday',  label: 'Match day', icon: 'M12 21a9 9 0 100-18 9 9 0 000 18zM12 7l4 3-1.5 5h-5L8 10z' },
-  { id: 'clips',    label: 'Clips',    icon: 'M12 21a9 9 0 100-18 9 9 0 000 18zM10 8l6 4-6 4z' },
   { id: 'record',   label: 'Record',   icon: 'M12 21a9 9 0 100-18 9 9 0 000 18zM12 15a3 3 0 100-6 3 3 0 000 6z' },
+  { id: 'learn',    label: 'Learn',    icon: LEARN_ICON },
 ]
 
 const HOME_TABS: Array<{ id: HomeTab; label: string }> = [
@@ -717,7 +719,7 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
   // Deep links into Match day: "whatisaw", "thankparents", "review", "whoscoming", "getready" open that part.
   const GAMEDAY_PARTS = ['whatisaw', 'thankparents', 'review', 'whoscoming', 'getready']
   const isGameDayPart = !!initialScreen && GAMEDAY_PARTS.includes(initialScreen)
-  const [nav, setNav]               = useBackState<MiniNav>(initialScreen === 'positions' ? 'squad' : isHomeSub ? 'home' : isGameDayPart ? 'gameday' : (initialScreen === 'learn' || initialScreen === 'learncoaches') ? 'clips' : ((initialScreen as MiniNav) ?? 'home'))
+  const [nav, setNav]               = useBackState<MiniNav>(initialScreen === 'positions' ? 'squad' : isHomeSub ? 'home' : isGameDayPart ? 'gameday' : (initialScreen === 'learn' || initialScreen === 'learncoaches' || initialScreen === 'GS8-WelcomeCourse') ? 'learn' : ((initialScreen as MiniNav) ?? 'home'))
   const [homeTab, setHomeTab]       = useBackState<HomeTab>(isHomeSub ? (initialScreen as HomeTab) : 'overview')
   const [gameDayTab, setGameDayTab] = useBackState<GameDayTab>(isGameDayPart ? (initialScreen as GameDayTab) : 'turns')
   const [squadTab, setSquadTab]     = useBackState<SquadTab>(initialScreen === 'positions' ? 'positions' : 'players')
@@ -727,14 +729,15 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
   const [xgView, setXgView] = useBackState('XGm1-ChancesMiniRoos')
   // Chances for the coach follow the club's rule for under 8 and under 9. MiniRoos never has a ladder.
   const mayChances = allowed(useCapture(), 'u8').chances && !empty
-  const isLearn = initialScreen === 'learn' || initialScreen === 'learncoaches'
-  const [clipsTab, setClipsTab] = useBackState<'clips' | 'learn'>(isLearn ? 'learn' : 'clips')
+  const isLearn = initialScreen === 'learncoaches'   // opens on the education centre; "learn" opens the course
+  const [learnTab, setLearnTab] = useBackState<LearnPart>(isLearn ? 'centre' : 'course')   // Learn: the course, then the education centre
+  const film = nav === 'clips' || nav === 'record'
   const [teamTalkOpen, setTeamTalkOpen] = useState(false)
   const [homeSubView, setHomeSubView] = useBackState<'main' | 'seasonnotes' | 'teamchat' | 'footballyear'>('main')
   const [trainingTab, setTrainingTab] = useBackState<TrainingTab>(initialScreen && GS_TRAIN[initialScreen] ? GS_TRAIN[initialScreen] : 'session')
   const [gsView, setGsView] = useBackState(initialScreen && GS_TRAIN[initialScreen] === 'session' && initialScreen.startsWith('GS') ? initialScreen : 'GS1-ProposedSession')
   // The justified session lives under Training. Its screens move between the tabs; anything else opens over the app.
-  const gsNav = (t0: string) => { let t = t0; if (isLearnId(t)) { openLearn(t); t = 'GS8-WelcomeCourse' } const tab = GS_TRAIN[t]; if (tab) { setNav('training'); setTrainingTab(tab); if (tab === 'session') setGsView(t.startsWith('GS') ? t : 'GS1-ProposedSession') } else if (isScreenId(t)) setLayer(t) }
+  const gsNav = (t0: string) => { let t = t0; if (isLearnId(t)) { openLearn(t); t = 'GS8-WelcomeCourse' } if (t === 'GS8-WelcomeCourse') { setNav('learn'); setLearnTab('course'); return } const tab = GS_TRAIN[t]; if (tab) { setNav('training'); setTrainingTab(tab); if (tab === 'session') setGsView(t.startsWith('GS') ? t : 'GS1-ProposedSession') } else if (isScreenId(t)) setLayer(t) }
   const [recordView, setRecordView] = useState<RecordView>('start')
   const [askOpen, setAskOpen]       = useBackState(false)
   const [filOpen, setFilOpen]       = useState<MrFile | null>(null)
@@ -761,7 +764,6 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
     { id: 'season',   label: 'Season so far' },
     { id: 'week',     label: 'This week' },
     { id: 'library',  label: 'Game library' },
-    { id: 'learn',    label: 'Learn to coach' },
   ]
 
   // MiniRoos squad: Players, Formation, Skills, Fair turns, Who's coming, Consent and privacy, Season notes.
@@ -782,13 +784,15 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
     nav === 'squad'    ? SQUAD_TABS_MR.map(t => t.label) :
     nav === 'gameday'  ? GAMEDAY_TABS.map(t => t.label) :
     nav === 'training' ? TRAINING_TABS_MR.map(t => t.label) :
-    nav === 'clips'    ? ['Clips', 'Learn'] : []
+    nav === 'learn'    ? LEARN_TABS :
+    film               ? ['Record', 'Clips'] : []
   const activeTabIndex =
     nav === 'home'     ? HOME_TABS.findIndex(t => t.id === homeTab) :
     nav === 'squad'    ? SQUAD_TABS_MR.findIndex(t => t.id === squadTab) :
     nav === 'gameday'  ? GAMEDAY_TABS.findIndex(t => t.id === gameDayTab) :
     nav === 'training' ? TRAINING_TABS_MR.findIndex(t => t.id === trainingTab) :
-    nav === 'clips'    ? (clipsTab === 'learn' ? 1 : 0) : 0
+    nav === 'learn'    ? (learnTab === 'centre' ? 1 : 0) :
+    nav === 'clips'    ? 1 : 0
 
   function handleNavChange(id: string) {
     setNav(id as MiniNav)
@@ -820,7 +824,7 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
   useEffect(() => {
     registerNav?.((target: string) => {
       if (GS_TRAIN[target]) { gsNav(target); onNavChange?.('training'); return true }
-      const key = target === 'EDU5-CoachCorner' ? 'clips:learn' : Object.keys(MR_SCREEN).find(k => MR_SCREEN[k] === target)
+      const key = target === 'EDU5-CoachCorner' ? 'learn:centre' : Object.keys(MR_SCREEN).find(k => MR_SCREEN[k] === target)
       // Anything else that is a designed screen opens over the app with a way back: one heading, not two.
       if (!key && isYourTakeId(target)) { setNav('gameday'); setGameDayTab('yourtake'); setYtView(target); return true }   // the Your take boards open inside Game day, not as a separate page
       if (!key) { if (isScreenId(target)) { setLayer(target); return true } return false }
@@ -829,10 +833,11 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
       else if (a === 'squad') { setNav('squad'); setSquadTab(b as SquadTab) }
       else if (a === 'training') { setNav('training'); setTrainingTab(b as TrainingTab) }
       else if (a === 'gameday') { setNav('gameday'); setGameDayTab(b as GameDayTab) }
-      else if (a === 'clips') { setNav('clips'); setClipsTab(b === 'learn' ? 'learn' : 'clips') }
+      else if (a === 'clips') setNav('clips')
+      else if (a === 'learn') { setNav('learn'); setLearnTab(b === 'centre' ? 'centre' : 'course') }
       else if (a === 'record') setNav('record')
       else return false
-      onNavChange?.(a === 'squad' || a === 'training' || a === 'gameday' || a === 'clips' || a === 'record' ? a : 'home')
+      onNavChange?.(a === 'squad' || a === 'training' || a === 'gameday' || a === 'clips' || a === 'record' || a === 'learn' ? a : 'home')
       setFilOpen(null)
       return true
     })
@@ -843,7 +848,8 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
     if (nav === 'squad')    { setSquadTab(SQUAD_TABS_MR[i].id) }
     if (nav === 'gameday')  { setGameDayTab(GAMEDAY_TABS[i].id); if (GAMEDAY_TABS[i].id === 'yourtake') setYtView('YT1-YourTake') }
     if (nav === 'training') { setTrainingTab(TRAINING_TABS_MR[i].id); if (TRAINING_TABS_MR[i].id === 'session') setGsView('GS1-ProposedSession') }
-    if (nav === 'clips')    { setClipsTab(i === 1 ? 'learn' : 'clips') }
+    if (nav === 'learn')    { setLearnTab(i === 1 ? 'centre' : 'course') }
+    else if (film)          { handleNavChange(i === 1 ? 'clips' : 'record') }
   }
 
   let content = null
@@ -889,7 +895,6 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
     else if (trainingTab === 'runsheet') content = gs('GS3-RunSheet')
     else if (trainingTab === 'coming')   content = gs('GS4-ResizeAttendance')
     else if (trainingTab === 'season')   content = gs('GS7-SeasonLookBack')
-    else if (trainingTab === 'learn')    content = <SessionTab id="GS8-WelcomeCourse" team="u9" onNav={gsNav} />   // the course needs nothing set up
     else if (trainingTab === 'week')    content = <WeekMiniRoos empty={empty} onTonight={() => setTrainingTab('session')} />
     else if (trainingTab === 'library') content = <GamesLibraryMiniRoos empty={empty} />
   } else if (nav === 'squad') {
@@ -926,7 +931,10 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
     else if (gameDayTab === 'thankparents')
       content = <ThankParentsScreen onBack={() => setGameDayTab('turns')} />
   } else if (nav === 'clips') {
-    content = clipsTab === 'learn' ? <LearnTab team="miniroos" initialMode={initialScreen === 'learncoaches' ? 'coaches' : 'players'} /> : <ClipsMiniRoos empty={empty} />
+    content = <ClipsMiniRoos empty={empty} />
+  } else if (nav === 'learn') {
+    content = learnTab === 'centre' ? <LearnTab team="miniroos" initialMode={initialScreen === 'learncoaches' ? 'coaches' : 'players'} />   // the education centre: lessons for players and for coaches
+      : <SessionTab id="GS8-WelcomeCourse" team="u9" onNav={gsNav} />   // the course needs nothing set up
   } else if (nav === 'record') {
     content = recordView === 'clips'
       ? <RecordMiniRoosClips empty={empty} onBack={() => setRecordView('start')} />
@@ -940,7 +948,7 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
   return (
     <CoachTabletFrame
       navTabs={NAV}
-      activeNav={nav}
+      activeNav={film ? 'record' : nav}
       onNav={handleNavChange}
       subTabs={contextTabs}
       activeSubTabIndex={activeTabIndex}
@@ -955,7 +963,7 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
       askQuestions={ASK_QUESTIONS}
       askRole="MiniRoos coach"
     >
-      <div data-screen={MR_SCREEN[nav === 'home' ? homeTab : nav === 'squad' ? `squad:${squadTab}` : nav === 'training' ? `training:${trainingTab}` : nav === 'gameday' ? `gameday:${gameDayTab}` : nav === 'clips' && clipsTab === 'learn' ? 'clips:learn' : nav] ?? undefined} style={{ display: 'contents' }}>{content}</div>
+      <div data-screen={MR_SCREEN[nav === 'home' ? homeTab : nav === 'squad' ? `squad:${squadTab}` : nav === 'training' ? `training:${trainingTab}` : nav === 'gameday' ? `gameday:${gameDayTab}` : nav === 'learn' ? `learn:${learnTab}` : nav] ?? undefined} style={{ display: 'contents' }}>{content}</div>
     </CoachTabletFrame>
   )
 }

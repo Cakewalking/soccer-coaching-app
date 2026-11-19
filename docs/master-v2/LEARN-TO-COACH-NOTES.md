@@ -42,7 +42,7 @@ All 568 controls in `LEARN-TO-COACH-REPORT.csv` were pressed on a local producti
 
 ## Where it lives
 
-- Coach › Training › Learn to coach, in every coach app (junior, assistant, youth, seniors, MiniRoos). It replaces the list of films (`GS8-WelcomeCourse`).
+- Coach › Learn › Learn to coach, in every coach app (junior, assistant, youth, seniors, MiniRoos). It replaces the list of films (`GS8-WelcomeCourse`). Learn became its own top tab on 20 Nov at Booker's direction; the education centre (lessons for players and for coaches, formerly Clips › Learn) sits beside it, and Clips moved inside Record.
 - Director › Coaches › Development › Coach learning (`LN9`). The sub-tabs were grouped after the pack was drawn, so it is a switch under Development, not a tab of its own.
 - The phone pages (`LNp1`, `LNp2`) open by their ids. Nothing in the coach's phone app opens them yet, because the product sends no notifications.
 - Every board opens by its id, drawn at U11 Luke.
