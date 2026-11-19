@@ -1,5 +1,6 @@
 import { isLearnId } from './session/SessionTab'
 import { openLearn } from './learn/course'
+import { isEduId, openEdu } from './learn/library'
 import { useBackState } from '../backState'
 import { openThing } from './openThing'
 import { useState, useEffect } from 'react'
@@ -27,7 +28,7 @@ export const COACH_TAB_SCREEN: Record<string, string[]> = {
   matchday: ['T2-TabletMatch', 'MS1-TeamSheet', 'OP1-Opposition', 'R1-MatchReview', 'XG1-ChancesGame', 'XG3-LadderPPI', 'YT1-YourTake', 'CN17-SetPieces'],
   clips:    ['C1-ClipsTab', 'C2-ClipsByGame', 'C3-ClipsByPlayer', 'CL1-Playlists', 'TC1-ToCheck'],
   record:   ['REC1-RecordHub'],
-  learn:    ['GS8-WelcomeCourse', 'EDU1-Learn'],
+  learn:    ['GS8-WelcomeCourse', 'EC1-PlayersHome'],
 }
 /** Where a design id lives in the coach app: which top tab and which sub-tab. */
 export function coachDeepTab(id?: string): { nav: string; idx: number } | null {
@@ -150,6 +151,7 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
   function handleNav(s: string) {
     if (isLearnId(s)) { openLearn(s); s = 'GS8-WelcomeCourse' }   // a lesson or module: it opens inside Learn to coach
     if (s === 'GS8-WelcomeCourse' || s === 'learn') { goNav('learn'); setLearnTab(0); return }   // the course has its own top tab
+    if (isEduId(s)) { openEdu(s); goNav('learn'); setLearnTab(1); return }   // a page of the Education centre
     if (s in GS_TAB) { goNav('training'); setTrainingTab(GS_TAB[s]); if (GS_TAB[s] === 0) setGsView(s.startsWith('GS') ? s : 'GS1-ProposedSession'); return }   // the justified session lives under Training
     if (s === 'CN2-SelfVsCoach') { goNav('matchday'); setMatchTab(6); setTake('theirs'); return }
     if (isYourTakeId(s)) { goNav('matchday'); setMatchTab(6); setTake('yours'); setYtView(s); return }   // the four Your take boards stay inside Match day
@@ -317,7 +319,7 @@ export default function JuniorCoachApp({ onBack: _onBack, phaseContent, coachLab
     content = <ClipsScreen empty={sbEmpty} activeTab={clipsTab} onNav={handleNav} />
   } else if (nav === 'learn') {
     content = learnTab === 0 ? <SessionTab id="GS8-WelcomeCourse" team="u12" onNav={handleNav} />   // the course needs nothing set up: a new coach starts here
-      : <ClipsScreen empty={sbEmpty} activeTab={5} onNav={handleNav} />   // the education centre: lessons for players and for coaches
+      : <SessionTab id="EC1-PlayersHome" team="u12" onNav={handleNav} />   // the education centre: a library for players and for coaches
   }
 
   if (layer) return <ScreenLayer screenKey={layer.replace(/^example:/, '')} example={layer.startsWith('example:')} who={coachRole === 'ccoach' && !inSandbox ? 'Jess Marsh · assistant coach, U12 Sam' : null} onClose={() => setLayer(null)} backLabel={layer.startsWith('example:') && inSandbox ? `Back to ${store.teams[0]?.name ?? 'your team'} · this is an example from the demo club` : 'Back to U12 Sam'} />

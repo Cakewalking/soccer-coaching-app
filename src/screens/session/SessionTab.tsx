@@ -1,4 +1,6 @@
 import LearnCourse from '../learn/LearnCourse'
+import EducationCentre from '../learn/EducationCentre'
+import { isEduId } from '../learn/library'
 import { useSandbox } from '../sandbox/SandboxContext'
 // The justified session: one entry point for the coach's screens and the director's sources.
 // Gives each its saved state and a confirmation line, and keeps "which part is open" between GS1 and GS2.
@@ -17,7 +19,7 @@ const SCREENS: Record<string, (p: GsProps) => React.ReactNode> = {
 }
 /** The course's own pages (LN1 to LN8 and the lessons) all live under Learn to coach. */
 export const isLearnId = (id: string) => /^LN(\d|L\d)/.test(id) && !id.startsWith('LN9')
-export const isSessionId = (id: string) => id in SCREENS || isLearnId(id)
+export const isSessionId = (id: string) => id in SCREENS || isLearnId(id) || isEduId(id)
 /** Which Training tab a session screen sits under. GS2, GS5 and GS6 open on the first tab. */
 export const SESSION_TAB: Record<string, number> = { 'GS1-ProposedSession': 0, 'GS2-DrillWhy': 0, 'GS5-CoachLevel': 0, 'GS6-NothingToGoOn': 0, 'GS3-RunSheet': 1, 'GS4-ResizeAttendance': 2, 'GS7-SeasonLookBack': 3 }
 
@@ -28,7 +30,7 @@ export default function SessionTab({ id, team = 'u12', onNav, onStart }: { id: s
   const [toast, setToast] = useState<string | null>(null)
   const say = (m: string) => { setToast(m); setTimeout(() => setToast(t => t === m ? null : t), 3200) }
   const inSandbox = useSandbox().active
-  const render = isLearnId(id) ? (p: GsProps) => <LearnCourse key={id} s={p.s} k={p.k} go={p.go} say={p.say} start={id} isNew={p.isNew} /> : SCREENS[id]
+  const render = isLearnId(id) ? (p: GsProps) => <LearnCourse key={id} s={p.s} k={p.k} go={p.go} say={p.say} start={id} isNew={p.isNew} /> : isEduId(id) ? (p: GsProps) => <EducationCentre key={id} s={p.s} k={p.k} go={p.go} say={p.say} start={id} isNew={p.isNew} /> : SCREENS[id]
   if (!render) return null
   return (
     <>

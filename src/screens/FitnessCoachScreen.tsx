@@ -8,6 +8,8 @@ import { demoToast } from './demoToast'
 import CoachTabletFrame from './CoachTabletFrame'
 import ClipsScreen from './ClipsScreen'
 import RecordHub from './RecordHub'
+import SessionTab from './session/SessionTab'
+import { isEduId, openEdu } from './learn/library'
 
 type FitnessTab = 'home' | 'squad' | 'training' | 'matchday' | 'clips' | 'record' | 'learn'   // Clips shows under the Record tab
 
@@ -1052,7 +1054,7 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
         )}
 
         {tab === 'clips'  && <ClipsScreen activeTab={clipsTab} />}
-        {tab === 'learn'  && <ClipsScreen activeTab={5} />}
+        {tab === 'learn'  && <SessionTab id="EC1-PlayersHome" team="u12" onNav={t => isEduId(t) ? openEdu(t) : openScreen(t, 'Priya Shah · fitness coach, Wattle Creek FC')} />}
         {tab === 'record' && <RecordHub noFrame />}
       </div>
     </CoachTabletFrame>

@@ -1,5 +1,6 @@
 import { isLearnId } from './session/SessionTab'
 import { openLearn } from './learn/course'
+import { isEduId, openEdu } from './learn/library'
 import { useBackState } from '../backState'
 import { useState, useEffect } from 'react'
 import SandboxWaiting from './sandbox/SandboxWaiting'
@@ -440,6 +441,7 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
   function handleNav(s: string) {
     if (isLearnId(s)) { openLearn(s); s = 'GS8-WelcomeCourse' }   // a lesson or module: it opens inside Learn to coach
     if (s === 'GS8-WelcomeCourse' || s === 'learn') { goNav('learn'); setLearnTab(0); return }   // the course has its own top tab
+    if (isEduId(s)) { openEdu(s); goNav('learn'); setLearnTab(1); return }   // a page of the Education centre
     if (s in GS_TAB) { const i = GS_TAB[s]; goNav('training'); setTrainingTab(teamType === 'seniors' && i > 6 ? i - 1 : i); if (i === 0) setGsView(s.startsWith('GS') ? s : 'GS1-ProposedSession'); return }   // the justified session lives under Training
     if (s === 'CN2-SelfVsCoach') { goNav('matchday'); setMatchTab(6); setTake('theirs'); return }
     if (isYourTakeId(s)) { goNav('matchday'); setMatchTab(6); setTake('yours'); setYtView(s); return }   // the four Your take boards stay inside Match day
@@ -608,7 +610,7 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
     content = <ClipsScreen empty={sbEmpty} activeTab={clipsTab} onNav={handleNav} team={teamType === 'seniors' ? 'seniors' : 'youth'} />
   } else if (nav === 'learn') {
     content = learnTab === 0 ? <SessionTab id="GS8-WelcomeCourse" team={cnTeam} onNav={handleNav} />   // the course needs nothing set up
-      : <ClipsScreen empty={sbEmpty} activeTab={5} onNav={handleNav} team={teamType === 'seniors' ? 'seniors' : 'youth'} />   // the education centre: lessons for players and for coaches
+      : <SessionTab id="EC1-PlayersHome" team={cnTeam} onNav={handleNav} />   // the education centre: a library for players and for coaches
   }
 
   const navTabs = NAV_LABELS.map((label, i) => ({ id: NAV_KEYS[i], label, icon: NAV_ICONS[i] }))

@@ -7,8 +7,11 @@ import { useEffect, useImperativeHandle, useRef, useState, type Ref } from 'reac
 import { G, INK } from '../capture/marks'
 import type { Lesson } from './course'
 
-export type Chapter = { key: 'team' | 'drawn'; label: string; short: string; secs: number; lines: string[] }
-export type PlayerHandle = { play: (key: Chapter['key']) => void }
+export type Frame = 'team' | 'drawn' | 'figure'
+/** `frame` is what is drawn while it plays: the coach's own team, the practice square, or a library clip. `slow` plays it at half speed. */
+export type Chapter = { key: string; frame?: Frame; label: string; short: string; secs: number; lines: string[]; slow?: boolean }
+export type PlayerHandle = { play: (key: string) => void }
+const frameOf = (c: Chapter): Frame => c.frame ?? (c.key === 'team' ? 'team' : 'drawn')
 type TryCard = { heading: string; at: string; task: string; button: string; done: boolean; onAdd: () => void }
 
 /** What this lesson can play for this coach. `drawnLabel` is "The idea, drawn" on a lesson and "The set-up, drawn" on the home. */
@@ -49,21 +52,34 @@ function DrawnFrame({ t, thumb }: { t: number; thumb?: boolean }) {
     </svg>)
 }
 
-/** A small still with its length, for "Up next". */
-export function Thumb({ kind, len }: { kind: Chapter['key']; len: number }) {
+/** A clip from the library: one child with a ball in front, the group behind. A stand-in until the clip is filmed. */
+function FigureFrame({ t }: { t: number }) {
+  const sway = Math.sin(t * 2) * 1.5, ball = 44 + ((t * 6) % 12)
   return (
-    <span style={{ flex: 'none', position: 'relative', width: 124, height: 70, borderRadius: 10, overflow: 'hidden', background: '#1b1d1d', display: 'block' }}>
-      {kind === 'team' ? <TeamFrame t={0} /> : <DrawnFrame t={0} thumb />}
-      <span style={{ position: 'absolute', right: 5, bottom: 5, background: INK, color: W, borderRadius: 5, padding: '0 5px', fontSize: 11, lineHeight: '17px', fontWeight: 700, fontVariantNumeric: 'tabular-nums' }}>{clock(len)}</span>
+    <svg viewBox="0 0 160 90" preserveAspectRatio="xMidYMid slice" role="img" aria-label="A clip from the library, drawn" style={{ position: 'absolute', left: 0, top: 0, width: '100%', height: '100%', display: 'block' }}>
+      <rect width="160" height="90" fill="#24493d" /><rect y="40" width="160" height="50" fill="#3d7a5f" /><path d="M0 40h160" stroke={W} strokeWidth="0.6" opacity="0.5" /><path d="M16 90l34-50M150 90l-38-50" stroke={W} strokeWidth="0.5" opacity="0.35" />
+      <g fill={INK}><circle cx={30 + sway} cy="36" r="4.4" /><rect x={25.5 + sway} y="41" width="9" height="16" rx="3" /><rect x={26 + sway} y="56" width="3" height="12" /><rect x={31 + sway} y="56" width="3" height="12" /></g>
+      {[[70, 44], [82, 47], [96, 43], [108, 46], [88, 54]].map(([x, y], i) => <g key={x} fill={i === 4 ? '#c9cdc9' : W}><circle cx={x} cy={y - 5} r="1.6" /><rect x={x - 1.6} y={y - 3} width="3.2" height="6" rx="1" /></g>)}
+      <circle cx={ball} cy="68" r="1.6" fill={W} />
+    </svg>)
+}
+const draw = (f: Frame, t: number, thumb = false) => f === 'team' ? <TeamFrame t={t} /> : f === 'figure' ? <FigureFrame t={t} /> : <DrawnFrame t={t} thumb={thumb} />
+
+/** A small still with its length, for "Up next" and the shelves. `wide` fills the card it sits in. */
+export function Thumb({ kind, len, wide }: { kind: Frame; len: number | string; wide?: boolean }) {
+  return (
+    <span style={{ flex: 'none', position: 'relative', width: wide ? '100%' : 124, height: wide ? undefined : 70, aspectRatio: wide ? '16 / 9' : undefined, borderRadius: 10, overflow: 'hidden', background: '#1b1d1d', display: 'block' }}>
+      {draw(kind, 0, true)}
+      <span style={{ position: 'absolute', right: 5, bottom: 5, background: INK, color: W, borderRadius: 5, padding: '0 5px', fontSize: 11, lineHeight: '17px', fontWeight: 700, fontVariantNumeric: 'tabular-nums' }}>{typeof len === 'number' ? clock(len) : len}</span>
     </span>)
 }
 
 const ctl: React.CSSProperties = { flex: 'none', width: 44, height: 44, border: 0, background: 'none', padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', color: W, cursor: 'pointer', boxSizing: 'border-box' }
 const svg = { fill: 'none', stroke: 'currentColor', strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const, 'aria-hidden': true }
 
-export default function LearnPlayer({ chapters, chips, tryCard, captions, onCaptions, say, ratio, phone, ref }: {
+export default function LearnPlayer({ chapters, chips, tryCard, captions, onCaptions, say, ratio, phone, ref, tryLabel = 'Try it' }: {
   chapters: Chapter[]; /** the dark chip, then any white ones */ chips: string[]; tryCard: TryCard
-  captions: boolean; onCaptions: (on: boolean) => void; say: (m: string) => void; ratio: string; phone?: boolean; ref?: Ref<PlayerHandle>
+  captions: boolean; onCaptions: (on: boolean) => void; say: (m: string) => void; ratio: string; phone?: boolean; ref?: Ref<PlayerHandle>; /** the last chapter: the thing to do, as a still */ tryLabel?: string
 }) {
   const total = lengthOf(chapters)
   const [t, setT] = useState(0), [playing, setPlaying] = useState(false)
@@ -92,7 +108,7 @@ export default function LearnPlayer({ chapters, chips, tryCard, captions, onCapt
 
   return (
     <section ref={box} aria-label="Player" style={{ position: 'relative', width: '100%', aspectRatio: ratio, borderRadius: phone ? 14 : 18, overflow: 'hidden', background: '#1b1d1d', color: W }}>
-      {at.key === 'team' ? <TeamFrame t={playing || t > 0 ? t : 0} /> : <DrawnFrame t={t} />}
+      {draw(frameOf(at), at.slow ? t / 2 : t)}
       <span style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: phone ? 100 : 150, background: 'linear-gradient(rgba(16,33,31,0),rgba(16,33,31,0.92))' }} />
       <span style={{ position: 'absolute', left: phone ? 12 : 16, top: phone ? 12 : 14, right: 12, display: 'flex', flexWrap: 'wrap', gap: 8 }}>{chips.map((c, i) => <span key={c} style={{ height: 28, padding: '0 12px', borderRadius: 999, background: i ? W : INK, color: i ? INK : W, fontSize: 13, fontWeight: 700, display: 'flex', alignItems: 'center' }}>{c}</span>)}</span>
 
@@ -113,7 +129,7 @@ export default function LearnPlayer({ chapters, chips, tryCard, captions, onCapt
         <button aria-label={playing ? 'Pause' : ended ? 'Play again' : 'Play'} onClick={toggle} style={ctl}><svg width="20" height="20" viewBox="0 0 24 24" strokeWidth="2.4" {...svg}><path d={playing ? 'M8 5v14M16 5v14' : 'M8 5l11 7-11 7z'} /></svg></button>
         <div style={{ flexGrow: 1, minWidth: 0, display: 'flex', gap: 8 }}>
           {chapters.map(c => seg(phone ? c.short : c.label, phone ? '' : clock(c.secs), at === c && !ended, fill(c.key, c.secs), c.key === 'team' ? 2 : 4, () => jump(c.key, c.label)))}
-          {seg('Try it', '', ended, ended ? 1 : 0, 1, () => jump('try', 'Try it'))}
+          {seg(tryLabel, '', ended, ended ? 1 : 0, phone ? 1 : tryLabel.length > 6 ? 2 : 1, () => jump('try', tryLabel))}
         </div>
         {!phone && <span style={{ flex: 'none', fontSize: 13, fontVariantNumeric: 'tabular-nums' }}>{clock(t)} / {clock(total)}</span>}
         <button role="switch" aria-checked={captions} aria-label="Captions" onClick={() => { onCaptions(!captions); say(captions ? 'Captions off. They are on by default.' : 'Captions on.') }} style={{ ...ctl, borderBottom: `3px solid ${captions ? W : 'transparent'}` }}><svg width="22" height="22" viewBox="0 0 24 24" strokeWidth="1.8" {...svg}><path d="M4 6h16v12H4zM8.5 13.5a2 2 0 110-3M15.5 13.5a2 2 0 110-3" /></svg></button>

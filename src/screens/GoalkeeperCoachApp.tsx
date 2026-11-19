@@ -2,7 +2,8 @@ import { openScreen } from './openThing'
 import { useBackState } from '../backState'
 import { openThing } from './openThing'
 import { useState } from 'react'
-import LearnTab from './learn/LearnTab'
+import SessionTab from './session/SessionTab'
+import { isEduId, openEdu } from './learn/library'
 import RecordHub           from './RecordHub'
 import { CoachMessages }   from './MessagesScreens'
 
@@ -438,7 +439,7 @@ export default function GoalkeeperCoachApp({ empty = false, initialScreen, onNav
           <div style={{ padding: '20px 28px', color: '#4a5a57' }}>Keeper drills library — not shown in this demo.</div>
         )}
         {nav === 'clips'    && <ClipsTab empty={empty} />}
-        {nav === 'learn'    && (empty ? <ClipsTab empty /> : <LearnTab team="goalkeeper" />)}
+        {nav === 'learn'    && <SessionTab id="EC1-PlayersHome" team="u12" onNav={t => isEduId(t) ? openEdu(t) : openScreen(t, 'Nick Ward · goalkeeper coach, Wattle Creek FC')} />}
         {askOpen && (
           <aside role="dialog" aria-label="Ask Clean Sheet" style={{ position: 'absolute', top: 0, right: 0, bottom: 0, width: 380, background: '#eef5f2', borderLeft: '1px solid #e8edeb', boxShadow: '-6px 0 24px rgba(16,33,31,0.10)', zIndex: 50, display: 'flex', flexDirection: 'column' }}>
             <div style={{ background: '#fff', padding: '14px 16px', borderBottom: '1px solid #e8edeb', display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>

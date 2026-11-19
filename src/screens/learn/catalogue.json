@@ -1,0 +1,1164 @@
+{
+ "for_players": [
+  {
+   "shelf": "Running with the ball",
+   "group": "core",
+   "items": [
+    {
+     "title": "Eyes up while you dribble",
+     "kind": "Clip",
+     "length": "0:09",
+     "you_need": "Just a ball",
+     "ages": "5–12"
+    },
+    {
+     "title": "Big touches into space",
+     "kind": "Clip",
+     "length": "0:10",
+     "you_need": "Just a ball",
+     "ages": "5–12"
+    },
+    {
+     "title": "Small touches in a crowd",
+     "kind": "Clip",
+     "length": "0:08",
+     "you_need": "Just a ball",
+     "ages": "5–12"
+    },
+    {
+     "title": "Change of speed",
+     "kind": "Clip",
+     "length": "0:11",
+     "you_need": "Just a ball",
+     "ages": "9+"
+    },
+    {
+     "title": "Stop and go",
+     "kind": "Clip",
+     "length": "0:09",
+     "you_need": "Just a ball",
+     "ages": "5–12"
+    },
+    {
+     "title": "Use both feet",
+     "kind": "Challenge",
+     "length": "1:00",
+     "you_need": "Just a ball",
+     "ages": "All"
+    },
+    {
+     "title": "Traffic lights",
+     "kind": "Game",
+     "length": "2:00",
+     "you_need": "Just a ball",
+     "ages": "5–8"
+    },
+    {
+     "title": "Run at the gap",
+     "kind": "Game",
+     "length": "2:30",
+     "you_need": "With a partner",
+     "ages": "9+"
+    }
+   ]
+  },
+  {
+   "shelf": "First touch",
+   "group": "core",
+   "items": [
+    {
+     "title": "Stop it with the sole",
+     "kind": "Clip",
+     "length": "0:08",
+     "you_need": "Just a ball",
+     "ages": "5–8"
+    },
+    {
+     "title": "Touch it away from trouble",
+     "kind": "Clip",
+     "length": "0:10",
+     "you_need": "With a partner",
+     "ages": "9+"
+    },
+    {
+     "title": "Inside of the foot",
+     "kind": "Clip",
+     "length": "0:09",
+     "you_need": "Ball and wall",
+     "ages": "5–12"
+    },
+    {
+     "title": "Outside of the foot",
+     "kind": "Clip",
+     "length": "0:09",
+     "you_need": "Ball and wall",
+     "ages": "9+"
+    },
+    {
+     "title": "Off the wall and turn",
+     "kind": "Challenge",
+     "length": "1:10",
+     "you_need": "Ball and wall",
+     "ages": "9+"
+    },
+    {
+     "title": "From the air: thigh, then foot",
+     "kind": "Clip",
+     "length": "0:12",
+     "you_need": "With a partner",
+     "ages": "9+"
+    },
+    {
+     "title": "Look, then touch",
+     "kind": "Game",
+     "length": "2:00",
+     "you_need": "With a partner",
+     "ages": "9+"
+    },
+    {
+     "title": "Wall ball to 20",
+     "kind": "Game",
+     "length": "2:00",
+     "you_need": "Ball and wall",
+     "ages": "All"
+    }
+   ]
+  },
+  {
+   "shelf": "1 v 1",
+   "group": "core",
+   "items": [
+    {
+     "title": "Turn away from a defender",
+     "kind": "Clip",
+     "length": "0:11",
+     "you_need": "With a partner",
+     "ages": "5–12"
+    },
+    {
+     "title": "The body feint",
+     "kind": "Clip",
+     "length": "0:09",
+     "you_need": "Just a ball",
+     "ages": "9+"
+    },
+    {
+     "title": "The drag-back",
+     "kind": "Clip",
+     "length": "0:08",
+     "you_need": "Just a ball",
+     "ages": "5–12"
+    },
+    {
+     "title": "Cut inside",
+     "kind": "Clip",
+     "length": "0:10",
+     "you_need": "Just a ball",
+     "ages": "9+"
+    },
+    {
+     "title": "Keep your body between them and the ball",
+     "kind": "Clip",
+     "length": "0:12",
+     "you_need": "With a partner",
+     "ages": "9+"
+    },
+    {
+     "title": "Defending: stay on your feet",
+     "kind": "Clip",
+     "length": "0:10",
+     "you_need": "With a partner",
+     "ages": "9+"
+    },
+    {
+     "title": "Defending: show them one way",
+     "kind": "Clip",
+     "length": "0:12",
+     "you_need": "With a partner",
+     "ages": "13+"
+    },
+    {
+     "title": "King of the ring",
+     "kind": "Game",
+     "length": "2:30",
+     "you_need": "With a partner",
+     "ages": "All"
+    }
+   ]
+  },
+  {
+   "shelf": "Striking the ball",
+   "group": "core",
+   "items": [
+    {
+     "title": "Pass to a friend, then move",
+     "kind": "Clip",
+     "length": "0:07",
+     "you_need": "With a partner",
+     "ages": "5–12"
+    },
+    {
+     "title": "Laces for power",
+     "kind": "Clip",
+     "length": "0:09",
+     "you_need": "Ball and wall",
+     "ages": "9+"
+    },
+    {
+     "title": "Inside of the foot for accuracy",
+     "kind": "Clip",
+     "length": "0:08",
+     "you_need": "Ball and wall",
+     "ages": "5–12"
+    },
+    {
+     "title": "Other foot, ten a day",
+     "kind": "Challenge",
+     "length": "1:00",
+     "you_need": "Ball and wall",
+     "ages": "All"
+    },
+    {
+     "title": "Pass through the gate",
+     "kind": "Game",
+     "length": "2:00",
+     "you_need": "With a partner",
+     "ages": "5–8"
+    },
+    {
+     "title": "First-time finish",
+     "kind": "Clip",
+     "length": "0:10",
+     "you_need": "With a partner",
+     "ages": "9+"
+    },
+    {
+     "title": "Aim for the corners",
+     "kind": "Challenge",
+     "length": "1:20",
+     "you_need": "Ball and wall",
+     "ages": "9+"
+    },
+    {
+     "title": "Wall targets",
+     "kind": "Game",
+     "length": "2:00",
+     "you_need": "Ball and wall",
+     "ages": "All"
+    }
+   ]
+  },
+  {
+   "shelf": "Warm-ups that protect you",
+   "group": "care",
+   "items": [
+    {
+     "title": "The whole warm-up, start to finish",
+     "kind": "Warm-up",
+     "length": "4:30",
+     "you_need": "No ball",
+     "ages": "7–13"
+    },
+    {
+     "title": "Balance on one leg, with a ball",
+     "kind": "Warm-up",
+     "length": "0:40",
+     "you_need": "Just a ball",
+     "ages": "7–13"
+    },
+    {
+     "title": "Jump and land softly",
+     "kind": "Warm-up",
+     "length": "0:35",
+     "you_need": "No ball",
+     "ages": "7–13"
+    },
+    {
+     "title": "Hop and hold",
+     "kind": "Warm-up",
+     "length": "0:35",
+     "you_need": "No ball",
+     "ages": "7–13"
+    },
+    {
+     "title": "Falling safely: the roll",
+     "kind": "Warm-up",
+     "length": "0:40",
+     "you_need": "No ball",
+     "ages": "7–13"
+    },
+    {
+     "title": "Strong middle: the plank game",
+     "kind": "Warm-up",
+     "length": "0:45",
+     "you_need": "With a partner",
+     "ages": "7–13"
+    },
+    {
+     "title": "Five minutes at home",
+     "kind": "Warm-up",
+     "length": "5:00",
+     "you_need": "No ball",
+     "ages": "All"
+    },
+    {
+     "title": "Why we warm up this way",
+     "kind": "Explainer",
+     "length": "1:30",
+     "you_need": "No ball",
+     "ages": "9+"
+    }
+   ]
+  },
+  {
+   "shelf": "Tricks and turns",
+   "group": "fun",
+   "items": [
+    {
+     "title": "The Cruyff turn",
+     "kind": "Clip",
+     "length": "0:09",
+     "you_need": "Just a ball",
+     "ages": "9+"
+    },
+    {
+     "title": "The step-over",
+     "kind": "Clip",
+     "length": "0:08",
+     "you_need": "Just a ball",
+     "ages": "5–12"
+    },
+    {
+     "title": "The roulette",
+     "kind": "Clip",
+     "length": "0:10",
+     "you_need": "Just a ball",
+     "ages": "9+"
+    },
+    {
+     "title": "The stop turn",
+     "kind": "Clip",
+     "length": "0:07",
+     "you_need": "Just a ball",
+     "ages": "5–8"
+    },
+    {
+     "title": "The inside hook",
+     "kind": "Clip",
+     "length": "0:08",
+     "you_need": "Just a ball",
+     "ages": "5–12"
+    },
+    {
+     "title": "The outside hook",
+     "kind": "Clip",
+     "length": "0:08",
+     "you_need": "Just a ball",
+     "ages": "9+"
+    },
+    {
+     "title": "The elastico",
+     "kind": "Clip",
+     "length": "0:10",
+     "you_need": "Just a ball",
+     "ages": "13+"
+    },
+    {
+     "title": "Keepy-uppy: beat your best",
+     "kind": "Challenge",
+     "length": "1:00",
+     "you_need": "Just a ball",
+     "ages": "All"
+    }
+   ]
+  },
+  {
+   "shelf": "Play at home",
+   "group": "fun",
+   "items": [
+    {
+     "title": "Toe taps and rolls",
+     "kind": "Game",
+     "length": "1:30",
+     "you_need": "Just a ball",
+     "ages": "5–8"
+    },
+    {
+     "title": "Hallway dribble",
+     "kind": "Game",
+     "length": "2:00",
+     "you_need": "Just a ball",
+     "ages": "5–8"
+    },
+    {
+     "title": "Sock ball, for indoors",
+     "kind": "Game",
+     "length": "2:00",
+     "you_need": "No ball",
+     "ages": "5–8"
+    },
+    {
+     "title": "Bin goal",
+     "kind": "Game",
+     "length": "2:00",
+     "you_need": "Just a ball",
+     "ages": "All"
+    },
+    {
+     "title": "One bounce, with a parent",
+     "kind": "Game",
+     "length": "2:30",
+     "you_need": "With a partner",
+     "ages": "All"
+    },
+    {
+     "title": "Twenty touches against the clock",
+     "kind": "Challenge",
+     "length": "1:00",
+     "you_need": "Just a ball",
+     "ages": "All"
+    },
+    {
+     "title": "Fence passes",
+     "kind": "Game",
+     "length": "2:00",
+     "you_need": "Ball and wall",
+     "ages": "All"
+    },
+    {
+     "title": "Shadow copy, with a brother or sister",
+     "kind": "Game",
+     "length": "2:00",
+     "you_need": "With a partner",
+     "ages": "5–12"
+    }
+   ]
+  },
+  {
+   "shelf": "Goalkeeping",
+   "group": "core",
+   "items": [
+    {
+     "title": "The ready position",
+     "kind": "Clip",
+     "length": "0:08",
+     "you_need": "No ball",
+     "ages": "All"
+    },
+    {
+     "title": "Catching: hands behind the ball",
+     "kind": "Clip",
+     "length": "0:10",
+     "you_need": "With a partner",
+     "ages": "5–12"
+    },
+    {
+     "title": "Scoop it up",
+     "kind": "Clip",
+     "length": "0:08",
+     "you_need": "With a partner",
+     "ages": "5–8"
+    },
+    {
+     "title": "Diving low, land on your side",
+     "kind": "Clip",
+     "length": "0:12",
+     "you_need": "With a partner",
+     "ages": "9+"
+    },
+    {
+     "title": "Rolling it out",
+     "kind": "Clip",
+     "length": "0:09",
+     "you_need": "With a partner",
+     "ages": "5–12"
+    },
+    {
+     "title": "Passing out from the back",
+     "kind": "Clip",
+     "length": "0:14",
+     "you_need": "With a partner",
+     "ages": "9+"
+    },
+    {
+     "title": "Coming off your line",
+     "kind": "Clip",
+     "length": "0:12",
+     "you_need": "With a partner",
+     "ages": "13+"
+    },
+    {
+     "title": "Keeper’s wall game",
+     "kind": "Game",
+     "length": "2:00",
+     "you_need": "Ball and wall",
+     "ages": "All"
+    }
+   ]
+  },
+  {
+   "shelf": "Understanding the game",
+   "group": "know",
+   "items": [
+    {
+     "title": "What each position does",
+     "kind": "Explainer",
+     "length": "1:40",
+     "you_need": "No ball",
+     "ages": "9+"
+    },
+    {
+     "title": "Finding space",
+     "kind": "Explainer",
+     "length": "1:20",
+     "you_need": "No ball",
+     "ages": "9+"
+    },
+    {
+     "title": "Why we play out from the back",
+     "kind": "Explainer",
+     "length": "1:30",
+     "you_need": "No ball",
+     "ages": "9+"
+    },
+    {
+     "title": "What pressing means",
+     "kind": "Explainer",
+     "length": "1:30",
+     "you_need": "No ball",
+     "ages": "13+"
+    },
+    {
+     "title": "Throw-ins, corners and goal kicks",
+     "kind": "Explainer",
+     "length": "1:50",
+     "you_need": "No ball",
+     "ages": "5–12"
+    },
+    {
+     "title": "What offside is",
+     "kind": "Explainer",
+     "length": "2:00",
+     "you_need": "No ball",
+     "ages": "13+"
+    },
+    {
+     "title": "How to watch a game",
+     "kind": "Explainer",
+     "length": "2:30",
+     "you_need": "No ball",
+     "ages": "13+"
+    },
+    {
+     "title": "Reading your own clips",
+     "kind": "Explainer",
+     "length": "2:00",
+     "you_need": "No ball",
+     "ages": "13+"
+    }
+   ]
+  },
+  {
+   "shelf": "Being a team-mate",
+   "group": "know",
+   "items": [
+    {
+     "title": "Shaking hands, win or lose",
+     "kind": "Explainer",
+     "length": "0:50",
+     "you_need": "No ball",
+     "ages": "All"
+    },
+    {
+     "title": "Talking to the referee",
+     "kind": "Explainer",
+     "length": "1:00",
+     "you_need": "No ball",
+     "ages": "9+"
+    },
+    {
+     "title": "When a team-mate makes a mistake",
+     "kind": "Explainer",
+     "length": "1:00",
+     "you_need": "No ball",
+     "ages": "All"
+    },
+    {
+     "title": "Your turn on the bench",
+     "kind": "Explainer",
+     "length": "0:50",
+     "you_need": "No ball",
+     "ages": "All"
+    },
+    {
+     "title": "Someone new joins the team",
+     "kind": "Explainer",
+     "length": "0:50",
+     "you_need": "No ball",
+     "ages": "All"
+    },
+    {
+     "title": "Captain for a day",
+     "kind": "Explainer",
+     "length": "1:00",
+     "you_need": "No ball",
+     "ages": "9+"
+    },
+    {
+     "title": "Cheering from the side",
+     "kind": "Explainer",
+     "length": "0:45",
+     "you_need": "No ball",
+     "ages": "5–8"
+    },
+    {
+     "title": "Looking after the kit",
+     "kind": "Explainer",
+     "length": "0:45",
+     "you_need": "No ball",
+     "ages": "5–12"
+    }
+   ]
+  },
+  {
+   "shelf": "Looking after yourself",
+   "group": "care",
+   "items": [
+    {
+     "title": "Drinks on a hot day",
+     "kind": "Explainer",
+     "length": "1:00",
+     "you_need": "No ball",
+     "ages": "All"
+    },
+    {
+     "title": "A knock to the head: tell someone",
+     "kind": "Explainer",
+     "length": "1:00",
+     "you_need": "No ball",
+     "ages": "All"
+    },
+    {
+     "title": "Something hurts: who to tell",
+     "kind": "Explainer",
+     "length": "0:50",
+     "you_need": "No ball",
+     "ages": "All"
+    },
+    {
+     "title": "Boots that fit",
+     "kind": "Explainer",
+     "length": "0:50",
+     "you_need": "No ball",
+     "ages": "All"
+    },
+    {
+     "title": "Nervous before a game",
+     "kind": "Explainer",
+     "length": "1:10",
+     "you_need": "No ball",
+     "ages": "9+"
+    },
+    {
+     "title": "The night before a game",
+     "kind": "Explainer",
+     "length": "1:00",
+     "you_need": "No ball",
+     "ages": "9+"
+    },
+    {
+     "title": "Cooling down in three minutes",
+     "kind": "Warm-up",
+     "length": "3:00",
+     "you_need": "No ball",
+     "ages": "9+"
+    },
+    {
+     "title": "Coming back after time off",
+     "kind": "Explainer",
+     "length": "1:10",
+     "you_need": "No ball",
+     "ages": "13+"
+    }
+   ]
+  },
+  {
+   "shelf": "From your own team",
+   "group": "club",
+   "items": [
+    {
+     "title": "Ivy: eyes up while she dribbles",
+     "kind": "Clip",
+     "length": "0:09",
+     "you_need": "Just a ball",
+     "ages": "5–12"
+    },
+    {
+     "title": "Zara: pass to a friend, then move",
+     "kind": "Clip",
+     "length": "0:07",
+     "you_need": "With a partner",
+     "ages": "5–12"
+    },
+    {
+     "title": "A U9 Mark player: stop it with the sole",
+     "kind": "Clip",
+     "length": "0:08",
+     "you_need": "Just a ball",
+     "ages": "5–8"
+    },
+    {
+     "title": "A U11 Luke player: turn away from a defender",
+     "kind": "Clip",
+     "length": "0:11",
+     "you_need": "With a partner",
+     "ages": "5–12"
+    },
+    {
+     "title": "Poppy: took a player on",
+     "kind": "Clip",
+     "length": "0:10",
+     "you_need": "With a partner",
+     "ages": "5–12"
+    },
+    {
+     "title": "Arlo: first go in goal",
+     "kind": "Clip",
+     "length": "0:12",
+     "you_need": "With a partner",
+     "ages": "5–12"
+    },
+    {
+     "title": "Ella: big touches into space",
+     "kind": "Clip",
+     "length": "0:09",
+     "you_need": "Just a ball",
+     "ages": "5–12"
+    },
+    {
+     "title": "Jai: cut inside",
+     "kind": "Clip",
+     "length": "0:10",
+     "you_need": "Just a ball",
+     "ages": "5–12"
+    }
+   ]
+  }
+ ],
+ "for_coaches": [
+  {
+   "shelf": "Coaching skills",
+   "about": "The 30 films from Learn to coach, to dip into in any order",
+   "items": [
+    {
+     "title": "Say less",
+     "kind": "Film",
+     "length": "2:10"
+    },
+    {
+     "title": "Asking a question, not giving an answer",
+     "kind": "Film",
+     "length": "2:15"
+    },
+    {
+     "title": "Wait for the answer",
+     "kind": "Film",
+     "length": "2:05"
+    },
+    {
+     "title": "Praise the effort, name the action",
+     "kind": "Film",
+     "length": "2:30"
+    },
+    {
+     "title": "Getting their attention without shouting",
+     "kind": "Film",
+     "length": "2:00"
+    },
+    {
+     "title": "Keeping everyone busy",
+     "kind": "Film",
+     "length": "2:20"
+    },
+    {
+     "title": "One game, three versions",
+     "kind": "Film",
+     "length": "2:25"
+    },
+    {
+     "title": "When it is not working",
+     "kind": "Film",
+     "length": "1:50"
+    }
+   ]
+  },
+  {
+   "shelf": "Session ideas by skill",
+   "about": "Games grouped by what they teach, straight from the Game library",
+   "items": [
+    {
+     "title": "First touch: six games",
+     "kind": "Collection",
+     "length": "6 games"
+    },
+    {
+     "title": "Running with the ball: six games",
+     "kind": "Collection",
+     "length": "6 games"
+    },
+    {
+     "title": "1 v 1: six games",
+     "kind": "Collection",
+     "length": "6 games"
+    },
+    {
+     "title": "Striking the ball: six games",
+     "kind": "Collection",
+     "length": "6 games"
+    },
+    {
+     "title": "Arrival games for any number",
+     "kind": "Collection",
+     "length": "8 games"
+    },
+    {
+     "title": "Games for six players or fewer",
+     "kind": "Collection",
+     "length": "6 games"
+    },
+    {
+     "title": "Wet-weather and small-space games",
+     "kind": "Collection",
+     "length": "5 games"
+    },
+    {
+     "title": "The warm-up that prevents injuries",
+     "kind": "Film",
+     "length": "4:30"
+    }
+   ]
+  },
+  {
+   "shelf": "What they are like at this age",
+   "about": "What to expect, and what to leave for later",
+   "items": [
+    {
+     "title": "Under 6 and 7",
+     "kind": "Read",
+     "length": "2 min"
+    },
+    {
+     "title": "Under 8 and 9",
+     "kind": "Read",
+     "length": "2 min"
+    },
+    {
+     "title": "Under 10 and 11",
+     "kind": "Read",
+     "length": "2 min"
+    },
+    {
+     "title": "Under 12 and 13",
+     "kind": "Read",
+     "length": "2 min"
+    },
+    {
+     "title": "Under 14 to 16",
+     "kind": "Read",
+     "length": "2 min"
+    },
+    {
+     "title": "Seniors and returning players",
+     "kind": "Read",
+     "length": "2 min"
+    },
+    {
+     "title": "A player who finds it hard",
+     "kind": "Read",
+     "length": "2 min"
+    },
+    {
+     "title": "A player who finds it easy",
+     "kind": "Read",
+     "length": "2 min"
+    }
+   ]
+  },
+  {
+   "shelf": "Match day",
+   "about": "From the car park to the handshake",
+   "items": [
+    {
+     "title": "The team talk in one minute",
+     "kind": "Film",
+     "length": "1:55"
+    },
+    {
+     "title": "Fair turns",
+     "kind": "Film",
+     "length": "2:20"
+    },
+    {
+     "title": "Your own sideline",
+     "kind": "Film",
+     "length": "2:05"
+    },
+    {
+     "title": "Half-time in three minutes",
+     "kind": "Film",
+     "length": "3:00"
+    },
+    {
+     "title": "After the whistle",
+     "kind": "Film",
+     "length": "2:00"
+    },
+    {
+     "title": "Being game leader",
+     "kind": "Film",
+     "length": "2:30"
+    },
+    {
+     "title": "After a heavy loss",
+     "kind": "Film",
+     "length": "1:40"
+    },
+    {
+     "title": "Match-day checklist",
+     "kind": "Checklist",
+     "length": "1 page"
+    }
+   ]
+  },
+  {
+   "shelf": "Safety and welfare",
+   "about": "What to do, and who to tell",
+   "items": [
+    {
+     "title": "Head knocks: if in doubt, sit them out",
+     "kind": "Film",
+     "length": "2:10"
+    },
+    {
+     "title": "Coming back after a head knock, step by step",
+     "kind": "Read",
+     "length": "3 min"
+    },
+    {
+     "title": "Heat, storms and bad air",
+     "kind": "Film",
+     "length": "1:50"
+    },
+    {
+     "title": "Injuries: what you do and what you don’t",
+     "kind": "Film",
+     "length": "2:00"
+    },
+    {
+     "title": "Being a safe adult",
+     "kind": "Film",
+     "length": "1:45"
+    },
+    {
+     "title": "When something worries you",
+     "kind": "Film",
+     "length": "1:50"
+    },
+    {
+     "title": "First-aid kit list",
+     "kind": "Checklist",
+     "length": "1 page"
+    },
+    {
+     "title": "Your club’s code of conduct",
+     "kind": "Read",
+     "length": "4 min"
+    }
+   ]
+  },
+  {
+   "shelf": "Parents and helpers",
+   "about": "Set it up once so the season runs",
+   "items": [
+    {
+     "title": "Your first message to parents",
+     "kind": "Template",
+     "length": "Editable"
+    },
+    {
+     "title": "A card for the sideline",
+     "kind": "Template",
+     "length": "Print"
+    },
+    {
+     "title": "Jobs list for the season",
+     "kind": "Template",
+     "length": "Editable"
+    },
+    {
+     "title": "The parents’ sideline",
+     "kind": "Film",
+     "length": "2:00"
+    },
+    {
+     "title": "Sharing the load",
+     "kind": "Film",
+     "length": "1:30"
+    },
+    {
+     "title": "A hard conversation",
+     "kind": "Film",
+     "length": "3:10"
+    },
+    {
+     "title": "End-of-season thank you",
+     "kind": "Template",
+     "length": "Editable"
+    },
+    {
+     "title": "Welcoming a new family",
+     "kind": "Read",
+     "length": "2 min"
+    }
+   ]
+  },
+  {
+   "shelf": "The game itself",
+   "about": "Rules, positions and words, for coaches who never played",
+   "items": [
+    {
+     "title": "Rules for your age group",
+     "kind": "Read",
+     "length": "2 min"
+    },
+    {
+     "title": "Where they stand and the one job each has",
+     "kind": "Read",
+     "length": "2 min"
+    },
+    {
+     "title": "Shapes for 9 a side",
+     "kind": "Read",
+     "length": "3 min"
+    },
+    {
+     "title": "Words you will hear: all 60",
+     "kind": "Read",
+     "length": "Look-up"
+    },
+    {
+     "title": "How formats change from under 6 to seniors",
+     "kind": "Read",
+     "length": "2 min"
+    },
+    {
+     "title": "Throw-ins, corners and goal kicks",
+     "kind": "Film",
+     "length": "1:50"
+    },
+    {
+     "title": "What offside is",
+     "kind": "Film",
+     "length": "2:00"
+    },
+    {
+     "title": "What a referee is looking for",
+     "kind": "Film",
+     "length": "2:10"
+    }
+   ]
+  },
+  {
+   "shelf": "From your club",
+   "about": "Made by coaches at Wattle Creek",
+   "items": [
+    {
+     "title": "How we want to play at Wattle Creek",
+     "kind": "Film",
+     "length": "3:40"
+    },
+    {
+     "title": "Coaching playing out from the keeper",
+     "kind": "Film",
+     "length": "3:10"
+    },
+    {
+     "title": "A session that worked: U11 Luke",
+     "kind": "Film",
+     "length": "2:50"
+    },
+    {
+     "title": "Setting up pitch 3",
+     "kind": "Film",
+     "length": "1:20"
+    },
+    {
+     "title": "Using the pop-up goals",
+     "kind": "Film",
+     "length": "0:50"
+    },
+    {
+     "title": "Welcome from the director",
+     "kind": "Film",
+     "length": "2:00"
+    },
+    {
+     "title": "Where everything is kept",
+     "kind": "Read",
+     "length": "1 min"
+    },
+    {
+     "title": "Who to call",
+     "kind": "Read",
+     "length": "1 min"
+    }
+   ]
+  },
+  {
+   "shelf": "Research in plain words",
+   "about": "Two-minute reads on what the studies found, with their limits",
+   "items": [
+    {
+     "title": "What the warm-up study found",
+     "kind": "Read",
+     "length": "2 min"
+    },
+    {
+     "title": "Why games, not lines",
+     "kind": "Read",
+     "length": "2 min"
+    },
+    {
+     "title": "Why we ask questions",
+     "kind": "Read",
+     "length": "2 min"
+    },
+    {
+     "title": "Why praise the effort",
+     "kind": "Read",
+     "length": "2 min"
+    },
+    {
+     "title": "Why children copy children",
+     "kind": "Read",
+     "length": "2 min"
+    },
+    {
+     "title": "Why the films are short",
+     "kind": "Read",
+     "length": "2 min"
+    },
+    {
+     "title": "Why play at home matters",
+     "kind": "Read",
+     "length": "2 min"
+    },
+    {
+     "title": "What film can and can’t measure",
+     "kind": "Read",
+     "length": "3 min"
+    }
+   ]
+  }
+ ]
+}

@@ -1,4 +1,6 @@
 import LearnPhone from '../learn/LearnPhone'
+import EducationPhone from '../learn/EducationPhone'
+import { isEduId } from '../learn/library'
 import { useState, type ReactNode } from 'react'
 import DemoStart from './DemoStart'
 import DemoStartEmpty from './DemoStartEmpty'
@@ -35,7 +37,6 @@ import XGp1ChancesParent, { miaU12 } from '../chances/XGp1ChancesParent'
 import TrialPackPhone from '../trial/TrialPackPhone'
 import SessionFramed from '../session/SessionFramed'
 import { KC2FiveClubs, KCSession, KC8Report, KCParent, isSessionBoard } from '../clubadmin/ClubColourBoards'
-import { GSp9HomeLibrary, GSp10HomeVideo } from '../session/HomeLibrary'
 import { CNp1PlayerSelfReview, CNp3SessionFeedback, CNp5PlayerGoal, CNp9SeasonReportParent, CNp10BookCatchUp, CNp11FamilyView, CNp12PulseSurvey, CNp14PlayerPassport, CNp16WeekElsewhere, CNp18IncidentLog, CNp19SidelineRating } from '../connected/CnPhone'
 import { TEAM } from '../trial/trialStore'
 
@@ -110,16 +111,19 @@ export function renderExtraScreen(key: string): ReactNode | undefined {
   if (/^KC(1|1c|1e|3|4)-/.test(key)) return <ClubAdminScreen role="dof" initials="RM" initialTab="club" initialSub={key} />
   if (key === 'LN9-ClubCoachLearning') return <ClubAdminScreen role="dof" initials="RM" initialTab="coaches" initialSub="learning" />
   if (key === 'LNp1-LessonPhone' || key === 'LNp2-HowItWentPhone') return <LearnPhone start={key} />
+  // The Education centre (20 Nov): the coach's pages in U9 Tom's frame, as drawn; the director's page; the phones.
+  if (isEduId(key)) return <div style={{ width: 1180, margin: '0 auto', background: 'var(--surface-100)' }}><MiniRoosApp onBack={noop} initialScreen={key} /></div>
+  if (key === 'EC10-DirectorLibrary') return <ClubAdminScreen role="dof" initials="RM" initialTab="coaches" initialSub="education" />
+  if (/^ECp[123]-/.test(key)) return <EducationPhone start={key} />
   if (key === 'KC2-FiveClubs') return <KC2FiveClubs />
   if (isSessionBoard(key)) return <KCSession id={key} />
   if (key === 'KC8-ReportClubColours') return <KC8Report />
   if (/^KCp[123]-/.test(key)) return <KCParent start={key} />
   if (key === 'SG1-Suggested') return <JuniorCoachApp initialScreen="GS1-ProposedSession" />   // Suggested is folded into Tuesday’s session
   if (key === 'GS11-DrillSources') return <ClubAdminScreen role="dof" initials="RM" initialTab="coaches" initialSub="sources" />
-  if (key === 'GSp9-HomeLibrary') return <div style={{ display: 'flex', justifyContent: 'center' }}><GSp9HomeLibrary /></div>
-  if (key === 'GSp10-HomeVideo') return <div style={{ display: 'flex', justifyContent: 'center' }}><GSp10HomeVideo /></div>
-  if (key === 'GSp10m-HomeVideoMia') return <div style={{ display: 'flex', justifyContent: 'center' }}><GSp10HomeVideo team="u12" child="Mia" ini="LT" /></div>
-  if (key === 'GSp9m-HomeLibraryMia') return <div style={{ display: 'flex', justifyContent: 'center' }}><GSp9HomeLibrary team="u12" child="Mia" ini="LT" /></div>
+  // Football at home is now the family's side of the Education centre (ECp1 and ECp2 replace GSp9 and GSp10).
+  if (key === 'GSp9-HomeLibrary' || key === 'GSp10-HomeVideo') return <EducationPhone start={key === 'GSp9-HomeLibrary' ? 'ECp1-FamilyLibrary' : 'ECp2-FamilyItem'} team="u11" child="Ari" />
+  if (key === 'GSp9m-HomeLibraryMia' || key === 'GSp10m-HomeVideoMia') return <EducationPhone start={key === 'GSp9m-HomeLibraryMia' ? 'ECp1-FamilyLibrary' : 'ECp2-FamilyItem'} team="u12" child="Mia" ini="LT" />
   if (key === 'CN2-SelfVsCoach') return <JuniorCoachApp initialScreen={key} />
   if (key === 'CN15-PositionHistory') return <div style={{ width: 1180, margin: '0 auto', background: 'var(--surface-100)' }}><MiniRoosApp onBack={noop} empty={false} initialScreen="positions" /></div>
   if (key === 'CN6-Observation' || key === 'CN7-CoachLoad') return <ClubAdminScreen role="dof" initials="RM" initialTab="coaches" initialSub={key === 'CN6-Observation' ? 'observations' : 'coachload'} />

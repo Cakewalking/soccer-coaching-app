@@ -1,0 +1,339 @@
+control id,screen,control,does,target or line,status: works / line of text only / missing / wrong target (say where)
+EC1-PlayersHome#7,EC1-PlayersHome,U9 Tom · Wattle Creek,Opens,VS1-SwitchView,works
+EC1-PlayersHome#10,EC1-PlayersHome,"Search 168 films, games and reads",Opens,EC9-Search,works
+EC1-PlayersHome#11,EC1-PlayersHome,For players [radio],Opens,EC1-PlayersHome,works
+EC1-PlayersHome#12,EC1-PlayersHome,For coaches [radio],Opens,EC6-CoachesHome,works
+EC1-PlayersHome#13,EC1-PlayersHome,Play,Says,"Plays here, in the page. Tap again to pause.",works
+EC1-PlayersHome#14,EC1-PlayersHome,Play,Says,"Plays here, in the page.","works; says the fuller line “Plays here, in the page. Tap again to pause.”"
+EC1-PlayersHome#15,EC1-PlayersHome,"Ivy, your team 0:09",Says,"Jumps to: Ivy, your team.",works
+EC1-PlayersHome#16,EC1-PlayersHome,Slow motion 0:12,Says,Jumps to: Slow motion.,works
+EC1-PlayersHome#17,EC1-PlayersHome,Have a go,Says,Jumps to: Have a go.,works
+EC1-PlayersHome#18,EC1-PlayersHome,Captions [switch],Says,Captions off. They are on by default.,works
+EC1-PlayersHome#19,EC1-PlayersHome,Full screen,Says,Full screen.,works
+EC1-PlayersHome#20,EC1-PlayersHome,Open it,Opens,EC3-Item,works
+EC1-PlayersHome#21,EC1-PlayersHome,Send to the other 4,Says,Sent to 4 families. Each gets the clip and one game to play at home.,works
+EC1-PlayersHome#22,EC1-PlayersHome,Change the game,Opens,EC3-Item,works
+EC1-PlayersHome#23,EC1-PlayersHome,"This term, in order · Running with the ball · 2 of 4 sent",Opens,EC4-Playlist,works
+EC1-PlayersHome#24,EC1-PlayersHome,See all 8,Opens,EC2-PlayersCatalogue,works
+EC1-PlayersHome#25,EC1-PlayersHome,0:09 · · Eyes up while you dribble · Clip · Just a ball · 6 of 10 families watched,Opens,EC3-Item,works
+EC1-PlayersHome#26,EC1-PlayersHome,0:10 · · Big touches into space · Clip · Just a ball · Sent Friday,Opens,EC3-Item,works
+EC1-PlayersHome#27,EC1-PlayersHome,0:08 · · Small touches in a crowd · Clip · Just a ball,Opens,EC3-Item,works
+EC1-PlayersHome#28,EC1-PlayersHome,0:11 · · Change of speed · Clip · Just a ball,Opens,EC3-Item,works
+EC1-PlayersHome#29,EC1-PlayersHome,0:09 · · Stop and go · Clip · Just a ball,Opens,EC3-Item,works
+EC10-DirectorLibrary#7,EC10-DirectorLibrary,Ask Clean Sheet,Opens,ASKd4-PanelFirst,opens nothing new: the director’s Ask button behaves as it did before this pack
+EC10-DirectorLibrary#8,EC10-DirectorLibrary,Whole club,Opens,VS1-SwitchView,works
+EC10-DirectorLibrary#13,EC10-DirectorLibrary,Open the library,Opens,EC6-CoachesHome,works
+EC10-DirectorLibrary#14,EC10-DirectorLibrary,Save,Says,Saved. Coaches and families see the change on their next visit.,works
+EC10-DirectorLibrary#15,EC10-DirectorLibrary,On [switch],Says,Clean Sheet: for players: turned off for your club.,"works; the switch is named after its source, so the check could not find it by “On”. Pressed in a separate test"
+EC10-DirectorLibrary#16,EC10-DirectorLibrary,On [switch],Says,Clean Sheet: for coaches: turned off for your club.,"works; the switch is named after its source, so the check could not find it by “On”. Pressed in a separate test"
+EC10-DirectorLibrary#17,EC10-DirectorLibrary,On [switch],Says,Your club’s own: turned off for your club.,"works; the switch is named after its source, so the check could not find it by “On”. Pressed in a separate test"
+EC10-DirectorLibrary#18,EC10-DirectorLibrary,On [switch],Says,Club examples from games: turned off for your club.,"works; the switch is named after its source, so the check could not find it by “On”. Pressed in a separate test"
+EC10-DirectorLibrary#19,EC10-DirectorLibrary,On [switch],Says,Federation: turned off for your club.,"works; the switch is named after its source, so the check could not find it by “On”. Pressed in a separate test"
+EC10-DirectorLibrary#20,EC10-DirectorLibrary,Watch,Opens,EC5-MakeOne,works
+EC10-DirectorLibrary#21,EC10-DirectorLibrary,Approve,Says,Approved for U9 Tom. Share with the whole club from the clip.,works
+EC11-WhatWorks#7,EC11-WhatWorks,U9 Tom · Wattle Creek,Opens,VS1-SwitchView,works
+EC11-WhatWorks#10,EC11-WhatWorks,For players [radio],Opens,EC1-PlayersHome,works
+EC11-WhatWorks#11,EC11-WhatWorks,For coaches [radio],Opens,EC6-CoachesHome,works
+EC11-WhatWorks#12,EC11-WhatWorks,Back,Opens,EC6-CoachesHome,works
+EC1e-PlayersHomeEmpty#7,EC1e-PlayersHomeEmpty,U9 Tom · Wattle Creek,Opens,VS1-SwitchView,works
+EC1e-PlayersHomeEmpty#10,EC1e-PlayersHomeEmpty,"Search 168 films, games and reads",Opens,EC9-Search,works
+EC1e-PlayersHomeEmpty#11,EC1e-PlayersHomeEmpty,For players [radio],Opens,EC1-PlayersHome,works
+EC1e-PlayersHomeEmpty#12,EC1e-PlayersHomeEmpty,For coaches [radio],Opens,EC6-CoachesHome,works
+EC1e-PlayersHomeEmpty#13,EC1e-PlayersHomeEmpty,Play,Says,"Plays here, in the page. Tap again to pause.",works
+EC1e-PlayersHomeEmpty#14,EC1e-PlayersHomeEmpty,Play,Says,"Plays here, in the page.","works; says the fuller line “Plays here, in the page. Tap again to pause.”"
+EC1e-PlayersHomeEmpty#15,EC1e-PlayersHomeEmpty,The clip 0:08,Says,Jumps to: The clip.,works
+EC1e-PlayersHomeEmpty#16,EC1e-PlayersHomeEmpty,Slow motion 0:10,Says,Jumps to: Slow motion.,works
+EC1e-PlayersHomeEmpty#17,EC1e-PlayersHomeEmpty,Have a go,Says,Jumps to: Have a go.,works
+EC1e-PlayersHomeEmpty#18,EC1e-PlayersHomeEmpty,Captions [switch],Says,Captions off. They are on by default.,works
+EC1e-PlayersHomeEmpty#19,EC1e-PlayersHomeEmpty,Full screen,Says,Full screen.,works
+EC1e-PlayersHomeEmpty#20,EC1e-PlayersHomeEmpty,Open it,Opens,EC3-Item,works
+EC1e-PlayersHomeEmpty#21,EC1e-PlayersHomeEmpty,Send this one to 10 families,Says,Sent to 10 families. Each gets the clip and one game to play at home.,works
+EC1e-PlayersHomeEmpty#22,EC1e-PlayersHomeEmpty,Pick another,Opens,EC2-PlayersCatalogue,works
+EC1e-PlayersHomeEmpty#23,EC1e-PlayersHomeEmpty,How club clips work,Opens,EC5-MakeOne,works
+EC1e-PlayersHomeEmpty#24,EC1e-PlayersHomeEmpty,See all 8,Opens,EC2-PlayersCatalogue,works
+EC1e-PlayersHomeEmpty#25,EC1e-PlayersHomeEmpty,0:08 · · Stop it with the sole · Clip · Just a ball,Opens,EC3-Item,works
+EC1e-PlayersHomeEmpty#26,EC1e-PlayersHomeEmpty,0:10 · · Touch it away from trouble · Clip · With a partner,Opens,EC3-Item,works
+EC1e-PlayersHomeEmpty#27,EC1e-PlayersHomeEmpty,0:09 · · Inside of the foot · Clip · Ball and wall,Opens,EC3-Item,works
+EC1e-PlayersHomeEmpty#28,EC1e-PlayersHomeEmpty,0:09 · · Outside of the foot · Clip · Ball and wall,Opens,EC3-Item,works
+EC1e-PlayersHomeEmpty#29,EC1e-PlayersHomeEmpty,1:10 · · Off the wall and turn · Challenge · Ball and wall,Opens,EC3-Item,works
+EC2-PlayersCatalogue#7,EC2-PlayersCatalogue,U9 Tom · Wattle Creek,Opens,VS1-SwitchView,works
+EC2-PlayersCatalogue#10,EC2-PlayersCatalogue,"Search 168 films, games and reads",Opens,EC9-Search,works
+EC2-PlayersCatalogue#11,EC2-PlayersCatalogue,For players [radio],Opens,EC1-PlayersHome,works
+EC2-PlayersCatalogue#12,EC2-PlayersCatalogue,For coaches [radio],Opens,EC6-CoachesHome,works
+EC2-PlayersCatalogue#13,EC2-PlayersCatalogue,Clear,Says,Filters cleared.,works
+EC2-PlayersCatalogue#14,EC2-PlayersCatalogue,Running with the ball [checkbox],Says,Running with the ball: added. The shelves update.,works
+EC2-PlayersCatalogue#15,EC2-PlayersCatalogue,First touch [checkbox],Says,First touch: added. The shelves update.,works
+EC2-PlayersCatalogue#16,EC2-PlayersCatalogue,1 v 1 [checkbox],Says,1 v 1: added. The shelves update.,works
+EC2-PlayersCatalogue#17,EC2-PlayersCatalogue,Striking the ball [checkbox],Says,Striking the ball: added. The shelves update.,works
+EC2-PlayersCatalogue#18,EC2-PlayersCatalogue,Goalkeeping [checkbox],Says,Goalkeeping: added. The shelves update.,works
+EC2-PlayersCatalogue#19,EC2-PlayersCatalogue,5 to 8 [checkbox],Says,5 to 8: removed. The shelves update.,works
+EC2-PlayersCatalogue#20,EC2-PlayersCatalogue,9 to 12 [checkbox],Says,9 to 12: added. The shelves update.,works
+EC2-PlayersCatalogue#21,EC2-PlayersCatalogue,13 and over [checkbox],Says,13 and over: added. The shelves update.,works
+EC2-PlayersCatalogue#22,EC2-PlayersCatalogue,Just a ball [checkbox],Says,Just a ball: removed. The shelves update.,works
+EC2-PlayersCatalogue#23,EC2-PlayersCatalogue,A wall [checkbox],Says,A wall: added. The shelves update.,works
+EC2-PlayersCatalogue#24,EC2-PlayersCatalogue,A partner [checkbox],Says,A partner: added. The shelves update.,works
+EC2-PlayersCatalogue#25,EC2-PlayersCatalogue,Nothing [checkbox],Says,Nothing: added. The shelves update.,works
+EC2-PlayersCatalogue#26,EC2-PlayersCatalogue,Under 30 seconds [checkbox],Says,Under 30 seconds: added. The shelves update.,works
+EC2-PlayersCatalogue#27,EC2-PlayersCatalogue,About a minute [checkbox],Says,About a minute: added. The shelves update.,works
+EC2-PlayersCatalogue#28,EC2-PlayersCatalogue,2 minutes or more [checkbox],Says,2 minutes or more: added. The shelves update.,works
+EC2-PlayersCatalogue#29,EC2-PlayersCatalogue,Indoors [checkbox],Says,Indoors: added. The shelves update.,works
+EC2-PlayersCatalogue#30,EC2-PlayersCatalogue,Small space [checkbox],Says,Small space: added. The shelves update.,works
+EC2-PlayersCatalogue#31,EC2-PlayersCatalogue,At the park [checkbox],Says,At the park: added. The shelves update.,works
+EC2-PlayersCatalogue#32,EC2-PlayersCatalogue,Clip [checkbox],Says,Clip: added. The shelves update.,works
+EC2-PlayersCatalogue#33,EC2-PlayersCatalogue,Game [checkbox],Says,Game: added. The shelves update.,works
+EC2-PlayersCatalogue#34,EC2-PlayersCatalogue,Challenge [checkbox],Says,Challenge: added. The shelves update.,works
+EC2-PlayersCatalogue#35,EC2-PlayersCatalogue,Warm-up [checkbox],Says,Warm-up: added. The shelves update.,works
+EC2-PlayersCatalogue#36,EC2-PlayersCatalogue,Explainer [checkbox],Says,Explainer: added. The shelves update.,works
+EC2-PlayersCatalogue#37,EC2-PlayersCatalogue,Your team [checkbox],Says,Your team: added. The shelves update.,works
+EC2-PlayersCatalogue#38,EC2-PlayersCatalogue,Your club [checkbox],Says,Your club: added. The shelves update.,works
+EC2-PlayersCatalogue#39,EC2-PlayersCatalogue,Clean Sheet [checkbox],Says,Clean Sheet: added. The shelves update.,works; the check pressed a control of the same name in the top bar. Not pressed on its own; two other filters are pressed in a separate test
+EC2-PlayersCatalogue#40,EC2-PlayersCatalogue,See all 8,Opens,EC2-PlayersCatalogue,works
+EC2-PlayersCatalogue#41,EC2-PlayersCatalogue,0:09 · · Ivy: eyes up while she dribbles · Clip · Just a ball · 6 of 10 families watched,Opens,EC3-Item,works
+EC2-PlayersCatalogue#42,EC2-PlayersCatalogue,"0:07 · · Zara: pass to a friend, then move · Clip · With a partner · 4 of 10 families watched",Opens,EC3-Item,"not shown: the board draws this card with filters switched on that it does not match (or it carries a “Saved” mark). It shows, and opens its page, once the filters are cleared"
+EC2-PlayersCatalogue#43,EC2-PlayersCatalogue,0:08 · · A U9 Mark player: stop it with the sole · Clip · Just a ball,Opens,EC3-Item,works
+EC2-PlayersCatalogue#44,EC2-PlayersCatalogue,0:11 · · A U11 Luke player: turn away from a defender · Clip · With a partner,Opens,EC3-Item,"not shown: the board draws this card with filters switched on that it does not match (or it carries a “Saved” mark). It shows, and opens its page, once the filters are cleared"
+EC2-PlayersCatalogue#45,EC2-PlayersCatalogue,See all 8,Opens,EC2-PlayersCatalogue,works
+EC2-PlayersCatalogue#46,EC2-PlayersCatalogue,0:09 · · Eyes up while you dribble · Clip · Just a ball · 6 of 10 families watched,Opens,EC3-Item,works
+EC2-PlayersCatalogue#47,EC2-PlayersCatalogue,0:10 · · Big touches into space · Clip · Just a ball · Sent Friday,Opens,EC3-Item,works
+EC2-PlayersCatalogue#48,EC2-PlayersCatalogue,0:08 · · Small touches in a crowd · Clip · Just a ball,Opens,EC3-Item,works
+EC2-PlayersCatalogue#49,EC2-PlayersCatalogue,0:11 · · Change of speed · Clip · Just a ball,Opens,EC3-Item,"not shown: the board draws this card with filters switched on that it does not match (or it carries a “Saved” mark). It shows, and opens its page, once the filters are cleared"
+EC2-PlayersCatalogue#50,EC2-PlayersCatalogue,See all 8,Opens,EC2-PlayersCatalogue,works
+EC2-PlayersCatalogue#51,EC2-PlayersCatalogue,0:08 · · Stop it with the sole · Clip · Just a ball,Opens,EC3-Item,works
+EC2-PlayersCatalogue#52,EC2-PlayersCatalogue,0:10 · · Touch it away from trouble · Clip · With a partner,Opens,EC3-Item,"not shown: the board draws this card with filters switched on that it does not match (or it carries a “Saved” mark). It shows, and opens its page, once the filters are cleared"
+EC2-PlayersCatalogue#53,EC2-PlayersCatalogue,0:09 · · Inside of the foot · Clip · Ball and wall,Opens,EC3-Item,"not shown: the board draws this card with filters switched on that it does not match (or it carries a “Saved” mark). It shows, and opens its page, once the filters are cleared"
+EC2-PlayersCatalogue#54,EC2-PlayersCatalogue,0:09 · · Outside of the foot · Clip · Ball and wall,Opens,EC3-Item,"not shown: the board draws this card with filters switched on that it does not match (or it carries a “Saved” mark). It shows, and opens its page, once the filters are cleared"
+EC2-PlayersCatalogue#55,EC2-PlayersCatalogue,See all 8,Opens,EC2-PlayersCatalogue,works
+EC2-PlayersCatalogue#56,EC2-PlayersCatalogue,0:11 · · Turn away from a defender · Clip · With a partner,Opens,EC3-Item,"not shown: the board draws this card with filters switched on that it does not match (or it carries a “Saved” mark). It shows, and opens its page, once the filters are cleared"
+EC2-PlayersCatalogue#57,EC2-PlayersCatalogue,0:09 · · The body feint · Clip · Just a ball,Opens,EC3-Item,"not shown: the board draws this card with filters switched on that it does not match (or it carries a “Saved” mark). It shows, and opens its page, once the filters are cleared"
+EC2-PlayersCatalogue#58,EC2-PlayersCatalogue,0:08 · · The drag-back · Clip · Just a ball,Opens,EC3-Item,works
+EC2-PlayersCatalogue#59,EC2-PlayersCatalogue,0:10 · · Cut inside · Clip · Just a ball,Opens,EC3-Item,"not shown: the board draws this card with filters switched on that it does not match (or it carries a “Saved” mark). It shows, and opens its page, once the filters are cleared"
+EC2-PlayersCatalogue#60,EC2-PlayersCatalogue,See all 8,Opens,EC2-PlayersCatalogue,works
+EC2-PlayersCatalogue#61,EC2-PlayersCatalogue,"0:07 · · Pass to a friend, then move · Clip · With a partner",Opens,EC3-Item,"not shown: the board draws this card with filters switched on that it does not match (or it carries a “Saved” mark). It shows, and opens its page, once the filters are cleared"
+EC2-PlayersCatalogue#62,EC2-PlayersCatalogue,0:09 · · Laces for power · Clip · Ball and wall,Opens,EC3-Item,"not shown: the board draws this card with filters switched on that it does not match (or it carries a “Saved” mark). It shows, and opens its page, once the filters are cleared"
+EC2-PlayersCatalogue#63,EC2-PlayersCatalogue,0:08 · · Inside of the foot for accuracy · Clip · Ball and wall,Opens,EC3-Item,"not shown: the board draws this card with filters switched on that it does not match (or it carries a “Saved” mark). It shows, and opens its page, once the filters are cleared"
+EC2-PlayersCatalogue#64,EC2-PlayersCatalogue,"1:00 · · Other foot, ten a day · Challenge · Ball and wall",Opens,EC3-Item,"not shown: the board draws this card with filters switched on that it does not match (or it carries a “Saved” mark). It shows, and opens its page, once the filters are cleared"
+EC2-PlayersCatalogue#65,EC2-PlayersCatalogue,See all 8,Opens,EC2-PlayersCatalogue,works
+EC2-PlayersCatalogue#66,EC2-PlayersCatalogue,"4:30 · · The whole warm-up, start to finish · Warm-up · No ball",Opens,EC3-Item,"not shown: the board draws this card with filters switched on that it does not match (or it carries a “Saved” mark). It shows, and opens its page, once the filters are cleared"
+EC2-PlayersCatalogue#67,EC2-PlayersCatalogue,"0:40 · · Balance on one leg, with a ball · Warm-up · Just a ball",Opens,EC3-Item,works
+EC2-PlayersCatalogue#68,EC2-PlayersCatalogue,0:35 · · Jump and land softly · Warm-up · No ball,Opens,EC3-Item,"not shown: the board draws this card with filters switched on that it does not match (or it carries a “Saved” mark). It shows, and opens its page, once the filters are cleared"
+EC2-PlayersCatalogue#69,EC2-PlayersCatalogue,0:35 · · Hop and hold · Warm-up · No ball,Opens,EC3-Item,"not shown: the board draws this card with filters switched on that it does not match (or it carries a “Saved” mark). It shows, and opens its page, once the filters are cleared"
+EC2-PlayersCatalogue#70,EC2-PlayersCatalogue,See all 8,Opens,EC2-PlayersCatalogue,works
+EC2-PlayersCatalogue#71,EC2-PlayersCatalogue,1:30 · · Toe taps and rolls · Game · Just a ball,Opens,EC3-Item,works
+EC2-PlayersCatalogue#72,EC2-PlayersCatalogue,2:00 · · Hallway dribble · Game · Just a ball,Opens,EC3-Item,works
+EC2-PlayersCatalogue#73,EC2-PlayersCatalogue,"2:00 · · Sock ball, for indoors · Game · No ball",Opens,EC3-Item,"not shown: the board draws this card with filters switched on that it does not match (or it carries a “Saved” mark). It shows, and opens its page, once the filters are cleared"
+EC2-PlayersCatalogue#74,EC2-PlayersCatalogue,2:00 · · Bin goal · Game · Just a ball,Opens,EC3-Item,works
+EC3-Item#7,EC3-Item,U9 Tom · Wattle Creek,Opens,VS1-SwitchView,works
+EC3-Item#10,EC3-Item,For players [radio],Opens,EC1-PlayersHome,works
+EC3-Item#11,EC3-Item,For coaches [radio],Opens,EC6-CoachesHome,works
+EC3-Item#12,EC3-Item,Back,Opens,EC1-PlayersHome,works
+EC3-Item#13,EC3-Item,Play,Says,"Plays here, in the page. Tap again to pause.",works
+EC3-Item#14,EC3-Item,Play,Says,"Plays here, in the page.","works; says the fuller line “Plays here, in the page. Tap again to pause.”"
+EC3-Item#15,EC3-Item,The clip 0:09,Says,Jumps to: The clip.,works
+EC3-Item#16,EC3-Item,Slow motion 0:12,Says,Jumps to: Slow motion.,works
+EC3-Item#17,EC3-Item,Have a go,Says,Jumps to: Have a go.,works
+EC3-Item#18,EC3-Item,Captions [switch],Says,Captions off. They are on by default.,works
+EC3-Item#19,EC3-Item,Full screen,Says,Full screen.,works
+EC3-Item#20,EC3-Item,Change the game,Says,Three other home games for running with the ball. Pick one and it goes with the clip.,works
+EC3-Item#21,EC3-Item,Source 2,Opens,EC11-WhatWorks,works
+EC3-Item#22,EC3-Item,Source 3,Opens,EC11-WhatWorks,works
+EC3-Item#23,EC3-Item,Source 5,Opens,EC11-WhatWorks,works
+EC3-Item#24,EC3-Item,Send to the other 4,Says,Sent to 4 families.,works
+EC3-Item#25,EC3-Item,Send on Friday at 4,Says,Lined up for Friday at 4 pm.,works
+EC3-Item#26,EC3-Item,Tuesday’s session · Main game: running with the ball through the gates,Opens,GS1-ProposedSession,works
+EC3-Item#27,EC3-Item,0:10 · · UP NEXT · RUNNING WITH THE BALL · Big touches into space · Clip · just a ball,Opens,EC3-Item,works
+EC4-Playlist#7,EC4-Playlist,U9 Tom · Wattle Creek,Opens,VS1-SwitchView,works
+EC4-Playlist#10,EC4-Playlist,For players [radio],Opens,EC1-PlayersHome,works
+EC4-Playlist#11,EC4-Playlist,For coaches [radio],Opens,EC6-CoachesHome,works
+EC4-Playlist#12,EC4-Playlist,Let Clean Sheet line it up,Says,Lined up from your last six sessions and the curriculum for this age. Change anything you like.,works
+EC4-Playlist#13,EC4-Playlist,Save,Says,Saved. Families get the next one on Friday at 4 pm.,works
+EC4-Playlist#14,EC4-Playlist,Add from the library,Opens,EC2-PlayersCatalogue,works
+EC4-Playlist#15,EC4-Playlist,Make one from a clip,Opens,EC5-MakeOne,works
+EC4-Playlist#16,EC4-Playlist,1 · Running with the ball · This fortnight · · 2 of 4 sent,Says,Running with the ball opens on the right.,works
+EC4-Playlist#17,EC4-Playlist,2 · First touch · Next fortnight · your sessions have done it least · · 0 of 3 sent,Says,First touch opens on the right.,works
+EC4-Playlist#18,EC4-Playlist,3 · Having a shot · Later this term · · 0 of 3 sent,Says,Having a shot opens on the right.,works
+EC4-Playlist#19,EC4-Playlist,See your season so far,Opens,GS7-SeasonLookBack,works
+EC4-Playlist#20,EC4-Playlist,Source 6,Opens,EC11-WhatWorks,works
+EC5-MakeOne#7,EC5-MakeOne,U9 Tom · Wattle Creek,Opens,VS1-SwitchView,works
+EC5-MakeOne#10,EC5-MakeOne,For players [radio],Opens,EC1-PlayersHome,works
+EC5-MakeOne#11,EC5-MakeOne,For coaches [radio],Opens,EC6-CoachesHome,works
+EC5-MakeOne#12,EC5-MakeOne,Cancel,Opens,EC1-PlayersHome,works
+EC5-MakeOne#13,EC5-MakeOne,Send to Rachel to check,Says,Sent to Rachel Moore. Nobody else sees it until she says yes.,works
+EC5-MakeOne#14,EC5-MakeOne,Play,Says,"Plays here, in the page. Tap again to pause.",works
+EC5-MakeOne#15,EC5-MakeOne,Play,Says,"Plays here, in the page.","works; says the fuller line “Plays here, in the page. Tap again to pause.”"
+EC5-MakeOne#16,EC5-MakeOne,Kept 0:10,Says,Jumps to: Kept.,works
+EC5-MakeOne#17,EC5-MakeOne,Captions [switch],Says,Captions off. They are on by default.,works
+EC5-MakeOne#18,EC5-MakeOne,Full screen,Says,Full screen.,works
+EC5-MakeOne#19,EC5-MakeOne,0:10 · · Poppy takes a player on · Saturday · 22nd minute · Picked,Says,This one is picked.,works
+EC5-MakeOne#20,EC5-MakeOne,0:09 · · Ella: big touches into space · Saturday · 9th minute,Says,Swapped to this clip.,works
+EC5-MakeOne#21,EC5-MakeOne,0:10 · · Jai cuts inside · Saturday · 31st minute,Says,Swapped to this clip.,works
+EC5-MakeOne#22,EC5-MakeOne,0:08 · · Arlo: rolling it out · Saturday · 40th minute,Says,Swapped to this clip.,works
+EC5-MakeOne#23,EC5-MakeOne,Ask Poppy’s family,Says,"Asked. Dana gets the clip and two buttons: yes for the team, or no.",works
+EC5-MakeOne#24,EC5-MakeOne,Source 3,Opens,EC11-WhatWorks,works
+EC6-CoachesHome#7,EC6-CoachesHome,U9 Tom · Wattle Creek,Opens,VS1-SwitchView,works
+EC6-CoachesHome#10,EC6-CoachesHome,"Search 168 films, games and reads",Opens,EC9-Search,works
+EC6-CoachesHome#11,EC6-CoachesHome,For players [radio],Opens,EC1-PlayersHome,works
+EC6-CoachesHome#12,EC6-CoachesHome,For coaches [radio],Opens,EC6-CoachesHome,works
+EC6-CoachesHome#13,EC6-CoachesHome,Play,Says,"Plays here, in the page. Tap again to pause.",works
+EC6-CoachesHome#14,EC6-CoachesHome,Play,Says,"Plays here, in the page.","works; says the fuller line “Plays here, in the page. Tap again to pause.”"
+EC6-CoachesHome#15,EC6-CoachesHome,The film 3:10,Says,Jumps to: The film.,works
+EC6-CoachesHome#16,EC6-CoachesHome,Your team,Says,Jumps to: Your team.,"works; the chapter shows its length (“Your team 0:11”), so the check could not match it"
+EC6-CoachesHome#17,EC6-CoachesHome,Try it,Says,Jumps to: Try it.,works
+EC6-CoachesHome#18,EC6-CoachesHome,Captions [switch],Says,Captions off. They are on by default.,works
+EC6-CoachesHome#19,EC6-CoachesHome,Full screen,Says,Full screen.,works
+EC6-CoachesHome#20,EC6-CoachesHome,Save,Says,Saved to your list.,works
+EC6-CoachesHome#21,EC6-CoachesHome,Open Tuesday’s session,Opens,GS1-ProposedSession,works
+EC6-CoachesHome#22,EC6-CoachesHome,Not useful,Says,Thanks. You will see fewer like this.,works
+EC6-CoachesHome#23,EC6-CoachesHome,Your list · 5,Opens,EC7-CoachCatalogue,works
+EC6-CoachesHome#24,EC6-CoachesHome,"1:12 left · · LEARN TO COACH · 4.2 · Asking a question, not giving an answer · You were here on Sunday",Opens,LN4-Lesson,works
+EC6-CoachesHome#25,EC6-CoachesHome,2 min · · SAVED · READ · What the warm-up study found · Research in plain words,Opens,EC8-Read,works
+EC6-CoachesHome#26,EC6-CoachesHome,See all 8,Opens,EC7-CoachCatalogue,works
+EC6-CoachesHome#27,EC6-CoachesHome,3:40 · · How we want to play at Wattle Creek · Film · watch,Opens,LN4-Lesson,opens a film page inside the Education centre: this film is not a Learn to coach lesson, so there is no lesson page to open
+EC6-CoachesHome#28,EC6-CoachesHome,3:10 · · Coaching playing out from the keeper · Film · watch,Opens,LN4-Lesson,opens a film page inside the Education centre: this film is not a Learn to coach lesson, so there is no lesson page to open
+EC6-CoachesHome#29,EC6-CoachesHome,2:50 · · A session that worked: U11 Luke · Film · watch,Opens,LN4-Lesson,opens a film page inside the Education centre: this film is not a Learn to coach lesson, so there is no lesson page to open
+EC6-CoachesHome#30,EC6-CoachesHome,1:20 · · Setting up pitch 3 · Film · watch,Opens,LN4-Lesson,opens a film page inside the Education centre: this film is not a Learn to coach lesson, so there is no lesson page to open
+EC6-CoachesHome#31,EC6-CoachesHome,0:50 · · Using the pop-up goals · Film · watch,Opens,LN4-Lesson,opens a film page inside the Education centre: this film is not a Learn to coach lesson, so there is no lesson page to open
+EC7-CoachCatalogue#7,EC7-CoachCatalogue,U9 Tom · Wattle Creek,Opens,VS1-SwitchView,works
+EC7-CoachCatalogue#10,EC7-CoachCatalogue,"Search 168 films, games and reads",Opens,EC9-Search,works
+EC7-CoachCatalogue#11,EC7-CoachCatalogue,For players [radio],Opens,EC1-PlayersHome,works
+EC7-CoachCatalogue#12,EC7-CoachCatalogue,For coaches [radio],Opens,EC6-CoachesHome,works
+EC7-CoachCatalogue#13,EC7-CoachCatalogue,Clear,Says,Filters cleared.,works
+EC7-CoachCatalogue#14,EC7-CoachCatalogue,Film [checkbox],Says,Film: added. The shelves update.,works
+EC7-CoachCatalogue#15,EC7-CoachCatalogue,Read [checkbox],Says,Read: added. The shelves update.,works
+EC7-CoachCatalogue#16,EC7-CoachCatalogue,Checklist [checkbox],Says,Checklist: added. The shelves update.,works
+EC7-CoachCatalogue#17,EC7-CoachCatalogue,Template [checkbox],Says,Template: added. The shelves update.,works
+EC7-CoachCatalogue#18,EC7-CoachCatalogue,Games [checkbox],Says,Games: added. The shelves update.,works
+EC7-CoachCatalogue#19,EC7-CoachCatalogue,Running a session [checkbox],Says,Running a session: added. The shelves update.,works
+EC7-CoachCatalogue#20,EC7-CoachCatalogue,Talking to players [checkbox],Says,Talking to players: added. The shelves update.,works
+EC7-CoachCatalogue#21,EC7-CoachCatalogue,Match day [checkbox],Says,Match day: added. The shelves update.,works; the check pressed a control of the same name in the top bar. Not pressed on its own; two other filters are pressed in a separate test
+EC7-CoachCatalogue#22,EC7-CoachCatalogue,Safety [checkbox],Says,Safety: added. The shelves update.,works
+EC7-CoachCatalogue#23,EC7-CoachCatalogue,Parents [checkbox],Says,Parents: added. The shelves update.,works
+EC7-CoachCatalogue#24,EC7-CoachCatalogue,The game itself [checkbox],Says,The game itself: added. The shelves update.,works
+EC7-CoachCatalogue#25,EC7-CoachCatalogue,Under 6 to 9 [checkbox],Says,Under 6 to 9: removed. The shelves update.,works
+EC7-CoachCatalogue#26,EC7-CoachCatalogue,Under 10 to 13 [checkbox],Says,Under 10 to 13: added. The shelves update.,works
+EC7-CoachCatalogue#27,EC7-CoachCatalogue,Under 14 to 17 [checkbox],Says,Under 14 to 17: added. The shelves update.,works
+EC7-CoachCatalogue#28,EC7-CoachCatalogue,Seniors [checkbox],Says,Seniors: added. The shelves update.,works
+EC7-CoachCatalogue#29,EC7-CoachCatalogue,Under 2 minutes [checkbox],Says,Under 2 minutes: added. The shelves update.,works
+EC7-CoachCatalogue#30,EC7-CoachCatalogue,2 to 5 minutes [checkbox],Says,2 to 5 minutes: added. The shelves update.,works
+EC7-CoachCatalogue#31,EC7-CoachCatalogue,Longer [checkbox],Says,Longer: added. The shelves update.,works
+EC7-CoachCatalogue#32,EC7-CoachCatalogue,Your club [checkbox],Says,Your club: added. The shelves update.,works
+EC7-CoachCatalogue#33,EC7-CoachCatalogue,Clean Sheet [checkbox],Says,Clean Sheet: added. The shelves update.,works; the check pressed a control of the same name in the top bar. Not pressed on its own; two other filters are pressed in a separate test
+EC7-CoachCatalogue#34,EC7-CoachCatalogue,Federation [checkbox],Says,Federation: added. The shelves update.,works
+EC7-CoachCatalogue#35,EC7-CoachCatalogue,Saved [checkbox],Says,Saved: added. The shelves update.,works
+EC7-CoachCatalogue#36,EC7-CoachCatalogue,Not watched yet [checkbox],Says,Not watched yet: added. The shelves update.,works
+EC7-CoachCatalogue#37,EC7-CoachCatalogue,See all 8,Opens,EC7-CoachCatalogue,works
+EC7-CoachCatalogue#38,EC7-CoachCatalogue,3:40 · · How we want to play at Wattle Creek · Film · watch,Opens,LN4-Lesson,opens a film page inside the Education centre: this film is not a Learn to coach lesson, so there is no lesson page to open
+EC7-CoachCatalogue#39,EC7-CoachCatalogue,3:10 · · Coaching playing out from the keeper · Film · watch,Opens,LN4-Lesson,opens a film page inside the Education centre: this film is not a Learn to coach lesson, so there is no lesson page to open
+EC7-CoachCatalogue#40,EC7-CoachCatalogue,2:50 · · A session that worked: U11 Luke · Film · watch,Opens,LN4-Lesson,opens a film page inside the Education centre: this film is not a Learn to coach lesson, so there is no lesson page to open
+EC7-CoachCatalogue#41,EC7-CoachCatalogue,1:20 · · Setting up pitch 3 · Film · watch,Opens,LN4-Lesson,opens a film page inside the Education centre: this film is not a Learn to coach lesson, so there is no lesson page to open
+EC7-CoachCatalogue#42,EC7-CoachCatalogue,See all 8,Opens,EC7-CoachCatalogue,works
+EC7-CoachCatalogue#43,EC7-CoachCatalogue,2:10 · · Say less · Film · watch,Opens,LN4-Lesson,"works; opens that film’s own lesson page (LNL41-Lesson), the same template as LN4-Lesson"
+EC7-CoachCatalogue#44,EC7-CoachCatalogue,"2:15 · · Asking a question, not giving an answer · Film · watch",Opens,LN4-Lesson,works
+EC7-CoachCatalogue#45,EC7-CoachCatalogue,2:05 · · Wait for the answer · Film · watch,Opens,LN4-Lesson,"works; opens that film’s own lesson page (LNL43-Lesson), the same template as LN4-Lesson"
+EC7-CoachCatalogue#46,EC7-CoachCatalogue,"2:30 · · Praise the effort, name the action · Film · watch",Opens,LN4-Lesson,"works; opens that film’s own lesson page (LNL44-Lesson), the same template as LN4-Lesson"
+EC7-CoachCatalogue#47,EC7-CoachCatalogue,See all 8,Opens,EC7-CoachCatalogue,works
+EC7-CoachCatalogue#48,EC7-CoachCatalogue,6 games · · First touch: six games · Collection · opens Game library,Opens,DF0-Library,works
+EC7-CoachCatalogue#49,EC7-CoachCatalogue,6 games · · Running with the ball: six games · Collection · opens Game library,Opens,DF0-Library,works after a fix (the first of the four collections was pressed again and opens the Game library; these three share its code)
+EC7-CoachCatalogue#50,EC7-CoachCatalogue,6 games · · 1 v 1: six games · Collection · opens Game library,Opens,DF0-Library,works after a fix (the first of the four collections was pressed again and opens the Game library; these three share its code)
+EC7-CoachCatalogue#51,EC7-CoachCatalogue,6 games · · Striking the ball: six games · Collection · opens Game library,Opens,DF0-Library,works after a fix (the first of the four collections was pressed again and opens the Game library; these three share its code)
+EC7-CoachCatalogue#52,EC7-CoachCatalogue,See all 8,Opens,EC7-CoachCatalogue,works
+EC7-CoachCatalogue#53,EC7-CoachCatalogue,2 min · · Under 6 and 7 · Read · read,Opens,EC8-Read,works
+EC7-CoachCatalogue#54,EC7-CoachCatalogue,2 min · · Under 8 and 9 · Read · read,Opens,EC8-Read,works
+EC7-CoachCatalogue#55,EC7-CoachCatalogue,2 min · · Under 10 and 11 · Read · read,Opens,EC8-Read,"not shown: the board draws this card with filters switched on that it does not match (or it carries a “Saved” mark). It shows, and opens its page, once the filters are cleared"
+EC7-CoachCatalogue#56,EC7-CoachCatalogue,2 min · · Under 12 and 13 · Read · read,Opens,EC8-Read,"not shown: the board draws this card with filters switched on that it does not match (or it carries a “Saved” mark). It shows, and opens its page, once the filters are cleared"
+EC7-CoachCatalogue#57,EC7-CoachCatalogue,See all 8,Opens,EC7-CoachCatalogue,works
+EC7-CoachCatalogue#58,EC7-CoachCatalogue,1:55 · · The team talk in one minute · Film · watch,Opens,LN4-Lesson,"works; opens that film’s own lesson page (LNL51-Lesson), the same template as LN4-Lesson"
+EC7-CoachCatalogue#59,EC7-CoachCatalogue,2:20 · · Fair turns · Film · watch,Opens,LN4-Lesson,"works; opens that film’s own lesson page (LNL52-Lesson), the same template as LN4-Lesson"
+EC7-CoachCatalogue#60,EC7-CoachCatalogue,2:05 · · Your own sideline · Film · watch,Opens,LN4-Lesson,"works; opens that film’s own lesson page (LNL53-Lesson), the same template as LN4-Lesson"
+EC7-CoachCatalogue#61,EC7-CoachCatalogue,3:00 · · Half-time in three minutes · Film · watch,Opens,LN4-Lesson,"works; opens that film’s own lesson page (LNL54-Lesson), the same template as LN4-Lesson"
+EC7-CoachCatalogue#62,EC7-CoachCatalogue,See all 8,Opens,EC7-CoachCatalogue,works
+EC7-CoachCatalogue#63,EC7-CoachCatalogue,"2:10 · · Head knocks: if in doubt, sit them out · Film · watch",Opens,LN4-Lesson,"works; opens that film’s own lesson page (LNL21-Lesson), the same template as LN4-Lesson"
+EC7-CoachCatalogue#64,EC7-CoachCatalogue,"3 min · · Coming back after a head knock, step by step · Read · read",Opens,EC8-Read,works
+EC7-CoachCatalogue#65,EC7-CoachCatalogue,"1:50 · · Heat, storms and bad air · Film · watch",Opens,LN4-Lesson,"works; opens that film’s own lesson page (LNL22-Lesson), the same template as LN4-Lesson"
+EC7-CoachCatalogue#66,EC7-CoachCatalogue,2:00 · · Injuries: what you do and what you don’t · Film · watch,Opens,LN4-Lesson,"works; opens that film’s own lesson page (LNL23-Lesson), the same template as LN4-Lesson"
+EC7-CoachCatalogue#67,EC7-CoachCatalogue,See all 8,Opens,EC7-CoachCatalogue,works
+EC7-CoachCatalogue#68,EC7-CoachCatalogue,2 min · · What the warm-up study found · Read · read,Opens,EC8-Read,"not shown: the board draws this card with filters switched on that it does not match (or it carries a “Saved” mark). It shows, and opens its page, once the filters are cleared"
+EC7-CoachCatalogue#69,EC7-CoachCatalogue,"2 min · · Why games, not lines · Read · read",Opens,EC8-Read,works
+EC7-CoachCatalogue#70,EC7-CoachCatalogue,2 min · · Why we ask questions · Read · read,Opens,EC8-Read,works
+EC7-CoachCatalogue#71,EC7-CoachCatalogue,2 min · · Why praise the effort · Read · read,Opens,EC8-Read,works
+EC8-Read#7,EC8-Read,U9 Tom · Wattle Creek,Opens,VS1-SwitchView,works
+EC8-Read#10,EC8-Read,For players [radio],Opens,EC1-PlayersHome,works
+EC8-Read#11,EC8-Read,For coaches [radio],Opens,EC6-CoachesHome,works
+EC8-Read#12,EC8-Read,Save,Says,Saved to your list.,"works; the read is already on the demo coach’s list, so the button reads “Saved”"
+EC8-Read#13,EC8-Read,Back,Opens,EC6-CoachesHome,works
+EC8-Read#14,EC8-Read,Source 1,Opens,EC11-WhatWorks,works
+EC8-Read#15,EC8-Read,Add to Tuesday’s run sheet,Says,The warm-up is now the first part of Tuesday’s session.,works
+EC8-Read#16,EC8-Read,"4:30 · · FILM · FOR PLAYERS AND COACHES · The whole warm-up, start to finish · Warm-ups that protect you",Opens,EC3-Item,works
+EC8-Read#17,EC8-Read,All sources,Opens,EC11-WhatWorks,works
+EC9-Search#7,EC9-Search,U9 Tom · Wattle Creek,Opens,VS1-SwitchView,works
+EC9-Search#10,EC9-Search,offside,Opens,EC9-Search,"works; this is the search field itself, not a button"
+EC9-Search#11,EC9-Search,Clear,Opens,EC6-CoachesHome,works
+EC9-Search#12,EC9-Search,Ask a follow-up,Says,Ask opens with this answer in view.,works
+EC9-Search#13,EC9-Search,Rules for your age group,Opens,LN6-TheGameItself,works
+EC9-Search#14,EC9-Search,"2:00 · · FOR COACHES · THE GAME ITSELF · What offside is · Two minutes, with a pitch drawing · · Film · 2:00",Opens,LN6-TheGameItself,works
+EC9-Search#15,EC9-Search,"2 min · · FOR COACHES · THE GAME ITSELF · Rules for your age group · Offside, throw-ins, goal kicks and more at under 9 · · Read · 2 min",Opens,LN6-TheGameItself,works
+EC9-Search#16,EC9-Search,FOR COACHES · WORDS YOU WILL HEAR · Offside · A rule about being behind the last defender · · Word,Opens,LN6w-AllWords,works
+EC9-Search#17,EC9-Search,2:00 · · FOR PLAYERS · UNDERSTANDING THE GAME · What offside is · For 13 and over. Not sent to under-12 families · · Explainer · 2:00,Opens,EC3-Item,"not shown while “Coaches” is pressed, as the board draws it. Shows and opens EC3-Item when “Coaches” is taken off"
+EC9-Search#18,EC9-Search,2:10 · · FOR COACHES · MATCH DAY · What a referee is looking for · Mentions offside at 1:10 · · Film · 2:10,Opens,LN4-Lesson,opens a film page inside the Education centre: this film is not a Learn to coach lesson, so there is no lesson page to open
+EC9-Search#19,EC9-Search,Coaches [checkbox],Says,Coaches: removed. The shelves update.,works
+EC9-Search#20,EC9-Search,Players [checkbox],Says,Players: added. The shelves update.,works
+EC9-Search#21,EC9-Search,Film [checkbox],Says,Film: added. The shelves update.,works
+EC9-Search#22,EC9-Search,Read [checkbox],Says,Read: added. The shelves update.,works
+EC9-Search#23,EC9-Search,Word [checkbox],Says,Word: added. The shelves update.,works
+EC9-Search#24,EC9-Search,Rule [checkbox],Says,Rule: added. The shelves update.,works
+ECp1-FamilyLibrary#1,ECp1-FamilyLibrary,Back,Opens,STO17-HomeStoryParent,works
+ECp1-FamilyLibrary#2,ECp1-FamilyLibrary,Ask Clean Sheet,Opens,ASKp2-PhoneAskOpen,works
+ECp1-FamilyLibrary#3,ECp1-FamilyLibrary,Play,Says,"Plays here, in the page. Tap again to pause.",works
+ECp1-FamilyLibrary#4,ECp1-FamilyLibrary,Play,Says,"Plays here, in the page.","works; says the fuller line “Plays here, in the page. Tap again to pause.”"
+ECp1-FamilyLibrary#5,ECp1-FamilyLibrary,Clip,Says,Jumps to: Clip.,works
+ECp1-FamilyLibrary#6,ECp1-FamilyLibrary,Slow,Says,Jumps to: Slow.,works
+ECp1-FamilyLibrary#7,ECp1-FamilyLibrary,Try,Says,Jumps to: Try.,works
+ECp1-FamilyLibrary#8,ECp1-FamilyLibrary,Captions [switch],Says,Captions off. They are on by default.,works
+ECp1-FamilyLibrary#9,ECp1-FamilyLibrary,Full screen,Says,Full screen.,works
+ECp1-FamilyLibrary#10,ECp1-FamilyLibrary,Just a ball [checkbox],Says,Just a ball: removed.,works
+ECp1-FamilyLibrary#11,ECp1-FamilyLibrary,Indoors [checkbox],Says,Indoors: added.,works
+ECp1-FamilyLibrary#12,ECp1-FamilyLibrary,5 minutes [checkbox],Says,5 minutes: added.,works
+ECp1-FamilyLibrary#13,ECp1-FamilyLibrary,With a parent [checkbox],Says,With a parent: added.,works
+ECp1-FamilyLibrary#14,ECp1-FamilyLibrary,See all,Says,All of Running with the ball.,works
+ECp1-FamilyLibrary#15,ECp1-FamilyLibrary,0:10 · · Big touches into space · Clip · just a ball,Opens,ECp2-FamilyItem,works
+ECp1-FamilyLibrary#16,ECp1-FamilyLibrary,2:00 · · Traffic lights · Game · just a ball,Opens,ECp2-FamilyItem,works
+ECp1-FamilyLibrary#17,ECp1-FamilyLibrary,0:09 · · Stop and go · Clip,Opens,ECp2-FamilyItem,"works; the card also says what it needs (“Clip · just a ball”), so the check could not match it"
+ECp1-FamilyLibrary#18,ECp1-FamilyLibrary,See all,Says,All of Play at home.,works
+ECp1-FamilyLibrary#19,ECp1-FamilyLibrary,1:30 · · Toe taps and rolls · Game · just a ball,Opens,ECp2-FamilyItem,works
+ECp1-FamilyLibrary#20,ECp1-FamilyLibrary,2:00 · · Bin goal · Game · just a ball,Opens,ECp2-FamilyItem,works
+ECp1-FamilyLibrary#21,ECp1-FamilyLibrary,2:00 · · Hallway dribble · Game,Opens,ECp2-FamilyItem,"works; the card also says what it needs (“Clip · just a ball”), so the check could not match it"
+ECp1-FamilyLibrary#22,ECp1-FamilyLibrary,Search,Says,Search opens.,works
+ECp1-FamilyLibrary#23,ECp1-FamilyLibrary,Play the game,Opens,ECp2-FamilyItem,works
+ECp2-FamilyItem#1,ECp2-FamilyItem,Back,Opens,ECp1-FamilyLibrary,works
+ECp2-FamilyItem#2,ECp2-FamilyItem,Ask Clean Sheet,Opens,ASKp2-PhoneAskOpen,works
+ECp2-FamilyItem#3,ECp2-FamilyItem,Play,Says,"Plays here, in the page. Tap again to pause.",works
+ECp2-FamilyItem#4,ECp2-FamilyItem,Play,Says,"Plays here, in the page.","works; says the fuller line “Plays here, in the page. Tap again to pause.”"
+ECp2-FamilyItem#5,ECp2-FamilyItem,Clip,Says,Jumps to: Clip.,works
+ECp2-FamilyItem#6,ECp2-FamilyItem,Slow,Says,Jumps to: Slow.,works
+ECp2-FamilyItem#7,ECp2-FamilyItem,Try,Says,Jumps to: Try.,works
+ECp2-FamilyItem#8,ECp2-FamilyItem,Captions [switch],Says,Captions off. They are on by default.,works
+ECp2-FamilyItem#9,ECp2-FamilyItem,Full screen,Says,Full screen.,works
+ECp2-FamilyItem#10,ECp2-FamilyItem,Another one,Opens,ECp1-FamilyLibrary,works
+ECp2-FamilyItem#11,ECp2-FamilyItem,We did it,Says,"Nice. Tom sees a tick for Ivy on this clip, and nothing else.",works
+ECp3-PlayerLibrary#1,ECp3-PlayerLibrary,Back,Opens,PU1-PlayerHome,works
+ECp3-PlayerLibrary#2,ECp3-PlayerLibrary,Ask Clean Sheet,Opens,ASKp2-PhoneAskOpen,works
+ECp3-PlayerLibrary#3,ECp3-PlayerLibrary,Play,Says,"Plays here, in the page. Tap again to pause.",works
+ECp3-PlayerLibrary#4,ECp3-PlayerLibrary,Play,Says,"Plays here, in the page.","works; says the fuller line “Plays here, in the page. Tap again to pause.”"
+ECp3-PlayerLibrary#5,ECp3-PlayerLibrary,You,Says,Jumps to: You.,works
+ECp3-PlayerLibrary#6,ECp3-PlayerLibrary,Slow,Says,Jumps to: Slow.,works
+ECp3-PlayerLibrary#7,ECp3-PlayerLibrary,Try,Says,Jumps to: Try.,works
+ECp3-PlayerLibrary#8,ECp3-PlayerLibrary,Captions [switch],Says,Captions off. They are on by default.,works
+ECp3-PlayerLibrary#9,ECp3-PlayerLibrary,Full screen,Says,Full screen.,works
+ECp3-PlayerLibrary#10,ECp3-PlayerLibrary,See all,Says,All of From your own games.,works
+ECp3-PlayerLibrary#11,ECp3-PlayerLibrary,"0:11 · · Turned out of trouble, 34th minute · Your clip",Opens,ECp2-FamilyItem,works
+ECp3-PlayerLibrary#12,ECp3-PlayerLibrary,"0:09 · · Switch of play, 51st minute · Your clip",Opens,ECp2-FamilyItem,works
+ECp3-PlayerLibrary#13,ECp3-PlayerLibrary,0:08 · · Pressed and won it · Your clip,Opens,ECp2-FamilyItem,works
+ECp3-PlayerLibrary#14,ECp3-PlayerLibrary,See all,Says,All of Understanding the game.,works
+ECp3-PlayerLibrary#15,ECp3-PlayerLibrary,1:30 · · What pressing means · Explainer,Opens,ECp2-FamilyItem,works
+ECp3-PlayerLibrary#16,ECp3-PlayerLibrary,2:30 · · How to watch a game · Explainer,Opens,ECp2-FamilyItem,works
+ECp3-PlayerLibrary#17,ECp3-PlayerLibrary,2:00 · · Reading your own clips · Explainer,Opens,ECp2-FamilyItem,works
+ECp3-PlayerLibrary#18,ECp3-PlayerLibrary,See all,Says,All of Looking after yourself.,works
+ECp3-PlayerLibrary#19,ECp3-PlayerLibrary,1:10 · · Coming back after time off · Explainer,Opens,ECp2-FamilyItem,works
+ECp3-PlayerLibrary#20,ECp3-PlayerLibrary,1:00 · · The night before a game · Explainer,Opens,ECp2-FamilyItem,works
+ECp3-PlayerLibrary#21,ECp3-PlayerLibrary,3:00 · · Cooling down in three minutes · Warm-up,Opens,ECp2-FamilyItem,works
+ECp3-PlayerLibrary#22,ECp3-PlayerLibrary,Search,Says,Search opens.,works
+ECp3-PlayerLibrary#23,ECp3-PlayerLibrary,Saved · 3,Says,Your saved list opens.,works

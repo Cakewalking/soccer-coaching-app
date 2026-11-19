@@ -1,4 +1,5 @@
 import LN9ClubCoachLearning from '../learn/LearnClub'
+import EC10DirectorLibrary from '../learn/EducationClub'
 import { demoToast } from '../demoToast'
 import { useBackState } from '../../backState'
 import { openThing } from '../openThing'
@@ -8,7 +9,7 @@ import { SubTabBar, BackBtn, EmptyCard, FOOTER_DEFAULT } from './ui'
 import CnScreen from '../connected/CnScreen'
 import SessionTab from '../session/SessionTab'
 
-type CoachesView = 'allcoaches' | 'observations' | 'coachload' | 'sources' | 'training' | 'meetings' | 'goalkeepers' | 'drilllib' | 'learning'
+type CoachesView = 'allcoaches' | 'observations' | 'coachload' | 'sources' | 'training' | 'meetings' | 'goalkeepers' | 'drilllib' | 'learning' | 'education'
 
 const COACHES_EMPTY: Partial<Record<CoachesView, { icon: string; title: string; desc: string; cta?: string; items: { title: string; desc: string }[] }>> = {
   allcoaches:  { icon: 'M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8z', title: 'No coaches yet', desc: "Invite your coaches by email. They can't see any player until their children check is confirmed.", cta: 'Invite coaches', items: [{ title: 'Children checks', desc: 'Expiry dates and reminders' }, { title: "Who's using it", desc: 'Sessions planned, games recorded' }] },
@@ -18,7 +19,7 @@ const COACHES_EMPTY: Partial<Record<CoachesView, { icon: string; title: string; 
 }
 
 export default function CoachesTab({ empty, role = 'dof', onNav, initialView }: { empty?: boolean; role?: 'chair' | 'dof'; onNav?: (s: string) => void; initialView?: string }) {
-  const [view, setView] = useBackState<CoachesView>(initialView === 'observations' || initialView === 'coachload' || initialView === 'sources' || initialView === 'learning' ? initialView : 'allcoaches')
+  const [view, setView] = useBackState<CoachesView>(initialView === 'observations' || initialView === 'coachload' || initialView === 'sources' || initialView === 'learning' || initialView === 'education' ? initialView : 'allcoaches')
   // Observations and coach load stay in this tab; "All coaches" and each other are a tab switch, not a new page.
   const cnNav = (t: string) => t === 'CN6-Observation' ? setView('observations') : t === 'CN7-CoachLoad' ? setView('coachload') : t === 'GS11-DrillSources' ? setView('sources') : t === 'DF0-Library' ? setView('drilllib') : t === 'D3-Coaches' ? setView('allcoaches') : onNav?.(t)
   const [selectedCoach, setSelectedCoach] = useState<string | null>(null)
@@ -40,6 +41,7 @@ export default function CoachesTab({ empty, role = 'dof', onNav, initialView }: 
           { id: 'goalkeepers', label: 'Goalkeepers' },
           { id: 'drilllib', label: 'Club drill library' },
           { id: 'learning', label: 'Coach learning' },
+          { id: 'education', label: 'Education centre' },
         ]}
         active={view}
         onSelect={id => { setView(id as CoachesView); setSelectedCoach(null) }}
@@ -49,6 +51,7 @@ export default function CoachesTab({ empty, role = 'dof', onNav, initialView }: 
       {!empty && view === 'coachload' && <CnScreen id="CN7-CoachLoad" onNav={cnNav} />}
       {view === 'sources' && <SessionTab id="GS11-DrillSources" onNav={cnNav} />}
       {view === 'learning' && <LN9ClubCoachLearning go={t => onNav?.(t)} say={demoToast} />}
+      {view === 'education' && <EC10DirectorLibrary go={t => onNav?.(t)} say={demoToast} />}
       {empty && (view === 'observations' || view === 'coachload') && <div style={{ padding: '28px 20px', fontSize: 14, color: '#4a5a57' }}>Nothing here until your coaches have run a few sessions.</div>}
 
       {empty && view in COACHES_EMPTY && <EmptyCard {...COACHES_EMPTY[view]!} footer={FOOTER_DEFAULT} />}
