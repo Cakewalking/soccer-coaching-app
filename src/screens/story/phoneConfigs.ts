@@ -65,7 +65,7 @@ export const STO19: PhoneCfg = {
 
 export const STO20: PhoneCfg = {
   id: 'STO20-HomeStoryReferee', roleLine: 'Wattle Creek FC · referees', greeting: 'Hi Zoe', avatar: 'ZP',
-  tabs: [{ label: 'My games', target: 'RF2-RefGames' }, { label: 'Report', target: 'RF3-RefReport' }, { label: 'Feedback', target: 'RF4-RefFeedback' }, { label: 'Me', done: 'Your details, level and children check.' }],
+  tabs: [{ label: 'My games', target: 'RF2-RefGames' }, { label: 'Report', target: 'RF3-RefReport' }, { label: 'Feedback', target: 'RF4-RefFeedback' }, { label: 'Messages', target: 'MSGp3-RefereeMessages' }, { label: 'Me', done: 'Your details, level and children check.' }],
   blocks: [
     { kind: 'proof', label: 'SIX GAMES THIS SEASON', headline: 'Four coaches said thanks after your games. One wrote: “Calm and fair. The kids loved her.”', second: 'You have gone from one game to six since April.', bars: [{ n: '1', when: 'April' }, { n: '3', when: 'May' }, { n: '6', when: 'Now', amber: true }], unit: 'games you have led', btn: 'See the kind words', btnTarget: 'RF4-RefFeedback' },
     { kind: 'ready', when: 'SAT 6 JUNE · 8:30 am · PITCH 6', title: 'Can you do U9 Tom v Northgate City?', text: 'Seven a side, 40 minutes, no score kept. Ruth is at the ground all morning.', btns: [{ label: 'Yes, I’ll do it', done: 'Thanks, Zoe. Tom and Ruth know.' }, { label: 'Can’t', done: 'No problem. Ruth will ask someone else.' }] },
@@ -76,7 +76,7 @@ export const STO20: PhoneCfg = {
 
 export const STO21: PhoneCfg = {
   id: 'STO21-HomeStoryAcademyParent', roleLine: 'Tall Timber · Advanced', greeting: 'Kai’s week', avatar: 'TO',
-  tabs: [{ label: 'Home', target: 'ACP3-AcademyParentHome' }, { label: 'Progress', target: 'ACP5-ProgressReport' }, { label: 'Learn', target: 'LEARN-AcademyParent' }, { label: 'Book', target: 'ACP8-BookClinic' }, { label: 'Fees', target: 'ACP4-ParentFees' }],
+  tabs: [{ label: 'Home', target: 'ACP3-AcademyParentHome' }, { label: 'Progress', target: 'ACP5-ProgressReport' }, { label: 'Learn', target: 'LEARN-AcademyParent' }, { label: 'Book', target: 'ACP8-BookClinic' }, { label: 'Fees', target: 'ACP4-ParentFees' }, { label: 'Messages', target: 'MSG-academyparent' }],
   blocks: [
     { kind: 'proof', label: 'KAI · ADVANCED · WEEK 7 OF 10', headline: 'Kai’s weak-foot pass has moved from Getting There to Strong.', second: 'Reece filmed the same drill in week 3 and week 7. Here are both.', clip: { duration: '0:15', note: 'Before and after. Only you, Kai and his coaches can see this.' }, btn: 'Watch 15 seconds', btnTarget: 'ACP5-ProgressReport' },
     { kind: 'list', label: 'THIS WEEK', title: 'Thursday and Saturday', text: 'Thu 5:30 pm at Messmate Primary. Sat 10:00 am game with U13 Timber.', action: 'Kai can’t make one', actionTarget: 'ACP6-MakeUp' },

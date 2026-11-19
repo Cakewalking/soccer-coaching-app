@@ -280,7 +280,7 @@ export const STO8: HomeCfg = {
     when: 'TONIGHT · 5:45 pm · U12 SAM', title: 'Tonight’s block is ready',
     text: 'Fifteen minutes inside Sam’s session: short sprints with a ball, capped for Noah and Zoe.',
     chips: ['15 minutes', '16 players', '2 capped'], pale: 'Built from last week’s sprint counts and Monday’s check-ins.',
-    btn1: 'Open my part', btn1Target: 'F3-FitnessTraining', btn2: 'Tell Sam', btn2Done: 'Sam has your part of tonight’s plan.',
+    btn1: 'Open my part', btn1Target: 'F3-FitnessTraining', btn2: 'Tell Sam', btn2Target: 'MSG-fitness',
   },
   moments: {
     title: 'A real change for every player', link: 'All players', linkTarget: 'T4-SquadTab', faces: FACES10(['ZH', 'JP', 'RC', 'IM', 'MT', 'LM', 'CR', 'TW', 'DL', '+54']),

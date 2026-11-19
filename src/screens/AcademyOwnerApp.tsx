@@ -1,3 +1,4 @@
+import Messaging from './messaging/Messaging'
 import ClubColours from './clubadmin/ClubColours'
 import { openScreen } from './openThing'
 import { useBackState } from '../backState'
@@ -14,7 +15,7 @@ const PALE = '#eef5f2'
 const ROSE = '#c39797'
 
 type OwnerNav = 'home' | 'programs' | 'players' | 'coaches' | 'money'
-type HomeTab  = 'overview' | 'trials' | 'reports' | 'safety' | 'partner' | 'colours'
+type HomeTab  = 'overview' | 'trials' | 'reports' | 'safety' | 'partner' | 'colours' | 'messages'
 type ProgramsTab = 'term' | 'clinic'
 
 // ─── Shared ──────────────────────────────────────────────────────────────────
@@ -958,6 +959,7 @@ export default function AcademyOwnerApp({ empty = false, initialScreen, onNavCha
 
   const HOME_TABS: Array<{ id: HomeTab; label: string }> = [
     { id: 'overview', label: 'Overview' },
+    { id: 'messages', label: 'Messages' },
     { id: 'trials',   label: 'Trials' },
     { id: 'reports',  label: 'Reports' },
     { id: 'safety',   label: 'Child safety' },
@@ -1032,6 +1034,7 @@ export default function AcademyOwnerApp({ empty = false, initialScreen, onNavCha
       <div style={{ flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden', position: 'relative' }}>
         {nav === 'home' && homeTab === 'overview' && !empty && homeStory}
         {nav === 'home' && homeTab === 'overview' && !(!empty && homeStory) && <Overview empty={empty} onBroadcast={() => setShowBroadcast(true)} onTrials={() => setHomeTab('trials')} onFees={() => setNav('money')} onReports={() => setHomeTab('reports')} onFootballYear={() => setShowFootballYear(true)}/>}
+        {nav === 'home' && homeTab === 'messages' && <Messaging me="academyowner" />}
         {nav === 'home' && homeTab === 'trials'   && <TrialsView empty={empty}/>}
         {nav === 'home' && homeTab === 'reports'  && <ReportsView empty={empty}/>}
         {nav === 'home' && homeTab === 'safety'   && <SafetyView empty={empty}/>}

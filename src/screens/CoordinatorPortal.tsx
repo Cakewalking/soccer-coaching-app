@@ -1,3 +1,4 @@
+import Messaging from './messaging/Messaging'
 import { openScreen } from './openThing'
 import { useBackState } from '../backState'
 import { openThing } from './openThing'
@@ -9,7 +10,7 @@ import PlayersTab      from './clubadmin/PlayersTab'
 import SafeguardingTab from './clubadmin/SafeguardingTab'
 import ReportsTab      from './clubadmin/ReportsTab'
 
-type CoTab = 'thisweek' | 'registrations' | 'fixtures' | 'referees' | 'kit' | 'fees' | 'calendar'
+type CoTab = 'thisweek' | 'registrations' | 'fixtures' | 'referees' | 'kit' | 'fees' | 'calendar' | 'messages'
 
 const TABS: Array<{ id: CoTab; label: string }> = [
   { id: 'thisweek',      label: 'This week' },
@@ -19,6 +20,7 @@ const TABS: Array<{ id: CoTab; label: string }> = [
   { id: 'kit',           label: 'Kit' },
   { id: 'fees',          label: 'Fees and volunteers' },
   { id: 'calendar',      label: 'Calendar' },
+  { id: 'messages',      label: 'Messages' },
 ]
 
 const CLUB_NAV = ['Club', 'Teams', 'Coaches', 'Players', 'Safeguarding', 'Reports']
@@ -240,6 +242,7 @@ export default function CoordinatorPortal({ onBack: _onBack, empty = false, home
         : activeNav === 'Players'      ? <PlayersTab empty={false} />
         : activeNav === 'Safeguarding' ? <SafeguardingTab empty={false} />
         : activeNav === 'Reports'      ? <ReportsTab empty={false} />
+        : tab === 'messages'           ? <Messaging me="coordinator" />
         : tab === 'thisweek'           ? ((activeNav === 'Club' && homeStory) ? homeStory : <ThisWeekTab />)
         : <PlaceholderTab label={TABS.find(t => t.id === tab)?.label ?? ''} />}
       </div>

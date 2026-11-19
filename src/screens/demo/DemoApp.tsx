@@ -1,3 +1,4 @@
+import Messaging, { startChat } from '../messaging/Messaging'
 import { SwapText } from '../../teamNames'
 import { useBackState, pushPath } from '../../backState'
 import { useState, useEffect, useRef, isValidElement, cloneElement } from 'react'
@@ -2293,6 +2294,8 @@ function renderScreenInner(key: string): ReactNode {
     case 'STA1-StartPage':        return <StartPageNav />
     case 'STA2-StartPagePhone':   return <StartPageNav phone />
     // Home that tells a story (STO)
+    case 'MSG-academyparent': return <Messaging me="academyparent" phone />
+    case 'MSG-fitness': return <FitnessCoachScreen empty={false} initialScreen="MSG-fitness" />
     case 'KC9-HomeClubTiles': case 'KC10-HomeCharcoalTiles':   // the MiniRoos coach's Home at a red and black club, in each tile style
       return <div data-screen={key}><ClubScope {...REDGUM} tiles={key === 'KC9-HomeClubTiles' ? 'colours' : 'charcoal'}><SwapText pairs={[['Wattle Creek', 'Redgum United'], ['WATTLE CREEK', 'REDGUM UNITED']]}>{renderScreenInner('STO1-HomeStoryMiniRoos')}</SwapText></ClubScope></div>
     case 'STO1-HomeStoryMiniRoos':
@@ -2746,7 +2749,7 @@ export default function DemoApp() {
     } else if (role === 'goalkeeper') {
       lookContent = <GoalkeeperCoachApp onBack={() => setRole('coach')} empty={false} initialScreen={screen} onNavChange={setScreen} homeStory={<HomeStoryBody cfg={STO9} renderTarget={renderScreen} />} />
     } else if (role === 'fitness') {
-      lookContent = <FitnessCoachScreen empty={false} initialScreen={screen} onNavChange={setScreen} homeStory={<HomeStoryBody cfg={STO8} renderTarget={renderScreen} />} />
+      lookContent = <FitnessCoachScreen empty={false} initialScreen={screen} onNavChange={setScreen} homeStory={<HomeStoryBody cfg={STO8} renderTarget={renderScreen} frameNav={t => { if (t !== 'MSG-fitness') return false; startChat('fitness', 'sam.kelly'); return true }} />} />
     } else if (role === 'academyowner') {
       lookContent = <AcademyOwnerApp onBack={() => setRole('academycoach')} empty={false} initialScreen={screen} onNavChange={setScreen} homeStory={<HomeStoryBody cfg={STO14} renderTarget={renderScreen} />} />
     } else if (role === 'academycoach') {

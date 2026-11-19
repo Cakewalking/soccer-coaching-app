@@ -1,7 +1,8 @@
+import Messaging, { useChatWanted } from './messaging/Messaging'
 import { openScreen } from './openThing'
 import { useBackState } from '../backState'
 import { Glyph, glyph } from './Glyph'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { goSetup } from './sandbox/sandboxNav'
 import { demoToast } from './demoToast'
 import CoachTabletFrame from './CoachTabletFrame'
@@ -22,7 +23,7 @@ const FITNESS_NAV = [
 type SquadSubTab = 'growth' | 'injuries' | 'test-results'
 type TrainingSubTab = 'tests' | 'her-part' | 'measuring' | 'sprint'
 type TeamId = 'u12' | 'u14' | 'u13g' | 'u16'
-type HomeSub = 'overview' | 'fitnesslevel'
+type HomeSub = 'overview' | 'fitnesslevel' | 'messages'
 
 interface WatchPlayer { ini: string; name: string; note: string; action: string; actionColor: string }
 interface StatChip { label: string; value: string; note: string; color: string }
@@ -180,11 +181,11 @@ function EffortChart({ data }: { data: { sessions: string[]; planned: number[]; 
 }
 
 export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, homeStory }: { empty?: boolean; initialScreen?: string; onNavChange?: (screen: string) => void; homeStory?: import('react').ReactNode }) {
-  const [tab, setTab]           = useBackState<FitnessTab>((initialScreen as FitnessTab) ?? 'home')
+  const [tab, setTab]           = useBackState<FitnessTab>(initialScreen === 'MSG-fitness' ? 'home' : (initialScreen as FitnessTab) ?? 'home')
   const [squadSub, setSquadSub] = useState<SquadSubTab>('growth')
   const [trainSub, setTrainSub] = useState<TrainingSubTab>('tests')
   const [teamId, setTeamId]     = useState<TeamId>('u12')
-  const [homeSub, setHomeSub]   = useState<HomeSub>('overview')
+  const [homeSub, setHomeSub]   = useBackState<HomeSub>(initialScreen === 'MSG-fitness' ? 'messages' : 'overview')
   const [selectedGrowth, setSelectedGrowth] = useState<string | null>('NO')
   const [showLogInjury, setShowLogInjury]   = useState(false)
   const [logStep, setLogStep]   = useState(1)
@@ -216,11 +217,13 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
 
   // Drive the frame's sub-tab bar from the active nav
   const CLIPS_SUBS = ['By measure', 'By game', 'By player', 'Playlists', 'To check', 'Learn']
-  const HOME_SUBS: HomeSub[] = ['overview', 'fitnesslevel']
+  const HOME_SUBS: HomeSub[] = ['overview', 'fitnesslevel', 'messages']
+  const chatWanted = useChatWanted('fitness')   // "Tell Sam" on Home opens the chat with Sam
+  useEffect(() => { if (chatWanted) { setTab('home'); setHomeSub('messages') } }, [chatWanted, setTab, setHomeSub])
   const SQUAD_SUBS: SquadSubTab[] = ['growth', 'injuries', 'test-results']
   const TRAIN_SUBS: TrainingSubTab[] = ['tests', 'her-part', 'measuring', 'sprint']
   const subTabs =
-    tab === 'home'     ? ['Overview', 'Fitness level'] :
+    tab === 'home'     ? ['Overview', 'Fitness level', 'Messages'] :
     tab === 'squad'    ? ['Growth', 'Injuries', 'Test results over time'] :
     tab === 'training' ? ['Fitness tests', 'Her part tonight', 'Measuring session', 'Sprint race'] :
     tab === 'clips'    ? CLIPS_SUBS : []
@@ -298,7 +301,8 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
 
         {/* ── HOME TAB ── */}
         {tab === 'home' && homeSub === 'overview' && !empty && homeStory}
-        {tab === 'home' && !(homeSub === 'overview' && !empty && homeStory) && (
+        {tab === 'home' && homeSub === 'messages' && <Messaging me="fitness" />}
+        {tab === 'home' && homeSub !== 'messages' && !(homeSub === 'overview' && !empty && homeStory) && (
           <div>
             {/* Team picker */}
             <div style={{ padding: '14px 20px 0', display: 'flex', gap: 7, flexWrap: 'wrap' as const }}>
