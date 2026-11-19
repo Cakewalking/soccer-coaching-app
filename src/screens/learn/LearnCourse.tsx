@@ -278,21 +278,30 @@ function LessonPage({ l, m, i, own, x, c, go, say, open, at, source }: Sub & { l
   const reminded = !!c.reminders[l.id], heading = tryHeading(l)
   const remind = () => { setCoach(x.who, v => ({ reminders: { ...v.reminders, [l.id]: `${at(l) || l.try_when} · ${l.title}` } })); say(isDay(l) ? `Added to your run sheet for ${l.try_when}. It shows as a reminder at the right moment.` : `We’ll remind you: ${lower(l.try_when)}.`) }
   const steps = ['Watch', 'The idea', ...(clip ? ['See it in your team'] : []), heading, 'How it went']
+  // each step is a button: it moves to that part of the lesson and marks it
+  const [step, setStep] = useState(1)
+  const ring = (name: string): React.CSSProperties => steps[step] === name ? { boxShadow: `0 0 0 2px ${G}` } : {}
+  const toStep = (n: number) => {
+    setStep(n); const name = steps[n]
+    document.getElementById(`ln-part-${n}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    say(name === 'Watch' ? 'The film for this lesson is not made yet. Start at “The idea”.' : `${name}.`)
+  }
+  const part = (name: string) => `ln-part-${steps.indexOf(name)}`
   return (
     <Page id={l.screen} title={l.title} smallSub sub={`${m.title} · lesson ${i + 1} of ${m.lessons.length} · ${l.minutes} min`} go={go} cols={COLS}
       right={<><Btn big onClick={() => open(`m:${m.number}`)}>Back</Btn><Btn primary big aria-pressed={reminded} onClick={remind}>{isDay(l) ? `Add to ${l.try_when}’s run sheet` : 'Remind me'}</Btn></>}>
       <div style={{ gridColumn: '1 / -1', display: 'grid', gridTemplateColumns: `repeat(${steps.length}, minmax(0,1fr))`, gap: 8 }}>
-        {steps.map((st, n) => { const on = n === 1, last = n === steps.length - 1; const inner = <><span style={{ flex: 'none', width: 20, height: 20, borderRadius: 999, background: on ? '#fff' : PALE, color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700 }}>{n + 1}</span><strong style={{ fontSize: 13 }}>{st}</strong></>; const st2: React.CSSProperties = { minHeight: 44, borderRadius: 10, border: on ? 0 : `1px solid ${LINE}`, background: on ? INK : '#fff', color: on ? '#fff' : INK, display: 'flex', alignItems: 'center', gap: 8, padding: '0 12px', fontFamily: 'inherit' }
-          return last ? <button key={st} onClick={() => open(`went:${l.id}`)} style={{ ...st2, cursor: 'pointer' }}>{inner}</button> : <span key={st} style={st2}>{inner}</span> })}
+        {steps.map((st, n) => { const on = n === step, last = n === steps.length - 1; const inner = <><span style={{ flex: 'none', width: 20, height: 20, borderRadius: 999, background: on ? '#fff' : PALE, color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700 }}>{n + 1}</span><strong style={{ fontSize: 13 }}>{st}</strong></>; const st2: React.CSSProperties = { minHeight: 44, borderRadius: 10, border: on ? 0 : `1px solid ${LINE}`, background: on ? INK : '#fff', color: on ? '#fff' : INK, display: 'flex', alignItems: 'center', gap: 8, padding: '0 12px', fontFamily: 'inherit' }
+          return last ? <button key={st} onClick={() => open(`went:${l.id}`)} style={{ ...st2, cursor: 'pointer' }}>{inner}</button> : <button key={st} aria-current={on ? 'step' : undefined} onClick={() => toStep(n)} style={{ ...st2, cursor: 'pointer', textAlign: 'left' }}>{inner}</button> })}
       </div>
       <div style={col}>
         <div style={{ display: 'grid', gridTemplateColumns: '260px minmax(0,1fr)', gap: 12 }}>
           {/* Films are not made yet: say so, and never show a tile that plays nothing */}
-          <section aria-label="The film" style={{ borderRadius: 16, background: DARK, color: '#fff', padding: 16, minHeight: 150, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+          <section id={part('Watch')} aria-label="The film" style={{ ...ring('Watch'), borderRadius: 16, background: DARK, color: '#fff', padding: 16, minHeight: 150, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
             <span style={{ alignSelf: 'flex-start', fontSize: 12, fontWeight: 700, background: 'rgba(255,255,255,0.16)', borderRadius: 999, padding: '3px 10px' }}>Film · about 2 minutes</span>
             <strong style={{ fontSize: 16 }}>Film coming</strong>
           </section>
-          <section aria-label="The idea" style={tile}>
+          <section id={part('The idea')} aria-label="The idea" style={{ ...tile, ...ring('The idea') }}>
             <h2 style={h2}>The idea</h2>
             <span style={{ fontSize: 15, lineHeight: '22px' }}>{l.idea}</span>
             <span style={{ display: 'flex', flexDirection: 'column', gap: 2, fontSize: 14, lineHeight: '20px' }}>{l.steps.map((t, n) => <span key={t}><strong>{n + 1}. </strong>{t}</span>)}</span>
@@ -306,14 +315,14 @@ function LessonPage({ l, m, i, own, x, c, go, say, open, at, source }: Sub & { l
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6px 18px' }}>{[...own, ...l.words_to_use].map((w, n) => <span key={w + n} style={{ display: 'flex', gap: 8, alignItems: 'baseline', fontSize: 14, lineHeight: '20px' }}><span style={{ color: G }}><Ico d="M4 5h16v11H9l-5 4z" size={13} /></span>“{w}”{n < own.length && <span style={{ fontSize: 12, color: MUT }}>yours</span>}</span>)}</div>
           {l.instead_of && <span style={{ fontSize: 13, color: MUT }}>Instead of: {l.instead_of}</span>}
         </section>}
-        <section aria-label={heading} style={tile}>
+        <section id={part(heading)} aria-label={heading} style={{ ...tile, ...ring(heading) }}>
           <h2 style={h2}>{heading}</h2>
           {at(l) && <span style={{ alignSelf: 'flex-start', fontSize: 12, fontWeight: 700, background: G, color: '#fff', borderRadius: 999, padding: '3px 10px' }}>{at(l)}</span>}
           <span style={{ fontSize: 15, lineHeight: '22px' }}>{l.try_task}</span>
         </section>
       </div>
       <div style={col}>
-        {clip && <section aria-label="See it in your own team" style={tile}>
+        {clip && <section id={part('See it in your team')} aria-label="See it in your own team" style={{ ...tile, ...ring('See it in your team') }}>
           <h2 style={h2}>See it in your own team</h2>
           <button onClick={() => { playClips([{ title: clip.example_moment, sub: clip.example_caption, len: 11 }], 'See it in your own team'); say('The clip plays.') }} style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 76, borderRadius: 12, border: 0, background: '#2e3231', color: '#fff', padding: '0 14px', fontFamily: 'inherit', cursor: 'pointer' }}>
             <span style={{ flex: 'none', width: 36, height: 36, borderRadius: 999, border: '1.5px solid #fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><Ico d="M8 5l11 7-11 7z" size={13} /></span><strong style={{ fontSize: 14 }}>{clip.example_moment}</strong>
