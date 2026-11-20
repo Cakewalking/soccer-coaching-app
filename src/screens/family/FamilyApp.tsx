@@ -196,7 +196,8 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
   const packs = <div role="radiogroup" aria-label="Packs" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>{PACKS.map((k, n) => <button key={k.credits} role="radio" aria-checked={f.pack === n} onClick={() => { setFamily({ pack: n }); say(`${k.credits} credits picked.`) }} style={{ ...card, flexDirection: 'row', alignItems: 'center', gap: 10, minHeight: 64, border: f.pack === n ? `2.5px solid ${INK}` : `1px solid ${LINE}`, background: f.pack === n ? TINTS[0] : '#fff', fontFamily: 'inherit', color: INK, textAlign: 'left', cursor: 'pointer' }}>
     <span style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 17 }}>{k.credits} credits</strong><span style={{ fontSize: 13, color: MUT }}>{worth(k.credits)}{k.extra ? ` · ${k.extra} extra` : ''}</span></span><strong style={{ fontSize: 18 }}>${k.price}</strong></button>)}</div>
   const buy = (credits: number, line: string) => { setFamily(s => ({ balance: s.balance + credits, offered: true })); say(line) }
-  const addRow = (label = 'Add a video') => <div style={{ display: 'flex', gap: 8 }}><button onClick={() => go('FAM5-Check')} style={{ ...btn(true), flex: 2, minHeight: 60, fontSize: 17 }}>{label}</button>
+  /** "Add a video" and the credits, pinned above the tabs on Home so they are in reach on any phone without scrolling. */
+  const addRow = (label = 'Add a video') => <div style={{ flex: 1, display: 'flex', gap: 8 }}><button onClick={() => go('FAM5-Check')} style={{ ...btn(true), flex: 2, minHeight: 54, fontSize: 17 }}>{label}</button>
     <button onClick={() => side('FAM6-Credits')} style={{ ...card, flex: 1.1, gap: 0, padding: '8px 10px', alignItems: 'center', justifyContent: 'center', fontFamily: 'inherit', color: INK, cursor: 'pointer' }}><strong style={{ fontSize: 15 }}>{f.balance} credits</strong><span style={{ fontSize: 12, color: MUT }}>{games}</span></button></div>
   const tiles = (t: [string, string][]) => <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0,1fr))', gap: 8 }}>{t.map(([v, w], n) => <span key={w} style={{ ...card, background: TINTS[n % TINTS.length], padding: '8px 12px', gap: 0 }}><strong style={{ fontSize: 24, lineHeight: '30px' }}>{v}</strong><span style={{ fontSize: 13, color: MUT }}>{w}</span></span>)}</div>
   const latestCard = (v: Video) => <button onClick={() => openVideo(v)} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: 10, borderRadius: 16, border: 0, background: NIGHT, color: '#fff', fontFamily: 'inherit', textAlign: 'left', cursor: 'pointer' }}>
@@ -651,8 +652,7 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
       {full.length > 0 && <section style={{ ...card, gap: 0, padding: '10px 14px 2px' }}><div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingBottom: 8 }}><strong style={{ fontSize: 16 }}>Game by game</strong>{estimate}</div>
         {full.map(x => <button key={x.id} onClick={() => stat(x)} style={{ ...row, borderTop: `1px solid ${HAIR}` }}><span style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 15 }}>{x.title}</strong><span style={{ fontSize: 13, color: MUT }}>{x.date} · {x.stats!.inShot} min on screen</span></span><span style={{ flex: 'none', fontSize: 14, letterSpacing: '0.02em' }}>{x.stats!.onBall} · {passes(x)} · {shots(x)}</span><I d={CHEV} size={16} /></button>)}</section>}
       {season('Each video stands alone here. The club’s camera films every minute of every game, so numbers can be compared across the season.')}
-      {addRow()}
-    </>, 'home') }
+    </>, 'home', actions(true, addRow())) }
   const clips = ready.flatMap(x => x.clips), counts = (Object.keys(KINDS) as Kind[]).map(k => [k, clips.filter(c => c.kind === k).length] as [Kind, number]).filter(x => x[1] > 0).sort((a, b) => b[1] - a[1]), most = Math.max(...counts.map(x => x[1]), 1)
   return shell('FAM3-Home', head('Clean Sheet Family', `Hi ${f.parent}`), <>
     {switcher}{latest ? latestCard(latest) : <span style={note}>Nothing for {name} yet. Add a video and we’ll find {his} moments.</span>}
@@ -661,8 +661,7 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
       {counts.slice(0, 3).map(([k, n]) => <button key={k} onClick={() => { const x = ready.find(y => y.clips.some(c => c.kind === k)); if (!x) return; setFamily({ open: x.id, clip: x.clips.findIndex(c => c.kind === k), from: 'reel' }); setView('FAM9-Clip'); top() }} style={{ ...row, minHeight: 44, padding: '4px 0', gap: 10 }}>
         <span style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', gap: 4 }}><strong style={{ fontSize: 14 }}>{KINDS[k].title}</strong><span style={{ height: 7, borderRadius: 999, background: HAIR }}><span style={{ display: 'block', width: `${Math.round(n / most * 100)}%`, height: '100%', borderRadius: 999, background: GOLD }} /></span></span><strong style={{ flex: 'none', width: 18, textAlign: 'right', fontSize: 16 }}>{n}</strong><span style={{ flex: 'none', color: G }}><I d={PLAY} size={12} /></span></button>)}</section>}
     {locked(`From ${name}’s coach`, `${kid.he ? 'His' : 'Her'} goal for the term, what training is working on, and a clip to try at home.`, <><span style={{ width: '78%', height: 12, borderRadius: 4, background: '#a9adab' }} /><span style={{ width: '56%', height: 12, borderRadius: 4, background: '#a9adab' }} /></>)}
-    {addRow()}
-  </>, 'home')
+  </>, 'home', actions(true, addRow()))
 }
 
 // ── FAMc1 · the public page a club sees: a number, never names ──
