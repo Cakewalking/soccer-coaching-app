@@ -99,6 +99,7 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
   const [q, setQ] = useState(start === 'FAM2c-PickClub' ? 'Hillv' : ''), [lost, setLost] = useState<{ name: string; place: string } | null>(null)
   const [extra, setExtra] = useState<{ name: string; year: string } | null>(null)   // a child being added from the account
   const [tick, setTick] = useState<{ id: string; n: number }>({ id: '', n: 0 }), [up, setUp] = useState(34)
+  const [short] = useState(() => window.innerHeight < 760)   // a shorter phone, or a browser with its bars: the splash tightens so its button stays in view
   const [len, setLen] = useState<number | null>(null)   // the sample video's length, while its slider is being dragged
   const [at, setAt] = useState(36 * 60 + 40), [what, setWhat] = useState('A goal'), [stopped, setStopped] = useState(false)
   const say = (m: string) => { keep(m); setToast(m); setTimeout(() => { if (said === m) keep(null); setToast(t => t === m ? null : t) }, 3600) }
@@ -225,8 +226,11 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
 
   // ── FAM1 · splash ──
   if (v === 'FAM1-Welcome') return plain('FAM1-Welcome', true, <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 8 }}><Mark /><button onClick={() => say(SAMPLE)} style={{ minHeight: 44, padding: '0 14px', borderRadius: 999, border: 0, background: 'rgba(255,255,255,0.16)', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8 }}><I d={PLAY} size={13} />Watch a sample reel · 0:48</button></span>,
-    <><div style={{ display: 'flex', flexDirection: 'column', gap: 10, padding: '4px 0 28px' }}>{TOUR.slice(0, 3).map((c, n) => <Moment key={c.title} c={c} turn={[-3, 2, -2][n]} left={[6, 60, 22][n]} />)}</div>
-      {title(<>Sunday’s game.<br />Your child’s best moments.</>, 36)}<span style={{ fontSize: 17, lineHeight: '24px', color: MINT }}>Film it on your phone or a camera that follows the play. We find them, cut the reel and blur everyone else.</span></>,
+    <><div style={{ display: 'flex', flexDirection: 'column', gap: 8, padding: '4px 0 2px' }}>{TOUR.slice(0, short ? 2 : 3).map((c, n) => <Moment key={c.title} c={c} turn={[-3, 2, -2][n]} left={[6, 60, 22][n]} />)}</div>
+      {/* sample numbers on a sign-up screen, not a child's: white on glass, never amber, and not tappable */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0,1fr))', gap: 8 }}>{[['41', 'times on the ball'], ['27', 'passes to a team-mate'], ['3', 'shots, 1 goal']].map(([n, w]) => <span key={w} style={{ borderRadius: 14, background: 'rgba(255,255,255,0.14)', border: '1px solid rgba(255,255,255,0.22)', padding: '6px 10px 8px', display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 26, lineHeight: '30px' }}>{n}</strong><span style={{ fontSize: 12, lineHeight: '16px' }}>{w}</span></span>)}</div>
+      <span style={{ fontSize: 12, lineHeight: '16px', color: MINT, paddingBottom: 10 }}>Game numbers from a full game, marked as estimates.</span>
+      {title('Sunday’s game. Your child’s best moments.', short ? 27 : 34)}<span style={{ fontSize: short ? 15 : 17, lineHeight: short ? '21px' : '24px', color: MINT }}>Film it on your phone or a camera that follows the play. We find the moments, count the numbers and blur everyone else.</span></>,
     <><button onClick={() => { setView('FAM0-SignUp'); top() }} style={big(true)}>Get started<span style={{ fontSize: 13, fontWeight: 500 }}>Your first video is free</span></button>
       <button onClick={() => { say('Sign-in opens.'); if (f.freeUsed) setTimeout(() => { setFamily({ signedIn: true }); go('FAM3-Home') }, 1200) }} style={{ ...under, color: '#fff', fontSize: 15, alignSelf: 'center' }}>I have an account</button></>, `linear-gradient(180deg, ${G} 0%, ${DEEP} 42%, ${NIGHT} 100%)`)
 

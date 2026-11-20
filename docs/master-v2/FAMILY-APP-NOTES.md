@@ -33,6 +33,13 @@ Colour only, as the handover says. Green for things you do. Amber for the child'
 
 The fourth tour panel (not in the pack) keeps the tour's dark ground and amber button.
 
+## Sample numbers on the splash (colour pack v3, 20 Nov)
+
+`FAM1-Welcome` has a row of three sample numbers under the moment cards (41 times on the ball, 27 passes to a team-mate, 3 shots, 1 goal), white on glass, not amber and not tappable. The paragraph reads "We find the moments, count the numbers and blur everyone else." and the heading is 34px.
+
+- **The caption reads "Game numbers from a full game, marked as estimates."** The board says "for players 12 and over", but by Booker's ruling of 20 Nov every child's full game has a Stats page, so the board's caption would be untrue here.
+- **On a short screen** (under 760 tall, such as a phone's browser with its bars) the splash shows two moment cards, not three, and smaller writing, so "Get started" stays in view.
+
 ## Phones and cameras that follow the play (colour pack v2, 20 Nov)
 
 Words only, on nine screens, as the handover lists: the splash, tour panel one, the upload screen ("Got some football on film?", "From your phone or your camera"), a new card on "Before you film", and "your film" or "your camera" where the app compared the club with "your phone" (Reels, Stats, the club tour, "Your club filmed this one", and the club's web page). The fourth tour panel, which is not in the pack, follows the same wording.
