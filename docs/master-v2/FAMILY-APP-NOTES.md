@@ -17,7 +17,9 @@ Build: the commit that adds this file. 44 phone screens and the club's web page,
 - **`FAM22`** shows once for a child, on the way Home after their third full game, and never after the club joins. The sample family has already seen it for Mia.
 - **Stats** drops the thirds of the pitch, as the board does.
 
-A test of 82 checks covers v7's "done means" and these, and passes.
+- **A fourth tour panel, `FAMt4-Tour`** (Booker, 20 Nov: a screen in the start-up flow about the club signing up and what it gives the parent). "Better still with your club." with four benefits. It is not in the pack, so the wording is not from a board, and it sets aside the rule of nothing about the club in the first run. "Upload my first video" moves to it from panel three.
+
+A test of 83 checks covers v7's "done means" and these, and passes.
 
 ## Done means (v7's list)
 

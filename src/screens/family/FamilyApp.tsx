@@ -221,18 +221,19 @@ export default function FamilyApp({ start, onNav }: { start?: string; onNav?: (s
       {['Continue with Apple', 'Continue with Google', 'Use my email'].map(t => <button key={t} onClick={on} style={{ ...btn(false), flex: 'none', minHeight: 58, borderRadius: 16, border: `1.5px solid ${INK}` }}>{t}</button>)}
     </>, <><span style={note}>By continuing you confirm you are 18 or over and the parent or guardian of any child you add.</span><span style={{ ...note, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}><button onClick={() => say('The terms open.')} style={{ ...link, fontSize: 13 }}>Terms</button>·<button onClick={() => side('FAM16-Privacy')} style={{ ...under, fontSize: 13 }}>How we handle your film</button></span></>) }
 
-  // ── FAMt1 to FAMt3 · the tour ──
+  // ── FAMt1 to FAMt4 · the tour. The fourth panel (Booker, 20 Nov) says what a club joining would add ──
   if (/^FAMt\d/.test(v)) { const n = Number(v[4]), end = () => { setView('FAM3e-HomeEmpty'); top() }
-    const [h, t] = [['Film from the sideline.', 'A game, training or the park. Phone sideways, and only film where you’re allowed to.'], ['Tap your child once.', 'We follow their shirt through the whole video. We never use face recognition.'], ['Get their best moments.', 'A reel in about 20 minutes. Everyone else is blurred, and only your family can watch.']][n - 1]
+    const [h, t] = [['Film from the sideline.', 'A game, training or the park. Phone sideways, and only film where you’re allowed to.'], ['Tap your child once.', 'We follow their shirt through the whole video. We never use face recognition.'], ['Get their best moments.', 'A reel in about 20 minutes. Everyone else is blurred, and only your family can watch.'], ['Better still with your club.', 'It works with any club today. If yours joins Clean Sheet, you get more, and we tell you when it does.']][n - 1]
     return plain(v, true, <><Mark /><button onClick={end} style={{ ...under, color: '#fff', fontSize: 15 }}>Skip</button></>, <>
       <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 10 }}>
         {n === 1 && <div style={{ position: 'relative', borderRadius: 26, border: '5px solid #fff', overflow: 'hidden', transform: 'rotate(-4deg)', boxShadow: '0 14px 30px rgba(0,0,0,0.4)' }}><Thumb kind="figure" len="" wide /><span style={{ position: 'absolute', left: 12, top: 12, padding: '4px 10px', borderRadius: 999, background: NIGHT, color: '#fff', fontSize: 13, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 6 }}><span style={{ width: 8, height: 8, borderRadius: 999, background: '#fff' }} />REC 23:10</span></div>}
         {n === 2 && <Pitch picked="7" tag={`That’s ${name}`} h={250} />}
         {n === 3 && TOUR.map((c, k) => <Moment key={c.title} c={c} turn={[-3, 2, -2, 2][k]} left={[8, 46, 18, 52][k]} />)}
+        {n === 4 && <div style={{ borderRadius: 18, background: '#fff', color: INK, padding: '6px 16px', display: 'flex', flexDirection: 'column', boxShadow: '0 14px 30px rgba(0,0,0,0.4)' }}><Line top={false} a="Club games are free" b="Filmed by the club. No phone, no credits" /><Line a="Every game, every minute" b="The club’s camera sees the whole pitch" /><Line a="Your own filming at half the credits" b="For what the club doesn’t film" /><Line a="The coach is part of it" b="A goal for the term and a clip to try at home" /></div>}
       </div>
       {title(h)}<span style={{ fontSize: 17, lineHeight: '24px', color: MINT }}>{t}</span>
-      <div aria-hidden style={{ display: 'flex', gap: 6, justifyContent: 'center', paddingTop: 8 }}>{[1, 2, 3].map(k => <span key={k} style={{ width: k === n ? 22 : 7, height: 7, borderRadius: 999, background: k === n ? '#fff' : 'rgba(255,255,255,0.4)' }} />)}</div>
-    </>, n < 3 ? <button onClick={() => { setView(`FAMt${n + 1}-Tour`); top() }} style={big(true)}>Next</button> : <button onClick={end} style={big(true)}>Upload my first video<span style={{ fontSize: 13, fontWeight: 500 }}>Free</span></button>) }
+      <div aria-hidden style={{ display: 'flex', gap: 6, justifyContent: 'center', paddingTop: 8 }}>{[1, 2, 3, 4].map(k => <span key={k} style={{ width: k === n ? 22 : 7, height: 7, borderRadius: 999, background: k === n ? '#fff' : 'rgba(255,255,255,0.4)' }} />)}</div>
+    </>, n < 4 ? <button onClick={() => { setView(`FAMt${n + 1}-Tour`); top() }} style={big(true)}>Next</button> : <button onClick={end} style={big(true)}>Upload my first video<span style={{ fontSize: 13, fontWeight: 500 }}>Free</span></button>) }
 
   // ── FAM3e · one job: upload a video ──
   if (v === 'FAM3e-HomeEmpty') return plain('FAM3e-HomeEmpty', false, <><Mark />{avatar}</>, <>
