@@ -14,7 +14,7 @@ Build: the commit that adds this file. 40 phone screens and the club's web page,
 1a. A second video on the same account quotes credits. **Checked**, including too few credits (`FAM5n`), buying there, and returning to the quote.
 1b. 50 minutes quotes 80, 90 minutes quotes 144, ten minutes quotes 16, a second child adds 30, all from `RATES` in `src/screens/family/familyStore.ts`. **Checked.**
 2. A failed check uses no credits. **Checked.**
-3. Born 2015: `FAM8` and the `FAM3` dashboard, no performance numbers. Born 2012: Reel and Stats tabs, `FAM20`, the `FAM3m` dashboard. **Checked.**
+3. Born 2012: Reel and Stats tabs, `FAM20`, the `FAM3m` dashboard. **Checked.** Born 2015: **changed by Booker's ruling of 20 Nov, "Stats page needs to exist for every user/child".** Every child's full game now has the Reel and Stats tabs and `FAM20`. Home is still by age: under 12 it is the `FAM3` dashboard, which counts kinds of good moment.
 3b. Each sample video lands on its outcome, and a maybe returns no credits. **Checked.** A good check that then makes too few moments returns the credits and keeps the clip (`FAM8x`).
 4. No screen can send parent-filmed content outside the named family. **Checked** on fourteen screens.
 4b. Reels opens `FAM18`, Learn opens `FAM17`, the avatar opens `FAM19`. **Checked** from nine screens with tabs.
@@ -23,7 +23,7 @@ Build: the commit that adds this file. 40 phone screens and the club's web page,
 6. The club count is hidden below 5. **Checked.**
 7. Every control in `WIRING.md`: see below.
 
-A test of 69 checks covers these and passes.
+A test of 70 checks covers these and passes.
 
 ## The controls
 
@@ -40,7 +40,7 @@ All 365 controls in `FAMILY-APP-REPORT.csv` were pressed on a local production b
 ## Rules followed where the boards differ
 
 - **"Upload this one anyway" leads to whatever the check says.** The sample that fails the phone's check is upright and shaky, and the check reads 6 of its 50 minutes, so it lands on `FAM5x`. The wiring table sends it to `FAM5b`, which would then say 31 of 50 minutes about the same video.
-- **The age line is 12**, as the handover rules. The `FAM15` board still says "From 13: three counts"; it reads "From 12: numbers from a full game, marked as estimates."
+- **Stats for every child** (Booker, 20 Nov), which overrides the handover's "under 12: no counts, no stats". Three lines that said otherwise are reworded: on `FAM2`, "You get clips, and stats from a full game, marked as estimates."; on `FAM15`, "Every child gets a reel, and stats from a full game, marked as estimates. From 12, Home also shows the numbers and how they are going."; and the `FAM8` line "Ari is under 12, so there are no numbers here" is gone. Still never a rating, a comparison or amber.
 - **After the club joins, the credits strip says "about 6 full games"**, as `FAM13` and the handover say. The `FAM14` board draws "about 3".
 - **Mia has three full games**, because trends may appear only once there are three. The `FAM15` board gives her one reel; it reads three.
 - **The first run has no tabs until Home**, as the handover says. The `FAM8` board draws tabs; they show on every later visit.
@@ -54,6 +54,7 @@ All 365 controls in `FAMILY-APP-REPORT.csv` were pressed on a local production b
 - **The analysis.** "About 20 minutes" takes six seconds: the ring fills and clips appear. Clips, reels and stats are sample data.
 - **Sign-up, sign-in, the purchase, the share sheet, notification permission.** Each does its step and says its line.
 - **The directory of clubs** is a sample of seven. "I can’t find it" takes a name and suburb and holds the family as unmatched, with no count.
+- **An older child for a walked-through account.** A dashed "Demo" box on `FAM15` adds Mia (born 2012) with three games, so the `FAM3m` dashboard and its trends can be seen without a board link.
 - **Family links.** `FAM10v` opens from a dashed "Demo" box on the share page. "Stop sending me these" switches that person off.
 - **The club joining, and the family count.** A dashed "Demo" box on the Club tab.
 - **Editing a child, receipts, the help form, terms, the club's consent questions, "Get a copy of everything".** One line each, as the handover allows.
@@ -70,7 +71,6 @@ All 365 controls in `FAMILY-APP-REPORT.csv` were pressed on a local production b
 - "Uploaded", when the upload strip reaches 100%.
 - A club that already uses Clean Sheet: "(club) already uses Clean Sheet, so its games are free for you. Ask the club for your invitation."
 - "This link no longer works.", "Three is the most for one video.", "Tap your child in the picture first.", "No club by that name in the list.", "Nothing for (name) yet. Add a video and we’ll find (his/her) moments."
-- On `FAM2` for a child of 12 or over: "12 and over, you get clips and stats, marked as estimates."
 - Using part of a video: "half of the video (the whole of it is 80)".
 
 ## Not built

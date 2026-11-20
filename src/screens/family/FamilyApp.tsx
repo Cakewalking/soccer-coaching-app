@@ -10,7 +10,7 @@ import { G, INK, MUT, LINE, PALE } from '../capture/marks'
 import LearnPlayer, { Thumb } from '../learn/LearnPlayer'
 import EducationPhone from '../learn/EducationPhone'
 import { byTitle } from '../learn/library'
-import { CHECK, CLUBS, FILMS, KINDS, OFFER_AT, PACKS, RATES, SHOW_COUNT_AT, STAT, aboutGames, ageOf, clockOf, familyNow, film, finish, freshFamily, fullGames, named, ord, outcome, preset, priceOf, quote, reelOf, secsOf, setFamily, showsStats, spend, tagged, useFamily, type Clip, type Family, type Kind, type StatKey, type Video } from './familyStore'
+import { CHECK, CLUBS, FILMS, KINDS, OFFER_AT, PACKS, RATES, SAMPLE_OLDER, SHOW_COUNT_AT, STAT, aboutGames, addSampleOlder, ageOf, clockOf, familyNow, film, finish, freshFamily, fullGames, named, ord, outcome, preset, priceOf, quote, reelOf, secsOf, setFamily, showsStats, spend, tagged, useFamily, type Clip, type Family, type Kind, type StatKey, type Video } from './familyStore'
 
 const HAIR = '#e9eae8', NIGHT = '#10211f', DEEP = '#1c3a33', MINT = '#cfe6dc', SOFT = '#a9cfc0'
 const phone: React.CSSProperties = { width: 390, minHeight: 844, margin: '0 auto', boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: "'DM Sans',system-ui,sans-serif", display: 'flex', flexDirection: 'column', position: 'relative' }
@@ -194,7 +194,7 @@ export default function FamilyApp({ start, onNav }: { start?: string; onNav?: (s
   let v = HOMES.includes(view) ? homeOf(f) : view
   if (v === 'FAM7-Working' && !working) v = homeOf(f)
   if (['FAM8-Results', 'FAM8b-Results13', 'FAM20-GameStats', 'FAM21-StatClips', 'FAM9-Clip', 'FAM9a-AddMoment', 'FAM8x-TooFew', 'FAM10-ShareFamily', 'FAM8r-Reveal'].includes(v) && !video?.clips.length) v = homeOf(f)
-  if ((v === 'FAM20-GameStats' || v === 'FAM21-StatClips') && !video?.stats) v = 'FAM8b-Results13'
+  if ((v === 'FAM20-GameStats' || v === 'FAM21-StatClips') && !video?.stats) v = 'FAM8-Results'
 
   // ── FAM1 · splash ──
   if (v === 'FAM1-Welcome') return plain('FAM1-Welcome', true, <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 8 }}><Mark /><button onClick={() => say(SAMPLE)} style={{ minHeight: 44, padding: '0 14px', borderRadius: 999, border: 0, background: 'rgba(255,255,255,0.16)', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8 }}><I d={PLAY} size={13} />Watch a sample reel · 0:48</button></span>,
@@ -262,7 +262,7 @@ export default function FamilyApp({ start, onNav }: { start?: string; onNav?: (s
       <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}><strong style={{ fontSize: 14 }}>Their club</strong>
         <button onClick={() => { setView('FAM2c-PickClub'); top() }} style={{ ...row, minHeight: 64, padding: '8px 12px', boxSizing: 'border-box', borderRadius: 12, border: `1px solid ${MUT}` }}>{f.club && <Dot />}<span style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 17 }}>{f.club?.name ?? `${call} isn’t at a club`}</strong>{f.club && <span style={{ fontSize: 13, color: MUT }}>{f.club.place}{f.club.unmatched ? ' · being checked' : ''}</span>}</span><span style={{ ...link, minHeight: 0 }}>Change</span></button>
         <span style={{ fontSize: 13, color: MUT }}>Picked from the list of clubs. We never contact the club</span></div></section>
-    const about = <span style={note}>First name, birth year and club are all we keep about {call}. {!yr || !showsStats(yr) ? 'Under 12, you get clips and no stats.' : '12 and over, you get clips and stats, marked as estimates.'}</span>
+    const about = <span style={note}>First name, birth year and club are all we keep about {call}. You get clips, and stats from a full game, marked as estimates.</span>
     const missing = () => say('Add a first name and the year they were born.')
     if (extra) return shell('FAM2-AddChild', head('Your children', 'Add a child', () => { setExtra(null); setView('FAM15-Children'); top() }), <>{form}{about}</>, null,
       actions(false, <button key="a" onClick={() => { if (!ok) { missing(); return } const id = `k${f.kids.length}${nm.trim().toLowerCase()}`; setFamily(s => ({ kids: [...s.kids, { id, name: nm.trim(), year: yr, he: true, colour: '', number: '' }] })); setExtra(null); setView('FAM15-Children'); top(); say(`${nm.trim()} is added.`) }} style={btn(true)}>Add {call}</button>))
@@ -477,7 +477,7 @@ export default function FamilyApp({ start, onNav }: { start?: string; onNav?: (s
     </>, 'reels') }
 
   // ── FAM8 and FAM8b · results ──
-  if ((v === 'FAM8-Results' || v === 'FAM8b-Results13') && video) { const s = numbers ? video.stats : undefined, shown = s ? 2 : 3, more = video.clips.length - shown, firstRun = !f.offered
+  if ((v === 'FAM8-Results' || v === 'FAM8b-Results13') && video) { const s = video.stats, shown = s ? 2 : 3, more = video.clips.length - shown, firstRun = !f.offered
     const save = () => say('Saved to your phone. Other players stay blurred in the saved film.')
     return shell(numbers ? 'FAM8b-Results13' : 'FAM8-Results', head(`${video.date}${video.title.startsWith('v ') ? ` · ${video.title}` : ''}`, numbers && video.title.startsWith('v ') ? `${name}’s game` : `${name}’s moments`, firstRun ? undefined : numbers ? 'FAM18-Reels' : 'FAM3-Home'), <>
       {s && seg('reel')}
@@ -487,11 +487,11 @@ export default function FamilyApp({ start, onNav }: { start?: string; onNav?: (s
         <span style={{ flex: 'none', minHeight: 44, padding: '0 16px', borderRadius: 999, background: '#fff', color: INK, fontSize: 15, fontWeight: 700, display: 'flex', alignItems: 'center' }}>See all</span></button>}
       <section style={{ ...card, gap: 0, padding: '12px 14px 4px' }}><strong style={{ fontSize: 16, paddingBottom: 6 }}>Things {name} did well</strong>
         {video.clips.slice(0, shown).map((cl, k) => clipRow(cl, k, () => openClip(k)))}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, borderTop: `1px solid ${HAIR}` }}>{more > 0 ? <button onClick={() => openClip(shown)} style={under}>{more} more</button> : <span />}<button onClick={() => { setFamily({ from: 'reel' }); setView('FAM9a-AddMoment'); top() }} style={under}>Missed a moment?</button>{(!s || firstRun) && <button onClick={save} style={link}>Save to phone</button>}</div></section>
-      {numbers && !s && <span style={note}>A short video gets a reel and no stats. Stats come from a full game.</span>}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, borderTop: `1px solid ${HAIR}` }}>{more > 0 ? <button onClick={() => openClip(shown)} style={under}>{more} more</button> : <span />}<button onClick={() => { setFamily({ from: 'reel' }); setView('FAM9a-AddMoment'); top() }} style={under}>Missed a moment?</button>{(!s || !numbers || firstRun) && <button onClick={save} style={link}>Save to phone</button>}</div></section>
+      {!s && <span style={note}>A short video gets a reel and no stats. Stats come from a full game.</span>}
       {!numbers && <><section style={{ ...card, flexDirection: 'row', alignItems: 'center', gap: 10 }}><span style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 15 }}>Try this at home</strong><span style={{ fontSize: 14, color: MUT }}>Look, then touch · a game for two</span></span><button onClick={() => lib('Look, then touch')} style={{ ...btn(false), flex: 'none', minHeight: 44 }}>Open</button></section>
-        <span style={note}>{name} is under 12, so there are no numbers here. Just the good bits.</span></>}
-    </>, firstRun ? null : 'reels', actions(!firstRun, <button key="a" onClick={() => side('FAM10-ShareFamily')} style={btn(false)}>Share with family</button>, firstRun || !s ? <button key="b" onClick={() => { if (firstRun) { setView('FAM6f-AfterFree'); top() } else go('FAM3-Home') }} style={btn(true)}>Done</button> : <button key="b" onClick={save} style={btn(true)}>Save the reel</button>)) }
+        </>}
+    </>, firstRun ? null : 'reels', actions(!firstRun, <button key="a" onClick={() => side('FAM10-ShareFamily')} style={btn(false)}>Share with family</button>, firstRun || !s || !numbers ? <button key="b" onClick={() => { if (firstRun) { setView('FAM6f-AfterFree'); top() } else go('FAM3-Home') }} style={btn(true)}>Done</button> : <button key="b" onClick={save} style={btn(true)}>Save the reel</button>)) }
 
   // ── FAM12 · tell my club ──
   if (v === 'FAM12-TellClub') { const msg = f.message ?? `Hi, I’ve been using Clean Sheet to get ${name}’s highlights from games. It also does a lot for coaches and clubs: session plans, fair turns, clips for every family. ${count ? `A few of us at ${club.replace(/ FC$/, '')} already use it. ` : ''}There’s a page for clubs here if it’s of interest. No pressure at all. ${f.parent}`
@@ -539,8 +539,9 @@ export default function FamilyApp({ start, onNav }: { start?: string; onNav?: (s
       {f.kids.map((x, n) => { const reels = f.videos.filter(y => y.kid === x.id && y.state === 'ready').length; return <button key={x.id} onClick={() => say(`${x.name}: change name, birth year, club or shirt.`)} style={{ ...row, minHeight: 66, borderTop: n ? `1px solid ${HAIR}` : 0 }}><span style={{ ...round, background: x.id === kid.id ? G : PALE, color: x.id === kid.id ? '#fff' : INK, fontSize: 16, fontWeight: 700 }}>{x.name[0]}</span><span style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 17 }}>{x.name}</strong><span style={{ fontSize: 14, color: MUT }}>Born {x.year}{f.club ? ` · ${f.club.name}` : ''} · {reels} {reels === 1 ? 'reel' : 'reels'}</span></span><I d={CHEV} size={16} /></button> })}
       <button onClick={() => { setExtra({ name: '', year: '' }); setView('FAM2-AddChild'); top() }} style={{ ...under, alignSelf: 'flex-start', fontSize: 16, borderTop: `1px solid ${HAIR}`, width: '100%', textAlign: 'left', minHeight: 52 }}>Add a child</button></section>
     <section style={card}><strong style={{ fontSize: 16 }}>Both in the same video?</strong><span style={{ fontSize: 15, lineHeight: '21px' }}>Tap both when you upload. Each gets their own reel, and the second child adds {RATES.secondChild} credits.</span></section>
-    <section style={card}><strong style={{ fontSize: 16 }}>Age decides what you see</strong><span style={{ fontSize: 15, lineHeight: '21px' }}>Under 12: clips, no numbers. From 12: numbers from a full game, marked as estimates.</span></section>
+    <section style={card}><strong style={{ fontSize: 16 }}>Age decides what you see</strong><span style={{ fontSize: 15, lineHeight: '21px' }}>Every child gets a reel, and stats from a full game, marked as estimates. From 12, Home also shows the numbers and how they are going.</span></section>
     <span style={note}>Only children you are the parent or guardian of.</span>
+    {!f.kids.some(x => x.id === SAMPLE_OLDER.id) && demo('a child of 12 or over', <button onClick={() => { addSampleOlder(); go('FAM3-Home'); say(`Showing ${SAMPLE_OLDER.name}, born in ${SAMPLE_OLDER.year}: Home leads with the numbers and the last three games.`) }} style={{ ...btn(false), minHeight: 44, fontSize: 14 }}>Add {SAMPLE_OLDER.name}, with three games and their stats</button>)}
   </>, 'home')
 
   // ── FAM18 · the Reels tab: every video and its state ──

@@ -16,7 +16,7 @@ export const SHOW_COUNT_AT = 5, OFFER_AT = 10
 /** The season the sample data sits in: a child born in 2015 is under 12. */
 export const SEASON = 2026
 export const ageOf = (year: number) => SEASON - year
-/** Under 12: a reel and things done well, no performance numbers. Stats start at 12. */
+/** Booker's ruling, 20 Nov: every child's full game has a Stats page. Age still decides Home: from 12 it leads with numbers and trends; under 12 it counts kinds of good moment. */
 export const showsStats = (year: number) => ageOf(year) >= 12
 export const ord = (n: number) => `${n}${n % 100 >= 11 && n % 100 <= 13 ? 'th' : ['th', 'st', 'nd', 'rd'][n % 10] ?? 'th'}`
 export const secsOf = (len: string) => { const [m, s] = len.split(':').map(Number); return m * 60 + s }
@@ -102,9 +102,9 @@ export type Family = {
 const ARI: Kid = { id: 'ari', name: 'Ari', year: 2015, he: true, colour: 'red', number: '7' }, MIA: Kid = { id: 'mia', name: 'Mia', year: 2012, he: false, colour: 'red', number: '11' }
 const HILLVIEW: Club = { name: 'Hillview FC', place: 'Hillview, Victoria' }
 const vid = (id: string, kid: string, title: string, date: string, clips: Clip[], more: Partial<Video> = {}): Video => ({ id, kid, title, date, day: date.startsWith('Wed') ? 'Wednesday' : date.startsWith('Sat') ? 'Saturday' : 'Sunday', state: 'ready', minutes: 50, clips, credits: 80, added: 0, ...more })
-const RIDGEWAY = vid('g1', 'ari', 'v Ridgeway', 'Sun 14 June', POOL.slice(0, 5))
-const PARKSIDE = vid('g2', 'ari', 'v Parkside', 'Sun 7 June', [k('turn', 9), k('look', 18), k('pass', 27), k('turn', 41)])
-const NORTHGATE = vid('g3', 'ari', 'v Northgate City', 'Sun 31 May', [k('turn', 6), k('look', 15), k('look', 24), k('pass', 33), k('pass', 39), k('won', 47)])
+const RIDGEWAY = vid('g1', 'ari', 'v Ridgeway', 'Sun 14 June', POOL.slice(0, 5), { stats: statsFor(50, 24) })
+const PARKSIDE = vid('g2', 'ari', 'v Parkside', 'Sun 7 June', [k('turn', 9), k('look', 18), k('pass', 27), k('turn', 41)], { stats: statsFor(50, 21) })
+const NORTHGATE = vid('g3', 'ari', 'v Northgate City', 'Sun 31 May', [k('turn', 6), k('look', 15), k('look', 24), k('pass', 33), k('pass', 39), k('won', 47)], { stats: statsFor(50, 26) })
 const PARK = vid('g0', 'ari', 'Training at the park', 'Today', [], { state: 'working', film: 'park', minutes: 10, credits: 16 })
 const LAKESIDE = vid('g4', 'ari', 'v Lakeside', 'Sun 21 June', [{ len: '0:09', title: 'Ran with the ball into space', minute: '19th minute' }], { state: 'few', credits: 0, inShot: 6 })
 const BACKYARD = vid('g5', 'ari', 'Backyard', 'Sat 23 May', [], { state: 'unread', film: 'bad', credits: 0 })
@@ -138,6 +138,10 @@ export function preset(id: string): Family {
   return b
 }
 
+/** Demo: an older sample child with three full games, so the stats can be seen from a walked-through account. */
+export const SAMPLE_OLDER = MIA
+export function addSampleOlder() { setFamily(s => s.kids.some(x => x.id === MIA.id) ? { kid: MIA.id, open: 'm1' } : { kids: [...s.kids, MIA], videos: [...s.videos, ...MIAS], kid: MIA.id, open: 'm1', clip: 0, from: 'reel' }) }
+
 const KEY = 'cs_family_v7'
 let state: Family = (() => { try { const v = JSON.parse(localStorage.getItem(KEY) ?? 'null') as Family | null; if (v?.kids?.length && v.videos) return v } catch { /* start again */ } return brandNew() })()
 const subs = new Set<() => void>()
@@ -157,13 +161,13 @@ export function spend(filmId: string, credits: number, free = false): string {
 /** The work has finished. After a good check, too few moments for a reel and the credits return by themselves. After a maybe, they stay used. */
 export function finish(id: string): { made: boolean; back: number } {
   const s = state, v = s.videos.find(x => x.id === id); if (!v || v.state !== 'working') return { made: false, back: 0 }
-  const f = film(v.film ?? 'f50'), need = v.minutes >= CHECK.fullFrom ? CHECK.minClips : CHECK.minClipsShort, kid = s.kids.find(x => x.id === v.kid)
+  const f = film(v.film ?? 'f50'), need = v.minutes >= CHECK.fullFrom ? CHECK.minClips : CHECK.minClipsShort
   if (!v.maybe && f.found < need) {
     setFamily({ balance: s.balance + v.credits, working: null, open: id, clip: 0, videos: s.videos.map(x => x.id === id ? { ...x, state: 'few', clips: [{ len: '0:09', title: 'Ran with the ball into space', minute: '19th minute' }].slice(0, f.found), inShot: f.actual ?? f.inShot, credits: 0 } : x) })
     return { made: false, back: v.credits }
   }
   const clips = f.short ? [k('turn', 2), k('look', 6)].slice(0, f.found) : POOL.slice(0, f.found), full = v.minutes >= CHECK.statsFrom && !v.maybe
-  const done = (x: Video, year: number): Video => ({ ...x, state: 'ready', clips, inShot: f.inShot, stats: full && showsStats(year) ? statsFor(v.minutes, f.inShot) : undefined })
-  const others = v.both ? s.kids.filter(x => x.id !== v.kid).map(x => done({ ...v, id: `${id}-${x.id}`, kid: x.id, credits: 0 }, x.year)) : []
-  setFamily({ working: null, open: id, clip: 0, from: 'reel', videos: [...others, ...s.videos.map(x => x.id === id ? done(x, kid?.year ?? SEASON) : x)] }); return { made: true, back: 0 }
+  const done = (x: Video): Video => ({ ...x, state: 'ready', clips, inShot: f.inShot, stats: full ? statsFor(v.minutes, f.inShot) : undefined })
+  const others = v.both ? s.kids.filter(x => x.id !== v.kid).map(x => done({ ...v, id: `${id}-${x.id}`, kid: x.id, credits: 0 })) : []
+  setFamily({ working: null, open: id, clip: 0, from: 'reel', videos: [...others, ...s.videos.map(x => x.id === id ? done(x) : x)] }); return { made: true, back: 0 }
 }
