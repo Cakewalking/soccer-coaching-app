@@ -27,7 +27,7 @@ export default function OlderAvailabilityScreen() {
   }
 
   return (
-    <div style={{ width: 390, margin: '0 auto', background: '#f5f6f4', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: "'DM Sans', sans-serif" }}>
+    <div style={{ width: 390, margin: '0 auto', background: '#f5f6f4', minHeight: 'var(--frame-h, 100vh)', display: 'flex', flexDirection: 'column', fontFamily: "'DM Sans', sans-serif" }}>
       {/* Header */}
       <div style={{ background: '#1f4a3e', padding: '48px 20px 20px' }}>
         <div style={{ fontSize: 12, color: '#cfe6dc', fontWeight: 500 }}>Wattle Creek U16</div>

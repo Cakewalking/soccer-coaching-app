@@ -16,7 +16,7 @@ interface Props {
 function AuthShell({ children, phone }: { children: React.ReactNode; phone?: boolean }) {
   const [helpToast, setHelpToast] = useState<string|null>(null)
   return (
-    <div style={{ minHeight: '100vh', background: BG, fontFamily: 'var(--font-sans)', position: 'relative' }}>
+    <div style={{ minHeight: 'var(--frame-h, 100vh)', background: BG, fontFamily: 'var(--font-sans)', position: 'relative' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: phone ? '0 20px' : '0 32px', height: 56 }}>
         <span style={{ color: G, fontWeight: 800, fontSize: 15, letterSpacing: '-0.02em' }}>Clean Sheet</span>
         <button onClick={() => { openThing('help', 'entry'); setTimeout(() => setHelpToast(null), 3000) }} style={{ background: 'none', border: 'none', color: G, fontWeight: 600, fontSize: 14, cursor: 'pointer', padding: 0 }}>Help</button>

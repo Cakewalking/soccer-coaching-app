@@ -73,7 +73,7 @@ export default function PlayerAppScreen({ empty, initialView = 'home' }: { empty
 
   if (view === 'invite') {
     return (
-      <div style={{ width: 390, margin: '0 auto', background: '#1f4a3e', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
+      <div style={{ width: 390, margin: '0 auto', background: '#1f4a3e', minHeight: 'var(--frame-h, 100vh)', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
         {inviteStep === 'landing' && (
           <>
             <div style={{ flexGrow: 1, padding: '64px 28px 32px', display: 'flex', flexDirection: 'column' }}>
@@ -145,7 +145,7 @@ export default function PlayerAppScreen({ empty, initialView = 'home' }: { empty
 
   if (empty) {
     return (
-      <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
+      <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: 'var(--frame-h, 100vh)', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
         <div style={{ background: '#1f4a3e', padding: '52px 20px 20px', flex: 'none' }}>
           <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', marginBottom: 6 }}>Wattle Creek U12</div>
           <div style={{ fontSize: 24, fontWeight: 800, color: '#fff', marginBottom: 12 }}>Hi Mia, welcome!</div>
@@ -196,7 +196,7 @@ export default function PlayerAppScreen({ empty, initialView = 'home' }: { empty
   if (view === 'checkin') {
     const q = WELLNESS_QUESTIONS[checkinQ]
     return (
-      <div style={{ width: 390, margin: '0 auto', background: '#1f4a3e', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
+      <div style={{ width: 390, margin: '0 auto', background: '#1f4a3e', minHeight: 'var(--frame-h, 100vh)', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
         <div style={{ padding: '56px 24px 24px' }}>
           <div style={{ display: 'flex', gap: 6, marginBottom: 32 }}>
             {WELLNESS_QUESTIONS.map((_, i) => (
@@ -235,7 +235,7 @@ export default function PlayerAppScreen({ empty, initialView = 'home' }: { empty
   if (view === 'checkin-sent') {
     const avg = checkinAnswers.length ? checkinAnswers.reduce((a, b) => a + b, 0) / checkinAnswers.length : 4
     return (
-      <div style={{ width: 390, margin: '0 auto', background: '#1f4a3e', minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-sans)', padding: '0 32px', gap: 20, textAlign: 'center' }}>
+      <div style={{ width: 390, margin: '0 auto', background: '#1f4a3e', minHeight: 'var(--frame-h, 100vh)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-sans)', padding: '0 32px', gap: 20, textAlign: 'center' }}>
         <div style={{ width: 80, height: 80, borderRadius: '999px', background: '#2f6252', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#7cc4ab" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
         </div>
@@ -259,7 +259,7 @@ export default function PlayerAppScreen({ empty, initialView = 'home' }: { empty
   /* ── CLIP FROM COACH ── */
   if (view === 'clip') {
     return (
-      <div style={{ width: 390, margin: '0 auto', background: '#10211f', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
+      <div style={{ width: 390, margin: '0 auto', background: '#10211f', minHeight: 'var(--frame-h, 100vh)', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
         <div style={{ flex: 'none', padding: '52px 20px 16px', display: 'flex', alignItems: 'center', gap: 12 }}>
           <button onClick={() => setView('home')} style={{ width: 44, height: 44, borderRadius: '999px', border: '1px solid rgba(255,255,255,0.2)', background: 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
@@ -304,7 +304,7 @@ export default function PlayerAppScreen({ empty, initialView = 'home' }: { empty
   /* ── MY GOALS ── */
   if (view === 'goals') {
     return (
-      <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
+      <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: 'var(--frame-h, 100vh)', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
         <div style={{ background: '#1f4a3e', padding: '52px 20px 20px', flex: 'none' }}>
           <button onClick={() => setView('home')} style={{ display: 'flex', alignItems: 'center', gap: 8, border: 0, background: 'transparent', color: 'rgba(255,255,255,0.7)', fontFamily: 'inherit', fontSize: 14, cursor: 'pointer', padding: 0, marginBottom: 12 }}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
@@ -370,7 +370,7 @@ export default function PlayerAppScreen({ empty, initialView = 'home' }: { empty
   /* ── PARENT AVAILABILITY ── */
   if (view === 'parent-avail') {
     return (
-      <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
+      <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: 'var(--frame-h, 100vh)', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
         <div style={{ background: '#1f4a3e', padding: '52px 20px 20px', flex: 'none' }}>
           <button onClick={() => setView('parent')} style={{ display: 'flex', alignItems: 'center', gap: 8, border: 0, background: 'transparent', color: 'rgba(255,255,255,0.7)', fontFamily: 'inherit', fontSize: 14, cursor: 'pointer', padding: 0, marginBottom: 12 }}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
@@ -426,7 +426,7 @@ export default function PlayerAppScreen({ empty, initialView = 'home' }: { empty
   /* ── YOUNG NEWS (PK1 — under-15 player news feed) ── */
   if (view === 'young-news') {
     return (
-      <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
+      <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: 'var(--frame-h, 100vh)', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
         <div style={{ background: '#1f4a3e', padding: '44px 20px 16px', flexShrink: 0, display: 'flex', alignItems: 'center', gap: 10 }}>
           <button onClick={() => setView('home')} style={{ width: 44, height: 44, border: 'none', background: 'rgba(255,255,255,0.15)', borderRadius: '999px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={2.5} strokeLinecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
@@ -484,7 +484,7 @@ export default function PlayerAppScreen({ empty, initialView = 'home' }: { empty
 
   /* ── HOME ── */
   return (
-    <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
+    <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: 'var(--frame-h, 100vh)', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
       {/* Header */}
       <div style={{ background: '#1f4a3e', padding: '52px 20px 20px', flex: 'none' }}>
         <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>

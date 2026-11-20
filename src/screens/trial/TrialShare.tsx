@@ -16,7 +16,7 @@ export function TrialShareBody({ player, team, pack, preview, demo, coach = 'Sam
   const facts = factsFor(player).filter(f => pack.facts.includes(f.id))
   const live = preview || demo || linkLive(pack)
   if (!live) return (
-    <div data-screen="TP2-TrialShare" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24, background: '#faf5ec', fontFamily: "'DM Sans',system-ui,sans-serif", color: INK }}>
+    <div data-screen="TP2-TrialShare" style={{ minHeight: 'var(--frame-h, 100vh)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24, background: '#faf5ec', fontFamily: "'DM Sans',system-ui,sans-serif", color: INK }}>
       <div style={{ ...tile, maxWidth: 440, padding: '24px', gap: 8, textAlign: 'center', alignItems: 'center' }}>
         <Logo size={40} />
         <strong style={{ fontSize: 20 }}>This link is not active</strong>
@@ -26,7 +26,7 @@ export function TrialShareBody({ player, team, pack, preview, demo, coach = 'Sam
   )
   const cur = clips[at]
   return (
-    <div data-screen="TP2-TrialShare" style={{ minHeight: '100vh', background: '#faf5ec', color: INK, fontFamily: "'DM Sans',system-ui,sans-serif" }}>
+    <div data-screen="TP2-TrialShare" style={{ minHeight: 'var(--frame-h, 100vh)', background: '#faf5ec', color: INK, fontFamily: "'DM Sans',system-ui,sans-serif" }}>
       <header data-club-bar="" style={{ background: DARK, color: '#fff' }}>
         <div style={{ maxWidth: 980, margin: '0 auto', padding: '14px 16px', display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
           <Logo size={32} /><strong style={{ fontSize: 17 }}>Clean Sheet</strong>

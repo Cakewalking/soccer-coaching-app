@@ -75,7 +75,7 @@ export const SCREEN_ALIAS: Record<string, string> = {
   'FO1e-BackOnline': 'FO1-Offline', 'SP21e-StandInHomeEmpty': 'SP21-StandInHome', 'FT1e-TrialsEmpty': 'FT1-Trials',
 }
 
-const page = (node: ReactNode) => <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', background: '#faf5ec', fontFamily: 'var(--font-sans)' }}>{node}</div>
+const page = (node: ReactNode) => <div style={{ display: 'flex', flexDirection: 'column', minHeight: 'var(--frame-h, 100vh)', background: '#faf5ec', fontFamily: 'var(--font-sans)' }}>{node}</div>
 const phone = (node: ReactNode) => <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}>{node}</div>
 
 // A measure sheet opened by its own address has no page behind it, so Close and Back go to the player's readiness page and the next-measure link opens that sheet here.

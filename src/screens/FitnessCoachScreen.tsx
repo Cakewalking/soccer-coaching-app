@@ -245,7 +245,7 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
 
   if (empty) {
     return (
-      <div style={{ background: '#faf5ec', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
+      <div style={{ background: '#faf5ec', minHeight: 'var(--frame-h, 100vh)', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
         <div style={{ background: '#1f4a3e', padding: '20px 24px 16px', flexShrink: 0 }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <div>

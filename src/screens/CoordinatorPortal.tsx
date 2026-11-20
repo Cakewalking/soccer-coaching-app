@@ -141,7 +141,7 @@ export default function CoordinatorPortal({ onBack: _onBack, empty = false, home
 
   if (empty) {
     return (
-      <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
+      <div style={{ width: 1180, minHeight: 'var(--frame-h, 100vh)', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
         <header data-club-bar="" style={{ flex: 'none', background: '#1f4a3e', color: '#fff' }}>
           <div style={{ height: 60, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 20 }}>
             <span style={{ fontSize: 17, fontWeight: 800, letterSpacing: '-0.03em' }}>Clean Sheet</span>
@@ -191,7 +191,7 @@ export default function CoordinatorPortal({ onBack: _onBack, empty = false, home
   }
 
   return (
-    <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ width: 1180, minHeight: 'var(--frame-h, 100vh)', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
 
       {/* Top nav */}
       <header data-club-bar="" style={{ flex: 'none', background: '#1f4a3e', color: '#fff' }}>

@@ -16,7 +16,7 @@ export default function IV3cCoCoachInvite() {
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
 
   return (
-    <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
+    <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: 'var(--frame-h, 100vh)', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
 
       {/* Header */}
       <div style={{ background: GD, padding: '52px 24px 24px', flexShrink: 0 }}>

@@ -83,7 +83,7 @@ export default function ClubAdminScreen({ empty, role = 'chair', initials = 'RM'
              :                      ALL_TABS.filter(t => DOF_TAB_IDS.has(t.id))
 
   return (
-    <div style={{ background: '#faf5ec', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
+    <div style={{ background: '#faf5ec', minHeight: 'var(--frame-h, 100vh)', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
       {/* Header */}
       <div data-club-bar="" style={{ background: '#1f4a3e', padding: '14px 24px 0', flexShrink: 0 }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>

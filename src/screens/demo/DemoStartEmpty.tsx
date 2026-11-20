@@ -34,7 +34,7 @@ export default function DemoStartEmpty({ onRole, onSwitchToDemo, expiryDate = 'T
     { title: 'Keep it going', sub: 'Make it a real club account', btn: 'Ask us', act: () => demoToast('We will be in touch. In this demo nothing is sent.'), off: false, icon: 'M12 12a4 4 0 100-8 4 4 0 000 8zM5 20a7 7 0 0114 0' },
   ]
   return (
-    <div data-screen="STA3e-PickRoleEmpty" style={{ minHeight: '100vh', background: BG, fontFamily: 'var(--font-sans)', color: INK, display: 'flex', flexDirection: 'column' }}>
+    <div data-screen="STA3e-PickRoleEmpty" style={{ minHeight: 'var(--frame-h, 100vh)', background: BG, fontFamily: 'var(--font-sans)', color: INK, display: 'flex', flexDirection: 'column' }}>
       <div style={{ flex: 'none', background: INK, minHeight: 44, display: 'flex', alignItems: 'center', gap: 10, padding: '0 32px' }}>
         <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', padding: '3px 10px', borderRadius: 999, background: '#fff', color: INK }}>SANDBOX</span>
         <span style={{ fontSize: 14, color: '#fff', flexGrow: 1, minWidth: 0 }}>Your own club, kept on this device. Yours until {expiryDate}.</span>

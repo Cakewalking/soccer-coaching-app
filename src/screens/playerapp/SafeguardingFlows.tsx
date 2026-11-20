@@ -39,7 +39,7 @@ export function RaiseConcernView({ onBack, onSent }: { onBack: () => void; onSen
   }
 
   return (
-    <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)', position: 'relative' }}>
+    <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: 'var(--frame-h, 100vh)', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)', position: 'relative' }}>
       <GreenHeader subtitle="Wattle Creek FC · private" title="Tell the club" onBack={onBack} />
       <div style={{ flexGrow: 1, overflow: 'auto', padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 10 }}>
         <div style={{ background: '#fff', border: '2px solid #c39797', borderRadius: 16, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -91,7 +91,7 @@ export function RaiseConcernView({ onBack, onSent }: { onBack: () => void; onSen
 
 export function ConcernSentView({ onBack }: { onBack: () => void }) {
   return (
-    <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
+    <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: 'var(--frame-h, 100vh)', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
       <GreenHeader subtitle="Wattle Creek FC · private" title="Sent to Helen" onBack={onBack} />
       <div style={{ flexGrow: 1, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 10 }}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 12, padding: '28px 12px 8px' }}>
@@ -130,7 +130,7 @@ export function TellSomeoneView({ onBack, onTellHelen }: { onBack: () => void; o
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(''), 3200) }
 
   return (
-    <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)', position: 'relative' }}>
+    <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: 'var(--frame-h, 100vh)', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)', position: 'relative' }}>
       <GreenHeader subtitle="Just for you" title="You can tell someone" onBack={onBack} />
       <div style={{ flexGrow: 1, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 10 }}>
         <span style={{ fontSize: 16, lineHeight: '24px', padding: '0 2px' }}>If something feels wrong, at football, at school or at home, it's OK to tell. You won't be in trouble.</span>
@@ -167,7 +167,7 @@ export function TellHelenView({ onBack }: { onBack: () => void }) {
   function send() { setToast('Sent. Helen will find you at training, or you can find her at the clubrooms.'); setTimeout(() => setToast(''), 3200) }
 
   return (
-    <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)', position: 'relative' }}>
+    <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: 'var(--frame-h, 100vh)', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)', position: 'relative' }}>
       <GreenHeader subtitle="Just for you" title="Write to Helen" onBack={onBack} />
       <div style={{ flexGrow: 1, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 10 }}>
         <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '12px 14px', display: 'flex', alignItems: 'center', gap: 12 }}>

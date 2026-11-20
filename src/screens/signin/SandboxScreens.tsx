@@ -8,7 +8,7 @@ function AuthShell({ children }: { children: React.ReactNode }) {
   const [toast, setToast] = useState<string|null>(null)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
-    <div style={{ minHeight: '100vh', background: BG, fontFamily: 'var(--font-sans)' }}>
+    <div style={{ minHeight: 'var(--frame-h, 100vh)', background: BG, fontFamily: 'var(--font-sans)' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 32px', height: 56 }}>
         <span style={{ color: G, fontWeight: 800, fontSize: 15, letterSpacing: '-0.02em' }}>Clean Sheet</span>
         <button onClick={() => st('Help is on its way.')} style={{ background: 'none', border: 'none', color: G, fontWeight: 600, fontSize: 14, cursor: 'pointer', padding: 0 }}>Help</button>
@@ -76,7 +76,7 @@ export function SB1SandboxEnding({ onSwitchToDemo }: { onSwitchToDemo?: () => vo
   function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   if (view === 'keepgoing') return <SB4KeepGoingInner onSwitchToDemo={onSwitchToDemo} onBack={() => setView('ending')} />
   return (
-    <div style={{ minHeight: '100vh', background: BG, fontFamily: 'var(--font-sans)', position: 'relative' }}>
+    <div style={{ minHeight: 'var(--frame-h, 100vh)', background: BG, fontFamily: 'var(--font-sans)', position: 'relative' }}>
       <SandboxBar daysLeft={2} onSwitchToDemo={onSwitchToDemo} />
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 32px', height: 56 }}>
         <span style={{ color: G, fontWeight: 800, fontSize: 15, letterSpacing: '-0.02em' }}>Clean Sheet</span>
@@ -180,7 +180,7 @@ function SB4KeepGoingInner({ onSwitchToDemo, onBack }: { onSwitchToDemo?: () => 
   const [toast, setToast] = useState<string|null>(null)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
-    <div style={{ minHeight: '100vh', background: BG, fontFamily: 'var(--font-sans)' }}>
+    <div style={{ minHeight: 'var(--frame-h, 100vh)', background: BG, fontFamily: 'var(--font-sans)' }}>
       <SandboxBar daysLeft={2} onSwitchToDemo={onSwitchToDemo} />
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 32px', height: 56 }}>
         <span style={{ color: G, fontWeight: 800, fontSize: 15, letterSpacing: '-0.02em' }}>Clean Sheet</span>

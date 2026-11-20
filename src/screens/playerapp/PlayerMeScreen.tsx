@@ -13,7 +13,7 @@ export default function PlayerMeScreen(_props: { onBack: () => void }) {
   const [bigText, setBigText] = useState(false)
 
   return (
-    <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
+    <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: 'var(--frame-h, 100vh)', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
 
       {/* Header */}
       <div style={{ background: '#1f4a3e', padding: '48px 20px 20px', flex: 'none' }}>

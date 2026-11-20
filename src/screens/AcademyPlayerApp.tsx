@@ -252,7 +252,7 @@ export default function AcademyPlayerApp({ onBack, empty = false, initialNav = '
   ]
 
   return (
-    <div style={{ width: 390, margin: '0 auto', background: '#fafafa', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+    <div style={{ width: 390, margin: '0 auto', background: '#fafafa', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', minHeight: 'var(--frame-h, 100vh)' }}>
       <div style={{ background: GD, padding: '12px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexShrink: 0 }}>
         <span style={{ fontSize: 16, fontWeight: 800, color: '#fff', letterSpacing: '-0.02em' }}>Clean Sheet</span>
         <span style={{ fontSize: 12, fontWeight: 600, color: 'rgba(255,255,255,0.7)' }}>{empty ? 'Your academy' : 'Kai Okonkwo'}</span>

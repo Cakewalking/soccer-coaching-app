@@ -31,7 +31,7 @@ export default function RolloverScreen({ onBack, empty = false }: { onBack: () =
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   if (empty) {
     return (
-      <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
+      <div style={{ width: 1180, minHeight: 'var(--frame-h, 100vh)', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
         <div style={{ flex: 'none', background: '#fff', borderBottom: '1px solid #e9eae8', padding: '0 28px', height: 52, display: 'flex', alignItems: 'center', gap: 14 }}>
           <button onClick={onBack} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#5c6b67', cursor: 'pointer' }}>← Back</button>
           <span style={{ fontSize: 14, fontWeight: 700, color: '#1f4a3e' }}>Next season · Rollover</span>
@@ -66,7 +66,7 @@ export default function RolloverScreen({ onBack, empty = false }: { onBack: () =
   }
 
   return (
-    <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ width: 1180, minHeight: 'var(--frame-h, 100vh)', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
 
       {/* Header bar */}
       <div style={{ flex: 'none', background: '#fff', borderBottom: '1px solid #e9eae8', padding: '0 28px', height: 52, display: 'flex', alignItems: 'center', gap: 14 }}>

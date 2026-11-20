@@ -13,7 +13,7 @@ export default function IV4ManagerDone() {
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
 
   return (
-    <div style={{ width: 390, margin: '0 auto', background: GD, minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
+    <div style={{ width: 390, margin: '0 auto', background: GD, minHeight: 'var(--frame-h, 100vh)', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
 
       {/* Header */}
       <div style={{ padding: '52px 24px 32px', flexShrink: 0 }}>

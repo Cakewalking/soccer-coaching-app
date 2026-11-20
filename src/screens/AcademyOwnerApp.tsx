@@ -980,19 +980,19 @@ export default function AcademyOwnerApp({ empty = false, initialScreen, onNavCha
     nav === 'programs' ? PROGRAMS_TABS.findIndex(t => t.id === programsTab) : 0
 
   if (showBroadcast) return (
-    <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ width: 1180, minHeight: 'var(--frame-h, 100vh)', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       <BroadcastView empty={empty} onBack={() => setShowBroadcast(false)}/>
     </div>
   )
 
   if (showFootballYear) return (
-    <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ width: 1180, minHeight: 'var(--frame-h, 100vh)', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       <AcademyYearView onBack={() => setShowFootballYear(false)}/>
     </div>
   )
 
   return (
-    <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ width: 1180, minHeight: 'var(--frame-h, 100vh)', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       <header style={{ flex: 'none', background: GD, color: '#fff' }}>
         <div data-club-bar="" style={{ height: 60, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 16 }}>
           <span style={{ fontSize: 17, fontWeight: 800, letterSpacing: '-0.03em', color: '#fff', flexShrink: 0 }}>Clean Sheet</span>

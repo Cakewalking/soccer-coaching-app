@@ -406,7 +406,7 @@ function Phone(h: Handlers) {
   ]
   const PHONE_REASONS = [...REASONS]
   return (
-    <div data-screen="STA2-StartPagePhone" style={{ width: 390, margin: '0 auto', background: PAGE, color: INK, fontFamily: "'DM Sans',system-ui,sans-serif", display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+    <div data-screen="STA2-StartPagePhone" style={{ width: 390, margin: '0 auto', background: PAGE, color: INK, fontFamily: "'DM Sans',system-ui,sans-serif", display: 'flex', flexDirection: 'column', minHeight: 'var(--frame-h, 100vh)' }}>
       <header style={{ height: 56, background: DARK, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 16px', flex: 'none' }}>
         <span style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <Logo size={32} />

@@ -7,7 +7,7 @@ const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', PALE = '#
 function CoachChrome({ children, page = 'Home' }: { children: React.ReactNode; page?: string }) {
   const tabs = ['Home', 'Squad', 'Training', 'Match day', 'Clips']
   return (
-    <div style={{ minHeight: '100vh', background: '#f5f6f4', fontFamily: 'var(--font-sans)' }}>
+    <div style={{ minHeight: 'var(--frame-h, 100vh)', background: '#f5f6f4', fontFamily: 'var(--font-sans)' }}>
       {/* Top nav */}
       <div style={{ background: GD, height: 56, display: 'flex', alignItems: 'center', padding: '0 20px', gap: 4 }}>
         <span style={{ fontSize: 15, fontWeight: 800, letterSpacing: '-0.02em', color: '#fff', marginRight: 8 }}>Clean Sheet</span>
@@ -146,7 +146,7 @@ export function ER2UploadFailed() {
   const [toast, setToast] = useState<string | null>(null)
   function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
-    <div style={{ minHeight: '100vh', background: '#f5f6f4', fontFamily: 'var(--font-sans)' }}>
+    <div style={{ minHeight: 'var(--frame-h, 100vh)', background: '#f5f6f4', fontFamily: 'var(--font-sans)' }}>
       {/* Top nav — Clips active */}
       <div style={{ background: GD, height: 56, display: 'flex', alignItems: 'center', padding: '0 20px', gap: 4 }}>
         <span style={{ fontSize: 15, fontWeight: 800, letterSpacing: '-0.02em', color: '#fff', marginRight: 8 }}>Clean Sheet</span>
@@ -320,7 +320,7 @@ export function ER5NoAccess() {
   void showToast   // kept for lines this screen may still need to say
   function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
-    <div style={{ minHeight: '100vh', background: '#f5f6f4', fontFamily: 'var(--font-sans)' }}>
+    <div style={{ minHeight: 'var(--frame-h, 100vh)', background: '#f5f6f4', fontFamily: 'var(--font-sans)' }}>
       {/* Director top nav */}
       <div style={{ background: GD, height: 56, display: 'flex', alignItems: 'center', padding: '0 20px', gap: 4 }}>
         <span style={{ fontSize: 15, fontWeight: 800, letterSpacing: '-0.02em', color: '#fff', marginRight: 8 }}>Clean Sheet</span>

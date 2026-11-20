@@ -12,7 +12,7 @@ function PhoneShell({ children, activeTab, onTab }: { children: React.ReactNode;
   ]
 
   return (
-    <div style={{ width: 390, margin: '0 auto', background: '#f5f6f4', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: "'DM Sans', sans-serif" }}>
+    <div style={{ width: 390, margin: '0 auto', background: '#f5f6f4', minHeight: 'var(--frame-h, 100vh)', display: 'flex', flexDirection: 'column', fontFamily: "'DM Sans', sans-serif" }}>
       <div style={{ flexGrow: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
         {children}
       </div>

@@ -1269,14 +1269,14 @@ export default function AcademyCoachApp({ empty = false, initialScreen, onNavCha
   // Live recording occupies full screen
   if (nav === 'record' && recordStep === 'recording') {
     return (
-      <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: '#0e1a17', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
+      <div style={{ width: 1180, minHeight: 'var(--frame-h, 100vh)', margin: '0 auto', background: '#0e1a17', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
         <LiveRecordingView onStop={() => setRecordStep('results')}/>
       </div>
     )
   }
 
   return (
-    <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ width: 1180, minHeight: 'var(--frame-h, 100vh)', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       {/* Nav */}
       <header style={{ flex: 'none', background: GD, color: '#fff' }}>
         <div data-club-bar="" style={{ height: 60, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 16 }}>

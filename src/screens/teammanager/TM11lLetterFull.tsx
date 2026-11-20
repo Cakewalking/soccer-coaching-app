@@ -8,7 +8,7 @@ export default function TM11lLetterFull({ onBack }: Props) {
     return () => { document.body.style.backgroundColor = prev }
   }, [])
   return (
-    <div style={{ minHeight: '100vh', background: '#fff', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '40px 24px 60px' }}>
+    <div style={{ minHeight: 'var(--frame-h, 100vh)', background: '#fff', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '40px 24px 60px' }}>
       <div style={{ width: '100%', maxWidth: 640 }}>
         <div style={{ background: G, borderRadius: 16, padding: '20px 24px', marginBottom: 32, display: 'flex', alignItems: 'center', gap: 14 }}>
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>

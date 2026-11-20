@@ -524,7 +524,7 @@ export default function TwoChildrenApp({ empty = false, initialView }: { onBack?
   const showEmpty = inSandbox ? !sbHasTeam : empty
 
   return (
-    <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)', position: 'relative' }}>
+    <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: 'var(--frame-h, 100vh)', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)', position: 'relative' }}>
 
       {view === 'home' && (sbHasTeam ? (
         <SandboxParentHome />

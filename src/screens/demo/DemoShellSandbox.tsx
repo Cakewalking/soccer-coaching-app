@@ -81,7 +81,7 @@ export default function DemoShellSandbox({ roleId, onSwitchRole, onHome, onSwitc
       <div style={{ flex: 1, background: tour.device === 'phone' ? '#e8e9e7' : undefined, display: 'flex', justifyContent: 'center' }}>
         {tour.device === 'phone'
           ? <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px', width: '100%' }}>{children}</div>
-          : <div style={{ width: '100%', maxWidth: 1180 }}>{children}</div>
+          : <div style={{ width: '100%', maxWidth: 1180, '--frame-h': 'calc(100vh - 48px)' } as React.CSSProperties}>{children}</div>
         }
       </div>
     </div>

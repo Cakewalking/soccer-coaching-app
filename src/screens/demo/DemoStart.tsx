@@ -48,8 +48,8 @@ export default function DemoStart({ onTour, onLook, onStory, onWhy, onSandbox, i
   const doing = mode === 'tour' ? 'Opens the guided tour.' : 'Opens their home screen.'
 
   if (phoneStart) return (
-    <div style={{ minHeight: '100vh', background: '#e8e9e7' }}>
-      <div style={{ width: 390, maxWidth: '100%', margin: '0 auto', background: BG, minHeight: '100vh', position: 'relative' }}>
+    <div style={{ minHeight: 'var(--frame-h, 100vh)', background: '#e8e9e7' }}>
+      <div style={{ width: 390, maxWidth: '100%', margin: '0 auto', background: BG, minHeight: 'var(--frame-h, 100vh)', position: 'relative' }}>
         <DemoPhone onLook={onLook} onWhy={onWhy} onSandbox={onSandbox ?? (() => {})} onAllRoles={() => setPhoneStart(false)} />
       </div>
     </div>
@@ -77,7 +77,7 @@ export default function DemoStart({ onTour, onLook, onStory, onWhy, onSandbox, i
   }
 
   return (
-    <div data-screen={mode === 'tour' ? 'STA3-PickRole' : 'STA3l-PickRoleLook'} style={{ minHeight: '100vh', background: BG, fontFamily: 'var(--font-sans)', color: INK, display: 'flex', flexDirection: 'column' }}>
+    <div data-screen={mode === 'tour' ? 'STA3-PickRole' : 'STA3l-PickRoleLook'} style={{ minHeight: 'var(--frame-h, 100vh)', background: BG, fontFamily: 'var(--font-sans)', color: INK, display: 'flex', flexDirection: 'column' }}>
       <div style={{ flex: 'none', background: INK, minHeight: 44, display: 'flex', alignItems: 'center', gap: 12, padding: '0 32px' }}>
         <span style={{ fontSize: 14, fontWeight: 700, color: '#fff' }}>Demo.</span>
         <span style={{ fontSize: 14, color: '#fff', flexGrow: 1, minWidth: 0 }}>Wattle Creek FC, Tall Timber Academy and everyone in them are made up. Nothing you tap is saved.</span>

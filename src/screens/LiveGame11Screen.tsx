@@ -45,7 +45,7 @@ export default function LiveGame11Screen({ onClose }: { onClose: () => void }) {
   const showToast = (msg: string) => { setToast(msg); setTimeout(() => setToast(''), 2800) }
 
   return (
-    <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: '#10211f', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', color: '#fff', position: 'relative' }}>
+    <div style={{ width: 1180, minHeight: 'var(--frame-h, 100vh)', margin: '0 auto', background: '#10211f', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', color: '#fff', position: 'relative' }}>
 
       {/* Score bar */}
       <div style={{ flex: 'none', padding: '0 24px', height: 60, display: 'flex', alignItems: 'center', gap: 16 }}>

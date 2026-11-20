@@ -89,7 +89,7 @@ export default function TeamManagerScreen({ empty, initialScreen }: { empty?: bo
 
   if (empty) {
     return (
-      <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)', border: '1px solid #e9eae8', borderRadius: 24, overflow: 'hidden', boxShadow: '0 8px 32px rgba(0,0,0,0.08)' }}>
+      <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: 'var(--frame-h, 100vh)', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)', border: '1px solid #e9eae8', borderRadius: 24, overflow: 'hidden', boxShadow: '0 8px 32px rgba(0,0,0,0.08)' }}>
         {tab === 'messages' ? (
           <div style={{ flex: 'none', padding: '14px 18px 12px', background: '#2f6252', color: '#fff', display: 'flex', alignItems: 'center', gap: 12 }}>
             <span style={{ flexGrow: 1 }}>
@@ -172,7 +172,7 @@ export default function TeamManagerScreen({ empty, initialScreen }: { empty?: bo
   }
 
   return (
-    <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)', border: '1px solid #e9eae8', borderRadius: 24, overflow: 'hidden', boxShadow: '0 8px 32px rgba(0,0,0,0.08)' }}>
+    <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: 'var(--frame-h, 100vh)', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)', border: '1px solid #e9eae8', borderRadius: 24, overflow: 'hidden', boxShadow: '0 8px 32px rgba(0,0,0,0.08)' }}>
 
       {/* Header */}
       {tab === 'messages' ? (

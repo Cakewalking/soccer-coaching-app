@@ -21,7 +21,7 @@ export default function ThankParentsScreen({ onBack }: { onBack: () => void }) {
 
   if (sent) {
     return (
-      <div style={{ width: 390, minHeight: '100vh', background: '#1f4a3e', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 16, padding: '0 28px', boxSizing: 'border-box', fontFamily: 'inherit' }}>
+      <div style={{ width: 390, minHeight: 'var(--frame-h, 100vh)', background: '#1f4a3e', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 16, padding: '0 28px', boxSizing: 'border-box', fontFamily: 'inherit' }}>
         <span style={{ fontSize: 44 }}>✓</span>
         <div style={{ fontSize: 20, fontWeight: 700, color: '#fff', textAlign: 'center' }}>Sent to 10 families</div>
         <div style={{ fontSize: 15, color: 'rgba(255,255,255,0.7)', textAlign: 'center', lineHeight: '21px' }}>Families will get the message and the question about next week.</div>
@@ -31,7 +31,7 @@ export default function ThankParentsScreen({ onBack }: { onBack: () => void }) {
   }
 
   return (
-    <div style={{ width: 390, minHeight: '100vh', background: '#faf5ec', display: 'flex', flexDirection: 'column', fontFamily: 'inherit', boxSizing: 'border-box' }}>
+    <div style={{ width: 390, minHeight: 'var(--frame-h, 100vh)', background: '#faf5ec', display: 'flex', flexDirection: 'column', fontFamily: 'inherit', boxSizing: 'border-box' }}>
 
       {/* Header */}
       <div style={{ background: '#1f4a3e', padding: '52px 20px 20px', flex: 'none' }}>

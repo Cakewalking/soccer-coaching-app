@@ -392,7 +392,7 @@ export default function OlderPlayerApp({ empty = false, initialView, initialChat
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
 
   return (
-    <div style={{ width: 390, minHeight: '100vh', background: '#faf5ec', display: 'flex', flexDirection: 'column', fontFamily: "'DM Sans', sans-serif" }}>
+    <div style={{ width: 390, minHeight: 'var(--frame-h, 100vh)', background: '#faf5ec', display: 'flex', flexDirection: 'column', fontFamily: "'DM Sans', sans-serif" }}>
       {/* Header */}
       <div style={{ background: '#1f4a3e', padding: '48px 20px 16px', flex: 'none' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>

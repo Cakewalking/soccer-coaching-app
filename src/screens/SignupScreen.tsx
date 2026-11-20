@@ -414,7 +414,7 @@ export default function SignupScreen({ onDone }: Props) {
   const [playerAge, setPlayerAge] = useState<'under18' | '18plus' | null>(null)
 
   if (flow === 'coach') return (
-    <div style={{ maxWidth: 480, margin: '0 auto', background: '#fff', minHeight: '100vh', fontFamily: 'var(--font-sans)' }}>
+    <div style={{ maxWidth: 480, margin: '0 auto', background: '#fff', minHeight: 'var(--frame-h, 100vh)', fontFamily: 'var(--font-sans)' }}>
       <div style={{ background: '#1f4a3e', padding: '48px 24px 24px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           <div style={{ width: 36, height: 36, borderRadius: 10, background: '#2f6252', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -429,7 +429,7 @@ export default function SignupScreen({ onDone }: Props) {
   )
 
   if (flow === 'parent') return (
-    <div style={{ maxWidth: 480, margin: '0 auto', background: '#fff', minHeight: '100vh', fontFamily: 'var(--font-sans)' }}>
+    <div style={{ maxWidth: 480, margin: '0 auto', background: '#fff', minHeight: 'var(--frame-h, 100vh)', fontFamily: 'var(--font-sans)' }}>
       <div style={{ background: '#1f4a3e', padding: '48px 24px 24px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           <div style={{ width: 36, height: 36, borderRadius: 10, background: '#2f6252', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -445,7 +445,7 @@ export default function SignupScreen({ onDone }: Props) {
 
   if (flow === 'player') {
     if (playerAge === null) return (
-      <div style={{ maxWidth: 480, margin: '0 auto', background: '#fff', minHeight: '100vh', fontFamily: 'var(--font-sans)' }}>
+      <div style={{ maxWidth: 480, margin: '0 auto', background: '#fff', minHeight: 'var(--frame-h, 100vh)', fontFamily: 'var(--font-sans)' }}>
         <div style={{ background: '#1f4a3e', padding: '48px 24px 24px' }}>
           <div style={{ fontSize: 20, fontWeight: 700, color: '#fff' }}>Player sign-up</div>
         </div>
@@ -459,7 +459,7 @@ export default function SignupScreen({ onDone }: Props) {
       </div>
     )
     return (
-      <div style={{ maxWidth: 480, margin: '0 auto', background: '#fff', minHeight: '100vh', fontFamily: 'var(--font-sans)' }}>
+      <div style={{ maxWidth: 480, margin: '0 auto', background: '#fff', minHeight: 'var(--frame-h, 100vh)', fontFamily: 'var(--font-sans)' }}>
         <div style={{ background: '#1f4a3e', padding: '48px 24px 24px' }}>
           <div style={{ fontSize: 20, fontWeight: 700, color: '#fff' }}>Player sign-up</div>
         </div>
@@ -469,7 +469,7 @@ export default function SignupScreen({ onDone }: Props) {
   }
 
   if (flow === 'staff') return (
-    <div style={{ maxWidth: 480, margin: '0 auto', background: '#fff', minHeight: '100vh', fontFamily: 'var(--font-sans)' }}>
+    <div style={{ maxWidth: 480, margin: '0 auto', background: '#fff', minHeight: 'var(--frame-h, 100vh)', fontFamily: 'var(--font-sans)' }}>
       <div style={{ background: '#1f4a3e', padding: '48px 24px 24px' }}>
         <div style={{ fontSize: 20, fontWeight: 700, color: '#fff' }}>Staff invite</div>
       </div>
@@ -478,7 +478,7 @@ export default function SignupScreen({ onDone }: Props) {
   )
 
   return (
-    <div style={{ maxWidth: 480, margin: '0 auto', background: '#1f4a3e', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
+    <div style={{ maxWidth: 480, margin: '0 auto', background: '#1f4a3e', minHeight: 'var(--frame-h, 100vh)', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
       {/* Logo */}
       <div style={{ padding: '64px 32px 40px', display: 'flex', alignItems: 'center', gap: 14 }}>
         <div style={{ width: 48, height: 48, borderRadius: 14, background: '#2f6252', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>

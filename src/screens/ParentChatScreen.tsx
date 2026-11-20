@@ -15,7 +15,7 @@ type Overlay = 'poll' | 'attach' | 'photocheck' | 'report' | null
 
 function PhoneWrap({ children }: { children: React.ReactNode }) {
   return (
-    <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)', position: 'relative' as const }}>
+    <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: 'var(--frame-h, 100vh)', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)', position: 'relative' as const }}>
       {children}
     </div>
   )

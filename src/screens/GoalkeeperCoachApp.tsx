@@ -295,7 +295,7 @@ export default function GoalkeeperCoachApp({ empty = false, initialScreen, onNav
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   return (
-    <div style={{ width: 1180, minHeight: '100vh', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ width: 1180, minHeight: 'var(--frame-h, 100vh)', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
 
       {/* Top nav */}
       <header data-club-bar="" style={{ flex: 'none', background: '#1f4a3e', color: '#fff' }}>

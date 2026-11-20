@@ -30,7 +30,7 @@ export default function MiniRoosTeamTalk({ onClose }: { onClose: () => void }) {
   const total = SLIDES.length
 
   return (
-    <div style={{ width: '100%', minHeight: '100vh', background: '#10211f', color: '#fff', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ width: '100%', minHeight: 'var(--frame-h, 100vh)', background: '#10211f', color: '#fff', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       {/* Top bar */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '20px 48px' }}>
         <span style={{ fontSize: 16, fontWeight: 600, color: '#7cc4ab' }}>Team talk · U9 Tom · Wattle Creek FC</span>

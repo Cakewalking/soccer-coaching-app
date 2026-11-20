@@ -20,7 +20,7 @@ export default function TeamTalkScreen({ role, onClose }: Props) {
 
   return (
     <div style={{
-      width: '100%', minHeight: '100vh',
+      width: '100%', minHeight: 'var(--frame-h, 100vh)',
       background: '#10211f', color: '#ffffff',
       fontFamily: 'var(--font-sans)',
       display: 'flex', flexDirection: 'column',

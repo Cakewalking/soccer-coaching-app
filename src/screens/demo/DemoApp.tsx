@@ -2427,7 +2427,7 @@ export function renderScreen(key: string): ReactNode {
   // so the data-screen hook stays visible to the acceptance check.
   const phone = /^(STO1[6-9]|STO2[0-2]|ERp|SIp|SB|TM\d|PA-|PS\d|PO\d|ACP|ACK|RF\d|MSGp|CPh)/.test(key)
   const real = SCREEN_ALIAS[key] ?? key
-  return <div data-screen={key} style={{ minHeight: '100vh' }}><ScreenErrorBoundary key={key} phone={phone}><AutoNav el={renderExtraScreen(real) ?? renderScreenInner(real)} /></ScreenErrorBoundary></div>
+  return <div data-screen={key} style={{ minHeight: 'var(--frame-h, 100vh)' }}><ScreenErrorBoundary key={key} phone={phone}><AutoNav el={renderExtraScreen(real) ?? renderScreenInner(real)} /></ScreenErrorBoundary></div>
 }
 
 registerScreenRenderer(renderScreen)
@@ -2567,7 +2567,7 @@ export default function DemoApp() {
 
   if (view === 'notfound') {
     return (
-      <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#faf5ec' }}>
+      <div style={{ minHeight: 'var(--frame-h, 100vh)', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#faf5ec' }}>
         <ER4NotFound />
       </div>
     )
@@ -2717,7 +2717,7 @@ export default function DemoApp() {
   if (view === 'lookaround') {
     // Unknown role (e.g. /look/nonsense): no role frame, just ER4 (FIX-LIST item 7)
     if (!TOURS[role]) {
-      return <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#faf5ec' }}><ER4NotFound /></div>
+      return <div style={{ minHeight: 'var(--frame-h, 100vh)', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#faf5ec' }}><ER4NotFound /></div>
     }
     const homeKey = TOURS[role].home
     let lookContent: ReactNode

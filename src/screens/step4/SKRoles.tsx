@@ -90,7 +90,7 @@ export default function SKRoles() {
   void st   // kept for lines this screen may still need to say
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
-    <div style={{ background: '#f5f7f5', minHeight: '100vh', fontFamily: 'var(--font-sans)' }}>
+    <div style={{ background: '#f5f7f5', minHeight: 'var(--frame-h, 100vh)', fontFamily: 'var(--font-sans)' }}>
 
       {/* Header */}
       <div style={{ background: GD, padding: '32px 48px 28px' }}>

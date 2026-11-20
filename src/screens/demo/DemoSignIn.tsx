@@ -20,7 +20,7 @@ export default function DemoSignIn({ onDemo, onSandbox, onOpenSandbox, onWhy, ha
   }
 
   return (
-    <div style={{ minHeight: '100vh', background: '#f5f6f4', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ minHeight: 'var(--frame-h, 100vh)', background: '#f5f6f4', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
 
       {/* Top bar */}
       <div style={{ background: '#1f4a3e', padding: '0 32px', height: 48, display: 'flex', alignItems: 'center', justifyContent: 'space-between', flex: 'none' }}>
