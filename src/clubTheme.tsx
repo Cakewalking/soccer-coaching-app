@@ -98,7 +98,7 @@ ${B} [data-club-pill],${B} [data-club-pill] *,${B} [data-club-keep],${B} [data-c
 const BAR_GREENS = ['rgb(47, 98, 82)', 'rgb(31, 74, 62)']   // the two bar greens; the darker lead-tile green is never a bar
 const LEAD = 'rgb(28, 58, 51)', MUTED = ['rgb(169, 207, 192)', 'rgb(207, 230, 220)']
 const CONTROL = 'button,a,[role=button],[role=radio],[role=tab],[role=switch],[role=checkbox],[role=option],[aria-pressed],[aria-checked],[aria-selected]'
-const APP_PATH = /^\/(look|tour|sandbox\/[a-z]|__screen|share)\b/
+const APP_PATH = /^\/(look|tour|sandbox\/[a-z]|__screen|family|share)\b/
 // The big dark tiles: the story tile and lead tiles (the darkest green) take club-tile-big, and a large green
 // surface that is not a bar or a control takes club-tile-next. Inside them, muted writing and film thumbnails
 // go neutral so nothing green is left on a club's colours.

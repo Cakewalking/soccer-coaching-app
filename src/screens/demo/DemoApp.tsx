@@ -1,4 +1,5 @@
 import Messaging, { startChat } from '../messaging/Messaging'
+import FamilyApp from '../family/FamilyApp'
 import { SwapText } from '../../teamNames'
 import { useBackState, pushPath } from '../../backState'
 import { useState, useEffect, useRef, isValidElement, cloneElement } from 'react'
@@ -540,7 +541,7 @@ import STMs4MiniRoosChild             from '../step4/STMs4MiniRoosChild'
 import STMs4eMiniRoosChildEmpty       from '../step4/STMs4eMiniRoosChildEmpty'
 import STMs5HomeMiniRoos              from '../step4/STMs5HomeMiniRoos'
 
-type DemoView = 'signin' | 'start' | 'why' | 'tour' | 'lookaround' | 'sandbox' | 'sandboxlook' | 'nosandbox' | 'notfound' | 'noaccess' | 'screendirect'
+type DemoView = 'signin' | 'start' | 'why' | 'tour' | 'lookaround' | 'sandbox' | 'sandboxlook' | 'nosandbox' | 'notfound' | 'noaccess' | 'screendirect' | 'family'
 
 const SANDBOX_KEY = 'cs_demo_sandbox_v1'
 
@@ -2433,6 +2434,7 @@ registerScreenRenderer(renderScreen)
 
 function viewToPath(view: DemoView, role: RoleId, screen?: string): string {
   if (view === 'screendirect') return screen ? `/__screen/${screen}` : '/__screen'
+  if (view === 'family')      return `/family/${screen ?? 'FAM3-Home'}`   // Clean Sheet Family: each page has its own address
   if (view === 'lookaround')  return screen ? `/look/${role}/${screen}` : `/look/${role}`
   if (view === 'tour')        return screen ? `/tour/${role}/${screen}` : `/tour/${role}`
   if (view === 'sandboxlook') return screen ? `/sandbox/${role}/${screen}` : `/sandbox/${role}`
@@ -2477,6 +2479,8 @@ function pathToState(path: string): { view: DemoView; role: RoleId; screen?: str
   if (m3) return m3[1] in TOURS ? { view: 'sandboxlook', role: m3[1] as RoleId, screen: m3[2] } : { view: 'notfound', role: 'coach' }
   const m4 = path.match(/^\/__screen\/([A-Za-z0-9_-]+)$/)
   if (m4) return { view: 'screendirect', role: 'coach', screen: m4[1] }
+  const m5 = path.match(/^\/family(?:\/((?:FAM[\dtkc]|ECp[12])[A-Za-z0-9-]*))?\/?$/)
+  if (m5) return { view: 'family', role: 'coach', screen: m5[1] ?? 'FAM3-Home' }
   return { view: 'notfound', role: 'coach' }
 }
 
@@ -2554,6 +2558,11 @@ export default function DemoApp() {
 
   if (view === 'screendirect' && screen) {
     return <>{renderScreen(screen)}</>
+  }
+
+  // Clean Sheet Family as the parent left it: the address is the page, so a refresh, Back and Forward all keep their place.
+  if (view === 'family' && screen) {
+    return <div style={{ minHeight: '100vh' }}><FamilyApp page={screen} onPage={setScreen} /></div>
   }
 
   if (view === 'notfound') {

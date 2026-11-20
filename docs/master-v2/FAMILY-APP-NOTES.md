@@ -1,6 +1,6 @@
-# Clean Sheet Family v8: report back (20 Nov)
+# Clean Sheet Family v10: report back (20 Nov)
 
-Build: the commit that adds this file. 44 phone screens and the club's web page, as a demo of the flows on sample data. **Nothing analyses real film.** This replaces the v7 build.
+Build: the commit that adds this file. 44 phone screens and the club's web page, as a demo of the flows on sample data. **Nothing analyses real film.** This replaces the v9 build.
 
 ## Where it is
 
@@ -19,13 +19,29 @@ Build: the commit that adds this file. 44 phone screens and the club's web page,
 
 - **A fourth tour panel, `FAMt4-Tour`** (Booker, 20 Nov: a screen in the start-up flow about the club signing up and what it gives the parent). "Better still with your club." with four benefits. It is not in the pack, so the wording is not from a board, and it sets aside the rule of nothing about the club in the first run. "Upload my first video" moves to it from panel three.
 
-A test of 85 checks covers v7's "done means" and these, and passes.
+A test of 89 checks covers v7's "done means" and these, and passes.
+
+## v9: prices
+
+2 credits a minute (it was 1.6): a 50-minute game is 100 credits, ten minutes is 20, a second child adds 40. Packs: 100 for $10 ("1 full game"), 275 for $25 ("Nearly 3 full games", 25 extra), 600 for $50 ("6 full games", 100 extra). The sample family holds 300 credits. All of it comes from `RATES` and `PACKS` in `src/screens/family/familyStore.ts`.
+
+"Use just part of it" offers the first minutes the balance covers (with 40 credits, "The first 20 minutes is 40 credits"), not half the video.
+
+## v10: colour
+
+Colour only, as the handover says. Green for things you do. Amber for the child's moments and anything free: the main button on the splash, tour and reveal, the play buttons, the progress ring, "Free", the upload target, the moment-card edge, the bars on Home, "See all" and the credits count on `FAM14`. Mauve for "with your club": the pill, the locked cards, the Club tab's column, and the club tour on plum with a mauve button. The page is warm `#faf5ec`, number tiles rotate through the four tints, and the selected pack is pale amber. Amber is not on any Estimate chip or stat number. `FAMc1` stays green.
+
+The fourth tour panel (not in the pack) keeps the tour's dark ground and amber button.
+
+## Each page has its own address (Booker, 20 Nov)
+
+`/family/<page id>`, for example `/family/FAM3-Home`. A refresh stays on the page with the family as the parent left it, and Back and Forward step one page at a time. `/family` opens Home. A board link (`/__screen/FAM…`) still opens the sample state it is drawn in; the first tap from there moves to the app's own address. A test of 17 checks covers this.
 
 ## Done means (v7's list)
 
 1. Splash to the reveal on `FAM8r` in the order given, without paying. **Checked.** Screens 1 to 8 each have one main button.
 1a. A second video on the same account quotes credits. **Checked**, including too few credits (`FAM5n`), buying there, and returning to the quote.
-1b. 50 minutes quotes 80, 90 minutes quotes 144, ten minutes quotes 16, a second child adds 30, all from `RATES` in `src/screens/family/familyStore.ts`. **Checked.**
+1b. At the pack's rate, 50 minutes quoted 80 and 90 minutes 144; at Design's rate of 20 Nov they quote 100 and 180, ten minutes quotes 20, and a second child adds 30, all from `RATES` in `src/screens/family/familyStore.ts`. **Checked.**
 2. A failed check uses no credits. **Checked.**
 3. Born 2012: Reel and Stats tabs, `FAM20`, the `FAM3m` dashboard. **Checked.** Born 2015: **changed by Booker's ruling of 20 Nov, "Stats page needs to exist for every user/child".** Every child's full game has the Reel and Stats tabs and `FAM20`. Home is still by age: under 12 it is the `FAM3` dashboard, which counts kinds of good moment. **The v8 boards still say under 12 gets no numbers** ("Ari is under 12, so no numbers. Just the good bits." on `FAM8`); the ruling stands and that line is left out.
 3b. Each sample video lands on its outcome, and a maybe returns no credits. **Checked.** A good check that then makes too few moments returns the credits and keeps the clip (`FAM8x`).
@@ -39,7 +55,9 @@ A test of 85 checks covers v7's "done means" and these, and passes.
 
 ## The controls
 
-All 379 controls in `FAMILY-APP-REPORT.csv` were pressed on a local production build. 358 work as written, including every locked card and the tour. The other 21:
+All 379 controls in `FAMILY-APP-REPORT.csv` (the v9 and v10 table) were pressed on a local production build of v9, before the colour change. 357 work as written, including every locked card and the tour. The other 22:
+
+- **`FAMt3` "Upload my first video"** is now on the fourth tour panel; panel three has "Next".
 
 - **7 could not be matched by the test, and work by hand:** the chapter marks under two players ("1, 2, 3" and "0, 25, 50 min"), the credits strip on `FAM14` (it reads "about 6 full games", see below), and Mia's row on `FAM15` (it reads "3 reels", see below).
 - **6 are Home pressed where Home is already that child's dashboard**, or lead to the right Home for the state: Mia's Home is `FAM3m`, and after the club joins Home is `FAM14`.

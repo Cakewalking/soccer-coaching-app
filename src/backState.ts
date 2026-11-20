@@ -20,7 +20,7 @@ if (typeof window !== 'undefined') {
   window.addEventListener('popstate', e => { const bag: Bag = (e.state as { cs?: Bag } | null)?.cs ?? {}; subs.forEach(f => f(bag)) })
 }
 const bagNow = (): Bag => (window.history.state as { cs?: Bag } | null)?.cs ?? {}
-const root = (p: string) => p.split('/').slice(0, 3).join('/')   // "/look/coach": the app the person is in
+const root = (p: string) => p.startsWith('/family/') ? '/family' : p.split('/').slice(0, 3).join('/')   // "/look/coach": the app the person is in
 
 function flush() {
   scheduled = false

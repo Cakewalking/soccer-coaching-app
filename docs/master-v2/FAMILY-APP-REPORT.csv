@@ -54,7 +54,7 @@ FAM14-HomeWithClub#3,FAM14-HomeWithClub,From Luke,Opens,ECp1-FamilyLibrary,works
 FAM14-HomeWithClub#4,FAM14-HomeWithClub,0:36 · · Wednesday futsal · 4 moments · Wed 17 June · your phone,Opens,FAM8-Results,works
 FAM14-HomeWithClub#5,FAM14-HomeWithClub,0:39 · · v Parkside · 4 moments · Sun 7 June · before the club joined,Opens,FAM8-Results,works
 FAM14-HomeWithClub#6,FAM14-HomeWithClub,Add a video · half the credits,Opens,FAM5-Check,works
-FAM14-HomeWithClub#7,FAM14-HomeWithClub,240 · credits · about 3 full games · · Get more,Opens,FAM6-Credits,missing
+FAM14-HomeWithClub#7,FAM14-HomeWithClub,300 · credits · about 3 full games · · Get more,Opens,FAM6-Credits,missing
 FAM14-HomeWithClub#8,FAM14-HomeWithClub,Home,Opens,FAM3-Home,opens nothing new
 FAM14-HomeWithClub#9,FAM14-HomeWithClub,Reels,Opens,FAM18-Reels,works
 FAM14-HomeWithClub#10,FAM14-HomeWithClub,Learn,Opens,FAM17-Learn,works
@@ -113,7 +113,7 @@ FAM18-Reels#16,FAM18-Reels,Club,Opens,FAM11-Locked,works
 FAM19-Account#1,FAM19-Account,Back,Opens,FAM3-Home,works
 FAM19-Account#2,FAM19-Account,DB,Opens,FAM19-Account,works
 FAM19-Account#3,FAM19-Account,Your children · Ari and Mia,Opens,FAM15-Children,works
-FAM19-Account#4,FAM19-Account,Credits and receipts · · 240,Opens,FAM6-Credits,works
+FAM19-Account#4,FAM19-Account,Credits and receipts · · 300,Opens,FAM6-Credits,works
 FAM19-Account#5,FAM19-Account,"Family who can watch · Kerem, Nan and Pop · · 2",Opens,FAM10-ShareFamily,works
 FAM19-Account#6,FAM19-Account,Tell me when a reel is ready · · On,Says,Notifications turned off. We only ever send this one.,works
 FAM19-Account#7,FAM19-Account,"How we handle your film · Copy, delete or close your account",Opens,FAM16-Privacy,works
@@ -183,7 +183,7 @@ FAM3-Home#7,FAM3-Home,Looked up before the ball came · · · · 4,Opens,FAM9-Cl
 FAM3-Home#8,FAM3-Home,Passed and moved · · · · 4,Opens,FAM9-Clip,works
 FAM3-Home#9,FAM3-Home,"From Ari’s coach · With your club · · · · · · His goal for the term, what training is working on, and a clip to try at home.",Opens,FAMk1-ClubTour,works
 FAM3-Home#10,FAM3-Home,Add a video,Opens,FAM5-Check,works
-FAM3-Home#11,FAM3-Home,240 credits · about 3 full games,Opens,FAM6-Credits,works
+FAM3-Home#11,FAM3-Home,300 credits · about 3 full games,Opens,FAM6-Credits,works
 FAM3-Home#12,FAM3-Home,Home,Opens,FAM3-Home,works
 FAM3-Home#13,FAM3-Home,Reels,Opens,FAM18-Reels,works
 FAM3-Home#14,FAM3-Home,Learn,Opens,FAM17-Learn,works
@@ -202,7 +202,7 @@ FAM3m-HomeStats#7,FAM3m-HomeStats,v Eastbank · Sun 14 June · 44 min on screen 
 FAM3m-HomeStats#8,FAM3m-HomeStats,v Southbank · Sun 7 June · 31 min on screen · · 26 · 15/21 · 2,Opens,FAM20-GameStats,works
 FAM3m-HomeStats#9,FAM3m-HomeStats,"Mia’s whole season · With your club · · On the ball, every game · · · · · · · · · · Minutes played · · · · · · · · · · · Each video stands alone here. The club’s camera films every minute of every game, so numbers can be compared across the season.",Opens,FAMk1-ClubTour,works
 FAM3m-HomeStats#10,FAM3m-HomeStats,Add a video,Opens,FAM5-Check,works
-FAM3m-HomeStats#11,FAM3m-HomeStats,240 credits · about 3 full games,Opens,FAM6-Credits,works
+FAM3m-HomeStats#11,FAM3m-HomeStats,300 credits · about 3 full games,Opens,FAM6-Credits,works
 FAM3m-HomeStats#12,FAM3m-HomeStats,Home,Opens,FAM3-Home,opens nothing new
 FAM3m-HomeStats#13,FAM3m-HomeStats,Reels,Opens,FAM18-Reels,works
 FAM3m-HomeStats#14,FAM3m-HomeStats,Learn,Opens,FAM17-Learn,works
@@ -215,7 +215,7 @@ FAM5-Check#1,FAM5-Check,Back,Opens,FAM3-Home,works
 FAM5-Check#2,FAM5-Check,DB,Opens,FAM19-Account,works
 FAM5-Check#3,FAM5-Check,"That’s Ari, red 7 · change",Says,Tap the player who is Ari. We follow that shirt for the whole game.,works
 FAM5-Check#4,FAM5-Check,Not now,Opens,FAM3-Home,works
-FAM5-Check#5,FAM5-Check,Use 80 credits,Opens,FAM7-Working,works
+FAM5-Check#5,FAM5-Check,Use 100 credits,Opens,FAM7-Working,works
 FAM5-Check#6,FAM5-Check,Home,Opens,FAM3-Home,works
 FAM5-Check#7,FAM5-Check,Reels,Opens,FAM18-Reels,works
 FAM5-Check#8,FAM5-Check,Learn,Opens,FAM17-Learn,works
@@ -223,7 +223,7 @@ FAM5-Check#9,FAM5-Check,Club,Opens,FAM11-Locked,works
 FAM5b-Maybe#1,FAM5b-Maybe,Back,Opens,FAM3-Home,works
 FAM5b-Maybe#2,FAM5b-Maybe,DB,Opens,FAM19-Account,works
 FAM5b-Maybe#3,FAM5b-Maybe,Not now,Opens,FAM3-Home,works
-FAM5b-Maybe#4,FAM5b-Maybe,Go ahead · 24 credits,Opens,FAM7-Working,works
+FAM5b-Maybe#4,FAM5b-Maybe,Go ahead · 30 credits,Opens,FAM7-Working,works
 FAM5b-Maybe#5,FAM5b-Maybe,Home,Opens,FAM3-Home,works
 FAM5b-Maybe#6,FAM5b-Maybe,Reels,Opens,FAM18-Reels,works
 FAM5b-Maybe#7,FAM5b-Maybe,Learn,Opens,FAM17-Learn,works
@@ -240,10 +240,10 @@ FAM5f-CheckFree#1,FAM5f-CheckFree,Back,Opens,FAM2-AddChild,works
 FAM5f-CheckFree#2,FAM5f-CheckFree,Find Ari’s momentsAbout 20 minutes,Opens,FAM7-Working,works
 FAM5n-NotEnough#1,FAM5n-NotEnough,Back,Opens,FAM3-Home,works
 FAM5n-NotEnough#2,FAM5n-NotEnough,DB,Opens,FAM19-Account,works
-FAM5n-NotEnough#3,FAM5n-NotEnough,"Get 160 credits · Covers this video, with 120 left · · $10",Opens,FAM6-Credits,works
-FAM5n-NotEnough#4,FAM5n-NotEnough,Use just part of it · One half is 40 credits,Says,"Pick the part you want. The first half is 40 credits, which you have.",works
+FAM5n-NotEnough#3,FAM5n-NotEnough,"Get 100 credits · Covers this video, with 40 left · · $10",Opens,FAM6-Credits,works
+FAM5n-NotEnough#4,FAM5n-NotEnough,Use just part of it · The first 20 minutes is 40 credits,Says,"Pick the part you want. The first 20 minutes is 40 credits, which you have.",works
 FAM5n-NotEnough#5,FAM5n-NotEnough,Not now,Opens,FAM3-Home,works
-FAM5n-NotEnough#6,FAM5n-NotEnough,Get 160 · $10,Says,Paid through your app store. 160 credits added. Back to your video.,works
+FAM5n-NotEnough#6,FAM5n-NotEnough,Get 100 · $10,Says,Paid through your app store. 100 credits added. Back to your video.,works
 FAM5n-NotEnough#7,FAM5n-NotEnough,Home,Opens,FAM3-Home,works
 FAM5n-NotEnough#8,FAM5n-NotEnough,Reels,Opens,FAM18-Reels,works
 FAM5n-NotEnough#9,FAM5n-NotEnough,Learn,Opens,FAM17-Learn,works
@@ -261,19 +261,19 @@ FAM5x-CantRead#7,FAM5x-CantRead,Learn,Opens,FAM17-Learn,works
 FAM5x-CantRead#8,FAM5x-CantRead,Club,Opens,FAM11-Locked,works
 FAM6-Credits#1,FAM6-Credits,Back,Opens,FAM3-Home,works
 FAM6-Credits#2,FAM6-Credits,DB,Opens,FAM19-Account,works
-FAM6-Credits#3,FAM6-Credits,160 credits · About 2 full games · · $10 [radio],Says,160 credits picked.,works
-FAM6-Credits#4,FAM6-Credits,440 credits · About 5 full games · 40 extra · · $25 [radio],Says,440 credits picked.,works
-FAM6-Credits#5,FAM6-Credits,960 credits · About 12 full games · 160 extra · · $50 [radio],Says,960 credits picked.,works
-FAM6-Credits#6,FAM6-Credits,Buy 440 for $25,Says,Paid through your app store. 440 credits added.,works
+FAM6-Credits#3,FAM6-Credits,100 credits · 1 full game · · $10 [radio],Says,100 credits picked.,works
+FAM6-Credits#4,FAM6-Credits,275 credits · Nearly 3 full games · 25 extra · · $25 [radio],Says,275 credits picked.,works
+FAM6-Credits#5,FAM6-Credits,600 credits · 6 full games · 100 extra · · $50 [radio],Says,600 credits picked.,works
+FAM6-Credits#6,FAM6-Credits,Buy 275 for $25,Says,Paid through your app store. 275 credits added.,works
 FAM6-Credits#7,FAM6-Credits,Home,Opens,FAM3-Home,works
 FAM6-Credits#8,FAM6-Credits,Reels,Opens,FAM18-Reels,works
 FAM6-Credits#9,FAM6-Credits,Learn,Opens,FAM17-Learn,works
 FAM6-Credits#10,FAM6-Credits,Club,Opens,FAM11-Locked,works
 FAM6f-AfterFree#1,FAM6f-AfterFree,Not now,Opens,FAM3-Home,works
-FAM6f-AfterFree#2,FAM6f-AfterFree,160 credits · About 2 full games · · $10 [radio],Says,160 credits picked.,works
-FAM6f-AfterFree#3,FAM6f-AfterFree,440 credits · About 5 full games · 40 extra · · $25 [radio],Says,440 credits picked.,works
-FAM6f-AfterFree#4,FAM6f-AfterFree,960 credits · About 12 full games · 160 extra · · $50 [radio],Says,960 credits picked.,works
-FAM6f-AfterFree#5,FAM6f-AfterFree,Get 440 credits · $25,Says,Paid through your app store. 440 credits added.,works
+FAM6f-AfterFree#2,FAM6f-AfterFree,100 credits · 1 full game · · $10 [radio],Says,100 credits picked.,works
+FAM6f-AfterFree#3,FAM6f-AfterFree,275 credits · Nearly 3 full games · 25 extra · · $25 [radio],Says,275 credits picked.,works
+FAM6f-AfterFree#4,FAM6f-AfterFree,600 credits · 6 full games · 100 extra · · $50 [radio],Says,600 credits picked.,works
+FAM6f-AfterFree#5,FAM6f-AfterFree,Get 275 credits · $25,Says,Paid through your app store. 275 credits added.,works
 FAM7-Working#1,FAM7-Working,Tell me when it’s ready,Says,"Your phone asks to allow notifications. We send one when the reel is ready, and nothing else.",works
 FAM8-Results#1,FAM8-Results,Back,Opens,FAM3-Home,works
 FAM8-Results#2,FAM8-Results,DB,Opens,FAM19-Account,works
@@ -377,4 +377,4 @@ FAMt1-Tour#2,FAMt1-Tour,Next,Opens,FAMt2-Tour,works
 FAMt2-Tour#1,FAMt2-Tour,Skip,Opens,FAM3e-HomeEmpty,works
 FAMt2-Tour#2,FAMt2-Tour,Next,Opens,FAMt3-Tour,works
 FAMt3-Tour#1,FAMt3-Tour,Skip,Opens,FAM3e-HomeEmpty,works
-FAMt3-Tour#2,FAMt3-Tour,Upload my first videoFree,Opens,FAM3e-HomeEmpty,works
+FAMt3-Tour#2,FAMt3-Tour,Upload my first videoFree,Opens,FAM3e-HomeEmpty,missing

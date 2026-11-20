@@ -1,14 +1,15 @@
-// Clean Sheet Family (family-app-v7): a parent uploads a video, and credits pay for finding their own child's moments.
+// Clean Sheet Family (family-app-v9): a parent uploads a video, and credits pay for finding their own child's moments.
 // This is a demo of the flows on sample data. Nothing here analyses real film, and the purchase is a stub.
 // Prices, pack sizes, the rate table, the check's thresholds and the club offer are placeholders until Booker confirms them.
 
 import { useSyncExternalStore } from 'react'
 
 // ── The rate table. A video's cost follows the work: change a number here and every quote and example follows. ──
-export const RATES = { perMinute: 1.6, secondChild: 30, /** parent filming after the club joins */ joinedFactor: 0.5, /** "about N full games" is the balance over one game of this length */ usualMinutes: 50, /** a short video, for the example on the credits page */ shortMinutes: 10, quoteHoldsHours: 24 }
+// Design's prices of 20 Nov, set against model costs: 2 credits a minute, and $10 buys 100 credits (one 50-minute game).
+export const RATES = { perMinute: 2, secondChild: 40, /** parent filming after the club joins */ joinedFactor: 0.5, /** "about N full games" is the balance over one game of this length */ usualMinutes: 50, /** a short video, for the example on the credits page */ shortMinutes: 10, quoteHoldsHours: 24 }
 /** The check's thresholds, and what a reel needs. */
 export const CHECK = { /** the play must be followable for this share of the video */ readableShare: 1 / 3, /** child in shot for fewer minutes of a full game than this is a maybe */ minInShot: 10, /** and of a short video, for less than this share of it */ shortShare: 0.3, /** a video this long or longer needs three moments for a reel; a shorter one needs one */ fullFrom: 20, minClips: 3, minClipsShort: 1, /** stats come only from a full game */ statsFrom: 40, /** missed moments a parent may add to one video */ missed: 3, missedDays: 30 }
-export const PACKS: { credits: number; price: number; extra: number }[] = [{ credits: 160, price: 10, extra: 0 }, { credits: 440, price: 25, extra: 40 }, { credits: 960, price: 50, extra: 160 }]
+export const PACKS: { credits: number; price: number; extra: number }[] = [{ credits: 100, price: 10, extra: 0 }, { credits: 275, price: 25, extra: 25 }, { credits: 600, price: 50, extra: 100 }]
 export const quote = (minutes: number, children = 1, joined = false) => Math.round((minutes * RATES.perMinute + (children - 1) * RATES.secondChild) * (joined ? RATES.joinedFactor : 1))
 export const aboutGames = (balance: number, joined = false) => Math.floor(balance / quote(RATES.usualMinutes, 1, joined))
 /** The club count shows only at this many families or more, and the placeholder offer starts at the second number. */
@@ -82,7 +83,11 @@ export function outcome(f: Film, joined: boolean): Outcome {
   return 'good'
 }
 /** What a video costs: a maybe is quoted on the stretches around the child, and a parent may use just half. */
-export const priceOf = (f: Film, joined: boolean, both = false, part = false) => quote((outcome(f, joined) === 'maybe' ? f.around ?? f.minutes : f.minutes) / (part ? 2 : 1), both ? 2 : 1, joined)
+export const priceOf = (f: Film, joined: boolean, both = false, part = 0) => quote(part || (outcome(f, joined) === 'maybe' ? f.around ?? f.minutes : f.minutes), both ? 2 : 1, joined)
+/** The first minutes of a video that a balance covers, when it does not cover the whole of it. */
+export const affordable = (balance: number, joined: boolean, both = false) => Math.max(0, Math.floor((balance / (joined ? RATES.joinedFactor : 1) - (both ? RATES.secondChild : 0)) / RATES.perMinute))
+/** What a pack is worth in full games, in words: "1 full game", "Nearly 3 full games", "About 2 full games". */
+export const worth = (credits: number) => { const g = credits / quote(RATES.usualMinutes), n = Math.floor(g), near = g - n >= 0.7; const k = near ? n + 1 : n; return `${g === n ? '' : near ? 'Nearly ' : 'About '}${k} full ${k === 1 ? 'game' : 'games'}` }
 
 export type Kid = { id: string; name: string; year: number; he: boolean; colour: string; number: string }
 export type Video = { id: string; kid: string; title: string; date: string; day: string; state: 'working' | 'ready' | 'few' | 'unread'; /** the sample it was made from, while it is being worked on */ film?: string; minutes: number; clips: Clip[]; credits: number; maybe?: boolean; both?: boolean; note?: string; inShot?: number; stats?: Stats; /** missed moments the parent has added */ added: number }
@@ -101,30 +106,30 @@ export type Family = {
   kids: Kid[]; kid: string; club: Club | null
   /** the one free video, and the offer of credits that follows it once */ freeUsed: boolean; offered: boolean
   balance: number; videos: Video[]; open: string; clip: number; /** which list the open clip is from: the reel, or one stat */ from: 'reel' | StatKey; stat: StatKey
-  /** the video chosen for the check, a quote that is being held, and the work under way */ film: string; part: boolean; both: boolean; anyway: boolean; held: { film: string; credits: number } | null; working: string | null
+  /** the video chosen for the check, a quote that is being held, and the work under way */ film: string; /** the first minutes of it only, or 0 for all of it */ part: number; both: boolean; anyway: boolean; held: { film: string; credits: number } | null; working: string | null
   people: Person[]; notify: boolean
   /** families at the same club, the club's state, and whether "your club has joined" has been shown */ families: number; joined: boolean; toldJoined: boolean; coming: boolean
-  pack: number; message: string | null
+  pack: number; message: string | null; /** the library item that is open */ item: string
   /** "three games in": the child it is due for, and the children it has been shown for (once each) */ seasonDue: string | null; seasonTold: string[]
 }
 const ARI: Kid = { id: 'ari', name: 'Ari', year: 2015, he: true, colour: 'red', number: '7' }, MIA: Kid = { id: 'mia', name: 'Mia', year: 2012, he: false, colour: 'red', number: '11' }
 const HILLVIEW: Club = { name: 'Hillview FC', place: 'Hillview, Victoria' }
-const vid = (id: string, kid: string, title: string, date: string, clips: Clip[], more: Partial<Video> = {}): Video => ({ id, kid, title, date, day: date.startsWith('Wed') ? 'Wednesday' : date.startsWith('Sat') ? 'Saturday' : 'Sunday', state: 'ready', minutes: 50, clips, credits: 80, added: 0, ...more })
+const vid = (id: string, kid: string, title: string, date: string, clips: Clip[], more: Partial<Video> = {}): Video => ({ id, kid, title, date, day: date.startsWith('Wed') ? 'Wednesday' : date.startsWith('Sat') ? 'Saturday' : 'Sunday', state: 'ready', minutes: 50, clips, credits: 100, added: 0, ...more })
 const RIDGEWAY = vid('g1', 'ari', 'v Ridgeway', 'Sun 14 June', POOL.slice(0, 5), { stats: statsFor(50, 24) })
 const PARKSIDE = vid('g2', 'ari', 'v Parkside', 'Sun 7 June', [k('turn', 9), k('look', 18), k('pass', 27), k('turn', 41)], { stats: statsFor(50, 21) })
 const NORTHGATE = vid('g3', 'ari', 'v Northgate City', 'Sun 31 May', [k('turn', 6), k('look', 15), k('look', 24), k('pass', 33), k('pass', 39), k('won', 47)], { stats: statsFor(50, 26) })
-const PARK = vid('g0', 'ari', 'Training at the park', 'Today', [], { state: 'working', film: 'park', minutes: 10, credits: 16 })
+const PARK = vid('g0', 'ari', 'Training at the park', 'Today', [], { state: 'working', film: 'park', minutes: 10, credits: 20 })
 const LAKESIDE = vid('g4', 'ari', 'v Lakeside', 'Sun 21 June', [{ len: '0:09', title: 'Ran with the ball into space', minute: '19th minute' }], { state: 'few', credits: 0, inShot: 6 })
 const BACKYARD = vid('g5', 'ari', 'Backyard', 'Sat 23 May', [], { state: 'unread', film: 'bad', credits: 0 })
-const FUTSAL = vid('g6', 'ari', 'Wednesday futsal', 'Wed 17 June', [k('look', 4), k('turn', 11), k('pass', 19), k('pass', 26)], { minutes: 30, credits: 24, note: 'your phone' })
+const FUTSAL = vid('g6', 'ari', 'Wednesday futsal', 'Wed 17 June', [k('look', 4), k('turn', 11), k('pass', 19), k('pass', 26)], { minutes: 30, credits: 60, note: 'your phone' })
 const MIAS: Video[] = [
-  vid('m1', 'mia', 'v Eastbank', 'Sun 14 June', [{ len: '0:10', title: 'Switched the play', minute: '18th minute' }, { len: '0:12', title: 'Won it back and passed forward', minute: '52nd minute' }, k('look', 27), k('turn', 36), k('pass', 44), k('pass', 58), k('pass', 66)], { minutes: 70, credits: 112, stats: stats(70, 44, 41, 33, 27, 9, [shot('Shot, saved', 23, '0:08'), shot('Goal, left foot', 41, '0:11', true), shot('Shot, wide', 58, '0:07')], [4, 2], [5, 3]) }),
-  vid('m2', 'mia', 'v Southbank', 'Sun 7 June', [k('turn', 12), k('pass', 30), k('won', 51), k('look', 63)], { minutes: 70, credits: 112, stats: stats(70, 31, 26, 21, 15, 5, [shot('Shot, saved', 19, '0:08'), shot('Shot, wide', 47, '0:07')], [3, 1], [4, 2]) }),
-  vid('m3', 'mia', 'v Westfield', 'Sun 31 May', [k('look', 8), k('pass', 22), k('turn', 40), k('pass', 55)], { minutes: 70, credits: 112, stats: stats(70, 38, 27, 24, 18, 5, [shot('Shot, wide', 35, '0:07')], [2, 1], [3, 1]) }),
+  vid('m1', 'mia', 'v Eastbank', 'Sun 14 June', [{ len: '0:10', title: 'Switched the play', minute: '18th minute' }, { len: '0:12', title: 'Won it back and passed forward', minute: '52nd minute' }, k('look', 27), k('turn', 36), k('pass', 44), k('pass', 58), k('pass', 66)], { minutes: 70, credits: 140, stats: stats(70, 44, 41, 33, 27, 9, [shot('Shot, saved', 23, '0:08'), shot('Goal, left foot', 41, '0:11', true), shot('Shot, wide', 58, '0:07')], [4, 2], [5, 3]) }),
+  vid('m2', 'mia', 'v Southbank', 'Sun 7 June', [k('turn', 12), k('pass', 30), k('won', 51), k('look', 63)], { minutes: 70, credits: 140, stats: stats(70, 31, 26, 21, 15, 5, [shot('Shot, saved', 19, '0:08'), shot('Shot, wide', 47, '0:07')], [3, 1], [4, 2]) }),
+  vid('m3', 'mia', 'v Westfield', 'Sun 31 May', [k('look', 8), k('pass', 22), k('turn', 40), k('pass', 55)], { minutes: 70, credits: 140, stats: stats(70, 38, 27, 24, 18, 5, [shot('Shot, wide', 35, '0:07')], [2, 1], [3, 1]) }),
 ]
 const PEOPLE: Person[] = [{ name: 'Kerem', how: 'Ari’s dad · has the app', on: true }, { name: 'Nan and Pop', how: 'Watch by a private link', on: true }, { name: 'Aunty Selin', how: 'Watch by a private link', on: false }]
 /** A family a few weeks in: two children, credits, reels. */
-const base = (): Family => ({ parent: 'Dana', email: 'dana@example.com', signedIn: true, kids: [ARI, MIA], kid: 'ari', club: HILLVIEW, freeUsed: true, offered: true, balance: 240, videos: [PARK, LAKESIDE, RIDGEWAY, PARKSIDE, NORTHGATE, BACKYARD, ...MIAS], open: 'g1', clip: 0, from: 'reel', stat: 'shots', film: 'f50', part: false, both: false, anyway: false, held: null, working: null, people: PEOPLE, notify: true, families: 14, joined: false, toldJoined: false, coming: false, pack: 1, message: null, seasonDue: null, seasonTold: ['mia'] })
+const base = (): Family => ({ parent: 'Dana', email: 'dana@example.com', signedIn: true, kids: [ARI, MIA], kid: 'ari', club: HILLVIEW, freeUsed: true, offered: true, balance: 300, videos: [PARK, LAKESIDE, RIDGEWAY, PARKSIDE, NORTHGATE, BACKYARD, ...MIAS], open: 'g1', clip: 0, from: 'reel', stat: 'shots', film: 'f50', part: 0, both: false, anyway: false, held: null, working: null, people: PEOPLE, notify: true, families: 14, joined: false, toldJoined: false, coming: false, pack: 1, message: null, item: 'Wall ball to 20', seasonDue: null, seasonTold: ['mia'] })
 /** A parent who has just opened the app: the sample child is filled in and can be changed. */
 const brandNew = (): Family => ({ ...base(), signedIn: false, kids: [ARI], freeUsed: false, offered: false, balance: 0, videos: [], notify: false })
 const first = (state: Video['state']): Video => ({ ...RIDGEWAY, id: 'n1', credits: 0, state, film: 'f50', clips: state === 'ready' ? RIDGEWAY.clips : [] })
@@ -152,7 +157,7 @@ export const SAMPLE_OLDER = MIA
 export function addSampleOlder() { setFamily(s => s.kids.some(x => x.id === MIA.id) ? { kid: MIA.id, open: 'm1' } : { kids: [...s.kids, MIA], videos: [...s.videos, ...MIAS], kid: MIA.id, open: 'm1', clip: 0, from: 'reel' }) }
 
 const KEY = 'cs_family_v7'
-let state: Family = (() => { try { const v = JSON.parse(localStorage.getItem(KEY) ?? 'null') as Family | null; if (v?.kids?.length && v.videos && v.seasonTold) return v } catch { /* start again */ } return brandNew() })()
+let state: Family = (() => { try { const v = JSON.parse(localStorage.getItem(KEY) ?? 'null') as Family | null; if (v?.kids?.length && v.videos && v.seasonTold && v.item) return v } catch { /* start again */ } return brandNew() })()
 const subs = new Set<() => void>()
 export function setFamily(patch: Partial<Family> | ((f: Family) => Partial<Family>)) { state = { ...state, ...(typeof patch === 'function' ? patch(state) : patch) }; try { localStorage.setItem(KEY, JSON.stringify(state)) } catch { /* kept for this visit only */ } subs.forEach(f => f()) }
 export const useFamily = (): Family => useSyncExternalStore(f => { subs.add(f); return () => { subs.delete(f) } }, () => state, () => state)
@@ -164,8 +169,8 @@ const FIXTURES: [string, string][] = [['v Ridgeway', 'Sun 14 June'], ['v Kingswa
 export function spend(filmId: string, credits: number, free = false): string {
   const f = film(filmId), id = `n${Date.now()}`, s = state
   const [title, date] = f.short ? [f.title, 'Today'] : FIXTURES.find(([t, d]) => !s.videos.some(v => v.kid === s.kid && v.title === t && v.date === d)) ?? [f.title, 'Today']
-  const v: Video = { id, kid: s.kid, title, date, day: date === 'Today' ? 'Today' : 'Sunday', state: 'working', film: filmId, minutes: s.part ? f.minutes / 2 : f.minutes, clips: [], credits: free ? 0 : credits, maybe: outcome(f, s.joined) === 'maybe', both: s.both, added: 0 }
-  setFamily({ balance: s.balance - (free ? 0 : credits), videos: [v, ...s.videos], working: id, open: id, clip: 0, from: 'reel', held: null, part: false, both: false, anyway: false, ...(free ? { freeUsed: true } : {}) }); return id
+  const v: Video = { id, kid: s.kid, title, date, day: date === 'Today' ? 'Today' : 'Sunday', state: 'working', film: filmId, minutes: s.part || f.minutes, clips: [], credits: free ? 0 : credits, maybe: outcome(f, s.joined) === 'maybe', both: s.both, added: 0 }
+  setFamily({ balance: s.balance - (free ? 0 : credits), videos: [v, ...s.videos], working: id, open: id, clip: 0, from: 'reel', held: null, part: 0, both: false, anyway: false, ...(free ? { freeUsed: true } : {}) }); return id
 }
 /** The work has finished. After a good check, too few moments for a reel and the credits return by themselves. After a maybe, they stay used. */
 export function finish(id: string): { made: boolean; back: number } {
