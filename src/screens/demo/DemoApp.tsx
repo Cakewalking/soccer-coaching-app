@@ -2562,7 +2562,7 @@ export default function DemoApp() {
 
   // Clean Sheet Family as the parent left it: the address is the page, so a refresh, Back and Forward all keep their place.
   if (view === 'family' && screen) {
-    return <div style={{ minHeight: '100vh' }}><FamilyApp page={screen} onPage={setScreen} /></div>
+    return <div style={{ minHeight: '100dvh' }}><FamilyApp page={screen} onPage={setScreen} /></div>
   }
 
   if (view === 'notfound') {

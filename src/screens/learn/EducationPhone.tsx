@@ -15,7 +15,7 @@ import { P_ITEMS, byTitle, familyDid, item, maySend, shown, teamAge, useClub, ty
 const SPARK = 'M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z'
 const round: React.CSSProperties = { flex: 'none', width: 44, height: 44, borderRadius: 999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 0, cursor: 'pointer', boxSizing: 'border-box' }
 const card: React.CSSProperties = { background: '#fff', border: `1px solid ${LINE}`, borderRadius: 14, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 6 }
-const phone: React.CSSProperties = { width: 390, minHeight: 844, margin: '0 auto', background: '#f7f8f7', color: INK, fontFamily: "'DM Sans',system-ui,sans-serif", display: 'flex', flexDirection: 'column' }
+const phone: React.CSSProperties = { width: '100%', maxWidth: 430, minHeight: '100dvh', margin: '0 auto', background: '#f7f8f7', color: INK, fontFamily: "'DM Sans',system-ui,sans-serif", display: 'flex', flexDirection: 'column' }
 const wideBtn = (primary: boolean): React.CSSProperties => ({ flex: 1, minHeight: 48, borderRadius: 12, border: primary ? 0 : `1px solid ${LINE}`, background: primary ? G : '#fff', color: primary ? '#fff' : INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' })
 const lower = (t: string) => t.charAt(0).toLowerCase() + t.slice(1)
 /** The four chips on a family's library, and what each asks of a clip. */
