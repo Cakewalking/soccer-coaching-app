@@ -10,7 +10,7 @@ import { G, INK, MUT, LINE, PALE } from '../capture/marks'
 import LearnPlayer, { Thumb } from '../learn/LearnPlayer'
 import EducationPhone from '../learn/EducationPhone'
 import { byTitle } from '../learn/library'
-import { CHECK, CLUBS, FILMS, KINDS, OFFER_AT, PACKS, RATES, SAMPLE_OLDER, SHOW_COUNT_AT, STAT, aboutGames, addSampleOlder, ageOf, clockOf, familyNow, film, finish, freshFamily, fullGames, named, ord, outcome, preset, priceOf, quote, reelOf, secsOf, setFamily, showsStats, spend, tagged, useFamily, type Clip, type Family, type Kind, type StatKey, type Video } from './familyStore'
+import { CHECK, CLUBS, HOWS, KINDS, MAX_MINUTES, OFFER_AT, PACKS, RATES, SAMPLE_OLDER, SHOW_COUNT_AT, STAT, aboutGames, addSampleOlder, ageOf, clockOf, familyNow, film, filmId, finish, freshFamily, fullGames, howOf, named, ord, outcome, preset, priceOf, quote, reelOf, secsOf, setFamily, showsStats, spend, tagged, useFamily, type Clip, type Family, type Kind, type StatKey, type Video } from './familyStore'
 
 const HAIR = '#e9eae8', GREY = '#8d9290', NIGHT = '#10211f', DEEP = '#1c3a33', MINT = '#cfe6dc', SOFT = '#a9cfc0'
 const phone: React.CSSProperties = { width: 390, minHeight: 844, margin: '0 auto', boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: "'DM Sans',system-ui,sans-serif", display: 'flex', flexDirection: 'column', position: 'relative' }
@@ -87,6 +87,7 @@ export default function FamilyApp({ start, onNav }: { start?: string; onNav?: (s
   const [q, setQ] = useState(start === 'FAM2c-PickClub' ? 'Hillv' : ''), [lost, setLost] = useState<{ name: string; place: string } | null>(null)
   const [extra, setExtra] = useState<{ name: string; year: string } | null>(null)   // a child being added from the account
   const [tick, setTick] = useState<{ id: string; n: number }>({ id: '', n: 0 }), [up, setUp] = useState(34)
+  const [len, setLen] = useState<number | null>(null)   // the sample video's length, while its slider is being dragged
   const [at, setAt] = useState(36 * 60 + 40), [what, setWhat] = useState('A goal'), [stopped, setStopped] = useState(false)
   const say = (m: string) => { setToast(m); setTimeout(() => setToast(t => t === m ? null : t), 3600) }
   const he = kid.he ? 'he' : 'she', him = kid.he ? 'him' : 'her', his = kid.he ? 'his' : 'her', age = ageOf(kid.year), numbers = showsStats(kid.year)
@@ -130,7 +131,7 @@ export default function FamilyApp({ start, onNav }: { start?: string; onNav?: (s
     if (view !== 'FAM7-Working' || !wid) return
     const count = { n: begun }
     const id = setInterval(() => { count.n += 1; const n = count.n; setTick({ id: wid, n }); if (n < 6) return
-      clearInterval(id); const r = finish(wid); setView(r.made ? 'FAM8r-Reveal' : 'FAM8x-TooFew'); top() }, 1000)
+      clearInterval(id); const r = finish(wid), kept = familyNow().videos.find(x => x.id === wid)?.clips.length; setView(r.made ? 'FAM8r-Reveal' : kept ? 'FAM8x-TooFew' : 'FAM3-Home'); top(); if (!r.made && !kept) setToast(`We could not find a moment in that one, so your ${r.back} credits are back.`) }, 1000)
     return () => clearInterval(id)
   }, [view, wid, begun, setView])
   // the upload carries on while the parent says who to look for
@@ -385,7 +386,12 @@ export default function FamilyApp({ start, onNav }: { start?: string; onNav?: (s
   if (['FAM5-Check', 'FAM5b-Maybe', 'FAM5x-CantRead', 'FAM5n-NotEnough', 'FAM5c-ClubFilmedThis'].includes(v)) {
     const fm = film(f.film), o = outcome(fm, f.joined), price = f.held?.film === fm.id ? f.held.credits : priceOf(fm, f.joined, f.both, f.part), whole = priceOf(fm, f.joined && o !== 'maybe', false, false), mins = f.part ? fm.minutes / 2 : fm.minutes
     const other = f.kids.find(x => x.id !== kid.id)
-    const pick = demo('choose a sample video', <div role="radiogroup" aria-label="Sample video" style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>{FILMS.filter(x => f.joined || !x.clubFilmed).map(x => <button key={x.id} role="radio" aria-checked={x.id === fm.id} onClick={() => pickFilm(x.id)} style={{ minHeight: 44, padding: '0 12px', borderRadius: 10, border: x.id === fm.id ? `2px solid ${INK}` : `1px solid ${LINE}`, background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, color: INK, textAlign: 'left', cursor: 'pointer' }}>{x.label}</button>)}</div>)
+    const how = howOf(fm.id), shownLen = len ?? fm.minutes, setFilm = (h: typeof how, m: number) => { setLen(null); setFamily({ film: filmId(h, m), part: false, both: false, anyway: false, held: null }); setView(checkOf(familyNow())) }
+    const pick = demo('the sample video', <>
+      <label style={{ display: 'flex', flexDirection: 'column', gap: 2 }}><span style={{ display: 'flex', justifyContent: 'space-between', fontSize: 14 }}><strong>How long it is</strong><strong>{shownLen} {shownLen === 1 ? 'minute' : 'minutes'} · {quote(shownLen, f.both ? 2 : 1, f.joined)} credits in full</strong></span>
+        <input type="range" aria-label="How long the video is, in minutes" min={1} max={MAX_MINUTES} step={1} value={shownLen} onChange={e => setLen(Number(e.target.value))} onPointerUp={() => len !== null && setFilm(how, len)} onKeyUp={() => len !== null && setFilm(how, len)} onBlur={() => len !== null && setFilm(how, len)} style={{ width: '100%', height: 44, accentColor: G }} /></label>
+      <strong style={{ fontSize: 14 }}>How it was filmed</strong>
+      <div role="radiogroup" aria-label="How it was filmed" style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>{HOWS.filter(x => f.joined || x[0] !== 'club').map(([h, label]) => <button key={h} role="radio" aria-checked={h === how} onClick={() => { setFilm(h, shownLen); top() }} style={{ minHeight: 44, padding: '0 12px', borderRadius: 10, border: h === how ? `2px solid ${INK}` : `1px solid ${LINE}`, background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, color: INK, textAlign: 'left', cursor: 'pointer' }}>{label}</button>)}</div></>)
     const another = () => pickFilm('f50'), later = () => { setFamily({ held: null, part: false, both: false }); go('FAM3-Home') }
     const use = () => { spend(fm.id, price); setView('FAM7-Working'); top() }
     if (v === 'FAM5c-ClubFilmedThis') return shell(v, head('Add a video', 'Your club filmed this one', 'FAM14-HomeWithClub'), <>

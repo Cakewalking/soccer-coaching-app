@@ -7,7 +7,7 @@ import { useSyncExternalStore } from 'react'
 // ── The rate table. A video's cost follows the work: change a number here and every quote and example follows. ──
 export const RATES = { perMinute: 1.6, secondChild: 30, /** parent filming after the club joins */ joinedFactor: 0.5, /** "about N full games" is the balance over one game of this length */ usualMinutes: 50, /** a short video, for the example on the credits page */ shortMinutes: 10, quoteHoldsHours: 24 }
 /** The check's thresholds, and what a reel needs. */
-export const CHECK = { /** the play must be followable for this share of the video */ readableShare: 1 / 3, /** child in shot for fewer minutes of a full game than this is a maybe */ minInShot: 10, /** a video this long or longer needs three moments for a reel; a shorter one needs one */ fullFrom: 20, minClips: 3, minClipsShort: 1, /** stats come only from a full game */ statsFrom: 40, /** missed moments a parent may add to one video */ missed: 3, missedDays: 30 }
+export const CHECK = { /** the play must be followable for this share of the video */ readableShare: 1 / 3, /** child in shot for fewer minutes of a full game than this is a maybe */ minInShot: 10, /** and of a short video, for less than this share of it */ shortShare: 0.3, /** a video this long or longer needs three moments for a reel; a shorter one needs one */ fullFrom: 20, minClips: 3, minClipsShort: 1, /** stats come only from a full game */ statsFrom: 40, /** missed moments a parent may add to one video */ missed: 3, missedDays: 30 }
 export const PACKS: { credits: number; price: number; extra: number }[] = [{ credits: 160, price: 10, extra: 0 }, { credits: 440, price: 25, extra: 40 }, { credits: 960, price: 50, extra: 160 }]
 export const quote = (minutes: number, children = 1, joined = false) => Math.round((minutes * RATES.perMinute + (children - 1) * RATES.secondChild) * (joined ? RATES.joinedFactor : 1))
 export const aboutGames = (balance: number, joined = false) => Math.floor(balance / quote(RATES.usualMinutes, 1, joined))
@@ -56,22 +56,29 @@ export const tagged = (l: Clip[]) => l.filter(c => c.tag).length
 
 // ── Sample videos a parent can "choose". The check reads each one differently. ──
 export type Film = { id: string; label: string; title: string; minutes: number; /** a short video: the check says only whether the child can be seen */ short?: boolean; readable: number; inShot: number; /** moments the check expects, and what the work then finds */ moments: number; found: number; /** the minutes around the child that a maybe would work on */ around?: number; /** in shot, as it turned out */ actual?: number; /** the phone's own check, before upload */ phone?: [string, string, boolean][]; /** why it could not be read */ fail?: [string, string, boolean][]; /** the club's camera already covered it */ clubFilmed?: boolean }
-export const FILMS: Film[] = [
-  { id: 'f50', label: '50 minutes, filmed well', title: 'v Ridgeway', minutes: 50, readable: 38, inShot: 24, moments: 5, found: 5 },
-  { id: 'f90', label: '90 minutes, filmed well', title: 'v Ridgeway', minutes: 90, readable: 71, inShot: 44, moments: 7, found: 7 },
-  { id: 'park', label: 'Ten minutes at the park', title: 'At the park', minutes: 10, short: true, readable: 9, inShot: 8, moments: 2, found: 2 },
-  { id: 'maybe', label: '50 minutes, child mostly out of shot', title: 'v Ridgeway', minutes: 50, readable: 31, inShot: 6, moments: 2, found: 1, around: 15 },
-  { id: 'thin', label: '50 minutes, fewer moments than it looked', title: 'v Ridgeway', minutes: 50, readable: 36, inShot: 12, moments: 3, found: 1, actual: 6 },
-  { id: 'bad', label: 'Upright and shaky', title: 'v Ridgeway', minutes: 50, readable: 6, inShot: 2, moments: 0, found: 0, phone: [['Filmed upright', 'We see a thin strip of the pitch', false], ['Moves a lot', 'Hard to follow one player', false], ['Light and sharpness are fine', '', true]], fail: [['The phone was upright', 'Sideways shows much more of the pitch', false], ['It moved a lot', 'Lean on a fence or use a small stand', false], ['The light was fine', '', true]] },
-  { id: 'club', label: 'Sunday’s game, which the club filmed', title: 'v Ridgeway', minutes: 50, readable: 38, inShot: 24, moments: 5, found: 5, clubFilmed: true },
-]
-export const film = (id: string) => FILMS.find(f => f.id === id) ?? FILMS[0]
+/** How a sample video was filmed. The length is the parent's to choose: any number of minutes. */
+export type How = 'well' | 'out' | 'thin' | 'bad' | 'club'
+export const HOWS: [How, string][] = [['well', 'Filmed well'], ['out', 'Child mostly out of shot'], ['thin', 'Fewer moments than it looked'], ['bad', 'Upright and shaky'], ['club', 'The club filmed this game']]
+export const MAX_MINUTES = 90
+const OLD: Record<string, string> = { f50: 'well:50', f90: 'well:90', park: 'well:10', maybe: 'out:50', thin: 'thin:50', bad: 'bad:50', club: 'club:50' }
+export const filmId = (how: How, minutes: number) => `${how}:${Math.max(1, Math.min(MAX_MINUTES, Math.round(minutes)))}`
+/** A sample video of any length. What the check reads follows from its length and how it was filmed. */
+export function film(id: string): Film {
+  const [h, n] = (OLD[id] ?? id).split(':'), how = (HOWS.some(x => x[0] === h) ? h : 'well') as How, m = Math.max(1, Math.min(MAX_MINUTES, Number(n) || 50)), short = m < CHECK.fullFrom, r = (x: number) => Math.max(1, Math.round(m * x))
+  const most = short ? (m < 8 ? 1 : 2) : Math.max(CHECK.minClips, Math.min(7, Math.round(m / 10)))
+  const base = { id: filmId(how, m), label: HOWS.find(x => x[0] === how)![1], title: short ? `A ${m}-minute video` : 'v Ridgeway', minutes: m, short: short || undefined }
+  if (how === 'out') return { ...base, readable: r(0.62), inShot: r(0.12), moments: Math.min(2, most), found: 1, around: Math.max(2, Math.round(m * 0.3)) }
+  if (how === 'thin') return { ...base, readable: r(0.72), inShot: short ? r(0.6) : Math.max(CHECK.minInShot, r(0.24)), moments: most, found: short ? 0 : 1, actual: r(0.12) }
+  if (how === 'bad') return { ...base, readable: Math.round(m * 0.12), inShot: Math.round(m * 0.04), moments: 0, found: 0, phone: [['Filmed upright', 'We see a thin strip of the pitch', false], ['Moves a lot', 'Hard to follow one player', false], ['Light and sharpness are fine', '', true]], fail: [['The phone was upright', 'Sideways shows much more of the pitch', false], ['It moved a lot', 'Lean on a fence or use a small stand', false], ['The light was fine', '', true]] }
+  return { ...base, readable: r(0.76), inShot: short ? r(0.8) : Math.max(CHECK.minInShot, r(0.48)), moments: most, found: most, clubFilmed: how === 'club' || undefined }
+}
+export const howOf = (id: string) => ((OLD[id] ?? id).split(':')[0]) as How
 export type Outcome = 'club' | 'no' | 'maybe' | 'good'
 /** The check's three outcomes, and the fourth for a game the club's camera already has. */
 export function outcome(f: Film, joined: boolean): Outcome {
   if (joined && f.clubFilmed) return 'club'
   if (f.readable < f.minutes * CHECK.readableShare) return 'no'
-  if ((!f.short && f.inShot < CHECK.minInShot) || f.moments < (f.short ? CHECK.minClipsShort : CHECK.minClips)) return 'maybe'
+  if (f.inShot < (f.short ? f.minutes * CHECK.shortShare : CHECK.minInShot) || f.moments < (f.short ? CHECK.minClipsShort : CHECK.minClips)) return 'maybe'
   return 'good'
 }
 /** What a video costs: a maybe is quoted on the stretches around the child, and a parent may use just half. */

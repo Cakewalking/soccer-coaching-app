@@ -19,7 +19,7 @@ Build: the commit that adds this file. 44 phone screens and the club's web page,
 
 - **A fourth tour panel, `FAMt4-Tour`** (Booker, 20 Nov: a screen in the start-up flow about the club signing up and what it gives the parent). "Better still with your club." with four benefits. It is not in the pack, so the wording is not from a board, and it sets aside the rule of nothing about the club in the first run. "Upload my first video" moves to it from panel three.
 
-A test of 83 checks covers v7's "done means" and these, and passes.
+A test of 85 checks covers v7's "done means" and these, and passes.
 
 ## Done means (v7's list)
 
@@ -62,7 +62,7 @@ All 379 controls in `FAMILY-APP-REPORT.csv` were pressed on a local production b
 
 ## Stubs
 
-- **The video.** There is no picker or upload. The first run uses one sample (50 minutes, filmed well); the upload strip counts up by itself. Afterwards a dashed "Demo" box on the check chooses a sample: 50 minutes, 90 minutes, ten minutes at the park, child mostly out of shot (a maybe), fewer moments than it looked (credits return), upright and shaky (the phone's warning, then a no), and, after the club joins, the game the club filmed.
+- **The video.** There is no picker or upload. The first run uses one sample (50 minutes, filmed well); the upload strip counts up by itself. Afterwards a dashed "Demo" box on the check sets the sample (Booker, 20 Nov: a slider, not a list): **any length from 1 to 90 minutes**, and how it was filmed: well, child mostly out of shot (a maybe), fewer moments than it looked (credits return), upright and shaky (the phone's warning, then a no), and, after the club joins, the game the club filmed. The quote and what the check reads follow from the two. Under 20 minutes is read as a short video.
 - **The analysis.** "About 20 minutes" takes six seconds: the ring fills and clips appear. Clips, reels and stats are sample data.
 - **Sign-up, sign-in, the purchase, the share sheet, notification permission.** Each does its step and says its line.
 - **The directory of clubs** is a sample of seven. "I can’t find it" takes a name and suburb and holds the family as unmatched, with no count.
