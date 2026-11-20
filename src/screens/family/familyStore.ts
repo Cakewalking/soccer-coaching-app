@@ -98,6 +98,7 @@ export type Family = {
   people: Person[]; notify: boolean
   /** families at the same club, the club's state, and whether "your club has joined" has been shown */ families: number; joined: boolean; toldJoined: boolean; coming: boolean
   pack: number; message: string | null
+  /** "three games in": the child it is due for, and the children it has been shown for (once each) */ seasonDue: string | null; seasonTold: string[]
 }
 const ARI: Kid = { id: 'ari', name: 'Ari', year: 2015, he: true, colour: 'red', number: '7' }, MIA: Kid = { id: 'mia', name: 'Mia', year: 2012, he: false, colour: 'red', number: '11' }
 const HILLVIEW: Club = { name: 'Hillview FC', place: 'Hillview, Victoria' }
@@ -111,12 +112,12 @@ const BACKYARD = vid('g5', 'ari', 'Backyard', 'Sat 23 May', [], { state: 'unread
 const FUTSAL = vid('g6', 'ari', 'Wednesday futsal', 'Wed 17 June', [k('look', 4), k('turn', 11), k('pass', 19), k('pass', 26)], { minutes: 30, credits: 24, note: 'your phone' })
 const MIAS: Video[] = [
   vid('m1', 'mia', 'v Eastbank', 'Sun 14 June', [{ len: '0:10', title: 'Switched the play', minute: '18th minute' }, { len: '0:12', title: 'Won it back and passed forward', minute: '52nd minute' }, k('look', 27), k('turn', 36), k('pass', 44), k('pass', 58), k('pass', 66)], { minutes: 70, credits: 112, stats: stats(70, 44, 41, 33, 27, 9, [shot('Shot, saved', 23, '0:08'), shot('Goal, left foot', 41, '0:11', true), shot('Shot, wide', 58, '0:07')], [4, 2], [5, 3]) }),
-  vid('m2', 'mia', 'v Southbank', 'Sun 7 June', [k('turn', 12), k('pass', 30), k('won', 51), k('look', 63)], { minutes: 70, credits: 112, stats: stats(70, 40, 30, 27, 21, 6, [shot('Shot, saved', 19, '0:08'), shot('Shot, wide', 47, '0:07')], [3, 1], [4, 2]) }),
+  vid('m2', 'mia', 'v Southbank', 'Sun 7 June', [k('turn', 12), k('pass', 30), k('won', 51), k('look', 63)], { minutes: 70, credits: 112, stats: stats(70, 31, 26, 21, 15, 5, [shot('Shot, saved', 19, '0:08'), shot('Shot, wide', 47, '0:07')], [3, 1], [4, 2]) }),
   vid('m3', 'mia', 'v Westfield', 'Sun 31 May', [k('look', 8), k('pass', 22), k('turn', 40), k('pass', 55)], { minutes: 70, credits: 112, stats: stats(70, 38, 27, 24, 18, 5, [shot('Shot, wide', 35, '0:07')], [2, 1], [3, 1]) }),
 ]
 const PEOPLE: Person[] = [{ name: 'Kerem', how: 'Ari’s dad · has the app', on: true }, { name: 'Nan and Pop', how: 'Watch by a private link', on: true }, { name: 'Aunty Selin', how: 'Watch by a private link', on: false }]
 /** A family a few weeks in: two children, credits, reels. */
-const base = (): Family => ({ parent: 'Dana', email: 'dana@example.com', signedIn: true, kids: [ARI, MIA], kid: 'ari', club: HILLVIEW, freeUsed: true, offered: true, balance: 240, videos: [PARK, LAKESIDE, RIDGEWAY, PARKSIDE, NORTHGATE, BACKYARD, ...MIAS], open: 'g1', clip: 0, from: 'reel', stat: 'shots', film: 'f50', part: false, both: false, anyway: false, held: null, working: null, people: PEOPLE, notify: true, families: 14, joined: false, toldJoined: false, coming: false, pack: 1, message: null })
+const base = (): Family => ({ parent: 'Dana', email: 'dana@example.com', signedIn: true, kids: [ARI, MIA], kid: 'ari', club: HILLVIEW, freeUsed: true, offered: true, balance: 240, videos: [PARK, LAKESIDE, RIDGEWAY, PARKSIDE, NORTHGATE, BACKYARD, ...MIAS], open: 'g1', clip: 0, from: 'reel', stat: 'shots', film: 'f50', part: false, both: false, anyway: false, held: null, working: null, people: PEOPLE, notify: true, families: 14, joined: false, toldJoined: false, coming: false, pack: 1, message: null, seasonDue: null, seasonTold: ['mia'] })
 /** A parent who has just opened the app: the sample child is filled in and can be changed. */
 const brandNew = (): Family => ({ ...base(), signedIn: false, kids: [ARI], freeUsed: false, offered: false, balance: 0, videos: [], notify: false })
 const first = (state: Video['state']): Video => ({ ...RIDGEWAY, id: 'n1', credits: 0, state, film: 'f50', clips: state === 'ready' ? RIDGEWAY.clips : [] })
@@ -124,6 +125,7 @@ const first = (state: Video['state']): Video => ({ ...RIDGEWAY, id: 'n1', credit
 export function preset(id: string): Family {
   const b = base(), n = brandNew(), mia: Partial<Family> = { kid: 'mia', open: 'm1' }, joined = { joined: true, toldJoined: true, videos: [FUTSAL, PARKSIDE, RIDGEWAY, NORTHGATE, ...MIAS], open: 'g6' }
   if (id === 'FAM1-Welcome' || id === 'FAM0-SignUp') return n
+  if (id === 'FAM22-ThreeGames') return { ...b, ...mia, seasonDue: 'mia', seasonTold: [] }
   if (/^FAMt\d|^FAM3e|^FAM2-|^FAM2c|^FAM5f/.test(id)) return { ...n, signedIn: true }
   if (id === 'FAM7-Working') return { ...n, signedIn: true, freeUsed: true, videos: [first('working')], working: 'n1', open: 'n1' }
   if (id === 'FAM8r-Reveal' || id === 'FAM6f-AfterFree') return { ...n, signedIn: true, freeUsed: true, videos: [first('ready')], open: 'n1' }
@@ -143,7 +145,7 @@ export const SAMPLE_OLDER = MIA
 export function addSampleOlder() { setFamily(s => s.kids.some(x => x.id === MIA.id) ? { kid: MIA.id, open: 'm1' } : { kids: [...s.kids, MIA], videos: [...s.videos, ...MIAS], kid: MIA.id, open: 'm1', clip: 0, from: 'reel' }) }
 
 const KEY = 'cs_family_v7'
-let state: Family = (() => { try { const v = JSON.parse(localStorage.getItem(KEY) ?? 'null') as Family | null; if (v?.kids?.length && v.videos) return v } catch { /* start again */ } return brandNew() })()
+let state: Family = (() => { try { const v = JSON.parse(localStorage.getItem(KEY) ?? 'null') as Family | null; if (v?.kids?.length && v.videos && v.seasonTold) return v } catch { /* start again */ } return brandNew() })()
 const subs = new Set<() => void>()
 export function setFamily(patch: Partial<Family> | ((f: Family) => Partial<Family>)) { state = { ...state, ...(typeof patch === 'function' ? patch(state) : patch) }; try { localStorage.setItem(KEY, JSON.stringify(state)) } catch { /* kept for this visit only */ } subs.forEach(f => f()) }
 export const useFamily = (): Family => useSyncExternalStore(f => { subs.add(f); return () => { subs.delete(f) } }, () => state, () => state)
@@ -169,5 +171,7 @@ export function finish(id: string): { made: boolean; back: number } {
   const clips = f.short ? [k('turn', 2), k('look', 6)].slice(0, f.found) : POOL.slice(0, f.found), full = v.minutes >= CHECK.statsFrom && !v.maybe
   const done = (x: Video): Video => ({ ...x, state: 'ready', clips, inShot: f.inShot, stats: full ? statsFor(v.minutes, f.inShot) : undefined })
   const others = v.both ? s.kids.filter(x => x.id !== v.kid).map(x => done({ ...v, id: `${id}-${x.id}`, kid: x.id, credits: 0 })) : []
-  setFamily({ working: null, open: id, clip: 0, from: 'reel', videos: [...others, ...s.videos.map(x => x.id === id ? done(x) : x)] }); return { made: true, back: 0 }
+  const videos = [...others, ...s.videos.map(x => x.id === id ? done(x) : x)]
+  const due = !s.joined && !!s.club && !s.seasonTold.includes(v.kid) && fullGames(videos.filter(x => x.kid === v.kid)).length >= 3
+  setFamily({ working: null, open: id, clip: 0, from: 'reel', videos, ...(due ? { seasonDue: v.kid } : {}) }); return { made: true, back: 0 }
 }
