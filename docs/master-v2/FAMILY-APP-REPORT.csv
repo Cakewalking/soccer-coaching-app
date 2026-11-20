@@ -1,182 +1,366 @@
 control id,screen,control,does,target or line,status: works / line of text only / missing / wrong target (say where)
-FAM1-Welcome#1,FAM1-Welcome,I have an account,Says,Sign-in opens.,works
-FAM1-Welcome#2,FAM1-Welcome,Get started,Opens,FAM2-AddChild,works
+FAM0-SignUp#1,FAM0-SignUp,Back,Opens,FAM1-Welcome,works
+FAM0-SignUp#2,FAM0-SignUp,Continue with Apple,Opens,FAMt1-Tour,works
+FAM0-SignUp#3,FAM0-SignUp,Continue with Google,Opens,FAMt1-Tour,works
+FAM0-SignUp#4,FAM0-SignUp,Use my email,Opens,FAMt1-Tour,works
+FAM0-SignUp#5,FAM0-SignUp,Terms,Says,The terms open.,works
+FAM0-SignUp#6,FAM0-SignUp,How we handle your film,Opens,FAM16-Privacy,works
+FAM1-Welcome#1,FAM1-Welcome,Watch a sample reel · 0:48,Says,A sample reel plays full screen: 48 seconds.,works
+FAM1-Welcome#2,FAM1-Welcome,Get startedYour first video is free,Opens,FAM0-SignUp,works
+FAM1-Welcome#3,FAM1-Welcome,I have an account,Says,Sign-in opens.,works
 FAM10-ShareFamily#1,FAM10-ShareFamily,Back,Opens,FAM8-Results,works
-FAM10-ShareFamily#2,FAM10-ShareFamily,Kerem · Ari’s dad · has the app [switch],Says,Kerem: removed.,works
-FAM10-ShareFamily#3,FAM10-ShareFamily,Nan and Pop · Watch by a private link [switch],Says,Nan and Pop: removed.,works
-FAM10-ShareFamily#4,FAM10-ShareFamily,Aunty Selin · Watch by a private link [switch],Says,Aunty Selin: invited.,works
-FAM10-ShareFamily#5,FAM10-ShareFamily,Add a family member,Says,Type a name and a mobile number or email. They get a private link.,works
-FAM10-ShareFamily#6,FAM10-ShareFamily,Cancel,Opens,FAM8-Results,works
-FAM10-ShareFamily#7,FAM10-ShareFamily,Share with 2,Says,Shared with Kerem and with Nan and Pop.,works
-FAM10-ShareFamily#8,FAM10-ShareFamily,Home,Opens,FAM3-Home,works
-FAM10-ShareFamily#9,FAM10-ShareFamily,Games,Opens,FAM8-Results,works
-FAM10-ShareFamily#10,FAM10-ShareFamily,Learn,Opens,ECp1-FamilyLibrary,works
-FAM10-ShareFamily#11,FAM10-ShareFamily,Club,Opens,FAM11-Locked,works
+FAM10-ShareFamily#2,FAM10-ShareFamily,DB,Opens,FAM19-Account,works
+FAM10-ShareFamily#3,FAM10-ShareFamily,Kerem · Ari’s dad · has the app [switch],Says,Kerem: removed.,works
+FAM10-ShareFamily#4,FAM10-ShareFamily,Nan and Pop · Watch by a private link [switch],Says,Nan and Pop: removed.,works
+FAM10-ShareFamily#5,FAM10-ShareFamily,Aunty Selin · Watch by a private link [switch],Says,Aunty Selin: invited.,works
+FAM10-ShareFamily#6,FAM10-ShareFamily,Add a family member,Says,Type a name and a mobile number or email. They get a private link.,works
+FAM10-ShareFamily#7,FAM10-ShareFamily,Cancel,Opens,FAM8-Results,works
+FAM10-ShareFamily#8,FAM10-ShareFamily,Share with 2,Says,Shared with Kerem and with Nan and Pop.,works
+FAM10-ShareFamily#9,FAM10-ShareFamily,Home,Opens,FAM3-Home,works
+FAM10-ShareFamily#10,FAM10-ShareFamily,Reels,Opens,FAM18-Reels,works
+FAM10-ShareFamily#11,FAM10-ShareFamily,Learn,Opens,FAM17-Learn,works
+FAM10-ShareFamily#12,FAM10-ShareFamily,Club,Opens,FAM11-Locked,works
+FAM10v-FamilyLink#1,FAM10v-FamilyLink,Play,Says,"Plays here, in the page. Tap again to pause.",works
+FAM10v-FamilyLink#2,FAM10v-FamilyLink,Play,Says,"Plays here, in the page.","works, different line: Plays here, in the page. Tap again to pause."
+FAM10v-FamilyLink#3,FAM10v-FamilyLink,Reel,Says,Jumps to: Reel.,works
+FAM10v-FamilyLink#4,FAM10v-FamilyLink,Best,Says,Jumps to: Best.,works
+FAM10v-FamilyLink#5,FAM10v-FamilyLink,Captions [switch],Says,Captions off. They are on by default.,works
+FAM10v-FamilyLink#6,FAM10v-FamilyLink,Full screen,Says,Full screen.,works
+FAM10v-FamilyLink#7,FAM10v-FamilyLink,Stop sending me these,Says,"Done. Dana is told you have left, and the link no longer works.",works
+FAM10v-FamilyLink#8,FAM10v-FamilyLink,What is this?,Says,A short page about Clean Sheet Family opens.,works
 FAM11-Locked#1,FAM11-Locked,Back,Opens,FAM3-Home,works
-FAM11-Locked#2,FAM11-Locked,What the club sees,Opens,FAMc1-ClubInterest,works
-FAM11-Locked#3,FAM11-Locked,Tell my club,Opens,FAM12-TellClub,works
-FAM11-Locked#4,FAM11-Locked,Home,Opens,FAM3-Home,works
-FAM11-Locked#5,FAM11-Locked,Games,Opens,FAM8-Results,works
-FAM11-Locked#6,FAM11-Locked,Learn,Opens,ECp1-FamilyLibrary,works
-FAM11-Locked#7,FAM11-Locked,Club,Opens,FAM11-Locked,works
+FAM11-Locked#2,FAM11-Locked,DB,Opens,FAM19-Account,works
+FAM11-Locked#3,FAM11-Locked,What the club sees,Opens,FAMc1-ClubInterest,works
+FAM11-Locked#4,FAM11-Locked,Tell my club,Opens,FAM12-TellClub,works
+FAM11-Locked#5,FAM11-Locked,Home,Opens,FAM3-Home,works
+FAM11-Locked#6,FAM11-Locked,Reels,Opens,FAM18-Reels,works
+FAM11-Locked#7,FAM11-Locked,Learn,Opens,FAM17-Learn,works
+FAM11-Locked#8,FAM11-Locked,Club,Opens,FAM11-Locked,works
 FAM12-TellClub#1,FAM12-TellClub,Back,Opens,FAM11-Locked,works
-FAM12-TellClub#2,FAM12-TellClub,Change the wording,Says,Edit the message. It stays yours.,works
-FAM12-TellClub#3,FAM12-TellClub,Not now,Opens,FAM11-Locked,works
-FAM12-TellClub#4,FAM12-TellClub,Send it myself,Says,Your phone’s share sheet opens with the message and the link.,works
-FAM12-TellClub#5,FAM12-TellClub,Home,Opens,FAM3-Home,works
-FAM12-TellClub#6,FAM12-TellClub,Games,Opens,FAM8-Results,works
-FAM12-TellClub#7,FAM12-TellClub,Learn,Opens,ECp1-FamilyLibrary,works
-FAM12-TellClub#8,FAM12-TellClub,Club,Opens,FAM11-Locked,works
-FAM13-ClubJoined#1,FAM13-ClubJoined,Later,Opens,FAM14-HomeWithClub,works
-FAM13-ClubJoined#2,FAM13-ClubJoined,Answer the club’s questions,Says,Three questions from Hillview FC about film and sharing.,works
-FAM14-HomeWithClub#1,FAM14-HomeWithClub,Ari is coming,Says,Luke can see Ari is coming.,works
-FAM14-HomeWithClub#2,FAM14-HomeWithClub,From Luke,Opens,ECp1-FamilyLibrary,works
-FAM14-HomeWithClub#3,FAM14-HomeWithClub,0:36 · · Sunday futsal · 4 moments · Sun 14 June · your phone,Opens,FAM8-Results,works
-FAM14-HomeWithClub#4,FAM14-HomeWithClub,0:39 · · v Parkside · 4 moments · Sat 6 June · before the club joined,Opens,FAM8-Results,works
-FAM14-HomeWithClub#5,FAM14-HomeWithClub,Add a game · half the credits,Opens,FAM5-Check,works
-FAM14-HomeWithClub#6,FAM14-HomeWithClub,240 · credits · about 3 games · · Get more,Opens,FAM6-Credits,"works; the strip reads “about 6 games” once the club has joined (credits go twice as far), so the check could not match “about 3”"
-FAM14-HomeWithClub#7,FAM14-HomeWithClub,Home,Opens,FAM3-Home,"works; this is Home after the club has joined, so it stays here"
-FAM14-HomeWithClub#8,FAM14-HomeWithClub,Games,Opens,FAM8-Results,works
-FAM14-HomeWithClub#9,FAM14-HomeWithClub,Learn,Opens,ECp1-FamilyLibrary,works
-FAM14-HomeWithClub#10,FAM14-HomeWithClub,Club,Opens,FAM11-Locked,"opens FAM13-ClubJoined on purpose: once the club has joined, the Club tab shows what changed, not what is locked"
+FAM12-TellClub#2,FAM12-TellClub,DB,Opens,FAM19-Account,works
+FAM12-TellClub#3,FAM12-TellClub,Change the wording,Says,Edit the message. It stays yours.,works
+FAM12-TellClub#4,FAM12-TellClub,Not now,Opens,FAM11-Locked,works
+FAM12-TellClub#5,FAM12-TellClub,Send it myself,Says,Your phone’s share sheet opens with the message and the link.,works
+FAM12-TellClub#6,FAM12-TellClub,Home,Opens,FAM3-Home,works
+FAM12-TellClub#7,FAM12-TellClub,Reels,Opens,FAM18-Reels,works
+FAM12-TellClub#8,FAM12-TellClub,Learn,Opens,FAM17-Learn,works
+FAM12-TellClub#9,FAM12-TellClub,Club,Opens,FAM11-Locked,works
+FAM13-ClubJoined#1,FAM13-ClubJoined,DB,Opens,FAM19-Account,works
+FAM13-ClubJoined#2,FAM13-ClubJoined,Later,Opens,FAM14-HomeWithClub,works
+FAM13-ClubJoined#3,FAM13-ClubJoined,Answer the club’s questions,Says,Three questions from Hillview FC about film and sharing.,works
+FAM14-HomeWithClub#1,FAM14-HomeWithClub,DB,Opens,FAM19-Account,works
+FAM14-HomeWithClub#2,FAM14-HomeWithClub,Ari is coming,Says,Luke can see Ari is coming.,works
+FAM14-HomeWithClub#3,FAM14-HomeWithClub,From Luke,Opens,ECp1-FamilyLibrary,works
+FAM14-HomeWithClub#4,FAM14-HomeWithClub,0:36 · · Wednesday futsal · 4 moments · Wed 17 June · your phone,Opens,FAM8-Results,works
+FAM14-HomeWithClub#5,FAM14-HomeWithClub,0:39 · · v Parkside · 4 moments · Sun 7 June · before the club joined,Opens,FAM8-Results,works
+FAM14-HomeWithClub#6,FAM14-HomeWithClub,Add a video · half the credits,Opens,FAM5-Check,works
+FAM14-HomeWithClub#7,FAM14-HomeWithClub,240 · credits · about 3 full games · · Get more,Opens,FAM6-Credits,missing
+FAM14-HomeWithClub#8,FAM14-HomeWithClub,Home,Opens,FAM3-Home,opens nothing new
+FAM14-HomeWithClub#9,FAM14-HomeWithClub,Reels,Opens,FAM18-Reels,works
+FAM14-HomeWithClub#10,FAM14-HomeWithClub,Learn,Opens,FAM17-Learn,works
+FAM14-HomeWithClub#11,FAM14-HomeWithClub,Club,Opens,FAM11-Locked,opens FAM13-ClubJoined
+FAM15-Children#1,FAM15-Children,Back,Opens,FAM19-Account,works
+FAM15-Children#2,FAM15-Children,DB,Opens,FAM19-Account,works
+FAM15-Children#3,FAM15-Children,A · Ari · Born 2015 · Hillview FC · 3 reels,Says,"Ari: change name, birth year, club or shirt.",works
+FAM15-Children#4,FAM15-Children,M · Mia · Born 2012 · Hillview FC · 1 reel,Says,"Mia: change name, birth year, club or shirt.",missing
+FAM15-Children#5,FAM15-Children,Add a child,Opens,FAM2-AddChild,works
+FAM15-Children#6,FAM15-Children,Home,Opens,FAM3-Home,works
+FAM15-Children#7,FAM15-Children,Reels,Opens,FAM18-Reels,works
+FAM15-Children#8,FAM15-Children,Learn,Opens,FAM17-Learn,works
+FAM15-Children#9,FAM15-Children,Club,Opens,FAM11-Locked,works
 FAM16-Privacy#1,FAM16-Privacy,Back,Opens,FAM3-Home,works
-FAM16-Privacy#2,FAM16-Privacy,Get a copy of everything,Says,A copy of everything we hold is emailed to you within a day.,works
-FAM16-Privacy#3,FAM16-Privacy,Delete everything,Says,"Sheet opens: delete all games, clips and your child’s details? This cannot be undone.",works
-FAM16-Privacy#4,FAM16-Privacy,Close my account,Says,Sheet opens: unused credits are refunded when you close your account.,works
-FAM16-Privacy#5,FAM16-Privacy,Home,Opens,FAM3-Home,works
-FAM16-Privacy#6,FAM16-Privacy,Games,Opens,FAM8-Results,works
-FAM16-Privacy#7,FAM16-Privacy,Learn,Opens,ECp1-FamilyLibrary,works
-FAM16-Privacy#8,FAM16-Privacy,Club,Opens,FAM11-Locked,works
-FAM2-AddChild#1,FAM2-AddChild,Back,Opens,FAM1-Welcome,works
-FAM2-AddChild#2,FAM2-AddChild,Red [radio],Says,Red: taken off.,works
-FAM2-AddChild#3,FAM2-AddChild,Blue [radio],Says,Blue: picked.,works
-FAM2-AddChild#4,FAM2-AddChild,Green [radio],Says,Green: picked.,works
-FAM2-AddChild#5,FAM2-AddChild,Yellow [radio],Says,Yellow: picked.,works
-FAM2-AddChild#6,FAM2-AddChild,White [radio],Says,White: picked.,works
-FAM2-AddChild#7,FAM2-AddChild,Black [radio],Says,Black: picked.,works
-FAM2-AddChild#8,FAM2-AddChild,Back,Opens,FAM1-Welcome,works
-FAM2-AddChild#9,FAM2-AddChild,Next,Opens,FAM4-BeforeYouFilm,works
-FAM3-Home#1,FAM3-Home,Play,Says,"Plays here, in the page. Tap again to pause.",works
-FAM3-Home#2,FAM3-Home,Play,Says,"Plays here, in the page.","works; says the fuller line “Plays here, in the page. Tap again to pause.”"
-FAM3-Home#3,FAM3-Home,Reel,Says,Jumps to: Reel.,works
-FAM3-Home#4,FAM3-Home,Best,Says,Jumps to: Best.,works
-FAM3-Home#5,FAM3-Home,Captions [switch],Says,Captions off. They are on by default.,works
-FAM3-Home#6,FAM3-Home,Full screen,Says,Full screen.,works
-FAM3-Home#7,FAM3-Home,Open,Opens,FAM8-Results,works
-FAM3-Home#8,FAM3-Home,Add a game,Opens,FAM5-Check,works
-FAM3-Home#9,FAM3-Home,240 · credits · about 3 games · · Get more,Opens,FAM6-Credits,works
-FAM3-Home#10,FAM3-Home,All 4,Opens,FAM8-Results,"different on purpose: shows all four games in the list, so the parent can pick one, instead of opening the latest"
-FAM3-Home#11,FAM3-Home,0:39 · · v Parkside · 4 moments · Sat 6 June,Opens,FAM8-Results,works
-FAM3-Home#12,FAM3-Home,0:55 · · v Northgate City · 6 moments · Sat 30 May,Opens,FAM8-Results,works
-FAM3-Home#13,FAM3-Home,"14 families at Hillview FC use this · If the club joins, there is more",Opens,FAM11-Locked,works
-FAM3-Home#14,FAM3-Home,Home,Opens,FAM3-Home,works
-FAM3-Home#15,FAM3-Home,Games,Opens,FAM8-Results,works
-FAM3-Home#16,FAM3-Home,Learn,Opens,ECp1-FamilyLibrary,works
-FAM3-Home#17,FAM3-Home,Club,Opens,FAM11-Locked,works
-FAM3e-HomeEmpty#1,FAM3e-HomeEmpty,Add a game,Opens,FAM5-Check,works
-FAM3e-HomeEmpty#2,FAM3e-HomeEmpty,0 · credits · none yet · · Get more,Opens,FAM6-Credits,works
-FAM3e-HomeEmpty#3,FAM3e-HomeEmpty,See all,Says,All of Free: play at home.,works
-FAM3e-HomeEmpty#4,FAM3e-HomeEmpty,2:00 · · Wall ball to 20 · Game · ball and wall,Opens,ECp2-FamilyItem,works
-FAM3e-HomeEmpty#5,FAM3e-HomeEmpty,0:08 · · The drag-back · Clip · just a ball,Opens,ECp2-FamilyItem,works
-FAM3e-HomeEmpty#6,FAM3e-HomeEmpty,2:00 · · Bin goal · Game,Opens,ECp2-FamilyItem,works
-FAM3e-HomeEmpty#7,FAM3e-HomeEmpty,"14 families at Hillview FC use this · If the club joins, there is more",Opens,FAM11-Locked,works
-FAM3e-HomeEmpty#8,FAM3e-HomeEmpty,Home,Opens,FAM3-Home,"works; this is Home with no games, so it stays here"
-FAM3e-HomeEmpty#9,FAM3e-HomeEmpty,Games,Opens,FAM8-Results,says “No games yet. Add one from Home.”: there is no result to open
-FAM3e-HomeEmpty#10,FAM3e-HomeEmpty,Learn,Opens,ECp1-FamilyLibrary,works
-FAM3e-HomeEmpty#11,FAM3e-HomeEmpty,Club,Opens,FAM11-Locked,works
-FAM4-BeforeYouFilm#1,FAM4-BeforeYouFilm,Back,Opens,FAM2-AddChild,works
-FAM4-BeforeYouFilm#2,FAM4-BeforeYouFilm,How we handle your film,Opens,FAM16-Privacy,works
-FAM4-BeforeYouFilm#3,FAM4-BeforeYouFilm,Show me again later,Opens,FAM3e-HomeEmpty,works
-FAM4-BeforeYouFilm#4,FAM4-BeforeYouFilm,Got it,Opens,FAM3e-HomeEmpty,works
+FAM16-Privacy#2,FAM16-Privacy,DB,Opens,FAM19-Account,works
+FAM16-Privacy#3,FAM16-Privacy,Get a copy of everything,Says,A copy of everything we hold is emailed to you within a day.,works
+FAM16-Privacy#4,FAM16-Privacy,Delete everything,Says,"Sheet opens: delete all games, clips and your child’s details? This cannot be undone.",works
+FAM16-Privacy#5,FAM16-Privacy,Close my account,Says,Sheet opens: unused credits are refunded when you close your account.,works
+FAM16-Privacy#6,FAM16-Privacy,Home,Opens,FAM3-Home,works
+FAM16-Privacy#7,FAM16-Privacy,Reels,Opens,FAM18-Reels,works
+FAM16-Privacy#8,FAM16-Privacy,Learn,Opens,FAM17-Learn,works
+FAM16-Privacy#9,FAM16-Privacy,Club,Opens,FAM11-Locked,works
+FAM17-Learn#1,FAM17-Learn,DB,Opens,FAM19-Account,works
+FAM17-Learn#2,FAM17-Learn,Ari [radio],Says,Showing Ari.,works
+FAM17-Learn#3,FAM17-Learn,Mia [radio],Says,Showing Mia.,works
+FAM17-Learn#4,FAM17-Learn,Add or change a child,Opens,FAM15-Children,works
+FAM17-Learn#5,FAM17-Learn,King of the ring · 2:30,Opens,ECp2-FamilyItem,works
+FAM17-Learn#6,FAM17-Learn,See all,Says,All of Just a ball.,works
+FAM17-Learn#7,FAM17-Learn,0:08 · · The drag-back · Clip · 0:08,Opens,ECp2-FamilyItem,works
+FAM17-Learn#8,FAM17-Learn,2:00 · · Wall ball to 20 · Game,Opens,ECp2-FamilyItem,works
+FAM17-Learn#9,FAM17-Learn,1:30 · · Toe taps and rolls · Game,Opens,ECp2-FamilyItem,works
+FAM17-Learn#10,FAM17-Learn,See all,Says,All of Warm-ups that protect you.,works
+FAM17-Learn#11,FAM17-Learn,5:00 · · Five minutes at home · Warm-up,Opens,ECp2-FamilyItem,works
+FAM17-Learn#12,FAM17-Learn,0:35 · · Jump and land softly · Warm-up,Opens,ECp2-FamilyItem,works
+FAM17-Learn#13,FAM17-Learn,0:35 · · Hop and hold · Warm-up,Opens,ECp2-FamilyItem,works
+FAM17-Learn#14,FAM17-Learn,Home,Opens,FAM3-Home,works
+FAM17-Learn#15,FAM17-Learn,Reels,Opens,FAM18-Reels,works
+FAM17-Learn#16,FAM17-Learn,Learn,Opens,FAM17-Learn,works
+FAM17-Learn#17,FAM17-Learn,Club,Opens,FAM11-Locked,works
+FAM18-Reels#1,FAM18-Reels,DB,Opens,FAM19-Account,works
+FAM18-Reels#2,FAM18-Reels,Ari [radio],Says,Showing Ari.,works
+FAM18-Reels#3,FAM18-Reels,Mia [radio],Says,Showing Mia.,works
+FAM18-Reels#4,FAM18-Reels,Add or change a child,Opens,FAM15-Children,works
+FAM18-Reels#5,FAM18-Reels,Training at the park · Today · about 6 minutes to go,Opens,FAM7-Working,works
+FAM18-Reels#6,FAM18-Reels,0:09 · · v Lakeside · 1 moment · Sun 21 June · credits returned,Opens,FAM8x-TooFew,works
+FAM18-Reels#7,FAM18-Reels,0:48 · · v Ridgeway · 5 moments · Sun 14 June,Opens,FAM8-Results,works
+FAM18-Reels#8,FAM18-Reels,0:39 · · v Parkside · 4 moments · Sun 7 June,Opens,FAM8-Results,works
+FAM18-Reels#9,FAM18-Reels,0:55 · · v Northgate City · 6 moments · Sun 31 May,Opens,FAM8-Results,works
+FAM18-Reels#10,FAM18-Reels,"Backyard · Sat 23 May · couldn’t read it, no credits used",Opens,FAM5x-CantRead,works
+FAM18-Reels#11,FAM18-Reels,Add a video,Opens,FAM5-Check,works
+FAM18-Reels#12,FAM18-Reels,Home,Opens,FAM3-Home,works
+FAM18-Reels#13,FAM18-Reels,Reels,Opens,FAM18-Reels,works
+FAM18-Reels#14,FAM18-Reels,Learn,Opens,FAM17-Learn,works
+FAM18-Reels#15,FAM18-Reels,Club,Opens,FAM11-Locked,works
+FAM19-Account#1,FAM19-Account,Back,Opens,FAM3-Home,works
+FAM19-Account#2,FAM19-Account,DB,Opens,FAM19-Account,works
+FAM19-Account#3,FAM19-Account,Your children · Ari and Mia,Opens,FAM15-Children,works
+FAM19-Account#4,FAM19-Account,Credits and receipts · · 240,Opens,FAM6-Credits,works
+FAM19-Account#5,FAM19-Account,"Family who can watch · Kerem, Nan and Pop · · 2",Opens,FAM10-ShareFamily,works
+FAM19-Account#6,FAM19-Account,Tell me when a reel is ready · · On,Says,Notifications turned off. We only ever send this one.,works
+FAM19-Account#7,FAM19-Account,"How we handle your film · Copy, delete or close your account",Opens,FAM16-Privacy,works
+FAM19-Account#8,FAM19-Account,Filming tips,Opens,FAM4-BeforeYouFilm,works
+FAM19-Account#9,FAM19-Account,"Something wrong with a reel? · Wrong child, a missed moment, a refund",Says,"Pick the reel, say what is wrong. A person replies within a day.",works
+FAM19-Account#10,FAM19-Account,Terms,Says,The terms open.,works
+FAM19-Account#11,FAM19-Account,Sign out,Opens,FAM1-Welcome,works
+FAM19-Account#12,FAM19-Account,Home,Opens,FAM3-Home,works
+FAM19-Account#13,FAM19-Account,Reels,Opens,FAM18-Reels,works
+FAM19-Account#14,FAM19-Account,Learn,Opens,FAM17-Learn,works
+FAM19-Account#15,FAM19-Account,Club,Opens,FAM11-Locked,works
+FAM2-AddChild#1,FAM2-AddChild,Back,Opens,FAM3e-HomeEmpty,works
+FAM2-AddChild#2,FAM2-AddChild,DB,Opens,FAM19-Account,works
+FAM2-AddChild#3,FAM2-AddChild,"Hillview FC · Hillview, Victoria · · Change",Opens,FAM2c-PickClub,works
+FAM2-AddChild#4,FAM2-AddChild,Find Ari’s moments,Opens,FAM5f-CheckFree,works
+FAM20-GameStats#1,FAM20-GameStats,Back,Opens,FAM18-Reels,works
+FAM20-GameStats#2,FAM20-GameStats,DB,Opens,FAM19-Account,works
+FAM20-GameStats#3,FAM20-GameStats,Reel [radio],Opens,FAM8b-Results13,works
+FAM20-GameStats#4,FAM20-GameStats,Stats [radio],Opens,FAM20-GameStats,works
+FAM20-GameStats#5,FAM20-GameStats,27 · of 33 · · · Passes reached a team-mate · 9 of them went forward,Opens,FAM21-StatClips,works
+FAM20-GameStats#6,FAM20-GameStats,3 · · · · Shots · 1 goal,Opens,FAM21-StatClips,works
+FAM20-GameStats#7,FAM20-GameStats,4 · · · · Took a player on · 2 came off,Opens,FAM21-StatClips,works
+FAM20-GameStats#8,FAM20-GameStats,5 · · · · Won the ball back · 3 in the other half,Opens,FAM21-StatClips,works
+FAM20-GameStats#9,FAM20-GameStats,Home,Opens,FAM3-Home,opens FAM3m-HomeStats
+FAM20-GameStats#10,FAM20-GameStats,Reels,Opens,FAM18-Reels,works
+FAM20-GameStats#11,FAM20-GameStats,Learn,Opens,FAM17-Learn,works
+FAM20-GameStats#12,FAM20-GameStats,Club,Opens,FAM11-Locked,works
+FAM21-StatClips#1,FAM21-StatClips,Back,Opens,FAM20-GameStats,works
+FAM21-StatClips#2,FAM21-StatClips,DB,Opens,FAM19-Account,works
+FAM21-StatClips#3,FAM21-StatClips,Play,Says,"Plays here, in the page. Tap again to pause.",works
+FAM21-StatClips#4,FAM21-StatClips,Play,Says,"Plays here, in the page.","works, different line: Plays here, in the page. Tap again to pause."
+FAM21-StatClips#5,FAM21-StatClips,"1, ",Says,Jumps to: 1.,missing
+FAM21-StatClips#6,FAM21-StatClips,"2, ",Says,Jumps to: 2.,missing
+FAM21-StatClips#7,FAM21-StatClips,"3, ",Says,Jumps to: 3.,missing
+FAM21-StatClips#8,FAM21-StatClips,Captions [switch],Says,Captions off. They are on by default.,works
+FAM21-StatClips#9,FAM21-StatClips,Full screen,Says,Full screen.,works
+FAM21-StatClips#10,FAM21-StatClips,"0:08 · · Shot, saved · 23rd minute",Opens,FAM9-Clip,works
+FAM21-StatClips#11,FAM21-StatClips,"0:11 · · Goal, left foot · 41st minute",Opens,FAM9-Clip,works
+FAM21-StatClips#12,FAM21-StatClips,"0:07 · · Shot, wide · 58th minute",Opens,FAM9-Clip,works
+FAM21-StatClips#13,FAM21-StatClips,We missed one,Opens,FAM9a-AddMoment,works
+FAM21-StatClips#14,FAM21-StatClips,One of these isn’t a shot,Says,Thanks. That clip is removed and the number changes to 2.,works
+FAM21-StatClips#15,FAM21-StatClips,Home,Opens,FAM3-Home,opens FAM3m-HomeStats
+FAM21-StatClips#16,FAM21-StatClips,Reels,Opens,FAM18-Reels,works
+FAM21-StatClips#17,FAM21-StatClips,Learn,Opens,FAM17-Learn,works
+FAM21-StatClips#18,FAM21-StatClips,Club,Opens,FAM11-Locked,works
+FAM2c-PickClub#1,FAM2c-PickClub,Back,Opens,FAM2-AddChild,works
+FAM2c-PickClub#2,FAM2c-PickClub,DB,Opens,FAM19-Account,works
+FAM2c-PickClub#3,FAM2c-PickClub,Clear,Says,Search cleared.,works
+FAM2c-PickClub#4,FAM2c-PickClub,"Hillview FC · Hillview, Victoria · 2 km away [radio]",Opens,FAM2-AddChild,works
+FAM2c-PickClub#5,FAM2c-PickClub,"Hillview Heights SC · Hillview Heights, Victoria · 9 km away · uses Clean Sheet [radio]",Opens,FAM2-AddChild,works
+FAM2c-PickClub#6,FAM2c-PickClub,"Hillvale United · Hillvale, New South Wales [radio]",Opens,FAM2-AddChild,works
+FAM2c-PickClub#7,FAM2c-PickClub,"Hillview Futsal Club · Hillview, Victoria · futsal [radio]",Opens,FAM2-AddChild,works
+FAM2c-PickClub#8,FAM2c-PickClub,I can’t find it,Says,"Type the club’s name and suburb. We check it and add it to the list, usually within a day.",works
+FAM2c-PickClub#9,FAM2c-PickClub,Ari isn’t at a club,Opens,FAM2-AddChild,works
+FAM3-Home#1,FAM3-Home,DB,Opens,FAM19-Account,works
+FAM3-Home#2,FAM3-Home,Ari [radio],Says,Showing Ari.,works
+FAM3-Home#3,FAM3-Home,Mia [radio],Says,Showing Mia.,works
+FAM3-Home#4,FAM3-Home,Add or change a child,Opens,FAM15-Children,works
+FAM3-Home#5,FAM3-Home,LATEST REEL · Ari v Ridgeway · 5 moments · Sun 14 June · 0:48,Opens,FAM8-Results,works
+FAM3-Home#6,FAM3-Home,Turned away from a defender · · · · 5,Opens,FAM9-Clip,works
+FAM3-Home#7,FAM3-Home,Looked up before the ball came · · · · 4,Opens,FAM9-Clip,works
+FAM3-Home#8,FAM3-Home,Passed and moved · · · · 4,Opens,FAM9-Clip,works
+FAM3-Home#9,FAM3-Home,Won it back · · · · 2,Opens,FAM9-Clip,works
+FAM3-Home#10,FAM3-Home,Add a video,Opens,FAM5-Check,works
+FAM3-Home#11,FAM3-Home,240 credits · about 3 full games,Opens,FAM6-Credits,works
+FAM3-Home#12,FAM3-Home,14 families · at Hillview FC use this,Opens,FAM11-Locked,works
+FAM3-Home#13,FAM3-Home,Home,Opens,FAM3-Home,works
+FAM3-Home#14,FAM3-Home,Reels,Opens,FAM18-Reels,works
+FAM3-Home#15,FAM3-Home,Learn,Opens,FAM17-Learn,works
+FAM3-Home#16,FAM3-Home,Club,Opens,FAM11-Locked,works
+FAM3e-HomeEmpty#1,FAM3e-HomeEmpty,DB,Opens,FAM19-Account,works
+FAM3e-HomeEmpty#2,FAM3e-HomeEmpty,"Upload a video · A game, training or a kickabout · Your first one is free",Opens,FAM2-AddChild,works
+FAM3e-HomeEmpty#3,FAM3e-HomeEmpty,Filming tips,Opens,FAM4-BeforeYouFilm,works
+FAM3e-HomeEmpty#4,FAM3e-HomeEmpty,Watch a sample reel,Says,A sample reel plays full screen: 48 seconds.,works
+FAM3m-HomeStats#1,FAM3m-HomeStats,DB,Opens,FAM19-Account,works
+FAM3m-HomeStats#2,FAM3m-HomeStats,Ari [radio],Says,Showing Ari.,works
+FAM3m-HomeStats#3,FAM3m-HomeStats,Mia [radio],Says,Showing Mia.,works
+FAM3m-HomeStats#4,FAM3m-HomeStats,Add or change a child,Opens,FAM15-Children,works
+FAM3m-HomeStats#5,FAM3m-HomeStats,LATEST REEL · Mia v Eastbank · 7 moments · Sun 14 June · 1:06,Opens,FAM8b-Results13,works
+FAM3m-HomeStats#6,FAM3m-HomeStats,41 · times on the ball · · 27/33 · passes reached · · 3 · shots · 1 goal,Opens,FAM20-GameStats,works
+FAM3m-HomeStats#7,FAM3m-HomeStats,Add a video,Opens,FAM5-Check,works
+FAM3m-HomeStats#8,FAM3m-HomeStats,240 credits · about 3 full games,Opens,FAM6-Credits,works
+FAM3m-HomeStats#9,FAM3m-HomeStats,Home,Opens,FAM3-Home,opens nothing new
+FAM3m-HomeStats#10,FAM3m-HomeStats,Reels,Opens,FAM18-Reels,works
+FAM3m-HomeStats#11,FAM3m-HomeStats,Learn,Opens,FAM17-Learn,works
+FAM3m-HomeStats#12,FAM3m-HomeStats,Club,Opens,FAM11-Locked,works
+FAM4-BeforeYouFilm#1,FAM4-BeforeYouFilm,Back,Opens,FAM3e-HomeEmpty,opens FAM3-Home
+FAM4-BeforeYouFilm#2,FAM4-BeforeYouFilm,DB,Opens,FAM19-Account,works
+FAM4-BeforeYouFilm#3,FAM4-BeforeYouFilm,How we handle your film,Opens,FAM16-Privacy,works
+FAM4-BeforeYouFilm#4,FAM4-BeforeYouFilm,Got it,Opens,FAM3e-HomeEmpty,opens FAM3-Home
 FAM5-Check#1,FAM5-Check,Back,Opens,FAM3-Home,works
-FAM5-Check#2,FAM5-Check,"That’s Ari, red 7 · change",Says,Tap the player who is Ari. We follow that shirt for the whole game.,works
-FAM5-Check#3,FAM5-Check,Not now,Opens,FAM3-Home,works
-FAM5-Check#4,FAM5-Check,Use 80 credits,Opens,FAM7-Working,works
-FAM5-Check#5,FAM5-Check,Home,Opens,FAM3-Home,works
-FAM5-Check#6,FAM5-Check,Games,Opens,FAM8-Results,works
-FAM5-Check#7,FAM5-Check,Learn,Opens,ECp1-FamilyLibrary,works
-FAM5-Check#8,FAM5-Check,Club,Opens,FAM11-Locked,works
+FAM5-Check#2,FAM5-Check,DB,Opens,FAM19-Account,works
+FAM5-Check#3,FAM5-Check,"That’s Ari, red 7 · change",Says,Tap the player who is Ari. We follow that shirt for the whole game.,works
+FAM5-Check#4,FAM5-Check,Not now,Opens,FAM3-Home,works
+FAM5-Check#5,FAM5-Check,Use 80 credits,Opens,FAM7-Working,works
+FAM5-Check#6,FAM5-Check,Home,Opens,FAM3-Home,works
+FAM5-Check#7,FAM5-Check,Reels,Opens,FAM18-Reels,works
+FAM5-Check#8,FAM5-Check,Learn,Opens,FAM17-Learn,works
+FAM5-Check#9,FAM5-Check,Club,Opens,FAM11-Locked,works
+FAM5b-Maybe#1,FAM5b-Maybe,Back,Opens,FAM3-Home,works
+FAM5b-Maybe#2,FAM5b-Maybe,DB,Opens,FAM19-Account,works
+FAM5b-Maybe#3,FAM5b-Maybe,Not now,Opens,FAM3-Home,works
+FAM5b-Maybe#4,FAM5b-Maybe,Go ahead · 24 credits,Opens,FAM7-Working,works
+FAM5b-Maybe#5,FAM5b-Maybe,Home,Opens,FAM3-Home,works
+FAM5b-Maybe#6,FAM5b-Maybe,Reels,Opens,FAM18-Reels,works
+FAM5b-Maybe#7,FAM5b-Maybe,Learn,Opens,FAM17-Learn,works
+FAM5b-Maybe#8,FAM5b-Maybe,Club,Opens,FAM11-Locked,works
 FAM5c-ClubFilmedThis#1,FAM5c-ClubFilmedThis,Back,Opens,FAM14-HomeWithClub,works
-FAM5c-ClubFilmedThis#2,FAM5c-ClubFilmedThis,Add a different game,Opens,FAM5-Check,works
-FAM5c-ClubFilmedThis#3,FAM5c-ClubFilmedThis,See Ari’s moments,Opens,FAM14-HomeWithClub,works
-FAM5c-ClubFilmedThis#4,FAM5c-ClubFilmedThis,Home,Opens,FAM3-Home,works; Home after the club has joined is FAM14-HomeWithClub
-FAM5c-ClubFilmedThis#5,FAM5c-ClubFilmedThis,Games,Opens,FAM8-Results,works
-FAM5c-ClubFilmedThis#6,FAM5c-ClubFilmedThis,Learn,Opens,ECp1-FamilyLibrary,works
-FAM5c-ClubFilmedThis#7,FAM5c-ClubFilmedThis,Club,Opens,FAM11-Locked,"opens FAM13-ClubJoined on purpose: once the club has joined, the Club tab shows what changed, not what is locked"
+FAM5c-ClubFilmedThis#2,FAM5c-ClubFilmedThis,DB,Opens,FAM19-Account,works
+FAM5c-ClubFilmedThis#3,FAM5c-ClubFilmedThis,Add a different video,Opens,FAM5-Check,works
+FAM5c-ClubFilmedThis#4,FAM5c-ClubFilmedThis,See Ari’s moments,Opens,FAM14-HomeWithClub,works
+FAM5c-ClubFilmedThis#5,FAM5c-ClubFilmedThis,Home,Opens,FAM3-Home,opens FAM14-HomeWithClub
+FAM5c-ClubFilmedThis#6,FAM5c-ClubFilmedThis,Reels,Opens,FAM18-Reels,works
+FAM5c-ClubFilmedThis#7,FAM5c-ClubFilmedThis,Learn,Opens,FAM17-Learn,works
+FAM5c-ClubFilmedThis#8,FAM5c-ClubFilmedThis,Club,Opens,FAM11-Locked,opens FAM13-ClubJoined
+FAM5f-CheckFree#1,FAM5f-CheckFree,Back,Opens,FAM2-AddChild,works
+FAM5f-CheckFree#2,FAM5f-CheckFree,Find Ari’s momentsAbout 20 minutes,Opens,FAM7-Working,works
+FAM5n-NotEnough#1,FAM5n-NotEnough,Back,Opens,FAM3-Home,works
+FAM5n-NotEnough#2,FAM5n-NotEnough,DB,Opens,FAM19-Account,works
+FAM5n-NotEnough#3,FAM5n-NotEnough,"Get 160 credits · Covers this video, with 120 left · · $10",Opens,FAM6-Credits,works
+FAM5n-NotEnough#4,FAM5n-NotEnough,Use just part of it · One half is 40 credits,Says,"Pick the part you want. The first half is 40 credits, which you have.",works
+FAM5n-NotEnough#5,FAM5n-NotEnough,Not now,Opens,FAM3-Home,works
+FAM5n-NotEnough#6,FAM5n-NotEnough,Get 160 · $10,Says,Paid through your app store. 160 credits added. Back to your video.,works
+FAM5n-NotEnough#7,FAM5n-NotEnough,Home,Opens,FAM3-Home,works
+FAM5n-NotEnough#8,FAM5n-NotEnough,Reels,Opens,FAM18-Reels,works
+FAM5n-NotEnough#9,FAM5n-NotEnough,Learn,Opens,FAM17-Learn,works
+FAM5n-NotEnough#10,FAM5n-NotEnough,Club,Opens,FAM11-Locked,works
+FAM5p-PhoneCheck#1,FAM5p-PhoneCheck,Back,Opens,FAM3-Home,works
+FAM5p-PhoneCheck#2,FAM5p-PhoneCheck,Pick another video,Says,Your phone’s video picker opens.,works
+FAM5p-PhoneCheck#3,FAM5p-PhoneCheck,Upload this one anyway,Opens,FAM5b-Maybe,opens FAM5x-CantRead
 FAM5x-CantRead#1,FAM5x-CantRead,Back,Opens,FAM3-Home,works
-FAM5x-CantRead#2,FAM5x-CantRead,Filming tips,Opens,FAM4-BeforeYouFilm,works
-FAM5x-CantRead#3,FAM5x-CantRead,Try another film,Opens,FAM5-Check,works
-FAM5x-CantRead#4,FAM5x-CantRead,Home,Opens,FAM3-Home,works
-FAM5x-CantRead#5,FAM5x-CantRead,Games,Opens,FAM8-Results,works
-FAM5x-CantRead#6,FAM5x-CantRead,Learn,Opens,ECp1-FamilyLibrary,works
-FAM5x-CantRead#7,FAM5x-CantRead,Club,Opens,FAM11-Locked,works
+FAM5x-CantRead#2,FAM5x-CantRead,DB,Opens,FAM19-Account,works
+FAM5x-CantRead#3,FAM5x-CantRead,Filming tips,Opens,FAM4-BeforeYouFilm,works
+FAM5x-CantRead#4,FAM5x-CantRead,Try another video,Opens,FAM5-Check,works
+FAM5x-CantRead#5,FAM5x-CantRead,Home,Opens,FAM3-Home,works
+FAM5x-CantRead#6,FAM5x-CantRead,Reels,Opens,FAM18-Reels,works
+FAM5x-CantRead#7,FAM5x-CantRead,Learn,Opens,FAM17-Learn,works
+FAM5x-CantRead#8,FAM5x-CantRead,Club,Opens,FAM11-Locked,works
 FAM6-Credits#1,FAM6-Credits,Back,Opens,FAM3-Home,works
-FAM6-Credits#2,FAM6-Credits,160 credits · About 2 games · · $10 [radio],Says,160 credits picked.,works
-FAM6-Credits#3,FAM6-Credits,440 credits · About 5 games · 40 extra · · $25 [radio],Says,440 credits picked.,works
-FAM6-Credits#4,FAM6-Credits,960 credits · About 12 games · 160 extra · · $50 [radio],Says,960 credits picked.,works
-FAM6-Credits#5,FAM6-Credits,Buy 440 for $25,Says,Paid through your app store. 440 credits added.,works
-FAM6-Credits#6,FAM6-Credits,Home,Opens,FAM3-Home,works
-FAM6-Credits#7,FAM6-Credits,Games,Opens,FAM8-Results,works
-FAM6-Credits#8,FAM6-Credits,Learn,Opens,ECp1-FamilyLibrary,works
-FAM6-Credits#9,FAM6-Credits,Club,Opens,FAM11-Locked,works
-FAM7-Working#1,FAM7-Working,Back,Opens,FAM3-Home,works
-FAM7-Working#2,FAM7-Working,See all,Says,All of While you wait: play at home.,works
-FAM7-Working#3,FAM7-Working,"2:00 · · Look, then touch · Game · with a partner",Opens,ECp2-FamilyItem,works
-FAM7-Working#4,FAM7-Working,0:09 · · Inside of the foot · Clip · ball and wall,Opens,ECp2-FamilyItem,works
-FAM7-Working#5,FAM7-Working,2:00 · · Wall ball to 20 · Game,Opens,ECp2-FamilyItem,works
-FAM7-Working#6,FAM7-Working,Home,Opens,FAM3-Home,works
-FAM7-Working#7,FAM7-Working,Games,Opens,FAM8-Results,works
-FAM7-Working#8,FAM7-Working,Learn,Opens,ECp1-FamilyLibrary,works
-FAM7-Working#9,FAM7-Working,Club,Opens,FAM11-Locked,works
+FAM6-Credits#2,FAM6-Credits,DB,Opens,FAM19-Account,works
+FAM6-Credits#3,FAM6-Credits,160 credits · About 2 full games · · $10 [radio],Says,160 credits picked.,works
+FAM6-Credits#4,FAM6-Credits,440 credits · About 5 full games · 40 extra · · $25 [radio],Says,440 credits picked.,works
+FAM6-Credits#5,FAM6-Credits,960 credits · About 12 full games · 160 extra · · $50 [radio],Says,960 credits picked.,works
+FAM6-Credits#6,FAM6-Credits,Buy 440 for $25,Says,Paid through your app store. 440 credits added.,works
+FAM6-Credits#7,FAM6-Credits,Home,Opens,FAM3-Home,works
+FAM6-Credits#8,FAM6-Credits,Reels,Opens,FAM18-Reels,works
+FAM6-Credits#9,FAM6-Credits,Learn,Opens,FAM17-Learn,works
+FAM6-Credits#10,FAM6-Credits,Club,Opens,FAM11-Locked,works
+FAM6f-AfterFree#1,FAM6f-AfterFree,Not now,Opens,FAM3-Home,works
+FAM6f-AfterFree#2,FAM6f-AfterFree,160 credits · About 2 full games · · $10 [radio],Says,160 credits picked.,works
+FAM6f-AfterFree#3,FAM6f-AfterFree,440 credits · About 5 full games · 40 extra · · $25 [radio],Says,440 credits picked.,works
+FAM6f-AfterFree#4,FAM6f-AfterFree,960 credits · About 12 full games · 160 extra · · $50 [radio],Says,960 credits picked.,works
+FAM6f-AfterFree#5,FAM6f-AfterFree,Get 440 credits · $25,Says,Paid through your app store. 440 credits added.,works
+FAM7-Working#1,FAM7-Working,Tell me when it’s ready,Says,"Your phone asks to allow notifications. We send one when the reel is ready, and nothing else.",works
 FAM8-Results#1,FAM8-Results,Back,Opens,FAM3-Home,works
-FAM8-Results#2,FAM8-Results,Play,Says,"Plays here, in the page. Tap again to pause.",works
-FAM8-Results#3,FAM8-Results,Play,Says,"Plays here, in the page.","works; says the fuller line “Plays here, in the page. Tap again to pause.”"
-FAM8-Results#4,FAM8-Results,Reel,Says,Jumps to: Reel.,works
-FAM8-Results#5,FAM8-Results,Best,Says,Jumps to: Best.,works
-FAM8-Results#6,FAM8-Results,Captions [switch],Says,Captions off. They are on by default.,works
-FAM8-Results#7,FAM8-Results,Full screen,Says,Full screen.,works
-FAM8-Results#8,FAM8-Results,0:09 · · Looked up before the ball came · 14th minute,Opens,FAM9-Clip,works
-FAM8-Results#9,FAM8-Results,0:11 · · Turned away from a defender · 22nd minute,Opens,FAM9-Clip,works
-FAM8-Results#10,FAM8-Results,0:08 · · Passed and moved · 31st minute,Opens,FAM9-Clip,works
-FAM8-Results#11,FAM8-Results,2 more,Opens,FAM9-Clip,works
-FAM8-Results#12,FAM8-Results,Open,Opens,ECp2-FamilyItem,works
-FAM8-Results#13,FAM8-Results,Share with family,Opens,FAM10-ShareFamily,works
-FAM8-Results#14,FAM8-Results,Save the reel,Says,Saved to your phone. Other players stay blurred in the saved film.,works
-FAM8-Results#15,FAM8-Results,Home,Opens,FAM3-Home,works
-FAM8-Results#16,FAM8-Results,Games,Opens,FAM8-Results,works
-FAM8-Results#17,FAM8-Results,Learn,Opens,ECp1-FamilyLibrary,works
-FAM8-Results#18,FAM8-Results,Club,Opens,FAM11-Locked,works
-FAM8b-Results13#1,FAM8b-Results13,Back,Opens,FAM3-Home,works
-FAM8b-Results13#2,FAM8b-Results13,Play,Says,"Plays here, in the page. Tap again to pause.",works
-FAM8b-Results13#3,FAM8b-Results13,Play,Says,"Plays here, in the page.","works; says the fuller line “Plays here, in the page. Tap again to pause.”"
-FAM8b-Results13#4,FAM8b-Results13,Reel,Says,Jumps to: Reel.,works
-FAM8b-Results13#5,FAM8b-Results13,Best,Says,Jumps to: Best.,works
-FAM8b-Results13#6,FAM8b-Results13,Captions [switch],Says,Captions off. They are on by default.,works
-FAM8b-Results13#7,FAM8b-Results13,Full screen,Says,Full screen.,works
-FAM8b-Results13#8,FAM8b-Results13,0:10 · · Switched the play · 18th minute,Opens,FAM9-Clip,works
-FAM8b-Results13#9,FAM8b-Results13,0:12 · · Won it back and passed forward · 52nd minute,Opens,FAM9-Clip,works
-FAM8b-Results13#10,FAM8b-Results13,Share with family,Opens,FAM10-ShareFamily,works
-FAM8b-Results13#11,FAM8b-Results13,Save the reel,Says,Saved to your phone. Other players stay blurred in the saved film.,works
-FAM8b-Results13#12,FAM8b-Results13,Home,Opens,FAM3-Home,works
-FAM8b-Results13#13,FAM8b-Results13,Games,Opens,FAM8-Results,"works; the results page for a child of 13 or over is this one, so it stays here"
-FAM8b-Results13#14,FAM8b-Results13,Learn,Opens,ECp1-FamilyLibrary,works
-FAM8b-Results13#15,FAM8b-Results13,Club,Opens,FAM11-Locked,works
+FAM8-Results#2,FAM8-Results,DB,Opens,FAM19-Account,works
+FAM8-Results#3,FAM8-Results,Play,Says,"Plays here, in the page. Tap again to pause.",works
+FAM8-Results#4,FAM8-Results,Play,Says,"Plays here, in the page.","works, different line: Plays here, in the page. Tap again to pause."
+FAM8-Results#5,FAM8-Results,Reel,Says,Jumps to: Reel.,works
+FAM8-Results#6,FAM8-Results,Best,Says,Jumps to: Best.,works
+FAM8-Results#7,FAM8-Results,Captions [switch],Says,Captions off. They are on by default.,works
+FAM8-Results#8,FAM8-Results,Full screen,Says,Full screen.,works
+FAM8-Results#9,FAM8-Results,0:09 · · Looked up before the ball came · 14th minute,Opens,FAM9-Clip,works
+FAM8-Results#10,FAM8-Results,0:11 · · Turned away from a defender · 22nd minute,Opens,FAM9-Clip,works
+FAM8-Results#11,FAM8-Results,0:08 · · Passed and moved · 31st minute,Opens,FAM9-Clip,works
+FAM8-Results#12,FAM8-Results,2 more,Opens,FAM9-Clip,works
+FAM8-Results#13,FAM8-Results,Missed a moment?,Opens,FAM9a-AddMoment,works
+FAM8-Results#14,FAM8-Results,Save to phone,Says,Saved to your phone. Other players stay blurred in the saved film.,works
+FAM8-Results#15,FAM8-Results,Open,Opens,ECp2-FamilyItem,works
+FAM8-Results#16,FAM8-Results,Share with family,Opens,FAM10-ShareFamily,works
+FAM8-Results#17,FAM8-Results,Done,Opens,FAM6f-AfterFree,opens FAM3-Home
+FAM8-Results#18,FAM8-Results,Home,Opens,FAM3-Home,works
+FAM8-Results#19,FAM8-Results,Reels,Opens,FAM18-Reels,works
+FAM8-Results#20,FAM8-Results,Learn,Opens,FAM17-Learn,works
+FAM8-Results#21,FAM8-Results,Club,Opens,FAM11-Locked,works
+FAM8b-Results13#1,FAM8b-Results13,Back,Opens,FAM18-Reels,works
+FAM8b-Results13#2,FAM8b-Results13,DB,Opens,FAM19-Account,works
+FAM8b-Results13#3,FAM8b-Results13,Reel [radio],Opens,FAM8b-Results13,works
+FAM8b-Results13#4,FAM8b-Results13,Stats [radio],Opens,FAM20-GameStats,works
+FAM8b-Results13#5,FAM8b-Results13,Play,Says,"Plays here, in the page. Tap again to pause.",works
+FAM8b-Results13#6,FAM8b-Results13,Play,Says,"Plays here, in the page.","works, different line: Plays here, in the page. Tap again to pause."
+FAM8b-Results13#7,FAM8b-Results13,Reel,Says,Jumps to: Reel.,line of text only
+FAM8b-Results13#8,FAM8b-Results13,Best,Says,Jumps to: Best.,works
+FAM8b-Results13#9,FAM8b-Results13,Captions [switch],Says,Captions off. They are on by default.,works
+FAM8b-Results13#10,FAM8b-Results13,Full screen,Says,Full screen.,works
+FAM8b-Results13#11,FAM8b-Results13,MIA’S GAME IN NUMBERS · 41 · on the ball · · 27 · passes · · 3 · shots · · · · See all,Opens,FAM20-GameStats,works
+FAM8b-Results13#12,FAM8b-Results13,0:10 · · Switched the play · 18th minute,Opens,FAM9-Clip,works
+FAM8b-Results13#13,FAM8b-Results13,0:12 · · Won it back and passed forward · 52nd minute,Opens,FAM9-Clip,works
+FAM8b-Results13#14,FAM8b-Results13,Share with family,Opens,FAM10-ShareFamily,works
+FAM8b-Results13#15,FAM8b-Results13,Save the reel,Says,Saved to your phone. Other players stay blurred in the saved film.,works
+FAM8b-Results13#16,FAM8b-Results13,Home,Opens,FAM3-Home,opens FAM3m-HomeStats
+FAM8b-Results13#17,FAM8b-Results13,Reels,Opens,FAM18-Reels,works
+FAM8b-Results13#18,FAM8b-Results13,Learn,Opens,FAM17-Learn,works
+FAM8b-Results13#19,FAM8b-Results13,Club,Opens,FAM11-Locked,works
+FAM8r-Reveal#1,FAM8r-Reveal,Play the reel,Opens,FAM8-Results,works
+FAM8r-Reveal#2,FAM8r-Reveal,Watch it,Opens,FAM8-Results,works
+FAM8r-Reveal#3,FAM8r-Reveal,Share with family,Opens,FAM10-ShareFamily,works
+FAM8x-TooFew#1,FAM8x-TooFew,Back,Opens,FAM3-Home,works
+FAM8x-TooFew#2,FAM8x-TooFew,DB,Opens,FAM19-Account,works
+FAM8x-TooFew#3,FAM8x-TooFew,0:09 · · Ran with the ball into space · 19th minute,Opens,FAM9-Clip,works
+FAM8x-TooFew#4,FAM8x-TooFew,Add a moment,Opens,FAM9a-AddMoment,works
+FAM8x-TooFew#5,FAM8x-TooFew,Done,Opens,FAM3-Home,works
+FAM8x-TooFew#6,FAM8x-TooFew,Home,Opens,FAM3-Home,works
+FAM8x-TooFew#7,FAM8x-TooFew,Reels,Opens,FAM18-Reels,works
+FAM8x-TooFew#8,FAM8x-TooFew,Learn,Opens,FAM17-Learn,works
+FAM8x-TooFew#9,FAM8x-TooFew,Club,Opens,FAM11-Locked,works
 FAM9-Clip#1,FAM9-Clip,Back,Opens,FAM8-Results,works
-FAM9-Clip#2,FAM9-Clip,Play,Says,"Plays here, in the page. Tap again to pause.",works
-FAM9-Clip#3,FAM9-Clip,Play,Says,"Plays here, in the page.","works; says the fuller line “Plays here, in the page. Tap again to pause.”"
-FAM9-Clip#4,FAM9-Clip,Clip,Says,Jumps to: Clip.,works
-FAM9-Clip#5,FAM9-Clip,Slow,Says,Jumps to: Slow.,works
-FAM9-Clip#6,FAM9-Clip,Captions [switch],Says,Captions off. They are on by default.,works
-FAM9-Clip#7,FAM9-Clip,Full screen,Says,Full screen.,works
-FAM9-Clip#8,FAM9-Clip,That’s not Ari,Says,Thanks. This clip is removed and we look again for Ari. No extra credits.,works
-FAM9-Clip#9,FAM9-Clip,Delete this clip,Says,Clip deleted from your account.,works
-FAM9-Clip#10,FAM9-Clip,Next clip,Opens,FAM9-Clip,works
-FAM9-Clip#11,FAM9-Clip,Share with family,Opens,FAM10-ShareFamily,works
-FAM9-Clip#12,FAM9-Clip,Home,Opens,FAM3-Home,works
-FAM9-Clip#13,FAM9-Clip,Games,Opens,FAM8-Results,works
-FAM9-Clip#14,FAM9-Clip,Learn,Opens,ECp1-FamilyLibrary,works
-FAM9-Clip#15,FAM9-Clip,Club,Opens,FAM11-Locked,works
+FAM9-Clip#2,FAM9-Clip,DB,Opens,FAM19-Account,works
+FAM9-Clip#3,FAM9-Clip,Play,Says,"Plays here, in the page. Tap again to pause.",works
+FAM9-Clip#4,FAM9-Clip,Play,Says,"Plays here, in the page.","works, different line: Plays here, in the page. Tap again to pause."
+FAM9-Clip#5,FAM9-Clip,Clip,Says,Jumps to: Clip.,works
+FAM9-Clip#6,FAM9-Clip,Slow,Says,Jumps to: Slow.,works
+FAM9-Clip#7,FAM9-Clip,Captions [switch],Says,Captions off. They are on by default.,works
+FAM9-Clip#8,FAM9-Clip,Full screen,Says,Full screen.,works
+FAM9-Clip#9,FAM9-Clip,That’s not Ari,Says,Thanks. This clip is removed and we look again for Ari. No extra credits.,works
+FAM9-Clip#10,FAM9-Clip,Delete this clip,Says,Clip deleted from your account.,works
+FAM9-Clip#11,FAM9-Clip,Next clip,Opens,FAM9-Clip,works
+FAM9-Clip#12,FAM9-Clip,Share with family,Opens,FAM10-ShareFamily,works
+FAM9-Clip#13,FAM9-Clip,Home,Opens,FAM3-Home,works
+FAM9-Clip#14,FAM9-Clip,Reels,Opens,FAM18-Reels,works
+FAM9-Clip#15,FAM9-Clip,Learn,Opens,FAM17-Learn,works
+FAM9-Clip#16,FAM9-Clip,Club,Opens,FAM11-Locked,works
+FAM9a-AddMoment#1,FAM9a-AddMoment,Back,Opens,FAM8-Results,works
+FAM9a-AddMoment#2,FAM9a-AddMoment,DB,Opens,FAM19-Account,works
+FAM9a-AddMoment#3,FAM9a-AddMoment,Play,Says,"Plays here, in the page. Tap again to pause.",works
+FAM9a-AddMoment#4,FAM9a-AddMoment,Play,Says,"Plays here, in the page.","works, different line: Plays here, in the page. Tap again to pause."
+FAM9a-AddMoment#5,FAM9a-AddMoment,"0, ",Says,Jumps to: 0.,missing
+FAM9a-AddMoment#6,FAM9a-AddMoment,"25, ",Says,Jumps to: 25.,missing
+FAM9a-AddMoment#7,FAM9a-AddMoment,50 min,Says,Jumps to: 50 min.,works
+FAM9a-AddMoment#8,FAM9a-AddMoment,Captions [switch],Says,Captions off. They are on by default.,works
+FAM9a-AddMoment#9,FAM9a-AddMoment,Full screen,Says,Full screen.,works
+FAM9a-AddMoment#10,FAM9a-AddMoment,A goal [radio],Says,A goal: taken off.,works
+FAM9a-AddMoment#11,FAM9a-AddMoment,A save [radio],Says,A save: picked.,works
+FAM9a-AddMoment#12,FAM9a-AddMoment,A pass [radio],Says,A pass: picked.,works
+FAM9a-AddMoment#13,FAM9a-AddMoment,Something else [radio],Says,Something else: picked.,works
+FAM9a-AddMoment#14,FAM9a-AddMoment,Cancel,Opens,FAM8-Results,works
+FAM9a-AddMoment#15,FAM9a-AddMoment,Add this moment,Says,Added. It joins the reel in about a minute.,works
+FAM9a-AddMoment#16,FAM9a-AddMoment,Home,Opens,FAM3-Home,works
+FAM9a-AddMoment#17,FAM9a-AddMoment,Reels,Opens,FAM18-Reels,works
+FAM9a-AddMoment#18,FAM9a-AddMoment,Learn,Opens,FAM17-Learn,works
+FAM9a-AddMoment#19,FAM9a-AddMoment,Club,Opens,FAM11-Locked,works
 FAMc1-ClubInterest#1,FAMc1-ClubInterest,Look around,Opens,STA3-PickRole,works
 FAMc1-ClubInterest#2,FAMc1-ClubInterest,Talk to us,Says,"A short form: your name, your role at the club, and a time to talk.",works
 FAMc1-ClubInterest#3,FAMc1-ClubInterest,See what coaches get,Opens,STA3-PickRole,works
 FAMc1-ClubInterest#4,FAMc1-ClubInterest,Prices for clubs,Says,The price list for clubs opens.,works
+FAMt1-Tour#1,FAMt1-Tour,Skip,Opens,FAM3e-HomeEmpty,works
+FAMt1-Tour#2,FAMt1-Tour,Next,Opens,FAMt2-Tour,works
+FAMt2-Tour#1,FAMt2-Tour,Skip,Opens,FAM3e-HomeEmpty,works
+FAMt2-Tour#2,FAMt2-Tour,Next,Opens,FAMt3-Tour,works
+FAMt3-Tour#1,FAMt3-Tour,Skip,Opens,FAM3e-HomeEmpty,works
+FAMt3-Tour#2,FAMt3-Tour,Upload my first videoFree,Opens,FAM3e-HomeEmpty,works

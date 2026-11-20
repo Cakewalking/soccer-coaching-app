@@ -29,7 +29,7 @@ const chapters = (frame: Frame, secs: number, cue: string, first: string): Chapt
 
 export default function EducationPhone({ start = 'ECp1-FamilyLibrary', team, child, ini, onNav, own, show: first }: { start?: string; team?: TeamKey; child?: string; ini?: string; onNav?: (s: string) => void; /** Clean Sheet Family: no coach and no club, so the library is Clean Sheet's own items for a child of this age */ own?: { age: number; home: string }; /** the title of the item to open on */ show?: string }) {
   const player = start === 'ECp3-PlayerLibrary'
-  const k: TeamKey = team ?? (player ? 'u16' : 'u9'), t = TEAMS[k], age = own?.age ?? teamAge(k), kid = child ?? (player ? 'Mateo' : 'Ivy'), sample = !own && k === 'u9' && kid === 'Ivy'
+  const k: TeamKey = team ?? (player ? 'u16' : 'u9'), t = TEAMS[k], age = own?.age ?? teamAge(k), kid = child ?? (player ? 'Mateo' : 'Ivy'), sample = !own && k === 'u9' && kid === 'Ivy', fam = own?.home   // Clean Sheet Family: where its Learn tab is
   const club = useClub()
   const [id, setId] = useBackState(start)
   const [open, setOpen] = useBackState<string>(() => byTitle(first ?? 'Eyes up while you dribble', 'players')!.id)   // the clip ECp2 shows: an item id, or "own:n"
@@ -67,7 +67,7 @@ export default function EducationPhone({ start = 'ECp1-FamilyLibrary', team, chi
     const secs = own ? secsOf(own.len) : (i as PItem).secs, frame: Frame = own || eyes ? 'team' : 'figure', was = done.includes(open)
     return (
       <div data-screen="ECp2-FamilyItem" style={phone}>
-        {head(player ? 'Learn · your clip' : `Football at home · ${own ? 'clip' : lower((i as PItem).kind)}`, i.title, home, ini ?? (player ? 'MR' : 'DB'))}
+        {head(player ? 'Learn · your clip' : `Football at home · ${own ? 'clip' : lower((i as PItem).kind)}`, i.title, start === 'ECp2-FamilyItem' && fam ? fam : home, ini ?? (player ? 'MR' : 'DB'))}
         <div style={{ flexGrow: 1, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 10 }}>
           <LearnPlayer key={open} phone tryLabel="Try" chapters={chapters(frame, secs, eyes ? 'Watch her head' : i.title, own ? 'You' : 'Clip')} ratio="362 / 215" chips={[eyes ? 'Ivy · last Saturday' : own ? 'You · Saturday' : 'From Clean Sheet’s library']} captions={captions} onCaptions={setCaptions} say={demoToast}
             tryCard={{ heading: eyes ? 'Have a go: the numbers game' : 'Have a go', at: '', task: eyes ? 'Dribble towards a grown-up. They hold up fingers. Shout the number. Stop the ball on “freeze”.' : i.title, button: '', done: false, onAdd: () => {} }} />
@@ -78,10 +78,10 @@ export default function EducationPhone({ start = 'ECp1-FamilyLibrary', team, chi
               {[['1 · Dribble towards a grown-up', 'Ten steps'], ['2 · They hold up fingers. Shout the number', 'Five goes'], ['3 · Stop the ball on “freeze”', 'Five goes']].map(([a, b]) => <div key={a} style={{ display: 'flex', justifyContent: 'space-between', gap: 10, padding: '7px 0', borderTop: `1px solid ${LINE}`, fontSize: 14, lineHeight: '19px' }}><span>{a}</span><strong style={{ flex: 'none' }}>{b}</strong></div>)}
               <span style={{ fontSize: 13, lineHeight: '18px', color: MUT }}>You need a ball and a bit of space. Indoors works with a soft ball.</span>
             </> : <span style={{ fontSize: 14, lineHeight: '20px', color: MUT }}>{own ? 'Watch it once, then once in slow motion.' : `The game for this one is not written yet. You need: ${lower((i as PItem).you_need)}.`}</span>}
-            {!player && <span style={{ fontSize: 13, lineHeight: '18px', color: MUT }}>{own ? 'Nothing is counted and nobody is ranked.' : `Nothing is counted and nobody is ranked. If ${kid} wants ${t.coach} to know, there is a button.`}</span>}
+            {!player && <span style={{ fontSize: 13, lineHeight: '18px', color: MUT }}>{own || fam ? 'Nothing is counted and nobody is ranked.' : `Nothing is counted and nobody is ranked. If ${kid} wants ${t.coach} to know, there is a button.`}</span>}
           </section>
         </div>
-        {own ? <div style={{ flex: 'none', position: 'sticky', bottom: 0, display: 'flex', padding: '10px 14px 14px', background: '#f7f8f7', borderTop: `1px solid ${LINE}` }}><button onClick={() => go(home)} style={wideBtn(true)}>Another one</button></div> : bar(['Another one', () => go(home)], [was ? 'Done' : 'We did it', () => { if (was) { demoToast(`${t.coach} already has the tick for this clip.`); return } setDone([...done, open]); if (!own) familyDid(k, open); demoToast(player ? `Nice. ${t.coach} sees a tick for you on this clip, and nothing else.` : `Nice. ${t.coach} sees a tick for ${kid} on this clip, and nothing else.`) }])}
+        {own || fam ? <div style={{ flex: 'none', position: 'sticky', bottom: 0, display: 'flex', padding: '10px 14px 14px', background: '#f7f8f7', borderTop: `1px solid ${LINE}` }}><button onClick={() => go(start === 'ECp2-FamilyItem' && fam ? fam : home)} style={wideBtn(true)}>Another one</button></div> : bar(['Another one', () => go(home)], [was ? 'Done' : 'We did it', () => { if (was) { demoToast(`${t.coach} already has the tick for this clip.`); return } setDone([...done, open]); if (!own) familyDid(k, open); demoToast(player ? `Nice. ${t.coach} sees a tick for you on this clip, and nothing else.` : `Nice. ${t.coach} sees a tick for ${kid} on this clip, and nothing else.`) }])}
       </div>)
   }
 
