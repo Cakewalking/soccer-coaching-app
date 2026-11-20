@@ -52,13 +52,13 @@ function ChildSection({ card, onSeasonSummary, onAvailability }: { card: ChildCa
         <span style={{ width: 32, height: 32, borderRadius: '999px', background: card.color, color: '#fff', fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 'none' }}>{card.ini}</span>
         <div>
           <span style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>{card.name}</span>
-          <span style={{ fontSize: 12, color: '#6f7f7b', marginLeft: 6 }}>{card.team}</span>
+          <span style={{ fontSize: 12, color: '#5c6b67', marginLeft: 6 }}>{card.team}</span>
         </div>
         <button onClick={onSeasonSummary} style={{ marginLeft: 'auto', height: 44, padding: '0 12px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', color: '#2f6252' }}>Open</button>
       </div>
       {card.events.map((e, i) => (
         <div key={i} style={{ display: 'flex', gap: 10, padding: '6px 0', borderTop: '1px solid #e9eae8' }}>
-          <span style={{ flex: 'none', width: 32, fontSize: 12, fontWeight: 700, color: '#6f7f7b' }}>{e.day}</span>
+          <span style={{ flex: 'none', width: 32, fontSize: 12, fontWeight: 700, color: '#5c6b67' }}>{e.day}</span>
           <span style={{ fontSize: 13, color: '#10211f' }}>{e.label}</span>
         </div>
       ))}
@@ -72,7 +72,7 @@ function ChildSection({ card, onSeasonSummary, onAvailability }: { card: ChildCa
         )}
       </div>
       {card.note && (
-        <div style={{ fontSize: 12, color: '#6f7f7b', lineHeight: '17px', padding: '6px 0', borderTop: '1px solid #e9eae8' }}>{card.note}</div>
+        <div style={{ fontSize: 12, color: '#5c6b67', lineHeight: '17px', padding: '6px 0', borderTop: '1px solid #e9eae8' }}>{card.note}</div>
       )}
     </div>
   )
@@ -165,7 +165,7 @@ function SeasonSummaryView({ onBack, empty }: { onBack: () => void; empty?: bool
           ].map((s, i) => (
             <div key={i} style={{ background: '#fff', borderRadius: 14, border: '1px solid #e9eae8', padding: '12px 10px', textAlign: 'center' }}>
               <div style={{ fontSize: 18, fontWeight: 800, color: '#10211f', marginBottom: 2 }}>{s.val}</div>
-              <div style={{ fontSize: 12, color: '#6f7f7b' }}>{s.label}</div>
+              <div style={{ fontSize: 12, color: '#5c6b67' }}>{s.label}</div>
             </div>
           ))}
         </div>
@@ -196,7 +196,7 @@ function SeasonSummaryView({ onBack, empty }: { onBack: () => void; empty?: bool
           ))}
         </div>
 
-        <div style={{ fontSize: 12, color: '#6f7f7b', lineHeight: '17px', textAlign: 'center' }}>No scores, rankings or comparisons with other children.</div>
+        <div style={{ fontSize: 12, color: '#5c6b67', lineHeight: '17px', textAlign: 'center' }}>No scores, rankings or comparisons with other children.</div>
 
         {/* CTAs */}
         <button onClick={() => st('Sharing with family.')} style={{ width: '100%', height: 52, borderRadius: 14, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 16, fontWeight: 700, cursor: 'pointer' }}>Share with family</button>
@@ -223,7 +223,7 @@ function SettingsView({ onBack, onNotifications, onData }: { onBack: () => void;
       <div style={{ flexGrow: 1, overflowY: 'auto', padding: '16px 20px 32px', display: 'flex', flexDirection: 'column', gap: 12 }}>
         {/* YOU section */}
         <div style={{ background: '#fff', borderRadius: 16, border: '1px solid #e9eae8', overflow: 'hidden' }}>
-          <div style={{ padding: '10px 16px 6px', fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', color: '#6f7f7b' }}>YOU</div>
+          <div style={{ padding: '10px 16px 6px', fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', color: '#5c6b67' }}>YOU</div>
           {[
             { label: 'Linh Tran', sub: 'linh.tran@example.com · 0412 345 678' },
             { label: 'Your children', sub: 'Mia, U12 Sam · Bao, U8 Hannah' },
@@ -232,7 +232,7 @@ function SettingsView({ onBack, onNotifications, onData }: { onBack: () => void;
             <div key={i} style={{ display: 'flex', alignItems: 'center', padding: '14px 16px', borderTop: '1px solid #e9eae8', cursor: 'pointer' }}>
               <div style={{ flexGrow: 1 }}>
                 <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>{row.label}</div>
-                <div style={{ fontSize: 13, color: '#6f7f7b' }}>{row.sub}</div>
+                <div style={{ fontSize: 13, color: '#5c6b67' }}>{row.sub}</div>
               </div>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c5c8c4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
             </div>
@@ -241,7 +241,7 @@ function SettingsView({ onBack, onNotifications, onData }: { onBack: () => void;
 
         {/* THE APP section */}
         <div style={{ background: '#fff', borderRadius: 16, border: '1px solid #e9eae8', overflow: 'hidden' }}>
-          <div style={{ padding: '10px 16px 6px', fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', color: '#6f7f7b' }}>THE APP</div>
+          <div style={{ padding: '10px 16px 6px', fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', color: '#5c6b67' }}>THE APP</div>
           {[
             { label: 'Notifications', sub: 'Meet times, changes, check-in reminders', action: 'chevron', onClick: onNotifications },
             { label: "What's recorded", sub: '5 of 6 on for Mia · nothing for Bao', action: 'chevron', onClick: undefined },
@@ -251,7 +251,7 @@ function SettingsView({ onBack, onNotifications, onData }: { onBack: () => void;
             <div key={i} onClick={row.onClick} style={{ display: 'flex', alignItems: 'center', padding: '14px 16px', borderTop: '1px solid #e9eae8', cursor: row.onClick ? 'pointer' : 'default' }}>
               <div style={{ flexGrow: 1 }}>
                 <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>{row.label}</div>
-                <div style={{ fontSize: 13, color: '#6f7f7b' }}>{row.sub}</div>
+                <div style={{ fontSize: 13, color: '#5c6b67' }}>{row.sub}</div>
               </div>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c5c8c4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
             </div>
@@ -260,7 +260,7 @@ function SettingsView({ onBack, onNotifications, onData }: { onBack: () => void;
 
         {/* YOUR DATA section */}
         <div style={{ background: '#fff', borderRadius: 16, border: '1px solid #e9eae8', overflow: 'hidden' }}>
-          <div style={{ padding: '10px 16px 6px', fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', color: '#6f7f7b' }}>YOUR DATA</div>
+          <div style={{ padding: '10px 16px 6px', fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', color: '#5c6b67' }}>YOUR DATA</div>
           {[
             { label: 'Download or delete', sub: 'A copy of everything, or remove it', onClick: onData },
             { label: 'Help and privacy policy', sub: 'In plain words' },
@@ -269,7 +269,7 @@ function SettingsView({ onBack, onNotifications, onData }: { onBack: () => void;
             <div key={i} onClick={row.onClick} style={{ display: 'flex', alignItems: 'center', padding: '14px 16px', borderTop: '1px solid #e9eae8', cursor: row.onClick ? 'pointer' : 'default' }}>
               <div style={{ flexGrow: 1 }}>
                 <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>{row.label}</div>
-                {row.sub && <div style={{ fontSize: 13, color: '#6f7f7b' }}>{row.sub}</div>}
+                {row.sub && <div style={{ fontSize: 13, color: '#5c6b67' }}>{row.sub}</div>}
               </div>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c5c8c4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
             </div>
@@ -307,7 +307,7 @@ function NotificationsView({ onBack }: { onBack: () => void }) {
             <div key={i} style={{ display: 'flex', alignItems: 'center', padding: '14px 16px', borderTop: i > 0 ? '1px solid #e9eae8' : 'none' }}>
               <div style={{ flexGrow: 1 }}>
                 <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>{row.label}</div>
-                <div style={{ fontSize: 13, color: '#6f7f7b' }}>{row.sub}</div>
+                <div style={{ fontSize: 13, color: '#5c6b67' }}>{row.sub}</div>
               </div>
               {row.fixed ? (
                 <span style={{ padding: '4px 12px', borderRadius: '999px', background: '#f0f1ef', color: '#4a5a57', fontSize: 13, fontWeight: 700 }}>Always</span>
@@ -322,20 +322,20 @@ function NotificationsView({ onBack }: { onBack: () => void }) {
           <div style={{ display: 'flex', alignItems: 'center', padding: '14px 16px', cursor: 'pointer' }}>
             <div style={{ flexGrow: 1 }}>
               <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>Quiet hours</div>
-              <div style={{ fontSize: 13, color: '#6f7f7b' }}>9 pm to 7 am</div>
+              <div style={{ fontSize: 13, color: '#5c6b67' }}>9 pm to 7 am</div>
             </div>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c5c8c4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', padding: '14px 16px', borderTop: '1px solid #e9eae8' }}>
             <div style={{ flexGrow: 1 }}>
               <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>Also text me</div>
-              <div style={{ fontSize: 13, color: '#6f7f7b' }}>For changes on the day of a game</div>
+              <div style={{ fontSize: 13, color: '#5c6b67' }}>For changes on the day of a game</div>
             </div>
             <div onClick={() => toggle('text')}><Toggle on={toggles.text} /></div>
           </div>
         </div>
 
-        <div style={{ fontSize: 12, color: '#6f7f7b', lineHeight: '17px', textAlign: 'center' }}>A head knock or a cancelled game always reaches you, whatever you choose here.</div>
+        <div style={{ fontSize: 12, color: '#5c6b67', lineHeight: '17px', textAlign: 'center' }}>A head knock or a cancelled game always reaches you, whatever you choose here.</div>
       </div>
     </>
   )
@@ -357,7 +357,7 @@ function DataView({ onBack }: { onBack: () => void }) {
       <div style={{ flexGrow: 1, overflowY: 'auto', padding: '16px 20px 32px', display: 'flex', flexDirection: 'column', gap: 12 }}>
         <div style={{ background: '#fff', borderRadius: 16, border: '1px solid #e9eae8', padding: '16px' }}>
           <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 6 }}>Download a copy</div>
-          <div style={{ fontSize: 13, color: '#6f7f7b', lineHeight: '18px', marginBottom: 12 }}>Everything held about you and your children: clips, numbers, check-ins, consent.</div>
+          <div style={{ fontSize: 13, color: '#5c6b67', lineHeight: '18px', marginBottom: 12 }}>Everything held about you and your children: clips, numbers, check-ins, consent.</div>
           <button onClick={() => st('Email on its way.')} style={{ width: '100%', height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Email me a copy</button>
         </div>
 
@@ -367,7 +367,7 @@ function DataView({ onBack }: { onBack: () => void }) {
             <div key={i} style={{ display: 'flex', alignItems: 'center', padding: '14px 16px', borderTop: '1px solid #e9eae8', cursor: 'pointer' }}>
               <div style={{ flexGrow: 1 }}>
                 <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>{label}</div>
-                <div style={{ fontSize: 13, color: '#6f7f7b' }}>{i === 0 ? 'Numbers stay' : i === 1 ? 'Clips stay' : ''}</div>
+                <div style={{ fontSize: 13, color: '#5c6b67' }}>{i === 0 ? 'Numbers stay' : i === 1 ? 'Clips stay' : ''}</div>
               </div>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c5c8c4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
             </div>
@@ -376,11 +376,11 @@ function DataView({ onBack }: { onBack: () => void }) {
 
         <div style={{ background: '#fff', borderRadius: 16, border: '2px solid #e8d5d0', padding: '16px' }}>
           <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 6, color: '#10211f' }}>Leave and delete everything</div>
-          <div style={{ fontSize: 13, color: '#6f7f7b', lineHeight: '18px', marginBottom: 12 }}>Removes your account and your children's data within 7 days. The club keeps only what the law says it must, such as a head-knock record.</div>
+          <div style={{ fontSize: 13, color: '#5c6b67', lineHeight: '18px', marginBottom: 12 }}>Removes your account and your children's data within 7 days. The club keeps only what the law says it must, such as a head-knock record.</div>
           <button onClick={() => openThing('deletion confirmation', 'phone')} style={{ width: '100%', height: 44, borderRadius: 10, border: '1px solid #e8d5d0', background: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer', color: '#c39797' }}>Delete everything</button>
         </div>
 
-        <div style={{ fontSize: 12, color: '#6f7f7b', lineHeight: '17px', textAlign: 'center' }}>Mia can still play. Deleting data never affects her place in the team.</div>
+        <div style={{ fontSize: 12, color: '#5c6b67', lineHeight: '17px', textAlign: 'center' }}>Mia can still play. Deleting data never affects her place in the team.</div>
       </div>
       {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
     </>
@@ -472,7 +472,7 @@ function SandboxParentHome() {
       </div>
       <div style={{ flexGrow: 1, overflowY: 'auto', padding: '14px 20px 32px', display: 'flex', flexDirection: 'column', gap: 12 }}>
         {players.length === 0 ? (
-          <div style={card}><div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', marginBottom: 4 }}>{team.name}</div><div style={{ fontSize: 14, color: '#6f7f7b' }}>No players added yet. Switch role to the coach and add one.</div></div>
+          <div style={card}><div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', marginBottom: 4 }}>{team.name}</div><div style={{ fontSize: 14, color: '#5c6b67' }}>No players added yet. Switch role to the coach and add one.</div></div>
         ) : (
           <div style={card}>
             <label htmlFor="sb-child" style={{ display: 'block', fontSize: 12, fontWeight: 700, color: '#4a5a57', marginBottom: 4 }}>Your child</label>
@@ -524,14 +524,14 @@ export default function TwoChildrenApp({ empty = false, initialView }: { onBack?
   const showEmpty = inSandbox ? !sbHasTeam : empty
 
   return (
-    <div style={{ width: 390, margin: '0 auto', background: '#f7f9f7', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)', position: 'relative' }}>
+    <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)', position: 'relative' }}>
 
       {view === 'home' && (sbHasTeam ? (
         <SandboxParentHome />
       ) : showEmpty ? (
         <div style={{ flexGrow: 1, padding: '48px 20px 20px', display: 'flex', flexDirection: 'column', gap: 16 }}>
           <div>
-            <div style={{ fontSize: 12, color: '#6f7f7b', marginBottom: 2 }}>Parent · waiting for first training</div>
+            <div style={{ fontSize: 12, color: '#5c6b67', marginBottom: 2 }}>Parent · waiting for first training</div>
             <div style={{ fontSize: 24, fontWeight: 800, color: '#10211f' }}>Welcome, Linh</div>
           </div>
           <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', marginBottom: 2 }}>{"Mia's week will show here"}</div>

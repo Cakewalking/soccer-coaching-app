@@ -76,12 +76,12 @@ export default function PRM6Usage({ onNav }: { onNav?: (s: string) => void }) {
         <div style={{ flex: 1, padding: '0 20px 24px 24px', overflowY: 'auto' }}>
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, overflow: 'hidden', marginBottom: 12 }}>
             <div style={{ display: 'grid', gridTemplateColumns: cols, padding: '10px 20px', background: PALE, borderBottom: `1px solid ${LN}` }}>
-              {['Team', 'Add-on', 'Used', 'Last used', '', ''].map((h, i) => <div key={i} style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT }}>{h}</div>)}
+              {['Team', 'Add-on', 'Used', 'Last used', '', ''].map((h, i) => <div key={i} style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b' }}>{h}</div>)}
             </div>
             {USAGE.map((u, i) => {
               const on = isOn(u.team, u.fk)
               const warn = u.pct < 50 && u.pct > 0
-              const bg = !on ? '#f7f8f7' : u.turnOff ? '#fff5f5' : u.ask ? '#fffbf0' : '#fff'
+              const bg = !on ? '#faf5ec' : u.turnOff ? '#fff5f5' : u.ask ? '#fffbf0' : '#fff'
               return (
                 <div key={i} style={{ display: 'grid', gridTemplateColumns: cols, padding: '12px 20px', borderBottom: i < USAGE.length - 1 ? `1px solid ${LN}` : 'none', alignItems: 'center', background: bg }}>
                   <div style={{ fontSize: 13, fontWeight: 600, color: on ? INK : MUT }}>{u.team}</div>

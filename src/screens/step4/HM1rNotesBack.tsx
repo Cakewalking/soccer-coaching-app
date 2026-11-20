@@ -6,7 +6,7 @@ export default function HM1rNotesBack({onBack}:{onBack?:()=>void}){
   void t   // kept for lines this screen may still need to say
   function t(m:string){setToast(m);setTimeout(()=>setToast(null),3200)}
   return(
-    <div style={{padding:'20px 28px 40px',background:'#f7f8f7',minHeight:'100%',boxSizing:'border-box',fontFamily:'var(--font-sans)',position:'relative'}}>
+    <div style={{padding:'20px 28px 40px',background:'#faf5ec',minHeight:'100%',boxSizing:'border-box',fontFamily:'var(--font-sans)',position:'relative'}}>
       <div style={{display:'flex',alignItems:'flex-start',justifyContent:'space-between',marginBottom:20}}>
         <div>
           <button onClick={onBack} style={{display:'flex',alignItems:'center',gap:6,background:'none',border:'none',cursor:'pointer',color:MUT,fontFamily:'inherit',fontSize:13,fontWeight:500,padding:0,marginBottom:12}}>
@@ -19,11 +19,11 @@ export default function HM1rNotesBack({onBack}:{onBack?:()=>void}){
       </div>
       <div style={{maxWidth:680}}>
         <div style={{background:'#fff',border:`1px solid ${LN}`,borderRadius:14,padding:'18px 20px',marginBottom:16}}>
-          <div style={{fontSize:13,fontWeight:700,letterSpacing:'0.06em',textTransform:'uppercase' as const,color:MUT,marginBottom:8}}>Wednesday's games</div>
+          <div style={{fontSize:13,fontWeight:700,letterSpacing:'0.06em',textTransform:'uppercase' as const,color: '#7a4b5b',marginBottom:8}}>Wednesday's games</div>
           <div style={{fontSize:15,color:INK,lineHeight:1.6}}>Good energy in the second half. Pressing worked better once Poppy was in the middle. Sam and Hamish linked up well on the left.</div>
         </div>
         <div style={{background:'#fff',border:`1px solid ${LN}`,borderRadius:14,padding:'18px 20px',marginBottom:16}}>
-          <div style={{fontSize:13,fontWeight:700,letterSpacing:'0.06em',textTransform:'uppercase' as const,color:MUT,marginBottom:8}}>Saturday in your words</div>
+          <div style={{fontSize:13,fontWeight:700,letterSpacing:'0.06em',textTransform:'uppercase' as const,color: '#7a4b5b',marginBottom:8}}>Saturday in your words</div>
           <div style={{fontSize:15,color:INK,lineHeight:1.6}}>Tough first half — tired legs from Wednesday. Came back in the second. Tom scored a great one, Poppy had a cracker saved. Everyone had fun.</div>
         </div>
         <div style={{background:PALE,border:`1px solid #c0d8cc`,borderRadius:14,padding:'18px 20px',marginBottom:16}}>
@@ -32,7 +32,7 @@ export default function HM1rNotesBack({onBack}:{onBack?:()=>void}){
           <div style={{fontSize:12,color:G,marginTop:8}}>Sat 1 Nov · noted by Tom</div>
         </div>
         <div style={{background:'#fff',border:`1px solid ${LN}`,borderRadius:14,padding:'18px 20px'}}>
-          <div style={{fontSize:13,fontWeight:700,letterSpacing:'0.06em',textTransform:'uppercase' as const,color:MUT,marginBottom:8}}>So on Wednesday…</div>
+          <div style={{fontSize:13,fontWeight:700,letterSpacing:'0.06em',textTransform:'uppercase' as const,color: '#7a4b5b',marginBottom:8}}>So on Wednesday…</div>
           <div style={{fontSize:15,color:INK,lineHeight:1.6}}>Check in with Zara's parent at the start. Keep her involved but watch how she goes in the first contact drill.</div>
         </div>
         <div style={{marginTop:16,display:'flex',gap:8}}>

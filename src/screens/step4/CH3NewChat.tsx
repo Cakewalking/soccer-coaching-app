@@ -45,7 +45,7 @@ export default function CH3NewChat(_: { onBack?: () => void }) {
     </button>
   )
   return (
-    <div style={{ width: 1180, height: 820, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden' }}>
+    <div style={{ width: 1180, height: 820, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden' }}>
       <TopBar />
       <SubBar />
       <div style={{ flexShrink: 0, padding: '14px 28px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 20 }}>
@@ -61,9 +61,9 @@ export default function CH3NewChat(_: { onBack?: () => void }) {
       <main style={{ flexGrow: 1, minHeight: 0, padding: '12px 28px 18px', display: 'grid', gap: 14, gridTemplateColumns: 'repeat(12, minmax(0,1fr))' }}>
         <div style={{ gridColumn: 'span 7', display: 'flex', flexDirection: 'column', gap: 14 }}>
           <div style={{ background: '#fff', border: `1px solid #c5c8c4`, borderRadius: 16, padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 10 }}>
-            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT }}>Chat name</div>
+            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b' }}>Chat name</div>
             <div style={{ minHeight: 48, border: `1px solid #c5c8c4`, borderRadius: 10, padding: '0 12px', display: 'flex', alignItems: 'center', fontSize: 15, background: '#fff' }}>U12 Sam · carpool to away games</div>
-            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT }}>Who's in</div>
+            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b' }}>Who's in</div>
             <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' as const }}>
               {whoIn.map((item, i) => (
                 <button key={i} onClick={() => t(item.label)} style={{ minHeight: 44, padding: '0 14px', borderRadius: 999, border: item.checked ? `2px solid ${G}` : `1px solid #c5c8c4`, background: item.checked ? PALE : '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', gap: 6 }}>
@@ -80,7 +80,7 @@ export default function CH3NewChat(_: { onBack?: () => void }) {
               { mode: 'coaches' as const, title: 'Coaches and the manager only', sub: 'Parents can read, react, vote in polls and reply to you privately' },
               { mode: 'everyone' as const, title: 'Everyone in the chat', sub: 'Parents can write, and send what you switch on' },
             ].map(opt => (
-              <button key={opt.mode} onClick={() => setPostMode(opt.mode)} style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 60, padding: '8px 14px', borderRadius: 12, background: postMode === opt.mode ? '#f7f8f7' : '#fff', border: postMode === opt.mode ? `2px solid ${G}` : `1px solid #c5c8c4`, cursor: 'pointer', textAlign: 'left', fontFamily: 'inherit' }}>
+              <button key={opt.mode} onClick={() => setPostMode(opt.mode)} style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 60, padding: '8px 14px', borderRadius: 12, background: postMode === opt.mode ? '#faf5ec' : '#fff', border: postMode === opt.mode ? `2px solid ${G}` : `1px solid #c5c8c4`, cursor: 'pointer', textAlign: 'left', fontFamily: 'inherit' }}>
                 <div style={{ width: 20, height: 20, borderRadius: '50%', border: postMode === opt.mode ? `6px solid ${G}` : '2px solid #6f7f7b', flexShrink: 0 }} />
                 <div>
                   <div style={{ fontSize: 15, fontWeight: 700 }}>{opt.title}</div>

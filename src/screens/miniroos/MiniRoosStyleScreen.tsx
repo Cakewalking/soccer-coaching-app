@@ -186,7 +186,7 @@ export function MS1eMiniRoosStyleEmpty() {
         </div>
       </div>
 
-      <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 12 }}>How it works</div>
+      <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 12 }}>How it works</div>
       {[
         { n: '1', title: 'Pick three things', body: 'About a minute' },
         { n: '2', title: 'Film a game', body: 'The tablet on a stand is enough' },

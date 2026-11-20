@@ -75,7 +75,7 @@ export default function PRM3Bill({ onNav }: { onNav?: (s: string) => void }) {
             {/* Table header */}
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 160px 80px 80px', padding: '10px 20px', background: PALE, borderBottom: `1px solid ${LN}` }}>
               {['Item', 'Teams', 'Each', 'Total'].map(h => (
-                <div key={h} style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT }}>{h}</div>
+                <div key={h} style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b' }}>{h}</div>
               ))}
             </div>
             {lines.map(l => (

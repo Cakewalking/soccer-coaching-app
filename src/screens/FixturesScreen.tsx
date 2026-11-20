@@ -7,7 +7,7 @@ import { addFixture } from './sandbox/sandboxStore'
 function Illus() {
   return (
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 22px)', gap: 4, flex: 'none' }}>
-      {['#2f6252','#40826d','#cbbeb5','#c39797'].map((c, i) => (
+      {['#2f6252','#40826d','#e8cfcf','#c39797'].map((c, i) => (
         <div key={i} style={{ width: 22, height: 22, borderRadius: 5, background: c }} />
       ))}
     </div>
@@ -18,7 +18,7 @@ function Skel({ rows = 7 }: { rows?: number }) {
   const ws = [55, 45, 65, 40, 55, 50, 48]
   return (
     <div>
-      <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#6f7f7b', marginBottom: 8 }}>Fills in like this</div>
+      <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#5c6b67', marginBottom: 8 }}>Fills in like this</div>
       {Array.from({ length: rows }, (_, i) => (
         <div key={i} style={{ height: 44, border: '1px dashed #c5c8c4', borderRadius: 10, marginBottom: 6, display: 'flex', alignItems: 'center', padding: '0 14px', gap: 10 }}>
           <div style={{ width: 28, height: 28, borderRadius: '999px', background: '#e9eae8', flex: 'none' }} />
@@ -218,7 +218,7 @@ const LADDER_BY: Record<Team3, ReturnType<typeof L>[]> = {
 function resultDot(r: string) {
   if (r === 'W') return { bg: '#2f6252', color: '#ffffff' }
   if (r === 'L') return { bg: '#c39797', color: '#10211f' }
-  return { bg: '#cbbeb5', color: '#10211f' }
+  return { bg: '#e8cfcf', color: '#10211f' }
 }
 
 const FIXTURES_HEADER: Record<'juniors' | 'youth' | 'seniors', string> = {
@@ -271,7 +271,7 @@ export default function FixturesScreen({ empty, teamType = 'juniors' }: { empty?
               <div key={i} onClick={() => setSelectedResult(i)} style={{ display: 'grid', gridTemplateColumns: '110px minmax(0,1fr) 36px minmax(0,80px) 48px', gap: 12, alignItems: 'center', minHeight: 48, borderTop: '1px solid #f0f1ef', cursor: 'pointer', background: selectedResult === i ? '#eef5f2' : 'transparent' }}>
                 <span style={{ fontSize: 13, color: '#4a5a57' }}>{r.date}</span>
                 <span style={{ fontSize: 15, fontWeight: 600 }}>{r.opp}</span>
-                <span style={{ fontSize: 13, color: '#6f7f7b', textAlign: 'center' }}>{r.ha}</span>
+                <span style={{ fontSize: 13, color: '#5c6b67', textAlign: 'center' }}>{r.ha}</span>
                 <span style={{ fontSize: 15, fontWeight: 600 }}>{r.score}</span>
                 <span style={{ display: 'flex', justifyContent: 'center' }}>
                   <span style={{ width: 32, height: 32, borderRadius: '999px', background: c.bg, color: c.color, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 13 }}>{r.result}</span>

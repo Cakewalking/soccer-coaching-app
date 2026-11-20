@@ -44,16 +44,16 @@ export default function ReportsTab({ empty }: { empty?: boolean }) {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
             <div>
               <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>Board report</div>
-              <div style={{ fontSize: 12, color: '#6f7f7b' }}>May 2026 · written by Clean Sheet from this month's data · edit before you send</div>
+              <div style={{ fontSize: 12, color: '#5c6b67' }}>May 2026 · written by Clean Sheet from this month's data · edit before you send</div>
             </div>
             <div style={{ display: 'flex', gap: 8 }}>
-              <button onClick={() => showToast('Opens report editor.')} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>Edit</button>
+              <button onClick={() => showToast('Opens report editor.')} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#5c6b67', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>Edit</button>
               <button aria-pressed={!!sentTo} onClick={() => { markDone('report:committee', new Date().toISOString()); showToast('Report sent to committee.') }} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>{sentTo ? 'Sent to committee' : 'Send to committee'}</button>
             </div>
           </div>
 
           <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 14, padding: '20px 24px', marginBottom: 14 }}>
-            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', color: '#6f7f7b', marginBottom: 4 }}>WATTLE CREEK FC · FOOTBALL REPORT TO THE COMMITTEE</div>
+            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', color: '#5c6b67', marginBottom: 4 }}>WATTLE CREEK FC · FOOTBALL REPORT TO THE COMMITTEE</div>
             <div style={{ fontSize: 16, fontWeight: 700, color: '#10211f', marginBottom: 16 }}>A strong month on the pitch. Two things to fix off it.</div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10, marginBottom: 20 }}>
               {[{ n: '192', l: 'players', sub: '+16 on last year' }, { n: '87%', l: 'training turnout', sub: '' }, { n: '61%', l: 'player goals met', sub: '' }, { n: '16 W', l: '9 D · 10 L', sub: 'across 7 teams that keep score' }].map(s => (
@@ -70,18 +70,18 @@ export default function ReportsTab({ empty }: { empty?: boolean }) {
               { head: 'COMING UP', body: 'Coach meeting Tue 9 Jun. Club course for 9 new coaches on 20 Jun. Registrations for summer futsal open 1 Sep.' },
             ].map(s => (
               <div key={s.head} style={{ marginBottom: 14 }}>
-                <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', color: '#6f7f7b', marginBottom: 4 }}>{s.head}</div>
+                <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', color: '#5c6b67', marginBottom: 4 }}>{s.head}</div>
                 <div style={{ fontSize: 13, color: '#10211f', lineHeight: 1.6, whiteSpace: 'pre-line' }}>{s.body}</div>
               </div>
             ))}
             <div style={{ borderTop: '1px solid #f0f1f0', paddingTop: 14 }}>
-              <div style={{ fontSize: 11, fontWeight: 700, color: '#6f7f7b', marginBottom: 8 }}>Teams playing the club's way, by month</div>
+              <div style={{ fontSize: 11, fontWeight: 700, color: '#5c6b67', marginBottom: 8 }}>Teams playing the club's way, by month</div>
               <div style={{ display: 'flex', gap: 16, alignItems: 'flex-end' }}>
                 {[{ m: 'Feb', p: 52 }, { m: 'Mar', p: 56 }, { m: 'Apr', p: 61 }, { m: 'May', p: 67 }].map(r => (
                   <div key={r.m} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
                     <div style={{ fontSize: 12, fontWeight: 700, color: '#2f6252' }}>{r.p}%</div>
                     <div style={{ width: 40, height: r.p, background: '#2f6252', borderRadius: '4px 4px 0 0', maxHeight: 80, minHeight: 20 }}/>
-                    <div style={{ fontSize: 11, color: '#6f7f7b' }}>{r.m}</div>
+                    <div style={{ fontSize: 11, color: '#5c6b67' }}>{r.m}</div>
                   </div>
                 ))}
                 <div style={{ fontSize: 11, color: '#40826d', marginBottom: 20, marginLeft: 8, fontStyle: 'italic' }}>↑ This report</div>
@@ -95,7 +95,7 @@ export default function ReportsTab({ empty }: { empty?: boolean }) {
             ))}
           </div>
 
-          <div style={{ background: '#fafafa', border: '1px solid #e9eae8', borderRadius: 12, padding: '10px 14px', fontSize: 12, color: '#6f7f7b' }}>
+          <div style={{ background: '#fafafa', border: '1px solid #e9eae8', borderRadius: 12, padding: '10px 14px', fontSize: 12, color: '#5c6b67' }}>
             Player names are off by default. The committee sees the club, not the children.
             <span style={{ display: 'block', marginTop: 4 }}>Last sent 1 May to 7 committee members.</span>
           </div>
@@ -116,7 +116,7 @@ export default function ReportsTab({ empty }: { empty?: boolean }) {
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 6 }}>
                     <div>
                       <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>{g.name}</div>
-                      <div style={{ fontSize: 12, color: '#6f7f7b', marginTop: 2 }}>{g.funder} · {g.due}</div>
+                      <div style={{ fontSize: 12, color: '#5c6b67', marginTop: 2 }}>{g.funder} · {g.due}</div>
                     </div>
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 4 }}>
                       <span style={{ fontSize: 16, fontWeight: 800, color: '#1f4a3e' }}>{g.amount}</span>
@@ -127,7 +127,7 @@ export default function ReportsTab({ empty }: { empty?: boolean }) {
                   {g.action && (
                     <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                       <button onClick={() => showToast(`${g.action}.`)} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>{g.action}</button>
-                      {g.daysLeft && <span style={{ fontSize: 12, color: '#6f7f7b' }}>{g.daysLeft} days left</span>}
+                      {g.daysLeft && <span style={{ fontSize: 12, color: '#5c6b67' }}>{g.daysLeft} days left</span>}
                     </div>
                   )}
                 </div>
@@ -136,8 +136,8 @@ export default function ReportsTab({ empty }: { empty?: boolean }) {
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
               <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 14, overflow: 'hidden' }}>
-                <div style={{ padding: '10px 14px', borderBottom: '1px solid #e9eae8', fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', color: '#6f7f7b' }}>NUMBERS GRANTS ASK FOR</div>
-                <div style={{ padding: '8px 14px', borderBottom: '1px solid #e9eae8', fontSize: 11, color: '#6f7f7b' }}>Pre-filled from your season data. Review once a year.</div>
+                <div style={{ padding: '10px 14px', borderBottom: '1px solid #e9eae8', fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', color: '#5c6b67' }}>NUMBERS GRANTS ASK FOR</div>
+                <div style={{ padding: '8px 14px', borderBottom: '1px solid #e9eae8', fontSize: 11, color: '#5c6b67' }}>Pre-filled from your season data. Review once a year.</div>
                 {[
                   { label: 'Total players', value: '192' },
                   { label: "Girls' players", value: '62' },
@@ -153,7 +153,7 @@ export default function ReportsTab({ empty }: { empty?: boolean }) {
                   </div>
                 ))}
               </div>
-              <div style={{ background: '#fafafa', border: '1px solid #e9eae8', borderRadius: 12, padding: '10px 14px', fontSize: 12, color: '#6f7f7b' }}>
+              <div style={{ background: '#fafafa', border: '1px solid #e9eae8', borderRadius: 12, padding: '10px 14px', fontSize: 12, color: '#5c6b67' }}>
                 No child names or personal data leave the club in grant applications.
               </div>
             </div>
@@ -175,14 +175,14 @@ export default function ReportsTab({ empty }: { empty?: boolean }) {
                 { team: "Women's 1sts", coach: 'Steph Lau', record: '7W · 2D · 1L', pts: 23 },
               ].map((t, i) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 0', borderTop: i > 0 ? '1px solid #f0f1f0' : 'none' }}>
-                  <div style={{ width: 24, height: 24, borderRadius: '999px', background: '#f0f1f0', color: '#6f7f7b', fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{i + 1}</div>
+                  <div style={{ width: 24, height: 24, borderRadius: '999px', background: '#f0f1f0', color: '#5c6b67', fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{i + 1}</div>
                   <div style={{ flexGrow: 1 }}>
                     <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>{t.team}</div>
-                    <div style={{ fontSize: 12, color: '#6f7f7b' }}>{t.coach}</div>
+                    <div style={{ fontSize: 12, color: '#5c6b67' }}>{t.coach}</div>
                   </div>
                   <div style={{ textAlign: 'right' as const }}>
                     <div style={{ fontSize: 15, fontWeight: 800, color: '#10211f' }}>{t.pts} pts</div>
-                    <div style={{ fontSize: 11, color: '#6f7f7b' }}>{t.record}</div>
+                    <div style={{ fontSize: 11, color: '#5c6b67' }}>{t.record}</div>
                   </div>
                 </div>
               ))}
@@ -190,7 +190,7 @@ export default function ReportsTab({ empty }: { empty?: boolean }) {
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
               <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 14, overflow: 'hidden' }}>
-                <div style={{ padding: '10px 14px', borderBottom: '1px solid #e9eae8', fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', color: '#6f7f7b' }}>COMPLIANCE TRACKER</div>
+                <div style={{ padding: '10px 14px', borderBottom: '1px solid #e9eae8', fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', color: '#5c6b67' }}>COMPLIANCE TRACKER</div>
                 {[
                   { label: 'Team sheets', value: '7 / 7', ok: true, action: null },
                   { label: 'Results up to date', value: 'Yes', ok: true, action: null },
@@ -209,7 +209,7 @@ export default function ReportsTab({ empty }: { empty?: boolean }) {
                   </div>
                 ))}
               </div>
-              <div style={{ background: '#fafafa', border: '1px solid #e9eae8', borderRadius: 12, padding: '10px 14px', fontSize: 12, color: '#6f7f7b' }}>
+              <div style={{ background: '#fafafa', border: '1px solid #e9eae8', borderRadius: 12, padding: '10px 14px', fontSize: 12, color: '#5c6b67' }}>
                 Compliance data syncs from Dribl and WWC Connect each morning.
               </div>
             </div>
@@ -222,7 +222,7 @@ export default function ReportsTab({ empty }: { empty?: boolean }) {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 14 }}>
             <div>
               <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>Season review · Winter 2026</div>
-              <div style={{ fontSize: 12, color: '#6f7f7b' }}>Generated from the season's data · 2 rounds left · share after the final</div>
+              <div style={{ fontSize: 12, color: '#5c6b67' }}>Generated from the season's data · 2 rounds left · share after the final</div>
             </div>
             <button onClick={() => showToast('Sharing season review.')} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Share season review</button>
           </div>
@@ -230,7 +230,7 @@ export default function ReportsTab({ empty }: { empty?: boolean }) {
           <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 300px', gap: 20 }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
               <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 14, padding: '16px 20px' }}>
-                <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', color: '#6f7f7b', marginBottom: 10 }}>WHAT WENT WELL</div>
+                <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', color: '#5c6b67', marginBottom: 10 }}>WHAT WENT WELL</div>
                 {[
                   { icon: '↑', text: "Girls' football grew fastest. Up 22 players from last year — the biggest gain in any age group.", bold: true },
                   { icon: glyph('star'), text: "U12 Girls Ana unbeaten at home all season. First time for any Wattle Creek team.", bold: true },
@@ -245,7 +245,7 @@ export default function ReportsTab({ empty }: { empty?: boolean }) {
               </div>
 
               <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 14, padding: '16px 20px' }}>
-                <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', color: '#6f7f7b', marginBottom: 10 }}>TO FIX BEFORE NEXT SEASON</div>
+                <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', color: '#5c6b67', marginBottom: 10 }}>TO FIX BEFORE NEXT SEASON</div>
                 {[
                   { n: '1', title: "Children checks", detail: "9 coaches have let theirs lapse. We can't start pre-season until they're renewed.", urgent: true },
                   { n: '2', title: 'Fair game time', detail: "3 teams — U13 Sam, U14 Josh, Men's 2nds — had a gap of 20+ minutes between most and least. Some kids barely played.", urgent: true },
@@ -264,7 +264,7 @@ export default function ReportsTab({ empty }: { empty?: boolean }) {
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
               <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 14, overflow: 'hidden' }}>
-                <div style={{ padding: '10px 14px', borderBottom: '1px solid #e9eae8', fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', color: '#6f7f7b' }}>SEASON AT A GLANCE</div>
+                <div style={{ padding: '10px 14px', borderBottom: '1px solid #e9eae8', fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', color: '#5c6b67' }}>SEASON AT A GLANCE</div>
                 {[
                   { label: 'Players',           value: '192', sub: '+16 on 2025' },
                   { label: 'Coaches',            value: '31',  sub: '7 new this year' },
@@ -282,7 +282,7 @@ export default function ReportsTab({ empty }: { empty?: boolean }) {
                   </div>
                 ))}
               </div>
-              <div style={{ background: '#fafafa', border: '1px solid #e9eae8', borderRadius: 12, padding: '10px 14px', fontSize: 12, color: '#6f7f7b' }}>
+              <div style={{ background: '#fafafa', border: '1px solid #e9eae8', borderRadius: 12, padding: '10px 14px', fontSize: 12, color: '#5c6b67' }}>
                 Season review is drafted now. Final numbers update after the last fixture.
               </div>
             </div>
@@ -293,11 +293,11 @@ export default function ReportsTab({ empty }: { empty?: boolean }) {
       {!empty && view === 'fees' && (
         <div style={p}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10, marginBottom: 20 }}>
-            {[{ n: '$32,400', l: 'Collected', sub: '94% of target · $1,980 outstanding', color: '#10211f' }, { n: '14', l: 'Outstanding accounts', sub: 'Oldest: 42 days overdue', color: '#c39797' }, { n: '$2,100', l: 'Hardship waivers', sub: '7 families this season', color: '#c3a84a' }].map(s => (
-              <div key={s.l} style={{ background: '#fff', borderRadius: 14, padding: '14px', border: '1px solid #e9eae8' }}>
+            {[{ n: '$32,400', l: 'Collected', sub: '94% of target · $1,980 outstanding', color: '#10211f' }, { n: '14', l: 'Outstanding accounts', sub: 'Oldest: 42 days overdue', color: '#c39797' }, { n: '$2,100', l: 'Hardship waivers', sub: '7 families this season', color: '#c3a84a' }].map((s, kpiN)=> (
+              <div key={s.l} style={{ background: ['#f3ecdf', '#f4e6e6', '#eef5f2', '#f3ecdf'][kpiN % 4], borderRadius: 14, padding: '14px', border: '1px solid #e9eae8' }}>
                 <div style={{ fontSize: 22, fontWeight: 800, color: s.color }}>{s.n}</div>
                 <div style={{ fontSize: 12, fontWeight: 700, color: '#10211f', marginTop: 2 }}>{s.l}</div>
-                <div style={{ fontSize: 11, color: '#6f7f7b', marginTop: 2 }}>{s.sub}</div>
+                <div style={{ fontSize: 11, color: '#5c6b67', marginTop: 2 }}>{s.sub}</div>
               </div>
             ))}
           </div>
@@ -314,14 +314,14 @@ export default function ReportsTab({ empty }: { empty?: boolean }) {
                 { ini: 'SD', name: 'Scott Davis', team: "Men's 1sts", amount: '$250', days: 7, sent: 0 },
               ].map((a, i) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 0', borderTop: i > 0 ? '1px solid #f0f1f0' : 'none' }}>
-                  <div style={{ width: 28, height: 28, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', fontSize: 10, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{a.ini}</div>
+                  <div style={{ width: 28, height: 28, borderRadius: '999px', background: '#e8cfcf', color: '#10211f', fontSize: 10, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{a.ini}</div>
                   <div style={{ flexGrow: 1 }}>
                     <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{a.name}</div>
-                    <div style={{ fontSize: 11, color: '#6f7f7b' }}>{a.team} · {a.days}d overdue · {a.sent > 0 ? `${a.sent} invoice${a.sent > 1 ? 's' : ''} sent` : 'not contacted'}</div>
+                    <div style={{ fontSize: 11, color: '#5c6b67' }}>{a.team} · {a.days}d overdue · {a.sent > 0 ? `${a.sent} invoice${a.sent > 1 ? 's' : ''} sent` : 'not contacted'}</div>
                   </div>
                   <div style={{ textAlign: 'right' }}>
                     <div style={{ fontSize: 14, fontWeight: 800, color: '#c39797' }}>{a.amount}</div>
-                    <button onClick={() => showToast('Invoice sent.')} style={{ height: 44, padding: '0 10px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 11, cursor: 'pointer', marginTop: 4 }}>Send invoice</button>
+                    <button onClick={() => showToast('Invoice sent.')} style={{ height: 44, padding: '0 10px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#5c6b67', fontFamily: 'inherit', fontSize: 11, cursor: 'pointer', marginTop: 4 }}>Send invoice</button>
                   </div>
                 </div>
               ))}
@@ -330,12 +330,12 @@ export default function ReportsTab({ empty }: { empty?: boolean }) {
               <div style={{ background: '#fff', borderRadius: 14, padding: '14px 16px', border: '1px solid #e9eae8' }}>
                 <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 10 }}>Season fees by age group</div>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', padding: '6px 0', borderBottom: '1px solid #f0f1f0', gap: 8 }}>
-                  {['AGE GROUP','FEE','PAID'].map(h => <div key={h} style={{ fontSize: 10, fontWeight: 700, color: '#6f7f7b' }}>{h}</div>)}
+                  {['AGE GROUP','FEE','PAID'].map(h => <div key={h} style={{ fontSize: 10, fontWeight: 700, color: '#5c6b67' }}>{h}</div>)}
                 </div>
                 {[{ age: 'MiniRoos', fee: '$120', pct: 94 }, { age: 'Juniors', fee: '$180', pct: 97 }, { age: 'Seniors', fee: '$250', pct: 88 }, { age: 'Over 35s', fee: '$200', pct: 100 }].map((row, i) => (
                   <div key={i} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', padding: '8px 0', borderBottom: '1px solid #f0f1f0', gap: 8, alignItems: 'center' }}>
                     <div style={{ fontSize: 13, fontWeight: 600, color: '#10211f' }}>{row.age}</div>
-                    <div style={{ fontSize: 13, color: '#6f7f7b' }}>{row.fee}</div>
+                    <div style={{ fontSize: 13, color: '#5c6b67' }}>{row.fee}</div>
                     <span style={{ fontSize: 12, fontWeight: 700, color: row.pct >= 95 ? '#40826d' : '#c3a84a' }}>{row.pct}%</span>
                   </div>
                 ))}
@@ -354,7 +354,7 @@ export default function ReportsTab({ empty }: { empty?: boolean }) {
                   <div key={i} style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderTop: i > 0 ? '1px solid #f0f1f0' : 'none' }}>
                     <div>
                       <div style={{ fontSize: 13, fontWeight: 600, color: '#10211f' }}>{v.name}</div>
-                      <div style={{ fontSize: 11, color: '#6f7f7b' }}>{v.people}</div>
+                      <div style={{ fontSize: 11, color: '#5c6b67' }}>{v.people}</div>
                     </div>
                     <span style={{ fontSize: 12, fontWeight: 700, color: '#2f6252' }}>{v.hours}</span>
                   </div>

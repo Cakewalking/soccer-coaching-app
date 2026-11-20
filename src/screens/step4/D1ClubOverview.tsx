@@ -15,7 +15,7 @@ const TEAMS = [
 export default function D1ClubOverview(_: { onBack?: () => void }) {
   const [done, setDone] = useState<number[]>([])
   return (
-    <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, position: 'relative' }}>
+    <div style={{ width: 1180, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, position: 'relative' }}>
       <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 32, height: 52 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff', letterSpacing: '-0.01em' }}>Clean Sheet</div>
         {['Club', 'Teams', 'Coaches', 'Players', 'Safeguarding', 'Reports'].map(tab => (
@@ -26,8 +26,8 @@ export default function D1ClubOverview(_: { onBack?: () => void }) {
       <div style={{ padding: 32 }}>
         <div style={{ fontSize: 20, fontWeight: 800, letterSpacing: '-0.02em', color: INK, marginBottom: 20 }}>Wattle Creek FC — Season 2026</div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 14, marginBottom: 24 }}>
-          {[{ label: 'Playing our way', val: '67%', sub: 'across 14 teams' }, { label: 'Training turnout', val: '87%', sub: 'last 4 weeks' }, { label: 'Fair game time', val: '12/14', sub: 'teams on target' }, { label: 'Children\'s checks', val: '31/31', sub: 'all clear', red: true }].map(s => (
-            <div key={s.label} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 18px' }}>
+          {[{ label: 'Playing our way', val: '67%', sub: 'across 14 teams' }, { label: 'Training turnout', val: '87%', sub: 'last 4 weeks' }, { label: 'Fair game time', val: '12/14', sub: 'teams on target' }, { label: 'Children\'s checks', val: '31/31', sub: 'all clear', red: true }].map((s, kpiN)=> (
+            <div key={s.label} style={{ background: ['#f3ecdf', '#f4e6e6', '#eef5f2', '#f3ecdf'][kpiN % 4], border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 18px' }}>
               <div style={{ fontSize: 12, color: MUT, marginBottom: 4 }}>{s.label}</div>
               <div style={{ fontSize: 24, fontWeight: 800, color: s.red ? '#c00' : GD, letterSpacing: '-0.02em' }}>{s.val}</div>
               <div style={{ fontSize: 12, color: MUT, marginTop: 2 }}>{s.sub}</div>
@@ -36,7 +36,7 @@ export default function D1ClubOverview(_: { onBack?: () => void }) {
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 400px', gap: 24 }}>
           <div>
-            <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 10 }}>Needs you this week</div>
+            <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 10 }}>Needs you this week</div>
             {ACTIONS.map((a, i) => done.includes(i) ? null : (
               <div key={i} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 12, padding: '12px 16px', marginBottom: 8, display: 'flex', alignItems: 'center', gap: 12 }}>
                 <div style={{ width: 4, height: 44, borderRadius: 4, background: a.color, flexShrink: 0 }} />
@@ -47,7 +47,7 @@ export default function D1ClubOverview(_: { onBack?: () => void }) {
             {ACTIONS.every((_, i) => done.includes(i)) && <div style={{ fontSize: 13, color: MUT, padding: '8px 2px' }}>All done for this week.</div>}
           </div>
           <div>
-            <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 10 }}>Teams to watch</div>
+            <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 10 }}>Teams to watch</div>
             <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, overflow: 'hidden' }}>
               <div style={{ display: 'grid', gridTemplateColumns: '110px 80px 90px 1fr 60px', gap: 8, padding: '8px 16px', fontSize: 11, fontWeight: 700, color: MUT, background: PALE }}>
                 {['Team', 'Coach', 'Last 5', 'Playing our way', 'Turnout'].map(h => <div key={h}>{h}</div>)}

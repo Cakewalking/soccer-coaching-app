@@ -21,7 +21,7 @@ const LEAGUE_RULES = [
 
 function StatusBadge({ status }: { status: RuleStatus }) {
   if (status === 'on') return <span style={{ display: 'inline-flex', alignItems: 'center', height: 24, padding: '0 9px', borderRadius: '999px', fontSize: 12, fontWeight: 700, background: '#eef5f2', color: '#2f6252' }}>On</span>
-  if (status === 'needs-you') return <span style={{ display: 'inline-flex', alignItems: 'center', height: 24, padding: '0 9px', borderRadius: '999px', fontSize: 12, fontWeight: 700, background: '#cbbeb5', color: '#10211f' }}>Needs you</span>
+  if (status === 'needs-you') return <span style={{ display: 'inline-flex', alignItems: 'center', height: 24, padding: '0 9px', borderRadius: '999px', fontSize: 12, fontWeight: 700, background: '#e8cfcf', color: '#10211f' }}>Needs you</span>
   return <span style={{ display: 'inline-flex', alignItems: 'center', height: 24, padding: '0 9px', borderRadius: '999px', fontSize: 12, fontWeight: 700, background: '#e9eae8', color: '#4a5a57' }}>Off</span>
 }
 

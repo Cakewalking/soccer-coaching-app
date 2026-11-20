@@ -32,10 +32,10 @@ export default function SP15ComingBack(_: { onBack?: () => void }) {
   const no = PLAYERS.filter(p => p.status === 'no')
 
   return (
-    <div style={{ padding: '20px 28px 40px', background: '#f7f8f7', minHeight: '100%', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', position: 'relative' }}>
+    <div style={{ padding: '20px 28px 40px', background: '#faf5ec', minHeight: '100%', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', position: 'relative' }}>
       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 20 }}>
         <div>
-          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 4 }}>Head coach</div>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 4 }}>Head coach</div>
           <div style={{ fontSize: 24, fontWeight: 800, letterSpacing: '-0.02em', color: INK, marginBottom: 2 }}>Next year's squad</div>
           <div style={{ fontSize: 14, color: MUT }}>Who is coming back for 2027</div>
         </div>
@@ -51,7 +51,7 @@ export default function SP15ComingBack(_: { onBack?: () => void }) {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 12, marginBottom: 16 }}>
             {[
               { label: 'Coming back', val: yes.length,     color: G, bg: PALE },
-              { label: 'Not sure',    val: notsure.length, color: MUT, bg: '#f7f8f7' },
+              { label: 'Not sure',    val: notsure.length, color: MUT, bg: '#faf5ec' },
               { label: 'Not coming',  val: no.length,      color: '#8b3a3a', bg: '#fff5f5' },
             ].map(item => (
               <div key={item.label} style={{ padding: '14px 16px', background: item.bg, borderRadius: 12, border: `1px solid ${LN}` }}>
@@ -112,7 +112,7 @@ export default function SP15ComingBack(_: { onBack?: () => void }) {
             <div style={{ fontSize: 14, fontWeight: 700, color: INK, marginBottom: 10 }}>Trial dates for 2027</div>
             <div style={{ fontSize: 13, color: MUT, marginBottom: 10 }}>This squad moves to U13 next year</div>
             <div style={{ background: PALE, borderRadius: 10, padding: '10px 12px', marginBottom: 10 }}>
-              <div style={{ fontSize: 12, fontWeight: 700, color: MUT, letterSpacing: '0.06em', textTransform: 'uppercase' as const, marginBottom: 4 }}>U13 Trials</div>
+              <div style={{ fontSize: 12, fontWeight: 700, color: '#7a4b5b', letterSpacing: '0.06em', textTransform: 'uppercase' as const, marginBottom: 4 }}>U13 Trials</div>
               <div style={{ fontSize: 15, fontWeight: 700, color: GD }}>12 to 25 October</div>
               <div style={{ fontSize: 12, color: MUT, marginTop: 2 }}>Set by the club's trial window</div>
             </div>

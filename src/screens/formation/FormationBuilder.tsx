@@ -9,7 +9,7 @@ import { getInsights, keyPairs, bestLineup, forThisWeek, shapeLine, wordsFor, va
 // a custom ("Your own") shape. From formation-v1 handover.
 
 const INK = '#10211f', PITCH = '#1c3a33', GREEN = '#2f6252', LEAF = '#40826d'
-const MUT = '#6f7f7b', LN = '#e8edeb', PALE = '#eef5f2', SAND = '#cbbeb5', SANDBG = '#f6f1e9'
+const MUT = '#6f7f7b', LN = '#e8edeb', PALE = '#eef5f2', SAND = '#e8cfcf', SANDBG = '#f6f1e9'
 
 type Mode = 'builder' | 'own'
 type XY = { x: number; y: number }

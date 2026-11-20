@@ -32,7 +32,7 @@ export default function TR1bPitchSideDrill(_: { onBack?: () => void }) {
   const DRILL = DRILLS[drillIdx]
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
-    <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#faf5ec', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       <div style={{ flex: 'none', height: 64, boxSizing: 'border-box', padding: '0 28px', display: 'flex', alignItems: 'center', gap: 16, background: INK }}>
         <button onClick={() => st('Going back.')} style={{ width: 44, height: 44, borderRadius: '50%', border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18 }}>←</button>
         <div style={{ fontSize: 18, fontWeight: 700, color: '#fff', flex: 1 }}>Training · Thu 4 Jun</div>
@@ -60,7 +60,7 @@ export default function TR1bPitchSideDrill(_: { onBack?: () => void }) {
 
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '16px 18px', display: 'flex', flexDirection: 'column', gap: 12 }}>
             <div>
-              <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 6 }}>How it works</div>
+              <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 6 }}>How it works</div>
               <div style={{ fontSize: 15, lineHeight: '22px' }}>{DRILL.how}</div>
             </div>
             <div style={{ background: G, borderRadius: 10, padding: '12px 14px' }}>
@@ -68,7 +68,7 @@ export default function TR1bPitchSideDrill(_: { onBack?: () => void }) {
               <div style={{ fontSize: 15, fontWeight: 600, color: '#fff', lineHeight: '22px' }}>{DRILL.say}</div>
             </div>
             <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' as const }}>
-              {DRILL.setup.map(s => <div key={s} style={{ fontSize: 13, background: '#f7f8f7', border: `1px solid ${LN}`, borderRadius: 8, padding: '3px 10px', color: MUT }}>{s}</div>)}
+              {DRILL.setup.map(s => <div key={s} style={{ fontSize: 13, background: '#faf5ec', border: `1px solid ${LN}`, borderRadius: 8, padding: '3px 10px', color: MUT }}>{s}</div>)}
             </div>
             {DRILL.adjust && <div style={{ background: '#c39797', borderRadius: 10, padding: '10px 14px', fontSize: 14, fontWeight: 600 }}><strong>Adjust:</strong> {DRILL.adjust}</div>}
           </div>
@@ -81,7 +81,7 @@ export default function TR1bPitchSideDrill(_: { onBack?: () => void }) {
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '14px 16px' }}>
-            <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 10 }}>Keep an eye on</div>
+            <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 10 }}>Keep an eye on</div>
             {[['Noah Okafor', '3 sprints max tonight'], ['Ella Brandt', 'Had a quick chat — OK to train'], ['Zoe Hartley', '3 sprints max tonight']].map(([name, note]) => (
               <div key={name} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, padding: '8px 0', borderTop: `1px solid ${LN}` }}>
                 <div style={{ width: 28, height: 28, borderRadius: '50%', background: '#c39797', color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, flex: 'none' }}>{name.split(' ').map(w => w[0]).join('')}</div>
@@ -94,7 +94,7 @@ export default function TR1bPitchSideDrill(_: { onBack?: () => void }) {
           </div>
 
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '14px 16px' }}>
-            <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 8 }}>Tag players</div>
+            <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 8 }}>Tag players</div>
             <div style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
               <button onClick={() => setTag('good')} style={{ flex: 1, height: 44, borderRadius: 10, border: `1px solid ${G}`, background: tag === 'good' ? G : PALE, color: tag === 'good' ? '#fff' : G, fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>{tag === 'good' ? 'Good ✓' : 'Good'}</button>
               <button onClick={() => setTag('work')} style={{ flex: 1, height: 44, borderRadius: 10, border: `1px solid ${tag === 'work' ? G : LN}`, background: tag === 'work' ? PALE : '#fff', color: tag === 'work' ? G : MUT, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>{tag === 'work' ? 'Work on ✓' : 'Work on'}</button>

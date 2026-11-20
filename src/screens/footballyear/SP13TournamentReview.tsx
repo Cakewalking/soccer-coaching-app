@@ -7,10 +7,10 @@ export default function SP13TournamentReview({ onBack }: { onBack?: () => void }
   function t(m: string) { setToast(m); setTimeout(() => setToast(null), 3200) }
 
   return (
-    <div style={{ padding: '20px 28px 40px', background: '#f7f8f7', minHeight: '100%', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', position: 'relative' }}>
+    <div style={{ padding: '20px 28px 40px', background: '#faf5ec', minHeight: '100%', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', position: 'relative' }}>
       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 20 }}>
         <div>
-          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 4 }}>Head coach</div>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 4 }}>Head coach</div>
           <div style={{ fontSize: 24, fontWeight: 800, letterSpacing: '-0.02em', color: INK, marginBottom: 2 }}>Tournament review</div>
           <div style={{ fontSize: 14, color: MUT }}>Kingfisher Summer Cup · 5 games over two days</div>
         </div>
@@ -31,8 +31,8 @@ export default function SP13TournamentReview({ onBack }: { onBack?: () => void }
                 { label: 'Minutes each', val: '68 to 76' },
                 { label: 'Clips',       val: '14' },
               ].map(stat => (
-                <div key={stat.label} style={{ padding: '10px 12px', borderRadius: 10, background: '#f7f8f7', border: `1px solid #e5e6e4` }}>
-                  <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 4 }}>{stat.label}</div>
+                <div key={stat.label} style={{ padding: '10px 12px', borderRadius: 10, background: '#faf5ec', border: `1px solid #e5e6e4` }}>
+                  <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 4 }}>{stat.label}</div>
                   <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>{stat.val}</div>
                 </div>
               ))}

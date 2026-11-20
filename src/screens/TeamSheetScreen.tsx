@@ -21,7 +21,7 @@ const JUNIOR_ON_SHEET = [
 ] as { ini: string; name: string; satOut: number; label?: string }[]
 
 const JUNIOR_SITTING_OUT = [
-  { ini: 'RC', name: 'Ruby Chen',   reason: 'Her turn · sat out 0 of 8 so far', badge: 'Suggested', badgeBg: '#cbbeb5', badgeColor: '#10211f', canSwap: true },
+  { ini: 'RC', name: 'Ruby Chen',   reason: 'Her turn · sat out 0 of 8 so far', badge: 'Suggested', badgeBg: '#e8cfcf', badgeColor: '#10211f', canSwap: true },
   { ini: 'KR', name: 'Kai Russo',   reason: 'Away · family trip',               badge: 'Away',      badgeBg: '#e9eae8', badgeColor: '#10211f', canSwap: false },
   { ini: 'LN', name: 'Lily Nguyen', reason: 'Sick · told Rob on Thursday',      badge: 'Sick',      badgeBg: '#e9eae8', badgeColor: '#10211f', canSwap: false },
 ]
@@ -39,7 +39,7 @@ function teamSheetData(team: TeamSheetTeam) {
   const sittingOut = rest.map((p, i) => ({
     ini: p.ini, name: p.fullName,
     reason: i === 0 ? 'Rotated · their turn to rest' : 'Away · let the manager know',
-    badge: i === 0 ? 'Suggested' : 'Away', badgeBg: i === 0 ? '#cbbeb5' : '#e9eae8', badgeColor: '#10211f', canSwap: i === 0,
+    badge: i === 0 ? 'Suggested' : 'Away', badgeBg: i === 0 ? '#e8cfcf' : '#e9eae8', badgeColor: '#10211f', canSwap: i === 0,
   }))
   const rule = team === 'youth'
     ? `Football Victoria allows 16 on a youth team sheet. With ${squad.length} named, two rotate each week.`
@@ -99,7 +99,7 @@ export default function TeamSheetScreen({ empty, teamType = 'juniors' }: Props) 
         </div>
         {SITTING_OUT.map(p => (
           <div key={p.ini} style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 50, borderTop: '1px solid #e9eae8' }}>
-            <span style={{ flexShrink: 0, width: 30, height: 30, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }}>{p.ini}</span>
+            <span style={{ flexShrink: 0, width: 30, height: 30, borderRadius: '999px', background: '#e8cfcf', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }}>{p.ini}</span>
             <span style={{ flexGrow: 1, minWidth: 0 }}>
               <span style={{ display: 'block', fontSize: 15, lineHeight: '21px', fontWeight: 700 }}>{p.name}</span>
               <span style={{ display: 'block', fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>{p.reason}</span>

@@ -14,7 +14,7 @@ export default function EX1HowWorkedOut({ onNav }: { onBack?: () => void; onNav?
   const [toast, setToast] = useState<string | null>(null)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
-    <div style={{ width: 1180, height: 820, boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative', overflowY: 'auto' }}>
+    <div style={{ width: 1180, height: 820, boxSizing: 'border-box', background: '#faf5ec', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative', overflowY: 'auto' }}>
       <div style={{ flex: 'none', background: G, height: 64, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 4 }}>
         <div style={{ fontSize: 20, fontWeight: 700, color: '#fff', marginRight: 16, letterSpacing: '-0.02em' }}>Clean Sheet</div>
         {NAV.map(n => <div key={n} onClick={() => onNav?.(NAV_MAP[n])} style={{ height: 48, padding: '0 14px', borderRadius: 12, display: 'flex', alignItems: 'center', fontSize: 15, fontWeight: 600, color: n === 'Match day' ? '#fff' : 'rgba(255,255,255,0.75)', background: n === 'Match day' ? G2 : 'transparent', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{n}</div>)}
@@ -26,7 +26,7 @@ export default function EX1HowWorkedOut({ onNav }: { onBack?: () => void; onNav?
         <div style={{ marginLeft: 'auto', fontSize: 13, color: MUT }}>Head coach</div>
       </div>
       <div style={{ flex: 'none', padding: '16px 28px 0' }}>
-        <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT }}>When we lose it · From our style</div>
+        <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b' }}>When we lose it · From our style</div>
         <div style={{ fontSize: 24, fontWeight: 800, letterSpacing: '-0.02em', color: INK }}>Seconds to win the ball back</div>
         <div style={{ fontSize: 13, color: MUT, marginTop: 2 }}>Saturday vs Ironbark</div>
       </div>
@@ -34,7 +34,7 @@ export default function EX1HowWorkedOut({ onNav }: { onBack?: () => void; onNav?
         <div>
           <div style={{ display: 'flex', gap: 24, marginBottom: 16 }}>
             {[{ label: 'Last game', value: '7 s', color: '#c04040' }, { label: 'Our target', value: '4 s', color: G }].map((s, i) => (
-              <div key={i} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '12px 20px', minWidth: 120 }}>
+              <div key={i} style={{ background: ['#f3ecdf', '#f4e6e6', '#eef5f2', '#f3ecdf'][i % 4], border: `1px solid ${LN}`, borderRadius: 14, padding: '12px 20px', minWidth: 120 }}>
                 <div style={{ fontSize: 12, color: MUT }}>{s.label}</div>
                 <div style={{ fontSize: 32, fontWeight: 800, color: s.color }}>{s.value}</div>
               </div>

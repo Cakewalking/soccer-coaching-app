@@ -113,7 +113,7 @@ export function OpenHost() {
   useEffect(() => { setText(sheet ? kept[key] ?? '' : '') /* open on what was saved last time */ }, [sheet]) // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => { if (!s) return; const k = (e: KeyboardEvent) => { if (e.key === 'Escape') set(null) }; window.addEventListener('keydown', k); return () => window.removeEventListener('keydown', k) }, [s])
   if (!s) return null
-  if (s.screen) return <div data-open-screen={s.screen} style={{ position: 'fixed', inset: 0, zIndex: 450, background: '#f7f8f7', display: 'flex', flexDirection: 'column' }}><ScreenLayer screenKey={s.screen} who={s.who ?? null} onClose={() => set(null)} backLabel="Back" /></div>
+  if (s.screen) return <div data-open-screen={s.screen} style={{ position: 'fixed', inset: 0, zIndex: 450, background: '#faf5ec', display: 'flex', flexDirection: 'column' }}><ScreenLayer screenKey={s.screen} who={s.who ?? null} onClose={() => set(null)} backLabel="Back" /></div>
   if (!sheet) return null
   const msg = sheet.kind === 'message'
   const save = () => {

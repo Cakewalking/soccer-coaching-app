@@ -5,7 +5,7 @@ export default function SP21eStandInHomeEmpty({onBack}:{onBack?:()=>void}){
   const [toast,setToast]=useState<string|null>(null)
   function t(m:string){setToast(m);setTimeout(()=>setToast(null),3200)}
   return(
-    <div style={{display:'flex',flexDirection:'column',minHeight:'100%',background:'#f7f8f7',fontFamily:'var(--font-sans)',position:'relative'}}>
+    <div style={{display:'flex',flexDirection:'column',minHeight:'100%',background:'#faf5ec',fontFamily:'var(--font-sans)',position:'relative'}}>
       <div style={{flex:'none',background:'#fff',borderBottom:`1px solid ${LN}`,padding:'0 24px',display:'flex',alignItems:'center',gap:0,height:48}}>
         <button onClick={onBack} style={{height:48,padding:'0 0 0 0',marginRight:16,background:'none',border:'none',cursor:'pointer',color:MUT,fontFamily:'inherit',fontSize:13,fontWeight:500,display:'flex',alignItems:'center',gap:6}}>
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>

@@ -25,7 +25,7 @@ const GAMES = [
 
 export default function DCo1CoordinatorHome(_: { onBack?: () => void }) {
   return (
-    <div style={{ width: 1180, height: 820, background: '#f7f8f7', boxSizing: 'border-box' as const, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' as const }}>
+    <div style={{ width: 1180, height: 820, background: '#faf5ec', boxSizing: 'border-box' as const, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' as const }}>
       <div style={{ height: 64, background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 12, flex: 'none' }}>
         <div style={{ fontSize: 21, fontWeight: 700, color: '#fff', letterSpacing: '-0.02em' }}>Clean Sheet</div>
         <span style={{ padding: '2px 9px', borderRadius: 6, background: 'rgba(255,255,255,0.15)', fontSize: 11, fontWeight: 700, color: '#fff', letterSpacing: '0.08em' }}>CLUB</span>
@@ -41,8 +41,8 @@ export default function DCo1CoordinatorHome(_: { onBack?: () => void }) {
       <div style={{ flex: 1, minHeight: 0, padding: '12px 28px 18px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 300px', gap: 14 }}>
         <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 10 }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 10 }}>
-            {TILES.map(t => (
-              <div key={t.n} style={{ background: '#fff', border: `1px solid ${t.warn ? '#f0a0a0' : '#c5c8c4'}`, borderRadius: 14, padding: '12px 14px' }}>
+            {TILES.map((t, kpiN)=> (
+              <div key={t.n} style={{ background: ['#f3ecdf', '#f4e6e6', '#eef5f2', '#f3ecdf'][kpiN % 4], border: `1px solid ${t.warn ? '#f0a0a0' : '#c5c8c4'}`, borderRadius: 14, padding: '12px 14px' }}>
                 <div style={{ fontSize: 24, fontWeight: 800, letterSpacing: '-0.02em', color: t.warn ? '#c00' : INK }}>{t.n}</div>
                 <div style={{ fontSize: 14, fontWeight: 700 }}>{t.label}</div>
                 <div style={{ fontSize: 12, color: MUT }}>{t.sub}</div>

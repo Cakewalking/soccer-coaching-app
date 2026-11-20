@@ -19,7 +19,7 @@ const SPARK = 'M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.
 const MiniPitch = ({ w = 132 }: { w?: number }) => <svg width={w} height={w * 0.52} viewBox="0 0 132 68" aria-hidden="true" style={{ flex: 'none', borderRadius: 8, background: '#40826d' }}>
   <rect x="6" y="6" width="120" height="56" fill="none" stroke="#fff" strokeWidth="1.5" /><path d="M66 6v56" stroke="#fff" strokeWidth="1.5" />
   {[[28, 20], [50, 34], [28, 48]].map(([x, y]) => <circle key={`${x}${y}`} data-club-home="" cx={x} cy={y} r="6" fill="#40826d" stroke="#fff" strokeWidth="2" />)}
-  {[[104, 20], [84, 34], [104, 48]].map(([x, y]) => <circle key={`${x}${y}`} data-club-away="" cx={x} cy={y} r="6" fill="#f7f8f7" stroke={INK} strokeWidth="2" />)}
+  {[[104, 20], [84, 34], [104, 48]].map(([x, y]) => <circle key={`${x}${y}`} data-club-away="" cx={x} cy={y} r="6" fill="#faf5ec" stroke={INK} strokeWidth="2" />)}
 </svg>
 
 // ── KC2: the same screen at five clubs ───────────────────────────────────────
@@ -29,7 +29,7 @@ const FIVE: Array<{ name: string; line: string; main: string; second: string }> 
 ]
 export function KC2FiveClubs() {
   return (
-    <div data-screen="KC2-FiveClubs" style={{ width: 1180, margin: '0 auto', padding: '18px 28px 24px', boxSizing: 'border-box', background: '#f7f8f7', fontFamily: "'DM Sans',system-ui,sans-serif", color: INK, display: 'flex', flexDirection: 'column', gap: 10 }}>
+    <div data-screen="KC2-FiveClubs" style={{ width: 1180, margin: '0 auto', padding: '18px 28px 24px', boxSizing: 'border-box', background: '#faf5ec', fontFamily: "'DM Sans',system-ui,sans-serif", color: INK, display: 'flex', flexDirection: 'column', gap: 10 }}>
       <div style={{ display: 'flex', alignItems: 'baseline', gap: 14 }}><h1 style={{ margin: 0, fontSize: 26, fontWeight: 700 }}>The same screen at five clubs</h1><span style={{ fontSize: 14, color: MUT }}>Bar, crest, kit and the two big tiles change. Green buttons and amber proof never do.</span></div>
       {FIVE.map(c => <ClubScope key={c.name} main={c.main} second={c.second} name={c.name}>
         <section aria-label={c.name} style={{ ...tile, overflow: 'hidden' }}>
@@ -111,7 +111,7 @@ export function KC8Report({ onNav }: { onNav?: Nav }) {
 const KIDS = { ari: { club: REDGUM, child: 'Ari', team: 'U11 Luke', next: 'next game Saturday 9:30', id: 'KCp1-ParentRedClub' }, mia: { club: BAYSIDE, child: 'Mia', team: 'U14 Girls', next: 'next game Sunday 11:00', id: 'KCp2-ParentPaleClub' } }
 const round: React.CSSProperties = { flex: 'none', width: 44, height: 44, borderRadius: 999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 0, cursor: 'pointer' }
 const Ask = ({ go }: { go: Nav }) => <button aria-label="Ask Clean Sheet" onClick={() => go('ASKp2-PhoneAskOpen')} style={{ ...round, border: '1.5px solid #a9cfc0', background: 'transparent', color: '#fff' }}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={SPARK} /></svg></button>
-const Me = () => <span data-club-keep="" style={{ ...round, cursor: 'default', background: '#cbbeb5', color: INK, fontSize: 14, fontWeight: 700 }}>DB</span>
+const Me = () => <span data-club-keep="" style={{ ...round, cursor: 'default', background: '#e8cfcf', color: INK, fontSize: 14, fontWeight: 700 }}>DB</span>
 
 export function KCParent({ start = 'KCp1-ParentRedClub', onNav }: { start?: string; onNav?: Nav }) {
   const [id, setId] = useBackState(start)
@@ -119,7 +119,7 @@ export function KCParent({ start = 'KCp1-ParentRedClub', onNav }: { start?: stri
   const go = (s: string) => s.startsWith('KCp') ? setId(s) : out(s)
   const k = id === 'KCp2-ParentPaleClub' ? KIDS.mia : KIDS.ari
   const coming = useDone(`kcp:coming:${k.child}`)
-  const phone: React.CSSProperties = { width: 390, minHeight: 844, margin: '0 auto', background: '#f7f8f7', color: INK, fontFamily: "'DM Sans',system-ui,sans-serif", display: 'flex', flexDirection: 'column' }
+  const phone: React.CSSProperties = { width: 390, minHeight: 844, margin: '0 auto', background: '#faf5ec', color: INK, fontFamily: "'DM Sans',system-ui,sans-serif", display: 'flex', flexDirection: 'column' }
   const card: React.CSSProperties = { ...tile, padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 8 }
   const cap: React.CSSProperties = { fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', color: MUT }
   const wide = (primary = false): React.CSSProperties => ({ height: 48, borderRadius: 12, border: primary ? 0 : `1px solid ${LINE}`, background: primary ? G : '#fff', color: primary ? '#fff' : INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' })

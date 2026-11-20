@@ -32,7 +32,7 @@ function TeamFrame({ t }: { t: number }) {
   return (
     <svg viewBox="0 0 160 90" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Your own team, drawn from the game film" style={{ position: 'absolute', left: 0, top: 0, width: '100%', height: '100%', display: 'block' }}>
       <rect width="160" height="90" fill="#3d7a5f" /><rect x="8" y="7" width="144" height="76" fill="none" stroke={W} strokeWidth="0.8" opacity="0.7" /><path d="M80 7v76" stroke={W} strokeWidth="0.8" opacity="0.7" /><circle cx="80" cy="45" r="11" fill="none" stroke={W} strokeWidth="0.8" opacity="0.7" />
-      {[[30, 30], [34, 60], [52, 45], [70, 24], [66, 66]].map(([x, y]) => <circle key={`${x}-${y}`} cx={x} cy={y} r="2.6" fill="#f4f5f3" stroke={INK} strokeWidth="0.5" />)}
+      {[[30, 30], [34, 60], [52, 45], [70, 24], [66, 66]].map(([x, y]) => <circle key={`${x}-${y}`} cx={x} cy={y} r="2.6" fill="#faf5ec" stroke={INK} strokeWidth="0.5" />)}
       {[[60, 40], [84, 52], [98, 30], [104, 62]].map(([x, y], i) => <circle key={`${x}-${y}`} cx={x + Math.sin(t + i) * 1.2} cy={y + Math.cos(t * 0.8 + i) * 1.2} r="2.6" fill={INK} />)}
       <circle cx="52" cy="45" r={pulse} fill="none" stroke={W} strokeWidth="1.2" /><path d="M60 28l22-8" stroke={W} strokeWidth="1" strokeDasharray="2 2" />
       <circle cx={55.5 + f * 4} cy={46.5 - f * 2} r="1.3" fill={W} />

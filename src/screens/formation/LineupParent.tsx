@@ -28,7 +28,7 @@ export default function LineupParent({ childId = 'p7', onNav }: { childId?: stri
           <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.75)' }}>{cfg.teamLabel.split(' · ')[0]} · from Sam, Friday 6:00 pm</div>
           <div style={{ fontSize: 18, fontWeight: 800 }}>Saturday’s line-up</div>
         </div>
-        <div style={{ width: 34, height: 34, borderRadius: 999, background: '#cbbeb5', color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }}>LT</div>
+        <div style={{ width: 34, height: 34, borderRadius: 999, background: '#e8cfcf', color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }}>LT</div>
       </div>
 
       <div style={{ flexGrow: 1, padding: 16, display: 'flex', flexDirection: 'column', gap: 14 }}>

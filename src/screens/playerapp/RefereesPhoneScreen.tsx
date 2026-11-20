@@ -35,7 +35,7 @@ function RefAsked({ onAccept, onDecline }: { onAccept: () => void; onDecline: ()
       <div style={{ background: '#1f4a3e', padding: '48px 20px 20px' }}>
         <div style={{ fontSize: 12, color: '#cfe6dc' }}>Wattle Creek FC · referees</div>
         <div style={{ fontSize: 22, fontWeight: 700, color: '#fff', marginTop: 2 }}>Can you do a game?</div>
-        <div style={{ width: 40, height: 40, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700, marginTop: 10 }}>ZP</div>
+        <div style={{ width: 40, height: 40, borderRadius: '999px', background: '#e8cfcf', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700, marginTop: 10 }}>ZP</div>
       </div>
 
       <div style={{ padding: '16px', flexGrow: 1, display: 'flex', flexDirection: 'column', gap: 12 }}>
@@ -52,7 +52,7 @@ function RefAsked({ onAccept, onDecline }: { onAccept: () => void; onDecline: ()
               { label: 'Referee', value: 'Appointed by the league' },
               { label: 'Your other game', value: '8:30 · U7 Dan, pitch 5' },
             ].map(r => (
-              <div key={r.label} style={{ background: '#f7f8f7', borderRadius: 10, padding: '10px 12px' }}>
+              <div key={r.label} style={{ background: '#faf5ec', borderRadius: 10, padding: '10px 12px' }}>
                 <div style={{ fontSize: 11, color: '#4a5a57', fontWeight: 700, marginBottom: 2 }}>{r.label}</div>
                 <div style={{ fontSize: 14, fontWeight: 700 }}>{r.value}</div>
               </div>
@@ -82,7 +82,7 @@ function RefGames() {
       <div style={{ background: '#1f4a3e', padding: '48px 20px 20px' }}>
         <div style={{ fontSize: 12, color: '#cfe6dc' }}>Wattle Creek FC · game leader, Level 4</div>
         <div style={{ fontSize: 22, fontWeight: 700, color: '#fff', marginTop: 2 }}>Hi Zoe</div>
-        <div style={{ width: 40, height: 40, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700, marginTop: 10 }}>ZP</div>
+        <div style={{ width: 40, height: 40, borderRadius: '999px', background: '#e8cfcf', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700, marginTop: 10 }}>ZP</div>
       </div>
 
       <div style={{ padding: '16px', display: 'flex', flexDirection: 'column', gap: 12 }}>
@@ -140,7 +140,7 @@ function RefReport({ onSend }: { onSend: () => void }) {
       <div style={{ background: '#1f4a3e', padding: '48px 20px 20px' }}>
         <div style={{ fontSize: 15, fontWeight: 700, color: '#fff' }}>U13 Girls Meg v Northgate City · Sat 6 Jun</div>
         <div style={{ fontSize: 22, fontWeight: 700, color: '#fff', marginTop: 2 }}>Report something</div>
-        <div style={{ width: 40, height: 40, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700, marginTop: 10 }}>ZP</div>
+        <div style={{ width: 40, height: 40, borderRadius: '999px', background: '#e8cfcf', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700, marginTop: 10 }}>ZP</div>
       </div>
 
       <div style={{ padding: '16px', display: 'flex', flexDirection: 'column', gap: 14 }}>

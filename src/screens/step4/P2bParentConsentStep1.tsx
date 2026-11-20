@@ -20,7 +20,7 @@ export default function P2bParentConsentStep1() {
   const allAnswered = PERMS.every(p => answers[p.key] !== undefined)
 
   if (done) return (
-    <div style={{ width: 390, minHeight: '100%', background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', margin: '0 auto', padding: '32px 20px' }}>
+    <div style={{ width: 390, minHeight: '100%', background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', margin: '0 auto', padding: '32px 20px' }}>
       <div style={{ fontSize: 20, fontWeight: 800, color: GD, marginBottom: 4 }}>Thanks, Kate.</div>
       <div style={{ fontSize: 14, color: MUT, marginBottom: 20 }}>Sam can see your choices now.</div>
       {PERMS.map(p => (
@@ -34,7 +34,7 @@ export default function P2bParentConsentStep1() {
   )
 
   return (
-    <div style={{ width: 390, minHeight: '100%', background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', margin: '0 auto' }}>
+    <div style={{ width: 390, minHeight: '100%', background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', margin: '0 auto' }}>
       {/* Top bar, as drawn: back, name, how many are answered */}
       <div style={{ background: G, height: 56, padding: '0 16px', display: 'flex', alignItems: 'center', gap: 8, position: 'sticky', top: 0, zIndex: 5 }}>
         <button aria-label="Back" onClick={() => st('Your answers so far are kept.')} style={{ width: 44, height: 44, border: 0, background: 'transparent', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>

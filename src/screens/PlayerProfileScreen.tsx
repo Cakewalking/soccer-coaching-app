@@ -34,7 +34,7 @@ const GAME_RESULTS = [
 function resultColor(r: string) {
   if (r === 'W') return { bg: '#2f6252', color: '#ffffff' }
   if (r === 'L') return { bg: '#c39797', color: '#10211f' }
-  return { bg: '#cbbeb5', color: '#10211f' }
+  return { bg: '#e8cfcf', color: '#10211f' }
 }
 
 function statusChipColor(status: string) {
@@ -123,8 +123,8 @@ export default function PlayerProfileScreen({ playerIni, empty, players = SQUAD_
                   { label: 'WINS OF THE BALL', note: 'After her first game' },
                   { label: 'PASSES COMPLETED', note: 'After her first game' },
                 ].map((m, i) => (
-                  <div key={i} style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 12, padding: '14px 16px' }}>
-                    <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', color: '#6f7f7b', marginBottom: 4 }}>{m.label}</div>
+                  <div key={i} style={{ background: ['#f3ecdf', '#f4e6e6', '#eef5f2', '#f3ecdf'][i % 4], border: '1px solid #e9eae8', borderRadius: 12, padding: '14px 16px' }}>
+                    <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', color: '#5c6b67', marginBottom: 4 }}>{m.label}</div>
                     <div style={{ fontSize: 24, fontWeight: 700, color: '#10211f', marginBottom: 2 }}>—</div>
                     <div style={{ fontSize: 12, color: '#4a5a57' }}>{m.note}</div>
                   </div>
@@ -133,11 +133,11 @@ export default function PlayerProfileScreen({ playerIni, empty, players = SQUAD_
               <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 12, padding: '14px 16px' }}>
                 <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 6 }}>Game by game</div>
                 <div style={{ fontSize: 13, color: '#4a5a57', marginBottom: 2 }}>Minutes played</div>
-                <div style={{ fontSize: 12, color: '#6f7f7b' }}>Minutes appear after each game</div>
+                <div style={{ fontSize: 12, color: '#5c6b67' }}>Minutes appear after each game</div>
               </div>
               <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 12, padding: '14px 16px' }}>
                 <div style={{ fontSize: 13, color: '#4a5a57' }}>No clips of Harper yet</div>
-                <div style={{ fontSize: 12, color: '#6f7f7b', marginTop: 4, lineHeight: 1.5 }}>Once the match camera records a game, her best moments and things to work on are tagged here automatically.</div>
+                <div style={{ fontSize: 12, color: '#5c6b67', marginTop: 4, lineHeight: 1.5 }}>Once the match camera records a game, her best moments and things to work on are tagged here automatically.</div>
               </div>
             </div>
             <div>
@@ -175,7 +175,7 @@ export default function PlayerProfileScreen({ playerIni, empty, players = SQUAD_
                 <span style={{ fontSize: 24, fontWeight: 700, color: '#10211f', letterSpacing: '-0.02em' }}>{player.fullName}</span>
                 <span style={{ ...statusChip, fontSize: 12, fontWeight: 700, padding: '3px 10px', borderRadius: '999px', border: `1px solid ${statusChip.border}` }}>{statusLabel}</span>
               </div>
-              <div style={{ fontSize: 13, color: '#6f7f7b', marginTop: 4 }}>
+              <div style={{ fontSize: 13, color: '#5c6b67', marginTop: 4 }}>
                 {player.pos} · #{player.games} · U12 Sam · {player.foot} foot · {player.season}
               </div>
             </div>
@@ -190,7 +190,7 @@ export default function PlayerProfileScreen({ playerIni, empty, players = SQUAD_
               ].map(s => (
                 <div key={s.label} style={{ textAlign: 'center' }}>
                   <div style={{ fontSize: 22, fontWeight: 700, color: '#10211f' }}>{s.value}</div>
-                  <div style={{ fontSize: 12, color: '#6f7f7b' }}>{s.label}</div>
+                  <div style={{ fontSize: 12, color: '#5c6b67' }}>{s.label}</div>
                 </div>
               ))}
             </div>
@@ -207,7 +207,7 @@ export default function PlayerProfileScreen({ playerIni, empty, players = SQUAD_
                 display: 'flex', alignItems: 'flex-end', paddingBottom: 2, gap: 6,
               }}>
                 {tab}
-                {tab === 'Clips' && <span style={{ background: '#e9eae8', color: '#6f7f7b', borderRadius: '999px', padding: '0 6px', fontSize: 12, lineHeight: '18px' }}>{playerClips.length}</span>}
+                {tab === 'Clips' && <span style={{ background: '#e9eae8', color: '#5c6b67', borderRadius: '999px', padding: '0 6px', fontSize: 12, lineHeight: '18px' }}>{playerClips.length}</span>}
               </button>
             ))}
           </div>
@@ -221,14 +221,14 @@ export default function PlayerProfileScreen({ playerIni, empty, players = SQUAD_
           <div style={{ padding: '24px 32px' }}>
             {/* Metric cards */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 14, marginBottom: 28 }}>
-              {metricCards.map(m => (
-                <div key={m.label} style={{ background: '#ffffff', border: '1px solid #e9eae8', borderRadius: 14, padding: '16px' }}>
+              {metricCards.map((m, kpiN)=> (
+                <div key={m.label} style={{ background: ['#f3ecdf', '#f4e6e6', '#eef5f2', '#f3ecdf'][kpiN % 4], border: '1px solid #e9eae8', borderRadius: 14, padding: '16px' }}>
                   <div style={{ fontSize: 13, fontWeight: 600, color: '#10211f', marginBottom: 8 }}>{m.label}</div>
                   <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 6 }}>
                     <span style={{ fontSize: 28, fontWeight: 700, letterSpacing: '-0.02em', color: '#10211f' }}>{m.value}</span>
                     <Sparkline data={m.trend} color="#40826d" />
                   </div>
-                  <div style={{ fontSize: 12, color: '#6f7f7b', lineHeight: '16px' }}>{m.sub}</div>
+                  <div style={{ fontSize: 12, color: '#5c6b67', lineHeight: '16px' }}>{m.sub}</div>
                   <div style={{ fontSize: 11, color: '#a3b0ad', marginTop: 4 }}>{m.source}</div>
                 </div>
               ))}
@@ -238,17 +238,17 @@ export default function PlayerProfileScreen({ playerIni, empty, players = SQUAD_
             <div style={{ background: '#ffffff', border: '1px solid #e9eae8', borderRadius: 16, padding: '20px 24px', marginBottom: 24 }}>
               <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 20 }}>
                 <h2 style={{ margin: 0, fontSize: 17, fontWeight: 700, color: '#10211f' }}>Game by game</h2>
-                <span style={{ fontSize: 13, color: '#6f7f7b' }}>Minutes played out of 60 · fair share is about 39</span>
+                <span style={{ fontSize: 13, color: '#5c6b67' }}>Minutes played out of 60 · fair share is about 39</span>
               </div>
               <div style={{ display: 'flex', gap: 12, alignItems: 'flex-end', height: 100, position: 'relative' }}>
                 {/* Fair share line at 39/60 = 65% height */}
                 <div style={{ position: 'absolute', left: 0, right: 0, bottom: `${(39 / 60) * 80 + 24}px`, borderTop: '1px dashed #c5c8c4', pointerEvents: 'none' }} />
                 {GAME_RESULTS.map((g, i) => (
                   <div key={i} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
-                    <span style={{ fontSize: 11, fontWeight: 700, color: '#6f7f7b' }}>{g.mins}</span>
+                    <span style={{ fontSize: 11, fontWeight: 700, color: '#5c6b67' }}>{g.mins}</span>
                     <div style={{ width: '100%', borderRadius: 4, background: '#40826d', height: `${(g.mins / 60) * 80}px`, transition: 'height 0.2s' }} />
                     <span style={{ ...resultColor(g.result), width: 24, height: 20, borderRadius: 4, fontSize: 10, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{g.result}</span>
-                    <span style={{ fontSize: 11, color: '#6f7f7b' }}>{g.opp}</span>
+                    <span style={{ fontSize: 11, color: '#5c6b67' }}>{g.opp}</span>
                   </div>
                 ))}
               </div>
@@ -274,7 +274,7 @@ export default function PlayerProfileScreen({ playerIni, empty, players = SQUAD_
                     </div>
                     <div style={{ padding: '10px 12px 12px' }}>
                       <div style={{ fontSize: 13, fontWeight: 600, color: '#10211f', marginBottom: 4 }}>{clip.title}</div>
-                      <div style={{ fontSize: 12, color: '#6f7f7b' }}>{clip.gameLabel} · min {clip.min}</div>
+                      <div style={{ fontSize: 12, color: '#5c6b67' }}>{clip.gameLabel} · min {clip.min}</div>
                     </div>
                   </div>
                 ))}
@@ -284,7 +284,7 @@ export default function PlayerProfileScreen({ playerIni, empty, players = SQUAD_
         )}
 
         {activeTab !== 0 && activeTab !== 5 && (
-          <div style={{ padding: 40, textAlign: 'center', color: '#6f7f7b', fontSize: 15 }}>
+          <div style={{ padding: 40, textAlign: 'center', color: '#5c6b67', fontSize: 15 }}>
             {PROFILE_TABS[activeTab]} — coming soon
           </div>
         )}
@@ -304,11 +304,11 @@ export default function PlayerProfileScreen({ playerIni, empty, players = SQUAD_
             <div style={{ height: 8, borderRadius: 4, background: player.load > 110 ? '#c39797' : '#40826d', width: `${Math.min(100, player.load)}%` }} />
             <div style={{ position: 'absolute', top: -3, left: `${Math.min(100, 91)}%`, width: 1.5, height: 14, background: '#6f7f7b' }} />
           </div>
-          <div style={{ fontSize: 12, color: '#6f7f7b' }}>GPS vest · line marks 110%</div>
+          <div style={{ fontSize: 12, color: '#5c6b67' }}>GPS vest · line marks 110%</div>
         </div>
 
         {/* Wellness */}
-        <div style={{ marginBottom: 16, padding: '10px 12px', background: '#f7f8f7', borderRadius: 10 }}>
+        <div style={{ marginBottom: 16, padding: '10px 12px', background: '#faf5ec', borderRadius: 10 }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <span style={{ fontSize: 14, fontWeight: 600, color: '#10211f' }}>Wellness today</span>
             <span style={{ fontSize: 14, fontWeight: 700, color: player.wellness && player.wellness < 3 ? '#9d7c80' : '#10211f' }}>
@@ -331,7 +331,7 @@ export default function PlayerProfileScreen({ playerIni, empty, players = SQUAD_
         {/* Dev goal */}
         <div style={{ marginBottom: 16 }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-            <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#6f7f7b' }}>Development goal</span>
+            <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#5c6b67' }}>Development goal</span>
             <span style={{ fontSize: 11, fontWeight: 700, padding: '2px 8px', borderRadius: '999px', background: '#e8f2ee', color: '#2f6252' }}>On track</span>
           </div>
           <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', marginBottom: 6 }}>{player.devGoal}</div>
@@ -347,7 +347,7 @@ export default function PlayerProfileScreen({ playerIni, empty, players = SQUAD_
           <h3 style={{ margin: '0 0 12px', fontSize: 15, fontWeight: 700, color: '#10211f' }}>Latest notes</h3>
           {latestNotes.map((n, i) => (
             <div key={i} style={{ padding: '10px 0', borderTop: i > 0 ? '1px solid #e9eae8' : 'none' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12, color: '#6f7f7b', marginBottom: 4 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12, color: '#5c6b67', marginBottom: 4 }}>
                 <span style={{ fontWeight: 600 }}>{n.from}</span>
                 <span>{n.date}</span>
               </div>

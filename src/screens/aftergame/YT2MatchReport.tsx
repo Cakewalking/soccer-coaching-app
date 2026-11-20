@@ -65,13 +65,13 @@ export default function YT2MatchReport({ onNav, bare = false, seniors = false }:
       <div style={{ height: '100%', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 300px', gap: 14, minHeight: 0 }}>
         <section style={{ background: '#fff', border: `1px solid ${CTL}`, borderRadius: 16, padding: '16px 18px', display: 'flex', flexDirection: 'column', gap: 10, overflowY: 'auto' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: MUT, flex: 1 }}>Round 8 · away · Redgum Reserve</span>
+            <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#7a4b5b', flex: 1 }}>Round 8 · away · Redgum Reserve</span>
             <button onClick={() => { setBody(DRAFT_BODY.split('\n\n').slice(0, 2).join('\n\n')); say('Rewritten, shorter.') }} style={{ height: 36, padding: '0 12px', borderRadius: 999, border: `1px solid ${CTL}`, background: '#fff', fontSize: 13, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>Write it again, shorter</button>
             <button aria-pressed={listening} onClick={dictate} style={{ height: 44, padding: '0 12px', borderRadius: 999, border: `1px solid ${CTL}`, background: '#fff', fontSize: 13, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>{listening ? 'Listening…' : 'Say it instead'}</button>
           </div>
           <input value={title} onChange={e => { setTitle(e.target.value); setKeptNow(false) }} style={{ width: '100%', border: 'none', background: 'transparent', fontSize: 22, fontWeight: 800, color: INK, fontFamily: 'inherit', outline: 'none', padding: 0 }} />
           <textarea value={body} onChange={e => { setBody(e.target.value); setKeptNow(false) }} style={{ width: '100%', minHeight: 170, border: `1px solid ${HAIR}`, borderRadius: 10, padding: '12px 14px', fontSize: 15, lineHeight: '23px', color: INK, fontFamily: 'inherit', outline: 'none', resize: 'vertical', boxSizing: 'border-box' }} />
-          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: MUT, marginTop: 4 }}>Clips in the report · tap to play</div>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#7a4b5b', marginTop: 4 }}>Clips in the report · tap to play</div>
           <div style={{ display: 'flex', gap: 10 }}>
             {['0:09', '0:12', '0:07'].map((d, i) => (
               <button key={i} aria-label={`Play clip ${i + 1} of 3, ${d}`} onClick={() => playClips(['0:09', '0:12', '0:07'].map((x, k) => ({ title: `Clip ${k + 1} in the report`, sub: 'From Saturday’s film.', len: Number(x.split(':')[1]) })), 'Clips in the report', i)} style={{ flex: 1, height: 84, borderRadius: 10, border: 'none', background: GD, position: 'relative', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>

@@ -7,7 +7,7 @@ export default function DB4Grants(_: { onBack?: () => void }) {
   function t(m: string) { setToast(m); setTimeout(() => setToast(null), 3200) }
 
   return (
-    <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, position: 'relative' }}>
+    <div style={{ width: 1180, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, position: 'relative' }}>
       <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 32, height: 52 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff', letterSpacing: '-0.01em' }}>Clean Sheet</div>
         {['Club', 'Teams', 'Coaches', 'Players', 'Safeguarding', 'Reports'].map(tab => (
@@ -22,7 +22,7 @@ export default function DB4Grants(_: { onBack?: () => void }) {
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 300px', gap: 24 }}>
           <div>
-            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 12 }}>Open now · Example grants — check each one's rules</div>
+            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 12 }}>Open now · Example grants — check each one's rules</div>
 
             {[
               { name: 'Wattle Shire community sport grant', amount: 'Up to $5,000', closes: 'closes 27 Jun', fit: 'fifth camera kit and girls kit', action: 'Start draft' },

@@ -21,7 +21,7 @@ export default function SG4WhatItUses(_: { onBack?: () => void }) {
   void st   // kept for lines this screen may still need to say
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
-    <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#faf5ec', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       <div style={{ flex: 'none', background: '#fff', borderBottom: `1px solid ${LN}` }}>
         <div style={{ height: 64, boxSizing: 'border-box', padding: '0 28px', display: 'flex', alignItems: 'center', gap: 4, background: G }}>
           <div style={{ fontSize: 20, fontWeight: 700, color: '#fff', marginRight: 16, letterSpacing: '-0.02em' }}>Clean Sheet</div>
@@ -37,9 +37,9 @@ export default function SG4WhatItUses(_: { onBack?: () => void }) {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
           <div style={{ fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em' }}>What it uses to make suggestions</div>
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, overflow: 'hidden' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 100px 1fr 60px', padding: '10px 18px', background: '#f7f8f7', borderBottom: `1px solid ${LN}` }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 100px 1fr 60px', padding: '10px 18px', background: '#faf5ec', borderBottom: `1px solid ${LN}` }}>
               {['Source', 'You have', 'Used for', 'On'].map(h => (
-                <div key={h} style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT }}>{h}</div>
+                <div key={h} style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b' }}>{h}</div>
               ))}
             </div>
             {SOURCES.map(r => (
@@ -55,7 +55,7 @@ export default function SG4WhatItUses(_: { onBack?: () => void }) {
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '14px 16px' }}>
-            <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 10 }}>What it never does</div>
+            <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 10 }}>What it never does</div>
             {['Shares your players\' data with other clubs', 'Uses data from other teams to judge your players', 'Makes medical decisions'].map((item, i) => (
               <div key={i} style={{ display: 'flex', gap: 10, padding: '6px 0', borderTop: `1px solid ${LN}` }}>
                 <div style={{ color: '#c05', fontSize: 16, flex: 'none' }}>✕</div>
@@ -64,7 +64,7 @@ export default function SG4WhatItUses(_: { onBack?: () => void }) {
             ))}
           </div>
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '14px 16px' }}>
-            <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 8 }}>By age</div>
+            <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 8 }}>By age</div>
             <div style={{ fontSize: 14, lineHeight: '20px', color: MUT }}>U12 and under: load targets and sprint caps are adjusted for growth. Players in a growth spurt get lower thresholds automatically.</div>
           </div>
         </div>

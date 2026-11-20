@@ -234,7 +234,7 @@ function RunSessionView({ empty }: { empty: boolean }) {
       {/* Who's here */}
       <Card>
         <div style={{ padding: '10px 16px', borderBottom: `1px solid ${LN}`, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <span style={{ fontSize: 13, fontWeight: 700, color: MUT, letterSpacing: '0.06em', textTransform: 'uppercase' as const }}>Who's here</span>
+          <span style={{ fontSize: 13, fontWeight: 700, color: '#7a4b5b', letterSpacing: '0.06em', textTransform: 'uppercase' as const }}>Who's here</span>
           <span style={{ fontSize: 13, color: G2, fontWeight: 600 }}>19 here · 1 away</span>
         </div>
         {players.map(p => (
@@ -253,7 +253,7 @@ function RunSessionView({ empty }: { empty: boolean }) {
       {/* The plan */}
       <Card>
         <div style={{ padding: '10px 16px', borderBottom: `1px solid ${LN}`, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <span style={{ fontSize: 13, fontWeight: 700, color: MUT, letterSpacing: '0.06em', textTransform: 'uppercase' as const }}>The plan</span>
+          <span style={{ fontSize: 13, fontWeight: 700, color: '#7a4b5b', letterSpacing: '0.06em', textTransform: 'uppercase' as const }}>The plan</span>
           <button onClick={() => openThing('the film-this-drill flow', 'academy')} style={{ height: 44, padding: '0 10px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 12, fontWeight: 600, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>Film this drill</button>
         </div>
         {plan.map(p => (
@@ -752,7 +752,7 @@ function RecordDrillView({ onStart }: { onStart: () => void }) {
 
       <Card>
         <div style={{ padding: '10px 16px', borderBottom: `1px solid ${LN}`, display: 'flex', justifyContent: 'space-between' }}>
-          <span style={{ fontSize: 13, fontWeight: 700, color: MUT, letterSpacing: '0.06em', textTransform: 'uppercase' as const }}>The set-up</span>
+          <span style={{ fontSize: 13, fontWeight: 700, color: '#7a4b5b', letterSpacing: '0.06em', textTransform: 'uppercase' as const }}>The set-up</span>
           <span style={{ fontSize: 12, color: G2, fontWeight: 600 }}>Same as last time</span>
         </div>
         {[
@@ -875,8 +875,8 @@ function RecordResultsView({ firstRun }: { firstRun: boolean }) {
       )}
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10 }}>
-        {metrics.map(m => (
-          <div key={m.label} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 12, padding: '14px 16px' }}>
+        {metrics.map((m, kpiN)=> (
+          <div key={m.label} style={{ background: ['#f3ecdf', '#f4e6e6', '#eef5f2', '#f3ecdf'][kpiN % 4], border: `1px solid ${LN}`, borderRadius: 12, padding: '14px 16px' }}>
             <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', color: MUT, marginBottom: 4 }}>{m.label}</div>
             <div style={{ fontSize: 28, fontWeight: 800, color: INK, letterSpacing: '-0.03em' }}>{m.value}</div>
             {m.prev && <div style={{ fontSize: 12, color: MUT }}>was {m.prev}</div>}

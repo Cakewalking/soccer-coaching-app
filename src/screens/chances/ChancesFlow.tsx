@@ -23,7 +23,7 @@ const MINI_SUBS = [['Game day', 'HM4-GameDayMiniRoos'], ['Chances', 'XGm1-Chance
 function Shell({ mini, team, sub, go, children }: { mini: boolean; team: string; sub: string; go: (s: string) => void; children: ReactNode }) {
   const nav = mini ? MINI_NAV : COACH_NAV, subs = mini ? MINI_SUBS : COACH_SUBS, on = mini ? 'Game day' : 'Match day'
   return (
-    <div style={{ width: 1180, minHeight: 820, margin: '0 auto', display: 'flex', flexDirection: 'column', background: '#f7f8f7', fontFamily: "'DM Sans',system-ui,sans-serif" }}>
+    <div style={{ width: 1180, minHeight: 820, margin: '0 auto', display: 'flex', flexDirection: 'column', background: '#faf5ec', fontFamily: "'DM Sans',system-ui,sans-serif" }}>
       <header style={{ flex: 'none', height: 64, background: G, display: 'flex', alignItems: 'center', gap: 4, padding: '0 28px' }}>
         <strong style={{ color: '#fff', fontSize: 20, letterSpacing: '-0.02em', marginRight: 14 }}>Clean Sheet</strong>
         {nav.map(([l, to]) => <button key={l} onClick={() => go(to)} aria-current={l === on ? 'page' : undefined} style={{ height: 48, padding: '0 14px', borderRadius: 12, border: 0, background: l === on ? '#40826d' : 'transparent', color: '#e9eae8', fontFamily: 'inherit', fontSize: 16, fontWeight: 600, cursor: 'pointer' }}>{l}</button>)}

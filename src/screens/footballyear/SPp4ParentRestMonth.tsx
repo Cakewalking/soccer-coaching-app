@@ -2,7 +2,7 @@ const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8
 
 export default function SPp4ParentRestMonth(_: { onBack?: () => void }) {
   return (
-    <div style={{ width: 390, minHeight: '100%', background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', position: 'relative', margin: '0 auto' }}>
+    <div style={{ width: 390, minHeight: '100%', background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', position: 'relative', margin: '0 auto' }}>
       <div style={{ padding: '12px 20px 0', display: 'flex', justifyContent: 'space-between' }}>
         <div style={{ fontSize: 12, fontWeight: 700, color: INK }}>9:41</div>
       </div>
@@ -17,7 +17,7 @@ export default function SPp4ParentRestMonth(_: { onBack?: () => void }) {
 
         {/* Message from Sam */}
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 16px', marginBottom: 14 }}>
-          <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 6 }}>From Sam (Head coach)</div>
+          <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 6 }}>From Sam (Head coach)</div>
           <div style={{ fontSize: 14, color: INK, lineHeight: 1.6 }}>What a year. Training is done and we won't have any scheduled football until February. The research on growing athletes is pretty clear: a few weeks completely away from organised sport each year is one of the best things for long-term development. So please, don't sign them up for a holiday clinic just to keep them busy — a rest actually works. We'll be in touch in January about registration for 2027. Happy holidays to all families.</div>
         </div>
 

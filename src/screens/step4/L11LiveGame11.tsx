@@ -36,7 +36,7 @@ export default function L11LiveGame11(_: { onBack?: () => void }) {
   function logEvent(e: string) { setEvents(ev => [e, ...ev]); showToast(e) }
   const selPlayer = PITCH_PLAYERS.find(p => p.ini === selected)
   return (
-    <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#faf5ec', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       <div style={{ flex: 'none', height: 64, boxSizing: 'border-box', padding: '0 28px', display: 'flex', alignItems: 'center', gap: 4, background: G }}>
         <div style={{ fontSize: 20, fontWeight: 700, color: '#fff', marginRight: 16, letterSpacing: '-0.02em' }}>Clean Sheet</div>
         {NAV_ITEMS.map(n => <div key={n} style={{ height: 48, padding: '0 14px', borderRadius: 12, display: 'flex', alignItems: 'center', fontSize: 15, fontWeight: 600, color: n === 'Match day' ? '#fff' : 'rgba(255,255,255,0.75)', background: n === 'Match day' ? '#40826d' : 'transparent', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{n}</div>)}
@@ -74,7 +74,7 @@ export default function L11LiveGame11(_: { onBack?: () => void }) {
         </section>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-          <div style={{ background: '#cbbeb5', border: '1px solid #cbbeb5', borderRadius: 14, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 8 }}>
+          <div style={{ background: '#e8cfcf', border: '1px solid #e8cfcf', borderRadius: 14, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 8 }}>
             <div style={{ fontSize: 15, fontWeight: 700 }}>Suggested now</div>
             {subState === 'open' ? (
               <>
@@ -96,7 +96,7 @@ export default function L11LiveGame11(_: { onBack?: () => void }) {
             </div>
             {BENCH.map(b => (
               <div key={b.name} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 50, borderTop: `1px solid ${LN}` }}>
-                <div style={{ width: 30, height: 30, borderRadius: '50%', background: '#cbbeb5', color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, flex: 'none' }}>{b.ini}</div>
+                <div style={{ width: 30, height: 30, borderRadius: '50%', background: '#e8cfcf', color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, flex: 'none' }}>{b.ini}</div>
                 <div style={{ flex: 1 }}>
                   <div style={{ fontSize: 14, fontWeight: 700 }}>{b.name}</div>
                   <div style={{ fontSize: 12, color: MUT }}>{b.note}</div>

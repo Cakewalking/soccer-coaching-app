@@ -83,7 +83,7 @@ export default function ClubAdminScreen({ empty, role = 'chair', initials = 'RM'
              :                      ALL_TABS.filter(t => DOF_TAB_IDS.has(t.id))
 
   return (
-    <div style={{ background: '#f7f9f7', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
+    <div style={{ background: '#faf5ec', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
       {/* Header */}
       <div data-club-bar="" style={{ background: '#1f4a3e', padding: '14px 24px 0', flexShrink: 0 }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
@@ -119,7 +119,7 @@ export default function ClubAdminScreen({ empty, role = 'chair', initials = 'RM'
       <div style={{ background: '#fff', borderBottom: '1px solid #e9eae8', padding: '0 24px', height: 32, display: 'flex', alignItems: 'center', justifyContent: 'flex-end', flexShrink: 0 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#6f7f7b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          <span style={{ fontSize: 12, color: '#6f7f7b', fontWeight: 600 }}>{role === 'chair' ? 'Chair' : role === 'welfare' ? 'Welfare officer' : 'Director of Football'}</span>
+          <span style={{ fontSize: 12, color: '#5c6b67', fontWeight: 600 }}>{role === 'chair' ? 'Chair' : role === 'welfare' ? 'Welfare officer' : 'Director of Football'}</span>
         </div>
       </div>
 

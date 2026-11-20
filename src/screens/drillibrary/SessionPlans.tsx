@@ -72,7 +72,7 @@ export default function SessionPlans({ onBack }: { onBack: () => void }) {
                 <span style={{ fontSize:13, fontWeight:700, color:INK }}>{b.slot}</span>
               </div>
               <div style={{ fontSize:12, color:MUT, lineHeight:1.6, marginBottom:12 }}>{b.desc}</div>
-              <div style={{ fontSize:11, fontWeight:700, color:MUT, textTransform:'uppercase', letterSpacing:'0.06em', marginBottom:6 }}>From the library</div>
+              <div style={{ fontSize:11, fontWeight:700, color: '#7a4b5b', textTransform:'uppercase', letterSpacing:'0.06em', marginBottom:6 }}>From the library</div>
               {b.drills.map(d => (
                 <div key={d} style={{ fontSize:12, color:G2, fontWeight:600, marginBottom:4 }}>{d}</div>
               ))}

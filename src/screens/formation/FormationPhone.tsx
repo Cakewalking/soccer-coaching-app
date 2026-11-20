@@ -57,7 +57,7 @@ export default function FormationPhone({ onNav }: { onNav?: (s: string) => void 
     : 'Tap a player on the bench, then tap where they go.'
 
   return (
-    <div data-screen="FBp1-FormationPhone" style={{ width: 390, minHeight: 844, margin: '0 auto', background: '#f7f8f7', color: INK, fontFamily: "'DM Sans',system-ui,sans-serif", display: 'flex', flexDirection: 'column', position: 'relative' }}>
+    <div data-screen="FBp1-FormationPhone" style={{ width: 390, minHeight: 844, margin: '0 auto', background: '#faf5ec', color: INK, fontFamily: "'DM Sans',system-ui,sans-serif", display: 'flex', flexDirection: 'column', position: 'relative' }}>
       <header style={{ flex: 'none', background: G, color: '#fff', padding: '8px 14px 12px', display: 'flex', alignItems: 'center', gap: 10 }}>
         <button onClick={() => onNav?.('CPh1-CoachPhoneHome')} aria-label="Back" style={{ flex: 'none', width: 44, height: 44, border: 0, background: 'none', color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" /></svg></button>
         <span style={{ flexGrow: 1, minWidth: 0, display: 'flex', flexDirection: 'column' }}>
@@ -65,7 +65,7 @@ export default function FormationPhone({ onNav }: { onNav?: (s: string) => void 
           <strong style={{ fontSize: 20, lineHeight: '26px' }}>Formation</strong>
         </span>
         <button onClick={() => onNav?.('ASKp2-PhoneAskOpen')} aria-label="Ask Clean Sheet" style={{ flex: 'none', width: 44, height: 44, borderRadius: 999, border: '1.5px solid rgba(255,255,255,0.7)', background: 'none', color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M10 3l1.9 5.1L17 10l-5.1 1.9L10 17l-1.9-5.1L3 10l5.1-1.9zM18 14l.9 2.1L21 17l-2.1.9L18 20l-.9-2.1L15 17l2.1-.9z" /></svg></button>
-        <span aria-hidden="true" style={{ flex: 'none', width: 40, height: 40, borderRadius: 999, background: '#cbbeb5', color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700 }}>SK</span>
+        <span aria-hidden="true" style={{ flex: 'none', width: 40, height: 40, borderRadius: 999, background: '#e8cfcf', color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700 }}>SK</span>
       </header>
 
       <main style={{ flexGrow: 1, padding: '12px 14px 14px', display: 'flex', flexDirection: 'column', gap: 10 }}>

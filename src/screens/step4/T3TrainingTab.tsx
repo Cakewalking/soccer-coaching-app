@@ -12,7 +12,7 @@ const FOCUS_POINTS = [
 ]
 
 const DRILLS = [
-  { start: '5:45', mins: 10, tag: 'Warm-up', name: 'Warm-up rondo, 5 v 2', why: 'Gets passing sharp and starts the pressing habit early.', setup: ['7 per group', '10 × 10 m', 'Bibs, 1 ball'], color: '#cbbeb5' },
+  { start: '5:45', mins: 10, tag: 'Warm-up', name: 'Warm-up rondo, 5 v 2', why: 'Gets passing sharp and starts the pressing habit early.', setup: ['7 per group', '10 × 10 m', 'Bibs, 1 ball'], color: '#e8cfcf' },
   { start: '6:00', mins: 25, tag: 'Focus 1', name: 'Win it back in 6 seconds', why: 'We took 7 seconds to win the ball back on Saturday; our usual is 4.', setup: ['8 v 8', '40 × 30 m', 'Bibs, cones'], color: '#40826d', textColor: '#fff', adjust: 'Noah and Zoe: 3 sprints max' },
   { start: '6:25', mins: 30, tag: 'Focus 2', name: 'Small game, tight shape', why: 'The gap between our lines was over 25 m before 6 of their 8 chances.', setup: ['7 v 7 + GKs', 'Half pitch, 3 zones', 'Goals, cones'], color: '#2f6252', textColor: '#fff', adjust: 'Mia: first 15 minutes only' },
   { start: '6:55', mins: 10, tag: 'Recovery', name: 'Cool-down and stretch', why: 'Good recovery after a hard night keeps legs fresh for Saturday.', setup: ['Whole squad', 'Centre circle', 'No kit'], color: '#e9eae8' },
@@ -28,7 +28,7 @@ export default function T3TrainingTab(_: { onBack?: () => void }) {
   const mark = (k: string) => setDone(d => d.includes(k) ? d : [...d, k])
   const is = (k: string) => done.includes(k)
   return (
-    <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#faf5ec', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       <div style={{ flex: 'none', background: '#fff', borderBottom: `1px solid ${LN}` }}>
         <div style={{ height: 64, boxSizing: 'border-box', padding: '0 28px', display: 'flex', alignItems: 'center', gap: 4, background: G }}>
           <div style={{ fontSize: 20, fontWeight: 700, color: '#fff', marginRight: 16, letterSpacing: '-0.02em' }}>Clean Sheet</div>
@@ -95,7 +95,7 @@ export default function T3TrainingTab(_: { onBack?: () => void }) {
                 </div>
                 <div style={{ fontSize: 13, color: MUT }}><strong style={{ color: G }}>Why:</strong> {d.why}</div>
                 <div style={{ display: 'flex', gap: 6, marginTop: 4, flexWrap: 'wrap' as const }}>
-                  {d.setup.map(s => <div key={s} style={{ fontSize: 12, background: '#f7f8f7', border: `1px solid ${LN}`, borderRadius: 6, padding: '1px 8px', color: MUT }}>{s}</div>)}
+                  {d.setup.map(s => <div key={s} style={{ fontSize: 12, background: '#faf5ec', border: `1px solid ${LN}`, borderRadius: 6, padding: '1px 8px', color: MUT }}>{s}</div>)}
                   {(d as any).adjust && <div style={{ fontSize: 12, background: '#c39797', borderRadius: 6, padding: '1px 8px', fontWeight: 600 }}>{(d as any).adjust}</div>}
                 </div>
               </div>

@@ -68,7 +68,7 @@ export const ResultChip = ({ r }: { r: string }) => (
 )
 
 export const BackBtn = ({ label, onClick }: { label: string; onClick: () => void }) => (
-  <button onClick={onClick} style={{ display: 'flex', alignItems: 'center', gap: 6, border: 0, background: 'transparent', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 14, cursor: 'pointer', padding: '0 0 14px 0' }}>
+  <button onClick={onClick} style={{ display: 'flex', alignItems: 'center', gap: 6, border: 0, background: 'transparent', color: '#5c6b67', fontFamily: 'inherit', fontSize: 14, cursor: 'pointer', padding: '0 0 14px 0' }}>
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
     {label}
   </button>

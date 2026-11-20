@@ -23,7 +23,7 @@ export default function T4SquadTab(_: { onBack?: () => void }) {
   const is = (k: string) => done.includes(k)
   const sel = ALL_PLAYERS.find(p => p.ini === selectedPlayer) ?? ALL_PLAYERS[0]
   return (
-    <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#faf5ec', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       <div style={{ flex: 'none', background: '#fff', borderBottom: `1px solid ${LN}` }}>
         <div style={{ height: 64, boxSizing: 'border-box', padding: '0 28px', display: 'flex', alignItems: 'center', gap: 4, background: G }}>
           <div style={{ fontSize: 20, fontWeight: 700, color: '#fff', marginRight: 16, letterSpacing: '-0.02em' }}>Clean Sheet</div>
@@ -51,11 +51,11 @@ export default function T4SquadTab(_: { onBack?: () => void }) {
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '12px 14px', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12 }}>
             {GROUPS.map(g => (
               <div key={g.title} style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-                <div style={{ padding: '5px 8px', borderRadius: 8, background: '#e9eae8', display: 'flex', justifyContent: 'space-between', fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT }}>
+                <div style={{ padding: '5px 8px', borderRadius: 8, background: '#e9eae8', display: 'flex', justifyContent: 'space-between', fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b' }}>
                   <span>{g.title}</span><span>{g.players.length}</span>
                 </div>
                 {g.players.map(p => (
-                  <div key={p.ini} onClick={() => { setSelectedPlayer(p.ini); mark('row') }} style={{ display: 'flex', alignItems: 'center', gap: 6, minHeight: 44, padding: '4px 6px', borderRadius: 10, border: `2px solid ${p.ini === selectedPlayer ? G : 'transparent'}`, background: p.ini === selectedPlayer ? '#f7f8f7' : '#fff', cursor: 'pointer' }}>
+                  <div key={p.ini} onClick={() => { setSelectedPlayer(p.ini); mark('row') }} style={{ display: 'flex', alignItems: 'center', gap: 6, minHeight: 44, padding: '4px 6px', borderRadius: 10, border: `2px solid ${p.ini === selectedPlayer ? G : 'transparent'}`, background: p.ini === selectedPlayer ? '#faf5ec' : '#fff', cursor: 'pointer' }}>
                     <div style={{ position: 'relative', width: 28, height: 28, flex: 'none' }}>
                       <div style={{ width: 28, height: 28, borderRadius: '50%', background: '#c39797', color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700 }}>{p.ini}</div>
                       <div style={{ position: 'absolute', right: -1, bottom: -1, width: 10, height: 10, borderRadius: '50%', border: '1.5px solid #fff', background: p.dot }} />
@@ -73,24 +73,24 @@ export default function T4SquadTab(_: { onBack?: () => void }) {
 
           <div style={{ flex: 1, display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10 }}>
             <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '12px 14px' }}>
-              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 6 }}>Development goals</div>
+              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 6 }}>Development goals</div>
               <div style={{ fontSize: 22, fontWeight: 700 }}>11 of 16 on track</div>
               <div style={{ display: 'flex', height: 8, borderRadius: 4, overflow: 'hidden', gap: 2, margin: '8px 0' }}>
-                <div style={{ background: '#c39797' }} /><div style={{ flex: 3, background: '#cbbeb5' }} />
+                <div style={{ background: '#c39797' }} /><div style={{ flex: 3, background: '#e8cfcf' }} />
               </div>
               <div style={{ fontSize: 13, color: MUT }}>2 need work · 3 to set</div>
             </div>
             <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '12px 14px' }}>
-              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 6 }}>Wellness this week</div>
+              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 6 }}>Wellness this week</div>
               <div style={{ fontSize: 22, fontWeight: 700 }}>3.8 / 5</div>
               <div style={{ fontSize: 13, color: G, marginTop: 4 }}>Up from 3.6</div>
               <div style={{ fontSize: 13, color: MUT }}>11 of 16 checked in today</div>
             </div>
             <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '12px 14px' }}>
-              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 6 }}>Load this week</div>
+              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 6 }}>Load this week</div>
               <div style={{ fontSize: 22, fontWeight: 700 }}>3 above usual</div>
               <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' as const, marginTop: 6 }}>
-                {['Mia', 'Noah', 'Zoe'].map(n => <div key={n} style={{ fontSize: 11, fontWeight: 700, background: '#cbbeb5', borderRadius: 999, padding: '1px 7px' }}>{n}</div>)}
+                {['Mia', 'Noah', 'Zoe'].map(n => <div key={n} style={{ fontSize: 11, fontWeight: 700, background: '#e8cfcf', borderRadius: 999, padding: '1px 7px' }}>{n}</div>)}
               </div>
               <div style={{ fontSize: 13, color: MUT, marginTop: 4 }}>Team load 118% of plan</div>
             </div>
@@ -111,15 +111,15 @@ export default function T4SquadTab(_: { onBack?: () => void }) {
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8 }}>
             {[['Wellness', '2.3', '#c05'], ['Load', '92%', INK], ['Minutes', '250', INK]].map(([label, val, color]) => (
-              <div key={label} style={{ background: '#f7f8f7', borderRadius: 10, padding: '8px 10px' }}>
-                <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT }}>{label}</div>
+              <div key={label} style={{ background: '#faf5ec', borderRadius: 10, padding: '8px 10px' }}>
+                <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b' }}>{label}</div>
                 <div style={{ fontSize: 18, fontWeight: 700, color: color as string }}>{val}</div>
               </div>
             ))}
           </div>
           <div style={{ borderTop: `1px solid ${LN}`, paddingTop: 10 }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
-              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT }}>Development goal</div>
+              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b' }}>Development goal</div>
               <div style={{ fontSize: 11, fontWeight: 700, background: G, color: '#fff', borderRadius: 999, padding: '1px 8px' }}>On track</div>
             </div>
             <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 6 }}>Drive forward with the ball</div>

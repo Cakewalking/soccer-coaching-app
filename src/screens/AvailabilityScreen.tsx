@@ -58,7 +58,7 @@ function AvailabilityEmpty() {
               </div>
             </div>
           ))}
-          <div style={{ marginTop: 'auto', background: '#f7f8f7', borderRadius: 10, padding: '10px 12px', fontSize: 12, color: '#4a5a57', lineHeight: '17px' }}>
+          <div style={{ marginTop: 'auto', background: '#faf5ec', borderRadius: 10, padding: '10px 12px', fontSize: 12, color: '#4a5a57', lineHeight: '17px' }}>
             <strong>What parents see:</strong> "Can Mia play on Saturday?" with Yes, Maybe or No, and space for a reason.
           </div>
         </aside>
@@ -133,7 +133,7 @@ function PlayerPill({ ini, name, note, selected, onClick }: Row & { selected?: b
   return (
     <button onClick={onClick} aria-pressed={!!selected} style={{ padding: '10px 12px', minHeight: 48, background: selected ? '#eef5f2' : '#ffffff', border: `1px solid ${selected ? '#2f6252' : '#e9eae8'}`, borderRadius: 10, display: 'flex', flexDirection: 'column', gap: 4, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left', width: '100%' }}>
       <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-        <span style={{ flex: 'none', width: 28, height: 28, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', fontSize: 10, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{ini}</span>
+        <span style={{ flex: 'none', width: 28, height: 28, borderRadius: '999px', background: '#e8cfcf', color: '#10211f', fontSize: 10, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{ini}</span>
         <span style={{ fontSize: 14, fontWeight: 600, color: '#10211f' }}>{name}</span>
       </span>
       {note && <span style={{ fontSize: 12, color: '#4a5a57', paddingLeft: 36, lineHeight: '16px' }}>{note}</span>}

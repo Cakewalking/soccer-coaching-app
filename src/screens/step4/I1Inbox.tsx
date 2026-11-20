@@ -19,7 +19,7 @@ export default function I1Inbox(_: { onBack?: () => void }) {
   void st   // kept for lines this screen may still need to say
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
-    <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' as const }}>
+    <div style={{ width: 1180, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' as const }}>
       <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 32, height: 52 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>Clean Sheet</div>
         <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.8)' }}>U12 Sam · Wattle Creek</div>

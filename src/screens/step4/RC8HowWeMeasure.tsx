@@ -25,7 +25,7 @@ export default function RC8HowWeMeasure(_: { onBack?: () => void }) {
   void st   // kept for lines this screen may still need to say
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
-    <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#faf5ec', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       <div style={{ flex: 'none', background: '#fff', borderBottom: `1px solid ${LN}` }}>
         <div style={{ height: 64, boxSizing: 'border-box', padding: '0 28px', display: 'flex', alignItems: 'center', gap: 4, background: G }}>
           <div style={{ fontSize: 20, fontWeight: 700, color: '#fff', marginRight: 16, letterSpacing: '-0.02em' }}>Clean Sheet</div>
@@ -41,8 +41,8 @@ export default function RC8HowWeMeasure(_: { onBack?: () => void }) {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
           <div style={{ fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em' }}>How we measure things</div>
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 100px 70px 80px', padding: '10px 18px', background: '#f7f8f7', borderBottom: `1px solid ${LN}`, flex: 'none' }}>
-              {['Measure', 'Plain words', 'Comes from', 'How sure', 'Runs needed'].map(h => <div key={h} style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT }}>{h}</div>)}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 100px 70px 80px', padding: '10px 18px', background: '#faf5ec', borderBottom: `1px solid ${LN}`, flex: 'none' }}>
+              {['Measure', 'Plain words', 'Comes from', 'How sure', 'Runs needed'].map(h => <div key={h} style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b' }}>{h}</div>)}
             </div>
             <div style={{ overflowY: 'auto' as const, flex: 1 }}>
               {MEASURES.map(m => (
@@ -60,7 +60,7 @@ export default function RC8HowWeMeasure(_: { onBack?: () => void }) {
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '14px 16px' }}>
-            <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 10 }}>Three rules</div>
+            <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 10 }}>Three rules</div>
             {['We only report a measure when we have enough data to be confident.', 'We tell you how confident we are, so you can decide how much to trust it.', 'We never use a measure for a development goal before it\'s been verified.'].map((rule, i) => (
               <div key={i} style={{ display: 'flex', gap: 10, padding: '8px 0', borderTop: `1px solid ${LN}` }}>
                 <div style={{ width: 20, height: 20, borderRadius: '50%', background: G, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, flex: 'none' }}>{i + 1}</div>
@@ -69,7 +69,7 @@ export default function RC8HowWeMeasure(_: { onBack?: () => void }) {
             ))}
           </div>
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '14px 16px' }}>
-            <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 8 }}>By age</div>
+            <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 8 }}>By age</div>
             <div style={{ fontSize: 14, lineHeight: '20px', color: MUT }}>U12 and under: sprint counts and high-speed distance thresholds are adjusted for growth stage. Players growing more than 6 cm a year get lower caps automatically.</div>
           </div>
         </div>

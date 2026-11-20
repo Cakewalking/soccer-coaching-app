@@ -41,7 +41,7 @@ export default function PM6ParentChatSettings(_: { onBack?: () => void }) {
 
         {/* Notifications section */}
         <div>
-          <div style={{ fontSize: 11, fontWeight: 700, color: MUT, letterSpacing: '0.08em', textTransform: 'uppercase' as const, marginBottom: 8, paddingLeft: 4 }}>Notifications</div>
+          <div style={{ fontSize: 11, fontWeight: 700, color: '#7a4b5b', letterSpacing: '0.08em', textTransform: 'uppercase' as const, marginBottom: 8, paddingLeft: 4 }}>Notifications</div>
           <div style={{ background: '#fff', border: `1px solid #c5c8c4`, borderRadius: 16, overflow: 'hidden' }}>
             {notifOptions.map((opt, i) => (
               <div
@@ -58,7 +58,7 @@ export default function PM6ParentChatSettings(_: { onBack?: () => void }) {
 
         {/* Other section — toggles */}
         <div>
-          <div style={{ fontSize: 11, fontWeight: 700, color: MUT, letterSpacing: '0.08em', textTransform: 'uppercase' as const, marginBottom: 8, paddingLeft: 4 }}>Other</div>
+          <div style={{ fontSize: 11, fontWeight: 700, color: '#7a4b5b', letterSpacing: '0.08em', textTransform: 'uppercase' as const, marginBottom: 8, paddingLeft: 4 }}>Other</div>
           <div style={{ background: '#fff', border: `1px solid #c5c8c4`, borderRadius: 16, overflow: 'hidden' }}>
             <div style={{ display: 'flex', alignItems: 'center', padding: '14px 18px', borderBottom: `1px solid ${LN}`, gap: 12 }}>
               <div style={{ flex: 1 }}>

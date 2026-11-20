@@ -3,7 +3,7 @@ import { useState } from 'react'
 
 const CARDS_DATA = [
   { ini: 'RP', name: 'Ryan Petersen', team: 'U16 Ollie', cards: [{ c: 'Y' }, { c: 'Y' }, { c: 'R' }], cardsLabel: '2 yellows · 1 red', badgeText: 'Suspended · misses Sat 6 Jun', badgeBg: '#c39797', note: "Out of Ollie's line-up" },
-  { ini: 'DV', name: 'Dean Vukovic',  team: "Men's 1sts", cards: [{ c: 'Y' }, { c: 'Y' }, { c: 'Y' }, { c: 'Y' }], cardsLabel: '4 yellows', badgeText: '1 yellow from a ban', badgeBg: '#cbbeb5', note: 'Marko told' },
+  { ini: 'DV', name: 'Dean Vukovic',  team: "Men's 1sts", cards: [{ c: 'Y' }, { c: 'Y' }, { c: 'Y' }, { c: 'Y' }], cardsLabel: '4 yellows', badgeText: '1 yellow from a ban', badgeBg: '#e8cfcf', note: 'Marko told' },
   { ini: 'NF', name: 'Nina Ferraro',  team: "Women's 1sts", cards: [{ c: 'Y' }, { c: 'Y' }, { c: 'Y' }], cardsLabel: '3 yellows', badgeText: 'OK', badgeBg: '', note: '' },
   { ini: 'LB', name: 'Leon Brooks',   team: 'U14 Josh', cards: [{ c: 'Y' }, { c: 'Y' }], cardsLabel: '2 yellows', badgeText: 'OK', badgeBg: '', note: '' },
   { ini: 'CN', name: 'Cody Nash',     team: 'U13 Chris', cards: [{ c: 'Y' }], cardsLabel: '1 yellow', badgeText: 'OK', badgeBg: '', note: '' },
@@ -12,7 +12,7 @@ const CARDS_DATA = [
 
 function CardRect({ c }: { c: 'Y' | 'R' }) {
   return (
-    <span style={{ width: 12, height: 16, borderRadius: 3, background: c === 'R' ? '#c39797' : '#cbbeb5', border: '1px solid #10211f', flexShrink: 0, display: 'inline-block' }} />
+    <span style={{ width: 12, height: 16, borderRadius: 3, background: c === 'R' ? '#c39797' : '#e8cfcf', border: '1px solid #10211f', flexShrink: 0, display: 'inline-block' }} />
   )
 }
 
@@ -80,7 +80,7 @@ export default function CardsTab() {
         <h2 style={{ margin: 0, fontSize: 17, fontWeight: 700 }}>How FV counts</h2>
         {[
           { badge: 'R', badgeBg: '#c39797', title: 'Red card', sub: 'Misses the next game automatically' },
-          { badge: '5', badgeBg: '#cbbeb5', title: '5, 10 and 15 yellows', sub: 'Each one brings a suspension' },
+          { badge: '5', badgeBg: '#e8cfcf', title: '5, 10 and 15 yellows', sub: 'Each one brings a suspension' },
           { badge: '—', badgeBg: '#eef5f2', title: 'MiniRoos', sub: 'No accumulation · cards not counted' },
         ].map(r => (
           <div key={r.badge} style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 56, borderTop: '1px solid #e9eae8' }}>
@@ -92,7 +92,7 @@ export default function CardsTab() {
           </div>
         ))}
         <span style={{ fontSize: 13, color: '#4a5a57', marginTop: 'auto', paddingTop: 12, lineHeight: '18px' }}>A suspended player can't be put in a line-up or on a team sheet. Their coach and parent are told the same day.</span>
-        <div style={{ marginTop: 12, fontSize: 12, color: '#6f7f7b', borderTop: '1px solid #e9eae8', paddingTop: 10 }}>Last checked against Dribl: today 7:03 am</div>
+        <div style={{ marginTop: 12, fontSize: 12, color: '#5c6b67', borderTop: '1px solid #e9eae8', paddingTop: 10 }}>Last checked against Dribl: today 7:03 am</div>
       {toast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{toast}</div>}
       </aside>
     </div>

@@ -33,6 +33,16 @@ Colour only, as the handover says. Green for things you do. Amber for the child'
 
 The fourth tour panel (not in the pack) keeps the tour's dark ground and amber button.
 
+## Phones and cameras that follow the play (colour pack v2, 20 Nov)
+
+Words only, on nine screens, as the handover lists: the splash, tour panel one, the upload screen ("Got some football on film?", "From your phone or your camera"), a new card on "Before you film", and "your film" or "your camera" where the app compared the club with "your phone" (Reels, Stats, the club tour, "Your club filmed this one", and the club's web page). The fourth tour panel, which is not in the pack, follows the same wording.
+
+Not built: the upload picker accepting large files exported from a camera's own app. There is no picker in the demo.
+
+## Screens size to the phone (Booker, 20 Nov)
+
+The boards are 390 by 844. The app is as wide as the phone it is on (to 430) and at least as tall as the phone shows, and on Home "Add a video" and the credits are pinned above the tabs.
+
 ## Each page has its own address (Booker, 20 Nov)
 
 `/family/<page id>`, for example `/family/FAM3-Home`. A refresh stays on the page with the family as the parent left it, and Back and Forward step one page at a time. `/family` opens Home. A board link (`/__screen/FAM…`) still opens the sample state it is drawn in; the first tap from there moves to the app's own address. A test of 17 checks covers this.

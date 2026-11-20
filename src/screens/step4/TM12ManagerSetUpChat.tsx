@@ -14,17 +14,17 @@ export default function TM12ManagerSetUpChat(_: { onBack?: () => void }) {
     </button>
   )
   return (
-    <div style={{ width: 390, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 844, display: 'flex', flexDirection: 'column', position: 'relative' }}>
+    <div style={{ width: 390, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 844, display: 'flex', flexDirection: 'column', position: 'relative' }}>
       <div style={{ background: GD, padding: '14px 18px 12px', display: 'flex', alignItems: 'center', gap: 12 }}>
         <div style={{ flexGrow: 1 }}>
           <div style={{ fontSize: 12, color: '#cfe6dc' }}>U12 Sam · you own this chat</div>
           <div style={{ fontSize: 21, fontWeight: 700, color: '#fff' }}>Set up the team chat</div>
         </div>
-        <div style={{ width: 40, height: 40, borderRadius: '50%', background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>RO</div>
+        <div style={{ width: 40, height: 40, borderRadius: '50%', background: '#e8cfcf', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>RO</div>
       </div>
       <div style={{ flexGrow: 1, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 10, overflowY: 'auto' }}>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 8 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: MUT }}>Who can post</div>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#7a4b5b' }}>Who can post</div>
           {[
             { mode: 'coaches' as const, title: 'Coaches and me only', sub: 'Parents read, react, vote and reply to us privately' },
             { mode: 'everyone' as const, title: 'Everyone in the chat', sub: 'Parents can write and send what\'s switched on below' },
@@ -40,7 +40,7 @@ export default function TM12ManagerSetUpChat(_: { onBack?: () => void }) {
           <div style={{ fontSize: 12, color: MUT }}>A new chat starts as coaches and manager only.</div>
         </div>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '4px 14px' }}>
-          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: MUT, padding: '8px 0 4px' }}>Parents can send</div>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#7a4b5b', padding: '8px 0 4px' }}>Parents can send</div>
           {[
             { label: 'Photos and videos', sub: 'Checked against photo consent', on: photos, toggle: () => setPhotos(x => !x) },
             { label: 'Voice notes', sub: 'Up to 2 minutes', on: voice, toggle: () => setVoice(x => !x) },

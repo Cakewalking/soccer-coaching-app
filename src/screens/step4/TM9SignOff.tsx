@@ -5,17 +5,17 @@ export default function TM9SignOff(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string | null>(null)
   const t = (m: string) => { setToast(m); setTimeout(() => setToast(null), 3200) }
   return (
-    <div style={{ width: 390, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 844, display: 'flex', flexDirection: 'column', position: 'relative' }}>
+    <div style={{ width: 390, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 844, display: 'flex', flexDirection: 'column', position: 'relative' }}>
       <div style={{ background: GD, padding: '14px 18px 12px', display: 'flex', alignItems: 'center', gap: 12 }}>
         <div style={{ flexGrow: 1 }}>
           <div style={{ fontSize: 12, color: '#cfe6dc' }}>U12 Sam · Sat 6 Jun · full time</div>
           <div style={{ fontSize: 21, fontWeight: 700, color: '#fff' }}>Sign off the game</div>
         </div>
-        <div style={{ width: 40, height: 40, borderRadius: '50%', background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>RO</div>
+        <div style={{ width: 40, height: 40, borderRadius: '50%', background: '#e8cfcf', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>RO</div>
       </div>
       <div style={{ flexGrow: 1, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 10, overflowY: 'auto' }}>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '12px 14px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: MUT }}>Final score</div>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#7a4b5b' }}>Final score</div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 18, fontSize: 15, fontWeight: 700 }}>
             <span>Wattle Creek</span>
             <span style={{ fontSize: 40, lineHeight: '48px', fontVariantNumeric: 'tabular-nums' }}>2–1</span>
@@ -24,7 +24,7 @@ export default function TM9SignOff(_: { onBack?: () => void }) {
           <div style={{ fontSize: 13, color: MUT }}>Goals: Mia Tran, Finn Walsh · from the camera tags</div>
         </div>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 8 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: MUT }}>How did Dana, the referee, go?</div>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#7a4b5b' }}>How did Dana, the referee, go?</div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
             {['Great', 'Good', 'Needs support'].map(r => (
               <button key={r} onClick={() => setRefRating(r)} style={{ minHeight: 44, padding: '0 14px', borderRadius: 999, fontSize: 14, fontWeight: 700, border: refRating === r ? 0 : `1px solid ${LN}`, background: refRating === r ? G : '#fff', color: refRating === r ? '#fff' : INK, cursor: 'pointer', fontFamily: 'inherit' }}>{r}</button>

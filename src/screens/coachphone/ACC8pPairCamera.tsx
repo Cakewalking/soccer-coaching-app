@@ -7,7 +7,7 @@ export default function ACC8pPairCamera({onBack,onDone}:{onBack?:()=>void,onDone
   const [toast,setToast]=useState<string|null>(null)
   function t(m:string){setToast(m);setTimeout(()=>setToast(null),3200)}
   return(
-    <div style={{padding:'20px 28px 40px',background:'#f7f8f7',minHeight:'100%',boxSizing:'border-box',fontFamily:'var(--font-sans)',position:'relative'}}>
+    <div style={{padding:'20px 28px 40px',background:'#faf5ec',minHeight:'100%',boxSizing:'border-box',fontFamily:'var(--font-sans)',position:'relative'}}>
       <div style={{display:'flex',alignItems:'flex-start',justifyContent:'space-between',marginBottom:20}}>
         <div>
           <button onClick={onBack} style={{display:'flex',alignItems:'center',gap:6,background:'none',border:'none',cursor:'pointer',color:MUT,fontFamily:'inherit',fontSize:13,fontWeight:500,padding:0,marginBottom:12}}>
@@ -80,7 +80,7 @@ export default function ACC8pPairCamera({onBack,onDone}:{onBack?:()=>void,onDone
         </div>
         <div>
           <div style={{background:'#fff',border:`1px solid ${LN}`,borderRadius:14,padding:'14px 16px'}}>
-            <div style={{fontSize:13,fontWeight:700,color:MUT,marginBottom:12,letterSpacing:'0.06em',textTransform:'uppercase' as const}}>Good to know</div>
+            <div style={{fontSize:13,fontWeight:700,color: '#7a4b5b',marginBottom:12,letterSpacing:'0.06em',textTransform:'uppercase' as const}}>Good to know</div>
             {[
               {label:'Belongs to',value:'Academy'},
               {label:'Battery',value:'82% · 3 hours left'},

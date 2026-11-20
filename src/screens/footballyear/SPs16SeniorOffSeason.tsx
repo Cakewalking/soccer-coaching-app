@@ -8,10 +8,10 @@ export default function SPs16SeniorOffSeason({onBack}:{onBack?:()=>void}){
     standin:'Pick an assistant to lead while you\'re away. They get the plan and match-day picks, nothing else.',
   }
   return(
-    <div style={{padding:'20px 28px 40px',background:'#f7f8f7',minHeight:'100%',boxSizing:'border-box',fontFamily:'var(--font-sans)',position:'relative'}}>
+    <div style={{padding:'20px 28px 40px',background:'#faf5ec',minHeight:'100%',boxSizing:'border-box',fontFamily:'var(--font-sans)',position:'relative'}}>
       <div style={{display:'flex',alignItems:'flex-start',justifyContent:'space-between',marginBottom:20}}>
         <div>
-          <div style={{fontSize:11,fontWeight:700,letterSpacing:'0.08em',textTransform:'uppercase' as const,color:MUT,marginBottom:4}}>Head coach · Men's 1sts Marko</div>
+          <div style={{fontSize:11,fontWeight:700,letterSpacing:'0.08em',textTransform:'uppercase' as const,color: '#7a4b5b',marginBottom:4}}>Head coach · Men's 1sts Marko</div>
           <div style={{fontSize:24,fontWeight:800,letterSpacing:'-0.02em',color:INK,marginBottom:2}}>Off-season</div>
           <div style={{fontSize:14,color:MUT}}>Mon 1 December · off-season · back 11 January</div>
         </div>

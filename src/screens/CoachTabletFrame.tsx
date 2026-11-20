@@ -404,7 +404,7 @@ export default function CoachTabletFrame({
               })}
             </nav>
             <div style={{ display: 'flex', alignItems: 'center', height: 44 }}>
-              <span style={{ display: 'flex', alignItems: 'center', gap: 6, height: 32, padding: '0 12px', borderRadius: '999px', background: PALE, color: G, fontSize: 13, fontWeight: 700, whiteSpace: 'nowrap', flexShrink: 0 }}>
+              <span style={{ display: 'flex', alignItems: 'center', gap: 6, height: 32, padding: '0 12px', borderRadius: '999px', background: '#f4e6e6', color: '#10211f', fontSize: 13, fontWeight: 700, whiteSpace: 'nowrap', flexShrink: 0 }}>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zM5 21a7 7 0 0114 0"/></svg>
                 {roleChip}
               </span>
@@ -473,7 +473,7 @@ export default function CoachTabletFrame({
               {/* Before-typing state */}
               {messages.length === 0 && (
                 <>
-                  <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', color: MUT, textTransform: 'uppercase' as const, marginTop: 4 }}>About this screen</div>
+                  <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', color: '#7a4b5b', textTransform: 'uppercase' as const, marginTop: 4 }}>About this screen</div>
                   {questions.map(q => (
                     <button
                       key={q}
@@ -521,7 +521,7 @@ export default function CoachTabletFrame({
                         <strong>{msg.data.conclusion}</strong>{msg.data.detail}
                       </div>
                       <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 12, padding: '12px 14px' }}>
-                        <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 8 }}>What I used</div>
+                        <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 8 }}>What I used</div>
                         {msg.data.used.map((u, j) => (
                           <div key={j} style={{ display: 'flex', flexDirection: 'column', padding: j > 0 ? '8px 0 0' : '0', borderTop: j > 0 ? `1px solid ${LN}` : 'none', marginTop: j > 0 ? 8 : 0 }}>
                             <span style={{ fontSize: 13, fontWeight: 600, color: INK }}>{u.label}</span>

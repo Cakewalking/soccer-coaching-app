@@ -14,7 +14,7 @@ export default function ASKp2PhoneAskOpen({ onNav: _onNav }: { onNav?: (s: strin
   function tool(name: string) { const to = toolTarget(name); if (to && _onNav) { _onNav(to); return } setLastTool(name) }
 
   return (
-    <div data-screen="ASKp2-PhoneAskOpen" data-lasttool={lastTool} style={{ width: 390, background: '#f7f8f7', fontFamily: 'var(--font-sans)', minHeight: 844, display: 'flex', flexDirection: 'column', borderRadius: 24, overflow: 'hidden' }}>
+    <div data-screen="ASKp2-PhoneAskOpen" data-lasttool={lastTool} style={{ width: 390, background: '#faf5ec', fontFamily: 'var(--font-sans)', minHeight: 844, display: 'flex', flexDirection: 'column', borderRadius: 24, overflow: 'hidden' }}>
       <div style={{ background: GD, padding: '14px 20px 10px', display: 'flex', alignItems: 'center', gap: 8 }}>
         <div style={{ flex: 1, fontSize: 15, fontWeight: 800, color: '#fff' }}>Ask Clean Sheet</div>
         <div style={{ width: 28, height: 28, borderRadius: '50%', background: 'rgba(255,255,255,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, color: '#fff' }}>M</div>

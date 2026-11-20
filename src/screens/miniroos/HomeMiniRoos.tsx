@@ -4,7 +4,7 @@ import { AskLine } from '../HomeScreen'
 
 const NEEDS_YOU = [
   { ini: 'AV', iconBg: '#40826d', iconColor: '#fff', category: 'Availability', time: 'Saturday', badge: 'Today', title: "2 families haven't said if they're coming", unread: true },
-  { ini: 'RF', iconBg: '#cbbeb5', iconColor: '#10211f', category: 'Referees', time: 'Yesterday', badge: '', title: 'Saturday still needs a game leader', unread: true },
+  { ini: 'RF', iconBg: '#e8cfcf', iconColor: '#10211f', category: 'Referees', time: 'Yesterday', badge: '', title: 'Saturday still needs a game leader', unread: true },
 ]
 
 const TURN_ITEMS = [
@@ -30,7 +30,7 @@ const MINI_WEEK = [
 function miniWeekStyle(type: string) {
   const base = { display: 'flex', alignItems: 'center', gap: 8, padding: '5px 8px', borderRadius: 8, minHeight: 32 } as const
   if (type === 'today') return { ...base, background: '#2f6252', color: '#ffffff' }
-  if (type === 'game')  return { ...base, background: '#cbbeb5', color: '#10211f' }
+  if (type === 'game')  return { ...base, background: '#e8cfcf', color: '#10211f' }
   return { ...base, color: '#10211f' }
 }
 
@@ -52,7 +52,7 @@ function HomeMiniRoosEmpty() {
           { step: 2, label: 'Add your training night', cta: 'Add' },
           { step: 3, label: 'Invite a team manager', cta: 'Invite' },
         ].map(({ step, label, cta }, i) => (
-          <div key={step} style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '14px 16px', borderRadius: 12, background: '#f7f9f7', border: '1px solid #e9eae8' }}>
+          <div key={step} style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '14px 16px', borderRadius: 12, background: '#faf5ec', border: '1px solid #e9eae8' }}>
             <span style={{ flexShrink: 0, width: 32, height: 32, borderRadius: '999px', background: '#eef5f2', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700, color: '#2f6252' }}>{step}</span>
             <span style={{ flexGrow: 1, fontSize: 16, fontWeight: 600, color: '#10211f' }}>{label}</span>
             <button onClick={() => sayOrOpen(STEP_TOASTS[i], 'mini', showToast)} style={{ height: 44, padding: '0 16px', borderRadius: 8, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer', flexShrink: 0 }}>{cta}</button>
@@ -110,10 +110,10 @@ export default function HomeMiniRoos({ empty, onTraining, onSeasonNotes, onFootb
       {/* ── Left column (span 4): Needs you + Everyone gets a turn ── */}
       <div style={{ gridColumn: 'span 4', display: 'flex', flexDirection: 'column', gap: 14, minHeight: 0 }}>
 
-        <section className="tile" style={{ flex: 'none', padding: '0', overflow: 'hidden', gap: 0 }} aria-label="Needs you">
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '14px 18px', background: '#1f4a3e', color: '#ffffff' }}>
+        <section className="tile" style={{ borderTop: '5px solid #c39797', flex: 'none', padding: '0', overflow: 'hidden', gap: 0 }} aria-label="Needs you">
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '14px 18px', background: '#33212b', color: '#ffffff' }}>
             <h2 className="h2">Needs you</h2>
-            <span style={{ background: '#ffffff', color: '#006666', borderRadius: '999px', padding: '2px 10px', fontSize: 13, lineHeight: '18px', fontWeight: 700 }}>2 new</span>
+            <span style={{ background: '#ffffff', color: '#33212b', borderRadius: '999px', padding: '2px 10px', fontSize: 13, lineHeight: '18px', fontWeight: 700 }}>2 new</span>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             {NEEDS_YOU.map((item, i) => (
@@ -201,14 +201,14 @@ export default function HomeMiniRoos({ empty, onTraining, onSeasonNotes, onFootb
               <div style={{ fontSize: 18, fontWeight: 700, letterSpacing: '-0.01em' }}>Glenview Park</div>
               <div style={{ fontSize: 13, color: '#4a5a57', marginTop: 2 }}>All 10 played · 22 to 26 minutes each</div>
             </div>
-            <span style={{ padding: '4px 12px', borderRadius: '999px', background: '#cbbeb5', color: '#10211f', fontSize: 13, fontWeight: 700 }}>No score kept</span>
+            <span style={{ padding: '4px 12px', borderRadius: '999px', background: '#e8cfcf', color: '#10211f', fontSize: 13, fontWeight: 700 }}>No score kept</span>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             {LAST_SAT_FINDINGS.map((f, i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, padding: '9px 0', borderTop: i > 0 ? '1px solid #e9eae8' : 'none' }}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={f.keep ? '#40826d' : '#6f7f7b'} strokeWidth="2.5" strokeLinecap="round" aria-hidden="true" style={{ flex: 'none', marginTop: 2 }}><path d="M5 12l5 5 9-10"/></svg>
                 <span style={{ flexGrow: 1, fontSize: 14, color: '#10211f', lineHeight: '19px' }}>{f.text}</span>
-                <span style={{ flex: 'none', padding: '2px 10px', borderRadius: '999px', fontSize: 13, fontWeight: 700, background: f.keep ? '#40826d' : '#cbbeb5', color: f.keep ? '#ffffff' : '#10211f' }}>{f.label}</span>
+                <span style={{ flex: 'none', padding: '2px 10px', borderRadius: '999px', fontSize: 13, fontWeight: 700, background: f.keep ? '#40826d' : '#e8cfcf', color: f.keep ? '#ffffff' : '#10211f' }}>{f.label}</span>
               </div>
             ))}
           </div>
@@ -244,7 +244,7 @@ export default function HomeMiniRoos({ empty, onTraining, onSeasonNotes, onFootb
             <span className="cap">7 a side</span>
           </div>
           <div style={{ fontSize: 15, fontWeight: 700 }}>8:30 vs Northgate City</div>
-          <div style={{ background: '#cbbeb5', color: '#10211f', borderRadius: 10, padding: '6px 10px', fontSize: 14, lineHeight: '20px' }}>
+          <div style={{ background: '#e8cfcf', color: '#10211f', borderRadius: 10, padding: '6px 10px', fontSize: 14, lineHeight: '20px' }}>
             Away, Redgum Reserve · 7 coming, 1 away, 2 to answer
           </div>
         </section>

@@ -22,7 +22,7 @@ export default function IV3(_: { onBack?: () => void }) {
   ]
 
   return (
-    <div style={{ width: 390, minHeight: 844, background: '#f7f8f7', fontFamily: 'var(--font-sans)', position: 'relative', overflowY: 'auto', boxSizing: 'border-box' }}>
+    <div style={{ width: 390, minHeight: 844, background: '#faf5ec', fontFamily: 'var(--font-sans)', position: 'relative', overflowY: 'auto', boxSizing: 'border-box' }}>
 
       {/* Header */}
       <div style={{ background: GD, padding: '18px 20px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>

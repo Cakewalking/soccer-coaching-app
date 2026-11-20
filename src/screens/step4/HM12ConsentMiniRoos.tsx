@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
+const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb'
 
 type ConsentVal = 'Yes' | 'No' | 'Waiting'
 interface ConsentRow { init: string; name: string; photos: ConsentVal; filming: ConsentVal; firstAid: ConsentVal; news: ConsentVal }
@@ -21,7 +21,7 @@ const PLAYERS: ConsentRow[] = [
 const valStyle: Record<ConsentVal, { bg: string; color: string }> = {
   Yes:     { bg: G,         color: '#fff' },
   No:      { bg: '#e9eae8', color: INK },
-  Waiting: { bg: '#cbbeb5', color: INK },
+  Waiting: { bg: '#e8cfcf', color: INK },
 }
 
 function Badge({ val }: { val: ConsentVal }) {
@@ -32,7 +32,7 @@ export default function HM12ConsentMiniRoos(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string|null>(null)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
-    <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }}>
+    <div style={{ width: 1180, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }}>
       <div style={{ background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 20, height: 64 }}>
         <div style={{ fontSize: 21, fontWeight: 800, color: '#fff', letterSpacing: '-0.02em' }}>Clean Sheet</div>
         {['Home', 'Squad', 'Training', 'Game day'].map(t => (
@@ -46,7 +46,7 @@ export default function HM12ConsentMiniRoos(_: { onBack?: () => void }) {
           <div key={t} style={{ height: 44, display: 'flex', alignItems: 'center', fontSize: 15, fontWeight: 600, color: t === 'Consent' ? INK : MUT, borderBottom: t === 'Consent' ? `3px solid #40826d` : '3px solid transparent', boxSizing: 'border-box', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>
         ))}
         <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', height: 44 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 6, height: 32, padding: '0 12px', borderRadius: 999, background: PALE, color: G, fontSize: 13, fontWeight: 700 }}>Coach · MiniRoos</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, height: 32, padding: '0 12px', borderRadius: 999, background: '#f4e6e6', color: '#10211f', fontSize: 13, fontWeight: 700 }}>Coach · MiniRoos</div>
         </div>
       </div>
 
@@ -62,13 +62,13 @@ export default function HM12ConsentMiniRoos(_: { onBack?: () => void }) {
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '14px 18px 8px', display: 'flex', flexDirection: 'column', gap: 0 }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr 1fr 1fr 1fr', gap: 10, paddingBottom: 8 }}>
             {['Child', 'Team photos', 'Filming for clips', 'First-aid card', 'First name in news'].map(h => (
-              <div key={h} style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT }}>{h}</div>
+              <div key={h} style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b' }}>{h}</div>
             ))}
           </div>
           {PLAYERS.map(p => (
             <div key={p.name} style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr 1fr 1fr 1fr', gap: 10, alignItems: 'center', minHeight: 50, borderTop: `1px solid ${LN}` }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: 15, fontWeight: 700 }}>
-                <div style={{ width: 30, height: 30, borderRadius: 999, background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0 }}>{p.init}</div>
+                <div style={{ width: 30, height: 30, borderRadius: 999, background: '#e8cfcf', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0 }}>{p.init}</div>
                 {p.name}
               </div>
               <div><Badge val={p.photos} /></div>
@@ -93,7 +93,7 @@ export default function HM12ConsentMiniRoos(_: { onBack?: () => void }) {
               { init: 'JL', name: 'Jude Lim',  note: 'First-aid card' },
             ].map(item => (
               <div key={item.name} style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 50, borderTop: `1px solid ${LN}` }}>
-                <div style={{ width: 30, height: 30, borderRadius: 999, background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0 }}>{item.init}</div>
+                <div style={{ width: 30, height: 30, borderRadius: 999, background: '#e8cfcf', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0 }}>{item.init}</div>
                 <div>
                   <div style={{ fontSize: 15, fontWeight: 700 }}>{item.name}</div>
                   <div style={{ fontSize: 13, color: MUT }}>{item.note}</div>

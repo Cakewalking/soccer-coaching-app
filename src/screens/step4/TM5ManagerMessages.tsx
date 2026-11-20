@@ -15,13 +15,13 @@ export default function TM5ManagerMessages(_: { onBack?: () => void }) {
     { ini: 'WC', name: 'Wattle Creek FC', preview: 'Wet weather: grounds decision by 7 am Saturday', time: 'Tue', unread: false },
   ].map((c, i) => ({ ...c, unread: c.unread && !isRead(`tm5:${i}`) }))
   return (
-    <div style={{ width: 390, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 844, display: 'flex', flexDirection: 'column', position: 'relative' }}>
+    <div style={{ width: 390, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 844, display: 'flex', flexDirection: 'column', position: 'relative' }}>
       <div style={{ background: GD, padding: '14px 18px 12px', display: 'flex', alignItems: 'center', gap: 12 }}>
         <div style={{ flexGrow: 1 }}>
           <div style={{ fontSize: 12, color: '#cfe6dc' }}>U12 Sam · Team manager</div>
           <div style={{ fontSize: 21, fontWeight: 700, color: '#fff' }}>Messages</div>
         </div>
-        <div style={{ width: 40, height: 40, borderRadius: '50%', background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>RO</div>
+        <div style={{ width: 40, height: 40, borderRadius: '50%', background: '#e8cfcf', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>RO</div>
       </div>
       <div style={{ flexGrow: 1, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 10, overflowY: 'auto' }}>
         <button onClick={() => { mark('tell'); openThing('message to parents', 'phone') }} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 52, padding: '0 14px', borderRadius: 14, background: GD, color: '#fff', border: 0, cursor: 'pointer', textAlign: 'left' }}>
@@ -43,10 +43,10 @@ export default function TM5ManagerMessages(_: { onBack?: () => void }) {
           <button onClick={() => mark('nudge')} style={{ height: 44, borderRadius: 10, border: `1px solid ${is('nudge') ? G : LN}`, background: is('nudge') ? '#eef5f2' : '#fff', color: is('nudge') ? G : INK, fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{is('nudge') ? '✓ Nudged 3 families' : 'Nudge the 3 now'}</button>
         </div>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '4px 14px' }}>
-          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: MUT, padding: '8px 0 4px' }}>Conversations</div>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#7a4b5b', padding: '8px 0 4px' }}>Conversations</div>
           {convos.map((c, i) => (
             <button key={i} onClick={() => { markRead(`tm5:${i}`); setSelectedConvo(i) }} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 62, width: '100%', background: selectedConvo === i ? '#eef5f2' : 'none', border: 0, borderTop: `1px solid ${LN}`, padding: '0 6px', cursor: 'pointer', textAlign: 'left' }}>
-              <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0 }}>{c.ini}</div>
+              <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#e8cfcf', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0 }}>{c.ini}</div>
               <div style={{ flexGrow: 1, minWidth: 0 }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8 }}>
                   <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>{c.name}</div>

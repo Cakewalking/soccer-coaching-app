@@ -121,9 +121,9 @@ export default function ACC4PlayerPlan({ mode }: { mode?: 'new' } = {}) {
             <table style={{ width: '100%', borderCollapse: 'collapse' }}>
               <thead>
                 <tr style={{ background: '#f5f6f4' }}>
-                  <th style={{ padding: '10px 20px', textAlign: 'left', fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: MUT }}>Skill</th>
-                  <th style={{ padding: '10px 20px', textAlign: 'left', fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: MUT }}>Level</th>
-                  <th style={{ padding: '10px 20px', textAlign: 'left', fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: MUT }}></th>
+                  <th style={{ padding: '10px 20px', textAlign: 'left', fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#7a4b5b' }}>Skill</th>
+                  <th style={{ padding: '10px 20px', textAlign: 'left', fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#7a4b5b' }}>Level</th>
+                  <th style={{ padding: '10px 20px', textAlign: 'left', fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#7a4b5b' }}></th>
                 </tr>
               </thead>
               <tbody>
@@ -211,7 +211,7 @@ export default function ACC4PlayerPlan({ mode }: { mode?: 'new' } = {}) {
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 6 }}>
                   {WEEK.map(d => (
                     <div key={d.day} style={{ display: 'flex', flexDirection: 'column', gap: 4, alignItems: 'center' }}>
-                      <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.06em', color: MUT, textTransform: 'uppercase' as const }}>{d.day}</div>
+                      <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.06em', color: '#7a4b5b', textTransform: 'uppercase' as const }}>{d.day}</div>
                       {d.items.length === 0 ? (
                         <div style={{ height: 28, width: '100%', borderRadius: 6, background: '#f5f6f4' }} />
                       ) : (

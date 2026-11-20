@@ -19,7 +19,7 @@ export default function HM1HomeMiniRoos(_: { onBack?: () => void }) {
   const mark = (k: string) => setDone(d => d.includes(k) ? d : [...d, k])
   const is = (k: string) => done.includes(k)
   return (
-    <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }}>
+    <div style={{ width: 1180, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }}>
       <div style={{ background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 20, height: 64 }}>
         <div style={{ fontSize: 21, fontWeight: 800, color: '#fff', letterSpacing: '-0.02em' }}>Clean Sheet</div>
         {['Home', 'Squad', 'Training', 'Game day'].map(t => (
@@ -37,17 +37,17 @@ export default function HM1HomeMiniRoos(_: { onBack?: () => void }) {
       <div style={{ flex: 1, padding: '18px 28px 22px', display: 'grid', gridTemplateColumns: 'repeat(12, minmax(0, 1fr))', gap: 18 }}>
         {/* Left column */}
         <div style={{ gridColumn: 'span 4', display: 'flex', flexDirection: 'column', gap: 18 }}>
-          <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, overflow: 'hidden' }}>
-            <div style={{ background: GD, color: '#fff', padding: '14px 18px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div style={{ background: '#fff', border: `1px solid ${LN}`, borderTop: '5px solid #c39797', borderRadius: 16, overflow: 'hidden' }}>
+            <div style={{ background: '#33212b', color: '#fff', padding: '14px 18px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <div style={{ fontSize: 17, fontWeight: 700 }}>Needs you</div>
-              <div style={{ background: '#fff', color: GD, borderRadius: 999, padding: '2px 10px', fontSize: 13, fontWeight: 700 }}>2 new</div>
+              <div style={{ background: '#fff', color: '#33212b', borderRadius: 999, padding: '2px 10px', fontSize: 13, fontWeight: 700 }}>2 new</div>
             </div>
             {[
               { icon: 'SA', label: 'Saturday', when: 'Today', msg: '2 families haven\'t said if they\'re coming' },
               { icon: 'RF', label: 'Referees', when: 'Yesterday', msg: 'Saturday still needs a game leader' },
             ].map(item => (
               <div key={item.label} style={{ display: 'flex', alignItems: 'flex-start', gap: 12, minHeight: 72, padding: '10px 18px', borderTop: `1px solid ${LN}`, cursor: 'pointer' }}>
-                <div style={{ width: 36, height: 36, borderRadius: 999, background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700 }}>{item.icon}</div>
+                <div style={{ width: 36, height: 36, borderRadius: 999, background: '#e8cfcf', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700 }}>{item.icon}</div>
                 <div style={{ flex: 1 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13, color: MUT }}><span>{item.label}</span><span>{item.when}</span></div>
                   <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginTop: 2 }}>{item.msg}</div>
@@ -116,7 +116,7 @@ export default function HM1HomeMiniRoos(_: { onBack?: () => void }) {
               { text: 'Bunching round the ball. Next: find a friend in space', label: 'Tonight', done: false },
             ].map(item => (
               <div key={item.text} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 38, borderTop: `1px solid ${LN}` }}>
-                <div style={{ width: 24, height: 24, borderRadius: 999, background: item.done ? G : '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 'none' }}>
+                <div style={{ width: 24, height: 24, borderRadius: 999, background: item.done ? G : '#e8cfcf', display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 'none' }}>
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke={item.done ? '#fff' : INK} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d={item.done ? 'M5 12l5 5 9-10' : 'M5 12h14M13 6l6 6-6 6'}/></svg>
                 </div>
                 <div style={{ flex: 1, fontSize: 15, color: INK }}>{item.text}</div>
@@ -138,7 +138,7 @@ export default function HM1HomeMiniRoos(_: { onBack?: () => void }) {
               <div style={{ fontSize: 14, fontWeight: 600, color: G, cursor: 'pointer' }}>Calendar</div>
             </div>
             {WEEK.map(w => (
-              <div key={w.day} style={{ display: 'flex', alignItems: 'center', gap: 8, minHeight: 32, padding: '0 8px', borderRadius: 8, background: w.active ? '#40826d' : w.game ? '#cbbeb5' : 'transparent', color: w.active ? '#fff' : w.game ? INK : MUT, fontWeight: w.active || w.game ? 600 : 400 }}>
+              <div key={w.day} style={{ display: 'flex', alignItems: 'center', gap: 8, minHeight: 32, padding: '0 8px', borderRadius: 8, background: w.active ? '#40826d' : w.game ? '#e8cfcf' : 'transparent', color: w.active ? '#fff' : w.game ? INK : MUT, fontWeight: w.active || w.game ? 600 : 400 }}>
                 <span style={{ width: 52, fontSize: 14, fontWeight: 700 }}>{w.day}</span>
                 <span style={{ fontSize: 14 }}>{w.event || 'Rest'}</span>
               </div>
@@ -150,7 +150,7 @@ export default function HM1HomeMiniRoos(_: { onBack?: () => void }) {
               <div style={{ fontSize: 17, fontWeight: 700, color: INK }}>Saturday</div>
               <div style={{ fontSize: 14, color: MUT }}>7 a side</div>
             </div>
-            <div style={{ background: '#cbbeb5', borderRadius: 10, padding: '6px 10px', fontSize: 14, lineHeight: '20px' }}><strong>8:30 vs Northgate City</strong><br />Away, Redgum Reserve · 7 coming, 1 away, 2 to answer</div>
+            <div style={{ background: '#e8cfcf', borderRadius: 10, padding: '6px 10px', fontSize: 14, lineHeight: '20px' }}><strong>8:30 vs Northgate City</strong><br />Away, Redgum Reserve · 7 coming, 1 away, 2 to answer</div>
           </div>
 
           <div style={{ flex: 1, background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 8 }}>

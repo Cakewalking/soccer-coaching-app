@@ -41,7 +41,7 @@ export default function PAParent(_: { onBack?: () => void }) {
   ]
 
   return (
-    <div style={{ width: 390, minHeight: 844, fontFamily: 'var(--font-sans)', background: '#f7f8f7', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ width: 390, minHeight: 844, fontFamily: 'var(--font-sans)', background: '#faf5ec', display: 'flex', flexDirection: 'column' }}>
       {/* Header */}
       <div style={{ background: GD, padding: '12px 16px 0', paddingTop: 'env(safe-area-inset-top, 12px)' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>

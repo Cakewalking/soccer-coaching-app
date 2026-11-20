@@ -197,8 +197,8 @@ function ManagerTeamChatView({ onBack, onNewPoll, onSetup }: { onBack: () => voi
 const CHIPS: Chip[] = ['Meet time', 'Venue or pitch', 'Cancelled', 'Kit or other']
 
 const THREADS: Array<{ id: ThreadKey; ini: string; bg: string; name: string; time: string; preview: string; unread: boolean }> = [
-  { id: 'coaches', ini: 'SJ', bg: '#cbbeb5', name: 'Coaches · Sam, Jess', time: '7:40 pm', preview: "Sam: Line-up done, I'll send it Friday night", unread: true },
-  { id: 'linh',    ini: 'LT', bg: '#cbbeb5', name: 'Linh Tran (Mia)',      time: '6:02 pm', preview: "Can I swap canteen to 11 to 12? Mia's dentist",   unread: true },
+  { id: 'coaches', ini: 'SJ', bg: '#e8cfcf', name: 'Coaches · Sam, Jess', time: '7:40 pm', preview: "Sam: Line-up done, I'll send it Friday night", unread: true },
+  { id: 'linh',    ini: 'LT', bg: '#e8cfcf', name: 'Linh Tran (Mia)',      time: '6:02 pm', preview: "Can I swap canteen to 11 to 12? Mia's dentist",   unread: true },
   { id: 'all',     ini: 'U12', bg: '#e9eae8', name: 'All U12 families',   time: '7:12 pm', preview: 'You: Meet time now 8:40 on Saturday',              unread: false },
   { id: 'wattle',  ini: 'WC', bg: '#eef5f2', name: 'Wattle Creek FC',      time: 'Tue',     preview: 'Wet weather: grounds decision by 7 am Saturday',   unread: false },
 ]
@@ -243,7 +243,7 @@ function ChangeForm({ chips, toggle, onSend }: { chips: Set<Chip>; toggle: (c: C
       {/* Change card */}
       <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 8 }}>
         <span style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <span style={{ flexShrink: 0, width: 44, height: 48, borderRadius: 12, background: '#cbbeb5', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+          <span style={{ flexShrink: 0, width: 44, height: 48, borderRadius: 12, background: '#e8cfcf', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
             <span style={{ fontSize: 10, fontWeight: 700 }}>SAT</span>
             <span style={{ fontSize: 18, lineHeight: '20px', fontWeight: 700 }}>6</span>
           </span>
@@ -253,7 +253,7 @@ function ChangeForm({ chips, toggle, onSend }: { chips: Set<Chip>; toggle: (c: C
         <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center', gap: 8 }}>
           <span style={{ border: '1px solid #c5c8c4', borderRadius: 12, padding: '8px 10px' }}>
             <span style={{ display: 'block', fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#4a5a57' }}>Was</span>
-            <span style={{ display: 'block', fontSize: 18, fontWeight: 700, color: '#6f7f7b', textDecoration: 'line-through' }}>9:00 am</span>
+            <span style={{ display: 'block', fontSize: 18, fontWeight: 700, color: '#5c6b67', textDecoration: 'line-through' }}>9:00 am</span>
           </span>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4a5a57" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           <span style={{ border: '2px solid #2f6252', borderRadius: 12, padding: '8px 10px' }}>

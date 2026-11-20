@@ -20,7 +20,7 @@ const PLAYERS: NoteRow[] = [
 
 const statusStyle: Record<NoteStatus, { bg: string; color: string }> = {
   'Sent':     { bg: G,         color: '#fff' },
-  'Draft':    { bg: '#cbbeb5', color: INK },
+  'Draft':    { bg: '#e8cfcf', color: INK },
   'To write': { bg: '#e9eae8', color: INK },
 }
 
@@ -40,7 +40,7 @@ export default function HM6SeasonNotes(_: { onBack?: () => void }) {
   const toggle = (set: React.Dispatch<React.SetStateAction<string[]>>, v: string) =>
     set(arr => arr.includes(v) ? arr.filter(x => x !== v) : [...arr, v])
   return (
-    <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }}>
+    <div style={{ width: 1180, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }}>
       <div style={{ background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 20, height: 64 }}>
         <div style={{ fontSize: 21, fontWeight: 800, color: '#fff', letterSpacing: '-0.02em' }}>Clean Sheet</div>
         {['Home', 'Squad', 'Training', 'Game day'].map(t => (
@@ -54,7 +54,7 @@ export default function HM6SeasonNotes(_: { onBack?: () => void }) {
           <div key={t} onClick={() => setActiveSub(t)} style={{ height: 44, display: 'flex', alignItems: 'center', fontSize: 15, fontWeight: 600, color: t === activeSub ? INK : MUT, borderBottom: t === activeSub ? `3px solid #40826d` : '3px solid transparent', boxSizing: 'border-box', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>
         ))}
         <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', height: 44 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 6, height: 32, padding: '0 12px', borderRadius: 999, background: PALE, color: G, fontSize: 13, fontWeight: 700 }}>Coach · MiniRoos</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, height: 32, padding: '0 12px', borderRadius: 999, background: '#f4e6e6', color: '#10211f', fontSize: 13, fontWeight: 700 }}>Coach · MiniRoos</div>
         </div>
       </div>
 
@@ -71,7 +71,7 @@ export default function HM6SeasonNotes(_: { onBack?: () => void }) {
           <div style={{ fontSize: 17, fontWeight: 700, marginBottom: 6 }}>Players</div>
           {PLAYERS.map((p, i) => (
             <div key={p.short} onClick={() => { setSelected(i); setNoteSent(false); setEditing(false) }} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 54, borderTop: `1px solid ${LN}`, cursor: 'pointer', background: i === selected ? PALE : 'transparent', margin: i === selected ? '0 -8px' : 0, padding: i === selected ? '0 8px' : 0, borderRadius: i === selected ? 10 : 0 }}>
-              <div style={{ width: 30, height: 30, borderRadius: 999, background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0 }}>{p.init}</div>
+              <div style={{ width: 30, height: 30, borderRadius: 999, background: '#e8cfcf', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0 }}>{p.init}</div>
               <div style={{ flex: 1, minWidth: 0 }}>
                 <div style={{ fontSize: 15, fontWeight: 700 }}>{p.short}</div>
                 <div style={{ fontSize: 13, color: MUT }}>{p.note}</div>
@@ -83,7 +83,7 @@ export default function HM6SeasonNotes(_: { onBack?: () => void }) {
 
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '16px 20px', display: 'flex', flexDirection: 'column', gap: 12 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-            <div style={{ width: 44, height: 44, borderRadius: 999, background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 700 }}>{sel.init}</div>
+            <div style={{ width: 44, height: 44, borderRadius: 999, background: '#e8cfcf', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 700 }}>{sel.init}</div>
             <div>
               <div style={{ fontSize: 19, fontWeight: 700 }}>{sel.short}</div>
               <div style={{ fontSize: 14, color: MUT }}>{sel.note} · drafted from your game notes · {sel.status}</div>

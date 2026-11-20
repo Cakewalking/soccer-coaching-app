@@ -18,14 +18,14 @@ export default function SPp6ManagerTournament(_: { onBack?: () => void }) {
   function toggle(id: string) { setDone(prev => prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]) }
 
   return (
-    <div style={{ width: 390, minHeight: '100%', background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', position: 'relative', margin: '0 auto' }}>
+    <div style={{ width: 390, minHeight: '100%', background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', position: 'relative', margin: '0 auto' }}>
       <div style={{ padding: '12px 20px 0', display: 'flex', justifyContent: 'space-between' }}>
         <div style={{ fontSize: 12, fontWeight: 700, color: INK }}>9:41</div>
       </div>
 
       <div style={{ padding: '12px 20px 32px' }}>
         <div style={{ marginBottom: 16 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 4 }}>Team manager</div>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 4 }}>Team manager</div>
           <div style={{ fontSize: 22, fontWeight: 800, letterSpacing: '-0.02em', color: INK, marginBottom: 2 }}>Tournament checklist</div>
           <div style={{ fontSize: 14, color: MUT }}>Kingfisher Summer Cup · Sat 21 November</div>
         </div>

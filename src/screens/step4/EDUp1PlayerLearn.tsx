@@ -73,14 +73,14 @@ export default function EDUp1PlayerLearn({ onNav: _onNav, embedded = false, olde
   }
 
   return (
-    <div data-lasttool={lastTool} style={{ width: 390, background: '#f7f8f7', fontFamily: 'var(--font-sans)', minHeight: 844, display: 'flex', flexDirection: 'column', borderRadius: 24, overflow: 'hidden' }}>
+    <div data-lasttool={lastTool} style={{ width: 390, background: '#faf5ec', fontFamily: 'var(--font-sans)', minHeight: 844, display: 'flex', flexDirection: 'column', borderRadius: 24, overflow: 'hidden' }}>
       {/* Header */}
       {!bare && <div style={{ background: G, padding: '12px 16px 14px', display: 'flex', alignItems: 'center', gap: 10 }}>
         <div style={{ flex: 1 }}>
           <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.82)' }}>{who.team}</div>
           <div style={{ fontSize: 21, fontWeight: 700, color: '#fff', letterSpacing: '-0.01em' }}>Learn</div>
         </div>
-        <div style={{ width: 38, height: 38, borderRadius: '50%', background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, color: INK }}>{who.ini}</div>
+        <div style={{ width: 38, height: 38, borderRadius: '50%', background: '#e8cfcf', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, color: INK }}>{who.ini}</div>
       </div>}
 
       {/* Content */}

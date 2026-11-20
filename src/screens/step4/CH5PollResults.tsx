@@ -38,7 +38,7 @@ export default function CH5PollResults(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string | null>(null)
   const t = (m: string) => { setToast(m); setTimeout(() => setToast(null), 3200) }
   return (
-    <div style={{ width: 1180, height: 820, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden' }}>
+    <div style={{ width: 1180, height: 820, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden' }}>
       <TopBar />
       <SubBar />
       <div style={{ flexShrink: 0, padding: '14px 28px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 20 }}>
@@ -72,7 +72,7 @@ export default function CH5PollResults(_: { onBack?: () => void }) {
         </div>
         <div style={{ gridColumn: 'span 5', display: 'flex', flexDirection: 'column', gap: 14 }}>
           <div style={{ background: '#fff', border: `2px solid ${G}`, borderRadius: 16, padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 6 }}>
-            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT }}>Done for you</div>
+            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b' }}>Done for you</div>
             <div style={{ fontSize: 16, fontWeight: 700, lineHeight: '23px' }}>Who's coming is filled in: 11 players for Saturday.</div>
             <div style={{ fontSize: 14, color: MUT }}>Enough for a 9-a-side with two on the bench.</div>
             <button onClick={() => t("Who's coming opened.")} style={{ alignSelf: 'flex-start', height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid #c5c8c4`, background: '#fff', fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Open Who's coming</button>
@@ -81,7 +81,7 @@ export default function CH5PollResults(_: { onBack?: () => void }) {
             <div style={{ fontSize: 17, fontWeight: 700, marginBottom: 4 }}>Haven't answered</div>
             {unanswered.map((u, i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 50, borderTop: `1px solid ${LN}` }}>
-                <div style={{ flexShrink: 0, width: 30, height: 30, borderRadius: '50%', background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }}>{u.ini}</div>
+                <div style={{ flexShrink: 0, width: 30, height: 30, borderRadius: '50%', background: '#e8cfcf', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }}>{u.ini}</div>
                 <div style={{ flexGrow: 1 }}>
                   <div style={{ fontSize: 15, fontWeight: 700 }}>{u.name}</div>
                   <div style={{ fontSize: 13, color: MUT }}>{u.sub}</div>

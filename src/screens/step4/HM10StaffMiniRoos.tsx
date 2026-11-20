@@ -7,7 +7,7 @@ export default function HM10StaffMiniRoos(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string|null>(null)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
-    <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }}>
+    <div style={{ width: 1180, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }}>
       <div style={{ background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 20, height: 64 }}>
         <div style={{ fontSize: 21, fontWeight: 800, color: '#fff', letterSpacing: '-0.02em' }}>Clean Sheet</div>
         {['Home', 'Squad', 'Training', 'Game day'].map(t => (
@@ -21,7 +21,7 @@ export default function HM10StaffMiniRoos(_: { onBack?: () => void }) {
           <div key={t} style={{ height: 44, display: 'flex', alignItems: 'center', fontSize: 15, fontWeight: 600, color: t === 'Team staff' ? INK : MUT, borderBottom: t === 'Team staff' ? `3px solid #40826d` : '3px solid transparent', boxSizing: 'border-box', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>
         ))}
         <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', height: 44 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 6, height: 32, padding: '0 12px', borderRadius: 999, background: PALE, color: G, fontSize: 13, fontWeight: 700 }}>Coach · MiniRoos</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, height: 32, padding: '0 12px', borderRadius: 999, background: '#f4e6e6', color: '#10211f', fontSize: 13, fontWeight: 700 }}>Coach · MiniRoos</div>
         </div>
       </div>
 
@@ -39,7 +39,7 @@ export default function HM10StaffMiniRoos(_: { onBack?: () => void }) {
           {[
             { init: 'TA', role: 'Head coach · you', note: 'Children check valid to Feb 2028', badge: 'Valid', badgeBg: G, badgeColor: '#fff' },
             { init: 'JF', role: 'Assistant coach',         note: 'Sees everything you see',         badge: 'Valid', badgeBg: G, badgeColor: '#fff' },
-            { init: 'KN', role: 'Team manager · Evie\'s mum', note: 'Who\'s coming, messages and the first-aid card', badge: 'Check due 30 Jun', badgeBg: '#cbbeb5', badgeColor: INK },
+            { init: 'KN', role: 'Team manager · Evie\'s mum', note: 'Who\'s coming, messages and the first-aid card', badge: 'Check due 30 Jun', badgeBg: '#e8cfcf', badgeColor: INK },
           ].map(s => (
             <div key={s.init} style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 68, borderTop: `1px solid ${LN}` }}>
               <div style={{ width: 40, height: 40, borderRadius: 999, background: PALE, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 700, flexShrink: 0 }}>{s.init}</div>
@@ -52,7 +52,7 @@ export default function HM10StaffMiniRoos(_: { onBack?: () => void }) {
           ))}
 
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 68, borderTop: `1px solid ${LN}` }}>
-            <div style={{ width: 40, height: 40, borderRadius: 999, background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 700, flexShrink: 0 }}>?</div>
+            <div style={{ width: 40, height: 40, borderRadius: 999, background: '#e8cfcf', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 700, flexShrink: 0 }}>?</div>
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ fontSize: 15, fontWeight: 700 }}>Game leader this Saturday</div>
               <div style={{ fontSize: 13, color: MUT }}>Nobody yet. The club's young game leaders have been asked</div>

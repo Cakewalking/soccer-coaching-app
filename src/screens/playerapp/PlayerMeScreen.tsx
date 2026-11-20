@@ -13,7 +13,7 @@ export default function PlayerMeScreen(_props: { onBack: () => void }) {
   const [bigText, setBigText] = useState(false)
 
   return (
-    <div style={{ width: 390, margin: '0 auto', background: '#f7f9f7', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
+    <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
 
       {/* Header */}
       <div style={{ background: '#1f4a3e', padding: '48px 20px 20px', flex: 'none' }}>
@@ -32,7 +32,7 @@ export default function PlayerMeScreen(_props: { onBack: () => void }) {
           <div style={{ width: 44, height: 44, borderRadius: '999px', background: '#c39797', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, color: '#10211f', flex: 'none' }}>MT</div>
           <div>
             <div style={{ fontSize: 16, fontWeight: 700, color: '#10211f' }}>Mia Tran</div>
-            <div style={{ fontSize: 13, color: '#6f7f7b' }}>#8 · central midfield</div>
+            <div style={{ fontSize: 13, color: '#5c6b67' }}>#8 · central midfield</div>
           </div>
         </div>
 
@@ -41,14 +41,14 @@ export default function PlayerMeScreen(_props: { onBack: () => void }) {
           <div style={{ display: 'flex', alignItems: 'center', padding: '14px 16px', cursor: 'pointer' }}>
             <div style={{ flexGrow: 1 }}>
               <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>My kit colour</div>
-              <div style={{ fontSize: 13, color: '#6f7f7b' }}>Green</div>
+              <div style={{ fontSize: 13, color: '#5c6b67' }}>Green</div>
             </div>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c5c8c4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', padding: '14px 16px', borderTop: '1px solid #e9eae8' }}>
             <div style={{ flexGrow: 1 }}>
               <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>Reminders</div>
-              <div style={{ fontSize: 13, color: '#6f7f7b' }}>Check-in before training</div>
+              <div style={{ fontSize: 13, color: '#5c6b67' }}>Check-in before training</div>
             </div>
             <div onClick={() => setReminders(r => !r)}><Toggle on={reminders} /></div>
           </div>
@@ -65,20 +65,20 @@ export default function PlayerMeScreen(_props: { onBack: () => void }) {
           <div style={{ display: 'flex', alignItems: 'center', padding: '14px 16px', cursor: 'pointer' }}>
             <div style={{ flexGrow: 1 }}>
               <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>Who can see my stuff</div>
-              <div style={{ fontSize: 13, color: '#6f7f7b' }}>Sam, Priya and Mum</div>
+              <div style={{ fontSize: 13, color: '#5c6b67' }}>Sam, Priya and Mum</div>
             </div>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c5c8c4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', padding: '14px 16px', borderTop: '1px solid #e9eae8', cursor: 'pointer' }}>
             <div style={{ flexGrow: 1 }}>
               <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>Need to tell someone something?</div>
-              <div style={{ fontSize: 13, color: '#6f7f7b' }}>Other people can help</div>
+              <div style={{ fontSize: 13, color: '#5c6b67' }}>Other people can help</div>
             </div>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c5c8c4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
           </div>
         </div>
 
-        <div style={{ fontSize: 12, color: '#6f7f7b', lineHeight: '17px', textAlign: 'center' }}>Mum looks after the rest of your settings until you're 15.</div>
+        <div style={{ fontSize: 12, color: '#5c6b67', lineHeight: '17px', textAlign: 'center' }}>Mum looks after the rest of your settings until you're 15.</div>
       </div>
 
       {/* Bottom nav */}

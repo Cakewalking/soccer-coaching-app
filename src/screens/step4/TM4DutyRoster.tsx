@@ -19,20 +19,20 @@ export default function TM4DutyRoster(_: { onBack?: () => void }) {
     { ini: 'OB', name: 'Brennan family', sub: 'Not yet', count: 0 },
   ]
   return (
-    <div style={{ width: 390, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 844, display: 'flex', flexDirection: 'column', position: 'relative' }}>
+    <div style={{ width: 390, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 844, display: 'flex', flexDirection: 'column', position: 'relative' }}>
       <div style={{ background: GD, padding: '14px 18px 12px', display: 'flex', alignItems: 'center', gap: 12 }}>
         <div style={{ flexGrow: 1 }}>
           <div style={{ fontSize: 12, color: '#cfe6dc' }}>U12 Sam · Team manager</div>
           <div style={{ fontSize: 21, fontWeight: 700, color: '#fff' }}>Duty roster</div>
         </div>
-        <div style={{ width: 40, height: 40, borderRadius: '50%', background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>RO</div>
+        <div style={{ width: 40, height: 40, borderRadius: '50%', background: '#e8cfcf', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>RO</div>
       </div>
       <div style={{ flexGrow: 1, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 10, overflowY: 'auto' }}>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '4px 14px' }}>
-          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: MUT, padding: '8px 0 4px' }}>Sat 6 Jun · vs Harbour Rovers</div>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#7a4b5b', padding: '8px 0 4px' }}>Sat 6 Jun · vs Harbour Rovers</div>
           {duties.map((d, i) => (
             <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 50, borderTop: i > 0 ? `1px solid ${LN}` : 'none' }}>
-              <div style={{ width: 36, height: 36, borderRadius: 10, background: d.action ? '#c39797' : '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, flexShrink: 0 }}>{d.icon}</div>
+              <div style={{ width: 36, height: 36, borderRadius: 10, background: d.action ? '#c39797' : '#e8cfcf', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, flexShrink: 0 }}>{d.icon}</div>
               <div style={{ flexGrow: 1 }}>
                 <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>{d.title}</div>
                 <div style={{ fontSize: 13, color: MUT }}>{d.sub}</div>
@@ -45,10 +45,10 @@ export default function TM4DutyRoster(_: { onBack?: () => void }) {
           ))}
         </div>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '4px 14px' }}>
-          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: MUT, padding: '8px 0 4px' }}>Fair share this season</div>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#7a4b5b', padding: '8px 0 4px' }}>Fair share this season</div>
           {fair.map((f, i) => (
             <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 50, borderTop: i > 0 ? `1px solid ${LN}` : 'none' }}>
-              <div style={{ width: 30, height: 30, borderRadius: '50%', background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0 }}>{f.ini}</div>
+              <div style={{ width: 30, height: 30, borderRadius: '50%', background: '#e8cfcf', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0 }}>{f.ini}</div>
               <div style={{ flexGrow: 1 }}>
                 <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>{f.name}</div>
                 <div style={{ fontSize: 13, color: MUT }}>{f.sub}</div>

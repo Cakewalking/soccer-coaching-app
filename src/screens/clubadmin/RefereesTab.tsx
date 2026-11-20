@@ -68,7 +68,7 @@ export default function RefereesTab({ empty }: { empty?: boolean }) {
         <h2 style={{ margin: '0 0 10px', fontSize: 17, fontWeight: 700 }}>Club referees</h2>
         {CLUB_REFS.map((r, i) => (
           <div key={r.ini} style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 56, borderTop: i > 0 ? '1px solid #e9eae8' : 'none' }}>
-            <div style={{ width: 36, height: 36, borderRadius: '999px', background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0 }}>{r.ini}</div>
+            <div style={{ width: 36, height: 36, borderRadius: '999px', background: '#e8cfcf', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0 }}>{r.ini}</div>
             <div style={{ flexGrow: 1, minWidth: 0 }}>
               <div style={{ fontSize: 15, fontWeight: 700 }}>{r.name}</div>
               <div style={{ fontSize: 13, color: '#4a5a57' }}>{r.note}</div>

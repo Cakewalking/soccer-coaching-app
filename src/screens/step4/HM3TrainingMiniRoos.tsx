@@ -12,7 +12,7 @@ export default function HM3TrainingMiniRoos(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string | null>(null)
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   return (
-    <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }}>
+    <div style={{ width: 1180, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }}>
       <div style={{ background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 20, height: 64 }}>
         <div style={{ fontSize: 21, fontWeight: 800, color: '#fff', letterSpacing: '-0.02em' }}>Clean Sheet</div>
         {['Home', 'Squad', 'Training', 'Game day'].map(t => (
@@ -26,7 +26,7 @@ export default function HM3TrainingMiniRoos(_: { onBack?: () => void }) {
           <div key={t} style={{ height: 44, display: 'flex', alignItems: 'center', fontSize: 15, fontWeight: 600, color: t === "Tonight's games" ? INK : MUT, borderBottom: t === "Tonight's games" ? `3px solid #40826d` : '3px solid transparent', boxSizing: 'border-box', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>
         ))}
         <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', height: 44 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 6, height: 32, padding: '0 12px', borderRadius: 999, background: PALE, color: G, fontSize: 13, fontWeight: 700 }}>Coach · MiniRoos</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, height: 32, padding: '0 12px', borderRadius: 999, background: '#f4e6e6', color: '#10211f', fontSize: 13, fontWeight: 700 }}>Coach · MiniRoos</div>
         </div>
       </div>
 
@@ -72,8 +72,8 @@ export default function HM3TrainingMiniRoos(_: { onBack?: () => void }) {
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 0 }}>
             <div style={{ fontSize: 17, fontWeight: 700, color: INK, marginBottom: 4 }}>Tonight, remember</div>
             {[
-              { init: 'PD', name: 'Poppy', note: 'Pair with Zara, first kick-off', bg: '#cbbeb5' },
-              { init: 'AK', name: 'Arlo',  note: 'New. Show him each game first',  bg: '#cbbeb5' },
+              { init: 'PD', name: 'Poppy', note: 'Pair with Zara, first kick-off', bg: '#e8cfcf' },
+              { init: 'AK', name: 'Arlo',  note: 'New. Show him each game first',  bg: '#e8cfcf' },
               { init: 'OH', name: 'Omar',  note: 'Away tonight',                   bg: LN },
             ].map(r => (
               <div key={r.name} style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 46, borderTop: `1px solid ${LN}` }}>

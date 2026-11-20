@@ -2,7 +2,7 @@ const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8
 
 export default function ACK1AcademyPlayerHome() {
   return (
-    <div style={{ width: 390, minHeight: '100%', background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', margin: '0 auto' }}>
+    <div style={{ width: 390, minHeight: '100%', background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', margin: '0 auto' }}>
       <div style={{ background: GD, padding: '16px 20px 20px' }}>
         <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,0.6)', marginBottom: 4 }}>Tall Timber · Advanced</div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
@@ -48,7 +48,7 @@ export default function ACK1AcademyPlayerHome() {
 
         {/* Clip */}
         <div style={{ background: PALE, borderRadius: 12, padding: '12px 14px', marginBottom: 14 }}>
-          <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 4 }}>From Reece: your left-foot finish</div>
+          <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 4 }}>From Reece: your left-foot finish</div>
           <div style={{ fontSize: 13, color: G, fontStyle: 'italic' }}>"Look how your hips open here."</div>
         </div>
 

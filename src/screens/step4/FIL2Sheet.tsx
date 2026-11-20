@@ -56,7 +56,7 @@ export default function FIL2Sheet({ onBack, onShare, onNav, bare }: {
   )
 
   return (
-    <div data-screen="FIL2-Sheet" data-lasttool={lastTool} style={{ width: bare ? '100%' : 1180, height: bare ? '100%' : 820, flex: bare ? 1 : undefined, minHeight: bare ? 0 : undefined, background: '#f7f8f7', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+    <div data-screen="FIL2-Sheet" data-lasttool={lastTool} style={{ width: bare ? '100%' : 1180, height: bare ? '100%' : 820, flex: bare ? 1 : undefined, minHeight: bare ? 0 : undefined, background: '#faf5ec', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
 
       {!bare && (<>
       {/* Top nav */}

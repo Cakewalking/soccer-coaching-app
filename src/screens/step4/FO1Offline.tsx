@@ -26,7 +26,7 @@ export default function FO1Offline(_: { onBack?: () => void }) {
   void st   // kept for lines this screen may still need to say
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
-    <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#faf5ec', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       <div style={{ flex: 'none', background: '#fff', borderBottom: `1px solid ${LN}` }}>
         <div style={{ height: 64, boxSizing: 'border-box', padding: '0 28px', display: 'flex', alignItems: 'center', gap: 4, background: G }}>
           <div style={{ fontSize: 20, fontWeight: 700, color: '#fff', marginRight: 16, letterSpacing: '-0.02em' }}>Clean Sheet</div>
@@ -38,7 +38,7 @@ export default function FO1Offline(_: { onBack?: () => void }) {
         </div>
       </div>
 
-      <div style={{ flex: 'none', background: '#cbbeb5', padding: '10px 28px', display: 'flex', alignItems: 'center', gap: 12, fontSize: 15, fontWeight: 600 }}>
+      <div style={{ flex: 'none', background: '#e8cfcf', padding: '10px 28px', display: 'flex', alignItems: 'center', gap: 12, fontSize: 15, fontWeight: 600 }}>
         <div style={{ width: 10, height: 10, borderRadius: '50%', background: '#6f5256', flex: 'none' }} />
         No signal · working offline · all changes will sync when you reconnect
       </div>
@@ -63,7 +63,7 @@ export default function FO1Offline(_: { onBack?: () => void }) {
             <div style={{ fontSize: 15, fontWeight: 700, color: MUT, marginBottom: 10 }}>Waits for signal</div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10 }}>
               {['Suggested drills update', 'Sending parent messages', 'Syncing wellness check-ins', 'Uploading match camera footage', 'Loading new clips', 'Updating player development goals'].map((item, i) => (
-                <div key={i} style={{ padding: '10px 12px', background: '#f7f8f7', border: `1px solid ${LN}`, borderRadius: 10, fontSize: 13, color: MUT }}>{item}</div>
+                <div key={i} style={{ padding: '10px 12px', background: '#faf5ec', border: `1px solid ${LN}`, borderRadius: 10, fontSize: 13, color: MUT }}>{item}</div>
               ))}
             </div>
           </div>
@@ -73,7 +73,7 @@ export default function FO1Offline(_: { onBack?: () => void }) {
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '14px 16px' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
               <div style={{ fontSize: 14, fontWeight: 700 }}>Waiting to send</div>
-              <div style={{ fontSize: 13, fontWeight: 700, background: '#cbbeb5', borderRadius: 999, padding: '1px 8px' }}>{WAITS.length}</div>
+              <div style={{ fontSize: 13, fontWeight: 700, background: '#e8cfcf', borderRadius: 999, padding: '1px 8px' }}>{WAITS.length}</div>
             </div>
             {WAITS.map((item, i) => (
               <div key={i} style={{ padding: '8px 0', borderTop: `1px solid ${LN}` }}>

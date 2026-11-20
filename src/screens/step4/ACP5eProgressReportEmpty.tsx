@@ -2,7 +2,7 @@ const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8
 
 export default function ACP5eProgressReportEmpty() {
   return (
-    <div style={{ width: 390, minHeight: '100%', background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', margin: '0 auto' }}>
+    <div style={{ width: 390, minHeight: '100%', background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', margin: '0 auto' }}>
       <div style={{ background: GD, padding: '16px 20px 20px' }}>
         <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,0.6)', marginBottom: 4 }}>Tall Timber Academy</div>
         <div style={{ fontSize: 20, fontWeight: 800, letterSpacing: '-0.02em', color: '#fff' }}>Kai's progress</div>
@@ -16,7 +16,7 @@ export default function ACP5eProgressReportEmpty() {
         <div style={{ fontSize: 14, color: MUT, lineHeight: 1.5, marginBottom: 20 }}>Until then, coach notes appear here after each session.</div>
 
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 16px', textAlign: 'left' as const }}>
-          <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 6 }}>What the report covers</div>
+          <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 6 }}>What the report covers</div>
           {['Ball skills and control', 'Decision-making in games', 'Effort and coachability', 'Goal progress'].map(item => (
             <div key={item} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '5px 0' }}>
               <div style={{ width: 6, height: 6, borderRadius: '50%', background: G, flex: 'none' }} />

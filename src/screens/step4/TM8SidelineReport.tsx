@@ -13,13 +13,13 @@ export default function TM8SidelineReport(_: { onBack?: () => void }) {
     )
   }
   return (
-    <div style={{ width: 390, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 844, display: 'flex', flexDirection: 'column', position: 'relative' }}>
+    <div style={{ width: 390, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 844, display: 'flex', flexDirection: 'column', position: 'relative' }}>
       <div style={{ background: GD, padding: '14px 18px 12px', display: 'flex', alignItems: 'center', gap: 12 }}>
         <div style={{ flexGrow: 1 }}>
           <div style={{ fontSize: 12, color: '#cfe6dc' }}>U12 Sam · Sat 6 Jun · vs Harbour Rovers</div>
           <div style={{ fontSize: 21, fontWeight: 700, color: '#fff' }}>Sideline report</div>
         </div>
-        <div style={{ width: 40, height: 40, borderRadius: '50%', background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>RO</div>
+        <div style={{ width: 40, height: 40, borderRadius: '50%', background: '#e8cfcf', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>RO</div>
       </div>
       <div style={{ flexGrow: 1, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 10, overflowY: 'auto' }}>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '12px 14px' }}>
@@ -28,19 +28,19 @@ export default function TM8SidelineReport(_: { onBack?: () => void }) {
         </div>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 10 }}>
           <div>
-            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: MUT, marginBottom: 6 }}>What happened</div>
+            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#7a4b5b', marginBottom: 6 }}>What happened</div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
               {['Abuse of the referee', 'Abuse of a player', 'A coach', 'Something else'].map(l => <Chip key={l} label={l} group="what" />)}
             </div>
           </div>
           <div>
-            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: MUT, marginBottom: 6 }}>Who</div>
+            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#7a4b5b', marginBottom: 6 }}>Who</div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
               {['Our spectator', 'Away spectator', 'Not sure'].map(l => <Chip key={l} label={l} group="who" />)}
             </div>
           </div>
           <div>
-            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: MUT, marginBottom: 6 }}>What you saw</div>
+            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#7a4b5b', marginBottom: 6 }}>What you saw</div>
             <textarea value={notes} onChange={e => setNotes(e.target.value)} style={{ width: '100%', minHeight: 80, border: `1px solid ${LN}`, borderRadius: 10, padding: '10px 12px', fontSize: 15, fontFamily: 'inherit', resize: 'none', boxSizing: 'border-box' }} />
           </div>
         </div>

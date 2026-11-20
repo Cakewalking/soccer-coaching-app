@@ -81,7 +81,7 @@ export function B1CoachAndFitness() {
           </div>
 
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 20px' }}>
-            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 8 }}>Today · 5:45 pm · Wattle Creek Reserve</div>
+            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 8 }}>Today · 5:45 pm · Wattle Creek Reserve</div>
             <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>Training tonight</div>
             <div style={{ fontSize: 13, color: MUT }}>90 minutes · warm-up, 4 drills and sprint caps built in</div>
           </div>
@@ -143,7 +143,7 @@ export function PO1OlderHome() {
       {/* My goal */}
       <div style={{ padding: '0 20px 16px' }}>
         <div style={{ background: BG, borderRadius: 12, padding: '14px 16px' }}>
-          <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 6 }}>My goal · set with Ollie</div>
+          <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 6 }}>My goal · set with Ollie</div>
           <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 4 }}>Play forward on my first touch</div>
           <div style={{ fontSize: 13, color: G }}>3 of the last 5 games</div>
         </div>
@@ -271,12 +271,12 @@ export function PS1ParentSettings() {
       <RowItem label="Your children" value="Mia, U12 Sam · Bao, U8 Hannah" />
       <RowItem label="Another parent or carer" value="Add someone" />
       <div style={{ marginTop: 16 }}>
-        <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 8 }}>The app</div>
+        <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 8 }}>The app</div>
         <RowItem label="Add games to my calendar" value="Google, Apple or Outlook" />
         <RowItem label="Text size" value="Standard" />
       </div>
       <div style={{ marginTop: 16 }}>
-        <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 8 }}>Your data</div>
+        <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 8 }}>Your data</div>
         <RowItem label="Download or delete" value="›" />
         <RowItem label="Help and privacy policy" value="›" />
       </div>

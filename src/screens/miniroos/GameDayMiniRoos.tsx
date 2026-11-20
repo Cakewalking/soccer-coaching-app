@@ -37,7 +37,7 @@ const AFTER = [
 function turnStyle(t: Turn) {
   if (t === 'on')   return { bg: '#40826d', color: '#fff',    label: 'On'      }
   if (t === 'goal') return { bg: '#1f4a3e', color: '#fff',    label: 'In goal' }
-  return                   { bg: '#f0f1ef', color: '#6f7f7b', label: 'Rest'    }
+  return                   { bg: '#f0f1ef', color: '#5c6b67', label: 'Rest'    }
 }
 
 export default function GameDayMiniRoos({ onWhatWeSaw, empty }: { onWhatWeSaw: () => void; empty?: boolean }) {
@@ -94,7 +94,7 @@ export default function GameDayMiniRoos({ onWhatWeSaw, empty }: { onWhatWeSaw: (
                     <tr key={ri} style={{ background: ri % 2 === 0 ? '#fff' : '#f9faf9' }}>
                       <td style={{ padding: '10px 12px', borderBottom: '1px solid #e9eae8' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                          <span style={{ flex: 'none', width: 28, height: 28, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{pl.ini}</span>
+                          <span style={{ flex: 'none', width: 28, height: 28, borderRadius: '999px', background: '#e8cfcf', color: '#10211f', fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{pl.ini}</span>
                           <span style={{ fontSize: 13, fontWeight: 600, color: '#10211f' }}>{pl.name}</span>
                         </div>
                       </td>

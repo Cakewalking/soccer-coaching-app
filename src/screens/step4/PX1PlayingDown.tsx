@@ -22,7 +22,7 @@ function DirFrame({ onNav, tool }: { onNav?: (s: string) => void; tool: (n: stri
         <button onClick={() => onNav?.('PX1-PlayingDown')} style={snba}>Playing across</button>
         <button onClick={() => tool('Fair game time')} style={snb}>Fair game time</button>
         <div style={{ flex: 1 }} />
-        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, height: 32, padding: '0 12px', borderRadius: 999, background: PALEGREEN, color: GREEN, fontSize: 13, fontWeight: 700 }}>Director of football</span>
+        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, height: 32, padding: '0 12px', borderRadius: 999, background: '#f4e6e6', color: '#10211f', fontSize: 13, fontWeight: 700 }}>Director of football</span>
       </nav>
     </>
   )
@@ -43,7 +43,7 @@ export default function PX1PlayingDown({ onNav }: { onNav?: (s: string) => void 
   const outBtn = { flex: 'none' as const, width: 150, height: 44, padding: '0 14px', borderRadius: 10, boxSizing: 'border-box' as const, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap' as const, background: '#fff', color: INK, border: `1px solid ${CTL}` }
 
   return (
-    <div data-lasttool={lastTool} style={{ width: 1180, height: 820, overflow: 'hidden', boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
+    <div data-lasttool={lastTool} style={{ width: 1180, height: 820, overflow: 'hidden', boxSizing: 'border-box', background: '#faf5ec', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
       <DirFrame onNav={onNav} tool={tool} />
       <OpeningPanel
         landing

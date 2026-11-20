@@ -8,7 +8,7 @@ import { CONSENT } from './ConsentMiniRoos'
 // to what suits an under 9: how often they came, their turns, what the coach has
 // noticed and what is good to know. No scores, ratings or rankings.
 
-const INK = '#10211f', MUT = '#4a5a57', LN = '#e9eae8', G = '#2f6252', GD = '#1f4a3e', PALE = '#eef5f2', SAND = '#cbbeb5', SANDBG = '#f6f1e9', BORDER = '#c5c8c4'
+const INK = '#10211f', MUT = '#4a5a57', LN = '#e9eae8', G = '#2f6252', GD = '#1f4a3e', PALE = '#eef5f2', SAND = '#e8cfcf', SANDBG = '#f6f1e9', BORDER = '#c5c8c4'
 const first = (n: string) => n.split(' ')[0]
 
 type About = { her: 'her' | 'his'; turns: string; family: string; noticed: [string, string][]; aid: string; pickup: string }

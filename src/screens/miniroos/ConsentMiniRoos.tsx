@@ -20,7 +20,7 @@ function Badge({ val }: { val: ConsentVal }) {
   const cfg = {
     yes:     { label: 'Yes',     bg: '#2f6252', color: '#fff' },
     no:      { label: 'No',      bg: '#e9eae8', color: '#10211f' },
-    waiting: { label: 'Waiting', bg: '#cbbeb5', color: '#10211f' },
+    waiting: { label: 'Waiting', bg: '#e8cfcf', color: '#10211f' },
   }[val]
   return (
     <span style={{ display: 'inline-flex', alignItems: 'center', height: 24, padding: '0 9px', borderRadius: '999px', fontSize: 12, fontWeight: 700, background: cfg.bg, color: cfg.color, whiteSpace: 'nowrap' as const }}>
@@ -61,7 +61,7 @@ export default function ConsentMiniRoos({ empty }: { empty?: boolean }) {
           {CONSENT.map((p, i) => (
             <div key={i} style={{ display: 'grid', gridTemplateColumns: '1.6fr 1fr 1fr 1fr', gap: 10, alignItems: 'center', minHeight: 50, borderTop: '1px solid #e9eae8' }}>
               <span style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                <span style={{ flexShrink: 0, width: 30, height: 30, borderRadius: '999px', background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700 }}>{p.ini}</span>
+                <span style={{ flexShrink: 0, width: 30, height: 30, borderRadius: '999px', background: '#e8cfcf', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700 }}>{p.ini}</span>
                 <span style={{ fontSize: 15, fontWeight: 700 }}>{p.name}</span>
               </span>
               <span><Badge val={p.photos} /></span>
@@ -90,7 +90,7 @@ export default function ConsentMiniRoos({ empty }: { empty?: boolean }) {
               ].filter(Boolean).join(' and ')
               return (
                 <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 50, borderTop: '1px solid #e9eae8' }}>
-                  <span style={{ flexShrink: 0, width: 30, height: 30, borderRadius: '999px', background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700 }}>{p.ini}</span>
+                  <span style={{ flexShrink: 0, width: 30, height: 30, borderRadius: '999px', background: '#e8cfcf', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700 }}>{p.ini}</span>
                   <span style={{ flexGrow: 1, minWidth: 0 }}>
                     <span style={{ display: 'block', fontSize: 15, fontWeight: 700 }}>{p.name}</span>
                     <span style={{ display: 'block', fontSize: 13, color: '#4a5a57' }}>{missing}</span>

@@ -66,7 +66,7 @@ export default function YT4VotesAwards({ onNav, bare = false, seniors = false }:
           </table>
 
           <div style={{ marginTop: 'auto' }}>
-            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: MUT, marginBottom: 8 }}>Awards so far · you make the final call</div>
+            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#7a4b5b', marginBottom: 8 }}>Awards so far · you make the final call</div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 10 }}>
               {AWARDS.map(aw => (
                 <div key={aw.cap} style={{ border: `1px solid ${HAIR}`, borderRadius: 12, padding: '10px 12px', background: '#fafbfa' }}>

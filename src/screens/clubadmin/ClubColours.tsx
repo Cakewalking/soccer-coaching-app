@@ -49,7 +49,7 @@ export default function ClubColours({ storeKey = 'demo', club = 'Wattle Creek FC
   const mn = nameOf(main), sn = nameOf(second), gold = nearAmber(main) ? mn : nearAmber(second) ? sn : null
 
   return (
-    <div data-screen-colours={untouched ? 'not-set' : 'set'} style={{ padding: '14px 24px 28px', display: 'flex', flexDirection: 'column', gap: 12, fontFamily: "'DM Sans',system-ui,sans-serif", color: INK, background: '#f7f8f7' }}>
+    <div data-screen-colours={untouched ? 'not-set' : 'set'} style={{ padding: '14px 24px 28px', display: 'flex', flexDirection: 'column', gap: 12, fontFamily: "'DM Sans',system-ui,sans-serif", color: INK, background: '#faf5ec' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
         <h1 style={{ margin: 0, fontSize: 26, fontWeight: 700, letterSpacing: '-0.01em' }}>{title}</h1>
         <span style={{ flexGrow: 1, fontSize: 14, color: MUT }}>{untouched ? `${club} · not set yet · you are on Clean Sheet green` : tiles === 'charcoal' ? `${club} · big tiles set to charcoal` : `${club} · set once by ${by} · everyone at the ${whole} sees it`}</span>

@@ -79,7 +79,7 @@ export default function PM1ParentChats({ onNav }: { onBack?: () => void; onNav?:
         </div>
 
         {/* Club section */}
-        <div style={{ fontSize: 11, fontWeight: 700, color: MUT, letterSpacing: '0.08em', textTransform: 'uppercase' as const, marginBottom: 8, paddingLeft: 4 }}>Club</div>
+        <div style={{ fontSize: 11, fontWeight: 700, color: '#7a4b5b', letterSpacing: '0.08em', textTransform: 'uppercase' as const, marginBottom: 8, paddingLeft: 4 }}>Club</div>
         <div style={{ background: '#fff', border: `1px solid #c5c8c4`, borderRadius: 16, overflow: 'hidden', marginBottom: 20 }}>
           <div {...row(() => setSheet('clubnews'))} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '14px 16px', cursor: 'pointer' }}>
             <div style={{ width: 44, height: 44, borderRadius: 999, background: PALE, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20, flexShrink: 0, color: G }}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z" /></svg></div>

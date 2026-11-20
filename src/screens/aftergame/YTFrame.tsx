@@ -32,7 +32,7 @@ export default function YTFrame({ onNav, active, heading, sentence, support, fig
   const snbOn = { ...snb, color: GREEN, fontWeight: 700 as const, borderBottom: `2px solid ${GREEN}` }
 
   return (
-    <div data-screen={screenId ?? PILLS.find(p => p.id === active)?.target} data-lasttool={lastTool ?? ''} style={{ width: bare ? '100%' : 1180, height: bare ? '100%' : 820, flex: bare ? 1 : undefined, minHeight: 0, overflow: 'hidden', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
+    <div data-screen={screenId ?? PILLS.find(p => p.id === active)?.target} data-lasttool={lastTool ?? ''} style={{ width: bare ? '100%' : 1180, height: bare ? '100%' : 820, flex: bare ? 1 : undefined, minHeight: 0, overflow: 'hidden', background: '#faf5ec', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       {/* Top nav */}
       {!bare && <>
       <div style={{ background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 16, height: 52, flexShrink: 0 }}>

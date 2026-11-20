@@ -18,7 +18,7 @@ export default function ACC12AcademySuggested(_: { onBack?: () => void }) {
   ]
 
   return (
-    <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, position: 'relative', display: 'flex', flexDirection: 'column' as const }}>
+    <div style={{ width: 1180, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, position: 'relative', display: 'flex', flexDirection: 'column' as const }}>
       {/* Top nav */}
       <div style={{ background: G, height: 64, display: 'flex', alignItems: 'center', padding: '0 24px', flexShrink: 0 }}>
         <span style={{ color: '#fff', fontSize: 21, fontWeight: 700, marginRight: 32, letterSpacing: '-0.01em' }}>Clean Sheet</span>
@@ -41,7 +41,7 @@ export default function ACC12AcademySuggested(_: { onBack?: () => void }) {
             </button>
         ))}
         <div style={{ flex: 1 }} />
-        <span style={{ height: 32, padding: '0 12px', borderRadius: 999, background: PALE, color: G, fontSize: 13, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 6 }}>Academy coach</span>
+        <span style={{ height: 32, padding: '0 12px', borderRadius: 999, background: '#f4e6e6', color: '#10211f', fontSize: 13, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 6 }}>Academy coach</span>
       </div>
 
       {/* Page header */}
@@ -74,7 +74,7 @@ export default function ACC12AcademySuggested(_: { onBack?: () => void }) {
             <p style={{ margin: 0, fontSize: 14, color: MUT, lineHeight: 1.55 }}>
               The group is ready for pressure. Adding a defender keeps the same skill but makes them do it faster.
             </p>
-            <div style={{ background: '#f7f8f7', borderRadius: 12, padding: '8px 12px', display: 'flex', alignItems: 'center', gap: 12 }}>
+            <div style={{ background: '#faf5ec', borderRadius: 12, padding: '8px 12px', display: 'flex', alignItems: 'center', gap: 12 }}>
               <div style={{ flex: 1 }}>
                 <div style={{ fontSize: 14, fontWeight: 700, color: INK }}>Finishing circuit, with a chasing defender</div>
                 <div style={{ fontSize: 13, color: MUT }}>Same stations · defender starts 3 metres behind</div>
@@ -97,7 +97,7 @@ export default function ACC12AcademySuggested(_: { onBack?: () => void }) {
             <p style={{ margin: 0, fontSize: 14, color: MUT, lineHeight: 1.55 }}>
               They share the same gap, so one station fixes it for all six while the rest play.
             </p>
-            <div style={{ background: '#f7f8f7', borderRadius: 12, padding: '8px 12px', display: 'flex', alignItems: 'center', gap: 12 }}>
+            <div style={{ background: '#faf5ec', borderRadius: 12, padding: '8px 12px', display: 'flex', alignItems: 'center', gap: 12 }}>
               <div style={{ flex: 1 }}>
                 <div style={{ fontSize: 14, fontWeight: 700, color: INK }}>Receive on the half turn, one station</div>
                 <div style={{ fontSize: 13, color: MUT }}>8 minutes · Mila, Zane and four others</div>

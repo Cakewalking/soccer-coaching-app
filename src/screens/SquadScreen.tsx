@@ -81,7 +81,7 @@ function SquadEmpty() {
           <div style={{ background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 16, overflow: 'hidden' }}>
             {sbPlayers.map((p, i) => (
               <div key={p.id} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px', borderTop: i > 0 ? '1px solid #e9eae8' : 'none' }}>
-                <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, color: '#10211f', flexShrink: 0 }}>
+                <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#e8cfcf', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, color: '#10211f', flexShrink: 0 }}>
                   {p.name.split(' ').map(w => w[0]).slice(0,2).join('')}
                 </div>
                 <div style={{ flex: 1 }}>
@@ -94,7 +94,7 @@ function SquadEmpty() {
         ) : (
         <div style={{ background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '20px 24px', display: 'flex', gap: 20 }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 22px)', gap: 4, flex: 'none', marginTop: 4 }}>
-            {['#2f6252','#40826d','#cbbeb5','#c39797'].map((c, i) => (
+            {['#2f6252','#40826d','#e8cfcf','#c39797'].map((c, i) => (
               <div key={i} style={{ width: 22, height: 22, borderRadius: 5, background: c }} />
             ))}
           </div>
@@ -107,7 +107,7 @@ function SquadEmpty() {
                 { icon: 'M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101M10.172 13.828a4 4 0 015.656 0l4 4a4 4 0 01-5.656 5.656l-1.101-1.102', title: 'Share an invite link', body: 'Parents add their child and their own contact details.', btn: 'Copy link', primary: false },
                 { icon: 'M12 5v14M5 12h14', title: 'Add one at a time', body: 'Good for a few players or a late sign-up.', btn: 'Add a player', primary: false, onClick: () => setShowForm(true) },
               ].map(opt => (
-                <div key={opt.title} style={{ background: '#f7f8f7', borderRadius: 12, padding: '14px 14px' }}>
+                <div key={opt.title} style={{ background: '#faf5ec', borderRadius: 12, padding: '14px 14px' }}>
                   <div style={{ width: 32, height: 32, borderRadius: 8, background: '#eef5f2', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 8 }}>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2f6252" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={opt.icon}/></svg>
                   </div>
@@ -160,7 +160,7 @@ function SquadEmpty() {
             </div>
           </div>
         ))}
-        <div style={{ marginTop: 'auto', display: 'flex', alignItems: 'center', gap: 8, background: '#f7f8f7', borderRadius: 10, padding: '10px 12px' }}>
+        <div style={{ marginTop: 'auto', display: 'flex', alignItems: 'center', gap: 8, background: '#faf5ec', borderRadius: 10, padding: '10px 12px' }}>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4a5a57" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
           <span style={{ fontSize: 12, color: '#4a5a57', lineHeight: '17px' }}>Player data is only visible to your team's coaches. Parents see their own child's goals and clips.</span>
         </div>
@@ -181,7 +181,7 @@ function statusDot(status: SquadPlayer['status']): string {
 function avatarBg(status: SquadPlayer['status']): string {
   if (status === 'checkin') return '#c39797'
   if (status === 'missing') return '#d0d4d2'
-  return '#cbbeb5'
+  return '#e8cfcf'
 }
 
 function wellnessColor(w: number): string {
@@ -216,7 +216,7 @@ function PlayerCard({ p, selected, onClick }: { p: SquadPlayer; selected: boolea
       </div>
       <div style={{ flexGrow: 1, minWidth: 0 }}>
         <div style={{ fontSize: 13, fontWeight: 600, color: '#10211f', lineHeight: '17px' }}>{p.name}</div>
-        <div style={{ fontSize: 12, color: '#6f7f7b', lineHeight: '16px' }}>{p.note}</div>
+        <div style={{ fontSize: 12, color: '#5c6b67', lineHeight: '16px' }}>{p.note}</div>
       </div>
       <div style={{ flex: 'none', fontSize: 14, fontWeight: 700, color: p.wellness ? wellnessColor(p.wellness) : '#a3b0ad' }}>
         {p.wellness ?? '—'}
@@ -232,7 +232,7 @@ function RightPanel({ p, onProfile }: { p: SquadPlayer; onProfile: () => void })
   const alertColors: Record<string, { bg: string; text: string; label: string }> = {
     checkin: { bg: '#fdf0ee', text: '#7a3030', label: 'Check in · Low wellness' },
     manage:  { bg: '#fdf8e8', text: '#7a5a00', label: 'Manage load'             },
-    missing: { bg: '#f7f8f7', text: '#4a5a57', label: 'No check-in today'       },
+    missing: { bg: '#faf5ec', text: '#4a5a57', label: 'No check-in today'       },
     ready:   { bg: '#edf8f2', text: '#2f6252', label: 'All good'                },
   }
   const alert = alertColors[p.status]
@@ -268,38 +268,38 @@ function RightPanel({ p, onProfile }: { p: SquadPlayer; onProfile: () => void })
       {/* Stats row */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10 }}>
         {/* Wellness */}
-        <div style={{ background: '#f7f8f7', borderRadius: 10, padding: 12 }}>
-          <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#6f7f7b', marginBottom: 4 }}>Wellness</div>
+        <div style={{ background: '#faf5ec', borderRadius: 10, padding: 12 }}>
+          <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#5c6b67', marginBottom: 4 }}>Wellness</div>
           <div style={{ fontSize: 22, fontWeight: 700, color: p.wellness ? wellnessColor(p.wellness) : '#a3b0ad' }}>
             {p.wellness ?? '—'}
           </div>
-          {p.wellness && <div style={{ fontSize: 11, color: '#6f7f7b' }}>of 5</div>}
+          {p.wellness && <div style={{ fontSize: 11, color: '#5c6b67' }}>of 5</div>}
         </div>
 
         {/* Load */}
-        <div style={{ background: '#f7f8f7', borderRadius: 10, padding: 12 }}>
-          <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#6f7f7b', marginBottom: 4 }}>Load</div>
+        <div style={{ background: '#faf5ec', borderRadius: 10, padding: 12 }}>
+          <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#5c6b67', marginBottom: 4 }}>Load</div>
           <div style={{ fontSize: 22, fontWeight: 700, color: p.load > 110 ? '#9d7c80' : '#10211f' }}>{p.load}%</div>
           <div style={{ marginTop: 4, height: 4, borderRadius: 2, background: '#e9eae8', position: 'relative' }}>
             <div style={{ position: 'absolute', left: 0, top: 0, height: 4, borderRadius: 2, background: p.load > 110 ? '#c39797' : '#40826d', width: `${Math.min(100, p.load)}%` }} />
             {/* 110% marker */}
             <div style={{ position: 'absolute', top: -2, left: `${Math.min(100, 91)}%`, width: 1, height: 8, background: '#6f7f7b' }} />
           </div>
-          <div style={{ fontSize: 10, color: '#6f7f7b', marginTop: 3 }}>of usual</div>
+          <div style={{ fontSize: 10, color: '#5c6b67', marginTop: 3 }}>of usual</div>
         </div>
 
         {/* Minutes */}
-        <div style={{ background: '#f7f8f7', borderRadius: 10, padding: 12 }}>
-          <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#6f7f7b', marginBottom: 4 }}>Minutes</div>
+        <div style={{ background: '#faf5ec', borderRadius: 10, padding: 12 }}>
+          <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#5c6b67', marginBottom: 4 }}>Minutes</div>
           <div style={{ fontSize: 20, fontWeight: 700, color: '#10211f', lineHeight: '25px' }}>{p.minutesUsed}</div>
-          <div style={{ fontSize: 12, color: '#6f7f7b' }}>/ {p.minutes}</div>
+          <div style={{ fontSize: 12, color: '#5c6b67' }}>/ {p.minutes}</div>
         </div>
       </div>
 
       {/* Dev goal */}
-      <div style={{ background: '#f7f8f7', borderRadius: 12, padding: '14px 16px' }}>
+      <div style={{ background: '#faf5ec', borderRadius: 12, padding: '14px 16px' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
-          <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#6f7f7b' }}>Development goal</div>
+          <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#5c6b67' }}>Development goal</div>
           <span style={{
             fontSize: 11, fontWeight: 700, padding: '2px 8px', borderRadius: '999px',
             background: p.devGoalStatus === 'on-track' ? '#e8f2ee' : '#fdf0ee',
@@ -427,10 +427,10 @@ export default function SquadScreen({ onPlayerProfile, empty, players: propPlaye
             return (
               <div key={group}>
                 <div style={{ padding: '0 10px 8px', display: 'flex', alignItems: 'center', gap: 8 }}>
-                  <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#6f7f7b' }}>
+                  <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#5c6b67' }}>
                     {POS_GROUP_LABELS[group]}
                   </span>
-                  <span style={{ fontSize: 11, fontWeight: 700, color: '#6f7f7b' }}>{all.length}</span>
+                  <span style={{ fontSize: 11, fontWeight: 700, color: '#5c6b67' }}>{all.length}</span>
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                   {players.map(p => (
@@ -446,7 +446,7 @@ export default function SquadScreen({ onPlayerProfile, empty, players: propPlaye
         </div>
 
         {/* Note */}
-        <div style={{ fontSize: 12, color: '#6f7f7b', marginBottom: 20 }}>
+        <div style={{ fontSize: 12, color: '#5c6b67', marginBottom: 20 }}>
           Numbers show today's wellness check-in, out of 5. &nbsp;
           <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
             <span style={{ width: 8, height: 8, borderRadius: '999px', background: '#40826d', display: 'inline-block' }} /> Ready &nbsp;
@@ -459,7 +459,7 @@ export default function SquadScreen({ onPlayerProfile, empty, players: propPlaye
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14 }}>
           {/* Dev goals */}
           <div style={{ background: '#ffffff', border: '1px solid #e9eae8', borderRadius: 14, padding: 16 }}>
-            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#6f7f7b', marginBottom: 8 }}>Development goals</div>
+            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#5c6b67', marginBottom: 8 }}>Development goals</div>
             <div style={{ fontSize: 24, fontWeight: 700, color: '#10211f', marginBottom: 4 }}>{devOnTrack} of {players.length} on track</div>
             <div style={{ height: 6, borderRadius: 3, background: '#e9eae8', marginBottom: 6 }}>
               <div style={{ height: 6, borderRadius: 3, background: '#40826d', width: `${(devOnTrack/16)*100}%` }} />
@@ -469,14 +469,14 @@ export default function SquadScreen({ onPlayerProfile, empty, players: propPlaye
 
           {/* Wellness */}
           <div style={{ background: '#ffffff', border: '1px solid #e9eae8', borderRadius: 14, padding: 16 }}>
-            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#6f7f7b', marginBottom: 8 }}>Wellness this week</div>
+            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#5c6b67', marginBottom: 8 }}>Wellness this week</div>
             <div style={{ fontSize: 24, fontWeight: 700, color: '#10211f', marginBottom: 4 }}>{wellnessAvg} / 5</div>
             <div style={{ fontSize: 13, color: '#4a5a57' }}>Up from 3.6 · {players.filter(p => p.wellness).length} of {players.length} checked in today</div>
           </div>
 
           {/* Load */}
           <div style={{ background: '#ffffff', border: '1px solid #e9eae8', borderRadius: 14, padding: 16 }}>
-            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#6f7f7b', marginBottom: 8 }}>Load this week</div>
+            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#5c6b67', marginBottom: 8 }}>Load this week</div>
             <div style={{ fontSize: 24, fontWeight: 700, color: '#10211f', marginBottom: 4 }}>{overloaded.length} above usual</div>
             <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 4 }}>
               {overloaded.map(p => (

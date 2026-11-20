@@ -48,7 +48,7 @@ export default function YT1YourTake({ onNav, startEmpty = false, bare = false }:
   const noteLive = note.trim().length > 0 && !startEmpty
 
   const card: React.CSSProperties = { background: '#fff', border: `1px solid ${CTL}`, borderRadius: 16, padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 10, minHeight: 0, overflow: 'hidden' }
-  const label: React.CSSProperties = { fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: MUT }
+  const label: React.CSSProperties = { fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#7a4b5b' }
 
   return (
     <YTFrame

@@ -50,7 +50,7 @@ function AcademyFrame({ activeSub, pageTitle, pageSub, pageRight, children, toas
   pageRight?: React.ReactNode; children: React.ReactNode; toast: string | null; onNav: (id: string) => void
 }) {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#f7f8f7' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#faf5ec' }}>
       {/* Top nav */}
       <div style={{ background: GD, display: 'flex', alignItems: 'center', padding: '0 20px', gap: 2, height: 56, flexShrink: 0 }}>
         <span style={{ color: '#e9eae8', fontWeight: 800, fontSize: 16, marginRight: 10 }}>Clean Sheet</span>
@@ -139,7 +139,7 @@ export function AcademyTrainingWeek({ onBack: _onBack, onNav }: { onBack?: () =>
               const st = statusStyle(s.status)
               return (
                 <div key={s.day} style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '14px 16px', borderBottom: i < sessions.length - 1 ? `1px solid ${LN}` : 'none', background: selected === s.day ? PALE : undefined }}>
-                  <div style={{ width: 40, fontSize: 11, fontWeight: 800, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, flexShrink: 0 }}>{s.day}</div>
+                  <div style={{ width: 40, fontSize: 11, fontWeight: 800, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', flexShrink: 0 }}>{s.day}</div>
                   <div style={{ flex: 1 }}>
                     <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>{s.label}</div>
                     <div style={{ fontSize: 12, color: MUT }}>{s.note}</div>
@@ -408,8 +408,8 @@ export function AcademyWhoComing({ onBack: _onBack, onNav }: { onBack?: () => vo
               { n: '1',    label: 'Make-up', color: G },
               { n: '1',    label: 'Away', color: MUT },
               { n: '2',    label: 'No answer', color: '#b04' },
-            ].map(s => (
-              <div key={s.label} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 16px', textAlign: 'center' }}>
+            ].map((s, kpiN)=> (
+              <div key={s.label} style={{ background: ['#f3ecdf', '#f4e6e6', '#eef5f2', '#f3ecdf'][kpiN % 4], border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 16px', textAlign: 'center' }}>
                 <div style={{ fontSize: 24, fontWeight: 800, color: s.color }}>{s.n}</div>
                 <div style={{ fontSize: 12, color: MUT }}>{s.label}</div>
               </div>

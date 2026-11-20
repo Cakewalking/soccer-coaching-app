@@ -13,7 +13,7 @@ function GreenHeader({ subtitle, title, onBack }: { subtitle: string; title: str
         <span style={{ display: 'block', fontSize: 12, lineHeight: '16px', color: '#cfe6dc' }}>{subtitle}</span>
         <span style={{ display: 'block', fontSize: 21, lineHeight: '27px', fontWeight: 700 }}>{title}</span>
       </span>
-      <span style={{ flexShrink: 0, width: 40, height: 40, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>LT</span>
+      <span style={{ flexShrink: 0, width: 40, height: 40, borderRadius: '999px', background: '#e8cfcf', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>LT</span>
     </div>
   )
 }
@@ -39,7 +39,7 @@ export function RaiseConcernView({ onBack, onSent }: { onBack: () => void; onSen
   }
 
   return (
-    <div style={{ width: 390, margin: '0 auto', background: '#f7f8f7', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)', position: 'relative' }}>
+    <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)', position: 'relative' }}>
       <GreenHeader subtitle="Wattle Creek FC · private" title="Tell the club" onBack={onBack} />
       <div style={{ flexGrow: 1, overflow: 'auto', padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 10 }}>
         <div style={{ background: '#fff', border: '2px solid #c39797', borderRadius: 16, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -66,7 +66,7 @@ export function RaiseConcernView({ onBack, onSent }: { onBack: () => void; onSen
         </div>
         <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '4px 14px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 56 }}>
-            <span style={{ flexShrink: 0, width: 36, height: 36, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }}>HP</span>
+            <span style={{ flexShrink: 0, width: 36, height: 36, borderRadius: '999px', background: '#e8cfcf', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }}>HP</span>
             <span style={{ flexGrow: 1, minWidth: 0 }}>
               <span style={{ display: 'block', fontSize: 15, lineHeight: '21px', fontWeight: 700 }}>Only Helen Park sees this</span>
               <span style={{ display: 'block', fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>Welfare officer · not Mia's coach or manager</span>
@@ -91,7 +91,7 @@ export function RaiseConcernView({ onBack, onSent }: { onBack: () => void; onSen
 
 export function ConcernSentView({ onBack }: { onBack: () => void }) {
   return (
-    <div style={{ width: 390, margin: '0 auto', background: '#f7f8f7', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
+    <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
       <GreenHeader subtitle="Wattle Creek FC · private" title="Sent to Helen" onBack={onBack} />
       <div style={{ flexGrow: 1, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 10 }}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 12, padding: '28px 12px 8px' }}>
@@ -130,13 +130,13 @@ export function TellSomeoneView({ onBack, onTellHelen }: { onBack: () => void; o
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(''), 3200) }
 
   return (
-    <div style={{ width: 390, margin: '0 auto', background: '#f7f8f7', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)', position: 'relative' }}>
+    <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)', position: 'relative' }}>
       <GreenHeader subtitle="Just for you" title="You can tell someone" onBack={onBack} />
       <div style={{ flexGrow: 1, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 10 }}>
         <span style={{ fontSize: 16, lineHeight: '24px', padding: '0 2px' }}>If something feels wrong, at football, at school or at home, it's OK to tell. You won't be in trouble.</span>
         {[
           { icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 5h16v11H8l-4 4z"/></svg>, iconBg: '#eef5f2', title: 'Write to Helen at the club', sub: "She looks after kids at Wattle Creek. She isn't your coach.", onClick: onTellHelen },
-          { icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg>, iconBg: '#cbbeb5', title: 'Kids Helpline · 1800 55 1800', sub: 'Free, any time. Call or chat online. They\'re not part of the club.', onClick: () => showToast("Kids Helpline is 1800 55 1800. It's free and open all day and night.") },
+          { icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg>, iconBg: '#e8cfcf', title: 'Kids Helpline · 1800 55 1800', sub: 'Free, any time. Call or chat online. They\'re not part of the club.', onClick: () => showToast("Kids Helpline is 1800 55 1800. It's free and open all day and night.") },
           { icon: <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 8v5M12 16h.01M12 3l9 16H3z"/></svg>, iconBg: '#c39797', title: 'In danger right now? Call 000', sub: 'Police or ambulance, straight away.', onClick: () => showToast('Call 000 for police or an ambulance.') },
         ].map((item, i) => (
           <button key={i} onClick={item.onClick} style={{ display: 'flex', alignItems: 'center', gap: 14, padding: 14, borderRadius: 16, border: '1px solid #c5c8c4', background: '#fff', color: '#10211f', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit', minHeight: 76, boxSizing: 'border-box' }}>
@@ -167,11 +167,11 @@ export function TellHelenView({ onBack }: { onBack: () => void }) {
   function send() { setToast('Sent. Helen will find you at training, or you can find her at the clubrooms.'); setTimeout(() => setToast(''), 3200) }
 
   return (
-    <div style={{ width: 390, margin: '0 auto', background: '#f7f8f7', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)', position: 'relative' }}>
+    <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)', position: 'relative' }}>
       <GreenHeader subtitle="Just for you" title="Write to Helen" onBack={onBack} />
       <div style={{ flexGrow: 1, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 10 }}>
         <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '12px 14px', display: 'flex', alignItems: 'center', gap: 12 }}>
-          <span style={{ flexShrink: 0, width: 44, height: 44, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 700 }}>HP</span>
+          <span style={{ flexShrink: 0, width: 44, height: 44, borderRadius: '999px', background: '#e8cfcf', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 700 }}>HP</span>
           <span>
             <span style={{ display: 'block', fontSize: 16, fontWeight: 700 }}>Helen Park</span>
             <span style={{ display: 'block', fontSize: 14, lineHeight: '20px', color: '#4a5a57' }}>Her job is to make sure kids feel safe here.</span>

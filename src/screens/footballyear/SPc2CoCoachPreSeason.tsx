@@ -14,10 +14,10 @@ export default function SPc2CoCoachPreSeason({onBack}:{onBack?:()=>void}){
   const [toast,setToast]=useState<string|null>(null)
   function t(m:string){setToast(m);setTimeout(()=>setToast(null),3200)}
   return(
-    <div style={{padding:'20px 28px 40px',background:'#f7f8f7',minHeight:'100%',boxSizing:'border-box',fontFamily:'var(--font-sans)',position:'relative'}}>
+    <div style={{padding:'20px 28px 40px',background:'#faf5ec',minHeight:'100%',boxSizing:'border-box',fontFamily:'var(--font-sans)',position:'relative'}}>
       <div style={{display:'flex',alignItems:'flex-start',justifyContent:'space-between',marginBottom:20}}>
         <div>
-          <div style={{fontSize:11,fontWeight:700,letterSpacing:'0.08em',textTransform:'uppercase' as const,color:MUT,marginBottom:4}}>Assistant coach · U12 Sam with Jess</div>
+          <div style={{fontSize:11,fontWeight:700,letterSpacing:'0.08em',textTransform:'uppercase' as const,color: '#7a4b5b',marginBottom:4}}>Assistant coach · U12 Sam with Jess</div>
           <div style={{fontSize:24,fontWeight:800,letterSpacing:'-0.02em',color:INK,marginBottom:2}}>Pre-season, Jess</div>
           <div style={{fontSize:14,color:MUT}}>Thu 12 March · pre-season · 4 weeks to round 1</div>
         </div>
@@ -52,7 +52,7 @@ export default function SPc2CoCoachPreSeason({onBack}:{onBack?:()=>void}){
         </div>
         <div>
           <div style={{background:'#fff',border:`1px solid ${LN}`,borderRadius:16,padding:'14px 16px',marginBottom:16}}>
-            <div style={{fontSize:13,fontWeight:700,letterSpacing:'0.06em',textTransform:'uppercase' as const,color:MUT,marginBottom:8}}>What's yours</div>
+            <div style={{fontSize:13,fontWeight:700,letterSpacing:'0.06em',textTransform:'uppercase' as const,color: '#7a4b5b',marginBottom:8}}>What's yours</div>
             {['Training sessions','Lineup on match day','Warm-ups','Messages to families'].map(item=>(
               <div key={item} style={{display:'flex',alignItems:'center',gap:8,padding:'8px 0',borderTop:`1px solid ${LN}`}}>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={G} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>

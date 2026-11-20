@@ -14,7 +14,7 @@ export default function DK1Kit(_: { onBack?: () => void }) {
   function t(m: string) { setToast(m); setTimeout(() => setToast(null), 3200) }
 
   return (
-    <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, position: 'relative' }}>
+    <div style={{ width: 1180, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, position: 'relative' }}>
       <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 32, height: 52 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>Clean Sheet</div>
         {['Club', 'Teams', 'Coaches', 'Players', 'Safeguarding', 'Reports'].map(tab => (
@@ -47,7 +47,7 @@ export default function DK1Kit(_: { onBack?: () => void }) {
             { label: 'Teams not filmed', val: '2', sub: 'U13 Chris and U15 Bec, until Kit 2 is back', warn: true },
           ].map(s => (
             <div key={s.label} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 12, padding: '14px 16px' }}>
-              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 6 }}>{s.label}</div>
+              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 6 }}>{s.label}</div>
               <div style={{ fontSize: 20, fontWeight: 800, color: s.warn ? '#c05' : GD }}>{s.val}</div>
               <div style={{ fontSize: 12, color: MUT, marginTop: 2 }}>{s.sub}</div>
             </div>

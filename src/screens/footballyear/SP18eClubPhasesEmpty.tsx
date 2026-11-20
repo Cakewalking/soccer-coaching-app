@@ -8,10 +8,10 @@ export default function SP18eClubPhasesEmpty(_: { onBack?: () => void }) {
   function t(m: string) { setToast(m); setTimeout(() => setToast(null), 3200) }
 
   return (
-    <div style={{ padding: '20px 28px 40px', background: '#f7f8f7', minHeight: '100%', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', position: 'relative' }}>
+    <div style={{ padding: '20px 28px 40px', background: '#faf5ec', minHeight: '100%', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', position: 'relative' }}>
       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 20 }}>
         <div>
-          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 4 }}>Director of football</div>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 4 }}>Director of football</div>
           <div style={{ fontSize: 24, fontWeight: 800, letterSpacing: '-0.02em', color: INK, marginBottom: 2 }}>The football year</div>
           <div style={{ fontSize: 14, color: MUT }}>Wattle Creek FC · no dates yet</div>
         </div>
@@ -28,7 +28,7 @@ export default function SP18eClubPhasesEmpty(_: { onBack?: () => void }) {
       </div>
 
       {/* Three steps */}
-      <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 10 }}>You decide</div>
+      <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 10 }}>You decide</div>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 12, marginBottom: 24 }}>
         {[
           { n: '1', title: 'The dates',           body: 'By age group' },

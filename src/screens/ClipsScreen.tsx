@@ -22,7 +22,7 @@ function ClipsEmpty({ activeTab }: { activeTab: number }) {
           </div>
           <div style={{ background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '20px 24px', display: 'flex', gap: 20 }}>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 22px)', gap: 4, flex: 'none' }}>
-              {['#2f6252','#40826d','#cbbeb5','#c39797'].map((c, i) => <div key={i} style={{ width: 22, height: 22, borderRadius: 5, background: c }} />)}
+              {['#2f6252','#40826d','#e8cfcf','#c39797'].map((c, i) => <div key={i} style={{ width: 22, height: 22, borderRadius: 5, background: c }} />)}
             </div>
             <div style={{ flexGrow: 1 }}>
               <div style={{ fontSize: 20, fontWeight: 700, marginBottom: 6 }}>Save the clips that teach</div>
@@ -122,7 +122,7 @@ function ClipsEmpty({ activeTab }: { activeTab: number }) {
         <div style={{ minHeight: 0, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 16 }}>
           <div style={{ background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '20px 24px', display: 'flex', gap: 20 }}>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 22px)', gap: 4, flex: 'none' }}>
-              {['#2f6252','#40826d','#cbbeb5','#c39797'].map((c, i) => <div key={i} style={{ width: 22, height: 22, borderRadius: 5, background: c }} />)}
+              {['#2f6252','#40826d','#e8cfcf','#c39797'].map((c, i) => <div key={i} style={{ width: 22, height: 22, borderRadius: 5, background: c }} />)}
             </div>
             <div style={{ flexGrow: 1 }}>
               <div style={{ fontSize: 20, fontWeight: 700, marginBottom: 6 }}>Clips start after your first game</div>
@@ -130,12 +130,12 @@ function ClipsEmpty({ activeTab }: { activeTab: number }) {
               <button onClick={() => goApp('record', 'Opening the game recording flow.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Record a game</button>
             </div>
           </div>
-          <div style={{ fontSize: 13, fontWeight: 600, color: '#6f7f7b', textTransform: 'uppercase', letterSpacing: '0.05em' }}>What you'll get clips of</div>
+          <div style={{ fontSize: 13, fontWeight: 600, color: '#5c6b67', textTransform: 'uppercase', letterSpacing: '0.05em' }}>What you'll get clips of</div>
           {measures.map((m, i) => (
             <div key={i} style={{ padding: '12px 16px', background: '#ffffff', border: '1px solid #e9eae8', borderRadius: 12, fontSize: 14, fontWeight: 600, color: '#10211f' }}>{m}</div>
           ))}
         </div>
-        <aside style={{ background: '#f7f9f7', borderRadius: 16, padding: '18px 20px', display: 'flex', flexDirection: 'column', gap: 12, minHeight: 0, overflowY: 'auto' }}>
+        <aside style={{ background: '#faf5ec', borderRadius: 16, padding: '18px 20px', display: 'flex', flexDirection: 'column', gap: 12, minHeight: 0, overflowY: 'auto' }}>
           <div style={{ fontSize: 15, fontWeight: 700 }}>How clips work</div>
           {[
             { n: '1', title: 'Camera watches the game', body: 'The match camera records everything automatically.' },
@@ -209,10 +209,10 @@ export default function ClipsScreen({ empty, activeTab = 0, onNav, team = 'junio
         <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 12 }}>
           <div>
             <span style={{ fontSize: 22, fontWeight: 700, color: '#10211f', letterSpacing: '-0.02em' }}>Clips</span>
-            <span style={{ fontSize: 14, color: '#6f7f7b', marginLeft: 10 }}>{CLIPS.length} clips · {CLIPS_GAMES.length} games</span>
+            <span style={{ fontSize: 14, color: '#5c6b67', marginLeft: 10 }}>{CLIPS.length} clips · {CLIPS_GAMES.length} games</span>
           </div>
           <div style={{ flexGrow: 1 }} />
-          <div style={{ display: 'flex', gap: 2, background: '#f7f8f7', borderRadius: '999px', padding: 3 }}>
+          <div style={{ display: 'flex', gap: 2, background: '#faf5ec', borderRadius: '999px', padding: 3 }}>
             {(['game', 'measure', 'player'] as FilterMode[]).map(m => (
               <button key={m} onClick={() => setFilterMode(m)} style={{
                 height: 32, padding: '0 16px', borderRadius: '999px', border: 0,
@@ -236,7 +236,7 @@ export default function ClipsScreen({ empty, activeTab = 0, onNav, team = 'junio
               border: `1.5px solid ${activeGame === 'all' ? '#40826d' : '#e9eae8'}`,
               background: activeGame === 'all' ? '#f0f8f4' : '#ffffff',
               fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f',
-            }}>All games <span style={{ fontSize: 12, color: '#6f7f7b', fontWeight: 400 }}>{CLIPS.length}</span></button>
+            }}>All games <span style={{ fontSize: 12, color: '#5c6b67', fontWeight: 400 }}>{CLIPS.length}</span></button>
             {CLIPS_GAMES.map(g => {
               const rc = resultColor(g.result)
               return (
@@ -249,7 +249,7 @@ export default function ClipsScreen({ empty, activeTab = 0, onNav, team = 'junio
                 }}>
                   <span style={{ ...rc, width: 20, height: 20, borderRadius: '999px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, flexShrink: 0 }}>{g.result}</span>
                   {g.label}
-                  <span style={{ fontSize: 12, color: '#6f7f7b', fontWeight: 400 }}>{CLIPS.filter(c => c.game === g.id).length}</span>
+                  <span style={{ fontSize: 12, color: '#5c6b67', fontWeight: 400 }}>{CLIPS.filter(c => c.game === g.id).length}</span>
                 </button>
               )
             })}
@@ -264,7 +264,7 @@ export default function ClipsScreen({ empty, activeTab = 0, onNav, team = 'junio
             }}>
               <span style={{ width: 8, height: 8, borderRadius: '999px', background: activeMeasure === m ? '#40826d' : '#c5c8c4', flexShrink: 0 }} />
               {m}
-              <span style={{ fontSize: 12, color: '#6f7f7b', fontWeight: 400 }}>{CLIPS.filter(c => c.measures.includes(m)).length}</span>
+              <span style={{ fontSize: 12, color: '#5c6b67', fontWeight: 400 }}>{CLIPS.filter(c => c.measures.includes(m)).length}</span>
             </button>
           ))}
           {filterMode === 'player' && <>
@@ -273,7 +273,7 @@ export default function ClipsScreen({ empty, activeTab = 0, onNav, team = 'junio
               border: `1.5px solid ${!activePlayer ? '#40826d' : '#e9eae8'}`,
               background: !activePlayer ? '#f0f8f4' : '#ffffff',
               fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f',
-            }}>Everyone <span style={{ fontWeight: 400, fontSize: 12, color: '#6f7f7b' }}>{CLIPS.length} clips</span></button>
+            }}>Everyone <span style={{ fontWeight: 400, fontSize: 12, color: '#5c6b67' }}>{CLIPS.length} clips</span></button>
             {PLAYERS.map(p => (
               <button key={p.ini} onClick={() => setActivePlayer(activePlayer === p.ini ? null : p.ini)} style={{
                 height: 36, padding: '0 14px', borderRadius: '999px',
@@ -282,9 +282,9 @@ export default function ClipsScreen({ empty, activeTab = 0, onNav, team = 'junio
                 fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f',
                 display: 'flex', alignItems: 'center', gap: 6,
               }}>
-                <span style={{ width: 20, height: 20, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10, fontWeight: 700, flexShrink: 0 }}>{p.ini}</span>
+                <span style={{ width: 20, height: 20, borderRadius: '999px', background: '#e8cfcf', color: '#10211f', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10, fontWeight: 700, flexShrink: 0 }}>{p.ini}</span>
                 {p.name}
-                <span style={{ fontSize: 12, color: '#6f7f7b', fontWeight: 400 }}>{CLIPS.filter(c => c.players.includes(p.ini)).length}</span>
+                <span style={{ fontSize: 12, color: '#5c6b67', fontWeight: 400 }}>{CLIPS.filter(c => c.players.includes(p.ini)).length}</span>
               </button>
             ))}
           </>}
@@ -300,7 +300,7 @@ export default function ClipsScreen({ empty, activeTab = 0, onNav, team = 'junio
               {filterMode === 'measure' && activeMeasure}
               {filterMode === 'player' && playerInfo && `${playerInfo.fullName} · ${playerClipCount} clips this season`}
             </div>
-            <div style={{ fontSize: 13, color: '#6f7f7b' }}>
+            <div style={{ fontSize: 13, color: '#5c6b67' }}>
               {filterMode === 'game' && gameCtx?.sub}
               {filterMode === 'measure' && activeMeasure && MEASURE_INFO[activeMeasure]}
               {filterMode === 'player' && 'Share a good example and one to work on before Saturday'}
@@ -335,7 +335,7 @@ export default function ClipsScreen({ empty, activeTab = 0, onNav, team = 'junio
         <DropChip label={chips.Source ?? 'Source'} active={!!chips.Source} onClick={() => toggleChip('Source')} />
         <DropChip label={chips['Found by'] ?? 'Found by'} active={!!chips['Found by']} onClick={() => toggleChip('Found by')} />
         <div style={{ flexGrow: 1 }} />
-        <span style={{ fontSize: 13, color: '#6f7f7b' }}>{filtered.length} clips</span>
+        <span style={{ fontSize: 13, color: '#5c6b67' }}>{filtered.length} clips</span>
       </div>
 
       {/* Body */}
@@ -346,7 +346,7 @@ export default function ClipsScreen({ empty, activeTab = 0, onNav, team = 'junio
               <ClipCard key={clip.id} clip={clip} selected={selected.id === clip.id} onClick={() => setSelected(clip)} />
             ))}
             {filtered.length === 0 && (
-              <div style={{ gridColumn: 'span 3', padding: 40, textAlign: 'center', color: '#6f7f7b', fontSize: 15 }}>No clips match this filter.</div>
+              <div style={{ gridColumn: 'span 3', padding: 40, textAlign: 'center', color: '#5c6b67', fontSize: 15 }}>No clips match this filter.</div>
             )}
           </div>
         </div>

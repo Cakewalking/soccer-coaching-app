@@ -7,16 +7,16 @@ export default function TM3ManagerChange(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string | null>(null)
   const t = (m: string) => { setToast(m); setTimeout(() => setToast(null), 3200) }
   return (
-    <div style={{ width: 390, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 844, display: 'flex', flexDirection: 'column', position: 'relative' }}>
+    <div style={{ width: 390, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 844, display: 'flex', flexDirection: 'column', position: 'relative' }}>
       <div style={{ background: GD, padding: '14px 18px 12px', display: 'flex', alignItems: 'center', gap: 12 }}>
         <div style={{ flexGrow: 1 }}>
           <div style={{ fontSize: 12, color: '#cfe6dc' }}>Tell parents about a change</div>
           <div style={{ fontSize: 21, fontWeight: 700, color: '#fff' }}>Something changed</div>
         </div>
-        <div style={{ width: 40, height: 40, borderRadius: '50%', background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>RO</div>
+        <div style={{ width: 40, height: 40, borderRadius: '50%', background: '#e8cfcf', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>RO</div>
       </div>
       <div style={{ flexGrow: 1, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 10, overflowY: 'auto' }}>
-        <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: MUT }}>What changed?</div>
+        <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#7a4b5b' }}>What changed?</div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 6 }}>
           {(['Meet time', 'Venue or pitch', 'Cancelled', 'Kit or other'] as ChangeType[]).map(opt => (
             <button key={opt} onClick={() => setType(opt)} style={{ height: 44, borderRadius: 12, fontSize: 14, fontWeight: 700, border: type === opt ? 0 : `1px solid ${LN}`, background: type === opt ? G : '#fff', color: type === opt ? '#fff' : INK, cursor: 'pointer', fontFamily: 'inherit' }}>{opt}</button>
@@ -24,7 +24,7 @@ export default function TM3ManagerChange(_: { onBack?: () => void }) {
         </div>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 8 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            <div style={{ width: 44, height: 48, borderRadius: 12, background: '#cbbeb5', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{ width: 44, height: 48, borderRadius: 12, background: '#e8cfcf', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
               <div style={{ fontSize: 10, fontWeight: 700 }}>SAT</div>
               <div style={{ fontSize: 18, fontWeight: 700, lineHeight: 1.1 }}>6</div>
             </div>
@@ -32,8 +32,8 @@ export default function TM3ManagerChange(_: { onBack?: () => void }) {
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center', gap: 8 }}>
             <div style={{ border: `1px solid ${LN}`, borderRadius: 12, padding: '8px 10px' }}>
-              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: MUT }}>Was</div>
-              <div style={{ fontSize: 18, fontWeight: 700, color: '#6f7f7b', textDecoration: 'line-through' }}>9:00 am</div>
+              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#7a4b5b' }}>Was</div>
+              <div style={{ fontSize: 18, fontWeight: 700, color: '#5c6b67', textDecoration: 'line-through' }}>9:00 am</div>
             </div>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth="2.4" strokeLinecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             <div style={{ border: `2px solid ${G}`, borderRadius: 12, padding: '8px 10px' }}>
@@ -41,7 +41,7 @@ export default function TM3ManagerChange(_: { onBack?: () => void }) {
               <div style={{ fontSize: 18, fontWeight: 700, color: INK }}>8:40 am</div>
             </div>
           </div>
-          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: MUT, marginTop: 2 }}>Message</div>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#7a4b5b', marginTop: 2 }}>Message</div>
           <div style={{ border: `1px solid ${LN}`, borderRadius: 12, padding: '10px 12px', fontSize: 15, lineHeight: 1.5 }}>
             Hi all, please arrive by <strong>8:40</strong> on Saturday, not 9:00. We've moved to pitch 2 and need time to set up the camera. Kick-off is still 9:30. Thanks, Rob
           </div>

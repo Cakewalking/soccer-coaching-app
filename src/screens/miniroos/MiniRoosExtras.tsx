@@ -6,7 +6,7 @@ import { PLAYERS } from './squadData'
 // Skills (their Development goals), Fair turns (their minutes), This week and
 // Games library. Same rule as the rest of MiniRoos: no ratings, rankings or scores.
 
-const INK = '#10211f', MUT = '#4a5a57', LN = '#e9eae8', G = '#2f6252', GD = '#1f4a3e', PALE = '#eef5f2', SAND = '#cbbeb5', SANDBG = '#f6f1e9'
+const INK = '#10211f', MUT = '#4a5a57', LN = '#e9eae8', G = '#2f6252', GD = '#1f4a3e', PALE = '#eef5f2', SAND = '#e8cfcf', SANDBG = '#f6f1e9'
 const card: React.CSSProperties = { background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '16px 18px' }
 const btn: React.CSSProperties = { height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }
 const btnP: React.CSSProperties = { ...btn, border: 0, background: G, color: '#fff' }

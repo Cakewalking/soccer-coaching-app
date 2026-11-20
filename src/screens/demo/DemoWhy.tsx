@@ -5,7 +5,7 @@ interface Props {
 // "Why trust it": four questions a committee member or parent asks, each with a
 // short answer, the rules behind it, and the place in the demo that shows it.
 
-const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', BORDER = '#c5c8c4', PALE = '#eef5f2', SANDBG = '#f6f1e9', SAND = '#cbbeb5'
+const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', BORDER = '#c5c8c4', PALE = '#eef5f2', SANDBG = '#f6f1e9', SAND = '#e8cfcf'
 
 const PILLARS: { q: string; heading: string; body: string; items: string[]; see: { label: string; href: string }[]; icon: string }[] = [
   {

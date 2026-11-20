@@ -43,7 +43,7 @@ export default function ASKd3AnyScreen({ onNav }: { onNav?: (s: string) => void 
   function tool(name: string) { const to = toolTarget(name); if (to && onNav) { onNav(to); return } setLastTool(name) }
 
   return (
-    <div data-screen="ASKd3-AnyScreen" data-lasttool={lastTool} style={{ width: 1180, background: '#f7f8f7', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }}>
+    <div data-screen="ASKd3-AnyScreen" data-lasttool={lastTool} style={{ width: 1180, background: '#faf5ec', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }}>
       {/* Top nav */}
       <div style={{ background: GD, padding: '0 24px', display: 'flex', alignItems: 'center', gap: 4, height: 52, flexShrink: 0 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff', marginRight: 12 }}>Clean Sheet</div>

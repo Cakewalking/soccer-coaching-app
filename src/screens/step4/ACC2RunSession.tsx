@@ -39,7 +39,7 @@ export default function ACC2RunSession(_: { onBack?: () => void }) {
   ]
 
   return (
-    <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, position: 'relative', display: 'flex', flexDirection: 'column' as const }}>
+    <div style={{ width: 1180, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, position: 'relative', display: 'flex', flexDirection: 'column' as const }}>
       {/* Top nav */}
       <div style={{ background: G, height: 64, display: 'flex', alignItems: 'center', padding: '0 24px', gap: 0, flexShrink: 0 }}>
         <span style={{ color: '#fff', fontSize: 21, fontWeight: 700, marginRight: 32, letterSpacing: '-0.01em' }}>Clean Sheet</span>
@@ -69,7 +69,7 @@ export default function ACC2RunSession(_: { onBack?: () => void }) {
             </button>
         ))}
         <div style={{ flex: 1 }} />
-        <span style={{ height: 32, padding: '0 12px', borderRadius: 999, background: PALE, color: G, fontSize: 13, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 6 }}>Academy coach</span>
+        <span style={{ height: 32, padding: '0 12px', borderRadius: 999, background: '#f4e6e6', color: '#10211f', fontSize: 13, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 6 }}>Academy coach</span>
       </div>
 
       {/* Page header */}
@@ -96,7 +96,7 @@ export default function ACC2RunSession(_: { onBack?: () => void }) {
             const att = attendance[p.key]
             return (
               <div key={p.key} style={{ minHeight: 54, borderTop: `1px solid ${LN}`, display: 'flex', alignItems: 'center', gap: 10, padding: '6px 0' }}>
-                <div style={{ width: 36, height: 36, borderRadius: 999, background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, color: INK, flexShrink: 0 }}>{p.initials}</div>
+                <div style={{ width: 36, height: 36, borderRadius: 999, background: '#e8cfcf', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, color: INK, flexShrink: 0 }}>{p.initials}</div>
                 <div style={{ flex: 1 }}>
                   <div style={{ fontSize: 14, fontWeight: 700, color: INK }}>{p.name}</div>
                   <div style={{ fontSize: 12, color: MUT }}>{p.goal}</div>
@@ -154,7 +154,7 @@ export default function ACC2RunSession(_: { onBack?: () => void }) {
           ))}
 
           {/* Coaching tip */}
-          <div style={{ background: '#f7f8f7', borderRadius: 12, padding: '10px 12px', marginTop: 8 }}>
+          <div style={{ background: '#faf5ec', borderRadius: 12, padding: '10px 12px', marginTop: 8 }}>
             <span style={{ fontSize: 13, fontWeight: 700, color: INK }}>Say this: </span>
             <span style={{ fontSize: 13, color: MUT }}>Open your hips, lock the ankle, and pick your corner before you strike.</span>
           </div>

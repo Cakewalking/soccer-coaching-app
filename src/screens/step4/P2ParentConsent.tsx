@@ -21,7 +21,7 @@ export default function P2ParentConsent() {
   const allAnswered = PERMS.every(p => answers[p.key] !== undefined)
 
   if (step === 2) return (
-    <div style={{ width: 390, minHeight: '100%', background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', margin: '0 auto', padding: '32px 20px' }}>
+    <div style={{ width: 390, minHeight: '100%', background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', margin: '0 auto', padding: '32px 20px' }}>
       <div style={{ fontSize: 20, fontWeight: 800, color: GD, marginBottom: 4 }}>Thanks, Kate.</div>
       <div style={{ fontSize: 14, color: MUT, marginBottom: 20 }}>Sam can see your choices now.</div>
       {PERMS.map(p => (
@@ -40,7 +40,7 @@ export default function P2ParentConsent() {
   )
 
   if (step === 1) return (
-    <div style={{ width: 390, minHeight: '100%', background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', margin: '0 auto' }}>
+    <div style={{ width: 390, minHeight: '100%', background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', margin: '0 auto' }}>
       <div style={{ background: GD, padding: '16px 20px 20px' }}>
         <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,0.6)', marginBottom: 4 }}>Wattle Creek FC · U12</div>
         <div style={{ fontSize: 18, fontWeight: 800, color: '#fff' }}>What can we record?</div>
@@ -72,7 +72,7 @@ export default function P2ParentConsent() {
   )
 
   return (
-    <div style={{ width: 390, minHeight: '100%', background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', margin: '0 auto', padding: '32px 20px' }}>
+    <div style={{ width: 390, minHeight: '100%', background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', margin: '0 auto', padding: '32px 20px' }}>
       <div style={{ background: GD, borderRadius: 16, padding: '20px 20px', marginBottom: 20 }}>
         <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,0.6)', marginBottom: 6 }}>Wattle Creek FC · U12</div>
         <div style={{ fontSize: 20, fontWeight: 800, color: '#fff', marginBottom: 4 }}>You choose what's recorded for Harper</div>

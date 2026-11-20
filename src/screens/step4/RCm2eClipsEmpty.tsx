@@ -6,7 +6,7 @@ export default function RCm2eClipsEmpty(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string | null>(null)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
-    <div style={{ width: 390, minHeight: 844, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
+    <div style={{ width: 390, minHeight: 844, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
       <div style={{ background: GD, padding: '14px 18px 12px' }}>
         <div style={{ fontSize: 12, color: '#cfe6dc', marginBottom: 2 }}>U9 Tom · Wattle Creek</div>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>

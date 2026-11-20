@@ -42,7 +42,7 @@ export default function CH9MessageActions(_: { onBack?: () => void }) {
   const t = (m: string) => { setModal(null); setToast(m); setTimeout(() => setToast(null), 3200) }
   const emojis = [glyph('like'), glyph('heart'), glyph('laugh'), glyph('cheer'), glyph('surprised'), glyph('hand')]
   return (
-    <div style={{ width: 1180, height: 820, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden' }}>
+    <div style={{ width: 1180, height: 820, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden' }}>
       <TopBar />
       <SubBar />
       <main style={{ flexGrow: 1, minHeight: 0, padding: '14px 28px 18px', display: 'grid', gap: 14, gridTemplateColumns: '340px minmax(0,1fr)' }}>
@@ -76,28 +76,28 @@ export default function CH9MessageActions(_: { onBack?: () => void }) {
           </div>
           <div style={{ flexGrow: 1, padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 10, justifyContent: 'flex-end', overflowY: 'auto' }}>
             {[
-              { ini: 'LT', bg: '#cbbeb5', name: 'Linh', time: '7:48 pm', text: 'Mia found her other boot! And she got to 14 juggles.' },
+              { ini: 'LT', bg: '#e8cfcf', name: 'Linh', time: '7:48 pm', text: 'Mia found her other boot! And she got to 14 juggles.' },
               { ini: 'SK', bg: '#c39797', name: 'Sam', time: '7:52 pm', text: '14 is a new best. Tell her I said so.' },
             ].map((msg, i) => (
               <div key={i} style={{ display: 'flex', gap: 8 }}>
                 <div style={{ width: 28, height: 28, borderRadius: '50%', background: msg.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, flexShrink: 0 }}>{msg.ini}</div>
                 <div>
                   <div style={{ fontSize: 11, color: MUT, marginBottom: 2 }}>{msg.name} · {msg.time}</div>
-                  <div style={{ maxWidth: 440, background: '#f7f8f7', border: `1px solid ${LN}`, borderRadius: '14px 14px 14px 4px', padding: '8px 12px', fontSize: 15, lineHeight: 1.5 }}>{msg.text}</div>
+                  <div style={{ maxWidth: 440, background: '#faf5ec', border: `1px solid ${LN}`, borderRadius: '14px 14px 14px 4px', padding: '8px 12px', fontSize: 15, lineHeight: 1.5 }}>{msg.text}</div>
                 </div>
               </div>
             ))}
             <div style={{ display: 'flex', gap: 8 }}>
-              <div style={{ width: 28, height: 28, borderRadius: '50%', background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, flexShrink: 0 }}>DC</div>
+              <div style={{ width: 28, height: 28, borderRadius: '50%', background: '#e8cfcf', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, flexShrink: 0 }}>DC</div>
               <div>
                 <div style={{ fontSize: 11, color: MUT, marginBottom: 2 }}>Dan · 8:02 pm{pinned && <span style={{ marginLeft: 8, color: G, fontWeight: 700 }}><Glyph n="pin" /> Pinned</span>}</div>
-                <div style={{ maxWidth: 440, background: deleted ? '#f7f8f7' : GD, border: `2px solid ${deleted ? LN : G}`, borderRadius: '14px 14px 14px 4px', padding: '8px 12px', fontSize: 15, lineHeight: 1.5, color: deleted ? MUT : '#fff', fontStyle: deleted ? 'italic' : 'normal' }}>
+                <div style={{ maxWidth: 440, background: deleted ? '#faf5ec' : GD, border: `2px solid ${deleted ? LN : G}`, borderRadius: '14px 14px 14px 4px', padding: '8px 12px', fontSize: 15, lineHeight: 1.5, color: deleted ? MUT : '#fff', fontStyle: deleted ? 'italic' : 'normal' }}>
                   {deleted ? 'Message removed for everyone.' : 'Why does Ruby only ever get one half? Some kids never come off.'}
                 </div>
                 {reaction && <div style={{ marginTop: 4, fontSize: 13, color: MUT }}>You reacted {emojis[Number(reaction)]}</div>}
                 <div style={{ marginTop: 8, display: 'flex', gap: 6, flexWrap: 'wrap' as const }}>
                   {emojis.map((em, i) => (
-                    <button key={i} aria-pressed={reaction === String(i)} onClick={() => setReaction(String(i))} style={{ width: 44, height: 44, borderRadius: '50%', background: reaction === String(i) ? PALE : '#f7f8f7', border: reaction === String(i) ? `2px solid ${G}` : 0, fontSize: 20, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{em}</button>
+                    <button key={i} aria-pressed={reaction === String(i)} onClick={() => setReaction(String(i))} style={{ width: 44, height: 44, borderRadius: '50%', background: reaction === String(i) ? PALE : '#faf5ec', border: reaction === String(i) ? `2px solid ${G}` : 0, fontSize: 20, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{em}</button>
                   ))}
                 </div>
                 <div style={{ marginTop: 8, display: 'flex', gap: 6, flexWrap: 'wrap' as const }}>
@@ -128,7 +128,7 @@ export default function CH9MessageActions(_: { onBack?: () => void }) {
           <button onClick={() => setModal(null)} style={{ position: 'absolute', inset: 0, background: 'rgba(16,33,31,0.45)', border: 0, cursor: 'default' }} />
           <div role="dialog" aria-label="Delete this message for everyone?" style={{ position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%,-50%)', width: 440, borderRadius: 18, padding: '20px 22px', background: '#fff', display: 'flex', flexDirection: 'column', gap: 14, boxShadow: '0 12px 40px rgba(16,33,31,0.25)' }}>
             <div style={{ fontSize: 20, fontWeight: 700 }}>Delete this message for everyone?</div>
-            <div style={{ background: '#f7f8f7', borderRadius: 12, padding: '10px 12px', fontSize: 15, lineHeight: '23px' }}>Why does Ruby only ever get one half? Some kids never come off.</div>
+            <div style={{ background: '#faf5ec', borderRadius: 12, padding: '10px 12px', fontSize: 15, lineHeight: '23px' }}>Why does Ruby only ever get one half? Some kids never come off.</div>
             <div style={{ fontSize: 14, color: MUT }}>Dan and everyone else in this chat won't see it anymore. Dan gets a note that a message was removed.</div>
             <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
               <button onClick={() => setModal(null)} style={{ height: 48, padding: '0 18px', borderRadius: 10, border: `1px solid #c5c8c4`, background: '#fff', fontSize: 16, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Cancel</button>
@@ -147,7 +147,7 @@ export default function CH9MessageActions(_: { onBack?: () => void }) {
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
               </button>
             </div>
-            <div style={{ background: '#f7f8f7', borderRadius: 12, padding: '10px 12px', fontSize: 14, color: MUT }}>
+            <div style={{ background: '#faf5ec', borderRadius: 12, padding: '10px 12px', fontSize: 14, color: MUT }}>
               <span style={{ fontWeight: 700 }}>Dan said: </span>Why does Ruby only ever get one half? Some kids never come off.
             </div>
             <div style={{ fontSize: 14, color: MUT }}>This goes to Dan only, not the whole chat. It opens a private thread between you and Dan.</div>

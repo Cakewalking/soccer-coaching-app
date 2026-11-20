@@ -32,7 +32,7 @@ export default function OlderAvailabilityScreen() {
       <div style={{ background: '#1f4a3e', padding: '48px 20px 20px' }}>
         <div style={{ fontSize: 12, color: '#cfe6dc', fontWeight: 500 }}>Wattle Creek U16</div>
         <div style={{ fontSize: 24, fontWeight: 700, color: '#fff', marginTop: 2 }}>Are you in?</div>
-        <div style={{ width: 40, height: 40, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700, marginTop: 10 }}>CW</div>
+        <div style={{ width: 40, height: 40, borderRadius: '999px', background: '#e8cfcf', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700, marginTop: 10 }}>CW</div>
       </div>
 
       {/* Events */}
@@ -51,7 +51,7 @@ export default function OlderAvailabilityScreen() {
             </div>
             <div style={{ display: 'flex', gap: 8 }}>
               <AnswerBtn label="Yes" active={answers[i] === 'yes'}   color="#2f6252" onClick={() => setAns(i, 'yes')} />
-              <AnswerBtn label="Maybe" active={answers[i] === 'maybe'} color="#cbbeb5" onClick={() => setAns(i, 'maybe')} />
+              <AnswerBtn label="Maybe" active={answers[i] === 'maybe'} color="#e8cfcf" onClick={() => setAns(i, 'maybe')} />
               <AnswerBtn label="No"  active={answers[i] === 'no'}    color="#c39797" onClick={() => setAns(i, 'no')} />
             </div>
           </div>

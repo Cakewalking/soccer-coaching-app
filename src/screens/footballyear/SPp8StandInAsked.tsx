@@ -15,7 +15,7 @@ export default function SPp8StandInAsked(_: { onBack?: () => void }) {
   }
 
   return (
-    <div style={{ width: 390, minHeight: '100%', background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', position: 'relative', margin: '0 auto' }}>
+    <div style={{ width: 390, minHeight: '100%', background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', position: 'relative', margin: '0 auto' }}>
       <div style={{ padding: '12px 20px 0', display: 'flex', justifyContent: 'space-between' }}>
         <div style={{ fontSize: 12, fontWeight: 700, color: INK }}>9:41</div>
       </div>
@@ -38,7 +38,7 @@ export default function SPp8StandInAsked(_: { onBack?: () => void }) {
               <button onClick={() => respond(false)} style={{ height: 48, borderRadius: 14, border: `1px solid ${LN}`, background: '#fff', color: MUT, fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Sorry, I can't</button>
             </div>
           ) : (
-            <div style={{ padding: '12px 14px', background: accepted ? PALE : '#f7f8f7', borderRadius: 12 }}>
+            <div style={{ padding: '12px 14px', background: accepted ? PALE : '#faf5ec', borderRadius: 12 }}>
               <div style={{ fontSize: 14, fontWeight: 700, color: accepted ? GD : MUT }}>
                 {accepted ? 'You\'re in! Sam and Rob know.' : 'Sam has been told. Thanks anyway.'}
               </div>

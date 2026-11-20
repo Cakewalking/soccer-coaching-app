@@ -23,7 +23,7 @@ export default function FT4FitnessHomeU16(_: { onBack?: () => void }) {
   const [watch, setWatch] = useState<number | null>(null)
   const [tile, setTile] = useState<number | null>(null)
   return (
-    <div style={{ width: 1180, height: 820, background: '#f7f8f7', boxSizing: 'border-box' as const, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' as const }}>
+    <div style={{ width: 1180, height: 820, background: '#faf5ec', boxSizing: 'border-box' as const, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' as const }}>
       <div style={{ height: 64, background: G, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 16, flex: 'none' }}>
         <div style={{ fontSize: 21, fontWeight: 700, color: '#fff', letterSpacing: '-0.02em' }}>Clean Sheet</div>
         <div style={{ flex: 1 }}><span style={{ fontSize: 12, color: 'rgba(255,255,255,0.65)', display: 'block' }}>Wattle Creek FC · Fitness coach</span><span style={{ fontSize: 16, fontWeight: 700, color: '#fff' }}>Hi Ollie</span></div>

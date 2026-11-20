@@ -209,7 +209,7 @@ export function WhereWeAtScreenEmpty({ teamType = 'juniors' }: { teamType?: Team
       </div>
 
       <div>
-        <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 12 }}>What you will see</div>
+        <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 12 }}>What you will see</div>
         {[
           { n: '1', title: 'Your style, in six numbers', body: 'Each with a trend and a target' },
           { n: '2', title: 'What to do about it', body: "Linked to tonight's plan" },

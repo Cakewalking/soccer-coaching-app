@@ -21,13 +21,13 @@ export default function TM2eManagerGameDayEmpty(_: { onBack?: () => void }) {
   void st   // kept for lines this screen may still need to say
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
-    <div style={{ width: 390, minHeight: 844, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
+    <div style={{ width: 390, minHeight: 844, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
       <div style={{ background: GD, padding: '14px 18px 12px', display: 'flex', alignItems: 'center', gap: 12 }}>
         <div style={{ flexGrow: 1 }}>
           <div style={{ fontSize: 16, fontWeight: 700, color: '#fff' }}>U12 Sam</div>
           <div style={{ fontSize: 14, color: '#cfe6dc' }}>Game day</div>
         </div>
-        <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, color: INK }}>RO</div>
+        <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#e8cfcf', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, color: INK }}>RO</div>
       </div>
       <div style={{ flexGrow: 1, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 10 }}>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '24px 20px', textAlign: 'center' as const }}>
@@ -37,7 +37,7 @@ export default function TM2eManagerGameDayEmpty(_: { onBack?: () => void }) {
         </div>
         {[{ label: 'ON THE DAY' }, { label: 'FIRST AID CARD' }].map(section => (
           <div key={section.label} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '12px 14px' }}>
-            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 10 }}>{section.label}</div>
+            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 10 }}>{section.label}</div>
             {section.label === 'FIRST AID CARD' && <div style={{ fontSize: 13, color: MUT, lineHeight: 1.5 }}>The first aid card shows only what parents choose to share, like asthma or allergies, and their phone number.</div>}
             {section.label === 'ON THE DAY' && [null, null].map((_, i) => (
               <div key={i} style={{ display: 'flex', gap: 12, padding: '8px 0', borderBottom: `1px solid ${LN}` }}>

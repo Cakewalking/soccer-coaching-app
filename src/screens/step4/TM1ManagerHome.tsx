@@ -14,13 +14,13 @@ export default function TM1ManagerHome(_: { onBack?: () => void }) {
   const mark = (k: string) => setDone(d => d.includes(k) ? d : [...d, k])
   const is = (k: string) => done.includes(k)
   return (
-    <div style={{ width: 390, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 844, display: 'flex', flexDirection: 'column', position: 'relative' }}>
+    <div style={{ width: 390, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 844, display: 'flex', flexDirection: 'column', position: 'relative' }}>
       <div style={{ background: GD, padding: '14px 18px 12px', display: 'flex', alignItems: 'center', gap: 12 }}>
         <div style={{ flexGrow: 1 }}>
           <div style={{ fontSize: 12, color: '#cfe6dc' }}>U12 Sam · Team manager</div>
           <div style={{ fontSize: 21, fontWeight: 700, color: '#fff' }}>Hi Rob</div>
         </div>
-        <div style={{ width: 40, height: 40, borderRadius: '50%', background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>RO</div>
+        <div style={{ width: 40, height: 40, borderRadius: '50%', background: '#e8cfcf', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>RO</div>
       </div>
       <div style={{ flexGrow: 1, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 10, overflowY: 'auto' }}>
         <button onClick={() => { mark('tell'); openThing('message to parents', 'phone') }} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 52, padding: '0 14px', borderRadius: 14, background: GD, color: '#fff', border: 0, cursor: 'pointer', textAlign: 'left' }}>
@@ -30,7 +30,7 @@ export default function TM1ManagerHome(_: { onBack?: () => void }) {
         </button>
         <div style={{ background: '#fff', border: `2px solid ${G}`, borderRadius: 16, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 8 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            <div style={{ width: 48, height: 52, borderRadius: 12, background: '#cbbeb5', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{ width: 48, height: 52, borderRadius: 12, background: '#e8cfcf', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
               <div style={{ fontSize: 11, fontWeight: 700 }}>SAT</div>
               <div style={{ fontSize: 20, fontWeight: 700, lineHeight: 1.1 }}>6</div>
             </div>
@@ -40,7 +40,7 @@ export default function TM1ManagerHome(_: { onBack?: () => void }) {
             </div>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 6, textAlign: 'center' }}>
-            {[['12', 'In', G, '#fff'], ['1', 'Maybe', '#cbbeb5', INK], ['2', "Can't", '#c39797', INK], ['2', 'No answer', LN, INK]].map(([n, label, bg, fg]) => (
+            {[['12', 'In', G, '#fff'], ['1', 'Maybe', '#e8cfcf', INK], ['2', "Can't", '#c39797', INK], ['2', 'No answer', LN, INK]].map(([n, label, bg, fg]) => (
               <div key={label} style={{ borderRadius: 10, background: bg, padding: '6px 0' }}>
                 <div style={{ fontSize: 20, fontWeight: 700, color: fg }}>{n}</div>
                 <div style={{ fontSize: 11, color: fg }}>{label}</div>
@@ -50,12 +50,12 @@ export default function TM1ManagerHome(_: { onBack?: () => void }) {
           <button onClick={() => mark('remind')} style={{ height: 46, borderRadius: 10, border: `1px solid ${G}`, background: is('remind') ? '#40826d' : G, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>{is('remind') ? '✓ Reminded 2 families' : "Remind the 2 who haven't answered"}</button>
         </div>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '4px 14px' }}>
-          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: MUT, padding: '8px 0 4px' }}>To do this week</div>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#7a4b5b', padding: '8px 0 4px' }}>To do this week</div>
           {[
             { icon: glyph('clipboard'), title: 'Duty roster for Saturday', sub: 'Linesman still needed · marshal and canteen done', badge: '1 gap', badgeBg: '#c39797' },
             { icon: glyph('video'), title: 'Camera kit 1 booked', sub: 'Pick up from the clubrooms Fri after 5 pm', badge: 'Booked', badgeBg: PALE },
             { icon: glyph('doc'), title: 'Team sheet', sub: 'Sam picks the 14 Fri night, you put it in Dribl', badge: 'Fri', badgeBg: LN },
-            { icon: glyph('shield'), title: "Harper's consent form", sub: "New player · parent hasn't finished it", badge: 'Chase', badgeBg: '#cbbeb5' },
+            { icon: glyph('shield'), title: "Harper's consent form", sub: "New player · parent hasn't finished it", badge: 'Chase', badgeBg: '#e8cfcf' },
           ].map((item, i) => (
             <button key={i} onClick={() => mark(item.title)} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 50, width: '100%', background: is(item.title) ? PALE : 'none', border: 0, borderTop: `1px solid ${LN}`, padding: '0 6px', cursor: 'pointer', textAlign: 'left' }}>
               <div style={{ width: 36, height: 36, borderRadius: 10, background: PALE, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, flexShrink: 0 }}>{item.icon}</div>
@@ -68,10 +68,10 @@ export default function TM1ManagerHome(_: { onBack?: () => void }) {
           ))}
         </div>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '4px 14px' }}>
-          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: MUT, padding: '8px 0 4px' }}>Saturday duties</div>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#7a4b5b', padding: '8px 0 4px' }}>Saturday duties</div>
           {[{ initials: 'IM', name: 'Oranges at half-time', sub: "Isla's family" }, { initials: 'LT', name: 'Canteen 10 to 11', sub: 'Linh Tran (Mia\'s mum)' }].map((d, i) => (
             <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 50, borderTop: `1px solid ${LN}` }}>
-              <div style={{ width: 30, height: 30, borderRadius: '50%', background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0 }}>{d.initials}</div>
+              <div style={{ width: 30, height: 30, borderRadius: '50%', background: '#e8cfcf', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0 }}>{d.initials}</div>
               <div>
                 <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>{d.name}</div>
                 <div style={{ fontSize: 13, color: MUT }}>{d.sub}</div>

@@ -19,7 +19,7 @@ export default function ASKd8PhoneHome({ onNav }: { onNav?: (s: string) => void 
   }
 
   return (
-    <div data-lasttool={lastTool} style={{ width: 390, background: '#f7f8f7', fontFamily: 'var(--font-sans)', minHeight: 844, display: 'flex', flexDirection: 'column', borderRadius: 24, overflow: 'hidden', position: 'relative' }}>
+    <div data-lasttool={lastTool} style={{ width: 390, background: '#faf5ec', fontFamily: 'var(--font-sans)', minHeight: 844, display: 'flex', flexDirection: 'column', borderRadius: 24, overflow: 'hidden', position: 'relative' }}>
       {/* Title bar */}
       <div style={{ background: GD, padding: '14px 20px 10px', display: 'flex', alignItems: 'center', gap: 8 }}>
         <div style={{ flex: 1, fontSize: 15, fontWeight: 800, color: '#fff' }}>Home</div>

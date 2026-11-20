@@ -43,7 +43,7 @@ export default function ASKd5PanelAnswer({ onNav }: { onNav?: (s: string) => voi
   function tool(name: string) { const to = toolTarget(name); if (to && onNav) { onNav(to); return } setLastTool(name) }
 
   return (
-    <div data-screen="ASKd5-PanelAnswer" data-lasttool={lastTool} style={{ width: 1180, background: '#f7f8f7', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }}>
+    <div data-screen="ASKd5-PanelAnswer" data-lasttool={lastTool} style={{ width: 1180, background: '#faf5ec', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }}>
       {/* Top nav */}
       <div style={{ background: GD, padding: '0 24px', display: 'flex', alignItems: 'center', gap: 4, height: 52, flexShrink: 0 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff', marginRight: 12 }}>Clean Sheet</div>
@@ -111,7 +111,7 @@ export default function ASKd5PanelAnswer({ onNav }: { onNav?: (s: string) => voi
             <button onClick={() => onNav?.('ASKd3-AnyScreen')} style={{ height: 44, minWidth: 44, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'none', border: 'none', fontSize: 18, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Close</button>
           </div>
           <div style={{ fontSize: 12, fontWeight: 700, color: MUT }}>Why is the gap between the lines not closing?</div>
-          <div style={{ fontSize: 13, color: INK, lineHeight: 1.6, background: '#f7f8f7', borderRadius: 10, padding: '12px 14px' }}>
+          <div style={{ fontSize: 13, color: INK, lineHeight: 1.6, background: '#faf5ec', borderRadius: 10, padding: '12px 14px' }}>
             The back four drops when you lose the ball. In 7 of 9 games the gap grew by 8 metres in the 5 seconds after a turnover. With the ball it is fine: 17 metres.
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
@@ -120,11 +120,11 @@ export default function ASKd5PanelAnswer({ onNav }: { onNav?: (s: string) => voi
             <button onClick={() => tool('Opens tonight\'s plan with “Step up together” added as a draft. You save it there.')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 12, color: G, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>Add a drill to tonight</button>
             <button onClick={() => tool('Opens Clips, filtered to the 7 moments.')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 12, color: G, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>Show me the clips</button>
           </div>
-          <div style={{ fontSize: 11, color: MUT, lineHeight: 1.4, background: '#f7f8f7', borderRadius: 8, padding: '8px 10px' }}>Uses only what you can see as head coach. Never sends anything by itself.</div>
+          <div style={{ fontSize: 11, color: MUT, lineHeight: 1.4, background: '#faf5ec', borderRadius: 8, padding: '8px 10px' }}>Uses only what you can see as head coach. Never sends anything by itself.</div>
           <button onClick={() => tool('Now asking about the whole team, not only this screen.')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 12, color: G, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Ask about everything instead</button>
           <button onClick={() => tool('Past questions')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 12, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Past questions</button>
           <div style={{ display: 'flex', gap: 8, marginTop: 'auto' }}>
-            <div style={{ flex: 1, height: 44, borderRadius: 10, background: '#f7f8f7', border: `1.5px solid ${LN}`, display: 'flex', alignItems: 'center', paddingLeft: 12, fontSize: 12, color: MUT }}>Type a question…</div>
+            <div style={{ flex: 1, height: 44, borderRadius: 10, background: '#faf5ec', border: `1.5px solid ${LN}`, display: 'flex', alignItems: 'center', paddingLeft: 12, fontSize: 12, color: MUT }}>Type a question…</div>
             <button onClick={() => onNav?.('ASKd5-PanelAnswer')} style={{ height: 44, minWidth: 44, padding: '0 16px', borderRadius: 10, background: G, color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Send</button>
           </div>
         </div>

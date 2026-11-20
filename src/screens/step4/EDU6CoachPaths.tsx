@@ -47,7 +47,7 @@ export default function EDU6CoachPaths({ onNav }: { onNav?: (s: string) => void 
   ]
 
   return (
-    <div data-lasttool={lastTool} style={{ width: 1180, background: '#f7f8f7', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }}>
+    <div data-lasttool={lastTool} style={{ width: 1180, background: '#faf5ec', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }}>
       {/* Director top nav */}
       <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 4, height: 52, flexShrink: 0 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff', marginRight: 8 }}>Clean Sheet</div>

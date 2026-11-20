@@ -18,7 +18,7 @@ const PLAYERS: Player[] = [
   { init: 'JL', name: 'Jude Lim',    note: 'Plays futsal too',    status: 'No reply', goal: false, cap: true  },
 ]
 
-const statusBg: Record<Status, string> = { Yes: G, Maybe: '#cbbeb5', Away: '#e9eae8', 'No reply': '#c39797' }
+const statusBg: Record<Status, string> = { Yes: G, Maybe: '#e8cfcf', Away: '#e9eae8', 'No reply': '#c39797' }
 const statusColor: Record<Status, string> = { Yes: '#fff', Maybe: INK, Away: INK, 'No reply': INK }
 
 function Check({ on }: { on: boolean }) {
@@ -38,7 +38,7 @@ export default function HM2SquadMiniRoos(_: { onBack?: () => void }) {
   const is = (k: string) => done.includes(k)
   const sel = PLAYERS.find(p => p.init === selected) ?? PLAYERS[0]
   return (
-    <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }}>
+    <div style={{ width: 1180, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }}>
       <div style={{ background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 20, height: 64 }}>
         <div style={{ fontSize: 21, fontWeight: 800, color: '#fff', letterSpacing: '-0.02em' }}>Clean Sheet</div>
         {['Home', 'Squad', 'Training', 'Game day'].map(t => (
@@ -52,7 +52,7 @@ export default function HM2SquadMiniRoos(_: { onBack?: () => void }) {
           <div key={t} onClick={() => setActiveSub(t)} style={{ height: 44, display: 'flex', alignItems: 'center', fontSize: 15, fontWeight: 600, color: t === activeSub ? INK : MUT, borderBottom: t === activeSub ? `3px solid #40826d` : '3px solid transparent', boxSizing: 'border-box', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>
         ))}
         <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', height: 44 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 6, height: 32, padding: '0 12px', borderRadius: 999, background: PALE, color: G, fontSize: 13, fontWeight: 700 }}>Coach · MiniRoos</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, height: 32, padding: '0 12px', borderRadius: 999, background: '#f4e6e6', color: '#10211f', fontSize: 13, fontWeight: 700 }}>Coach · MiniRoos</div>
         </div>
       </div>
 
@@ -77,7 +77,7 @@ export default function HM2SquadMiniRoos(_: { onBack?: () => void }) {
             {PLAYERS.map(p => (
               <div key={p.name} onClick={() => setSelected(p.init)} style={{ display: 'flex', flexDirection: 'column', gap: 8, padding: 12, borderRadius: 14, background: p.init === selected ? PALE : '#fff', border: p.init === selected ? `2px solid ${G}` : `1px solid #c5c8c4`, cursor: 'pointer' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                  <div style={{ width: 36, height: 36, borderRadius: 999, background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }}>{p.init}</div>
+                  <div style={{ width: 36, height: 36, borderRadius: 999, background: '#e8cfcf', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }}>{p.init}</div>
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ fontSize: 15, fontWeight: 700, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{p.name}</div>
                     <div style={{ fontSize: 13, color: MUT, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{p.note}</div>
@@ -98,7 +98,7 @@ export default function HM2SquadMiniRoos(_: { onBack?: () => void }) {
 
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 10 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-            <div style={{ width: 48, height: 48, borderRadius: 999, background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 700 }}>{sel.init}</div>
+            <div style={{ width: 48, height: 48, borderRadius: 999, background: '#e8cfcf', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 700 }}>{sel.init}</div>
             <div>
               <div style={{ fontSize: 19, fontWeight: 700 }}>{sel.name}</div>
               <div style={{ fontSize: 14, color: MUT }}>Sat: {sel.status} · plays anywhere</div>
@@ -108,7 +108,7 @@ export default function HM2SquadMiniRoos(_: { onBack?: () => void }) {
           {[
             { icon: '✓', label: 'Turn in goal', note: 'Sat 16 May', bg: PALE },
             { icon: '✓', label: 'Captain', note: 'Sat 23 May', bg: PALE },
-            { icon: '?', label: 'Saturday', note: "Mum says maybe · school concert", bg: '#cbbeb5' },
+            { icon: '?', label: 'Saturday', note: "Mum says maybe · school concert", bg: '#e8cfcf' },
             { icon: '+', label: 'First-aid card', note: 'Nothing to know', bg: LN },
           ].map(item => (
             <div key={item.label} style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 48, borderTop: `1px solid ${LN}` }}>

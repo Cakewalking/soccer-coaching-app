@@ -136,7 +136,7 @@ export function Src({ n, onOpen }: { n: number; onOpen: (n: number) => void }) {
 export const tile: CSSProperties = { background: '#fff', border: `1px solid ${LINE}`, borderRadius: 16, boxSizing: 'border-box', padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 8, minHeight: 0, minWidth: 0 }
 export const h2: CSSProperties = { margin: 0, fontSize: 17, lineHeight: '23px', fontWeight: 700, letterSpacing: '-0.01em', color: INK }
 export const cap: CSSProperties = { fontSize: 14, lineHeight: '20px', color: MUT }
-export const label: CSSProperties = { fontSize: 11, lineHeight: '15px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: MUT }
+export const label: CSSProperties = { fontSize: 11, lineHeight: '15px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#7a4b5b' }
 
 export function Btn({ children, onClick, primary, big, style, ...rest }: { children: ReactNode; onClick?: () => void; primary?: boolean; big?: boolean; style?: CSSProperties; 'aria-label'?: string; 'aria-pressed'?: boolean; disabled?: boolean }) {
   return (

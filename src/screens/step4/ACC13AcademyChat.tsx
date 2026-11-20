@@ -62,7 +62,7 @@ export default function ACC13AcademyChat(_: { onBack?: () => void }) {
   const closeSheet = () => setSheet(null)
 
   return (
-    <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, position: 'relative', display: 'flex', flexDirection: 'column' as const }}>
+    <div style={{ width: 1180, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, position: 'relative', display: 'flex', flexDirection: 'column' as const }}>
       {/* Top nav */}
       <div style={{ background: G, height: 64, display: 'flex', alignItems: 'center', padding: '0 24px', flexShrink: 0 }}>
         <span style={{ color: '#fff', fontSize: 21, fontWeight: 700, marginRight: 32, letterSpacing: '-0.01em' }}>Clean Sheet</span>
@@ -88,7 +88,7 @@ export default function ACC13AcademyChat(_: { onBack?: () => void }) {
           )
         })}
         <div style={{ flex: 1 }} />
-        <span style={{ height: 32, padding: '0 12px', borderRadius: 999, background: PALE, color: G, fontSize: 13, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 6 }}>Academy coach</span>
+        <span style={{ height: 32, padding: '0 12px', borderRadius: 999, background: '#f4e6e6', color: '#10211f', fontSize: 13, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 6 }}>Academy coach</span>
       </div>
 
       {/* Main: 2-col chat layout */}
@@ -169,7 +169,7 @@ export default function ACC13AcademyChat(_: { onBack?: () => void }) {
           </div>
 
           {/* Messages */}
-          <div style={{ flex: 1, padding: '8px 16px', display: 'flex', flexDirection: 'column' as const, justifyContent: 'flex-end', gap: 6, background: '#f7f8f7', overflowY: 'auto' as const }}>
+          <div style={{ flex: 1, padding: '8px 16px', display: 'flex', flexDirection: 'column' as const, justifyContent: 'flex-end', gap: 6, background: '#faf5ec', overflowY: 'auto' as const }}>
             {/* Outgoing */}
             <div style={{ display: 'flex', flexDirection: 'row-reverse' as const, alignItems: 'flex-end', gap: 8 }}>
               <div style={{ display: 'flex', flexDirection: 'column' as const, alignItems: 'flex-end', gap: 4, maxWidth: '60%' }}>
@@ -308,10 +308,10 @@ export default function ACC13AcademyChat(_: { onBack?: () => void }) {
           <h2 style={{ margin: 0, fontSize: 18, fontWeight: 700, color: INK }}>U13 Timber · game team</h2>
           <div style={{ fontSize: 13, color: MUT }}>16 families, Reece and Dani · game-day chat</div>
           <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 8 }}>
-            <div style={{ background: '#f7f8f7', borderRadius: 10, padding: '10px 12px', fontSize: 14, color: MUT }}>
+            <div style={{ background: '#faf5ec', borderRadius: 10, padding: '10px 12px', fontSize: 14, color: MUT }}>
               <span style={{ fontWeight: 700, color: INK }}>You · Wed: </span>Team sheet for Saturday is up. 14 of 16 confirmed.
             </div>
-            <div style={{ background: '#f7f8f7', borderRadius: 10, padding: '10px 12px', fontSize: 14, color: MUT }}>
+            <div style={{ background: '#faf5ec', borderRadius: 10, padding: '10px 12px', fontSize: 14, color: MUT }}>
               <span style={{ fontWeight: 700, color: INK }}>Dani · Wed: </span>Thanks Reece. Ana and Jonah's parents have been reminded.
             </div>
           </div>
@@ -329,7 +329,7 @@ export default function ACC13AcademyChat(_: { onBack?: () => void }) {
       {sheet === 'cdani' && (
         <SheetOverlay>
           <h2 style={{ margin: 0, fontSize: 18, fontWeight: 700, color: INK }}>Dani Okafor · owner</h2>
-          <div style={{ background: '#f7f8f7', borderRadius: 10, padding: '10px 12px', fontSize: 14, color: INK }}>
+          <div style={{ background: '#faf5ec', borderRadius: 10, padding: '10px 12px', fontSize: 14, color: INK }}>
             <span style={{ fontWeight: 700 }}>Dani · Wed: </span>Can you take the 4:15 on Friday? Mia's away.
           </div>
           <textarea

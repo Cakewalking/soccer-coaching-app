@@ -66,7 +66,7 @@ export default function ACC1CoachToday({ onNav }: { onNav?: (s: string) => void 
             </div>
           </div>
 
-          <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 10 }}>Today · tap a session to run it</div>
+          <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 10 }}>Today · tap a session to run it</div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 20 }}>
             <Session time="4:30" group="Development · 9 to 11" detail="14 coming · Arjun Mehta is on trial" plan="First touch on the move" tag="1 trial" />

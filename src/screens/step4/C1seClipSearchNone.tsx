@@ -5,7 +5,7 @@ export default function C1seClipSearchNone({onBack,onSearch}:{onBack?:()=>void,o
   function t(m:string){setToast(m);setTimeout(()=>setToast(null),3200)}
   const SUGGESTIONS=['Mia pressing','Mia first touch','Goals we scored','Press triggers','Defensive shape']
   return(
-    <div style={{padding:'20px 28px 40px',background:'#f7f8f7',minHeight:'100%',boxSizing:'border-box',fontFamily:'var(--font-sans)',position:'relative'}}>
+    <div style={{padding:'20px 28px 40px',background:'#faf5ec',minHeight:'100%',boxSizing:'border-box',fontFamily:'var(--font-sans)',position:'relative'}}>
       <div style={{display:'flex',alignItems:'flex-start',justifyContent:'space-between',marginBottom:20}}>
         <div>
           <button onClick={onBack} style={{display:'flex',alignItems:'center',gap:6,background:'none',border:'none',cursor:'pointer',color:MUT,fontFamily:'inherit',fontSize:13,fontWeight:500,padding:0,marginBottom:12}}>
@@ -29,7 +29,7 @@ export default function C1seClipSearchNone({onBack,onSearch}:{onBack?:()=>void,o
           <div style={{fontSize:14,color:MUT,lineHeight:1.6}}>Players under 12 don't head the ball in matches, so none have been tagged. The footage is there for other moments.</div>
         </div>
         <div style={{background:'#fff',border:`1px solid ${LN}`,borderRadius:14,padding:'14px 16px'}}>
-          <div style={{fontSize:13,fontWeight:700,color:MUT,marginBottom:12,letterSpacing:'0.06em',textTransform:'uppercase' as const}}>Searches that have results</div>
+          <div style={{fontSize:13,fontWeight:700,color: '#7a4b5b',marginBottom:12,letterSpacing:'0.06em',textTransform:'uppercase' as const}}>Searches that have results</div>
           {SUGGESTIONS.map(s=>(
             <button key={s} onClick={()=>{if(onSearch)onSearch(s);else t(`Searching: ${s}`)}} style={{display:'flex',alignItems:'center',justifyContent:'space-between',width:'100%',padding:'10px 0',borderTop:`1px solid ${LN}`,background:'none',border:'none',borderBottom:`1px solid ${LN}`,cursor:'pointer',fontFamily:'inherit'}}>
               <span style={{fontSize:14,color:GD,fontWeight:500}}>{s}</span>

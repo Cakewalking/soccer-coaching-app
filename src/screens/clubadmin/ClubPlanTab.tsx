@@ -25,7 +25,7 @@ export default function ClubPlanTab({ empty }: { empty?: boolean }) {
           <span style={{ display: 'inline-flex', alignItems: 'center', height: 28, padding: '0 12px', borderRadius: '999px', fontSize: 13, fontWeight: 700, background: '#2f6252', color: '#fff', whiteSpace: 'nowrap' as const }}>Pilot club</span>
         </div>
 
-        <div style={{ background: '#f7f8f7', borderRadius: 12, padding: '12px 14px', fontSize: 14, lineHeight: '20px', marginTop: 'auto' }}>
+        <div style={{ background: '#faf5ec', borderRadius: 12, padding: '12px 14px', fontSize: 14, lineHeight: '20px', marginTop: 'auto' }}>
           <strong>After the pilot.</strong> We'll tell the committee the price at least 60 days before the pilot ends. If it isn't for you, you leave with your data and owe nothing.
         </div>
 

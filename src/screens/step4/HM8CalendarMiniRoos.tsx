@@ -14,21 +14,21 @@ const DAYS: DayData[] = [
   { n: 3 },
   { n: 4 },
   { n: 5 },
-  { n: 6, event: '8:30 · away\nNorthgate', eventBg: '#cbbeb5', eventColor: INK },
+  { n: 6, event: '8:30 · away\nNorthgate', eventBg: '#e8cfcf', eventColor: INK },
   { n: 7 },
   { n: 8 },
   { n: 9, event: 'Training 5:00', eventBg: '#40826d', eventColor: '#fff' },
   { n: 10 },
   { n: 11 },
   { n: 12 },
-  { n: 13, event: '9:00 · home\nKestrel', eventBg: '#cbbeb5', eventColor: INK },
+  { n: 13, event: '9:00 · home\nKestrel', eventBg: '#e8cfcf', eventColor: INK },
   { n: 14 },
   { n: 15 },
   { n: 16, event: 'Training 5:00', eventBg: '#40826d', eventColor: '#fff' },
   { n: 17 },
   { n: 18 },
   { n: 19 },
-  { n: 20, event: '8:30 · away\nBanksia', eventBg: '#cbbeb5', eventColor: INK, event2: 'Photo day', event2Bg: PALE, event2Color: G },
+  { n: 20, event: '8:30 · away\nBanksia', eventBg: '#e8cfcf', eventColor: INK, event2: 'Photo day', event2Bg: PALE, event2Color: G },
   { n: 21 },
   { n: 22 },
   { n: 23, event: 'Training 5:00', eventBg: '#40826d', eventColor: '#fff' },
@@ -50,7 +50,7 @@ export default function HM8CalendarMiniRoos(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string|null>(null)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
-    <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }}>
+    <div style={{ width: 1180, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }}>
       <div style={{ background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 20, height: 64 }}>
         <div style={{ fontSize: 21, fontWeight: 800, color: '#fff', letterSpacing: '-0.02em' }}>Clean Sheet</div>
         {['Home', 'Squad', 'Training', 'Game day'].map(t => (
@@ -64,7 +64,7 @@ export default function HM8CalendarMiniRoos(_: { onBack?: () => void }) {
           <div key={t} style={{ height: 44, display: 'flex', alignItems: 'center', fontSize: 15, fontWeight: 600, color: t === 'Calendar' ? INK : MUT, borderBottom: t === 'Calendar' ? `3px solid #40826d` : '3px solid transparent', boxSizing: 'border-box', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>
         ))}
         <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', height: 44 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 6, height: 32, padding: '0 12px', borderRadius: 999, background: PALE, color: G, fontSize: 13, fontWeight: 700 }}>Coach · MiniRoos</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, height: 32, padding: '0 12px', borderRadius: 999, background: '#f4e6e6', color: '#10211f', fontSize: 13, fontWeight: 700 }}>Coach · MiniRoos</div>
         </div>
       </div>
 
@@ -83,7 +83,7 @@ export default function HM8CalendarMiniRoos(_: { onBack?: () => void }) {
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 8 }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, minmax(0, 1fr))', gap: 6 }}>
             {DAYS_OF_WEEK.map(d => (
-              <div key={d} style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, paddingLeft: 4 }}>{d}</div>
+              <div key={d} style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', paddingLeft: 4 }}>{d}</div>
             ))}
           </div>
           <div style={{ flex: 1, display: 'grid', gridTemplateColumns: 'repeat(7, minmax(0, 1fr))', gridTemplateRows: 'repeat(5, minmax(0, 1fr))', gap: 6 }}>
@@ -102,7 +102,7 @@ export default function HM8CalendarMiniRoos(_: { onBack?: () => void }) {
             <div style={{ fontSize: 17, fontWeight: 700, marginBottom: 4 }}>Next up</div>
             {[
               { abbr: 'Tu', abbBg: '#40826d', label: 'Training tonight', note: '5:00 pm · Wattle Creek Reserve' },
-              { abbr: 'Sa', abbBg: '#cbbeb5', label: 'Northgate City',    note: 'Sat 8:30 · away, Redgum Reserve' },
+              { abbr: 'Sa', abbBg: '#e8cfcf', label: 'Northgate City',    note: 'Sat 8:30 · away, Redgum Reserve' },
               { abbr: '20', abbBg: PALE,      label: 'Photo day',          note: 'Sat 20 Jun · wear the full kit' },
             ].map(item => (
               <div key={item.label} style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 52, borderTop: `1px solid ${LN}` }}>

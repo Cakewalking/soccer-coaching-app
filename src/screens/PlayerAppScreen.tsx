@@ -145,7 +145,7 @@ export default function PlayerAppScreen({ empty, initialView = 'home' }: { empty
 
   if (empty) {
     return (
-      <div style={{ width: 390, margin: '0 auto', background: '#f7f9f7', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
+      <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
         <div style={{ background: '#1f4a3e', padding: '52px 20px 20px', flex: 'none' }}>
           <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', marginBottom: 6 }}>Wattle Creek U12</div>
           <div style={{ fontSize: 24, fontWeight: 800, color: '#fff', marginBottom: 12 }}>Hi Mia, welcome!</div>
@@ -164,18 +164,18 @@ export default function PlayerAppScreen({ empty, initialView = 'home' }: { empty
               </div>
               <div>
                 <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>Training</div>
-                <div style={{ fontSize: 13, color: '#6f7f7b' }}>5:45 pm · Wattle Creek Reserve · bring water and boots</div>
+                <div style={{ fontSize: 13, color: '#5c6b67' }}>5:45 pm · Wattle Creek Reserve · bring water and boots</div>
               </div>
             </div>
           </div>
           <div style={{ background: '#fff', borderRadius: 16, padding: '16px', border: '1px solid #e9eae8', marginBottom: 14 }}>
             <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 6 }}>Your clips</div>
-            <div style={{ fontSize: 14, color: '#6f7f7b', marginBottom: 4 }}>No clips yet</div>
+            <div style={{ fontSize: 14, color: '#5c6b67', marginBottom: 4 }}>No clips yet</div>
             <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: 1.5 }}>After your first game, Sam can send you your best moments here.</div>
           </div>
           <div style={{ background: '#fff', borderRadius: 16, padding: '16px', border: '1px solid #e9eae8' }}>
             <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 6 }}>Your goals</div>
-            <div style={{ fontSize: 14, color: '#6f7f7b', marginBottom: 4 }}>{"You'll pick your first goal with Sam"}</div>
+            <div style={{ fontSize: 14, color: '#5c6b67', marginBottom: 4 }}>{"You'll pick your first goal with Sam"}</div>
             <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: 1.5 }}>{"Something to work on, like using your weaker foot. You'll see how you're going after every game."}</div>
           </div>
         </div>
@@ -304,7 +304,7 @@ export default function PlayerAppScreen({ empty, initialView = 'home' }: { empty
   /* ── MY GOALS ── */
   if (view === 'goals') {
     return (
-      <div style={{ width: 390, margin: '0 auto', background: '#f7f9f7', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
+      <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
         <div style={{ background: '#1f4a3e', padding: '52px 20px 20px', flex: 'none' }}>
           <button onClick={() => setView('home')} style={{ display: 'flex', alignItems: 'center', gap: 8, border: 0, background: 'transparent', color: 'rgba(255,255,255,0.7)', fontFamily: 'inherit', fontSize: 14, cursor: 'pointer', padding: 0, marginBottom: 12 }}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
@@ -322,7 +322,7 @@ export default function PlayerAppScreen({ empty, initialView = 'home' }: { empty
               <div style={{ height: 8, borderRadius: 4, background: '#f0f1f0', marginBottom: 8 }}>
                 <div style={{ height: 8, borderRadius: 4, background: '#2f6252', width: `${g.progress}%` }} />
               </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12, color: '#6f7f7b' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12, color: '#5c6b67' }}>
                 <span>{g.note}</span>
                 <span style={{ fontWeight: 700, color: '#10211f' }}>{g.progress}%</span>
               </div>
@@ -339,12 +339,12 @@ export default function PlayerAppScreen({ empty, initialView = 'home' }: { empty
                 autoFocus
               />
               <div style={{ display: 'flex', gap: 8 }}>
-                <button onClick={() => { setShowAddGoal(false); setNewGoalText('') }} style={{ flex: 1, height: 44, borderRadius: 10, border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>Cancel</button>
+                <button onClick={() => { setShowAddGoal(false); setNewGoalText('') }} style={{ flex: 1, height: 44, borderRadius: 10, border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: '#5c6b67', cursor: 'pointer' }}>Cancel</button>
                 <button onClick={() => { setShowAddGoal(false); setNewGoalText('') }} style={{ flex: 2, height: 44, borderRadius: 10, border: 0, background: '#2f6252', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, color: '#fff', cursor: 'pointer' }}>Save goal</button>
               </div>
             </div>
           ) : (
-            <button onClick={() => setShowAddGoal(true)} style={{ width: '100%', height: 44, borderRadius: 12, border: '1px dashed #c5c8c4', background: 'transparent', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>
+            <button onClick={() => setShowAddGoal(true)} style={{ width: '100%', height: 44, borderRadius: 12, border: '1px dashed #c5c8c4', background: 'transparent', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: '#5c6b67', cursor: 'pointer' }}>
               + Add my own goal
             </button>
           )}
@@ -370,7 +370,7 @@ export default function PlayerAppScreen({ empty, initialView = 'home' }: { empty
   /* ── PARENT AVAILABILITY ── */
   if (view === 'parent-avail') {
     return (
-      <div style={{ width: 390, margin: '0 auto', background: '#f7f9f7', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
+      <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
         <div style={{ background: '#1f4a3e', padding: '52px 20px 20px', flex: 'none' }}>
           <button onClick={() => setView('parent')} style={{ display: 'flex', alignItems: 'center', gap: 8, border: 0, background: 'transparent', color: 'rgba(255,255,255,0.7)', fontFamily: 'inherit', fontSize: 14, cursor: 'pointer', padding: 0, marginBottom: 12 }}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
@@ -426,7 +426,7 @@ export default function PlayerAppScreen({ empty, initialView = 'home' }: { empty
   /* ── YOUNG NEWS (PK1 — under-15 player news feed) ── */
   if (view === 'young-news') {
     return (
-      <div style={{ width: 390, margin: '0 auto', background: '#f7f9f7', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
+      <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
         <div style={{ background: '#1f4a3e', padding: '44px 20px 16px', flexShrink: 0, display: 'flex', alignItems: 'center', gap: 10 }}>
           <button onClick={() => setView('home')} style={{ width: 44, height: 44, border: 'none', background: 'rgba(255,255,255,0.15)', borderRadius: '999px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={2.5} strokeLinecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
@@ -484,7 +484,7 @@ export default function PlayerAppScreen({ empty, initialView = 'home' }: { empty
 
   /* ── HOME ── */
   return (
-    <div style={{ width: 390, margin: '0 auto', background: '#f7f9f7', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
+    <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
       {/* Header */}
       <div style={{ background: '#1f4a3e', padding: '52px 20px 20px', flex: 'none' }}>
         <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
@@ -506,7 +506,7 @@ export default function PlayerAppScreen({ empty, initialView = 'home' }: { empty
             </div>
             <div>
               <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>vs Harbour Rovers</div>
-              <div style={{ fontSize: 13, color: '#6f7f7b' }}>Home · kick-off 9:30 · be there 8:40</div>
+              <div style={{ fontSize: 13, color: '#5c6b67' }}>Home · kick-off 9:30 · be there 8:40</div>
             </div>
           </div>
         </div>
@@ -547,13 +547,13 @@ export default function PlayerAppScreen({ empty, initialView = 'home' }: { empty
         }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
             <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>My goals</div>
-            <span style={{ fontSize: 11, color: '#6f7f7b' }}>1 done, 1 going</span>
+            <span style={{ fontSize: 11, color: '#5c6b67' }}>1 done, 1 going</span>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             <div>
               <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13, marginBottom: 4 }}>
                 <span style={{ fontWeight: 600, color: '#10211f' }}>Use my left foot more</span>
-                <span style={{ color: '#6f7f7b' }}>18%</span>
+                <span style={{ color: '#5c6b67' }}>18%</span>
               </div>
               <div style={{ height: 6, borderRadius: 3, background: '#f0f1f0' }}>
                 <div style={{ height: 6, borderRadius: 3, background: '#2f6252', width: '18%' }} />
@@ -569,7 +569,7 @@ export default function PlayerAppScreen({ empty, initialView = 'home' }: { empty
         {/* After-training check-in */}
         <div style={{ background: '#fff', borderRadius: 14, padding: '14px 16px', border: '1px solid #e9eae8' }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 2 }}>After training: how was it?</div>
-          <div style={{ fontSize: 12, color: '#6f7f7b' }}>3 quick taps, opens at 7:15 pm</div>
+          <div style={{ fontSize: 12, color: '#5c6b67' }}>3 quick taps, opens at 7:15 pm</div>
         </div>
       </div>
 

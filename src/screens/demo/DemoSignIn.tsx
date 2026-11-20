@@ -74,7 +74,7 @@ export default function DemoSignIn({ onDemo, onSandbox, onOpenSandbox, onWhy, ha
         {/* Sandbox card */}
         <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 20, padding: 32, display: 'flex', flexDirection: 'column', gap: 20 }}>
           <div>
-            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#6f7f7b', marginBottom: 6 }}>Yours to fill · Best for trying it properly</div>
+            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#5c6b67', marginBottom: 6 }}>Yours to fill · Best for trying it properly</div>
             <div style={{ fontSize: 22, fontWeight: 800, letterSpacing: '-0.02em', color: '#10211f', marginBottom: 10 }}>Start with an empty club</div>
             <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.5, marginBottom: 16 }}>Your own sandbox. Set up a team, add players, plan a session and add a game, and watch each screen fill in.</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 20 }}>
@@ -107,9 +107,9 @@ export default function DemoSignIn({ onDemo, onSandbox, onOpenSandbox, onWhy, ha
                 <button onClick={onOpenSandbox} style={{ height: 48, borderRadius: 12, border: '1.5px solid #c5c8c4', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Open my sandbox</button>
               </div>
             )}
-            <div style={{ marginTop: 14, fontSize: 13, color: '#6f7f7b', lineHeight: 1.5 }}>No email and no password. It stays on this device, so it won't be there on another phone or computer.</div>
+            <div style={{ marginTop: 14, fontSize: 13, color: '#5c6b67', lineHeight: 1.5 }}>No email and no password. It stays on this device, so it won't be there on another phone or computer.</div>
           </div>
-          <div style={{ fontSize: 12, color: '#6f7f7b', lineHeight: 1.5 }}>In a sandbox, use made-up names. Please don't enter real children's details. It isn't a live club, nobody is invited or messaged, and everything is deleted after 14 days.</div>
+          <div style={{ fontSize: 12, color: '#5c6b67', lineHeight: 1.5 }}>In a sandbox, use made-up names. Please don't enter real children's details. It isn't a live club, nobody is invited or messaged, and everything is deleted after 14 days.</div>
         </div>
       </div>
     </div>

@@ -5,7 +5,7 @@ import { goSetup, goApp } from './sandbox/sandboxNav'
 function Illus() {
   return (
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 22px)', gap: 4, flex: 'none' }}>
-      {['#2f6252','#40826d','#cbbeb5','#c39797'].map((c, i) => (
+      {['#2f6252','#40826d','#e8cfcf','#c39797'].map((c, i) => (
         <div key={i} style={{ width: 22, height: 22, borderRadius: 5, background: c }} />
       ))}
     </div>
@@ -15,7 +15,7 @@ function Illus() {
 function Skel({ rows = 7 }: { rows?: number }) {
   return (
     <div>
-      <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#6f7f7b', marginBottom: 8 }}>Fills in like this</div>
+      <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#5c6b67', marginBottom: 8 }}>Fills in like this</div>
       {Array.from({ length: rows }, (_, i) => (
         <div key={i} style={{ height: 44, border: '1px dashed #c5c8c4', borderRadius: 10, marginBottom: 6, display: 'flex', alignItems: 'center', padding: '0 14px', gap: 10 }}>
           <div style={{ width: 28, height: 28, borderRadius: '999px', background: '#e9eae8', flex: 'none' }} />
@@ -103,7 +103,7 @@ const PLAYERS: Array<{ ini: string; name: string; days: Level[]; note?: string }
 function levelColor(l: Level): string {
   if (l === 'great') return '#2f6252'
   if (l === 'good')  return '#7fb09d'
-  if (l === 'ok')    return '#cbbeb5'
+  if (l === 'ok')    return '#e8cfcf'
   if (l === 'low')   return '#c39797'
   return '#ffffff'
 }
@@ -115,7 +115,7 @@ function levelBorder(l: Level): string {
 function noteChipStyle(note: string) {
   if (note.includes('low') || note.includes('Low')) return { bg: '#c39797', color: '#10211f' }
   if (note.includes('No check')) return { bg: '#e9eae8', color: '#10211f' }
-  return { bg: '#cbbeb5', color: '#10211f' }
+  return { bg: '#e8cfcf', color: '#10211f' }
 }
 
 export default function WellnessScreen({ empty, onNav }: { empty?: boolean; onNav?: (s: string) => void }) {
@@ -180,7 +180,7 @@ export default function WellnessScreen({ empty, onNav }: { empty?: boolean; onNa
 
         {/* Legend */}
         <div style={{ display: 'flex', gap: 14, fontSize: 12, color: '#4a5a57', alignItems: 'center', marginTop: 'auto', paddingTop: 8 }}>
-          {[['Great','#2f6252'],['Good','#7fb09d'],['OK','#cbbeb5'],['Low','#c39797']].map(([l,c]) => (
+          {[['Great','#2f6252'],['Good','#7fb09d'],['OK','#e8cfcf'],['Low','#c39797']].map(([l,c]) => (
             <span key={l} style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
               <span style={{ width: 14, height: 14, borderRadius: 4, background: c, display: 'block' }} />{l}
             </span>

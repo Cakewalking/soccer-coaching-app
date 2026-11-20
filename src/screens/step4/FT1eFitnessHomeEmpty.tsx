@@ -9,7 +9,7 @@ export default function FT1eFitnessHomeEmpty(_: { onBack?: () => void }) {
   void st   // kept for lines this screen may still need to say
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
-    <div style={{ width: 1180, height: 820, boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
+    <div style={{ width: 1180, height: 820, boxSizing: 'border-box', background: '#faf5ec', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
       <div style={{ flex: 'none', background: G, height: 64, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 4 }}>
         <div style={{ fontSize: 20, fontWeight: 700, color: '#fff', marginRight: 16, letterSpacing: '-0.02em' }}>Clean Sheet</div>
         {NAV.map(n => <div key={n} style={{ height: 48, padding: '0 14px', borderRadius: 12, display: 'flex', alignItems: 'center', fontSize: 15, fontWeight: 600, color: n === 'Home' ? '#fff' : 'rgba(255,255,255,0.75)', background: n === 'Home' ? G2 : 'transparent', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{n}</div>)}
@@ -41,7 +41,7 @@ export default function FT1eFitnessHomeEmpty(_: { onBack?: () => void }) {
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: 20 }}>
-            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 12 }}>Fills in like this</div>
+            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 12 }}>Fills in like this</div>
             <div style={{ fontSize: 12, color: MUT, marginBottom: 10 }}>What fills in first</div>
             {[{ label: 'Growth', sub: 'After your first measuring session' }, { label: 'Effort and pain', sub: 'Players tap after each session' }, { label: 'Load', sub: 'From boot sensors, from U12' }].map((r, i) => (
               <div key={i} style={{ padding: '8px 0', borderBottom: `1px solid ${LN}` }}>

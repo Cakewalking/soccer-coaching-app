@@ -128,7 +128,7 @@ export function MessagesRules({ onBack, onNav }: { onBack?: () => void; onNav?: 
   ]
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#f7f8f7' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#faf5ec' }}>
       <div style={{ background: GD, height: 56, display: 'flex', alignItems: 'center', padding: '0 20px', flexShrink: 0 }}>
         <button onClick={() => onBack ? onBack() : t('Back.')} style={{ background: 'transparent', border: 'none', color: '#e9eae8', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8, fontSize: 15, fontWeight: 600, fontFamily: 'inherit', padding: '0 10px 0 0' }}>
           <Icon d={ICONS.back} size={18}/> Back
@@ -213,7 +213,7 @@ export function CoachNewMessage({ onBack, onNav, embedded }: { onBack?: () => vo
   ]
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#f7f8f7' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#faf5ec' }}>
       {!embedded && <CoachTopBar onNav={(id) => openThing(`${id.charAt(0).toUpperCase() + id.slice(1)} tab`, 'coach')}/>}
       {!embedded && <CoachSubNav activeSub="Messages" onNav={(id) => openThing(`${id} tab`, 'coach')}/>}
       <div style={{ flex: 1, overflow: 'hidden', display: 'flex', gap: 0 }}>
@@ -315,7 +315,7 @@ export function CoachMessages({ onBack: _onBack, onNav, teamType = 'juniors', em
   const open = (i: number) => { setActiveChat(i); markRead(chats[i].id) }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#f7f8f7' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#faf5ec' }}>
       {!embedded && <CoachTopBar onNav={(id) => openThing(`${id.charAt(0).toUpperCase() + id.slice(1)} tab`, 'coach')}/>}
       {!embedded && <CoachSubNav activeSub="Messages" onNav={(id) => openThing(`${id} tab`, 'coach')}/>}
       <div style={{ flex: 1, overflow: 'hidden', display: 'flex', minHeight: 0 }}>
@@ -403,11 +403,11 @@ export function CoachMessagesPersonCard({ onBack, onNav, embedded }: { onBack?: 
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#f7f8f7', position: 'relative' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#faf5ec', position: 'relative' }}>
       {!embedded && <CoachTopBar onNav={(id) => openThing(`${id} tab`, 'coach')}/>}
       {!embedded && <CoachSubNav activeSub="Messages" onNav={(id) => openThing(`${id} tab`, 'coach')}/>}
       {/* MSG2 background (blurred) */}
-      <div style={{ flex: 1, background: '#f7f8f7', filter: 'blur(2px)', opacity: 0.5, position: 'absolute', inset: '112px 0 0 0' }}/>
+      <div style={{ flex: 1, background: '#faf5ec', filter: 'blur(2px)', opacity: 0.5, position: 'absolute', inset: '112px 0 0 0' }}/>
       {/* Person card dialog */}
       <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', zIndex: 10, background: '#fff', borderRadius: 20, border: `1px solid ${LN}`, boxShadow: '0 20px 60px rgba(16,33,31,0.18)', width: 380, padding: '28px 24px' }}>
         <button aria-label="Close" onClick={() => onBack ? onBack() : t('Card closed.')} style={{ position: 'absolute', top: 16, right: 16, width: 44, height: 44, borderRadius: '50%', border: `1px solid ${LN}`, background: '#fff', cursor: 'pointer', fontSize: 16, color: MUT, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>✕</button>
@@ -479,7 +479,7 @@ export function DirectorMessages({ onBack: _onBack, embedded, as = 'director' }:
   ]
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#f7f8f7' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#faf5ec' }}>
       {!embedded && (<>
       {/* Director top bar */}
       <div style={{ background: GD, display: 'flex', alignItems: 'center', padding: '0 20px', gap: 2, height: 56, flexShrink: 0 }}>
@@ -577,7 +577,7 @@ export function DirectorMessages({ onBack: _onBack, embedded, as = 'director' }:
 // Phone shell helper
 function PhoneShell({ headerLeft, title, ini, children, toast }: { headerLeft: React.ReactNode; title: string; ini: string; children: React.ReactNode; toast: string | null }) {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', background: '#f7f8f7', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', maxWidth: 390, margin: '0 auto', position: 'relative' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', background: '#faf5ec', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', maxWidth: 390, margin: '0 auto', position: 'relative' }}>
       <div style={{ background: GD, height: 56, display: 'flex', alignItems: 'center', padding: '0 16px', gap: 8, flexShrink: 0 }}>
         {headerLeft}
         <span style={{ flex: 1, color: '#e9eae8', fontSize: 15, fontWeight: 700 }}>{title}</span>

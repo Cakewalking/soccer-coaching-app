@@ -17,14 +17,14 @@ export default function SPp2ParentComingBack(_: { onBack?: () => void }) {
   }
 
   return (
-    <div style={{ width: 390, minHeight: '100%', background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', position: 'relative', margin: '0 auto' }}>
+    <div style={{ width: 390, minHeight: '100%', background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', position: 'relative', margin: '0 auto' }}>
       <div style={{ padding: '12px 20px 0', display: 'flex', justifyContent: 'space-between' }}>
         <div style={{ fontSize: 12, fontWeight: 700, color: INK }}>9:41</div>
       </div>
 
       <div style={{ padding: '12px 20px 32px' }}>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 20, padding: '24px 20px', marginBottom: 16 }}>
-          <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 6 }}>Wattle Creek FC U12 Sam</div>
+          <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 6 }}>Wattle Creek FC U12 Sam</div>
           <div style={{ fontSize: 20, fontWeight: 800, letterSpacing: '-0.02em', color: INK, marginBottom: 8 }}>Is Mia coming back for 2027?</div>
           <div style={{ fontSize: 14, color: MUT, lineHeight: 1.5, marginBottom: 20 }}>Registration for next year opens soon. Sam needs to know who's returning before he can run trials for new players.</div>
 

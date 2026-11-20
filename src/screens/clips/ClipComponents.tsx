@@ -53,12 +53,12 @@ export function ClipCard({ clip, selected, onClick }: { clip: GameClip; selected
       </div>
       <div style={{ fontSize: 13, fontWeight: 600, color: '#10211f', lineHeight: '17px' }}>{clip.title}</div>
       <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-        <span style={{ fontSize: 11, color: '#6f7f7b' }}>{clip.gameLabel} · min {clip.min}</span>
+        <span style={{ fontSize: 11, color: '#5c6b67' }}>{clip.gameLabel} · min {clip.min}</span>
         {clip.taggedBy && <span style={{ fontSize: 11, background: '#e8f2ee', color: '#2f6252', borderRadius: 4, padding: '1px 5px', fontWeight: 600 }}>Tagged by you</span>}
       </div>
       <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
         {clip.players.map(ini => (
-          <span key={ini} style={{ width: 24, height: 24, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10, fontWeight: 700 }}>{ini}</span>
+          <span key={ini} style={{ width: 24, height: 24, borderRadius: '999px', background: '#e8cfcf', color: '#10211f', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10, fontWeight: 700 }}>{ini}</span>
         ))}
       </div>
     </button>
@@ -83,15 +83,15 @@ export function ClipDetail({ clip }: { clip: GameClip }) {
       </div>
       <div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
-          <span style={{ fontSize: 13, color: '#6f7f7b' }}>Min {clip.min}</span>
+          <span style={{ fontSize: 13, color: '#5c6b67' }}>Min {clip.min}</span>
           <span style={{ width: 1, height: 12, background: '#e9eae8', display: 'block' }} />
-          <span style={{ fontSize: 13, color: '#6f7f7b' }}>{clip.duration}</span>
+          <span style={{ fontSize: 13, color: '#5c6b67' }}>{clip.duration}</span>
         </div>
         <div style={{ fontSize: 18, fontWeight: 700, color: '#10211f', lineHeight: '23px', marginBottom: 8 }}>{clip.title}</div>
         <div style={{ fontSize: 14, lineHeight: '20px', color: '#4a5a57', marginBottom: 10 }}>{clip.desc}</div>
       </div>
       {stats.length > 0 && (
-        <div style={{ background: '#f7f8f7', borderRadius: 10, padding: 12, display: 'flex', flexDirection: 'column', gap: 8 }}>
+        <div style={{ background: '#faf5ec', borderRadius: 10, padding: 12, display: 'flex', flexDirection: 'column', gap: 8 }}>
           {stats.map((s, i) => (
             <div key={i} style={{ display: 'flex', justifyContent: 'space-between', fontSize: 14 }}>
               <span style={{ color: '#4a5a57' }}>{s.value}</span>
@@ -104,7 +104,7 @@ export function ClipDetail({ clip }: { clip: GameClip }) {
         {clip.measures.map(m => (
           <span key={m} style={{ background: '#e8f2ee', color: '#2f6252', borderRadius: 6, padding: '3px 8px', fontSize: 12, fontWeight: 600 }}>{m}</span>
         ))}
-        <span style={{ background: '#f7f8f7', border: '1px solid #e9eae8', color: '#6f7f7b', borderRadius: 6, padding: '3px 8px', fontSize: 12 }}>{clip.half}</span>
+        <span style={{ background: '#faf5ec', border: '1px solid #e9eae8', color: '#5c6b67', borderRadius: 6, padding: '3px 8px', fontSize: 12 }}>{clip.half}</span>
         <span style={{ ...resultColor(clip.gameResult), borderRadius: 6, padding: '3px 8px', fontSize: 12, fontWeight: 700 }}>{clip.gameLabel}</span>
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>

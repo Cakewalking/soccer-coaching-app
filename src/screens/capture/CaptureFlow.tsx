@@ -34,13 +34,13 @@ const SUBS: [string, string][] = [['Record', 'REC1-RecordHub'], ['Recorded latel
 /** The designed coach frame, for when the flow is shown on its own (not inside a coach app). */
 function Shell({ sub, go, children }: { sub: number; go: (s: string) => void; children: ReactNode }) {
   return (
-    <div style={{ width: 1180, minHeight: 820, margin: '0 auto', display: 'flex', flexDirection: 'column', background: '#f7f8f7', fontFamily: "'DM Sans',system-ui,sans-serif" }}>
+    <div style={{ width: 1180, minHeight: 820, margin: '0 auto', display: 'flex', flexDirection: 'column', background: '#faf5ec', fontFamily: "'DM Sans',system-ui,sans-serif" }}>
       <header style={{ flex: 'none', height: 64, background: G, display: 'flex', alignItems: 'center', gap: 4, padding: '0 28px' }}>
         <strong style={{ color: '#fff', fontSize: 20, letterSpacing: '-0.02em', marginRight: 14 }}>Clean Sheet</strong>
         {NAV.map(([l, to, d]) => <button key={l} onClick={() => go(to)} aria-current={l === 'Record' ? 'page' : undefined} style={{ height: 48, padding: '0 14px', borderRadius: 12, display: 'flex', alignItems: 'center', gap: 8, border: 0, background: l === 'Record' ? '#40826d' : 'transparent', color: '#e9eae8', fontFamily: 'inherit', fontSize: 16, fontWeight: 600, cursor: 'pointer' }}><Ico d={d} size={20} />{l}</button>)}
         <span style={{ flexGrow: 1 }} />
         <button onClick={() => go('VS1-SwitchView')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: 0, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer' }}>U12 Sam · Wattle Creek <Ico d="M6 9l6 6 6-6" size={16} sw={2.4} /></button>
-        <span style={{ width: 44, height: 44, borderRadius: 999, background: '#cbbeb5', color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700, marginLeft: 12 }}>SK</span>
+        <span style={{ width: 44, height: 44, borderRadius: 999, background: '#e8cfcf', color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700, marginLeft: 12 }}>SK</span>
       </header>
       <nav aria-label="Record" style={{ flex: 'none', height: 44, background: '#fff', borderBottom: `1px solid ${LINE}`, display: 'flex', alignItems: 'center', gap: 24, padding: '0 28px' }}>
         {SUBS.map(([l, to], i) => <button key={l} onClick={() => go(to)} aria-current={i === sub ? 'page' : undefined} style={{ height: 44, padding: '0 4px', border: 0, borderBottom: `3px solid ${i === sub ? G : 'transparent'}`, boxSizing: 'border-box', background: 'none', color: i === sub ? INK : MUT, fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap' }}>{l}</button>)}

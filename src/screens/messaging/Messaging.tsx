@@ -22,7 +22,7 @@ let wanted: { me: string; id: string } | null = null
 /** True while a chat has been asked for from elsewhere in this person's app, so the app can show Messages. */
 export const useChatWanted = (me: string) => useSyncExternalStore(f => { subs.add(f); return () => { subs.delete(f) } }, () => wanted?.me === me, () => false)
 
-const Ini = ({ p, size = 40, group }: { p?: Person; size?: number; group?: string }) => <span style={{ flex: 'none', width: size, height: size, borderRadius: group ? 10 : 999, background: group ? PALE : p?.private ? '#f1e9df' : '#cbbeb5', color: group ? G : INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: size * 0.32, fontWeight: 700 }}>{group ? group.split(/[ ·]+/).map(w => w[0]).join('').slice(0, 2).toUpperCase() : p?.ini}</span>
+const Ini = ({ p, size = 40, group }: { p?: Person; size?: number; group?: string }) => <span style={{ flex: 'none', width: size, height: size, borderRadius: group ? 10 : 999, background: group ? PALE : p?.private ? '#f1e9df' : '#e8cfcf', color: group ? G : INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: size * 0.32, fontWeight: 700 }}>{group ? group.split(/[ ·]+/).map(w => w[0]).join('').slice(0, 2).toUpperCase() : p?.ini}</span>
 const icon = (d: string, s = 18) => <svg width={s} height={s} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={d} /></svg>
 const SEARCH = 'M11 18a7 7 0 100-14 7 7 0 000 14zM21 21l-4.300-4.300', BACK = 'M15 6l-6 6 6 6', PLUS = 'M12 5v14M5 12h14', SEND = 'M4 12l16-8-6 16-3-7z'
 
@@ -99,7 +99,7 @@ export default function Messaging({ me, phone = false }: { me: keyof typeof MES 
       <p style={{ margin: 0, padding: '10px 16px 4px', fontSize: 13, color: MUT }}>Anyone on Clean Sheet can be found by their username. Yours is <strong style={{ color: INK }}>@{cfg.handle}</strong>.</p>
       <div style={{ overflowY: 'auto', flexGrow: 1 }}>
         {found.map(([h, ps]) => <div key={h}>
-          <div style={{ padding: '12px 16px 6px', fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: MUT }}>{h}</div>
+          <div style={{ padding: '12px 16px 6px', fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#7a4b5b' }}>{h}</div>
           {ps.map(p => <button key={p.handle} onClick={() => pick(p)} style={row}>
             <Ini p={p} />
             <span style={{ flexGrow: 1, minWidth: 0 }}>
@@ -115,7 +115,7 @@ export default function Messaging({ me, phone = false }: { me: keyof typeof MES 
 
   const who = chat && !chat.group ? person(chat.id) : null, note = who ? rule(who, mine) : null
   const thread = chat && (
-    <section aria-label={title(chat)} style={{ display: 'flex', flexDirection: 'column', minHeight: 0, flexGrow: 1, background: '#f7f8f7' }}>
+    <section aria-label={title(chat)} style={{ display: 'flex', flexDirection: 'column', minHeight: 0, flexGrow: 1, background: '#faf5ec' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 16px', background: '#fff', borderBottom: `1px solid ${HAIR}` }}>
         {phone && <button onClick={() => setOpen(null)} aria-label="Back to your chats" style={{ flex: 'none', width: 44, height: 44, borderRadius: 10, border: `1px solid ${LINE}`, background: '#fff', color: INK, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{icon(BACK)}</button>}
         <Ini p={who ?? undefined} group={chat.group} />

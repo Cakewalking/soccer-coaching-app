@@ -19,10 +19,10 @@ export default function SP18ClubPhases(_: { onBack?: () => void }) {
   const statusColor = (s: string) => s === 'Ready' ? G : s === 'Behind' ? '#c35b5b' : s === 'Needs a coach' ? '#8b7a3a' : MUT
 
   return (
-    <div style={{ padding: '20px 28px 40px', background: '#f7f8f7', minHeight: '100%', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', position: 'relative' }}>
+    <div style={{ padding: '20px 28px 40px', background: '#faf5ec', minHeight: '100%', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', position: 'relative' }}>
       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 20 }}>
         <div>
-          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 4 }}>Director of football</div>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 4 }}>Director of football</div>
           <div style={{ fontSize: 24, fontWeight: 800, letterSpacing: '-0.02em', color: INK, marginBottom: 2 }}>The football year</div>
           <div style={{ fontSize: 14, color: MUT }}>Wattle Creek FC · Thu 12 March · pre-season</div>
         </div>
@@ -42,7 +42,7 @@ export default function SP18ClubPhases(_: { onBack?: () => void }) {
             { phase: 'Post-season', dates: '31 Aug to 29 Nov' },
             { phase: 'Rest month',  dates: 'December' },
           ].map(p => (
-            <div key={p.phase} style={{ padding: '8px 12px', borderRadius: 8, background: p.active ? PALE : '#f7f8f7', border: `1px solid ${p.active ? '#b0ccc5' : '#e5e6e4'}` }}>
+            <div key={p.phase} style={{ padding: '8px 12px', borderRadius: 8, background: p.active ? PALE : '#faf5ec', border: `1px solid ${p.active ? '#b0ccc5' : '#e5e6e4'}` }}>
               <div style={{ fontSize: 12, fontWeight: 700, color: p.active ? G : INK }}>{p.phase}</div>
               <div style={{ fontSize: 11, color: MUT }}>{p.dates}</div>
             </div>
@@ -57,9 +57,9 @@ export default function SP18ClubPhases(_: { onBack?: () => void }) {
           <div style={{ fontSize: 13, color: MUT }}>6 of 14 teams shown</div>
         </div>
         {/* Header */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr auto auto', padding: '8px 16px', background: '#f7f8f7', borderBottom: `1px solid ${LN}` }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr auto auto', padding: '8px 16px', background: '#faf5ec', borderBottom: `1px solid ${LN}` }}>
           {['Team','Coach','Pre-season jobs',''].map((h, i) => (
-            <div key={i} style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT }}>{h}</div>
+            <div key={i} style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b' }}>{h}</div>
           ))}
         </div>
         {TEAMS.map(team => (

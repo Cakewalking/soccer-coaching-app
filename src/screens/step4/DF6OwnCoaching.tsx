@@ -6,7 +6,7 @@ export default function DF6OwnCoaching(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string | null>(null)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
-    <div style={{ width: 1180, height: 820, boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
+    <div style={{ width: 1180, height: 820, boxSizing: 'border-box', background: '#faf5ec', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
       <div style={{ flex: 'none', background: GD, height: 56, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 16 }}>
         <span style={{ fontSize: 17, fontWeight: 800, color: '#fff' }}>Clean Sheet</span>
         <span style={{ fontSize: 15, fontWeight: 700, color: '#fff', marginLeft: 8 }}>Add your own drill</span>
@@ -16,7 +16,7 @@ export default function DF6OwnCoaching(_: { onBack?: () => void }) {
       </div>
       <main style={{ flexGrow: 1, padding: '28px', display: 'grid', gridTemplateColumns: '1fr 320px', gap: 32, overflowY: 'auto' }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-          <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT }}>Step 4 of 4 · Coaching points</div>
+          <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b' }}>Step 4 of 4 · Coaching points</div>
           <div>
             <div style={{ fontSize: 16, fontWeight: 700, color: INK, marginBottom: 12 }}>How do you run it?</div>
             <div style={{ fontSize: 14, fontWeight: 600, color: MUT, marginBottom: 8 }}>How it works <span style={{ fontWeight: 400 }}>up to 3 steps</span></div>

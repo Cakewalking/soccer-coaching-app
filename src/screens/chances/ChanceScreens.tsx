@@ -268,7 +268,7 @@ export function XG3LadderPPI({ t, go }: ChanceProps) {
       right={<><Btn big onClick={() => go('XG2-ChancesSeason')}>Chances this season</Btn><Btn big onClick={() => go('CF1-Fixtures')}>Fixtures and results</Btn></>}>
       <section aria-label="Ladder" style={{ ...tile, gap: 0, padding: '14px 12px 12px', alignSelf: 'stretch', minHeight: 560 }}>
         <div role="table" aria-label={`${t.division} ladder`}>
-          <div role="row" style={{ display: 'grid', gridTemplateColumns: grid, alignItems: 'end', padding: '0 8px 8px', fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: MUT, lineHeight: '15px' }}>
+          <div role="row" style={{ display: 'grid', gridTemplateColumns: grid, alignItems: 'end', padding: '0 8px 8px', fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#7a4b5b', lineHeight: '15px' }}>
             <span /><span role="columnheader">Team</span><span role="columnheader">Played</span><span role="columnheader">Points</span><span role="columnheader">Points a game</span><span role="columnheader">Opponents’ points a game</span><span role="columnheader">PPI</span><span role="columnheader">On PPI</span>
           </div>
           {rows.map(r => (

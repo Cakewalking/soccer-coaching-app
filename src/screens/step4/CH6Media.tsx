@@ -41,7 +41,7 @@ export default function CH6Media(_: { onBack?: () => void }) {
   const t = (m: string) => { setToast(m); setTimeout(() => setToast(null), 3200) }
   const tabs = ['Photos and videos · 19', 'Files · 3', 'Polls · 4', 'Places · 2']
   return (
-    <div style={{ width: 1180, height: 820, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden' }}>
+    <div style={{ width: 1180, height: 820, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden' }}>
       <TopBar />
       <SubBar />
       <div style={{ flexShrink: 0, padding: '14px 28px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 20 }}>
@@ -84,7 +84,7 @@ export default function CH6Media(_: { onBack?: () => void }) {
           <div style={{ marginTop: 'auto', fontSize: 14, color: MUT }}>Photos here are for families in this chat. Sharing one outside the chat asks first.</div>
         </div>
         <div style={{ gridColumn: 'span 3', display: 'flex', flexDirection: 'column', gap: 14 }}>
-          <div style={{ background: '#cbbeb5', border: `1px solid #cbbeb5`, borderRadius: 16, padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 6 }}>
+          <div style={{ background: '#e8cfcf', border: `1px solid #e8cfcf`, borderRadius: 16, padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 6 }}>
             <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const }}>Held back · 1</div>
             <strong style={{ fontSize: 15, lineHeight: '21px' }}>A photo with Harper in it</strong>
             <div style={{ fontSize: 14 }}>Harper's parent hasn't answered about photos yet. Only you can see it.</div>
@@ -118,7 +118,7 @@ export default function CH6Media(_: { onBack?: () => void }) {
                 <button key={a} onClick={() => { setModal(false); t(a + ' done.') }} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: i === 0 ? 0 : `1px solid #c5c8c4`, background: i === 0 ? G : '#fff', color: i === 0 ? '#fff' : INK, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{a}</button>
               ))}
             </div>
-            <div style={{ background: '#f7f8f7', borderRadius: 12, padding: '10px 12px', fontSize: 13, lineHeight: '19px' }}>Sharing a photo outside this chat asks the parent of each child in it first.</div>
+            <div style={{ background: '#faf5ec', borderRadius: 12, padding: '10px 12px', fontSize: 13, lineHeight: '19px' }}>Sharing a photo outside this chat asks the parent of each child in it first.</div>
             <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
               <button onClick={() => setModal(false)} style={{ height: 48, padding: '0 18px', borderRadius: 10, border: `1px solid #c5c8c4`, background: '#fff', fontSize: 16, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Cancel</button>
               <button onClick={() => { setModal(false); t('Saved to this tablet.') }} style={{ height: 48, padding: '0 18px', borderRadius: 10, border: 0, background: G, color: '#fff', fontSize: 16, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Save to this tablet</button>

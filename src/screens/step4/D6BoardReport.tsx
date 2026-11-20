@@ -11,7 +11,7 @@ export default function D6BoardReport(_: { onBack?: () => void }) {
   function t(m: string) { setToast(m); setTimeout(() => setToast(null), 3200) }
   function toggle(item: string) { setEnabled(prev => { const s = new Set(prev); s.has(item) ? s.delete(item) : s.add(item); return s }) }
   return (
-    <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, position: 'relative' }}>
+    <div style={{ width: 1180, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, position: 'relative' }}>
       <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 32, height: 52 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff', letterSpacing: '-0.01em' }}>Clean Sheet</div>
         {['Club', 'Teams', 'Coaches', 'Players', 'Safeguarding', 'Reports'].map(tab => (
@@ -52,7 +52,7 @@ export default function D6BoardReport(_: { onBack?: () => void }) {
           </div>
         </div>
         <div>
-          <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 10 }}>Include in report</div>
+          <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 10 }}>Include in report</div>
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, overflow: 'hidden', marginBottom: 14 }}>
             {TOGGLES.map(item => (
               <div key={item} onClick={() => toggle(item)} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 16px', borderBottom: `1px solid ${LN}`, cursor: 'pointer' }}>

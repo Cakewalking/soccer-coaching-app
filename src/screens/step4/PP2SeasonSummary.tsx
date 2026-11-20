@@ -20,7 +20,7 @@ export default function PP2SeasonSummary(_: { onBack?: () => void }) {
   ]
 
   return (
-    <div style={{ width: 390, minHeight: 844, fontFamily: 'var(--font-sans)', background: '#f7f8f7', display: 'flex', flexDirection: 'column', overflowY: 'auto' }}>
+    <div style={{ width: 390, minHeight: 844, fontFamily: 'var(--font-sans)', background: '#faf5ec', display: 'flex', flexDirection: 'column', overflowY: 'auto' }}>
       {/* Header */}
       <div style={{ background: GD, padding: '12px 16px 14px', paddingTop: 'env(safe-area-inset-top, 12px)' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
@@ -71,7 +71,7 @@ export default function PP2SeasonSummary(_: { onBack?: () => void }) {
 
         {/* Next season */}
         <div style={{ background: '#fff', borderRadius: 14, padding: 14 }}>
-          <div style={{ fontSize: 13, fontWeight: 700, color: MUT, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 12 }}>Next season</div>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#7a4b5b', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 12 }}>Next season</div>
           {nextRows.map((r, i) => (
             <div key={r.label}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 0' }}>

@@ -18,7 +18,7 @@ const GAMES = [
   { short: 'LYN', mins: 42, res: 'W', color: '#2f6252' },
   { short: 'KES', mins: 45, res: 'W', color: '#2f6252' },
   { short: 'TEA', mins: 41, res: 'W', color: '#2f6252' },
-  { short: 'NOR', mins: 44, res: 'D', color: '#cbbeb5' },
+  { short: 'NOR', mins: 44, res: 'D', color: '#e8cfcf' },
   { short: 'SAL', mins: 43, res: 'L', color: '#c39797' },
   { short: 'IRO', mins: 43, res: 'W', color: '#2f6252' },
 ]
@@ -36,7 +36,7 @@ export default function T5PlayerProfile({ onBack }: { onBack?: () => void }) {
   const [selectedGame, setSelectedGame] = useState<string | null>(null)
   const [selectedClip, setSelectedClip] = useState<string | null>(null)
   return (
-    <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#faf5ec', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       <div style={{ flex: 'none', height: 64, boxSizing: 'border-box', padding: '0 28px', display: 'flex', alignItems: 'center', gap: 4, background: G }}>
         <div style={{ fontSize: 20, fontWeight: 700, color: '#fff', marginRight: 16, letterSpacing: '-0.02em' }}>Clean Sheet</div>
         {NAV_ITEMS.map(n => <div key={n} onClick={() => setActiveNav(n)} style={{ height: 48, padding: '0 14px', borderRadius: 12, display: 'flex', alignItems: 'center', fontSize: 15, fontWeight: 600, color: n === activeNav ? '#fff' : 'rgba(255,255,255,0.75)', background: n === activeNav ? '#40826d' : 'transparent', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{n}</div>)}
@@ -50,13 +50,13 @@ export default function T5PlayerProfile({ onBack }: { onBack?: () => void }) {
           <div style={{ flex: 1 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
               <div style={{ fontSize: 24, fontWeight: 700, letterSpacing: '-0.02em' }}>Mia Tran</div>
-              <div style={{ fontSize: 12, fontWeight: 700, background: '#cbbeb5', borderRadius: 999, padding: '2px 10px' }}>Manage load</div>
+              <div style={{ fontSize: 12, fontWeight: 700, background: '#e8cfcf', borderRadius: 999, padding: '2px 10px' }}>Manage load</div>
             </div>
             <div style={{ fontSize: 13, color: MUT }}>Central midfield · #8 · U12 Sam · right foot · second season</div>
           </div>
           <div style={{ display: 'flex', gap: 6 }}>
             {[{ v: '8', l: 'Games' }, { v: '336', l: 'Minutes' }, { v: '2', l: 'Goals' }, { v: '3', l: 'Assists' }].map(s => (
-              <div key={s.l} style={{ width: 80, padding: '5px 8px', borderRadius: 10, background: '#f7f8f7', boxSizing: 'border-box' as const }}>
+              <div key={s.l} style={{ width: 80, padding: '5px 8px', borderRadius: 10, background: '#faf5ec', boxSizing: 'border-box' as const }}>
                 <div style={{ fontSize: 20, fontWeight: 700, letterSpacing: '-0.02em' }}>{s.v}</div>
                 <div style={{ fontSize: 11, color: MUT }}>{s.l}</div>
               </div>
@@ -77,9 +77,9 @@ export default function T5PlayerProfile({ onBack }: { onBack?: () => void }) {
         ) : (<>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10 }}>
-            {KPIS.map(k => (
-              <div key={k.label} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 12, padding: '10px 12px' }}>
-                <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 4 }}>{k.label}</div>
+            {KPIS.map((k, kpiN)=> (
+              <div key={k.label} style={{ background: ['#f3ecdf', '#f4e6e6', '#eef5f2', '#f3ecdf'][kpiN % 4], border: `1px solid ${LN}`, borderRadius: 12, padding: '10px 12px' }}>
+                <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 4 }}>{k.label}</div>
                 <div style={{ fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em', marginBottom: 2 }}>{k.value}</div>
                 <div style={{ fontSize: 12, color: G, fontWeight: 600 }}>{k.change}</div>
                 <div style={{ fontSize: 11, color: MUT, marginTop: 2 }}>{k.src}</div>
@@ -126,7 +126,7 @@ export default function T5PlayerProfile({ onBack }: { onBack?: () => void }) {
             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13, padding: '5px 0', borderTop: `1px solid ${LN}` }}><span style={{ color: MUT }}>Load this week</span><strong style={{ color: '#6f5256' }}>125% of usual</strong></div>
             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13, padding: '5px 0', borderTop: `1px solid ${LN}` }}><span style={{ color: MUT }}>Wellness today</span><strong>3.3 / 5 · heavy legs</strong></div>
             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13, padding: '5px 0', borderTop: `1px solid ${LN}` }}><span style={{ color: MUT }}>Growth this month</span><strong>+0.5 cm</strong></div>
-            <div style={{ background: '#cbbeb5', borderRadius: 8, padding: '8px 10px', fontSize: 13, lineHeight: '19px', marginTop: 8 }}><strong>Plan:</strong> light training tonight, first half only on Saturday.</div>
+            <div style={{ background: '#e8cfcf', borderRadius: 8, padding: '8px 10px', fontSize: 13, lineHeight: '19px', marginTop: 8 }}><strong>Plan:</strong> light training tonight, first half only on Saturday.</div>
           </div>
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '12px 14px' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>

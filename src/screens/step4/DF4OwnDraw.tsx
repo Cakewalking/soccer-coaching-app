@@ -9,7 +9,7 @@ export default function DF4OwnDraw({ onBack }: { onBack?: () => void }) {
   const TOOLS = [{ id: 'player', label: 'Our player', color: GD }, { id: 'opp', label: 'Opponent', color: '#7c3030' }, { id: 'cone', label: 'Cone', color: '#c0a040' }, { id: 'ball', label: 'Ball', color: '#a06020' }, { id: 'pass', label: 'Pass', color: GD }, { id: 'run', label: 'Run', color: '#808080' }]
   const SOURCES = [{ label: 'Draw it', active: true }, { label: 'From our clips', active: false }, { label: 'Upload a video', active: false }, { label: 'Photo of a whiteboard', active: false }]
   return (
-    <div style={{ width: 1180, height: 820, boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
+    <div style={{ width: 1180, height: 820, boxSizing: 'border-box', background: '#faf5ec', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
       <div style={{ flex: 'none', background: GD, height: 56, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 16 }}>
         <span style={{ fontSize: 17, fontWeight: 800, color: '#fff' }}>Clean Sheet</span>
         <span style={{ fontSize: 15, fontWeight: 700, color: '#fff', marginLeft: 8 }}>Add your own drill</span>
@@ -19,7 +19,7 @@ export default function DF4OwnDraw({ onBack }: { onBack?: () => void }) {
       </div>
       <main style={{ flexGrow: 1, padding: '24px 28px', display: 'grid', gridTemplateColumns: '1fr 260px', gap: 24 }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-          <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT }}>Step {step} of 4 · Show it</div>
+          <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b' }}>Step {step} of 4 · Show it</div>
           <div style={{ fontSize: 16, fontWeight: 700, color: INK }}>Show the players how it works</div>
           <div style={{ display: 'flex', gap: 8 }}>
             {SOURCES.map(s => { const on = s.label === activeSource; return <button key={s.label} onClick={() => setActiveSource(s.label)} style={{ height: 44, padding: '0 14px', borderRadius: 999, background: on ? G : '#fff', color: on ? '#fff' : MUT, border: `1px solid ${on ? G : LN}`, fontSize: 13, fontWeight: on ? 700 : 500, cursor: 'pointer' }}>{s.label}</button> })}

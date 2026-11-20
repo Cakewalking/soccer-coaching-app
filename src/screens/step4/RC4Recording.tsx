@@ -11,12 +11,12 @@ export default function RC4Recording(_: { onBack?: () => void }) {
     <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: GD, color: '#ffffff', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       <div style={{ flex: 'none', height: 64, boxSizing: 'border-box', padding: '0 28px', display: 'flex', alignItems: 'center', gap: 16 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <div style={{ width: 10, height: 10, borderRadius: '50%', background: stopped ? '#40826d' : paused ? '#cbbeb5' : '#c39797', animation: stopped || paused ? 'none' : 'pulse 1.5s infinite' }} />
+          <div style={{ width: 10, height: 10, borderRadius: '50%', background: stopped ? '#40826d' : paused ? '#e8cfcf' : '#c39797', animation: stopped || paused ? 'none' : 'pulse 1.5s infinite' }} />
           <div style={{ fontSize: 15, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const }}>{stopped ? 'Saved' : paused ? 'Paused' : 'Recording'}</div>
         </div>
         <div style={{ fontSize: 18, fontWeight: 700 }}>Win it back in 6 seconds</div>
         <div style={{ marginLeft: 'auto', fontSize: 13, color: 'rgba(255,255,255,0.65)', display: 'flex', alignItems: 'center', gap: 8 }}>
-          <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#cbbeb5' }} />
+          <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#e8cfcf' }} />
           Offline · will sync when you're back in signal
         </div>
       </div>
@@ -56,7 +56,7 @@ export default function RC4Recording(_: { onBack?: () => void }) {
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
           <div style={{ background: '#fff', borderRadius: 16, padding: '14px 16px', color: INK }}>
-            <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 10 }}>Capturing</div>
+            <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 10 }}>Capturing</div>
             {[['Match camera', '✓ Recording'], ['Boot sensors', '✓ 8 of 8'], ['GPS vests', '✗ Not connected']].map(([label, status]) => (
               <div key={label} style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 0', borderTop: `1px solid ${LN}`, fontSize: 14 }}>
                 <span style={{ color: MUT }}>{label}</span>
@@ -66,7 +66,7 @@ export default function RC4Recording(_: { onBack?: () => void }) {
           </div>
 
           <div style={{ background: '#fff', borderRadius: 16, padding: '14px 16px', color: INK }}>
-            <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 10 }}>So far tonight</div>
+            <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 10 }}>So far tonight</div>
             {[['Presses attempted', '14'], ['Won in 6 s', '9 (64%)'], ['Moments marked', '3']].map(([label, val]) => (
               <div key={label} style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 0', borderTop: `1px solid ${LN}`, fontSize: 14 }}>
                 <span style={{ color: MUT }}>{label}</span>

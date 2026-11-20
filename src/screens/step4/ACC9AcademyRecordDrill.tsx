@@ -23,7 +23,7 @@ export default function ACC9AcademyRecordDrill(_: { onBack?: () => void }) {
     { label: 'Weaker-foot touches', sub: 'Share of touches on the weaker foot', source: 'Boot sensors' },
   ]
   return (
-    <div style={{ width: 1180, minHeight: 820, background: '#f7f8f7', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
+    <div style={{ width: 1180, minHeight: 820, background: '#faf5ec', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
       <header style={{ flex: 'none', background: GD }}>
         <div style={{ height: 60, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 16 }}>
           <span style={{ fontSize: 17, fontWeight: 800, letterSpacing: '-0.03em', color: '#fff' }}>Clean Sheet</span>
@@ -76,7 +76,7 @@ export default function ACC9AcademyRecordDrill(_: { onBack?: () => void }) {
                 <div style={{ fontSize: 12, color: MUT, marginTop: 2 }}>{m.sub}</div>
               </div>
             ))}
-            <button onClick={() => mark('handcount')} style={{ width: '100%', height: 44, background: is('handcount') ? PALE : '#f7f8f7', border: 'none', borderTop: `1px solid ${LN}`, fontSize: 13, fontWeight: 600, color: G, cursor: 'pointer', textAlign: 'left' as const, padding: '0 16px', fontFamily: 'inherit' }}>{is('handcount') ? '✓ Hand count added' : '+ Count something by hand'}</button>
+            <button onClick={() => mark('handcount')} style={{ width: '100%', height: 44, background: is('handcount') ? PALE : '#faf5ec', border: 'none', borderTop: `1px solid ${LN}`, fontSize: 13, fontWeight: 600, color: G, cursor: 'pointer', textAlign: 'left' as const, padding: '0 16px', fontFamily: 'inherit' }}>{is('handcount') ? '✓ Hand count added' : '+ Count something by hand'}</button>
           </div>
           <div style={{ background: PALE, borderRadius: 14, padding: '12px 16px', fontSize: 13, color: MUT }}>Last run: Thu 21 May, run 2. <strong style={{ color: INK }}>Six players</strong> have this as their term goal.</div>
         </div>

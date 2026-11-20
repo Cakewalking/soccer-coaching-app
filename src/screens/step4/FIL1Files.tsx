@@ -47,7 +47,7 @@ export default function FIL1Files({ onOpenSheet, onOpenDoc, onNav, bare }: { onO
   }
 
   return (
-    <div data-lasttool="" style={{ width: bare ? '100%' : 1180, height: bare ? '100%' : 820, flex: bare ? 1 : undefined, minHeight: bare ? 0 : undefined, overflow: 'hidden', background: '#f7f8f7', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative', boxSizing: 'border-box' }}>
+    <div data-lasttool="" style={{ width: bare ? '100%' : 1180, height: bare ? '100%' : 820, flex: bare ? 1 : undefined, minHeight: bare ? 0 : undefined, overflow: 'hidden', background: '#faf5ec', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative', boxSizing: 'border-box' }}>
       {!bare && (<>
       {/* Top nav (coach frame) */}
       <div style={{ background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 20, height: 56, flexShrink: 0 }}>
@@ -96,7 +96,7 @@ export default function FIL1Files({ onOpenSheet, onOpenDoc, onNav, bare }: { onO
 
       <main style={{ flexGrow: 1, minHeight: 0, padding: '12px 28px 18px', boxSizing: 'border-box', display: 'grid', gap: 14, gridTemplateColumns: 'minmax(0,1fr) 300px', overflow: 'hidden' }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10, minHeight: 0, overflow: 'hidden' }}>
-          <span style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT }}>With families this week</span>
+          <span style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b' }}>With families this week</span>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 10 }}>
             {SHARED.map(f => (
               <button key={f.name} onClick={() => go(f.target)} style={{ background: '#fff', border: `1px solid ${CTL}`, borderRadius: 14, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 8, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>
@@ -107,7 +107,7 @@ export default function FIL1Files({ onOpenSheet, onOpenDoc, onNav, bare }: { onO
               </button>
             ))}
           </div>
-          <span style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginTop: 4 }}>Everything else</span>
+          <span style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginTop: 4 }}>Everything else</span>
           <div style={{ background: '#fff', border: `1px solid ${CTL}`, borderRadius: 14, overflow: 'hidden' }}>
             {created.map((f, i) => (
               <button key={f.id} onClick={() => setEditing({ type: f.type, name: f.name, content: f.content, id: f.id })} style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 12, minHeight: 56, padding: '0 16px', borderTop: i ? `1px solid ${HAIR}` : 'none', background: '#fff', border: 'none', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>

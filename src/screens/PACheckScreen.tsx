@@ -72,7 +72,7 @@ export default function PACheckScreen({ onClose }: { onClose?: () => void }) {
             <div style={{ fontSize: 22, fontWeight: 800, color: INK, textAlign: 'center', marginBottom: 6 }}>All done</div>
             <div style={{ fontSize: 16, fontWeight: 700, color: INK, textAlign: 'center', marginBottom: 8 }}>Thanks, Mia!</div>
             <div style={{ fontSize: 14, color: MUT, textAlign: 'center', marginBottom: 24, lineHeight: '20px' }}>Sam and Priya will see this before training tonight.</div>
-            <div style={{ background: '#f7f8f7', borderRadius: 12, padding: '14px 16px', marginBottom: 12 }}>
+            <div style={{ background: '#faf5ec', borderRadius: 12, padding: '14px 16px', marginBottom: 12 }}>
               <div style={{ fontSize: 14, color: INK, fontWeight: 600, marginBottom: 4 }}>Something really wrong? Tell Sam, Priya or a parent. You can always talk to them, not just in the app.</div>
             </div>
             <button onClick={() => openThing('support contacts', 'phone')} style={{ width: '100%', height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>

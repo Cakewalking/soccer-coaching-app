@@ -19,11 +19,11 @@ export default function SP1FootballYear({ onBack }: { onBack?: () => void }) {
   function t(m: string) { setToast(m); setTimeout(() => setToast(null), 3200) }
 
   return (
-    <div style={{ padding: '20px 28px 40px', background: '#f7f8f7', minHeight: '100%', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', position: 'relative' }}>
+    <div style={{ padding: '20px 28px 40px', background: '#faf5ec', minHeight: '100%', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', position: 'relative' }}>
       {/* Page header */}
       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 20 }}>
         <div>
-          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 4 }}>Head coach</div>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 4 }}>Head coach</div>
           <div style={{ fontSize: 24, fontWeight: 800, letterSpacing: '-0.02em', color: INK, marginBottom: 2 }}>The football year</div>
           <div style={{ fontSize: 14, color: MUT }}>U12 Sam · dates set by Wattle Creek FC, you can adjust yours</div>
         </div>
@@ -43,7 +43,7 @@ export default function SP1FootballYear({ onBack }: { onBack?: () => void }) {
             { phase: 'Post-season', dates: '31 Aug to 29 Nov' },
             { phase: 'Rest month',  dates: 'December' },
           ].map(p => (
-            <div key={p.phase} style={{ padding: '10px 14px', borderRadius: 10, background: p.active ? PALE : '#f7f8f7', border: `1px solid ${p.active ? '#b0ccc5' : '#e5e6e4'}` }}>
+            <div key={p.phase} style={{ padding: '10px 14px', borderRadius: 10, background: p.active ? PALE : '#faf5ec', border: `1px solid ${p.active ? '#b0ccc5' : '#e5e6e4'}` }}>
               <div style={{ fontSize: 13, fontWeight: 700, color: p.active ? G : INK }}>{p.phase}</div>
               <div style={{ fontSize: 12, color: MUT }}>{p.dates}</div>
             </div>
@@ -62,14 +62,14 @@ export default function SP1FootballYear({ onBack }: { onBack?: () => void }) {
           <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>What changes in each part of the year</div>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: '160px 1fr 1fr 1fr 1fr' }}>
-          <div style={{ background: '#f7f8f7' }} />
+          <div style={{ background: '#faf5ec' }} />
           {['Pre-season','Season','Post-season','Rest month'].map(h => (
-            <div key={h} style={{ padding: '8px 14px', background: '#f7f8f7', fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: h === 'Season' ? G : MUT, borderLeft: `1px solid ${LN}` }}>{h}</div>
+            <div key={h} style={{ padding: '8px 14px', background: '#faf5ec', fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: h === 'Season' ? G : MUT, borderLeft: `1px solid ${LN}` }}>{h}</div>
           ))}
         </div>
         {COMPARE.map(row => (
           <div key={row.label} style={{ display: 'grid', gridTemplateColumns: '160px 1fr 1fr 1fr 1fr', borderTop: `1px solid ${LN}` }}>
-            <div style={{ padding: '12px 14px', fontSize: 12, fontWeight: 700, color: MUT, background: '#f7f8f7', lineHeight: 1.3 }}>{row.label}</div>
+            <div style={{ padding: '12px 14px', fontSize: 12, fontWeight: 700, color: MUT, background: '#faf5ec', lineHeight: 1.3 }}>{row.label}</div>
             {[row.preSeason, row.season, row.postSeason, row.rest].map((v, j) => (
               <div key={j} style={{ padding: '12px 14px', fontSize: 13, color: INK, lineHeight: 1.4, borderLeft: `1px solid ${LN}` }}>{v}</div>
             ))}
@@ -112,8 +112,8 @@ export default function SP1FootballYear({ onBack }: { onBack?: () => void }) {
             { label: 'Last game',         val: '30 August' },
             { label: 'Rest month',        val: 'December' },
           ].map(r => (
-            <div key={r.label} style={{ padding: '10px 14px', borderRadius: 10, background: '#f7f8f7', border: `1px solid #e5e6e4` }}>
-              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 4 }}>{r.label}</div>
+            <div key={r.label} style={{ padding: '10px 14px', borderRadius: 10, background: '#faf5ec', border: `1px solid #e5e6e4` }}>
+              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 4 }}>{r.label}</div>
               <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>{r.val}</div>
             </div>
           ))}

@@ -4,7 +4,7 @@ import { goSetup, goApp } from './sandbox/sandboxNav'
 function Illus() {
   return (
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 22px)', gap: 4, flex: 'none' }}>
-      {['#2f6252','#40826d','#cbbeb5','#c39797'].map((c, i) => (
+      {['#2f6252','#40826d','#e8cfcf','#c39797'].map((c, i) => (
         <div key={i} style={{ width: 22, height: 22, borderRadius: 5, background: c }} />
       ))}
     </div>
@@ -15,7 +15,7 @@ function Skel({ rows = 6 }: { rows?: number }) {
   const ws = [55, 45, 65, 40, 55, 50]
   return (
     <div>
-      <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#6f7f7b', marginBottom: 8 }}>Fills in like this</div>
+      <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#5c6b67', marginBottom: 8 }}>Fills in like this</div>
       {Array.from({ length: rows }, (_, i) => (
         <div key={i} style={{ height: 48, border: '1px dashed #c5c8c4', borderRadius: 10, marginBottom: 6, display: 'flex', alignItems: 'center', padding: '0 14px', gap: 10 }}>
           <div style={{ width: 28, height: 28, borderRadius: '999px', background: '#e9eae8', flex: 'none' }} />
@@ -91,7 +91,7 @@ const OUR_PLAN = [
 function resultBadge(r: 'W'|'L'|'D') {
   if (r === 'W') return { bg: '#2f6252', color: '#ffffff' }
   if (r === 'L') return { bg: '#c39797', color: '#10211f' }
-  return { bg: '#cbbeb5', color: '#10211f' }
+  return { bg: '#e8cfcf', color: '#10211f' }
 }
 
 export default function OppositionScreen({ empty, opponent = 'Harbour Rovers', scout = 'Jess' }: { empty?: boolean; opponent?: string; scout?: string }) {
@@ -115,7 +115,7 @@ export default function OppositionScreen({ empty, opponent = 'Harbour Rovers', s
           </div>
           {HOW_THEY_PLAY.map((item, i) => (
             <div key={i} style={{ display: 'flex', gap: 12, padding: '10px 0', borderTop: i === 0 ? 'none' : '1px solid #f0f1ef' }}>
-              <span style={{ flex: 'none', width: 8, height: 8, borderRadius: '999px', background: item.highlight ? '#40826d' : '#cbbeb5', marginTop: 6 }} />
+              <span style={{ flex: 'none', width: 8, height: 8, borderRadius: '999px', background: item.highlight ? '#40826d' : '#e8cfcf', marginTop: 6 }} />
               <div style={{ flexGrow: 1 }}>
                 <div style={{ fontSize: 15, fontWeight: 600, lineHeight: '21px', color: '#10211f' }}>{item.label}</div>
                 <div style={{ fontSize: 13, lineHeight: '18px', color: '#4a5a57', marginTop: 2 }}>{item.note}</div>
@@ -145,7 +145,7 @@ export default function OppositionScreen({ empty, opponent = 'Harbour Rovers', s
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10 }}>
             {[{ k: 'Points', v: '11' }, { k: 'Scored', v: '12' }, { k: 'Conceded', v: '11' }].map(s => (
-              <div key={s.k} style={{ background: '#f7f8f7', borderRadius: 10, padding: '10px 12px' }}>
+              <div key={s.k} style={{ background: '#faf5ec', borderRadius: 10, padding: '10px 12px' }}>
                 <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#4a5a57', marginBottom: 2 }}>{s.k}</div>
                 <div style={{ fontSize: 22, fontWeight: 700, letterSpacing: '-0.01em' }}>{s.v}</div>
               </div>
@@ -173,7 +173,7 @@ export default function OppositionScreen({ empty, opponent = 'Harbour Rovers', s
                   style={{ width: '100%', height: 80, borderRadius: 10, border: '1px solid #c5c8c4', padding: '10px 12px', fontFamily: 'inherit', fontSize: 14, resize: 'none', boxSizing: 'border-box', marginBottom: 8 }}
                 />
                 <div style={{ display: 'flex', gap: 8 }}>
-                  <button onClick={() => { setShowNote(false); setNoteText('') }} style={{ flex: 1, height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>Cancel</button>
+                  <button onClick={() => { setShowNote(false); setNoteText('') }} style={{ flex: 1, height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: '#5c6b67', cursor: 'pointer' }}>Cancel</button>
                   <button onClick={() => { setShowNote(false); setNoteText('') }} style={{ flex: 2, height: 44, borderRadius: 10, border: 0, background: '#2f6252', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, color: '#fff', cursor: 'pointer' }}>Save note</button>
                 </div>
               </div>

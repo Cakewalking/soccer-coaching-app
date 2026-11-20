@@ -8,10 +8,10 @@ export default function SP1eFootballYearEmpty(_: { onBack?: () => void }) {
   function t(m: string) { setToast(m); setTimeout(() => setToast(null), 3200) }
 
   return (
-    <div style={{ padding: '20px 28px 40px', background: '#f7f8f7', minHeight: '100%', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', position: 'relative' }}>
+    <div style={{ padding: '20px 28px 40px', background: '#faf5ec', minHeight: '100%', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', position: 'relative' }}>
       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 20 }}>
         <div>
-          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 4 }}>Head coach</div>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 4 }}>Head coach</div>
           <div style={{ fontSize: 24, fontWeight: 800, letterSpacing: '-0.02em', color: INK, marginBottom: 2 }}>The football year</div>
           <div style={{ fontSize: 14, color: MUT }}>U12 Sam · no dates yet</div>
         </div>
@@ -28,7 +28,7 @@ export default function SP1eFootballYearEmpty(_: { onBack?: () => void }) {
       </div>
 
       {/* Four parts */}
-      <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 10 }}>The four parts</div>
+      <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 10 }}>The four parts</div>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 12, marginBottom: 24 }}>
         {[
           { n: '1', title: 'Pre-season',               body: 'Squad, trials, friendlies, build-up' },
@@ -57,8 +57,8 @@ export default function SP1eFootballYearEmpty(_: { onBack?: () => void }) {
               { label: 'Last game',         val: '30 August' },
               { label: 'Rest month',        val: 'December' },
             ].map(r => (
-              <div key={r.label} style={{ padding: '10px 14px', borderRadius: 10, background: '#f7f8f7', border: `1px solid #e5e6e4` }}>
-                <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 4 }}>{r.label}</div>
+              <div key={r.label} style={{ padding: '10px 14px', borderRadius: 10, background: '#faf5ec', border: `1px solid #e5e6e4` }}>
+                <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 4 }}>{r.label}</div>
                 <div style={{ fontSize: 14, fontWeight: 700, color: INK }}>{r.val}</div>
               </div>
             ))}

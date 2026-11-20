@@ -17,7 +17,7 @@ const PLAYERS: { ini: string; name: string; status: Attending; note?: string }[]
 ]
 
 const STATUS_LABEL: Record<Attending, string> = { yes: 'Coming', maybe: 'Maybe', no: 'No answer', away: 'Away' }
-const STATUS_BG: Record<Attending, string> = { yes: '#2f6252', maybe: '#cbbeb5', no: '#c39797', away: '#e9eae8' }
+const STATUS_BG: Record<Attending, string> = { yes: '#2f6252', maybe: '#e8cfcf', no: '#c39797', away: '#e9eae8' }
 const STATUS_COLOR: Record<Attending, string> = { yes: '#fff', maybe: '#10211f', no: '#10211f', away: '#10211f' }
 
 export default function ComingMiniRoos({ empty }: { empty?: boolean }) {
@@ -46,7 +46,7 @@ export default function ComingMiniRoos({ empty }: { empty?: boolean }) {
         <section style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '14px 18px 8px', display: 'flex', flexDirection: 'column' }}>
           <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
             <span style={{ display: 'inline-flex', alignItems: 'center', height: 28, padding: '0 12px', borderRadius: '999px', fontSize: 13, fontWeight: 700, background: '#2f6252', color: '#fff' }}>Coming · {coming}</span>
-            <span style={{ display: 'inline-flex', alignItems: 'center', height: 28, padding: '0 12px', borderRadius: '999px', fontSize: 13, fontWeight: 700, background: '#cbbeb5', color: '#10211f' }}>Maybe · {notSure}</span>
+            <span style={{ display: 'inline-flex', alignItems: 'center', height: 28, padding: '0 12px', borderRadius: '999px', fontSize: 13, fontWeight: 700, background: '#e8cfcf', color: '#10211f' }}>Maybe · {notSure}</span>
             <span style={{ display: 'inline-flex', alignItems: 'center', height: 28, padding: '0 12px', borderRadius: '999px', fontSize: 13, fontWeight: 700, background: '#c39797', color: '#10211f' }}>No answer · {noAnswer}</span>
           </div>
 
@@ -59,7 +59,7 @@ export default function ComingMiniRoos({ empty }: { empty?: boolean }) {
           {PLAYERS.map((p, i) => (
             <div key={i} style={{ display: 'grid', gridTemplateColumns: '1.6fr 1fr 1.5fr', gap: 10, alignItems: 'center', minHeight: 50, borderTop: '1px solid #e9eae8' }}>
               <span style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                <span style={{ flexShrink: 0, width: 30, height: 30, borderRadius: '999px', background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700 }}>{p.ini}</span>
+                <span style={{ flexShrink: 0, width: 30, height: 30, borderRadius: '999px', background: '#e8cfcf', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700 }}>{p.ini}</span>
                 <span style={{ fontSize: 15, fontWeight: 700 }}>{p.name}</span>
               </span>
               <span>

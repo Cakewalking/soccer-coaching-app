@@ -8,7 +8,7 @@ export default function SPp3ParentTournament(_: { onBack?: () => void }) {
   function t(m: string) { setToast(m); setTimeout(() => setToast(null), 3200) }
 
   return (
-    <div style={{ width: 390, minHeight: '100%', background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', position: 'relative', margin: '0 auto' }}>
+    <div style={{ width: 390, minHeight: '100%', background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', position: 'relative', margin: '0 auto' }}>
       <div style={{ padding: '12px 20px 0', display: 'flex', justifyContent: 'space-between' }}>
         <div style={{ fontSize: 12, fontWeight: 700, color: INK }}>9:41</div>
       </div>
@@ -30,8 +30,8 @@ export default function SPp3ParentTournament(_: { onBack?: () => void }) {
               { label: 'Arrive',   val: '8:30 am for warm-up' },
               { label: 'Finish',   val: 'By 4 pm depending on results' },
             ].map(r => (
-              <div key={r.label} style={{ padding: '8px 10px', background: '#f7f8f7', borderRadius: 8 }}>
-                <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 2 }}>{r.label}</div>
+              <div key={r.label} style={{ padding: '8px 10px', background: '#faf5ec', borderRadius: 8 }}>
+                <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 2 }}>{r.label}</div>
                 <div style={{ fontSize: 13, fontWeight: 600, color: INK }}>{r.val}</div>
               </div>
             ))}

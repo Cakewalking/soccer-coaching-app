@@ -24,7 +24,7 @@ export default function PC1RaiseConcern(_: { onBack?: () => void }) {
   ]
 
   return (
-    <div style={{ width: 390, minHeight: 844, fontFamily: 'var(--font-sans)', background: '#f7f8f7', display: 'flex', flexDirection: 'column', overflowY: 'auto' }}>
+    <div style={{ width: 390, minHeight: 844, fontFamily: 'var(--font-sans)', background: '#faf5ec', display: 'flex', flexDirection: 'column', overflowY: 'auto' }}>
       {/* Header */}
       <div style={{ background: GD, padding: '12px 16px 14px', paddingTop: 'env(safe-area-inset-top, 12px)' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
@@ -56,7 +56,7 @@ export default function PC1RaiseConcern(_: { onBack?: () => void }) {
 
         {/* About section */}
         <div>
-          <div style={{ fontSize: 13, fontWeight: 700, color: MUT, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 10 }}>About</div>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#7a4b5b', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 10 }}>About</div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
             {aboutChips.map(c => (
               <button
@@ -102,7 +102,7 @@ export default function PC1RaiseConcern(_: { onBack?: () => void }) {
 
         {/* What would help */}
         <div>
-          <div style={{ fontSize: 13, fontWeight: 700, color: MUT, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 10 }}>What would help?</div>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#7a4b5b', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 10 }}>What would help?</div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
             {helpChips.map(c => (
               <button

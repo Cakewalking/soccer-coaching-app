@@ -57,7 +57,7 @@ export default function CoCoachHomeScreen({ empty, onNav, onAsk, askQuestions }:
               <div style={{ fontSize: 12, color: MUT }}>after Thursday's session</div>
             </div>
           </div>
-          <div style={{ fontSize: 14, color: INK, lineHeight: '21px', fontStyle: 'italic', background: '#f7f8f7', borderRadius: 10, padding: '12px 14px', marginBottom: 12 }}>
+          <div style={{ fontSize: 14, color: INK, lineHeight: '21px', fontStyle: 'italic', background: '#faf5ec', borderRadius: 10, padding: '12px 14px', marginBottom: 12 }}>
             "Rondo looked good tonight — keep the same format on Saturday. Noah and Zoe both felt fine after. I'll do the line-up and talk if you do the warm-up and subs."
           </div>
           <button onClick={() => showToast('Reply sent to Sam.')} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: INK }}>Reply</button>
@@ -65,7 +65,7 @@ export default function CoCoachHomeScreen({ empty, onNav, onAsk, askQuestions }:
 
         {/* This week jobs */}
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '16px 18px' }}>
-          <div style={{ fontSize: 13, fontWeight: 700, color: MUT, letterSpacing: '0.06em', textTransform: 'uppercase' as const, marginBottom: 12 }}>This week</div>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#7a4b5b', letterSpacing: '0.06em', textTransform: 'uppercase' as const, marginBottom: 12 }}>This week</div>
           {[
             { ini: 'SK', name: 'Sam', jobs: 'training, line-up, team talk', isMe: false },
             { ini: 'JM', name: 'You', jobs: 'Saturday warm-up and subs', isMe: true },

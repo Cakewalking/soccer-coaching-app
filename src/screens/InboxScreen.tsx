@@ -46,7 +46,7 @@ function InboxEmpty() {
           {[
             { icon: 'M12 21a9 9 0 100-18 9 9 0 000 18zM12 7l4 3-1.5 5h-5L8 10z', bg: '#40826d', title: 'Match reviews', body: 'About 25 minutes after a recorded game, with your three things to work on.' },
             { icon: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z', bg: '#c39797', title: 'Wellness alerts', body: "When a player feels low or sore two days running, with what to do next." },
-            { icon: 'M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9zM13 2v7h7', bg: '#cbbeb5', title: 'Data problems', body: "A vest that didn't sync or a camera that lost the ball, with a one-tap fix." },
+            { icon: 'M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9zM13 2v7h7', bg: '#e8cfcf', title: 'Data problems', body: "A vest that didn't sync or a camera that lost the ball, with a one-tap fix." },
             { icon: 'M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z', bg: '#40826d', title: 'Messages', body: 'From your coaching team and from parents. Reply right here.' },
           ].map((item, i) => (
             <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
@@ -96,9 +96,9 @@ function InboxEmpty() {
 
 const MESSAGES = [
   { id: 0, from: 'Clean Sheet · Wellness check-ins', time: '7:30 am', preview: 'Ella has felt low two days running', tag: 'Needs a look', tagBg: '#c39797', tagColor: '#10211f', unread: true, icon: 'M12 2a10 10 0 100 20A10 10 0 0012 2zM12 7v5l3 3', iconBg: '#40826d' },
-  { id: 1, from: 'Clean Sheet · Data',                time: '7:12 am', preview: '3 GPS vests didn\'t sync', tag: 'Fix before Saturday', tagBg: '#cbbeb5', tagColor: '#10211f', unread: true, icon: 'M22 12h-4M6 12H2M12 2v4M12 18v4', iconBg: '#c39797' },
+  { id: 1, from: 'Clean Sheet · Data',                time: '7:12 am', preview: '3 GPS vests didn\'t sync', tag: 'Fix before Saturday', tagBg: '#e8cfcf', tagColor: '#10211f', unread: true, icon: 'M22 12h-4M6 12H2M12 2v4M12 18v4', iconBg: '#c39797' },
   { id: 2, from: 'Priya Shah · Fitness Coach',        time: 'Yesterday', preview: 'Sprint caps set for Noah and Zoe', tag: null, unread: false, icon: 'M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8', iconBg: '#c39797' },
-  { id: 3, from: 'Linh Tran · Mia\'s mum',           time: 'Tue',      preview: 'Mia might be 10 minutes late Thursday', tag: 'Waiting on you', tagBg: '#cbbeb5', tagColor: '#10211f', unread: false, icon: 'M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8', iconBg: '#cbbeb5' },
+  { id: 3, from: 'Linh Tran · Mia\'s mum',           time: 'Tue',      preview: 'Mia might be 10 minutes late Thursday', tag: 'Waiting on you', tagBg: '#e8cfcf', tagColor: '#10211f', unread: false, icon: 'M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8', iconBg: '#e8cfcf' },
   { id: 4, from: 'Clean Sheet',                       time: 'Mon',      preview: 'Player goals: 3 need work', tag: null, unread: false, icon: 'M9 11a3 3 0 100-6 3 3 0 000 6zM3 20c0-4 3-6 6-6s6 2 6 6', iconBg: '#40826d' },
   { id: 5, from: 'Clean Sheet',                       time: 'Sun',      preview: 'Last week\'s plan worked', tag: null, unread: false, icon: 'M4 11l8-7 8 7v9H4z', iconBg: '#40826d' },
   { id: 6, from: 'Clean Sheet',                       time: 'Sun',      preview: 'Match review ready: Ironbark United, won 3–1', tag: null, unread: false, icon: 'M12 21a9 9 0 100-18 9 9 0 000 18zM12 7l4 3-1.5 5h-5L8 10z', iconBg: '#40826d' },
@@ -143,7 +143,7 @@ function EllaPanelContent() {
           <div style={{ fontSize: 14, lineHeight: '20px', color: '#4a5a57', marginBottom: 10 }}>Let them know you've seen the check-in and are keeping it light tonight.</div>
           <button onClick={() => openThing("a message to Ella's parent", 'coach')} style={{ width: '100%', height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Message Ella's parent</button>
         </div>
-        <div style={{ fontSize: 12, color: '#6f7f7b', lineHeight: '17px', textAlign: 'center' }}>Low check-ins stay private to your coaching team. Ella's classmates and parents do not see the detail.</div>
+        <div style={{ fontSize: 12, color: '#5c6b67', lineHeight: '17px', textAlign: 'center' }}>Low check-ins stay private to your coaching team. Ella's classmates and parents do not see the detail.</div>
       </div>
       {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </>
@@ -161,7 +161,7 @@ function LinhPanelContent() {
   return (
     <>
       <div style={{ flex: 'none', padding: '14px 24px', borderBottom: '1px solid #e9eae8', display: 'flex', alignItems: 'center', gap: 12, background: '#ffffff' }}>
-        <span style={{ flex: 'none', width: 36, height: 36, borderRadius: '999px', background: '#cbbeb5', fontSize: 13, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#10211f' }}>LT</span>
+        <span style={{ flex: 'none', width: 36, height: 36, borderRadius: '999px', background: '#e8cfcf', fontSize: 13, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#10211f' }}>LT</span>
         <div>
           <div style={{ fontSize: 16, fontWeight: 700, lineHeight: '22px' }}>Linh Tran</div>
           <div style={{ fontSize: 13, color: '#4a5a57' }}>Mia's mum · parent</div>
@@ -174,11 +174,11 @@ function LinhPanelContent() {
           const isCoach = msg.from === 'Coach'
           return (
             <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: isCoach ? 'flex-end' : 'flex-start', gap: 2 }}>
-              {!isCoach && <div style={{ fontSize: 12, color: '#6f7f7b' }}>{msg.from} · {msg.day}</div>}
+              {!isCoach && <div style={{ fontSize: 12, color: '#5c6b67' }}>{msg.from} · {msg.day}</div>}
               <div style={{ maxWidth: '80%', background: isCoach ? '#2f6252' : '#fff', border: isCoach ? 'none' : '1px solid #e9eae8', borderRadius: isCoach ? '14px 14px 4px 14px' : '14px 14px 14px 4px', padding: '10px 14px', fontSize: 15, lineHeight: '21px', color: isCoach ? '#fff' : '#10211f' }}>
                 {msg.body}
               </div>
-              {isCoach && <div style={{ fontSize: 12, color: '#6f7f7b' }}>You · {msg.day}</div>}
+              {isCoach && <div style={{ fontSize: 12, color: '#5c6b67' }}>You · {msg.day}</div>}
             </div>
           )
         })}
@@ -191,7 +191,7 @@ function LinhPanelContent() {
           ))}
         </div>
         <div style={{ display: 'flex', gap: 8, alignItems: 'flex-end' }}>
-          <div style={{ flexGrow: 1, minHeight: 44, background: '#f7f8f7', border: '1px solid #c5c8c4', borderRadius: 12, padding: '10px 14px', fontSize: 15, color: '#6f7f7b' }}>Reply to Linh…</div>
+          <div style={{ flexGrow: 1, minHeight: 44, background: '#faf5ec', border: '1px solid #c5c8c4', borderRadius: 12, padding: '10px 14px', fontSize: 15, color: '#5c6b67' }}>Reply to Linh…</div>
           {[
             { label: 'Player', path: 'M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8' },
             { label: 'Clip',   path: 'M12 21a9 9 0 100-18 9 9 0 000 18zM10 8l6 4-6 4z' },
@@ -203,7 +203,7 @@ function LinhPanelContent() {
           ))}
           <button onClick={() => showToast('Message sent to Linh.')} style={{ height: 44, padding: '0 16px', borderRadius: 12, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Send</button>
         </div>
-        <div style={{ marginTop: 6, fontSize: 12, color: '#6f7f7b', textAlign: 'center' }}>Messages with parents are kept by the club. Your club welfare officer can see them.</div>
+        <div style={{ marginTop: 6, fontSize: 12, color: '#5c6b67', textAlign: 'center' }}>Messages with parents are kept by the club. Your club welfare officer can see them.</div>
       </div>
       {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </>
@@ -254,7 +254,7 @@ export default function InboxScreen({ empty }: { empty?: boolean }) {
               <span style={{ flexGrow: 1, minWidth: 0 }}>
                 <span style={{ display: 'flex', justifyContent: 'space-between', gap: 8, marginBottom: 2 }}>
                   <span style={{ fontSize: 12, color: '#4a5a57', fontWeight: m.unread ? 600 : 400 }}>{m.from}</span>
-                  <span style={{ fontSize: 12, color: '#6f7f7b', flexShrink: 0 }}>{m.time}</span>
+                  <span style={{ fontSize: 12, color: '#5c6b67', flexShrink: 0 }}>{m.time}</span>
                 </span>
                 <span style={{ display: 'block', fontSize: 14, fontWeight: m.unread ? 700 : 400, lineHeight: '19px', marginBottom: m.tag ? 4 : 0 }}>{m.preview}</span>
                 {m.tag && <span style={{ display: 'inline-block', fontSize: 11, fontWeight: 700, padding: '1px 8px', borderRadius: '999px', background: m.tagBg!, color: m.tagColor! }}>{m.tag}</span>}
@@ -281,12 +281,12 @@ export default function InboxScreen({ empty }: { empty?: boolean }) {
               <button onClick={() => showToast('Conversation marked as done.')} style={{ height: 44, padding: '0 12px', borderRadius: 8, border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', color: '#2f6252' }}>Mark as done</button>
             </div>
             <div style={{ flexGrow: 1, overflowY: 'auto', padding: '16px 24px', display: 'flex', flexDirection: 'column', gap: 10 }}>
-              <div style={{ textAlign: 'center', fontSize: 12, color: '#6f7f7b', marginBottom: 4 }}>Wednesday</div>
+              <div style={{ textAlign: 'center', fontSize: 12, color: '#5c6b67', marginBottom: 4 }}>Wednesday</div>
               {THREAD_MSGS.map((msg, i) => {
                 if (msg.isPlayer) {
                   return (
                     <div key={i} onClick={() => openThing(`${msg.sub}'s profile`, 'coach')} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 12px', background: '#ffffff', border: '1px solid #e9eae8', borderRadius: 10, cursor: 'pointer' }}>
-                      <span style={{ flex: 'none', width: 28, height: 28, borderRadius: '999px', background: '#cbbeb5', fontSize: 10, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#10211f' }}>
+                      <span style={{ flex: 'none', width: 28, height: 28, borderRadius: '999px', background: '#e8cfcf', fontSize: 10, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#10211f' }}>
                         {msg.sub === 'Noah Okafor' ? 'NO' : 'ZH'}
                       </span>
                       <div style={{ flexGrow: 1, minWidth: 0 }}>
@@ -312,7 +312,7 @@ export default function InboxScreen({ empty }: { empty?: boolean }) {
                 ))}
               </div>
               <div style={{ display: 'flex', gap: 8, alignItems: 'flex-end' }}>
-                <div style={{ flexGrow: 1, minHeight: 44, background: '#f7f8f7', border: '1px solid #c5c8c4', borderRadius: 12, padding: '10px 14px', fontSize: 15, color: '#6f7f7b' }}>Reply…</div>
+                <div style={{ flexGrow: 1, minHeight: 44, background: '#faf5ec', border: '1px solid #c5c8c4', borderRadius: 12, padding: '10px 14px', fontSize: 15, color: '#5c6b67' }}>Reply…</div>
                 <div style={{ display: 'flex', gap: 6 }}>
                   {[
                     { label: 'Player', path: 'M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8' },
@@ -328,7 +328,7 @@ export default function InboxScreen({ empty }: { empty?: boolean }) {
                 </div>
                 <button onClick={() => showToast('Message sent to Priya.')} style={{ height: 44, padding: '0 16px', borderRadius: 12, border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Send</button>
               </div>
-              <div style={{ marginTop: 6, fontSize: 12, color: '#6f7f7b', textAlign: 'center' }}>Coaching team only. Players and parents never see this.</div>
+              <div style={{ marginTop: 6, fontSize: 12, color: '#5c6b67', textAlign: 'center' }}>Coaching team only. Players and parents never see this.</div>
             </div>
           </>
         )}

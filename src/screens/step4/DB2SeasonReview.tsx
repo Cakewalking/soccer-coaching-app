@@ -16,7 +16,7 @@ export default function DB2SeasonReview(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string | null>(null)
   function t(m: string) { setToast(m); setTimeout(() => setToast(null), 3200) }
   return (
-    <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, position: 'relative' }}>
+    <div style={{ width: 1180, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, position: 'relative' }}>
       <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 32, height: 52 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff', letterSpacing: '-0.01em' }}>Clean Sheet</div>
         {['Club', 'Teams', 'Coaches', 'Players', 'Safeguarding', 'Reports'].map(tab => (
@@ -36,8 +36,8 @@ export default function DB2SeasonReview(_: { onBack?: () => void }) {
             { label: 'Goals met', val: '61%', sub: 'of player goals' },
             { label: 'Playing our way', val: '67%', sub: 'up from 51%' },
             { label: 'Best result', val: '16W', sub: 'U15 Girls state cup' },
-          ].map(s => (
-            <div key={s.label} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 18px' }}>
+          ].map((s, kpiN)=> (
+            <div key={s.label} style={{ background: ['#f3ecdf', '#f4e6e6', '#eef5f2', '#f3ecdf'][kpiN % 4], border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 18px' }}>
               <div style={{ fontSize: 12, color: MUT, marginBottom: 4 }}>{s.label}</div>
               <div style={{ fontSize: 26, fontWeight: 800, letterSpacing: '-0.02em', color: GD }}>{s.val}</div>
               <div style={{ fontSize: 12, color: MUT, marginTop: 2 }}>{s.sub}</div>
@@ -46,7 +46,7 @@ export default function DB2SeasonReview(_: { onBack?: () => void }) {
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
           <div>
-            <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 10 }}>Season highlights</div>
+            <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 10 }}>Season highlights</div>
             {HIGHLIGHTS.map((h, i) => (
               <div key={i} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 12, padding: '12px 16px', marginBottom: 8, display: 'flex', gap: 12 }}>
                 <span style={{ fontSize: 18, flexShrink: 0 }}>{h.icon}</span>
@@ -55,7 +55,7 @@ export default function DB2SeasonReview(_: { onBack?: () => void }) {
             ))}
           </div>
           <div>
-            <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 10 }}>To fix by season end</div>
+            <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 10 }}>To fix by season end</div>
             {TO_FIX.map((f, i) => (
               <div key={i} style={{ background: '#fff', border: `1px solid ${f.urgent ? '#ffd0d0' : LN}`, borderRadius: 12, padding: '12px 16px', marginBottom: 8, display: 'flex', gap: 12, alignItems: 'center' }}>
                 <div style={{ width: 8, height: 8, borderRadius: '50%', background: f.urgent ? '#c00' : '#f57c00', flexShrink: 0 }} />

@@ -109,7 +109,7 @@ function HomeEmpty({ onNav }: { onNav: (s: string) => void }) {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
             {styleRows.map((row, i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'center', padding: '8px 0', borderTop: i === 0 ? 'none' : '1px solid #f0f1ef' }}>
-                <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.06em', color: '#6f7f7b', width: 100, flex: 'none' }}>{row.label}</span>
+                <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.06em', color: '#5c6b67', width: 100, flex: 'none' }}>{row.label}</span>
                 <span style={{ fontSize: 13, color: '#4a5a57', flexGrow: 1 }}>{row.desc}</span>
                 <span style={{ fontSize: 18, fontWeight: 700, color: '#c5c8c4', flex: 'none' }}>—</span>
               </div>
@@ -129,7 +129,7 @@ function HomeEmpty({ onNav }: { onNav: (s: string) => void }) {
 
 function iconBg(type: 'green' | 'rose' | 'stone') {
   if (type === 'rose')  return '#c39797'
-  if (type === 'stone') return '#cbbeb5'
+  if (type === 'stone') return '#e8cfcf'
   return '#40826d'
 }
 
@@ -162,7 +162,7 @@ function sparkColor(type: 'bad' | 'good' | 'neutral') {
 
 function tileChipStyle(type: 'bad' | 'good' | 'neutral') {
   if (type === 'good')    return { background: '#40826d', color: '#ffffff' }
-  if (type === 'neutral') return { background: '#cbbeb5', color: '#10211f' }
+  if (type === 'neutral') return { background: '#e8cfcf', color: '#10211f' }
   return { background: '#c39797', color: '#10211f' }
 }
 
@@ -176,7 +176,7 @@ function resultStyle(r: 'W' | 'D' | 'L') {
 function weekRowStyle(type: string) {
   const base = { display: 'flex', alignItems: 'center', gap: 8, padding: '6px 8px', borderRadius: 8, minHeight: 36 } as const
   if (type === 'today') return { ...base, background: '#2f6252', color: '#ffffff' }
-  if (type === 'game')  return { ...base, background: '#cbbeb5', color: '#10211f' }
+  if (type === 'game')  return { ...base, background: '#e8cfcf', color: '#10211f' }
   return { ...base, color: '#10211f' }
 }
 
@@ -203,14 +203,14 @@ export function AskLine({ teamName, questions, onAsk, roleLabel = 'head coach' }
         aria-label="Ask Clean Sheet"
       >
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2f6252" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={SPARKLE}/></svg>
-        <span style={{ flex: 1, textAlign: 'left', fontSize: 14, color: '#6f7f7b' }}>
+        <span style={{ flex: 1, textAlign: 'left', fontSize: 14, color: '#5c6b67' }}>
           Ask about {teamName}…{' '}
           <span style={{ color: '#aab8b4' }}>{example}</span>
         </span>
       </button>
       {open && (
         <div style={{ position: 'absolute', left: 28, right: 28, top: '100%', marginTop: 4, background: '#fff', border: '1px solid #d4dbd8', borderRadius: 14, boxShadow: '0 8px 24px rgba(16,33,31,0.12)', overflow: 'hidden' }}>
-          <div style={{ padding: '10px 16px 6px', fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', color: '#6f7f7b', textTransform: 'uppercase' as const }}>About today</div>
+          <div style={{ padding: '10px 16px 6px', fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', color: '#5c6b67', textTransform: 'uppercase' as const }}>About today</div>
           {questions.map(q => (
             <button
               key={q}
@@ -220,7 +220,7 @@ export function AskLine({ teamName, questions, onAsk, roleLabel = 'head coach' }
               {q}
             </button>
           ))}
-          <div style={{ padding: '10px 16px', fontSize: 11, color: '#6f7f7b', borderTop: '1px solid #f0f1ef', lineHeight: 1.5 }}>
+          <div style={{ padding: '10px 16px', fontSize: 11, color: '#5c6b67', borderTop: '1px solid #f0f1ef', lineHeight: 1.5 }}>
             Uses only what you can see as {roleLabel}. Wellness answers and welfare concerns are never used.
           </div>
         </div>
@@ -251,10 +251,10 @@ export default function HomeScreen({ onNav, onCalendar, empty, onAsk, askQuestio
       <div style={{ gridColumn: 'span 4', display: 'flex', flexDirection: 'column', gap: 14, minHeight: 0 }}>
 
         {/* Needs you */}
-        <section className="tile" style={{ flex: 'none', padding: '0', overflow: 'hidden', gap: 0 }} aria-label="Needs you">
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '14px 18px', background: '#1f4a3e', color: '#ffffff' }}>
+        <section className="tile" style={{ borderTop: '5px solid #c39797', flex: 'none', padding: '0', overflow: 'hidden', gap: 0 }} aria-label="Needs you">
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '14px 18px', background: '#33212b', color: '#ffffff' }}>
             <h2 className="h2">Needs you</h2>
-            <span style={{ background: '#ffffff', color: '#006666', borderRadius: '999px', padding: '2px 10px', fontSize: 13, lineHeight: '18px', fontWeight: 700 }}>3 new</span>
+            <span style={{ background: '#ffffff', color: '#33212b', borderRadius: '999px', padding: '2px 10px', fontSize: 13, lineHeight: '18px', fontWeight: 700 }}>3 new</span>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             {INBOX.filter(item => item.unread).map((item, i) => (
@@ -335,7 +335,7 @@ export default function HomeScreen({ onNav, onCalendar, empty, onAsk, askQuestio
               <circle cx="35" cy="57" r="7"/><circle cx="61" cy="57" r="7"/>
               <circle cx="61" cy="81" r="7"/>
             </g>
-            <circle cx="9" cy="57" r="7" fill="#cbbeb5" />
+            <circle cx="9" cy="57" r="7" fill="#e8cfcf" />
           </svg>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -397,7 +397,7 @@ export default function HomeScreen({ onNav, onCalendar, empty, onAsk, askQuestio
             {LAST_GAME_FINDINGS.map((f, i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '9px 0', borderTop: i > 0 ? '1px solid #e9eae8' : 'none' }}>
                 <span style={{ flexGrow: 1, fontSize: 14, color: '#10211f', lineHeight: '19px' }}>{f.text}</span>
-                <span style={{ flex: 'none', padding: '2px 10px', borderRadius: '999px', fontSize: 13, fontWeight: 700, background: f.keep ? '#40826d' : '#cbbeb5', color: f.keep ? '#ffffff' : '#10211f' }}>{f.label}</span>
+                <span style={{ flex: 'none', padding: '2px 10px', borderRadius: '999px', fontSize: 13, fontWeight: 700, background: f.keep ? '#40826d' : '#e8cfcf', color: f.keep ? '#ffffff' : '#10211f' }}>{f.label}</span>
               </div>
             ))}
           </div>
@@ -444,7 +444,7 @@ export default function HomeScreen({ onNav, onCalendar, empty, onAsk, askQuestio
           </div>
           <div style={{ width: '100%' }}>
             <div style={{ fontSize: 14, lineHeight: '20px', marginBottom: 6 }}>Next: <strong>{RESULTS.next}</strong></div>
-            <div style={{ background: '#cbbeb5', color: '#10211f', borderRadius: 10, padding: '6px 10px', fontSize: 14, lineHeight: '20px' }}>
+            <div style={{ background: '#e8cfcf', color: '#10211f', borderRadius: 10, padding: '6px 10px', fontSize: 14, lineHeight: '20px' }}>
               {RESULTS.nextDetail}
             </div>
           </div>

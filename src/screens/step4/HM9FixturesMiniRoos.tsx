@@ -20,7 +20,7 @@ export default function HM9FixturesMiniRoos(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string|null>(null)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
-    <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }}>
+    <div style={{ width: 1180, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }}>
       <div style={{ background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 20, height: 64 }}>
         <div style={{ fontSize: 21, fontWeight: 800, color: '#fff', letterSpacing: '-0.02em' }}>Clean Sheet</div>
         {['Home', 'Squad', 'Training', 'Game day'].map(t => (
@@ -34,7 +34,7 @@ export default function HM9FixturesMiniRoos(_: { onBack?: () => void }) {
           <div key={t} style={{ height: 44, display: 'flex', alignItems: 'center', fontSize: 15, fontWeight: 600, color: t === 'Fixtures' ? INK : MUT, borderBottom: t === 'Fixtures' ? `3px solid #40826d` : '3px solid transparent', boxSizing: 'border-box', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>
         ))}
         <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', height: 44 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 6, height: 32, padding: '0 12px', borderRadius: 999, background: PALE, color: G, fontSize: 13, fontWeight: 700 }}>Coach · MiniRoos</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, height: 32, padding: '0 12px', borderRadius: 999, background: '#f4e6e6', color: '#10211f', fontSize: 13, fontWeight: 700 }}>Coach · MiniRoos</div>
         </div>
       </div>
 
@@ -50,7 +50,7 @@ export default function HM9FixturesMiniRoos(_: { onBack?: () => void }) {
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '14px 18px 8px', display: 'flex', flexDirection: 'column', gap: 0 }}>
           <div style={{ display: 'grid', gridTemplateColumns: '110px 1.2fr 1.3fr 90px 1.3fr', gap: 10, paddingBottom: 8 }}>
             {['Date', 'Against', 'Where', 'Time', 'Note'].map(h => (
-              <div key={h} style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT }}>{h}</div>
+              <div key={h} style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b' }}>{h}</div>
             ))}
           </div>
           {FIXTURES.map(f => (
@@ -75,7 +75,7 @@ export default function HM9FixturesMiniRoos(_: { onBack?: () => void }) {
             <div style={{ fontSize: 17, fontWeight: 700, marginBottom: 4 }}>This Saturday</div>
             {[
               { icon: '✓', label: 'Meet 8:10', note: 'Sent to families Thursday', bg: PALE },
-              { icon: '!', label: 'Game leader', note: 'Still needed', bg: '#cbbeb5' },
+              { icon: '!', label: 'Game leader', note: 'Still needed', bg: '#e8cfcf' },
             ].map(item => (
               <div key={item.label} style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 50, borderTop: `1px solid ${LN}` }}>
                 <div style={{ width: 30, height: 30, borderRadius: 999, background: item.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0 }}>{item.icon}</div>

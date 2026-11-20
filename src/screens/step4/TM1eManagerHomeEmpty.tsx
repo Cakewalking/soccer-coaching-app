@@ -20,13 +20,13 @@ export default function TM1eManagerHomeEmpty(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string | null>(null)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
-    <div style={{ width: 390, minHeight: 844, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
+    <div style={{ width: 390, minHeight: 844, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
       <div style={{ background: GD, padding: '14px 18px 12px', display: 'flex', alignItems: 'center', gap: 12 }}>
         <div style={{ flexGrow: 1 }}>
           <div style={{ fontSize: 12, color: '#cfe6dc' }}>U12 Sam · Team manager</div>
           <div style={{ fontSize: 21, fontWeight: 700, color: '#fff' }}>Welcome, Rob</div>
         </div>
-        <div style={{ width: 40, height: 40, borderRadius: '50%', background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700, color: INK }}>RO</div>
+        <div style={{ width: 40, height: 40, borderRadius: '50%', background: '#e8cfcf', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700, color: INK }}>RO</div>
       </div>
       <div style={{ flexGrow: 1, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 10, overflowY: 'auto' }}>
         <div style={{ background: '#fff', border: `2px dashed ${LN}`, borderRadius: 16, padding: '24px 20px', textAlign: 'center' as const }}>
@@ -40,7 +40,7 @@ export default function TM1eManagerHomeEmpty(_: { onBack?: () => void }) {
         </div>
         {[{ label: 'NEXT GAME', items: [null, null] }, { label: 'TO DO THIS WEEK', items: [null, null, null] }].map(section => (
           <div key={section.label} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '12px 14px' }}>
-            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 10 }}>{section.label}</div>
+            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 10 }}>{section.label}</div>
             {section.items.map((_, i) => (
               <div key={i} style={{ display: 'flex', gap: 12, padding: '8px 0', borderBottom: `1px solid ${LN}` }}>
                 <div style={{ width: 36, height: 10, borderRadius: 6, background: '#e8e9e7' }} />

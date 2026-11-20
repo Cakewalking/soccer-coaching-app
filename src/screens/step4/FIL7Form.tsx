@@ -31,7 +31,7 @@ export default function FIL7Form({ onBack, onShare, onAnswersSheet, onNav, bare 
   }
 
   return (
-    <div style={{ width: bare ? '100%' : 1180, flex: bare ? 1 : undefined, background: '#f7f8f7', fontFamily: 'var(--font-sans)', minHeight: bare ? 0 : 820, display: 'flex', flexDirection: 'column' }} data-lasttool={lastTool}>
+    <div style={{ width: bare ? '100%' : 1180, flex: bare ? 1 : undefined, background: '#faf5ec', fontFamily: 'var(--font-sans)', minHeight: bare ? 0 : 820, display: 'flex', flexDirection: 'column' }} data-lasttool={lastTool}>
       {!bare && (<>
       {/* Top nav */}
       <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 24, height: 52, flexShrink: 0 }}>

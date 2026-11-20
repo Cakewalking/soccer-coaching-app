@@ -35,7 +35,7 @@ export default function FIL2bSheetLineup({ onBack, onShare, onNav, bare }: {
   const games = ['Game 1 · 11 Oct', 'Game 2 · 18 Oct', 'Game 3 · Northgate', 'Game 4 · 1 Nov']
 
   return (
-    <div style={{ width: bare ? '100%' : 1180, flex: bare ? 1 : undefined, background: '#f7f8f7', fontFamily: 'var(--font-sans)', minHeight: bare ? 0 : 820, display: 'flex', flexDirection: 'column' }} data-lasttool={lastTool}>
+    <div style={{ width: bare ? '100%' : 1180, flex: bare ? 1 : undefined, background: '#faf5ec', fontFamily: 'var(--font-sans)', minHeight: bare ? 0 : 820, display: 'flex', flexDirection: 'column' }} data-lasttool={lastTool}>
       {!bare && (<>
       {/* Top nav */}
       <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 24, height: 52, flexShrink: 0 }}>

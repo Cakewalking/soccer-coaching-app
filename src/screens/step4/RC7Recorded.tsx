@@ -25,7 +25,7 @@ export default function RC7Recorded(_: { onBack?: () => void }) {
   void st   // kept for lines this screen may still need to say
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
-    <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#faf5ec', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       <div style={{ flex: 'none', background: '#fff', borderBottom: `1px solid ${LN}` }}>
         <div style={{ height: 64, boxSizing: 'border-box', padding: '0 28px', display: 'flex', alignItems: 'center', gap: 4, background: G }}>
           <div style={{ fontSize: 20, fontWeight: 700, color: '#fff', marginRight: 16, letterSpacing: '-0.02em' }}>Clean Sheet</div>
@@ -50,8 +50,8 @@ export default function RC7Recorded(_: { onBack?: () => void }) {
         </div>
 
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '110px 1fr 90px 60px 1fr', padding: '10px 18px', background: '#f7f8f7', borderBottom: `1px solid ${LN}`, flex: 'none' }}>
-            {['Date', 'Name', 'Type', 'Players', 'Key number'].map(h => <div key={h} style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT }}>{h}</div>)}
+          <div style={{ display: 'grid', gridTemplateColumns: '110px 1fr 90px 60px 1fr', padding: '10px 18px', background: '#faf5ec', borderBottom: `1px solid ${LN}`, flex: 'none' }}>
+            {['Date', 'Name', 'Type', 'Players', 'Key number'].map(h => <div key={h} style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b' }}>{h}</div>)}
           </div>
           <div style={{ overflowY: 'auto' as const, flex: 1 }}>
             {RECORDS.map((r, i) => (

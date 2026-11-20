@@ -32,7 +32,7 @@ export default function DX1CompareTeams(_: { onBack?: () => void }) {
     { label: 'Training', va: ta.training, vb: tb.training },
   ]
   return (
-    <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, position: 'relative' }}>
+    <div style={{ width: 1180, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, position: 'relative' }}>
       <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 32, height: 52 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff', letterSpacing: '-0.01em' }}>Clean Sheet</div>
         {['Club', 'Teams', 'Coaches', 'Players', 'Safeguarding', 'Reports'].map(tab => (
@@ -72,7 +72,7 @@ export default function DX1CompareTeams(_: { onBack?: () => void }) {
             </div>
           </div>
           <div>
-            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 10 }}>What stands out</div>
+            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 10 }}>What stands out</div>
             <div style={{ background: PALE, borderRadius: 12, padding: '14px 14px', fontSize: 13, color: GD, lineHeight: 1.6 }}>
               {ta.playingPct < tb.playingPct ? `${a} is 29 percentage points behind ${b} on playing our way. Consider reviewing session plans with ${ta.coach}.` : `${a} leads ${b} on playing our way. ${ta.coach} may have useful session ideas to share.`}
             </div>

@@ -151,7 +151,7 @@ export default function TeamSheetBody({ cfg, onBack, onShare, onTool }: {
     (v === 'table' && label === 'Table') || (v === 'lineup' && label === 'Line-up') || (v === 'print' && label === 'Print')
 
   return (
-    <div data-lasttool={lastTool} style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', background: '#f7f8f7', minHeight: 0 }}>
+    <div data-lasttool={lastTool} style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', background: '#faf5ec', minHeight: 0 }}>
 
       {/* Document header */}
       <div style={{ background: '#fff', borderBottom: `1px solid ${LN}`, padding: '0 20px', display: 'flex', alignItems: 'center', gap: 12, height: 56, flexShrink: 0 }}>
@@ -247,13 +247,13 @@ export default function TeamSheetBody({ cfg, onBack, onShare, onTool }: {
                     <col />
                   </colgroup>
                   <thead>
-                    <tr style={{ background: '#f7f8f7' }}>
+                    <tr style={{ background: '#faf5ec' }}>
                       <td style={{ borderBottom: `1px solid ${LN}`, borderRight: `1px solid ${LN}` }} />
                       {colLabels.map(l => (
                         <td key={l} style={{ padding: '3px 0', borderBottom: `1px solid ${LN}`, borderRight: `1px solid ${LN}`, fontSize: 10, color: MUT, textAlign: 'center', fontWeight: 600 }}>{l}</td>
                       ))}
                     </tr>
-                    <tr style={{ background: '#f7f8f7' }}>
+                    <tr style={{ background: '#faf5ec' }}>
                       <td style={{ padding: '8px 10px', borderBottom: `2px solid ${LN}`, borderRight: `1px solid ${LN}` }} />
                       <td style={{ padding: '8px 10px', borderBottom: `2px solid ${LN}`, borderRight: `1px solid ${LN}`, fontSize: 11, fontWeight: 700, color: MUT }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
@@ -325,7 +325,7 @@ export default function TeamSheetBody({ cfg, onBack, onShare, onTool }: {
                     })}
                   </tbody>
                   <tfoot>
-                    <tr style={{ background: '#f7f8f7', borderTop: `2px solid ${LN}` }}>
+                    <tr style={{ background: '#faf5ec', borderTop: `2px solid ${LN}` }}>
                       <td colSpan={3} style={{ padding: '8px 10px', borderRight: `1px solid ${LN}`, fontSize: 12, fontWeight: 700, color: MUT }}>On the pitch</td>
                       {cfg.gameCols.map((_, ci) => {
                         const off = onPitch[ci] !== pitchTarget
@@ -344,9 +344,9 @@ export default function TeamSheetBody({ cfg, onBack, onShare, onTool }: {
               <div style={{ background: '#fff', borderTop: `1px solid ${LN}`, padding: '0 16px', display: 'flex', alignItems: 'center', height: 52, gap: 4, flexShrink: 0 }}>
                 <div style={{ display: 'flex', gap: 2, overflowX: 'auto', scrollbarWidth: 'none' }}>
                   {sheets.map(t => (
-                    <button key={t} onClick={() => { setActiveTab(t); tool(t) }} style={{ minHeight: 44, padding: '0 14px', borderRadius: '8px 8px 0 0', border: `1.5px solid ${LN}`, borderBottom: activeTab === t ? '1.5px solid #fff' : `1.5px solid ${LN}`, background: activeTab === t ? '#fff' : '#f7f8f7', fontSize: 12, color: activeTab === t ? INK : MUT, cursor: 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap' }}>{t}</button>
+                    <button key={t} onClick={() => { setActiveTab(t); tool(t) }} style={{ minHeight: 44, padding: '0 14px', borderRadius: '8px 8px 0 0', border: `1.5px solid ${LN}`, borderBottom: activeTab === t ? '1.5px solid #fff' : `1.5px solid ${LN}`, background: activeTab === t ? '#fff' : '#faf5ec', fontSize: 12, color: activeTab === t ? INK : MUT, cursor: 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap' }}>{t}</button>
                   ))}
-                  <button onClick={addSheet} style={{ minHeight: 44, padding: '0 10px', borderRadius: '8px 8px 0 0', border: `1.5px solid ${LN}`, background: '#f7f8f7', fontSize: 12, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>+ Sheet</button>
+                  <button onClick={addSheet} style={{ minHeight: 44, padding: '0 10px', borderRadius: '8px 8px 0 0', border: `1.5px solid ${LN}`, background: '#faf5ec', fontSize: 12, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>+ Sheet</button>
                 </div>
                 <div style={{ marginLeft: 'auto', fontSize: 11, color: MUT, whiteSpace: 'nowrap', paddingLeft: 12 }}>{cfg.footerNote}</div>
               </div>
@@ -366,9 +366,9 @@ export default function TeamSheetBody({ cfg, onBack, onShare, onTool }: {
               </div>
               <div style={{ display: 'flex', gap: 2, marginTop: 'auto' }}>
                 {sheets.map(t => (
-                  <button key={t} onClick={() => { setActiveTab(t); tool(t) }} style={{ minHeight: 44, padding: '0 14px', borderRadius: '8px 8px 0 0', border: `1.5px solid ${LN}`, background: activeTab === t ? '#fff' : '#f7f8f7', fontSize: 12, color: activeTab === t ? INK : MUT, cursor: 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap' }}>{t}</button>
+                  <button key={t} onClick={() => { setActiveTab(t); tool(t) }} style={{ minHeight: 44, padding: '0 14px', borderRadius: '8px 8px 0 0', border: `1.5px solid ${LN}`, background: activeTab === t ? '#fff' : '#faf5ec', fontSize: 12, color: activeTab === t ? INK : MUT, cursor: 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap' }}>{t}</button>
                 ))}
-                <button onClick={addSheet} style={{ minHeight: 44, padding: '0 10px', borderRadius: '8px 8px 0 0', border: `1.5px solid ${LN}`, background: '#f7f8f7', fontSize: 12, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>+ Sheet</button>
+                <button onClick={addSheet} style={{ minHeight: 44, padding: '0 10px', borderRadius: '8px 8px 0 0', border: `1.5px solid ${LN}`, background: '#faf5ec', fontSize: 12, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>+ Sheet</button>
               </div>
             </div>
           )}
@@ -380,9 +380,9 @@ export default function TeamSheetBody({ cfg, onBack, onShare, onTool }: {
               <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 12, padding: 16, fontSize: 12, color: MUT }}>Print preview</div>
               <div style={{ display: 'flex', gap: 2, marginTop: 16 }}>
                 {cfg.initialSheets.map(t => (
-                  <button key={t} onClick={() => { setActiveTab(t); tool(t) }} style={{ minHeight: 44, padding: '0 14px', borderRadius: '8px 8px 0 0', border: `1.5px solid ${LN}`, background: activeTab === t ? '#fff' : '#f7f8f7', fontSize: 12, color: activeTab === t ? INK : MUT, cursor: 'pointer', fontFamily: 'inherit' }}>{t}</button>
+                  <button key={t} onClick={() => { setActiveTab(t); tool(t) }} style={{ minHeight: 44, padding: '0 14px', borderRadius: '8px 8px 0 0', border: `1.5px solid ${LN}`, background: activeTab === t ? '#fff' : '#faf5ec', fontSize: 12, color: activeTab === t ? INK : MUT, cursor: 'pointer', fontFamily: 'inherit' }}>{t}</button>
                 ))}
-                <button onClick={() => tool('+ Sheet')} style={{ minHeight: 44, padding: '0 10px', borderRadius: '8px 8px 0 0', border: `1.5px solid ${LN}`, background: '#f7f8f7', fontSize: 12, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>+ Sheet</button>
+                <button onClick={() => tool('+ Sheet')} style={{ minHeight: 44, padding: '0 10px', borderRadius: '8px 8px 0 0', border: `1.5px solid ${LN}`, background: '#faf5ec', fontSize: 12, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>+ Sheet</button>
               </div>
             </div>
           )}

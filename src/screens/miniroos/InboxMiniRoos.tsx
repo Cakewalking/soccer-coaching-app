@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { EmptyCard } from '../clubadmin/ui'
 
 const MESSAGES = [
-  { id: 'availability', ini: 'SA', bg: '#cbbeb5', from: 'Saturday', date: 'Today', text: '2 families haven\'t said if they\'re coming', unread: true },
+  { id: 'availability', ini: 'SA', bg: '#e8cfcf', from: 'Saturday', date: 'Today', text: '2 families haven\'t said if they\'re coming', unread: true },
   { id: 'referee', ini: 'RF', bg: '#c39797', from: 'Referees', date: 'Yesterday', text: 'Saturday still needs a game leader', unread: true },
   { id: 'omar', ini: 'SH', bg: '#e9eae8', from: 'Sami Haddad · Omar\'s dad', date: 'Mon', text: 'Omar\'s away this week', unread: false },
   { id: 'photo', ini: 'BR', bg: '#e9eae8', from: 'Bianca Rossi · club', date: 'Mon', text: 'Photo day is Saturday 20 June', unread: false },

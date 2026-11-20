@@ -26,7 +26,7 @@ export default function IL1Injuries(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string|null>(null)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
-    <div style={{ width: 1180, height: 820, background: '#f7f8f7', boxSizing: 'border-box' as const, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' as const }}>
+    <div style={{ width: 1180, height: 820, background: '#faf5ec', boxSizing: 'border-box' as const, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' as const }}>
       <div style={{ height: 64, background: G, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 16, flex: 'none' }}>
         <div style={{ fontSize: 21, fontWeight: 700, color: '#fff', letterSpacing: '-0.02em' }}>Clean Sheet</div>
         <div style={{ flex: 1, fontSize: 13, color: 'rgba(255,255,255,0.7)' }}>U12 Sam · Wattle Creek · Fitness coach</div>
@@ -50,7 +50,7 @@ export default function IL1Injuries(_: { onBack?: () => void }) {
             ))}
           </div>
           <div style={{ background: '#fff', border: `1px solid #c5c8c4`, borderRadius: 16, padding: '14px 16px', flex: 1 }}>
-            <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 6, color: MUT, textTransform: 'uppercase' as const, letterSpacing: '0.06em' }}>Active</div>
+            <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 6, color: '#7a4b5b', textTransform: 'uppercase' as const, letterSpacing: '0.06em' }}>Active</div>
             {ACTIVE.map((p, i) => (
               <div key={i} style={{ display: 'grid', gridTemplateColumns: '44px 1fr 120px 180px', alignItems: 'center', minHeight: 52, borderTop: `1px solid ${LN}`, gap: 12 }}>
                 <span style={{ width: 28, height: 28, borderRadius: '50%', background: '#fce9e9', color: '#c00', fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{p.ini}</span>
@@ -59,7 +59,7 @@ export default function IL1Injuries(_: { onBack?: () => void }) {
                 <StepBar n={p.step} />
               </div>
             ))}
-            <div style={{ fontSize: 14, fontWeight: 700, margin: '10px 0 6px', color: MUT, textTransform: 'uppercase' as const, letterSpacing: '0.06em' }}>Cleared</div>
+            <div style={{ fontSize: 14, fontWeight: 700, margin: '10px 0 6px', color: '#7a4b5b', textTransform: 'uppercase' as const, letterSpacing: '0.06em' }}>Cleared</div>
             {BACK.map((p, i) => (
               <div key={i} style={{ display: 'grid', gridTemplateColumns: '44px 1fr 120px 180px', alignItems: 'center', minHeight: 48, borderTop: `1px solid ${LN}`, gap: 12, opacity: 0.7 }}>
                 <span style={{ width: 28, height: 28, borderRadius: '50%', background: PALE, color: G, fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{p.ini}</span>

@@ -46,7 +46,7 @@ export function Page({ id, title, sub, right, step, go, cols, children, foot, sm
   const narrow = useContext(NarrowCtx)
   if (narrow) { cols = 'minmax(0,1fr)'; step = undefined }
   return (
-    <div data-screen={id} style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, minHeight: '100%', boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: "'DM Sans',system-ui,sans-serif" }}>
+    <div data-screen={id} style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, minHeight: '100%', boxSizing: 'border-box', background: '#faf5ec', color: INK, fontFamily: "'DM Sans',system-ui,sans-serif" }}>
       <div style={{ flex: 'none', padding: narrow ? '12px 16px 0' : '14px 24px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: narrow ? 8 : 14, flexWrap: narrow ? 'wrap' : undefined }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: narrow ? 4 : 14, flexWrap: 'wrap', minWidth: 0 }}>
           <h1 style={{ margin: 0, fontSize: 26, lineHeight: '32px', fontWeight: 700, letterSpacing: '-0.02em' }}>{title}</h1>
@@ -400,7 +400,7 @@ export function QC5WhoIsWho({ s, go, say }: ScreenProps) {
       right={<Btn big onClick={() => go('FB1-Formation')}>From Saturday’s line-up</Btn>}
       foot={<><Btn onClick={() => go('QC4-SetUpGuide')}>Back</Btn>{footNote(clash ? 'One shirt clash to sort. You can confirm anyway and fix names after the game.' : 'Every shirt number is one player. Vest assignment is what we trust.')}<Btn primary onClick={() => { setCapture({ whoDone: true }); go('QC6-TestResult') }}>Confirm {SQUAD} players</Btn></>}>
       <section aria-label="Players" style={{ ...tile, gap: 0, padding: '8px 18px 4px', overflowX: 'auto' }}>
-        <div style={{ minWidth: 500, display: 'grid', gridTemplateColumns: grid, alignItems: 'center', height: 26, fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: MUT, marginBottom: -2 }}>
+        <div style={{ minWidth: 500, display: 'grid', gridTemplateColumns: grid, alignItems: 'center', height: 26, fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#7a4b5b', marginBottom: -2 }}>
           <span /><span>Player</span><span style={{ textAlign: 'center' }}>Shirt</span><span style={{ paddingLeft: 8 }}>Vest</span><span>Boots</span><span>Film</span>
         </div>
         {LINEUP.map(p => {

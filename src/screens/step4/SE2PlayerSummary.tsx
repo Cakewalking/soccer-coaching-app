@@ -6,7 +6,7 @@ export default function SE2PlayerSummary({onBack}:{onBack?:()=>void}){
   void t   // kept for lines this screen may still need to say
   function t(m:string){setToast(m);setTimeout(()=>setToast(null),3200)}
   return(
-    <div style={{padding:'20px 28px 40px',background:'#f7f8f7',minHeight:'100%',boxSizing:'border-box',fontFamily:'var(--font-sans)',position:'relative'}}>
+    <div style={{padding:'20px 28px 40px',background:'#faf5ec',minHeight:'100%',boxSizing:'border-box',fontFamily:'var(--font-sans)',position:'relative'}}>
       <div style={{display:'flex',alignItems:'flex-start',justifyContent:'space-between',marginBottom:20}}>
         <div>
           <button onClick={onBack} style={{display:'flex',alignItems:'center',gap:6,background:'none',border:'none',cursor:'pointer',color:MUT,fontFamily:'inherit',fontSize:13,fontWeight:500,padding:0,marginBottom:12}}>
@@ -58,7 +58,7 @@ export default function SE2PlayerSummary({onBack}:{onBack?:()=>void}){
         </div>
         <div>
           <div style={{background:'#fff',border:`1px solid ${LN}`,borderRadius:14,padding:'14px 16px',marginBottom:16}}>
-            <div style={{fontSize:13,fontWeight:700,color:MUT,marginBottom:12,letterSpacing:'0.06em',textTransform:'uppercase' as const}}>Three clips she chose</div>
+            <div style={{fontSize:13,fontWeight:700,color: '#7a4b5b',marginBottom:12,letterSpacing:'0.06em',textTransform:'uppercase' as const}}>Three clips she chose</div>
             {[
               {time:'Round 4 · 34:12','label':'Goal — first touch, then finish'},
               {time:'Round 9 · 18:44','label':'Won the ball back in midfield'},

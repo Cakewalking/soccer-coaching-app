@@ -29,7 +29,7 @@ export default function D5Safeguarding({ initialTab = 'consent' }: { onBack?: ()
   ]
 
   return (
-    <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' as const, minHeight: 820, position: 'relative' }}>
+    <div style={{ width: 1180, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' as const, minHeight: 820, position: 'relative' }}>
       {/* Top nav */}
       <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 32, height: 52 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff', letterSpacing: '-0.01em' }}>Clean Sheet</div>
@@ -62,7 +62,7 @@ export default function D5Safeguarding({ initialTab = 'consent' }: { onBack?: ()
                 { label: 'Full video kept', val: '90 days', sub: 'Kept clips go at season end', ok: true },
               ].map(s => (
                 <div key={s.label} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 12, padding: '14px 16px' }}>
-                  <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 6 }}>{s.label}</div>
+                  <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 6 }}>{s.label}</div>
                   <div style={{ fontSize: 20, fontWeight: 800, color: s.ok ? GD : '#c05' }}>{s.val}</div>
                   <div style={{ fontSize: 12, color: MUT, marginTop: 2 }}>{s.sub}</div>
                 </div>

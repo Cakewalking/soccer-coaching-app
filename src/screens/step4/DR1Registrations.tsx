@@ -16,7 +16,7 @@ export default function DR1Registrations(_: { onBack?: () => void }) {
   const feeOwing = TEAMS.reduce((a, t) => a + (t[2] as number), 0)
   const noConsent = TEAMS.reduce((a, t) => a + (t[3] as number), 0)
   return (
-    <div style={{ width: 1180, height: 820, background: '#f7f8f7', boxSizing: 'border-box' as const, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' as const }}>
+    <div style={{ width: 1180, height: 820, background: '#faf5ec', boxSizing: 'border-box' as const, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' as const }}>
       <div style={{ height: 64, background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 12, flex: 'none' }}>
         <div style={{ fontSize: 21, fontWeight: 700, color: '#fff', letterSpacing: '-0.02em' }}>Clean Sheet</div>
         <span style={{ padding: '2px 9px', borderRadius: 6, background: 'rgba(255,255,255,0.15)', fontSize: 11, fontWeight: 700, color: '#fff', letterSpacing: '0.08em' }}>CLUB</span>
@@ -41,7 +41,7 @@ export default function DR1Registrations(_: { onBack?: () => void }) {
             ))}
           </div>
           <div style={{ background: '#fff', border: `1px solid #c5c8c4`, borderRadius: 16, padding: '12px 16px', flex: 1, overflow: 'hidden' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 80px 100px 100px', fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, paddingBottom: 6 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 80px 100px 100px', fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', paddingBottom: 6 }}>
               {['Team','Players','Fees owing','No consent'].map(h => <span key={h}>{h}</span>)}
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', columnGap: 20 }}>

@@ -47,7 +47,7 @@ export default function QC11ClubCaptureRules({ onNav }: { onNav?: (s: string) =>
   }
   const grid = 'minmax(0,1fr) repeat(6,86px)'
   return (
-    <div data-screen="QC11-ClubCaptureRules" style={{ display: 'flex', flexDirection: 'column', minHeight: '100%', boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: "'DM Sans',system-ui,sans-serif" }}>
+    <div data-screen="QC11-ClubCaptureRules" style={{ display: 'flex', flexDirection: 'column', minHeight: '100%', boxSizing: 'border-box', background: '#faf5ec', color: INK, fontFamily: "'DM Sans',system-ui,sans-serif" }}>
       <div style={{ flex: 'none', padding: '10px 24px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 14 }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 14, flexWrap: 'wrap' }}>
           <h1 style={{ margin: 0, fontSize: 26, lineHeight: '32px', fontWeight: 700, letterSpacing: '-0.02em' }}>What teams may capture</h1>

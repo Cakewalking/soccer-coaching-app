@@ -10,7 +10,7 @@ export default function SG3AskCleanSheet(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string|null>(null)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
-    <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#faf5ec', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       <div style={{ flex: 'none', background: '#fff', borderBottom: `1px solid ${LN}` }}>
         <div style={{ height: 64, boxSizing: 'border-box', padding: '0 28px', display: 'flex', alignItems: 'center', gap: 4, background: G }}>
           <div style={{ fontSize: 20, fontWeight: 700, color: '#fff', marginRight: 16, letterSpacing: '-0.02em' }}>Clean Sheet</div>
@@ -66,7 +66,7 @@ export default function SG3AskCleanSheet(_: { onBack?: () => void }) {
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 14, paddingBottom: 16 }}>
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '14px 16px' }}>
-            <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 10 }}>Try asking</div>
+            <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 10 }}>Try asking</div>
             {['Why do you suggest pressing drills for tonight?', 'What helped Noah\'s first touch improve?', 'Show drills that work without GPS vests', 'What did you learn from the last 3 games?'].map(q => (
               <button key={q} style={{ display: 'block', width: '100%', textAlign: 'left' as const, padding: '8px 12px', border: `1px solid ${LN}`, borderRadius: 8, background: '#fff', fontSize: 14, color: G, fontWeight: 600, marginBottom: 6, cursor: 'pointer' }}>{q}</button>
             ))}

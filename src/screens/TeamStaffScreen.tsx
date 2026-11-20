@@ -289,7 +289,7 @@ export default function TeamStaffScreen({ empty, teamType = 'juniors' }: { empty
               <div style={{ fontSize: 12, fontWeight: 700, color: MUT, letterSpacing: '0.07em', marginBottom: 6 }}>ROLE</div>
               <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' as const }}>
                 {['Assistant coach', 'Team manager', 'Fitness (club)', 'Other'].map(r => (
-                  <button key={r} onClick={() => setSelectedRole(r)} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1.5px solid ${selectedRole === r ? G : LN}`, background: selectedRole === r ? PALE : '#f7f9f7', color: selectedRole === r ? G : MUT, fontSize: 13, fontWeight: selectedRole === r ? 700 : 400, cursor: 'pointer', fontFamily: 'inherit' }}>{r}</button>
+                  <button key={r} onClick={() => setSelectedRole(r)} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1.5px solid ${selectedRole === r ? G : LN}`, background: selectedRole === r ? PALE : '#faf5ec', color: selectedRole === r ? G : MUT, fontSize: 13, fontWeight: selectedRole === r ? 700 : 400, cursor: 'pointer', fontFamily: 'inherit' }}>{r}</button>
                 ))}
               </div>
             </div>

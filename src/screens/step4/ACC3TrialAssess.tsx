@@ -27,7 +27,7 @@ export default function ACC3TrialAssess(_: { onBack?: () => void }) {
   const ratingOptions: Rating[] = ['Starting out', 'Getting there', 'Strong']
 
   return (
-    <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, position: 'relative', display: 'flex', flexDirection: 'column' as const }}>
+    <div style={{ width: 1180, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, position: 'relative', display: 'flex', flexDirection: 'column' as const }}>
       {/* Top nav */}
       <div style={{ background: G, height: 64, display: 'flex', alignItems: 'center', padding: '0 24px', gap: 0, flexShrink: 0 }}>
         <span style={{ color: '#fff', fontSize: 21, fontWeight: 700, marginRight: 32, letterSpacing: '-0.01em' }}>Clean Sheet</span>
@@ -50,7 +50,7 @@ export default function ACC3TrialAssess(_: { onBack?: () => void }) {
             </button>
         ))}
         <div style={{ flex: 1 }} />
-        <span style={{ height: 32, padding: '0 12px', borderRadius: 999, background: PALE, color: G, fontSize: 13, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 6 }}>Academy coach</span>
+        <span style={{ height: 32, padding: '0 12px', borderRadius: 999, background: '#f4e6e6', color: '#10211f', fontSize: 13, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 6 }}>Academy coach</span>
       </div>
 
       {/* Page header */}
@@ -109,7 +109,7 @@ export default function ACC3TrialAssess(_: { onBack?: () => void }) {
         <div style={{ gridColumn: 'span 4', display: 'flex', flexDirection: 'column' as const, gap: 14 }}>
           {/* Suggested group */}
           <div style={{ background: '#fff', border: `2px solid ${G}`, borderRadius: 16, padding: '14px 18px', display: 'flex', flexDirection: 'column' as const, gap: 8 }}>
-            <div style={{ fontSize: 11, fontWeight: 700, color: MUT, letterSpacing: '0.08em', textTransform: 'uppercase' as const }}>SUGGESTED GROUP</div>
+            <div style={{ fontSize: 11, fontWeight: 700, color: '#7a4b5b', letterSpacing: '0.08em', textTransform: 'uppercase' as const }}>SUGGESTED GROUP</div>
             <div style={{ fontSize: 22, fontWeight: 700, color: INK }}>Development</div>
             <div style={{ fontSize: 13, color: MUT }}>Tue and Thu 4:30 · 2 places open. He'd fit in comfortably and be stretched on first touch.</div>
             <button onClick={() => mark('group')} style={{ alignSelf: 'flex-start', background: 'none', border: 'none', color: G, fontSize: 13, fontWeight: 600, cursor: 'pointer', padding: 0, marginTop: 4 }}>{is('group') ? 'Changed to Advanced ✓' : 'Suggest another group'}</button>

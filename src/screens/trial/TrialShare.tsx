@@ -16,7 +16,7 @@ export function TrialShareBody({ player, team, pack, preview, demo, coach = 'Sam
   const facts = factsFor(player).filter(f => pack.facts.includes(f.id))
   const live = preview || demo || linkLive(pack)
   if (!live) return (
-    <div data-screen="TP2-TrialShare" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24, background: '#f7f8f7', fontFamily: "'DM Sans',system-ui,sans-serif", color: INK }}>
+    <div data-screen="TP2-TrialShare" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 24, background: '#faf5ec', fontFamily: "'DM Sans',system-ui,sans-serif", color: INK }}>
       <div style={{ ...tile, maxWidth: 440, padding: '24px', gap: 8, textAlign: 'center', alignItems: 'center' }}>
         <Logo size={40} />
         <strong style={{ fontSize: 20 }}>This link is not active</strong>
@@ -26,7 +26,7 @@ export function TrialShareBody({ player, team, pack, preview, demo, coach = 'Sam
   )
   const cur = clips[at]
   return (
-    <div data-screen="TP2-TrialShare" style={{ minHeight: '100vh', background: '#f7f8f7', color: INK, fontFamily: "'DM Sans',system-ui,sans-serif" }}>
+    <div data-screen="TP2-TrialShare" style={{ minHeight: '100vh', background: '#faf5ec', color: INK, fontFamily: "'DM Sans',system-ui,sans-serif" }}>
       <header data-club-bar="" style={{ background: DARK, color: '#fff' }}>
         <div style={{ maxWidth: 980, margin: '0 auto', padding: '14px 16px', display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
           <Logo size={32} /><strong style={{ fontSize: 17 }}>Clean Sheet</strong>
@@ -38,7 +38,7 @@ export function TrialShareBody({ player, team, pack, preview, demo, coach = 'Sam
         {demo && <div role="note" style={{ borderRadius: 12, background: PALE, padding: '10px 14px', fontSize: 13, lineHeight: '19px' }}><strong>Demo.</strong> A made-up player at a made-up club. In the live app this page shows only what the family approved.</div>}
         {preview && <div role="note" style={{ borderRadius: 12, background: PALE, padding: '10px 14px', fontSize: 13, lineHeight: '19px' }}><strong>Preview.</strong> This is what the new club will see. Nothing has been shared yet.</div>}
         <section aria-label="Player" style={{ display: 'flex', alignItems: 'center', gap: 14, flexWrap: 'wrap' }}>
-          <span style={{ width: 64, height: 64, borderRadius: 999, background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20, fontWeight: 700 }}>{player.ini}</span>
+          <span style={{ width: 64, height: 64, borderRadius: 999, background: '#e8cfcf', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20, fontWeight: 700 }}>{player.ini}</span>
           <span style={{ display: 'flex', flexDirection: 'column' }}>
             <h1 style={{ margin: 0, fontSize: 28, lineHeight: '34px', letterSpacing: '-0.02em' }}>{player.fullName}</h1>
             <span style={{ ...cap, fontSize: 15 }}>{player.pos} · {player.foot === 'left' ? 'Left' : 'Right'} footed · {team}, Wattle Creek FC</span>

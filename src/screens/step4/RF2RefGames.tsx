@@ -23,16 +23,16 @@ export default function RF2RefGames(_: { onBack?: () => void }) {
   const [ruthAnswered, setRuthAnswered] = useState(false)
   const [selectedGame, setSelectedGame] = useState<string | null>(null)
   return (
-    <div style={{ width: 390, height: 844, background: '#f7f8f7', boxSizing: 'border-box' as const, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' as const, overflow: 'hidden' }}>
+    <div style={{ width: 390, height: 844, background: '#faf5ec', boxSizing: 'border-box' as const, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' as const, overflow: 'hidden' }}>
       <div style={{ flex: 'none', padding: '12px 18px', background: G, color: '#fff', display: 'flex', alignItems: 'center', gap: 10 }}>
         <div style={{ flex: 1 }}>
           <span style={{ display: 'block', fontSize: 12, color: 'rgba(255,255,255,0.7)' }}>Wattle Creek FC · game leader, Level 4</span>
           <span style={{ display: 'block', fontSize: 21, fontWeight: 700 }}>Hi Zoe</span>
         </div>
-        <span style={{ width: 40, height: 40, borderRadius: '50%', background: '#cbbeb5', color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>ZP</span>
+        <span style={{ width: 40, height: 40, borderRadius: '50%', background: '#e8cfcf', color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>ZP</span>
       </div>
       <div style={{ flex: 1, minHeight: 0, overflowY: 'auto', padding: '12px 14px', display: 'flex', flexDirection: 'column' as const, gap: 10 }}>
-        <div onClick={() => setRuthAnswered(a => !a)} style={{ background: ruthAnswered ? G : '#cbbeb5', border: `1px solid ${ruthAnswered ? G : '#cbbeb5'}`, borderRadius: 16, padding: '12px 14px', display: 'flex', alignItems: 'center', gap: 12, cursor: 'pointer', color: ruthAnswered ? '#fff' : INK }}>
+        <div onClick={() => setRuthAnswered(a => !a)} style={{ background: ruthAnswered ? G : '#e8cfcf', border: `1px solid ${ruthAnswered ? G : '#e8cfcf'}`, borderRadius: 16, padding: '12px 14px', display: 'flex', alignItems: 'center', gap: 12, cursor: 'pointer', color: ruthAnswered ? '#fff' : INK }}>
           <div style={{ flex: 1 }}>
             <div style={{ fontSize: 16, fontWeight: 700 }}>Ruth asked: can you do 12:00 Saturday?</div>
             <div style={{ fontSize: 13 }}>{ruthAnswered ? "Replied: Yes, I can take it ✓" : 'Assistant referee · U13 Girls Meg'}</div>
@@ -41,7 +41,7 @@ export default function RF2RefGames(_: { onBack?: () => void }) {
         </div>
         {WEEKS.map((w, wi) => (
           <div key={wi} style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '8px 14px' }}>
-            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, padding: '4px 0' }}>{w.date}</div>
+            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', padding: '4px 0' }}>{w.date}</div>
             {w.games.map((g, gi) => (
               <div key={gi} onClick={() => setSelectedGame(g.name)} style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 60, borderTop: '1px solid #e9eae8', cursor: 'pointer', background: selectedGame === g.name ? '#eef5f2' : 'transparent', borderRadius: 8 }}>
                 <strong style={{ width: 48, fontSize: 15, fontVariantNumeric: 'tabular-nums', flexShrink: 0 }}>{g.t}</strong>
@@ -49,7 +49,7 @@ export default function RF2RefGames(_: { onBack?: () => void }) {
                   <div style={{ fontSize: 15, fontWeight: 700, lineHeight: '20px' }}>{g.name}</div>
                   <div style={{ fontSize: 13, color: MUT }}>{g.role}</div>
                 </div>
-                <span style={{ padding: '2px 9px', borderRadius: 99, fontSize: 12, fontWeight: 700, background: g.tagG ? G : '#cbbeb5', color: g.tagG ? '#fff' : INK, whiteSpace: 'nowrap' as const }}>{g.tag}</span>
+                <span style={{ padding: '2px 9px', borderRadius: 99, fontSize: 12, fontWeight: 700, background: g.tagG ? G : '#e8cfcf', color: g.tagG ? '#fff' : INK, whiteSpace: 'nowrap' as const }}>{g.tag}</span>
               </div>
             ))}
           </div>

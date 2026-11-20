@@ -268,7 +268,7 @@ function CoachHome({ data, onTraining, onMatchday, onReview, onCalendar, onInbox
 
       {/* Col 1: Needs you */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-        <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, overflow: 'hidden' }}>
+        <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderTop: '5px solid #c39797', borderRadius: 16, overflow: 'hidden' }}>
           <div style={{ padding: '12px 16px 10px', borderBottom: '1px solid #e9eae8', display: 'flex', alignItems: 'center', gap: 8 }}>
             <span style={{ fontSize: 15, fontWeight: 700 }}>Needs you</span>
             <span style={{ background: '#c39797', color: '#10211f', borderRadius: '999px', padding: '1px 7px', fontSize: 12, fontWeight: 700 }}>3 new</span>
@@ -277,7 +277,7 @@ function CoachHome({ data, onTraining, onMatchday, onReview, onCalendar, onInbox
             <div key={i} style={{ padding: '11px 16px', borderTop: i > 0 ? '1px solid #e9eae8' : 'none' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 2 }}>
                 <span style={{ fontSize: 12, fontWeight: 700, color: item.urgent ? '#c39797' : '#4a5a57' }}>{item.label}</span>
-                <span style={{ fontSize: 12, color: '#6f7f7b' }}>{item.when}</span>
+                <span style={{ fontSize: 12, color: '#5c6b67' }}>{item.when}</span>
               </div>
               <div style={{ fontSize: 13, color: '#10211f' }}>{item.note}</div>
             </div>
@@ -313,14 +313,14 @@ function CoachHome({ data, onTraining, onMatchday, onReview, onCalendar, onInbox
         <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, overflow: 'hidden' }}>
           <div style={{ padding: '12px 16px 10px', borderBottom: '1px solid #e9eae8', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <span style={{ fontSize: 15, fontWeight: 700 }}>Last game</span>
-            <span style={{ fontSize: 12, color: '#6f7f7b' }}>{data.lastGame.label}</span>
+            <span style={{ fontSize: 12, color: '#5c6b67' }}>{data.lastGame.label}</span>
           </div>
           <div style={{ padding: '12px 16px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
-              <span style={{ width: 36, height: 36, borderRadius: '999px', background: '#e9eae8', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, color: '#6f7f7b', flex: 'none' }}>vs</span>
+              <span style={{ width: 36, height: 36, borderRadius: '999px', background: '#e9eae8', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, color: '#5c6b67', flex: 'none' }}>vs</span>
               <div>
                 <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>{data.lastGame.opponent}</div>
-                <div style={{ fontSize: 12, color: '#6f7f7b' }}>{data.lastGame.scorer}</div>
+                <div style={{ fontSize: 12, color: '#5c6b67' }}>{data.lastGame.scorer}</div>
               </div>
               <div style={{ marginLeft: 'auto', fontSize: 22, fontWeight: 800, letterSpacing: '-0.02em', color: '#10211f' }}>{data.lastGame.score}</div>
             </div>
@@ -333,7 +333,7 @@ function CoachHome({ data, onTraining, onMatchday, onReview, onCalendar, onInbox
           </div>
           <div style={{ padding: '10px 16px', borderTop: '1px solid #e9eae8', display: 'flex', justifyContent: 'space-between' }}>
             <button onClick={onReview} style={{ fontSize: 13, color: '#2f6252', fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>Open the review</button>
-            <span style={{ fontSize: 13, color: '#6f7f7b' }}>Clips · 11</span>
+            <span style={{ fontSize: 13, color: '#5c6b67' }}>Clips · 11</span>
           </div>
         </div>
       </div>
@@ -347,7 +347,7 @@ function CoachHome({ data, onTraining, onMatchday, onReview, onCalendar, onInbox
           </div>
           {data.thisWeek.map((w, i) => (
             <div key={i} style={{ display: 'flex', gap: 10, padding: '7px 16px', borderTop: i > 0 ? '1px solid #e9eae8' : 'none', background: w.today ? '#eef5f2' : 'transparent' }}>
-              <span style={{ flex: 'none', fontSize: 12, fontWeight: 700, color: '#6f7f7b', width: 44 }}>{w.day}</span>
+              <span style={{ flex: 'none', fontSize: 12, fontWeight: 700, color: '#5c6b67', width: 44 }}>{w.day}</span>
               <span style={{ fontSize: 13, color: w.done ? '#6f7f7b' : w.today ? '#1f4a3e' : '#10211f', fontWeight: w.today ? 700 : 400, textDecoration: w.done ? 'line-through' : 'none' }}>{w.label}</span>
             </div>
           ))}
@@ -356,7 +356,7 @@ function CoachHome({ data, onTraining, onMatchday, onReview, onCalendar, onInbox
         <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '14px 16px' }}>
           <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 10 }}>
             <span style={{ fontSize: 15, fontWeight: 700 }}>Last 5</span>
-            <span style={{ fontSize: 12, color: '#6f7f7b' }}>{data.lastFiveLabel}</span>
+            <span style={{ fontSize: 12, color: '#5c6b67' }}>{data.lastFiveLabel}</span>
           </div>
           <div style={{ display: 'flex', gap: 6, marginBottom: 10 }}>
             {data.lastFive.map((r, i) => {
@@ -372,19 +372,19 @@ function CoachHome({ data, onTraining, onMatchday, onReview, onCalendar, onInbox
           <div style={{ display: 'flex', gap: 10 }}>
             <div style={{ flex: 1, textAlign: 'center' }}>
               <div style={{ fontSize: 22, fontWeight: 700, color: '#10211f' }}>{data.squad.total}</div>
-              <div style={{ fontSize: 12, color: '#6f7f7b' }}>players</div>
+              <div style={{ fontSize: 12, color: '#5c6b67' }}>players</div>
             </div>
             <div style={{ flex: 1, textAlign: 'center' }}>
               <div style={{ fontSize: 22, fontWeight: 700, color: '#40826d' }}>{data.squad.in}</div>
-              <div style={{ fontSize: 12, color: '#6f7f7b' }}>in</div>
+              <div style={{ fontSize: 12, color: '#5c6b67' }}>in</div>
             </div>
             <div style={{ flex: 1, textAlign: 'center' }}>
               <div style={{ fontSize: 22, fontWeight: 700, color: '#c39797' }}>{data.squad.val2}</div>
-              <div style={{ fontSize: 12, color: '#6f7f7b' }}>{data.squad.label2.toLowerCase()}</div>
+              <div style={{ fontSize: 12, color: '#5c6b67' }}>{data.squad.label2.toLowerCase()}</div>
             </div>
             <div style={{ flex: 1, textAlign: 'center' }}>
-              <div style={{ fontSize: 22, fontWeight: 700, color: '#6f7f7b' }}>{data.squad.val3}</div>
-              <div style={{ fontSize: 12, color: '#6f7f7b' }}>{data.squad.label3.toLowerCase()}</div>
+              <div style={{ fontSize: 22, fontWeight: 700, color: '#5c6b67' }}>{data.squad.val3}</div>
+              <div style={{ fontSize: 12, color: '#5c6b67' }}>{data.squad.label3.toLowerCase()}</div>
             </div>
           </div>
         </div>

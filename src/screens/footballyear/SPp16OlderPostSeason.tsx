@@ -18,7 +18,7 @@ export default function SPp16OlderPostSeason(){
         {tab==='home'&&(
           <>
             <div style={{background:PALE,borderRadius:14,padding:'14px',marginBottom:16}}>
-              <div style={{fontSize:12,fontWeight:700,color:MUT,marginBottom:6,letterSpacing:'0.06em',textTransform:'uppercase' as const}}>From Ollie</div>
+              <div style={{fontSize:12,fontWeight:700,color: '#7a4b5b',marginBottom:6,letterSpacing:'0.06em',textTransform:'uppercase' as const}}>From Ollie</div>
               <div style={{fontSize:14,color:INK,lineHeight:1.6}}>"Cal has had a great season. The improvement in his defensive work rate was noticeable from round 6 onwards."</div>
             </div>
             <button onClick={()=>openThing('season summary', 'phone')} style={{display:'flex',alignItems:'center',justifyContent:'space-between',width:'100%',padding:'14px',borderRadius:12,border:`1px solid ${LN}`,background:'#fff',fontFamily:'inherit',cursor:'pointer',marginBottom:10}}>

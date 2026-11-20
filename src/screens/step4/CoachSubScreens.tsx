@@ -85,7 +85,7 @@ export function WK1ThisWeek() {
       <div style={{ fontSize: 13, color: MUT, marginBottom: 20 }}>Mon 2 to Sun 7 Jun · three things from Ironbark, worked on twice before Harbour Rovers</div>
 
       <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 20px', marginBottom: 20 }}>
-        <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 12 }}>Drill library</div>
+        <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 12 }}>Drill library</div>
         {focuses.map(f => (
           <div key={f.n} onClick={() => setSelFocus(f.n)} style={{ display: 'flex', alignItems: 'flex-start', gap: 12, padding: '10px 6px', borderTop: `1px solid ${LN}`, cursor: 'pointer', background: selFocus === f.n ? PALE : 'transparent', borderRadius: 8 }}>
             <div style={{ width: 28, height: 28, borderRadius: '50%', background: G, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, color: '#fff', flexShrink: 0 }}>{f.n}</div>
@@ -198,7 +198,7 @@ export function CF1Fixtures() {
       </div>
 
       <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, marginBottom: 20, overflow: 'hidden' }}>
-        <div style={{ padding: '12px 20px', fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT }}>Results · tap a game for its clips and review</div>
+        <div style={{ padding: '12px 20px', fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b' }}>Results · tap a game for its clips and review</div>
         <table style={{ width: '100%', borderCollapse: 'collapse' as const }}>
           <thead>
             <tr style={{ background: '#fafafa' }}>
@@ -604,18 +604,18 @@ export function SE1SeasonSummaries() {
           ))}
 
           <div style={{ background: BG, borderRadius: 10, padding: '14px 16px', margin: '16px 0' }}>
-            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 8 }}>Your note · drafted for you, change anything</div>
+            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 8 }}>Your note · drafted for you, change anything</div>
             <div style={{ fontSize: 14, color: INK, lineHeight: 1.6 }}>Mia set out to use her left foot more, and by August she was scoring with it. She's the first to help a teammate up. Next year: keep looking before the ball comes.</div>
           </div>
 
           <div style={{ marginBottom: 16 }}>
-            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 8 }}>Goals this season</div>
+            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 8 }}>Goals this season</div>
             <div style={{ fontSize: 13, color: G, marginBottom: 4 }}>✓ Use her left foot more</div>
             <div style={{ fontSize: 13, color: G }}>✓ Look before the ball comes</div>
           </div>
 
           <div style={{ marginBottom: 16 }}>
-            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 8 }}>Favourite clip · picked by Mia</div>
+            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 8 }}>Favourite clip · picked by Mia</div>
             <div style={{ fontSize: 13, color: INK }}>Left foot, low across the keeper, v Ironbark United</div>
           </div>
 

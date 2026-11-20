@@ -8,7 +8,7 @@ export default function F3eFitnessTrainingEmpty(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string | null>(null)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
-    <div style={{ width: 1180, height: 820, boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
+    <div style={{ width: 1180, height: 820, boxSizing: 'border-box', background: '#faf5ec', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
       <div style={{ flex: 'none', background: G, height: 64, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 4 }}>
         <div style={{ fontSize: 20, fontWeight: 700, color: '#fff', marginRight: 16, letterSpacing: '-0.02em' }}>Clean Sheet</div>
         {NAV.map(n => <div key={n} style={{ height: 48, padding: '0 14px', borderRadius: 12, display: 'flex', alignItems: 'center', fontSize: 15, fontWeight: 600, color: n === 'Training' ? '#fff' : 'rgba(255,255,255,0.75)', background: n === 'Training' ? G2 : 'transparent', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{n}</div>)}
@@ -39,7 +39,7 @@ export default function F3eFitnessTrainingEmpty(_: { onBack?: () => void }) {
           </div>
         </div>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: 20 }}>
-          <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 12 }}>Fills in like this</div>
+          <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 12 }}>Fills in like this</div>
           <div style={{ fontSize: 12, color: MUT, marginBottom: 10 }}>What you'll see</div>
           {[{ label: 'The warm-up', sub: '11+ Kids, ready to run' }, { label: 'Who to go easy on', sub: 'Growing fast, or coming back from injury' }, { label: 'How hard it was', sub: 'Players tap their effort afterwards' }].map((r, i) => (
             <div key={i} style={{ padding: '8px 0', borderBottom: `1px solid ${LN}` }}>

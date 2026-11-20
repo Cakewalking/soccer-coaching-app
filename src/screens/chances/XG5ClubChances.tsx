@@ -16,7 +16,7 @@ export default function XG5ClubChances({ onNav, onTeam }: { onNav?: (s: string) 
   const find = (name: string) => CLUB_ROWS.find(r => r.team === name)!
   const u14 = find('U14 Josh'), u13 = find('U13 Chris')
   return (
-    <div data-screen="XG5-ClubChances" style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: "'DM Sans',system-ui,sans-serif" }}>
+    <div data-screen="XG5-ClubChances" style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, boxSizing: 'border-box', background: '#faf5ec', color: INK, fontFamily: "'DM Sans',system-ui,sans-serif" }}>
       <div style={{ flex: 'none', padding: '14px 24px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 14, flexWrap: 'wrap' }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 14, flexWrap: 'wrap' }}>
           <h1 style={{ margin: 0, fontSize: 26, lineHeight: '32px', fontWeight: 700, letterSpacing: '-0.02em' }}>Chances and points</h1>
@@ -29,7 +29,7 @@ export default function XG5ClubChances({ onNav, onTeam }: { onNav?: (s: string) 
       </div>
       <main style={{ flexGrow: 1, padding: '12px 24px 18px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 332px', gap: 14, alignItems: 'start' }}>
         <section aria-label="Teams" style={{ ...tile, gap: 0, padding: '12px 18px 12px', alignSelf: 'stretch', minHeight: 560 }}>
-          <div style={{ display: 'grid', gridTemplateColumns: grid, alignItems: 'end', gap: 0, paddingBottom: 8, fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: MUT, lineHeight: '15px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: grid, alignItems: 'end', gap: 0, paddingBottom: 8, fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#7a4b5b', lineHeight: '15px' }}>
             <span>Team</span><span>Games filmed</span><span>Chance difference a game · xGD</span><span>Goal difference</span><span>PPI</span><span>Ladder</span><span>Chances are</span>
           </div>
           {shown.map(r => {

@@ -7,7 +7,7 @@ export default function OB5SignUp(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string|null>(null)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
-    <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#faf5ec', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       {/* Top bar */}
       <div style={{ flex: 'none', height: 64, boxSizing: 'border-box', padding: '0 32px', display: 'flex', alignItems: 'center', background: G }}>
         <div style={{ fontSize: 20, fontWeight: 700, color: '#fff', letterSpacing: '-0.02em' }}>Clean Sheet</div>
@@ -42,7 +42,7 @@ export default function OB5SignUp(_: { onBack?: () => void }) {
 
         {/* Right: summary sidebar */}
         <div style={{ width: 300, background: '#fff', borderLeft: `1px solid ${LN}`, padding: '28px 24px', display: 'flex', flexDirection: 'column', gap: 14 }}>
-          <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT }}>Set up</div>
+          <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b' }}>Set up</div>
           {[
             { label: 'Club',         value: 'Wattle Creek FC' },
             { label: 'Team',         value: 'U12 Sam · Division 1' },

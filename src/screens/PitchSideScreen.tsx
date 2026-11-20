@@ -32,8 +32,8 @@ const PLAYERS_HERE = [
 const ADJUSTMENTS = [
   { ini: 'NO', name: 'Noah',   note: 'Sprint cap 2/3 tonight',       color: '#c39797' },
   { ini: 'ZK', name: 'Zoe',    note: 'No contact — shoulder',         color: '#c39797' },
-  { ini: 'EA', name: 'Ella',   note: 'Lighter rest from 6:50',        color: '#cbbeb5' },
-  { ini: 'MI', name: 'Mia',    note: 'In the rondo — build confidence', color: '#cbbeb5' },
+  { ini: 'EA', name: 'Ella',   note: 'Lighter rest from 6:50',        color: '#e8cfcf' },
+  { ini: 'MI', name: 'Mia',    note: 'In the rondo — build confidence', color: '#e8cfcf' },
 ]
 
 const HOW_IT_WORKS = [
@@ -134,7 +134,7 @@ export default function PitchSideScreen({ onClose, empty }: { onClose: () => voi
       { time: '6:55', name: 'Cool-down',           mins: 5  },
     ]
     return (
-      <div style={{ position: 'fixed', inset: 0, background: '#f7f9f7', zIndex: 100, display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
+      <div style={{ position: 'fixed', inset: 0, background: '#faf5ec', zIndex: 100, display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
         <div style={{ flex: 'none', background: '#1f4a3e', padding: '0 32px', height: 72, display: 'flex', alignItems: 'center', gap: 16 }}>
           <button onClick={onClose} style={{ width: 44, height: 44, borderRadius: '999px', border: 0, background: 'rgba(255,255,255,0.12)', color: '#ffffff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
@@ -154,7 +154,7 @@ export default function PitchSideScreen({ onClose, empty }: { onClose: () => voi
               <div style={{ fontSize: 18, fontWeight: 700, color: '#10211f', marginBottom: 4 }}>{"Who's here?"}</div>
               <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 14, padding: '20px 24px', display: 'flex', flexDirection: 'column', gap: 8 }}>
                 <div style={{ fontSize: 14, color: '#4a5a57' }}>Nobody to tick off yet</div>
-                <div style={{ fontSize: 13, color: '#6f7f7b' }}>Everyone expected is here</div>
+                <div style={{ fontSize: 13, color: '#5c6b67' }}>Everyone expected is here</div>
                 <div style={{ marginTop: 8, padding: '12px 16px', background: '#eef5f2', borderRadius: 10 }}>
                   <div style={{ fontSize: 14, fontWeight: 700, color: '#2f6252', marginBottom: 4 }}>No squad yet, no problem</div>
                   <div style={{ fontSize: 13, color: '#1f4a3e', lineHeight: 1.5 }}>Run tonight as a starter session. Add your players later and attendance, load and minutes start counting.</div>
@@ -167,7 +167,7 @@ export default function PitchSideScreen({ onClose, empty }: { onClose: () => voi
               <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 14, overflow: 'hidden' }}>
                 {emptyPlan.map((step, i) => (
                   <div key={i} style={{ padding: '14px 20px', borderBottom: i < emptyPlan.length - 1 ? '1px solid #f0f1f0' : 'none', display: 'flex', gap: 16, alignItems: 'flex-start' }}>
-                    <div style={{ fontSize: 12, color: '#6f7f7b', width: 36, flexShrink: 0, paddingTop: 2 }}>{step.time}</div>
+                    <div style={{ fontSize: 12, color: '#5c6b67', width: 36, flexShrink: 0, paddingTop: 2 }}>{step.time}</div>
                     <div style={{ flexGrow: 1 }}>
                       <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>{step.name}</div>
                       <div style={{ fontSize: 12, color: '#4a5a57' }}>{step.mins}{'′'}</div>
@@ -184,7 +184,7 @@ export default function PitchSideScreen({ onClose, empty }: { onClose: () => voi
 
   if (view === 'attendance') {
     return (
-      <div style={{ position: 'fixed', inset: 0, background: '#f7f9f7', zIndex: 100, display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
+      <div style={{ position: 'fixed', inset: 0, background: '#faf5ec', zIndex: 100, display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
         {/* Header */}
         <div style={{ flex: 'none', background: '#1f4a3e', padding: '0 32px', height: 72, display: 'flex', alignItems: 'center', gap: 16 }}>
           <button onClick={onClose} style={{ width: 44, height: 44, borderRadius: '999px', border: 0, background: 'rgba(255,255,255,0.12)', color: '#ffffff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -211,7 +211,7 @@ export default function PitchSideScreen({ onClose, empty }: { onClose: () => voi
           <div style={{ flexGrow: 1, padding: '24px 32px', overflowY: 'auto' }}>
             <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: 20 }}>
               <div style={{ fontSize: 18, fontWeight: 700, color: '#10211f' }}>Who's here?</div>
-              <div style={{ fontSize: 14, color: '#6f7f7b' }}>{hereCount} of {totalCount} expected</div>
+              <div style={{ fontSize: 14, color: '#5c6b67' }}>{hereCount} of {totalCount} expected</div>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10 }}>
               {PLAYERS_HERE.map(p => (
@@ -221,7 +221,7 @@ export default function PitchSideScreen({ onClose, empty }: { onClose: () => voi
                   display: 'flex', flexDirection: 'column', gap: 8,
                 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                    <div style={{ width: 36, height: 36, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0 }}>{p.ini}</div>
+                    <div style={{ width: 36, height: 36, borderRadius: '999px', background: '#e8cfcf', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0 }}>{p.ini}</div>
                     <div style={{ flexGrow: 1, minWidth: 0 }}>
                       <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{p.name}</div>
                       <span style={{
@@ -233,7 +233,7 @@ export default function PitchSideScreen({ onClose, empty }: { onClose: () => voi
                     </div>
                   </div>
                   {p.note && (
-                    <div style={{ fontSize: 12, color: '#4a5a57', background: '#f7f8f7', borderRadius: 6, padding: '6px 8px', lineHeight: '16px' }}>{p.note}</div>
+                    <div style={{ fontSize: 12, color: '#4a5a57', background: '#faf5ec', borderRadius: 6, padding: '6px 8px', lineHeight: '16px' }}>{p.note}</div>
                   )}
                 </div>
               ))}
@@ -266,7 +266,7 @@ export default function PitchSideScreen({ onClose, empty }: { onClose: () => voi
                     <div style={{ width: 10, height: 10, borderRadius: '999px', background: d.color, flexShrink: 0 }} />
                     <div style={{ flexGrow: 1 }}>
                       <div style={{ fontSize: 13, fontWeight: 600, color: '#10211f' }}>{d.name}</div>
-                      <div style={{ fontSize: 12, color: '#6f7f7b' }}>{d.mins} min · {d.tag}</div>
+                      <div style={{ fontSize: 12, color: '#5c6b67' }}>{d.mins} min · {d.tag}</div>
                     </div>
                   </div>
                 ))}
@@ -296,7 +296,7 @@ export default function PitchSideScreen({ onClose, empty }: { onClose: () => voi
   if (view === 'drill') {
     return (
       <>
-      <div style={{ position: 'fixed', inset: 0, background: '#f7f9f7', zIndex: 100, display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
+      <div style={{ position: 'fixed', inset: 0, background: '#faf5ec', zIndex: 100, display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
         {/* Dark green header */}
         <div style={{ flex: 'none', background: '#1f4a3e' }}>
           <div style={{ padding: '0 32px', height: 70, display: 'flex', alignItems: 'center', gap: 16 }}>
@@ -470,12 +470,12 @@ export default function PitchSideScreen({ onClose, empty }: { onClose: () => voi
                     <div style={{ width: 8, height: 8, borderRadius: '999px', background: d.color, flexShrink: 0 }} />
                     <div style={{ flexGrow: 1 }}>
                       <div style={{ fontSize: 13, fontWeight: 600, color: '#10211f' }}>{d.name}</div>
-                      <div style={{ fontSize: 12, color: '#6f7f7b' }}>{d.mins} min</div>
+                      <div style={{ fontSize: 12, color: '#5c6b67' }}>{d.mins} min</div>
                     </div>
                   </div>
                 ))}
                 {drillIndex >= DRILL_PLAN.length - 1 && (
-                  <div style={{ fontSize: 13, color: '#6f7f7b' }}>This is the last drill.</div>
+                  <div style={{ fontSize: 13, color: '#5c6b67' }}>This is the last drill.</div>
                 )}
               </div>
             </div>
@@ -513,7 +513,7 @@ export default function PitchSideScreen({ onClose, empty }: { onClose: () => voi
 
   // View: review
   return (
-    <div style={{ position: 'fixed', inset: 0, background: '#f7f9f7', zIndex: 100, display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
+    <div style={{ position: 'fixed', inset: 0, background: '#faf5ec', zIndex: 100, display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
       {/* Header */}
       <div style={{ flex: 'none', background: '#1f4a3e', padding: '0 32px', height: 72, display: 'flex', alignItems: 'center', gap: 16 }}>
         <button onClick={() => setView('drill')} style={{ width: 44, height: 44, borderRadius: '999px', border: 0, background: 'rgba(255,255,255,0.12)', color: '#ffffff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -538,7 +538,7 @@ export default function PitchSideScreen({ onClose, empty }: { onClose: () => voi
         <div style={{ flexGrow: 1, overflowY: 'auto', padding: '24px 32px' }}>
           <div style={{ maxWidth: 560 }}>
             <div style={{ fontSize: 18, fontWeight: 700, color: '#10211f', marginBottom: 4 }}>Rate the focus areas</div>
-            <div style={{ fontSize: 14, color: '#6f7f7b', marginBottom: 20 }}>How did tonight go for each session goal?</div>
+            <div style={{ fontSize: 14, color: '#5c6b67', marginBottom: 20 }}>How did tonight go for each session goal?</div>
 
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               {REVIEW_QS.map(q => (
@@ -576,9 +576,9 @@ export default function PitchSideScreen({ onClose, empty }: { onClose: () => voi
           <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', marginBottom: 16 }}>Tonight in numbers</div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 20 }}>
             {TONIGHT_NUMS.map(n => (
-              <div key={n.label} style={{ background: '#f7f9f7', borderRadius: 12, padding: '14px 14px' }}>
+              <div key={n.label} style={{ background: '#faf5ec', borderRadius: 12, padding: '14px 14px' }}>
                 <div style={{ fontSize: 20, fontWeight: 700, color: '#10211f', letterSpacing: '-0.02em' }}>{n.value}</div>
-                <div style={{ fontSize: 12, color: '#6f7f7b', marginTop: 2 }}>{n.label}</div>
+                <div style={{ fontSize: 12, color: '#5c6b67', marginTop: 2 }}>{n.label}</div>
               </div>
             ))}
           </div>

@@ -89,14 +89,14 @@ export default function TeamManagerScreen({ empty, initialScreen }: { empty?: bo
 
   if (empty) {
     return (
-      <div style={{ width: 390, margin: '0 auto', background: '#f7f9f7', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)', border: '1px solid #e9eae8', borderRadius: 24, overflow: 'hidden', boxShadow: '0 8px 32px rgba(0,0,0,0.08)' }}>
+      <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)', border: '1px solid #e9eae8', borderRadius: 24, overflow: 'hidden', boxShadow: '0 8px 32px rgba(0,0,0,0.08)' }}>
         {tab === 'messages' ? (
           <div style={{ flex: 'none', padding: '14px 18px 12px', background: '#2f6252', color: '#fff', display: 'flex', alignItems: 'center', gap: 12 }}>
             <span style={{ flexGrow: 1 }}>
               <span style={{ display: 'block', fontSize: 12, lineHeight: '16px', color: '#cfe6dc' }}>U12 Sam</span>
               <span style={{ display: 'block', fontSize: 21, lineHeight: '27px', fontWeight: 700 }}>Messages</span>
             </span>
-            <span style={{ flexShrink: 0, width: 40, height: 40, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>RO</span>
+            <span style={{ flexShrink: 0, width: 40, height: 40, borderRadius: '999px', background: '#e8cfcf', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>RO</span>
           </div>
         ) : (
           <div style={{ background: '#1f4a3e', padding: '48px 24px 28px', color: '#fff', flex: 'none' }}>
@@ -121,9 +121,9 @@ export default function TeamManagerScreen({ empty, initialScreen }: { empty?: bo
               <button onClick={() => showToast('Team link copied.')} style={{ height: 44, borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Copy the team link</button>
               <button onClick={() => openThing('parent view', 'phone')} style={{ height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>See what parents see</button>
             </div>
-            <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.07em', color: '#6f7f7b', marginBottom: 8 }}>NEXT GAME</div>
+            <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.07em', color: '#5c6b67', marginBottom: 8 }}>NEXT GAME</div>
             <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 12, padding: '12px 14px', fontSize: 13, color: '#4a5a57', marginBottom: 10 }}>Fixtures appear here once Sam or the club adds them.</div>
-            <div style={{ fontSize: 13, color: '#6f7f7b' }}>0 of 17 families joined.</div>
+            <div style={{ fontSize: 13, color: '#5c6b67' }}>0 of 17 families joined.</div>
           </>)}
           {tab === 'gameday' && (<>
             <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 14, padding: '20px', marginBottom: 16 }}>
@@ -136,7 +136,7 @@ export default function TeamManagerScreen({ empty, initialScreen }: { empty?: bo
               { title: 'FIRST AID CARD', items: ['The first aid card shows only what parents choose to share, like asthma or allergies, and their phone number.'] },
             ].map((section, i) => (
               <div key={i} style={{ marginBottom: 14 }}>
-                <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.07em', color: '#6f7f7b', marginBottom: 8 }}>{section.title}</div>
+                <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.07em', color: '#5c6b67', marginBottom: 8 }}>{section.title}</div>
                 {section.items.map((item, j) => (
                   <div key={j} style={{ padding: '10px 14px', background: '#fff', border: '1px solid #e9eae8', borderRadius: 10, fontSize: 13, color: '#4a5a57', marginBottom: 6 }}>{item}</div>
                 ))}
@@ -149,7 +149,7 @@ export default function TeamManagerScreen({ empty, initialScreen }: { empty?: bo
               <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.5, marginBottom: 14 }}>Tell every family about a change in one go. You'll see who has read it, and nudge anyone who hasn't.</div>
               <button onClick={() => openThing('change message', 'phone')} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Tell parents about a change</button>
             </div>
-            <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.07em', color: '#6f7f7b', marginBottom: 8 }}>CONVERSATIONS</div>
+            <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.07em', color: '#5c6b67', marginBottom: 8 }}>CONVERSATIONS</div>
             <div style={{ padding: '12px 14px', background: '#fff', border: '1px solid #e9eae8', borderRadius: 10, fontSize: 13, color: '#4a5a57' }}>Messages to a player always go to their parents too. Coaches see team messages in their inbox.</div>
           </>)}
           {tab === 'roster' && (<>
@@ -161,7 +161,7 @@ export default function TeamManagerScreen({ empty, initialScreen }: { empty?: bo
                 <button onClick={() => openThing('custom jobs', 'phone')} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: '1px solid #e9eae8', background: '#fff', color: '#4a5a57', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Choose my own</button>
               </div>
             </div>
-            <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.07em', color: '#6f7f7b', marginBottom: 8 }}>FILLS IN LIKE THIS</div>
+            <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.07em', color: '#5c6b67', marginBottom: 8 }}>FILLS IN LIKE THIS</div>
             <div style={{ padding: '12px 14px', background: '#fff', border: '1px solid #e9eae8', borderRadius: 10, fontSize: 13, color: '#4a5a57' }}>Most junior teams need oranges at half-time, a canteen hour and a club linesman over 16.</div>
           </>)}
         </div>
@@ -172,7 +172,7 @@ export default function TeamManagerScreen({ empty, initialScreen }: { empty?: bo
   }
 
   return (
-    <div style={{ width: 390, margin: '0 auto', background: '#f7f9f7', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)', border: '1px solid #e9eae8', borderRadius: 24, overflow: 'hidden', boxShadow: '0 8px 32px rgba(0,0,0,0.08)' }}>
+    <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)', border: '1px solid #e9eae8', borderRadius: 24, overflow: 'hidden', boxShadow: '0 8px 32px rgba(0,0,0,0.08)' }}>
 
       {/* Header */}
       {tab === 'messages' ? (
@@ -181,7 +181,7 @@ export default function TeamManagerScreen({ empty, initialScreen }: { empty?: bo
             <span style={{ display: 'block', fontSize: 12, lineHeight: '16px', color: '#cfe6dc' }}>{showChange ? 'Tell parents about a change' : 'U12 Sam · Team manager'}</span>
             <span style={{ display: 'block', fontSize: 21, lineHeight: '27px', fontWeight: 700 }}>{showChange ? 'Something changed' : 'Messages'}</span>
           </span>
-          <span style={{ flexShrink: 0, width: 40, height: 40, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>RO</span>
+          <span style={{ flexShrink: 0, width: 40, height: 40, borderRadius: '999px', background: '#e8cfcf', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>RO</span>
         </div>
       ) : (
         <div style={{ background: '#1f4a3e', padding: '48px 20px 20px', color: '#fff', flex: 'none' }}>
@@ -216,14 +216,14 @@ export default function TeamManagerScreen({ empty, initialScreen }: { empty?: bo
                 </div>
                 <div>
                   <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>vs Harbour Rovers</div>
-                  <div style={{ fontSize: 13, color: '#6f7f7b' }}>Home · pitch 2 · arrive 8:40 · kick-off 9:30</div>
+                  <div style={{ fontSize: 13, color: '#5c6b67' }}>Home · pitch 2 · arrive 8:40 · kick-off 9:30</div>
                 </div>
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', textAlign: 'center', marginBottom: 12 }}>
                 {[{ n: 12, l: 'In' }, { n: 1, l: 'Maybe' }, { n: 2, l: 'No' }, { n: 2, l: 'No answer' }].map(s => (
                   <div key={s.l}>
                     <div style={{ fontSize: 20, fontWeight: 800, color: '#10211f' }}>{s.n}</div>
-                    <div style={{ fontSize: 11, color: '#6f7f7b' }}>{s.l}</div>
+                    <div style={{ fontSize: 11, color: '#5c6b67' }}>{s.l}</div>
                   </div>
                 ))}
               </div>
@@ -260,7 +260,7 @@ export default function TeamManagerScreen({ empty, initialScreen }: { empty?: bo
                 <span style={{ fontSize: 20 }}>{item.icon}</span>
                 <div style={{ flexGrow: 1, minWidth: 0 }}>
                   <div style={{ fontSize: 14, fontWeight: 600, color: '#10211f' }}>{item.title}</div>
-                  <div style={{ fontSize: 12, color: '#6f7f7b', lineHeight: '17px', marginTop: 2 }}>{item.sub}</div>
+                  <div style={{ fontSize: 12, color: '#5c6b67', lineHeight: '17px', marginTop: 2 }}>{item.sub}</div>
                 </div>
                 <span style={{ fontSize: 12, fontWeight: 700, color: item.tagColor, background: item.tagColor + '22', borderRadius: 6, padding: '2px 8px', flexShrink: 0 }}>{item.tag}</span>
               </div>
@@ -270,10 +270,10 @@ export default function TeamManagerScreen({ empty, initialScreen }: { empty?: bo
             <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginTop: 16, marginBottom: 10 }}>Saturday duties</div>
             {SAT_DUTIES.map((d, i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 0', borderTop: i > 0 ? '1px solid #f0f1f0' : 'none' }}>
-                <div style={{ width: 28, height: 28, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', fontSize: 10, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{d.ini}</div>
+                <div style={{ width: 28, height: 28, borderRadius: '999px', background: '#e8cfcf', color: '#10211f', fontSize: 10, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{d.ini}</div>
                 <div style={{ flexGrow: 1 }}>
                   <div style={{ fontSize: 14, fontWeight: 600, color: '#10211f' }}>{d.name}</div>
-                  <div style={{ fontSize: 12, color: '#6f7f7b' }}>{d.duty}</div>
+                  <div style={{ fontSize: 12, color: '#5c6b67' }}>{d.duty}</div>
                 </div>
               </div>
             ))}
@@ -283,8 +283,8 @@ export default function TeamManagerScreen({ empty, initialScreen }: { empty?: bo
         {tab === 'gameday' && (
           <div>
             {/* Bye week toggle (demo) */}
-            <div style={{ padding: '8px 16px', background: '#f7f9f7', borderBottom: '1px solid #f0f1f0', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <span style={{ fontSize: 12, color: '#6f7f7b' }}>Bye week</span>
+            <div style={{ padding: '8px 16px', background: '#faf5ec', borderBottom: '1px solid #f0f1f0', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <span style={{ fontSize: 12, color: '#5c6b67' }}>Bye week</span>
               <button onClick={() => setByeWeek(b => !b)} style={{ width: 40, height: 44, borderRadius: 12, border: 0, background: byeWeek ? '#40826d' : '#d6d9d7', cursor: 'pointer', position: 'relative' }}>
                 <div style={{ width: 16, height: 16, borderRadius: '999px', background: '#fff', position: 'absolute', top: 4, left: byeWeek ? 20 : 4 }} />
               </button>
@@ -295,7 +295,7 @@ export default function TeamManagerScreen({ empty, initialScreen }: { empty?: bo
                 <div style={{ border: '2px dashed #d6d9d7', borderRadius: 16, padding: '32px 20px', textAlign: 'center' }}>
                   <div style={{ fontSize: 40, marginBottom: 12 }}><Glyph n="cup" /></div>
                   <div style={{ fontSize: 18, fontWeight: 800, color: '#10211f', marginBottom: 6 }}>No game this week</div>
-                  <div style={{ fontSize: 14, color: '#6f7f7b', marginBottom: 20 }}>Bye round · SAT 14 JUN. Use this week for extra training or a break.</div>
+                  <div style={{ fontSize: 14, color: '#5c6b67', marginBottom: 20 }}>Bye round · SAT 14 JUN. Use this week for extra training or a break.</div>
                   <div style={{ display: 'flex', gap: 10, justifyContent: 'center' }}>
                     <button onClick={() => openThing('extra session planner', 'phone')} style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#4a5a57', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Extra training session?</button>
                     <button onClick={() => showToast('Sending bye week message.')} style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Tell parents</button>
@@ -303,7 +303,7 @@ export default function TeamManagerScreen({ empty, initialScreen }: { empty?: bo
                 </div>
                 <div style={{ marginTop: 16, background: '#fff', borderRadius: 14, padding: '14px 16px', border: '1px solid #e9eae8' }}>
                   <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f', marginBottom: 6 }}>Next game</div>
-                  <div style={{ fontSize: 13, color: '#6f7f7b' }}>SAT 21 JUN · vs Banksia Park · Home · kick-off 9:30 am</div>
+                  <div style={{ fontSize: 13, color: '#5c6b67' }}>SAT 21 JUN · vs Banksia Park · Home · kick-off 9:30 am</div>
                 </div>
               </div>
             ) : (
@@ -332,7 +332,7 @@ export default function TeamManagerScreen({ empty, initialScreen }: { empty?: bo
                       </div>
                       <div>
                         <div style={{ fontSize: 14, fontWeight: 600, color: checkedItems.has(i) ? '#6f7f7b' : '#10211f', textDecoration: checkedItems.has(i) ? 'line-through' : 'none' }}>{item.label}</div>
-                        <div style={{ fontSize: 12, color: '#6f7f7b', marginTop: 2 }}>{item.note}</div>
+                        <div style={{ fontSize: 12, color: '#5c6b67', marginTop: 2 }}>{item.note}</div>
                       </div>
                     </div>
                   ))}
@@ -345,7 +345,7 @@ export default function TeamManagerScreen({ empty, initialScreen }: { empty?: bo
                   ].map((p, i) => (
                     <div key={i} style={{ background: '#fff', borderRadius: 12, padding: '12px 14px', border: `1px solid ${p.color}44`, marginBottom: 10 }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
-                        <div style={{ width: 28, height: 28, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', fontSize: 10, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{p.ini}</div>
+                        <div style={{ width: 28, height: 28, borderRadius: '999px', background: '#e8cfcf', color: '#10211f', fontSize: 10, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{p.ini}</div>
                         <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>{p.name}</div>
                         <span style={{ fontSize: 11, fontWeight: 700, color: p.color, background: p.color + '22', borderRadius: 6, padding: '2px 8px', marginLeft: 'auto' }}>{p.cond}</span>
                       </div>
@@ -391,7 +391,7 @@ export default function TeamManagerScreen({ empty, initialScreen }: { empty?: bo
                     {[{ ini: 'MT', name: 'Mia' }, { ini: 'NO', name: 'Noah' }, { ini: 'JP', name: 'Jai' }, { ini: 'ZH', name: 'Zoe' }, { ini: 'GO', name: 'Grace' }, { ini: 'FW', name: 'Finn' }, { ini: 'RC', name: 'Ruby' }, { ini: 'IM', name: 'Isla' }, { ini: 'LH', name: 'Liam' }, { ini: 'SD', name: 'Sam' }, { ini: 'OB', name: 'Oscar' }].map(p => (
                       <div key={p.ini} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
                         <div style={{ width: 36, height: 36, borderRadius: '999px', background: '#2f6252', color: '#fff', fontSize: 12, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{p.ini}</div>
-                        <span style={{ fontSize: 11, color: '#6f7f7b' }}>{p.name}</span>
+                        <span style={{ fontSize: 11, color: '#5c6b67' }}>{p.name}</span>
                       </div>
                     ))}
                   </div>
@@ -416,7 +416,7 @@ export default function TeamManagerScreen({ empty, initialScreen }: { empty?: bo
                       </div>
                       <div>
                         <div style={{ fontSize: 14, fontWeight: 600, color: '#10211f' }}>{item.label}</div>
-                        <div style={{ fontSize: 12, color: '#6f7f7b', marginTop: 2 }}>{item.note}</div>
+                        <div style={{ fontSize: 12, color: '#5c6b67', marginTop: 2 }}>{item.note}</div>
                       </div>
                     </div>
                   ))}
@@ -434,7 +434,7 @@ export default function TeamManagerScreen({ empty, initialScreen }: { empty?: bo
         {tab === 'roster' && (
           <div style={{ padding: '16px' }}>
             <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', marginBottom: 2 }}>Duty roster</div>
-            <div style={{ fontSize: 13, color: '#6f7f7b', marginBottom: 14 }}>SAT 6 JUN · VS Harbour Rovers</div>
+            <div style={{ fontSize: 13, color: '#5c6b67', marginBottom: 14 }}>SAT 6 JUN · VS Harbour Rovers</div>
 
             {/* Specific duties */}
             {[
@@ -448,7 +448,7 @@ export default function TeamManagerScreen({ empty, initialScreen }: { empty?: bo
                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
                   <div style={{ flex: 1 }}>
                     <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>{d.duty}</div>
-                    <div style={{ fontSize: 12, color: '#6f7f7b', marginTop: 2 }}>{d.who}</div>
+                    <div style={{ fontSize: 12, color: '#5c6b67', marginTop: 2 }}>{d.who}</div>
                     {d.note && <div style={{ fontSize: 11, color: '#9a9f9d', marginTop: 1 }}>{d.note}</div>}
                   </div>
                   {d.status === 'done' && (
@@ -474,15 +474,15 @@ export default function TeamManagerScreen({ empty, initialScreen }: { empty?: bo
               { ini: 'OB', family: 'Brennan family',      duty: 'Not yet',                count: 0 },
             ].map((r, i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 0', borderTop: '1px solid #f0f1f0' }}>
-                <div style={{ width: 28, height: 28, borderRadius: '999px', background: r.you ? '#c39797' : '#cbbeb5', color: '#10211f', fontSize: 10, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{r.ini}</div>
+                <div style={{ width: 28, height: 28, borderRadius: '999px', background: r.you ? '#c39797' : '#e8cfcf', color: '#10211f', fontSize: 10, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{r.ini}</div>
                 <div style={{ flex: 1 }}>
                   <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{r.family}</div>
-                  <div style={{ fontSize: 11, color: '#6f7f7b' }}>{r.duty}</div>
+                  <div style={{ fontSize: 11, color: '#5c6b67' }}>{r.duty}</div>
                 </div>
                 <div style={{ fontSize: 18, fontWeight: 800, color: r.count === 0 ? '#c39797' : '#10211f' }}>{r.count}</div>
               </div>
             ))}
-            <div style={{ marginTop: 10, padding: '10px 12px', background: '#f7f9f7', borderRadius: 10, fontSize: 12, color: '#6f7f7b', lineHeight: '17px' }}>Asking families who've done the least first. They answer from the parent app.</div>
+            <div style={{ marginTop: 10, padding: '10px 12px', background: '#faf5ec', borderRadius: 10, fontSize: 12, color: '#5c6b67', lineHeight: '17px' }}>Asking families who've done the least first. They answer from the parent app.</div>
           </div>
         )}
       </div>
@@ -513,7 +513,7 @@ export default function TeamManagerScreen({ empty, initialScreen }: { empty?: bo
               </div>
             ))}
             <button onClick={() => { setShowHeadKnock(false); showToast('Head knock logged.') }} style={{ width: '100%', height: 44, borderRadius: 12, border: 0, background: '#c39797', color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer', marginBottom: 10 }}>Log and notify parents</button>
-            <div style={{ fontSize: 12, color: '#6f7f7b', textAlign: 'center' }}>A copy goes to the club's safeguarding officer</div>
+            <div style={{ fontSize: 12, color: '#5c6b67', textAlign: 'center' }}>A copy goes to the club's safeguarding officer</div>
           </div>
         </div>
       )}
@@ -530,7 +530,7 @@ export default function TeamManagerScreen({ empty, initialScreen }: { empty?: bo
           <div style={{ flexGrow: 1, overflowY: 'auto', padding: '20px' }}>
             {[
               { label: 'Who was involved?', input: <input placeholder="Name or role (e.g. 'parent on east sideline')" style={{ width: '100%', height: 40, borderRadius: 8, border: '1px solid #e9eae8', padding: '0 10px', fontFamily: 'inherit', fontSize: 14, boxSizing: 'border-box' }} /> },
-              { label: 'Which team were they from?', input: <div style={{ display: 'flex', gap: 10 }}>{['Ours', 'Opponents', 'Unknown'].map(o => <button key={o} onClick={() => setSidelineTeam(o)} style={{ flex: 1, height: 44, borderRadius: 10, border: `1px solid ${sidelineTeam === o ? '#2f6252' : '#e9eae8'}`, background: sidelineTeam === o ? '#e4f2eb' : '#f7f9f7', color: sidelineTeam === o ? '#2f6252' : '#4a5a57', fontFamily: 'inherit', fontSize: 13, fontWeight: sidelineTeam === o ? 700 : 400, cursor: 'pointer' }}>{o}</button>)}</div> },
+              { label: 'Which team were they from?', input: <div style={{ display: 'flex', gap: 10 }}>{['Ours', 'Opponents', 'Unknown'].map(o => <button key={o} onClick={() => setSidelineTeam(o)} style={{ flex: 1, height: 44, borderRadius: 10, border: `1px solid ${sidelineTeam === o ? '#2f6252' : '#e9eae8'}`, background: sidelineTeam === o ? '#e4f2eb' : '#faf5ec', color: sidelineTeam === o ? '#2f6252' : '#4a5a57', fontFamily: 'inherit', fontSize: 13, fontWeight: sidelineTeam === o ? 700 : 400, cursor: 'pointer' }}>{o}</button>)}</div> },
               { label: 'What happened?', input: <textarea placeholder="Describe the behaviour…" style={{ width: '100%', height: 80, borderRadius: 8, border: '1px solid #e9eae8', padding: '10px', fontFamily: 'inherit', fontSize: 14, resize: 'none', boxSizing: 'border-box' }} /> },
             ].map((f, i) => (
               <div key={i} style={{ marginBottom: 16 }}>
@@ -539,7 +539,7 @@ export default function TeamManagerScreen({ empty, initialScreen }: { empty?: bo
               </div>
             ))}
             <button onClick={() => { setShowSideline(false); showToast('Sideline report submitted.') }} style={{ width: '100%', height: 44, borderRadius: 12, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer', marginBottom: 10 }}>Submit report</button>
-            <div style={{ fontSize: 12, color: '#6f7f7b', textAlign: 'center' }}>Sent to the club's committee and league if needed</div>
+            <div style={{ fontSize: 12, color: '#5c6b67', textAlign: 'center' }}>Sent to the club's committee and league if needed</div>
           </div>
         </div>
       )}
@@ -566,7 +566,7 @@ export default function TeamManagerScreen({ empty, initialScreen }: { empty?: bo
               </div>
             ))}
             <button onClick={() => { setShowInjury(false); showToast('Injury logged.') }} style={{ width: '100%', height: 44, borderRadius: 12, border: 0, background: '#c3a84a', color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer', marginBottom: 10 }}>Log and notify parents</button>
-            <div style={{ fontSize: 12, color: '#6f7f7b', textAlign: 'center' }}>A copy goes to the club's first aid officer</div>
+            <div style={{ fontSize: 12, color: '#5c6b67', textAlign: 'center' }}>A copy goes to the club's first aid officer</div>
           </div>
         </div>
       )}
@@ -582,7 +582,7 @@ export default function TeamManagerScreen({ empty, initialScreen }: { empty?: bo
           </div>
           <div style={{ flexGrow: 1, overflowY: 'auto', padding: '20px' }}>
             <div style={{ background: '#fff', borderRadius: 12, border: '1px solid #e9eae8', padding: '14px', marginBottom: 16 }}>
-              <div style={{ fontSize: 13, color: '#6f7f7b' }}>SAT 6 JUN · vs Harbour Rovers · Home</div>
+              <div style={{ fontSize: 13, color: '#5c6b67' }}>SAT 6 JUN · vs Harbour Rovers · Home</div>
               <div style={{ fontSize: 20, fontWeight: 800, color: '#10211f', marginTop: 4 }}>2 – 1</div>
             </div>
             {[
@@ -592,7 +592,7 @@ export default function TeamManagerScreen({ empty, initialScreen }: { empty?: bo
               <div key={i} style={{ marginBottom: 16 }}>
                 <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>{q.label}</div>
                 <div style={{ display: 'flex', gap: 10 }}>
-                  {q.opts.map(o => <button key={o} onClick={() => setSignOffChoices(prev => ({ ...prev, [i]: o }))} style={{ flex: 1, height: 44, borderRadius: 10, border: `1px solid ${signOffChoices[i] === o ? '#2f6252' : '#e9eae8'}`, background: signOffChoices[i] === o ? '#e4f2eb' : '#f7f9f7', color: signOffChoices[i] === o ? '#2f6252' : '#4a5a57', fontFamily: 'inherit', fontSize: 13, fontWeight: signOffChoices[i] === o ? 700 : 400, cursor: 'pointer' }}>{o}</button>)}
+                  {q.opts.map(o => <button key={o} onClick={() => setSignOffChoices(prev => ({ ...prev, [i]: o }))} style={{ flex: 1, height: 44, borderRadius: 10, border: `1px solid ${signOffChoices[i] === o ? '#2f6252' : '#e9eae8'}`, background: signOffChoices[i] === o ? '#e4f2eb' : '#faf5ec', color: signOffChoices[i] === o ? '#2f6252' : '#4a5a57', fontFamily: 'inherit', fontSize: 13, fontWeight: signOffChoices[i] === o ? 700 : 400, cursor: 'pointer' }}>{o}</button>)}
                 </div>
               </div>
             ))}

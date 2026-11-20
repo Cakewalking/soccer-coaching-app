@@ -282,7 +282,7 @@ export default function MeasureSheet({ cfg, onClose, onOpen, onNav }: {
         )}
 
         {/* how it was captured */}
-        <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: MUT, marginTop: 2 }}>How it was captured</div>
+        <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#7a4b5b', marginTop: 2 }}>How it was captured</div>
         <div style={{ display: 'flex', gap: 8 }}>
           {cfg.captures.map((c, i) => (
             <div key={i} style={box}>

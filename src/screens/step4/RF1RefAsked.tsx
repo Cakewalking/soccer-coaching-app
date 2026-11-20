@@ -5,7 +5,7 @@ export default function RF1RefAsked(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string | null>(null)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
-    <div style={{ width: 390, minHeight: 844, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ width: 390, minHeight: 844, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       <div style={{ background: GD, padding: '14px 18px 12px', display: 'flex', alignItems: 'center', gap: 12 }}>
         <div style={{ flexGrow: 1 }}>
           <div style={{ fontSize: 12, color: '#cfe6dc' }}>Wattle Creek FC · referees</div>
@@ -23,7 +23,7 @@ export default function RF1RefAsked(_: { onBack?: () => void }) {
             <div style={{ fontSize: 13, color: MUT, marginBottom: 16 }}>Assistant referee · Sat 6 Jun · 12:00 · pitch 1</div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 14 }}>
               {[{ label: 'Be there by', value: '11:40' }, { label: 'Game length', value: '2 × 30 minutes' }, { label: 'Referee', value: 'Appointed by the league' }, { label: 'Your other game', value: '8:30 · U7 Dan, pitch 5' }].map((r, i) => (
-                <div key={i} style={{ background: '#f7f8f7', borderRadius: 10, padding: '10px 12px' }}>
+                <div key={i} style={{ background: '#faf5ec', borderRadius: 10, padding: '10px 12px' }}>
                   <div style={{ fontSize: 11, color: MUT, marginBottom: 2 }}>{r.label}</div>
                   <div style={{ fontSize: 14, fontWeight: 700, color: INK }}>{r.value}</div>
                 </div>

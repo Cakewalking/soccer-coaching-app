@@ -8,7 +8,7 @@ export default function TR1cPitchSideWrap(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string|null>(null)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
-    <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#faf5ec', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       <div style={{ flex: 'none', height: 64, boxSizing: 'border-box', padding: '0 28px', display: 'flex', alignItems: 'center', gap: 16, background: INK }}>
         <button onClick={() => st('Going back.')} style={{ width: 44, height: 44, borderRadius: '50%', border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18 }}>←</button>
         <div style={{ fontSize: 18, fontWeight: 700, color: '#fff', flex: 1 }}>Training · Thu 4 Jun</div>
@@ -54,7 +54,7 @@ export default function TR1cPitchSideWrap(_: { onBack?: () => void }) {
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '14px 16px' }}>
-            <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 10 }}>Tonight's stats</div>
+            <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 10 }}>Tonight's stats</div>
             {[['Drills run', '4'], ['Players', '14 of 16'], ['Moments tagged', '5'], ['Duration', '75 min']].map(([label, val]) => (
               <div key={label} style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 0', borderTop: `1px solid ${LN}`, fontSize: 14 }}>
                 <span style={{ color: MUT }}>{label}</span>
@@ -63,11 +63,11 @@ export default function TR1cPitchSideWrap(_: { onBack?: () => void }) {
             ))}
           </div>
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '14px 16px' }}>
-            <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 8 }}>Will sync when you're back in signal</div>
+            <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 8 }}>Will sync when you're back in signal</div>
             <div style={{ fontSize: 14, lineHeight: '20px', color: MUT }}>4 items waiting · all saved locally</div>
             <div style={{ marginTop: 8, display: 'flex', gap: 6, flexWrap: 'wrap' as const }}>
               {['Drill record', 'Boot sensor data', '5 moment tags', 'Coach notes'].map(item => (
-                <div key={item} style={{ fontSize: 12, background: '#f7f8f7', border: `1px solid ${LN}`, borderRadius: 999, padding: '2px 8px', color: MUT }}>{item}</div>
+                <div key={item} style={{ fontSize: 12, background: '#faf5ec', border: `1px solid ${LN}`, borderRadius: 999, padding: '2px 8px', color: MUT }}>{item}</div>
               ))}
             </div>
           </div>

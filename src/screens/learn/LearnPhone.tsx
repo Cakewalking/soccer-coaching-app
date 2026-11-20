@@ -21,13 +21,13 @@ export default function LearnPhone({ start = 'LNp1-LessonPhone', onNav }: { star
   const go = (s: string) => s.startsWith('LNp') ? setId(s) : onNav ? onNav(s) : openScreen(s)
   const l = nextLesson(c) ?? lesson('4.2') ?? ALL[0], m = moduleOf(l), short = l.title.split(',')[0]
   const [tried, setTried] = useState('Yes'), [ans, setAns] = useState(l.id === '4.2' ? 'Silence' : l.answers[0].answer), [feel, setFeel] = useState(3)
-  const phone: React.CSSProperties = { width: 390, minHeight: 844, margin: '0 auto', background: '#f7f8f7', color: INK, fontFamily: "'DM Sans',system-ui,sans-serif", display: 'flex', flexDirection: 'column' }
+  const phone: React.CSSProperties = { width: 390, minHeight: 844, margin: '0 auto', background: '#faf5ec', color: INK, fontFamily: "'DM Sans',system-ui,sans-serif", display: 'flex', flexDirection: 'column' }
   const head = (over: string, title: string) => (
     <div style={{ flex: 'none', padding: '12px 18px', background: G, color: '#fff', display: 'flex', alignItems: 'center', gap: 10 }}>
       <button aria-label="Back" onClick={() => go('LN1-LearnHome')} style={{ ...round, border: 0, background: 'transparent', color: '#fff', marginLeft: -10 }}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" /></svg></button>
       <span style={{ flexGrow: 1 }}><span style={{ display: 'block', fontSize: 12, color: '#cfe6dc' }}>{over}</span><strong style={{ fontSize: 21 }}>{title}</strong></span>
       <button aria-label="Ask Clean Sheet" onClick={() => go('ASKp2-PhoneAskOpen')} style={{ ...round, border: '1.5px solid #a9cfc0', background: 'transparent', color: '#fff' }}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={SPARK} /></svg></button>
-      <span style={{ ...round, cursor: 'default', background: '#cbbeb5', color: INK, fontSize: 14, fontWeight: 700 }}>LF</span>
+      <span style={{ ...round, cursor: 'default', background: '#e8cfcf', color: INK, fontSize: 14, fontWeight: 700 }}>LF</span>
     </div>)
 
   if (id === 'LNp2-HowItWentPhone') {

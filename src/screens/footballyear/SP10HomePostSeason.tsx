@@ -19,10 +19,10 @@ export default function SP10HomePostSeason({ onBack, onNav }: { onBack?: () => v
   const done = WRAPUP.filter(c => c.done).length
 
   return (
-    <div style={{ padding: '20px 28px 40px', background: '#f7f8f7', minHeight: '100%', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', position: 'relative' }}>
+    <div style={{ padding: '20px 28px 40px', background: '#faf5ec', minHeight: '100%', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', position: 'relative' }}>
       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 20 }}>
         <div>
-          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 4 }}>Head coach</div>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 4 }}>Head coach</div>
           <div style={{ fontSize: 24, fontWeight: 800, letterSpacing: '-0.02em', color: INK, marginBottom: 2 }}>Post-season, Sam</div>
           <div style={{ fontSize: 14, color: MUT }}>Thu 15 October · post-season · season finished 30 August</div>
         </div>
@@ -65,7 +65,7 @@ export default function SP10HomePostSeason({ onBack, onNav }: { onBack?: () => v
         {/* Right: still playing + training */}
         <div>
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 16px', marginBottom: 12 }}>
-            <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 10 }}>Still playing</div>
+            <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 10 }}>Still playing</div>
             {[
               { label: 'Kingfisher Summer Cup',    sub: 'Sat 21 and Sun 22 November · 12 picked', n: '5' },
               { label: 'Indoor fives, Monday nights', sub: '8 players from 3 teams · game 5 of 12', n: '' },

@@ -70,7 +70,7 @@ function devGoalsData(team: DevGoalsTeam) {
 function Illus() {
   return (
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 22px)', gap: 4, flex: 'none' }}>
-      {['#2f6252','#40826d','#cbbeb5','#c39797'].map((c, i) => (
+      {['#2f6252','#40826d','#e8cfcf','#c39797'].map((c, i) => (
         <div key={i} style={{ width: 22, height: 22, borderRadius: 5, background: c }} />
       ))}
     </div>
@@ -81,7 +81,7 @@ function Skel({ rows = 7 }: { rows?: number }) {
   const ws = [55, 45, 65, 40, 55, 50, 48]
   return (
     <div>
-      <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#6f7f7b', marginBottom: 8 }}>Fills in like this</div>
+      <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#5c6b67', marginBottom: 8 }}>Fills in like this</div>
       {Array.from({ length: rows }, (_, i) => (
         <div key={i} style={{ height: 44, border: '1px dashed #c5c8c4', borderRadius: 10, marginBottom: 6, display: 'flex', alignItems: 'center', padding: '0 14px', gap: 10 }}>
           <div style={{ width: 28, height: 28, borderRadius: '999px', background: '#e9eae8', flex: 'none' }} />
@@ -203,7 +203,7 @@ export default function DevGoalsScreen({ empty, teamType = 'juniors' }: { empty?
                 </span>
                 <span style={{ fontSize: 14, lineHeight: '20px', color: g.status === 'to-set' ? '#6f7f7b' : '#10211f' }}>{g.goal}</span>
                 <span style={{ display: 'flex', gap: 3, justifyContent: 'center' }}>
-                  {g.games.length > 0 ? g.games.map((v, j) => <GameTick key={j} v={v} />) : <span style={{ fontSize: 12, color: '#6f7f7b' }}>—</span>}
+                  {g.games.length > 0 ? g.games.map((v, j) => <GameTick key={j} v={v} />) : <span style={{ fontSize: 12, color: '#5c6b67' }}>—</span>}
                 </span>
                 <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
                   <span style={{ fontSize: 12, fontWeight: 700, padding: '2px 9px', borderRadius: '999px', background: c.bg, color: c.color }}>{c.label}</span>
@@ -235,7 +235,7 @@ export default function DevGoalsScreen({ empty, teamType = 'juniors' }: { empty?
         </div>
 
         {/* Related clip */}
-        <div style={{ background: '#f7f8f7', borderRadius: 12, padding: '10px 12px', display: 'flex', alignItems: 'center', gap: 12 }}>
+        <div style={{ background: '#faf5ec', borderRadius: 12, padding: '10px 12px', display: 'flex', alignItems: 'center', gap: 12 }}>
           <div style={{ flex: 'none', width: 48, height: 36, borderRadius: 8, background: '#2f6252', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="rgba(255,255,255,0.9)" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"/></svg>
           </div>

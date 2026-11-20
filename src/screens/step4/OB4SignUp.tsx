@@ -22,7 +22,7 @@ export default function OB4SignUp({ onBack }: { onBack?: () => void }) {
   const is = (k: string) => done.includes(k)
   const roleLabel = ROLES.find(r => r.id === selectedRole)?.label ?? '—'
   return (
-    <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#faf5ec', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       {/* Top bar */}
       <div style={{ flex: 'none', height: 64, boxSizing: 'border-box', padding: '0 32px', display: 'flex', alignItems: 'center', gap: 32, background: G }}>
         <div style={{ fontSize: 20, fontWeight: 700, color: '#fff', letterSpacing: '-0.02em' }}>Clean Sheet</div>
@@ -48,7 +48,7 @@ export default function OB4SignUp({ onBack }: { onBack?: () => void }) {
         {/* Left: main content */}
         <div style={{ flex: 1, padding: '28px 40px', display: 'flex', flexDirection: 'column', gap: 20, overflowY: 'auto' }}>
           <div>
-            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 4 }}>You and your coaches</div>
+            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 4 }}>You and your coaches</div>
             <div style={{ fontSize: 24, fontWeight: 700, letterSpacing: '-0.02em' }}>What's your role?</div>
           </div>
 
@@ -93,7 +93,7 @@ export default function OB4SignUp({ onBack }: { onBack?: () => void }) {
 
         {/* Right: summary sidebar */}
         <div style={{ width: 300, background: '#fff', borderLeft: `1px solid ${LN}`, padding: '28px 24px', display: 'flex', flexDirection: 'column', gap: 14 }}>
-          <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT }}>Your team so far</div>
+          <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b' }}>Your team so far</div>
           {[
             { label: 'Club',         value: 'Wattle Creek FC' },
             { label: 'Team',         value: 'U12 Sam · Division 1' },

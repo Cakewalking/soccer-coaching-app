@@ -3,8 +3,8 @@ import { EmptyCard } from '../clubadmin/ui'
 
 const STAFF = [
   { ini: 'TA', bg: '#c39797', name: 'Tom Albers', role: 'Head coach', check: 'Valid', checkBg: '#2f6252', checkColor: '#fff', canEdit: false },
-  { ini: 'JF', bg: '#cbbeb5', name: 'Jo Franklin', role: 'Assistant coach', check: 'Valid', checkBg: '#2f6252', checkColor: '#fff', canEdit: false },
-  { ini: 'KN', bg: '#cbbeb5', name: 'Kim Nolan', role: 'Team manager', check: 'Check due 30 Jun', checkBg: '#cbbeb5', checkColor: '#10211f', canEdit: false },
+  { ini: 'JF', bg: '#e8cfcf', name: 'Jo Franklin', role: 'Assistant coach', check: 'Valid', checkBg: '#2f6252', checkColor: '#fff', canEdit: false },
+  { ini: 'KN', bg: '#e8cfcf', name: 'Kim Nolan', role: 'Team manager', check: 'Check due 30 Jun', checkBg: '#e8cfcf', checkColor: '#10211f', canEdit: false },
 ]
 
 export default function StaffMiniRoos({ empty }: { empty?: boolean }) {

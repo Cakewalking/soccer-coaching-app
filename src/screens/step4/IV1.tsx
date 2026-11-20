@@ -8,7 +8,7 @@ export default function IV1(_: { onBack?: () => void }) {
   function t(m: string) { setToast(m); setTimeout(() => setToast(null), 3200) }
 
   return (
-    <div style={{ width: 390, minHeight: 844, background: '#f7f8f7', fontFamily: 'var(--font-sans)', position: 'relative', overflowY: 'auto', boxSizing: 'border-box' }}>
+    <div style={{ width: 390, minHeight: 844, background: '#faf5ec', fontFamily: 'var(--font-sans)', position: 'relative', overflowY: 'auto', boxSizing: 'border-box' }}>
 
       {/* Header */}
       <div style={{ background: GD, padding: '18px 20px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>

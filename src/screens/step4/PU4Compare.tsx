@@ -77,11 +77,11 @@ export default function PU4Compare({ onNav }: { onNav?: (s: string) => void }) {
                 <span style={{ fontSize: 11, fontWeight: 700, padding: '3px 10px', borderRadius: 20, background: PALE, color: G, border: `1px solid ${LN}` }}>Fair to compare</span>
               </div>
               <div style={{ display: 'flex', gap: 8, padding: '4px 0 8px', borderBottom: `1px solid ${LN}`, marginBottom: 4 }}>
-                <div style={{ width: 170, fontSize: 10, fontWeight: 600, color: MUT, textTransform: 'uppercase' as const, letterSpacing: '0.06em' }}>Measure</div>
-                <div style={{ width: 70, fontSize: 10, fontWeight: 600, color: MUT, textTransform: 'uppercase' as const, letterSpacing: '0.06em' }}>Mia</div>
-                <div style={{ width: 110, fontSize: 10, fontWeight: 600, color: MUT, textTransform: 'uppercase' as const, letterSpacing: '0.06em' }}>U13 girls range</div>
+                <div style={{ width: 170, fontSize: 10, fontWeight: 600, color: '#7a4b5b', textTransform: 'uppercase' as const, letterSpacing: '0.06em' }}>Measure</div>
+                <div style={{ width: 70, fontSize: 10, fontWeight: 600, color: '#7a4b5b', textTransform: 'uppercase' as const, letterSpacing: '0.06em' }}>Mia</div>
+                <div style={{ width: 110, fontSize: 10, fontWeight: 600, color: '#7a4b5b', textTransform: 'uppercase' as const, letterSpacing: '0.06em' }}>U13 girls range</div>
                 <div style={{ flex: 1 }} />
-                <div style={{ width: 80, fontSize: 10, fontWeight: 600, color: MUT, textTransform: 'uppercase' as const, letterSpacing: '0.06em', textAlign: 'right' as const }}>Where she sits</div>
+                <div style={{ width: 80, fontSize: 10, fontWeight: 600, color: '#7a4b5b', textTransform: 'uppercase' as const, letterSpacing: '0.06em', textAlign: 'right' as const }}>Where she sits</div>
               </div>
               <RangeRow label="Top speed" src="Vest" mia="24.1 km/h" range="22.0 to 27.5 · 24.6" mid="45" where="Middle" sheet="PU8b-MeasureVest" onOpen={() => open('PU8b-MeasureVest')} />
               <RangeRow label="10 m sprint" src="Timed test" mia="2.08 s" range="1.95 to 2.25 · 2.10" mid="45" where="Middle" sheet="PU8g-MeasureTest" onOpen={() => open('PU8g-MeasureTest')} />

@@ -27,7 +27,7 @@ export default function PRM2TurnOn({ onNav }: { onNav?: (s: string) => void }) {
   return (
     <div data-lasttool={lastTool} style={{ position: 'absolute', inset: 0, background: 'rgba(16,33,31,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 50 }}>
       <div style={{ background: '#fff', borderRadius: 20, padding: '36px', width: 540, boxShadow: '0 20px 60px rgba(0,0,0,0.25)', fontFamily: 'var(--font-sans)' }}>
-        <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 6 }}>Live game help · U12 Sam</div>
+        <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 6 }}>Live game help · U12 Sam</div>
 
         {!done ? (
           <>

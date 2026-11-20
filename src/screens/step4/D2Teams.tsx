@@ -23,7 +23,7 @@ export default function D2Teams(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string | null>(null)
   function t(m: string) { setToast(m); setTimeout(() => setToast(null), 3200) }
   return (
-    <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, position: 'relative' }}>
+    <div style={{ width: 1180, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, position: 'relative' }}>
       <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 32, height: 52 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff', letterSpacing: '-0.01em' }}>Clean Sheet</div>
         {['Club', 'Teams', 'Coaches', 'Players', 'Safeguarding', 'Reports'].map(tab => (
@@ -44,11 +44,11 @@ export default function D2Teams(_: { onBack?: () => void }) {
             <div key={f} onClick={() => setFilter(f)} style={{ padding: '6px 14px', borderRadius: 20, border: `1px solid ${f === filter ? G : LN}`, background: f === filter ? PALE : '#fff', fontSize: 12, fontWeight: f === filter ? 700 : 500, color: f === filter ? G : MUT, cursor: 'pointer' }}>{f}{f === 'Needs attention' ? ' 3' : ''}</div>
           ))}
         </div>
-        <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 10 }}>MiniRoos · U6–U11</div>
+        <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 10 }}>MiniRoos · U6–U11</div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 12, marginBottom: 24 }}>
           {MINI.map(m => <TeamCard key={m.age + m.coach} {...m} warn={m.coach === 'Mark' || m.coach === 'Dan'} />)}
         </div>
-        <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 10 }}>Juniors · U12–U18</div>
+        <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 10 }}>Juniors · U12–U18</div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 12 }}>
           {JUNIORS.map(m => <TeamCard key={m.age + m.coach} {...m} warn={m.coach === 'Chris'} />)}
         </div>

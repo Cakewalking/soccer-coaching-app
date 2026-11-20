@@ -17,7 +17,7 @@ export default function SG2WhySuggested(_: { onBack?: () => void }) {
   const [added, setAdded] = useState(false)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
-    <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#faf5ec', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       <div style={{ flex: 'none', background: '#fff', borderBottom: `1px solid ${LN}` }}>
         <div style={{ height: 64, boxSizing: 'border-box', padding: '0 28px', display: 'flex', alignItems: 'center', gap: 4, background: G }}>
           <div style={{ fontSize: 20, fontWeight: 700, color: '#fff', marginRight: 16, letterSpacing: '-0.02em' }}>Clean Sheet</div>
@@ -37,7 +37,7 @@ export default function SG2WhySuggested(_: { onBack?: () => void }) {
           </div>
 
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '16px 18px', display: 'flex', flexDirection: 'column', gap: 14 }}>
-            <div style={{ fontSize: 14, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT }}>Game data · Sat 30 May vs Ironbark United</div>
+            <div style={{ fontSize: 14, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b' }}>Game data · Sat 30 May vs Ironbark United</div>
             <div>
               <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 10 }}>Seconds to win the ball back</div>
               {BARS.map(b => (
@@ -56,7 +56,7 @@ export default function SG2WhySuggested(_: { onBack?: () => void }) {
           </div>
 
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 10 }}>
-            <div style={{ fontSize: 14, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT }}>Evidence</div>
+            <div style={{ fontSize: 14, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b' }}>Evidence</div>
             {[
               { icon: glyph('clipboard'), label: 'Coach note', text: 'Min 16 · "Lost it on halfway. 9 seconds to win it back."' },
               { icon: glyph('hand'), label: 'GPS vest', text: 'Sprints dropped 18% when we lost the ball.' },

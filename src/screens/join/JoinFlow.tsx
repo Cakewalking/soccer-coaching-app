@@ -88,7 +88,7 @@ export default function JoinFlow({ initialStep = 'landing' }: { initialStep?: Jo
   /* ── JN1: Create parent account ── */
   if (step === 'parent-create') {
     return (
-      <div style={{ width: 390, margin: '0 auto', background: '#f7f9f7', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
+      <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
         <div style={{ background: GD, padding: '52px 24px 20px', flexShrink: 0 }}>
           <BackButton onBack={() => setStep('landing')} />
           <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.5)', marginBottom: 2 }}>Join as a parent</div>
@@ -130,7 +130,7 @@ export default function JoinFlow({ initialStep = 'landing' }: { initialStep?: Jo
   /* ── JN2: Who's your child? ── */
   if (step === 'parent-child') {
     return (
-      <div style={{ width: 390, margin: '0 auto', background: '#f7f9f7', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
+      <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
         <div style={{ background: GD, padding: '52px 24px 20px', flexShrink: 0 }}>
           <BackButton onBack={() => setStep('parent-create')} />
           <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.5)', marginBottom: 2 }}>Join as a parent</div>
@@ -184,7 +184,7 @@ export default function JoinFlow({ initialStep = 'landing' }: { initialStep?: Jo
   if (step === 'parent-firstaid') {
     const CONDITIONS = ['Asthma', 'Allergy', 'Epilepsy', 'Diabetes', 'Other']
     return (
-      <div style={{ width: 390, margin: '0 auto', background: '#f7f9f7', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
+      <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
         <div style={{ background: GD, padding: '52px 24px 20px', flexShrink: 0 }}>
           <BackButton onBack={() => setStep('parent-child')} />
           <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.5)', marginBottom: 2 }}>Join as a parent</div>
@@ -235,7 +235,7 @@ export default function JoinFlow({ initialStep = 'landing' }: { initialStep?: Jo
   /* ── JN4: Set up Mia's app ── */
   if (step === 'parent-setup') {
     return (
-      <div style={{ width: 390, margin: '0 auto', background: '#f7f9f7', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
+      <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
         <div style={{ background: GD, padding: '52px 24px 20px', flexShrink: 0 }}>
           <BackButton onBack={() => setStep('parent-firstaid')} />
           <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.5)', marginBottom: 2 }}>Join as a parent</div>
@@ -309,7 +309,7 @@ export default function JoinFlow({ initialStep = 'landing' }: { initialStep?: Jo
   /* ── JN5: Parent all set ── */
   if (step === 'parent-done') {
     return (
-      <div style={{ width: 390, margin: '0 auto', background: '#f7f9f7', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
+      <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
         <div style={{ background: GD, padding: '52px 24px 24px', flexShrink: 0 }}>
           <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.5)', marginBottom: 2 }}>Join as a parent</div>
           <div style={{ fontSize: 24, fontWeight: 800, color: '#fff', marginBottom: 4 }}>You're in, Linh</div>
@@ -366,7 +366,7 @@ export default function JoinFlow({ initialStep = 'landing' }: { initialStep?: Jo
   /* ── JN6: Player age check ── */
   if (step === 'player-age') {
     return (
-      <div style={{ width: 390, margin: '0 auto', background: '#f7f9f7', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
+      <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
         <div style={{ background: GD, padding: '52px 24px 20px', flexShrink: 0 }}>
           <BackButton onBack={() => setStep('landing')} />
           <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.5)', marginBottom: 2 }}>Join as a player</div>
@@ -417,7 +417,7 @@ export default function JoinFlow({ initialStep = 'landing' }: { initialStep?: Jo
   /* ── JN7: Player code ── */
   if (step === 'player-code') {
     return (
-      <div style={{ width: 390, margin: '0 auto', background: '#f7f9f7', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
+      <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
         <div style={{ background: GD, padding: '52px 24px 20px', flexShrink: 0 }}>
           <BackButton onBack={() => setStep('player-age')} />
           <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.5)', marginBottom: 2 }}>Join as a player</div>
@@ -475,7 +475,7 @@ export default function JoinFlow({ initialStep = 'landing' }: { initialStep?: Jo
       { key: 'firstaid', label: 'First-aid card for the team manager' },
     ]
     return (
-      <div style={{ width: 390, margin: '0 auto', background: '#f7f9f7', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
+      <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
         <div style={{ background: GD, padding: '52px 24px 20px', flexShrink: 0 }}>
           <BackButton onBack={() => setStep('player-age')} />
           <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.5)', marginBottom: 2 }}>Join as a player</div>

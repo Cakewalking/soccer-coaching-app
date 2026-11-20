@@ -8,7 +8,7 @@ export default function ACP10AcademyConcern() {
   function t(m: string) { setToast(m); setTimeout(() => setToast(null), 3200) }
 
   return (
-    <div style={{ width: 390, minHeight: '100%', background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', margin: '0 auto', position: 'relative' }}>
+    <div style={{ width: 390, minHeight: '100%', background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', margin: '0 auto', position: 'relative' }}>
       <div style={{ background: GD, padding: '16px 20px 20px' }}>
         <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,0.6)', marginBottom: 4 }}>Tall Timber Academy</div>
         <div style={{ fontSize: 20, fontWeight: 800, letterSpacing: '-0.02em', color: '#fff', marginBottom: 2 }}>Tell someone</div>
@@ -24,7 +24,7 @@ export default function ACP10AcademyConcern() {
           { label: "Not sure where it happened", name: 'Both are notified', role: 'They coordinate between them' },
         ].map((opt, i) => (
           <div key={i} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 16px', marginBottom: 10 }}>
-            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 4 }}>{opt.label}</div>
+            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 4 }}>{opt.label}</div>
             <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 2 }}>{opt.name}</div>
             <div style={{ fontSize: 12, color: MUT }}>{opt.role}</div>
           </div>

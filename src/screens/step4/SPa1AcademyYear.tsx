@@ -17,7 +17,7 @@ export default function SPa1AcademyYear(_: { onBack?: () => void }) {
   void st   // kept for lines this screen may still need to say
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
-    <div style={{ width: 1180, minHeight: 820, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
+    <div style={{ width: 1180, minHeight: 820, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
       <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 32, height: 52, flexShrink: 0 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff', letterSpacing: '-0.01em' }}>Clean Sheet</div>
         {TOP_NAV.map(t => <div key={t} style={{ fontSize: 13, fontWeight: t === 'Home' ? 700 : 500, color: t === 'Home' ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>)}
@@ -28,7 +28,7 @@ export default function SPa1AcademyYear(_: { onBack?: () => void }) {
       </div>
       <div style={{ background: '#fff', borderBottom: `1px solid ${LN}`, padding: '0 32px', display: 'flex', gap: 24, height: 44, alignItems: 'center', flexShrink: 0 }}>
         {SUB_NAV.map(n => <div key={n} style={{ height: 44, display: 'flex', alignItems: 'center', fontSize: 13, fontWeight: n === 'Overview' ? 700 : 500, color: n === 'Overview' ? INK : MUT, borderBottom: `2px solid ${n === 'Overview' ? G : 'transparent'}`, cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{n}</div>)}
-        <div style={{ marginLeft: 'auto', fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT }}>Academy owner</div>
+        <div style={{ marginLeft: 'auto', fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b' }}>Academy owner</div>
       </div>
       <div style={{ padding: '24px 32px 0', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <div>
@@ -39,7 +39,7 @@ export default function SPa1AcademyYear(_: { onBack?: () => void }) {
       </div>
       <main style={{ flexGrow: 1, padding: '16px 32px 32px', display: 'flex', flexDirection: 'column', gap: 20 }}>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, overflow: 'hidden' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '100px 120px 180px 1fr', fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: MUT, padding: '10px 20px', borderBottom: `1px solid ${LN}`, background: '#f7f8f7' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '100px 120px 180px 1fr', fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: MUT, padding: '10px 20px', borderBottom: `1px solid ${LN}`, background: '#faf5ec' }}>
             <div>Term</div><div>When</div><div>At their clubs</div><div>What the academy does</div>
           </div>
           {TERMS.map((t, i) => (

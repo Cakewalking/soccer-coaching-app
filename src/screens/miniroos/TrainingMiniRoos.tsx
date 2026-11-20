@@ -33,7 +33,7 @@ const TONIGHT_REMEMBER = [
 function tagColor(tag: string) {
   if (tag === 'Fun warm-up') return { bg: '#eef5f2', color: '#2f6252' }
   if (tag === 'Skill game')  return { bg: '#e8f0ee', color: '#1f4a3e' }
-  return                            { bg: '#cbbeb5', color: '#10211f' }
+  return                            { bg: '#e8cfcf', color: '#10211f' }
 }
 
 export default function TrainingMiniRoos({ empty }: { empty?: boolean }) {
@@ -80,9 +80,9 @@ export default function TrainingMiniRoos({ empty }: { empty?: boolean }) {
           {DRILLS.map((d, i) => (
             <button key={i} onClick={() => { setSelectedGame(i); if (swapMode) { setSwapMode(false); showToast(`${d.name} swapped from the library.`) } }} style={{ display: 'grid', gridTemplateColumns: '56px minmax(0,1fr) 24px', gap: 0, background: '#ffffff', border: `${selectedGame === i ? 2 : 1}px solid ${selectedGame === i ? '#2f6252' : '#c5c8c4'}`, borderRadius: 16, padding: 0, overflow: 'hidden', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
               {/* Time col */}
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '14px 0', background: '#f7f8f7', borderRight: '1px solid #e9eae8', gap: 2 }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '14px 0', background: '#faf5ec', borderRight: '1px solid #e9eae8', gap: 2 }}>
                 <span style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>{d.time}</span>
-                <span style={{ fontSize: 11, color: '#6f7f7b' }}>{d.duration}</span>
+                <span style={{ fontSize: 11, color: '#5c6b67' }}>{d.duration}</span>
               </div>
               {/* Content col */}
               <div style={{ padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 4 }}>
@@ -91,7 +91,7 @@ export default function TrainingMiniRoos({ empty }: { empty?: boolean }) {
                   <span style={{ fontSize: 12, fontWeight: 700, padding: '1px 8px', borderRadius: '999px', ...tagColor(d.tag) }}>{d.tag}</span>
                 </div>
                 <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: '18px' }}>{d.desc}</div>
-                <div style={{ fontSize: 13, color: '#6f7f7b', lineHeight: '18px' }}>
+                <div style={{ fontSize: 13, color: '#5c6b67', lineHeight: '18px' }}>
                   <span style={{ fontWeight: 600 }}>Too easy?</span> {d.tooEasy}
                 </div>
               </div>

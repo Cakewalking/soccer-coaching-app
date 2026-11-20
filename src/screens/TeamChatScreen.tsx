@@ -83,7 +83,7 @@ function Sidebar({ selectedChat, panelView, onChat, onAnnouncements, onNewChat }
 
       {/* Chat list */}
       <div style={{ flex:1, overflowY:'auto' }}>
-        <div style={{ padding:'6px 16px 4px', fontSize:11, fontWeight:700, letterSpacing:'0.06em', textTransform:'uppercase', color:MUT }}>Direct messages</div>
+        <div style={{ padding:'6px 16px 4px', fontSize:11, fontWeight:700, letterSpacing:'0.06em', textTransform:'uppercase', color: '#7a4b5b' }}>Direct messages</div>
         {CHATS.map(c0 => ({ ...c0, unread: isRead(`teamchat:${c0.id}`) ? undefined : c0.unread })).map(c => {
           const active = selectedChat===c.id && panelView==='chat'
           if (active) markRead(`teamchat:${c.id}`)
@@ -516,7 +516,7 @@ function NewChatPanel({ onCancel, onCreate }: { onCancel:()=>void; onCreate:()=>
 function Section({ label, children }: { label:string; children:React.ReactNode }) {
   return (
     <div style={{ marginBottom:20 }}>
-      <div style={{ fontSize:11, fontWeight:700, letterSpacing:'0.06em', textTransform:'uppercase' as const, color:MUT, marginBottom:8 }}>{label}</div>
+      <div style={{ fontSize:11, fontWeight:700, letterSpacing:'0.06em', textTransform:'uppercase' as const, color: '#7a4b5b', marginBottom:8 }}>{label}</div>
       {children}
     </div>
   )
@@ -578,11 +578,11 @@ function NewPollPanel({ onCancel, onSend }: { onCancel:()=>void; onSend:()=>void
 
         <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:16, marginBottom:20 }}>
           <div>
-            <div style={{ fontSize:11, fontWeight:700, letterSpacing:'0.06em', textTransform:'uppercase' as const, color:MUT, marginBottom:8 }}>Remind anyone who hasn't answered</div>
+            <div style={{ fontSize:11, fontWeight:700, letterSpacing:'0.06em', textTransform:'uppercase' as const, color: '#7a4b5b', marginBottom:8 }}>Remind anyone who hasn't answered</div>
             <div style={{ fontSize:14, color:INK }}>Friday at noon, once</div>
           </div>
           <div>
-            <div style={{ fontSize:11, fontWeight:700, letterSpacing:'0.06em', textTransform:'uppercase' as const, color:MUT, marginBottom:8 }}>Show who voted</div>
+            <div style={{ fontSize:11, fontWeight:700, letterSpacing:'0.06em', textTransform:'uppercase' as const, color: '#7a4b5b', marginBottom:8 }}>Show who voted</div>
             <div style={{ display:'flex', alignItems:'center', gap:8 }}>
               <div style={{ width:36, height:22, borderRadius:11, background:LN, position:'relative' as const, cursor:'pointer' }}>
                 <div style={{ position:'absolute' as const, top:3, left:3, width:16, height:16, borderRadius:'50%', background:'#fff' }}/>
@@ -591,7 +591,7 @@ function NewPollPanel({ onCancel, onSend }: { onCancel:()=>void; onSend:()=>void
             </div>
           </div>
           <div>
-            <div style={{ fontSize:11, fontWeight:700, letterSpacing:'0.06em', textTransform:'uppercase' as const, color:MUT, marginBottom:8 }}>Closes</div>
+            <div style={{ fontSize:11, fontWeight:700, letterSpacing:'0.06em', textTransform:'uppercase' as const, color: '#7a4b5b', marginBottom:8 }}>Closes</div>
             <div style={{ display:'flex', alignItems:'center', gap:8 }}>
               <span style={{ fontSize:14, color:INK }}>Friday 6 pm</span>
               <button onClick={() => openThing('date picker', 'coach')} style={{ fontSize:12, fontWeight:600, color:G2, border:'none', background:'transparent', cursor:'pointer', fontFamily:'inherit' }}>Change</button>
@@ -798,7 +798,7 @@ function ChatInfoPanel({ onBack }: { onBack:()=>void }) {
         {/* Members */}
         <div style={{ marginBottom:20 }}>
           <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:10 }}>
-            <div style={{ fontSize:11, fontWeight:700, letterSpacing:'0.06em', textTransform:'uppercase' as const, color:MUT }}>In this chat · 20 adults</div>
+            <div style={{ fontSize:11, fontWeight:700, letterSpacing:'0.06em', textTransform:'uppercase' as const, color: '#7a4b5b' }}>In this chat · 20 adults</div>
             <button onClick={() => setCiToast('Showing all 20 members.')} style={{ fontSize:12, fontWeight:600, color:G2, border:'none', background:'transparent', cursor:'pointer', fontFamily:'inherit' }}>See all</button>
           </div>
           {[
@@ -823,7 +823,7 @@ function ChatInfoPanel({ onBack }: { onBack:()=>void }) {
 
         {/* Rules */}
         <div style={{ marginBottom:20 }}>
-          <div style={{ fontSize:11, fontWeight:700, letterSpacing:'0.06em', textTransform:'uppercase' as const, color:MUT, marginBottom:10 }}>Rules for this chat</div>
+          <div style={{ fontSize:11, fontWeight:700, letterSpacing:'0.06em', textTransform:'uppercase' as const, color: '#7a4b5b', marginBottom:10 }}>Rules for this chat</div>
           {[
             {label:'Parents can post', value:'On', note:'Chosen by Rob when he set up the chat'},
             {label:'Parents can send', value:'Photos, videos, voice notes, files and places', note:'No polls'},
@@ -842,7 +842,7 @@ function ChatInfoPanel({ onBack }: { onBack:()=>void }) {
 
         {/* For you */}
         <div>
-          <div style={{ fontSize:11, fontWeight:700, letterSpacing:'0.06em', textTransform:'uppercase' as const, color:MUT, marginBottom:10 }}>For you</div>
+          <div style={{ fontSize:11, fontWeight:700, letterSpacing:'0.06em', textTransform:'uppercase' as const, color: '#7a4b5b', marginBottom:10 }}>For you</div>
           {[
             {label:'Mute this chat', note:'Announcements and messages that name you still come through'},
             {label:'Pinned messages', note:'1 pinned: Saturday, be there 8:40', action:'See'},

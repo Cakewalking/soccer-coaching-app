@@ -168,7 +168,7 @@ export default function C2ClipsByGame() {
           </div>
 
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 10, padding: '12px 14px', marginBottom: 16 }}>
-            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 6 }}>Measure</div>
+            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 6 }}>Measure</div>
             <div style={{ fontSize: 14, color: INK }}>Winning it back · Middle third · First half</div>
             <div style={{ marginTop: 8, display: 'flex', gap: 6 }}>
               <Avatar init="NO" />

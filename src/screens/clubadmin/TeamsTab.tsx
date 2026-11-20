@@ -41,7 +41,7 @@ function TeamDetail({ name, onBack }: { name: string; onBack: () => void }) {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 4 }}>
         <div>
           <div style={{ fontSize: 20, fontWeight: 800, color: '#10211f' }}>{name}</div>
-          <div style={{ fontSize: 13, color: '#6f7f7b' }}>{div} · coach {coach} · {players} players · read-only, the way its coaches see it</div>
+          <div style={{ fontSize: 13, color: '#5c6b67' }}>{div} · coach {coach} · {players} players · read-only, the way its coaches see it</div>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
           <button onClick={() => openThing('comparison view', 'club')} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>Compare</button>
@@ -50,19 +50,19 @@ function TeamDetail({ name, onBack }: { name: string; onBack: () => void }) {
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10, margin: '16px 0' }}>
         <div style={{ background: '#fff', borderRadius: 14, padding: '14px', border: '1px solid #e9eae8' }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#6f7f7b', marginBottom: 6 }}>LAST 5</div>
-          <div style={{ display: 'flex', gap: 3 }}>{lastFive.length > 0 ? lastFive.map((r, i) => <ResultChip key={i} r={r} />) : <span style={{ fontSize: 12, color: '#6f7f7b' }}>Results not kept</span>}</div>
+          <div style={{ fontSize: 11, fontWeight: 700, color: '#5c6b67', marginBottom: 6 }}>LAST 5</div>
+          <div style={{ display: 'flex', gap: 3 }}>{lastFive.length > 0 ? lastFive.map((r, i) => <ResultChip key={i} r={r} />) : <span style={{ fontSize: 12, color: '#5c6b67' }}>Results not kept</span>}</div>
         </div>
         <div style={{ background: '#fff', borderRadius: 14, padding: '14px', border: '1px solid #e9eae8' }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#6f7f7b', marginBottom: 4 }}>PLAYING OUR WAY</div>
+          <div style={{ fontSize: 11, fontWeight: 700, color: '#5c6b67', marginBottom: 4 }}>PLAYING OUR WAY</div>
           <div style={{ fontSize: 22, fontWeight: 800, color: '#10211f' }}>{style > 0 ? `${style}%` : '—'}</div>
         </div>
         <div style={{ background: '#fff', borderRadius: 14, padding: '14px', border: '1px solid #e9eae8' }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#6f7f7b', marginBottom: 4 }}>TRAINING TURNOUT</div>
+          <div style={{ fontSize: 11, fontWeight: 700, color: '#5c6b67', marginBottom: 4 }}>TRAINING TURNOUT</div>
           <div style={{ fontSize: 22, fontWeight: 800, color: '#10211f' }}>{turnout}%</div>
         </div>
         <div style={{ background: '#fff', borderRadius: 14, padding: '14px', border: '1px solid #e9eae8' }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: '#6f7f7b', marginBottom: 4 }}>GAMES RECORDED</div>
+          <div style={{ fontSize: 11, fontWeight: 700, color: '#5c6b67', marginBottom: 4 }}>GAMES RECORDED</div>
           <div style={{ fontSize: 22, fontWeight: 800, color: '#10211f' }}>6 of 6</div>
         </div>
       </div>
@@ -71,7 +71,7 @@ function TeamDetail({ name, onBack }: { name: string; onBack: () => void }) {
           <div style={{ background: '#fff', borderRadius: 14, padding: '14px 16px', border: '1px solid #e9eae8', marginBottom: 14 }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
               <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>Needs attention</div>
-              <span style={{ fontSize: 12, color: '#6f7f7b' }}>{alert?.alert ? '1 thing' : '0 things'}</span>
+              <span style={{ fontSize: 12, color: '#5c6b67' }}>{alert?.alert ? '1 thing' : '0 things'}</span>
             </div>
             {alert?.alert ? (
               <div style={{ display: 'flex', gap: 8, padding: '10px 12px', borderRadius: 10, background: '#fdf4f4', border: '1px solid #f0dcc8' }}>
@@ -81,7 +81,7 @@ function TeamDetail({ name, onBack }: { name: string; onBack: () => void }) {
             ) : (
               <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
                 <div style={{ width: 20, height: 20, borderRadius: '999px', background: '#e4f2eb', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><span style={{ fontSize: 10, color: '#40826d' }}>✓</span></div>
-                <div><div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>Nothing needs you</div><div style={{ fontSize: 12, color: '#6f7f7b' }}>Checks valid, everyone getting a fair go, games recorded.</div></div>
+                <div><div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>Nothing needs you</div><div style={{ fontSize: 12, color: '#5c6b67' }}>Checks valid, everyone getting a fair go, games recorded.</div></div>
               </div>
             )}
           </div>
@@ -92,8 +92,8 @@ function TeamDetail({ name, onBack }: { name: string; onBack: () => void }) {
             </div>
             {staff.map((s, i) => (
               <div key={i} style={{ display: 'flex', gap: 10, alignItems: 'center', padding: '8px 0', borderTop: i > 0 ? '1px solid #f0f1f0' : 'none' }}>
-                <div style={{ width: 28, height: 28, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', fontSize: 10, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{s.ini}</div>
-                <div style={{ flexGrow: 1 }}><div style={{ fontSize: 13, fontWeight: 600, color: '#10211f' }}>{s.name}</div><div style={{ fontSize: 11, color: '#6f7f7b' }}>{s.role}</div></div>
+                <div style={{ width: 28, height: 28, borderRadius: '999px', background: '#e8cfcf', color: '#10211f', fontSize: 10, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{s.ini}</div>
+                <div style={{ flexGrow: 1 }}><div style={{ fontSize: 13, fontWeight: 600, color: '#10211f' }}>{s.name}</div><div style={{ fontSize: 11, color: '#5c6b67' }}>{s.role}</div></div>
                 <span style={{ fontSize: 11, fontWeight: 700, color: s.check.startsWith('Valid') ? '#40826d' : '#c39797', background: s.check.startsWith('Valid') ? '#e4f2eb' : '#fdf4f4', borderRadius: 6, padding: '2px 8px' }}>{s.check}</span>
               </div>
             ))}
@@ -103,28 +103,28 @@ function TeamDetail({ name, onBack }: { name: string; onBack: () => void }) {
           <div style={{ background: '#fff', borderRadius: 14, padding: '14px 16px', border: '1px solid #e9eae8', marginBottom: 14 }}>
             <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>Next game · Sat 6 Jun</div>
             <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>vs Tealside Town</div>
-            <div style={{ fontSize: 12, color: '#6f7f7b', marginTop: 4 }}>11:00 · Home · Pitch 2</div>
-            <div style={{ fontSize: 12, color: '#6f7f7b' }}>Camera: Kit 3</div>
-            <div style={{ fontSize: 12, color: '#6f7f7b' }}>Training Tue and Thu 5:45</div>
+            <div style={{ fontSize: 12, color: '#5c6b67', marginTop: 4 }}>11:00 · Home · Pitch 2</div>
+            <div style={{ fontSize: 12, color: '#5c6b67' }}>Camera: Kit 3</div>
+            <div style={{ fontSize: 12, color: '#5c6b67' }}>Training Tue and Thu 5:45</div>
           </div>
           <div style={{ background: '#fff', borderRadius: 14, padding: '14px 16px', border: '1px solid #e9eae8' }}>
             <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 10 }}>Players</div>
             <div style={{ marginBottom: 8 }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
-                <span style={{ fontSize: 12, color: '#6f7f7b' }}>Fewest minutes</span>
+                <span style={{ fontSize: 12, color: '#5c6b67' }}>Fewest minutes</span>
                 <span style={{ fontSize: 13, fontWeight: 700, color: fewest < 33 ? '#c39797' : '#10211f' }}>{fewest}% of a game</span>
               </div>
               <div style={{ height: 6, borderRadius: 3, background: '#f0f1f0' }}><div style={{ height: 6, borderRadius: 3, background: fewest < 33 ? '#c39797' : '#2f6252', width: `${fewest}%` }} /></div>
-              <div style={{ fontSize: 11, color: '#6f7f7b', marginTop: 4 }}>Everyone over half a game</div>
+              <div style={{ fontSize: 11, color: '#5c6b67', marginTop: 4 }}>Everyone over half a game</div>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <span style={{ fontSize: 12, color: '#6f7f7b' }}>Consent done</span>
+              <span style={{ fontSize: 12, color: '#5c6b67' }}>Consent done</span>
               <span style={{ fontSize: 13, fontWeight: 700, color: '#40826d' }}>{players} of {players}</span>
             </div>
           </div>
         </div>
       </div>
-      <div style={{ marginTop: 14, padding: '12px 14px', background: '#fdf8f4', borderRadius: 10, border: '1px solid #f0dcc8', fontSize: 12, color: '#6f7f7b' }}>
+      <div style={{ marginTop: 14, padding: '12px 14px', background: '#fdf8f4', borderRadius: 10, border: '1px solid #f0dcc8', fontSize: 12, color: '#5c6b67' }}>
         You see this team the way its coaches do, but cannot change their plans. Fitness: Coach runs the 11+ Kids warm-up.
       </div>
       {tdToast && <div role="status" style={{ position:'fixed', bottom:24, left:'50%', transform:'translateX(-50%)', zIndex:100, padding:'12px 20px', borderRadius:12, background:'#1f4a3e', color:'#fff', fontSize:15, fontWeight:600, boxShadow:'0 8px 24px rgba(16,33,31,0.25)', whiteSpace:'nowrap' }}>{tdToast}</div>}
@@ -177,7 +177,7 @@ function CompareView({ onBack }: { onBack: () => void }) {
           <select value={a} onChange={e => setA(e.target.value)} style={{ height: 32, borderRadius: 8, border: '1px solid #e9eae8', padding: '0 10px', fontFamily: 'inherit', fontSize: 13, background: '#fff' }}>
             {allNames.map(n => <option key={n}>{n}</option>)}
           </select>
-          <span style={{ color: '#6f7f7b' }}>and</span>
+          <span style={{ color: '#5c6b67' }}>and</span>
           <select value={b} onChange={e => setB(e.target.value)} style={{ height: 32, borderRadius: 8, border: '1px solid #e9eae8', padding: '0 10px', fontFamily: 'inherit', fontSize: 13, background: '#fff' }}>
             {allNames.map(n => <option key={n}>{n}</option>)}
           </select>
@@ -191,7 +191,7 @@ function CompareView({ onBack }: { onBack: () => void }) {
           </div>
           {rows.map((r, i) => (
             <div key={i} style={{ display: 'flex', justifyContent: 'space-between', padding: '10px 16px', borderBottom: '1px solid #f0f1f0', fontSize: 13 }}>
-              <span style={{ color: '#6f7f7b' }}>{r.label}</span>
+              <span style={{ color: '#5c6b67' }}>{r.label}</span>
               <span style={{ fontWeight: 700, color: r.flagA ? '#c39797' : '#10211f' }}>{r.va}</span>
             </div>
           ))}
@@ -203,7 +203,7 @@ function CompareView({ onBack }: { onBack: () => void }) {
           </div>
           {rows.map((r, i) => (
             <div key={i} style={{ display: 'flex', justifyContent: 'space-between', padding: '10px 16px', borderBottom: '1px solid #f0f1f0', fontSize: 13 }}>
-              <span style={{ color: '#6f7f7b' }}>{r.label}</span>
+              <span style={{ color: '#5c6b67' }}>{r.label}</span>
               <span style={{ fontWeight: 700, color: r.flagB ? '#c39797' : '#10211f' }}>{r.vb}</span>
             </div>
           ))}
@@ -217,7 +217,7 @@ function CompareView({ onBack }: { onBack: () => void }) {
           ].map(item => (
             <div key={item.n} style={{ display: 'flex', gap: 10, marginBottom: 12 }}>
               <div style={{ width: 20, height: 20, borderRadius: '999px', background: '#1f4a3e', color: '#fff', fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{item.n}</div>
-              <div><div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{item.title}</div><div style={{ fontSize: 12, color: '#6f7f7b', marginTop: 2 }}>{item.body}</div></div>
+              <div><div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{item.title}</div><div style={{ fontSize: 12, color: '#5c6b67', marginTop: 2 }}>{item.body}</div></div>
             </div>
           ))}
           <button onClick={() => showToast(`Suggestion sent to ${b.split(' ').pop()}.`)} style={{ width: '100%', height: 44, borderRadius: '999px', border: 0, background: '#1f4a3e', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer', marginTop: 8 }}>
@@ -295,7 +295,7 @@ export default function TeamsTab({ empty, initialView, onNav }: { empty?: boolea
 
           {filteredMR.length > 0 && (
             <>
-              <div style={{ fontSize: 12, fontWeight: 700, color: '#6f7f7b', marginBottom: 8 }}>MiniRoos · U6 to U11 · Kangaroos, Wallabies or Joeys · no scores kept</div>
+              <div style={{ fontSize: 12, fontWeight: 700, color: '#5c6b67', marginBottom: 8 }}>MiniRoos · U6 to U11 · Kangaroos, Wallabies or Joeys · no scores kept</div>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 10, marginBottom: 20 }}>
                 {filteredMR.map(t => (
                   <button key={t.name} onClick={() => setSelectedTeam(t.name)} style={{ background: '#fff', borderRadius: 14, padding: '14px', border: '1px solid #e9eae8', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
@@ -303,13 +303,13 @@ export default function TeamsTab({ empty, initialView, onNav }: { empty?: boolea
                       <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>{t.name}</div>
                       {t.alert && <span style={{ fontSize: 10, fontWeight: 700, color: '#c39797', background: '#fdf4f4', borderRadius: 4, padding: '2px 6px' }}>{t.alert}</span>}
                     </div>
-                    <div style={{ fontSize: 12, color: '#6f7f7b', marginBottom: 8 }}>{t.level} · {t.coach || 'No coach'} · {t.players} players</div>
-                    <div style={{ fontSize: 11, color: '#6f7f7b', marginBottom: 4 }}>Results not kept · skills tracked, not scored</div>
+                    <div style={{ fontSize: 12, color: '#5c6b67', marginBottom: 8 }}>{t.level} · {t.coach || 'No coach'} · {t.players} players</div>
+                    <div style={{ fontSize: 11, color: '#5c6b67', marginBottom: 4 }}>Results not kept · skills tracked, not scored</div>
                     <div style={{ fontSize: 12, fontWeight: 700, color: '#10211f' }}>{t.turnout}% turnout</div>
                     {t.style !== undefined && (
                       <div style={{ marginTop: 6 }}>
                         <div style={{ height: 4, borderRadius: 2, background: '#f0f1f0' }}><div style={{ height: 4, borderRadius: 2, background: '#2f6252', width: `${t.style}%` }} /></div>
-                        <div style={{ fontSize: 10, color: '#6f7f7b', marginTop: 2 }}>{t.style}% playing our way</div>
+                        <div style={{ fontSize: 10, color: '#5c6b67', marginTop: 2 }}>{t.style}% playing our way</div>
                       </div>
                     )}
                   </button>
@@ -320,7 +320,7 @@ export default function TeamsTab({ empty, initialView, onNav }: { empty?: boolea
 
           {filteredJR.length > 0 && (
             <>
-              <div style={{ fontSize: 12, fontWeight: 700, color: '#6f7f7b', marginBottom: 8 }}>Juniors · U12 to U16 · results and ladders · graded into divisions</div>
+              <div style={{ fontSize: 12, fontWeight: 700, color: '#5c6b67', marginBottom: 8 }}>Juniors · U12 to U16 · results and ladders · graded into divisions</div>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 10 }}>
                 {filteredJR.map(t => (
                   <button key={t.name} onClick={() => setSelectedTeam(t.name)} style={{ background: '#fff', borderRadius: 14, padding: '14px', border: '1px solid #e9eae8', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
@@ -328,11 +328,11 @@ export default function TeamsTab({ empty, initialView, onNav }: { empty?: boolea
                       <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>{t.name}</div>
                       {t.alert && <span style={{ fontSize: 10, fontWeight: 700, color: t.alert === 'Heavy legs' ? '#c3a84a' : '#c39797', background: t.alert === 'Heavy legs' ? '#fdf8ed' : '#fdf4f4', borderRadius: 4, padding: '2px 6px' }}>{t.alert}</span>}
                     </div>
-                    <div style={{ fontSize: 11, color: '#6f7f7b', marginBottom: 6 }}>{t.div} · {t.coach}</div>
+                    <div style={{ fontSize: 11, color: '#5c6b67', marginBottom: 6 }}>{t.div} · {t.coach}</div>
                     <div style={{ display: 'flex', gap: 3, marginBottom: 6 }}>{t.lastFive.map((r, i) => <ResultChip key={i} r={r} />)}</div>
                     <div style={{ marginTop: 4 }}>
                       <div style={{ height: 4, borderRadius: 2, background: '#f0f1f0' }}><div style={{ height: 4, borderRadius: 2, background: '#2f6252', width: `${t.style}%` }} /></div>
-                      <div style={{ fontSize: 10, color: '#6f7f7b', marginTop: 2 }}>{t.style}% · {t.turnout}% turnout</div>
+                      <div style={{ fontSize: 10, color: '#5c6b67', marginTop: 2 }}>{t.style}% · {t.turnout}% turnout</div>
                     </div>
                   </button>
                 ))}
@@ -347,7 +347,7 @@ export default function TeamsTab({ empty, initialView, onNav }: { empty?: boolea
       {view === 'seniors' && (
         <div style={p}>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 20 }}>
-            <div><div style={{ fontSize: 18, fontWeight: 800, color: '#10211f' }}>Seniors</div><div style={{ fontSize: 13, color: '#6f7f7b' }}>4 senior teams · 79 players · adults join and consent for themselves</div></div>
+            <div><div style={{ fontSize: 18, fontWeight: 800, color: '#10211f' }}>Seniors</div><div style={{ fontSize: 13, color: '#5c6b67' }}>4 senior teams · 79 players · adults join and consent for themselves</div></div>
             <button onClick={() => openThing('add senior team form', 'club')} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Add a senior team</button>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 14, marginBottom: 24 }}>
@@ -362,10 +362,10 @@ export default function TeamsTab({ empty, initialView, onNav }: { empty?: boolea
                   <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>{t.name}</div>
                   <span style={{ fontSize: 10, fontWeight: 700, color: '#2f6252', background: '#e4f2eb', borderRadius: 6, padding: '2px 6px' }}>{t.badge}</span>
                 </div>
-                <div style={{ fontSize: 12, color: '#6f7f7b', marginBottom: 12 }}>{t.coach}</div>
-                <div style={{ fontSize: 13, color: '#6f7f7b', marginBottom: 2 }}>Squad <span style={{ fontWeight: 700, color: '#10211f' }}>{t.squad}</span></div>
-                <div style={{ fontSize: 13, color: '#6f7f7b', marginBottom: 10 }}>Ladder <span style={{ fontWeight: 700, color: '#10211f' }}>{t.ladder}</span></div>
-                <div style={{ fontSize: 11, color: '#6f7f7b', marginBottom: 4 }}>Last 5</div>
+                <div style={{ fontSize: 12, color: '#5c6b67', marginBottom: 12 }}>{t.coach}</div>
+                <div style={{ fontSize: 13, color: '#5c6b67', marginBottom: 2 }}>Squad <span style={{ fontWeight: 700, color: '#10211f' }}>{t.squad}</span></div>
+                <div style={{ fontSize: 13, color: '#5c6b67', marginBottom: 10 }}>Ladder <span style={{ fontWeight: 700, color: '#10211f' }}>{t.ladder}</span></div>
+                <div style={{ fontSize: 11, color: '#5c6b67', marginBottom: 4 }}>Last 5</div>
                 <div style={{ display: 'flex', gap: 3 }}>{t.lastFive.map((r, ri) => <ResultChip key={ri} r={r} />)}</div>
               </div>
             ))}
@@ -376,7 +376,7 @@ export default function TeamsTab({ empty, initialView, onNav }: { empty?: boolea
               {[{ title: 'No parents', desc: 'Players join with the team link and get their own app.' }, { title: 'Results count', desc: 'Ladder, finals and the league sync, from round 1.' }, { title: 'Wellness and load', desc: 'Players check in themselves before training.' }].map((item, i) => (
                 <div key={i} style={{ padding: '8px 0', borderTop: i > 0 ? '1px solid #f0f1f0' : 'none' }}>
                   <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{item.title}</div>
-                  <div style={{ fontSize: 12, color: '#6f7f7b' }}>{item.desc}</div>
+                  <div style={{ fontSize: 12, color: '#5c6b67' }}>{item.desc}</div>
                 </div>
               ))}
             </div>
@@ -408,7 +408,7 @@ export default function TeamsTab({ empty, initialView, onNav }: { empty?: boolea
               <div style={{ width: 48, fontSize: 13, fontWeight: 700, color: '#10211f', flexShrink: 0 }}>{f.time}</div>
               <div style={{ flexGrow: 1 }}>
                 <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>{f.team} vs {f.against}</div>
-                <div style={{ fontSize: 12, color: '#6f7f7b' }}>{f.venue}</div>
+                <div style={{ fontSize: 12, color: '#5c6b67' }}>{f.venue}</div>
               </div>
               <span style={{ fontSize: 11, fontWeight: 700, color: f.changed ? '#c3a84a' : '#40826d', background: f.changed ? '#fdf8ed' : '#e4f2eb', borderRadius: 6, padding: '2px 8px' }}>{f.changed ? 'Changed' : 'Same'}</span>
             </div>
@@ -420,22 +420,22 @@ export default function TeamsTab({ empty, initialView, onNav }: { empty?: boolea
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, padding: p.padding }}>
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 14 }}>
-              <div><div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>This weekend from the league</div><div style={{ fontSize: 12, color: '#6f7f7b' }}>Sat 6 Jun · 6 of 14 games</div></div>
+              <div><div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>This weekend from the league</div><div style={{ fontSize: 12, color: '#5c6b67' }}>Sat 6 Jun · 6 of 14 games</div></div>
               <span style={{ fontSize: 12, color: '#40826d', fontWeight: 700 }}>✓ Synced 6:02 am today</span>
             </div>
             {[{ time: '9:00', team: 'U9 Mark', against: 'Glenroy Park', note: 'Home · pitch 4', status: 'Same' }, { time: '9:30', team: 'U10 Nadia', against: 'Tealside Town', note: 'Away · Elsternwick Park', status: 'Same' }, { time: '9:30', team: 'U12 Sam', against: 'Harbour Rovers', note: 'Home · pitch 2', status: 'Same' }, { time: '12:30', team: 'U13 Chris', against: 'Glenroy Park', note: 'Division 2 · moved from 12:00', status: 'Changed' }, { time: '1:30', team: 'U14 Josh', against: 'Ironbark FC', note: 'Away · Ironbark Park', status: 'Same' }, { time: '3:30', team: 'U16 Ollie', against: 'Harbour Rovers', note: 'Away · new venue', status: 'Changed' }].map((f, i) => (
               <div key={i} style={{ display: 'flex', gap: 12, padding: '10px 0', borderTop: i > 0 ? '1px solid #f0f1f0' : 'none' }}>
                 <div style={{ width: 42, fontSize: 13, fontWeight: 700, color: '#10211f', flexShrink: 0 }}>{f.time}</div>
-                <div style={{ flexGrow: 1 }}><div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{f.team}</div><div style={{ fontSize: 12, color: '#6f7f7b' }}>{f.against} · {f.note}</div></div>
+                <div style={{ flexGrow: 1 }}><div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{f.team}</div><div style={{ fontSize: 12, color: '#5c6b67' }}>{f.against} · {f.note}</div></div>
                 <span style={{ fontSize: 11, fontWeight: 700, color: f.status === 'Changed' ? '#c3a84a' : '#40826d', background: f.status === 'Changed' ? '#fdf8ed' : '#e4f2eb', borderRadius: 6, padding: '2px 8px' }}>{f.status}</span>
               </div>
             ))}
           </div>
           <div>
-            <div style={{ marginBottom: 14 }}><div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>Results to the league</div><div style={{ fontSize: 12, color: '#6f7f7b' }}>Sat 30 May</div></div>
+            <div style={{ marginBottom: 14 }}><div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>Results to the league</div><div style={{ fontSize: 12, color: '#5c6b67' }}>Sat 30 May</div></div>
             {[{ team: 'U12 Sam', result: 'Won 3–1 v Northgate City', status: 'Sent', ok: true }, { team: 'U12 Girls Ana', result: 'Won 2–0 v Glenroy Park', status: 'Sent', ok: true }, { team: 'U13 Chris', result: 'Drew 1–1 v Tealside Town', status: 'Sent', ok: true }, { team: 'U14 Josh', result: 'Won 2–1 v Kingsbury United', status: 'Waiting for manager', ok: false }, { team: 'U16 Ollie', result: 'Lost 1–3 v Ironbark FC', status: 'Score differs from the league', ok: false, fix: true }].map((r, i) => (
               <div key={i} style={{ display: 'flex', gap: 12, padding: '10px 0', borderTop: i > 0 ? '1px solid #f0f1f0' : 'none' }}>
-                <div style={{ flexGrow: 1 }}><div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{r.team}</div><div style={{ fontSize: 12, color: '#6f7f7b' }}>{r.result}</div></div>
+                <div style={{ flexGrow: 1 }}><div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{r.team}</div><div style={{ fontSize: 12, color: '#5c6b67' }}>{r.result}</div></div>
                 <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
                   <span style={{ fontSize: 11, fontWeight: 700, color: r.ok ? '#40826d' : '#c39797', background: r.ok ? '#e4f2eb' : '#fdf4f4', borderRadius: 6, padding: '2px 8px' }}>{r.status}</span>
                   {r.fix && <button onClick={() => openThing('score fix', 'club')} style={{ height: 44, padding: '0 10px', borderRadius: '999px', border: 0, background: '#c39797', color: '#fff', fontFamily: 'inherit', fontSize: 11, fontWeight: 700, cursor: 'pointer' }}>Fix</button>}
@@ -450,29 +450,29 @@ export default function TeamsTab({ empty, initialView, onNav }: { empty?: boolea
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 320px', gap: 20, padding: p.padding }}>
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 16 }}>
-              <div><div style={{ fontSize: 18, fontWeight: 800, color: '#10211f' }}>Grading</div><div style={{ fontSize: 12, color: '#6f7f7b' }}>How the league placed each U12+ team, and whether to ask for a change</div></div>
+              <div><div style={{ fontSize: 18, fontWeight: 800, color: '#10211f' }}>Grading</div><div style={{ fontSize: 12, color: '#5c6b67' }}>How the league placed each U12+ team, and whether to ask for a change</div></div>
               <button onClick={() => openThing('regrade request', 'club')} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Ask the league to regrade</button>
             </div>
             <div style={{ background: '#fff', borderRadius: 14, border: '1px solid #e9eae8', overflow: 'hidden' }}>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr 120px', padding: '10px 16px', borderBottom: '1px solid #f0f1f0', gap: 8 }}>
-                {['TEAM','WE ASKED','LEAGUE GAVE','SINCE GRADING','SUGGESTION'].map(h => <div key={h} style={{ fontSize: 11, fontWeight: 700, color: '#6f7f7b' }}>{h}</div>)}
+                {['TEAM','WE ASKED','LEAGUE GAVE','SINCE GRADING','SUGGESTION'].map(h => <div key={h} style={{ fontSize: 11, fontWeight: 700, color: '#5c6b67' }}>{h}</div>)}
               </div>
               {GRADING.map((row, i) => (
                 <div key={i} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr 120px', padding: '12px 16px', borderBottom: i < GRADING.length - 1 ? '1px solid #f0f1f0' : 'none', gap: 8, alignItems: 'center' }}>
                   <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>{row.team}</div>
-                  <div style={{ fontSize: 13, color: '#6f7f7b' }}>{row.asked}</div>
-                  <div style={{ fontSize: 13, color: '#6f7f7b' }}>{row.gave}</div>
+                  <div style={{ fontSize: 13, color: '#5c6b67' }}>{row.asked}</div>
+                  <div style={{ fontSize: 13, color: '#5c6b67' }}>{row.gave}</div>
                   <div style={{ fontSize: 13, color: '#10211f' }}>{row.since}</div>
                   <span style={{ fontSize: 11, fontWeight: 700, color: row.suggestion === 'Stay' ? '#40826d' : row.suggestion === 'Watch' ? '#c3a84a' : '#c39797', background: row.suggestion === 'Stay' ? '#e4f2eb' : row.suggestion === 'Watch' ? '#fdf8ed' : '#fdf4f4', borderRadius: 6, padding: '2px 8px', textAlign: 'center' }}>{row.suggestion}</span>
                 </div>
               ))}
             </div>
-            <div style={{ marginTop: 10, fontSize: 12, color: '#6f7f7b', padding: '10px 14px', background: '#fff', borderRadius: 10, border: '1px solid #e9eae8' }}>U13 Chris has lost 6 of 9 in Division 2. Most leagues take regrade requests once, mid-season.</div>
+            <div style={{ marginTop: 10, fontSize: 12, color: '#5c6b67', padding: '10px 14px', background: '#fff', borderRadius: 10, border: '1px solid #e9eae8' }}>U13 Chris has lost 6 of 9 in Division 2. Most leagues take regrade requests once, mid-season.</div>
           </div>
           <div>
             <div style={{ background: '#fff', borderRadius: 14, padding: '14px 16px', border: '1px solid #e9eae8', marginBottom: 14 }}>
               <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 10 }}>MiniRoos levels</div>
-              <div style={{ fontSize: 12, color: '#6f7f7b', marginBottom: 10 }}>The club picks Kangaroos, Wallabies or Joeys. No results are kept, so these are about fun, even games.</div>
+              <div style={{ fontSize: 12, color: '#5c6b67', marginBottom: 10 }}>The club picks Kangaroos, Wallabies or Joeys. No results are kept, so these are about fun, even games.</div>
               {[{ level: 'Kangaroos', n: 2 }, { level: 'Wallabies', n: 4 }, { level: 'Joeys', n: 1 }].map((l, i) => (
                 <div key={i} style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderTop: i > 0 ? '1px solid #f0f1f0' : 'none' }}>
                   <span style={{ fontSize: 13, color: '#10211f' }}>{l.level}</span>
@@ -483,7 +483,7 @@ export default function TeamsTab({ empty, initialView, onNav }: { empty?: boolea
             <div style={{ background: '#fff', borderRadius: 14, padding: '14px 16px', border: '1px solid #e9eae8' }}>
               <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>Next season's grading</div>
               <div style={{ fontSize: 12, color: '#4a5a57' }}>Coaches score each player in 3 areas at grading games. You see a suggested team for every player.</div>
-              <button onClick={() => openThing('grading day planner', 'club')} style={{ marginTop: 10, height: 44, padding: '0 12px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 12, cursor: 'pointer' }}>Plan grading days</button>
+              <button onClick={() => openThing('grading day planner', 'club')} style={{ marginTop: 10, height: 44, padding: '0 12px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#5c6b67', fontFamily: 'inherit', fontSize: 12, cursor: 'pointer' }}>Plan grading days</button>
             </div>
           </div>
         </div>
@@ -493,7 +493,7 @@ export default function TeamsTab({ empty, initialView, onNav }: { empty?: boolea
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 300px', gap: 20, padding: p.padding }}>
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
-              <div><div style={{ fontSize: 18, fontWeight: 800, color: '#10211f' }}>Referees</div><div style={{ fontSize: 12, color: '#6f7f7b' }}>Home games Sat 6 Jun · club game leaders and referees</div></div>
+              <div><div style={{ fontSize: 18, fontWeight: 800, color: '#10211f' }}>Referees</div><div style={{ fontSize: 12, color: '#5c6b67' }}>Home games Sat 6 Jun · club game leaders and referees</div></div>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '14px 0 10px' }}>
               <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>Home games</div>
@@ -511,7 +511,7 @@ export default function TeamsTab({ empty, initialView, onNav }: { empty?: boolea
                 <div style={{ width: 42, fontSize: 12, fontWeight: 700, color: '#10211f', flexShrink: 0 }}>{g.time}</div>
                 <div style={{ flexGrow: 1 }}>
                   <div style={{ fontSize: 13, fontWeight: 600, color: '#10211f' }}>{g.game}</div>
-                  <div style={{ fontSize: 12, color: '#6f7f7b' }}>{g.role}</div>
+                  <div style={{ fontSize: 12, color: '#5c6b67' }}>{g.role}</div>
                 </div>
                 {g.needed ? (
                   <button onClick={() => openThing(`referee request`, 'club')} style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: 0, background: '#c39797', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>Ask</button>
@@ -525,12 +525,12 @@ export default function TeamsTab({ empty, initialView, onNav }: { empty?: boolea
             <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 12 }}>Club referees</div>
             {[{ ini: 'ZP', name: 'Zoe Park', detail: '16 · 21 games · Level 4' }, { ini: 'EM', name: 'Ethan Moss', detail: '15 · 12 games · new this year' }, { ini: 'LS', name: 'Liam Shaw', detail: '17 · 26 games · Level 4' }, { ini: 'RA', name: 'Ruth Adeyemi', detail: 'Adult · 30 games · coordinator' }].map((r, i) => (
               <div key={i} style={{ display: 'flex', gap: 10, alignItems: 'center', padding: '10px 0', borderTop: i > 0 ? '1px solid #f0f1f0' : 'none' }}>
-                <div style={{ width: 32, height: 32, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{r.ini}</div>
-                <div><div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{r.name}</div><div style={{ fontSize: 11, color: '#6f7f7b' }}>{r.detail}</div></div>
+                <div style={{ width: 32, height: 32, borderRadius: '999px', background: '#e8cfcf', color: '#10211f', fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{r.ini}</div>
+                <div><div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{r.name}</div><div style={{ fontSize: 11, color: '#5c6b67' }}>{r.detail}</div></div>
               </div>
             ))}
-            <div style={{ marginTop: 10, fontSize: 12, color: '#6f7f7b', paddingTop: 10, borderTop: '1px solid #f0f1f0' }}>Feedback this week: 5 · all positive</div>
-            <button onClick={() => openThing('add referee form', 'club')} style={{ marginTop: 10, height: 44, width: '100%', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 12, cursor: 'pointer' }}>Add a referee</button>
+            <div style={{ marginTop: 10, fontSize: 12, color: '#5c6b67', paddingTop: 10, borderTop: '1px solid #f0f1f0' }}>Feedback this week: 5 · all positive</div>
+            <button onClick={() => openThing('add referee form', 'club')} style={{ marginTop: 10, height: 44, width: '100%', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#5c6b67', fontFamily: 'inherit', fontSize: 12, cursor: 'pointer' }}>Add a referee</button>
           </div>
         </div>
       )}
@@ -552,7 +552,7 @@ export default function TeamsTab({ empty, initialView, onNav }: { empty?: boolea
           {[{ name: 'First aid (4 bags)', s: 'All in place' }, { name: 'Bibs (all teams)', s: '3 bags need restocking' }, { name: 'Training balls', s: '48/50 accounted for' }].map((k, i) => (
             <div key={i} style={{ display: 'flex', justifyContent: 'space-between', padding: '10px 0', borderTop: i > 0 ? '1px solid #f0f1f0' : 'none' }}>
               <span style={{ fontSize: 14, color: '#10211f' }}>{k.name}</span>
-              <span style={{ fontSize: 13, color: '#6f7f7b' }}>{k.s}</span>
+              <span style={{ fontSize: 13, color: '#5c6b67' }}>{k.s}</span>
             </div>
           ))}
         </div>

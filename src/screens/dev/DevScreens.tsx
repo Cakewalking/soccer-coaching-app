@@ -33,7 +33,7 @@ export default function DevScreens() {
 
         {/* Left panel — screen list */}
         <div style={{ width: 280, background: '#fff', borderRight: '1px solid #e5e7e6', overflowY: 'auto', flexShrink: 0 }}>
-          <div style={{ padding: '10px 16px 6px', fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase', color: '#6f7f7b', borderBottom: '1px solid #f0f0f0' }}>
+          <div style={{ padding: '10px 16px 6px', fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase', color: '#5c6b67', borderBottom: '1px solid #f0f0f0' }}>
             {totalCount} screens
           </div>
           {tour.sections.map(section => (
@@ -60,7 +60,7 @@ export default function DevScreens() {
 
         {/* Right panel — screen preview */}
         <div style={{ flex: 1, overflowY: 'auto', background: '#e8e9e7', display: 'flex', flexDirection: 'column' }}>
-          <div style={{ padding: '8px 16px', background: '#fff', borderBottom: '1px solid #e5e7e6', fontSize: 12, color: '#6f7f7b', fontFamily: 'monospace', flexShrink: 0 }}>
+          <div style={{ padding: '8px 16px', background: '#fff', borderBottom: '1px solid #e5e7e6', fontSize: 12, color: '#5c6b67', fontFamily: 'monospace', flexShrink: 0 }}>
             {activeKey}
           </div>
           <div style={{ flex: 1 }}>

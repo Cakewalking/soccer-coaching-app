@@ -93,7 +93,7 @@ export default function AddGameScreen({ onClose, initialStep = 1 }: { onClose: (
   const back = () => setStep(s => Math.max(1, s - 1) as Step)
 
   return (
-    <div style={{ position: 'fixed', inset: 0, background: '#f7f9f7', zIndex: 100, display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
+    <div style={{ position: 'fixed', inset: 0, background: '#faf5ec', zIndex: 100, display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
       <StepHeader step={step} onClose={onClose} />
 
       {/* Step 1: Recording source */}
@@ -101,7 +101,7 @@ export default function AddGameScreen({ onClose, initialStep = 1 }: { onClose: (
         <div style={{ flexGrow: 1, overflowY: 'auto', padding: '32px' }}>
           <div style={{ maxWidth: 640 }}>
             <h2 style={{ margin: '0 0 6px', fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em', color: '#10211f' }}>We found Saturday's game</h2>
-            <p style={{ margin: '0 0 24px', fontSize: 14, color: '#6f7f7b' }}>Where's the recording?</p>
+            <p style={{ margin: '0 0 24px', fontSize: 14, color: '#5c6b67' }}>Where's the recording?</p>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 32 }}>
               {[
@@ -124,7 +124,7 @@ export default function AddGameScreen({ onClose, initialStep = 1 }: { onClose: (
                   <span style={{ flexShrink: 0, color: '#4a5a57' }}>{opt.icon}</span>
                   <div>
                     <div style={{ fontSize: 16, fontWeight: 700, color: '#10211f' }}>{opt.title}</div>
-                    {opt.sub && <div style={{ fontSize: 13, color: '#6f7f7b', marginTop: 2 }}>{opt.sub}</div>}
+                    {opt.sub && <div style={{ fontSize: 13, color: '#5c6b67', marginTop: 2 }}>{opt.sub}</div>}
                   </div>
                   {source === opt.id && (
                     <div style={{ marginLeft: 'auto', width: 22, height: 22, borderRadius: '999px', background: '#40826d', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -138,34 +138,34 @@ export default function AddGameScreen({ onClose, initialStep = 1 }: { onClose: (
             {source && (
               <div style={{ background: '#ffffff', borderRadius: 16, padding: 24, border: '1px solid #e9eae8' }}>
                 <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', marginBottom: 4 }}>Check the score</div>
-                <div style={{ fontSize: 13, color: '#6f7f7b', marginBottom: 16 }}>Tap a time to change it. We use these to split the halves.</div>
+                <div style={{ fontSize: 13, color: '#5c6b67', marginBottom: 16 }}>Tap a time to change it. We use these to split the halves.</div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
                   <div style={{ flex: 1 }}>
-                    <div style={{ fontSize: 13, fontWeight: 600, color: '#6f7f7b', marginBottom: 8 }}>Wattle Creek</div>
+                    <div style={{ fontSize: 13, fontWeight: 600, color: '#5c6b67', marginBottom: 8 }}>Wattle Creek</div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                      <button onClick={() => setHomeScore(s => Math.max(0, s - 1))} style={{ width: 44, height: 44, borderRadius: 8, border: '1px solid #e9eae8', background: '#f7f8f7', fontSize: 20, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#10211f' }}>−</button>
+                      <button onClick={() => setHomeScore(s => Math.max(0, s - 1))} style={{ width: 44, height: 44, borderRadius: 8, border: '1px solid #e9eae8', background: '#faf5ec', fontSize: 20, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#10211f' }}>−</button>
                       <div style={{ fontSize: 36, fontWeight: 800, color: '#10211f', minWidth: 40, textAlign: 'center' }}>{homeScore}</div>
-                      <button onClick={() => setHomeScore(s => s + 1)} style={{ width: 44, height: 44, borderRadius: 8, border: '1px solid #e9eae8', background: '#f7f8f7', fontSize: 20, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#10211f' }}>+</button>
+                      <button onClick={() => setHomeScore(s => s + 1)} style={{ width: 44, height: 44, borderRadius: 8, border: '1px solid #e9eae8', background: '#faf5ec', fontSize: 20, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#10211f' }}>+</button>
                     </div>
                   </div>
                   <div style={{ fontSize: 24, fontWeight: 700, color: '#c5c8c4' }}>vs</div>
                   <div style={{ flex: 1 }}>
-                    <div style={{ fontSize: 13, fontWeight: 600, color: '#6f7f7b', marginBottom: 8 }}>Ironbark United (away)</div>
+                    <div style={{ fontSize: 13, fontWeight: 600, color: '#5c6b67', marginBottom: 8 }}>Ironbark United (away)</div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                      <button onClick={() => setAwayScore(s => Math.max(0, s - 1))} style={{ width: 44, height: 44, borderRadius: 8, border: '1px solid #e9eae8', background: '#f7f8f7', fontSize: 20, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#10211f' }}>−</button>
+                      <button onClick={() => setAwayScore(s => Math.max(0, s - 1))} style={{ width: 44, height: 44, borderRadius: 8, border: '1px solid #e9eae8', background: '#faf5ec', fontSize: 20, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#10211f' }}>−</button>
                       <div style={{ fontSize: 36, fontWeight: 800, color: '#10211f', minWidth: 40, textAlign: 'center' }}>{awayScore}</div>
-                      <button onClick={() => setAwayScore(s => s + 1)} style={{ width: 44, height: 44, borderRadius: 8, border: '1px solid #e9eae8', background: '#f7f8f7', fontSize: 20, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#10211f' }}>+</button>
+                      <button onClick={() => setAwayScore(s => s + 1)} style={{ width: 44, height: 44, borderRadius: 8, border: '1px solid #e9eae8', background: '#faf5ec', fontSize: 20, cursor: 'pointer', fontFamily: 'inherit', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#10211f' }}>+</button>
                     </div>
                   </div>
                 </div>
 
                 <div style={{ marginTop: 20, display: 'flex', gap: 10 }}>
                   <div style={{ flex: 1 }}>
-                    <div style={{ fontSize: 12, fontWeight: 600, color: '#6f7f7b', marginBottom: 6 }}>Kick-off</div>
+                    <div style={{ fontSize: 12, fontWeight: 600, color: '#5c6b67', marginBottom: 6 }}>Kick-off</div>
                     <input type="time" defaultValue="09:20" style={{ width: '100%', height: 40, borderRadius: 10, border: '1px solid #e9eae8', padding: '0 12px', fontFamily: 'inherit', fontSize: 14, color: '#10211f', background: '#ffffff', boxSizing: 'border-box' }} />
                   </div>
                   <div style={{ flex: 1 }}>
-                    <div style={{ fontSize: 12, fontWeight: 600, color: '#6f7f7b', marginBottom: 6 }}>Half-time</div>
+                    <div style={{ fontSize: 12, fontWeight: 600, color: '#5c6b67', marginBottom: 6 }}>Half-time</div>
                     <input type="time" defaultValue="09:56" style={{ width: '100%', height: 40, borderRadius: 10, border: '1px solid #e9eae8', padding: '0 12px', fontFamily: 'inherit', fontSize: 14, color: '#10211f', background: '#ffffff', boxSizing: 'border-box' }} />
                   </div>
                 </div>
@@ -180,31 +180,31 @@ export default function AddGameScreen({ onClose, initialStep = 1 }: { onClose: (
         <div style={{ flexGrow: 1, overflowY: 'auto', padding: '32px' }}>
           <div style={{ maxWidth: 640 }}>
             <h2 style={{ margin: '0 0 6px', fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em', color: '#10211f' }}>9 of 15 players fully synced</h2>
-            <p style={{ margin: '0 0 8px', fontSize: 14, color: '#6f7f7b' }}>Sync everything nearby</p>
-            <p style={{ margin: '0 0 24px', fontSize: 13, color: '#6f7f7b', lineHeight: '18px' }}>Hold the boots and vests near the tablet to sync. You can carry on without them: those players just get less data for this game.</p>
+            <p style={{ margin: '0 0 8px', fontSize: 14, color: '#5c6b67' }}>Sync everything nearby</p>
+            <p style={{ margin: '0 0 24px', fontSize: 13, color: '#5c6b67', lineHeight: '18px' }}>Hold the boots and vests near the tablet to sync. You can carry on without them: those players just get less data for this game.</p>
 
             <div style={{ background: '#ffffff', borderRadius: 16, border: '1px solid #e9eae8', overflow: 'hidden', marginBottom: 16 }}>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 0, borderBottom: '1px solid #e9eae8' }}>
                 {['Player', 'Boot sensors', 'GPS vest'].map(h => (
-                  <div key={h} style={{ padding: '10px 16px', fontSize: 12, fontWeight: 700, color: '#6f7f7b', letterSpacing: '0.03em', textTransform: 'uppercase' as const }}>{h}</div>
+                  <div key={h} style={{ padding: '10px 16px', fontSize: 12, fontWeight: 700, color: '#5c6b67', letterSpacing: '0.03em', textTransform: 'uppercase' as const }}>{h}</div>
                 ))}
               </div>
               {SYNC_PLAYERS.map((p, i) => (
                 <div key={p.ini} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 0, borderTop: i > 0 ? '1px solid #f0f1f0' : 'none', alignItems: 'center', padding: '12px 16px' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                    <div style={{ width: 28, height: 28, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, flexShrink: 0 }}>{p.ini}</div>
+                    <div style={{ width: 28, height: 28, borderRadius: '999px', background: '#e8cfcf', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, flexShrink: 0 }}>{p.ini}</div>
                     <span style={{ fontSize: 14, fontWeight: 600, color: '#10211f' }}>{p.name}</span>
                   </div>
                   <div>
                     {p.boots
                       ? <span style={{ fontSize: 12, fontWeight: 700, color: '#2f6252' }}>Synced</span>
-                      : <button onClick={() => showToast('Syncing now — this takes about 30 seconds.')} style={{ height: 36, padding: '0 12px', borderRadius: 8, border: '1px solid #e9eae8', background: '#f7f8f7', color: '#10211f', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Sync now</button>
+                      : <button onClick={() => showToast('Syncing now — this takes about 30 seconds.')} style={{ height: 36, padding: '0 12px', borderRadius: 8, border: '1px solid #e9eae8', background: '#faf5ec', color: '#10211f', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Sync now</button>
                     }
                   </div>
                   <div>
                     {p.vest
                       ? <span style={{ fontSize: 12, fontWeight: 700, color: '#2f6252' }}>Synced</span>
-                      : <button onClick={() => showToast('Syncing now — this takes about 30 seconds.')} style={{ height: 36, padding: '0 12px', borderRadius: 8, border: '1px solid #e9eae8', background: '#f7f8f7', color: '#10211f', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Sync now</button>
+                      : <button onClick={() => showToast('Syncing now — this takes about 30 seconds.')} style={{ height: 36, padding: '0 12px', borderRadius: 8, border: '1px solid #e9eae8', background: '#faf5ec', color: '#10211f', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Sync now</button>
                     }
                   </div>
                 </div>
@@ -222,7 +222,7 @@ export default function AddGameScreen({ onClose, initialStep = 1 }: { onClose: (
         <div style={{ flexGrow: 1, overflowY: 'auto', padding: '32px' }}>
           <div style={{ maxWidth: 680 }}>
             <h2 style={{ margin: '0 0 6px', fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em', color: '#10211f' }}>Help us with 2 more players</h2>
-            <p style={{ margin: '0 0 24px', fontSize: 14, color: '#6f7f7b' }}>The camera couldn't read these shirt numbers. One tap each and their clips and stats go to the right player.</p>
+            <p style={{ margin: '0 0 24px', fontSize: 14, color: '#5c6b67' }}>The camera couldn't read these shirt numbers. One tap each and their clips and stats go to the right player.</p>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
               {[
@@ -233,7 +233,7 @@ export default function AddGameScreen({ onClose, initialStep = 1 }: { onClose: (
                 <div key={i} style={{ background: '#ffffff', borderRadius: 16, padding: '16px 20px', border: '1px solid #e9eae8', display: 'flex', gap: 20, alignItems: 'flex-start' }}>
                   <div style={{ width: 48, height: 48, borderRadius: 10, background: '#1f4a3e', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 800, color: '#fff', flexShrink: 0 }}>{card.label}</div>
                   <div style={{ flex: 1 }}>
-                    <div style={{ fontSize: 12, color: '#6f7f7b', marginBottom: 4 }}>{card.min}</div>
+                    <div style={{ fontSize: 12, color: '#5c6b67', marginBottom: 4 }}>{card.min}</div>
                     <div style={{ fontSize: 14, fontWeight: 600, color: '#10211f', marginBottom: 10 }}>{card.note}</div>
                     <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: 8 }}>
                       {card.players.map(name => (
@@ -257,7 +257,7 @@ export default function AddGameScreen({ onClose, initialStep = 1 }: { onClose: (
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2f6252" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
               </div>
               <div style={{ fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em', color: '#10211f' }}>About 25 minutes to go</div>
-              <div style={{ fontSize: 14, color: '#6f7f7b', marginTop: 6, lineHeight: '20px' }}>You don't need to wait here. We'll send a message to your inbox when the review is ready, and build Thursday's plan from it.</div>
+              <div style={{ fontSize: 14, color: '#5c6b67', marginTop: 6, lineHeight: '20px' }}>You don't need to wait here. We'll send a message to your inbox when the review is ready, and build Thursday's plan from it.</div>
             </div>
 
             <div style={{ background: '#ffffff', borderRadius: 16, padding: 24, border: '1px solid #e9eae8', display: 'flex', flexDirection: 'column', gap: 16 }}>
@@ -301,7 +301,7 @@ export default function AddGameScreen({ onClose, initialStep = 1 }: { onClose: (
             </div>
             <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 14, padding: '16px 20px' }}>
               <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f', marginBottom: 4 }}>How complete is the data?</div>
-              <div style={{ fontSize: 13, color: '#6f7f7b', marginBottom: 16 }}>Good data for 57 of 60 minutes</div>
+              <div style={{ fontSize: 13, color: '#5c6b67', marginBottom: 16 }}>Good data for 57 of 60 minutes</div>
               <div style={{ display: 'flex', gap: 0, marginBottom: 16, background: '#f5f6f4', borderRadius: 8, overflow: 'hidden', height: 8 }}>
                 <div style={{ width: '95%', background: '#40826d' }} />
                 <div style={{ width: '5%', background: '#c39797' }} />
@@ -312,7 +312,7 @@ export default function AddGameScreen({ onClose, initialStep = 1 }: { onClose: (
                   <div style={{ width: 10, height: 10, borderRadius: '50%', background: d.ok ? '#40826d' : '#c39797', flexShrink: 0, marginTop: 2 }} />
                   <div>
                     <div style={{ fontSize: 12, fontWeight: 700, color: '#10211f' }}>{d.label}</div>
-                    <div style={{ fontSize: 12, color: '#6f7f7b' }}>{d.value}</div>
+                    <div style={{ fontSize: 12, color: '#5c6b67' }}>{d.value}</div>
                   </div>
                 </div>
               ))}

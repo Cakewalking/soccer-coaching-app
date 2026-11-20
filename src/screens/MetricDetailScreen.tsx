@@ -12,10 +12,10 @@ export default function MetricDetailScreen({ onClose }: Props) {
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
 
   return (
-    <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', background: '#f7f9f7', fontFamily: 'var(--font-sans)' }}>
+    <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', background: '#faf5ec', fontFamily: 'var(--font-sans)' }}>
       {/* Breadcrumb */}
       <div style={{ flex: 'none', padding: '12px 32px', borderBottom: '1px solid #e9eae8', background: '#ffffff', display: 'flex', alignItems: 'center', gap: 8 }}>
-        <button onClick={onClose} style={{ display: 'flex', alignItems: 'center', gap: 6, border: 0, background: 'transparent', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 14, cursor: 'pointer', padding: 0 }}>
+        <button onClick={onClose} style={{ display: 'flex', alignItems: 'center', gap: 6, border: 0, background: 'transparent', color: '#5c6b67', fontFamily: 'inherit', fontSize: 14, cursor: 'pointer', padding: 0 }}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
           Where we're at
         </button>
@@ -28,16 +28,16 @@ export default function MetricDetailScreen({ onClose }: Props) {
         <div style={{ flexGrow: 1, overflowY: 'auto', padding: '28px 32px' }}>
           <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 20 }}>
             <div>
-              <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#6f7f7b', marginBottom: 4 }}>When we lose it · From our style</div>
+              <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#5c6b67', marginBottom: 4 }}>When we lose it · From our style</div>
               <h1 style={{ margin: '0 0 4px', fontSize: 26, fontWeight: 800, letterSpacing: '-0.02em', color: '#10211f' }}>Seconds to win the ball back</h1>
             </div>
             <div style={{ display: 'flex', gap: 24, flex: 'none', textAlign: 'right' }}>
               <div>
-                <div style={{ fontSize: 11, fontWeight: 600, color: '#6f7f7b', marginBottom: 2 }}>Saturday vs Ironbark</div>
+                <div style={{ fontSize: 11, fontWeight: 600, color: '#5c6b67', marginBottom: 2 }}>Saturday vs Ironbark</div>
                 <div style={{ fontSize: 36, fontWeight: 800, color: '#c39797', letterSpacing: '-0.02em' }}>7 s</div>
               </div>
               <div>
-                <div style={{ fontSize: 11, fontWeight: 600, color: '#6f7f7b', marginBottom: 2 }}>Our target</div>
+                <div style={{ fontSize: 11, fontWeight: 600, color: '#5c6b67', marginBottom: 2 }}>Our target</div>
                 <div style={{ fontSize: 36, fontWeight: 800, color: '#40826d', letterSpacing: '-0.02em' }}>4 s</div>
               </div>
             </div>
@@ -55,7 +55,7 @@ export default function MetricDetailScreen({ onClose }: Props) {
           <div style={{ background: '#ffffff', borderRadius: 16, padding: '20px 24px', border: '1px solid #e9eae8', marginBottom: 20 }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 16 }}>
               <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>Every time we lost it on Saturday</div>
-              <div style={{ fontSize: 12, color: '#6f7f7b' }}>{BAR_DATA.length} times · tap a bar for the clip</div>
+              <div style={{ fontSize: 12, color: '#5c6b67' }}>{BAR_DATA.length} times · tap a bar for the clip</div>
             </div>
             <div style={{ position: 'relative', height: 140 }}>
               {/* Target line */}
@@ -74,14 +74,14 @@ export default function MetricDetailScreen({ onClose }: Props) {
                 ))}
               </div>
               {/* X labels */}
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 11, color: '#6f7f7b' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 11, color: '#5c6b67' }}>
                 <span>Kick-off</span>
                 <span>Half-time</span>
                 <span>Full time</span>
               </div>
             </div>
             {/* Bottom clip link */}
-            <div style={{ marginTop: 12, padding: '10px 12px', background: '#f7f9f7', borderRadius: 10, display: 'flex', alignItems: 'center', gap: 10 }}>
+            <div style={{ marginTop: 12, padding: '10px 12px', background: '#faf5ec', borderRadius: 10, display: 'flex', alignItems: 'center', gap: 10 }}>
               <button onClick={() => st('Playing clip.')} style={{ width: 44, height: 44, borderRadius: '999px', border: 0, background: '#10211f', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"/></svg>
               </button>
@@ -124,12 +124,12 @@ export default function MetricDetailScreen({ onClose }: Props) {
             ))}
           </div>
 
-          <div style={{ background: '#f7f9f7', borderRadius: 10, padding: '12px 14px', marginBottom: 16 }}>
+          <div style={{ background: '#faf5ec', borderRadius: 10, padding: '12px 14px', marginBottom: 16 }}>
             <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase', color: '#2f6252' }}>Solid</span>
             <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: '18px', marginTop: 4 }}>From 57 of 60 minutes of clear camera view.</div>
           </div>
 
-          <button onClick={() => openThing('report', 'coach')} style={{ width: '100%', height: 44, borderRadius: 10, border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>
+          <button onClick={() => openThing('report', 'coach')} style={{ width: '100%', height: 44, borderRadius: 10, border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: '#5c6b67', cursor: 'pointer' }}>
             Something look wrong? Report it
           </button>
         </div>

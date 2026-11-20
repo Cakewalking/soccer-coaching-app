@@ -31,7 +31,7 @@ export default function ThankParentsScreen({ onBack }: { onBack: () => void }) {
   }
 
   return (
-    <div style={{ width: 390, minHeight: '100vh', background: '#f7f8f7', display: 'flex', flexDirection: 'column', fontFamily: 'inherit', boxSizing: 'border-box' }}>
+    <div style={{ width: 390, minHeight: '100vh', background: '#faf5ec', display: 'flex', flexDirection: 'column', fontFamily: 'inherit', boxSizing: 'border-box' }}>
 
       {/* Header */}
       <div style={{ background: '#1f4a3e', padding: '52px 20px 20px', flex: 'none' }}>
@@ -79,7 +79,7 @@ export default function ThankParentsScreen({ onBack }: { onBack: () => void }) {
           </button>
         </div>
 
-        <div style={{ fontSize: 12, color: '#6f7f7b', lineHeight: '18px', textAlign: 'center' }}>
+        <div style={{ fontSize: 12, color: '#5c6b67', lineHeight: '18px', textAlign: 'center' }}>
           Messages are sent by your club on behalf of U9 Tom. Replies come to your club inbox.
         </div>
       </div>

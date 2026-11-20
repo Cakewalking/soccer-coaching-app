@@ -26,7 +26,7 @@ export default function QCp1BeforeKickOffPhone({ onNav = () => {}, age = 'junior
   const next = checks.findIndex(c => !c.done)
   const nextBtn = next < 0 ? null : next === 2 && q.shirtClash ? 'Sort shirt 7' : next === 3 ? 'Run the test' : `Check ${checks[next].t.toLowerCase()}`
   return (
-    <div data-screen="QCp1-BeforeKickOffPhone" style={{ width: 390, minHeight: 844, margin: '0 auto', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', background: '#f4f5f3', color: INK, fontFamily: "'DM Sans',system-ui,sans-serif" }}>
+    <div data-screen="QCp1-BeforeKickOffPhone" style={{ width: 390, minHeight: 844, margin: '0 auto', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', background: '#faf5ec', color: INK, fontFamily: "'DM Sans',system-ui,sans-serif" }}>
       <header style={{ flex: 'none', padding: '10px 16px 14px', display: 'flex', flexDirection: 'column', gap: 2, background: G, color: '#fff' }}>
         <button onClick={() => onNav('CPh1-CoachPhoneHome')} style={{ alignSelf: 'flex-start', minHeight: 44, display: 'flex', alignItems: 'center', gap: 6, fontFamily: 'inherit', fontSize: 14, fontWeight: 700, color: '#fff', background: 'none', border: 0, padding: 0, cursor: 'pointer' }}><Ico d={IC.back} size={16} sw={2.4} />Home</button>
         <h1 style={{ margin: 0, fontSize: 24, lineHeight: '30px', letterSpacing: '-0.02em' }}>Before kick-off</h1>

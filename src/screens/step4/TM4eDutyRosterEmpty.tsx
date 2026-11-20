@@ -21,7 +21,7 @@ export default function TM4eDutyRosterEmpty(_: { onBack?: () => void }) {
   void st   // kept for lines this screen may still need to say
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
-    <div style={{ width: 390, minHeight: 844, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
+    <div style={{ width: 390, minHeight: 844, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
       <div style={{ background: GD, padding: '14px 18px 12px' }}>
         <div style={{ fontSize: 12, color: '#cfe6dc' }}>U12 Sam · Saturdays</div>
         <div style={{ fontSize: 20, fontWeight: 700, color: '#fff' }}>Duty roster</div>
@@ -36,7 +36,7 @@ export default function TM4eDutyRosterEmpty(_: { onBack?: () => void }) {
           </div>
         </div>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px' }}>
-          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 10 }}>Fills in like this</div>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 10 }}>Fills in like this</div>
           <div style={{ fontSize: 13, color: MUT, lineHeight: 1.5 }}>Most junior teams need oranges at half-time, a canteen hour and a club linesman over 16.</div>
           {[{ label: 'Half-time oranges', sub: 'Sign up opens Thu' }, { label: 'Canteen · 10–11 am', sub: 'Sign up opens Thu' }, { label: 'Club linesman (16+)', sub: 'Sign up opens Thu' }].map((item, i) => (
             <div key={i} style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderTop: `1px solid ${LN}`, marginTop: 8 }}>

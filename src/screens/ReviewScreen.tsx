@@ -41,7 +41,7 @@ function ReviewEmpty() {
           ].map((row, i) => (
             <div key={i} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '8px 0', borderTop: i === 0 ? 'none' : '1px solid #f0f1ef' }}>
               <div>
-                <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.06em', color: '#6f7f7b', marginBottom: 2 }}>{row.label}</div>
+                <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.06em', color: '#5c6b67', marginBottom: 2 }}>{row.label}</div>
                 <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: '17px', maxWidth: 130 }}>{row.val}</div>
               </div>
               <span style={{ fontSize: 18, fontWeight: 700, color: '#c5c8c4' }}>—</span>
@@ -53,7 +53,7 @@ function ReviewEmpty() {
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px 32px', overflowY: 'auto' }}>
           <div style={{ maxWidth: 480 }}>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 22px)', gap: 4, marginBottom: 20 }}>
-              {['#2f6252','#40826d','#cbbeb5','#c39797'].map((c, i) => (
+              {['#2f6252','#40826d','#e8cfcf','#c39797'].map((c, i) => (
                 <div key={i} style={{ width: 22, height: 22, borderRadius: 5, background: c }} />
               ))}
             </div>
@@ -172,7 +172,7 @@ export default function ReviewScreen({ seniors = false, empty, scoreline = '3–
             <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
               {STYLE_POINTS.filter(s => !(seniors && s.label === 'Minutes shared evenly')).map((s, i) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '8px 0', borderTop: i === 0 ? 'none' : '1px solid #f0f1ef' }}>
-                  <span style={{ flex: 'none', width: 8, height: 8, borderRadius: '999px', background: s.status === 'on-target' ? '#40826d' : s.status === 'close' ? '#cbbeb5' : '#c39797' }} />
+                  <span style={{ flex: 'none', width: 8, height: 8, borderRadius: '999px', background: s.status === 'on-target' ? '#40826d' : s.status === 'close' ? '#e8cfcf' : '#c39797' }} />
                   <span style={{ flexGrow: 1, fontSize: 14, lineHeight: '19px' }}>{s.label}</span>
                   <span style={{ fontSize: 15, fontWeight: 700, color: '#10211f', flexShrink: 0 }}>{s.value}</span>
                   <span style={{ flexShrink: 0, width: 66 }}>{mk(s.label)}</span>
@@ -258,10 +258,10 @@ export default function ReviewScreen({ seniors = false, empty, scoreline = '3–
             <span style={{ fontSize: 13, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>{seniors ? 'Minutes played' : 'Minutes played (fair share 37)'} <MarkDot kind={gameMark(cap, 'told')} /></span>
             {[
               { ini: 'MT', name: 'Mia Tran',   mins: 44, bar: '#c39797' },
-              { ini: 'JP', name: 'Jai Patel',  mins: 43, bar: '#cbbeb5' },
-              { ini: 'ZH', name: 'Zoe Hartley',mins: 39, bar: '#cbbeb5' },
-              { ini: 'EB', name: 'Ella Brandt', mins: 38, bar: '#cbbeb5' },
-              { ini: 'NO', name: 'Noah Okafor', mins: 37, bar: '#cbbeb5' },
+              { ini: 'JP', name: 'Jai Patel',  mins: 43, bar: '#e8cfcf' },
+              { ini: 'ZH', name: 'Zoe Hartley',mins: 39, bar: '#e8cfcf' },
+              { ini: 'EB', name: 'Ella Brandt', mins: 38, bar: '#e8cfcf' },
+              { ini: 'NO', name: 'Noah Okafor', mins: 37, bar: '#e8cfcf' },
               { ini: 'AL', name: 'Ava L.',      mins: 36, bar: '#7fb09d' },
               { ini: 'GO', name: 'Grace Owusu', mins: 34, bar: '#7fb09d' },
               { ini: 'LM', name: 'Leo Marsh',   mins: 27, bar: '#c39797' },

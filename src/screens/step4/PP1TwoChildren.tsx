@@ -20,7 +20,7 @@ export default function PP1TwoChildren(_: { onBack?: () => void }) {
   const showBao = filter === 'both' || filter === 'bao'
 
   return (
-    <div style={{ width: 390, minHeight: 844, fontFamily: 'var(--font-sans)', background: '#f7f8f7', display: 'flex', flexDirection: 'column', overflowY: 'auto' }}>
+    <div style={{ width: 390, minHeight: 844, fontFamily: 'var(--font-sans)', background: '#faf5ec', display: 'flex', flexDirection: 'column', overflowY: 'auto' }}>
       {/* Header */}
       <div style={{ background: GD, padding: '12px 16px 14px', paddingTop: 'env(safe-area-inset-top, 12px)' }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff', marginBottom: 10 }}>Clean Sheet</div>

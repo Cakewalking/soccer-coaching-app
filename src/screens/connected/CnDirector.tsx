@@ -10,7 +10,7 @@ import { setCn, addJob, underFive, HELD_BASE, TEAMS, type QuestionId } from './c
 import type { CnProps } from './CnCoach'
 import { savePdf } from '../saveFile'
 
-const th = { fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: MUT, lineHeight: '15px' } as const
+const th = { fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#7a4b5b', lineHeight: '15px' } as const
 const row = (grid: string, i: number, extra?: object) => ({ display: 'grid', gridTemplateColumns: grid, alignItems: 'center', gap: 8, minHeight: 44, padding: '2px 8px', borderTop: i ? `1px solid ${LINE}` : undefined, fontSize: 14, ...extra } as const)
 const Two = ({ a, b }: { a: ReactNode; b: ReactNode }) => <span style={{ display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 14, lineHeight: '19px' }}>{a}</strong><span style={{ fontSize: 13, lineHeight: '17px', color: MUT }}>{b}</span></span>
 const Pill = ({ children }: { children: ReactNode }) => <span style={{ justifySelf: 'start', height: 24, padding: '0 10px', borderRadius: 999, boxSizing: 'border-box', display: 'inline-flex', alignItems: 'center', fontSize: 12, fontWeight: 700, whiteSpace: 'nowrap', background: '#fff', color: INK, border: `1.5px solid ${INK}` }}>{children}</span>

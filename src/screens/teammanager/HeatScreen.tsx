@@ -13,14 +13,14 @@ export default function HeatScreen({ onBack }: Props) {
   const [toast, setToast] = useState<string | null>(null)
   function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
-    <div style={{ position: 'fixed', inset: 0, zIndex: 100, background: '#f7f8f7', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)', width: 390, margin: '0 auto' }}>
+    <div style={{ position: 'fixed', inset: 0, zIndex: 100, background: '#faf5ec', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)', width: 390, margin: '0 auto' }}>
       {/* Header */}
       <div style={{ flexShrink: 0, padding: '14px 18px 12px', background: '#2f6252', color: '#fff', display: 'flex', alignItems: 'center', gap: 12 }}>
         <span style={{ flexGrow: 1 }}>
           <span style={{ display: 'block', fontSize: 12, lineHeight: '16px', color: '#cfe6dc' }}>U12 Sam · Sat 14 Mar · grading game</span>
           <span style={{ display: 'block', fontSize: 21, lineHeight: '27px', fontWeight: 700 }}>Hot day</span>
         </span>
-        <span style={{ flexShrink: 0, width: 40, height: 40, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>RO</span>
+        <span style={{ flexShrink: 0, width: 40, height: 40, borderRadius: '999px', background: '#e8cfcf', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>RO</span>
       </div>
 
       {/* Content */}

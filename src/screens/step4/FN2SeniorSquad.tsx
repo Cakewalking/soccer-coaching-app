@@ -13,7 +13,7 @@ const SQUAD = [
 export default function FN2SeniorSquad({ mode }: { onBack?: () => void; mode?: 'registration' }) {
   const isReg = mode === 'registration'
   return (
-    <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820 }}>
+    <div style={{ width: 1180, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820 }}>
       <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 32, height: 52 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>Clean Sheet</div>
         <div style={{ fontSize: 13, color: '#fff', fontWeight: 700 }}>Men's 1sts</div>

@@ -22,7 +22,7 @@ function ctxFor(team: Tm) {
     next: girl ? `${TEAMS.u13g}, Meg D` : `${TEAMS.seniors}, Marko P`, nextCoach: girl ? 'Meg D' : 'Marko P', age: team === 'u12' ? 'under-12s' : team === 'u16' ? 'under-16s' : 'a senior squad', size: team === 'u12' ? '9 v 9 and 16 players' : '11 v 11 and 16 players' }
 }
 export interface CnProps { s: CnState; go: Go; say: (m: string) => void; team?: 'u12' | 'u16' | 'seniors' }
-const th = { fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: MUT, lineHeight: '15px' } as const
+const th = { fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#7a4b5b', lineHeight: '15px' } as const
 const row = (grid: string, i: number, extra?: object) => ({ display: 'grid', gridTemplateColumns: grid, alignItems: 'center', gap: 8, minHeight: 38, padding: '2px 8px', borderTop: i ? `1px solid ${LINE}` : undefined, fontSize: 14, ...extra } as const)
 const Pill = ({ children, solid }: { children: ReactNode; solid?: boolean }) => <span style={{ justifySelf: 'start', height: 24, padding: '0 10px', borderRadius: 999, boxSizing: 'border-box', display: 'inline-flex', alignItems: 'center', fontSize: 12, fontWeight: 700, whiteSpace: 'nowrap', background: solid ? G : '#fff', color: solid ? '#fff' : INK, border: `1.5px solid ${solid ? G : INK}` }}>{children}</span>
 const Two = ({ a, b }: { a: ReactNode; b: ReactNode }) => <span style={{ display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 14, lineHeight: '19px' }}>{a}</strong><span style={{ fontSize: 13, lineHeight: '17px', color: MUT }}>{b}</span></span>

@@ -7,14 +7,14 @@ export default function GameDayPapersScreen({ onBack }: Props) {
   const [toast, setToast] = useState<string | null>(null)
   function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
-    <div style={{ position: 'fixed', inset: 0, zIndex: 100, background: '#f7f8f7', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)', width: 390, margin: '0 auto' }}>
+    <div style={{ position: 'fixed', inset: 0, zIndex: 100, background: '#faf5ec', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)', width: 390, margin: '0 auto' }}>
       {/* Header */}
       <div style={{ flexShrink: 0, padding: '14px 18px 12px', background: '#2f6252', color: '#fff', display: 'flex', alignItems: 'center', gap: 12 }}>
         <span style={{ flexGrow: 1 }}>
           <span style={{ display: 'block', fontSize: 12, lineHeight: '16px', color: '#cfe6dc' }}>U13 Girls Meg · Sat 6 Jun · vs Northgate City</span>
           <span style={{ display: 'block', fontSize: 21, lineHeight: '27px', fontWeight: 700 }}>Game-day papers</span>
         </span>
-        <span style={{ flexShrink: 0, width: 40, height: 40, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>RO</span>
+        <span style={{ flexShrink: 0, width: 40, height: 40, borderRadius: '999px', background: '#e8cfcf', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>RO</span>
       </div>
 
       {/* Content */}
@@ -41,7 +41,7 @@ export default function GameDayPapersScreen({ onBack }: Props) {
         {/* Dispensation letter */}
         <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 8 }}>
           <span style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            <span style={{ flexShrink: 0, width: 36, height: 36, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }}>TN</span>
+            <span style={{ flexShrink: 0, width: 36, height: 36, borderRadius: '999px', background: '#e8cfcf', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }}>TN</span>
             <span style={{ flexGrow: 1 }}>
               <span style={{ display: 'block', fontSize: 15, fontWeight: 700 }}>Tess Nolan</span>
               <span style={{ display: 'block', fontSize: 13, color: '#4a5a57' }}>FV approval · 12 Mar 2026</span>
@@ -49,7 +49,7 @@ export default function GameDayPapersScreen({ onBack }: Props) {
             <span style={{ display: 'inline-flex', alignItems: 'center', height: 24, padding: '0 9px', borderRadius: '999px', fontSize: 12, fontWeight: 700, background: '#2f6252', color: '#fff' }}>Approved</span>
           </span>
           {/* Letter preview (skeleton) */}
-          <div style={{ border: '1px solid #c5c8c4', borderRadius: 10, background: '#f7f8f7', padding: 12, display: 'flex', flexDirection: 'column', gap: 6 }} aria-label="Approval letter preview">
+          <div style={{ border: '1px solid #c5c8c4', borderRadius: 10, background: '#faf5ec', padding: 12, display: 'flex', flexDirection: 'column', gap: 6 }} aria-label="Approval letter preview">
             <span style={{ fontSize: 13, fontWeight: 700 }}>Dispensation letter</span>
             {[92, 84, 96, 60].map((w, i) => (
               <span key={i} style={{ display: 'block', height: 8, borderRadius: 4, background: '#e9eae8', width: `${w}%` }} />

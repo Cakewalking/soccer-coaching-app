@@ -13,14 +13,14 @@ export default function FN3SeniorTeam({onBack}:{onBack?:()=>void}){
   void t   // kept for lines this screen may still need to say
   function t(m:string){setToast(m);setTimeout(()=>setToast(null),3200)}
   return(
-    <div style={{padding:'20px 28px 40px',background:'#f7f8f7',minHeight:'100%',boxSizing:'border-box',fontFamily:'var(--font-sans)',position:'relative'}}>
+    <div style={{padding:'20px 28px 40px',background:'#faf5ec',minHeight:'100%',boxSizing:'border-box',fontFamily:'var(--font-sans)',position:'relative'}}>
       <div style={{display:'flex',alignItems:'flex-start',justifyContent:'space-between',marginBottom:20}}>
         <div>
           <button onClick={onBack} style={{display:'flex',alignItems:'center',gap:6,background:'none',border:'none',cursor:'pointer',color:MUT,fontFamily:'inherit',fontSize:13,fontWeight:500,padding:0,marginBottom:12}}>
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
             Seniors
           </button>
-          <div style={{fontSize:11,fontWeight:700,letterSpacing:'0.08em',textTransform:'uppercase' as const,color:MUT,marginBottom:4}}>Read only</div>
+          <div style={{fontSize:11,fontWeight:700,letterSpacing:'0.08em',textTransform:'uppercase' as const,color: '#7a4b5b',marginBottom:4}}>Read only</div>
           <div style={{fontSize:24,fontWeight:800,letterSpacing:'-0.02em',color:INK,marginBottom:2}}>Men's Reserves</div>
           <div style={{fontSize:14,color:MUT}}>Coach: Dean Hollis · 20 players</div>
         </div>
@@ -28,7 +28,7 @@ export default function FN3SeniorTeam({onBack}:{onBack?:()=>void}){
       <div style={{display:'grid',gridTemplateColumns:'minmax(0,1fr) 340px',gap:16}}>
         <div>
           <div style={{background:'#fff',border:`1px solid ${LN}`,borderRadius:14,padding:'14px 16px',marginBottom:16}}>
-            <div style={{fontSize:13,fontWeight:700,letterSpacing:'0.06em',textTransform:'uppercase' as const,color:MUT,marginBottom:12}}>Last 5 results</div>
+            <div style={{fontSize:13,fontWeight:700,letterSpacing:'0.06em',textTransform:'uppercase' as const,color: '#7a4b5b',marginBottom:12}}>Last 5 results</div>
             {RESULTS.map(r=>(
               <div key={r.opp} style={{display:'flex',alignItems:'center',gap:12,padding:'10px 0',borderTop:`1px solid ${LN}`}}>
                 <div style={{width:28,height:28,borderRadius:6,background:r.result==='W'?PALE:r.result==='L'?'#fef2f2':'#f5f6f4',display:'flex',alignItems:'center',justifyContent:'center',flex:'none'}}>
@@ -59,7 +59,7 @@ export default function FN3SeniorTeam({onBack}:{onBack?:()=>void}){
         </div>
         <div>
           <div style={{background:'#fff',border:`1px solid ${LN}`,borderRadius:14,padding:'14px 16px',marginBottom:16}}>
-            <div style={{fontSize:13,fontWeight:700,letterSpacing:'0.06em',textTransform:'uppercase' as const,color:MUT,marginBottom:12}}>Staff</div>
+            <div style={{fontSize:13,fontWeight:700,letterSpacing:'0.06em',textTransform:'uppercase' as const,color: '#7a4b5b',marginBottom:12}}>Staff</div>
             {[
               {name:'Dean Hollis',role:'Head coach'},
               {name:'Vacant',role:'Assistant'},
@@ -76,7 +76,7 @@ export default function FN3SeniorTeam({onBack}:{onBack?:()=>void}){
             ))}
           </div>
           <div style={{background:'#fff',border:`1px solid ${LN}`,borderRadius:14,padding:'14px 16px'}}>
-            <div style={{fontSize:13,fontWeight:700,letterSpacing:'0.06em',textTransform:'uppercase' as const,color:MUT,marginBottom:8}}>Next game</div>
+            <div style={{fontSize:13,fontWeight:700,letterSpacing:'0.06em',textTransform:'uppercase' as const,color: '#7a4b5b',marginBottom:8}}>Next game</div>
             <div style={{fontSize:15,fontWeight:600,color:INK,marginBottom:4}}>Sat 14 · Valley SC</div>
             <div style={{fontSize:13,color:MUT}}>3:00 pm · away · Riverside Reserve</div>
             <button onClick={()=>openThing('this game', 'club')} style={{marginTop:12,height: 44,padding:'0 14px',borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:G,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>See game details</button>

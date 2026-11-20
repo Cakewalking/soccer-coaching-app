@@ -32,13 +32,13 @@ export default function TrialPackPhone({ player, team, as, onNav = () => {}, hom
   const clips = pk.clips.map(id => clipById(id)!).filter(Boolean), facts = factsFor(player).filter(f => pk.facts.includes(f.id))
 
   if (preview) return (
-    <div data-screen="TPp1-TrialPackPhone" style={{ width: 390, minHeight: 844, margin: '0 auto', background: '#f7f8f7' }}>
+    <div data-screen="TPp1-TrialPackPhone" style={{ width: 390, minHeight: 844, margin: '0 auto', background: '#faf5ec' }}>
       <div style={{ padding: '8px 12px', background: G }}><button onClick={() => setPreview(false)} style={{ minHeight: 44, display: 'flex', alignItems: 'center', gap: 6, background: 'none', border: 0, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}><Ico d={IC.back} size={16} sw={2.4} />Back</button></div>
       <TrialShareBody player={player} team={t.name} coach={t.coach} pack={pk} preview />
     </div>
   )
   return (
-    <div data-screen="TPp1-TrialPackPhone" style={{ width: 390, minHeight: 844, margin: '0 auto', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', background: '#f7f8f7', color: INK, fontFamily: "'DM Sans',system-ui,sans-serif" }}>
+    <div data-screen="TPp1-TrialPackPhone" style={{ width: 390, minHeight: 844, margin: '0 auto', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', background: '#faf5ec', color: INK, fontFamily: "'DM Sans',system-ui,sans-serif" }}>
       <header style={{ flex: 'none', background: G, color: '#fff', padding: '10px 12px 14px', display: 'flex', alignItems: 'center', gap: 4 }}>
         <button onClick={() => onNav(home)} aria-label="Back" style={{ flex: 'none', width: 44, height: 44, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'none', border: 0, color: '#fff', cursor: 'pointer' }}><Ico d="M15 18l-6-6 6-6" size={20} sw={2.4} /></button>
         <span style={{ display: 'flex', flexDirection: 'column' }}><span style={{ fontSize: 12, color: '#dcefe8' }}>{t.name} · for a trial at a new club</span><h1 style={{ margin: 0, fontSize: 22, lineHeight: '27px', letterSpacing: '-0.02em' }}>{whose} trial pack</h1></span>
@@ -82,7 +82,7 @@ export default function TrialPackPhone({ player, team, as, onNav = () => {}, hom
         )}
         <span style={{ fontSize: 13, lineHeight: '18px', color: MUT }}>Never on a trial pack: health, wellbeing, contact details, date of birth, or anything about another player.</span>
       </div>
-      <div style={{ flex: 'none', position: 'sticky', bottom: 0, background: '#f7f8f7', borderTop: `1px solid ${LINE}`, padding: '10px 14px 16px', display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+      <div style={{ flex: 'none', position: 'sticky', bottom: 0, background: '#faf5ec', borderTop: `1px solid ${LINE}`, padding: '10px 14px 16px', display: 'flex', flexWrap: 'wrap', gap: 8 }}>
         <button style={btn(false)} onClick={() => setEdit(e => !e)} aria-pressed={edit}>{edit ? 'Done' : 'Change it'}</button>
         <button style={btn(false)} onClick={() => setPreview(true)}>Preview</button>
         {!live && (maySend

@@ -5,7 +5,7 @@ import { METRICS } from '../data'
 function Illus() {
   return (
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 22px)', gap: 4, flex: 'none' }}>
-      {['#2f6252','#40826d','#cbbeb5','#c39797'].map((c, i) => (
+      {['#2f6252','#40826d','#e8cfcf','#c39797'].map((c, i) => (
         <div key={i} style={{ width: 22, height: 22, borderRadius: 5, background: c }} />
       ))}
     </div>
@@ -103,7 +103,7 @@ const PLAYERS_TO_PLAN = [
 ]
 
 function chipBg(t: 'rose' | 'stone') {
-  return t === 'rose' ? '#fdf4f4' : '#f7f8f7'
+  return t === 'rose' ? '#fdf4f4' : '#faf5ec'
 }
 
 export default function ThisWeekScreen({ empty, onDrillLibrary, onTonightsPlan, onGrowthLoad, nextOpponent = 'Harbour Rovers', lastOpponent = 'Ironbark' }: { empty?: boolean; onDrillLibrary?: () => void; onTonightsPlan?: () => void; onGrowthLoad?: () => void; nextOpponent?: string; lastOpponent?: string }) {

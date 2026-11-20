@@ -174,7 +174,7 @@ export default function ClipsMiniRoos({ empty, onBack }: { empty?: boolean; onBa
 function Chip({ active, onClick, label, count, avatar, dim }: { active: boolean; onClick: () => void; label: string; count: number; avatar?: string; dim?: boolean }) {
   return (
     <button onClick={onClick} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1.5px solid ${active ? G2 : LN}`, background: active ? PALE : '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: dim ? '#9aa6a3' : INK, display: 'flex', alignItems: 'center', gap: 7, opacity: dim ? 0.7 : 1 }}>
-      {avatar && <span style={{ width: 20, height: 20, borderRadius: 999, background: dim ? '#d6ddda' : '#cbbeb5', color: INK, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10, fontWeight: 700 }}>{avatar}</span>}
+      {avatar && <span style={{ width: 20, height: 20, borderRadius: 999, background: dim ? '#d6ddda' : '#e8cfcf', color: INK, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10, fontWeight: 700 }}>{avatar}</span>}
       {label}
       <span style={{ fontSize: 12, color: MUT, fontWeight: 400 }}>{count}</span>
     </button>

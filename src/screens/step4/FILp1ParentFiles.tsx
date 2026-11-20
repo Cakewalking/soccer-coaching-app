@@ -23,7 +23,7 @@ export default function FILp1ParentFiles({ onBack: _onBack, onNav }: {
   ]
 
   return (
-    <div style={{ width: 390, background: '#f7f8f7', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column', borderRadius: 24, overflow: 'hidden' }} data-lasttool={lastTool}>
+    <div style={{ width: 390, background: '#faf5ec', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column', borderRadius: 24, overflow: 'hidden' }} data-lasttool={lastTool}>
       {/* Header */}
       <div style={{ background: GD, padding: '0 20px', display: 'flex', alignItems: 'center', gap: 10, minHeight: 60, flexShrink: 0 }}>
         <button aria-label="Back" onClick={() => onNav?.('MSGp1-ParentMessages')}

@@ -26,7 +26,7 @@ export default function WelfareTab({ empty }: { empty?: boolean }) {
           <div>
             <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '20px 20px 24px' }}>
               <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', marginBottom: 2 }}>My cases</div>
-              <div style={{ fontSize: 13, color: '#6f7f7b', marginBottom: 16 }}>Welfare officer · nothing open</div>
+              <div style={{ fontSize: 13, color: '#5c6b67', marginBottom: 16 }}>Welfare officer · nothing open</div>
               <div style={{ background: '#eef5f2', borderRadius: 12, padding: '14px 16px' }}>
                 <div style={{ fontSize: 14, fontWeight: 700, color: '#2f6252', marginBottom: 6 }}>No open concerns</div>
                 <div style={{ fontSize: 13, color: '#1f4a3e', lineHeight: 1.5 }}>When a parent, child, coach or manager raises something, it comes straight to you and nobody else.</div>
@@ -49,7 +49,7 @@ export default function WelfareTab({ empty }: { empty?: boolean }) {
                   </div>
                 </div>
               ))}
-              <div style={{ fontSize: 12, color: '#6f7f7b', marginTop: 12, paddingTop: 10, borderTop: '1px solid #f0f1f0' }}>{"If it's about you, it goes to the club chair instead."}</div>
+              <div style={{ fontSize: 12, color: '#5c6b67', marginTop: 12, paddingTop: 10, borderTop: '1px solid #f0f1f0' }}>{"If it's about you, it goes to the club chair instead."}</div>
             </div>
           </div>
         </div>
@@ -78,12 +78,12 @@ export default function WelfareTab({ empty }: { empty?: boolean }) {
                   <StatusBadge status={c.status} />
                 </div>
                 <div style={{ fontSize: 13, color: '#4a5a57' }}>{c.desc}</div>
-                <div style={{ fontSize: 12, color: '#6f7f7b', marginTop: 2 }}>{c.from}</div>
+                <div style={{ fontSize: 12, color: '#5c6b67', marginTop: 2 }}>{c.from}</div>
               </div>
             </button>
           ))}
         </div>
-        <div style={{ padding: '12px 16px', borderRadius: 14, background: '#f7f8f7', border: '1px solid #e9eae8', fontSize: 13, color: '#4a5a57', lineHeight: '19px' }}>
+        <div style={{ padding: '12px 16px', borderRadius: 14, background: '#faf5ec', border: '1px solid #e9eae8', fontSize: 13, color: '#4a5a57', lineHeight: '19px' }}>
           The director and the chair see only that a case exists and whether it's on track. If a concern is about an adult's behaviour towards a child, the club may have to tell Victoria's Social Services Regulator within 3 business days. Check with Football Victoria.
         </div>
       </section>
@@ -96,7 +96,7 @@ export default function WelfareTab({ empty }: { empty?: boolean }) {
             <span style={{ padding: '4px 12px', borderRadius: '999px', background: '#fdf8e8', color: '#7a5a00', fontSize: 13, fontWeight: 700 }}>Call by Sat 6 Jun</span>
           </div>
 
-          <div style={{ background: '#f7f8f7', borderRadius: 12, padding: '12px 14px', fontSize: 14, lineHeight: '21px', color: '#10211f', marginBottom: 14, fontStyle: 'italic' as const }}>
+          <div style={{ background: '#faf5ec', borderRadius: 12, padding: '12px 14px', fontSize: 14, lineHeight: '21px', color: '#10211f', marginBottom: 14, fontStyle: 'italic' as const }}>
             "Mia has come home upset after training twice this fortnight. She says she's left out when they pick passing groups."
           </div>
 

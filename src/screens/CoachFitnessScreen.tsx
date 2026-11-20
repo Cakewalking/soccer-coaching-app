@@ -37,7 +37,7 @@ export default function CoachFitnessScreen() {
       <div style={{ minHeight: 0, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 14 }}>
 
         {/* Needs you */}
-        <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, overflow: 'hidden' }}>
+        <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderTop: '5px solid #c39797', borderRadius: 16, overflow: 'hidden' }}>
           <div style={{ padding: '12px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid #e9eae8' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
               <span style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>Needs you</span>
@@ -46,11 +46,11 @@ export default function CoachFitnessScreen() {
           </div>
           {ALERTS.map((a, i) => (
             <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 12, padding: '12px 16px', borderTop: i === 0 ? 'none' : '1px solid #e9eae8', cursor: 'pointer' }}>
-              <div style={{ width: 36, height: 36, borderRadius: '999px', background: i === 0 ? '#c39797' : i === 1 ? '#cbbeb5' : '#eef5f2', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, color: '#10211f', flex: 'none' }}>{a.ini}</div>
+              <div style={{ width: 36, height: 36, borderRadius: '999px', background: i === 0 ? '#c39797' : i === 1 ? '#e8cfcf' : '#eef5f2', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, color: '#10211f', flex: 'none' }}>{a.ini}</div>
               <div style={{ flexGrow: 1, minWidth: 0 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 2 }}>
                   <span style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>{a.sender}</span>
-                  <span style={{ fontSize: 12, color: '#6f7f7b' }}>{a.time}</span>
+                  <span style={{ fontSize: 12, color: '#5c6b67' }}>{a.time}</span>
                   {a.dot && <span style={{ width: 7, height: 7, borderRadius: '999px', background: '#c39797', flex: 'none' }} />}
                 </div>
                 <span style={{ fontSize: 14, color: '#4a5a57' }}>{a.text}</span>
@@ -66,7 +66,7 @@ export default function CoachFitnessScreen() {
         <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '14px 16px' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
             <span style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>Where we're at, on the ball and growing</span>
-            <span style={{ fontSize: 13, color: '#6f7f7b' }}>All 4</span>
+            <span style={{ fontSize: 13, color: '#5c6b67' }}>All 4</span>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
             {METRICS.map((m, i) => (
@@ -105,7 +105,7 @@ export default function CoachFitnessScreen() {
 
         {/* Last game */}
         <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '14px 16px' }}>
-          <div style={{ fontSize: 12, color: '#6f7f7b', marginBottom: 6 }}>Last game · Sat 30 May · away</div>
+          <div style={{ fontSize: 12, color: '#5c6b67', marginBottom: 6 }}>Last game · Sat 30 May · away</div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 10 }}>
             <span style={{ width: 32, height: 32, borderRadius: '999px', background: '#eef5f2', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, color: '#2f6252', flex: 'none' }}>W</span>
             <div style={{ flexGrow: 1 }}>
@@ -126,7 +126,7 @@ export default function CoachFitnessScreen() {
             ))}
           </div>
           <button onClick={() => openThing('the review', 'coach')} style={{ marginTop: 12, height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>Open the review</button>
-          <span style={{ marginLeft: 12, fontSize: 13, color: '#6f7f7b' }}>Clips · 7</span>
+          <span style={{ marginLeft: 12, fontSize: 13, color: '#5c6b67' }}>Clips · 7</span>
         </div>
       </div>
 
@@ -138,7 +138,7 @@ export default function CoachFitnessScreen() {
           <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 10 }}>This week</div>
           {WEEK.map((w, i) => (
             <div key={i} style={{ display: 'flex', gap: 10, borderTop: i === 0 ? 'none' : '1px solid #f5f5f4', background: w.active ? '#f0f8f4' : 'transparent', borderRadius: w.active ? 8 : 0, margin: w.active ? '0 -6px' : 0, padding: w.active ? '6px 6px' : '6px 0' }}>
-              <span style={{ fontSize: 13, fontWeight: 700, color: '#6f7f7b', width: 44, flex: 'none' }}>{w.day}</span>
+              <span style={{ fontSize: 13, fontWeight: 700, color: '#5c6b67', width: 44, flex: 'none' }}>{w.day}</span>
               <span style={{ fontSize: 13, color: w.active ? '#10211f' : '#4a5a57', fontWeight: w.active ? 600 : 400 }}>{w.label}</span>
             </div>
           ))}
@@ -172,7 +172,7 @@ export default function CoachFitnessScreen() {
           ].map((s, i) => (
             <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '7px 0', borderTop: i === 0 ? 'none' : '1px solid #f5f5f4' }}>
               <span style={{ fontSize: 15, fontWeight: 700, color: s.color, minWidth: 72 }}>{s.label}</span>
-              {s.sub && <span style={{ fontSize: 13, color: '#6f7f7b' }}>{s.sub}</span>}
+              {s.sub && <span style={{ fontSize: 13, color: '#5c6b67' }}>{s.sub}</span>}
             </div>
           ))}
         </div>

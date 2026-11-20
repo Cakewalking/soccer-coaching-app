@@ -60,8 +60,8 @@ function ThisWeekTab() {
       {/* Stat cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, minmax(0,1fr))', gap: 12, marginBottom: 20 }}>
         {STAT_CARDS.map((s, i) => (
-          <div key={i} style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 14, padding: '14px 16px' }}>
-            <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', color: '#6f7f7b', marginBottom: 6, textTransform: 'uppercase' }}>{s.label}</div>
+          <div key={i} style={{ background: ['#f3ecdf', '#f4e6e6', '#eef5f2', '#f3ecdf'][i % 4], border: '1px solid #c5c8c4', borderRadius: 14, padding: '14px 16px' }}>
+            <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', color: '#5c6b67', marginBottom: 6, textTransform: 'uppercase' }}>{s.label}</div>
             <div style={{ fontSize: 24, fontWeight: 700, letterSpacing: '-0.02em', color: s.color, marginBottom: 2 }}>{s.value}</div>
             <div style={{ fontSize: 12, color: '#4a5a57' }}>{s.sub}</div>
           </div>
@@ -169,7 +169,7 @@ export default function CoordinatorPortal({ onBack: _onBack, empty = false, home
               <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.6, marginBottom: 16 }}>Once teams are imported and fixtures sync from Dribl, this page lists what needs doing before each Saturday.</div>
               <button onClick={() => openThing('the PlayFootball import. This syncs registrations and team lists', 'club')} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Import from PlayFootball</button>
             </div>
-            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: '#6f7f7b', marginBottom: 10 }}>What you will see</div>
+            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: '#5c6b67', marginBottom: 10 }}>What you will see</div>
             {[
               { n: '1', label: 'Registrations',              desc: 'Who still has to finish or pay' },
               { n: '2', label: 'Referees and game leaders',  desc: 'Home games that still need one' },

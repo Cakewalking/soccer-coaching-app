@@ -79,7 +79,7 @@ export default function QC10HowWeMeasure({ source, say }: { source?: number; say
   }, [source])
   const grid = '46px minmax(0,1fr) minmax(0,1fr) minmax(0,0.85fr)'
   return (
-    <div ref={root} data-screen="QC10-HowWeMeasure" style={{ display: 'flex', flexDirection: 'column', gap: 12, padding: '14px 24px 28px', boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: "'DM Sans',system-ui,sans-serif" }}>
+    <div ref={root} data-screen="QC10-HowWeMeasure" style={{ display: 'flex', flexDirection: 'column', gap: 12, padding: '14px 24px 28px', boxSizing: 'border-box', background: '#faf5ec', color: INK, fontFamily: "'DM Sans',system-ui,sans-serif" }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 14 }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 14, flexWrap: 'wrap' }}>
           <h1 style={{ margin: 0, fontSize: 26, lineHeight: '32px', fontWeight: 700, letterSpacing: '-0.02em' }}>How we measure</h1>
@@ -100,7 +100,7 @@ export default function QC10HowWeMeasure({ source, say }: { source?: number; say
       <section aria-label="What the research says" style={{ ...tile, gap: 0, padding: '14px 18px 6px' }}>
         <h2 style={h2}>What the research says, and what we do about it</h2>
         <span style={{ ...cap, fontSize: 13, paddingBottom: 6 }}>Most of these studies were done with adult or elite players. We apply them with care to children, and say so where it matters.</span>
-        <div style={{ display: 'grid', gridTemplateColumns: grid, gap: 14, fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: MUT, paddingBottom: 6 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: grid, gap: 14, fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#7a4b5b', paddingBottom: 6 }}>
           <span /><span>The finding</span><span>What Clean Sheet does</span><span>Source</span>
         </div>
         {RESEARCH.map(([finding, does, who, where], i) => (

@@ -32,7 +32,7 @@ function ArloDetail({ onSend, onEdit }: { onSend: () => void; onEdit: () => void
   return (
     <aside style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '18px 20px', display: 'flex', flexDirection: 'column', gap: 0 }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
-        <div style={{ width: 40, height: 40, borderRadius: '999px', background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, flexShrink: 0 }}>AK</div>
+        <div style={{ width: 40, height: 40, borderRadius: '999px', background: '#e8cfcf', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, flexShrink: 0 }}>AK</div>
         <div>
           <div style={{ fontSize: 15, fontWeight: 700 }}>Arlo Kaur</div>
           <div style={{ fontSize: 12, color: '#4a5a57' }}>To his dad, Raj · drafted from your game notes</div>
@@ -57,7 +57,7 @@ function ArloDetail({ onSend, onEdit }: { onSend: () => void; onEdit: () => void
         </div>
       </div>
 
-      <div style={{ background: '#f7f8f7', borderRadius: 12, padding: '12px 14px', fontSize: 14, lineHeight: '21px', color: '#10211f', marginBottom: 16 }}>
+      <div style={{ background: '#faf5ec', borderRadius: 12, padding: '12px 14px', fontSize: 14, lineHeight: '21px', color: '#10211f', marginBottom: 16 }}>
         Arlo joined us in term 2 and by June he was captain. He loves Treasure island and now dribbles with his head up. Thank you for getting him to every session. See you next year!
       </div>
 
@@ -85,7 +85,7 @@ export default function SeasonNotesScreen({ empty, onBack }: { empty?: boolean; 
       {/* Header */}
       <div style={{ flexShrink: 0, padding: '14px 28px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 20 }}>
         <div>
-          {onBack && <button onClick={onBack} style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer', marginBottom: 8 }}>← Back</button>}
+          {onBack && <button onClick={onBack} style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, color: '#5c6b67', cursor: 'pointer', marginBottom: 8 }}>← Back</button>}
           <h1 style={{ margin: 0, fontSize: 26, lineHeight: '32px', fontWeight: 700, letterSpacing: '-0.02em' }}>Season notes</h1>
           <div style={{ fontSize: 14, color: '#4a5a57', marginTop: 2 }}>One short note for each family · 2 sent, {draftCount} drafted, 4 to write</div>
         </div>
@@ -106,7 +106,7 @@ export default function SeasonNotesScreen({ empty, onBack }: { empty?: boolean; 
                 onClick={() => setSelected(p.name)}
                 style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 18px', border: 'none', borderTop: '1px solid #e9eae8', background: isSelected ? '#f7fcf9' : 'transparent', cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' as const, minHeight: 60 }}
               >
-                <div style={{ width: 40, height: 40, borderRadius: '999px', background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, flexShrink: 0 }}>{p.ini}</div>
+                <div style={{ width: 40, height: 40, borderRadius: '999px', background: '#e8cfcf', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, flexShrink: 0 }}>{p.ini}</div>
                 <div style={{ flexGrow: 1, minWidth: 0 }}>
                   <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>{p.name}</div>
                   {p.note && <div style={{ fontSize: 13, color: '#4a5a57', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' as const }}>{p.note}</div>}
@@ -122,7 +122,7 @@ export default function SeasonNotesScreen({ empty, onBack }: { empty?: boolean; 
           <ArloDetail onSend={() => showToast("Sent to Arlo's dad, Raj.")} onEdit={() => openThing("draft editor for Arlo", 'mini')} />
         ) : (
           <aside style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '28px 24px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 12, textAlign: 'center' }}>
-            <div style={{ width: 48, height: 48, borderRadius: '999px', background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 700 }}>
+            <div style={{ width: 48, height: 48, borderRadius: '999px', background: '#e8cfcf', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 700 }}>
               {PLAYERS.find(p => p.name === selected)?.ini ?? '?'}
             </div>
             <div style={{ fontSize: 17, fontWeight: 700 }}>{selected}</div>

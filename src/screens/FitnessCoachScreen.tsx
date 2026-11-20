@@ -148,9 +148,9 @@ function EffortChart({ data }: { data: { sessions: string[]; planned: number[]; 
   const lineColor = data.status === 'warn' ? '#c39797' : '#40826d'
   return (
     <div>
-      <div style={{ display: 'flex', gap: 16, marginBottom: 6, fontSize: 11, color: '#6f7f7b', alignItems: 'center' }}>
+      <div style={{ display: 'flex', gap: 16, marginBottom: 6, fontSize: 11, color: '#5c6b67', alignItems: 'center' }}>
         <span style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-          <svg width="18" height="8" aria-hidden="true"><line x1="0" y1="4" x2="18" y2="4" stroke="#cbbeb5" strokeWidth="1.5" strokeDasharray="4 2"/></svg>
+          <svg width="18" height="8" aria-hidden="true"><line x1="0" y1="4" x2="18" y2="4" stroke="#e8cfcf" strokeWidth="1.5" strokeDasharray="4 2"/></svg>
           {data.coachLabel}
         </span>
         <span style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
@@ -166,7 +166,7 @@ function EffortChart({ data }: { data: { sessions: string[]; planned: number[]; 
             <text x={PX - 3} y={scaleY(v) + 3} textAnchor="end" fontSize="8" fill="#c5c8c4">{v}</text>
           </g>
         ))}
-        <path d={makePath(data.planned)} fill="none" stroke="#cbbeb5" strokeWidth="1.5" strokeDasharray="4 2" strokeLinecap="round"/>
+        <path d={makePath(data.planned)} fill="none" stroke="#e8cfcf" strokeWidth="1.5" strokeDasharray="4 2" strokeLinecap="round"/>
         <path d={makePath(data.actual)} fill="none" stroke={lineColor} strokeWidth="2" strokeLinecap="round"/>
         {data.actual.map((v, i) => (
           <circle key={i} cx={scaleX(i)} cy={scaleY(v)} r="2.5" fill={lineColor}/>
@@ -245,7 +245,7 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
 
   if (empty) {
     return (
-      <div style={{ background: '#f7f9f7', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
+      <div style={{ background: '#faf5ec', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
         <div style={{ background: '#1f4a3e', padding: '20px 24px 16px', flexShrink: 0 }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <div>
@@ -262,10 +262,10 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
             <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.6, marginBottom: 16 }}>Measure the squad once, then Clean Sheet flags anyone growing fast and sets safe sprint and jump limits. Effort and pain check-ins start after the first session.</div>
             <div style={{ display: 'flex', gap: 10 }}>
               <button onClick={() => goSetup('kit', 'Opening the measuring session planner.')} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Plan a measuring session</button>
-              <button onClick={() => demoToast('Fitness levels appear after the first measuring session.')} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: '1px solid #c5c8c4', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Check the fitness level</button>
+              <button onClick={() => demoToast('Fitness levels appear after the first measuring session.')} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: '1px solid #c5c8c4', background: '#fff', color: '#5c6b67', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Check the fitness level</button>
             </div>
           </div>
-          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: '#6f7f7b', marginBottom: 4 }}>What fills in first</div>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: '#5c6b67', marginBottom: 4 }}>What fills in first</div>
           {[
             { label: 'Growth',         desc: 'After your first measuring session' },
             { label: 'Effort and pain', desc: 'Players tap after each session' },
@@ -327,14 +327,14 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
               {homeSub === 'overview' && teamId === 'u12' && (
                 <>
                   <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', marginBottom: 2 }}>Hi Priya</div>
-                  <div style={{ fontSize: 12, color: '#6f7f7b', marginBottom: 16 }}>U12 Sam · Thursday 4 Jun · training 5:45 pm · Harbour Rovers on Saturday</div>
+                  <div style={{ fontSize: 12, color: '#5c6b67', marginBottom: 16 }}>U12 Sam · Thursday 4 Jun · training 5:45 pm · Harbour Rovers on Saturday</div>
 
                   {/* Growth watch */}
                   <div style={{ background: '#fff', borderRadius: 16, border: '1px solid #e9eae8', marginBottom: 14, overflow: 'hidden' }}>
                     <div style={{ padding: '12px 16px 8px', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                       <div>
                         <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>Growth watch</div>
-                        <div style={{ fontSize: 12, color: '#6f7f7b', marginTop: 2, lineHeight: '1.4', maxWidth: 240 }}>Growing 7 cm a year or more. Knee and heel pain at this stage needs rest, not pushing through.</div>
+                        <div style={{ fontSize: 12, color: '#5c6b67', marginTop: 2, lineHeight: '1.4', maxWidth: 240 }}>Growing 7 cm a year or more. Knee and heel pain at this stage needs rest, not pushing through.</div>
                       </div>
                       <span style={{ fontSize: 12, color: '#4a5a57', flexShrink: 0, marginLeft: 12 }}>All 16</span>
                     </div>
@@ -347,15 +347,15 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
                         <div style={{ width: 32, height: 32, borderRadius: '999px', background: p.isPain ? '#fdf4f4' : '#fdf8ed', color: p.isPain ? '#c39797' : '#c3a84a', fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{p.ini}</div>
                         <div style={{ flexGrow: 1, minWidth: 0 }}>
                           <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>{p.name}</div>
-                          <div style={{ fontSize: 12, color: '#6f7f7b' }}>{p.note}</div>
+                          <div style={{ fontSize: 12, color: '#5c6b67' }}>{p.note}</div>
                         </div>
                         <div style={{ textAlign: 'right', flexShrink: 0 }}>
                           <div style={{ fontSize: 15, fontWeight: 700, color: p.isPain ? '#c39797' : '#c3a84a' }}>{p.rate}</div>
-                          <div style={{ fontSize: 10, color: '#6f7f7b' }}>cm/year</div>
+                          <div style={{ fontSize: 10, color: '#5c6b67' }}>cm/year</div>
                         </div>
                       </div>
                     ))}
-                    <div style={{ padding: '10px 16px', borderTop: '1px solid #f0f1f0', fontSize: 12, color: '#6f7f7b' }}>
+                    <div style={{ padding: '10px 16px', borderTop: '1px solid #f0f1f0', fontSize: 12, color: '#5c6b67' }}>
                       Whole squad · <span style={{ color: '#2f6252', fontWeight: 600, cursor: 'pointer' }}>Measuring due Thu 11 Jun · Plan it</span>
                     </div>
                   </div>
@@ -396,19 +396,19 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
                         { label: 'Pain reports',       value: '3 this week', note: 'all followed up',    color: '#c3a84a' },
                         { label: 'Game time',          value: 'All played half or more', note: null,     color: '#2f6252' },
                         { label: 'Sprint race test',   value: 'Due', note: 'last run 1 Mar',             color: '#c39797' },
-                        { label: 'Modified training',  value: 'Kai, Tom', note: 'hamstring · wrist',    color: '#6f7f7b' },
+                        { label: 'Modified training',  value: 'Kai, Tom', note: 'hamstring · wrist',    color: '#5c6b67' },
                       ].map((item, i) => (
                         <div key={i} style={{ background: '#f5f6f4', borderRadius: 10, padding: '10px 12px' }}>
-                          <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.05em', textTransform: 'uppercase' as const, color: '#6f7f7b', marginBottom: 3 }}>{item.label}</div>
+                          <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.05em', textTransform: 'uppercase' as const, color: '#5c6b67', marginBottom: 3 }}>{item.label}</div>
                           <div style={{ fontSize: 13, fontWeight: 700, color: item.color }}>{item.value}</div>
-                          {item.note && <div style={{ fontSize: 11, color: '#6f7f7b', marginTop: 1 }}>{item.note}</div>}
+                          {item.note && <div style={{ fontSize: 11, color: '#5c6b67', marginTop: 1 }}>{item.note}</div>}
                         </div>
                       ))}
                     </div>
                     <div style={{ marginTop: 12, padding: '8px 12px', background: '#eef5f2', borderRadius: 10, fontSize: 12, color: '#4a5a57' }}>
                       72% said they loved it after Tuesday. 3 said "not really."
                     </div>
-                    <div style={{ marginTop: 8, fontSize: 11, color: '#6f7f7b' }}>Play level, set by age · no load targets or rankings. Your U14 and U16 teams show more.</div>
+                    <div style={{ marginTop: 8, fontSize: 11, color: '#5c6b67' }}>Play level, set by age · no load targets or rankings. Your U14 and U16 teams show more.</div>
                   </div>
                 </>
               )}
@@ -427,7 +427,7 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
                         <span style={{ fontSize: 16, flexShrink: 0, lineHeight: '20px' }}><Glyph n="warn" /></span>
                         <div>
                           <div style={{ fontSize: 13, fontWeight: 700, color: '#9d7c80' }}>Heavy legs two weeks running</div>
-                          <div style={{ fontSize: 12, color: '#6f7f7b', marginTop: 1 }}>Load +30% on their usual. Keep Wednesday short.</div>
+                          <div style={{ fontSize: 12, color: '#5c6b67', marginTop: 1 }}>Load +30% on their usual. Keep Wednesday short.</div>
                         </div>
                       </div>
                     )}
@@ -443,26 +443,26 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
                       <div style={{ padding: '12px 16px 8px', fontSize: 14, fontWeight: 700, color: '#10211f' }}>Who to watch</div>
                       {watch.map((p, i) => (
                         <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 16px', borderTop: '1px solid #f0f1f0' }}>
-                          <div style={{ width: 32, height: 32, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{p.ini}</div>
+                          <div style={{ width: 32, height: 32, borderRadius: '999px', background: '#e8cfcf', color: '#10211f', fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{p.ini}</div>
                           <div style={{ flexGrow: 1, minWidth: 0 }}>
                             <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>{p.name}</div>
-                            <div style={{ fontSize: 12, color: '#6f7f7b' }}>{p.note}</div>
+                            <div style={{ fontSize: 12, color: '#5c6b67' }}>{p.note}</div>
                           </div>
                           <span style={{ flexShrink: 0, fontSize: 11, fontWeight: 700, color: p.actionColor, background: p.actionColor + '22', borderRadius: '999px', padding: '3px 10px', whiteSpace: 'nowrap' as const }}>{p.action}</span>
                         </div>
                       ))}
-                      {teamId === 'u14' && <div style={{ padding: '8px 16px', borderTop: '1px solid #f0f1f0', fontSize: 12, color: '#6f7f7b' }}>6 total · 4 more players around their growth spurt, no pain</div>}
-                      {teamId === 'u16' && <div style={{ padding: '8px 16px', borderTop: '1px solid #f0f1f0', fontSize: 12, color: '#6f7f7b' }}>4 players under a third of game time · on the coach meeting agenda</div>}
-                      <div style={{ padding: '8px 16px', borderTop: '1px solid #f0f1f0', fontSize: 11, color: '#6f7f7b' }}>Names in growth and wellness stay with the coaches. The director sees counts only.</div>
+                      {teamId === 'u14' && <div style={{ padding: '8px 16px', borderTop: '1px solid #f0f1f0', fontSize: 12, color: '#5c6b67' }}>6 total · 4 more players around their growth spurt, no pain</div>}
+                      {teamId === 'u16' && <div style={{ padding: '8px 16px', borderTop: '1px solid #f0f1f0', fontSize: 12, color: '#5c6b67' }}>4 players under a third of game time · on the coach meeting agenda</div>}
+                      <div style={{ padding: '8px 16px', borderTop: '1px solid #f0f1f0', fontSize: 11, color: '#5c6b67' }}>Names in growth and wellness stay with the coaches. The director sees counts only.</div>
                     </div>
 
                     {/* Stat chips */}
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 14 }}>
                       {stats.map((s, i) => (
                         <div key={i} style={{ background: '#fff', borderRadius: 12, border: '1px solid #e9eae8', padding: '12px 14px' }}>
-                          <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.05em', textTransform: 'uppercase' as const, color: '#6f7f7b', marginBottom: 3 }}>{s.label}</div>
+                          <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.05em', textTransform: 'uppercase' as const, color: '#5c6b67', marginBottom: 3 }}>{s.label}</div>
                           <div style={{ fontSize: 20, fontWeight: 800, color: s.color, letterSpacing: '-0.02em' }}>{s.value}</div>
-                          <div style={{ fontSize: 11, color: '#6f7f7b', marginTop: 2 }}>{s.note}</div>
+                          <div style={{ fontSize: 11, color: '#5c6b67', marginTop: 2 }}>{s.note}</div>
                         </div>
                       ))}
                     </div>
@@ -476,7 +476,7 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
               {/* ── FITNESS LEVEL sub-tab ── */}
               {homeSub === 'fitnesslevel' && (
                 <>
-                  <div style={{ fontSize: 12, color: '#6f7f7b', marginBottom: 14 }}>{currentTeam.label} · set from the age group · decides what the app collects and shows</div>
+                  <div style={{ fontSize: 12, color: '#5c6b67', marginBottom: 14 }}>{currentTeam.label} · set from the age group · decides what the app collects and shows</div>
                   {[
                     {
                       id: 'play', label: 'Play', ages: 'U6 to U12', tagline: 'Safe, enjoying it, fair game time',
@@ -514,7 +514,7 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
                     <div key={i} style={{ background: '#fff', borderRadius: 14, border: `2px solid ${level.active ? '#2f6252' : '#e9eae8'}`, padding: '14px 16px', marginBottom: 10 }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
                         <span style={{ fontSize: 16, fontWeight: 800, color: '#10211f' }}>{level.label}</span>
-                        <span style={{ fontSize: 12, color: '#6f7f7b' }}>{level.ages}</span>
+                        <span style={{ fontSize: 12, color: '#5c6b67' }}>{level.ages}</span>
                         {level.active && <span style={{ fontSize: 11, fontWeight: 700, background: '#eef5f2', color: '#2f6252', borderRadius: '999px', padding: '2px 8px', marginLeft: 'auto' }}>This team</span>}
                       </div>
                       <div style={{ fontSize: 13, fontWeight: 600, color: '#4a5a57', marginBottom: 10 }}>{level.tagline}</div>
@@ -523,17 +523,17 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
                           <span key={j} style={{ fontSize: 11, color: '#10211f', background: '#f5f6f4', borderRadius: 6, padding: '3px 8px' }}>{f}</span>
                         ))}
                         {level.not.map((f, j) => (
-                          <span key={j} style={{ fontSize: 11, color: '#6f7f7b', background: '#f5f6f4', borderRadius: 6, padding: '3px 8px', textDecoration: 'line-through' }}>{f}</span>
+                          <span key={j} style={{ fontSize: 11, color: '#5c6b67', background: '#f5f6f4', borderRadius: 6, padding: '3px 8px', textDecoration: 'line-through' }}>{f}</span>
                         ))}
                       </div>
-                      <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: '0.05em', color: '#6f7f7b', marginBottom: 4 }}>Who puts data in</div>
+                      <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: '0.05em', color: '#5c6b67', marginBottom: 4 }}>Who puts data in</div>
                       {level.who.map((w, j) => <div key={j} style={{ fontSize: 12, color: '#4a5a57', padding: '1px 0' }}>{w}</div>)}
                       <div style={{ marginTop: 8, fontSize: 12, fontWeight: 600, color: '#10211f' }}>
-                        Time per player · <span style={{ fontWeight: 400, color: '#6f7f7b' }}>{level.time}</span>
+                        Time per player · <span style={{ fontWeight: 400, color: '#5c6b67' }}>{level.time}</span>
                       </div>
                     </div>
                   ))}
-                  <div style={{ fontSize: 12, color: '#6f7f7b', lineHeight: '1.6', background: '#f5f6f4', borderRadius: 10, padding: '10px 12px' }}>
+                  <div style={{ fontSize: 12, color: '#5c6b67', lineHeight: '1.6', background: '#f5f6f4', borderRadius: 10, padding: '10px 12px' }}>
                     Collect only what the level needs. Children's privacy rules ask for the least data by default. Parents switch each extra on.
                   </div>
                 </>
@@ -554,7 +554,7 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 10 }}>
                     <div>
                       <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>Growth · U12 Sam</div>
-                      <div style={{ fontSize: 12, color: '#6f7f7b', marginTop: 2 }}>Every 3 months · last 11 Mar · next due Thu 11 Jun · flag at 7 cm a year</div>
+                      <div style={{ fontSize: 12, color: '#5c6b67', marginTop: 2 }}>Every 3 months · last 11 Mar · next due Thu 11 Jun · flag at 7 cm a year</div>
                     </div>
                     <button onClick={() => { setTab('training'); setTrainSub('measuring') }} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer', flexShrink: 0 }}>Start measuring</button>
                   </div>
@@ -563,7 +563,7 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
                     {/* Player table */}
                     <div style={{ background: '#fff', borderRadius: 14, border: '1px solid #e9eae8', overflow: 'hidden' }}>
                       <div style={{ display: 'grid', gridTemplateColumns: '1fr 64px 72px 44px', padding: '8px 14px', borderBottom: '1px solid #f0f1f0', gap: 8 }}>
-                        {['PLAYER', 'HEIGHT', 'CM / YEAR', ''].map(h => <div key={h} style={{ fontSize: 10, fontWeight: 700, color: '#6f7f7b' }}>{h}</div>)}
+                        {['PLAYER', 'HEIGHT', 'CM / YEAR', ''].map(h => <div key={h} style={{ fontSize: 10, fontWeight: 700, color: '#5c6b67' }}>{h}</div>)}
                       </div>
                       {PLAYERS_GROWTH.map((p, i) => {
                         const isSel = selectedGrowth === p.ini
@@ -575,16 +575,16 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
                             fontFamily: 'inherit', textAlign: 'left',
                           }}>
                             <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-                              <div style={{ width: 24, height: 24, borderRadius: '999px', background: isSel ? '#2f6252' : '#cbbeb5', color: isSel ? '#fff' : '#10211f', fontSize: 9, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{p.ini}</div>
+                              <div style={{ width: 24, height: 24, borderRadius: '999px', background: isSel ? '#2f6252' : '#e8cfcf', color: isSel ? '#fff' : '#10211f', fontSize: 9, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{p.ini}</div>
                               <span style={{ fontSize: 12, fontWeight: isSel ? 700 : 400, color: '#10211f' }}>{p.name}</span>
                             </div>
-                            <span style={{ fontSize: 12, color: '#6f7f7b' }}>{p.cm}</span>
+                            <span style={{ fontSize: 12, color: '#5c6b67' }}>{p.cm}</span>
                             <span style={{ fontSize: 13, fontWeight: 700, color: p.growthCm >= 7 ? '#c39797' : '#10211f' }}>+{p.growthCm}</span>
                             <span style={{ fontSize: 11, color: p.pain ? '#c39797' : '#c5c8c4' }}>{p.pain ? glyph('warn') : '—'}</span>
                           </button>
                         )
                       })}
-                      <div style={{ padding: '8px 14px', borderTop: '1px solid #f0f1f0', fontSize: 11, color: '#6f7f7b' }}>All 16, fastest first. Parents can add heights between sessions.</div>
+                      <div style={{ padding: '8px 14px', borderTop: '1px solid #f0f1f0', fontSize: 11, color: '#5c6b67' }}>All 16, fastest first. Parents can add heights between sessions.</div>
                     </div>
 
                     {/* Detail panel */}
@@ -605,10 +605,10 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
                       return (
                         <div style={{ background: '#fff', borderRadius: 14, border: '1px solid #e9eae8', padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 10 }}>
                           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                            <div style={{ width: 36, height: 36, borderRadius: '999px', background: p.growthCm >= 7 ? '#fdf4f4' : '#cbbeb5', color: p.growthCm >= 7 ? '#c39797' : '#10211f', fontSize: 12, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{p.ini}</div>
+                            <div style={{ width: 36, height: 36, borderRadius: '999px', background: p.growthCm >= 7 ? '#fdf4f4' : '#e8cfcf', color: p.growthCm >= 7 ? '#c39797' : '#10211f', fontSize: 12, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{p.ini}</div>
                             <div>
                               <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>{p.name}</div>
-                              <div style={{ fontSize: 12, color: '#6f7f7b' }}>+{p.growthCm} cm/year · {p.cm} cm now</div>
+                              <div style={{ fontSize: 12, color: '#5c6b67' }}>+{p.growthCm} cm/year · {p.cm} cm now</div>
                             </div>
                           </div>
                           <div>
@@ -618,12 +618,12 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
                               {heights.map((v, i) => <circle key={i} cx={sx(i)} cy={sy(v)} r="3" fill="#2f6252"/>)}
                               {chartLabels.map((l, i) => <text key={i} x={sx(i)} y={H2 + 13} textAnchor="middle" fontSize="8" fill="#6f7f7b">{l}</text>)}
                             </svg>
-                            <div style={{ fontSize: 11, color: '#6f7f7b', textAlign: 'center', marginTop: 2 }}>Dotted: projected if growing continues at this rate</div>
+                            <div style={{ fontSize: 11, color: '#5c6b67', textAlign: 'center', marginTop: 2 }}>Dotted: projected if growing continues at this rate</div>
                           </div>
                           {p.pain && (
                             <div style={{ background: '#fdf8f8', borderRadius: 10, padding: '10px 12px', border: '1px solid #f0d8d8' }}>
                               <div style={{ fontSize: 12, fontWeight: 700, color: '#9d7c80', marginBottom: isNoah ? 4 : 0 }}>{p.pain}</div>
-                              {isNoah && <div style={{ fontSize: 12, color: '#6f7f7b', lineHeight: '1.5' }}>Pain just below the kneecap. Common in fast growth. No jumps and fewer sprints until it settles. Suggest parents see a physio if it lasts.</div>}
+                              {isNoah && <div style={{ fontSize: 12, color: '#5c6b67', lineHeight: '1.5' }}>Pain just below the kneecap. Common in fast growth. No jumps and fewer sprints until it settles. Suggest parents see a physio if it lasts.</div>}
                             </div>
                           )}
                           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
@@ -632,7 +632,7 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
                               : [{ label: 'Growth rate', value: `+${p.growthCm} cm/year` }, { label: 'Status', value: p.growthCm >= 7 ? 'Fast growth · watch' : 'Normal growth' }]
                             ).map((item, j) => (
                               <div key={j} style={{ background: '#f5f6f4', borderRadius: 8, padding: '8px 10px' }}>
-                                <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase' as const, color: '#6f7f7b', letterSpacing: '0.05em', marginBottom: 2 }}>{item.label}</div>
+                                <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase' as const, color: '#5c6b67', letterSpacing: '0.05em', marginBottom: 2 }}>{item.label}</div>
                                 <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{item.value}</div>
                               </div>
                             ))}
@@ -640,7 +640,7 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
                         </div>
                       )
                     })() : (
-                      <div style={{ background: '#fff', borderRadius: 14, border: '1px solid #e9eae8', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#6f7f7b', fontSize: 14, minHeight: 120 }}>Select a player</div>
+                      <div style={{ background: '#fff', borderRadius: 14, border: '1px solid #e9eae8', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#5c6b67', fontSize: 14, minHeight: 120 }}>Select a player</div>
                     )}
                   </div>
                 </>
@@ -658,9 +658,9 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
                       { label: 'Saw a doctor', value: '2', note: 'this season' },
                     ].map((s, i) => (
                       <div key={i} style={{ background: '#fff', borderRadius: 10, border: '1px solid #e9eae8', padding: '10px 12px' }}>
-                        <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase' as const, color: '#6f7f7b', letterSpacing: '0.05em', marginBottom: 2 }}>{s.label}</div>
+                        <div style={{ fontSize: 10, fontWeight: 700, textTransform: 'uppercase' as const, color: '#5c6b67', letterSpacing: '0.05em', marginBottom: 2 }}>{s.label}</div>
                         <div style={{ fontSize: 20, fontWeight: 800, color: '#10211f' }}>{s.value}</div>
-                        <div style={{ fontSize: 11, color: '#6f7f7b' }}>{s.note}</div>
+                        <div style={{ fontSize: 11, color: '#5c6b67' }}>{s.note}</div>
                       </div>
                     ))}
                   </div>
@@ -672,17 +672,17 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
                       <button onClick={() => { setShowLogInjury(v => !v); setLogStep(1) }} style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>+ Log an injury</button>
                     </div>
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 72px 80px', padding: '8px 16px', borderBottom: '1px solid #f0f1f0', gap: 8 }}>
-                      {['PLAYER', 'WHAT AND WHEN', 'TRAINING', 'STEPS BACK'].map(h => <div key={h} style={{ fontSize: 10, fontWeight: 700, color: '#6f7f7b' }}>{h}</div>)}
+                      {['PLAYER', 'WHAT AND WHEN', 'TRAINING', 'STEPS BACK'].map(h => <div key={h} style={{ fontSize: 10, fontWeight: 700, color: '#5c6b67' }}>{h}</div>)}
                     </div>
                     {INJURIES.map((inj, i) => (
                       <div key={i} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 72px 80px', padding: '10px 16px', borderTop: i === 0 ? 'none' : '1px solid #f0f1f0', gap: 8, alignItems: 'center' }}>
                         <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-                          <div style={{ width: 28, height: 28, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', fontSize: 10, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{inj.ini}</div>
+                          <div style={{ width: 28, height: 28, borderRadius: '999px', background: '#e8cfcf', color: '#10211f', fontSize: 10, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{inj.ini}</div>
                           <span style={{ fontSize: 13, fontWeight: 600, color: '#10211f' }}>{inj.name}</span>
                         </div>
                         <div>
                           <div style={{ fontSize: 12, color: '#10211f' }}>{inj.injury}</div>
-                          <div style={{ fontSize: 11, color: '#6f7f7b' }}>{inj.date}</div>
+                          <div style={{ fontSize: 11, color: '#5c6b67' }}>{inj.date}</div>
                         </div>
                         <span style={{ fontSize: 12, fontWeight: 600, color: inj.modified ? '#c39797' : '#40826d' }}>{inj.modified ? 'Modified' : 'Back'}</span>
                         <div style={{ display: 'flex', gap: 3 }}>
@@ -705,11 +705,11 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
                       </div>
                       {logStep === 1 && (
                         <>
-                          <div style={{ fontSize: 12, fontWeight: 700, color: '#6f7f7b', marginBottom: 8, textTransform: 'uppercase' as const, letterSpacing: '0.06em' }}>1 · Who</div>
+                          <div style={{ fontSize: 12, fontWeight: 700, color: '#5c6b67', marginBottom: 8, textTransform: 'uppercase' as const, letterSpacing: '0.06em' }}>1 · Who</div>
                           <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: 7, marginBottom: 14 }}>
                             {PLAYERS_GROWTH.slice(0, 10).map(p => (
                               <button key={p.ini} onClick={() => setLogPlayer(p.ini)} style={{ height: 44, padding: '0 12px', borderRadius: '999px', border: `1px solid ${logPlayer === p.ini ? '#2f6252' : '#e9eae8'}`, background: logPlayer === p.ini ? '#eef5f2' : '#fff', fontFamily: 'inherit', fontSize: 12, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
-                                <div style={{ width: 18, height: 18, borderRadius: '999px', background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 7, fontWeight: 700, color: '#10211f' }}>{p.ini}</div>
+                                <div style={{ width: 18, height: 18, borderRadius: '999px', background: '#e8cfcf', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 7, fontWeight: 700, color: '#10211f' }}>{p.ini}</div>
                                 {p.name.split(' ')[0]}
                               </button>
                             ))}
@@ -719,7 +719,7 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
                       )}
                       {logStep === 2 && (
                         <>
-                          <div style={{ fontSize: 12, fontWeight: 700, color: '#6f7f7b', marginBottom: 8, textTransform: 'uppercase' as const, letterSpacing: '0.06em' }}>2 · What happened</div>
+                          <div style={{ fontSize: 12, fontWeight: 700, color: '#5c6b67', marginBottom: 8, textTransform: 'uppercase' as const, letterSpacing: '0.06em' }}>2 · What happened</div>
                           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, marginBottom: 14 }}>
                             {['Training', 'Game', 'No contact', 'Contact'].map(opt => (
                               <button key={opt} onClick={() => setLogWhat(opt)} style={{ height: 44, borderRadius: 10, border: `1px solid ${logWhat === opt ? '#2f6252' : '#e9eae8'}`, background: logWhat === opt ? '#eef5f2' : '#fff', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>{opt}</button>
@@ -733,13 +733,13 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
                       )}
                       {logStep === 3 && (
                         <>
-                          <div style={{ fontSize: 12, fontWeight: 700, color: '#6f7f7b', marginBottom: 8, textTransform: 'uppercase' as const, letterSpacing: '0.06em' }}>3 · Can they train?</div>
+                          <div style={{ fontSize: 12, fontWeight: 700, color: '#5c6b67', marginBottom: 8, textTransform: 'uppercase' as const, letterSpacing: '0.06em' }}>3 · Can they train?</div>
                           <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
                             {['Yes', 'Light only', 'No'].map(opt => (
                               <button key={opt} onClick={() => setLogTrain(opt)} style={{ flex: 1, height: 44, borderRadius: 10, border: `1px solid ${logTrain === opt ? '#2f6252' : '#e9eae8'}`, background: logTrain === opt ? '#eef5f2' : '#fff', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>{opt}</button>
                             ))}
                           </div>
-                          <div style={{ fontSize: 12, color: '#6f7f7b', marginBottom: 12 }}>Parent and Sam are told when you save. Player starts at step 2 of 4.</div>
+                          <div style={{ fontSize: 12, color: '#5c6b67', marginBottom: 12 }}>Parent and Sam are told when you save. Player starts at step 2 of 4.</div>
                           <div style={{ display: 'flex', gap: 8 }}>
                             <button onClick={() => setLogStep(2)} style={{ flex: 1, height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>← Back</button>
                             <button onClick={() => { setShowLogInjury(false); setLogStep(1); setLogPlayer(null); setLogWhat(null); setLogTrain(null) }} style={{ flex: 2, height: 44, borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Save</button>
@@ -762,11 +762,11 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
                         <div style={{ width: 24, height: 24, borderRadius: '999px', background: '#eef5f2', color: '#2f6252', fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{step.n}</div>
                         <div>
                           <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{step.title}</div>
-                          <div style={{ fontSize: 12, color: '#6f7f7b' }}>{step.sub}</div>
+                          <div style={{ fontSize: 12, color: '#5c6b67' }}>{step.sub}</div>
                         </div>
                       </div>
                     ))}
-                    <div style={{ marginTop: 12, padding: '10px 12px', background: '#fdf8f4', borderRadius: 10, border: '1px solid #f0dcc8', fontSize: 12, color: '#6f7f7b', lineHeight: '1.5' }}>
+                    <div style={{ marginTop: 12, padding: '10px 12px', background: '#fdf8f4', borderRadius: 10, border: '1px solid #f0dcc8', fontSize: 12, color: '#5c6b67', lineHeight: '1.5' }}>
                       Head knocks are different. If in doubt, sit them out. Under 19s need 14 days symptom-free before contact training and at least 21 days before a game, with a doctor's OK.
                     </div>
                   </div>
@@ -792,8 +792,8 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
                   return (
                     <svg width={W3} height={H3} viewBox={`0 0 ${W3} ${H3}`}>
                       {real && <rect x={0} y={H3 - ((realMin - mn) / (mx - mn)) * H3 - 4} width={W3} height={8} fill="#e4f2eb" rx={2}/>}
-                      <polyline points={pts.join(' ')} fill="none" stroke={real ? '#2f6252' : '#cbbeb5'} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"/>
-                      <circle cx={(data.length - 1) / (data.length - 1) * W3} cy={H3 - ((data[data.length - 1] - mn) / (mx - mn)) * H3} r={3} fill={real ? '#2f6252' : '#cbbeb5'}/>
+                      <polyline points={pts.join(' ')} fill="none" stroke={real ? '#2f6252' : '#e8cfcf'} strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"/>
+                      <circle cx={(data.length - 1) / (data.length - 1) * W3} cy={H3 - ((data[data.length - 1] - mn) / (mx - mn)) * H3} r={3} fill={real ? '#2f6252' : '#e8cfcf'}/>
                     </svg>
                   )
                 }
@@ -802,7 +802,7 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
                       <div>
                         <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>Standing long jump · 5 tests since Aug</div>
-                        <div style={{ fontSize: 12, color: '#6f7f7b' }}>Real change is +5% or more above a growth-adjusted baseline</div>
+                        <div style={{ fontSize: 12, color: '#5c6b67' }}>Real change is +5% or more above a growth-adjusted baseline</div>
                       </div>
                       <select style={{ height: 32, borderRadius: 8, border: '1px solid #e9eae8', padding: '0 10px', fontFamily: 'inherit', fontSize: 13, color: '#10211f' }}>
                         {['Standing long jump', '10m sprint', 'Yo-Yo level 1', 'Push-ups max'].map(t => <option key={t}>{t}</option>)}
@@ -810,15 +810,15 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
                     </div>
                     <div style={{ background: '#fff', borderRadius: 14, border: '1px solid #e9eae8', overflow: 'hidden' }}>
                       <div style={{ display: 'grid', gridTemplateColumns: '1fr 100px 60px 80px', padding: '8px 16px', borderBottom: '1px solid #f0f1f0', gap: 8 }}>
-                        {['PLAYER', 'TREND', 'BEST', 'CHANGE'].map(h => <div key={h} style={{ fontSize: 10, fontWeight: 700, color: '#6f7f7b' }}>{h}</div>)}
+                        {['PLAYER', 'TREND', 'BEST', 'CHANGE'].map(h => <div key={h} style={{ fontSize: 10, fontWeight: 700, color: '#5c6b67' }}>{h}</div>)}
                       </div>
                       {HISTORY.map((p, i) => (
                         <div key={i} style={{ display: 'grid', gridTemplateColumns: '1fr 100px 60px 80px', padding: '12px 16px', borderBottom: i < HISTORY.length - 1 ? '1px solid #f0f1f0' : 'none', gap: 8, alignItems: 'center' }}>
                           <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-                            <div style={{ width: 28, height: 28, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', fontSize: 10, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{p.ini}</div>
+                            <div style={{ width: 28, height: 28, borderRadius: '999px', background: '#e8cfcf', color: '#10211f', fontSize: 10, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{p.ini}</div>
                             <div>
                               <div style={{ fontSize: 13, fontWeight: 600, color: '#10211f' }}>{p.name}</div>
-                              <div style={{ display: 'flex', gap: 4 }}>{MONTHS.map(m => <span key={m} style={{ fontSize: 9, color: '#6f7f7b' }}>{m}</span>)}</div>
+                              <div style={{ display: 'flex', gap: 4 }}>{MONTHS.map(m => <span key={m} style={{ fontSize: 9, color: '#5c6b67' }}>{m}</span>)}</div>
                             </div>
                           </div>
                           <MiniLineChart data={p.data} real={p.real}/>
@@ -830,7 +830,7 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
                         </div>
                       ))}
                     </div>
-                    <div style={{ marginTop: 12, fontSize: 12, color: '#6f7f7b', background: '#fff', borderRadius: 10, padding: '10px 14px', border: '1px solid #e9eae8' }}>
+                    <div style={{ marginTop: 12, fontSize: 12, color: '#5c6b67', background: '#fff', borderRadius: 10, padding: '10px 14px', border: '1px solid #e9eae8' }}>
                       Shaded zone on each chart = what counts as real change, adjusted for the age when growth can artificially lift scores.
                     </div>
                   </>
@@ -855,7 +855,7 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
                         <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>{t.name}</div>
                         <div style={{ textAlign: 'right' }}>
                           <div style={{ fontSize: 20, fontWeight: 800, color: t.trend === 'up' ? '#40826d' : '#c39797' }}>{t.avg} {t.unit}</div>
-                          <div style={{ fontSize: 11, color: '#6f7f7b' }}>target {t.target} {t.unit}</div>
+                          <div style={{ fontSize: 11, color: '#5c6b67' }}>target {t.target} {t.unit}</div>
                         </div>
                       </div>
                       <div style={{ height: 6, borderRadius: 3, background: '#f0f1f0' }}>
@@ -871,17 +871,17 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
                     <div>
                       <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>Measuring session</div>
-                      <div style={{ fontSize: 12, color: '#6f7f7b' }}>U12 Sam · Thu 11 Jun · 9 of 16 measured · about 40 seconds each</div>
+                      <div style={{ fontSize: 12, color: '#5c6b67' }}>U12 Sam · Thu 11 Jun · 9 of 16 measured · about 40 seconds each</div>
                     </div>
                     <div style={{ display: 'flex', gap: 8 }}>
-                      <button onClick={() => setTrainSub('tests')} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>Finish later</button>
+                      <button onClick={() => setTrainSub('tests')} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#5c6b67', fontFamily: 'inherit', fontSize: 13, cursor: 'pointer' }}>Finish later</button>
                       <button onClick={() => { setTab('squad'); setSquadSub('growth') }} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Save and update growth</button>
                     </div>
                   </div>
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 320px', gap: 20 }}>
                     <div style={{ background: '#fff', borderRadius: 14, border: '1px solid #e9eae8', overflow: 'hidden' }}>
                       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr 120px', padding: '8px 16px', borderBottom: '1px solid #f0f1f0', gap: 8 }}>
-                        {['PLAYER', 'LAST (AUG)', 'HEIGHT TODAY', 'SITTING HEIGHT', 'WEIGHT'].map(h => <div key={h} style={{ fontSize: 10, fontWeight: 700, color: '#6f7f7b' }}>{h}</div>)}
+                        {['PLAYER', 'LAST (AUG)', 'HEIGHT TODAY', 'SITTING HEIGHT', 'WEIGHT'].map(h => <div key={h} style={{ fontSize: 10, fontWeight: 700, color: '#5c6b67' }}>{h}</div>)}
                       </div>
                       {[
                         { ini: 'NO', name: 'Noah Okafor',  last: '149.7 cm', h: '151.8 cm', sh: '78.9 cm', w: '41.0 kg', delta: '+2.1 cm in 3 months', active: false },
@@ -898,14 +898,14 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
                       ].map((p, i) => (
                         <div key={i} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr 120px', padding: '10px 16px', borderBottom: '1px solid #f0f1f0', gap: 8, alignItems: 'center', background: p.active ? '#f0f8f4' : 'transparent' }}>
                           <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-                            <div style={{ width: 24, height: 24, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', fontSize: 9, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{p.ini}</div>
+                            <div style={{ width: 24, height: 24, borderRadius: '999px', background: '#e8cfcf', color: '#10211f', fontSize: 9, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{p.ini}</div>
                             <span style={{ fontSize: 13, fontWeight: 600, color: '#10211f' }}>{p.name}</span>
                           </div>
-                          <div style={{ fontSize: 12, color: '#6f7f7b' }}>{p.last}</div>
+                          <div style={{ fontSize: 12, color: '#5c6b67' }}>{p.last}</div>
                           <div style={{ fontSize: 13, fontWeight: p.h !== '—' ? 700 : 400, color: p.active ? '#2f6252' : '#10211f' }}>{p.h}</div>
                           <div style={{ fontSize: 13, color: '#10211f' }}>{p.sh}</div>
                           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                            <span style={{ fontSize: 12, color: '#6f7f7b' }}>{p.w}</span>
+                            <span style={{ fontSize: 12, color: '#5c6b67' }}>{p.w}</span>
                             <span style={{ fontSize: 10, color: p.active ? '#2f6252' : '#6f7f7b', fontWeight: p.active ? 700 : 400 }}>{p.delta}</span>
                           </div>
                         </div>
@@ -924,12 +924,12 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
                           <div style={{ fontSize: 13, color: '#4a5a57' }}>{item.text}</div>
                         </div>
                       ))}
-                      <div style={{ marginTop: 10, padding: '10px 12px', background: '#fdf8f4', borderRadius: 10, border: '1px solid #f0dcc8', fontSize: 12, color: '#6f7f7b' }}>
+                      <div style={{ marginTop: 10, padding: '10px 12px', background: '#fdf8f4', borderRadius: 10, border: '1px solid #f0dcc8', fontSize: 12, color: '#5c6b67' }}>
                         Weight is optional and never shown to players or parents. Only the growth rate appears in the app.
                       </div>
                     </div>
                   </div>
-                  <div style={{ marginTop: 10, fontSize: 12, color: '#6f7f7b', padding: '10px 14px', background: '#fff', borderRadius: 10, border: '1px solid #e9eae8' }}>
+                  <div style={{ marginTop: 10, fontSize: 12, color: '#5c6b67', padding: '10px 14px', background: '#fff', borderRadius: 10, border: '1px solid #e9eae8' }}>
                     5 more below. Players who miss tonight get a reminder for their parents to measure at home.
                   </div>
                 </>
@@ -949,29 +949,29 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
                 return (
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 320px', gap: 20 }}>
                     <div style={{ background: '#fff', borderRadius: 14, padding: '24px', border: '1px solid #e9eae8', textAlign: 'center' }}>
-                      <div style={{ fontSize: 13, color: '#6f7f7b', marginBottom: 4 }}>Finn Walsh · go 2 of 2</div>
-                      <div style={{ fontSize: 12, color: '#6f7f7b', marginBottom: 24 }}>Go 1: 3.98 s · his best before tonight: 4.05 s</div>
+                      <div style={{ fontSize: 13, color: '#5c6b67', marginBottom: 4 }}>Finn Walsh · go 2 of 2</div>
+                      <div style={{ fontSize: 12, color: '#5c6b67', marginBottom: 24 }}>Go 1: 3.98 s · his best before tonight: 4.05 s</div>
                       <div style={{ width: 80, height: 80, borderRadius: '999px', background: '#c39797', color: '#10211f', fontSize: 18, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px' }}>FW</div>
                       <div style={{ fontSize: 64, fontWeight: 800, color: '#10211f', letterSpacing: '-2px' }}>3.93</div>
-                      <div style={{ fontSize: 13, color: '#6f7f7b', marginBottom: 32 }}>seconds · stopped by your tap at the finish cone</div>
+                      <div style={{ fontSize: 13, color: '#5c6b67', marginBottom: 32 }}>seconds · stopped by your tap at the finish cone</div>
                       <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
                         <button onClick={() => showToast('Timing cleared — run again.')} style={{ height: 48, padding: '0 24px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Redo this go</button>
                         <button onClick={() => showToast("New best saved. Leo's up next.")} style={{ height: 48, padding: '0 24px', borderRadius: '999px', border: 0, background: '#1f4a3e', color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Save · new best · next: Leo</button>
                       </div>
-                      <div style={{ marginTop: 20, fontSize: 12, color: '#6f7f7b' }}>Top speed from his boots: 21.2 km/h. Timing on a phone varies by a few hundredths, so the app looks for changes of about 5%.</div>
+                      <div style={{ marginTop: 20, fontSize: 12, color: '#5c6b67' }}>Top speed from his boots: 21.2 km/h. Timing on a phone varies by a few hundredths, so the app looks for changes of about 5%.</div>
                     </div>
                     <div style={{ background: '#fff', borderRadius: 14, padding: '14px 16px', border: '1px solid #e9eae8' }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 14 }}>
                         <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>20 m sprint race · U12 Sam</div>
                         <span style={{ fontSize: 11, fontWeight: 700, color: '#40826d', background: '#e4f2eb', borderRadius: 6, padding: '2px 8px' }}>Boots recording top speed</span>
                       </div>
-                      <div style={{ fontSize: 12, color: '#6f7f7b', marginBottom: 10 }}>2 goes each · best counts · 3 of 12 done · 4 sitting out</div>
+                      <div style={{ fontSize: 12, color: '#5c6b67', marginBottom: 10 }}>2 goes each · best counts · 3 of 12 done · 4 sitting out</div>
                       <div style={{ display: 'grid', gridTemplateColumns: '1fr 40px 40px 50px', gap: 6, marginBottom: 8 }}>
-                        {['RUNNING ORDER', 'GO 1', 'GO 2', 'BEST'].map(h => <div key={h} style={{ fontSize: 10, fontWeight: 700, color: '#6f7f7b' }}>{h}</div>)}
+                        {['RUNNING ORDER', 'GO 1', 'GO 2', 'BEST'].map(h => <div key={h} style={{ fontSize: 10, fontWeight: 700, color: '#5c6b67' }}>{h}</div>)}
                         {RUNNING_ORDER.map((r, i) => (
                           <>
                             <div key={`n${i}`} style={{ display: 'flex', gap: 6, alignItems: 'center', padding: '6px 0', borderTop: '1px solid #f0f1f0' }}>
-                              <div style={{ width: 20, height: 20, borderRadius: '999px', background: r.active ? '#c39797' : '#cbbeb5', color: '#10211f', fontSize: 8, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{r.ini}</div>
+                              <div style={{ width: 20, height: 20, borderRadius: '999px', background: r.active ? '#c39797' : '#e8cfcf', color: '#10211f', fontSize: 8, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{r.ini}</div>
                               <span style={{ fontSize: 12, fontWeight: r.active ? 700 : 400, color: r.active ? '#10211f' : '#6f7f7b' }}>{r.name}</span>
                             </div>
                             <div key={`g1${i}`} style={{ fontSize: 12, color: '#10211f', borderTop: '1px solid #f0f1f0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{r.go1 ?? '—'}</div>
@@ -980,7 +980,7 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
                           </>
                         ))}
                       </div>
-                      <div style={{ fontSize: 12, color: '#6f7f7b', marginTop: 8 }}>Sitting out: Noah and Zoe (growth pain). Kai and Tom (modified training). Their results stay blank, not zero.</div>
+                      <div style={{ fontSize: 12, color: '#5c6b67', marginTop: 8 }}>Sitting out: Noah and Zoe (growth pain). Kai and Tom (modified training). Their results stay blank, not zero.</div>
                     </div>
                   </div>
                 )
@@ -1001,7 +1001,7 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
                     { time: '7:20 pm', title: 'Cool down', desc: 'Lead the squad cool-down and growth stretches.', tag: 'Lead this', tagColor: '#2f6252' },
                   ].map((item, i) => (
                     <div key={i} style={{ display: 'flex', gap: 12, padding: '12px 0', borderTop: i > 0 ? '1px solid #f0f1f0' : 'none' }}>
-                      <div style={{ fontSize: 12, color: '#6f7f7b', flexShrink: 0, width: 52, paddingTop: 2 }}>{item.time}</div>
+                      <div style={{ fontSize: 12, color: '#5c6b67', flexShrink: 0, width: 52, paddingTop: 2 }}>{item.time}</div>
                       <div style={{ flexGrow: 1 }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
                           <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>{item.title}</div>
@@ -1022,7 +1022,7 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
           <div style={{ padding: '16px 20px' }}>
             <div style={{ background: '#fff', borderRadius: 16, padding: '16px', border: '1px solid #e9eae8', marginBottom: 14 }}>
               <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 6 }}>Saturday vs Harbour Rovers</div>
-              <div style={{ fontSize: 13, color: '#6f7f7b', marginBottom: 12 }}>Fitness brief for game day</div>
+              <div style={{ fontSize: 13, color: '#5c6b67', marginBottom: 12 }}>Fitness brief for game day</div>
               {[
                 { label: 'Warm-up lead',    note: "20 min progressive warm-up · starts 8:40 am" },
                 { label: 'Avoid high impact', note: "Grace (Sever's) · no long sprints before warm-up" },
@@ -1033,7 +1033,7 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
                   <div style={{ width: 20, height: 20, borderRadius: '999px', background: '#2f6252', color: '#fff', fontSize: 10, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 1 }}>{i + 1}</div>
                   <div>
                     <div style={{ fontSize: 14, fontWeight: 600, color: '#10211f' }}>{item.label}</div>
-                    <div style={{ fontSize: 12, color: '#6f7f7b', marginTop: 2 }}>{item.note}</div>
+                    <div style={{ fontSize: 12, color: '#5c6b67', marginTop: 2 }}>{item.note}</div>
                   </div>
                 </div>
               ))}
@@ -1046,7 +1046,7 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
             <div style={{ marginTop: 14, background: '#fff', borderRadius: 16, padding: '16px', border: '1px solid #e9eae8', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <div>
                 <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>Collect post-session check-in</div>
-                <div style={{ fontSize: 12, color: '#6f7f7b', marginTop: 2 }}>Pass the tablet round · 11 players · takes ~20s each</div>
+                <div style={{ fontSize: 12, color: '#5c6b67', marginTop: 2 }}>Pass the tablet round · 11 players · takes ~20s each</div>
               </div>
               <button onClick={() => { setRpePlayer(0); setRpeScore(null); setRpeHurt(null); setRpeFun(null); setShowRPE(true) }} style={{ height: 44, padding: '0 18px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Start</button>
             </div>

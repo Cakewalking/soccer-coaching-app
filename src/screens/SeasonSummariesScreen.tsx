@@ -73,7 +73,7 @@ export default function SeasonSummariesScreen({ empty, teamType = 'juniors' }: {
               In late August, Clean Sheet drafts a summary for each player from their goals, minutes and clips. You add a few words and send it to the family.
             </div>
           </div>
-          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: '#6f7f7b', marginBottom: 10 }}>What goes in</div>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: '#5c6b67', marginBottom: 10 }}>What goes in</div>
           {[
             { n: '1', label: 'Your note',        desc: 'Two or three sentences' },
             { n: '2', label: 'Goals met',         desc: 'From development goals' },
@@ -118,7 +118,7 @@ export default function SeasonSummariesScreen({ empty, teamType = 'juniors' }: {
         <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', padding: '10px 16px 8px', borderBottom: '1px solid #e9eae8' }}>
             <span style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#4a5a57' }}>Players</span>
-            <span style={{ fontSize: 12, color: '#6f7f7b' }}>{sd.shown}</span>
+            <span style={{ fontSize: 12, color: '#5c6b67' }}>{sd.shown}</span>
           </div>
           <div style={{ overflowY: 'auto', flexGrow: 1 }}>
             {PLAYERS.map(p => (
@@ -139,7 +139,7 @@ export default function SeasonSummariesScreen({ empty, teamType = 'juniors' }: {
                 <div style={{ width: 36, height: 36, borderRadius: '999px', background: '#2f6252', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, flex: 'none' }}>{player.ini}</div>
                 <div>
                   <div style={{ fontSize: 16, fontWeight: 700, color: '#10211f' }}>{player.name}</div>
-                  <div style={{ fontSize: 12, color: '#6f7f7b' }}>{player.parent}</div>
+                  <div style={{ fontSize: 12, color: '#5c6b67' }}>{player.parent}</div>
                 </div>
               </div>
               <StatusChip s={player.status} />
@@ -149,7 +149,7 @@ export default function SeasonSummariesScreen({ empty, teamType = 'juniors' }: {
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 8 }}>
               {[{ label: 'Games', value: '17 of 18' }, { label: 'Minutes', value: 'Fair share' }, { label: 'Goals met', value: '2 of 2' }, { label: 'Check-ins', value: '9 in 10' }].map(s => (
                 <div key={s.label} style={{ background: '#f5f6f4', borderRadius: 10, padding: '10px 12px' }}>
-                  <div style={{ fontSize: 11, fontWeight: 700, color: '#6f7f7b', letterSpacing: '0.06em', textTransform: 'uppercase' as const, marginBottom: 2 }}>{s.label}</div>
+                  <div style={{ fontSize: 11, fontWeight: 700, color: '#5c6b67', letterSpacing: '0.06em', textTransform: 'uppercase' as const, marginBottom: 2 }}>{s.label}</div>
                   <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>{s.value}</div>
                 </div>
               ))}
@@ -157,17 +157,17 @@ export default function SeasonSummariesScreen({ empty, teamType = 'juniors' }: {
 
             {/* Coach note */}
             <div>
-              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#6f7f7b', marginBottom: 6 }}>Your note · drafted for you, change anything</div>
+              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#5c6b67', marginBottom: 6 }}>Your note · drafted for you, change anything</div>
               {player.note ? (
                 <div style={{ fontSize: 14, color: '#10211f', lineHeight: '1.6', background: '#f5f6f4', borderRadius: 12, padding: '12px 14px' }}>{player.note}</div>
               ) : (
-                <div style={{ fontSize: 14, color: '#6f7f7b', lineHeight: '1.6', background: '#f5f6f4', borderRadius: 12, padding: '12px 14px', fontStyle: 'italic' }}>No note written yet. Add a few words about this player's season.</div>
+                <div style={{ fontSize: 14, color: '#5c6b67', lineHeight: '1.6', background: '#f5f6f4', borderRadius: 12, padding: '12px 14px', fontStyle: 'italic' }}>No note written yet. Add a few words about this player's season.</div>
               )}
             </div>
 
             {/* Goals */}
             <div>
-              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#6f7f7b', marginBottom: 6 }}>Goals this season</div>
+              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#5c6b67', marginBottom: 6 }}>Goals this season</div>
               {player.goals.map((g, i) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '6px 0', borderTop: i === 0 ? '1px solid #e9eae8' : '1px solid #e9eae8' }}>
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={player.status === 'ready' ? '#2f6252' : '#c5c8c4'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
@@ -179,12 +179,12 @@ export default function SeasonSummariesScreen({ empty, teamType = 'juniors' }: {
             {/* Favourite clip */}
             {player.clip && (
               <div>
-                <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#6f7f7b', marginBottom: 6 }}>Favourite clip · picked by {player.name.split(' ')[0]}</div>
+                <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#5c6b67', marginBottom: 6 }}>Favourite clip · picked by {player.name.split(' ')[0]}</div>
                 <div style={{ background: '#1f4a3e', borderRadius: 12, padding: '10px 14px', fontSize: 14, color: 'rgba(255,255,255,0.85)', lineHeight: '1.4' }}>{player.clip}</div>
               </div>
             )}
 
-            <div style={{ fontSize: 12, color: '#6f7f7b', lineHeight: '1.5' }}>Left out on purpose: running numbers, sprint counts, wellness answers and anything that compares them with teammates.</div>
+            <div style={{ fontSize: 12, color: '#5c6b67', lineHeight: '1.5' }}>Left out on purpose: running numbers, sprint counts, wellness answers and anything that compares them with teammates.</div>
 
             <div style={{ display: 'flex', gap: 10, marginTop: 'auto' }}>
               <button onClick={() => showToast(`Editing ${player.name}'s summary.`)} style={{ flex: 1, height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Edit</button>
@@ -192,7 +192,7 @@ export default function SeasonSummariesScreen({ empty, teamType = 'juniors' }: {
             </div>
           </div>
         ) : (
-          <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: 32, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 8, color: '#6f7f7b', textAlign: 'center' }}>
+          <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: 32, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 8, color: '#5c6b67', textAlign: 'center' }}>
             <div style={{ fontSize: 15, fontWeight: 600 }}>Select a player to see their summary</div>
           </div>
         )}

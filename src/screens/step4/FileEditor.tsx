@@ -85,7 +85,7 @@ export default function FileEditor({ type, initialName, initialContent, onBack, 
                   <tr style={{ background: PALE }}>
                     {headers.map((h, c) => (
                       <th key={c} style={{ borderBottom: `1px solid ${LN}`, borderRight: c < headers.length - 1 ? `1px solid ${LN}` : 'none', padding: 0 }}>
-                        <input value={h} onChange={e => { setHeader(c, e.target.value); setSaved(false) }} style={{ ...cellInput, fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT }} />
+                        <input value={h} onChange={e => { setHeader(c, e.target.value); setSaved(false) }} style={{ ...cellInput, fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b' }} />
                       </th>
                     ))}
                   </tr>

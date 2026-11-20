@@ -26,7 +26,7 @@ export default function RC5RecordResults({ onBack }: { onBack?: () => void }) {
   const [selectedCard, setSelectedCard] = useState<string | null>(null)
   const [selectedPlayer, setSelectedPlayer] = useState<string | null>(null)
   return (
-    <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#faf5ec', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       <div style={{ flex: 'none', background: '#fff', borderBottom: `1px solid ${LN}` }}>
         <div style={{ height: 64, boxSizing: 'border-box', padding: '0 28px', display: 'flex', alignItems: 'center', gap: 4, background: G }}>
           <div style={{ fontSize: 20, fontWeight: 700, color: '#fff', marginRight: 16, letterSpacing: '-0.02em' }}>Clean Sheet</div>
@@ -46,7 +46,7 @@ export default function RC5RecordResults({ onBack }: { onBack?: () => void }) {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, minmax(0,1fr))', gap: 12 }}>
           {STAT_CARDS.map(card => (
             <div key={card.label} onClick={() => setSelectedCard(card.label)} style={{ background: selectedCard === card.label ? PALE : '#fff', border: `${selectedCard === card.label ? 2 : 1}px solid ${selectedCard === card.label ? G : LN}`, borderRadius: 14, padding: '14px 16px', cursor: 'pointer' }}>
-              <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 6 }}>{card.label}</div>
+              <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 6 }}>{card.label}</div>
               <div style={{ fontSize: 28, fontWeight: 700, letterSpacing: '-0.02em', marginBottom: 4 }}>{card.val}</div>
               <div style={{ fontSize: 13, fontWeight: 600, color: G }}>{card.change}</div>
             </div>
@@ -54,8 +54,8 @@ export default function RC5RecordResults({ onBack }: { onBack?: () => void }) {
         </div>
         <div style={{ flex: 1, display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 300px', gap: 14, minHeight: 0 }}>
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, overflow: 'hidden' }}>
-            <div style={{ padding: '12px 18px', display: 'grid', gridTemplateColumns: '1fr 90px 90px 80px', background: '#f7f8f7', borderBottom: `1px solid ${LN}` }}>
-              {['Player', 'Tonight', 'Last run', 'Change'].map(h => <div key={h} style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT }}>{h}</div>)}
+            <div style={{ padding: '12px 18px', display: 'grid', gridTemplateColumns: '1fr 90px 90px 80px', background: '#faf5ec', borderBottom: `1px solid ${LN}` }}>
+              {['Player', 'Tonight', 'Last run', 'Change'].map(h => <div key={h} style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b' }}>{h}</div>)}
             </div>
             {PLAYERS.map(p => (
               <div key={p.name} onClick={() => setSelectedPlayer(p.name)} style={{ display: 'grid', gridTemplateColumns: '1fr 90px 90px 80px', padding: '10px 18px', borderTop: `1px solid ${LN}`, alignItems: 'center', cursor: 'pointer', background: selectedPlayer === p.name ? PALE : 'transparent' }}>
@@ -75,7 +75,7 @@ export default function RC5RecordResults({ onBack }: { onBack?: () => void }) {
               <div style={{ fontSize: 14, lineHeight: '21px', color: MUT }}>Every player improved. The team average dropped from 7.0 s to 5.2 s — now within range of the 4-second target.</div>
             </div>
             <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 16px' }}>
-              <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 8 }}>How we know it's real</div>
+              <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 8 }}>How we know it's real</div>
               {['3 rounds of consistent data', 'Same set-up as last time', 'Boot sensor confidence: high'].map((item, i) => (
                 <div key={i} style={{ display: 'flex', gap: 8, padding: '5px 0', borderTop: `1px solid ${LN}`, fontSize: 14 }}>
                   <span style={{ color: G }}>✓</span><span>{item}</span>

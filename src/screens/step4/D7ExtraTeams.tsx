@@ -19,7 +19,7 @@ function StatGrid({ stats }: { stats: Stat[] }) {
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 10, marginBottom: 16 }}>
       {stats.map(s => (
         <div key={s.label} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 12, padding: '12px 14px' }}>
-          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 4 }}>{s.label}</div>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 4 }}>{s.label}</div>
           <div style={{ fontSize: 18, fontWeight: 800, color: s.warn ? '#c05' : GD }}>{s.val}</div>
           <div style={{ fontSize: 11, color: MUT, marginTop: 2 }}>{s.sub}</div>
         </div>
@@ -82,7 +82,7 @@ function StaffCard({ staff, fitness }: { staff: StaffMember[]; fitness?: string 
 function NextGame({ date, opp, time, loc, note }: { date: string; opp: string; time: string; loc: string; note?: string }) {
   return (
     <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 18px', marginBottom: 14 }}>
-      <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 6 }}>Next game · {date}</div>
+      <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 6 }}>Next game · {date}</div>
       <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>vs {opp}</div>
       <div style={{ fontSize: 12, color: MUT }}>{time} · {loc}</div>
       {note && <div style={{ fontSize: 12, color: MUT, marginTop: 2 }}>{note}</div>}
@@ -125,7 +125,7 @@ function WorkingOn({ phase, desc, planned, total }: { phase: string; desc: strin
 
 function Shell({ children }: { children: React.ReactNode }) {
   return (
-    <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820 }}>
+    <div style={{ width: 1180, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820 }}>
       <Nav />
       <div style={{ padding: 32 }}>{children}</div>
     </div>

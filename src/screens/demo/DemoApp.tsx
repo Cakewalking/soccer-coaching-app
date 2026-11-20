@@ -2369,7 +2369,7 @@ function renderScreenInner(key: string): ReactNode {
     default:
       return (
         <div style={{ padding: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 300 }}>
-          <div style={{ fontSize: 15, color: '#6f7f7b' }}>Screen "{key}" not yet built.</div>
+          <div style={{ fontSize: 15, color: '#5c6b67' }}>Screen "{key}" not yet built.</div>
         </div>
       )
   }
@@ -2567,7 +2567,7 @@ export default function DemoApp() {
 
   if (view === 'notfound') {
     return (
-      <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#f7f9f7' }}>
+      <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#faf5ec' }}>
         <ER4NotFound />
       </div>
     )
@@ -2659,7 +2659,7 @@ export default function DemoApp() {
         : (TOURS[role].sandboxHome ?? TOURS[role].home)
       sbApp = homeKey ? renderScreen(homeKey) : (
         <div style={{ padding: 48, display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 300 }}>
-          <div style={{ fontSize: 15, color: '#6f7f7b' }}>{TOURS[role].roleLabel} — no screen preview available.</div>
+          <div style={{ fontSize: 15, color: '#5c6b67' }}>{TOURS[role].roleLabel} — no screen preview available.</div>
         </div>
       )
     }
@@ -2717,7 +2717,7 @@ export default function DemoApp() {
   if (view === 'lookaround') {
     // Unknown role (e.g. /look/nonsense): no role frame, just ER4 (FIX-LIST item 7)
     if (!TOURS[role]) {
-      return <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#f7f9f7' }}><ER4NotFound /></div>
+      return <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#faf5ec' }}><ER4NotFound /></div>
     }
     const homeKey = TOURS[role].home
     let lookContent: ReactNode
@@ -2793,7 +2793,7 @@ export default function DemoApp() {
       lookContent = renderScreen(homeKey)
     } else {
       lookContent = (
-        <div style={{ padding: 48, fontSize: 15, color: '#6f7f7b' }}>
+        <div style={{ padding: 48, fontSize: 15, color: '#5c6b67' }}>
           {TOURS[role].roleLabel} — no screen preview available.
         </div>
       )

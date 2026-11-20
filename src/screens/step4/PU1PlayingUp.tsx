@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { toolTarget } from '../toolTargets'
-import { MUT, HAIR, GREEN, PALEGREEN } from './directorParts'
+import { MUT, HAIR, GREEN } from './directorParts'
 import PlayingAcrossBody from './PlayingAcrossBody'
 
 function DirFrame({ onNav, tool }: { onNav?: (s: string) => void; tool: (n: string) => void }) {
@@ -23,7 +23,7 @@ function DirFrame({ onNav, tool }: { onNav?: (s: string) => void; tool: (n: stri
         <button onClick={() => onNav?.('PU1-PlayingUp')} style={snba}>Playing across</button>
         <button onClick={() => tool('Fair game time')} style={snb}>Fair game time</button>
         <div style={{ flex: 1 }} />
-        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, height: 32, padding: '0 12px', borderRadius: 999, background: PALEGREEN, color: GREEN, fontSize: 13, fontWeight: 700 }}>Director of football</span>
+        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, height: 32, padding: '0 12px', borderRadius: 999, background: '#f4e6e6', color: '#10211f', fontSize: 13, fontWeight: 700 }}>Director of football</span>
       </nav>
     </>
   )
@@ -35,7 +35,7 @@ export default function PU1PlayingUp({ onNav }: { onNav?: (s: string) => void })
   const [lastTool, setLastTool] = useState('')
   function tool(name: string) { const to = toolTarget(name); if (to && onNav) { onNav(to); return } setLastTool(name) }
   return (
-    <div data-screen="PU1-PlayingUp" data-lasttool={lastTool} style={{ width: 1180, height: 820, overflow: 'hidden', boxSizing: 'border-box', background: '#f7f8f7', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
+    <div data-screen="PU1-PlayingUp" data-lasttool={lastTool} style={{ width: 1180, height: 820, overflow: 'hidden', boxSizing: 'border-box', background: '#faf5ec', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
       <DirFrame onNav={onNav} tool={tool} />
       <PlayingAcrossBody onNav={onNav} tabTargets={{ up: 'PU1-PlayingUp', down: 'PX1-PlayingDown', mixed: 'PX3-BandedNight' }} />
     </div>

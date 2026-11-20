@@ -4,7 +4,7 @@ import { useState } from 'react'
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 const MESSAGES = [
-  { init: 'SA', bg: '#cbbeb5', from: 'Saturday', when: 'Today',     subject: "2 families haven't said if they're coming", unread: true },
+  { init: 'SA', bg: '#e8cfcf', from: 'Saturday', when: 'Today',     subject: "2 families haven't said if they're coming", unread: true },
   { init: 'RF', bg: '#c39797', from: 'Referees',  when: 'Yesterday', subject: 'Saturday still needs a game leader',         unread: true },
   { init: 'SH', bg: '#e9eae8', from: "Sami Haddad · Omar's dad", when: 'Mon', subject: "Omar's away this week", active: true },
   { init: 'BR', bg: '#e9eae8', from: 'Bianca Rossi · club',       when: 'Mon', subject: 'Photo day is Saturday 20 June' },
@@ -14,7 +14,7 @@ export default function HM7InboxMiniRoos(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string|null>(null)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
-    <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }}>
+    <div style={{ width: 1180, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }}>
       <div style={{ background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 20, height: 64 }}>
         <div style={{ fontSize: 21, fontWeight: 800, color: '#fff', letterSpacing: '-0.02em' }}>Clean Sheet</div>
         {['Home', 'Squad', 'Training', 'Game day'].map(t => (
@@ -28,7 +28,7 @@ export default function HM7InboxMiniRoos(_: { onBack?: () => void }) {
           <div key={t} style={{ height: 44, display: 'flex', alignItems: 'center', fontSize: 15, fontWeight: 600, color: t === 'Inbox' ? INK : MUT, borderBottom: t === 'Inbox' ? `3px solid #40826d` : '3px solid transparent', boxSizing: 'border-box', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>
         ))}
         <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', height: 44 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 6, height: 32, padding: '0 12px', borderRadius: 999, background: PALE, color: G, fontSize: 13, fontWeight: 700 }}>Coach · MiniRoos</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, height: 32, padding: '0 12px', borderRadius: 999, background: '#f4e6e6', color: '#10211f', fontSize: 13, fontWeight: 700 }}>Coach · MiniRoos</div>
         </div>
       </div>
 

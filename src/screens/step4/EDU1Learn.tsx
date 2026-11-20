@@ -93,7 +93,7 @@ export default function EDU1Learn({ onNav, skillOpen = false, bare = false, audi
   }
 
   return (
-    <div data-screen={skillOpen ? 'EDU1f-LearnFilter' : 'EDU1-Learn'} style={{ width: bare ? '100%' : 1180, height: bare ? '100%' : 820, flex: bare ? 1 : undefined, minHeight: 0, overflow: 'hidden', background: '#f7f8f7', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative', boxSizing: 'border-box', color: INK }}>
+    <div data-screen={skillOpen ? 'EDU1f-LearnFilter' : 'EDU1-Learn'} style={{ width: bare ? '100%' : 1180, height: bare ? '100%' : 820, flex: bare ? 1 : undefined, minHeight: 0, overflow: 'hidden', background: '#faf5ec', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative', boxSizing: 'border-box', color: INK }}>
       {/* Coach frame — omitted when embedded in a role frame (bare) to avoid a second nav */}
       {!bare && <>
       <div style={{ background: '#2f6252', padding: '0 28px', display: 'flex', alignItems: 'center', gap: 20, height: 56, flexShrink: 0 }}>
@@ -178,7 +178,7 @@ export default function EDU1Learn({ onNav, skillOpen = false, bare = false, audi
               </button>
             ))}
           </div>
-          <span style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT }}>In order, as a series</span>
+          <span style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b' }}>In order, as a series</span>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 10 }}>
             {SERIES.map(s => (
               <button key={s.title} onClick={() => onNav?.('EDU2-Lesson')} style={{ background: '#fff', border: `1px solid ${CTL}`, borderRadius: 14, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 6, cursor: 'pointer', fontFamily: 'inherit', textAlign: 'left' }}>

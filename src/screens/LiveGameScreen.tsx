@@ -142,7 +142,7 @@ export default function LiveGameScreen({ onClose }: { onClose: () => void }) {
   const suggestedSub  = BENCH[0]
 
   return (
-    <div style={{ position: 'fixed', inset: 0, zIndex: 100, background: '#f7f9f7', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
+    <div style={{ position: 'fixed', inset: 0, zIndex: 100, background: '#faf5ec', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
       {/* Header */}
       <div style={{ flex: 'none', background: '#10211f', padding: '0 24px', height: 56, display: 'flex', alignItems: 'center', gap: 16 }}>
         <button onClick={onClose} aria-label="Leave live game" style={{ height: 44, padding: '0 14px 0 10px', borderRadius: '999px', border: '1px solid rgba(255,255,255,0.18)', background: 'rgba(255,255,255,0.08)', color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 7, flexShrink: 0, fontFamily: 'inherit', fontSize: 13, fontWeight: 600 }}>
@@ -175,9 +175,9 @@ export default function LiveGameScreen({ onClose }: { onClose: () => void }) {
         <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
           <div style={{ flex: 'none', padding: '10px 20px 6px', display: 'flex', alignItems: 'center', gap: 8 }}>
             <span style={{ fontSize: 13, fontWeight: 600, color: '#10211f' }}>On the pitch</span>
-            <span style={{ fontSize: 13, color: '#6f7f7b' }}>{subFrom ? 'Now tap who\'s coming on' : 'Tap a player to sub them off'}</span>
+            <span style={{ fontSize: 13, color: '#5c6b67' }}>{subFrom ? 'Now tap who\'s coming on' : 'Tap a player to sub them off'}</span>
             <div style={{ flexGrow: 1 }} />
-            <div style={{ display: 'flex', gap: 12, fontSize: 11, color: '#6f7f7b' }}>
+            <div style={{ display: 'flex', gap: 12, fontSize: 11, color: '#5c6b67' }}>
               <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}><span style={{ width: 9, height: 9, borderRadius: '999px', border: '2px solid #8fd3b4', display: 'inline-block' }}/>Fair share</span>
               <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}><span style={{ width: 9, height: 9, borderRadius: '999px', border: '2px solid #c3e6d4', display: 'inline-block' }}/>Over</span>
               <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}><span style={{ width: 9, height: 9, borderRadius: '999px', border: '2px solid #e3a6a6', display: 'inline-block' }}/>Needs minutes</span>
@@ -216,7 +216,7 @@ export default function LiveGameScreen({ onClose }: { onClose: () => void }) {
             {moments.length > 0 && (
               <>
                 <div style={{ width: 1, height: 20, background: '#e9eae8', margin: '0 4px' }} />
-                <span style={{ fontSize: 11, fontWeight: 600, color: '#6f7f7b', letterSpacing: '0.03em', textTransform: 'uppercase' }}>Tagged for review</span>
+                <span style={{ fontSize: 11, fontWeight: 600, color: '#5c6b67', letterSpacing: '0.03em', textTransform: 'uppercase' }}>Tagged for review</span>
                 {moments.slice(0, 4).map((m, i) => (
                   <span key={i} style={{
                     fontSize: 12, fontWeight: 600, padding: '3px 8px', borderRadius: '999px',
@@ -232,14 +232,14 @@ export default function LiveGameScreen({ onClose }: { onClose: () => void }) {
         {/* Right: bench */}
         <div style={{ width: 300, flex: 'none', borderLeft: '1px solid #e9eae8', background: '#fff', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
           {/* Suggested sub */}
-          <div style={{ flex: 'none', padding: '14px 16px', borderBottom: '1px solid #e9eae8', background: '#f7f9f7' }}>
+          <div style={{ flex: 'none', padding: '14px 16px', borderBottom: '1px solid #e9eae8', background: '#faf5ec' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
               <span style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>Suggested subs</span>
-              <span style={{ fontSize: 12, color: '#6f7f7b' }}>Fair share 32′</span>
+              <span style={{ fontSize: 12, color: '#5c6b67' }}>Fair share 32′</span>
             </div>
             <div style={{ background: '#fff', borderRadius: 10, padding: '10px 12px', border: '1px solid #e9eae8', display: 'flex', alignItems: 'center', gap: 10 }}>
               <div>
-                <div style={{ fontSize: 12, color: '#6f7f7b', marginBottom: 2 }}>Now</div>
+                <div style={{ fontSize: 12, color: '#5c6b67', marginBottom: 2 }}>Now</div>
                 <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{suggestedSub.name} on for Noah</div>
                 <div style={{ fontSize: 12, color: '#4a5a57' }}>Noah has hit the sprint cap · Priya set</div>
               </div>
@@ -250,7 +250,7 @@ export default function LiveGameScreen({ onClose }: { onClose: () => void }) {
           {/* Bench list */}
           <div style={{ flex: 'none', padding: '10px 16px 6px', display: 'flex', justifyContent: 'space-between' }}>
             <span style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>Bench</span>
-            <span style={{ fontSize: 12, color: '#6f7f7b' }}>Tap who's coming on</span>
+            <span style={{ fontSize: 12, color: '#5c6b67' }}>Tap who's coming on</span>
           </div>
           <div style={{ flexGrow: 1, overflowY: 'auto' }}>
             {BENCH.map((p, i) => (
@@ -260,10 +260,10 @@ export default function LiveGameScreen({ onClose }: { onClose: () => void }) {
                 background: subTo === p.ini ? '#f0f8f4' : '#fff',
                 fontFamily: 'inherit', cursor: 'pointer', textAlign: 'left',
               }}>
-                <div style={{ width: 32, height: 32, borderRadius: '999px', background: p.blurred ? '#d6d9d7' : '#cbbeb5', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, flexShrink: 0 }}>{p.ini}</div>
+                <div style={{ width: 32, height: 32, borderRadius: '999px', background: p.blurred ? '#d6d9d7' : '#e8cfcf', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, flexShrink: 0 }}>{p.ini}</div>
                 <div style={{ flexGrow: 1, minWidth: 0 }}>
                   <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{p.name}</div>
-                  <div style={{ fontSize: 12, color: '#6f7f7b' }}>{p.note ?? (p.noKit ? 'No kit' : p.blurred ? 'Blurred in video' : `Needs ${p.needsMins}′ more`)}</div>
+                  <div style={{ fontSize: 12, color: '#5c6b67' }}>{p.note ?? (p.noKit ? 'No kit' : p.blurred ? 'Blurred in video' : `Needs ${p.needsMins}′ more`)}</div>
                 </div>
                 <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', flexShrink: 0 }}>{p.needsMins}′</div>
               </button>

@@ -7,9 +7,9 @@ export { PLAYERS }
 
 function availStyle(a: Avail) {
   if (a === 'yes')     return { bg: '#40826d', color: '#fff',    label: 'Yes'      }
-  if (a === 'maybe')   return { bg: '#cbbeb5', color: '#10211f', label: 'Maybe'    }
+  if (a === 'maybe')   return { bg: '#e8cfcf', color: '#10211f', label: 'Maybe'    }
   if (a === 'away')    return { bg: '#e9eae8', color: '#4a5a57', label: 'Away'     }
-  return                      { bg: '#f0f1ef', color: '#6f7f7b', label: 'No reply' }
+  return                      { bg: '#f0f1ef', color: '#5c6b67', label: 'No reply' }
 }
 
 const Check = () => (
@@ -79,7 +79,7 @@ export default function SquadMiniRoos({ empty, onSeasonNotes }: { empty?: boolea
                   borderRadius: 14, textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit',
                 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                    <span style={{ flex: 'none', width: 32, height: 32, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{p.ini}</span>
+                    <span style={{ flex: 'none', width: 32, height: 32, borderRadius: '999px', background: '#e8cfcf', color: '#10211f', fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{p.ini}</span>
                     <div>
                       <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>{p.name}</div>
                       <div style={{ fontSize: 12, color: '#4a5a57' }}>{p.note}</div>
@@ -104,7 +104,7 @@ export default function SquadMiniRoos({ empty, onSeasonNotes }: { empty?: boolea
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10, minHeight: 0, overflowY: 'auto', paddingBottom: 48 }}>
           <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '16px 18px', display: 'flex', flexDirection: 'column', gap: 10 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-              <span style={{ flex: 'none', width: 40, height: 40, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', fontSize: 13, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{sel.ini}</span>
+              <span style={{ flex: 'none', width: 40, height: 40, borderRadius: '999px', background: '#e8cfcf', color: '#10211f', fontSize: 13, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{sel.ini}</span>
               <div>
                 <div style={{ fontSize: 16, fontWeight: 700, color: '#10211f' }}>{sel.name}</div>
                 <div style={{ fontSize: 13, color: '#4a5a57' }}>{sel.note === 'New this term' ? 'First term' : 'Second term'} · plays anywhere</div>
@@ -115,7 +115,7 @@ export default function SquadMiniRoos({ empty, onSeasonNotes }: { empty?: boolea
             </div>
             {sel.history.map((h, i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, padding: '8px 0', borderTop: '1px solid #e9eae8' }}>
-                <span style={{ flex: 'none', width: 20, height: 20, borderRadius: '999px', background: '#f0f1ef', fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#6f7f7b' }}>{i + 1}</span>
+                <span style={{ flex: 'none', width: 20, height: 20, borderRadius: '999px', background: '#f0f1ef', fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#5c6b67' }}>{i + 1}</span>
                 <div>
                   <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{h.label}</div>
                   <div style={{ fontSize: 12, color: '#4a5a57' }}>{h.value}</div>

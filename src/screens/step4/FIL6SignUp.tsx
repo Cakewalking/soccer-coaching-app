@@ -32,7 +32,7 @@ export default function FIL6SignUp({ onBack, onShare, onNav, bare }: {
   const open = totalPlaces - filled
 
   return (
-    <div style={{ width: bare ? '100%' : 1180, flex: bare ? 1 : undefined, background: '#f7f8f7', fontFamily: 'var(--font-sans)', minHeight: bare ? 0 : 820, display: 'flex', flexDirection: 'column' }} data-lasttool={lastTool}>
+    <div style={{ width: bare ? '100%' : 1180, flex: bare ? 1 : undefined, background: '#faf5ec', fontFamily: 'var(--font-sans)', minHeight: bare ? 0 : 820, display: 'flex', flexDirection: 'column' }} data-lasttool={lastTool}>
       {!bare && (<>
       {/* Top nav */}
       <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 24, height: 52, flexShrink: 0 }}>
@@ -113,7 +113,7 @@ export default function FIL6SignUp({ onBack, onShare, onNav, bare }: {
               { label: 'Cannot help', val: '3 families' },
             ].map(s => (
               <div key={s.label} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 10, padding: '12px 16px' }}>
-                <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: MUT, marginBottom: 4 }}>{s.label}</div>
+                <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#7a4b5b', marginBottom: 4 }}>{s.label}</div>
                 <div style={{ fontSize: 20, fontWeight: 800, color: s.col || INK }}>{s.val}</div>
               </div>
             ))}

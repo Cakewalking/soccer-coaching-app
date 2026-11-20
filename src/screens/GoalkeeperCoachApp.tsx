@@ -80,16 +80,16 @@ function HomeOverview({ onPlanSession, onKeeperDrills }: { onPlanSession: () => 
           </div>
           {KEEPERS.map((k, i) => (
             <div key={k.ini} style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '12px 18px', borderTop: i > 0 ? '1px solid #e9eae8' : 'none' }}>
-              <span style={{ flex: 'none', width: 36, height: 36, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{k.ini}</span>
+              <span style={{ flex: 'none', width: 36, height: 36, borderRadius: '999px', background: '#e8cfcf', color: '#10211f', fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{k.ini}</span>
               <div style={{ flexGrow: 1, minWidth: 0 }}>
                 <span style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>{k.name}</span>
-                <span style={{ fontSize: 13, color: '#6f7f7b', marginLeft: 8 }}>{k.team}</span>
+                <span style={{ fontSize: 13, color: '#5c6b67', marginLeft: 8 }}>{k.team}</span>
                 <div style={{ fontSize: 13, color: '#4a5a57', fontStyle: 'italic', marginTop: 1 }}>{k.note}</div>
               </div>
               <span style={{ flex: 'none', fontSize: 13, fontWeight: 700, color: k.sessions >= 3 ? '#2f6252' : '#c39797', background: k.sessions >= 3 ? '#eef5f2' : '#fdf5f3', padding: '3px 10px', borderRadius: '999px' }}>{k.sessions} of 4</span>
             </div>
           ))}
-          <div style={{ padding: '10px 18px 14px', borderTop: '1px solid #e9eae8', fontSize: 12, color: '#6f7f7b', lineHeight: '17px' }}>
+          <div style={{ padding: '10px 18px 14px', borderTop: '1px solid #e9eae8', fontSize: 12, color: '#5c6b67', lineHeight: '17px' }}>
             Under 12s take turns in goal, so they aren't listed as keepers. You see keepers' clips and goals, not other players'.
           </div>
         </div>
@@ -98,22 +98,22 @@ function HomeOverview({ onPlanSession, onKeeperDrills }: { onPlanSession: () => 
       {/* Right: sidebars */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
         {/* Needs you */}
-        <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '14px 16px' }}>
+        <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderTop: '5px solid #c39797', borderRadius: 16, padding: '14px 16px' }}>
           <div style={{ display: 'flex', alignItems: 'center', marginBottom: 10 }}>
             <span style={{ fontSize: 15, fontWeight: 700 }}>Needs you</span>
             <Badge>2 new</Badge>
           </div>
           <div style={{ display: 'flex', flex: 'none', borderRadius: 10, background: '#fdf5f3', border: '1px solid #e8d5d0', padding: '10px 12px', marginBottom: 8, gap: 10 }}>
-            <span style={{ flex: 'none', width: 32, height: 32, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>SK</span>
+            <span style={{ flex: 'none', width: 32, height: 32, borderRadius: '999px', background: '#e8cfcf', color: '#10211f', fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>SK</span>
             <div>
-              <div style={{ fontSize: 13, color: '#6f7f7b', marginBottom: 2 }}>Sam K · U12 Sam · Yesterday</div>
+              <div style={{ fontSize: 13, color: '#5c6b67', marginBottom: 2 }}>Sam K · U12 Sam · Yesterday</div>
               <div style={{ fontSize: 14, fontWeight: 600, color: '#10211f' }}>Can Grace do extra work on her starting spot?</div>
             </div>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', padding: '8px 0', borderTop: '1px solid #e9eae8', gap: 10 }}>
             <span style={{ flex: 'none', width: 32, height: 32, borderRadius: '999px', background: '#eef5f2', color: '#2f6252', fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>i</span>
             <div>
-              <div style={{ fontSize: 13, color: '#6f7f7b', marginBottom: 1 }}>Sessions · This month</div>
+              <div style={{ fontSize: 13, color: '#5c6b67', marginBottom: 1 }}>Sessions · This month</div>
               <div style={{ fontSize: 14, fontWeight: 600, color: '#10211f' }}>Ava and Jack have had 1 session of 4</div>
             </div>
           </div>
@@ -129,10 +129,10 @@ function HomeOverview({ onPlanSession, onKeeperDrills }: { onPlanSession: () => 
             { ini: 'HN', name: 'Holly', note: 'claims two crosses',       team: 'U13 Girls Meg · both called early' },
           ].map((c, i) => (
             <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, padding: '8px 0', borderTop: '1px solid #e9eae8' }}>
-              <span style={{ flex: 'none', width: 30, height: 30, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', fontSize: 10, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{c.ini}</span>
+              <span style={{ flex: 'none', width: 30, height: 30, borderRadius: '999px', background: '#e8cfcf', color: '#10211f', fontSize: 10, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{c.ini}</span>
               <div>
                 <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{c.name} · {c.note}</div>
-                <div style={{ fontSize: 12, color: '#6f7f7b' }}>{c.team}</div>
+                <div style={{ fontSize: 12, color: '#5c6b67' }}>{c.team}</div>
               </div>
             </div>
           ))}
@@ -165,12 +165,12 @@ function TrainingSession() {
             <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 16, padding: '16px 20px', borderTop: i > 0 ? '1px solid #e9eae8' : 'none', cursor: 'pointer' }}>
               <div style={{ flex: 'none', width: 56, textAlign: 'right' }}>
                 <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>{d.time}</div>
-                <div style={{ fontSize: 12, color: '#6f7f7b' }}>{d.dur}</div>
+                <div style={{ fontSize: 12, color: '#5c6b67' }}>{d.dur}</div>
               </div>
               <div style={{ flexGrow: 1, minWidth: 0 }}>
                 <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', marginBottom: 3 }}>{d.title}</div>
                 <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: '19px', marginBottom: 4 }}>{d.desc}</div>
-                <div style={{ fontSize: 13, color: '#6f7f7b' }}><span style={{ fontWeight: 700 }}>Why:</span> {d.why}</div>
+                <div style={{ fontSize: 13, color: '#5c6b67' }}><span style={{ fontWeight: 700 }}>Why:</span> {d.why}</div>
               </div>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c5c8c4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flex: 'none', marginTop: 2 }}><path d="M9 18l6-6-6-6"/></svg>
             </div>
@@ -187,7 +187,7 @@ function TrainingSession() {
               <span style={{ flex: 'none', width: 24, height: 24, borderRadius: '999px', background: '#2f6252', color: '#fff', fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{g.label}</span>
               <div>
                 <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{g.title}</div>
-                <div style={{ fontSize: 12, color: '#6f7f7b' }}>{g.members}</div>
+                <div style={{ fontSize: 12, color: '#5c6b67' }}>{g.members}</div>
               </div>
             </div>
           ))}
@@ -231,10 +231,10 @@ function KeepersTab({ empty }: { empty?: boolean }) {
       <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, overflow: 'hidden' }}>
         {KEEPERS.map((k, i) => (
           <div key={k.ini} style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '14px 18px', borderTop: i > 0 ? '1px solid #e9eae8' : 'none' }}>
-            <span style={{ flex: 'none', width: 40, height: 40, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', fontSize: 12, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{k.ini}</span>
+            <span style={{ flex: 'none', width: 40, height: 40, borderRadius: '999px', background: '#e8cfcf', color: '#10211f', fontSize: 12, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{k.ini}</span>
             <div style={{ flexGrow: 1, minWidth: 0 }}>
               <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>{k.name}</div>
-              <div style={{ fontSize: 13, color: '#6f7f7b' }}>{k.team}</div>
+              <div style={{ fontSize: 13, color: '#5c6b67' }}>{k.team}</div>
               <div style={{ fontSize: 13, color: '#4a5a57', fontStyle: 'italic', marginTop: 2 }}>{k.note}</div>
             </div>
             <span style={{ flex: 'none', fontSize: 13, fontWeight: 700, color: k.sessions >= 3 ? '#2f6252' : '#c39797', background: k.sessions >= 3 ? '#eef5f2' : '#fdf5f3', padding: '4px 12px', borderRadius: '999px' }}>{k.sessions} of 4 sessions</span>
@@ -272,10 +272,10 @@ function ClipsTab({ empty }: { empty?: boolean }) {
         { ini: 'HN', name: 'Holly Ng',    event: 'Claims two crosses',       team: 'U13 Girls Meg · both called early · Sat 6 Jun' },
       ].map((c, i) => (
         <div key={i} style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '14px 16px', marginBottom: 10, display: 'flex', gap: 14, alignItems: 'center' }}>
-          <span style={{ flex: 'none', width: 48, height: 48, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', fontSize: 13, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{c.ini}</span>
+          <span style={{ flex: 'none', width: 48, height: 48, borderRadius: '999px', background: '#e8cfcf', color: '#10211f', fontSize: 13, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{c.ini}</span>
           <div style={{ flexGrow: 1 }}>
             <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', marginBottom: 2 }}>{c.name} · {c.event}</div>
-            <div style={{ fontSize: 13, color: '#6f7f7b' }}>{c.team}</div>
+            <div style={{ fontSize: 13, color: '#5c6b67' }}>{c.team}</div>
           </div>
           <button onClick={() => showToast(`Playing: ${c.name} — ${c.event}.`)} style={{ flex: 'none', height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Play</button>
         </div>
@@ -376,7 +376,7 @@ export default function GoalkeeperCoachApp({ empty = false, initialScreen, onNav
                 <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.6, marginBottom: 16 }}>Each coach from U12 up marks their keepers. Ask them now, or wait for the first games.</div>
                 <button onClick={() => showToast('Message sent to 9 coaches — asking them to name their keepers.')} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Ask coaches to name keepers</button>
               </div>
-              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: '#6f7f7b', marginBottom: 10 }}>What you will see</div>
+              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: '#5c6b67', marginBottom: 10 }}>What you will see</div>
               {[
                 { n: '1', label: 'Every keeper from U12 up',       desc: 'With one thing to work on' },
                 { n: '2', label: 'Keeper clips from Saturday',     desc: "Only keepers' moments" },
@@ -401,14 +401,14 @@ export default function GoalkeeperCoachApp({ empty = false, initialScreen, onNav
         {nav === 'matchday' && (
           <div style={{ flexGrow: 1, overflowY: 'auto', padding: '20px 28px' }}>
             <h2 style={{ margin: '0 0 2px', fontSize: 22, fontWeight: 700, color: '#10211f' }}>Saturday's keepers</h2>
-            <div style={{ fontSize: 13, color: '#6f7f7b', marginBottom: 16 }}>6 games across the club · one thing for each keeper</div>
+            <div style={{ fontSize: 13, color: '#5c6b67', marginBottom: 16 }}>6 games across the club · one thing for each keeper</div>
             <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 16, overflow: 'hidden', marginBottom: 16 }}>
               {KEEPERS.map((k, i) => (
                 <div key={k.ini} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px', borderTop: i > 0 ? '1px solid #f0f1f0' : 'none' }}>
                   <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#eef5f2', color: '#2f6252', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0 }}>{k.ini}</div>
                   <div style={{ flexGrow: 1, minWidth: 0 }}>
                     <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>{k.name} · {k.team}</div>
-                    <div style={{ fontSize: 12, color: '#6f7f7b' }}>This week: {k.note}</div>
+                    <div style={{ fontSize: 12, color: '#5c6b67' }}>This week: {k.note}</div>
                   </div>
                   <button onClick={() => showToast(`Reminder sent to ${k.name.split(' ')[0]}.`)} style={{ height: 36, padding: '0 12px', borderRadius: 999, border: '1px solid #c5c8c4', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>Send reminder</button>
                 </div>

@@ -93,7 +93,7 @@ export function AskHome({ onBack: _onBack }: { onBack?: () => void }) {
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#f7f8f7' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#faf5ec' }}>
       <CoachTopBar onNav={(id) => openThing(`${id.charAt(0).toUpperCase() + id.slice(1)} tab`, 'coach')}/>
       <CoachSubNav activeSub="Overview" onNav={(id) => openThing(`${id} tab`, 'coach')}/>
       {/* Page content */}
@@ -150,7 +150,7 @@ export function AskMinimised({ onBack: _onBack }: { onBack?: () => void }) {
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#f7f8f7', position: 'relative' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#faf5ec', position: 'relative' }}>
       <CoachTopBar onNav={(id) => openThing(`${id.charAt(0).toUpperCase() + id.slice(1)} tab`, 'coach')}/>
       <CoachSubNav activeSub="Overview" onNav={(id) => openThing(`${id} tab`, 'coach')}/>
       {/* Background content (player summary placeholder) */}
@@ -194,7 +194,7 @@ export function AskOpen({ onBack: _onBack }: { onBack?: () => void }) {
   ]
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#f7f8f7', position: 'relative' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#faf5ec', position: 'relative' }}>
       <CoachTopBar onNav={(id) => openThing(`${id.charAt(0).toUpperCase() + id.slice(1)} tab`, 'coach')}/>
       <CoachSubNav activeSub="Overview" onNav={(id) => openThing(`${id} tab`, 'coach')}/>
       <div style={{ flex: 1, overflow: 'hidden', display: 'flex', minHeight: 0 }}>
@@ -234,7 +234,7 @@ export function AskOpen({ onBack: _onBack }: { onBack?: () => void }) {
               </div>
             </div>
             {/* Sources */}
-            <div style={{ background: '#f7f8f7', border: `1px solid ${LN}`, borderRadius: 12, padding: '12px 14px', marginBottom: 16 }}>
+            <div style={{ background: '#faf5ec', border: `1px solid ${LN}`, borderRadius: 12, padding: '12px 14px', marginBottom: 16 }}>
               <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 8 }}>What I used</div>
               {sources.map((s, i) => (
                 <div key={s.n} style={{ display: 'flex', gap: 10, padding: i > 0 ? '8px 0 0' : '0', marginTop: i > 0 ? 8 : 0, borderTop: i > 0 ? `1px solid ${LN}` : 'none' }}>
@@ -278,7 +278,7 @@ export function AskOpenFirst({ onBack: _onBack }: { onBack?: () => void }) {
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#f7f8f7', position: 'relative' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#faf5ec', position: 'relative' }}>
       <CoachTopBar onNav={(id) => openThing(`${id.charAt(0).toUpperCase() + id.slice(1)} tab`, 'coach')}/>
       <CoachSubNav activeSub="Overview" onNav={(id) => openThing(`${id} tab`, 'coach')}/>
       <div style={{ flex: 1, overflow: 'hidden', display: 'flex', minHeight: 0 }}>
@@ -313,7 +313,7 @@ export function AskOpenFirst({ onBack: _onBack }: { onBack?: () => void }) {
                 </button>
               ))}
             </div>
-            <div style={{ background: '#f7f8f7', border: `1px solid ${LN}`, borderRadius: 12, padding: '12px 14px', fontSize: 12, color: MUT, lineHeight: 1.6 }}>
+            <div style={{ background: '#faf5ec', border: `1px solid ${LN}`, borderRadius: 12, padding: '12px 14px', fontSize: 12, color: MUT, lineHeight: 1.6 }}>
               Only uses what your role can already see. Wellness answers and welfare concerns are never used.
             </div>
           </div>
@@ -340,7 +340,7 @@ export function AskPhoneButton({ onBack: _onBack }: { onBack?: () => void }) {
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#f7f8f7', maxWidth: 390, margin: '0 auto', position: 'relative' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#faf5ec', maxWidth: 390, margin: '0 auto', position: 'relative' }}>
       {/* Phone header */}
       <div style={{ background: GD, height: 56, display: 'flex', alignItems: 'center', padding: '0 16px', gap: 8, flexShrink: 0 }}>
         <button onClick={() => t('Back.')} style={{ background: 'transparent', border: 'none', color: '#e9eae8', cursor: 'pointer', padding: 0 }}>
@@ -390,7 +390,7 @@ export function AskPhoneOpen({ onBack: _onBack }: { onBack?: () => void }) {
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#f7f8f7', maxWidth: 390, margin: '0 auto', position: 'relative' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#faf5ec', maxWidth: 390, margin: '0 auto', position: 'relative' }}>
       {/* Phone header */}
       <div style={{ background: GD, height: 56, display: 'flex', alignItems: 'center', padding: '0 16px', gap: 8, flexShrink: 0 }}>
         <button onClick={() => t('Back.')} style={{ background: 'transparent', border: 'none', color: '#e9eae8', cursor: 'pointer', padding: 0 }}>

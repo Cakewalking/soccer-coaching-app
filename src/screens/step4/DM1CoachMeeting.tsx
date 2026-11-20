@@ -17,7 +17,7 @@ export default function DM1CoachMeeting(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string | null>(null)
   function t(m: string) { setToast(m); setTimeout(() => setToast(null), 3200) }
   return (
-    <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, position: 'relative' }}>
+    <div style={{ width: 1180, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, position: 'relative' }}>
       <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 32, height: 52 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff', letterSpacing: '-0.01em' }}>Clean Sheet</div>
         {['Club', 'Teams', 'Coaches', 'Players', 'Safeguarding', 'Reports'].map(tab => (
@@ -29,7 +29,7 @@ export default function DM1CoachMeeting(_: { onBack?: () => void }) {
         <div>
           <div style={{ fontSize: 20, fontWeight: 800, letterSpacing: '-0.02em', color: INK, marginBottom: 2 }}>Coach meeting</div>
           <div style={{ fontSize: 13, color: MUT, marginBottom: 20 }}>Tue 9 Jun · 7:30 pm · Wattle Creek Clubrooms</div>
-          <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 10 }}>Agenda</div>
+          <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 10 }}>Agenda</div>
           {AGENDA.map(a => (
             <div key={a.n} onClick={() => t(`Opening: ${a.title}`)} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 12, padding: '14px 18px', marginBottom: 8, display: 'flex', alignItems: 'center', gap: 14, cursor: 'pointer' }}>
               <div style={{ width: 26, height: 26, borderRadius: '50%', background: PALE, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, color: G, flexShrink: 0 }}>{a.n}</div>

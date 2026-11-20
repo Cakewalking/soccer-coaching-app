@@ -208,7 +208,7 @@ export default function SetOurStyleWizard({ onClose, initialStep = 'intro', seni
       { label: 'Club values',             val: answers.s5.length > 0 ? answers.s5.map(id => STEP_OPTIONS[5].find(o => o.id === id)?.title ?? id).join(', ') : 'None' },
     ]
     return (
-      <div style={{ position: 'fixed', inset: 0, background: '#f7f9f7', zIndex: 100, display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
+      <div style={{ position: 'fixed', inset: 0, background: '#faf5ec', zIndex: 100, display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
         {/* Header */}
         <div style={{ flex: 'none', background: '#1f4a3e', padding: '0 32px', height: 72, display: 'flex', alignItems: 'center', gap: 16 }}>
           <button onClick={back} style={{ width: 44, height: 44, borderRadius: '999px', border: 0, background: 'rgba(255,255,255,0.12)', color: '#ffffff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -229,9 +229,9 @@ export default function SetOurStyleWizard({ onClose, initialStep = 'intro', seni
             <div style={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
               {choiceRows.map((row, i) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '14px 0', borderTop: i > 0 ? '1px solid #e9eae8' : 'none' }}>
-                  <div style={{ width: 110, fontSize: 13, fontWeight: 700, color: '#6f7f7b' }}>{row.label}</div>
+                  <div style={{ width: 110, fontSize: 13, fontWeight: 700, color: '#5c6b67' }}>{row.label}</div>
                   <div style={{ flexGrow: 1, fontSize: 15, fontWeight: 700, color: '#10211f' }}>{row.val}</div>
-                  <button onClick={back} style={{ height: 44, padding: '0 10px', borderRadius: 6, border: '1px solid #e9eae8', background: '#f7f8f7', color: '#6f7f7b', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Change</button>
+                  <button onClick={back} style={{ height: 44, padding: '0 10px', borderRadius: 6, border: '1px solid #e9eae8', background: '#faf5ec', color: '#5c6b67', fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Change</button>
                 </div>
               ))}
             </div>
@@ -240,13 +240,13 @@ export default function SetOurStyleWizard({ onClose, initialStep = 'intro', seni
           {/* Right: targets */}
           <div style={{ width: 300, flex: 'none', borderLeft: '1px solid #e9eae8', background: '#ffffff', padding: '28px 20px', overflowY: 'auto' }}>
             <h2 style={{ margin: '0 0 16px', fontSize: 15, fontWeight: 700, color: '#10211f' }}>Your targets</h2>
-            {metrics.length === 0 && <div style={{ fontSize: 13, color: '#6f7f7b' }}>Make selections to see targets.</div>}
+            {metrics.length === 0 && <div style={{ fontSize: 13, color: '#5c6b67' }}>Make selections to see targets.</div>}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
               {metrics.map((m, i) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'center', padding: '10px 0', borderTop: i > 0 ? '1px solid #f0f1f0' : 'none', gap: 8 }}>
                   <div style={{ flexGrow: 1 }}>
                     <div style={{ fontSize: 13, fontWeight: 600, color: '#10211f' }}>{m.metric}</div>
-                    <div style={{ fontSize: 12, color: '#6f7f7b' }}>Target: {m.target}</div>
+                    <div style={{ fontSize: 12, color: '#5c6b67' }}>Target: {m.target}</div>
                   </div>
                   <span style={{ fontSize: 12, fontWeight: 700, color: '#2f6252', background: '#e4f2eb', borderRadius: 6, padding: '2px 7px' }}>{m.delta}</span>
                 </div>
@@ -265,7 +265,7 @@ export default function SetOurStyleWizard({ onClose, initialStep = 'intro', seni
   const isMulti = sn === 5
 
   return (
-    <div style={{ position: 'fixed', inset: 0, background: '#f7f9f7', zIndex: 100, display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
+    <div style={{ position: 'fixed', inset: 0, background: '#faf5ec', zIndex: 100, display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
       {/* Header */}
       <div style={{ flex: 'none', background: '#1f4a3e' }}>
         <div style={{ padding: '0 32px', height: 72, display: 'flex', alignItems: 'center', gap: 16 }}>
@@ -295,7 +295,7 @@ export default function SetOurStyleWizard({ onClose, initialStep = 'intro', seni
       {/* Body */}
       <div style={{ flexGrow: 1, overflowY: 'auto', padding: '28px 32px' }}>
         <h2 style={{ margin: '0 0 6px', fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em', color: '#10211f' }}>{STEP_TITLES[sn]}</h2>
-        <p style={{ margin: '0 0 24px', fontSize: 14, color: '#6f7f7b' }}>
+        <p style={{ margin: '0 0 24px', fontSize: 14, color: '#5c6b67' }}>
           {sn === 1 ? 'Think about your normal game plan, not every situation.'
             : sn === 2 ? 'Where on the pitch you want to defend from.'
             : sn === 3 ? 'The first few seconds after we get the ball back.'
@@ -320,7 +320,7 @@ export default function SetOurStyleWizard({ onClose, initialStep = 'intro', seni
                 )}
                 <div style={{ fontSize: 16, fontWeight: 700, color: '#10211f', lineHeight: '22px', paddingRight: selected ? 28 : 0 }}>{opt.title}</div>
                 <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: '18px' }}>{opt.sub}</div>
-                {opt.suits && <div style={{ fontSize: 12, color: '#6f7f7b', lineHeight: '17px', fontStyle: 'italic' }}>{opt.suits}</div>}
+                {opt.suits && <div style={{ fontSize: 12, color: '#5c6b67', lineHeight: '17px', fontStyle: 'italic' }}>{opt.suits}</div>}
                 {opt.measures.length > 0 && (
                   <div style={{ marginTop: 6 }}>
                     <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: '#9aada9', marginBottom: 5 }}>We'll measure</div>

@@ -18,7 +18,7 @@ export default function P2cParentConsentStep2() {
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
 
   return (
-    <div style={{ width: 390, minHeight: '100%', background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', margin: '0 auto', padding: '32px 20px', position: 'relative' }}>
+    <div style={{ width: 390, minHeight: '100%', background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', margin: '0 auto', padding: '32px 20px', position: 'relative' }}>
       <div style={{ fontSize: 20, fontWeight: 800, color: GD, marginBottom: 2 }}>Thanks, Kate.</div>
       <div style={{ fontSize: 14, color: MUT, marginBottom: 20 }}>Sam can see your choices now.</div>
 

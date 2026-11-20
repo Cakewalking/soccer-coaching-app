@@ -22,7 +22,7 @@ export default function EDU3MakeLesson({ onNav }: { onNav?: (s: string) => void 
   ]
 
   return (
-    <div data-lasttool={lastTool} style={{ width: 1180, background: '#f7f8f7', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }}>
+    <div data-lasttool={lastTool} style={{ width: 1180, background: '#faf5ec', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }}>
       {/* Top nav */}
       <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 4, height: 52, flexShrink: 0 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff', marginRight: 20 }}>Clean Sheet</div>
@@ -138,7 +138,7 @@ export default function EDU3MakeLesson({ onNav }: { onNav?: (s: string) => void 
                 </div>
                 <div style={{ padding: '20px' }}>
                   <div style={{ fontSize: 18, fontWeight: 800, color: INK, marginBottom: 16 }}>{title || 'Closing the space behind the press'}</div>
-                  <div style={{ background: '#f7f8f7', borderRadius: 10, padding: '12px 16px', marginBottom: 10 }}>
+                  <div style={{ background: '#faf5ec', borderRadius: 10, padding: '12px 16px', marginBottom: 10 }}>
                     <div style={{ fontSize: 11, fontWeight: 700, color: MUT, marginBottom: 6 }}>WHAT TO NOTICE</div>
                     <div style={{ fontSize: 14, color: INK, lineHeight: 1.6 }}>{notice || 'Grace moves up before the pass arrives. She stays side-on so she can turn either way.'}</div>
                   </div>

@@ -19,7 +19,7 @@ export default function SG1Suggested(_: { onBack?: () => void }) {
   void st   // kept for lines this screen may still need to say
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
-    <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#faf5ec', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       <div style={{ flex: 'none', background: '#fff', borderBottom: `1px solid ${LN}` }}>
         <div style={{ height: 64, boxSizing: 'border-box', padding: '0 28px', display: 'flex', alignItems: 'center', gap: 4, background: G }}>
           <div style={{ fontSize: 20, fontWeight: 700, color: '#fff', marginRight: 16, letterSpacing: '-0.02em' }}>Clean Sheet</div>
@@ -43,7 +43,7 @@ export default function SG1Suggested(_: { onBack?: () => void }) {
                 <div style={{ fontSize: 12, fontWeight: 700, background: PALE, color: G, borderRadius: 999, padding: '2px 10px' }}>{d.evidence}</div>
               </div>
               <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' as const }}>
-                {d.based.map(b => <div key={b} style={{ fontSize: 12, background: '#f7f8f7', border: `1px solid ${LN}`, borderRadius: 999, padding: '2px 10px', color: MUT }}>Based on: {b}</div>)}
+                {d.based.map(b => <div key={b} style={{ fontSize: 12, background: '#faf5ec', border: `1px solid ${LN}`, borderRadius: 999, padding: '2px 10px', color: MUT }}>Based on: {b}</div>)}
               </div>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: 6, borderTop: `1px solid ${LN}` }}>
                 <div style={{ fontSize: 14, color: MUT }}>{d.drill}</div>
@@ -53,7 +53,7 @@ export default function SG1Suggested(_: { onBack?: () => void }) {
                 </div>
               </div>
               {whyOpen === d.rank && (
-                <div style={{ fontSize: 13, color: MUT, lineHeight: 1.6, background: '#f7f8f7', borderRadius: 10, padding: '10px 12px' }}>
+                <div style={{ fontSize: 13, color: MUT, lineHeight: 1.6, background: '#faf5ec', borderRadius: 10, padding: '10px 12px' }}>
                   Why {d.name}: {d.based.join(' and ')} point to this. The clips from Saturday show it, and three sessions of data back it up. Tap a clip in the drill to see the moment.
                 </div>
               )}
@@ -63,7 +63,7 @@ export default function SG1Suggested(_: { onBack?: () => void }) {
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '14px 16px' }}>
-            <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 10 }}>Changed since last week</div>
+            <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 10 }}>Changed since last week</div>
             {[['Pressing wins', '+3 per game', true], ['Passing accuracy', '-2%', false], ['Sprint count', '+18%', true]].map(([label, val, up]) => (
               <div key={label as string} style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 0', borderTop: `1px solid ${LN}`, fontSize: 14 }}>
                 <span style={{ color: MUT }}>{label as string}</span>

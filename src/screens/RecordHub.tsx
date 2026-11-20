@@ -59,7 +59,7 @@ function CoachFrame({ activeNav, activeSub, subTabs, pageTitle, pageSub, pageRig
   pageRight?: React.ReactNode; children: React.ReactNode; toast: string | null; onNavTab: (t: string) => void; noFrame?: boolean
 }) {
   if (noFrame) return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#f7f8f7' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#faf5ec' }}>
       <div style={{ padding: '20px 28px 12px', display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexShrink: 0 }}>
         <div>
           <h1 style={{ margin: 0, fontSize: 24, fontWeight: 700, color: INK, letterSpacing: '-0.02em' }}>{pageTitle}</h1>
@@ -72,7 +72,7 @@ function CoachFrame({ activeNav, activeSub, subTabs, pageTitle, pageSub, pageRig
     </div>
   )
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#f7f8f7' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#faf5ec' }}>
       <div style={{ background: GD, display: 'flex', alignItems: 'center', padding: '0 20px', gap: 2, height: 56, flexShrink: 0 }}>
         <span style={{ color: '#e9eae8', fontWeight: 800, fontSize: 16, marginRight: 10 }}>Clean Sheet</span>
         {NAV6.map(tab => (
@@ -251,7 +251,7 @@ export function RecordHub({ onBack: _onBack, noFrame, onNav }: { onBack?: () => 
         {/* Right aside: devices */}
         <div style={{ width: 260, flexShrink: 0, display: 'flex', flexDirection: 'column', gap: 12 }}>
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '14px 16px' }}>
-            <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 10 }}>Kit ready</div>
+            <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 10 }}>Kit ready</div>
             {[
               { label: 'Camera kit 2',  note: 'Battery 84% · Connected',           ok: true },
               { label: '15 sensor vests', note: 'All charged',                      ok: true },

@@ -107,7 +107,7 @@ function HomeView({ setView }: { setView: (v: View) => void }) {
             </div>
             <div style={{ flexGrow: 1, minWidth: 0 }}>
               <div style={{ fontSize: 14, fontWeight: 700, color: e.done ? '#4a5a57' : '#10211f', textDecoration: e.done ? 'line-through' : 'none' }}>{e.title}</div>
-              <div style={{ fontSize: 12, color: '#6f7f7b' }}>{e.sub}</div>
+              <div style={{ fontSize: 12, color: '#5c6b67' }}>{e.sub}</div>
             </div>
           </div>
         ))}
@@ -265,9 +265,9 @@ function MessagesView({ initialChat = 'list' }: { initialChat?: MsgChat }) {
           const isMe = m.from === 'Cal'
           return (
             <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: isMe ? 'flex-end' : 'flex-start', gap: 2 }}>
-              {!isMe && <div style={{ fontSize: 12, color: '#6f7f7b', paddingLeft: 2 }}>{m.from} · {m.time}</div>}
+              {!isMe && <div style={{ fontSize: 12, color: '#5c6b67', paddingLeft: 2 }}>{m.from} · {m.time}</div>}
               <div style={{ maxWidth: '80%', padding: '10px 14px', borderRadius: isMe ? '16px 16px 4px 16px' : '16px 16px 16px 4px', background: isMe ? '#2f6252' : '#fff', border: isMe ? 'none' : '1px solid #e9eae8', fontSize: 14, lineHeight: '20px', color: isMe ? '#fff' : '#10211f' }}>{m.body}</div>
-              {isMe && <div style={{ fontSize: 12, color: '#6f7f7b', paddingRight: 2 }}>{m.time}</div>}
+              {isMe && <div style={{ fontSize: 12, color: '#5c6b67', paddingRight: 2 }}>{m.time}</div>}
             </div>
           )
         })}
@@ -366,7 +366,7 @@ function AdultView() {
         <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 10 }}>My season</div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 8 }}>
           {SEASON_STATS.map((s, i) => (
-            <div key={i} style={{ textAlign: 'center', padding: '8px 4px', background: '#f7f8f7', borderRadius: 10 }}>
+            <div key={i} style={{ textAlign: 'center', padding: '8px 4px', background: '#faf5ec', borderRadius: 10 }}>
               <div style={{ fontSize: 22, fontWeight: 800, letterSpacing: '-0.02em' }}>{s.value}</div>
               <div style={{ fontSize: 11, color: '#4a5a57', fontWeight: 600 }}>{s.label}</div>
             </div>
@@ -392,7 +392,7 @@ export default function OlderPlayerApp({ empty = false, initialView, initialChat
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
 
   return (
-    <div style={{ width: 390, minHeight: '100vh', background: '#f7f8f7', display: 'flex', flexDirection: 'column', fontFamily: "'DM Sans', sans-serif" }}>
+    <div style={{ width: 390, minHeight: '100vh', background: '#faf5ec', display: 'flex', flexDirection: 'column', fontFamily: "'DM Sans', sans-serif" }}>
       {/* Header */}
       <div style={{ background: '#1f4a3e', padding: '48px 20px 16px', flex: 'none' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
@@ -404,7 +404,7 @@ export default function OlderPlayerApp({ empty = false, initialView, initialChat
               {view === 'messages' ? 'Messages' : view === 'body' ? 'My body' : view === 'adult' ? 'Player app' : 'Player app'}
             </div>
           </div>
-          <div style={{ width: 40, height: 40, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>
+          <div style={{ width: 40, height: 40, borderRadius: '999px', background: '#e8cfcf', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>
             {view === 'adult' ? 'JW' : 'CW'}
           </div>
         </div>

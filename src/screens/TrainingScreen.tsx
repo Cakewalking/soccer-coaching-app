@@ -33,7 +33,7 @@ function TrainingEmpty({ onNav }: { onNav: (s: 'addgame') => void }) {
       <div style={{ flexGrow: 1, minHeight: 0, display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,1.6fr)', gap: 20, padding: '14px 28px', overflow: 'hidden' }}>
         {/* Left: why + skeleton drills */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10, minHeight: 0, overflowY: 'auto' }}>
-          <div style={{ background: '#f7f8f7', border: '1px solid #e9eae8', borderRadius: 14, padding: '14px 16px' }}>
+          <div style={{ background: '#faf5ec', border: '1px solid #e9eae8', borderRadius: 14, padding: '14px 16px' }}>
             <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 4 }}>Why this plan</div>
             <div style={{ fontSize: 12, color: '#4a5a57', lineHeight: '17px' }}>After your first recorded game</div>
             <div style={{ fontSize: 12, color: '#4a5a57', lineHeight: '17px', marginTop: 6 }}>Each drill will link to a clip or a number from your last game, so you can see why it was picked.</div>
@@ -68,14 +68,14 @@ function TrainingEmpty({ onNav }: { onNav: (s: 'addgame') => void }) {
 
       {/* Starter sessions strip */}
       <div style={{ flex: 'none', borderTop: '1px solid #e9eae8', padding: '14px 28px', background: '#ffffff' }}>
-        <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#6f7f7b', marginBottom: 10 }}>Starter sessions · 60 minutes · 4 drills each</div>
+        <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#5c6b67', marginBottom: 10 }}>Starter sessions · 60 minutes · 4 drills each</div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10 }}>
           {starterSessions.map(s => (
-            <div key={s.title} style={{ background: '#f7f8f7', border: '1px solid #e9eae8', borderRadius: 12, padding: '12px 14px' }}>
+            <div key={s.title} style={{ background: '#faf5ec', border: '1px solid #e9eae8', borderRadius: 12, padding: '12px 14px' }}>
               <span style={{ display: 'inline-block', fontSize: 11, fontWeight: 700, padding: '1px 7px', borderRadius: '999px', background: '#eef5f2', color: '#2f6252', marginBottom: 6 }}>{s.tag}</span>
               <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 2 }}>{s.title}</div>
               <div style={{ fontSize: 12, color: '#4a5a57', marginBottom: 4 }}>{s.sub}</div>
-              <div style={{ fontSize: 12, color: '#6f7f7b' }}>{s.note}</div>
+              <div style={{ fontSize: 12, color: '#5c6b67' }}>{s.note}</div>
             </div>
           ))}
         </div>
@@ -95,7 +95,7 @@ function TrainingEmpty({ onNav }: { onNav: (s: 'addgame') => void }) {
 
 
 function DrillDiagram({ tag }: { tag: string }) {
-  const bg = COLOR_MAP[tag] ?? '#cbbeb5'
+  const bg = COLOR_MAP[tag] ?? '#e8cfcf'
   const isFocus1 = tag === 'Focus 1'
   const isFocus2 = tag === 'Focus 2'
   const isWarmup = tag === 'Warm-up'
@@ -169,7 +169,7 @@ function OfflineView() {
   return (
     <div style={{ flexGrow: 1, minHeight: 0, padding: '12px 28px 18px', display: 'grid', gap: 14, gridTemplateColumns: 'minmax(0,1fr) 340px', gridTemplateRows: 'auto minmax(0,1fr)', boxSizing: 'border-box' }}>
       {/* Banner */}
-      <div style={{ gridColumn: 'span 2', display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px', borderRadius: 14, background: backOnline ? '#eef5f2' : '#cbbeb5', color: '#10211f' }}>
+      <div style={{ gridColumn: 'span 2', display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px', borderRadius: 14, background: backOnline ? '#eef5f2' : '#e8cfcf', color: '#10211f' }}>
         {backOnline
           ? <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2f6252" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg>
           : <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M2 8.5a15 15 0 0120 0M5 12a10 10 0 0114 0M8.5 15.5a5 5 0 017 0M12 19h.01M3 3l18 18"/></svg>
@@ -221,7 +221,7 @@ function OfflineView() {
           <>
             {WAITING.map((w, i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 50, borderTop: '1px solid #e9eae8' }}>
-                <span style={{ flexShrink: 0, width: 30, height: 30, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }}>↑</span>
+                <span style={{ flexShrink: 0, width: 30, height: 30, borderRadius: '999px', background: '#e8cfcf', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }}>↑</span>
                 <span style={{ flexGrow: 1, minWidth: 0 }}>
                   <span style={{ display: 'block', fontSize: 15, lineHeight: '21px', fontWeight: 700 }}>{w.title}</span>
                   <span style={{ display: 'block', fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>{w.sub}</span>
@@ -248,11 +248,11 @@ export default function TrainingScreen({ role, onNav, empty, nextOpponent = 'Har
         <div style={{ flex: 'none', background: '#ffffff', borderBottom: '1px solid #e9eae8', padding: '14px 32px 14px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <div>
             <h1 style={{ margin: 0, fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em', color: '#10211f', lineHeight: '28px' }}>Tonight's session</h1>
-            <div style={{ fontSize: 13, color: '#6f7f7b', marginTop: 2 }}>Thu 4 Jun · Wattle Creek Reserve · <strong>offline</strong></div>
+            <div style={{ fontSize: 13, color: '#5c6b67', marginTop: 2 }}>Thu 4 Jun · Wattle Creek Reserve · <strong>offline</strong></div>
           </div>
           <div style={{ display: 'flex', gap: 8 }}>
             <button onClick={() => onNav('pitchside')} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #2f6252', background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Open pitch-side</button>
-            <button onClick={() => setOffline(false)} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', color: '#6f7f7b' }}>Exit offline demo</button>
+            <button onClick={() => setOffline(false)} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer', color: '#5c6b67' }}>Exit offline demo</button>
           </div>
         </div>
         <OfflineView />
@@ -272,7 +272,7 @@ export default function TrainingScreen({ role, onNav, empty, nextOpponent = 'Har
             <h1 style={{ margin: 0, fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em', color: '#10211f', lineHeight: '28px' }}>
               Training tonight · {d.start}–{d.end}
             </h1>
-            <div style={{ fontSize: 13, lineHeight: '18px', marginTop: 2, color: '#6f7f7b' }}>
+            <div style={{ fontSize: 13, lineHeight: '18px', marginTop: 2, color: '#5c6b67' }}>
               Wattle Creek Reserve · 16 players · {totalMins} minutes · 2 days to {nextOpponent}
             </div>
           </div>
@@ -306,7 +306,7 @@ export default function TrainingScreen({ role, onNav, empty, nextOpponent = 'Har
 
         {/* Left sidebar */}
         <aside style={{
-          width: 280, flex: 'none', background: '#f7f8f7',
+          width: 280, flex: 'none', background: '#faf5ec',
           borderRight: '1px solid #e9eae8', padding: '20px 20px 24px',
           display: 'flex', flexDirection: 'column', gap: 20, overflowY: 'auto',
         }}>
@@ -414,7 +414,7 @@ export default function TrainingScreen({ role, onNav, empty, nextOpponent = 'Har
                     {x.format.map((f, j) => (
                       <span key={j} style={{
                         fontSize: 13, fontWeight: 500, color: '#4a5a57',
-                        background: '#f7f8f7', border: '1px solid #e9eae8', borderRadius: 6, padding: '2px 8px',
+                        background: '#faf5ec', border: '1px solid #e9eae8', borderRadius: 6, padding: '2px 8px',
                       }}>{f}</span>
                     ))}
                   </div>

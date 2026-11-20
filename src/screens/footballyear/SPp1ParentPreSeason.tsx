@@ -7,7 +7,7 @@ export default function SPp1ParentPreSeason(_: { onBack?: () => void }) {
   function t(m: string) { setToast(m); setTimeout(() => setToast(null), 3200) }
 
   return (
-    <div style={{ width: 390, minHeight: '100%', background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', position: 'relative', margin: '0 auto' }}>
+    <div style={{ width: 390, minHeight: '100%', background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', position: 'relative', margin: '0 auto' }}>
       {/* Phone status bar */}
       <div style={{ padding: '12px 20px 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div style={{ fontSize: 12, fontWeight: 700, color: INK }}>9:41</div>
@@ -50,7 +50,7 @@ export default function SPp1ParentPreSeason(_: { onBack?: () => void }) {
 
         {/* Season dates */}
         <div style={{ background: PALE, borderRadius: 12, padding: '12px 14px' }}>
-          <div style={{ fontSize: 12, fontWeight: 700, color: MUT, letterSpacing: '0.06em', textTransform: 'uppercase' as const, marginBottom: 4 }}>Season</div>
+          <div style={{ fontSize: 12, fontWeight: 700, color: '#7a4b5b', letterSpacing: '0.06em', textTransform: 'uppercase' as const, marginBottom: 4 }}>Season</div>
           <div style={{ fontSize: 14, fontWeight: 700, color: GD }}>Round 1: 11 April · Last game: 30 August</div>
           <div style={{ fontSize: 12, color: MUT, marginTop: 2 }}>Pre-season training starts 15 February</div>
         </div>

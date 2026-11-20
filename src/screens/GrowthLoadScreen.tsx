@@ -70,12 +70,12 @@ export default function GrowthLoadScreen({ empty }: { empty?: boolean }) {
         <div style={{ flexGrow: 1, overflowY: 'auto', padding: '28px 32px' }}>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginBottom: 24 }}>
             <h1 style={{ margin: 0, fontSize: 24, fontWeight: 700, letterSpacing: '-0.02em', color: '#10211f' }}>Growth and load</h1>
-            <span style={{ fontSize: 14, color: '#6f7f7b' }}>No measurements yet</span>
+            <span style={{ fontSize: 14, color: '#5c6b67' }}>No measurements yet</span>
           </div>
 
           <div style={{ background: '#ffffff', border: '1px solid #e9eae8', borderRadius: 16, padding: '24px', marginBottom: 20, display: 'flex', gap: 20 }}>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 22px)', gap: 4, flex: 'none', alignSelf: 'flex-start', marginTop: 4 }}>
-              {['#2f6252','#40826d','#cbbeb5','#c39797'].map((c, i) => <div key={i} style={{ width: 22, height: 22, borderRadius: 5, background: c }} />)}
+              {['#2f6252','#40826d','#e8cfcf','#c39797'].map((c, i) => <div key={i} style={{ width: 22, height: 22, borderRadius: 5, background: c }} />)}
             </div>
             <div style={{ flexGrow: 1 }}>
               <div style={{ fontSize: 20, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>Protect players while they grow</div>
@@ -92,7 +92,7 @@ export default function GrowthLoadScreen({ empty }: { empty?: boolean }) {
             </div>
           </div>
 
-          <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase', color: '#6f7f7b', marginBottom: 10 }}>Fills in like this</div>
+          <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase', color: '#5c6b67', marginBottom: 10 }}>Fills in like this</div>
           {[85, 70, 90, 65, 80, 75, 60, 85].map((w, i) => (
             <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 0', borderTop: '1px solid #f0f1f0' }}>
               <div style={{ width: 32, height: 32, borderRadius: '999px', background: '#e9eae8', flex: 'none' }} />
@@ -119,7 +119,7 @@ export default function GrowthLoadScreen({ empty }: { empty?: boolean }) {
               </div>
             </div>
           ))}
-          <div style={{ marginTop: 20, fontSize: 12, color: '#6f7f7b', lineHeight: '17px', background: '#f7f9f7', borderRadius: 10, padding: '10px 12px' }}>
+          <div style={{ marginTop: 20, fontSize: 12, color: '#5c6b67', lineHeight: '17px', background: '#faf5ec', borderRadius: 10, padding: '10px 12px' }}>
             Weight is optional and never shown to players or other parents.
           </div>
         </aside>
@@ -136,10 +136,10 @@ export default function GrowthLoadScreen({ empty }: { empty?: boolean }) {
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
           <div style={{ flexGrow: 1 }}>
             <div style={{ fontSize: 20, fontWeight: 700, color: '#10211f', letterSpacing: '-0.02em' }}>Growth</div>
-            <div style={{ fontSize: 13, color: '#6f7f7b', marginTop: 2 }}>U12 Sam · measured every 3 months · last 11 Mar · next due Thu 11 Jun</div>
+            <div style={{ fontSize: 13, color: '#5c6b67', marginTop: 2 }}>U12 Sam · measured every 3 months · last 11 Mar · next due Thu 11 Jun</div>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <div style={{ fontSize: 13, color: '#6f7f7b' }}>Flag at 7 cm a year</div>
+            <div style={{ fontSize: 13, color: '#5c6b67' }}>Flag at 7 cm a year</div>
             <button onClick={() => showToast('Starting a measuring session — ask players to line up at the wall.')} style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#ffffff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Start measuring session</button>
           </div>
         </div>
@@ -147,7 +147,7 @@ export default function GrowthLoadScreen({ empty }: { empty?: boolean }) {
         <div style={{ background: '#ffffff', borderRadius: 16, border: '1px solid #e9eae8', overflow: 'hidden' }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 100px 1fr 110px', padding: '8px 16px', borderBottom: '1px solid #e9eae8' }}>
             {['Player', 'Height', 'Growing (cm a year)', 'Flag'].map(h => (
-              <div key={h} style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase', color: '#6f7f7b', display: 'flex', alignItems: 'center', gap: 8 }}>{h}{h === 'Height' && <MarkDot kind={markFor({ kind: 'count', captured: true })} style={{ textTransform: 'none', letterSpacing: 0 }} />}</div>
+              <div key={h} style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.04em', textTransform: 'uppercase', color: '#5c6b67', display: 'flex', alignItems: 'center', gap: 8 }}>{h}{h === 'Height' && <MarkDot kind={markFor({ kind: 'count', captured: true })} style={{ textTransform: 'none', letterSpacing: 0 }} />}</div>
             ))}
           </div>
           {PLAYERS.map((p, i) => (
@@ -158,7 +158,7 @@ export default function GrowthLoadScreen({ empty }: { empty?: boolean }) {
               border: 0, width: '100%', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit', alignItems: 'center',
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                <div style={{ width: 28, height: 28, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 10, fontWeight: 700, flexShrink: 0 }}>{p.ini}</div>
+                <div style={{ width: 28, height: 28, borderRadius: '999px', background: '#e8cfcf', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 10, fontWeight: 700, flexShrink: 0 }}>{p.ini}</div>
                 <span style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{p.name}</span>
               </div>
               <div style={{ fontSize: 13, fontWeight: 600, color: '#10211f' }}>{p.height} cm</div>
@@ -173,7 +173,7 @@ export default function GrowthLoadScreen({ empty }: { empty?: boolean }) {
               </div>
             </button>
           ))}
-          <div style={{ padding: '10px 16px', borderTop: '1px solid #e9eae8', fontSize: 12, color: '#6f7f7b' }}>
+          <div style={{ padding: '10px 16px', borderTop: '1px solid #e9eae8', fontSize: 12, color: '#5c6b67' }}>
             All 16, fastest first. Rates come from the last two measurements. Parents can add a height at home between sessions.
           </div>
         </div>
@@ -182,17 +182,17 @@ export default function GrowthLoadScreen({ empty }: { empty?: boolean }) {
       {/* Right detail */}
       <div style={{ width: 300, flex: 'none', borderLeft: '1px solid #e9eae8', background: '#ffffff', padding: '24px 20px', overflowY: 'auto' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 4 }}>
-          <div style={{ width: 36, height: 36, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0 }}>{selected.ini}</div>
+          <div style={{ width: 36, height: 36, borderRadius: '999px', background: '#e8cfcf', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0 }}>{selected.ini}</div>
           <div>
             <div style={{ fontSize: 16, fontWeight: 700, color: '#10211f' }}>{selected.name}</div>
-            <div style={{ fontSize: 12, color: '#6f7f7b' }}>{selected.pos} · {selected.age} · growing +{selected.growth} cm a year</div>
+            <div style={{ fontSize: 12, color: '#5c6b67' }}>{selected.pos} · {selected.age} · growing +{selected.growth} cm a year</div>
           </div>
         </div>
 
         <div style={{ marginBottom: 16 }}>
           <GrowthChart />
           <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 4 }}>
-            {MONTHS.map(m => <span key={m} style={{ fontSize: 10, color: '#6f7f7b' }}>{m}</span>)}
+            {MONTHS.map(m => <span key={m} style={{ fontSize: 10, color: '#5c6b67' }}>{m}</span>)}
           </div>
           <div style={{ fontSize: 11, color: '#9a9f9d', marginTop: 4 }}>Dotted: where he'll likely be at the next check if he keeps growing at this rate.</div>
         </div>
@@ -215,12 +215,12 @@ export default function GrowthLoadScreen({ empty }: { empty?: boolean }) {
             { label: 'Parent told', value: 'Linh, Tue 2 Jun' },
           ].map((row, i) => (
             <div key={i} style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderTop: i > 0 ? '1px solid #f0f1f0' : 'none' }}>
-              <span style={{ fontSize: 13, color: '#6f7f7b' }}>{row.label}</span>
+              <span style={{ fontSize: 13, color: '#5c6b67' }}>{row.label}</span>
               <span style={{ fontSize: 13, fontWeight: 600, color: '#10211f' }}>{row.value}</span>
             </div>
           ))}
           <div style={{ padding: '8px 0', borderTop: '1px solid #f0f1f0' }}>
-            <div style={{ fontSize: 13, color: '#6f7f7b', marginBottom: 4 }}>3 sessions</div>
+            <div style={{ fontSize: 13, color: '#5c6b67', marginBottom: 4 }}>3 sessions</div>
           </div>
         </div>
       </div>

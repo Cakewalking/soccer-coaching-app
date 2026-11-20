@@ -82,7 +82,7 @@ export interface RoleData {
 }
 
 export const COLOR_MAP: Record<string, string> = {
-  'Warm-up':  '#cbbeb5',
+  'Warm-up':  '#e8cfcf',
   'Focus 1':  '#40826d',
   'Focus 2':  '#2f6252',
   'Focus 3':  '#9d7c80',

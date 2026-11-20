@@ -6,7 +6,7 @@ export default function D7U7Mixed(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string|null>(null)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
-    <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820 }}>
+    <div style={{ width: 1180, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820 }}>
       <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 32, height: 52 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>Clean Sheet</div>
         {['Club', 'Teams', 'Coaches', 'Players', 'Safeguarding', 'Reports'].map(t => (
@@ -33,7 +33,7 @@ export default function D7U7Mixed(_: { onBack?: () => void }) {
                 { label: 'Game leader', val: 'Booked', sub: 'No scores under U12' },
               ].map(s => (
                 <div key={s.label} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 12, padding: '12px 14px' }}>
-                  <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 4 }}>{s.label}</div>
+                  <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 4 }}>{s.label}</div>
                   <div style={{ fontSize: 18, fontWeight: 800, color: GD }}>{s.val}</div>
                   <div style={{ fontSize: 11, color: MUT, marginTop: 2 }}>{s.sub}</div>
                 </div>
@@ -84,7 +84,7 @@ export default function D7U7Mixed(_: { onBack?: () => void }) {
 
             {/* Next game */}
             <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 18px', marginBottom: 14 }}>
-              <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 6 }}>Next game · Sat 6 Jun</div>
+              <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 6 }}>Next game · Sat 6 Jun</div>
               <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>vs Ironbark United</div>
               <div style={{ fontSize: 12, color: MUT }}>8:30 · Home festival · pitch 5</div>
               <div style={{ fontSize: 12, color: MUT, marginTop: 4 }}>Clips only · no scores under U12</div>

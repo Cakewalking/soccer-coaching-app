@@ -9,7 +9,7 @@ export default function HM6nSeasonNoteOne({onBack}:{onBack?:()=>void}){
   const [preview,setPreview]=useState(false)
   function save(){setSaved(true);setTimeout(()=>setSaved(false),3000)}
   return(
-    <div style={{padding:'20px 28px 40px',background:'#f7f8f7',minHeight:'100%',boxSizing:'border-box',fontFamily:'var(--font-sans)',position:'relative'}}>
+    <div style={{padding:'20px 28px 40px',background:'#faf5ec',minHeight:'100%',boxSizing:'border-box',fontFamily:'var(--font-sans)',position:'relative'}}>
       <div style={{display:'flex',alignItems:'flex-start',justifyContent:'space-between',marginBottom:20}}>
         <div>
           <button onClick={onBack} style={{display:'flex',alignItems:'center',gap:6,background:'none',border:'none',cursor:'pointer',color:MUT,fontFamily:'inherit',fontSize:13,fontWeight:500,padding:0,marginBottom:12}}>
@@ -44,7 +44,7 @@ export default function HM6nSeasonNoteOne({onBack}:{onBack?:()=>void}){
           </div>
           <div>
             <div style={{background:'#fff',border:`1px solid ${LN}`,borderRadius:14,padding:'14px 16px'}}>
-              <div style={{fontSize:13,fontWeight:700,color:MUT,marginBottom:8,letterSpacing:'0.06em',textTransform:'uppercase' as const}}>What the family sees</div>
+              <div style={{fontSize:13,fontWeight:700,color: '#7a4b5b',marginBottom:8,letterSpacing:'0.06em',textTransform:'uppercase' as const}}>What the family sees</div>
               <div style={{fontSize:13,color:MUT,marginBottom:12}}>A short note, your name, and 3 clips you choose.</div>
               <button onClick={()=>demoToast('Pick different clips for this note.')} style={{height: 44,padding:'0 14px',borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:G,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>Change the 3 clips</button>
             </div>
@@ -52,7 +52,7 @@ export default function HM6nSeasonNoteOne({onBack}:{onBack?:()=>void}){
         </div>
       ):(
         <div style={{background:'#fff',border:`1px solid ${LN}`,borderRadius:16,padding:'28px 32px',maxWidth:580}}>
-          <div style={{fontSize:11,fontWeight:700,letterSpacing:'0.08em',textTransform:'uppercase' as const,color:MUT,marginBottom:4}}>From your U9 Sam coach</div>
+          <div style={{fontSize:11,fontWeight:700,letterSpacing:'0.08em',textTransform:'uppercase' as const,color: '#7a4b5b',marginBottom:4}}>From your U9 Sam coach</div>
           <div style={{fontSize:22,fontWeight:800,color:INK,marginBottom:20,letterSpacing:'-0.02em'}}>Poppy's 2026 season</div>
           {[{q:'What she loved',a:loved},{q:'What she got better at',a:better},{q:'Something to try at home',a:home}].map(s=>(
             <div key={s.q} style={{marginBottom:20}}>

@@ -35,7 +35,7 @@ export default function CH7PhotoCheck(_: { onBack?: () => void }) {
     { key: 'coaches', title: 'Yes. Send to coaches only', sub: 'Goes to the coaching team chat, not to families' },
   ]
   return (
-    <div style={{ width: 1180, height: 820, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden' }}>
+    <div style={{ width: 1180, height: 820, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden' }}>
       <TopBar />
       <SubBar />
       <div style={{ flexShrink: 0, padding: '14px 28px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 20 }}>
@@ -63,7 +63,7 @@ export default function CH7PhotoCheck(_: { onBack?: () => void }) {
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {opts.map(opt => (
-                <button key={opt.key} onClick={() => setChoice(opt.key as Choice)} style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 60, padding: '8px 14px', borderRadius: 12, background: choice === opt.key ? '#f7f8f7' : '#fff', border: choice === opt.key ? `2px solid ${G}` : `1px solid #c5c8c4`, cursor: 'pointer', textAlign: 'left', fontFamily: 'inherit' }}>
+                <button key={opt.key} onClick={() => setChoice(opt.key as Choice)} style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 60, padding: '8px 14px', borderRadius: 12, background: choice === opt.key ? '#faf5ec' : '#fff', border: choice === opt.key ? `2px solid ${G}` : `1px solid #c5c8c4`, cursor: 'pointer', textAlign: 'left', fontFamily: 'inherit' }}>
                   <div style={{ width: 20, height: 20, borderRadius: '50%', border: choice === opt.key ? `6px solid ${G}` : '2px solid #6f7f7b', flexShrink: 0 }} />
                   <div>
                     <div style={{ fontSize: 15, fontWeight: 700 }}>{opt.title}</div>

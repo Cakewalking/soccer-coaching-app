@@ -18,7 +18,7 @@ const RESULTS = [
 
 export default function FF1LeagueSync(_: { onBack?: () => void }) {
   return (
-    <div style={{ width: 1180, height: 820, background: '#f7f8f7', boxSizing: 'border-box' as const, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' as const }}>
+    <div style={{ width: 1180, height: 820, background: '#faf5ec', boxSizing: 'border-box' as const, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' as const }}>
       <div style={{ height: 64, background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 12, flex: 'none' }}>
         <div style={{ fontSize: 21, fontWeight: 700, color: '#fff', letterSpacing: '-0.02em' }}>Clean Sheet</div>
         <span style={{ padding: '2px 9px', borderRadius: 6, background: 'rgba(255,255,255,0.15)', fontSize: 11, fontWeight: 700, color: '#fff', letterSpacing: '0.08em' }}>CLUB</span>
@@ -34,7 +34,7 @@ export default function FF1LeagueSync(_: { onBack?: () => void }) {
       <div style={{ flex: 1, minHeight: 0, padding: '12px 28px 18px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr)', gap: 14 }}>
         <div style={{ background: '#fff', border: `1px solid #c5c8c4`, borderRadius: 16, padding: '14px 16px', display: 'flex', flexDirection: 'column' as const }}>
           <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 8 }}>This weekend from the league</div>
-          <div style={{ display: 'grid', gridTemplateColumns: '50px 1fr 70px 60px', fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, paddingBottom: 6 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '50px 1fr 70px 60px', fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', paddingBottom: 6 }}>
             {['Time','Game','Pitch',''].map(h => <span key={h}>{h}</span>)}
           </div>
           {FIXTURES.map((f, i) => (
@@ -49,7 +49,7 @@ export default function FF1LeagueSync(_: { onBack?: () => void }) {
         </div>
         <div style={{ background: '#fff', border: `1px solid #c5c8c4`, borderRadius: 16, padding: '14px 16px', display: 'flex', flexDirection: 'column' as const }}>
           <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 8 }}>Results to the league</div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 90px 110px', fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, paddingBottom: 6 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 90px 110px', fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', paddingBottom: 6 }}>
             {['Team','Score','Status'].map(h => <span key={h}>{h}</span>)}
           </div>
           {RESULTS.map((r, i) => (

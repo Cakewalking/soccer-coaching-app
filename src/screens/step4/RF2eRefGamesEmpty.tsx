@@ -2,7 +2,7 @@ const GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '
 
 export default function RF2eRefGamesEmpty(_: { onBack?: () => void }) {
   return (
-    <div style={{ width: 390, minHeight: 844, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ width: 390, minHeight: 844, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       <div style={{ background: GD, padding: '14px 18px 12px', display: 'flex', alignItems: 'center', gap: 12 }}>
         <div style={{ flexGrow: 1 }}>
           <div style={{ fontSize: 12, color: '#cfe6dc' }}>Wattle Creek FC · game leader</div>
@@ -19,7 +19,7 @@ export default function RF2eRefGamesEmpty(_: { onBack?: () => void }) {
           <div style={{ fontSize: 14, color: MUT, lineHeight: 1.6 }}>When Ruth needs a game leader or referee, you'll get a message. Say yes and it shows here.</div>
         </div>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '14px 16px' }}>
-          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 10 }}>Fills in like this</div>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 10 }}>Fills in like this</div>
           {[null, null].map((_, i) => (
             <div key={i} style={{ display: 'flex', gap: 10, padding: '10px 0', borderBottom: `1px solid ${LN}` }}>
               <div style={{ width: 44, height: 44, borderRadius: 8, background: '#e8e9e7', flexShrink: 0 }} />

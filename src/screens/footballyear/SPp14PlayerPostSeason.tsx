@@ -18,7 +18,7 @@ export default function SPp14PlayerPostSeason(){
         {tab==='home'&&(
           <>
             <div style={{background:PALE,borderRadius:14,padding:'14px',marginBottom:16}}>
-              <div style={{fontSize:12,fontWeight:700,color:MUT,marginBottom:6,letterSpacing:'0.06em',textTransform:'uppercase' as const}}>From Sam</div>
+              <div style={{fontSize:12,fontWeight:700,color: '#7a4b5b',marginBottom:6,letterSpacing:'0.06em',textTransform:'uppercase' as const}}>From Sam</div>
               <div style={{fontSize:14,color:INK,lineHeight:1.6}}>"Mia worked really hard on her first touch this season and you can see the improvement in games. Really proud of how she took feedback."</div>
             </div>
             {[

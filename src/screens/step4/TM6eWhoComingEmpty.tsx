@@ -7,7 +7,7 @@ export default function TM6eWhoComingEmpty(_: { onBack?: () => void }) {
   function t(m: string) { setToast(m); setTimeout(() => setToast(null), 3200) }
 
   return (
-    <div style={{ width: 390, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 844, position: 'relative' }}>
+    <div style={{ width: 390, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 844, position: 'relative' }}>
       <div style={{ background: GD, padding: '12px 16px 0', paddingTop: 'env(safe-area-inset-top, 12px)' }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff', marginBottom: 4 }}>Clean Sheet</div>
         <div style={{ display: 'flex', gap: 16, overflowX: 'auto' as const }}>

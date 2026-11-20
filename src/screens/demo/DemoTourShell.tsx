@@ -51,7 +51,7 @@ function StepCard({ step, globalIdx, total }: { step: FlatStep; globalIdx: numbe
   return (
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', padding: 48 }}>
       <div style={{ maxWidth: 480, background: '#fff', borderRadius: 24, border: '1px solid #c5c8c4', padding: '40px 44px', boxShadow: '0 4px 24px rgba(0,0,0,0.07)' }}>
-        <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#6f7f7b', marginBottom: 12 }}>Step {globalIdx + 1} of {total} · {step.sectionTitle}</div>
+        <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#5c6b67', marginBottom: 12 }}>Step {globalIdx + 1} of {total} · {step.sectionTitle}</div>
         <h2 style={{ fontSize: 28, fontWeight: 800, letterSpacing: '-0.03em', color: '#10211f', margin: '0 0 16px' }}>{step.label}</h2>
         <p style={{ fontSize: 15, color: '#4a5a57', lineHeight: '1.6', margin: 0 }}>{step.caption}</p>
       </div>

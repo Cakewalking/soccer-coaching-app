@@ -15,10 +15,10 @@ export default function SPy2YouthPreSeason({onBack}:{onBack?:()=>void}){
   function t(m:string){setToast(m);setTimeout(()=>setToast(null),3200)}
   const done=CHECKLIST.filter(c=>c.done).length
   return(
-    <div style={{padding:'20px 28px 40px',background:'#f7f8f7',minHeight:'100%',boxSizing:'border-box',fontFamily:'var(--font-sans)',position:'relative'}}>
+    <div style={{padding:'20px 28px 40px',background:'#faf5ec',minHeight:'100%',boxSizing:'border-box',fontFamily:'var(--font-sans)',position:'relative'}}>
       <div style={{display:'flex',alignItems:'flex-start',justifyContent:'space-between',marginBottom:20}}>
         <div>
-          <div style={{fontSize:11,fontWeight:700,letterSpacing:'0.08em',textTransform:'uppercase' as const,color:MUT,marginBottom:4}}>Head coach</div>
+          <div style={{fontSize:11,fontWeight:700,letterSpacing:'0.08em',textTransform:'uppercase' as const,color: '#7a4b5b',marginBottom:4}}>Head coach</div>
           <div style={{fontSize:24,fontWeight:800,letterSpacing:'-0.02em',color:INK,marginBottom:2}}>Pre-season, Ollie</div>
           <div style={{fontSize:14,color:MUT}}>Thu 12 March · pre-season · 4 weeks to round 1</div>
         </div>
@@ -66,14 +66,14 @@ export default function SPy2YouthPreSeason({onBack}:{onBack?:()=>void}){
         </div>
         <div>
           <div style={{background:'#fff',border:`1px solid ${LN}`,borderRadius:16,padding:'14px 16px',marginBottom:16}}>
-            <div style={{fontSize:13,fontWeight:700,letterSpacing:'0.06em',textTransform:'uppercase' as const,color:MUT,marginBottom:12}}>Coming up</div>
+            <div style={{fontSize:13,fontWeight:700,letterSpacing:'0.06em',textTransform:'uppercase' as const,color: '#7a4b5b',marginBottom:12}}>Coming up</div>
             {[
               {day:'SAT',date:'14',label:'Friendly at Harbour Rovers',sub:"3:30 · doesn't count towards season numbers"},
               {day:'SUN',date:'22',label:'Trial morning for 3 players',sub:'11:00 at Wattle Creek Reserve'},
             ].map(ev=>(
               <div key={ev.label} style={{display:'flex',gap:12,padding:'10px 0',borderTop:`1px solid ${LN}`}}>
                 <div style={{width:36,textAlign:'center' as const,flex:'none'}}>
-                  <div style={{fontSize:10,fontWeight:700,letterSpacing:'0.06em',textTransform:'uppercase' as const,color:MUT}}>{ev.day}</div>
+                  <div style={{fontSize:10,fontWeight:700,letterSpacing:'0.06em',textTransform:'uppercase' as const,color: '#7a4b5b'}}>{ev.day}</div>
                   <div style={{fontSize:22,fontWeight:800,color:GD,lineHeight:1}}>{ev.date}</div>
                 </div>
                 <div>

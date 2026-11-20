@@ -14,7 +14,7 @@ function barH(t: number) { return Math.max(4, ((MAX_T - t) / RANGE) * 160) }
 
 export default function TL3SprintResults(_: { onBack?: () => void }) {
   return (
-    <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820 }}>
+    <div style={{ width: 1180, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820 }}>
       <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 32, height: 52 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>Clean Sheet</div>
         {['Squad', 'Fitness tests', 'Injury log', 'Load'].map(t => (

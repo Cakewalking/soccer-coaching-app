@@ -16,7 +16,7 @@ const NavItem = ({ icon, label, active }: { icon: import('react').ReactNode; lab
 
 export default function RF4RefFeedback(_: { onBack?: () => void }) {
   return (
-    <div style={{ width: 390, height: 844, background: '#f7f8f7', boxSizing: 'border-box' as const, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' as const, overflow: 'hidden' }}>
+    <div style={{ width: 390, height: 844, background: '#faf5ec', boxSizing: 'border-box' as const, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' as const, overflow: 'hidden' }}>
       <div style={{ flex: 'none', padding: '12px 18px', background: G, color: '#fff', display: 'flex', alignItems: 'center', gap: 10 }}>
         <div style={{ flex: 1 }}>
           <span style={{ display: 'block', fontSize: 12, color: 'rgba(255,255,255,0.7)' }}>Wattle Creek FC · game leader, Level 4</span>

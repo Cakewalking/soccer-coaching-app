@@ -15,7 +15,7 @@ import { P_ITEMS, byTitle, familyDid, item, maySend, shown, teamAge, useClub, ty
 const SPARK = 'M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z'
 const round: React.CSSProperties = { flex: 'none', width: 44, height: 44, borderRadius: 999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 0, cursor: 'pointer', boxSizing: 'border-box' }
 const card: React.CSSProperties = { background: '#fff', border: `1px solid ${LINE}`, borderRadius: 14, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 6 }
-const phone: React.CSSProperties = { width: '100%', maxWidth: 430, minHeight: '100dvh', margin: '0 auto', background: '#f7f8f7', color: INK, fontFamily: "'DM Sans',system-ui,sans-serif", display: 'flex', flexDirection: 'column' }
+const phone: React.CSSProperties = { width: '100%', maxWidth: 430, minHeight: '100dvh', margin: '0 auto', background: '#faf5ec', color: INK, fontFamily: "'DM Sans',system-ui,sans-serif", display: 'flex', flexDirection: 'column' }
 const wideBtn = (primary: boolean): React.CSSProperties => ({ flex: 1, minHeight: 48, borderRadius: 12, border: primary ? 0 : `1px solid ${LINE}`, background: primary ? G : '#fff', color: primary ? '#fff' : INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' })
 const lower = (t: string) => t.charAt(0).toLowerCase() + t.slice(1)
 /** The four chips on a family's library, and what each asks of a clip. */
@@ -48,7 +48,7 @@ export default function EducationPhone({ start = 'ECp1-FamilyLibrary', team, chi
       <button aria-label="Back" onClick={() => go(back)} style={{ ...round, border: 0, background: 'transparent', color: '#fff', marginLeft: -10 }}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" /></svg></button>
       <span style={{ flexGrow: 1, minWidth: 0 }}><span style={{ display: 'block', fontSize: 12, color: '#cfe6dc' }}>{over}</span><strong style={{ fontSize: 20, lineHeight: '25px' }}>{title}</strong></span>
       <button aria-label="Ask Clean Sheet" onClick={() => go('ASKp2-PhoneAskOpen')} style={{ ...round, border: '1.5px solid #a9cfc0', background: 'transparent', color: '#fff' }}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={SPARK} /></svg></button>
-      <span style={{ ...round, cursor: 'default', background: '#cbbeb5', color: INK, fontSize: 14, fontWeight: 700 }}>{who}</span>
+      <span style={{ ...round, cursor: 'default', background: '#e8cfcf', color: INK, fontSize: 14, fontWeight: 700 }}>{who}</span>
     </div>)
   const tile = (key: string, frame: Frame, len: string, title: string, sub: string, o: string) => (
     <button key={key} onClick={() => show(o)} style={{ flex: 'none', width: 150, display: 'flex', flexDirection: 'column', gap: 3, padding: 0, border: 0, background: 'none', fontFamily: 'inherit', color: INK, textAlign: 'left', cursor: 'pointer' }}>
@@ -59,7 +59,7 @@ export default function EducationPhone({ start = 'ECp1-FamilyLibrary', team, chi
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}><strong style={{ fontSize: 16 }}>{name}</strong>{total >= 3 && <button onClick={() => { setAll(all === name ? null : name); demoToast(`All of ${name}.`) }} aria-label={`See all, ${name}`} style={{ minHeight: 44, border: 0, background: 'none', padding: 0, fontFamily: 'inherit', fontSize: 13, fontWeight: 700, color: G, textDecoration: 'underline', cursor: 'pointer' }}>See all</button>}</div>
       {tiles.length ? <div style={{ display: 'flex', gap: 10, overflowX: all === name ? undefined : 'auto', flexWrap: all === name ? 'wrap' : 'nowrap', paddingBottom: 4 }}>{all === name ? tiles : tiles.slice(0, 3)}</div> : <span style={{ fontSize: 13, color: MUT }}>Nothing here fits those. Take one off.</span>}
     </section>)
-  const bar = (a: [string, () => void], b: [string, () => void]) => <div style={{ flex: 'none', position: 'sticky', bottom: 0, display: 'flex', gap: 10, padding: '10px 14px 14px', background: '#f7f8f7', borderTop: `1px solid ${LINE}` }}><button onClick={a[1]} style={wideBtn(false)}>{a[0]}</button><button onClick={b[1]} style={wideBtn(true)}>{b[0]}</button></div>
+  const bar = (a: [string, () => void], b: [string, () => void]) => <div style={{ flex: 'none', position: 'sticky', bottom: 0, display: 'flex', gap: 10, padding: '10px 14px 14px', background: '#faf5ec', borderTop: `1px solid ${LINE}` }}><button onClick={a[1]} style={wideBtn(false)}>{a[0]}</button><button onClick={b[1]} style={wideBtn(true)}>{b[0]}</button></div>
 
   // ── ECp2 · one clip, why the team is doing it, and the game to play at home ──
   if (id === 'ECp2-FamilyItem') {
@@ -81,7 +81,7 @@ export default function EducationPhone({ start = 'ECp1-FamilyLibrary', team, chi
             {!player && <span style={{ fontSize: 13, lineHeight: '18px', color: MUT }}>{own || fam ? 'Nothing is counted and nobody is ranked.' : `Nothing is counted and nobody is ranked. If ${kid} wants ${t.coach} to know, there is a button.`}</span>}
           </section>
         </div>
-        {own || fam ? <div style={{ flex: 'none', position: 'sticky', bottom: 0, display: 'flex', padding: '10px 14px 14px', background: '#f7f8f7', borderTop: `1px solid ${LINE}` }}><button onClick={() => go(start === 'ECp2-FamilyItem' && fam ? fam : home)} style={wideBtn(true)}>Another one</button></div> : bar(['Another one', () => go(home)], [was ? 'Done' : 'We did it', () => { if (was) { demoToast(`${t.coach} already has the tick for this clip.`); return } setDone([...done, open]); if (!own) familyDid(k, open); demoToast(player ? `Nice. ${t.coach} sees a tick for you on this clip, and nothing else.` : `Nice. ${t.coach} sees a tick for ${kid} on this clip, and nothing else.`) }])}
+        {own || fam ? <div style={{ flex: 'none', position: 'sticky', bottom: 0, display: 'flex', padding: '10px 14px 14px', background: '#faf5ec', borderTop: `1px solid ${LINE}` }}><button onClick={() => go(start === 'ECp2-FamilyItem' && fam ? fam : home)} style={wideBtn(true)}>Another one</button></div> : bar(['Another one', () => go(home)], [was ? 'Done' : 'We did it', () => { if (was) { demoToast(`${t.coach} already has the tick for this clip.`); return } setDone([...done, open]); if (!own) familyDid(k, open); demoToast(player ? `Nice. ${t.coach} sees a tick for you on this clip, and nothing else.` : `Nice. ${t.coach} sees a tick for ${kid} on this clip, and nothing else.`) }])}
       </div>)
   }
 

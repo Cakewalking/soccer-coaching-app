@@ -185,7 +185,7 @@ function CoachPhonePreSeasonHome() {
       <SectionHead>Tonight</SectionHead>
       <Card>
         <div style={{ padding: '12px 14px 10px' }}>
-          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 4 }}>Training · Thu 12 March · 6 pm</div>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 4 }}>Training · Thu 12 March · 6 pm</div>
           <div style={{ fontSize: 16, fontWeight: 800, color: INK }}>U12 Sam · Wattle Creek</div>
         </div>
         <div style={{ borderTop: '1px solid #f0f1f0', padding: '10px 14px' }}>
@@ -206,7 +206,7 @@ function CoachPhonePostSeasonHome() {
       <SectionHead>Season done · great run, U12 Sam</SectionHead>
       <Card>
         <div style={{ padding: '12px 14px 10px' }}>
-          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 4 }}>2026 season · final result</div>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 4 }}>2026 season · final result</div>
           <div style={{ fontSize: 18, fontWeight: 800, color: INK, marginBottom: 4 }}>Wattle Creek 2 – 1 Banksia Park</div>
           <div style={{ fontSize: 14, color: MUT }}>3rd place · Division 1 · 10 wins, 3 draws, 3 losses</div>
         </div>
@@ -293,7 +293,7 @@ function CoachPhoneHomeTab({ onPlan, onAsk, onKick, onIncident }: { onPlan: () =
       <SectionHead>Tonight</SectionHead>
       <Card>
         <div style={{ padding: '14px 14px 10px' }}>
-          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 4 }}>Training · Thu 4 June · 6 pm</div>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 4 }}>Training · Thu 4 June · 6 pm</div>
           <div style={{ fontSize: 18, fontWeight: 800, letterSpacing: '-0.02em', color: INK, marginBottom: 8 }}>U12 Sam · Wattle Creek</div>
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' as const }}>
             <Pill label="14 of 16 coming" />
@@ -352,7 +352,7 @@ function CoachPhoneHomeTab({ onPlan, onAsk, onKick, onIncident }: { onPlan: () =
       <SectionHead>Saturday</SectionHead>
       <Card>
         <div style={{ padding: '14px 14px 10px' }}>
-          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 4 }}>Game · Sat 6 June · 10 am</div>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 4 }}>Game · Sat 6 June · 10 am</div>
           <div style={{ fontSize: 16, fontWeight: 800, letterSpacing: '-0.02em', color: INK, marginBottom: 4 }}>vs Banksia Park</div>
           <div style={{ fontSize: 14, color: MUT }}>Home · Wattle Creek Reserve</div>
         </div>
@@ -636,7 +636,7 @@ export default function CoachPhoneApp({ initialTab = 'home', phase = 'season' as
   if (incident) return <CNp18IncidentLog onNav={() => setIncident(false)} />
   if (kick === 'QCp1-BeforeKickOffPhone') return <QCp1BeforeKickOffPhone onNav={kickNav} />
   if (kick) return (
-    <div style={{ width: 390, minHeight: 844, margin: '0 auto', background: '#f7f8f7', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ width: 390, minHeight: 844, margin: '0 auto', background: '#faf5ec', display: 'flex', flexDirection: 'column' }}>
       <div style={{ flex: 'none', background: '#2f6252', padding: '4px 16px' }}>
         <button onClick={() => setKick('QCp1-BeforeKickOffPhone')} style={{ minHeight: 44, display: 'flex', alignItems: 'center', gap: 6, fontFamily: 'inherit', fontSize: 14, fontWeight: 700, color: '#fff', background: 'none', border: 0, padding: 0, cursor: 'pointer' }}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" /></svg>Before kick-off

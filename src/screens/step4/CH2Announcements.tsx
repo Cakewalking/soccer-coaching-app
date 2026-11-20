@@ -30,7 +30,7 @@ const chats = [
   { ini: 'JR', name: 'Jess & Rob', sub: 'You: See you at 8:30 then', time: '5:44 pm', active: false },
 ]
 const msgs = [
-  { ini: 'RO', bg: '#cbbeb5', name: 'Rob', role: 'Team manager', time: '7:12 pm', text: 'Meet time now 8:40 on Saturday. Need to allow extra time to get parked. Warm up starts 9:00.' },
+  { ini: 'RO', bg: '#e8cfcf', name: 'Rob', role: 'Team manager', time: '7:12 pm', text: 'Meet time now 8:40 on Saturday. Need to allow extra time to get parked. Warm up starts 9:00.' },
   { ini: 'SK', bg: '#c39797', name: 'Sam', role: 'Head coach', time: '7:08 pm', text: 'Kit bags and training bibs ready. Everyone bring a full drink bottle.' },
 ]
 export default function CH2Announcements(_: { onBack?: () => void }) {
@@ -39,7 +39,7 @@ export default function CH2Announcements(_: { onBack?: () => void }) {
   const [sent, setSent] = useState(false)
   const t = (m: string) => { setToast(m); setTimeout(() => setToast(null), 3200) }
   return (
-    <div style={{ width: 1180, height: 820, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden' }}>
+    <div style={{ width: 1180, height: 820, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden' }}>
       <TopBar />
       <SubBar />
       <main style={{ flexGrow: 1, minHeight: 0, padding: '14px 28px 18px', display: 'grid', gap: 14, gridTemplateColumns: '340px minmax(0,1fr)' }}>
@@ -77,7 +77,7 @@ export default function CH2Announcements(_: { onBack?: () => void }) {
                   <div style={{ width: 36, height: 36, borderRadius: '50%', background: msg.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, flexShrink: 0 }}>{msg.ini}</div>
                   <div style={{ flexGrow: 1 }}>
                     <div style={{ fontSize: 12, color: MUT, marginBottom: 3 }}>{msg.name} · {msg.role} · {msg.time}</div>
-                    <div style={{ background: '#f7f8f7', border: `1px solid ${LN}`, borderRadius: '14px 14px 14px 4px', padding: '10px 14px', fontSize: 15, lineHeight: 1.5 }}>{msg.text}</div>
+                    <div style={{ background: '#faf5ec', border: `1px solid ${LN}`, borderRadius: '14px 14px 14px 4px', padding: '10px 14px', fontSize: 15, lineHeight: 1.5 }}>{msg.text}</div>
                     <button onClick={() => t('Seen by details opened.')} style={{ marginTop: 4, fontSize: 12, color: MUT, background: 'none', border: 0, cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>
                       {i === 0 ? 'Seen by 14 · 3 not seen' : 'Seen by 17 · everyone'}
                     </button>

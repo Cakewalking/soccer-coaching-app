@@ -9,18 +9,18 @@ export default function TM14ManagerTeamChat(_: { onBack?: () => void }) {
   const [moved, setMoved] = useState(false)
   const t = (m: string) => { setToast(m); setTimeout(() => setToast(null), 3200) }
   const msgs = [
-    { ini: 'LT', bg: '#cbbeb5', name: 'Linh', role: "Mia's mum", time: '7:48 pm', text: 'Mia found her other boot! And she got to 14 juggles.', media: true },
+    { ini: 'LT', bg: '#e8cfcf', name: 'Linh', role: "Mia's mum", time: '7:48 pm', text: 'Mia found her other boot! And she got to 14 juggles.', media: true },
     { ini: 'SK', bg: '#c39797', name: 'Sam', role: 'coach', time: '7:52 pm', text: '14 is a new best. Tell her I said so.', media: false },
-    { ini: 'DC', bg: '#cbbeb5', name: 'Dan', role: "Ruby's dad", time: '8:02 pm', text: 'Why does Ruby only ever get one half? Some kids never come off.', media: false, flag: true },
+    { ini: 'DC', bg: '#e8cfcf', name: 'Dan', role: "Ruby's dad", time: '8:02 pm', text: 'Why does Ruby only ever get one half? Some kids never come off.', media: false, flag: true },
   ]
   return (
-    <div style={{ width: 390, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 844, display: 'flex', flexDirection: 'column', position: 'relative' }}>
+    <div style={{ width: 390, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 844, display: 'flex', flexDirection: 'column', position: 'relative' }}>
       <div style={{ background: GD, padding: '14px 18px 12px', display: 'flex', alignItems: 'center', gap: 12 }}>
         <div style={{ flexGrow: 1 }}>
           <div style={{ fontSize: 12, color: '#cfe6dc' }}>17 families, Sam and Jess</div>
           <div style={{ fontSize: 21, fontWeight: 700, color: '#fff' }}>U12 Sam team chat</div>
         </div>
-        <div style={{ width: 40, height: 40, borderRadius: '50%', background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>RO</div>
+        <div style={{ width: 40, height: 40, borderRadius: '50%', background: '#e8cfcf', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>RO</div>
       </div>
       <div style={{ flexGrow: 1, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 8, overflowY: 'auto' }}>
         <button onClick={() => openThing('chat settings', 'phone')} style={{ display: 'flex', alignItems: 'center', gap: 8, minHeight: 44, padding: '0 12px', borderRadius: 12, background: PALE, border: 0, cursor: 'pointer', textAlign: 'left' }}>
@@ -55,7 +55,7 @@ export default function TM14ManagerTeamChat(_: { onBack?: () => void }) {
                       <div style={{ fontSize: 15 }}>{msg.text}</div>
                     </div>
                   ) : (
-                    <div style={{ maxWidth: 258, background: moved && msg.flag ? '#f7f8f7' : '#fff', border: `1px solid ${LN}`, borderRadius: '14px 14px 14px 4px', padding: '8px 11px', fontSize: 15, lineHeight: 1.4, color: moved && msg.flag ? MUT : undefined, fontStyle: moved && msg.flag ? 'italic' : 'normal' }}>{moved && msg.flag ? 'Moved to a private thread with Dan.' : msg.text}</div>
+                    <div style={{ maxWidth: 258, background: moved && msg.flag ? '#faf5ec' : '#fff', border: `1px solid ${LN}`, borderRadius: '14px 14px 14px 4px', padding: '8px 11px', fontSize: 15, lineHeight: 1.4, color: moved && msg.flag ? MUT : undefined, fontStyle: moved && msg.flag ? 'italic' : 'normal' }}>{moved && msg.flag ? 'Moved to a private thread with Dan.' : msg.text}</div>
                   )}
                 </div>
               </div>

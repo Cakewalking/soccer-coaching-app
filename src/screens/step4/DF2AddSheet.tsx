@@ -14,7 +14,7 @@ export default function DF2AddSheet(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string | null>(null)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
-    <div style={{ width: 1180, height: 820, boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden' }}>
+    <div style={{ width: 1180, height: 820, boxSizing: 'border-box', background: '#faf5ec', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden' }}>
       <div style={{ flex: 'none', background: G, height: 64, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 4 }}>
         <div style={{ fontSize: 20, fontWeight: 700, color: '#fff', marginRight: 16, letterSpacing: '-0.02em' }}>Clean Sheet</div>
         {NAV.map(n => <div key={n} style={{ height: 48, padding: '0 14px', borderRadius: 12, display: 'flex', alignItems: 'center', fontSize: 15, fontWeight: 600, color: n === 'Training' ? '#fff' : 'rgba(255,255,255,0.75)', background: n === 'Training' ? G2 : 'transparent', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{n}</div>)}
@@ -49,7 +49,7 @@ export default function DF2AddSheet(_: { onBack?: () => void }) {
             ))}
           </div>
         </div>
-        <div style={{ padding: '14px 20px', background: '#f7f8f7', borderTop: `1px solid ${LN}`, marginTop: 'auto' }}>
+        <div style={{ padding: '14px 20px', background: '#faf5ec', borderTop: `1px solid ${LN}`, marginTop: 'auto' }}>
           <div style={{ fontSize: 12, fontWeight: 700, color: INK, marginBottom: 6 }}>Tonight's plan with this drill</div>
           {['4 v 4 + 3 keep-ball', 'Win it back in 6 seconds', 'Small game, tight shape', 'Cool-down and stretch'].map((d, i) => (
             <div key={i} style={{ fontSize: 12, color: MUT, padding: '3px 0' }}>{d}</div>

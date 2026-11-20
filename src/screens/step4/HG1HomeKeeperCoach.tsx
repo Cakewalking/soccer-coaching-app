@@ -16,7 +16,7 @@ const CLIPS = [
 
 export default function HG1HomeKeeperCoach(_: { onBack?: () => void }) {
   return (
-    <div style={{ width: 1180, height: 820, background: '#f7f8f7', boxSizing: 'border-box' as const, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' as const }}>
+    <div style={{ width: 1180, height: 820, background: '#faf5ec', boxSizing: 'border-box' as const, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' as const }}>
       <div style={{ height: 64, background: G, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 16, flex: 'none' }}>
         <div style={{ fontSize: 21, fontWeight: 700, color: '#fff', letterSpacing: '-0.02em' }}>Clean Sheet</div>
         <div style={{ flex: 1 }}><span style={{ fontSize: 12, color: 'rgba(255,255,255,0.65)', display: 'block' }}>Wattle Creek FC · Goalkeeper coach</span><span style={{ fontSize: 16, fontWeight: 700, color: '#fff' }}>Hi Nick</span></div>
@@ -30,7 +30,7 @@ export default function HG1HomeKeeperCoach(_: { onBack?: () => void }) {
       <div style={{ flex: 1, minHeight: 0, padding: '12px 28px 18px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 300px', gap: 14 }}>
         <div style={{ background: '#fff', border: `1px solid #c5c8c4`, borderRadius: 16, padding: '14px 16px', display: 'flex', flexDirection: 'column' as const }}>
           <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 8 }}>Attendance — this block (4 sessions)</div>
-          <div style={{ display: 'grid', gridTemplateColumns: '44px 1fr 120px', fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, paddingBottom: 6 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '44px 1fr 120px', fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', paddingBottom: 6 }}>
             {['','Keeper','Sessions'].map(h => <span key={h}>{h}</span>)}
           </div>
           {KEEPERS.map((k, i) => (
@@ -49,7 +49,7 @@ export default function HG1HomeKeeperCoach(_: { onBack?: () => void }) {
           ))}
         </div>
         <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 10 }}>
-          <div style={{ background: '#fff', border: `1px solid #c5c8c4`, borderRadius: 16, padding: '14px 16px', display: 'flex', flexDirection: 'column' as const, gap: 8 }}>
+          <div style={{ background: '#fff', border: `1px solid #c5c8c4`, borderTop: '5px solid #c39797', borderRadius: 16, padding: '14px 16px', display: 'flex', flexDirection: 'column' as const, gap: 8 }}>
             <div style={{ fontSize: 15, fontWeight: 700 }}>Needs you</div>
             <div style={{ fontSize: 14, color: MUT, borderTop: `1px solid ${LN}`, paddingTop: 6 }}>Ava Lim and Jack Byrne have only made 1 session. Check in before Tuesday.</div>
             <div style={{ fontSize: 14, color: MUT, borderTop: `1px solid ${LN}`, paddingTop: 6 }}>1 message in inbox from Sam K — reply before training.</div>

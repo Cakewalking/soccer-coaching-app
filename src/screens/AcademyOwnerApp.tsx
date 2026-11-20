@@ -124,7 +124,7 @@ function Overview({ empty, onBroadcast, onTrials, onFees, onReports, onFootballY
 
       <Card>
         <div style={{ padding: '10px 16px', borderBottom: `1px solid ${LN}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <span style={{ fontSize: 13, fontWeight: 700, color: MUT, letterSpacing: '0.06em', textTransform: 'uppercase' as const }}>Needs you · 3 things</span>
+          <span style={{ fontSize: 13, fontWeight: 700, color: '#7a4b5b', letterSpacing: '0.06em', textTransform: 'uppercase' as const }}>Needs you · 3 things</span>
           <span style={{ fontSize: 12, color: MUT }}>Clean Sheet chases fees and trial families for you. You only see what it couldn't settle.</span>
         </div>
         {needs.map(n => (
@@ -319,7 +319,7 @@ function SafetyView({ empty }: { empty: boolean }) {
 
       <Card>
         <div style={{ padding: '10px 16px', borderBottom: `1px solid ${LN}`, display: 'flex', justifyContent: 'space-between' }}>
-          <span style={{ fontSize: 13, fontWeight: 700, color: MUT, letterSpacing: '0.06em', textTransform: 'uppercase' as const }}>What's in place · 4 of 6</span>
+          <span style={{ fontSize: 13, fontWeight: 700, color: '#7a4b5b', letterSpacing: '0.06em', textTransform: 'uppercase' as const }}>What's in place · 4 of 6</span>
         </div>
         {checks.map((c, i) => (
           <div key={c.label} style={{ display: 'flex', alignItems: 'flex-start', gap: 12, padding: '14px 16px', borderBottom: i < checks.length - 1 ? `1px solid ${LN}` : 'none', background: !c.ok ? '#fffaf8' : '#fff' }}>

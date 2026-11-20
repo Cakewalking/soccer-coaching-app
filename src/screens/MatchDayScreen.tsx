@@ -47,7 +47,7 @@ function MatchDayEmpty() {
 
           <div style={{ background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '28px 24px', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 14, flexGrow: 1 }}>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 22px)', gap: 4 }}>
-              {['#2f6252','#40826d','#cbbeb5','#c39797'].map((c, i) => (
+              {['#2f6252','#40826d','#e8cfcf','#c39797'].map((c, i) => (
                 <div key={i} style={{ width: 22, height: 22, borderRadius: 5, background: c }} />
               ))}
             </div>
@@ -62,12 +62,12 @@ function MatchDayEmpty() {
           {/* Tab strip (grayed) */}
           <div style={{ display: 'flex', gap: 2, padding: '0 2px' }}>
             {['Start', 'Went well', 'To fix', 'To fix', 'Finish'].map((t, i) => (
-              <div key={i} style={{ flex: 1, height: 36, borderRadius: 8, border: '1px solid #e9eae8', background: '#f7f8f7', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 600, color: '#c5c8c4' }}>{t}</div>
+              <div key={i} style={{ flex: 1, height: 36, borderRadius: 8, border: '1px solid #e9eae8', background: '#faf5ec', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 600, color: '#c5c8c4' }}>{t}</div>
             ))}
           </div>
 
           {/* Player check is off */}
-          <div style={{ background: '#f7f8f7', border: '1px solid #e9eae8', borderRadius: 12, padding: '12px 16px', display: 'flex', alignItems: 'center', gap: 12 }}>
+          <div style={{ background: '#faf5ec', border: '1px solid #e9eae8', borderRadius: 12, padding: '12px 16px', display: 'flex', alignItems: 'center', gap: 12 }}>
             <span style={{ flex: 'none', width: 32, height: 32, borderRadius: '999px', background: '#c39797', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
             </span>
@@ -163,7 +163,7 @@ export default function MatchDayScreen({ onNav, empty, opponent = 'Harbour Rover
       <div style={{ flex: 'none', background: '#ffffff', borderBottom: '1px solid #e9eae8', padding: '14px 32px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
           <div style={{ flexGrow: 1, minWidth: 0 }}>
-            <div style={{ fontSize: 12, fontWeight: 600, color: '#6f7f7b', letterSpacing: '0.02em', textTransform: 'uppercase', marginBottom: 2 }}>
+            <div style={{ fontSize: 12, fontWeight: 600, color: '#5c6b67', letterSpacing: '0.02em', textTransform: 'uppercase', marginBottom: 2 }}>
               {when}
             </div>
             <h1 style={{ margin: 0, fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em', color: '#10211f', lineHeight: '28px' }}>
@@ -216,7 +216,7 @@ export default function MatchDayScreen({ onNav, empty, opponent = 'Harbour Rover
           {/* Team talk header */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
             <span style={{ fontSize: 17, fontWeight: 700, color: '#10211f' }}>Team talk</span>
-            <span style={{ fontSize: 14, color: '#6f7f7b' }}>7 slides · 4 min · from the last 5 games</span>
+            <span style={{ fontSize: 14, color: '#5c6b67' }}>7 slides · 4 min · from the last 5 games</span>
             <div style={{ flexGrow: 1 }} />
             <button aria-pressed={editing} onClick={() => { setEditing(e => !e); showToast(editing ? 'Saved. The talk plays with your words.' : 'Edit mode on. Tap a slide to change it.') }} style={{ border: 0, background: 'transparent', color: '#2f6252', fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{editing ? 'Done editing' : 'Edit talk'}</button>
           </div>
@@ -281,9 +281,9 @@ export default function MatchDayScreen({ onNav, empty, opponent = 'Harbour Rover
           {/* Player check */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12, flexWrap: 'wrap' }}>
             <span style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>Player check</span>
-            <span style={{ fontSize: 14, color: '#6f7f7b' }}>14 of 16 done this morning · squad average 3.6</span>
+            <span style={{ fontSize: 14, color: '#5c6b67' }}>14 of 16 done this morning · squad average 3.6</span>
             <div style={{ flexGrow: 1 }} />
-            <span style={{ fontSize: 14, color: '#6f7f7b' }}>Not filled in: <strong style={{ color: '#10211f' }}>Zoe and Sam</strong></span>
+            <span style={{ fontSize: 14, color: '#5c6b67' }}>Not filled in: <strong style={{ color: '#10211f' }}>Zoe and Sam</strong></span>
             <button aria-pressed={reminded} onClick={() => { markDone('matchday:remind'); showToast(reminded ? 'Zoe and Sam were already reminded this morning. One reminder only.' : 'Reminder sent to Zoe and Sam.') }} style={{
               height: 32, padding: '0 14px', borderRadius: '999px',
               border: '1px solid #c5c8c4', background: '#ffffff',
@@ -300,7 +300,7 @@ export default function MatchDayScreen({ onNav, empty, opponent = 'Harbour Rover
                 </div>
                 <div style={{ flex: 'none', textAlign: 'right' }}>
                   <div style={{ fontSize: 22, fontWeight: 700, color: '#10211f', lineHeight: '26px' }}>{p.rating}</div>
-                  <div style={{ fontSize: 11, color: '#6f7f7b' }}>out of 5</div>
+                  <div style={{ fontSize: 11, color: '#5c6b67' }}>out of 5</div>
                 </div>
               </div>
             ))}
@@ -312,7 +312,7 @@ export default function MatchDayScreen({ onNav, empty, opponent = 'Harbour Rover
 
           {/* Say this */}
           <div style={{ marginBottom: 24 }}>
-            <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#6f7f7b', marginBottom: 2 }}>
+            <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#5c6b67', marginBottom: 2 }}>
               Say this · {slide + 1} of {SLIDES.length} · about 20 s
             </div>
             <p style={{ margin: '12px 0 0', fontSize: 16, lineHeight: '23px', color: '#10211f', fontWeight: 500 }}>
@@ -349,7 +349,7 @@ export default function MatchDayScreen({ onNav, empty, opponent = 'Harbour Rover
             </button>
           ))}
 
-          <p style={{ margin: '16px 0 0', fontSize: 13, lineHeight: '18px', color: '#6f7f7b' }}>
+          <p style={{ margin: '16px 0 0', fontSize: 13, lineHeight: '18px', color: '#5c6b67' }}>
             Tap a row to jump to its slide. Each fix was practised on Thursday.
           </p>
         </div>

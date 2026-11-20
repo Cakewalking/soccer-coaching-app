@@ -114,7 +114,7 @@ export function LearnForCoaches({ team, switchEl }: { team: LearnTeam; switchEl:
   const play = (l: Lesson) => { setSeen(s => s.includes(l.title) ? s : [...s, l.title]); say(`“${l.title}” plays, with three things to notice.`) }
   const mark = (ls: Lesson[]) => ls.map(l => ({ ...l, watched: l.watched || seen.includes(l.title) }))
   return (
-    <div data-screen="EDU5-CoachCorner" style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, minHeight: 0, overflowY: 'auto', background: '#f7f8f7', fontFamily: 'var(--font-sans)' }}>
+    <div data-screen="EDU5-CoachCorner" style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, minHeight: 0, overflowY: 'auto', background: '#faf5ec', fontFamily: 'var(--font-sans)' }}>
       <OpeningPanel
         heading="Learn · for coaches · your path, set by Rachel"
         sentence={`You are ${c.done} lessons into “${c.path}”. Next: ${c.next}.`}
@@ -207,7 +207,7 @@ export function LearnForPlayersSimple({ team, switchEl }: { team: 'miniroos' | '
   const c = PLAYERS_SIMPLE[team]
   const skills = ['All', ...Array.from(new Set(c.lessons.map(l => l.tag)))]
   return (
-    <div data-screen="EDU1-Learn" style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, minHeight: 0, overflowY: 'auto', background: '#f7f8f7', fontFamily: 'var(--font-sans)' }}>
+    <div data-screen="EDU1-Learn" style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, minHeight: 0, overflowY: 'auto', background: '#faf5ec', fontFamily: 'var(--font-sans)' }}>
       <OpeningPanel
         heading={c.heading}
         sentence={c.sentence}

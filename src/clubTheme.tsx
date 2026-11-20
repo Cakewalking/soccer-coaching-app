@@ -77,7 +77,7 @@ ${B} [data-club-pill],${B} [data-club-pill] *,${B} [data-club-keep],${B} [data-c
 [data-club] [data-club-band]{background:var(--club-main)!important;border-bottom:6px solid var(--club-line)!important}
 [data-club] [data-club-band],[data-club] [data-club-band] *{color:var(--club-on-main)!important}
 [data-club] [data-club-home]{fill:var(--club-main)!important;stroke:var(--club-line)!important}
-[data-club] [data-club-away]{fill:#f7f8f7!important;stroke:${INK}!important}
+[data-club] [data-club-away]{fill:#faf5ec!important;stroke:${INK}!important}
 [data-club] [data-club-badge],[data-club] [data-club-kit]{background:var(--club-main)!important;color:var(--club-on-main)!important;outline:2px solid var(--club-line);outline-offset:-1px}
 [data-club] [data-club-tile="big"]{background:var(--club-tile-big)!important}
 [data-club] [data-club-tile="next"]{background:var(--club-tile-next)!important}

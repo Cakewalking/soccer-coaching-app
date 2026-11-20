@@ -55,7 +55,7 @@ function StatusBadge({ ok, label }: { ok: boolean; label: string }) {
 }
 
 function SectionHead({ label }: { label: string }) {
-  return <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 8 }}>{label}</div>
+  return <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 8 }}>{label}</div>
 }
 
 function InfoRow({ label, value, action }: { label: string; value?: string; action?: string }) {
@@ -297,7 +297,7 @@ function DrillView({ onStart }: { onStart: () => void }) {
 
       <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, overflow: 'hidden' }}>
         <div style={{ display: 'flex', alignItems: 'center', padding: '12px 16px', borderBottom: `1px solid ${LN}` }}>
-          <div style={{ fontSize: 13, fontWeight: 700, color: MUT, flex: 1, letterSpacing: '0.06em', textTransform: 'uppercase' as const }}>The set-up</div>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#7a4b5b', flex: 1, letterSpacing: '0.06em', textTransform: 'uppercase' as const }}>The set-up</div>
           <span style={{ fontSize: 12, color: G2, fontWeight: 600 }}>Same as last time</span>
         </div>
         <InfoRow label="Players" value="12 · 6 against 6" action="Change"/>
@@ -464,8 +464,8 @@ function ResultsView({ firstRun, onHistory, onHowWeMeasure }:
         <button onClick={onHistory} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Add to next week</button>
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
-        {metrics.map(m => (
-          <div key={m.label} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 12, padding: '14px 16px' }}>
+        {metrics.map((m, kpiN)=> (
+          <div key={m.label} style={{ background: ['#f3ecdf', '#f4e6e6', '#eef5f2', '#f3ecdf'][kpiN % 4], border: `1px solid ${LN}`, borderRadius: 12, padding: '14px 16px' }}>
             <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', color: MUT, marginBottom: 4 }}>{m.label}</div>
             <div style={{ fontSize: 28, fontWeight: 800, color: INK, letterSpacing: '-0.03em' }}>{m.value}</div>
           </div>
@@ -490,8 +490,8 @@ function ResultsView({ firstRun, onHistory, onHowWeMeasure }:
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
-        {metrics.map(m => (
-          <div key={m.label} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 12, padding: '14px 16px' }}>
+        {metrics.map((m, kpiN)=> (
+          <div key={m.label} style={{ background: ['#f3ecdf', '#f4e6e6', '#eef5f2', '#f3ecdf'][kpiN % 4], border: `1px solid ${LN}`, borderRadius: 12, padding: '14px 16px' }}>
             <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', color: MUT, marginBottom: 4 }}>{m.label}</div>
             <div style={{ fontSize: 28, fontWeight: 800, color: INK, letterSpacing: '-0.03em' }}>{m.value}</div>
             {m.prev && (

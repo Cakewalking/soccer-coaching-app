@@ -50,7 +50,7 @@ export default function DSet4ClubRules() {
           <div style={{ fontSize: 13, color: MUT, marginBottom: 24 }}>Set once here, followed by every team</div>
 
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '4px 0', marginBottom: 20 }}>
-            <div style={{ padding: '12px 20px 8px', fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT }}>Rules the club sets · 6 rules · 2 need you</div>
+            <div style={{ padding: '12px 20px 8px', fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b' }}>Rules the club sets · 6 rules · 2 need you</div>
             {RULES.map((r) => (
               <div key={r.n} style={{ borderTop: `1px solid ${LN}` }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '14px 20px' }}>
@@ -74,10 +74,10 @@ export default function DSet4ClubRules() {
           <div style={{ fontSize: 12, color: MUT, marginBottom: 20 }}>A coach can't switch a club rule off. Changing one emails every coach, and families where it affects them.</div>
 
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '4px 0' }}>
-            <div style={{ padding: '12px 20px 8px', fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT }}>Set by the league, not you</div>
+            <div style={{ padding: '12px 20px 8px', fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b' }}>Set by the league, not you</div>
             {LEAGUE_RULES.map((r, i) => (
               <div key={r.n} style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '14px 20px', borderTop: i === 0 ? `1px solid ${LN}` : `1px solid ${LN}` }}>
-                <div style={{ width: 28, height: 28, borderRadius: '50%', background: '#f0f0f0', border: `2px solid #ccc`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, color: '#6f7f7b', flexShrink: 0 }}>{r.n}</div>
+                <div style={{ width: 28, height: 28, borderRadius: '50%', background: '#f0f0f0', border: `2px solid #ccc`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, color: '#5c6b67', flexShrink: 0 }}>{r.n}</div>
                 <div style={{ flexGrow: 1 }}>
                   <div style={{ fontSize: 14, fontWeight: 600, color: INK }}>{r.title}</div>
                   <div style={{ fontSize: 12, color: MUT }}>{r.desc}</div>

@@ -13,7 +13,7 @@ function QuestionCard({ q, onEdit }: { q: StyleQuestion; onEdit: () => void }) {
   return (
     <div style={{ background: '#ffffff', border: '1px solid #e9eae8', borderRadius: 16, padding: '20px 20px 16px', display: 'flex', flexDirection: 'column', gap: 14 }}>
       <div>
-        <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#6f7f7b', marginBottom: 6 }}>{q.context}</div>
+        <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#5c6b67', marginBottom: 6 }}>{q.context}</div>
         <div style={{ fontSize: 17, fontWeight: 700, color: '#10211f', lineHeight: '22px' }}>{q.question}</div>
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -87,7 +87,7 @@ export default function OurStyleScreen({ setByLine = 'Set 12 March by Sam.', sen
         <div style={{ background: '#ffffff', border: '1px solid #e9eae8', borderRadius: 16, padding: '20px 20px 16px' }}>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginBottom: 6 }}>
             <h2 style={{ margin: 0, fontSize: 17, fontWeight: 700, color: '#10211f' }}>Values</h2>
-            <span style={{ fontSize: 13, color: '#6f7f7b' }}>· pick any</span>
+            <span style={{ fontSize: 13, color: '#5c6b67' }}>· pick any</span>
           </div>
           <p style={{ margin: '0 0 14px', fontSize: 14, color: '#4a5a57' }}>{seniors ? 'The four answers above are yours. So are these.' : 'The four answers above are yours. So are these: equal minutes is your choice, not a rule.'}</p>
           <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
@@ -125,7 +125,7 @@ export default function OurStyleScreen({ setByLine = 'Set 12 March by Sam.', sen
               <span style={{ flex: 'none', width: 8, height: 8, borderRadius: '999px', background: '#40826d', marginTop: 5 }} />
               <span style={{ flexGrow: 1, minWidth: 0 }}>
                 <span style={{ display: 'block', fontSize: 14, fontWeight: 600, color: '#10211f', lineHeight: '18px' }}>{m.label}</span>
-                <span style={{ fontSize: 12, color: '#6f7f7b', display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>{m.source}<MarkDot kind={styleMark(m.label)} /></span>
+                <span style={{ fontSize: 12, color: '#5c6b67', display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>{m.source}<MarkDot kind={styleMark(m.label)} /></span>
               </span>
               <span style={{ flex: 'none', fontSize: 13, fontWeight: 700, color: '#2f6252', whiteSpace: 'nowrap' }}>{m.value}</span>
             </div>

@@ -8,7 +8,7 @@ export default function T1gHomeGameDay(_: { onBack?: () => void }) {
   void st   // kept for lines this screen may still need to say
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
-    <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820 }}>
+    <div style={{ width: 1180, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820 }}>
       <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 32, height: 52 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>Clean Sheet</div>
         <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.8)' }}>U12 Sam · Wattle Creek</div>
@@ -21,7 +21,7 @@ export default function T1gHomeGameDay(_: { onBack?: () => void }) {
       <div style={{ display: 'flex', flex: 1 }}>
         <div style={{ flex: 1, padding: '24px 32px 32px' }}>
           <div style={{ marginBottom: 20 }}>
-            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 8 }}>Needs you</div>
+            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 8 }}>Needs you</div>
             {[
               { from: 'Team talk', time: '8:30 am', text: 'Team talk is ready · 3 focus points', urgent: false },
               { from: 'Wellness check-ins', time: '7:50 am', text: '11 of 16 checked in · Ella rated 2.5', urgent: true },
@@ -57,7 +57,7 @@ export default function T1gHomeGameDay(_: { onBack?: () => void }) {
           </div>
 
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 18px' }}>
-            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 6 }}>Today · Saturday 6 Jun · away · 9:30 am</div>
+            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 6 }}>Today · Saturday 6 Jun · away · 9:30 am</div>
             <div style={{ fontSize: 16, fontWeight: 800, color: INK, marginBottom: 4 }}>Harbour Rovers · League</div>
             <div style={{ fontSize: 13, color: MUT, marginBottom: 10 }}>Harbour Reserve · kick-off 9:30 · 3 focus points from training</div>
             {['Press high, win it back in 5 seconds', 'Keep the lines within 20 m', 'Manage Noah and Zoe: 60 min max'].map(d => (
@@ -76,13 +76,13 @@ export default function T1gHomeGameDay(_: { onBack?: () => void }) {
 
         <div style={{ width: 300, padding: '24px 24px 32px 0' }}>
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 16px', marginBottom: 14 }}>
-            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 6 }}>Harbour Rovers</div>
+            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 6 }}>Harbour Rovers</div>
             <div style={{ fontSize: 15, fontWeight: 800, color: INK }}>3 wins · 2 draws · 2 losses</div>
             <div style={{ fontSize: 13, color: MUT, marginBottom: 6 }}>Play wide · fast transitions</div>
             <div style={{ fontSize: 12, color: G }}>→ Full scout report</div>
           </div>
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 16px', marginBottom: 14 }}>
-            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 8 }}>Today's schedule</div>
+            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 8 }}>Today's schedule</div>
             {[
               { d: '8:30', t: 'Leave Wattle Creek' },
               { d: '9:00', t: 'Arrive · warm-up', bold: true },

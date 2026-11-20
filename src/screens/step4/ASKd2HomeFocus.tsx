@@ -18,7 +18,7 @@ export default function ASKd2HomeFocus({ onNav }: { onNav?: (s: string) => void 
   function tool(name: string) { const to = toolTarget(name); if (to && onNav) { onNav(to); return } setLastTool(name) }
 
   return (
-    <div data-lasttool={lastTool} style={{ width: 1180, background: '#f7f8f7', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }}>
+    <div data-lasttool={lastTool} style={{ width: 1180, background: '#faf5ec', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }}>
       {/* Top nav */}
       <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 4, height: 52, flexShrink: 0 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff', marginRight: 20 }}>Clean Sheet</div>
@@ -42,14 +42,14 @@ export default function ASKd2HomeFocus({ onNav }: { onNav?: (s: string) => void 
       {/* Ask line — focused */}
       <div style={{ background: '#fff', borderBottom: `1px solid ${LN}`, padding: '12px 32px 16px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
-          <button onClick={() => onNav?.('ASKd2-HomeFocus')} style={{ flex: 1, height: 44, background: '#f7f8f7', border: `1.5px solid ${G}`, borderRadius: 10, textAlign: 'left', padding: '0 14px', fontSize: 13, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>
+          <button onClick={() => onNav?.('ASKd2-HomeFocus')} style={{ flex: 1, height: 44, background: '#faf5ec', border: `1.5px solid ${G}`, borderRadius: 10, textAlign: 'left', padding: '0 14px', fontSize: 13, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>
             Type a question…
           </button>
           <div style={{ fontSize: 11, color: MUT }}>Uses only what you can see as head coach. Wellness answers and welfare concerns are never used.</div>
         </div>
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
           {SUGGESTIONS.map(q => (
-            <button key={q} onClick={() => onNav?.('ASKd5-PanelAnswer')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1.5px solid ${LN}`, background: '#f7f8f7', fontSize: 12, color: INK, cursor: 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap' }}>{q}</button>
+            <button key={q} onClick={() => onNav?.('ASKd5-PanelAnswer')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1.5px solid ${LN}`, background: '#faf5ec', fontSize: 12, color: INK, cursor: 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap' }}>{q}</button>
           ))}
         </div>
       </div>

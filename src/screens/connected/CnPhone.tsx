@@ -25,12 +25,12 @@ export function Phone({ id, over, title, ini, home, onNav, intro, children, foot
 }) {
   const btn = (primary: boolean) => ({ flex: primary ? 1.2 : 1, minHeight: 48, padding: '0 10px', borderRadius: 10, border: `1px solid ${primary ? G : LINE}`, background: primary ? G : '#fff', color: primary ? '#fff' : INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' } as const)
   return (
-    <div data-screen={id} style={{ width: 390, minHeight: 844, margin: '0 auto', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', background: '#f7f8f7', color: INK, fontFamily: "'DM Sans',system-ui,sans-serif" }}>
+    <div data-screen={id} style={{ width: 390, minHeight: 844, margin: '0 auto', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', background: '#faf5ec', color: INK, fontFamily: "'DM Sans',system-ui,sans-serif" }}>
       <header style={{ flex: 'none', background: G, color: '#fff', padding: '10px 12px 14px', display: 'flex', alignItems: 'center', gap: 4 }}>
         <button onClick={() => onNav(home)} aria-label="Back" style={{ flex: 'none', width: 44, height: 44, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'none', border: 0, color: '#fff', cursor: 'pointer' }}><Ico d="M15 18l-6-6 6-6" size={20} sw={2.4} /></button>
         <span style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}><span style={{ fontSize: 12, color: '#dcefe8' }}>{over}</span><h1 style={{ margin: 0, fontSize: 21, lineHeight: '26px', letterSpacing: '-0.02em' }}>{title}</h1></span>
         <button onClick={() => onNav('ASKp2-PhoneAskOpen')} aria-label="Ask Clean Sheet" style={{ flex: 'none', width: 44, height: 44, borderRadius: 999, border: '1.5px solid #a9cfc0', background: 'none', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}><Ico d={SPARK} size={20} /></button>
-        <span style={{ flex: 'none', width: 40, height: 40, borderRadius: 999, background: '#cbbeb5', color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, marginLeft: 6 }}>{ini}</span>
+        <span style={{ flex: 'none', width: 40, height: 40, borderRadius: 999, background: '#e8cfcf', color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, marginLeft: 6 }}>{ini}</span>
       </header>
       <div style={{ flexGrow: 1, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 12 }}>
 {intro && <section style={{ borderRadius: 16, background: DARK, color: '#fff', padding: '14px 16px 16px', display: 'flex', flexDirection: 'column', gap: 6 }}>

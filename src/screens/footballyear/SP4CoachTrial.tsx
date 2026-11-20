@@ -14,10 +14,10 @@ export default function SP4CoachTrial({ onBack }: { onBack?: () => void }) {
   function t(m: string) { setToast(m); setTimeout(() => setToast(null), 3200) }
 
   return (
-    <div style={{ padding: '20px 28px 40px', background: '#f7f8f7', minHeight: '100%', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', position: 'relative' }}>
+    <div style={{ padding: '20px 28px 40px', background: '#faf5ec', minHeight: '100%', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', position: 'relative' }}>
       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 20 }}>
         <div>
-          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 4 }}>Head coach</div>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 4 }}>Head coach</div>
           <div style={{ fontSize: 24, fontWeight: 800, letterSpacing: '-0.02em', color: INK, marginBottom: 2 }}>Trial morning</div>
           <div style={{ fontSize: 14, color: MUT }}>Sun 22 March · 4 players join your normal session</div>
         </div>
@@ -29,13 +29,13 @@ export default function SP4CoachTrial({ onBack }: { onBack?: () => void }) {
 
       {/* Players table */}
       <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, overflow: 'hidden', marginBottom: 16 }}>
-        <div style={{ padding: '10px 16px', background: '#f7f8f7', borderBottom: `1px solid ${LN}` }}>
+        <div style={{ padding: '10px 16px', background: '#faf5ec', borderBottom: `1px solid ${LN}` }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: MUT }}>Three taps per player · 4 players</div>
         </div>
         {/* Column headers */}
         <div style={{ display: 'grid', gridTemplateColumns: '200px 1fr 1fr 1fr 120px', padding: '8px 16px', borderBottom: `1px solid ${LN}`, background: '#fafafa' }}>
           {['Player','On the ball','Game sense','Effort','Your call'].map(h => (
-            <div key={h} style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT }}>{h}</div>
+            <div key={h} style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b' }}>{h}</div>
           ))}
         </div>
         {PLAYERS.map(p => (

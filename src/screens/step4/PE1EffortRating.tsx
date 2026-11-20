@@ -9,7 +9,7 @@ export default function PE1EffortRating(_: { onBack?: () => void }) {
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   const FUN_OPTS = [{ label: 'Not really', v: 0 }, { label: 'It was OK', v: 1 }, { label: 'Loved it', v: 2 }]
   return (
-    <div style={{ width: 390, minHeight: 844, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ width: 390, minHeight: 844, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       <div style={{ background: GD, padding: '14px 18px 12px' }}>
         <div style={{ fontSize: 12, color: '#cfe6dc' }}>After training · Thu 4 Jun · 30 seconds</div>
         <div style={{ fontSize: 20, fontWeight: 700, color: '#fff' }}>How was tonight, Mia?</div>

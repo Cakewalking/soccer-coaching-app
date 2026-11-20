@@ -51,7 +51,7 @@ export default function CH4NewPoll(_: { onBack?: () => void }) {
     </button>
   )
   return (
-    <div style={{ width: 1180, height: 820, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden' }}>
+    <div style={{ width: 1180, height: 820, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden' }}>
       <TopBar />
       <SubBar />
       <div style={{ flexShrink: 0, padding: '14px 28px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 20 }}>
@@ -67,7 +67,7 @@ export default function CH4NewPoll(_: { onBack?: () => void }) {
       <main style={{ flexGrow: 1, minHeight: 0, padding: '12px 28px 18px', display: 'grid', gap: 14, gridTemplateColumns: 'repeat(12, minmax(0,1fr))' }}>
         <div style={{ gridColumn: 'span 7', display: 'flex', flexDirection: 'column', gap: 14 }}>
           <div style={{ background: '#fff', border: `1px solid #c5c8c4`, borderRadius: 16, padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 8 }}>
-            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT }}>Start from</div>
+            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b' }}>Start from</div>
             <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' as const }}>
               {ptypes.map(pt => (
                 <button key={pt.key} onClick={() => setPtype(pt.key)} style={{ minHeight: 44, padding: '0 14px', borderRadius: 999, border: ptype === pt.key ? `2px solid ${G}` : `1px solid #c5c8c4`, background: ptype === pt.key ? PALE : '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>{pt.label}</button>
@@ -76,10 +76,10 @@ export default function CH4NewPoll(_: { onBack?: () => void }) {
           </div>
           <div style={{ flexGrow: 1, background: '#fff', border: `1px solid #c5c8c4`, borderRadius: 16, padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 8 }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT }}>Question</div>
+              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b' }}>Question</div>
               <div style={{ minHeight: 48, border: `1px solid #c5c8c4`, borderRadius: 10, padding: '0 12px', display: 'flex', alignItems: 'center', fontSize: 15, background: '#fff' }}>{q}</div>
             </div>
-            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT }}>Answers</div>
+            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b' }}>Answers</div>
             {opts.map((opt, i) => (
               <div key={i} style={{ minHeight: 44, border: `1px solid #c5c8c4`, borderRadius: 10, padding: '0 12px', display: 'flex', alignItems: 'center', fontSize: 15 }}>{opt}</div>
             ))}
@@ -114,8 +114,8 @@ export default function CH4NewPoll(_: { onBack?: () => void }) {
             </div>
           </div>
           <div style={{ flexGrow: 1, background: '#fff', border: `1px solid #c5c8c4`, borderRadius: 16, padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 8 }}>
-            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT }}>How it will look</div>
-            <div style={{ background: '#f7f8f7', borderRadius: 12, padding: 12, display: 'flex', flexDirection: 'column', gap: 8 }}>
+            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b' }}>How it will look</div>
+            <div style={{ background: '#faf5ec', borderRadius: 12, padding: 12, display: 'flex', flexDirection: 'column', gap: 8 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 12, fontWeight: 700, color: G }}>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round"><path d="M5 20V10M12 20V4M19 20v-7"/></svg>POLL
               </div>

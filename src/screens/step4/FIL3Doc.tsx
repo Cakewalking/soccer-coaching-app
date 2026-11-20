@@ -21,7 +21,7 @@ export default function FIL3Doc({ onBack, onShare, onNav, bare }: {
   function sect(name: string) { setLastSection(name) }
 
   return (
-    <div style={{ width: bare ? '100%' : 1180, flex: bare ? 1 : undefined, background: '#f7f8f7', fontFamily: 'var(--font-sans)', minHeight: bare ? 0 : 820, display: 'flex', flexDirection: 'column' }} data-lasttool={lastTool} data-lastsection={lastSection}>
+    <div style={{ width: bare ? '100%' : 1180, flex: bare ? 1 : undefined, background: '#faf5ec', fontFamily: 'var(--font-sans)', minHeight: bare ? 0 : 820, display: 'flex', flexDirection: 'column' }} data-lasttool={lastTool} data-lastsection={lastSection}>
       {!bare && (<>
       {/* Top nav */}
       <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 24, height: 52, flexShrink: 0 }}>
@@ -86,7 +86,7 @@ export default function FIL3Doc({ onBack, onShare, onNav, bare }: {
       <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
         {/* Outline */}
         <div style={{ width: 180, padding: '24px 16px', borderRight: `1px solid ${LN}`, background: '#fff', flexShrink: 0, overflowY: 'auto' }}>
-          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: MUT, marginBottom: 12 }}>Outline</div>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#7a4b5b', marginBottom: 12 }}>Outline</div>
           {[
             'Saturday, home to Harbour Rovers',
             'Meet and kick-off',

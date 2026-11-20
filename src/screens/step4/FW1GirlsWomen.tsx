@@ -2,7 +2,7 @@ const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8
 
 export default function FW1GirlsWomen(_: { onBack?: () => void }) {
   return (
-    <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820 }}>
+    <div style={{ width: 1180, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820 }}>
       <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 32, height: 52 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>Clean Sheet</div>
         {['Club', 'Teams', 'Coaches', 'Players', 'Safeguarding', 'Reports'].map(t => (
@@ -21,9 +21,9 @@ export default function FW1GirlsWomen(_: { onBack?: () => void }) {
             { label: 'Came back', val: '84%', sub: 'Boys: 81%' },
             { label: 'New this season', val: '+11', sub: 'Most came to the U9 come-and-try day' },
             { label: 'Women coaching', val: '7 of 31', sub: 'Up from 4 last season' },
-          ].map(s => (
-            <div key={s.label} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 12, padding: '14px 16px' }}>
-              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 4 }}>{s.label}</div>
+          ].map((s, kpiN)=> (
+            <div key={s.label} style={{ background: ['#f3ecdf', '#f4e6e6', '#eef5f2', '#f3ecdf'][kpiN % 4], border: `1px solid ${LN}`, borderRadius: 12, padding: '14px 16px' }}>
+              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 4 }}>{s.label}</div>
               <div style={{ fontSize: 24, fontWeight: 900, color: GD }}>{s.val}</div>
               <div style={{ fontSize: 12, color: MUT, marginTop: 2 }}>{s.sub}</div>
             </div>

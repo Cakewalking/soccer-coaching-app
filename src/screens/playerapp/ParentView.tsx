@@ -8,7 +8,7 @@ interface Props {
 
 const THIS_WEEK = [
   { day: 'THU', title: 'Training',              note: '5:45 to 7:15 pm · Wattle Creek Reserve · bring water',          bg: '#2f6252', color: '#fff'     },
-  { day: 'SAT', title: 'vs Harbour Rovers',     note: 'Home · be there 8:40 for a 9:30 start · white kit',          bg: '#cbbeb5', color: '#10211f'  },
+  { day: 'SAT', title: 'vs Harbour Rovers',     note: 'Home · be there 8:40 for a 9:30 start · white kit',          bg: '#e8cfcf', color: '#10211f'  },
   { day: 'TUE', title: 'Goal chat with Sam',    note: '10 minutes after training · parents welcome',                 bg: '#eef5f2', color: '#2f6252'  },
 ]
 
@@ -24,7 +24,7 @@ export default function ParentView({ onAvailability, onRaiseConcern }: Props) {
   const [toast, setToast] = useState<string | null>(null)
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   return (
-    <div style={{ width: 390, margin: '0 auto', background: '#f7f9f7', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
+    <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)' }}>
 
       <div style={{ background: '#1f4a3e', padding: '52px 20px 20px', flex: 'none' }}>
         <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
@@ -43,12 +43,12 @@ export default function ParentView({ onAvailability, onRaiseConcern }: Props) {
           <button onClick={onAvailability} style={{ padding: '14px', borderRadius: 14, border: '1.5px dashed #2f6252', background: '#fff', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
             <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', color: '#2f6252', marginBottom: 4 }}>CAN MIA MAKE IT?</div>
             <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', marginBottom: 2 }}>Tue 9 Jun training</div>
-            <div style={{ fontSize: 13, color: '#6f7f7b' }}>Tap to answer</div>
+            <div style={{ fontSize: 13, color: '#5c6b67' }}>Tap to answer</div>
           </button>
           <div style={{ padding: '14px', borderRadius: 14, border: '1px solid #e9eae8', background: '#fff' }}>
             <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', color: '#4a5a57', marginBottom: 4 }}>YOUR DUTY SATURDAY</div>
             <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', marginBottom: 2 }}>Canteen 10 to 11</div>
-            <div style={{ fontSize: 13, color: '#6f7f7b' }}>Confirmed · from Rob</div>
+            <div style={{ fontSize: 13, color: '#5c6b67' }}>Confirmed · from Rob</div>
           </div>
         </div>
 
@@ -68,9 +68,9 @@ export default function ParentView({ onAvailability, onRaiseConcern }: Props) {
 
         {/* Message from Rob */}
         <div style={{ background: '#fff', borderRadius: 16, padding: '16px', border: '1px solid #e9eae8', marginBottom: 14, display: 'flex', alignItems: 'flex-start', gap: 12 }}>
-          <span style={{ flex: 'none', width: 36, height: 36, borderRadius: '999px', background: '#cbbeb5', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700 }}>RO</span>
+          <span style={{ flex: 'none', width: 36, height: 36, borderRadius: '999px', background: '#e8cfcf', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700 }}>RO</span>
           <div style={{ flexGrow: 1, minWidth: 0 }}>
-            <div style={{ fontSize: 12, color: '#6f7f7b', marginBottom: 4 }}>Rob, team manager · 7:12 pm</div>
+            <div style={{ fontSize: 12, color: '#5c6b67', marginBottom: 4 }}>Rob, team manager · 7:12 pm</div>
             <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', lineHeight: '21px' }}>Meet time now 8:40 on Saturday. We're on pitch 2.</div>
           </div>
           <button onClick={() => showToast('Acknowledged. Sam can see you\'ve read this.')} style={{ flex: 'none', height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Got it</button>
@@ -86,7 +86,7 @@ export default function ParentView({ onAvailability, onRaiseConcern }: Props) {
             {MINS_GAMES.map((g, i) => (
               <div key={i} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
                 <div style={{ width: '100%', background: '#2f6252', borderRadius: '4px 4px 0 0', height: g.h * 0.56 }} />
-                <div style={{ fontSize: 11, color: '#6f7f7b', fontWeight: 600 }}>{g.label}</div>
+                <div style={{ fontSize: 11, color: '#5c6b67', fontWeight: 600 }}>{g.label}</div>
               </div>
             ))}
           </div>
@@ -105,7 +105,7 @@ export default function ParentView({ onAvailability, onRaiseConcern }: Props) {
           </span>
           <div style={{ flexGrow: 1, minWidth: 0 }}>
             <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>What's recorded for Mia</div>
-            <div style={{ fontSize: 13, color: '#6f7f7b' }}>5 of 6 on · change any time</div>
+            <div style={{ fontSize: 13, color: '#5c6b67' }}>5 of 6 on · change any time</div>
           </div>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6f7f7b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
         </button>

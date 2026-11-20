@@ -62,7 +62,7 @@ export default function FixturesMiniRoos({ empty }: { empty?: boolean }) {
             <h2 style={{ margin: '0 0 0', fontSize: 17, fontWeight: 700 }}>This Saturday</h2>
             {[
               { circle: '✓', bg: '#eef5f2', title: 'Meet 8:10', sub: 'Sent to families Thursday' },
-              { circle: '!', bg: '#cbbeb5', title: 'Game leader', sub: 'Still needed' },
+              { circle: '!', bg: '#e8cfcf', title: 'Game leader', sub: 'Still needed' },
             ].map((item, i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 50, borderTop: '1px solid #e9eae8' }}>
                 <span style={{ flexShrink: 0, width: 30, height: 30, borderRadius: '999px', background: item.bg, color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }}>{item.circle}</span>

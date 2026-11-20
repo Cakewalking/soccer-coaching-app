@@ -53,7 +53,7 @@ export default function DSet1ClubSettings() {
               { label: 'Club colours', value: 'Green and white' },
             ].map(f => (
               <div key={f.label} style={{ marginBottom: 16 }}>
-                <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 4 }}>{f.label}</div>
+                <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 4 }}>{f.label}</div>
                 <input defaultValue={f.value} style={{ width: '100%', height: 44, padding: '0 14px', border: `1px solid ${LN}`, borderRadius: 8, fontFamily: 'inherit', fontSize: 14, color: INK, background: '#fafafa', boxSizing: 'border-box' as const }} />
               </div>
             ))}

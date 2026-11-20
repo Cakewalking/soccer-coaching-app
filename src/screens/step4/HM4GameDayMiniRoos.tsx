@@ -29,7 +29,7 @@ export default function HM4GameDayMiniRoos(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string | null>(null)
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   return (
-    <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }}>
+    <div style={{ width: 1180, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }}>
       <div style={{ background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 20, height: 64 }}>
         <div style={{ fontSize: 21, fontWeight: 800, color: '#fff', letterSpacing: '-0.02em' }}>Clean Sheet</div>
         {['Home', 'Squad', 'Training', 'Game day'].map(t => (
@@ -43,7 +43,7 @@ export default function HM4GameDayMiniRoos(_: { onBack?: () => void }) {
           <div key={t} style={{ height: 44, display: 'flex', alignItems: 'center', fontSize: 15, fontWeight: 600, color: t === 'Turns' ? INK : MUT, borderBottom: t === 'Turns' ? `3px solid #40826d` : '3px solid transparent', boxSizing: 'border-box', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>
         ))}
         <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', height: 44 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 6, height: 32, padding: '0 12px', borderRadius: 999, background: PALE, color: G, fontSize: 13, fontWeight: 700 }}>Coach · MiniRoos</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, height: 32, padding: '0 12px', borderRadius: 999, background: '#f4e6e6', color: '#10211f', fontSize: 13, fontWeight: 700 }}>Coach · MiniRoos</div>
         </div>
       </div>
 
@@ -66,12 +66,12 @@ export default function HM4GameDayMiniRoos(_: { onBack?: () => void }) {
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: '130px repeat(4, minmax(0, 1fr)) 70px', gap: 6, alignItems: 'center' }}>
             {['Player', '0 to 10', '10 to 20', '20 to 30', '30 to 40', 'Plays'].map((h, i) => (
-              <div key={h} style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, textAlign: i === 5 ? 'right' as const : 'left' as const }}>{h}</div>
+              <div key={h} style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', textAlign: i === 5 ? 'right' as const : 'left' as const }}>{h}</div>
             ))}
             {ROWS.map(row => (
               <>
                 <div key={row.name + '-name'} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 14, fontWeight: 700 }}>
-                  <div style={{ width: 28, height: 28, borderRadius: 999, background: '#cbbeb5', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0 }}>{row.init}</div>
+                  <div style={{ width: 28, height: 28, borderRadius: 999, background: '#e8cfcf', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0 }}>{row.init}</div>
                   {row.name}
                 </div>
                 {row.slots.map((s, i) => <SlotCell key={row.name + i} val={s} />)}
@@ -88,7 +88,7 @@ export default function HM4GameDayMiniRoos(_: { onBack?: () => void }) {
             {[
               { icon: '✓', label: 'Meet 8:10 at Redgum Reserve', note: 'Sent to families Thursday', bg: PALE },
               { icon: '✓', label: 'Captain: Arlo',               note: 'His first turn',           bg: PALE },
-              { icon: '!', label: 'Poppy and Jude',               note: 'One maybe, one no answer', bg: '#cbbeb5' },
+              { icon: '!', label: 'Poppy and Jude',               note: 'One maybe, one no answer', bg: '#e8cfcf' },
             ].map(item => (
               <div key={item.label} style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 48, borderTop: `1px solid ${LN}` }}>
                 <div style={{ width: 30, height: 30, borderRadius: 999, background: item.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0 }}>{item.icon}</div>

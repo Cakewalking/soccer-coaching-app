@@ -63,7 +63,7 @@ export default function TermPlanner({ onBack }: { onBack: () => void }) {
             {TUE_SESSION.map((s, i) => (
               <div key={i} style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-start', padding:'10px 0', borderTop:i>0?`1px solid ${LN}`:'none' }}>
                 <div>
-                  <div style={{ fontSize:11, fontWeight:700, color:MUT, textTransform:'uppercase', letterSpacing:'0.06em', marginBottom:2 }}>{s.slot}</div>
+                  <div style={{ fontSize:11, fontWeight:700, color: '#7a4b5b', textTransform:'uppercase', letterSpacing:'0.06em', marginBottom:2 }}>{s.slot}</div>
                   <div style={{ fontSize:13, fontWeight:600, color:INK }}>{s.drill}</div>
                 </div>
                 <div style={{ fontSize:12, color:MUT, flexShrink:0, marginLeft:8 }}>{s.min} min</div>
@@ -78,7 +78,7 @@ export default function TermPlanner({ onBack }: { onBack: () => void }) {
             {THU_SESSION.map((s, i) => (
               <div key={i} style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-start', padding:'10px 0', borderTop:i>0?`1px solid ${LN}`:'none' }}>
                 <div>
-                  <div style={{ fontSize:11, fontWeight:700, color:MUT, textTransform:'uppercase', letterSpacing:'0.06em', marginBottom:2 }}>{s.slot}</div>
+                  <div style={{ fontSize:11, fontWeight:700, color: '#7a4b5b', textTransform:'uppercase', letterSpacing:'0.06em', marginBottom:2 }}>{s.slot}</div>
                   <div style={{ fontSize:13, fontWeight:600, color:INK }}>{s.drill}</div>
                 </div>
                 <div style={{ fontSize:12, color:MUT, flexShrink:0, marginLeft:8 }}>{s.min} min</div>

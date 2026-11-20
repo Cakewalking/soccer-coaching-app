@@ -8,7 +8,7 @@ export default function FIL3bDocParent({ onNav }: { onNav?: (s: string) => void 
   function tool(name: string) { const to = toolTarget(name); if (to && onNav) { onNav(to); return } setLastTool(name) }
 
   return (
-    <div style={{ width: 390, background: '#f7f8f7', fontFamily: 'var(--font-sans)', minHeight: 844, display: 'flex', flexDirection: 'column' }} data-lasttool={lastTool}>
+    <div style={{ width: 390, background: '#faf5ec', fontFamily: 'var(--font-sans)', minHeight: 844, display: 'flex', flexDirection: 'column' }} data-lasttool={lastTool}>
       {/* Header */}
       <div style={{ background: GD, padding: '0 20px', display: 'flex', alignItems: 'center', gap: 8, minHeight: 60, flexShrink: 0 }}>
         <button aria-label="Back" onClick={() => onNav?.('FILp1-ParentFiles')}

@@ -30,7 +30,7 @@ function OptionCard({ selected, onClick, label, sub }: { selected: boolean; onCl
       </div>
       <div>
         <div style={{ fontSize: 15, fontWeight: 600, color: '#10211f' }}>{label}</div>
-        {sub && <div style={{ fontSize: 13, color: '#6f7f7b', marginTop: 2 }}>{sub}</div>}
+        {sub && <div style={{ fontSize: 13, color: '#5c6b67', marginTop: 2 }}>{sub}</div>}
       </div>
     </button>
   )
@@ -48,10 +48,10 @@ function TextField({ label, placeholder, type = 'text' }: { label: string; place
 function NavRow({ step, total, onBack, onNext, nextLabel = 'Continue' }: { step: number; total: number; onBack: () => void; onNext: () => void; nextLabel?: string }) {
   return (
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 32 }}>
-      <button onClick={onBack} style={{ height: 44, padding: '0 20px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>
+      <button onClick={onBack} style={{ height: 44, padding: '0 20px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, color: '#5c6b67', cursor: 'pointer' }}>
         {step === 1 ? 'Back' : 'Back'}
       </button>
-      <div style={{ fontSize: 13, color: '#6f7f7b' }}>{step} of {total}</div>
+      <div style={{ fontSize: 13, color: '#5c6b67' }}>{step} of {total}</div>
       <button onClick={onNext} style={{ height: 44, padding: '0 24px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>
         {nextLabel}
       </button>
@@ -79,7 +79,7 @@ function CoachSignup({ onDone, onBack }: { onDone: () => void; onBack: () => voi
       {step === 1 && (
         <>
           <h2 style={{ margin: '0 0 8px', fontSize: 24, fontWeight: 800, color: '#10211f' }}>About you</h2>
-          <p style={{ margin: '0 0 24px', fontSize: 15, color: '#6f7f7b' }}>Quick, then you're in.</p>
+          <p style={{ margin: '0 0 24px', fontSize: 15, color: '#5c6b67' }}>Quick, then you're in.</p>
           <TextField label="First name" placeholder="Nat" />
           <TextField label="Last name" placeholder="Russo" />
           <TextField label="Email" placeholder="nat@email.com" type="email" />
@@ -90,7 +90,7 @@ function CoachSignup({ onDone, onBack }: { onDone: () => void; onBack: () => voi
       {step === 2 && (
         <>
           <h2 style={{ margin: '0 0 8px', fontSize: 24, fontWeight: 800, color: '#10211f' }}>Your role</h2>
-          <p style={{ margin: '0 0 24px', fontSize: 15, color: '#6f7f7b' }}>What do you coach?</p>
+          <p style={{ margin: '0 0 24px', fontSize: 15, color: '#5c6b67' }}>What do you coach?</p>
           {['Head coach', 'Assistant coach', 'Fitness coach', 'Goalkeeping coach'].map(r => (
             <OptionCard key={r} selected={role === r} onClick={() => setRole(r)} label={r} />
           ))}
@@ -100,7 +100,7 @@ function CoachSignup({ onDone, onBack }: { onDone: () => void; onBack: () => voi
       {step === 3 && (
         <>
           <h2 style={{ margin: '0 0 8px', fontSize: 24, fontWeight: 800, color: '#10211f' }}>Your club</h2>
-          <p style={{ margin: '0 0 24px', fontSize: 15, color: '#6f7f7b' }}>Which club are you with?</p>
+          <p style={{ margin: '0 0 24px', fontSize: 15, color: '#5c6b67' }}>Which club are you with?</p>
           <TextField label="Club name" placeholder="Wattle Creek FC" />
           <div style={{ marginBottom: 16 }}>
             <label style={{ fontSize: 13, fontWeight: 700, color: '#10211f', display: 'block', marginBottom: 6 }}>State</label>
@@ -119,7 +119,7 @@ function CoachSignup({ onDone, onBack }: { onDone: () => void; onBack: () => voi
       {step === 4 && (
         <>
           <h2 style={{ margin: '0 0 8px', fontSize: 24, fontWeight: 800, color: '#10211f' }}>Your team</h2>
-          <p style={{ margin: '0 0 24px', fontSize: 15, color: '#6f7f7b' }}>Set up your first team.</p>
+          <p style={{ margin: '0 0 24px', fontSize: 15, color: '#5c6b67' }}>Set up your first team.</p>
           <TextField label="Team name" placeholder="U14 Girls" />
           <div style={{ marginBottom: 16 }}>
             <label style={{ fontSize: 13, fontWeight: 700, color: '#10211f', display: 'block', marginBottom: 6 }}>Age group</label>
@@ -141,10 +141,10 @@ function CoachSignup({ onDone, onBack }: { onDone: () => void; onBack: () => voi
       {step === 5 && (
         <>
           <h2 style={{ margin: '0 0 8px', fontSize: 24, fontWeight: 800, color: '#10211f' }}>Almost there</h2>
-          <p style={{ margin: '0 0 24px', fontSize: 15, color: '#6f7f7b' }}>Create your password.</p>
+          <p style={{ margin: '0 0 24px', fontSize: 15, color: '#5c6b67' }}>Create your password.</p>
           <TextField label="Password" placeholder="8 characters or more" type="password" />
           <TextField label="Confirm password" placeholder="Same again" type="password" />
-          <div style={{ background: '#f7f9f7', borderRadius: 12, padding: '14px 16px', marginTop: 16 }}>
+          <div style={{ background: '#faf5ec', borderRadius: 12, padding: '14px 16px', marginTop: 16 }}>
             <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 6 }}>By joining you agree to</div>
             <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: '19px' }}>
               Our <span style={{ color: '#2f6252', cursor: 'pointer' }}>terms of service</span> and <span style={{ color: '#2f6252', cursor: 'pointer' }}>privacy policy</span>. Player data is stored securely and never sold.
@@ -178,7 +178,7 @@ function ParentJoin({ onDone, onBack }: { onDone: () => void; onBack: () => void
       {step === 1 && (
         <>
           <h2 style={{ margin: '0 0 8px', fontSize: 24, fontWeight: 800, color: '#10211f' }}>About you</h2>
-          <p style={{ margin: '0 0 24px', fontSize: 15, color: '#6f7f7b' }}>You're joining as a parent or carer.</p>
+          <p style={{ margin: '0 0 24px', fontSize: 15, color: '#5c6b67' }}>You're joining as a parent or carer.</p>
           <TextField label="First name" placeholder="Linh" />
           <TextField label="Last name" placeholder="Tran" />
           <TextField label="Email" placeholder="linh@email.com" type="email" />
@@ -189,7 +189,7 @@ function ParentJoin({ onDone, onBack }: { onDone: () => void; onBack: () => void
       {step === 2 && (
         <>
           <h2 style={{ margin: '0 0 8px', fontSize: 24, fontWeight: 800, color: '#10211f' }}>About your child</h2>
-          <p style={{ margin: '0 0 24px', fontSize: 15, color: '#6f7f7b' }}>Their details so the club can find their account.</p>
+          <p style={{ margin: '0 0 24px', fontSize: 15, color: '#5c6b67' }}>Their details so the club can find their account.</p>
           <TextField label="Child's first name" placeholder="Mia" />
           <TextField label="Child's last name" placeholder="Tran" />
           <TextField label="Date of birth" placeholder="DD/MM/YYYY" />
@@ -205,7 +205,7 @@ function ParentJoin({ onDone, onBack }: { onDone: () => void; onBack: () => void
       {step === 3 && (
         <>
           <h2 style={{ margin: '0 0 8px', fontSize: 24, fontWeight: 800, color: '#10211f' }}>Consents</h2>
-          <p style={{ margin: '0 0 24px', fontSize: 15, color: '#6f7f7b' }}>Review and accept for Mia.</p>
+          <p style={{ margin: '0 0 24px', fontSize: 15, color: '#5c6b67' }}>Review and accept for Mia.</p>
           {[
             { title: 'Video and photos', sub: 'Match and training footage used for coaching analysis. Not shared publicly.' },
             { title: 'GPS and fitness data', sub: 'Used to protect Mia from overtraining. You can see it at any time.' },
@@ -215,7 +215,7 @@ function ParentJoin({ onDone, onBack }: { onDone: () => void; onBack: () => void
               <input type="checkbox" defaultChecked style={{ marginTop: 3, accentColor: '#2f6252', width: 16, height: 16, flexShrink: 0 }} />
               <div>
                 <div style={{ fontSize: 15, fontWeight: 600, color: '#10211f' }}>{c.title}</div>
-                <div style={{ fontSize: 13, color: '#6f7f7b', marginTop: 2 }}>{c.sub}</div>
+                <div style={{ fontSize: 13, color: '#5c6b67', marginTop: 2 }}>{c.sub}</div>
               </div>
             </div>
           ))}
@@ -225,7 +225,7 @@ function ParentJoin({ onDone, onBack }: { onDone: () => void; onBack: () => void
       {step === 4 && (
         <>
           <h2 style={{ margin: '0 0 8px', fontSize: 24, fontWeight: 800, color: '#10211f' }}>Medical</h2>
-          <p style={{ margin: '0 0 24px', fontSize: 15, color: '#6f7f7b' }}>So the club can keep Mia safe.</p>
+          <p style={{ margin: '0 0 24px', fontSize: 15, color: '#5c6b67' }}>So the club can keep Mia safe.</p>
           <div style={{ marginBottom: 16 }}>
             <label style={{ fontSize: 13, fontWeight: 700, color: '#10211f', display: 'block', marginBottom: 6 }}>Medical conditions (if any)</label>
             <textarea placeholder="Asthma, allergies, injuries to be careful with…" style={{ width: '100%', height: 80, borderRadius: 10, border: '1px solid #e9eae8', padding: '10px 14px', fontFamily: 'inherit', fontSize: 14, resize: 'none', boxSizing: 'border-box' }} />
@@ -238,7 +238,7 @@ function ParentJoin({ onDone, onBack }: { onDone: () => void; onBack: () => void
       {step === 5 && (
         <>
           <h2 style={{ margin: '0 0 8px', fontSize: 24, fontWeight: 800, color: '#10211f' }}>All done</h2>
-          <p style={{ margin: '0 0 24px', fontSize: 15, color: '#6f7f7b' }}>Create a password to sign in.</p>
+          <p style={{ margin: '0 0 24px', fontSize: 15, color: '#5c6b67' }}>Create a password to sign in.</p>
           <TextField label="Password" placeholder="8 characters or more" type="password" />
           <TextField label="Confirm password" placeholder="Same again" type="password" />
           <div style={{ background: '#e4f2eb', borderRadius: 12, padding: '14px 16px', marginTop: 20 }}>
@@ -273,9 +273,9 @@ function PlayerSignup({ onDone, onBack, isUnder18 }: { onDone: () => void; onBac
         <>
           <h2 style={{ margin: '0 0 8px', fontSize: 24, fontWeight: 800, color: '#10211f' }}>About you</h2>
           {isUnder18 ? (
-            <p style={{ margin: '0 0 24px', fontSize: 15, color: '#6f7f7b' }}>You're joining as a young player (13–17).</p>
+            <p style={{ margin: '0 0 24px', fontSize: 15, color: '#5c6b67' }}>You're joining as a young player (13–17).</p>
           ) : (
-            <p style={{ margin: '0 0 24px', fontSize: 15, color: '#6f7f7b' }}>You're joining as a player (18+).</p>
+            <p style={{ margin: '0 0 24px', fontSize: 15, color: '#5c6b67' }}>You're joining as a player (18+).</p>
           )}
           <TextField label="First name" placeholder="Harper" />
           <TextField label="Last name" placeholder="Day" />
@@ -287,7 +287,7 @@ function PlayerSignup({ onDone, onBack, isUnder18 }: { onDone: () => void; onBac
       {step === 2 && (
         <>
           <h2 style={{ margin: '0 0 8px', fontSize: 24, fontWeight: 800, color: '#10211f' }}>Your position</h2>
-          <p style={{ margin: '0 0 24px', fontSize: 15, color: '#6f7f7b' }}>Where do you like to play?</p>
+          <p style={{ margin: '0 0 24px', fontSize: 15, color: '#5c6b67' }}>Where do you like to play?</p>
           {['Goalkeeper', 'Defender', 'Midfielder', 'Forward', 'Happy anywhere'].map(p => (
             <OptionCard key={p} selected={false} onClick={() => {}} label={p} />
           ))}
@@ -297,7 +297,7 @@ function PlayerSignup({ onDone, onBack, isUnder18 }: { onDone: () => void; onBac
       {step === 3 && (
         <>
           <h2 style={{ margin: '0 0 8px', fontSize: 24, fontWeight: 800, color: '#10211f' }}>Your goals</h2>
-          <p style={{ margin: '0 0 24px', fontSize: 15, color: '#6f7f7b' }}>What do you want to get better at?</p>
+          <p style={{ margin: '0 0 24px', fontSize: 15, color: '#5c6b67' }}>What do you want to get better at?</p>
           {[
             { label: 'Shooting and finishing', sub: 'More goals from open play' },
             { label: '1v1 defending', sub: 'Win more individual battles' },
@@ -312,13 +312,13 @@ function PlayerSignup({ onDone, onBack, isUnder18 }: { onDone: () => void; onBac
       {step === 4 && (
         <>
           <h2 style={{ margin: '0 0 8px', fontSize: 24, fontWeight: 800, color: '#10211f' }}>Set a password</h2>
-          <p style={{ margin: '0 0 24px', fontSize: 15, color: '#6f7f7b' }}>Almost there!</p>
+          <p style={{ margin: '0 0 24px', fontSize: 15, color: '#5c6b67' }}>Almost there!</p>
           <TextField label="Password" placeholder="8 characters or more" type="password" />
           <TextField label="Confirm password" placeholder="Same again" type="password" />
           {isUnder18 && (
             <div style={{ background: '#fdf8f4', border: '1px solid #f0dcc8', borderRadius: 12, padding: '14px 16px', marginTop: 8 }}>
               <div style={{ fontSize: 14, fontWeight: 600, color: '#10211f', marginBottom: 4 }}>Parent or carer consent needed</div>
-              <div style={{ fontSize: 13, color: '#6f7f7b' }}>We'll send an email to your parent or carer to confirm before your account is activated.</div>
+              <div style={{ fontSize: 13, color: '#5c6b67' }}>We'll send an email to your parent or carer to confirm before your account is activated.</div>
             </div>
           )}
         </>
@@ -349,7 +349,7 @@ function StaffInvite({ onDone, onBack }: { onDone: () => void; onBack: () => voi
       {step === 1 && (
         <>
           <h2 style={{ margin: '0 0 8px', fontSize: 24, fontWeight: 800, color: '#10211f' }}>Invite staff</h2>
-          <p style={{ margin: '0 0 24px', fontSize: 15, color: '#6f7f7b' }}>What kind of staff member?</p>
+          <p style={{ margin: '0 0 24px', fontSize: 15, color: '#5c6b67' }}>What kind of staff member?</p>
           {[
             { label: 'Team manager', sub: 'Duties, messages, and game-day logistics' },
             { label: 'Assistant coach', sub: 'Full access to training and match data' },
@@ -364,7 +364,7 @@ function StaffInvite({ onDone, onBack }: { onDone: () => void; onBack: () => voi
       {step === 2 && (
         <>
           <h2 style={{ margin: '0 0 8px', fontSize: 24, fontWeight: 800, color: '#10211f' }}>Their details</h2>
-          <p style={{ margin: '0 0 24px', fontSize: 15, color: '#6f7f7b' }}>We'll send them an invite email.</p>
+          <p style={{ margin: '0 0 24px', fontSize: 15, color: '#5c6b67' }}>We'll send them an invite email.</p>
           <TextField label="First name" placeholder="Rob" />
           <TextField label="Last name" placeholder="Owen" />
           <TextField label="Email" placeholder="rob@email.com" type="email" />
@@ -374,7 +374,7 @@ function StaffInvite({ onDone, onBack }: { onDone: () => void; onBack: () => voi
       {step === 3 && (
         <>
           <h2 style={{ margin: '0 0 8px', fontSize: 24, fontWeight: 800, color: '#10211f' }}>Their access</h2>
-          <p style={{ margin: '0 0 24px', fontSize: 15, color: '#6f7f7b' }}>What can Rob see?</p>
+          <p style={{ margin: '0 0 24px', fontSize: 15, color: '#5c6b67' }}>What can Rob see?</p>
           {[
             { title: 'Player names and positions', checked: true },
             { title: 'GPS and load data', checked: true },
@@ -398,7 +398,7 @@ function StaffInvite({ onDone, onBack }: { onDone: () => void; onBack: () => voi
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2f6252" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M20 13.5V7l-8-4-8 4v6a8 8 0 008 8 8 8 0 006.4-3.2"/><path d="M9 10l2 2 4-4"/></svg>
             </div>
             <div style={{ fontSize: 20, fontWeight: 800, color: '#10211f' }}>Invite sent to Rob</div>
-            <div style={{ fontSize: 15, color: '#6f7f7b', maxWidth: 280 }}>They'll get an email with a link to set up their account. You can resend or cancel any time.</div>
+            <div style={{ fontSize: 15, color: '#5c6b67', maxWidth: 280 }}>They'll get an email with a link to set up their account. You can resend or cancel any time.</div>
             <button onClick={onDone} style={{ marginTop: 8, height: 48, padding: '0 32px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 16, fontWeight: 700, cursor: 'pointer' }}>Done</button>
           </div>
         </>
@@ -451,10 +451,10 @@ export default function SignupScreen({ onDone }: Props) {
         </div>
         <div style={{ padding: '32px 24px' }}>
           <h2 style={{ margin: '0 0 8px', fontSize: 24, fontWeight: 800, color: '#10211f' }}>How old are you?</h2>
-          <p style={{ margin: '0 0 24px', fontSize: 15, color: '#6f7f7b' }}>This sets up the right account for you.</p>
+          <p style={{ margin: '0 0 24px', fontSize: 15, color: '#5c6b67' }}>This sets up the right account for you.</p>
           <OptionCard selected={playerAge === 'under18'} onClick={() => setPlayerAge('under18')} label="13–17 years" sub="Parent or carer consent needed" />
           <OptionCard selected={playerAge === '18plus'} onClick={() => setPlayerAge('18plus')} label="18 or over" sub="Full account, no consent needed" />
-          <button onClick={() => setFlow('welcome')} style={{ marginTop: 24, height: 44, padding: '0 20px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, color: '#6f7f7b', cursor: 'pointer' }}>Back</button>
+          <button onClick={() => setFlow('welcome')} style={{ marginTop: 24, height: 44, padding: '0 20px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, color: '#5c6b67', cursor: 'pointer' }}>Back</button>
         </div>
       </div>
     )
@@ -517,13 +517,13 @@ export default function SignupScreen({ onDone }: Props) {
             </span>
             <div style={{ flexGrow: 1 }}>
               <div style={{ fontSize: 16, fontWeight: 700, color: '#10211f' }}>{o.label}</div>
-              <div style={{ fontSize: 13, color: '#6f7f7b', marginTop: 2 }}>{o.sub}</div>
+              <div style={{ fontSize: 13, color: '#5c6b67', marginTop: 2 }}>{o.sub}</div>
             </div>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6f7f7b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
           </button>
         ))}
         <div style={{ textAlign: 'center', marginTop: 20 }}>
-          <span style={{ fontSize: 14, color: '#6f7f7b' }}>Already have an account? </span>
+          <span style={{ fontSize: 14, color: '#5c6b67' }}>Already have an account? </span>
           <button onClick={onDone} style={{ fontSize: 14, fontWeight: 700, color: '#2f6252', border: 0, background: 'transparent', cursor: 'pointer', fontFamily: 'inherit' }}>Sign in</button>
         </div>
       </div>

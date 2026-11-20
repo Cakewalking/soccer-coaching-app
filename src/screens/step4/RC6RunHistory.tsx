@@ -28,7 +28,7 @@ export default function RC6RunHistory({ onBack }: { onBack?: () => void }) {
   const [activeSub, setActiveSub] = useState('Record')
   const [selectedRun, setSelectedRun] = useState<number | null>(null)
   return (
-    <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
+    <div style={{ width: 1180, height: 820, position: 'relative', overflow: 'hidden', boxSizing: 'border-box', background: '#faf5ec', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       <div style={{ flex: 'none', background: '#fff', borderBottom: `1px solid ${LN}` }}>
         <div style={{ height: 64, boxSizing: 'border-box', padding: '0 28px', display: 'flex', alignItems: 'center', gap: 4, background: G }}>
           <div style={{ fontSize: 20, fontWeight: 700, color: '#fff', marginRight: 16, letterSpacing: '-0.02em' }}>Clean Sheet</div>
@@ -61,8 +61,8 @@ export default function RC6RunHistory({ onBack }: { onBack?: () => void }) {
           </div>
 
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, overflow: 'hidden' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '110px 1fr 60px 80px 100px', padding: '10px 18px', background: '#f7f8f7', borderBottom: `1px solid ${LN}` }}>
-              {['Date', 'Drill', 'Rounds', 'Average', 'Verdict'].map(h => <div key={h} style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT }}>{h}</div>)}
+            <div style={{ display: 'grid', gridTemplateColumns: '110px 1fr 60px 80px 100px', padding: '10px 18px', background: '#faf5ec', borderBottom: `1px solid ${LN}` }}>
+              {['Date', 'Drill', 'Rounds', 'Average', 'Verdict'].map(h => <div key={h} style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b' }}>{h}</div>)}
             </div>
             {HISTORY.map((r, i) => (
               <div key={i} onClick={() => setSelectedRun(i)} style={{ display: 'grid', gridTemplateColumns: '110px 1fr 60px 80px 100px', padding: '10px 18px', borderTop: `1px solid ${LN}`, alignItems: 'center', cursor: 'pointer', background: selectedRun === i ? PALE : 'transparent' }}>
@@ -70,7 +70,7 @@ export default function RC6RunHistory({ onBack }: { onBack?: () => void }) {
                 <div style={{ fontSize: 15, fontWeight: 600 }}>{r.drill}</div>
                 <div style={{ fontSize: 15 }}>{r.rounds}</div>
                 <div style={{ fontSize: 15, fontWeight: 700 }}>{r.avg}</div>
-                <div style={{ fontSize: 12, fontWeight: 700, background: r.verdict === 'Improving' ? PALE : '#f7f8f7', color: r.verdict === 'Improving' ? G : MUT, borderRadius: 999, padding: '2px 8px', display: 'inline-block' }}>{r.verdict}</div>
+                <div style={{ fontSize: 12, fontWeight: 700, background: r.verdict === 'Improving' ? PALE : '#faf5ec', color: r.verdict === 'Improving' ? G : MUT, borderRadius: 999, padding: '2px 8px', display: 'inline-block' }}>{r.verdict}</div>
               </div>
             ))}
           </div>
@@ -78,7 +78,7 @@ export default function RC6RunHistory({ onBack }: { onBack?: () => void }) {
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '14px 16px' }}>
-            <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 10 }}>Is it a fair comparison?</div>
+            <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 10 }}>Is it a fair comparison?</div>
             {['Same players in all 3 runs', 'Same 40 × 30 m grid', 'Same 6-second rule'].map((item, i) => (
               <div key={i} style={{ display: 'flex', gap: 8, padding: '6px 0', borderTop: `1px solid ${LN}`, fontSize: 14 }}>
                 <span style={{ color: G }}>✓</span><span>{item}</span>

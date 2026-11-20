@@ -61,11 +61,11 @@ export default function ConsentScreen({ empty }: { empty?: boolean }) {
       <div style={{ flexGrow: 1, minHeight: 0, padding: '20px 28px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 340px', gap: 20, boxSizing: 'border-box' }}>
         <div>
           <div style={{ fontSize: 20, fontWeight: 700, color: '#10211f', marginBottom: 4 }}>Consent and privacy</div>
-          <div style={{ fontSize: 14, color: '#6f7f7b', marginBottom: 20 }}>No players yet</div>
+          <div style={{ fontSize: 14, color: '#5c6b67', marginBottom: 20 }}>No players yet</div>
           <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 16, padding: '20px 20px 24px', marginBottom: 16 }}>
             <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>Parents choose what is recorded</div>
             <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.5, marginBottom: 16 }}>{"When you add a player, their parent gets an invite. Until they answer, the player is blurred and nothing is recorded."}</div>
-            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', color: '#6f7f7b', marginBottom: 10 }}>WHAT PARENTS ARE ASKED</div>
+            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', color: '#5c6b67', marginBottom: 10 }}>WHAT PARENTS ARE ASKED</div>
             {[
               { q: 'Filming in games and training', a: 'If no: blurred in every clip and left out of video stats.' },
               { q: 'Boot sensors and a GPS vest', a: "If no: they don't wear the kit." },

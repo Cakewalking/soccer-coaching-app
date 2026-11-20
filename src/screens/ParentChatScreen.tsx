@@ -15,7 +15,7 @@ type Overlay = 'poll' | 'attach' | 'photocheck' | 'report' | null
 
 function PhoneWrap({ children }: { children: React.ReactNode }) {
   return (
-    <div style={{ width: 390, margin: '0 auto', background: '#f7f9f7', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)', position: 'relative' as const }}>
+    <div style={{ width: 390, margin: '0 auto', background: '#faf5ec', minHeight: '100vh', display: 'flex', flexDirection: 'column', fontFamily: 'var(--font-sans)', position: 'relative' as const }}>
       {children}
     </div>
   )
@@ -96,7 +96,7 @@ function ChatListView({ empty, onTeamChat, onAnnouncements, onPrivate, onReadOnl
               <div style={{ fontSize: 13, color: MUT, lineHeight: 1.5 }}>Announcements from Sam and Rob, the team chat and your own chats with the coach all show here.</div>
               <button onClick={onPrivate} style={{ marginTop: 4, height: 44, padding: '0 24px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Message the coach</button>
             </div>
-            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 10 }}>Fills in like this</div>
+            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 10 }}>Fills in like this</div>
             {[
               { ini: 'U12', bg: G, name: 'U12 Sam team chat', note: 'Team news and updates', time: '—' },
               { ini: 'SK', bg: GD, name: 'Sam K · coach', note: 'Your private chat with the coach', time: '—' },
@@ -113,7 +113,7 @@ function ChatListView({ empty, onTeamChat, onAnnouncements, onPrivate, onReadOnl
         ) : (
           <>
             {/* Team section */}
-            <div style={{ padding: '10px 16px 4px', fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT }}>U12 Sam</div>
+            <div style={{ padding: '10px 16px 4px', fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b' }}>U12 Sam</div>
             <button onClick={onAnnouncements} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 16px', border: 'none', borderBottom: `1px solid ${LN}`, background: 'transparent', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit', width: '100%' }}>
               <div style={{ width: 40, height: 40, borderRadius: 10, background: GD, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                 <svg width={18} height={18} viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={2} strokeLinecap="round"><path d="M22 7l-10 10L2 7"/><rect x={2} y={4} width={20} height={16} rx={2}/></svg>
@@ -157,7 +157,7 @@ function ChatListView({ empty, onTeamChat, onAnnouncements, onPrivate, onReadOnl
             ))}
 
             {/* Club */}
-            <div style={{ padding: '10px 16px 4px', fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT }}>Club</div>
+            <div style={{ padding: '10px 16px 4px', fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b' }}>Club</div>
             <button onClick={onReadOnly} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '12px 16px', border: 'none', borderBottom: `1px solid ${LN}`, background: 'transparent', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit', width: '100%' }}>
               <div style={{ width: 40, height: 40, borderRadius: 10, background: '#738678', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 800, color: '#fff', flexShrink: 0 }}>WC</div>
               <div style={{ flex: 1, minWidth: 0 }}>
@@ -377,7 +377,7 @@ function PollVoteOverlay({ onClose }: { onClose: () => void }) {
           <Ini s="LT" bg={ROSE} size={28}/>
           <div style={{ fontSize: 15, fontWeight: 700, color: INK, flex: 1 }}>Who's coming on Saturday? Harbour Rovers, 9:30 at home. Be there 8:40.</div>
         </div>
-        <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 8 }}>For Mia</div>
+        <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 8 }}>For Mia</div>
         {[
           { label: 'Coming', count: 11 },
           { label: "Can't come", count: 2 },
@@ -389,7 +389,7 @@ function PollVoteOverlay({ onClose }: { onClose: () => void }) {
           </button>
         ))}
         <div style={{ fontSize: 12, color: MUT, lineHeight: 1.5, marginBottom: 12 }}>This also answers "Can Mia make it?" You don't need to do both.</div>
-        <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase' as const, color: MUT, letterSpacing: '0.06em', marginBottom: 6 }}>Who has answered</div>
+        <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase' as const, color: '#7a4b5b', letterSpacing: '0.06em', marginBottom: 6 }}>Who has answered</div>
         <div style={{ fontSize: 13, color: MUT, marginBottom: 14 }}>14 of 17 families. Everyone in the chat can see who chose what. Change your answer any time until Friday 6 pm.</div>
         <div style={{ display: 'flex', gap: 8 }}>
           <button onClick={onClose} style={{ flex: 1, height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', fontSize: 14, fontWeight: 600, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Cancel</button>
@@ -528,7 +528,7 @@ function ReportOverlay({ onClose }: { onClose: () => void }) {
             <div style={{ fontSize: 13, color: INK }}>Why does Ruby only ever get one half? Some kids never come off.</div>
           </div>
         </div>
-        <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 8 }}>What's wrong with it?</div>
+        <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 8 }}>What's wrong with it?</div>
         {[
           { label: "It's unkind or aggressive" },
           { label: 'About a child, a parent or a coach' },

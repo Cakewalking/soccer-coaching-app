@@ -17,7 +17,7 @@ type View = 'main' | 'why' | 'ask' | 'whatituses' | 'whatworked'
 // ─── Shared ───────────────────────────────────────────────────────────────────
 
 function SectionHead({ label }: { label: string }) {
-  return <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 8 }}>{label}</div>
+  return <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 8 }}>{label}</div>
 }
 
 function BackBtn({ onBack, label = 'Back to suggestions' }: { onBack: () => void; label?: string }) {

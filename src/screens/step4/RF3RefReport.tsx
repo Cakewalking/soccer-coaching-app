@@ -25,7 +25,7 @@ export default function RF3RefReport(_: { onBack?: () => void }) {
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   return (
-    <div style={{ width: 390, height: 844, background: '#f7f8f7', boxSizing: 'border-box' as const, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' as const, overflow: 'hidden' }}>
+    <div style={{ width: 390, height: 844, background: '#faf5ec', boxSizing: 'border-box' as const, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' as const, overflow: 'hidden' }}>
       <div style={{ flex: 'none', padding: '12px 18px', background: G, color: '#fff', display: 'flex', alignItems: 'center', gap: 10 }}>
         <div style={{ flex: 1 }}>
           <span style={{ display: 'block', fontSize: 12, color: 'rgba(255,255,255,0.7)' }}>U9 Tom v Northgate City</span>
@@ -34,25 +34,25 @@ export default function RF3RefReport(_: { onBack?: () => void }) {
       </div>
       <div style={{ flex: 1, minHeight: 0, overflowY: 'auto', padding: '14px 16px', display: 'flex', flexDirection: 'column' as const, gap: 14 }}>
         <div>
-          <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 8 }}>What happened</div>
+          <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 8 }}>What happened</div>
           <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: 8 }}>{WHAT.map(w => <Chip key={w} label={w} active={w === activeWhat} onToggle={() => setActiveWhat(w)} />)}</div>
         </div>
         <div>
-          <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 8 }}>Team</div>
+          <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 8 }}>Team</div>
           <div style={{ display: 'flex', gap: 8 }}>{TEAMS.map(t => <Chip key={t} label={t} active={t === activeTeam} onToggle={() => setActiveTeam(t)} />)}</div>
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
           <div>
-            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 6 }}>Shirt number</div>
+            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 6 }}>Shirt number</div>
             <div style={{ height: 44, borderRadius: 10, border: '2px solid #c5c8c4', background: '#fff', display: 'flex', alignItems: 'center', padding: '0 14px', fontSize: 20, fontWeight: 700 }}>14</div>
           </div>
           <div>
-            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 6 }}>Minute</div>
+            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 6 }}>Minute</div>
             <div style={{ height: 44, borderRadius: 10, border: '2px solid #c5c8c4', background: '#fff', display: 'flex', alignItems: 'center', padding: '0 14px', fontSize: 20, fontWeight: 700 }}>38</div>
           </div>
         </div>
         <div>
-          <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 8 }}>Why</div>
+          <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 8 }}>Why</div>
           <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: 8 }}>{WHY.map(w => <Chip key={w} label={w} active={w === activeWhy} onToggle={() => setActiveWhy(w)} />)}</div>
         </div>
         <div style={{ marginTop: 'auto', paddingTop: 8 }}>

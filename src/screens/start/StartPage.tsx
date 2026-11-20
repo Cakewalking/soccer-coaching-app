@@ -8,7 +8,7 @@ import Logo from '../Logo'
 
 const DARK = '#1c3a33', GREEN = '#2f6252', INK = '#10211f', GREY = '#4a5a57'
 const PALE = '#a9cfc0', PALEG = '#dcefe8', AMBER = '#f4c95d'
-const PAGE = '#f4f5f3', BORDER = '#c5c8c4', ICONBG = '#eef5f2'
+const PAGE = '#faf5ec', BORDER = '#c5c8c4', ICONBG = '#eef5f2'
 
 type Handlers = {
   onDemo: () => void

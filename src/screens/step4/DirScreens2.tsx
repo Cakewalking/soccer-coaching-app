@@ -48,7 +48,7 @@ export function DSet5ClubPlan() {
             </div>
             <div style={{ fontSize: 13, color: MUT, marginBottom: 16 }}>Last game 22 Aug 2026 · no card on file · nothing to pay</div>
 
-            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 10 }}>Included</div>
+            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 10 }}>Included</div>
             {[
               { title: 'Every team and every role', desc: '14 teams · coaches, families, players and the committee' },
               { title: 'Match reviews and clips', desc: 'From any camera the club already owns' },
@@ -69,7 +69,7 @@ export function DSet5ClubPlan() {
             <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 12 }}>After the pilot</div>
             <div style={{ fontSize: 13, color: MUT, marginBottom: 16 }}>We'll tell the committee the price at least 60 days before the pilot ends. If it isn't for you, you leave with your data and owe nothing.</div>
 
-            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 10 }}>What we ask in return</div>
+            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 10 }}>What we ask in return</div>
             {[
               { n: 1, title: 'Honest feedback', desc: 'A short chat with two coaches each month' },
               { n: 2, title: 'A committee contact', desc: 'Greg Lawson, chair' },

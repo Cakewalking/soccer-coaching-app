@@ -29,7 +29,7 @@ export default function AV2ParentAvailability({ child = 'Bao', teamLabel = 'U8',
   }
 
   return (
-    <div style={{ width: 390, minHeight: '100%', background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', margin: '0 auto', position: 'relative' }}>
+    <div style={{ width: 390, minHeight: '100%', background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', margin: '0 auto', position: 'relative' }}>
       <div style={{ background: GD, padding: '16px 20px 20px' }}>
         <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,0.6)', marginBottom: 4 }}>Wattle Creek {teamLabel} · {self ? 'player' : 'parent'}</div>
         <div style={{ fontSize: 20, fontWeight: 800, letterSpacing: '-0.02em', color: '#fff' }}>{self ? 'Can you make it?' : `Can ${child} make it?`}</div>
@@ -41,7 +41,7 @@ export default function AV2ParentAvailability({ child = 'Bao', teamLabel = 'U8',
         {SESSIONS.map(s => (
           <div key={s.id} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 16px', marginBottom: 12 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
-              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT }}>{s.day}</div>
+              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b' }}>{s.day}</div>
               <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>{s.label}</div>
             </div>
             <div style={{ fontSize: 12, color: MUT, marginBottom: 10 }}>{s.sub}</div>

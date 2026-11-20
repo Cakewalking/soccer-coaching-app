@@ -25,7 +25,7 @@ export default function GT2MeasureSession({ onBack }: { onBack?: () => void }) {
   const [measuringRow, setMeasuringRow] = useState(PLAYERS.findIndex(p => p.note === 'Now measuring'))
   const [saved, setSaved] = useState(false)
   return (
-    <div style={{ width: 1180, height: 820, overflow: 'hidden', background: '#f7f8f7', boxSizing: 'border-box' as const, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' as const }}>
+    <div style={{ width: 1180, height: 820, overflow: 'hidden', background: '#faf5ec', boxSizing: 'border-box' as const, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' as const }}>
       <div style={{ height: 64, background: G, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 20, flex: 'none' }}>
         <div style={{ fontSize: 21, fontWeight: 700, color: '#fff', letterSpacing: '-0.02em' }}>Clean Sheet</div>
         <div style={{ flex: 1, fontSize: 13, color: 'rgba(255,255,255,0.7)' }}>U12 Sam · Wattle Creek · Fitness coach</div>
@@ -38,7 +38,7 @@ export default function GT2MeasureSession({ onBack }: { onBack?: () => void }) {
       </div>
       <div style={{ flex: 1, minHeight: 0, padding: '12px 28px 18px', boxSizing: 'border-box' as const, display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 300px', gap: 14 }}>
         <div style={{ background: '#fff', border: `1px solid #c5c8c4`, borderRadius: 16, padding: '12px 16px', display: 'flex', flexDirection: 'column' as const, gap: 0, overflow: 'hidden' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '200px 110px 150px 130px 120px 1fr', fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, padding: '0 0 6px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '200px 110px 150px 130px 120px 1fr', fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', padding: '0 0 6px' }}>
             {['Player','Last (Mar)','Height today','Sitting height','Weight',''].map(h => <span key={h}>{h}</span>)}
           </div>
           {PLAYERS.map((p, i) => (

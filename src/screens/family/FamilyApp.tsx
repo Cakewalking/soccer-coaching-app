@@ -226,7 +226,7 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
   // ── FAM1 · splash ──
   if (v === 'FAM1-Welcome') return plain('FAM1-Welcome', true, <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 8 }}><Mark /><button onClick={() => say(SAMPLE)} style={{ minHeight: 44, padding: '0 14px', borderRadius: 999, border: 0, background: 'rgba(255,255,255,0.16)', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8 }}><I d={PLAY} size={13} />Watch a sample reel · 0:48</button></span>,
     <><div style={{ display: 'flex', flexDirection: 'column', gap: 10, padding: '4px 0 28px' }}>{TOUR.slice(0, 3).map((c, n) => <Moment key={c.title} c={c} turn={[-3, 2, -2][n]} left={[6, 60, 22][n]} />)}</div>
-      {title(<>Sunday’s game.<br />Your child’s best moments.</>, 36)}<span style={{ fontSize: 17, lineHeight: '24px', color: MINT }}>Film it on your phone. We find them, cut the reel and blur everyone else.</span></>,
+      {title(<>Sunday’s game.<br />Your child’s best moments.</>, 36)}<span style={{ fontSize: 17, lineHeight: '24px', color: MINT }}>Film it on your phone or a camera that follows the play. We find them, cut the reel and blur everyone else.</span></>,
     <><button onClick={() => { setView('FAM0-SignUp'); top() }} style={big(true)}>Get started<span style={{ fontSize: 13, fontWeight: 500 }}>Your first video is free</span></button>
       <button onClick={() => { say('Sign-in opens.'); if (f.freeUsed) setTimeout(() => { setFamily({ signedIn: true }); go('FAM3-Home') }, 1200) }} style={{ ...under, color: '#fff', fontSize: 15, alignSelf: 'center' }}>I have an account</button></>, `linear-gradient(180deg, ${G} 0%, ${DEEP} 42%, ${NIGHT} 100%)`)
 
@@ -239,13 +239,13 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
 
   // ── FAMt1 to FAMt4 · the tour. The fourth panel (Booker, 20 Nov) says what a club joining would add ──
   if (/^FAMt\d/.test(v)) { const n = Number(v[4]), end = () => { setView('FAM3e-HomeEmpty'); top() }
-    const [h, t] = [['Film from the sideline.', 'A game, training or the park. Phone sideways, and only film where you’re allowed to.'], ['Tap your child once.', 'We follow their shirt through the whole video. We never use face recognition.'], ['Get their best moments.', 'A reel in about 20 minutes. Everyone else is blurred, and only your family can watch.'], ['Better still with your club.', 'It works with any club today. If yours joins Clean Sheet, you get more, and we tell you when it does.']][n - 1]
+    const [h, t] = [['Film from the sideline.', 'A game, training or the park. Your phone held sideways, or a camera that follows the play. Only film where you’re allowed to.'], ['Tap your child once.', 'We follow their shirt through the whole video. We never use face recognition.'], ['Get their best moments.', 'A reel in about 20 minutes. Everyone else is blurred, and only your family can watch.'], ['Better still with your club.', 'It works with any club today. If yours joins Clean Sheet, you get more, and we tell you when it does.']][n - 1]
     return plain(v, true, <><Mark /><button onClick={end} style={{ ...under, color: '#fff', fontSize: 15 }}>Skip</button></>, <>
       <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 10 }}>
         {n === 1 && <div style={{ position: 'relative', borderRadius: 26, border: '5px solid #fff', overflow: 'hidden', transform: 'rotate(-4deg)', boxShadow: '0 14px 30px rgba(0,0,0,0.4)' }}><Thumb kind="figure" len="" wide /><span style={{ position: 'absolute', left: 12, top: 12, padding: '4px 10px', borderRadius: 999, background: NIGHT, color: '#fff', fontSize: 13, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 6 }}><span style={{ width: 8, height: 8, borderRadius: 999, background: '#fff' }} />REC 23:10</span></div>}
         {n === 2 && <Pitch picked="7" tag={`That’s ${name}`} h={250} />}
         {n === 3 && TOUR.map((c, k) => <Moment key={c.title} c={c} turn={[-3, 2, -2, 2][k]} left={[8, 46, 18, 52][k]} />)}
-        {n === 4 && <div style={{ borderRadius: 18, background: '#fff', color: INK, padding: '6px 16px', display: 'flex', flexDirection: 'column', boxShadow: '0 14px 30px rgba(0,0,0,0.4)' }}><Line top={false} a="Club games are free" b="Filmed by the club. No phone, no credits" /><Line a="Every game, every minute" b="The club’s camera sees the whole pitch" /><Line a="Your own filming at half the credits" b="For what the club doesn’t film" /><Line a="The coach is part of it" b="A goal for the term and a clip to try at home" /></div>}
+        {n === 4 && <div style={{ borderRadius: 18, background: '#fff', color: INK, padding: '6px 16px', display: 'flex', flexDirection: 'column', boxShadow: '0 14px 30px rgba(0,0,0,0.4)' }}><Line top={false} a="Club games are free" b="Filmed by the club. Nothing for you to film, no credits" /><Line a="Every game, every minute" b="The club’s camera sees the whole pitch" /><Line a="Your own filming at half the credits" b="For what the club doesn’t film" /><Line a="The coach is part of it" b="A goal for the term and a clip to try at home" /></div>}
       </div>
       {title(h)}<span style={{ fontSize: 17, lineHeight: '24px', color: MINT }}>{t}</span>
       <div aria-hidden style={{ display: 'flex', gap: 6, justifyContent: 'center', paddingTop: 8 }}>{[1, 2, 3, 4].map(k => <span key={k} style={{ width: k === n ? 22 : 7, height: 7, borderRadius: 999, background: k === n ? AMBER : 'rgba(255,255,255,0.4)' }} />)}</div>
@@ -253,10 +253,10 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
 
   // ── FAM3e · one job: upload a video ──
   if (v === 'FAM3e-HomeEmpty') return plain('FAM3e-HomeEmpty', false, <><Mark />{avatar}</>, <>
-    {title(`Hi ${f.parent}. Got some football on your phone?`, 30)}
+    {title(`Hi ${f.parent}. Got some football on film?`, 30)}
     <button onClick={() => { setFamily({ film: 'f50', part: 0, both: false, anyway: false, held: null }); setUp(34); setExtra(null); go('FAM5-Check') }} style={{ minHeight: 300, marginTop: 6, borderRadius: 26, border: `2px dashed ${INK}`, background: TINTS[0], color: INK, fontFamily: 'inherit', cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
       <span style={{ width: 84, height: 84, borderRadius: 999, background: AMBER, color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 8 }}><I d={PLUS} size={34} w={2.4} /></span>
-      <strong style={{ fontSize: 24, letterSpacing: '-0.02em' }}>{f.freeUsed ? 'Add a video' : 'Upload a video'}</strong><span style={{ fontSize: 15, color: MUT }}>A game, training or a kickabout</span>
+      <strong style={{ fontSize: 24, letterSpacing: '-0.02em' }}>{f.freeUsed ? 'Add a video' : 'Upload a video'}</strong><span style={{ fontSize: 15, color: MUT }}>From your phone or your camera</span>
       {!f.freeUsed && <span style={{ marginTop: 6, padding: '6px 14px', borderRadius: 999, background: AMBER, color: INK, fontSize: 14, fontWeight: 700 }}>Your first one is free</span>}</button>
     <span style={note}>Only film where you’re allowed to. Other children are blurred before anything is saved.</span>
   </>, <div style={{ display: 'flex', gap: 26, justifyContent: 'center' }}><button onClick={() => side('FAM4-BeforeYouFilm')} style={{ ...link, fontSize: 15 }}>Filming tips</button><button onClick={() => say(SAMPLE)} style={{ ...link, fontSize: 15 }}>Watch a sample reel</button></div>)
@@ -337,11 +337,11 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
 
   // ── FAMk1 to FAMk3 · what the club adds ──
   if (/^FAMk\d/.test(v)) { const n = Number(v[4]), close = () => go('FAM11-Locked')
-    const [h, t] = [['Every game, every minute.', 'The club’s camera sees the whole pitch, so nothing depends on where your phone was pointing. And it’s free for you.'], ['A season, not one game.', 'Your videos each stand alone. With every game filmed the same way, progress can be followed round by round.'], ['And the coach is part of it.', 'A goal for the term, what training is working on, and a clip to try at home, straight from the coach.']][n - 1]
+    const [h, t] = [['Every game, every minute.', 'The club’s camera sees the whole pitch, so nothing depends on where your camera was pointing. And it’s free for you.'], ['A season, not one game.', 'Your videos each stand alone. With every game filmed the same way, progress can be followed round by round.'], ['And the coach is part of it.', 'A goal for the term, what training is working on, and a clip to try at home, straight from the coach.']][n - 1]
     const tagS: React.CSSProperties = { ...pill, position: 'absolute', left: 10, top: 10, minHeight: 26, fontSize: 13, padding: '0 10px' }
     return plain(v, true, <><span style={{ ...cap, fontSize: 13 }}>WITH YOUR CLUB</span><button onClick={close} style={{ ...under, color: '#fff', fontSize: 15 }}>Close</button></>, <>
       <div aria-hidden={n < 3} style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 14 }}>
-        {n === 1 && <><div style={{ position: 'relative' }}><Pitch h={160} /><span style={{ position: 'absolute', inset: 0, borderRadius: 16, background: `linear-gradient(90deg, rgba(16,33,31,0.72) 0 38%, transparent 38% 78%, rgba(16,33,31,0.72) 78%)` }} /><span style={tagS}>Your phone · 44 of 70 minutes</span></div>
+        {n === 1 && <><div style={{ position: 'relative' }}><Pitch h={160} /><span style={{ position: 'absolute', inset: 0, borderRadius: 16, background: `linear-gradient(90deg, rgba(16,33,31,0.72) 0 38%, transparent 38% 78%, rgba(16,33,31,0.72) 78%)` }} /><span style={tagS}>Your film · 44 of 70 minutes</span></div>
           <div style={{ position: 'relative', borderRadius: 18, border: '2.5px solid #fff' }}><Pitch h={160} picked="7" /><span style={tagS}>The club’s camera · all 70</span></div></>}
         {n === 2 && <><div style={{ borderRadius: 16, border: `2px dashed ${MAUVE}`, padding: 14, display: 'flex', alignItems: 'flex-end', gap: 12 }}><span style={{ width: 26, height: 44, borderRadius: 5, background: '#fff' }} /><span style={{ fontSize: 14 }}>Now: one video at a time</span></div>
           <div style={{ borderRadius: 16, background: '#fff', color: INK, padding: 14, display: 'flex', flexDirection: 'column', gap: 10 }}><span style={{ display: 'flex', alignItems: 'flex-end', gap: 6, height: 92 }}>{[34, 42, 38, 50, 47, 58, 62, 60, 72, 78, 74, 90].map((x, k) => <span key={k} style={{ flex: 1, height: x, borderRadius: 4, background: G }} />)}</span><strong style={{ fontSize: 14 }}>With the club: 12 rounds, side by side</strong></div></>}
@@ -361,9 +361,11 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
 
   // ── FAM4 · before you film ──
   if (v === 'FAM4-BeforeYouFilm') return shell('FAM4-BeforeYouFilm', head('Filming tips', 'Before you film', back), <>
-    <section style={bold}><strong style={{ fontSize: 16 }}>Check you are allowed to</strong><span style={{ fontSize: 14, lineHeight: '20px' }}>Many clubs and grounds have rules about filming children. Ask your club if you are not sure. If someone asks you to stop, stop.</span></section>
+    <section style={bold}><strong style={{ fontSize: 16 }}>Check you are allowed to</strong><span style={{ fontSize: 14, lineHeight: '20px' }}>Many clubs and grounds have rules about filming children. If someone asks you to stop, stop.</span></section>
     <section style={{ ...card, gap: 0, padding: '12px 14px 4px' }}><strong style={{ fontSize: 16, paddingBottom: 6 }}>For film we can read</strong>
       <Line a="Phone sideways, near halfway" b="As high as you safely can" /><Line a="Keep it still" b="Lean on a fence or use a small stand" /><Line a="Film the play, not just your child" b="We find them for you" /><Line a="One long take per half" b="Don’t stop and start" /></section>
+    <section style={{ ...card, gap: 0, padding: '12px 14px 4px' }}><strong style={{ fontSize: 16, paddingBottom: 6 }}>A camera that follows the play</strong>
+      <Line a="Set it at halfway, as high as it goes" b="It follows the ball, so your child is not always in shot" /><Line a="Send the whole recording" b="Not the highlights the camera made" /></section>
     <section style={{ borderRadius: 14, background: PALE, padding: '10px 14px', display: 'flex', flexDirection: 'column', gap: 2 }}><strong style={{ fontSize: 14 }}>Other people’s children</strong><span style={{ fontSize: 14, lineHeight: '20px' }}>They will be in your film. We blur everyone except your child before anything is saved, and we never try to work out who they are.</span><button onClick={() => { setView('FAM16-Privacy'); top() }} style={{ ...under, alignSelf: 'flex-start' }}>How we handle your film</button></section>
   </>, null, actions(false, <button key="a" onClick={back} style={btn(true)}>Got it</button>))
 
@@ -411,7 +413,7 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
     const use = () => { spend(fm.id, price); setView('FAM7-Working'); top() }
     if (v === 'FAM5c-ClubFilmedThis') return shell(v, head('Add a video', 'Your club filmed this one', 'FAM14-HomeWithClub'), <>
       <section style={{ borderRadius: 16, background: DEEP, color: '#fff', padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 6 }}><span style={{ ...cap, color: SOFT }}>SUN 21 JUNE · {fm.title.toUpperCase()}</span><strong style={{ fontSize: 20, lineHeight: '26px' }}>It is already in your app, free.</strong><span style={{ fontSize: 14, lineHeight: '20px', color: MINT }}>{club}’s camera covered the whole pitch, so {name}’s moments are better from that film.</span></section>
-      <section style={{ ...card, gap: 0, padding: '4px 14px' }}><Line top={false} a="No credits needed" b={`Your ${f.balance} credits are untouched`} /><Line a="Your own film is not uploaded" b="It stays on your phone" /></section>
+      <section style={{ ...card, gap: 0, padding: '4px 14px' }}><Line top={false} a="No credits needed" b={`Your ${f.balance} credits are untouched`} /><Line a="Your own film is not uploaded" b="It stays with you" /></section>
       <span style={{ fontSize: 14, lineHeight: '20px', color: MUT }}>Use your own filming for what the club doesn’t film: friendlies, tournaments, futsal, training, the park.</span>{pick}
     </>, 'reels', actions(true, <button key="a" onClick={another} style={btn(false)}>Add a different video</button>, <button key="b" onClick={() => go('FAM14-HomeWithClub')} style={btn(true)}>See {name}’s moments</button>))
     if (v === 'FAM5x-CantRead') return shell(v, head('Add a video · free check', 'We can’t read this one', 'FAM3-Home'), <>
@@ -528,7 +530,7 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
         {tile('shots', L.shots.length, STAT.shots.label, `${tagged(L.shots)} ${tagged(L.shots) === 1 ? 'goal' : 'goals'}`)}
         {tile('took', L.took.length, STAT.took.label, `${tagged(L.took)} came off`)}
         {tile('won', L.won.length, STAT.won.label, `${tagged(L.won)} in the other half`)}</div>
-      <section style={{ borderRadius: 14, background: PALE, padding: '10px 14px', display: 'flex', alignItems: 'center', gap: 10 }}>{estimate}<span style={{ fontSize: 14, lineHeight: '19px' }}>All of these. One phone misses things. Tap a number to watch it.</span></section>
+      <section style={{ borderRadius: 14, background: PALE, padding: '10px 14px', display: 'flex', alignItems: 'center', gap: 10 }}>{estimate}<span style={{ fontSize: 14, lineHeight: '19px' }}>All of these. One camera misses things. Tap a number to watch it.</span></section>
       {locked(`All ${s.minutes} minutes, not ${s.inShot}`, `The club’s camera sees the whole pitch: minutes played, where ${she} was all game, and firmer numbers.`, <span style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0,1fr))', gap: 6 }}>{[[String(s.minutes), 'minutes played'], ['3', 'positions'], ['Map', 'whole pitch']].map(([x, w]) => <span key={w} style={{ borderRadius: 10, border: `1px solid ${GREY}`, padding: '5px 8px', display: 'flex', flexDirection: 'column', color: GREY }}><strong style={{ fontSize: 17 }}>{x}</strong><span style={{ fontSize: 12 }}>{w}</span></span>)}</span>)}
     </>, 'reels') }
 
@@ -606,7 +608,7 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
   // ── FAM18 · the Reels tab: every video and its state ──
   if (v === 'FAM18-Reels') return shell('FAM18-Reels', head(`${f.balance} credits · ${games}`, 'Reels'), <>
     {switcher}
-    {locked('Every club game, here, free', 'Filmed by the club. No phone, no credits.')}
+    {locked('Every club game, here, free', 'Filmed by the club. Nothing for you to film, no credits.')}
     <section style={{ ...card, gap: 0, padding: '4px 14px' }}>
       {mine.map((x, n) => <button key={x.id} onClick={() => openVideo(x)} style={{ ...row, minHeight: 70, borderTop: n ? `1px solid ${HAIR}` : 0 }}>
         <span style={{ flex: 'none', width: 96 }}>{x.state === 'working' ? <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', aspectRatio: '16 / 9', borderRadius: 10, background: NIGHT, color: '#fff' }}><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden><circle cx="12" cy="12" r="9" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="3" /><path d="M12 3a9 9 0 019 9" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" /></svg></span>
@@ -673,13 +675,13 @@ export function FamilyClubPage({ onNav }: { onNav?: (s: string) => void }) {
   const tile: React.CSSProperties = { background: '#fff', border: `1px solid ${LINE}`, borderRadius: 16, padding: '14px 16px', display: 'flex', flexDirection: 'column' }
   const wide = (primary: boolean): React.CSSProperties => ({ minHeight: 50, padding: '0 22px', borderRadius: 12, border: primary ? 0 : `1px solid ${LINE}`, background: primary ? G : '#fff', color: primary ? '#fff' : INK, fontFamily: 'inherit', fontSize: 16, fontWeight: 700, cursor: 'pointer' })
   return (
-    <div data-screen="FAMc1-ClubInterest" style={{ maxWidth: 1180, minHeight: 820, margin: '0 auto', background: '#f7f8f7', color: INK, fontFamily: "'DM Sans',system-ui,sans-serif" }}>
+    <div data-screen="FAMc1-ClubInterest" style={{ maxWidth: 1180, minHeight: 820, margin: '0 auto', background: '#faf5ec', color: INK, fontFamily: "'DM Sans',system-ui,sans-serif" }}>
       <header style={{ height: 64, padding: '0 32px', background: G, color: '#fff', display: 'flex', alignItems: 'center', gap: 16 }}><strong style={{ flexGrow: 1, fontSize: 22, letterSpacing: '-0.02em' }}>Clean Sheet</strong><button onClick={look} style={{ minHeight: 44, border: 0, background: 'none', color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 700, textDecoration: 'underline', cursor: 'pointer' }}>Look around</button><button onClick={() => say('A short form: your name, your role at the club, and a time to talk.')} style={{ minHeight: 44, padding: '0 18px', borderRadius: 10, border: 0, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>Talk to us</button></header>
       <main style={{ padding: '28px 32px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 28, alignItems: 'start' }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
           <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', color: MUT }}>FOR THE COMMITTEE AT {club.toUpperCase()}</span>
           <h1 style={{ margin: 0, fontSize: 42, lineHeight: '48px', letterSpacing: '-0.03em' }}>{count ? `${families} families at your club already use Clean Sheet.` : 'Families at your club already use Clean Sheet.'}</h1>
-          <span style={{ fontSize: 18, lineHeight: '27px' }}>They film games on their phones and pay with credits for their own child’s highlights. With the club on board, every family gets that from one camera, and your coaches get a lot more.</span>
+          <span style={{ fontSize: 18, lineHeight: '27px' }}>They film games on their phones and their own cameras, and pay with credits for their own child’s highlights. With the club on board, every family gets that from one camera, and your coaches get a lot more.</span>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0,1fr))', gap: 10 }}>{[['For coaches', 'A session proposed from the last game, with the reason for every part'], ['For families', 'Their child’s moments from every club game, with no credits'], ['For the club', 'Fair turns, consent and welfare in one place']].map(([a, b]) => <span key={a} style={{ borderRadius: 12, background: PALE, padding: '10px 12px', display: 'flex', flexDirection: 'column', gap: 2 }}><strong style={{ fontSize: 12, color: MUT }}>{a}</strong><span style={{ fontSize: 14, lineHeight: '19px' }}>{b}</span></span>)}</div>
           <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}><button onClick={look} style={wide(true)}>See what coaches get</button><button onClick={() => say('The price list for clubs opens.')} style={wide(false)}>Prices for clubs</button></div>
         </div>

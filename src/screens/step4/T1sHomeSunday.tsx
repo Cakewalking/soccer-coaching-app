@@ -7,7 +7,7 @@ export default function T1sHomeSunday(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string|null>(null)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
-    <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820 }}>
+    <div style={{ width: 1180, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820 }}>
       <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 32, height: 52 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>Clean Sheet</div>
         <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.8)' }}>U12 Sam · Wattle Creek</div>
@@ -20,7 +20,7 @@ export default function T1sHomeSunday(_: { onBack?: () => void }) {
       <div style={{ display: 'flex', flex: 1 }}>
         <div style={{ flex: 1, padding: '24px 32px 32px' }}>
           <div style={{ marginBottom: 20 }}>
-            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 8 }}>Needs you</div>
+            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 8 }}>Needs you</div>
             {[
               { from: 'Match review', time: '8:00 am', text: "Saturday's review is ready · W Ironbark 3–1", urgent: false },
               { from: 'Wellness check-ins', time: '7:45 am', text: 'Ella has felt low three days running', urgent: true },
@@ -56,7 +56,7 @@ export default function T1sHomeSunday(_: { onBack?: () => void }) {
           </div>
 
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 18px' }}>
-            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 6 }}>Today · Sunday 7 Jun</div>
+            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 6 }}>Today · Sunday 7 Jun</div>
             <div style={{ fontSize: 16, fontWeight: 800, color: INK, marginBottom: 4 }}>Match review · rest day</div>
             <div style={{ fontSize: 13, color: MUT, marginBottom: 10 }}>Review Saturday · plan next week · 7 clips to tag</div>
             <div style={{ display: 'flex', gap: 10, marginTop: 14 }}>
@@ -68,13 +68,13 @@ export default function T1sHomeSunday(_: { onBack?: () => void }) {
 
         <div style={{ width: 300, padding: '24px 24px 32px 0' }}>
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 16px', marginBottom: 14 }}>
-            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 6 }}>Yesterday · Sat 6 Jun · away</div>
+            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 6 }}>Yesterday · Sat 6 Jun · away</div>
             <div style={{ fontSize: 15, fontWeight: 800, color: GD }}>W Ironbark United</div>
             <div style={{ fontSize: 13, color: MUT, marginBottom: 6 }}>Mia, Jai and Zoe scored · 3–1</div>
             <div style={{ fontSize: 12, color: G }}>→ Open the review · 7 clips ready</div>
           </div>
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 16px', marginBottom: 14 }}>
-            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 8 }}>This week ahead</div>
+            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 8 }}>This week ahead</div>
             {[
               { d: 'Sun 7', t: 'Review · today', bold: true },
               { d: 'Mon 8', t: 'Rest' },

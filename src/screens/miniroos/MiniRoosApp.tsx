@@ -270,7 +270,7 @@ function MiniRooFilesContent({ files, onOpenFile, onNewFile }: { files: MrFile[]
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, overflow: 'hidden' }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 220px 100px', padding: '10px 20px', background: PALE, borderBottom: `1px solid ${LN}` }}>
             {['NAME', 'WHO CAN SEE IT', 'CHANGED'].map(h => (
-              <div key={h} style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT }}>{h}</div>
+              <div key={h} style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b' }}>{h}</div>
             ))}
           </div>
           {files.map((f, i) => (
@@ -380,7 +380,7 @@ export function SuggestedMiniRoos({ empty }: { empty?: boolean }) {
         <div style={{ fontSize: 14, color: G, lineHeight: 1.6, marginBottom: 16 }}>Ideas start after your first game. Tap three things you saw after a game and Clean Sheet picks games to match. Until then it follows the under 9 curriculum.</div>
         <button onClick={() => goApp('whatisaw', 'Opening what you saw.')} style={{ height: 44, padding: '0 20px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Tap what you saw</button>
       </div>
-      <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 8 }}>It uses</div>
+      <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 8 }}>It uses</div>
       {[
         { n: '1', title: 'Your three taps', note: 'After each game' },
         { n: '2', title: 'Who had a go', note: 'So quieter children get the ball' },
@@ -464,7 +464,7 @@ export function SuggestedMiniRoos({ empty }: { empty?: boolean }) {
       </div>
 
       <div>
-        <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 8 }}>What you said worked</div>
+        <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 8 }}>What you said worked</div>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, overflow: 'hidden' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 14px', borderBottom: `1px solid ${LN}` }}>
             <div style={{ width: 28, height: 28, borderRadius: '50%', background: G, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, flexShrink: 0 }}>✓</div>
@@ -553,7 +553,7 @@ function RecordMiniRoosStart({ empty, onClips }: { empty?: boolean; onClips: () 
 
       {/* Before you film */}
       <div>
-        <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 10 }}>Before you film</div>
+        <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 10 }}>Before you film</div>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, overflow: 'hidden' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 16px', borderBottom: `1px solid ${LN}` }}>
             <div style={{ flex: 1 }}>

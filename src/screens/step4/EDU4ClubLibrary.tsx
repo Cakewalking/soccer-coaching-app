@@ -33,7 +33,7 @@ export default function EDU4ClubLibrary({ onNav }: { onNav?: (s: string) => void
   )
 
   return (
-    <div data-lasttool={lastTool} style={{ width: 1180, background: '#f7f8f7', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }}>
+    <div data-lasttool={lastTool} style={{ width: 1180, background: '#faf5ec', fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' }}>
       {/* Director top nav */}
       <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 4, height: 52, flexShrink: 0 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff', marginRight: 8 }}>Clean Sheet</div>
@@ -87,7 +87,7 @@ export default function EDU4ClubLibrary({ onNav }: { onNav?: (s: string) => void
             <button onClick={() => onNav?.('EDU2-Lesson')} style={{ marginLeft: 'auto', height: 44, padding: '0 16px', borderRadius: 999, background: G, color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Check the next one</button>
           </div>
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, overflow: 'hidden' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 120px 120px 100px 80px', padding: '10px 20px', borderBottom: `1.5px solid ${LN}`, background: '#f7f8f7' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 120px 120px 100px 80px', padding: '10px 20px', borderBottom: `1.5px solid ${LN}`, background: '#faf5ec' }}>
               {['Lesson', 'Coach', 'Team', 'Added', ''].map(h => (
                 <div key={h} style={{ fontSize: 11, fontWeight: 700, color: MUT }}>{h}</div>
               ))}

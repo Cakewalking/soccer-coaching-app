@@ -27,7 +27,7 @@ export default function CH1TeamChat(_: { onBack?: () => void }) {
   const totalVotes = (TEAM[2] as Msg).pollVotes!.reduce((a, b) => a + b, 0)
 
   return (
-    <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, position: 'relative' }}>
+    <div style={{ width: 1180, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, position: 'relative' }}>
       <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 32, height: 52 }}>
         <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>Clean Sheet</div>
         <div style={{ fontSize: 13, fontWeight: 700, color: '#fff' }}>Chat · U12 Sam</div>
@@ -37,7 +37,7 @@ export default function CH1TeamChat(_: { onBack?: () => void }) {
       <div style={{ display: 'grid', gridTemplateColumns: '240px 1fr 300px', height: 768 }}>
         {/* Left sidebar */}
         <div style={{ background: '#fff', borderRight: `1px solid ${LN}`, display: 'flex', flexDirection: 'column' as const }}>
-          <div style={{ padding: '16px 16px 8px', fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', color: MUT, textTransform: 'uppercase' as const }}>Channels</div>
+          <div style={{ padding: '16px 16px 8px', fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', color: '#7a4b5b', textTransform: 'uppercase' as const }}>Channels</div>
           {(['team', 'announcements'] as const).map(ch => (
             <div key={ch} onClick={() => setChannel(ch)} style={{ padding: '10px 16px', background: channel === ch ? PALE : 'transparent', cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <div>

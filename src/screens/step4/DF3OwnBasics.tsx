@@ -13,7 +13,7 @@ export default function DF3OwnBasics(_: { onBack?: () => void }) {
   const AGE_OPTS = ['U8 to U10', 'U11 to U13', 'U14+']
   const KIT_OPTS = ['Balls', 'Bibs', 'Cones', 'Mini goals', 'Big goals']
   return (
-    <div style={{ width: 1180, height: 820, boxSizing: 'border-box', background: '#f7f8f7', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
+    <div style={{ width: 1180, height: 820, boxSizing: 'border-box', background: '#faf5ec', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
       <div style={{ flex: 'none', background: GD, height: 56, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 16 }}>
         <span style={{ fontSize: 17, fontWeight: 800, color: '#fff' }}>Clean Sheet</span>
         <span style={{ fontSize: 15, fontWeight: 700, color: '#fff', marginLeft: 8 }}>Add your own drill</span>
@@ -23,7 +23,7 @@ export default function DF3OwnBasics(_: { onBack?: () => void }) {
       </div>
       <main style={{ flexGrow: 1, padding: '28px', display: 'grid', gridTemplateColumns: '1fr 320px', gap: 32, overflowY: 'auto' }}>
         <div>
-          <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 20 }}>Step 1 of 4 · The basics</div>
+          <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 20 }}>Step 1 of 4 · The basics</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
             <div>
               <label style={{ fontSize: 14, fontWeight: 600, color: INK, display: 'block', marginBottom: 6 }}>What's your drill called?</label>

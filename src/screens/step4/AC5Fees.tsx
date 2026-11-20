@@ -23,7 +23,7 @@ export default function AC5Fees(_: { onBack?: () => void }) {
   ]
 
   return (
-    <div style={{ width: 1180, background: '#f7f8f7', boxSizing: 'border-box' as const, fontFamily: 'var(--font-sans)', minHeight: 820, position: 'relative', display: 'flex', flexDirection: 'column' as const }}>
+    <div style={{ width: 1180, background: '#faf5ec', boxSizing: 'border-box' as const, fontFamily: 'var(--font-sans)', minHeight: 820, position: 'relative', display: 'flex', flexDirection: 'column' as const }}>
 
       {/* TOP NAV */}
       <div style={{ background: G, height: 64, display: 'flex', alignItems: 'center', padding: '0 24px', gap: 0, flexShrink: 0 }}>
@@ -69,8 +69,8 @@ export default function AC5Fees(_: { onBack?: () => void }) {
             { label: 'Late', value: '$1,160', sub: '4 families', color: '#b93333' },
             { label: 'On a plan', value: '$680', sub: '2 families', color: INK },
             { label: 'One-on-ones', value: '$7,740', sub: 'paid in advance', color: INK },
-          ].map(s => (
-            <div key={s.label} style={{ background: '#fff', border: `1px solid #c5c8c4`, borderRadius: 16, padding: '14px 18px', display: 'flex', flexDirection: 'column' as const, gap: 4 }}>
+          ].map((s, kpiN)=> (
+            <div key={s.label} style={{ background: ['#f3ecdf', '#f4e6e6', '#eef5f2', '#f3ecdf'][kpiN % 4], border: `1px solid #c5c8c4`, borderRadius: 16, padding: '14px 18px', display: 'flex', flexDirection: 'column' as const, gap: 4 }}>
               <div style={{ fontSize: 12, fontWeight: 600, color: MUT, textTransform: 'uppercase' as const, letterSpacing: 0.5 }}>{s.label}</div>
               <div style={{ fontSize: 30, fontWeight: 800, color: s.color, lineHeight: 1.1 }}>{s.value}</div>
               <div style={{ fontSize: 13, color: MUT }}>{s.sub}</div>

@@ -13,7 +13,7 @@ const INK  = '#10211f'
 const MUT  = '#4a5a57'
 const LN   = '#e8edeb'
 const PALE = '#eef5f2'
-const SAND = '#cbbeb5'
+const SAND = '#e8cfcf'
 const SANDBG = '#f6f1e9'
 
 function Icon({ d, size = 20, stroke = 'currentColor', sw = 2 }: { d: string; size?: number; stroke?: string; sw?: number }) {
@@ -54,7 +54,7 @@ function CoachFrame({ activeNav, activeSub, subTabs, pageTitle, pageSub, pageRig
   pageRight?: React.ReactNode; children: React.ReactNode; toast: string | null; onNavTab: (t: string) => void; noFrame?: boolean
 }) {
   if (noFrame) return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#f7f8f7' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#faf5ec' }}>
       <div style={{ padding: '20px 28px 12px', display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexShrink: 0 }}>
         <div>
           <h1 style={{ margin: 0, fontSize: 24, fontWeight: 700, color: INK, letterSpacing: '-0.02em' }}>{pageTitle}</h1>
@@ -67,7 +67,7 @@ function CoachFrame({ activeNav, activeSub, subTabs, pageTitle, pageSub, pageRig
     </div>
   )
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#f7f8f7' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#faf5ec' }}>
       {/* Top bar */}
       <div style={{ background: GD, display: 'flex', alignItems: 'center', padding: '0 20px', gap: 2, height: 56, flexShrink: 0 }}>
         <span style={{ color: '#e9eae8', fontWeight: 800, fontSize: 16, marginRight: 10 }}>Clean Sheet</span>
@@ -225,7 +225,7 @@ export function SquadLineups({ onBack: _onBack, noFrame, onNav, teamType = 'juni
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 6, marginTop: 12 }}>
               {MX.map(mm => (
-                <div key={mm.key} style={{ background: mm.key === metric ? PALE : '#f7f8f7', borderRadius: 10, padding: '8px 8px' }}>
+                <div key={mm.key} style={{ background: mm.key === metric ? PALE : '#faf5ec', borderRadius: 10, padding: '8px 8px' }}>
                   <div style={{ fontSize: 15, fontWeight: 800, color: mm.key === metric ? G : INK }}>{fmt(mm.key, value(lineup.agg, mm.key, g))}</div>
                   <div style={{ fontSize: 11, color: MUT, lineHeight: 1.3 }}>{mm.short}</div>
                 </div>
@@ -358,7 +358,7 @@ export function SquadLineups({ onBack: _onBack, noFrame, onNav, teamType = 'juni
   )
 }
 
-const th: React.CSSProperties = { fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: MUT, padding: '0 8px 6px 10px' }
+const th: React.CSSProperties = { fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#7a4b5b', padding: '0 8px 6px 10px' }
 const td: React.CSSProperties = { display: 'flex', alignItems: 'center', minHeight: 40, padding: '0 8px 0 10px', borderTop: `1px solid ${LN}` }
 
 // SQ1e — Best lineups empty state

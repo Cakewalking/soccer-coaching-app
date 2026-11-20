@@ -7,7 +7,7 @@ import { takeWanted, onWanted, type SetupSection } from './sandboxNav'
 // Everything here is saved in the browser and read by the other roles
 // (parent, team manager), so a visitor can set up a real team and look around.
 
-const INK = '#10211f', MUT = '#4a5a57', LN = '#e9eae8', G = '#2f6252', GD = '#1f4a3e', PALE = '#eef5f2', BORDER = '#c5c8c4', SANDBG = '#f6f1e9', SAND = '#cbbeb5'
+const INK = '#10211f', MUT = '#4a5a57', LN = '#e9eae8', G = '#2f6252', GD = '#1f4a3e', PALE = '#eef5f2', BORDER = '#c5c8c4', SANDBG = '#f6f1e9', SAND = '#e8cfcf'
 const input: React.CSSProperties = { height: 44, padding: '0 12px', border: `1px solid ${BORDER}`, borderRadius: 10, fontSize: 14, fontFamily: 'inherit', color: INK, outline: 'none', boxSizing: 'border-box', width: '100%', background: '#fff' }
 const btn: React.CSSProperties = { height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${BORDER}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap' }
 const btnP: React.CSSProperties = { ...btn, border: 0, background: G, color: '#fff', fontWeight: 700 }
