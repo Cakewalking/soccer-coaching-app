@@ -27,12 +27,12 @@ type Open = PItem | Own
 const secsOf = (len: string) => { const [m, s] = len.split(':').map(Number); return m * 60 + s }
 const chapters = (frame: Frame, secs: number, cue: string, first: string): Chapter[] => [{ key: 'clip', frame, label: first, short: first, secs: Math.max(4, secs), lines: [cue] }, { key: 'slow', frame, label: 'Slow', short: 'Slow', secs: Math.floor(Math.max(4, secs) * 4 / 3), lines: [cue], slow: true }]
 
-export default function EducationPhone({ start = 'ECp1-FamilyLibrary', team, child, ini, onNav }: { start?: string; team?: TeamKey; child?: string; ini?: string; onNav?: (s: string) => void }) {
+export default function EducationPhone({ start = 'ECp1-FamilyLibrary', team, child, ini, onNav, own, show: first }: { start?: string; team?: TeamKey; child?: string; ini?: string; onNav?: (s: string) => void; /** Clean Sheet Family: no coach and no club, so the library is Clean Sheet's own items for a child of this age */ own?: { age: number; home: string }; /** the title of the item to open on */ show?: string }) {
   const player = start === 'ECp3-PlayerLibrary'
-  const k: TeamKey = team ?? (player ? 'u16' : 'u9'), t = TEAMS[k], age = teamAge(k), kid = child ?? (player ? 'Mateo' : 'Ivy'), sample = k === 'u9' && kid === 'Ivy'
+  const k: TeamKey = team ?? (player ? 'u16' : 'u9'), t = TEAMS[k], age = own?.age ?? teamAge(k), kid = child ?? (player ? 'Mateo' : 'Ivy'), sample = !own && k === 'u9' && kid === 'Ivy'
   const club = useClub()
   const [id, setId] = useBackState(start)
-  const [open, setOpen] = useBackState<string>(() => byTitle('Eyes up while you dribble', 'players')!.id)   // the clip ECp2 shows: an item id, or "own:n"
+  const [open, setOpen] = useBackState<string>(() => byTitle(first ?? 'Eyes up while you dribble', 'players')!.id)   // the clip ECp2 shows: an item id, or "own:n"
   const [on, setOn] = useBackState<string[]>(['Just a ball'])
   const [all, setAll] = useBackState<string | null>(null)
   const [captions, setCaptions] = useState(true)
@@ -78,10 +78,10 @@ export default function EducationPhone({ start = 'ECp1-FamilyLibrary', team, chi
               {[['1 · Dribble towards a grown-up', 'Ten steps'], ['2 · They hold up fingers. Shout the number', 'Five goes'], ['3 · Stop the ball on “freeze”', 'Five goes']].map(([a, b]) => <div key={a} style={{ display: 'flex', justifyContent: 'space-between', gap: 10, padding: '7px 0', borderTop: `1px solid ${LINE}`, fontSize: 14, lineHeight: '19px' }}><span>{a}</span><strong style={{ flex: 'none' }}>{b}</strong></div>)}
               <span style={{ fontSize: 13, lineHeight: '18px', color: MUT }}>You need a ball and a bit of space. Indoors works with a soft ball.</span>
             </> : <span style={{ fontSize: 14, lineHeight: '20px', color: MUT }}>{own ? 'Watch it once, then once in slow motion.' : `The game for this one is not written yet. You need: ${lower((i as PItem).you_need)}.`}</span>}
-            {!player && <span style={{ fontSize: 13, lineHeight: '18px', color: MUT }}>Nothing is counted and nobody is ranked. If {kid} wants {t.coach} to know, there is a button.</span>}
+            {!player && <span style={{ fontSize: 13, lineHeight: '18px', color: MUT }}>{own ? 'Nothing is counted and nobody is ranked.' : `Nothing is counted and nobody is ranked. If ${kid} wants ${t.coach} to know, there is a button.`}</span>}
           </section>
         </div>
-        {bar(['Another one', () => go(home)], [was ? 'Done' : 'We did it', () => { if (was) { demoToast(`${t.coach} already has the tick for this clip.`); return } setDone([...done, open]); if (!own) familyDid(k, open); demoToast(player ? `Nice. ${t.coach} sees a tick for you on this clip, and nothing else.` : `Nice. ${t.coach} sees a tick for ${kid} on this clip, and nothing else.`) }])}
+        {own ? <div style={{ flex: 'none', position: 'sticky', bottom: 0, display: 'flex', padding: '10px 14px 14px', background: '#f7f8f7', borderTop: `1px solid ${LINE}` }}><button onClick={() => go(home)} style={wideBtn(true)}>Another one</button></div> : bar(['Another one', () => go(home)], [was ? 'Done' : 'We did it', () => { if (was) { demoToast(`${t.coach} already has the tick for this clip.`); return } setDone([...done, open]); if (!own) familyDid(k, open); demoToast(player ? `Nice. ${t.coach} sees a tick for you on this clip, and nothing else.` : `Nice. ${t.coach} sees a tick for ${kid} on this clip, and nothing else.`) }])}
       </div>)
   }
 
@@ -108,9 +108,9 @@ export default function EducationPhone({ start = 'ECp1-FamilyLibrary', team, chi
   const row = (name: string, titles: string[]) => { const its = mine.filter(i => i.shelf === name && picked(i) && i.id !== week.id), order = [...titles.map(tt => its.find(i => i.title === tt)).filter((i): i is PItem => !!i), ...its.filter(i => !titles.includes(i.title))]; return shelf(name, order.map(i => tile(i.id, 'figure', i.length, i.title, `${i.kind} · ${lower(i.you_need)}`, i.id)), order.length) }
   return (
     <div data-screen="ECp1-FamilyLibrary" style={phone}>
-      {head(`${t.label} · for ${kid}`, 'Football at home', 'STO17-HomeStoryParent', ini ?? 'DB')}
+      {head(own ? `Free · for ${kid}` : `${t.label} · for ${kid}`, 'Football at home', own?.home ?? 'STO17-HomeStoryParent', ini ?? 'DB')}
       <div style={{ flexGrow: 1, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 12 }}>
-        <LearnPlayer phone tryLabel="Try" chapters={chapters(sample ? 'team' : 'figure', week.secs, sample ? 'Watch her head' : week.title, 'Clip')} ratio="362 / 215" chips={[`From ${t.coach} this week`]} captions={captions} onCaptions={setCaptions} say={demoToast}
+        <LearnPlayer phone tryLabel="Try" chapters={chapters(sample ? 'team' : 'figure', week.secs, sample ? 'Watch her head' : week.title, 'Clip')} ratio="362 / 215" chips={[own ? 'From Clean Sheet’s library' : `From ${t.coach} this week`]} captions={captions} onCaptions={setCaptions} say={demoToast}
           tryCard={{ heading: 'Have a go', at: '', task: week.title, button: '', done: false, onAdd: () => {} }} />
         <span style={{ display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 17, lineHeight: '22px' }}>{week.title}</strong><span style={{ fontSize: 13, color: MUT }}>{sample ? 'That’s Ivy, last Saturday · 9 seconds · just a ball' : `${week.kind} · ${week.length} · ${lower(week.you_need)}`}</span></span>
         <div role="group" aria-label="Show me" style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>{CHIPS.map(([c]) => { const is = on.includes(c); return <button key={c} role="checkbox" aria-checked={is} onClick={() => { setOn(is ? on.filter(v => v !== c) : [...on, c]); demoToast(`${c}: ${is ? 'removed' : 'added'}.`) }} style={{ minHeight: 44, padding: '0 13px', borderRadius: 999, border: is ? 0 : `1px solid ${LINE}`, background: is ? G : '#fff', color: is ? '#fff' : INK, fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>{c}</button> })}</div>

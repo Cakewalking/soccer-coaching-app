@@ -77,14 +77,14 @@ export function Thumb({ kind, len, wide }: { kind: Frame; len: number | string; 
 const ctl: React.CSSProperties = { flex: 'none', width: 44, height: 44, border: 0, background: 'none', padding: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', color: W, cursor: 'pointer', boxSizing: 'border-box' }
 const svg = { fill: 'none', stroke: 'currentColor', strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const, 'aria-hidden': true }
 
-export default function LearnPlayer({ chapters, chips, tryCard, captions, onCaptions, say, ratio, phone, ref, tryLabel = 'Try it' }: {
+export default function LearnPlayer({ chapters, chips, tryCard, captions, onCaptions, say, ratio, phone, ref, tryLabel = 'Try it', noTry = false }: {
   chapters: Chapter[]; /** the dark chip, then any white ones */ chips: string[]; tryCard: TryCard
-  captions: boolean; onCaptions: (on: boolean) => void; say: (m: string) => void; ratio: string; phone?: boolean; ref?: Ref<PlayerHandle>; /** the last chapter: the thing to do, as a still */ tryLabel?: string
+  captions: boolean; onCaptions: (on: boolean) => void; say: (m: string) => void; ratio: string; phone?: boolean; ref?: Ref<PlayerHandle>; /** the last chapter: the thing to do, as a still */ tryLabel?: string; /** a reel or a single clip: it ends on its last frame, with nothing to try */ noTry?: boolean
 }) {
   const total = lengthOf(chapters)
   const [t, setT] = useState(0), [playing, setPlaying] = useState(false)
   const box = useRef<HTMLElement>(null)
-  const ended = t >= total
+  const over = t >= total, ended = over && !noTry
   useEffect(() => {
     if (!playing) return
     const id = setInterval(() => setT(v => { const n = Math.min(total, v + 0.1); if (n >= total) setPlaying(false); return n }), 100)
@@ -93,7 +93,7 @@ export default function LearnPlayer({ chapters, chips, tryCard, captions, onCapt
   const startOf = (key: string) => { let s = 0; for (const c of chapters) { if (c.key === key) return s; s += c.secs } return total }
   const jump = (key: string, label: string) => { const s = startOf(key); setT(s); setPlaying(s < total); say(`Jumps to: ${label}.`) }
   useImperativeHandle(ref, () => ({ play: key => { setT(startOf(key)); setPlaying(true); box.current?.scrollIntoView?.({ behavior: 'smooth', block: 'nearest' }) } }))
-  const toggle = () => { if (playing) { setPlaying(false); say('Paused.') } else { if (ended) setT(0); setPlaying(true); say('Plays here, in the page. Tap again to pause.') } }
+  const toggle = () => { if (playing) { setPlaying(false); say('Paused.') } else { if (over) setT(0); setPlaying(true); say('Plays here, in the page. Tap again to pause.') } }
 
   // where the playhead is: which chapter, how far through it, which line is being said
   let into = t, at = chapters[chapters.length - 1]
@@ -129,7 +129,7 @@ export default function LearnPlayer({ chapters, chips, tryCard, captions, onCapt
         <button aria-label={playing ? 'Pause' : ended ? 'Play again' : 'Play'} onClick={toggle} style={ctl}><svg width="20" height="20" viewBox="0 0 24 24" strokeWidth="2.4" {...svg}><path d={playing ? 'M8 5v14M16 5v14' : 'M8 5l11 7-11 7z'} /></svg></button>
         <div style={{ flexGrow: 1, minWidth: 0, display: 'flex', gap: 8 }}>
           {chapters.map(c => seg(phone ? c.short : c.label, phone ? '' : clock(c.secs), at === c && !ended, fill(c.key, c.secs), c.key === 'team' ? 2 : 4, () => jump(c.key, c.label)))}
-          {seg(tryLabel, '', ended, ended ? 1 : 0, phone ? 1 : tryLabel.length > 6 ? 2 : 1, () => jump('try', tryLabel))}
+          {!noTry && seg(tryLabel, '', ended, ended ? 1 : 0, phone ? 1 : tryLabel.length > 6 ? 2 : 1, () => jump('try', tryLabel))}
         </div>
         {!phone && <span style={{ flex: 'none', fontSize: 13, fontVariantNumeric: 'tabular-nums' }}>{clock(t)} / {clock(total)}</span>}
         <button role="switch" aria-checked={captions} aria-label="Captions" onClick={() => { onCaptions(!captions); say(captions ? 'Captions off. They are on by default.' : 'Captions on.') }} style={{ ...ctl, borderBottom: `3px solid ${captions ? W : 'transparent'}` }}><svg width="22" height="22" viewBox="0 0 24 24" strokeWidth="1.8" {...svg}><path d="M4 6h16v12H4zM8.5 13.5a2 2 0 110-3M15.5 13.5a2 2 0 110-3" /></svg></button>

@@ -1,5 +1,6 @@
 import LearnPhone from '../learn/LearnPhone'
 import EducationPhone from '../learn/EducationPhone'
+import FamilyApp, { FamilyClubPage } from '../family/FamilyApp'
 import { isEduId } from '../learn/library'
 import { useState, type ReactNode } from 'react'
 import DemoStart from './DemoStart'
@@ -115,6 +116,9 @@ export function renderExtraScreen(key: string): ReactNode | undefined {
   if (isEduId(key)) return <div style={{ width: 1180, margin: '0 auto', background: 'var(--surface-100)' }}><MiniRoosApp onBack={noop} initialScreen={key} /></div>
   if (key === 'EC10-DirectorLibrary') return <ClubAdminScreen role="dof" initials="RM" initialTab="coaches" initialSub="education" />
   if (/^ECp[123]-/.test(key)) return <EducationPhone start={key} />
+  // Clean Sheet Family (20 Nov): a parent's own filming, paid for with credits, whether or not the club has joined.
+  if (key === 'FAMc1-ClubInterest') return <FamilyClubPage />
+  if (/^FAM\d/.test(key)) return <FamilyApp key={key} start={key} />
   if (key === 'KC2-FiveClubs') return <KC2FiveClubs />
   if (isSessionBoard(key)) return <KCSession id={key} />
   if (key === 'KC8-ReportClubColours') return <KC8Report />
