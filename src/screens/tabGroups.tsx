@@ -15,6 +15,8 @@ const SETS: Set[] = [
   [['Session', ['Tuesday’s session', 'Run sheet', 'Who’s coming']], ['Plan', ['This week', 'Season so far', 'Growth and load']], ['Drills', ['Drill library', 'Worked elsewhere']]],
   // coach: Match day
   [['Before', ['Team talk', 'Line-up and minutes', 'Opposition', 'Set pieces']], ['After', ['Review', 'Chances', 'Your take']]],
+  // coach: Record. Recording, the clips cut from it, what needs a look, and the kit and rules behind it
+  [['Record', ['Record', 'Recorded lately']], ['Clips', ['Clips by measure', 'Clips by game', 'Clips by player', 'Playlists']], ['To check', ['To check']], ['Setup', ['Devices', 'How we measure']]],
   // director: Club
   [['Overview', ['Overview']], ['Messages', ['Messages']], ['Calendar', ['Calendar', 'Season plan']], ['Our football', ['Playing style', 'Heading policy', 'Club climate']], ['Running the club', ['Sponsors', 'Pitches', 'Kit and cameras', 'Files', 'Language and access', 'How often we ask']], ['Settings', ['Features and billing', 'Club colours']]],
   // director and coordinator: Teams
@@ -55,10 +57,12 @@ export const landing = (g: TabGroup) => { const n = last.get(g.label + g.members
 /** The switches for the group you are in. Nothing for a group of one. */
 export function TabSwitches({ group, labels, active, onPick, pad = '0 28px' }: { group: TabGroup | undefined; labels: string[]; active: number; onPick: (i: number) => void; pad?: string }) {
   if (!group || group.members.length < 2) return null
+  // "Clips by game" under Clips reads "By game": the group's name is not said twice
+  const short = (l: string) => l.startsWith(group.label + ' ') ? l[group.label.length + 1].toUpperCase() + l.slice(group.label.length + 2) : l
   return (
     <div role="tablist" aria-label={group.label} style={{ display: 'flex', gap: 6, padding: pad, background: '#fff', borderTop: '1px solid #e9eae8', overflowX: 'auto', scrollbarWidth: 'none' }}>
-      {group.members.map(i => <button key={i} role="tab" aria-selected={i === active} onClick={() => onPick(i)} style={{ flex: 'none', height: 44, padding: 0, border: 0, background: 'none', fontFamily: 'inherit', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
-        <span style={{ height: 32, padding: '0 14px', borderRadius: 999, display: 'flex', alignItems: 'center', fontSize: 14, fontWeight: i === active ? 700 : 500, whiteSpace: 'nowrap', background: i === active ? PALE : '#fff', color: i === active ? G : INK, border: `1px solid ${i === active ? G : LINE}` }}>{labels[i]}</span>
+      {group.members.map(i => <button key={i} role="tab" aria-selected={i === active} aria-label={labels[i]} onClick={() => onPick(i)} style={{ flex: 'none', height: 44, padding: 0, border: 0, background: 'none', fontFamily: 'inherit', cursor: 'pointer', display: 'flex', alignItems: 'center' }}>
+        <span style={{ height: 32, padding: '0 14px', borderRadius: 999, display: 'flex', alignItems: 'center', fontSize: 14, fontWeight: i === active ? 700 : 500, whiteSpace: 'nowrap', background: i === active ? PALE : '#fff', color: i === active ? G : INK, border: `1px solid ${i === active ? G : LINE}` }}>{short(labels[i])}</span>
       </button>)}
     </div>
   )
