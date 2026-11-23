@@ -1,12 +1,39 @@
-# Clean Sheet Family v15: report back (24 Nov)
+# Clean Sheet Family v16: report back (24 Nov)
 
-Build: the commit that adds this file. 44 phone screens, a fourth walkthrough panel and the club's web page, as a demo of the flows on sample data. **Nothing analyses real film.** This replaces the v14 build.
+Build: the commit that adds this file. 50 phone screens, a fourth walkthrough panel and the club's web page, as a demo of the flows on sample data. **Nothing analyses real film.** This replaces the v15 build.
 
 ## Where it is
 
 - Every screen opens by its id, in the state it is drawn in (for example `/__screen/FAM1-Welcome`, `/__screen/FAM3-Home`, `/__screen/FAM20-GameStats`).
 - **Nothing in the demo's role picker opens it yet.** The pack does not say where a parent with no club comes in.
 - Once the club has joined, an item on the Learn tab opens from the Education centre's library with no "We did it".
+
+## v16: send to the team (handover v11, 24 Nov)
+
+**Built, and not to go live until the children's privacy review has covered it.** `TEAM_LINK` in `src/screens/family/familyStore.ts` takes its row off the Share page when set to false; it is on in the demo.
+
+- **`FAM10-ShareFamily`** is titled "Share", with "Family who can watch Ari's reel", three lines, and the new row "Other parents from the team". The row opens `FAM23e` the first time and `FAM23` once a link exists for that video.
+- **`FAM23e`, `FAM23`, `FAM23a`** for the uploader, as the boards draw them. "Send the link" opens the share sheet (a stub) and starts a 14-day link for that one video. "Check" opens "Is this Sam's family?", which shows only the account's first name, the child's first name and birth year, and the shirt tapped. Yes adds the family to "Joined" and puts 20 credits back; No removes them and says they are not told why. "Stop" stops the link and leaves joined families as they are; "Send the link again" starts it again.
+- **`FAMi1`, `FAMi2`, `FAMi3`** for the invited parent. They tap their child, give a first name and birth year, and wait. The club is the video's.
+- **Nothing is made until the uploader says yes**, and the confirm screen cannot be skipped: no family reaches "Joined", and no credits come back, any other way.
+- **One family for each child in a video.** A shirt that already has a family, and the uploader's own child's shirt, cannot be asked for.
+- All of it comes from `TEAM` in `familyStore.ts`: 20 credits back, 10 families, 14 days, half the credits.
+
+All 414 controls in the v16 table were pressed on this build: 387 work as written, including all 31 new ones. Twelve are behind the panel on the closed Learn page, and the other 15 are listed under "The controls". A test of 126 checks covers v11 to v16; 124 pass, and the other two are the brand-new visitor described under v12.
+
+What stands in, because nobody is on the other end of the link:
+
+- A dashed "Demo" box on `FAM23`, "Open the link as Priya, another parent", shows the invited parent's three screens with a sample name filled in. A box on `FAMi3`, "Back to Dana's phone", returns to the uploader. Three sample parents: Priya (Sam), Tom (Leo), Hana (Noor).
+- "See my child's moments" goes straight to `FAMi2`, as the design links it. Sign-up in between is not shown.
+
+Where the build differs from the pack, and what is not built:
+
+- **`FAM23` with nobody joined yet is not on a board.** It reads "THE LINK IS SENT · Nobody has joined yet. · When a parent taps their child, they wait here for you to say you know them." With someone waiting: "One family is waiting for you. · Say yes only if you know them." After Stop, the link's row reads "The link has stopped · Families who already joined keep their reels".
+- **Wording not in the pack:** "That player already has a family for this video." and "1 FAMILY HAS JOINED".
+- **The sample copy says "she" and "herself" of the uploader** ("Dana sent this link herself", "She has a note to confirm she knows you"). It is built as drawn, for Dana. The app will not know an uploader's pronouns, so the real wording needs to work without them.
+- **Aunty Selin is gone from the sample family**, as on the `FAM10` board. The Share page's line "Other children stay blurred" is gone too, as drawn.
+- **Not built:** the invited family's own reel and results after a yes (a different person's phone); half the credits for an invited family's later videos (stated on `FAMi3` only); withholding the credits back when the invited account matches the uploader's phone or payment method; the days counting down; the 30 days a link can be made in; the tenth family's limit beyond stopping the credits back; and the three things the handover lists as not designed (the reminder, the refused parent's screen, an expired link).
+- **The older rule is reworded in the code's own notes only.** No board changed "Only your family can watch" on `FAM16` or "Private to your family, always" on the walkthrough, so they are as they were. They are now looser than the truth: another family can get their own child's moments from the video.
 
 ## v15: Learn is a club feature (handover v10, 24 Nov)
 
@@ -16,7 +43,7 @@ Build: the commit that adds this file. 44 phone screens, a fourth walkthrough pa
 - **Nothing else reaches Learn content before the club joins.** A library item's own address (`/family/ECp2-FamilyItem`) opens the closed page.
 - **The Club tab's table** has the row "Learn: practice at home", with a tick only under "With your club".
 
-All 383 controls in the v15 table were pressed on this build: 356 work as written. Twelve are the ones behind the panel, and the other 15 are listed under "The controls". A test of 104 checks covers v11 to v15; 102 pass, and the other two are the brand-new visitor described under v12.
+All 383 controls in the v15 table were pressed on that build: 356 worked as written.
 
 Where the build differs from the pack:
 
@@ -122,7 +149,7 @@ The boards are 390 by 844. The app is as wide as the phone it is on (to 430) and
 2. A failed check uses no credits. **Checked.**
 3. **Superseded by v11.** A child born in 2015 and a child born in 2012 get the same thing: the `FAM3` dashboard with numbers, the Reel and Stats tabs, and `FAM20`. **Checked** for both sample children.
 3b. Each sample video lands on its outcome, and a maybe returns no credits. **Checked.** A good check that then makes too few moments returns the credits and keeps the clip (`FAM8x`).
-4. No screen can send parent-filmed content outside the named family. **Checked** on fourteen screens.
+4. No screen can send parent-filmed content outside the named family. **Checked** on fourteen screens in v10. From v16 another family can get their own child's moments from a video, by the uploader's link and yes; still nothing goes to a club or a coach.
 4b. Reels opens `FAM18`, Learn opens `FAM17`, the avatar opens `FAM19`. **Checked** from nine screens with tabs.
 4c. A missed moment adds a clip to that reel at no cost. **Checked.**
 5. The club joining shows `FAM13` once, then `FAM14`; a matching game gives `FAM5c` with no charge. **Checked.**
@@ -132,7 +159,7 @@ The boards are 390 by 844. The app is as wide as the phone it is on (to 430) and
 
 ## The controls
 
-All 383 controls in `FAMILY-APP-REPORT.csv` (the v15 table) were pressed on a local production build of v15. 356 work as written. Twelve are behind the panel on the closed Learn page (see v15 above). The other 15:
+All 414 controls in `FAMILY-APP-REPORT.csv` (the v16 table) were pressed on a local production build of v16. 387 work as written. Twelve are behind the panel on the closed Learn page (see v15 above). The other 15:
 
 - **`FAMt3` "Upload my first video"** is on the fourth tour panel; panel three has "Next".
 - **4 work, and read differently from the board:** the credits strip on `FAM14` ("about 6 full games"), Mia's row on `FAM15` ("3 reels"), and the two minute marks on `FAM9a` ("35" and "70 min", see below).
@@ -167,7 +194,7 @@ All 383 controls in `FAMILY-APP-REPORT.csv` (the v15 table) were pressed on a lo
 
 ## Wording that is not in the pack
 
-- The "Demo" boxes and their labels (now five, with the two for the free video), and the sample videos' names.
+- The "Demo" boxes and their labels (now seven, with two for the free video and two for another parent), and the sample videos' names.
 - How often each of Mia's shots, and the shots in a newly added video, goes in. A shot or a chance the parent adds with "We missed one" is given 1 in 4 until it is looked at.
 - On the clips behind chances created: "Pass that led to a shot" and "the shot goes in 1 in 4", so that xA is its clips. "Progressive pass" on the clips behind that tile. With `SHOW_XG` off, the chances tile's second line is "Passes that led to a shot".
 - The fourth tour panel (not in the pack) now says "Every game, filmed for you · Nothing to set up or upload".

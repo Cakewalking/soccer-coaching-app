@@ -12,8 +12,8 @@ FAM10-ShareFamily#1,FAM10-ShareFamily,Back,Opens,FAM8-Results,works
 FAM10-ShareFamily#2,FAM10-ShareFamily,DB,Opens,FAM19-Account,works
 FAM10-ShareFamily#3,FAM10-ShareFamily,Kerem · Ari’s dad · has the app [switch],Says,Kerem: removed.,works
 FAM10-ShareFamily#4,FAM10-ShareFamily,Nan and Pop · Watch by a private link [switch],Says,Nan and Pop: removed.,works
-FAM10-ShareFamily#5,FAM10-ShareFamily,Aunty Selin · Watch by a private link [switch],Says,Aunty Selin: invited.,works
-FAM10-ShareFamily#6,FAM10-ShareFamily,Add a family member,Says,Type a name and a mobile number or email. They get a private link.,works
+FAM10-ShareFamily#5,FAM10-ShareFamily,Add a family member,Says,Type a name and a mobile number or email. They get a private link.,works
+FAM10-ShareFamily#6,FAM10-ShareFamily,Other parents from the team · Send a link so they can get their own child’s moments. 20 credits back for each family.,Opens,FAM23e-InviteTeamFirst,works
 FAM10-ShareFamily#7,FAM10-ShareFamily,Cancel,Opens,FAM8-Results,works
 FAM10-ShareFamily#8,FAM10-ShareFamily,Share with 2,Says,Shared with Kerem and with Nan and Pop.,works
 FAM10-ShareFamily#9,FAM10-ShareFamily,Home,Opens,FAM3-Home,works
@@ -185,6 +185,31 @@ FAM22-ThreeGames#1,FAM22-ThreeGames,Not now,Opens,FAM3-Home,works
 FAM22-ThreeGames#2,FAM22-ThreeGames,"Ari’s whole season · With your club · · On the ball, every game · · · · · · · · · · Minutes played · · · · · · · · · · · Every round, filmed the same way.",Opens,FAMk1-ClubTour,works
 FAM22-ThreeGames#3,FAM22-ThreeGames,Tell my club14 families at Hillview FC already use this,Opens,FAM12-TellClub,works
 FAM22-ThreeGames#4,FAM22-ThreeGames,See what the club adds,Opens,FAMk1-ClubTour,works
+FAM23-InviteTeam#1,FAM23-InviteTeam,Back,Opens,FAM10-ShareFamily,works
+FAM23-InviteTeam#2,FAM23-InviteTeam,DB,Opens,FAM19-Account,works
+FAM23-InviteTeam#3,FAM23-InviteTeam,"Priya · Says red 9 is Sam, born 2015 · · Check",Opens,FAM23a-InviteConfirm,works
+FAM23-InviteTeam#4,FAM23-InviteTeam,The link works for 12 more days · Stopping it does not take back reels already made · · Stop,Says,The link stops working. Families who already joined keep their reels.,works
+FAM23-InviteTeam#5,FAM23-InviteTeam,Send the link again,Says,Your phone’s share sheet opens with the link and a short message you can change.,works
+FAM23-InviteTeam#6,FAM23-InviteTeam,Home,Opens,FAM3-Home,works
+FAM23-InviteTeam#7,FAM23-InviteTeam,Reels,Opens,FAM18-Reels,works
+FAM23-InviteTeam#8,FAM23-InviteTeam,Learn,Opens,FAM17-Learn,works
+FAM23-InviteTeam#9,FAM23-InviteTeam,Club,Opens,FAM11-Locked,works
+FAM23a-InviteConfirm#1,FAM23a-InviteConfirm,Back,Opens,FAM23-InviteTeam,works
+FAM23a-InviteConfirm#2,FAM23a-InviteConfirm,DB,Opens,FAM19-Account,works
+FAM23a-InviteConfirm#3,FAM23a-InviteConfirm,No,Says,They are told this video isn’t available to them. They are not told why.,works
+FAM23a-InviteConfirm#4,FAM23a-InviteConfirm,"Yes, I know them",Says,Sam’s family get their reel. 20 credits are back in your balance.,works
+FAM23a-InviteConfirm#5,FAM23a-InviteConfirm,Home,Opens,FAM3-Home,works
+FAM23a-InviteConfirm#6,FAM23a-InviteConfirm,Reels,Opens,FAM18-Reels,works
+FAM23a-InviteConfirm#7,FAM23a-InviteConfirm,Learn,Opens,FAM17-Learn,works
+FAM23a-InviteConfirm#8,FAM23a-InviteConfirm,Club,Opens,FAM11-Locked,works
+FAM23e-InviteTeamFirst#1,FAM23e-InviteTeamFirst,Back,Opens,FAM10-ShareFamily,works
+FAM23e-InviteTeamFirst#2,FAM23e-InviteTeamFirst,DB,Opens,FAM19-Account,works
+FAM23e-InviteTeamFirst#3,FAM23e-InviteTeamFirst,Not now,Opens,FAM10-ShareFamily,works
+FAM23e-InviteTeamFirst#4,FAM23e-InviteTeamFirst,Send the link,Says,Your phone’s share sheet opens with the link and a short message you can change.,works
+FAM23e-InviteTeamFirst#5,FAM23e-InviteTeamFirst,Home,Opens,FAM3-Home,works
+FAM23e-InviteTeamFirst#6,FAM23e-InviteTeamFirst,Reels,Opens,FAM18-Reels,works
+FAM23e-InviteTeamFirst#7,FAM23e-InviteTeamFirst,Learn,Opens,FAM17-Learn,works
+FAM23e-InviteTeamFirst#8,FAM23e-InviteTeamFirst,Club,Opens,FAM11-Locked,works
 FAM2c-PickClub#1,FAM2c-PickClub,Back,Opens,FAM2-AddChild,works
 FAM2c-PickClub#2,FAM2c-PickClub,DB,Opens,FAM19-Account,works
 FAM2c-PickClub#3,FAM2c-PickClub,Clear,Says,Search cleared.,works
@@ -370,6 +395,12 @@ FAMc1-ClubInterest#1,FAMc1-ClubInterest,Look around,Opens,STA3-PickRole,works
 FAMc1-ClubInterest#2,FAMc1-ClubInterest,Talk to us,Says,"A short form: your name, your role at the club, and a time to talk.",works
 FAMc1-ClubInterest#3,FAMc1-ClubInterest,See what coaches get,Opens,STA3-PickRole,works
 FAMc1-ClubInterest#4,FAMc1-ClubInterest,Prices for clubs,Says,The price list for clubs opens.,works
+FAMi1-InviteLanding#1,FAMi1-InviteLanding,See my child’s momentsFree · signing up takes one tap,Opens,FAMi2-InviteTap,works
+FAMi1-InviteLanding#2,FAMi1-InviteLanding,This isn’t my team,Says,Nothing is kept. The link is forgotten on this phone.,works
+FAMi2-InviteTap#1,FAMi2-InviteTap,Back,Opens,FAMi1-InviteLanding,works
+FAMi2-InviteTap#2,FAMi2-InviteTap,Ask Dana to confirm,Opens,FAMi3-InviteWaiting,works
+FAMi3-InviteWaiting#1,FAMi3-InviteWaiting,Tell me when it’s ready,Says,Notifications are on. You can close the app.,works
+FAMi3-InviteWaiting#2,FAMi3-InviteWaiting,Film a game of your own,Opens,FAM4-BeforeYouFilm,works
 FAMk1-ClubTour#1,FAMk1-ClubTour,Close,Opens,FAM11-Locked,works
 FAMk1-ClubTour#2,FAMk1-ClubTour,Next,Opens,FAMk2-ClubTour,works
 FAMk2-ClubTour#1,FAMk2-ClubTour,Close,Opens,FAM11-Locked,works

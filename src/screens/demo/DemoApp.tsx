@@ -2479,7 +2479,7 @@ function pathToState(path: string): { view: DemoView; role: RoleId; screen?: str
   if (m3) return m3[1] in TOURS ? { view: 'sandboxlook', role: m3[1] as RoleId, screen: m3[2] } : { view: 'notfound', role: 'coach' }
   const m4 = path.match(/^\/__screen\/([A-Za-z0-9_-]+)$/)
   if (m4) return { view: 'screendirect', role: 'coach', screen: m4[1] }
-  const m5 = path.match(/^\/family(?:\/((?:FAM[\dtkc]|ECp[12])[A-Za-z0-9-]*))?\/?$/)
+  const m5 = path.match(/^\/family(?:\/((?:FAM[\dtkci]|ECp[12])[A-Za-z0-9-]*))?\/?$/)
   if (m5) return { view: 'family', role: 'coach', screen: m5[1] ?? 'FAM3-Home' }
   return { view: 'notfound', role: 'coach' }
 }

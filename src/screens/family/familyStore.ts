@@ -1,4 +1,4 @@
-// Clean Sheet Family (family-app-v15): a parent uploads a video, and credits pay for finding their own child's moments.
+// Clean Sheet Family (family-app-v16): a parent uploads a video, and credits pay for finding their own child's moments.
 // This is a demo of the flows on sample data. Nothing here analyses real film, and the purchase is a stub.
 // Prices, pack sizes, the rate table, the check's thresholds and the club offer are placeholders until Booker confirms them.
 
@@ -12,6 +12,16 @@ export const CHECK = { /** the play must be followable for this share of the vid
 export const PACKS: { credits: number; price: number; extra: number }[] = [{ credits: 100, price: 10, extra: 0 }, { credits: 275, price: 25, extra: 25 }, { credits: 600, price: 50, extra: 100 }]
 export const quote = (minutes: number, children = 1, joined = false) => Math.round((minutes * RATES.perMinute + (children - 1) * RATES.secondChild) * (joined ? RATES.joinedFactor : 1))
 export const aboutGames = (balance: number, joined = false) => Math.floor(balance / quote(RATES.usualMinutes, 1, joined))
+/** Send to the team: one upload, several families. Placeholders for Booker to confirm: credits back to the uploader for each family whose reel is delivered, the most families for one video, the days a link works, and what an invited family pays after their first. */
+export const TEAM = { back: 20, families: 10, days: 14, factor: 0.5 }
+/** Send to the team does not go live until the children's privacy review has covered it. False takes its row off the Share page. */
+export const TEAM_LINK = true
+/** A parent who opened the link, tapped a shirt and typed a first name and birth year. This is all the uploader ever sees of them. */
+export type Asker = { account: string; child: string; year: number; shirt: string }
+/** One video's link: nothing is made for a family until the uploader says yes. */
+export type Invite = { daysLeft: number; stopped?: boolean; waiting: Asker[]; joined: { child: string; shirt: string; when: string }[] }
+/** Sample parents for the demo, since nobody else is on the other end of the link. */
+export const ASKERS: Asker[] = [{ account: 'Priya', child: 'Sam', year: 2015, shirt: '9' }, { account: 'Tom', child: 'Leo', year: 2015, shirt: '4' }, { account: 'Hana', child: 'Noor', year: 2016, shirt: '11' }]
 /** The club count shows only at this many families or more, and the placeholder offer starts at the second number. */
 export const SHOW_COUNT_AT = 5, OFFER_AT = 10
 /** The season the sample data sits in: a child born in 2015 is under 12. */
@@ -122,6 +132,7 @@ export type Family = {
   /** the video chosen for the check, a quote that is being held, and the work under way */ film: string; /** the first minutes of it only, or 0 for all of it */ part: number; both: boolean; anyway: boolean; held: { film: string; credits: number } | null; working: string | null
   people: Person[]; notify: boolean
   /** families at the same club, the club's state, and whether "your club has joined" has been shown */ families: number; joined: boolean; toldJoined: boolean; coming: boolean
+  /** links sent to other parents from the team, by video */ invites?: Record<string, Invite>
   pack: number; message: string | null; /** the library item that is open */ item: string
   /** "three games in": the child it is due for, and the children it has been shown for (once each) */ seasonDue: string | null; seasonTold: string[]
 }
@@ -141,7 +152,7 @@ const MIAS: Video[] = [
   vid('m2', 'mia', 'v Southbank', 'Sun 7 June', [k('turn', 12), k('pass', 30), k('won', 51), k('look', 63)], { minutes: 70, credits: 140, stats: stats(70, 33, 29, 23, 17, 6, [shot('Shot, saved', 12, '0:08', 4), shot('Shot, wide', 60, '0:07', 8)], [3, 1], [4, 2], [made(21, 4), made(58, 4)], 3) }),
   vid('m3', 'mia', 'v Westfield', 'Sun 31 May', [k('look', 8), k('pass', 22), k('turn', 40), k('pass', 55)], { minutes: 70, credits: 140, stats: stats(70, 38, 27, 24, 18, 5, [shot('Shot, wide', 35, '0:07', 8)], [2, 1], [3, 1], [made(40, 8)], 4) }),
 ]
-const PEOPLE: Person[] = [{ name: 'Kerem', how: 'Ari’s dad · has the app', on: true }, { name: 'Nan and Pop', how: 'Watch by a private link', on: true }, { name: 'Aunty Selin', how: 'Watch by a private link', on: false }]
+const PEOPLE: Person[] = [{ name: 'Kerem', how: 'Ari’s dad · has the app', on: true }, { name: 'Nan and Pop', how: 'Watch by a private link', on: true }]
 /** A family a few weeks in: two children, credits, reels. */
 const base = (): Family => ({ parent: 'Dana', email: 'dana@example.com', signedIn: true, kids: [ARI, MIA], kid: 'ari', club: HILLVIEW, freeUsed: true, offered: true, balance: 300, videos: [PARK, LAKESIDE, RIDGEWAY, PARKSIDE, NORTHGATE, BACKYARD, ...MIAS], open: 'g1', clip: 0, from: 'reel', stat: 'shots', film: 'f50', part: 0, both: false, anyway: false, held: null, working: null, people: PEOPLE, notify: true, families: 14, joined: false, toldJoined: false, coming: false, pack: 1, message: null, item: 'Wall ball to 20', seasonDue: null, seasonTold: ['mia'] })
 /** A parent who has just opened the app: the sample child is filled in and can be changed. */
@@ -156,6 +167,7 @@ export function preset(id: string): Family {
   if (id === 'FAM5u-FreeUsed') return { ...n, signedIn: true, withheld: true, offered: true }
   if (id === 'FAM7-Working') return { ...n, signedIn: true, freeUsed: true, videos: [first('working')], working: 'n1', open: 'n1' }
   if (id === 'FAM8r-Reveal' || id === 'FAM6f-AfterFree') return { ...n, signedIn: true, freeUsed: true, videos: [first('ready')], open: 'n1' }
+  if (/^FAM23-|^FAM23a|^FAMi\d/.test(id)) return { ...b, invites: { g1: { daysLeft: 12, waiting: [ASKERS[0]], joined: [{ child: 'Leo', shirt: '4', when: 'on Monday' }, { child: 'Noor', shirt: '11', when: 'on Monday' }] } } }
   if (id === 'FAM5b-Maybe') return { ...b, film: 'maybe' }
   if (id === 'FAM5x-CantRead' || id === 'FAM5p-PhoneCheck') return { ...b, film: 'bad', anyway: id === 'FAM5x-CantRead' }
   if (id === 'FAM5n-NotEnough') return { ...b, balance: 40 }
