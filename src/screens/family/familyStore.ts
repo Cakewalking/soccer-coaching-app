@@ -1,4 +1,4 @@
-// Clean Sheet Family (family-app-v9): a parent uploads a video, and credits pay for finding their own child's moments.
+// Clean Sheet Family (family-app-v12): a parent uploads a video, and credits pay for finding their own child's moments.
 // This is a demo of the flows on sample data. Nothing here analyses real film, and the purchase is a stub.
 // Prices, pack sizes, the rate table, the check's thresholds and the club offer are placeholders until Booker confirms them.
 
@@ -17,8 +17,9 @@ export const SHOW_COUNT_AT = 5, OFFER_AT = 10
 /** The season the sample data sits in: a child born in 2015 is under 12. */
 export const SEASON = 2026
 export const ageOf = (year: number) => SEASON - year
-/** Booker's ruling, 20 Nov: every child's full game has a Stats page. Age still decides Home: from 12 it leads with numbers and trends; under 12 it counts kinds of good moment. */
-export const showsStats = (year: number) => ageOf(year) >= 12
+// Booker's decision, 23 Nov: every child gets game stats, at any age. There is one Home and one results screen.
+/** Expected goals and expected assists. A shot's worth must come from where it was taken, for the pitch and goal size of that age group: until there is a junior model, set this to false and every screen shows shots, goals and chances created as plain counts. */
+export const SHOW_XG = true
 export const ord = (n: number) => `${n}${n % 100 >= 11 && n % 100 <= 13 ? 'th' : ['th', 'st', 'nd', 'rd'][n % 10] ?? 'th'}`
 export const secsOf = (len: string) => { const [m, s] = len.split(':').map(Number); return m * 60 + s }
 export const clockOf = (s: number) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`
@@ -31,28 +32,37 @@ export const KINDS: Record<Kind, { title: string; len: string; did: string; game
   pass: { title: 'Passed and moved', len: '0:08', did: 'passed and moved', game: 'Wall ball to 20' },
   won: { title: 'Won it back', len: '0:10', did: 'won it back', game: 'King of the ring' },
 }
-export type Clip = { len: string; title: string; short?: string; minute: string; kind?: Kind; notice?: string; /** a goal, a forward pass, a take-on that came off, a ball won in the other half */ tag?: boolean }
+export type Clip = { len: string; title: string; short?: string; minute: string; kind?: Kind; notice?: string; /** a shot: a shot like it goes in one time in this many */ odds?: number; /** a goal, a forward pass, a take-on that came off, a ball won in the other half */ tag?: boolean }
 const k = (kind: Kind, minute: number): Clip => ({ kind, len: KINDS[kind].len, title: KINDS[kind].title, minute: `${ord(minute)} minute` })
 const NOTICE = 'Watch {name}’s head just before the ball arrives. He checks over his shoulder, then takes it away from the defender.'
 const POOL: Clip[] = [{ ...k('look', 14), short: 'Looked up first', notice: NOTICE }, k('turn', 22), k('pass', 31), k('won', 40), { ...k('turn', 44), len: '0:10' }, k('look', 52), k('pass', 61)]
 export const reelOf = (clips: Clip[]) => clockOf(clips.reduce((a, c) => a + secsOf(c.len), 0))
 
-// ── Stats, 12 and over, from a full game. Every number is the clips it was counted from. ──
-export type StatKey = 'passes' | 'shots' | 'took' | 'won'
+// ── Stats, at every age, from a full game. Every number is the clips it was counted from. ──
+export type StatKey = 'passes' | 'shots' | 'chances' | 'prog' | 'took' | 'won'
+/** The tiles on the Stats tab, in order. */
+export const STAT_KEYS: StatKey[] = ['passes', 'shots', 'chances', 'prog', 'took', 'won']
 export type Stats = { inShot: number; minutes: number; onBall: number; /** passes tried */ tried: number; thirds: [number, number, number]; lists: Record<StatKey, Clip[]> }
 export const STAT: Record<StatKey, { one: string; many: string; label: string; not: string }> = {
-  passes: { one: 'pass', many: 'passes', label: 'Passes reached a team-mate', not: 'a pass' }, shots: { one: 'shot', many: 'shots', label: 'Shots', not: 'a shot' },
+  passes: { one: 'pass', many: 'passes', label: 'Passes completed', not: 'a pass' }, shots: { one: 'shot', many: 'shots', label: 'Shots', not: 'a shot' },
+  chances: { one: 'chance created', many: 'chances created', label: 'Chances created', not: 'a chance created' }, prog: { one: 'progressive pass', many: 'progressive passes', label: 'Progressive passes', not: 'a progressive pass' },
   took: { one: 'take-on', many: 'take-ons', label: 'Took a player on', not: 'a take-on' }, won: { one: 'ball won back', many: 'balls won back', label: 'Won the ball back', not: 'a ball won back' },
 }
 /** n clips spread through the game, `marked` of them tagged and spread evenly among the rest. */
 const gen = (n: number, minutes: number, marked: number, plain: string, special: string): Clip[] => Array.from({ length: n }, (_, i) => { const tag = Math.floor((i + 1) * marked / n) > Math.floor(i * marked / n); return { len: `0:0${6 + (i % 4)}`, title: tag ? special : plain, minute: `${ord(Math.max(1, Math.round((i + 1) * minutes / (n + 1))))} minute`, tag } })
-function stats(minutes: number, inShot: number, onBall: number, tried: number, reached: number, forward: number, shots: Clip[], took: [number, number], won: [number, number]): Stats {
+function stats(minutes: number, inShot: number, onBall: number, tried: number, reached: number, forward: number, shots: Clip[], took: [number, number], won: [number, number], /** passes that led to a shot, each with that shot's worth */ chances: Clip[] = [], prog = 0): Stats {
   const a = Math.round(onBall * 0.2), c = Math.round(onBall * 0.27)
-  return { minutes, inShot, onBall, tried, thirds: [a, onBall - a - c, c], lists: { passes: gen(reached, minutes, forward, 'Pass to a team-mate', 'Pass forward'), shots, took: gen(took[0], minutes, took[1], 'Took a player on', 'Took a player on, came off'), won: gen(won[0], minutes, won[1], 'Won the ball back', 'Won it back in the other half') } }
+  return { minutes, inShot, onBall, tried, thirds: [a, onBall - a - c, c], lists: { passes: gen(reached, minutes, forward, 'Pass to a team-mate', 'Pass forward'), shots, chances, prog: gen(prog, minutes, 0, 'Progressive pass', 'Progressive pass'), took: gen(took[0], minutes, took[1], 'Took a player on', 'Took a player on, came off'), won: gen(won[0], minutes, won[1], 'Won the ball back', 'Won it back in the other half') } }
 }
-const shot = (title: string, minute: number, len: string, tag = false): Clip => ({ title, minute: `${ord(minute)} minute`, len, tag })
+/** A pass that led to a shot. Its worth (xA) is that shot's. */
+const made = (minute: number, odds: number): Clip => ({ title: 'Pass that led to a shot', minute: `${ord(minute)} minute`, len: '0:09', odds })
+const shot = (title: string, minute: number, len: string, odds: number, tag = false): Clip => ({ title, minute: `${ord(minute)} minute`, len, odds, tag })
+/** A shot the parent adds has no place on the pitch yet; it is given a middling worth until it is looked at. */
+export const ADDED_ODDS = 4
+/** xG is the sum of its shots' worth, and xA the same sum over the shots a child's passes led to. One decimal place and never two: it is an estimate of an estimate. */
+export const xgOf = (shots: Clip[]) => (Math.round(shots.reduce((a, c) => a + (c.odds ? 1 / c.odds : 0), 0) * 10) / 10).toFixed(1)
 /** Stats for a new video, scaled from the minutes the child was in shot. */
-const statsFor = (minutes: number, inShot: number) => { const s = inShot / 44, n = (v: number) => Math.max(1, Math.round(v * s)); return stats(minutes, inShot, n(41), n(33), n(27), n(9), [shot('Shot, saved', Math.round(minutes * 0.33), '0:08'), shot('Goal, left foot', Math.round(minutes * 0.58), '0:11', true)].slice(0, Math.max(1, n(2))), [n(4), n(2)], [n(5), n(3)]) }
+const statsFor = (minutes: number, inShot: number) => { const s = inShot / 44, n = (v: number) => Math.max(1, Math.round(v * s)); return stats(minutes, inShot, n(41), n(33), n(27), n(9), [shot('Shot, saved', Math.round(minutes * 0.33), '0:08', 4), shot('Goal, left foot', Math.round(minutes * 0.58), '0:11', 2, true)].slice(0, Math.max(1, n(2))), [n(4), n(2)], [n(5), n(3)], [made(Math.round(minutes * 0.4), 4), made(Math.round(minutes * 0.8), 8)].slice(0, Math.max(1, n(2))), n(6)) }
 export const tagged = (l: Clip[]) => l.filter(c => c.tag).length
 
 // ── Sample videos a parent can "choose". The check reads each one differently. ──
@@ -115,33 +125,33 @@ export type Family = {
 const ARI: Kid = { id: 'ari', name: 'Ari', year: 2015, he: true, colour: 'red', number: '7' }, MIA: Kid = { id: 'mia', name: 'Mia', year: 2012, he: false, colour: 'red', number: '11' }
 const HILLVIEW: Club = { name: 'Hillview FC', place: 'Hillview, Victoria' }
 const vid = (id: string, kid: string, title: string, date: string, clips: Clip[], more: Partial<Video> = {}): Video => ({ id, kid, title, date, day: date.startsWith('Wed') ? 'Wednesday' : date.startsWith('Sat') ? 'Saturday' : 'Sunday', state: 'ready', minutes: 50, clips, credits: 100, added: 0, ...more })
-const RIDGEWAY = vid('g1', 'ari', 'v Ridgeway', 'Sun 14 June', POOL.slice(0, 5), { stats: statsFor(50, 24) })
-const PARKSIDE = vid('g2', 'ari', 'v Parkside', 'Sun 7 June', [k('turn', 9), k('look', 18), k('pass', 27), k('turn', 41)], { stats: statsFor(50, 21) })
-const NORTHGATE = vid('g3', 'ari', 'v Northgate City', 'Sun 31 May', [k('turn', 6), k('look', 15), k('look', 24), k('pass', 33), k('pass', 39), k('won', 47)], { stats: statsFor(50, 26) })
+// Ari's games carry the numbers the v11 boards draw (FAM3, FAM8, FAM20, FAM21): 70 minutes long, with a shot in the 58th. The first video in the first run is still the 50-minute sample.
+const RIDGEWAY = vid('g1', 'ari', 'v Ridgeway', 'Sun 14 June', POOL.slice(0, 5), { minutes: 70, credits: 140, stats: stats(70, 44, 41, 33, 27, 9, [shot('Shot, saved', 23, '0:08', 4), shot('Goal, left foot', 41, '0:11', 2, true), shot('Shot, wide', 58, '0:07', 8)], [4, 2], [5, 3], [made(29, 4), made(63, 8)], 6) })
+const PARKSIDE = vid('g2', 'ari', 'v Parkside', 'Sun 7 June', [k('turn', 9), k('look', 18), k('pass', 27), k('turn', 41)], { minutes: 70, credits: 140, stats: stats(70, 31, 26, 21, 15, 5, [shot('Shot, saved', 19, '0:08', 4), shot('Shot, wide', 47, '0:07', 8)], [3, 1], [4, 2], [made(52, 4)], 4) })
+const NORTHGATE = vid('g3', 'ari', 'v Northgate City', 'Sun 31 May', [k('turn', 6), k('look', 15), k('look', 24), k('pass', 33), k('pass', 39), k('won', 47)], { minutes: 70, credits: 140, stats: stats(70, 36, 30, 25, 19, 6, [shot('Shot, wide', 35, '0:07', 8)], [2, 1], [3, 1], [made(18, 2), made(44, 8)], 5) })
 const PARK = vid('g0', 'ari', 'Training at the park', 'Today', [], { state: 'working', film: 'park', minutes: 10, credits: 20 })
 const LAKESIDE = vid('g4', 'ari', 'v Lakeside', 'Sun 21 June', [{ len: '0:09', title: 'Ran with the ball into space', minute: '19th minute' }], { state: 'few', credits: 0, inShot: 6 })
 const BACKYARD = vid('g5', 'ari', 'Backyard', 'Sat 23 May', [], { state: 'unread', film: 'bad', credits: 0 })
-const FUTSAL = vid('g6', 'ari', 'Wednesday futsal', 'Wed 17 June', [k('look', 4), k('turn', 11), k('pass', 19), k('pass', 26)], { minutes: 30, credits: 60, note: 'your phone' })
+const FUTSAL = vid('g6', 'ari', 'Wednesday futsal', 'Wed 17 June', [k('look', 4), k('turn', 11), k('pass', 19), k('pass', 26)], { minutes: 30, credits: 60, note: 'your own film' })
 const MIAS: Video[] = [
-  vid('m1', 'mia', 'v Eastbank', 'Sun 14 June', [{ len: '0:10', title: 'Switched the play', minute: '18th minute' }, { len: '0:12', title: 'Won it back and passed forward', minute: '52nd minute' }, k('look', 27), k('turn', 36), k('pass', 44), k('pass', 58), k('pass', 66)], { minutes: 70, credits: 140, stats: stats(70, 44, 41, 33, 27, 9, [shot('Shot, saved', 23, '0:08'), shot('Goal, left foot', 41, '0:11', true), shot('Shot, wide', 58, '0:07')], [4, 2], [5, 3]) }),
-  vid('m2', 'mia', 'v Southbank', 'Sun 7 June', [k('turn', 12), k('pass', 30), k('won', 51), k('look', 63)], { minutes: 70, credits: 140, stats: stats(70, 31, 26, 21, 15, 5, [shot('Shot, saved', 19, '0:08'), shot('Shot, wide', 47, '0:07')], [3, 1], [4, 2]) }),
-  vid('m3', 'mia', 'v Westfield', 'Sun 31 May', [k('look', 8), k('pass', 22), k('turn', 40), k('pass', 55)], { minutes: 70, credits: 140, stats: stats(70, 38, 27, 24, 18, 5, [shot('Shot, wide', 35, '0:07')], [2, 1], [3, 1]) }),
+  vid('m1', 'mia', 'v Eastbank', 'Sun 14 June', [{ len: '0:10', title: 'Switched the play', minute: '18th minute' }, { len: '0:12', title: 'Won it back and passed forward', minute: '52nd minute' }, k('look', 27), k('turn', 36), k('pass', 44), k('pass', 58), k('pass', 66)], { minutes: 70, credits: 140, stats: stats(70, 40, 37, 30, 24, 8, [shot('Shot, saved', 27, '0:08', 4), shot('Goal, right foot', 49, '0:11', 2, true)], [4, 2], [5, 3], [made(33, 8)], 5) }),
+  vid('m2', 'mia', 'v Southbank', 'Sun 7 June', [k('turn', 12), k('pass', 30), k('won', 51), k('look', 63)], { minutes: 70, credits: 140, stats: stats(70, 33, 29, 23, 17, 6, [shot('Shot, saved', 12, '0:08', 4), shot('Shot, wide', 60, '0:07', 8)], [3, 1], [4, 2], [made(21, 4), made(58, 4)], 3) }),
+  vid('m3', 'mia', 'v Westfield', 'Sun 31 May', [k('look', 8), k('pass', 22), k('turn', 40), k('pass', 55)], { minutes: 70, credits: 140, stats: stats(70, 38, 27, 24, 18, 5, [shot('Shot, wide', 35, '0:07', 8)], [2, 1], [3, 1], [made(40, 8)], 4) }),
 ]
 const PEOPLE: Person[] = [{ name: 'Kerem', how: 'Ari’s dad · has the app', on: true }, { name: 'Nan and Pop', how: 'Watch by a private link', on: true }, { name: 'Aunty Selin', how: 'Watch by a private link', on: false }]
 /** A family a few weeks in: two children, credits, reels. */
 const base = (): Family => ({ parent: 'Dana', email: 'dana@example.com', signedIn: true, kids: [ARI, MIA], kid: 'ari', club: HILLVIEW, freeUsed: true, offered: true, balance: 300, videos: [PARK, LAKESIDE, RIDGEWAY, PARKSIDE, NORTHGATE, BACKYARD, ...MIAS], open: 'g1', clip: 0, from: 'reel', stat: 'shots', film: 'f50', part: 0, both: false, anyway: false, held: null, working: null, people: PEOPLE, notify: true, families: 14, joined: false, toldJoined: false, coming: false, pack: 1, message: null, item: 'Wall ball to 20', seasonDue: null, seasonTold: ['mia'] })
 /** A parent who has just opened the app: the sample child is filled in and can be changed. */
 const brandNew = (): Family => ({ ...base(), signedIn: false, kids: [ARI], freeUsed: false, offered: false, balance: 0, videos: [], notify: false })
-const first = (state: Video['state']): Video => ({ ...RIDGEWAY, id: 'n1', credits: 0, state, film: 'f50', clips: state === 'ready' ? RIDGEWAY.clips : [] })
+const first = (state: Video['state']): Video => ({ ...RIDGEWAY, id: 'n1', state, film: 'f50', minutes: 50, credits: 0, stats: statsFor(50, 24), clips: state === 'ready' ? RIDGEWAY.clips : [] })
 /** Each board opens in the state it is drawn in. */
 export function preset(id: string): Family {
-  const b = base(), n = brandNew(), mia: Partial<Family> = { kid: 'mia', open: 'm1' }, joined = { joined: true, toldJoined: true, videos: [FUTSAL, PARKSIDE, RIDGEWAY, NORTHGATE, ...MIAS], open: 'g6' }
+  const b = base(), n = brandNew(), joined = { joined: true, toldJoined: true, videos: [FUTSAL, PARKSIDE, RIDGEWAY, NORTHGATE, ...MIAS], open: 'g6' }
   if (id === 'FAM1-Welcome' || id === 'FAM0-SignUp') return n
-  if (id === 'FAM22-ThreeGames') return { ...b, ...mia, seasonDue: 'mia', seasonTold: [] }
+  if (id === 'FAM22-ThreeGames') return { ...b, seasonDue: 'ari', seasonTold: [] }
   if (/^FAMt\d|^FAM3e|^FAM2-|^FAM2c|^FAM5f/.test(id)) return { ...n, signedIn: true }
   if (id === 'FAM7-Working') return { ...n, signedIn: true, freeUsed: true, videos: [first('working')], working: 'n1', open: 'n1' }
   if (id === 'FAM8r-Reveal' || id === 'FAM6f-AfterFree') return { ...n, signedIn: true, freeUsed: true, videos: [first('ready')], open: 'n1' }
-  if (id === 'FAM3m-HomeStats' || id === 'FAM8b-Results13' || id === 'FAM20-GameStats' || id === 'FAM21-StatClips') return { ...b, ...mia }
   if (id === 'FAM5b-Maybe') return { ...b, film: 'maybe' }
   if (id === 'FAM5x-CantRead' || id === 'FAM5p-PhoneCheck') return { ...b, film: 'bad', anyway: id === 'FAM5x-CantRead' }
   if (id === 'FAM5n-NotEnough') return { ...b, balance: 40 }
@@ -152,12 +162,12 @@ export function preset(id: string): Family {
   return b
 }
 
-/** Demo: an older sample child with three full games, so the stats can be seen from a walked-through account. */
+/** Demo: a second sample child with three full games, so the child switch and two children in one video can be seen from a walked-through account. */
 export const SAMPLE_OLDER = MIA
 export function addSampleOlder() { setFamily(s => s.kids.some(x => x.id === MIA.id) ? { kid: MIA.id, open: 'm1' } : { kids: [...s.kids, MIA], videos: [...s.videos, ...MIAS], kid: MIA.id, open: 'm1', clip: 0, from: 'reel' }) }
 
 const KEY = 'cs_family_v7'
-let state: Family = (() => { try { const v = JSON.parse(localStorage.getItem(KEY) ?? 'null') as Family | null; if (v?.kids?.length && v.videos && v.seasonTold && v.item) return v } catch { /* start again */ } return brandNew() })()
+let state: Family = (() => { try { const v = JSON.parse(localStorage.getItem(KEY) ?? 'null') as Family | null; if (v?.kids?.length && v.videos && v.seasonTold && v.item) return { ...v, videos: v.videos.map(x => x.stats ? { ...x, stats: { ...x.stats, lists: { ...x.stats.lists, chances: x.stats.lists.chances ?? [], prog: x.stats.lists.prog ?? [], shots: x.stats.lists.shots.map(c => c.odds ? c : { ...c, odds: /goal/i.test(c.title) ? 2 : /saved/i.test(c.title) ? 4 : 8 }) } } } : x) } } catch { /* start again */ } return brandNew() })()
 const subs = new Set<() => void>()
 export function setFamily(patch: Partial<Family> | ((f: Family) => Partial<Family>)) { state = { ...state, ...(typeof patch === 'function' ? patch(state) : patch) }; try { localStorage.setItem(KEY, JSON.stringify(state)) } catch { /* kept for this visit only */ } subs.forEach(f => f()) }
 export const useFamily = (): Family => useSyncExternalStore(f => { subs.add(f); return () => { subs.delete(f) } }, () => state, () => state)
