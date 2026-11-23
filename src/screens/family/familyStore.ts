@@ -1,4 +1,4 @@
-// Clean Sheet Family (family-app-v14): a parent uploads a video, and credits pay for finding their own child's moments.
+// Clean Sheet Family (family-app-v15): a parent uploads a video, and credits pay for finding their own child's moments.
 // This is a demo of the flows on sample data. Nothing here analyses real film, and the purchase is a stub.
 // Prices, pack sizes, the rate table, the check's thresholds and the club offer are placeholders until Booker confirms them.
 
@@ -162,6 +162,7 @@ export function preset(id: string): Family {
   if (id === 'FAM8x-TooFew') return { ...b, open: 'g4' }
   if (id === 'FAM13-ClubJoined') return { ...b, joined: true }
   if (id === 'FAM14-HomeWithClub') return { ...b, ...joined }
+  if (id === 'FAM17u-LearnWithClub') return { ...b, ...joined, videos: [RIDGEWAY, FUTSAL, PARKSIDE, NORTHGATE, ...MIAS], open: 'g1' }
   if (id === 'FAM5c-ClubFilmedThis') return { ...b, ...joined, film: 'club' }
   return b
 }

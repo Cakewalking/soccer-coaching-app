@@ -57,7 +57,7 @@ FAM14-HomeWithClub#6,FAM14-HomeWithClub,Add a video · half the credits,Opens,FA
 FAM14-HomeWithClub#7,FAM14-HomeWithClub,300 · credits · about 3 full games · · Get more,Opens,FAM6-Credits,"works, reads ""about 6 full games"""
 FAM14-HomeWithClub#8,FAM14-HomeWithClub,Home,Opens,FAM3-Home,works: Home is already this page
 FAM14-HomeWithClub#9,FAM14-HomeWithClub,Reels,Opens,FAM18-Reels,works
-FAM14-HomeWithClub#10,FAM14-HomeWithClub,Learn,Opens,FAM17-Learn,works
+FAM14-HomeWithClub#10,FAM14-HomeWithClub,Learn,Opens,FAM17u-LearnWithClub,works
 FAM14-HomeWithClub#11,FAM14-HomeWithClub,Club,Opens,FAM11-Locked,opens FAM13-ClubJoined
 FAM15-Children#1,FAM15-Children,Back,Opens,FAM19-Account,works
 FAM15-Children#2,FAM15-Children,DB,Opens,FAM19-Account,works
@@ -78,22 +78,41 @@ FAM16-Privacy#7,FAM16-Privacy,Reels,Opens,FAM18-Reels,works
 FAM16-Privacy#8,FAM16-Privacy,Learn,Opens,FAM17-Learn,works
 FAM16-Privacy#9,FAM16-Privacy,Club,Opens,FAM11-Locked,works
 FAM17-Learn#1,FAM17-Learn,DB,Opens,FAM19-Account,works
-FAM17-Learn#2,FAM17-Learn,Ari [radio],Says,Showing Ari.,works
-FAM17-Learn#3,FAM17-Learn,Mia [radio],Says,Showing Mia.,works
-FAM17-Learn#4,FAM17-Learn,Add or change a child,Opens,FAM15-Children,works
-FAM17-Learn#5,FAM17-Learn,King of the ring · 2:30,Opens,ECp2-FamilyItem,works
-FAM17-Learn#6,FAM17-Learn,See all,Says,All of Just a ball.,works
-FAM17-Learn#7,FAM17-Learn,0:08 · · The drag-back · Clip · 0:08,Opens,ECp2-FamilyItem,works
-FAM17-Learn#8,FAM17-Learn,2:00 · · Wall ball to 20 · Game,Opens,ECp2-FamilyItem,works
-FAM17-Learn#9,FAM17-Learn,1:30 · · Toe taps and rolls · Game,Opens,ECp2-FamilyItem,works
-FAM17-Learn#10,FAM17-Learn,See all,Says,All of Warm-ups that protect you.,works
-FAM17-Learn#11,FAM17-Learn,5:00 · · Five minutes at home · Warm-up,Opens,ECp2-FamilyItem,works
-FAM17-Learn#12,FAM17-Learn,0:35 · · Jump and land softly · Warm-up,Opens,ECp2-FamilyItem,works
-FAM17-Learn#13,FAM17-Learn,0:35 · · Hop and hold · Warm-up,Opens,ECp2-FamilyItem,works
-FAM17-Learn#14,FAM17-Learn,Home,Opens,FAM3-Home,works
-FAM17-Learn#15,FAM17-Learn,Reels,Opens,FAM18-Reels,works
-FAM17-Learn#16,FAM17-Learn,Learn,Opens,FAM17-Learn,works
-FAM17-Learn#17,FAM17-Learn,Club,Opens,FAM11-Locked,works
+FAM17-Learn#2,FAM17-Learn,Ari [radio],Says,Showing Ari.,"not a control: it is behind the panel, which the handover says cannot be tapped"
+FAM17-Learn#3,FAM17-Learn,Mia [radio],Says,Showing Mia.,"not a control: it is behind the panel, which the handover says cannot be tapped"
+FAM17-Learn#4,FAM17-Learn,Add or change a child,Opens,FAM15-Children,"not a control: it is behind the panel, which the handover says cannot be tapped"
+FAM17-Learn#5,FAM17-Learn,King of the ring · 2:30,Opens,ECp2-FamilyItem,"not a control: it is behind the panel, which the handover says cannot be tapped"
+FAM17-Learn#6,FAM17-Learn,See all,Says,All of Just a ball.,"not a control: it is behind the panel, which the handover says cannot be tapped"
+FAM17-Learn#7,FAM17-Learn,0:08 · · The drag-back · Clip · 0:08,Opens,ECp2-FamilyItem,"not a control: it is behind the panel, which the handover says cannot be tapped"
+FAM17-Learn#8,FAM17-Learn,2:00 · · Wall ball to 20 · Game,Opens,ECp2-FamilyItem,"not a control: it is behind the panel, which the handover says cannot be tapped"
+FAM17-Learn#9,FAM17-Learn,1:30 · · Toe taps and rolls · Game,Opens,ECp2-FamilyItem,"not a control: it is behind the panel, which the handover says cannot be tapped"
+FAM17-Learn#10,FAM17-Learn,See all,Says,All of Warm-ups that protect you.,"not a control: it is behind the panel, which the handover says cannot be tapped"
+FAM17-Learn#11,FAM17-Learn,5:00 · · Five minutes at home · Warm-up,Opens,ECp2-FamilyItem,"not a control: it is behind the panel, which the handover says cannot be tapped"
+FAM17-Learn#12,FAM17-Learn,0:35 · · Jump and land softly · Warm-up,Opens,ECp2-FamilyItem,"not a control: it is behind the panel, which the handover says cannot be tapped"
+FAM17-Learn#13,FAM17-Learn,0:35 · · Hop and hold · Warm-up,Opens,ECp2-FamilyItem,"not a control: it is behind the panel, which the handover says cannot be tapped"
+FAM17-Learn#14,FAM17-Learn,See what your club adds,Opens,FAMk1-ClubTour,works
+FAM17-Learn#15,FAM17-Learn,Tell my club,Opens,FAM12-TellClub,works
+FAM17-Learn#16,FAM17-Learn,Home,Opens,FAM3-Home,works
+FAM17-Learn#17,FAM17-Learn,Reels,Opens,FAM18-Reels,works
+FAM17-Learn#18,FAM17-Learn,Learn,Opens,FAM17-Learn,works
+FAM17-Learn#19,FAM17-Learn,Club,Opens,FAM11-Locked,works
+FAM17u-LearnWithClub#1,FAM17u-LearnWithClub,DB,Opens,FAM19-Account,works
+FAM17u-LearnWithClub#2,FAM17u-LearnWithClub,Ari [radio],Says,Showing Ari.,works
+FAM17u-LearnWithClub#3,FAM17u-LearnWithClub,Mia [radio],Says,Showing Mia.,works
+FAM17u-LearnWithClub#4,FAM17u-LearnWithClub,Add or change a child,Opens,FAM15-Children,works
+FAM17u-LearnWithClub#5,FAM17u-LearnWithClub,King of the ring · 2:30,Opens,ECp2-FamilyItem,works
+FAM17u-LearnWithClub#6,FAM17u-LearnWithClub,See all,Says,All of Just a ball.,works
+FAM17u-LearnWithClub#7,FAM17u-LearnWithClub,0:08 · · The drag-back · Clip · 0:08,Opens,ECp2-FamilyItem,works
+FAM17u-LearnWithClub#8,FAM17u-LearnWithClub,2:00 · · Wall ball to 20 · Game,Opens,ECp2-FamilyItem,works
+FAM17u-LearnWithClub#9,FAM17u-LearnWithClub,1:30 · · Toe taps and rolls · Game,Opens,ECp2-FamilyItem,works
+FAM17u-LearnWithClub#10,FAM17u-LearnWithClub,See all,Says,All of Warm-ups that protect you.,works
+FAM17u-LearnWithClub#11,FAM17u-LearnWithClub,5:00 · · Five minutes at home · Warm-up,Opens,ECp2-FamilyItem,works
+FAM17u-LearnWithClub#12,FAM17u-LearnWithClub,0:35 · · Jump and land softly · Warm-up,Opens,ECp2-FamilyItem,works
+FAM17u-LearnWithClub#13,FAM17u-LearnWithClub,0:35 · · Hop and hold · Warm-up,Opens,ECp2-FamilyItem,works
+FAM17u-LearnWithClub#14,FAM17u-LearnWithClub,Home,Opens,FAM3-Home,opens FAM14-HomeWithClub
+FAM17u-LearnWithClub#15,FAM17u-LearnWithClub,Reels,Opens,FAM18-Reels,works
+FAM17u-LearnWithClub#16,FAM17u-LearnWithClub,Learn,Opens,FAM17u-LearnWithClub,works
+FAM17u-LearnWithClub#17,FAM17u-LearnWithClub,Club,Opens,FAM11-Locked,opens FAM13-ClubJoined
 FAM18-Reels#1,FAM18-Reels,DB,Opens,FAM19-Account,works
 FAM18-Reels#2,FAM18-Reels,Ari [radio],Says,Showing Ari.,works
 FAM18-Reels#3,FAM18-Reels,Mia [radio],Says,Showing Mia.,works
@@ -227,7 +246,7 @@ FAM5c-ClubFilmedThis#3,FAM5c-ClubFilmedThis,Add a different video,Opens,FAM5-Che
 FAM5c-ClubFilmedThis#4,FAM5c-ClubFilmedThis,See Ari’s moments,Opens,FAM14-HomeWithClub,works
 FAM5c-ClubFilmedThis#5,FAM5c-ClubFilmedThis,Home,Opens,FAM3-Home,opens FAM14-HomeWithClub
 FAM5c-ClubFilmedThis#6,FAM5c-ClubFilmedThis,Reels,Opens,FAM18-Reels,works
-FAM5c-ClubFilmedThis#7,FAM5c-ClubFilmedThis,Learn,Opens,FAM17-Learn,works
+FAM5c-ClubFilmedThis#7,FAM5c-ClubFilmedThis,Learn,Opens,FAM17u-LearnWithClub,works
 FAM5c-ClubFilmedThis#8,FAM5c-ClubFilmedThis,Club,Opens,FAM11-Locked,opens FAM13-ClubJoined
 FAM5f-CheckFree#1,FAM5f-CheckFree,Back,Opens,FAM2-AddChild,works
 FAM5f-CheckFree#2,FAM5f-CheckFree,Find Ari’s momentsAbout 20 minutes,Opens,FAM7-Working,works

@@ -1,4 +1,4 @@
-// Clean Sheet Family (family-app-v14), on a phone. A parent uploads a video; credits pay for finding their own child's
+// Clean Sheet Family (family-app-v15), on a phone. A parent uploads a video; credits pay for finding their own child's
 // moments, and the first video is free. It works whether or not the club uses Clean Sheet, and a parent's own filming is
 // private to the family for ever: no control here sends a video, a clip or a count to a club, a coach or another family.
 // A demo of the flows on sample data. Nothing analyses real film; the purchase, the picker and the share sheet are stubs.
@@ -35,6 +35,8 @@ const TICK = 'M5 12l5 5 9-10', CHEV = 'M9 6l6 6-6 6', BACK = 'M15 6l-6 6 6 6', S
 const TABS: [string, string, string, string][] = [['Home', 'M4 11l8-7 8 7v9H4z', 'home', 'FAM3-Home'], ['Reels', VIDEO, 'reels', 'FAM18-Reels'], ['Learn', 'M5 4h14v16H5zM9 4v16', 'learn', 'FAM17-Learn'], ['Club', SHIELD, 'club', 'FAM11-Locked']]
 const HOMES = ['FAM3-Home', 'FAM3e-HomeEmpty', 'FAM14-HomeWithClub']
 // Retired 23 Nov: stats are for every age, so there is one Home and one results screen. The boards still open, and say so.
+// Learn is a club feature (Booker, 24 Nov): closed, with an explanation, until the club joins.
+const LEARNS = ['FAM17-Learn', 'FAM17u-LearnWithClub']
 const RETIRED: Record<string, [string, string]> = { 'FAM3m-HomeStats': ['FAM3-Home', 'Stats are for every age now, so there is one Home, not one for under 12 and one for 12 and over.'], 'FAM8b-Results13': ['FAM8-Results', 'Stats are for every age now, so there is one results screen, not one for under 12 and one for 12 and over.'] }
 const WORDS = ['no', 'one', 'two', 'three', 'four', 'five', 'six', 'seven']
 const SAMPLE = 'A sample reel plays full screen: 48 seconds.'
@@ -122,6 +124,7 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
     const s = familyNow(), k = s.kids.find(x => x.id === s.kid) ?? s.kids[0]
     let to = RETIRED[id]?.[0] ?? id
     if (HOMES.includes(to)) to = homeOf(s)
+    if (LEARNS.includes(to) || (/^ECp/.test(to) && !s.joined)) to = s.joined ? 'FAM17u-LearnWithClub' : 'FAM17-Learn'
     if (['FAM8-Results', 'FAM20-GameStats', 'FAM21-StatClips'].includes(to)) {
       const v = s.videos.find(x => x.id === s.open && x.kid === k.id && x.clips.length) ?? s.videos.find(x => x.kid === k.id && x.state === 'ready')
       if (!v) { say('No reels yet. Add a video from Home.'); return }
@@ -160,7 +163,7 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
   useEffect(() => { if (view !== 'FAM2-AddChild') return; const id = setInterval(() => setUp(u => Math.min(100, u + 3)), 450); return () => clearInterval(id) }, [view])
 
   // ── an item from the Education centre's library for families: Clean Sheet's own, no coach, no club clips ──
-  if (view === 'ECp1-FamilyLibrary' || view === 'ECp2-FamilyItem') return <EducationPhone key={view + item} start={view} show={view === 'ECp2-FamilyItem' ? item : undefined} child={name} own={{ age, home: f.joined && view === 'ECp1-FamilyLibrary' ? 'FAM3-Home' : 'FAM17-Learn' }} onNav={go} />
+  if ((view === 'ECp1-FamilyLibrary' || view === 'ECp2-FamilyItem') && f.joined) return <EducationPhone key={view + item} start={view} show={view === 'ECp2-FamilyItem' ? item : undefined} child={name} own={{ age, home: view === 'ECp1-FamilyLibrary' ? 'FAM3-Home' : 'FAM17u-LearnWithClub' }} onNav={go} />
 
   // ── the pieces every page shares ──
   const overlays = <>
@@ -235,6 +238,7 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
       {foot}</div></div>
 
   let v = HOMES.includes(view) ? homeOf(f) : view
+  if (LEARNS.includes(v) || /^ECp/.test(v)) v = f.joined ? 'FAM17u-LearnWithClub' : 'FAM17-Learn'   // nothing links to Learn content before the club joins
   if (v === 'FAM7-Working' && !working) v = homeOf(f)
   if (['FAM8-Results', 'FAM20-GameStats', 'FAM21-StatClips', 'FAM9-Clip', 'FAM9a-AddMoment', 'FAM8x-TooFew', 'FAM10-ShareFamily', 'FAM8r-Reveal'].includes(v) && !video?.clips.length) v = homeOf(f)
   if ((v === 'FAM20-GameStats' || v === 'FAM21-StatClips') && !video?.stats) v = 'FAM8-Results'
@@ -623,13 +627,13 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
     </>, null, actions(false, <button key="a" onClick={seen} style={btn(false)}>{f.toldJoined ? 'Home' : 'Later'}</button>, <button key="b" onClick={() => say(`Three questions from ${club} about film and sharing.`)} style={btn(true)}>Answer the club’s questions</button>)) }
 
   // ── FAM11 · the Club tab: what you have now, and what the club would add ──
-  if (v === 'FAM11-Locked') { const rows: [string, string, string][] = [['Games covered', 'Ones you film', 'Every game'], ['Filming', 'You set up and upload', 'Done for you'], ['Numbers', 'Per video, estimates', 'All season, side by side'], ['Minutes and positions', '', 'From the team sheet'], ['Cost to you', 'Credits', 'Club games free'], ['From the coach', '', 'Goal, feedback, home practice'], ['Team-mates in clips', 'Blurred', 'With each family’s yes'], ['Season report', '', 'From the coach']]
+  if (v === 'FAM11-Locked') { const rows: [string, string, string][] = [['Games covered', 'Ones you film', 'Every game'], ['Filming', 'You set up and upload', 'Done for you'], ['Numbers', 'Per video, estimates', 'All season, side by side'], ['Minutes and positions', '', 'From the team sheet'], ['Cost to you', 'Credits', 'Club games free'], ['From the coach', '', 'Goal, feedback, home practice'], ['Team-mates in clips', 'Blurred', 'With each family’s yes'], ['Season report', '', 'From the coach'], ['Learn: practice at home', '', '✓']]
     const cell: React.CSSProperties = { padding: '10px 6px', fontSize: 13, lineHeight: '17px', textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center' }
     return shell('FAM11-Locked', head(f.club ? club : 'Your club', 'With your club', 'FAM3-Home'), <>
       <section style={{ borderRadius: 16, background: PLUM, color: '#fff', padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 6 }}><span style={{ ...cap, color: '#e6d3d3' }}>{count ? `${families} FAMILIES AT ${club.toUpperCase()} USE THIS` : 'TELL US IF YOUR CLUB JOINS'}</span><strong style={{ fontSize: 19, lineHeight: '25px' }}>You are getting part of it.</strong><span style={{ fontSize: 14, lineHeight: '20px', color: '#e6d3d3' }}>The rest needs the club: every game filmed, its coaches and every family’s say-so.</span></section>
       <section role="table" aria-label="You now, and with your club" style={{ ...card, gap: 0, padding: '4px 0 4px 14px', display: 'grid', gridTemplateColumns: '1.25fr 1fr 1fr' }}>
         <span role="columnheader" /><span role="columnheader" style={{ ...cell, ...cap, color: MUT }}>YOU NOW</span><span role="columnheader" style={{ ...cell, ...cap, background: ROSE }}>WITH YOUR CLUB</span>
-        {rows.map(([a, now, then]) => [<strong role="rowheader" key={a} style={{ ...cell, justifyContent: 'flex-start', textAlign: 'left', paddingLeft: 0, fontSize: 14, borderTop: `1px solid ${HAIR}` }}>{a}</strong>, <span role="cell" key={a + 1} style={{ ...cell, borderTop: `1px solid ${HAIR}` }}>{now || <span aria-label="Nothing">–</span>}</span>, <strong role="cell" key={a + 2} style={{ ...cell, background: ROSE, borderTop: `1px solid ${HAIR}` }}>{then}</strong>])}</section>
+        {rows.map(([a, now, then]) => [<strong role="rowheader" key={a} style={{ ...cell, justifyContent: 'flex-start', textAlign: 'left', paddingLeft: 0, fontSize: 14, borderTop: `1px solid ${HAIR}` }}>{a}</strong>, <span role="cell" key={a + 1} style={{ ...cell, borderTop: `1px solid ${HAIR}` }}>{now || <span aria-label="Nothing">–</span>}</span>, <strong role="cell" key={a + 2} style={{ ...cell, background: ROSE, borderTop: `1px solid ${HAIR}` }}>{then === '✓' ? <span role="img" aria-label="Yes" style={{ display: 'flex' }}><I d={TICK} size={18} w={2.6} /></span> : then}</strong>])}</section>
       <span style={note}>Clubs decide for themselves. We only show them how many families use this, never who.</span>
       {demo('the sample club', <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>{f.club?.name === 'Hillview FC' && <><button onClick={() => { setFamily({ joined: true, toldJoined: false, seasonDue: null }); setView('FAM13-ClubJoined'); top() }} style={{ ...btn(false), minHeight: 44, fontSize: 14 }}>{club} joins</button><button onClick={() => { setFamily({ families: count ? 3 : 14 }); say(count ? 'Three families use it: the number is hidden below five.' : 'Fourteen families use it.') }} style={{ ...btn(false), minHeight: 44, fontSize: 14 }}>{count ? 'Only 3 families' : '14 families'}</button></>}<button onClick={() => { setView('FAMc1-ClubInterest'); top() }} style={{ ...btn(false), minHeight: 44, fontSize: 14 }}>What the club sees</button></div>)}
     </>, 'club', actions(true, <button key="a" onClick={tour} style={btn(false)}>Show me</button>, <button key="b" onClick={() => { setView('FAM12-TellClub'); top() }} style={btn(true)}>Tell my club</button>)) }
@@ -670,16 +674,32 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
     <span style={note}>Private to your family. Kept until you delete them.</span>
   </>, 'reels', actions(true, <button key="a" onClick={() => go('FAM5-Check')} style={btn(true)}>Add a video</button>))
 
-  // ── FAM17 · the Learn tab: free games and clips to play at home ──
-  if (v === 'FAM17-Learn') { const kind = (['turn', 'look', 'pass', 'won'] as Kind[]).find(k => latest?.clips.some(c => c.kind === k)), game = kind ? KINDS[kind].game : '', len = (t: string) => clockOf(byTitle(t, 'players')?.secs ?? 0)
-    return shell('FAM17-Learn', head('Free · no credits', 'Play at home'), <>
+  // ── FAM17 and FAM17u · the Learn tab. Before the club joins it is a picture of the page, dimmed, under a panel that says what it is and why it is closed. After, the page itself ──
+  if (LEARNS.includes(v)) { const kind = (['turn', 'look', 'pass', 'won'] as Kind[]).find(k => latest?.clips.some(c => c.kind === k)), game = kind ? KINDS[kind].game : '', len = (t: string) => clockOf(byTitle(t, 'players')?.secs ?? 0)
+    const page = <>
       {switcher}
       {kind && latest && <section style={{ ...card, gap: 8 }}><span style={{ ...cap, color: MUT }}>BECAUSE OF {latest.day.toUpperCase()}’S REEL</span><strong style={{ fontSize: 17, lineHeight: '22px' }}>{name} {KINDS[kind].did}. Here is a game for it.</strong><button onClick={() => lib(game)} style={{ ...btn(true), flex: 'none' }}>{game} · {len(game)}</button></section>}
       {SHELVES.map(([t, items]) => <section key={t} aria-label={t} style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}><strong style={{ fontSize: 16 }}>{t}</strong><button aria-label={`See all, ${t}`} onClick={() => { setAll(all === t ? '' : t); say(`All of ${t}.`) }} style={{ ...link, fontSize: 13 }}>See all</button></div>
         <div style={{ display: 'flex', gap: 10, flexWrap: all === t ? 'wrap' : 'nowrap', overflowX: all === t ? undefined : 'auto', paddingBottom: 4 }}>{items.map(([i, sort]) => <button key={i} onClick={() => lib(i)} style={{ flex: 'none', width: 158, display: 'flex', flexDirection: 'column', gap: 3, padding: 0, border: 0, background: 'none', fontFamily: 'inherit', color: INK, textAlign: 'left', cursor: 'pointer' }}><Thumb kind={sort === 'Game' ? 'drawn' : 'figure'} len={len(i)} wide /><strong style={{ fontSize: 14, lineHeight: '18px', marginTop: 2 }}>{i}</strong><span style={{ fontSize: 12, color: MUT }}>{sort === 'Clip' ? `Clip · ${len(i)}` : sort}</span></button>)}</div></section>)}
-      <span style={note}>Picked for under {age < 12 ? age : age + 1}.{f.joined ? ` ${name}’s coach can send these too.` : f.club ? ` If ${club} joins, ${name}’s coach can send these too.` : ''}</span>
-    </>, 'learn') }
+    </>
+    if (f.joined) return shell('FAM17u-LearnWithClub', head(`From ${club}`, 'Play at home'), <>{page}
+      <span style={note}>Picked for under {age < 12 ? age : age + 1} from {club}’s library. Luke can send {name} clips here too.</span>
+    </>, 'learn')
+    // The page behind is a picture of the feature, not the feature: it cannot be tapped, focused or read out. The panel cannot be dismissed; the tabs still work.
+    return shell('FAM17-Learn', head('With your club', 'Learn'), <div style={{ position: 'relative', flexGrow: 1, margin: '-12px -14px -16px', padding: '12px 14px 16px', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+      <div aria-hidden inert style={{ position: 'absolute', inset: 0, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 12, filter: 'blur(1.5px)', pointerEvents: 'none', userSelect: 'none', overflow: 'hidden' }}>{page}</div>
+      <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'rgba(250,245,236,0.22)' }} />
+      <section aria-label="Learn, with your club" style={{ position: 'relative', flex: 'none', marginTop: short ? 16 : 118, borderRadius: 22, background: 'rgba(51,33,43,0.88)', color: '#fff', padding: '18px 18px 12px', display: 'flex', flexDirection: 'column', gap: 10, boxShadow: '0 14px 34px rgba(0,0,0,0.3)' }}>
+        <span style={{ alignSelf: 'flex-start' }}>{withClub}</span>
+        {title(`Learn opens when ${f.club ? club : 'your club'} joins.`, 26)}
+        <span style={{ fontSize: 15.5, lineHeight: '22px' }}><strong>What it is.</strong> Short clips and games for {name} to try at home, matched to what {his} reels show.</span>
+        <span style={{ fontSize: 15.5, lineHeight: '22px' }}><strong>Why it’s closed.</strong> It is made from the club’s own clips and its coaches’ picks, so there is nothing to show until the club is on board.</span>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>{['A game picked from each reel', `Clips and practice sent by ${name}’s coach`, 'Warm-ups that help prevent injuries'].map(x => <span key={x} style={{ display: 'flex', alignItems: 'center', gap: 9, fontSize: 15, lineHeight: '20px' }}><span style={{ flex: 'none', width: 20, height: 20, borderRadius: 999, background: 'rgba(255,255,255,0.16)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><I d={TICK} size={11} w={3} /></span>{x}</span>)}</div>
+        <button onClick={tour} style={{ ...big('club'), marginTop: 4 }}>See what your club adds</button>
+        <button onClick={() => { setView('FAM12-TellClub'); top() }} style={{ ...under, color: '#fff', fontSize: 15, alignSelf: 'center' }}>Tell my club</button>
+      </section>
+    </div>, 'learn') }
 
   // ── FAM14 · home after the club joins ──
   if (v === 'FAM14-HomeWithClub') { const own = f.videos.filter(x => x.state === 'ready' && x.kid === kid.id).slice(0, 2)

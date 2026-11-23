@@ -1,12 +1,29 @@
-# Clean Sheet Family v14: report back (24 Nov)
+# Clean Sheet Family v15: report back (24 Nov)
 
-Build: the commit that adds this file. 43 phone screens, a fourth walkthrough panel and the club's web page, as a demo of the flows on sample data. **Nothing analyses real film.** This replaces the v13 build.
+Build: the commit that adds this file. 44 phone screens, a fourth walkthrough panel and the club's web page, as a demo of the flows on sample data. **Nothing analyses real film.** This replaces the v14 build.
 
 ## Where it is
 
 - Every screen opens by its id, in the state it is drawn in (for example `/__screen/FAM1-Welcome`, `/__screen/FAM3-Home`, `/__screen/FAM20-GameStats`).
 - **Nothing in the demo's role picker opens it yet.** The pack does not say where a parent with no club comes in.
-- An item on the Learn tab opens from the Education centre's library with no coach and no "We did it". (In the v2 build that page still named a coach; fixed here.)
+- Once the club has joined, an item on the Learn tab opens from the Education centre's library with no "We did it".
+
+## v15: Learn is a club feature (handover v10, 24 Nov)
+
+- **Before the club joins, the Learn tab opens `FAM17-Learn` closed**, as the board draws it: the page slightly blurred under a see-through plum panel with the "With your club" pill, "Learn opens when Hillview FC joins.", what it is, why it is closed, three ticks, "See what your club adds" (the club tour) and "Tell my club". With no club picked it reads "Learn opens when your club joins."
+- **Nothing behind the panel can be tapped, focused or read out.** It is hidden from screen readers and inert. The panel cannot be dismissed; the avatar and the tabs still work.
+- **After the club joins, the tab opens `FAM17u-LearnWithClub`**: "From Hillview FC · Play at home", the game picked from the latest reel, the shelves, and the note about the club's library and Luke. Items open as before.
+- **Nothing else reaches Learn content before the club joins.** A library item's own address (`/family/ECp2-FamilyItem`) opens the closed page.
+- **The Club tab's table** has the row "Learn: practice at home", with a tick only under "With your club".
+
+All 383 controls in the v15 table were pressed on this build: 356 work as written. Twelve are the ones behind the panel, and the other 15 are listed under "The controls". A test of 104 checks covers v11 to v15; 102 pass, and the other two are the brand-new visitor described under v12.
+
+Where the build differs from the pack:
+
+- **The wiring table lists twelve controls behind the panel** (`FAM17-Learn#2` to `#13`: the child switch, the picked game, "See all", the six items). The handover says nothing behind the panel can be tapped, so they are not controls here. The handover wins.
+- **The page behind is the family's own Learn page drawn as a picture**, so it shows the game their latest reel would pick. The handover says to use sample thumbnails and load no Learn content; in this demo every thumbnail is a sample and nothing is loaded.
+- **On a short screen** (667 tall) the panel starts higher, and the page scrolls by about 20 pixels.
+- Not changed, because no board changed: the library page that "From Luke" opens on Home after the club joins still has "Free · for Ari" above its heading.
 
 ## v14: the free video has been used (handover v9, 23 Nov)
 
@@ -19,7 +36,7 @@ One new screen, `FAM5u-FreeUsed`, as the board draws it: the same heading and re
 - **On a short screen** (667 tall) the demo box pushes "Get credits" below the fold; without the box it fits.
 - The free video is never withheld after it has been granted: the switch is only on the free check, before "Find Ari's moments".
 
-All 364 controls in the v14 table were pressed on this build: 351 work as written, and the other 13 are the same as before. A test of 89 checks covers v11 to v14; 87 pass, and the other two are the brand-new visitor described below.
+All 364 controls in the v14 table were pressed on that build: 351 worked as written.
 
 ## v13: the walkthrough rebuilt (handover v8, 23 Nov)
 
@@ -115,12 +132,12 @@ The boards are 390 by 844. The app is as wide as the phone it is on (to 430) and
 
 ## The controls
 
-All 364 controls in `FAMILY-APP-REPORT.csv` (the v14 table) were pressed on a local production build of v14. 351 work as written. The other 13:
+All 383 controls in `FAMILY-APP-REPORT.csv` (the v15 table) were pressed on a local production build of v15. 356 work as written. Twelve are behind the panel on the closed Learn page (see v15 above). The other 15:
 
 - **`FAMt3` "Upload my first video"** is on the fourth tour panel; panel three has "Next".
 - **4 work, and read differently from the board:** the credits strip on `FAM14` ("about 6 full games"), Mia's row on `FAM15` ("3 reels"), and the two minute marks on `FAM9a` ("35" and "70 min", see below).
-- **4 are Home pressed where Home depends on the family:** on `FAM14` Home is already that page; after the club joins Home is `FAM14`; and `FAM4` Back and Got it return to where the parent came from, not always to the empty Home.
-- **2 are the Club tab after the club has joined**, which opens "Your club has joined".
+- **5 are Home pressed where Home depends on the family:** on `FAM14` Home is already that page; after the club joins Home is `FAM14` (from `FAM5c` and `FAM17u`); and `FAM4` Back and Got it return to where the parent came from, not always to the empty Home.
+- **3 are the Club tab after the club has joined**, which opens "Your club has joined".
 - **`FAM8` Done** goes Home when it is not the first reel. The first time it goes to `FAM6f`, as the handover says.
 - **`FAM5p` "Upload this one anyway"** goes to "We can’t read this one", not to the maybe. See below.
 
