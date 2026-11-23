@@ -1,12 +1,23 @@
-# Clean Sheet Family v12: report back (23 Nov)
+# Clean Sheet Family v13: report back (23 Nov)
 
-Build: the commit that adds this file. 44 phone screens and the club's web page, as a demo of the flows on sample data. **Nothing analyses real film.** This replaces the v11 build.
+Build: the commit that adds this file. 44 phone screens and the club's web page, as a demo of the flows on sample data. **Nothing analyses real film.** This replaces the v12 build.
 
 ## Where it is
 
 - Every screen opens by its id, in the state it is drawn in (for example `/__screen/FAM1-Welcome`, `/__screen/FAM3-Home`, `/__screen/FAM20-GameStats`).
 - **Nothing in the demo's role picker opens it yet.** The pack does not say where a parent with no club comes in.
 - An item on the Learn tab opens from the Education centre's library with no coach and no "We did it". (In the v2 build that page still named a coach; fixed here.)
+
+## v13: the walkthrough rebuilt (handover v8, 23 Nov)
+
+`FAMt1` to `FAMt3` are rebuilt as the boards draw them: a picture, an amber step label, the heading, one line that says what to do, and three ticked benefits. Same controls (Skip, Next). Step 3's picture is the results card from the splash, with two clips; the tilted clip cards are gone from the app. Nothing else in the pack changed, and the wiring table is the same 360 controls.
+
+- **The fourth panel stays** (Booker, 20 Nov; not in the pack), so step 3 still has "Next" and "Upload my first video" is on the fourth. Steps 1 to 3 show three dots and "Step n of 3"; the fourth has the label "WITH YOUR CLUB" and no dots.
+- **With `SHOW_XG` off**, step 3 says "game stats like passes and shots" and its picture shows shots, as the handover asks.
+- **On a short screen** (under 780 tall) the pictures are smaller and step 3 shows one clip, so the button stays in view. Checked at 667 and 844 tall.
+- **Two of the ticks are promises the demo does not keep for real:** "Upload carries on if you leave the app" (there is no upload) and "No card needed" (the purchase is a stub).
+
+All 360 controls were pressed again on this build, with the same result as v12. A test of 78 checks covers v11 to v13; 76 pass, and the other two are the brand-new visitor described below.
 
 ## v12: chances created, progressive passes, and what the club adds (handover v7, 23 Nov)
 
@@ -19,7 +30,7 @@ The colour pass in this pack is the same file as before and is already built. Ev
 - **Home before any full game** shows totals (videos, moments, length of highlights) in place of the three numbers, as the handover says.
 - **`SHOW_XG` now covers xA as well.** Off, the Stats tab shows shots, goals and chances created as plain counts with no xG or xA line, which is what "Do not ship yet" asks for. It is on in the demo because the boards draw it.
 
-A test of 72 checks covers v11 and v12, the first run from the splash to Home, and the splash on three screen heights. 70 pass; the other two open a retired page's own address as a brand-new visitor, who is rightly shown the splash (for a signed-in family both open the replacement).
+A test covers v11 and v12, the first run from the splash to Home, and the splash on three screen heights. All pass but two, which open a retired page's own address as a brand-new visitor, who is rightly shown the splash (for a signed-in family both open the replacement).
 
 ## v11: stats and xG for every age, and a rebuilt splash (colour pack v6, 23 Nov)
 
@@ -91,7 +102,7 @@ The boards are 390 by 844. The app is as wide as the phone it is on (to 430) and
 
 ## The controls
 
-All 360 controls in `FAMILY-APP-REPORT.csv` (the v12 table) were pressed on a local production build of v12. 347 work as written. The other 13:
+All 360 controls in `FAMILY-APP-REPORT.csv` (the v12 and v13 table) were pressed on a local production build of v13. 347 work as written. The other 13:
 
 - **`FAMt3` "Upload my first video"** is on the fourth tour panel; panel three has "Next".
 - **4 work, and read differently from the board:** the credits strip on `FAM14` ("about 6 full games"), Mia's row on `FAM15` ("3 reels"), and the two minute marks on `FAM9a` ("35" and "70 min", see below).
