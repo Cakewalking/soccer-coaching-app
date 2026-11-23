@@ -1,4 +1,4 @@
-// Clean Sheet Family (family-app-v12): a parent uploads a video, and credits pay for finding their own child's moments.
+// Clean Sheet Family (family-app-v14): a parent uploads a video, and credits pay for finding their own child's moments.
 // This is a demo of the flows on sample data. Nothing here analyses real film, and the purchase is a stub.
 // Prices, pack sizes, the rate table, the check's thresholds and the club offer are placeholders until Booker confirms them.
 
@@ -102,6 +102,8 @@ export const worth = (credits: number) => { const g = credits / quote(RATES.usua
 export type Kid = { id: string; name: string; year: number; he: boolean; colour: string; number: string }
 export type Video = { id: string; kid: string; title: string; date: string; day: string; state: 'working' | 'ready' | 'few' | 'unread'; /** the sample it was made from, while it is being worked on */ film?: string; minutes: number; clips: Clip[]; credits: number; maybe?: boolean; both?: boolean; note?: string; inShot?: number; stats?: Stats; /** missed moments the parent has added */ added: number }
 export const named = (v: Video, name: string) => v.title.startsWith('v ') ? `${name} ${v.title}` : v.title
+/** Whether the one free video is still this family's to use. */
+export const freeLeft = (s: Family) => !s.freeUsed && !s.withheld
 export const fullGames = (vs: Video[]) => vs.filter(v => v.state === 'ready' && v.stats)
 export type Club = { name: string; place: string; uses?: boolean; unmatched?: boolean }
 /** A small sample of the directory of clubs. Where the real list comes from is not decided. */
@@ -115,6 +117,7 @@ export type Family = {
   parent: string; email: string; signedIn: boolean
   kids: Kid[]; kid: string; club: Club | null
   /** the one free video, and the offer of credits that follows it once */ freeUsed: boolean; offered: boolean
+  /** the free video is not available to this family: it has been used on this phone, or for this child on another account. They see the normal price, and nothing else changes. Never set once the free video has been granted. */ withheld?: boolean
   balance: number; videos: Video[]; open: string; clip: number; /** which list the open clip is from: the reel, or one stat */ from: 'reel' | StatKey; stat: StatKey
   /** the video chosen for the check, a quote that is being held, and the work under way */ film: string; /** the first minutes of it only, or 0 for all of it */ part: number; both: boolean; anyway: boolean; held: { film: string; credits: number } | null; working: string | null
   people: Person[]; notify: boolean
@@ -150,6 +153,7 @@ export function preset(id: string): Family {
   if (id === 'FAM1-Welcome' || id === 'FAM0-SignUp') return n
   if (id === 'FAM22-ThreeGames') return { ...b, seasonDue: 'ari', seasonTold: [] }
   if (/^FAMt\d|^FAM3e|^FAM2-|^FAM2c|^FAM5f/.test(id)) return { ...n, signedIn: true }
+  if (id === 'FAM5u-FreeUsed') return { ...n, signedIn: true, withheld: true, offered: true }
   if (id === 'FAM7-Working') return { ...n, signedIn: true, freeUsed: true, videos: [first('working')], working: 'n1', open: 'n1' }
   if (id === 'FAM8r-Reveal' || id === 'FAM6f-AfterFree') return { ...n, signedIn: true, freeUsed: true, videos: [first('ready')], open: 'n1' }
   if (id === 'FAM5b-Maybe') return { ...b, film: 'maybe' }

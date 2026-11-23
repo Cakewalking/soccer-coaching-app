@@ -1,12 +1,25 @@
-# Clean Sheet Family v13: report back (23 Nov)
+# Clean Sheet Family v14: report back (24 Nov)
 
-Build: the commit that adds this file. 44 phone screens and the club's web page, as a demo of the flows on sample data. **Nothing analyses real film.** This replaces the v12 build.
+Build: the commit that adds this file. 43 phone screens, a fourth walkthrough panel and the club's web page, as a demo of the flows on sample data. **Nothing analyses real film.** This replaces the v13 build.
 
 ## Where it is
 
 - Every screen opens by its id, in the state it is drawn in (for example `/__screen/FAM1-Welcome`, `/__screen/FAM3-Home`, `/__screen/FAM20-GameStats`).
 - **Nothing in the demo's role picker opens it yet.** The pack does not say where a parent with no club comes in.
 - An item on the Learn tab opens from the Education centre's library with no coach and no "We did it". (In the v2 build that page still named a coach; fixed here.)
+
+## v14: the free video has been used (handover v9, 23 Nov)
+
+One new screen, `FAM5u-FreeUsed`, as the board draws it: the same heading and reading as the free check, "This video · 100 credits", the pale note, and "That's not right", "Get credits", "Not now" and Back. Nothing else in the pack changed.
+
+- **What follows from it.** For a family whose free video is withheld: the upload screen no longer says "Your first one is free"; uploading again comes back to `FAM5u`, not the free check; "Get credits" holds the video and its price, so after buying they are on the usual check with "Use 100 credits"; Back from Credits without buying returns to `FAM5u`; and after their first (paid) reel, Done goes Home, not to "That one was on us."
+- **None of the five rules is built.** They need a back end: accounts, a record of phones, a fingerprint of the file, the payment method. A dashed "Demo" box on the free check ("This phone has already had its free video") stands in for all five, and one on `FAM5u` ("A person gives the free video by hand") stands in for the staff screen. Neither box is on a board.
+- **One free video per phone belongs to the app, not to this demo.** The family side ships as a phone app, where the phone is known. This browser demo keeps no record of the phone, so the first run can be shown again and again.
+- **Not built:** confirming an email before the free video is given (sign-up is a stub), the help form, and the staff screen.
+- **On a short screen** (667 tall) the demo box pushes "Get credits" below the fold; without the box it fits.
+- The free video is never withheld after it has been granted: the switch is only on the free check, before "Find Ari's moments".
+
+All 364 controls in the v14 table were pressed on this build: 351 work as written, and the other 13 are the same as before. A test of 89 checks covers v11 to v14; 87 pass, and the other two are the brand-new visitor described below.
 
 ## v13: the walkthrough rebuilt (handover v8, 23 Nov)
 
@@ -17,7 +30,7 @@ Build: the commit that adds this file. 44 phone screens and the club's web page,
 - **On a short screen** (under 780 tall) the pictures are smaller and step 3 shows one clip, so the button stays in view. Checked at 667 and 844 tall.
 - **Two of the ticks are promises the demo does not keep for real:** "Upload carries on if you leave the app" (there is no upload) and "No card needed" (the purchase is a stub).
 
-All 360 controls were pressed again on this build, with the same result as v12. A test of 78 checks covers v11 to v13; 76 pass, and the other two are the brand-new visitor described below.
+All 360 controls were pressed again on that build, with the same result as v12.
 
 ## v12: chances created, progressive passes, and what the club adds (handover v7, 23 Nov)
 
@@ -102,7 +115,7 @@ The boards are 390 by 844. The app is as wide as the phone it is on (to 430) and
 
 ## The controls
 
-All 360 controls in `FAMILY-APP-REPORT.csv` (the v12 and v13 table) were pressed on a local production build of v13. 347 work as written. The other 13:
+All 364 controls in `FAMILY-APP-REPORT.csv` (the v14 table) were pressed on a local production build of v14. 351 work as written. The other 13:
 
 - **`FAMt3` "Upload my first video"** is on the fourth tour panel; panel three has "Next".
 - **4 work, and read differently from the board:** the credits strip on `FAM14` ("about 6 full games"), Mia's row on `FAM15` ("3 reels"), and the two minute marks on `FAM9a` ("35" and "70 min", see below).
@@ -137,7 +150,7 @@ All 360 controls in `FAMILY-APP-REPORT.csv` (the v12 and v13 table) were pressed
 
 ## Wording that is not in the pack
 
-- The three "Demo" boxes and their labels, and the sample videos' names.
+- The "Demo" boxes and their labels (now five, with the two for the free video), and the sample videos' names.
 - How often each of Mia's shots, and the shots in a newly added video, goes in. A shot or a chance the parent adds with "We missed one" is given 1 in 4 until it is looked at.
 - On the clips behind chances created: "Pass that led to a shot" and "the shot goes in 1 in 4", so that xA is its clips. "Progressive pass" on the clips behind that tile. With `SHOW_XG` off, the chances tile's second line is "Passes that led to a shot".
 - The fourth tour panel (not in the pack) now says "Every game, filmed for you · Nothing to set up or upload".
@@ -154,7 +167,7 @@ All 360 controls in `FAMILY-APP-REPORT.csv` (the v12 and v13 table) were pressed
 ## Not built
 
 - **Fair use**: five free checks a week, a paid check after that, and treating good as maybe after two returns in a row. In a demo where people try every sample, both would fire at once and make the samples land on the wrong outcome.
-- **One free video per phone.** It is one per account here.
+- **One free video per phone**, and the other rules for repeat free videos. It is one per account here; see v14 above.
 - Asking before uploading over 200 MB on mobile data, and resuming a dropped upload.
 - The 30 days for missed moments and the quote's 24 hours are stated; nothing expires them.
 - A parent with children at two clubs: the club is the family's.

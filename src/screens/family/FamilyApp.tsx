@@ -1,4 +1,4 @@
-// Clean Sheet Family (family-app-v13), on a phone. A parent uploads a video; credits pay for finding their own child's
+// Clean Sheet Family (family-app-v14), on a phone. A parent uploads a video; credits pay for finding their own child's
 // moments, and the first video is free. It works whether or not the club uses Clean Sheet, and a parent's own filming is
 // private to the family for ever: no control here sends a video, a clip or a count to a club, a coach or another family.
 // A demo of the flows on sample data. Nothing analyses real film; the purchase, the picker and the share sheet are stubs.
@@ -10,7 +10,7 @@ import { G, INK, MUT, LINE, PALE } from '../capture/marks'
 import LearnPlayer, { Thumb } from '../learn/LearnPlayer'
 import EducationPhone from '../learn/EducationPhone'
 import { byTitle } from '../learn/library'
-import { ADDED_ODDS, CHECK, CLUBS, HOWS, KINDS, MAX_MINUTES, OFFER_AT, PACKS, RATES, SAMPLE_OLDER, SHOW_COUNT_AT, SHOW_XG, STAT, STAT_KEYS, aboutGames, affordable, addSampleOlder, ageOf, clockOf, familyNow, film, filmId, finish, freshFamily, fullGames, howOf, named, ord, outcome, preset, priceOf, quote, reelOf, secsOf, setFamily, spend, tagged, useFamily, worth, xgOf, type Clip, type Family, type Kind, type StatKey, type Video } from './familyStore'
+import { ADDED_ODDS, CHECK, CLUBS, HOWS, KINDS, MAX_MINUTES, OFFER_AT, PACKS, RATES, SAMPLE_OLDER, SHOW_COUNT_AT, SHOW_XG, STAT, STAT_KEYS, aboutGames, affordable, addSampleOlder, ageOf, clockOf, familyNow, film, filmId, finish, freeLeft, freshFamily, fullGames, howOf, named, ord, outcome, preset, priceOf, quote, reelOf, secsOf, setFamily, spend, tagged, useFamily, worth, xgOf, type Clip, type Family, type Kind, type StatKey, type Video } from './familyStore'
 
 // Colour (family-app-v10). Green: things you do. Amber: your child's moments, and anything free. Mauve, on plum: with your club.
 // Writing on amber, mauve and every tint is INK. Amber is never on an Estimate chip or a stat's number. The club's web page stays green.
@@ -80,7 +80,7 @@ function checkOf(s: Family) {
   if (o === 'club') return 'FAM5c-ClubFilmedThis'
   if (fm.phone && !s.anyway) return 'FAM5p-PhoneCheck'
   if (o === 'no') return 'FAM5x-CantRead'
-  if (s.balance < price) return 'FAM5n-NotEnough'
+  if (s.balance < price) return o === 'good' && s.withheld && !s.freeUsed && !s.videos.length ? 'FAM5u-FreeUsed' : 'FAM5n-NotEnough'   // a new family whose free video is not available sees the normal price
   return o === 'maybe' ? 'FAM5b-Maybe' : 'FAM5-Check'
 }
 
@@ -130,7 +130,7 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
       else if (!v.stats) to = 'FAM8-Results'
     }
     if (to === 'FAM11-Locked' && s.joined) to = 'FAM13-ClubJoined'
-    if (to === 'FAM5-Check') to = s.freeUsed ? checkOf(s) : 'FAM2-AddChild'
+    if (to === 'FAM5-Check') to = s.freeUsed ? checkOf(s) : s.withheld && s.kids[0]?.number ? checkOf(s) : 'FAM2-AddChild'
     if (to === 'STA3-PickRole') { if (onNav) onNav(to); else openScreen(to); return }
     setView(to); top()
   }
@@ -293,7 +293,7 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
     <button onClick={() => { setFamily({ film: 'f50', part: 0, both: false, anyway: false, held: null }); setUp(34); setExtra(null); go('FAM5-Check') }} style={{ minHeight: 300, marginTop: 6, borderRadius: 26, border: `2px dashed ${INK}`, background: TINTS[0], color: INK, fontFamily: 'inherit', cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
       <span style={{ width: 84, height: 84, borderRadius: 999, background: AMBER, color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 8 }}><I d={PLUS} size={34} w={2.4} /></span>
       <strong style={{ fontSize: 24, letterSpacing: '-0.02em' }}>{f.freeUsed ? 'Add a video' : 'Upload a video'}</strong><span style={{ fontSize: 15, color: MUT }}>From your phone or your camera</span>
-      {!f.freeUsed && <span style={{ marginTop: 6, padding: '6px 14px', borderRadius: 999, background: AMBER, color: INK, fontSize: 14, fontWeight: 700 }}>Your first one is free</span>}</button>
+      {freeLeft(f) && <span style={{ marginTop: 6, padding: '6px 14px', borderRadius: 999, background: AMBER, color: INK, fontSize: 14, fontWeight: 700 }}>Your first one is free</span>}</button>
     <span style={note}>Only film where you’re allowed to. Other children are blurred before anything is saved.</span>
   </>, <div style={{ display: 'flex', gap: 26, justifyContent: 'center' }}><button onClick={() => side('FAM4-BeforeYouFilm')} style={{ ...link, fontSize: 15 }}>Filming tips</button><button onClick={() => say(SAMPLE)} style={{ ...link, fontSize: 15 }}>Watch a sample reel</button></div>)
 
@@ -334,7 +334,7 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
       <div role="status" aria-label="Upload" style={{ borderRadius: 12, background: PALE, padding: '8px 12px 10px', display: 'flex', flexDirection: 'column', gap: 6 }}><span style={{ display: 'flex', justifyContent: 'space-between', fontSize: 14 }}><strong>{up < 100 ? `Uploading · ${up}%` : 'Uploaded'}</strong><span>Carries on if you leave</span></span><span style={{ height: 5, borderRadius: 999, background: '#d5e2dc', overflow: 'hidden' }}><span style={{ display: 'block', width: `${up}%`, height: '100%', background: G }} /></span></div>
       <Pitch picked={kid.number} onPick={n => { edit({ number: n, colour: 'red' }); say(`Red ${n} picked. We follow that shirt for the whole video.`) }} label={<span style={pill}>Tap your child{kid.number ? ` · ${kid.colour || 'red'} ${kid.number} picked` : ''}</span>} />
       {form}{about}
-    </>, null, actions(false, <button key="a" onClick={() => { if (!ok) { missing(); return } if (!kid.number) { say('Tap your child in the picture first.'); return } setView('FAM5f-CheckFree'); top() }} style={btn(true)}>Find {call}’s moments</button>))
+    </>, null, actions(false, <button key="a" onClick={() => { if (!ok) { missing(); return } if (!kid.number) { say('Tap your child in the picture first.'); return } setView(f.withheld ? 'FAM5u-FreeUsed' : 'FAM5f-CheckFree'); top() }} style={btn(true)}>Find {call}’s moments</button>))
   }
 
   // ── FAM5f · the first video: the check passes and it is free ──
@@ -343,7 +343,21 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
       <span style={{ width: 64, height: 64, borderRadius: 999, background: AMBER, color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center' }}><I d={TICK} size={28} w={2.6} /></span>
       {title('We can read this one.', 30)}<span style={{ fontSize: 17, lineHeight: '25px' }}>We can follow the play for {fm.readable} of {fm.minutes} minutes, and {name} is in shot for about {fm.inShot}. Enough for about {fm.moments} moments.</span>
       <section style={{ ...card, flexDirection: 'row', alignItems: 'center', marginTop: 6 }}><span style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 16 }}>Your first video</strong><span style={{ fontSize: 13, color: MUT }}>Usually {priceOf(fm, false)} credits</span></span><strong style={{ fontSize: 22, padding: '2px 14px', borderRadius: 999, background: AMBER }}>Free</strong></section>
+      {demo('the free video', <button onClick={() => { setFamily({ withheld: true, offered: true }); setView('FAM5u-FreeUsed'); top() }} style={{ ...btn(false), minHeight: 44, fontSize: 14 }}>This phone has already had its free video</button>)}
     </>, <button onClick={() => { spend(fm.id, 0, true); setView('FAM7-Working'); top() }} style={big(false)}>Find {name}’s moments<span style={{ fontSize: 13, fontWeight: 500 }}>About 20 minutes</span></button>) }
+
+  // ── FAM5u · the check passes, but the free video is not this family's to use. Nobody is accused: they see the normal price, and a person can put it right ──
+  if (v === 'FAM5u-FreeUsed') { const fm = film(f.film), price = priceOf(fm, false), p = PACKS[0]
+    return plain('FAM5u-FreeUsed', false, arrow(() => { setView('FAM2-AddChild'); top() }, INK), <>
+      <span style={{ width: 64, height: 64, borderRadius: 999, background: G, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><I d={TICK} size={28} w={2.6} /></span>
+      {title('We can read this one.', 30)}<span style={{ fontSize: 17, lineHeight: '25px' }}>We can follow the play for {fm.readable} of {fm.minutes} minutes, and {name} is in shot for about {fm.inShot}. Enough for about {fm.moments} moments.</span>
+      <section style={{ ...card, flexDirection: 'row', alignItems: 'center', gap: 12, marginTop: 6 }}><span style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 16 }}>This video</strong><span style={{ fontSize: 13, color: MUT }}>{fm.minutes} minutes · credits back if we can’t make a reel</span></span><strong style={{ fontSize: 22, letterSpacing: '-0.02em' }}>{price}</strong><span style={{ fontSize: 13, color: MUT }}>credits</span></section>
+      <section style={{ borderRadius: 14, background: PALE, padding: '10px 14px', display: 'flex', flexDirection: 'column', gap: 2 }}><strong style={{ fontSize: 14, lineHeight: '19px' }}>The free video has already been used</strong><span style={{ fontSize: 13, lineHeight: '19px' }}>It is one for each family. One has been used on this phone, or for {name} on another account.</span>
+        <button onClick={() => say('Help opens with this video and account filled in. A person replies within a day.')} style={{ ...link, alignSelf: 'flex-start' }}>That’s not right</button></section>
+      {demo('the free video', <button onClick={() => { setFamily({ withheld: false, offered: false, held: null }); setView('FAM5f-CheckFree'); top(); say('A person has looked at it: the free video is yours.') }} style={{ ...btn(false), minHeight: 44, fontSize: 14 }}>A person gives the free video by hand</button>)}
+    </>, <><button onClick={() => { setFamily({ held: { film: fm.id, credits: price } }); setView('FAM6-Credits'); top() }} style={big(false)}>Get credits<span style={{ fontSize: 13, fontWeight: 500 }}>{p.credits} credits is ${p.price}</span></button>
+      <button onClick={() => { setFamily({ held: null }); setView('FAM3e-HomeEmpty'); top() }} style={{ ...link, minHeight: 48, fontSize: 15, alignSelf: 'center' }}>Not now</button></>) }
+
 
   // ── FAM7 · working on it ──
   if (v === 'FAM7-Working' && working) { const fm = film(working.film ?? 'f50'), n = Math.min(6, tick.id === working.id ? tick.n : begun), found = Math.min(fm.found, n), left = [20, 16, 12, 8, 4, 1, 1][n], R = 92, C = 2 * Math.PI * R

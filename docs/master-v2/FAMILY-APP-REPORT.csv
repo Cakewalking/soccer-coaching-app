@@ -244,6 +244,10 @@ FAM5n-NotEnough#10,FAM5n-NotEnough,Club,Opens,FAM11-Locked,works
 FAM5p-PhoneCheck#1,FAM5p-PhoneCheck,Back,Opens,FAM3-Home,works
 FAM5p-PhoneCheck#2,FAM5p-PhoneCheck,Pick another video,Says,Your phone’s video picker opens.,works
 FAM5p-PhoneCheck#3,FAM5p-PhoneCheck,Upload this one anyway,Opens,FAM5b-Maybe,opens FAM5x-CantRead
+FAM5u-FreeUsed#1,FAM5u-FreeUsed,Back,Opens,FAM2-AddChild,works
+FAM5u-FreeUsed#2,FAM5u-FreeUsed,That’s not right,Says,Help opens with this video and account filled in. A person replies within a day.,works
+FAM5u-FreeUsed#3,FAM5u-FreeUsed,Get credits100 credits is $10,Opens,FAM6-Credits,works
+FAM5u-FreeUsed#4,FAM5u-FreeUsed,Not now,Opens,FAM3e-HomeEmpty,works
 FAM5x-CantRead#1,FAM5x-CantRead,Back,Opens,FAM3-Home,works
 FAM5x-CantRead#2,FAM5x-CantRead,DB,Opens,FAM19-Account,works
 FAM5x-CantRead#3,FAM5x-CantRead,Filming tips,Opens,FAM4-BeforeYouFilm,works
