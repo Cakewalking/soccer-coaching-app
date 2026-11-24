@@ -654,7 +654,11 @@ FAMk1-ClubTour#2,FAMk1-ClubTour,Next,Opens,FAMk2-ClubTour,works
 FAMk2-ClubTour#1,FAMk2-ClubTour,Close,Opens,FAM11-Locked,works
 FAMk2-ClubTour#2,FAMk2-ClubTour,Next,Opens,FAMk3-ClubTour,works
 FAMk3-ClubTour#1,FAMk3-ClubTour,Close,Opens,FAM11-Locked,works
-FAMk3-ClubTour#2,FAMk3-ClubTour,Tell my club14 families at Hillview FC already use this,Opens,FAM12-TellClub,works
+FAMk3-ClubTour#2,FAMk3-ClubTour,Next,Opens,FAMk4-ClubTour,works
+FAMk4-ClubTour#1,FAMk4-ClubTour,Close,Opens,FAM11-Locked,works
+FAMk4-ClubTour#2,FAMk4-ClubTour,Next,Opens,FAMk5-ClubTour,works
+FAMk5-ClubTour#1,FAMk5-ClubTour,Close,Opens,FAM11-Locked,works
+FAMk5-ClubTour#2,FAMk5-ClubTour,Tell my club14 families at Hillview FC already use this,Opens,FAM12-TellClub,works
 FAMt1-Tour#1,FAMt1-Tour,Skip,Opens,FAM3e-HomeEmpty,works
 FAMt1-Tour#2,FAMt1-Tour,Next,Opens,FAMt2-Tour,works
 FAMt2-Tour#1,FAMt2-Tour,Skip,Opens,FAM3e-HomeEmpty,works

@@ -1,12 +1,18 @@
-# Clean Sheet Family v18: report back (24 Nov)
+# Clean Sheet Family v19: report back (24 Nov)
 
-Build: the commit that adds this file. 73 phone screens, a fourth walkthrough panel and the club's web page, as a demo of the flows on sample data. **Nothing analyses real film.** This replaces the v16 build.
+Build: the commit that adds this file. 75 phone screens, a fourth walkthrough panel and the club's web page, as a demo of the flows on sample data. **Nothing analyses real film.** This replaces the v18 build.
 
 ## Where it is
 
 - Every screen opens by its id, in the state it is drawn in (for example `/__screen/FAM1-Welcome`, `/__screen/FAM3-Home`, `/__screen/FAM20-GameStats`).
 - **Nothing in the demo's role picker opens it yet.** The pack does not say where a parent with no club comes in. The end of the club's join path for a parent now opens `FAM14-HomeWithClub`; the role pickers and tours still open the old parent screens, which are listed in `PLATFORM-MOMENTS-NOTES.md` for a decision.
 - Once the club has joined, an item on the Learn tab opens from the Education centre's library with no "We did it".
+
+## v19: the club tour has five steps (handover v14, 24 Nov)
+
+- **`FAMk1` to `FAMk5`.** Step 3 is reworded ("The coach is part of it."), and has Next. Step 4 is new: "The team's week, in one place." Step 5 is new and is the last: "And something to try at home.", with "Tell my club". Five dots; Close on every step.
+- **The goal is still for the season, not the term.** You changed that on step 3 earlier, so step 3 reads "This season: look up before the ball comes." and "A goal for the season, a clip with the coach's own words, and a report at the end of the season." The board says "term" in both places. `FAM37-FromCoach` now says "ARI'S GOAL THIS SEASON" for the same reason; its board says "TERM".
+- The table has 666 controls. The tour's ten were pressed on this build and all work as written. The other 656 are unchanged from v18 and carry that sweep's results: 627 work as written in all.
 
 ## v17 and v18: one parent app (handovers v12 and v13, 24 Nov)
 
