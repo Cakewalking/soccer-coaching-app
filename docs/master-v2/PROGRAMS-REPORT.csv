@@ -85,9 +85,6 @@ ADC11-AfterSession#36,ADC11-AfterSession,Finish later,Opens,ACC1-CoachToday,work
 ADC10-SetGoal#37,ADC10-SetGoal,Save the goal,Writes the goal,"setGoal(player, words, skill), then opens that player’s file",works (pressed by script)
 ADC10-SetGoal#38,ADC10-SetGoal,Cancel,Opens,that player’s file,works (pressed by script)
 ADC10-SetGoal#39,ADC10-SetGoal,Ideas: the next step on each skill (four),Fills the goal in,Filled in. Change the words to Kai’s own.,works (pressed by script): the words and the skill are filled in
-ADC3-SessionFilm#40,ADC3-SessionFilm,A row for each of the 16 players (name order),Shows that player’s moment,Lola · first touch,works (pressed by script)
-ADC3-SessionFilm#41,ADC3-SessionFilm,Send to Kai’s family,Writes a clip sent,"sendClip(player): Sent to Temi, Kai’s mum. Kai is 13, so it also shows in Kai’s own app.","works (pressed by script): that child’s family only; the file, ADC2 and the home’s meter follow"
-ADC3-SessionFilm#42,ADC3-SessionFilm,Save to Kai’s file,Says,Saved to Kai’s file under Striking the ball.,works (pressed by script)
 ACC6-ReportDraft#43,ACC6-ReportDraft,"Looks right, send to Dani (a report still to write)",Writes the report,"setReport(player, Drafted): Sent to Dani to approve. 5 more to write.",works (pressed by script): the file and the home’s meter follow
 ACC6-ReportDraft#44,ACC6-ReportDraft,Take it back (a report already drafted),Writes the report,"setReport(player, To write): Kai’s report is back with you to write.",works (pressed by script)
 ACC6-ReportDraft#45,ACC6-ReportDraft,Next draft,"Shows the next report to write, in name order","Opening Noah’s. (from Kai: the next report still to write, in name order)","works (pressed by script): opens Noah’s, the next still to write after Kai"
@@ -98,7 +95,6 @@ Players#49,Coach menu,Player file,Opens,"the file of the player last opened (Kai
 ACC13-AcademyChat#50,ACC13-AcademyChat and ACC13e,Send (group message),Says,Sent to the U13 Timber group.,"words changed; read, not pressed in this pass"
 ACC13-AcademyChat#51,ACC13-AcademyChat and ACC13e,Photo check,Says,Everyone in U13 Timber has a yes for photos.,"words changed; read, not pressed in this pass"
 ACC10-AcademyRecordResults#52,ACC10-AcademyRecordResults,Check,Says,14 notes ready. Tap any to change it.,"words changed (the board still says 20 beside 14 players); read, not pressed in this pass"
-ADC18-Learn#53,ADC18-Learn,Keeping 14 players busy with one goal,Says,"Keeping 14 players busy with one goal: the lesson opens. Short clips, one idea, one thing to try.","words changed; read, not pressed in this pass"
 ACP4-ParentFees#54,ACP4-ParentFees,The control that holds the Term 3 place,Says,"Kai’s Term 3 place is held. $1,100, due 13 July.","words changed; read, not pressed in this pass"
 ACP11-AcademyParentChat#55,ACP11-AcademyParentChat and ACP11e,Send,Says,Sent to the U13 Timber group.,"words changed (not in the pack: so the parent’s copy of the chat matches the coach’s); read, not pressed in this pass"
 AD1#O1,AD1-AcademyHome,All 17 coaches (Oversight heading),Opens,AC6-AcademyCoaches,works; pressed
@@ -189,11 +185,6 @@ ADM1#5,ADM1-Messages,Arjun’s trial (Meera’s chat),Opens,ADT1-TrialDecision,w
 ADM1#6,ADM1-Messages,Ask Priya Nair,"Asks Priya in a chat of her own, adds a line to Sam’s chat, the tile says who is asked",Priya is asked to take U13 Gold on Thursday 11 June. Sam’s plan is attached.,works; pressed
 ADM1#7,ADM1-Messages,Ask Tom Ashby / Ask Lena Fischer,"Same, for that coach; ""instead"" moves the ask",Tom is asked to take U13 Gold on Thursday 11 June.,works; pressed on Tom
 ADM1#8,ADM1-Messages,Message box and Send,"Adds the message to the open chat, clears its badge; Send is off while the box is empty",Sent to Sam.,works; sent to Wattle Creek
-AD15#1,AD15-Families,See what families answer,Opens,ADP11-Survey (opens over the top),works; pressed
-AD15#2,AD15-Families,Remind the 50 who haven’t,Says,Reminder sent to 50 families. It takes one minute.,line of text only; the 50 is counted
-AD15#3,AD15-Families,Turn weekly practice on,Opens,ADC6-HomePractice,works; pressed
-AD15#4,AD15-Families,See what players tap,Opens,ADK3-EnjoyedToday (opens over the top),works; pressed
-AD15#5,AD15-Families,"Averages, share who gave 4 or 5, answers, by program, trust panel",Shows,counted from each player’s survey; moved when three answers were changed,line of text only; counted
 AD2#1,AD2-Health,Download,Says,A spreadsheet of these numbers is on its way to your email.,line of text only
 AD2#2,AD2-Health,How we know where families came from,Opens,ADP15-HowHeard (opens over the top),works; pressed
 AD2#3,AD2-Health,See the form,Opens,ADP10-WhyLeaving (opens over the top),works; pressed
@@ -384,3 +375,237 @@ ACT4#4,ACT4-AcademyComing (v34),The trial player's row,Opens,ACC3-TrialAssess,wo
 ACT4#5,ACT4-AcademyComing (v34),Message Jonah's mum (mauve card),Opens,ACC13-AcademyChat,works; pressed; the card is there only while he has missed the last three and has not answered
 ACT4#6,ACT4-AcademyComing (v34),By night: a night (4 rows),Opens,ACT1-AcademyWeek,works; one pressed
 ACT4#7,ACT4-AcademyComing (v34),Make-ups: Mila Lombardi,Opens,ACP6-MakeUp,works; pressed
+ADC6#1,ADC6-HomePractice (v36),One for a single player,Opens,"ADC19-SetPractice with ""One player"" chosen",works; pressed
+ADC6#2,ADC6-HomePractice (v36),Set next week's,Opens,ADC19-SetPractice,works; pressed
+ADC6#3,ADC6-HomePractice (v36),Change it (This week),Does,opens the coach's line to edit in place; Save the line writes setThis; Cancel closes,works; edited and saved; the board links it to ADC19
+ADC6#4,ADC6-HomePractice (v36),This week's clip,Says,"The clip plays: Weaker-foot wall strikes, 0:40. Reece shows it.",line of text only
+ADC6#5,ADC6-HomePractice (v36),See it as a player,Opens,ACK2-HomePractice,works; pressed
+ADC6#6,ADC6-HomePractice (v36),As a parent,Opens,ADP5-Practice (family app),works; pressed
+ADC6#7,ADC6-HomePractice (v36),Why this one: The plan / From Sunday / Tonight / Next week,Opens,ACT1-AcademyWeek / ADC7-GameReview / ACT3-AcademySessionPlan / ADC19-SetPractice,works; all four pressed
+ADC6#8,ADC6-HomePractice (v36),Just for one player: a player's row,Opens,that player's file,works; one pressed; the board's three are sample in the store
+ADC6#9,ADC6-HomePractice (v36),Just for one player: Add,Opens,"ADC19-SetPractice with ""One player"" chosen",works; pressed
+ADC6#10,ADC6-HomePractice (v36),A waiting video's picture,Says,Lola's video plays.,line of text only
+ADC6#11,ADC6-HomePractice (v36),Hold to talk (one per waiting video),Writes,replyToVideo: press and hold records; letting go sends; the row says You replied; the card and the strip count down; with a keyboard hold Space or Enter,works; held with the mouse and with the keyboard; a quick tap sends nothing and says to hold; no sound is recorded in the demo
+ADC6#12,ADC6-HomePractice (v36),A player's row in the team table (16),Opens,that player's file,works; one pressed
+ADC19#1,ADC19-SetPractice (v36),Back,Opens,ADC6-HomePractice,works; pressed
+ADC19#2,ADC19-SetPractice (v36),Send Monday 4 pm (top and in Before it goes),Writes,"setNext with state scheduled (or setSingle for one player); says ""Set. It goes to 16 families on Monday at 4 pm. You can change it until then.""",works; both pressed; ADC6 then shows next week's as set; off when the owner's rule has practice off
+ADC19#3,ADC19-SetPractice (v36),Send it now,Writes,"setNext with state sent; says ""Sent to 16 families.""",works; pressed
+ADC19#4,ADC19-SetPractice (v36),"Save, don't send",Writes,setNext with state saved; says it is saved and the curriculum's pick still goes,works; pressed
+ADC19#5,ADC19-SetPractice (v36),1 What: The curriculum's pick,Does,puts the practice back to the pick,works; pressed
+ADC19#6,ADC19-SetPractice (v36),1 What: From the drill library,Does,lists the 9 library drills that work alone at home (curriculum.ts); picking one changes the practice and the phone,works; pressed; only one drill has steps written so the rest open the step editor; the board links to ADL1; disabled with the reason when the owner has swaps off
+ADC19#7,ADC19-SetPractice (v36),Open the whole library,Opens,ADL1-DrillLibrary,works; pressed
+ADC19#8,ADC19-SetPractice (v36),1 What: Film your own / Film it now,Opens,ACC8-AcademyRecord,works; chosen and the camera button shown; the film does not come back as a drill in the demo
+ADC19#9,ADC19-SetPractice (v36),The clip,Says,"The clip plays: One touch, then strike.",line of text only
+ADC19#10,ADC19-SetPractice (v36),Edit the steps / Add a step / Keep my version,Does,each step opens to type in; kept as the coach's version in the draft and saved with it,works; edited one step and added one; the phone showed both
+ADC19#11,ADC19-SetPractice (v36),2 Who: whole team / by step / one player and the player list,Does,changes who it goes to; counts follow,works; all three pressed; by step is 6 counted from the list
+ADC19#12,ADC19-SetPractice (v36),3 How much: Minutes 5 / 10 / 15 / 20,Does,"sets the minutes; an option past the owner's limit is shown disabled with ""over the limit""",works; pressed; setRule to 5 minutes disabled 10 15 and 20
+ADC19#13,ADC19-SetPractice (v36),3 How much: Once / Twice / Three times,Does,sets the times; past the limit is disabled,works; pressed; setRule to twice disabled Three times
+ADC19#14,ADC19-SetPractice (v36),3 How much: They need (3) and Done by (3),Does,sets what they need and the date; the phone follows,works; pressed
+ADC19#15,ADC19-SetPractice (v36),4 What comes back: tick / count / video / how it felt,Does,the tick is always on; the others toggle; video is disabled when the owner has video off,works; pressed
+ADC19#16,ADC19-SetPractice (v36),5 Your line (typed),Does,shows on the phone as you type; saved with the practice,works; typed
+ADC19#17,ADC19-SetPractice (v36),Say it instead / Take it off,Does,"starts and stops a recording and keeps ""a spoken line of 6 seconds""",works; pressed; no sound is recorded in the demo and the 6 seconds is fixed
+ADC19#18,ADC19-SetPractice (v36),"What they'll see: Player, 13 and over / Parent",Does,switches the phone picture,works; pressed
+ACC7#1,ACC7-AcademyGameDay (v36),Play the film · last time you met,Says,"The film plays: four moments from the 2–2 in April, picked for what you worked on this week.",line of text only; the one amber button
+ACC7#2,ACC7-AcademyGameDay (v36),Start the game,Opens,ADC21-LiveGame,works; pressed
+ACC7#3,ACC7-AcademyGameDay (v36),Message the team,Opens,ACC13-AcademyChat,works; pressed
+ACC7#4,ACC7-AcademyGameDay (v36),Team sheet (under the pitch),Opens,ADC20-TeamSheet,works; pressed
+ACC7#5,ACC7-AcademyGameDay (v36),This week,Opens,ACT1-AcademyWeek,works; pressed
+ACC7#6,ACC7-AcademyGameDay (v36),Weaker-foot touches / Seconds to win it back,Opens,ADC8-TeamStyle / ADC7-GameReview,works; both pressed; the numbers are sample
+ACC7#7,ACC7-AcademyGameDay (v36),Ready: Team sheet · Open,Opens,ADC20-TeamSheet,works; pressed
+ACC7#8,ACC7-AcademyGameDay (v36),Ready: Who's coming · See,Opens,ACT4-AcademyComing (tonight's answers; Sunday's are their own sample),works; pressed
+ACC7#9,ACC7-AcademyGameDay (v36),Ready: Minutes · See plan,Opens,ADC20-TeamSheet,works; pressed
+ACC7#10,ACC7-AcademyGameDay (v36),Ready: Team talk · Open,Opens,E-TeamTalk,works; pressed
+ACC7#11,ACC7-AcademyGameDay (v36),Ready: Filming · How to film,Opens,ACC8-AcademyRecord,works; pressed
+ACC7#12,ACC7-AcademyGameDay (v36),Ready: Cards and bans · See,Says,Nobody in U13 Timber has a card this season.,line of text only
+ACC7#13,ACC7-AcademyGameDay (v36),Can't play yet: a player's row (2),Opens,that player's file,works; both pressed
+ACC7#14,ACC7-AcademyGameDay (v36),Watch both goals · 0:42,Says,"Both goals play, back to back.",line of text only
+ACC7#15,ACC7-AcademyGameDay (v36),See last week's,Opens,ADC7-GameReview,works; pressed
+ACC7#16,ACC7-AcademyGameDay (v36),See it as a parent,Opens,ADP1-AcademyHome (family app),works; pressed
+ACC7#17,ACC7-AcademyGameDay (v36),This week's plan,Opens,ACT3-AcademySessionPlan,works; pressed
+AD26#1,AD26-PracticeHome,Write a week,Says,Pick the block and the week. Choose a drill from the library or film one.,line of text only; pressed
+AD26#2,AD26-PracticeHome,Turn on for Development,Turns on,"the Development rule and its five teams without one, through turnOn; says: Development families get a weekly practice from Monday 8 June. 5 coaches are told today. 30 practices are already written for these ages.",works; pressed. Rule on in practice.ts; the row reads On; six team rows follow; 12 of 17 teams; nothing set 122 to 56. The button then goes. Board says Five coaches
+AD26#3,AD26-PracticeHome,"A rule row (3: Foundation, Development, Advanced)",Opens in place,"the choices for that program, and the line: Applies from Monday 8 June","works; all 3 pressed, open and close. Board only says a line"
+AD26#4,AD26-PracticeHome,Weekly practice: On for all teams / Off,Writes,"turnOn, or setRule on false. Off keeps this week's practice and the row reads Off from Monday","works; pressed for Advanced (off, on again) and Foundation (on, with 5 minutes twice to the parent as first limits)"
+AD26#5,AD26-PracticeHome,"Longest: 5, 10, 15, 20 minutes",Writes,setRule longest_minutes,"works; all 4 pressed, each read back from practice.ts"
+AD26#6,AD26-PracticeHome,"Most often, a week: Once, Twice, Three times",Writes,setRule most_often,"works; all 3 pressed, read back"
+AD26#7,AD26-PracticeHome,"Video back: Yes, To parent only, No",Writes,setRule video_back. Yes is not offered where every player is under 13,"works; all 3 pressed on Advanced, read back; Development shows two"
+AD26#8,AD26-PracticeHome,"Coach can swap: Yes, No",Writes,setRule coach_can_swap,"works; both pressed, read back"
+AD26#9,AD26-PracticeHome,A team row (17),Opens,"that team's page, ADG01-Team to ADG17-Team","works; all 17 pressed, each opened its own team"
+AD26#10,AD26-PracticeHome,The year plan,Opens,AD6-YearPlan on under 13s,works; pressed
+AD26#11,AD26-PracticeHome,A week of the ladder (10),Opens,"ADL1-DrillLibrary, on all drills",works; one pressed. The home practices themselves are not in the library's 24 named drills
+AD26#12,AD26-PracticeHome,The family survey,Opens,AD15-Families,works; pressed
+AD26#13,AD26-PracticeHome,Sub tab: Practice at home,Opens,AD26-PracticeHome,works; pressed from AD6 and after 12 curriculum screens were checked for the tab
+AD26e#1,AD26e-PracticeHomeEmpty,Turn it on for a program,Says,Pick the program. It starts next Monday.,line of text only; pressed
+AD15#x,AD15-Families,Practice at home (was Turn weekly practice on),Opens,AD26-PracticeHome (was ADC6-HomePractice),works; pressed
+ADC20-TeamSheet#1,ADC20-TeamSheet,Team sheet [Game day sub-tab],Opens,ADC20-TeamSheet,"works; pressed from the coach menu: Game day lit, Team sheet lit. Was wrong target: the club MS1-TeamSheet"
+ADC20-TeamSheet#2,ADC20-TeamSheet,Send it now,Does,Marks the sheet sent. Says: Sent. The league has the 14 names. Each family sees only their own child’s part.,works; pressed: the fifth number reads Sent and the button becomes Take it back. Nothing leaves the demo
+ADC20-TeamSheet#3,ADC20-TeamSheet,"Take it back [added, shown after sending]",Does,Un-sends,works; pressed. Not on the board
+ADC20-TeamSheet#4,ADC20-TeamSheet,Sends Saturday 6 pm,Says,Nothing more to do. It goes on Saturday at 6 pm unless you change it.,line of text only; pressed
+ADC20-TeamSheet#5,ADC20-TeamSheet,First half [radio],Does,Draws the eleven on at that point; says the board’s line,"works; pressed: eleven players each time, the right three in and out"
+ADC20-TeamSheet#6,ADC20-TeamSheet,From half-time [radio],Does,Draws the eleven on at that point; says the board’s line,"works; pressed: eleven players each time, the right three in and out"
+ADC20-TeamSheet#7,ADC20-TeamSheet,From 45 [radio],Does,Draws the eleven on at that point; says the board’s line,"works; pressed: eleven players each time, the right three in and out"
+ADC20-TeamSheet#8,ADC20-TeamSheet,4-3-3 [radio],Does,Re-lays the eleven in that shape; position names follow; minutes stay,"works; pressed: 6 players move for 4-4-2, 10 for 3-5-2, minutes unchanged"
+ADC20-TeamSheet#9,ADC20-TeamSheet,4-4-2 [radio],Does,Re-lays the eleven in that shape; position names follow; minutes stay,"works; pressed: 6 players move for 4-4-2, 10 for 3-5-2, minutes unchanged"
+ADC20-TeamSheet#10,ADC20-TeamSheet,3-5-2 [radio],Does,Re-lays the eleven in that shape; position names follow; minutes stay,"works; pressed: 6 players move for 4-4-2, 10 for 3-5-2, minutes unchanged"
+ADC20-TeamSheet#11,ADC20-TeamSheet,A player on the pitch (11),Does,"Drag onto another player on the pitch: they swap places. Drag onto grass: stands there. Press, then press another: swap. Keys: arrows walk, Enter picks up and drops, Shift and arrow moves a held player, Escape lets go","works; mouse drag pitch to pitch, drag to grass, press then press, and keys all tried"
+ADC20-TeamSheet#12,ADC20-TeamSheet,A player in the list under the pitch (3) [added: Not starting / Off the pitch],Does,"Drag onto a player on the pitch, or press then press, or keys: the two swap parts, and the minutes, squares, labels and changes follow","works; mouse drag Kai onto Isla (Kai 45, Isla 30) and keys Mila for Noah tried. The board says ""the list"" without drawing one"
+ADC20-TeamSheet#13,ADC20-TeamSheet,Swap [30′ Kai on for Isla],Does,Opens a list of who is off the pitch at that minute; picking one changes who comes on and the minutes are worked out again,"works; all five opened (3 names each); Ezra picked at 45 (Ezra 45, Isla 30); Mila picked at 30 (swaps with Kai)"
+ADC20-TeamSheet#14,ADC20-TeamSheet,Swap [30′ Mila on for Ezra],Does,Opens a list of who is off the pitch at that minute; picking one changes who comes on and the minutes are worked out again,"works; all five opened (3 names each); Ezra picked at 45 (Ezra 45, Isla 30); Mila picked at 30 (swaps with Kai)"
+ADC20-TeamSheet#15,ADC20-TeamSheet,Swap [30′ Sienna on for Finn],Does,Opens a list of who is off the pitch at that minute; picking one changes who comes on and the minutes are worked out again,"works; all five opened (3 names each); Ezra picked at 45 (Ezra 45, Isla 30); Mila picked at 30 (swaps with Kai)"
+ADC20-TeamSheet#16,ADC20-TeamSheet,Swap [45′ Isla on for Lola],Does,Opens a list of who is off the pitch at that minute; picking one changes who comes on and the minutes are worked out again,"works; all five opened (3 names each); Ezra picked at 45 (Ezra 45, Isla 30); Mila picked at 30 (swaps with Kai)"
+ADC20-TeamSheet#17,ADC20-TeamSheet,Swap [45′ Finn on for Tess],Does,Opens a list of who is off the pitch at that minute; picking one changes who comes on and the minutes are worked out again,"works; all five opened (3 names each); Ezra picked at 45 (Ezra 45, Isla 30); Mila picked at 30 (swaps with Kai)"
+ADC20-TeamSheet#18,ADC20-TeamSheet,"Ana Costa · Club form started, not paid",Opens,ADCP167-Player,works; pressed
+ADC20-TeamSheet#19,ADC20-TeamSheet,Jonah Marsh · Club form not started,Opens,ADCP168-Player,"works; not pressed, same code as the row above"
+ADC20-TeamSheet#20,ADC20-TeamSheet,A row in Everyone’s minutes (14),Opens,"That player’s file (ADC1-PlayerFile for Kai, ADCP<id>-Player for the rest)","works; Ezra pressed, the other 13 not pressed, same code"
+ADC21-LiveGame#1,ADC21-LiveGame,Live game [Game day sub-tab],Opens,ADC21-LiveGame,"works; pressed from the coach menu: Game day lit, Live game lit. Was wrong target: the club L11-LiveGame11"
+ADC21-LiveGame#2,ADC21-LiveGame,Pause the clock,Does,Stops the clock; says: Clock paused. The film keeps going.,"works; pressed: clock held for 2 seconds, label reads CLOCK PAUSED"
+ADC21-LiveGame#3,ADC21-LiveGame,Start the clock [shown while paused],Does,Runs the clock again,works; pressed
+ADC21-LiveGame#4,ADC21-LiveGame,End the game,Does,"Asks first (Yes, end it at 34:12 / Keep playing); says: Only at the final whistle. The review comes back about 25 minutes later.",works; pressed
+ADC21-LiveGame#5,ADC21-LiveGame,"Yes, end it at … [added]",Does,"Ends the game: clock stops, FULL TIME, no more taps",works; pressed
+ADC21-LiveGame#6,ADC21-LiveGame,Keep playing [added],Does,Closes the question,works; pressed
+ADC21-LiveGame#7,ADC21-LiveGame,"See the review [added, after the end]",Opens,ADC7-GameReview,"works; pressed. The review shown is the sample one, not this game"
+ADC21-LiveGame#8,ADC21-LiveGame,"Start the demo again [added, after the end]",Does,"Back to second half, 34:12, 1–1, five rows",works; pressed
+ADC21-LiveGame#9,ADC21-LiveGame,Change who,Opens,ADC20-TeamSheet,works; pressed: the clock and the list were kept on coming back
+ADC21-LiveGame#10,ADC21-LiveGame,Make it now,Does,"Makes the next changes at the clock’s second: pitch, minutes, off-the-pitch list and a new row follow","works; pressed for the 45 changes and, after undoing half-time, for the three half-time ones"
+ADC21-LiveGame#11,ADC21-LiveGame,A player on the pitch (11),Does,"Picks the player for the next tap, or puts the waiting tap to them",works; pressed both ways (Lola first then Weaker foot; Goal for us then Zane)
+ADC21-LiveGame#12,ADC21-LiveGame,Goal for us,Does,"Row at the clock’s minute, score up one, asks who scored","works; pressed, then undone"
+ADC21-LiveGame#13,ADC21-LiveGame,Goal for them,Does,"Row, their score up one","works; pressed, then undone"
+ADC21-LiveGame#14,ADC21-LiveGame,Chance,Does,Row; asks who or leave it,"works; pressed, then undone"
+ADC21-LiveGame#15,ADC21-LiveGame,Weaker foot,Does,Row; the weaker-foot counter and the name’s count go up,"works; pressed, then undone"
+ADC21-LiveGame#16,ADC21-LiveGame,Won it back,Does,Row; the won-back counter goes up,"works; pressed, then undone"
+ADC21-LiveGame#17,ADC21-LiveGame,Good moment,Does,Row; asks who,"works; pressed, then undone"
+ADC21-LiveGame#18,ADC21-LiveGame,Knock or injury,Does,Row; asks who and whether it was a head knock,"works; pressed, then undone"
+ADC21-LiveGame#19,ADC21-LiveGame,Card,Does,Row; asks who and the colour,"works; pressed, then undone"
+ADC21-LiveGame#20,ADC21-LiveGame,"Yellow / Red [added, shown after Card]",Does,Sets the colour on the card’s row,"works; Yellow pressed, Red not pressed, same code"
+ADC21-LiveGame#21,ADC21-LiveGame,"It was a head knock [added, shown after Knock or injury]",Says,The head-knock check opens for the player. They stay off until it is done.,"line of text only: the row is marked, no check opens"
+ADC21-LiveGame#22,ADC21-LiveGame,Leave it without a name / Done [added],Does,Closes the waiting tap,works; pressed
+ADC21-LiveGame#23,ADC21-LiveGame,"Undo (5 as drawn, and one on every new row)",Does,"Takes the row out; the score, counters, players and minutes go back with it","works; all five drawn rows undone, eight new rows undone, and two rows of changes undone"
+ADC21-LiveGame#24,ADC21-LiveGame,Weaker-foot moments,Opens,ADC8-TeamStyle,works; pressed
+ADC21-LiveGame#25,ADC21-LiveGame,Won it back fast,Opens,ADC8-TeamStyle,works; pressed
+ADC21-LiveGame#26,ADC21-LiveGame,At 30 minutes or more,Opens,ADC20-TeamSheet,works; pressed
+ADC8-TeamStyle#1,ADC8-TeamStyle,See the academy’s,Opens,AD18-AcademyStyle,"works as the board links it, but it is the owner’s own page (with her controls) over the top with a Back bar: to confirm"
+ADC8-TeamStyle#2,ADC8-TeamStyle,Add a measure,Opens,ADC9-PickMeasure,works; pressed: the picker names the last measure that can be swapped
+ADC8-TeamStyle#3,ADC8-TeamStyle,Reset,Does,"Puts the academy’s aims back on its six; the coach’s own two and every reason stay. Says: Back to the academy’s six, with its aims.",works; pressed after moving three aims
+ADC8-TeamStyle#4,ADC8-TeamStyle,− [Minutes shared evenly],Does,Moves the aim one step; the squares and Met in N of 7 are worked out again,"works; pressed. For minutes − eases the aim to ""all but one"""
+ADC8-TeamStyle#5,ADC8-TeamStyle,+ [Minutes shared evenly],Does,Moves the aim one step; the squares and Met in N of 7 are worked out again,"works; pressed. At ""all who can play"" it says: It is already everyone who can play."
+ADC8-TeamStyle#6,ADC8-TeamStyle,− [Weaker-foot touches],Does,Moves the aim one step; the squares and Met in N of 7 are worked out again,works; pressed
+ADC8-TeamStyle#7,ADC8-TeamStyle,+ [Weaker-foot touches],Does,Moves the aim one step; the squares and Met in N of 7 are worked out again,works; pressed
+ADC8-TeamStyle#8,ADC8-TeamStyle,− [Goal kicks played short],Does,Moves the aim one step; the squares and Met in N of 7 are worked out again,works; pressed
+ADC8-TeamStyle#9,ADC8-TeamStyle,+ [Goal kicks played short],Does,Moves the aim one step; the squares and Met in N of 7 are worked out again,works; pressed
+ADC8-TeamStyle#10,ADC8-TeamStyle,− [Their passes before we challenge],Does,Moves the aim one step; the squares and Met in N of 7 are worked out again,works; pressed
+ADC8-TeamStyle#11,ADC8-TeamStyle,+ [Their passes before we challenge],Does,Moves the aim one step; the squares and Met in N of 7 are worked out again,works; pressed
+ADC8-TeamStyle#12,ADC8-TeamStyle,− [Seconds to win it back],Does,Moves the aim one step; the squares and Met in N of 7 are worked out again,works; pressed
+ADC8-TeamStyle#13,ADC8-TeamStyle,+ [Seconds to win it back],Does,Moves the aim one step; the squares and Met in N of 7 are worked out again,works; pressed
+ADC8-TeamStyle#14,ADC8-TeamStyle,− [Won back inside 6 s],Does,Moves the aim one step; the squares and Met in N of 7 are worked out again,works; pressed
+ADC8-TeamStyle#15,ADC8-TeamStyle,+ [Won back inside 6 s],Does,Moves the aim one step; the squares and Met in N of 7 are worked out again,works; pressed
+ADC8-TeamStyle#16,ADC8-TeamStyle,− [Switches of play],Does,Moves the aim one step; the squares and Met in N of 7 are worked out again,works; pressed
+ADC8-TeamStyle#17,ADC8-TeamStyle,+ [Switches of play],Does,Moves the aim one step; the squares and Met in N of 7 are worked out again,works; pressed
+ADC8-TeamStyle#18,ADC8-TeamStyle,− [Crosses with three in the box],Does,Moves the aim one step; the squares and Met in N of 7 are worked out again,works; pressed
+ADC8-TeamStyle#19,ADC8-TeamStyle,+ [Crosses with three in the box],Does,Moves the aim one step; the squares and Met in N of 7 are worked out again,works; pressed
+ADC8-TeamStyle#20,ADC8-TeamStyle,Swap [Goal kicks played short],Opens,"ADC9-PickMeasure, naming that measure",works; pressed
+ADC8-TeamStyle#21,ADC8-TeamStyle,Swap [Their passes before we challenge],Opens,"ADC9-PickMeasure, naming that measure",works; pressed
+ADC8-TeamStyle#22,ADC8-TeamStyle,Swap [Seconds to win it back],Opens,"ADC9-PickMeasure, naming that measure",works; pressed
+ADC8-TeamStyle#23,ADC8-TeamStyle,Swap [Won back inside 6 s],Opens,"ADC9-PickMeasure, naming that measure",works; pressed
+ADC8-TeamStyle#24,ADC8-TeamStyle,Swap [Switches of play],Opens,"ADC9-PickMeasure, naming that measure",works; pressed
+ADC8-TeamStyle#25,ADC8-TeamStyle,Swap [Crosses with three in the box],Opens,"ADC9-PickMeasure, naming that measure",works; pressed
+ADC8-TeamStyle#26,ADC8-TeamStyle,"Your reason [added: a line to type and Save, shown when an academy aim has been moved and has no reason]",Does,Saves the one-line reason and shows it on the row,works; typed and saved; Save with nothing written says: Write a line first.
+ACC8#1,ACC8-AcademyRecord,Sub-tab Record,Opens,ACC8-AcademyRecord,works; pressed
+ACC8#2,ACC8-AcademyRecord,Sub-tab Film (was Tonight’s film),Opens,ADC3-SessionFilm,works; pressed
+ACC8#3,ACC8-AcademyRecord,Record a drill (hero),Opens,ACC9-AcademyRecordDrill,works; pressed
+ACC8#4,ACC8-AcademyRecord,Just start filming (hero),Opens,ACC11-AcademyRecording,works; pressed
+ACC8#5,ACC8-AcademyRecord,Check the view,Says,The view opens full screen with the lines to match.,line of text only; pressed
+ACC8#6,ACC8-AcademyRecord,Card: A drill,Opens,ACC9-AcademyRecordDrill,works; pressed
+ACC8#7,ACC8-AcademyRecord,Card: A one-on-one,Opens,ACC5-OneOnOne,works; pressed
+ACC8#8,ACC8-AcademyRecord,Card: A skills check,Opens,ADC4-SkillsCheck,works; pressed
+ACC8#9,ACC8-AcademyRecord,Card: Sunday’s game,Opens,ACC7-AcademyGameDay,works; pressed
+ACC8#10,ACC8-AcademyRecord,All film,Opens,ADC3-SessionFilm,works; pressed
+ACC8#11,ACC8-AcademyRecord,Last three: Sunday’s game at Eastbank,Opens Film on that recording,ADC3-SessionFilm (Game at Eastbank chosen),works; pressed
+ACC8#12,ACC8-AcademyRecord,"Last three: Kai, one-on-one",Opens Film on that recording,"ADC3-SessionFilm (Kai, one-on-one chosen)",works; pressed
+ACC8#13,ACC8-AcademyRecord,Last three: Finishing circuit,Opens Film on that recording,ADC3-SessionFilm (Finishing circuit chosen),works; pressed
+ACC8#14,ACC8-AcademyRecord,No kit: Film on your phone,Opens,ACC8p-PairCamera,works; pressed
+ACC8#15,ACC8-AcademyRecord,No kit: Count by hand,Opens,ADC13-CheckEntry,works; pressed
+ACC8#16,ACC8-AcademyRecord,No kit: Pair another camera,Opens,ACC8p-PairCamera,works; pressed
+ACC9#1,ACC9-AcademyRecordDrill,Back,Opens,ACC8-AcademyRecord,works; pressed
+ACC9#2,ACC9-AcademyRecordDrill,Start recording (top),Opens when a drill is chosen; otherwise says why,ACC11-AcademyRecording,works; pressed
+ACC9#3,ACC9-AcademyRecordDrill,Way: From tonight’s plan,Shows the four parts of tonight’s session,in place,works; pressed
+ACC9#4,ACC9-AcademyRecordDrill,Way: From the drill library,Shows the search,in place,works; pressed
+ACC9#5,ACC9-AcademyRecordDrill,Way: Describe it,Shows the sentence box,in place,works; pressed
+ACC9#6,ACC9-AcademyRecordDrill,Plan card: Arrival game,Picks that drill; the viewfinder card names it,in place,works; pressed
+ACC9#7,ACC9-AcademyRecordDrill,Plan card: Introduction,Picks that drill,in place,works; pressed
+ACC9#8,ACC9-AcademyRecordDrill,Plan card: Training,Picks that drill,in place,works; pressed
+ACC9#9,ACC9-AcademyRecordDrill,Plan card: Game,Picks that drill,in place,works; pressed
+ACC9#10,ACC9-AcademyRecordDrill,Library: search box,"Filters the named drills by name, skill or part",in place,"works; typed (gates, striking, first touch, volley)"
+ACC9#11,ACC9-AcademyRecordDrill,Library: a drill in the results,Picks that drill,in place,works; pressed (Volley tennis)
+ACC9#12,ACC9-AcademyRecordDrill,Describe: the sentence box,Takes typing; shows what it would be filed under,in place,works; typed
+ACC9#13,ACC9-AcademyRecordDrill,Describe: Say it,Writes the sample sentence in (the demo has no microphone),Listening. In this demo the sample sentence is written down for you.,works as a demo; pressed
+ACC9#14,ACC9-AcademyRecordDrill,Describe: Save as my own drill,Marks it saved,Saved as a drill of your own.,"works; pressed (kept in the film store only, not added to the library)"
+ACC9#15,ACC9-AcademyRecordDrill,Note box,Takes typing; kept,in place,works; typed
+ACC9#16,ACC9-AcademyRecordDrill,Note: Say it,Writes the sample note in,Listening. In this demo the sample note is written down for you.,works as a demo; pressed
+ACC9#17,ACC9-AcademyRecordDrill,Look-for chips (each),Turns that one on or off; kept,in place,works; all 5 pressed
+ACC9#18,ACC9-AcademyRecordDrill,+ Your own,Opens a box; Add puts a chip on; Cancel closes,in place,works; pressed
+ACC9#19,ACC9-AcademyRecordDrill,Start recording (viewfinder card),Opens,ACC11-AcademyRecording,works; pressed
+ACC9#20,ACC9-AcademyRecordDrill,Check the view,Says,The view opens full screen with the lines to match.,line of text only; pressed
+ACC9#21,ACC9-AcademyRecordDrill,Filmed before: Last time,Opens,ADC3-SessionFilm,works; pressed (the 21 May recording itself is not in the sample)
+ACC9#22,ACC9-AcademyRecordDrill,Filmed before: Compare with it,Yes or No; kept,in place,works; pressed
+ACC9#23,ACC9-AcademyRecordDrill,Filmed before: On their goal,Opens,ADC2-Group,works; pressed
+ACC9#24,ACC9-AcademyRecordDrill,Who is in it: Coming tonight,Opens,ACT4-AcademyComing,works; pressed
+ADC3#1,ADC3-SessionFilm,Record,Opens,ACC8-AcademyRecord,works; pressed
+ADC3#2,ADC3-SessionFilm,Check the N waiting,Walks through the waiting clips one at a time,in place,works; walked through all 12
+ADC3#3,ADC3-SessionFilm,Look by: Recording,Shows the row of recordings,in place,works; pressed
+ADC3#4,ADC3-SessionFilm,Look by: Player,Shows the open player’s recordings,in place,works; pressed
+ADC3#5,ADC3-SessionFilm,Look by: What we’re working on,Shows the four core skills,in place,works; pressed
+ADC3#6,ADC3-SessionFilm,Look by: Playlists · 3,Shows the three playlists,in place,works; pressed
+ADC3#7,ADC3-SessionFilm,Recording cards (4),"Band, rows, clip and team tile follow",in place,works; all 4 pressed
+ADC3#8,ADC3-SessionFilm,All this term (23),Opens the Player view and says four of the 23 are in the sample,in place,works; pressed (the other 19 recordings are not in the sample)
+ADC3#9,ADC3-SessionFilm,Player view: a recording card,Shows that player’s moments from it,in place,works; 3 pressed for Lola
+ADC3#10,ADC3-SessionFilm,Working on: a skill card (4),Band and rows follow,in place,works; all 4 pressed
+ADC3#11,ADC3-SessionFilm,Playlist cards (3),Band and rows follow,in place,works; all 3 pressed
+ADC3#12,ADC3-SessionFilm,By player rows (16),"Picks that player; their clip shows, or why there is none",in place,works; all 16 pressed. The board links a row to the player’s file; here the file is the link beside the clip
+ADC3#13,ADC3-SessionFilm,Open the assessment (trial player),Opens,ACC3-TrialAssess,works; pressed
+ADC3#14,ADC3-SessionFilm,<Name>’s file,Opens that player’s file,ADCP<id>-Player or ADC1-PlayerFile,works; pressed
+ADC3#15,ADC3-SessionFilm,The film button,Plays the clip in the clip player,clip sheet,works; pressed
+ADC3#16,ADC3-SessionFilm,Strip of moments,Shows that moment,in place,works; all 5 of Kai’s pressed
+ADC3#17,ADC3-SessionFilm,Send to <Name>’s family,Writes a clip sent to the academy’s list; band and row follow,sendClip,"works; pressed; file, coach home meter and owner team page moved"
+ADC3#18,ADC3-SessionFilm,Add a spoken note,Marks a note on the clip; again takes it off,in place,works as a demo; pressed (no sound is recorded)
+ADC3#19,ADC3-SessionFilm,Add to his term report,Marks the clip for the report; then the button opens the report,ACC6-ReportDraft,works; pressed (does not change the report’s status)
+ADC3#20,ADC3-SessionFilm,Not this one,Takes it off and offers the next best,in place,works; pressed
+ADC3#21,ADC3-SessionFilm,Offer it again,Puts a turned-down clip back to waiting,in place,works; pressed
+ADC3#22,ADC3-SessionFilm,Pick this one for <Name>’s family,The coach picks a moment the app did not,in place,works; pressed for Rory
+ADC3#23,ADC3-SessionFilm,Walk-through: Skip this one,Moves to the next waiting clip,in place,works; pressed
+ADC3#24,ADC3-SessionFilm,Walk-through: Stop checking,Ends the walk-through,in place,works
+ADC3#25,ADC3-SessionFilm,Where it goes: Sunday,Opens,ACC7-AcademyGameDay,works; pressed
+ADC3#26,ADC3-SessionFilm,Where it goes: As a parent,Opens over the top,ADP1-AcademyHome,works; pressed
+ADC18#1,ADC18-Learn,Play the lesson (amber; the one film button),Marks the lesson started and says,The lesson plays. It ends with one thing to try tonight.,works; pressed; the row goes to Half done. There is no lesson film in the demo
+ADC18#2,ADC18-Learn,Ask a question,Opens a box under the hero,Type a question / Ask; the coach's own questions listed,works; pressed. The board only says a line. No answer comes back: answers are not built
+ADC18#3,ADC18-Learn,Ask,Keeps the question on the coach's side of the store,Kept. Only you see your questions.,works; pressed with nothing typed (asks for a question) and with one typed. No owner function returns it; checked by script
+ADC18#4,ADC18-Learn,All 23 lessons,Opens a list under the hero,The 11 lessons the boards name with the coach's own state; says 18 more are not named,works; pressed. The board only says a line
+ADC18#5,ADC18-Learn,For you this week: a lesson's picture,Marks it started and says,The lesson opens: (title).,works; pressed; the row goes to Half done
+ADC18#6,ADC18-Learn,Mark as done (each lesson not finished),Writes the lesson as done,Lessons done goes up; the owner's total for that lesson goes up by one with no name,works; pressed for Asking: 9 to 10 here; 5 of 6 to 6 of 6 on AD27. NOT on the board
+ADC18#7,ADC18-Learn,I tried it (each finished lesson with something to try),Writes that it was tried,Things tried goes up; the owner's tried count for that lesson goes up by one,works; pressed for Asking: 6 to 7 here; 4 to 5 tried on AD27. NOT on the board. Showed on film does not move: only the two sampled lessons have film counts
+ADC18#8,ADC18-Learn,Required: How we coach,Opens,AD7-HowWeCoach,works; pressed
+ADC18#9,ADC18-Learn,Required: Head knocks (any required lesson not done),Says and opens a line under it,The lesson opens. Eight minutes with five questions at the end. + Mark as done,works; pressed
+ADC18#10,ADC18-Learn,Required: Mark as done,Writes the required lesson as done,2 of 3 to 3 of 3 here; the coach's row on AD27 goes to Done and Remind goes,works; pressed: AD27 went 47 of 51 to 48 of 51 and Reece's row read Done Done Done. NOT on the board
+ADC18#11,ADC18-Learn,Share a lesson with Dani,Opens the list of finished lessons,A note box and Share or Stop sharing for each; required lessons are not listed,works; pressed. The board only says a line
+ADC18#12,ADC18-Learn,Share (each finished lesson),Writes the share with the note,It shows under Shared with you on AD27,works; pressed for Asking with a note; seen on AD27 with the note
+ADC18#13,ADC18-Learn,Stop sharing,Takes the share back,It leaves Shared with you on AD27,works; pressed for Growth spurts; gone from AD27. NOT on the board
+ADC18#14,ADC18-Learn,Your own view of Thursday,Opens,ADC15-MySession,works; pressed
+ADC18#15,ADC18-Learn,Film,Opens,ADC3-SessionFilm,works; pressed. 12 moments to check is a sample line: it is not read from the Film screen
+ADC18#16,ADC18-Learn,Sunday's review,Opens,ADC7-GameReview,works; pressed. Won 3-1 is read from the game day store
+AD27#1,AD27-CoachLearning,Make one from film,Opens,AD10-WatchCoach,works; pressed. As the board: it does not make a lesson
+AD27#2,AD27-CoachLearning,Set a lesson,Opens the form,Lesson / Who gets it / Required / Set it / Cancel,works; pressed. The board only says a line
+AD27#3,AD27-CoachLearning,Set a lesson: Lesson,Picks one of the eight lessons that are not required,Each says what it is already shown for,works; chosen
+AD27#4,AD27-CoachLearning,Set a lesson: Everyone / A program / An age / One coach and its list,Picks who gets it,,works; An age (U13) / One coach / A program (Advanced) pressed
+AD27#5,AD27-CoachLearning,Set a lesson: No their choice / Yes required and Due by,Picks whether it is required and by when,,works; both pressed
+AD27#6,AD27-CoachLearning,Set it,Writes the lesson for that group,Not required: a totals row (You for ...) and on each coach's Learn page as Set by Dani. Required: a new column by name,works; set for U13: on Reece's page as Set by Dani with why. Set for one coach: one coach / Shown to 1 / too few to count. Made required for Advanced: fourth column; 49 of 57. The same again is refused
+AD27#7,AD27-CoachLearning,Cancel,Closes the form,,works; pressed
+AD27#8,AD27-CoachLearning,Required by coach: a row,Opens,That coach: ADCO01 to ADCO17,works; pressed for Tom Ashby
+AD27#9,AD27-CoachLearning,Remind (a row not finished),Writes the reminder,Says who and about what; the row reads Reminded 4 June; the coach's Learn page says Dani reminded you,works; pressed for Reece; seen on ADC18. Only the signed-in coach has a page to see it on
+AD27#10,AD27-CoachLearning,Everything else: a lesson's row,Says,The lesson opens with who it is shown to and why. No names of who watched.,line of text only; as the board
+AD27#11,AD27-CoachLearning,See it as a coach,Opens,ADC18-Learn over the top,works; pressed
+AD27#12,AD27-CoachLearning,Shared with you: a row,Opens,That coach: ADCO,works; pressed for Sofia Marin
+AD27#13,Coaches sub tabs,Learning,Opens,AD27-CoachLearning,works; pressed from AC6; present after Watching a coach on AC6 / AD17 / AD9 / AD10 / AD21 / AD23 / ADW1 / ADCO01 / ADCO17 and four empty states
+AD27e#1,AD27e-CoachLearningEmpty,Add a coach,Opens,AD23-AddCoach,works; pressed
+AD15#1,AD15-Families,See what families answer,Opens,ADP11-Survey (opens over the top),works; pressed
+AD15#2,AD15-Families,Remind the 50 who haven’t,Says,Reminder sent to 50 families. It takes one minute.,line of text only; the 50 is counted
+AD15#4,AD15-Families,See what players tap,Opens,ADK3-EnjoyedToday (opens over the top),works; pressed
+AD15#5,AD15-Families,"Averages, share who gave 4 or 5, answers, by program, trust panel",Shows,counted from each player’s survey; moved when three answers were changed,line of text only; counted

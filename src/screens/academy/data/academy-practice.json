@@ -1,0 +1,517 @@
+{
+ "week": 7,
+ "team": "U13 Timber",
+ "this_week": {
+  "name": "Weaker-foot wall strikes",
+  "minutes": 10,
+  "times": 3,
+  "needs": "A wall and a ball",
+  "steps": [
+   [
+    "Find a wall and a line",
+    "Stand five big steps back"
+   ],
+   [
+    "20 strikes, weaker foot only",
+    "Lock your ankle. Hit the middle of the ball"
+   ],
+   [
+    "10 more, first time",
+    "Strike it as it comes back, no touch"
+   ],
+   [
+    "Count your best run",
+    "How many in a row hit your target?"
+   ]
+  ],
+  "set_by": "curriculum",
+  "kept_by_coach": true,
+  "sent": "Monday 4 pm",
+  "coach_line": "Don’t rush. Ten good ones beat thirty wild ones."
+ },
+ "next_week": {
+  "name": "One touch, then strike",
+  "steps": [
+   [
+    "Find a wall and a mark on it",
+    "Stand six big steps back"
+   ],
+   [
+    "Pass it in with your stronger foot",
+    "Firm, so it comes back to you"
+   ],
+   [
+    "One touch out of your feet, then strike",
+    "Weaker foot. Before you can count to two"
+   ],
+   [
+    "Count the ones that hit the mark",
+    "Out of 20. Write it in"
+   ]
+  ]
+ },
+ "players": [
+  {
+   "name": "Ana Costa",
+   "age": 12,
+   "goes_to": "parent",
+   "goes_by_week": [
+    null,
+    null,
+    null,
+    0,
+    0,
+    0,
+    3
+   ],
+   "this_week_video": "coach replied"
+  },
+  {
+   "name": "Ezra Kim",
+   "age": 13,
+   "goes_to": "player and parent",
+   "goes_by_week": [
+    2,
+    0,
+    3,
+    3,
+    2,
+    0,
+    2
+   ],
+   "this_week_video": null
+  },
+  {
+   "name": "Finn Byrne",
+   "age": 13,
+   "goes_to": "player and parent",
+   "goes_by_week": [
+    1,
+    1,
+    2,
+    2,
+    0,
+    3,
+    0
+   ],
+   "this_week_video": null
+  },
+  {
+   "name": "Harriet Wong",
+   "age": 12,
+   "goes_to": "parent",
+   "goes_by_week": [
+    1,
+    3,
+    2,
+    0,
+    2,
+    1,
+    3
+   ],
+   "this_week_video": "coach replied"
+  },
+  {
+   "name": "Isla Tran",
+   "age": 13,
+   "goes_to": "player and parent",
+   "goes_by_week": [
+    1,
+    2,
+    0,
+    3,
+    2,
+    2,
+    1
+   ],
+   "this_week_video": "waiting for coach"
+  },
+  {
+   "name": "Jonah Marsh",
+   "age": 13,
+   "goes_to": "player and parent",
+   "goes_by_week": [
+    0,
+    3,
+    0,
+    3,
+    0,
+    0,
+    0
+   ],
+   "this_week_video": null
+  },
+  {
+   "name": "Kai Okonkwo",
+   "age": 13,
+   "goes_to": "player and parent",
+   "goes_by_week": [
+    null,
+    null,
+    null,
+    0,
+    2,
+    2,
+    2
+   ],
+   "this_week_video": "coach replied"
+  },
+  {
+   "name": "Lola Nguyen",
+   "age": 13,
+   "goes_to": "player and parent",
+   "goes_by_week": [
+    3,
+    0,
+    3,
+    2,
+    3,
+    3,
+    2
+   ],
+   "this_week_video": "waiting for coach"
+  },
+  {
+   "name": "Mila Lombardi",
+   "age": 13,
+   "goes_to": "player and parent",
+   "goes_by_week": [
+    3,
+    0,
+    0,
+    2,
+    0,
+    0,
+    0
+   ],
+   "this_week_video": null
+  },
+  {
+   "name": "Noah Petrov",
+   "age": 13,
+   "goes_to": "player and parent",
+   "goes_by_week": [
+    0,
+    0,
+    3,
+    3,
+    3,
+    0,
+    0
+   ],
+   "this_week_video": null
+  },
+  {
+   "name": "Otis Baker",
+   "age": 13,
+   "goes_to": "player and parent",
+   "goes_by_week": [
+    2,
+    3,
+    3,
+    0,
+    3,
+    2,
+    0
+   ],
+   "this_week_video": null
+  },
+  {
+   "name": "Priya Gill",
+   "age": 13,
+   "goes_to": "player and parent",
+   "goes_by_week": [
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    2
+   ],
+   "this_week_video": "coach replied"
+  },
+  {
+   "name": "Rory Doyle",
+   "age": 13,
+   "goes_to": "player and parent",
+   "goes_by_week": [
+    2,
+    2,
+    1,
+    0,
+    0,
+    3,
+    1
+   ],
+   "this_week_video": null
+  },
+  {
+   "name": "Sienna Vella",
+   "age": 13,
+   "goes_to": "player and parent",
+   "goes_by_week": [
+    2,
+    2,
+    0,
+    2,
+    1,
+    0,
+    0
+   ],
+   "this_week_video": null
+  },
+  {
+   "name": "Tess Sullivan",
+   "age": 13,
+   "goes_to": "player and parent",
+   "goes_by_week": [
+    0,
+    3,
+    2,
+    0,
+    3,
+    1,
+    3
+   ],
+   "this_week_video": null
+  },
+  {
+   "name": "Zane Abbas",
+   "age": 13,
+   "goes_to": "player and parent",
+   "goes_by_week": [
+    0,
+    1,
+    0,
+    1,
+    2,
+    3,
+    3
+   ],
+   "this_week_video": null
+  }
+ ],
+ "ladder_u13_term2": [
+  {
+   "week": 1,
+   "theme": "Taking a player on · on your own",
+   "practice": "Cone weave, both feet"
+  },
+  {
+   "week": 2,
+   "theme": "Taking a player on · with a partner",
+   "practice": "Scissors and go, past a chair"
+  },
+  {
+   "week": 3,
+   "theme": "Taking a player on · against a defender",
+   "practice": "Beat the shadow"
+  },
+  {
+   "week": 4,
+   "theme": "Taking a player on · in a small game",
+   "practice": "Three moves, pick one"
+  },
+  {
+   "week": 5,
+   "theme": "Taking a player on · in the game",
+   "practice": "Film your best move"
+  },
+  {
+   "week": 6,
+   "theme": "Finishing, weaker foot · on your own",
+   "practice": "Weaker-foot strikes at a target"
+  },
+  {
+   "week": 7,
+   "theme": "Finishing, weaker foot · with a partner",
+   "practice": "Weaker-foot wall strikes"
+  },
+  {
+   "week": 8,
+   "theme": "Finishing, weaker foot · against a defender",
+   "practice": "One touch, then strike"
+  },
+  {
+   "week": 9,
+   "theme": "Finishing, weaker foot · in a small game",
+   "practice": "Strike on the move"
+  },
+  {
+   "week": 10,
+   "theme": "Finishing, weaker foot · in the game",
+   "practice": "Beat your week 6 count"
+  }
+ ],
+ "rules": [
+  {
+   "program": "Foundation",
+   "on": false
+  },
+  {
+   "program": "Development",
+   "on": "1 of 6 teams",
+   "longest_minutes": 5,
+   "most_often": 2,
+   "video_back": "to parent only",
+   "coach_can_swap": true,
+   "sends": "Monday 4 pm"
+  },
+  {
+   "program": "Advanced",
+   "on": true,
+   "longest_minutes": 15,
+   "most_often": 3,
+   "video_back": true,
+   "coach_can_swap": true,
+   "sends": "Monday 4 pm"
+  }
+ ],
+ "always": [
+  "Sore or tired? Skip it, on every practice",
+  "No streaks, no tables, nobody ranked",
+  "One reminder at most, on Wednesday",
+  "Under 13 goes to the parent’s app only",
+  "The owner can hear any reply a coach sends"
+ ],
+ "teams": [
+  {
+   "team": "U6 Timber",
+   "coach": "Ben Castellano",
+   "on": false,
+   "n": 10
+  },
+  {
+   "team": "U7 Timber",
+   "coach": "Priya Nair",
+   "on": false,
+   "n": 12
+  },
+  {
+   "team": "U7 Gold",
+   "coach": "Tom Ashby",
+   "on": false,
+   "n": 11
+  },
+  {
+   "team": "U8 Timber",
+   "coach": "Sofia Marin",
+   "on": false,
+   "n": 12
+  },
+  {
+   "team": "U8 Gold",
+   "coach": "Lena Fischer",
+   "on": false,
+   "n": 11
+  },
+  {
+   "team": "U9 Timber",
+   "coach": "Marcus Obi",
+   "on": true,
+   "name": "First touch off a wall",
+   "by": "Coach’s own, since week 5",
+   "did": 8,
+   "n": 14,
+   "vid": 3,
+   "rep": 3
+  },
+  {
+   "team": "U9 Gold",
+   "coach": "Jess Halloran",
+   "on": false,
+   "n": 13
+  },
+  {
+   "team": "U10 Timber",
+   "coach": "Dan Petrou",
+   "on": false,
+   "n": 14
+  },
+  {
+   "team": "U10 Gold",
+   "coach": "Aisha Khan",
+   "on": false,
+   "n": 12
+  },
+  {
+   "team": "U11 Timber",
+   "coach": "Liam Corrigan",
+   "on": false,
+   "n": 14
+  },
+  {
+   "team": "U11 Gold",
+   "coach": "Mei Tanaka",
+   "on": false,
+   "n": 13
+  },
+  {
+   "team": "U12 Timber",
+   "coach": "Josh Abela",
+   "on": true,
+   "name": "Laces off a wall",
+   "by": "Curriculum, kept",
+   "did": 10,
+   "n": 15,
+   "vid": 3,
+   "rep": 1
+  },
+  {
+   "team": "U12 Gold",
+   "coach": "Nadia Haddad",
+   "on": true,
+   "name": "Laces off a wall",
+   "by": "Curriculum, kept",
+   "did": 8,
+   "n": 14,
+   "vid": 6,
+   "rep": 5
+  },
+  {
+   "team": "U13 Timber",
+   "coach": "Reece Whitlam",
+   "on": true,
+   "name": "Weaker-foot wall strikes",
+   "by": "Curriculum, kept",
+   "did": 10,
+   "n": 16,
+   "vid": 6,
+   "rep": 4
+  },
+  {
+   "team": "U13 Gold",
+   "coach": "Sam Whitford",
+   "on": true,
+   "name": "Weaker-foot wall strikes",
+   "by": "Curriculum, kept",
+   "did": 11,
+   "n": 15,
+   "vid": 5,
+   "rep": 4
+  },
+  {
+   "team": "U14 Timber",
+   "coach": "Carla Mendes",
+   "on": true,
+   "name": "Wall strike, first time",
+   "by": "Curriculum, kept",
+   "did": 8,
+   "n": 16,
+   "vid": 4,
+   "rep": 4
+  },
+  {
+   "team": "U14 Gold",
+   "coach": "Ollie Drummond",
+   "on": true,
+   "name": "Volleys off a wall",
+   "by": "Coach swapped it",
+   "did": 8,
+   "n": 14,
+   "vid": 6,
+   "rep": 5
+  }
+ ]
+}

@@ -29,18 +29,23 @@ const LIT: Record<string, [CoachMain, string?]> = {
   'ADC2-Group': ['players', 'My group'], 'ADC1-PlayerFile': ['players', 'Player file'], 'ACC4-PlayerPlan': ['players', 'Player file'], 'ADC4-SkillsCheck': ['players', 'Skills check'],
   'ADC5-ReviewChats': ['players', 'Review chats'], 'ACC6-ReportDraft': ['players', 'Term report'],
   'ADC10-SetGoal': ['players', 'Player file'], 'ADC12-WholePlayer': ['players', 'Player file'], 'ADC14-SuggestMove': ['players', 'Player file'], 'ADC13-CheckEntry': ['players', 'Skills check'],
-  'ADC11-AfterSession': ['today', 'Run a session'], 'ADC15-MySession': ['record', 'Tonight’s film'],
+  'ADC11-AfterSession': ['today', 'Run a session'], 'ADC15-MySession': ['record', 'Film'],
   'ACT1-AcademyWeek': ['training', 'This week'], 'ACT2-AcademySuggested': ['training', 'Suggested'], 'ACC12-AcademySuggested': ['training', 'Suggested'], 'ACT3-AcademySessionPlan': ['training', 'Session plan'],
-  'ACT4-AcademyComing': ['training', 'Who’s coming'], 'ADC6-HomePractice': ['training', 'Practice at home'],
+  'ACT4-AcademyComing': ['training', 'Who’s coming'], 'ADC6-HomePractice': ['training', 'Practice at home'], 'ADC19-SetPractice': ['training', 'Practice at home'],
   'ACC7-AcademyGameDay': ['gameday', 'This Sunday'], 'ADC8-TeamStyle': ['gameday', 'Our style'], 'ADC9-PickMeasure': ['gameday', 'Our style'], 'ADC7-GameReview': ['gameday', 'Review'],   // Review (ADC7) is the dashboards' screen, shown here under the menu
   'ADC16-Chances': ['gameday', 'Review'], 'ADC17-YourTake': ['gameday', 'Review'], 'ADC18-Learn': ['learn'],
+  'ADC20-TeamSheet': ['gameday', 'Team sheet'], 'ADC21-LiveGame': ['gameday', 'Live game'],   // pack v38: the academy's own team sheet and live game
   'ACC8-AcademyRecord': ['record', 'Record'], 'ACC8p-PairCamera': ['record', 'Record'], 'ACC9-AcademyRecordDrill': ['record', 'Record'], 'ACC10-AcademyRecordResults': ['record', 'Record'],
-  'ACC11-AcademyRecording': ['record', 'Record'], 'ADC3-SessionFilm': ['record', 'Tonight’s film'],
+  'ACC11-AcademyRecording': ['record', 'Record'], 'ADC3-SessionFilm': ['record', 'Film'],
 }
 // A file for every player in the coach's own team: ADC1 for Kai, ADCP<id> for the others. One template shows them all.
 for (const id of COACH_PLAYER_BOARDS) LIT[id] = ['players', 'Player file']
 // The older addresses that named a main item rather than a board.
-const FIRST: Record<string, string> = { today: 'ACC1-CoachToday', players: 'ADC2-Group', training: 'ACT1-AcademyWeek', gameday: 'ACC7-AcademyGameDay', record: 'ACC8-AcademyRecord', learn: 'ADC18-Learn' }
+const FIRST: Record<string, string> = { today: 'ACC1-CoachToday', players: 'ADC2-Group', training: 'ACT1-AcademyWeek', gameday: 'ACC7-AcademyGameDay', record: 'ACC8-AcademyRecord', learn: 'ADC18-Learn',
+  // Pack v38: an academy coach has one place for film. Anything that asks for the club's clips page lands on Film instead.
+  clips: 'ADC3-SessionFilm', 'C1-ClipsTab': 'ADC3-SessionFilm' }
+// Pack v38: an academy coach's team sheet and live game are the academy's own. Anything that still asks for the club's lands on them.
+Object.assign(FIRST, { 'MS1-TeamSheet': 'ADC20-TeamSheet', 'L11-LiveGame11': 'ADC21-LiveGame' })
 // A board's empty state: the same id with an "e" after its number.
 const EMPTY_IDS = [
   'ACC1e-CoachTodayEmpty', 'ACC2e-RunSessionEmpty', 'ACC3e-TrialAssessEmpty', 'ACC4e-PlayerPlanEmpty', 'ACC5e-OneOnOneEmpty', 'ACC6e-ReportDraftEmpty', 'ACC7e-AcademyGameDayEmpty',

@@ -13,7 +13,7 @@ import { useAcademy } from './academyStore'
 import {
   DRILLS, DRILL_COUNTS, NIGHT_NAME, PART_IN_SESSION, WRAP_UP, SAMPLE_SKILL,
   useCurriculum, sessionOf, swapPart, putBack, openDrill, openLibrary, pickAge, termNo, dayLine, kitLine, stepFor, stepLine, lower, under,
-  teamsAt, coachSwaps, coachFirst, slotMinutes, type PartKey,
+  teamsAt, coachSwaps, coachDrill, coachFirst, slotMinutes, type PartKey,
 } from './curriculum'
 
 const ROW = { display: 'grid', gridTemplateColumns: '64px 150px minmax(0,1fr) auto', gap: 12, alignItems: 'center', minHeight: 84, borderTop: `1px solid ${LINE}` } as const
@@ -59,7 +59,7 @@ export default function ADQ1Session() {
                     <span style={SMALL}>{d.setup ?? `${d.players} players · trains step ${d.step}: ${lower(stepLine(a, d.skill, d.step))}`}</span>
                     {d.say && <span style={SMALL}>Say: {d.say}</span>}
                     {p.swapped && <span style={{ ...SMALL, fontWeight: 700, color: INK }}>You swapped this. The plan had {p.planned?.name}.</span>}
-                    {theirs.map(g => <span key={g.id} style={{ ...SMALL, fontWeight: 700, color: INK }}>{g.name} · {coachFirst(g)} swapped this part for that team.</span>)}
+                    {theirs.map(g => <span key={g.id} style={{ ...SMALL, fontWeight: 700, color: INK }}>{g.name} · {coachFirst(g)} swapped this part for that team{coachDrill(c, g, week, s.night, p.part) ? `: ${coachDrill(c, g, week, s.night, p.part)?.name}` : ''}.</span>)}
                   </Open>
                 ) : (
                   <span style={{ fontSize: 13, lineHeight: '18px', color: MUTED }}>{s.core && s.focus === SAMPLE_SKILL

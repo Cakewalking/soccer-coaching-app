@@ -27,7 +27,7 @@ const EMPTY = {
     side: 'You’ll see', rows: [['Each player’s steps', 'On the four core skills'], ['Who has moved', 'This term'], ['What the team needs', 'For the next block']],
   },
   'ADC3e-SessionFilmEmpty': {
-    title: 'Tonight’s film', sub: 'Nothing filmed', icon: 'M12 12m-8 0a8 8 0 1016 0 8 8 0 10-16 0M12 12m-3 0a3 3 0 106 0 3 3 0 10-6 0',
+    title: 'Film', sub: 'Nothing filmed', icon: 'M12 12m-8 0a8 8 0 1016 0 8 8 0 10-16 0M12 12m-3 0a3 3 0 106 0 3 3 0 10-6 0',
     head: 'No film from tonight', line: 'Prop the tablet on the stand before the skill game and press record.',
     button: 'How to film a session', opens: 'ACC8-AcademyRecord',
     side: 'What comes back', rows: [['Moments by player', 'About 20 minutes later'], ['Tagged by skill', 'Ready for the file'], ['Blurred', 'Where a family hasn’t agreed']],
@@ -47,8 +47,8 @@ const EMPTY = {
   'ADC6e-HomePracticeEmpty': {
     title: 'Practice at home', sub: 'Nothing set', icon: 'M12 4l2.5 5 5.5.8-4 3.9.9 5.5-4.9-2.6-4.9 2.6.9-5.5-4-3.9 5.5-.8z',
     head: 'No practice set this week', line: 'One short practice that follows the block. Families see it straight away.',
-    button: 'Set this week’s practice', opens: 'DrillFlow',
-    side: 'How it works', rows: [['Five minutes', 'Three times a week'], ['A video back', 'If the family wants'], ['Your reply', 'A spoken note']],
+    button: 'Set this week’s practice', opens: 'ADC19-SetPractice',   // pack v35: the empty state links to the flow
+    side: 'How it works', rows: [['The curriculum picks', 'You keep it or change it'], ['A tick or a video back', 'If the family wants'], ['Your reply', 'A spoken note']],
   },
 } satisfies Record<string, Empty>
 

@@ -19,10 +19,10 @@ export const OWNER_MENU: OwnerGroup[] = [
     { label: 'All players', id: 'AC4-AcademyPlayers' }, { label: 'Where they go next', id: 'AD14-Pathway' },
   ] },
   { key: 'curriculum', label: 'Curriculum', icon: 'M4 5h16v14H4zM4 10h16M10 5v14', sub: [
-    { label: 'Year plan', id: 'AD6-YearPlan' }, { label: 'How we coach', id: 'AD7-HowWeCoach' }, { label: 'Our style', id: 'AD18-AcademyStyle' }, { label: 'Session quality', id: 'AD8-SessionQuality' }, { label: 'Drill library', id: 'ADL1-DrillLibrary' },
+    { label: 'Year plan', id: 'AD6-YearPlan' }, { label: 'How we coach', id: 'AD7-HowWeCoach' }, { label: 'Our style', id: 'AD18-AcademyStyle' }, { label: 'Session quality', id: 'AD8-SessionQuality' }, { label: 'Drill library', id: 'ADL1-DrillLibrary' }, { label: 'Practice at home', id: 'AD26-PracticeHome' },
   ] },
   { key: 'coaches', label: 'Coaches', icon: 'M12 3l9 4-9 4-9-4zM7 9v5c0 2 2.5 3.5 5 3.5s5-1.5 5-3.5V9', sub: [
-    { label: 'Coaches', id: 'AC6-AcademyCoaches' }, { label: 'Children checks', id: 'AD17-Checks' }, { label: 'Roster and pay', id: 'AD9-RosterPay' }, { label: 'Watching a coach', id: 'AD10-WatchCoach' },
+    { label: 'Coaches', id: 'AC6-AcademyCoaches' }, { label: 'Children checks', id: 'AD17-Checks' }, { label: 'Roster and pay', id: 'AD9-RosterPay' }, { label: 'Watching a coach', id: 'AD10-WatchCoach' }, { label: 'Learning', id: 'AD27-CoachLearning' },
   ] },
   { key: 'money', label: 'Money', icon: 'M12 3v18M16 7H10a3 3 0 000 6h4a3 3 0 010 6H7', sub: [
     { label: 'Fees', id: 'AC5-Fees' }, { label: 'What each program earns', id: 'AD11-ProgramMoney' }, { label: 'Credits and pauses', id: 'AD12-Credits' }, { label: 'Connections', id: 'AD13-Connections' },

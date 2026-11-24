@@ -18,7 +18,7 @@ import { BALL_ROLLING_FROM_FILM } from '../../academy/notYet'
 import { openTrial, useTrials } from '../../academy/trialStore'
 import CoachNav from '../CoachNav'
 import { InCoachApp, coachGo } from '../menu'
-import { coachBoard, dayMonth, firstName, ini, isNew, names, openPlayer, shortDate, todayMark, tonightOf, useCoachTeam } from '../coachTeam'
+import { coachBoard, dayMonth, firstName, ini, isNew, names, openPlayer, shortDate, sundayOf, todayMark, tonightOf, useCoachTeam, GAME } from '../coachTeam'
 import { More, Primary } from '../kit'
 import { G, HAIR, INK, LINE, MAUVE_PALE, MUT, PALE, T, plain, textLink } from '../styles'
 import { Chevron, StrongDot } from '../teamParts'
@@ -33,8 +33,8 @@ const DOT = [
   { say: 'up a step', look: { background: G, color: '#ffffff' } },
 ] as const
 // SAMPLE, not in any list yet. Sunday's game: the result, the time to win the ball back, the clips cut from it and how many
-// families have said they are coming (the same 14 as tonight's chip). The game is at Wattle Creek FC, as the Now strip says.
-const SUNDAY = { us: 3, them: 'Eastbank', themGoals: 1, winBack: 8, winBackWas: 12, clips: 11, clipsHome: 4, coming: 14, at: '10:00 at Wattle Creek FC' }
+// families have sent home. Who is coming on Sunday, the time and the ground are read from coachTeam (`GAME`, `sundayOf`), the same as game day.
+const SUNDAY = { us: GAME.last.us, them: GAME.last.them, themGoals: GAME.last.themGoals, winBack: 8, winBackWas: 12, clips: 11, clipsHome: 4, at: `${GAME.kickoff} at ${GAME.ground}` }
 // SAMPLE: one family's words from the survey (the list holds the five answers, not what a family wrote), and what Dani asked the coach to try.
 const FAMILY_WORDS = '“He asks to go early now. Whatever Reece is doing, keep doing it.”'
 const TO_TRY = 'shorter stops, more time in the game'
@@ -118,7 +118,7 @@ export default function ACC1CoachToday({ onNav }: { onNav?: (id: string) => void
             <span style={{ fontSize: 12, lineHeight: '15px', color: '#33443f' }}>{trial.name}, {trial.age}</span>
           </button>}
           <button onClick={() => go('ACC7-AcademyGameDay')} style={chip}>
-            <strong style={{ fontSize: 13, lineHeight: '16px' }}>Sun 10:00 game</strong>
+            <strong style={{ fontSize: 13, lineHeight: '16px' }}>Sun {GAME.kickoff} game</strong>
             <span style={{ fontSize: 12, lineHeight: '15px', color: '#33443f' }}>{g.name} at Wattle Creek</span>
           </button>
           <span style={{ flexGrow: 1 }} />
@@ -247,7 +247,7 @@ export default function ACC1CoachToday({ onNav }: { onNav?: (id: string) => void
                 <Stat n={`${n} of ${n}`} label="Played half a game or more" sub="The club’s rule, kept" />
                 <Stat n={`${SUNDAY.winBack} sec`} label="To win the ball back" sub={`In round 3 it took ${SUNDAY.winBackWas}`} />
                 <Stat n={String(SUNDAY.clips)} label="Clips cut for you" sub={`${SUNDAY.clipsHome} already sent home`} />
-                <Stat n={`${Math.min(SUNDAY.coming, n)} of ${n}`} label="Coming this Sunday" sub={SUNDAY.at} />
+                <Stat n={`${sundayOf(ps).yes.length} of ${n}`} label="Coming this Sunday" sub={SUNDAY.at} />
               </div>
             </section>
           </div>

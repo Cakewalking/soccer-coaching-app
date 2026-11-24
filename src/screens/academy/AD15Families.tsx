@@ -48,7 +48,7 @@ export default function AD15Families() {
             ))}
             <Cap style={{ paddingTop: 6 }}>Each is the average of {all.n} {all.n === 1 ? 'answer' : 'answers'}. A parent taps 1 to 5 for each line. Answers are never shown by family.</Cap>
           </Tile>
-          <Tile title={`The lowest, by program: “${all.q[lowest]?.text ?? ''}”`} right={<Link to="ADC6-HomePractice">Turn weekly practice on</Link>}>
+          <Tile title={`The lowest, by program: “${all.q[lowest]?.text ?? ''}”`} right={<Link to="AD26-PracticeHome">Practice at home</Link>}>
             {progs.map(x => (
               <div key={x.p} style={{ display: 'grid', gridTemplateColumns: '130px 110px minmax(0,1fr) 44px 90px', gap: 12, alignItems: 'center', minHeight: 36, borderTop: `1px solid ${LINE}`, fontSize: 14 }}>
                 <strong>{x.p}</strong>
@@ -58,7 +58,7 @@ export default function AD15Families() {
                 <Proof kind={x.n >= STRONG_FROM ? 'Strong' : 'Estimate'} />
               </div>
             ))}
-            <Cap style={{ paddingTop: 4 }}>{lowest === 4 ? 'Advanced coaches set a weekly practice. Development coaches do not yet. That is the likely reason, not a proven one.' : 'Strong is 50 answers or more. Estimate is fewer, so read it as a pointer.'}</Cap>
+            <Cap style={{ paddingTop: 4 }}>{lowest === 4 ? 'Every Advanced team has a weekly practice. Only one Development team does. That is the likely reason, not a proven one.' : 'Strong is 50 answers or more. Estimate is fewer, so read it as a pointer.'}</Cap>
           </Tile>
           <section aria-label="How far can you trust these?" style={{ ...S.tile, gap: 5, padding: '12px 16px', flexGrow: 1 }}>
             <h2 style={S.h2}>How far can you trust these?</h2>

@@ -28,7 +28,7 @@ export default function ACC10AcademyRecordResults({ onNav }: { onNav?: (id: stri
           <span style={{ ...C.cap, whiteSpace: "nowrap" }}>Tonight · U13 Timber · 14 players · same set-up as run 2</span>
         </div>
         <div style={{ display: "flex", gap: "8px", flex: "none" }}>
-          <button onClick={() => demoToast("8 clips from tonight. Six are of players with a finishing goal.")} style={{ margin: "0", font: "inherit", textAlign: "inherit", cursor: "pointer", ...C.more }}>Clips · 8</button>
+          <button onClick={() => go("ADC3-SessionFilm")} /* pack v38: anything called Clips opens Film; there is no clips page for an academy coach */ style={{ margin: "0", font: "inherit", textAlign: "inherit", cursor: "pointer", ...C.more }}>Clips · 8</button>
           <button onClick={() => demoToast("Added to Thursday 11 June with the same set-up.")} style={{ margin: "0", font: "inherit", textAlign: "inherit", cursor: "pointer", ...C.primary }}>Run it again next week</button>
         </div>
       </div>

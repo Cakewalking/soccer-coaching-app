@@ -17,13 +17,13 @@ import {
   sketch, slotMinutes, stepLine, swapForTeam, teamSessionOf, termNo, useCurriculum, weekNow, type Drill, type PartKey,
 } from '../../academy/curriculum'
 import { openTrial, useTrials } from '../../academy/trialStore'
-import { clock, coachBoard, firstName, ini, longDate, names, openPlayer, tonightOf, useCoachTeam } from '../coachTeam'
+import { GAME, clock, coachBoard, firstName, ini, longDate, names, openPlayer, tonightOf, useCoachTeam } from '../coachTeam'
 import { More, Primary } from '../kit'
 import { G, HAIR, INK, MAUVE_PALE, MUT, PALE, PLUM_LABEL, T, plain, textLink } from '../styles'
 import { Chevron } from '../teamParts'
 
 // SAMPLE: what Sunday's game showed. It is only said on a night whose skill is striking the ball.
-const SUNDAY = { skill: 'Striking the ball', weak: 2, chances: 11 }
+const SUNDAY = { skill: 'Striking the ball', weak: GAME.last.weak, chances: GAME.last.chances }
 // SAMPLE: where the tablet films from tonight, and the line about the pitch being in view.
 const FILMING = 'Tablet on the stand, part 3', IN_VIEW = 'is in view of the school office'
 const WORDS = ['no', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen']

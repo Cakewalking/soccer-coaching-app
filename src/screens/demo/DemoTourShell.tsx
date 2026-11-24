@@ -54,6 +54,7 @@ function StepCard({ step, globalIdx, total }: { step: FlatStep; globalIdx: numbe
         <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#5c6b67', marginBottom: 12 }}>Step {globalIdx + 1} of {total} · {step.sectionTitle}</div>
         <h2 style={{ fontSize: 28, fontWeight: 800, letterSpacing: '-0.03em', color: '#10211f', margin: '0 0 16px' }}>{step.label}</h2>
         <p style={{ fontSize: 15, color: '#4a5a57', lineHeight: '1.6', margin: 0 }}>{step.caption}</p>
+        {step.point && <p style={{ fontSize: 14, color: '#10211f', lineHeight: '1.5', margin: '12px 0 0', fontWeight: 600 }}>Look at {step.point}.</p>}
       </div>
     </div>
   )
@@ -184,7 +185,7 @@ export default function DemoTourShell({ roleId, onBack, onWhy, renderScreen, ini
           <div style={{ flex: 'none', position: 'absolute', bottom: 0, left: 0, right: 0, background: 'rgba(16,33,31,0.92)', backdropFilter: 'blur(8px)', padding: '14px 24px', display: 'flex', alignItems: 'center', gap: 16 }}>
             <div style={{ flexGrow: 1 }}>
               <div style={{ fontSize: 12, fontWeight: 700, color: 'rgba(255,255,255,0.5)', marginBottom: 3 }}>{step.sectionTitle} · {step.label}</div>
-              <div style={{ fontSize: 14, color: '#fff', lineHeight: '1.5' }}>{step.caption}</div>
+              <div style={{ fontSize: 14, color: '#fff', lineHeight: '1.5' }}>{step.caption}{step.point && <span style={{ color: 'rgba(255,255,255,0.75)' }}> Look at {step.point}.</span>}</div>
             </div>
             <div style={{ display: 'flex', gap: 8, flex: 'none' }}>
               <button onClick={() => goStep(Math.max(0, idx - 1))} disabled={isFirst} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: '1px solid rgba(255,255,255,0.2)', background: 'transparent', color: isFirst ? 'rgba(255,255,255,0.3)' : '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: isFirst ? 'default' : 'pointer' }}>← Prev</button>

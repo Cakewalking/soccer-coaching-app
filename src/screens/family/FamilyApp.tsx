@@ -1,4 +1,4 @@
-// Clean Sheet Family (family-app-v28), on a phone. It is the one app a parent uses, before and after their club joins. A parent uploads a video; credits pay for finding their own child's
+// Clean Sheet Family (family-app-v29), on a phone. It is the one app a parent uses, before and after their club joins. A parent uploads a video; credits pay for finding their own child's
 // moments, and the first video is free. It works whether or not the club uses Clean Sheet. A child's reel and numbers are
 // private to the family for ever: no control here sends a video, a clip or a count to a club, a coach or another family.
 // Another family can get their own child's moments from a video, only if the uploader sends them the link and says yes.
@@ -53,7 +53,8 @@ const ARI_IN_ACADEMY = 57
 // The academy's four core skills, five steps each: where the sample child was in week 1, and now. And the review chat's times.
 const SKILLS: [string, number, number][] = [['First touch', 2, 4], ['Running with the ball', 3, 3], ['One against one', 2, 3], ['Striking the ball', 3, 3]]
 /** One-on-ones (ADP6). The price and the 24 hours are placeholders to confirm. */
-const ONES: [string, string, string][] = [['Friday 12 June', 'Dani', '4:30'], ['Saturday 13 June', 'Reece', '9:00'], ['Friday 19 June', 'Dani', '5:15']], ONE_PRICE = 90, ONE_CANCEL_HOURS = 24
+/** One-on-ones are on Friday afternoon and Saturday morning (pack v29). An empty name is the child's own coach (pack v40: Marcus for Ari). */
+const ONES: [string, string, string][] = [['Friday 12 June', 'Dani', '4:30'], ['Saturday 13 June', '', '9:00'], ['Friday 19 June', 'Dani', '5:15']], ONE_PRICE = 90, ONE_CANCEL_HOURS = 24
 const HEARD = ['A friend or another parent', 'My child’s club', 'Saw you at a ground or school', 'Searched online', 'Social media']
 const WHY = ['Moving to a club’s own program', 'The cost', 'It clashes with something else', 'We’re moving away', 'I’d rather not say']
 /** Placeholder to confirm: how long a paused place is held. */
@@ -988,9 +989,9 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
     if (v === 'ADP6-BookOneOnOne') { const n = Math.min(a.one ?? 0, ONES.length - 1), s = ONES[n]
       return shell(v, head(over, 'One-on-one', home), <>
         <section style={card}><strong style={{ fontSize: 16 }}>45 minutes, built around {name}’s goal</strong><span style={{ fontSize: 15, lineHeight: '21px', color: MUT }}>First touch on the move. Always on pitch 2, in open view. You’re welcome to stay and watch.</span></section>
-        <div role="radiogroup" aria-label="Times" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>{ONES.map(([day, who, at], k) => pick(n === k, `${day}, ${at}`, `With ${who} · $${ONE_PRICE}`, () => { set({ one: k }); say(`${day}, ${at} chosen.`) }))}</div>
+        <div role="radiogroup" aria-label="Times" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>{ONES.map(([day, who, at], k) => pick(n === k, `${day}, ${at}`, `With ${who || coach} · $${ONE_PRICE}`, () => { set({ one: k }); say(`${day}, ${at} chosen.`) }))}</div>
         <span style={note}>Cancel up to {ONE_CANCEL_HOURS} hours before and the full amount comes back.</span>
-      </>, 'club', actions(true, <button key="a" onClick={() => { say(`Booked: ${s[0]}, ${s[2]}, with ${s[1]}. Paid with the card ending 4410.`); home() }} style={btn(true)}>Book · ${ONE_PRICE}</button>)) }
+      </>, 'club', actions(true, <button key="a" onClick={() => { say(`Booked: ${s[0]}, ${s[2]}, with ${s[1] || coach}. Paid with the card ending 4410.`); home() }} style={btn(true)}>Book · ${ONE_PRICE}</button>)) }
 
     if (v === 'ADP7-SessionOff') return shell(v, head(over, 'Today’s session is off', home), <>
       <section style={{ borderRadius: 16, background: PLUM, color: '#fff', padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 6 }}><span style={{ ...cap, color: '#e6d3d3' }}>THURSDAY, {trainAt} · {(ag?.name ?? 'Development').toUpperCase()}</span><strong style={{ fontSize: 19, lineHeight: '25px' }}>Cancelled: the pitch is closed.</strong><span style={{ fontSize: 14, lineHeight: '20px', color: '#e6d3d3' }}>Dani sent this at 2:10 pm. The school closed the pitch after the rain.</span></section>

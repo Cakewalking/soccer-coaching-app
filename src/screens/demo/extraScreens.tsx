@@ -91,7 +91,7 @@ function MeasurePage({ id, onNav }: { id: string; onNav?: (s: string) => void })
 
 export function renderExtraScreen(key: string): ReactNode | undefined {
   // The academy coach's boards all open inside the coach app, under its menu; an empty-state id opens the app empty.
-  if (/^(ACC\d+[ep]?|ACT\d+e?|ADC([1-689]|1[0-8])e?|ADCP\d+)-/.test(key)) return <AcademyCoachApp key={key} onBack={noop} initialScreen={key} />
+  if (/^(ACC\d+[ep]?|ACT\d+e?|ADC([1-689]|1[0-9]|2[01])e?|ADCP\d+)-/.test(key)) return <AcademyCoachApp key={key} onBack={noop} initialScreen={key} />
   const dashboard = renderDashboardScreen(key)   // the game review as a dashboard, for six roles (RD1 to RD5, ADC7), and the three ids they replace
   if (dashboard) return dashboard
   const clubFlow = renderClubFlowScreen(key)   // the club-side input screens (GP1 to GP8), each in its role's app

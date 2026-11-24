@@ -1,6 +1,8 @@
 export interface TourStep {
   label: string
   caption: string
+  /** what to look at on the screen, shown under the caption (academy tours, handover v40) */
+  point?: string
   screen?: string
 }
 
@@ -611,128 +613,107 @@ export const TOURS: Record<string, TourDef> = {
     ],
   },
 
+  // Rewritten from the pack's academy-tours.json (handover v40, 25 Nov): one step a screen, then the optional "See also" screens.
   academyowner: {
     roleLabel: "Academy owner \u00b7 Tall Timber Football Academy",
-    persona: "as Dani Okafor",
+    persona: "as Dani Okafor, Tall Timber Academy",
     device: 'tablet',
-    total: 14,
+    total: 16,
     home: 'academyowner',
     sandboxHome: 'academyowner-e',
     sections: [
-      { title: "Set up", steps: [
-        { label: "First use: three steps", caption: "An academy is a business, so set-up is programs, prices, coaches and child safety. There\u2019s no league or committee.", screen: "AC1e-AcademyHomeEmpty" },
-        { label: "Add programs", caption: "An academy is a business, so set-up is programs, prices, coaches and child safety. There\u2019s no league or committee.", screen: "AC2e-ProgramsEmpty" },
-        { label: "Child safety, six things", caption: "An academy is a business, so set-up is programs, prices, coaches and child safety. There\u2019s no league or committee.", screen: "AC10-AcademySafety" },
-        { label: "Invite coaches", caption: "An academy is a business, so set-up is programs, prices, coaches and child safety. There\u2019s no league or committee.", screen: "AC6-AcademyCoaches" },
-        { label: "Link a partner club", caption: "An academy is a business, so set-up is programs, prices, coaches and child safety. There\u2019s no league or committee.", screen: "AC11-PartnerClub" },
+      { title: "Is the academy healthy, and what needs me today", steps: [
+        { label: "The whole academy on one page", caption: "226 players, 17 teams. What players can now do, which teams to look at first, which families are staying, and the three things that need you.", point: "the Oversight panel", screen: "AD1-AcademyHome" },
+        { label: "Three programs, seventeen teams", caption: "Every team with its own coach, places, attendance, progress and fees. Every number is counted from the roll and the coaches’ notes.", point: "any team row", screen: "AC2-Programs" },
+        { label: "One team", caption: "U13 Timber: its players, who is moving up a step, who hasn’t said about next term, and what it earns.", point: "the player table", screen: "ADG14-Team" },
+        { label: "The curriculum", caption: "The year by phase, the term by week and night. Each session is built from the drill library.", point: "the week grid", screen: "AD6-YearPlan" },
+        { label: "Your coaches", caption: "All 17, each with whether they are doing the basics. Open one for their pay, agreement and details.", point: "any coach row", screen: "AC6-AcademyCoaches" },
+        { label: "One coach", caption: "Reece: sessions run, what he is paid, his agreement, his checks and how his team is going.", point: "the pay and agreement tiles", screen: "ADCO14-Coach" },
+        { label: "Fees collect themselves", caption: "Families pay by card in the app. A failed payment is retried and the family is told. Only a few ever reach you.", point: "“What the app has already done”", screen: "AC5-Fees" },
+        { label: "Trials, from booked to joined", caption: "A coach assesses and recommends. You decide. The family gets an offer and pays in one step.", point: "a trial with the coach’s recommendation", screen: "AC3-Trials" },
+        { label: "What families think", caption: "Five questions a term, in totals only. The lowest answer points at what to fix next.", point: "the lowest answer by program", screen: "AD15-Families" },
+        { label: "The partner club", caption: "Why the academy plays under Wattle Creek FC’s name, what each side gives, and the fee you pay the club.", point: "the fee and what each side gives", screen: "AC11-PartnerClub" },
+        { label: "Messages", caption: "The three that need an answer, and one place to write to a team, a program or everyone.", point: "the three to answer", screen: "ADM1-Messages" },
       ]},
-      { title: "Fill the places", steps: [
-        { label: "Trials: booked to joined", caption: "Free trials are how academies grow. Every trial family is followed from booking to joining, so none drop off.", screen: "AC3-Trials" },
-        { label: "Programs and waiting list", caption: "Free trials are how academies grow. Every trial family is followed from booking to joining, so none drop off.", screen: "AC2-Programs" },
-        { label: "Holiday clinic", caption: "Free trials are how academies grow. Every trial family is followed from booking to joining, so none drop off.", screen: "AC9-HolidayClinic" },
-      ]},
-      { title: "Each week", steps: [
-        { label: "Home: what needs you", caption: "Clean Sheet chases fees and trial families. The owner sees only what it couldn\u2019t settle.", screen: "STO14-HomeStoryAcademyOwner" },
-        { label: "Message families", caption: "Clean Sheet chases fees and trial families. The owner sees only what it couldn\u2019t settle.", screen: "AC12-AcademyBroadcast" },
-        { label: "All players", caption: "Clean Sheet chases fees and trial families. The owner sees only what it couldn\u2019t settle.", screen: "AC4-AcademyPlayers" },
-        { label: "Fees and late payers", caption: "Clean Sheet chases fees and trial families. The owner sees only what it couldn\u2019t settle.", screen: "AC5-Fees" },
-      ]},
-      { title: "End of term", steps: [
-        { label: "Approve term reports", caption: "The progress report is what parents pay for. It\u2019s drafted from session notes, checked by the coach and approved by the owner.", screen: "AC7-ReportsOut" },
-        { label: "What the family reads", caption: "The progress report is what parents pay for. It\u2019s drafted from session notes, checked by the coach and approved by the owner.", screen: "academyparent" },
+      { title: "See also", steps: [
+        { label: "Practice at home: the rules and every team", caption: "Not in the main run. Open it if you want to see more.", screen: "AD26-PracticeHome" },
+        { label: "Coach learning: required by name, the rest in totals", caption: "Not in the main run. Open it if you want to see more.", screen: "AD27-CoachLearning" },
+        { label: "Watching a coach", caption: "Not in the main run. Open it if you want to see more.", screen: "AD10-WatchCoach" },
+        { label: "Health of the academy", caption: "Not in the main run. Open it if you want to see more.", screen: "AD2-Health" },
+        { label: "The drill library", caption: "Not in the main run. Open it if you want to see more.", screen: "ADL1-DrillLibrary" },
       ]},
     ],
   },
 
+  // Rewritten from the pack's academy-tours.json (handover v40, 25 Nov): one step a screen, then the optional "See also" screens.
   academycoach: {
     roleLabel: "Academy coach \u00b7 Tall Timber Football Academy",
-    persona: "as Reece Whitlam",
+    persona: "as Reece Whitlam, U13 Timber",
     device: 'tablet',
-    total: 18,
+    total: 15,
     home: 'academycoach',
     sandboxHome: 'academycoach-e',
     sections: [
-      { title: "Each day", steps: [
-        { label: "Home: today\u2019s sessions", caption: "Several groups in one evening. Each player\u2019s own goal sits under their name during the session.", screen: "academycoach" },
-        { label: "Run a session", caption: "Several groups in one evening. Each player\u2019s own goal sits under their name during the session.", screen: "ACC2-RunSession" },
-        { label: "Suggested for tonight", caption: "Several groups in one evening. Each player\u2019s own goal sits under their name during the session.", screen: "ACC12-AcademySuggested" },
-        { label: "Swap a drill", caption: "Several groups in one evening. Each player\u2019s own goal sits under their name during the session.", screen: "drills" },
+      { title: "From tonight’s session to Sunday’s review", steps: [
+        { label: "Your day, already laid out", caption: "Tonight’s session, who is coming and what needs you are here when you open the app. Nothing on this page was typed in by you.", point: "the “This week, from the curriculum” tile", screen: "ACC1-CoachToday" },
+        { label: "Tonight’s plan, with the reason for each part", caption: "Four parts, each with a set-up drawing, film of it being run and what to say. The plan follows the curriculum and Sunday’s game.", point: "“Why tonight looks like this”", screen: "ACT3-AcademySessionPlan" },
+        { label: "Who’s coming, and the term behind it", caption: "Parents answer in the family app. Each player’s row shows every session this term, so a pattern is visible before it becomes a problem.", point: "Jonah’s row and the mauve card", screen: "ACT4-AcademyComing" },
+        { label: "Prop it up, press record, coach", caption: "Record a drill, a one-on-one, a skills check or the game. You tag nothing. The film is cut into each player’s moments about 20 minutes later.", point: "the viewfinder and “Record a drill”", screen: "ACC8-AcademyRecord" },
+        { label: "Film: check what was picked, then send it", caption: "The app finds the moments and picks up to two for each family against that player’s goal. You say yes or no. About two minutes.", point: "“Why this one was picked”", screen: "ADC3-SessionFilm" },
+        { label: "Practice at home, picked for you", caption: "The curriculum picks one practice a week. You keep it, swap it or film your own. Videos come back and you answer by voice.", point: "the loop strip and the two waiting videos", screen: "ADC6-HomePractice" },
+        { label: "Sunday", caption: "The week was for this. Three things to look for, the six things that are ready, and the day hour by hour.", point: "the hero and “The week was for this”", screen: "ACC7-AcademyGameDay" },
+        { label: "The team sheet, drawn on a pitch", caption: "Everyone who can play gets at least half a game. The app shares the minutes. Who plays where is yours.", point: "the pitch and “Everyone’s minutes”", screen: "ADC20-TeamSheet" },
+        { label: "The live game", caption: "One tap for a goal, a chance or a good moment. The next change is counted down for you. Each tap marks the film.", point: "the “Next change” bar", screen: "ADC21-LiveGame" },
+        { label: "The review, about 25 minutes after", caption: "The score, your style against its aims, and three things to work on. It feeds Monday’s session and each player’s goal.", point: "“Work on this week”", screen: "ADC7-GameReview" },
+        { label: "One short lesson, picked from your own film", caption: "Each lesson says why you are seeing it and ends with one thing to try. The next film shows whether it worked.", point: "“Did it show?” and “What Dani can see”", screen: "ADC18-Learn" },
       ]},
-      { title: "Record and repeat", steps: [
-        { label: "Choose what to record", caption: "Recording a drill does the coach\u2019s paperwork: session notes are written from it, and the results feed each player\u2019s plan and term report.", screen: "RC1-RecordStart" },
-        { label: "Set-up and measures", caption: "Recording a drill does the coach\u2019s paperwork: session notes are written from it, and the results feed each player\u2019s plan and term report.", screen: "ACC9-AcademyRecordDrill" },
-        { label: "Recording", caption: "Recording a drill does the coach\u2019s paperwork: session notes are written from it, and the results feed each player\u2019s plan and term report.", screen: "ACC11-AcademyRecording" },
-        { label: "Results, into notes and plans", caption: "Recording a drill does the coach\u2019s paperwork: session notes are written from it, and the results feed each player\u2019s plan and term report.", screen: "ACC10-AcademyRecordResults" },
-      ]},
-      { title: "Group chat", steps: [
-        { label: "Program group chat", caption: "Each program group has a chat. Home practice goes out as a video and a poll books make-up sessions.", screen: "ACC13-AcademyChat" },
-      ]},
-      { title: "New players", steps: [
-        { label: "Assess a trial player", caption: "A trial player is assessed in four taps, with a suggested group and a line for the family.", screen: "ACC3-TrialAssess" },
-        { label: "A new player\u2019s plan", caption: "A trial player is assessed in four taps, with a suggested group and a line for the family.", screen: "ACC4e-PlayerPlanEmpty" },
-      ]},
-      { title: "Each player", steps: [
-        { label: "Plan, goal and whole week", caption: "One plan per player, their whole week across club and academy, and one-on-ones kept in open view.", screen: "ACC4-PlayerPlan" },
-        { label: "One-on-one, in open view", caption: "One plan per player, their whole week across club and academy, and one-on-ones kept in open view.", screen: "ACC5-OneOnOne" },
-      ]},
-      { title: "Game day", steps: [
-        { label: "Sunday with the partner club", caption: "Where the academy has a partner club, its game team plays under the club. The coach gets the club\u2019s game-day screens, and the club\u2019s rules apply.", screen: "ACC7-AcademyGameDay" },
-        { label: "Team sheet", caption: "Where the academy has a partner club, its game team plays under the club. The coach gets the club\u2019s game-day screens, and the club\u2019s rules apply.", screen: "teamsheet" },
-        { label: "Live game", caption: "Where the academy has a partner club, its game team plays under the club. The coach gets the club\u2019s game-day screens, and the club\u2019s rules apply.", screen: "livegame11" },
-        { label: "Review", caption: "Where the academy has a partner club, its game team plays under the club. The coach gets the club\u2019s game-day screens, and the club\u2019s rules apply.", screen: "review" },
-      ]},
-      { title: "End of term", steps: [
-        { label: "Check a report draft", caption: "The coach checks each drafted report and changes any word before the owner approves it.", screen: "ACC6-ReportDraft" },
+      { title: "See also", steps: [
+        { label: "Set next week’s practice in five steps", caption: "Not in the main run. Open it if you want to see more.", screen: "ADC19-SetPractice" },
+        { label: "Our style: every aim with where it comes from", caption: "Not in the main run. Open it if you want to see more.", screen: "ADC8-TeamStyle" },
+        { label: "Record a drill: pick it or describe it", caption: "Not in the main run. Open it if you want to see more.", screen: "ACC9-AcademyRecordDrill" },
+        { label: "Assess a trial player", caption: "Not in the main run. Open it if you want to see more.", screen: "ACC3-TrialAssess" },
       ]},
     ],
   },
 
+  // Rewritten from the pack's academy-tours.json (handover v40, 25 Nov): one step a screen, then the optional "See also" screens.
   academyparent: {
     roleLabel: "Academy parent",
-    persona: "as Tess Okonkwo, mum of Kai, 13",
+    persona: "as Ari’s parent, U9 Timber",
     device: 'phone',
-    total: 13,
+    total: 10,
     home: 'academyparent',
     sandboxHome: 'academyparent-e',
     sections: [
-      { title: "Join", steps: [
-        { label: "Book a free trial", caption: "A parent books a free trial, gets an honest note and an offer, and can add Sunday games with the partner club on one bill.", screen: "academyparent-trial" },
-        { label: "Booked", caption: "A parent books a free trial, gets an honest note and an offer, and can add Sunday games with the partner club on one bill.", screen: "academyparent-trialbooked" },
-        { label: "Offer and pay", caption: "A parent books a free trial, gets an honest note and an offer, and can add Sunday games with the partner club on one bill.", screen: "acp2-offer" },
-        { label: "Join the game team, one bill", caption: "A parent books a free trial, gets an honest note and an offer, and can add Sunday games with the partner club on one bill.", screen: "acp9-join" },
-        { label: "Before the first session", caption: "A parent books a free trial, gets an honest note and an offer, and can add Sunday games with the partner club on one bill.", screen: "acp3-home-e" },
+      { title: "What my child is doing, and whether it’s working", steps: [
+        { label: "Ari’s academy, in the family app", caption: "What Ari can now do, what he is working on, and today’s session in one strip.", point: "the progress line", screen: "ADP1-AcademyHome" },
+        { label: "This week’s practice", caption: "One short practice from his coach. Tick it off, or film it and hear back.", point: "“Film it for Marcus”", screen: "ADP5-Practice" },
+        { label: "When a session is off", caption: "You are told why, the make-up is added for you, and nothing extra is charged.", point: "the make-up row", screen: "ADP7-SessionOff" },
+        { label: "The term report", caption: "Each skill in week 1 and now, the coach’s words, one clip and next term’s goal.", point: "week 1 against now", screen: "ADP2-TermReport" },
+        { label: "Ten minutes with the coach", caption: "Book a review chat in a tap. The coach arrives with a clip and the report.", point: "the times", screen: "ADP4-BookChat" },
+        { label: "Keep the place", caption: "Same team, same coach, same days. One step, paid the way you already pay.", point: "the price and “Keep Ari’s place”", screen: "ADP3-KeepPlace" },
       ]},
-      { title: "Each week", steps: [
-        { label: "Home: Kai\u2019s week", caption: "The week on one screen: sessions, the goal, a note from the coach, and a make-up when they can\u2019t come.", screen: "STO21-HomeStoryAcademyParent" },
-        { label: "Group chat", caption: "The week on one screen: sessions, the goal, a note from the coach, and a make-up when they can\u2019t come.", screen: "ACP11-AcademyParentChat" },
-        { label: "Away and make-up", caption: "The week on one screen: sessions, the goal, a note from the coach, and a make-up when they can\u2019t come.", screen: "acp6-makeup" },
-        { label: "Fees", caption: "The week on one screen: sessions, the goal, a note from the coach, and a make-up when they can\u2019t come.", screen: "academyparent-fees" },
-      ]},
-      { title: "Each term", steps: [
-        { label: "Term report", caption: "The report shows five skills, then and now, against the child\u2019s own start.", screen: "ACP5-ProgressReport" },
-        { label: "Holiday clinic", caption: "The report shows five skills, then and now, against the child\u2019s own start.", screen: "acp8-clinic-e" },
-      ]},
-      { title: "When something\u2019s wrong", steps: [
-        { label: "Tell someone, sent to the right place", caption: "The parent says where it happened and the app sends it to the right person: the academy owner or the club\u2019s welfare officer.", screen: "acp10-concern" },
-      ]},
-      { title: "If they play elsewhere", steps: [
-        { label: "Choose what to share with an unlinked club", caption: "For a child at a club with no link to the academy, the parent chooses what each coach can see.", screen: "acp7-share" },
+      { title: "See also", steps: [
+        { label: "Joining: book a free trial", caption: "Not in the main run. Open it if you want to see more.", screen: "ACP1-BookTrial" },
+        { label: "Joining: the offer and paying", caption: "Not in the main run. Open it if you want to see more.", screen: "ACP2-Offer" },
+        { label: "The term survey", caption: "Not in the main run. Open it if you want to see more.", screen: "ADP11-Survey" },
+        { label: "Pause or stop", caption: "Not in the main run. Open it if you want to see more.", screen: "ADP9-PauseOrStop" },
       ]},
     ],
   },
 
+  // Rewritten from the pack's academy-tours.json (handover v40, 25 Nov): one step a screen, then the optional "See also" screens.
   academyplayer: {
     roleLabel: "Academy player",
     persona: "as Kai Okonkwo, 13",
     device: 'phone',
-    total: 3,
+    total: 2,
     home: 'academyplayer',
     sandboxHome: 'academyplayer-e',
     sections: [
-      { title: "Each week", steps: [
-        { label: "Home: my goal and skills", caption: "Under 15s join with a code from a parent. One goal, their own skills, and ten minutes of practice at home.", screen: "STO22-HomeStoryAcademyPlayer" },
-        { label: "Practice at home", caption: "Under 15s join with a code from a parent. One goal, their own skills, and ten minutes of practice at home.", screen: "ACK2-HomePractice" },
-        { label: "Before a goal is set", caption: "Under 15s join with a code from a parent. One goal, their own skills, and ten minutes of practice at home.", screen: "ACK1e-AcademyPlayerHomeEmpty" },
+      { title: "My goal, and what to do tonight", steps: [
+        { label: "Hi Kai", caption: "What you can now do, your goal this term, and tonight’s ten minutes.", point: "“My progress”", screen: "ACK1-AcademyPlayerHome" },
+        { label: "Practice at home", caption: "Four steps and a line from your coach. Sore or tired? Skip it. There is no streak.", point: "“Done it” and “Skip today”", screen: "ACK2-HomePractice" },
       ]},
     ],
   },

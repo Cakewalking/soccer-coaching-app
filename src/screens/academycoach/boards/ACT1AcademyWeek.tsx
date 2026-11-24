@@ -2,13 +2,13 @@
 // The rows are redrawn for programs v2 (Booker, 25 Nov): a coach has one team, so the week is that team's own sessions and its game,
 // with the team, the times and the number of players read from the academy's list. The plans themselves are still sample.
 // v29 (25 Nov): every team trains four days, Monday to Thursday. A day before today is done, today is tonight's session,
-// and a day still to come is planned or needs a plan. The game is on Sunday at 10:00, as the coach's home has it.
+// and a day still to come is planned or needs a plan. The game on Sunday is read from coachTeam (`GAME`), the same as the home and game day.
 
 import { useContext } from 'react'
 import { demoToast } from '../../demoToast'
 import CoachNav from '../CoachNav'
 import { InCoachApp, coachGo } from '../menu'
-import { useCoachTeam } from '../coachTeam'
+import { GAME, useCoachTeam } from '../coachTeam'
 
 const C = {
   cap: { fontSize: "14px", lineHeight: "20px", color: "#4a5a57" },
@@ -32,7 +32,7 @@ export default function ACT1AcademyWeek({ onNav }: { onNav?: (id: string) => voi
   const rows = [
     ...g.days.map((d, k) => { const on = date(DOW[d]), past = on < today, tonight = on.getTime() === today.getTime(), state = past ? 'Done' : tonight ? 'Tonight' : k % 2 ? 'Needs a plan' : 'Planned'
       return { day: d.toUpperCase(), n: on.getUTCDate(), title: g.name, sub: `${start} · ${ps.length} players`, plan: PLANS[k % PLANS.length], state, to: state === 'Needs a plan' ? 'ACT2-AcademySuggested' : 'ACT3-AcademySessionPlan' } }),
-    { day: 'SUN', n: date(7).getUTCDate(), title: `Game · ${g.name}`, sub: '10:00 at Wattle Creek FC', plan: 'League game with the partner club', state: 'Planned', to: 'ACC7-AcademyGameDay' },
+    { day: 'SUN', n: date(7).getUTCDate(), title: `Game · ${g.name}`, sub: `${GAME.kickoff} at ${GAME.ground}`, plan: 'League game with the partner club', state: 'Planned', to: 'ACC7-AcademyGameDay' },
   ]
   const look = (st: string) => st === 'Done' ? { box: '#e9eae8', pill: '#e9eae8', ink: '#10211f' } : st === 'Planned' || st === 'Tonight' ? { box: '#e8cfcf', pill: '#2f6252', ink: '#ffffff' } : { box: 'transparent', pill: '#e8cfcf', ink: '#10211f' }
   return (

@@ -22,10 +22,11 @@ export const COACH_MENU: Array<{ id: CoachMain; label: string; opens: string; su
     { label: 'Who’s coming', opens: 'ACT4-AcademyComing' }, { label: 'Practice at home', opens: 'ADC6-HomePractice' },
   ] },
   { id: 'gameday', label: 'Game day', opens: 'ACC7-AcademyGameDay', subs: [
-    { label: 'This Sunday', opens: 'ACC7-AcademyGameDay' }, { label: 'Team sheet', opens: 'MS1-TeamSheet' }, { label: 'Live game', opens: 'L11-LiveGame11' }, { label: 'Review', opens: 'ADC7-GameReview' }, { label: 'Our style', opens: 'ADC8-TeamStyle' },
+    { label: 'This Sunday', opens: 'ACC7-AcademyGameDay' }, { label: 'Team sheet', opens: 'ADC20-TeamSheet' }, { label: 'Live game', opens: 'ADC21-LiveGame' },   // pack v38: the academy's own, not the club's MS1 and L11
+    { label: 'Review', opens: 'ADC7-GameReview' }, { label: 'Our style', opens: 'ADC8-TeamStyle' },
   ] },
   { id: 'record', label: 'Record', opens: 'ACC8-AcademyRecord', subs: [
-    { label: 'Record', opens: 'ACC8-AcademyRecord' }, { label: 'Tonight’s film', opens: 'ADC3-SessionFilm' },
+    { label: 'Record', opens: 'ACC8-AcademyRecord' }, { label: 'Film', opens: 'ADC3-SessionFilm' },   // pack v38: one place for film. There is no clips page for an academy coach
   ] },
   { id: 'learn', label: 'Learn', opens: 'ADC18-Learn', subs: [] },   // the academy's own Learn
 ]

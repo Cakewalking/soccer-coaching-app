@@ -231,3 +231,111 @@ Two coach screens, each rebuilt. `ACT3-AcademySessionPlan` (v33) and `ACT4-Acade
 - A coach's swap: for their own team only (as built), or for every team at that age?
 - Should the coach home's "Swap a drill" open the session plan (as built) or the suggestions screen (as drawn)?
 
+---
+
+# Packs v35 to v39 (25 Nov): practice at home, game day, record and film, learn
+
+Five packs, built together. Only `programs/` changed in each. The table of controls (`PROGRAMS-REPORT.csv`) now has 610 rows.
+
+## What was built
+
+| Pack | What | Screens |
+|---|---|---|
+| v35 | Practice at home, end to end | `ADC6-HomePractice` rebuilt, `ADC19-SetPractice` new (coach); `AD26-PracticeHome` and its empty state new (owner, under Curriculum) |
+| v36 | The coach's Game day | `ACC7-AcademyGameDay` rebuilt |
+| v37 | Team sheet and Live game of the academy's own; Our style | `ADC20-TeamSheet`, `ADC21-LiveGame` new; `ADC8-TeamStyle` rebuilt |
+| v38 | The Record tab | `ACC8-AcademyRecord`, `ACC9-AcademyRecordDrill` rebuilt; `ADC3-SessionFilm` rebuilt and renamed Film |
+| v39 | Learn, for the coach and the owner | `ADC18-Learn` rebuilt; `AD27-CoachLearning` and its empty state new (owner, under Coaches) |
+
+New shared files: `academy/practice.ts` (the practice loop, over the pack's `academy-practice.json`), `academycoach/gameDay.ts` (Sunday's game, the team sheet and the live game), `academycoach/filmStore.ts` (recordings and moments), `academy/learnStore.ts` (lessons and who can see what), `academycoach/teamStyle.ts` (the aims).
+
+## The wiring fixes
+
+- **Team sheet and Live game** on the academy coach's Game day opened the community club's screens. They open `ADC20` and `ADC21`. All 6 menu items and 21 sub tabs were pressed: each lands on an academy coach screen.
+- **Clips.** The one link from the coach side to the club's clips page is gone, and anything asking for that page in the coach app lands on Film.
+- **Still leaving the coach's screens:** "Team talk · Open" on `ACC7` opens the club coach's team talk (there is no academy board for it); the academy name in the top bar opens the club's view switcher; "How we measure" opens the club-side page.
+
+## Checks
+
+- All 349 screens in the v39 pack open without an error on the final build. Type check and build are clean; lint has only older warnings. The tap-target check passes. The family app's 125 hand checks pass.
+- No tile on the twelve new or rebuilt screens grows when the window is made taller.
+- Scripted checks by screen group, all passing: practice (coach) and game day 92; owner's practice page 93; team sheet 38, live game 41, our style 39; record and film 160; learn 104. The earlier scripts (session plan, coach home, trial assessment, the live roll test, curriculum) still pass.
+- **Practice:** the numbers on `ADC6` and `AD26` match the boards. A rule the owner changes disables the matching options in the coach's flow. "Turn on for Development" moves teams with it on from 7 to 12 of 17. Hold to talk works by mouse and by keyboard.
+- **Team sheet:** minutes are worked out from the line-up and the changes. Dragging a player (mouse, or keys) and swapping a change moves the squares, the labels on the pitch and "the least anyone plays".
+- **Live game:** the clock ticks, each of the eight taps adds a row and moves the score or a counter, and each can be undone. "Make it now" makes the change.
+- **Our style:** moving an aim recounts "Met in N of 7" and the squares against the new aim.
+- **Film:** sending a clip still writes to the academy's list: the player's file, the coach home and the owner's team page moved and held after a reload.
+- **Learn, the rule:** run five times (as drawn, after the coach watched a lesson, after sharing, after the owner set lessons, after one was made required). No coach's name appeared beside a lesson that is not required.
+
+## Rules that are built in
+
+- **Practice:** "Sore or tired? Skip it" on every practice, no streaks, no tables, one reminder at most, under 13 to the parent's app only. A coach cannot go past the owner's limits.
+- **Team sheet:** the app never picks on ability; it only shares the minutes. Players are in name order, never ranked.
+- **Film:** a clip goes to the child's own family only; team-mates stay blurred unless their family agreed; a trial player's film is kept for the assessment.
+- **Learn:** the owner gets names for required lessons only. Everything else is totals with no coach attached. A lesson picked from a coach's own film shows in totals only once five or more coaches have been shown it. Two guards were added: under five coaches gives no count, and a lesson set for one coach is listed as "one coach".
+
+## Still sample, each marked in the code
+
+- **Practice:** the other 16 team rows, the ladder (under 13s only), what is known about a waiting video. No sound is recorded.
+- **Game day:** everything about the fixture and the opposition, the three things to look for, season minutes, the per-game values behind the aims.
+- **Film:** the recordings and moments, "23 this term", battery and sensors.
+- **Learn:** the lessons and every watched and tried count.
+- The practice store, the team sheet, the live game and chats go back to the sample on a reload. Film choices and learning last while the tab is open.
+
+## Where the build differs from the boards
+
+- **`ADC6`:** "What families say" is marked Estimate (14 answers; Strong starts at 50). "Change it" edits this week's line in place.
+- **`ADC19`:** "Your line" starts empty. Which drills can be done alone at home is our rule (an arrival game or introduction that needs no goals); it gives the board's 9 of 24.
+- **`AD26`:** a rule row really opens and edits. Video back "Yes" is not offered where every player is under 13.
+- **`ACC7`:** the round line is pale, so the film button is the only amber. Sunday is 11:00 at Wattle Creek Reserve everywhere on the coach side; the coach home now says 13 of 16 are coming.
+- **`ADC20`:** a strip under the pitch holds the players to drag in. "This season" shows its count beside the share. "Take it back" after sending.
+- **`ADC21`:** names in name order; End the game asks first.
+- **`ADC8`:** shares carry their counts; a moved core aim keeps its Core tag; Reset keeps the coach's own two measures.
+- **Film:** Harriet and Ezra are swapped to agree with the list (the board marks Harriet "Sent home"; the list says her family has had no clip). A row picks the player; the file is a link beside the clip.
+- **Record a drill** shows one way of saying what it is at a time. The one-on-one is Friday 4:15.
+- **Learn:** rows have "Mark as done" and "I tried it"; the owner's "What you can't see" is the same three-line list as the coach's page.
+
+## Not done
+
+- `ACC7`'s pitch does not follow a swap made on the team sheet.
+- Nothing locks a change already made in the live game if the team sheet is edited afterwards. The team sheet cannot add or remove a change.
+- The recording screen (`ACC11`) still names an old drill whatever was chosen.
+- "Add to his term report" marks the clip but does not change the report.
+- "Write a week", "Make one from film", answers to a coach's question, and a lesson player.
+- The empty states for Record and Film still stretch to fill the window.
+- The coach's Learn page says "12 moments to check" as typed words; it does not follow Film.
+
+## Things in the packs that do not agree
+
+- **Sunday:** 10:00, 11:00 and 12:00, and four grounds, across boards. The coach side uses v36's.
+- **`ADC21`:** the counters say 6 and 4 where the five rows drawn hold one each.
+- **`ADC20`:** "this season" shares of 46% to 62% cannot be right for eleven on the pitch among 14 to 16 players.
+- **`ADC8`:** "6 from Tall Timber" where the owner's page has eight.
+- **Film:** Record is drawn before tonight's session, Film after it; Mila is blurred on one and away on the other.
+- **Learn:** "Keeping 14 players busy" for a team of 16; "23 in the library" with 11 named.
+- **Practice:** a team's survey answer marked Strong from 14 answers.
+
+## For Booker to decide
+
+- The limits for practice (5 minutes twice for Development, 15 minutes three times for Advanced), Monday 4 pm, the Wednesday reminder, and whether Foundation gets anything.
+- 11 a side and two halves of 30 for under 13s; the team sheet to the league on Saturday at 6 pm; families' clips at 6 pm.
+- Which three lessons are required, and whether the owner should ever see other lessons by name (built as no).
+- Can the minutes aim be eased below the policy, with a reason (as built), or is it locked?
+- "See the academy's" on Our style opens the owner's page for a coach, as the board links it. Should it be a read-only view?
+- Is a trial player blurred in other families' clips (assumed yes)?
+- Harriet and Ezra on Film: keep the swap, or change the list?
+
+---
+
+# Pack v40 (25 Nov): the four academy tours
+
+From `programs/tours/ACADEMY-TOURS.md` and `academy-tours.json` (the file sent on its own is the same as the one in the pack).
+
+- **The four academy tours are rewritten** in `src/screens/demo/tours.ts`, made from the pack's json: academy coach (11 steps), academy owner (11), academy parent (6) and academy player (2). Each tour ends with its "See also" screens as a second, optional part.
+- **Gone from the tours:** "Saturday with the partner club", the club's team sheet and live game, "Set-up and measures", and "Choose what to share with an unlinked club".
+- **"Point at"** is shown as a line under the caption ("Look at the Oversight panel."). The demo's tours open whole screens and have no highlight to put on part of a screen, so nothing is outlined.
+- **The parent tour runs in the family app**, as Ari's parent.
+- **Checked:** every step of the four tours (43 with the "See also" screens) opens its screen without an error on the final build.
+- **The parent's academy pages** already named Marcus and 5:30 from the academy's list. One-on-ones now name the child's own coach for the Saturday time. They stay on Friday and Saturday (v29); the v40 board still draws Thursday and Monday at 6:45.
+- **Not changed:** the list of every older screen under "Step 4" in the demo still has the old parent screens. It is an index, not a tour.
+

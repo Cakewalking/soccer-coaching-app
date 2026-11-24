@@ -28,7 +28,7 @@ export default function ADC15MySession({ onNav }: { onNav?: (id: string) => void
   const inApp = useContext(InCoachApp)
   return (
     <div data-board="ADC15-MySession" style={{ ...(inApp ? { flexGrow: 1, minHeight: 0 } : { width: 1180, minHeight: 820 }), position: "relative", boxSizing: "border-box", background: "#faf5ec", color: "#10211f", fontFamily: "var(--font-sans, 'DM Sans', system-ui, sans-serif)", display: "flex", flexDirection: "column" }}>
-      {!inApp && <CoachNav active="record" sub="Tonight’s film" go={go} />}
+      {!inApp && <CoachNav active="record" sub="Film" go={go} />}
       <div style={{ flex: "none", padding: "14px 28px 0", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "20px" }}>
         <div style={{ display: "flex", alignItems: "baseline", gap: "14px", minWidth: "0" }}>
           <h1 style={{ margin: "0", fontSize: "26px", lineHeight: "32px", fontWeight: "700", letterSpacing: "-0.02em", whiteSpace: "nowrap" }}>How did it go?</h1>

@@ -14,6 +14,7 @@ import ACC1eCoachTodayEmpty from './ACC1eCoachTodayEmpty'
 import ACC2RunSession from './ACC2RunSession'
 import ACC2eRunSessionEmpty from './ACC2eRunSessionEmpty'
 import ACC3TrialAssess from './ACC3TrialAssess'
+import ADC19SetPractice from './ADC19SetPractice'
 import ACC3eTrialAssessEmpty from './ACC3eTrialAssessEmpty'
 import ACC4PlayerPlan from './ACC4PlayerPlan'
 import ACC4ePlayerPlanEmpty from './ACC4ePlayerPlanEmpty'
@@ -67,6 +68,8 @@ import ADC13eCheckEntryEmpty from './ADC13eCheckEntryEmpty'
 import ADC16Chances from './ADC16Chances'
 import ADC17YourTake from './ADC17YourTake'
 import ADC18Learn from './ADC18Learn'
+import ADC20TeamSheet from './ADC20TeamSheet'
+import ADC21LiveGame from './ADC21LiveGame'
 import ADK1MySkills from '../../academyplayer/ADK1MySkills'
 import ADK2MyClips from '../../academyplayer/ADK2MyClips'
 
@@ -77,6 +80,9 @@ export const COACH_BOARDS: Record<string, Board> = {
   'ADC16-Chances': ADC16Chances,
   'ADC17-YourTake': ADC17YourTake,
   'ADC18-Learn': ADC18Learn,
+  'ADC20-TeamSheet': ADC20TeamSheet,
+  'ADC21-LiveGame': ADC21LiveGame,
+  'ADC19-SetPractice': ADC19SetPractice,
   'ADC11e-AfterSessionEmpty': ADC11eAfterSessionEmpty,
   'ADC13e-CheckEntryEmpty': ADC13eCheckEntryEmpty,
   'ADC8e-TeamStyleEmpty': ADC8eTeamStyleEmpty,

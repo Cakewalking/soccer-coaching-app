@@ -1,5 +1,6 @@
 // ADC8e-TeamStyleEmpty, as the academy pack draws it (handover v24): the board's own words, sizes and colours.
 // Made from the board's source by the converter kept with the checking scripts; change the words here, not the layout.
+// Pack v38: the board itself is unchanged (only the sub-menu's links, which the menu holds). The two tiles are now as tall as their content.
 
 import { useContext } from 'react'
 import CoachNav from '../CoachNav'
@@ -26,7 +27,7 @@ export default function ADC8eTeamStyleEmpty({ onNav }: { onNav?: (id: string) =>
         <div style={{ display: "flex", gap: "8px", flex: "none" }} />
       </div>
       <main style={{ flexGrow: "1", minHeight: "0", padding: "12px 28px 18px", boxSizing: "border-box", display: "grid", gap: "14px", gridTemplateColumns: "minmax(0,1fr) 320px" }}>
-        <section aria-label="Our style" style={{ ...C.tile }}>
+        <section aria-label="Our style" style={{ ...C.tile, alignSelf: "start", padding: "56px 16px" }}>
           <div style={{ flexGrow: "1", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "12px", textAlign: "center" }}>
             <span style={{ width: "72px", height: "72px", borderRadius: "999px", background: "#eef5f2", color: "#2f6252", display: "flex", alignItems: "center", justifyContent: "center" }}>
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -38,7 +39,7 @@ export default function ADC8eTeamStyleEmpty({ onNav }: { onNav?: (id: string) =>
             <button onClick={() => go("StyleFlow")} style={{ margin: "0", font: "inherit", textAlign: "inherit", cursor: "pointer", ...C.primary }}>Set our style</button>
           </div>
         </section>
-        <aside aria-label="What it does" style={{ ...C.tile }}>
+        <aside aria-label="What it does" style={{ ...C.tile, alignSelf: "start" }}>
           <h2 style={{ ...C.h2 }}>What it does</h2>
           <div style={{ display: "flex", alignItems: "center", gap: "12px", minHeight: "54px", borderTop: "1px solid #e9eae8" }}>
             <span style={{ flex: "none", width: "30px", height: "30px", borderRadius: "999px", background: "#eef5f2", color: "#10211f", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", fontWeight: "700" }}>1</span>

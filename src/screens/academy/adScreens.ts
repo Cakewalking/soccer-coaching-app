@@ -65,6 +65,8 @@ import AD22ChangeBlock from './AD22ChangeBlock'
 import AD23AddCoach from './AD23AddCoach'
 import AD24BringIn from './AD24BringIn'
 import AD25Reference from './AD25Reference'
+import AD26PracticeHome from './AD26PracticeHome'
+import AD26ePracticeHomeEmpty from './AD26ePracticeHomeEmpty'
 import ADL1DrillLibrary from './ADL1DrillLibrary'
 import ADL2Drill from './ADL2Drill'
 import ADQ1Session from './ADQ1Session'
@@ -72,6 +74,8 @@ import ADM1Messages from './ADM1Messages'
 import ADS1SwitchView from './ADS1SwitchView'
 import ADT1TrialDecision from './ADT1TrialDecision'
 import ADW1WatchSession from './ADW1WatchSession'
+import AD27CoachLearning from './AD27CoachLearning'
+import AD27eCoachLearningEmpty from './AD27eCoachLearningEmpty'
 
 export const OWNER_BOARDS: Record<string, ComponentType> = {
   'AC1-AcademyHome': AC1AcademyHome,
@@ -137,6 +141,8 @@ export const OWNER_BOARDS: Record<string, ComponentType> = {
   'AD23-AddCoach': AD23AddCoach,
   'AD24-BringIn': AD24BringIn,
   'AD25-Reference': AD25Reference,
+  'AD26-PracticeHome': AD26PracticeHome,   // practice at home, for the owner (pack v35)
+  'AD26e-PracticeHomeEmpty': AD26ePracticeHomeEmpty,
   'ADL1-DrillLibrary': ADL1DrillLibrary,   // the drill library, one night's session and one drill (pack v31, section G)
   'ADL2-Drill': ADL2Drill,
   'ADQ1-Session': ADQ1Session,
@@ -144,6 +150,8 @@ export const OWNER_BOARDS: Record<string, ComponentType> = {
   'ADS1-SwitchView': ADS1SwitchView,
   'ADT1-TrialDecision': ADT1TrialDecision,
   'ADW1-WatchSession': ADW1WatchSession,
+  'AD27-CoachLearning': AD27CoachLearning,   // coach learning, for the owner (pack v39)
+  'AD27e-CoachLearningEmpty': AD27eCoachLearningEmpty,
 }
 
 /** A team's page (`ADG01-Team` to `ADG17-Team`, and any team added since) and a player's page (`ADF01-Player` to `ADF226-Player`): one template each, in TeamPage and PlayerPage. */

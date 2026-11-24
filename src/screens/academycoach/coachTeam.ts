@@ -59,6 +59,9 @@ export function tonightOf(a: Academy, g: Group, ps: Player[]) {
   return { rows, coming, away, none, rollTaken: rows.some(r => r.state === 'here' || r.state === 'gone') }
 }
 
+// ── Sunday's game lives in ./gameDay (shared with the team sheet and the live game). Passed on here for the screens that already read it from this file. ──
+export { GAME, sundayOf, gameClock } from './gameDay'
+
 // ── which player the coach has open: set by opening a file, read by the screens that work on one player (a goal, a clip, a report) ──
 let open = KAI
 const subs = new Set<() => void>()
