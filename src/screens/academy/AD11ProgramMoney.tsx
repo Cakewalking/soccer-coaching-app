@@ -1,9 +1,9 @@
 // AD11-ProgramMoney: Academy owner: what a player pays, and the fees billed, coach cost and pitch hire for each program this term; and the year's four parts.
-// A template over the store (programs v2, 24 Nov). Fees billed is players × what each player pays this term; coaches is 20 sessions a team
+// A template over the store (programs v2, 24 Nov). Fees billed is players × what each player pays this term; coaches is 40 sessions a team (four a week, from the data)
 // at the rate set in AD21; pitch hire is half a pitch a team. The price a player pays is shown beside every total.
 import { S } from './adStyles'
 import Tap from './Tap'
-import { PROGRAMS, SESSIONS_A_TERM, money, pays, programCounts, useAcademy } from './academyStore'
+import { PROGRAMS, SESSIONS_A_TERM, gamePlayers, money, pays, programCounts, useAcademy } from './academyStore'
 import { Cap, Head, LINE, MAIN, Num, Row, Sources, Th, Tile } from './kit'
 
 const COLS = '1.3fr 1fr 0.7fr 1fr 1fr 0.9fr 1fr'
@@ -38,7 +38,7 @@ export default function AD11ProgramMoney() {
           <span><strong style={S.num}>−{money(all.pitch)}</strong></span>
           <span><strong style={{ ...S.num, fontSize: 16 }}>{money(all.left)}</strong></span>
         </Row>
-        <Cap style={{ paddingTop: 6 }}>Coaches is {SESSIONS_A_TERM} sessions a team at {money(a.coach_rate_a_session)}. Pitch hire is {money(a.half_pitch_a_term)} a team for half a pitch. {money(all.owed)} of the fees billed is still owed. {all.open} open {all.open === 1 ? 'place' : 'places'} would add {money(all.openWorth)}.</Cap>
+        <Cap style={{ paddingTop: 6 }}>Coaches is {SESSIONS_A_TERM} sessions a team{a.groups.length > 0 && a.groups.every(g => g.days.length === 4) ? ' (four a week)' : ''} at {money(a.coach_rate_a_session)}. Pitch hire is {money(a.half_pitch_a_term)} a team for half a pitch. {money(all.owed)} of the fees billed is still owed. {all.open} open {all.open === 1 ? 'place' : 'places'} would add {money(all.openWorth)}. Not in this table: the partner club fee, {money(gamePlayers(a).length * a.partner_club_fee_a_game_player_a_season / 2)} this term.</Cap>
       </Tile>
       <div style={{ flex: 'none', display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}><h2 style={S.h2}>What a family pays for the year</h2><Cap>Four parts. The season is paid in two instalments, Term 2 and Term 3.</Cap></div>
       <div style={{ flex: 'none', display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0,1fr))', gap: 12 }}>

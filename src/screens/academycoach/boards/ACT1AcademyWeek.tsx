@@ -1,6 +1,8 @@
 // ACT1-AcademyWeek, as the academy pack draws it (handover v24): the board's own words, sizes and colours.
 // The rows are redrawn for programs v2 (Booker, 25 Nov): a coach has one team, so the week is that team's own sessions and its game,
 // with the team, the times and the number of players read from the academy's list. The plans themselves are still sample.
+// v29 (25 Nov): every team trains four days, Monday to Thursday. A day before today is done, today is tonight's session,
+// and a day still to come is planned or needs a plan. The game is on Sunday at 10:00, as the coach's home has it.
 
 import { useContext } from 'react'
 import { demoToast } from '../../demoToast'
@@ -23,14 +25,16 @@ export default function ACT1AcademyWeek({ onNav }: { onNav?: (id: string) => voi
   const start = g.when.split(' · ')[1]?.split(' to ')[0] ?? '', today = new Date(`${a.today}T00:00:00Z`)
   const date = (dow: number) => { const d = new Date(today); d.setUTCDate(d.getUTCDate() + dow - (d.getUTCDay() || 7)); return d }
   const DOW: Record<string, number> = { Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6, Sun: 7 }
-  const PLANS = ['Receiving on the half-turn, then 4 v 4 through the middle', 'Playing forward after winning it']
+  // The four plans are the v30 board's own, Monday to Thursday. The board still draws three programs and a Saturday game at another ground;
+  // the team, its start time, its players and the Sunday game at Wattle Creek FC are the academy's.
+  const PLANS = ['Ball mastery, both feet. Small games, no lines', 'Receiving on the half-turn, then 4 v 4 through the middle', 'First touch away from pressure', 'Playing forward after winning it']
   const week = /week \d+ of \d+/.exec(a.term)?.[0] ?? '', term = a.term.split(' · ')[0].toLowerCase()
   const rows = [
-    ...g.days.map((d, k) => { const on = date(DOW[d]), past = on < today
-      return { day: d.toUpperCase(), n: on.getUTCDate(), title: g.name, sub: `${start} · ${ps.length} players`, plan: PLANS[k % PLANS.length], state: past ? 'Done' : k % 2 ? 'Needs a plan' : 'Planned', to: past ? 'ACT3-AcademySessionPlan' : k % 2 ? 'ACT2-AcademySuggested' : 'ACT3-AcademySessionPlan' } }),
-    { day: 'SUN', n: date(7).getUTCDate(), title: `Game · ${g.name}`, sub: '9:00 at Wattle Creek FC', plan: 'League game with the partner club', state: 'Planned', to: 'ACC7-AcademyGameDay' },
+    ...g.days.map((d, k) => { const on = date(DOW[d]), past = on < today, tonight = on.getTime() === today.getTime(), state = past ? 'Done' : tonight ? 'Tonight' : k % 2 ? 'Needs a plan' : 'Planned'
+      return { day: d.toUpperCase(), n: on.getUTCDate(), title: g.name, sub: `${start} · ${ps.length} players`, plan: PLANS[k % PLANS.length], state, to: state === 'Needs a plan' ? 'ACT2-AcademySuggested' : 'ACT3-AcademySessionPlan' } }),
+    { day: 'SUN', n: date(7).getUTCDate(), title: `Game · ${g.name}`, sub: '10:00 at Wattle Creek FC', plan: 'League game with the partner club', state: 'Planned', to: 'ACC7-AcademyGameDay' },
   ]
-  const look = (st: string) => st === 'Done' ? { box: '#e9eae8', pill: '#e9eae8', ink: '#10211f' } : st === 'Planned' ? { box: '#e8cfcf', pill: '#2f6252', ink: '#ffffff' } : { box: 'transparent', pill: '#e8cfcf', ink: '#10211f' }
+  const look = (st: string) => st === 'Done' ? { box: '#e9eae8', pill: '#e9eae8', ink: '#10211f' } : st === 'Planned' || st === 'Tonight' ? { box: '#e8cfcf', pill: '#2f6252', ink: '#ffffff' } : { box: 'transparent', pill: '#e8cfcf', ink: '#10211f' }
   return (
     <div data-board="ACT1-AcademyWeek" style={{ ...(inApp ? { flexGrow: 1, minHeight: 0 } : { width: 1180, minHeight: 820 }), position: "relative", boxSizing: "border-box", background: "#faf5ec", color: "#10211f", fontFamily: "var(--font-sans, 'DM Sans', system-ui, sans-serif)", display: "flex", flexDirection: "column" }}>
       {!inApp && <CoachNav active="training" sub="This week" go={go} />}
@@ -47,7 +51,7 @@ export default function ACT1AcademyWeek({ onNav }: { onNav?: (id: string) => voi
       <main style={{ flexGrow: "1", minHeight: "0", padding: "12px 28px 18px", boxSizing: "border-box", display: "grid", gap: "14px", gridTemplateColumns: "minmax(0,1fr) 320px" }}>
         <section aria-label="Sessions this week" style={{ ...C.tile, gap: "0" }}>
           {rows.map(r => { const k = look(r.state); return (
-            <button key={r.day} onClick={() => go(r.to)} style={{ border: "0", padding: "0", margin: "0", background: "transparent", font: "inherit", textAlign: "inherit", cursor: "pointer", display: "grid", gridTemplateColumns: "64px 190px minmax(0,1fr) auto", alignItems: "center", gap: "12px", minHeight: "66px", borderTop: "1px solid #e9eae8", textDecoration: "none", color: "#10211f" }}>
+            <button key={r.day} onClick={() => go(r.to)} style={{ border: "0", padding: "0", margin: "0", background: "transparent", font: "inherit", textAlign: "inherit", cursor: "pointer", display: "grid", gridTemplateColumns: "64px 200px minmax(0,1fr) auto", alignItems: "center", gap: "12px", minHeight: "66px", borderTop: "1px solid #e9eae8", textDecoration: "none", color: "#10211f" }}>
               <span style={{ flex: "none", width: "48px", height: "52px", borderRadius: "12px", background: k.box, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
                 <span style={{ fontSize: "11px", fontWeight: "700" }}>{r.day}</span>
                 <span style={{ fontSize: "20px", lineHeight: "22px", fontWeight: "700" }}>{r.n}</span>
@@ -80,7 +84,7 @@ export default function ACT1AcademyWeek({ onNav }: { onNav?: (id: string) => voi
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
               <h2 style={{ ...C.h2 }}>Load this week</h2>
             </div>
-            <span style={{ ...C.cap }}>Kai Okonkwo also trains twice with his club. He is at 4 sessions; the limit you set is 5.</span>
+            <span style={{ ...C.cap }}>Kai Okonkwo also trains with his club, on top of {g.days.length} sessions here. Keep his repeated sprints short.</span>
           </section>
         </aside>
       </main>

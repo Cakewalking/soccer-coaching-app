@@ -26,6 +26,12 @@ const parts = (iso: string) => { const [y, m, d] = iso.split('-').map(Number); r
 export const dayMonth = (iso: string) => { const { m, d } = parts(iso); return `${d} ${MONTH[m - 1]}` }
 export const shortDate = (iso: string) => `${DAY[parts(iso).w]} ${dayMonth(iso)}`
 export const longDate = (iso: string) => `${DAY_LONG[parts(iso).w]} ${dayMonth(iso)}`
+/** The team's session by the clock, read from its timetable line ("Mon to Thu · 6:35 to 7:45"): "6:35", or so many minutes in. */
+export const clock = (g: Group, plus = 0) => { const [h, m] = (g.when.split(' · ')[1]?.split(' to ')[0] ?? '').split(':').map(Number); if (!Number.isFinite(h + m)) return ''; const t = h * 60 + m + plus; return `${Math.floor(t / 60)}:${String(t % 60).padStart(2, '0')}` }
+/** The days a team trains, in full: "Monday to Thursday", "Tuesday and Thursday". */
+export const trainingDays = (g: Group) => { const d = g.days.map(x => DAY_LONG[DAY.indexOf(x)] ?? x); return d.length > 2 ? `${d[0]} to ${d[d.length - 1]}` : d.join(' and ') }
+/** The same, short, as the timetable line has it: "Mon to Thu". */
+export const trainingDaysShort = (g: Group) => g.when.split(' · ')[0]
 /** Names in a sentence: "Ana", "Ana and Sienna", "Noah, Jonah and Mila". */
 export const names = (ps: Player[]) => { const n = ps.map(firstName); return n.length < 2 ? n.join('') : `${n.slice(0, -1).join(', ')} and ${n[n.length - 1]}` }
 /** The skill a player's step is lowest on: where a goal or a clip would start. */

@@ -3,6 +3,7 @@
 
 import { demoToast } from '../../demoToast'
 import { coachGo } from '../menu'
+import { cameLine, useCoachTeam } from '../coachTeam'
 
 const C = {
   card: { background: "#ffffff", border: "1px solid #c5c8c4", borderRadius: "16px", padding: "12px 14px", display: "flex", flexDirection: "column", gap: "8px" },
@@ -12,6 +13,7 @@ const C = {
 
 export default function ACP5ProgressReport({ onNav }: { onNav?: (id: string) => void }) {
   const go = coachGo(onNav)
+  const kai = useCoachTeam().ps.find(p => p.name === 'Kai Okonkwo')   // counted from his roll
   return (
     <div data-board="ACP5-ProgressReport" style={{ width: 390, height: 844, overflow: 'hidden', position: "relative", boxSizing: "border-box", background: "#faf5ec", color: "#10211f", fontFamily: "var(--font-sans, 'DM Sans', system-ui, sans-serif)", display: "flex", flexDirection: "column" }}>
       <div style={{ flex: "none", padding: "12px 18px", background: "#2f6252", color: "#ffffff", display: "flex", alignItems: "center", gap: "10px" }}>
@@ -73,7 +75,7 @@ export default function ACP5ProgressReport({ onNav }: { onNav?: (id: string) => 
         <div style={{ ...C.card, gap: "0" }}>
           <span style={{ display: "flex", justifyContent: "space-between", gap: "10px", minHeight: "38px", alignItems: "center", fontSize: "14px" }}>
             <span>Came to</span>
-            <strong style={{ ...C.num, textAlign: "right" }}>5 of 6 sessions</strong>
+            <strong style={{ ...C.num, textAlign: "right" }}>{kai ? cameLine(kai) : '12 of 13'} sessions</strong>
           </span>
           <span style={{ display: "flex", justifyContent: "space-between", gap: "10px", minHeight: "38px", alignItems: "center", borderTop: "1px solid #e9eae8", fontSize: "14px" }}>
             <span>Next term’s goal</span>

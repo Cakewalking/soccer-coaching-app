@@ -3,6 +3,7 @@
 
 import { demoToast } from '../../demoToast'
 import { coachGo } from '../menu'
+import { trainingDaysShort, useCoachTeam } from '../coachTeam'
 
 const C = {
   card: { background: "#ffffff", border: "1px solid #c5c8c4", borderRadius: "16px", padding: "12px 14px", display: "flex", flexDirection: "column", gap: "8px" },
@@ -14,6 +15,7 @@ const C = {
 
 export default function ACP2Offer({ onNav }: { onNav?: (id: string) => void }) {
   const go = coachGo(onNav)
+  const { g } = useCoachTeam()   // the team's times are read from the academy's list
   return (
     <div data-board="ACP2-Offer" style={{ width: 390, height: 844, overflow: 'hidden', position: "relative", boxSizing: "border-box", background: "#faf5ec", color: "#10211f", fontFamily: "var(--font-sans, 'DM Sans', system-ui, sans-serif)", display: "flex", flexDirection: "column" }}>
       <div style={{ flex: "none", padding: "12px 18px", background: "#2f6252", color: "#ffffff", display: "flex", alignItems: "center", gap: "10px" }}>
@@ -31,7 +33,7 @@ export default function ACP2Offer({ onNav }: { onNav?: (id: string) => void }) {
         <div style={{ ...C.card, border: "2px solid #2f6252" }}>
           <span style={{ ...C.label }}>Your offer</span>
           <span style={{ fontSize: "20px", lineHeight: "26px", fontWeight: "700" }}>Advanced · ages 12 to 14</span>
-          <span style={{ fontSize: "14px", lineHeight: "20px", color: "#4a5a57" }}>Tue and Thu, 5:30 to 6:40 pm · coach Reece</span>
+          <span style={{ fontSize: "14px", lineHeight: "20px", color: "#4a5a57" }}>{trainingDaysShort(g)}, {g.when.split(' · ')[1]} pm · coach {g.coach.split(' ')[0]}</span>
           <span style={{ display: "flex", justifyContent: "space-between", gap: "10px", minHeight: "38px", alignItems: "center", borderTop: "1px solid #e9eae8", fontSize: "14px" }}>
             <span>Full term</span>
             <strong style={{ ...C.num, textAlign: "right" }}>$1,100</strong>

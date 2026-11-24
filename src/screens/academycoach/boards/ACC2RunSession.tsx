@@ -8,7 +8,7 @@ import { demoToast } from '../../demoToast'
 import CoachNav from '../CoachNav'
 import { InCoachApp, coachGo } from '../menu'
 import { markRoll } from '../../academy/academyStore'
-import { COACH_GROUP, firstName, ini, longDate, todayMark, useCoachTeam } from '../coachTeam'
+import { COACH_GROUP, clock, firstName, ini, longDate, todayMark, useCoachTeam } from '../coachTeam'
 
 const C = {
   cap: { fontSize: "14px", lineHeight: "20px", color: "#4a5a57" },
@@ -66,7 +66,7 @@ export default function ACC2RunSession({ onNav }: { onNav?: (id: string) => void
             <button onClick={() => demoToast("Filming on. Only players whose parents agreed appear in clips.")} style={{ border: "0", padding: "0", margin: "0", background: "transparent", font: "inherit", textAlign: "inherit", cursor: "pointer", color: "#2f6252", fontSize: "14px", fontWeight: "600", textDecoration: "none", minHeight: "44px", display: "flex", alignItems: "center" }}>Film this drill</button>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "12px", minHeight: "74px", borderTop: "1px solid #e9eae8" }}>
-            <span style={{ ...C.num, flex: "none", width: "48px", fontSize: "15px", fontWeight: "700" }}>5:45</span>
+            <span style={{ ...C.num, flex: "none", width: "48px", fontSize: "15px", fontWeight: "700" }}>{clock(g)}</span>
             <span style={{ flexGrow: "1", minWidth: "0" }}>
               <span style={{ display: "block", fontSize: "16px", lineHeight: "22px", fontWeight: "700" }}>Ball each · both feet</span>
               <span style={{ display: "block", fontSize: "13px", lineHeight: "18px", color: "#4a5a57" }}>10 min · done</span>
@@ -74,7 +74,7 @@ export default function ACC2RunSession({ onNav }: { onNav?: (id: string) => void
             <span style={{ display: "inline-flex", alignItems: "center", height: "24px", padding: "0 9px", borderRadius: "999px", fontSize: "12px", fontWeight: "700", whiteSpace: "nowrap", background: "#e9eae8", color: "#10211f" }}>Done</span>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "12px", minHeight: "74px", borderTop: "1px solid #e9eae8", background: "#eef5f2", margin: "0 -10px", padding: "0 10px", borderRadius: "12px" }}>
-            <span style={{ ...C.num, flex: "none", width: "48px", fontSize: "15px", fontWeight: "700" }}>5:55</span>
+            <span style={{ ...C.num, flex: "none", width: "48px", fontSize: "15px", fontWeight: "700" }}>{clock(g, 10)}</span>
             <span style={{ flexGrow: "1", minWidth: "0" }}>
               <span style={{ display: "block", fontSize: "16px", lineHeight: "22px", fontWeight: "700" }}>2v1 to a small goal · finish weaker foot</span>
               <span style={{ display: "block", fontSize: "13px", lineHeight: "18px", color: "#4a5a57" }}>20 min · running now, 12 minutes left</span>
@@ -82,14 +82,14 @@ export default function ACC2RunSession({ onNav }: { onNav?: (id: string) => void
             <span style={{ display: "inline-flex", alignItems: "center", height: "24px", padding: "0 9px", borderRadius: "999px", fontSize: "12px", fontWeight: "700", whiteSpace: "nowrap", background: "#2f6252", color: "#ffffff" }}>Now</span>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "12px", minHeight: "74px", borderTop: "1px solid #e9eae8" }}>
-            <span style={{ ...C.num, flex: "none", width: "48px", fontSize: "15px", fontWeight: "700" }}>6:15</span>
+            <span style={{ ...C.num, flex: "none", width: "48px", fontSize: "15px", fontWeight: "700" }}>{clock(g, 30)}</span>
             <span style={{ flexGrow: "1", minWidth: "0" }}>
               <span style={{ display: "block", fontSize: "16px", lineHeight: "22px", fontWeight: "700" }}>Finishing circuit · three stations</span>
               <span style={{ display: "block", fontSize: "13px", lineHeight: "18px", color: "#4a5a57" }}>15 min</span>
             </span>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "12px", minHeight: "74px", borderTop: "1px solid #e9eae8" }}>
-            <span style={{ ...C.num, flex: "none", width: "48px", fontSize: "15px", fontWeight: "700" }}>6:30</span>
+            <span style={{ ...C.num, flex: "none", width: "48px", fontSize: "15px", fontWeight: "700" }}>{clock(g, 45)}</span>
             <span style={{ flexGrow: "1", minWidth: "0" }}>
               <span style={{ display: "block", fontSize: "16px", lineHeight: "22px", fontWeight: "700" }}>4v4 · a weaker-foot goal counts double</span>
               <span style={{ display: "block", fontSize: "13px", lineHeight: "18px", color: "#4a5a57" }}>20 min</span>

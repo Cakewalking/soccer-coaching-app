@@ -1,96 +1,91 @@
-// AD15-Families: Academy owner: the term’s short family survey, the lowest answer, and what to do about it.
-// The number of families is counted from the store (programs v2). STILL SAMPLE: how many answered and every score; survey answers are not in `academy-data.json`.
-// Drawn from the board in the academy handover (24 Nov). The menus above it are the owner app's own (OwnerHeader).
-import { S } from './adStyles'
+// AD15-Families: Academy owner: what families think, and how far to trust it. Rebuilt from the board in pack v30 (25 Nov, 900 tall).
+// COUNTED from the `survey` field of each player (five answers of 1 to 5, or none): how many answered, each question's average,
+// how many gave 4 or 5, the lowest question by program with its number of answers and a proof mark (Strong at 50 answers or
+// more, Estimate below), and every number in "How far can you trust these?". The family app writes an answer with `setSurvey`.
+// The rule for every figure: a rate is only shown with its count, and under 30 answers the count is shown with no percentage.
+// STILL SAMPLE: the week the survey went out, the comments, the players' "I enjoyed today" taps, and the reason offered for the lowest answer.
+import { S, INK } from './adStyles'
 import Tap from './Tap'
-import { useAcademy } from './academyStore'
+import { PROGRAMS, RATE_FROM, STRONG_FROM, pct, surveyOf, useAcademy } from './academyStore'
+import { Bar, Cap, G, Head, LINE, Link, MAIN, MAUVE, Proof, Tile } from './kit'
+
+const one = (v: number) => (Math.round(v * 10) / 10).toFixed(1)
+/** An average below 4 is drawn in mauve: most families did not give 4 or 5. */
+const low = (v: number) => Math.round(v * 10) / 10 < 4
+const width = (v: number) => Math.round((Math.round(v * 10) / 10 - 1) / 4 * 100)
+// Sample: comments are optional and are not in the list. Shown with the program, never the name.
+const COMMENTS: [string, string][] = [['He asks to go early now. Whatever Reece is doing, keep doing it.', 'A U13 Timber parent'], ['We’d do more at home if we knew what. A short video would help.', 'A Development parent'], ['Four nights a week is a lot with a sister at 5:30 as well.', 'A family with two children']]
+// Sample: the players' own tap on the coach's tablet on the way out (ADK3). Not in the list yet.
+const ENJOYED = { pct: 88, taps: '1,480', players: 219 }
 
 export default function AD15Families() {
-  const families = useAcademy().players.length
+  const a = useAcademy(), all = surveyOf(a, a.players), silent = all.of - all.n
+  const lowest = all.q.reduce((k, q, i) => q.avg < all.q[k].avg ? i : k, 0)
+  const progs = PROGRAMS.map(p => { const s = surveyOf(a, a.players.filter(x => x.program === p)); return { p, n: s.n, avg: s.q[lowest]?.avg ?? 0 } }).filter(x => x.n > 0)
+  const teams = a.groups.map(g => surveyOf(a, a.players.filter(x => x.group === g.id)).n).filter(n => n > 0)
+  const quiet = a.players.filter(p => !p.survey && p.term3 !== 'Staying').length
+  const range = (v: number[]) => v.length ? (Math.min(...v) === Math.max(...v) ? `${v[0]}` : `${Math.min(...v)} to ${Math.max(...v)}`) : '0'
+  const gave = (top: number) => all.n >= RATE_FROM ? `${pct(top, all.n)}% gave 4 or 5` : `${top} of ${all.n} gave 4 or 5`
+  const dot = <span style={{ flex: 'none', width: 6, height: 6, borderRadius: 999, background: G, marginTop: 7 }} />
+  const point = { display: 'flex', gap: 8, fontSize: 13, lineHeight: '19px', color: INK } as const
   return (
-    <>
-      <div style={{ flex: 'none', padding: '14px 28px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 20 }}>
-        <div style={{ display: 'flex', alignItems: 'baseline', gap: 14, minWidth: 0 }}>
-          <h1 style={{ margin: 0, fontSize: 26, lineHeight: '32px', fontWeight: 700, letterSpacing: '-0.02em', whiteSpace: 'nowrap' }}>What families think</h1>
-          <span style={{ ...S.cap, whiteSpace: 'nowrap' }}>Term 2, week 6 · 171 of {families} families answered · five questions, one minute</span>
+    <main style={{ ...MAIN, minHeight: 792, boxSizing: 'border-box' }}>
+      <Head title="What families think" sub={`Term 2, week 6 · ${all.n} of ${all.of} families answered · five questions, one minute, in the family app`}>
+        <Tap to="ADP11-Survey" style={S.more}>See what families answer</Tap>
+        {silent > 0 && <Tap say={`Reminder sent to ${silent} ${silent === 1 ? 'family' : 'families'}. It takes one minute.`} style={S.primary}>Remind the {silent} who haven’t</Tap>}
+      </Head>
+      <div style={{ flexGrow: 1, minHeight: 0, display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 360px', gap: 12 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 12, minHeight: 0 }}>
+          <Tile title="Out of 5" right={<Proof kind={all.n >= STRONG_FROM ? 'Strong' : 'Estimate'} />}>
+            {all.n === 0 && <Cap style={{ borderTop: `1px solid ${LINE}`, paddingTop: 8 }}>No family has answered yet.</Cap>}
+            {all.n > 0 && all.q.map((q, k) => (
+              <div key={q.text} style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 150px 44px 150px', gap: 12, alignItems: 'center', minHeight: 38, borderTop: `1px solid ${LINE}`, ...(k === lowest && low(q.avg) ? { background: MAUVE, margin: '0 -8px', padding: '0 8px', borderRadius: 8, fontWeight: 700 } : null) }}>
+                <span style={{ fontSize: 15 }}>{q.text}</span>
+                <Bar pct={width(q.avg)} low={low(q.avg)} w={150} />
+                <strong style={{ ...S.num, fontSize: 16 }}>{one(q.avg)}</strong>
+                <span style={{ fontSize: 13, color: '#33443f' }}>{gave(q.top)}</span>
+              </div>
+            ))}
+            <Cap style={{ paddingTop: 6 }}>Each is the average of {all.n} {all.n === 1 ? 'answer' : 'answers'}. A parent taps 1 to 5 for each line. Answers are never shown by family.</Cap>
+          </Tile>
+          <Tile title={`The lowest, by program: “${all.q[lowest]?.text ?? ''}”`} right={<Link to="ADC6-HomePractice">Turn weekly practice on</Link>}>
+            {progs.map(x => (
+              <div key={x.p} style={{ display: 'grid', gridTemplateColumns: '130px 110px minmax(0,1fr) 44px 90px', gap: 12, alignItems: 'center', minHeight: 36, borderTop: `1px solid ${LINE}`, fontSize: 14 }}>
+                <strong>{x.p}</strong>
+                <span style={{ color: '#33443f' }}>{x.n} {x.n === 1 ? 'answer' : 'answers'}</span>
+                <span><Bar pct={width(x.avg)} low={low(x.avg)} w={200} /></span>
+                <strong style={S.num}>{one(x.avg)}</strong>
+                <Proof kind={x.n >= STRONG_FROM ? 'Strong' : 'Estimate'} />
+              </div>
+            ))}
+            <Cap style={{ paddingTop: 4 }}>{lowest === 4 ? 'Advanced coaches set a weekly practice. Development coaches do not yet. That is the likely reason, not a proven one.' : 'Strong is 50 answers or more. Estimate is fewer, so read it as a pointer.'}</Cap>
+          </Tile>
+          <section aria-label="How far can you trust these?" style={{ ...S.tile, gap: 5, padding: '12px 16px', flexGrow: 1 }}>
+            <h2 style={S.h2}>How far can you trust these?</h2>
+            <span style={point}>{dot}<span><strong>{all.n} of {all.of} answered{all.of >= RATE_FROM ? ` (${pct(all.n, all.of)}%)` : ''}.</strong> An academy-wide average is good to about 0.1 either way.</span></span>
+            <span style={point}>{dot}<span><strong>By program there are {range(progs.map(x => x.n))} answers each,</strong> so treat a gap under 0.3 as no gap. A single team has {range(teams)}: too few for a score, so teams are never shown as a number.</span></span>
+            <span style={point}>{dot}<span><strong>The {silent} who did not answer are not like the rest.</strong> {quiet} of them have also not said yes to Term 3, so the true picture is a little lower.</span></span>
+          </section>
         </div>
-        <div style={{ display: 'flex', gap: 8, flex: 'none' }}>
-          <Tap to="ADP11-Survey" style={S.more}>See what families answer</Tap>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 12, minHeight: 0 }}>
+          <Tile title="In their words" right={<Cap>64 comments</Cap>}>
+            {COMMENTS.map(([said, who]) => (
+              <div key={who} style={{ display: 'flex', flexDirection: 'column', gap: 2, padding: '8px 0', borderTop: `1px solid ${LINE}` }}>
+                <span style={{ fontSize: 14, lineHeight: '20px' }}>“{said}”</span>
+                <span style={{ fontSize: 12, color: '#4a5a57' }}>{who}</span>
+              </div>
+            ))}
+            <Cap style={{ paddingTop: 4 }}>Comments are optional. They are shown with the program, never the name.</Cap>
+          </Tile>
+          <section aria-label="From the players" style={{ ...S.tile, gap: 4, padding: '12px 16px', flexGrow: 1 }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}><h2 style={S.h2}>From the players</h2><Proof kind="Strong" /></div>
+            <strong style={{ fontSize: 18, lineHeight: '24px' }}>{ENJOYED.pct}% tapped “I enjoyed today”</strong>
+            <span style={{ fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>{ENJOYED.taps} taps from {ENJOYED.players} players in the last 2 weeks. One tap on the coach’s tablet on the way out.</span>
+            <span style={{ display: 'flex', paddingTop: 6 }}><Tap to="ADK3-EnjoyedToday" style={S.more}>See what players tap</Tap></span>
+            <Cap style={{ marginTop: 'auto' }}>Shown by team only when 8 or more players tapped. Never by child.</Cap>
+          </section>
         </div>
       </div>
-      <main style={{ flexGrow: 1, minHeight: 0, padding: '12px 28px 18px', boxSizing: 'border-box', display: 'grid', gap: 14, gridTemplateColumns: 'repeat(12, minmax(0,1fr))' }}>
-        <section aria-label="Out of 5" style={{ ...S.tile, gridColumn: 'span 7', gap: 0, padding: '14px 18px 10px' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 10, marginBottom: 6 }}>
-            <h2 style={S.h2}>Out of 5</h2>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 60, borderTop: '1px solid #e9eae8', boxSizing: 'content-box' }}>
-            <span style={{ flexGrow: 1, fontSize: 15, fontWeight: 400 }}>My child enjoys coming</span>
-            <span style={{ flex: 'none', display: 'inline-block', width: 120, height: 8, borderRadius: 4, background: '#e9eae8', overflow: 'hidden', verticalAlign: 'middle' }}>
-              <span style={{ display: 'block', height: '100%', width: '92%', background: '#2f6252' }} />
-            </span>
-            <strong style={{ ...S.num, width: 32, textAlign: 'right', fontSize: 16 }}>4.6</strong>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 60, borderTop: '1px solid #e9eae8', boxSizing: 'content-box' }}>
-            <span style={{ flexGrow: 1, fontSize: 15, fontWeight: 400 }}>The coaches know my child</span>
-            <span style={{ flex: 'none', display: 'inline-block', width: 120, height: 8, borderRadius: 4, background: '#e9eae8', overflow: 'hidden', verticalAlign: 'middle' }}>
-              <span style={{ display: 'block', height: '100%', width: '88%', background: '#2f6252' }} />
-            </span>
-            <strong style={{ ...S.num, width: 32, textAlign: 'right', fontSize: 16 }}>4.4</strong>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 60, borderTop: '1px solid #e9eae8', boxSizing: 'content-box' }}>
-            <span style={{ flexGrow: 1, fontSize: 15, fontWeight: 400 }}>It is good value</span>
-            <span style={{ flex: 'none', display: 'inline-block', width: 120, height: 8, borderRadius: 4, background: '#e9eae8', overflow: 'hidden', verticalAlign: 'middle' }}>
-              <span style={{ display: 'block', height: '100%', width: '82%', background: '#2f6252' }} />
-            </span>
-            <strong style={{ ...S.num, width: 32, textAlign: 'right', fontSize: 16 }}>4.1</strong>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 60, borderTop: '1px solid #e9eae8', boxSizing: 'content-box' }}>
-            <span style={{ flexGrow: 1, fontSize: 15, fontWeight: 400 }}>I can see what my child is improving</span>
-            <span style={{ flex: 'none', display: 'inline-block', width: 120, height: 8, borderRadius: 4, background: '#e9eae8', overflow: 'hidden', verticalAlign: 'middle' }}>
-              <span style={{ display: 'block', height: '100%', width: '78%', background: '#2f6252' }} />
-            </span>
-            <strong style={{ ...S.num, width: 32, textAlign: 'right', fontSize: 16 }}>3.9</strong>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 60, background: '#f4e6e6', borderRadius: 10, padding: '0 10px', borderTop: 0, boxSizing: 'content-box' }}>
-            <span style={{ flexGrow: 1, fontSize: 15, fontWeight: 700 }}>I know what to practise at home</span>
-            <span style={{ flex: 'none', display: 'inline-block', width: 120, height: 8, borderRadius: 4, background: '#e9eae8', overflow: 'hidden', verticalAlign: 'middle' }}>
-              <span style={{ display: 'block', height: '100%', width: '64%', background: '#40826d' }} />
-            </span>
-            <strong style={{ ...S.num, width: 32, textAlign: 'right', fontSize: 16 }}>3.2</strong>
-          </div>
-          <div style={{ borderRadius: 12, background: '#eef5f2', padding: '10px 12px', fontSize: 14, lineHeight: '20px' }}>
-            <strong>Lowest: what to practise at home.</strong>
-            {' Development has no weekly practice set. Advanced does, and scored 4.3. '}
-            <Tap to="ADC6-HomePractice">Turn it on for Development</Tap>
-          </div>
-          <span style={{ ...S.cap, marginTop: 'auto', paddingTop: 8 }}>Answers are never shown by family. With fewer than 5 answers in a group, that group isn’t shown on its own.</span>
-        </section>
-        <section aria-label="In their words" style={{ ...S.tile, gridColumn: 'span 5', gap: 0, padding: '14px 18px 10px' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 10, marginBottom: 6 }}>
-            <h2 style={S.h2}>In their words</h2>
-            <span style={S.cap}>21 comments</span>
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 2, minHeight: 78, borderTop: '1px solid #e9eae8', justifyContent: 'center', boxSizing: 'content-box' }}>
-            <span style={{ fontSize: 15, lineHeight: '21px' }}>“He asks to go early now. Whatever Reece is doing, keep doing it.”</span>
-            <span style={{ fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>Advanced parent</span>
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 2, minHeight: 78, borderTop: '1px solid #e9eae8', justifyContent: 'center', boxSizing: 'content-box' }}>
-            <span style={{ fontSize: 15, lineHeight: '21px' }}>“We’d do more at home if we knew what. A short video would help.”</span>
-            <span style={{ fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>Development parent</span>
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 2, minHeight: 78, borderTop: '1px solid #e9eae8', justifyContent: 'center', boxSizing: 'content-box' }}>
-            <span style={{ fontSize: 15, lineHeight: '21px' }}>“Pick-up at 5:25 and 5:30 start for his sister is tight.”</span>
-            <span style={{ fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>Family with two children</span>
-          </div>
-          <h2 style={{ ...S.h2, marginTop: 12, marginBottom: 4 }}>From the players</h2>
-          <span style={{ minWidth: 0, display: 'flex', flexDirection: 'column' }}>
-            <strong style={{ fontSize: 15, lineHeight: '20px' }}>88% tapped “I enjoyed today”</strong>
-            <span style={{ fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>One tap at the end of a session · last 2 weeks</span>
-          </span>
-          <Tap to="ADK3-EnjoyedToday" style={{ ...S.more, alignSelf: 'flex-start', marginTop: 8 }}>See what players tap</Tap>
-          <span style={{ ...S.cap, marginTop: 'auto', paddingTop: 8 }}>Three comments chosen to show the range, not the best three.</span>
-        </section>
-      </main>
-    </>
+    </main>
   )
 }

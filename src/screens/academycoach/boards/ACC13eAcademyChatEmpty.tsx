@@ -51,7 +51,7 @@ export default function ACC13eAcademyChatEmpty({ onNav }: { onNav?: (id: string)
             <span style={{ flex: "none", width: "40px", height: "40px", borderRadius: "999px", background: "#e8cfcf", color: "#10211f", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "16px", fontWeight: "700" }}>ADV</span>
             <span style={{ flexGrow: "1", minWidth: "0" }}>
               <span style={{ display: "flex", justifyContent: "space-between", gap: "8px" }}>
-                <strong style={{ fontSize: "15px", lineHeight: "20px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>U13 Timber · Tue and Thu</strong>
+                <strong style={{ fontSize: "15px", lineHeight: "20px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>U13 Timber · Mon to Thu</strong>
                 <span style={{ flex: "none", fontSize: "12px", color: "#4a5a57" }}>4:15 pm</span>
               </span>
               <span style={{ display: "block", fontSize: "13px", lineHeight: "18px", color: "#4a5a57", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>No messages yet</span>
@@ -81,11 +81,11 @@ export default function ACC13eAcademyChatEmpty({ onNav }: { onNav?: (id: string)
           </button>
           <span style={{ ...C.cap, marginTop: "auto", padding: "10px 16px 14px", fontSize: "12px", lineHeight: "17px" }}>Nobody’s phone number is shared. Families leave these chats when the season ends.</span>
         </section>
-        <section aria-label="U13 Timber · Tue and Thu" style={{ ...C.tile, padding: "0", gap: "0", overflow: "hidden" }}>
+        <section aria-label="U13 Timber · Mon to Thu" style={{ ...C.tile, padding: "0", gap: "0", overflow: "hidden" }}>
           <div style={{ flex: "none", display: "flex", alignItems: "center", gap: "12px", padding: "10px 16px", borderBottom: "1px solid #e9eae8" }}>
             <span style={{ flex: "none", width: "44px", height: "44px", borderRadius: "999px", background: "#e8cfcf", color: "#10211f", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "16px", fontWeight: "700" }}>ADV</span>
             <span style={{ flexGrow: "1", minWidth: "0" }}>
-              <strong style={{ display: "block", fontSize: "17px", lineHeight: "22px" }}>U13 Timber · Tue and Thu</strong>
+              <strong style={{ display: "block", fontSize: "17px", lineHeight: "22px" }}>U13 Timber · Mon to Thu</strong>
               <span style={{ display: "block", fontSize: "13px", lineHeight: "18px", color: "#4a5a57" }}>16 families, Reece and Dani · parents can post · set up by Dani</span>
             </span>
             <button aria-label="Photos, videos and files" title="Photos, videos and files" onClick={() => setSheet("cacadmedia")} style={{ padding: "0", margin: "0", font: "inherit", textAlign: "inherit", textDecoration: "underline", cursor: "pointer", flex: "none", width: "44px", height: "44px", borderRadius: "10px", border: "1px solid #c5c8c4", background: "#ffffff", color: "#10211f", display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -207,10 +207,10 @@ export default function ACC13eAcademyChatEmpty({ onNav }: { onNav?: (id: string)
         <>
           <div style={{ position: "absolute", left: "0", top: "0", right: "0", bottom: "0", zIndex: "40" }}>
             <button type="button" aria-label="Close" onClick={() => setSheet(null)} style={{ fontFamily: "inherit", color: "#10211f", position: "absolute", left: "0", top: "0", width: "100%", height: "100%", border: "0", padding: "0", margin: "0", background: "rgba(16,33,31,0.45)", cursor: "default" }} />
-            <div role="dialog" aria-label="U13 Timber · Tue and Thu" style={{ position: "absolute", left: "50%", top: "50%", transform: "translate(-50%,-50%)", width: "540px", maxHeight: "740px", borderRadius: "18px", padding: "20px 22px", boxSizing: "border-box", background: "#ffffff", color: "#10211f", display: "flex", flexDirection: "column", gap: "14px", overflow: "hidden", boxShadow: "0 12px 40px rgba(16,33,31,0.25)" }}>
+            <div role="dialog" aria-label="U13 Timber · Mon to Thu" style={{ position: "absolute", left: "50%", top: "50%", transform: "translate(-50%,-50%)", width: "540px", maxHeight: "740px", borderRadius: "18px", padding: "20px 22px", boxSizing: "border-box", background: "#ffffff", color: "#10211f", display: "flex", flexDirection: "column", gap: "14px", overflow: "hidden", boxShadow: "0 12px 40px rgba(16,33,31,0.25)" }}>
               <div style={{ display: "flex", alignItems: "flex-start", gap: "12px" }}>
                 <div style={{ flexGrow: "1", minWidth: "0" }}>
-                  <span style={{ display: "block", fontSize: "20px", lineHeight: "26px", fontWeight: "700", letterSpacing: "-0.01em" }}>U13 Timber · Tue and Thu</span>
+                  <span style={{ display: "block", fontSize: "20px", lineHeight: "26px", fontWeight: "700", letterSpacing: "-0.01em" }}>U13 Timber · Mon to Thu</span>
                   <span style={{ display: "block", fontSize: "14px", lineHeight: "20px", color: "#4a5a57" }}>16 families, Reece and Dani · set up by Dani</span>
                 </div>
                 <button type="button" aria-label="Close" onClick={() => setSheet(null)} style={{ fontFamily: "inherit", flex: "none", width: "44px", height: "44px", borderRadius: "999px", border: "1px solid #c5c8c4", background: "#ffffff", color: "#10211f", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", padding: "0" }}>
@@ -253,7 +253,7 @@ export default function ACC13eAcademyChatEmpty({ onNav }: { onNav?: (id: string)
               <div style={{ display: "flex", alignItems: "flex-start", gap: "12px" }}>
                 <div style={{ flexGrow: "1", minWidth: "0" }}>
                   <span style={{ display: "block", fontSize: "20px", lineHeight: "26px", fontWeight: "700", letterSpacing: "-0.01em" }}>Photos, videos and files</span>
-                  <span style={{ display: "block", fontSize: "14px", lineHeight: "20px", color: "#4a5a57" }}>U13 Timber · Tue and Thu · this term</span>
+                  <span style={{ display: "block", fontSize: "14px", lineHeight: "20px", color: "#4a5a57" }}>U13 Timber · Mon to Thu · this term</span>
                 </div>
                 <button type="button" aria-label="Close" onClick={() => setSheet(null)} style={{ fontFamily: "inherit", flex: "none", width: "44px", height: "44px", borderRadius: "999px", border: "1px solid #c5c8c4", background: "#ffffff", color: "#10211f", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", padding: "0" }}>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" aria-hidden="true">

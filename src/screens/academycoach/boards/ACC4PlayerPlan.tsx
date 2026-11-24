@@ -5,6 +5,7 @@ import { useContext } from 'react'
 import { demoToast } from '../../demoToast'
 import CoachNav from '../CoachNav'
 import { InCoachApp, coachGo } from '../menu'
+import { cameLine, dayMonth, useCoachTeam } from '../coachTeam'
 
 const C = {
   cap: { fontSize: "14px", lineHeight: "20px", color: "#4a5a57" },
@@ -18,6 +19,7 @@ const C = {
 
 export default function ACC4PlayerPlan({ onNav }: { onNav?: (id: string) => void }) {
   const go = coachGo(onNav)
+  const { g, ps } = useCoachTeam(), kai = ps.find(p => p.name === 'Kai Okonkwo')   // this plan is still Kai's; his sessions are counted from the roll
   const inApp = useContext(InCoachApp)
   return (
     <div data-board="ACC4-PlayerPlan" style={{ ...(inApp ? { flexGrow: 1, minHeight: 0 } : { width: 1180, minHeight: 820 }), position: "relative", boxSizing: "border-box", background: "#faf5ec", color: "#10211f", fontFamily: "var(--font-sans, 'DM Sans', system-ui, sans-serif)", display: "flex", flexDirection: "column" }}>
@@ -25,7 +27,7 @@ export default function ACC4PlayerPlan({ onNav }: { onNav?: (id: string) => void
       <div style={{ flex: "none", padding: "14px 28px 0", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "20px" }}>
         <div style={{ display: "flex", alignItems: "baseline", gap: "14px", minWidth: "0" }}>
           <h1 style={{ margin: "0", fontSize: "26px", lineHeight: "32px", fontWeight: "700", letterSpacing: "-0.02em", whiteSpace: "nowrap" }}>Kai Okonkwo, 13</h1>
-          <span style={{ ...C.cap, whiteSpace: "nowrap" }}>U13 Timber · joined 13 May · came to 5 of 6</span>
+          <span style={{ ...C.cap, whiteSpace: "nowrap" }}>{g.name} · joined {kai ? dayMonth(kai.joined) : '13 May'} · came to {kai ? cameLine(kai) : '12 of 13'}</span>
         </div>
         <div style={{ display: "flex", gap: "8px", flex: "none" }}>
           <button onClick={() => demoToast("New message to Tess Okonkwo.")} style={{ margin: "0", font: "inherit", textAlign: "inherit", cursor: "pointer", ...C.more }}>Message Kai’s mum</button>

@@ -4,6 +4,7 @@
 import { useContext } from 'react'
 import CoachNav from '../CoachNav'
 import { InCoachApp, coachGo } from '../menu'
+import { clock, useCoachTeam } from '../coachTeam'
 
 const C = {
   cap: { fontSize: "14px", lineHeight: "20px", color: "#4a5a57" },
@@ -14,6 +15,7 @@ const C = {
 
 export default function ACC8AcademyRecord({ onNav }: { onNav?: (id: string) => void }) {
   const go = coachGo(onNav)
+  const { g } = useCoachTeam()   // the team's times are read from the academy's list
   const inApp = useContext(InCoachApp)
   return (
     <div data-board="ACC8-AcademyRecord" style={{ ...(inApp ? { flexGrow: 1, minHeight: 0 } : { width: 1180, minHeight: 820 }), position: "relative", boxSizing: "border-box", background: "#faf5ec", color: "#10211f", fontFamily: "var(--font-sans, 'DM Sans', system-ui, sans-serif)", display: "flex", flexDirection: "column" }}>
@@ -40,7 +42,7 @@ export default function ACC8AcademyRecord({ onNav }: { onNav?: (id: string) => v
             </span>
             <span style={{ flexGrow: "1", minWidth: "0" }}>
               <span style={{ display: "block", fontSize: "17px", lineHeight: "23px", fontWeight: "700" }}>A drill in tonight’s session</span>
-              <span style={{ display: "block", fontSize: "14px", lineHeight: "20px", color: "#4a5a57" }}>U13 Timber, 5:45 · finishing circuit, three stations</span>
+              <span style={{ display: "block", fontSize: "14px", lineHeight: "20px", color: "#4a5a57" }}>{g.name}, {clock(g)} · finishing circuit, three stations</span>
             </span>
             <span style={{ display: "inline-flex", alignItems: "center", height: "24px", padding: "0 9px", borderRadius: "999px", fontSize: "12px", fontWeight: "700", whiteSpace: "nowrap", background: "#eef5f2", color: "#2f6252" }}>Run 3</span>
             <span style={{ width: "6px" }} />

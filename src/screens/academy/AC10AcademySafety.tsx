@@ -1,9 +1,13 @@
 // AC10-AcademySafety: Academy owner, child safety.
-// Drawn from the board in the academy handover (24 Nov). The menus above it are the owner app's own (OwnerHeader).
+// Drawn from the board in the academy handover (24 Nov). The children check line is counted from the store's adults (pack v30: 18 current, 1 runs out 30 June). The menus above it are the owner app's own (OwnerHeader).
 import { S } from './adStyles'
 import Tap from './Tap'
+import { useAcademy } from './academyStore'
 
 export default function AC10AcademySafety() {
+  // Counted from the store's adults (pack v30): checks that are current, the ones that run out, and any still to look up.
+  const adults = useAcademy().adults, current = adults.filter(x => x.checkOk).length, ending = adults.filter(x => x.checkOk && x.check !== 'Current'), missing = adults.length - current
+  const checks = [`${current} current`, ...(ending.length === 1 ? [`1 ${ending[0].check.replace(/^R/, 'r')}`] : ending.length ? [`${ending.length} run out soon`] : []), ...(missing ? [`${missing} to look up`] : [])].join(' · ')
   return (
     <>
       <div style={{ flex: 'none', padding: '14px 28px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 20 }}>
@@ -23,7 +27,7 @@ export default function AC10AcademySafety() {
             <span style={{ flex: 'none', width: 34, height: 34, borderRadius: 999, background: '#e8cfcf', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }}>!</span>
             <span style={{ flexGrow: 1, minWidth: 0 }}>
               <span style={{ display: 'block', fontSize: 15, lineHeight: '21px', fontWeight: 700 }}>Every coach has a children check</span>
-              <span style={{ display: 'block', fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>3 valid · 1 runs out 30 June</span>
+              <span style={{ display: 'block', fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>{checks}</span>
             </span>
             <span style={{ display: 'inline-flex', alignItems: 'center', height: 24, padding: '0 9px', borderRadius: 999, fontSize: 12, fontWeight: 700, whiteSpace: 'nowrap', background: '#e8cfcf', color: '#10211f', boxSizing: 'content-box' }}>Needs you</span>
             <span style={{ width: 8 }} />

@@ -16,16 +16,18 @@ export type Player = {
   goal: string; goal_skill: string | null; notes_in_last_3_weeks: boolean; clips_sent_this_term: number
   term_report: 'To write' | 'Drafted' | 'Too new'; term3: 'Staying' | 'Not said' | 'Leaving'
   fees_status: 'Paid' | 'On a plan' | 'Late'; fees_owed: number; fees_note: string
+  /** the owner recorded this term's fee by hand on `AC5`: cash or a bank transfer, not the card (pack v31) */ paid_another_way?: boolean
   same_step_two_terms: boolean; ready_to_move_to: string | null; one_on_ones: boolean
+  /** the family's five answers to the term survey, each 1 to 5, in the order of `survey_questions`; null when they have not answered (pack v30) */ survey: number[] | null
 }
 /** An adult who works with children here: the children check, whether it is linked to the academy, and the child safety course. Typed in by the owner; Clean Sheet reminds, it does not check with the state. */
 export type Adult = { name: string; ci: string; role: string; check: string; checkOk: boolean; linked: boolean; course: boolean; added?: boolean }
-export type Academy = { adults: Adult[]; today: string; term: string; price_this_term: Record<Program, number>; price_for_the_year: Record<Program, [string, number][]>; coach_rate_a_session: number; half_pitch_a_term: number; skills: string[]; step_words: Record<string, string[]>; groups: Group[]; players: Player[] }
+export type Academy = { adults: Adult[]; today: string; term: string; price_this_term: Record<Program, number>; price_for_the_year: Record<Program, [string, number][]>; coach_rate_a_session: number; half_pitch_a_term: number; /** the five lines of the family survey */ survey_questions: string[]; /** what the academy pays the partner club for each player in a game team, for a season */ partner_club_fee_a_game_player_a_season: number; skills: string[]; step_words: Record<string, string[]>; groups: Group[]; players: Player[] }
 
 const SAMPLE = raw as unknown as Omit<Academy, 'adults'>
 export const PROGRAMS: Program[] = ['Foundation', 'Development', 'Advanced']
 /** Sessions a coach is paid for in a term, in "what a team earns". */
-export const SESSIONS_A_TERM = 20
+export const SESSIONS_A_TERM = (raw as { sessions_a_team_a_term?: number }).sessions_a_team_a_term ?? 40
 /** A week of attendance below this share is mauve. A coach's basic below `BASIC_LOW` is mauve. */
 export const CAME_LOW = 0.85, BASIC_LOW = 2 / 3
 /** The first day of the term: weeks are counted from here. */
@@ -33,7 +35,7 @@ const TERM_START = '2026-04-20'
 
 // ── what a person has changed, kept apart from the sample ──
 type Edits = { players: Record<number, Partial<Player>>; groups: Record<string, Partial<Group>>; added: Group[]; rate?: number; pitch?: number; adults?: Adult[]; checks?: Record<string, Partial<Adult>> }
-const KEY = 'cs_academy_v2', none = (): Edits => ({ players: {}, groups: {}, added: [] })
+const KEY = 'cs_academy_v3', none = (): Edits => ({ players: {}, groups: {}, added: [] })
 let edits: Edits = (() => { try { const v = JSON.parse(localStorage.getItem(KEY) ?? 'null') as Edits | null; if (v?.players && v.groups && v.added) return v } catch { /* start from the sample */ } return none() })()
 // The children checks as the sample has them: one check runs out on 30 June, two new coaches are still to link, three have the course to do.
 // These are not in `academy-data.json`; the designer's screens typed them by name, so they are kept here, in one place, and `AD23` adds to them.
@@ -103,6 +105,15 @@ export function teamCounts(a: Academy, g: Group): TeamCounts {
 }
 /** The coach's four basics for a set of players: notes in the last 3 weeks, a goal set, at least one clip sent, the report drafted. */
 export const basics = (ps: Player[]) => { const c = count(ps); return [['Notes in the last 3 weeks', c.notes], ['A goal set', c.goal], ['Families sent a clip this term', c.clip], ['Term reports drafted', c.report]].map(([label, n]) => ({ label: label as string, n: n as number, of: c.n, low: share(n as number, c.n) < BASIC_LOW })) }
+/** The survey for a set of players: how many answered, and for each question the average and how many gave 4 or 5. */
+export function surveyOf(a: Academy, ps: Player[]) {
+  const got = ps.filter(p => p.survey && p.survey.length === a.survey_questions.length), n = got.length
+  return { n, of: ps.length, q: a.survey_questions.map((text, k) => { const v = got.map(p => p.survey![k]); return { text, avg: n ? v.reduce((t, x) => t + x, 0) / n : 0, top: v.filter(x => x >= 4).length } }) }
+}
+/** A figure is Strong at this many answers or more, and an Estimate below. Below `RATE_FROM` a count is shown with no percentage. */
+export const STRONG_FROM = 50, RATE_FROM = 30
+/** Players in a game team at the partner club: everyone but the teams that play no games yet (the under 6s). */
+export const gamePlayers = (a: Academy) => { const out = new Set(a.groups.filter(g => /^No games/.test(g.team)).map(g => g.id)); return a.players.filter(p => !out.has(p.group)) }
 export const money = (n: number) => `$${Math.round(n).toLocaleString('en-AU')}`
 
 /** Players up a step on each of the four core skills: "Where the progress is" on a team page. */
@@ -130,7 +141,7 @@ export function needs(a: Academy, g: Group): Need[] {
   return out.slice(0, 6)
 }
 
-/** A program, or with no program the whole academy: its teams, players, places, the counts, and the money this term. Fees billed is players × what each pays; coaches is 20 sessions a team; pitch hire is half a pitch a team. */
+/** A program, or with no program the whole academy: its teams, players, places, the counts, and the money this term. Fees billed is players × what each pays; coaches is `SESSIONS_A_TERM` (40) sessions a team; pitch hire is half a pitch a team. */
 export function programCounts(a: Academy, prog?: Program) {
   const teams = prog ? groupsIn(a, prog) : a.groups, ids = new Set(teams.map(g => g.id)), ps = a.players.filter(p => ids.has(p.group)), c = count(ps)
   const n = (g: Group) => ps.filter(p => p.group === g.id).length
@@ -167,8 +178,17 @@ export function sendClip(playerId: number) { const p = now(playerId); if (!p) re
 export function setReport(playerId: number, status: Player['term_report']) { patch(playerId, { term_report: status }); commit() }
 /** The Term 3 answer (`ADP3`, in the family app). */
 export function setTerm3(playerId: number, answer: Player['term3']) { patch(playerId, { term3: answer }); commit() }
+/** The family's survey (`ADP11`, in the family app): five answers, each 1 to 5, in the order of `survey_questions`. An empty list takes the answer away. */
+export function setSurvey(playerId: number, answers: number[]) {
+  const ok = answers.length === state.survey_questions.length && answers.every(v => Number.isInteger(v) && v >= 1 && v <= 5)
+  if (!ok && answers.length) return
+  patch(playerId, { survey: ok ? [...answers] : null }); commit()
+}
 /** A fee paid (`AC5`, or the payment provider). */
-export function payFees(playerId: number) { patch(playerId, { fees_status: 'Paid', fees_owed: 0, fees_note: '' }); commit() }
+export function payFees(playerId: number, anotherWay = false) { patch(playerId, { fees_status: 'Paid', fees_owed: 0, fees_note: '', ...(anotherWay ? { paid_another_way: true } : null) }); commit() }
+/** A plan offered to a late family (`AC5`, pack v31): the family is on a plan, and what they owe is still to come. One family, or several at once. */
+export function offerPlan(playerIds: number | number[]) { for (const id of [playerIds].flat()) { const p = now(id); if (p && p.fees_status === 'Late') patch(id, { fees_status: 'On a plan', fees_note: PLAN_OFFERED }) } commit() }
+export const PLAN_OFFERED = 'Plan offered · first part on 15 June'
 /** A team's coach, places or price (`AD20`), and a new team. */
 export function setGroup(groupId: string, p: Partial<Pick<Group, 'coach' | 'ci' | 'cap' | 'price' | 'when' | 'where' | 'name' | 'ages' | 'days' | 'team'>>) { edits = { ...edits, groups: { ...edits.groups, [groupId]: { ...edits.groups[groupId], ...p } } }; commit() }
 export function addGroup(g: Group) { edits = { ...edits, added: [...edits.added.filter(x => x.id !== g.id), g] }; commit() }

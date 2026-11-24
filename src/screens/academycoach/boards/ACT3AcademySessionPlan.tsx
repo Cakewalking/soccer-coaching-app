@@ -5,6 +5,7 @@ import { useContext } from 'react'
 import { demoToast } from '../../demoToast'
 import CoachNav from '../CoachNav'
 import { InCoachApp, coachGo } from '../menu'
+import { clock, useCoachTeam } from '../coachTeam'
 
 const C = {
   cap: { fontSize: "14px", lineHeight: "20px", color: "#4a5a57" },
@@ -17,6 +18,7 @@ const C = {
 
 export default function ACT3AcademySessionPlan({ onNav }: { onNav?: (id: string) => void }) {
   const go = coachGo(onNav)
+  const { g } = useCoachTeam()   // the team's times are read from the academy's list
   const inApp = useContext(InCoachApp)
   return (
     <div data-board="ACT3-AcademySessionPlan" style={{ ...(inApp ? { flexGrow: 1, minHeight: 0 } : { width: 1180, minHeight: 820 }), position: "relative", boxSizing: "border-box", background: "#faf5ec", color: "#10211f", fontFamily: "var(--font-sans, 'DM Sans', system-ui, sans-serif)", display: "flex", flexDirection: "column" }}>
@@ -24,7 +26,7 @@ export default function ACT3AcademySessionPlan({ onNav }: { onNav?: (id: string)
       <div style={{ flex: "none", padding: "14px 28px 0", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "20px" }}>
         <div style={{ display: "flex", alignItems: "baseline", gap: "14px", minWidth: "0" }}>
           <h1 style={{ margin: "0", fontSize: "26px", lineHeight: "32px", fontWeight: "700", letterSpacing: "-0.02em", whiteSpace: "nowrap" }}>Tuesday · U13 Timber</h1>
-          <span style={{ ...C.cap, whiteSpace: "nowrap" }}>2 June, 4:30 pm · Messmate Primary School, pitch 1 · 60 minutes</span>
+          <span style={{ ...C.cap, whiteSpace: "nowrap" }}>2 June, {clock(g)} pm · Messmate Primary School, pitch 1 · 60 minutes</span>
         </div>
         <div style={{ display: "flex", gap: "8px", flex: "none" }}>
           <button onClick={() => demoToast("Plan summary sent to 11 families: time, place, what to bring.")} style={{ margin: "0", font: "inherit", textAlign: "inherit", cursor: "pointer", ...C.more }}>Send to families</button>
@@ -38,7 +40,7 @@ export default function ACT3AcademySessionPlan({ onNav }: { onNav?: (id: string)
             <span style={{ ...C.cap }}>4 parts · 11 players · 2 coaches</span>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "56px minmax(0,1fr) auto", gap: "12px", alignItems: "center", minHeight: "68px", borderTop: "1px solid #e9eae8" }}>
-            <strong style={{ ...C.num, fontSize: "15px" }}>4:30</strong>
+            <strong style={{ ...C.num, fontSize: "15px" }}>{clock(g)}</strong>
             <span>
               <strong style={{ display: "block", fontSize: "15px" }}>Arrival game: tag with a ball</strong>
               <span style={{ ...C.cap }}>8 minutes · everyone moving, no queue</span>
@@ -46,7 +48,7 @@ export default function ACT3AcademySessionPlan({ onNav }: { onNav?: (id: string)
             <button onClick={() => demoToast("Three other drills for this slot, with reasons.")} style={{ margin: "0", font: "inherit", textAlign: "inherit", cursor: "pointer", ...C.more }}>Swap</button>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "56px minmax(0,1fr) auto", gap: "12px", alignItems: "center", minHeight: "68px", borderTop: "1px solid #e9eae8" }}>
-            <strong style={{ ...C.num, fontSize: "15px" }}>4:38</strong>
+            <strong style={{ ...C.num, fontSize: "15px" }}>{clock(g, 8)}</strong>
             <span>
               <strong style={{ display: "block", fontSize: "15px" }}>Open body, in pairs</strong>
               <span style={{ ...C.cap }}>12 minutes · check a shoulder, receive side-on</span>
@@ -54,7 +56,7 @@ export default function ACT3AcademySessionPlan({ onNav }: { onNav?: (id: string)
             <button onClick={() => demoToast("Three other drills for this slot, with reasons.")} style={{ margin: "0", font: "inherit", textAlign: "inherit", cursor: "pointer", ...C.more }}>Swap</button>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "56px minmax(0,1fr) auto", gap: "12px", alignItems: "center", minHeight: "68px", borderTop: "1px solid #e9eae8" }}>
-            <strong style={{ ...C.num, fontSize: "15px" }}>4:50</strong>
+            <strong style={{ ...C.num, fontSize: "15px" }}>{clock(g, 20)}</strong>
             <span>
               <strong style={{ display: "block", fontSize: "15px" }}>Rondo with a bounce player</strong>
               <span style={{ ...C.cap }}>15 minutes · groups of 5 and 6</span>
@@ -62,7 +64,7 @@ export default function ACT3AcademySessionPlan({ onNav }: { onNav?: (id: string)
             <button onClick={() => demoToast("Three other drills for this slot, with reasons.")} style={{ margin: "0", font: "inherit", textAlign: "inherit", cursor: "pointer", ...C.more }}>Swap</button>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "56px minmax(0,1fr) auto", gap: "12px", alignItems: "center", minHeight: "68px", borderTop: "1px solid #e9eae8" }}>
-            <strong style={{ ...C.num, fontSize: "15px" }}>5:05</strong>
+            <strong style={{ ...C.num, fontSize: "15px" }}>{clock(g, 35)}</strong>
             <span>
               <strong style={{ display: "block", fontSize: "15px" }}>4 v 4 through the middle</strong>
               <span style={{ ...C.cap }}>20 minutes · a goal only counts after a half-turn</span>

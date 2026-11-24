@@ -7,8 +7,9 @@ import { useBackState } from '../backState'
 import { useState } from 'react'
 import OwnerHeader from './academy/OwnerHeader'
 import { OwnerGo, ownerMainOf, ownerStem, type OwnerItem } from './academy/ownerMenu'
-import { OWNER_BOARDS, isPlayerBoard, isTeamBoard } from './academy/adScreens'
+import { OWNER_BOARDS, isCoachBoard, isPlayerBoard, isTeamBoard } from './academy/adScreens'
 import TeamPage from './academy/TeamPage'
+import CoachPage from './academy/CoachPage'
 import PlayerPage from './academy/PlayerPage'
 import AC12AcademyBroadcast from './step4/AC12AcademyBroadcast'
 
@@ -20,16 +21,17 @@ const HOME = 'AD1-AcademyHome'
 // The owner's Home is AD1. Turn this on to show the story home on Overview again where one is passed in.
 const STORY_HOME = false
 // Two pages the handover's menu does not list. They stay at the end of Home so nothing built is lost.
-const EXTRA: OwnerItem[] = [{ label: 'Messages', id: 'messages' }, { label: 'Academy colours', id: 'colours' }]
+// Messages is in the handover's own menu from pack v30 (ADM1-Messages), so only Academy colours is added here.
+const EXTRA: OwnerItem[] = [{ label: 'Academy colours', id: 'colours' }]
 // The short names this app was opened with before each page had a board id.
 const SHORT: Record<string, string> = {
   home: HOME, overview: HOME, trials: 'AC3-Trials', reports: 'AC7-ReportsOut', safety: 'AC10-AcademySafety', partner: 'AC11-PartnerClub',
-  programs: 'AC2-Programs', players: 'AC4-AcademyPlayers', curriculum: 'AD6-YearPlan', coaches: 'AC6-AcademyCoaches', money: 'AC5-Fees',
+  messages: 'ADM1-Messages', programs: 'AC2-Programs', players: 'AC4-AcademyPlayers', curriculum: 'AD6-YearPlan', coaches: 'AC6-AcademyCoaches', money: 'AC5-Fees',
 }
 // Every page this app shows in its own frame. Anything else opens over the top with a Back bar.
 const IN_FRAME = new Set([...Object.keys(OWNER_BOARDS), 'AC12-AcademyBroadcast', ...EXTRA.map(s => s.id)])
 // A team's page and a player's page are one template each, opened by the board id of the team or the player.
-const inFrame = (id: string) => IN_FRAME.has(id) || isTeamBoard(id) || isPlayerBoard(id)
+const inFrame = (id: string) => IN_FRAME.has(id) || isTeamBoard(id) || isPlayerBoard(id) || isCoachBoard(id)
 // The empty state of each board: "AD3-Timetable" has "AD3e-TimetableEmpty".
 const EMPTY_OF: Record<string, string> = {}
 for (const e of IN_FRAME) if (/^A[CD]\d+e-/.test(e)) { const full = [...IN_FRAME].find(id => id !== e && ownerStem(id) === ownerStem(e)); if (full) EMPTY_OF[full] = e }
@@ -71,7 +73,7 @@ export default function AcademyOwnerApp({ empty = false, initialScreen, onNavCha
 
   const story = STORY_HOME && !empty && screen === HOME ? homeStory : null
   const Board = story ? undefined : OWNER_BOARDS[screen]
-  const team = isTeamBoard(screen)
+  const team = isTeamBoard(screen), coach = isCoachBoard(screen)   // a coach's page is one template too (pack v31)
 
   const ask = (
     <button onClick={() => setAskOpen(o => !o)} aria-label="Ask Clean Sheet" aria-pressed={askOpen} style={{ width: 44, height: 44, margin: '0 -5px', padding: 0, border: 0, background: 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', flexShrink: 0 }}>
@@ -86,11 +88,12 @@ export default function AcademyOwnerApp({ empty = false, initialScreen, onNavCha
     <div style={frame}>
       <OwnerHeader current={screen} onGo={menuGo} extra={EXTRA} tools={ask}/>
 
-      <div data-screen={Board || team ? screen : undefined} style={Board || team
+      <div data-screen={Board || team || coach ? screen : undefined} style={Board || team || coach
         ? { flexGrow: 1, minHeight: 712, display: 'flex', flexDirection: 'column', position: 'relative', color: INK, fontFamily: "'DM Sans',system-ui,sans-serif" }
         : { flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden', position: 'relative' }}>
         {Board && <Board/>}
         {team && <TeamPage id={screen}/>}
+        {coach && <CoachPage id={screen}/>}
         {story}
         {screen === 'messages' && <Messaging me="academyowner" />}
         {screen === 'colours'  && <div style={{ overflow: 'auto' }}><ClubColours storeKey="academy" club="Tall Timber Academy" title="Academy colours" by="the owner" whole="academy" /></div>}

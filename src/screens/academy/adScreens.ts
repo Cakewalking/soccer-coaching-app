@@ -1,4 +1,4 @@
-// Every academy owner board drawn in the academy handover (24 Nov, v2), by board id: the new screens AD1 to AD18 the forms AD19 to AD25, the academy's switch of view (ADS1),
+// Every academy owner board drawn in the academy handover (24 Nov, v2), by board id: the new screens AD1 to AD18 the forms AD19 to AD25, the academy's switch of view (ADS1), the owner's decision on a trial (ADT1, pack v29),
 // the earlier ones AC1 to AC11 as redrawn, and the empty state of each (the ids ending in e).
 // AC12 (message families) has sheets and is built by hand in step4/AC12AcademyBroadcast.
 import type { ComponentType } from 'react'
@@ -65,7 +65,13 @@ import AD22ChangeBlock from './AD22ChangeBlock'
 import AD23AddCoach from './AD23AddCoach'
 import AD24BringIn from './AD24BringIn'
 import AD25Reference from './AD25Reference'
+import ADL1DrillLibrary from './ADL1DrillLibrary'
+import ADL2Drill from './ADL2Drill'
+import ADQ1Session from './ADQ1Session'
+import ADM1Messages from './ADM1Messages'
 import ADS1SwitchView from './ADS1SwitchView'
+import ADT1TrialDecision from './ADT1TrialDecision'
+import ADW1WatchSession from './ADW1WatchSession'
 
 export const OWNER_BOARDS: Record<string, ComponentType> = {
   'AC1-AcademyHome': AC1AcademyHome,
@@ -131,11 +137,19 @@ export const OWNER_BOARDS: Record<string, ComponentType> = {
   'AD23-AddCoach': AD23AddCoach,
   'AD24-BringIn': AD24BringIn,
   'AD25-Reference': AD25Reference,
+  'ADL1-DrillLibrary': ADL1DrillLibrary,   // the drill library, one night's session and one drill (pack v31, section G)
+  'ADL2-Drill': ADL2Drill,
+  'ADQ1-Session': ADQ1Session,
+  'ADM1-Messages': ADM1Messages,
   'ADS1-SwitchView': ADS1SwitchView,
+  'ADT1-TrialDecision': ADT1TrialDecision,
+  'ADW1-WatchSession': ADW1WatchSession,
 }
 
 /** A team's page (`ADG01-Team` to `ADG17-Team`, and any team added since) and a player's page (`ADF01-Player` to `ADF226-Player`): one template each, in TeamPage and PlayerPage. */
 export const isTeamBoard = (id: string) => /^ADG\d+-Team$/.test(id)
 export const isPlayerBoard = (id: string) => /^ADF\d+-Player$/.test(id)
+/** A coach's page (`ADCO01-Coach` to `ADCO17-Coach`, in team order, and the coach of any team added since): one template, in CoachPage (pack v31). */
+export const isCoachBoard = (id: string) => /^ADCO\d+-Coach$/.test(id)
 /** True for a board the owner app shows in its own frame, by its full id. */
-export const isOwnerBoard = (id: string) => id in OWNER_BOARDS || id === 'AC12-AcademyBroadcast' || isTeamBoard(id) || isPlayerBoard(id)
+export const isOwnerBoard = (id: string) => id in OWNER_BOARDS || id === 'AC12-AcademyBroadcast' || isTeamBoard(id) || isPlayerBoard(id) || isCoachBoard(id)

@@ -3,14 +3,14 @@
 // Change the rate in AD21 and every figure here moves.
 import { S } from './adStyles'
 import Tap from './Tap'
-import { money, teamBoard, useAcademy, type Group } from './academyStore'
+import { money, useAcademy, type Group } from './academyStore'
+import { ONE_ON_ONES as ONES, ONE_RATE, coachBoard, fortnightSessions as teamSessions } from './coachStore'
 import { Cap, Head, Kpi, Kpis, MAIN, Proof, Row, SAND, Sources, Th, Tile, Who } from './kit'
 
 const COLS = '1.5fr 1.1fr 1.2fr 1.1fr 0.8fr'
-// A fortnight is two weeks of each team's rostered days: 4 sessions for a team that trains twice a week. A team with no sessions yet has none.
-const teamSessions = (g: Group) => g.dates.length ? g.days.length * 2 : 0
+// A fortnight's sessions, one-on-ones and their rate are in coachStore, so this table and each coach's own page (pack v31) cannot disagree. Each row opens that coach.
 // Sample values, not in the list of players: who ran one-on-ones this fortnight and at what rate, the owner's own, and the one session covered.
-const ONE_ON_ONES: Record<string, number> = { 'Reece Whitlam': 2 }, ONE_RATE = 50, OWNER_ONES = 8, COVER = { n: 1, line: 'Sam ran Ollie’s Thursday' }
+const ONE_ON_ONES: Record<string, number> = Object.fromEntries(Object.entries(ONES).map(([n, v]) => [n, v.fortnight])), OWNER_ONES = 8, COVER = { n: 1, line: 'Sam ran Ollie’s Thursday' }
 
 export default function AD9RosterPay() {
   const a = useAcademy(), rate = a.coach_rate_a_session
@@ -31,7 +31,7 @@ export default function AD9RosterPay() {
       <Tile title="This fortnight" right={<Proof kind="Strong" />}>
         <Th cols={COLS} heads={['Coach', 'Team', 'Team sessions', 'One-on-ones', 'Total']} />
         {a.groups.map(g => { const k = teamSessions(g), o = ONE_ON_ONES[g.coach] ?? 0; return (
-          <Row key={g.id} cols={COLS} to={teamBoard(g)} h={50}>
+          <Row key={g.id} cols={COLS} to={coachBoard(a, g)} h={50}>
             <Who ini={g.ci} name={g.coach} bg={SAND} />
             <span>{g.name}</span>
             <span>{k ? `${k} at ${money(g.rate)} · ${money(k * g.rate)}` : 'None yet'}</span>

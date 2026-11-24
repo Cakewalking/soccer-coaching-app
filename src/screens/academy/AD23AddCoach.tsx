@@ -17,7 +17,7 @@ const two = { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 } as cons
 
 export default function AD23AddCoach() {
   const a = useAcademy(), go = useContext(OwnerGo)
-  const [f, setF] = useState({ name: 'Mia Farrow', role: 1, groups: 'Foundation · Mon and Wed', runsOut: '14 March 2031', looked: false, linked: false })
+  const [f, setF] = useState({ name: 'Mia Farrow', role: 1, groups: 'Foundation · Mon to Thu', runsOut: '14 March 2031', looked: false, linked: false })
   const put = <K extends keyof typeof f>(k: K) => (v: (typeof f)[K]) => setF(x => ({ ...x, [k]: v }))
   const name = f.name.trim(), first = name.split(' ')[0] || 'They'
   function save() {

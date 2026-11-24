@@ -1,15 +1,22 @@
 // AD1-AcademyHome: Academy owner, home: progress across the whole academy, the players who need something, whether every coach is doing the basics, and what needs the owner.
-// A template over the store (programs v2, 24 Nov): the fees, the players up a step, the four counts under it, the coach table, "Are families staying?"
+// A template over the store (programs v2, 24 Nov): the fees, the players up a step, the four counts under it, Oversight, "Are families staying?"
 // and the counted lines of "Needs you" all come from the list of players, so a roll, a goal or a fee put in anywhere moves them here.
-// STILL SAMPLE: last term's figure in the hero, the pitches in use today, the trial families and the session that needs cover.
+// Oversight (25 Nov) answers "is every coach doing the basics?": four meters for the whole academy, one line naming the teams with a mauve bar,
+// and a tile for each team, in team order, with three small bars (notes, goals, clips). Nothing in it is typed.
+// The trial families waiting are counted from the Trials list (trialStore).
+// STILL SAMPLE: last term's figure in the hero and the session that needs cover.
 import { S, INK } from './adStyles'
 import Tap from './Tap'
-import { BASIC_LOW, PROGRAMS, count, firstName, money, paysLine, playersIn, programCounts, share, teamBoard, useAcademy, worthACall } from './academyStore'
-import { Cap, Link, Lines, MAUVE, Met, Num, Of, PALE, Row, SAND, Th, Who } from './kit'
+import { BASIC_LOW, PROGRAMS, basics, count, firstName, money, paysLine, playersIn, programCounts, share, teamBoard, useAcademy, worthACall } from './academyStore'
+import { useTrials } from './trialStore'
+import { useNeedsReply } from './messageStore'
+import { Cap, G, Link, Lines, LOW, MAUVE, Met, PALE } from './kit'
 
-const COLS = '1.5fr 1fr 1fr 1.1fr 0.9fr'
+/** "A, B and C": names in the order given, which is team order. */
+const list = (names: string[]) => names.length > 1 ? `${names.slice(0, -1).join(', ')} and ${names[names.length - 1]}` : names[0] ?? ''
 const DAY = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'], MONTH = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-const chip = { height: 44, padding: '0 14px', borderRadius: 12, background: PALE, display: 'inline-flex', flexDirection: 'column', justifyContent: 'center', textDecoration: 'none', color: INK, whiteSpace: 'nowrap' } as const
+// The chips and the two buttons are a little tighter than the board, the bar's gaps 2px tighter and the greeting 1px smaller, so the price beside the fees total still fits the bar.
+const chip = { height: 44, padding: '0 12px', borderRadius: 12, background: PALE, display: 'inline-flex', flexDirection: 'column', justifyContent: 'center', textDecoration: 'none', color: INK, whiteSpace: 'nowrap' } as const
 const dev = { ...S.tile, gap: 2, padding: '10px 14px', textDecoration: 'none', color: INK } as const
 const big = { ...S.num, fontSize: 28, lineHeight: '32px', letterSpacing: '-0.02em' } as const
 
@@ -19,13 +26,18 @@ export default function AD1AcademyHome() {
   const today = a.groups.filter(g => g.days.includes(dow)).length
   const ready = a.players.filter(p => p.ready_to_move_to), stuck = a.players.filter(p => p.same_step_two_terms), noGoal = a.players.filter(p => !p.goal), calls = a.players.filter(worthACall)
   const noGoalIn = PROGRAMS.map(p => ({ p, k: noGoal.filter(x => x.program === p).length })).reduce((best, x) => x.k > best.k ? x : best)
-  // The three coaches to look at first: the lowest on notes and clips for the size of their team. Shown in team order; nobody is ranked.
-  const rows = a.groups.map((g, i) => ({ g, i, s: count(playersIn(a, g.id)) })).filter(x => x.s.n > 0)
-  const three = [...rows].sort((x, y2) => (x.s.clip + x.s.notes) / x.s.n - (y2.s.clip + y2.s.notes) / y2.s.n || x.i - y2.i).slice(0, 3).sort((x, y2) => x.i - y2.i)
+  // Oversight: the four basics for the whole academy, and for each team its notes, goals and clips. A bar is mauve below two-thirds.
+  // Teams are in the list's order, never ranked. A team with no players yet has nothing to count, so nothing of it is mauve.
+  const meters = basics(a.players).map((b, k) => ({ ...b, label: ['Notes, last 3 weeks', 'A goal set', 'Families sent a clip', 'Reports drafted'][k], to: k === 3 ? 'AC7-ReportsOut' : 'AC6-AcademyCoaches' }))
+  const tiles = a.groups.map(g => { const s = count(playersIn(a, g.id)), bars = [['notes', s.notes], ['goals', s.goal], ['clips', s.clip]].map(([what, v]) => ({ what: what as string, v: v as number, low: s.n > 0 && share(v as number, s.n) < BASIC_LOW })); return { g, s, bars, low: bars.some(b => b.low) } })
+  const look = tiles.filter(t => t.low), fine = tiles.length - look.length
+  const slotsToday = new Set(a.groups.filter(g => g.days.includes(dow)).map(g => g.when)).size
+  const toAnswer = useNeedsReply()
+  const waiting = useTrials().filter(t => t.col === 'call' && !t.asked).length
   const ending = a.adults.filter(x => x.check !== 'Current')
   const prices = a.groups.map(g => g.price), priceRange = prices.length ? `${money(Math.min(...prices))} to ${money(Math.max(...prices))}` : ''
   const need = [
-    { text: '3 trial families are waiting on an offer', to: 'AC3-Trials' },
+    ...(waiting ? [{ text: `${waiting} trial ${waiting === 1 ? 'family is' : 'families are'} waiting on an offer`, to: 'AC3-Trials' }] : []),
     ...(all.notSaid ? [{ text: `${all.notSaid} ${all.notSaid === 1 ? 'family hasn’t' : 'families haven’t'} said about Term 3`, to: 'AD4-NextTerm' }] : []),
     ...(all.late ? [{ text: `${all.late} ${all.late === 1 ? 'family is' : 'families are'} behind on fees`, to: 'AC5-Fees' }] : []),
     { text: 'U13 Gold needs cover on Thu 11 June', to: 'AD3-Timetable' },
@@ -33,23 +45,24 @@ export default function AD1AcademyHome() {
   ]
   return (
     <main style={{ flexGrow: 1, minHeight: 0, padding: '14px 28px 16px', display: 'flex', flexDirection: 'column', gap: 12 }}>
-      <section aria-label="Now" style={{ flex: 'none', borderRadius: 16, background: '#ffffff', border: '1px solid #c5c8c4', padding: '8px 10px 8px 16px', display: 'flex', alignItems: 'center', gap: 10 }}>
-        <strong style={{ fontSize: 15, whiteSpace: 'nowrap' }}>Hi Dani · {dow} {d} {MONTH[m - 1]} · Term 2, week 7 of 10</strong>
-        <Tap to="AD3-Timetable" style={chip}><strong style={{ fontSize: 13, lineHeight: '16px' }}>Today</strong><span style={{ fontSize: 12, lineHeight: '15px', color: '#33443f' }}>{today} teams train · 6 pitches</span></Tap>
+      <section aria-label="Now" style={{ flex: 'none', borderRadius: 16, background: '#ffffff', border: '1px solid #c5c8c4', padding: '8px 10px 8px 16px', display: 'flex', alignItems: 'center', gap: 8 }}>
+        <strong style={{ fontSize: 14, whiteSpace: 'nowrap' }}>Hi Dani · {dow} {d} {MONTH[m - 1]} · Term 2, week 7 of 10</strong>
+        <Tap to="AD3-Timetable" style={chip}><strong style={{ fontSize: 13, lineHeight: '16px' }}>Today</strong><span style={{ fontSize: 12, lineHeight: '15px', color: '#33443f' }}>{today} {today === 1 ? 'team trains' : 'teams train'} · {slotsToday} time {slotsToday === 1 ? 'slot' : 'slots'}</span></Tap>
         {/* The price a player pays sits beside the fees total, so the total is never read as a price. */}
         <Tap to="AC5-Fees" style={chip} aria-label={`Fees this term: ${money(all.collected)} of ${money(all.billed)}. A player pays ${paysLine(a)} this term.`}><strong style={{ fontSize: 13, lineHeight: '16px' }}>Fees this term</strong><span style={{ fontSize: 12, lineHeight: '15px', color: '#33443f' }}>{money(all.collected)} of {money(all.billed)} · {priceRange} each</span></Tap>
         <span style={{ flexGrow: 1 }} />
-        <Tap to="AC12-AcademyBroadcast" style={S.more}>Message families</Tap>
-        <Tap say="Trial link copied. Anyone with it can book a free trial." style={S.primary}>Share the trial link</Tap>
+        <Tap to="ADM1-Messages" style={{ ...S.more, padding: "0 12px" }}>{toAnswer ? `Messages · ${toAnswer} to answer` : "Messages"}</Tap>
+        <Tap say="Trial link copied. Anyone with it can book a free trial." style={{ ...S.primary, padding: "0 12px" }}>Share the trial link</Tap>
       </section>
-      <div style={{ flexGrow: 1, minHeight: 0, display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 330px', gap: 12 }}>
+      {/* A tile is as tall as its content, never stretched to fill the window (pack v32). */}
+      <div style={{ flex: 'none', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 330px', gap: 12, alignItems: 'start' }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12, minHeight: 0 }}>
           <section aria-label="Progress" style={{ flex: 'none', borderRadius: 18, background: '#1c3a33', color: '#ffffff', padding: '16px 20px', display: 'flex', flexDirection: 'column', gap: 8 }}>
             <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
               <span style={{ flexGrow: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: 6 }}>
                 <span style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', color: '#f4c95d' }}>PROGRESS · THE WHOLE ACADEMY · {a.groups.length} TEAMS · THIS TERM</span>
                 <strong style={{ fontSize: 25, lineHeight: '31px', letterSpacing: '-0.01em' }}>{all.up} of your {n} players are up a step this term.</strong>
-                <span style={{ fontSize: 14, lineHeight: '20px', color: '#cfe6dc' }}>On at least one core skill since week 1. At this point last term it was 139 of 204.</span>
+                <span style={{ fontSize: 14, lineHeight: '20px', color: '#cfe6dc' }}>On at least one core skill. At this point last term, 139 of 204.</span>
               </span>
               <span style={{ flex: 'none', display: 'flex', flexDirection: 'column', gap: 8, alignItems: 'stretch' }}>
                 <Tap say="One then-and-now clip from each program. 60 seconds." style={{ height: 44, padding: '0 16px', borderRadius: 999, background: '#f4c95d', color: INK, display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: 15, fontWeight: 700, textDecoration: 'none', whiteSpace: 'nowrap' }}>
@@ -71,23 +84,36 @@ export default function AD1AcademyHome() {
           </section>
           <div aria-label="Development" style={{ flex: 'none', display: 'grid', gridTemplateColumns: 'repeat(4, minmax(0,1fr))', gap: 12 }}>
             <Tap to="AD5-GroupMoves" style={{ ...dev, background: PALE, borderColor: '#cfe3da' }}><strong style={big}>{ready.length}</strong><strong style={{ fontSize: 14, lineHeight: '18px' }}>Ready to move up</strong><span style={{ fontSize: 12, lineHeight: '16px', color: '#4a5a57' }}>{ready.length > 2 ? `${ready.slice(0, 2).map(firstName).join(', ')} and ${ready.length - 2} more` : ready.map(firstName).join(' and ') || 'Nobody yet'}</span></Tap>
-            <Tap to="AC4-AcademyPlayers" style={{ ...dev, background: '#ffffff' }}><strong style={big}>{stuck.length}</strong><strong style={{ fontSize: 14, lineHeight: '18px' }}>On the same step for two terms</strong><span style={{ fontSize: 12, lineHeight: '16px', color: '#4a5a57' }}>Worth a word with their coach</span></Tap>
+            <Tap to="AC4-AcademyPlayers" style={{ ...dev, background: '#ffffff' }}><strong style={big}>{stuck.length}</strong><strong style={{ fontSize: 14, lineHeight: '18px' }}>Same step, two terms</strong><span style={{ fontSize: 12, lineHeight: '16px', color: '#4a5a57' }}>Worth a word</span></Tap>
             <Tap to="AC6-AcademyCoaches" style={{ ...dev, background: '#ffffff' }}><strong style={big}>{noGoal.length}</strong><strong style={{ fontSize: 14, lineHeight: '18px' }}>No goal set</strong><span style={{ fontSize: 12, lineHeight: '16px', color: '#4a5a57' }}>{noGoal.length ? `${noGoalIn.k} of them in ${noGoalIn.p}` : 'Every player has one'}</span></Tap>
-            <Tap to="AD2-Health" style={{ ...dev, background: MAUVE, borderColor: '#c39797' }}><strong style={big}>{calls.length}</strong><strong style={{ fontSize: 14, lineHeight: '18px' }}>Families worth a call</strong><span style={{ fontSize: 12, lineHeight: '16px', color: '#4a5a57' }}>Missing sessions, not re-enrolled</span></Tap>
+            <Tap to="AD2-Health" style={{ ...dev, background: MAUVE, borderColor: '#c39797' }}><strong style={big}>{calls.length}</strong><strong style={{ fontSize: 14, lineHeight: '18px' }}>Families worth a call</strong><span style={{ fontSize: 12, lineHeight: '16px', color: '#4a5a57' }}>Missing, not re-enrolled</span></Tap>
           </div>
-          <section aria-label="Oversight" style={{ ...S.tile, gap: 4, padding: '12px 16px', flexGrow: 1 }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}><h2 style={S.h2}>Oversight · the three coaches to look at first</h2><Link to="AC6-AcademyCoaches">All {a.groups.length} coaches</Link></div>
-            <Th cols={COLS} heads={['Coach', 'Notes written', 'Goals set', 'Clips to families', 'Up a step']} />
-            {three.map(({ g, s }) => { const low = (v: number) => share(v, s.n) < BASIC_LOW; return (
-              <Row key={g.id} cols={COLS} to={teamBoard(g)} h={40}>
-                <Who ini={g.ci} name={g.coach} sub={g.name} bg={SAND} />
-                <Of n={s.notes} of={s.n} low={low(s.notes)} />
-                <Of n={s.goal} of={s.n} low={low(s.goal)} />
-                <Of n={s.clip} of={s.n} low={low(s.clip)} />
-                <Num bold>{s.up} of {s.n}</Num>
-              </Row>
-            ) })}
-            <Cap style={{ marginTop: 'auto' }}>The lowest on notes and clips, in team order. A coach sees only their own row.</Cap>
+          <section aria-label="Oversight" style={{ ...S.tile, gap: 6, padding: '12px 16px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}><h2 style={S.h2}>Oversight · is every coach doing the basics?</h2><Link to="AC6-AcademyCoaches">All {a.groups.length} coaches</Link></div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, minmax(0,1fr))', gap: 14 }}>
+              {meters.map(m => (
+                <Tap key={m.label} to={m.to} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 3, textDecoration: 'none', color: INK, minHeight: 44 }}>
+                  <span style={{ display: 'flex', justifyContent: 'space-between', gap: 6, alignItems: 'baseline' }}><span style={{ fontSize: 12, lineHeight: '16px', color: '#33443f', whiteSpace: 'nowrap' }}>{m.label}</span><strong style={{ ...S.num, fontSize: 13, whiteSpace: 'nowrap' }}>{m.n} of {m.of}</strong></span>
+                  <span role="img" aria-label={`${m.label}: ${m.n} of ${m.of}${m.low ? ', below two-thirds' : ''}`} style={{ display: 'block', height: 8, borderRadius: 4, background: '#e6e7e6', overflow: 'hidden' }}><span style={{ display: 'block', height: '100%', width: `${m.of ? Math.round(100 * m.n / m.of) : 0}%`, background: m.low ? LOW : G }} /></span>
+                </Tap>
+              ))}
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 12, paddingTop: 2 }}>
+              <strong style={{ fontSize: 13 }}>{look.length ? `${fine} of ${tiles.length} coaches are above two-thirds on all three. Look at ${list(look.map(t => t.g.name))} first.` : `All ${tiles.length} coaches are above two-thirds on all three.`}</strong>
+              <Cap style={{ whiteSpace: 'nowrap' }}>Notes, goals, clips</Cap>
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, minmax(0,1fr))', gap: 6 }}>
+              {tiles.map(({ g, s, bars, low }) => (
+                <Tap key={g.id} to={teamBoard(g)} aria-label={`${g.coach}, ${g.name}: ${bars.map(b => `${b.what} ${b.v} of ${s.n}${b.low ? ', below two-thirds' : ''}`).join(', ')}`}
+                  style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 2, minHeight: 44, padding: '3px 8px', borderRadius: 10, boxSizing: 'border-box', textDecoration: 'none', color: INK, background: low ? MAUVE : '#ffffff', border: `1px solid ${low ? '#c39797' : '#c5c8c4'}` }}>
+                  <strong style={{ fontSize: 13, lineHeight: '16px', whiteSpace: 'nowrap' }}>{g.name}</strong>
+                  <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                    <span style={{ fontSize: 11, lineHeight: '14px', color: '#33443f', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{g.coach.split(' ')[0]}</span>
+                    <span aria-hidden="true" style={{ marginLeft: 'auto', display: 'flex', gap: 3 }}>{bars.map(b => <span key={b.what} style={{ width: 12, height: 8, borderRadius: 2, background: !s.n ? '#e6e7e6' : b.low ? LOW : G }} />)}</span>
+                  </span>
+                </Tap>
+              ))}
+            </div>
           </section>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12, minHeight: 0 }}>
@@ -96,7 +122,7 @@ export default function AD1AcademyHome() {
             <Met title="Staying for Term 3" n={all.staying} of={n} sub={`${all.notSaid} not yet said · ${all.leaving} leaving`} to="AD4-NextTerm" />
             <Met title="Families sent a clip this term" n={all.clip} of={n} sub="Families who see progress tend to stay" to="AD15-Families" />
           </section>
-          <section aria-label="Needs you" style={{ ...S.tile, gap: 0, padding: '12px 14px', flexGrow: 1, borderTop: '4px solid #c39797' }}>
+          <section aria-label="Needs you" style={{ ...S.tile, gap: 0, padding: '12px 14px', borderTop: '4px solid #c39797' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', paddingBottom: 4 }}><h2 style={S.h2}>Needs you</h2><Cap>{need.length} things</Cap></div>
             <Lines items={need} />
             <Cap style={{ marginTop: 'auto' }}>Only what Clean Sheet couldn’t settle for you.</Cap>

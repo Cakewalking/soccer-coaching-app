@@ -29,30 +29,9 @@ AC4#2,AC4-AcademyPlayers,Message all families,Opens,AC12-AcademyBroadcast,works;
 AC4#3,AC4-AcademyPlayers,Team chips (17),Opens,that team's ADG page,works; read
 AC4#4,AC4-AcademyPlayers,Open the team (17),Opens,that team's ADG page,works; read
 AC4#5,AC4-AcademyPlayers,A player row (226),Opens,that player's ADF page,works; pressed
-AC5#1,AC5-Fees,Mark as paid (each late family),Writes payFees,The fee is paid; the row leaves the list; the team page / player page / AD11 / AD1 move,works; pressed for Jonah Marsh and all six figures checked moved. NOT on the board: added because the handover says fees are put in here
-AC5#2,AC5-Fees,Mark the rest paid (each family paying in parts),Writes payFees,The rest is paid,works; read. NOT on the board
-AC5#3,AC5-Fees,Offer a plan,Says,Payment plan offered: 3 parts, no extra cost.,line of text only (as v26)
-AC5#4,AC5-Fees,A family's name,Opens,that player's ADF page,works; read
-AC5#5,AC5-Fees,Download for your accountant / Pay-outs,Says,as v26,line of text only
-AC5#6,AC5-Fees,Program money,Opens,AD11-ProgramMoney,works; read
-AC6#1,AC6-AcademyCoaches,Watch a coach,Opens,AD10-WatchCoach,works; read
-AC6#2,AC6-AcademyCoaches,+ Add a coach,Opens,AD23-AddCoach,works; read
-AC6#3,AC6-AcademyCoaches,A coach row (17),Opens,that coach's team (ADG),works; read
 AC7#1,AC7-ReportsOut,See a finished report,Opens,ADP2-TermReport,works; read (v26 opened ACP5-ProgressReport; the v28 board names ADP2)
 AC7#2,AC7-ReportsOut,Approve N and send,Says,N reports approved and sent to families.,line of text only; N is the designer's stand-in (half of each team's drafts)
 AC7#3,AC7-ReportsOut,Open (17),Opens,that team's ADG page,works; read
-AD1#1,AD1-AcademyHome,Today chip,Opens,AD3-Timetable,works; read
-AD1#2,AD1-AcademyHome,Fees this term chip,Opens,AC5-Fees,works; counted; checked it moves when a fee is paid
-AD1#3,AD1-AcademyHome,By team,Opens,AC2-Programs,works; read
-AD1#4,AD1-AcademyHome,Four development tiles,Opens,AD5-GroupMoves / AC4-AcademyPlayers / AC6-AcademyCoaches / AD2-Health,works; counted; read
-AD1#5,AD1-AcademyHome,Three coach rows,Opens,that coach's team (ADG),works; read
-AD1#6,AD1-AcademyHome,All 17 coaches,Opens,AC6-AcademyCoaches,works; read
-AD1#7,AD1-AcademyHome,Needs you: five lines,Opens,AC3-Trials / AD4-NextTerm / AC5-Fees / AD3-Timetable / AD17-Checks,works; three counted and two sample; read
-AD2#1,AD2-Health,Worth a call: a family (3 shown),Opens,that player's ADF page,works; read. On the board these were not links
-AD2#2,AD2-Health,Message these families,Says,New message to 6 families. Nothing is sent until you press send.,line of text only
-AD3#1,AD3-Timetable,A team tile (17),Opens,that team's ADG page,works; read
-AD3#2,AD3-Timetable,+ Add a session,Opens,AD20-NewProgram,works; read
-AD3#3,AD3-Timetable,Bookings,Opens,ACC5-OneOnOne,works; read
 AD4#1,AD4-NextTerm,Remind N families,Says,Reminder sent to N families. Each can answer with one tap.,line of text only; N counted
 AD4#2,AD4-NextTerm,A team row (17),Opens,that team's ADG page,works; read
 AD4#3,AD4-NextTerm,Set Term 3 prices,Opens,AD20-NewProgram,works; read
@@ -60,9 +39,6 @@ AD5#1,AD5-GroupMoves,Offer the move (each ready player),Opens,ADP12-MoveOffer,wo
 AD5#2,AD5-GroupMoves,Look again in Term 3,Opens,Theo Lindqvist's ADF page,works; read
 AD8#1,AD8-SessionQuality,A coach row (17),Opens,AD10-WatchCoach,works; read
 AD8#2,AD8-SessionQuality,How we measure,Opens,AD7-HowWeCoach,works; read (v26 opened RC8-HowWeMeasure; the v28 board names AD7)
-AD9#1,AD9-RosterPay,Change a rate,Opens,AD21-RatesCosts,works; read
-AD9#2,AD9-RosterPay,A coach row (17),Opens,that coach's team (ADG),works; read
-AD9#3,AD9-RosterPay,Download for payroll,Says,A payroll file for 17 coaches is on its way to your email.,line of text only
 AD11#1,AD11-ProgramMoney,Rates and pitch hire,Opens,AD21-RatesCosts,works; read
 AD11#2,AD11-ProgramMoney,A program row (3),Opens,AC2-Programs,works; read
 AD17#1,AD17-Checks,Remind the three,Says,Reminder sent to Ben, Aisha and Ollie.,line of text only; names counted from the checks
@@ -83,28 +59,10 @@ AD23#3,AD23-AddCoach,Mobile / card number,Holds what is typed,not saved,line of 
 AC12#1,AC12-AcademyBroadcast,Send to N families and Who gets it,Says,Sent to 226 families in the app and by email.,line of text only; N and the audience counts are now counted from the store
 AC1#1,AC1-AcademyHome,(no control changed),,Places / fees / families behind / reports drafted are now counted from the store,read
 AD13#1,AD13-Connections,(no control changed),,226 players brought in: counted,read
-AD15#1,AD15-Families,(no control changed),,171 of 226 families: 226 counted and 171 sample,read
 AD16#1,AD16-SetUp,(no control changed),,226 players from your spreadsheet: counted,read
 AD19#1,AD19-SupportedPlace,What they pay for the term,Holds a choice,Full is the Development price from the store ($950),read
 AD24#1,AD24-BringIn,Check before saving,Says,Step 3: 226 players ready; 3 need a look.,line of text only; count from the store
 MENU,AcademyOwnerApp,Every main and sub-menu item (28),Opens,its own screen,works; all 28 pressed
-ACC1-CoachToday#1,ACC1-CoachToday,5:45 U13 Timber · 14 coming · plan ready,Opens,ACT3-AcademySessionPlan,works (pressed by script)
-ACC1-CoachToday#2,ACC1-CoachToday,7:00 One-on-one · Kai · left foot,Opens,ACC5-OneOnOne,works (pressed by script)
-ACC1-CoachToday#3,ACC1-CoachToday,Sun 10:00 game · U13 Timber at Wattle Creek,Opens,ACC7-AcademyGameDay,works (pressed by script)
-ACC1-CoachToday#4,ACC1-CoachToday,Swap a drill,Opens,ACT2-AcademySuggested,works (pressed by script)
-ACC1-CoachToday#5,ACC1-CoachToday,Start the 5:45,Opens,ACC2-RunSession,works (pressed by script)
-ACC1-CoachToday#6,ACC1-CoachToday,Play 45 seconds,Says,"Then and now for four players, from the drill you filmed in weeks 3 and 7.",works (pressed by script)
-ACC1-CoachToday#7,ACC1-CoachToday,By player,Opens,ADC2-Group,works (pressed by script)
-ACC1-CoachToday#8,ACC1-CoachToday,My team,Opens,ADC2-Group,works (pressed by script)
-ACC1-CoachToday#9,ACC1-CoachToday,A dot for each of the 16 players (name order),Opens,"that player’s file (ADC1-PlayerFile for Kai, ADCP<id>-Player for the rest)",works (pressed by script)
-ACC1-CoachToday#10,ACC1-CoachToday,Send to Harriet’s family (the first player up a step with no clip at home),Opens,"ADC3-SessionFilm, on that player",works (pressed by script)
-ACC1-CoachToday#11,ACC1-CoachToday,Set one (players with no goal),Opens,"ADC10-SetGoal, for the first of them by name",works (pressed by script)
-ACC1-CoachToday#12,ACC1-CoachToday,Add notes (players with no notes),Opens,ADC11-AfterSession,works (pressed by script)
-ACC1-CoachToday#13,ACC1-CoachToday,Notes in the last 3 weeks · 13 of 16,Opens,ADC11-AfterSession,works (pressed by script)
-ACC1-CoachToday#14,ACC1-CoachToday,A goal set · 14 of 16,Opens,ADC10-SetGoal,works (pressed by script)
-ACC1-CoachToday#15,ACC1-CoachToday,Families sent a clip this term · 13 of 16,Opens,ADC3-SessionFilm,works (pressed by script)
-ACC1-CoachToday#16,ACC1-CoachToday,Term reports drafted · 9 of 16,Opens,ACC6-ReportDraft,works (pressed by script)
-ACC1-CoachToday#17,ACC1-CoachToday,One thing needs you,Opens,ACC13-AcademyChat,works (pressed by script)
 ADC2-Group#18,ADC2-Group,Run the skills check,Opens,ADC4-SkillsCheck,works (pressed by script)
 ADC2-Group#19,ADC2-Group,Plan from this,Opens,ACT2-AcademySuggested,works (pressed by script)
 ADC2-Group#20,ADC2-Group,A row for each of the 16 players (name order),Opens,"that player’s file (ADC1-PlayerFile for Kai, ADCP<id>-Player for the rest)",works (pressed by script)
@@ -143,3 +101,254 @@ ACC10-AcademyRecordResults#52,ACC10-AcademyRecordResults,Check,Says,14 notes rea
 ADC18-Learn#53,ADC18-Learn,Keeping 14 players busy with one goal,Says,"Keeping 14 players busy with one goal: the lesson opens. Short clips, one idea, one thing to try.","words changed; read, not pressed in this pass"
 ACP4-ParentFees#54,ACP4-ParentFees,The control that holds the Term 3 place,Says,"Kai’s Term 3 place is held. $1,100, due 13 July.","words changed; read, not pressed in this pass"
 ACP11-AcademyParentChat#55,ACP11-AcademyParentChat and ACP11e,Send,Says,Sent to the U13 Timber group.,"words changed (not in the pack: so the parent’s copy of the chat matches the coach’s); read, not pressed in this pass"
+AD1#O1,AD1-AcademyHome,All 17 coaches (Oversight heading),Opens,AC6-AcademyCoaches,works; pressed
+AD1#O2,AD1-AcademyHome,"Meter: Notes, last 3 weeks (197 of 226)",Opens,AC6-AcademyCoaches,works; pressed; counted
+AD1#O3,AD1-AcademyHome,Meter: A goal set (210 of 226),Opens,AC6-AcademyCoaches,works; pressed; counted
+AD1#O4,AD1-AcademyHome,Meter: Families sent a clip (176 of 226),Opens,AC6-AcademyCoaches,works; pressed; counted
+AD1#O5,AD1-AcademyHome,"Meter: Reports drafted (70 of 226, mauve)",Opens,AC7-ReportsOut,works; pressed; counted
+AD1#O6,AD1-AcademyHome,Line: 15 of 17 coaches are above two-thirds on all three. Look at U9 Timber and U9 Gold first.,Shows,"counted from the store; names the teams with a mauve bar, in team order",line of text only; counted (moved when ten players lost their goal and clips)
+AD1#T01,AD1-AcademyHome,"Team tile: U6 Timber (notes, goals, clips bars)",Opens,ADG01-Team,works; pressed; counted
+AD1#T02,AD1-AcademyHome,"Team tile: U7 Timber (notes, goals, clips bars)",Opens,ADG02-Team,works; pressed; counted
+AD1#T03,AD1-AcademyHome,"Team tile: U7 Gold (notes, goals, clips bars)",Opens,ADG03-Team,works; pressed; counted
+AD1#T04,AD1-AcademyHome,"Team tile: U8 Timber (notes, goals, clips bars)",Opens,ADG04-Team,works; pressed; counted
+AD1#T05,AD1-AcademyHome,"Team tile: U8 Gold (notes, goals, clips bars)",Opens,ADG05-Team,works; pressed; counted
+AD1#T06,AD1-AcademyHome,"Team tile: U9 Timber (notes, goals, clips bars)",Opens,ADG06-Team,"works; pressed; counted; pale mauve, clips below two-thirds"
+AD1#T07,AD1-AcademyHome,"Team tile: U9 Gold (notes, goals, clips bars)",Opens,ADG07-Team,"works; pressed; counted; pale mauve, clips below two-thirds"
+AD1#T08,AD1-AcademyHome,"Team tile: U10 Timber (notes, goals, clips bars)",Opens,ADG08-Team,works; pressed; counted
+AD1#T09,AD1-AcademyHome,"Team tile: U10 Gold (notes, goals, clips bars)",Opens,ADG09-Team,works; pressed; counted
+AD1#T10,AD1-AcademyHome,"Team tile: U11 Timber (notes, goals, clips bars)",Opens,ADG10-Team,works; pressed; counted
+AD1#T11,AD1-AcademyHome,"Team tile: U11 Gold (notes, goals, clips bars)",Opens,ADG11-Team,works; pressed; counted
+AD1#T12,AD1-AcademyHome,"Team tile: U12 Timber (notes, goals, clips bars)",Opens,ADG12-Team,works; pressed; counted
+AD1#T13,AD1-AcademyHome,"Team tile: U12 Gold (notes, goals, clips bars)",Opens,ADG13-Team,works; pressed; counted
+AD1#T14,AD1-AcademyHome,"Team tile: U13 Timber (notes, goals, clips bars)",Opens,ADG14-Team,works; pressed; counted
+AD1#T15,AD1-AcademyHome,"Team tile: U13 Gold (notes, goals, clips bars)",Opens,ADG15-Team,works; pressed; counted
+AD1#T16,AD1-AcademyHome,"Team tile: U14 Timber (notes, goals, clips bars)",Opens,ADG16-Team,works; pressed; counted
+AD1#T17,AD1-AcademyHome,"Team tile: U14 Gold (notes, goals, clips bars)",Opens,ADG17-Team,works; pressed; counted
+AD1#N1,AD1-AcademyHome,Today chip: 17 teams train · 3 time slots,Opens,AD3-Timetable,works; pressed; counted
+AD1#N2,AD1-AcademyHome,Needs you: 3 trial families are waiting on an offer,Opens,AC3-Trials,works; pressed; counted from the Trials list
+AD1#N3,AD1-AcademyHome,"Messages · 3 to answer (v30, in place of Message families)",Opens,ADM1-Messages,works; pressed; live count
+AC3#1,AC3-Trials,Share the trial link,Says,Trial link copied. Anyone with it can book a free trial.,works; pressed
+AC3#2,AC3-Trials,"Booked card (Ivy Barlow, Nate Greco): tap",Says,Ivy’s family booked from your link.,works; pressed
+AC3#3,AC3-Trials,With the coach card (Arjun Mehta): tap,Opens,ACC3-TrialAssess for that trial (opens over the top),works; pressed
+AC3#4,AC3-Trials,"Recommended card (Lola Ferris, Billie Nguyen, Sam Petrakis): tap",Opens,ADT1-TrialDecision for THAT trial,"works; pressed (Lola, Billie by Enter, Sam)"
+AC3#5,AC3-Trials,"Joined card (Kai Okonkwo, Ana Costa): tap",Opens,"ADF166-Player, ADF167-Player",works; pressed on Kai
+AC3#6,AC3-Trials,2 more this month · See all players,Opens,AC4-AcademyPlayers,works; pressed
+AC3#7,AC3-Trials,Any card: drag to another column or up and down its own,"Moves the card in trialStore; says ""Ivy moved to With the coach.""","counts in each column, the heading and ""N of the last N offers"" follow",works; dragged; a drag does not open the card
+AC3#8,AC3-Trials,Any card with focus: arrow keys,"Moves the card left, right, up or down; focus stays on it",,works; pressed
+AC3#9,AC3-Trials,Any card with focus: Enter,Opens the card,same as a tap,works; pressed on Billie
+AC3#10,AC3-Trials,A card held over an empty column,Shows,"""Drop here"" box; the column count shows 1",works; held and dropped
+AC3#11,AC3-Trials,A card let go outside the columns,Nothing moves; the drag ends,,works
+ADT1#1,ADT1-TrialDecision,All trials,Opens,AC3-Trials,works; pressed
+ADT1#2,ADT1-TrialDecision,Ask for a second trial,"Marks the trial in trialStore; the button reads ""Second trial asked for""; the card on AC3 turns pale mauve",Linh is asked to bring Billie back next week. Jess is told.,"works; pressed on Billie (board says ""next Thursday"")"
+ADT1#3,ADT1-TrialDecision,Offer a place in U13 Gold,"Marks the offer sent in trialStore, then opens",ACP2-Offer (opens over the top),works; pressed on Sam; ACP2 still shows its own sample family
+ADT1#4,ADT1-TrialDecision,"2 clips, 21 seconds",Says,Two clips from the trial play here.,line of text only
+ADT1#5,ADT1-TrialDecision,Places row: U13 Timber · Reece (16 of 16 · full),Opens,ADG14-Team,works; pressed; counted
+ADT1#6,ADT1-TrialDecision,Places row: U13 Gold · Sam (15 of 16 · 1 open),Opens,ADG15-Team,works; pressed; counted
+ADT1#7,ADT1-TrialDecision,Places row: Waiting for Advanced (5 families),Opens,ADP14-WaitingList (opens over the top),works; pressed; the 5 is sample
+ADT1#8,ADT1-TrialDecision,"What the family would pay: $330, $1,100",Shows,team price × 3 weeks left of 10; the team price,line of text only; counted
+AD3#1,AD3-Timetable,Cancel a session,Says,Pick the session. Families are told at once and each child gets a make-up.,line of text only
+AD3#2,AD3-Timetable,+ Add a session,Opens,AD20-NewProgram,works; pressed
+AD3#T01,AD3-Timetable,Tile: U6 Timber,Opens,ADG01-Team,works; pressed; counted
+AD3#T02,AD3-Timetable,Tile: U7 Timber,Opens,ADG02-Team,works; pressed; counted
+AD3#T03,AD3-Timetable,Tile: U7 Gold,Opens,ADG03-Team,works; pressed; counted
+AD3#T04,AD3-Timetable,Tile: U8 Timber,Opens,ADG04-Team,works; pressed; counted
+AD3#T05,AD3-Timetable,Tile: U8 Gold,Opens,ADG05-Team,works; pressed; counted
+AD3#T06,AD3-Timetable,Tile: U9 Timber,Opens,ADG06-Team,works; pressed; counted
+AD3#T07,AD3-Timetable,Tile: U9 Gold,Opens,ADG07-Team,works; pressed; counted
+AD3#T08,AD3-Timetable,Tile: U10 Timber,Opens,ADG08-Team,works; pressed; counted
+AD3#T09,AD3-Timetable,Tile: U10 Gold,Opens,ADG09-Team,works; pressed; counted
+AD3#T10,AD3-Timetable,Tile: U11 Timber,Opens,ADG10-Team,works; pressed; counted
+AD3#T11,AD3-Timetable,Tile: U11 Gold,Opens,ADG11-Team,works; pressed; counted
+AD3#T12,AD3-Timetable,Tile: U12 Timber,Opens,ADG12-Team,works; pressed; counted
+AD3#T13,AD3-Timetable,Tile: U12 Gold,Opens,ADG13-Team,works; pressed; counted
+AD3#T14,AD3-Timetable,Tile: U13 Timber,Opens,ADG14-Team,works; pressed; counted
+AD3#T15,AD3-Timetable,Tile: U13 Gold,Opens,ADG15-Team,"works; pressed; counted; mauve, needs cover (sample)"
+AD3#T16,AD3-Timetable,Tile: U14 Timber,Opens,ADG16-Team,works; pressed; counted
+AD3#T17,AD3-Timetable,Tile: U14 Gold,Opens,ADG17-Team,works; pressed; counted
+AD3#3,AD3-Timetable,Bookings (One-on-ones),Opens,ACC5-OneOnOne (opens over the top),works; pressed
+ADM#B1,"Owner top bar (OwnerHeader), every owner screen",Message button with badge (3),Opens,ADM1-Messages,"works; pressed on AD1, AC2, AD9, ADG14, AC12, AD6; badge is the live count"
+ADM#B2,"Owner top bar (OwnerHeader), every owner screen",Academy name: Tall Timber,Opens,"the switch of view, as before",works; name shortened
+ADM#B3,"Owner top bar (OwnerHeader), every owner screen",Home sub-menu: Messages,Opens,ADM1-Messages,works; replaces the older Messages page in the sub-menu
+ADM1#1,ADM1-Messages,Search people and teams,Filters the chats as you type,,"works; typed ""reece"""
+ADM1#2,ADM1-Messages,+ New,Opens,AC12-AcademyBroadcast,works; pressed
+ADM1#C1,ADM1-Messages,Chip: Needs a reply · 3,Filters; press again to show all,chats with a badge,works; pressed
+ADM1#C2,ADM1-Messages,Chip: Coaches,Filters; press again to show all,"Sam, All coaches, Reece",works; pressed
+ADM1#C3,ADM1-Messages,Chip: Teams,Filters; press again to show all,U13 Timber,works; pressed
+ADM1#C4,ADM1-Messages,Chip: Families,Filters; press again to show all,"Meera, The whole academy",works; pressed
+ADM1#C5,ADM1-Messages,Chip: Partner club,Filters; press again to show all,Wattle Creek FC,works; pressed
+ADM1#L1,ADM1-Messages,"Chat: Sam Whitford · coach, U13 Gold",Opens the chat on the right and clears its badge,top bar count drops,"works; pressed on Meera, Wattle Creek, Sam"
+ADM1#L2,ADM1-Messages,Chat: Meera Mehta · Arjun’s mum,Opens the chat on the right and clears its badge,top bar count drops,"works; pressed on Meera, Wattle Creek, Sam"
+ADM1#L3,ADM1-Messages,Chat: Wattle Creek FC · registrar,Opens the chat on the right and clears its badge,top bar count drops,"works; pressed on Meera, Wattle Creek, Sam"
+ADM1#L4,ADM1-Messages,Chat: All coaches,Opens the chat on the right and clears its badge,top bar count drops,works
+ADM1#L5,ADM1-Messages,Chat: U13 Timber · 16 families,Opens the chat on the right and clears its badge,top bar count drops,works
+ADM1#L6,ADM1-Messages,"Chat: Reece Whitlam · coach, U13 Timber",Opens the chat on the right and clears its badge,top bar count drops,works
+ADM1#L7,ADM1-Messages,Chat: The whole academy,Opens the chat on the right and clears its badge,top bar count drops,works
+ADM1#3,ADM1-Messages,His team (Sam’s chat),Opens,ADG15-Team,works; pressed
+ADM1#4,ADM1-Messages,Timetable (Sam’s chat),Opens,AD3-Timetable,works; pressed
+ADM1#5,ADM1-Messages,Arjun’s trial (Meera’s chat),Opens,ADT1-TrialDecision,works; pressed; not on the board
+ADM1#6,ADM1-Messages,Ask Priya Nair,"Asks Priya in a chat of her own, adds a line to Sam’s chat, the tile says who is asked",Priya is asked to take U13 Gold on Thursday 11 June. Sam’s plan is attached.,works; pressed
+ADM1#7,ADM1-Messages,Ask Tom Ashby / Ask Lena Fischer,"Same, for that coach; ""instead"" moves the ask",Tom is asked to take U13 Gold on Thursday 11 June.,works; pressed on Tom
+ADM1#8,ADM1-Messages,Message box and Send,"Adds the message to the open chat, clears its badge; Send is off while the box is empty",Sent to Sam.,works; sent to Wattle Creek
+AD15#1,AD15-Families,See what families answer,Opens,ADP11-Survey (opens over the top),works; pressed
+AD15#2,AD15-Families,Remind the 50 who haven’t,Says,Reminder sent to 50 families. It takes one minute.,line of text only; the 50 is counted
+AD15#3,AD15-Families,Turn weekly practice on,Opens,ADC6-HomePractice,works; pressed
+AD15#4,AD15-Families,See what players tap,Opens,ADK3-EnjoyedToday (opens over the top),works; pressed
+AD15#5,AD15-Families,"Averages, share who gave 4 or 5, answers, by program, trust panel",Shows,counted from each player’s survey; moved when three answers were changed,line of text only; counted
+AD2#1,AD2-Health,Download,Says,A spreadsheet of these numbers is on its way to your email.,line of text only
+AD2#2,AD2-Health,How we know where families came from,Opens,ADP15-HowHeard (opens over the top),works; pressed
+AD2#3,AD2-Health,See the form,Opens,ADP10-WhyLeaving (opens over the top),works; pressed
+AD2#4,AD2-Health,Worth a call rows (3 shown),Opens,"that player’s page (ADF38, ADF168, ADF45)",works; pressed on Anya
+AD2#5,AD2-Health,Message these families,Opens,ADM1-Messages,works; pressed
+AD2#S1,AD2-Health,Source: Enrolments,Opens,AD4-NextTerm,works; pressed
+AD2#S2,AD2-Health,Source: Trials,Opens,AC3-Trials,works; pressed
+AD2#S3,AD2-Health,Source: The roll,Opens,ACC2-RunSession,works; pressed
+AD2#S4,AD2-Health,Source: Why a family left,Opens,ADP10-WhyLeaving,works; pressed
+AD2#S5,AD2-Health,Source: How they heard,Opens,ADP15-HowHeard,works; pressed
+AC11#1,AC11-PartnerClub,Message the club,Opens,"ADM1-Messages (opens on the first chat, not the club’s)",works; pressed
+AC11#2,AC11-PartnerClub,+ Add a game team,Says,Pick the team. Wattle Creek’s registrar is asked to enter it for next season.,line of text only
+AC11#3,AC11-PartnerClub,Chase 7,Says,Seven families are reminded to finish registering with the club.,line of text only
+AC11#4,AC11-PartnerClub,How it works,Opens,ACP10-AcademyConcern (opens over the top),works; pressed
+AC11#5,AC11-PartnerClub,Sunday,Opens,ACC7-AcademyGameDay (opens over the top),works; pressed
+AC11#6,AC11-PartnerClub,Open (children checks),Opens,AD17-Checks,works; pressed
+AC11#7,AC11-PartnerClub,See it in Money,Opens,AD11-ProgramMoney,works; pressed
+AC11#8,AC11-PartnerClub,Change the fee,Opens,AD21-RatesCosts,"wrong target for the job: AD21 opens, but it has no field for the partner club fee (as the board links it)"
+ACC3#1,ACC3-TrialAssess,Save and finish later,Says,Saved. It stays on your Today until you send it.,works; pressed; taps were already in trialStore and were still there after leaving by the menu and coming back
+ACC3#2,ACC3-TrialAssess,Send to Dani,Writes,"sendToOwner: the card moves to Recommended · your call; says ""Sent to Dani: you recommend a place in U13 Gold. She makes the offer."" (other words for a second trial or not this term)",works; pressed; off until a recommendation and how sure are chosen (canSend) with a line saying which is missing; after sending it reads Sent to Dani and the taps are locked (not on the board)
+ACC3#3,ACC3-TrialAssess,Four core skills: steps 1 to 5 (20 buttons),Writes,setAssessment steps; the step's words under the skill come from the academy list; the family's lines are drafted again,works; pressed on two skills; tapping the chosen step takes it off
+ACC3#4,ACC3-TrialAssess,Four core skills: Behind / With them / Ahead (12 buttons),Writes,setAssessment against,works; pressed on one skill
+ACC3#5,ACC3-TrialAssess,The whole player: Not yet / Some / Strong (12 buttons),Writes,setAssessment whole,works; pressed on one row
+ACC3#6,ACC3-TrialAssess,In the game at the end: Not yet / Some / Strong (9 buttons),Writes,setAssessment game,works; pressed on two rows
+ACC3#7,ACC3-TrialAssess,Add a clip,Writes,"setAssessment clips and clipSeconds (one more clip, nine seconds); says ""Clip added from the film. Dani sees it with your recommendation.""",works; pressed; sample: there is no film picker behind it; the board only shows a line of text
+ACC3#8,ACC3-TrialAssess,"Yes, in my team",Writes,setAssessment rec mine and recTeam; shown as full (16 of 16) counted from academyStore and can still be chosen,works; pressed
+ACC3#9,ACC3-TrialAssess,"Yes, in another team",Writes,setAssessment rec other and recTeam (the other team at that age: U13 Gold · Sam Whitford · 15 of 16 counted),works; pressed
+ACC3#10,ACC3-TrialAssess,Not yet. Come to a second trial,Writes,setAssessment rec second,works; pressed
+ACC3#11,ACC3-TrialAssess,Not this term,Writes,setAssessment rec no,works; pressed
+ACC3#12,ACC3-TrialAssess,How sure: Sure / Fairly sure / Not sure,Writes,setAssessment sure,works; pressed; taking it off turns Send off
+ACC3#13,ACC3-TrialAssess,Why · pick any (5 chips),Writes,setAssessment why,works; one put on and one taken off
+ACC3#14,ACC3-TrialAssess,If a place opens: Move him up / Leave him in Gold,Writes,setAssessment ifOpens,works; pressed; shown only while the recommendation is another team (the board always draws it)
+ACC3#15,ACC3-TrialAssess,"For Dani, in your words",Writes,setAssessment note,works; typed; read back on ADT1
+ACC3#16,ACC3-TrialAssess,One thing he does well,Writes,setAssessment well; drafted from the taps until the coach types in it,works; typed; a later tap did not overwrite it
+ACC3#17,ACC3-TrialAssess,One thing to work on,Writes,setAssessment work; drafted from the taps until the coach types in it,works; draft changed with a step and came back
+ACC3#18,ACC3-TrialAssess,Dani sees it here,Opens,ADT1-TrialDecision,works; pressed; after a send ADT1 showed Fairly sure and the note
+ACC3#19,ACC3-TrialAssess,The family gets this,Opens,ACP2-Offer,works; pressed; the offer shown is still Kai's sample offer not Arjun's
+ACC3#20,ACC3-TrialAssess,"If he joins, his plan starts here",Opens,ADC10-SetGoal,works; pressed; ADC10 is for the player the coach has open (Kai) because a trial player is not in the academy list yet
+ACC1#T,ACC1-CoachToday,Trial tonight · Arjun Mehta 12 (chip in the Now strip),Opens,ACC3-TrialAssess for that trial; reads Trial · sent to Dani after sending,works; pressed; replaces the 7:00 one-on-one chip as the v29 board draws
+NAV#M,Every academy coach screen (CoachNav),"Messages, 2 need a reply (round button in the top bar)",Opens,ACC13-AcademyChat (ACC13e in the empty academy),works; pressed on 56 screens; the 2 is a sample constant; not on player files (own Back bar) or ACC11 (full screen)
+ACC1#1,ACC1-CoachToday (v32),Now: 6:35 U13 Timber chip,Opens,ACT3-AcademySessionPlan,"works; pressed; start time counted; ""14 coming"" is sample until the roll is taken"
+ACC1#2,ACC1-CoachToday (v32),Now: Trial tonight chip,Opens,ACC3-TrialAssess for that trial (from trialStore),works; pressed
+ACC1#3,ACC1-CoachToday (v32),Now: Sun 10:00 game chip,Opens,ACC7-AcademyGameDay,works; pressed
+ACC1#4,ACC1-CoachToday (v32),Swap a drill,Opens,ACT2-AcademySuggested,works; pressed
+ACC1#5,ACC1-CoachToday (v32),Start the 6:35,Opens,ACC2-RunSession,works; pressed
+ACC1#6,ACC1-CoachToday (v32),Play 45 seconds,Says,"Then and now for four players, from the drill you filmed in weeks 3 and 7.",line of text only
+ACC1#7,ACC1-CoachToday (v32),By player,Opens,ADC2-Group,works; pressed
+ACC1#8,ACC1-CoachToday (v32),My team,Opens,ADC2-Group,works; pressed
+ACC1#9,ACC1-CoachToday (v32),16 player dots,Opens,that player's file (ADC1 or ADCP<id>),works; one pressed; counted; in name order (the board is in list order)
+ACC1#10,ACC1-CoachToday (v32),Send to <player>'s family,Opens,ADC3-SessionFilm on that player,works; pressed and a clip sent; the player is counted (Harriet) where the board types Kai
+ACC1#11,ACC1-CoachToday (v32),Set one,Opens,ADC10-SetGoal for the first player with no goal,works; pressed
+ACC1#12,ACC1-CoachToday (v32),Add notes,Opens,ADC11-AfterSession,works; pressed
+ACC1#13,ACC1-CoachToday (v32),The term,Opens,ACT1-AcademyWeek,works; pressed
+ACC1#14,ACC1-CoachToday (v32),This week: a done night (3 rows),Opens,ADC15-MySession or ADC3-SessionFilm when that night was filmed,works; Monday pressed; who came is counted from the roll; which night was filmed comes from coachStore (Tuesday where the board says Wednesday)
+ACC1#15,ACC1-CoachToday (v32),This week: tonight (Thu),Opens,ACT3-AcademySessionPlan,works; pressed
+ACC1#16,ACC1-CoachToday (v32),Game review,Opens,ADC7-GameReview,works; pressed
+ACC1#17,ACC1-CoachToday (v32),Has anything slipped: four meters,Opens,ADC11-AfterSession / ADC10-SetGoal / ADC3-SessionFilm / ACC6-ReportDraft,works; all four pressed; counted
+ACC1#18,ACC1-CoachToday (v32),Staying for Term 3,Opens,ACC13-AcademyChat,works; pressed; counted
+ACC1#19,ACC1-CoachToday (v32),Answered the family survey,Opens,ACC13-AcademyChat,works; pressed; counted from the players' survey field
+ACC1#20,ACC1-CoachToday (v32),My sessions,Opens,ADC15-MySession,works; pressed
+ACC1#21,ACC1-CoachToday (v32),Something to learn this week,Opens,ADC18-Learn,works; pressed
+ACC1#22,ACC1-CoachToday (v32),One thing needs you,Opens,ACC13-AcademyChat,works; pressed; the line itself is sample
+AC5#1,AC5-Fees,Download for your accountant,Says,A spreadsheet is on its way to your email.,line of text only; as the board
+AC5#2,AC5-Fees,Pay-outs to your bank,Says,Pay-outs land every Tuesday. The next is $18400 on Tuesday 9 June.,line of text only; as the board; the pay-out is a sample figure
+AC5#3,AC5-Fees,Offer a plan to all 13,Writes offerPlan for every late family,Every family on the list moves to On a plan; the list empties; tiles and How families pay move,works; pressed with 11 left: 0 late / 27 on plans / $19575 to come; kept after reload
+AC5#4,AC5-Fees,Family name and lines (each late family),Opens,That player's ADF page,works; read (same control as the build before)
+AC5#5,AC5-Fees,Paid another way (each late family),Opens two choices in the row,Cash / Bank transfer / Cancel,works; pressed. NOT on the board: the board records on one tap and always says bank transfer
+AC5#6,AC5-Fees,Cash / Bank transfer,Writes payFees (recorded by hand),The fee is paid; the row leaves; Bank transfer or cash goes up by one; team page / player page / AD11 / AD1 move,works; pressed Bank transfer for the Marsh family: late 13 to 12; $13250 to $12150; collected $200225; AD11 owed $20675 to $19575; AD1 and ADG14 moved
+AC5#7,AC5-Fees,Cancel,Closes the two choices,Nothing recorded,works; pressed
+AC5#8,AC5-Fees,Offer a plan (each late family),Writes offerPlan,The family is On a plan; what they owe moves to Still to come on plans,works; pressed for the Demir family: late 12 to 11; plans 15 to 16; $7425 to $8225; ADF07 shows On a plan; AD1 moved
+AC5#9,AC5-Fees,Program money,Opens,AD11-ProgramMoney,works; read
+AC5#10,AC5-Fees,Where these numbers come from: three links,Opens,ACP4-ParentFees / AD20-NewProgram / AD12-Credits,works; read
+AC5#11,AC5-Fees,Mark as paid,Gone,,removed as the handover says
+ADCO#1,ADCO01-Coach to ADCO17-Coach (CoachPage),All coaches,Opens,AC6-AcademyCoaches,works; pressed
+ADCO#2,ADCO01-Coach to ADCO17-Coach (CoachPage),Change details,Opens,AD23-AddCoach,works; pressed. AD23 opens as a new coach: it is not filled in with this coach
+ADCO#3,ADCO01-Coach to ADCO17-Coach (CoachPage),Message (first name),Opens,ADM1-Messages,works; pressed. Opens Messages; not that coach's chat
+ADCO#4,ADCO01-Coach to ADCO17-Coach (CoachPage),The signed copy · Open,Says,The signed agreement opens as a PDF. Only you can see it.,line of text only; as the board
+ADCO#5,ADCO01-Coach to ADCO17-Coach (CoachPage),Mobile (masked),Says the board's line and turns the row into a button,The full number shows after you confirm it is you. + Confirm it is you Dani,works; pressed. The board only says the line
+ADCO#6,ADCO01-Coach to ADCO17-Coach (CoachPage),Confirm it is you Dani,Shows the full number until the page is left,0400 000 and the three digits (sample),works; pressed; masked again after a reload. NOT on the board. No real check of who is asking
+ADCO#7,ADCO01-Coach to ADCO17-Coach (CoachPage),Children check,Opens,AD17-Checks,works; pressed; the pill is from the store's adults
+ADCO#8,ADCO01-Coach to ADCO17-Coach (CoachPage),Roster and pay,Opens,AD9-RosterPay,works; pressed
+ADCO#9,ADCO01-Coach to ADCO17-Coach (CoachPage),Change the rate,Opens,AD21-RatesCosts,works; pressed; a rate of $160 in the store moved every pay figure on the page
+ADCO#10,ADCO01-Coach to ADCO17-Coach (CoachPage),Notes in the last 3 weeks / A goal set / Families sent a clip,Opens,That coach's team: ADG01 to ADG17,works; one pressed
+ADCO#11,ADCO01-Coach to ADCO17-Coach (CoachPage),Term reports drafted,Opens,AC7-ReportsOut,works; pressed
+ADCO#12,ADCO01-Coach to ADCO17-Coach (CoachPage),Watched coaching · All,Opens,AD10-WatchCoach,works; pressed
+ADCO#13,ADCO01-Coach to ADCO17-Coach (CoachPage),Watch a session,Opens,ADW1-WatchSession on THAT coach; beside the pitch when nothing is filmed,works; pressed for Reece (6 filmed) and Ben (none). The board sends every coach but Sofia back to AD10
+ADCO#14,ADCO01-Coach to ADCO17-Coach (CoachPage),Your private note,Writes the note,Kept in this browser; only the owner's screens show it,works; typed and reloaded. The board shows it as a line of words
+AD10#1,AD10-WatchCoach,How we coach,Opens,AD7-HowWeCoach,works; pressed
+AD10#2,AD10-WatchCoach,I watched one in person,Turns on picking a coach,A band: Pick the coach you watched; every row then opens ADW1 without film,works; pressed. The board only says a line
+AD10#3,AD10-WatchCoach,Cancel (in the band),Turns picking off,,works; read
+AD10#4,AD10-WatchCoach,Carry on (Sofia Marin),Opens,ADW1-WatchSession on Sofia's Wednesday,works; pressed
+AD10#5,AD10-WatchCoach,Pick a session (two suggestions),Opens,ADW1-WatchSession on that coach with their filmed sessions as chips,works; pressed for Ollie. The board opens the coach's page (ADCO17 / ADCO07) whose button leads back here
+AD10#6,AD10-WatchCoach,Every coach: a row,Opens,That coach: ADCO01 to ADCO17,works; pressed for Tom Ashby
+AD10#7,AD10-WatchCoach,Every coach: a row with a draft not sent (Sofia),Opens,ADW1-WatchSession on that coach,works; read
+AD10#8,AD10-WatchCoach,Every coach: a row while picking in person,Opens,ADW1-WatchSession on that coach without film,works; pressed for Lena Fischer
+ADW1#1,ADW1-WatchSession,All coaches to watch,Opens,AD10-WatchCoach,works; pressed
+ADW1#2,ADW1-WatchSession,(first name)'s own view,Opens,ADC15-MySession over the top,works; pressed. It is the coach app's screen for Reece; not that coach's own session. Hidden when watched in person
+ADW1#3,ADW1-WatchSession,Send to (first name),Sends; locks the marks and words; the coach is watched as of today,AD10 tiles and row and the coach's page move,works; pressed for Lena (in person) and Sofia. Asks for the four marks and one thing to try first
+ADW1#4,ADW1-WatchSession,Session chips,Switches the session,Its own marks / moments / words,works; pressed; what was marked is kept when switching and when leaving and coming back
+ADW1#5,ADW1-WatchSession,Play the session,Says,The film plays from the start (or from the moment jumped to),line of text only; there is no film in the demo
+ADW1#6,ADW1-WatchSession,A moment (each),Jumps,The film shows At 18:30; says The film jumps to 18:30,works; pressed. Not a button when watched in person
+ADW1#7,ADW1-WatchSession,Mark a moment: minute / part / what you saw / keep or to try / Mark a moment,Adds a moment,A new row in Moments you marked,works; pressed. NOT on the board
+ADW1#8,ADW1-WatchSession,How it went: your five dots on each of four lines,Writes your mark,1 to 5,works; pressed. The coach's marks are read only; Not yet when the coach has not marked
+ADW1#9,ADW1-WatchSession,One thing to try (words),Writes,Kept while the app is open,works; typed
+ADW1#10,ADW1-WatchSession,Attach a drill that does it,Opens,ADL2-Drill,works as a link; pressed. It does not attach anything yet: no drill is picked or stored
+ADW1#11,ADW1-WatchSession,Keep doing (words),Writes,Kept while the app is open,works; typed
+AC6#1,AC6-AcademyCoaches,A coach's row,Opens,That coach: ADCO01 to ADCO17 (was the team),works; pressed for Reece
+AD9#1,AD9-RosterPay,A coach's row,Opens,That coach: ADCO01 to ADCO17 (was the team),works; pressed for Sofia
+AD6#1,AD6-YearPlan,Drill library (button),Opens,"ADL1-DrillLibrary, on all 248",works; pressed
+AD6#2,AD6-YearPlan,Share with families,Says,Families see this term’s themes for their own child’s age. Not the drills.,line of text only; pressed
+AD6#3,AD6-YearPlan,Change a block,Opens,"AD22-ChangeBlock for this phase, this term, the block the week is in","works; pressed, changed weeks 6 to 10 to First touch, the year, grid and balance moved and held on a reload"
+AD6#4,AD6-YearPlan,Phase: Discovery / Skill acquisition / Into game training (3),Picks,"the phase; the age chips, year, grid, step lines, balance and following all change",works; all 3 pressed
+AD6#5,AD6-YearPlan,"Age: U6 to U14 (3 shown at a time, 9 in all)",Picks,the age,"works; all 9 pressed: heading, 40 nights, balance adds to 40, 4 step lines each"
+AD6#6,AD6-YearPlan,A night in the grid (40),Opens,"ADQ1-Session for THAT age, week and night","works; all 40 pressed for U7, U10 and U13 (120), each landed on its own night; Back to the term returned to the same age"
+AD6#7,AD6-YearPlan,See the five steps,Opens,AD7-HowWeCoach,works; pressed
+AD6#8,AD6-YearPlan,Balance rows (6),Opens,ADL1-DrillLibrary on that skill; Small games opens it on all,works; all 6 pressed
+AD6#9,AD6-YearPlan,Sessions run from the plan,Opens,AD8-SessionQuality,"works; pressed. The numbers are sample (49 of 54), shown for under 12 to 14 only"
+AD6#10,AD6-YearPlan,Sessions using library drills,Opens,ADL1-DrillLibrary,works; pressed. Sample numbers (51 of 54)
+AD6#11,AD6-YearPlan,U13 Gold · Sam swapped the arrival game (not on the board),Opens,ADQ1-Session for week 8 Monday,works; pressed. The swap itself is sample
+AD6#12,AD6-YearPlan,Sub-menu: Drill library,Opens,ADL1-DrillLibrary,works; pressed from the menu
+ADQ1#1,ADQ1-Session,Back to the term,Opens,AD6-YearPlan on the same age,works; pressed
+ADQ1#2,ADQ1-Session,What the coach sees,Opens,"ACT3-AcademySessionPlan, over the top",works; pressed. That screen is the coach side's and is not changed by a swap here
+ADQ1#3,ADQ1-Session,Save as the plan,Says,Saved. U13 Timber and U13 Gold get it on Monday 8 June. (For a night already run: Saved for the next time this night comes round.),line of text only; pressed. The swap is already kept without it. Board says 15 June
+ADQ1#4,ADQ1-Session,A drill in a part (up to 4),Opens,ADL2-Drill for THAT drill,works; pressed for a planned and a swapped drill
+ADQ1#5,ADQ1-Session,Swap (one for each part that has a drill),Puts in,"the next named drill for the same part, skill and age; says its name; round to the plan's own drill again takes the swap away","works; arrival game pressed (Volley tennis), training pressed 7 times round and back, game pressed; kept on a reload; shows in AD6's grid. Board opens ADL1 instead"
+ADQ1#6,ADQ1-Session,Swap when nothing else fits,Says,No other striking the ball drill for this part fits under 13s among the 24 named drills.,line of text only; pressed on the skill introduction
+ADQ1#7,ADQ1-Session,Put back (shown on a swapped part; not on the board),Puts back,the plan's drill,works; pressed
+ADQ1#8,ADQ1-Session,Wrap-up row,None,no Swap and no drill page: it is not a drill,missing on purpose; the board draws a Swap and a link on it
+ADQ1#9,ADQ1-Session,Who runs it: a team (one for each team at the age),Opens,"that team's page, ADG14-Team or ADG15-Team",works; both pressed
+ADQ1#10,ADQ1-Session,open the library (on a night with no named drills),Opens,ADL1-DrillLibrary on that night's skill,works; pressed from a first touch night
+ADL1#1,ADL1-DrillLibrary,The curriculum,Opens,AD6-YearPlan,works; pressed
+ADL1#2,ADL1-DrillLibrary,+ Add a drill,Says,"Name it, draw the set-up with your finger, say which skill and step it trains. Or film it.",line of text only; pressed
+ADL1#3,ADL1-DrillLibrary,Core skill: All 248 and the five skills with counts (6),Filters,the cards; the heading says how many are showing of how many,"works; all 6 pressed. Only Striking the ball has cards (24 of 55); the other four say their drills are counted, not named"
+ADL1#4,ADL1-DrillLibrary,"Phase: Any, Discovery, Skill acquisition, Into game training (4)",Filters,by the ages a drill is for,"works; all pressed: 6, 18 and 18 of the 24. Board calls the third Game training"
+ADL1#5,ADL1-DrillLibrary,"Part of session: Any, Arrival game, Introduction, Training, Game (5)",Filters,by part,"works; all pressed: 4, 6, 8, 6"
+ADL1#6,ADL1-DrillLibrary,"Also: Any, Filmed, Our own, Not used this term, Needs no goals (5)",Filters,filmed and our own are sample; not used is counted; no goals is from sample equipment,"works; all pressed: 8, 1, 5, 12"
+ADL1#7,ADL1-DrillLibrary,A drill card (24),Opens,ADL2-Drill for THAT drill,"works; all 24 pressed, each opened its own drill"
+ADL1#8,ADL1-DrillLibrary,Show the next 24,Says,The sample names 24 of the 55 striking the ball drills. The next 24 load here.,line of text only; pressed. There are no more drills in the sample
+ADL1#9,ADL1-DrillLibrary,Take the filters off (when nothing fits; not on the board),Clears,"phase, part and also",works; pressed
+ADL1#10,ADL1-DrillLibrary,Show striking the ball (on a skill with no cards; not on the board),Picks,Striking the ball,works; pressed
+ADL1#11,ADL1-DrillLibrary,Where a drill is used,Opens,AD6-YearPlan,works; pressed
+ADL1#12,ADL1-DrillLibrary,What coaches see,Opens,"ACT2-AcademySuggested, over the top",works; pressed
+ADL1#13,ADL1-DrillLibrary,Coaches film drills here,Opens,"ACC9-AcademyRecordDrill, over the top",works; pressed
+ADL2#1,ADL2-Drill,Drill library,Opens,ADL1-DrillLibrary on the drill's skill,works; pressed 24 times
+ADL2#2,ADL2-Drill,Change it,Says,"Change the words, the set-up drawing or the step it trains.",line of text only; pressed
+ADL2#3,ADL2-Drill,Add to a session,Puts in and opens,"ADQ1-Session: the drill goes in its part of the open night if it fits, or else the next night on its skill for an age it fits","works; pressed for Weak-foot gates, Volley tennis (became the arrival game, shown as a swap) and Through the legs relay (found an under 6 night). Board only opens ADQ1"
+ADL2#4,ADL2-Drill,Used this term,Opens,AD6-YearPlan,works; pressed
+ADL2#5,ADL2-Drill,"A film clip (2 for Weak-foot gates, 1 for the other filmed drills)",Says,The clip plays.,line of text only; pressed. No film in the sample
+ADL2#6,ADL2-Drill,Coaches film drills here (on a drill with no film; not on the board),Opens,"ACC9-AcademyRecordDrill, over the top",works; pressed
+AC6#1,AC6-AcademyCoaches,Watch a coach,Opens,AD10-WatchCoach,works; read
+AC6#2,AC6-AcademyCoaches,+ Add a coach,Opens,AD23-AddCoach,works; read
+AD1#1,AD1-AcademyHome,Today chip,Opens,AD3-Timetable,works; read
+AD1#2,AD1-AcademyHome,Fees this term chip,Opens,AC5-Fees,works; counted; checked it moves when a fee is paid
+AD1#3,AD1-AcademyHome,By team,Opens,AC2-Programs,works; read
+AD1#4,AD1-AcademyHome,Four development tiles,Opens,AD5-GroupMoves / AC4-AcademyPlayers / AC6-AcademyCoaches / AD2-Health,works; counted; read
+AD1#7,AD1-AcademyHome,Needs you: five lines,Opens,AC3-Trials / AD4-NextTerm / AC5-Fees / AD3-Timetable / AD17-Checks,works; three counted and two sample; read
+AD9#1,AD9-RosterPay,Change a rate,Opens,AD21-RatesCosts,works; read
+AD9#3,AD9-RosterPay,Download for payroll,Says,A payroll file for 17 coaches is on its way to your email.,line of text only

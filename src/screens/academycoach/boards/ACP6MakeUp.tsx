@@ -3,6 +3,7 @@
 
 import { demoToast } from '../../demoToast'
 import { coachGo } from '../menu'
+import { clock, useCoachTeam } from '../coachTeam'
 
 const C = {
   card: { background: "#ffffff", border: "1px solid #c5c8c4", borderRadius: "16px", padding: "12px 14px", display: "flex", flexDirection: "column", gap: "8px" },
@@ -13,6 +14,7 @@ const C = {
 
 export default function ACP6MakeUp({ onNav }: { onNav?: (id: string) => void }) {
   const go = coachGo(onNav)
+  const { g } = useCoachTeam()   // the team's times are read from the academy's list
   return (
     <div data-board="ACP6-MakeUp" style={{ width: 390, height: 844, overflow: 'hidden', position: "relative", boxSizing: "border-box", background: "#faf5ec", color: "#10211f", fontFamily: "var(--font-sans, 'DM Sans', system-ui, sans-serif)", display: "flex", flexDirection: "column" }}>
       <div style={{ flex: "none", padding: "12px 18px", background: "#2f6252", color: "#ffffff", display: "flex", alignItems: "center", gap: "10px" }}>
@@ -33,10 +35,10 @@ export default function ACP6MakeUp({ onNav }: { onNav?: (id: string) => void }) 
         </div>
         <span style={{ ...C.label }}>Pick a make-up · Advanced</span>
         <div role="radiogroup" aria-label="Make-up session" style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-          <button aria-checked="false" onClick={() => demoToast("Tue 9 Jun · 5:30 pm chosen.")} style={{ margin: "0", font: "inherit", textAlign: "inherit", cursor: "pointer", display: "flex", alignItems: "center", gap: "10px", minHeight: "60px", padding: "8px 12px", borderRadius: "14px", background: "#ffffff", border: "1px solid #c5c8c4", color: "#10211f", textDecoration: "none", boxSizing: "border-box" }}>
+          <button aria-checked="false" onClick={() => demoToast(`Tue 9 Jun · ${clock(g)} pm chosen.`)} style={{ margin: "0", font: "inherit", textAlign: "inherit", cursor: "pointer", display: "flex", alignItems: "center", gap: "10px", minHeight: "60px", padding: "8px 12px", borderRadius: "14px", background: "#ffffff", border: "1px solid #c5c8c4", color: "#10211f", textDecoration: "none", boxSizing: "border-box" }}>
             <span style={{ flex: "none", width: "22px", height: "22px", borderRadius: "999px", boxSizing: "border-box", border: "2px solid #6f7f7b" }} />
             <span style={{ flexGrow: "1" }}>
-              <span style={{ display: "block", fontSize: "15px", lineHeight: "20px", fontWeight: "700" }}>Tue 9 Jun · 5:30 pm</span>
+              <span style={{ display: "block", fontSize: "15px", lineHeight: "20px", fontWeight: "700" }}>Tue 9 Jun · {clock(g)} pm</span>
               <span style={{ display: "block", fontSize: "13px", lineHeight: "18px", color: "#4a5a57" }}>His usual group</span>
             </span>
           </button>
@@ -57,7 +59,7 @@ export default function ACP6MakeUp({ onNav }: { onNav?: (id: string) => void }) 
         </div>
         <div style={{ ...C.card }}>
           <span style={{ fontSize: "14px", lineHeight: "20px", color: "#4a5a57" }}>
-            {"His one-on-one at 6:45 is separate. "}
+            {"His one-on-one on Friday is separate. "}
             <button onClick={() => demoToast("Pick a new time. Coach Reece confirms.")} style={{ border: "0", padding: "0", margin: "-12px 0", background: "transparent", font: "inherit", textAlign: "inherit", textDecoration: "underline", cursor: "pointer", color: "#2f6252", display: "inline-flex", alignItems: "center", minHeight: "44px" }}>Move it</button>
             {" for free up to 24 hours before."}
           </span>

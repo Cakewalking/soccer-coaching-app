@@ -16,6 +16,9 @@ const SLOTS: Array<{ at: string; who: string; withWho?: string; how?: string }> 
   { at: '7:25', who: 'Open',        withWho: 'Not booked yet' },
   { at: '7:35', who: 'Finn Byrne' },
 ]
+// The board (unchanged since v28) says Tuesday. Every team now trains Monday to Thursday, 6:35 to 7:45 for this one,
+// so these times would fall inside the session: the evening is Friday here. Change this one word to move it back.
+const EVENING = 'Friday'
 const SHOWN = '6:45'   // the one chat the board draws
 
 const PLAN = [
@@ -30,13 +33,13 @@ export default function ADC5ReviewChats({ go }: { go: (id: string) => void }) {
   const family = (name: string) => { const p = ps.find(x => x.name === name); return p ? `${firstName(p)}’s ${p.parent_is}, ${p.parent}` : '' }
   return (
     <Page columns="380px minmax(0,1fr)" head={
-      <Head title="Review chats" sub="Tuesday 16 June · week 9 · ten minutes each · 5 of 6 booked">
+      <Head title="Review chats" sub={`${EVENING} 19 June · week 9 · ten minutes each · ${SLOTS.filter(x => x.who !== 'Open').length} of ${SLOTS.length} booked`}>
         <More onClick={() => demoToast('Pick the times. Families who haven’t booked are told.')}>Offer more times</More>
         <Primary onClick={() => demoToast('Kai’s chat opens: the clip, the four skills and the goal, one screen each.')}>Start with Kai</Primary>
       </Head>
     }>
-      <section aria-label="Tuesday evening" style={listTile}>
-        <TileHead title="Tuesday evening" right="Pitch-side, in open view" />
+      <section aria-label={`${EVENING} evening`} style={listTile}>
+        <TileHead title={`${EVENING} evening`} right="Pitch-side, in open view" />
         {SLOTS.map(s => {
           const on = s.at === SHOWN
           return (

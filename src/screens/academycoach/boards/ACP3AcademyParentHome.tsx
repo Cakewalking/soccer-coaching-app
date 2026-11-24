@@ -2,6 +2,7 @@
 // Made from the board's source by the converter kept with the checking scripts; change the words here, not the layout.
 
 import { coachGo } from '../menu'
+import { clock, useCoachTeam } from '../coachTeam'
 
 const C = {
   card: { background: "#ffffff", border: "1px solid #c5c8c4", borderRadius: "16px", padding: "12px 14px", display: "flex", flexDirection: "column", gap: "8px" },
@@ -10,6 +11,7 @@ const C = {
 
 export default function ACP3AcademyParentHome({ onNav }: { onNav?: (id: string) => void }) {
   const go = coachGo(onNav)
+  const { g } = useCoachTeam()   // the team's times are read from the academy's list
   return (
     <div data-board="ACP3-AcademyParentHome" style={{ width: 390, height: 844, overflow: 'hidden', position: "relative", boxSizing: "border-box", background: "#faf5ec", color: "#10211f", fontFamily: "var(--font-sans, 'DM Sans', system-ui, sans-serif)", display: "flex", flexDirection: "column" }}>
       <div style={{ flex: "none", padding: "12px 18px", background: "#2f6252", color: "#ffffff", display: "flex", alignItems: "center", gap: "10px" }}>
@@ -26,8 +28,8 @@ export default function ACP3AcademyParentHome({ onNav }: { onNav?: (id: string) 
             <span style={{ fontSize: "20px", lineHeight: "22px", fontWeight: "700" }}>4</span>
           </span>
           <span style={{ flexGrow: "1" }}>
-            <span style={{ display: "block", fontSize: "16px", lineHeight: "21px", fontWeight: "700" }}>Training today, 5:30 pm</span>
-            <span style={{ display: "block", fontSize: "13px", lineHeight: "18px", color: "#4a5a57" }}>Then one-on-one at 6:45 · game Sun 12:00</span>
+            <span style={{ display: "block", fontSize: "16px", lineHeight: "21px", fontWeight: "700" }}>Training today, {clock(g)} pm</span>
+            <span style={{ display: "block", fontSize: "13px", lineHeight: "18px", color: "#4a5a57" }}>One-on-one Fri 4:15 · game Sun 12:00</span>
           </span>
           <span style={{ fontSize: "13px", fontWeight: "700", color: "#2f6252" }}>Can’t come?</span>
         </button>
@@ -46,7 +48,7 @@ export default function ACP3AcademyParentHome({ onNav }: { onNav?: (id: string) 
             <strong style={{ fontSize: "15px" }}>A big week for Kai</strong>
             <span style={{ display: "inline-flex", alignItems: "center", height: "24px", padding: "0 9px", borderRadius: "999px", fontSize: "12px", fontWeight: "700", whiteSpace: "nowrap", background: "#e8cfcf", color: "#10211f" }}>5 sessions</span>
           </span>
-          <span style={{ fontSize: "14px", lineHeight: "20px", color: "#4a5a57" }}>Academy twice, school football, a one-on-one and a game. Coach Reece knows, and tonight’s sprints are kept short.</span>
+          <span style={{ fontSize: "14px", lineHeight: "20px", color: "#4a5a57" }}>Academy four times, school football, a one-on-one and a game. Coach Reece knows, and tonight’s sprints are kept short.</span>
         </div>
         <button onClick={() => go("ACP8-BookClinic")} style={{ margin: "0", font: "inherit", textAlign: "inherit", cursor: "pointer", ...C.card, flexDirection: "row", alignItems: "center", gap: "10px", textDecoration: "none", color: "#10211f" }}>
           <span style={{ flexGrow: "1" }}>

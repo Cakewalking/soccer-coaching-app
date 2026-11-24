@@ -10,7 +10,7 @@ export type OwnerGroup = { key: OwnerMain; label: string; icon: string; sub: Own
 export const OWNER_MENU: OwnerGroup[] = [
   { key: 'home', label: 'Home', icon: 'M4 11l8-7 8 7v9H4z', sub: [
     { label: 'Overview', id: 'AD1-AcademyHome' }, { label: 'Health', id: 'AD2-Health' }, { label: 'Trials', id: 'AC3-Trials' }, { label: 'Reports', id: 'AC7-ReportsOut' },
-    { label: 'Families', id: 'AD15-Families' }, { label: 'Child safety', id: 'AC10-AcademySafety' }, { label: 'Partner club', id: 'AC11-PartnerClub' },
+    { label: 'Families', id: 'AD15-Families' }, { label: 'Child safety', id: 'AC10-AcademySafety' }, { label: 'Partner club', id: 'AC11-PartnerClub' }, { label: 'Messages', id: 'ADM1-Messages' },
   ] },
   { key: 'programs', label: 'Programs', icon: 'M4 6h16M4 12h16M4 18h10', sub: [
     { label: 'Term programs', id: 'AC2-Programs' }, { label: 'Timetable', id: 'AD3-Timetable' }, { label: 'Next term', id: 'AD4-NextTerm' }, { label: 'Group moves', id: 'AD5-GroupMoves' }, { label: 'Holiday clinic', id: 'AC9-HolidayClinic' },
@@ -19,7 +19,7 @@ export const OWNER_MENU: OwnerGroup[] = [
     { label: 'All players', id: 'AC4-AcademyPlayers' }, { label: 'Where they go next', id: 'AD14-Pathway' },
   ] },
   { key: 'curriculum', label: 'Curriculum', icon: 'M4 5h16v14H4zM4 10h16M10 5v14', sub: [
-    { label: 'Year plan', id: 'AD6-YearPlan' }, { label: 'How we coach', id: 'AD7-HowWeCoach' }, { label: 'Our style', id: 'AD18-AcademyStyle' }, { label: 'Session quality', id: 'AD8-SessionQuality' },
+    { label: 'Year plan', id: 'AD6-YearPlan' }, { label: 'How we coach', id: 'AD7-HowWeCoach' }, { label: 'Our style', id: 'AD18-AcademyStyle' }, { label: 'Session quality', id: 'AD8-SessionQuality' }, { label: 'Drill library', id: 'ADL1-DrillLibrary' },
   ] },
   { key: 'coaches', label: 'Coaches', icon: 'M12 3l9 4-9 4-9-4zM7 9v5c0 2 2.5 3.5 5 3.5s5-1.5 5-3.5V9', sub: [
     { label: 'Coaches', id: 'AC6-AcademyCoaches' }, { label: 'Children checks', id: 'AD17-Checks' }, { label: 'Roster and pay', id: 'AD9-RosterPay' }, { label: 'Watching a coach', id: 'AD10-WatchCoach' },
@@ -33,10 +33,11 @@ export const OWNER_MENU: OwnerGroup[] = [
 export const ownerStem = (id: string) => id.split('-')[0].replace(/(\d)e$/, '$1')
 
 // A screen with no place of its own in a sub-menu sits under the item it is opened from: the older home under
-// Overview, and each form (AD19 to AD25) under its page.
+// Overview, each form (AD19 to AD25) under its page, and the decision on a trial (ADT1) under Trials.
 const UNDER_ITEM: Record<string, string> = {
   AC1: 'AD1-AcademyHome', AD19: 'AD12-Credits', AD20: 'AC2-Programs', AD21: 'AD9-RosterPay', AD22: 'AD6-YearPlan',
-  AD23: 'AD17-Checks', AD24: 'AD13-Connections', AD25: 'AD14-Pathway',
+  AD23: 'AD17-Checks', AD24: 'AD13-Connections', AD25: 'AD14-Pathway', ADT1: 'AC3-Trials',
+  ADQ1: 'AD6-YearPlan', ADL2: 'ADL1-DrillLibrary',   // one night's session sits under Year plan, one drill under Drill library (pack v31)
 }
 // These sit under Home with no sub-menu item lit: set-up (which is Home until its seven steps are done), the
 // message to families and the football year.
@@ -47,6 +48,8 @@ export function ownerItemOf(id: string): string {
   const stem = ownerStem(id)
   if (/^ADG\d+$/.test(stem)) return 'AC2-Programs'          // a team's page sits under Term programs
   if (/^ADF\d+$/.test(stem)) return 'AC4-AcademyPlayers'    // a player's page sits under All players
+  if (/^ADCO\d+$/.test(stem)) return 'AC6-AcademyCoaches'   // a coach's page sits under Coaches (pack v31)
+  if (stem === 'ADW1') return 'AD10-WatchCoach'             // one watched session sits under Watching a coach (pack v31)
   return OWNER_MENU.flatMap(g => g.sub).find(s => ownerStem(s.id) === stem)?.id ?? UNDER_ITEM[stem] ?? ''
 }
 /** The main item a screen sits under. */

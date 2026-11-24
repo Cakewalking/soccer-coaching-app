@@ -5,6 +5,7 @@ import { useContext } from 'react'
 import { demoToast } from '../../demoToast'
 import CoachNav from '../CoachNav'
 import { InCoachApp, coachGo } from '../menu'
+import { clock, useCoachTeam } from '../coachTeam'
 
 const C = {
   cap: { fontSize: "14px", lineHeight: "20px", color: "#4a5a57" },
@@ -18,6 +19,7 @@ const C = {
 
 export default function ACT4AcademyComing({ onNav }: { onNav?: (id: string) => void }) {
   const go = coachGo(onNav)
+  const { g } = useCoachTeam()   // the team's times are read from the academy's list
   const inApp = useContext(InCoachApp)
   return (
     <div data-board="ACT4-AcademyComing" style={{ ...(inApp ? { flexGrow: 1, minHeight: 0 } : { width: 1180, minHeight: 820 }), position: "relative", boxSizing: "border-box", background: "#faf5ec", color: "#10211f", fontFamily: "var(--font-sans, 'DM Sans', system-ui, sans-serif)", display: "flex", flexDirection: "column" }}>
@@ -25,7 +27,7 @@ export default function ACT4AcademyComing({ onNav }: { onNav?: (id: string) => v
       <div style={{ flex: "none", padding: "14px 28px 0", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "20px" }}>
         <div style={{ display: "flex", alignItems: "baseline", gap: "14px", minWidth: "0" }}>
           <h1 style={{ margin: "0", fontSize: "26px", lineHeight: "32px", fontWeight: "700", letterSpacing: "-0.02em", whiteSpace: "nowrap" }}>Who’s coming</h1>
-          <span style={{ ...C.cap, whiteSpace: "nowrap" }}>Tuesday 2 June · U13 Timber · 5:45 pm</span>
+          <span style={{ ...C.cap, whiteSpace: "nowrap" }}>Tuesday 2 June · {g.name} · {clock(g)} pm</span>
         </div>
         <div style={{ display: "flex", gap: "8px", flex: "none" }}>
           <button onClick={() => demoToast("Reminder sent to 2 families.")} style={{ margin: "0", font: "inherit", textAlign: "inherit", cursor: "pointer", ...C.more }}>Remind 2</button>

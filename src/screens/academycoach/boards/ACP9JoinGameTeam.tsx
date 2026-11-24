@@ -41,7 +41,7 @@ export default function ACP9JoinGameTeam({ onNav }: { onNav?: (id: string) => vo
             <span style={{ flex: "none", width: "22px", height: "22px", borderRadius: "999px", boxSizing: "border-box", border: "7px solid #2f6252" }} />
             <span style={{ flexGrow: "1" }}>
               <span style={{ display: "block", fontSize: "15px", lineHeight: "20px", fontWeight: "700" }}>Train and play games</span>
-              <span style={{ display: "block", fontSize: "13px", lineHeight: "18px", color: "#4a5a57" }}>Tue and Thu, plus Sunday league</span>
+              <span style={{ display: "block", fontSize: "13px", lineHeight: "18px", color: "#4a5a57" }}>Mon to Thu, plus Sunday league</span>
             </span>
           </button>
           <button aria-checked="false" onClick={() => demoToast("Train only chosen.")} style={{ margin: "0", font: "inherit", textAlign: "inherit", cursor: "pointer", display: "flex", alignItems: "center", gap: "10px", minHeight: "60px", padding: "8px 12px", borderRadius: "14px", background: "#ffffff", border: "1px solid #c5c8c4", color: "#10211f", textDecoration: "none", boxSizing: "border-box" }}>

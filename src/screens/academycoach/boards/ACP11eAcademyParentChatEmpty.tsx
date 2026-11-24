@@ -18,7 +18,7 @@ export default function ACP11eAcademyParentChatEmpty({ onNav }: { onNav?: (id: s
         </button>
         <span style={{ flexGrow: "1" }}>
           <span style={{ display: "block", fontSize: "12px", lineHeight: "16px", color: "#cfe6dc" }}>16 families, Reece and Dani</span>
-          <span style={{ display: "block", fontSize: "21px", lineHeight: "27px", fontWeight: "700" }}>U13 Timber · Tue and Thu</span>
+          <span style={{ display: "block", fontSize: "21px", lineHeight: "27px", fontWeight: "700" }}>U13 Timber · Mon to Thu</span>
         </span>
         <span style={{ flex: "none", width: "40px", height: "40px", borderRadius: "999px", background: "#e8cfcf", color: "#10211f", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "14px", fontWeight: "700" }}>TO</span>
       </div>

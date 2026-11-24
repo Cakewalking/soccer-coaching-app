@@ -73,7 +73,7 @@ export default function AD20NewProgram() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
             <span style={{ fontSize: 13, fontWeight: 700 }}>Days</span>
             <Picks label="Days" start={f.day} options={DAYS} onChange={put('day')} />
-            {team && team.days.length > 1 && <span style={{ fontSize: 12, color: '#4a5a57' }}>{team.name} trains on {team.days.join(' and ')}. Pick a day only to move it to one day a week.</span>}
+            {team && team.days.length > 1 && <span style={{ fontSize: 12, color: '#4a5a57' }}>{team.name} trains on {team.days.length > 2 ? `${team.days.slice(0, -1).join(', ')} and ${team.days[team.days.length - 1]}` : team.days.join(' and ')}. Pick a day only to move it to one day a week.</span>}
           </div>
           <div style={two}>
             <label style={label}>Time<Field value={f.time} onChange={put('time')} /></label>

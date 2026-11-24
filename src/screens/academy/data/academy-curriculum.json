@@ -1,0 +1,644 @@
+{
+ "phases": [
+  {
+   "name": "Discovery",
+   "ages": "Under 6 to under 8",
+   "program": "Foundation"
+  },
+  {
+   "name": "Skill acquisition",
+   "ages": "Under 9 to under 11",
+   "program": "Development"
+  },
+  {
+   "name": "Into game training",
+   "ages": "Under 12 to under 14",
+   "program": "Advanced"
+  }
+ ],
+ "week_steps": [
+  "On your own",
+  "With a partner",
+  "Against a defender",
+  "In a small game",
+  "In the game"
+ ],
+ "under_13_term_2": [
+  {
+   "week": 1,
+   "step": "On your own",
+   "nights": [
+    {
+     "night": "Mon",
+     "focus": "One against one",
+     "session": "Taking a player on · on your own"
+    },
+    {
+     "night": "Tue",
+     "focus": "First touch",
+     "session": "First touch · on your own"
+    },
+    {
+     "night": "Wed",
+     "focus": "Game training",
+     "session": "Playing out from the back"
+    },
+    {
+     "night": "Thu",
+     "focus": "Small games",
+     "session": "Sunday’s game, in small games"
+    }
+   ]
+  },
+  {
+   "week": 2,
+   "step": "With a partner",
+   "nights": [
+    {
+     "night": "Mon",
+     "focus": "One against one",
+     "session": "Taking a player on · with a partner"
+    },
+    {
+     "night": "Tue",
+     "focus": "Running with the ball",
+     "session": "Running with the ball · with a partner"
+    },
+    {
+     "night": "Wed",
+     "focus": "Game training",
+     "session": "Winning it back"
+    },
+    {
+     "night": "Thu",
+     "focus": "Small games",
+     "session": "Sunday’s game, in small games"
+    }
+   ]
+  },
+  {
+   "week": 3,
+   "step": "Against a defender",
+   "nights": [
+    {
+     "night": "Mon",
+     "focus": "One against one",
+     "session": "Taking a player on · against a defender"
+    },
+    {
+     "night": "Tue",
+     "focus": "First touch",
+     "session": "First touch · against a defender"
+    },
+    {
+     "night": "Wed",
+     "focus": "Game training",
+     "session": "Breaking lines"
+    },
+    {
+     "night": "Thu",
+     "focus": "Small games",
+     "session": "Sunday’s game, in small games"
+    }
+   ]
+  },
+  {
+   "week": 4,
+   "step": "In a small game",
+   "nights": [
+    {
+     "night": "Mon",
+     "focus": "One against one",
+     "session": "Taking a player on · in a small game"
+    },
+    {
+     "night": "Tue",
+     "focus": "Running with the ball",
+     "session": "Running with the ball · in a small game"
+    },
+    {
+     "night": "Wed",
+     "focus": "Game training",
+     "session": "Playing through the middle"
+    },
+    {
+     "night": "Thu",
+     "focus": "Small games",
+     "session": "Sunday’s game, in small games"
+    }
+   ]
+  },
+  {
+   "week": 5,
+   "step": "In the game",
+   "nights": [
+    {
+     "night": "Mon",
+     "focus": "One against one",
+     "session": "Taking a player on · in the game"
+    },
+    {
+     "night": "Tue",
+     "focus": "First touch",
+     "session": "First touch · in the game"
+    },
+    {
+     "night": "Wed",
+     "focus": "Game training",
+     "session": "Finishing the attack"
+    },
+    {
+     "night": "Thu",
+     "focus": "Small games",
+     "session": "Sunday’s game, in small games"
+    }
+   ]
+  },
+  {
+   "week": 6,
+   "step": "On your own",
+   "nights": [
+    {
+     "night": "Mon",
+     "focus": "Striking the ball",
+     "session": "Finishing, weaker foot · on your own"
+    },
+    {
+     "night": "Tue",
+     "focus": "First touch",
+     "session": "First touch · on your own"
+    },
+    {
+     "night": "Wed",
+     "focus": "Game training",
+     "session": "Playing out from the back"
+    },
+    {
+     "night": "Thu",
+     "focus": "Small games",
+     "session": "Sunday’s game, in small games"
+    }
+   ]
+  },
+  {
+   "week": 7,
+   "step": "With a partner",
+   "nights": [
+    {
+     "night": "Mon",
+     "focus": "Striking the ball",
+     "session": "Finishing, weaker foot · with a partner"
+    },
+    {
+     "night": "Tue",
+     "focus": "Running with the ball",
+     "session": "Running with the ball · with a partner"
+    },
+    {
+     "night": "Wed",
+     "focus": "Game training",
+     "session": "Winning it back"
+    },
+    {
+     "night": "Thu",
+     "focus": "Small games",
+     "session": "Sunday’s game, in small games"
+    }
+   ]
+  },
+  {
+   "week": 8,
+   "step": "Against a defender",
+   "nights": [
+    {
+     "night": "Mon",
+     "focus": "Striking the ball",
+     "session": "Finishing, weaker foot · against a defender"
+    },
+    {
+     "night": "Tue",
+     "focus": "First touch",
+     "session": "First touch · against a defender"
+    },
+    {
+     "night": "Wed",
+     "focus": "Game training",
+     "session": "Breaking lines"
+    },
+    {
+     "night": "Thu",
+     "focus": "Small games",
+     "session": "Sunday’s game, in small games"
+    }
+   ]
+  },
+  {
+   "week": 9,
+   "step": "In a small game",
+   "nights": [
+    {
+     "night": "Mon",
+     "focus": "Striking the ball",
+     "session": "Finishing, weaker foot · in a small game"
+    },
+    {
+     "night": "Tue",
+     "focus": "Running with the ball",
+     "session": "Running with the ball · in a small game"
+    },
+    {
+     "night": "Wed",
+     "focus": "Game training",
+     "session": "Playing through the middle"
+    },
+    {
+     "night": "Thu",
+     "focus": "Small games",
+     "session": "Sunday’s game, in small games"
+    }
+   ]
+  },
+  {
+   "week": 10,
+   "step": "In the game",
+   "nights": [
+    {
+     "night": "Mon",
+     "focus": "Striking the ball",
+     "session": "Finishing, weaker foot · in the game"
+    },
+    {
+     "night": "Tue",
+     "focus": "First touch",
+     "session": "First touch · in the game"
+    },
+    {
+     "night": "Wed",
+     "focus": "Game training",
+     "session": "Finishing the attack"
+    },
+    {
+     "night": "Thu",
+     "focus": "Small games",
+     "session": "Sunday’s game, in small games"
+    }
+   ]
+  }
+ ],
+ "drill_counts": {
+  "First touch": 58,
+  "Running with the ball": 52,
+  "One against one": 49,
+  "Striking the ball": 55,
+  "Game training": 34
+ },
+ "striking_drills": [
+  {
+   "name": "Weak-foot gates",
+   "part": "Introduction",
+   "ages": "9 to 14",
+   "players": "12 to 16",
+   "minutes": 15,
+   "trains_step": 2
+  },
+  {
+   "name": "Turn and finish, with a chaser",
+   "part": "Training",
+   "ages": "11 to 14",
+   "players": "8 to 16",
+   "minutes": 20,
+   "trains_step": 3
+  },
+  {
+   "name": "Four goals, weaker foot counts double",
+   "part": "Game",
+   "ages": "10 to 14",
+   "players": "12",
+   "minutes": 20,
+   "trains_step": 4
+  },
+  {
+   "name": "Two-goal rondo",
+   "part": "Arrival game",
+   "ages": "10 to 14",
+   "players": "6",
+   "minutes": 10,
+   "trains_step": 3
+  },
+  {
+   "name": "Laces ladder",
+   "part": "Introduction",
+   "ages": "7 to 10",
+   "players": "8 to 14",
+   "minutes": 12,
+   "trains_step": 1
+  },
+  {
+   "name": "Strike and follow",
+   "part": "Introduction",
+   "ages": "9 to 12",
+   "players": "10 to 16",
+   "minutes": 15,
+   "trains_step": 2
+  },
+  {
+   "name": "Wall pass and shoot",
+   "part": "Training",
+   "ages": "10 to 14",
+   "players": "8 to 12",
+   "minutes": 15,
+   "trains_step": 3
+  },
+  {
+   "name": "Long pass, long pitch",
+   "part": "Training",
+   "ages": "12 to 14",
+   "players": "12 to 16",
+   "minutes": 20,
+   "trains_step": 3
+  },
+  {
+   "name": "Cross and finish, three lanes",
+   "part": "Training",
+   "ages": "12 to 14",
+   "players": "12 to 16",
+   "minutes": 20,
+   "trains_step": 4
+  },
+  {
+   "name": "Shooting alley",
+   "part": "Training",
+   "ages": "8 to 11",
+   "players": "8 to 12",
+   "minutes": 15,
+   "trains_step": 2
+  },
+  {
+   "name": "Hit the moving target",
+   "part": "Introduction",
+   "ages": "7 to 10",
+   "players": "8 to 14",
+   "minutes": 10,
+   "trains_step": 2
+  },
+  {
+   "name": "Through the legs relay",
+   "part": "Arrival game",
+   "ages": "5 to 8",
+   "players": "6 to 12",
+   "minutes": 8,
+   "trains_step": 1
+  },
+  {
+   "name": "Knock the cone down",
+   "part": "Arrival game",
+   "ages": "5 to 8",
+   "players": "6 to 12",
+   "minutes": 8,
+   "trains_step": 1
+  },
+  {
+   "name": "Keeper’s nightmare",
+   "part": "Game",
+   "ages": "9 to 12",
+   "players": "8 to 10",
+   "minutes": 15,
+   "trains_step": 3
+  },
+  {
+   "name": "First time or two touch",
+   "part": "Training",
+   "ages": "11 to 14",
+   "players": "8 to 12",
+   "minutes": 15,
+   "trains_step": 4
+  },
+  {
+   "name": "Switch and strike",
+   "part": "Game",
+   "ages": "12 to 14",
+   "players": "14",
+   "minutes": 20,
+   "trains_step": 4
+  },
+  {
+   "name": "Volley tennis",
+   "part": "Arrival game",
+   "ages": "11 to 14",
+   "players": "4 to 8",
+   "minutes": 10,
+   "trains_step": 4
+  },
+  {
+   "name": "Pass through the lines",
+   "part": "Training",
+   "ages": "12 to 14",
+   "players": "10 to 14",
+   "minutes": 20,
+   "trains_step": 4
+  },
+  {
+   "name": "Three-zone finishing game",
+   "part": "Game",
+   "ages": "10 to 13",
+   "players": "12",
+   "minutes": 20,
+   "trains_step": 3
+  },
+  {
+   "name": "One bounce, one strike",
+   "part": "Introduction",
+   "ages": "9 to 12",
+   "players": "8 to 16",
+   "minutes": 10,
+   "trains_step": 3
+  },
+  {
+   "name": "Corner flag accuracy",
+   "part": "Introduction",
+   "ages": "8 to 11",
+   "players": "8 to 14",
+   "minutes": 10,
+   "trains_step": 2
+  },
+  {
+   "name": "Finish under pressure, 2 v 1",
+   "part": "Training",
+   "ages": "10 to 13",
+   "players": "9 to 15",
+   "minutes": 15,
+   "trains_step": 3
+  },
+  {
+   "name": "End-zone strikers",
+   "part": "Game",
+   "ages": "9 to 12",
+   "players": "10",
+   "minutes": 15,
+   "trains_step": 3
+  },
+  {
+   "name": "Penalty box chaos",
+   "part": "Game",
+   "ages": "11 to 14",
+   "players": "12",
+   "minutes": 15,
+   "trains_step": 4
+  }
+ ],
+ "coaches": [
+  {
+   "coach": "Ben Castellano",
+   "team": "U6 Timber",
+   "with_academy_since": 2026,
+   "course": "Skill Training Certificate",
+   "sessions_filmed_this_term": 0,
+   "last_watched": null,
+   "watched_by": null
+  },
+  {
+   "coach": "Priya Nair",
+   "team": "U7 Timber",
+   "with_academy_since": 2023,
+   "course": "Game Training Certificate",
+   "sessions_filmed_this_term": 5,
+   "last_watched": "Tue 5 May",
+   "watched_by": "Reece Whitlam"
+  },
+  {
+   "coach": "Tom Ashby",
+   "team": "U7 Gold",
+   "with_academy_since": 2022,
+   "course": "C Licence",
+   "sessions_filmed_this_term": 1,
+   "last_watched": null,
+   "watched_by": null
+  },
+  {
+   "coach": "Sofia Marin",
+   "team": "U8 Timber",
+   "with_academy_since": 2026,
+   "course": "Skill Training Certificate",
+   "sessions_filmed_this_term": 5,
+   "last_watched": null,
+   "watched_by": null
+  },
+  {
+   "coach": "Lena Fischer",
+   "team": "U8 Gold",
+   "with_academy_since": 2024,
+   "course": "MiniRoos Certificate",
+   "sessions_filmed_this_term": 0,
+   "last_watched": null,
+   "watched_by": null
+  },
+  {
+   "coach": "Marcus Obi",
+   "team": "U9 Timber",
+   "with_academy_since": 2023,
+   "course": "Skill Training Certificate",
+   "sessions_filmed_this_term": 1,
+   "last_watched": "Thu 21 May",
+   "watched_by": "You"
+  },
+  {
+   "coach": "Jess Halloran",
+   "team": "U9 Gold",
+   "with_academy_since": 2026,
+   "course": "Game Training Certificate",
+   "sessions_filmed_this_term": 1,
+   "last_watched": null,
+   "watched_by": null
+  },
+  {
+   "coach": "Dan Petrou",
+   "team": "U10 Timber",
+   "with_academy_since": 2023,
+   "course": "C Licence",
+   "sessions_filmed_this_term": 5,
+   "last_watched": "Tue 5 May",
+   "watched_by": "You"
+  },
+  {
+   "coach": "Aisha Khan",
+   "team": "U10 Gold",
+   "with_academy_since": 2026,
+   "course": "Skill Training Certificate",
+   "sessions_filmed_this_term": 1,
+   "last_watched": null,
+   "watched_by": null
+  },
+  {
+   "coach": "Liam Corrigan",
+   "team": "U11 Timber",
+   "with_academy_since": 2023,
+   "course": "MiniRoos Certificate",
+   "sessions_filmed_this_term": 0,
+   "last_watched": null,
+   "watched_by": null
+  },
+  {
+   "coach": "Mei Tanaka",
+   "team": "U11 Gold",
+   "with_academy_since": 2024,
+   "course": "Skill Training Certificate",
+   "sessions_filmed_this_term": 1,
+   "last_watched": null,
+   "watched_by": null
+  },
+  {
+   "coach": "Josh Abela",
+   "team": "U12 Timber",
+   "with_academy_since": 2024,
+   "course": "Game Training Certificate",
+   "sessions_filmed_this_term": 1,
+   "last_watched": "Wed 13 May",
+   "watched_by": "You"
+  },
+  {
+   "coach": "Nadia Haddad",
+   "team": "U12 Gold",
+   "with_academy_since": 2024,
+   "course": "C Licence",
+   "sessions_filmed_this_term": 2,
+   "last_watched": "Thu 21 May",
+   "watched_by": "You"
+  },
+  {
+   "coach": "Reece Whitlam",
+   "team": "U13 Timber",
+   "with_academy_since": 2022,
+   "course": "C Licence",
+   "sessions_filmed_this_term": 6,
+   "last_watched": "Tue 5 May",
+   "watched_by": "You"
+  },
+  {
+   "coach": "Sam Whitford",
+   "team": "U13 Gold",
+   "with_academy_since": 2024,
+   "course": "MiniRoos Certificate",
+   "sessions_filmed_this_term": 1,
+   "last_watched": null,
+   "watched_by": null
+  },
+  {
+   "coach": "Carla Mendes",
+   "team": "U14 Timber",
+   "with_academy_since": 2026,
+   "course": "Skill Training Certificate",
+   "sessions_filmed_this_term": 0,
+   "last_watched": null,
+   "watched_by": null
+  },
+  {
+   "coach": "Ollie Drummond",
+   "team": "U14 Gold",
+   "with_academy_since": 2026,
+   "course": "Game Training Certificate",
+   "sessions_filmed_this_term": 2,
+   "last_watched": null,
+   "watched_by": null
+  }
+ ]
+}

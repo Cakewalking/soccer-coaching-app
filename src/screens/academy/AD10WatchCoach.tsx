@@ -1,147 +1,78 @@
-// AD10-WatchCoach: Academy owner: watching a filmed session with a coach, timed notes, the coach’s own view beside yours, and one thing to try.
-// Drawn from the board in the academy handover (24 Nov). The menus above it are the owner app's own (OwnerHeader).
+// AD10-WatchCoach: Academy owner: the list of who has been watched this term, who is due and why (pack v31, 25 Nov).
+// The rule is stated: every coach is watched at least once a term, on film or beside the pitch. One session is `ADW1-WatchSession`.
+// From coachStore: sessions filmed, last watched and by whom are the pack's `academy-curriculum.json`; "Watch next" picks a coach who asked,
+// one who is new and not watched, and the one lowest on the basics counted from the list of players. In team order, never ranked.
+// Sending feedback from ADW1 moves this list and its tiles while the app is open.
+import { useContext, useState } from 'react'
 import { S } from './adStyles'
 import Tap from './Tap'
-import { BALL_ROLLING_FROM_FILM } from './notYet'
+import { OwnerGo } from './ownerMenu'
+import { useAcademy, type Group } from './academyStore'
+import { coachBoard, first, useCoachStore, watchCoach, watchNext, watchOf, watchTotals, whereOf, type Where } from './coachStore'
+import { Avatar, Cap, Head, Kpi, Kpis, LINE, MAIN, MAUVE, MUTED, Num, PALE, Pill, SAND, Th, Tile } from './kit'
+
+const COLS = '1.5fr 0.9fr 0.8fr 1.1fr 0.9fr 1fr'
+const PILL: Record<Where, 'mauve' | 'good' | 'soft' | 'warn'> = { 'Draft, not sent': 'mauve', 'Sent and read': 'good', 'Sent, not opened': 'soft', 'Due · nothing filmed': 'warn', 'Due': 'mauve' }
+const row = { display: 'grid', gridTemplateColumns: COLS, gap: 10, alignItems: 'center', minHeight: 50, borderTop: `1px solid ${LINE}`, fontSize: 14, lineHeight: '19px', color: '#10211f', textDecoration: 'none', boxSizing: 'content-box' } as const
 
 export default function AD10WatchCoach() {
+  const a = useAcademy(), go = useContext(OwnerGo)
+  useCoachStore()
+  /** "I watched one in person": the owner picks the coach, and each row then opens the four lines without film. */
+  const [inPerson, setInPerson] = useState(false)
+  const t = watchTotals(a), next = watchNext(a)
+  function session(g: Group, beside = false) { watchCoach(g.coach, beside); go('ADW1-WatchSession') }
+  const open = (g: Group, beside = false) => (e: React.MouseEvent) => { if (e.metaKey || e.ctrlKey || e.shiftKey || e.button) return; e.preventDefault(); session(g, beside) }
   return (
-    <>
-      <div style={{ flex: 'none', padding: '14px 28px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 20 }}>
-        <div style={{ display: 'flex', alignItems: 'baseline', gap: 14, minWidth: 0 }}>
-          <h1 style={{ margin: 0, fontSize: 26, lineHeight: '32px', fontWeight: 700, letterSpacing: '-0.02em', whiteSpace: 'nowrap' }}>Sofia Marin</h1>
-          <span style={{ ...S.cap, whiteSpace: 'nowrap' }}>Foundation · Wednesday 3 June · 50 minutes · filmed on the tablet</span>
+    <main style={MAIN}>
+      <Head title="Watching a coach" sub={`Every coach is watched at least once a term, on film or beside the pitch · ${t.watched} of ${t.coaches} done in Term 2`}>
+        <Tap to="AD7-HowWeCoach" style={S.more}>How we coach</Tap>
+        <button type="button" aria-pressed={inPerson} onClick={() => setInPerson(v => !v)} style={{ ...S.primary, fontFamily: 'inherit', cursor: 'pointer' }}>I watched one in person</button>
+      </Head>
+      <Kpis n={4}>
+        <Kpi label="Watched this term" value={`${t.watched} of ${t.coaches}`} sub={t.due ? `${t.due} still due before week 10` : 'Every coach has been watched'} bg={PALE} />
+        <Kpi label="Sessions filmed" value={t.filmed} sub="On the tablet, at training" />
+        <Kpi label="Feedback opened" value={`${t.opened} of ${t.watched}`} sub="By the coach it was sent to" />
+        <Kpi label="Coaches with nothing filmed" value={t.noFilm} sub="Watch these in person" bg={MAUVE} />
+      </Kpis>
+      <Tile title="Watch next" right={<Cap>Clean Sheet suggests. You choose</Cap>}>
+        {next.map(s => (
+          <span key={s.g.id} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 56, borderTop: `1px solid ${LINE}`, boxSizing: 'content-box' }}>
+            <Avatar bg={s.main ? MAUVE : SAND} size={34}>{s.g.ci}</Avatar>
+            <span style={{ flexGrow: 1, minWidth: 0, display: 'flex', flexDirection: 'column' }}>
+              <strong style={{ fontSize: 15, lineHeight: '20px' }}>{s.g.coach} · {s.g.name}</strong>
+              <span style={{ fontSize: 13, lineHeight: '18px', color: MUTED }}>{s.why}</span>
+            </span>
+            <a href="/__screen/ADW1-WatchSession" onClick={open(s.g)} aria-label={`${s.label}: ${s.g.coach}`} style={{ ...(s.main ? S.primary : S.more), flex: 'none', borderRadius: 12, fontSize: 14, fontWeight: 700 }}>{s.label}</a>
+          </span>
+        ))}
+        {next.length === 0 && <Cap style={{ borderTop: `1px solid ${LINE}`, padding: '12px 0' }}>Nobody to suggest. Every coach who is due is in the list below.</Cap>}
+      </Tile>
+      {inPerson && (
+        <div role="status" style={{ flex: 'none', display: 'flex', alignItems: 'center', gap: 10, padding: '8px 12px', borderRadius: 12, background: PALE, border: '1px solid #cfe3da' }}>
+          <span style={{ flexGrow: 1, fontSize: 14, lineHeight: '19px' }}><strong>Pick the coach you watched.</strong> You fill in the same four lines without film.</span>
+          <button type="button" onClick={() => setInPerson(false)} style={{ ...S.more, fontFamily: 'inherit', cursor: 'pointer' }}>Cancel</button>
         </div>
-        <div style={{ display: 'flex', gap: 8, flex: 'none' }}>
-          <Tap to="ADC15-MySession" style={S.more}>Sofia’s own view</Tap>
-          <Tap say="Sofia can see your notes and the three moments. Nobody else can." style={S.primary}>Send to Sofia</Tap>
-        </div>
-      </div>
-      <main style={{ flexGrow: 1, minHeight: 0, padding: '12px 28px 18px', boxSizing: 'border-box', display: 'grid', gap: 14, gridTemplateColumns: 'minmax(0,1fr) 360px' }}>
-        <section aria-label="The session" style={{ ...S.tile, gap: 10 }}>
-          <Tap say="The clip plays." aria-label="Play: Foundation · Wednesday 3 June" style={{ flex: 'none', height: 300, borderRadius: 14, background: 'linear-gradient(160deg,#1c3a33,#2f5d50)', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', textDecoration: 'none', color: '#ffffff' }}>
-            <span style={{ width: 56, height: 56, borderRadius: 999, background: 'rgba(255,255,255,0.92)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#10211f' }}>
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M8 5l11 7-11 7z" />
-              </svg>
-            </span>
-            <span style={{ position: 'absolute', left: 12, bottom: 10, fontSize: 13, fontWeight: 700 }}>Foundation · Wednesday 3 June</span>
-            <span style={{ position: 'absolute', right: 12, bottom: 10, fontSize: 12 }}>50:00</span>
-          </Tap>
-          {/* How long each part ran is timed from the film. That counting is not built yet, so it stays hidden until the switch is on. */}
-          {BALL_ROLLING_FROM_FILM && (
-            <>
-              <div role="img" aria-label="Session shape: arrival game, skill practice, skill game, game" style={{ display: 'flex', gap: 4, alignItems: 'center' }}>
-                <span style={{ flex: '14', height: 26, borderRadius: 6, background: '#cfe3da', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, color: '#10211f' }}>Arrival</span>
-                <span style={{ flex: '34', height: 26, borderRadius: 6, background: '#f4e6e6', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, color: '#10211f' }}>Practice</span>
-                <span style={{ flex: '28', height: 26, borderRadius: 6, background: '#cfe3da', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, color: '#10211f' }}>Skill game</span>
-                <span style={{ flex: '24', height: 26, borderRadius: 6, background: '#cfe3da', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, color: '#10211f' }}>Game</span>
-              </div>
-              <span style={{ fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>Practice ran 17 minutes of 50. Your shape allows about 12.</span>
-            </>
-          )}
-          <Tap say="Jumps to 4:10 in the film." style={{ display: 'flex', gap: 12, alignItems: 'center', minHeight: 50, borderTop: '1px solid #e9eae8', textDecoration: 'none', color: '#10211f', boxSizing: 'content-box' }}>
-            <span style={{ ...S.num, flex: 'none', width: 48, fontWeight: 700 }}>4:10</span>
-            <span style={{ minWidth: 0, display: 'flex', flexDirection: 'column' }}>
-              <strong style={{ fontSize: 15, lineHeight: '20px' }}>Arrival game</strong>
-              <span style={{ fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>Every child on a ball inside a minute</span>
-            </span>
-          </Tap>
-          <Tap say="Jumps to 18:30 in the film." style={{ display: 'flex', gap: 12, alignItems: 'center', minHeight: 50, borderTop: '1px solid #e9eae8', textDecoration: 'none', color: '#10211f', boxSizing: 'content-box' }}>
-            <span style={{ ...S.num, flex: 'none', width: 48, fontWeight: 700 }}>18:30</span>
-            <span style={{ minWidth: 0, display: 'flex', flexDirection: 'column' }}>
-              <strong style={{ fontSize: 15, lineHeight: '20px' }}>Skill practice</strong>
-              <span style={{ fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>Two queues of seven. About a third of the group was waiting</span>
-            </span>
-          </Tap>
-          <Tap say="Jumps to 31:00 in the film." style={{ display: 'flex', gap: 12, alignItems: 'center', minHeight: 50, borderTop: '1px solid #e9eae8', textDecoration: 'none', color: '#10211f', boxSizing: 'content-box' }}>
-            <span style={{ ...S.num, flex: 'none', width: 48, fontWeight: 700 }}>31:00</span>
-            <span style={{ minWidth: 0, display: 'flex', flexDirection: 'column' }}>
-              <strong style={{ fontSize: 15, lineHeight: '20px' }}>Skill game</strong>
-              <span style={{ fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>Great question: “Where was the space?”</span>
-            </span>
-          </Tap>
-        </section>
-        <aside aria-label="Your notes" style={{ ...S.tile, gap: 8 }}>
-          <h2 style={S.h2}>How it went</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 70px 70px', gap: '6px 8px', alignItems: 'center', fontSize: 14 }}>
-            <span />
-            <span style={S.th}>You</span>
-            <span style={S.th}>Sofia</span>
-            <span>Ball rolling</span>
-            <span role="img" aria-label="3 of 5" style={{ display: 'inline-flex', gap: 3, alignItems: 'center' }}>
-              <span style={{ width: 10, height: 10, borderRadius: 999, boxSizing: 'border-box', background: '#2f6252' }} />
-              <span style={{ width: 10, height: 10, borderRadius: 999, boxSizing: 'border-box', background: '#2f6252' }} />
-              <span style={{ width: 10, height: 10, borderRadius: 999, boxSizing: 'border-box', background: '#2f6252' }} />
-              <span style={{ width: 10, height: 10, borderRadius: 999, boxSizing: 'border-box', background: '#ffffff', border: '1.5px solid #c5c8c4' }} />
-              <span style={{ width: 10, height: 10, borderRadius: 999, boxSizing: 'border-box', background: '#ffffff', border: '1.5px solid #c5c8c4' }} />
-            </span>
-            <span role="img" aria-label="4 of 5" style={{ display: 'inline-flex', gap: 3, alignItems: 'center' }}>
-              <span style={{ width: 10, height: 10, borderRadius: 999, boxSizing: 'border-box', background: '#2f6252' }} />
-              <span style={{ width: 10, height: 10, borderRadius: 999, boxSizing: 'border-box', background: '#2f6252' }} />
-              <span style={{ width: 10, height: 10, borderRadius: 999, boxSizing: 'border-box', background: '#2f6252' }} />
-              <span style={{ width: 10, height: 10, borderRadius: 999, boxSizing: 'border-box', background: '#2f6252' }} />
-              <span style={{ width: 10, height: 10, borderRadius: 999, boxSizing: 'border-box', background: '#ffffff', border: '1.5px solid #c5c8c4' }} />
-            </span>
-            <span>Clear, short words</span>
-            <span role="img" aria-label="4 of 5" style={{ display: 'inline-flex', gap: 3, alignItems: 'center' }}>
-              <span style={{ width: 10, height: 10, borderRadius: 999, boxSizing: 'border-box', background: '#2f6252' }} />
-              <span style={{ width: 10, height: 10, borderRadius: 999, boxSizing: 'border-box', background: '#2f6252' }} />
-              <span style={{ width: 10, height: 10, borderRadius: 999, boxSizing: 'border-box', background: '#2f6252' }} />
-              <span style={{ width: 10, height: 10, borderRadius: 999, boxSizing: 'border-box', background: '#2f6252' }} />
-              <span style={{ width: 10, height: 10, borderRadius: 999, boxSizing: 'border-box', background: '#ffffff', border: '1.5px solid #c5c8c4' }} />
-            </span>
-            <span role="img" aria-label="3 of 5" style={{ display: 'inline-flex', gap: 3, alignItems: 'center' }}>
-              <span style={{ width: 10, height: 10, borderRadius: 999, boxSizing: 'border-box', background: '#2f6252' }} />
-              <span style={{ width: 10, height: 10, borderRadius: 999, boxSizing: 'border-box', background: '#2f6252' }} />
-              <span style={{ width: 10, height: 10, borderRadius: 999, boxSizing: 'border-box', background: '#2f6252' }} />
-              <span style={{ width: 10, height: 10, borderRadius: 999, boxSizing: 'border-box', background: '#ffffff', border: '1.5px solid #c5c8c4' }} />
-              <span style={{ width: 10, height: 10, borderRadius: 999, boxSizing: 'border-box', background: '#ffffff', border: '1.5px solid #c5c8c4' }} />
-            </span>
-            <span>Every child noticed</span>
-            <span role="img" aria-label="5 of 5" style={{ display: 'inline-flex', gap: 3, alignItems: 'center' }}>
-              <span style={{ width: 10, height: 10, borderRadius: 999, boxSizing: 'border-box', background: '#2f6252' }} />
-              <span style={{ width: 10, height: 10, borderRadius: 999, boxSizing: 'border-box', background: '#2f6252' }} />
-              <span style={{ width: 10, height: 10, borderRadius: 999, boxSizing: 'border-box', background: '#2f6252' }} />
-              <span style={{ width: 10, height: 10, borderRadius: 999, boxSizing: 'border-box', background: '#2f6252' }} />
-              <span style={{ width: 10, height: 10, borderRadius: 999, boxSizing: 'border-box', background: '#2f6252' }} />
-            </span>
-            <span role="img" aria-label="4 of 5" style={{ display: 'inline-flex', gap: 3, alignItems: 'center' }}>
-              <span style={{ width: 10, height: 10, borderRadius: 999, boxSizing: 'border-box', background: '#2f6252' }} />
-              <span style={{ width: 10, height: 10, borderRadius: 999, boxSizing: 'border-box', background: '#2f6252' }} />
-              <span style={{ width: 10, height: 10, borderRadius: 999, boxSizing: 'border-box', background: '#2f6252' }} />
-              <span style={{ width: 10, height: 10, borderRadius: 999, boxSizing: 'border-box', background: '#2f6252' }} />
-              <span style={{ width: 10, height: 10, borderRadius: 999, boxSizing: 'border-box', background: '#ffffff', border: '1.5px solid #c5c8c4' }} />
-            </span>
-            <span>Followed the plan</span>
-            <span role="img" aria-label="3 of 5" style={{ display: 'inline-flex', gap: 3, alignItems: 'center' }}>
-              <span style={{ width: 10, height: 10, borderRadius: 999, boxSizing: 'border-box', background: '#2f6252' }} />
-              <span style={{ width: 10, height: 10, borderRadius: 999, boxSizing: 'border-box', background: '#2f6252' }} />
-              <span style={{ width: 10, height: 10, borderRadius: 999, boxSizing: 'border-box', background: '#2f6252' }} />
-              <span style={{ width: 10, height: 10, borderRadius: 999, boxSizing: 'border-box', background: '#ffffff', border: '1.5px solid #c5c8c4' }} />
-              <span style={{ width: 10, height: 10, borderRadius: 999, boxSizing: 'border-box', background: '#ffffff', border: '1.5px solid #c5c8c4' }} />
-            </span>
-            <span role="img" aria-label="3 of 5" style={{ display: 'inline-flex', gap: 3, alignItems: 'center' }}>
-              <span style={{ width: 10, height: 10, borderRadius: 999, boxSizing: 'border-box', background: '#2f6252' }} />
-              <span style={{ width: 10, height: 10, borderRadius: 999, boxSizing: 'border-box', background: '#2f6252' }} />
-              <span style={{ width: 10, height: 10, borderRadius: 999, boxSizing: 'border-box', background: '#2f6252' }} />
-              <span style={{ width: 10, height: 10, borderRadius: 999, boxSizing: 'border-box', background: '#ffffff', border: '1.5px solid #c5c8c4' }} />
-              <span style={{ width: 10, height: 10, borderRadius: 999, boxSizing: 'border-box', background: '#ffffff', border: '1.5px solid #c5c8c4' }} />
-            </span>
-          </div>
-          <div style={{ borderRadius: 12, background: '#f4e6e6', padding: '10px 12px', fontSize: 14, lineHeight: '20px' }}>
-            <strong>One thing to try</strong>
-            <br />
-            Split skill practice into three small groups, so nobody waits.
-          </div>
-          <div style={{ borderRadius: 12, background: '#eef5f2', padding: '10px 12px', fontSize: 14, lineHeight: '20px' }}>
-            <strong>Keep doing</strong>
-            <br />
-            Asking, not telling. The children answered every time.
-          </div>
-          <span style={{ ...S.cap, marginTop: 'auto', paddingTop: 8 }}>Sofia fills in her own view first. You see both side by side, then talk. This is for coaching the coach, never for pay.</span>
-        </aside>
-      </main>
-    </>
+      )}
+      <Tile title="Every coach" right={<Cap>In team order</Cap>}>
+        <Th cols={COLS} heads={['Coach', 'Team', 'Filmed', 'Last watched', 'By', 'Where it is']} />
+        {a.groups.map(g => { const w = watchOf(g), where = whereOf(g), cells = (
+          <>
+            <span style={{ display: 'flex', alignItems: 'center', gap: 10, minWidth: 0 }}><Avatar bg={SAND}>{g.ci}</Avatar><strong>{g.coach}</strong></span>
+            <span>{g.name}</span>
+            <Num>{w.filmed}</Num>
+            <span>{w.watched ?? 'Not this term'}</span>
+            <span>{w.watched ? w.by : ''}</span>
+            <Pill kind={PILL[where]}>{where}</Pill>
+          </>
+        )
+          // A row opens the coach. A draft the owner has started opens the session it is on, and so does every row while picking who was watched in person.
+          return inPerson || where === 'Draft, not sent'
+            ? <a key={g.id} href="/__screen/ADW1-WatchSession" onClick={open(g, inPerson)} aria-label={inPerson ? `I watched ${first(g.coach)} in person` : `Carry on with ${g.coach}’s session`} style={row}>{cells}</a>
+            : <Tap key={g.id} to={coachBoard(a, g)} style={row}>{cells}</Tap>
+        })}
+        <Cap style={{ paddingTop: 6 }}>A session is filmed when the coach props the tablet up and taps record. Watching is to help the coach, and the coach always sees what you wrote. It is not used for pay.</Cap>
+      </Tile>
+    </main>
   )
 }

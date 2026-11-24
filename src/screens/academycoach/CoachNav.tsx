@@ -2,7 +2,7 @@
 // for the item that is open. Every academy coach screen, old and new, draws this one.
 
 import type { ReactNode } from 'react'
-import { COACH_MENU, SWITCH_ROLE, SWITCH_VIEW, type CoachMain } from './menu'
+import { CHATS_TO_ANSWER, COACH_CHATS, COACH_MENU, SWITCH_ROLE, SWITCH_VIEW, type CoachMain } from './menu'
 
 const ICON: Record<CoachMain, string> = {
   today:    'M4 11l8-7 8 7v9H4z',
@@ -39,9 +39,15 @@ export default function CoachNav({ active, sub, go, extra, onAccount }: { active
             )
           })}
         </nav>
+        {/* Messages, on every coach screen (pack v30): between the menu and the academy's name. The badge is pale mauve, never an error colour. */}
+        <button data-club-keep="" data-messages={CHATS_TO_ANSWER} onClick={() => go(COACH_CHATS)} aria-label={CHATS_TO_ANSWER ? `Messages, ${CHATS_TO_ANSWER} need a reply` : 'Messages'}
+          style={{ position: 'relative', flex: 'none', width: 44, height: 44, marginRight: extra ? 0 : 8, borderRadius: 999, border: 0, padding: 0, background: 'rgba(255,255,255,0.16)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#ffffff', cursor: 'pointer' }}>
+          <Svg d="M4 5h16v11H8l-4 4z" />
+          {CHATS_TO_ANSWER > 0 && <span style={{ position: 'absolute', top: -3, right: -3, minWidth: 20, height: 20, boxSizing: 'border-box', padding: '0 4px', borderRadius: 999, background: '#f4e6e6', border: '1.5px solid #c39797', color: '#10211f', fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{CHATS_TO_ANSWER}</span>}
+        </button>
         {extra}
         <button data-club-keep="" onClick={() => go(SWITCH_VIEW)} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: 0, background: '#ffffff', color: '#10211f', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 8, boxSizing: 'border-box', whiteSpace: 'nowrap', cursor: 'pointer', flex: 'none' }}>
-          Tall Timber Academy <Svg d="M6 9l6 6 6-6" size={16} sw={2.4} />
+          Tall Timber <Svg d="M6 9l6 6 6-6" size={16} sw={2.4} />
         </button>
         {onAccount
           ? <button data-club-keep="" onClick={onAccount} aria-label="Your account and settings" style={{ ...face, border: 0, padding: 0, fontFamily: 'inherit', cursor: 'pointer' }}>RW</button>

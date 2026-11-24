@@ -1,4 +1,9 @@
-// ACC1-CoachToday: the coach's home, for Reece's one team (programs v2). Now, Progress, Development, Oversight.
+// ACC1-CoachToday: the coach's home, for Reece's one team (programs v2), rebuilt as pack v32 draws it (1,330 tall, it scrolls):
+// Now, Progress, Development, this week from the curriculum beside who came, Sunday, and on the right the four meters,
+// your families, your own coaching and one "needs you"; then the pale "Done for you this week" band.
+// LAYOUT RULE (v32, every home): a tile is as tall as its content. Nothing here grows to fill the window; on a tall
+// screen the page ends and the background shows.
+// COUNTED from the academy's list, the curriculum and the trials: everything except the constants marked SAMPLE below.
 // The layout, sizes and colours are the board's. The numbers are not typed in: the headline, the then-and-now
 // bars, the dots and the four meters are counted from the academy's one list, so they move when the roll is
 // taken, a step moves, a goal is set, a clip is sent or a report is drafted. Each dot opens that player.
@@ -6,7 +11,11 @@
 
 import { useContext } from 'react'
 import { demoToast } from '../../demoToast'
-import { basics, teamCounts, upAStep } from '../../academy/academyStore'
+import { CAME_LOW, basics, count, missedLast, surveyOf, teamCounts, upAStep } from '../../academy/academyStore'
+import { NIGHTS, PARTS, coachSwaps, dateOf, gridOf, sessionOf, slotMinutes, useCurriculum, weekNow } from '../../academy/curriculum'
+import { filmedDates, longDate, shortDate as shortDay, useCoachStore, watchOf } from '../../academy/coachStore'
+import { BALL_ROLLING_FROM_FILM } from '../../academy/notYet'
+import { openTrial, useTrials } from '../../academy/trialStore'
 import CoachNav from '../CoachNav'
 import { InCoachApp, coachGo } from '../menu'
 import { coachBoard, dayMonth, firstName, ini, isNew, names, openPlayer, shortDate, todayMark, useCoachTeam } from '../coachTeam'
@@ -23,6 +32,32 @@ const DOT = [
   { say: 'same step', look: { background: '#ffffff', color: INK, border: `1.5px solid ${LINE}` } },
   { say: 'up a step', look: { background: G, color: '#ffffff' } },
 ] as const
+// SAMPLE, not in any list yet. Sunday's game: the result, the time to win the ball back, the clips cut from it and how many
+// families have said they are coming (the same 14 as tonight's chip). The game is at Wattle Creek FC, as the Now strip says.
+const SUNDAY = { us: 3, them: 'Eastbank', themGoals: 1, winBack: 8, winBackWas: 12, clips: 11, clipsHome: 4, coming: 14, at: '10:00 at Wattle Creek FC' }
+// SAMPLE: one family's words from the survey (the list holds the five answers, not what a family wrote), and what Dani asked the coach to try.
+const FAMILY_WORDS = '“He asks to go early now. Whatever Reece is doing, keep doing it.”'
+const TO_TRY = 'shorter stops, more time in the game'
+// SAMPLE: ball rolling for Monday and the target. Shown only when ball rolling counted from film is switched on (academy/notYet).
+const ROLLING = { pct: 68, target: 65, night: 'Mon' }
+const stat = { flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: 1 } as const
+const big = { fontSize: 24, lineHeight: '28px', letterSpacing: '-0.02em', fontVariantNumeric: 'tabular-nums' } as const
+const Stat = ({ n, label, sub }: { n: string; label: string; sub: string }) => (
+  <span style={stat}><strong style={big}>{n}</strong><strong style={{ fontSize: 13, lineHeight: '17px' }}>{label}</strong><span style={{ fontSize: 12, lineHeight: '16px', color: '#33443f' }}>{sub}</span></span>
+)
+const meterRow = { ...plain, display: 'flex', flexDirection: 'column', gap: 4, minHeight: 60, justifyContent: 'center', borderTop: `1px solid ${HAIR}` } as const
+/** A line with a count, its bar and one line under it. Mauve below two-thirds when `low`. */
+const Meter = ({ label, n, of, under, low = false }: { label: string; n: number; of: number; under: string; low?: boolean }) => (<>
+  <span style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 8 }}>
+    <strong style={{ fontSize: 14, lineHeight: '18px' }}>{label}</strong>
+    <strong style={{ ...T.num, fontSize: 15, whiteSpace: 'nowrap' }}>{n} of {of}</strong>
+  </span>
+  <span role="img" aria-label={`${n} of ${of}`} style={{ display: 'block', height: 8, borderRadius: 4, background: '#e9eae8', overflow: 'hidden' }}>
+    <span style={{ display: 'block', height: '100%', width: `${Math.round(100 * n / (of || 1))}%`, background: low ? '#a86b78' : G }} />
+  </span>
+  <span style={{ fontSize: 12, lineHeight: '16px', color: MUT }}>{under}</span>
+</>)
+const Tick = () => <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ flex: 'none' }}><path d="M5 12l5 5 9-10" /></svg>
 const chip = { ...plain, height: 44, padding: '0 14px', borderRadius: 12, background: PALE, display: 'inline-flex', flexDirection: 'column', justifyContent: 'center', whiteSpace: 'nowrap' } as const
 const face = (bg: string) => ({ flex: 'none', width: 34, height: 34, borderRadius: 999, background: bg, color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }) as const
 
@@ -32,6 +67,9 @@ export default function ACC1CoachToday({ onNav }: { onNav?: (id: string) => void
   const { a, g, ps } = useCoachTeam()
   const n = ps.length, tc = teamCounts(a, g)
   const start = g.when.split(' · ')[1]?.split(' to ')[0] ?? ''
+  // Trial players with this team, from the one list of trials: still to assess tonight, or already sent to Dani.
+  const trials = useTrials().filter(x => x.team === g.id && (x.col === 'coach' || (x.col === 'call' && x.came === 'today')))
+  const onTrial = trials.filter(x => x.col === 'coach').length, trial = trials.find(x => x.col === 'coach') ?? trials[0]
   // Tonight's roll, once it is taken (ACC2). Before that, the families' answers: sample, not in the list.
   const marks = ps.map(p => todayMark(a, g, p)), here = marks.filter(m => m === true).length, away = marks.filter(m => m === false).length
   // The headline: the core skill where the most players have reached step 3 since week 1.
@@ -50,21 +88,35 @@ export default function ACC1CoachToday({ onNav }: { onNav?: (id: string) => void
     'Due to Dani in week 9',
   ]
   const opens = ['ADC11-AfterSession', 'ADC10-SetGoal', 'ADC3-SessionFilm', 'ACC6-ReportDraft']
+  // This week's four nights, from the academy's curriculum for this age. A night before today shows how it ran: who came is
+  // counted from the roll, a swap is read from the curriculum's list of coach swaps, filmed from the coach's filmed sessions.
+  const cur = useCurriculum(); useCoachStore()
+  const wk = weekNow(a), week = gridOf(a, cur, g.age).weeks[wk - 1], filmed = filmedDates(g), mins = slotMinutes(g)
+  const nights = (week?.nights ?? []).filter(x => (NIGHTS as readonly string[]).includes(x.night)).map(x => {
+    const date = dateOf(a, wk, x.night), i = g.dates.indexOf(date), done = date < a.today, tonight = date === a.today
+    const came = i < 0 ? 0 : ps.filter(p => p.roll[i] === true).length, swaps = coachSwaps(g, wk, x.night), wasFilmed = filmed.includes(shortDay(date))
+    const s = sessionOf(a, cur, g.age, wk, x.night), parts = s.drills.length ? `${s.drills.length} drills` : `${PARTS.length} parts`
+    const ran = [swaps.length ? `You swapped the ${swaps[0].part.toLowerCase()}` : 'Ran as planned', `${came} came`, ...(BALL_ROLLING_FROM_FILM && x.night === ROLLING.night ? [`ball rolling ${ROLLING.pct}%`] : wasFilmed ? ['filmed'] : [])].join(' · ')
+    return { night: x.night, title: x.session.split(' · ')[0], sub: done ? ran : `${mins} minutes · ${parts} · plan ready`, done, tonight, to: tonight || !done ? 'ACT3-AcademySessionPlan' : wasFilmed ? 'ADC3-SessionFilm' : 'ADC15-MySession' }
+  })
+  const missed = ps.filter(p => missedLast(p)), c = count(ps), survey = surveyOf(a, ps), watch = watchOf(g)
+  const drafts = meters[3].n
 
   return (
     <div data-board="ACC1-CoachToday" style={{ ...(inApp ? { flexGrow: 1, minHeight: 0 } : { width: 1180, minHeight: 820 }), position: 'relative', boxSizing: 'border-box', background: '#faf5ec', color: INK, fontFamily: "var(--font-sans, 'DM Sans', system-ui, sans-serif)", display: 'flex', flexDirection: 'column' }}>
       {!inApp && <CoachNav active="today" sub="Today" go={go} />}
-      <main style={{ ...T.main, padding: '14px 28px 16px' }}>
+      <main style={{ ...T.main, flexGrow: 0, flex: 'none', padding: '14px 28px 20px' }}>
         <section aria-label="Now" style={{ flex: 'none', borderRadius: 16, background: '#ffffff', border: `1px solid ${LINE}`, padding: '8px 10px 8px 16px', display: 'flex', alignItems: 'center', gap: 10 }}>
           <strong style={{ fontSize: 15, whiteSpace: 'nowrap' }}>Today · {shortDate(a.today)}</strong>
           <button onClick={() => go('ACT3-AcademySessionPlan')} style={chip}>
             <strong style={{ fontSize: 13, lineHeight: '16px' }}>{start} {g.name}</strong>
-            <span style={{ fontSize: 12, lineHeight: '15px', color: '#33443f' }}>{here + away ? `${here} here · ${away} away` : '14 coming'} · plan ready</span>
+            <span style={{ fontSize: 12, lineHeight: '15px', color: '#33443f' }}>{here + away ? `${here} here · ${away} away` : '14 coming'} · {onTrial ? `${onTrial} on trial` : 'plan ready'}</span>
           </button>
-          <button onClick={() => go('ACC5-OneOnOne')} style={chip}>
-            <strong style={{ fontSize: 13, lineHeight: '16px' }}>7:00 One-on-one</strong>
-            <span style={{ fontSize: 12, lineHeight: '15px', color: '#33443f' }}>Kai · left foot</span>
-          </button>
+          {/* One-on-ones are on Friday afternoon and Saturday morning now, so tonight's second chip is the trial player, when there is one. */}
+          {trial && <button data-trial={trial.id} onClick={() => { openTrial(trial.id); go('ACC3-TrialAssess') }} style={chip}>
+            <strong style={{ fontSize: 13, lineHeight: '16px' }}>{trial.col === 'coach' ? 'Trial tonight' : 'Trial · sent to Dani'}</strong>
+            <span style={{ fontSize: 12, lineHeight: '15px', color: '#33443f' }}>{trial.name}, {trial.age}</span>
+          </button>}
           <button onClick={() => go('ACC7-AcademyGameDay')} style={chip}>
             <strong style={{ fontSize: 13, lineHeight: '16px' }}>Sun 10:00 game</strong>
             <span style={{ fontSize: 12, lineHeight: '15px', color: '#33443f' }}>{g.name} at Wattle Creek</span>
@@ -74,8 +126,8 @@ export default function ACC1CoachToday({ onNav }: { onNav?: (id: string) => void
           <Primary onClick={() => go('ACC2-RunSession')}>Start the {start}</Primary>
         </section>
 
-        <div style={{ flexGrow: 1, minHeight: 0, display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 330px', gap: 12 }}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 12, minHeight: 0 }}>
+        <div style={{ flex: 'none', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 330px', gap: 12, alignItems: 'start' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 12, minWidth: 0 }}>
             <section aria-label="Progress" style={{ flex: 'none', borderRadius: 18, background: '#1c3a33', color: '#ffffff', padding: '16px 20px', display: 'flex', flexDirection: 'column', gap: 8 }}>
               <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
                 <span style={{ flexGrow: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: 6 }}>
@@ -105,7 +157,7 @@ export default function ACC1CoachToday({ onNav }: { onNav?: (id: string) => void
               </div>
             </section>
 
-            <section aria-label="Development" style={{ ...T.tile, gap: 8, flexGrow: 1 }}>
+            <section aria-label="Development" style={{ ...T.tile, gap: 8 }}>
               <div style={T.between}><h2 style={T.h2}>Development · every player, this term</h2><button onClick={() => go('ADC2-Group')} style={textLink}>My team</button></div>
               <div style={{ display: 'flex', gap: 4, flexWrap: 'nowrap' }}>
                 {ps.map(p => (
@@ -153,28 +205,83 @@ export default function ACC1CoachToday({ onNav }: { onNav?: (id: string) => void
                 </div>
               )}
               {!clipFor && !noGoal.length && !noNotes.length && <span style={{ fontSize: 15, lineHeight: '21px', paddingTop: 8, borderTop: `1px solid ${HAIR}` }}>Every player has a goal and notes, and every player who is up a step has a clip at home.</span>}
-              <span style={{ ...T.cap, marginTop: 'auto' }}>Steps come from your own notes after each session. Film backs them for the players you’ve filmed.</span>
+              <span style={{ ...T.cap, paddingTop: 6 }}>Steps come from your own notes after each session. Film backs them for the players you’ve filmed.</span>
+            </section>
+
+            <div style={{ display: 'grid', gridTemplateColumns: '1.15fr 1fr', gap: 12, alignItems: 'start' }}>
+              <section aria-label="This week" style={{ ...T.tile, gap: 0 }}>
+                <div style={{ ...T.between, paddingBottom: 4 }}><h2 style={T.h2}>This week, from the curriculum</h2><button onClick={() => go('ACT1-AcademyWeek')} style={textLink}>The term</button></div>
+                <span style={T.sub}>Week {wk}{nights[0] ? ` · ${week.nights[0].session}` : ''}</span>
+                {nights.map(x => (
+                  <button key={x.night} data-night={x.night} data-state={x.tonight ? 'tonight' : x.done ? 'done' : 'to come'} onClick={() => go(x.to)} style={{ ...plain, display: 'flex', alignItems: 'center', gap: 10, minHeight: 48, borderTop: `1px solid ${HAIR}`, ...(x.tonight ? { background: PALE, margin: '0 -8px', padding: '0 8px', borderRadius: 8 } : null) }}>
+                    <strong style={{ flex: 'none', width: 38, fontSize: 13 }}>{x.night}</strong>
+                    <span style={{ flexGrow: 1, minWidth: 0, display: 'flex', flexDirection: 'column' }}>
+                      <strong style={{ fontSize: 14, lineHeight: '18px' }}>{x.title}</strong>
+                      <span style={{ fontSize: 12, lineHeight: '16px', color: '#33443f' }}>{x.sub}</span>
+                    </span>
+                    {x.tonight ? <span style={{ flex: 'none', height: 28, padding: '0 10px', borderRadius: 999, background: G, color: '#ffffff', fontSize: 12, fontWeight: 700, display: 'flex', alignItems: 'center' }}>Tonight</span> : x.done ? <Tick /> : null}
+                  </button>
+                ))}
+                {!nights.length && <span style={{ ...T.cap, paddingTop: 8, borderTop: `1px solid ${HAIR}` }}>No nights are written for this week yet.</span>}
+              </section>
+              <section aria-label="Who came" style={{ ...T.tile, gap: 6 }}>
+                <div style={T.between}><h2 style={T.h2}>Who came</h2><StrongDot /></div>
+                {/* One bar a week, counted from the roll. Mauve below 85%, the same line the team page uses. */}
+                <div style={{ display: 'flex', gap: 6, alignItems: 'flex-end', height: 130 }}>
+                  {tc.weeks.map(w => (
+                    <span key={w.week} data-week={w.week} data-pct={w.pct} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3, height: '100%', justifyContent: 'flex-end' }}>
+                      <strong style={{ ...T.num, fontSize: 12 }}>{w.pct}%</strong>
+                      <span style={{ width: '100%', height: Math.max(8, Math.round((w.pct - 60) * 2.4)), borderRadius: '6px 6px 0 0', background: w.pct < 100 * CAME_LOW ? '#a86b78' : G }} />
+                      <span style={{ fontSize: 11, color: MUT }}>Wk {w.week}</span>
+                    </span>
+                  ))}
+                </div>
+                <span data-came-term="" style={T.cap}>{tc.att}% this term, from the roll.{missed.length ? ` ${names(missed)} ${missed.length === 1 ? 'has' : 'have'} missed the last three.` : ''}</span>
+              </section>
+            </div>
+
+            <section aria-label="Sunday" style={{ ...T.tile, gap: 10 }}>
+              <div style={T.between}><h2 style={T.h2}>Sunday · {g.name} {SUNDAY.us}, {SUNDAY.them} {SUNDAY.themGoals}</h2><button onClick={() => go('ADC7-GameReview')} style={textLink}>Game review</button></div>
+              <div style={{ display: 'flex', gap: 16 }}>
+                <Stat n={`${n} of ${n}`} label="Played half a game or more" sub="The club’s rule, kept" />
+                <Stat n={`${SUNDAY.winBack} sec`} label="To win the ball back" sub={`In round 3 it took ${SUNDAY.winBackWas}`} />
+                <Stat n={String(SUNDAY.clips)} label="Clips cut for you" sub={`${SUNDAY.clipsHome} already sent home`} />
+                <Stat n={`${Math.min(SUNDAY.coming, n)} of ${n}`} label="Coming this Sunday" sub={SUNDAY.at} />
+              </div>
             </section>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 12, minHeight: 0 }}>
-            <section aria-label="Oversight" style={{ ...T.tile, padding: '12px 14px', flexGrow: 1 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 12, minWidth: 0 }}>
+            <section aria-label="Oversight" style={{ ...T.tile, padding: '12px 14px' }}>
               <div style={T.between}><h2 style={T.h2}>Has anything slipped?</h2><StrongDot /></div>
               <span style={T.sub}>{g.name} · counted from what you’ve done in Clean Sheet</span>
               {meters.map((m, k) => (
-                <button key={m.label} data-meter={m.label} data-n={m.n} data-of={m.of} onClick={() => go(opens[k])} style={{ ...plain, display: 'flex', flexDirection: 'column', gap: 4, minHeight: 60, justifyContent: 'center', borderTop: `1px solid ${HAIR}` }}>
-                  <span style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 8 }}>
-                    <strong style={{ fontSize: 14, lineHeight: '18px' }}>{m.label}</strong>
-                    <strong style={{ ...T.num, fontSize: 15, whiteSpace: 'nowrap' }}>{m.n} of {m.of}</strong>
-                  </span>
-                  {/* Mauve below two-thirds. */}
-                  <span role="img" aria-label={`${m.n} of ${m.of}`} style={{ display: 'block', height: 8, borderRadius: 4, background: '#e9eae8', overflow: 'hidden' }}>
-                    <span style={{ display: 'block', height: '100%', width: `${Math.round(100 * m.n / (m.of || 1))}%`, background: m.low ? '#a86b78' : G }} />
-                  </span>
-                  <span style={{ fontSize: 12, lineHeight: '16px', color: MUT }}>{under[k]}</span>
+                <button key={m.label} data-meter={m.label} data-n={m.n} data-of={m.of} onClick={() => go(opens[k])} style={meterRow}>
+                  <Meter label={m.label} n={m.n} of={m.of} under={under[k]} low={m.low} />
                 </button>
               ))}
-              <span style={{ ...T.cap, marginTop: 'auto' }}>Dani sees these same four numbers for every coach.</span>
+              <span style={{ ...T.cap, paddingTop: 4 }}>Dani sees these same four numbers for every coach.</span>
+            </section>
+            <section aria-label="Your families" style={{ ...T.tile, padding: '12px 14px' }}>
+              <h2 style={T.h2}>Your families</h2>
+              <button data-families="staying" data-n={c.staying} onClick={() => go('ACC13-AcademyChat')} style={meterRow}>
+                <Meter label="Staying for Term 3" n={c.staying} of={n} under={[c.notSaid ? `${c.notSaid} ${c.notSaid === 1 ? 'hasn’t' : 'haven’t'} said` : '', c.leaving ? `${c.leaving} leaving` : ''].filter(Boolean).join(' · ') || 'Every family has said yes'} />
+              </button>
+              <button data-families="survey" data-n={survey.n} onClick={() => go('ACC13-AcademyChat')} style={meterRow}>
+                <Meter label="Answered the family survey" n={survey.n} of={n} under="Too few for a score, so you see their words" />
+              </button>
+              {/* No score for one team: a team has too few answers to read as a number. One family's words instead (sample). */}
+              <span style={{ fontSize: 14, lineHeight: '20px', paddingTop: 6 }}>{FAMILY_WORDS}</span>
+              <span style={T.cap}>A {g.name} parent</span>
+            </section>
+            <section aria-label="Your coaching" style={{ ...T.tile, gap: 4, padding: '12px 14px' }}>
+              <div style={T.between}><h2 style={T.h2}>Your own coaching</h2><button onClick={() => go('ADC15-MySession')} style={textLink}>My sessions</button></div>
+              <span data-watched="" style={{ fontSize: 14, lineHeight: '20px' }}>{watch.watched ? `${watch.by === 'You' || !watch.by ? 'Dani' : watch.by.split(' ')[0]} watched you on ${longDate(watch.watched)}. One thing to try: ${TO_TRY}.` : 'Nobody has watched one of your sessions yet this term.'}</span>
+              <span style={{ display: 'flex', gap: 16, paddingTop: 4 }}>
+                {BALL_ROLLING_FROM_FILM && <Stat n={`${ROLLING.pct}%`} label="Ball rolling" sub={`Monday. The target is ${ROLLING.target}%`} />}
+                <Stat n={String(watch.filmed)} label="Sessions filmed" sub="This term" />
+              </span>
+              <span style={{ display: 'flex', paddingTop: 6 }}><More onClick={() => go('ADC18-Learn')}>Something to learn this week</More></span>
             </section>
             <button aria-label="One thing needs you" onClick={() => go('ACC13-AcademyChat')} style={{ ...plain, ...T.tile, flex: 'none', flexDirection: 'row', alignItems: 'center', gap: 12, padding: '12px 14px', borderTop: '4px solid #c39797' }}>
               <span style={{ ...face(MAUVE_PALE), width: 36, height: 36 }}>1</span>
@@ -186,6 +293,17 @@ export default function ACC1CoachToday({ onNav }: { onNav?: (id: string) => void
             </button>
           </div>
         </div>
+
+        <section aria-label="Done for you this week" style={{ flex: 'none', borderRadius: 16, background: PALE, border: '1px solid #cfe3da', padding: '12px 16px', display: 'flex', alignItems: 'center', gap: 18 }}>
+          <span style={{ flex: 'none', display: 'flex', flexDirection: 'column', width: 170 }}>
+            <strong style={{ fontSize: 15, lineHeight: '19px' }}>Done for you this week</strong>
+            <span style={{ fontSize: 12, lineHeight: '16px', color: '#33443f' }}>So your time goes on the pitch</span>
+          </span>
+          <Stat n={String(nights.length)} label="Session plans" sub="Written from the curriculum" />
+          <Stat n={String(SUNDAY.clips)} label="Clips cut" sub="From this week’s film and Sunday" />
+          <Stat n={String(drafts)} label="Report drafts" sub="From your two taps a player" />
+          <Stat n={String(n)} label="Families told" sub="Times, changes and Sunday, without a text" />
+        </section>
       </main>
     </div>
   )

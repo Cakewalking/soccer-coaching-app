@@ -3,6 +3,7 @@
 import type { CSSProperties, ReactNode } from 'react'
 import { openScreen } from '../openThing'
 import { OWNER_MENU, ownerItemOf, ownerMainOf, type OwnerItem } from './ownerMenu'
+import { useNeedsReply } from './messageStore'
 
 const INK = '#10211f'
 const icon = (d: string, size = 20, weight = 2) => (
@@ -21,6 +22,8 @@ export default function OwnerHeader({ current, onGo, extra = [], tools }: { curr
   const group = OWNER_MENU.find(g => g.key === main)!
   const sub = switching ? [{ label: 'Switch view', id: current }] : main === 'home' ? [...group.sub, ...extra] : group.sub
   const on = inExtra || switching ? current : ownerItemOf(current)
+  // Messages are on every screen (pack v30): the number is the chats that need a reply, counted live from the chats.
+  const toAnswer = useNeedsReply()
   return (
     <header style={{ flex: 'none', color: INK, fontFamily: "'DM Sans',system-ui,sans-serif" }}>
       <div data-club-bar="" style={{ height: 64, boxSizing: 'border-box', padding: '0 22px', display: 'flex', alignItems: 'center', gap: 12, background: '#2f6252' }}>
@@ -36,8 +39,13 @@ export default function OwnerHeader({ current, onGo, extra = [], tools }: { curr
             )
           })}
         </nav>
+        <button aria-label={toAnswer ? `Messages, ${toAnswer} need a reply` : 'Messages'} aria-current={current === 'ADM1-Messages' ? 'page' : undefined} onClick={() => onGo('ADM1-Messages')}
+          style={{ ...plain, position: 'relative', flex: 'none', width: 44, height: 44, marginRight: 8, padding: 0, borderRadius: 999, background: current === 'ADM1-Messages' ? '#40826d' : 'rgba(255,255,255,0.16)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#ffffff' }}>
+          {icon('M4 5h16v11H8l-4 4z')}
+          {toAnswer > 0 && <span data-club-keep="" style={{ position: 'absolute', top: -3, right: -3, minWidth: 20, height: 20, boxSizing: 'border-box', padding: '0 4px', borderRadius: 999, background: '#f4e6e6', border: '1.5px solid #c39797', color: INK, fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{toAnswer}</span>}
+        </button>
         <button data-club-pill="" onClick={() => openScreen('VS1-SwitchView')} style={{ ...plain, height: 44, padding: '0 14px', borderRadius: 999, background: '#ffffff', color: INK, fontSize: 15, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 8, whiteSpace: 'nowrap' }}>
-          Tall Timber Academy {icon('M6 9l6 6 6-6', 16, 2.4)}
+          Tall Timber {icon('M6 9l6 6 6-6', 16, 2.4)}
         </button>
         <button data-club-keep="" aria-label="Your account and settings" onClick={() => openScreen('SET1-Account', 'Dani Okafor · owner, Tall Timber Academy')} style={{ ...plain, width: 44, height: 44, padding: 0, borderRadius: 999, background: '#c39797', color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 15, flex: 'none' }}>DO</button>
       </div>

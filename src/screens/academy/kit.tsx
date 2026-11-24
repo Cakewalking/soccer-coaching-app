@@ -100,8 +100,8 @@ export function Met({ title, n, of, sub, to, low }: { title: string; n: number; 
   )
 }
 
-/** How sure a number is. Amber is proof only: Strong means it was counted from every session. Estimate is a dashed ring. */
-export const Proof = ({ kind }: { kind: 'Strong' | 'Estimate' }) => (
+/** How sure a number is. Amber is proof only: Strong means it was counted from every session (or from 50 answers or more). Estimate, and a number the owner counted by hand, is a dashed ring. */
+export const Proof = ({ kind }: { kind: 'Strong' | 'Estimate' | 'You counted' }) => (
   <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, fontSize: 12, fontWeight: 700, color: INK, whiteSpace: 'nowrap' }}>
     <span style={{ width: 9, height: 9, borderRadius: 999, boxSizing: 'border-box', ...(kind === 'Strong' ? { background: '#f4c95d', border: '1px solid #b98f1d' } : { border: `1.5px dashed ${MUTED}` }) }} />{kind}
   </span>

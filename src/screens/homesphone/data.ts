@@ -182,7 +182,7 @@ export const ACK1: PhoneHomeCfg = {
   ] },
   over: { name: 'My week', title: 'My week', rows: [
     { label: 'Practice at home', value: '2 of 3', to: 'ACK2-HomePractice' },
-    { label: 'Thu 5:30 Advanced · 6:45 one-on-one', value: 'Tonight', to: 'ACK1-AcademyPlayerHome' },
+    { label: 'Thu 6:35 U13 Timber · Fri one-on-one', value: 'Tonight', to: 'ACK1-AcademyPlayerHome' },
     { label: 'Only you, your mum and your coaches see this', value: 'Always', to: 'ACK1-AcademyPlayerHome' },
   ] },
   tabs: [

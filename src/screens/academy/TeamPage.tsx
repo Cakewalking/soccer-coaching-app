@@ -57,7 +57,7 @@ export default function TeamPage({ id }: { id: string }) {
         <section style={{ ...S.tile, gap: 0, padding: '12px 16px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', paddingBottom: 4 }}><h2 style={S.h2}>What this group earns</h2><Link to="AD11-ProgramMoney">All programs</Link></div>
           {row(`Fees this term · ${n} players at ${money(g.price)} each`, money(s.billed))}
-          {row(`Coaching · ${SESSIONS_A_TERM} sessions`, `−${money(s.coachCost)}`)}
+          {row(`Coaching · ${SESSIONS_A_TERM} sessions at ${money(g.rate)}`, `−${money(s.coachCost)}`)}
           {row('Pitch hire', `−${money(s.pitch)}`)}
           {row('Left over this term', money(s.left), true)}
           <Cap style={{ marginTop: 6 }}>{s.open > 0 ? `Each open place is ${money(g.price)} a term. ${s.open} open is ${money(s.open * g.price)}.` : 'No open places. Before your own pay, insurance, kit and the trip.'}</Cap>

@@ -25,9 +25,10 @@ export default function ACC1eCoachTodayEmpty({ onNav }: { onNav?: (id: string) =
         </div>
         <div style={{ display: "flex", gap: "8px", flex: "none" }} />
       </div>
-      <main style={{ flexGrow: "1", minHeight: "0", padding: "12px 28px 18px", boxSizing: "border-box", display: "grid", gap: "14px", gridTemplateColumns: "minmax(0,1fr) 320px" }}>
+      {/* Layout rule for every home (pack v32): a tile is as tall as its content. Nothing stretches to fill the window. */}
+      <main style={{ flex: "none", padding: "12px 28px 18px", boxSizing: "border-box", display: "grid", gap: "14px", gridTemplateColumns: "minmax(0,1fr) 320px", alignItems: "start" }}>
         <section aria-label="Hi Reece" style={{ ...C.tile }}>
-          <div style={{ flexGrow: "1", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "12px", textAlign: "center" }}>
+          <div style={{ padding: "44px 0", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "12px", textAlign: "center" }}>
             <span style={{ width: "72px", height: "72px", borderRadius: "999px", background: "#eef5f2", color: "#2f6252", display: "flex", alignItems: "center", justifyContent: "center" }}>
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M6 5h12a2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V7a2 2 0 012-2zM4 10h16M9 3v4M15 3v4" />

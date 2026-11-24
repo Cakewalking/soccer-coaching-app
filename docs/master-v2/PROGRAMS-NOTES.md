@@ -50,7 +50,6 @@ From `clean-sheet-handover-v28` (which replaces v27). The academy's screens are 
 ## Where the build differs from the boards
 
 - **Player page, "Worth knowing":** 28 boards say "coming, moving and paid up" for a player who owes money. The build says what is owed.
-- **`AC5-Fees`** has "Mark as paid" and a "Paying in parts" list, which the board does not draw. The board still shows four old families.
 - **`AD21-RatesCosts`** is one rate for every coach and half a pitch for a term. The earlier board had three coaches at three rates.
 - **`AD20-NewProgram`** doubles as "Change this team". **`AD23-AddCoach`** does not put a coach in charge of a team; that is done in `AD20`.
 - **`AD1`:** the fees chip shows the price a player pays beside the total. "Ready to move up" and the three coaches are in list order.
@@ -82,3 +81,102 @@ From `clean-sheet-handover-v28` (which replaces v27). The academy's screens are 
 - **`ACC2`**, **`ACC10`** and **`ACT4`** boards name players who are not in the data. The build uses the team's real names.
 - **`ACP4`:** the offer and Term 3 are $1,100, but its instalments are still $129.67 and $90.
 - **Kai's goal** reads "his left foot" in the data and "my left foot" on `ADC10`.
+
+---
+
+# Packs v29 to v32 (25 Nov): report back
+
+Four packs arrived in a row and were built together. Only `programs/` changed in each. The notes above are the v28 build; where they disagree with this section, this section is newer. The table of controls (`PROGRAMS-REPORT.csv`) now has 353 rows.
+
+## What was built
+
+| Pack | What | Screens |
+|---|---|---|
+| v29 | Fuller Oversight on the owner home | `AD1-AcademyHome` |
+| v29 | Trials end with the coach's recommendation | `ACC3-TrialAssess` rebuilt, `ADT1-TrialDecision` new, `AC3-Trials` new columns |
+| v29 | Every team trains Monday to Thursday | the data file, `AD3-Timetable`, and every screen that names a day or a time |
+| v30 | Messages on every screen | a button in the owner's and the coach's top bar, `ADM1-Messages` new |
+| v30 | Figures say where they come from | `AD15-Families`, `AD2-Health` rebuilt, `AC10-AcademySafety` |
+| v30 | The partner club as a story, with its fee | `AC11-PartnerClub` rebuilt |
+| v31 | Fees run themselves | `AC5-Fees` rebuilt |
+| v31 | A page for each coach | `ADCO01-Coach` to `ADCO17-Coach`, one template |
+| v31 | Watching a coach | `AD10-WatchCoach` is the list, `ADW1-WatchSession` new |
+| v31 | Curriculum down to the night, and a drill library | `AD6-YearPlan` rebuilt, `ADQ1-Session`, `ADL1-DrillLibrary`, `ADL2-Drill` new |
+| v32 | The academy coach home, taller and fuller | `ACC1-CoachToday` rebuilt |
+| v32 | A tile is as tall as its content | `ACC1`, `ACC1e`, `AD1` |
+
+New stores, each beside the academy's list in `src/screens/academy/`: `trialStore.ts` (trial players and the coach's assessment), `messageStore.ts` (the owner's chats), `coachStore.ts` (coach pay, details and watching), `curriculum.ts` (the plan, the nights, the drills and swaps, over `data/academy-curriculum.json`).
+
+## Checks
+
+- **All 342 screens** in the v32 pack open without an error on the final build. Type check, lint and build are clean. The tap-target check passes.
+- **Family app:** 125 hand checks pass. A family tapping "Not coming back" still moves U9 Timber on `AD4` from 10 staying to 9. The survey page writes its five answers to the player in the academy's list.
+- **Numbers against the boards, by script:** 17 team pages (12 identical; four differ on grammar and one on a rounding point), 226 player pages (198 identical; 28 differ on the fees line on purpose), 17 coach pages (all numbers match), the coach's team list and 16 player pages (no number differs).
+- **The live test still passes:** the roll for Jonah in `ACC2` moves him from 23 of 27 to 24 of 28 on his file, the team list, the coach home and the owner's team page, and holds after a reload.
+- **Trials, end to end:** the coach's "Send to Dani" moves the card to "Recommended · your call"; the owner's decision screen shows the coach's own words; "Offer a place" opens the offer. Dragging cards still works on the new columns, and a tap opens the card.
+- **Oversight:** taking goals and clips from ten players turned a team's tile mauve and changed the line that names which teams to look at.
+- **Messages:** the badge in the top bar counts down as chats are opened; "Ask Priya Nair" does it and says so.
+- **Fees:** "Paid another way" moved the fees list, the team page, the player page, `AD11` and `AD1`. "Offer a plan to all" emptied the list and held after a reload.
+- **Curriculum:** 483 scripted checks. The rule in the handover rebuilds the data's under-13 grid exactly; all 40 nights open their own session for three ages.
+- **Layout rule:** no tile on `AD1`, `ACC1`, `ACC1e`, the club homes or the phone homes grows when the window is made taller.
+- One older family check script stops part-way at a step that is out of date ("That's not right" has opened Help since an earlier pack). It is the script that is stale, not the app.
+
+## Counted, and still sample
+
+**Newly counted:** Oversight's meters and tiles; places at a trial player's age; the timetable; the survey (answers, averages, share of 4 or 5, by program); "Worth a call"; the partner club fee (216 game players at $150); the fees tiles and list; coach pay (sessions × rate, term and year so far); each coach's four basics; on the coach home: who came by week, staying for Term 3, survey answered, report drafts, this week's four nights; the grid, the balance of sessions, a night's minutes, and how often a drill is in the plan.
+
+**Still sample, each marked in the code:**
+- Trial players are not in the academy's list, so a trial dragged to Joined adds no player. The trial list and all chats go back to the sample on a reload.
+- Health: the earlier terms, the year's trials (58 of 97) and why families left. Families: the comments and "I enjoyed today".
+- Coach pages: mobile, email, emergency contact, first aid, the agreement rows, past pay days. The full mobile is made up, and "confirm it is you" has no real check behind it.
+- Watching: filmed dates for every coach but Sofia, and the coach's own marks.
+- Curriculum: the data names drills for striking the ball only, and has words for one drill. So the year outside the written term, equipment, which drill sits on which night, and the grids for under 6 to under 11 (built by the handover's rule) are ours. Wednesdays for those ages read "Topic not written yet".
+- Coach home: Sunday's result and its numbers, the family's comment, the thing to try, the "needs you" line.
+- Ball rolling is still switched off, so it is hidden on `ACC1`, `AD8` and `ADW1` where the boards draw it.
+
+## Where the build differs from the boards
+
+- **Trials (`AC3`):** cards can be dragged (Booker, 25 Nov). A card dragged somewhere it has not earned says so plainly, for example "No recommendation yet".
+- **`ACC3`:** opens filled in as the board draws Arjun. After "Send to Dani" the taps lock. "If a place opens" shows only when the recommendation is another team.
+- **`ADM1`:** no chip is pressed to begin with.
+- **`AC5`:** "Paid another way" asks cash or bank transfer first. "Offer a plan" moves the family to "On a plan" at once.
+- **`AD10` and the coach page:** "Pick a session" and "Watch a session" open the session. On the boards the two point at each other. "I watched one in person" works, and `ADW1` has a "Mark a moment" row.
+- **Curriculum:** Swap changes the drill in place, with "Put back". "Used this term" is counted from the plan, so five drills read "Not used this term". "By the end of term" uses the academy's own step lines. `AD22-ChangeBlock` now really changes the block.
+- **Coach home:** the nights say what the data says (who came, which night was filmed), not the board's typed lines. Sunday is at Wattle Creek FC.
+- **Times the boards have not caught up with:** the coach's one-on-one is Friday 4:15 (`ACC5` still draws Thursday 6:45); review chats moved to Friday 19 June because their slots fell inside training; one-on-ones in the family app are Friday and Saturday with Dani and Reece.
+- **Rounding:** two attendance figures read 93% where the pack has 92%. The pack rounds 92.5 down.
+- **The coach's week (`ACT1`):** the build keeps the one-team week. The v30 and v32 boards are still the old three-program week with a Saturday game at another club.
+- **The older owner Messages page** is no longer reachable; the menu opens `ADM1`.
+
+## Not done
+
+- Asking a coach to cover does not clear "U13 Gold needs cover" on `AD1` or `AD3`.
+- "Message the club", "Message these families" and "Message Ben" open Messages on the first chat.
+- "Change the fee" for the partner club opens `AD21`, which has no field for it.
+- "Attach a drill" on `ADW1` is a link only. A swap on the owner's side does not reach the coach's session plan, or the other way.
+- Swapping a whole night; "Save as the plan", "Share with families", "+ Add a drill".
+- The offer screen (`ACP2`) shows its own sample family whoever the offer is for.
+- The older parent and player apps still say Tuesday and Thursday at 4:30.
+
+## Things in the packs that do not agree
+
+- **`AC5`:** the rule is three tries and two reminders, but three rows on the list are one week late with two tries and one reminder.
+- **`AD10`:** "Feedback opened 7 of 6".
+- **Coach pages:** five coaches are paid for seven sessions in a fortnight where the page says they ran every session.
+- **`AD15`:** the trust panel says "40 to 75 answers" and "8 to 14" a team; the table and the data say 77, and 7 to 15.
+- **`AC3`:** "June so far · 4 joined", with Kai and Ana joined in May.
+- **`ADT1`:** "5 families waiting for Advanced" above "Nobody is waiting for U13 Gold".
+- **`ACC1`:** Sunday at "Redgum Reserve" beside "at Wattle Creek"; the nights' "came" counts do not match the roll; "can you cover U13 Gold" at the time Reece trains his own team.
+- **`ACP2`:** Advanced at 5:30 to 6:40; `ADP3` says 4:30 for an under 9. The build reads the time from the team.
+- **Drill library:** Weak-foot gates is used 7 times on one screen and 14 on another; "Most used first" over a list in file order; all 24 sample drills are striking drills.
+
+## For Booker to decide
+
+- Should an offered payment plan stay on the fees list until the family accepts?
+- The fees list: 13 families as drawn, or only the 10 who meet the page's own rule?
+- "Watch next" names a coach as lowest on two basics. Is that too close to ranking coaches?
+- Grids for under 6 to under 11: built by rule as now, or shown as not written yet?
+- Equipment for a night: the most any one part needs (as built), or added up?
+- The drill drawing uses amber cones. Keep, or recolour, since amber is proof only?
+- Should the trial assessment open filled in, and lock after sending?
+

@@ -31,6 +31,10 @@ export const COACH_MENU: Array<{ id: CoachMain; label: string; opens: string; su
 ]
 
 export const SWITCH_VIEW = 'VS1-SwitchView'
+/** The message button in the top bar (pack v30): where it goes, and how many chats need a reply.
+ * Sample: the two chats on ACC13 that carry an unread badge (the team's families, and Dani). Chats are not in the academy's list yet. */
+export const COACH_CHATS = 'ACC13-AcademyChat'
+export const CHATS_TO_ANSWER = 2
 /** Where the role pill ("Academy coach") goes: the roles this person holds. */
 export const SWITCH_ROLE = 'ADS1-SwitchView'
 

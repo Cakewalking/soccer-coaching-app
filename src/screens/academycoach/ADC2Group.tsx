@@ -4,7 +4,7 @@
 // there is no way to order them by level. A coach sees no fees here.
 
 import { count, upAStep, worthACall } from '../academy/academyStore'
-import { cameLine, coachBoard, ini, isNew, names, useCoachTeam } from './coachTeam'
+import { cameLine, coachBoard, ini, isNew, names, trainingDays, useCoachTeam } from './coachTeam'
 import { More, Primary } from './kit'
 import { G, HAIR, INK, MAUVE, MAUVE_PALE, MUT, T, label, plain, th } from './styles'
 import { Hd, Pill } from './teamParts'
@@ -26,7 +26,7 @@ export default function ADC2Group({ go }: { go: (id: string) => void }) {
   return (
     <div style={{ flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', background: '#faf5ec', color: INK, fontFamily: "var(--font-sans, 'DM Sans', system-ui, sans-serif)" }}>
       <main style={T.main}>
-        <Hd title={g.name} sub={`${g.ages} · ${n} players · ${g.when.replace(' · ', ', ')} · games on Sunday at Wattle Creek FC`}>
+        <Hd title={g.name} sub={`${g.ages} · ${n} players · ${trainingDays(g)}, ${g.when.split(' · ')[1]} · games on Sunday at Wattle Creek FC`}>
           <More onClick={() => go('ADC4-SkillsCheck')}>Run the skills check</More>
           <Primary onClick={() => go('ACT2-AcademySuggested')}>Plan from this</Primary>
         </Hd>
