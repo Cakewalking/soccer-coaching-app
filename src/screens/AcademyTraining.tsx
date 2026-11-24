@@ -1,14 +1,14 @@
 import { openThing } from './openThing'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import CoachNav from './academycoach/CoachNav'
+import { InCoachApp, coachGo } from './academycoach/menu'
 
 const G    = '#2f6252'
-const G2   = '#40826d'
 const GD   = '#1f4a3e'
 const INK  = '#10211f'
 const MUT  = '#4a5a57'
 const LN   = '#e8edeb'
 const PALE = '#eef5f2'
-const ROSE = '#c39797'
 
 function Icon({ d, size = 20, stroke = 'currentColor', sw = 2, fill = 'none' }: { d: string; size?: number; stroke?: string; sw?: number; fill?: string }) {
   return (
@@ -35,48 +35,16 @@ const ICONS = {
   plus:     'M12 5v14M5 12h14',
 }
 
-const ACT_NAV = [
-  { id: 'today',    label: 'Today',    icon: ICONS.today },
-  { id: 'training', label: 'Training', icon: ICONS.training },
-  { id: 'players',  label: 'Players',  icon: ICONS.players },
-  { id: 'gameday',  label: 'Game day', icon: ICONS.gameday },
-  { id: 'record',   label: 'Record',   icon: ICONS.record },
-]
-
-const ACT_SUBS = ['This week', 'Suggested', 'Session plan', 'Who\'s coming', 'Drill library', 'Growth and load']
-
-function AcademyFrame({ activeSub, pageTitle, pageSub, pageRight, children, toast, onNav }: {
+// The frame of a training screen. Inside the academy coach app the app draws the menu;
+// a training screen opened by itself draws the same menu and opens what is pressed.
+function AcademyFrame({ activeSub, pageTitle, pageSub, pageRight, children, toast, go }: {
   activeSub: string; pageTitle: string; pageSub: string;
-  pageRight?: React.ReactNode; children: React.ReactNode; toast: string | null; onNav: (id: string) => void
+  pageRight?: React.ReactNode; children: React.ReactNode; toast: string | null; go?: (id: string) => void
 }) {
+  const inApp = useContext(InCoachApp)
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', fontFamily: 'var(--font-sans, DM Sans, sans-serif)', background: '#faf5ec' }}>
-      {/* Top nav */}
-      <div style={{ background: GD, display: 'flex', alignItems: 'center', padding: '0 20px', gap: 2, height: 56, flexShrink: 0 }}>
-        <span style={{ color: '#e9eae8', fontWeight: 800, fontSize: 16, marginRight: 10 }}>Clean Sheet</span>
-        {ACT_NAV.map(tab => (
-          <button key={tab.id} onClick={() => onNav(tab.id)}
-            style={{ height: 48, padding: '0 14px', borderRadius: 12, background: tab.id === 'training' ? G2 : 'transparent', color: '#e9eae8', fontSize: 15, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 8, border: 'none', cursor: 'pointer', fontFamily: 'inherit' }}>
-            <Icon d={tab.icon} size={18}/> {tab.label}
-          </button>
-        ))}
-        <div style={{ flex: 1 }}/>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-          <button onClick={() => onNav('groups')} style={{ height: 44, padding: '0 12px', borderRadius: 10, border: '1px solid rgba(255,255,255,0.15)', background: 'transparent', color: '#e9eae8', fontSize: 14, fontWeight: 600, display: 'flex', alignItems: 'center', gap: 6, cursor: 'pointer', fontFamily: 'inherit' }}>
-            Reece's groups <Icon d={ICONS.chevdown} size={14}/>
-          </button>
-          <div style={{ width: 36, height: 36, borderRadius: '50%', background: ROSE, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }}>RW</div>
-        </div>
-      </div>
-      {/* Sub nav */}
-      <div style={{ background: '#fff', borderBottom: `1px solid ${LN}`, display: 'flex', alignItems: 'center', padding: '0 20px', gap: 4, flexShrink: 0 }}>
-        {ACT_SUBS.map(tab => (
-          <button key={tab} onClick={() => onNav('sub:' + tab)}
-            style={{ height: 44, padding: '0 4px', marginRight: 16, fontSize: 15, fontWeight: 600, color: tab === activeSub ? G : MUT, background: 'transparent', border: 'none', borderBottom: `3px solid ${tab === activeSub ? G : 'transparent'}`, cursor: 'pointer', fontFamily: 'inherit', whiteSpace: 'nowrap', boxSizing: 'border-box' }}>
-            {tab}
-          </button>
-        ))}
-      </div>
+      {!inApp && <CoachNav active="training" sub={activeSub} go={coachGo(go)} />}
       {/* Page heading */}
       <div style={{ padding: '20px 28px 12px', display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexShrink: 0 }}>
         <div>
@@ -129,7 +97,7 @@ export function AcademyTrainingWeek({ onBack: _onBack, onNav }: { onBack?: () =>
       pageSub="Tall Timber Academy · term 3, week 4 of 10 · Reece's groups"
       pageRight={<><BtnMore label={copied ? 'Copied ✓' : 'Copy last week'} onClick={() => setCopied(true)}/><BtnPrimary label="Plan a session" onClick={() => onNav ? onNav('ACT2-AcademySuggested') : openThing('session planner', 'academy')}/></>}
       toast={toast}
-      onNav={(id) => openThing(`${id} tab`, 'academy')}
+      go={onNav}
     >
       <div style={{ display: 'flex', gap: 16 }}>
         {/* Sessions list */}
@@ -191,7 +159,7 @@ export function AcademyTrainingWeek({ onBack: _onBack, onNav }: { onBack?: () =>
 }
 
 // ACT2 — Academy Suggested
-export function AcademyTrainingSuggested({ onBack: _onBack }: { onBack?: () => void }) {
+export function AcademyTrainingSuggested({ onBack: _onBack, onNav }: { onBack?: () => void; onNav?: (s: string) => void }) {
   const [toast, setToast] = useState<string | null>(null)
   const [added, setAdded] = useState<string[]>([])
   const [expanded, setExpanded] = useState<string | null>(null)
@@ -223,7 +191,7 @@ export function AcademyTrainingSuggested({ onBack: _onBack }: { onBack?: () => v
         <BtnPrimary label="Build the whole session" onClick={() => t('Session plan built from your answers.')}/>
       </>}
       toast={toast}
-      onNav={(id) => openThing(`${id} tab`, 'academy')}
+      go={onNav}
     >
       <div style={{ display: 'flex', gap: 16 }}>
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 12 }}>
@@ -302,7 +270,7 @@ export function AcademySessionPlan({ onBack: _onBack, onNav }: { onBack?: () => 
       pageSub="3 June · 4:30pm · Messmate Primary School, pitch 1 · 60 min"
       pageRight={<><BtnMore label={sent ? 'Sent to families ✓' : 'Send to families'} onClick={() => setSent(true)}/><BtnPrimary label="Run it" onClick={() => onNav ? onNav('livegame') : openThing('live session mode', 'academy')}/></>}
       toast={toast}
-      onNav={(id) => openThing(`${id} tab`, 'academy')}
+      go={onNav}
     >
       <div style={{ display: 'flex', gap: 16 }}>
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 10 }}>
@@ -392,12 +360,12 @@ export function AcademyWhoComing({ onBack: _onBack, onNav }: { onBack?: () => vo
 
   return (
     <AcademyFrame
-      activeSub="Who's coming"
+      activeSub="Who’s coming"
       pageTitle="Who's coming"
       pageSub="Tue 3 June · Advanced · 4:30pm"
       pageRight={<><BtnMore label="Remind 2" onClick={() => t('Reminder sent to Marco and Jai\'s families.')}/><BtnPrimary label="Check in at the gate" onClick={() => onNav ? onNav('livegame11') : openThing('live check-in screen', 'academy')}/></>}
       toast={toast}
-      onNav={(id) => openThing(`${id} tab`, 'academy')}
+      go={onNav}
     >
       <div style={{ display: 'flex', gap: 16 }}>
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 16 }}>
@@ -469,7 +437,7 @@ export function AcademyTrainingWeekEmpty({ onBack: _onBack, onNav }: { onBack?: 
       pageTitle="This week"
       pageSub="Tall Timber Academy · term 3, week 4 of 10 · Reece's groups"
       toast={toast}
-      onNav={(id) => openThing(`${id} tab`, 'academy')}
+      go={onNav}
     >
       <div style={{ display: 'flex', gap: 16 }}>
         <div style={{ flex: 1 }}>

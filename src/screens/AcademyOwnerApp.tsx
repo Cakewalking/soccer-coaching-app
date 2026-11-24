@@ -3,7 +3,10 @@ import ClubColours from './clubadmin/ClubColours'
 import { openScreen } from './openThing'
 import { useBackState } from '../backState'
 import { openThing, sayOrOpen } from './openThing'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
+import OwnerHeader from './academy/OwnerHeader'
+import { OWNER_MENU, OwnerGo, ownerMainOf, type OwnerItem } from './academy/ownerMenu'
+import { AD_SCREENS } from './academy/adScreens'
 
 const G    = '#2f6252'
 const G2   = '#40826d'
@@ -13,10 +16,6 @@ const MUT  = '#4a5a57'
 const LN   = '#e8edeb'
 const PALE = '#eef5f2'
 const ROSE = '#c39797'
-
-type OwnerNav = 'home' | 'programs' | 'players' | 'coaches' | 'money'
-type HomeTab  = 'overview' | 'trials' | 'reports' | 'safety' | 'partner' | 'colours' | 'messages'
-type ProgramsTab = 'term' | 'clinic'
 
 // ─── Shared ──────────────────────────────────────────────────────────────────
 
@@ -271,7 +270,7 @@ function ReportsView({ empty }: { empty: boolean }) {
 
       <Card>
         <div style={{ padding: '10px 16px', borderBottom: `1px solid ${LN}`, fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: MUT }}>What a report holds</div>
-        {[{ n: '1', t: 'Five skills, then and now', d: "From the coach's session notes" }, { n: '2', t: 'What they came to', d: 'Sessions attended this term' }, { n: '3', t: 'One goal for next term', d: 'Chosen by the coach' }, { n: '4', t: 'A clip', d: "Only where the parent agreed" }].map((s, i) => (
+        {[{ n: '1', t: 'Four core skills, then and now', d: "From the coach's session notes" }, { n: '2', t: 'What they came to', d: 'Sessions attended this term' }, { n: '3', t: 'One goal for next term', d: 'Chosen by the coach' }, { n: '4', t: 'A clip', d: "Only where the parent agreed" }].map((s, i) => (
           <div key={s.n} style={{ display: 'flex', gap: 12, padding: '10px 16px', borderBottom: i < 3 ? `1px solid ${LN}` : 'none' }}>
             <div style={{ width: 24, height: 24, borderRadius: '50%', background: PALE, color: G, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, flexShrink: 0 }}>{s.n}</div>
             <div><div style={{ fontSize: 14, fontWeight: 600, color: INK }}>{s.t}</div><div style={{ fontSize: 12, color: MUT }}>{s.d}</div></div>
@@ -945,106 +944,86 @@ function AcademyYearView({ onBack }: { onBack: () => void }) {
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
+const HOME = 'AD1-AcademyHome'
+// The owner's Home is AD1 (academy handover, 24 Nov). Turn this on to show the story home on Overview again where one is passed in.
+const STORY_HOME = false
+// Two pages the handover's menu does not list. They stay at the end of Home so nothing built is lost.
+const EXTRA: OwnerItem[] = [{ label: 'Messages', id: 'messages' }, { label: 'Academy colours', id: 'colours' }]
+// The short names this app was opened with before each page had a board id.
+const SHORT: Record<string, string> = {
+  home: HOME, overview: HOME, trials: 'AC3-Trials', reports: 'AC7-ReportsOut', safety: 'AC10-AcademySafety', partner: 'AC11-PartnerClub',
+  programs: 'AC2-Programs', players: 'AC4-AcademyPlayers', curriculum: 'AD6-YearPlan', coaches: 'AC6-AcademyCoaches', money: 'AC5-Fees',
+}
+// Every page this app shows in its own frame. Anything else opens over the top with a Back bar.
+const IN_FRAME = new Set([...OWNER_MENU.flatMap(g => g.sub.map(s => s.id)), ...EXTRA.map(s => s.id), 'AC1-AcademyHome', 'AC12-AcademyBroadcast', 'SPa1-AcademyYear'])
+const pageFor = (s?: string) => { const id = SHORT[s ?? ''] ?? s ?? HOME; return IN_FRAME.has(id) ? id : HOME }
+
 export default function AcademyOwnerApp({ empty = false, initialScreen, onNavChange, homeStory }: { onBack?: () => void; empty?: boolean; initialScreen?: string; onNavChange?: (screen: string) => void; homeStory?: import('react').ReactNode }) {
-  const HOME_TAB_IDS: HomeTab[] = ['overview', 'trials', 'reports', 'safety', 'partner']
-  const isHomeSub = HOME_TAB_IDS.includes(initialScreen as HomeTab)
-  const [nav, setNav]             = useBackState<OwnerNav>(isHomeSub ? 'home' : (initialScreen as OwnerNav) ?? 'home')
-  const [homeTab, setHomeTab]     = useState<HomeTab>(isHomeSub ? (initialScreen as HomeTab) : 'overview')
-  const [programsTab, setProgramsTab] = useState<ProgramsTab>('term')
+  const [screen, setScreen] = useBackState<string>(() => pageFor(initialScreen))
+  const cameFrom = useRef(HOME)
   const [toast, setToast] = useState<string | null>(null)
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
-  const [showBroadcast, setShowBroadcast] = useState(false)
-  const [showFootballYear, setShowFootballYear] = useState(false)
-  const [askOpen, setAskOpen]         = useState(false)
+  const [askOpen, setAskOpen] = useState(false)
 
-  const HOME_TABS: Array<{ id: HomeTab; label: string }> = [
-    { id: 'overview', label: 'Overview' },
-    { id: 'messages', label: 'Messages' },
-    { id: 'trials',   label: 'Trials' },
-    { id: 'reports',  label: 'Reports' },
-    { id: 'safety',   label: 'Child safety' },
-    { id: 'partner',  label: 'Partner club' },
-    { id: 'colours',  label: 'Academy colours' },
-  ]
+  /** Open a screen by its id: one of the owner's own pages swaps in here, anything else opens over the top. */
+  function go(target: string) {
+    const id = SHORT[target] ?? target
+    if (!IN_FRAME.has(id)) { openScreen(id); return }
+    if (id === 'AC12-AcademyBroadcast' || id === 'SPa1-AcademyYear') cameFrom.current = screen
+    setScreen(id)
+    onNavChange?.(ownerMainOf(id))   // the address keeps the main item, so a reload opens the same part of the app
+  }
 
-  const PROGRAMS_TABS: Array<{ id: ProgramsTab; label: string }> = [
-    { id: 'term',   label: 'Term programs' },
-    { id: 'clinic', label: 'Holiday clinic' },
-  ]
+  const frame: React.CSSProperties = { width: 1180, minHeight: 'var(--frame-h, 100vh)', margin: '0 auto', background: '#faf5ec', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }
 
-  const contextTabs =
-    nav === 'home'     ? HOME_TABS.map(t => t.label) :
-    nav === 'programs' ? PROGRAMS_TABS.map(t => t.label) : []
-  const activeTabIndex =
-    nav === 'home'     ? HOME_TABS.findIndex(t => t.id === homeTab) :
-    nav === 'programs' ? PROGRAMS_TABS.findIndex(t => t.id === programsTab) : 0
-
-  if (showBroadcast) return (
-    <div style={{ width: 1180, minHeight: 'var(--frame-h, 100vh)', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
-      <BroadcastView empty={empty} onBack={() => setShowBroadcast(false)}/>
+  if (screen === 'AC12-AcademyBroadcast') return (
+    <div data-screen={screen} style={frame}>
+      <BroadcastView empty={empty} onBack={() => setScreen(cameFrom.current)}/>
     </div>
   )
 
-  if (showFootballYear) return (
-    <div style={{ width: 1180, minHeight: 'var(--frame-h, 100vh)', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
-      <AcademyYearView onBack={() => setShowFootballYear(false)}/>
+  if (screen === 'SPa1-AcademyYear') return (
+    <div data-screen={screen} style={frame}>
+      <AcademyYearView onBack={() => setScreen(cameFrom.current)}/>
     </div>
+  )
+
+  const story = STORY_HOME && !empty && screen === HOME ? homeStory : null
+  // The fifteen new screens have no empty state drawn yet, so they show as drawn. Home keeps its first-use page.
+  const Drawn = story || (empty && screen === HOME) ? undefined : AD_SCREENS[screen]
+  const boardId = !screen.includes('-') || story ? undefined : empty && screen === HOME ? 'AC1e-AcademyHomeEmpty' : screen
+
+  const ask = (
+    <button onClick={() => setAskOpen(o => !o)} aria-label="Ask Clean Sheet" aria-pressed={askOpen} style={{ width: 44, height: 44, margin: '0 -5px', padding: 0, border: 0, background: 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', flexShrink: 0 }}>
+      <span style={{ width: 34, height: 34, borderRadius: '50%', border: `1.5px solid ${askOpen ? G : '#c5c8c4'}`, background: askOpen ? PALE : '#fff', color: G, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg>
+      </span>
+    </button>
   )
 
   return (
-    <div style={{ width: 1180, minHeight: 'var(--frame-h, 100vh)', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
-      <header style={{ flex: 'none', background: GD, color: '#fff' }}>
-        <div data-club-bar="" style={{ height: 60, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 16 }}>
-          <span style={{ fontSize: 17, fontWeight: 800, letterSpacing: '-0.03em', color: '#fff', flexShrink: 0 }}>Clean Sheet</span>
-          <nav style={{ display: 'flex', flexGrow: 1, height: 60 }}>
-            {(['home', 'programs', 'players', 'coaches', 'money'] as OwnerNav[]).map(id => (
-              <button key={id} data-club-tab={nav === id ? 'on' : 'off'} onClick={() => { setNav(id); onNavChange?.(id) }} style={{ height: 60, padding: '0 16px', border: 0, background: 'transparent', fontFamily: 'inherit', fontSize: 15, fontWeight: nav === id ? 700 : 500, color: nav === id ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer', borderBottom: nav === id ? '3px solid #fff' : '3px solid transparent', textTransform: 'capitalize', boxSizing: 'border-box' as const }}>
-                {id === 'money' ? 'Money' : id.charAt(0).toUpperCase() + id.slice(1)}
-              </button>
-            ))}
-          </nav>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
-            <button onClick={() => setAskOpen(o => !o)} aria-label="Ask Clean Sheet" data-club-keep={askOpen ? '' : undefined} style={{ width: 44, height: 44, borderRadius: '50%', border: '1.5px solid #a9cfc0', background: askOpen ? '#fff' : 'transparent', color: askOpen ? INK : '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', flexShrink: 0 }}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg>
-            </button>
-            <span style={{ fontSize: 14, fontWeight: 600, color: 'rgba(255,255,255,0.8)' }}>Tall Timber Academy</span>
-            <button onClick={() => openScreen('SET1-Account', 'Dani Okafor · owner, ' + 'Tall Timber Academy')} aria-label="Your account and settings" data-club-keep="" style={{ width: 44, height: 44, border: 0, padding: 0, background: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontFamily: 'inherit' }}><span style={{ width: 40, height: 40, borderRadius: '50%', background: ROSE, color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>DO</span></button>
-          </div>
-        </div>
-        {contextTabs.length > 0 && (
-          <div style={{ height: 44, padding: '0 28px', display: 'flex', alignItems: 'flex-end', background: '#fff', borderBottom: `1px solid ${LN}` }}>
-            <nav style={{ display: 'flex', flexGrow: 1, height: 44 }}>
-              {contextTabs.map((tab, i) => {
-                const active = i === activeTabIndex
-                return (
-                  <button key={tab} onClick={() => {
-                    if (nav === 'home') setHomeTab(HOME_TABS[i].id)
-                    if (nav === 'programs') setProgramsTab(PROGRAMS_TABS[i].id)
-                  }} style={{ height: 44, padding: '0 16px', border: 0, background: 'transparent', fontFamily: 'inherit', fontSize: 14, fontWeight: active ? 600 : 400, color: active ? INK : MUT, cursor: 'pointer', borderBottom: active ? `3px solid ${G2}` : '3px solid transparent', boxSizing: 'border-box', whiteSpace: 'nowrap' }}>{tab}</button>
-                )
-              })}
-            </nav>
-            <div style={{ display: 'flex', alignItems: 'center', height: 44 }}>
-              <span style={{ fontSize: 13, fontWeight: 700, color: G, background: PALE, borderRadius: 999, padding: '3px 10px' }}>Academy owner</span>
-            </div>
-          </div>
-        )}
-      </header>
+    <OwnerGo.Provider value={go}>
+    <div style={frame}>
+      <OwnerHeader current={screen} onGo={go} extra={EXTRA} tools={ask}/>
 
-      <div style={{ flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden', position: 'relative' }}>
-        {nav === 'home' && homeTab === 'overview' && !empty && homeStory}
-        {nav === 'home' && homeTab === 'overview' && !(!empty && homeStory) && <Overview empty={empty} onBroadcast={() => setShowBroadcast(true)} onTrials={() => setHomeTab('trials')} onFees={() => setNav('money')} onReports={() => setHomeTab('reports')} onFootballYear={() => setShowFootballYear(true)}/>}
-        {nav === 'home' && homeTab === 'messages' && <Messaging me="academyowner" />}
-        {nav === 'home' && homeTab === 'trials'   && <TrialsView empty={empty}/>}
-        {nav === 'home' && homeTab === 'reports'  && <ReportsView empty={empty}/>}
-        {nav === 'home' && homeTab === 'safety'   && <SafetyView empty={empty}/>}
-        {nav === 'home' && homeTab === 'partner'  && <PartnerClubView empty={empty}/>}
-        {nav === 'home' && homeTab === 'colours'  && <div style={{ overflow: 'auto' }}><ClubColours storeKey="academy" club="Tall Timber Academy" title="Academy colours" by="the owner" whole="academy" /></div>}
-        {nav === 'programs' && programsTab === 'term'   && <ProgramsView empty={empty}/>}
-        {nav === 'programs' && programsTab === 'clinic' && <ClinicView empty={empty}/>}
-        {nav === 'players'  && <PlayersView empty={empty}/>}
-        {nav === 'coaches'  && <CoachesView empty={empty}/>}
-        {nav === 'money'    && <FeesView empty={empty}/>}
+      <div data-screen={boardId} style={Drawn
+        ? { flexGrow: 1, minHeight: 712, display: 'flex', flexDirection: 'column', position: 'relative', color: INK, fontFamily: "'DM Sans',system-ui,sans-serif" }
+        : { flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden', position: 'relative' }}>
+        {Drawn && <Drawn/>}
+        {story}
+        {screen === HOME && !Drawn && !story && <Overview empty={empty} onBroadcast={() => go('AC12-AcademyBroadcast')} onTrials={() => go('AC3-Trials')} onFees={() => go('AC5-Fees')} onReports={() => go('AC7-ReportsOut')} onFootballYear={() => go('SPa1-AcademyYear')}/>}
+        {screen === 'AC1-AcademyHome'    && <Overview empty={empty} onBroadcast={() => go('AC12-AcademyBroadcast')} onTrials={() => go('AC3-Trials')} onFees={() => go('AC5-Fees')} onReports={() => go('AC7-ReportsOut')} onFootballYear={() => go('SPa1-AcademyYear')}/>}
+        {screen === 'messages'           && <Messaging me="academyowner" />}
+        {screen === 'AC3-Trials'         && <TrialsView empty={empty}/>}
+        {screen === 'AC7-ReportsOut'     && <ReportsView empty={empty}/>}
+        {screen === 'AC10-AcademySafety' && <SafetyView empty={empty}/>}
+        {screen === 'AC11-PartnerClub'   && <PartnerClubView empty={empty}/>}
+        {screen === 'colours'            && <div style={{ overflow: 'auto' }}><ClubColours storeKey="academy" club="Tall Timber Academy" title="Academy colours" by="the owner" whole="academy" /></div>}
+        {screen === 'AC2-Programs'       && <ProgramsView empty={empty}/>}
+        {screen === 'AC9-HolidayClinic'  && <ClinicView empty={empty}/>}
+        {screen === 'AC4-AcademyPlayers' && <PlayersView empty={empty}/>}
+        {screen === 'AC6-AcademyCoaches' && <CoachesView empty={empty}/>}
+        {screen === 'AC5-Fees'           && <FeesView empty={empty}/>}
         {askOpen && (
           <aside role="dialog" aria-label="Ask Clean Sheet" style={{ position: 'absolute', top: 0, right: 0, bottom: 0, width: 380, background: '#eef5f2', borderLeft: '1px solid #e8edeb', boxShadow: '-6px 0 24px rgba(16,33,31,0.10)', zIndex: 50, display: 'flex', flexDirection: 'column' }}>
             <div style={{ background: '#fff', padding: '14px 16px', borderBottom: '1px solid #e8edeb', display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
@@ -1075,5 +1054,6 @@ export default function AcademyOwnerApp({ empty = false, initialScreen, onNavCha
         {toast && <div style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', background: '#1f4a3e', color: '#fff', padding: '10px 20px', borderRadius: 999, fontSize: 13, fontWeight: 600, zIndex: 100 }}>{toast}</div>}
       </div>
     </div>
+    </OwnerGo.Provider>
   )
 }

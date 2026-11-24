@@ -1710,7 +1710,12 @@ function renderScreenInner(key: string): ReactNode {
     case 'JN3-Join':                  return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><JN3Join /></div>
     // Design IDs — Academy owner screens (tablet)
     case 'AC1e-AcademyHomeEmpty':     return <AcademyOwnerApp onBack={noop} empty={true} />
-    case 'AC1-AcademyHome':           return <AcademyOwnerApp onBack={noop} empty={false} />
+    case 'AC1-AcademyHome':           return <AcademyOwnerApp onBack={noop} empty={false} initialScreen="AC1-AcademyHome" />
+    // Academy owner, 24 Nov: AD1 to AD15 open in the owner app, on the page drawn. AD1 is the owner's Home now.
+    case 'AD1-AcademyHome': case 'AD2-Health': case 'AD3-Timetable': case 'AD4-NextTerm': case 'AD5-GroupMoves':
+    case 'AD6-YearPlan': case 'AD7-HowWeCoach': case 'AD8-SessionQuality': case 'AD9-RosterPay': case 'AD10-WatchCoach':
+    case 'AD11-ProgramMoney': case 'AD12-Credits': case 'AD13-Connections': case 'AD14-Pathway': case 'AD15-Families':
+      return <AcademyOwnerApp onBack={noop} empty={false} initialScreen={key} />
     case 'AC2e-ProgramsEmpty':        return <AC1eAcademyHomeEmpty />
     case 'AC2-Programs':              return <AC2Programs />
     case 'AC2b-Programs':             return <AC2Programs />
@@ -1726,13 +1731,16 @@ function renderScreenInner(key: string): ReactNode {
     // Design IDs — Academy coach screens (tablet)
     case 'ACC2-RunSession':           return <ACC2RunSession />
     case 'ACC3-TrialAssess':          return <ACC3TrialAssess />
-    case 'ACC4-PlayerPlan':           return <AcademyCoachApp onBack={noop} initialScreen="players" empty={false} />
+    case 'ACC4-PlayerPlan':           return <AcademyCoachApp onBack={noop} initialScreen="ACC4-PlayerPlan" empty={false} />
     case 'ACC4b-PlayerPlan':          return <ACC4PlayerPlan />
     case 'ACC5-OneOnOne':             return <ACC5OneOnOne />
     case 'ACC6-ReportDraft':          return <ACC6ReportDraft />
     case 'ACC7-AcademyGameDay':       return <AcademyCoachApp onBack={noop} initialScreen="gameday" empty={false} />
     case 'ACC12-AcademySuggested':    return <ACC12AcademySuggested />
     case 'ACC13-AcademyChat':         return <ACC13AcademyChat />
+    // Academy coach, pack v15 (ADC1 to ADC6): each opens inside the coach app, in the state drawn
+    case 'ADC1-PlayerFile': case 'ADC2-Group': case 'ADC3-SessionFilm': case 'ADC4-SkillsCheck': case 'ADC5-ReviewChats': case 'ADC6-HomePractice':
+                                      return <AcademyCoachApp key={key} onBack={noop} initialScreen={key} empty={false} />
     // Design IDs — Invite flow (phone)
     case 'IV-Invite':                 return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><IVInvite /></div>
     case 'IV1-Invite':                return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><IV1 /></div>
@@ -2339,7 +2347,7 @@ function renderScreenInner(key: string): ReactNode {
     case 'D7-SeasonPlan':              return <FY1SeasonPlan />
     case 'DrillFlow':                  return <DrillLibraryScreen empty={false} />
     case 'DF0-Library':                return <DrillLibraryScreen empty={false} />
-    case 'ACC8-AcademyRecord':         return <ACC11AcademyRecording />
+    case 'ACC8-AcademyRecord':         return <AcademyCoachApp onBack={noop} initialScreen="ACC8-AcademyRecord" empty={false} />   // the Record menu item lands on the pick screen; the recording itself is ACC11
     case 'FT1-FitnessHomeU12':         return <FitnessCoachScreen empty={false} />
     case 'DP1-Pathway':                return <DP1FairGameTime />
     case 'PA-ParentHome':              return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><TwoChildrenApp onBack={noop} empty={false} /></div>
@@ -2391,7 +2399,7 @@ const LOOK_HOME: Record<string, string> = {
   coach: 'STO5-HomeStoryJuniors', ccoach: 'STO7-HomeStoryAssistant',
   youth: 'STO6-HomeStoryYouth', seniors: 'STO4-HomeStorySeniors',
   miniroos: 'STO1-HomeStoryMiniRoos', goalkeeper: 'STO9-HomeStoryKeepers',
-  fitness: 'STO8-HomeStoryFitness', academyowner: 'STO14-HomeStoryAcademyOwner',
+  fitness: 'STO8-HomeStoryFitness', academyowner: 'AD1-AcademyHome',   // the owner's Home is AD1 since the academy handover (24 Nov); STO14 keeps its own address
   academycoach: 'STO15-HomeStoryAcademyCoach', academyparent: 'STO21-HomeStoryAcademyParent',
   academyplayer: 'STO22-HomeStoryAcademyPlayer', referee: 'STO20-HomeStoryReferee',
   parent: 'STO17-HomeStoryParent', manager: 'STO16-HomeStoryManager',
@@ -2473,7 +2481,7 @@ function pathToState(path: string): { view: DemoView; role: RoleId; screen?: str
         miniroos:     new Set(['home', 'squad', 'training', 'gameday', 'clips', 'record', 'learn']),
         goalkeeper:   new Set(['home', 'keepers', 'training', 'matchday', 'clips', 'record', 'learn']),
         fitness:      new Set(['home', 'squad', 'training', 'matchday', 'clips', 'record', 'learn']),
-        academyowner: new Set(['home', 'programs', 'players', 'coaches', 'money']),
+        academyowner: new Set(['home', 'programs', 'players', 'curriculum', 'coaches', 'money']),
         academycoach: new Set(['today', 'training', 'players', 'gameday', 'record']),
       }
       if (lookScreen in TOURS) return { view: 'noaccess', role: lookRole }
@@ -2487,7 +2495,7 @@ function pathToState(path: string): { view: DemoView; role: RoleId; screen?: str
   if (m3) return m3[1] in TOURS ? { view: 'sandboxlook', role: m3[1] as RoleId, screen: m3[2] } : { view: 'notfound', role: 'coach' }
   const m4 = path.match(/^\/__screen\/([A-Za-z0-9_-]+)$/)
   if (m4) return { view: 'screendirect', role: 'coach', screen: m4[1] }
-  const m5 = path.match(/^\/family(?:\/((?:FAM[\dtkci]|ECp[12])[A-Za-z0-9-]*))?\/?$/)
+  const m5 = path.match(/^\/family(?:\/((?:FAM[\dtkci]|ADP\d|ECp[12])[A-Za-z0-9-]*))?\/?$/)
   if (m5) return { view: 'family', role: 'coach', screen: m5[1] ?? 'FAM3-Home' }
   return { view: 'notfound', role: 'coach' }
 }

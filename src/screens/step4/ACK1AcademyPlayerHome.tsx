@@ -36,7 +36,7 @@ export default function ACK1AcademyPlayerHome() {
         {/* Skills */}
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 16px', marginBottom: 14 }}>
           <div style={{ fontSize: 14, fontWeight: 700, color: INK, marginBottom: 10 }}>Your skills</div>
-          {['Ball mastery', 'First touch', 'One against one', 'Passing', 'Finishing'].map(skill => (
+          {['First touch', 'Running with the ball', 'One against one', 'Striking the ball'].map(skill => (
             <div key={skill} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '6px 0', borderBottom: `1px solid ${LN}` }}>
               <div style={{ fontSize: 14, color: INK }}>{skill}</div>
               <div style={{ display: 'flex', gap: 4 }}>

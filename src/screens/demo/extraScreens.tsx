@@ -119,7 +119,7 @@ export function renderExtraScreen(key: string): ReactNode | undefined {
   if (/^ECp[123]-/.test(key)) return <EducationPhone start={key} />
   // Clean Sheet Family (20 Nov): a parent's own filming, paid for with credits, whether or not the club has joined.
   if (key === 'FAMc1-ClubInterest') return <FamilyClubPage />
-  if (/^FAM(\d|t\d|k\d|i\d)/.test(key)) return <FamilyApp key={key} start={key} />
+  if (/^FAM(\d|t\d|k\d|i\d)|^ADP\d/.test(key)) return <FamilyApp key={key} start={key} />
   if (key === 'KC2-FiveClubs') return <KC2FiveClubs />
   if (isSessionBoard(key)) return <KCSession id={key} />
   if (key === 'KC8-ReportClubColours') return <KC8Report />

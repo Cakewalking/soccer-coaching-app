@@ -1,11 +1,10 @@
-import { glyph } from '../Glyph'
+import CoachNav from '../academycoach/CoachNav'
+import { coachGo } from '../academycoach/menu'
 import { useState } from 'react'
 
 const G = '#2f6252', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
-export default function ACC12AcademySuggested(_: { onBack?: () => void }) {
-  const [activeNav, setActiveNav] = useState('Today')
-  const [activeSub, setActiveSub] = useState('Suggested')
+export default function ACC12AcademySuggested({ onNav }: { onBack?: () => void; onNav?: (s: string) => void }) {
   const [selectedPlayer, setSelectedPlayer] = useState<string | null>(null)
   const [done, setDone] = useState<string[]>([])
   const mark = (k: string) => setDone(d => d.includes(k) ? d : [...d, k])
@@ -19,30 +18,7 @@ export default function ACC12AcademySuggested(_: { onBack?: () => void }) {
 
   return (
     <div style={{ width: 1180, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, position: 'relative', display: 'flex', flexDirection: 'column' as const }}>
-      {/* Top nav */}
-      <div style={{ background: G, height: 64, display: 'flex', alignItems: 'center', padding: '0 24px', flexShrink: 0 }}>
-        <span style={{ color: '#fff', fontSize: 21, fontWeight: 700, marginRight: 32, letterSpacing: '-0.01em' }}>Clean Sheet</span>
-        <div style={{ display: 'flex', gap: 4, flex: 1 }}>
-          {[{ label: 'Today', icon: '⌂' }, { label: 'Players', icon: glyph('people') }, { label: 'Game day', icon: glyph('ball') }, { label: 'Library', icon: glyph('calendar') }].map(item => (
-            <button key={item.label} onClick={() => setActiveNav(item.label)} style={{ background: item.label === activeNav ? 'rgba(255,255,255,0.18)' : 'none', border: 'none', color: '#fff', fontSize: 14, fontWeight: item.label === activeNav ? 700 : 500, padding: '0 14px', height: 64, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6, borderRadius: 8 }}>
-              <span style={{ fontSize: 16 }}>{item.icon}</span> {item.label}
-            </button>
-          ))}
-        </div>
-        <button onClick={() => mark('academy')} style={{ background: 'rgba(255,255,255,0.18)', border: 'none', color: '#fff', fontSize: 14, fontWeight: 500, padding: '0 14px', height: 44, borderRadius: 999, cursor: 'pointer', marginRight: 12 }}>Tall Timber Academy {is('academy') ? '▴' : '▾'}</button>
-        <div style={{ width: 44, height: 44, borderRadius: 999, background: '#c39797', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 15, fontWeight: 700, color: INK }}>RW</div>
-      </div>
-
-      {/* Sub nav */}
-      <div style={{ background: '#fff', height: 44, borderBottom: `1px solid #c5c8c4`, display: 'flex', alignItems: 'center', padding: '0 28px', flexShrink: 0 }}>
-        {['Today', 'Run a session', 'Trial player', 'One-on-one', 'Record', 'Suggested'].map(tab => (
-            <button key={tab} onClick={() => setActiveSub(tab)} style={{ background: 'none', border: 'none', borderBottom: tab === activeSub ? `2px solid ${G}` : '2px solid transparent', color: tab === activeSub ? G : MUT, fontSize: 14, fontWeight: tab === activeSub ? 700 : 500, padding: '0 14px', height: 44, cursor: 'pointer', marginBottom: -1 }}>
-              {tab}
-            </button>
-        ))}
-        <div style={{ flex: 1 }} />
-        <span style={{ height: 32, padding: '0 12px', borderRadius: 999, background: '#f4e6e6', color: '#10211f', fontSize: 13, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 6 }}>Academy coach</span>
-      </div>
+      <CoachNav active="today" sub="Suggested" go={coachGo(onNav)} />
 
       {/* Page header */}
       <div style={{ display: 'flex', alignItems: 'flex-start', padding: '14px 28px 0', gap: 16 }}>
@@ -51,7 +27,7 @@ export default function ACC12AcademySuggested(_: { onBack?: () => void }) {
           <p style={{ margin: '4px 0 0', fontSize: 14, color: MUT }}>Advanced · from 3 recordings, your session notes and each player's goal</p>
         </div>
         <div style={{ display: 'flex', gap: 8, paddingTop: 4 }}>
-          <button onClick={() => setActiveSub('Today')} style={{ height: 44, padding: '0 16px', borderRadius: 10, background: '#fff', border: `1px solid #c5c8c4`, color: INK, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Back to today</button>
+          <button onClick={() => coachGo(onNav)('ACC1-CoachToday')} style={{ height: 44, padding: '0 16px', borderRadius: 10, background: '#fff', border: `1px solid #c5c8c4`, color: INK, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Back to today</button>
           <button onClick={() => { mark('both'); mark('add1'); mark('add2') }} style={{ height: 44, padding: '0 16px', borderRadius: 10, background: is('both') ? '#40826d' : G, border: 'none', color: '#fff', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>{is('both') ? '✓ Both added' : 'Use both'}</button>
         </div>
       </div>

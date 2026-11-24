@@ -1,4 +1,4 @@
-# Clean Sheet Family v19: report back (24 Nov)
+# Clean Sheet Family v20: report back (24 Nov)
 
 Build: the commit that adds this file. 75 phone screens, a fourth walkthrough panel and the club's web page, as a demo of the flows on sample data. **Nothing analyses real film.** This replaces the v18 build.
 
@@ -7,6 +7,10 @@ Build: the commit that adds this file. 75 phone screens, a fourth walkthrough pa
 - Every screen opens by its id, in the state it is drawn in (for example `/__screen/FAM1-Welcome`, `/__screen/FAM3-Home`, `/__screen/FAM20-GameStats`).
 - **Nothing in the demo's role picker opens it yet.** The pack does not say where a parent with no club comes in. The end of the club's join path for a parent now opens `FAM14-HomeWithClub`; the role pickers and tours still open the old parent screens, which are listed in `PLATFORM-MOMENTS-NOTES.md` for a decision.
 - Once the club has joined, an item on the Learn tab opens from the Education centre's library with no "We did it".
+
+## v20: the academy inside the family app (handover v15, 24 Nov)
+
+`ADP1` to `ADP5`: the Club tab when the child's club is an academy. They are reported with the rest of the academy in `ACADEMY-NOTES.md` and `ACADEMY-REPORT.csv`. The family app's own table is unchanged from v19.
 
 ## v19: the club tour has five steps (handover v14, 24 Nov)
 

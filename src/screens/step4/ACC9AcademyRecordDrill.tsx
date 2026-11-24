@@ -1,10 +1,9 @@
+import CoachNav from '../academycoach/CoachNav'
+import { coachGo } from '../academycoach/menu'
 import { useState } from 'react'
-const GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2', G = '#2f6252', ROSE = '#c39797'
-const SUBNAV = ['Today', 'Run a session', 'Trial player', 'One-on-one', 'Record', 'Suggested']
+const GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2', G = '#2f6252'
 
-export default function ACC9AcademyRecordDrill(_: { onBack?: () => void }) {
-  const [activeNav, setActiveNav] = useState('Today')
-  const [activeSub, setActiveSub] = useState('Record')
+export default function ACC9AcademyRecordDrill({ onNav }: { onBack?: () => void; onNav?: (s: string) => void }) {
   const [recording, setRecording] = useState(false)
   const [done, setDone] = useState<string[]>([])
   const mark = (k: string) => setDone(d => d.includes(k) ? d : [...d, k])
@@ -24,22 +23,7 @@ export default function ACC9AcademyRecordDrill(_: { onBack?: () => void }) {
   ]
   return (
     <div style={{ width: 1180, minHeight: 820, background: '#faf5ec', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
-      <header style={{ flex: 'none', background: GD }}>
-        <div style={{ height: 60, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 16 }}>
-          <span style={{ fontSize: 17, fontWeight: 800, letterSpacing: '-0.03em', color: '#fff' }}>Clean Sheet</span>
-          <nav style={{ display: 'flex', flexGrow: 1, height: 60 }}>
-            {['Today', 'Training', 'Players', 'Game day', 'Record'].map(n => (
-              <button key={n} onClick={() => setActiveNav(n)} style={{ height: 60, padding: '0 16px', border: 0, background: 'transparent', fontFamily: 'inherit', fontSize: 15, fontWeight: n === activeNav ? 700 : 500, color: n === activeNav ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer', borderBottom: n === activeNav ? '3px solid #fff' : '3px solid transparent', boxSizing: 'border-box' as const }}>{n}</button>
-            ))}
-          </nav>
-          <span style={{ fontSize: 14, fontWeight: 600, color: 'rgba(255,255,255,0.8)' }}>Tall Timber Academy</span>
-          <div style={{ width: 40, height: 40, borderRadius: '50%', background: ROSE, color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>RW</div>
-        </div>
-        <div style={{ height: 44, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 24, background: 'rgba(0,0,0,0.15)' }}>
-          {SUBNAV.map(n => <button key={n} onClick={() => setActiveSub(n)} style={{ height: 44, padding: '0 4px', background: 'none', border: 'none', fontFamily: 'inherit', fontSize: 14, fontWeight: n === activeSub ? 700 : 500, color: n === activeSub ? '#fff' : 'rgba(255,255,255,0.6)', borderBottom: n === activeSub ? '2px solid #fff' : '2px solid transparent', cursor: 'pointer' }}>{n}</button>)}
-          <div style={{ marginLeft: 'auto', fontSize: 13, color: 'rgba(255,255,255,0.6)' }}>Academy coach</div>
-        </div>
-      </header>
+      <CoachNav active="record" sub="Record" go={coachGo(onNav)} />
       <div style={{ padding: '20px 28px 0' }}>
         <div style={{ fontSize: 24, fontWeight: 700, color: INK, letterSpacing: '-0.02em' }}>Record a drill</div>
         <div style={{ fontSize: 13, color: MUT, marginTop: 2 }}>Finishing circuit · Advanced, 12 to 14 · third on tonight's plan</div>

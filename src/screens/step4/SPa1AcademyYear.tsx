@@ -1,8 +1,8 @@
+import OwnerHeader from '../academy/OwnerHeader'
+import { openScreen } from '../openThing'
 import { openThing } from '../openThing'
 import { useState } from 'react'
 const GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2', G = '#2f6252'
-const TOP_NAV = ['Home', 'Programs', 'Players', 'Coaches', 'Money']
-const SUB_NAV = ['Overview', 'Trials', 'Reports', 'Child safety', 'Partner club']
 
 const TERMS = [
   { term: 'Term 1', when: 'Feb to Apr', clubs: 'Club pre-season', what: 'Academy leads on skill. Club load is building, so academy sprints are capped' },
@@ -12,24 +12,13 @@ const TERMS = [
   { term: 'Holidays', when: 'Dec and Jan', clubs: 'Rest month', what: 'Clinics are optional, and count as football' },
 ]
 
-export default function SPa1AcademyYear(_: { onBack?: () => void }) {
+export default function SPa1AcademyYear({ onNav }: { onBack?: () => void; onNav?: (id: string) => void }) {
   const [toast, setToast] = useState<string | null>(null)
   void st   // kept for lines this screen may still need to say
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, minHeight: 820, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
-      <div style={{ background: GD, padding: '0 32px', display: 'flex', alignItems: 'center', gap: 32, height: 52, flexShrink: 0 }}>
-        <div style={{ fontSize: 15, fontWeight: 800, color: '#fff', letterSpacing: '-0.01em' }}>Clean Sheet</div>
-        {TOP_NAV.map(t => <div key={t} style={{ fontSize: 13, fontWeight: t === 'Home' ? 700 : 500, color: t === 'Home' ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>)}
-        <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 12 }}>
-          <span style={{ fontSize: 13, fontWeight: 600, color: 'rgba(255,255,255,0.7)' }}>Tall Timber Academy</span>
-          <div style={{ width: 32, height: 32, borderRadius: '50%', background: '#8c6e5a', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, color: '#fff' }}>DO</div>
-        </div>
-      </div>
-      <div style={{ background: '#fff', borderBottom: `1px solid ${LN}`, padding: '0 32px', display: 'flex', gap: 24, height: 44, alignItems: 'center', flexShrink: 0 }}>
-        {SUB_NAV.map(n => <div key={n} style={{ height: 44, display: 'flex', alignItems: 'center', fontSize: 13, fontWeight: n === 'Overview' ? 700 : 500, color: n === 'Overview' ? INK : MUT, borderBottom: `2px solid ${n === 'Overview' ? G : 'transparent'}`, cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{n}</div>)}
-        <div style={{ marginLeft: 'auto', fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b' }}>Academy owner</div>
-      </div>
+      <OwnerHeader current="SPa1-AcademyYear" onGo={onNav ?? openScreen} />
       <div style={{ padding: '24px 32px 0', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <div>
           <div style={{ fontSize: 22, fontWeight: 800, letterSpacing: '-0.02em', color: INK }}>The football year</div>

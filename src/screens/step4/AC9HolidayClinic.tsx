@@ -1,7 +1,8 @@
-import { glyph } from '../Glyph'
+import OwnerHeader from '../academy/OwnerHeader'
+import { openScreen } from '../openThing'
 import { useState } from 'react'
 
-const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
+const G = '#2f6252', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 function Bar({ pct, label }: { pct: number; label: string }) {
   return (
@@ -14,9 +15,7 @@ function Bar({ pct, label }: { pct: number; label: string }) {
   )
 }
 
-export default function AC9HolidayClinic(_: { onBack?: () => void }) {
-  const [activeNav, setActiveNav] = useState('Programs')
-  const [activeSub, setActiveSub] = useState('Holiday clinic')
+export default function AC9HolidayClinic({ onNav }: { onBack?: () => void; onNav?: (id: string) => void }) {
   const [done, setDone] = useState<string[]>([])
   const mark = (k: string) => setDone(d => d.includes(k) ? d : [...d, k])
   const is = (k: string) => done.includes(k)
@@ -24,36 +23,8 @@ export default function AC9HolidayClinic(_: { onBack?: () => void }) {
   return (
     <div style={{ width: 1180, background: '#faf5ec', boxSizing: 'border-box' as const, fontFamily: 'var(--font-sans)', minHeight: 820, position: 'relative', display: 'flex', flexDirection: 'column' as const }}>
 
-      {/* TOP NAV */}
-      <div style={{ background: G, height: 64, display: 'flex', alignItems: 'center', padding: '0 24px', gap: 0, flexShrink: 0 }}>
-        <span style={{ color: '#fff', fontWeight: 800, fontSize: 20, letterSpacing: -0.5, marginRight: 36 }}>Clean Sheet</span>
-        <div style={{ display: 'flex', gap: 4, flex: 1 }}>
-          {[
-            { label: 'Home', icon: '⌂' },
-            { label: 'Programs', icon: glyph('menu') },
-            { label: 'Players', icon: glyph('person') },
-            { label: 'Coaches', icon: glyph('cap') },
-            { label: 'Money', icon: '$' },
-          ].map(({ label, icon }) => (
-            <button key={label} onClick={() => setActiveNav(label)} style={{ background: label === activeNav ? GD : 'transparent', color: '#fff', border: 'none', borderRadius: 8, padding: '0 14px', height: 44, fontSize: 14, fontWeight: label === activeNav ? 700 : 500, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
-              <span style={{ fontSize: 15 }}>{icon}</span>{label}
-            </button>
-          ))}
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <button onClick={() => mark('academy')} style={{ background: '#fff', color: INK, border: 'none', borderRadius: 20, padding: '0 14px', height: 44, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Tall Timber Academy {is('academy') ? '▴' : '▾'}</button>
-          <div style={{ width: 44, height: 44, borderRadius: 22, background: '#c39797', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: 700, fontSize: 15 }}>DO</div>
-        </div>
-      </div>
-
-      {/* SUB NAV */}
-      <div style={{ background: '#fff', height: 44, display: 'flex', alignItems: 'center', padding: '0 28px', gap: 0, borderBottom: `1px solid ${LN}`, flexShrink: 0 }}>
-        {['Term programs', 'Holiday clinic'].map(tab => (
-          <button key={tab} onClick={() => setActiveSub(tab)} style={{ background: 'none', border: 'none', borderBottom: tab === activeSub ? `2px solid ${G}` : '2px solid transparent', color: tab === activeSub ? G : MUT, fontWeight: tab === activeSub ? 700 : 500, fontSize: 14, padding: '0 16px', height: 44, cursor: 'pointer' }}>
-            {tab}
-          </button>
-        ))}
-      </div>
+      {/* The owner's menu: six main items and the screens under each (academy handover, 24 Nov) */}
+      <OwnerHeader current="AC9-HolidayClinic" onGo={onNav ?? openScreen} />
 
       {/* PAGE HEADER */}
       <div style={{ padding: '14px 28px 10px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>

@@ -1,4 +1,4 @@
-// Clean Sheet Family (family-app-v19): a parent uploads a video, and credits pay for finding their own child's moments.
+// Clean Sheet Family (family-app-v20): a parent uploads a video, and credits pay for finding their own child's moments.
 // This is a demo of the flows on sample data. Nothing here analyses real film, and the purchase is a stub.
 // Prices, pack sizes, the rate table, the check's thresholds and the club offer are placeholders until Booker confirms them.
 
@@ -121,13 +121,16 @@ export const named = (v: Video, name: string) => v.title.startsWith('v ') ? `${n
 /** Whether the one free video is still this family's to use. */
 export const freeLeft = (s: Family) => !s.freeUsed && !s.withheld
 export const fullGames = (vs: Video[]) => vs.filter(v => v.state === 'ready' && v.stats)
-export type Club = { name: string; place: string; uses?: boolean; unmatched?: boolean }
+export type Club = { name: string; place: string; uses?: boolean; unmatched?: boolean; /** a private academy, not a community club: the Club tab is the academy's page (ADP1) */ academy?: boolean }
 /** A small sample of the directory of clubs. Where the real list comes from is not decided. */
+const TALL_TIMBER: Club & { far?: string; sort?: string } = { name: 'Tall Timber Academy', place: 'Messmate, Victoria', far: '5 km away', sort: 'academy', academy: true }
 export const CLUBS: (Club & { far?: string; sort?: string })[] = [
   { name: 'Hillview FC', place: 'Hillview, Victoria', far: '2 km away' }, { name: 'Hillview Heights SC', place: 'Hillview Heights, Victoria', far: '9 km away', uses: true },
   { name: 'Hillvale United', place: 'Hillvale, New South Wales' }, { name: 'Hillview Futsal Club', place: 'Hillview, Victoria', sort: 'futsal' },
-  { name: 'Ridgeway Rovers', place: 'Ridgeway, Victoria', far: '6 km away' }, { name: 'Parkside United', place: 'Parkside, Victoria', far: '11 km away' }, { name: 'Lakeside SC', place: 'Lakeside, Victoria', far: '14 km away' },
+  { name: 'Ridgeway Rovers', place: 'Ridgeway, Victoria', far: '6 km away' }, { name: 'Parkside United', place: 'Parkside, Victoria', far: '11 km away' }, { name: 'Lakeside SC', place: 'Lakeside, Victoria', far: '14 km away' }, TALL_TIMBER,
 ]
+/** The sample clubs that can join in the demo. */
+export const JOINABLE = ['Hillview FC', TALL_TIMBER.name]
 export type Person = { name: string; how: string; on: boolean }
 export type Family = {
   parent: string; email: string; signedIn: boolean
@@ -142,6 +145,7 @@ export type Family = {
   /** the club's plan has ended, and the family has not been told yet (FAM41 shows once) */ paused?: boolean
   /** the child being edited, the help topic picked, picking a video to delete, and "only upload on Wi-Fi" */ edit?: string | null; topic?: number; picking?: boolean; wifi?: boolean
   /** a later video on its way up: how far, and whether it is paused or has stopped */ upload?: { pct: number; paused: boolean }
+  /** with an academy: next term's place, how it is paid, the review chat, and the week's three goes at practice */ adp?: { place?: 'kept' | 'left'; pay?: number; slot?: number; chat?: 'booked' | 'none'; goes?: boolean[] }
   /** links sent to other parents from the team, by video */ invites?: Record<string, Invite>
   pack: number; message: string | null; /** the library item that is open */ item: string
   /** "three games in": the child it is due for, and the children it has been shown for (once each) */ seasonDue: string | null; seasonTold: string[]
@@ -181,6 +185,7 @@ export function preset(id: string): Family {
   if (id === 'FAM18d-DeleteVideo') return { ...b, open: 'g1', invites: { g1: { daysLeft: 12, waiting: [], joined: [{ child: 'Leo', shirt: '4', when: 'on Monday' }, { child: 'Noor', shirt: '11', when: 'on Monday' }] } } }
   if (id === 'FAM15c-EditChild') return { ...b, edit: 'ari' }
   if (/^FAM3[1-9]|^FAM40/.test(id)) return { ...b, ...joined, videos: [RIDGEWAY, FUTSAL, PARKSIDE, NORTHGATE, ...MIAS], open: 'g1' }   // the club's side, once it has joined
+  if (/^ADP\d/.test(id)) return { ...b, ...joined, club: TALL_TIMBER, videos: [RIDGEWAY, FUTSAL, PARKSIDE, NORTHGATE, ...MIAS], open: 'g1' }   // the child's club is an academy
   if (id === 'FAM41-ClubPaused') return { ...b, paused: true }
   if (id === 'FAM7u-Uploading' || id === 'FAM7x-UploadStopped') return { ...b, upload: { pct: 62, paused: id === 'FAM7x-UploadStopped' } }
   if (id === 'FAM5b-Maybe') return { ...b, film: 'maybe' }

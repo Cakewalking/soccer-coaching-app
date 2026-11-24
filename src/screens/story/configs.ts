@@ -474,8 +474,9 @@ export const STO13: HomeCfg = {
 // ── Academy owner (STO14) ──
 export const STO14: HomeCfg = {
   id: 'STO14-HomeStoryAcademyOwner', role: 'Academy owner', team: 'Tall Timber Academy', teamTarget: SW, avatar: 'DO',
-  topNav: [{ label: 'Home', target: 'AC1-AcademyHome', active: true }, { label: 'Programs', target: 'AC2-Programs' }, { label: 'Players', target: 'AC4-AcademyPlayers' }, { label: 'Coaches', target: 'AC6-AcademyCoaches' }, { label: 'Money', target: 'AC5-Fees' }],
-  subNav: [{ label: 'Overview', target: 'AC1-AcademyHome', active: true }, { label: 'Trials', target: 'AC3-Trials' }, { label: 'Reports', target: 'AC7-ReportsOut' }, { label: 'Child safety', target: 'AC10-AcademySafety' }, { label: 'Partner club', target: 'AC11-PartnerClub' }],
+  // The owner's six main items and Home's sub-menu, as in the academy handover (24 Nov). Overview is AD1 now.
+  topNav: [{ label: 'Home', target: 'AD1-AcademyHome', active: true }, { label: 'Programs', target: 'AC2-Programs' }, { label: 'Players', target: 'AC4-AcademyPlayers' }, { label: 'Curriculum', target: 'AD6-YearPlan' }, { label: 'Coaches', target: 'AC6-AcademyCoaches' }, { label: 'Money', target: 'AC5-Fees' }],
+  subNav: [{ label: 'Overview', target: 'AD1-AcademyHome', active: true }, { label: 'Health', target: 'AD2-Health' }, { label: 'Trials', target: 'AC3-Trials' }, { label: 'Reports', target: 'AC7-ReportsOut' }, { label: 'Families', target: 'AD15-Families' }, { label: 'Child safety', target: 'AC10-AcademySafety' }, { label: 'Partner club', target: 'AC11-PartnerClub' }],
   ask: 'Ask about Tall Timber… Who is behind on their term goal?', askTarget: 'ASKd2-HomeFocus',
   proof: {
     label: 'TALL TIMBER ACADEMY · TERM 2, WEEK 7 OF 10',

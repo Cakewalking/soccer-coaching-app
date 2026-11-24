@@ -1,8 +1,10 @@
+import CoachNav from '../academycoach/CoachNav'
+import { coachGo } from '../academycoach/menu'
 import { openThing } from '../openThing'
 import { Glyph } from '../Glyph'
 import { useState } from 'react'
 
-const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', BG = '#f5f6f4'
+const G = '#2f6252', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', BG = '#f5f6f4'
 
 function Session({ time, group, detail, plan, tag }: { time: string; group: string; detail: string; plan: string; tag?: string }) {
   return (
@@ -26,37 +28,10 @@ export default function ACC1CoachToday({ onNav }: { onNav?: (s: string) => void 
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   return (
     <div style={{ width: 1180, background: BG, fontFamily: 'var(--font-sans)', minHeight: 820 }}>
-      {/* Top nav */}
-      <div style={{ background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 28, height: 52 }}>
-        <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>Clean Sheet</div>
-        {['Today', 'Players', 'Game day', 'Library'].map(t => (
-          <div key={t} style={{ fontSize: 13, fontWeight: t === 'Today' ? 700 : 500, color: t === 'Today' ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer', minHeight: 44, minWidth: 44, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', padding: '0 10px' }}>{t}</div>
-        ))}
-        <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 10 }}>
-          <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)' }}>Tall Timber Academy</div>
-          <div style={{ width: 32, height: 32, borderRadius: '50%', background: G, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, color: '#fff' }}>RW</div>
-        </div>
-      </div>
+      <CoachNav active="today" sub="Today" go={coachGo(onNav)} />
 
-      <div style={{ display: 'grid', gridTemplateColumns: '220px 1fr', height: 'calc(820px - 52px)' }}>
-        {/* Left sidebar */}
-        <div style={{ background: '#fff', borderRight: `1px solid ${LN}`, padding: '12px 0' }}>
-          {['Today', 'Run a session', 'Trial player', 'One-on-one', 'Record', 'Suggested'].map(item => (
-            <div key={item} style={{
-              padding: '10px 20px',
-              fontSize: 14,
-              fontWeight: item === 'Today' ? 700 : 500,
-              color: item === 'Today' ? G : MUT,
-              background: item === 'Today' ? '#eef5f2' : 'transparent',
-              borderLeft: item === 'Today' ? `3px solid ${G}` : '3px solid transparent',
-              cursor: 'pointer',
-            }}>{item}</div>
-          ))}
-          <div style={{ marginTop: 'auto', padding: '12px 20px', borderTop: `1px solid ${LN}`, fontSize: 11, color: MUT }}>Academy coach</div>
-        </div>
-
-        {/* Main */}
-        <div style={{ overflowY: 'auto', padding: 28 }}>
+      <div style={{ height: 'calc(820px - 108px)', display: 'flex', flexDirection: 'column' }}>
+        <div style={{ flex: 1, overflowY: 'auto', padding: 28 }}>
           <div style={{ marginBottom: 20 }}>
             <div style={{ fontSize: 22, fontWeight: 800, color: INK, marginBottom: 2 }}>Hi Reece</div>
             <div style={{ fontSize: 13, color: MUT }}>Thursday 4 June · 3 sessions today at Messmate Primary School</div>

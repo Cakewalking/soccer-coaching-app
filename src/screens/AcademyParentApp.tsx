@@ -210,7 +210,7 @@ function ParentHome({ empty, onCantCome, onShare, onConcern, onChat }: {
           <PBtn label="See what to bring" primary/>
         </div>
       </Card>
-      {[{ l: 'Session notes', d: 'What Kai worked on, after each session' }, { l: 'The report', d: 'Five skills, end of term' }, { l: 'Fees', d: 'What you paid, one receipt' }].map(r => (
+      {[{ l: 'Session notes', d: 'What Kai worked on, after each session' }, { l: 'The report', d: 'Four core skills, end of term' }, { l: 'Fees', d: 'What you paid, one receipt' }].map(r => (
         <div key={r.l} style={{ display: 'flex', gap: 10 }}>
           <div style={{ width: 26, height: 26, borderRadius: '50%', background: PALE, color: G, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, flexShrink: 0 }}>+</div>
           <div><div style={{ fontSize: 14, fontWeight: 600, color: INK }}>{r.l}</div><div style={{ fontSize: 12, color: MUT }}>{r.d}</div></div>
@@ -333,9 +333,9 @@ function ProgressView({ empty }: { empty: boolean }) {
       <PHeader title="Progress"/>
       <Card><div style={{ padding: 16, textAlign: 'center' }}>
         <div style={{ fontSize: 16, fontWeight: 700, color: INK, marginBottom: 6 }}>Kai's report comes in week 9</div>
-        <div style={{ fontSize: 13, color: MUT, lineHeight: 1.5 }}>Five skills, then and now. Dani sends it after you approve.</div>
+        <div style={{ fontSize: 13, color: MUT, lineHeight: 1.5 }}>Four core skills, then and now. Dani sends it after you approve.</div>
       </div></Card>
-      {[{ l: 'Session by session', d: "What Kai worked on, from Reece's notes" }, { l: 'The end-of-term report', d: 'Five skills, compared to last term' }, { l: 'No rankings', d: 'Kai against his own last term only' }].map(r => (
+      {[{ l: 'Session by session', d: "What Kai worked on, from Reece's notes" }, { l: 'The end-of-term report', d: 'Four core skills, compared to last term' }, { l: 'No rankings', d: 'Kai against his own last term only' }].map(r => (
         <div key={r.l} style={{ display: 'flex', gap: 10 }}>
           <div style={{ width: 26, height: 26, borderRadius: '50%', background: PALE, color: G, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, flexShrink: 0 }}>+</div>
           <div><div style={{ fontSize: 14, fontWeight: 600, color: INK }}>{r.l}</div><div style={{ fontSize: 12, color: MUT }}>{r.d}</div></div>
@@ -346,10 +346,9 @@ function ProgressView({ empty }: { empty: boolean }) {
 
   const skills = [
     { label: 'First touch', then: 2, now: 3 },
-    { label: 'Left foot', then: 1, now: 2 },
-    { label: 'Turning in tight spaces', then: 2, now: 3 },
-    { label: 'Decision-making', then: 3, now: 3 },
-    { label: 'Effort and coachability', then: 4, now: 4 },
+    { label: 'Running with the ball', then: 4, now: 4 },
+    { label: 'One against one', then: 4, now: 4 },
+    { label: 'Striking the ball', then: 2, now: 2 },
   ]
 
   return (
@@ -358,7 +357,7 @@ function ProgressView({ empty }: { empty: boolean }) {
 
       <Card>
         <div style={{ padding: 16 }}>
-          <div style={{ fontSize: 13, fontWeight: 700, color: MUT, marginBottom: 12, letterSpacing: '0.05em', textTransform: 'uppercase' as const }}>Five skills · then and now · 1 to 5</div>
+          <div style={{ fontSize: 13, fontWeight: 700, color: MUT, marginBottom: 12, letterSpacing: '0.05em', textTransform: 'uppercase' as const }}>Four core skills · then and now · 1 to 5</div>
           {skills.map(s => <SkillBar key={s.label} {...s}/>)}
         </div>
         <div style={{ padding: '12px 16px', background: PALE, borderTop: `1px solid ${LN}`, fontSize: 13, color: G, lineHeight: 1.5 }}>

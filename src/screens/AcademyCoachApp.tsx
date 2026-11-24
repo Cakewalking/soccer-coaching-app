@@ -7,6 +7,15 @@ import { goApp } from './sandbox/sandboxNav'
 import { useState } from 'react'
 import { demoToast } from './demoToast'
 import { AcademyTrainingWeek, AcademyTrainingSuggested, AcademySessionPlan, AcademyWhoComing } from './AcademyTraining'
+import CoachNav from './academycoach/CoachNav'
+import { InCoachApp, type CoachMain } from './academycoach/menu'
+import { CORE_SKILLS } from './academycoach/skills'
+import ADC1PlayerFile from './academycoach/ADC1PlayerFile'
+import ADC2Group from './academycoach/ADC2Group'
+import ADC3SessionFilm from './academycoach/ADC3SessionFilm'
+import ADC4SkillsCheck from './academycoach/ADC4SkillsCheck'
+import ADC5ReviewChats from './academycoach/ADC5ReviewChats'
+import ADC6HomePractice from './academycoach/ADC6HomePractice'
 
 const G    = '#2f6252'
 const G2   = '#40826d'
@@ -17,12 +26,12 @@ const LN   = '#e8edeb'
 const PALE = '#eef5f2'
 const ROSE = '#c39797'
 
-type AcademyNav   = 'today' | 'training' | 'players' | 'gameday' | 'record'
-type TrainingTab  = 'week' | 'session' | 'suggested' | 'whoComing'
+type AcademyNav   = Exclude<CoachMain, 'learn'>   // Learn opens the club coach's Learn over the top
+type TrainingTab  = 'week' | 'session' | 'suggested' | 'whoComing' | 'home'
 type TodayTab     = 'overview' | 'runsession' | 'trial' | 'oneonone' | 'suggested' | 'chat'
-type GameDayTab  = 'saturday' | 'teamsheet' | 'livegame' | 'review'
 type RecordStep  = 'pick' | 'drill' | 'recording' | 'results'
-type PlayersView = 'list' | 'plan' | 'report'
+type PlayersView = 'group' | 'file' | 'check' | 'chats' | 'report' | 'plan'
+type RecordTab   = 'record' | 'film'
 
 // ─── Shared ──────────────────────────────────────────────────────────────────
 
@@ -283,13 +292,13 @@ function TrialView({ empty }: { empty: boolean }) {
   const [toast, setToast] = useState<string | null>(null)
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   const [taps, setTaps] = useState<Record<string, 'starting' | 'getting' | 'strong'>>({
-    ball: 'getting', touch: 'starting', oneonone: 'strong', passing: 'getting',
+    touch: 'starting', running: 'getting', oneonone: 'strong', striking: 'getting',
   })
   const skills = [
-    { id: 'ball', label: 'Ball mastery', note: 'Keeps the ball close with both feet' },
     { id: 'touch', label: 'First touch', note: 'Sets the ball where they want it' },
+    { id: 'running', label: 'Running with the ball', note: 'Keeps it close at speed, head up' },
     { id: 'oneonone', label: 'One against one', note: 'Takes a player on, or stops one' },
-    { id: 'passing', label: 'Passing', note: 'Finds a teammate, right weight' },
+    { id: 'striking', label: 'Striking the ball', note: 'Clean contact, either foot' },
   ]
 
   if (empty) return (
@@ -354,11 +363,10 @@ function TrialView({ empty }: { empty: boolean }) {
 
 function PlayerPlanView({ playerName, newPlayer, onReport }: { playerName: string; newPlayer?: boolean; onReport?: () => void }) {
   const skills = [
-    { label: 'Ball mastery',  note: 'Both feet, at speed',       step: 4 },
-    { label: 'First touch',   note: 'Up one this term',          step: 3 },
-    { label: 'One against one', note: "His strength",            step: 5 },
-    { label: 'Passing',       note: 'Good weight, short. Long is next', step: 3 },
-    { label: 'Finishing',     note: "This term's goal · weaker foot", step: 2 },
+    { label: 'First touch',           note: 'Up one this term',               step: 3 },
+    { label: 'Running with the ball', note: 'Head up at speed. His strength',  step: 4 },
+    { label: 'One against one',       note: 'Wins most of them',              step: 4 },
+    { label: 'Striking the ball',     note: "This term's goal · weaker foot", step: 2 },
   ]
   const week = [
     { day: 'MON', label: '' },
@@ -379,7 +387,7 @@ function PlayerPlanView({ playerName, newPlayer, onReport }: { playerName: strin
         <Btn label="See her trial notes" primary/>
       </div></Card>
       <StepList items={[
-        { n: '1', title: 'Five skills', note: 'Where she is on each' },
+        { n: '1', title: 'Four core skills', note: 'Where she is on each' },
         { n: '2', title: 'One goal a term', note: 'You choose it' },
         { n: '3', title: 'Her whole week', note: "If her parent shares the club side" },
       ]}/>
@@ -535,7 +543,7 @@ function TermReportView({ empty, onBack }: { empty: boolean; onBack?: () => void
     </div>
   )
 
-  const skills = ['Ball mastery', 'First touch', 'One against one', 'Passing', 'Finishing']
+  const steps = [3, 4, 4, 2]   // the coach's step on each of the four core skills, as in Kai's file
 
   return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '20px 28px 32px', display: 'flex', flexDirection: 'column', gap: 16 }}>
@@ -564,11 +572,11 @@ function TermReportView({ empty, onBack }: { empty: boolean; onBack?: () => void
       {/* Skills */}
       <Card>
         <div style={{ padding: '10px 16px', borderBottom: `1px solid ${LN}`, fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: MUT }}>Skills, then and now</div>
-        {skills.map(s => (
+        {CORE_SKILLS.map((s, n) => (
           <div key={s} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 16px', borderBottom: `1px solid ${LN}` }}>
             <div style={{ flex: 1, fontSize: 14, fontWeight: 600, color: INK }}>{s}</div>
             <div style={{ display: 'flex', gap: 3 }}>
-              {[1,2,3,4,5].map(i => <div key={i} style={{ width: 14, height: 6, borderRadius: 3, background: i <= 3 ? G : LN }}/>)}
+              {[1,2,3,4,5].map(i => <div key={i} style={{ width: 14, height: 6, borderRadius: 3, background: i <= steps[n] ? G : LN }}/>)}
             </div>
           </div>
         ))}
@@ -1169,105 +1177,59 @@ function ChatView({ empty }: { empty: boolean }) {
   )
 }
 
-// ─── Players list ─────────────────────────────────────────────────────────────
-
-function PlayersListView({ onPlayer, onReport }: { onPlayer: (name: string, isNew: boolean) => void; onReport: () => void }) {
-  const groups = [
-    {
-      label: 'Advanced · 12 to 14', count: 20,
-      players: [
-        { ini: 'KO', name: 'Kai Okonkwo', goal: 'Weaker-foot finishing', sessions: '5 of 6', isNew: false },
-        { ini: 'AC', name: 'Ana Costa', goal: 'Plan starts after 3 sessions', sessions: '2 so far', isNew: true },
-        { ini: 'JM', name: 'Jonah Marsh', goal: 'First touch away from pressure', sessions: '5 of 6', isNew: false },
-        { ini: 'ZA', name: 'Zane Abbas', goal: 'Weight of pass', sessions: '4 of 6', isNew: false },
-        { ini: 'MW', name: 'Mila Wójcik', goal: 'Receiving on the half turn', sessions: '6 of 6', isNew: false },
-      ],
-    },
-    {
-      label: 'Development · 9 to 11', count: 14,
-      players: [
-        { ini: 'AM', name: 'Arjun Mehta', goal: 'On trial today', sessions: 'Trial', isNew: true },
-        { ini: 'LF', name: 'Lola Ferris', goal: '1v1 defending', sessions: '6 of 6', isNew: false },
-        { ini: 'FB', name: 'Finn Byrne', goal: 'Striking through the ball', sessions: '5 of 6', isNew: false },
-      ],
-    },
-  ]
-
-  return (
-    <div style={{ flex: 1, overflowY: 'auto', padding: '20px 28px 32px', display: 'flex', flexDirection: 'column', gap: 16 }}>
-      <PageHead title="Players" sub="52 players across 3 groups"
-        right={<><Btn label={`Check report drafts · 4`} small primary onClick={onReport}/></>}/>
-
-      {groups.map(g => (
-        <div key={g.label}>
-          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 8 }}>{g.label} · {g.count} players</div>
-          <Card>
-            {g.players.map((p, i) => (
-              <button key={p.ini} onClick={() => onPlayer(p.name, p.isNew)} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 14px', border: 'none', borderBottom: i < g.players.length - 1 ? `1px solid ${LN}` : 'none', background: 'transparent', cursor: 'pointer', textAlign: 'left', fontFamily: 'inherit', width: '100%' }}>
-                <Ini ini={p.ini} color={p.isNew ? ROSE : G}/>
-                <div style={{ flex: 1 }}>
-                  <div style={{ fontSize: 14, fontWeight: 700, color: INK }}>{p.name}</div>
-                  <div style={{ fontSize: 12, color: MUT }}>{p.goal}</div>
-                </div>
-                <div style={{ textAlign: 'right' }}>
-                  <div style={{ fontSize: 12, color: MUT }}>{p.sessions}</div>
-                </div>
-                <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth={2} strokeLinecap="round"><path d="M9 18l6-6-6-6"/></svg>
-              </button>
-            ))}
-          </Card>
-        </div>
-      ))}
-    </div>
-  )
-}
-
 // ─── Main app ─────────────────────────────────────────────────────────────────
 
+// Where a screen id lands inside the app: the main item, and the sub-menu item under it.
+type Place = { nav: AcademyNav; today?: TodayTab; players?: PlayersView; training?: TrainingTab; record?: RecordTab }
+const PLACES: Record<string, Place> = {
+  today: { nav: 'today' }, players: { nav: 'players' }, training: { nav: 'training' }, gameday: { nav: 'gameday' }, record: { nav: 'record' },
+  'ACC1-CoachToday': { nav: 'today', today: 'overview' }, 'ACC2-RunSession': { nav: 'today', today: 'runsession' }, 'ACC3-TrialAssess': { nav: 'today', today: 'trial' },
+  'ACC5-OneOnOne': { nav: 'today', today: 'oneonone' }, 'ACC12-AcademySuggested': { nav: 'today', today: 'suggested' }, 'ACC13-AcademyChat': { nav: 'today', today: 'chat' },
+  'ADC2-Group': { nav: 'players', players: 'group' }, 'ADC1-PlayerFile': { nav: 'players', players: 'file' }, 'ADC4-SkillsCheck': { nav: 'players', players: 'check' },
+  'ADC5-ReviewChats': { nav: 'players', players: 'chats' }, 'ACC6-ReportDraft': { nav: 'players', players: 'report' }, 'ACC4-PlayerPlan': { nav: 'players', players: 'plan' },
+  'ACT1-AcademyWeek': { nav: 'training', training: 'week' }, 'ACT2-AcademySuggested': { nav: 'training', training: 'suggested' }, 'ACT3-AcademySessionPlan': { nav: 'training', training: 'session' },
+  'ACT4-AcademyComing': { nav: 'training', training: 'whoComing' }, 'ADC6-HomePractice': { nav: 'training', training: 'home' },
+  'ACC7-AcademyGameDay': { nav: 'gameday' },   // team sheet, live game and review are the club coach's screens and open over the top
+  'ACC8-AcademyRecord': { nav: 'record', record: 'record' }, 'ADC3-SessionFilm': { nav: 'record', record: 'film' },
+}
+// The sub-menu label that is lit for each place.
+const TODAY_SUB: Record<TodayTab, string> = { overview: 'Today', runsession: 'Run a session', trial: 'Trial player', oneonone: 'One-on-one', suggested: 'Suggested', chat: 'Chats' }
+const PLAYERS_SUB: Record<PlayersView, string> = { group: 'My group', file: 'Player file', plan: 'Player file', check: 'Skills check', chats: 'Review chats', report: 'Term report' }
+const TRAINING_SUB: Record<TrainingTab, string> = { week: 'This week', suggested: 'Suggested', session: 'Session plan', whoComing: 'Who’s coming', home: 'Practice at home' }
+const RECORD_SUB: Record<RecordTab, string> = { record: 'Record', film: 'Tonight’s film' }
+
 export default function AcademyCoachApp({ empty = false, initialScreen, onNavChange, homeStory }: { onBack?: () => void; empty?: boolean; initialScreen?: string; onNavChange?: (screen: string) => void; homeStory?: import('react').ReactNode }) {
-  const [nav, setNav]               = useBackState<AcademyNav>((initialScreen as AcademyNav) ?? 'today')
-  const [todayTab, setTodayTab]     = useState<TodayTab>('overview')
-  const [trainingTab, setTrainingTab] = useState<TrainingTab>('week')
-  const [gameDayTab, setGameDayTab] = useState<GameDayTab>('saturday')
-  const [playersView, setPlayersView] = useState<PlayersView>('list')
-  const [selectedPlayer, setSelectedPlayer] = useState<{ name: string; isNew: boolean } | null>(null)
+  const start: Place = PLACES[initialScreen ?? 'today'] ?? PLACES.today
+  const [nav, setNav]               = useBackState<AcademyNav>(start.nav)
+  const [todayTab, setTodayTab]     = useBackState<TodayTab>(start.today ?? 'overview')
+  const [trainingTab, setTrainingTab] = useBackState<TrainingTab>(start.training ?? 'week')
+  const [playersView, setPlayersView] = useBackState<PlayersView>(start.players ?? 'group')
+  const [recordTab, setRecordTab]     = useBackState<RecordTab>(start.record ?? 'record')
   const [recordStep, setRecordStep]   = useState<RecordStep>('pick')
   const [askOpen, setAskOpen]         = useState(false)
   const [toast, setToast]             = useState<string | null>(null)
   function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
 
-  const TODAY_TABS: Array<{ id: TodayTab; label: string }> = [
-    { id: 'overview',  label: 'Today' },
-    { id: 'runsession', label: 'Run a session' },
-    { id: 'trial',     label: 'Trial player' },
-    { id: 'oneonone',  label: 'One-on-one' },
-    { id: 'suggested', label: 'Suggested' },
-    { id: 'chat',      label: 'Chats' },
-  ]
-  const TRAINING_TABS_ACC: Array<{ id: TrainingTab; label: string }> = [
-    { id: 'week',      label: 'This week' },
-    { id: 'session',   label: 'Session plan' },
-    { id: 'suggested', label: 'Suggested' },
-    { id: 'whoComing', label: "Who's coming" },
-  ]
-  const GAMEDAY_TABS: Array<{ id: GameDayTab; label: string }> = [
-    { id: 'saturday',  label: 'This Saturday' },
-    { id: 'teamsheet', label: 'Team sheet' },
-    { id: 'livegame',  label: 'Live game' },
-    { id: 'review',    label: 'Review' },
-  ]
+  // Open a screen by its id. The app shows its own screens in place; anything else
+  // (Learn, the view switcher, a club coach's screen) opens over the top with a Back bar.
+  function go(id: string) {
+    const to = PLACES[id]
+    if (!to) { openScreen(id); return }
+    setNav(to.nav); if (to.nav !== nav) onNavChange?.(to.nav)
+    if (to.nav === 'today')    { setTodayTab(to.today ?? 'overview'); setRecordStep('pick') }
+    if (to.nav === 'players')  setPlayersView(to.players ?? 'group')
+    if (to.nav === 'training') setTrainingTab(to.training ?? 'week')
+    if (to.nav === 'record')   { setRecordTab(to.record ?? 'record'); setRecordStep('pick') }
+  }
 
-  const contextTabs =
-    nav === 'today'    ? TODAY_TABS.map(t => t.label) :
-    nav === 'training' ? TRAINING_TABS_ACC.map(t => t.label) :
-    nav === 'gameday'  ? GAMEDAY_TABS.map(t => t.label) : []
-  const activeTabIndex =
-    nav === 'today'    ? TODAY_TABS.findIndex(t => t.id === todayTab) :
-    nav === 'training' ? TRAINING_TABS_ACC.findIndex(t => t.id === trainingTab) :
-    nav === 'gameday'  ? GAMEDAY_TABS.findIndex(t => t.id === gameDayTab) : 0
+  const activeSub =
+    nav === 'today'    ? TODAY_SUB[todayTab] :
+    nav === 'players'  ? PLAYERS_SUB[playersView] :
+    nav === 'training' ? TRAINING_SUB[trainingTab] :
+    nav === 'gameday'  ? 'This Saturday' : RECORD_SUB[recordTab]
 
   // Live recording occupies full screen
-  if (nav === 'record' && recordStep === 'recording') {
+  if (nav === 'record' && recordTab === 'record' && recordStep === 'recording') {
     return (
       <div style={{ width: 1180, minHeight: 'var(--frame-h, 100vh)', margin: '0 auto', background: '#0e1a17', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
         <LiveRecordingView onStop={() => setRecordStep('results')}/>
@@ -1276,56 +1238,22 @@ export default function AcademyCoachApp({ empty = false, initialScreen, onNavCha
   }
 
   return (
+    <InCoachApp.Provider value={true}>
     <div style={{ width: 1180, minHeight: 'var(--frame-h, 100vh)', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
-      {/* Nav */}
-      <header style={{ flex: 'none', background: GD, color: '#fff' }}>
-        <div data-club-bar="" style={{ height: 60, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 16 }}>
-          <span style={{ fontSize: 17, fontWeight: 800, letterSpacing: '-0.03em', color: '#fff', flexShrink: 0 }}>Clean Sheet</span>
-          <nav style={{ display: 'flex', flexGrow: 1, height: 60 }}>
-            {([
-              { id: 'today',    label: 'Today' },
-              { id: 'training', label: 'Training' },
-              { id: 'players',  label: 'Players' },
-              { id: 'gameday',  label: 'Game day' },
-              { id: 'record',   label: 'Record' },
-            ] as Array<{ id: AcademyNav; label: string }>).map(({ id, label }) => (
-              <button key={id} data-club-tab={nav === id ? 'on' : 'off'} onClick={() => { setNav(id); onNavChange?.(id) }} style={{ height: 60, padding: '0 16px', border: 0, background: 'transparent', fontFamily: 'inherit', fontSize: 15, fontWeight: nav === id ? 700 : 500, color: nav === id ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer', borderBottom: nav === id ? '3px solid #fff' : '3px solid transparent', boxSizing: 'border-box' as const }}>{label}</button>
-            ))}
-          </nav>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
-            <button onClick={() => setAskOpen(o => !o)} aria-label="Ask Clean Sheet" data-club-keep={askOpen ? '' : undefined} style={{ width: 44, height: 44, borderRadius: '50%', border: '1.5px solid #a9cfc0', background: askOpen ? '#fff' : 'transparent', color: askOpen ? '#10211f' : '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', flexShrink: 0 }}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg>
-            </button>
-            <span style={{ fontSize: 14, fontWeight: 600, color: 'rgba(255,255,255,0.8)' }}>Tall Timber Academy</span>
-            <button onClick={() => openScreen('SET1-Account', 'Reece Whitlam · coach, ' + 'Tall Timber Academy')} aria-label="Your account and settings" data-club-keep="" style={{ width: 44, height: 44, border: 0, padding: 0, background: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontFamily: 'inherit' }}><span style={{ width: 40, height: 40, borderRadius: '50%', background: ROSE, color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>RW</span></button>
-          </div>
-        </div>
-        {contextTabs.length > 0 && (
-          <div style={{ height: 44, padding: '0 28px', display: 'flex', alignItems: 'flex-end', background: '#fff', borderBottom: `1px solid ${LN}` }}>
-            <nav style={{ display: 'flex', flexGrow: 1, height: 44 }}>
-              {contextTabs.map((tab, i) => {
-                const active = i === activeTabIndex
-                return (
-                  <button key={tab} onClick={() => {
-                    if (nav === 'today') { setTodayTab(TODAY_TABS[i].id); setRecordStep('pick') }
-                    if (nav === 'training') setTrainingTab(TRAINING_TABS_ACC[i].id)
-                    if (nav === 'gameday') setGameDayTab(GAMEDAY_TABS[i].id)
-                  }} style={{ height: 44, padding: '0 16px', border: 0, background: 'transparent', fontFamily: 'inherit', fontSize: 14, fontWeight: active ? 600 : 400, color: active ? INK : MUT, cursor: 'pointer', borderBottom: active ? `3px solid ${G2}` : '3px solid transparent', boxSizing: 'border-box', whiteSpace: 'nowrap' }}>{tab}</button>
-                )
-              })}
-            </nav>
-            <div style={{ display: 'flex', alignItems: 'center', height: 44 }}>
-              <Badge label="Academy coach" color={G} bg={PALE}/>
-            </div>
-          </div>
-        )}
-      </header>
+      {/* The six-item menu and the sub-menu under it */}
+      <CoachNav active={nav} sub={activeSub} go={go}
+        onAccount={() => openScreen('SET1-Account', 'Reece Whitlam · coach, ' + 'Tall Timber Academy')}
+        extra={
+          <button onClick={() => setAskOpen(o => !o)} aria-label="Ask Clean Sheet" data-club-keep={askOpen ? '' : undefined} style={{ width: 44, height: 44, borderRadius: '50%', border: '1.5px solid #a9cfc0', background: askOpen ? '#fff' : 'transparent', color: askOpen ? '#10211f' : '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', flexShrink: 0 }}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg>
+          </button>
+        }/>
 
       {/* Content */}
       <div style={{ flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden', position: 'relative' }}>
         {/* Today tabs */}
         {nav === 'today' && todayTab === 'overview'   && !empty && homeStory}
-        {nav === 'today' && todayTab === 'overview'   && !(!empty && homeStory) && <TodayOverview empty={empty} onRun={() => setTodayTab('runsession')} onTrials={() => setTodayTab('trial')} onReport={() => { setNav('players'); setPlayersView('report') }}/>}
+        {nav === 'today' && todayTab === 'overview'   && !(!empty && homeStory) && <TodayOverview empty={empty} onRun={() => setTodayTab('runsession')} onTrials={() => setTodayTab('trial')} onReport={() => go('ACC6-ReportDraft')}/>}
         {nav === 'today' && todayTab === 'runsession' && <RunSessionView empty={empty}/>}
         {nav === 'today' && todayTab === 'trial'      && <TrialView empty={empty}/>}
         {nav === 'today' && todayTab === 'oneonone'   && <OneOnOneView empty={empty}/>}
@@ -1336,25 +1264,22 @@ export default function AcademyCoachApp({ empty = false, initialScreen, onNavCha
         {nav === 'training' && trainingTab === 'session'   && <AcademySessionPlan />}
         {nav === 'training' && trainingTab === 'suggested' && <AcademyTrainingSuggested />}
         {nav === 'training' && trainingTab === 'whoComing' && <AcademyWhoComing />}
+        {nav === 'training' && trainingTab === 'home'      && <ADC6HomePractice go={go}/>}
         {/* Record */}
-        {nav === 'record' && recordStep === 'pick'      && <RecordView empty={empty} onDrill={() => setRecordStep('drill')} onRecording={() => setRecordStep('recording')}/>}
-        {nav === 'record' && recordStep === 'drill'     && <RecordDrillView onStart={() => setRecordStep('recording')}/>}
-        {nav === 'record' && recordStep === 'results'   && <RecordResultsView firstRun={false}/>}
-        {/* Players */}
-        {nav === 'players' && playersView === 'list'   && <PlayersListView onPlayer={(name, isNew) => { setSelectedPlayer({ name, isNew }); setPlayersView('plan') }} onReport={() => setPlayersView('report')}/>}
-        {nav === 'players' && playersView === 'plan'   && <PlayerPlanView playerName={selectedPlayer?.name ?? 'Kai Okonkwo'} newPlayer={selectedPlayer?.isNew} onReport={() => setPlayersView('report')}/>}
-        {nav === 'players' && playersView === 'report' && <TermReportView empty={empty} onBack={() => setPlayersView('list')}/>}
+        {nav === 'record' && recordTab === 'film' && <ADC3SessionFilm go={go}/>}
+        {nav === 'record' && recordTab === 'record' && recordStep === 'pick'      && <RecordView empty={empty} onDrill={() => setRecordStep('drill')} onRecording={() => setRecordStep('recording')}/>}
+        {nav === 'record' && recordTab === 'record' && recordStep === 'drill'     && <RecordDrillView onStart={() => setRecordStep('recording')}/>}
+        {nav === 'record' && recordTab === 'record' && recordStep === 'results'   && <RecordResultsView firstRun={false}/>}
+        {/* Players: the group, one player's file, the skills check, review chats, the term report */}
+        {nav === 'players' && playersView === 'group'  && <ADC2Group go={go}/>}
+        {nav === 'players' && playersView === 'file'   && <ADC1PlayerFile go={go}/>}
+        {nav === 'players' && playersView === 'check'  && <ADC4SkillsCheck go={go}/>}
+        {nav === 'players' && playersView === 'chats'  && <ADC5ReviewChats go={go}/>}
+        {/* ACC4, the older player plan: reached from the goal card on the player file until it is folded in */}
+        {nav === 'players' && playersView === 'plan'   && <PlayerPlanView playerName="Kai Okonkwo" onReport={() => setPlayersView('report')}/>}
+        {nav === 'players' && playersView === 'report' && <TermReportView empty={empty} onBack={() => go('ACC1-CoachToday')}/>}
         {/* Game day */}
-        {nav === 'gameday' && gameDayTab === 'saturday'  && <GameDayMainView empty={empty}/>}
-        {nav === 'gameday' && gameDayTab === 'teamsheet' && (
-          <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', color: MUT, fontSize: 14 }}>Team sheet — coming in Bucket 11</div>
-        )}
-        {nav === 'gameday' && gameDayTab === 'livegame' && (
-          <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', color: MUT, fontSize: 14 }}>Live game — coming in Bucket 11</div>
-        )}
-        {nav === 'gameday' && gameDayTab === 'review' && (
-          <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', color: MUT, fontSize: 14 }}>Review — coming in Bucket 11</div>
-        )}
+        {nav === 'gameday' && <GameDayMainView empty={empty}/>}
         {askOpen && (
           <aside role="dialog" aria-label="Ask Clean Sheet" style={{ position: 'absolute', top: 0, right: 0, bottom: 0, width: 380, background: '#eef5f2', borderLeft: '1px solid #e8edeb', boxShadow: '-6px 0 24px rgba(16,33,31,0.10)', zIndex: 50, display: 'flex', flexDirection: 'column' }}>
             <div style={{ background: '#fff', padding: '14px 16px', borderBottom: '1px solid #e8edeb', display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
@@ -1385,5 +1310,6 @@ export default function AcademyCoachApp({ empty = false, initialScreen, onNavCha
       </div>
       {toast && <div role="status" style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 20px', borderRadius: 12, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)', whiteSpace: 'nowrap' }}>{toast}</div>}
     </div>
+    </InCoachApp.Provider>
   )
 }

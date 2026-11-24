@@ -1,21 +1,21 @@
+import CoachNav from '../academycoach/CoachNav'
+import { coachGo } from '../academycoach/menu'
 import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 const SKILLS = [
-  { label: 'Ball mastery',     dots: 4, current: false },
-  { label: 'First touch',      dots: 3, current: true  },
-  { label: 'One against one',  dots: 4, current: false },
-  { label: 'Passing',          dots: 3, current: false },
-  { label: 'Finishing',        dots: 2, current: false },
+  { label: 'First touch',           dots: 3, current: true  },
+  { label: 'Running with the ball', dots: 4, current: false },
+  { label: 'One against one',       dots: 4, current: false },
+  { label: 'Striking the ball',     dots: 2, current: false },
 ]
 
 const TRIAL_SKILLS = [
-  { label: 'Ball mastery',     dots: 3, trial: true  },
-  { label: 'First touch',      dots: 2, trial: false },
-  { label: 'One against one',  dots: 3, trial: false },
-  { label: 'Passing',          dots: 2, trial: false },
-  { label: 'Finishing',        dots: 1, trial: false },
+  { label: 'First touch',           dots: 2, trial: false },
+  { label: 'Running with the ball', dots: 3, trial: true  },
+  { label: 'One against one',       dots: 3, trial: false },
+  { label: 'Striking the ball',     dots: 1, trial: false },
 ]
 
 const WEEK = [
@@ -38,10 +38,8 @@ function Dots({ n, active }: { n: number; active: boolean }) {
   )
 }
 
-export default function ACC4PlayerPlan({ mode }: { mode?: 'new' } = {}) {
+export default function ACC4PlayerPlan({ mode, onNav }: { mode?: 'new'; onNav?: (s: string) => void } = {}) {
   const isNew = mode === 'new'
-  const [activeNav, setActiveNav] = useState('Players')
-  const [activeSub, setActiveSub] = useState('Player plan')
   const [group, setGroup] = useState('Advanced')
   const [done, setDone] = useState<string[]>([])
   const mark = (k: string) => setDone(d => d.includes(k) ? d : [...d, k])
@@ -50,31 +48,7 @@ export default function ACC4PlayerPlan({ mode }: { mode?: 'new' } = {}) {
   return (
     <div style={{ width: 1180, minHeight: 820, position: 'relative', background: '#f5f6f4', color: INK, fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
 
-      {/* Green nav bar */}
-      <div style={{ flex: 'none', height: 64, padding: '0 28px', background: G, display: 'flex', alignItems: 'center', gap: 16 }}>
-        <div style={{ fontSize: 21, fontWeight: 700, color: '#fff', letterSpacing: '-0.02em' }}>Clean Sheet</div>
-        <nav style={{ display: 'flex', gap: 2, flexGrow: 1 }}>
-          {['Today', 'Players', 'Training', 'Record', 'Library'].map(tab => (
-            <div key={tab} onClick={() => setActiveNav(tab)} style={{ display: 'flex', alignItems: 'center', height: 40, padding: '0 14px', borderRadius: '999px', fontSize: 15, fontWeight: 600, background: tab === activeNav ? '#40826d' : 'transparent', color: '#fff', cursor: 'pointer' }}>
-              {tab}
-            </div>
-          ))}
-        </nav>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8, height: 44, padding: '0 16px', borderRadius: '999px', background: 'rgba(255,255,255,0.15)', fontSize: 15, fontWeight: 600, color: '#fff' }}>
-          Reece Whitlam
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-        </div>
-        <div style={{ width: 44, height: 44, borderRadius: '999px', background: '#c39797', color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 15 }}>RW</div>
-      </div>
-
-      {/* Sub-tabs */}
-      <div style={{ flex: 'none', height: 44, padding: '0 28px', background: '#fff', borderBottom: `1px solid ${LN}`, display: 'flex', alignItems: 'flex-end', gap: 24 }}>
-        {['Player plan', 'Term report'].map(tab => (
-          <div key={tab} onClick={() => setActiveSub(tab)} style={{ height: 44, padding: '0 4px', fontSize: 15, fontWeight: tab === activeSub ? 600 : 400, color: tab === activeSub ? INK : '#6f7f7b', borderBottom: tab === activeSub ? '3px solid #40826d' : '3px solid transparent', display: 'flex', alignItems: 'center', boxSizing: 'border-box', cursor: 'pointer' }}>
-            {tab}
-          </div>
-        ))}
-      </div>
+      <CoachNav active="players" sub="Player file" go={coachGo(onNav)} />
 
       {/* Player header */}
       <div style={{ flex: 'none', padding: '20px 28px', background: '#fff', borderBottom: `1px solid ${LN}`, display: 'flex', alignItems: 'center', gap: 16 }}>
@@ -99,7 +73,7 @@ export default function ACC4PlayerPlan({ mode }: { mode?: 'new' } = {}) {
         ) : (
           <>
             <button onClick={() => mark('msgkai')} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: `1px solid ${is('msgkai') ? G : LN}`, background: is('msgkai') ? PALE : '#fff', fontSize: 14, fontWeight: 600, color: is('msgkai') ? G : INK, cursor: 'pointer', fontFamily: 'inherit' }}>{is('msgkai') ? '✓ Message sent' : "Message Kai's mum"}</button>
-            <button onClick={() => { mark('report'); setActiveSub('Term report') }} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: 0, background: is('report') ? '#40826d' : G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>{is('report') ? 'Writing report ✓' : 'Write term report'}</button>
+            <button onClick={() => { mark('report'); coachGo(onNav)('ACC6-ReportDraft') }} style={{ height: 44, padding: '0 18px', borderRadius: 10, border: 0, background: is('report') ? '#40826d' : G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>{is('report') ? 'Writing report ✓' : 'Write term report'}</button>
           </>
         )}
       </div>

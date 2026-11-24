@@ -1,50 +1,22 @@
-import { openThing } from '../openThing'
-import { glyph } from '../Glyph'
+import OwnerHeader from '../academy/OwnerHeader'
+import { openScreen } from '../openThing'
 import { useState } from 'react'
 
-const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
+const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', PALE = '#eef5f2'
 
 function Badge({ label, color, bg }: { label: string; color: string; bg: string }) {
   return <span style={{ background: bg, color, fontSize: 11, fontWeight: 600, padding: '2px 7px', borderRadius: 5 }}>{label}</span>
 }
 
-export default function AC3Trials(_: { onBack?: () => void }) {
+export default function AC3Trials({ onNav }: { onBack?: () => void; onNav?: (id: string) => void }) {
   const [toast, setToast] = useState<string | null>(null)
   function t(m: string) { setToast(m); setTimeout(() => setToast(null), 3200) }
 
   return (
     <div style={{ width: 1180, background: '#faf5ec', boxSizing: 'border-box' as const, fontFamily: 'var(--font-sans)', minHeight: 820, position: 'relative', display: 'flex', flexDirection: 'column' as const }}>
 
-      {/* TOP NAV */}
-      <div style={{ background: G, height: 64, display: 'flex', alignItems: 'center', padding: '0 24px', gap: 0, flexShrink: 0 }}>
-        <span style={{ color: '#fff', fontWeight: 800, fontSize: 20, letterSpacing: -0.5, marginRight: 36 }}>Clean Sheet</span>
-        <div style={{ display: 'flex', gap: 4, flex: 1 }}>
-          {[
-            { label: 'Home', icon: '⌂' },
-            { label: 'Programs', icon: glyph('menu') },
-            { label: 'Players', icon: glyph('person') },
-            { label: 'Coaches', icon: glyph('cap') },
-            { label: 'Money', icon: '$' },
-          ].map(({ label, icon }) => (
-            <button key={label} style={{ background: label === 'Home' ? GD : 'transparent', color: '#fff', border: 'none', borderRadius: 8, padding: '0 14px', height: 44, fontSize: 14, fontWeight: label === 'Home' ? 700 : 500, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
-              <span style={{ fontSize: 15 }}>{icon}</span>{label}
-            </button>
-          ))}
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <button onClick={() => openThing('academy selector', 'academy')} style={{ background: '#fff', color: INK, border: 'none', borderRadius: 20, padding: '0 14px', height: 44, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Tall Timber Academy ▾</button>
-          <div style={{ width: 44, height: 44, borderRadius: 22, background: '#c39797', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: 700, fontSize: 15 }}>DO</div>
-        </div>
-      </div>
-
-      {/* SUB NAV */}
-      <div style={{ background: '#fff', height: 44, display: 'flex', alignItems: 'center', padding: '0 28px', gap: 0, borderBottom: `1px solid ${LN}`, flexShrink: 0 }}>
-        {['Overview', 'Trials', 'Reports', 'Child safety', 'Partner club'].map(tab => (
-          <button key={tab} style={{ background: 'none', border: 'none', borderBottom: tab === 'Trials' ? `2px solid ${G}` : '2px solid transparent', color: tab === 'Trials' ? G : MUT, fontWeight: tab === 'Trials' ? 700 : 500, fontSize: 14, padding: '0 16px', height: 44, cursor: 'pointer' }}>
-            {tab}
-          </button>
-        ))}
-      </div>
+      {/* The owner's menu: six main items and the screens under each (academy handover, 24 Nov) */}
+      <OwnerHeader current="AC3-Trials" onGo={onNav ?? openScreen} />
 
       {/* PAGE HEADER */}
       <div style={{ padding: '14px 28px 10px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>

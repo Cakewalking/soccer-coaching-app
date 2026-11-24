@@ -1,13 +1,13 @@
-import { openThing } from '../openThing'
-import { Glyph, glyph } from '../Glyph'
+import OwnerHeader from '../academy/OwnerHeader'
+import { openScreen } from '../openThing'
+import { Glyph } from '../Glyph'
 import { useState } from 'react'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
-export default function AC12AcademyBroadcast(_: { onBack?: () => void }) {
+export default function AC12AcademyBroadcast({ onNav }: { onBack?: () => void; onNav?: (id: string) => void }) {
   const [sheet, setSheet] = useState<string | null>(null)
   const [toast, setToast] = useState<string | null>(null)
-  const [activeNav, setActiveNav] = useState('Home')
   const [audience, setAudience] = useState('All families · 80')
   const [toggles, setToggles] = useState([true, true, true])
   const [pollStart, setPollStart] = useState(0)
@@ -31,27 +31,8 @@ export default function AC12AcademyBroadcast(_: { onBack?: () => void }) {
   return (
     <div style={{ width: 1180, background: '#faf5ec', boxSizing: 'border-box' as const, fontFamily: 'var(--font-sans)', minHeight: 820, position: 'relative', display: 'flex', flexDirection: 'column' as const }}>
 
-      {/* TOP NAV */}
-      <div style={{ background: G, height: 64, display: 'flex', alignItems: 'center', padding: '0 24px', gap: 0, flexShrink: 0 }}>
-        <span style={{ color: '#fff', fontWeight: 800, fontSize: 20, letterSpacing: -0.5, marginRight: 36 }}>Clean Sheet</span>
-        <div style={{ display: 'flex', gap: 4, flex: 1 }}>
-          {[
-            { label: 'Home', icon: '⌂' },
-            { label: 'Programs', icon: glyph('menu') },
-            { label: 'Players', icon: glyph('person') },
-            { label: 'Coaches', icon: glyph('cap') },
-            { label: 'Money', icon: '$' },
-          ].map(({ label, icon }) => (
-            <button key={label} onClick={() => setActiveNav(label)} style={{ background: label === activeNav ? GD : 'transparent', color: '#fff', border: 'none', borderRadius: 8, padding: '0 14px', height: 44, fontSize: 14, fontWeight: label === activeNav ? 700 : 500, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
-              <span style={{ fontSize: 15 }}>{icon}</span>{label}
-            </button>
-          ))}
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <button onClick={() => openThing('academy selector', 'academy')} style={{ background: '#fff', color: INK, border: 'none', borderRadius: 20, padding: '0 14px', height: 44, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Tall Timber Academy ▾</button>
-          <div style={{ width: 44, height: 44, borderRadius: 22, background: '#c39797', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: 700, fontSize: 15 }}>DO</div>
-        </div>
-      </div>
+      {/* The owner's menu: six main items and the screens under each (academy handover, 24 Nov) */}
+      <OwnerHeader current="AC12-AcademyBroadcast" onGo={onNav ?? openScreen} />
 
       {/* PAGE HEADER */}
       <div style={{ padding: '14px 28px 10px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>

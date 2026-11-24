@@ -1,3 +1,7 @@
+import OwnerHeader from '../academy/OwnerHeader'
+import { openScreen } from '../openThing'
+import CoachNav from '../academycoach/CoachNav'
+import { coachGo, type CoachMain } from '../academycoach/menu'
 import { openThing } from '../openThing'
 import React, { useState } from 'react'
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2', BG = '#f5f6f4'
@@ -58,19 +62,12 @@ function HMShell({ navActive = 'Today', title, sub, ctaLabel }: { navActive?: st
   )
 }
 
-function AcOwnerShell({ navActive = 'Home', title, sub, ctaLabel }: { navActive?: string; title: string; sub: string; ctaLabel?: string }) {
-  const tabs = ['Home', 'Players', 'Trials', 'Coaches', 'Reports', 'Settings']
+type OwnerNavProp = { onNav?: (id: string) => void }   // how an empty owner board opens the screen a menu item names
+function AcOwnerShell({ at, onNav, title, sub, ctaLabel }: { at: string; onNav?: (id: string) => void; title: string; sub: string; ctaLabel?: string }) {
   const [clicked, setClicked] = useState(false)
   return (
     <div style={{ width: 1180, background: BG, fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' as const }}>
-      <div style={{ background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 28, height: 52, flexShrink: 0 }}>
-        <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>Clean Sheet</div>
-        {tabs.map(t => <div key={t} style={{ fontSize: 13, fontWeight: t === navActive ? 700 : 500, color: t === navActive ? '#fff' : 'rgba(255,255,255,0.65)', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>)}
-        <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 10 }}>
-          <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)' }}>Tall Timber Academy</div>
-          <div style={{ width: 32, height: 32, borderRadius: '50%', background: G, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, color: '#fff' }}>TT</div>
-        </div>
-      </div>
+      <OwnerHeader current={at} onGo={onNav ?? openScreen} />
       <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <div style={{ textAlign: 'center' as const, maxWidth: 440 }}>
           <div style={{ fontSize: 18, fontWeight: 700, color: INK, marginBottom: 8 }}>{title}</div>
@@ -82,23 +79,12 @@ function AcOwnerShell({ navActive = 'Home', title, sub, ctaLabel }: { navActive?
   )
 }
 
-function AcCoachShell({ title, sub, ctaLabel }: { title: string; sub: string; ctaLabel?: string }) {
-  const sideItems = ['Today', 'Run a session', 'Trial player', 'One-on-one', 'Record', 'Suggested']
+function AcCoachShell({ main, item, title, sub, ctaLabel }: { main: CoachMain; item: string; title: string; sub: string; ctaLabel?: string }) {
   const [clicked, setClicked] = useState(false)
   return (
     <div style={{ width: 1180, background: BG, fontFamily: 'var(--font-sans)', minHeight: 820, display: 'flex', flexDirection: 'column' as const }}>
-      <div style={{ background: GD, padding: '0 28px', display: 'flex', alignItems: 'center', gap: 28, height: 52, flexShrink: 0 }}>
-        <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>Clean Sheet</div>
-        {['Today', 'Players', 'Game day', 'Library'].map(t => <div key={t} style={{ fontSize: 13, fontWeight: 500, color: 'rgba(255,255,255,0.65)', cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{t}</div>)}
-        <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 10 }}>
-          <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)' }}>Tall Timber Academy</div>
-          <div style={{ width: 32, height: 32, borderRadius: '50%', background: G, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, color: '#fff' }}>RW</div>
-        </div>
-      </div>
-      <div style={{ display: 'grid', gridTemplateColumns: '220px 1fr', flex: 1 }}>
-        <div style={{ background: '#fff', borderRight: `1px solid ${LN}`, padding: '12px 0' }}>
-          {sideItems.map(item => <div key={item} style={{ padding: '10px 20px', fontSize: 14, fontWeight: 500, color: MUT, cursor: 'pointer', minHeight: 44, minWidth: 44 }}>{item}</div>)}
-        </div>
+      <CoachNav active={main} sub={item} go={coachGo()} />
+      <div style={{ display: 'flex', flex: 1 }}>
         <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 32 }}>
           <div style={{ textAlign: 'center' as const, maxWidth: 440 }}>
             <div style={{ fontSize: 18, fontWeight: 700, color: INK, marginBottom: 8 }}>{title}</div>
@@ -247,65 +233,65 @@ export function HM12eConsentMiniRoosEmpty() {
 
 // ─── Academy owner empties ─────────────────────────────────────────────────────
 
-export function AC3eTrialsEmpty() {
-  return <AcOwnerShell navActive="Trials" title="No trials yet" sub="Run a trial session to assess new players. Add a trial date and players can register through the academy's page." ctaLabel="Set up a trial" />
+export function AC3eTrialsEmpty({ onNav }: OwnerNavProp) {
+  return <AcOwnerShell at="AC3-Trials" onNav={onNav} title="No trials yet" sub="Run a trial session to assess new players. Add a trial date and players can register through the academy's page." ctaLabel="Set up a trial" />
 }
-export function AC4eAcademyPlayersEmpty() {
-  return <AcOwnerShell navActive="Players" title="No players yet" sub="Players appear here once they've joined a program. Run a trial or enrol players directly." ctaLabel="Add a player" />
+export function AC4eAcademyPlayersEmpty({ onNav }: OwnerNavProp) {
+  return <AcOwnerShell at="AC4-AcademyPlayers" onNav={onNav} title="No players yet" sub="Players appear here once they've joined a program. Run a trial or enrol players directly." ctaLabel="Add a player" />
 }
-export function AC5eFeesEmpty() {
-  return <AcOwnerShell navActive="Home" title="No fees set" sub="Set program fees so families can pay when they enrol. Payments and outstanding balances are tracked here." ctaLabel="Set up fees" />
+export function AC5eFeesEmpty({ onNav }: OwnerNavProp) {
+  return <AcOwnerShell at="AC5-Fees" onNav={onNav} title="No fees set" sub="Set program fees so families can pay when they enrol. Payments and outstanding balances are tracked here." ctaLabel="Set up fees" />
 }
-export function AC6eAcademyCoachesEmpty() {
-  return <AcOwnerShell navActive="Coaches" title="No coaches yet" sub="Invite coaches to Tall Timber Academy. They'll set up their own account and can record sessions straight away." ctaLabel="Invite a coach" />
+export function AC6eAcademyCoachesEmpty({ onNav }: OwnerNavProp) {
+  return <AcOwnerShell at="AC6-AcademyCoaches" onNav={onNav} title="No coaches yet" sub="Invite coaches to Tall Timber Academy. They'll set up their own account and can record sessions straight away." ctaLabel="Invite a coach" />
 }
-export function AC7eReportsEmpty() {
-  return <AcOwnerShell navActive="Reports" title="No reports yet" sub="Term reports are drafted from coach notes and sent to families at the end of each term. Nothing ready yet." />
+export function AC7eReportsEmpty({ onNav }: OwnerNavProp) {
+  return <AcOwnerShell at="AC7-ReportsOut" onNav={onNav} title="No reports yet" sub="Term reports are drafted from coach notes and sent to families at the end of each term. Nothing ready yet." />
 }
-export function AC8eAcademyRecordEmpty() {
-  return <AcOwnerShell navActive="Home" title="Nothing recorded yet" sub="Game day recordings appear here once a coach records a session. Clips and data are ready within an hour." />
+export function AC8eAcademyRecordEmpty({ onNav }: OwnerNavProp) {
+  return <AcOwnerShell at="AC1-AcademyHome" onNav={onNav} title="Nothing recorded yet" sub="Game day recordings appear here once a coach records a session. Clips and data are ready within an hour." />
 }
-export function AC9eHolidayClinicEmpty() {
-  return <AcOwnerShell navActive="Home" title="No holiday clinics set up" sub="Holiday clinics are a great way to bring in new players. Set a date and open registrations." ctaLabel="Create a clinic" />
+export function AC9eHolidayClinicEmpty({ onNav }: OwnerNavProp) {
+  return <AcOwnerShell at="AC9-HolidayClinic" onNav={onNav} title="No holiday clinics set up" sub="Holiday clinics are a great way to bring in new players. Set a date and open registrations." ctaLabel="Create a clinic" />
 }
-export function AC10eAcademySafetyEmpty() {
-  return <AcOwnerShell navActive="Home" title="All clear" sub="No welfare concerns, head knocks or safeguarding flags have been raised. All coaches have current checks." />
+export function AC10eAcademySafetyEmpty({ onNav }: OwnerNavProp) {
+  return <AcOwnerShell at="AC10-AcademySafety" onNav={onNav} title="All clear" sub="No welfare concerns, head knocks or safeguarding flags have been raised. All coaches have current checks." />
 }
-export function AC11ePartnerClubEmpty() {
-  return <AcOwnerShell navActive="Home" title="No partner clubs yet" sub="Partner clubs can share player data with the academy so coaches can track both club and academy progress together." ctaLabel="Add a partner club" />
+export function AC11ePartnerClubEmpty({ onNav }: OwnerNavProp) {
+  return <AcOwnerShell at="AC11-PartnerClub" onNav={onNav} title="No partner clubs yet" sub="Partner clubs can share player data with the academy so coaches can track both club and academy progress together." ctaLabel="Add a partner club" />
 }
-export function AC12eAcademyBroadcastEmpty() {
-  return <AcOwnerShell navActive="Home" title="No broadcasts sent" sub="Send updates to all academy families at once. Previous broadcasts will appear here." ctaLabel="Send a broadcast" />
+export function AC12eAcademyBroadcastEmpty({ onNav }: OwnerNavProp) {
+  return <AcOwnerShell at="AC12-AcademyBroadcast" onNav={onNav} title="No broadcasts sent" sub="Send updates to all academy families at once. Previous broadcasts will appear here." ctaLabel="Send a broadcast" />
 }
 
 // ─── Academy coach empties ─────────────────────────────────────────────────────
 
 export function ACC2eRunSessionEmpty() {
-  return <AcCoachShell title="No session plan yet" sub="Build today's plan from the drill library or use a suggested session. Plans are ready in about two minutes." ctaLabel="Build a plan" />
+  return <AcCoachShell main="today" item="Run a session" title="No session plan yet" sub="Build today's plan from the drill library or use a suggested session. Plans are ready in about two minutes." ctaLabel="Build a plan" />
 }
 export function ACC3eTrialAssessEmpty() {
-  return <AcCoachShell title="No trial players today" sub="Trial players are listed here when they're registered for today's session. Add a trial player to get started." ctaLabel="Add a trial player" />
+  return <AcCoachShell main="today" item="Trial player" title="No trial players today" sub="Trial players are listed here when they're registered for today's session. Add a trial player to get started." ctaLabel="Add a trial player" />
 }
 export function ACC4ePlayerPlanEmpty() {
-  return <AcCoachShell title="No player plans yet" sub="Individual plans are built from each player's goals and assessment notes. They appear here once a session is recorded." ctaLabel="Start a plan" />
+  return <AcCoachShell main="players" item="Player file" title="No player plans yet" sub="Individual plans are built from each player's goals and assessment notes. They appear here once a session is recorded." ctaLabel="Start a plan" />
 }
 export function ACC5eOneOnOneEmpty() {
-  return <AcCoachShell title="No one-on-ones booked" sub="Book a one-on-one for a player who needs focused work on a specific skill. Parents are notified automatically." ctaLabel="Book a one-on-one" />
+  return <AcCoachShell main="today" item="One-on-one" title="No one-on-ones booked" sub="Book a one-on-one for a player who needs focused work on a specific skill. Parents are notified automatically." ctaLabel="Book a one-on-one" />
 }
 export function ACC6eReportDraftEmpty() {
-  return <AcCoachShell title="No report drafts yet" sub="Reports are drafted from your session notes as the term progresses. Nothing ready yet." />
+  return <AcCoachShell main="players" item="Term report" title="No report drafts yet" sub="Reports are drafted from your session notes as the term progresses. Nothing ready yet." />
 }
 export function ACC7eAcademyGameDayEmpty() {
-  return <AcCoachShell title="No game day today" sub="When a game is scheduled, it appears here. Record the session afterwards to build clips and player stats." />
+  return <AcCoachShell main="gameday" item="This Saturday" title="No game day today" sub="When a game is scheduled, it appears here. Record the session afterwards to build clips and player stats." />
 }
 export function ACC8eAcademyRecordEmpty() {
-  return <AcCoachShell title="Nothing recorded yet" sub="Record a session to build clips and player stats. Recording is available during and after any session." ctaLabel="Record a session" />
+  return <AcCoachShell main="record" item="Record" title="Nothing recorded yet" sub="Record a session to build clips and player stats. Recording is available during and after any session." ctaLabel="Record a session" />
 }
 export function ACC12eAcademySuggestedEmpty() {
-  return <AcCoachShell title="No suggestions yet" sub="Clean Sheet builds suggestions from your session notes and player goals. Run a few sessions first." />
+  return <AcCoachShell main="today" item="Suggested" title="No suggestions yet" sub="Clean Sheet builds suggestions from your session notes and player goals. Run a few sessions first." />
 }
 export function ACC13eAcademyChatEmpty() {
-  return <AcCoachShell title="No chats yet" sub="Group chats with your session groups appear here. Send an announcement to get started." ctaLabel="Start a chat" />
+  return <AcCoachShell main="today" item="Chats" title="No chats yet" sub="Group chats with your session groups appear here. Send an announcement to get started." ctaLabel="Start a chat" />
 }
 
 // ─── Chat empties ──────────────────────────────────────────────────────────────
