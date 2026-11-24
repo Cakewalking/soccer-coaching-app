@@ -43,6 +43,7 @@ import FixturesMiniRoos  from './FixturesMiniRoos'
 import TeamChatMiniRoos  from './TeamChatMiniRoos'
 import FootballYearScreen from './FootballYearScreen'
 import CoachTabletFrame  from '../CoachTabletFrame'
+import ClubFlowScreen from '../clubflows/flows'
 import { useSandbox }   from '../sandbox/SandboxContext'
 import ChancesFlow, { isChanceId } from '../chances/ChancesFlow'
 import CnScreen from '../connected/CnScreen'
@@ -50,7 +51,9 @@ import SessionTab from '../session/SessionTab'
 import { useCapture, allowed } from '../capture/captureStore'
 import { MS1MiniRoosStyle } from './MiniRoosStyleScreen'
 import { MS2MiniRoosWhereWeAt, MS2eMiniRoosWhereWeAtEmpty } from './MiniRoosWhereWeAt'
-import { MS3MiniRoosReview } from './MiniRoosReview'
+import RD3MiniRoosReview from '../dashboards/RD3MiniRoosReview'
+import { MINI_LIVE } from '../dashboards/data'
+import DashEmpty from '../dashboards/DashEmpty'
 import TeamSheetBody from '../step4/TeamSheetBody'
 import type { TeamSheetConfig } from '../step4/TeamSheetBody'
 import FileEditor, { type FileContent } from '../step4/FileEditor'
@@ -688,7 +691,7 @@ const MR_SCREEN: Record<string, string> = {
   style: 'MS1-MiniRoosStyle', whereweat: 'MS2-MiniRoosWhereWeAt', staff: 'HM10-StaffMiniRoos', files: 'FIL1-Files',
   'squad:players': 'HM2-SquadMiniRoos', 'squad:positions': 'CN15-PositionHistory', 'squad:formation': 'FB1m-FormationMiniRoos', 'squad:lineups': 'SQ1-BestLineups', 'squad:coming': 'HM11-ComingMiniRoos', 'squad:consent': 'HM12-ConsentMiniRoos', 'squad:seasonnotes': 'HM6-SeasonNotes',
   'training:session': 'GS1-ProposedSession', 'training:runsheet': 'GS3-RunSheet', 'training:coming': 'GS4-ResizeAttendance', 'training:season': 'GS7-SeasonLookBack', 'training:library': 'DF0-Library',
-  'gameday:turns': 'HM4-GameDayMiniRoos', 'gameday:whoscoming': 'HM11-ComingMiniRoos', 'gameday:review': 'MS3-MiniRoosReview', 'gameday:chances': 'XGm1-ChancesMiniRoos', 'gameday:yourtake': 'YT1-YourTake', 'gameday:whatisaw': 'HM5-WhatWeSaw', 'gameday:thankparents': 'HM5b-ThankParents',
+  'gameday:turns': 'HM4-GameDayMiniRoos', 'gameday:whoscoming': 'HM11-ComingMiniRoos', 'gameday:review': 'RD3-MiniRoosReview', 'gameday:chances': 'XGm1-ChancesMiniRoos', 'gameday:yourtake': 'YT1-YourTake', 'gameday:whatisaw': 'HM5-WhatWeSaw', 'gameday:thankparents': 'HM5b-ThankParents',
   clips: 'RCm2-MiniRoosClips', record: 'RCm1-RecordMiniRoos', 'learn:course': 'GS8-WelcomeCourse', 'learn:centre': 'EC1-PlayersHome',
 }
 type RecordView = 'start' | 'clips'
@@ -719,13 +722,15 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
   // Deep links into Match day: "whatisaw", "thankparents", "review", "whoscoming", "getready" open that part.
   const GAMEDAY_PARTS = ['whatisaw', 'thankparents', 'review', 'whoscoming', 'getready']
   const isGameDayPart = !!initialScreen && GAMEDAY_PARTS.includes(initialScreen)
-  const [nav, setNav]               = useBackState<MiniNav>(initialScreen === 'positions' ? 'squad' : isHomeSub ? 'home' : isGameDayPart ? 'gameday' : (initialScreen === 'learn' || initialScreen === 'learncoaches' || initialScreen === 'GS8-WelcomeCourse' || isEduId(initialScreen ?? '')) ? 'learn' : ((initialScreen as MiniNav) ?? 'home'))
+  const [nav, setNav]               = useBackState<MiniNav>(initialScreen === 'positions' || initialScreen === 'GP7-MiniGoal' ? 'squad' : isHomeSub ? 'home' : isGameDayPart ? 'gameday' : (initialScreen === 'learn' || initialScreen === 'learncoaches' || initialScreen === 'GS8-WelcomeCourse' || isEduId(initialScreen ?? '')) ? 'learn' : ((initialScreen as MiniNav) ?? 'home'))
   const [homeTab, setHomeTab]       = useBackState<HomeTab>(isHomeSub ? (initialScreen as HomeTab) : 'overview')
   const [gameDayTab, setGameDayTab] = useBackState<GameDayTab>(isGameDayPart ? (initialScreen as GameDayTab) : 'turns')
   const [squadTab, setSquadTab]     = useBackState<SquadTab>(initialScreen === 'positions' ? 'positions' : 'players')
   const [ytView, setYtView]         = useBackState('YT1-YourTake')
   const [formationPreset, setFormationPreset] = useState<FormationPreset | null>(null)
   const [layer, setLayer] = useBackState<string | null>(null)
+  const [flow, setFlow] = useBackState<string | null>(initialScreen === 'GP7-MiniGoal' ? initialScreen : null)   // a goal with a child (GP7), shown in place of Squad › Players
+  const flowGo = (t: string) => { setFlow(null); if (t === 'HM2-SquadMiniRoos') { setNav('squad'); setSquadTab('players') } else if (isScreenId(t)) setLayer(t) }
   const [xgView, setXgView] = useBackState('XGm1-ChancesMiniRoos')
   // Chances for the coach follow the club's rule for under 8 and under 9. MiniRoos never has a ladder.
   const mayChances = allowed(useCapture(), 'u8').chances && !empty
@@ -795,7 +800,7 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
     nav === 'clips'    ? 1 : 0
 
   function handleNavChange(id: string) {
-    setNav(id as MiniNav)
+    setNav(id as MiniNav); setFlow(null)
     onNavChange?.(id)
     setFilOpen(null)
   }
@@ -815,6 +820,7 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
       else if (t === 'record') setNav('record')
       else if (t === 'review' || t === 'whatisaw') { setNav('gameday'); setGameDayTab(t) }
       else if (t === 'setstyle') { setNav('home'); setHomeTab('style'); setHomeSubView('main') }
+      else if (t === 'GP7-MiniGoal') { setNav('squad'); setSquadTab('players'); setFlow(t) }
     })
     return () => registerAppNav(null)
   })
@@ -825,6 +831,7 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
     registerNav?.((target: string) => {
       if (GS_TRAIN[target]) { gsNav(target); onNavChange?.('training'); return true }
       if (isEduId(target)) { gsNav(target); onNavChange?.('learn'); return true }
+      if (target === 'MS3-MiniRoosReview') target = 'RD3-MiniRoosReview'   // the old review id opens the dashboard that replaced it
       const key = target === 'EDU5-CoachCorner' ? 'learn:centre' : Object.keys(MR_SCREEN).find(k => MR_SCREEN[k] === target)
       // Anything else that is a designed screen opens over the app with a way back: one heading, not two.
       if (!key && isYourTakeId(target)) { setNav('gameday'); setGameDayTab('yourtake'); setYtView(target); return true }   // the Your take boards open inside Game day, not as a separate page
@@ -845,6 +852,7 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
   })
 
   function handleSubTab(i: number) {
+    setFlow(null)
     if (nav === 'home')     { setHomeTab(HOME_TABS[i].id); setHomeSubView('main'); setFilOpen(null) }
     if (nav === 'squad')    { setSquadTab(SQUAD_TABS_MR[i].id) }
     if (nav === 'gameday')  { setGameDayTab(GAMEDAY_TABS[i].id); if (GAMEDAY_TABS[i].id === 'yourtake') setYtView('YT1-YourTake') }
@@ -911,7 +919,9 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
     else if (squadTab === 'seasonnotes') content = <SeasonNotesScreen empty={empty} onBack={() => setSquadTab('players')} />
     else                                 content = <SquadMiniRoos empty={empty} onSeasonNotes={() => setSquadTab('seasonnotes')} />
   } else if (nav === 'gameday') {
-    if (empty)
+    if (empty && gameDayTab === 'review')   // RD3e: nothing to look back on yet
+      content = <DashEmpty id="RD3e-MiniRoosReviewEmpty" go={t => { if (t === 'HM4-GameDayMiniRoos') setGameDayTab('turns'); else if (isScreenId(t)) setLayer(t) }} />
+    else if (empty)
       content = <GameDayMiniRoos empty={true} onWhatWeSaw={() => {}} />
     else if (gameDayTab === 'turns')
       content = <GameDayMiniRoos onWhatWeSaw={() => setGameDayTab('whatisaw')} />
@@ -926,7 +936,8 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
     else if (gameDayTab === 'live')
       content = <LiveOffContent onAsk={() => setGameDayTab('turns')} />
     else if (gameDayTab === 'review')
-      content = <MS3MiniRoosReview onWhatWeSaw={() => setGameDayTab('whatisaw')} onThankParents={() => setGameDayTab('thankparents')} />
+      // RD3: the review as a dashboard. Its links open this app's own tabs; anything else opens over the top.
+      content = <RD3MiniRoosReview review={MINI_LIVE} go={t => { if (t === 'HM5-WhatWeSaw') setGameDayTab('whatisaw'); else if (t === 'MS1-MiniRoosStyle') { setNav('home'); setHomeTab('style'); setHomeSubView('main') } else if (GS_TRAIN[t]) gsNav(t); else if (isScreenId(t)) setLayer(t) }} />
     else if (gameDayTab === 'whatisaw')
       content = <WhatWeSawScreen onBack={() => setGameDayTab('turns')} onSave={() => setGameDayTab('turns')} onThankParents={() => setGameDayTab('thankparents')} />
     else if (gameDayTab === 'thankparents')
@@ -941,6 +952,8 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
       ? <RecordMiniRoosClips empty={empty} onBack={() => setRecordView('start')} />
       : <RecordMiniRoosStart empty={empty} onClips={() => setRecordView('clips')} />
   }
+
+  if (flow) content = <div data-screen={flow} style={{ display: 'contents' }}><ClubFlowScreen id={flow} go={flowGo} /></div>
 
   if (teamTalkOpen) return <MiniRoosTeamTalk onClose={() => setTeamTalkOpen(false)} />
 

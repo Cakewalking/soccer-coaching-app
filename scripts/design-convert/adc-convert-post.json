@@ -1,0 +1,46 @@
+{
+  "ADC11-AfterSession": [
+    [
+      "import { demoToast } from '../../demoToast'\n",
+      "import { demoToast } from '../../demoToast'\nimport { closeSession } from '../steps'\n"
+    ],
+    [
+      "<button onClick={() => go(\"ACC1-CoachToday\")} style={{ margin: \"0\", font: \"inherit\", textAlign: \"inherit\", cursor: \"pointer\", ...C.primary }}>Done · 6 of 20 marked</button>",
+      "<button onClick={() => { closeSession(pick.map(p => p === 1)); go(\"ACC1-CoachToday\") }} style={{ margin: \"0\", font: \"inherit\", textAlign: \"inherit\", cursor: \"pointer\", ...C.primary }}>Done · 6 of 20 marked</button>"
+    ]
+  ],
+  "ADC13-CheckEntry": [
+    [
+      "import { demoToast } from '../../demoToast'\n",
+      "import { demoToast } from '../../demoToast'\nimport { FILM_COUNTS_SKILLS_CHECK } from '../skills'\n"
+    ],
+    [
+      ">Counted from film</span>",
+      ">{FILM_COUNTS_SKILLS_CHECK ? 'Counted from film' : 'You tap'}</span>"
+    ],
+    [
+      ">Timed from film</span>",
+      ">{FILM_COUNTS_SKILLS_CHECK ? 'Timed from film' : 'You time it'}</span>"
+    ],
+    [
+      ">You tap · 7 of 8 done</span>",
+      ">You tap · {count.filter(v => v !== null).length} of 8 done</span>"
+    ],
+    [
+      ">Noah hasn’t had his turn. Opens from “Start the check”.</span>",
+      ">{count[7] === null ? 'Noah hasn’t had his turn. ' : ''}Opens from “Start the check”.</span>"
+    ]
+  ],
+  "ACP1-BookTrial": [
+    [
+      "<button onClick={() => go(\"ACP1b-TrialBooked\")} style={{ margin: \"0\", font: \"inherit\", textAlign: \"inherit\", cursor: \"pointer\", ...C.primary, height: \"48px\", flex: \"1\" }}>Book the trial</button>",
+      "{/* Handover v23: after a trial is booked, one optional question (ADP15), then the booked page. The board still points straight at ACP1b. */}\n        <button onClick={() => go(\"ADP15-HowHeard\")} style={{ margin: \"0\", font: \"inherit\", textAlign: \"inherit\", cursor: \"pointer\", ...C.primary, height: \"48px\", flex: \"1\" }}>Book the trial</button>"
+    ]
+  ],
+  "ACP4-ParentFees": [
+    [
+      "        <span style={{ ...C.cap, fontSize: \"13px\", lineHeight: \"18px\" }}>Only you and the academy owner can see fees. Coaches and Kai can’t.</span>\n",
+      "        <span style={{ ...C.cap, fontSize: \"13px\", lineHeight: \"18px\" }}>Only you and the academy owner can see fees. Coaches and Kai can’t.</span>\n        {/* Handover v23 asks for this way in to ADP16; the board does not draw it, so it is a plain link. */}\n        <button onClick={() => go(\"ADP16-Voucher\")} style={{ alignSelf: \"flex-start\", minHeight: \"44px\", margin: \"-8px 0\", border: \"0\", padding: \"0\", background: \"transparent\", font: \"inherit\", fontSize: \"14px\", fontWeight: \"700\", color: \"#2f6252\", textDecoration: \"underline\", cursor: \"pointer\" }}>Have a sport voucher?</button>\n"
+    ]
+  ]
+}

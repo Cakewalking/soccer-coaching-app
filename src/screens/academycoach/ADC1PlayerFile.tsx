@@ -1,10 +1,12 @@
 // ADC1-PlayerFile: one player's file. The four core skills as the coach and the player each see
 // them, the whole player in four short lines, and numbers from the game with the clips behind them.
-// It replaces ACC4-PlayerPlan as the coach's player screen; the goal card still opens ACC4.
+// It replaces ACC4-PlayerPlan as the coach's player screen. The goal card opens ADC10 (set a goal),
+// "Change" opens ADC12 (the whole player) and "Suggest a group move" opens ADC14.
 
 import { demoToast } from '../demoToast'
 import { playClips } from '../clips/clipSheet'
 import { type CoreSkill } from './skills'
+import { useSteps } from './steps'
 import { Dots, Estimate, Head, More, Page, Primary, Strong, TileHead, Two } from './kit'
 import { HAIR, INK, MAUVE_PALE, MUT, foot, label, listTile, plain, th } from './styles'
 
@@ -30,11 +32,14 @@ const GAME: Array<{ what: string; n: string; proof: 'strong' | 'estimate' }> = [
 const CLIPS = [{ title: 'Left-foot shot', when: '31st minute', tilt: 140 }, { title: 'Takes on two', when: '44th minute', tilt: 190 }]
 
 const COLS = 'minmax(0,1.1fr) 78px 78px'
+const link = { ...plain, display: 'inline-flex', alignItems: 'center', minHeight: 44, margin: '-12px 0', color: '#2f6252', fontSize: 14, fontWeight: 700, textDecoration: 'underline' } as const
 
 export default function ADC1PlayerFile({ go }: { go: (id: string) => void }) {
+  const { striking } = useSteps()   // Kai's step on striking the ball moves with the taps after a session (ADC11)
+  const you = (s: typeof SKILLS[number]) => s.skill === 'Striking the ball' ? striking['Kai Okonkwo'] ?? s.you : s.you
   // The mauve note: the player marks himself a step or more below the coach. The board draws it for
   // one against one only, not for first touch where Kai marks himself a step above, so that is the rule here.
-  const apart = SKILLS.filter(s => s.you - s.kai >= 1)
+  const apart = SKILLS.filter(s => you(s) - s.kai >= 1)
   const openClips = (s: typeof SKILLS[number]) => {
     const name = s.skill.toLowerCase()
     playClips(Array.from({ length: s.clips }, (_, k) => ({ title: `${s.skill}, clip ${k + 1} of ${s.clips}`, sub: 'Kai Okonkwo. Newest first.', len: 9 })), s.skill)
@@ -51,12 +56,12 @@ export default function ADC1PlayerFile({ go }: { go: (id: string) => void }) {
       </Head>
     }>
       <section aria-label="Four core skills" style={{ ...listTile, gridColumn: 'span 5' }}>
-        <TileHead title="Four core skills" right="Week 1 to now" />
+        <TileHead title="Four core skills" right={<button onClick={() => go('ADC14-SuggestMove')} style={link}>Suggest a group move</button>} />
         <div style={{ display: 'grid', gridTemplateColumns: COLS, gap: 8, alignItems: 'end', paddingBottom: 4 }}><span /><span style={th}>You</span><span style={th}>Kai</span></div>
         {SKILLS.map(s => (
           <button key={s.skill} onClick={() => openClips(s)} style={{ ...plain, display: 'grid', gridTemplateColumns: COLS, gap: 8, alignItems: 'center', minHeight: 74, borderTop: `1px solid ${HAIR}` }}>
             <Two a={s.skill} b={`${s.line} · ${s.clips} clips`} />
-            <Dots step={s.you} /><Dots step={s.kai} />
+            <Dots step={you(s)} /><Dots step={s.kai} />
           </button>
         ))}
         {apart.map(s => (
@@ -64,12 +69,12 @@ export default function ADC1PlayerFile({ go }: { go: (id: string) => void }) {
             <strong>You and Kai see {s.skill.toLowerCase()} differently.</strong> A good place to start the review chat.
           </div>
         ))}
-        <span style={foot}>Five steps per skill, set from your session notes. Kai marks his own in the app. Nobody sees anyone else’s.</span>
+        <span style={foot}>Five steps per skill, set from your session notes. Kai marks his own in the app. <button onClick={() => go('ADK1-MySkills')} style={{ ...link, fontSize: 'inherit', fontWeight: 400 }}>See his screen</button> Nobody sees anyone else’s.</span>
       </section>
 
       <section aria-label="The whole player" style={{ ...listTile, gridColumn: 'span 4' }}>
-        <TileHead title="The whole player" />
-        <button onClick={() => go('ACC4-PlayerPlan')} style={{ ...plain, display: 'flex', flexDirection: 'column', gap: 2, borderRadius: 14, border: '2px solid #2f6252', padding: '10px 12px', marginBottom: 6 }}>
+        <TileHead title="The whole player" right={<button onClick={() => go('ADC12-WholePlayer')} style={link}>Change</button>} />
+        <button onClick={() => go('ADC10-SetGoal')} style={{ ...plain, display: 'flex', flexDirection: 'column', gap: 2, borderRadius: 14, border: '2px solid #2f6252', padding: '10px 12px', marginBottom: 6 }}>
           <span style={label}>Goal this term</span>
           <strong style={{ fontSize: 17, lineHeight: '22px' }}>Score with his left foot in a game</strong>
           <span style={{ fontSize: 13, lineHeight: '18px', color: MUT }}>3 left-foot finishes in training · home practice 2 of 3 this week</span>

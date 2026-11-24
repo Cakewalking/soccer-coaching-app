@@ -169,7 +169,10 @@ export default function AD5GroupMoves() {
               <span style={{ display: 'block', fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>Then the child, family and coach decide</span>
             </span>
           </div>
-          <span style={{ ...S.cap, marginTop: 'auto', paddingTop: 8 }}>Age is the guide, not the rule. Children of the same age can be years apart in growth, so a move looks at the child.</span>
+          <span style={{ ...S.cap, marginTop: 'auto', paddingTop: 8 }}>
+            {'Age is the guide, not the rule. Children of the same age can be years apart in growth, so a move looks at the child. '}
+            <Tap to="ADP12-MoveOffer">See what the family is asked</Tap>
+          </span>
         </aside>
       </main>
     </>

@@ -1,5 +1,115 @@
 control id,screen,control,does,target or line,status: works / line of text only / missing / wrong target (say where)
-AD1-AcademyHome#7,AD1-AcademyHome,Tall Timber Academy,Opens,VS1-SwitchView,"works; the switcher that opens is the club one (Wattle Creek FC teams), there is no academy version"
+AC1-AcademyHome#7,AC1-AcademyHome,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AC1-AcademyHome#15,AC1-AcademyHome,Message families,Opens,AC12-AcademyBroadcast,works
+AC1-AcademyHome#16,AC1-AcademyHome,Share the trial link,Says,Trial link copied. Anyone with it can book a free trial.,works
+AC1-AcademyHome#17,AC1-AcademyHome,+ New program,Opens,AC2-Programs,works
+AC1-AcademyHome#18,AC1-AcademyHome,Send offers,Opens,AC3-Trials,works
+AC1-AcademyHome#19,AC1-AcademyHome,See who,Opens,AC5-Fees,works
+AC1-AcademyHome#20,AC1-AcademyHome,Remind Ben,Opens,AC6-AcademyCoaches,works
+AC1-AcademyHome#21,AC1-AcademyHome,"4:30 · Development · 9 to 11 · Reece · pitch 1 · 14 coming, 1 trial",Opens,ACC2-RunSession,"works; the screen that opens is drawn for the 5:30 Advanced session, not 4:30 Development"
+AC1-AcademyHome#22,AC1-AcademyHome,"5:30 · Advanced · 12 to 14 · Reece and Sofia · pitch 1 · 20 coming, 2 make-ups",Opens,ACC2-RunSession,works
+AC1-AcademyHome#23,AC1-AcademyHome,"6:45 · One-on-one · Kai Okonkwo · Reece · pitch 2, in open view",Opens,ACC5-OneOnOne,works
+AC1-AcademyHome#24,AC1-AcademyHome,See reports,Opens,AC7-ReportsOut,works
+AC10-AcademySafety#7,AC10-AcademySafety,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AC10-AcademySafety#15,AC10-AcademySafety,Open,Opens,AC6-AcademyCoaches,works
+AC10-AcademySafety#16,AC10-AcademySafety,Rule,Opens,ACC5-OneOnOne,works
+AC10-AcademySafety#17,AC10-AcademySafety,Rule,Says,This rule can’t be switched off.,works
+AC10-AcademySafety#18,AC10-AcademySafety,Change,Says,Choose who families can raise a concern with.,works
+AC10-AcademySafety#19,AC10-AcademySafety,Rule,Says,Choose the youngest age your academy films. Any age is allowed with a parent’s yes.,works
+AC10-AcademySafety#20,AC10-AcademySafety,Upload,Says,Choose a file. Families see it when they enrol.,works
+AC10e-AcademySafetyEmpty#7,AC10e-AcademySafetyEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AC10e-AcademySafetyEmpty#15,AC10e-AcademySafetyEmpty,Start,Opens,AC10-AcademySafety,works
+AC11-PartnerClub#7,AC11-PartnerClub,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AC11-PartnerClub#15,AC11-PartnerClub,Message the club,Says,"New message to Rachel M, director of football.",works
+AC11-PartnerClub#16,AC11-PartnerClub,+ Add a game team,Says,Pick a group. The club is asked to enter it in a league.,works
+AC11-PartnerClub#17,AC11-PartnerClub,Change,Says,"Choose: the academy’s coach, or a coach from the club.",works
+AC11-PartnerClub#18,AC11-PartnerClub,Chase 2,Says,Reminder sent to 2 families to finish club registration.,works
+AC11-PartnerClub#19,AC11-PartnerClub,How it works,Opens,ACP10-AcademyConcern,works
+AC11-PartnerClub#20,AC11-PartnerClub,Open fees,Opens,AC5-Fees,works
+AC11-PartnerClub#21,AC11-PartnerClub,See Sunday,Opens,ACC7-AcademyGameDay,works
+AC11e-PartnerClubEmpty#7,AC11e-PartnerClubEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AC11e-PartnerClubEmpty#15,AC11e-PartnerClubEmpty,Invite a club to link,Says,Invite sent. The club’s director confirms the link.,works
+AC11e-PartnerClubEmpty#16,AC11e-PartnerClubEmpty,We only train,Opens,AC1-AcademyHome,works
+AC12-AcademyBroadcast#7,AC12-AcademyBroadcast,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AC12-AcademyBroadcast#15,AC12-AcademyBroadcast,Back to overview,Opens,AC1-AcademyHome,works
+AC12-AcademyBroadcast#16,AC12-AcademyBroadcast,Send to 80 families,Says,Sent to 80 families in the app and by email.,works
+AC12-AcademyBroadcast#17,AC12-AcademyBroadcast,All families · 80 [checkbox],Says,All families · 80,works
+AC12-AcademyBroadcast#18,AC12-AcademyBroadcast,Foundation · 28 [checkbox],Says,Foundation · 28,works
+AC12-AcademyBroadcast#19,AC12-AcademyBroadcast,Development · 30 [checkbox],Says,Development · 30,works
+AC12-AcademyBroadcast#20,AC12-AcademyBroadcast,Advanced · 22 [checkbox],Says,Advanced · 22,works
+AC12-AcademyBroadcast#21,AC12-AcademyBroadcast,U13 Timber game team [checkbox],Says,U13 Timber game team,works
+AC12-AcademyBroadcast#22,AC12-AcademyBroadcast,Coaches · 3 [checkbox],Says,Coaches · 3,works
+AC12-AcademyBroadcast#23,AC12-AcademyBroadcast,Photo,Says,Photo added. Everyone in it has a yes for photos.,works
+AC12-AcademyBroadcast#24,AC12-AcademyBroadcast,Video,Opens a sheet,cvideo,works
+AC12-AcademyBroadcast#25,AC12-AcademyBroadcast,File,Opens a sheet,cfile,works
+AC12-AcademyBroadcast#26,AC12-AcademyBroadcast,Poll,Opens a sheet,cacadpoll,works
+AC12-AcademyBroadcast#27,AC12-AcademyBroadcast,Booking link,Says,Booking link for the July clinic added.,works
+AC12-AcademyBroadcast#28,AC12-AcademyBroadcast,Nudge them,Says,Nudge sent to 19 families.,works
+AC12e-AcademyBroadcastEmpty#7,AC12e-AcademyBroadcastEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AC12e-AcademyBroadcastEmpty#15,AC12e-AcademyBroadcastEmpty,Write your first message,Opens,AC12-AcademyBroadcast,works
+AC1e-AcademyHomeEmpty#7,AC1e-AcademyHomeEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AC1e-AcademyHomeEmpty#15,AC1e-AcademyHomeEmpty,Add a program,Opens,AC2e-ProgramsEmpty,works
+AC2-Programs#7,AC2-Programs,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AC2-Programs#13,AC2-Programs,Copy to Term 3,Says,Term 3 set up with the same groups. Families are asked to re-enrol.,works
+AC2-Programs#14,AC2-Programs,+ New program,Opens,AD20-NewProgram,works
+AC2-Programs#15,AC2-Programs,Open,Opens,AC4-AcademyPlayers,"works; opens All players, not filtered to that program"
+AC2-Programs#16,AC2-Programs,Open,Opens,AC4-AcademyPlayers,"works; opens All players, not filtered to that program"
+AC2-Programs#17,AC2-Programs,Open,Opens,AC4-AcademyPlayers,"works; opens All players, not filtered to that program"
+AC2-Programs#18,AC2-Programs,Open,Opens,AC4-AcademyPlayers,"works; opens All players, not filtered to that program"
+AC2-Programs#19,AC2-Programs,Offer,Says,Places offered to the first 2 on the list.,works
+AC2-Programs#20,AC2-Programs,Open the clinic,Opens,AC9-HolidayClinic,works
+AC2e-ProgramsEmpty#7,AC2e-ProgramsEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AC2e-ProgramsEmpty#13,AC2e-ProgramsEmpty,Add a program,Says,New program. Start with the age group.,works
+AC3-Trials#7,AC3-Trials,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AC3-Trials#15,AC3-Trials,Share the trial link,Says,Trial link copied.,works
+AC3-Trials#16,AC3-Trials,Reece assesses today,Opens,ACC3-TrialAssess,works
+AC3-Trials#17,AC3-Trials,Send offer,Says,"Offer sent to Lola’s family: Advanced, $128 for the 4 weeks left.",works
+AC3-Trials#18,AC3-Trials,Send offer,Says,Offer sent to Sam’s family.,works
+AC3-Trials#19,AC3-Trials,Send offer,Says,Offer sent to Billie’s family.,works
+AC3e-TrialsEmpty#7,AC3e-TrialsEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AC3e-TrialsEmpty#15,AC3e-TrialsEmpty,Copy the trial link,Says,Trial link copied.,works
+AC4-AcademyPlayers#7,AC4-AcademyPlayers,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AC4-AcademyPlayers#10,AC4-AcademyPlayers,Export,Says,Player list downloaded.,works
+AC4-AcademyPlayers#11,AC4-AcademyPlayers,Message all families,Says,New message to 74 families.,works
+AC4-AcademyPlayers#12,AC4-AcademyPlayers,KO · Kai Okonkwo · 13 · Advanced · 5 of 6 · U13 Timber · your game team · Drafted · · Paid,Opens,ACC4-PlayerPlan,works
+AC4-AcademyPlayers#13,AC4-AcademyPlayers,AC · Ana Costa · 12 · Advanced · 2 of 2 · Harbour Rovers U12 · Too new · · Paid,Opens,ACC4-PlayerPlan,"works; the plan that opens is the one drawn, Kai Okonkwo's"
+AC4-AcademyPlayers#14,AC4-AcademyPlayers,JM · Jonah Marsh · 14 · Advanced · 6 of 10 · No club · To write · · 3 weeks late,Opens,ACC4-PlayerPlan,"works; the plan that opens is the one drawn, Kai Okonkwo's"
+AC4-AcademyPlayers#15,AC4-AcademyPlayers,TL · Theo Lindqvist · 11 · Development · 5 of 5 · Banksia Park U11 · To write · · On a plan,Opens,ACC4-PlayerPlan,"works; the plan that opens is the one drawn, Kai Okonkwo's"
+AC4-AcademyPlayers#16,AC4-AcademyPlayers,RS · Ruby Sandhu · 10 · Development · 10 of 10 · Wattle Creek U10 · Drafted · · Paid,Opens,ACC4-PlayerPlan,"works; the plan that opens is the one drawn, Kai Okonkwo's"
+AC4-AcademyPlayers#17,AC4-AcademyPlayers,EB · Eli Brandt · 9 · Development · 7 of 10 · Kestrel Park U9 · To write · · 1 week late,Opens,ACC4-PlayerPlan,"works; the plan that opens is the one drawn, Kai Okonkwo's"
+AC4-AcademyPlayers#18,AC4-AcademyPlayers,MR · Maya Rossi · 6 · Foundation · 5 of 6 · No club · To write · · Paid,Opens,ACC4-PlayerPlan,"works; the plan that opens is the one drawn, Kai Okonkwo's"
+AC4-AcademyPlayers#19,AC4-AcademyPlayers,HP · Hugo Pereira · 7 · Foundation · 9 of 10 · Wattle Creek U7 · Drafted · · Paid,Opens,ACC4-PlayerPlan,"works; the plan that opens is the one drawn, Kai Okonkwo's"
+AC4e-AcademyPlayersEmpty#7,AC4e-AcademyPlayersEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AC4e-AcademyPlayersEmpty#10,AC4e-AcademyPlayersEmpty,Import a spreadsheet,Says,Choose a file. We match the columns for you.,works
+AC5-Fees#7,AC5-Fees,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AC5-Fees#12,AC5-Fees,Download for your accountant,Says,Term 2 fees downloaded as a spreadsheet.,works
+AC5-Fees#13,AC5-Fees,Pay-outs,Says,"Next pay-out: $2,940 on Friday.",works
+AC5-Fees#14,AC5-Fees,Offer a plan,Says,"Payment plan offered: 3 parts, no extra cost.",works
+AC5-Fees#15,AC5-Fees,Offer a plan,Says,"Payment plan offered: 3 parts, no extra cost.",works
+AC5-Fees#16,AC5-Fees,Offer a plan,Says,"Payment plan offered: 3 parts, no extra cost.",works
+AC5-Fees#17,AC5-Fees,Offer a plan,Says,"Payment plan offered: 3 parts, no extra cost.",works
+AC5e-FeesEmpty#7,AC5e-FeesEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AC5e-FeesEmpty#12,AC5e-FeesEmpty,Connect a bank account,Says,Opens secure set-up with our payments partner.,works
+AC6-AcademyCoaches#7,AC6-AcademyCoaches,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AC6-AcademyCoaches#12,AC6-AcademyCoaches,+ Invite a coach,Opens,AD23-AddCoach,works
+AC6-AcademyCoaches#13,AC6-AcademyCoaches,See term reports,Opens,AC7-ReportsOut,works
+AC6e-AcademyCoachesEmpty#7,AC6e-AcademyCoachesEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AC6e-AcademyCoachesEmpty#12,AC6e-AcademyCoachesEmpty,Invite a coach,Says,Invite started.,works
+AC7-ReportsOut#7,AC7-ReportsOut,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AC7-ReportsOut#15,AC7-ReportsOut,See a finished report,Opens,ACP5-ProgressReport,works
+AC7-ReportsOut#16,AC7-ReportsOut,Approve 5 and send,Says,5 reports sent to families.,works
+AC7-ReportsOut#17,AC7-ReportsOut,Open,Opens,ACC6-ReportDraft,works; every program opens the one report draft that is drawn
+AC7-ReportsOut#18,AC7-ReportsOut,Open,Opens,ACC6-ReportDraft,works; every program opens the one report draft that is drawn
+AC7-ReportsOut#19,AC7-ReportsOut,Open,Opens,ACC6-ReportDraft,works; every program opens the one report draft that is drawn
+AC7e-ReportsOutEmpty#7,AC7e-ReportsOutEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AC7e-ReportsOutEmpty#15,AC7e-ReportsOutEmpty,See an example report,Opens,ACP5-ProgressReport,works
+AC9-HolidayClinic#7,AC9-HolidayClinic,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AC9-HolidayClinic#13,AC9-HolidayClinic,Copy the booking link,Says,Clinic link copied.,works
+AC9-HolidayClinic#14,AC9-HolidayClinic,Message booked families,Says,New message to 29 families.,works
+AC9-HolidayClinic#15,AC9-HolidayClinic,Invite to a trial,Says,"After the clinic, these 12 families get a trial invite.",works
+AC9e-HolidayClinicEmpty#7,AC9e-HolidayClinicEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AC9e-HolidayClinicEmpty#13,AC9e-HolidayClinicEmpty,Plan a clinic,Says,New clinic. Start with the dates.,works
+AD1-AcademyHome#7,AD1-AcademyHome,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
 AD1-AcademyHome#15,AD1-AcademyHome,Message families,Opens,AC12-AcademyBroadcast,works
 AD1-AcademyHome#16,AD1-AcademyHome,Share the trial link,Says,Trial link copied. Anyone with it can book a free trial.,works
 AD1-AcademyHome#17,AD1-AcademyHome,+ New program,Opens,AC2-Programs,works
@@ -14,21 +124,25 @@ AD1-AcademyHome#25,AD1-AcademyHome,"6:45 · One-on-one · Kai Okonkwo · Reece �
 AD1-AcademyHome#26,AD1-AcademyHome,61 of 80 players are up a step in a skill · From coaches’ notes since week 1,Opens,AD8-SessionQuality,works
 AD1-AcademyHome#27,AD1-AcademyHome,12 of 80 term reports are drafted · Due to families in week 9,Opens,AC7-ReportsOut,works
 AD1-AcademyHome#28,AD1-AcademyHome,2 players are ready to move up a group · Ruby and Hugo,Opens,AD5-GroupMoves,works
-AD10-WatchCoach#7,AD10-WatchCoach,Tall Timber Academy,Opens,VS1-SwitchView,"works; the switcher that opens is the club one (Wattle Creek FC teams), there is no academy version"
-AD10-WatchCoach#11,AD10-WatchCoach,Book a chat,Says,Pick a time. Sofia sees it in her week.,works
-AD10-WatchCoach#12,AD10-WatchCoach,Send to Sofia,Says,Sofia can see your notes and the three moments. Nobody else can.,works
-AD10-WatchCoach#13,AD10-WatchCoach,Foundation · Wednesday 3 June · 50:00,Says,The clip plays.,works
-AD10-WatchCoach#14,AD10-WatchCoach,4:10 · Arrival game · Every child on a ball inside a minute,Says,Jumps to 4:10 in the film.,works
-AD10-WatchCoach#15,AD10-WatchCoach,18:30 · Skill practice · Two queues of seven. About a third of the group was waiting,Says,Jumps to 18:30 in the film.,works
-AD10-WatchCoach#16,AD10-WatchCoach,31:00 · Skill game · Great question: “Where was the space?”,Says,Jumps to 31:00 in the film.,works
-AD11-ProgramMoney#7,AD11-ProgramMoney,Tall Timber Academy,Opens,VS1-SwitchView,"works; the switcher that opens is the club one (Wattle Creek FC teams), there is no academy version"
+AD10-WatchCoach#7,AD10-WatchCoach,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AD10-WatchCoach#12,AD10-WatchCoach,Sofia’s own view,Opens,ADC15-MySession,works
+AD10-WatchCoach#13,AD10-WatchCoach,Send to Sofia,Says,Sofia can see your notes and the three moments. Nobody else can.,works
+AD10-WatchCoach#14,AD10-WatchCoach,Foundation · Wednesday 3 June · 50:00,Says,The clip plays.,works
+AD10-WatchCoach#15,AD10-WatchCoach,4:10 · Arrival game · Every child on a ball inside a minute,Says,Jumps to 4:10 in the film.,works
+AD10-WatchCoach#16,AD10-WatchCoach,18:30 · Skill practice · Two queues of seven. About a third of the group was waiting,Says,Jumps to 18:30 in the film.,works
+AD10-WatchCoach#17,AD10-WatchCoach,31:00 · Skill game · Great question: “Where was the space?”,Says,Jumps to 31:00 in the film.,works
+AD10e-WatchCoachEmpty#7,AD10e-WatchCoachEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AD10e-WatchCoachEmpty#12,AD10e-WatchCoachEmpty,How to film a session,Opens,ACC8-AcademyRecord,works
+AD11-ProgramMoney#7,AD11-ProgramMoney,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
 AD11-ProgramMoney#12,AD11-ProgramMoney,Download for your accountant,Says,Term 2 is on its way to your email as a spreadsheet.,works
 AD11-ProgramMoney#13,AD11-ProgramMoney,"Foundation · · $7,280 · $1,800 · $900 · $4,580 · · · · 28 of 32",Opens,AC2-Programs,"works; opens Term programs, not that one program"
 AD11-ProgramMoney#14,AD11-ProgramMoney,"Development · · $8,700 · $1,200 · $900 · $6,600 · · · · 30 of 32",Opens,AC2-Programs,"works; opens Term programs, not that one program"
 AD11-ProgramMoney#15,AD11-ProgramMoney,"Advanced · · $7,040 · $2,300 · $1,125 · $3,615 · · · · 22 of 24",Opens,AC2-Programs,"works; opens Term programs, not that one program"
 AD11-ProgramMoney#16,AD11-ProgramMoney,"One-on-ones · · $2,160 · $300 · $810 · $1,050 · · · · 6 of 8",Opens,AC2-Programs,"works; opens Term programs, not that one program"
 AD11-ProgramMoney#17,AD11-ProgramMoney,See trials,Opens,AC3-Trials,works
-AD12-Credits#7,AD12-Credits,Tall Timber Academy,Opens,VS1-SwitchView,"works; the switcher that opens is the club one (Wattle Creek FC teams), there is no academy version"
+AD11e-ProgramMoneyEmpty#7,AD11e-ProgramMoneyEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AD11e-ProgramMoneyEmpty#12,AD11e-ProgramMoneyEmpty,Add them,Opens,AD21-RatesCosts,works
+AD12-Credits#7,AD12-Credits,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
 AD12-Credits#12,AD12-Credits,Change the rules,Says,"Your rules open: make-ups, pauses, refunds and brothers and sisters.",works
 AD12-Credits#13,AD12-Credits,"Make-ups owed · A missed session with 2 hours’ notice earns one, used this term · · · 9 sessions",Opens,ACP6-MakeUp,"works; opens the parent's make-up screen, drawn at phone size"
 AD12-Credits#14,AD12-Credits,"Credit held for families · Cancelled sessions and paused weeks, taken off the next bill · · · $420",Opens,AC5-Fees,works
@@ -36,8 +150,12 @@ AD12-Credits#15,AD12-Credits,Refund asked · Vella family · moving house in wee
 AD12-Credits#16,AD12-Credits,"Brothers and sisters · 8 families · 10% off the second child, taken off at billing · · · 8 families",Opens,AC5-Fees,works
 AD12-Credits#17,AD12-Credits,Joined part-way · 5 players paid only for the weeks left · · · 5 players,Opens,AC5-Fees,works
 AD12-Credits#18,AD12-Credits,Check if you can register,Says,"A short page on who can register, with the link to your state’s program.",works
-AD13-Connections#7,AD13-Connections,Tall Timber Academy,Opens,VS1-SwitchView,"works; the switcher that opens is the club one (Wattle Creek FC teams), there is no academy version"
-AD13-Connections#12,AD13-Connections,Bring in a spreadsheet,Says,"Choose the file. You match the columns once, then check before anything is saved.",works
+AD12-Credits#19,AD12-Credits,Give a supported place,Opens,AD19-SupportedPlace,works
+AD12-Credits#20,AD12-Credits,What a family with a voucher sees,Opens,ADP16-Voucher,works
+AD12e-CreditsEmpty#7,AD12e-CreditsEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AD12e-CreditsEmpty#12,AD12e-CreditsEmpty,See your rules,Says,"Your rules open: make-ups, pauses and refunds.",works
+AD13-Connections#7,AD13-Connections,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AD13-Connections#12,AD13-Connections,Bring in a spreadsheet,Opens,AD24-BringIn,works
 AD13-Connections#13,AD13-Connections,Players and families · Bring in a spreadsheet from what you use now · · 80 players brought in · 3 need a look · On,Says,Players and families: settings open.,works
 AD13-Connections#14,AD13-Connections,Payments · Cards and payment plans through your payment provider · · Pays into your account every 2 days · On,Says,Payments: settings open.,works
 AD13-Connections#15,AD13-Connections,"Your accountant · A file each month, in the layout accounting tools read · · Last sent 1 June · On",Says,Your accountant: settings open.,works
@@ -47,122 +165,704 @@ AD13-Connections#18,AD13-Connections,Vests that track running · Distance and sp
 AD13-Connections#19,AD13-Connections,"Your website · The trial link and this term’s timetable, on your own site · · Trial link in use · timetable not added · Add",Says,Your website: settings open.,works
 AD13-Connections#20,AD13-Connections,Open,Opens,AC11-PartnerClub,works
 AD13-Connections#21,AD13-Connections,Take everything out,Says,"Everything is on its way to your email: players, attendance, notes, reports and fees.",works
-AD14-Pathway#7,AD14-Pathway,Tall Timber Academy,Opens,VS1-SwitchView,"works; the switcher that opens is the club one (Wattle Creek FC teams), there is no academy version"
-AD14-Pathway#10,AD14-Pathway,See a passport,Opens,CNp14-PlayerPassport,"works; the passport that opens is the club sample (Mia Tran, Wattle Creek), not an academy player's"
-AD14-Pathway#11,AD14-Pathway,"JM · Jonah Marsh, 14 · No club · wants to trial · · Trial on Sunday 14 June at a state-league club · Passport sent",Opens,ADC1-PlayerFile,"works; the file that opens is the one drawn, Kai Okonkwo's"
-AD14-Pathway#12,AD14-Pathway,"KO · Kai Okonkwo, 13 · U13 Timber, your game team · · Asked about a regional program for 2027 · Reference asked",Opens,ADC1-PlayerFile,works
-AD14-Pathway#13,AD14-Pathway,"AC · Ana Costa, 12 · Harbour Rovers U12 · · Staying at her club · here for skills · Nothing to do",Opens,ADC1-PlayerFile,"works; the file that opens is the one drawn, Kai Okonkwo's"
-AD14-Pathway#14,AD14-Pathway,"FD · Finn Doyle, 14 · Kestrel Park U14 · · Back from injury in week 9 · Later",Opens,ADC1-PlayerFile,"works; the file that opens is the one drawn, Kai Okonkwo's"
-AD14-Pathway#15,AD14-Pathway,Read and send,Says,"The reference opens to read and change. It goes to Kai’s mum, who decides where it is sent.",works
-AD15-Families#7,AD15-Families,Tall Timber Academy,Opens,VS1-SwitchView,"works; the switcher that opens is the club one (Wattle Creek FC teams), there is no academy version"
-AD15-Families#15,AD15-Families,See the questions,Says,The five questions open. You can change one each term.,works
+AD13e-ConnectionsEmpty#7,AD13e-ConnectionsEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AD13e-ConnectionsEmpty#12,AD13e-ConnectionsEmpty,Bring in a spreadsheet,Opens,AD24-BringIn,works
+AD14-Pathway#7,AD14-Pathway,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AD14-Pathway#10,AD14-Pathway,What the family sees,Opens,ADP13-NextStep,works
+AD14-Pathway#11,AD14-Pathway,See a passport,Opens,CNp14-PlayerPassport,"works; the passport that opens is the club sample (Mia Tran, Wattle Creek), not an academy player's"
+AD14-Pathway#12,AD14-Pathway,"JM · Jonah Marsh, 14 · No club · wants to trial · · Trial on Sunday 14 June at a state-league club · Passport sent",Opens,ADC1-PlayerFile,"works; the file that opens is the one drawn, Kai Okonkwo's"
+AD14-Pathway#13,AD14-Pathway,"KO · Kai Okonkwo, 13 · U13 Timber, your game team · · Asked about a regional program for 2027 · Reference asked",Opens,ADC1-PlayerFile,works
+AD14-Pathway#14,AD14-Pathway,"AC · Ana Costa, 12 · Harbour Rovers U12 · · Staying at her club · here for skills · Nothing to do",Opens,ADC1-PlayerFile,"works; the file that opens is the one drawn, Kai Okonkwo's"
+AD14-Pathway#15,AD14-Pathway,"FD · Finn Doyle, 14 · Kestrel Park U14 · · Back from injury in week 9 · Later",Opens,ADC1-PlayerFile,"works; the file that opens is the one drawn, Kai Okonkwo's"
+AD14-Pathway#16,AD14-Pathway,Read and send,Opens,AD25-Reference,works
+AD14-Pathway#17,AD14-Pathway,See how a player picks clips,Opens,ADK2-MyClips,works
+AD14e-PathwayEmpty#7,AD14e-PathwayEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AD14e-PathwayEmpty#10,AD14e-PathwayEmpty,See all players,Opens,AC4-AcademyPlayers,works
+AD15-Families#7,AD15-Families,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AD15-Families#15,AD15-Families,See what families answer,Opens,ADP11-Survey,works
 AD15-Families#16,AD15-Families,Turn it on for Development,Opens,ADC6-HomePractice,works; the page that opens is drawn for Advanced
-AD2-Health#7,AD2-Health,Tall Timber Academy,Opens,VS1-SwitchView,"works; the switcher that opens is the club one (Wattle Creek FC teams), there is no academy version"
+AD15-Families#17,AD15-Families,See what players tap,Opens,ADK3-EnjoyedToday,works
+AD15e-FamiliesEmpty#7,AD15e-FamiliesEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AD15e-FamiliesEmpty#15,AD15e-FamiliesEmpty,See the questions,Says,The five questions open.,works
+AD16-SetUp#7,AD16-SetUp,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AD16-SetUp#15,AD16-SetUp,Ask for a hand,Says,A person from Clean Sheet will call you. Pick a time.,works
+AD16-SetUp#16,AD16-SetUp,Carry on: bring in players,Opens,AD13-Connections,works
+AD16-SetUp#17,AD16-SetUp,Your terms and programs · Term 2 · 3 programs and one-on-ones · · Done,Opens,AC2-Programs,works
+AD16-SetUp#18,AD16-SetUp,2 · Bring in your players · 80 players from your spreadsheet · 3 need a look · · Look at 3,Opens,AD13-Connections,works
+AD16-SetUp#19,AD16-SetUp,3 · Invite your coaches · 3 of 4 have joined · Ben hasn’t opened it · · Remind Ben,Opens,AC6-AcademyCoaches,works
+AD16-SetUp#20,AD16-SetUp,4 · Children checks · Checked and connected for 3 of 4 coaches · · Finish,Opens,AD17-Checks,works
+AD16-SetUp#21,AD16-SetUp,5 · Take payments · Not set up · families can’t pay in the app yet · · Set up,Opens,AD13-Connections,works
+AD16-SetUp#22,AD16-SetUp,"6 · How we coach · Your session shape, rules and words · · Write it",Opens,AD7-HowWeCoach,works
+AD16-SetUp#23,AD16-SetUp,7 · Tell your families · Send each family their link · 0 of 74 sent · · Not yet,Opens,AC12-AcademyBroadcast,works
+AD17-Checks#7,AD17-Checks,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AD17-Checks#12,AD17-Checks,Add a coach,Opens,AD23-AddCoach,works
+AD17-Checks#13,AD17-Checks,Message Ben,Says,"A message to Ben opens, with the link to renew.",works
+AD17e-ChecksEmpty#7,AD17e-ChecksEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AD17e-ChecksEmpty#12,AD17e-ChecksEmpty,Add a coach,Opens,AD23-AddCoach,works
+AD18-AcademyStyle#7,AD18-AcademyStyle,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AD18-AcademyStyle#12,AD18-AcademyStyle,Start again from a ready-made style,Opens,StyleFlow,works
+AD18-AcademyStyle#13,AD18-AcademyStyle,Add a measure,Opens,ADC9-PickMeasure,works
+AD18-AcademyStyle#14,AD18-AcademyStyle,−,Says,Aim down one step.,works; the aim on screen moves one step
+AD18-AcademyStyle#15,AD18-AcademyStyle,+,Says,Aim up one step.,works; the aim on screen moves one step
+AD18-AcademyStyle#16,AD18-AcademyStyle,Goal kicks played short: every team keeps it [switch],Says,Goal kicks played short: every team keeps it: turned on.,works
+AD18-AcademyStyle#17,AD18-AcademyStyle,−,Says,Aim down one step.,works; the aim on screen moves one step
+AD18-AcademyStyle#18,AD18-AcademyStyle,+,Says,Aim up one step.,works; the aim on screen moves one step
+AD18-AcademyStyle#19,AD18-AcademyStyle,Wins in their half: every team keeps it [switch],Says,Wins in their half: every team keeps it: turned on.,works
+AD18-AcademyStyle#20,AD18-AcademyStyle,−,Says,Aim down one step.,works; the aim on screen moves one step
+AD18-AcademyStyle#21,AD18-AcademyStyle,+,Says,Aim up one step.,works; the aim on screen moves one step
+AD18-AcademyStyle#22,AD18-AcademyStyle,Shots inside 10 s of a win: every team keeps it [switch],Says,Shots inside 10 s of a win: every team keeps it: turned on.,works
+AD18-AcademyStyle#23,AD18-AcademyStyle,−,Says,Aim down one step.,works; the aim on screen moves one step
+AD18-AcademyStyle#24,AD18-AcademyStyle,+,Says,Aim up one step.,works; the aim on screen moves one step
+AD18-AcademyStyle#25,AD18-AcademyStyle,Their passes before we challenge: every team keeps it [switch],Says,Their passes before we challenge: every team keeps it: turned on.,works
+AD18-AcademyStyle#26,AD18-AcademyStyle,−,Says,Aim down one step.,works; the aim on screen moves one step
+AD18-AcademyStyle#27,AD18-AcademyStyle,+,Says,Aim up one step.,works; the aim on screen moves one step
+AD18-AcademyStyle#28,AD18-AcademyStyle,Seconds to win it back: every team keeps it [switch],Says,Seconds to win it back: every team keeps it: turned on.,works
+AD18-AcademyStyle#29,AD18-AcademyStyle,−,Says,Aim down one step.,works; the aim on screen moves one step
+AD18-AcademyStyle#30,AD18-AcademyStyle,+,Says,Aim up one step.,works; the aim on screen moves one step
+AD18-AcademyStyle#31,AD18-AcademyStyle,Won back inside 6 s: every team keeps it [switch],Says,Won back inside 6 s: every team keeps it: turned on.,works
+AD18-AcademyStyle#32,AD18-AcademyStyle,−,Says,Aim down one step.,works; the aim on screen moves one step
+AD18-AcademyStyle#33,AD18-AcademyStyle,+,Says,Aim up one step.,"differs: this aim is at its top (all 16), so + is switched off and says nothing; it works again after one press of −"
+AD18-AcademyStyle#34,AD18-AcademyStyle,Minutes shared evenly: every team keeps it [switch],Says,Minutes shared evenly: every team keeps it: turned off.,works
+AD18-AcademyStyle#35,AD18-AcademyStyle,−,Says,Aim down one step.,works; the aim on screen moves one step
+AD18-AcademyStyle#36,AD18-AcademyStyle,+,Says,Aim up one step.,works; the aim on screen moves one step
+AD18-AcademyStyle#37,AD18-AcademyStyle,Weaker-foot touches: every team keeps it [switch],Says,Weaker-foot touches: every team keeps it: turned off.,works
+AD18-AcademyStyle#38,AD18-AcademyStyle,Aims only · Coaches move the numbers. The eight measures stay yours. [radio],Says,Aims only. Coaches are told.,works
+AD18-AcademyStyle#39,AD18-AcademyStyle,"Aims and measures · Coaches can swap any measure that isn’t core, and add their own. [radio]",Says,Aims and measures. Coaches are told.,works
+AD18-AcademyStyle#40,AD18-AcademyStyle,It’s their team · Your style is a starting point. Only the core stays. [radio],Says,It’s their team. Coaches are told.,works
+AD18-AcademyStyle#41,AD18-AcademyStyle,Talk to Reece,Opens,ACC13-AcademyChat,works
+AD18e-AcademyStyleEmpty#7,AD18e-AcademyStyleEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AD18e-AcademyStyleEmpty#12,AD18e-AcademyStyleEmpty,Set our style,Opens,StyleFlow,works
+AD19-SupportedPlace#7,AD19-SupportedPlace,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AD19-SupportedPlace#12,AD19-SupportedPlace,Cancel,Opens,AD12-Credits,works
+AD19-SupportedPlace#13,AD19-SupportedPlace,Save,Opens,AD12-Credits,works
+AD19-SupportedPlace#14,AD19-SupportedPlace,Full · $290 [radio],Says,Full · $290: chosen.,works
+AD19-SupportedPlace#15,AD19-SupportedPlace,Half · $145 [radio],Says,Half · $145: chosen.,works
+AD19-SupportedPlace#16,AD19-SupportedPlace,Nothing [radio],Says,Nothing: chosen.,works
+AD19-SupportedPlace#17,AD19-SupportedPlace,This term [radio],Says,This term: chosen.,works
+AD19-SupportedPlace#18,AD19-SupportedPlace,Until I change it [radio],Says,Until I change it: chosen.,works
+AD1e-AcademyHomeEmpty#7,AD1e-AcademyHomeEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AD1e-AcademyHomeEmpty#15,AD1e-AcademyHomeEmpty,Finish setting up,Opens,AD16-SetUp,works
+AD2-Health#7,AD2-Health,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
 AD2-Health#15,AD2-Health,Download,Says,The numbers are on their way to your email as a spreadsheet.,works
-AD2-Health#16,AD2-Health,Message these families,Says,New message to 3 families. Nothing is sent until you press send.,works
-AD3-Timetable#7,AD3-Timetable,Tall Timber Academy,Opens,VS1-SwitchView,"works; the switcher that opens is the club one (Wattle Creek FC teams), there is no academy version"
+AD2-Health#16,AD2-Health,How we know where families came from,Opens,ADP15-HowHeard,works
+AD2-Health#17,AD2-Health,Message these families,Says,New message to 3 families. Nothing is sent until you press send.,works
+AD20-NewProgram#7,AD20-NewProgram,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AD20-NewProgram#13,AD20-NewProgram,Cancel,Opens,AC2-Programs,works
+AD20-NewProgram#14,AD20-NewProgram,Add program,Opens,AD3-Timetable,works
+AD20-NewProgram#15,AD20-NewProgram,Mon [radio],Says,Mon: chosen.,works
+AD20-NewProgram#16,AD20-NewProgram,Tue [radio],Says,Tue: chosen.,works
+AD20-NewProgram#17,AD20-NewProgram,Wed [radio],Says,Wed: chosen.,works
+AD20-NewProgram#18,AD20-NewProgram,Thu [radio],Says,Thu: chosen.,works
+AD20-NewProgram#19,AD20-NewProgram,Fri [radio],Says,Fri: chosen.,works
+AD20-NewProgram#20,AD20-NewProgram,Sat [radio],Says,Sat: chosen.,works
+AD20-NewProgram#21,AD20-NewProgram,Training only [radio],Says,Training only: chosen.,works
+AD20-NewProgram#22,AD20-NewProgram,Has a game team [radio],Says,Has a game team: chosen.,works
+AD21-RatesCosts#7,AD21-RatesCosts,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AD21-RatesCosts#12,AD21-RatesCosts,Cancel,Opens,AD9-RosterPay,works
+AD21-RatesCosts#13,AD21-RatesCosts,Save,Opens,AD9-RosterPay,works
+AD21-RatesCosts#14,AD21-RatesCosts,−,Says,Aim down one step.,"works; the amount moves $5. The line is the table's own (""Aim ... one step""), which reads oddly for a rate"
+AD21-RatesCosts#15,AD21-RatesCosts,+,Says,Aim up one step.,"works; the amount moves $5. The line is the table's own (""Aim ... one step""), which reads oddly for a rate"
+AD21-RatesCosts#16,AD21-RatesCosts,−,Says,Aim down one step.,"works; the amount moves $5. The line is the table's own (""Aim ... one step""), which reads oddly for a rate"
+AD21-RatesCosts#17,AD21-RatesCosts,+,Says,Aim up one step.,"works; the amount moves $5. The line is the table's own (""Aim ... one step""), which reads oddly for a rate"
+AD21-RatesCosts#18,AD21-RatesCosts,−,Says,Aim down one step.,"works; the amount moves $5. The line is the table's own (""Aim ... one step""), which reads oddly for a rate"
+AD21-RatesCosts#19,AD21-RatesCosts,+,Says,Aim up one step.,"works; the amount moves $5. The line is the table's own (""Aim ... one step""), which reads oddly for a rate"
+AD21-RatesCosts#20,AD21-RatesCosts,−,Says,Aim down one step.,"works; the amount moves $5. The line is the table's own (""Aim ... one step""), which reads oddly for a rate"
+AD21-RatesCosts#21,AD21-RatesCosts,+,Says,Aim up one step.,"works; the amount moves $5. The line is the table's own (""Aim ... one step""), which reads oddly for a rate"
+AD21-RatesCosts#22,AD21-RatesCosts,−,Says,Aim down one step.,"works; the amount moves $5. The line is the table's own (""Aim ... one step""), which reads oddly for a rate"
+AD21-RatesCosts#23,AD21-RatesCosts,+,Says,Aim up one step.,"works; the amount moves $5. The line is the table's own (""Aim ... one step""), which reads oddly for a rate"
+AD21-RatesCosts#24,AD21-RatesCosts,−,Says,Aim down one step.,"differs: this rate is None, so − is switched off and says nothing; + takes it to $5 and − then works"
+AD21-RatesCosts#25,AD21-RatesCosts,+,Says,Aim up one step.,"works; the amount moves $5. The line is the table's own (""Aim ... one step""), which reads oddly for a rate"
+AD21-RatesCosts#26,AD21-RatesCosts,−,Says,Aim down one step.,"works; the amount moves $5. The line is the table's own (""Aim ... one step""), which reads oddly for a rate"
+AD21-RatesCosts#27,AD21-RatesCosts,+,Says,Aim up one step.,"works; the amount moves $5. The line is the table's own (""Aim ... one step""), which reads oddly for a rate"
+AD22-ChangeBlock#7,AD22-ChangeBlock,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AD22-ChangeBlock#12,AD22-ChangeBlock,Cancel,Opens,AD6-YearPlan,works
+AD22-ChangeBlock#13,AD22-ChangeBlock,Change the block,Opens,AD6-YearPlan,works
+AD22-ChangeBlock#14,AD22-ChangeBlock,First touch [radio],Says,First touch: chosen.,works
+AD22-ChangeBlock#15,AD22-ChangeBlock,Running with the ball [radio],Says,Running with the ball: chosen.,works
+AD22-ChangeBlock#16,AD22-ChangeBlock,One against one [radio],Says,One against one: chosen.,works
+AD22-ChangeBlock#17,AD22-ChangeBlock,Striking the ball [radio],Says,Striking the ball: chosen.,works
+AD23-AddCoach#7,AD23-AddCoach,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AD23-AddCoach#12,AD23-AddCoach,Cancel,Opens,AD17-Checks,works
+AD23-AddCoach#13,AD23-AddCoach,Send the invite,Opens,AD17-Checks,works
+AD23-AddCoach#14,AD23-AddCoach,Coach [radio],Says,Coach: chosen.,works
+AD23-AddCoach#15,AD23-AddCoach,Assistant coach [radio],Says,Assistant coach: chosen.,works
+AD23-AddCoach#16,AD23-AddCoach,Volunteer [radio],Says,Volunteer: chosen.,works
+AD23-AddCoach#17,AD23-AddCoach,I looked up her status on the government site today [checkbox],Says,I looked up her status on the government site today: ticked.,works
+AD23-AddCoach#18,AD23-AddCoach,I have connected her to Tall Timber in the government’s service [checkbox],Says,I have connected her to Tall Timber in the government’s service: ticked.,works
+AD24-BringIn#7,AD24-BringIn,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AD24-BringIn#12,AD24-BringIn,Back,Opens,AD13-Connections,works
+AD24-BringIn#13,AD24-BringIn,Check before saving,Says,"Step 3: 80 players ready, 3 need a look. Nothing is saved until you press Bring in.",works
+AD24-BringIn#14,AD24-BringIn,Player name,Says,"Pick where this column goes, or leave it out.","works; says the line, no picker opens (as the table has it)"
+AD24-BringIn#15,AD24-BringIn,Date of birth,Says,"Pick where this column goes, or leave it out.","works; says the line, no picker opens (as the table has it)"
+AD24-BringIn#16,AD24-BringIn,Parent name,Says,"Pick where this column goes, or leave it out.","works; says the line, no picker opens (as the table has it)"
+AD24-BringIn#17,AD24-BringIn,Parent mobile,Says,"Pick where this column goes, or leave it out.","works; says the line, no picker opens (as the table has it)"
+AD24-BringIn#18,AD24-BringIn,Program,Says,"Pick where this column goes, or leave it out.","works; says the line, no picker opens (as the table has it)"
+AD24-BringIn#19,AD24-BringIn,Fees paid this term,Says,"Pick where this column goes, or leave it out.","works; says the line, no picker opens (as the table has it)"
+AD24-BringIn#20,AD24-BringIn,Not brought in,Says,"Pick where this column goes, or leave it out.","works; says the line, no picker opens (as the table has it)"
+AD25-Reference#7,AD25-Reference,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AD25-Reference#10,AD25-Reference,Ask Reece to change it,Says,A note to Reece opens.,works
+AD25-Reference#11,AD25-Reference,Send to Tess,Says,Sent to Tess. She chooses who sees it.,works
+AD25-Reference#12,AD25-Reference,"Attach his player passport: skills, six clips, attendance [checkbox]",Says,"Attach his player passport: skills, six clips, attendance: unticked.",works
+AD2e-HealthEmpty#7,AD2e-HealthEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AD2e-HealthEmpty#15,AD2e-HealthEmpty,See this term’s players,Opens,AC4-AcademyPlayers,works
+AD3-Timetable#7,AD3-Timetable,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
 AD3-Timetable#13,AD3-Timetable,Cancel a session,Says,Pick the session. Families are told at once and each child gets a make-up.,works
-AD3-Timetable#14,AD3-Timetable,+ Add a session,Says,"A new session opens: group, coach, pitch and time.",works
-AD3-Timetable#15,AD3-Timetable,Foundation · Sofia and Ben · Pitch 1,Opens,ACT3-AcademySessionPlan,"works; every tile opens the one session plan that is drawn (Tuesday, Advanced)"
-AD3-Timetable#16,AD3-Timetable,Development · Reece · Pitch 1,Opens,ACT3-AcademySessionPlan,"works; every tile opens the one session plan that is drawn (Tuesday, Advanced)"
-AD3-Timetable#17,AD3-Timetable,Foundation · Sofia and Ben · Pitch 1,Opens,ACT3-AcademySessionPlan,"works; every tile opens the one session plan that is drawn (Tuesday, Advanced)"
-AD3-Timetable#18,AD3-Timetable,Development · Reece · Pitch 1,Opens,ACT3-AcademySessionPlan,"works; every tile opens the one session plan that is drawn (Tuesday, Advanced)"
-AD3-Timetable#19,AD3-Timetable,Advanced · Reece and Sofia · Pitch 1,Opens,ACT3-AcademySessionPlan,"works; every tile opens the one session plan that is drawn (Tuesday, Advanced)"
-AD3-Timetable#20,AD3-Timetable,Advanced · Reece only · Pitch 1 · Needs a second coach,Opens,ACT3-AcademySessionPlan,"works; every tile opens the one session plan that is drawn (Tuesday, Advanced)"
-AD3-Timetable#21,AD3-Timetable,One-on-one · Dani · 2 booked · Pitch 2,Opens,ACT3-AcademySessionPlan,"works; every tile opens the one session plan that is drawn (Tuesday, Advanced)"
-AD3-Timetable#22,AD3-Timetable,One-on-one · Reece · Kai · Pitch 2,Opens,ACT3-AcademySessionPlan,"works; every tile opens the one session plan that is drawn (Tuesday, Advanced)"
-AD3-Timetable#23,AD3-Timetable,One-on-one · Dani · 2 booked · Pitch 2,Opens,ACT3-AcademySessionPlan,"works; every tile opens the one session plan that is drawn (Tuesday, Advanced)"
-AD3-Timetable#24,AD3-Timetable,One-on-one · Reece · open · Pitch 2,Opens,ACT3-AcademySessionPlan,"works; every tile opens the one session plan that is drawn (Tuesday, Advanced)"
-AD3-Timetable#25,AD3-Timetable,Ask,Says,Ben has been asked. You’ll hear when he answers.,works
-AD3-Timetable#26,AD3-Timetable,Take it,Says,"You’re on Advanced, Thursday 5:30.",works
-AD4-NextTerm#7,AD4-NextTerm,Tall Timber Academy,Opens,VS1-SwitchView,"works; the switcher that opens is the club one (Wattle Creek FC teams), there is no academy version"
+AD3-Timetable#14,AD3-Timetable,+ Add a session,Opens,AD20-NewProgram,works
+AD3-Timetable#15,AD3-Timetable,Foundation · Sofia and Ben · Pitch 1,Opens,ACT3-AcademySessionPlan,works; every tile opens the one session plan that is drawn
+AD3-Timetable#16,AD3-Timetable,Development · Reece · Pitch 1,Opens,ACT3-AcademySessionPlan,works; every tile opens the one session plan that is drawn
+AD3-Timetable#17,AD3-Timetable,Foundation · Sofia and Ben · Pitch 1,Opens,ACT3-AcademySessionPlan,works; every tile opens the one session plan that is drawn
+AD3-Timetable#18,AD3-Timetable,Development · Reece · Pitch 1,Opens,ACT3-AcademySessionPlan,works; every tile opens the one session plan that is drawn
+AD3-Timetable#19,AD3-Timetable,Advanced · Reece and Sofia · Pitch 1,Opens,ACT3-AcademySessionPlan,works; every tile opens the one session plan that is drawn
+AD3-Timetable#20,AD3-Timetable,Advanced · Reece only · Pitch 1 · Needs a second coach,Opens,ACT3-AcademySessionPlan,works; every tile opens the one session plan that is drawn
+AD3-Timetable#21,AD3-Timetable,One-on-one · Dani · 2 booked · Pitch 2,Opens,ACT3-AcademySessionPlan,works; every tile opens the one session plan that is drawn
+AD3-Timetable#22,AD3-Timetable,One-on-one · Reece · Kai · Pitch 2,Opens,ACT3-AcademySessionPlan,works; every tile opens the one session plan that is drawn
+AD3-Timetable#23,AD3-Timetable,One-on-one · Dani · 2 booked · Pitch 2,Opens,ACT3-AcademySessionPlan,works; every tile opens the one session plan that is drawn
+AD3-Timetable#24,AD3-Timetable,One-on-one · Reece · open · Pitch 2,Opens,ACT3-AcademySessionPlan,works; every tile opens the one session plan that is drawn
+AD3-Timetable#25,AD3-Timetable,See what families get when a session is cancelled,Opens,ADP7-SessionOff,works
+AD3-Timetable#26,AD3-Timetable,Ask,Says,Ben has been asked. You’ll hear when he answers.,works
+AD3-Timetable#27,AD3-Timetable,Take it,Says,"You’re on Advanced, Thursday 5:30.",works
+AD3e-TimetableEmpty#7,AD3e-TimetableEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AD3e-TimetableEmpty#13,AD3e-TimetableEmpty,+ Add a session,Opens,AD20-NewProgram,works
+AD4-NextTerm#7,AD4-NextTerm,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
 AD4-NextTerm#13,AD4-NextTerm,Set Term 3 prices,Says,Prices open for each program. Families who have already re-enrolled keep the price they saw.,works
 AD4-NextTerm#14,AD4-NextTerm,Remind 24 families,Says,24 families are reminded tomorrow at 9:00. Each one opens with what their child has improved this term.,works
 AD4-NextTerm#15,AD4-NextTerm,Foundation · · 28 · · · 19 · · 8 · 1,Opens,AC4-AcademyPlayers,"works; opens All players, not filtered to that program"
 AD4-NextTerm#16,AD4-NextTerm,Development · · 30 · · · 21 · · 8 · 1,Opens,AC4-AcademyPlayers,"works; opens All players, not filtered to that program"
 AD4-NextTerm#17,AD4-NextTerm,Advanced · · 22 · · · 12 · · 8 · 2,Opens,AC4-AcademyPlayers,"works; opens All players, not filtered to that program"
 AD4-NextTerm#18,AD4-NextTerm,Offer 2 places,Opens,AC2-Programs,works
-AD4-NextTerm#19,AD4-NextTerm,Call,Says,Their number is copied. The call is yours to make.,works
-AD4-NextTerm#20,AD4-NextTerm,Remind,Says,A reminder goes to this family now.,works
+AD4-NextTerm#19,AD4-NextTerm,See what a waiting family sees,Opens,ADP14-WaitingList,works
+AD4-NextTerm#20,AD4-NextTerm,Call,Says,Their number is copied. The call is yours to make.,works
 AD4-NextTerm#21,AD4-NextTerm,Remind,Says,A reminder goes to this family now.,works
 AD4-NextTerm#22,AD4-NextTerm,Remind,Says,A reminder goes to this family now.,works
-AD5-GroupMoves#7,AD5-GroupMoves,Tall Timber Academy,Opens,VS1-SwitchView,"works; the switcher that opens is the club one (Wattle Creek FC teams), there is no academy version"
+AD4-NextTerm#23,AD4-NextTerm,Remind,Says,A reminder goes to this family now.,works
+AD4e-NextTermEmpty#7,AD4e-NextTermEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AD4e-NextTermEmpty#13,AD4e-NextTermEmpty,Set up Term 3,Says,"Dates and prices open, copied from this term to start.",works
+AD5-GroupMoves#7,AD5-GroupMoves,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
 AD5-GroupMoves#13,AD5-GroupMoves,Offer the move,Says,"The family is asked, with the reason, the new time and the new price. Nothing changes until they agree.",works
 AD5-GroupMoves#14,AD5-GroupMoves,Offer the move,Says,"The family is asked, with the reason, the new time and the new price. Nothing changes until they agree.",works
 AD5-GroupMoves#15,AD5-GroupMoves,Look again in Term 3,Says,You’ll be asked again in week 5 of Term 3.,works
 AD5-GroupMoves#16,AD5-GroupMoves,Open his file,Opens,ADC1-PlayerFile,works
-AD6-YearPlan#7,AD6-YearPlan,Tall Timber Academy,Opens,VS1-SwitchView,"works; the switcher that opens is the club one (Wattle Creek FC teams), there is no academy version"
-AD6-YearPlan#11,AD6-YearPlan,Share with families,Says,Families see the plan for their child’s program in the app.,works
-AD6-YearPlan#12,AD6-YearPlan,Change a block,Says,Pick a block. Sessions already planned for it are kept until you change them.,works
-AD6-YearPlan#13,AD6-YearPlan,WEEKS 1 TO 5 · Running with the ball · WEEKS 6 TO 10 · Stopping and turning,Opens,ACT1-AcademyWeek,works; every block opens the one week that is drawn
-AD6-YearPlan#14,AD6-YearPlan,WEEKS 1 TO 5 · First touch · WEEKS 6 TO 10 · One against one,Opens,ACT1-AcademyWeek,works; every block opens the one week that is drawn
-AD6-YearPlan#15,AD6-YearPlan,WEEKS 1 TO 5 · Striking the ball · WEEKS 6 TO 10 · Running with the ball,Opens,ACT1-AcademyWeek,works; every block opens the one week that is drawn
-AD6-YearPlan#16,AD6-YearPlan,WEEKS 1 TO 5 · One against one · WEEKS 6 TO 10 · Small games,Opens,ACT1-AcademyWeek,works; every block opens the one week that is drawn
-AD6-YearPlan#17,AD6-YearPlan,WEEKS 1 TO 5 · First touch · WEEKS 6 TO 10 · Striking the ball,Opens,ACT1-AcademyWeek,works; every block opens the one week that is drawn
-AD6-YearPlan#18,AD6-YearPlan,WEEKS 1 TO 5 · First touch on the move · WEEKS 6 TO 10 · One against one,Opens,ACT1-AcademyWeek,works; every block opens the one week that is drawn
-AD6-YearPlan#19,AD6-YearPlan,WEEKS 1 TO 5 · Running with the ball · WEEKS 6 TO 10 · Striking the ball,Opens,ACT1-AcademyWeek,works; every block opens the one week that is drawn
-AD6-YearPlan#20,AD6-YearPlan,WEEKS 1 TO 5 · One against one · WEEKS 6 TO 10 · Playing through,Opens,ACT1-AcademyWeek,works; every block opens the one week that is drawn
-AD6-YearPlan#21,AD6-YearPlan,WEEKS 1 TO 5 · First touch under pressure · WEEKS 6 TO 10 · Playing out,Opens,ACT1-AcademyWeek,works; every block opens the one week that is drawn
-AD6-YearPlan#22,AD6-YearPlan,"WEEKS 1 TO 5 · One against one · WEEKS 6 TO 10 · Finishing, weaker foot",Opens,ACT1-AcademyWeek,works; every block opens the one week that is drawn
-AD6-YearPlan#23,AD6-YearPlan,WEEKS 1 TO 5 · Striking the ball · WEEKS 6 TO 10 · Winning it back,Opens,ACT1-AcademyWeek,works; every block opens the one week that is drawn
-AD6-YearPlan#24,AD6-YearPlan,WEEKS 1 TO 5 · Running with the ball · WEEKS 6 TO 10 · Breaking lines,Opens,ACT1-AcademyWeek,works; every block opens the one week that is drawn
-AD7-HowWeCoach#7,AD7-HowWeCoach,Tall Timber Academy,Opens,VS1-SwitchView,"works; the switcher that opens is the club one (Wattle Creek FC teams), there is no academy version"
-AD7-HowWeCoach#11,AD7-HowWeCoach,Send to a new coach,Says,Pick the coach. They read it and tick it off before they can open a session.,works
-AD7-HowWeCoach#12,AD7-HowWeCoach,Edit,Says,Each part opens to edit. Changes show to coaches from their next session.,works
-AD7-HowWeCoach#13,AD7-HowWeCoach,64 drills in your library · 12 are your own · 52 chosen from Clean Sheet,Opens,DrillFlow,works
-AD7-HowWeCoach#14,AD7-HowWeCoach,3 drills waiting for you · Reece and Sofia added them this term,Opens,DrillFlow,works
-AD8-SessionQuality#7,AD8-SessionQuality,Tall Timber Academy,Opens,VS1-SwitchView,"works; the switcher that opens is the club one (Wattle Creek FC teams), there is no academy version"
-AD8-SessionQuality#11,AD8-SessionQuality,How we measure,Opens,RC8-HowWeMeasure,works
-AD8-SessionQuality#12,AD8-SessionQuality,RW · Reece Whitlam · 5 · 5 of 5 · 5 of 5 · 71% · Strong · · 27 of 34,Opens,AD10-WatchCoach,"works; the row says ""Not filmed"" in place of the share and its chip while ball rolling from film is switched off"
-AD8-SessionQuality#13,AD8-SessionQuality,SM · Sofia Marin · 4 · 3 of 4 · 3 of 4 · 64% · Estimate · · 22 of 30,Opens,AD10-WatchCoach,"works; the row says ""Not filmed"" in place of the share and its chip while ball rolling from film is switched off"
-AD8-SessionQuality#14,AD8-SessionQuality,BC · Ben Castellano · 2 · 2 of 2 · 2 of 2 · Not filmed · 12 of 16,Opens,AD10-WatchCoach,works
-AD8-SessionQuality#15,AD8-SessionQuality,DO · You · one-on-ones · 4 · Own plans · 4 of 4 · Not filmed · 6 of 8,Opens,AD10-WatchCoach,works
-AD8-SessionQuality#16,AD8-SessionQuality,Advanced · finishing drill · 0:40,Says,The clip plays.,works
-AD8-SessionQuality#17,AD8-SessionQuality,Watch with Reece,Opens,AD10-WatchCoach,works
-AD9-RosterPay#7,AD9-RosterPay,Tall Timber Academy,Opens,VS1-SwitchView,"works; the switcher that opens is the club one (Wattle Creek FC teams), there is no academy version"
-AD9-RosterPay#11,AD9-RosterPay,Change a rate,Says,Rates open for each coach. A new rate starts from the next fortnight.,works
-AD9-RosterPay#12,AD9-RosterPay,Download for payroll,Says,The fortnight is on its way to your email as a spreadsheet.,works
-AD9-RosterPay#13,AD9-RosterPay,See,Opens,AD3-Timetable,works
+AD5-GroupMoves#17,AD5-GroupMoves,See what the family is asked,Opens,ADP12-MoveOffer,works
+AD5e-GroupMovesEmpty#7,AD5e-GroupMovesEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AD5e-GroupMovesEmpty#13,AD5e-GroupMovesEmpty,See all players,Opens,AC4-AcademyPlayers,works
+AD6-YearPlan#7,AD6-YearPlan,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AD6-YearPlan#12,AD6-YearPlan,Share with families,Says,Families see the plan for their child’s program in the app.,works
+AD6-YearPlan#13,AD6-YearPlan,Change a block,Opens,AD22-ChangeBlock,works
+AD6-YearPlan#14,AD6-YearPlan,WEEKS 1 TO 5 · Running with the ball · WEEKS 6 TO 10 · Stopping and turning,Opens,ACT1-AcademyWeek,works; every block opens the one week that is drawn
+AD6-YearPlan#15,AD6-YearPlan,WEEKS 1 TO 5 · First touch · WEEKS 6 TO 10 · One against one,Opens,ACT1-AcademyWeek,works; every block opens the one week that is drawn
+AD6-YearPlan#16,AD6-YearPlan,WEEKS 1 TO 5 · Striking the ball · WEEKS 6 TO 10 · Running with the ball,Opens,ACT1-AcademyWeek,works; every block opens the one week that is drawn
+AD6-YearPlan#17,AD6-YearPlan,WEEKS 1 TO 5 · One against one · WEEKS 6 TO 10 · Small games,Opens,ACT1-AcademyWeek,works; every block opens the one week that is drawn
+AD6-YearPlan#18,AD6-YearPlan,WEEKS 1 TO 5 · First touch · WEEKS 6 TO 10 · Striking the ball,Opens,ACT1-AcademyWeek,works; every block opens the one week that is drawn
+AD6-YearPlan#19,AD6-YearPlan,WEEKS 1 TO 5 · First touch on the move · WEEKS 6 TO 10 · One against one,Opens,ACT1-AcademyWeek,works; every block opens the one week that is drawn
+AD6-YearPlan#20,AD6-YearPlan,WEEKS 1 TO 5 · Running with the ball · WEEKS 6 TO 10 · Striking the ball,Opens,ACT1-AcademyWeek,works; every block opens the one week that is drawn
+AD6-YearPlan#21,AD6-YearPlan,WEEKS 1 TO 5 · One against one · WEEKS 6 TO 10 · Playing through,Opens,ACT1-AcademyWeek,works; every block opens the one week that is drawn
+AD6-YearPlan#22,AD6-YearPlan,WEEKS 1 TO 5 · First touch under pressure · WEEKS 6 TO 10 · Playing out,Opens,ACT1-AcademyWeek,works; every block opens the one week that is drawn
+AD6-YearPlan#23,AD6-YearPlan,"WEEKS 1 TO 5 · One against one · WEEKS 6 TO 10 · Finishing, weaker foot",Opens,ACT1-AcademyWeek,works; every block opens the one week that is drawn
+AD6-YearPlan#24,AD6-YearPlan,WEEKS 1 TO 5 · Striking the ball · WEEKS 6 TO 10 · Winning it back,Opens,ACT1-AcademyWeek,works; every block opens the one week that is drawn
+AD6-YearPlan#25,AD6-YearPlan,WEEKS 1 TO 5 · Running with the ball · WEEKS 6 TO 10 · Breaking lines,Opens,ACT1-AcademyWeek,works; every block opens the one week that is drawn
+AD6e-YearPlanEmpty#7,AD6e-YearPlanEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AD6e-YearPlanEmpty#12,AD6e-YearPlanEmpty,Use the ready-made year,Says,A year is filled in for each program. Change any block.,works
+AD7-HowWeCoach#7,AD7-HowWeCoach,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AD7-HowWeCoach#12,AD7-HowWeCoach,Send to a new coach,Says,Pick the coach. They read it and tick it off before they can open a session.,works
+AD7-HowWeCoach#13,AD7-HowWeCoach,Edit,Says,Each part opens to edit. Changes show to coaches from their next session.,works
+AD7-HowWeCoach#14,AD7-HowWeCoach,64 drills in your library · 12 are your own · 52 chosen from Clean Sheet,Opens,DrillFlow,works
+AD7-HowWeCoach#15,AD7-HowWeCoach,3 drills waiting for you · Reece and Sofia added them this term,Opens,DrillFlow,works
+AD7e-HowWeCoachEmpty#7,AD7e-HowWeCoachEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AD7e-HowWeCoachEmpty#12,AD7e-HowWeCoachEmpty,Start from the ready-made page,Says,The page is filled in. Each part opens to edit.,works
+AD8-SessionQuality#7,AD8-SessionQuality,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AD8-SessionQuality#12,AD8-SessionQuality,How we measure,Opens,RC8-HowWeMeasure,works
+AD8-SessionQuality#13,AD8-SessionQuality,RW · Reece Whitlam · 5 · 5 of 5 · 5 of 5 · 71% · Strong · · 27 of 34,Opens,AD10-WatchCoach,"works; the row says ""Not filmed"" in place of the share and its chip while ball rolling from film is switched off"
+AD8-SessionQuality#14,AD8-SessionQuality,SM · Sofia Marin · 4 · 3 of 4 · 3 of 4 · 64% · Estimate · · 22 of 30,Opens,AD10-WatchCoach,"works; the row says ""Not filmed"" in place of the share and its chip while ball rolling from film is switched off"
+AD8-SessionQuality#15,AD8-SessionQuality,BC · Ben Castellano · 2 · 2 of 2 · 2 of 2 · Not filmed · 12 of 16,Opens,AD10-WatchCoach,works
+AD8-SessionQuality#16,AD8-SessionQuality,DO · You · one-on-ones · 4 · Own plans · 4 of 4 · Not filmed · 6 of 8,Opens,AD10-WatchCoach,works
+AD8-SessionQuality#17,AD8-SessionQuality,Advanced · finishing drill · 0:40,Says,The clip plays.,works
+AD8-SessionQuality#18,AD8-SessionQuality,Watch with Reece,Opens,AD10-WatchCoach,works
+AD8e-SessionQualityEmpty#7,AD8e-SessionQualityEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AD8e-SessionQualityEmpty#12,AD8e-SessionQualityEmpty,See the timetable,Opens,AD3-Timetable,works
+AD9-RosterPay#7,AD9-RosterPay,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AD9-RosterPay#12,AD9-RosterPay,Change a rate,Opens,AD21-RatesCosts,works
+AD9-RosterPay#13,AD9-RosterPay,Download for payroll,Says,The fortnight is on its way to your email as a spreadsheet.,works
+AD9-RosterPay#14,AD9-RosterPay,See,Opens,AD3-Timetable,works
+AD9e-RosterPayEmpty#7,AD9e-RosterPayEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+AD9e-RosterPayEmpty#12,AD9e-RosterPayEmpty,Set rates,Opens,AD21-RatesCosts,works
+ADS1-SwitchView#7,ADS1-SwitchView,Tall Timber Academy,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+ADS1-SwitchView#9,ADS1-SwitchView,"DO · Academy owner · Dani. Programs, families, coaches, money and the health of the academy. · Open",Opens,AD1-AcademyHome,works
+ADS1-SwitchView#10,ADS1-SwitchView,"RW · Academy coach · Reece. Today’s sessions, player files, film, the game review and style. · Open",Opens,ACC1-CoachToday,works
+ADS1-SwitchView#11,ADS1-SwitchView,"DB · Family · Ari’s parent, on the phone. Next session, the term report, keeping a place. · Open",Opens,ADP1-AcademyHome,works
+ADS1-SwitchView#12,ADS1-SwitchView,"KO · Player, 13 and over · Kai, on the phone. His goal, practice, his own clips and how he thinks he’s going. · Open",Opens,ACK1-AcademyPlayerHome,works
+DCK1-ClubChecks#7,DCK1-ClubChecks,Ask Clean Sheet,Opens,ASKd4-PanelFirst,"wrong target: opens the director frame's own Ask panel beside the page, as on the director's other tabs, not the ASKd4-PanelFirst board"
+DCK1-ClubChecks#8,DCK1-ClubChecks,Whole club,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+DCK1-ClubChecks#12,DCK1-ClubChecks,Download the record,Says,The record is on its way to your email as a spreadsheet.,works
+DCK1-ClubChecks#13,DCK1-ClubChecks,Add a person,Says,"Enter their name and card number. You check it on the government site, then tick it here.",works
+DCK1e-ClubChecksEmpty#7,DCK1e-ClubChecksEmpty,Ask Clean Sheet,Opens,ASKd4-PanelFirst,"wrong target: opens the director frame's own Ask panel beside the page, as on the director's other tabs, not the ASKd4-PanelFirst board"
+DCK1e-ClubChecksEmpty#8,DCK1e-ClubChecksEmpty,Whole club,Opens,VS1-SwitchView,works; the switcher that opens is the club one (Wattle Creek FC teams)
+DCK1e-ClubChecksEmpty#12,DCK1e-ClubChecksEmpty,Add a person,Says,Enter their name and card number.,works
+ACC1-CoachToday#7,ACC1-CoachToday,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ACC1-CoachToday#12,ACC1-CoachToday,Group chats,Opens,ACC13-AcademyChat,works
+ACC1-CoachToday#13,ACC1-CoachToday,Message Dani,Says,New message to Dani.,line of text only: the line is said; nothing else changes
+ACC1-CoachToday#14,ACC1-CoachToday,4:30 · Development · 9 to 11 · 14 coming · Arjun Mehta is on trial · Plan: First touch on the move · · 1 trial,Opens,ACC2-RunSession,works
+ACC1-CoachToday#15,ACC1-CoachToday,5:30 · Advanced · 12 to 14 · 20 coming · Lola and Finn are making up a missed session · Plan: Finishing with the weaker foot · · 2 make-ups,Opens,ACC2-RunSession,works
+ACC1-CoachToday#16,ACC1-CoachToday,"6:45 · One-on-one · Kai Okonkwo · 45 minutes · pitch 2, in open view · Plan: Built from Kai’s goal: weaker-foot finishing · · Parent told",Opens,ACC5-OneOnOne,works
+ACC1-CoachToday#17,ACC1-CoachToday,Check a draft,Opens,ACC6-ReportDraft,works
+ACC10-AcademyRecordResults#7,ACC10-AcademyRecordResults,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ACC10-AcademyRecordResults#10,ACC10-AcademyRecordResults,Clips · 8,Says,8 clips from tonight. Six are of players with a finishing goal.,line of text only: the line is said; nothing else changes
+ACC10-AcademyRecordResults#11,ACC10-AcademyRecordResults,Run it again next week,Says,Added to Thursday 11 June with the same set-up.,line of text only: the line is said; nothing else changes
+ACC10-AcademyRecordResults#12,ACC10-AcademyRecordResults,Check,Says,20 notes ready. Tap any to change it.,line of text only: the line is said; nothing else changes
+ACC10-AcademyRecordResults#13,ACC10-AcademyRecordResults,Open,Opens,ACC4-PlayerPlan,works
+ACC10e-AcademyRecordResultsEmpty#7,ACC10e-AcademyRecordResultsEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ACC10e-AcademyRecordResultsEmpty#10,ACC10e-AcademyRecordResultsEmpty,Run it again next week,Says,Added to next Thursday with the same set-up.,line of text only: the line is said; nothing else changes
+ACC11-AcademyRecording#1,ACC11-AcademyRecording,Next round,Says,Round 3 started.,line of text only: the line is said; nothing else changes
+ACC11-AcademyRecording#2,ACC11-AcademyRecording,Mark a moment,Says,Moment marked at 1:42. You’ll find it in the clips.,line of text only: the line is said; nothing else changes
+ACC11-AcademyRecording#3,ACC11-AcademyRecording,Pause,Says,Paused. Nothing is lost.,line of text only: the line is said; nothing else changes
+ACC11-AcademyRecording#4,ACC11-AcademyRecording,Stop and save,Opens,ACC10-AcademyRecordResults,works
+ACC12-AcademySuggested#7,ACC12-AcademySuggested,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ACC12-AcademySuggested#13,ACC12-AcademySuggested,Back to today,Opens,ACC1-CoachToday,works
+ACC12-AcademySuggested#14,ACC12-AcademySuggested,Use both,Says,Tonight’s plan updated with both suggestions.,line of text only: the line is said; nothing else changes
+ACC12-AcademySuggested#15,ACC12-AcademySuggested,Add to tonight,Says,Added. The set-up is saved as a new series.,line of text only: the line is said; nothing else changes
+ACC12-AcademySuggested#16,ACC12-AcademySuggested,Add to tonight,Says,Added as station 3.,line of text only: the line is said; nothing else changes
+ACC12e-AcademySuggestedEmpty#7,ACC12e-AcademySuggestedEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ACC12e-AcademySuggestedEmpty#13,ACC12e-AcademySuggestedEmpty,Record a drill,Opens,ACC8-AcademyRecord,"works: opens the empty state of ACC8-AcademyRecord, because this board is the app with nothing in it"
+ACC13-AcademyChat#7,ACC13-AcademyChat,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ACC13-AcademyChat#12,ACC13-AcademyChat,Today,Opens,ACC1-CoachToday,works
+ACC13-AcademyChat#13,ACC13-AcademyChat,New chat,Opens a sheet,cacadnew,works: sheet “New chat”
+ACC13-AcademyChat#14,ACC13-AcademyChat,Tall Timber news · Mon · · Dani: July clinic bookings are open,Opens a sheet,cacadnews,works: sheet “Tall Timber news”
+ACC13-AcademyChat#15,ACC13-AcademyChat,ADV · Advanced · Tue and Thu · 4:15 pm · · Tess: Kai did all three practices! · · 2,Opens,ACC13-AcademyChat,works
+ACC13-AcademyChat#16,ACC13-AcademyChat,U13 · U13 Timber · game team · Wed · · You: Team sheet for Sunday,Opens a sheet,cacadgame,works: sheet “U13 Timber · game team”
+ACC13-AcademyChat#17,ACC13-AcademyChat,DO · Dani Okafor · owner · Wed · · Can you take the 4:15 on Friday? · · 1,Opens a sheet,cdani,works: sheet “Dani Okafor · owner”
+ACC13-AcademyChat#18,ACC13-AcademyChat,"Photos, videos and files",Opens a sheet,cacadmedia,"works: sheet “Photos, videos and files”"
+ACC13-AcademyChat#19,ACC13-AcademyChat,Chat details,Opens a sheet,cacadinfo,works: sheet “Advanced · Tue and Thu”
+ACC13-AcademyChat#20,ACC13-AcademyChat,Photo,Says,Everyone in Advanced has a yes for photos.,line of text only: the line is said; nothing else changes
+ACC13-AcademyChat#21,ACC13-AcademyChat,Video,Opens a sheet,cvideo,works: sheet “Add a video”
+ACC13-AcademyChat#22,ACC13-AcademyChat,Voice,Opens a sheet,cvoice,works: sheet “Voice note”
+ACC13-AcademyChat#23,ACC13-AcademyChat,Poll,Opens a sheet,cacadpoll,works: sheet “New poll”
+ACC13-AcademyChat#24,ACC13-AcademyChat,File,Opens a sheet,cfile,works: sheet “Add a file”
+ACC13-AcademyChat#25,ACC13-AcademyChat,Home practice,Says,This week’s home practice attached.,line of text only: the line is said; nothing else changes
+ACC13-AcademyChat#26,ACC13-AcademyChat,Send,Says,Sent to the Advanced group.,line of text only: the line is said; nothing else changes
+ACC13e-AcademyChatEmpty#7,ACC13e-AcademyChatEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ACC13e-AcademyChatEmpty#12,ACC13e-AcademyChatEmpty,Today,Opens,ACC1-CoachToday,"works: opens the empty state of ACC1-CoachToday, because this board is the app with nothing in it"
+ACC13e-AcademyChatEmpty#13,ACC13e-AcademyChatEmpty,New chat,Opens a sheet,cacadnew,works: sheet “New chat”
+ACC13e-AcademyChatEmpty#14,ACC13e-AcademyChatEmpty,Tall Timber news · Mon · · Dani: July clinic bookings are open,Opens a sheet,cacadnews,works: sheet “Tall Timber news”
+ACC13e-AcademyChatEmpty#15,ACC13e-AcademyChatEmpty,ADV · Advanced · Tue and Thu · 4:15 pm · · No messages yet · · 2,Opens,ACC13-AcademyChat,"works: opens the empty state of ACC13-AcademyChat, because this board is the app with nothing in it"
+ACC13e-AcademyChatEmpty#16,ACC13e-AcademyChatEmpty,U13 · U13 Timber · game team · Wed · · You: Team sheet for Sunday,Opens a sheet,cacadgame,works: sheet “U13 Timber · game team”
+ACC13e-AcademyChatEmpty#17,ACC13e-AcademyChatEmpty,DO · Dani Okafor · owner · Wed · · Can you take the 4:15 on Friday? · · 1,Opens a sheet,cdani,works: sheet “Dani Okafor · owner”
+ACC13e-AcademyChatEmpty#18,ACC13e-AcademyChatEmpty,"Photos, videos and files",Opens a sheet,cacadmedia,"works: sheet “Photos, videos and files”"
+ACC13e-AcademyChatEmpty#19,ACC13e-AcademyChatEmpty,Chat details,Opens a sheet,cacadinfo,works: sheet “Advanced · Tue and Thu”
+ACC13e-AcademyChatEmpty#20,ACC13e-AcademyChatEmpty,Photo,Says,Everyone in Advanced has a yes for photos.,line of text only: the line is said; nothing else changes
+ACC13e-AcademyChatEmpty#21,ACC13e-AcademyChatEmpty,Video,Opens a sheet,cvideo,works: sheet “Add a video”
+ACC13e-AcademyChatEmpty#22,ACC13e-AcademyChatEmpty,Voice,Opens a sheet,cvoice,works: sheet “Voice note”
+ACC13e-AcademyChatEmpty#23,ACC13e-AcademyChatEmpty,Poll,Opens a sheet,cacadpoll,works: sheet “New poll”
+ACC13e-AcademyChatEmpty#24,ACC13e-AcademyChatEmpty,File,Opens a sheet,cfile,works: sheet “Add a file”
+ACC13e-AcademyChatEmpty#25,ACC13e-AcademyChatEmpty,Home practice,Says,This week’s home practice attached.,line of text only: the line is said; nothing else changes
+ACC13e-AcademyChatEmpty#26,ACC13e-AcademyChatEmpty,Send,Says,Sent to the Advanced group.,line of text only: the line is said; nothing else changes
+ACC1e-CoachTodayEmpty#7,ACC1e-CoachTodayEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ACC1e-CoachTodayEmpty#12,ACC1e-CoachTodayEmpty,Check report drafts,Opens,ACC6-ReportDraft,"works: opens the empty state of ACC6-ReportDraft, because this board is the app with nothing in it"
+ACC2-RunSession#7,ACC2-RunSession,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ACC2-RunSession#12,ACC2-RunSession,Swap a drill,Opens,DrillFlow,works: opens over the top with a Back bar
+ACC2-RunSession#13,ACC2-RunSession,Finish and write notes,Opens,ADC11-AfterSession,works
+ACC2-RunSession#14,ACC2-RunSession,Here,Says,Kai marked away.,line of text only: the line is said; nothing else changes
+ACC2-RunSession#15,ACC2-RunSession,Here,Says,Ana marked away.,line of text only: the line is said; nothing else changes
+ACC2-RunSession#16,ACC2-RunSession,Here,Says,Jonah marked away.,line of text only: the line is said; nothing else changes
+ACC2-RunSession#17,ACC2-RunSession,Here,Says,Lola marked away.,line of text only: the line is said; nothing else changes
+ACC2-RunSession#18,ACC2-RunSession,Here,Says,Zane marked away.,line of text only: the line is said; nothing else changes
+ACC2-RunSession#19,ACC2-RunSession,Away,Says,Mila marked here.,line of text only: the line is said; nothing else changes
+ACC2-RunSession#20,ACC2-RunSession,Here,Says,Finn marked away.,line of text only: the line is said; nothing else changes
+ACC2-RunSession#21,ACC2-RunSession,Film this drill,Says,Filming on. Only players whose parents agreed appear in clips.,line of text only: the line is said; nothing else changes
+ACC2e-RunSessionEmpty#7,ACC2e-RunSessionEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ACC2e-RunSessionEmpty#12,ACC2e-RunSessionEmpty,Pick a focus,Opens,DrillFlow,works: opens over the top with a Back bar
+ACC3-TrialAssess#7,ACC3-TrialAssess,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ACC3-TrialAssess#12,ACC3-TrialAssess,Not today,Opens,ACC1-CoachToday,works
+ACC3-TrialAssess#13,ACC3-TrialAssess,Send to Dani,Says,Sent. Dani can make Arjun’s family an offer tonight.,line of text only: the line is said; nothing else changes
+ACC3-TrialAssess#14,ACC3-TrialAssess,Starting out [radio],Says,Ball mastery: Starting out.,line of text only: the line is said; the choice shown stays as drawn
+ACC3-TrialAssess#15,ACC3-TrialAssess,Getting there [radio],Says,Ball mastery: Getting there.,line of text only: the line is said; the choice shown stays as drawn
+ACC3-TrialAssess#16,ACC3-TrialAssess,Strong [radio],Says,Ball mastery: Strong.,line of text only: the line is said; the choice shown stays as drawn
+ACC3-TrialAssess#17,ACC3-TrialAssess,Starting out [radio],Says,First touch: Starting out.,line of text only: the line is said; the choice shown stays as drawn
+ACC3-TrialAssess#18,ACC3-TrialAssess,Getting there [radio],Says,First touch: Getting there.,line of text only: the line is said; the choice shown stays as drawn
+ACC3-TrialAssess#19,ACC3-TrialAssess,Strong [radio],Says,First touch: Strong.,line of text only: the line is said; the choice shown stays as drawn
+ACC3-TrialAssess#20,ACC3-TrialAssess,Starting out [radio],Says,One against one: Starting out.,line of text only: the line is said; the choice shown stays as drawn
+ACC3-TrialAssess#21,ACC3-TrialAssess,Getting there [radio],Says,One against one: Getting there.,line of text only: the line is said; the choice shown stays as drawn
+ACC3-TrialAssess#22,ACC3-TrialAssess,Strong [radio],Says,One against one: Strong.,line of text only: the line is said; the choice shown stays as drawn
+ACC3-TrialAssess#23,ACC3-TrialAssess,Starting out [radio],Says,Passing: Starting out.,line of text only: the line is said; the choice shown stays as drawn
+ACC3-TrialAssess#24,ACC3-TrialAssess,Getting there [radio],Says,Passing: Getting there.,line of text only: the line is said; the choice shown stays as drawn
+ACC3-TrialAssess#25,ACC3-TrialAssess,Strong [radio],Says,Passing: Strong.,line of text only: the line is said; the choice shown stays as drawn
+ACC3-TrialAssess#26,ACC3-TrialAssess,Suggest another group,Says,Changed to Advanced. Dani will see your reason.,line of text only: the line is said; nothing else changes
+ACC3e-TrialAssessEmpty#7,ACC3e-TrialAssessEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ACC3e-TrialAssessEmpty#12,ACC3e-TrialAssessEmpty,Back to today,Opens,ACC1-CoachToday,"works: opens the empty state of ACC1-CoachToday, because this board is the app with nothing in it"
+ACC4-PlayerPlan#7,ACC4-PlayerPlan,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ACC4-PlayerPlan#13,ACC4-PlayerPlan,Message Kai’s mum,Says,New message to Tess Okonkwo.,line of text only: the line is said; nothing else changes
+ACC4-PlayerPlan#14,ACC4-PlayerPlan,Write term report,Opens,ACC6-ReportDraft,works
+ACC4e-PlayerPlanEmpty#7,ACC4e-PlayerPlanEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ACC4e-PlayerPlanEmpty#13,ACC4e-PlayerPlanEmpty,See her trial notes,Opens,ACC3-TrialAssess,"works: opens the empty state of ACC3-TrialAssess, because this board is the app with nothing in it"
+ACC5-OneOnOne#7,ACC5-OneOnOne,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ACC5-OneOnOne#12,ACC5-OneOnOne,Move the session,Says,Pick a new time. Kai’s mum is asked to confirm.,line of text only: the line is said; nothing else changes
+ACC5-OneOnOne#13,ACC5-OneOnOne,Finish and send summary,Says,"Summary sent to Kai’s mum, with one clip.",line of text only: the line is said; nothing else changes
+ACC5-OneOnOne#14,ACC5-OneOnOne,Film a finish,Says,Filming on. The clip goes to Kai and his mum only.,line of text only: the line is said; nothing else changes
+ACC5e-OneOnOneEmpty#7,ACC5e-OneOnOneEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ACC5e-OneOnOneEmpty#12,ACC5e-OneOnOneEmpty,Open more times,Says,Pick the times you’re free. Parents see them straight away.,line of text only: the line is said; nothing else changes
+ACC6-ReportDraft#7,ACC6-ReportDraft,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ACC6-ReportDraft#13,ACC6-ReportDraft,Next draft,Says,"Opening Ana’s. Too new for a report, so skipped.",line of text only: the line is said; nothing else changes
+ACC6-ReportDraft#14,ACC6-ReportDraft,"Looks right, send to Dani",Says,Sent to Dani to approve. 3 more drafts to check.,line of text only: the line is said; nothing else changes
+ACC6-ReportDraft#15,ACC6-ReportDraft,Make it shorter,Says,Shortened to three sentences.,line of text only: the line is said; nothing else changes
+ACC6-ReportDraft#16,ACC6-ReportDraft,Change a word,Says,Tap any sentence to edit it.,line of text only: the line is said; nothing else changes
+ACC6-ReportDraft#17,ACC6-ReportDraft,Add a clip,Says,Pick from Kai’s 4 clips this term.,line of text only: the line is said; nothing else changes
+ACC6e-ReportDraftEmpty#7,ACC6e-ReportDraftEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ACC6e-ReportDraftEmpty#13,ACC6e-ReportDraftEmpty,Back to today,Opens,ACC1-CoachToday,"works: opens the empty state of ACC1-CoachToday, because this board is the app with nothing in it"
+ACC7-AcademyGameDay#7,ACC7-AcademyGameDay,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ACC7-AcademyGameDay#13,ACC7-AcademyGameDay,Message the team,Says,New message to 16 families.,line of text only: the line is said; nothing else changes
+ACC7-AcademyGameDay#14,ACC7-AcademyGameDay,Start the game,Opens,L11-LiveGame11,works: opens over the top with a Back bar
+ACC7-AcademyGameDay#15,ACC7-AcademyGameDay,Open,Opens,MS1-TeamSheet,works: opens over the top with a Back bar
+ACC7-AcademyGameDay#16,ACC7-AcademyGameDay,See plan,Says,"Minutes plan: 16 players, nobody under 35 of 70 minutes.",line of text only: the line is said; nothing else changes
+ACC7-AcademyGameDay#17,ACC7-AcademyGameDay,Open,Opens,E-TeamTalk,works: opens over the top with a Back bar
+ACC7-AcademyGameDay#18,ACC7-AcademyGameDay,See last week’s review,Opens,R1-MatchReview,works: opens over the top with a Back bar
+ACC7e-AcademyGameDayEmpty#7,ACC7e-AcademyGameDayEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ACC7e-AcademyGameDayEmpty#13,ACC7e-AcademyGameDayEmpty,Back to today,Opens,ACC1-CoachToday,"works: opens the empty state of ACC1-CoachToday, because this board is the app with nothing in it"
+ACC8-AcademyRecord#7,ACC8-AcademyRecord,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ACC8-AcademyRecord#10,ACC8-AcademyRecord,Back to today,Opens,ACC1-CoachToday,works
+ACC8-AcademyRecord#11,ACC8-AcademyRecord,"A drill in tonight’s session · Advanced, 5:30 · finishing circuit, three stations · · Run 3",Opens,ACC9-AcademyRecordDrill,works
+ACC8-AcademyRecord#12,ACC8-AcademyRecord,"A one-on-one · Kai at 6:45 · his left-foot finishing, against last week",Opens,ACC5-OneOnOne,works
+ACC8-AcademyRecord#13,ACC8-AcademyRecord,"A skill test · Juggling, first touch or striking. Each player against their own last result",Opens,ACC9-AcademyRecordDrill,works
+ACC8-AcademyRecord#14,ACC8-AcademyRecord,Sunday’s game · U13 Timber vs Banksia Park · matched to the club’s fixture,Opens,ACC7-AcademyGameDay,works
+ACC8e-AcademyRecordEmpty#7,ACC8e-AcademyRecordEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ACC8e-AcademyRecordEmpty#10,ACC8e-AcademyRecordEmpty,Pair a camera,Says,Opens devices. Hold the camera near the tablet.,line of text only: the line is said; nothing else changes
+ACC8e-AcademyRecordEmpty#11,ACC8e-AcademyRecordEmpty,Count by hand,Opens,ACC9-AcademyRecordDrill,works
+ACC8p-PairCamera#7,ACC8p-PairCamera,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ACC8p-PairCamera#10,ACC8p-PairCamera,Back to Record,Opens,ACC8-AcademyRecord,works
+ACC8p-PairCamera#11,ACC8p-PairCamera,Use this tablet’s camera instead,Says,OK. Prop the tablet up and press record.,line of text only: the line is said; nothing else changes
+ACC8p-PairCamera#12,ACC8p-PairCamera,Pair,Says,Paired with Match camera 2. Now check the picture.,line of text only: the line is said; nothing else changes
+ACC8p-PairCamera#13,ACC8p-PairCamera,All devices,Opens,SET4-Devices,works: opens over the top with a Back bar
+ACC9-AcademyRecordDrill#7,ACC9-AcademyRecordDrill,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ACC9-AcademyRecordDrill#10,ACC9-AcademyRecordDrill,Pick another drill,Opens,DrillFlow,works: opens over the top with a Back bar
+ACC9-AcademyRecordDrill#11,ACC9-AcademyRecordDrill,Start recording,Opens,ACC11-AcademyRecording,works
+ACC9-AcademyRecordDrill#12,ACC9-AcademyRecordDrill,Change,Says,Change players.,line of text only: the line is said; nothing else changes
+ACC9-AcademyRecordDrill#13,ACC9-AcademyRecordDrill,Change,Says,Change area.,line of text only: the line is said; nothing else changes
+ACC9-AcademyRecordDrill#14,ACC9-AcademyRecordDrill,Change,Says,Change rounds.,line of text only: the line is said; nothing else changes
+ACC9-AcademyRecordDrill#15,ACC9-AcademyRecordDrill,Change,Says,Change rule.,line of text only: the line is said; nothing else changes
+ACC9-AcademyRecordDrill#16,ACC9-AcademyRecordDrill,Check view,Says,Camera view looks good. All three stations are in shot.,line of text only: the line is said; nothing else changes
+ACC9-AcademyRecordDrill#17,ACC9-AcademyRecordDrill,+ Count something by hand,Says,"Add a count you tap by hand, such as “first-time finishes”.",line of text only: the line is said; nothing else changes
+ACK1-AcademyPlayerHome#1,ACK1-AcademyPlayerHome,Practice at home · Left-foot wall strikes · 10 minutes · 2 of 3 done,Opens,ACK2-HomePractice,works
+ACK1-AcademyPlayerHome#2,ACK1-AcademyPlayerHome,From Reece: your left-foot finish · “Look how your hips open here.”,Says,"Playing your clip: left-foot finish, 28 May.",line of text only: the line is said; nothing else changes
+ACK1-AcademyPlayerHome#3,ACK1-AcademyPlayerHome,Home,Opens,ACK1-AcademyPlayerHome,works
+ACK1-AcademyPlayerHome#4,ACK1-AcademyPlayerHome,Practice,Opens,ACK2-HomePractice,works
+ACK1e-AcademyPlayerHomeEmpty#1,ACK1e-AcademyPlayerHomeEmpty,Home,Opens,ACK1-AcademyPlayerHome,works
+ACK1e-AcademyPlayerHomeEmpty#2,ACK1e-AcademyPlayerHomeEmpty,Practice,Opens,ACK2-HomePractice,works
+ACK2-HomePractice#1,ACK2-HomePractice,Skip today,Says,No worries. Rest counts too.,line of text only: the line is said; nothing else changes
+ACK2-HomePractice#2,ACK2-HomePractice,Done it,Says,"Nice work, Kai. That’s 3 of 3 this week.",line of text only: the line is said; nothing else changes
+ACK2-HomePractice#3,ACK2-HomePractice,Home,Opens,ACK1-AcademyPlayerHome,works
+ACK2-HomePractice#4,ACK2-HomePractice,Practice,Opens,ACK2-HomePractice,works
+ACK2e-HomePracticeEmpty#1,ACK2e-HomePracticeEmpty,Home,Opens,ACK1-AcademyPlayerHome,works
+ACK2e-HomePracticeEmpty#2,ACK2e-HomePracticeEmpty,Practice,Opens,ACK2-HomePractice,works
+ACP1-BookTrial#1,ACP1-BookTrial,Tue 12 May · 5:30 pm · Advanced · Messmate Primary School [radio],Says,Tue 12 May · 5:30 pm chosen.,line of text only: the line is said; the choice shown stays as drawn
+ACP1-BookTrial#2,ACP1-BookTrial,Thu 14 May · 5:30 pm · Advanced · Messmate Primary School [radio],Says,Thu 14 May · 5:30 pm chosen.,line of text only: the line is said; the choice shown stays as drawn
+ACP1-BookTrial#3,ACP1-BookTrial,Book the trial,Opens,ACP1b-TrialBooked,"differs on purpose: opens ADP15-HowHeard, as handover v23 asks (the one optional question, then ACP1b). This row and the board still say ACP1b"
+ACP10-AcademyConcern#1,ACP10-AcademyConcern,Back,Opens,ACP3-AcademyParentHome,works
+ACP10-AcademyConcern#2,ACP10-AcademyConcern,"At academy training · Goes to Dani Okafor, who runs Tall Timber [radio]",Says,At academy training chosen.,line of text only: the line is said; the choice shown stays as drawn
+ACP10-AcademyConcern#3,ACP10-AcademyConcern,"At a Sunday game · Goes to Helen Park, Wattle Creek’s welfare officer [radio]",Says,At a Sunday game chosen.,line of text only: the line is said; the choice shown stays as drawn
+ACP10-AcademyConcern#4,ACP10-AcademyConcern,"I’m not sure · Both are told, and they agree who leads [radio]",Says,I’m not sure chosen.,line of text only: the line is said; the choice shown stays as drawn
+ACP10-AcademyConcern#5,ACP10-AcademyConcern,It’s about the person in charge · We show you how to go straight to the regulator [radio],Says,It’s about the person in charge chosen.,line of text only: the line is said; the choice shown stays as drawn
+ACP10-AcademyConcern#6,ACP10-AcademyConcern,Send privately,Says,Sent to Helen Park. She’ll reply within 2 days.,line of text only: the line is said; nothing else changes
+ACP11-AcademyParentChat#1,ACP11-AcademyParentChat,Back,Opens,ACP3-AcademyParentHome,works
+ACP11-AcademyParentChat#2,ACP11-AcademyParentChat,Pinned: · Term 3 starts Tue 14 July. Same times.,Opens a sheet,cpinned,works: sheet “Pinned messages”
+ACP11-AcademyParentChat#3,ACP11-AcademyParentChat,"Add a photo, video, voice note or more",Opens a sheet,cattach,works: sheet “Add to your message”
+ACP11-AcademyParentChat#4,ACP11-AcademyParentChat,Send,Says,Sent to the Advanced group.,line of text only: the line is said; nothing else changes
+ACP11e-AcademyParentChatEmpty#1,ACP11e-AcademyParentChatEmpty,Back,Opens,ACP3-AcademyParentHome,works
+ACP11e-AcademyParentChatEmpty#2,ACP11e-AcademyParentChatEmpty,"Add a photo, video, voice note or more",Opens a sheet,cattach,works: sheet “Add to your message”
+ACP11e-AcademyParentChatEmpty#3,ACP11e-AcademyParentChatEmpty,Send,Says,Sent to the Advanced group.,line of text only: the line is said; nothing else changes
+ACP1b-TrialBooked#1,ACP1b-TrialBooked,Read the child-safe policy,Says,Opens the academy’s child-safe policy.,line of text only: the line is said; nothing else changes
+ACP1b-TrialBooked#2,ACP1b-TrialBooked,Add to my calendar,Says,Added to your calendar.,line of text only: the line is said; nothing else changes
+ACP1b-TrialBooked#3,ACP1b-TrialBooked,Done,Opens,ACP2-Offer,works
+ACP2-Offer#1,ACP2-Offer,Not for us,Says,No problem. The place goes to the next family.,line of text only: the line is said; nothing else changes
+ACP2-Offer#2,ACP2-Offer,Accept,Opens,ACP9-JoinGameTeam,works
+ACP3-AcademyParentHome#1,ACP3-AcademyParentHome,"THU · 4 · · Training today, 5:30 pm · Then one-on-one at 6:45 · game Sun 12:00 · · Can’t come?",Opens,ACP6-MakeUp,works
+ACP3-AcademyParentHome#2,ACP3-AcademyParentHome,From coach Reece · Tuesday · “Best first touch I’ve seen from Kai. He set it out of his feet every time.” · See his progress,Opens,ACP5-ProgressReport,works
+ACP3-AcademyParentHome#3,ACP3-AcademyParentHome,July holiday clinic · Mon 6 to Wed 8 July · 9 places left,Opens,ACP8-BookClinic,works
+ACP3-AcademyParentHome#4,ACP3-AcademyParentHome,Group chat · 2 new,Opens,ACP11-AcademyParentChat,works
+ACP3-AcademyParentHome#5,ACP3-AcademyParentHome,Something not right?,Opens,ACP10-AcademyConcern,works
+ACP3-AcademyParentHome#6,ACP3-AcademyParentHome,Home,Opens,FAM14-HomeWithClub,works
+ACP3-AcademyParentHome#7,ACP3-AcademyParentHome,Reels,Opens,FAM18-Reels,works
+ACP3-AcademyParentHome#8,ACP3-AcademyParentHome,Team,Opens,FAM31-Team,works
+ACP3-AcademyParentHome#9,ACP3-AcademyParentHome,Learn,Opens,FAM17u-LearnWithClub,works
+ACP3-AcademyParentHome#10,ACP3-AcademyParentHome,Club,Opens,ADP1-AcademyHome,works
+ACP3e-AcademyParentHomeEmpty#1,ACP3e-AcademyParentHomeEmpty,Add to my calendar,Says,Added to your calendar.,line of text only: the line is said; nothing else changes
+ACP3e-AcademyParentHomeEmpty#2,ACP3e-AcademyParentHomeEmpty,Home,Opens,FAM14-HomeWithClub,works
+ACP3e-AcademyParentHomeEmpty#3,ACP3e-AcademyParentHomeEmpty,Reels,Opens,FAM18-Reels,works
+ACP3e-AcademyParentHomeEmpty#4,ACP3e-AcademyParentHomeEmpty,Team,Opens,FAM31-Team,works
+ACP3e-AcademyParentHomeEmpty#5,ACP3e-AcademyParentHomeEmpty,Learn,Opens,FAM17u-LearnWithClub,works
+ACP3e-AcademyParentHomeEmpty#6,ACP3e-AcademyParentHomeEmpty,Club,Opens,ADP1-AcademyHome,works
+ACP4-ParentFees#1,ACP4-ParentFees,Term 3 place · Re-enrol by 19 June to keep Kai’s spot · · Keep it,Says,"Kai’s Term 3 place is held. $320, due 13 July.",line of text only: the line is said; nothing else changes
+ACP4-ParentFees#2,ACP4-ParentFees,Receipts · For your records or a rebate,Says,4 receipts sent to your email.,line of text only: the line is said; nothing else changes
+ACP4-ParentFees#3,ACP4-ParentFees,Change card,Says,Opens secure card set-up.,line of text only: the line is said; nothing else changes
+ACP4-ParentFees#4,ACP4-ParentFees,Pay it now,Says,"$129.67 paid. Thanks, Tess.",line of text only: the line is said; nothing else changes
+ACP4-ParentFees#5,ACP4-ParentFees,Home,Opens,FAM14-HomeWithClub,works
+ACP4-ParentFees#6,ACP4-ParentFees,Reels,Opens,FAM18-Reels,works
+ACP4-ParentFees#7,ACP4-ParentFees,Team,Opens,FAM31-Team,works
+ACP4-ParentFees#8,ACP4-ParentFees,Learn,Opens,FAM17u-LearnWithClub,works
+ACP4-ParentFees#9,ACP4-ParentFees,Club,Opens,ADP1-AcademyHome,works
+ACP4e-ParentFeesEmpty#1,ACP4e-ParentFeesEmpty,Receipts · For your records or a rebate,Says,Receipts sent to your email.,line of text only: the line is said; nothing else changes
+ACP4e-ParentFeesEmpty#2,ACP4e-ParentFeesEmpty,Home,Opens,FAM14-HomeWithClub,works
+ACP4e-ParentFeesEmpty#3,ACP4e-ParentFeesEmpty,Reels,Opens,FAM18-Reels,works
+ACP4e-ParentFeesEmpty#4,ACP4e-ParentFeesEmpty,Team,Opens,FAM31-Team,works
+ACP4e-ParentFeesEmpty#5,ACP4e-ParentFeesEmpty,Learn,Opens,FAM17u-LearnWithClub,works
+ACP4e-ParentFeesEmpty#6,ACP4e-ParentFeesEmpty,Club,Opens,ADP1-AcademyHome,works
+ACP5-ProgressReport#1,ACP5-ProgressReport,Watch: left-foot finish · 28 May · 12 seconds,Says,"Playing Kai’s clip: left-foot finish, 28 May.",line of text only: the line is said; nothing else changes
+ACP5-ProgressReport#2,ACP5-ProgressReport,Home,Opens,FAM14-HomeWithClub,works
+ACP5-ProgressReport#3,ACP5-ProgressReport,Reels,Opens,FAM18-Reels,works
+ACP5-ProgressReport#4,ACP5-ProgressReport,Team,Opens,FAM31-Team,works
+ACP5-ProgressReport#5,ACP5-ProgressReport,Learn,Opens,FAM17u-LearnWithClub,works
+ACP5-ProgressReport#6,ACP5-ProgressReport,Club,Opens,ADP1-AcademyHome,works
+ACP5e-ProgressReportEmpty#1,ACP5e-ProgressReportEmpty,Home,Opens,FAM14-HomeWithClub,works
+ACP5e-ProgressReportEmpty#2,ACP5e-ProgressReportEmpty,Reels,Opens,FAM18-Reels,works
+ACP5e-ProgressReportEmpty#3,ACP5e-ProgressReportEmpty,Team,Opens,FAM31-Team,works
+ACP5e-ProgressReportEmpty#4,ACP5e-ProgressReportEmpty,Learn,Opens,FAM17u-LearnWithClub,works
+ACP5e-ProgressReportEmpty#5,ACP5e-ProgressReportEmpty,Club,Opens,ADP1-AcademyHome,works
+ACP6-MakeUp#1,ACP6-MakeUp,Back,Opens,ACP3-AcademyParentHome,works
+ACP6-MakeUp#2,ACP6-MakeUp,Tue 9 Jun · 5:30 pm · His usual group [radio],Says,Tue 9 Jun · 5:30 pm chosen.,line of text only: the line is said; the choice shown stays as drawn
+ACP6-MakeUp#3,ACP6-MakeUp,Sat 13 Jun · 9:00 am · Saturday skills · 4 places left [radio],Says,Sat 13 Jun · 9:00 am chosen.,line of text only: the line is said; the choice shown stays as drawn
+ACP6-MakeUp#4,ACP6-MakeUp,Decide later · Keep 1 make-up to use by the end of term [radio],Says,Decide later chosen.,line of text only: the line is said; the choice shown stays as drawn
+ACP6-MakeUp#5,ACP6-MakeUp,Move it,Says,Pick a new time. Coach Reece confirms.,line of text only: the line is said; nothing else changes
+ACP6-MakeUp#6,ACP6-MakeUp,He’s coming,Opens,ACP3-AcademyParentHome,works
+ACP6-MakeUp#7,ACP6-MakeUp,Mark away and book,Says,Kai is marked away today and booked in for Sat 13 Jun.,line of text only: the line is said; nothing else changes
+ACP7-ShareWithClub#1,ACP7-ShareWithClub,Share nothing,Says,Nothing is shared. You can change this any time.,line of text only: the line is said; nothing else changes
+ACP7-ShareWithClub#2,ACP7-ShareWithClub,Save,Says,Saved. Theo’s club coach is told what you chose to share.,line of text only: the line is said; nothing else changes
+ACP8-BookClinic#1,ACP8-BookClinic,Book Nia · $180,Says,Nia is booked for the July clinic. Receipt sent.,line of text only: the line is said; nothing else changes
+ACP8-BookClinic#2,ACP8-BookClinic,Home,Opens,FAM14-HomeWithClub,works
+ACP8-BookClinic#3,ACP8-BookClinic,Reels,Opens,FAM18-Reels,works
+ACP8-BookClinic#4,ACP8-BookClinic,Team,Opens,FAM31-Team,works
+ACP8-BookClinic#5,ACP8-BookClinic,Learn,Opens,FAM17u-LearnWithClub,works
+ACP8-BookClinic#6,ACP8-BookClinic,Club,Opens,ADP1-AcademyHome,works
+ACP8e-BookClinicEmpty#1,ACP8e-BookClinicEmpty,One-on-one with a coach · $90 · 45 minutes · times open each Sunday,Says,No one-on-one times open this week.,line of text only: the line is said; nothing else changes
+ACP8e-BookClinicEmpty#2,ACP8e-BookClinicEmpty,Home,Opens,FAM14-HomeWithClub,works
+ACP8e-BookClinicEmpty#3,ACP8e-BookClinicEmpty,Reels,Opens,FAM18-Reels,works
+ACP8e-BookClinicEmpty#4,ACP8e-BookClinicEmpty,Team,Opens,FAM31-Team,works
+ACP8e-BookClinicEmpty#5,ACP8e-BookClinicEmpty,Learn,Opens,FAM17u-LearnWithClub,works
+ACP8e-BookClinicEmpty#6,ACP8e-BookClinicEmpty,Club,Opens,ADP1-AcademyHome,works
+ACP9-JoinGameTeam#1,ACP9-JoinGameTeam,Back,Opens,ACP2-Offer,works
+ACP9-JoinGameTeam#2,ACP9-JoinGameTeam,"Train and play games · Tue and Thu, plus Sunday league [radio]",Says,Train and play games chosen.,line of text only: the line is said; the choice shown stays as drawn
+ACP9-JoinGameTeam#3,ACP9-JoinGameTeam,Train only · You can add games later if there’s a place [radio],Says,Train only chosen.,line of text only: the line is said; the choice shown stays as drawn
+ACP9-JoinGameTeam#4,ACP9-JoinGameTeam,A worry about a game? · It goes to the club’s welfare officer,Opens,ACP10-AcademyConcern,works
+ACP9-JoinGameTeam#5,ACP9-JoinGameTeam,Pay in 3 parts,Opens,ACP3e-AcademyParentHomeEmpty,works
+ACP9-JoinGameTeam#6,ACP9-JoinGameTeam,Pay $389,Opens,ACP3e-AcademyParentHomeEmpty,works
+ACT1-AcademyWeek#7,ACT1-AcademyWeek,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ACT1-AcademyWeek#13,ACT1-AcademyWeek,Copy last week,Says,Last week’s plans copied in as drafts.,line of text only: the line is said; nothing else changes
+ACT1-AcademyWeek#14,ACT1-AcademyWeek,Plan a session,Opens,ACT2-AcademySuggested,works
+ACT1-AcademyWeek#15,ACT1-AcademyWeek,"MON · 1 · · Foundation · 4:00 · 12 children · · Ball mastery, both feet. Small games, no lines · Done",Opens,ACT3-AcademySessionPlan,works
+ACT1-AcademyWeek#16,ACT1-AcademyWeek,"TUE · 2 · · Advanced · 4:30 · 11 players · · Receiving on the half-turn, then 4 v 4 through the middle · Planned",Opens,ACT3-AcademySessionPlan,works
+ACT1-AcademyWeek#17,ACT1-AcademyWeek,WED · 3 · · Development · 4:30 · 14 players · · First touch away from pressure · Needs a plan,Opens,ACT2-AcademySuggested,works
+ACT1-AcademyWeek#18,ACT1-AcademyWeek,THU · 4 · · Advanced · 4:30 · 11 players · · Playing forward after winning it · Needs a plan,Opens,ACT2-AcademySuggested,works
+ACT1-AcademyWeek#19,ACT1-AcademyWeek,SAT · 6 · · Game team · U13 Timber · 9:00 at Kingfisher Reserve · · League game with the partner club · Planned,Opens,ACC7-AcademyGameDay,works
+ACT1-AcademyWeek#20,ACT1-AcademyWeek,Review,Says,Sunday’s match review opens.,line of text only: the line is said; nothing else changes
+ACT1e-AcademyWeekEmpty#7,ACT1e-AcademyWeekEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ACT1e-AcademyWeekEmpty#13,ACT1e-AcademyWeekEmpty,Plan a session,Opens,ACT2-AcademySuggested,works
+ACT1e-AcademyWeekEmpty#14,ACT1e-AcademyWeekEmpty,Open the drill library,Opens,DrillFlow,works: opens over the top with a Back bar
+ACT2-AcademySuggested#7,ACT2-AcademySuggested,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ACT2-AcademySuggested#13,ACT2-AcademySuggested,Ask in your own words,Opens,ASK3-AskOpen,works: opens over the top with a Back bar
+ACT2-AcademySuggested#14,ACT2-AcademySuggested,Build the whole session,Opens,ACT3-AcademySessionPlan,works
+ACT2-AcademySuggested#15,ACT2-AcademySuggested,Add to Wednesday,Says,Added to Wednesday. Open the plan to change the order.,line of text only: the line is said; nothing else changes
+ACT2-AcademySuggested#16,ACT2-AcademySuggested,See it,Says,"The drill opens: set-up, three coaching points, and a 20-second video.",line of text only: the line is said; nothing else changes
+ACT2-AcademySuggested#17,ACT2-AcademySuggested,Not this,Says,Hidden. You won’t be shown this one again for this group.,line of text only: the line is said; nothing else changes
+ACT2-AcademySuggested#18,ACT2-AcademySuggested,Add to Wednesday,Says,Added to Wednesday. Open the plan to change the order.,line of text only: the line is said; nothing else changes
+ACT2-AcademySuggested#19,ACT2-AcademySuggested,See it,Says,"The drill opens: set-up, three coaching points, and a 20-second video.",line of text only: the line is said; nothing else changes
+ACT2-AcademySuggested#20,ACT2-AcademySuggested,Not this,Says,Hidden. You won’t be shown this one again for this group.,line of text only: the line is said; nothing else changes
+ACT2-AcademySuggested#21,ACT2-AcademySuggested,Add to Wednesday,Says,Added to Wednesday. Open the plan to change the order.,line of text only: the line is said; nothing else changes
+ACT2-AcademySuggested#22,ACT2-AcademySuggested,See it,Says,"The drill opens: set-up, three coaching points, and a 20-second video.",line of text only: the line is said; nothing else changes
+ACT2-AcademySuggested#23,ACT2-AcademySuggested,Not this,Says,Hidden. You won’t be shown this one again for this group.,line of text only: the line is said; nothing else changes
+ACT3-AcademySessionPlan#7,ACT3-AcademySessionPlan,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ACT3-AcademySessionPlan#13,ACT3-AcademySessionPlan,Send to families,Says,"Plan summary sent to 11 families: time, place, what to bring.",line of text only: the line is said; nothing else changes
+ACT3-AcademySessionPlan#14,ACT3-AcademySessionPlan,Run it,Opens,ACC2-RunSession,works
+ACT3-AcademySessionPlan#15,ACT3-AcademySessionPlan,Swap,Says,"Three other drills for this slot, with reasons.",line of text only: the line is said; nothing else changes
+ACT3-AcademySessionPlan#16,ACT3-AcademySessionPlan,Swap,Says,"Three other drills for this slot, with reasons.",line of text only: the line is said; nothing else changes
+ACT3-AcademySessionPlan#17,ACT3-AcademySessionPlan,Swap,Says,"Three other drills for this slot, with reasons.",line of text only: the line is said; nothing else changes
+ACT3-AcademySessionPlan#18,ACT3-AcademySessionPlan,Swap,Says,"Three other drills for this slot, with reasons.",line of text only: the line is said; nothing else changes
+ACT3-AcademySessionPlan#19,ACT3-AcademySessionPlan,All 11,Opens,ACC4-PlayerPlan,works
+ACT4-AcademyComing#7,ACT4-AcademyComing,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ACT4-AcademyComing#13,ACT4-AcademyComing,Remind 2,Says,Reminder sent to 2 families.,line of text only: the line is said; nothing else changes
+ACT4-AcademyComing#14,ACT4-AcademyComing,Check in at the gate,Says,Check-in opens on the day: tap each child as they arrive.,line of text only: the line is said; nothing else changes
 ADC1-PlayerFile#7,ADC1-PlayerFile,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
 ADC1-PlayerFile#13,ADC1-PlayerFile,Message Kai’s mum,Opens,ACC13-AcademyChat,works
 ADC1-PlayerFile#14,ADC1-PlayerFile,Book a review chat,Opens,ADC5-ReviewChats,works
 ADC1-PlayerFile#15,ADC1-PlayerFile,Write term report,Opens,ACC6-ReportDraft,works
-ADC1-PlayerFile#16,ADC1-PlayerFile,First touch · Up a step. Sets it out of his feet now. · 3 clips,Says,"3 clips of first touch open, newest first.",works: the clips open in the clip player and the line is said
-ADC1-PlayerFile#17,ADC1-PlayerFile,Running with the ball · Head up at speed. His strength. · 2 clips,Says,"2 clips of running with the ball open, newest first.",works: the clips open in the clip player and the line is said
-ADC1-PlayerFile#18,ADC1-PlayerFile,One against one · Wins most. Thinks he doesn’t. · 4 clips,Says,"4 clips of one against one open, newest first.",works: the clips open in the clip player and the line is said
-ADC1-PlayerFile#19,ADC1-PlayerFile,Striking the ball · This term’s goal: the left foot. · 3 clips,Says,"3 clips of striking the ball open, newest first.",works: the clips open in the clip player and the line is said
-ADC1-PlayerFile#20,ADC1-PlayerFile,Goal this term · Score with his left foot in a game · 3 left-foot finishes in training · home practice 2 of 3 this week,Opens,ACC4-PlayerPlan,works
-ADC1-PlayerFile#21,ADC1-PlayerFile,Left-foot shot · 31st minute,Says,The clip plays.,works: the clip player opens and the line is said
-ADC1-PlayerFile#22,ADC1-PlayerFile,Takes on two · 44th minute,Says,The clip plays.,works: the clip player opens and the line is said
+ADC1-PlayerFile#16,ADC1-PlayerFile,Suggest a group move,Opens,ADC14-SuggestMove,works
+ADC1-PlayerFile#17,ADC1-PlayerFile,First touch · Up a step. Sets it out of his feet now. · 3 clips,Says,"3 clips of first touch open, newest first.",works: the clip player opens and the line is said
+ADC1-PlayerFile#18,ADC1-PlayerFile,Running with the ball · Head up at speed. His strength. · 2 clips,Says,"2 clips of running with the ball open, newest first.",works: the clip player opens and the line is said
+ADC1-PlayerFile#19,ADC1-PlayerFile,One against one · Wins most. Thinks he doesn’t. · 4 clips,Says,"4 clips of one against one open, newest first.",works: the clip player opens and the line is said
+ADC1-PlayerFile#20,ADC1-PlayerFile,Striking the ball · This term’s goal: the left foot. · 3 clips,Says,"3 clips of striking the ball open, newest first.",works: the clip player opens and the line is said
+ADC1-PlayerFile#21,ADC1-PlayerFile,See his screen,Opens,ADK1-MySkills,works: opens over the top with a Back bar
+ADC1-PlayerFile#22,ADC1-PlayerFile,Change,Opens,ADC12-WholePlayer,works
+ADC1-PlayerFile#23,ADC1-PlayerFile,Goal this term · Score with his left foot in a game · 3 left-foot finishes in training · home practice 2 of 3 this week,Opens,ADC10-SetGoal,works
+ADC1-PlayerFile#24,ADC1-PlayerFile,Left-foot shot · 31st minute,Says,The clip plays.,works: the clip player opens and the line is said
+ADC1-PlayerFile#25,ADC1-PlayerFile,Takes on two · 44th minute,Says,The clip plays.,works: the clip player opens and the line is said
+ADC10-SetGoal#7,ADC10-SetGoal,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ADC10-SetGoal#13,ADC10-SetGoal,Cancel,Opens,ADC1-PlayerFile,works
+ADC10-SetGoal#14,ADC10-SetGoal,Save the goal,Opens,ADC1-PlayerFile,works
+ADC10-SetGoal#15,ADC10-SetGoal,First touch [radio],Says,First touch: chosen.,works: the tap stays tapped and the line is said
+ADC10-SetGoal#16,ADC10-SetGoal,Running with the ball [radio],Says,Running with the ball: chosen.,works: the tap stays tapped and the line is said
+ADC10-SetGoal#17,ADC10-SetGoal,One against one [radio],Says,One against one: chosen.,works: the tap stays tapped and the line is said
+ADC10-SetGoal#18,ADC10-SetGoal,Striking the ball [radio],Says,Striking the ball: chosen.,works: the tap stays tapped and the line is said
+ADC10-SetGoal#19,ADC10-SetGoal,Something else [radio],Says,Something else: chosen.,works: the tap stays tapped and the line is said
+ADC10-SetGoal#20,ADC10-SetGoal,End of this term [radio],Says,End of this term: chosen.,works: the tap stays tapped and the line is said
+ADC10-SetGoal#21,ADC10-SetGoal,End of next term [radio],Says,End of next term: chosen.,works: the tap stays tapped and the line is said
+ADC10-SetGoal#22,ADC10-SetGoal,Weaker-foot hits: 3 of 10,Says,Filled in. Change the words to Kai’s own.,line of text only: the line is said; nothing else changes
+ADC10-SetGoal#23,ADC10-SetGoal,Finds space late,Says,Filled in. Change the words to Kai’s own.,line of text only: the line is said; nothing else changes
+ADC10-SetGoal#24,ADC10-SetGoal,First touch under pressure,Says,Filled in. Change the words to Kai’s own.,line of text only: the line is said; nothing else changes
+ADC11-AfterSession#7,ADC11-AfterSession,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ADC11-AfterSession#12,ADC11-AfterSession,Finish later,Opens,ACC1-CoachToday,works
+ADC11-AfterSession#13,ADC11-AfterSession,Done · 6 of 20 marked,Opens,ACC1-CoachToday,works
+ADC11-AfterSession#14,ADC11-AfterSession,Same [radio],Says,Kai Okonkwo: Same.,works: the tap stays tapped and the line is said
+ADC11-AfterSession#15,ADC11-AfterSession,Better [radio],Says,Kai Okonkwo: Better.,works: the tap stays tapped and the line is said
+ADC11-AfterSession#16,ADC11-AfterSession,Used his left foot,Says,Pick a quick note or type one.,line of text only: the line is said; nothing else changes
+ADC11-AfterSession#17,ADC11-AfterSession,Say a note about Kai Okonkwo,Says,Hold to talk. Up to 30 seconds. It is typed out for you.,line of text only: the line is said; nothing else changes
+ADC11-AfterSession#18,ADC11-AfterSession,Same [radio],Says,Ana Costa: Same.,works: the tap stays tapped and the line is said
+ADC11-AfterSession#19,ADC11-AfterSession,Better [radio],Says,Ana Costa: Better.,works: the tap stays tapped and the line is said
+ADC11-AfterSession#20,ADC11-AfterSession,Add a note,Says,Pick a quick note or type one.,line of text only: the line is said; nothing else changes
+ADC11-AfterSession#21,ADC11-AfterSession,Say a note about Ana Costa,Says,Hold to talk. Up to 30 seconds. It is typed out for you.,line of text only: the line is said; nothing else changes
+ADC11-AfterSession#22,ADC11-AfterSession,Same [radio],Says,Jonah Marsh: Same.,works: the tap stays tapped and the line is said
+ADC11-AfterSession#23,ADC11-AfterSession,Better [radio],Says,Jonah Marsh: Better.,works: the tap stays tapped and the line is said
+ADC11-AfterSession#24,ADC11-AfterSession,Quiet today,Says,Pick a quick note or type one.,line of text only: the line is said; nothing else changes
+ADC11-AfterSession#25,ADC11-AfterSession,Say a note about Jonah Marsh,Says,Hold to talk. Up to 30 seconds. It is typed out for you.,line of text only: the line is said; nothing else changes
+ADC11-AfterSession#26,ADC11-AfterSession,Same [radio],Says,Lola Nguyen: Same.,works: the tap stays tapped and the line is said
+ADC11-AfterSession#27,ADC11-AfterSession,Better [radio],Says,Lola Nguyen: Better.,works: the tap stays tapped and the line is said
+ADC11-AfterSession#28,ADC11-AfterSession,Great effort,Says,Pick a quick note or type one.,line of text only: the line is said; nothing else changes
+ADC11-AfterSession#29,ADC11-AfterSession,Say a note about Lola Nguyen,Says,Hold to talk. Up to 30 seconds. It is typed out for you.,line of text only: the line is said; nothing else changes
+ADC11-AfterSession#30,ADC11-AfterSession,Same [radio],Says,Zane Abbas: Same.,works: the tap stays tapped and the line is said
+ADC11-AfterSession#31,ADC11-AfterSession,Better [radio],Says,Zane Abbas: Better.,works: the tap stays tapped and the line is said
+ADC11-AfterSession#32,ADC11-AfterSession,Add a note,Says,Pick a quick note or type one.,line of text only: the line is said; nothing else changes
+ADC11-AfterSession#33,ADC11-AfterSession,Say a note about Zane Abbas,Says,Hold to talk. Up to 30 seconds. It is typed out for you.,line of text only: the line is said; nothing else changes
+ADC11-AfterSession#34,ADC11-AfterSession,Same [radio],Says,Isla Tran: Same.,works: the tap stays tapped and the line is said
+ADC11-AfterSession#35,ADC11-AfterSession,Better [radio],Says,Isla Tran: Better.,works: the tap stays tapped and the line is said
+ADC11-AfterSession#36,ADC11-AfterSession,Took her player on,Says,Pick a quick note or type one.,line of text only: the line is said; nothing else changes
+ADC11-AfterSession#37,ADC11-AfterSession,Say a note about Isla Tran,Says,Hold to talk. Up to 30 seconds. It is typed out for you.,line of text only: the line is said; nothing else changes
+ADC11e-AfterSessionEmpty#7,ADC11e-AfterSessionEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ADC11e-AfterSessionEmpty#12,ADC11e-AfterSessionEmpty,Open today’s session,Opens,ACC2-RunSession,"works: opens the empty state of ACC2-RunSession, because this board is the app with nothing in it"
+ADC12-WholePlayer#7,ADC12-WholePlayer,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ADC12-WholePlayer#13,ADC12-WholePlayer,Cancel,Opens,ADC1-PlayerFile,works
+ADC12-WholePlayer#14,ADC12-WholePlayer,Save,Opens,ADC1-PlayerFile,works
+ADC12-WholePlayer#15,ADC12-WholePlayer,See what she entered,Opens,ADP8-OtherSport,works: opens over the top with a Back bar
+ADC13-CheckEntry#7,ADC13-CheckEntry,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ADC13-CheckEntry#13,ADC13-CheckEntry,Back to the check,Opens,ADC4-SkillsCheck,works
+ADC13-CheckEntry#14,ADC13-CheckEntry,Next station,Opens,ADC4-SkillsCheck,works
+ADC13-CheckEntry#15,ADC13-CheckEntry,−,Says,Kai: one fewer.,works: the number changes and the line is said
+ADC13-CheckEntry#16,ADC13-CheckEntry,+,Says,Kai: one more.,works: the number changes and the line is said
+ADC13-CheckEntry#17,ADC13-CheckEntry,−,Says,Ana: one fewer.,works: the number changes and the line is said
+ADC13-CheckEntry#18,ADC13-CheckEntry,+,Says,Ana: one more.,works: the number changes and the line is said
+ADC13-CheckEntry#19,ADC13-CheckEntry,−,Says,Jonah: one fewer.,works: the number changes and the line is said
+ADC13-CheckEntry#20,ADC13-CheckEntry,+,Says,Jonah: one more.,works: the number changes and the line is said
+ADC13-CheckEntry#21,ADC13-CheckEntry,−,Says,Finn: one fewer.,works: the number changes and the line is said
+ADC13-CheckEntry#22,ADC13-CheckEntry,+,Says,Finn: one more.,works: the number changes and the line is said
+ADC13-CheckEntry#23,ADC13-CheckEntry,−,Says,Lola: one fewer.,works: the number changes and the line is said
+ADC13-CheckEntry#24,ADC13-CheckEntry,+,Says,Lola: one more.,works: the number changes and the line is said
+ADC13-CheckEntry#25,ADC13-CheckEntry,−,Says,Zane: one fewer.,works: the number changes and the line is said
+ADC13-CheckEntry#26,ADC13-CheckEntry,+,Says,Zane: one more.,works: the number changes and the line is said
+ADC13-CheckEntry#27,ADC13-CheckEntry,−,Says,Isla: one fewer.,works: the number changes and the line is said
+ADC13-CheckEntry#28,ADC13-CheckEntry,+,Says,Isla: one more.,works: the number changes and the line is said
+ADC13-CheckEntry#29,ADC13-CheckEntry,−,Says,Noah: one fewer.,works: the number changes and the line is said
+ADC13-CheckEntry#30,ADC13-CheckEntry,+,Says,Noah: one more.,works: the number changes and the line is said
+ADC13e-CheckEntryEmpty#7,ADC13e-CheckEntryEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ADC13e-CheckEntryEmpty#13,ADC13e-CheckEntryEmpty,Go to Skills check,Opens,ADC4-SkillsCheck,"works: opens the empty state of ADC4-SkillsCheck, because this board is the app with nothing in it"
+ADC14-SuggestMove#7,ADC14-SuggestMove,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ADC14-SuggestMove#13,ADC14-SuggestMove,Cancel,Opens,ADC1-PlayerFile,works
+ADC14-SuggestMove#14,ADC14-SuggestMove,Send to Dani,Says,Sent to Dani. Ruby’s family hears nothing until Dani agrees.,line of text only: the line is said; nothing else changes
+ADC14-SuggestMove#15,ADC14-SuggestMove,Not yet [radio],Says,Not yet: chosen.,works: the tap stays tapped and the line is said
+ADC14-SuggestMove#16,ADC14-SuggestMove,Some [radio],Says,Some: chosen.,works: the tap stays tapped and the line is said
+ADC14-SuggestMove#17,ADC14-SuggestMove,Strong [radio],Says,Strong: chosen.,works: the tap stays tapped and the line is said
+ADC14-SuggestMove#18,ADC14-SuggestMove,Not yet [radio],Says,Not yet: chosen.,works: the tap stays tapped and the line is said
+ADC14-SuggestMove#19,ADC14-SuggestMove,Some [radio],Says,Some: chosen.,works: the tap stays tapped and the line is said
+ADC14-SuggestMove#20,ADC14-SuggestMove,Strong [radio],Says,Strong: chosen.,works: the tap stays tapped and the line is said
+ADC14-SuggestMove#21,ADC14-SuggestMove,Not yet [radio],Says,Not yet: chosen.,works: the tap stays tapped and the line is said
+ADC14-SuggestMove#22,ADC14-SuggestMove,Some [radio],Says,Some: chosen.,works: the tap stays tapped and the line is said
+ADC14-SuggestMove#23,ADC14-SuggestMove,Strong [radio],Says,Strong: chosen.,works: the tap stays tapped and the line is said
+ADC14-SuggestMove#24,ADC14-SuggestMove,Not yet [radio],Says,Not yet: chosen.,works: the tap stays tapped and the line is said
+ADC14-SuggestMove#25,ADC14-SuggestMove,Some [radio],Says,Some: chosen.,works: the tap stays tapped and the line is said
+ADC14-SuggestMove#26,ADC14-SuggestMove,Strong [radio],Says,Strong: chosen.,works: the tap stays tapped and the line is said
+ADC14-SuggestMove#27,ADC14-SuggestMove,Beats two · Tue 2 June,Says,The clip plays.,line of text only: the line is said; nothing else changes
+ADC14-SuggestMove#28,ADC14-SuggestMove,"First touch, turn · Thu 28 May",Says,The clip plays.,line of text only: the line is said; nothing else changes
+ADC14-SuggestMove#29,ADC14-SuggestMove,Add a clip · From her file,Says,The clip plays.,line of text only: the line is said; nothing else changes
+ADC15-MySession#7,ADC15-MySession,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ADC15-MySession#10,ADC15-MySession,Watch it first,Opens,ADC3-SessionFilm,works
+ADC15-MySession#11,ADC15-MySession,Send to Dani,Says,Sent. Dani can now watch and add her view beside yours.,line of text only: the line is said; nothing else changes
+ADC15-MySession#12,ADC15-MySession,1 [radio],Says,Ball rolling: 1 of 5.,works: the tap stays tapped and the line is said
+ADC15-MySession#13,ADC15-MySession,2 [radio],Says,Ball rolling: 2 of 5.,works: the tap stays tapped and the line is said
+ADC15-MySession#14,ADC15-MySession,3 [radio],Says,Ball rolling: 3 of 5.,works: the tap stays tapped and the line is said
+ADC15-MySession#15,ADC15-MySession,4 [radio],Says,Ball rolling: 4 of 5.,works: the tap stays tapped and the line is said
+ADC15-MySession#16,ADC15-MySession,5 [radio],Says,Ball rolling: 5 of 5.,works: the tap stays tapped and the line is said
+ADC15-MySession#17,ADC15-MySession,1 [radio],Says,"Clear, short words: 1 of 5.",works: the tap stays tapped and the line is said
+ADC15-MySession#18,ADC15-MySession,2 [radio],Says,"Clear, short words: 2 of 5.",works: the tap stays tapped and the line is said
+ADC15-MySession#19,ADC15-MySession,3 [radio],Says,"Clear, short words: 3 of 5.",works: the tap stays tapped and the line is said
+ADC15-MySession#20,ADC15-MySession,4 [radio],Says,"Clear, short words: 4 of 5.",works: the tap stays tapped and the line is said
+ADC15-MySession#21,ADC15-MySession,5 [radio],Says,"Clear, short words: 5 of 5.",works: the tap stays tapped and the line is said
+ADC15-MySession#22,ADC15-MySession,1 [radio],Says,Every child noticed: 1 of 5.,works: the tap stays tapped and the line is said
+ADC15-MySession#23,ADC15-MySession,2 [radio],Says,Every child noticed: 2 of 5.,works: the tap stays tapped and the line is said
+ADC15-MySession#24,ADC15-MySession,3 [radio],Says,Every child noticed: 3 of 5.,works: the tap stays tapped and the line is said
+ADC15-MySession#25,ADC15-MySession,4 [radio],Says,Every child noticed: 4 of 5.,works: the tap stays tapped and the line is said
+ADC15-MySession#26,ADC15-MySession,5 [radio],Says,Every child noticed: 5 of 5.,works: the tap stays tapped and the line is said
+ADC15-MySession#27,ADC15-MySession,1 [radio],Says,Followed the plan: 1 of 5.,works: the tap stays tapped and the line is said
+ADC15-MySession#28,ADC15-MySession,2 [radio],Says,Followed the plan: 2 of 5.,works: the tap stays tapped and the line is said
+ADC15-MySession#29,ADC15-MySession,3 [radio],Says,Followed the plan: 3 of 5.,works: the tap stays tapped and the line is said
+ADC15-MySession#30,ADC15-MySession,4 [radio],Says,Followed the plan: 4 of 5.,works: the tap stays tapped and the line is said
+ADC15-MySession#31,ADC15-MySession,5 [radio],Says,Followed the plan: 5 of 5.,works: the tap stays tapped and the line is said
+ADC16-Chances#7,ADC16-Chances,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ADC16-Chances#13,ADC16-Chances,Review,Opens,ADC7-GameReview,works
+ADC16-Chances#14,ADC16-Chances,Chances,Opens,ADC16-Chances,works
+ADC16-Chances#15,ADC16-Chances,Your take,Opens,ADC17-YourTake,works
+ADC16-Chances#16,ADC16-Chances,What “worth” means,Opens,RC8-HowWeMeasure,works: opens over the top with a Back bar
+ADC16-Chances#17,ADC16-Chances,"Zane AbbasInside the box, right foot · · Goal · · 0.62 · · · minute 12 · · Estimate",Says,The clip from minute 12 plays.,line of text only: the line is said; nothing else changes
+ADC16-Chances#18,ADC16-Chances,Lola NguyenEdge of the box · · Saved · · 0.18 · · · minute 23 · · Estimate,Says,The clip from minute 23 plays.,line of text only: the line is said; nothing else changes
+ADC16-Chances#19,ADC16-Chances,"Kai OkonkwoInside the box, left foot · · Goal · · 0.40 · · · minute 31 · · Estimate",Says,The clip from minute 31 plays.,line of text only: the line is said; nothing else changes
+ADC16-Chances#20,ADC16-Chances,Isla TranWide on the left · · Wide · · 0.09 · · · minute 38 · · Estimate,Says,The clip from minute 38 plays.,line of text only: the line is said; nothing else changes
+ADC16-Chances#21,ADC16-Chances,Lola NguyenOne against the keeper · · Goal · · 0.55 · · · minute 44 · · Estimate,Says,The clip from minute 44 plays.,line of text only: the line is said; nothing else changes
+ADC16-Chances#22,ADC16-Chances,Finn ByrneFrom a corner · · Blocked · · 0.14 · · · minute 47 · · Estimate,Says,The clip from minute 47 plays.,line of text only: the line is said; nothing else changes
+ADC16-Chances#23,ADC16-Chances,MIN8 · · Shot from a cut-back · Our midfield was 26 m away · · 0.31 · · Estimate,Says,The clip from minute 8 plays.,line of text only: the line is said; nothing else changes
+ADC16-Chances#24,ADC16-Chances,MIN29 · · One against our keeper · Saved by Noah · · 0.38 · · Estimate,Says,The clip from minute 29 plays.,line of text only: the line is said; nothing else changes
+ADC16-Chances#25,ADC16-Chances,MIN46 · · Header from a corner · Their goal · · 0.11 · · Estimate,Says,The clip from minute 46 plays.,line of text only: the line is said; nothing else changes
+ADC17-YourTake#7,ADC17-YourTake,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ADC17-YourTake#13,ADC17-YourTake,Back to the review,Opens,ADC7-GameReview,works
+ADC17-YourTake#14,ADC17-YourTake,Save,Opens,ADC7-GameReview,works
+ADC17-YourTake#15,ADC17-YourTake,Yes [radio],Says,Yes: chosen.,works: the tap stays tapped and the line is said
+ADC17-YourTake#16,ADC17-YourTake,Mostly [radio],Says,Mostly: chosen.,works: the tap stays tapped and the line is said
+ADC17-YourTake#17,ADC17-YourTake,No [radio],Says,No: chosen.,works: the tap stays tapped and the line is said
+ADC17-YourTake#18,ADC17-YourTake,Say it instead,Says,Hold to talk. Up to a minute. It is typed out for you to check.,line of text only: the line is said; nothing else changes
+ADC18-Learn#7,ADC18-Learn,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ADC18-Learn#8,ADC18-Learn,Ask a question,Opens,ASK3-AskOpen,works: opens over the top with a Back bar
+ADC18-Learn#9,ADC18-Learn,"Carry on: asking, not telling",Says,The lesson opens where you left it.,line of text only: the line is said; nothing else changes
+ADC18-Learn#10,ADC18-Learn,Coaching the weaker foot · 4 min · follows this block · · New,Says,"Coaching the weaker foot: the lesson opens. Short clips, one idea, one thing to try.",line of text only: the line is said; nothing else changes
+ADC18-Learn#11,ADC18-Learn,"Asking, not telling · 6 min · 3 clips from Tall Timber sessions · · Half done",Says,"Asking, not telling: the lesson opens. Short clips, one idea, one thing to try.",line of text only: the line is said; nothing else changes
+ADC18-Learn#12,ADC18-Learn,Keeping 20 players busy with one goal · 3 min · from Thursday’s film · · For you,Says,"Keeping 20 players busy with one goal: the lesson opens. Short clips, one idea, one thing to try.",line of text only: the line is said; nothing else changes
+ADC18-Learn#13,ADC18-Learn,Growth spurts and sprinting · 5 min · for coaches of 11 to 14s · · Done,Says,"Growth spurts and sprinting: the lesson opens. Short clips, one idea, one thing to try.",line of text only: the line is said; nothing else changes
+ADC18-Learn#14,ADC18-Learn,Read it,Opens,AD7-HowWeCoach,works: opens over the top with a Back bar
+ADC18-Learn#15,ADC18-Learn,Open,Opens,ADC15-MySession,works
+ADC18-Learn#16,ADC18-Learn,Open,Opens,ADC3-SessionFilm,works
+ADC1e-PlayerFileEmpty#7,ADC1e-PlayerFileEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ADC1e-PlayerFileEmpty#13,ADC1e-PlayerFileEmpty,Set a goal with Ana,Opens,ADC10-SetGoal,works
 ADC2-Group#7,ADC2-Group,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
 ADC2-Group#13,ADC2-Group,Run the skills check,Opens,ADC4-SkillsCheck,works
 ADC2-Group#14,ADC2-Group,Plan from this,Opens,ACT2-AcademySuggested,works
-ADC2-Group#15,ADC2-Group,KO · Kai Okonkwo · · · · · · · · · · · · · · · · · · · · · · · · · +1 · Score with his left foot,Opens,ADC1-PlayerFile,"works; every row opens the one file that is drawn, Kai’s (rows are sorted by first name, so Kai is the fifth row)"
-ADC2-Group#16,ADC2-Group,AC · Ana Costa · · · · · · · · · · · · · · · · · · · · · · · · · New · Not set yet,Opens,ADC1-PlayerFile,"works; every row opens the one file that is drawn, Kai’s"
-ADC2-Group#17,ADC2-Group,JM · Jonah Marsh · · · · · · · · · · · · · · · · · · · · · · · · · 0 · Play off fewer touches,Opens,ADC1-PlayerFile,"works; every row opens the one file that is drawn, Kai’s"
-ADC2-Group#18,ADC2-Group,FB · Finn Byrne · · · · · · · · · · · · · · · · · · · · · · · · · +2 · First touch on the move,Opens,ADC1-PlayerFile,"works; every row opens the one file that is drawn, Kai’s"
-ADC2-Group#19,ADC2-Group,LN · Lola Nguyen · · · · · · · · · · · · · · · · · · · · · · · · · +1 · Shoot earlier,Opens,ADC1-PlayerFile,"works; every row opens the one file that is drawn, Kai’s"
-ADC2-Group#20,ADC2-Group,ZA · Zane Abbas · · · · · · · · · · · · · · · · · · · · · · · · · +1 · Use the weaker foot,Opens,ADC1-PlayerFile,"works; every row opens the one file that is drawn, Kai’s"
-ADC2-Group#21,ADC2-Group,IT · Isla Tran · · · · · · · · · · · · · · · · · · · · · · · · · +2 · Run at the defender,Opens,ADC1-PlayerFile,"works; every row opens the one file that is drawn, Kai’s"
-ADC2-Group#22,ADC2-Group,NP · Noah Petrov · · · · · · · · · · · · · · · · · · · · · · · · · 0 · Check his shoulder,Opens,ADC1-PlayerFile,"works; every row opens the one file that is drawn, Kai’s"
+ADC2-Group#15,ADC2-Group,KO · Kai Okonkwo · · · · · · · · · · · · · · · · · · · · · · · · · +1 · Score with his left foot,Opens,ADC1-PlayerFile,works
+ADC2-Group#16,ADC2-Group,AC · Ana Costa · · · · · · · · · · · · · · · · · · · · · · · · · New · Not set yet,Opens,ADC1-PlayerFile,works
+ADC2-Group#17,ADC2-Group,JM · Jonah Marsh · · · · · · · · · · · · · · · · · · · · · · · · · 0 · Play off fewer touches,Opens,ADC1-PlayerFile,works
+ADC2-Group#18,ADC2-Group,FB · Finn Byrne · · · · · · · · · · · · · · · · · · · · · · · · · +2 · First touch on the move,Opens,ADC1-PlayerFile,works
+ADC2-Group#19,ADC2-Group,LN · Lola Nguyen · · · · · · · · · · · · · · · · · · · · · · · · · +1 · Shoot earlier,Opens,ADC1-PlayerFile,works
+ADC2-Group#20,ADC2-Group,ZA · Zane Abbas · · · · · · · · · · · · · · · · · · · · · · · · · +1 · Use the weaker foot,Opens,ADC1-PlayerFile,works
+ADC2-Group#21,ADC2-Group,IT · Isla Tran · · · · · · · · · · · · · · · · · · · · · · · · · +2 · Run at the defender,Opens,ADC1-PlayerFile,works
+ADC2-Group#22,ADC2-Group,NP · Noah Petrov · · · · · · · · · · · · · · · · · · · · · · · · · 0 · Check his shoulder,Opens,ADC1-PlayerFile,works
 ADC2-Group#23,ADC2-Group,See suggested sessions,Opens,ACT2-AcademySuggested,works
-ADC2-Group#24,ADC2-Group,Set one,Opens,ADC1-PlayerFile,"works; opens the one file that is drawn, Kai’s, not Ana’s"
-ADC2-Group#25,ADC2-Group,Add,Opens,ACC2-RunSession,"works; opens Run a session, where notes are added"
+ADC2-Group#24,ADC2-Group,Set one,Opens,ADC10-SetGoal,works
+ADC2-Group#25,ADC2-Group,Add,Opens,ADC11-AfterSession,works
+ADC2e-GroupEmpty#7,ADC2e-GroupEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ADC2e-GroupEmpty#13,ADC2e-GroupEmpty,Open today’s session,Opens,ACC2-RunSession,"works: opens the empty state of ACC2-RunSession, because this board is the app with nothing in it"
 ADC3-SessionFilm#7,ADC3-SessionFilm,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
-ADC3-SessionFilm#10,ADC3-SessionFilm,All 38 moments,Opens,C1-ClipsTab,"works: opens over the top with a Back bar; it is the club coach’s Clips tab, not the 38 moments"
-ADC3-SessionFilm#11,ADC3-SessionFilm,Add the best to term reports,Says,One moment per player is added to their draft report. You can swap any of them.,line of text only: the line is said and a mark is kept on this device; nothing else on the screen changes
+ADC3-SessionFilm#10,ADC3-SessionFilm,All 38 moments,Opens,C1-ClipsTab,works: opens over the top with a Back bar
+ADC3-SessionFilm#11,ADC3-SessionFilm,Add the best to term reports,Says,One moment per player is added to their draft report. You can swap any of them.,line of text only: the line is said; nothing else changes
 ADC3-SessionFilm#12,ADC3-SessionFilm,KO · Kai Okonkwo · Left-foot finish · one against one · · · 5 moments,Says,Kai Okonkwo: their moments open.,line of text only: the line is said. The moment shown stays Kai’s; the other players’ moments are not drawn
 ADC3-SessionFilm#13,ADC3-SessionFilm,LN · Lola Nguyen · First touch away from pressure · · · 4 moments,Says,Lola Nguyen: their moments open.,line of text only: the line is said. The moment shown stays Kai’s; the other players’ moments are not drawn
 ADC3-SessionFilm#14,ADC3-SessionFilm,"ZA · Zane Abbas · Runs with it, head up · · · 4 moments",Says,Zane Abbas: their moments open.,line of text only: the line is said. The moment shown stays Kai’s; the other players’ moments are not drawn
 ADC3-SessionFilm#15,ADC3-SessionFilm,IT · Isla Tran · Takes her player on · · · 3 moments,Says,Isla Tran: their moments open.,line of text only: the line is said. The moment shown stays Kai’s; the other players’ moments are not drawn
 ADC3-SessionFilm#16,ADC3-SessionFilm,FB · Finn Byrne · First touch on the move · · · 2 moments,Says,Finn Byrne: their moments open.,line of text only: the line is said. The moment shown stays Kai’s; the other players’ moments are not drawn
 ADC3-SessionFilm#17,ADC3-SessionFilm,"Kai, left foot, far corner · 0:09",Says,The clip plays.,works: the clip player opens and the line is said
-ADC3-SessionFilm#18,ADC3-SessionFilm,Add a spoken note,Says,Hold to talk. Up to 30 seconds. You hear it back before it is saved.,line of text only: the line is said; the sheet or flow behind it is not drawn
-ADC3-SessionFilm#19,ADC3-SessionFilm,Save to his file,Says,Saved to Kai’s file under Striking the ball.,line of text only: the line is said and a mark is kept on this device; nothing else on the screen changes
-ADC3-SessionFilm#20,ADC3-SessionFilm,Send to Kai’s family,Says,"Sent to Kai’s mum. Kai is 13, so it also shows in his own app.",line of text only: the line is said and a mark is kept on this device; nothing else on the screen changes
+ADC3-SessionFilm#18,ADC3-SessionFilm,Add a spoken note,Says,Hold to talk. Up to 30 seconds. You hear it back before it is saved.,line of text only: the line is said; nothing else changes
+ADC3-SessionFilm#19,ADC3-SessionFilm,Save to his file,Says,Saved to Kai’s file under Striking the ball.,line of text only: the line is said; nothing else changes
+ADC3-SessionFilm#20,ADC3-SessionFilm,Send to Kai’s family,Says,"Sent to Kai’s mum. Kai is 13, so it also shows in his own app.",line of text only: the line is said; nothing else changes
+ADC3e-SessionFilmEmpty#7,ADC3e-SessionFilmEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ADC3e-SessionFilmEmpty#10,ADC3e-SessionFilmEmpty,How to film a session,Opens,ACC8-AcademyRecord,"works: opens the empty state of ACC8-AcademyRecord, because this board is the app with nothing in it"
 ADC4-SkillsCheck#7,ADC4-SkillsCheck,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
-ADC4-SkillsCheck#13,ADC4-SkillsCheck,Station cards,Says,"Four cards open to print or show on the tablet: set-up, distance and what to count.",line of text only: the line is said; the sheet or flow behind it is not drawn
-ADC4-SkillsCheck#14,ADC4-SkillsCheck,Start the check,Says,"Station 1 opens. Tap a player, then their count. Film counts where it can.","line of text only, and it differs on purpose: film counting is switched off (FILM_COUNTS_SKILLS_CHECK in src/screens/academycoach/skills.ts), so it says “Station 1 opens. Tap a player, then their count.” The line in this row is said when the switch is on (checked)"
+ADC4-SkillsCheck#13,ADC4-SkillsCheck,Station cards,Says,"Four cards open to print or show on the tablet: set-up, distance and what to count.",line of text only: the line is said; nothing else changes
+ADC4-SkillsCheck#14,ADC4-SkillsCheck,Start the check,Opens,ADC13-CheckEntry,works
 ADC4-SkillsCheck#15,ADC4-SkillsCheck,Kai [radio],Says,Kai: their check opens.,line of text only: the line is said. The check shown stays Kai’s; the other players’ checks are not drawn
 ADC4-SkillsCheck#16,ADC4-SkillsCheck,Ana [radio],Says,Ana: their check opens.,line of text only: the line is said. The check shown stays Kai’s; the other players’ checks are not drawn
 ADC4-SkillsCheck#17,ADC4-SkillsCheck,Jonah [radio],Says,Jonah: their check opens.,line of text only: the line is said. The check shown stays Kai’s; the other players’ checks are not drawn
@@ -171,9 +871,11 @@ ADC4-SkillsCheck#19,ADC4-SkillsCheck,Lola [radio],Says,Lola: their check opens.,
 ADC4-SkillsCheck#20,ADC4-SkillsCheck,Zane [radio],Says,Zane: their check opens.,line of text only: the line is said. The check shown stays Kai’s; the other players’ checks are not drawn
 ADC4-SkillsCheck#21,ADC4-SkillsCheck,17 more [radio],Says,17 more: their check opens.,line of text only: the line is said. The check shown stays Kai’s; the other players’ checks are not drawn
 ADC4-SkillsCheck#22,ADC4-SkillsCheck,Add to his term report,Opens,ACC6-ReportDraft,works
+ADC4e-SkillsCheckEmpty#7,ADC4e-SkillsCheckEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ADC4e-SkillsCheckEmpty#13,ADC4e-SkillsCheckEmpty,Start the check,Opens,ADC13-CheckEntry,"works: opens the empty state of ADC13-CheckEntry, because this board is the app with nothing in it"
 ADC5-ReviewChats#7,ADC5-ReviewChats,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
-ADC5-ReviewChats#13,ADC5-ReviewChats,Offer more times,Says,Pick the times. Families who haven’t booked are told.,line of text only: the line is said; the sheet or flow behind it is not drawn
-ADC5-ReviewChats#14,ADC5-ReviewChats,Start with Kai,Says,"Kai’s chat opens: the clip, the four skills and the goal, one screen each.",line of text only: the line is said; the sheet or flow behind it is not drawn
+ADC5-ReviewChats#13,ADC5-ReviewChats,Offer more times,Says,Pick the times. Families who haven’t booked are told.,line of text only: the line is said; nothing else changes
+ADC5-ReviewChats#14,ADC5-ReviewChats,Start with Kai,Says,"Kai’s chat opens: the clip, the four skills and the goal, one screen each.",line of text only: the line is said; nothing else changes
 ADC5-ReviewChats#15,ADC5-ReviewChats,"6:45 · Kai Okonkwo · His mum, Adaeze",Says,"Kai Okonkwo: what to show, say, ask and agree.",line of text only: the line is said. The chat shown stays Kai’s; the other chats are not drawn
 ADC5-ReviewChats#16,ADC5-ReviewChats,"6:55 · Lola Nguyen · Her dad, Minh · by phone",Says,"Lola Nguyen: what to show, say, ask and agree.",line of text only: the line is said. The chat shown stays Kai’s; the other chats are not drawn
 ADC5-ReviewChats#17,ADC5-ReviewChats,7:05 · Zane Abbas · Both parents,Says,"Zane Abbas: what to show, say, ask and agree.",line of text only: the line is said. The chat shown stays Kai’s; the other chats are not drawn
@@ -181,27 +883,226 @@ ADC5-ReviewChats#18,ADC5-ReviewChats,"7:15 · Isla Tran · Her mum, Linh",Says,"
 ADC5-ReviewChats#19,ADC5-ReviewChats,7:25 · Open · Not booked yet,Says,"Open: what to show, say, ask and agree.",line of text only: the line is said. The chat shown stays Kai’s; the other chats are not drawn
 ADC5-ReviewChats#20,ADC5-ReviewChats,"7:35 · Finn Byrne · His dad, Cormac",Says,"Finn Byrne: what to show, say, ask and agree.",line of text only: the line is said. The chat shown stays Kai’s; the other chats are not drawn
 ADC5-ReviewChats#21,ADC5-ReviewChats,Open his file,Opens,ADC1-PlayerFile,works
+ADC5e-ReviewChatsEmpty#7,ADC5e-ReviewChatsEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ADC5e-ReviewChatsEmpty#13,ADC5e-ReviewChatsEmpty,Offer times,Says,Pick the times.,line of text only: the line is said; nothing else changes
 ADC6-HomePractice#7,ADC6-HomePractice,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
-ADC6-HomePractice#13,ADC6-HomePractice,Set for another group,Says,Pick the group. The practice follows the block that group is in.,line of text only: the line is said; the sheet or flow behind it is not drawn
-ADC6-HomePractice#14,ADC6-HomePractice,Change this week’s,Opens,DrillFlow,works: opens over the top with a Back bar; it is the club drill library
+ADC6-HomePractice#13,ADC6-HomePractice,Set for another group,Says,Pick the group. The practice follows the block that group is in.,line of text only: the line is said; nothing else changes
+ADC6-HomePractice#14,ADC6-HomePractice,Change this week’s,Opens,DrillFlow,works: opens over the top with a Back bar
 ADC6-HomePractice#15,ADC6-HomePractice,Weaker-foot wall passes · 0:40,Says,The clip plays.,works: the clip player opens and the line is said
-ADC6-HomePractice#16,ADC6-HomePractice,Reply,Says,Their video plays. Hold to talk and your note goes back with it.,works: their video opens in the clip player and the line is said; the spoken reply is not built
-ADC6-HomePractice#17,ADC6-HomePractice,Reply,Says,Their video plays. Hold to talk and your note goes back with it.,works: their video opens in the clip player and the line is said; the spoken reply is not built
-ADC6-HomePractice#18,ADC6-HomePractice,Seen,Says,Their video and your reply open.,works: their video opens in the clip player and the line is said; the spoken reply is not built
-ADC6-HomePractice#19,ADC6-HomePractice,Seen,Says,Their video and your reply open.,works: their video opens in the clip player and the line is said; the spoken reply is not built
-ADC6-HomePractice#20,ADC6-HomePractice,Nudge,Says,A friendly reminder goes to the family.,line of text only: the line is said and a mark is kept on this device; nothing else on the screen changes
+ADC6-HomePractice#16,ADC6-HomePractice,Reply,Says,Their video plays. Hold to talk and your note goes back with it.,works: the clip player opens and the line is said
+ADC6-HomePractice#17,ADC6-HomePractice,Reply,Says,Their video plays. Hold to talk and your note goes back with it.,works: the clip player opens and the line is said
+ADC6-HomePractice#18,ADC6-HomePractice,Seen,Says,Their video and your reply open.,works: the clip player opens and the line is said
+ADC6-HomePractice#19,ADC6-HomePractice,Seen,Says,Their video and your reply open.,works: the clip player opens and the line is said
+ADC6-HomePractice#20,ADC6-HomePractice,Nudge,Says,A friendly reminder goes to the family.,line of text only: the line is said; nothing else changes
+ADC6e-HomePracticeEmpty#7,ADC6e-HomePracticeEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ADC6e-HomePracticeEmpty#13,ADC6e-HomePracticeEmpty,Set this week’s practice,Opens,DrillFlow,works: opens over the top with a Back bar
+ADC8-TeamStyle#7,ADC8-TeamStyle,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ADC8-TeamStyle#13,ADC8-TeamStyle,Our style,Opens,ADC8-TeamStyle,works
+ADC8-TeamStyle#14,ADC8-TeamStyle,See the academy’s,Says,"The academy’s eight measures and aims, to compare.",works: the screen changes and the line is said
+ADC8-TeamStyle#15,ADC8-TeamStyle,Reset,Says,Back to the academy’s eight measures and aims. Your reasons are kept.,works: the screen changes and the line is said
+ADC8-TeamStyle#16,ADC8-TeamStyle,Add a measure,Opens,ADC9-PickMeasure,works
+ADC8-TeamStyle#17,ADC8-TeamStyle,How each is counted,Opens,RC8-HowWeMeasure,works: opens over the top with a Back bar
+ADC8-TeamStyle#18,ADC8-TeamStyle,−,Says,Aim down one step.,works: the number changes and the line is said
+ADC8-TeamStyle#19,ADC8-TeamStyle,+,Says,Aim up one step.,works: the number changes and the line is said
+ADC8-TeamStyle#20,ADC8-TeamStyle,Swap,Opens,ADC9-PickMeasure,works
+ADC8-TeamStyle#21,ADC8-TeamStyle,−,Says,Aim down one step.,works: the number changes and the line is said
+ADC8-TeamStyle#22,ADC8-TeamStyle,+,Says,Aim up one step.,works: the number changes and the line is said
+ADC8-TeamStyle#23,ADC8-TeamStyle,Swap,Opens,ADC9-PickMeasure,works
+ADC8-TeamStyle#24,ADC8-TeamStyle,−,Says,Aim down one step.,works: the number changes and the line is said
+ADC8-TeamStyle#25,ADC8-TeamStyle,+,Says,Aim up one step.,works: the number changes and the line is said
+ADC8-TeamStyle#26,ADC8-TeamStyle,Swap,Opens,ADC9-PickMeasure,works
+ADC8-TeamStyle#27,ADC8-TeamStyle,−,Says,Aim down one step.,works: the number changes and the line is said
+ADC8-TeamStyle#28,ADC8-TeamStyle,+,Says,Aim up one step.,works: the number changes and the line is said
+ADC8-TeamStyle#29,ADC8-TeamStyle,Swap,Opens,ADC9-PickMeasure,works
+ADC8-TeamStyle#30,ADC8-TeamStyle,−,Says,Aim down one step.,works: the number changes and the line is said
+ADC8-TeamStyle#31,ADC8-TeamStyle,+,Says,Aim up one step.,works: the number changes and the line is said
+ADC8-TeamStyle#32,ADC8-TeamStyle,Swap,Opens,ADC9-PickMeasure,works
+ADC8-TeamStyle#33,ADC8-TeamStyle,−,Says,Aim down one step.,works: the number changes and the line is said
+ADC8-TeamStyle#34,ADC8-TeamStyle,+,Says,Aim up one step.,works: the number changes and the line is said
+ADC8-TeamStyle#35,ADC8-TeamStyle,Swap,Opens,ADC9-PickMeasure,works
+ADC8-TeamStyle#36,ADC8-TeamStyle,−,Says,Aim down one step.,works: the number changes and the line is said
+ADC8-TeamStyle#37,ADC8-TeamStyle,+,Says,Aim up one step.,works: the number changes and the line is said
+ADC8-TeamStyle#38,ADC8-TeamStyle,−,Says,Aim down one step.,works: the number changes and the line is said
+ADC8-TeamStyle#39,ADC8-TeamStyle,+,Says,Aim up one step.,works: the number changes and the line is said
+ADC8-TeamStyle#40,ADC8-TeamStyle,Last game,Opens,ADC7-GameReview,works
+ADC8-TeamStyle#41,ADC8-TeamStyle,61 · Goal kicks short · Season 61%. Your aim of 60% is in reach,Opens,ADC7-GameReview,works
+ADC8-TeamStyle#42,ADC8-TeamStyle,14 · Weaker-foot touches · Season 14%. An aim of 20% is a stretch,Opens,ADC7-GameReview,works
+ADC8-TeamStyle#43,ADC8-TeamStyle,5 · Seconds to win it back · Season 5 s. Close to 4 s,Opens,ADC7-GameReview,works
+ADC8e-TeamStyleEmpty#7,ADC8e-TeamStyleEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ADC8e-TeamStyleEmpty#13,ADC8e-TeamStyleEmpty,Set our style,Opens,StyleFlow,works: opens over the top with a Back bar
+ADC9-PickMeasure#7,ADC9-PickMeasure,Tall Timber Academy,Opens,VS1-SwitchView,works: opens over the top with a Back bar; the switcher that opens is the club one (Wattle Creek FC teams)
+ADC9-PickMeasure#13,ADC9-PickMeasure,Cancel,Opens,ADC8-TeamStyle,works
+ADC9-PickMeasure#14,ADC9-PickMeasure,Use Switches of play,Opens,ADC8-TeamStyle,works
+ADC9-PickMeasure#15,ADC9-PickMeasure,Switches of play · Passes that move the ball from one side to the other · · Film counts it [radio],Says,Switches of play: chosen.,works: the tap stays tapped and the line is said
+ADC9-PickMeasure#16,ADC9-PickMeasure,Passes forward · Share of passes that go towards their goal · · Film counts it [radio],Says,Passes forward: chosen.,works: the tap stays tapped and the line is said
+ADC9-PickMeasure#17,ADC9-PickMeasure,Players in the box for a cross · How many of ours arrive · · Film counts it [radio],Says,Players in the box for a cross: chosen.,works: the tap stays tapped and the line is said
+ADC9-PickMeasure#18,ADC9-PickMeasure,Throw-ins kept · We still have it three seconds later · · Film counts it [radio],Says,Throw-ins kept: chosen.,works: the tap stays tapped and the line is said
+ADC9-PickMeasure#19,ADC9-PickMeasure,Tackles and blocks in our third · Defending near our goal · · Film counts it [radio],Says,Tackles and blocks in our third: chosen.,works: the tap stays tapped and the line is said
+ADC9-PickMeasure#20,ADC9-PickMeasure,"Keeper plays with feet · Passes from the keeper, not kicks · · Film counts it [radio]",Says,Keeper plays with feet: chosen.,works: the tap stays tapped and the line is said
+ADC9-PickMeasure#21,ADC9-PickMeasure,Talking · Players calling for it or helping a team-mate · · You tap it [radio],Says,Talking: chosen.,works: the tap stays tapped and the line is said
+ADC9-PickMeasure#22,ADC9-PickMeasure,Write a measure,Says,"Name it, say what one counts as, and set an aim.",line of text only: the line is said; nothing else changes
+ADC9-PickMeasure#23,ADC9-PickMeasure,−,Says,Aim down one step.,works: the number changes and the line is said
+ADC9-PickMeasure#24,ADC9-PickMeasure,+,Says,Aim up one step.,works: the number changes and the line is said
+ADK1-MySkills#1,ADK1-MySkills,Back,Opens,ACK1-AcademyPlayerHome,works
+ADK1-MySkills#2,ADK1-MySkills,1 [radio],Says,First touch: step 1. Saved.,works: the tap stays tapped and the line is said
+ADK1-MySkills#3,ADK1-MySkills,2 [radio],Says,First touch: step 2. Saved.,works: the tap stays tapped and the line is said
+ADK1-MySkills#4,ADK1-MySkills,3 [radio],Says,First touch: step 3. Saved.,works: the tap stays tapped and the line is said
+ADK1-MySkills#5,ADK1-MySkills,4 [radio],Says,First touch: step 4. Saved.,works: the tap stays tapped and the line is said
+ADK1-MySkills#6,ADK1-MySkills,5 [radio],Says,First touch: step 5. Saved.,works: the tap stays tapped and the line is said
+ADK1-MySkills#7,ADK1-MySkills,1 [radio],Says,Running with the ball: step 1. Saved.,works: the tap stays tapped and the line is said
+ADK1-MySkills#8,ADK1-MySkills,2 [radio],Says,Running with the ball: step 2. Saved.,works: the tap stays tapped and the line is said
+ADK1-MySkills#9,ADK1-MySkills,3 [radio],Says,Running with the ball: step 3. Saved.,works: the tap stays tapped and the line is said
+ADK1-MySkills#10,ADK1-MySkills,4 [radio],Says,Running with the ball: step 4. Saved.,works: the tap stays tapped and the line is said
+ADK1-MySkills#11,ADK1-MySkills,5 [radio],Says,Running with the ball: step 5. Saved.,works: the tap stays tapped and the line is said
+ADK1-MySkills#12,ADK1-MySkills,1 [radio],Says,One against one: step 1. Saved.,works: the tap stays tapped and the line is said
+ADK1-MySkills#13,ADK1-MySkills,2 [radio],Says,One against one: step 2. Saved.,works: the tap stays tapped and the line is said
+ADK1-MySkills#14,ADK1-MySkills,3 [radio],Says,One against one: step 3. Saved.,works: the tap stays tapped and the line is said
+ADK1-MySkills#15,ADK1-MySkills,4 [radio],Says,One against one: step 4. Saved.,works: the tap stays tapped and the line is said
+ADK1-MySkills#16,ADK1-MySkills,5 [radio],Says,One against one: step 5. Saved.,works: the tap stays tapped and the line is said
+ADK1-MySkills#17,ADK1-MySkills,1 [radio],Says,Striking the ball: step 1. Saved.,works: the tap stays tapped and the line is said
+ADK1-MySkills#18,ADK1-MySkills,2 [radio],Says,Striking the ball: step 2. Saved.,works: the tap stays tapped and the line is said
+ADK1-MySkills#19,ADK1-MySkills,3 [radio],Says,Striking the ball: step 3. Saved.,works: the tap stays tapped and the line is said
+ADK1-MySkills#20,ADK1-MySkills,4 [radio],Says,Striking the ball: step 4. Saved.,works: the tap stays tapped and the line is said
+ADK1-MySkills#21,ADK1-MySkills,5 [radio],Says,Striking the ball: step 5. Saved.,works: the tap stays tapped and the line is said
+ADK1-MySkills#22,ADK1-MySkills,Save,Says,Saved. Reece can see it now.,works: saved on this device and the line is said
+ADK2-MyClips#1,ADK2-MyClips,Back,Opens,ACK1-AcademyPlayerHome,works
+ADK2-MyClips#2,ADK2-MyClips,Left-foot finish · Thu 4 June [checkbox],Says,Left-foot finish: taken out.,works: the tap stays tapped and the line is said
+ADK2-MyClips#3,ADK2-MyClips,Takes on two · Sun 31 May [checkbox],Says,Takes on two: taken out.,works: the tap stays tapped and the line is said
+ADK2-MyClips#4,ADK2-MyClips,"First touch, turn · Tue 26 May [checkbox]",Says,"First touch, turn: taken out.",works: the tap stays tapped and the line is said
+ADK2-MyClips#5,ADK2-MyClips,Pass through the line · Sun 24 May [checkbox],Says,Pass through the line: taken out.,works: the tap stays tapped and the line is said
+ADK2-MyClips#6,ADK2-MyClips,Wins it back · Thu 21 May [checkbox],Says,Wins it back: added.,works: the tap stays tapped and the line is said
+ADK2-MyClips#7,ADK2-MyClips,Run from halfway · Sun 17 May [checkbox],Says,Run from halfway: added.,works: the tap stays tapped and the line is said
+ADK2-MyClips#8,ADK2-MyClips,4 of 6 picked · Save,Says,Saved. Pick two more any time.,works: saved on this device and the line is said
+ADK3-EnjoyedToday#1,ADK3-EnjoyedToday,Back,Opens,ACK1-AcademyPlayerHome,works
+ADK3-EnjoyedToday#2,ADK3-EnjoyedToday,Loved it [radio],Says,Loved it. Saved.,works: the tap stays tapped and the line is said
+ADK3-EnjoyedToday#3,ADK3-EnjoyedToday,It was OK [radio],Says,It was OK. Saved.,works: the tap stays tapped and the line is said
+ADK3-EnjoyedToday#4,ADK3-EnjoyedToday,Not today [radio],Says,Not today. Saved.,works: the tap stays tapped and the line is said
+ADK3-EnjoyedToday#5,ADK3-EnjoyedToday,Done,Says,"Thanks, Kai.",line of text only: the line is said; nothing else changes
+ADK4-CheckIn#1,ADK4-CheckIn,Back,Opens,ACK1-AcademyPlayerHome,works
+ADK4-CheckIn#2,ADK4-CheckIn,Fresh [radio],Says,Fresh. Saved.,works: the tap stays tapped and the line is said
+ADK4-CheckIn#3,ADK4-CheckIn,OK [radio],Says,OK. Saved.,works: the tap stays tapped and the line is said
+ADK4-CheckIn#4,ADK4-CheckIn,Sore [radio],Says,Sore. Saved.,works: the tap stays tapped and the line is said
+ADK4-CheckIn#5,ADK4-CheckIn,Good [radio],Says,Good. Saved.,works: the tap stays tapped and the line is said
+ADK4-CheckIn#6,ADK4-CheckIn,OK [radio],Says,OK. Saved.,works: the tap stays tapped and the line is said
+ADK4-CheckIn#7,ADK4-CheckIn,Low [radio],Says,Low. Saved.,works: the tap stays tapped and the line is said
+ADK4-CheckIn#8,ADK4-CheckIn,Well [radio],Says,Well. Saved.,works: the tap stays tapped and the line is said
+ADK4-CheckIn#9,ADK4-CheckIn,OK [radio],Says,OK. Saved.,works: the tap stays tapped and the line is said
+ADK4-CheckIn#10,ADK4-CheckIn,Badly [radio],Says,Badly. Saved.,works: the tap stays tapped and the line is said
+ADK4-CheckIn#11,ADK4-CheckIn,Done,Says,"Thanks, Kai. See you Thursday.",line of text only: the line is said; nothing else changes
 ADP1-AcademyHome#1,ADP1-AcademyHome,Keep Ari’s place,Opens,ADP3-KeepPlace,works
 ADP1-AcademyHome#2,ADP1-AcademyHome,Ari’s goal this term · First touch on the move,Opens,FAM37-FromCoach,works
 ADP1-AcademyHome#3,ADP1-AcademyHome,Practice this week · Done once · two to go,Opens,ADP5-Practice,works
 ADP1-AcademyHome#4,ADP1-AcademyHome,Term 2 report · Ready · from Reece,Opens,ADP2-TermReport,works
 ADP1-AcademyHome#5,ADP1-AcademyHome,"Book a review chat · Ten minutes with Reece, week 9",Opens,ADP4-BookChat,works
-ADP1-AcademyHome#6,ADP1-AcademyHome,Can’t come? Book a make-up · 1 make-up to use,Opens,ACP6-MakeUp,"works: the older make-up page opens over the top. It names Kai, the older sample child. Pressed by hand"
+ADP1-AcademyHome#6,ADP1-AcademyHome,Can’t come? Book a make-up · 1 make-up to use,Opens,ACP6-MakeUp,"works: the older page opens over the top, with a Back bar. Pressed by hand"
 ADP1-AcademyHome#7,ADP1-AcademyHome,Fees · Paid for Term 2,Opens,FAM39-Fees,works
-ADP1-AcademyHome#8,ADP1-AcademyHome,Home,Opens,FAM14-HomeWithClub,works
-ADP1-AcademyHome#9,ADP1-AcademyHome,Reels,Opens,FAM18-Reels,works
-ADP1-AcademyHome#10,ADP1-AcademyHome,Team,Opens,FAM31-Team,works
-ADP1-AcademyHome#11,ADP1-AcademyHome,Learn,Opens,FAM17u-LearnWithClub,works
-ADP1-AcademyHome#12,ADP1-AcademyHome,Club,Opens,ADP1-AcademyHome,works
+ADP1-AcademyHome#8,ADP1-AcademyHome,Ari’s week · Tell Reece what else he does,Opens,ADP8-OtherSport,works
+ADP1-AcademyHome#9,ADP1-AcademyHome,"Pause or stop · Injury, time away or leaving",Opens,ADP9-PauseOrStop,works
+ADP1-AcademyHome#10,ADP1-AcademyHome,Home,Opens,FAM14-HomeWithClub,works
+ADP1-AcademyHome#11,ADP1-AcademyHome,Reels,Opens,FAM18-Reels,works
+ADP1-AcademyHome#12,ADP1-AcademyHome,Team,Opens,FAM31-Team,works
+ADP1-AcademyHome#13,ADP1-AcademyHome,Learn,Opens,FAM17u-LearnWithClub,works
+ADP1-AcademyHome#14,ADP1-AcademyHome,Club,Opens,ADP1-AcademyHome,works
+ADP10-WhyLeaving#1,ADP10-WhyLeaving,Back,Opens,ADP3-KeepPlace,works
+ADP10-WhyLeaving#2,ADP10-WhyLeaving,Moving to a club’s own program [radio],Says,Moving to a club’s own program chosen.,works
+ADP10-WhyLeaving#3,ADP10-WhyLeaving,The cost [radio],Says,The cost chosen.,works
+ADP10-WhyLeaving#4,ADP10-WhyLeaving,It clashes with something else [radio],Says,It clashes with something else chosen.,works
+ADP10-WhyLeaving#5,ADP10-WhyLeaving,We’re moving away [radio],Says,We’re moving away chosen.,works
+ADP10-WhyLeaving#6,ADP10-WhyLeaving,I’d rather not say [radio],Says,I’d rather not say chosen.,works
+ADP10-WhyLeaving#7,ADP10-WhyLeaving,Skip,Says,Ari’s place is released.,works
+ADP10-WhyLeaving#8,ADP10-WhyLeaving,Send,Says,Thank you. Ari’s place is released.,works
+ADP10-WhyLeaving#9,ADP10-WhyLeaving,Home,Opens,FAM14-HomeWithClub,works
+ADP10-WhyLeaving#10,ADP10-WhyLeaving,Reels,Opens,FAM18-Reels,works
+ADP10-WhyLeaving#11,ADP10-WhyLeaving,Team,Opens,FAM31-Team,works
+ADP10-WhyLeaving#12,ADP10-WhyLeaving,Learn,Opens,FAM17u-LearnWithClub,works
+ADP10-WhyLeaving#13,ADP10-WhyLeaving,Club,Opens,ADP1-AcademyHome,works
+ADP11-Survey#1,ADP11-Survey,Back,Opens,ADP1-AcademyHome,works
+ADP11-Survey#2,ADP11-Survey,1 [radio],Says,Ari enjoys coming: 1 of 5.,works
+ADP11-Survey#3,ADP11-Survey,2 [radio],Says,Ari enjoys coming: 2 of 5.,"works: pressed by hand. The script matched the chat button's count, which also reads 2"
+ADP11-Survey#4,ADP11-Survey,3 [radio],Says,Ari enjoys coming: 3 of 5.,works
+ADP11-Survey#5,ADP11-Survey,4 [radio],Says,Ari enjoys coming: 4 of 5.,works
+ADP11-Survey#6,ADP11-Survey,5 [radio],Says,Ari enjoys coming: 5 of 5.,works
+ADP11-Survey#7,ADP11-Survey,1 [radio],Says,The coaches know Ari: 1 of 5.,works
+ADP11-Survey#8,ADP11-Survey,2 [radio],Says,The coaches know Ari: 2 of 5.,"works: pressed by hand. The script matched the chat button's count, which also reads 2"
+ADP11-Survey#9,ADP11-Survey,3 [radio],Says,The coaches know Ari: 3 of 5.,works
+ADP11-Survey#10,ADP11-Survey,4 [radio],Says,The coaches know Ari: 4 of 5.,works
+ADP11-Survey#11,ADP11-Survey,5 [radio],Says,The coaches know Ari: 5 of 5.,works
+ADP11-Survey#12,ADP11-Survey,1 [radio],Says,It is good value: 1 of 5.,works
+ADP11-Survey#13,ADP11-Survey,2 [radio],Says,It is good value: 2 of 5.,"works: pressed by hand. The script matched the chat button's count, which also reads 2"
+ADP11-Survey#14,ADP11-Survey,3 [radio],Says,It is good value: 3 of 5.,works
+ADP11-Survey#15,ADP11-Survey,4 [radio],Says,It is good value: 4 of 5.,works
+ADP11-Survey#16,ADP11-Survey,5 [radio],Says,It is good value: 5 of 5.,works
+ADP11-Survey#17,ADP11-Survey,1 [radio],Says,I can see what Ari is improving: 1 of 5.,works
+ADP11-Survey#18,ADP11-Survey,2 [radio],Says,I can see what Ari is improving: 2 of 5.,"works: pressed by hand. The script matched the chat button's count, which also reads 2"
+ADP11-Survey#19,ADP11-Survey,3 [radio],Says,I can see what Ari is improving: 3 of 5.,works
+ADP11-Survey#20,ADP11-Survey,4 [radio],Says,I can see what Ari is improving: 4 of 5.,works
+ADP11-Survey#21,ADP11-Survey,5 [radio],Says,I can see what Ari is improving: 5 of 5.,works
+ADP11-Survey#22,ADP11-Survey,1 [radio],Says,I know what to practise at home: 1 of 5.,works
+ADP11-Survey#23,ADP11-Survey,2 [radio],Says,I know what to practise at home: 2 of 5.,"works: pressed by hand. The script matched the chat button's count, which also reads 2"
+ADP11-Survey#24,ADP11-Survey,3 [radio],Says,I know what to practise at home: 3 of 5.,works
+ADP11-Survey#25,ADP11-Survey,4 [radio],Says,I know what to practise at home: 4 of 5.,works
+ADP11-Survey#26,ADP11-Survey,5 [radio],Says,I know what to practise at home: 5 of 5.,works
+ADP11-Survey#27,ADP11-Survey,Send,Says,Thank you. Sent without your name.,works
+ADP11-Survey#28,ADP11-Survey,Home,Opens,FAM14-HomeWithClub,works
+ADP11-Survey#29,ADP11-Survey,Reels,Opens,FAM18-Reels,works
+ADP11-Survey#30,ADP11-Survey,Team,Opens,FAM31-Team,works
+ADP11-Survey#31,ADP11-Survey,Learn,Opens,FAM17u-LearnWithClub,works
+ADP11-Survey#32,ADP11-Survey,Club,Opens,ADP1-AcademyHome,works
+ADP12-MoveOffer#1,ADP12-MoveOffer,Back,Opens,ADP1-AcademyHome,works
+ADP12-MoveOffer#2,ADP12-MoveOffer,Not now,Says,No problem. Ari stays in Development. Reece is told.,works
+ADP12-MoveOffer#3,ADP12-MoveOffer,Try two sessions,Says,Booked: Tuesday 14 and Thursday 16 July at 5:30. No change to your bill yet.,works
+ADP12-MoveOffer#4,ADP12-MoveOffer,Home,Opens,FAM14-HomeWithClub,works
+ADP12-MoveOffer#5,ADP12-MoveOffer,Reels,Opens,FAM18-Reels,works
+ADP12-MoveOffer#6,ADP12-MoveOffer,Team,Opens,FAM31-Team,works
+ADP12-MoveOffer#7,ADP12-MoveOffer,Learn,Opens,FAM17u-LearnWithClub,works
+ADP12-MoveOffer#8,ADP12-MoveOffer,Club,Opens,ADP1-AcademyHome,works
+ADP13-NextStep#1,ADP13-NextStep,Back,Opens,ADP1-AcademyHome,works
+ADP13-NextStep#2,ADP13-NextStep,Ask for a reference · Asked 2 June · Dani is writing it,Says,Dani is told. You’ll get it here.,works
+ADP13-NextStep#3,ADP13-NextStep,Tell the academy about a trial · Optional · Sunday 14 June,Says,Enter the club and date. Only Kai’s coaches see it.,"works, with the child in the switch (Ari), not Kai"
+ADP13-NextStep#4,ADP13-NextStep,"Kai’s passport · Skills, 4 of 6 clips, attendance",Opens,CNp14-PlayerPassport,"works: reads ""Ari's passport"" and opens the passport over the top. Pressed by hand"
+ADP13-NextStep#5,ADP13-NextStep,Send the passport,Says,Sent. The link works for 30 days and you can switch it off any time.,works
+ADP13-NextStep#6,ADP13-NextStep,Home,Opens,FAM14-HomeWithClub,works
+ADP13-NextStep#7,ADP13-NextStep,Reels,Opens,FAM18-Reels,works
+ADP13-NextStep#8,ADP13-NextStep,Team,Opens,FAM31-Team,works
+ADP13-NextStep#9,ADP13-NextStep,Learn,Opens,FAM17u-LearnWithClub,works
+ADP13-NextStep#10,ADP13-NextStep,Club,Opens,ADP1-AcademyHome,works
+ADP14-WaitingList#1,ADP14-WaitingList,Back,Opens,ADP1-AcademyHome,works
+ADP14-WaitingList#2,ADP14-WaitingList,Not now,Opens,ADP1-AcademyHome,works
+ADP14-WaitingList#3,ADP14-WaitingList,Join the list,Says,You’re 6th on the list for Advanced. We’ll tell you the moment a place opens.,works
+ADP14-WaitingList#4,ADP14-WaitingList,Home,Opens,FAM14-HomeWithClub,works
+ADP14-WaitingList#5,ADP14-WaitingList,Reels,Opens,FAM18-Reels,works
+ADP14-WaitingList#6,ADP14-WaitingList,Team,Opens,FAM31-Team,works
+ADP14-WaitingList#7,ADP14-WaitingList,Learn,Opens,FAM17u-LearnWithClub,works
+ADP14-WaitingList#8,ADP14-WaitingList,Club,Opens,ADP1-AcademyHome,works
+ADP14e-WaitingListEmpty#1,ADP14e-WaitingListEmpty,Back,Opens,ADP1-AcademyHome,works
+ADP14e-WaitingListEmpty#2,ADP14e-WaitingListEmpty,See programs,Opens,ACP1-BookTrial,"works: the older page opens over the top, with a Back bar. Pressed by hand"
+ADP14e-WaitingListEmpty#3,ADP14e-WaitingListEmpty,Home,Opens,FAM14-HomeWithClub,works
+ADP14e-WaitingListEmpty#4,ADP14e-WaitingListEmpty,Reels,Opens,FAM18-Reels,works
+ADP14e-WaitingListEmpty#5,ADP14e-WaitingListEmpty,Team,Opens,FAM31-Team,works
+ADP14e-WaitingListEmpty#6,ADP14e-WaitingListEmpty,Learn,Opens,FAM17u-LearnWithClub,works
+ADP14e-WaitingListEmpty#7,ADP14e-WaitingListEmpty,Club,Opens,ADP1-AcademyHome,works
+ADP15-HowHeard#1,ADP15-HowHeard,Back,Opens,ACP1-BookTrial,"works: the older page opens over the top, with a Back bar. Pressed by hand"
+ADP15-HowHeard#2,ADP15-HowHeard,A friend or another parent [radio],Says,A friend or another parent chosen.,works
+ADP15-HowHeard#3,ADP15-HowHeard,My child’s club [radio],Says,My child’s club chosen.,works
+ADP15-HowHeard#4,ADP15-HowHeard,Saw you at a ground or school [radio],Says,Saw you at a ground or school chosen.,works
+ADP15-HowHeard#5,ADP15-HowHeard,Searched online [radio],Says,Searched online chosen.,works
+ADP15-HowHeard#6,ADP15-HowHeard,Social media [radio],Says,Social media chosen.,works
+ADP15-HowHeard#7,ADP15-HowHeard,Skip,Opens,ACP1b-TrialBooked,"works: the older page opens over the top, with a Back bar. Pressed by hand"
+ADP15-HowHeard#8,ADP15-HowHeard,Done,Opens,ACP1b-TrialBooked,"works: the older page opens over the top, with a Back bar. Pressed by hand"
+ADP16-Voucher#1,ADP16-Voucher,Back,Opens,ACP4-ParentFees,"works: the older page opens over the top, with a Back bar. Pressed by hand"
+ADP16-Voucher#2,ADP16-Voucher,Not now,Opens,ACP4-ParentFees,"works: the older page opens over the top, with a Back bar. Pressed by hand"
+ADP16-Voucher#3,ADP16-Voucher,Tell the academy I have one,Says,Dani has been told a family asked. Your name is not attached.,works
+ADP16-Voucher#4,ADP16-Voucher,Home,Opens,FAM14-HomeWithClub,works
+ADP16-Voucher#5,ADP16-Voucher,Reels,Opens,FAM18-Reels,works
+ADP16-Voucher#6,ADP16-Voucher,Team,Opens,FAM31-Team,works
+ADP16-Voucher#7,ADP16-Voucher,Learn,Opens,FAM17u-LearnWithClub,works
+ADP16-Voucher#8,ADP16-Voucher,Club,Opens,ADP1-AcademyHome,works
+ADP1e-AcademyHomeEmpty#1,ADP1e-AcademyHomeEmpty,What to bring,Says,"Boots, shin pads, a drink and a ball if he has one.",works
+ADP1e-AcademyHomeEmpty#2,ADP1e-AcademyHomeEmpty,Home,Opens,FAM14-HomeWithClub,works
+ADP1e-AcademyHomeEmpty#3,ADP1e-AcademyHomeEmpty,Reels,Opens,FAM18-Reels,works
+ADP1e-AcademyHomeEmpty#4,ADP1e-AcademyHomeEmpty,Team,Opens,FAM31-Team,works
+ADP1e-AcademyHomeEmpty#5,ADP1e-AcademyHomeEmpty,Learn,Opens,FAM17u-LearnWithClub,works
+ADP1e-AcademyHomeEmpty#6,ADP1e-AcademyHomeEmpty,Club,Opens,ADP1-AcademyHome,works
 ADP2-TermReport#1,ADP2-TermReport,Back,Opens,ADP1-AcademyHome,works
 ADP2-TermReport#2,ADP2-TermReport,"0:08 · · First touch, then away · Thu 28 May · skill game",Opens,FAM9-Clip,works
 ADP2-TermReport#3,ADP2-TermReport,Book a chat,Opens,ADP4-BookChat,works
@@ -211,27 +1112,47 @@ ADP2-TermReport#6,ADP2-TermReport,Reels,Opens,FAM18-Reels,works
 ADP2-TermReport#7,ADP2-TermReport,Team,Opens,FAM31-Team,works
 ADP2-TermReport#8,ADP2-TermReport,Learn,Opens,FAM17u-LearnWithClub,works
 ADP2-TermReport#9,ADP2-TermReport,Club,Opens,ADP1-AcademyHome,works
+ADP2e-TermReportEmpty#1,ADP2e-TermReportEmpty,Back,Opens,ADP1-AcademyHome,works
+ADP2e-TermReportEmpty#2,ADP2e-TermReportEmpty,Home,Opens,FAM14-HomeWithClub,works
+ADP2e-TermReportEmpty#3,ADP2e-TermReportEmpty,Reels,Opens,FAM18-Reels,works
+ADP2e-TermReportEmpty#4,ADP2e-TermReportEmpty,Team,Opens,FAM31-Team,works
+ADP2e-TermReportEmpty#5,ADP2e-TermReportEmpty,Learn,Opens,FAM17u-LearnWithClub,works
+ADP2e-TermReportEmpty#6,ADP2e-TermReportEmpty,Club,Opens,ADP1-AcademyHome,works
 ADP3-KeepPlace#1,ADP3-KeepPlace,Back,Opens,ADP1-AcademyHome,works
 ADP3-KeepPlace#2,ADP3-KeepPlace,Pay $290 now · Card ending 4410 [radio],Says,Pay $290 now chosen.,works
 ADP3-KeepPlace#3,ADP3-KeepPlace,"Pay in 3 parts · $96.67 now, then 13 July and 10 August · no extra cost [radio]",Says,Pay in 3 parts chosen.,works
-ADP3-KeepPlace#4,ADP3-KeepPlace,Not coming back,Says,"Two short questions, so the academy knows why. Ari’s place is released.",works
+ADP3-KeepPlace#4,ADP3-KeepPlace,Not coming back,Opens,ADP10-WhyLeaving,works
 ADP3-KeepPlace#5,ADP3-KeepPlace,Keep my place · $290,Says,Ari’s place is kept for Term 3. A receipt is in Fees.,works
 ADP3-KeepPlace#6,ADP3-KeepPlace,Home,Opens,FAM14-HomeWithClub,works
 ADP3-KeepPlace#7,ADP3-KeepPlace,Reels,Opens,FAM18-Reels,works
 ADP3-KeepPlace#8,ADP3-KeepPlace,Team,Opens,FAM31-Team,works
 ADP3-KeepPlace#9,ADP3-KeepPlace,Learn,Opens,FAM17u-LearnWithClub,works
 ADP3-KeepPlace#10,ADP3-KeepPlace,Club,Opens,ADP1-AcademyHome,works
+ADP3e-KeepPlaceEmpty#1,ADP3e-KeepPlaceEmpty,Back,Opens,ADP1-AcademyHome,works
+ADP3e-KeepPlaceEmpty#2,ADP3e-KeepPlaceEmpty,Home,Opens,FAM14-HomeWithClub,works
+ADP3e-KeepPlaceEmpty#3,ADP3e-KeepPlaceEmpty,Reels,Opens,FAM18-Reels,works
+ADP3e-KeepPlaceEmpty#4,ADP3e-KeepPlaceEmpty,Team,Opens,FAM31-Team,works
+ADP3e-KeepPlaceEmpty#5,ADP3e-KeepPlaceEmpty,Learn,Opens,FAM17u-LearnWithClub,works
+ADP3e-KeepPlaceEmpty#6,ADP3e-KeepPlaceEmpty,Club,Opens,ADP1-AcademyHome,works
 ADP4-BookChat#1,ADP4-BookChat,Back,Opens,ADP1-AcademyHome,works
 ADP4-BookChat#2,ADP4-BookChat,"Thursday 18 June, 5:30 · Pitch-side, after Ari’s session [radio]",Says,"Thursday 18 June, 5:30 chosen.",works
 ADP4-BookChat#3,ADP4-BookChat,"Thursday 18 June, 5:40 · Pitch-side [radio]",Says,"Thursday 18 June, 5:40 chosen.",works
 ADP4-BookChat#4,ADP4-BookChat,"Friday 19 June, 12:30 · By phone [radio]",Says,"Friday 19 June, 12:30 chosen.",works
-ADP4-BookChat#5,ADP4-BookChat,None of these,Says,Reece is told. He’ll send the report with a spoken note.,works
-ADP4-BookChat#6,ADP4-BookChat,Book 5:30,Says,"Booked: Thursday 18 June, 5:30, pitch-side. It’s in your calendar.",works
-ADP4-BookChat#7,ADP4-BookChat,Home,Opens,FAM14-HomeWithClub,works
-ADP4-BookChat#8,ADP4-BookChat,Reels,Opens,FAM18-Reels,works
-ADP4-BookChat#9,ADP4-BookChat,Team,Opens,FAM31-Team,works
-ADP4-BookChat#10,ADP4-BookChat,Learn,Opens,FAM17u-LearnWithClub,works
-ADP4-BookChat#11,ADP4-BookChat,Club,Opens,ADP1-AcademyHome,works
+ADP4-BookChat#5,ADP4-BookChat,Or book a one-on-one,Opens,ADP6-BookOneOnOne,works
+ADP4-BookChat#6,ADP4-BookChat,None of these,Says,Reece is told. He’ll send the report with a spoken note.,works
+ADP4-BookChat#7,ADP4-BookChat,Book 5:30,Says,"Booked: Thursday 18 June, 5:30, pitch-side. It’s in your calendar.",works
+ADP4-BookChat#8,ADP4-BookChat,Home,Opens,FAM14-HomeWithClub,works
+ADP4-BookChat#9,ADP4-BookChat,Reels,Opens,FAM18-Reels,works
+ADP4-BookChat#10,ADP4-BookChat,Team,Opens,FAM31-Team,works
+ADP4-BookChat#11,ADP4-BookChat,Learn,Opens,FAM17u-LearnWithClub,works
+ADP4-BookChat#12,ADP4-BookChat,Club,Opens,ADP1-AcademyHome,works
+ADP4e-BookChatEmpty#1,ADP4e-BookChatEmpty,Back,Opens,ADP1-AcademyHome,works
+ADP4e-BookChatEmpty#2,ADP4e-BookChatEmpty,Message Reece,Opens,ACP11-AcademyParentChat,"works: the older page opens over the top, with a Back bar. Pressed by hand"
+ADP4e-BookChatEmpty#3,ADP4e-BookChatEmpty,Home,Opens,FAM14-HomeWithClub,works
+ADP4e-BookChatEmpty#4,ADP4e-BookChatEmpty,Reels,Opens,FAM18-Reels,works
+ADP4e-BookChatEmpty#5,ADP4e-BookChatEmpty,Team,Opens,FAM31-Team,works
+ADP4e-BookChatEmpty#6,ADP4e-BookChatEmpty,Learn,Opens,FAM17u-LearnWithClub,works
+ADP4e-BookChatEmpty#7,ADP4e-BookChatEmpty,Club,Opens,ADP1-AcademyHome,works
 ADP5-Practice#1,ADP5-Practice,Back,Opens,ADP1-AcademyHome,works
 ADP5-Practice#2,ADP5-Practice,First touch off a wall · 0:35,Says,The clip plays.,works
 ADP5-Practice#3,ADP5-Practice,First go [checkbox],Says,First go: marked not done.,works
@@ -244,3 +1165,56 @@ ADP5-Practice#9,ADP5-Practice,Reels,Opens,FAM18-Reels,works
 ADP5-Practice#10,ADP5-Practice,Team,Opens,FAM31-Team,works
 ADP5-Practice#11,ADP5-Practice,Learn,Opens,FAM17u-LearnWithClub,works
 ADP5-Practice#12,ADP5-Practice,Club,Opens,ADP1-AcademyHome,works
+ADP5e-PracticeEmpty#1,ADP5e-PracticeEmpty,Back,Opens,ADP1-AcademyHome,works
+ADP5e-PracticeEmpty#2,ADP5e-PracticeEmpty,See last week’s,Says,Last week’s practice opens.,works
+ADP5e-PracticeEmpty#3,ADP5e-PracticeEmpty,Home,Opens,FAM14-HomeWithClub,works
+ADP5e-PracticeEmpty#4,ADP5e-PracticeEmpty,Reels,Opens,FAM18-Reels,works
+ADP5e-PracticeEmpty#5,ADP5e-PracticeEmpty,Team,Opens,FAM31-Team,works
+ADP5e-PracticeEmpty#6,ADP5e-PracticeEmpty,Learn,Opens,FAM17u-LearnWithClub,works
+ADP5e-PracticeEmpty#7,ADP5e-PracticeEmpty,Club,Opens,ADP1-AcademyHome,works
+ADP6-BookOneOnOne#1,ADP6-BookOneOnOne,Back,Opens,ADP1-AcademyHome,works
+ADP6-BookOneOnOne#2,ADP6-BookOneOnOne,"Thursday 11 June, 6:45 · With Reece · $90 [radio]",Says,"Thursday 11 June, 6:45 chosen.",works
+ADP6-BookOneOnOne#3,ADP6-BookOneOnOne,"Monday 15 June, 6:45 · With Dani · $90 [radio]",Says,"Monday 15 June, 6:45 chosen.",works
+ADP6-BookOneOnOne#4,ADP6-BookOneOnOne,"Thursday 18 June, 6:45 · With Reece · $90 [radio]",Says,"Thursday 18 June, 6:45 chosen.",works
+ADP6-BookOneOnOne#5,ADP6-BookOneOnOne,Book · $90,Says,"Booked: Thursday 11 June, 6:45, with Reece. Paid with the card ending 4410.",works
+ADP6-BookOneOnOne#6,ADP6-BookOneOnOne,Home,Opens,FAM14-HomeWithClub,works
+ADP6-BookOneOnOne#7,ADP6-BookOneOnOne,Reels,Opens,FAM18-Reels,works
+ADP6-BookOneOnOne#8,ADP6-BookOneOnOne,Team,Opens,FAM31-Team,works
+ADP6-BookOneOnOne#9,ADP6-BookOneOnOne,Learn,Opens,FAM17u-LearnWithClub,works
+ADP6-BookOneOnOne#10,ADP6-BookOneOnOne,Club,Opens,ADP1-AcademyHome,works
+ADP7-SessionOff#1,ADP7-SessionOff,Back,Opens,ADP1-AcademyHome,works
+ADP7-SessionOff#2,ADP7-SessionOff,Later,Opens,ADP1-AcademyHome,works
+ADP7-SessionOff#3,ADP7-SessionOff,Book the make-up,Opens,ACP6-MakeUp,"works: the older page opens over the top, with a Back bar. Pressed by hand"
+ADP7-SessionOff#4,ADP7-SessionOff,Home,Opens,FAM14-HomeWithClub,works
+ADP7-SessionOff#5,ADP7-SessionOff,Reels,Opens,FAM18-Reels,works
+ADP7-SessionOff#6,ADP7-SessionOff,Team,Opens,FAM31-Team,works
+ADP7-SessionOff#7,ADP7-SessionOff,Learn,Opens,FAM17u-LearnWithClub,works
+ADP7-SessionOff#8,ADP7-SessionOff,Club,Opens,ADP1-AcademyHome,works
+ADP8-OtherSport#1,ADP8-OtherSport,Back,Opens,ADP1-AcademyHome,works
+ADP8-OtherSport#2,ADP8-OtherSport,Club team · Training Wed · game Sun,Says,Days open to change.,works
+ADP8-OtherSport#3,ADP8-OtherSport,School football · Friday lunchtime,Says,Days open to change.,works
+ADP8-OtherSport#4,ADP8-OtherSport,Add another · Any sport counts,Says,Name it and tap the days.,works
+ADP8-OtherSport#5,ADP8-OtherSport,share it,Opens,ACP7-ShareWithClub,"works: the older page opens over the top, with a Back bar. Pressed by hand"
+ADP8-OtherSport#6,ADP8-OtherSport,Save,Says,Saved. Reece can see Ari’s week.,works
+ADP8-OtherSport#7,ADP8-OtherSport,Home,Opens,FAM14-HomeWithClub,works
+ADP8-OtherSport#8,ADP8-OtherSport,Reels,Opens,FAM18-Reels,works
+ADP8-OtherSport#9,ADP8-OtherSport,Team,Opens,FAM31-Team,works
+ADP8-OtherSport#10,ADP8-OtherSport,Learn,Opens,FAM17u-LearnWithClub,works
+ADP8-OtherSport#11,ADP8-OtherSport,Club,Opens,ADP1-AcademyHome,works
+ADP8e-OtherSportEmpty#1,ADP8e-OtherSportEmpty,Back,Opens,ADP1-AcademyHome,works
+ADP8e-OtherSportEmpty#2,ADP8e-OtherSportEmpty,Add something,Says,Name it and tap the days.,works
+ADP8e-OtherSportEmpty#3,ADP8e-OtherSportEmpty,Home,Opens,FAM14-HomeWithClub,works
+ADP8e-OtherSportEmpty#4,ADP8e-OtherSportEmpty,Reels,Opens,FAM18-Reels,works
+ADP8e-OtherSportEmpty#5,ADP8e-OtherSportEmpty,Team,Opens,FAM31-Team,works
+ADP8e-OtherSportEmpty#6,ADP8e-OtherSportEmpty,Learn,Opens,FAM17u-LearnWithClub,works
+ADP8e-OtherSportEmpty#7,ADP8e-OtherSportEmpty,Club,Opens,ADP1-AcademyHome,works
+ADP9-PauseOrStop#1,ADP9-PauseOrStop,Back,Opens,ADP1-AcademyHome,works
+ADP9-PauseOrStop#2,ADP9-PauseOrStop,Pause for a while · Ari’s place is held for up to 4 weeks [radio],Says,Pause for a while chosen.,works
+ADP9-PauseOrStop#3,ADP9-PauseOrStop,Stop this term · Ask for the unused weeks back [radio],Says,Stop this term chosen.,works
+ADP9-PauseOrStop#4,ADP9-PauseOrStop,Tell Reece the reason too [checkbox],Says,Reece will not be told the reason.,works
+ADP9-PauseOrStop#5,ADP9-PauseOrStop,Pause Ari’s place,Says,Paused from 9 June. $58 comes off your next bill.,works
+ADP9-PauseOrStop#6,ADP9-PauseOrStop,Home,Opens,FAM14-HomeWithClub,works
+ADP9-PauseOrStop#7,ADP9-PauseOrStop,Reels,Opens,FAM18-Reels,works
+ADP9-PauseOrStop#8,ADP9-PauseOrStop,Team,Opens,FAM31-Team,works
+ADP9-PauseOrStop#9,ADP9-PauseOrStop,Learn,Opens,FAM17u-LearnWithClub,works
+ADP9-PauseOrStop#10,ADP9-PauseOrStop,Club,Opens,ADP1-AcademyHome,works

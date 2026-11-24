@@ -1,7 +1,9 @@
 import { useBackState } from '../../backState'
-import { openThing } from '../openThing'
+import { openThing, openScreen } from '../openThing'
+import DCK1ClubChecks from './DCK1ClubChecks'
+import DCK1eClubChecksEmpty from './DCK1eClubChecksEmpty'
 import { useState } from 'react'
-import { COACHES_DATA, CONCERNS, CONCUSSIONS } from './data'
+import { CONCERNS, CONCUSSIONS } from './data'
 import { SubTabBar, EmptyCard, FOOTER_DEFAULT } from './ui'
 
 type SafeguardingView = 'checks' | 'consent' | 'concerns' | 'datareq' | 'concussion' | 'sideline'
@@ -9,7 +11,6 @@ type SafeguardingView = 'checks' | 'consent' | 'concerns' | 'datareq' | 'concuss
 const STAGES = ['Rest', 'Light activity', 'Non-contact training', 'Contact training', 'Games']
 
 const SG_EMPTY: Partial<Record<SafeguardingView, { icon: string; title: string; desc: string; cta?: string; items: { title: string; desc: string }[] }>> = {
-  checks:    { icon: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z', title: 'Start with a welfare officer', desc: 'Name the one person who sees concerns in full. Then checks, consent and concerns fill in here.', cta: 'Name a welfare officer', items: [{ title: 'Children checks', desc: "Everyone valid, or who isn't" }, { title: 'Consent', desc: 'What each family agreed to' }] },
   concerns:  { icon: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z', title: 'No concerns raised', desc: "When someone raises a concern it goes to the welfare officer. You see that it exists and whether it's on track.", cta: 'Raise a concern', items: [{ title: 'Who can raise one', desc: 'Parents, children, coaches, managers' }, { title: 'What you see', desc: 'A count, not names' }] },
   datareq:   { icon: 'M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8zM14 2v6h6M8 13h8M8 17h5', title: 'No requests yet', desc: "Families can ask for a copy of their child's data, or to delete it. Requests and due dates show here.", cta: 'Consent settings', items: [{ title: 'Copies', desc: 'Sent within a day' }, { title: 'Deletes', desc: 'Within 7 days' }] },
   concussion: { icon: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z', title: 'No head knocks logged', desc: 'Coaches and managers log a head knock from the sideline. The player then follows the return-to-play steps here.', cta: 'Name a concussion officer', items: [{ title: 'If in doubt, sit them out', desc: 'No game for at least 21 days' }, { title: 'Parents and coach told', desc: 'The same day' }] },
@@ -33,35 +34,18 @@ export default function SafeguardingTab({ empty }: { empty?: boolean }) {
           { id: 'datareq', label: 'Data requests' },
           { id: 'concussion', label: 'Concussion' },
           { id: 'sideline', label: 'Sideline' },
+          { id: 'welfare', label: 'Welfare cases' },
         ]}
         active={view}
-        onSelect={id => setView(id as SafeguardingView)}
+        onSelect={id => { if (id === 'welfare') openScreen('DW1-WelfareCases'); else setView(id as SafeguardingView) }}
       />
 
-      {empty && view in SG_EMPTY && <EmptyCard {...SG_EMPTY[view]!} footer={FOOTER_DEFAULT} />}
+      {empty && view !== 'checks' && view in SG_EMPTY && <EmptyCard {...SG_EMPTY[view]!} footer={FOOTER_DEFAULT} />}
 
-      {!empty && view === 'checks' && (
-        <div style={p}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
-            <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>Working with children checks</div>
-            <button onClick={() => openThing('club course details', 'club')} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Club course</button>
-          </div>
-          {COACHES_DATA.map((c, i) => {
-            const expiring = c.checkDays > 0 && c.checkDays <= 30
-            const urgent = c.checkDays > 0 && c.checkDays <= 14
-            return (
-              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 0', borderTop: i > 0 ? '1px solid #f0f1f0' : 'none' }}>
-                <div style={{ width: 32, height: 32, borderRadius: '999px', background: '#e8cfcf', color: '#10211f', fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{c.ini}</div>
-                <div style={{ flexGrow: 1 }}>
-                  <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>{c.name}</div>
-                  <div style={{ fontSize: 12, color: '#5c6b67' }}>{c.team}</div>
-                </div>
-                <span style={{ fontSize: 11, fontWeight: 700, color: urgent ? '#c39797' : expiring ? '#c3a84a' : '#40826d', background: urgent ? '#fdf4f4' : expiring ? '#fdf8ed' : '#e4f2eb', borderRadius: 6, padding: '2px 8px' }}>
-                  {c.check}
-                </span>
-              </div>
-            )
-          })}
+      {/* Children checks for the club (DCK1, academy handover v3): checked, connected, trained, for coaches and volunteers. The wording is Victoria's and is not to ship before a lawyer has checked it. */}
+      {view === 'checks' && (
+        <div data-screen={empty ? 'DCK1e-ClubChecksEmpty' : 'DCK1-ClubChecks'} style={{ flexGrow: 1, minHeight: 640, display: 'flex', flexDirection: 'column', background: '#faf5ec', color: '#10211f', fontFamily: "'DM Sans',system-ui,sans-serif" }}>
+          {empty ? <DCK1eClubChecksEmpty /> : <DCK1ClubChecks />}
         </div>
       )}
 

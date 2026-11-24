@@ -64,7 +64,10 @@ export default function AD2Health() {
               <span style={{ fontSize: 12, lineHeight: '16px', color: '#4a5a57', textAlign: 'center' }}>Term 2, 2026</span>
             </span>
           </div>
-          <span style={{ ...S.cap, marginTop: 'auto', paddingTop: 8 }}>Up 22 players in a year. Growth has come from Development, ages 9 to 11.</span>
+          <span style={{ ...S.cap, marginTop: 'auto', paddingTop: 8 }}>
+            {'Up 22 players in a year. Growth has come from Development, ages 9 to 11. '}
+            <Tap to="ADP15-HowHeard">How we know where families came from</Tap>
+          </span>
         </section>
         <section aria-label="Why 10 families left after Term 1" style={{ ...S.tile, gridColumn: 'span 4', gap: 0, padding: '14px 18px 10px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 10, marginBottom: 6 }}>

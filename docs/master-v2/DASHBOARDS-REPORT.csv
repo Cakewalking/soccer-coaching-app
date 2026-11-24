@@ -1,0 +1,134 @@
+control id,screen,control,does,target or line,status: works / line of text only / missing / wrong target (say where)
+ADC7-GameReview#7,ADC7-GameReview,Tall Timber Academy,Opens,VS1-SwitchView,works
+ADC7-GameReview#13,ADC7-GameReview,Review,Opens,ADC7-GameReview,works
+ADC7-GameReview#14,ADC7-GameReview,Chances,Opens,XG1-ChancesGame,works
+ADC7-GameReview#15,ADC7-GameReview,Your take,Opens,YT1-YourTake,works
+ADC7-GameReview#16,ADC7-GameReview,Highlights · 4 min,Says,"The highlights play. 4 minutes, 24 clips.",works
+ADC7-GameReview#17,ADC7-GameReview,What the marks mean,Opens,RC8-HowWeMeasure,works
+ADC7-GameReview#18,ADC7-GameReview,Our style,Opens,ADC8-TeamStyle,works
+ADC7-GameReview#19,ADC7-GameReview,Goal kicks played short · Off target · · 64% · · · · aim 70%+ · · Strong,Says,"The clips behind this number play, newest first.",works
+ADC7-GameReview#20,ADC7-GameReview,Wins in their half · On target · · 13 · · · · aim 10+ · · Strong,Says,"The clips behind this number play, newest first.",works
+ADC7-GameReview#21,ADC7-GameReview,Shots inside 10 s of a win · On target · · 3 · · · · aim 2+ · · Strong,Says,"The clips behind this number play, newest first.",works
+ADC7-GameReview#22,ADC7-GameReview,Their passes before we challenge · On target · · 9 · · · · aim under 10 · · Strong,Says,"The clips behind this number play, newest first.",works
+ADC7-GameReview#23,ADC7-GameReview,Seconds to win it back · Off target · · 7 s · · · · usual 4 s · · Strong,Says,"The clips behind this number play, newest first.",works
+ADC7-GameReview#24,ADC7-GameReview,Won back inside 6 s · On target · · 42% · · · · aim 40%+ · · Strong,Says,"The clips behind this number play, newest first.",works
+ADC7-GameReview#25,ADC7-GameReview,Minutes shared evenly · Close · · 15 of 16 · · · · aim all 16 · · Strong,Says,"The clips behind this number play, newest first.",works
+ADC7-GameReview#26,ADC7-GameReview,Weaker-foot touches · Close · · 18% · · · · aim 20%+ · · Strong,Says,"The clips behind this number play, newest first.",works
+ADC7-GameReview#27,ADC7-GameReview,Thursday’s plan,Opens,ACT3-AcademySessionPlan,works
+ADC7-GameReview#28,ADC7-GameReview,"MIN16 · · Win it back faster · One pressed, the rest watched · · 7 s · · Strong",Says,The clip from minute 16 plays.,works
+ADC7-GameReview#29,ADC7-GameReview,MIN29 · · Close the gap between lines · Before 6 of their 8 chances · · 26 m · · Estimate,Says,The clip from minute 29 plays.,works
+ADC7-GameReview#30,ADC7-GameReview,MIN41 · · Stay strong late · Sprints dropped after minute 35 · · −22% · · Estimate,Says,The clip from minute 41 plays.,works
+ADC7-GameReview#31,ADC7-GameReview,All 16,Opens,ADC2-Group,works
+ADC7-GameReview#32,ADC7-GameReview,KO · Kai Okonkwo · Left-foot goal: his goal this term,Opens,ADC1-PlayerFile,works
+ADC7-GameReview#33,ADC7-GameReview,NP · Noah Petrov · 27 minutes. Start him on Sunday,Opens,ADC1-PlayerFile,works
+ADC7-GameReview#34,ADC7-GameReview,IT · Isla Tran · Felt low two days running,Opens,ADC1-PlayerFile,works
+ADC7e-GameReviewEmpty#7,ADC7e-GameReviewEmpty,Tall Timber Academy,Opens,VS1-SwitchView,works
+ADC7e-GameReviewEmpty#13,ADC7e-GameReviewEmpty,How to film a game,Opens,ACC8-AcademyRecord,works
+RD1-GameReview#7,RD1-GameReview,U12 Sam,Opens,VS1-SwitchView,"works (over the top, with a Back bar)"
+RD1-GameReview#13,RD1-GameReview,Review,Opens,RD1-GameReview,works
+RD1-GameReview#14,RD1-GameReview,Chances,Opens,XG1-ChancesGame,works
+RD1-GameReview#15,RD1-GameReview,Your take,Opens,YT1-YourTake,works
+RD1-GameReview#16,RD1-GameReview,Highlights · 4 min,Says,"The highlights play. 4 minutes, 24 clips.",works
+RD1-GameReview#17,RD1-GameReview,What the marks mean,Opens,RC8-HowWeMeasure,"works (over the top, with a Back bar)"
+RD1-GameReview#18,RD1-GameReview,Our style,Opens,S1-PlayingStyle,works
+RD1-GameReview#19,RD1-GameReview,Goal kicks played short · Off target · · 64% · · · · aim 70%+ · · Strong,Says,"The clips behind this number play, newest first.",works
+RD1-GameReview#20,RD1-GameReview,Wins in their half · On target · · 13 · · · · aim 10+ · · Strong,Says,"The clips behind this number play, newest first.",works
+RD1-GameReview#21,RD1-GameReview,Shots inside 10 s of a win · On target · · 3 · · · · aim 2+ · · Strong,Says,"The clips behind this number play, newest first.",works
+RD1-GameReview#22,RD1-GameReview,Their passes before we challenge · On target · · 9 · · · · aim under 10 · · Strong,Says,"The clips behind this number play, newest first.",works
+RD1-GameReview#23,RD1-GameReview,Seconds to win it back · Off target · · 7 s · · · · usual 4 s · · Strong,Says,"The clips behind this number play, newest first.",works
+RD1-GameReview#24,RD1-GameReview,Won back inside 6 s · On target · · 42% · · · · aim 40%+ · · Strong,Says,"The clips behind this number play, newest first.",works
+RD1-GameReview#25,RD1-GameReview,Minutes shared evenly · Close · · 15 of 16 · · · · aim all 16 · · Strong,Says,"The clips behind this number play, newest first.",works
+RD1-GameReview#26,RD1-GameReview,Weaker-foot touches · Close · · 18% · · · · aim 20%+ · · Strong,Says,"The clips behind this number play, newest first.",works
+RD1-GameReview#27,RD1-GameReview,Thursday’s plan,Opens,GS1-ProposedSession,works
+RD1-GameReview#28,RD1-GameReview,"MIN16 · · Win it back faster · One pressed, the rest watched · · 7 s · · Strong",Says,The clip from minute 16 plays.,works
+RD1-GameReview#29,RD1-GameReview,MIN29 · · Close the gap between lines · Before 6 of their 8 chances · · 26 m · · Estimate,Says,The clip from minute 29 plays.,works
+RD1-GameReview#30,RD1-GameReview,MIN41 · · Stay strong late · Sprints dropped after minute 35 · · −22% · · Estimate,Says,The clip from minute 41 plays.,works
+RD1-GameReview#31,RD1-GameReview,All 16,Opens,T4-SquadTab,works
+RD1-GameReview#32,RD1-GameReview,MT · Mia Tran · Goal on her weaker foot,Opens,T4-SquadTab,works
+RD1-GameReview#33,RD1-GameReview,LM · Leo Marsh · 27 minutes. Start him on Sunday,Opens,T4-SquadTab,works
+RD1-GameReview#34,RD1-GameReview,EB · Ella Brandt · Felt low two days running,Opens,T4-SquadTab,works
+RD2-SeasonSoFar#7,RD2-SeasonSoFar,U12 Sam,Opens,VS1-SwitchView,"works (over the top, with a Back bar)"
+RD2-SeasonSoFar#15,RD2-SeasonSoFar,Season,Opens,RD2-SeasonSoFar,works
+RD2-SeasonSoFar#16,RD2-SeasonSoFar,Chances,Opens,XG2-ChancesSeason,works
+RD2-SeasonSoFar#17,RD2-SeasonSoFar,Each game,Opens,RC7-Recorded,"works (over the top, with a Back bar)"
+RD2-SeasonSoFar#18,RD2-SeasonSoFar,Season reel · 6 min,Says,The season reel plays. 6 minutes.,works
+RD2-SeasonSoFar#19,RD2-SeasonSoFar,What the marks mean,Opens,RC8-HowWeMeasure,"works (over the top, with a Back bar)"
+RD2-SeasonSoFar#20,RD2-SeasonSoFar,Our style,Opens,S1-PlayingStyle,works
+RD2-SeasonSoFar#21,RD2-SeasonSoFar,Goal kicks played short · Close · · 61% · · · · aim 70%+ · was 48% · · Strong,Says,"The clips behind this number play, newest first.",works
+RD2-SeasonSoFar#22,RD2-SeasonSoFar,Wins in their half · On target · · 11 · · · · aim 10+ a game · · Strong,Says,"The clips behind this number play, newest first.",works
+RD2-SeasonSoFar#23,RD2-SeasonSoFar,Shots inside 10 s of a win · On target · · 2.4 · · · · aim 2+ a game · · Strong,Says,"The clips behind this number play, newest first.",works
+RD2-SeasonSoFar#24,RD2-SeasonSoFar,Their passes before we challenge · Close · · 11 · · · · aim under 10 · · Strong,Says,"The clips behind this number play, newest first.",works
+RD2-SeasonSoFar#25,RD2-SeasonSoFar,Seconds to win it back · Close · · 5 s · · · · aim 4 s · was 8 s · · Strong,Says,"The clips behind this number play, newest first.",works
+RD2-SeasonSoFar#26,RD2-SeasonSoFar,Won back inside 6 s · On target · · 44% · · · · aim 40%+ · · Strong,Says,"The clips behind this number play, newest first.",works
+RD2-SeasonSoFar#27,RD2-SeasonSoFar,Minutes shared evenly · Close · · 8 of 9 · · · · games within a fifth · · Strong,Says,"The clips behind this number play, newest first.",works
+RD2-SeasonSoFar#28,RD2-SeasonSoFar,Weaker-foot touches · Off target · · 14% · · · · aim 20%+ · was 15% · · Strong,Says,"The clips behind this number play, newest first.",works
+RD2-SeasonSoFar#29,RD2-SeasonSoFar,Each game,Opens,RC7-Recorded,"works (over the top, with a Back bar)"
+RD2-SeasonSoFar#30,RD2-SeasonSoFar,Season plan,Opens,FY1-SeasonPlan,"works (over the top, with a Back bar)"
+RD2-SeasonSoFar#31,RD2-SeasonSoFar,↑ · Seconds to win it back · 8 s down to 5 s since round 3,Opens,S1-PlayingStyle,works
+RD2-SeasonSoFar#32,RD2-SeasonSoFar,↑ · Goal kicks played short · 48% up to 61%,Opens,S1-PlayingStyle,works
+RD2-SeasonSoFar#33,RD2-SeasonSoFar,→ · Weaker-foot touches · Stuck at 14%. In the next block,Opens,S1-PlayingStyle,works
+RD2e-SeasonSoFarEmpty#7,RD2e-SeasonSoFarEmpty,U12 Sam,Opens,VS1-SwitchView,"works (over the top, with a Back bar)"
+RD2e-SeasonSoFarEmpty#15,RD2e-SeasonSoFarEmpty,How to film a game,Opens,RC1-RecordStart,"works (over the top, with a Back bar)"
+RD3-MiniRoosReview#7,RD3-MiniRoosReview,U8 Wombats,Opens,VS1-SwitchView,works
+RD3-MiniRoosReview#12,RD3-MiniRoosReview,Play 40 seconds,Says,The 40-second reel plays: one moment per child.,works
+RD3-MiniRoosReview#13,RD3-MiniRoosReview,Our style,Opens,MS1-MiniRoosStyle,works
+RD3-MiniRoosReview#14,RD3-MiniRoosReview,Everyone played · On target · · 9 of 9 · · · · aim all 9 · You tapped,Says,"The clips behind this number play, newest first.",works
+RD3-MiniRoosReview#15,RD3-MiniRoosReview,Longest wait for a turn · On target · · 4 min · · · · aim under 5 · You tapped,Says,"The clips behind this number play, newest first.",works
+RD3-MiniRoosReview#16,RD3-MiniRoosReview,Had a go at goal · Close · · 7 of 9 · · · · aim all 9 · You tapped,Says,"The clips behind this number play, newest first.",works
+RD3-MiniRoosReview#17,RD3-MiniRoosReview,Took a player on · Close · · 8 of 9 · · · · aim all 9 · You tapped,Says,"The clips behind this number play, newest first.",works
+RD3-MiniRoosReview#18,RD3-MiniRoosReview,Tapped “I enjoyed today” · Close · · 8 of 9 · · · · aim all 9 · You tapped,Says,"The clips behind this number play, newest first.",works
+RD3-MiniRoosReview#19,RD3-MiniRoosReview,Minutes each · On target · · 18 to 22 · · · · aim within 5 · You tapped,Says,"The clips behind this number play, newest first.",works
+RD3-MiniRoosReview#20,RD3-MiniRoosReview,Tuesday’s session,Opens,SGm1-SuggestedMiniRoos,works
+RD3-MiniRoosReview#21,RD3-MiniRoosReview,"1 · A goal each, four small pitches · So Ivy and Tom get a shot",Opens,SGm1-SuggestedMiniRoos,works
+RD3-MiniRoosReview#22,RD3-MiniRoosReview,2 · One against one to a gate · Everyone tries it twice,Opens,SGm1-SuggestedMiniRoos,works
+RD3-MiniRoosReview#23,RD3-MiniRoosReview,What we saw,Opens,HM5-WhatWeSaw,works
+RD3-MiniRoosReview#24,RD3-MiniRoosReview,IV · Ivy · No go at goal yet. Loved defending,Opens,HM5-WhatWeSaw,works
+RD3-MiniRoosReview#25,RD3-MiniRoosReview,TM · Tom · Stood back in two games,Opens,HM5-WhatWeSaw,works
+RD3-MiniRoosReview#26,RD3-MiniRoosReview,AR · Arlo · First time he took a player on,Opens,HM5-WhatWeSaw,works
+RD3e-MiniRoosReviewEmpty#7,RD3e-MiniRoosReviewEmpty,U8 Wombats,Opens,VS1-SwitchView,works
+RD3e-MiniRoosReviewEmpty#12,RD3e-MiniRoosReviewEmpty,Open game day,Opens,HM4-GameDayMiniRoos,works
+RD4-ClubWeekend#7,RD4-ClubWeekend,Ask Clean Sheet,Opens,ASKd4-PanelFirst,"works, in the frame: opens the director's own Ask Clean Sheet panel, not the ASKd4 board"
+RD4-ClubWeekend#8,RD4-ClubWeekend,Whole club,Opens,VS1-SwitchView,works
+RD4-ClubWeekend#12,RD4-ClubWeekend,This weekend,Opens,RD4-ClubWeekend,works
+RD4-ClubWeekend#13,RD4-ClubWeekend,Season,Opens,DB2-SeasonReview,works
+RD4-ClubWeekend#14,RD4-ClubWeekend,Compare two teams,Opens,DX1-CompareTeams,"works, in the frame: opens the Teams tab's own Compare two teams view, not the DX1 board"
+RD4-ClubWeekend#15,RD4-ClubWeekend,Club style,Opens,S1-PlayingStyle,works
+RD4-ClubWeekend#16,RD4-ClubWeekend,All teams,Opens,D2-Teams,"works, in the frame: switches to Teams, All teams"
+RD4-ClubWeekend#17,RD4-ClubWeekend,U9 Kate · Won · · 6 of 8,Opens,RD1-GameReview,works
+RD4-ClubWeekend#18,RD4-ClubWeekend,U10 Dev · Drew · · 5 of 8,Opens,RD1-GameReview,works
+RD4-ClubWeekend#19,RD4-ClubWeekend,U11 Luke · Won · · 5 of 8,Opens,RD1-GameReview,works
+RD4-ClubWeekend#20,RD4-ClubWeekend,U12 Sam · Won · · 4 of 8,Opens,RD1-GameReview,works
+RD4-ClubWeekend#21,RD4-ClubWeekend,U13 Chris · Lost · · 3 of 8,Opens,RD1-GameReview,works
+RD4-ClubWeekend#22,RD4-ClubWeekend,U13 Girls Meg · Won · · 6 of 8,Opens,RD1-GameReview,works
+RD4-ClubWeekend#23,RD4-ClubWeekend,U14 Josh · Lost · · 2 of 8,Opens,RD1-GameReview,works
+RD4-ClubWeekend#24,RD4-ClubWeekend,U15 Ana · Drew · · 5 of 8,Opens,RD1-GameReview,works
+RD4-ClubWeekend#25,RD4-ClubWeekend,U16 Ollie · Won · · 5 of 8,Opens,RD1-GameReview,works
+RD4-ClubWeekend#26,RD4-ClubWeekend,U16 Girls Bree · Won · · 4 of 8,Opens,RD1-GameReview,works
+RD4-ClubWeekend#27,RD4-ClubWeekend,U18 Tom · Lost · · 4 of 8,Opens,RD1-GameReview,works
+RD4-ClubWeekend#28,RD4-ClubWeekend,Seniors · – · Not filmed,Opens,D2-Teams,"works, in the frame: switches to Teams, All teams"
+RD4-ClubWeekend#29,RD4-ClubWeekend,Coach meeting,Opens,DM1-CoachMeeting,works
+RD4-ClubWeekend#30,RD4-ClubWeekend,8 · Weaker-foot touches · Off target in 8 of 11 teams,Opens,DM1-CoachMeeting,works
+RD4-ClubWeekend#31,RD4-ClubWeekend,6 · Seconds to win it back · Off target in 6 of 11,Opens,DM1-CoachMeeting,works
+RD4-ClubWeekend#32,RD4-ClubWeekend,2 · Minutes shared evenly · Off target in 2 of 11,Opens,DM1-CoachMeeting,works
+RD4-ClubWeekend#33,RD4-ClubWeekend,All coaches,Opens,D3-Coaches,works
+RD4-ClubWeekend#34,RD4-ClubWeekend,"JW · Josh · U14 · 2 of 8, third week running",Opens,D3-Coaches,works
+RD4-ClubWeekend#35,RD4-ClubWeekend,CP · Chris · U13 · Minutes: 4 players under half,Opens,D3-Coaches,works
+RD4-ClubWeekend#36,RD4-ClubWeekend,KD · Kate · U9 · 6 of 8. Ask her to show the others,Opens,D3-Coaches,works
+RD4e-ClubWeekendEmpty#7,RD4e-ClubWeekendEmpty,Ask Clean Sheet,Opens,ASKd4-PanelFirst,"works, in the frame: opens the director's own Ask Clean Sheet panel, not the ASKd4 board"
+RD4e-ClubWeekendEmpty#8,RD4e-ClubWeekendEmpty,Whole club,Opens,VS1-SwitchView,works
+RD4e-ClubWeekendEmpty#12,RD4e-ClubWeekendEmpty,See which teams can film,Opens,D2-Teams,"works, in the frame: switches to Teams, All teams"
+RD5-CoachPhoneReview#1,RD5-CoachPhoneReview,Back,Opens,CPh4-CoachPhoneGame,works: back to the phone's Game tab
+RD5-CoachPhoneReview#2,RD5-CoachPhoneReview,"Play highlights, 4 minutes",Says,The highlights play. 4 minutes.,works
+RD5-CoachPhoneReview#3,RD5-CoachPhoneReview,Goal kicks played short · 64% · Off target,Says,The clips behind this number play.,works
+RD5-CoachPhoneReview#4,RD5-CoachPhoneReview,Wins in their half · 13 · On target,Says,The clips behind this number play.,works
+RD5-CoachPhoneReview#5,RD5-CoachPhoneReview,Shots inside 10 s of a win · 3 · On target,Says,The clips behind this number play.,works
+RD5-CoachPhoneReview#6,RD5-CoachPhoneReview,Their passes before we challenge · 9 · On target,Says,The clips behind this number play.,works
+RD5-CoachPhoneReview#7,RD5-CoachPhoneReview,Seconds to win it back · 7 s · Off target,Says,The clips behind this number play.,works
+RD5-CoachPhoneReview#8,RD5-CoachPhoneReview,Won back inside 6 s · 42% · On target,Says,The clips behind this number play.,works
+RD5-CoachPhoneReview#9,RD5-CoachPhoneReview,Minutes shared evenly · 15 of 16 · Close,Says,The clips behind this number play.,works
+RD5-CoachPhoneReview#10,RD5-CoachPhoneReview,Weaker-foot touches · 18% · Close,Says,The clips behind this number play.,works
+RD5-CoachPhoneReview#11,RD5-CoachPhoneReview,Win it back faster · 7 s,Says,The clip from minute 16 plays.,works
+RD5-CoachPhoneReview#12,RD5-CoachPhoneReview,Close the gap between lines · 26 m,Says,The clip from minute 29 plays.,works
+RD5-CoachPhoneReview#13,RD5-CoachPhoneReview,Stay strong late · −22%,Says,The clip from minute 41 plays.,works
+RD5e-CoachPhoneReviewEmpty#1,RD5e-CoachPhoneReviewEmpty,Back,Opens,CPh4-CoachPhoneGame,"works: back to the phone's Game tab, in its empty state"
+RD5e-CoachPhoneReviewEmpty#2,RD5e-CoachPhoneReviewEmpty,How to film a game,Opens,RC1-RecordStart,"works (over the top, with a Back bar)"

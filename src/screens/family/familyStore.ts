@@ -1,4 +1,4 @@
-// Clean Sheet Family (family-app-v20): a parent uploads a video, and credits pay for finding their own child's moments.
+// Clean Sheet Family (family-app-v25): a parent uploads a video, and credits pay for finding their own child's moments.
 // This is a demo of the flows on sample data. Nothing here analyses real film, and the purchase is a stub.
 // Prices, pack sizes, the rate table, the check's thresholds and the club offer are placeholders until Booker confirms them.
 
@@ -145,7 +145,7 @@ export type Family = {
   /** the club's plan has ended, and the family has not been told yet (FAM41 shows once) */ paused?: boolean
   /** the child being edited, the help topic picked, picking a video to delete, and "only upload on Wi-Fi" */ edit?: string | null; topic?: number; picking?: boolean; wifi?: boolean
   /** a later video on its way up: how far, and whether it is paused or has stopped */ upload?: { pct: number; paused: boolean }
-  /** with an academy: next term's place, how it is paid, the review chat, and the week's three goes at practice */ adp?: { place?: 'kept' | 'left'; pay?: number; slot?: number; chat?: 'booked' | 'none'; goes?: boolean[] }
+  /** with an academy: next term's place, how it is paid, the review chat, and the week's three goes at practice */ adp?: { place?: 'kept' | 'left'; pay?: number; slot?: number; chat?: 'booked' | 'none'; goes?: boolean[]; /** the one-on-one time picked */ one?: number; /** pause or stop: which, the reason, whether the coach is told it, and whether the place is paused */ stop?: boolean; why?: string; tell?: boolean; paused?: boolean; /** the reason picked when leaving, the survey's five answers, and where the passport is sent */ why2?: number; survey?: number[]; to?: string; /** how they heard of the academy, and who to thank */ heard?: number; thank?: string }
   /** links sent to other parents from the team, by video */ invites?: Record<string, Invite>
   pack: number; message: string | null; /** the library item that is open */ item: string
   /** "three games in": the child it is due for, and the children it has been shown for (once each) */ seasonDue: string | null; seasonTold: string[]
@@ -184,7 +184,7 @@ export function preset(id: string): Family {
   if (/^FAM23-|^FAM23a|^FAMi\d/.test(id)) return { ...b, invites: { g1: { daysLeft: 12, waiting: [ASKERS[0]], joined: [{ child: 'Leo', shirt: '4', when: 'on Monday' }, { child: 'Noor', shirt: '11', when: 'on Monday' }] } } }
   if (id === 'FAM18d-DeleteVideo') return { ...b, open: 'g1', invites: { g1: { daysLeft: 12, waiting: [], joined: [{ child: 'Leo', shirt: '4', when: 'on Monday' }, { child: 'Noor', shirt: '11', when: 'on Monday' }] } } }
   if (id === 'FAM15c-EditChild') return { ...b, edit: 'ari' }
-  if (/^FAM3[1-9]|^FAM40/.test(id)) return { ...b, ...joined, videos: [RIDGEWAY, FUTSAL, PARKSIDE, NORTHGATE, ...MIAS], open: 'g1' }   // the club's side, once it has joined
+  if (/^FAM3[1-9]|^FAM40|^GPp1/.test(id)) return { ...b, ...joined, videos: [RIDGEWAY, FUTSAL, PARKSIDE, NORTHGATE, ...MIAS], open: 'g1' }   // the club's side, once it has joined
   if (/^ADP\d/.test(id)) return { ...b, ...joined, club: TALL_TIMBER, videos: [RIDGEWAY, FUTSAL, PARKSIDE, NORTHGATE, ...MIAS], open: 'g1' }   // the child's club is an academy
   if (id === 'FAM41-ClubPaused') return { ...b, paused: true }
   if (id === 'FAM7u-Uploading' || id === 'FAM7x-UploadStopped') return { ...b, upload: { pct: 62, paused: id === 'FAM7x-UploadStopped' } }

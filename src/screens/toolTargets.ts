@@ -3,7 +3,7 @@
 // design screen it stands for, so the button opens it.
 const TARGETS: Record<string, string> = {
   'Squad tab': 'T4-SquadTab', 'Training tab': 'T3-TrainingTab', 'Clips tab': 'C1-ClipsTab', 'Clips': 'C1-ClipsTab',
-  'Match day tab': 'T2-TabletMatch', 'Match day tab (Sat)': 'T2-TabletMatch', 'Match day › Review': 'R1-MatchReview', 'Review': 'R1-MatchReview',
+  'Match day tab': 'T2-TabletMatch', 'Match day tab (Sat)': 'T2-TabletMatch', 'Match day › Review': 'RD1-GameReview', 'Review': 'RD1-GameReview',
   'Open the plan': 'T3-TrainingTab', 'Learn': 'EDU1-Learn',
   'Home › Fixtures and results': 'CF1-Fixtures', 'Home › Our style': 'S1-PlayingStyle', 'Home › Inbox': 'I1-Inbox', 'Home › Team staff': 'ST1-TeamStaff',
   'Players': 'D4-Players', 'Teams': 'D2-Teams', 'Coaches': 'D3-Coaches', 'Safeguarding': 'D5-Safeguarding',

@@ -143,7 +143,11 @@ export default function AD12Credits() {
             <span style={{ fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>6 families asked. An academy can only take them if it is a registered provider in its state.</span>
           </span>
           <Tap say="A short page on who can register, with the link to your state’s program." style={{ ...S.more, alignSelf: 'flex-start', marginTop: 10 }}>Check if you can register</Tap>
-          <span style={{ ...S.cap, marginTop: 'auto', paddingTop: 8 }}>You choose how many places and what a family pays.</span>
+          <Tap to="AD19-SupportedPlace" style={{ ...S.more, alignSelf: 'flex-start', marginTop: 10 }}>Give a supported place</Tap>
+          <span style={{ ...S.cap, marginTop: 'auto', paddingTop: 8 }}>
+            {'You choose how many places and what a family pays. '}
+            <Tap to="ADP16-Voucher">What a family with a voucher sees</Tap>
+          </span>
         </section>
       </main>
     </>

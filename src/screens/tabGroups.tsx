@@ -12,7 +12,7 @@ const SETS: Set[] = [
   // coach: Squad
   [['Players', ['Players', 'Positions', 'Development goals', 'Skills', 'Wellness', 'Availability', 'Fair turns', "Who's coming"]], ['Formation', ['Formation', 'Line-ups that worked', 'Line-ups']], ['Reports', ['Season reports', 'Catch-ups', 'Handover']], ['Consent and privacy', ['Consent and privacy']], ['Consent', ['Consent']], ['Season notes', ['Season notes']]],
   // coach: Training
-  [['Session', ['Tuesday’s session', 'Run sheet', 'Who’s coming']], ['Plan', ['This week', 'Season so far', 'Growth and load']], ['Drills', ['Drill library', 'Worked elsewhere']]],
+  [['Session', ['Tuesday’s session', 'Run sheet', 'Who’s coming', 'After training']], ['Plan', ['This week', 'Season so far', 'Growth and load']], ['Drills', ['Drill library', 'Worked elsewhere']]],
   // coach: Match day
   [['Before', ['Team talk', 'Line-up and minutes', 'Opposition', 'Set pieces']], ['After', ['Review', 'Chances', 'Your take']]],
   // coach: Record. Recording, the clips cut from it, what needs a look, and the kit and rules behind it
@@ -20,7 +20,7 @@ const SETS: Set[] = [
   // director: Club
   [['Overview', ['Overview']], ['Messages', ['Messages']], ['Calendar', ['Calendar', 'Season plan']], ['Our football', ['Playing style', 'Heading policy', 'Club climate']], ['Running the club', ['Sponsors', 'Pitches', 'Kit and cameras', 'Files', 'Language and access', 'How often we ask']], ['Settings', ['Features and billing', 'Club colours']]],
   // director and coordinator: Teams
-  [['Teams', ['All teams', 'Seniors', 'Girls']], ['Fixtures', ['Fixtures', 'League sync', 'Referees', 'Cards']], ['Results', ['Chances and points', 'Grading']]],
+  [['Teams', ['All teams', 'Seniors', 'Girls']], ['This weekend', ['This weekend']], ['Fixtures', ['Fixtures', 'League sync', 'Referees', 'Cards']], ['Results', ['Chances and points', 'Grading']]],
   // director and coordinator: Coaches
   [['Coaches', ['All coaches', 'Coach load', 'Goalkeepers']], ['Development', ['Observations', 'Training and courses', 'Coach meetings', 'Coach learning']], ['Drills', ['Suggestion sources', 'Club drill library']]],
   // director and coordinator: Players

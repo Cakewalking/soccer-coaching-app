@@ -12,6 +12,7 @@ export default function AD14Pathway() {
           <span style={{ ...S.cap, whiteSpace: 'nowrap' }}>Advanced · 6 players turn 15 this year</span>
         </div>
         <div style={{ display: 'flex', gap: 8, flex: 'none' }}>
+          <Tap to="ADP13-NextStep" style={S.more}>What the family sees</Tap>
           <Tap to="CNp14-PlayerPassport" style={S.more}>See a passport</Tap>
         </div>
       </div>
@@ -66,8 +67,8 @@ export default function AD14Pathway() {
           </Tap>
           <div style={{ borderRadius: 12, background: '#f4e6e6', padding: '10px 12px', fontSize: 14, lineHeight: '20px' }}>
             <strong>Kai’s mum has asked you for a reference.</strong>
-            {' Reece has drafted it from two terms of notes. '}
-            <Tap say="The reference opens to read and change. It goes to Kai’s mum, who decides where it is sent.">Read and send</Tap>
+            {' Reece has drafted it from his notes since Kai joined in May. '}
+            <Tap to="AD25-Reference">Read and send</Tap>
           </div>
           <span style={{ ...S.cap, marginTop: 'auto', paddingTop: 8 }}>Showing 4 of 6. You see a trial only when the family tells you about it.</span>
         </section>
@@ -76,7 +77,7 @@ export default function AD14Pathway() {
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 54, borderTop: '1px solid #e9eae8', boxSizing: 'content-box' }}>
             <span style={{ flex: 'none', width: 30, height: 30, borderRadius: 999, background: '#eef5f2', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }}>1</span>
             <span style={{ flexGrow: 1, minWidth: 0 }}>
-              <span style={{ display: 'block', fontSize: 15, lineHeight: '21px', fontWeight: 700 }}>Two terms of skills</span>
+              <span style={{ display: 'block', fontSize: 15, lineHeight: '21px', fontWeight: 700 }}>Their skills</span>
               <span style={{ display: 'block', fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>Where they started and where they are</span>
             </span>
           </div>
@@ -101,7 +102,10 @@ export default function AD14Pathway() {
               <span style={{ display: 'block', fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>Sessions and one-on-ones</span>
             </span>
           </div>
-          <span style={{ ...S.cap, marginTop: 'auto', paddingTop: 8 }}>The family sends it, to whoever they choose. You never send a child’s file to a club yourself.</span>
+          <span style={{ ...S.cap, marginTop: 'auto', paddingTop: 8 }}>
+            {'The family sends it, to whoever they choose. You never send a child’s file to a club yourself. '}
+            <Tap to="ADK2-MyClips">See how a player picks clips</Tap>
+          </span>
         </aside>
       </main>
     </>

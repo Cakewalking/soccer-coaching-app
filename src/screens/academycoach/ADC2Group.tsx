@@ -2,6 +2,7 @@
 // never see a table of the group. The rows are sorted by name and by nothing else; there is no
 // way to order them by level.
 
+import { useSteps } from './steps'
 import { Dots, Head, Initials, More, Page, Primary, TileHead, Two } from './kit'
 import { HAIR, INK, MAUVE_PALE, MUT, foot, listTile, plain, th, tile } from './styles'
 
@@ -17,10 +18,12 @@ const GROUP: Array<{ ini: string; name: string; steps: [number, number, number, 
   { ini: 'NP', name: 'Noah Petrov', steps: [2, 3, 2, 2], up: '0',   goal: 'Check his shoulder' },
 ]
 const BY_NAME = [...GROUP].sort((a, b) => a.name.localeCompare(b.name))
+const STRIKING = 3   // the place of striking the ball in a player's steps
 
 const COLS = '1.4fr 0.8fr 0.8fr 0.8fr 0.8fr 0.6fr 1.5fr'
 
 export default function ADC2Group({ go }: { go: (id: string) => void }) {
+  const { striking } = useSteps()   // moved by the taps after a session (ADC11)
   return (
     <Page columns="minmax(0,1fr) 300px" head={
       <Head title="Advanced" sub="Ages 12 to 14 · 22 players · showing 8">
@@ -36,7 +39,7 @@ export default function ADC2Group({ go }: { go: (id: string) => void }) {
         {BY_NAME.map(p => (
           <button key={p.ini} onClick={() => go('ADC1-PlayerFile')} style={{ ...plain, display: 'grid', gridTemplateColumns: COLS, gap: 10, alignItems: 'center', minHeight: 56, borderTop: `1px solid ${HAIR}`, fontSize: 14, lineHeight: '19px' }}>
             <span style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: 15, fontWeight: 700 }}><Initials size={32}>{p.ini}</Initials>{p.name}</span>
-            {p.steps.map((s, i) => <Dots key={i} step={s} size={10} />)}
+            {p.steps.map((s, i) => <Dots key={i} step={i === STRIKING ? striking[p.name] ?? s : s} size={10} />)}
             <span style={{ fontWeight: 700, fontVariantNumeric: 'tabular-nums' }}>{p.up}</span>
             <span style={{ color: p.goal ? INK : MUT }}>{p.goal ?? 'Not set yet'}</span>
           </button>
@@ -55,8 +58,8 @@ export default function ADC2Group({ go }: { go: (id: string) => void }) {
         <section aria-label="Needs you" style={{ ...tile, gap: 2, flexGrow: 1, borderTop: '4px solid #c39797' }}>
           <TileHead title="Needs you" flat />
           {[
-            { n: '1', a: 'Ana has no goal yet', b: 'She joined 3 weeks ago', does: 'Set one', opens: 'ADC1-PlayerFile' },
-            { n: '3', a: '3 players have no note in 3 weeks', b: 'Noah, Jonah and Mila', does: 'Add', opens: 'ACC2-RunSession' },
+            { n: '1', a: 'Ana has no goal yet', b: 'She joined 3 weeks ago', does: 'Set one', opens: 'ADC10-SetGoal' },
+            { n: '3', a: '3 players have no note in 3 weeks', b: 'Noah, Jonah and Mila', does: 'Add', opens: 'ADC11-AfterSession' },
           ].map(r => (
             <div key={r.n} style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 58, borderTop: `1px solid ${HAIR}` }}>
               <span style={{ flex: 'none', width: 30, height: 30, borderRadius: 999, background: MAUVE_PALE, color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }}>{r.n}</span>

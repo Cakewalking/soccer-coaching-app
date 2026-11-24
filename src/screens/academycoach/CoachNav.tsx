@@ -2,7 +2,7 @@
 // for the item that is open. Every academy coach screen, old and new, draws this one.
 
 import type { ReactNode } from 'react'
-import { COACH_MENU, SWITCH_VIEW, type CoachMain } from './menu'
+import { COACH_MENU, SWITCH_ROLE, SWITCH_VIEW, type CoachMain } from './menu'
 
 const ICON: Record<CoachMain, string> = {
   today:    'M4 11l8-7 8 7v9H4z',
@@ -60,9 +60,12 @@ export default function CoachNav({ active, sub, go, extra, onAccount }: { active
           })}
         </nav>
         <div style={{ display: 'flex', alignItems: 'center', height: 44 }}>
+          {/* The role pill is 32 high as drawn; the button around it is 44. */}
+          <button onClick={() => go(SWITCH_ROLE)} style={{ display: 'flex', alignItems: 'center', height: 44, border: 0, padding: 0, background: 'transparent', fontFamily: 'inherit', cursor: 'pointer' }}>
           <span style={{ display: 'flex', alignItems: 'center', gap: 6, height: 32, padding: '0 12px', borderRadius: 999, background: '#f4e6e6', color: '#10211f', fontSize: 13, fontWeight: 700, whiteSpace: 'nowrap' }}>
             <Svg d="M12 12a4 4 0 100-8 4 4 0 000 8zM5 21a7 7 0 0114 0" size={14} sw={2.4} />Academy coach
           </span>
+          </button>
         </div>
       </div>
     </header>

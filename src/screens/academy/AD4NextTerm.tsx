@@ -97,7 +97,10 @@ export default function AD4NextTerm() {
             {' Offer those places now and the group stays full. '}
             <Tap to="AC2-Programs">Offer 2 places</Tap>
           </div>
-          <span style={{ ...S.cap, marginTop: 'auto', paddingTop: 8 }}>Places are held until Friday 19 June. After that, open places go to the waiting list in order, and then to new trials.</span>
+          <span style={{ ...S.cap, marginTop: 'auto', paddingTop: 8 }}>
+            {'Places are held until Friday 19 June. After that, open places go to the waiting list in order, and then to new trials. '}
+            <Tap to="ADP14-WaitingList">See what a waiting family sees</Tap>
+          </span>
         </section>
         <section aria-label="Not yet said" style={{ ...S.tile, gridColumn: 'span 5', gap: 0, padding: '14px 18px 10px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 10, marginBottom: 6 }}>

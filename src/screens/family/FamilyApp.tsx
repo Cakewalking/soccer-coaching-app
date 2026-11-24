@@ -1,4 +1,4 @@
-// Clean Sheet Family (family-app-v20), on a phone. It is the one app a parent uses, before and after their club joins. A parent uploads a video; credits pay for finding their own child's
+// Clean Sheet Family (family-app-v25), on a phone. It is the one app a parent uses, before and after their club joins. A parent uploads a video; credits pay for finding their own child's
 // moments, and the first video is free. It works whether or not the club uses Clean Sheet. A child's reel and numbers are
 // private to the family for ever: no control here sends a video, a clip or a count to a club, a coach or another family.
 // Another family can get their own child's moments from a video, only if the uploader sends them the link and says yes.
@@ -39,7 +39,7 @@ const HOMES = ['FAM3-Home', 'FAM3e-HomeEmpty', 'FAM14-HomeWithClub']
 // Learn is a club feature (Booker, 24 Nov): closed, with an explanation, until the club joins.
 const LEARNS = ['FAM17-Learn', 'FAM17u-LearnWithClub']
 // One parent app (Booker, 24 Nov): the club's features live here. Team and Learn are closed, with an explanation, until the club joins; then the same tabs open.
-const TEAMS = ['FAM31-Team', 'FAM32-TeamChat', 'FAM33-Coming', 'FAM34-Lineup', 'FAM35-Forms', 'FAM39-Fees'], CLUBSIDE = ['FAM36-Consent', 'FAM36w-ConsentBack', 'FAM37-FromCoach', 'FAM38-Concern', 'FAM40-ClubHome']
+const TEAMS = ['FAM31-Team', 'FAM32-TeamChat', 'FAM33-Coming', 'FAM34-Lineup', 'FAM35-Forms', 'FAM39-Fees'], CLUBSIDE = ['GPp1-ClubSurvey', 'FAM36-Consent', 'FAM36w-ConsentBack', 'FAM37-FromCoach', 'FAM38-Concern', 'FAM40-ClubHome']
 const ABOUT = ['How my child is treated', 'Another adult', 'Game time', 'Filming', 'Something else']
 const TOPICS: [string, string][] = [['A reel is wrong', 'Wrong child, a missed moment'], ['Credits or a payment', 'A refund, a failed payment'], ['The free video', 'It says mine has been used'], ['A link from another parent', ''], ['Something else', '']]
 const STATES = ['Victoria', 'New South Wales', 'Queensland', 'South Australia', 'Western Australia', 'Tasmania', 'Australian Capital Territory', 'Northern Territory']
@@ -49,6 +49,12 @@ const CLIPS_DOWN_DAYS = 7
 const BAR = '#e3ad2f'
 // The academy's four core skills, five steps each: where the sample child was in week 1, and now. And the review chat's times.
 const SKILLS: [string, number, number][] = [['First touch', 2, 4], ['Running with the ball', 3, 3], ['One against one', 2, 3], ['Striking the ball', 3, 3]]
+/** One-on-ones (ADP6). The price and the 24 hours are placeholders to confirm. */
+const ONES: [string, string][] = [['Thursday 11 June', 'Reece'], ['Monday 15 June', 'Dani'], ['Thursday 18 June', 'Reece']], ONE_PRICE = 90, ONE_CANCEL_HOURS = 24
+const HEARD = ['A friend or another parent', 'My child’s club', 'Saw you at a ground or school', 'Searched online', 'Social media']
+const WHY = ['Moving to a club’s own program', 'The cost', 'It clashes with something else', 'We’re moving away', 'I’d rather not say']
+/** Placeholder to confirm: how long a paused place is held. */
+const PAUSE_WEEKS = 4
 const SLOTS: [string, string, string][] = [['Thursday 18 June', '5:30', 'Pitch-side'], ['Thursday 18 June', '5:40', 'Pitch-side'], ['Friday 19 June', '12:30', 'By phone']]
 const RETIRED: Record<string, [string, string]> = { 'FAM3m-HomeStats': ['FAM3-Home', 'Stats are for every age now, so there is one Home, not one for under 12 and one for 12 and over.'], 'FAM8b-Results13': ['FAM8-Results', 'Stats are for every age now, so there is one results screen, not one for under 12 and one for 12 and over.'] }
 const WORDS = ['no', 'one', 'two', 'three', 'four', 'five', 'six', 'seven']
@@ -123,6 +129,7 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
   const [sure, setSure] = useState<{ text: string; no: string; yes: string; on: () => void } | null>(null)   // a question asked before something that cannot be undone
   const [draft, setDraft] = useState(''), [anns, setAnns] = useState(false), [about, setAbout] = useState(0), [story, setStory] = useState('')
   const [ed, setEd] = useState<{ id: string; name: string; year: string } | null>(null), [st, setSt] = useState(STATES[0])
+  const [sv, setSv] = useState<number[]>(() => start === 'GPp1-ClubSurvey' ? [5, 4, 4, 4, 2] : [0, 0, 0, 0, 0]), [tm, setTm] = useState<{ name: string; who: string; at: string } | null>(null)
   const [rq, setRq] = useState({ club: '', date: '', email: '', note: '' })
   const [all, setAll] = useState(''), [editing, setEditing] = useState(false), [adding, setAdding] = useState(false), [newName, setNewName] = useState('')
   const [q, setQ] = useState(start === 'FAM2c-PickClub' ? 'Hillv' : ''), [lost, setLost] = useState<{ name: string; place: string } | null>(null)
@@ -277,7 +284,7 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
       : <><span style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 15 }}>{t}</strong><span style={{ fontSize: 13, lineHeight: '18px' }}>{line}</span></span>{withClub}</>}</button>
   const greyBars = (label: string) => <span style={{ display: 'flex', alignItems: 'center', gap: 12 }}><strong style={{ width: 150, fontSize: 13, color: GREY }}>{label}</strong><span style={{ display: 'flex', alignItems: 'flex-end', gap: 4, height: 34 }}>{[18, 25, 22, 28, 34].map((h, n) => <span key={n} style={{ width: 13, height: h, borderRadius: 3, background: n === 4 ? '#b3b6b4' : '#dcdedd' }} />)}</span></span>
   const season = (line: string) => locked(`${name}’s whole season`, line, <>{greyBars('On the ball, every game')}{greyBars('Minutes played')}</>)
-  const tell = (on: boolean | 'club') => <button onClick={() => { setFamily(x => ({ seasonDue: null, seasonTold: [...new Set([...x.seasonTold, kid.id])] })); setView('FAM12-TellClub'); top() }} style={big(on)}>Tell my club{count && <span style={{ fontSize: 13, fontWeight: 500 }}>{families} families at {club} already use this</span>}</button>
+  const tell = (on: boolean | 'club', to = 'FAM12-TellClub') => <button onClick={() => { setFamily(x => ({ seasonDue: null, seasonTold: [...new Set([...x.seasonTold, kid.id])] })); setView(to); top() }} style={big(on)}>Tell my club{count && <span style={{ fontSize: 13, fontWeight: 500 }}>{families} families at {club} already use this</span>}</button>
   const demo = (label: string, body: ReactNode) => <section aria-label={`Demo: ${label}`} style={{ borderRadius: 14, border: `1px dashed ${MUT}`, padding: '10px 12px', display: 'flex', flexDirection: 'column', gap: 6 }}><span style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', color: MUT }}>DEMO · {label.toUpperCase()}</span>{body}</section>
   const group = (rows: [string, string, string, () => void][]) => <section style={{ ...card, gap: 0, padding: '2px 14px' }}>{rows.map(([a, b, v, on], n) => <button key={a} onClick={on} style={{ ...row, borderTop: n ? `1px solid ${HAIR}` : 0 }}><span style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 16 }}>{a}</strong>{b && <span style={{ fontSize: 14, color: MUT }}>{b}</span>}</span>{v && <span style={{ fontSize: 15, color: MUT }}>{v}</span>}<I d={CHEV} size={16} /></button>)}</section>
 
@@ -386,7 +393,7 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
       <section style={{ ...card, gap: 0, padding: '2px 14px' }}>
         <button onClick={() => { setLost(lost ?? { name: q, place: '' }); setView('FAM2n-ClubNotListed'); top() }} style={row}><strong style={{ flexGrow: 1, fontSize: 16 }}>I can’t find it</strong><I d={CHEV} size={16} /></button>
         <button onClick={() => { setFamily({ club: null }); done() }} style={{ ...row, borderTop: `1px solid ${HAIR}` }}><strong style={{ flexGrow: 1, fontSize: 16 }}>{name} isn’t at a club</strong><I d={CHEV} size={16} /></button></section>
-      <span style={note}>Picking from the list means we can tell you when your club joins, and how many families there already use this. We never contact the club or tell it who you are.</span>
+      <span style={note}>Picking from the list means we can tell you when your club joins, and how many families there already use this. We contact the club only if you ask us to, and never tell it who else uses this.</span>
     </>, null) }
 
   // ── FAM2n · a club that is not in the list: its name and suburb. It is checked and added; the video is not held up ──
@@ -398,7 +405,7 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
         {labelled('Suburb or town', <input placeholder="Tap to type" value={l.place} onChange={e => setLost({ ...l, place: e.target.value })} style={field} />)}
         {labelled('State', <select value={st} onChange={e => setSt(e.target.value)} style={field}>{STATES.map(x => <option key={x}>{x}</option>)}</select>)}</section>
       <section style={{ ...card, gap: 0, padding: '4px 14px' }}><Line top={false} a="We check it and add it" b="Usually within a day" /><Line a="Your video goes ahead now" b="You don’t have to wait" /><Line a="Other families will find it in the list" /></section>
-      <span style={note}>We use the club only to count how many families from it use Clean Sheet. We never contact the club for you.</span>
+      <span style={note}>We use the club only to count how many families from it use Clean Sheet. We contact the club only if you ask us to.</span>
     </>, null, actions(false, <button key="a" onClick={away} style={btn(false)}>Back</button>, <button key="b" onClick={add} style={btn(true)}>Add my club</button>)) }
 
   // ── FAM2 · who are we looking for (and, from the account, another child) ──
@@ -410,7 +417,7 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
       <div style={{ display: 'flex', gap: 10 }}>{field('First name', nm, x => extra ? setExtra({ ...extra, name: x.split(' ')[0] }) : edit({ name: x.split(' ')[0] }))}{field('Year born', extra ? extra.year : String(kid.year || ''), x => { const y = x.replace(/\D/g, '').slice(0, 4); if (extra) setExtra({ ...extra, year: y }); else edit({ year: Number(y) }) }, true)}</div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}><strong style={{ fontSize: 14 }}>Their club</strong>
         <button onClick={() => { setFamily({ edit: null }); setView('FAM2c-PickClub'); top() }} style={{ ...row, minHeight: 64, padding: '8px 12px', boxSizing: 'border-box', borderRadius: 12, border: `1px solid ${MUT}` }}>{f.club && <Dot />}<span style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 17 }}>{f.club?.name ?? `${call} isn’t at a club`}</strong>{f.club && <span style={{ fontSize: 13, color: MUT }}>{f.club.place}{f.club.unmatched ? ' · being checked' : ''}</span>}</span><span style={{ ...link, minHeight: 0 }}>Change</span></button>
-        <span style={{ fontSize: 13, color: MUT }}>Picked from the list of clubs. We never contact the club</span></div></section>
+        <span style={{ fontSize: 13, color: MUT }}>Picked from the list of clubs. We contact the club only if you ask us to</span></div></section>
     const about = <span style={note}>First name, birth year and club are all we keep about {call}. You get clips and game stats, whatever their age.</span>
     const missing = () => say('Add a first name and the year they were born.')
     if (extra) return shell('FAM2-AddChild', head('Your children', 'Add a child', () => { setExtra(null); setView('FAM15-Children'); top() }), <>{form}{about}</>, null,
@@ -486,7 +493,7 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
       </div>
       {title(h)}<span style={{ fontSize: 17, lineHeight: '24px', color: '#eadcdc' }}>{t}</span>
       <div aria-hidden style={{ display: 'flex', gap: 6, justifyContent: 'center', paddingTop: 8 }}>{[1, 2, 3, 4, 5].map(k => <span key={k} style={{ width: k === n ? 22 : 7, height: 7, borderRadius: 999, background: k === n ? MAUVE : 'rgba(255,255,255,0.4)' }} />)}</div>
-    </>, n < 5 ? <button onClick={() => { setView(`FAMk${n + 1}-ClubTour`); top() }} style={big('club')}>Next</button> : tell('club'), PLUM) }
+    </>, n < 5 ? <button onClick={() => { setView(`FAMk${n + 1}-ClubTour`); top() }} style={big('club')}>Next</button> : tell('club', 'GPp2-TellMyClub'), PLUM) }
 
   // ── FAM22 · three games in: why a season view needs the club. Once for each child ──
   if (v === 'FAM22-ThreeGames') { const told = () => setFamily(x => ({ seasonDue: null, seasonTold: [...new Set([...x.seasonTold, kid.id])] }))
@@ -890,6 +897,95 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
       <span aria-hidden style={{ flex: 'none', width: 22, height: 22, borderRadius: 999, boxSizing: 'border-box', border: on ? `7px solid ${G}` : `2px solid ${MUT}`, background: '#fff' }} /><span style={{ display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 16 }}>{x}</strong><span style={{ fontSize: 14, lineHeight: '19px', color: MUT }}>{y}</span></span></button>
     const pairs = (rows: [string, string][]) => rows.map(([x, y], n) => <div key={x} style={{ display: 'flex', justifyContent: 'space-between', gap: 10, padding: '10px 0', borderTop: n ? `1px solid ${HAIR}` : 0, fontSize: 15 }}><span>{x}</span><strong style={{ textAlign: 'right' }}>{y}</strong></div>)
 
+    // The empty states (academy v2): one sentence on what will appear, and at most one button. They open by address; the sample family always has something to show.
+    if (/^ADP\d+e/.test(v)) { const out = (id: string) => () => { if (onNav) onNav(id); else openScreen(id) }, he2 = kid.he ? 'His' : 'Her', him2 = kid.he ? 'him' : 'her'
+      const [t, icon, h, line, b, on]: [string, string, string, string, string, (() => void) | null] = v.startsWith('ADP1e') ? ['Academy', CLOCK, `${name} starts on Tuesday 21 April`, `${he2} first session is at 4:30 on pitch 1. ${coach} will set a goal with ${him2} in week 2.`, 'What to bring', () => say(`Boots, shin pads, a drink and a ball if ${kid.he ? 'he' : 'she'} has one.`)]
+        : v.startsWith('ADP2e') ? ['Term report', CLOCK, 'The report comes in week 9', `${coach} writes it from his notes on every session. You’ll be told when it is ready.`, '', null]
+        : v.startsWith('ADP3e') ? ['Next term', CLOCK, 'Next term isn’t open yet', `You’ll be told the day it opens. ${name}’s place is held for you first.`, '', null]
+        : v.startsWith('ADP4e') ? ['Review chat', CLOCK, 'No times offered yet', `${coach} offers ten-minute chats in week 9. You’ll be told when you can book.`, `Message ${coach}`, out('ACP11-AcademyParentChat')]
+        : v.startsWith('ADP8e') ? [`${name}’s week`, CLOCK, 'Just the academy so far', `If ${name} plays or trains anywhere else, add it so ${coach} can keep ${his} week sensible.`, 'Add something', () => say('Name it and tap the days.')]
+        : v.startsWith('ADP14e') ? ['Waiting lists', CLOCK, 'You’re not on a list', 'If a program is full when you book, you can join its list from there.', 'See programs', out('ACP1-BookTrial')]
+        : ['Practice this week', PLAY, 'Nothing set this week', 'A week off. A ball and a wall is always a good idea.', 'See last week’s', () => say('Last week’s practice opens.')]
+      return shell(v, head(over, t, v.startsWith('ADP1e') ? undefined : home), <section style={{ ...card, alignItems: 'center', textAlign: 'center', gap: 8, padding: '22px 16px 16px' }}>
+        <span style={{ width: 56, height: 56, borderRadius: 999, background: TINTS[2], color: G, display: 'flex', alignItems: 'center', justifyContent: 'center' }}><I d={icon} size={24} /></span>
+        <strong style={{ fontSize: 18, lineHeight: '24px' }}>{h}</strong><span style={{ fontSize: 15, lineHeight: '21px', color: MUT }}>{line}</span>
+        {on && <button onClick={on} style={{ ...btn(true), flex: 'none', alignSelf: 'stretch', marginTop: 6 }}>{b}</button>}</section>, 'club') }
+
+    // ── ADP8 to ADP14 · the flows behind the copy (academy v6): each piece of data the academy shows has a way in ──
+    if (v === 'ADP8-OtherSport') return shell(v, head(over, `${name}’s week`, home), <>
+      <section style={card}><strong style={{ fontSize: 16 }}>What else does {name} do?</strong><span style={{ fontSize: 15, lineHeight: '21px', color: MUT }}>So {coach} can keep {his} week sensible. It takes a minute.</span></section>
+      <section style={{ ...card, gap: 0, padding: '2px 14px' }}><div style={{ display: 'flex', justifyContent: 'space-between', gap: 10, minHeight: 48, alignItems: 'center', fontSize: 15 }}><span>Tall Timber</span><strong>Tue and Thu</strong></div>
+        {([['Club team', 'Training Wed · game Sun', 'Days open to change.'], ['School football', 'Friday lunchtime', 'Days open to change.'], ['Add another', 'Any sport counts', 'Name it and tap the days.']] as [string, string, string][]).map(([x, y, line]) => <button key={x} onClick={() => say(line)} style={{ ...row, borderTop: `1px solid ${HAIR}` }}><span style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 16 }}>{x}</strong><span style={{ fontSize: 14, color: MUT }}>{y}</span></span><I d={CHEV} size={16} /></button>)}</section>
+      <span style={note}>{coach} and the academy’s coaches see this. {name}’s club sees nothing unless you <button onClick={() => { if (onNav) onNav('ACP7-ShareWithClub'); else openScreen('ACP7-ShareWithClub') }} style={{ ...under, display: 'inline-flex', alignItems: 'center', fontSize: 13 }}>share it</button>.</span>
+    </>, 'club', actions(true, <button key="a" onClick={() => { say(`Saved. ${coach} can see ${name}’s week.`); home() }} style={btn(true)}>Save</button>))
+
+    if (v === 'ADP9-PauseOrStop') { const stop = a.stop === true, tell = a.tell !== false
+      return shell(v, head(over, 'Pause or stop', home), <>
+        <div role="radiogroup" aria-label="Pause or stop" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>{pick(!stop, 'Pause for a while', `${name}’s place is held for up to ${PAUSE_WEEKS} weeks`, () => { set({ stop: false }); say('Pause for a while chosen.') })}{pick(stop, 'Stop this term', 'Ask for the unused weeks back', () => { set({ stop: true }); say('Stop this term chosen.') })}</div>
+        {stop ? <section style={card}><span style={{ fontSize: 15, lineHeight: '21px' }}>The academy’s rule is the unused weeks, less one week. Dani confirms what comes back.</span></section>
+          : <section style={{ ...card, gap: 0, padding: '2px 14px' }}>{pairs([['From', 'Tuesday 9 June'], ['Back on', 'Tuesday 23 June'], ['Comes off your next bill', '$58']])}</section>}
+        {labelled('Why (optional)', <input value={a.why ?? 'Sprained ankle'} onChange={e => set({ why: e.target.value })} style={field} />, 'Only the owner sees this')}
+        <button role="checkbox" aria-checked={tell} onClick={() => { set({ tell: !tell }); say(tell ? `${coach} will not be told the reason.` : `${coach} will be told the reason.`) }} style={{ ...row, minHeight: 48 }}><span aria-hidden style={{ flex: 'none', width: 24, height: 24, borderRadius: 7, boxSizing: 'border-box', background: tell ? G : '#fff', border: tell ? 0 : `2px solid ${MUT}`, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{tell && <I d={TICK} size={14} w={3} />}</span><span style={{ fontSize: 16 }}>Tell {coach} the reason too</span></button>
+      </>, 'club', actions(true, stop ? <button key="a" onClick={() => { say('Dani is asked. She confirms what comes back.'); home() }} style={btn(true)}>Ask for the unused weeks back</button> : <button key="a" onClick={() => { set({ paused: true }); say('Paused from 9 June. $58 comes off your next bill.'); home() }} style={btn(true)}>Pause {name}’s place</button>)) }
+
+    if (v === 'ADP10-WhyLeaving') { const leave = (line: string) => () => { set({ place: 'left' }); setStory(''); say(line); home() }
+      return shell(v, head(over, 'Before you go', hop('ADP3-KeepPlace')), <>
+        <section style={card}><strong style={{ fontSize: 16 }}>Two quick questions</strong><span style={{ fontSize: 15, lineHeight: '21px', color: MUT }}>{name}’s place is released either way. This helps the academy get better.</span></section>
+        <div role="radiogroup" aria-label="Why" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>{WHY.map((t, n) => <button key={t} role="radio" aria-checked={a.why2 === n} onClick={() => { set({ why2: n }); say(`${t} chosen.`) }} style={{ ...card, flexDirection: 'row', alignItems: 'center', gap: 12, minHeight: 52, border: a.why2 === n ? `2px solid ${G}` : `1px solid ${LINE}`, fontFamily: 'inherit', color: INK, textAlign: 'left', cursor: 'pointer' }}><span aria-hidden style={{ flex: 'none', width: 22, height: 22, borderRadius: 999, boxSizing: 'border-box', border: a.why2 === n ? `7px solid ${G}` : `2px solid ${MUT}`, background: '#fff' }} /><strong style={{ fontSize: 16 }}>{t}</strong></button>)}</div>
+        {labelled('Anything you’d tell the owner? (optional)', <textarea rows={2} value={story} onChange={e => setStory(e.target.value)} style={area} />, 'Dani sees reasons as totals. A comment goes to her with your name.')}
+      </>, 'club', actions(true, <button key="a" onClick={leave(`${name}’s place is released.`)} style={btn(false)}>Skip</button>, <button key="b" onClick={leave(`Thank you. ${name}’s place is released.`)} style={btn(true)}>Send</button>)) }
+
+    if (v === 'ADP11-Survey') { const ans = a.survey ?? [5, 4, 4, 4, 2], qs = [`${name} enjoys coming`, `The coaches know ${name}`, 'It is good value', `I can see what ${name} is improving`, 'I know what to practise at home']
+      return shell(v, head(over, 'How is it going?', home), <section style={{ ...card, gap: 0, padding: '12px 14px 6px' }}><span style={{ fontSize: 14, lineHeight: '20px', color: MUT, paddingBottom: 8 }}>Five questions, one minute. 1 is no, 5 is yes. Your answers are never shown with your name.</span>
+        {qs.map((q, n) => <div key={q} role="radiogroup" aria-label={q} style={{ display: 'flex', flexDirection: 'column', gap: 8, padding: '10px 0', borderTop: `1px solid ${HAIR}` }}><strong style={{ fontSize: 15 }}>{q}</strong><div style={{ display: 'flex', gap: 8 }}>{[1, 2, 3, 4, 5].map(k => <button key={k} role="radio" aria-checked={ans[n] === k} onClick={() => { set({ survey: ans.map((x, i) => i === n ? k : x) }); say(`${q}: ${k} of 5.`) }} style={{ flex: 1, minHeight: 44, borderRadius: 12, border: ans[n] === k ? 0 : `1px solid ${MUT}`, background: ans[n] === k ? G : '#fff', color: ans[n] === k ? '#fff' : INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>{k}</button>)}</div></div>)}
+      </section>, 'club', actions(true, <button key="a" onClick={() => { say('Thank you. Sent without your name.'); home() }} style={btn(true)}>Send</button>)) }
+
+    if (v === 'ADP12-MoveOffer') return shell(v, head(over, `A move for ${name}?`, home), <>
+      {dark(`FROM ${coach.toUpperCase()} AND DANI`, `We think ${name} is ready for Advanced.`, `“${his[0].toUpperCase()}${his.slice(1)} first touch and ${his} confidence on the ball are ahead of ${his} group.”`)}
+      <section style={{ ...card, gap: 0, padding: '2px 14px' }}>{pairs([['Now', 'Development · Tue, Thu 4:30'], ['Would be', 'Advanced · Tue, Thu 5:30'], ['Session', '70 minutes, was 55'], ['Price', '$320 a term, was $290'], ['Coach', `${coach} and Sofia`]])}</section>
+      <span style={note}>Try two sessions first. Then you, {name} and {coach} decide. Nothing changes until you say yes.</span>
+    </>, 'club', actions(true, <button key="a" onClick={() => { say(`No problem. ${name} stays in Development. ${coach} is told.`); home() }} style={btn(false)}>Not now</button>, <button key="b" onClick={() => { say('Booked: Tuesday 14 and Thursday 16 July at 5:30. No change to your bill yet.'); home() }} style={btn(true)}>Try two sessions</button>))
+
+    if (v === 'ADP13-NextStep') return shell(v, head(over, `${name}’s next step`, home), <>
+      <section style={card}><strong style={{ fontSize: 16 }}>Trialling somewhere, or moving on?</strong><span style={{ fontSize: 15, lineHeight: '21px', color: MUT }}>You decide what the academy knows and who sees {name}’s file.</span></section>
+      {group([['Ask for a reference', 'Asked 2 June · Dani is writing it', '', () => say('Dani is told. You’ll get it here.')], ['Tell the academy about a trial', 'Optional · Sunday 14 June', '', () => say(`Enter the club and date. Only ${name}’s coaches see it.`)], [`${name}’s passport`, 'Skills, 4 of 6 clips, attendance', '', () => { if (onNav) onNav('CNp14-PlayerPassport'); else openScreen('CNp14-PlayerPassport') }]])}
+      {labelled('Send the passport to', <input type="email" value={a.to ?? 'coach@harbourrovers.example'} onChange={e => set({ to: e.target.value })} style={field} />, 'It goes from you, not from the academy. The link stops working after 30 days.')}
+    </>, 'club', actions(true, <button key="a" onClick={() => { if (!/\S+@\S+\.\S+/.test(a.to ?? 'coach@harbourrovers.example')) { say('Add the email to send it to.'); return } say('Sent. The link works for 30 days and you can switch it off any time.') }} style={btn(true)}>Send the passport</button>))
+
+    if (v === 'ADP14-WaitingList') return shell(v, head(over, 'Advanced is full', home), <>
+      <section style={card}><strong style={{ fontSize: 16 }}>All 24 places are taken or on offer</strong><span style={{ fontSize: 15, lineHeight: '21px', color: MUT }}>Join the list and you’ll be offered the next place in order.</span></section>
+      <section style={{ ...card, gap: 0, padding: '2px 14px' }}>{pairs([['Your place in the list', '6th'], ['When a place opens', 'You have 48 hours to say yes'], ['Cost to wait', 'Nothing']])}</section>
+      <span style={note}>While you wait, {name} can book one-on-ones or the July clinic.</span>
+    </>, 'club', actions(true, <button key="a" onClick={home} style={btn(false)}>Not now</button>, <button key="b" onClick={() => say('You’re 6th on the list for Advanced. We’ll tell you the moment a place opens.')} style={btn(true)}>Join the list</button>))
+
+    // ── ADP15 and ADP16 (academy v7): one optional question after a trial is booked, and an honest answer about sport vouchers. Both reach the owner as totals, without a name ──
+    if (v === 'ADP15-HowHeard') { const out = (id: string) => () => { if (onNav) onNav(id); else openScreen(id) }
+      return shell(v, head(club, 'One quick question', out('ACP1-BookTrial')), <>
+        <section style={card}><strong style={{ fontSize: 16 }}>How did you hear about us?</strong><span style={{ fontSize: 15, lineHeight: '21px', color: MUT }}>Optional. It helps a small academy know what works.</span></section>
+        <div role="radiogroup" aria-label="How did you hear about us?" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>{HEARD.map((t, n) => <button key={t} role="radio" aria-checked={a.heard === n} onClick={() => { set({ heard: n }); say(`${t} chosen.`) }} style={{ ...card, flexDirection: 'row', alignItems: 'center', gap: 12, minHeight: 52, border: a.heard === n ? `2px solid ${G}` : `1px solid ${LINE}`, fontFamily: 'inherit', color: INK, textAlign: 'left', cursor: 'pointer' }}><span aria-hidden style={{ flex: 'none', width: 22, height: 22, borderRadius: 999, boxSizing: 'border-box', border: a.heard === n ? `7px solid ${G}` : `2px solid ${MUT}`, background: '#fff' }} /><strong style={{ fontSize: 16 }}>{t}</strong></button>)}</div>
+        {labelled('Who should we thank? (optional)', <input value={a.thank ?? 'The Costa family'} onChange={e => set({ thank: e.target.value })} style={field} />, 'They aren’t told. It’s only for the academy.')}
+      </>, 'club', actions(true, <button key="a" onClick={out('ACP1b-TrialBooked')} style={btn(false)}>Skip</button>, <button key="b" onClick={out('ACP1b-TrialBooked')} style={btn(true)}>Done</button>)) }
+
+    if (v === 'ADP16-Voucher') { const fees = () => { if (onNav) onNav('ACP4-ParentFees'); else openScreen('ACP4-ParentFees') }, short = club.replace(/ Academy$/, '')
+      return shell(v, head(over, 'Sport voucher', fees), <>
+        <section style={card}><strong style={{ fontSize: 16 }}>{short} can’t take vouchers yet</strong><span style={{ fontSize: 15, lineHeight: '21px', color: MUT }}>An academy has to be a registered provider in its state. {short} isn’t one at the moment.</span></section>
+        <section style={{ ...card, gap: 0, padding: '2px 14px' }}>{pairs([['What you can do', 'Tell the academy'], ['What they see', 'How many families asked'], ['Your club', 'May be able to take it']])}</section>
+        <span style={note}>If {short} registers later, you’ll be told here and can use a voucher against your next term.</span>
+      </>, 'club', actions(true, <button key="a" onClick={fees} style={btn(false)}>Not now</button>, <button key="b" onClick={() => say('Dani has been told a family asked. Your name is not attached.')} style={btn(true)}>Tell the academy I have one</button>)) }
+
+    if (v === 'ADP6-BookOneOnOne') { const n = Math.min(a.one ?? 0, ONES.length - 1), s = ONES[n]
+      return shell(v, head(over, 'One-on-one', home), <>
+        <section style={card}><strong style={{ fontSize: 16 }}>45 minutes, built around {name}’s goal</strong><span style={{ fontSize: 15, lineHeight: '21px', color: MUT }}>First touch on the move. Always on pitch 2, in open view. You’re welcome to stay and watch.</span></section>
+        <div role="radiogroup" aria-label="Times" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>{ONES.map(([day, who], k) => pick(n === k, `${day}, 6:45`, `With ${who} · $${ONE_PRICE}`, () => { set({ one: k }); say(`${day}, 6:45 chosen.`) }))}</div>
+        <span style={note}>Cancel up to {ONE_CANCEL_HOURS} hours before and the full amount comes back.</span>
+      </>, 'club', actions(true, <button key="a" onClick={() => { say(`Booked: ${s[0]}, 6:45, with ${s[1]}. Paid with the card ending 4410.`); home() }} style={btn(true)}>Book · ${ONE_PRICE}</button>)) }
+
+    if (v === 'ADP7-SessionOff') return shell(v, head(over, 'Today’s session is off', home), <>
+      <section style={{ borderRadius: 16, background: PLUM, color: '#fff', padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 6 }}><span style={{ ...cap, color: '#e6d3d3' }}>THURSDAY, 4:30 · DEVELOPMENT</span><strong style={{ fontSize: 19, lineHeight: '25px' }}>Cancelled: the pitch is closed.</strong><span style={{ fontSize: 14, lineHeight: '20px', color: '#e6d3d3' }}>Dani sent this at 2:10 pm. The school closed the pitch after the rain.</span></section>
+      <section style={{ ...card, gap: 0, padding: '12px 14px 2px' }}><strong style={{ fontSize: 16, paddingBottom: 6 }}>What happens now</strong><div style={{ borderTop: `1px solid ${HAIR}` }}>{pairs([[`${name}’s make-up`, '1 added'], ['Use it by', 'Friday 26 June'], ['Next session', 'Tuesday, 4:30']])}</div></section>
+      <span style={note}>If a make-up can’t be used this term, the session comes off your next bill.</span>
+    </>, 'club', actions(true, <button key="a" onClick={home} style={btn(false)}>Later</button>, <button key="b" onClick={() => { if (onNav) onNav('ACP6-MakeUp'); else openScreen('ACP6-MakeUp') }} style={btn(true)}>Book the make-up</button>))
+
     if (v === 'ADP2-TermReport') { const dots = (k: number, soft: boolean) => <span style={{ display: 'flex', gap: 3 }}>{[1, 2, 3, 4, 5].map(d => <span key={d} style={{ width: soft ? 9 : 11, height: soft ? 9 : 11, borderRadius: 999, boxSizing: 'border-box', background: d <= k ? (soft ? '#9db5ab' : G) : '#fff', border: d <= k ? 0 : `1.5px solid ${soft ? '#c9cecc' : MUT}` }} />)}</span>
       const own = ready[0], play = () => { if (!own) { say('The clip plays: 8 seconds.'); return } setFamily({ open: own.id, clip: 0, from: 'reel' }); setView('FAM9-Clip'); top() }
       return shell(v, head(over, 'Term 2 report', home), <>
@@ -898,7 +994,7 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
           {SKILLS.map(([t, was, now]) => <div key={t} role="img" aria-label={`${t}: step ${was} of 5 in week 1, step ${now} of 5 now`} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 46, borderTop: `1px solid ${HAIR}` }}><strong style={{ flexGrow: 1, fontSize: 15 }}>{t}</strong>{dots(was, true)}<I d="M5 12h14M13 6l6 6-6 6" size={14} />{dots(now, false)}</div>)}
           <span style={{ fontSize: 13, lineHeight: '19px', color: MUT, paddingTop: 8, borderTop: `1px solid ${HAIR}` }}>Five steps per skill, against {name}’s own start. Never against other children.</span></section>
         <section style={{ ...card, gap: 4 }}><strong style={{ fontSize: 16 }}>The moment {coach} picked</strong><button onClick={play} style={{ ...row, minHeight: 64 }}><span style={{ flex: 'none', width: 96 }}><Thumb kind="team" len="0:08" wide /></span><span style={{ display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 15, lineHeight: '20px' }}>First touch, then away</strong><span style={{ fontSize: 13, color: MUT }}>Thu 28 May · skill game</span></span></button></section>
-        <section style={{ ...card, gap: 0, padding: '2px 14px' }}>{pairs([['Came to', '17 of 18 sessions'], ['Goal for Term 3', 'First touch under pressure']])}</section>
+        <section style={{ ...card, gap: 0, padding: '2px 14px' }}>{pairs([['Came to', '13 of 14 sessions'], ['Goal for Term 3', 'First touch under pressure']])}</section>
       </>, 'club', actions(true, <button key="a" onClick={hop('ADP4-BookChat')} style={btn(false)}>Book a chat</button>, <button key="b" onClick={hop('ADP3-KeepPlace')} style={btn(true)}>Keep {name}’s place</button>)) }
 
     if (v === 'ADP3-KeepPlace') { const parts = a.pay === 1
@@ -906,13 +1002,14 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
         <section style={{ ...card, gap: 0, padding: '12px 14px 2px' }}><strong style={{ fontSize: 17 }}>Development · Term 3</strong><span style={{ fontSize: 14, color: MUT, paddingBottom: 6 }}>Same group, same coach, same days.</span><div style={{ borderTop: `1px solid ${HAIR}` }}>{pairs([['When', 'Tue and Thu, 4:30'], ['Dates', '13 July to 18 Sept'], ['Where', 'Messmate Primary School'], ['Coach', coach], ['Price', '$290 for 10 weeks']])}</div></section>
         <div role="radiogroup" aria-label="How to pay" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>{pick(!parts, 'Pay $290 now', 'Card ending 4410', () => { set({ pay: 0 }); say('Pay $290 now chosen.') })}{pick(parts, 'Pay in 3 parts', '$96.67 now, then 13 July and 10 August · no extra cost', () => { set({ pay: 1 }); say('Pay in 3 parts chosen.') })}</div>
         <span style={note}>Plans change. Tell the academy before 13 July and the full amount comes back.</span>
-      </>, 'club', actions(true, <button key="a" onClick={() => { set({ place: 'left' }); say(`Two short questions, so the academy knows why. ${name}’s place is released.`); home() }} style={{ ...btn(false), flex: 0.8 }}>Not coming back</button>, <button key="b" onClick={() => { set({ place: 'kept' }); say(`${name}’s place is kept for Term 3. A receipt is in Fees.`); home() }} style={btn(true)}>Keep my place · {parts ? '$96.67 now' : '$290'}</button>)) }
+      </>, 'club', actions(true, <button key="a" onClick={hop('ADP10-WhyLeaving')} style={{ ...btn(false), flex: 0.8 }}>Not coming back</button>, <button key="b" onClick={() => { set({ place: 'kept' }); say(`${name}’s place is kept for Term 3. A receipt is in Fees.`); home() }} style={btn(true)}>Keep my place · {parts ? '$96.67 now' : '$290'}</button>)) }
 
     if (v === 'ADP4-BookChat') { const s = SLOTS[a.slot] ?? SLOTS[0]
       return shell(v, head(over, 'Review chat', home), <>
         <section style={card}><strong style={{ fontSize: 16 }}>Ten minutes with {coach}</strong><span style={{ fontSize: 15, lineHeight: '21px', color: MUT }}>He’ll show one clip, talk through the report and agree next term’s goal with you and {name}.</span></section>
         <div role="radiogroup" aria-label="Times" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>{SLOTS.map(([day, time, where], n) => pick(a.slot === n, `${day}, ${time}`, n ? where : `${where}, after ${name}’s session`, () => { set({ slot: n }); say(`${day}, ${time} chosen.`) }))}</div>
         <span style={note}>Can’t make any of these? {coach} sends the report with a spoken note instead.</span>
+        <button onClick={hop('ADP6-BookOneOnOne')} style={{ ...under, alignSelf: 'center' }}>Or book a one-on-one</button>
       </>, 'club', actions(true, <button key="a" onClick={() => { set({ chat: 'none' }); say(`${coach} is told. He’ll send the report with a spoken note.`); home() }} style={btn(false)}>None of these</button>, <button key="b" onClick={() => { set({ chat: 'booked' }); say(`Booked: ${s[0]}, ${s[1]}, ${s[2].toLowerCase()}. It’s in your calendar.`); home() }} style={btn(true)}>Book {s[1]}</button>)) }
 
     if (v === 'ADP5-Practice') return shell(v, head(over, 'Practice this week', home), <>
@@ -929,15 +1026,33 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
       <section style={card}><strong style={{ fontSize: 16 }}>Term 3 starts on 13 July</strong><span style={{ fontSize: 14, color: MUT }}>{a.place === 'kept' ? `${name}’s place is kept. A receipt is in Fees.` : a.place === 'left' ? `${name}’s place has been released.` : `${name}’s place is held until Friday 19 June.`}</span>
         {a.place !== 'kept' && <button onClick={hop('ADP3-KeepPlace')} style={{ ...btn(true), flex: 'none', marginTop: 6 }}>Keep {name}’s place</button>}</section>
       {group([[`${name}’s goal this term`, 'First touch on the move', '', () => go('FAM37-FromCoach')], ['Practice this week', done === 0 ? 'Three to go' : left === 0 ? 'Done three times' : `Done ${['', 'once', 'twice'][done]} · ${['', 'one', 'two'][left]} to go`, '', hop('ADP5-Practice')], ['Term 2 report', `Ready · from ${coach}`, '', hop('ADP2-TermReport')],
-        ['Book a review chat', a.chat === 'booked' ? `Booked: ${(SLOTS[a.slot] ?? SLOTS[0])[0]}, ${(SLOTS[a.slot] ?? SLOTS[0])[1]}` : a.chat === 'none' ? `${coach} will send the report with a spoken note` : `Ten minutes with ${coach}, week 9`, '', hop('ADP4-BookChat')], ['Can’t come? Book a make-up', '1 make-up to use', '', () => { if (onNav) onNav('ACP6-MakeUp'); else openScreen('ACP6-MakeUp') }], ['Fees', 'Paid for Term 2', '', hop('FAM39-Fees')]])}
+        ['Book a review chat', a.chat === 'booked' ? `Booked: ${(SLOTS[a.slot] ?? SLOTS[0])[0]}, ${(SLOTS[a.slot] ?? SLOTS[0])[1]}` : a.chat === 'none' ? `${coach} will send the report with a spoken note` : `Ten minutes with ${coach}, week 9`, '', hop('ADP4-BookChat')], ['Can’t come? Book a make-up', '1 make-up to use', '', () => { if (onNav) onNav('ACP6-MakeUp'); else openScreen('ACP6-MakeUp') }], ['Fees', 'Paid for Term 2', '', hop('FAM39-Fees')], [`${name}’s week`, `Tell ${coach} what else ${kid.he ? 'he' : 'she'} does`, '', hop('ADP8-OtherSport')], ['Pause or stop', a.paused ? 'Paused from Tuesday 9 June' : 'Injury, time away or leaving', '', hop('ADP9-PauseOrStop')],
+        ...(age >= 15 ? [[`${name}’s next step`, 'A reference, a trial, the passport', '', hop('ADP13-NextStep')] as [string, string, string, () => void]] : [])])}
+      {demo('the sample academy', <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}><button onClick={hop('ADP7-SessionOff')} style={small}>Today’s session is cancelled</button><button onClick={hop('ADP6-BookOneOnOne')} style={small}>Book a one-on-one</button><button onClick={hop('ADP1e-AcademyHomeEmpty')} style={small}>Before {name} starts</button><button onClick={hop('ADP11-Survey')} style={small}>The week 6 survey</button><button onClick={hop('ADP12-MoveOffer')} style={small}>The owner offers a move</button><button onClick={hop('ADP14-WaitingList')} style={small}>A program is full</button><button onClick={hop('ADP13-NextStep')} style={small}>The year a player turns 15</button></div>)}
     </>, 'club') }
+
+  // ── GPp1 · the club's survey, twice a season: five questions, sent without a name. The club sees totals; a team with fewer than five answers is not shown on its own ──
+  if (v === 'GPp1-ClubSurvey') { const qs = [`${name} enjoys coming`, `${name} gets a fair go on game day`, `The coach knows ${name}`, 'I know what is going on each week', 'I’d tell a friend to join']
+    return shell(v, head(`${name} · U${age < 12 ? age : age + 1} ${coach}`, 'How is the season going?', () => go('FAM40-ClubHome')), <section style={{ ...card, gap: 0, padding: '12px 14px 6px' }}><span style={{ fontSize: 14, lineHeight: '20px', color: MUT, paddingBottom: 8 }}>Five questions, one minute. 1 is no, 5 is yes. {club.replace(/ FC$/, '')} sees totals, never your name.</span>
+      {qs.map((q, n) => <div key={q} role="radiogroup" aria-label={q} style={{ display: 'flex', flexDirection: 'column', gap: 8, padding: '10px 0', borderTop: `1px solid ${HAIR}` }}><strong style={{ fontSize: 15 }}>{q}</strong><div style={{ display: 'flex', gap: 8 }}>{[1, 2, 3, 4, 5].map(k => <button key={k} role="radio" aria-checked={sv[n] === k} onClick={() => { setSv(sv.map((x, i) => i === n ? k : x)); say(`${q}: ${k} of 5.`) }} style={{ flex: 1, minHeight: 44, borderRadius: 12, border: sv[n] === k ? 0 : `1px solid ${MUT}`, background: sv[n] === k ? G : '#fff', color: sv[n] === k ? '#fff' : INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>{k}</button>)}</div></div>)}
+    </section>, 'club', actions(true, <button key="a" onClick={() => { if (sv.some(x => !x)) { say('Answer all five first.'); return } say('Thank you. Sent without your name.'); go('FAM40-ClubHome') }} style={btn(true)}>Send</button>)) }
+
+  // ── GPp2 · tell my club, by one short email that we send from the parent (club flows v1). The parent reads it first; it carries no clips or numbers; the contact is used once ──
+  if (v === 'GPp2-TellMyClub') { const t = tm ?? { name: f.parent === 'Dana' ? 'Dana Baker' : f.parent, who: `${STAFF.coach}, U${age < 12 ? age : age + 1} coach`, at: `luke@${club.toLowerCase().replace(/[^a-z]/g, '')}.example` }, first = t.who.split(',')[0].trim() || 'them'
+    const send = () => { if (!t.name.trim() || !t.who.trim() || !/\S+@\S+\.\S+|\d{8,}/.test(t.at.replace(/\s/g, ''))) { say('Add your name, who should get it, and their email or mobile.'); return } say(`Sent to ${first}, from you. That’s the only message we’ll send.`) }
+    return shell(v, head(name, 'Tell my club', () => go(ret === 'FAM12-TellClub' ? ret : 'FAMk5-ClubTour')), <>
+      <section style={card}><strong style={{ fontSize: 16 }}>We’ll send one short email, from you</strong><span style={{ fontSize: 15, lineHeight: '21px', color: MUT }}>You read it first. We never contact your club again unless they reply.</span></section>
+      <section style={{ ...card, gap: 12 }}>{labelled('Your name', <input value={t.name} onChange={e => setTm({ ...t, name: e.target.value })} style={field} />)}{labelled('Who should get it', <input value={t.who} onChange={e => setTm({ ...t, who: e.target.value })} style={field} />, 'A coach or someone on the committee')}{labelled('Their email or mobile', <input value={t.at} onChange={e => setTm({ ...t, at: e.target.value })} style={field} />, 'Used once, for this email')}</section>
+      <span style={note}>It says what you’ve used Clean Sheet for, with a link for the club. It doesn’t include {name}’s clips or numbers.</span>
+      <button onClick={() => { setView('FAM12-TellClub'); top() }} style={{ ...under, alignSelf: 'center' }}>Send it myself instead</button>
+    </>, 'club', actions(true, <button key="a" onClick={() => say('The email opens to read. Nothing is sent yet.')} style={btn(false)}>Read it first</button>, <button key="b" onClick={send} style={btn(true)}>Send</button>)) }
 
   // ── FAM40 · the Club tab once the club has joined. The club and the coach can never see a family's own videos, credits or who they share reels with ──
   if (v === 'FAM40-ClubHome') return shell(v, head(club, 'Your club'), <>
     {group([[`From ${coach}`, `${name}’s goal, a clip, the season report`, '1', hop('FAM37-FromCoach')], ['Filming and photos', 'What the club may film and share', '', hop('FAM36-Consent')], ['Raise a concern', 'Goes to the welfare officer', '', hop('FAM38-Concern')], ['Who to contact', 'Coach, manager, welfare officer', '', () => say(`${coach} (coach), ${STAFF.manager} (manager), ${STAFF.welfare} (welfare officer). Tap one to message them.`)]])}
     {group([['Club games', 'Free. They arrive in Reels', '', () => go('FAM18-Reels')], ['Your own filming', 'Half the credits. Private to your family', '', () => side('FAM6-Credits')]])}
     <span style={note}>{club} and {coach} can’t see your own videos, your credits or who you share reels with.</span>
-    {demo('the sample club', <button onClick={() => { setFamily({ joined: false, toldJoined: false, paused: true }); setView('FAM41-ClubPaused'); top() }} style={small}>{club}’s plan ends</button>)}
+    {demo('the sample club', <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}><button onClick={() => { setFamily({ joined: false, toldJoined: false, paused: true }); setView('FAM41-ClubPaused'); top() }} style={small}>{club}’s plan ends</button><button onClick={hop('GPp1-ClubSurvey')} style={small}>The club’s survey</button></div>)}
   </>, 'club')
 
   // ── FAM41 · the club's plan has ended: what closes again, and what the family keeps. Said once ──
@@ -1004,8 +1119,9 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
       <section style={bold}><span style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', color: MUT }}>YOU SEND THIS YOURSELF, TO WHOEVER YOU CHOOSE</span>
         {editing ? <textarea aria-label="Your message" value={msg} onChange={e => setFamily({ message: e.target.value })} rows={8} style={{ padding: 10, borderRadius: 10, border: `1px solid ${LINE}`, fontFamily: 'inherit', fontSize: 15, lineHeight: '21px', color: INK, resize: 'vertical' }} /> : <span style={{ fontSize: 15, lineHeight: '22px', whiteSpace: 'pre-wrap' }}>{msg}</span>}
         <button onClick={() => { setEditing(true); say('Edit the message. It stays yours.') }} style={{ ...under, alignSelf: 'flex-start' }}>Change the wording</button></section>
-      <section style={{ ...card, gap: 0, padding: '4px 14px' }}><Line top={false} a="It goes from you, not from us" b="By text, email or however you like" /><Line a="We never contact your club" b="Unless the club comes to us" /><Line a="Your name is not on our club page" b="It shows a number only" /></section>
+      <section style={{ ...card, gap: 0, padding: '4px 14px' }}><Line top={false} a="Send it yourself, or have us send it" b="Either way it comes from you" /><Line a="We contact your club only if you ask" b="One short email, from you, that you read first" /><Line a="Your name is not on our club page" b="It shows a number only" /></section>
       <span style={note}>One message is plenty. Volunteers run your club.</span>
+      <button onClick={() => { setRet('FAM12-TellClub'); setView('GPp2-TellMyClub'); top() }} style={{ ...under, alignSelf: 'center' }}>Have us send it for you</button>
     </>, 'club', actions(true, <button key="a" onClick={() => go('FAM11-Locked')} style={btn(false)}>Not now</button>, <button key="b" onClick={() => say('Your phone’s share sheet opens with the message and the link.')} style={btn(true)}>Send it myself</button>)) }
 
   // ── FAM13 · your club has joined ──

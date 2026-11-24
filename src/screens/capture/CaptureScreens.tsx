@@ -662,7 +662,7 @@ export function SwingChart({ values, labels, band, lo, hi, what }: { values: num
 
 const WIN_BACK = { values: [11, 10, 11, 9, 9, 7], labels: ['Round 3', 'Round 4', 'Round 5', 'Round 6', 'Round 7', 'Saturday'], band: [8.5, 11.5] as [number, number] }
 
-export function QC9MeasureConfidence({ s, go, say, team }: ScreenProps) {
+export function QC9MeasureConfidence({ s, go, team }: ScreenProps) {
   const flagged = s.flagged.includes('win-back')
   const games = WIN_BACK.values.length
   const mark = markFor({ kind: 'count', captured: true, games, trendAfter: s.trendAfter })
@@ -674,7 +674,7 @@ export function QC9MeasureConfidence({ s, go, say, team }: ScreenProps) {
   ]
   return (
     <Page id="QC9-MeasureConfidence" title="Seconds to win the ball back" sub={`${team} · this season · lower is better`} go={go} cols="minmax(0,1fr) 372px"
-      right={<><Btn big aria-pressed={flagged} onClick={() => { setCapture(c => ({ flagged: [...new Set([...c.flagged, 'win-back'])] })); say('Tell us what looks wrong. We check the clips and write back within a day.') }}>That’s not right</Btn><Btn primary big onClick={() => go('PU8a-MeasureFilm')}>See the 14 clips</Btn></>}>
+      right={<><Btn big aria-pressed={flagged} onClick={() => go('GP8-ReportNumber')}>That’s not right</Btn><Btn primary big onClick={() => go('PU8a-MeasureFilm')}>See the 14 clips</Btn></>}>
       <div style={col}>
         <section aria-label="The number" style={{ ...tile, padding: '12px 18px 14px', gap: 8 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>

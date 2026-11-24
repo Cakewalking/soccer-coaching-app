@@ -13,7 +13,7 @@ export default function AD10WatchCoach() {
           <span style={{ ...S.cap, whiteSpace: 'nowrap' }}>Foundation · Wednesday 3 June · 50 minutes · filmed on the tablet</span>
         </div>
         <div style={{ display: 'flex', gap: 8, flex: 'none' }}>
-          <Tap say="Pick a time. Sofia sees it in her week." style={S.more}>Book a chat</Tap>
+          <Tap to="ADC15-MySession" style={S.more}>Sofia’s own view</Tap>
           <Tap say="Sofia can see your notes and the three moments. Nobody else can." style={S.primary}>Send to Sofia</Tap>
         </div>
       </div>

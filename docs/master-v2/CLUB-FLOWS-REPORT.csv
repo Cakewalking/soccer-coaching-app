@@ -1,0 +1,132 @@
+control id,screen,control,does,target or line,status: works / line of text only / missing / wrong target (say where)
+GP1-AfterTraining#7,GP1-AfterTraining,U12 Sam,Opens,VS1-SwitchView,works
+GP1-AfterTraining#11,GP1-AfterTraining,Finish later,Opens,T3-TrainingTab,works
+GP1-AfterTraining#12,GP1-AfterTraining,Done · 6 of 14 marked,Opens,T3-TrainingTab,works
+GP1-AfterTraining#13,GP1-AfterTraining,Same [radio],Says,Mia Tran: Same.,works
+GP1-AfterTraining#14,GP1-AfterTraining,Better [radio],Says,Mia Tran: Better.,works
+GP1-AfterTraining#15,GP1-AfterTraining,Scanned before every pass,Says,Pick a quick note or type one.,works
+GP1-AfterTraining#16,GP1-AfterTraining,Say a note about Mia Tran,Says,Hold to talk. Up to 30 seconds. It is typed out for you.,works
+GP1-AfterTraining#17,GP1-AfterTraining,Same [radio],Says,Jai Patel: Same.,works
+GP1-AfterTraining#18,GP1-AfterTraining,Better [radio],Says,Jai Patel: Better.,works
+GP1-AfterTraining#19,GP1-AfterTraining,Add a note,Says,Pick a quick note or type one.,works
+GP1-AfterTraining#20,GP1-AfterTraining,Say a note about Jai Patel,Says,Hold to talk. Up to 30 seconds. It is typed out for you.,works
+GP1-AfterTraining#21,GP1-AfterTraining,Same [radio],Says,Zoe Hartley: Same.,works
+GP1-AfterTraining#22,GP1-AfterTraining,Better [radio],Says,Zoe Hartley: Better.,works
+GP1-AfterTraining#23,GP1-AfterTraining,"Pressed first, twice",Says,Pick a quick note or type one.,works
+GP1-AfterTraining#24,GP1-AfterTraining,Say a note about Zoe Hartley,Says,Hold to talk. Up to 30 seconds. It is typed out for you.,works
+GP1-AfterTraining#25,GP1-AfterTraining,Same [radio],Says,Noah Okafor: Same.,works
+GP1-AfterTraining#26,GP1-AfterTraining,Better [radio],Says,Noah Okafor: Better.,works
+GP1-AfterTraining#27,GP1-AfterTraining,Quiet tonight,Says,Pick a quick note or type one.,works
+GP1-AfterTraining#28,GP1-AfterTraining,Say a note about Noah Okafor,Says,Hold to talk. Up to 30 seconds. It is typed out for you.,works
+GP1-AfterTraining#29,GP1-AfterTraining,Same [radio],Says,Grace Reid: Same.,works
+GP1-AfterTraining#30,GP1-AfterTraining,Better [radio],Says,Grace Reid: Better.,works
+GP1-AfterTraining#31,GP1-AfterTraining,Add a note,Says,Pick a quick note or type one.,works
+GP1-AfterTraining#32,GP1-AfterTraining,Say a note about Grace Reid,Says,Hold to talk. Up to 30 seconds. It is typed out for you.,works
+GP1-AfterTraining#33,GP1-AfterTraining,Same [radio],Says,Finn Noble: Same.,works
+GP1-AfterTraining#34,GP1-AfterTraining,Better [radio],Says,Finn Noble: Better.,works
+GP1-AfterTraining#35,GP1-AfterTraining,Used his left,Says,Pick a quick note or type one.,works
+GP1-AfterTraining#36,GP1-AfterTraining,Say a note about Finn Noble,Says,Hold to talk. Up to 30 seconds. It is typed out for you.,works
+GP1e-AfterTrainingEmpty#7,GP1e-AfterTrainingEmpty,U12 Sam,Opens,VS1-SwitchView,works
+GP1e-AfterTrainingEmpty#11,GP1e-AfterTrainingEmpty,Open tonight’s plan,Opens,T3-TrainingTab,works
+GP2-AddPlayer#7,GP2-AddPlayer,U12 Sam,Opens,VS1-SwitchView,works
+GP2-AddPlayer#15,GP2-AddPlayer,Share the team link,Says,Team link copied. A parent fills this in themselves.,works
+GP2-AddPlayer#16,GP2-AddPlayer,Add and invite,Opens,T4-SquadTab,works
+GP2-AddPlayer#17,GP2-AddPlayer,Yes [radio],Says,Yes: chosen.,works
+GP2-AddPlayer#18,GP2-AddPlayer,Not yet [radio],Says,Not yet: chosen.,works
+GP2-AddPlayer#19,GP2-AddPlayer,Don’t know [radio],Says,Don’t know: chosen.,works
+GP3-ChangeRole#7,GP3-ChangeRole,Ask Clean Sheet,Opens,ASKd4-PanelFirst,"works: the Ask Clean Sheet panel opens over the screen (the build’s panel, not a separate screen)"
+GP3-ChangeRole#8,GP3-ChangeRole,Whole club,Opens,VS1-SwitchView,works
+GP3-ChangeRole#11,GP3-ChangeRole,Cancel,Opens,DSet2-ClubRoles,works
+GP3-ChangeRole#12,GP3-ChangeRole,Change the role,Opens,DSet2-ClubRoles,works
+GP3-ChangeRole#13,GP3-ChangeRole,Team manager [radio],Says,Team manager: chosen.,works
+GP3-ChangeRole#14,GP3-ChangeRole,Assistant coach [radio],Says,Assistant coach: chosen.,works
+GP3-ChangeRole#15,GP3-ChangeRole,Head coach [radio],Says,Head coach: chosen.,works
+GP3-ChangeRole#16,GP3-ChangeRole,Coaching director [radio],Says,Coaching director: chosen.,works
+GP3-ChangeRole#17,GP3-ChangeRole,Committee [radio],Says,Committee: chosen.,works
+GP3-ChangeRole#18,GP3-ChangeRole,Now [radio],Says,Now: chosen.,works
+GP3-ChangeRole#19,GP3-ChangeRole,Start of next season [radio],Says,Start of next season: chosen.,works
+GP4-LinkAcademy#7,GP4-LinkAcademy,Ask Clean Sheet,Opens,ASKd4-PanelFirst,"works: the Ask Clean Sheet panel opens over the screen (the build’s panel, not a separate screen)"
+GP4-LinkAcademy#8,GP4-LinkAcademy,Whole club,Opens,VS1-SwitchView,works
+GP4-LinkAcademy#11,GP4-LinkAcademy,Cancel,Opens,DSet6-PartnerAcademy,works
+GP4-LinkAcademy#12,GP4-LinkAcademy,Ask the academy,Says,Sent to Dani Okafor at Tall Timber Academy. Nothing is shared until she confirms and each family agrees.,works
+GP4-LinkAcademy#13,GP4-LinkAcademy,Nothing [radio],Says,Nothing: chosen.,works
+GP4-LinkAcademy#14,GP4-LinkAcademy,Training load [radio],Says,Training load: chosen.,works
+GP4-LinkAcademy#15,GP4-LinkAcademy,Load and game film [radio],Says,Load and game film: chosen.,works
+GP4-LinkAcademy#16,GP4-LinkAcademy,Same as every club team [radio],Says,Same as every club team: chosen.,works
+GP4-LinkAcademy#17,GP4-LinkAcademy,At least half a game [radio],Says,At least half a game: chosen.,works
+GP4-LinkAcademy#18,GP4-LinkAcademy,The coach decides [radio],Says,The coach decides: chosen.,works
+GP5-AddSponsor#7,GP5-AddSponsor,Ask Clean Sheet,Opens,ASKd4-PanelFirst,"works: the Ask Clean Sheet panel opens over the screen (the build’s panel, not a separate screen)"
+GP5-AddSponsor#8,GP5-AddSponsor,Whole club,Opens,VS1-SwitchView,works
+GP5-AddSponsor#10,GP5-AddSponsor,Cancel,Opens,CN20-Sponsors,works
+GP5-AddSponsor#11,GP5-AddSponsor,Add sponsor,Opens,CN20-Sponsors,works
+GP5-AddSponsor#12,GP5-AddSponsor,"Club home, for coaches and committee [checkbox]",Says,"Club home, for coaches and committee: unticked.",works (box now unticked)
+GP5-AddSponsor#13,GP5-AddSponsor,The printed team sheet [checkbox],Says,The printed team sheet: unticked.,works (box now unticked)
+GP5-AddSponsor#14,GP5-AddSponsor,The foot of the family app’s Club tab [checkbox],Says,The foot of the family app’s Club tab: unticked.,works (box now unticked)
+GP5-AddSponsor#15,GP5-AddSponsor,On clips and reels of children [checkbox],Says,On clips and reels of children: ticked.,differs on purpose: the box cannot be ticked (ledger rule for GP5). Pressing it says “A sponsor’s logo never shows on a child’s clip or reel. This box can’t be ticked.” and it stays unticked. The pack’s line “ticked.” contradicts the rule
+GP6-SendLesson#7,GP6-SendLesson,U12 Sam,Opens,VS1-SwitchView,works
+GP6-SendLesson#10,GP6-SendLesson,Cancel,Opens,CL1-Playlists,works
+GP6-SendLesson#11,GP6-SendLesson,Send to 16 players,Says,Sent. Under 15s get it through their parent’s app.,works
+GP6-SendLesson#12,GP6-SendLesson,All 16 [radio],Says,All 16: chosen.,works
+GP6-SendLesson#13,GP6-SendLesson,Midfielders [radio],Says,Midfielders: chosen.,works
+GP6-SendLesson#14,GP6-SendLesson,Pick players [radio],Says,Pick players: chosen.,works
+GP6-SendLesson#15,GP6-SendLesson,Thursday training [radio],Says,Thursday training: chosen.,works
+GP6-SendLesson#16,GP6-SendLesson,Sunday’s game [radio],Says,Sunday’s game: chosen.,works
+GP6-SendLesson#17,GP6-SendLesson,No date [radio],Says,No date: chosen.,works
+GP6-SendLesson#18,GP6-SendLesson,Ask one question at the end: “What did you see?” [checkbox],Says,Ask one question at the end: “What did you see?”: unticked.,works (box now unticked)
+GP7-MiniGoal#7,GP7-MiniGoal,U8 Wombats,Opens,VS1-SwitchView,works: the pill reads U9 Tom (the build’s MiniRoos team)
+GP7-MiniGoal#11,GP7-MiniGoal,Cancel,Opens,HM2-SquadMiniRoos,works
+GP7-MiniGoal#12,GP7-MiniGoal,Save,Opens,HM2-SquadMiniRoos,works
+GP7-MiniGoal#13,GP7-MiniGoal,Be brave with the ball [radio],Says,Be brave with the ball: chosen.,works
+GP7-MiniGoal#14,GP7-MiniGoal,Find a friend [radio],Says,Find a friend: chosen.,works
+GP7-MiniGoal#15,GP7-MiniGoal,Have a shot [radio],Says,Have a shot: chosen.,works
+GP7-MiniGoal#16,GP7-MiniGoal,I’ll tick it when I see it [radio],Says,I’ll tick it when I see it: chosen.,works
+GP7-MiniGoal#17,GP7-MiniGoal,A parent tells me [radio],Says,A parent tells me: chosen.,works
+GP8-ReportNumber#7,GP8-ReportNumber,U12 Sam,Opens,VS1-SwitchView,works
+GP8-ReportNumber#10,GP8-ReportNumber,Cancel,Opens,RD1-GameReview,works
+GP8-ReportNumber#11,GP8-ReportNumber,Send to be checked,Says,"Sent. The number shows “Being checked” until we write back, within 2 days.",works
+GP8-ReportNumber#12,GP8-ReportNumber,Goal kicks played short · 64% [radio],Says,Goal kicks played short · 64%: chosen.,works
+GP8-ReportNumber#13,GP8-ReportNumber,Wins in their half · 13 [radio],Says,Wins in their half · 13: chosen.,works
+GP8-ReportNumber#14,GP8-ReportNumber,Another [radio],Says,Another: chosen.,works
+GP8-ReportNumber#15,GP8-ReportNumber,"Goal kick, minute 12 · Counted as long",Says,The clip plays.,works
+GP8-ReportNumber#16,GP8-ReportNumber,"Goal kick, minute 31 · Counted as long",Says,The clip plays.,works
+GP8-ReportNumber#17,GP8-ReportNumber,Add a clip · From this game,Says,The clip plays.,works
+GPp1-ClubSurvey#1,GPp1-ClubSurvey,Back,Opens,FAM40-ClubHome,works
+GPp1-ClubSurvey#2,GPp1-ClubSurvey,1 [radio],Says,Ari enjoys coming: 1 of 5.,works
+GPp1-ClubSurvey#3,GPp1-ClubSurvey,2 [radio],Says,Ari enjoys coming: 2 of 5.,"works: pressed by hand. The script matched the chat button's count, which also reads 2"
+GPp1-ClubSurvey#4,GPp1-ClubSurvey,3 [radio],Says,Ari enjoys coming: 3 of 5.,works
+GPp1-ClubSurvey#5,GPp1-ClubSurvey,4 [radio],Says,Ari enjoys coming: 4 of 5.,works
+GPp1-ClubSurvey#6,GPp1-ClubSurvey,5 [radio],Says,Ari enjoys coming: 5 of 5.,works
+GPp1-ClubSurvey#7,GPp1-ClubSurvey,1 [radio],Says,Ari gets a fair go on game day: 1 of 5.,works
+GPp1-ClubSurvey#8,GPp1-ClubSurvey,2 [radio],Says,Ari gets a fair go on game day: 2 of 5.,"works: pressed by hand. The script matched the chat button's count, which also reads 2"
+GPp1-ClubSurvey#9,GPp1-ClubSurvey,3 [radio],Says,Ari gets a fair go on game day: 3 of 5.,works
+GPp1-ClubSurvey#10,GPp1-ClubSurvey,4 [radio],Says,Ari gets a fair go on game day: 4 of 5.,works
+GPp1-ClubSurvey#11,GPp1-ClubSurvey,5 [radio],Says,Ari gets a fair go on game day: 5 of 5.,works
+GPp1-ClubSurvey#12,GPp1-ClubSurvey,1 [radio],Says,The coach knows Ari: 1 of 5.,works
+GPp1-ClubSurvey#13,GPp1-ClubSurvey,2 [radio],Says,The coach knows Ari: 2 of 5.,"works: pressed by hand. The script matched the chat button's count, which also reads 2"
+GPp1-ClubSurvey#14,GPp1-ClubSurvey,3 [radio],Says,The coach knows Ari: 3 of 5.,works
+GPp1-ClubSurvey#15,GPp1-ClubSurvey,4 [radio],Says,The coach knows Ari: 4 of 5.,works
+GPp1-ClubSurvey#16,GPp1-ClubSurvey,5 [radio],Says,The coach knows Ari: 5 of 5.,works
+GPp1-ClubSurvey#17,GPp1-ClubSurvey,1 [radio],Says,I know what is going on each week: 1 of 5.,works
+GPp1-ClubSurvey#18,GPp1-ClubSurvey,2 [radio],Says,I know what is going on each week: 2 of 5.,"works: pressed by hand. The script matched the chat button's count, which also reads 2"
+GPp1-ClubSurvey#19,GPp1-ClubSurvey,3 [radio],Says,I know what is going on each week: 3 of 5.,works
+GPp1-ClubSurvey#20,GPp1-ClubSurvey,4 [radio],Says,I know what is going on each week: 4 of 5.,works
+GPp1-ClubSurvey#21,GPp1-ClubSurvey,5 [radio],Says,I know what is going on each week: 5 of 5.,works
+GPp1-ClubSurvey#22,GPp1-ClubSurvey,1 [radio],Says,I’d tell a friend to join: 1 of 5.,works
+GPp1-ClubSurvey#23,GPp1-ClubSurvey,2 [radio],Says,I’d tell a friend to join: 2 of 5.,"works: pressed by hand. The script matched the chat button's count, which also reads 2"
+GPp1-ClubSurvey#24,GPp1-ClubSurvey,3 [radio],Says,I’d tell a friend to join: 3 of 5.,works
+GPp1-ClubSurvey#25,GPp1-ClubSurvey,4 [radio],Says,I’d tell a friend to join: 4 of 5.,works
+GPp1-ClubSurvey#26,GPp1-ClubSurvey,5 [radio],Says,I’d tell a friend to join: 5 of 5.,works
+GPp1-ClubSurvey#27,GPp1-ClubSurvey,Send,Says,Thank you. Sent without your name.,works
+GPp1-ClubSurvey#28,GPp1-ClubSurvey,Home,Opens,FAM14-HomeWithClub,works
+GPp1-ClubSurvey#29,GPp1-ClubSurvey,Reels,Opens,FAM18-Reels,works
+GPp1-ClubSurvey#30,GPp1-ClubSurvey,Team,Opens,FAM31-Team,works
+GPp1-ClubSurvey#31,GPp1-ClubSurvey,Learn,Opens,FAM17u-LearnWithClub,works
+GPp1-ClubSurvey#32,GPp1-ClubSurvey,Club,Opens,ADP1-AcademyHome,"opens FAM40-ClubHome: the sample club here is a community club, not an academy"
+GPp2-TellMyClub#1,GPp2-TellMyClub,Back,Opens,FAMk5-ClubTour,works
+GPp2-TellMyClub#2,GPp2-TellMyClub,Read it first,Says,The email opens to read. Nothing is sent yet.,works
+GPp2-TellMyClub#3,GPp2-TellMyClub,Send,Says,"Sent to Luke, from you. That’s the only message we’ll send.",works
+GPp2-TellMyClub#4,GPp2-TellMyClub,Home,Opens,FAM14-HomeWithClub,"opens the page a family sees before their club has joined, which is who this page is for"
+GPp2-TellMyClub#5,GPp2-TellMyClub,Reels,Opens,FAM18-Reels,works
+GPp2-TellMyClub#6,GPp2-TellMyClub,Team,Opens,FAM31-Team,"opens the page a family sees before their club has joined, which is who this page is for"
+GPp2-TellMyClub#7,GPp2-TellMyClub,Learn,Opens,FAM17u-LearnWithClub,"opens the page a family sees before their club has joined, which is who this page is for"
+GPp2-TellMyClub#8,GPp2-TellMyClub,Club,Opens,ADP1-AcademyHome,"opens the page a family sees before their club has joined, which is who this page is for"

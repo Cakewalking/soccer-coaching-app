@@ -1,3 +1,4 @@
+import RD5CoachPhoneReview from '../dashboards/RD5CoachPhoneReview'
 import { useRead, markRead } from '../readStore'
 import { useBackState } from '../../backState'
 import { openThing } from '../openThing'
@@ -481,7 +482,7 @@ function CoachPhoneMessagesTab() {
 }
 
 /* ---- CPh4 Game (populated) ---- */
-function CoachPhoneGameTab() {
+function CoachPhoneGameTab({ onReview }: { onReview?: () => void }) {
   const [score, setScore] = useState({ us: 1, them: 0 })
   const [minutes, setMinutes] = useState(23)
   const [toast, setToast] = useState<string|null>(null)
@@ -519,6 +520,20 @@ function CoachPhoneGameTab() {
           <button onClick={() => setMinutes(m => m + 5)} style={{ flex: 1, height: 44, borderRadius: 8, border: 'none', background: 'rgba(255,255,255,0.15)', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>+5 min</button>
         </div>
       </div>
+
+      {/* The last game's review, as a dashboard (RD5) */}
+      {onReview && <>
+        <SectionHead>Last game</SectionHead>
+        <Card>
+          <button onClick={onReview} style={{ width: '100%', minHeight: 56, padding: '10px 14px', border: 0, background: 'none', fontFamily: 'inherit', textAlign: 'left', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 12 }}>
+            <span style={{ flex: 1, minWidth: 0 }}>
+              <span style={{ display: 'block', fontSize: 15, fontWeight: 600, color: INK, lineHeight: 1.3 }}>Game review</span>
+              <span style={{ display: 'block', fontSize: 13, color: MUT, lineHeight: 1.3 }}>Won 3–1 at Ironbark United · Sun 7 June</span>
+            </span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+          </button>
+        </Card>
+      </>}
 
       {/* Next change */}
       <SectionHead>Next change · fair minutes</SectionHead>
@@ -624,13 +639,14 @@ function EmptyState({ icon, title, sub, action, onAction }: { icon: React.ReactN
 }
 
 /* ---- Main component (full app, tabs) ---- */
-export default function CoachPhoneApp({ initialTab = 'home', phase = 'season' as Phase }: { initialTab?: Tab; phase?: Phase }) {
+export default function CoachPhoneApp({ initialTab = 'home', phase = 'season' as Phase, initialReview = false }: { initialTab?: Tab; phase?: Phase; /** open on the game review (RD5) */ initialReview?: boolean }) {
   const [tab, setTab] = useBackState<Tab>(initialTab)
   const [showPlan, setShowPlan] = useState(false)
   const [askOpen, setAskOpen] = useState(false)
   // Before kick-off (QCp1) and the step it opens. Anything else goes home.
   const [kick, setKick] = useBackState<string | null>(null)
   const [incident, setIncident] = useBackState(false)   // CNp18: log an incident, from the home
+  const [review, setReview] = useBackState(initialReview)   // RD5: the game review, from the Game tab
   const kickNav = (s: string) => setKick(isCaptureId(s) ? s : s === 'QCp1-BeforeKickOffPhone' ? s : null)
 
   if (incident) return <CNp18IncidentLog onNav={() => setIncident(false)} />
@@ -646,6 +662,7 @@ export default function CoachPhoneApp({ initialTab = 'home', phase = 'season' as
     </div>
   )
   if (showPlan) return <CoachPhonePlanScreen onBack={() => setShowPlan(false)} />
+  if (review) return <div data-screen-at="RD5-CoachPhoneReview"><RD5CoachPhoneReview onBack={() => { setReview(false); setTab('game') }} /></div>
 
   return (
     <PhoneShell tab={tab} onTab={setTab} onPlan={tab === 'home' && phase === 'season' ? () => setShowPlan(true) : undefined} askOpen={askOpen} onAskToggle={() => setAskOpen(o => !o)}>
@@ -655,7 +672,7 @@ export default function CoachPhoneApp({ initialTab = 'home', phase = 'season' as
       {tab === 'home' && phase === 'season'     && <CoachPhoneHomeTab onPlan={() => setShowPlan(true)} onAsk={() => setAskOpen(true)} onKick={() => setKick('QCp1-BeforeKickOffPhone')} onIncident={() => setIncident(true)} />}
       {tab === 'coming'   && <CoachPhoneComingTab />}
       {tab === 'messages' && <CoachPhoneMessagesTab />}
-      {tab === 'game'     && <CoachPhoneGameTab />}
+      {tab === 'game'     && <CoachPhoneGameTab onReview={() => setReview(true)} />}
     </PhoneShell>
   )
 }
@@ -707,13 +724,16 @@ export function CPh3eCoachPhoneMessagesEmpty() {
   )
 }
 
-export function CPh4eCoachPhoneGameEmpty() {
+export function CPh4eCoachPhoneGameEmpty({ initialReview = false }: { /** open on the empty game review (RD5e) */ initialReview?: boolean } = {}) {
+  const [review, setReview] = useBackState(initialReview)
+  if (review) return <RD5CoachPhoneReview empty onBack={() => setReview(false)} />
   return (
     <PhoneShell tab="game" onTab={() => {}}>
       <EmptyState
         icon={<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={G} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>}
         title="No game today"
         sub="When a game is scheduled, the live sideline screen opens here."
+        action="Game review" onAction={() => setReview(true)}
       />
     </PhoneShell>
   )

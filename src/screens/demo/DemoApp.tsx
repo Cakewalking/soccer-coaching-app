@@ -23,6 +23,7 @@ import PlayerAppScreen       from '../PlayerAppScreen'
 import OlderPlayerApp        from '../playerapp/OlderPlayerApp'
 import RefereesPhoneScreen   from '../playerapp/RefereesPhoneScreen'
 import AcademyOwnerApp       from '../AcademyOwnerApp'
+import { isOwnerBoard }      from '../academy/adScreens'
 import AcademyCoachApp       from '../AcademyCoachApp'
 import AcademyParentApp      from '../AcademyParentApp'
 import AcademyPlayerApp      from '../AcademyPlayerApp'
@@ -256,17 +257,7 @@ import PP2SeasonSummary          from '../step4/PP2SeasonSummary'
 import PAParent                  from '../step4/PAParent'
 import JN3Join                   from '../step4/JN3Join'
 // Step 4 — Academy owner screens (agent 4)
-import AC1eAcademyHomeEmpty      from '../step4/AC1eAcademyHomeEmpty'
-import AC2Programs               from '../step4/AC2Programs'
-import AC3Trials                 from '../step4/AC3Trials'
-import AC4AcademyPlayers         from '../step4/AC4AcademyPlayers'
-import AC5Fees                   from '../step4/AC5Fees'
-import AC6AcademyCoaches         from '../step4/AC6AcademyCoaches'
-import AC7ReportsOut             from '../step4/AC7ReportsOut'
-import AC9HolidayClinic          from '../step4/AC9HolidayClinic'
-import AC11PartnerClub           from '../step4/AC11PartnerClub'
 // Step 4 — Academy owner screens (agent 4 extra)
-import AC12AcademyBroadcast      from '../step4/AC12AcademyBroadcast'
 // Step 4 — Academy coach screens (agent 4)
 import ACC2RunSession            from '../step4/ACC2RunSession'
 import ACC3TrialAssess           from '../step4/ACC3TrialAssess'
@@ -397,8 +388,7 @@ import {
   DX1eCompareTeamsEmpty,
   HM1eHomeMiniRoosEmpty, HM6eSeasonNotesEmpty, HM7eInboxMiniRoosEmpty, HM8eCalendarMiniRoosEmpty,
   HM9eFixturesMiniRoosEmpty, HM10eStaffMiniRoosEmpty, HM11eComingMiniRoosEmpty, HM12eConsentMiniRoosEmpty,
-  AC3eTrialsEmpty, AC4eAcademyPlayersEmpty, AC5eFeesEmpty, AC6eAcademyCoachesEmpty, AC7eReportsEmpty,
-  AC8eAcademyRecordEmpty, AC9eHolidayClinicEmpty, AC10eAcademySafetyEmpty, AC11ePartnerClubEmpty, AC12eAcademyBroadcastEmpty,
+  AC8eAcademyRecordEmpty,
   ACC2eRunSessionEmpty, ACC3eTrialAssessEmpty, ACC4ePlayerPlanEmpty, ACC5eOneOnOneEmpty, ACC6eReportDraftEmpty,
   ACC7eAcademyGameDayEmpty, ACC8eAcademyRecordEmpty, ACC12eAcademySuggestedEmpty, ACC13eAcademyChatEmpty,
   CH1eTeamChatEmpty, CH2eAnnouncementsEmpty, CH5ePollResultsEmpty, CH6eMediaEmpty,
@@ -1188,6 +1178,7 @@ function STMs5HomeMiniRoosNav() {
 }
 
 function renderScreenInner(key: string): ReactNode {
+  if (isOwnerBoard(key)) return <AcademyOwnerApp onBack={noop} empty={false} initialScreen={key} />   // the academy owner's boards, each in the owner app
   switch (key) {
     case 'juniorcoach':
       return <JuniorCoachApp />
@@ -1709,25 +1700,9 @@ function renderScreenInner(key: string): ReactNode {
     case 'PA-Parent':                 return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><PAParent /></div>
     case 'JN3-Join':                  return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><JN3Join /></div>
     // Design IDs — Academy owner screens (tablet)
-    case 'AC1e-AcademyHomeEmpty':     return <AcademyOwnerApp onBack={noop} empty={true} />
-    case 'AC1-AcademyHome':           return <AcademyOwnerApp onBack={noop} empty={false} initialScreen="AC1-AcademyHome" />
-    // Academy owner, 24 Nov: AD1 to AD15 open in the owner app, on the page drawn. AD1 is the owner's Home now.
-    case 'AD1-AcademyHome': case 'AD2-Health': case 'AD3-Timetable': case 'AD4-NextTerm': case 'AD5-GroupMoves':
-    case 'AD6-YearPlan': case 'AD7-HowWeCoach': case 'AD8-SessionQuality': case 'AD9-RosterPay': case 'AD10-WatchCoach':
-    case 'AD11-ProgramMoney': case 'AD12-Credits': case 'AD13-Connections': case 'AD14-Pathway': case 'AD15-Families':
-      return <AcademyOwnerApp onBack={noop} empty={false} initialScreen={key} />
-    case 'AC2e-ProgramsEmpty':        return <AC1eAcademyHomeEmpty />
-    case 'AC2-Programs':              return <AC2Programs />
-    case 'AC2b-Programs':             return <AC2Programs />
-    case 'AC3-Trials':                return <AC3Trials />
-    case 'AC4-AcademyPlayers':        return <AC4AcademyPlayers />
-    case 'AC5-Fees':                  return <AC5Fees />
-    case 'AC6-AcademyCoaches':        return <AC6AcademyCoaches />
-    case 'AC7-ReportsOut':            return <AC7ReportsOut />
-    case 'AC9-HolidayClinic':         return <AC9HolidayClinic />
-    case 'AC11-PartnerClub':          return <AC11PartnerClub />
-    case 'AC10-AcademySafety':        return <AcademyOwnerApp onBack={noop} empty={false} initialScreen="safety" />
-    case 'AC12-AcademyBroadcast':     return <AC12AcademyBroadcast />
+    // Every owner board in the academy handover (AC1 to AC12, AD1 to AD17 and their empty states) opens in the owner app: see isOwnerBoard above the switch.
+    case 'AC2b-Programs':             return <AcademyOwnerApp onBack={noop} empty={false} initialScreen="AC2-Programs" />
+    case 'AC7e-ReportsEmpty':         return <AcademyOwnerApp onBack={noop} empty={false} initialScreen="AC7e-ReportsOutEmpty" />
     // Design IDs — Academy coach screens (tablet)
     case 'ACC2-RunSession':           return <ACC2RunSession />
     case 'ACC3-TrialAssess':          return <ACC3TrialAssess />
@@ -1740,6 +1715,7 @@ function renderScreenInner(key: string): ReactNode {
     case 'ACC13-AcademyChat':         return <ACC13AcademyChat />
     // Academy coach, pack v15 (ADC1 to ADC6): each opens inside the coach app, in the state drawn
     case 'ADC1-PlayerFile': case 'ADC2-Group': case 'ADC3-SessionFilm': case 'ADC4-SkillsCheck': case 'ADC5-ReviewChats': case 'ADC6-HomePractice':
+    case 'ADC1e-PlayerFileEmpty': case 'ADC2e-GroupEmpty': case 'ADC3e-SessionFilmEmpty': case 'ADC4e-SkillsCheckEmpty': case 'ADC5e-ReviewChatsEmpty': case 'ADC6e-HomePracticeEmpty':
                                       return <AcademyCoachApp key={key} onBack={noop} initialScreen={key} empty={false} />
     // Design IDs — Invite flow (phone)
     case 'IV-Invite':                 return <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0 40px' }}><IVInvite /></div>
@@ -2063,17 +2039,7 @@ function renderScreenInner(key: string): ReactNode {
     case 'HM11e-ComingMiniRoosEmpty':          return <HM11eComingMiniRoosEmpty />
     case 'HM12e-ConsentMiniRoosEmpty':         return <HM12eConsentMiniRoosEmpty />
     // Academy owner empties
-    case 'AC3e-TrialsEmpty':                   return <AC3eTrialsEmpty />
-    case 'AC4e-AcademyPlayersEmpty':           return <AC4eAcademyPlayersEmpty />
-    case 'AC5e-FeesEmpty':                     return <AC5eFeesEmpty />
-    case 'AC6e-AcademyCoachesEmpty':           return <AC6eAcademyCoachesEmpty />
-    case 'AC7e-ReportsOutEmpty':
-    case 'AC7e-ReportsEmpty':                  return <AC7eReportsEmpty />
     case 'AC8e-AcademyRecordEmpty':            return <AC8eAcademyRecordEmpty />
-    case 'AC9e-HolidayClinicEmpty':            return <AC9eHolidayClinicEmpty />
-    case 'AC10e-AcademySafetyEmpty':           return <AC10eAcademySafetyEmpty />
-    case 'AC11e-PartnerClubEmpty':             return <AC11ePartnerClubEmpty />
-    case 'AC12e-AcademyBroadcastEmpty':        return <AC12eAcademyBroadcastEmpty />
     // Academy coach empties
     case 'ACC2e-RunSessionEmpty':              return <ACC2eRunSessionEmpty />
     case 'ACC3e-TrialAssessEmpty':             return <ACC3eTrialAssessEmpty />
@@ -2482,7 +2448,7 @@ function pathToState(path: string): { view: DemoView; role: RoleId; screen?: str
         goalkeeper:   new Set(['home', 'keepers', 'training', 'matchday', 'clips', 'record', 'learn']),
         fitness:      new Set(['home', 'squad', 'training', 'matchday', 'clips', 'record', 'learn']),
         academyowner: new Set(['home', 'programs', 'players', 'curriculum', 'coaches', 'money']),
-        academycoach: new Set(['today', 'training', 'players', 'gameday', 'record']),
+        academycoach: new Set(['today', 'training', 'players', 'gameday', 'record', 'learn']),
       }
       if (lookScreen in TOURS) return { view: 'noaccess', role: lookRole }
       if (!LOOK_SCREENS[lookRole]?.has(lookScreen)) return { view: 'notfound', role: lookRole }
@@ -2495,7 +2461,7 @@ function pathToState(path: string): { view: DemoView; role: RoleId; screen?: str
   if (m3) return m3[1] in TOURS ? { view: 'sandboxlook', role: m3[1] as RoleId, screen: m3[2] } : { view: 'notfound', role: 'coach' }
   const m4 = path.match(/^\/__screen\/([A-Za-z0-9_-]+)$/)
   if (m4) return { view: 'screendirect', role: 'coach', screen: m4[1] }
-  const m5 = path.match(/^\/family(?:\/((?:FAM[\dtkci]|ADP\d|ECp[12])[A-Za-z0-9-]*))?\/?$/)
+  const m5 = path.match(/^\/family(?:\/((?:FAM[\dtkci]|ADP\d|GPp\d|ECp[12])[A-Za-z0-9-]*))?\/?$/)
   if (m5) return { view: 'family', role: 'coach', screen: m5[1] ?? 'FAM3-Home' }
   return { view: 'notfound', role: 'coach' }
 }

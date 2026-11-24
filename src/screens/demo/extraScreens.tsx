@@ -3,6 +3,10 @@ import EducationPhone from '../learn/EducationPhone'
 import FamilyApp, { FamilyClubPage } from '../family/FamilyApp'
 import { isEduId } from '../learn/library'
 import { useState, type ReactNode } from 'react'
+import { renderAcademyPhone } from '../academycoach/boards'
+import AcademyCoachApp from '../AcademyCoachApp'
+import { renderDashboardScreen } from '../dashboards/boards'
+import { renderClubFlowScreen } from '../clubflows/boards'
 import DemoStart from './DemoStart'
 import DemoStartEmpty from './DemoStartEmpty'
 import DemoPhone from './DemoPhone'
@@ -65,7 +69,6 @@ export const SCREEN_ALIAS: Record<string, string> = {
   // empty states registered under lower-case keys
   'X1-HomeEmpty': 'home-e', 'XP1-PlayerEmpty': 'playeryoung-e', 'PAe-ParentEmpty': 'parent-e', 'FN1e-SeniorsEmpty': 'seniors-e',
   'HG1e-HomeKeeperCoachEmpty': 'goalkeeper-e', 'FV1e-FeesVolunteersEmpty': 'coordinator-e',
-  'ACP3e-AcademyParentHomeEmpty': 'acp3-home-e', 'ACP5e-ProgressReportEmpty': 'acp5-report-e', 'ACP8e-BookClinicEmpty': 'acp8-clinic-e',
   // old homes: every role has one story home now (handover part 5a)
   'HY1-HomeYouth': 'STO6-HomeStoryYouth', 'CC1-CoachHomeShared': 'STO7-HomeStoryAssistant', 'PO5-AdultPlayerHome': 'STO19-HomeStoryPlayerOlder',
   // flows are entered at their first step
@@ -87,6 +90,14 @@ function MeasurePage({ id, onNav }: { id: string; onNav?: (s: string) => void })
 }
 
 export function renderExtraScreen(key: string): ReactNode | undefined {
+  // The academy coach's boards all open inside the coach app, under its menu; an empty-state id opens the app empty.
+  if (/^(ACC\d+[ep]?|ACT\d+e?|ADC([1-689]|1[0-8])e?)-/.test(key)) return <AcademyCoachApp key={key} onBack={noop} initialScreen={key} />
+  const dashboard = renderDashboardScreen(key)   // the game review as a dashboard, for six roles (RD1 to RD5, ADC7), and the three ids they replace
+  if (dashboard) return dashboard
+  const clubFlow = renderClubFlowScreen(key)   // the club-side input screens (GP1 to GP8), each in its role's app
+  if (clubFlow) return clubFlow
+  const academyPhone = renderAcademyPhone(key)   // the academy's parent and player boards
+  if (academyPhone) return academyPhone
   if (key.startsWith('PU8')) {
     const cfg = MEASURE(key)
     return cfg ? <MeasurePage id={key} /> : undefined
@@ -119,7 +130,7 @@ export function renderExtraScreen(key: string): ReactNode | undefined {
   if (/^ECp[123]-/.test(key)) return <EducationPhone start={key} />
   // Clean Sheet Family (20 Nov): a parent's own filming, paid for with credits, whether or not the club has joined.
   if (key === 'FAMc1-ClubInterest') return <FamilyClubPage />
-  if (/^FAM(\d|t\d|k\d|i\d)|^ADP\d/.test(key)) return <FamilyApp key={key} start={key} />
+  if (/^FAM(\d|t\d|k\d|i\d)|^ADP\d|^GPp\d/.test(key)) return <FamilyApp key={key} start={key} />
   if (key === 'KC2-FiveClubs') return <KC2FiveClubs />
   if (isSessionBoard(key)) return <KCSession id={key} />
   if (key === 'KC8-ReportClubColours') return <KC8Report />
@@ -131,6 +142,8 @@ export function renderExtraScreen(key: string): ReactNode | undefined {
   if (key === 'GSp9m-HomeLibraryMia' || key === 'GSp10m-HomeVideoMia') return <EducationPhone start={key === 'GSp9m-HomeLibraryMia' ? 'ECp1-FamilyLibrary' : 'ECp2-FamilyItem'} team="u12" child="Mia" ini="LT" />
   if (key === 'CN2-SelfVsCoach') return <JuniorCoachApp initialScreen={key} />
   if (key === 'CN15-PositionHistory') return <div style={{ width: 1180, margin: '0 auto', background: 'var(--surface-100)' }}><MiniRoosApp onBack={noop} empty={false} initialScreen="positions" /></div>
+  // Children checks for a community club (academy handover v3): the director's Safeguarding tab, which opens on them.
+  if (key === 'DCK1-ClubChecks' || key === 'DCK1e-ClubChecksEmpty') return <ClubAdminScreen role="dof" initials="RM" initialTab="safeguarding" empty={key === 'DCK1e-ClubChecksEmpty'} />
   if (key === 'CN6-Observation' || key === 'CN7-CoachLoad') return <ClubAdminScreen role="dof" initials="RM" initialTab="coaches" initialSub={key === 'CN6-Observation' ? 'observations' : 'coachload'} />
   if (['CN12-ClubClimate', 'CN20-Sponsors', 'CN21-Pitches', 'CN22-LanguageAccess', 'CN23-AskLimits'].includes(key)) return <ClubAdminScreen role="dof" initials="RM" initialTab="club" initialSub={key} />
   switch (key) {

@@ -1,4 +1,4 @@
-import { openThing } from './openThing'
+import { openThing, openScreen } from './openThing'
 import { useDone, markDone } from './doneStore'
 import { useState } from 'react'
 import { goSetup } from './sandbox/sandboxNav'
@@ -12,6 +12,8 @@ interface Props {
   onPlayerProfile: (ini: string) => void
   empty?: boolean
   players?: SquadPlayer[]
+  /** what "+ Add player" does, when it is not the junior and youth screen GP2-AddPlayer */
+  onAddPlayer?: () => void
 }
 
 function AddPlayerForm({ onDone }: { onDone: () => void }) {
@@ -328,7 +330,7 @@ function RightPanel({ p, onProfile }: { p: SquadPlayer; onProfile: () => void })
   )
 }
 
-export default function SquadScreen({ onPlayerProfile, empty, players: propPlayers }: Props) {
+export default function SquadScreen({ onPlayerProfile, empty, players: propPlayers, onAddPlayer }: Props) {
   const { active: inSandbox } = useSandbox()
   const players = propPlayers ?? SQUAD_PLAYERS
   const [filter, setFilter] = useState<Filter>('all')
@@ -336,13 +338,10 @@ export default function SquadScreen({ onPlayerProfile, empty, players: propPlaye
     players.find(p => p.status === 'checkin' || p.status === 'missing') ?? players[0]
   )
   const [toast, setToast] = useState<string | null>(null)
-  const [adding, setAdding] = useState(false)
-  const [newName, setNewName] = useState('')
   const addedNames: string[] = JSON.parse(useDone('squad:added') ?? '[]')
   if (empty || inSandbox) return <SquadEmpty />
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
-  // + Add player: a name is enough to start. The player is kept and shown as waiting until their parent joins.
-  function addPlayer() { const n = newName.trim(); if (!n) { showToast('Type the player’s first and last name.'); return } markDone('squad:added', JSON.stringify([...addedNames, n])); setNewName(''); setAdding(false); showToast('Added. Their parent gets the team link now.') }
+  // + Add player opens GP2-AddPlayer. A player added there is kept and shown here as waiting on parent.
 
   const counts = {
     all:    players.length,
@@ -385,19 +384,11 @@ export default function SquadScreen({ onPlayerProfile, empty, players: propPlaye
           <span style={{ fontSize: 14, color: '#4a5a57' }}>{players.length} players · Thursday 4 Jun · 2 days to Harbour Rovers</span>
           <div style={{ flexGrow: 1 }} />
           <button onClick={() => showToast('Message started to 16 parents.')} style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>Message parents</button>
-          <button aria-expanded={adding} onClick={() => setAdding(v => !v)} style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: 0, background: '#2f6252', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#ffffff' }}>+ Add player</button>
+          <button onClick={onAddPlayer ?? (() => openScreen('GP2-AddPlayer'))} style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: 0, background: '#2f6252', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#ffffff' }}>+ Add player</button>
         </div>
-        {adding && (
-          <form onSubmit={e => { e.preventDefault(); addPlayer() }} style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16, padding: 12, borderRadius: 14, background: '#fff', border: '1px solid #c5c8c4' }}>
-            <label htmlFor="newplayer" style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>New player</label>
-            <input id="newplayer" autoFocus value={newName} onChange={e => setNewName(e.target.value)} placeholder="First and last name" style={{ flexGrow: 1, height: 44, padding: '0 12px', borderRadius: 10, border: '1px solid #c5c8c4', fontFamily: 'inherit', fontSize: 15, color: '#10211f' }} />
-            <button type="submit" style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Add to the squad</button>
-            <button type="button" onClick={() => setAdding(false)} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: '1px solid #c5c8c4', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Cancel</button>
-          </form>
-        )}
         {addedNames.length > 0 && (
           <div role="group" aria-label="Just added" style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginBottom: 16 }}>
-            <span style={{ fontSize: 13, fontWeight: 700, color: '#4a5a57' }}>Just added · waiting for their parent to join</span>
+            <span style={{ fontSize: 13, fontWeight: 700, color: '#4a5a57' }}>Added by hand · waiting on parent · no filming until consent is given</span>
             {addedNames.map(n => <button key={n} onClick={() => { markDone('squad:added', JSON.stringify(addedNames.filter(x => x !== n))); showToast(`${n} taken off the squad.`) }} aria-label={`${n}: take off the squad`} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: '1px solid #c5c8c4', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>{n} ×</button>)}
           </div>
         )}

@@ -1,4 +1,4 @@
-# Clean Sheet Family v20: report back (24 Nov)
+# Clean Sheet Family v25: report back (24 Nov)
 
 Build: the commit that adds this file. 75 phone screens, a fourth walkthrough panel and the club's web page, as a demo of the flows on sample data. **Nothing analyses real film.** This replaces the v18 build.
 
@@ -7,6 +7,13 @@ Build: the commit that adds this file. 75 phone screens, a fourth walkthrough pa
 - Every screen opens by its id, in the state it is drawn in (for example `/__screen/FAM1-Welcome`, `/__screen/FAM3-Home`, `/__screen/FAM20-GameStats`).
 - **Nothing in the demo's role picker opens it yet.** The pack does not say where a parent with no club comes in. The end of the club's join path for a parent now opens `FAM14-HomeWithClub`; the role pickers and tours still open the old parent screens, which are listed in `PLATFORM-MOMENTS-NOTES.md` for a decision.
 - Once the club has joined, an item on the Learn tab opens from the Education centre's library with no "We did it".
+
+## v25: more academy pages, the club survey, and Tell my club by email (handovers v16 to v24, 24 Nov)
+
+- `ADP6` to `ADP16` and seven empty states are reported in `ACADEMY-NOTES.md`.
+- `GPp1-ClubSurvey` and `GPp2-TellMyClub` are reported in `CLUB-FLOWS-NOTES.md`.
+- **Tell my club (Booker, 24 Nov):** a parent can send the message themselves, or have Clean Sheet send one short email from them. `FAM12` and `GPp2` link to each other, the last step of the club tour opens `GPp2`, and the lines that said "We never contact your club" now say we contact the club only if the parent asks.
+- The family app's own table is unchanged from v19. Its 93 hand checks still pass on this build.
 
 ## v20: the academy inside the family app (handover v15, 24 Nov)
 

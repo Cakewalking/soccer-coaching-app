@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { toolTarget } from '../toolTargets'
+import { openScreen } from '../openThing'
+import { setChildSubject } from '../clubflows/flowStore'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
@@ -51,7 +53,7 @@ export default function STMs4eMiniRoosChildEmpty({ onNav }: { onNav?: (s: string
             </div>
 
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' as const }}>
-              <button aria-label="Set a goal with Theo" onClick={() => tool('Pick a goal from your three things, or write one in his words.')} style={{ height: 44, padding: '0 24px', background: G, color: '#fff', border: 'none', borderRadius: 10, fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Set a goal with Theo</button>
+              <button aria-label="Set a goal with Theo" onClick={() => { setChildSubject({ name: 'Theo', her: 'his', she: 'he', parent: 'family' }); if (onNav) onNav('GP7-MiniGoal'); else openScreen('GP7-MiniGoal') }} style={{ height: 44, padding: '0 24px', background: G, color: '#fff', border: 'none', borderRadius: 10, fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Set a goal with Theo</button>
               <button aria-label="Add a note" onClick={() => onNav?.('HM1n-QuickNotes')} style={{ height: 44, padding: '0 24px', background: '#fff', color: G, border: `1.5px solid ${G}`, borderRadius: 10, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Add a note</button>
               <button aria-label="Ask" onClick={() => tool("Consent questions sent to Theo's dad.")} style={{ height: 44, padding: '0 24px', background: '#fff', color: MUT, border: `1px solid ${LN}`, borderRadius: 10, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Ask</button>
             </div>

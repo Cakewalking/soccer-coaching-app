@@ -12,7 +12,7 @@ export default function AD9RosterPay() {
           <span style={{ ...S.cap, whiteSpace: 'nowrap' }}>Fortnight · 25 May to 7 June · 30 sessions</span>
         </div>
         <div style={{ display: 'flex', gap: 8, flex: 'none' }}>
-          <Tap say="Rates open for each coach. A new rate starts from the next fortnight." style={S.more}>Change a rate</Tap>
+          <Tap to="AD21-RatesCosts" style={S.more}>Change a rate</Tap>
           <Tap say="The fortnight is on its way to your email as a spreadsheet." style={S.primary}>Download for payroll</Tap>
         </div>
       </div>

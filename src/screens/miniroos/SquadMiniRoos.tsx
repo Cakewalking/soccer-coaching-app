@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { goSetup } from '../sandbox/sandboxNav'
 
 import { PLAYERS, type Player, type Avail } from './squadData'
+import { saveMiniGoal, useMiniGoal } from '../clubflows/flowStore'
+import { demoToast } from '../demoToast'
 import PlayerProfileMiniRoos from './PlayerProfileMiniRoos'
 export { PLAYERS }
 
@@ -21,6 +23,7 @@ export default function SquadMiniRoos({ empty, onSeasonNotes }: { empty?: boolea
   const [profile, setProfile] = useState<string | null>(null)
   const [toast, setToast] = useState<string | null>(null)
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
+  const selFirst = sel.name.split(' ')[0], goal = useMiniGoal(selFirst)   // a goal saved on GP7-MiniGoal: words only, with a tick box for the coach
 
   if (empty) {
     return (
@@ -122,6 +125,12 @@ export default function SquadMiniRoos({ empty, onSeasonNotes }: { empty?: boolea
                 </div>
               </div>
             ))}
+            {goal && (
+              <button role="checkbox" aria-checked={!!goal.done} onClick={() => { saveMiniGoal(selFirst, { ...goal, done: !goal.done }); if (!goal.done) demoToast(`Well done sent to ${selFirst} and the family. Pick the next one together.`) }} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 44, padding: '8px 0 0', border: 0, borderTop: '1px solid #e9eae8', background: 'none', fontFamily: 'inherit', textAlign: 'left', cursor: 'pointer', color: '#10211f' }}>
+                <span style={{ flex: 'none', width: 26, height: 26, borderRadius: 8, boxSizing: 'border-box', display: 'flex', alignItems: 'center', justifyContent: 'center', ...(goal.done ? { background: '#2f6252', color: '#fff' } : { border: '2px solid #8a9794', background: '#fff' }) }}>{goal.done && <Check />}</span>
+                <span><span style={{ display: 'block', fontSize: 13, fontWeight: 700 }}>Goal: {goal.goal}</span><span style={{ display: 'block', fontSize: 12, color: '#4a5a57' }}>{goal.done ? 'Ticked' : goal.how}</span></span>
+              </button>
+            )}
           </div>
           <button onClick={() => setProfile(sel.ini)} style={{ width: '100%', height: 44, borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Open {sel.name.split(' ')[0]}’s profile</button>
           <button onClick={() => showToast(`Message started to ${sel.name.split(' ')[0]}’s family.`)} style={{ width: '100%', height: 44, borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Message {sel.name.split(' ')[0]}’s family</button>

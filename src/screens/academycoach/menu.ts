@@ -11,7 +11,7 @@ type Item = { label: string; opens: string }
 export const COACH_MENU: Array<{ id: CoachMain; label: string; opens: string; subs: Item[] }> = [
   { id: 'today', label: 'Today', opens: 'ACC1-CoachToday', subs: [
     { label: 'Today', opens: 'ACC1-CoachToday' }, { label: 'Run a session', opens: 'ACC2-RunSession' }, { label: 'Trial player', opens: 'ACC3-TrialAssess' },
-    { label: 'One-on-one', opens: 'ACC5-OneOnOne' }, { label: 'Suggested', opens: 'ACC12-AcademySuggested' }, { label: 'Chats', opens: 'ACC13-AcademyChat' },
+    { label: 'One-on-one', opens: 'ACC5-OneOnOne' },   // Record and Suggested are main items; chats open from Today's own button
   ] },
   { id: 'players', label: 'Players', opens: 'ADC2-Group', subs: [
     { label: 'My group', opens: 'ADC2-Group' }, { label: 'Player file', opens: 'ADC1-PlayerFile' }, { label: 'Skills check', opens: 'ADC4-SkillsCheck' },
@@ -22,15 +22,17 @@ export const COACH_MENU: Array<{ id: CoachMain; label: string; opens: string; su
     { label: 'Who’s coming', opens: 'ACT4-AcademyComing' }, { label: 'Practice at home', opens: 'ADC6-HomePractice' },
   ] },
   { id: 'gameday', label: 'Game day', opens: 'ACC7-AcademyGameDay', subs: [
-    { label: 'This Saturday', opens: 'ACC7-AcademyGameDay' }, { label: 'Team sheet', opens: 'MS1-TeamSheet' }, { label: 'Live game', opens: 'L11-LiveGame11' }, { label: 'Review', opens: 'R1-MatchReview' },
+    { label: 'This Sunday', opens: 'ACC7-AcademyGameDay' }, { label: 'Team sheet', opens: 'MS1-TeamSheet' }, { label: 'Live game', opens: 'L11-LiveGame11' }, { label: 'Review', opens: 'ADC7-GameReview' }, { label: 'Our style', opens: 'ADC8-TeamStyle' },
   ] },
   { id: 'record', label: 'Record', opens: 'ACC8-AcademyRecord', subs: [
     { label: 'Record', opens: 'ACC8-AcademyRecord' }, { label: 'Tonight’s film', opens: 'ADC3-SessionFilm' },
   ] },
-  { id: 'learn', label: 'Learn', opens: 'LN1-LearnHome', subs: [] },   // the same Learn a club coach has
+  { id: 'learn', label: 'Learn', opens: 'ADC18-Learn', subs: [] },   // the academy's own Learn
 ]
 
 export const SWITCH_VIEW = 'VS1-SwitchView'
+/** Where the role pill ("Academy coach") goes: the roles this person holds. */
+export const SWITCH_ROLE = 'ADS1-SwitchView'
 
 /** Set by the academy coach app. A screen shown inside it leaves the menu to the app. */
 export const InCoachApp = createContext(false)

@@ -34,6 +34,8 @@ import GrowthLoadScreen     from './GrowthLoadScreen'
 import TeamSheetScreen      from './TeamSheetScreen'
 import OppositionScreen     from './OppositionScreen'
 import ReviewScreen         from './ReviewScreen'
+import GameReviewDash, { CLUB_PLACES } from './dashboards/GameReviewDash'
+import { olderTeamGame } from './dashboards/data'
 import YourTakeBoards, { isYourTakeId } from './aftergame/YourTakeBoards'
 import TeamTalkScreen       from './TeamTalkScreen'
 import PitchSideScreen      from './PitchSideScreen'
@@ -46,6 +48,7 @@ import CnScreen from './connected/CnScreen'
 import SessionTab from './session/SessionTab'
 import DevicesTab from './settings/DevicesTab'
 import { demoToast } from './demoToast'
+import ClubFlowScreen from './clubflows/flows'
 import { useCapture, allowed } from './capture/captureStore'
 import { CoachMessages }   from './MessagesScreens'
 import { SquadLineups }    from './SquadLineups'
@@ -418,6 +421,7 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
   const [formationPreset, setFormationPreset] = useState<FormationPreset | null>(null)
   const [profileIni, setProfileIni] = useBackState<string | null>(null)
   const [layer, setLayer] = useBackState<string | null>(null)   // a designed screen opened over the app
+  const [addingPlayer, setAddingPlayer] = useBackState(false)   // GP2-AddPlayer, in place of Squad › Players (youth teams: a senior player has no parent to invite)
   const [recView, setRecView] = useBackState<string | null>(null)
   const [xgView, setXgView] = useBackState('XG1-ChancesGame')
   const [take, setTake] = useBackState<'yours' | 'theirs'>('yours')   // Your take: the coach's own ratings, or the players' beside them
@@ -436,7 +440,7 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
 
   const [askOpen, setAskOpen] = useBackState(false)
   const [filView, setFilView] = useBackState<string | null>(null)
-  function goNav(n: NavKey) { setNav(n); setSub(null); setAskOpen(false); onNavChange?.(n); setFilView(null); setRecView(null) }
+  function goNav(n: NavKey) { setNav(n); setSub(null); setAskOpen(false); onNavChange?.(n); setFilView(null); setRecView(null); setAddingPlayer(false) }
 
   function handleNav(s: string) {
     if (isLearnId(s)) { openLearn(s); s = 'GS8-WelcomeCourse' }   // a lesson or module: it opens inside Learn to coach
@@ -461,6 +465,7 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
     if (s === 'pitchside') { setSub('pitchside'); return }
     const tab = coachDeepTab(s)   // one of this app's own tabs: switch to it
     if (tab) { goNav(tab.nav as NavKey); if (tab.nav === 'home') setHomeTab(tab.idx); else if (tab.nav === 'squad') setSquadTab(tab.idx); else if (tab.nav === 'training') setTrainingTab(tab.idx); else if (tab.nav === 'matchday') setMatchTab(tab.idx); else if (tab.nav === 'clips') setClipsTab(tab.idx); else if (tab.nav === 'learn') setLearnTab(tab.idx); return }
+    if (s === 'GP2-AddPlayer' && teamType !== 'seniors') { goNav('squad'); setSquadTab(0); setAddingPlayer(true); return }
     if (isScreenId(s))     { setLayer(s); return }
   }
 
@@ -511,7 +516,7 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
                   : Math.max(0, FILM_TABS.findIndex(f => f[0] === nav && f[1] === (nav === 'record' ? recIdx : clipsTab)))
 
   function handleSubTab(i: number) {
-    setSub(null)
+    setSub(null); setAddingPlayer(false)
     if (nav === 'home')     { setHomeTab(i); if (i !== 7) setFilView(null) }
     if (nav === 'squad')    setSquadTab(i)
     if (nav === 'training') { setTrainingTab(i); if (i === 0) setGsView('GS1-ProposedSession') }
@@ -564,7 +569,7 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
     }
   } else if (nav === 'squad') {
     switch (squadTab) {
-      case 0: content = profileIni ? <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, minHeight: 0 }}><div style={{ flex: 'none', padding: '10px 28px 0' }}><button onClick={() => setProfileIni(null)} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>← All players</button></div><PlayerProfileScreen playerIni={profileIni} players={teamType === 'seniors' ? SENIORS_SQUAD : YOUTH_SQUAD} band={teamType === 'seniors' ? 'seniors' : 'youth'} team={teamType === 'seniors' ? 'Men’s 1sts' : 'U16 Ollie'} coach={teamType === 'seniors' ? 'Marko P' : 'Ollie G'} /></div> : <SquadScreen role="head" onPlayerProfile={setProfileIni} empty={sbEmpty} players={teamType === 'seniors' ? SENIORS_SQUAD : YOUTH_SQUAD} />; break
+      case 0: content = profileIni ? <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, minHeight: 0 }}><div style={{ flex: 'none', padding: '10px 28px 0' }}><button onClick={() => setProfileIni(null)} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>← All players</button></div><PlayerProfileScreen playerIni={profileIni} players={teamType === 'seniors' ? SENIORS_SQUAD : YOUTH_SQUAD} band={teamType === 'seniors' ? 'seniors' : 'youth'} team={teamType === 'seniors' ? 'Men’s 1sts' : 'U16 Ollie'} coach={teamType === 'seniors' ? 'Marko P' : 'Ollie G'} /></div> : <SquadScreen role="head" onPlayerProfile={setProfileIni} empty={sbEmpty} players={teamType === 'seniors' ? SENIORS_SQUAD : YOUTH_SQUAD} onAddPlayer={teamType === 'seniors' ? () => demoToast('Share the team link with the new player.') : undefined} />; break
       case 1: content = inSandbox && sbEmpty ? <SandboxWaiting kind="formation" /> : <FormationBuilder key={formationPreset?.note ?? 'plain'} preset={formationPreset} team={teamType === 'seniors' ? 'seniors' : 'youth'} onNav={(s) => { if (s === 'T2-TabletMatch') { goNav('matchday'); setMatchTab(1) } else if (s === 'SQ1-BestLineups') { setSquadTab(2) } else { handleNav(s) } }} />; break
       case 2: content = inSandbox && sbEmpty ? <SandboxWaiting kind="lineups" /> : <SquadLineups noFrame teamType={teamType === 'seniors' ? 'seniors' : 'youth'} onNav={(s, preset) => { if (s === 'formation') { setFormationPreset(preset ?? null); setSquadTab(1) } }} />; break
       case 3: content = <DevGoalsScreen empty={sbEmpty} teamType={teamType === 'seniors' ? 'seniors' : 'youth'} />; break
@@ -597,10 +602,8 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
       case 0: content = <MatchDayScreen onNav={handleNav} empty={sbEmptyFixture} opponent={data.opponent} away when={teamType === 'seniors' ? 'Sat 6 Jun · 3:00 pm · away' : 'Sat 6 Jun · 3:30 pm · away'} lastResult={teamType === 'seniors' ? 'won 2–0' : 'drew 2–2'} />; break
       case 1: content = <TeamSheetScreen empty={sbEmptyFixture} teamType={teamType === 'seniors' ? 'seniors' : 'youth'} />; break
       case 2: content = <OppositionScreen empty={sbEmptyFixture} opponent={data.opponent} scout={teamType === 'seniors' ? 'Nico' : 'Tom'} />; break
-      case 3: content = <ReviewScreen empty={sbEmptyFixture} seniors={teamType === 'seniors'}
-        scoreline={teamType === 'seniors' ? '2–0' : '2–2'}
-        resultLine={teamType === 'seniors' ? 'Won at home v Glenview Park' : 'Drew at home with Tealside Town'}
-        scorerLine={teamType === 'seniors' ? 'Sat 30 May · Harry and Mo scored · 26 key clips' : 'Sat 30 May · Theo and Leo scored · 22 key clips'} />; break
+      case 3: content = sbEmptyFixture ? <ReviewScreen empty />
+        : <GameReviewDash id="RD1-GameReview" tight game={olderTeamGame(teamType === 'seniors' ? 'seniors' : 'youth')} places={{ ...CLUB_PLACES, season: undefined }} chances={may.chances} go={handleNav} />; break
       case 4: case 5: content = <ChancesFlow team={teamType === 'seniors' ? 'seniors' : 'u16'} step={matchTab === 5 ? 'XG3-LadderPPI' : xgView} onStep={openChance} onNav={handleNav} noFilmYet={inSandbox && sbEmpty} />; break
       case 6: content = inSandbox && sbEmpty ? <SandboxWaiting kind="yourtake" /> : take === 'theirs' ? <CnScreen id="CN2-SelfVsCoach" onNav={handleNav} team={cnTeam} /> : <div style={{ display: 'flex', flexDirection: 'column', flexGrow: 1, minHeight: 0 }}><div style={{ flex: 'none', padding: '10px 28px 0' }}><button onClick={() => setTake('theirs')} style={{ minHeight: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Their take, next to yours</button></div><YourTakeBoards view={ytView} onView={setYtView} onNav={handleNav} seniors={teamType === 'seniors'} /></div>; break
       case 7: content = <CnScreen empty={cnEmpty} id="CN17-SetPieces" onNav={handleNav} team={cnTeam} />; break
@@ -614,6 +617,8 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
   }
 
   const navTabs = NAV_LABELS.map((label, i) => ({ id: NAV_KEYS[i], label, icon: NAV_ICONS[i] }))
+
+  if (addingPlayer) content = <div data-screen="GP2-AddPlayer" style={{ display: 'contents' }}><ClubFlowScreen id="GP2-AddPlayer" team={data.teamName} go={t => { setAddingPlayer(false); if (t !== 'T4-SquadTab') handleNav(t) }} /></div>
 
   if (layer) return <TeamText team={layer.startsWith('example:') ? (teamType === 'seniors' ? 'seniors' : 'youth') : null}><ScreenLayer who={inSandbox ? null : teamType === 'seniors' ? 'Marko Petrovic · head coach, Men’s 1sts' : 'Ollie Grant · head coach, U16 Ollie'} screenKey={layer.replace(/^example:/, '')} example={layer.startsWith('example:')} onClose={() => setLayer(null)} backLabel={layer.startsWith('example:') && inSandbox ? `Back to ${store.teams[0]?.name ?? 'your team'} · this is an example from the demo club` : `Back to ${data.teamPicker.split(' · ')[0]}`} /></TeamText>
 

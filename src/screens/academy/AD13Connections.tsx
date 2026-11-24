@@ -12,7 +12,7 @@ export default function AD13Connections() {
           <span style={{ ...S.cap, whiteSpace: 'nowrap' }}>What Clean Sheet brings in, and what it sends out</span>
         </div>
         <div style={{ display: 'flex', gap: 8, flex: 'none' }}>
-          <Tap say="Choose the file. You match the columns once, then check before anything is saved." style={S.primary}>Bring in a spreadsheet</Tap>
+          <Tap to="AD24-BringIn" style={S.primary}>Bring in a spreadsheet</Tap>
         </div>
       </div>
       <main style={{ flexGrow: 1, minHeight: 0, padding: '12px 28px 18px', boxSizing: 'border-box', display: 'grid', gap: 14, gridTemplateColumns: 'minmax(0,1fr) 320px' }}>

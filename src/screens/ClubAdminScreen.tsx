@@ -5,6 +5,8 @@ import { openThing } from './openThing'
 import { useState, cloneElement, isValidElement } from 'react'
 import type { ReactElement } from 'react'
 import type { AdminTab } from './clubadmin/data'
+import ClubFlowScreen from './clubflows/flows'
+import { ClubFlowOpen, DIRECTOR_FLOW_TAB } from './clubflows/open'
 import { DirectorMessages } from './MessagesScreens'
 import ClubTab from './clubadmin/ClubTab'
 import TeamsTab from './clubadmin/TeamsTab'
@@ -26,9 +28,13 @@ import SP19TrialWindow from './footballyear/SP19TrialWindow'
 import FilesTab from './clubadmin/FilesTab'
 import FeaturesTab from './clubadmin/FeaturesTab'
 
-export default function ClubAdminScreen({ empty, role = 'chair', initials = 'RM', initialTab = 'club', onNav, homeStory, initialFeature, initialTeamsView, initialSub }: { initialFeature?: string; initialTeamsView?: string; /** a sub-tab to open on: a Coaches view, or a Club screen id */ initialSub?: string; empty?: boolean; role?: 'chair' | 'dof' | 'welfare'; initials?: string; initialTab?: AdminTab; onNav?: (s: string) => void; homeStory?: import('react').ReactNode }) {
+export default function ClubAdminScreen({ empty, role = 'chair', initials = 'RM', initialTab = 'club', onNav, homeStory, initialFeature, initialTeamsView, initialSub, initialFlow }: { /** an input screen (GP3 to GP5) to open on, over the tab */ initialFlow?: string; initialFeature?: string; initialTeamsView?: string; /** a sub-tab to open on: a Coaches view, or a Club screen id */ initialSub?: string; empty?: boolean; role?: 'chair' | 'dof' | 'welfare'; initials?: string; initialTab?: AdminTab; onNav?: (s: string) => void; homeStory?: import('react').ReactNode }) {
   const safeInitial: AdminTab = initialTab === 'welfare' && role !== 'welfare' ? 'club' : initialTab
   const [tab, setTab] = useBackState<AdminTab>(safeInitial)
+  // An input screen (change a role, link an academy, add a sponsor) shown in place of the tab. The tab stays as it was underneath.
+  const [flow, setFlow] = useBackState<string | null>(initialFlow ?? null)
+  const openFlow = (id: string) => { const t = DIRECTOR_FLOW_TAB[id]; if (!t) { openScreen(id); return } setTab(t); setFlow(id) }
+  const flowGo = (id: string) => { if (id === 'CN20-Sponsors' || frameNav(id)) { setFlow(null); return } if (onNav) onNav(id); else { setFlow(null); openScreen(id) } }
   const [askOpen, setAskOpen] = useState(false)
   const [toast, setToast] = useState<string|null>(null)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
@@ -107,7 +113,7 @@ export default function ClubAdminScreen({ empty, role = 'chair', initials = 'RM'
         {/* Main tab nav */}
         <div style={{ display: 'flex', overflowX: 'auto', gap: 4 }}>
           {TABS.map(t => (
-            <button key={t.id} data-club-tab={tab === t.id ? 'on' : 'off'} onClick={() => setTab(t.id)} style={{ display: 'flex', alignItems: 'center', gap: 6, flexShrink: 0, height: 44, padding: '0 14px', border: 0, background: 'transparent', fontFamily: 'inherit', fontSize: 13, fontWeight: tab === t.id ? 700 : 400, cursor: 'pointer', color: tab === t.id ? '#fff' : 'rgba(255,255,255,0.6)', borderBottom: tab === t.id ? '2px solid #fff' : '2px solid transparent', boxSizing: 'border-box' }}>
+            <button key={t.id} data-club-tab={tab === t.id ? 'on' : 'off'} onClick={() => { setTab(t.id); setFlow(null) }} style={{ display: 'flex', alignItems: 'center', gap: 6, flexShrink: 0, height: 44, padding: '0 14px', border: 0, background: 'transparent', fontFamily: 'inherit', fontSize: 13, fontWeight: tab === t.id ? 700 : 400, cursor: 'pointer', color: tab === t.id ? '#fff' : 'rgba(255,255,255,0.6)', borderBottom: tab === t.id ? '2px solid #fff' : '2px solid transparent', boxSizing: 'border-box' }}>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={t.icon}/></svg>
               {t.label}
             </button>
@@ -125,7 +131,9 @@ export default function ClubAdminScreen({ empty, role = 'chair', initials = 'RM'
 
       {/* Content */}
       <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'hidden' }}>
-        <div style={{ flex: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
+        {flow && <div data-screen={flow} style={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}><ClubFlowScreen id={flow} go={flowGo} /></div>}
+        <ClubFlowOpen.Provider value={openFlow}>
+        <div style={{ flex: 1, overflowY: 'auto', display: flow ? 'none' : 'flex', flexDirection: 'column' }}>
           {tab === 'club'         && <ClubTab role={role === 'welfare' ? 'chair' : role} empty={empty} homeStory={story} onNav={onNav} initialView={initialSub} />}
           {tab === 'teams'        && <TeamsTab empty={empty} initialView={initialTeamsView} onNav={onNav} />}
           {tab === 'coaches'      && <CoachesTab empty={empty} role={role === 'welfare' ? 'chair' : role} onNav={onNav} initialView={initialSub} />}
@@ -147,6 +155,7 @@ export default function ClubAdminScreen({ empty, role = 'chair', initials = 'RM'
           {tab === 'files'        && <FilesTab onNav={onNav} />}
           {tab === 'features'     && <FeaturesTab onNav={onNav} initial={initialFeature} />}
         </div>
+        </ClubFlowOpen.Provider>
         {askOpen && (
           <aside role="dialog" aria-label="Ask Clean Sheet" style={{ position: 'absolute', top: 0, right: 0, bottom: 0, width: 380, background: '#eef5f2', borderLeft: '1px solid #e8edeb', boxShadow: '-6px 0 24px rgba(16,33,31,0.10)', zIndex: 50, display: 'flex', flexDirection: 'column' }}>
             <div style={{ background: '#fff', padding: '14px 16px', borderBottom: '1px solid #e8edeb', display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>

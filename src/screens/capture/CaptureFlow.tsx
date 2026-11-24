@@ -77,7 +77,7 @@ export default function CaptureFlow({ step, onStep, start = 'QC1-CapturePlan', o
   if (id === 'QC1-CapturePlan' && empty) id = 'QC1e-CapturePlanNoKit'
   const source = hash?.startsWith('src') ? Number(hash.slice(3)) : undefined
   const body = id === 'QC10-HowWeMeasure'
-    ? <QC10HowWeMeasure source={source} say={say} />
+    ? <QC10HowWeMeasure source={source} say={say} go={go} />
     : (SCREENS[id] ?? SCREENS['QC1-CapturePlan'])({ s, go, say, age, team })
   const inner = (
     <>

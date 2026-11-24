@@ -3,7 +3,9 @@
 // CN21 pitches · CN22 language and access · CN23 how often we ask.
 // Observations and coach load rows are never included in reports or exports.
 
-import { useState, type ReactNode } from 'react'
+import { useContext, useState, type ReactNode } from 'react'
+import { ClubFlowOpen } from '../clubflows/open'
+import { useSponsors } from '../clubflows/flowStore'
 import { Mark, Btn, Note, Switch, Ico, tile, h2, cap, label, G, INK, MUT, LINE, PALE } from '../capture/marks'
 import { Page, col, FixRow } from '../capture/CaptureScreens'
 import { setCn, addJob, underFive, HELD_BASE, TEAMS, type QuestionId } from './cnStore'
@@ -136,16 +138,18 @@ export function CN12ClubClimate({ s, go, say }: CnProps) {
 // ── CN20 · sponsors and fundraising. Sponsors get totals only. ───────────────
 const SPONSORS: [string, string, number, string, number, string][] = [['Harbour Bakery', 'Clip pages · U12 to U16', 148, '3,920', 86, '1 March'], ['Ridgeline Physio', 'Injury and return-to-play pages', 61, '540', 44, '1 March'], ['Kestrel Sports', 'Weekly club message', 196, '2,210', 132, '15 August']]
 export function CN20Sponsors({ s, go, say }: CnProps) {
+  const openFlow = useContext(ClubFlowOpen), added = useSponsors()   // sponsors added on GP5-AddSponsor
   const [rules, setRules] = useState(false)
   const grid = 'minmax(0,1.3fr) 110px 110px 110px 120px 110px'
   const raise = (t: string, got: number, of: number, sub: string) => <span style={{ display: 'flex', flexDirection: 'column', gap: 6 }}><strong style={{ fontSize: 15 }}>{t}</strong><span role="img" aria-label={`$${got} of $${of}`} style={{ height: 10, borderRadius: 999, background: '#e9eae8', position: 'relative' }}><span style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: `${(got / of) * 100}%`, borderRadius: 999, background: G }} /></span><span style={{ fontSize: 13, color: MUT }}>${got.toLocaleString('en-AU')} of ${of.toLocaleString('en-AU')} · {sub}</span></span>
   return (
-    <Page id="CN20-Sponsors" title="Sponsors and fundraising" sub="Wattle Creek FC · this season" go={go} cols="minmax(0,1fr) 348px" right={<><Btn big onClick={() => say('Add a sponsor: name, logo, where it shows, and the renewal date.')}>Add a sponsor</Btn><Btn big onClick={() => go('D6-BoardReport')}>Board report</Btn></>}>
+    <Page id="CN20-Sponsors" title="Sponsors and fundraising" sub="Wattle Creek FC · this season" go={go} cols="minmax(0,1fr) 348px" right={<><Btn big onClick={() => openFlow ? openFlow('GP5-AddSponsor') : go('GP5-AddSponsor')}>Add a sponsor</Btn><Btn big onClick={() => go('D6-BoardReport')}>Board report</Btn></>}>
       <div style={col}>
         <section aria-label="What each sponsor got" style={{ ...tile, gap: 0, padding: '12px 8px 10px' }}>
           <h2 style={{ ...h2, padding: '0 8px 6px' }}>What each sponsor got</h2>
           <div style={{ ...row(grid, 0), ...th, minHeight: 22 }}><span>Sponsor</span><span>Families reached</span><span>Times seen</span><span>Taps</span><span>Renews</span><span /></div>
           {SPONSORS.map((r, i) => <div key={r[0]} style={row(grid, i + 1, { minHeight: 52 })}><Two a={r[0]} b={r[1]} /><span>{r[2]}</span><span>{r[3]}</span><span>{r[4]}</span><span>{r[5]}</span><Btn onClick={() => { savePdf(`${r[0].toLowerCase().replace(/[^a-z]+/g, '-')}-report.pdf`, `${r[0]}: sponsor report`, ['Wattle Creek FC, this season.', '', `Where it showed: ${r[1]}`, `Families reached: ${r[2]}`, `Times seen: ${r[3]}`, `Taps: ${r[4]}`, `Renews: ${r[5]}`, '', 'Families reached is how many families saw the sponsor at least once.', 'Totals only: no child’s name, face, film or numbers, and no family’s contact details.']); say(`${r[0]}: a one-page report is ready to send.`) }} aria-label={`Report for ${r[0]}`}>Report</Btn></div>)}
+          {added.map((a, i) => <div key={a.name} style={row(grid, SPONSORS.length + i + 1, { minHeight: 52 })}><Two a={a.name} b="Added today · no totals yet" /><span>0</span><span>0</span><span>0</span><span>{a.renews || 'Not set'}</span><span /></div>)}
           <span style={{ ...cap, fontSize: 13, padding: '8px 8px 0' }}>Families reached is how many families saw the sponsor at least once.</span>
         </section>
         <section aria-label="Fundraising" style={{ ...tile, padding: '12px 16px 14px', gap: 10 }}><h2 style={h2}>Fundraising</h2><div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>{raise('New goals for pitch 3', 2150, 3000, '41 families gave')}{raise('Fee help for six families', 1350, 3000, 'closes 30 June')}</div></section>

@@ -5,7 +5,8 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { Mark, Btn, Dot, tile, h2, cap, G, INK, MUT, LINE, PALE, DARK } from './marks'
-import { useCapture, setCapture } from './captureStore'
+import { useCapture } from './captureStore'
+import { openScreen } from '../openThing'
 
 const STRONG = [
   ['Passes, shots, tackles, goals', 'Counted from film. Every one is a clip you can open.'],
@@ -65,12 +66,10 @@ function Column({ title, pill, rows }: { title: string; pill: React.ReactNode; r
   )
 }
 
-export default function QC10HowWeMeasure({ source, say }: { source?: number; say?: (m: string) => void }) {
+export default function QC10HowWeMeasure({ source, go }: { source?: number; say?: (m: string) => void; go?: (id: string) => void }) {
   const s = useCapture()
   const root = useRef<HTMLDivElement>(null)
   const [lit, setLit] = useState<number | undefined>(source)
-  const [told, setTold] = useState<string | null>(null)
-  const tell = (m: string) => { if (say) say(m); else { setTold(m); setTimeout(() => setTold(null), 3200) } }
   useEffect(() => {
     setLit(source)
     if (!source) return
@@ -85,7 +84,7 @@ export default function QC10HowWeMeasure({ source, say }: { source?: number; say
           <h1 style={{ margin: 0, fontSize: 26, lineHeight: '32px', fontWeight: 700, letterSpacing: '-0.02em' }}>How we measure</h1>
           <span style={cap}>What Clean Sheet is good at, what it estimates, and what it does not do</span>
         </div>
-        <Btn big aria-pressed={s.flagged.includes('general')} onClick={() => { setCapture(c => ({ flagged: [...new Set([...c.flagged, 'general'])] })); tell('Tell us which number and why. We check and write back within a day.') }}>Tell us a number looks wrong</Btn>
+        <Btn big aria-pressed={s.flagged.includes('general')} onClick={() => go ? go('GP8-ReportNumber') : openScreen('GP8-ReportNumber')}>Tell us a number looks wrong</Btn>
       </div>
       <section aria-label="In short" style={{ borderRadius: 20, background: DARK, color: '#fff', padding: '20px 24px 22px', display: 'flex', flexDirection: 'column', gap: 6 }}>
         <span style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.1em', color: '#a9cfc0' }}>IN SHORT</span>
@@ -128,7 +127,6 @@ export default function QC10HowWeMeasure({ source, say }: { source?: number; say
           ))}
         </section>
       </div>
-      {told && <div role="status" style={{ position: 'fixed', left: '50%', bottom: 28, transform: 'translateX(-50%)', zIndex: 60, padding: '12px 16px', borderRadius: 14, background: '#1f4a3e', color: '#fff', fontSize: 15, fontWeight: 600, boxShadow: '0 8px 24px rgba(16,33,31,0.25)' }}>{told}</div>}
     </div>
   )
 }

@@ -154,6 +154,7 @@ export function WhereWeAtScreen({ teamType = 'juniors' }: { teamType?: TeamType 
           <div style={{ fontSize: 14, color: INK, lineHeight: 1.6 }}>{d.summary}</div>
           <div style={{ display: 'flex', gap: 8, marginTop: 12 }}>
             <button onClick={() => goApp('training', "Opening tonight's plan.")} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Open tonight's plan</button>
+            {teamType === 'juniors' && <button onClick={() => goApp('RD2-SeasonSoFar', 'Opening the season so far.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Season so far</button>}
             <button onClick={() => goApp('R1-MatchReview', 'Opening last review.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Last review</button>
             <button onClick={() => goApp('setstyle', 'Opening style settings.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Change our style</button>
           </div>

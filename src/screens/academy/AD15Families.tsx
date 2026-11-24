@@ -12,7 +12,7 @@ export default function AD15Families() {
           <span style={{ ...S.cap, whiteSpace: 'nowrap' }}>Term 2, week 6 · 58 of 74 families answered · five questions, one minute</span>
         </div>
         <div style={{ display: 'flex', gap: 8, flex: 'none' }}>
-          <Tap say="The five questions open. You can change one each term." style={S.more}>See the questions</Tap>
+          <Tap to="ADP11-Survey" style={S.more}>See what families answer</Tap>
         </div>
       </div>
       <main style={{ flexGrow: 1, minHeight: 0, padding: '12px 28px 18px', boxSizing: 'border-box', display: 'grid', gap: 14, gridTemplateColumns: 'repeat(12, minmax(0,1fr))' }}>
@@ -84,6 +84,7 @@ export default function AD15Families() {
             <strong style={{ fontSize: 15, lineHeight: '20px' }}>88% tapped “I enjoyed today”</strong>
             <span style={{ fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>One tap at the end of a session · last 2 weeks</span>
           </span>
+          <Tap to="ADK3-EnjoyedToday" style={{ ...S.more, alignSelf: 'flex-start', marginTop: 8 }}>See what players tap</Tap>
           <span style={{ ...S.cap, marginTop: 'auto', paddingTop: 8 }}>Three comments chosen to show the range, not the best three.</span>
         </section>
       </main>

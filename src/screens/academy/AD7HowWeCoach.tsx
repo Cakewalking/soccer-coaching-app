@@ -60,7 +60,7 @@ export default function AD7HowWeCoach() {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 10, marginBottom: 6 }}>
             <h2 style={S.h2}>Our rules</h2>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 58, borderTop: '1px solid #e9eae8', boxSizing: 'content-box' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 52, borderTop: '1px solid #e9eae8', boxSizing: 'content-box' }}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2f6252" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M5 12l5 5 9-10" />
             </svg>
@@ -69,7 +69,7 @@ export default function AD7HowWeCoach() {
               <span style={{ display: 'block', fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>To 8 in Foundation</span>
             </span>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 58, borderTop: '1px solid #e9eae8', boxSizing: 'content-box' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 52, borderTop: '1px solid #e9eae8', boxSizing: 'content-box' }}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2f6252" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M5 12l5 5 9-10" />
             </svg>
@@ -78,7 +78,7 @@ export default function AD7HowWeCoach() {
               <span style={{ display: 'block', fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>Every session, every group</span>
             </span>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 58, borderTop: '1px solid #e9eae8', boxSizing: 'content-box' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 52, borderTop: '1px solid #e9eae8', boxSizing: 'content-box' }}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2f6252" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M5 12l5 5 9-10" />
             </svg>
@@ -87,7 +87,7 @@ export default function AD7HowWeCoach() {
               <span style={{ display: 'block', fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>Split the group or add a goal</span>
             </span>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 58, borderTop: '1px solid #e9eae8', boxSizing: 'content-box' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 52, borderTop: '1px solid #e9eae8', boxSizing: 'content-box' }}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2f6252" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M5 12l5 5 9-10" />
             </svg>
@@ -96,13 +96,22 @@ export default function AD7HowWeCoach() {
               <span style={{ display: 'block', fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>Chosen with the player</span>
             </span>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 58, borderTop: '1px solid #e9eae8', boxSizing: 'content-box' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 52, borderTop: '1px solid #e9eae8', boxSizing: 'content-box' }}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2f6252" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M5 12l5 5 9-10" />
             </svg>
             <span style={{ flexGrow: 1, minWidth: 0 }}>
               <span style={{ display: 'block', fontSize: 15, lineHeight: '21px', fontWeight: 700 }}>One-on-ones in open view</span>
               <span style={{ display: 'block', fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>And the parent is told first</span>
+            </span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 52, borderTop: '1px solid #e9eae8', boxSizing: 'content-box' }}>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2f6252" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M5 12l5 5 9-10" />
+            </svg>
+            <span style={{ flexGrow: 1, minWidth: 0 }}>
+              <span style={{ display: 'block', fontSize: 15, lineHeight: '21px', fontWeight: 700 }}>No heading practice under 12</span>
+              <span style={{ display: 'block', fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>Your own rule · Australia has no national one</span>
             </span>
           </div>
           <span style={{ ...S.cap, marginTop: 'auto', paddingTop: 8 }}>The timetable and session film check the first three for you.</span>

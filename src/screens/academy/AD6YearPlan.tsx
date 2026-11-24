@@ -13,7 +13,7 @@ export default function AD6YearPlan() {
         </div>
         <div style={{ display: 'flex', gap: 8, flex: 'none' }}>
           <Tap say="Families see the plan for their child’s program in the app." style={S.more}>Share with families</Tap>
-          <Tap say="Pick a block. Sessions already planned for it are kept until you change them." style={S.primary}>Change a block</Tap>
+          <Tap to="AD22-ChangeBlock" style={S.primary}>Change a block</Tap>
         </div>
       </div>
       <main style={{ flexGrow: 1, minHeight: 0, padding: '12px 28px 18px', boxSizing: 'border-box', display: 'grid', gap: 14, gridTemplateColumns: 'minmax(0,1fr) 300px' }}>

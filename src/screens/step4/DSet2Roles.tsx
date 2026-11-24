@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { openScreen } from '../openThing'
+import { setRoleSubject, useRoleChanges } from '../clubflows/flowStore'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
@@ -11,9 +12,13 @@ const ROLES = [
   { role: 'Committee member', person: '4 people', note: 'Sees the monthly board report only' },
 ]
 
-export default function DSet2Roles(_: { onBack?: () => void }) {
-  const [toast, setToast] = useState<string | null>(null)
-  function t(m: string) { setToast(m); setTimeout(() => setToast(null), 3200) }
+export default function DSet2Roles({ onNav }: { onBack?: () => void; onNav?: (s: string) => void }) {
+  const changes = useRoleChanges()   // role changes saved on GP3-ChangeRole
+  // Change opens GP3-ChangeRole for that person. A row that is not one named person opens it as drawn.
+  function change(r: { role: string; person: string }) {
+    setRoleSubject(r.person === 'You' ? { name: 'Rachel M', now: r.role.toLowerCase(), his: 'her' } : /^\d/.test(r.person) ? undefined : { name: r.person, now: r.role.toLowerCase(), his: 'their' })
+    if (onNav) onNav('GP3-ChangeRole'); else openScreen('GP3-ChangeRole')
+  }
 
   return (
     <div style={{ width: 1180, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, position: 'relative' }}>
@@ -44,17 +49,21 @@ export default function DSet2Roles(_: { onBack?: () => void }) {
               <div style={{ fontSize: 14, fontWeight: 700, color: INK }}>{r.role}</div>
               <div style={{ fontSize: 13, color: r.person === 'You' ? GD : INK, fontWeight: r.person === 'You' ? 700 : 400 }}>{r.person}</div>
               <div style={{ fontSize: 12, color: MUT }}>{r.note}</div>
-              <button onClick={() => t(`Change ${r.role} form would open.`)} style={{ height: 44, padding: '0 10px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Change</button>
+              <button onClick={() => change(r)} aria-label={`Change: ${r.role}`} style={{ height: 44, padding: '0 10px', borderRadius: 8, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>Change</button>
             </div>
           ))}
         </div>
 
+        {changes.length > 0 && (
+          <div role="group" aria-label="Role changes" style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 12, padding: '10px 14px', marginTop: 16, display: 'flex', flexDirection: 'column', gap: 4 }}>
+            {changes.map(c => <div key={c.name} style={{ fontSize: 13, color: INK }}><strong>{c.name}</strong>: {c.role.toLowerCase()}{c.team ? `, ${c.team}` : ''} · {c.waiting ? 'can’t start until a children check is on record' : c.when === 'Now' ? 'from now' : 'from the start of next season'}</div>)}
+          </div>
+        )}
         <div style={{ background: PALE, borderRadius: 12, padding: '10px 14px', marginTop: 16 }}>
           <div style={{ fontSize: 13, color: GD }}>Roles can't be invented. The list above is complete — it's how Clean Sheet keeps visibility tight and accounts clear.</div>
         </div>
       </div>
 
-      {toast && <div style={{ position: 'fixed', bottom: 24, left: '50%', transform: 'translateX(-50%)', background: INK, color: '#fff', padding: '10px 20px', borderRadius: 12, fontSize: 14, fontWeight: 600, zIndex: 1000, whiteSpace: 'nowrap' as const }}>{toast}</div>}
     </div>
   )
 }

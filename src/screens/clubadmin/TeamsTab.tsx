@@ -5,8 +5,10 @@ import { MINIROOS, JUNIORS, GRADING } from './data'
 import { SubTabBar, ResultChip, BackBtn, EmptyCard, FOOTER_DEFAULT } from './ui'
 import CardsTab from './CardsTab'
 import ClubChances from '../chances/ClubChances'
+import RD4ClubWeekend from '../dashboards/RD4ClubWeekend'
+import DashEmpty from '../dashboards/DashEmpty'
 
-type TeamsView = 'allteams' | 'chances' | 'seniors' | 'fixtures' | 'leaguesync' | 'grading' | 'referees' | 'teamkit' | 'cards'
+type TeamsView = 'allteams' | 'weekend' | 'chances' | 'seniors' | 'fixtures' | 'leaguesync' | 'grading' | 'referees' | 'teamkit' | 'cards'
 
 const TEAM_DETAILS: Record<string, { coach: string; div: string; players: number; turnout: number; style: number; lastFive: string[]; fewest: number; staff: { ini: string; name: string; role: string; check: string }[] }> = {
   'U12 Girls Ana': { coach: 'Ana Silva', div: 'Division 1 · Juniors', players: 15, turnout: 94, style: 74, lastFive: ['W','D','W','W','W'], fewest: 60, staff: [{ ini: 'AS', name: 'Ana Silva', role: 'Coach', check: 'Valid Aug 2027' }, { ini: 'DM', name: 'Dee Moss', role: 'Assistant coach', check: 'Valid Feb 2027' }, { ini: 'TW', name: 'Tina Wu', role: 'Team manager', check: 'Valid Oct 2027' }] },
@@ -241,7 +243,7 @@ const TEAMS_EMPTY: Partial<Record<TeamsView, { icon: string; title: string; desc
 }
 
 export default function TeamsTab({ empty, initialView, onNav }: { empty?: boolean; initialView?: string; onNav?: (s: string) => void }) {
-  const [view, setView] = useBackState<TeamsView>(initialView === 'chances' ? 'chances' : 'allteams')
+  const [view, setView] = useBackState<TeamsView>(initialView === 'chances' ? 'chances' : initialView === 'weekend' ? 'weekend' : 'allteams')
   const [selectedTeam, setSelectedTeam] = useState<string | null>(null)
   const [showCompare, setShowCompare] = useState(false)
   const [filter, setFilter] = useState<'all' | 'attention' | 'girls' | 'recording'>('all')
@@ -264,6 +266,7 @@ export default function TeamsTab({ empty, initialView, onNav }: { empty?: boolea
       <SubTabBar
         items={[
           { id: 'allteams', label: 'All teams' },
+          { id: 'weekend', label: 'This weekend' },
           { id: 'chances', label: 'Chances and points' },
           { id: 'seniors', label: 'Seniors' },
           { id: 'fixtures', label: 'Fixtures' },
@@ -277,6 +280,9 @@ export default function TeamsTab({ empty, initialView, onNav }: { empty?: boolea
       />
 
       {empty && view in TEAMS_EMPTY && <EmptyCard {...TEAMS_EMPTY[view]!} footer={FOOTER_DEFAULT} />}
+
+      {/* RD4: the club's weekend as a dashboard. Its links to All teams and Compare two teams stay inside this tab. */}
+      {view === 'weekend' && <div data-screen-at={empty ? 'RD4e-ClubWeekendEmpty' : 'RD4-ClubWeekend'} style={{ flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }}>{empty ? <DashEmpty id="RD4e-ClubWeekendEmpty" go={() => setView('allteams')} /> : <RD4ClubWeekend go={id => { if (id === 'D2-Teams') setView('allteams'); else if (id === 'DX1-CompareTeams') setShowCompare(true); else if (id !== 'RD4-ClubWeekend') { if (onNav) onNav(id); else openScreen(id) } }} />}</div>}
 
       {!empty && view === 'allteams' && (
         <div style={p}>

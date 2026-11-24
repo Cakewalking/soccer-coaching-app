@@ -2,7 +2,7 @@
 // Drawn as on the AD boards. The owner app and the older AC boards all use this one.
 import type { CSSProperties, ReactNode } from 'react'
 import { openScreen } from '../openThing'
-import { OWNER_MENU, ownerMainOf, type OwnerItem } from './ownerMenu'
+import { OWNER_MENU, ownerItemOf, ownerMainOf, type OwnerItem } from './ownerMenu'
 
 const INK = '#10211f'
 const icon = (d: string, size = 20, weight = 2) => (
@@ -16,18 +16,18 @@ const plain: CSSProperties = { border: 0, margin: 0, background: 'transparent', 
  */
 export default function OwnerHeader({ current, onGo, extra = [], tools }: { current: string; onGo: (id: string) => void; extra?: OwnerItem[]; tools?: ReactNode }) {
   const inExtra = extra.some(s => s.id === current)
+  const switching = current.startsWith('ADS1-')   // See it as…: no main item is lit, and the row under it has one item
   const main = inExtra ? 'home' : ownerMainOf(current)
   const group = OWNER_MENU.find(g => g.key === main)!
-  const sub = main === 'home' ? [...group.sub, ...extra] : group.sub
-  // The older home and the screens opened from it sit under Overview.
-  const on = sub.some(s => s.id === current) ? current : group.sub[0].id
+  const sub = switching ? [{ label: 'Switch view', id: current }] : main === 'home' ? [...group.sub, ...extra] : group.sub
+  const on = inExtra || switching ? current : ownerItemOf(current)
   return (
     <header style={{ flex: 'none', color: INK, fontFamily: "'DM Sans',system-ui,sans-serif" }}>
       <div data-club-bar="" style={{ height: 64, boxSizing: 'border-box', padding: '0 22px', display: 'flex', alignItems: 'center', gap: 12, background: '#2f6252' }}>
         <div style={{ fontSize: 21, fontWeight: 700, color: '#ffffff', letterSpacing: '-0.02em', whiteSpace: 'nowrap' }}>Clean Sheet</div>
         <nav aria-label="Main" style={{ display: 'flex', gap: 2, flexGrow: 1 }}>
           {OWNER_MENU.map(g => {
-            const active = g.key === main
+            const active = g.key === main && !switching
             return (
               <button key={g.key} data-club-tab={active ? 'on' : 'off'} aria-current={active ? 'page' : undefined} onClick={() => onGo(g.sub[0].id)}
                 style={{ ...plain, height: 48, display: 'flex', alignItems: 'center', gap: 8, padding: '0 14px', borderRadius: 12, fontSize: 16, fontWeight: 600, whiteSpace: 'nowrap', background: active ? '#40826d' : 'transparent', color: active ? '#ffffff' : '#e9eae8' }}>
@@ -55,9 +55,12 @@ export default function OwnerHeader({ current, onGo, extra = [], tools }: { curr
         </nav>
         <div style={{ display: 'flex', alignItems: 'center', gap: 6, height: 44, flex: 'none' }}>
           {tools}
-          <span style={{ display: 'flex', alignItems: 'center', gap: 6, height: 32, padding: '0 12px', borderRadius: 999, background: '#f4e6e6', color: INK, fontSize: 13, fontWeight: 700, whiteSpace: 'nowrap' }}>
-            {icon('M12 12a4 4 0 100-8 4 4 0 000 8zM5 21a7 7 0 0114 0', 14, 2.4)}Academy owner
-          </span>
+          {/* The role pill opens the academy's switch of view (ADS1). The demo holds all four roles, so it is always a button. */}
+          <button aria-label={switching ? 'All views' : 'Academy owner: see it as another role'} onClick={() => onGo('ADS1-SwitchView')} style={{ ...plain, height: 44, padding: 0, display: 'flex', alignItems: 'center' }}>
+            <span style={{ display: 'flex', alignItems: 'center', gap: 6, height: 32, padding: '0 12px', borderRadius: 999, background: '#f4e6e6', color: INK, fontSize: 13, fontWeight: 700, whiteSpace: 'nowrap' }}>
+              {icon('M12 12a4 4 0 100-8 4 4 0 000 8zM5 21a7 7 0 0114 0', 14, 2.4)}{switching ? 'All views' : 'Academy owner'}
+            </span>
+          </button>
         </div>
       </div>
     </header>

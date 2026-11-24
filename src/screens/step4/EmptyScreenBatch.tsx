@@ -233,35 +233,8 @@ export function HM12eConsentMiniRoosEmpty() {
 
 // ─── Academy owner empties ─────────────────────────────────────────────────────
 
-export function AC3eTrialsEmpty({ onNav }: OwnerNavProp) {
-  return <AcOwnerShell at="AC3-Trials" onNav={onNav} title="No trials yet" sub="Run a trial session to assess new players. Add a trial date and players can register through the academy's page." ctaLabel="Set up a trial" />
-}
-export function AC4eAcademyPlayersEmpty({ onNav }: OwnerNavProp) {
-  return <AcOwnerShell at="AC4-AcademyPlayers" onNav={onNav} title="No players yet" sub="Players appear here once they've joined a program. Run a trial or enrol players directly." ctaLabel="Add a player" />
-}
-export function AC5eFeesEmpty({ onNav }: OwnerNavProp) {
-  return <AcOwnerShell at="AC5-Fees" onNav={onNav} title="No fees set" sub="Set program fees so families can pay when they enrol. Payments and outstanding balances are tracked here." ctaLabel="Set up fees" />
-}
-export function AC6eAcademyCoachesEmpty({ onNav }: OwnerNavProp) {
-  return <AcOwnerShell at="AC6-AcademyCoaches" onNav={onNav} title="No coaches yet" sub="Invite coaches to Tall Timber Academy. They'll set up their own account and can record sessions straight away." ctaLabel="Invite a coach" />
-}
-export function AC7eReportsEmpty({ onNav }: OwnerNavProp) {
-  return <AcOwnerShell at="AC7-ReportsOut" onNav={onNav} title="No reports yet" sub="Term reports are drafted from coach notes and sent to families at the end of each term. Nothing ready yet." />
-}
 export function AC8eAcademyRecordEmpty({ onNav }: OwnerNavProp) {
   return <AcOwnerShell at="AC1-AcademyHome" onNav={onNav} title="Nothing recorded yet" sub="Game day recordings appear here once a coach records a session. Clips and data are ready within an hour." />
-}
-export function AC9eHolidayClinicEmpty({ onNav }: OwnerNavProp) {
-  return <AcOwnerShell at="AC9-HolidayClinic" onNav={onNav} title="No holiday clinics set up" sub="Holiday clinics are a great way to bring in new players. Set a date and open registrations." ctaLabel="Create a clinic" />
-}
-export function AC10eAcademySafetyEmpty({ onNav }: OwnerNavProp) {
-  return <AcOwnerShell at="AC10-AcademySafety" onNav={onNav} title="All clear" sub="No welfare concerns, head knocks or safeguarding flags have been raised. All coaches have current checks." />
-}
-export function AC11ePartnerClubEmpty({ onNav }: OwnerNavProp) {
-  return <AcOwnerShell at="AC11-PartnerClub" onNav={onNav} title="No partner clubs yet" sub="Partner clubs can share player data with the academy so coaches can track both club and academy progress together." ctaLabel="Add a partner club" />
-}
-export function AC12eAcademyBroadcastEmpty({ onNav }: OwnerNavProp) {
-  return <AcOwnerShell at="AC12-AcademyBroadcast" onNav={onNav} title="No broadcasts sent" sub="Send updates to all academy families at once. Previous broadcasts will appear here." ctaLabel="Send a broadcast" />
 }
 
 // ─── Academy coach empties ─────────────────────────────────────────────────────

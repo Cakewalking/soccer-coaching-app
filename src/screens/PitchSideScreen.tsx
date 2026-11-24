@@ -106,7 +106,7 @@ function RatingRow({ q, label, value, onChange }: { q: string; label: string; va
   )
 }
 
-export default function PitchSideScreen({ onClose, empty }: { onClose: () => void; empty?: boolean }) {
+export default function PitchSideScreen({ onClose, onFinish, empty }: { onClose: () => void; /** the session was closed with "Save and finish": After training opens next */ onFinish?: () => void; empty?: boolean }) {
   const [view, setView] = useState<View>('attendance')
   const [drillIndex, setDrillIndex] = useState(1)
   const [paused, setPaused] = useState(false)
@@ -523,7 +523,7 @@ export default function PitchSideScreen({ onClose, empty }: { onClose: () => voi
           <div style={{ fontSize: 20, fontWeight: 700, color: '#ffffff', letterSpacing: '-0.02em' }}>How did it go?</div>
           <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)', marginTop: 1 }}>{DRILL_PLAN.length} drills · {totalMins} minutes</div>
         </div>
-        <button onClick={onClose} style={{
+        <button onClick={onFinish ?? onClose} style={{
           height: 40, padding: '0 20px', borderRadius: '999px', border: 0,
           background: '#40826d', color: '#ffffff',
           fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer',
@@ -561,7 +561,7 @@ export default function PitchSideScreen({ onClose, empty }: { onClose: () => voi
               />
             </div>
 
-            <button onClick={onClose} style={{
+            <button onClick={onFinish ?? onClose} style={{
               marginTop: 24, height: 48, padding: '0 32px', borderRadius: 12, border: 0,
               background: '#2f6252', color: '#ffffff',
               fontFamily: 'inherit', fontSize: 16, fontWeight: 700, cursor: 'pointer',

@@ -13,7 +13,7 @@ export default function AD3Timetable() {
         </div>
         <div style={{ display: 'flex', gap: 8, flex: 'none' }}>
           <Tap say="Pick the session. Families are told at once and each child gets a make-up." style={S.more}>Cancel a session</Tap>
-          <Tap say="A new session opens: group, coach, pitch and time." style={S.primary}>+ Add a session</Tap>
+          <Tap to="AD20-NewProgram" style={S.primary}>+ Add a session</Tap>
         </div>
       </div>
       <main style={{ flexGrow: 1, minHeight: 0, padding: '12px 28px 18px', boxSizing: 'border-box', display: 'grid', gap: 14, gridTemplateColumns: 'minmax(0,1fr) 320px' }}>
@@ -81,7 +81,10 @@ export default function AD3Timetable() {
               <span style={{ fontSize: 12, lineHeight: '16px', color: '#33443f' }}>Pitch 2</span>
             </Tap>
           </div>
-          <span style={{ ...S.cap, marginTop: 'auto', paddingTop: 8 }}>Your rule: one coach to 12 players, and to 8 in Foundation. A session that breaks it turns mauve. Change the rule in How we coach.</span>
+          <span style={{ ...S.cap, marginTop: 'auto', paddingTop: 8 }}>
+            {'Your rule: one coach to 12 players, and to 8 in Foundation. A session that breaks it turns mauve. Change the rule in How we coach. '}
+            <Tap to="ADP7-SessionOff">See what families get when a session is cancelled</Tap>
+          </span>
         </section>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 14, minHeight: 0 }}>
           <section aria-label="Cover" style={{ ...S.tile, gap: 6, borderTop: '4px solid #c39797' }}>

@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { toolTarget } from '../toolTargets'
+import { openScreen } from '../openThing'
+import { setChildSubject } from '../clubflows/flowStore'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
@@ -47,7 +49,7 @@ export default function STMs4MiniRoosChild({ onNav }: { onNav?: (s: string) => v
             <div style={{ fontSize: 13, color: MUT, marginBottom: 16 }}>Set with her mum on 12 May. She tried 3 dribbles on Saturday, her first three.</div>
             <div style={{ display: 'flex', gap: 10 }}>
               <button aria-label="She did it" onClick={() => tool('Marked as done. Poppy and her mum get a well done, and you pick the next goal together.')} style={{ height: 44, padding: '0 20px', background: G, color: '#fff', border: 'none', borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>She did it</button>
-              <button aria-label="Change the goal" onClick={() => tool('Pick a goal from your three things, or write one in her words.')} style={{ height: 44, padding: '0 20px', background: '#fff', color: G, border: `1.5px solid ${G}`, borderRadius: 8, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Change the goal</button>
+              <button aria-label="Change the goal" onClick={() => { setChildSubject(undefined); if (onNav) onNav('GP7-MiniGoal'); else openScreen('GP7-MiniGoal') }} style={{ height: 44, padding: '0 20px', background: '#fff', color: G, border: `1.5px solid ${G}`, borderRadius: 8, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Change the goal</button>
             </div>
           </div>
 
