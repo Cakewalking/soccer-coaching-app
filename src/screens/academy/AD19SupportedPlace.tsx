@@ -2,9 +2,11 @@
 // Drawn from the board in the academy handover (24 Nov). The menus above it are the owner app's own (OwnerHeader).
 import { S } from './adStyles'
 import Tap from './Tap'
+import { money, useAcademy } from './academyStore'
 import { Field, Picks } from './formKit'
 
 export default function AD19SupportedPlace() {
+  const full = useAcademy().price_this_term.Development   // what a Development player pays this term, from the academy's list (programs v2)
   return (
     <>
       <div style={{ flex: 'none', padding: '14px 28px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 20 }}>
@@ -26,7 +28,7 @@ export default function AD19SupportedPlace() {
           </label>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
             <span style={{ fontSize: 13, fontWeight: 700 }}>What they pay for the term</span>
-            <Picks label="What they pay for the term" start={1} options={['Full · $290', 'Half · $145', 'Nothing']} />
+            <Picks label="What they pay for the term" start={1} options={[`Full · ${money(full)}`, `Half · ${money(full / 2)}`, 'Nothing']} />
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
             <span style={{ fontSize: 13, fontWeight: 700 }}>For how long</span>

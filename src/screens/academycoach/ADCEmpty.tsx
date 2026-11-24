@@ -21,10 +21,10 @@ const EMPTY = {
     side: 'It fills from', rows: [['Your session notes', 'Two taps per player'], ['The skills check', 'Weeks 1 and 8'], ['Film', 'Moments tagged by skill']],
   },
   'ADC2e-GroupEmpty': {
-    title: 'Advanced', sub: 'No notes yet', icon: PEOPLE,
-    head: 'No notes for this group yet', line: 'After your first session, mark two things per player and the group fills in.',
+    title: 'U13 Timber', sub: 'No notes yet', icon: PEOPLE,
+    head: 'No notes for this team yet', line: 'After your first session, mark two things per player and the team fills in.',
     button: 'Open today’s session', opens: 'ACC2-RunSession',
-    side: 'You’ll see', rows: [['Each player’s steps', 'On the four core skills'], ['Who has moved', 'This term'], ['What the group needs', 'For the next block']],
+    side: 'You’ll see', rows: [['Each player’s steps', 'On the four core skills'], ['Who has moved', 'This term'], ['What the team needs', 'For the next block']],
   },
   'ADC3e-SessionFilmEmpty': {
     title: 'Tonight’s film', sub: 'Nothing filmed', icon: 'M12 12m-8 0a8 8 0 1016 0 8 8 0 10-16 0M12 12m-3 0a3 3 0 106 0 3 3 0 10-6 0',
@@ -36,7 +36,7 @@ const EMPTY = {
     title: 'Skills check', sub: 'Not run yet', icon: 'M5 12l5 5 9-10',
     head: 'No check yet this term', line: 'Run it early in the term so there is something to compare with later.',
     button: 'Start the check', opens: 'ADC13-CheckEntry',
-    side: 'Four stations', rows: [['25 minutes', 'For the whole group'], ['Own numbers only', 'Nobody is ranked'], ['Goes to the file', 'And the term report']],
+    side: 'Four stations', rows: [['25 minutes', 'For the whole team'], ['Own numbers only', 'Nobody is ranked'], ['Goes to the file', 'And the term report']],
   },
   'ADC5e-ReviewChatsEmpty': {
     title: 'Review chats', sub: 'No times offered', icon: 'M12 12m-9 0a9 9 0 1018 0 9 9 0 10-18 0M12 7v5l3 2',

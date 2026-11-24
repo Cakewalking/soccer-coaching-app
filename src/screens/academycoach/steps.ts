@@ -2,19 +2,20 @@
 //   "Better" on the skill in two sessions running moves a player up one step.
 //   A tap never moves a step down: that is done in the player's file.
 //   A player who is skipped keeps their step, and keeps a "Better" from the session before.
-// Kept for the visit. The sample session's skill is striking the ball, so that is the step that moves.
+// This is the one rule. The steps themselves are in the academy's list (../academy/academyStore): when the rule
+// says a step moves, `stepUp` moves it there, and every screen that counts steps changes with it.
+// What is kept here is only who was "Better" in the session before, for each skill, on this device.
 
-import { useSyncExternalStore } from 'react'
+import { addNote, academyNow, stepUp } from '../academy/academyStore'
 import { SKILL_STEPS } from './skills'
 
-/** The players on ADC11, in the order the board lists them. */
-export const SESSION_PLAYERS = ['Kai Okonkwo', 'Ana Costa', 'Jonah Marsh', 'Lola Nguyen', 'Zane Abbas', 'Isla Tran'] as const
+/** Today's skill on ADC11, as the board draws it: striking the ball, the fourth of the four core skills. */
+export const TODAY_SKILL = 3
 
-type State = { striking: Record<string, number>; betterLastTime: string[] }
-// Their steps on striking the ball as the group screen (ADC2) draws them. No earlier session is drawn, so nobody starts with a "Better".
-let state: State = { striking: { 'Kai Okonkwo': 2, 'Ana Costa': 3, 'Jonah Marsh': 4, 'Lola Nguyen': 2, 'Zane Abbas': 3, 'Isla Tran': 3 }, betterLastTime: [] }
-const subs = new Set<() => void>()
-export const useSteps = () => useSyncExternalStore(f => { subs.add(f); return () => { subs.delete(f) } }, () => state, () => state)
+const KEY = 'cs_academy_coach_better'
+type Better = Record<number, number[]>   // skill: the players who were "Better" on it last session
+let better: Better = (() => { try { return JSON.parse(localStorage.getItem(KEY) ?? '{}') as Better } catch { return {} } })()
+export const wasBetter = (playerId: number, skill = TODAY_SKILL) => (better[skill] ?? []).includes(playerId)
 
 /** One session's taps for one player: true is Better, false is Same, null is skipped. */
 export function afterTap(step: number, wasBetter: boolean, tap: boolean | null): { step: number; better: boolean } {
@@ -23,14 +24,18 @@ export function afterTap(step: number, wasBetter: boolean, tap: boolean | null):
   return wasBetter ? { step: Math.min(SKILL_STEPS, step + 1), better: false } : { step, better: true }   // second Better running: up one, and the run starts again
 }
 
-/** Close the session with each player's tap, in the order of SESSION_PLAYERS. */
-export function closeSession(taps: Array<boolean | null>) {
-  const striking = { ...state.striking }, betterLastTime: string[] = []
-  SESSION_PLAYERS.forEach((name, i) => {
-    const next = afterTap(striking[name], state.betterLastTime.includes(name), taps[i] ?? null)
-    striking[name] = next.step
-    if (next.better) betterLastTime.push(name)
-  })
-  state = { striking, betterLastTime }
-  subs.forEach(f => f())
+/** Close the session with each player's tap. A player with a tap has a note from today; a second "Better" running moves their step up. Returns who moved. */
+export function closeSession(taps: Record<number, boolean | null | undefined>, skill = TODAY_SKILL): number[] {
+  const next: number[] = [], moved: number[] = []
+  for (const p of academyNow().players) {
+    const tap = taps[p.id] ?? null, was = wasBetter(p.id, skill)
+    if (tap === null && !was) continue
+    const after = afterTap(p.skills_now[skill], was, tap)
+    if (after.better) next.push(p.id)
+    if (tap !== null) addNote(p.id)
+    if (after.step > p.skills_now[skill]) { stepUp(p.id, skill); moved.push(p.id) }
+  }
+  better = { ...better, [skill]: next }
+  try { localStorage.setItem(KEY, JSON.stringify(better)) } catch { /* kept for this visit only */ }
+  return moved
 }

@@ -3,13 +3,14 @@
 // the designs in ./academycoach/boards); the app keeps which one is showing, lights the menu for it, and
 // shows the board's empty state when the academy has nothing in it yet.
 
-import { useState, type ReactNode } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
 import { useBackState } from '../backState'
 import { openScreen } from './openThing'
 import CoachNav from './academycoach/CoachNav'
 import { InCoachApp, type CoachMain } from './academycoach/menu'
 import { COACH_BOARDS } from './academycoach/boards'
-import ADC1PlayerFile from './academycoach/ADC1PlayerFile'
+import CoachPlayer from './academycoach/CoachPlayer'
+import { COACH_PLAYER_BOARDS, coachBoard, openPlayer, playerOfBoard, useCoachTeam } from './academycoach/coachTeam'
 import ADC2Group from './academycoach/ADC2Group'
 import ADC3SessionFilm from './academycoach/ADC3SessionFilm'
 import ADC4SkillsCheck from './academycoach/ADC4SkillsCheck'
@@ -36,6 +37,8 @@ const LIT: Record<string, [CoachMain, string?]> = {
   'ACC8-AcademyRecord': ['record', 'Record'], 'ACC8p-PairCamera': ['record', 'Record'], 'ACC9-AcademyRecordDrill': ['record', 'Record'], 'ACC10-AcademyRecordResults': ['record', 'Record'],
   'ACC11-AcademyRecording': ['record', 'Record'], 'ADC3-SessionFilm': ['record', 'Tonight’s film'],
 }
+// A file for every player in the coach's own team: ADC1 for Kai, ADCP<id> for the others. One template shows them all.
+for (const id of COACH_PLAYER_BOARDS) LIT[id] = ['players', 'Player file']
 // The older addresses that named a main item rather than a board.
 const FIRST: Record<string, string> = { today: 'ACC1-CoachToday', players: 'ADC2-Group', training: 'ACT1-AcademyWeek', gameday: 'ACC7-AcademyGameDay', record: 'ACC8-AcademyRecord', learn: 'ADC18-Learn' }
 // A board's empty state: the same id with an "e" after its number.
@@ -55,6 +58,10 @@ export default function AcademyCoachApp({ empty: emptyApp = false, initialScreen
   const first = asked === 'ADC16-Chances' && !SHOW_CHANCE_QUALITY_TILES ? 'ADC7-GameReview' : asked   // hidden until chance values are validated
   const empty = emptyApp || (initialScreen ?? '') in BASE_OF   // an empty-state address opens the app with nothing in it
   const [board, setBoard] = useBackState<string>(first in LIT ? first : FIRST.today)
+  const { a, player: openOne } = useCoachTeam()
+  const filed = playerOfBoard(a, board)   // the player whose file is showing, when one is
+  const filedId = filed?.id
+  useEffect(() => { if (filedId !== undefined) openPlayer(filedId) }, [filedId])   // a goal, a clip or a report opened from here is this player's
   const [askOpen, setAskOpen] = useState(false)
   const [toast, setToast] = useState<string | null>(null)
   function showToast(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
@@ -74,7 +81,7 @@ export default function AcademyCoachApp({ empty: emptyApp = false, initialScreen
   const Older = COACH_BOARDS[showing]
   const page =
     showing === 'ACC1-CoachToday' && homeStory ? homeStory :
-    showing === 'ADC1-PlayerFile' ? <ADC1PlayerFile go={go} /> :
+    filed && showing === board ? <CoachPlayer player={filed} go={go} /> :
     showing === 'ADC2-Group' ? <ADC2Group go={go} /> :
     showing === 'ADC3-SessionFilm' ? <ADC3SessionFilm go={go} /> :
     showing === 'ADC4-SkillsCheck' ? <ADC4SkillsCheck go={go} /> :
@@ -86,8 +93,8 @@ export default function AcademyCoachApp({ empty: emptyApp = false, initialScreen
     Older ? <Older onNav={go} /> :
     showing.startsWith('ADC') ? <ADCEmpty id={showing as ADCEmptyId} go={go} /> : null
 
-  // The live recording takes the whole screen: no menu until it is stopped.
-  if (showing === 'ACC11-AcademyRecording') {
+  // The live recording takes the whole screen: no menu until it is stopped. A player's file has its own bar, with Back to the team.
+  if (showing === 'ACC11-AcademyRecording' || (filed && showing === board)) {
     return (
       <InCoachApp.Provider value={true}>
         <div data-at={showing} style={{ width: 1180, minHeight: 'var(--frame-h, 100vh)', margin: '0 auto', display: 'flex', flexDirection: 'column' }}>{page}</div>
@@ -99,7 +106,7 @@ export default function AcademyCoachApp({ empty: emptyApp = false, initialScreen
     <InCoachApp.Provider value={true}>
     <div data-at={showing} style={{ width: 1180, minHeight: 'var(--frame-h, 100vh)', margin: '0 auto', background: 'var(--surface-100)', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column' }}>
       {/* The six-item menu and the sub-menu under it */}
-      <CoachNav active={main} sub={sub} go={go}
+      <CoachNav active={main} sub={sub} go={id => go(id === 'ADC1-PlayerFile' ? coachBoard(openOne) : id)}   // "Player file" opens the player the coach last had open
         onAccount={() => openScreen('SET1-Account', 'Reece Whitlam · coach, Tall Timber Academy')}
         extra={
           <button onClick={() => setAskOpen(o => !o)} aria-label="Ask Clean Sheet" data-club-keep={askOpen ? '' : undefined} style={{ width: 44, height: 44, borderRadius: '50%', border: '1.5px solid #a9cfc0', background: askOpen ? '#fff' : 'transparent', color: askOpen ? '#10211f' : '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', flexShrink: 0 }}>

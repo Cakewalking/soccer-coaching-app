@@ -16,3 +16,16 @@ export const foot: CSSProperties = { ...cap, marginTop: 'auto', paddingTop: 8 }
 export const note: CSSProperties = { borderRadius: 12, background: PALE, padding: '10px 12px', fontSize: 14, lineHeight: '20px', color: INK }
 /** A row, a card or a picture that is pressed: a button with nothing of its own drawn. */
 export const plain: CSSProperties = { border: 0, margin: 0, padding: 0, background: 'transparent', color: INK, fontFamily: 'inherit', textAlign: 'left', cursor: 'pointer' }
+
+// The coach's team page (ADC2), player file (ADCP) and home (ACC1), sized as the programs v2 boards draw them.
+export const T = {
+  main: { flexGrow: 1, minHeight: 0, padding: '14px 28px 20px', display: 'flex', flexDirection: 'column', gap: 12 },
+  tile: { background: '#ffffff', border: `1px solid ${LINE}`, borderRadius: 16, boxSizing: 'border-box', padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: 2, minHeight: 0, minWidth: 0 },
+  h2: { margin: 0, fontSize: 17, lineHeight: '23px', fontWeight: 700, letterSpacing: '-0.01em' },
+  cap: { fontSize: 14, lineHeight: '20px', color: MUT },
+  sub: { fontSize: 13, lineHeight: '18px', color: MUT },
+  num: { fontVariantNumeric: 'tabular-nums' },
+  between: { display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 10 },
+} satisfies Record<string, CSSProperties>
+/** A link in a line of writing, with a 44px target that does not move the line. */
+export const textLink: CSSProperties = { ...plain, display: 'inline-flex', alignItems: 'center', minHeight: 44, margin: '-12px 0', color: G, fontSize: 14, fontWeight: 700, textDecoration: 'underline' }

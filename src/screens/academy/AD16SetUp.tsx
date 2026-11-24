@@ -2,8 +2,10 @@
 // Drawn from the board in the academy handover (24 Nov). The menus above it are the owner app's own (OwnerHeader).
 import { S } from './adStyles'
 import Tap from './Tap'
+import { useAcademy } from './academyStore'
 
 export default function AD16SetUp() {
+  const players = useAcademy().players.length   // counted from the academy's list (programs v2)
   return (
     <>
       <div style={{ flex: 'none', padding: '14px 28px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 20 }}>
@@ -40,7 +42,7 @@ export default function AD16SetUp() {
             <span style={{ flex: 'none', width: 32, height: 32, borderRadius: 999, background: '#eef5f2', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }}>2</span>
             <span style={{ minWidth: 0, display: 'flex', flexDirection: 'column' }}>
               <strong style={{ fontSize: 15, lineHeight: '20px' }}>Bring in your players</strong>
-              <span style={{ fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>80 players from your spreadsheet · 3 need a look</span>
+              <span style={{ fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>{players} players from your spreadsheet · 3 need a look</span>
             </span>
             <span style={{ justifySelf: 'end' }}>
               <span style={{ display: 'inline-flex', alignItems: 'center', height: 24, padding: '0 9px', borderRadius: 999, fontSize: 12, fontWeight: 700, whiteSpace: 'nowrap', background: '#e8cfcf', color: '#10211f', boxSizing: 'content-box' }}>Look at 3</span>

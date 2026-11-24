@@ -1,9 +1,12 @@
 // AC1-AcademyHome: Academy owner, home.
+// Places, fees, the families behind on fees and the reports drafted are counted from the store (programs v2). The trials, attendance tile and today's list are the board's sample.
 // Drawn from the board in the academy handover (24 Nov). The menus above it are the owner app's own (OwnerHeader).
 import { S } from './adStyles'
 import Tap from './Tap'
+import { PROGRAMS, money, paysLine, programCounts, useAcademy, weeksLate } from './academyStore'
 
 export default function AC1AcademyHome() {
+  const a = useAcademy(), all = programCounts(a), late = a.players.filter(p => p.fees_status === 'Late'), lateOwed = late.reduce((t, p) => t + p.fees_owed, 0), oldest = Math.max(0, ...late.map(weeksLate))
   return (
     <>
       <div style={{ flex: 'none', padding: '14px 28px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 20 }}>
@@ -21,8 +24,8 @@ export default function AC1AcademyHome() {
         <div style={{ gridColumn: 'span 12', display: 'grid', gridTemplateColumns: 'repeat(4, minmax(0,1fr))', gap: 12 }}>
           <div style={{ ...S.tile, background: '#f3ecdf', padding: '12px 16px', gap: 2 }}>
             <span style={S.label}>Players this term</span>
-            <span style={{ ...S.num, fontSize: 30, lineHeight: '36px', fontWeight: 700, letterSpacing: '-0.02em', color: '#10211f' }}>80 of 88</span>
-            <span style={{ fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>Places filled across 3 programs</span>
+            <span style={{ ...S.num, fontSize: 30, lineHeight: '36px', fontWeight: 700, letterSpacing: '-0.02em', color: '#10211f' }}>{all.n} of {all.cap}</span>
+            <span style={{ fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>Places filled across {PROGRAMS.filter(p => programCounts(a, p).teams.length).length} programs</span>
           </div>
           <div style={{ ...S.tile, background: '#f4e6e6', padding: '12px 16px', gap: 2 }}>
             <span style={S.label}>Trials this month</span>
@@ -31,8 +34,8 @@ export default function AC1AcademyHome() {
           </div>
           <div style={{ ...S.tile, background: '#eef5f2', padding: '12px 16px', gap: 2 }}>
             <span style={S.label}>Fees collected</span>
-            <span style={{ ...S.num, fontSize: 30, lineHeight: '36px', fontWeight: 700, letterSpacing: '-0.02em', color: '#10211f' }}>$21,180</span>
-            <span style={{ fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>Of $23,020 billed · $1,160 late</span>
+            <span style={{ ...S.num, fontSize: 30, lineHeight: '36px', fontWeight: 700, letterSpacing: '-0.02em', color: '#10211f' }}>{money(all.collected)}</span>
+            <span style={{ fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>Of {money(all.billed)} billed · {money(lateOwed)} late · a player pays {paysLine(a)}</span>
           </div>
           <div style={{ ...S.tile, background: '#f3ecdf', padding: '12px 16px', gap: 2 }}>
             <span style={S.label}>Came to training</span>
@@ -56,8 +59,8 @@ export default function AC1AcademyHome() {
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 66, borderTop: '1px solid #e9eae8', boxSizing: 'content-box' }}>
             <span style={{ flex: 'none', width: 32, height: 32, borderRadius: 999, background: '#e8cfcf', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }}>2</span>
             <span style={{ flexGrow: 1, minWidth: 0 }}>
-              <span style={{ display: 'block', fontSize: 15, lineHeight: '21px', fontWeight: 700 }}>4 families are behind on term fees</span>
-              <span style={{ display: 'block', fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>$1,160 in total · the oldest is 3 weeks late</span>
+              <span style={{ display: 'block', fontSize: 15, lineHeight: '21px', fontWeight: 700 }}>{late.length} {late.length === 1 ? 'family is' : 'families are'} behind on term fees</span>
+              <span style={{ display: 'block', fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>{money(lateOwed)} in total{oldest ? ` · the oldest is ${oldest} ${oldest === 1 ? 'week' : 'weeks'} late` : ''}</span>
             </span>
             <Tap to="AC5-Fees" style={S.more}>See who</Tap>
           </div>
@@ -107,7 +110,7 @@ export default function AC1AcademyHome() {
             </svg>
           </Tap>
           <span style={{ ...S.cap, marginTop: 'auto', paddingTop: 8 }}>
-            {'Term reports are due in week 9. 12 of 80 are drafted. '}
+            {`Term reports are due in week 9. ${all.report} of ${all.n} are drafted. `}
             <Tap to="AC7-ReportsOut">See reports</Tap>
           </span>
         </section>

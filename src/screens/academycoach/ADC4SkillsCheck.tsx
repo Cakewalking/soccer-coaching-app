@@ -9,7 +9,7 @@ import { FILM_COUNTS_SKILLS_CHECK, type CoreSkill } from './skills'
 import { Head, More, Page, Primary, Strong, TileHead, YouCounted } from './kit'
 import { G, HAIR, INK, LINE, MUT, PALE, foot, note, plain, th, tile } from './styles'
 
-const PLAYERS = ['Kai', 'Ana', 'Jonah', 'Finn', 'Lola', 'Zane', '17 more']
+const PLAYERS = ['Kai', 'Ana', 'Jonah', 'Finn', 'Lola', 'Zane', '10 more']
 
 // `film`: a station film would count once the switch is on. The other two are always the coach's taps.
 const STATIONS: Array<{ skill: CoreSkill; counted: string; first: string; now: string; change: string; film: boolean }> = [
@@ -37,7 +37,7 @@ const COLS = '1.1fr 1.7fr 0.6fr 0.6fr 0.9fr'
 export default function ADC4SkillsCheck({ go }: { go: (id: string) => void }) {
   return (
     <Page columns="minmax(0,1fr) 300px" head={
-      <Head title="Skills check" sub="Advanced · each player against their first check · four stations, 25 minutes">
+      <Head title="Skills check" sub="U13 Timber · each player against their first check · four stations, 25 minutes">
         <More onClick={() => demoToast('Four cards open to print or show on the tablet: set-up, distance and what to count.')}>Station cards</More>
         <Primary onClick={() => go('ADC13-CheckEntry')}>Start the check</Primary>
       </Head>

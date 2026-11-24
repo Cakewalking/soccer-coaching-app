@@ -1,9 +1,20 @@
 // AD2-Health: Academy owner: are families staying, are places filling, and who might leave.
+// COUNTED from the store (programs v2): places filled, this term's player count, and the families worth a call (missed the last three sessions and not said about Term 3).
+// STILL SAMPLE: the three earlier terms, who stayed from Term 1, trials, where new players came from, and why families left. That history is not in `academy-data.json`.
 // Drawn from the board in the academy handover (24 Nov). The menus above it are the owner app's own (OwnerHeader).
 import { S } from './adStyles'
 import Tap from './Tap'
+import { WAITING, cameOf, groupOf, initials, pct, playerBoard, programCounts, useAcademy, worthACall } from './academyStore'
+
+// Sample history: players in each of the three terms before this one, and why the 28 families who left after Term 1 said they did.
+const EARLIER: [number, string][] = [[164, 'Term 3, 2025'], [181, 'Term 4, 2025'], [204, 'Term 1, 2026']]
+const LEFT: [string, number][] = [['Moved to a club’s own program', 9], ['Cost', 6], ['Clash with another sport', 5], ['Moved away', 3], ['Didn’t say', 5]]
 
 export default function AD2Health() {
+  const a = useAcademy(), all = programCounts(a)
+  // Late fees first (they are already with the owner), then the list's order. Three are shown; the count is all of them.
+  const calls = a.players.filter(worthACall), shown = [...calls].sort((x, y) => Number(y.fees_status === 'Late') - Number(x.fees_status === 'Late')).slice(0, 3)
+  const terms: [number, string][] = [...EARLIER, [all.n, 'Term 2, 2026']], most = Math.max(...terms.map(t => t[0]))
   return (
     <>
       <div style={{ flex: 'none', padding: '14px 28px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 20 }}>
@@ -19,8 +30,8 @@ export default function AD2Health() {
         <div style={{ gridColumn: 'span 12', display: 'grid', gridTemplateColumns: 'repeat(4, minmax(0,1fr))', gap: 12 }}>
           <div style={{ ...S.tile, background: '#f3ecdf', padding: '12px 16px', gap: 2 }}>
             <span style={S.label}>Stayed from Term 1</span>
-            <span style={{ ...S.num, fontSize: 30, lineHeight: '36px', fontWeight: 700, letterSpacing: '-0.02em', color: '#10211f' }}>62 of 72</span>
-            <span style={{ fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>86% came back · 10 left</span>
+            <span style={{ ...S.num, fontSize: 30, lineHeight: '36px', fontWeight: 700, letterSpacing: '-0.02em', color: '#10211f' }}>176 of 204</span>
+            <span style={{ fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>86% came back · 28 left</span>
           </div>
           <div style={{ ...S.tile, background: '#f4e6e6', padding: '12px 16px', gap: 2 }}>
             <span style={S.label}>Trials that joined</span>
@@ -29,8 +40,8 @@ export default function AD2Health() {
           </div>
           <div style={{ ...S.tile, background: '#eef5f2', padding: '12px 16px', gap: 2 }}>
             <span style={S.label}>Places filled</span>
-            <span style={{ ...S.num, fontSize: 30, lineHeight: '36px', fontWeight: 700, letterSpacing: '-0.02em', color: '#10211f' }}>91%</span>
-            <span style={{ fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>80 of 88 · 5 on a waiting list</span>
+            <span style={{ ...S.num, fontSize: 30, lineHeight: '36px', fontWeight: 700, letterSpacing: '-0.02em', color: '#10211f' }}>{pct(all.n, all.cap)}%</span>
+            <span style={{ fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>{all.n} of {all.cap} · {WAITING.Advanced} on a waiting list</span>
           </div>
           <div style={{ ...S.tile, background: '#f3ecdf', padding: '12px 16px', gap: 2 }}>
             <span style={S.label}>New this term</span>
@@ -43,101 +54,51 @@ export default function AD2Health() {
             <h2 style={S.h2}>Players, term by term</h2>
           </div>
           <div style={{ flexGrow: 1, display: 'flex', alignItems: 'flex-end', gap: 18, padding: '8px 6px 0' }}>
-            <span style={{ flex: '1', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
-              <strong style={{ ...S.num, fontSize: 18 }}>58</strong>
-              <span style={{ width: '100%', height: 151, borderRadius: '10px 10px 0 0', background: '#a9cfc0' }} />
-              <span style={{ fontSize: 12, lineHeight: '16px', color: '#4a5a57', textAlign: 'center' }}>Term 3, 2025</span>
-            </span>
-            <span style={{ flex: '1', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
-              <strong style={{ ...S.num, fontSize: 18 }}>64</strong>
-              <span style={{ width: '100%', height: 166, borderRadius: '10px 10px 0 0', background: '#a9cfc0' }} />
-              <span style={{ fontSize: 12, lineHeight: '16px', color: '#4a5a57', textAlign: 'center' }}>Term 4, 2025</span>
-            </span>
-            <span style={{ flex: '1', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
-              <strong style={{ ...S.num, fontSize: 18 }}>72</strong>
-              <span style={{ width: '100%', height: 187, borderRadius: '10px 10px 0 0', background: '#a9cfc0' }} />
-              <span style={{ fontSize: 12, lineHeight: '16px', color: '#4a5a57', textAlign: 'center' }}>Term 1, 2026</span>
-            </span>
-            <span style={{ flex: '1', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
-              <strong style={{ ...S.num, fontSize: 18 }}>80</strong>
-              <span style={{ width: '100%', height: 208, borderRadius: '10px 10px 0 0', background: '#2f6252' }} />
-              <span style={{ fontSize: 12, lineHeight: '16px', color: '#4a5a57', textAlign: 'center' }}>Term 2, 2026</span>
-            </span>
+            {terms.map(([n, label], k) => (
+              <span key={label} style={{ flex: '1', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
+                <strong style={{ ...S.num, fontSize: 18 }}>{n}</strong>
+                <span style={{ width: '100%', height: Math.round(208 * n / most), borderRadius: '10px 10px 0 0', background: k === terms.length - 1 ? '#2f6252' : '#a9cfc0' }} />
+                <span style={{ fontSize: 12, lineHeight: '16px', color: '#4a5a57', textAlign: 'center' }}>{label}</span>
+              </span>
+            ))}
           </div>
           <span style={{ ...S.cap, marginTop: 'auto', paddingTop: 8 }}>
-            {'Up 22 players in a year. Growth has come from Development, ages 9 to 11. '}
+            {`Up ${all.n - EARLIER[0][0]} players in a year. Growth has come from Development, ages 9 to 11. `}
             <Tap to="ADP15-HowHeard">How we know where families came from</Tap>
           </span>
         </section>
-        <section aria-label="Why 10 families left after Term 1" style={{ ...S.tile, gridColumn: 'span 4', gap: 0, padding: '14px 18px 10px' }}>
+        <section aria-label="Why 28 families left after Term 1" style={{ ...S.tile, gridColumn: 'span 4', gap: 0, padding: '14px 18px 10px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 10, marginBottom: 6 }}>
-            <h2 style={S.h2}>Why 10 families left after Term 1</h2>
+            <h2 style={S.h2}>Why 28 families left after Term 1</h2>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 48, borderTop: '1px solid #e9eae8', boxSizing: 'content-box' }}>
-            <span style={{ flexGrow: 1, fontSize: 15 }}>Moved to a club’s own program</span>
-            <span style={{ flex: 'none', display: 'inline-block', width: 90, height: 8, borderRadius: 4, background: '#e9eae8', overflow: 'hidden', verticalAlign: 'middle' }}>
-              <span style={{ display: 'block', height: '100%', width: '90%', background: '#40826d' }} />
-            </span>
-            <span style={{ ...S.num, fontWeight: 700 }}>3</span>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 48, borderTop: '1px solid #e9eae8', boxSizing: 'content-box' }}>
-            <span style={{ flexGrow: 1, fontSize: 15 }}>Cost</span>
-            <span style={{ flex: 'none', display: 'inline-block', width: 90, height: 8, borderRadius: 4, background: '#e9eae8', overflow: 'hidden', verticalAlign: 'middle' }}>
-              <span style={{ display: 'block', height: '100%', width: '60%', background: '#40826d' }} />
-            </span>
-            <span style={{ ...S.num, fontWeight: 700 }}>2</span>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 48, borderTop: '1px solid #e9eae8', boxSizing: 'content-box' }}>
-            <span style={{ flexGrow: 1, fontSize: 15 }}>Clash with another sport</span>
-            <span style={{ flex: 'none', display: 'inline-block', width: 90, height: 8, borderRadius: 4, background: '#e9eae8', overflow: 'hidden', verticalAlign: 'middle' }}>
-              <span style={{ display: 'block', height: '100%', width: '60%', background: '#40826d' }} />
-            </span>
-            <span style={{ ...S.num, fontWeight: 700 }}>2</span>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 48, borderTop: '1px solid #e9eae8', boxSizing: 'content-box' }}>
-            <span style={{ flexGrow: 1, fontSize: 15 }}>Moved away</span>
-            <span style={{ flex: 'none', display: 'inline-block', width: 90, height: 8, borderRadius: 4, background: '#e9eae8', overflow: 'hidden', verticalAlign: 'middle' }}>
-              <span style={{ display: 'block', height: '100%', width: '30%', background: '#40826d' }} />
-            </span>
-            <span style={{ ...S.num, fontWeight: 700 }}>1</span>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 48, borderTop: '1px solid #e9eae8', boxSizing: 'content-box' }}>
-            <span style={{ flexGrow: 1, fontSize: 15 }}>Didn’t say</span>
-            <span style={{ flex: 'none', display: 'inline-block', width: 90, height: 8, borderRadius: 4, background: '#e9eae8', overflow: 'hidden', verticalAlign: 'middle' }}>
-              <span style={{ display: 'block', height: '100%', width: '60%', background: '#40826d' }} />
-            </span>
-            <span style={{ ...S.num, fontWeight: 700 }}>2</span>
-          </div>
-          <span style={{ ...S.cap, marginTop: 'auto', paddingTop: 8 }}>Asked in a two-question form when a family doesn’t re-enrol. 8 of 10 answered.</span>
+          {LEFT.map(([why, n]) => (
+            <div key={why} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 48, borderTop: '1px solid #e9eae8', boxSizing: 'content-box' }}>
+              <span style={{ flexGrow: 1, fontSize: 15 }}>{why}</span>
+              <span style={{ flex: 'none', display: 'inline-block', width: 90, height: 8, borderRadius: 4, background: '#e9eae8', overflow: 'hidden', verticalAlign: 'middle' }}>
+                <span style={{ display: 'block', height: '100%', width: `${n * 10}%`, background: '#40826d' }} />
+              </span>
+              <span style={{ ...S.num, fontWeight: 700 }}>{n}</span>
+            </div>
+          ))}
+          <span style={{ ...S.cap, marginTop: 'auto', paddingTop: 8 }}>Asked in a two-question form when a family doesn’t re-enrol. 23 of 28 answered.</span>
         </section>
         <section aria-label="Worth a call" style={{ ...S.tile, gridColumn: 'span 4', gap: 0, padding: '14px 18px 10px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 10, marginBottom: 6 }}>
             <h2 style={S.h2}>Worth a call</h2>
-            <span style={S.cap}>3 families</span>
+            <span style={S.cap}>{calls.length} {calls.length === 1 ? 'family' : 'families'}{calls.length > shown.length ? ` · ${shown.length} shown` : ''}</span>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 66, borderTop: '1px solid #e9eae8', boxSizing: 'content-box' }}>
-            <span style={{ flex: 'none', width: 32, height: 32, borderRadius: 999, background: '#c39797', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }}>JM</span>
-            <span style={{ flexGrow: 1, minWidth: 0 }}>
-              <span style={{ display: 'block', fontSize: 15, lineHeight: '21px', fontWeight: 700 }}>Jonah Marsh · Advanced</span>
-              <span style={{ display: 'block', fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>Came to 6 of 10 · fees 3 weeks late · not re-enrolled</span>
-            </span>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 66, borderTop: '1px solid #e9eae8', boxSizing: 'content-box' }}>
-            <span style={{ flex: 'none', width: 32, height: 32, borderRadius: 999, background: '#c39797', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }}>EB</span>
-            <span style={{ flexGrow: 1, minWidth: 0 }}>
-              <span style={{ display: 'block', fontSize: 15, lineHeight: '21px', fontWeight: 700 }}>Eli Brandt · Development</span>
-              <span style={{ display: 'block', fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>Came to 7 of 10 · fees 1 week late · not re-enrolled</span>
-            </span>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 66, borderTop: '1px solid #e9eae8', boxSizing: 'content-box' }}>
-            <span style={{ flex: 'none', width: 32, height: 32, borderRadius: 999, background: '#c39797', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }}>MR</span>
-            <span style={{ flexGrow: 1, minWidth: 0 }}>
-              <span style={{ display: 'block', fontSize: 15, lineHeight: '21px', fontWeight: 700 }}>Maya Rossi · Foundation</span>
-              <span style={{ display: 'block', fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>Missed the last 2 · not re-enrolled</span>
-            </span>
-          </div>
-          <Tap say="New message to 3 families. Nothing is sent until you press send." style={{ ...S.more, marginTop: 10, alignSelf: 'flex-start' }}>Message these families</Tap>
-          <span style={{ ...S.cap, marginTop: 'auto', paddingTop: 8 }}>A family shows here when attendance drops and they haven’t re-enrolled. It is a prompt to call, not a prediction.</span>
+          {shown.map(p => { const c = cameOf(p); return (
+            <Tap key={p.id} to={playerBoard(p)} style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 66, borderTop: '1px solid #e9eae8', boxSizing: 'content-box', textDecoration: 'none', color: '#10211f' }}>
+              <span style={{ flex: 'none', width: 32, height: 32, borderRadius: 999, background: '#c39797', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }}>{initials(p.name)}</span>
+              <span style={{ flexGrow: 1, minWidth: 0 }}>
+                <span style={{ display: 'block', fontSize: 15, lineHeight: '21px', fontWeight: 700 }}>{p.name} · {groupOf(a, p.group)?.name}</span>
+                <span style={{ display: 'block', fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>Came to {c.came} of {c.of} · {p.fees_status === 'Late' ? `fees ${p.fees_note}` : 'missed the last 3'} · not re-enrolled</span>
+              </span>
+            </Tap>
+          ) })}
+          {calls.length === 0 && <span style={{ ...S.cap, borderTop: '1px solid #e9eae8', paddingTop: 10 }}>No family is worth a call this week.</span>}
+          {calls.length > 0 && <Tap say={`New message to ${calls.length} ${calls.length === 1 ? 'family' : 'families'}. Nothing is sent until you press send.`} style={{ ...S.more, marginTop: 10, alignSelf: 'flex-start' }}>Message these families</Tap>}
+          <span style={{ ...S.cap, marginTop: 'auto', paddingTop: 8 }}>A family shows here when they have missed the last three sessions and haven’t said about Term 3. It is a prompt to call, not a prediction.</span>
         </section>
       </main>
     </>

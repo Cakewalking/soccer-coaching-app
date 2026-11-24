@@ -45,6 +45,8 @@ const UNDER: Record<string, OwnerMain> = { AD16: 'home', AC12: 'home', SPa1: 'ho
 /** The sub-menu item a screen is shown under, or '' when none is lit. An empty state sits under its board's item. */
 export function ownerItemOf(id: string): string {
   const stem = ownerStem(id)
+  if (/^ADG\d+$/.test(stem)) return 'AC2-Programs'          // a team's page sits under Term programs
+  if (/^ADF\d+$/.test(stem)) return 'AC4-AcademyPlayers'    // a player's page sits under All players
   return OWNER_MENU.flatMap(g => g.sub).find(s => ownerStem(s.id) === stem)?.id ?? UNDER_ITEM[stem] ?? ''
 }
 /** The main item a screen sits under. */

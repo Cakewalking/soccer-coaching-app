@@ -78,7 +78,7 @@ export default function ACC11AcademyRecording({ onNav }: { onNav?: (id: string) 
           </section>
           <section aria-label="So far" style={{ flexGrow: "1", background: "#ffffff", color: "#10211f", borderRadius: "20px", padding: "16px 18px", display: "flex", flexDirection: "column", gap: "6px" }}>
             <h2 style={{ ...C.h2 }}>So far tonight</h2>
-            <span style={{ ...C.num, fontSize: "44px", lineHeight: "54px", fontWeight: "700", color: "#2f6252" }}>14 of 22</span>
+            <span style={{ ...C.num, fontSize: "44px", lineHeight: "54px", fontWeight: "700", color: "#2f6252" }}>10 of 16</span>
             <span style={{ fontSize: "15px", lineHeight: "21px" }}>weaker-foot shots on target</span>
             <span style={{ ...C.cap, marginTop: "auto" }}>Last run they finished on 52%. Full results about 10 minutes after you stop.</span>
           </section>

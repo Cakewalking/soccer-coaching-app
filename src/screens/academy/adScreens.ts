@@ -134,5 +134,8 @@ export const OWNER_BOARDS: Record<string, ComponentType> = {
   'ADS1-SwitchView': ADS1SwitchView,
 }
 
+/** A team's page (`ADG01-Team` to `ADG17-Team`, and any team added since) and a player's page (`ADF01-Player` to `ADF226-Player`): one template each, in TeamPage and PlayerPage. */
+export const isTeamBoard = (id: string) => /^ADG\d+-Team$/.test(id)
+export const isPlayerBoard = (id: string) => /^ADF\d+-Player$/.test(id)
 /** True for a board the owner app shows in its own frame, by its full id. */
-export const isOwnerBoard = (id: string) => id in OWNER_BOARDS || id === 'AC12-AcademyBroadcast'
+export const isOwnerBoard = (id: string) => id in OWNER_BOARDS || id === 'AC12-AcademyBroadcast' || isTeamBoard(id) || isPlayerBoard(id)

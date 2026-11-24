@@ -34,7 +34,7 @@ export default function ACP2Offer({ onNav }: { onNav?: (id: string) => void }) {
           <span style={{ fontSize: "14px", lineHeight: "20px", color: "#4a5a57" }}>Tue and Thu, 5:30 to 6:40 pm · coach Reece</span>
           <span style={{ display: "flex", justifyContent: "space-between", gap: "10px", minHeight: "38px", alignItems: "center", borderTop: "1px solid #e9eae8", fontSize: "14px" }}>
             <span>Full term</span>
-            <strong style={{ ...C.num, textAlign: "right" }}>$320</strong>
+            <strong style={{ ...C.num, textAlign: "right" }}>$1,100</strong>
           </span>
           <span style={{ display: "flex", justifyContent: "space-between", gap: "10px", minHeight: "38px", alignItems: "center", borderTop: "1px solid #e9eae8", fontSize: "14px" }}>
             <span>You pay for the 7 weeks left</span>

@@ -51,7 +51,7 @@ export default function ACC1eCoachTodayEmpty({ onNav }: { onNav?: (id: string) =
             <span style={{ flex: "none", width: "30px", height: "30px", borderRadius: "999px", background: "#eef5f2", color: "#10211f", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", fontWeight: "700" }}>2</span>
             <span style={{ flexGrow: "1", minWidth: "0" }}>
               <span style={{ display: "block", fontSize: "15px", lineHeight: "21px", fontWeight: "700" }}>Tue 5:30</span>
-              <span style={{ display: "block", fontSize: "13px", lineHeight: "18px", color: "#4a5a57" }}>Advanced · 12 to 14</span>
+              <span style={{ display: "block", fontSize: "13px", lineHeight: "18px", color: "#4a5a57" }}>U13 Timber · under 13s</span>
             </span>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "12px", minHeight: "54px", borderTop: "1px solid #e9eae8" }}>

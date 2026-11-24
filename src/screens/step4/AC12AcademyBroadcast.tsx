@@ -3,12 +3,15 @@ import { openScreen } from '../openThing'
 import { demoToast } from '../demoToast'
 import { Glyph } from '../Glyph'
 import { useState } from 'react'
+import { PROGRAMS, programCounts, useAcademy } from '../academy/academyStore'
 
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 export default function AC12AcademyBroadcast({ onNav }: { onBack?: () => void; onNav?: (id: string) => void }) {
   const [sheet, setSheet] = useState<string | null>(null)
-  const [audience, setAudience] = useState('All families · 80')
+  // Who gets it is counted from the academy's list (programs v2). "Seen" under Sent this term is still the board's sample.
+  const academy = useAcademy(), families = academy.players.length
+  const [audience, setAudience] = useState(`All families · ${families}`)
   const [toggles, setToggles] = useState([true, true, true])
   const [pollStart, setPollStart] = useState(0)
   const [pollAnswers, setPollAnswers] = useState(0)
@@ -19,8 +22,8 @@ export default function AC12AcademyBroadcast({ onNav }: { onBack?: () => void; o
   const go = onNav ?? openScreen
 
   const audiences = [
-    'All families · 80', 'Foundation · 28', 'Development · 30',
-    'Advanced · 22', 'U13 Timber game team', 'Coaches · 3',
+    `All families · ${families}`, ...PROGRAMS.map(p => `${p} · ${programCounts(academy, p).n}`),
+    'U13 Timber game team', `Coaches · ${academy.groups.length}`,
   ]
 
   const sentMessages = [
@@ -43,7 +46,7 @@ export default function AC12AcademyBroadcast({ onNav }: { onBack?: () => void; o
         </div>
         <div style={{ display: 'flex', gap: 10 }}>
           <button onClick={() => go('AC1-AcademyHome')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', color: INK, fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Back to overview</button>
-          <button onClick={() => { mark('send'); t('Sent to 80 families in the app and by email.') }} style={{ height: 44, padding: '0 18px', borderRadius: 10, background: is('send') ? '#40826d' : G, color: '#fff', fontSize: 15, fontWeight: 600, border: 'none', cursor: 'pointer' }}>{is('send') ? '✓ Sent to 80 families' : 'Send to 80 families'}</button>
+          <button onClick={() => { mark('send'); t(`Sent to ${families} families in the app and by email.`) }} style={{ height: 44, padding: '0 18px', borderRadius: 10, background: is('send') ? '#40826d' : G, color: '#fff', fontSize: 15, fontWeight: 600, border: 'none', cursor: 'pointer' }}>{is('send') ? `✓ Sent to ${families} families` : `Send to ${families} families`}</button>
         </div>
       </div>
 

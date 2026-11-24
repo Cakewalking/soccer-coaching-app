@@ -77,7 +77,7 @@ export default function ACC5OneOnOne({ onNav }: { onNav?: (id: string) => void }
               </span>
               <span style={{ flexGrow: "1", minWidth: "0" }}>
                 <span style={{ display: "block", fontSize: "15px", lineHeight: "21px", fontWeight: "700" }}>In open view</span>
-                <span style={{ display: "block", fontSize: "13px", lineHeight: "18px", color: "#4a5a57" }}>Pitch 2, beside the Advanced group</span>
+                <span style={{ display: "block", fontSize: "13px", lineHeight: "18px", color: "#4a5a57" }}>Pitch 2, beside the U13 Timber session</span>
               </span>
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: "12px", minHeight: "52px", borderTop: "1px solid #e9eae8" }}>

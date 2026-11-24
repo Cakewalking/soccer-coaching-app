@@ -25,7 +25,7 @@ export default function ACC10AcademyRecordResults({ onNav }: { onNav?: (id: stri
       <div style={{ flex: "none", padding: "14px 28px 0", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "20px" }}>
         <div style={{ display: "flex", alignItems: "baseline", gap: "14px", minWidth: "0" }}>
           <h1 style={{ margin: "0", fontSize: "26px", lineHeight: "32px", fontWeight: "700", letterSpacing: "-0.02em", whiteSpace: "nowrap" }}>Finishing circuit · run 3</h1>
-          <span style={{ ...C.cap, whiteSpace: "nowrap" }}>Tonight · Advanced · 20 players · same set-up as run 2</span>
+          <span style={{ ...C.cap, whiteSpace: "nowrap" }}>Tonight · U13 Timber · 14 players · same set-up as run 2</span>
         </div>
         <div style={{ display: "flex", gap: "8px", flex: "none" }}>
           <button onClick={() => demoToast("8 clips from tonight. Six are of players with a finishing goal.")} style={{ margin: "0", font: "inherit", textAlign: "inherit", cursor: "pointer", ...C.more }}>Clips · 8</button>
@@ -95,17 +95,17 @@ export default function ACC10AcademyRecordResults({ onNav }: { onNav?: (id: stri
             <span style={{ display: "inline-flex", alignItems: "center", height: "24px", padding: "0 9px", borderRadius: "999px", fontSize: "12px", fontWeight: "700", whiteSpace: "nowrap", background: "#2f6252", color: "#ffffff" }}>Better</span>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "12px", minHeight: "56px", borderTop: "1px solid #e9eae8" }}>
-            <span style={{ flex: "none", width: "32px", height: "32px", borderRadius: "999px", background: "#e8cfcf", color: "#10211f", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", fontWeight: "700" }}>LF</span>
+            <span style={{ flex: "none", width: "32px", height: "32px", borderRadius: "999px", background: "#e8cfcf", color: "#10211f", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", fontWeight: "700" }}>LN</span>
             <span style={{ flexGrow: "1", minWidth: "0" }}>
-              <span style={{ display: "block", fontSize: "15px", lineHeight: "21px", fontWeight: "700" }}>Lola Ferris</span>
+              <span style={{ display: "block", fontSize: "15px", lineHeight: "21px", fontWeight: "700" }}>Lola Nguyen</span>
               <span style={{ display: "block", fontSize: "13px", lineHeight: "18px", color: "#4a5a57" }}>Make-up session, so no last run with this group</span>
             </span>
             <span style={{ display: "inline-flex", alignItems: "center", height: "24px", padding: "0 9px", borderRadius: "999px", fontSize: "12px", fontWeight: "700", whiteSpace: "nowrap", background: "#e9eae8", color: "#10211f" }}>Not compared</span>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "12px", minHeight: "56px", borderTop: "1px solid #e9eae8" }}>
-            <span style={{ flex: "none", width: "32px", height: "32px", borderRadius: "999px", background: "#e8cfcf", color: "#10211f", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", fontWeight: "700" }}>MW</span>
+            <span style={{ flex: "none", width: "32px", height: "32px", borderRadius: "999px", background: "#e8cfcf", color: "#10211f", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", fontWeight: "700" }}>ML</span>
             <span style={{ flexGrow: "1", minWidth: "0" }}>
-              <span style={{ display: "block", fontSize: "15px", lineHeight: "21px", fontWeight: "700" }}>Mila Wójcik</span>
+              <span style={{ display: "block", fontSize: "15px", lineHeight: "21px", fontWeight: "700" }}>Mila Lombardi</span>
               <span style={{ display: "block", fontSize: "13px", lineHeight: "18px", color: "#4a5a57" }}>Not filmed. Your hand count: 4 of 7</span>
             </span>
             <span style={{ display: "inline-flex", alignItems: "center", height: "24px", padding: "0 9px", borderRadius: "999px", fontSize: "12px", fontWeight: "700", whiteSpace: "nowrap", background: "#e8cfcf", color: "#10211f" }}>Hand count</span>
@@ -118,7 +118,7 @@ export default function ACC10AcademyRecordResults({ onNav }: { onNav?: (id: stri
             </span>
             <span style={{ display: "inline-flex", alignItems: "center", height: "24px", padding: "0 9px", borderRadius: "999px", fontSize: "12px", fontWeight: "700", whiteSpace: "nowrap", background: "#e8cfcf", color: "#10211f" }}>Part missing</span>
           </div>
-          <span style={{ ...C.cap, marginTop: "auto", paddingTop: "8px" }}>In name order, never ranked. Showing 6 of 20.</span>
+          <span style={{ ...C.cap, marginTop: "auto", paddingTop: "8px" }}>In name order, never ranked. Showing 6 of 14.</span>
         </section>
         <div style={{ gridColumn: "span 5", display: "flex", flexDirection: "column", gap: "14px", minHeight: "0" }}>
           <section aria-label="Where it goes" style={{ ...C.tile, flex: "none", gap: "0", padding: "14px 18px 10px", border: "2px solid #2f6252" }}>
@@ -127,9 +127,9 @@ export default function ACC10AcademyRecordResults({ onNav }: { onNav?: (id: stri
               <span style={{ flex: "none", width: "30px", height: "30px", borderRadius: "999px", background: "#eef5f2", color: "#10211f", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", fontWeight: "700" }}>1</span>
               <span style={{ flexGrow: "1", minWidth: "0" }}>
                 <span style={{ display: "block", fontSize: "15px", lineHeight: "21px", fontWeight: "700" }}>Session notes, written for you</span>
-                <span style={{ display: "block", fontSize: "13px", lineHeight: "18px", color: "#4a5a57" }}>For all 20. Check them in two taps</span>
+                <span style={{ display: "block", fontSize: "13px", lineHeight: "18px", color: "#4a5a57" }}>For all 14. Check them in two taps</span>
               </span>
-              <button onClick={() => demoToast("20 notes ready. Tap any to change it.")} style={{ margin: "0", font: "inherit", textAlign: "inherit", cursor: "pointer", ...C.more }}>Check</button>
+              <button onClick={() => demoToast("14 notes ready. Tap any to change it.")} style={{ margin: "0", font: "inherit", textAlign: "inherit", cursor: "pointer", ...C.more }}>Check</button>
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: "12px", minHeight: "58px", borderTop: "1px solid #e9eae8" }}>
               <span style={{ flex: "none", width: "30px", height: "30px", borderRadius: "999px", background: "#eef5f2", color: "#10211f", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", fontWeight: "700" }}>2</span>

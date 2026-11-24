@@ -80,7 +80,7 @@ export default function ACC7AcademyGameDay({ onNav }: { onNav?: (id: string) => 
             </span>
             <span style={{ display: "inline-flex", alignItems: "center", height: "24px", padding: "0 9px", borderRadius: "999px", fontSize: "12px", fontWeight: "700", whiteSpace: "nowrap", background: "#2f6252", color: "#ffffff" }}>Clear</span>
           </div>
-          <span style={{ ...C.cap, marginTop: "auto", paddingTop: "8px" }}>U13 Timber is your Advanced group’s game team. It plays as part of Wattle Creek FC, so the club’s rules apply on the day.</span>
+          <span style={{ ...C.cap, marginTop: "auto", paddingTop: "8px" }}>U13 Timber plays its games as part of Wattle Creek FC, so the club’s rules apply on the day.</span>
         </section>
         <div style={{ gridColumn: "span 4", display: "flex", flexDirection: "column", gap: "14px", minHeight: "0" }}>
           <section aria-label="Can't play yet" style={{ ...C.tile, flex: "none", gap: "0", padding: "14px 18px 10px" }}>

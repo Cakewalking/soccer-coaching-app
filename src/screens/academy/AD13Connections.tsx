@@ -2,8 +2,10 @@
 // Drawn from the board in the academy handover (24 Nov). The menus above it are the owner app's own (OwnerHeader).
 import { S } from './adStyles'
 import Tap from './Tap'
+import { useAcademy } from './academyStore'
 
 export default function AD13Connections() {
+  const players = useAcademy().players.length   // counted from the academy's list (programs v2)
   return (
     <>
       <div style={{ flex: 'none', padding: '14px 28px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 20 }}>
@@ -26,7 +28,7 @@ export default function AD13Connections() {
               <strong style={{ fontSize: 15, lineHeight: '20px' }}>Players and families</strong>
               <span style={{ fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>Bring in a spreadsheet from what you use now</span>
             </span>
-            <span style={{ fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>80 players brought in · 3 need a look</span>
+            <span style={{ fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>{players} players brought in · 3 need a look</span>
             <span style={{ justifySelf: 'end' }}>
               <span style={{ display: 'inline-flex', alignItems: 'center', height: 24, padding: '0 9px', borderRadius: 999, fontSize: 12, fontWeight: 700, whiteSpace: 'nowrap', background: '#2f6252', color: '#ffffff', boxSizing: 'content-box' }}>On</span>
             </span>

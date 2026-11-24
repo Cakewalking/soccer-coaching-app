@@ -32,7 +32,7 @@ export default function ADC6HomePractice({ go }: { go: (id: string) => void }) {
   }
   return (
     <Page columns="360px minmax(0,1fr)" head={
-      <Head title="Practice at home" sub="Advanced · this week · follows the block: finishing, weaker foot">
+      <Head title="Practice at home" sub="U13 Timber · this week · follows the block: finishing, weaker foot">
         <More onClick={() => demoToast('Pick the group. The practice follows the block that group is in.')}>Set for another group</More>
         <Primary onClick={() => go('DrillFlow')}>Change this week’s</Primary>
       </Head>
@@ -45,7 +45,7 @@ export default function ADC6HomePractice({ go }: { go: (id: string) => void }) {
         <div style={{ display: 'flex', gap: 10 }}>
           <div style={{ ...stat, background: '#f3ecdf' }}>
             <span style={label}>Did it</span>
-            <span style={{ ...big, color: INK }}>14 of 22</span>
+            <span style={{ ...big, color: INK }}>10 of 16</span>
             <span style={{ fontSize: 13, lineHeight: '18px', color: MUT }}>At least once</span>
           </div>
           <div style={{ ...stat, background: MAUVE_PALE }}>
@@ -67,7 +67,7 @@ export default function ADC6HomePractice({ go }: { go: (id: string) => void }) {
           </div>
         ))}
         <div style={note}>A reply to a child under 13 goes to the parent’s app. From 13, it goes to both.</div>
-        <span style={foot}>Showing 5 of 22. Practice is never counted against a child: there is no streak and no table.</span>
+        <span style={foot}>Showing 5 of 16. Practice is never counted against a child: there is no streak and no table.</span>
       </section>
     </Page>
   )

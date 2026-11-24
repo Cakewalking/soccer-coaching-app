@@ -2,8 +2,10 @@
 // Drawn from the board in the academy handover (24 Nov). The menus above it are the owner app's own (OwnerHeader).
 import { S } from './adStyles'
 import Tap from './Tap'
+import { money, useAcademy } from './academyStore'
 
 export default function AD24BringIn() {
+  const a = useAcademy(), players = a.players.length   // counted from the academy's list (programs v2); the rows of the spreadsheet are the board's sample
   return (
     <>
       <div style={{ flex: 'none', padding: '14px 28px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 20 }}>
@@ -13,7 +15,7 @@ export default function AD24BringIn() {
         </div>
         <div style={{ display: 'flex', gap: 8, flex: 'none' }}>
           <Tap to="AD13-Connections" style={S.more}>Back</Tap>
-          <Tap say="Step 3: 80 players ready, 3 need a look. Nothing is saved until you press Bring in." style={S.primary}>Check before saving</Tap>
+          <Tap say={`Step 3: ${players} players ready, 3 need a look. Nothing is saved until you press Bring in.`} style={S.primary}>Check before saving</Tap>
         </div>
       </div>
       <main style={{ flexGrow: 1, minHeight: 0, padding: '12px 28px 18px', boxSizing: 'border-box', display: 'grid', gap: 14, gridTemplateColumns: 'minmax(0,1fr) 340px' }}>
@@ -94,7 +96,7 @@ export default function AD24BringIn() {
                 <path d="M6 9l6 6 6-6" />
               </svg>
             </Tap>
-            <span style={{ color: '#4a5a57' }}>$260</span>
+            <span style={{ color: '#4a5a57' }}>{money(a.price_this_term.Foundation)}</span>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr 1.2fr', gap: 10, alignItems: 'center', minHeight: 56, borderTop: '1px solid #e9eae8', fontSize: 14, lineHeight: '19px', color: '#10211f', textDecoration: 'none', boxSizing: 'content-box' }}>
             <span>
@@ -108,7 +110,7 @@ export default function AD24BringIn() {
             </Tap>
             <span style={{ color: '#4a5a57' }}>asthma, puffer in bag</span>
           </div>
-          <span style={{ ...S.cap, marginTop: 'auto', paddingTop: 8 }}>83 rows: 80 players, 2 that look like doubles, 1 with no date of birth.</span>
+          <span style={{ ...S.cap, marginTop: 'auto', paddingTop: 8 }}>{players + 3} rows: {players} players, 2 that look like doubles, 1 with no date of birth.</span>
         </section>
         <aside aria-label="Three steps" style={{ ...S.tile, gap: 2 }}>
           <h2 style={S.h2}>Three steps</h2>

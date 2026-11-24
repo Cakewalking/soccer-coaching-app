@@ -32,7 +32,7 @@ export default function ADC15MySession({ onNav }: { onNav?: (id: string) => void
       <div style={{ flex: "none", padding: "14px 28px 0", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "20px" }}>
         <div style={{ display: "flex", alignItems: "baseline", gap: "14px", minWidth: "0" }}>
           <h1 style={{ margin: "0", fontSize: "26px", lineHeight: "32px", fontWeight: "700", letterSpacing: "-0.02em", whiteSpace: "nowrap" }}>How did it go?</h1>
-          <span style={{ ...C.cap, whiteSpace: "nowrap" }}>Your own view · Advanced · Thursday 4 June · before Dani watches</span>
+          <span style={{ ...C.cap, whiteSpace: "nowrap" }}>Your own view · U13 Timber · Thursday 4 June · before Dani watches</span>
         </div>
         <div style={{ display: "flex", gap: "8px", flex: "none" }}>
           <button onClick={() => go("ADC3-SessionFilm")} style={{ margin: "0", font: "inherit", textAlign: "inherit", cursor: "pointer", ...C.more }}>Watch it first</button>

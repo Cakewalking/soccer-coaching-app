@@ -53,7 +53,7 @@ export default function ACP4ParentFees({ onNav }: { onNav?: (id: string) => void
           </span>
         </div>
         <div style={{ ...C.card, gap: "0" }}>
-          <button onClick={() => demoToast("Kai’s Term 3 place is held. $320, due 13 July.")} style={{ border: "0", padding: "0", margin: "0", background: "transparent", font: "inherit", textAlign: "inherit", cursor: "pointer", display: "flex", alignItems: "center", gap: "10px", minHeight: "56px", borderTop: "1px solid #e9eae8", textDecoration: "none", color: "#10211f" }}>
+          <button onClick={() => demoToast("Kai’s Term 3 place is held. $1,100, due 13 July.")} style={{ border: "0", padding: "0", margin: "0", background: "transparent", font: "inherit", textAlign: "inherit", cursor: "pointer", display: "flex", alignItems: "center", gap: "10px", minHeight: "56px", borderTop: "1px solid #e9eae8", textDecoration: "none", color: "#10211f" }}>
             <span style={{ flexGrow: "1", minWidth: "0" }}>
               <span style={{ display: "block", fontSize: "15px", lineHeight: "20px", fontWeight: "700" }}>Term 3 place</span>
               <span style={{ display: "block", fontSize: "13px", lineHeight: "18px", color: "#4a5a57" }}>Re-enrol by 19 June to keep Kai’s spot</span>

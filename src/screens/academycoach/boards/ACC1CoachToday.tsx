@@ -1,242 +1,188 @@
-// ACC1-CoachToday, as the academy pack draws it (handover v26, the home rebuilt in four parts: Now, Progress, Development, Oversight): the board's own words, sizes and colours.
-// Made from the board's source by the converter kept with the checking scripts; change the words here, not the layout.
+// ACC1-CoachToday: the coach's home, for Reece's one team (programs v2). Now, Progress, Development, Oversight.
+// The layout, sizes and colours are the board's. The numbers are not typed in: the headline, the then-and-now
+// bars, the dots and the four meters are counted from the academy's one list, so they move when the roll is
+// taken, a step moves, a goal is set, a clip is sent or a report is drafted. Each dot opens that player.
+// Hand-wired to the list: do not make it again from the board's source.
 
 import { useContext } from 'react'
 import { demoToast } from '../../demoToast'
+import { basics, teamCounts, upAStep } from '../../academy/academyStore'
 import CoachNav from '../CoachNav'
 import { InCoachApp, coachGo } from '../menu'
+import { coachBoard, dayMonth, firstName, ini, isNew, names, openPlayer, shortDate, todayMark, useCoachTeam } from '../coachTeam'
+import { More, Primary } from '../kit'
+import { G, HAIR, INK, LINE, MAUVE_PALE, MUT, PALE, T, plain, textLink } from '../styles'
+import { Chevron, StrongDot } from '../teamParts'
 
-const C = {
-  cap: { fontSize: "14px", lineHeight: "20px", color: "#4a5a57" },
-  h2: { margin: "0", fontSize: "17px", lineHeight: "23px", fontWeight: "700", letterSpacing: "-0.01em" },
-  more: { display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "8px", height: "44px", padding: "0 16px", borderRadius: "10px", border: "1px solid #c5c8c4", background: "#ffffff", color: "#10211f", fontSize: "15px", fontWeight: "600", textDecoration: "none", whiteSpace: "nowrap", boxSizing: "border-box" },
-  num: { fontVariantNumeric: "tabular-nums" },
-  primary: { display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "8px", height: "44px", padding: "0 18px", borderRadius: "10px", border: "1px solid #2f6252", background: "#2f6252", color: "#ffffff", fontSize: "15px", fontWeight: "600", textDecoration: "none", whiteSpace: "nowrap", boxSizing: "border-box" },
-  tile: { background: "#ffffff", border: "1px solid #c5c8c4", borderRadius: "16px", boxSizing: "border-box", padding: "14px 16px", display: "flex", flexDirection: "column", gap: "8px", minHeight: "0", minWidth: "0" },
-} as const
+const WORDS = ['None', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen', 'Twenty']
+const word = (n: number) => WORDS[n] ?? String(n)
+// What step 3 looks like on each core skill, said plainly.
+const SAY: Record<string, string> = { 'First touch': 'take their first touch out of their feet', 'Running with the ball': 'run with the ball with their head up', 'One against one': 'pick their moment to take a player on', 'Striking the ball': 'strike a moving ball with the laces' }
+const DOT = [
+  { say: 'no notes in three weeks', look: { background: '#ffffff', color: MUT, border: '1.5px dashed #8a9794' } },
+  { say: 'same step', look: { background: '#ffffff', color: INK, border: `1.5px solid ${LINE}` } },
+  { say: 'up a step', look: { background: G, color: '#ffffff' } },
+] as const
+const chip = { ...plain, height: 44, padding: '0 14px', borderRadius: 12, background: PALE, display: 'inline-flex', flexDirection: 'column', justifyContent: 'center', whiteSpace: 'nowrap' } as const
+const face = (bg: string) => ({ flex: 'none', width: 34, height: 34, borderRadius: 999, background: bg, color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }) as const
 
 export default function ACC1CoachToday({ onNav }: { onNav?: (id: string) => void }) {
   const go = coachGo(onNav)
   const inApp = useContext(InCoachApp)
+  const { a, g, ps } = useCoachTeam()
+  const n = ps.length, tc = teamCounts(a, g)
+  const start = g.when.split(' · ')[1]?.split(' to ')[0] ?? ''
+  // Tonight's roll, once it is taken (ACC2). Before that, the families' answers: sample, not in the list.
+  const marks = ps.map(p => todayMark(a, g, p)), here = marks.filter(m => m === true).length, away = marks.filter(m => m === false).length
+  // The headline: the core skill where the most players have reached step 3 since week 1.
+  const lead = [...tc.skills].sort((x, y) => (y.now - y.then) - (x.now - x.then))[0]
+  // Each player against their own start of term: up a step, on the same step, or no notes in three weeks. In name order.
+  const status = (p: typeof ps[number]) => upAStep(p) ? 2 : p.notes_in_last_3_weeks ? 1 : 0
+  const tally = [0, 1, 2].map(k => ps.filter(p => status(p) === k).length)
+  const clipFor = ps.find(p => upAStep(p) && p.clips_sent_this_term === 0), noGoal = ps.filter(p => !p.goal), noNotes = ps.filter(p => !p.notes_in_last_3_weeks)
+  const openThen = (id: number, board: string) => { openPlayer(id); go(board) }
+  const meters = basics(ps)
+  const gap = (k: number) => meters[k].of - meters[k].n
+  const under = [
+    gap(0) ? `${gap(0)} ${gap(0) === 1 ? 'player' : 'players'} to catch up on` : 'Every player has notes',
+    gap(1) ? `${gap(1)} to go` : 'Every player has a goal',
+    gap(2) ? `${gap(2)} ${gap(2) === 1 ? 'family has' : 'families have'} seen nothing yet` : 'Every family has seen a clip',
+    'Due to Dani in week 9',
+  ]
+  const opens = ['ADC11-AfterSession', 'ADC10-SetGoal', 'ADC3-SessionFilm', 'ACC6-ReportDraft']
+
   return (
-    <div data-board="ACC1-CoachToday" style={{ ...(inApp ? { flexGrow: 1, minHeight: 0 } : { width: 1180, minHeight: 820 }), position: "relative", boxSizing: "border-box", background: "#faf5ec", color: "#10211f", fontFamily: "var(--font-sans, 'DM Sans', system-ui, sans-serif)", display: "flex", flexDirection: "column" }}>
+    <div data-board="ACC1-CoachToday" style={{ ...(inApp ? { flexGrow: 1, minHeight: 0 } : { width: 1180, minHeight: 820 }), position: 'relative', boxSizing: 'border-box', background: '#faf5ec', color: INK, fontFamily: "var(--font-sans, 'DM Sans', system-ui, sans-serif)", display: 'flex', flexDirection: 'column' }}>
       {!inApp && <CoachNav active="today" sub="Today" go={go} />}
-      <main style={{ flexGrow: "1", minHeight: "0", padding: "14px 28px 16px", display: "flex", flexDirection: "column", gap: "12px" }}>
-        <section aria-label="Now" style={{ flex: "none", borderRadius: "16px", background: "#ffffff", border: "1px solid #c5c8c4", padding: "8px 10px 8px 16px", display: "flex", alignItems: "center", gap: "10px" }}>
-          <strong style={{ fontSize: "15px", whiteSpace: "nowrap" }}>Today · Thu 4 June</strong>
-          <button onClick={() => go("ACT3-AcademySessionPlan")} style={{ border: "0", margin: "0", font: "inherit", textAlign: "inherit", cursor: "pointer", height: "44px", padding: "0 14px", borderRadius: "12px", background: "#eef5f2", display: "inline-flex", flexDirection: "column", justifyContent: "center", textDecoration: "none", color: "#10211f", whiteSpace: "nowrap" }}>
-            <strong style={{ fontSize: "13px", lineHeight: "16px" }}>4:30 Development</strong>
-            <span style={{ fontSize: "12px", lineHeight: "15px", color: "#33443f" }}>14 coming · plan ready</span>
+      <main style={{ ...T.main, padding: '14px 28px 16px' }}>
+        <section aria-label="Now" style={{ flex: 'none', borderRadius: 16, background: '#ffffff', border: `1px solid ${LINE}`, padding: '8px 10px 8px 16px', display: 'flex', alignItems: 'center', gap: 10 }}>
+          <strong style={{ fontSize: 15, whiteSpace: 'nowrap' }}>Today · {shortDate(a.today)}</strong>
+          <button onClick={() => go('ACT3-AcademySessionPlan')} style={chip}>
+            <strong style={{ fontSize: 13, lineHeight: '16px' }}>{start} {g.name}</strong>
+            <span style={{ fontSize: 12, lineHeight: '15px', color: '#33443f' }}>{here + away ? `${here} here · ${away} away` : '14 coming'} · plan ready</span>
           </button>
-          <button onClick={() => go("ACT3-AcademySessionPlan")} style={{ border: "0", margin: "0", font: "inherit", textAlign: "inherit", cursor: "pointer", height: "44px", padding: "0 14px", borderRadius: "12px", background: "#eef5f2", display: "inline-flex", flexDirection: "column", justifyContent: "center", textDecoration: "none", color: "#10211f", whiteSpace: "nowrap" }}>
-            <strong style={{ fontSize: "13px", lineHeight: "16px" }}>5:30 Advanced</strong>
-            <span style={{ fontSize: "12px", lineHeight: "15px", color: "#33443f" }}>20 coming · plan ready</span>
+          <button onClick={() => go('ACC5-OneOnOne')} style={chip}>
+            <strong style={{ fontSize: 13, lineHeight: '16px' }}>7:00 One-on-one</strong>
+            <span style={{ fontSize: 12, lineHeight: '15px', color: '#33443f' }}>Kai · left foot</span>
           </button>
-          <button onClick={() => go("ACC5-OneOnOne")} style={{ border: "0", margin: "0", font: "inherit", textAlign: "inherit", cursor: "pointer", height: "44px", padding: "0 14px", borderRadius: "12px", background: "#eef5f2", display: "inline-flex", flexDirection: "column", justifyContent: "center", textDecoration: "none", color: "#10211f", whiteSpace: "nowrap" }}>
-            <strong style={{ fontSize: "13px", lineHeight: "16px" }}>6:45 One-on-one</strong>
-            <span style={{ fontSize: "12px", lineHeight: "15px", color: "#33443f" }}>Kai · left foot</span>
+          <button onClick={() => go('ACC7-AcademyGameDay')} style={chip}>
+            <strong style={{ fontSize: 13, lineHeight: '16px' }}>Sun 10:00 game</strong>
+            <span style={{ fontSize: 12, lineHeight: '15px', color: '#33443f' }}>{g.name} at Wattle Creek</span>
           </button>
-          <span style={{ flexGrow: "1" }} />
-          <button onClick={() => go("ACT2-AcademySuggested")} style={{ margin: "0", font: "inherit", textAlign: "inherit", cursor: "pointer", ...C.more }}>Swap a drill</button>
-          <button onClick={() => go("ACC2-RunSession")} style={{ margin: "0", font: "inherit", textAlign: "inherit", cursor: "pointer", ...C.primary }}>Start the 4:30</button>
+          <span style={{ flexGrow: 1 }} />
+          <More onClick={() => go('ACT2-AcademySuggested')}>Swap a drill</More>
+          <Primary onClick={() => go('ACC2-RunSession')}>Start the {start}</Primary>
         </section>
-        <div style={{ flexGrow: "1", minHeight: "0", display: "grid", gridTemplateColumns: "minmax(0,1fr) 330px", gap: "12px" }}>
-          <div style={{ display: "flex", flexDirection: "column", gap: "12px", minHeight: "0" }}>
-            <section aria-label="Progress" style={{ flex: "none", borderRadius: "18px", background: "#1c3a33", color: "#ffffff", padding: "16px 20px", display: "flex", flexDirection: "column", gap: "8px" }}>
-              <div style={{ display: "flex", gap: "16px", alignItems: "flex-start" }}>
-                <span style={{ flexGrow: "1", minWidth: "0", display: "flex", flexDirection: "column", gap: "6px" }}>
-                  <span style={{ fontSize: "12px", fontWeight: "700", letterSpacing: "0.08em", color: "#f4c95d" }}>PROGRESS · ADVANCED · THIS TERM</span>
-                  <strong style={{ fontSize: "25px", lineHeight: "31px", letterSpacing: "-0.01em" }}>Sixteen of your 22 now take their first touch away from pressure. In week 1, nine.</strong>
-                  <span style={{ fontSize: "14px", lineHeight: "20px", color: "#cfe6dc" }}>Players on step 3 or higher, on each of the four core skills. The white line is week 1, “then”.</span>
+
+        <div style={{ flexGrow: 1, minHeight: 0, display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 330px', gap: 12 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 12, minHeight: 0 }}>
+            <section aria-label="Progress" style={{ flex: 'none', borderRadius: 18, background: '#1c3a33', color: '#ffffff', padding: '16px 20px', display: 'flex', flexDirection: 'column', gap: 8 }}>
+              <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
+                <span style={{ flexGrow: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: 6 }}>
+                  <span style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', color: '#f4c95d' }}>PROGRESS · {g.name.toUpperCase()} · THIS TERM</span>
+                  <strong data-headline="" style={{ fontSize: 25, lineHeight: '31px', letterSpacing: '-0.01em' }}>{word(lead.now)} of your {n} now {SAY[lead.skill] ?? `are on step 3 or higher on ${lead.skill.toLowerCase()}`}. In week 1, {word(lead.then).toLowerCase()}.</strong>
+                  <span style={{ fontSize: 14, lineHeight: '20px', color: '#cfe6dc' }}>Players on step 3 or higher, on each of the four core skills. The white line is week 1, “then”.</span>
                 </span>
-                <span style={{ flex: "none", display: "flex", flexDirection: "column", gap: "8px", alignItems: "stretch" }}>
-                  <button onClick={() => demoToast("Then and now for four players, from the drill you filmed in weeks 3 and 7.")} style={{ border: "0", margin: "0", font: "inherit", textAlign: "inherit", cursor: "pointer", height: "44px", padding: "0 16px", borderRadius: "999px", background: "#f4c95d", color: "#10211f", display: "inline-flex", alignItems: "center", gap: "8px", fontSize: "15px", fontWeight: "700", textDecoration: "none", whiteSpace: "nowrap" }}>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                      <path d="M8 5l11 7-11 7z" />
-                    </svg>
+                <span style={{ flex: 'none', display: 'flex', flexDirection: 'column', gap: 8, alignItems: 'stretch' }}>
+                  <button onClick={() => demoToast('Then and now for four players, from the drill you filmed in weeks 3 and 7.')} style={{ ...plain, height: 44, padding: '0 16px', borderRadius: 999, background: '#f4c95d', color: INK, display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: 15, fontWeight: 700, whiteSpace: 'nowrap' }}>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M8 5l11 7-11 7z" /></svg>
                     Play 45 seconds
                   </button>
-                  <button onClick={() => go("ADC2-Group")} style={{ margin: "0", background: "transparent", font: "inherit", textAlign: "inherit", cursor: "pointer", height: "44px", padding: "0 16px", borderRadius: "999px", border: "1px solid #ffffff", color: "#ffffff", display: "inline-flex", alignItems: "center", justifyContent: "center", fontSize: "15px", fontWeight: "700", textDecoration: "none", whiteSpace: "nowrap" }}>By player</button>
+                  <button onClick={() => go('ADC2-Group')} style={{ ...plain, height: 44, padding: '0 16px', borderRadius: 999, border: '1px solid #ffffff', color: '#ffffff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 15, fontWeight: 700, whiteSpace: 'nowrap' }}>By player</button>
                 </span>
               </div>
-              <div style={{ display: "flex", gap: "18px", alignItems: "flex-end", marginTop: "4px" }}>
-                <span style={{ flex: "1", minWidth: "0", display: "flex", flexDirection: "column", gap: "4px" }}>
-                  <span style={{ fontSize: "12px", lineHeight: "16px", color: "#cfe6dc", whiteSpace: "nowrap" }}>First touch</span>
-                  <span role="img" aria-label="First touch: 9 then, 16 now, of 22" style={{ display: "block", position: "relative", height: "10px", borderRadius: "5px", background: "rgba(255,255,255,0.16)" }}>
-                    <span style={{ position: "absolute", left: "0", top: "0", bottom: "0", width: "73%", borderRadius: "5px", background: "#f4c95d" }} />
-                    <span style={{ position: "absolute", left: "41%", top: "-3px", width: "2px", height: "16px", background: "#ffffff" }} />
+              <div style={{ display: 'flex', gap: 18, alignItems: 'flex-end', marginTop: 4 }}>
+                {tc.skills.map(s => (
+                  <span key={s.skill} data-bar={s.skill} data-then={s.then} data-now={s.now} style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: 4 }}>
+                    <span style={{ fontSize: 12, lineHeight: '16px', color: '#cfe6dc', whiteSpace: 'nowrap' }}>{s.skill}</span>
+                    <span role="img" aria-label={`${s.skill}: ${s.then} then, ${s.now} now, of ${n}`} style={{ display: 'block', position: 'relative', height: 10, borderRadius: 5, background: 'rgba(255,255,255,0.16)' }}>
+                      <span style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: `${Math.round(100 * s.now / n)}%`, borderRadius: 5, background: '#f4c95d' }} />
+                      <span style={{ position: 'absolute', left: `${Math.round(100 * s.then / n)}%`, top: -3, width: 2, height: 16, background: '#ffffff' }} />
+                    </span>
+                    <span style={{ fontSize: 13, color: '#ffffff' }}><strong style={T.num}>{s.now}</strong> now · {s.then} then</span>
                   </span>
-                  <span style={{ fontSize: "13px", color: "#ffffff" }}>
-                    <strong style={{ ...C.num }}>16</strong>
-                    {" now · 9 then"}
-                  </span>
-                </span>
-                <span style={{ flex: "1", minWidth: "0", display: "flex", flexDirection: "column", gap: "4px" }}>
-                  <span style={{ fontSize: "12px", lineHeight: "16px", color: "#cfe6dc", whiteSpace: "nowrap" }}>Running with the ball</span>
-                  <span role="img" aria-label="Running with the ball: 12 then, 17 now, of 22" style={{ display: "block", position: "relative", height: "10px", borderRadius: "5px", background: "rgba(255,255,255,0.16)" }}>
-                    <span style={{ position: "absolute", left: "0", top: "0", bottom: "0", width: "77%", borderRadius: "5px", background: "#f4c95d" }} />
-                    <span style={{ position: "absolute", left: "55%", top: "-3px", width: "2px", height: "16px", background: "#ffffff" }} />
-                  </span>
-                  <span style={{ fontSize: "13px", color: "#ffffff" }}>
-                    <strong style={{ ...C.num }}>17</strong>
-                    {" now · 12 then"}
-                  </span>
-                </span>
-                <span style={{ flex: "1", minWidth: "0", display: "flex", flexDirection: "column", gap: "4px" }}>
-                  <span style={{ fontSize: "12px", lineHeight: "16px", color: "#cfe6dc", whiteSpace: "nowrap" }}>One against one</span>
-                  <span role="img" aria-label="One against one: 10 then, 15 now, of 22" style={{ display: "block", position: "relative", height: "10px", borderRadius: "5px", background: "rgba(255,255,255,0.16)" }}>
-                    <span style={{ position: "absolute", left: "0", top: "0", bottom: "0", width: "68%", borderRadius: "5px", background: "#f4c95d" }} />
-                    <span style={{ position: "absolute", left: "45%", top: "-3px", width: "2px", height: "16px", background: "#ffffff" }} />
-                  </span>
-                  <span style={{ fontSize: "13px", color: "#ffffff" }}>
-                    <strong style={{ ...C.num }}>15</strong>
-                    {" now · 10 then"}
-                  </span>
-                </span>
-                <span style={{ flex: "1", minWidth: "0", display: "flex", flexDirection: "column", gap: "4px" }}>
-                  <span style={{ fontSize: "12px", lineHeight: "16px", color: "#cfe6dc", whiteSpace: "nowrap" }}>Striking the ball</span>
-                  <span role="img" aria-label="Striking the ball: 5 then, 8 now, of 22" style={{ display: "block", position: "relative", height: "10px", borderRadius: "5px", background: "rgba(255,255,255,0.16)" }}>
-                    <span style={{ position: "absolute", left: "0", top: "0", bottom: "0", width: "36%", borderRadius: "5px", background: "#f4c95d" }} />
-                    <span style={{ position: "absolute", left: "23%", top: "-3px", width: "2px", height: "16px", background: "#ffffff" }} />
-                  </span>
-                  <span style={{ fontSize: "13px", color: "#ffffff" }}>
-                    <strong style={{ ...C.num }}>8</strong>
-                    {" now · 5 then"}
-                  </span>
-                </span>
+                ))}
               </div>
             </section>
-            <section aria-label="Development" style={{ ...C.tile, gap: "8px", padding: "12px 16px", flexGrow: "1" }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
-                <h2 style={{ ...C.h2 }}>Development · every player, this term</h2>
-                <button onClick={() => go("ADC2-Group")} style={{ border: "0", padding: "0", margin: "-12px 0", background: "transparent", font: "inherit", textAlign: "inherit", textDecoration: "underline", cursor: "pointer", color: "#2f6252", display: "inline-flex", alignItems: "center", minHeight: "44px", fontSize: "14px", fontWeight: "700" }}>My group</button>
+
+            <section aria-label="Development" style={{ ...T.tile, gap: 8, flexGrow: 1 }}>
+              <div style={T.between}><h2 style={T.h2}>Development · every player, this term</h2><button onClick={() => go('ADC2-Group')} style={textLink}>My team</button></div>
+              <div style={{ display: 'flex', gap: 4, flexWrap: 'nowrap' }}>
+                {ps.map(p => (
+                  <button key={p.id} data-dot={p.id} data-status={status(p)} aria-label={`${p.name}: ${DOT[status(p)].say}`} onClick={() => go(coachBoard(p))} style={{ ...plain, margin: '-7px 0', flex: 'none', width: 30, height: 44, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <span style={{ width: 30, height: 30, borderRadius: 999, boxSizing: 'border-box', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 10, fontWeight: 700, ...DOT[status(p)].look }}>{ini(p)}</span>
+                  </button>
+                ))}
               </div>
-              <div style={{ display: "flex", gap: "4px", flexWrap: "nowrap" }}>
-                <button aria-label="KO: up a step" onClick={() => go("ADC1-PlayerFile")} style={{ border: "0", padding: "0", margin: "-7px 0", background: "transparent", font: "inherit", cursor: "pointer", flex: "none", width: "30px", height: "44px", display: "flex", alignItems: "center", justifyContent: "center" }}><span style={{ width: "30px", height: "30px", borderRadius: "999px", boxSizing: "border-box", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "10px", fontWeight: "700", background: "#2f6252", color: "#ffffff" }}>KO</span></button>
-                <button aria-label="AC: same step" onClick={() => go("ADC1-PlayerFile")} style={{ border: "0", padding: "0", margin: "-7px 0", background: "transparent", font: "inherit", cursor: "pointer", flex: "none", width: "30px", height: "44px", display: "flex", alignItems: "center", justifyContent: "center" }}><span style={{ width: "30px", height: "30px", borderRadius: "999px", boxSizing: "border-box", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "10px", fontWeight: "700", background: "#ffffff", color: "#10211f", border: "1.5px solid #c5c8c4" }}>AC</span></button>
-                <button aria-label="JM: no notes in three weeks" onClick={() => go("ADC1-PlayerFile")} style={{ border: "0", padding: "0", margin: "-7px 0", background: "transparent", font: "inherit", cursor: "pointer", flex: "none", width: "30px", height: "44px", display: "flex", alignItems: "center", justifyContent: "center" }}><span style={{ width: "30px", height: "30px", borderRadius: "999px", boxSizing: "border-box", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "10px", fontWeight: "700", background: "#ffffff", color: "#4a5a57", border: "1.5px dashed #8a9794" }}>JM</span></button>
-                <button aria-label="FB: up a step" onClick={() => go("ADC1-PlayerFile")} style={{ border: "0", padding: "0", margin: "-7px 0", background: "transparent", font: "inherit", cursor: "pointer", flex: "none", width: "30px", height: "44px", display: "flex", alignItems: "center", justifyContent: "center" }}><span style={{ width: "30px", height: "30px", borderRadius: "999px", boxSizing: "border-box", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "10px", fontWeight: "700", background: "#2f6252", color: "#ffffff" }}>FB</span></button>
-                <button aria-label="LN: up a step" onClick={() => go("ADC1-PlayerFile")} style={{ border: "0", padding: "0", margin: "-7px 0", background: "transparent", font: "inherit", cursor: "pointer", flex: "none", width: "30px", height: "44px", display: "flex", alignItems: "center", justifyContent: "center" }}><span style={{ width: "30px", height: "30px", borderRadius: "999px", boxSizing: "border-box", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "10px", fontWeight: "700", background: "#2f6252", color: "#ffffff" }}>LN</span></button>
-                <button aria-label="ZA: up a step" onClick={() => go("ADC1-PlayerFile")} style={{ border: "0", padding: "0", margin: "-7px 0", background: "transparent", font: "inherit", cursor: "pointer", flex: "none", width: "30px", height: "44px", display: "flex", alignItems: "center", justifyContent: "center" }}><span style={{ width: "30px", height: "30px", borderRadius: "999px", boxSizing: "border-box", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "10px", fontWeight: "700", background: "#2f6252", color: "#ffffff" }}>ZA</span></button>
-                <button aria-label="IT: up a step" onClick={() => go("ADC1-PlayerFile")} style={{ border: "0", padding: "0", margin: "-7px 0", background: "transparent", font: "inherit", cursor: "pointer", flex: "none", width: "30px", height: "44px", display: "flex", alignItems: "center", justifyContent: "center" }}><span style={{ width: "30px", height: "30px", borderRadius: "999px", boxSizing: "border-box", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "10px", fontWeight: "700", background: "#2f6252", color: "#ffffff" }}>IT</span></button>
-                <button aria-label="NP: no notes in three weeks" onClick={() => go("ADC1-PlayerFile")} style={{ border: "0", padding: "0", margin: "-7px 0", background: "transparent", font: "inherit", cursor: "pointer", flex: "none", width: "30px", height: "44px", display: "flex", alignItems: "center", justifyContent: "center" }}><span style={{ width: "30px", height: "30px", borderRadius: "999px", boxSizing: "border-box", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "10px", fontWeight: "700", background: "#ffffff", color: "#4a5a57", border: "1.5px dashed #8a9794" }}>NP</span></button>
-                <button aria-label="ML: no notes in three weeks" onClick={() => go("ADC1-PlayerFile")} style={{ border: "0", padding: "0", margin: "-7px 0", background: "transparent", font: "inherit", cursor: "pointer", flex: "none", width: "30px", height: "44px", display: "flex", alignItems: "center", justifyContent: "center" }}><span style={{ width: "30px", height: "30px", borderRadius: "999px", boxSizing: "border-box", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "10px", fontWeight: "700", background: "#ffffff", color: "#4a5a57", border: "1.5px dashed #8a9794" }}>ML</span></button>
-                <button aria-label="RD: up a step" onClick={() => go("ADC1-PlayerFile")} style={{ border: "0", padding: "0", margin: "-7px 0", background: "transparent", font: "inherit", cursor: "pointer", flex: "none", width: "30px", height: "44px", display: "flex", alignItems: "center", justifyContent: "center" }}><span style={{ width: "30px", height: "30px", borderRadius: "999px", boxSizing: "border-box", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "10px", fontWeight: "700", background: "#2f6252", color: "#ffffff" }}>RD</span></button>
-                <button aria-label="TS: up a step" onClick={() => go("ADC1-PlayerFile")} style={{ border: "0", padding: "0", margin: "-7px 0", background: "transparent", font: "inherit", cursor: "pointer", flex: "none", width: "30px", height: "44px", display: "flex", alignItems: "center", justifyContent: "center" }}><span style={{ width: "30px", height: "30px", borderRadius: "999px", boxSizing: "border-box", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "10px", fontWeight: "700", background: "#2f6252", color: "#ffffff" }}>TS</span></button>
-                <button aria-label="EK: same step" onClick={() => go("ADC1-PlayerFile")} style={{ border: "0", padding: "0", margin: "-7px 0", background: "transparent", font: "inherit", cursor: "pointer", flex: "none", width: "30px", height: "44px", display: "flex", alignItems: "center", justifyContent: "center" }}><span style={{ width: "30px", height: "30px", borderRadius: "999px", boxSizing: "border-box", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "10px", fontWeight: "700", background: "#ffffff", color: "#10211f", border: "1.5px solid #c5c8c4" }}>EK</span></button>
-                <button aria-label="OB: up a step" onClick={() => go("ADC1-PlayerFile")} style={{ border: "0", padding: "0", margin: "-7px 0", background: "transparent", font: "inherit", cursor: "pointer", flex: "none", width: "30px", height: "44px", display: "flex", alignItems: "center", justifyContent: "center" }}><span style={{ width: "30px", height: "30px", borderRadius: "999px", boxSizing: "border-box", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "10px", fontWeight: "700", background: "#2f6252", color: "#ffffff" }}>OB</span></button>
-                <button aria-label="HW: up a step" onClick={() => go("ADC1-PlayerFile")} style={{ border: "0", padding: "0", margin: "-7px 0", background: "transparent", font: "inherit", cursor: "pointer", flex: "none", width: "30px", height: "44px", display: "flex", alignItems: "center", justifyContent: "center" }}><span style={{ width: "30px", height: "30px", borderRadius: "999px", boxSizing: "border-box", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "10px", fontWeight: "700", background: "#2f6252", color: "#ffffff" }}>HW</span></button>
-                <button aria-label="PG: same step" onClick={() => go("ADC1-PlayerFile")} style={{ border: "0", padding: "0", margin: "-7px 0", background: "transparent", font: "inherit", cursor: "pointer", flex: "none", width: "30px", height: "44px", display: "flex", alignItems: "center", justifyContent: "center" }}><span style={{ width: "30px", height: "30px", borderRadius: "999px", boxSizing: "border-box", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "10px", fontWeight: "700", background: "#ffffff", color: "#10211f", border: "1.5px solid #c5c8c4" }}>PG</span></button>
-                <button aria-label="SV: up a step" onClick={() => go("ADC1-PlayerFile")} style={{ border: "0", padding: "0", margin: "-7px 0", background: "transparent", font: "inherit", cursor: "pointer", flex: "none", width: "30px", height: "44px", display: "flex", alignItems: "center", justifyContent: "center" }}><span style={{ width: "30px", height: "30px", borderRadius: "999px", boxSizing: "border-box", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "10px", fontWeight: "700", background: "#2f6252", color: "#ffffff" }}>SV</span></button>
-                <button aria-label="DC: up a step" onClick={() => go("ADC1-PlayerFile")} style={{ border: "0", padding: "0", margin: "-7px 0", background: "transparent", font: "inherit", cursor: "pointer", flex: "none", width: "30px", height: "44px", display: "flex", alignItems: "center", justifyContent: "center" }}><span style={{ width: "30px", height: "30px", borderRadius: "999px", boxSizing: "border-box", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "10px", fontWeight: "700", background: "#2f6252", color: "#ffffff" }}>DC</span></button>
-                <button aria-label="WM: up a step" onClick={() => go("ADC1-PlayerFile")} style={{ border: "0", padding: "0", margin: "-7px 0", background: "transparent", font: "inherit", cursor: "pointer", flex: "none", width: "30px", height: "44px", display: "flex", alignItems: "center", justifyContent: "center" }}><span style={{ width: "30px", height: "30px", borderRadius: "999px", boxSizing: "border-box", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "10px", fontWeight: "700", background: "#2f6252", color: "#ffffff" }}>WM</span></button>
-                <button aria-label="YA: same step" onClick={() => go("ADC1-PlayerFile")} style={{ border: "0", padding: "0", margin: "-7px 0", background: "transparent", font: "inherit", cursor: "pointer", flex: "none", width: "30px", height: "44px", display: "flex", alignItems: "center", justifyContent: "center" }}><span style={{ width: "30px", height: "30px", borderRadius: "999px", boxSizing: "border-box", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "10px", fontWeight: "700", background: "#ffffff", color: "#10211f", border: "1.5px solid #c5c8c4" }}>YA</span></button>
-                <button aria-label="BN: up a step" onClick={() => go("ADC1-PlayerFile")} style={{ border: "0", padding: "0", margin: "-7px 0", background: "transparent", font: "inherit", cursor: "pointer", flex: "none", width: "30px", height: "44px", display: "flex", alignItems: "center", justifyContent: "center" }}><span style={{ width: "30px", height: "30px", borderRadius: "999px", boxSizing: "border-box", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "10px", fontWeight: "700", background: "#2f6252", color: "#ffffff" }}>BN</span></button>
-                <button aria-label="CF: up a step" onClick={() => go("ADC1-PlayerFile")} style={{ border: "0", padding: "0", margin: "-7px 0", background: "transparent", font: "inherit", cursor: "pointer", flex: "none", width: "30px", height: "44px", display: "flex", alignItems: "center", justifyContent: "center" }}><span style={{ width: "30px", height: "30px", borderRadius: "999px", boxSizing: "border-box", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "10px", fontWeight: "700", background: "#2f6252", color: "#ffffff" }}>CF</span></button>
-                <button aria-label="GH: up a step" onClick={() => go("ADC1-PlayerFile")} style={{ border: "0", padding: "0", margin: "-7px 0", background: "transparent", font: "inherit", cursor: "pointer", flex: "none", width: "30px", height: "44px", display: "flex", alignItems: "center", justifyContent: "center" }}><span style={{ width: "30px", height: "30px", borderRadius: "999px", boxSizing: "border-box", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "10px", fontWeight: "700", background: "#2f6252", color: "#ffffff" }}>GH</span></button>
+              <div data-legend="" style={{ display: 'flex', gap: 18, flexWrap: 'wrap' }}>
+                {[2, 1, 0].map(k => (
+                  <span key={k} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 13, color: '#33443f' }}>
+                    <span style={{ width: 14, height: 14, borderRadius: 999, boxSizing: 'border-box', ...DOT[k].look }} />
+                    {tally[k]} {['with no notes in 3 weeks', 'on the same step', 'up a step'][k]}
+                  </span>
+                ))}
               </div>
-              <div style={{ display: "flex", gap: "18px", flexWrap: "wrap" }}>
-                <span style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontSize: "13px", color: "#33443f" }}>
-                  <span style={{ width: "14px", height: "14px", borderRadius: "999px", boxSizing: "border-box", background: "#2f6252" }} />
-                  15 up a step
-                </span>
-                <span style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontSize: "13px", color: "#33443f" }}>
-                  <span style={{ width: "14px", height: "14px", borderRadius: "999px", boxSizing: "border-box", background: "#ffffff", border: "1.5px solid #c5c8c4" }} />
-                  4 on the same step
-                </span>
-                <span style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontSize: "13px", color: "#33443f" }}>
-                  <span style={{ width: "14px", height: "14px", borderRadius: "999px", boxSizing: "border-box", background: "#ffffff", border: "1.5px dashed #8a9794" }} />
-                  3 with no notes in 3 weeks
-                </span>
-              </div>
-              <div style={{ display: "flex", alignItems: "center", gap: "12px", minHeight: "56px", borderTop: "1px solid #e9eae8" }}>
-                <span style={{ flex: "none", width: "34px", height: "34px", borderRadius: "999px", background: "#eef5f2", color: "#10211f", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", fontWeight: "700" }}>KO</span>
-                <span style={{ flexGrow: "1", minWidth: "0" }}>
-                  <span style={{ display: "block", fontSize: "15px", lineHeight: "21px", fontWeight: "700" }}>Kai is up a step on first touch</span>
-                  <span style={{ display: "block", fontSize: "13px", lineHeight: "18px", color: "#4a5a57" }}>There’s a 9-second clip from Thursday that shows it</span>
-                </span>
-                <button onClick={() => go("ADC3-SessionFilm")} style={{ margin: "0", font: "inherit", textAlign: "inherit", cursor: "pointer", ...C.primary }}>Send to his family</button>
-              </div>
-              <div style={{ display: "flex", alignItems: "center", gap: "12px", minHeight: "56px", borderTop: "1px solid #e9eae8" }}>
-                <span style={{ flex: "none", width: "34px", height: "34px", borderRadius: "999px", background: "#f4e6e6", color: "#10211f", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", fontWeight: "700" }}>AC</span>
-                <span style={{ flexGrow: "1", minWidth: "0" }}>
-                  <span style={{ display: "block", fontSize: "15px", lineHeight: "21px", fontWeight: "700" }}>Ana has no goal yet</span>
-                  <span style={{ display: "block", fontSize: "13px", lineHeight: "18px", color: "#4a5a57" }}>She joined 3 weeks ago</span>
-                </span>
-                <button onClick={() => go("ADC10-SetGoal")} style={{ margin: "0", font: "inherit", textAlign: "inherit", cursor: "pointer", ...C.more }}>Set one</button>
-              </div>
-              <div style={{ display: "flex", alignItems: "center", gap: "12px", minHeight: "56px", borderTop: "1px solid #e9eae8" }}>
-                <span style={{ flex: "none", width: "34px", height: "34px", borderRadius: "999px", background: "#f4e6e6", color: "#10211f", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", fontWeight: "700" }}>3</span>
-                <span style={{ flexGrow: "1", minWidth: "0" }}>
-                  <span style={{ display: "block", fontSize: "15px", lineHeight: "21px", fontWeight: "700" }}>Noah, Jonah and Mila have no notes</span>
-                  <span style={{ display: "block", fontSize: "13px", lineHeight: "18px", color: "#4a5a57" }}>Two taps each after tonight’s session</span>
-                </span>
-                <button onClick={() => go("ADC11-AfterSession")} style={{ margin: "0", font: "inherit", textAlign: "inherit", cursor: "pointer", ...C.more }}>Add notes</button>
-              </div>
-              <span style={{ ...C.cap, marginTop: "auto" }}>Steps come from your own notes after each session. Film backs them for the players you’ve filmed.</span>
+              {clipFor && (
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 56, borderTop: `1px solid ${HAIR}` }}>
+                  <span style={face(PALE)}>{ini(clipFor)}</span>
+                  <span style={{ flexGrow: 1, minWidth: 0 }}>
+                    <span style={{ display: 'block', fontSize: 15, lineHeight: '21px', fontWeight: 700 }}>{firstName(clipFor)} is up a step on {a.skills[clipFor.skills_now.findIndex((s, k) => s > clipFor.skills_then[k])].toLowerCase()}</span>
+                    <span style={{ display: 'block', fontSize: 13, lineHeight: '18px', color: MUT }}>No clip has gone home this term. Tonight’s film has one that shows it</span>
+                  </span>
+                  <Primary onClick={() => openThen(clipFor.id, 'ADC3-SessionFilm')}>Send to {firstName(clipFor)}’s family</Primary>
+                </div>
+              )}
+              {noGoal.length > 0 && (
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 56, borderTop: `1px solid ${HAIR}` }}>
+                  <span style={face(MAUVE_PALE)}>{noGoal.length === 1 ? ini(noGoal[0]) : String(noGoal.length)}</span>
+                  <span style={{ flexGrow: 1, minWidth: 0 }}>
+                    <span style={{ display: 'block', fontSize: 15, lineHeight: '21px', fontWeight: 700 }}>{names(noGoal)} {noGoal.length === 1 ? 'has' : 'have'} no goal yet</span>
+                    <span style={{ display: 'block', fontSize: 13, lineHeight: '18px', color: MUT }}>{noGoal.length === 1 ? (isNew(noGoal[0], g) ? `Joined on ${dayMonth(noGoal[0].joined)}` : 'One goal at a time') : `One goal at a time, starting with ${firstName(noGoal[0])}`}</span>
+                  </span>
+                  <More onClick={() => openThen(noGoal[0].id, 'ADC10-SetGoal')}>Set one</More>
+                </div>
+              )}
+              {noNotes.length > 0 && (
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 56, borderTop: `1px solid ${HAIR}` }}>
+                  <span style={face(MAUVE_PALE)}>{noNotes.length === 1 ? ini(noNotes[0]) : String(noNotes.length)}</span>
+                  <span style={{ flexGrow: 1, minWidth: 0 }}>
+                    <span style={{ display: 'block', fontSize: 15, lineHeight: '21px', fontWeight: 700 }}>{names(noNotes)} {noNotes.length === 1 ? 'has' : 'have'} no notes</span>
+                    <span style={{ display: 'block', fontSize: 13, lineHeight: '18px', color: MUT }}>Two taps each after tonight’s session</span>
+                  </span>
+                  <More onClick={() => go('ADC11-AfterSession')}>Add notes</More>
+                </div>
+              )}
+              {!clipFor && !noGoal.length && !noNotes.length && <span style={{ fontSize: 15, lineHeight: '21px', paddingTop: 8, borderTop: `1px solid ${HAIR}` }}>Every player has a goal and notes, and every player who is up a step has a clip at home.</span>}
+              <span style={{ ...T.cap, marginTop: 'auto' }}>Steps come from your own notes after each session. Film backs them for the players you’ve filmed.</span>
             </section>
           </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: "12px", minHeight: "0" }}>
-            <section aria-label="Oversight" style={{ ...C.tile, gap: "2px", padding: "12px 14px", flexGrow: "1" }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
-                <h2 style={{ ...C.h2 }}>Has anything slipped?</h2>
-                <span style={{ display: "inline-flex", alignItems: "center", gap: "5px", fontSize: "12px", fontWeight: "700", color: "#10211f", whiteSpace: "nowrap" }}>
-                  <span style={{ width: "9px", height: "9px", borderRadius: "999px", boxSizing: "border-box", background: "#f4c95d", border: "1px solid #b98f1d" }} />
-                  Strong
-                </span>
-              </div>
-              <span style={{ fontSize: "13px", lineHeight: "18px", color: "#4a5a57" }}>Advanced · counted from what you’ve done in Clean Sheet</span>
-              <button onClick={() => go("ADC11-AfterSession")} style={{ border: "0", padding: "0", margin: "0", background: "transparent", font: "inherit", textAlign: "inherit", cursor: "pointer", display: "flex", flexDirection: "column", gap: "4px", minHeight: "60px", justifyContent: "center", borderTop: "1px solid #e9eae8", textDecoration: "none", color: "#10211f" }}>
-                <span style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: "8px" }}>
-                  <strong style={{ fontSize: "14px", lineHeight: "18px" }}>Notes in the last 3 weeks</strong>
-                  <strong style={{ ...C.num, fontSize: "15px", whiteSpace: "nowrap" }}>19 of 22</strong>
-                </span>
-                <span role="img" aria-label="19 of 22" style={{ display: "block", height: "8px", borderRadius: "4px", background: "#e9eae8", overflow: "hidden" }}>
-                  <span style={{ display: "block", height: "100%", width: "86%", background: "#2f6252" }} />
-                </span>
-                <span style={{ fontSize: "12px", lineHeight: "16px", color: "#4a5a57" }}>3 players to catch up on</span>
-              </button>
-              <button onClick={() => go("ADC10-SetGoal")} style={{ border: "0", padding: "0", margin: "0", background: "transparent", font: "inherit", textAlign: "inherit", cursor: "pointer", display: "flex", flexDirection: "column", gap: "4px", minHeight: "60px", justifyContent: "center", borderTop: "1px solid #e9eae8", textDecoration: "none", color: "#10211f" }}>
-                <span style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: "8px" }}>
-                  <strong style={{ fontSize: "14px", lineHeight: "18px" }}>A goal set</strong>
-                  <strong style={{ ...C.num, fontSize: "15px", whiteSpace: "nowrap" }}>21 of 22</strong>
-                </span>
-                <span role="img" aria-label="21 of 22" style={{ display: "block", height: "8px", borderRadius: "4px", background: "#e9eae8", overflow: "hidden" }}>
-                  <span style={{ display: "block", height: "100%", width: "95%", background: "#2f6252" }} />
-                </span>
-                <span style={{ fontSize: "12px", lineHeight: "16px", color: "#4a5a57" }}>Only Ana to go</span>
-              </button>
-              <button onClick={() => go("ADC3-SessionFilm")} style={{ border: "0", padding: "0", margin: "0", background: "transparent", font: "inherit", textAlign: "inherit", cursor: "pointer", display: "flex", flexDirection: "column", gap: "4px", minHeight: "60px", justifyContent: "center", borderTop: "1px solid #e9eae8", textDecoration: "none", color: "#10211f" }}>
-                <span style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: "8px" }}>
-                  <strong style={{ fontSize: "14px", lineHeight: "18px" }}>Families sent a clip this term</strong>
-                  <strong style={{ ...C.num, fontSize: "15px", whiteSpace: "nowrap" }}>16 of 22</strong>
-                </span>
-                <span role="img" aria-label="16 of 22" style={{ display: "block", height: "8px", borderRadius: "4px", background: "#e9eae8", overflow: "hidden" }}>
-                  <span style={{ display: "block", height: "100%", width: "73%", background: "#a86b78" }} />
-                </span>
-                <span style={{ fontSize: "12px", lineHeight: "16px", color: "#4a5a57" }}>6 families have seen nothing yet</span>
-              </button>
-              <button onClick={() => go("ACC6-ReportDraft")} style={{ border: "0", padding: "0", margin: "0", background: "transparent", font: "inherit", textAlign: "inherit", cursor: "pointer", display: "flex", flexDirection: "column", gap: "4px", minHeight: "60px", justifyContent: "center", borderTop: "1px solid #e9eae8", textDecoration: "none", color: "#10211f" }}>
-                <span style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: "8px" }}>
-                  <strong style={{ fontSize: "14px", lineHeight: "18px" }}>Term reports drafted</strong>
-                  <strong style={{ ...C.num, fontSize: "15px", whiteSpace: "nowrap" }}>4 of 22</strong>
-                </span>
-                <span role="img" aria-label="4 of 22" style={{ display: "block", height: "8px", borderRadius: "4px", background: "#e9eae8", overflow: "hidden" }}>
-                  <span style={{ display: "block", height: "100%", width: "18%", background: "#2f6252" }} />
-                </span>
-                <span style={{ fontSize: "12px", lineHeight: "16px", color: "#4a5a57" }}>Due to Dani in week 9</span>
-              </button>
-              <span style={{ ...C.cap, marginTop: "auto" }}>Dani sees these same four numbers for every coach.</span>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 12, minHeight: 0 }}>
+            <section aria-label="Oversight" style={{ ...T.tile, padding: '12px 14px', flexGrow: 1 }}>
+              <div style={T.between}><h2 style={T.h2}>Has anything slipped?</h2><StrongDot /></div>
+              <span style={T.sub}>{g.name} · counted from what you’ve done in Clean Sheet</span>
+              {meters.map((m, k) => (
+                <button key={m.label} data-meter={m.label} data-n={m.n} data-of={m.of} onClick={() => go(opens[k])} style={{ ...plain, display: 'flex', flexDirection: 'column', gap: 4, minHeight: 60, justifyContent: 'center', borderTop: `1px solid ${HAIR}` }}>
+                  <span style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 8 }}>
+                    <strong style={{ fontSize: 14, lineHeight: '18px' }}>{m.label}</strong>
+                    <strong style={{ ...T.num, fontSize: 15, whiteSpace: 'nowrap' }}>{m.n} of {m.of}</strong>
+                  </span>
+                  {/* Mauve below two-thirds. */}
+                  <span role="img" aria-label={`${m.n} of ${m.of}`} style={{ display: 'block', height: 8, borderRadius: 4, background: '#e9eae8', overflow: 'hidden' }}>
+                    <span style={{ display: 'block', height: '100%', width: `${Math.round(100 * m.n / (m.of || 1))}%`, background: m.low ? '#a86b78' : G }} />
+                  </span>
+                  <span style={{ fontSize: 12, lineHeight: '16px', color: MUT }}>{under[k]}</span>
+                </button>
+              ))}
+              <span style={{ ...T.cap, marginTop: 'auto' }}>Dani sees these same four numbers for every coach.</span>
             </section>
-            <button aria-label="One thing needs you" onClick={() => go("AD3-Timetable")} style={{ margin: "0", font: "inherit", textAlign: "inherit", cursor: "pointer", ...C.tile, flex: "none", flexDirection: "row", alignItems: "center", gap: "12px", padding: "12px 14px", borderTop: "4px solid #c39797", textDecoration: "none", color: "#10211f" }}>
-              <span style={{ flex: "none", width: "36px", height: "36px", borderRadius: "999px", background: "#f4e6e6", color: "#10211f", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", fontWeight: "700" }}>1</span>
-              <span style={{ flexGrow: "1", minWidth: "0", display: "flex", flexDirection: "column" }}>
-                <strong style={{ fontSize: "15px" }}>One thing needs you</strong>
-                <span style={{ fontSize: "13px", lineHeight: "18px", color: "#4a5a57" }}>Dani asked: can you cover Thursday 11 June?</span>
+            <button aria-label="One thing needs you" onClick={() => go('ACC13-AcademyChat')} style={{ ...plain, ...T.tile, flex: 'none', flexDirection: 'row', alignItems: 'center', gap: 12, padding: '12px 14px', borderTop: '4px solid #c39797' }}>
+              <span style={{ ...face(MAUVE_PALE), width: 36, height: 36 }}>1</span>
+              <span style={{ flexGrow: 1, minWidth: 0, display: 'flex', flexDirection: 'column' }}>
+                <strong style={{ fontSize: 15 }}>One thing needs you</strong>
+                <span style={T.sub}>Dani asked: can you cover U13 Gold on Thu 11 June?</span>
               </span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M9 6l6 6-6 6" />
-              </svg>
+              <Chevron size={16} />
             </button>
           </div>
         </div>

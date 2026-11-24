@@ -1,4 +1,4 @@
-// Clean Sheet Family (family-app-v26), on a phone. It is the one app a parent uses, before and after their club joins. A parent uploads a video; credits pay for finding their own child's
+// Clean Sheet Family (family-app-v27), on a phone. It is the one app a parent uses, before and after their club joins. A parent uploads a video; credits pay for finding their own child's
 // moments, and the first video is free. It works whether or not the club uses Clean Sheet. A child's reel and numbers are
 // private to the family for ever: no control here sends a video, a clip or a count to a club, a coach or another family.
 // Another family can get their own child's moments from a video, only if the uploader sends them the link and says yes.
@@ -11,6 +11,7 @@ import { G, INK, MUT, LINE, PALE } from '../capture/marks'
 import LearnPlayer, { Thumb } from '../learn/LearnPlayer'
 import EducationPhone from '../learn/EducationPhone'
 import { byTitle } from '../learn/library'
+import { cameOf, groupOf, money, playerOf, setTerm3, useAcademy } from '../academy/academyStore'
 import { ADDED_ODDS, ASKERS, ASKS, CHECK, JOINABLE, CONSENT_BACK, SESSIONS, STAFF, CLUBS, HOWS, KINDS, MAX_MINUTES, OFFER_AT, PACKS, RATES, SAMPLE_OLDER, SHOW_COUNT_AT, SHOW_XG, STAT, STAT_KEYS, TEAM, TEAM_LINK, aboutGames, affordable, addSampleOlder, ageOf, clockOf, familyNow, film, filmId, finish, freeLeft, freshFamily, fullGames, howOf, named, ord, outcome, preset, priceOf, quote, reelOf, secsOf, setFamily, spend, tagged, useFamily, worth, xgOf, type Clip, type Family, type Invite, type Kind, type StatKey, type Video } from './familyStore'
 
 // Colour (family-app-v10). Green: things you do. Amber: your child's moments, and anything free. Mauve, on plum: with your club.
@@ -47,6 +48,8 @@ const RESTORED = 'Checked with your app store. Anything you paid for is back in 
 /** Placeholder for legal review: clips of a child already shared with the team come down within this many days of consent being taken back. */
 const CLIPS_DOWN_DAYS = 7
 const BAR = '#e3ad2f'
+/** The sample family's child in the academy's list: Ari Kovac, U9 Timber. */
+const ARI_IN_ACADEMY = 57
 // The academy's four core skills, five steps each: where the sample child was in week 1, and now. And the review chat's times.
 const SKILLS: [string, number, number][] = [['First touch', 2, 4], ['Running with the ball', 3, 3], ['One against one', 2, 3], ['Striking the ball', 3, 3]]
 /** One-on-ones (ADP6). The price and the 24 hours are placeholders to confirm. */
@@ -144,7 +147,12 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
   const [at, setAt] = useState(36 * 60 + 40), [what, setWhat] = useState('A goal'), [stopped, setStopped] = useState(false)
   const say = (m: string) => { keep(m); setToast(m); setTimeout(() => { if (said === m) keep(null); setToast(t => t === m ? null : t) }, 3600) }
   const he = kid.he ? 'he' : 'she', him = kid.he ? 'him' : 'her', his = kid.he ? 'his' : 'her', age = ageOf(kid.year)
-  const coach = f.club?.academy ? 'Reece' : STAFF.coach   // the sample academy's coach
+  // With an academy, the child is one of the players in the academy's own list (programs v2): the sample family's Ari is Ari Kovac in U9 Timber.
+  // What the family sees (the coach, the price, sessions been to, the steps) is counted from that list, and the Term 3 answer is written back to it.
+  const ac = useAcademy(), ap = f.club?.academy && kid.name === 'Ari' ? playerOf(ac, ARI_IN_ACADEMY) : undefined, ag = ap ? groupOf(ac, ap.group) : undefined
+  const coach = f.club?.academy ? ag?.coach.split(' ')[0] ?? 'Reece' : STAFF.coach
+  const fee = ag?.price ?? ac.price_this_term.Development, been = ap ? cameOf(ap) : { came: 12, of: 14 }
+  const steps: [string, number, number][] = ap ? ac.skills.map((t, k) => [t, ap.skills_then[k], ap.skills_now[k]]) : SKILLS
   const club = f.club?.name ?? 'your club', families = f.club && !f.club.unmatched && f.club.name === 'Hillview FC' ? f.families : 0, count = families >= SHOW_COUNT_AT
   const mine = f.videos.filter(v => v.kid === kid.id), ready = mine.filter(v => v.state === 'ready'), latest = ready[0]
   const video = f.videos.find(v => v.id === f.open) ?? null, working = f.videos.find(v => v.id === f.working && v.state === 'working') ?? null
@@ -300,7 +308,7 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
   const quiet: React.CSSProperties = { ...link, minHeight: 48, fontSize: 15, alignSelf: 'center' }
   const small: React.CSSProperties = { ...btn(false), minHeight: 44, fontSize: 14 }
   const dark = (over: string, t: string, line?: string) => <section style={{ borderRadius: 16, background: DEEP, color: '#fff', padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 6 }}><span style={{ ...cap, color: SOFT }}>{over}</span><strong style={{ fontSize: 20, lineHeight: '26px' }}>{t}</strong>{line && <span style={{ fontSize: 14, lineHeight: '20px', color: MINT }}>{line}</span>}</section>
-  const squad = `U${age < 12 ? age : age + 1} ${coach} · ${club}`
+  const squad = ag ? `${ag.name} · ${club}` : `U${age < 12 ? age : age + 1} ${coach} · ${club}`   // with an academy, the team's own name
 
   /** What comes back from one video, as a white card: three sample numbers and sample clips. Sample figures, not a child's: dark ink on pale green, never amber. */
   const comesBack = (label: string, clips: number, foot?: ReactNode) => <div style={{ borderRadius: 20, background: '#fff', color: INK, padding: foot ? '12px 14px 4px' : '12px 14px 6px', display: 'flex', flexDirection: 'column', boxShadow: '0 14px 34px rgba(0,0,0,0.35)' }}>
@@ -888,7 +896,7 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
   // ── FAM39 · fees and helping out. Fees are paid to the club, not to Clean Sheet ──
   if (v === 'FAM39-Fees') { const swap = () => say('Ask to swap. The manager and the other families see the request.')
     return shell(v, head(squad, 'Fees and helping out', 'FAM31-Team'), <>
-      <section style={{ ...card, gap: 0, padding: '12px 14px 4px' }}><strong style={{ fontSize: 16, paddingBottom: 6 }}>Fees</strong>{f.kids.map(x => <div key={x.id} style={{ display: 'flex', justifyContent: 'space-between', gap: 10, padding: '9px 0', borderTop: `1px solid ${HAIR}`, fontSize: 15 }}><span>Winter 2026 · {x.name}</span><strong style={{ flex: 'none' }}>{x.id === 'mia' ? '$260' : '$240'} · paid 2 March</strong></div>)}</section>
+      <section style={{ ...card, gap: 0, padding: '12px 14px 4px' }}><strong style={{ fontSize: 16, paddingBottom: 6 }}>Fees</strong>{f.kids.map(x => <div key={x.id} style={{ display: 'flex', justifyContent: 'space-between', gap: 10, padding: '9px 0', borderTop: `1px solid ${HAIR}`, fontSize: 15 }}><span>{f.club?.academy ? 'Term 2' : 'Winter 2026'} · {x.name}</span><strong style={{ flex: 'none' }}>{f.club?.academy ? (ap && x.id === kid.id ? `${money(fee)} · ${ap.fees_status === 'Paid' ? 'paid' : ap.fees_note || ap.fees_status.toLowerCase()}` : `${money(fee)} · paid`) : `${x.id === 'mia' ? '$260' : '$240'} · paid 2 March`}</strong></div>)}</section>
       {listed('Your turns', [['Oranges', 'Sun 28 June', 'Swap', swap], ['Canteen', 'Sun 5 July · 9 to 10', 'Swap', swap]])}
       <span style={note}>Fees are paid to {club}, not to Clean Sheet. Credits are separate and only for your own videos.</span>
     </>, 'team') }
@@ -930,7 +938,7 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
         <button role="checkbox" aria-checked={tell} onClick={() => { set({ tell: !tell }); say(tell ? `${coach} will not be told the reason.` : `${coach} will be told the reason.`) }} style={{ ...row, minHeight: 48 }}><span aria-hidden style={{ flex: 'none', width: 24, height: 24, borderRadius: 7, boxSizing: 'border-box', background: tell ? G : '#fff', border: tell ? 0 : `2px solid ${MUT}`, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{tell && <I d={TICK} size={14} w={3} />}</span><span style={{ fontSize: 16 }}>Tell {coach} the reason too</span></button>
       </>, 'club', actions(true, stop ? <button key="a" onClick={() => { say('Dani is asked. She confirms what comes back.'); home() }} style={btn(true)}>Ask for the unused weeks back</button> : <button key="a" onClick={() => { set({ paused: true }); say('Paused from 9 June. $58 comes off your next bill.'); home() }} style={btn(true)}>Pause {name}’s place</button>)) }
 
-    if (v === 'ADP10-WhyLeaving') { const leave = (line: string) => () => { set({ place: 'left' }); setStory(''); say(line); home() }
+    if (v === 'ADP10-WhyLeaving') { const leave = (line: string) => () => { set({ place: 'left' }); if (ap) setTerm3(ap.id, 'Leaving'); setStory(''); say(line); home() }
       return shell(v, head(over, 'Before you go', hop('ADP3-KeepPlace')), <>
         <section style={card}><strong style={{ fontSize: 16 }}>Two quick questions</strong><span style={{ fontSize: 15, lineHeight: '21px', color: MUT }}>{name}’s place is released either way. This helps the academy get better.</span></section>
         <div role="radiogroup" aria-label="Why" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>{WHY.map((t, n) => <button key={t} role="radio" aria-checked={a.why2 === n} onClick={() => { set({ why2: n }); say(`${t} chosen.`) }} style={{ ...card, flexDirection: 'row', alignItems: 'center', gap: 12, minHeight: 52, border: a.why2 === n ? `2px solid ${G}` : `1px solid ${LINE}`, fontFamily: 'inherit', color: INK, textAlign: 'left', cursor: 'pointer' }}><span aria-hidden style={{ flex: 'none', width: 22, height: 22, borderRadius: 999, boxSizing: 'border-box', border: a.why2 === n ? `7px solid ${G}` : `2px solid ${MUT}`, background: '#fff' }} /><strong style={{ fontSize: 16 }}>{t}</strong></button>)}</div>
@@ -944,7 +952,7 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
 
     if (v === 'ADP12-MoveOffer') return shell(v, head(over, `A move for ${name}?`, home), <>
       {dark(`FROM ${coach.toUpperCase()} AND DANI`, `We think ${name} is ready for Advanced.`, `“${his[0].toUpperCase()}${his.slice(1)} first touch and ${his} confidence on the ball are ahead of ${his} group.”`)}
-      <section style={{ ...card, gap: 0, padding: '2px 14px' }}>{pairs([['Now', 'Development · Tue, Thu 4:30'], ['Would be', 'Advanced · Tue, Thu 5:30'], ['Session', '70 minutes, was 55'], ['Price', '$320 a term, was $290'], ['Coach', `${coach} and Sofia`]])}</section>
+      <section style={{ ...card, gap: 0, padding: '2px 14px' }}>{pairs([['Now', 'Development · Tue, Thu 4:30'], ['Would be', 'Advanced · Tue, Thu 5:30'], ['Session', '70 minutes, was 55'], ['Price', `${money(ac.price_this_term.Advanced)} a term, was ${money(fee)}`], ['Coach', `${coach} and Sofia`]])}</section>
       <span style={note}>Try two sessions first. Then you, {name} and {coach} decide. Nothing changes until you say yes.</span>
     </>, 'club', actions(true, <button key="a" onClick={() => { say(`No problem. ${name} stays in Development. ${coach} is told.`); home() }} style={btn(false)}>Not now</button>, <button key="b" onClick={() => { say('Booked: Tuesday 14 and Thursday 16 July at 5:30. No change to your bill yet.'); home() }} style={btn(true)}>Try two sessions</button>))
 
@@ -993,18 +1001,18 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
       return shell(v, head(over, 'Term 2 report', home), <>
         {dark(`FROM ${coach.toUpperCase()}`, `${name}’s first touch has changed the most.`, `“${kid.he ? 'He' : 'She'} takes it on the move now and looks up sooner. Next is doing it with a defender close.”`)}
         <section style={{ ...card, gap: 0, padding: '12px 14px' }}><strong style={{ fontSize: 16, paddingBottom: 6 }}>Week 1, and now</strong>
-          {SKILLS.map(([t, was, now]) => <div key={t} role="img" aria-label={`${t}: step ${was} of 5 in week 1, step ${now} of 5 now`} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 46, borderTop: `1px solid ${HAIR}` }}><strong style={{ flexGrow: 1, fontSize: 15 }}>{t}</strong>{dots(was, true)}<I d="M5 12h14M13 6l6 6-6 6" size={14} />{dots(now, false)}</div>)}
+          {steps.map(([t, was, now]) => <div key={t} role="img" aria-label={`${t}: step ${was} of 5 in week 1, step ${now} of 5 now`} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 46, borderTop: `1px solid ${HAIR}` }}><strong style={{ flexGrow: 1, fontSize: 15 }}>{t}</strong>{dots(was, true)}<I d="M5 12h14M13 6l6 6-6 6" size={14} />{dots(now, false)}</div>)}
           <span style={{ fontSize: 13, lineHeight: '19px', color: MUT, paddingTop: 8, borderTop: `1px solid ${HAIR}` }}>Five steps per skill, against {name}’s own start. Never against other children.</span></section>
         <section style={{ ...card, gap: 4 }}><strong style={{ fontSize: 16 }}>The moment {coach} picked</strong><button onClick={play} style={{ ...row, minHeight: 64 }}><span style={{ flex: 'none', width: 96 }}><Thumb kind="team" len="0:08" wide /></span><span style={{ display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 15, lineHeight: '20px' }}>First touch, then away</strong><span style={{ fontSize: 13, color: MUT }}>Thu 28 May · skill game</span></span></button></section>
-        <section style={{ ...card, gap: 0, padding: '2px 14px' }}>{pairs([['Came to', '13 of 14 sessions'], ['Goal for Term 3', 'First touch under pressure']])}</section>
+        <section style={{ ...card, gap: 0, padding: '2px 14px' }}>{pairs([['Came to', `${been.came} of ${been.of} sessions`], ['Goal for Term 3', 'First touch under pressure']])}</section>
       </>, 'club', actions(true, <button key="a" onClick={hop('ADP4-BookChat')} style={btn(false)}>Book a chat</button>, <button key="b" onClick={hop('ADP3-KeepPlace')} style={btn(true)}>Keep {name}’s place</button>)) }
 
     if (v === 'ADP3-KeepPlace') { const parts = a.pay === 1
       return shell(v, head(over, `Keep ${name}’s place`, home), <>
-        <section style={{ ...card, gap: 0, padding: '12px 14px 2px' }}><strong style={{ fontSize: 17 }}>Development · Term 3</strong><span style={{ fontSize: 14, color: MUT, paddingBottom: 6 }}>Same group, same coach, same days.</span><div style={{ borderTop: `1px solid ${HAIR}` }}>{pairs([['When', 'Tue and Thu, 4:30'], ['Dates', '13 July to 18 Sept'], ['Where', 'Messmate Primary School'], ['Coach', coach], ['Price', '$290 for 10 weeks']])}</div></section>
-        <div role="radiogroup" aria-label="How to pay" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>{pick(!parts, 'Pay $290 now', 'Card ending 4410', () => { set({ pay: 0 }); say('Pay $290 now chosen.') })}{pick(parts, 'Pay in 3 parts', '$96.67 now, then 13 July and 10 August · no extra cost', () => { set({ pay: 1 }); say('Pay in 3 parts chosen.') })}</div>
+        <section style={{ ...card, gap: 0, padding: '12px 14px 2px' }}><strong style={{ fontSize: 17 }}>Development · Term 3</strong><span style={{ fontSize: 14, color: MUT, paddingBottom: 6 }}>Same group, same coach, same days.</span><div style={{ borderTop: `1px solid ${HAIR}` }}>{pairs([['When', 'Tue and Thu, 4:30'], ['Dates', '13 July to 18 Sept'], ['Where', 'Messmate Primary School'], ['Coach', coach], ['Price', `${money(fee)} for 10 weeks`]])}</div></section>
+        <div role="radiogroup" aria-label="How to pay" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>{pick(!parts, `Pay ${money(fee)} now`, 'Card ending 4410', () => { set({ pay: 0 }); say(`Pay ${money(fee)} now chosen.`) })}{pick(parts, 'Pay in 3 parts', `$${(fee / 3).toFixed(2)} now, then 13 July and 10 August · no extra cost`, () => { set({ pay: 1 }); say('Pay in 3 parts chosen.') })}</div>
         <span style={note}>Plans change. Tell the academy before 13 July and the full amount comes back.</span>
-      </>, 'club', actions(true, <button key="a" onClick={hop('ADP10-WhyLeaving')} style={{ ...btn(false), flex: 0.8 }}>Not coming back</button>, <button key="b" onClick={() => { set({ place: 'kept' }); say(`${name}’s place is kept for Term 3. A receipt is in Fees.`); home() }} style={btn(true)}>Keep my place · {parts ? '$96.67 now' : '$290'}</button>)) }
+      </>, 'club', actions(true, <button key="a" onClick={hop('ADP10-WhyLeaving')} style={{ ...btn(false), flex: 0.8 }}>Not coming back</button>, <button key="b" onClick={() => { set({ place: 'kept' }); if (ap) setTerm3(ap.id, 'Staying'); say(`${name}’s place is kept for Term 3. A receipt is in Fees.`); home() }} style={btn(true)}>Keep my place · {parts ? `$${(fee / 3).toFixed(2)} now` : money(fee)}</button>)) }
 
     if (v === 'ADP4-BookChat') { const s = SLOTS[a.slot] ?? SLOTS[0]
       return shell(v, head(over, 'Review chat', home), <>
@@ -1030,14 +1038,14 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
     return shell('ADP1-AcademyHome', head(over, 'Academy'), <>
       <section aria-label="Now" style={{ ...card, flexDirection: 'row', alignItems: 'center', gap: 10, padding: '8px 8px 8px 14px' }}><span style={{ flexGrow: 1, minWidth: 0, display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 14, lineHeight: '18px' }}>{a.paused ? 'Paused from Tuesday 9 June' : 'Today · 4:30 Development'}</strong><span style={{ fontSize: 12, lineHeight: '16px', color: MUT }}>{a.paused ? `Back on Tuesday 23 June · with ${coach}` : `Messmate Primary · with ${coach}`}</span></span><button onClick={out6} style={{ ...btn(true), flex: 'none', minHeight: 44, padding: '0 16px', fontSize: 14 }}>Can’t come</button></section>
       <section aria-label="Progress" style={{ borderRadius: 16, background: DEEP, color: '#fff', padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 6 }}><span style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', color: AMBER }}>{name.toUpperCase()}’S PROGRESS · TERM 2</span><strong style={{ fontSize: 18, lineHeight: '23px', letterSpacing: '-0.01em' }}>{name} now takes {his} first touch on the move.</strong>
-        {HOME_STEPS.map(([t, was, now]) => <span key={t} style={{ display: 'flex', alignItems: 'baseline', gap: 8, minHeight: 26, borderTop: '1px solid rgba(255,255,255,0.16)', paddingTop: 4 }}><span style={{ flexGrow: 1, fontSize: 13, lineHeight: '18px' }}>{t}</span><span style={{ fontSize: 12, color: MINT, whiteSpace: 'nowrap' }}>Week 1: step {was}</span><span aria-hidden style={{ color: MINT, display: 'flex' }}><I d="M5 12h14M13 6l6 6-6 6" size={12} w={2.2} /></span><strong style={{ fontSize: 17, color: AMBER, whiteSpace: 'nowrap' }}>Step {now} of 5</strong></span>)}
+        {(ap ? steps.filter(x => x[2] > x[1]).slice(0, 2) : HOME_STEPS).map(([t, was, now]) => <span key={t} style={{ display: 'flex', alignItems: 'baseline', gap: 8, minHeight: 26, borderTop: '1px solid rgba(255,255,255,0.16)', paddingTop: 4 }}><span style={{ flexGrow: 1, fontSize: 13, lineHeight: '18px' }}>{t}</span><span style={{ fontSize: 12, color: MINT, whiteSpace: 'nowrap' }}>Week 1: step {was}</span><span aria-hidden style={{ color: MINT, display: 'flex' }}><I d="M5 12h14M13 6l6 6-6 6" size={12} w={2.2} /></span><strong style={{ fontSize: 17, color: AMBER, whiteSpace: 'nowrap' }}>Step {now} of 5</strong></span>)}
         <button onClick={() => go('FAM37-FromCoach')} style={{ minHeight: 44, marginTop: 2, borderRadius: 999, border: 0, background: AMBER, color: INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, cursor: 'pointer' }}><I d={PLAY} size={15} />Watch then and now</button></section>
       <section aria-label="Development" style={{ ...card, gap: 2, padding: '10px 14px' }}><strong style={{ fontSize: 15, lineHeight: '20px', paddingBottom: 4 }}>What {name} is working on</strong>
         {work('1', TINTS[2], 'Goal: first touch on the move', `Practice this week · ${done === 0 ? 'three to go' : left === 0 ? 'done three times' : `done ${['', 'once', 'twice'][done]}, ${['', 'one', 'two'][left]} to go`}`, hop('ADP5-Practice'))}
         {work(coach[0], ROSE, `Term 2 report is ready, from ${coach}`, a.chat === 'booked' ? `Chat booked: ${slot[0]}, ${slot[1]}` : a.chat === 'none' ? `${coach} will send it with a spoken note` : 'Then book ten minutes with him in week 9', hop('ADP2-TermReport'))}
         {age >= 15 && work('→', TINTS[3], `${name}’s next step`, 'A reference, a trial, the passport', hop('ADP13-NextStep'))}</section>
       <section aria-label={`Is ${name} looked after?`} style={{ ...card, gap: 2, padding: '10px 14px' }}><strong style={{ fontSize: 15, lineHeight: '20px', paddingBottom: 4 }}>Is {name} looked after?</strong>
-        {looked(true, `Sessions ${kid.he ? 'he’s' : 'she’s'} been to`, '12 of 14', hop('ADP4-BookChat'))}{looked(true, 'Fees for Term 2', 'Paid', hop('FAM39-Fees'))}
+        {looked(true, `Sessions ${kid.he ? 'he’s' : 'she’s'} been to`, `${been.came} of ${been.of}`, hop('ADP4-BookChat'))}{looked(true, 'Fees for Term 2', 'Paid', hop('FAM39-Fees'))}
         {a.place === 'kept' ? looked(true, 'Term 3 place', 'Kept', hop('ADP3-KeepPlace')) : a.place === 'left' ? looked(false, 'Term 3 place', 'Released', hop('ADP3-KeepPlace')) : looked(false, 'Term 3 place, held to Fri 19 June', 'Keep it', hop('ADP3-KeepPlace'))}</section>
       <div style={{ display: 'flex', gap: 8 }}>{([[`${name}’s week`, 'ADP8-OtherSport'], ['Book a chat', 'ADP4-BookChat'], ['Pause or stop', 'ADP9-PauseOrStop']] as [string, string][]).map(([t, id]) => <button key={t} onClick={hop(id)} style={{ ...btn(false), minHeight: 46, padding: '0 6px', fontSize: 13 }}>{t}</button>)}</div>
       {demo('the sample academy', <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}><button onClick={hop('ADP7-SessionOff')} style={small}>Today’s session is cancelled</button><button onClick={hop('ADP6-BookOneOnOne')} style={small}>Book a one-on-one</button><button onClick={hop('ADP1e-AcademyHomeEmpty')} style={small}>Before {name} starts</button><button onClick={hop('ADP11-Survey')} style={small}>The week 6 survey</button><button onClick={hop('ADP12-MoveOffer')} style={small}>The owner offers a move</button><button onClick={hop('ADP14-WaitingList')} style={small}>A program is full</button><button onClick={hop('ADP13-NextStep')} style={small}>The year a player turns 15</button></div>)}

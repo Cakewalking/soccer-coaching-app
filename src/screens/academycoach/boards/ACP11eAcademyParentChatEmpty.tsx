@@ -17,8 +17,8 @@ export default function ACP11eAcademyParentChatEmpty({ onNav }: { onNav?: (id: s
           </svg>
         </button>
         <span style={{ flexGrow: "1" }}>
-          <span style={{ display: "block", fontSize: "12px", lineHeight: "16px", color: "#cfe6dc" }}>22 families, Reece and Dani</span>
-          <span style={{ display: "block", fontSize: "21px", lineHeight: "27px", fontWeight: "700" }}>Advanced · Tue and Thu</span>
+          <span style={{ display: "block", fontSize: "12px", lineHeight: "16px", color: "#cfe6dc" }}>16 families, Reece and Dani</span>
+          <span style={{ display: "block", fontSize: "21px", lineHeight: "27px", fontWeight: "700" }}>U13 Timber · Tue and Thu</span>
         </span>
         <span style={{ flex: "none", width: "40px", height: "40px", borderRadius: "999px", background: "#e8cfcf", color: "#10211f", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "14px", fontWeight: "700" }}>TO</span>
       </div>
@@ -42,7 +42,7 @@ export default function ACP11eAcademyParentChatEmpty({ onNav }: { onNav?: (id: s
             </svg>
           </button>
           <span style={{ flexGrow: "1", minHeight: "48px", border: "1px solid #c5c8c4", borderRadius: "14px", background: "#ffffff", padding: "0 14px", display: "flex", alignItems: "center", fontSize: "15px", color: "#4a5a57" }}>Write to the group</span>
-          <button aria-label="Send" onClick={() => demoToast("Sent to the Advanced group.")} style={{ border: "0", padding: "0", margin: "0", font: "inherit", textAlign: "inherit", textDecoration: "underline", cursor: "pointer", flex: "none", width: "48px", height: "48px", borderRadius: "14px", background: "#2f6252", color: "#ffffff", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <button aria-label="Send" onClick={() => demoToast("Sent to the U13 Timber group.")} style={{ border: "0", padding: "0", margin: "0", font: "inherit", textAlign: "inherit", textDecoration: "underline", cursor: "pointer", flex: "none", width: "48px", height: "48px", borderRadius: "14px", background: "#2f6252", color: "#ffffff", display: "flex", alignItems: "center", justifyContent: "center" }}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M5 12h14M13 6l6 6-6 6" />
             </svg>

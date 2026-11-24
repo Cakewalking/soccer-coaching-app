@@ -1,15 +1,18 @@
 // AD15-Families: Academy owner: the term’s short family survey, the lowest answer, and what to do about it.
+// The number of families is counted from the store (programs v2). STILL SAMPLE: how many answered and every score; survey answers are not in `academy-data.json`.
 // Drawn from the board in the academy handover (24 Nov). The menus above it are the owner app's own (OwnerHeader).
 import { S } from './adStyles'
 import Tap from './Tap'
+import { useAcademy } from './academyStore'
 
 export default function AD15Families() {
+  const families = useAcademy().players.length
   return (
     <>
       <div style={{ flex: 'none', padding: '14px 28px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 20 }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 14, minWidth: 0 }}>
           <h1 style={{ margin: 0, fontSize: 26, lineHeight: '32px', fontWeight: 700, letterSpacing: '-0.02em', whiteSpace: 'nowrap' }}>What families think</h1>
-          <span style={{ ...S.cap, whiteSpace: 'nowrap' }}>Term 2, week 6 · 58 of 74 families answered · five questions, one minute</span>
+          <span style={{ ...S.cap, whiteSpace: 'nowrap' }}>Term 2, week 6 · 171 of {families} families answered · five questions, one minute</span>
         </div>
         <div style={{ display: 'flex', gap: 8, flex: 'none' }}>
           <Tap to="ADP11-Survey" style={S.more}>See what families answer</Tap>

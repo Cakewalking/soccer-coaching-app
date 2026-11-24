@@ -23,7 +23,7 @@ export default function ACC9AcademyRecordDrill({ onNav }: { onNav?: (id: string)
       <div style={{ flex: "none", padding: "14px 28px 0", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "20px" }}>
         <div style={{ display: "flex", alignItems: "baseline", gap: "14px", minWidth: "0" }}>
           <h1 style={{ margin: "0", fontSize: "26px", lineHeight: "32px", fontWeight: "700", letterSpacing: "-0.02em", whiteSpace: "nowrap" }}>Record a drill</h1>
-          <span style={{ ...C.cap, whiteSpace: "nowrap" }}>Finishing circuit · Advanced, 12 to 14 · third on tonight’s plan</span>
+          <span style={{ ...C.cap, whiteSpace: "nowrap" }}>Finishing circuit · U13 Timber · third on tonight’s plan</span>
         </div>
         <div style={{ display: "flex", gap: "8px", flex: "none" }}>
           <button onClick={() => go("DrillFlow")} style={{ margin: "0", font: "inherit", textAlign: "inherit", cursor: "pointer", ...C.more }}>Pick another drill</button>

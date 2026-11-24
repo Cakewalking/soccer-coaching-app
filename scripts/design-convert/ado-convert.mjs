@@ -110,8 +110,12 @@ function emit(node, acts, depth, links, used, parent) {
 
 const summary = []
 // AD8 and AD10 carry hand edits (the BALL_ROLLING_FROM_FILM switch) and AC12 has sheets this script cannot draw, so they are only written when named.
+// Programs v2 (24 Nov): these screens are now templates counted from the academy's list (src/screens/academy/academyStore.ts), written by hand
+// over the kit in src/screens/academy/kit.tsx, or carry counts from it. Converting a board over them would put typed-in numbers back, so they
+// too are only written when named. The team and player boards (ADG, ADF) are never converted: each is one template (TeamPage, PlayerPage).
+const COUNTED = /^(AC1|AC2|AC4|AC5|AC6|AC7|AD1|AD2|AD3|AD4|AD5|AD9|AD11|AD13|AD15|AD16|AD17|AD19|AD20|AD21|AD23|AD24)-/
 const only = process.argv.slice(4)
-for (const file of readdirSync(srcDir).filter(f => /^(A[CD]\d+|DCK1|ADS1)e?-.*\.dc\.html$/.test(f)).filter(f => only.length ? only.includes(f.split('-')[0]) : !/^(AD8|AD10|AC12|DCK1e?)-/.test(f)).sort()) {
+for (const file of readdirSync(srcDir).filter(f => /^(A[CD]\d+|DCK1|ADS1)e?-.*\.dc\.html$/.test(f)).filter(f => only.length ? only.includes(f.split('-')[0]) : !/^(AD8|AD10|AC12|DCK1e?)-/.test(f) && !COUNTED.test(f)).sort()) {
   const id = file.replace('.dc.html', ''), name = id.replace('-', '')
   const html = readFileSync(`${srcDir}/${file}`, 'utf8')
   const title = decode(html.match(/<title>([^<]*)<\/title>/)[1])

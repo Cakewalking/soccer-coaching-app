@@ -25,7 +25,7 @@ export default function ACT4AcademyComing({ onNav }: { onNav?: (id: string) => v
       <div style={{ flex: "none", padding: "14px 28px 0", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "20px" }}>
         <div style={{ display: "flex", alignItems: "baseline", gap: "14px", minWidth: "0" }}>
           <h1 style={{ margin: "0", fontSize: "26px", lineHeight: "32px", fontWeight: "700", letterSpacing: "-0.02em", whiteSpace: "nowrap" }}>Who’s coming</h1>
-          <span style={{ ...C.cap, whiteSpace: "nowrap" }}>Tuesday 2 June · Advanced · 4:30 pm</span>
+          <span style={{ ...C.cap, whiteSpace: "nowrap" }}>Tuesday 2 June · U13 Timber · 5:45 pm</span>
         </div>
         <div style={{ display: "flex", gap: "8px", flex: "none" }}>
           <button onClick={() => demoToast("Reminder sent to 2 families.")} style={{ margin: "0", font: "inherit", textAlign: "inherit", cursor: "pointer", ...C.more }}>Remind 2</button>
@@ -36,13 +36,13 @@ export default function ACT4AcademyComing({ onNav }: { onNav?: (id: string) => v
         <div style={{ gridColumn: "span 12", display: "grid", gridTemplateColumns: "repeat(4, minmax(0,1fr))", gap: "12px" }}>
           <div style={{ ...C.tile, background: "#f3ecdf", padding: "12px 16px", gap: "2px" }}>
             <span style={{ ...C.label }}>Coming</span>
-            <span style={{ ...C.num, fontSize: "30px", lineHeight: "36px", fontWeight: "700", letterSpacing: "-0.02em", color: "#10211f" }}>9</span>
-            <span style={{ fontSize: "13px", lineHeight: "18px", color: "#4a5a57" }}>of 11 in the group</span>
+            <span style={{ ...C.num, fontSize: "30px", lineHeight: "36px", fontWeight: "700", letterSpacing: "-0.02em", color: "#10211f" }}>13</span>
+            <span style={{ fontSize: "13px", lineHeight: "18px", color: "#4a5a57" }}>of 16 in the team</span>
           </div>
           <div style={{ ...C.tile, background: "#f4e6e6", padding: "12px 16px", gap: "2px" }}>
             <span style={{ ...C.label }}>Make-up</span>
             <span style={{ ...C.num, fontSize: "30px", lineHeight: "36px", fontWeight: "700", letterSpacing: "-0.02em", color: "#10211f" }}>1</span>
-            <span style={{ fontSize: "13px", lineHeight: "18px", color: "#4a5a57" }}>From Development</span>
+            <span style={{ fontSize: "13px", lineHeight: "18px", color: "#4a5a57" }}>From U13 Gold</span>
           </div>
           <div style={{ ...C.tile, background: "#eef5f2", padding: "12px 16px", gap: "2px" }}>
             <span style={{ ...C.label }}>Away</span>
@@ -68,39 +68,39 @@ export default function ACT4AcademyComing({ onNav }: { onNav?: (id: string) => v
             <span style={{ display: "inline-flex", alignItems: "center", height: "24px", padding: "0 9px", borderRadius: "999px", fontSize: "12px", fontWeight: "700", whiteSpace: "nowrap", background: "#2f6252", color: "#ffffff" }}>Coming</span>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "12px", minHeight: "52px", borderTop: "1px solid #e9eae8" }}>
-            <span style={{ flex: "none", width: "30px", height: "30px", borderRadius: "999px", background: "#eef5f2", color: "#10211f", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", fontWeight: "700" }}>BN</span>
+            <span style={{ flex: "none", width: "30px", height: "30px", borderRadius: "999px", background: "#eef5f2", color: "#10211f", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", fontWeight: "700" }}>FB</span>
             <span style={{ flexGrow: "1", minWidth: "0" }}>
-              <span style={{ display: "block", fontSize: "15px", lineHeight: "21px", fontWeight: "700" }}>Billie Nguyen</span>
+              <span style={{ display: "block", fontSize: "15px", lineHeight: "21px", fontWeight: "700" }}>Finn Byrne</span>
               <span style={{ display: "block", fontSize: "13px", lineHeight: "18px", color: "#4a5a57" }}>Dad said yes</span>
             </span>
             <span style={{ display: "inline-flex", alignItems: "center", height: "24px", padding: "0 9px", borderRadius: "999px", fontSize: "12px", fontWeight: "700", whiteSpace: "nowrap", background: "#2f6252", color: "#ffffff" }}>Coming</span>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "12px", minHeight: "52px", borderTop: "1px solid #e9eae8" }}>
-            <span style={{ flex: "none", width: "30px", height: "30px", borderRadius: "999px", background: "#eef5f2", color: "#10211f", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", fontWeight: "700" }}>TA</span>
+            <span style={{ flex: "none", width: "30px", height: "30px", borderRadius: "999px", background: "#eef5f2", color: "#10211f", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", fontWeight: "700" }}>AR</span>
             <span style={{ flexGrow: "1", minWidth: "0" }}>
-              <span style={{ display: "block", fontSize: "15px", lineHeight: "21px", fontWeight: "700" }}>Tess Albright</span>
-              <span style={{ display: "block", fontSize: "13px", lineHeight: "18px", color: "#4a5a57" }}>Make-up from Development · missed 27 May</span>
+              <span style={{ display: "block", fontSize: "15px", lineHeight: "21px", fontWeight: "700" }}>Ari Ricci</span>
+              <span style={{ display: "block", fontSize: "13px", lineHeight: "18px", color: "#4a5a57" }}>Make-up from U13 Gold · missed 28 May</span>
             </span>
             <span style={{ display: "inline-flex", alignItems: "center", height: "24px", padding: "0 9px", borderRadius: "999px", fontSize: "12px", fontWeight: "700", whiteSpace: "nowrap", background: "#eef5f2", color: "#2f6252" }}>Make-up</span>
           </div>
-          <span style={{ ...C.cap }}>and 7 more</span>
+          <span style={{ ...C.cap }}>and 11 more</span>
         </section>
         <section aria-label="To chase" style={{ ...C.tile, gridColumn: "span 3", gap: "0", padding: "14px 18px 10px" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: "10px", marginBottom: "6px" }}>
             <h2 style={{ ...C.h2 }}>To chase</h2>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "12px", minHeight: "52px", borderTop: "1px solid #e9eae8" }}>
-            <span style={{ flex: "none", width: "30px", height: "30px", borderRadius: "999px", background: "#e8cfcf", color: "#10211f", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", fontWeight: "700" }}>MS</span>
+            <span style={{ flex: "none", width: "30px", height: "30px", borderRadius: "999px", background: "#e8cfcf", color: "#10211f", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", fontWeight: "700" }}>ML</span>
             <span style={{ flexGrow: "1", minWidth: "0" }}>
-              <span style={{ display: "block", fontSize: "15px", lineHeight: "21px", fontWeight: "700" }}>Marco Silva</span>
+              <span style={{ display: "block", fontSize: "15px", lineHeight: "21px", fontWeight: "700" }}>Mila Lombardi</span>
               <span style={{ display: "block", fontSize: "13px", lineHeight: "18px", color: "#4a5a57" }}>Asked Sunday</span>
             </span>
             <span style={{ display: "inline-flex", alignItems: "center", height: "24px", padding: "0 9px", borderRadius: "999px", fontSize: "12px", fontWeight: "700", whiteSpace: "nowrap", background: "#e8cfcf", color: "#10211f" }}>No answer</span>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "12px", minHeight: "52px", borderTop: "1px solid #e9eae8" }}>
-            <span style={{ flex: "none", width: "30px", height: "30px", borderRadius: "999px", background: "#e8cfcf", color: "#10211f", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", fontWeight: "700" }}>JP</span>
+            <span style={{ flex: "none", width: "30px", height: "30px", borderRadius: "999px", background: "#e8cfcf", color: "#10211f", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", fontWeight: "700" }}>NP</span>
             <span style={{ flexGrow: "1", minWidth: "0" }}>
-              <span style={{ display: "block", fontSize: "15px", lineHeight: "21px", fontWeight: "700" }}>Jai Patel</span>
+              <span style={{ display: "block", fontSize: "15px", lineHeight: "21px", fontWeight: "700" }}>Noah Petrov</span>
               <span style={{ display: "block", fontSize: "13px", lineHeight: "18px", color: "#4a5a57" }}>Asked Sunday</span>
             </span>
             <span style={{ display: "inline-flex", alignItems: "center", height: "24px", padding: "0 9px", borderRadius: "999px", fontSize: "12px", fontWeight: "700", whiteSpace: "nowrap", background: "#e8cfcf", color: "#10211f" }}>No answer</span>
@@ -111,14 +111,14 @@ export default function ACT4AcademyComing({ onNav }: { onNav?: (id: string) => v
             <h2 style={{ ...C.h2 }}>Away</h2>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "12px", minHeight: "52px", borderTop: "1px solid #e9eae8" }}>
-            <span style={{ flex: "none", width: "30px", height: "30px", borderRadius: "999px", background: "#e9eae8", color: "#10211f", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", fontWeight: "700" }}>AM</span>
+            <span style={{ flex: "none", width: "30px", height: "30px", borderRadius: "999px", background: "#e9eae8", color: "#10211f", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", fontWeight: "700" }}>JM</span>
             <span style={{ flexGrow: "1", minWidth: "0" }}>
-              <span style={{ display: "block", fontSize: "15px", lineHeight: "21px", fontWeight: "700" }}>Arjun Mehta</span>
+              <span style={{ display: "block", fontSize: "15px", lineHeight: "21px", fontWeight: "700" }}>Jonah Marsh</span>
               <span style={{ display: "block", fontSize: "13px", lineHeight: "18px", color: "#4a5a57" }}>School camp · make-up offered</span>
             </span>
             <span style={{ display: "inline-flex", alignItems: "center", height: "24px", padding: "0 9px", borderRadius: "999px", fontSize: "12px", fontWeight: "700", whiteSpace: "nowrap", background: "#e9eae8", color: "#10211f" }}>Away</span>
           </div>
-          <span style={{ ...C.cap }}>He has 1 make-up to use by the end of term.</span>
+          <span style={{ ...C.cap }}>Jonah has 1 make-up to use by the end of term.</span>
         </section>
       </main>
     </div>

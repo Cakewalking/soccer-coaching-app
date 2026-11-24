@@ -64,14 +64,14 @@ export default function ADC18Learn({ onNav }: { onNav?: (id: string) => void }) 
               <span style={{ display: "inline-flex", alignItems: "center", height: "24px", padding: "0 9px", borderRadius: "999px", fontSize: "12px", fontWeight: "700", whiteSpace: "nowrap", background: "#e8cfcf", color: "#10211f" }}>Half done</span>
             </span>
           </button>
-          <button onClick={() => demoToast("Keeping 20 players busy with one goal: the lesson opens. Short clips, one idea, one thing to try.")} style={{ border: "0", padding: "0", margin: "0", background: "transparent", font: "inherit", textAlign: "inherit", cursor: "pointer", display: "grid", gridTemplateColumns: "96px minmax(0,1fr) 100px", gap: "14px", alignItems: "center", minHeight: "92px", borderTop: "1px solid #e9eae8", textDecoration: "none", color: "#10211f" }}>
+          <button onClick={() => demoToast("Keeping 14 players busy with one goal: the lesson opens. Short clips, one idea, one thing to try.")} style={{ border: "0", padding: "0", margin: "0", background: "transparent", font: "inherit", textAlign: "inherit", cursor: "pointer", display: "grid", gridTemplateColumns: "96px minmax(0,1fr) 100px", gap: "14px", alignItems: "center", minHeight: "92px", borderTop: "1px solid #e9eae8", textDecoration: "none", color: "#10211f" }}>
             <span style={{ height: "64px", borderRadius: "12px", background: "linear-gradient(188deg,#1c3a33,#40826d)", display: "flex", alignItems: "center", justifyContent: "center", color: "#ffffff" }}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M8 5l11 7-11 7z" />
               </svg>
             </span>
             <span style={{ minWidth: "0", display: "flex", flexDirection: "column" }}>
-              <strong style={{ fontSize: "16px", lineHeight: "21px" }}>Keeping 20 players busy with one goal</strong>
+              <strong style={{ fontSize: "16px", lineHeight: "21px" }}>Keeping 14 players busy with one goal</strong>
               <span style={{ fontSize: "13px", lineHeight: "18px", color: "#4a5a57" }}>3 min · from Thursday’s film</span>
             </span>
             <span style={{ justifySelf: "end" }}>

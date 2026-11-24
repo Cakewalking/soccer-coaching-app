@@ -7,7 +7,9 @@ import { useBackState } from '../backState'
 import { useState } from 'react'
 import OwnerHeader from './academy/OwnerHeader'
 import { OwnerGo, ownerMainOf, ownerStem, type OwnerItem } from './academy/ownerMenu'
-import { OWNER_BOARDS } from './academy/adScreens'
+import { OWNER_BOARDS, isPlayerBoard, isTeamBoard } from './academy/adScreens'
+import TeamPage from './academy/TeamPage'
+import PlayerPage from './academy/PlayerPage'
 import AC12AcademyBroadcast from './step4/AC12AcademyBroadcast'
 
 const G    = '#2f6252'
@@ -26,6 +28,8 @@ const SHORT: Record<string, string> = {
 }
 // Every page this app shows in its own frame. Anything else opens over the top with a Back bar.
 const IN_FRAME = new Set([...Object.keys(OWNER_BOARDS), 'AC12-AcademyBroadcast', ...EXTRA.map(s => s.id)])
+// A team's page and a player's page are one template each, opened by the board id of the team or the player.
+const inFrame = (id: string) => IN_FRAME.has(id) || isTeamBoard(id) || isPlayerBoard(id)
 // The empty state of each board: "AD3-Timetable" has "AD3e-TimetableEmpty".
 const EMPTY_OF: Record<string, string> = {}
 for (const e of IN_FRAME) if (/^A[CD]\d+e-/.test(e)) { const full = [...IN_FRAME].find(id => id !== e && ownerStem(id) === ownerStem(e)); if (full) EMPTY_OF[full] = e }
@@ -36,7 +40,7 @@ for (const e of IN_FRAME) if (/^A[CD]\d+e-/.test(e)) { const full = [...IN_FRAME
  */
 export default function AcademyOwnerApp({ empty = false, initialScreen, onNavChange, homeStory }: { onBack?: () => void; empty?: boolean; initialScreen?: string; onNavChange?: (screen: string) => void; homeStory?: import('react').ReactNode }) {
   const asShown = (id: string) => empty ? EMPTY_OF[id] ?? id : id
-  const [screen, setScreen] = useBackState<string>(() => { const id = SHORT[initialScreen ?? ''] ?? initialScreen ?? HOME; return IN_FRAME.has(id) ? asShown(id) : asShown(HOME) })
+  const [screen, setScreen] = useBackState<string>(() => { const id = SHORT[initialScreen ?? ''] ?? initialScreen ?? HOME; return inFrame(id) ? asShown(id) : asShown(HOME) })
   const [toast, setToast] = useState<string | null>(null)
   function showToast(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
   const [askOpen, setAskOpen] = useState(false)
@@ -47,7 +51,7 @@ export default function AcademyOwnerApp({ empty = false, initialScreen, onNavCha
   /** A control on a board: the screen it names. A page outside this frame opens over the top. */
   function go(target: string) {
     const id = SHORT[target] ?? target
-    if (!IN_FRAME.has(id)) { openScreen(id); return }
+    if (!inFrame(id)) { openScreen(id); return }
     show(asShown(id) === screen ? id : asShown(id))   // "Start" on an empty board opens the board itself
   }
 
@@ -58,8 +62,16 @@ export default function AcademyOwnerApp({ empty = false, initialScreen, onNavCha
     <div data-screen={screen} style={frame}><AC12AcademyBroadcast onNav={go}/></div>
   )
 
+  // A player's page has its own dark bar (back to the team, and all players) in place of the menus, as the boards draw it.
+  if (isPlayerBoard(screen)) return (
+    <OwnerGo.Provider value={go}>
+      <div data-screen={screen} style={{ ...frame, color: INK, fontFamily: "'DM Sans',system-ui,sans-serif" }}><PlayerPage id={screen}/></div>
+    </OwnerGo.Provider>
+  )
+
   const story = STORY_HOME && !empty && screen === HOME ? homeStory : null
   const Board = story ? undefined : OWNER_BOARDS[screen]
+  const team = isTeamBoard(screen)
 
   const ask = (
     <button onClick={() => setAskOpen(o => !o)} aria-label="Ask Clean Sheet" aria-pressed={askOpen} style={{ width: 44, height: 44, margin: '0 -5px', padding: 0, border: 0, background: 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', flexShrink: 0 }}>
@@ -74,10 +86,11 @@ export default function AcademyOwnerApp({ empty = false, initialScreen, onNavCha
     <div style={frame}>
       <OwnerHeader current={screen} onGo={menuGo} extra={EXTRA} tools={ask}/>
 
-      <div data-screen={Board ? screen : undefined} style={Board
+      <div data-screen={Board || team ? screen : undefined} style={Board || team
         ? { flexGrow: 1, minHeight: 712, display: 'flex', flexDirection: 'column', position: 'relative', color: INK, fontFamily: "'DM Sans',system-ui,sans-serif" }
         : { flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden', position: 'relative' }}>
         {Board && <Board/>}
+        {team && <TeamPage id={screen}/>}
         {story}
         {screen === 'messages' && <Messaging me="academyowner" />}
         {screen === 'colours'  && <div style={{ overflow: 'auto' }}><ClubColours storeKey="academy" club="Tall Timber Academy" title="Academy colours" by="the owner" whole="academy" /></div>}

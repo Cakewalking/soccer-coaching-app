@@ -1,145 +1,56 @@
-// AD11-ProgramMoney: Academy owner: income, coach cost and pitch hire for each program this term, and what empty places cost.
-// Drawn from the board in the academy handover (24 Nov). The menus above it are the owner app's own (OwnerHeader).
+// AD11-ProgramMoney: Academy owner: what a player pays, and the fees billed, coach cost and pitch hire for each program this term; and the year's four parts.
+// A template over the store (programs v2, 24 Nov). Fees billed is players × what each player pays this term; coaches is 20 sessions a team
+// at the rate set in AD21; pitch hire is half a pitch a team. The price a player pays is shown beside every total.
 import { S } from './adStyles'
 import Tap from './Tap'
+import { PROGRAMS, SESSIONS_A_TERM, money, pays, programCounts, useAcademy } from './academyStore'
+import { Cap, Head, LINE, MAIN, Num, Row, Sources, Th, Tile } from './kit'
+
+const COLS = '1.3fr 1fr 0.7fr 1fr 1fr 0.9fr 1fr'
 
 export default function AD11ProgramMoney() {
+  const a = useAcademy(), all = programCounts(a)
   return (
-    <>
-      <div style={{ flex: 'none', padding: '14px 28px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 20 }}>
-        <div style={{ display: 'flex', alignItems: 'baseline', gap: 14, minWidth: 0 }}>
-          <h1 style={{ margin: 0, fontSize: 26, lineHeight: '32px', fontWeight: 700, letterSpacing: '-0.02em', whiteSpace: 'nowrap' }}>What each program earns</h1>
-          <span style={{ ...S.cap, whiteSpace: 'nowrap' }}>Term 2 · 10 weeks · before your own pay, insurance and other costs</span>
-        </div>
-        <div style={{ display: 'flex', gap: 8, flex: 'none' }}>
-          <Tap say="Term 2 is on its way to your email as a spreadsheet." style={S.more}>Download for your accountant</Tap>
-        </div>
+    <main style={MAIN}>
+      <Head title="What each program earns" sub="Term 2 · this term’s instalment of the season fee · before your own pay, insurance, kit and the trip">
+        <Tap to="AD21-RatesCosts" style={S.more}>Rates and pitch hire</Tap>
+        <Tap say="A spreadsheet is on its way to your email." style={S.primary}>Download for your accountant</Tap>
+      </Head>
+      <Tile title="This term" right={<Cap>Fees billed is players × what each player pays this term</Cap>}>
+        <Th cols={COLS} heads={['Program', 'A player pays', 'Players', 'Fees billed', 'Coaches', 'Pitch hire', 'Left over']} />
+        {PROGRAMS.map(p => { const s = programCounts(a, p); if (!s.teams.length) return null; return (
+          <Row key={p} cols={COLS} to="AC2-Programs" h={54}>
+            <span style={{ display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 14, lineHeight: '18px' }}>{p}</strong><span style={{ fontSize: 12, color: '#4a5a57' }}>{s.teams.length} teams</span></span>
+            <Num>{pays(a, p)}</Num>
+            <Num>{s.n}</Num>
+            <Num>{money(s.billed)}</Num>
+            <Num>−{money(s.coachCost)}</Num>
+            <Num>−{money(s.pitch)}</Num>
+            <span><strong style={{ ...S.num, fontSize: 16 }}>{money(s.left)}</strong></span>
+          </Row>
+        ) })}
+        <Row cols={COLS} h={50} band>
+          <span><strong>All programs</strong></span>
+          <span />
+          <span><strong style={S.num}>{all.n}</strong></span>
+          <span><strong style={S.num}>{money(all.billed)}</strong></span>
+          <span><strong style={S.num}>−{money(all.coachCost)}</strong></span>
+          <span><strong style={S.num}>−{money(all.pitch)}</strong></span>
+          <span><strong style={{ ...S.num, fontSize: 16 }}>{money(all.left)}</strong></span>
+        </Row>
+        <Cap style={{ paddingTop: 6 }}>Coaches is {SESSIONS_A_TERM} sessions a team at {money(a.coach_rate_a_session)}. Pitch hire is {money(a.half_pitch_a_term)} a team for half a pitch. {money(all.owed)} of the fees billed is still owed. {all.open} open {all.open === 1 ? 'place' : 'places'} would add {money(all.openWorth)}.</Cap>
+      </Tile>
+      <div style={{ flex: 'none', display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}><h2 style={S.h2}>What a family pays for the year</h2><Cap>Four parts. The season is paid in two instalments, Term 2 and Term 3.</Cap></div>
+      <div style={{ flex: 'none', display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0,1fr))', gap: 12 }}>
+        {PROGRAMS.map(p => { const parts = a.price_for_the_year[p]; return (
+          <div key={p} style={{ ...S.tile, gap: 0, padding: '12px 16px' }}>
+            <strong style={{ fontSize: 16 }}>{p}</strong>
+            {parts.map(([label, v]) => <span key={label} style={{ display: 'flex', justifyContent: 'space-between', minHeight: 30, alignItems: 'center', borderTop: `1px solid ${LINE}`, fontSize: 14, boxSizing: 'content-box' }}><span>{label}</span><span style={S.num}>{v ? money(v) : 'Not at this age'}</span></span>)}
+            <span style={{ display: 'flex', justifyContent: 'space-between', minHeight: 36, alignItems: 'center', borderTop: `1px solid ${LINE}`, fontSize: 15, fontWeight: 700, boxSizing: 'content-box' }}><span>A player, for the year</span><span style={S.num}>{money(parts.reduce((t, [, v]) => t + v, 0))}</span></span>
+          </div>
+        ) })}
       </div>
-      <main style={{ flexGrow: 1, minHeight: 0, padding: '12px 28px 18px', boxSizing: 'border-box', display: 'grid', gap: 14, gridTemplateColumns: 'minmax(0,1fr) 320px' }}>
-        <section aria-label="This term" style={{ ...S.tile, gap: 0, padding: '14px 18px 10px', gridColumn: 'auto' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 10, marginBottom: 6 }}>
-            <h2 style={S.h2}>This term</h2>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr 0.8fr 0.8fr 0.9fr 1.3fr', gap: 10, alignItems: 'end', paddingBottom: 6 }}>
-            <span style={S.th}>Program</span>
-            <span style={S.th}>Fees</span>
-            <span style={S.th}>Coaches</span>
-            <span style={S.th}>Pitch hire</span>
-            <span style={S.th}>Left over</span>
-            <span style={S.th}>Places filled</span>
-          </div>
-          <Tap to="AC2-Programs" style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr 0.8fr 0.8fr 0.9fr 1.3fr', gap: 10, alignItems: 'center', minHeight: 70, borderTop: '1px solid #e9eae8', fontSize: 14, lineHeight: '19px', color: '#10211f', textDecoration: 'none', boxSizing: 'content-box' }}>
-            <span>
-              <strong style={{ fontSize: 15 }}>Foundation</strong>
-            </span>
-            <span style={{ ...S.num, fontWeight: 700 }}>$7,280</span>
-            <span style={{ ...S.num, fontWeight: 700 }}>$1,800</span>
-            <span style={{ ...S.num, fontWeight: 700 }}>$900</span>
-            <span>
-              <strong style={{ ...S.num, fontSize: 16 }}>$4,580</strong>
-            </span>
-            <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <span style={{ flex: 'none', display: 'inline-block', width: 70, height: 8, borderRadius: 4, background: '#e9eae8', overflow: 'hidden', verticalAlign: 'middle' }}>
-                <span style={{ display: 'block', height: '100%', width: '88%', background: '#2f6252' }} />
-              </span>
-              <span style={{ ...S.num, fontWeight: 700 }}>28 of 32</span>
-            </span>
-          </Tap>
-          <Tap to="AC2-Programs" style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr 0.8fr 0.8fr 0.9fr 1.3fr', gap: 10, alignItems: 'center', minHeight: 70, borderTop: '1px solid #e9eae8', fontSize: 14, lineHeight: '19px', color: '#10211f', textDecoration: 'none', boxSizing: 'content-box' }}>
-            <span>
-              <strong style={{ fontSize: 15 }}>Development</strong>
-            </span>
-            <span style={{ ...S.num, fontWeight: 700 }}>$8,700</span>
-            <span style={{ ...S.num, fontWeight: 700 }}>$1,200</span>
-            <span style={{ ...S.num, fontWeight: 700 }}>$900</span>
-            <span>
-              <strong style={{ ...S.num, fontSize: 16 }}>$6,600</strong>
-            </span>
-            <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <span style={{ flex: 'none', display: 'inline-block', width: 70, height: 8, borderRadius: 4, background: '#e9eae8', overflow: 'hidden', verticalAlign: 'middle' }}>
-                <span style={{ display: 'block', height: '100%', width: '94%', background: '#2f6252' }} />
-              </span>
-              <span style={{ ...S.num, fontWeight: 700 }}>30 of 32</span>
-            </span>
-          </Tap>
-          <Tap to="AC2-Programs" style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr 0.8fr 0.8fr 0.9fr 1.3fr', gap: 10, alignItems: 'center', minHeight: 70, borderTop: '1px solid #e9eae8', fontSize: 14, lineHeight: '19px', color: '#10211f', textDecoration: 'none', boxSizing: 'content-box' }}>
-            <span>
-              <strong style={{ fontSize: 15 }}>Advanced</strong>
-            </span>
-            <span style={{ ...S.num, fontWeight: 700 }}>$7,040</span>
-            <span style={{ ...S.num, fontWeight: 700 }}>$2,300</span>
-            <span style={{ ...S.num, fontWeight: 700 }}>$1,125</span>
-            <span>
-              <strong style={{ ...S.num, fontSize: 16 }}>$3,615</strong>
-            </span>
-            <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <span style={{ flex: 'none', display: 'inline-block', width: 70, height: 8, borderRadius: 4, background: '#e9eae8', overflow: 'hidden', verticalAlign: 'middle' }}>
-                <span style={{ display: 'block', height: '100%', width: '92%', background: '#2f6252' }} />
-              </span>
-              <span style={{ ...S.num, fontWeight: 700 }}>22 of 24</span>
-            </span>
-          </Tap>
-          <Tap to="AC2-Programs" style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr 0.8fr 0.8fr 0.9fr 1.3fr', gap: 10, alignItems: 'center', minHeight: 70, borderTop: '1px solid #e9eae8', fontSize: 14, lineHeight: '19px', color: '#10211f', textDecoration: 'none', boxSizing: 'content-box' }}>
-            <span>
-              <strong style={{ fontSize: 15 }}>One-on-ones</strong>
-            </span>
-            <span style={{ ...S.num, fontWeight: 700 }}>$2,160</span>
-            <span style={{ ...S.num, fontWeight: 700 }}>$300</span>
-            <span style={{ ...S.num, fontWeight: 700 }}>$810</span>
-            <span>
-              <strong style={{ ...S.num, fontSize: 16 }}>$1,050</strong>
-            </span>
-            <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <span style={{ flex: 'none', display: 'inline-block', width: 70, height: 8, borderRadius: 4, background: '#e9eae8', overflow: 'hidden', verticalAlign: 'middle' }}>
-                <span style={{ display: 'block', height: '100%', width: '75%', background: '#2f6252' }} />
-              </span>
-              <span style={{ ...S.num, fontWeight: 700 }}>6 of 8</span>
-            </span>
-          </Tap>
-          <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr 0.8fr 0.8fr 0.9fr 1.3fr', gap: 10, alignItems: 'center', minHeight: 60, fontSize: 14, lineHeight: '19px', color: '#10211f', textDecoration: 'none', background: '#eef5f2', borderRadius: 10, padding: '0 10px', borderTop: 0, marginTop: 6, boxSizing: 'content-box' }}>
-            <span>
-              <strong style={{ fontSize: 15 }}>All programs</strong>
-            </span>
-            <span style={{ ...S.num, fontWeight: 700 }}>$25,180</span>
-            <span style={{ ...S.num, fontWeight: 700 }}>$5,600</span>
-            <span style={{ ...S.num, fontWeight: 700 }}>$3,735</span>
-            <span>
-              <strong style={{ ...S.num, fontSize: 16 }}>$15,845</strong>
-            </span>
-            <span />
-          </div>
-          <h2 style={{ ...S.h2, marginTop: 18, marginBottom: 8 }}>Where each $100 of fees goes</h2>
-          <div role="img" aria-label="Coaches 22 dollars, pitch hire 15 dollars, left over 63 dollars" style={{ display: 'flex', gap: 4, height: 44 }}>
-            <span style={{ flex: '22', borderRadius: 8, background: '#f4e6e6', color: '#10211f', display: 'flex', alignItems: 'center', padding: '0 12px', fontSize: 14, fontWeight: 700, whiteSpace: 'nowrap' }}>Coaches $22</span>
-            <span style={{ flex: '15', borderRadius: 8, background: '#f3ecdf', color: '#10211f', display: 'flex', alignItems: 'center', padding: '0 12px', fontSize: 14, fontWeight: 700, whiteSpace: 'nowrap' }}>Pitch $15</span>
-            <span style={{ flex: '63', borderRadius: 8, background: '#2f6252', color: '#ffffff', display: 'flex', alignItems: 'center', padding: '0 12px', fontSize: 14, fontWeight: 700, whiteSpace: 'nowrap' }}>Left over $63</span>
-          </div>
-          <span style={{ ...S.cap, marginTop: 'auto', paddingTop: 8 }}>Fees are what was billed. Coaches is sessions at the rates in Roster and pay. Pitch hire is hours at $45. The July clinic is counted in Term 3.</span>
-        </section>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 14, minHeight: 0 }}>
-          <section aria-label="Empty places" style={{ ...S.tile, gap: 6 }}>
-            <h2 style={S.h2}>Empty places</h2>
-            <span style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
-              <strong style={{ ...S.num, fontSize: 30, lineHeight: '36px' }}>$2,260</strong>
-              <span style={{ fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>a term · 8 group places</span>
-            </span>
-            <span style={{ fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>4 in Foundation, 2 in Development, 2 in Advanced.</span>
-            <Tap to="AC3-Trials" style={{ ...S.more, alignSelf: 'flex-start' }}>See trials</Tap>
-          </section>
-          <section aria-label="Worth knowing" style={{ ...S.tile, gap: 8, flexGrow: 1 }}>
-            <h2 style={S.h2}>Worth knowing</h2>
-            <span style={{ minWidth: 0, display: 'flex', flexDirection: 'column' }}>
-              <strong style={{ fontSize: 15, lineHeight: '20px' }}>Advanced costs the most to run</strong>
-              <span style={{ fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>Two coaches and a longer session</span>
-            </span>
-            <span style={{ minWidth: 0, display: 'flex', flexDirection: 'column' }}>
-              <strong style={{ fontSize: 15, lineHeight: '20px' }}>Development has room for a second coach</strong>
-              <span style={{ fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>30 players with one coach is over your own rule on Thursdays</span>
-            </span>
-            <span style={{ ...S.cap, marginTop: 'auto', paddingTop: 8 }}>Numbers, not advice. Prices are yours to set.</span>
-          </section>
-        </div>
-      </main>
-    </>
+      <Sources items={[['Prices', 'AD20-NewProgram'], ['Rates and pitch hire', 'AD21-RatesCosts'], ['Fees paid', 'AC5-Fees'], ['Team by team', 'AC2-Programs']]} />
+    </main>
   )
 }

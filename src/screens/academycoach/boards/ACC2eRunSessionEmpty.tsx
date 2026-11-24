@@ -20,13 +20,13 @@ export default function ACC2eRunSessionEmpty({ onNav }: { onNav?: (id: string) =
       {!inApp && <CoachNav active="today" sub="Run a session" go={go} />}
       <div style={{ flex: "none", padding: "14px 28px 0", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "20px" }}>
         <div style={{ display: "flex", alignItems: "baseline", gap: "14px", minWidth: "0" }}>
-          <h1 style={{ margin: "0", fontSize: "26px", lineHeight: "32px", fontWeight: "700", letterSpacing: "-0.02em", whiteSpace: "nowrap" }}>Advanced · 12 to 14</h1>
+          <h1 style={{ margin: "0", fontSize: "26px", lineHeight: "32px", fontWeight: "700", letterSpacing: "-0.02em", whiteSpace: "nowrap" }}>U13 Timber · under 13s</h1>
           <span style={{ ...C.cap, whiteSpace: "nowrap" }}>Thursday 5:30 · no plan yet</span>
         </div>
         <div style={{ display: "flex", gap: "8px", flex: "none" }} />
       </div>
       <main style={{ flexGrow: "1", minHeight: "0", padding: "12px 28px 18px", boxSizing: "border-box", display: "grid", gap: "14px", gridTemplateColumns: "minmax(0,1fr) 320px" }}>
-        <section aria-label="Advanced · 12 to 14" style={{ ...C.tile }}>
+        <section aria-label="U13 Timber · under 13s" style={{ ...C.tile }}>
           <div style={{ flexGrow: "1", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "12px", textAlign: "center" }}>
             <span style={{ width: "72px", height: "72px", borderRadius: "999px", background: "#eef5f2", color: "#2f6252", display: "flex", alignItems: "center", justifyContent: "center" }}>
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

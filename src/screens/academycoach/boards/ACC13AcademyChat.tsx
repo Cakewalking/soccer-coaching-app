@@ -51,7 +51,7 @@ export default function ACC13AcademyChat({ onNav }: { onNav?: (id: string) => vo
             <span style={{ flex: "none", width: "40px", height: "40px", borderRadius: "999px", background: "#e8cfcf", color: "#10211f", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "16px", fontWeight: "700" }}>ADV</span>
             <span style={{ flexGrow: "1", minWidth: "0" }}>
               <span style={{ display: "flex", justifyContent: "space-between", gap: "8px" }}>
-                <strong style={{ fontSize: "15px", lineHeight: "20px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>Advanced · Tue and Thu</strong>
+                <strong style={{ fontSize: "15px", lineHeight: "20px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>U13 Timber · Tue and Thu</strong>
                 <span style={{ flex: "none", fontSize: "12px", color: "#4a5a57" }}>4:15 pm</span>
               </span>
               <span style={{ display: "block", fontSize: "13px", lineHeight: "18px", color: "#4a5a57", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>Tess: Kai did all three practices!</span>
@@ -81,12 +81,12 @@ export default function ACC13AcademyChat({ onNav }: { onNav?: (id: string) => vo
           </button>
           <span style={{ ...C.cap, marginTop: "auto", padding: "10px 16px 14px", fontSize: "12px", lineHeight: "17px" }}>Nobody’s phone number is shared. Families leave these chats when the season ends.</span>
         </section>
-        <section aria-label="Advanced · Tue and Thu" style={{ ...C.tile, padding: "0", gap: "0", overflow: "hidden" }}>
+        <section aria-label="U13 Timber · Tue and Thu" style={{ ...C.tile, padding: "0", gap: "0", overflow: "hidden" }}>
           <div style={{ flex: "none", display: "flex", alignItems: "center", gap: "12px", padding: "10px 16px", borderBottom: "1px solid #e9eae8" }}>
             <span style={{ flex: "none", width: "44px", height: "44px", borderRadius: "999px", background: "#e8cfcf", color: "#10211f", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "16px", fontWeight: "700" }}>ADV</span>
             <span style={{ flexGrow: "1", minWidth: "0" }}>
-              <strong style={{ display: "block", fontSize: "17px", lineHeight: "22px" }}>Advanced · Tue and Thu</strong>
-              <span style={{ display: "block", fontSize: "13px", lineHeight: "18px", color: "#4a5a57" }}>22 families, Reece and Dani · parents can post · set up by Dani</span>
+              <strong style={{ display: "block", fontSize: "17px", lineHeight: "22px" }}>U13 Timber · Tue and Thu</strong>
+              <span style={{ display: "block", fontSize: "13px", lineHeight: "18px", color: "#4a5a57" }}>16 families, Reece and Dani · parents can post · set up by Dani</span>
             </span>
             <button aria-label="Photos, videos and files" title="Photos, videos and files" onClick={() => setSheet("cacadmedia")} style={{ padding: "0", margin: "0", font: "inherit", textAlign: "inherit", textDecoration: "underline", cursor: "pointer", flex: "none", width: "44px", height: "44px", borderRadius: "10px", border: "1px solid #c5c8c4", background: "#ffffff", color: "#10211f", display: "flex", alignItems: "center", justifyContent: "center" }}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -163,7 +163,7 @@ export default function ACC13AcademyChat({ onNav }: { onNav?: (id: string) => vo
                       </span>
                     </span>
                     <span style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                      <span style={{ flexGrow: "1", fontSize: "12px", lineHeight: "16px", color: "#4a5a57" }}>4 of 22 families · your answer books the make-up</span>
+                      <span style={{ flexGrow: "1", fontSize: "12px", lineHeight: "16px", color: "#4a5a57" }}>3 of 16 families · your answer books the make-up</span>
                     </span>
                   </span>
                 </div>
@@ -172,7 +172,7 @@ export default function ACC13AcademyChat({ onNav }: { onNav?: (id: string) => vo
           </div>
           <div style={{ flex: "none", borderTop: "1px solid #e9eae8", padding: "10px 16px 12px", display: "flex", flexDirection: "column", gap: "8px" }}>
             <div style={{ display: "flex", gap: "6px", flexWrap: "nowrap", overflow: "hidden" }}>
-              <button onClick={() => demoToast("Everyone in Advanced has a yes for photos.")} style={{ border: "0", margin: "0", font: "inherit", textAlign: "inherit", cursor: "pointer", flex: "none", height: "44px", padding: "0 10px", borderRadius: "10px", background: "#faf5ec", color: "#10211f", fontSize: "13px", fontWeight: "700", textDecoration: "none", display: "flex", alignItems: "center", gap: "6px" }}>
+              <button onClick={() => demoToast("Everyone in U13 Timber has a yes for photos.")} style={{ border: "0", margin: "0", font: "inherit", textAlign: "inherit", cursor: "pointer", flex: "none", height: "44px", padding: "0 10px", borderRadius: "10px", background: "#faf5ec", color: "#10211f", fontSize: "13px", fontWeight: "700", textDecoration: "none", display: "flex", alignItems: "center", gap: "6px" }}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M4 5h16v14H4zM4 16l5-5 4 4 3-3 4 4M15.5 9.5h.01" />
                 </svg>
@@ -210,8 +210,8 @@ export default function ACC13AcademyChat({ onNav }: { onNav?: (id: string) => vo
               </button>
             </div>
             <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
-              <span style={{ flexGrow: "1", minHeight: "48px", border: "1px solid #c5c8c4", borderRadius: "12px", padding: "0 14px", display: "flex", alignItems: "center", fontSize: "15px", color: "#4a5a57", background: "#ffffff" }}>Write to the Advanced group</span>
-              <button onClick={() => demoToast("Sent to the Advanced group.")} style={{ margin: "0", font: "inherit", textAlign: "inherit", cursor: "pointer", ...C.primary, height: "48px" }}>
+              <span style={{ flexGrow: "1", minHeight: "48px", border: "1px solid #c5c8c4", borderRadius: "12px", padding: "0 14px", display: "flex", alignItems: "center", fontSize: "15px", color: "#4a5a57", background: "#ffffff" }}>Write to the U13 Timber group</span>
+              <button onClick={() => demoToast("Sent to the U13 Timber group.")} style={{ margin: "0", font: "inherit", textAlign: "inherit", cursor: "pointer", ...C.primary, height: "48px" }}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M5 12h14M13 6l6 6-6 6" />
                 </svg>
@@ -265,11 +265,11 @@ export default function ACC13AcademyChat({ onNav }: { onNav?: (id: string) => vo
         <>
           <div style={{ position: "absolute", left: "0", top: "0", right: "0", bottom: "0", zIndex: "40" }}>
             <button type="button" aria-label="Close" onClick={() => setSheet(null)} style={{ fontFamily: "inherit", color: "#10211f", position: "absolute", left: "0", top: "0", width: "100%", height: "100%", border: "0", padding: "0", margin: "0", background: "rgba(16,33,31,0.45)", cursor: "default" }} />
-            <div role="dialog" aria-label="Advanced · Tue and Thu" style={{ position: "absolute", left: "50%", top: "50%", transform: "translate(-50%,-50%)", width: "540px", maxHeight: "740px", borderRadius: "18px", padding: "20px 22px", boxSizing: "border-box", background: "#ffffff", color: "#10211f", display: "flex", flexDirection: "column", gap: "14px", overflow: "hidden", boxShadow: "0 12px 40px rgba(16,33,31,0.25)" }}>
+            <div role="dialog" aria-label="U13 Timber · Tue and Thu" style={{ position: "absolute", left: "50%", top: "50%", transform: "translate(-50%,-50%)", width: "540px", maxHeight: "740px", borderRadius: "18px", padding: "20px 22px", boxSizing: "border-box", background: "#ffffff", color: "#10211f", display: "flex", flexDirection: "column", gap: "14px", overflow: "hidden", boxShadow: "0 12px 40px rgba(16,33,31,0.25)" }}>
               <div style={{ display: "flex", alignItems: "flex-start", gap: "12px" }}>
                 <div style={{ flexGrow: "1", minWidth: "0" }}>
-                  <span style={{ display: "block", fontSize: "20px", lineHeight: "26px", fontWeight: "700", letterSpacing: "-0.01em" }}>Advanced · Tue and Thu</span>
-                  <span style={{ display: "block", fontSize: "14px", lineHeight: "20px", color: "#4a5a57" }}>22 families, Reece and Dani · set up by Dani</span>
+                  <span style={{ display: "block", fontSize: "20px", lineHeight: "26px", fontWeight: "700", letterSpacing: "-0.01em" }}>U13 Timber · Tue and Thu</span>
+                  <span style={{ display: "block", fontSize: "14px", lineHeight: "20px", color: "#4a5a57" }}>16 families, Reece and Dani · set up by Dani</span>
                 </div>
                 <button type="button" aria-label="Close" onClick={() => setSheet(null)} style={{ fontFamily: "inherit", flex: "none", width: "44px", height: "44px", borderRadius: "999px", border: "1px solid #c5c8c4", background: "#ffffff", color: "#10211f", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", padding: "0" }}>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" aria-hidden="true">
@@ -311,7 +311,7 @@ export default function ACC13AcademyChat({ onNav }: { onNav?: (id: string) => vo
               <div style={{ display: "flex", alignItems: "flex-start", gap: "12px" }}>
                 <div style={{ flexGrow: "1", minWidth: "0" }}>
                   <span style={{ display: "block", fontSize: "20px", lineHeight: "26px", fontWeight: "700", letterSpacing: "-0.01em" }}>Photos, videos and files</span>
-                  <span style={{ display: "block", fontSize: "14px", lineHeight: "20px", color: "#4a5a57" }}>Advanced · Tue and Thu · this term</span>
+                  <span style={{ display: "block", fontSize: "14px", lineHeight: "20px", color: "#4a5a57" }}>U13 Timber · Tue and Thu · this term</span>
                 </div>
                 <button type="button" aria-label="Close" onClick={() => setSheet(null)} style={{ fontFamily: "inherit", flex: "none", width: "44px", height: "44px", borderRadius: "999px", border: "1px solid #c5c8c4", background: "#ffffff", color: "#10211f", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", padding: "0" }}>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" aria-hidden="true">
@@ -369,7 +369,7 @@ export default function ACC13AcademyChat({ onNav }: { onNav?: (id: string) => vo
               <div>
                 <span style={{ display: "block", fontSize: "13px", lineHeight: "18px", fontWeight: "700", color: "#4a5a57", marginBottom: "4px" }}>For</span>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
-                  <span style={{ height: "40px", padding: "0 14px", borderRadius: "999px", display: "inline-flex", alignItems: "center", fontSize: "14px", fontWeight: "600", border: "1px solid #c5c8c4", background: "#ffffff", color: "#10211f" }}>Advanced · 22 families</span>
+                  <span style={{ height: "40px", padding: "0 14px", borderRadius: "999px", display: "inline-flex", alignItems: "center", fontSize: "14px", fontWeight: "600", border: "1px solid #c5c8c4", background: "#ffffff", color: "#10211f" }}>U13 Timber · 16 families</span>
                   <span style={{ height: "40px", padding: "0 14px", borderRadius: "999px", display: "inline-flex", alignItems: "center", fontSize: "14px", fontWeight: "600", border: "1px solid #c5c8c4", background: "#ffffff", color: "#10211f" }}>Development · 30 families</span>
                   <span style={{ height: "40px", padding: "0 14px", borderRadius: "999px", display: "inline-flex", alignItems: "center", fontSize: "14px", fontWeight: "600", background: "#2f6252", color: "#ffffff" }}>One-on-one families · 6</span>
                   <span style={{ height: "40px", padding: "0 14px", borderRadius: "999px", display: "inline-flex", alignItems: "center", fontSize: "14px", fontWeight: "600", border: "1px solid #c5c8c4", background: "#ffffff", color: "#10211f" }}>Pick people</span>
@@ -403,7 +403,7 @@ export default function ACC13AcademyChat({ onNav }: { onNav?: (id: string) => vo
               <div style={{ display: "flex", alignItems: "flex-start", gap: "12px" }}>
                 <div style={{ flexGrow: "1", minWidth: "0" }}>
                   <span style={{ display: "block", fontSize: "20px", lineHeight: "26px", fontWeight: "700", letterSpacing: "-0.01em" }}>Tall Timber news</span>
-                  <span style={{ display: "block", fontSize: "14px", lineHeight: "20px", color: "#4a5a57" }}>Only Dani posts here. All 80 families and the coaches get it.</span>
+                  <span style={{ display: "block", fontSize: "14px", lineHeight: "20px", color: "#4a5a57" }}>Only Dani posts here. All 226 families and the coaches get it.</span>
                 </div>
                 <button type="button" aria-label="Close" onClick={() => setSheet(null)} style={{ fontFamily: "inherit", flex: "none", width: "44px", height: "44px", borderRadius: "999px", border: "1px solid #c5c8c4", background: "#ffffff", color: "#10211f", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", padding: "0" }}>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" aria-hidden="true">
@@ -414,11 +414,11 @@ export default function ACC13AcademyChat({ onNav }: { onNav?: (id: string) => vo
               <div style={{ display: "flex", flexDirection: "column" }}>
                 <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", minHeight: "52px", borderTop: "0" }}>
                   <span style={{ fontSize: "15px", lineHeight: "21px", fontWeight: "700" }}>July clinic bookings are open</span>
-                  <span style={{ fontSize: "13px", lineHeight: "18px", color: "#4a5a57" }}>Monday · 61 of 80 families have seen it</span>
+                  <span style={{ fontSize: "13px", lineHeight: "18px", color: "#4a5a57" }}>Monday · 61 of 226 families have seen it</span>
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", minHeight: "52px", borderTop: "1px solid #e9eae8" }}>
                   <span style={{ fontSize: "15px", lineHeight: "21px", fontWeight: "700" }}>Thursday is indoors: wet weather</span>
-                  <span style={{ fontSize: "13px", lineHeight: "18px", color: "#4a5a57" }}>Wednesday · Advanced and Development</span>
+                  <span style={{ fontSize: "13px", lineHeight: "18px", color: "#4a5a57" }}>Wednesday · U13 Timber</span>
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", minHeight: "52px", borderTop: "1px solid #e9eae8" }}>
                   <span style={{ fontSize: "15px", lineHeight: "21px", fontWeight: "700" }}>Term 3 dates and prices</span>
