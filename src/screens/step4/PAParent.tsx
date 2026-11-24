@@ -104,7 +104,7 @@ export default function PAParent(_: { onBack?: () => void }) {
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                   <div style={{ width: 8, height: 8, borderRadius: '50%', background: G, flexShrink: 0 }} />
-                  <div style={{ fontSize: 14, color: INK }}>Saturday 9:30 · Game</div>
+                  <div style={{ fontSize: 14, color: INK }}>Sunday 9:30 · Game</div>
                 </div>
                 <div style={{ fontSize: 12, color: MUT, marginTop: 2, marginLeft: 16 }}>vs Riverside FC</div>
               </div>
@@ -115,7 +115,7 @@ export default function PAParent(_: { onBack?: () => void }) {
 
         {/* Availability nudge */}
         <div style={{ background: PALE, borderRadius: 14, padding: 14 }}>
-          <div style={{ fontSize: 15, fontWeight: 600, color: INK, marginBottom: 12 }}>Can Mia make next Saturday?</div>
+          <div style={{ fontSize: 15, fontWeight: 600, color: INK, marginBottom: 12 }}>Can Mia make next Sunday?</div>
           <div style={{ display: 'flex', gap: 8 }}>
             {['Yes', "Can't", 'Not sure'].map(opt => (
               <button

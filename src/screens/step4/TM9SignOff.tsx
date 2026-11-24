@@ -8,7 +8,7 @@ export default function TM9SignOff(_: { onBack?: () => void }) {
     <div style={{ width: 390, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 844, display: 'flex', flexDirection: 'column', position: 'relative' }}>
       <div style={{ background: GD, padding: '14px 18px 12px', display: 'flex', alignItems: 'center', gap: 12 }}>
         <div style={{ flexGrow: 1 }}>
-          <div style={{ fontSize: 12, color: '#cfe6dc' }}>U12 Sam · Sat 6 Jun · full time</div>
+          <div style={{ fontSize: 12, color: '#cfe6dc' }}>U12 Sam · Sun 7 Jun · full time</div>
           <div style={{ fontSize: 21, fontWeight: 700, color: '#fff' }}>Sign off the game</div>
         </div>
         <div style={{ width: 40, height: 40, borderRadius: '50%', background: '#e8cfcf', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700 }}>RO</div>

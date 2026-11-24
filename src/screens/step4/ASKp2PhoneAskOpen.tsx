@@ -4,9 +4,9 @@ import { toolTarget } from '../toolTargets'
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb'
 
 const SUGGESTIONS = [
-  'What does Mia need for Saturday?',
+  'What does Mia need for Sunday?',
   "What time does Mia's game start?",
-  'What should Mia bring on Saturday?',
+  'What should Mia bring on Sunday?',
 ] as const
 
 export default function ASKp2PhoneAskOpen({ onNav: _onNav }: { onNav?: (s: string) => void }) {

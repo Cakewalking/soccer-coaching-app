@@ -68,7 +68,7 @@ export default function SPy2YouthPreSeason({onBack}:{onBack?:()=>void}){
           <div style={{background:'#fff',border:`1px solid ${LN}`,borderRadius:16,padding:'14px 16px',marginBottom:16}}>
             <div style={{fontSize:13,fontWeight:700,letterSpacing:'0.06em',textTransform:'uppercase' as const,color: '#7a4b5b',marginBottom:12}}>Coming up</div>
             {[
-              {day:'SAT',date:'14',label:'Friendly at Harbour Rovers',sub:"3:30 · doesn't count towards season numbers"},
+              {day:'SUN',date:'15',label:'Friendly at Harbour Rovers',sub:"3:30 · doesn't count towards season numbers"},
               {day:'SUN',date:'22',label:'Trial morning for 3 players',sub:'11:00 at Wattle Creek Reserve'},
             ].map(ev=>(
               <div key={ev.label} style={{display:'flex',gap:12,padding:'10px 0',borderTop:`1px solid ${LN}`}}>

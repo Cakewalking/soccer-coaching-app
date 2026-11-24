@@ -73,7 +73,7 @@ const DATA: Record<TeamType, WAData> = {
     players: [
       { ini: 'CW', name: 'Cal',   metric: 'Passes forward',    val: '14, up from 9' },
       { ini: 'LB', name: 'Lena',  metric: 'Distance',          val: '5.2 km, her best' },
-      { ini: 'RG', name: 'Ryan',  metric: 'Minutes',           val: 'Suspended Saturday' },
+      { ini: 'RG', name: 'Ryan',  metric: 'Minutes',           val: 'Suspended Sunday' },
       { ini: 'TH', name: 'Theo',  metric: 'Shots on target',   val: '4, up from 2' },
       { ini: 'PO', name: 'Priya', metric: 'Wide chances',      val: '7, up from 4' },
     ],
@@ -204,7 +204,7 @@ export function WhereWeAtScreenEmpty({ teamType = 'juniors' }: { teamType?: Team
         <div style={{ fontSize: 18, fontWeight: 700, color: INK, marginBottom: 8 }}>Record one game to start</div>
         <div style={{ fontSize: 14, color: MUT, lineHeight: 1.6, marginBottom: 20 }}>Clean Sheet measures the style you set and shows it here the day after. It gets clearer after three games.</div>
         <div style={{ display: 'flex', gap: 10, justifyContent: 'center' }}>
-          <button onClick={() => goApp('record', "Opening Saturday's game recorder.")} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Record Saturday's game</button>
+          <button onClick={() => goApp('record', `Opening ${teamType === 'seniors' ? 'Saturday' : 'Sunday'}'s game recorder.`)} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Record {teamType === 'seniors' ? 'Saturday' : 'Sunday'}'s game</button>
           <button onClick={() => goApp('setstyle', 'Opening style settings.')} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Set our style</button>
         </div>
       </div>

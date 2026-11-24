@@ -4,10 +4,10 @@ import { useState } from 'react'
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 const MESSAGES = [
-  { init: 'SA', bg: '#e8cfcf', from: 'Saturday', when: 'Today',     subject: "2 families haven't said if they're coming", unread: true },
-  { init: 'RF', bg: '#c39797', from: 'Referees',  when: 'Yesterday', subject: 'Saturday still needs a game leader',         unread: true },
+  { init: 'SU', bg: '#e8cfcf', from: 'Sunday', when: 'Today',     subject: "2 families haven't said if they're coming", unread: true },
+  { init: 'RF', bg: '#c39797', from: 'Referees',  when: 'Yesterday', subject: 'Sunday still needs a game leader',         unread: true },
   { init: 'SH', bg: '#e9eae8', from: "Sami Haddad · Omar's dad", when: 'Mon', subject: "Omar's away this week", active: true },
-  { init: 'BR', bg: '#e9eae8', from: 'Bianca Rossi · club',       when: 'Mon', subject: 'Photo day is Saturday 20 June' },
+  { init: 'BR', bg: '#e9eae8', from: 'Bianca Rossi · club',       when: 'Mon', subject: 'Photo day is Sunday 21 June' },
 ]
 
 export default function HM7InboxMiniRoos(_: { onBack?: () => void }) {
@@ -72,7 +72,7 @@ export default function HM7InboxMiniRoos(_: { onBack?: () => void }) {
           </div>
 
           <div style={{ alignSelf: 'flex-start', maxWidth: 520, background: '#f0f1ef', borderRadius: '16px 16px 16px 4px', padding: '12px 14px', fontSize: 15, lineHeight: '22px' }}>
-            Hi Tom, Omar's at his grandparents' this week so he'll miss Tuesday and Saturday. Back next week. He's keen for his turn in goal!
+            Hi Tom, Omar's at his grandparents' this week so he'll miss Tuesday and Sunday. Back next week. He's keen for his turn in goal!
           </div>
 
           <div style={{ alignSelf: 'flex-end', maxWidth: 520, background: G, color: '#fff', borderRadius: '16px 16px 4px 16px', padding: '12px 14px', fontSize: 15, lineHeight: '22px' }}>
@@ -80,7 +80,7 @@ export default function HM7InboxMiniRoos(_: { onBack?: () => void }) {
           </div>
 
           <div style={{ background: PALE, borderRadius: 12, padding: '10px 12px', fontSize: 14, lineHeight: '20px' }}>
-            <strong>Done for you:</strong> Omar is marked away for Tuesday and Saturday, and his turn in goal moves to Sat 13 Jun.
+            <strong>Done for you:</strong> Omar is marked away for Tuesday and Sunday, and his turn in goal moves to Sun 14 Jun.
           </div>
 
           <div style={{ marginTop: 'auto', display: 'flex', gap: 8, alignItems: 'center' }}>

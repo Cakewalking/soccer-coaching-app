@@ -102,7 +102,7 @@ export default function PU7CoachView({ onNav }: { onNav?: (s: string) => void })
                 <div
                   onClick={() => tool('Typing…')}
                   style={{ width: '100%', minHeight: 80, padding: '12px 14px', border: `1.5px solid ${G}`, borderRadius: 8, fontSize: 13, color: INK, fontFamily: 'inherit', cursor: 'text', boxSizing: 'border-box' as const }}
-                >She is our captain this term. I would keep her with us on Saturdays.</div>
+                >She is our captain this term. I would keep her with us on Sundays.</div>
               </div>
             </div>
 

@@ -676,7 +676,7 @@ export const TOURS: Record<string, TourDef> = {
         { label: "One-on-one, in open view", caption: "One plan per player, their whole week across club and academy, and one-on-ones kept in open view.", screen: "ACC5-OneOnOne" },
       ]},
       { title: "Game day", steps: [
-        { label: "Saturday with the partner club", caption: "Where the academy has a partner club, its game team plays under the club. The coach gets the club\u2019s game-day screens, and the club\u2019s rules apply.", screen: "ACC7-AcademyGameDay" },
+        { label: "Sunday with the partner club", caption: "Where the academy has a partner club, its game team plays under the club. The coach gets the club\u2019s game-day screens, and the club\u2019s rules apply.", screen: "ACC7-AcademyGameDay" },
         { label: "Team sheet", caption: "Where the academy has a partner club, its game team plays under the club. The coach gets the club\u2019s game-day screens, and the club\u2019s rules apply.", screen: "teamsheet" },
         { label: "Live game", caption: "Where the academy has a partner club, its game team plays under the club. The coach gets the club\u2019s game-day screens, and the club\u2019s rules apply.", screen: "livegame11" },
         { label: "Review", caption: "Where the academy has a partner club, its game team plays under the club. The coach gets the club\u2019s game-day screens, and the club\u2019s rules apply.", screen: "review" },
@@ -696,11 +696,11 @@ export const TOURS: Record<string, TourDef> = {
     sandboxHome: 'academyparent-e',
     sections: [
       { title: "Join", steps: [
-        { label: "Book a free trial", caption: "A parent books a free trial, gets an honest note and an offer, and can add Saturday games with the partner club on one bill.", screen: "academyparent-trial" },
-        { label: "Booked", caption: "A parent books a free trial, gets an honest note and an offer, and can add Saturday games with the partner club on one bill.", screen: "academyparent-trialbooked" },
-        { label: "Offer and pay", caption: "A parent books a free trial, gets an honest note and an offer, and can add Saturday games with the partner club on one bill.", screen: "acp2-offer" },
-        { label: "Join the game team, one bill", caption: "A parent books a free trial, gets an honest note and an offer, and can add Saturday games with the partner club on one bill.", screen: "acp9-join" },
-        { label: "Before the first session", caption: "A parent books a free trial, gets an honest note and an offer, and can add Saturday games with the partner club on one bill.", screen: "acp3-home-e" },
+        { label: "Book a free trial", caption: "A parent books a free trial, gets an honest note and an offer, and can add Sunday games with the partner club on one bill.", screen: "academyparent-trial" },
+        { label: "Booked", caption: "A parent books a free trial, gets an honest note and an offer, and can add Sunday games with the partner club on one bill.", screen: "academyparent-trialbooked" },
+        { label: "Offer and pay", caption: "A parent books a free trial, gets an honest note and an offer, and can add Sunday games with the partner club on one bill.", screen: "acp2-offer" },
+        { label: "Join the game team, one bill", caption: "A parent books a free trial, gets an honest note and an offer, and can add Sunday games with the partner club on one bill.", screen: "acp9-join" },
+        { label: "Before the first session", caption: "A parent books a free trial, gets an honest note and an offer, and can add Sunday games with the partner club on one bill.", screen: "acp3-home-e" },
       ]},
       { title: "Each week", steps: [
         { label: "Home: Kai\u2019s week", caption: "The week on one screen: sessions, the goal, a note from the coach, and a make-up when they can\u2019t come.", screen: "STO21-HomeStoryAcademyParent" },
@@ -951,7 +951,7 @@ export const TOURS: Record<string, TourDef> = {
         { label: "Scores for grading",        caption: "Score 17 players for division grading.", screen: "gradinginput" },
       ]},
       { title: "Season", steps: [
-        { label: "Home in-season",            caption: "Tonight's session, what needs you, Saturday's game.", screen: "T1-TabletTraining" },
+        { label: "Home in-season",            caption: "Tonight's session, what needs you, Sunday's game.", screen: "T1-TabletTraining" },
         { label: "Mid-season reviews",        caption: "Four player chats, goals and regrade window.", screen: "midseasonreview" },
       ]},
       { title: "Post-season", steps: [
@@ -993,7 +993,7 @@ export const TOURS: Record<string, TourDef> = {
         { label: "Seniors: off-season",       caption: "Nothing needed. Adults choose their own break.", screen: "senior-offseason" },
       ]},
       { title: "MiniRoos and academy", steps: [
-        { label: "MiniRoos: before first Saturday", caption: "U9 Tom's 6-item list. No trials, no grading.", screen: "miniroos-preseason" },
+        { label: "MiniRoos: before first Sunday", caption: "U9 Tom's 6-item list. No trials, no grading.", screen: "miniroos-preseason" },
         { label: "MiniRoos: after the season",      caption: "Season notes, medals, coming back, thank helpers.", screen: "miniroos-postseason" },
         { label: "MiniRoos: rest",                  caption: "Nothing until March. Tell Bianca if coaching next year.", screen: "miniroos-rest" },
         { label: "Assistant coach shared view",            caption: "Jess's checklist — each item tagged with who owns it.", screen: "ccoach-preseason" },
@@ -1088,7 +1088,7 @@ export const TOURS: Record<string, TourDef> = {
         { label: "The line-up", caption: "The coach picks from who is in. Shapes and pairs that worked before are one tap away.", screen: "FB1-Formation" },
       ]},
       { title: "Game day", steps: [
-        { label: "Saturday: the game goes in", caption: "The club films the game on whatever camera it has. Cameras with a live feed can stream straight in.", screen: "STO5-HomeStoryJuniors" },
+        { label: "Sunday: the game goes in", caption: "The club films the game on whatever camera it has. Cameras with a live feed can stream straight in.", screen: "STO5-HomeStoryJuniors" },
         { label: "The review comes back", caption: "About 25 minutes later: what went well, and three things to work on, each with a clip.", screen: "R1-MatchReview" },
         { label: "The coach has the last word", caption: "The review is a first draft. The coach adds their own take, and that is what the team hears.", screen: "YT1-YourTake" },
       ]},
@@ -1104,7 +1104,7 @@ export const TOURS: Record<string, TourDef> = {
       ]},
       { title: "The proof", steps: [
         { label: "What worked", caption: "Over the season, the coach can see which shapes, pairs and line-ups did the job.", screen: "SQ1-BestLineups" },
-        { label: "Next Saturday", caption: "The loop closes: game, plan, training, proof." },
+        { label: "Next Sunday", caption: "The loop closes: game, plan, training, proof." },
       ]},
     ],
   },

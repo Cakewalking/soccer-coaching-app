@@ -63,32 +63,32 @@ export const STO1: HomeCfg = {
   topNav: MINIROOS_TOPNAV, subNav: MINIROOS_SUBNAV,
   ask: 'Ask about U9 Tom… Who hasn’t had a moment this term?', askTarget: 'ASKd2-HomeFocus',
   proof: {
-    label: 'SATURDAY AT NORTHGATE CITY · NO SCORE KEPT',
-    headline: 'You worked on being brave with the ball. On Saturday, seven of your ten took a player on.',
+    label: 'SUNDAY AT NORTHGATE CITY · NO SCORE KEPT',
+    headline: 'You worked on being brave with the ball. On Sunday, seven of your ten took a player on.',
     second: 'A month ago it was three. Ella did it for the first time.',
-    bars: [{ n: '3', when: '9 May' }, { n: '5', when: '23 May' }, { n: '7', when: 'Sat 6 June', amber: true }],
+    bars: [{ n: '3', when: '10 May' }, { n: '5', when: '24 May' }, { n: '7', when: 'Sun 7 June', amber: true }],
     unit: 'children who took a player on',
-    reel: { duration: '0:40', chips: ['Arlo', 'Poppy', 'Ella', 'Jai', '+3'], caption: 'Seven moments, one from each child who did it. Made from Saturday’s film.' },
+    reel: { duration: '0:40', chips: ['Arlo', 'Poppy', 'Ella', 'Jai', '+3'], caption: 'Seven moments, one from each child who did it. Made from Sunday’s film.' },
     reelTarget: 'RCm2-MiniRoosClips',
     mainBtn: 'Play 40 seconds', mainTarget: 'RCm2-MiniRoosClips',
     outlineBtn: 'What we saw', outlineTarget: 'MS3-MiniRoosReview',
   },
   ready: {
     when: 'TUE 9 JUNE · 5:00 pm · WATTLE CREEK RESERVE', title: 'Tuesday is ready',
-    text: 'Four games built from Saturday. They bunched round the ball, so next is finding a friend in space.',
+    text: 'Four games built from Sunday. They bunched round the ball, so next is finding a friend in space.',
     chips: ['45 minutes', 'A ball each', 'No laps, no lines'], pale: 'You have not had to plan a session since round 2.',
     btn1: 'Open the games', btn1Target: 'HM3-TrainingMiniRoos', btn2: 'Swap one', btn2Target: 'SGm1-SuggestedMiniRoos',
   },
   moments: {
     title: 'A moment for every child', link: 'All moments', linkDone: 'Every moment this term, by child, A to Z.', faces: MINIROOS_FACES,
     rows: [
-      { ini: 'AK', title: 'Arlo · first go in goal', sub: 'Saturday · 12 seconds of film', action: 'Send', done: 'Sent to Arlo’s dad with your note. He can reply with a thank you.' },
-      { ini: 'PD', title: 'Poppy · took a player on', sub: 'Saturday · her goal for this term', action: 'Send', done: 'Sent to Poppy’s mum with your note.' },
+      { ini: 'AK', title: 'Arlo · first go in goal', sub: 'Sunday · 12 seconds of film', action: 'Send', done: 'Sent to Arlo’s dad with your note. He can reply with a thank you.' },
+      { ini: 'PD', title: 'Poppy · took a player on', sub: 'Sunday · her goal for this term', action: 'Send', done: 'Sent to Poppy’s mum with your note.' },
     ],
     foot: '7 of 10 have had one this term. Ivy, Max and Sami are next.',
   },
-  done: { title: 'Done for you', lines: ['Reminder sent to 2 families', 'Saturday’s turns lined up', 'Four parents asked to be game leader', 'Thank-you to parents drafted'], next: 'Next: Sat 13 June, 8:30 at home' },
-  needs: { count: 2, title: 'Two things need you', sub: 'Game leader for Saturday · one message', target: 'HM7-InboxMiniRoos' },
+  done: { title: 'Done for you', lines: ['Reminder sent to 2 families', 'Sunday’s turns lined up', 'Four parents asked to be game leader', 'Thank-you to parents drafted'], next: 'Next: Sun 14 June, 8:30 at home' },
+  needs: { count: 2, title: 'Two things need you', sub: 'Game leader for Sunday · one message', target: 'HM7-InboxMiniRoos' },
   take: { kind: 'miniroos', title: 'Your take · three taps done', sub: 'Brave on the ball, finding a friend, a go in goal', showRate: true },
 }
 
@@ -102,12 +102,12 @@ export const STO2: HomeCfg = {
   moments: {
     title: 'A moment for every child', link: 'All moments', linkDone: 'Every moment this term, by child, A to Z.', faces: MINIROOS_FACES,
     rows: [
-      { ini: 'IV', title: 'Ivy · none yet this term', sub: 'She is in goal on Saturday. Watch for one tonight', action: 'Watch for', done: 'Ivy is pinned for tonight. One tap during the session saves a moment for her.' },
+      { ini: 'IV', title: 'Ivy · none yet this term', sub: 'She is in goal on Sunday. Watch for one tonight', action: 'Watch for', done: 'Ivy is pinned for tonight. One tap during the session saves a moment for her.' },
       { ini: 'MX', title: 'Max · none yet this term', sub: 'Loves Treasure island. Watch for one tonight', action: 'Watch for', done: 'Max is pinned for tonight.' },
     ],
     foot: '7 of 10 have had one. Three sent on Sunday: all three families replied.',
   },
-  done: { title: 'Done for you', lines: ['Reminder goes to 2 families at 3:00 pm', 'Kit list sent to Rob', 'Game leader found: Dan Kovac', 'Heat checked: 24°, play as normal'], next: 'Next: Sat 13 June, 8:30 at home' },
+  done: { title: 'Done for you', lines: ['Reminder goes to 2 families at 3:00 pm', 'Kit list sent to Rob', 'Game leader found: Dan Kovac', 'Heat checked: 24°, play as normal'], next: 'Next: Sun 14 June, 8:30 at home' },
   needs: { count: 1, title: 'One thing needs you', sub: 'A message from Omar’s dad', target: 'HM7-InboxMiniRoos' },
   take: { kind: 'miniroostraining', title: 'After tonight: three taps', sub: 'One tap each for brave, friends, and a go' },
 }
@@ -125,12 +125,12 @@ export const STO3: HomeCfg = {
   moments: {
     title: 'A moment for every child', link: 'All moments', linkDone: 'Every moment this term, by child, A to Z.', faces: MINIROOS_FACES,
     rows: [
-      { ini: 'AK', title: 'Arlo · first go in goal', sub: 'Your note on Saturday', action: 'Send', done: 'Sent to Arlo’s dad with your note.' },
+      { ini: 'AK', title: 'Arlo · first go in goal', sub: 'Your note on Sunday', action: 'Send', done: 'Sent to Arlo’s dad with your note.' },
       { ini: 'PD', title: 'Poppy · took a player on', sub: 'Your note · Rob’s photo', action: 'Send', done: 'Sent to Poppy’s mum with the photo and your note.' },
     ],
     foot: '7 of 10 have had one this term, from your notes and photos. Ivy, Max and Sami are next.',
   },
-  done: { title: 'Done for you', lines: ['Reminder sent to 2 families', 'Saturday’s turns lined up'], next: 'Next: Sat 13 June, 8:30 at home' },
+  done: { title: 'Done for you', lines: ['Reminder sent to 2 families', 'Sunday’s turns lined up'], next: 'Next: Sun 14 June, 8:30 at home' },
   needs: { count: 2, title: 'Two things need you', target: 'HM7-InboxMiniRoos' },
 }
 
@@ -170,10 +170,10 @@ export const STO5: HomeCfg = {
   id: 'STO5-HomeStoryJuniors', role: 'Head coach', team: 'U12 Sam', avatar: 'SK', ...coachFrame('PH1-HomeJuniorsSame'),
   ask: 'Ask about U12 Sam… Who needs a rest this week?', askTarget: 'ASKd2-HomeFocus',
   proof: {
-    label: 'SAT 30 MAY · WON 3–1 AT IRONBARK UNITED · 3RD OF 10',
-    headline: 'You worked on winning it back fast. On Saturday it took 7 seconds. In April it took 11.',
+    label: 'SUN 31 MAY · WON 3–1 AT IRONBARK UNITED · 3RD OF 10',
+    headline: 'You worked on winning it back fast. On Sunday it took 7 seconds. In April it took 11.',
     second: '13 of those wins were in their half. Mia, Jai and Zoe scored.',
-    bars: [{ n: '11', when: 'Round 3' }, { n: '9', when: 'Round 6' }, { n: '7', when: 'Saturday', amber: true }],
+    bars: [{ n: '11', when: 'Round 3' }, { n: '9', when: 'Round 6' }, { n: '7', when: 'Sunday', amber: true }],
     unit: 'seconds to win the ball back',
     reel: { duration: '1:00', chips: ['Press', 'Press', 'Win', 'Goal', '+1'], caption: 'Five clips: four wins of the ball and the goal that came from one.' }, reelTarget: R1,
     mainBtn: 'Play 60 seconds', mainTarget: R1, outlineBtn: 'Full review', outlineTarget: R1,
@@ -187,20 +187,20 @@ export const STO5: HomeCfg = {
   moments: {
     title: 'A clip for every player', link: 'All players', linkTarget: 'T4-SquadTab', faces: FACES10(['EB', 'MT', 'JP', 'NO', 'ZH', 'FW', 'LN', 'SD', 'RC', '+7']),
     rows: [
-      { ini: 'MT', title: 'Mia Tran · won it back 4 times', sub: 'Saturday · her goal this term', action: 'Send', done: 'Sent to Mia and her mum with your note.' },
-      { ini: 'NO', title: 'Noah Okafor · first assist', sub: 'Saturday · 9 seconds of film', action: 'Send', done: 'Sent to Noah and his family with your note.' },
+      { ini: 'MT', title: 'Mia Tran · won it back 4 times', sub: 'Sunday · her goal this term', action: 'Send', done: 'Sent to Mia and her mum with your note.' },
+      { ini: 'NO', title: 'Noah Okafor · first assist', sub: 'Sunday · 9 seconds of film', action: 'Send', done: 'Sent to Noah and his family with your note.' },
     ],
     foot: '12 of 17 have had a clip this month. Finn, Lily, Sam and Ruby are next.',
   },
-  done: { title: 'Done for you', lines: ['Check-ins sent: 14 of 17 answered', 'Line-up drafted, all over half a game', 'Clips cut and named', 'Availability asked for Saturday'], next: 'Next: Sat 6 June, 9:30 at home' },
+  done: { title: 'Done for you', lines: ['Check-ins sent: 14 of 17 answered', 'Line-up drafted, all over half a game', 'Clips cut and named', 'Availability asked for Sunday'], next: 'Next: Sun 7 June, 9:30 at home' },
   needs: { count: 3, title: 'Three things need you', sub: 'Ella low two days running · 3 vests', target: 'I1-Inbox' },
-  take: { kind: 'before', title: 'Your take on Saturday', sub: 'What did the film miss? One tap is enough.', showRate: true },
+  take: { kind: 'before', title: 'Your take on Sunday', sub: 'What did the film miss? One tap is enough.', showRate: true },
 }
 export const STO6: HomeCfg = {
   id: 'STO6-HomeStoryYouth', role: 'Head coach', team: 'U16 Ollie', avatar: 'OG', ...coachFrame('PH2-HomeYouthSame'),
   ask: 'Ask about U16 Ollie… Who has exams coming up?', askTarget: 'ASKd2-HomeFocus',
   proof: {
-    label: 'SAT 30 MAY · DREW 2–2 v TEALSIDE TOWN · 4TH OF 12',
+    label: 'SUN 31 MAY · DREW 2–2 v TEALSIDE TOWN · 4TH OF 12',
     headline: 'You worked on building out under pressure. In your last three games, 41 of 60 short goal kicks got over halfway with the ball. In the first three, 27 of 60.',
     second: 'That is outside the usual swing, so it is a real change. The cost is counter-attacks: six a game, four from losing it in midfield.',
     bars: [{ n: '45', when: 'First 3' }, { n: '68', when: 'Last 3', amber: true }],
@@ -217,44 +217,44 @@ export const STO6: HomeCfg = {
   moments: {
     title: 'A clip for every player', link: 'All players', linkTarget: 'T4-SquadTab', faces: FACES10(['AK', 'BT', 'CR', 'DL', 'HS', 'LM', 'TW', 'JO', 'MV', '+7']),
     rows: [
-      { ini: 'HS', title: 'Hugo · made 3 chances', sub: 'Saturday · 3 clips, 28 seconds', action: 'Send', done: 'Sent to Hugo with your note. Only he sees it.' },
+      { ini: 'HS', title: 'Hugo · made 3 chances', sub: 'Sunday · 3 clips, 28 seconds', action: 'Send', done: 'Sent to Hugo with your note. Only he sees it.' },
       { ini: 'CR', title: 'Cal · 6% faster, a real change', sub: 'Vests · against his own last month', action: 'Send', done: 'Sent to Cal with your note.' },
     ],
     foot: '12 of 17 have had a clip this month. Players 15 and over see their own.',
   },
-  done: { title: 'Done for you', lines: ['Sprints capped for four players', 'Team sheet drafted: 15 fit', 'Clips sent to 6 players', 'Exam fortnight marked: 5 away'], next: 'Next: Sat 6 June, 11:00 at home' },
+  done: { title: 'Done for you', lines: ['Sprints capped for four players', 'Team sheet drafted: 15 fit', 'Clips sent to 6 players', 'Exam fortnight marked: 5 away'], next: 'Next: Sun 7 June, 11:00 at home' },
   needs: { count: 2, title: 'Two things need you', sub: 'Tane’s playing-up view · 1 message', target: 'I1-Inbox' },
-  take: { kind: 'before', title: 'Your take on Saturday', sub: 'What did the film miss? One tap is enough.', showRate: true },
+  take: { kind: 'before', title: 'Your take on Sunday', sub: 'What did the film miss? One tap is enough.', showRate: true },
 }
 export const STO7: HomeCfg = {
   id: 'STO7-HomeStoryAssistant', role: 'Assistant coach', team: 'U12 Sam', avatar: 'JM', ...coachFrame('PH4-HomeAssistantSame'),
   ask: 'Ask about U12 Sam… Who has had the least game time?', askTarget: 'ASKd2-HomeFocus',
   proof: {
-    label: 'SAT 30 MAY · WON 3–1 AT IRONBARK UNITED · YOU RAN THE SUBS',
-    headline: 'You ran the subs on Saturday. All 16 played over half the game, and the team still won it back in 7 seconds.',
+    label: 'SUN 31 MAY · WON 3–1 AT IRONBARK UNITED · YOU RAN THE SUBS',
+    headline: 'You ran the subs on Sunday. All 16 played over half the game, and the team still won it back in 7 seconds.',
     second: 'In April, four players were under half. Sam’s note: “Subs were spot on.”',
-    bars: [{ n: '12', when: 'Round 3' }, { n: '14', when: 'Round 6' }, { n: '16', when: 'Saturday', amber: true }],
+    bars: [{ n: '12', when: 'Round 3' }, { n: '14', when: 'Round 6' }, { n: '16', when: 'Sunday', amber: true }],
     unit: 'players over half a game',
-    reel: { duration: '1:00', chips: ['Press', 'Press', 'Win', 'Goal', '+1'], caption: 'Five clips from Saturday. Sam has put them in Thursday’s team talk.' }, reelTarget: R1,
+    reel: { duration: '1:00', chips: ['Press', 'Press', 'Win', 'Goal', '+1'], caption: 'Five clips from Sunday. Sam has put them in Thursday’s team talk.' }, reelTarget: R1,
     mainBtn: 'Play 60 seconds', mainTarget: R1, outlineBtn: 'Reply to Sam', outlineBtnDone: 'Reply sent to Sam.',
   },
   ready: {
     when: 'THU 4 JUNE · 5:45 pm · WATTLE CREEK RESERVE', title: 'Thursday: you take the rondo',
     text: 'Sam leads the session. Your 10 minutes is the warm-up rondo, 5 v 2, Kai passing only.',
-    chips: ['90 minutes', 'Your part: 6:00', 'Sam leads'], pale: 'Saturday: you run the warm-up and the subs again.',
-    btn1: 'Open the plan', btn1Target: 'T3-TrainingTab', btn2: 'Saturday warm-up', btn2Done: 'Your warm-up for Saturday, 12 minutes.',
+    chips: ['90 minutes', 'Your part: 6:00', 'Sam leads'], pale: 'Sunday: you run the warm-up and the subs again.',
+    btn1: 'Open the plan', btn1Target: 'T3-TrainingTab', btn2: 'Sunday warm-up', btn2Done: 'Your warm-up for Sunday, 12 minutes.',
   },
   moments: {
     title: 'A clip for every player', link: 'All players', linkTarget: 'T4-SquadTab', faces: FACES10(['EB', 'MT', 'JP', 'NO', 'ZH', 'FW', 'LN', 'SD', 'RC', '+7']),
     rows: [
-      { ini: 'MT', title: 'Mia Tran · won it back 4 times', sub: 'Saturday · Sam sends, you can add a note', action: 'Add note', done: 'Your note is added. Sam sends it.' },
-      { ini: 'FW', title: 'Finn Walsh · no clip this month', sub: 'On the bench first on Saturday. Watch for one', action: 'Watch for', done: 'Finn is pinned for Saturday.' },
+      { ini: 'MT', title: 'Mia Tran · won it back 4 times', sub: 'Sunday · Sam sends, you can add a note', action: 'Add note', done: 'Your note is added. Sam sends it.' },
+      { ini: 'FW', title: 'Finn Walsh · no clip this month', sub: 'On the bench first on Sunday. Watch for one', action: 'Watch for', done: 'Finn is pinned for Sunday.' },
     ],
     foot: '12 of 17 have had a clip this month. You and Sam see the same list.',
   },
-  done: { title: 'Done for you', lines: ['Hand-over note from Sam saved', 'Sub plan drafted for Saturday', 'Warm-up cones list sent to Rob', 'Availability: 12 in, 2 to answer'], next: 'Next: Sat 6 June, 9:30 at home' },
+  done: { title: 'Done for you', lines: ['Hand-over note from Sam saved', 'Sub plan drafted for Sunday', 'Warm-up cones list sent to Rob', 'Availability: 12 in, 2 to answer'], next: 'Next: Sun 7 June, 9:30 at home' },
   needs: { count: 1, title: 'One thing needs you', sub: 'Sam asked: can you lead on Tue 9 June?', target: 'I1-Inbox' },
-  take: { kind: 'before', title: 'Your take on Saturday', sub: 'What did the film miss? One tap is enough.', showRate: false },
+  take: { kind: 'before', title: 'Your take on Sunday', sub: 'What did the film miss? One tap is enough.', showRate: false },
 }
 
 // ── Fitness (STO8) ──
@@ -265,7 +265,7 @@ export const STO8: HomeCfg = {
   ask: 'Ask about your four teams… Who is growing fast?', askTarget: 'ASKd2-HomeFocus',
   proof: {
     label: 'FOUR TEAMS · WEEK OF 1 JUNE',
-    headline: 'You capped sprints for the U16s two weeks ago. Sore legs are down from six players to two, and they finished Saturday strong.',
+    headline: 'You capped sprints for the U16s two weeks ago. Sore legs are down from six players to two, and they finished Sunday strong.',
     second: 'Last-15-minute sprints dropped by about 18%, not 30%. That figure is an estimate. Ollie kept the full squad available.',
     bars: [{ n: '6', when: '18 May' }, { n: '4', when: '25 May' }, { n: '2', when: 'This week', amber: true }],
     unit: 'U16 players reporting sore legs',
@@ -302,24 +302,24 @@ export const STO9: HomeCfg = {
   ask: 'Ask about your keepers… How is each keeper’s distribution?', askTarget: 'ASKd2-HomeFocus',
   proof: {
     label: 'ELEVEN KEEPERS · LAST WEEKEND',
-    headline: 'You worked on starting higher. On Saturday Grace swept up five balls behind her defence. A month ago, one.',
+    headline: 'You worked on starting higher. On Sunday Grace swept up five balls behind her defence. A month ago, one.',
     second: 'Across all eleven keepers, sweeps are up from 9 to 21 a weekend.',
-    bars: [{ n: '9', when: '2 May' }, { n: '15', when: '16 May' }, { n: '21', when: 'Last weekend', amber: true }],
+    bars: [{ n: '9', when: '3 May' }, { n: '15', when: '17 May' }, { n: '21', when: 'Last weekend', amber: true }],
     unit: 'balls swept up behind the defence',
     reel: { duration: '1:00', chips: ['Grace', 'Ava', 'Tom', 'Bao', '+2'], caption: 'Six sweeps from five keepers, and one that started a goal.' }, reelTarget: 'C1-ClipsTab',
     mainBtn: 'Play 60 seconds', mainTarget: 'C1-ClipsTab', outlineBtn: 'By keeper', outlineTarget: 'FK1-Goalkeepers',
   },
   ready: {
     when: 'TUE 9 JUNE · 6:00 pm · PITCH 2', title: 'Tuesday is ready',
-    text: 'Quick restarts: catch, look, roll. Three keepers held the ball over six seconds on Saturday.',
+    text: 'Quick restarts: catch, look, roll. Three keepers held the ball over six seconds on Sunday.',
     chips: ['40 minutes', '3 drills', '11 keepers'], pale: 'Built from every keeper’s clips this fortnight.',
     btn1: 'Open the session', btn1Target: 'HG2-KeeperSession', btn2: 'Send the plan', btn2Done: 'Session plan sent to all 11 keepers and their coaches.',
   },
   moments: {
     title: 'A clip for every keeper', link: 'All keepers', linkTarget: 'FK1-Goalkeepers', faces: FACES10(['GO', 'AL', 'TR', 'BT', 'KR', 'IM', 'OB', 'SD', 'FW', '+2']),
     rows: [
-      { ini: 'GO', title: 'Grace Owusu · quick roll started a goal', sub: 'Saturday · 11 seconds of film', action: 'Send', done: 'Sent to Grace and to Sam.' },
-      { ini: 'AL', title: 'Ava Lindqvist · first clean catch from a corner', sub: 'Saturday · 7 seconds of film', action: 'Send', done: 'Sent to Ava and to her coach.' },
+      { ini: 'GO', title: 'Grace Owusu · quick roll started a goal', sub: 'Sunday · 11 seconds of film', action: 'Send', done: 'Sent to Grace and to Sam.' },
+      { ini: 'AL', title: 'Ava Lindqvist · first clean catch from a corner', sub: 'Sunday · 7 seconds of film', action: 'Send', done: 'Sent to Ava and to her coach.' },
     ],
     foot: '9 of 11 have had a clip this month. Oscar and Sam D are next.',
   },
@@ -356,7 +356,7 @@ export const STO10: HomeCfg = {
     foot: '11 of 14 teams recorded a game this fortnight. U9 Mark, U13 Chris and U15 Girls Bec did not.',
   },
   done: { title: 'Done for you', lines: ['Board report drafted for Greg', 'Four children checks chased', 'Fair game time checked: 12 of 14', 'Fixtures synced with the league'], next: 'Next: coach meeting, Tue 9 June' },
-  needs: { count: 5, title: 'Five things need you', sub: 'U9 Mark has no coach on Saturday', target: 'MSG4-DirectorMessages' },
+  needs: { count: 5, title: 'Five things need you', sub: 'U9 Mark has no coach on Sunday', target: 'MSG4-DirectorMessages' },
 }
 
 // ── Chair (STO11) ──
@@ -403,8 +403,8 @@ export const STO12: HomeCfg = {
   subNav: [{ label: 'This week', target: 'STO12-HomeStoryCoordinator', active: true }, { label: 'Registrations', target: 'DR1-Registrations' }, { label: 'Fixtures', target: 'CF1-Fixtures' }, { label: 'Referees', target: 'FR1-Referees' }, { label: 'Kit', target: 'DK1-Kit' }, { label: 'Fees and volunteers', target: 'FV1-FeesVolunteers' }],
   ask: 'Ask about this week… Which games still need a game leader?', askTarget: 'ASKd2-HomeFocus',
   proof: {
-    label: 'SATURDAY 6 JUNE · 14 GAMES · 3 GROUNDS',
-    headline: 'Saturday is nearly covered. On Monday 31 families hadn’t answered. Today it’s five.',
+    label: 'SUNDAY 7 JUNE · 14 GAMES · 3 GROUNDS',
+    headline: 'Sunday is nearly covered. On Monday 31 families hadn’t answered. Today it’s five.',
     second: '13 of 14 games have a game leader. Every pitch is booked. Canteen needs one more.',
     bars: [{ n: '31', when: 'Monday' }, { n: '12', when: 'Wednesday' }, { n: '5', when: 'Today', amber: true }],
     unit: 'families still to answer',
@@ -414,23 +414,23 @@ export const STO12: HomeCfg = {
     ],
     statusCaption: 'Each line opens the list behind it.',
     statusDone: ['Game leaders: 13 of 14. Opening the one still open.', 'Pitches: 14 of 14 booked. Opening the grounds list.', 'Canteen: 5 of 6 shifts. Opening the shift that needs one.', 'Kit: 2 bib sets short. Opening the kit list.'],
-    mainBtn: 'Saturday run sheet', mainBtnDone: 'Run sheet opens: 14 games, by ground and time.', outlineBtn: 'Remind the five', outlineBtnDone: 'Reminder sent to 5 families.',
+    mainBtn: 'Sunday run sheet', mainBtnDone: 'Run sheet opens: 14 games, by ground and time.', outlineBtn: 'Remind the five', outlineBtnDone: 'Reminder sent to 5 families.',
   },
   ready: {
-    when: 'SAT 6 JUNE · FIRST GAME 8:30 am', title: 'The run sheet is ready',
+    when: 'SUN 7 JUNE · FIRST GAME 8:30 am', title: 'The run sheet is ready',
     text: 'Fourteen games by ground and time, with who opens up, who referees and who locks up.',
     chips: ['3 grounds', '14 games', '26 volunteers'], pale: 'Built from fixtures, the roster and what families answered.',
     btn1: 'Open the run sheet', btn1Done: 'The run sheet is ready on your phone.', btn2: 'Send to managers', btn2Done: 'Run sheet sent to 14 team managers.',
   },
   moments: {
-    title: 'Gaps to fill', link: 'Everything', linkDone: 'Everything for Saturday.', faces: [],
+    title: 'Gaps to fill', link: 'Everything', linkDone: 'Everything for Sunday.', faces: [],
     rows: [
       { ini: 'U9', title: 'U9 Mark · needs a game leader', sub: 'Four parents asked · none yet', action: 'Ask again', done: 'Asked again. First to say yes gets it.' },
       { ini: 'C', title: 'Canteen 10 to 11 · one more needed', sub: 'Posted on the volunteer board', action: 'Ask', done: 'Asked the 12 families at the ground at that time.' },
     ],
-    foot: 'Two gaps left for Saturday. On Monday there were nine.',
+    foot: 'Two gaps left for Sunday. On Monday there were nine.',
   },
-  done: { title: 'Done for you', lines: ['Fixtures synced with the league', 'Reminders sent to 31 families', 'Pitch 2 moved for line marking', 'Referee fees totalled'], next: 'Next: Sat 6 June, 8:30 am' },
+  done: { title: 'Done for you', lines: ['Fixtures synced with the league', 'Reminders sent to 31 families', 'Pitch 2 moved for line marking', 'Referee fees totalled'], next: 'Next: Sun 7 June, 8:30 am' },
   needs: { count: 2, title: 'Two things need you', sub: 'A dispensation · a late registration', target: 'MSG4-DirectorMessages' },
 }
 
@@ -501,7 +501,7 @@ export const STO14: HomeCfg = {
     ],
     foot: '71 of 80 have moved a step. Nine have not: Reece has six one-on-ones booked.',
   },
-  done: { title: 'Done for you', lines: ['Three trial offers sent', 'Two late fees chased', 'July clinic: 19 of 24 booked', 'Partner club sent Saturday’s team sheet'], next: 'Next: trials, Sat 13 June' },
+  done: { title: 'Done for you', lines: ['Three trial offers sent', 'Two late fees chased', 'July clinic: 19 of 24 booked', 'Partner club sent Sunday’s team sheet'], next: 'Next: trials, Sat 13 June' },
   needs: { count: 2, title: 'Two things need you', sub: 'A make-up request · a coach check', target: 'AC12-AcademyBroadcast' },
 }
 
@@ -534,7 +534,7 @@ export const STO15: HomeCfg = {
     ],
     foot: '14 of 20 have moved a step. Dani sees the same list.',
   },
-  done: { title: 'Done for you', lines: ['Four report drafts started', 'Attendance marked from check-in', 'Make-up session offered to two', 'Saturday’s team sheet sent'], next: 'Next: Sat 6 June, U13 Timber' },
+  done: { title: 'Done for you', lines: ['Four report drafts started', 'Attendance marked from check-in', 'Make-up session offered to two', 'Sunday’s team sheet sent'], next: 'Next: Sun 7 June, U13 Timber' },
   needs: { count: 1, title: 'One thing needs you', sub: 'Dani asked: can you take Friday?', target: 'ACC13-AcademyChat' },
 }
 

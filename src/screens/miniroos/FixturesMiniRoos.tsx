@@ -3,14 +3,14 @@ import { useState } from 'react'
 import { EmptyCard } from '../clubadmin/ui'
 
 const FIXTURES = [
-  { date: 'Sat 2 May', opp: 'Banksia Park', where: 'Home', time: 'Played', note: 'All 10 had a go', past: true },
-  { date: 'Sat 9 May', opp: 'Kestrel Park', where: 'Away', time: 'Played', note: '9 played', past: true },
-  { date: 'Sat 16 May', opp: 'Northgate City', where: 'Home', time: 'Played', note: 'All 10 had a go', past: true },
-  { date: 'Sat 23 May', opp: 'Kingfisher United', where: 'Away', time: 'Played', note: '8 played', past: true },
-  { date: 'Sat 30 May', opp: 'Glenview Park', where: 'Home', time: 'Played', note: 'All 10 had a go', past: true },
-  { date: 'Sat 6 Jun', opp: 'Northgate City', where: 'Away · Redgum Reserve', time: '8:30 am', note: 'Needs a game leader', current: true },
-  { date: 'Sat 13 Jun', opp: 'Kestrel Park', where: 'Home · Pitch 4', time: '9:00 am', note: 'Zoe Park is game leader' },
-  { date: 'Sat 20 Jun', opp: 'Banksia Park', where: 'Away · Banksia Reserve', time: '8:30 am', note: 'Photo day after' },
+  { date: 'Sun 3 May', opp: 'Banksia Park', where: 'Home', time: 'Played', note: 'All 10 had a go', past: true },
+  { date: 'Sun 10 May', opp: 'Kestrel Park', where: 'Away', time: 'Played', note: '9 played', past: true },
+  { date: 'Sun 17 May', opp: 'Northgate City', where: 'Home', time: 'Played', note: 'All 10 had a go', past: true },
+  { date: 'Sun 24 May', opp: 'Kingfisher United', where: 'Away', time: 'Played', note: '8 played', past: true },
+  { date: 'Sun 31 May', opp: 'Glenview Park', where: 'Home', time: 'Played', note: 'All 10 had a go', past: true },
+  { date: 'Sun 7 Jun', opp: 'Northgate City', where: 'Away · Redgum Reserve', time: '8:30 am', note: 'Needs a game leader', current: true },
+  { date: 'Sun 14 Jun', opp: 'Kestrel Park', where: 'Home · Pitch 4', time: '9:00 am', note: 'Zoe Park is game leader' },
+  { date: 'Sun 21 Jun', opp: 'Banksia Park', where: 'Away · Banksia Reserve', time: '8:30 am', note: 'Photo day after' },
 ]
 
 export default function FixturesMiniRoos({ empty }: { empty?: boolean }) {
@@ -59,7 +59,7 @@ export default function FixturesMiniRoos({ empty }: { empty?: boolean }) {
           </section>
 
           <section style={{ flexGrow: 1, background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 0 }}>
-            <h2 style={{ margin: '0 0 0', fontSize: 17, fontWeight: 700 }}>This Saturday</h2>
+            <h2 style={{ margin: '0 0 0', fontSize: 17, fontWeight: 700 }}>This Sunday</h2>
             {[
               { circle: '✓', bg: '#eef5f2', title: 'Meet 8:10', sub: 'Sent to families Thursday' },
               { circle: '!', bg: '#e8cfcf', title: 'Game leader', sub: 'Still needed' },
@@ -72,7 +72,7 @@ export default function FixturesMiniRoos({ empty }: { empty?: boolean }) {
                 </span>
               </div>
             ))}
-            <button onClick={() => openThing('Saturday\'s turns', 'mini')} style={{ marginTop: 'auto', height: 44, padding: '0 18px', borderRadius: 10, border: '1px solid #2f6252', background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Open Saturday's turns</button>
+            <button onClick={() => openThing('Sunday\'s turns', 'mini')} style={{ marginTop: 'auto', height: 44, padding: '0 18px', borderRadius: 10, border: '1px solid #2f6252', background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Open Sunday's turns</button>
           </section>
         </div>
       </main>

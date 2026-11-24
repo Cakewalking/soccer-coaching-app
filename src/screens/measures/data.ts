@@ -55,7 +55,7 @@ export type MeasureCfg = {
   derivedCount: boolean
 }
 
-const LINE_LABELS = ['R1', 'R2', 'R3', 'R4', 'R5', 'R6', 'R7', 'Sat']
+const LINE_LABELS = ['R1', 'R2', 'R3', 'R4', 'R5', 'R6', 'R7', 'Sun']
 
 export const MEASURES: MeasureCfg[] = [
   {
@@ -137,15 +137,15 @@ export const MEASURES: MeasureCfg[] = [
   {
     id: 'PU8b-MeasureVest', area: 'BODY', source: 'FROM THE VEST', pos: 5,
     title: 'Top speed', sub: 'The fastest full second in each session, km/h · 23 sessions since April',
-    sentence: '24.1 km/h on Saturday, up from 23.2 in April. The under 13 girls’ middle is 24.6.',
-    graph: { kind: 'line', series: [23.2, 23.4, 23.6, 23.8, 23.9, 23.8, 24.0, 24.1], labels: ['7 Apr', '14 Apr', '21 Apr', '5 May', '12 May', '19 May', '26 May', 'Sat'], rangeLow: 22.0, rangeHigh: 27.5, mid: 24.6, axis: [28, 24.5, 21] },
+    sentence: '24.1 km/h on Sunday, up from 23.2 in April. The under 13 girls’ middle is 24.6.',
+    graph: { kind: 'line', series: [23.2, 23.4, 23.6, 23.8, 23.9, 23.8, 24.0, 24.1], labels: ['7 Apr', '14 Apr', '21 Apr', '5 May', '12 May', '19 May', '26 May', 'Sun'], rangeLow: 22.0, rangeHigh: 27.5, mid: 24.6, axis: [28, 24.5, 21] },
     captures: [
       { label: 'Source', lines: 'Vest 07, worn at 23 of 26 sessions' },
       { label: 'How it is read', lines: '10 readings a second. The fastest full second counts' },
       { label: 'Left out', lines: '1 reading: the signal dropped at 12 May' },
     ],
     evidence: { kind: 'vest', rows: [
-      { date: '30 May', session: 'Game v Ironbark United', value: '24.1', vest: '07', signal: 'Good' },
+      { date: '31 May', session: 'Game v Ironbark United', value: '24.1', vest: '07', signal: 'Good' },
       { date: '28 May', session: 'Training', value: '23.6', vest: '07', signal: 'Good' },
       { date: '26 May', session: 'Training', value: '23.8', vest: '07', signal: 'Good' },
       { date: '22 May', session: 'Game v Tealside Town', value: '23.9', vest: '07', signal: 'Good' },
@@ -184,7 +184,7 @@ export const MEASURES: MeasureCfg[] = [
       { label: 'Left out', lines: 'Training is not counted here' },
     ],
     evidence: { kind: 'vest', rows: [
-      { date: '30 May', session: 'Game v Ironbark United', value: '5.8', vest: '07', signal: 'Good' },
+      { date: '31 May', session: 'Game v Ironbark United', value: '5.8', vest: '07', signal: 'Good' },
       { date: '22 May', session: 'Game v Tealside Town', value: '5.8', vest: '07', signal: 'Good' },
       { date: '15 May', session: 'Game v Harbour Rovers', value: '5.7', vest: '07', signal: 'Good' },
       { date: '8 May', session: 'Game v Glenview', value: '5.7', vest: '07', signal: 'Good' },
@@ -204,7 +204,7 @@ export const MEASURES: MeasureCfg[] = [
     ],
     evidence: { kind: 'said', list: [
       { ini: 'SK', person: 'Sam K', role: 'her coach', date: '1 June', words: 'Asks for the ball after a mistake. Takes feedback.', how: 'Three taps on 1 June by you. Copes with mistakes: yes. Wants more: yes. Fits in: yes' },
-      { ini: 'MT', person: 'Mia', role: 'the player', date: '30 May', words: 'I want harder games.', how: 'After-game check-in on her phone. She tapped: Easy' },
+      { ini: 'MT', person: 'Mia', role: 'the player', date: '31 May', words: 'I want harder games.', how: 'After-game check-in on her phone. She tapped: Easy' },
       { ini: 'MT', person: 'Mia', role: 'the player', date: '16 May', words: 'Can I play against the big girls?', how: 'Goal check-in with Sam, typed by Sam as she said it' },
     ] },
     foot: 'Words are shown as given, never rewritten. Mia’s parents can ask to read all of it.',

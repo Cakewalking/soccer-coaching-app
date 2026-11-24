@@ -6,14 +6,14 @@ const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8
 interface Fixture { date: string; against: string; where: string; time: string; note: string; played?: boolean; active?: boolean }
 
 const FIXTURES: Fixture[] = [
-  { date: 'Sat 2 May',  against: 'Banksia Park',      where: 'Home',                  time: 'Played', note: 'All 10 had a go', played: true },
-  { date: 'Sat 9 May',  against: 'Kestrel Park',       where: 'Away',                  time: 'Played', note: '9 played',        played: true },
-  { date: 'Sat 16 May', against: 'Northgate City',     where: 'Home',                  time: 'Played', note: 'All 10 had a go', played: true },
-  { date: 'Sat 23 May', against: 'Kingfisher United',  where: 'Away',                  time: 'Played', note: '8 played',        played: true },
-  { date: 'Sat 30 May', against: 'Glenview Park',      where: 'Home',                  time: 'Played', note: 'All 10 had a go', played: true },
-  { date: 'Sat 6 Jun',  against: 'Northgate City',     where: 'Away · Redgum Reserve', time: '8:30 am', note: 'Needs a game leader', active: true },
-  { date: 'Sat 13 Jun', against: 'Kestrel Park',       where: 'Home · Pitch 4',        time: '9:00 am', note: 'Zoe Park is game leader' },
-  { date: 'Sat 20 Jun', against: 'Banksia Park',       where: 'Away · Banksia Reserve', time: '8:30 am', note: 'Photo day after' },
+  { date: 'Sun 3 May',  against: 'Banksia Park',      where: 'Home',                  time: 'Played', note: 'All 10 had a go', played: true },
+  { date: 'Sun 10 May',  against: 'Kestrel Park',       where: 'Away',                  time: 'Played', note: '9 played',        played: true },
+  { date: 'Sun 17 May', against: 'Northgate City',     where: 'Home',                  time: 'Played', note: 'All 10 had a go', played: true },
+  { date: 'Sun 24 May', against: 'Kingfisher United',  where: 'Away',                  time: 'Played', note: '8 played',        played: true },
+  { date: 'Sun 31 May', against: 'Glenview Park',      where: 'Home',                  time: 'Played', note: 'All 10 had a go', played: true },
+  { date: 'Sun 7 Jun',  against: 'Northgate City',     where: 'Away · Redgum Reserve', time: '8:30 am', note: 'Needs a game leader', active: true },
+  { date: 'Sun 14 Jun', against: 'Kestrel Park',       where: 'Home · Pitch 4',        time: '9:00 am', note: 'Zoe Park is game leader' },
+  { date: 'Sun 21 Jun', against: 'Banksia Park',       where: 'Away · Banksia Reserve', time: '8:30 am', note: 'Photo day after' },
 ]
 
 export default function HM9FixturesMiniRoos(_: { onBack?: () => void }) {
@@ -72,7 +72,7 @@ export default function HM9FixturesMiniRoos(_: { onBack?: () => void }) {
           </div>
 
           <div style={{ flex: 1, background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '14px 16px 10px', display: 'flex', flexDirection: 'column', gap: 0 }}>
-            <div style={{ fontSize: 17, fontWeight: 700, marginBottom: 4 }}>This Saturday</div>
+            <div style={{ fontSize: 17, fontWeight: 700, marginBottom: 4 }}>This Sunday</div>
             {[
               { icon: '✓', label: 'Meet 8:10', note: 'Sent to families Thursday', bg: PALE },
               { icon: '!', label: 'Game leader', note: 'Still needed', bg: '#e8cfcf' },
@@ -85,7 +85,7 @@ export default function HM9FixturesMiniRoos(_: { onBack?: () => void }) {
                 </div>
               </div>
             ))}
-            <button onClick={() => openThing("Saturday's turns", 'mini')} style={{ marginTop: 'auto', height: 44, borderRadius: 10, border: `1px solid ${G}`, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Open Saturday's turns</button>
+            <button onClick={() => openThing("Sunday's turns", 'mini')} style={{ marginTop: 'auto', height: 44, borderRadius: 10, border: `1px solid ${G}`, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Open Sunday's turns</button>
           </div>
         </div>
       </div>

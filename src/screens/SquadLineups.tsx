@@ -162,7 +162,8 @@ export function SquadLineups({ onBack: _onBack, noFrame, onNav, teamType = 'juni
   const week = forThisWeek(ins, lineup, m.label)
   const pairKey = (p: PairStat) => `${p.a}-${p.b}`
   const stat = (name: string) => ins.shapes.find(s => s.shape === name)!
-  const day = ins.cfg.game.split(' ')[0] === 'Sat' ? 'Saturday' : 'this week'
+  const gameDay = ins.cfg.game.split(' ')[0]
+  const day = gameDay === 'Sat' ? 'Saturday' : gameDay === 'Sun' ? 'Sunday' : 'this week'
 
   const tokens = lineup.lineup.map((id, i) => ({
     id, num: byId[id].num, name: byId[id].first, pos: shape.slots[i].pos, x: shape.slots[i].x, y: shape.slots[i].y,
@@ -386,8 +387,8 @@ export function SquadLineupsEmpty({ onBack: _onBack, onNav }: { onBack?: () => v
               Clean Sheet needs to see who was on the pitch together, for long enough to mean something. You have 1 of 3.
             </div>
             <div style={{ display: 'flex', gap: 8, justifyContent: 'center' }}>
-              <BtnPrimary label="Record Saturday's game" onClick={() => onNav ? onNav('record') : openThing('the Record tab', 'coach')}/>
-              <BtnMore label="Set Saturday's line-up" onClick={() => onNav ? onNav('teamsheet') : openThing('the team sheet', 'coach')}/>
+              <BtnPrimary label="Record Sunday's game" onClick={() => onNav ? onNav('record') : openThing('the Record tab', 'coach')}/>
+              <BtnMore label="Set Sunday's line-up" onClick={() => onNav ? onNav('teamsheet') : openThing('the team sheet', 'coach')}/>
             </div>
           </div>
         </div>

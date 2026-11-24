@@ -78,8 +78,8 @@ export default function SP2HomePreSeason({ onBack, onNav }: { onBack?: () => voi
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '14px 16px', marginBottom: 16 }}>
             <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 12 }}>Coming up</div>
             {[
-              { day: 'SAT', date: '14', label: 'Friendly at Glenview', sub: "10:00 · doesn't count towards season numbers" },
-              { day: 'SAT', date: '14', label: 'Grading games start',  sub: '14 to 28 March · three games' },
+              { day: 'SUN', date: '15', label: 'Friendly at Glenview', sub: "10:00 · doesn't count towards season numbers" },
+              { day: 'SUN', date: '15', label: 'Grading games start',  sub: '15 to 29 March · three games' },
               { day: 'SUN', date: '22', label: 'Trial morning for 4 players', sub: '9:30 at Wattle Creek Reserve', action: 'Open' },
             ].map(item => (
               <div key={item.label} style={{ display: 'flex', gap: 12, alignItems: 'flex-start', padding: '8px 0', borderBottom: `1px solid ${LN}` }}>
@@ -100,7 +100,7 @@ export default function SP2HomePreSeason({ onBack, onNav }: { onBack?: () => voi
 
           <div style={{ background: PALE, borderRadius: 14, padding: '14px 16px' }}>
             <div style={{ fontSize: 14, fontWeight: 700, color: GD, marginBottom: 4 }}>Suggestions in pre-season</div>
-            <div style={{ fontSize: 13, color: G, lineHeight: 1.5, marginBottom: 10 }}>With no league games yet, suggestions follow your playing style and the build-up, not last Saturday.</div>
+            <div style={{ fontSize: 13, color: G, lineHeight: 1.5, marginBottom: 10 }}>With no league games yet, suggestions follow your playing style and the build-up, not last Sunday.</div>
             <button onClick={() => onNav ? onNav('SG1-Suggested') : openThing('suggestions', 'coach')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Open suggestions</button>
           </div>
         </div>

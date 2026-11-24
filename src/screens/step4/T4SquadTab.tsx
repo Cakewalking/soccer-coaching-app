@@ -38,7 +38,7 @@ export default function T4SquadTab(_: { onBack?: () => void }) {
       <div style={{ flex: 'none', padding: '12px 28px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <div>
           <div style={{ fontSize: 24, fontWeight: 700, letterSpacing: '-0.02em' }}>Squad</div>
-          <div style={{ fontSize: 14, color: MUT }}>16 players · Thursday 4 Jun · 2 days to Harbour Rovers</div>
+          <div style={{ fontSize: 14, color: MUT }}>16 players · Thursday 4 Jun · 3 days to Harbour Rovers</div>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
           <button onClick={() => mark('msgall')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${is('msgall') ? G : LN}`, background: is('msgall') ? '#eef5f2' : '#fff', fontSize: 14, fontWeight: 600, color: is('msgall') ? G : INK, cursor: 'pointer' }}>{is('msgall') ? '✓ Message sent' : 'Message parents'}</button>
@@ -126,7 +126,7 @@ export default function T4SquadTab(_: { onBack?: () => void }) {
             <div style={{ display: 'flex', gap: 3 }}>
               {[1, 2, 3, 4, 5, 6].map(k => <div key={k} style={{ flex: 1, height: 8, borderRadius: 2, background: k <= 3 ? '#40826d' : '#e9eae8' }} />)}
             </div>
-            <div style={{ fontSize: 12, color: MUT, marginTop: 4 }}>Carried the ball 30 m or more 5 times on Saturday.</div>
+            <div style={{ fontSize: 12, color: MUT, marginTop: 4 }}>Carried the ball 30 m or more 5 times on Sunday.</div>
           </div>
           <div style={{ display: 'flex', gap: 8, marginTop: 'auto' }}>
             <button onClick={() => mark('profile')} style={{ flex: 1, height: 44, borderRadius: 10, border: 0, background: is('profile') ? '#40826d' : G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>{is('profile') ? 'Profile open ✓' : 'Full profile'}</button>

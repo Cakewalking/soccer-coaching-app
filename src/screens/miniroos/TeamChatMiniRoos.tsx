@@ -15,7 +15,7 @@ const ROSE = '#c39797'
 type ChatId = 'announce' | 'u9' | 'sami'
 
 const CHATS: Array<{ id: ChatId; ini: string; bg: string; label: string; time: string; preview: string; unread: number }> = [
-  { id: 'announce', ini: 'All', bg: GD,  label: 'Announcements',           time: 'Mon',     preview: 'You: Photo day is Saturday 20 June', unread: 0 },
+  { id: 'announce', ini: 'All', bg: GD,  label: 'Announcements',           time: 'Mon',     preview: 'You: Photo day is Sunday 21 June', unread: 0 },
   { id: 'u9',       ini: 'U9', bg: G,    label: 'U9 Tom families',         time: '6:40 pm', preview: 'Sami: Omar says thanks for the goalie turn', unread: 2 },
   { id: 'sami',     ini: 'SH', bg: '#e9eae8', label: 'Sami Haddad · Omar\'s dad', time: 'Mon', preview: 'Omar\'s away this week', unread: 0 },
 ]
@@ -51,7 +51,7 @@ function U9GroupChat({ empty, onBack }: { empty?: boolean; onBack: () => void })
               <div style={{ maxWidth: 420 }}>
                 <div style={{ fontSize: 11, color: MUT, marginBottom: 2, textAlign: 'right' }}>You · 5:10 pm</div>
                 <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 12, overflow: 'hidden' }}>
-                  <div style={{ padding: '10px 14px', borderBottom: `1px solid ${LN}`, fontSize: 13, fontWeight: 700, color: INK }}>POLL · Who can be game leader on Saturday?</div>
+                  <div style={{ padding: '10px 14px', borderBottom: `1px solid ${LN}`, fontSize: 13, fontWeight: 700, color: INK }}>POLL · Who can be game leader on Sunday?</div>
                   <div style={{ padding: '8px 14px', borderBottom: `1px solid ${LN}`, position: 'relative', overflow: 'hidden' }}>
                     <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: '50%', background: PALE }}/>
                     <div style={{ position: 'relative', display: 'flex', justifyContent: 'space-between' }}>
@@ -66,7 +66,7 @@ function U9GroupChat({ empty, onBack }: { empty?: boolean; onBack: () => void })
                       <span style={{ fontSize: 13, fontWeight: 700, color: G }}>1</span>
                     </div>
                   </div>
-                  <div style={{ padding: '8px 14px', fontSize: 12, color: MUT }}>3 of 10 families · the first yes fills Saturday's game leader</div>
+                  <div style={{ padding: '8px 14px', fontSize: 12, color: MUT }}>3 of 10 families · the first yes fills Sunday's game leader</div>
                 </div>
               </div>
             </div>
@@ -132,7 +132,7 @@ export default function TeamChatMiniRoos({ empty, onBack }: { empty?: boolean; o
   if (activeChat) {
     const chat = CHATS.find(c => c.id === activeChat)!
     const lines = activeChat === 'announce'
-      ? [{ me: true, who: 'You · Mon', text: 'Photo day is Saturday 20 June. Full kit please, and arrive ten minutes early.' }, { me: true, who: 'You · last Mon', text: 'No training in the school holidays. Back on Tuesday 14 July.' }]
+      ? [{ me: true, who: 'You · Mon', text: 'Photo day is Sunday 21 June. Full kit please, and arrive ten minutes early.' }, { me: true, who: 'You · last Mon', text: 'No training in the school holidays. Back on Tuesday 14 July.' }]
       : [{ me: false, who: 'Sami · Mon', text: 'Omar’s away this week, back for training on Tuesday.' }, { me: true, who: 'You · Mon', text: 'Thanks Sami. He keeps his turn in goal for when he is back.' }]
     return (
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>

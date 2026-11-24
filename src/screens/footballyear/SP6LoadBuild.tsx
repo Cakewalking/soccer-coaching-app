@@ -44,7 +44,7 @@ export default function SP6LoadBuild({ onBack }: { onBack?: () => void }) {
       {/* This week */}
       <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 16px', marginBottom: 16 }}>
         <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 6 }}>This week</div>
-        <div style={{ fontSize: 14, color: INK, marginBottom: 4 }}>Two sessions of 60 minutes, and a friendly on Saturday.</div>
+        <div style={{ fontSize: 14, color: INK, marginBottom: 4 }}>Two sessions of 60 minutes, and a friendly on Sunday.</div>
         <div style={{ fontSize: 13, color: MUT }}>Sprints capped at 12 a session. Lots of ball, short games.</div>
       </div>
 

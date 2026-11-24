@@ -49,7 +49,7 @@ export default function STPh2HomeYouth({ onNav }: { onNav?: (s: string) => void 
               <button aria-label="Open the plan" onClick={() => tool('Training tab')} style={{ fontSize: 12, fontWeight: 700, color: '#fff', background: 'rgba(255,255,255,0.15)', border: 'none', borderRadius: 6, padding: '0 12px', cursor: 'pointer', fontFamily: 'inherit', height: 44, display: 'flex', alignItems: 'center' }}>Open the plan</button>
             </div>
             <div style={{ padding: '16px 20px' }}>
-              <div style={{ fontSize: 15, fontWeight: 800, color: INK, marginBottom: 6 }}>90 minutes · 5 drills · built from Saturday and this week's load</div>
+              <div style={{ fontSize: 15, fontWeight: 800, color: INK, marginBottom: 6 }}>90 minutes · 5 drills · built from Sunday and this week's load</div>
               <div style={{ fontSize: 13, color: G, fontWeight: 700, marginBottom: 8 }}>Building out: keep. Counter-attacks against: tonight.</div>
               <div style={{ fontSize: 13, color: MUT, marginBottom: 6 }}>2 players said exams are on this fortnight</div>
               <div style={{ fontSize: 13, color: MUT, marginBottom: 12 }}>Everyone over a third of every game, the club rule from under 14.</div>
@@ -59,7 +59,7 @@ export default function STPh2HomeYouth({ onNav }: { onNav?: (s: string) => void 
 
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 20px' }}>
             <div style={{ fontSize: 11, fontWeight: 700, color: MUT, letterSpacing: '0.07em', marginBottom: 8 }}>LAST GAME</div>
-            <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 8 }}>Sat 30 May v Kingfisher United · drew 2–2</div>
+            <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 8 }}>Sun 31 May v Kingfisher United · drew 2–2</div>
             <button aria-label="Review" onClick={() => tool('Match day › Review')} style={{ height: 44, padding: '0 20px', background: PALE, color: G, border: 'none', borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Review</button>
           </div>
 

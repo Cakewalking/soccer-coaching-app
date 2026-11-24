@@ -81,7 +81,7 @@ function fromSquad(prefix: string, squad: SquadPlayer[], set: Extra[]): Player[]
 // ── U12 Sam · juniors ──
 const JUNIOR: TeamCfg = {
   key: 'juniors', side: 9, teamLabel: 'U12 Sam · Wattle Creek',
-  game: 'Sat 6 June · v Harbour Rovers', gameTarget: 'FB1l-FormationSaved',
+  game: 'Sun 7 June · v Harbour Rovers', gameTarget: 'FB1l-FormationSaved',
   meta: '9 a side · 15 of 17 can play · saved 2 minutes ago',
   parts: [{ label: 'First half' }, { label: 'Second half' }],
   defaultShape: '3-3-2',
@@ -151,7 +151,7 @@ const SENIORS: TeamCfg = {
 // ── U9 Tom · MiniRoos ──
 const MINIROOS: TeamCfg = {
   key: 'miniroos', side: 7, teamLabel: 'U9 Tom · Wattle Creek',
-  game: 'Sat 6 June · at Northgate City', gameTarget: 'FB1l-FormationSaved',
+  game: 'Sun 7 June · at Northgate City', gameTarget: 'FB1l-FormationSaved',
   meta: '7 a side · 8 coming, 1 maybe, 1 away · quarters of 10 minutes',
   parts: [{ label: '1st' }, { label: '2nd' }, { label: '3rd' }, { label: '4th' }],
   defaultShape: '2-3-1',
@@ -179,7 +179,7 @@ const MINIROOS: TeamCfg = {
 // ── U16 Ollie · youth ──
 const YOUTH: TeamCfg = {
   key: 'youth', side: 11, teamLabel: 'U16 Ollie',
-  game: 'Sat 6 June · at Harbour Rovers', gameTarget: 'FB1l-FormationSaved',
+  game: 'Sun 7 June · at Harbour Rovers', gameTarget: 'FB1l-FormationSaved',
   meta: '11 a side · 16 fit, 1 suspended · saved 2 minutes ago',
   parts: [],
   defaultShape: '4-3-3',

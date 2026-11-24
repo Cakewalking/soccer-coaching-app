@@ -22,7 +22,7 @@ const KEEPERS = [
 
 const DRILLS = [
   { time: '6:00', dur: '10 min', title: 'Handling warm-up in pairs',  desc: 'Scoops, cups and high catches. Younger keepers use a size 4 ball.', why: 'every session starts with safe hands' },
-  { time: '6:10', dur: '15 min', title: 'Start higher, then sweep',   desc: 'Keeper starts on the edge of the box, reads the through ball and clears it.', why: 'Jack was caught on his line on Saturday' },
+  { time: '6:10', dur: '15 min', title: 'Start higher, then sweep',   desc: 'Keeper starts on the edge of the box, reads the through ball and clears it.', why: 'Jack was caught on his line on Sunday' },
   { time: '6:25', dur: '12 min', title: 'Quick restarts',             desc: 'Catch, look, roll to a full-back inside 6 seconds.', why: "Grace's quick roll started a goal. Show the clip first" },
   { time: '6:37', dur: '8 min',  title: 'Crosses and calling',        desc: 'Call "keeper\'s!" early and claim it at the top of the jump.', why: 'Holly does this well. She can show the others' },
 ]
@@ -119,9 +119,9 @@ function HomeOverview({ onPlanSession, onKeeperDrills }: { onPlanSession: () => 
           </div>
         </div>
 
-        {/* From Saturday */}
+        {/* From Sunday */}
         <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '14px 16px' }}>
-          <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 10 }}>From Saturday</div>
+          <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 10 }}>From Sunday</div>
           <div style={{ fontSize: 12, color: '#4a5a57', marginBottom: 8 }}>All keeper clips</div>
           {[
             { ini: 'GO', name: 'Grace', note: 'quick roll starts a goal', team: 'U12 Sam · 4 seconds, catch to pass' },
@@ -267,9 +267,9 @@ function ClipsTab({ empty }: { empty?: boolean }) {
       <h1 style={{ margin: '0 0 4px', fontSize: 24, fontWeight: 700, letterSpacing: '-0.02em' }}>Keeper clips</h1>
       <p style={{ margin: '0 0 20px', fontSize: 14, color: '#4a5a57' }}>From the most recent games</p>
       {[
-        { ini: 'GO', name: 'Grace Owusu', event: 'Quick roll starts a goal', team: 'U12 Sam · v Ironbark United · Sat 6 Jun' },
-        { ini: 'JB', name: 'Jack Byrne',  event: 'Caught on his line',       team: 'U16 Ollie · through ball min 62 · Sat 6 Jun' },
-        { ini: 'HN', name: 'Holly Ng',    event: 'Claims two crosses',       team: 'U13 Girls Meg · both called early · Sat 6 Jun' },
+        { ini: 'GO', name: 'Grace Owusu', event: 'Quick roll starts a goal', team: 'U12 Sam · v Ironbark United · Sun 7 Jun' },
+        { ini: 'JB', name: 'Jack Byrne',  event: 'Caught on his line',       team: 'U16 Ollie · through ball min 62 · Sun 7 Jun' },
+        { ini: 'HN', name: 'Holly Ng',    event: 'Claims two crosses',       team: 'U13 Girls Meg · both called early · Sun 7 Jun' },
       ].map((c, i) => (
         <div key={i} style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '14px 16px', marginBottom: 10, display: 'flex', gap: 14, alignItems: 'center' }}>
           <span style={{ flex: 'none', width: 48, height: 48, borderRadius: '999px', background: '#e8cfcf', color: '#10211f', fontSize: 13, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{c.ini}</span>
@@ -379,7 +379,7 @@ export default function GoalkeeperCoachApp({ empty = false, initialScreen, onNav
               <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: '#5c6b67', marginBottom: 10 }}>What you will see</div>
               {[
                 { n: '1', label: 'Every keeper from U12 up',       desc: 'With one thing to work on' },
-                { n: '2', label: 'Keeper clips from Saturday',     desc: "Only keepers' moments" },
+                { n: '2', label: 'Keeper clips from Sunday',     desc: "Only keepers' moments" },
                 { n: '3', label: "Who's had a session with you",   desc: 'So nobody misses out' },
               ].map(item => (
                 <div key={item.n} style={{ display: 'flex', gap: 14, padding: '12px 0', borderTop: '1px solid #e9eae8', alignItems: 'flex-start' }}>
@@ -400,7 +400,7 @@ export default function GoalkeeperCoachApp({ empty = false, initialScreen, onNav
         {nav === 'keepers'  && <KeepersTab empty={empty} />}
         {nav === 'matchday' && (
           <div style={{ flexGrow: 1, overflowY: 'auto', padding: '20px 28px' }}>
-            <h2 style={{ margin: '0 0 2px', fontSize: 22, fontWeight: 700, color: '#10211f' }}>Saturday's keepers</h2>
+            <h2 style={{ margin: '0 0 2px', fontSize: 22, fontWeight: 700, color: '#10211f' }}>Sunday's keepers</h2>
             <div style={{ fontSize: 13, color: '#5c6b67', marginBottom: 16 }}>6 games across the club · one thing for each keeper</div>
             <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 16, overflow: 'hidden', marginBottom: 16 }}>
               {KEEPERS.map((k, i) => (

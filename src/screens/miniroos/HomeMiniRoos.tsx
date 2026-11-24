@@ -3,8 +3,8 @@ import { useState } from 'react'
 import { AskLine } from '../HomeScreen'
 
 const NEEDS_YOU = [
-  { ini: 'AV', iconBg: '#40826d', iconColor: '#fff', category: 'Availability', time: 'Saturday', badge: 'Today', title: "2 families haven't said if they're coming", unread: true },
-  { ini: 'RF', iconBg: '#e8cfcf', iconColor: '#10211f', category: 'Referees', time: 'Yesterday', badge: '', title: 'Saturday still needs a game leader', unread: true },
+  { ini: 'AV', iconBg: '#40826d', iconColor: '#fff', category: 'Availability', time: 'Sunday', badge: 'Today', title: "2 families haven't said if they're coming", unread: true },
+  { ini: 'RF', iconBg: '#e8cfcf', iconColor: '#10211f', category: 'Referees', time: 'Yesterday', badge: '', title: 'Sunday still needs a game leader', unread: true },
 ]
 
 const TURN_ITEMS = [
@@ -23,8 +23,8 @@ const MINI_WEEK = [
   { day: 'Mon', date: 1, type: 'rest',  label: 'Rest' },
   { day: 'Tue', date: 2, type: 'today', label: 'Training 5:00 pm' },
   { day: 'Thu', date: 4, type: 'rest',  label: 'Rest' },
-  { day: 'Sat', date: 6, type: 'game',  label: 'Northgate City · 8:30' },
-  { day: 'Sun', date: 7, type: 'rest',  label: 'Rest' },
+  { day: 'Sat', date: 6, type: 'rest',  label: 'Rest' },
+  { day: 'Sun', date: 7, type: 'game',  label: 'Northgate City · 8:30' },
 ]
 
 function miniWeekStyle(type: string) {
@@ -152,12 +152,12 @@ export default function HomeMiniRoos({ empty, onTraining, onSeasonNotes, onFootb
             ))}
           </div>
           <div style={{ padding: '12px 18px', borderTop: '1px solid #e9eae8', marginTop: 'auto' }}>
-            <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: '18px' }}>Next in goal: Ivy, Max and Arlo. Clean Sheet lines up Saturday's turns for you.</div>
+            <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: '18px' }}>Next in goal: Ivy, Max and Arlo. Clean Sheet lines up Sunday's turns for you.</div>
           </div>
         </section>
       </div>
 
-      {/* ── Center column (span 5): TODAY + Last Saturday ── */}
+      {/* ── Center column (span 5): TODAY + Last Sunday ── */}
       <div style={{ gridColumn: 'span 5', display: 'flex', flexDirection: 'column', gap: 14, minHeight: 0 }}>
 
         {/* TODAY card */}
@@ -190,11 +190,11 @@ export default function HomeMiniRoos({ empty, onTraining, onSeasonNotes, onFootb
           </div>
         </section>
 
-        {/* Last Saturday */}
-        <section className="tile" style={{ flexGrow: 1, gap: 10 }} aria-label="Last Saturday">
+        {/* Last Sunday */}
+        <section className="tile" style={{ flexGrow: 1, gap: 10 }} aria-label="Last Sunday">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
-            <h2 className="h2">Last Saturday</h2>
-            <span style={{ fontSize: 13, color: '#4a5a57' }}>Sat 30 May · home</span>
+            <h2 className="h2">Last Sunday</h2>
+            <span style={{ fontSize: 13, color: '#4a5a57' }}>Sun 31 May · home</span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <div>
@@ -222,7 +222,7 @@ export default function HomeMiniRoos({ empty, onTraining, onSeasonNotes, onFootb
         </section>
       </div>
 
-      {/* ── Right column (span 3): This week + Saturday + Why no scores ── */}
+      {/* ── Right column (span 3): This week + Sunday + Why no scores ── */}
       <div style={{ gridColumn: 'span 3', display: 'flex', flexDirection: 'column', gap: 14, minHeight: 0 }}>
 
         <section className="tile" style={{ flex: 'none', gap: 4 }} aria-label="This week">
@@ -238,9 +238,9 @@ export default function HomeMiniRoos({ empty, onTraining, onSeasonNotes, onFootb
           ))}
         </section>
 
-        <section className="tile" style={{ flex: 'none', gap: 8 }} aria-label="Saturday">
+        <section className="tile" style={{ flex: 'none', gap: 8 }} aria-label="Sunday">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
-            <h2 className="h2">Saturday</h2>
+            <h2 className="h2">Sunday</h2>
             <span className="cap">7 a side</span>
           </div>
           <div style={{ fontSize: 15, fontWeight: 700 }}>8:30 vs Northgate City</div>

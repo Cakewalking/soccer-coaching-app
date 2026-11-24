@@ -45,7 +45,7 @@ export const PLAYER = (id: string) => YT_PLAYERS.find(p => p.id === id)!
 
 // The coach's own take on the last game (coach-only).
 export const COACH_GAME = {
-  fixture: 'Sat 30 May · Won 3-1 at Ironbark United',
+  fixture: 'Sun 31 May · Won 3-1 at Ironbark United',
   round: 'Round 8 · away · Redgum Reserve',
   howWePlayed: 4 as Rating,
   planWorked: 'partly' as 'yes' | 'partly' | 'no',

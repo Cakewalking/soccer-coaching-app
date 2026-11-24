@@ -29,7 +29,7 @@ export default function TM4DutyRoster(_: { onBack?: () => void }) {
       </div>
       <div style={{ flexGrow: 1, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 10, overflowY: 'auto' }}>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '4px 14px' }}>
-          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#7a4b5b', padding: '8px 0 4px' }}>Sat 6 Jun · vs Harbour Rovers</div>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#7a4b5b', padding: '8px 0 4px' }}>Sun 7 Jun · vs Harbour Rovers</div>
           {duties.map((d, i) => (
             <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 50, borderTop: i > 0 ? `1px solid ${LN}` : 'none' }}>
               <div style={{ width: 36, height: 36, borderRadius: 10, background: d.action ? '#c39797' : '#e8cfcf', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, flexShrink: 0 }}>{d.icon}</div>

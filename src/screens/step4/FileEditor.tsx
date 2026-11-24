@@ -75,7 +75,7 @@ export default function FileEditor({ type, initialName, initialContent, onBack, 
 
           {type === 'doc' ? (
             <div style={{ background: '#fff', borderRadius: 16, boxShadow: '0 2px 12px rgba(16,33,31,0.07)', padding: '28px 32px', minHeight: 420 }}>
-              <textarea value={body} onChange={e => { setBody(e.target.value); setSaved(false) }} placeholder="Start typing. Write a note to families, a plan for Saturday, anything."
+              <textarea value={body} onChange={e => { setBody(e.target.value); setSaved(false) }} placeholder="Start typing. Write a note to families, a plan for Sunday, anything."
                 style={{ width: '100%', minHeight: 360, border: 'none', background: 'transparent', fontSize: 14, lineHeight: 1.7, color: INK, fontFamily: 'inherit', outline: 'none', resize: 'vertical' }} />
             </div>
           ) : (

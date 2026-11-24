@@ -51,7 +51,7 @@ export const DRILLS: Drill[] = [
   // ── Skill Acquisition 9–12 ────────────────────────────────────────────────
   { id:'1', name:'4 v 4 + 3 keep-ball', category:'First touch', time:15, players:'11 players', phases:['skill'], area:'30 × 25 m', ages:'Skill Acquisition · 9 to 12', intensity:'High', workRest:'4 × 3 min, 1 min rest', kitStr:'Balls, bibs, cones', featured:true, tags:['Curriculum'],
     aim:'Keep the ball with more players: scan, open up, find the free player.',
-    whySuggested:'Saturday vs Ironbark United: gave the ball away in our half, 21 times. We aim for under 12.',
+    whySuggested:'Sunday vs Ironbark United: gave the ball away in our half, 21 times. We aim for under 12.',
     howItWorks:['Two teams of 4 inside the square. 3 neutral players, one at each end and one in the middle, always play for the team with the ball. That makes it 7 v 4.','Make 6 passes in a row for a point.','Lose it and the other team is straight on the ball.'],
     coachingPoints:['Open your body so you can see both ends','Check your shoulder before the ball arrives','Pass to the free player, not the nearest one'],
     keyWords:['Scan','Free player'],

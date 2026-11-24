@@ -20,7 +20,10 @@ const TEAM: Record<OtherTeam, { squad: SquadPlayer[]; label: string; coach: [str
   seniors: {
     squad: SENIORS_SQUAD_PLAYERS, label: 'Men’s 1sts', coach: ['Marko', 'Marko P', 'MP'],
     // Adults: no parent wording anywhere, and no assumed pronoun.
-    phrases: [['Won 3-1 at Ironbark United', 'Won 2-0 at home v Glenview Park'], ['Won 3–1 at Ironbark United', 'Won 2–0 at home v Glenview Park'], ['Ironbark had their best spell', 'Glenview had their best spell'], ['She wrote:', 'He wrote:'], ['if she wants', 'if he wants'], ['Message her parent', 'Message him'], ['Opening message to her parent.', 'Opening a message to him.'], ['Answers are seen by her coaches and her parent.', 'Answers are seen by the coaches.'], ['her coaches', 'the coaches'], ['9:30 vs Harbour Rovers', '3:00 at Banksia Park SC'], ['home to Harbour Rovers', 'away at Banksia Park SC'], ['Harbour Rovers', 'Banksia Park SC'], ['9 a side', '11 a side'], ['under 12s', 'seniors']],
+    // The shared screens are written for a junior team, whose games are on Sunday. Seniors play on Saturday, so the game day is put back a day here.
+    // The two phrases kept as they are name a real Sunday: the week's last day, and the day the next plan is suggested.
+    phrases: [['Sunday', 'Saturday'], ['SUNDAY', 'SATURDAY'], ['Sundays', 'Saturdays'], ['Sunday 7 Jun', 'Saturday 6 Jun'], ['Sun 7 Jun', 'Sat 6 Jun'], ['Sun 7 June', 'Sat 6 June'], ['7 Jun', '6 Jun'], ['Sun 31 May', 'Sat 30 May'], ['Sun 24 May', 'Sat 23 May'], ['Sun 17 May', 'Sat 16 May'], ['Sun 10 May', 'Sat 9 May'], ['to Sun 7 Jun', 'to Sun 7 Jun'], ['suggests it Sunday', 'suggests it Sunday'],
+      ['Won 3-1 at Ironbark United', 'Won 2-0 at home v Glenview Park'], ['Won 3–1 at Ironbark United', 'Won 2–0 at home v Glenview Park'], ['Ironbark had their best spell', 'Glenview had their best spell'], ['She wrote:', 'He wrote:'], ['if she wants', 'if he wants'], ['Message her parent', 'Message him'], ['Opening message to her parent.', 'Opening a message to him.'], ['Answers are seen by her coaches and her parent.', 'Answers are seen by the coaches.'], ['her coaches', 'the coaches'], ['9:30 vs Harbour Rovers', '3:00 at Banksia Park SC'], ['home to Harbour Rovers', 'away at Banksia Park SC'], ['Harbour Rovers', 'Banksia Park SC'], ['9 a side', '11 a side'], ['under 12s', 'seniors']],
   },
 }
 

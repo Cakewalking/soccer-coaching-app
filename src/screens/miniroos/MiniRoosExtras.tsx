@@ -50,16 +50,16 @@ function Empty({ title, body }: { title: string; body: string }) {
 // One small thing per child, in words a seven-year-old would use. Three steps, no marks.
 export const STEPS = ['Having a go', 'Does it at training', 'Does it in games'] as const
 export const SKILLS: Record<string, { skill: string; step: 0 | 1 | 2; say: string; saw: string }> = {
-  IC: { skill: 'Look up while dribbling', step: 2, say: 'Eyes up, Ivy. Who is free?', saw: 'Sat 30 May: beat one and found Zara' },
+  IC: { skill: 'Look up while dribbling', step: 2, say: 'Eyes up, Ivy. Who is free?', saw: 'Sun 31 May: beat one and found Zara' },
   MB: { skill: 'Soft first touch', step: 1, say: 'Cushion it, Max. Like catching an egg.', saw: 'Tuesday: stopped 6 of 8 dead' },
   AK: { skill: 'Stop the ball with the sole', step: 0, say: 'Foot on top, Arlo. Squash it.', saw: 'New this term: second week of trying' },
   ZM: { skill: 'Pass with the other foot', step: 1, say: 'Left foot this time, Zara.', saw: 'Tuesday: five left-foot passes in the gates game' },
-  LW: { skill: 'Call for the ball', step: 0, say: 'Big voice, Leo. Say Zara’s name.', saw: 'Sat 30 May: called once, and got it' },
+  LW: { skill: 'Call for the ball', step: 0, say: 'Big voice, Leo. Say Zara’s name.', saw: 'Sun 31 May: called once, and got it' },
   EN: { skill: 'Use the right foot too', step: 1, say: 'Right foot for this one, Evie.', saw: 'Tuesday: scored with her right in the small game' },
-  TS: { skill: 'Find a friend before the wall', step: 1, say: 'Head up, Theo. Who is your friend?', saw: 'Sat 30 May: two passes instead of two shots' },
+  TS: { skill: 'Find a friend before the wall', step: 1, say: 'Head up, Theo. Who is your friend?', saw: 'Sun 31 May: two passes instead of two shots' },
   PD: { skill: 'Take the first kick-off', step: 0, say: 'Your ball to start, Poppy.', saw: 'Tuesday: took it, with Zara next to her' },
-  OH: { skill: 'Turn away from a defender', step: 1, say: 'Show them your back, Omar.', saw: 'Sat 23 May: turned twice in the last game' },
-  JL: { skill: 'Stay on the ball when it is busy', step: 2, say: 'Keep it close, Jude. Little touches.', saw: 'Sat 30 May: kept it under pressure three times' },
+  OH: { skill: 'Turn away from a defender', step: 1, say: 'Show them your back, Omar.', saw: 'Sun 24 May: turned twice in the last game' },
+  JL: { skill: 'Stay on the ball when it is busy', step: 2, say: 'Keep it close, Jude. Little touches.', saw: 'Sun 31 May: kept it under pressure three times' },
 }
 
 export function SkillsMiniRoos({ empty }: { empty?: boolean }) {
@@ -139,7 +139,7 @@ export function FairTurnsMiniRoos({ empty, onTurns }: { empty?: boolean; onTurns
   const low = rows.filter(r => r.share < 0.72)
   return (
     <Page title="Fair turns" sub="5 games this term · quarters of 10 minutes · 7 on the pitch, 10 in the squad"
-      right={<><button style={btn} onClick={() => say('A one-page summary is ready to share with families: turns only, no scores.')}>Share with families</button><button style={btnP} onClick={() => onTurns ? onTurns() : openThing('Saturday’s turns', 'mini')}>Set Saturday’s turns</button></>}
+      right={<><button style={btn} onClick={() => say('A one-page summary is ready to share with families: turns only, no scores.')}>Share with families</button><button style={btnP} onClick={() => onTurns ? onTurns() : openThing('Sunday’s turns', 'mini')}>Set Sunday’s turns</button></>}
       foot="Everyone plays at least half of every game they come to. Turns in goal and as captain go round the whole squad each term.">
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0,1fr))', gap: 10, marginBottom: 12 }}>
         <div style={{ ...card, padding: '12px 14px' }}>
@@ -175,8 +175,8 @@ export function FairTurnsMiniRoos({ empty, onTurns }: { empty?: boolean; onTurns
       </div>
       {low.length > 0 && (
         <div style={{ ...card, background: SANDBG, borderColor: SAND, marginTop: 12, display: 'flex', alignItems: 'center', gap: 14, flexWrap: 'wrap' }}>
-          <div style={{ flexGrow: 1, minWidth: 240, fontSize: 14, color: INK, lineHeight: 1.5 }}><strong>{low.map(r => first(r.p.name)).join(' and ')}</strong> {low.length === 1 ? 'has' : 'have'} played a little less than the others. Start {low.length === 1 ? 'them' : 'them both'} on Saturday and it evens out.</div>
-          <button style={btn} onClick={() => say(`${low.map(r => first(r.p.name)).join(' and ')} will start on Saturday. Change it any time in Turns.`)}>Start them Saturday</button>
+          <div style={{ flexGrow: 1, minWidth: 240, fontSize: 14, color: INK, lineHeight: 1.5 }}><strong>{low.map(r => first(r.p.name)).join(' and ')}</strong> {low.length === 1 ? 'has' : 'have'} played a little less than the others. Start {low.length === 1 ? 'them' : 'them both'} on Sunday and it evens out.</div>
+          <button style={btn} onClick={() => say(`${low.map(r => first(r.p.name)).join(' and ')} will start on Sunday. Change it any time in Turns.`)}>Start them Sunday</button>
         </div>
       )}
       {el}
@@ -190,17 +190,17 @@ const WEEK = [
   { day: 'Tue', date: '2 Jun', what: 'Training · 5:00–5:45 pm', note: 'Done · 9 came · running with the ball', done: true },
   { day: 'Wed', date: '3 Jun', what: '', note: '' },
   { day: 'Thu', date: '4 Jun', what: 'Training · 5:00–5:45 pm', note: 'Tonight · 9 coming · 4 games ready', today: true },
-  { day: 'Fri', date: '5 Jun', what: '', note: 'Meet time goes to families at 6:00 pm' },
-  { day: 'Sat', date: '6 Jun', what: 'Game · 8:30 am at Northgate City', note: 'Redgum Reserve · 7 coming, 1 maybe · needs a game leader' },
-  { day: 'Sun', date: '7 Jun', what: '', note: 'What we saw goes to families' },
+  { day: 'Fri', date: '5 Jun', what: '', note: '' },
+  { day: 'Sat', date: '6 Jun', what: '', note: 'Meet time goes to families at 6:00 pm' },
+  { day: 'Sun', date: '7 Jun', what: 'Game · 8:30 am at Northgate City', note: 'Redgum Reserve · 7 coming, 1 maybe · needs a game leader' },
 ]
 
 export function WeekMiniRoos({ empty, onTonight }: { empty?: boolean; onTonight?: () => void }) {
   const { say, el } = useToast()
-  if (empty) return <Empty title="Your week appears here" body="Once training times and fixtures are in, this shows the week in one place, with what is left to do before Saturday." />
+  if (empty) return <Empty title="Your week appears here" body="Once training times and fixtures are in, this shows the week in one place, with what is left to do before Sunday." />
   const jobs = [
-    { t: 'Find a game leader for Saturday', s: 'A parent or a 14-year-old with the course. Zoe Park is free.', b: 'Ask Zoe', m: 'Asked Zoe Park to lead Saturday’s game.' },
-    { t: 'Chase one answer', s: 'Jude’s family have not replied about Saturday.', b: 'Remind', m: 'Reminder sent to Jude’s family.' },
+    { t: 'Find a game leader for Sunday', s: 'A parent or a 14-year-old with the course. Zoe Park is free.', b: 'Ask Zoe', m: 'Asked Zoe Park to lead Sunday’s game.' },
+    { t: 'Chase one answer', s: 'Jude’s family have not replied about Sunday.', b: 'Remind', m: 'Reminder sent to Jude’s family.' },
     { t: 'Oranges and kit', s: 'Leo’s family have oranges, Jude’s family have the kit bag.', b: 'Nudge both', m: 'A friendly nudge went to both families.' },
   ]
   return (
@@ -225,7 +225,7 @@ export function WeekMiniRoos({ empty, onTonight }: { empty?: boolean; onTonight?
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
           <div style={card}>
-            <div style={{ fontSize: 16, fontWeight: 700, color: INK, marginBottom: 6 }}>Before Saturday</div>
+            <div style={{ fontSize: 16, fontWeight: 700, color: INK, marginBottom: 6 }}>Before Sunday</div>
             {jobs.map((j, i) => (
               <div key={j.t} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 0', borderTop: i ? `1px solid ${LN}` : 0 }}>
                 <div style={{ flexGrow: 1, minWidth: 0 }}>

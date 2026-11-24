@@ -9,18 +9,18 @@ type Avail = 'in' | 'out' | null
 
 const THIS_WEEK = [
   { dayLabel: 'THU', dayNum: '4', title: 'Training', sub: '7:00 pm · Wattle Creek Reserve', done: true },
-  { dayLabel: 'SAT', dayNum: '6', title: 'at Harbour Rovers', sub: 'Meet 2:40 · kick-off 3:30 · away kit', done: false },
+  { dayLabel: 'SUN', dayNum: '7', title: 'at Harbour Rovers', sub: 'Meet 2:40 · kick-off 3:30 · away kit', done: false },
   { dayLabel: 'MON', dayNum: '8', title: 'Goal chat with Ollie', sub: '15 min check-in · optional', done: false },
 ]
 
 const CHAT_MSGS = [
-  { from: 'Ollie Grant', time: 'Tuesday', body: "Great work at training today Cal. You were reading the game well — keep that going Saturday." },
+  { from: 'Ollie Grant', time: 'Tuesday', body: "Great work at training today Cal. You were reading the game well — keep that going Sunday." },
   { from: 'Ollie', time: '5:14 pm', body: "Priya has set a sprint cap for you this week — 8 max. You're in a growth spurt so we're just being careful." },
-  { from: 'Cal', time: 'Now', body: "Thanks. Will I still get a full game on Saturday?" },
+  { from: 'Cal', time: 'Now', body: "Thanks. Will I still get a full game on Sunday?" },
 ]
 
 const LOAD_BARS = [
-  { label: 'Mon', h: 0 }, { label: 'Tue', h: 72 }, { label: 'Thu', h: 88 }, { label: 'Sat', h: 50 },
+  { label: 'Mon', h: 0 }, { label: 'Tue', h: 72 }, { label: 'Thu', h: 88 }, { label: 'Sun', h: 50 },
 ]
 
 const TESTS = [
@@ -78,7 +78,7 @@ function HomeView({ setView }: { setView: (v: View) => void }) {
       {/* Next game */}
       <div style={{ background: '#1f4a3e', borderRadius: 16, padding: '16px 18px', color: '#fff' }}>
         <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', color: 'rgba(255,255,255,0.65)', marginBottom: 4 }}>NEXT GAME</div>
-        <div style={{ fontSize: 20, fontWeight: 800 }}>SAT 6 · at Harbour Rovers</div>
+        <div style={{ fontSize: 20, fontWeight: 800 }}>SUN 7 · at Harbour Rovers</div>
         <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.75)', marginTop: 4 }}>Meet 2:40 at Rovers Park · kick-off 3:30</div>
         <div style={{ marginTop: 10, display: 'flex', gap: 8 }}>
           <button onClick={() => setAvail('in')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: avail === 'in' ? '#fff' : 'rgba(255,255,255,0.2)', color: avail === 'in' ? '#1f4a3e' : '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>{avail === 'in' ? "✓ You're in" : "I'm in"}</button>
@@ -91,7 +91,7 @@ function HomeView({ setView }: { setView: (v: View) => void }) {
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c39797" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true"><path d="M12 2a5 5 0 100 10 5 5 0 000-10zM4 20a8 8 0 0116 0"/></svg>
         <div>
           <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>Big week for your legs</div>
-          <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: '18px', marginTop: 2 }}>Priya has capped your sprints at 8 this week — you're in a growth spurt. Full game still planned Saturday.</div>
+          <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: '18px', marginTop: 2 }}>Priya has capped your sprints at 8 this week — you're in a growth spurt. Full game still planned Sunday.</div>
           <button onClick={() => setView('body')} style={{ marginTop: 6, border: 0, background: 'transparent', color: '#2f6252', fontSize: 13, fontWeight: 600, cursor: 'pointer', padding: 0, fontFamily: 'inherit' }}>See your body data →</button>
         </div>
       </div>
@@ -202,7 +202,7 @@ function MessagesView({ initialChat = 'list' }: { initialChat?: MsgChat }) {
           <div style={{ background: '#f5f6f4', borderRadius: 12, padding: '10px 12px', marginLeft: 34 }}>
             <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#40826d', marginBottom: 3 }}>Poll</div>
             <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>Team meeting: which works?</div>
-            {[{ label: 'Fri 6:00 pm', votes: 9 }, { label: 'Sat 1:30, before the game', votes: 4 }].map(opt => (
+            {[{ label: 'Fri 6:00 pm', votes: 9 }, { label: 'Sun 1:30, before the game', votes: 4 }].map(opt => (
               <div key={opt.label} style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 4 }}>
                 <div style={{ flex: 1, height: 26, background: '#e8edeb', borderRadius: 999, overflow: 'hidden', position: 'relative' as const }}>
                   <div style={{ width: `${opt.votes / 13 * 100}%`, height: '100%', background: '#eef5f2' }}/>
@@ -301,7 +301,7 @@ function BodyView() {
             </div>
           ))}
         </div>
-        <div style={{ marginTop: 8, fontSize: 12, color: '#4a5a57' }}>Thursday training was high — Saturday is capped at 8 sprints.</div>
+        <div style={{ marginTop: 8, fontSize: 12, color: '#4a5a57' }}>Thursday training was high — Sunday is capped at 8 sprints.</div>
       </div>
 
       {/* Add other sport */}

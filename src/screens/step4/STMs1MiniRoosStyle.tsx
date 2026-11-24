@@ -55,7 +55,7 @@ export default function STMs1MiniRoosStyle({ onNav }: { onNav?: (s: string) => v
               <div style={{ fontSize: 13, color: MUT }}>U9 Tom · pick up to three. Clean Sheet looks for them in every filmed game</div>
             </div>
             <div style={{ display: 'flex', gap: 8, flexShrink: 0 }}>
-              <button aria-label="See what parents see" onClick={() => tool('Parents see the three things in their own words, with a way to cheer for them on Saturday.')} style={{ height: 44, padding: '0 16px', background: '#fff', color: G, border: `1.5px solid ${G}`, borderRadius: 8, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>See what parents see</button>
+              <button aria-label="See what parents see" onClick={() => tool('Parents see the three things in their own words, with a way to cheer for them on Sunday.')} style={{ height: 44, padding: '0 16px', background: '#fff', color: G, border: `1.5px solid ${G}`, borderRadius: 8, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>See what parents see</button>
               <button aria-label="Save" onClick={() => onNav?.('MS2-MiniRoosWhereWeAt')} style={{ height: 44, padding: '0 24px', background: G, color: '#fff', border: 'none', borderRadius: 8, fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Save</button>
             </div>
           </div>

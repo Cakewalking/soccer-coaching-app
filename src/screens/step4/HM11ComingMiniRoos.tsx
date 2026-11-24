@@ -25,7 +25,7 @@ export default function HM11ComingMiniRoos(_: { onBack?: () => void }) {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 24 }}>
           <div>
             <div style={{ fontSize: 20, fontWeight: 800, letterSpacing: '-0.02em', color: INK, marginBottom: 2 }}>Who's coming</div>
-            <div style={{ fontSize: 13, color: MUT }}>Sat 6 Jun · 8:30 vs Northgate City · you need 7</div>
+            <div style={{ fontSize: 13, color: MUT }}>Sun 7 Jun · 8:30 vs Northgate City · you need 7</div>
           </div>
           <button style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }} onClick={() => st('Sending reminders.')}>Remind 2 families</button>
         </div>
@@ -78,7 +78,7 @@ export default function HM11ComingMiniRoos(_: { onBack?: () => void }) {
 
           <div>
             <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 18px', marginBottom: 14 }}>
-              <div style={{ fontSize: 15, fontWeight: 700, color: GD, marginBottom: 4 }}>Saturday looks fine</div>
+              <div style={{ fontSize: 15, fontWeight: 700, color: GD, marginBottom: 4 }}>Sunday looks fine</div>
               <div style={{ fontSize: 13, color: MUT, marginBottom: 8 }}>7 for sure, and you need 7</div>
               <div style={{ fontSize: 12, color: MUT }}>If Poppy and Jude both come, everyone gets a rest block.</div>
             </div>

@@ -21,7 +21,7 @@ export default function FIL7Form({ onBack, onShare, onAnswersSheet, onNav, bare 
     { q: 'Kit size this season?', type: 'Choice', note: 'Up to 10 letters. Leave empty for none' },
     { q: 'Any dietary needs at presentation lunch?', type: 'Short answer' },
     { q: 'Shirt number preference (not guaranteed)?', type: 'Choice' },
-    { q: 'Can your child be in the team photo on Sat 20 June?', type: 'Yes or no', note: 'Families who said no to photos in consent are not asked this. Their answer is already "no".' },
+    { q: 'Can your child be in the team photo on Sun 21 June?', type: 'Yes or no', note: 'Families who said no to photos in consent are not asked this. Their answer is already "no".' },
   ])
   function tool(name: string) { const to = toolTarget(name); if (to && onNav) { onNav(to); return } setLastTool(name) }
 

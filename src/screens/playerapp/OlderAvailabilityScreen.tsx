@@ -3,9 +3,9 @@ import { useState } from 'react'
 type Ans = 'yes' | 'maybe' | 'no' | null
 
 const EVENTS = [
-  { dayLabel: 'SAT', dayNum: '6', title: 'at Harbour Rovers', sub: 'Meet 2:40 at Rovers Park · kick-off 3:30' },
+  { dayLabel: 'SUN', dayNum: '7', title: 'at Harbour Rovers', sub: 'Meet 2:40 at Rovers Park · kick-off 3:30' },
   { dayLabel: 'MON', dayNum: '8', title: 'Training', sub: '7:00 pm · Wattle Creek Reserve' },
-  { dayLabel: 'SAT', dayNum: '13', title: 'vs Kingfisher United', sub: 'Home · 3:30' },
+  { dayLabel: 'SUN', dayNum: '14', title: 'vs Kingfisher United', sub: 'Home · 3:30' },
 ]
 
 function AnswerBtn({ label, active, color, onClick }: { label: string; active: boolean; color: string; onClick: () => void }) {
@@ -59,7 +59,7 @@ export default function OlderAvailabilityScreen() {
 
         {/* Lift request */}
         <div style={{ background: '#eef5f2', borderRadius: 14, padding: '12px 14px', fontSize: 14, color: '#2f6252', lineHeight: '20px' }}>
-          Need a lift on Saturday? Tell Ollie and the team manager can pair you with another family.
+          Need a lift on Sunday? Tell Ollie and the team manager can pair you with another family.
         </div>
       </div>
 

@@ -44,7 +44,7 @@ export default function CH5PollResults(_: { onBack?: () => void }) {
       <div style={{ flexShrink: 0, padding: '14px 28px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 20 }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 14 }}>
           <h1 style={{ margin: 0, fontSize: 26, fontWeight: 700, letterSpacing: '-0.02em' }}>Poll results</h1>
-          <span style={{ fontSize: 14, color: MUT }}>Who's coming on Saturday? · closes Fri 6 pm</span>
+          <span style={{ fontSize: 14, color: MUT }}>Who's coming on Sunday? · closes Fri 6 pm</span>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
           <button onClick={() => t('Back to chat.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid #c5c8c4`, background: '#fff', fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Back to chat</button>
@@ -73,7 +73,7 @@ export default function CH5PollResults(_: { onBack?: () => void }) {
         <div style={{ gridColumn: 'span 5', display: 'flex', flexDirection: 'column', gap: 14 }}>
           <div style={{ background: '#fff', border: `2px solid ${G}`, borderRadius: 16, padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 6 }}>
             <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b' }}>Done for you</div>
-            <div style={{ fontSize: 16, fontWeight: 700, lineHeight: '23px' }}>Who's coming is filled in: 11 players for Saturday.</div>
+            <div style={{ fontSize: 16, fontWeight: 700, lineHeight: '23px' }}>Who's coming is filled in: 11 players for Sunday.</div>
             <div style={{ fontSize: 14, color: MUT }}>Enough for a 9-a-side with two on the bench.</div>
             <button onClick={() => t("Who's coming opened.")} style={{ alignSelf: 'flex-start', height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid #c5c8c4`, background: '#fff', fontSize: 15, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Open Who's coming</button>
           </div>

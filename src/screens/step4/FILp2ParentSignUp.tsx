@@ -57,7 +57,7 @@ export default function FILp2ParentSignUp({ onBack, onNav }: {
       </div>
 
       <div style={{ flex: 1, padding: 16, overflowY: 'auto' }}>
-        <div style={{ fontSize: 14, fontWeight: 600, color: INK, marginBottom: 4 }}>Sat 13 Dec at Banksia Park. Pick one, or more if you like.</div>
+        <div style={{ fontSize: 14, fontWeight: 600, color: INK, marginBottom: 4 }}>Sun 13 Dec at Banksia Park. Pick one, or more if you like.</div>
         <div style={{ fontSize: 12, color: MUT, marginBottom: 16 }}>You did canteen twice this season, so those are not shown first. Full jobs are hidden.</div>
 
         {jobs.map(j => {

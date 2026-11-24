@@ -43,7 +43,7 @@ function RefAsked({ onAccept, onDecline }: { onAccept: () => void; onDecline: ()
         <div style={{ background: '#fff', borderRadius: 16, padding: '14px 16px', border: '1px solid #e9eae8' }}>
           <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: '#4a5a57', marginBottom: 6 }}>From Ruth, referee coordinator</div>
           <div style={{ fontSize: 18, fontWeight: 700, marginBottom: 4 }}>U13 Girls Meg v Northgate City</div>
-          <div style={{ fontSize: 15, color: '#2f6252', fontWeight: 600, marginBottom: 10 }}>Assistant referee · Sat 6 Jun · 12:00 · pitch 1</div>
+          <div style={{ fontSize: 15, color: '#2f6252', fontWeight: 600, marginBottom: 10 }}>Assistant referee · Sun 7 Jun · 12:00 · pitch 1</div>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, marginBottom: 10 }}>
             {[
@@ -87,15 +87,15 @@ function RefGames() {
 
       <div style={{ padding: '16px', display: 'flex', flexDirection: 'column', gap: 12 }}>
         <div style={{ background: '#eef5f2', borderRadius: 14, padding: '12px 14px', fontSize: 14, color: '#2f6252', lineHeight: '20px' }}>
-          Ruth asked: can you do 12:00 Saturday? Assistant referee · U13 Girls Meg
+          Ruth asked: can you do 12:00 Sunday? Assistant referee · U13 Girls Meg
         </div>
 
         {[
-          { date: 'SAT 6 JUN', games: [
+          { date: 'SUN 7 JUN', games: [
             { time: '8:30',  desc: 'U7 Dan v Ironbark United', role: 'Game leader · pitch 5 · festival', mine: true },
             { time: '12:00', desc: 'U13 Girls Meg v Northgate', role: 'Assistant referee · pitch 1', asked: true },
           ]},
-          { date: 'SAT 13 JUN', games: [
+          { date: 'SUN 14 JUN', games: [
             { time: '9:00',  desc: 'U9 Mark v Tealside Town', role: 'Game leader · pitch 4', mine: true },
             { time: '10:30', desc: 'U11 Luke v Glenview Park', role: 'Game leader · pitch 3', asked: true },
           ]},
@@ -138,7 +138,7 @@ function RefReport({ onSend }: { onSend: () => void }) {
   return (
     <>
       <div style={{ background: '#1f4a3e', padding: '48px 20px 20px' }}>
-        <div style={{ fontSize: 15, fontWeight: 700, color: '#fff' }}>U13 Girls Meg v Northgate City · Sat 6 Jun</div>
+        <div style={{ fontSize: 15, fontWeight: 700, color: '#fff' }}>U13 Girls Meg v Northgate City · Sun 7 Jun</div>
         <div style={{ fontSize: 22, fontWeight: 700, color: '#fff', marginTop: 2 }}>Report something</div>
         <div style={{ width: 40, height: 40, borderRadius: '999px', background: '#e8cfcf', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700, marginTop: 10 }}>ZP</div>
       </div>

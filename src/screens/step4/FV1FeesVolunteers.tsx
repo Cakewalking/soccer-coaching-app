@@ -52,10 +52,10 @@ export default function FV1FeesVolunteers(_: { onBack?: () => void }) {
             <div style={{ fontSize: 14, fontWeight: 700, color: INK, marginBottom: 12 }}>Club volunteer roster · Across all teams</div>
             <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 18px', marginBottom: 14 }}>
               {[
-                { duty: 'Canteen · Sat 6 Jun', slots: '3 of 4 filled', warn: false },
-                { duty: 'Ground set-up · Sat 6 Jun · 7:30 am', slots: '2 of 2 filled', warn: false },
-                { duty: 'Goal nets and flags · Sat 6 Jun · pack down', slots: '0 of 2 filled', warn: true },
-                { duty: 'BBQ · Sat 13 Jun · home round', slots: '2 of 3 filled', warn: false },
+                { duty: 'Canteen · Sun 7 Jun', slots: '3 of 4 filled', warn: false },
+                { duty: 'Ground set-up · Sun 7 Jun · 7:30 am', slots: '2 of 2 filled', warn: false },
+                { duty: 'Goal nets and flags · Sun 7 Jun · pack down', slots: '0 of 2 filled', warn: true },
+                { duty: 'BBQ · Sun 14 Jun · home round', slots: '2 of 3 filled', warn: false },
               ].map((v, i) => (
                 <div key={i} style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 0', borderBottom: `1px solid ${LN}`, alignItems: 'center' }}>
                   <div style={{ fontSize: 13, color: INK }}>{v.duty}</div>

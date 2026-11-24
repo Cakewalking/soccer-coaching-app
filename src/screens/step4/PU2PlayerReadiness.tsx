@@ -197,7 +197,7 @@ export default function PU2PlayerReadiness({ onNav }: { onNav?: (s: string) => v
         <div style={{ width: 280, flexShrink: 0, padding: '20px 20px 20px 0', display: 'flex', flexDirection: 'column', gap: 12 }}>
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 12, padding: '16px' }}>
             <div style={{ fontSize: 12, fontWeight: 700, color: G, marginBottom: 6 }}>What Clean Sheet suggests</div>
-            <div style={{ fontSize: 13, fontWeight: 600, color: INK, marginBottom: 6 }}>Ready to try. Train with the U13s for 4 weeks, keep playing U12 on Saturdays, then look again.</div>
+            <div style={{ fontSize: 13, fontWeight: 600, color: INK, marginBottom: 6 }}>Ready to try. Train with the U13s for 4 weeks, keep playing U12 on Sundays, then look again.</div>
             <div style={{ fontSize: 12, color: MUT }}>It has seen this pattern hold for 8 weeks. It is a prompt, not a decision.</div>
           </div>
 

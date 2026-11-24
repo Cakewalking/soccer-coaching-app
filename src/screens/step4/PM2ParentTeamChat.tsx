@@ -23,7 +23,7 @@ export default function PM2ParentTeamChat(_: { onBack?: () => void }) {
       {/* Pinned banner */}
       <div onClick={() => setSheet('pinned')} style={{ background: PALE, borderBottom: `1px solid ${LN}`, padding: '10px 16px', display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', flexShrink: 0 }}>
         <span style={{ fontSize: 14 }}><Glyph n="pin" /></span>
-        <span style={{ fontSize: 13, color: G, fontWeight: 600, flex: 1 }}>Pinned: Saturday 7 June vs Riverside FC · 9:30 am</span>
+        <span style={{ fontSize: 13, color: G, fontWeight: 600, flex: 1 }}>Pinned: Sunday 7 June vs Riverside FC · 9:30 am</span>
         <span style={{ fontSize: 13, color: G, fontWeight: 600 }}>›</span>
       </div>
 
@@ -33,7 +33,7 @@ export default function PM2ParentTeamChat(_: { onBack?: () => void }) {
         {/* Outgoing */}
         <div style={{ display: 'flex', flexDirection: 'column' as const, alignItems: 'flex-end', gap: 4 }}>
           <div style={{ background: G, borderRadius: '16px 16px 4px 16px', padding: '10px 14px', maxWidth: 260 }}>
-            <div style={{ fontSize: 15, color: '#fff', marginBottom: 8 }}>Who's bringing oranges on Saturday?</div>
+            <div style={{ fontSize: 15, color: '#fff', marginBottom: 8 }}>Who's bringing oranges on Sunday?</div>
             <div style={{ display: 'flex', gap: 6 }}>
               {[0, 1].map(i => (
                 <div key={i} style={{ width: 72, height: 52, borderRadius: 8, background: 'rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18 }}><Glyph n="image" /></div>
@@ -91,7 +91,7 @@ export default function PM2ParentTeamChat(_: { onBack?: () => void }) {
             <div style={{ fontWeight: 700, fontSize: 17, color: INK }}>Pinned messages</div>
             <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 2 }}>
               <div style={{ padding: '12px 0', borderBottom: `1px solid ${LN}` }}>
-                <div style={{ fontWeight: 600, fontSize: 14, color: INK, marginBottom: 2 }}><Glyph n="pin" /> Saturday game details</div>
+                <div style={{ fontWeight: 600, fontSize: 14, color: INK, marginBottom: 2 }}><Glyph n="pin" /> Sunday game details</div>
                 <div style={{ fontSize: 13, color: MUT }}>7 June vs Riverside FC · 9:30 am · Riverside Reserve</div>
               </div>
               <div style={{ padding: '12px 0' }}>

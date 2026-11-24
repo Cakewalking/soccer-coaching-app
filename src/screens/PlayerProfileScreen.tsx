@@ -321,7 +321,7 @@ export default function PlayerProfileScreen({ playerIni, empty, players = SQUAD_
         {player.status !== 'ready' && (
           <div style={{ marginBottom: 16, padding: '10px 12px', background: '#e8f2ee', borderRadius: 10, fontSize: 13, color: '#2f6252', lineHeight: '18px' }}>
             <strong>Plan:</strong> {
-              player.status === 'manage' ? `Light training tonight, first half only on Saturday.` :
+              player.status === 'manage' ? `Light training tonight, first half only on ${band === 'seniors' ? 'Saturday' : 'Sunday'}.` :
               player.status === 'checkin' ? `Have a quiet word before warm-up. Keep it light.` :
               `Chase check-in before training.`
             }

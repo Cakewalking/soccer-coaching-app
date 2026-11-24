@@ -8,7 +8,7 @@ interface Props {
 
 const THIS_WEEK = [
   { day: 'THU', title: 'Training',              note: '5:45 to 7:15 pm · Wattle Creek Reserve · bring water',          bg: '#2f6252', color: '#fff'     },
-  { day: 'SAT', title: 'vs Harbour Rovers',     note: 'Home · be there 8:40 for a 9:30 start · white kit',          bg: '#e8cfcf', color: '#10211f'  },
+  { day: 'SUN', title: 'vs Harbour Rovers',     note: 'Home · be there 8:40 for a 9:30 start · white kit',          bg: '#e8cfcf', color: '#10211f'  },
   { day: 'TUE', title: 'Goal chat with Sam',    note: '10 minutes after training · parents welcome',                 bg: '#eef5f2', color: '#2f6252'  },
 ]
 
@@ -46,7 +46,7 @@ export default function ParentView({ onAvailability, onRaiseConcern }: Props) {
             <div style={{ fontSize: 13, color: '#5c6b67' }}>Tap to answer</div>
           </button>
           <div style={{ padding: '14px', borderRadius: 14, border: '1px solid #e9eae8', background: '#fff' }}>
-            <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', color: '#4a5a57', marginBottom: 4 }}>YOUR DUTY SATURDAY</div>
+            <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', color: '#4a5a57', marginBottom: 4 }}>YOUR DUTY SUNDAY</div>
             <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', marginBottom: 2 }}>Canteen 10 to 11</div>
             <div style={{ fontSize: 13, color: '#5c6b67' }}>Confirmed · from Rob</div>
           </div>
@@ -71,7 +71,7 @@ export default function ParentView({ onAvailability, onRaiseConcern }: Props) {
           <span style={{ flex: 'none', width: 36, height: 36, borderRadius: '999px', background: '#e8cfcf', color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700 }}>RO</span>
           <div style={{ flexGrow: 1, minWidth: 0 }}>
             <div style={{ fontSize: 12, color: '#5c6b67', marginBottom: 4 }}>Rob, team manager · 7:12 pm</div>
-            <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', lineHeight: '21px' }}>Meet time now 8:40 on Saturday. We're on pitch 2.</div>
+            <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', lineHeight: '21px' }}>Meet time now 8:40 on Sunday. We're on pitch 2.</div>
           </div>
           <button onClick={() => showToast('Acknowledged. Sam can see you\'ve read this.')} style={{ flex: 'none', height: 44, padding: '0 14px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Got it</button>
         </div>

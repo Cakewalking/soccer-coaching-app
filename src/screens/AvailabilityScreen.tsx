@@ -59,7 +59,7 @@ function AvailabilityEmpty() {
             </div>
           ))}
           <div style={{ marginTop: 'auto', background: '#faf5ec', borderRadius: 10, padding: '10px 12px', fontSize: 12, color: '#4a5a57', lineHeight: '17px' }}>
-            <strong>What parents see:</strong> "Can Mia play on Saturday?" with Yes, Maybe or No, and space for a reason.
+            <strong>What parents see:</strong> "Can Mia play on Sunday?" with Yes, Maybe or No, and space for a reason.
           </div>
         </aside>
       </div>
@@ -76,9 +76,9 @@ const TEAM_AV: Record<AvTeam, { squad: SquadPlayer[]; side: number; gameMins: nu
   juniors: {
     squad: SQUAD_PLAYERS, side: 9, gameMins: 60, adults: false,
     events: [
-      { label: 'Sat 6 Jun · 9:30', sub: 'vs Harbour Rovers', title: 'Saturday vs Harbour Rovers', game: true, closes: 'Answers close Friday 6 pm. Anyone who has not answered is reminded at 4 pm.' },
+      { label: 'Sun 7 Jun · 9:30', sub: 'vs Harbour Rovers', title: 'Sunday vs Harbour Rovers', game: true, closes: 'Answers close Friday 6 pm. Anyone who has not answered is reminded at 4 pm.' },
       { label: 'Tonight · 5:45', sub: 'Training', title: 'Training tonight', game: false, closes: 'Answers closed at 3 pm today.' },
-      { label: 'Sat 13 Jun · 9:00', sub: 'at Kestrel Park', title: 'Saturday 13 June at Kestrel Park', game: true, closes: 'Asked on Monday 8 June. Five families answered early from the fixture list.' },
+      { label: 'Sun 14 Jun · 9:00', sub: 'at Kestrel Park', title: 'Sunday 14 June at Kestrel Park', game: true, closes: 'Asked on Monday 8 June. Five families answered early from the fixture list.' },
     ],
     reasons: { maybe: 'Might have a school concert', cant: ['Away: family wedding', 'Sick, back next week'], training: 'Dentist at 5:00' },
     know: ['Kai and Lily are out. Grace covers left back.', 'Harper’s parent hasn’t answered consent either. She can play but won’t be filmed.', 'Noah and Zoe have sprint caps from Priya.'],
@@ -86,9 +86,9 @@ const TEAM_AV: Record<AvTeam, { squad: SquadPlayer[]; side: number; gameMins: nu
   youth: {
     squad: YOUTH_SQUAD_PLAYERS, side: 11, gameMins: 80, adults: false,
     events: [
-      { label: 'Sat 6 Jun · 3:30', sub: 'at Harbour Rovers', title: 'Saturday at Harbour Rovers', game: true, closes: 'Answers close Friday 6 pm. Anyone who has not answered is reminded at 4 pm.' },
+      { label: 'Sun 7 Jun · 3:30', sub: 'at Harbour Rovers', title: 'Sunday at Harbour Rovers', game: true, closes: 'Answers close Friday 6 pm. Anyone who has not answered is reminded at 4 pm.' },
       { label: 'Tue 9 Jun · 6:00', sub: 'Training', title: 'Training on Tuesday', game: false, closes: 'Answers close Tuesday 3 pm.' },
-      { label: 'Sat 13 Jun · 1:30', sub: 'vs Kestrel Park', title: 'Saturday 13 June vs Kestrel Park', game: true, closes: 'Asked on Monday 8 June. Five answered early from the fixture list.' },
+      { label: 'Sun 14 Jun · 1:30', sub: 'vs Kestrel Park', title: 'Sunday 14 June vs Kestrel Park', game: true, closes: 'Asked on Monday 8 June. Five answered early from the fixture list.' },
     ],
     reasons: { maybe: 'Exam on Friday, will know Thursday', cant: ['Suspended: 1 game', 'Away: school camp'], training: 'Exam revision night' },
     know: ['Ryan is suspended for one game. Hugo has covered centre back twice.', 'Players 15 and over answer for themselves. A parent is copied in until they turn 18.', 'Luka is on a high load this week.'],

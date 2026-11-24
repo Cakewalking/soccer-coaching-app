@@ -37,7 +37,7 @@ export default function PM5ParentAttach(_: { onBack?: () => void }) {
       <div style={{ flex: 1, overflowY: 'auto' as const, padding: '16px 16px 0', display: 'flex', flexDirection: 'column' as const, gap: 16 }}>
         <div style={{ display: 'flex', flexDirection: 'column' as const, alignItems: 'flex-end', gap: 4 }}>
           <div style={{ background: G, borderRadius: '16px 16px 4px 16px', padding: '10px 14px', maxWidth: 260 }}>
-            <div style={{ fontSize: 15, color: '#fff', marginBottom: 8 }}>Who's bringing oranges on Saturday?</div>
+            <div style={{ fontSize: 15, color: '#fff', marginBottom: 8 }}>Who's bringing oranges on Sunday?</div>
             <div style={{ display: 'flex', gap: 6 }}>
               {[0, 1].map(i => (
                 <div key={i} style={{ width: 72, height: 52, borderRadius: 8, background: 'rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18 }}><Glyph n="image" /></div>

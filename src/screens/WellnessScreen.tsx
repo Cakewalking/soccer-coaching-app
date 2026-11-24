@@ -249,7 +249,7 @@ export default function WellnessScreen({ empty, onNav }: { empty?: boolean; onNa
               </div>
               <div>
                 <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', color: '#4a5a57', marginBottom: 8 }}>NEXT TWO</div>
-                {[ask.training && 'Tonight · 3:45 pm · before training', ask.games && 'Saturday · 7:30 am · before the game', !ask.training && !ask.games && 'Nothing is scheduled. Turn one on above.'].filter(Boolean).map(l => <div key={String(l)} style={{ fontSize: 14, color: '#10211f', padding: '8px 0', borderTop: '1px solid #e9eae8' }}>{l}</div>)}
+                {[ask.training && 'Tonight · 3:45 pm · before training', ask.games && 'Sunday · 7:30 am · before the game', !ask.training && !ask.games && 'Nothing is scheduled. Turn one on above.'].filter(Boolean).map(l => <div key={String(l)} style={{ fontSize: 14, color: '#10211f', padding: '8px 0', borderTop: '1px solid #e9eae8' }}>{l}</div>)}
               </div>
               <div>
                 <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', color: '#4a5a57', marginBottom: 8 }}>THE FOUR QUESTIONS · 1 TO 5 EACH · ABOUT 20 SECONDS</div>

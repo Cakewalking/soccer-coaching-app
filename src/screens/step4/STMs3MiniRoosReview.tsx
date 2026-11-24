@@ -79,8 +79,8 @@ export default function STMs3MiniRoosReview({ onNav }: { onNav?: (s: string) => 
 
         <div style={{ width: 300, flexShrink: 0, display: 'flex', flexDirection: 'column', gap: 12 }}>
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 12, padding: '16px 18px' }}>
-            <div style={{ fontSize: 12, fontWeight: 700, color: MUT, letterSpacing: '0.07em', marginBottom: 8 }}>SATURDAY'S GAMES</div>
-            <div style={{ fontSize: 13, color: INK, marginBottom: 12 }}>Sat 6 June · Wattle Creek Reserve · 4 short games</div>
+            <div style={{ fontSize: 12, fontWeight: 700, color: MUT, letterSpacing: '0.07em', marginBottom: 8 }}>SUNDAY'S GAMES</div>
+            <div style={{ fontSize: 13, color: INK, marginBottom: 12 }}>Sun 7 June · Wattle Creek Reserve · 4 short games</div>
             <div style={{ display: 'flex', gap: 8 }}>
               <button aria-label="Change" onClick={() => tool('the matching screen already in the app')} style={{ height: 44, padding: '0 16px', background: '#fff', color: G, border: `1px solid ${LN}`, borderRadius: 8, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit', flex: 1 }}>Change</button>
               <button aria-label="Open" onClick={() => tool('the matching MiniRoos screen already in the app')} style={{ height: 44, padding: '0 16px', background: G, color: '#fff', border: 'none', borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', flex: 1 }}>Open</button>

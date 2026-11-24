@@ -50,7 +50,7 @@ function ThisWeekEmpty() {
         {[
           { title: 'Drills come from your games', body: 'After each recorded game, Clean Sheet picks what to fix next week.' },
           { title: "Who's doing what", body: 'Player load, sprint caps and wellness flags appear alongside drills.' },
-          { title: 'Saturday prep', body: "By Friday night you'll see your predicted starting line-up and team talk cues." },
+          { title: 'Sunday prep', body: "By Friday night you'll see your predicted starting line-up and team talk cues." },
         ].map((item, i) => (
           <div key={i} style={{ display: 'flex', gap: 10, padding: '8px 0', borderTop: '1px solid #f0f1ef' }}>
             <span style={{ flex: 'none', width: 8, height: 8, borderRadius: '999px', background: '#40826d', marginTop: 5 }} />
@@ -67,7 +67,7 @@ function ThisWeekEmpty() {
 }
 
 const FOCUSES = [
-  { n: 1, label: 'Win the ball back faster', sub: '7 s on Saturday · usual is 4' },
+  { n: 1, label: 'Win the ball back faster', sub: '7 s on Sunday · usual is 4' },
   { n: 2, label: 'Keep the lines close',      sub: '26 m gap · aim for 18 m' },
   { n: 3, label: 'Strong last 15 minutes',    sub: 'Sprints dropped 22% late' },
 ]
@@ -86,20 +86,20 @@ const DAYS = [
     items: ['Repeat and finish', '5:45 · 11+ Kids warm-up with Priya', 'Rondo · Win it back · Small game', 'Noah and Zoe: 3 sprints · Kai: passing only', 'Mia late, about 6:10'],
   },
   {
-    label: 'SATURDAY', date: '6 Jun', tag: 'Game', tagColor: '#c39797',
+    label: 'SUNDAY', date: '7 Jun', tag: 'Game', tagColor: '#c39797',
     items: ['vs Harbour Rovers', 'Home · meet 8:40 · kick-off 9:30', '12 in · 1 maybe · 2 out · 2 to answer', 'Team talk ready Friday night', 'Camera kit 1 booked by Rob'],
   },
   {
     label: 'NEXT TUESDAY', date: '9 Jun', tag: null, tagColor: '',
-    items: ['Built after Saturday', 'Clean Sheet suggests it Sunday, once the review is in', 'Coach meeting at 7:30 pm'],
+    items: ['Built after Sunday', 'Clean Sheet suggests it Sunday, once the review is in', 'Coach meeting at 7:30 pm'],
   },
 ]
 
 const PLAYERS_TO_PLAN = [
-  { ini: 'NO', label: 'Noah', note: 'Growing fast · 3 sprints Thursday, 8 Saturday', type: 'stone' as const },
+  { ini: 'NO', label: 'Noah', note: 'Growing fast · 3 sprints Thursday, 8 Sunday', type: 'stone' as const },
   { ini: 'ZH', label: 'Zoe', note: 'Growing fast · same caps as Noah', type: 'stone' as const },
   { ini: 'EB', label: 'Ella', note: 'Low check-ins two days · lighter Thursday', type: 'rose' as const },
-  { ini: 'KR', label: 'Kai', note: 'Tight hamstring · passing only, away Saturday', type: 'stone' as const },
+  { ini: 'KR', label: 'Kai', note: 'Tight hamstring · passing only, away Sunday', type: 'stone' as const },
 ]
 
 function chipBg(t: 'rose' | 'stone') {
@@ -115,7 +115,7 @@ function ThisWeekFull({ onDrillLibrary, onTonightsPlan, onGrowthLoad, nextOppone
   const [selectedDay, setSelectedDay] = useState<number | null>(2)
   const [selectedFocus, setSelectedFocus] = useState<number | null>(null)
   const [selectedPlayer, setSelectedPlayer] = useState<number | null>(null)
-  const days = DAYS.map(d => d.label === 'SATURDAY' ? { ...d, items: [`vs ${nextOpponent}`, ...d.items.slice(1)] } : d)
+  const days = DAYS.map(d => d.label === 'SUNDAY' ? { ...d, items: [`vs ${nextOpponent}`, ...d.items.slice(1)] } : d)
   return (
     <div style={{ flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
 
@@ -171,9 +171,9 @@ function ThisWeekFull({ onDrillLibrary, onTonightsPlan, onGrowthLoad, nextOppone
         {/* Right sidebar */}
         <div style={{ flexShrink: 0, width: 230, display: 'flex', flexDirection: 'column', gap: 10, minHeight: 0, overflowY: 'auto' }}>
 
-          {/* How we'll know on Saturday */}
+          {/* How we'll know on Sunday */}
           <div style={{ background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 14, padding: '14px 14px', flex: 'none' }}>
-            <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 10, letterSpacing: '-0.01em' }}>How we'll know on Saturday</div>
+            <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 10, letterSpacing: '-0.01em' }}>How we'll know on Sunday</div>
             {METRICS.slice(0, 3).map((m, i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '7px 0', borderTop: i > 0 ? '1px solid #e9eae8' : 'none' }}>
                 <div style={{ flexGrow: 1, minWidth: 0 }}>

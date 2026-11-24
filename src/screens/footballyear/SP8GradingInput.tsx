@@ -56,15 +56,15 @@ export default function SP8GradingInput({ onBack }: { onBack?: () => void }) {
         <div>
           <div style={{ background: PALE, borderRadius: 14, padding: '14px 16px', marginBottom: 12 }}>
             <div style={{ fontSize: 14, fontWeight: 700, color: GD, marginBottom: 4 }}>What Clean Sheet suggests</div>
-            <div style={{ fontSize: 13, color: G, lineHeight: 1.5 }}>Ask for Division 1. Your scores are close to last year's, when the team won 5 of 8 in Division 1. Three grading games from 14 March will confirm it.</div>
+            <div style={{ fontSize: 13, color: G, lineHeight: 1.5 }}>Ask for Division 1. Your scores are close to last year's, when the team won 5 of 8 in Division 1. Three grading games from 15 March will confirm it.</div>
           </div>
 
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 16px' }}>
             <div style={{ fontSize: 14, fontWeight: 700, color: INK, marginBottom: 10 }}>What happens next</div>
             {[
               { day: 'FRI', date: '13', label: 'The club asks the league', note: 'For every U12 and older team' },
-              { day: 'SAT', date: '14', label: 'Three grading games',      note: '14 to 28 March' },
-              { day: 'MON', date: '6',  label: 'Divisions published',       note: '6 April · round 1 is 11 April' },
+              { day: 'SUN', date: '15', label: 'Three grading games',      note: '15 to 29 March' },
+              { day: 'MON', date: '6',  label: 'Divisions published',       note: '6 April · round 1 is 12 April' },
             ].map(item => (
               <div key={item.label} style={{ display: 'flex', gap: 12, padding: '8px 0', borderBottom: `1px solid ${LN}` }}>
                 <div style={{ flex: 'none', textAlign: 'center' as const, minWidth: 44 }}>

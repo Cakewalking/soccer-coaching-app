@@ -20,8 +20,8 @@ const WEEK = [
   { day: 'Wed 3', label: 'Rest' },
   { day: 'Thu 4', label: 'Training 5:45 pm', active: true },
   { day: 'Fri 5', label: 'Rest' },
-  { day: 'Sat 6', label: 'Harbour Rovers 9:30' },
-  { day: 'Sun 7', label: 'Review, once it\'s in' },
+  { day: 'Sat 6', label: 'Rest' },
+  { day: 'Sun 7', label: 'Harbour Rovers 9:30' },
 ]
 
 const RESULTS = ['W', 'W', 'D', 'L', 'W']
@@ -105,7 +105,7 @@ export default function CoachFitnessScreen() {
 
         {/* Last game */}
         <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '14px 16px' }}>
-          <div style={{ fontSize: 12, color: '#5c6b67', marginBottom: 6 }}>Last game · Sat 30 May · away</div>
+          <div style={{ fontSize: 12, color: '#5c6b67', marginBottom: 6 }}>Last game · Sun 31 May · away</div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 10 }}>
             <span style={{ width: 32, height: 32, borderRadius: '999px', background: '#eef5f2', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, color: '#2f6252', flex: 'none' }}>W</span>
             <div style={{ flexGrow: 1 }}>
@@ -155,7 +155,7 @@ export default function CoachFitnessScreen() {
               <span key={i} style={{ width: 32, height: 32, borderRadius: 8, background: r === 'W' ? '#eef5f2' : r === 'L' ? '#fdf5f0' : '#f5f5f4', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, color: r === 'W' ? '#2f6252' : r === 'L' ? '#c39797' : '#6f7f7b' }}>{r}</span>
             ))}
           </div>
-          <div style={{ fontSize: 13, color: '#4a5a57' }}>Next: Sat 9:30 vs Harbour Rovers</div>
+          <div style={{ fontSize: 13, color: '#4a5a57' }}>Next: Sun 9:30 vs Harbour Rovers</div>
         </div>
 
         {/* Squad */}

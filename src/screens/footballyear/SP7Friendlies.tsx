@@ -4,10 +4,10 @@ import { useState } from 'react'
 const G = '#2f6252', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 const TEAMS = [
-  { initial: 'G', name: 'Glenview FC · U12',         note: 'Division 1 last year · 9 km away · Sat 14 March, 10:00, at theirs', status: 'Booked' },
-  { initial: 'N', name: 'Northgate City · U12',       note: 'Division 2 last year · 6 km away · Sat 21 March, any time, at ours', status: 'Say yes', askedYou: true },
+  { initial: 'G', name: 'Glenview FC · U12',         note: 'Division 1 last year · 9 km away · Sun 15 March, 10:00, at theirs', status: 'Booked' },
+  { initial: 'N', name: 'Northgate City · U12',       note: 'Division 2 last year · 6 km away · Sun 22 March, any time, at ours', status: 'Say yes', askedYou: true },
   { initial: 'K', name: 'Kingfisher · U12 Girls',     note: 'Division 1 last year · 14 km away · Sun 22 March, afternoon', status: 'Ask' },
-  { initial: 'E', name: 'Elderberry Park · U13',      note: 'A year older · 4 km away · Sat 28 March, morning', status: 'Ask' },
+  { initial: 'E', name: 'Elderberry Park · U13',      note: 'A year older · 4 km away · Sun 29 March, morning', status: 'Ask' },
 ]
 
 export default function SP7Friendlies(_: { onBack?: () => void }) {
@@ -77,7 +77,7 @@ export default function SP7Friendlies(_: { onBack?: () => void }) {
           <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 4 }}>When are you free for a friendly?</div>
           <div style={{ fontSize: 13, color: MUT, marginBottom: 14 }}>Shown to Clean Sheet clubs within 20 km.</div>
           <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' as const, marginBottom: 12 }}>
-            {['Sat 14 Mar','Sat 21 Mar','Sun 22 Mar','Sat 28 Mar'].map(d => (
+            {['Sun 15 Mar','Sun 22 Mar','Sun 29 Mar'].map(d => (
               <button key={d} style={{ height: 44, padding: '0 12px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>{d}</button>
             ))}
           </div>

@@ -17,7 +17,7 @@ export interface LadderRow { team: string; played: number; points: number; opp: 
 
 export interface TeamChances {
   id: TeamId; name: string; band: Age; format: string; ageWord: string
-  /** Saturday's game, the one with a shot map. */
+  /** Sunday's game, the one with a shot map. */
   sat: { line: string; result?: string; scored: number; ours: Shot[]; theirs: Shot[]; theirGoals: number; best: BestChance[]; setUp: { who: string; n: number; what: string; v: number }[]; how: { t: string; d: string; n: number }[] }
   noFilm: { line: string }
   games: Game[]                       // league games with film, in order
@@ -56,7 +56,7 @@ export const ordinal = (n: number) => `${n}${n % 10 === 1 && n !== 11 ? 'st' : n
 const U12: TeamChances = {
   id: 'u12', name: 'U12 Sam', band: 'juniors', format: '9 v 9', ageWord: 'under-12',
   sat: {
-    line: 'Sat 6 June · v Harbour Rovers', result: 'won 3–1', scored: 3, theirGoals: 1,
+    line: 'Sun 7 June · v Harbour Rovers', result: 'won 3–1', scored: 3, theirGoals: 1,
     ours: [
       { x: 641.4, y: 183.0, v: 0.50, goal: true }, { x: 621.4, y: 158.5, v: 0.33, goal: true }, { x: 568.1, y: 207.5, v: 0.13, goal: true },
       { x: 654.7, y: 201.4, v: 0.40 }, { x: 554.8, y: 121.8, v: 0.06 }, { x: 528.2, y: 189.1, v: 0.07 }, { x: 594.8, y: 244.2, v: 0.09 },
@@ -93,7 +93,7 @@ const U12: TeamChances = {
     { team: 'Ridgeway FC', played: 8, points: 10, opp: 1.42 }, { team: 'Eastfield Lions', played: 8, points: 8, opp: 1.38 },
     { team: 'Plenty Vale', played: 8, points: 6, opp: 1.45 }, { team: 'Stony Point', played: 8, points: 3, opp: 1.51 },
   ],
-  toPlay: { left: 6, oppAvg: 1.21, next: 'Bayside United', nextSub: 'Sat 13 June, away' },
+  toPlay: { left: 6, oppAvg: 1.21, next: 'Bayside United', nextSub: 'Sun 14 June, away' },
   reading: { before: 'About level with your opponents in rounds 1 to 4. Since then you have made ', bold: '0.8 of a goal more', after: ' in chances than you gave up, every game. Your goals and your chances agree, so the results are not luck.' },
   threat: {
     head: 'Your danger is built down the left',
@@ -110,7 +110,7 @@ const U12: TeamChances = {
 const U9: TeamChances = {
   id: 'u9', name: 'U9 Tom', band: 'u8', format: '7 v 7', ageWord: 'under-9',
   sat: {
-    line: 'U9 Tom · Sat 6 June · v Ironbark Rangers · 7 v 7', scored: 3, theirGoals: 1,
+    line: 'U9 Tom · Sun 7 June · v Ironbark Rangers · 7 v 7', scored: 3, theirGoals: 1,
     ours: [
       { x: 634.7, y: 183.0, v: 0.50, goal: true }, { x: 608.1, y: 152.4, v: 0.40, goal: true }, { x: 648.0, y: 207.5, v: 0.40 },
       { x: 581.4, y: 219.7, v: 0.21, goal: true }, { x: 554.8, y: 134.0, v: 0.14 }, { x: 594.8, y: 170.8, v: 0.35 },
@@ -129,7 +129,7 @@ const U9: TeamChances = {
       { t: 'Winning it back near their goal', d: 'Pressing together', n: 2 },
     ],
   },
-  noFilm: { line: 'U9 Tom · Sat 30 May · v Banksia Park · 7 v 7' },
+  noFilm: { line: 'U9 Tom · Sun 31 May · v Banksia Park · 7 v 7' },
   games: [[1.4, 1.8], [1.9, 1.5], [1.6, 1.7], [2.2, 1.2], [2.0, 1.4], [2.6, 1.1]].map(([made, given], i) => ({ label: `Game ${i + 1}`, made, given, film: true })),
   seasonLine: '6 games with film', goalsFor: 0, goalsAgainst: 0, diffNote: 'Growing since game 3',
   reading: { before: 'The team is making more chances and giving up fewer than at the start of the season. That is ', bold: 'learning you can see', after: ', whatever the scores were. Use it to choose what to practise, not to judge a child.' },
@@ -154,7 +154,7 @@ const scale = (shots: Shot[], total: number, goals: number): Shot[] => {
 }
 const U16: TeamChances = {
   ...U12, id: 'u16', name: 'U16 Ollie', band: 'youth', format: '11 v 11', ageWord: 'under-16',
-  sat: { ...U12.sat, line: 'Sat 30 May · v Tealside Town', result: 'drew 2–2', scored: 2, theirGoals: 2, ours: scale(U12.sat.ours, 2.1, 2), theirs: scale(U12.sat.theirs, 1.6, 2) },
+  sat: { ...U12.sat, line: 'Sun 31 May · v Tealside Town', result: 'drew 2–2', scored: 2, theirGoals: 2, ours: scale(U12.sat.ours, 2.1, 2), theirs: scale(U12.sat.theirs, 1.6, 2) },
   noFilm: { line: 'Wed 20 May · friendly v Banksia Park · won 2–1' },
   games: [[1.3, 1.5], [1.2, 1.4], [1.6, 1.2], [1.5, 1.6], [1.8, 1.3], [1.6, 1.2], [1.8, 1.5], [2.1, 1.6]].map(([made, given], i) => ({ label: `R${i + 1}`, made, given, film: true })),
   goalsFor: 13, goalsAgainst: 12, division: 'Under 16 Division 1',
@@ -165,7 +165,7 @@ const U16: TeamChances = {
     { team: 'Ridgeway FC', played: 8, points: 9, opp: 1.38 }, { team: 'Eastfield Lions', played: 8, points: 7, opp: 1.41 },
     { team: 'Plenty Vale', played: 8, points: 5, opp: 1.44 }, { team: 'Stony Point', played: 8, points: 3, opp: 1.47 },
   ],
-  toPlay: { left: 10, oppAvg: 1.33, next: 'Glenview Park', nextSub: 'Sat 6 June, home' },
+  toPlay: { left: 10, oppAvg: 1.33, next: 'Glenview Park', nextSub: 'Sun 7 June, home' },
   reading: { before: 'Over 8 games you have made ', bold: '0.2 of a goal more', after: ' in chances than you gave up, a game. That is inside the usual swing, so read it as about level.' },
 }
 const SENIORS: TeamChances = {
@@ -212,7 +212,7 @@ export function fromRow(r: ClubRow): TeamChances {
   }
   return {
     ...U12, id: 'u12', name: r.team, band: r.band, format: r.band === 'u8' ? '7 v 7' : r.band === 'u10' || r.band === 'juniors' ? '9 v 9' : '11 v 11', ageWord: r.team.toLowerCase().replace(/^u(\d+).*/, 'under-$1'),
-    sat: { ...U12.sat, line: mini ? `${r.team} · Saturday · ${r.sub.replace('MiniRoos · ', '')}` : 'Saturday’s game', result: undefined, scored: 2, theirGoals: 1, ours: scale(U12.sat.ours, made[n - 1], 2), theirs: scale(U12.sat.theirs, given[n - 1], 1), best: UNNAMED, setUp: [] },
+    sat: { ...U12.sat, line: mini ? `${r.team} · Sunday · ${r.sub.replace('MiniRoos · ', '')}` : 'Sunday’s game', result: undefined, scored: 2, theirGoals: 1, ours: scale(U12.sat.ours, made[n - 1], 2), theirs: scale(U12.sat.theirs, given[n - 1], 1), best: UNNAMED, setUp: [] },
     noFilm: { line: `${r.team} · a game with no film` },
     games: made.map((m, i) => ({ label: mini ? `Game ${i + 1}` : `R${i + 1}`, made: m, given: given[i], film: true })),
     seasonLine: mini ? `${n} games with film` : `${n} league games with film`,

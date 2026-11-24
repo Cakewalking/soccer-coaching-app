@@ -32,7 +32,7 @@ export default function FR1Referees(_: { onBack?: () => void }) {
       </div>
       <div style={{ flex: 'none', padding: '14px 28px 0', display: 'flex', alignItems: 'baseline', gap: 14 }}>
         <h1 style={{ margin: 0, fontSize: 26, fontWeight: 700, letterSpacing: '-0.02em' }}>Referees</h1>
-        <span style={{ fontSize: 14, color: MUT }}>Saturday 14 Jun · 2 games still need a ref</span>
+        <span style={{ fontSize: 14, color: MUT }}>Sunday 14 Jun · 2 games still need a ref</span>
       </div>
       <div style={{ flex: 1, minHeight: 0, padding: '12px 28px 18px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 300px', gap: 14 }}>
         <div style={{ background: '#fff', border: `1px solid #c5c8c4`, borderRadius: 16, padding: '14px 16px', display: 'flex', flexDirection: 'column' as const }}>

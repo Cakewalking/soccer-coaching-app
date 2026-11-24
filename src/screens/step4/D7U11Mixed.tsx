@@ -22,7 +22,7 @@ export default function D7U11Mixed(_: { onBack?: () => void }) {
           <div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 10, marginBottom: 16 }}>
               {[
-                { label: 'Coming Saturday', val: '11 of 13', sub: 'Parents answer in the app', warn: false },
+                { label: 'Coming Sunday', val: '11 of 13', sub: 'Parents answer in the app', warn: false },
                 { label: 'Had a turn in goal', val: '8 of 13', sub: 'This term · everyone gets a go', warn: false },
                 { label: 'Training turnout', val: '79%', sub: 'Last 2 weeks · club 87%', warn: true },
                 { label: 'Game leader', val: 'Booked', sub: 'No scores under U12', warn: false },
@@ -79,7 +79,7 @@ export default function D7U11Mixed(_: { onBack?: () => void }) {
             </div>
 
             <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 18px', marginBottom: 14 }}>
-              <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 6 }}>Next game · Sat 6 Jun</div>
+              <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 6 }}>Next game · Sun 7 Jun</div>
               <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>vs Kingfisher United</div>
               <div style={{ fontSize: 12, color: MUT }}>10:30 · Away · Kingfisher Reserve · Training Mon and Wed 5:30</div>
             </div>

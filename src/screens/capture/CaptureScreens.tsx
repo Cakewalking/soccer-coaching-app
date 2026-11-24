@@ -10,7 +10,7 @@ import { useCapture, setCapture, measures, quality, chosen, choiceAllowed, freeS
 export type Go = (target: string) => void
 export interface ScreenProps { s: CapState; go: Go; say: (m: string) => void; age: Age; team: string }
 
-const GAME = 'Sat 6 June · v Harbour Rovers · Wattle Creek Reserve, pitch 2 · 9 v 9'
+const GAME = 'Sun 7 June · v Harbour Rovers · Wattle Creek Reserve, pitch 2 · 9 v 9'
 const src = (go: Go) => (n: number) => go(`QC10-HowWeMeasure#src${n}`)
 
 /** True when the steps are shown on a phone: one column, no stepper. */
@@ -397,7 +397,7 @@ export function QC5WhoIsWho({ s, go, say }: ScreenProps) {
   const grid = '42px minmax(0,1fr) 62px 104px 86px 64px'
   return (
     <Page id="QC5-WhoIsWho" title="Confirm who is who" sub={GAME} go={go} step={3} cols="minmax(0,1fr) 348px"
-      right={<Btn big onClick={() => go('FB1-Formation')}>From Saturday’s line-up</Btn>}
+      right={<Btn big onClick={() => go('FB1-Formation')}>From Sunday’s line-up</Btn>}
       foot={<><Btn onClick={() => go('QC4-SetUpGuide')}>Back</Btn>{footNote(clash ? 'One shirt clash to sort. You can confirm anyway and fix names after the game.' : 'Every shirt number is one player. Vest assignment is what we trust.')}<Btn primary onClick={() => { setCapture({ whoDone: true }); go('QC6-TestResult') }}>Confirm {SQUAD} players</Btn></>}>
       <section aria-label="Players" style={{ ...tile, gap: 0, padding: '8px 18px 4px', overflowX: 'auto' }}>
         <div style={{ minWidth: 500, display: 'grid', gridTemplateColumns: grid, alignItems: 'center', height: 26, fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#7a4b5b', marginBottom: -2 }}>
@@ -582,7 +582,7 @@ export function QC8QualityReport({ s, go, say, age }: ScreenProps) {
   ]
   const games = 6
   return (
-    <Page id="QC8-QualityReport" title="Recording quality" sub="Sat 6 June · v Harbour Rovers · won 3–1" go={go} cols="minmax(0,1fr) 372px"
+    <Page id="QC8-QualityReport" title="Recording quality" sub="Sun 7 June · v Harbour Rovers · won 3–1" go={go} cols="minmax(0,1fr) 372px"
       right={<><Btn big onClick={() => go('QC10-HowWeMeasure')}>How we measure</Btn><Btn primary big onClick={() => go('R1-MatchReview')}>Open the match review</Btn></>}>
       <div style={col}>
         <section aria-label="Overall" style={{ borderRadius: 20, background: DARK, color: '#fff', padding: '18px 22px', display: 'flex', alignItems: 'center', gap: '10px 26px', flexWrap: 'wrap' }}>
@@ -660,7 +660,7 @@ export function SwingChart({ values, labels, band, lo, hi, what }: { values: num
   )
 }
 
-const WIN_BACK = { values: [11, 10, 11, 9, 9, 7], labels: ['Round 3', 'Round 4', 'Round 5', 'Round 6', 'Round 7', 'Saturday'], band: [8.5, 11.5] as [number, number] }
+const WIN_BACK = { values: [11, 10, 11, 9, 9, 7], labels: ['Round 3', 'Round 4', 'Round 5', 'Round 6', 'Round 7', 'Sunday'], band: [8.5, 11.5] as [number, number] }
 
 export function QC9MeasureConfidence({ s, go, team }: ScreenProps) {
   const flagged = s.flagged.includes('win-back')
@@ -679,17 +679,17 @@ export function QC9MeasureConfidence({ s, go, team }: ScreenProps) {
         <section aria-label="The number" style={{ ...tile, padding: '12px 18px 14px', gap: 8 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <strong style={{ flex: 'none', width: 46, height: 46, borderRadius: 10, background: real && mark === 'strong' ? '#f4c95d' : PALE, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 34, letterSpacing: '-0.02em', fontVariantNumeric: 'tabular-nums' }}>7</strong>
-            <span style={{ ...cap, fontSize: 15, flexGrow: 1 }}>seconds on Saturday · was 11 in round 3</span>
+            <span style={{ ...cap, fontSize: 15, flexGrow: 1 }}>seconds on Sunday · was 11 in round 3</span>
             <Mark kind={mark} label={mark === 'needs' ? `${games} of ${s.trendAfter} games` : undefined} />
             {mark !== 'needs' && <Mark kind={real ? 'strong' : 'not'} label={change} />}
           </div>
           <SwingChart {...WIN_BACK} lo={6} hi={12} what="Seconds to win the ball back" />
-          <span style={{ ...cap, fontSize: 13 }}>The shaded band is how much this number moves from game to game for no reason at all. Saturday is {real ? 'outside it, so we call the change real.' : 'inside it, so we say about the same.'}</span>
+          <span style={{ ...cap, fontSize: 13 }}>The shaded band is how much this number moves from game to game for no reason at all. Sunday is {real ? 'outside it, so we call the change real.' : 'inside it, so we say about the same.'}</span>
         </section>
         <section aria-label="How to read this number" style={{ ...tile, padding: '12px 18px 10px', gap: 8 }}>
           <h2 style={h2}>How to read this number</h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,minmax(0,1fr))', gap: 10 }}>
-            {[['Captured by', 'Film. 14 moments on Saturday, each one a clip'], ['Based on', '6 games on the same size of pitch'], ['Compared with', 'Your own team, not other clubs']].map(([a, b]) => (
+            {[['Captured by', 'Film. 14 moments on Sunday, each one a clip'], ['Based on', '6 games on the same size of pitch'], ['Compared with', 'Your own team, not other clubs']].map(([a, b]) => (
               <span key={a} style={{ borderRadius: 12, background: PALE, padding: '8px 12px', display: 'flex', flexDirection: 'column' }}>
                 <strong style={{ fontSize: 11, letterSpacing: '0.06em', color: '#2d3d3a' }}>{a}</strong>
                 <span style={{ fontSize: 14, lineHeight: '19px' }}>{b}</span>

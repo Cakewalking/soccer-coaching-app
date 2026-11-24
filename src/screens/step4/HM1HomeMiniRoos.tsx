@@ -8,8 +8,8 @@ const WEEK = [
   { day: 'Wed 3', event: null },
   { day: 'Thu 4', event: null },
   { day: 'Fri 5', event: null },
-  { day: 'Sat 6', event: 'Northgate City 8:30', game: true },
-  { day: 'Sun 7', event: null },
+  { day: 'Sat 6', event: null },
+  { day: 'Sun 7', event: 'Northgate City 8:30', game: true },
 ]
 
 export default function HM1HomeMiniRoos(_: { onBack?: () => void }) {
@@ -43,8 +43,8 @@ export default function HM1HomeMiniRoos(_: { onBack?: () => void }) {
               <div style={{ background: '#fff', color: '#33212b', borderRadius: 999, padding: '2px 10px', fontSize: 13, fontWeight: 700 }}>2 new</div>
             </div>
             {[
-              { icon: 'SA', label: 'Saturday', when: 'Today', msg: '2 families haven\'t said if they\'re coming' },
-              { icon: 'RF', label: 'Referees', when: 'Yesterday', msg: 'Saturday still needs a game leader' },
+              { icon: 'SU', label: 'Sunday', when: 'Today', msg: '2 families haven\'t said if they\'re coming' },
+              { icon: 'RF', label: 'Referees', when: 'Yesterday', msg: 'Sunday still needs a game leader' },
             ].map(item => (
               <div key={item.label} style={{ display: 'flex', alignItems: 'flex-start', gap: 12, minHeight: 72, padding: '10px 18px', borderTop: `1px solid ${LN}`, cursor: 'pointer' }}>
                 <div style={{ width: 36, height: 36, borderRadius: 999, background: '#e8cfcf', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700 }}>{item.icon}</div>
@@ -69,7 +69,7 @@ export default function HM1HomeMiniRoos(_: { onBack?: () => void }) {
                 <div style={{ borderRadius: 4, overflow: 'hidden' }}><div style={{ height: '100%', width: `${item.pct}%`, background: '#40826d' }} /></div>
               </div>
             ))}
-            <div style={{ marginTop: 'auto', fontSize: 14, color: MUT }}>Next in goal: Ivy, Max and Arlo. Clean Sheet lines up Saturday's turns for you.</div>
+            <div style={{ marginTop: 'auto', fontSize: 14, color: MUT }}>Next in goal: Ivy, Max and Arlo. Clean Sheet lines up Sunday's turns for you.</div>
           </div>
         </div>
 
@@ -97,8 +97,8 @@ export default function HM1HomeMiniRoos(_: { onBack?: () => void }) {
 
           <div style={{ flex: 1, background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 10 }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
-              <div style={{ fontSize: 17, fontWeight: 700, color: INK }}>Last Saturday</div>
-              <div style={{ fontSize: 14, color: MUT }}>Sat 30 May · home</div>
+              <div style={{ fontSize: 17, fontWeight: 700, color: INK }}>Last Sunday</div>
+              <div style={{ fontSize: 14, color: MUT }}>Sun 31 May · home</div>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
               <div style={{ width: 44, height: 44, borderRadius: 12, background: PALE, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -147,7 +147,7 @@ export default function HM1HomeMiniRoos(_: { onBack?: () => void }) {
 
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 8 }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
-              <div style={{ fontSize: 17, fontWeight: 700, color: INK }}>Saturday</div>
+              <div style={{ fontSize: 17, fontWeight: 700, color: INK }}>Sunday</div>
               <div style={{ fontSize: 14, color: MUT }}>7 a side</div>
             </div>
             <div style={{ background: '#e8cfcf', borderRadius: 10, padding: '6px 10px', fontSize: 14, lineHeight: '20px' }}><strong>8:30 vs Northgate City</strong><br />Away, Redgum Reserve · 7 coming, 1 away, 2 to answer</div>

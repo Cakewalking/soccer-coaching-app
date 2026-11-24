@@ -69,7 +69,7 @@ export default function EducationPhone({ start = 'ECp1-FamilyLibrary', team, chi
       <div data-screen="ECp2-FamilyItem" style={phone}>
         {head(player ? 'Learn · your clip' : `Football at home · ${own ? 'clip' : lower((i as PItem).kind)}`, i.title, start === 'ECp2-FamilyItem' && fam ? fam : home, ini ?? (player ? 'MR' : 'DB'))}
         <div style={{ flexGrow: 1, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 10 }}>
-          <LearnPlayer key={open} phone tryLabel="Try" chapters={chapters(frame, secs, eyes ? 'Watch her head' : i.title, own ? 'You' : 'Clip')} ratio="362 / 215" chips={[eyes ? 'Ivy · last Saturday' : own ? 'You · Saturday' : 'From Clean Sheet’s library']} captions={captions} onCaptions={setCaptions} say={demoToast}
+          <LearnPlayer key={open} phone tryLabel="Try" chapters={chapters(frame, secs, eyes ? 'Watch her head' : i.title, own ? 'You' : 'Clip')} ratio="362 / 215" chips={[eyes ? 'Ivy · last Sunday' : own ? 'You · Sunday' : 'From Clean Sheet’s library']} captions={captions} onCaptions={setCaptions} say={demoToast}
             tryCard={{ heading: eyes ? 'Have a go: the numbers game' : 'Have a go', at: '', task: eyes ? 'Dribble towards a grown-up. They hold up fingers. Shout the number. Stop the ball on “freeze”.' : i.title, button: '', done: false, onAdd: () => {} }} />
           {eyes && <section style={card}><strong style={{ fontSize: 15 }}>Why {t.coach}’s team is doing this</strong><span style={{ fontSize: 14, lineHeight: '20px' }}>They are learning to run with the ball and still see what is around them.</span></section>}
           <section style={{ ...card, border: `2.5px solid ${INK}` }}>
@@ -92,7 +92,7 @@ export default function EducationPhone({ start = 'ECp1-FamilyLibrary', team, chi
       <div data-screen="ECp3-PlayerLibrary" style={phone}>
         {head(`${t.label} · ${kid}`, 'Learn', 'PO1-OlderHome', ini ?? 'MR')}
         <div style={{ flexGrow: 1, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 12 }}>
-          <LearnPlayer phone tryLabel="Try" chapters={chapters('team', 11, 'Your first touch', 'You')} ratio="362 / 215" chips={['Your clip · Saturday']} captions={captions} onCaptions={setCaptions} say={demoToast}
+          <LearnPlayer phone tryLabel="Try" chapters={chapters('team', 11, 'Your first touch', 'You')} ratio="362 / 215" chips={['Your clip · Sunday']} captions={captions} onCaptions={setCaptions} say={demoToast}
             tryCard={{ heading: 'Your first touch under pressure', at: '', task: `Picked by ${t.coach} · goes with your goal for this term`, button: '', done: false, onAdd: () => {} }} />
           <span style={{ display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 17, lineHeight: '22px' }}>Your first touch under pressure</strong><span style={{ fontSize: 13, color: MUT }}>Picked by {t.coach} · goes with your goal for this term</span></span>
           {shelf('From your own games', OWN.map((o, n) => tile(o.title, 'team', o.len, o.title, 'Your clip', `own:${n}`)), OWN.length)}
@@ -112,7 +112,7 @@ export default function EducationPhone({ start = 'ECp1-FamilyLibrary', team, chi
       <div style={{ flexGrow: 1, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 12 }}>
         <LearnPlayer phone tryLabel="Try" chapters={chapters(sample ? 'team' : 'figure', week.secs, sample ? 'Watch her head' : week.title, 'Clip')} ratio="362 / 215" chips={[own ? 'From Clean Sheet’s library' : `From ${t.coach} this week`]} captions={captions} onCaptions={setCaptions} say={demoToast}
           tryCard={{ heading: 'Have a go', at: '', task: week.title, button: '', done: false, onAdd: () => {} }} />
-        <span style={{ display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 17, lineHeight: '22px' }}>{week.title}</strong><span style={{ fontSize: 13, color: MUT }}>{sample ? 'That’s Ivy, last Saturday · 9 seconds · just a ball' : `${week.kind} · ${week.length} · ${lower(week.you_need)}`}</span></span>
+        <span style={{ display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 17, lineHeight: '22px' }}>{week.title}</strong><span style={{ fontSize: 13, color: MUT }}>{sample ? 'That’s Ivy, last Sunday · 9 seconds · just a ball' : `${week.kind} · ${week.length} · ${lower(week.you_need)}`}</span></span>
         <div role="group" aria-label="Show me" style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>{CHIPS.map(([c]) => { const is = on.includes(c); return <button key={c} role="checkbox" aria-checked={is} onClick={() => { setOn(is ? on.filter(v => v !== c) : [...on, c]); demoToast(`${c}: ${is ? 'removed' : 'added'}.`) }} style={{ minHeight: 44, padding: '0 13px', borderRadius: 999, border: is ? 0 : `1px solid ${LINE}`, background: is ? G : '#fff', color: is ? '#fff' : INK, fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>{c}</button> })}</div>
         {row(week.shelf, ['Big touches into space', 'Traffic lights', 'Stop and go'])}
         {row('Play at home', ['Toe taps and rolls', 'Bin goal', 'Hallway dribble'])}

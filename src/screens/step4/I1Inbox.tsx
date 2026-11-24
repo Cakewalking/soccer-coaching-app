@@ -5,7 +5,7 @@ const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8
 
 const MSGS = [
   { from: 'Ella Brandt', subject: 'Ella has felt low two days running', preview: 'Scored 2 out of 5 on Wednesday and today.', tag: 'Needs a look', urgent: true },
-  { from: 'GPS vests', subject: '3 GPS vests didn\'t sync', preview: 'Ruby, Isla and Finn after Tuesday training.', tag: 'Fix before Saturday', urgent: true },
+  { from: 'GPS vests', subject: '3 GPS vests didn\'t sync', preview: 'Ruby, Isla and Finn after Tuesday training.', tag: 'Fix before Sunday', urgent: true },
   { from: 'Priya Shah · Fitness coach', subject: 'Sprint caps set for Noah and Zoe', preview: 'Both are in a growth spurt. I\'ve capped them…', tag: null, urgent: false },
   { from: 'Linh Tran · Mia\'s mum', subject: 'Mia might be 10 minutes late Thursday', preview: 'She has a dentist appointment, sorry!', tag: 'Waiting on you', urgent: false },
   { from: 'Player goals', subject: '3 need work', preview: 'Grace, Leo and Ava are behind on their goals.', tag: null, urgent: false },

@@ -47,7 +47,7 @@ export default function ACC13AcademyChat({ onNav }: { onBack?: () => void; onNav
   const [sheet, setSheet] = useState<Sheet>(null)
   const [composeText, setComposeText] = useState('')
   const [daniReply, setDaniReply] = useState('Yes, I can cover the 4:15 on Friday.')
-  const [gameMsg, setGameMsg] = useState('Club kit on Saturdays — please no club training tops.')
+  const [gameMsg, setGameMsg] = useState('Club kit on Sundays — please no club training tops.')
   const [newChatFor, setNewChatFor] = useState<string[]>(['Advanced', 'Development', 'One-on-one'])
   const [whoCanPost, setWhoCanPost] = useState('Coaches only')
   const [mediaTab, setMediaTab] = useState('Videos')
@@ -90,7 +90,7 @@ export default function ACC13AcademyChat({ onNav }: { onBack?: () => void; onNav
             },
             {
               initials: 'U13', iconBg: '#f5e6d0',
-              name: 'U13 Timber · game team', time: 'Wed', preview: 'You: Team sheet for Saturday',
+              name: 'U13 Timber · game team', time: 'Wed', preview: 'You: Team sheet for Sunday',
               sheet: 'cacadgame' as Sheet, unread: 0, active: false
             },
             {
@@ -265,7 +265,7 @@ export default function ACC13AcademyChat({ onNav }: { onBack?: () => void; onNav
           <h2 style={{ margin: 0, fontSize: 18, fontWeight: 700, color: INK }}>Tall Timber news</h2>
           {[
             { title: 'July clinic bookings are open', meta: 'Mon · Dani' },
-            { title: 'Winter schedule: Saturdays at 11:00', meta: 'Last week · Dani' },
+            { title: 'Winter schedule: Sundays at 11:00', meta: 'Last week · Dani' },
             { title: 'Grading results posted to player plans', meta: '2 weeks ago · Dani' },
           ].map((item, i) => (
             <div key={i} style={{ padding: '10px 0', borderTop: i === 0 ? `1px solid ${LN}` : `1px solid ${LN}` }}>
@@ -284,7 +284,7 @@ export default function ACC13AcademyChat({ onNav }: { onBack?: () => void; onNav
           <div style={{ fontSize: 13, color: MUT }}>16 families, Reece and Dani · game-day chat</div>
           <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 8 }}>
             <div style={{ background: '#faf5ec', borderRadius: 10, padding: '10px 12px', fontSize: 14, color: MUT }}>
-              <span style={{ fontWeight: 700, color: INK }}>You · Wed: </span>Team sheet for Saturday is up. 14 of 16 confirmed.
+              <span style={{ fontWeight: 700, color: INK }}>You · Wed: </span>Team sheet for Sunday is up. 14 of 16 confirmed.
             </div>
             <div style={{ background: '#faf5ec', borderRadius: 10, padding: '10px 12px', fontSize: 14, color: MUT }}>
               <span style={{ fontWeight: 700, color: INK }}>Dani · Wed: </span>Thanks Reece. Ana and Jonah's parents have been reminded.

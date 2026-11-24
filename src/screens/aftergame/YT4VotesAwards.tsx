@@ -30,8 +30,8 @@ export default function YT4VotesAwards({ onNav, bare = false, seniors = false }:
   return (
     <YTFrame
       onNav={onNav} active="awards" lastTool={lastTool} bare={bare}
-      heading="Ratings and awards · Sat 30 May · Won 3-1 at Ironbark United"
-      sentence={seniors ? 'Nine of sixteen players have your rating for Saturday. They add up to the season’s awards.' : 'Eleven of seventeen families have rated Saturday. Their ratings sit beside yours.'}
+      heading="Ratings and awards · Sun 31 May · Won 3-1 at Ironbark United"
+      sentence={seniors ? 'Nine of sixteen players have your rating for Saturday. They add up to the season’s awards.' : 'Eleven of seventeen families have rated Sunday. Their ratings sit beside yours.'}
       support={seniors ? 'Only you see your ratings and notes. Nobody else sees any of it.' : 'Each parent sees only their own ratings. You see them all. Nobody else sees any of it.'}
       figures={seniors ? [{ num: '9 of 16', label: 'players rated', proof: true }, { num: '8', label: 'games so far' }] : [{ num: `${rated} of ${YT_TEAM.families}`, label: 'families have rated', proof: true }, { num: 'Tue', label: 'rating closes' }]}
       buttons={[
@@ -45,7 +45,7 @@ export default function YT4VotesAwards({ onNav, bare = false, seniors = false }:
             <h2 style={{ margin: 0, fontSize: 17, fontWeight: 700, flex: 1 }}>The season so far · 8 games</h2>
             <div style={{ display: 'flex', border: `1.5px solid ${HAIR}`, borderRadius: 999, overflow: 'hidden' }}>
               {(['season', 'saturday'] as const).map(s => (
-                <button key={s} onClick={() => { setScope(s); setLastTool(s) }} style={{ height: 34, padding: '0 14px', background: scope === s ? GD : '#fff', color: scope === s ? '#fff' : INK, border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', textTransform: 'capitalize' }}>{s === 'season' ? 'Season' : 'Saturday'}</button>
+                <button key={s} onClick={() => { setScope(s); setLastTool(s) }} style={{ height: 34, padding: '0 14px', background: scope === s ? GD : '#fff', color: scope === s ? '#fff' : INK, border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', textTransform: 'capitalize' }}>{s === 'season' ? 'Season' : seniors ? 'Saturday' : 'Sunday'}</button>
               ))}
             </div>
           </div>

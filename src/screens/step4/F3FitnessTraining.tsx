@@ -5,7 +5,7 @@ const DRILLS = [
   { time: '5:40', name: 'Rondo 4v2', dur: '12 min', note: 'Keep load low, moderate intensity' },
   { time: '5:52', name: 'Pressing patterns', dur: '15 min', note: 'High effort — watch Ruby' },
   { time: '6:07', name: 'SSG 5v5', dur: '18 min', note: 'Monitor Kai — modified only' },
-  { time: '6:25', name: 'Finishing runs', dur: '10 min', note: 'Sprint volume low, game Sat' },
+  { time: '6:25', name: 'Finishing runs', dur: '10 min', note: 'Sprint volume low, game Sun' },
 ]
 
 const WATCH = [
@@ -57,7 +57,7 @@ export default function F3FitnessTraining({ mode }: { onBack?: () => void; mode?
               </div>
             </div>
             <div style={{ background: '#fff5e6', border: '1px solid #f0c070', borderRadius: 16, padding: '12px 16px', fontSize: 14, lineHeight: '20px' }}>
-              <strong>Game Saturday.</strong> Keep session RPE at 6-7/10. Avoid max sprints and heavy lower-body plyometrics tonight.
+              <strong>Game Sunday.</strong> Keep session RPE at 6-7/10. Avoid max sprints and heavy lower-body plyometrics tonight.
             </div>
           </div>
         ) : (
@@ -74,7 +74,7 @@ export default function F3FitnessTraining({ mode }: { onBack?: () => void; mode?
               ))}
             </div>
             <div style={{ background: '#fff5e6', border: '1px solid #f0c070', borderRadius: 16, padding: '12px 16px', fontSize: 14, lineHeight: '20px' }}>
-              <strong>Game Saturday.</strong> Keep session RPE at 6-7/10. Avoid max sprints and heavy lower-body plyometrics tonight.
+              <strong>Game Sunday.</strong> Keep session RPE at 6-7/10. Avoid max sprints and heavy lower-body plyometrics tonight.
             </div>
           </div>
         )}

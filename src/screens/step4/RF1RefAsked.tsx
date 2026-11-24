@@ -20,7 +20,7 @@ export default function RF1RefAsked(_: { onBack?: () => void }) {
           </div>
           <div style={{ padding: '16px 16px' }}>
             <div style={{ fontSize: 16, fontWeight: 700, color: INK, marginBottom: 4 }}>U13 Girls Meg v Northgate City</div>
-            <div style={{ fontSize: 13, color: MUT, marginBottom: 16 }}>Assistant referee · Sat 6 Jun · 12:00 · pitch 1</div>
+            <div style={{ fontSize: 13, color: MUT, marginBottom: 16 }}>Assistant referee · Sun 7 Jun · 12:00 · pitch 1</div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 14 }}>
               {[{ label: 'Be there by', value: '11:40' }, { label: 'Game length', value: '2 × 30 minutes' }, { label: 'Referee', value: 'Appointed by the league' }, { label: 'Your other game', value: '8:30 · U7 Dan, pitch 5' }].map((r, i) => (
                 <div key={i} style={{ background: '#faf5ec', borderRadius: 10, padding: '10px 12px' }}>

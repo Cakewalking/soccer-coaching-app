@@ -18,7 +18,7 @@ export default function FIL3bDocParent({ onNav }: { onNav?: (s: string) => void 
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.8)" strokeWidth="2" strokeLinecap="round"><polyline points="15 18 9 12 15 6"/></svg>
         </button>
         <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ fontSize: 15, fontWeight: 800, color: '#fff', lineHeight: 1.3 }}>Saturday, home to Harbour Rovers</div>
+          <div style={{ fontSize: 15, fontWeight: 800, color: '#fff', lineHeight: 1.3 }}>Sunday, home to Harbour Rovers</div>
           <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)', marginTop: 1 }}>From Sam, your coach</div>
         </div>
         <div aria-label="Ask Clean Sheet" onClick={() => onNav?.('ASKp2-PhoneAskOpen')}
@@ -33,7 +33,7 @@ export default function FIL3bDocParent({ onNav }: { onNav?: (s: string) => void 
         {/* When */}
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 16px' }}>
           <div style={{ fontSize: 11, fontWeight: 700, color: MUT, letterSpacing: '0.07em', textTransform: 'uppercase', marginBottom: 6 }}>When</div>
-          <div style={{ fontSize: 14, fontWeight: 600, color: INK }}>Sat 6 June · kick-off 9:30 · finished by 10:45</div>
+          <div style={{ fontSize: 14, fontWeight: 600, color: INK }}>Sun 7 June · kick-off 9:30 · finished by 10:45</div>
         </div>
 
         {/* Where */}

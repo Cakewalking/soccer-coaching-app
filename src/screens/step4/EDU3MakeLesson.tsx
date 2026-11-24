@@ -52,7 +52,7 @@ export default function EDU3MakeLesson({ onNav }: { onNav?: (s: string) => void 
       <OpeningPanel
         heading="MAKE A LESSON · FROM YOUR CLIP"
         sentence="Grace closes the space behind the press in 11 seconds. Clean Sheet has written the first two points."
-        support="v Tealside Town, 30 May. Grace and her mum have said yes. Rachel checks it before the whole club sees it."
+        support="v Tealside Town, 31 May. Grace and her mum have said yes. Rachel checks it before the whole club sees it."
         buttons={[{ label: 'Send to Rachel', main: true, onClick: () => st('Sent to Rachel to check before the whole club sees it.') }, { label: 'Cancel', onClick: () => onNav?.('EDU1-Learn') }]}
       />
 
@@ -83,7 +83,7 @@ export default function EDU3MakeLesson({ onNav }: { onNav?: (s: string) => void 
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="rgba(255,255,255,0.7)"><polygon points="5 3 19 12 5 21 5 3"/></svg>
                 </div>
                 <div>
-                  <div style={{ fontSize: 13, fontWeight: 700, color: INK }}>From your clip: Grace Owusu, v Tealside Town, 30 May · 11 seconds</div>
+                  <div style={{ fontSize: 13, fontWeight: 700, color: INK }}>From your clip: Grace Owusu, v Tealside Town, 31 May · 11 seconds</div>
                   <div style={{ fontSize: 11, color: MUT }}>Lessons only show something done well. No clip of a mistake leaves its own team.</div>
                 </div>
               </div>

@@ -35,7 +35,7 @@ export default function ComingMiniRoos({ empty }: { empty?: boolean }) {
       <div style={{ flexShrink: 0, padding: '14px 28px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 20 }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 14 }}>
           <h1 style={{ margin: 0, fontSize: 26, lineHeight: '32px', fontWeight: 700, letterSpacing: '-0.02em' }}>Who's coming</h1>
-          <span style={{ fontSize: 14, color: '#4a5a57' }}>U9 Tom · Saturday 6 Jun</span>
+          <span style={{ fontSize: 14, color: '#4a5a57' }}>U9 Tom · Sunday 7 Jun</span>
         </div>
         <button onClick={() => showToast('Reminder sent to 2 families.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>Remind 2 families</button>
       </div>

@@ -189,12 +189,12 @@ const L = (pos: number, name: string, played: number, pts: number, us = false) =
 // Each team has its own season. The last result and the last five here match that team's Home.
 const RESULTS_BY: Record<Team3, ReturnType<typeof R>[]> = {
   juniors: [
-    R('Sat 30 May', 'Ironbark United', 'A', '3–1', 'W'), R('Sat 23 May', 'Saltmarsh', 'A', '1–2', 'L'), R('Sat 16 May', 'Northgate', 'H', '1–1', 'D'), R('Sat 9 May', 'Tealside Town', 'A', '2–0', 'W'),
-    R('Sat 2 May', 'Kestrel Park', 'H', '3–1', 'W'), R('Sat 25 Apr', 'Lyndhurst SC', 'H', '2–1', 'W'), R('Sat 18 Apr', 'Riverside', 'A', '0–2', 'L'), R('Sat 11 Apr', 'Banksia FC', 'H', '4–2', 'W'),
+    R('Sun 31 May', 'Ironbark United', 'A', '3–1', 'W'), R('Sun 24 May', 'Saltmarsh', 'A', '1–2', 'L'), R('Sun 17 May', 'Northgate', 'H', '1–1', 'D'), R('Sun 10 May', 'Tealside Town', 'A', '2–0', 'W'),
+    R('Sun 3 May', 'Kestrel Park', 'H', '3–1', 'W'), R('Sun 26 Apr', 'Lyndhurst SC', 'H', '2–1', 'W'), R('Sun 19 Apr', 'Riverside', 'A', '0–2', 'L'), R('Sun 12 Apr', 'Banksia FC', 'H', '4–2', 'W'),
   ],
   youth: [
-    R('Sat 30 May', 'Tealside Town', 'H', '2–2', 'D'), R('Sat 23 May', 'Glenview Park', 'A', '2–1', 'W'), R('Sat 16 May', 'Kingfisher United', 'H', '0–2', 'L'), R('Sat 9 May', 'Saltmarsh', 'A', '1–1', 'D'),
-    R('Sat 2 May', 'Riverside', 'H', '1–2', 'L'), R('Sat 25 Apr', 'Kestrel Park', 'A', '3–0', 'W'), R('Sat 18 Apr', 'Northgate', 'H', '2–2', 'D'), R('Sat 11 Apr', 'Lyndhurst SC', 'A', '2–1', 'W'),
+    R('Sun 31 May', 'Tealside Town', 'H', '2–2', 'D'), R('Sun 24 May', 'Glenview Park', 'A', '2–1', 'W'), R('Sun 17 May', 'Kingfisher United', 'H', '0–2', 'L'), R('Sun 10 May', 'Saltmarsh', 'A', '1–1', 'D'),
+    R('Sun 3 May', 'Riverside', 'H', '1–2', 'L'), R('Sun 26 Apr', 'Kestrel Park', 'A', '3–0', 'W'), R('Sun 19 Apr', 'Northgate', 'H', '2–2', 'D'), R('Sun 12 Apr', 'Lyndhurst SC', 'A', '2–1', 'W'),
   ],
   seniors: [
     R('Sat 30 May', 'Glenview Park', 'H', '2–0', 'W'), R('Sat 23 May', 'Ironbark United', 'A', '2–0', 'W'), R('Sat 16 May', 'Saltmarsh', 'H', '0–1', 'L'), R('Sat 9 May', 'Tealside Town', 'A', '2–2', 'D'),
@@ -204,8 +204,8 @@ const RESULTS_BY: Record<Team3, ReturnType<typeof R>[]> = {
 }
 
 const COMING_BY: Record<Team3, ReturnType<typeof C>[]> = {
-  juniors: [C('SAT\n6', 'vs Harbour Rovers', '9:30 · meet 8:40 · white kit', 'Rob booked camera'), C('SAT\n13', 'at Kestrel Park', '9:00 · their ground'), C('SAT\n20', 'at Banksia FC', '9:00'), C('SAT\n27', 'vs Riverside', '9:30')],
-  youth: [C('SAT\n6', 'at Harbour Rovers', '3:30 · Rovers Park · meet 2:40', 'Camera booked'), C('SAT\n13', 'vs Kestrel Park', '1:30 · home'), C('SAT\n20', 'at Northgate', '1:30'), C('SAT\n27', 'vs Saltmarsh', '3:30')],
+  juniors: [C('SUN\n7', 'vs Harbour Rovers', '9:30 · meet 8:40 · white kit', 'Rob booked camera'), C('SUN\n14', 'at Kestrel Park', '9:00 · their ground'), C('SUN\n21', 'at Banksia FC', '9:00'), C('SUN\n28', 'vs Riverside', '9:30')],
+  youth: [C('SUN\n7', 'at Harbour Rovers', '3:30 · Rovers Park · meet 2:40', 'Camera booked'), C('SUN\n14', 'vs Kestrel Park', '1:30 · home'), C('SUN\n21', 'at Northgate', '1:30'), C('SUN\n28', 'vs Saltmarsh', '3:30')],
   seniors: [C('SAT\n6', 'at Banksia Park SC', '3:00 · meet 1:45 · away kit', 'Camera booked'), C('SAT\n13', 'vs Riverside', '3:00 · home'), C('SAT\n20', 'at Saltmarsh', '3:00'), C('SAT\n27', 'vs Kestrel Park', '3:00')],
 }
 

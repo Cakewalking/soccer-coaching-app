@@ -53,7 +53,7 @@ export default function ASKd8PhoneHome({ onNav }: { onNav?: (s: string) => void 
         {/* Notice */}
         <div style={{ margin: '12px 16px 0', background: '#fff', border: `1px solid #f0c060`, borderRadius: 12, padding: '12px 16px' }}>
           <div style={{ fontSize: 12, fontWeight: 700, color: '#b08020', marginBottom: 2 }}>UPDATE FROM SAM</div>
-          <div style={{ fontSize: 13, color: INK }}>Meet time is now 8:40 on Saturday.</div>
+          <div style={{ fontSize: 13, color: INK }}>Meet time is now 8:40 on Sunday.</div>
         </div>
 
         {/* Recent training */}

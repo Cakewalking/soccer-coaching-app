@@ -22,9 +22,9 @@ type Clip = {
 }
 
 const GAMES = [
-  { id: 'sat6',  label: 'Sat 6 Jun · Northgate',   sub: 'Filmed · 44 min' },
+  { id: 'sat6',  label: 'Sun 7 Jun · Northgate',   sub: 'Filmed · 44 min' },
   { id: 'tue',   label: 'Tue training',          sub: 'Filmed · 30 min' },
-  { id: 'may30', label: 'Sat 30 May · Glenview', sub: 'Filmed · 40 min' },
+  { id: 'may30', label: 'Sun 31 May · Glenview', sub: 'Filmed · 40 min' },
 ]
 
 const SKILLS = ['First touch', 'Dribbling', 'Passing', 'Defending', 'Shooting', 'Never gives up']
@@ -239,7 +239,7 @@ function ClipDetail({ clip, picked, onPick, onSay }: { clip: Clip; picked: boole
 
       <div style={{ background: PALE, borderRadius: 10, padding: '10px 12px', marginBottom: 12 }}>
         <div style={{ fontSize: 12, fontWeight: 700, color: GD, marginBottom: 3, textTransform: 'uppercase', letterSpacing: '0.04em' }}>What to say to {clip.name.split(' ')[0]}</div>
-        <div style={{ fontSize: 13, color: G, lineHeight: 1.5 }}>{clip.kind === 'great' ? `"${clip.skill.toLowerCase()} — that was brilliant. Can you do it again on Saturday?"` : `"Let's try it a little differently next time. We'll practise ${clip.skill.toLowerCase()} on Tuesday."`}</div>
+        <div style={{ fontSize: 13, color: G, lineHeight: 1.5 }}>{clip.kind === 'great' ? `"${clip.skill.toLowerCase()} — that was brilliant. Can you do it again on Sunday?"` : `"Let's try it a little differently next time. We'll practise ${clip.skill.toLowerCase()} on Tuesday."`}</div>
       </div>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>

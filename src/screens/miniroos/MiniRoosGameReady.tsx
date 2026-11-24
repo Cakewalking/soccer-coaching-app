@@ -45,7 +45,7 @@ export default function MiniRoosGameReady({ onPlayTeamTalk }: { onPlayTeamTalk: 
       {/* Match info row */}
       <div style={{ flex: 'none', background: '#fff', borderBottom: `1px solid ${HAIR}`, padding: '14px 28px', display: 'flex', alignItems: 'center', gap: 16 }}>
         <div style={{ flexGrow: 1, minWidth: 0 }}>
-          <div style={{ fontSize: 12, fontWeight: 600, color: MUT, letterSpacing: '0.02em', textTransform: 'uppercase' }}>Sat 6 Jun · 9:30 am · home · 9 playing</div>
+          <div style={{ fontSize: 12, fontWeight: 600, color: MUT, letterSpacing: '0.02em', textTransform: 'uppercase' }}>Sun 7 Jun · 9:30 am · home · 9 playing</div>
           <h1 style={{ margin: '2px 0 0', fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em', color: '#10211f' }}>vs Northgate City</h1>
         </div>
         <div style={{ height: 36, padding: '0 14px', borderRadius: 999, border: `1px solid ${LEAF}`, background: '#edf8f2', display: 'flex', alignItems: 'center', gap: 7, fontSize: 14, fontWeight: 600, color: GREEN }}>
@@ -62,7 +62,7 @@ export default function MiniRoosGameReady({ onPlayTeamTalk }: { onPlayTeamTalk: 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12, minHeight: 0, overflowY: 'auto' }}>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 10 }}>
             <span style={{ fontSize: 17, fontWeight: 700, color: '#10211f' }}>Team talk</span>
-            <span style={{ fontSize: 14, color: MUT }}>6 slides · 2 min · built from last Saturday</span>
+            <span style={{ fontSize: 14, color: MUT }}>6 slides · 2 min · built from last Sunday</span>
           </div>
 
           {/* Filmstrip */}

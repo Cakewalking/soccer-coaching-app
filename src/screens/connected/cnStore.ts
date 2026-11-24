@@ -13,7 +13,7 @@ export type QuestionId = 'felt' | 'today' | 'training' | 'selfreview' | 'elsewhe
 
 export interface CnState {
   // the player's voice
-  selfReview: SelfReview | null            // Cal's own rating of Saturday (CNp1). Seen by Cal and the head coach only
+  selfReview: SelfReview | null            // Cal's own rating of Sunday (CNp1). Seen by Cal and the head coach only
   sessionAnswers: SessionAnswer[]          // tonight's session, three taps each (CNp3). No names are kept
   goal: { text: string; know: string; sent: boolean } | null
   elsewhere: { hours: number[]; week: string; saved: boolean }

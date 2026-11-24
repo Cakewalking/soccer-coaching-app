@@ -63,7 +63,7 @@ export default function YTFrame({ onNav, active, heading, sentence, support, fig
       </div>
       </>}
 
-      <OpeningPanel landing heading={fixture ? heading.replace(/Sat 30 May · Won 3[-–]1 at Ironbark United/, fixture) : heading} sentence={sentence} support={support} figures={figures} buttons={buttons} />
+      <OpeningPanel landing heading={fixture ? heading.replace(/Sun 31 May · Won 3[-–]1 at Ironbark United/, fixture) : heading} sentence={sentence} support={support} figures={figures} buttons={buttons} />
 
       {/* Pills */}
       <div style={{ flex: 'none', padding: '12px 28px 0', display: 'flex', gap: 8 }}>

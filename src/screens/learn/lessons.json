@@ -274,7 +274,7 @@
       },
       {
        "answer": "Not yet",
-       "then": "A reminder before Saturday’s game"
+       "then": "A reminder before Sunday’s game"
       }
      ],
      "own_team_clip": null,
@@ -780,7 +780,7 @@
       }
      ],
      "own_team_clip": {
-      "example_moment": "Saturday, 14th minute · 0:11",
+      "example_moment": "Sunday, 14th minute · 0:11",
       "example_caption": "Ari has space on his left and doesn’t see it. A moment like this is where the question helps."
      },
      "film_brief": "Mark Dunn with U9 Mark: the same moment coached by telling, then by asking. We hear the players’ answers.",
@@ -864,7 +864,7 @@
       }
      ],
      "own_team_clip": {
-      "example_moment": "Saturday, 31st minute · 0:09",
+      "example_moment": "Sunday, 31st minute · 0:09",
       "example_caption": "Poppy tries to turn her defender and loses it. This is the try to praise."
      },
      "film_brief": "A run of named praise from a real coach, each matched to the action it praises in slow motion.",
@@ -991,7 +991,7 @@
       "Try things. Mistakes are fine."
      ],
      "instead_of": "Tactics on a whiteboard. Talk about the other team.",
-     "try_when": "Saturday",
+     "try_when": "Sunday",
      "try_at": "9:20, before kick-off",
      "try_task": "Give your team talk in under a minute. Ask one player to say the one idea back to you.",
      "answers": [
@@ -1001,7 +1001,7 @@
       },
       {
        "answer": "It ran long",
-       "then": "“Say less” is added to your Saturday reminders"
+       "then": "“Say less” is added to your Sunday reminders"
       },
       {
        "answer": "Forgot the idea from training",
@@ -1022,7 +1022,7 @@
      "minutes": 6,
      "idea": "Fair playing time is easy to believe in and hard to do in the moment. Decide the changes before the game and let the plan make the calls.",
      "steps": [
-      "Open Saturday’s turns. They are lined up for you.",
+      "Open Sunday’s turns. They are lined up for you.",
       "Check who has played least and who hasn’t been in goal.",
       "Follow the plan, whatever the score."
      ],
@@ -1031,7 +1031,7 @@
       "Everyone plays the same today."
      ],
      "instead_of": "Leaving your strongest players on because it’s close.",
-     "try_when": "Saturday",
+     "try_when": "Sunday",
      "try_at": "Before you leave home",
      "try_task": "Open the turns plan, make any swaps, and follow it for the whole game.",
      "answers": [
@@ -1049,7 +1049,7 @@
       }
      ],
      "own_team_clip": null,
-     "film_brief": "A coach at the kitchen table on Friday night setting the turns in two minutes, then the bench on Saturday running to plan.",
+     "film_brief": "A coach at the kitchen table on Friday night setting the turns in two minutes, then the bench on Sunday running to plan.",
      "sources": [
       5
      ]
@@ -1071,7 +1071,7 @@
       "Unlucky. Try it again."
      ],
      "instead_of": "“Pass!” “Shoot!” “Man on!” Telling the player on the ball what to do.",
-     "try_when": "Saturday",
+     "try_when": "Sunday",
      "try_at": "During the game",
      "try_task": "Give no instructions to the player on the ball in the first half. Praise only.",
      "answers": [
@@ -1089,7 +1089,7 @@
       }
      ],
      "own_team_clip": {
-      "example_moment": "Saturday, 8th to 9th minute · 0:40",
+      "example_moment": "Sunday, 8th to 9th minute · 0:40",
       "example_caption": "Listen to the touchline in this minute. Count the instructions."
      },
      "film_brief": "Match footage with sideline audio isolated: first with constant instruction, then with praise only. Same team.",
@@ -1114,7 +1114,7 @@
       "Second half, same idea: look before it comes."
      ],
      "instead_of": "A list of everything that went wrong.",
-     "try_when": "Saturday",
+     "try_when": "Sunday",
      "try_at": "Half-time",
      "try_task": "Ask “what’s working?” before you say anything about the game.",
      "answers": [
@@ -1128,7 +1128,7 @@
       },
       {
        "answer": "I did the talking",
-       "then": "“Say less” is added to your Saturday reminders"
+       "then": "“Say less” is added to your Sunday reminders"
       }
      ],
      "own_team_clip": null,
@@ -1154,7 +1154,7 @@
       "I saw so many of you look before the ball came."
      ],
      "instead_of": "The score. The referee. What went wrong.",
-     "try_when": "Saturday",
+     "try_when": "Sunday",
      "try_at": "Straight after the game",
      "try_task": "Name one thing from training that you saw, then do your three taps in the car park.",
      "answers": [
@@ -1256,7 +1256,7 @@
       "They hear you more than me. That’s why I’m asking."
      ],
      "instead_of": "Calling a parent out in front of the team.",
-     "try_when": "Saturday",
+     "try_when": "Sunday",
      "try_at": "Before kick-off",
      "try_task": "Thank the parents as a group for cheering, before the game starts.",
      "answers": [
@@ -1292,7 +1292,7 @@
       "Thank them in front of the group."
      ],
      "words_to_use": [
-      "Kerem, could you be game leader this Saturday? It’s 50 minutes.",
+      "Kerem, could you be game leader this Sunday? It’s 50 minutes.",
       "Thanks, Dana, for the kit this week."
      ],
      "instead_of": "Doing it all yourself. A general call for volunteers.",
@@ -1314,7 +1314,7 @@
       }
      ],
      "own_team_clip": null,
-     "film_brief": "A coach asking one parent for one job at pick-up. Fifteen seconds. Then the same pitch on Saturday with five people helping.",
+     "film_brief": "A coach asking one parent for one job at pick-up. Fifteen seconds. Then the same pitch on Sunday with five people helping.",
      "sources": []
     },
     {

@@ -54,7 +54,7 @@ export default function HM10StaffMiniRoos(_: { onBack?: () => void }) {
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 68, borderTop: `1px solid ${LN}` }}>
             <div style={{ width: 40, height: 40, borderRadius: 999, background: '#e8cfcf', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 700, flexShrink: 0 }}>?</div>
             <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ fontSize: 15, fontWeight: 700 }}>Game leader this Saturday</div>
+              <div style={{ fontSize: 15, fontWeight: 700 }}>Game leader this Sunday</div>
               <div style={{ fontSize: 13, color: MUT }}>Nobody yet. The club's young game leaders have been asked</div>
             </div>
             <button onClick={() => st('Sending another reminder.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer', flexShrink: 0 }}>Ask again</button>

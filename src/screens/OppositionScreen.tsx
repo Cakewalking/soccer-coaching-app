@@ -105,7 +105,7 @@ export default function OppositionScreen({ empty, opponent = 'Harbour Rovers', s
       <div style={{ minHeight: 0, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 14 }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 14 }}>
           <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, letterSpacing: '-0.02em' }}>{opponent}</h1>
-          <span style={{ fontSize: 14, color: '#4a5a57' }}>Saturday 6 Jun · home · 6th on the ladder · we haven't played them this season</span>
+          <span style={{ fontSize: 14, color: '#4a5a57' }}>Sunday 7 Jun · home · 6th on the ladder · we haven't played them this season</span>
         </div>
 
         <div style={{ background: '#ffffff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '16px 18px', display: 'flex', flexDirection: 'column', gap: 2 }}>

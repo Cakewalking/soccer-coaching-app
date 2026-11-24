@@ -56,7 +56,7 @@ export default function PRM5CoachAsk({ onNav }: { onNav?: (s: string) => void })
 
           <div style={{ marginBottom: 6, fontSize: 12, fontWeight: 700, color: MUT, letterSpacing: '0.07em', textTransform: 'uppercase' as const }}>Why it would help</div>
           <div style={{ background: PALE, border: `1.5px solid ${LN}`, borderRadius: 10, padding: '14px 16px', marginBottom: 8, minHeight: 80 }}>
-            <div style={{ fontSize: 14, color: MUT, fontStyle: 'italic' }}>I have 12 children on Saturday and I'm on my own. Help with who has played least would let me watch the game.</div>
+            <div style={{ fontSize: 14, color: MUT, fontStyle: 'italic' }}>I have 12 children on Sunday and I'm on my own. Help with who has played least would let me watch the game.</div>
           </div>
           <div style={{ fontSize: 12, color: MUT, marginBottom: 24 }}>Rachel sees your note with the cost to the club. You will hear back in the app. You can ask once a term.</div>
 

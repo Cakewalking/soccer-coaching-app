@@ -11,13 +11,13 @@ export default function ACC7AcademyGameDay({ onNav }: { onBack?: () => void; onN
 
   return (
     <div style={{ width: 1180, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 820, position: 'relative', display: 'flex', flexDirection: 'column' as const }}>
-      <CoachNav active="gameday" sub="This Saturday" go={coachGo(onNav)} />
+      <CoachNav active="gameday" sub="This Sunday" go={coachGo(onNav)} />
 
       {/* Page header */}
       <div style={{ display: 'flex', alignItems: 'flex-start', padding: '14px 28px 0', gap: 16 }}>
         <div style={{ flex: 1 }}>
-          <h1 style={{ margin: 0, fontSize: 26, fontWeight: 700, letterSpacing: '-0.02em', color: INK }}>U13 Timber · Saturday</h1>
-          <p style={{ margin: '4px 0 0', fontSize: 14, color: MUT }}>Sat 6 June · 11:00 vs Banksia Park · home, pitch 2</p>
+          <h1 style={{ margin: 0, fontSize: 26, fontWeight: 700, letterSpacing: '-0.02em', color: INK }}>U13 Timber · Sunday</h1>
+          <p style={{ margin: '4px 0 0', fontSize: 14, color: MUT }}>Sun 7 June · 11:00 vs Banksia Park · home, pitch 2</p>
         </div>
         <div style={{ display: 'flex', gap: 8, paddingTop: 4 }}>
           <button onClick={() => mark('msg')} style={{ height: 44, padding: '0 16px', borderRadius: 10, background: is('msg') ? PALE : '#fff', border: `1px solid ${is('msg') ? G : '#c5c8c4'}`, color: is('msg') ? G : INK, fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>{is('msg') ? '✓ Message sent to 16' : 'Message the team'}</button>
@@ -30,7 +30,7 @@ export default function ACC7AcademyGameDay({ onNav }: { onBack?: () => void; onN
         {/* Left: checklist */}
         <div style={{ gridColumn: 'span 8', background: '#fff', border: `1px solid #c5c8c4`, borderRadius: 16, padding: '14px 18px', display: 'flex', flexDirection: 'column' as const, gap: 0 }}>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: 10 }}>
-            <span style={{ fontSize: 16, fontWeight: 700, color: INK }}>Ready for Saturday</span>
+            <span style={{ fontSize: 16, fontWeight: 700, color: INK }}>Ready for Sunday</span>
             <span style={{ fontSize: 13, color: MUT }}>3 of 4 done</span>
           </div>
 

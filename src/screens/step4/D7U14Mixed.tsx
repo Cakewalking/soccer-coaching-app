@@ -69,7 +69,7 @@ export default function D7U14Mixed(_: { onBack?: () => void }) {
             </div>
 
             <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 18px', marginBottom: 14 }}>
-              <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 6 }}>Next game · Sat 6 Jun</div>
+              <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 6 }}>Next game · Sun 7 Jun</div>
               <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>vs Ironbark United</div>
               <div style={{ fontSize: 12, color: MUT }}>1:30 · Away · Ironbark Park · Training Tue and Thu 6:30</div>
             </div>

@@ -48,7 +48,7 @@ export default function FormationPhone({ onNav }: { onNav?: (s: string) => void 
   function save() {
     const s = { shape: shapeName, halves }
     try { localStorage.setItem(KEY, JSON.stringify(s)) } catch { /* private window: kept for this visit only */ }
-    setSaved(s); say('Saved as Saturday’s line-up.')
+    setSaved(s); say('Saved as Sunday’s line-up.')
   }
 
   const pk = picked ? byId[picked] : null

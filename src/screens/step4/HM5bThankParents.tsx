@@ -24,7 +24,7 @@ export default function HM5bThankParents(_: { onBack?: () => void }) {
             <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b' }}>Your message</div>
             <div style={{ fontSize: 16, lineHeight: '24px' }}>
               Thanks for coming this morning! The kids were so brave on the ball, and I loved how often they passed to a friend. Arlo was a great first-time captain.<br /><br />
-              Training is Tuesday 5:00. Next Saturday we're at home, 9:00.<br /><br />
+              Training is Tuesday 5:00. Next Sunday we're at home, 9:00.<br /><br />
               Tom
             </div>
           </div>

@@ -45,7 +45,7 @@ export function CN2SelfVsCoach({ s, go, say, team = 'u12' }: CnProps) {
   const wants: [string, number][] = [['Scanning', 4], ['Positioning', 2]]
   const top = wants.map(([t, n]) => [t, n + (mine[0]?.[4] === t ? 1 : 0)] as [string, number])
   return (
-    <Page id="CN2-SelfVsCoach" title="Their take, next to yours" sub={`${team === 'u16' ? 'Sat 30 May · v Tealside Town' : team === 'seniors' ? 'Sat 6 June · v Banksia Park SC' : 'Sat 6 June · v Harbour Rovers'} · ${answered} of 16 players answered`} go={go} cols="minmax(0,1fr) 348px"
+    <Page id="CN2-SelfVsCoach" title="Their take, next to yours" sub={`${team === 'u16' ? 'Sun 31 May · v Tealside Town' : team === 'seniors' ? 'Sat 6 June · v Banksia Park SC' : 'Sun 7 June · v Harbour Rovers'} · ${answered} of 16 players answered`} go={go} cols="minmax(0,1fr) 348px"
       right={<><Btn big onClick={() => { addJob('remind-selfreview'); say(`A reminder goes to ${left} players tomorrow morning. Only one reminder is ever sent.`) }}>Remind the other {left}</Btn><Btn primary big onClick={() => go('YT4-VotesAwards')}>Your ratings</Btn></>}>
       <section aria-label="Effort" style={{ ...tile, gap: 0, padding: '12px 8px 8px' }}>
         <h2 style={{ ...h2, padding: '0 8px 6px' }}>Effort: what they said, what you said</h2>
@@ -270,7 +270,7 @@ export function CN15PositionHistory({ s, go, say }: CnProps) {
   const ari = s.jobs.includes('ari-front'), remy = s.jobs.includes('remy-goal')
   const every = POS.filter(p => p[1].every(n => n > 0)).length
   return (
-    <Page id="CN15-PositionHistory" title="Positions" sub={`${TEAMS.u9} · 8 games · halves played in each position`} go={go} cols="minmax(0,1fr) 348px" right={<><Btn big onClick={() => go('HM4-GameDayMiniRoos')}>Game time</Btn><Btn primary big onClick={() => go('FB1m-FormationMiniRoos')}>Plan Saturday’s turns</Btn></>}>
+    <Page id="CN15-PositionHistory" title="Positions" sub={`${TEAMS.u9} · 8 games · halves played in each position`} go={go} cols="minmax(0,1fr) 348px" right={<><Btn big onClick={() => go('HM4-GameDayMiniRoos')}>Game time</Btn><Btn primary big onClick={() => go('FB1m-FormationMiniRoos')}>Plan Sunday’s turns</Btn></>}>
       <section aria-label="Who has played where" style={{ ...tile, gap: 0, padding: '12px 8px 10px' }}>
         <h2 style={{ ...h2, padding: '0 8px 6px' }}>Who has played where</h2>
         <div style={{ ...row(grid, 0), ...th, minHeight: 22 }}><span>Player</span><span>In goal</span><span>At the back</span><span>In the middle</span><span>Up front</span><span>Halves</span><span /></div>
@@ -284,10 +284,10 @@ export function CN15PositionHistory({ s, go, say }: CnProps) {
         <span style={{ ...cap, fontSize: 13, padding: '8px 8px 0' }}>Taken from your line-ups. Darker means more halves there.</span>
       </section>
       <div style={col}>
-        <section aria-label="For Saturday" style={{ ...tile, gap: 0, padding: '12px 16px 4px' }}>
-          <h2 style={{ ...h2, paddingBottom: 6 }}>For Saturday</h2>
-          <FixRow title="Give Ari a half up front" sub="Nine halves at the back, none up front"><Btn primary aria-pressed={ari} onClick={() => { addJob('ari-front'); say('Ari is up front for the first half on Saturday.') }}>{ari ? 'Added' : 'Add'}</Btn></FixRow>
-          <FixRow title="Rest Hamza from goal" sub="Five halves in goal. Remy has had none"><Btn aria-pressed={remy} onClick={() => { addJob('remy-goal'); say('Remy starts in goal on Saturday. Hamza plays in the middle.') }}>{remy ? 'Swapped' : 'Swap'}</Btn></FixRow>
+        <section aria-label="For Sunday" style={{ ...tile, gap: 0, padding: '12px 16px 4px' }}>
+          <h2 style={{ ...h2, paddingBottom: 6 }}>For Sunday</h2>
+          <FixRow title="Give Ari a half up front" sub="Nine halves at the back, none up front"><Btn primary aria-pressed={ari} onClick={() => { addJob('ari-front'); say('Ari is up front for the first half on Sunday.') }}>{ari ? 'Added' : 'Add'}</Btn></FixRow>
+          <FixRow title="Rest Hamza from goal" sub="Five halves in goal. Remy has had none"><Btn aria-pressed={remy} onClick={() => { addJob('remy-goal'); say('Remy starts in goal on Sunday. Hamza plays in the middle.') }}>{remy ? 'Swapped' : 'Swap'}</Btn></FixRow>
         </section>
         <section aria-label="Your club’s aim" style={{ ...tile, gap: 0, padding: '12px 16px 4px' }}>
           <h2 style={{ ...h2, paddingBottom: 6 }}>Your club’s aim</h2>

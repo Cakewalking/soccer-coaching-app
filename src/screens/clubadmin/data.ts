@@ -11,7 +11,7 @@ export type Concussion = { ini: string; name: string; team: string; headKnock: s
 export const MINIROOS: MRTeam[] = [
   { name: 'U7 Dan', level: 'Wallabies', coach: 'Dan Okafor', players: 12, turnout: 91 },
   { name: 'U8 Hannah', level: 'Wallabies', coach: 'Hannah Reid', players: 13, turnout: 68 },
-  { name: 'U9 Mark', level: 'Kangaroos', coach: '', players: 14, turnout: 84, alert: 'No coach Sat' },
+  { name: 'U9 Mark', level: 'Kangaroos', coach: '', players: 14, turnout: 84, alert: 'No coach Sun' },
   { name: 'U9 Tom', level: 'Joeys', coach: 'Tom Albers', players: 14, turnout: 93 },
   { name: 'U10 Nadia', level: 'Wallabies', coach: 'Nadia Rahman', players: 16, turnout: 86, style: 64 },
 ]
@@ -73,6 +73,6 @@ export const CONCERNS: Concern[] = [
 ]
 
 export const CONCUSSIONS: Concussion[] = [
-  { ini: 'RC', name: 'Ruby Chen', team: 'U13 Girls Meg', headKnock: 'Head knock Sat 23 May · seen by GP Mon 25 May', day: 12, total: 21, status: 'No symptoms since 25 May', stage: 2, note: 'Contact training from Mon 8 Jun (14 days with no symptoms). Earliest game Sat 13 Jun (21 days), after a doctor clears her.', action: "Doctor's note" },
+  { ini: 'RC', name: 'Ruby Chen', team: 'U13 Girls Meg', headKnock: 'Head knock Sat 23 May · seen by GP Mon 25 May', day: 12, total: 21, status: 'No symptoms since 25 May', stage: 2, note: 'Contact training from Mon 8 Jun (14 days with no symptoms). Earliest game Sun 14 Jun, the first game after 21 days, once a doctor clears her.', action: "Doctor's note" },
   { ini: 'NA', name: 'Noah Ali', team: 'U11 Luke', headKnock: 'Head knock Sat 30 May · seen by GP Sat 30 May', day: 5, total: 21, status: 'Still has headaches', stage: 0, note: 'No dates yet. The 14-day count starts when his symptoms stop.', action: 'Update symptoms' },
 ]

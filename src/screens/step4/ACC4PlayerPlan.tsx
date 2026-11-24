@@ -24,8 +24,8 @@ const WEEK = [
   { day: 'Wed', items: ['School'] },
   { day: 'Thu', items: ['Academy', '1:1'] },
   { day: 'Fri', items: [] },
-  { day: 'Sat', items: ['Game'] },
-  { day: 'Sun', items: [] },
+  { day: 'Sat', items: [] },
+  { day: 'Sun', items: ['Game'] },
 ]
 
 function Dots({ n, active }: { n: number; active: boolean }) {

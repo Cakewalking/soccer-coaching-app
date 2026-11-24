@@ -56,7 +56,7 @@ export default function STPh4HomeAssistant({ onNav }: { onNav?: (s: string) => v
             <div style={{ padding: '16px 20px' }}>
               <div style={{ fontSize: 15, fontWeight: 800, color: INK, marginBottom: 6 }}>90 minutes · warm-up and 4 drills · you run the rondo and the small game</div>
               <div style={{ fontSize: 13, color: G, fontWeight: 700, marginBottom: 8 }}>Pressing high: keep. Gap between the lines: tonight.</div>
-              <div style={{ fontSize: 13, color: MUT, marginBottom: 12 }}>Rondo tonight · warm-up and subs on Saturday</div>
+              <div style={{ fontSize: 13, color: MUT, marginBottom: 12 }}>Rondo tonight · warm-up and subs on Sunday</div>
             </div>
           </div>
 

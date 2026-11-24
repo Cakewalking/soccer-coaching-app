@@ -282,11 +282,11 @@ export function CoachMessages({ onBack: _onBack, onNav, teamType = 'juniors', em
   type Line = { text: string; mine?: boolean; who?: string; time: string }
   const chats: { id: string; ini: string; name: string; preview: string; time: string; role: string; private?: boolean; lines: Line[] }[] = [
     { id: 'team', ...teamChat, role: adults ? `${teamName} · players and staff` : `${teamName} · families and staff`, lines: [
-      { who: adults ? 'Grant' : teamType === 'youth' ? 'Rhea' : 'Rob', text: 'Can someone grab the spare bibs from the shed on Saturday?', time: '2:24pm' },
+      { who: adults ? 'Grant' : teamType === 'youth' ? 'Rhea' : 'Rob', text: `Can someone grab the spare bibs from the shed on ${adults ? 'Saturday' : 'Sunday'}?`, time: '2:24pm' },
       { who: adults ? 'Pete' : 'Linh', text: 'I can. I’m there early anyway.', time: '2:30pm' },
     ] },
     { id: 'bianca', ini: 'BR', name: 'Bianca Rossi', preview: 'Yes pitch 2 from 9:00', time: '2:15pm', role: 'Club co-ordinator · Wattle Creek FC', lines: [
-      { text: 'Hi Bianca, do you know which pitch we have this Saturday?', mine: true, time: '2:08pm' },
+      { text: `Hi Bianca, do you know which pitch we have this ${adults ? 'Saturday' : 'Sunday'}?`, mine: true, time: '2:08pm' },
       { text: 'Let me check for you…', time: '2:10pm' },
       { text: 'Yes, pitch 2 from 9:00. I’ll put the cones out early.', time: '2:14pm' },
       { text: 'Brilliant, thank you!', mine: true, time: '2:15pm' },
@@ -296,11 +296,11 @@ export function CoachMessages({ onBack: _onBack, onNav, teamType = 'juniors', em
       { who: 'Priya', text: 'I’ll have the data from the vests ready by Wednesday night.', time: '11:40am' },
     ] },
     { id: 'linh', ini: 'LT', name: adults ? 'Pete Walsh' : 'Linh Tran', preview: 'Thanks so much', time: 'Mon', role: adults ? 'Player · Men’s 1sts' : 'Parent · Wattle Creek FC', lines: [
-      { text: adults ? 'Your clearance came through. You’re right for Saturday.' : 'The clip from Saturday is in the app now.', mine: true, time: 'Mon' },
+      { text: adults ? 'Your clearance came through. You’re right for Saturday.' : 'The clip from Sunday is in the app now.', mine: true, time: 'Mon' },
       { text: 'Thanks so much', time: 'Mon' },
     ] },
     { id: 'ruth', ini: 'RT', name: 'Ruth Tan', preview: 'Confirmed.', time: 'Mon', role: 'Referees co-ordinator · Wattle Creek FC', lines: [
-      { text: 'Is a referee booked for Saturday?', mine: true, time: 'Mon' },
+      { text: `Is a referee booked for ${adults ? 'Saturday' : 'Sunday'}?`, mine: true, time: 'Mon' },
       { text: 'Confirmed.', time: 'Mon' },
     ] },
     { id: 'ollie', ini: teamType === 'youth' ? 'SK' : 'OG', name: teamType === 'youth' ? 'Sam K' : 'Ollie Grant', preview: 'No problem', time: 'Sun', role: teamType === 'youth' ? 'U12 Sam coach · Wattle Creek FC' : 'U16 Ollie coach · Wattle Creek FC', lines: [
@@ -608,7 +608,7 @@ export function ParentMessages({ onBack: _onBack }: { onBack?: () => void }) {
   const chats = [
     { ini: 'U1', name: 'U12 Sam team chat', preview: 'Sam K: Don\'t forget shin pads!', time: '2:30pm', unread: 2 },
     { ini: 'SK', name: 'Sam K · Mia\'s coach', preview: 'Great session today', time: '1:00pm', unread: 0 },
-    { ini: 'KQ', name: 'Kate Quinn · Harper\'s mum', preview: 'See you Saturday!', time: 'Mon', unread: 1 },
+    { ini: 'KQ', name: 'Kate Quinn · Harper\'s mum', preview: 'See you Sunday!', time: 'Mon', unread: 1 },
     { ini: 'RO', name: 'Rob Owusu · Team manager', preview: 'Kit is in the room.', time: 'Mon', unread: 0 },
     { ini: 'U8', name: 'U8 Hannah team chat', preview: 'Tom: Great work everyone', time: 'Sun', unread: 0 },
     { ini: 'HP', name: 'Helen Park · welfare', preview: 'Private', time: 'Sat', private: true },
@@ -729,7 +729,7 @@ export function RefereeMessages({ onBack: _onBack }: { onBack?: () => void }) {
   function t(msg: string) { setToast(msg); setTimeout(() => setToast(null), 3000) }
 
   const chats = [
-    { ini: 'RT', name: 'Ruth Tan · referee co-ordinator', preview: 'You\'re on pitch 2 on Saturday', time: '10:30am', unread: 1, active: true },
+    { ini: 'RT', name: 'Ruth Tan · referee co-ordinator', preview: 'You\'re on pitch 2 on Sunday', time: '10:30am', unread: 1, active: true },
     { ini: 'GL', name: 'Game leaders group', preview: 'Ruth: Don\'t forget your flags', time: 'Tue', unread: 0 },
     { ini: 'AF', name: 'Amy Fox · U10 TM', preview: 'Thanks Zoe!', time: 'Sun', unread: 0 },
   ]

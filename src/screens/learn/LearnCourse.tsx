@@ -166,7 +166,7 @@ export default function LearnCourse({ s, k, go, say, start, isNew = false }: Pro
             </svg>
             <span style={{ fontSize: 14, lineHeight: '20px' }}><strong>Good when: </strong>{good}</span>
             <span style={{ fontSize: 14, lineHeight: '20px' }}><strong>Watch for: </strong>{watch}</span>
-            <Btn big primary={picked !== name} aria-pressed={picked === name} onClick={() => { setCoach(x.who, v => ({ reminders: { ...v.reminders, shape: name } })); say(`${name} set for Saturday. Your turns plan is redrawn to fit.`) }}>Use this on Saturday</Btn>
+            <Btn big primary={picked !== name} aria-pressed={picked === name} onClick={() => { setCoach(x.who, v => ({ reminders: { ...v.reminders, shape: name } })); say(`${name} set for Sunday. Your turns plan is redrawn to fit.`) }}>Use this on Sunday</Btn>
           </section>)}
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginTop: 12 }}>

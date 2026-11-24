@@ -58,10 +58,10 @@ const PLAYERS_GROWTH = [
 
 const INJURIES = [
   { ini: 'KR', name: 'Kai Russo',   injury: 'Tight hamstring · training',   date: 'Sat 30 May', modified: true,  step: 2 },
-  { ini: 'TR', name: 'Tom Reyes',   injury: 'Sore wrist · game, fell on it', date: 'Sat 23 May', modified: true,  step: 3 },
+  { ini: 'TR', name: 'Tom Reyes',   injury: 'Sore wrist · game, fell on it', date: 'Sun 24 May', modified: true,  step: 3 },
   { ini: 'NO', name: 'Noah Okafor', injury: 'Knee pain · growth-related',    date: 'Tue 26 May', modified: true,  step: 1 },
   { ini: 'IM', name: 'Isla Morgan', injury: 'Rolled ankle · training',        date: 'Thu 7 May',  modified: false, step: 4 },
-  { ini: 'LM', name: 'Leo Marsh',   injury: 'Knock to the shin · game',       date: 'Sat 18 Apr', modified: false, step: 4 },
+  { ini: 'LM', name: 'Leo Marsh',   injury: 'Knock to the shin · game',       date: 'Sun 19 Apr', modified: false, step: 4 },
 ]
 
 const TESTS = [
@@ -76,21 +76,21 @@ const EFFORT_DATA: Record<'u14' | 'u13g' | 'u16', {
   note: string; status: 'warn' | 'good'; coachLabel: string
 }> = {
   u14: {
-    sessions: ['Tue 19', 'Thu 21', 'Sat 23', 'Tue 26', 'Thu 28', 'Sat 30', 'Tue 2'],
+    sessions: ['Tue 19', 'Thu 21', 'Sun 24', 'Tue 26', 'Thu 28', 'Sun 31', 'Tue 2'],
     planned: [3.5, 4.0, 5.5, 3.5, 4.0, 5.5, 3.5],
     actual:  [5.8, 6.0, 7.0, 6.1, 5.9, 7.2, 6.1],
     note: "Easy Tuesdays aren't feeling easy. Planned 3 to 4, rated 5.8 to 6.1. Shorter small games on Tuesdays would bring it down.",
     status: 'warn', coachLabel: "Josh's plan",
   },
   u13g: {
-    sessions: ['Tue 19', 'Thu 21', 'Sat 23', 'Tue 26', 'Thu 28', 'Sat 30', 'Tue 2'],
+    sessions: ['Tue 19', 'Thu 21', 'Sun 24', 'Tue 26', 'Thu 28', 'Sun 31', 'Tue 2'],
     planned: [4.0, 5.5, 6.5, 4.0, 5.5, 6.5, 4.0],
     actual:  [4.2, 5.4, 6.6, 3.9, 5.6, 6.3, 4.1],
     note: "On plan. Sessions feel how Meg means them to. Keep the Tuesday and Thursday pattern.",
     status: 'good', coachLabel: "Meg's plan",
   },
   u16: {
-    sessions: ['Mon 18', 'Wed 20', 'Sat 23', 'Mon 25', 'Wed 27', 'Sat 30', 'Mon 1'],
+    sessions: ['Mon 18', 'Wed 20', 'Sun 24', 'Mon 25', 'Wed 27', 'Sun 31', 'Mon 1'],
     planned: [5.0, 7.0, 7.0, 5.0, 5.0, 7.0, 5.0],
     actual:  [6.5, 8.0, 8.5, 6.5, 7.0, 8.5, 7.5],
     note: "Heavy legs two weeks running. Load up 30% on their usual. Keep Wednesday short too.",
@@ -327,7 +327,7 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
               {homeSub === 'overview' && teamId === 'u12' && (
                 <>
                   <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', marginBottom: 2 }}>Hi Priya</div>
-                  <div style={{ fontSize: 12, color: '#5c6b67', marginBottom: 16 }}>U12 Sam · Thursday 4 Jun · training 5:45 pm · Harbour Rovers on Saturday</div>
+                  <div style={{ fontSize: 12, color: '#5c6b67', marginBottom: 16 }}>U12 Sam · Thursday 4 Jun · training 5:45 pm · Harbour Rovers on Sunday</div>
 
                   {/* Growth watch */}
                   <div style={{ background: '#fff', borderRadius: 16, border: '1px solid #e9eae8', marginBottom: 14, overflow: 'hidden' }}>
@@ -1021,7 +1021,7 @@ export default function FitnessCoachScreen({ empty, initialScreen, onNavChange, 
         {tab === 'matchday' && (
           <div style={{ padding: '16px 20px' }}>
             <div style={{ background: '#fff', borderRadius: 16, padding: '16px', border: '1px solid #e9eae8', marginBottom: 14 }}>
-              <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 6 }}>Saturday vs Harbour Rovers</div>
+              <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 6 }}>Sunday vs Harbour Rovers</div>
               <div style={{ fontSize: 13, color: '#5c6b67', marginBottom: 12 }}>Fitness brief for game day</div>
               {[
                 { label: 'Warm-up lead',    note: "20 min progressive warm-up · starts 8:40 am" },

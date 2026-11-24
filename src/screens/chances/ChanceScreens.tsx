@@ -46,7 +46,7 @@ function Dot({ sh, onOpen, what }: { sh: Shot; onOpen: () => void; what: string 
 function ShotMap({ t }: { t: TeamChances }) {
   const mini = isMini(t), g = t.sat
   const goals = (n: number) => mini ? '' : `, ${n} ${n === 1 ? 'goal' : 'goals'}`
-  const open = (whose: string, sh: Shot) => playClips([{ title: `${whose}, ${odds(sh.v)}${sh.goal ? ', went in' : ''}`, sub: 'From the match film, starting five seconds before the shot.', len: 10 }], 'Saturday’s shots')
+  const open = (whose: string, sh: Shot) => playClips([{ title: `${whose}, ${odds(sh.v)}${sh.goal ? ', went in' : ''}`, sub: 'From the match film, starting five seconds before the shot.', len: 10 }], 'Sunday’s shots')
   const odds = (v: number) => `about 1 in ${Math.max(2, Math.round(1 / v))}`
   return (
     <svg viewBox="0 0 710 362" role="group" aria-label={`Shot map. Your team, attacking right: ${g.ours.length} shots${goals(g.scored)}. The other team, attacking left: ${g.theirs.length} shots${goals(g.theirGoals)}. Bigger circles are better chances. Filled circles with a tick ${mini ? 'went in' : 'are goals'}.`} style={{ display: 'block', width: '100%', height: 'auto', borderRadius: 14, background: G }}>
@@ -207,7 +207,7 @@ export function XG2ChancesSeason({ t, s, go }: ChanceProps) {
   ]
   return (
     <Page id={ids(t).season} title="Chances this season" sub={`${t.name} · ${t.seasonLine} · ${t.format}`} go={go} cols="minmax(0,1fr) 348px"
-      right={<><Btn big onClick={() => go('XG5-ClubChances')}>Whole club</Btn><Btn big onClick={() => go(ids(t).game)}>Saturday’s game</Btn><Btn primary big onClick={() => go('XG4-ThreatMap')}>Where the danger comes from</Btn></>}>
+      right={<><Btn big onClick={() => go('XG5-ClubChances')}>Whole club</Btn><Btn big onClick={() => go(ids(t).game)}>Sunday’s game</Btn><Btn primary big onClick={() => go('XG4-ThreatMap')}>Where the danger comes from</Btn></>}>
       <div style={col}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,minmax(0,1fr))', gap: 10 }}>
           <Tile head="Chances made · xG" value={fmt1(se.xg)} mark={est} sub={mini ? `About ${Math.round((se.xg / se.games) * 2) / 2} a game` : `You scored ${t.goalsFor}`} />
@@ -342,7 +342,7 @@ export function XG4ThreatMap({ t, go }: ChanceProps) {
       </div>
       <div style={col}>
         <section aria-label="Moves that added most" style={{ ...tile, gap: 0, padding: '12px 16px 4px' }}>
-          <h2 style={{ ...h2, paddingBottom: 6 }}>Moves that added most on Saturday</h2>
+          <h2 style={{ ...h2, paddingBottom: 6 }}>Moves that added most on Sunday</h2>
           {t.threat.moves.map(m => (
             <button key={m.min} style={rowBtn} onClick={() => playClips(t.threat.moves.map(x => ({ title: `${x.min} · ${x.who}`, sub: `${x.what}.`, len: 9 })), 'Moves that added most', t.threat.moves.indexOf(m))}>
               <strong style={{ fontSize: 14, color: MUT }}>{m.min}</strong>

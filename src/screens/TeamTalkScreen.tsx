@@ -126,7 +126,7 @@ export default function TeamTalkScreen({ role, onClose }: Props) {
             <strong>Min {f.clipTime.replace('Min ', '')}.</strong> {f.clipText}
           </div>
           <div style={{ fontSize: 15, lineHeight: '20px', color: '#a3b0ad' }}>
-            Clip from Saturday's match camera. {f.clipCount} clips in total.
+            Clip from Sunday's match camera. {f.clipCount} clips in total.
           </div>
 
           {/* Clip count pills */}

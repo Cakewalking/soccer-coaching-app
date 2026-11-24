@@ -20,7 +20,7 @@ export default function NotificationsTab({ onToast }: { onToast: (m: string) => 
         <ToggleRow title="On my phone" desc="Push notifications" on={true} />
         <ToggleRow title="By email" desc="Only the weekly summary" on={false} />
         <ActionRow title="Quiet hours" desc="9 pm to 7 am · safety alerts still come through" label="Change" toast="Pick your quiet hours." onToast={onToast} />
-        <ToggleRow title="Game-day mode" desc="Only line-up, head knocks and weather on Saturdays" on={true} />
+        <ToggleRow title="Game-day mode" desc="Only line-up, head knocks and weather on Sundays" on={true} />
         <SectionNote text="Parents choose their own notifications. Nothing here changes what they get." />
       </section>
     </main>

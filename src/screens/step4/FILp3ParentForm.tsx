@@ -86,7 +86,7 @@ export default function FILp3ParentForm({ onBack, onNav }: {
 
         {/* Q4: photo day */}
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px', marginBottom: 12 }}>
-          <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 4 }}>4. Team photo on Sat 20 June?</div>
+          <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 4 }}>4. Team photo on Sun 21 June?</div>
           <div style={{ fontSize: 12, color: MUT, marginBottom: 10 }}>You said yes to team photos in March, so Mia is in. Change it in Consent.</div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
             {[{ label: 'Yes', val: true }, { label: 'No', val: false }].map(({ label }) => (

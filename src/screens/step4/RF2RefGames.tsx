@@ -4,8 +4,8 @@ import { useState } from 'react'
 const G = '#2f6252', INK = '#10211f', MUT = '#4a5a57'
 
 const WEEKS = [
-  { date: 'Sat 6 Jun', games: [{ t: '8:30', name: 'U7 Dan v Ironbark United', role: 'Game leader · pitch 5 · festival', tag: 'Yours', tagG: true }] },
-  { date: 'Sat 13 Jun', games: [
+  { date: 'Sun 7 Jun', games: [{ t: '8:30', name: 'U7 Dan v Ironbark United', role: 'Game leader · pitch 5 · festival', tag: 'Yours', tagG: true }] },
+  { date: 'Sun 14 Jun', games: [
     { t: '9:00', name: 'U9 Mark v Tealside Town', role: 'Game leader · pitch 4', tag: 'Yours', tagG: true },
     { t: '10:30', name: 'U11 Luke v Glenview Park', role: 'Game leader · pitch 3', tag: 'Asked', tagG: false },
   ]},
@@ -34,7 +34,7 @@ export default function RF2RefGames(_: { onBack?: () => void }) {
       <div style={{ flex: 1, minHeight: 0, overflowY: 'auto', padding: '12px 14px', display: 'flex', flexDirection: 'column' as const, gap: 10 }}>
         <div onClick={() => setRuthAnswered(a => !a)} style={{ background: ruthAnswered ? G : '#e8cfcf', border: `1px solid ${ruthAnswered ? G : '#e8cfcf'}`, borderRadius: 16, padding: '12px 14px', display: 'flex', alignItems: 'center', gap: 12, cursor: 'pointer', color: ruthAnswered ? '#fff' : INK }}>
           <div style={{ flex: 1 }}>
-            <div style={{ fontSize: 16, fontWeight: 700 }}>Ruth asked: can you do 12:00 Saturday?</div>
+            <div style={{ fontSize: 16, fontWeight: 700 }}>Ruth asked: can you do 12:00 Sunday?</div>
             <div style={{ fontSize: 13 }}>{ruthAnswered ? "Replied: Yes, I can take it ✓" : 'Assistant referee · U13 Girls Meg'}</div>
           </div>
           <span style={{ fontSize: 18 }}>{ruthAnswered ? '✓' : '›'}</span>

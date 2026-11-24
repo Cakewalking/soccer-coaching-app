@@ -3,10 +3,10 @@ import { useState } from 'react'
 import { EmptyCard } from '../clubadmin/ui'
 
 const MESSAGES = [
-  { id: 'availability', ini: 'SA', bg: '#e8cfcf', from: 'Saturday', date: 'Today', text: '2 families haven\'t said if they\'re coming', unread: true },
-  { id: 'referee', ini: 'RF', bg: '#c39797', from: 'Referees', date: 'Yesterday', text: 'Saturday still needs a game leader', unread: true },
+  { id: 'availability', ini: 'SU', bg: '#e8cfcf', from: 'Sunday', date: 'Today', text: '2 families haven\'t said if they\'re coming', unread: true },
+  { id: 'referee', ini: 'RF', bg: '#c39797', from: 'Referees', date: 'Yesterday', text: 'Sunday still needs a game leader', unread: true },
   { id: 'omar', ini: 'SH', bg: '#e9eae8', from: 'Sami Haddad · Omar\'s dad', date: 'Mon', text: 'Omar\'s away this week', unread: false },
-  { id: 'photo', ini: 'BR', bg: '#e9eae8', from: 'Bianca Rossi · club', date: 'Mon', text: 'Photo day is Saturday 20 June', unread: false },
+  { id: 'photo', ini: 'BR', bg: '#e9eae8', from: 'Bianca Rossi · club', date: 'Mon', text: 'Photo day is Sunday 21 June', unread: false },
 ]
 
 const DETAIL: Record<string, { title: string; from: string; time: string; body: string; reply: string; note: string; badge: string }> = {
@@ -14,36 +14,36 @@ const DETAIL: Record<string, { title: string; from: string; time: string; body: 
     title: 'Omar\'s away this week',
     from: 'Sami Haddad, Omar\'s dad',
     time: 'Monday 7:40 pm',
-    body: 'Hi Tom, Omar\'s at his grandparents\' this week so he\'ll miss Tuesday and Saturday. Back next week. He\'s keen for his turn in goal!',
+    body: 'Hi Tom, Omar\'s at his grandparents\' this week so he\'ll miss Tuesday and Sunday. Back next week. He\'s keen for his turn in goal!',
     reply: 'Thanks Sami. I\'ve marked him away. He\'s first in goal when he\'s back.',
-    note: 'Done for you: Omar is marked away for Tuesday and Saturday, and his turn in goal moves to Sat 13 Jun.',
+    note: 'Done for you: Omar is marked away for Tuesday and Sunday, and his turn in goal moves to Sun 14 Jun.',
     badge: 'Marked away',
   },
   availability: {
     title: '2 families haven\'t said if they\'re coming',
-    from: 'Saturday availability',
+    from: 'Sunday availability',
     time: 'Today 8:00 am',
-    body: 'Leo Wright and Arlo Kaur haven\'t replied to the availability request for Saturday 6 June.',
+    body: 'Leo Wright and Arlo Kaur haven\'t replied to the availability request for Sunday 7 June.',
     reply: '',
     note: 'A nudge will go out automatically on Friday if they haven\'t answered.',
     badge: '2 waiting',
   },
   referee: {
-    title: 'Saturday still needs a game leader',
+    title: 'Sunday still needs a game leader',
     from: 'Referees',
     time: 'Yesterday 4:12 pm',
-    body: 'No game leader has been assigned for Sat 6 Jun vs Northgate City. You can ask a family or the club coordinator can help.',
+    body: 'No game leader has been assigned for Sun 7 Jun vs Northgate City. You can ask a family or the club coordinator can help.',
     reply: '',
     note: 'Game leaders are needed for all MiniRoos games under Football Victoria rules.',
     badge: 'Action needed',
   },
   photo: {
-    title: 'Photo day is Saturday 20 June',
+    title: 'Photo day is Sunday 21 June',
     from: 'Bianca Rossi · club coordinator',
     time: 'Monday 9:15 am',
-    body: 'Hi coaches — photo day is Saturday 20 June after the morning games. Kids should wear the full kit. The photographer will be on Pitch 1.',
+    body: 'Hi coaches — photo day is Sunday 21 June after the morning games. Kids should wear the full kit. The photographer will be on Pitch 1.',
     reply: '',
-    note: 'This note has been added to your calendar for Sat 20 Jun.',
+    note: 'This note has been added to your calendar for Sun 21 Jun.',
     badge: 'Info',
   },
 }

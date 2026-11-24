@@ -27,7 +27,7 @@ export const OWN_TEAM: [string, string, string][][] = [
   [['Your Working with Children Check', 'Recorded by the club', 'Current'], ['Emergency contacts on file', 'Your squad', '13 of 13']],
   [['Players standing still, your three counts', 'Was 5 of 9 in round 2', '2 of 9'], ['“I had fun”', 'Players’ three taps, last Tuesday', '9 of 9']],
   [['“I knew what to do”', 'Players’ three taps, last Tuesday', '7 of 9'], ['Before you tried “Say less”', 'Two weeks earlier', '5 of 9']],
-  [['Minutes on the pitch, most and least', 'Last Saturday, of 50', '34 and 28'], ['Players who have tried in goal', 'This season', '6 of 13']],
+  [['Minutes on the pitch, most and least', 'Last Sunday, of 50', '34 and 28'], ['Players who have tried in goal', 'This season', '6 of 13']],
   [['Families who have read your welcome', '', '11 of 13'], ['Jobs shared out', 'Game leader still open', '4 of 5']],
 ]
 
@@ -109,6 +109,6 @@ export function ctxFor(k: TeamKey, isNew = false): Ctx {
   const t = TEAMS[k], adult = k === 'seniors'
   return { who: (isNew ? 'new:' : '') + k, coach: isNew ? 'Your course' : t.coachFull, team: t.label, age: adult ? 'seniors' : `under ${t.age}`, ages: adult ? 'SENIORS' : `UNDER ${t.age}s`, side: SIDE[k], mentor: 'Rachel', nine: SIDE[k] === '9 v 9', standardRules: t.age === 10 || t.age === 11, hasFilm: k === 'u11' }
 }
-/** "Tuesday" is the coach's next training and "Saturday" the next game; anything else is shown as written. */
-export const isDay = (l: Lesson) => l.try_when === 'Tuesday' || l.try_when === 'Saturday'
+/** "Tuesday" is the coach's next training and "Sunday" the next game; anything else is shown as written. */
+export const isDay = (l: Lesson) => l.try_when === 'Tuesday' || l.try_when === 'Sunday'
 export const tryHeading = (l: Lesson) => isDay(l) ? `Try it on ${l.try_when}` : `Try it: ${l.try_when.charAt(0).toLowerCase()}${l.try_when.slice(1)}`

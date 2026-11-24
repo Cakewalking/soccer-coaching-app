@@ -144,7 +144,7 @@ export function MS1MiniRoosStyle() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 20 }}>
           {[
             { n: '1', title: "Tuesday's games", body: 'Picked to practise your three things' },
-            { n: '2', title: "Saturday's review", body: 'Three things we saw, on your three things' },
+            { n: '2', title: "Sunday's review", body: 'Three things we saw, on your three things' },
             { n: '3', title: 'A best moment each', body: 'Clips of children doing them' },
           ].map(s => (
             <div key={s.n} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 16px', display: 'flex', gap: 10 }}>
@@ -178,7 +178,7 @@ export function MS1eMiniRoosStyleEmpty() {
       </div>
 
       <div style={{ background: PALE, borderRadius: 16, padding: '32px 24px', maxWidth: 480, marginBottom: 24 }}>
-        <div style={{ fontSize: 18, fontWeight: 700, color: INK, marginBottom: 8 }}>What do you want to see on Saturday?</div>
+        <div style={{ fontSize: 18, fontWeight: 700, color: INK, marginBottom: 8 }}>What do you want to see on Sunday?</div>
         <div style={{ fontSize: 14, color: MUT, lineHeight: 1.6, marginBottom: 20 }}>Pick up to three things, in words the children use. Clean Sheet looks for them in games and builds Tuesday around them.</div>
         <div style={{ display: 'flex', gap: 10 }}>
           <button onClick={() => goApp('setstyle', 'Opening style picker.')} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Pick our three things</button>

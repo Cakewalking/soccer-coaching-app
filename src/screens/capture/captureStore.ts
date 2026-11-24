@@ -18,7 +18,7 @@ export type GuideKey = 'halfway' | 'high' | 'corners' | 'sun' | 'battery' | 'ves
 
 export interface CapPlayer { ini: string; name: string; first: string; shirt: number; vest: string | null; flat?: boolean; spare?: 'A' | 'B'; boots: boolean; film: boolean }
 
-/** Saturday's line-up (FB1-Formation), with the kit each player wears. */
+/** Sunday's line-up (FB1-Formation), with the kit each player wears. */
 export const LINEUP: CapPlayer[] = [
   { ini: 'RL', name: 'Ruby Lang', first: 'Ruby', shirt: 1, vest: '01', boots: true, film: true },
   { ini: 'GR', name: 'Grace Reid', first: 'Grace', shirt: 2, vest: '02', boots: true, film: true },
@@ -181,7 +181,7 @@ export function measures(s: CapState, age: Age = 'juniors'): Record<'events' | '
   }
 }
 
-/** The mark for one number from Saturday's recording, by the kind of number it is. */
+/** The mark for one number from Sunday's recording, by the kind of number it is. */
 export function gameMark(s: CapState, kind: NumberKind, age: Age = 'juniors'): MarkKind {
   const m = measures(s, age)
   return kind === 'count' ? m.events.mark : kind === 'position' ? m.positions.mark : kind === 'speed' ? m.speed.mark : kind === 'distance' ? m.distance.mark : kind === 'touch' ? m.touches.mark : m.you.mark

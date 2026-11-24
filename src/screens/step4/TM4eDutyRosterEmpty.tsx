@@ -23,7 +23,7 @@ export default function TM4eDutyRosterEmpty(_: { onBack?: () => void }) {
   return (
     <div style={{ width: 390, minHeight: 844, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', display: 'flex', flexDirection: 'column', position: 'relative' }}>
       <div style={{ background: GD, padding: '14px 18px 12px' }}>
-        <div style={{ fontSize: 12, color: '#cfe6dc' }}>U12 Sam · Saturdays</div>
+        <div style={{ fontSize: 12, color: '#cfe6dc' }}>U12 Sam · Sundays</div>
         <div style={{ fontSize: 20, fontWeight: 700, color: '#fff' }}>Duty roster</div>
       </div>
       <div style={{ flexGrow: 1, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 10 }}>

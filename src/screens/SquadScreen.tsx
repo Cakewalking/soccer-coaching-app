@@ -3,7 +3,7 @@ import { useDone, markDone } from './doneStore'
 import { useState } from 'react'
 import { goSetup } from './sandbox/sandboxNav'
 import { demoToast } from './demoToast'
-import { SQUAD_PLAYERS, POS_GROUP_LABELS, type SquadPlayer, type PosGroup, type Role } from '../data'
+import { SQUAD_PLAYERS, SENIORS_SQUAD_PLAYERS, POS_GROUP_LABELS, type SquadPlayer, type PosGroup, type Role } from '../data'
 import { useSandbox } from './sandbox/SandboxContext'
 import { addPlayer } from './sandbox/sandboxStore'
 
@@ -381,7 +381,7 @@ export default function SquadScreen({ onPlayerProfile, empty, players: propPlaye
         {/* Header */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
           <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700, letterSpacing: '-0.02em', color: '#10211f' }}>Squad</h1>
-          <span style={{ fontSize: 14, color: '#4a5a57' }}>{players.length} players · Thursday 4 Jun · 2 days to Harbour Rovers</span>
+          <span style={{ fontSize: 14, color: '#4a5a57' }}>{players.length} players · Thursday 4 Jun · {propPlayers === SENIORS_SQUAD_PLAYERS ? 2 : 3} days to Harbour Rovers</span>
           <div style={{ flexGrow: 1 }} />
           <button onClick={() => showToast('Message started to 16 parents.')} style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: '1px solid #c5c8c4', background: '#ffffff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#10211f' }}>Message parents</button>
           <button onClick={onAddPlayer ?? (() => openScreen('GP2-AddPlayer'))} style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: 0, background: '#2f6252', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: '#ffffff' }}>+ Add player</button>

@@ -88,7 +88,7 @@ export default function FIL3Doc({ onBack, onShare, onNav, bare }: {
         <div style={{ width: 180, padding: '24px 16px', borderRight: `1px solid ${LN}`, background: '#fff', flexShrink: 0, overflowY: 'auto' }}>
           <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#7a4b5b', marginBottom: 12 }}>Outline</div>
           {[
-            'Saturday, home to Harbour Rovers',
+            'Sunday, home to Harbour Rovers',
             'Meet and kick-off',
             'Ground',
             'What to bring',
@@ -120,7 +120,7 @@ export default function FIL3Doc({ onBack, onShare, onNav, bare }: {
             </div>
           </div>
           <div style={{ background: '#fff', borderRadius: '0 0 12px 12px', border: `1px solid ${LN}`, borderTop: 'none', padding: '28px 32px' }}>
-            <div onClick={() => sect('Saturday, home to Harbour Rovers')} style={{ fontSize: 22, fontWeight: 800, color: INK, marginBottom: 4, cursor: 'pointer', background: lastSection === 'Saturday, home to Harbour Rovers' ? PALE : undefined, borderRadius: 6, padding: '2px 4px', minHeight: 44, display: 'flex', alignItems: 'center' }}>Saturday, home to Harbour Rovers</div>
+            <div onClick={() => sect('Sunday, home to Harbour Rovers')} style={{ fontSize: 22, fontWeight: 800, color: INK, marginBottom: 4, cursor: 'pointer', background: lastSection === 'Sunday, home to Harbour Rovers' ? PALE : undefined, borderRadius: 6, padding: '2px 4px', minHeight: 44, display: 'flex', alignItems: 'center' }}>Sunday, home to Harbour Rovers</div>
             <div style={{ fontSize: 13, color: MUT, marginBottom: 24 }}>From Sam, your coach · touch 8</div>
 
             <div onClick={() => sect('Meet and kick-off')} style={{ background: '#f0faf5', border: `1.5px solid ${G}`, borderRadius: 10, padding: '14px 18px', marginBottom: 20, cursor: 'pointer', outline: lastSection === 'Meet and kick-off' ? `2px solid ${G}` : 'none' }}>

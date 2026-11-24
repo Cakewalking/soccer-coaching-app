@@ -54,7 +54,7 @@ export default function STMs2eMiniRoosWhereWeAtEmpty({ onNav }: { onNav?: (s: st
               <div style={{ fontSize: 13, color: MUT }}>This is your starting point. It gets clearer after three games.</div>
             </div>
             <div style={{ display: 'flex', gap: 12 }}>
-              <button aria-label="Film Saturday's game" onClick={() => tool('MiniRoos: film for clips')} style={{ height: 44, padding: '0 24px', background: G, color: '#fff', border: 'none', borderRadius: 10, fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Film Saturday's game</button>
+              <button aria-label="Film Sunday's game" onClick={() => tool('MiniRoos: film for clips')} style={{ height: 44, padding: '0 24px', background: G, color: '#fff', border: 'none', borderRadius: 10, fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Film Sunday's game</button>
               <button aria-label="No camera? Count by taps" onClick={() => tool('the matching screen already in the app')} style={{ height: 44, padding: '0 24px', background: '#fff', color: G, border: `1.5px solid ${G}`, borderRadius: 10, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>No camera? Count by taps</button>
             </div>
           </div>

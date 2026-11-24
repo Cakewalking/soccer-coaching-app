@@ -9,7 +9,7 @@ const GD = '#1f4a3e'
 
 // "With families this week" — three shared files with an opened-by bar.
 const SHARED = [
-  { name: 'Saturday v Harbour Rovers · where and when', kind: 'Doc', when: 'Changed yesterday', opened: 12, of: 17, target: 'FIL3-Doc' },
+  { name: 'Sunday v Harbour Rovers · where and when', kind: 'Doc', when: 'Changed yesterday', opened: 12, of: 17, target: 'FIL3-Doc' },
   { name: 'Summer sevens · team sheets', kind: 'Sheet', when: 'Changed today', opened: 9, of: 17, target: 'FIL2-Sheet' },
   { name: 'Lifts and jobs for the sevens', kind: 'Sign-up sheet', when: 'Closes Thu 11 Dec', opened: 11, of: 17, target: 'FIL6-SignUp' },
 ]
@@ -75,10 +75,10 @@ export default function FIL1Files({ onOpenSheet, onOpenDoc, onNav, bare }: { onO
       <OpeningPanel
         landing
         heading="FILES · U12 SAM"
-        sentence="Saturday’s game day note has reached 12 of your 17 families. Five have not opened it."
+        sentence="Sunday’s game day note has reached 12 of your 17 families. Five have not opened it."
         support="The summer sevens team sheet is at 9 of 17. Everything else is up to date."
-        figures={[{ num: '12 of 17', label: 'opened Saturday’s note', proof: true }, { num: '7', label: 'files for this team' }]}
-        buttons={[{ label: nudged ? '✓ Five nudged' : 'Nudge the five', main: true, onClick: () => { setNudged(true); say('A reminder goes to the 5 families who have not opened Saturday’s note.') } }, { label: 'Open the note', onClick: () => go('FIL3-Doc') }]}
+        figures={[{ num: '12 of 17', label: 'opened Sunday’s note', proof: true }, { num: '7', label: 'files for this team' }]}
+        buttons={[{ label: nudged ? '✓ Five nudged' : 'Nudge the five', main: true, onClick: () => { setNudged(true); say('A reminder goes to the 5 families who have not opened Sunday’s note.') } }, { label: 'Open the note', onClick: () => go('FIL3-Doc') }]}
       />
 
       {/* Filter row */}

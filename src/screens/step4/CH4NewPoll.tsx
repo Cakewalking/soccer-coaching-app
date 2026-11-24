@@ -32,8 +32,8 @@ const ptypes: { key: PType; label: string }[] = [
   { key: 'own', label: 'Your own question' },
 ]
 const presets: Record<PType, { q: string; opts: string[] }> = {
-  coming: { q: "Who's coming on Saturday? Harbour Rovers, 9:30 at home", opts: ['Coming', "Can't come", 'Not sure yet'] },
-  help: { q: 'Who can do canteen on Saturday?', opts: ['9 to 10', '10 to 11', '11 to 12'] },
+  coming: { q: "Who's coming on Sunday? Harbour Rovers, 9:30 at home", opts: ['Coming', "Can't come", 'Not sure yet'] },
+  help: { q: 'Who can do canteen on Sunday?', opts: ['9 to 10', '10 to 11', '11 to 12'] },
   date: { q: 'Which date works for the end of season lunch?', opts: ['Saturday 28 June', 'Sunday 29 June', 'Either works'] },
   own: { q: 'Your question here', opts: ['Option 1', 'Option 2'] },
 }
@@ -93,7 +93,7 @@ export default function CH4NewPoll(_: { onBack?: () => void }) {
           <div style={{ background: '#fff', border: `2px solid ${G}`, borderRadius: 16, padding: '14px 18px 8px', display: 'flex', flexDirection: 'column' }}>
             <div style={{ fontSize: 17, fontWeight: 700, marginBottom: 4 }}>What the answers do</div>
             {[
-              { label: "Fill in Who's coming for Saturday", sub: "No need to copy answers across", on: fillComing, toggle: () => setFillComing(x => !x) },
+              { label: "Fill in Who's coming for Sunday", sub: "No need to copy answers across", on: fillComing, toggle: () => setFillComing(x => !x) },
               { label: 'Remind anyone who hasn\'t answered', sub: 'Friday at noon, once', on: remind, toggle: () => setRemind(x => !x) },
               { label: 'Show who voted for what', sub: 'Off makes the poll anonymous', on: showWho, toggle: () => setShowWho(x => !x) },
             ].map((item, i) => (

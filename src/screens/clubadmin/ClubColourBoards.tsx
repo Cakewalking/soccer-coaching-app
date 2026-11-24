@@ -108,7 +108,7 @@ export function KC8Report({ onNav }: { onNav?: Nav }) {
 }
 
 // ── KCp1, KCp2, KCp3: a parent with children at two clubs ────────────────────
-const KIDS = { ari: { club: REDGUM, child: 'Ari', team: 'U11 Luke', next: 'next game Saturday 9:30', id: 'KCp1-ParentRedClub' }, mia: { club: BAYSIDE, child: 'Mia', team: 'U14 Girls', next: 'next game Sunday 11:00', id: 'KCp2-ParentPaleClub' } }
+const KIDS = { ari: { club: REDGUM, child: 'Ari', team: 'U11 Luke', next: 'next game Sunday 9:30', id: 'KCp1-ParentRedClub' }, mia: { club: BAYSIDE, child: 'Mia', team: 'U14 Girls', next: 'next game Sunday 11:00', id: 'KCp2-ParentPaleClub' } }
 const round: React.CSSProperties = { flex: 'none', width: 44, height: 44, borderRadius: 999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 0, cursor: 'pointer' }
 const Ask = ({ go }: { go: Nav }) => <button aria-label="Ask Clean Sheet" onClick={() => go('ASKp2-PhoneAskOpen')} style={{ ...round, border: '1.5px solid #a9cfc0', background: 'transparent', color: '#fff' }}><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={SPARK} /></svg></button>
 const Me = () => <span data-club-keep="" style={{ ...round, cursor: 'default', background: '#e8cfcf', color: INK, fontSize: 14, fontWeight: 700 }}>DB</span>
@@ -152,7 +152,7 @@ export function KCParent({ start = 'KCp1-ParentRedClub', onNav }: { start?: stri
         <Ask go={go} /><Me />
       </div>
       <div style={{ flexGrow: 1, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 10 }}>
-        <section style={card}><span style={cap}>SATURDAY</span><strong style={{ fontSize: 19 }}>9:30 v Ridgeway, home</strong><span style={{ fontSize: 14, color: MUT }}>Be there by 9:00 · {k.club.name} Reserve, pitch 3</span>
+        <section style={card}><span style={cap}>SUNDAY</span><strong style={{ fontSize: 19 }}>9:30 v Ridgeway, home</strong><span style={{ fontSize: 14, color: MUT }}>Be there by 9:00 · {k.club.name} Reserve, pitch 3</span>
           <button style={wide(true)} aria-pressed={!!coming} onClick={() => { markDone(`kcp:coming:${k.child}`); demoToast(`Luke can see ${k.child} is coming.`) }}>{k.child} is coming</button></section>
         <section style={card}><span style={cap}>FROM LUKE</span><strong style={{ fontSize: 17 }}>Two to try before Tuesday</strong><span style={{ fontSize: 14, color: MUT }}>Five minutes each. A ball and a wall is enough.</span>
           <button style={wide()} onClick={() => go('GSp9-HomeLibrary')}>Football at home</button></section>

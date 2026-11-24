@@ -91,7 +91,7 @@ function u9TurnsSheetCfg(title: string): TeamSheetConfig {
       { row: 8, jersey: 3,  name: 'Zara Moore',  spot: 'Def', games: ['start',  'ingoal', 'start',  'bench']  },
     ],
     initialSheets: ['Turns', 'Contacts', 'Shirt sizes'],
-    footerNote: '8 players · 4 games · Sat 6 June, Northgate City',
+    footerNote: '8 players · 4 games · Sun 7 June, Northgate City',
     checks: [
       { icon: 'check', title: 'A turn in goal for everyone', sub: 'One in goal every game' },
       { icon: 'check', title: 'Nobody benched twice in a row', sub: '' },
@@ -198,9 +198,9 @@ function MiniRooFileOpen({ name, type, onBack }: { name: string; type: 'doc' | '
                 </tr></thead>
                 <tbody>
                   {[
-                    { date: 'Sat 6 June', can: 'Evie family', kit: 'Jude family', oranges: 'Leo family', wet: 'Arlo family' },
-                    { date: 'Sat 14 June', can: 'Omar family', kit: 'Theo family', oranges: 'Ivy family', wet: 'Zara family' },
-                    { date: 'Sat 21 June', can: 'Arlo family', kit: 'Evie family', oranges: 'Jude family', wet: 'Theo family' },
+                    { date: 'Sun 7 June', can: 'Evie family', kit: 'Jude family', oranges: 'Leo family', wet: 'Arlo family' },
+                    { date: 'Sun 14 June', can: 'Omar family', kit: 'Theo family', oranges: 'Ivy family', wet: 'Zara family' },
+                    { date: 'Sun 21 June', can: 'Arlo family', kit: 'Evie family', oranges: 'Jude family', wet: 'Theo family' },
                   ].map((row, i) => (
                     <tr key={row.date} style={{ borderBottom: `1px solid ${LN}`, background: i % 2 === 0 ? '#fff' : '#fafafa' }}>
                       {[row.date, row.can, row.kit, row.oranges, row.wet].map((v, j) => (
@@ -255,7 +255,7 @@ function MiniRooFilesContent({ files, onOpenFile, onNewFile }: { files: MrFile[]
       <OpeningPanel
         landing
         heading="FILES · U9 TOM"
-        sentence="Saturday’s game day note has reached 10 of your 14 families."
+        sentence="Sunday’s game day note has reached 10 of your 14 families."
         support="The term 2 turns sheet is at 8 of 14. Everything else is up to date."
         figures={[{ num: '10 of 14', label: 'opened the note', proof: true }, { num: '3', label: 'files for this team' }]}
         buttons={[{ label: 'New doc', main: true, onClick: () => onNewFile('doc') }, { label: 'New sheet', onClick: () => onNewFile('sheet') }]}
@@ -333,7 +333,7 @@ function LiveOffContent({ onAsk }: { onAsk: () => void }) {
   ]
   return (
     <div style={{ flex: 1, overflowY: 'auto', padding: '24px 28px 32px', maxWidth: 600 }}>
-      <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 4 }}>Saturday at Northgate City</div>
+      <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 4 }}>Sunday at Northgate City</div>
       <div style={{ fontSize: 13, color: MUT, marginBottom: 20 }}>U9 Tom · kick-off 8:30 · game 2 of 4</div>
       <div style={{ background: '#fff5e6', border: '1px solid #fde68a', borderRadius: 14, padding: 20, marginBottom: 20 }}>
         <div style={{ fontSize: 15, fontWeight: 700, color: '#92400e', marginBottom: 6 }}>Live game help is off for MiniRoos</div>
@@ -403,7 +403,7 @@ export function SuggestedMiniRoos({ empty }: { empty?: boolean }) {
   const cards = [
     {
       title: 'They bunch around the ball',
-      basis: ['Your taps, 3 weeks running', "Saturday's clips"],
+      basis: ['Your taps, 3 weeks running', "Sunday's clips"],
       body: "Very normal at this age. Games with wide gates give them a reason to spread out, without you telling them to.",
       drill: 'Four goals: score in either wide gate',
       note: '4 against 4 · 10 minutes · everyone on the ball',
@@ -512,7 +512,7 @@ function RecordMiniRoosStart({ empty, onClips }: { empty?: boolean; onClips: () 
         <svg width={24} height={24} viewBox="0 0 24 24" fill="none" stroke={G} strokeWidth={2} strokeLinecap="round"><circle cx={12} cy={12} r={3}/><path d="M12 1v3M12 20v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1 12h3M20 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
       </div>
       <div style={{ fontSize: 20, fontWeight: 700, color: INK }}>Film something</div>
-      <div style={{ fontSize: 14, color: MUT, lineHeight: 1.6, maxWidth: 400 }}>Film a Saturday game, a training game, or a skill challenge. Set the camera up and tap Start filming.</div>
+      <div style={{ fontSize: 14, color: MUT, lineHeight: 1.6, maxWidth: 400 }}>Film a Sunday game, a training game, or a skill challenge. Set the camera up and tap Start filming.</div>
       <button onClick={() => goApp('example:RCm1-RecordMiniRoos', 'Opening the recording screen.')} style={{ height: 44, padding: '0 24px', borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Start filming</button>
       <div style={{ marginTop: 16, maxWidth: 400, textAlign: 'left' as const, padding: '14px 16px', background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, width: '100%' }}>
         <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 10 }}>Good to know</div>
@@ -540,7 +540,7 @@ function RecordMiniRoosStart({ empty, onClips }: { empty?: boolean; onClips: () 
       <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, overflow: 'hidden' }}>
         <div style={{ padding: '10px 16px', borderBottom: `1px solid ${LN}`, fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: MUT }}>What are you filming?</div>
         {[
-          { label: "Saturday's game", note: 'Sat 6 Jun at Northgate City' },
+          { label: "Sunday's game", note: 'Sun 7 Jun at Northgate City' },
           { label: 'A training game', note: 'Short game at the end of training' },
           { label: 'A skill challenge', note: 'Dribbling, passing or shooting' },
         ].map((opt, i) => (
@@ -597,7 +597,7 @@ function RecordMiniRoosStart({ empty, onClips }: { empty?: boolean; onClips: () 
       </div>
 
       <button onClick={onClips} style={{ height: 48, borderRadius: 999, border: 'none', background: G, color: '#fff', fontSize: 15, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>
-        Start filming Saturday's game →
+        Start filming Sunday's game →
       </button>
     </div>
   )
@@ -635,8 +635,8 @@ function RecordMiniRoosClips({ empty, onBack }: { empty?: boolean; onBack: () =>
           <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke={MUT} strokeWidth={2.5} strokeLinecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
         </button>
         <div>
-          <div style={{ fontSize: 20, fontWeight: 700, color: INK }}>{"Saturday's game · clips"}</div>
-          <div style={{ fontSize: 13, color: MUT }}>8 children · filmed Sat 6 Jun · 44 minutes</div>
+          <div style={{ fontSize: 20, fontWeight: 700, color: INK }}>{"Sunday's game · clips"}</div>
+          <div style={{ fontSize: 13, color: MUT }}>8 children · filmed Sun 7 Jun · 44 minutes</div>
         </div>
         <div style={{ marginLeft: 'auto', display: 'flex', gap: 8 }}>
           <button onClick={() => openThing('game picker for Tuesday', 'mini')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 700, color: G2, cursor: 'pointer', fontFamily: 'inherit' }}>Pick two for Tuesday</button>
@@ -928,7 +928,7 @@ export default function MiniRoosApp({ onBack: _onBack, empty, phaseContent, init
     else if (gameDayTab === 'chances' && mayChances)
       content = <ChancesFlow team="u9" step={xgView} onStep={setXgView} onNav={(t) => { if (isChanceId(t)) setXgView(t); else if (isScreenId(t)) setLayer(t) }} />
     else if (gameDayTab === 'yourtake')
-      content = <SwapText pairs={U9_NAMES}><YourTakeBoards fixture="Sat 6 June at Northgate City · no score kept" view={ytView} onView={setYtView} onNav={(t) => { if (isScreenId(t)) setLayer(t) }} /></SwapText>
+      content = <SwapText pairs={U9_NAMES}><YourTakeBoards fixture="Sun 7 June at Northgate City · no score kept" view={ytView} onView={setYtView} onNav={(t) => { if (isScreenId(t)) setLayer(t) }} /></SwapText>
     else if (gameDayTab === 'whoscoming')
       content = <ComingMiniRoos empty={empty} />
     else if (gameDayTab === 'getready')

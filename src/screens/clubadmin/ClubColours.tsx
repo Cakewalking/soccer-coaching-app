@@ -99,7 +99,7 @@ export default function ClubColours({ storeKey = 'demo', club = 'Wattle Creek FC
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
                 <div style={{ border: `1px solid ${LINE}`, borderRadius: 12, overflow: 'hidden' }}>
                   <div data-club-bar="" style={{ padding: '8px 10px', background: G, color: '#fff' }}><span style={{ display: 'block', fontSize: 9 }}>U11 Luke · for Ari</span><strong style={{ fontSize: 13 }}>Hi Dana</strong></div>
-                  <div style={{ padding: '8px 10px', display: 'flex', flexDirection: 'column', gap: 6 }}><span style={{ fontSize: 10, color: MUT }}>Saturday 9:30, home</span><span style={{ background: G, color: '#fff', borderRadius: 6, fontSize: 10, fontWeight: 700, textAlign: 'center', padding: '4px 0' }}>Ari is coming</span></div>
+                  <div style={{ padding: '8px 10px', display: 'flex', flexDirection: 'column', gap: 6 }}><span style={{ fontSize: 10, color: MUT }}>Sunday 9:30, home</span><span style={{ background: G, color: '#fff', borderRadius: 6, fontSize: 10, fontWeight: 700, textAlign: 'center', padding: '4px 0' }}>Ari is coming</span></div>
                 </div>
                 <div style={{ border: `1px solid ${LINE}`, borderRadius: 12, overflow: 'hidden' }}>
                   <div data-club-band="" style={{ padding: '8px 10px', background: G, color: '#fff', display: 'flex', alignItems: 'center', gap: 8 }}><Crest size={20} /><span><strong style={{ display: 'block', fontSize: 12 }}>{club}</strong><span style={{ display: 'block', fontSize: 9 }}>Season report · Ari D</span></span></div>

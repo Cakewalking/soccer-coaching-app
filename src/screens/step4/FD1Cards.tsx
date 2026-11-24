@@ -1,7 +1,7 @@
 const G = '#2f6252', GD = '#1f4a3e', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 const PLAYERS = [
-  { ini: 'RP', name: 'Ryan Petersen', team: 'U16 Ollie', yellows: 2, red: true, status: 'Suspended', note: 'Misses Saturday' },
+  { ini: 'RP', name: 'Ryan Petersen', team: 'U16 Ollie', yellows: 2, red: true, status: 'Suspended', note: 'Misses Sunday' },
   { ini: 'DV', name: 'Dean Vukovic', team: 'U14 Josh', yellows: 4, red: false, status: '1 from ban', note: 'Next yellow = 1 match' },
   { ini: 'NF', name: 'Nina Ferraro', team: 'U13 Girls Meg', yellows: 3, red: false, status: 'OK', note: 'Clears after round 12' },
   { ini: 'LB', name: 'Leon Brooks', team: 'U16 Ollie', yellows: 2, red: false, status: 'OK', note: '' },

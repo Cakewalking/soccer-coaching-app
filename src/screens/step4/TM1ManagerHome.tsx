@@ -31,8 +31,8 @@ export default function TM1ManagerHome(_: { onBack?: () => void }) {
         <div style={{ background: '#fff', border: `2px solid ${G}`, borderRadius: 16, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 8 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
             <div style={{ width: 48, height: 52, borderRadius: 12, background: '#e8cfcf', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-              <div style={{ fontSize: 11, fontWeight: 700 }}>SAT</div>
-              <div style={{ fontSize: 20, fontWeight: 700, lineHeight: 1.1 }}>6</div>
+              <div style={{ fontSize: 11, fontWeight: 700 }}>SUN</div>
+              <div style={{ fontSize: 20, fontWeight: 700, lineHeight: 1.1 }}>7</div>
             </div>
             <div>
               <div style={{ fontSize: 17, fontWeight: 700 }}>vs Harbour Rovers</div>
@@ -52,7 +52,7 @@ export default function TM1ManagerHome(_: { onBack?: () => void }) {
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '4px 14px' }}>
           <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#7a4b5b', padding: '8px 0 4px' }}>To do this week</div>
           {[
-            { icon: glyph('clipboard'), title: 'Duty roster for Saturday', sub: 'Linesman still needed · marshal and canteen done', badge: '1 gap', badgeBg: '#c39797' },
+            { icon: glyph('clipboard'), title: 'Duty roster for Sunday', sub: 'Linesman still needed · marshal and canteen done', badge: '1 gap', badgeBg: '#c39797' },
             { icon: glyph('video'), title: 'Camera kit 1 booked', sub: 'Pick up from the clubrooms Fri after 5 pm', badge: 'Booked', badgeBg: PALE },
             { icon: glyph('doc'), title: 'Team sheet', sub: 'Sam picks the 14 Fri night, you put it in Dribl', badge: 'Fri', badgeBg: LN },
             { icon: glyph('shield'), title: "Harper's consent form", sub: "New player · parent hasn't finished it", badge: 'Chase', badgeBg: '#e8cfcf' },
@@ -68,7 +68,7 @@ export default function TM1ManagerHome(_: { onBack?: () => void }) {
           ))}
         </div>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '4px 14px' }}>
-          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#7a4b5b', padding: '8px 0 4px' }}>Saturday duties</div>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#7a4b5b', padding: '8px 0 4px' }}>Sunday duties</div>
           {[{ initials: 'IM', name: 'Oranges at half-time', sub: "Isla's family" }, { initials: 'LT', name: 'Canteen 10 to 11', sub: 'Linh Tran (Mia\'s mum)' }].map((d, i) => (
             <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 50, borderTop: `1px solid ${LN}` }}>
               <div style={{ width: 30, height: 30, borderRadius: '50%', background: '#e8cfcf', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0 }}>{d.initials}</div>

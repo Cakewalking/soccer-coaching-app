@@ -27,7 +27,7 @@ const FIL2_CFG: TeamSheetConfig = {
     { row: 9, jersey: 3,  name: 'Zoe Hartley',  spot: 'Def', games: ['start',  'ingoal', 'start',  'bench']  },
   ],
   initialSheets: ['Team sheets', 'Contacts', 'Kit sizes'],
-  footerNote: '9 players · 4 games · Sat 13 Dec, Banksia Park',
+  footerNote: '9 players · 4 games · Sun 13 Dec, Banksia Park',
   checks: [
     { icon: 'check', title: '7 on the pitch each game', sub: 'One in goal every time' },
     { icon: 'check', title: 'Nobody benched twice in a row', sub: '' },

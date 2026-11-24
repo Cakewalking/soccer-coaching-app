@@ -11,7 +11,7 @@ type ManagerTab = 'home' | 'gameday' | 'messages' | 'roster'
 type GamedayPhase = 'before' | 'during' | 'after'
 
 const TODO = [
-  { icon: glyph('clipboard'), title: 'Duty roster for Saturday', sub: 'Linesman still needed · oranges and canteen done', tag: '1 gap', tagColor: '#c39797' },
+  { icon: glyph('clipboard'), title: 'Duty roster for Sunday', sub: 'Linesman still needed · oranges and canteen done', tag: '1 gap', tagColor: '#c39797' },
   { icon: glyph('camera'), title: 'Camera kit 1 booked',      sub: 'Pick up from the clubrooms Fri after 5 pm',      tag: 'Booked', tagColor: '#40826d' },
   { icon: glyph('clipboard'), title: 'Team sheet',               sub: 'Sam picks the line-up Fri night, you send it',    tag: 'Fri', tagColor: '#6f7f7b' },
   { icon: glyph('doc'), title: "Harper's consent form",    sub: "New player · parent hasn't finished it",          tag: 'Chase', tagColor: '#c39797' },
@@ -103,7 +103,7 @@ export default function TeamManagerScreen({ empty, initialScreen }: { empty?: bo
             <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
               <div>
                 <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', marginBottom: 2 }}>
-                  {tab === 'gameday' ? sbTeam : tab === 'roster' ? `${sbTeam} · Saturdays` : `${sbTeam} · Team manager`}
+                  {tab === 'gameday' ? sbTeam : tab === 'roster' ? `${sbTeam} · Sundays` : `${sbTeam} · Team manager`}
                 </div>
                 <div style={{ fontSize: 24, fontWeight: 800 }}>
                   {tab === 'gameday' ? 'Game day' : tab === 'roster' ? 'Duty roster' : 'Welcome, Rob'}
@@ -211,7 +211,7 @@ export default function TeamManagerScreen({ empty, initialScreen }: { empty?: bo
             <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 14, padding: '14px 16px', marginBottom: 16 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
                 <div style={{ background: '#1f4a3e', color: '#fff', borderRadius: 8, padding: '6px 10px', textAlign: 'center', flexShrink: 0 }}>
-                  <div style={{ fontSize: 10, fontWeight: 600, letterSpacing: '0.04em' }}>SAT</div>
+                  <div style={{ fontSize: 10, fontWeight: 600, letterSpacing: '0.04em' }}>SUN</div>
                   <div style={{ fontSize: 20, fontWeight: 800 }}>7</div>
                 </div>
                 <div>
@@ -266,8 +266,8 @@ export default function TeamManagerScreen({ empty, initialScreen }: { empty?: bo
               </div>
             ))}
 
-            {/* Saturday duties */}
-            <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginTop: 16, marginBottom: 10 }}>Saturday duties</div>
+            {/* Sunday duties */}
+            <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginTop: 16, marginBottom: 10 }}>Sunday duties</div>
             {SAT_DUTIES.map((d, i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 0', borderTop: i > 0 ? '1px solid #f0f1f0' : 'none' }}>
                 <div style={{ width: 28, height: 28, borderRadius: '999px', background: '#e8cfcf', color: '#10211f', fontSize: 10, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{d.ini}</div>
@@ -295,7 +295,7 @@ export default function TeamManagerScreen({ empty, initialScreen }: { empty?: bo
                 <div style={{ border: '2px dashed #d6d9d7', borderRadius: 16, padding: '32px 20px', textAlign: 'center' }}>
                   <div style={{ fontSize: 40, marginBottom: 12 }}><Glyph n="cup" /></div>
                   <div style={{ fontSize: 18, fontWeight: 800, color: '#10211f', marginBottom: 6 }}>No game this week</div>
-                  <div style={{ fontSize: 14, color: '#5c6b67', marginBottom: 20 }}>Bye round · SAT 14 JUN. Use this week for extra training or a break.</div>
+                  <div style={{ fontSize: 14, color: '#5c6b67', marginBottom: 20 }}>Bye round · SUN 14 JUN. Use this week for extra training or a break.</div>
                   <div style={{ display: 'flex', gap: 10, justifyContent: 'center' }}>
                     <button onClick={() => openThing('extra session planner', 'phone')} style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: '1px solid #e9eae8', background: '#fff', color: '#4a5a57', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Extra training session?</button>
                     <button onClick={() => showToast('Sending bye week message.')} style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Tell parents</button>
@@ -303,7 +303,7 @@ export default function TeamManagerScreen({ empty, initialScreen }: { empty?: bo
                 </div>
                 <div style={{ marginTop: 16, background: '#fff', borderRadius: 14, padding: '14px 16px', border: '1px solid #e9eae8' }}>
                   <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f', marginBottom: 6 }}>Next game</div>
-                  <div style={{ fontSize: 13, color: '#5c6b67' }}>SAT 21 JUN · vs Banksia Park · Home · kick-off 9:30 am</div>
+                  <div style={{ fontSize: 13, color: '#5c6b67' }}>SUN 21 JUN · vs Banksia Park · Home · kick-off 9:30 am</div>
                 </div>
               </div>
             ) : (
@@ -434,7 +434,7 @@ export default function TeamManagerScreen({ empty, initialScreen }: { empty?: bo
         {tab === 'roster' && (
           <div style={{ padding: '16px' }}>
             <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', marginBottom: 2 }}>Duty roster</div>
-            <div style={{ fontSize: 13, color: '#5c6b67', marginBottom: 14 }}>SAT 6 JUN · VS Harbour Rovers</div>
+            <div style={{ fontSize: 13, color: '#5c6b67', marginBottom: 14 }}>SUN 7 JUN · VS Harbour Rovers</div>
 
             {/* Specific duties */}
             {[
@@ -582,7 +582,7 @@ export default function TeamManagerScreen({ empty, initialScreen }: { empty?: bo
           </div>
           <div style={{ flexGrow: 1, overflowY: 'auto', padding: '20px' }}>
             <div style={{ background: '#fff', borderRadius: 12, border: '1px solid #e9eae8', padding: '14px', marginBottom: 16 }}>
-              <div style={{ fontSize: 13, color: '#5c6b67' }}>SAT 6 JUN · vs Harbour Rovers · Home</div>
+              <div style={{ fontSize: 13, color: '#5c6b67' }}>SUN 7 JUN · vs Harbour Rovers · Home</div>
               <div style={{ fontSize: 20, fontWeight: 800, color: '#10211f', marginTop: 4 }}>2 – 1</div>
             </div>
             {[

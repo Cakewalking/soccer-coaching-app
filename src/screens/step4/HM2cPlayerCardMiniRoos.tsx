@@ -35,7 +35,7 @@ export default function HM2cPlayerCardMiniRoos({onBack,onNote}:{onBack?:()=>void
           </div>
           <div style={{background:'#fff',border:`1px solid ${LN}`,borderRadius:14,padding:'14px 16px',marginBottom:16}}>
             <div style={{fontSize:14,fontWeight:700,color:INK,marginBottom:10}}>What you've noticed</div>
-            {['Loves dribbling — tries to take players on every time','Tapped 3 Saturdays running (asked about it, seemed fine)','Looks up before she passes. Getting better.'].map(note=>(
+            {['Loves dribbling — tries to take players on every time','Tapped 3 Sundays running (asked about it, seemed fine)','Looks up before she passes. Getting better.'].map(note=>(
               <div key={note} style={{display:'flex',gap:10,padding:'8px 0',borderTop:`1px solid ${LN}`,alignItems:'flex-start'}}>
                 <div style={{width:5,height:5,borderRadius:'50%',background:G,flex:'none',marginTop:6}}/>
                 <span style={{fontSize:13,color:INK,lineHeight:1.5}}>{note}</span>
@@ -44,7 +44,7 @@ export default function HM2cPlayerCardMiniRoos({onBack,onNote}:{onBack?:()=>void
             <button onClick={()=>t('Adding note')} style={{marginTop:12,height: 44,padding:'0 14px',borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:G,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>+ Add note</button>
           </div>
           <div style={{background:'#fff',border:`1px solid ${LN}`,borderRadius:14,padding:'14px 16px',marginBottom:16}}>
-            <div style={{fontSize:14,fontWeight:700,color:INK,marginBottom:4}}>Quiet on 23 May</div>
+            <div style={{fontSize:14,fontWeight:700,color:INK,marginBottom:4}}>Quiet on 24 May</div>
             <div style={{fontSize:13,color:MUT}}>You noted she was quiet after the game. No follow-up yet.</div>
           </div>
         </div>

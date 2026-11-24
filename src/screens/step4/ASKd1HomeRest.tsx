@@ -47,7 +47,7 @@ export default function ASKd1HomeRest({ onNav }: { onNav?: (s: string) => void }
               <div style={{ fontSize: 15, fontWeight: 800, color: '#fff' }}>TODAY · 5:45 pm · Wattle Creek Reserve</div>
             </div>
             <div style={{ padding: '12px 20px' }}>
-              <div style={{ fontSize: 13, color: INK, marginBottom: 8 }}>90 minutes · warm-up and 4 drills · built from Saturday's game</div>
+              <div style={{ fontSize: 13, color: INK, marginBottom: 8 }}>90 minutes · warm-up and 4 drills · built from Sunday's game</div>
               <div style={{ fontSize: 12, color: MUT, marginBottom: 12 }}>Pressing high: keep. Gap between the lines: tonight.</div>
               <button onClick={() => tool('Open the plan')} style={{ height: 44, padding: '0 16px', borderRadius: 999, background: G, color: '#fff', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Open the plan</button>
             </div>
@@ -56,7 +56,7 @@ export default function ASKd1HomeRest({ onNav }: { onNav?: (s: string) => void }
           {/* Last game */}
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 20px' }}>
             <div style={{ fontSize: 11, fontWeight: 700, color: MUT, marginBottom: 6 }}>LAST GAME</div>
-            <div style={{ fontSize: 14, fontWeight: 700, color: INK, marginBottom: 4 }}>Sat 30 May at Ironbark United · won 3–1</div>
+            <div style={{ fontSize: 14, fontWeight: 700, color: INK, marginBottom: 4 }}>Sun 31 May at Ironbark United · won 3–1</div>
             <button onClick={() => tool('Review')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 13, color: G, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Review</button>
           </div>
 
@@ -76,7 +76,7 @@ export default function ASKd1HomeRest({ onNav }: { onNav?: (s: string) => void }
               <div style={{ fontSize: 13, fontWeight: 700, color: INK, flex: 1 }}>Where we're at</div>
               <button onClick={() => onNav?.('WA1-WhereWeAt')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 12, color: G, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>All 6</button>
             </div>
-            <div style={{ fontSize: 12, color: INK, marginBottom: 4 }}>Everyone within 6 minutes of the average. 3 players under half a game on Saturday.</div>
+            <div style={{ fontSize: 12, color: INK, marginBottom: 4 }}>Everyone within 6 minutes of the average. 3 players under half a game on Sunday.</div>
             <div style={{ fontSize: 12, color: MUT, marginBottom: 8 }}>Pressing high: keep. Gap between the lines: working on it tonight.</div>
             <button onClick={() => tool('Minutes')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1.5px solid ${LN}`, background: '#fff', fontSize: 12, color: G, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Minutes</button>
           </div>
@@ -84,7 +84,7 @@ export default function ASKd1HomeRest({ onNav }: { onNav?: (s: string) => void }
           {/* Calendar */}
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 20px' }}>
             <div style={{ fontSize: 11, fontWeight: 700, color: MUT, marginBottom: 6 }}>NEXT GAME</div>
-            <div style={{ fontSize: 14, fontWeight: 700, color: INK }}>Sat 6 June v Harbour Rovers · home</div>
+            <div style={{ fontSize: 14, fontWeight: 700, color: INK }}>Sun 7 June v Harbour Rovers · home</div>
             <div style={{ fontSize: 12, color: MUT }}>9:30 · Wattle Creek Reserve</div>
           </div>
         </div>

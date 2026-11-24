@@ -8,7 +8,7 @@ import { Btn, Note, Ico, tile, h2, cap, label, G, INK, MUT, LINE, PALE, DARK } f
 const AMBER = '#f4c95d'   // proof figures marked Strong, and nothing else
 import { Page, col } from '../capture/CaptureScreens'
 import { playClips } from '../clips/clipSheet'
-import { TEAMS, ABOUT, TAG, menu, size, groups, proposeSession, whatChanged, kit, type Chip, type Drill, type Level, type Part, type Player, type Session, type Team, type TeamKey } from './sessionEngine'
+import { TEAMS, ABOUT, TAG, gameDay, menu, size, groups, proposeSession, whatChanged, kit, type Chip, type Drill, type Level, type Part, type Player, type Session, type Team, type TeamKey } from './sessionEngine'
 import { useCoach } from '../learn/course'
 import { useSession, setSession, setTeam, present, counts, sessionFor, type Answer, type SessionState } from './sessionStore'
 
@@ -54,7 +54,7 @@ function SessionBody({ s, k, go, say, setPart, ses, id }: GsProps & { ses: Sessi
       <div style={col}>
         <section aria-label="Why this session" style={{ borderRadius: 18, background: DARK, color: '#fff', padding: '13px 22px', display: 'flex', alignItems: 'center', gap: 20 }}>
           <span style={{ flexGrow: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: 3 }}>
-            <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', color: '#a9cfc0' }}>{bye ? 'A BYE WEEK · NOTHING NEW TO GO ON' : ses.from === 'small' ? 'A SMALL GROUP · A DIFFERENT SESSION' : 'BUILT FROM SATURDAY’S GAME · NOT A FIXED TIMETABLE'}</span>
+            <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', color: '#a9cfc0' }}>{bye ? 'A BYE WEEK · NOTHING NEW TO GO ON' : ses.from === 'small' ? 'A SMALL GROUP · A DIFFERENT SESSION' : `BUILT FROM ${gameDay(k).toUpperCase()}’S GAME · NOT A FIXED TIMETABLE`}</span>
             <strong style={{ fontSize: 22, lineHeight: '28px', letterSpacing: '-0.01em' }}>{ses.headline}</strong>
             <span style={{ fontSize: 13, lineHeight: '19px', color: '#cfe6dc' }}>{ses.sub}</span>
           </span>
@@ -102,7 +102,7 @@ function SessionBody({ s, k, go, say, setPart, ses, id }: GsProps & { ses: Sessi
         ) : (
           <section aria-label="What this is built from" style={{ ...tile, gap: 0, padding: '14px 16px 4px' }}>
             <h2 style={{ ...h2, paddingBottom: 6 }}>What this is built from</h2>
-            {t.film && <Line a="Saturday’s film" b={t.film[0]} v={t.film[1]} />}
+            {t.film && <Line a={`${gameDay(k)}’s film`} b={t.film[0]} v={t.film[1]} />}
             <Line a="Your three taps and one note" b={`“${t.note}”`} v={t.noteWhen} />
             <Line a="Your ratings" b={`And ${Math.max(3, Math.floor(t.squad.length / 2))} players’ own views`} v={t.ratings} />
             <Line a="Who is coming" b={ts.atPitch ? 'You tapped who is here' : `Poll closes ${day(t)} 3 pm`} v={ts.atPitch ? `${ts.here.length} here` : `${c.yes} yes, ${c.no} no, ${c.none} no answer`} />
@@ -117,7 +117,7 @@ function SessionBody({ s, k, go, say, setPart, ses, id }: GsProps & { ses: Sessi
               <Ico d="M9 6l6 6-6 6" size={16} sw={2.4} />
             </button>}
         {!bye && <Note title="You are still the coach">Swap any part, change the times, or build your own. Tell us why you swapped and next week’s suggestions get closer to how you coach.</Note>}
-        <Btn onClick={() => { setTeam(k, { bye: !bye, swaps: {} }); if (bye) go('GS1-ProposedSession'); say(bye ? 'Back to this week: built from Saturday’s game.' : 'Showing a week with no game.') }}>{bye ? 'Back to a week with a game' : 'See a week with no game'}</Btn>
+        <Btn onClick={() => { setTeam(k, { bye: !bye, swaps: {} }); if (bye) go('GS1-ProposedSession'); say(bye ? `Back to this week: built from ${gameDay(k)}’s game.` : 'Showing a week with no game.') }}>{bye ? 'Back to a week with a game' : 'See a week with no game'}</Btn>
       </div>
     </Page>
   )
@@ -147,7 +147,7 @@ export function GS2DrillWhy({ s, k, go, say, part }: GsProps) {
             <span style={{ fontSize: 16, lineHeight: '23px' }}>{long ? <>{long[0]}{ev?.num && <strong style={{ padding: '1px 6px', borderRadius: 6, background: strong ? AMBER : 'transparent' }}>{ev.num}</strong>}{long[1]}</> : `${p.why.new.charAt(0).toUpperCase()}${p.why.new.slice(1)}`}</span>
             <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 6 }}>{p.chips.map(c => <ChipTag key={c.text} c={c} long />)}</span>
           </span>
-          {strong && <button onClick={() => { playClips([1, 2, 3].map(i => ({ title: `${p.tag.charAt(0)}${p.tag.slice(1).toLowerCase()}: clip ${i} of 3`, sub: 'From Saturday’s film.', len: i === 3 ? 12 : 11 })), 'See it happen'); say('Three clips play, 34 seconds in all.') }} style={{ minHeight: 150, borderRadius: 14, border: 0, background: G, color: '#fff', fontFamily: 'inherit', textAlign: 'left', cursor: 'pointer', padding: 14, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', gap: 2 }}><strong style={{ fontSize: 15, display: 'flex', alignItems: 'center', gap: 6 }}><Ico d="M8 5l11 7-11 7z" size={13} />See it happen</strong><span style={{ fontSize: 13, color: '#dcefe8' }}>3 clips from Saturday · 34 seconds</span></button>}
+          {strong && <button onClick={() => { playClips([1, 2, 3].map(i => ({ title: `${p.tag.charAt(0)}${p.tag.slice(1).toLowerCase()}: clip ${i} of 3`, sub: `From ${gameDay(k)}’s film.`, len: i === 3 ? 12 : 11 })), 'See it happen'); say('Three clips play, 34 seconds in all.') }} style={{ minHeight: 150, borderRadius: 14, border: 0, background: G, color: '#fff', fontFamily: 'inherit', textAlign: 'left', cursor: 'pointer', padding: 14, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', gap: 2 }}><strong style={{ fontSize: 15, display: 'flex', alignItems: 'center', gap: 6 }}><Ico d="M8 5l11 7-11 7z" size={13} />See it happen</strong><span style={{ fontSize: 13, color: '#dcefe8' }}>3 clips from {gameDay(k)} · 34 seconds</span></button>}
         </section>
         {full && <section aria-label="What the players get out of it" style={{ ...tile, padding: '12px 18px 14px' }}>
           <h2 style={h2}>What the players get out of it</h2>
@@ -352,7 +352,7 @@ export function GS7SeasonLookBack({ k, go }: GsProps) {
         </section>
       </div>
       <div style={col}>
-        <section aria-label="What it says" style={{ ...tile, padding: '14px 16px 16px' }}><h2 style={h2}>What it says</h2><span style={{ fontSize: 15, lineHeight: '22px' }}>You have covered {['none', 'one', 'two', 'three', 'all four'][well]} of the four well. <strong>{SKILL(least)} has had {['no weeks', 'one week', 'two weeks'][n(least)] ?? `${n(least)} weeks`}.</strong> The next week with nothing pressing from Saturday will go there.</span></section>
+        <section aria-label="What it says" style={{ ...tile, padding: '14px 16px 16px' }}><h2 style={h2}>What it says</h2><span style={{ fontSize: 15, lineHeight: '22px' }}>You have covered {['none', 'one', 'two', 'three', 'all four'][well]} of the four well. <strong>{SKILL(least)} has had {['no weeks', 'one week', 'two weeks'][n(least)] ?? `${n(least)} weeks`}.</strong> The next week with nothing pressing from {gameDay(k)} will go there.</span></section>
         <section aria-label="Did it work?" style={{ ...tile, gap: 0, padding: '14px 16px 4px' }}><h2 style={{ ...h2, paddingBottom: 6 }}>Did it work?</h2>{t.worked.map(w => <Line key={w.t} a={w.t} b={w.note} v={w.fig} />)}</section>
         <Note title="A look back, not a timetable">Nothing here tells you what you must do in week 14. It shows that following the games has still covered what matters.</Note>
       </div>

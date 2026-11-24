@@ -53,7 +53,7 @@ export default function YT1YourTake({ onNav, startEmpty = false, bare = false }:
   return (
     <YTFrame
       onNav={onNav} active="take" lastTool={lastTool} bare={bare} screenId={startEmpty ? 'YT1e-YourTakeEmpty' : undefined}
-      heading="Your take · Sat 30 May · Won 3-1 at Ironbark United"
+      heading="Your take · Sun 31 May · Won 3-1 at Ironbark United"
       sentence="What did you see that the film missed?"
       support="About two minutes, or one tap. Only you see this. It shapes Thursday as much as the film does."
       buttons={[

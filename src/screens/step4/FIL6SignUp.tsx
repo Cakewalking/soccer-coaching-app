@@ -18,13 +18,13 @@ export default function FIL6SignUp({ onBack, onShare, onNav, bare }: {
   function tool(name: string) { const to = toolTarget(name); if (to && onNav) { onNav(to); return } setLastTool(name) }
 
   const [jobs] = useState<Job[]>([
-    { label: 'Canteen set-up', time: 'Sat 13 Dec · 8:00 am', places: 2, taken: ['Jess Marsh'] },
-    { label: 'Canteen during games', time: 'Sat 13 Dec · 8:30–1:00', places: 3, taken: ['Ryan Chen', 'Priya Shah'] },
-    { label: 'Oranges and water', time: 'Sat 13 Dec · all day', places: 2, taken: ['Lee Walsh', 'Dana Fox'] },
-    { label: 'Car pool from the ground', time: 'Sat 13 Dec · 8:00 am', places: 4, taken: ['Jess Marsh', 'Ryan Chen'] },
-    { label: 'Pack-up canteen', time: 'Sat 13 Dec · 1:00 pm', places: 2, taken: [] },
-    { label: 'First-aid kit', time: 'Sat 13 Dec · all day', places: 1, taken: ['Lee Walsh'] },
-    { label: 'Photos', time: 'Sat 13 Dec · 9:00 am', places: 1, taken: [] },
+    { label: 'Canteen set-up', time: 'Sun 13 Dec · 8:00 am', places: 2, taken: ['Jess Marsh'] },
+    { label: 'Canteen during games', time: 'Sun 13 Dec · 8:30–1:00', places: 3, taken: ['Ryan Chen', 'Priya Shah'] },
+    { label: 'Oranges and water', time: 'Sun 13 Dec · all day', places: 2, taken: ['Lee Walsh', 'Dana Fox'] },
+    { label: 'Car pool from the ground', time: 'Sun 13 Dec · 8:00 am', places: 4, taken: ['Jess Marsh', 'Ryan Chen'] },
+    { label: 'Pack-up canteen', time: 'Sun 13 Dec · 1:00 pm', places: 2, taken: [] },
+    { label: 'First-aid kit', time: 'Sun 13 Dec · all day', places: 1, taken: ['Lee Walsh'] },
+    { label: 'Photos', time: 'Sun 13 Dec · 9:00 am', places: 1, taken: [] },
   ])
 
   const totalPlaces = jobs.reduce((s, j) => s + j.places, 0)

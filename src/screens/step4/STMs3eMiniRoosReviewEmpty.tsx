@@ -47,11 +47,11 @@ export default function STMs3eMiniRoosReviewEmpty({ onNav }: { onNav?: (s: strin
 
             <div style={{ background: PALE, borderRadius: 10, padding: '14px 18px', width: '100%' }}>
               <div style={{ fontSize: 13, fontWeight: 700, color: G, marginBottom: 4 }}>So the review knows what to look for</div>
-              <div style={{ fontSize: 12, color: MUT }}>Set your three things in Our style before Saturday.</div>
+              <div style={{ fontSize: 12, color: MUT }}>Set your three things in Our style before Sunday.</div>
             </div>
 
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' as const }}>
-              <button aria-label="Film Saturday's game" onClick={() => tool('MiniRoos: film for clips')} style={{ height: 44, padding: '0 24px', background: G, color: '#fff', border: 'none', borderRadius: 10, fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Film Saturday's game</button>
+              <button aria-label="Film Sunday's game" onClick={() => tool('MiniRoos: film for clips')} style={{ height: 44, padding: '0 24px', background: G, color: '#fff', border: 'none', borderRadius: 10, fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Film Sunday's game</button>
               <button aria-label="Tell us what you saw instead" onClick={() => tool('the matching screen already in the app')} style={{ height: 44, padding: '0 24px', background: '#fff', color: G, border: `1.5px solid ${G}`, borderRadius: 10, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Tell us what you saw instead</button>
               <button aria-label="Pick" onClick={() => onNav?.('MS1-MiniRoosStyle')} style={{ height: 44, padding: '0 24px', background: '#fff', color: MUT, border: `1px solid ${LN}`, borderRadius: 10, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Pick</button>
             </div>

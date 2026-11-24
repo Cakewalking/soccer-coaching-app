@@ -28,7 +28,7 @@ export default function EX1HowWorkedOut({ onNav }: { onBack?: () => void; onNav?
       <div style={{ flex: 'none', padding: '16px 28px 0' }}>
         <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b' }}>When we lose it · From our style</div>
         <div style={{ fontSize: 24, fontWeight: 800, letterSpacing: '-0.02em', color: INK }}>Seconds to win the ball back</div>
-        <div style={{ fontSize: 13, color: MUT, marginTop: 2 }}>Saturday vs Ironbark</div>
+        <div style={{ fontSize: 13, color: MUT, marginTop: 2 }}>Sunday vs Ironbark</div>
       </div>
       <main style={{ flexGrow: 1, padding: '14px 28px 24px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 300px', gap: 24 }}>
         <div>
@@ -44,7 +44,7 @@ export default function EX1HowWorkedOut({ onNav }: { onBack?: () => void; onNav?
             </div>
           </div>
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '16px 20px' }}>
-            <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 4 }}>Every time we lost it on Saturday</div>
+            <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 4 }}>Every time we lost it on Sunday</div>
             <div style={{ fontSize: 12, color: MUT, marginBottom: 12 }}>31 times · tap a bar for the clip</div>
             <div style={{ position: 'relative', height: 140 }}>
               <div style={{ position: 'absolute', left: 0, right: 0, top: 32, borderTop: `1.5px dashed #c04040` }}>

@@ -18,7 +18,7 @@ export default function SPp13PlayerPreSeason(){
             <div style={{fontSize:14,fontWeight:700,color:INK,marginBottom:12}}>This month</div>
             {[
               {item:'Four quick fitness tests',note:'Coach Sam will run them this week'},
-              {item:'Friendly on Saturday',note:'10:00 am at Wattle Creek Reserve'},
+              {item:'Friendly on Sunday',note:'10:00 am at Wattle Creek Reserve'},
               {item:'Two new trial players',note:'Might join your team'},
             ].map(ev=>(
               <div key={ev.item} style={{display:'flex',gap:12,padding:'10px 0',borderBottom:`1px solid ${LN}`,alignItems:'flex-start'}}>

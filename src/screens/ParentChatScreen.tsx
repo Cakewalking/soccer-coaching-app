@@ -123,7 +123,7 @@ function ChatListView({ empty, onTeamChat, onAnnouncements, onPrivate, onReadOnl
                   <span style={{ fontSize: 14, fontWeight: 700, color: INK }}>Announcements</span>
                   <span style={{ fontSize: 12, color: MUT }}>7:12 pm</span>
                 </div>
-                <div style={{ fontSize: 13, color: MUT, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' as const }}>Rob: Meet time now 8:40 on Saturday</div>
+                <div style={{ fontSize: 13, color: MUT, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' as const }}>Rob: Meet time now 8:40 on Sunday</div>
               </div>
               <span style={{ background: ROSE, color: '#fff', borderRadius: 999, padding: '1px 6px', fontSize: 11, fontWeight: 700, flexShrink: 0 }}>1</span>
             </button>
@@ -199,7 +199,7 @@ function TeamChatView({ empty, onBack, onPoll, onAttach, onSettings, onReport, o
         </div>
         {/* Pinned */}
         <div style={{ marginTop: 6, padding: '7px 10px', background: 'rgba(255,255,255,0.12)', borderRadius: 8, fontSize: 12, color: 'rgba(255,255,255,0.75)' }}>
-          <Glyph n="pin" /> Saturday, be there 8:40 at pitch 2. White kit.
+          <Glyph n="pin" /> Sunday, be there 8:40 at pitch 2. White kit.
         </div>
       </div>
 
@@ -219,7 +219,7 @@ function TeamChatView({ empty, onBack, onPoll, onAttach, onSettings, onReport, o
               </div>
               <div style={{ background: '#f5f6f4', borderRadius: 12, padding: '10px 12px', marginLeft: 36 }}>
                 <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: G2, marginBottom: 3 }}>Poll</div>
-                <div style={{ fontSize: 14, fontWeight: 700, color: INK, marginBottom: 8 }}>Who can bring oranges on Saturday?</div>
+                <div style={{ fontSize: 14, fontWeight: 700, color: INK, marginBottom: 8 }}>Who can bring oranges on Sunday?</div>
                 {[{ label: 'We will', votes: 2 }, { label: 'Only if no one else can', votes: 2 }].map(opt => (
                   <div key={opt.label} style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 5 }}>
                     <div style={{ flex: 1, height: 26, background: LN, borderRadius: 999, overflow: 'hidden', position: 'relative' as const }}>
@@ -341,7 +341,7 @@ function AnnouncementsView({ onBack, onPrivate }: { onBack: () => void; onPrivat
               </div>
             </div>
           </div>
-          <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 3 }}>Meet time now 8:40 on Saturday</div>
+          <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 3 }}>Meet time now 8:40 on Sunday</div>
           <div style={{ fontSize: 13, color: INK, marginBottom: 10, lineHeight: 1.5 }}>We're on pitch 2, not pitch 4. White kit. Your calendar is already updated.</div>
           <div style={{ display: 'flex', gap: 8, padding: '8px 10px', background: '#f5f6f4', borderRadius: 10, alignItems: 'center', marginBottom: 8 }}>
             <div style={{ width: 28, height: 28, borderRadius: 7, background: '#5a7a6e', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
@@ -375,7 +375,7 @@ function PollVoteOverlay({ onClose }: { onClose: () => void }) {
         <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: G2, marginBottom: 4 }}>Poll</div>
         <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
           <Ini s="LT" bg={ROSE} size={28}/>
-          <div style={{ fontSize: 15, fontWeight: 700, color: INK, flex: 1 }}>Who's coming on Saturday? Harbour Rovers, 9:30 at home. Be there 8:40.</div>
+          <div style={{ fontSize: 15, fontWeight: 700, color: INK, flex: 1 }}>Who's coming on Sunday? Harbour Rovers, 9:30 at home. Be there 8:40.</div>
         </div>
         <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 8 }}>For Mia</div>
         {[
@@ -572,7 +572,7 @@ function ReadOnlyView({ onBack }: { onBack: () => void }) {
           </div>
           <div style={{ background: '#f5f6f4', borderRadius: 12, padding: '10px 12px', marginLeft: 34 }}>
             <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: G2, marginBottom: 3 }}>Poll</div>
-            <div style={{ fontSize: 14, fontWeight: 700, color: INK, marginBottom: 8 }}>Who can do canteen on Saturday?</div>
+            <div style={{ fontSize: 14, fontWeight: 700, color: INK, marginBottom: 8 }}>Who can do canteen on Sunday?</div>
             {[{ label: '9 to 10', votes: 2 }, { label: '10 to 11', votes: 1 }, { label: '11 to 12', votes: 0 }].map(opt => (
               <div key={opt.label} style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 4 }}>
                 <div style={{ flex: 1, height: 24, background: LN, borderRadius: 999, overflow: 'hidden', position: 'relative' as const }}>

@@ -41,7 +41,7 @@ export default function LeagueSyncTab({ empty }: { empty?: boolean }) {
         <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '14px 18px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 10 }}>
             <h2 style={{ margin: 0, fontSize: 17, fontWeight: 700 }}>This weekend from the league</h2>
-            <span style={{ fontSize: 14, color: '#4a5a57' }}>Sat 6 Jun · 6 of 14 games</span>
+            <span style={{ fontSize: 14, color: '#4a5a57' }}>Sun 7 Jun · 6 of 14 games</span>
           </div>
 
           {/* Table header */}
@@ -77,7 +77,7 @@ export default function LeagueSyncTab({ empty }: { empty?: boolean }) {
         {/* Results back */}
         <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '14px 18px' }}>
           <h2 style={{ margin: '0 0 10px', fontSize: 17, fontWeight: 700 }}>Results to the league</h2>
-          <div style={{ fontSize: 13, color: '#4a5a57', marginBottom: 10 }}>Sat 30 May</div>
+          <div style={{ fontSize: 13, color: '#4a5a57', marginBottom: 10 }}>Sun 31 May</div>
           {RESULTS_BACK.map((r, i) => (
             <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 48, borderTop: i > 0 ? '1px solid #f0f1ef' : 'none' }}>
               <div style={{ flexGrow: 1, minWidth: 0 }}>

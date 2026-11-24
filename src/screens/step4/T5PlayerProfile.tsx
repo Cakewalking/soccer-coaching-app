@@ -126,7 +126,7 @@ export default function T5PlayerProfile({ onBack }: { onBack?: () => void }) {
             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13, padding: '5px 0', borderTop: `1px solid ${LN}` }}><span style={{ color: MUT }}>Load this week</span><strong style={{ color: '#6f5256' }}>125% of usual</strong></div>
             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13, padding: '5px 0', borderTop: `1px solid ${LN}` }}><span style={{ color: MUT }}>Wellness today</span><strong>3.3 / 5 · heavy legs</strong></div>
             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13, padding: '5px 0', borderTop: `1px solid ${LN}` }}><span style={{ color: MUT }}>Growth this month</span><strong>+0.5 cm</strong></div>
-            <div style={{ background: '#e8cfcf', borderRadius: 8, padding: '8px 10px', fontSize: 13, lineHeight: '19px', marginTop: 8 }}><strong>Plan:</strong> light training tonight, first half only on Saturday.</div>
+            <div style={{ background: '#e8cfcf', borderRadius: 8, padding: '8px 10px', fontSize: 13, lineHeight: '19px', marginTop: 8 }}><strong>Plan:</strong> light training tonight, first half only on Sunday.</div>
           </div>
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '12px 14px' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>

@@ -21,7 +21,7 @@ export default function ACP9JoinGameTeam() {
           <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 10 }}>U13 Timber · Wattle Creek FC</div>
           {[
             ['Competition', 'Metro Junior League'],
-            ['Games', 'Saturdays, home and away'],
+            ['Games', 'Sundays, home and away'],
             ['Season', 'Apr – Sep'],
           ].map(([k, v]) => (
             <div key={k} style={{ display: 'flex', justifyContent: 'space-between', padding: '5px 0', borderBottom: `1px solid ${LN}` }}>

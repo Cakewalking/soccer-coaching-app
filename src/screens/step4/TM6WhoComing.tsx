@@ -28,7 +28,7 @@ export default function TM6WhoComing(_: { onBack?: () => void }) {
 
       <div style={{ padding: 16 }}>
         <div style={{ fontSize: 18, fontWeight: 800, letterSpacing: '-0.02em', color: INK, marginBottom: 4 }}>Who's coming</div>
-        <div style={{ fontSize: 13, color: MUT, marginBottom: 16 }}>Next game · Sat 6 Jun vs Riverside FC</div>
+        <div style={{ fontSize: 13, color: MUT, marginBottom: 16 }}>Next game · Sun 7 Jun vs Riverside FC</div>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 8, marginBottom: 16 }}>
           {([['in', 'Coming'], ['maybe', 'Maybe'], ['out', "Can't"], ['none', 'No answer']] as const).map(([k, label]) => (

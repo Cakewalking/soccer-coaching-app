@@ -8,7 +8,7 @@ const NAV_ITEMS = ['Home', 'Squad', 'Training', 'Match day', 'Clips']
 const SUBNAV = ['Tonight\'s session', 'This week', 'Suggested', 'Drill library', 'Growth and load', 'Record']
 
 const BARS = [
-  { label: 'Sat vs Ironbark', val: 7, max: 10, color: '#c39797' },
+  { label: 'Sun vs Ironbark', val: 7, max: 10, color: '#c39797' },
   { label: 'Our usual', val: 4, max: 10, color: '#40826d' },
 ]
 
@@ -37,7 +37,7 @@ export default function SG2WhySuggested(_: { onBack?: () => void }) {
           </div>
 
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '16px 18px', display: 'flex', flexDirection: 'column', gap: 14 }}>
-            <div style={{ fontSize: 14, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b' }}>Game data · Sat 30 May vs Ironbark United</div>
+            <div style={{ fontSize: 14, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b' }}>Game data · Sun 31 May vs Ironbark United</div>
             <div>
               <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 10 }}>Seconds to win the ball back</div>
               {BARS.map(b => (
@@ -51,7 +51,7 @@ export default function SG2WhySuggested(_: { onBack?: () => void }) {
               ))}
             </div>
             <div style={{ fontSize: 13, lineHeight: '19px', color: MUT, borderTop: `1px solid ${LN}`, paddingTop: 10 }}>
-              Boot sensors · 7 seconds average on Saturday. Our usual is 4 seconds.
+              Boot sensors · 7 seconds average on Sunday. Our usual is 4 seconds.
             </div>
           </div>
 
@@ -76,9 +76,9 @@ export default function SG2WhySuggested(_: { onBack?: () => void }) {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '16px 18px' }}>
             <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 10 }}>What Clean Sheet makes of it</div>
-            <div style={{ fontSize: 14, lineHeight: '21px', color: MUT, marginBottom: 12 }}>On Saturday it took 7 seconds on average to win the ball back. The team's usual is 4 seconds. The difference showed up in 6 of the 8 goals conceded this season.</div>
+            <div style={{ fontSize: 14, lineHeight: '21px', color: MUT, marginBottom: 12 }}>On Sunday it took 7 seconds on average to win the ball back. The team's usual is 4 seconds. The difference showed up in 6 of the 8 goals conceded this season.</div>
             <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 8 }}>Why this drill</div>
-            {['A game reward for pressing fast: win it in 6 seconds or give a point away.', 'Closest match to what went wrong on Saturday.', 'Your players improved this in 3 sessions last term.'].map((point, i) => (
+            {['A game reward for pressing fast: win it in 6 seconds or give a point away.', 'Closest match to what went wrong on Sunday.', 'Your players improved this in 3 sessions last term.'].map((point, i) => (
               <div key={i} style={{ display: 'flex', gap: 10, padding: '6px 0', borderTop: `1px solid ${LN}` }}>
                 <div style={{ width: 20, height: 20, borderRadius: '50%', background: PALE, color: G, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flex: 'none', marginTop: 2 }}>✓</div>
                 <div style={{ fontSize: 14, lineHeight: '20px' }}>{point}</div>

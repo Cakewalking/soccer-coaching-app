@@ -7,7 +7,7 @@ const CHECKLIST=[
   {owner:'Both',label:'Consent',note:'12 of 17 families answered',done:false,action:'See',you:false},
   {owner:'Jess',label:'Baseline tests',note:'2 of 4 done · Jess running last 2',done:false,action:'See results',you:true},
   {owner:'Both',label:'Each player picks a goal',note:'Sam confirms · Jess can suggest',done:false,action:'See',you:false},
-  {owner:'Jess',label:'Friendly on 14 March',note:'Jess leading · 10:00 am · away',done:false,action:'See lineup',you:true},
+  {owner:'Jess',label:'Friendly on 15 March',note:'Jess leading · 10:00 am · away',done:false,action:'See lineup',you:true},
   {owner:'Sam',label:'Scores for grading',note:'Sam scores · asks Jess\'s view on 4',done:false,action:'Give view',you:true},
 ]
 export default function SPc2CoCoachPreSeason({onBack}:{onBack?:()=>void}){

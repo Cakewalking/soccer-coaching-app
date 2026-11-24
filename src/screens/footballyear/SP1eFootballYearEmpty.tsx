@@ -22,7 +22,7 @@ export default function SP1eFootballYearEmpty(_: { onBack?: () => void }) {
         <div style={{ fontSize: 20, fontWeight: 800, letterSpacing: '-0.02em', color: INK, marginBottom: 8 }}>Tell Clean Sheet when your season runs</div>
         <div style={{ fontSize: 14, color: MUT, lineHeight: 1.6, marginBottom: 24 }}>With the dates in, Home, suggestions and reminders change for pre-season, the season, post-season and a rest month. Your club can set them for every team at once.</div>
         <div style={{ display: 'flex', gap: 10 }}>
-          <button onClick={() => t('Dates added: pre-season from 2 February, round 1 on 11 April.')} style={{ height: 44, padding: '0 20px', borderRadius: 12, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Use Football Victoria's 2026 dates</button>
+          <button onClick={() => t('Dates added: pre-season from 2 February, round 1 on 12 April.')} style={{ height: 44, padding: '0 20px', borderRadius: 12, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Use Football Victoria's 2026 dates</button>
           <button onClick={() => setSheet('spdates')} style={{ height: 44, padding: '0 20px', borderRadius: 12, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Set my own</button>
         </div>
       </div>
@@ -53,7 +53,7 @@ export default function SP1eFootballYearEmpty(_: { onBack?: () => void }) {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 16 }}>
             {[
               { label: 'Pre-season starts', val: '2 February' },
-              { label: 'Round 1',           val: '11 April' },
+              { label: 'Round 1',           val: '12 April' },
               { label: 'Last game',         val: '30 August' },
               { label: 'Rest month',        val: 'December' },
             ].map(r => (

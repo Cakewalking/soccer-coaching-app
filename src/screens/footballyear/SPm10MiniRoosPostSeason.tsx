@@ -2,7 +2,7 @@ import { useState } from 'react'
 const G='#2f6252',GD='#1f4a3e',INK='#10211f',MUT='#4a5a57',LN='#e8edeb',PALE='#eef5f2'
 const CHECKLIST=[
   {label:'Season note to each family',note:'8 of 12 sent · short note, no scores',done:false,action:'See'},
-  {label:'Medal for everyone',note:'Hand out at the gala on Saturday',done:false,action:'See'},
+  {label:'Medal for everyone',note:'Hand out at the gala on Sunday',done:false,action:'See'},
   {label:'Coming back next year?',note:'9 yes · 2 not sure · 1 moving',done:false,action:'See'},
   {label:'Thank the helpers',note:'7 parents helped across the season',done:false,action:'Send thanks'},
   {label:'Bibs and balls back',note:'2 bibs and 1 ball out',done:false,action:'See'},
@@ -43,7 +43,7 @@ export default function SPm10MiniRoosPostSeason({onBack}:{onBack?:()=>void}){
           </div>
           <div style={{background:'#fff',border:`1px solid ${LN}`,borderRadius:14,padding:'14px 16px',marginBottom:12}}>
             <div style={{fontSize:15,fontWeight:700,color:INK,marginBottom:6}}>What's coming</div>
-            <div style={{fontSize:13,color:MUT,marginBottom:4}}>Summer gala — Saturday 25 October</div>
+            <div style={{fontSize:13,color:MUT,marginBottom:4}}>Summer gala — Sunday 25 October</div>
             <div style={{fontSize:13,color:MUT}}>4v4 Fridays — through November at the rec ground</div>
           </div>
           <div style={{background:PALE,border:`1px solid #c0d8cc`,borderRadius:12,padding:'12px 16px'}}>

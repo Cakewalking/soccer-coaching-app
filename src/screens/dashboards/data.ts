@@ -117,9 +117,9 @@ export const MINI_BOARD: MiniReview = {
   ],
 }
 
-/** The same review inside the live MiniRoos app, whose sample team is U9 Tom: 8 children played at Northgate City on Saturday 6 June. */
+/** The same review inside the live MiniRoos app, whose sample team is U9 Tom: 8 children played at Northgate City on Sunday 7 June. */
 export const MINI_LIVE: MiniReview = {
-  title: 'Saturday at Northgate City: everyone played', detail: 'U9 Tom · Sat 6 June · 4 games of 10 minutes · counted from your taps',
+  title: 'Sunday at Northgate City: everyone played', detail: 'U9 Tom · Sun 7 June · 4 games of 10 minutes · counted from your taps',
   headlines: [['Every child', '8 of 8', 'played in every game'], ['Brave moments', '14', 'a go at goal or at a player'], ['To try on Tuesday', '2 children', 'haven’t had a go at goal yet']],
   measures: [
     { name: 'Everyone played', value: '8 of 8', aim: 'aim all 8', n: 8, target: 8, better: 'higher', fill: 100, tick: 100, sure: 'You tapped' },
@@ -167,7 +167,7 @@ export const CLUB_WEEKEND = {
  * Not drawn in the pack: the numbers are U12 Sam's. Seniors do not share minutes evenly, so that tile is left out.
  */
 export function olderTeamGame(team: 'youth' | 'seniors'): GameReview {
-  if (team === 'youth') return { ...CLUB_GAME, big: '2–2', title: 'Drew at home with Tealside Town', detail: 'U16 Ollie · Sat 30 May · Theo and Leo scored' }
+  if (team === 'youth') return { ...CLUB_GAME, big: '2–2', title: 'Drew at home with Tealside Town', detail: 'U16 Ollie · Sun 31 May · Theo and Leo scored' }
   return {
     ...CLUB_GAME, big: '2–0', title: 'Won at home v Glenview Park', detail: 'Men’s 1sts · Sat 30 May · Harry and Mo scored',
     measures: CLUB_GAME.measures.filter(m => m.name !== 'Minutes shared evenly'),

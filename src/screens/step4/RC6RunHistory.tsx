@@ -89,8 +89,8 @@ export default function RC6RunHistory({ onBack }: { onBack?: () => void }) {
             </div>
           </div>
           <div style={{ background: PALE, border: `1px solid ${LN}`, borderRadius: 16, padding: '14px 16px' }}>
-            <div style={{ fontSize: 13, fontWeight: 700, color: G, marginBottom: 6 }}>Does it show on Saturday?</div>
-            <div style={{ fontSize: 14, lineHeight: '21px', color: MUT }}>After the first 2 runs, pressing wins went up 3 per game. Run 3 happened today — Saturday's data will show if it sticks.</div>
+            <div style={{ fontSize: 13, fontWeight: 700, color: G, marginBottom: 6 }}>Does it show on Sunday?</div>
+            <div style={{ fontSize: 14, lineHeight: '21px', color: MUT }}>After the first 2 runs, pressing wins went up 3 per game. Run 3 happened today — Sunday's data will show if it sticks.</div>
           </div>
         </div>
       </main>

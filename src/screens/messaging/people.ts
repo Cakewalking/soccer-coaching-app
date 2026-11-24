@@ -49,7 +49,7 @@ export const MES: Record<string, Me> = {
       ] },
       one('ollie.grant', [
         { text: 'Sore legs are down from six players to two since we capped sprints.', time: 'Mon' },
-        { from: 'ollie.grant', text: 'They finished Saturday strong. Keep the cap for another week?', time: 'Mon' },
+        { from: 'ollie.grant', text: 'They finished Sunday strong. Keep the cap for another week?', time: 'Mon' },
       ], 1),
       one('dev.singh', [
         { from: 'dev.singh', text: 'Noah says his knee is sore after Tuesday.', time: 'Tue' },
@@ -67,18 +67,18 @@ export const MES: Record<string, Me> = {
     ],
     chats: [
       one('sam.kelly', [
-        { from: 'sam.kelly', text: 'Hi Bianca, do you know which pitch we have this Saturday?', time: '2:08 pm' },
+        { from: 'sam.kelly', text: 'Hi Bianca, do you know which pitch we have this Sunday?', time: '2:08 pm' },
         { text: 'Let me check for you…', time: '2:10 pm' },
         { text: 'Yes, pitch 2 from 9:00. I’ll put the cones out early.', time: '2:14 pm' },
         { from: 'sam.kelly', text: 'Brilliant, thank you!', time: '2:15 pm' },
       ]),
       { id: 'g:coaches', group: 'All coaches', about: `${WC} · every coach`, members: ['sam.kelly', 'ollie.grant', 'tom.albers'], unread: 2, lines: [
-        { text: 'Photo day is Saturday 20 June. Team times are on the calendar.', time: 'Mon' },
+        { text: 'Photo day is Sunday 21 June. Team times are on the calendar.', time: 'Mon' },
         { from: 'tom.albers', text: 'Thanks. U9 Tom can do any time before 10.', time: 'Mon' },
         { from: 'ollie.grant', text: 'U16 Ollie are away that day. Can we do the Thursday?', time: '9:20 am' },
       ] },
       one('ruth.tan', [
-        { text: 'Two games on Saturday still have no referee.', time: 'Yesterday' },
+        { text: 'Two games on Sunday still have no referee.', time: 'Yesterday' },
         { from: 'ruth.tan', text: 'I have asked Zoe for the 8:30. One to go.', time: 'Yesterday' },
       ], 1),
       one('rachel.m', [{ from: 'rachel.m', text: 'Counts for the committee are in.', time: 'Mon' }, { text: 'On it.', time: 'Mon' }]),

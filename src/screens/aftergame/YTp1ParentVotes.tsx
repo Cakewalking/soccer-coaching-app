@@ -29,7 +29,7 @@ export default function YTp1ParentVotes({ onNav }: { onNav?: (s: string) => void
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" strokeWidth="2.2" strokeLinecap="round"><polyline points="15 18 9 12 15 6"/></svg>
         </button>
         <div style={{ flex: 1 }}>
-          <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)' }}>U12 Sam · Saturday at Ironbark</div>
+          <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)' }}>U12 Sam · Sunday at Ironbark</div>
           <div style={{ fontSize: 19, fontWeight: 800, color: '#fff' }}>Rate the game</div>
         </div>
         <div aria-label="Ask Clean Sheet" onClick={() => onNav?.('ASKp2-PhoneAskOpen')} style={{ width: 40, height: 40, borderRadius: '50%', background: 'rgba(255,255,255,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
@@ -42,7 +42,7 @@ export default function YTp1ParentVotes({ onNav }: { onNav?: (s: string) => void
         {/* Dark panel */}
         <div style={{ background: DARK, borderRadius: 16, padding: '18px 18px', color: '#fff' }}>
           <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', color: AMBER, textTransform: 'uppercase', marginBottom: 8 }}>Won 3–1 · Closes Tuesday</div>
-          <div style={{ fontSize: 21, fontWeight: 800, color: '#fff', lineHeight: 1.25, marginBottom: 8 }}>How did they go on Saturday?</div>
+          <div style={{ fontSize: 21, fontWeight: 800, color: '#fff', lineHeight: 1.25, marginBottom: 8 }}>How did they go on Sunday?</div>
           <div style={{ fontSize: 14, color: PALEON, lineHeight: 1.5 }}>Rate as many as you like, 1 to 5. Effort and fair play count as much as goals.</div>
         </div>
 

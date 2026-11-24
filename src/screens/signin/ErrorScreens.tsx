@@ -175,7 +175,7 @@ export function ER2UploadFailed() {
       <div style={{ padding: '20px 24px 16px' }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 10 }}>
           <span style={{ fontSize: 22, fontWeight: 800, letterSpacing: '-0.02em', color: INK }}>Add a game</span>
-          <span style={{ fontSize: 13, color: MUT }}>Sat 30 May · away to Ironbark United</span>
+          <span style={{ fontSize: 13, color: MUT }}>Sun 31 May · away to Ironbark United</span>
         </div>
       </div>
       <TwoCols

@@ -9,12 +9,12 @@ const SUBNAV = ['Tonight\'s session', 'This week', 'Suggested', 'Drill library',
 const FILTERS = ['All', 'League', 'Friendly', 'Drills', 'Warm-ups', 'Tests']
 const RECORDS = [
   { date: 'Thu 4 Jun', label: 'Win it back · 6 seconds', type: 'Drill', players: '8', key: '5.2 s avg · 68% win rate' },
-  { date: 'Sat 30 May', label: 'vs Ironbark United', type: 'League', players: '16', key: 'W 3–1 · measured' },
+  { date: 'Sun 31 May', label: 'vs Ironbark United', type: 'League', players: '16', key: 'W 3–1 · measured' },
   { date: 'Tue 2 Jun', label: 'Win it back · 6 seconds', type: 'Drill', players: '8', key: '6.1 s avg · 52% win rate' },
   { date: 'Thu 28 May', label: 'Win it back · 6 seconds', type: 'Drill', players: '7', key: '7.0 s avg · 46% win rate' },
-  { date: 'Sat 23 May', label: 'vs Saltmarsh City', type: 'League', players: '16', key: 'L 1–2 · measured' },
+  { date: 'Sun 24 May', label: 'vs Saltmarsh City', type: 'League', players: '16', key: 'L 1–2 · measured' },
   { date: 'Tue 26 May', label: 'Rondo 5 v 2', type: 'Drill', players: '12', key: 'Passing accuracy 84%' },
-  { date: 'Sat 16 May', label: 'vs Northgate', type: 'League', players: '15', key: 'D 1–1 · measured' },
+  { date: 'Sun 17 May', label: 'vs Northgate', type: 'League', players: '15', key: 'D 1–1 · measured' },
   { date: 'Thu 14 May', label: '11+ Kids warm-up', type: 'Warm-up', players: '16', key: 'Full set completed' },
 ]
 

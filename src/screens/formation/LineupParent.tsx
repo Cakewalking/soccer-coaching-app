@@ -26,7 +26,7 @@ export default function LineupParent({ childId = 'p7', onNav }: { childId?: stri
         <button onClick={() => onNav?.('STO17-HomeStoryParent')} aria-label="Back" style={{ width: 32, height: 32, borderRadius: 999, border: '1px solid rgba(255,255,255,0.3)', background: 'transparent', color: '#fff', cursor: 'pointer', fontSize: 16 }}>‹</button>
         <div style={{ flexGrow: 1 }}>
           <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.75)' }}>{cfg.teamLabel.split(' · ')[0]} · from Sam, Friday 6:00 pm</div>
-          <div style={{ fontSize: 18, fontWeight: 800 }}>Saturday’s line-up</div>
+          <div style={{ fontSize: 18, fontWeight: 800 }}>Sunday’s line-up</div>
         </div>
         <div style={{ width: 34, height: 34, borderRadius: 999, background: '#e8cfcf', color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }}>LT</div>
       </div>
@@ -34,7 +34,7 @@ export default function LineupParent({ childId = 'p7', onNav }: { childId?: stri
       <div style={{ flexGrow: 1, padding: 16, display: 'flex', flexDirection: 'column', gap: 14 }}>
         {/* Message panel */}
         <div style={{ background: PITCH, color: '#fff', borderRadius: 16, padding: '16px 18px' }}>
-          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', color: '#e8c56a', marginBottom: 6 }}>SAT 6 JUNE · 9:30 HOME v HARBOUR ROVERS</div>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', color: '#e8c56a', marginBottom: 6 }}>SUN 7 JUNE · 9:30 HOME v HARBOUR ROVERS</div>
           <div style={{ fontSize: 22, fontWeight: 800, letterSpacing: '-0.01em', lineHeight: 1.2 }}>{child.first} starts on {childPos ? posName[childPos] ?? 'the pitch' : 'the pitch'}.</div>
           <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.8)', marginTop: 6, lineHeight: 1.5 }}>She plays the whole first half and comes back on for the last ten minutes.</div>
         </div>

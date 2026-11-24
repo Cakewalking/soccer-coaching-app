@@ -57,7 +57,7 @@ export default function DF1DrillDetail(_: { onBack?: () => void }) {
           </div>
           <div style={{ background: PALE, borderRadius: 14, padding: '12px 14px' }}>
             <div style={{ fontSize: 12, fontWeight: 700, color: MUT, marginBottom: 4 }}>Why it's suggested</div>
-            <div style={{ fontSize: 13, color: INK, lineHeight: 1.5 }}>Saturday vs Ironbark United: gave the ball away in our half, 21 times. We aim for under 12.</div>
+            <div style={{ fontSize: 13, color: INK, lineHeight: 1.5 }}>Sunday vs Ironbark United: gave the ball away in our half, 21 times. We aim for under 12.</div>
           </div>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>

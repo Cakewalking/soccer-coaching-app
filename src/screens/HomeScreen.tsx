@@ -344,7 +344,7 @@ export default function HomeScreen({ onNav, onCalendar, empty, onAsk, askQuestio
           </div>
           <div>
             <div style={{ fontSize: 28, lineHeight: '34px', fontWeight: 700, letterSpacing: '-0.02em' }}>Training tonight</div>
-            <div style={{ fontSize: 15, lineHeight: '22px' }}>90 minutes · warm-up and 4 drills · built from Saturday's game</div>
+            <div style={{ fontSize: 15, lineHeight: '22px' }}>90 minutes · warm-up and 4 drills · built from Sunday's game</div>
           </div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
             {['Win the ball back faster', 'Keep the lines close', 'Strong last 15 minutes'].map(cue => (
@@ -381,7 +381,7 @@ export default function HomeScreen({ onNav, onCalendar, empty, onAsk, askQuestio
         <section className="tile" style={{ flexGrow: 1, gap: 10 }} aria-label="Last game">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
             <h2 className="h2">Last game</h2>
-            <span style={{ fontSize: 13, color: '#4a5a57' }}>Sat 30 May · away</span>
+            <span style={{ fontSize: 13, color: '#4a5a57' }}>Sun 31 May · away</span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <div>

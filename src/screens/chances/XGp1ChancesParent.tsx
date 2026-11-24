@@ -12,7 +12,7 @@ export interface ParentChances { team: string; child: string; band: Age; made: n
 /** The designed board: Ella, in the under-11s (U11 Luke, by the club's naming). */
 export const ELLA_U11: ParentChances = { team: 'U11 Luke', child: 'Ella', band: 'u10', made: 2.4, given: 1.2, noResult: true, how: [['From wide, then a cut-back', 4], ['Through the middle', 2], ['Winning it back high', 2]] }
 
-/** The demo parent's own child: Mia, U12 Sam. Numbers are Saturday's game, from the same data the coach sees. */
+/** The demo parent's own child: Mia, U12 Sam. Numbers are Sunday's game, from the same data the coach sees. */
 export function miaU12(): ParentChances {
   const t = CHANCES.u12, n = satGame(t)
   return { team: t.name, child: 'Mia', band: t.band, made: n.xg, given: n.xga, noResult: false, how: t.sat.how.map(h => [h.t, h.n]) }
@@ -34,7 +34,7 @@ export default function XGp1ChancesParent({ data = ELLA_U11, onNav = () => {}, i
     <div data-screen="XGp1-ChancesParent" style={{ width: 390, minHeight: 844, margin: '0 auto', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', background: '#faf5ec', color: INK, fontFamily: "'DM Sans',system-ui,sans-serif" }}>
       <header style={{ flex: 'none', background: G, color: '#fff', padding: '10px 12px 14px', display: 'flex', alignItems: 'center', gap: 4 }}>
         <button onClick={() => onNav('STO17-HomeStoryParent')} aria-label="Back" style={{ flex: 'none', width: 44, height: 44, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'none', border: 0, color: '#fff', cursor: 'pointer' }}><Ico d="M15 18l-6-6 6-6" size={20} sw={2.4} /></button>
-        <span style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}><span style={{ fontSize: 12, color: '#dcefe8' }}>{data.team} · Saturday</span><h1 style={{ margin: 0, fontSize: 22, lineHeight: '27px', letterSpacing: '-0.02em' }}>How the team played</h1></span>
+        <span style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}><span style={{ fontSize: 12, color: '#dcefe8' }}>{data.team} · Sunday</span><h1 style={{ margin: 0, fontSize: 22, lineHeight: '27px', letterSpacing: '-0.02em' }}>How the team played</h1></span>
         <button onClick={() => onNav('ASKp2-PhoneAskOpen')} aria-label="Ask Clean Sheet" style={{ flex: 'none', width: 44, height: 44, borderRadius: 999, border: '1.5px solid #a9cfc0', background: 'none', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}><Ico d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z" size={20} /></button>
         <span style={{ flex: 'none', width: 44, height: 44, borderRadius: 999, background: '#e8cfcf', color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700, marginLeft: 6 }}>{initials}</span>
       </header>

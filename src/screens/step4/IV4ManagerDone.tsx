@@ -3,7 +3,7 @@ import { useState } from 'react'
 const GD = '#1f4a3e', INK = '#10211f'
 
 const FIRST_THINGS = [
-  'Ask who\'s coming on Saturday',
+  'Ask who\'s coming on Sunday',
   'Check the duty roster',
   'Pick up camera kit 1 on Friday',
 ]
@@ -24,7 +24,7 @@ export default function IV4ManagerDone() {
         <div style={{ fontSize: 28, fontWeight: 800, color: '#fff', letterSpacing: '-0.02em', marginBottom: 4 }}>Join as team manager</div>
         <div style={{ fontSize: 20, fontWeight: 700, color: 'rgba(255,255,255,0.85)' }}>You're in, Rob</div>
         <div style={{ fontSize: 15, color: 'rgba(255,255,255,0.65)', marginTop: 8, lineHeight: 1.5 }}>
-          You're U12 Sam's team manager. Saturday's meet time is already in your Home.
+          You're U12 Sam's team manager. Sunday's meet time is already in your Home.
         </div>
       </div>
 

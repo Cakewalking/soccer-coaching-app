@@ -3,10 +3,10 @@ import { useState } from 'react'
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 
 const KIT = [
-  { name: 'Kit 1', team: 'U12 Sam', person: 'Rob Owusu', battery: '96%', status: 'Booked Sat' },
+  { name: 'Kit 1', team: 'U12 Sam', person: 'Rob Owusu', battery: '96%', status: 'Booked Sun' },
   { name: 'Kit 2', team: '—', person: 'At repair', battery: '—', status: 'At repair · Back Fri 12 Jun' },
-  { name: 'Kit 3', team: 'U12 Girls Ana', person: 'Tina Wu', battery: '88%', status: 'Booked Sat' },
-  { name: 'Kit 4', team: 'U13 Girls Meg', person: 'Meg Doyle', battery: '91%', status: 'Booked Sat' },
+  { name: 'Kit 3', team: 'U12 Girls Ana', person: 'Tina Wu', battery: '88%', status: 'Booked Sun' },
+  { name: 'Kit 4', team: 'U13 Girls Meg', person: 'Meg Doyle', battery: '91%', status: 'Booked Sun' },
 ]
 
 export default function DK1Kit(_: { onBack?: () => void }) {
@@ -56,7 +56,7 @@ export default function DK1Kit(_: { onBack?: () => void }) {
 
         {/* Camera table */}
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 20px', marginBottom: 20 }}>
-          <div style={{ fontSize: 14, fontWeight: 700, color: INK, marginBottom: 12 }}>Match cameras this Saturday</div>
+          <div style={{ fontSize: 14, fontWeight: 700, color: INK, marginBottom: 12 }}>Match cameras this Sunday</div>
           <div style={{ display: 'grid', gridTemplateColumns: '80px 1fr 1fr 80px 1fr', gap: 10, fontSize: 12, fontWeight: 700, color: MUT, paddingBottom: 8, borderBottom: `1px solid ${LN}` }}>
             {['Kit', 'Team', 'Picked up by', 'Battery', 'Status'].map(h => <div key={h}>{h}</div>)}
           </div>

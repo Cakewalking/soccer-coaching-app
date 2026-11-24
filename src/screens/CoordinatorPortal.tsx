@@ -33,8 +33,8 @@ const STAT_CARDS = [
 ]
 
 const TODO_ITEMS = [
-  { title: 'U8 Hannah has no game leader for Saturday', desc: '8:30 at home. Four young game leaders asked, none yet.', action: 'Ask again',    toast: 'Asking again. Four game leaders will get a notification.',   urgent: true },
-  { title: 'Goal nets and flags: 0 of 2 volunteers',   desc: 'Pack-down, Saturday 2:30 pm.',                           action: 'Ask families', toast: 'Post shared with the volunteer board.',                       urgent: true },
+  { title: 'U8 Hannah has no game leader for Sunday', desc: '8:30 at home. Four young game leaders asked, none yet.', action: 'Ask again',    toast: 'Asking again. Four game leaders will get a notification.',   urgent: true },
+  { title: 'Goal nets and flags: 0 of 2 volunteers',   desc: 'Pack-down, Sunday 2:30 pm.',                           action: 'Ask families', toast: 'Post shared with the volunteer board.',                       urgent: true },
   { title: '2 games moved in Dribl',                   desc: 'U13 Chris and U16 Ollie. Teams and parents were told automatically.', action: 'Check', toast: 'Fixtures synced.',                             urgent: false },
   { title: "5 new players haven't finished in PlayFootball", desc: "They can train, but can't go on a team sheet.",    action: 'Remind',       toast: 'Reminder sent to 5 families.',                              urgent: false },
   { title: "Aiden Yu's dispensation is still with FV", desc: "Sent 28 May. He can't play for U11 Luke until it's back.", action: 'View',      toast: 'Dispensation open.',                                         urgent: false },
@@ -49,11 +49,11 @@ function ThisWeekTab() {
       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 20 }}>
         <div>
           <h1 style={{ margin: '0 0 2px', fontSize: 26, fontWeight: 700, letterSpacing: '-0.02em' }}>Hi Bianca</h1>
-          <p style={{ margin: 0, fontSize: 14, color: '#4a5a57' }}>Club coordinator · week 9 of 18 · 14 games on Saturday</p>
+          <p style={{ margin: 0, fontSize: 14, color: '#4a5a57' }}>Club coordinator · week 9 of 18 · 14 games on Sunday</p>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
           <button onClick={() => showToast('Message started to 14 team managers.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Message all managers</button>
-          <button onClick={() => showToast('Run sheet sent to your email and the clubrooms printer.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Saturday run sheet</button>
+          <button onClick={() => showToast('Run sheet sent to your email and the clubrooms printer.')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Sunday run sheet</button>
         </div>
       </div>
 
@@ -73,7 +73,7 @@ function ThisWeekTab() {
         {/* To do list */}
         <div>
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: 10 }}>
-            <span style={{ fontSize: 16, fontWeight: 700 }}>To do before Saturday</span>
+            <span style={{ fontSize: 16, fontWeight: 700 }}>To do before Sunday</span>
             <span style={{ fontSize: 13, color: '#4a5a57' }}>5 things · most urgent first</span>
           </div>
           <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, overflow: 'hidden' }}>
@@ -90,11 +90,11 @@ function ThisWeekTab() {
           </div>
         </div>
 
-        {/* Saturday at a glance sidebar */}
+        {/* Sunday at a glance sidebar */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
           <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '14px 16px' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
-              <span style={{ fontSize: 15, fontWeight: 700 }}>Saturday at a glance</span>
+              <span style={{ fontSize: 15, fontWeight: 700 }}>Sunday at a glance</span>
               <button onClick={() => openThing('the club calendar', 'club')} style={{ fontSize: 13, color: '#2f6252', fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>Calendar</button>
             </div>
             {[
@@ -166,7 +166,7 @@ export default function CoordinatorPortal({ onBack: _onBack, empty = false, home
             <div style={{ fontSize: 14, color: '#4a5a57', marginBottom: 20 }}>Club coordinator · nothing set up yet</div>
             <div style={{ background: '#fff', border: '1px solid #e9eae8', borderRadius: 16, padding: 24, marginBottom: 20 }}>
               <div style={{ fontSize: 20, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>Your weekly jobs land here</div>
-              <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.6, marginBottom: 16 }}>Once teams are imported and fixtures sync from Dribl, this page lists what needs doing before each Saturday.</div>
+              <div style={{ fontSize: 14, color: '#4a5a57', lineHeight: 1.6, marginBottom: 16 }}>Once teams are imported and fixtures sync from Dribl, this page lists what needs doing before each Sunday.</div>
               <button onClick={() => openThing('the PlayFootball import. This syncs registrations and team lists', 'club')} style={{ height: 44, padding: '0 16px', borderRadius: 999, border: 0, background: '#2f6252', color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Import from PlayFootball</button>
             </div>
             <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: '#5c6b67', marginBottom: 10 }}>What you will see</div>

@@ -64,7 +64,7 @@ export default function STWa1eWhereWeAtEmpty({ onNav }: { onNav?: (s: string) =>
               </div>
             </div>
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' as const }}>
-              <button aria-label="Record Saturday's game" onClick={() => onNav?.('REC1-RecordHub')} style={{ height: 44, padding: '0 24px', background: G, color: '#fff', border: 'none', borderRadius: 10, fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Record Saturday's game</button>
+              <button aria-label="Record Sunday's game" onClick={() => onNav?.('REC1-RecordHub')} style={{ height: 44, padding: '0 24px', background: G, color: '#fff', border: 'none', borderRadius: 10, fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Record Sunday's game</button>
               <button aria-label="Set our style" onClick={() => tool('Home › Our style')} style={{ height: 44, padding: '0 24px', background: '#fff', color: G, border: `1.5px solid ${G}`, borderRadius: 10, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Set our style</button>
             </div>
           </div>

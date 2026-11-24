@@ -273,7 +273,7 @@ export default function TrainingScreen({ role, onNav, empty, nextOpponent = 'Har
               Training tonight · {d.start}–{d.end}
             </h1>
             <div style={{ fontSize: 13, lineHeight: '18px', marginTop: 2, color: '#5c6b67' }}>
-              Wattle Creek Reserve · 16 players · {totalMins} minutes · 2 days to {nextOpponent}
+              Wattle Creek Reserve · 16 players · {totalMins} minutes · 3 days to {nextOpponent}
             </div>
           </div>
           <div style={{ display: 'flex', gap: 8, alignItems: 'center', flex: 'none' }}>
@@ -314,7 +314,7 @@ export default function TrainingScreen({ role, onNav, empty, nextOpponent = 'Har
           <section>
             <h2 style={{ margin: '0 0 12px', fontSize: 15, fontWeight: 700, color: '#10211f' }}>Why this plan</h2>
             <p style={{ margin: '0 0 14px', fontSize: 13, lineHeight: '18px', color: '#4a5a57' }}>
-              3 fixes from Saturday vs {lastOpponent}
+              3 fixes from Sunday vs {lastOpponent}
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
               {focus.map((f, i) => (

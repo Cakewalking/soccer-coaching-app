@@ -5,7 +5,7 @@ const NAV = ['Home', 'Squad', 'Training', 'Match day', 'Clips']
 const SUBNAV = ['Overview', 'Inbox', 'Calendar', 'Fixtures and results', 'Our style', 'Team staff']
 const MSGS = [
   { ini: 'CS', name: 'Clean Sheet · Wellness check-ins', time: '7:30 am', text: 'Ella has felt low two days running', sub: 'Needs a look', bold: true, badge: '#c04040' },
-  { ini: 'CS', name: 'Clean Sheet · Data', time: '7:12 am', text: '3 GPS vests didn\'t sync', sub: 'Fix before Saturday' },
+  { ini: 'CS', name: 'Clean Sheet · Data', time: '7:12 am', text: '3 GPS vests didn\'t sync', sub: 'Fix before Sunday' },
   { ini: 'PS', name: 'Priya Shah · Fitness coach', time: 'Yesterday', text: 'Sprint caps set for Noah and Zoe', sub: 'Both are in a growth spurt. I\'ve capped them…' },
   { ini: 'LT', name: 'Linh Tran · Mia\'s mum', time: 'Tue', text: 'Mia might be 10 minutes late Thursday', sub: 'Waiting on you' },
   { ini: 'CS', name: 'Clean Sheet', time: 'Mon', text: 'Player goals: 3 need work', sub: 'Grace, Leo and Ava are behind on their goals.' },

@@ -87,7 +87,7 @@ export function CNp1PlayerSelfReview({ onNav = () => {} }: { onNav?: Nav }) {
   const s = useCn(), { toast, say } = useToast(), ask = useAsk('selfreview', 'player', 'How did you go?')
   const [effort, setEffort] = useState(s.selfReview?.effort ?? 4), [well, setWell] = useState(s.selfReview?.well ?? 'Winning it back'), [work, setWork] = useState(s.selfReview?.work ?? 'Scanning')
   return (
-    <Phone id="CNp1-PlayerSelfReview" over={`${TEAMS.u16} · Saturday v Tealside Town`} title="How did you go?" ini="CW" home="STO19-HomeStoryPlayerOlder" onNav={onNav} toast={toast} held={ask.held}
+    <Phone id="CNp1-PlayerSelfReview" over={`${TEAMS.u16} · Sunday v Tealside Town`} title="How did you go?" ini="CW" home="STO19-HomeStoryPlayerOlder" onNav={onNav} toast={toast} held={ask.held}
       intro={['YOUR TAKE · 1 MINUTE', 'Your view counts as much as the coach’s.', s.selfReview ? 'Sent. Ollie sees it next to his own rating. Nobody else does.' : 'Ollie sees it next to his own rating. Nobody else does.']}
       foot="Asked after games only, once a week at most."
       left={{ t: 'Skip', on: () => { ask.done(); say('Skipped. Nothing is sent.'); setTimeout(() => onNav('STO19-HomeStoryPlayerOlder'), 900) } }}
@@ -198,13 +198,13 @@ const FAMILY_ICS = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Clean Sheet//Fa
 export function CNp11FamilyView({ onNav = () => {} }: { onNav?: Nav }) {
   const s = useCn(), { toast, say } = useToast()
   const kids = [
-    { ini: 'MT', n: 'Mia', team: TEAMS.u12, when: 'Sat 9:30 · home, pitch 2', note: s.reportSent ? 'New clip from Sam. Mid-season report is ready.' : 'New clip from Sam.' },
-    { ini: 'BT', n: 'Bao', team: `${TEAMS.u8} · MiniRoos`, when: 'Sat 9:30 · away, Ridgeway Reserve', note: s.jobs.includes('lift') ? 'Lift asked for Saturday. Oranges are yours this week.' : 'Oranges are yours this week.' },
+    { ini: 'MT', n: 'Mia', team: TEAMS.u12, when: 'Sun 9:30 · home, pitch 2', note: s.reportSent ? 'New clip from Sam. Mid-season report is ready.' : 'New clip from Sam.' },
+    { ini: 'BT', n: 'Bao', team: `${TEAMS.u8} · MiniRoos`, when: 'Sun 9:30 · away, Ridgeway Reserve', note: s.jobs.includes('lift') ? 'Lift asked for Sunday. Oranges are yours this week.' : 'Oranges are yours this week.' },
   ]
   return (
     <Phone id="CNp11-FamilyView" over="Wattle Creek FC" title="The Tran family" ini="LT" home="STO17-HomeStoryParent" onNav={onNav} toast={toast}
-      intro={[`THIS WEEK · ${kids.length} CHILDREN`, 'Saturday clashes: Mia and Bao both kick off at 9:30.', 'Mia is at home, Bao is away at Ridgeway.']}
-      left={{ t: s.jobs.includes('one-calendar') ? 'Calendar added' : 'One calendar', on: () => { saveFile('tran-family-football.ics', FAMILY_ICS, 'text/calendar'); addJob('one-calendar'); say('Both children added to one calendar feed.') } }} right={{ t: s.jobs.includes('lift') ? 'Lift asked' : 'Ask for a lift', on: () => { addJob('lift'); say(`Lift request sent to ${TEAMS.u8}’s parents for Saturday.`) } }}>
+      intro={[`THIS WEEK · ${kids.length} CHILDREN`, 'Sunday clashes: Mia and Bao both kick off at 9:30.', 'Mia is at home, Bao is away at Ridgeway.']}
+      left={{ t: s.jobs.includes('one-calendar') ? 'Calendar added' : 'One calendar', on: () => { saveFile('tran-family-football.ics', FAMILY_ICS, 'text/calendar'); addJob('one-calendar'); say('Both children added to one calendar feed.') } }} right={{ t: s.jobs.includes('lift') ? 'Lift asked' : 'Ask for a lift', on: () => { addJob('lift'); say(`Lift request sent to ${TEAMS.u8}’s parents for Sunday.`) } }}>
       {kids.map(k => (
         <button key={k.n} onClick={() => onNav('STO17-HomeStoryParent')} style={{ ...tile, padding: '12px 14px', gap: 4, textAlign: 'left', fontFamily: 'inherit', color: INK, cursor: 'pointer' }}>
           <span style={{ display: 'flex', alignItems: 'center', gap: 10 }}><span style={{ width: 36, height: 36, borderRadius: 999, background: PALE, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }}>{k.ini}</span><span style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}><strong style={{ fontSize: 16 }}>{k.n}</strong><span style={{ fontSize: 13, color: MUT }}>{k.team}</span></span><Ico d={IC.chev} size={18} sw={2.4} /></span>
@@ -289,7 +289,7 @@ export function CNp18IncidentLog({ onNav = () => {} }: { onNav?: Nav }) {
   const OPTS = { who: ['Jai Patel', 'Mia Tran', 'Noah Okafor', 'Zoe Hart', 'Grace Reid'], when: ['Today, 27th minute', 'Today, first half', 'Today, second half', 'At training'], did: ['Ice, sat out 10 minutes, back on', 'Came off, did not go back on', 'Checked, played on', 'Parent called'] }
   const pickPhoto = useRef<HTMLInputElement>(null)
   return (
-    <Phone id="CNp18-IncidentLog" over={`${TEAMS.u12} · Saturday game`} title="Log an incident" ini="SK" home="CPh1-CoachPhoneHome" onNav={onNav} toast={toast}
+    <Phone id="CNp18-IncidentLog" over={`${TEAMS.u12} · Sunday game`} title="Log an incident" ini="SK" home="CPh1-CoachPhoneHome" onNav={onNav} toast={toast}
       intro={['GOES TO HELEN, WELFARE OFFICER', 'Write down what happened while it is fresh.', s.incident.sent ? 'Logged. Helen and Jai’s parent have it.' : 'One minute now saves a hard conversation later.']}
       foot="Jai’s parent is told. A head knock opens the concussion steps."
       left={{ t: photos ? `${photos} ${photos === 1 ? 'photo' : 'photos'} added` : 'Add a photo', on: () => pickPhoto.current?.click() }}
@@ -310,7 +310,7 @@ export function CNp19SidelineRating({ onNav = () => {} }: { onNav?: Nav }) {
   const s = useCn(), { toast, say } = useToast(), ask = useAsk('sideline', 'staff', 'How was the sideline?')
   const [ours, setOurs] = useState(s.sideline.ours), [theirs, setTheirs] = useState(s.sideline.theirs), [note, setNote] = useState(s.sideline.note)
   return (
-    <Phone id="CNp19-SidelineRating" over={`${TEAMS.u12} · Saturday`} title="How was the sideline?" ini="RO" home="STO16-HomeStoryManager" onNav={onNav} toast={toast} held={ask.held}
+    <Phone id="CNp19-SidelineRating" over={`${TEAMS.u12} · Sunday`} title="How was the sideline?" ini="RO" home="STO16-HomeStoryManager" onNav={onNav} toast={toast} held={ask.held}
       intro={['ONE RATING A GAME', 'What was it like to stand on our side today?', 'About the whole sideline. Never about one person.']}
       foot="Seen by team, over a season. To report a person, use “Tell Helen”."
       left={{ t: 'Tell Helen', on: () => onNav('PC2b-TellHelen') }} right={{ t: s.sideline.sent ? 'Sent' : 'Send', on: () => { setCn({ sideline: { ours, theirs, note, sent: true } }); say(`Thanks. Added to this season’s picture for ${TEAMS.u12}.`) } }}>

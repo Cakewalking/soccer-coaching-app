@@ -109,7 +109,7 @@ function makeSlides(opponent: string, vs: string, lastResult: string) {
     { id: 0, label: 'START',     title: `${opponent} today`,           text: `Last game we ${lastResult}. Here is what worked, and three things we fix today.`,  color: '#2f6252' },
     { id: 1, label: 'WENT WELL', title: 'Pressing high worked',        text: '+18% more ball wins in their half vs our average.',                           color: '#40826d' },
     { id: 2, label: 'WENT WELL', title: 'We scored when attacked fast',text: '2 of 3 fast attacks ended in a goal. Best rate all season.',                  color: '#40826d' },
-    { id: 3, label: 'FIX THIS',  title: 'Win the ball back faster',    text: '7 seconds average on Saturday. Our best is 4.',                               color: '#6b4a4e' },
+    { id: 3, label: 'FIX THIS',  title: 'Win the ball back faster',    text: '7 seconds average on Sunday. Our best is 4.',                               color: '#6b4a4e' },
     { id: 4, label: 'FIX THIS',  title: 'Keep our lines close',        text: '26 m gap between lines. Under 20 m is our target.',                           color: '#6b4a4e' },
     { id: 5, label: 'FIX THIS',  title: 'Keep running to the whistle', text: 'Sprint speed dropped 22% after minute 50. Hold it.',                          color: '#6b4a4e' },
     { id: 6, label: 'TODAY',     title: `${vs} ${opponent}`,              text: 'Press early. Win it back fast. Keep the shape in the last 20.',                color: '#2f6252' },
@@ -145,7 +145,7 @@ const PLAYER_CHECKS = [
   { ini: 'NO', name: 'Noah', badge: 'Sore knees',      rating: 3.8, bg: '#fdf0ee', textColor: '#7a3030' },
 ]
 
-export default function MatchDayScreen({ onNav, empty, opponent = 'Harbour Rovers', away = false, when = 'Sat 6 Jun · 9:30 am · home', lastResult = 'won 3–1' }: Props) {
+export default function MatchDayScreen({ onNav, empty, opponent = 'Harbour Rovers', away = false, when = 'Sun 7 Jun · 9:30 am · home', lastResult = 'won 3–1' }: Props) {
   const vs = away ? 'at' : 'vs'
   const edits = useDoneAll()
   const SLIDES = makeSlides(opponent, vs, lastResult).map(sl => ({ ...sl, title: edits[`talk:${opponent}:${sl.id}:title`] ?? sl.title, text: edits[`talk:${opponent}:${sl.id}:text`] ?? sl.text }))
@@ -191,7 +191,7 @@ export default function MatchDayScreen({ onNav, empty, opponent = 'Harbour Rover
               <span style={{ width: 8, height: 8, borderRadius: '999px', background: '#d4a844', display: 'block', flexShrink: 0 }} />
               3 of 5 ready
             </div>
-            <button onClick={() => openThing(`minutes plan for Saturday ${vs} ${opponent}`, 'coach')} style={{
+            <button onClick={() => openThing(`minutes plan for ${when.startsWith('Sat') ? 'Saturday' : 'Sunday'} ${vs} ${opponent}`, 'coach')} style={{
               height: 36, padding: '0 14px', borderRadius: '999px', border: '1px solid #c5c8c4',
               background: '#ffffff', color: '#10211f', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer',
             }}>Minutes plan</button>

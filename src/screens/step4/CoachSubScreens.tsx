@@ -63,7 +63,7 @@ export function WK1ThisWeek() {
   const [selPlayer, setSelPlayer] = useState<string | null>(null)
   const trainingNav = ['Tonight\'s session', 'This week', 'Suggested', 'Drill library', 'Growth and load', 'Record']
   const focuses = [
-    { n: 1, title: 'Win the ball back faster', stat: '7 s on Saturday · usual is 4' },
+    { n: 1, title: 'Win the ball back faster', stat: '7 s on Sunday · usual is 4' },
     { n: 2, title: 'Keep the lines close', stat: '26 m gap · aim for 18 m' },
     { n: 3, title: 'Strong last 15 minutes', stat: 'Sprints dropped 22% late' },
   ]
@@ -71,13 +71,13 @@ export function WK1ThisWeek() {
     { day: 'TUESDAY', date: '2 Jun', status: 'Done', title: 'Pressing and shape', detail: 'Chase and tag · Win it back · Small game', note: 'Warm-up cut short by rain', extra: '15 of 16 came · 13 rated effort, average 6' },
     { day: 'WEDNESDAY', date: '3 Jun', status: 'Rest', title: 'Wellness check-ins only', detail: '', note: 'Ella low for the second day', extra: '' },
     { day: 'THURSDAY', date: '4 Jun', status: 'Tonight', title: 'Repeat and finish', detail: "5:45 · 11+ Kids warm-up with Priya\nRondo · Win it back · Small game", note: 'Noah and Zoe: 3 sprints · Kai: passing only', extra: 'Mia late, about 6:10' },
-    { day: 'SATURDAY', date: '6 Jun', status: 'Game', title: 'vs Harbour Rovers', detail: 'Home · meet 8:40 · kick-off 9:30', note: '12 in · 1 maybe · 2 out · 2 to answer', extra: 'Team talk ready Friday night · Camera kit 1 booked by Rob' },
+    { day: 'SUNDAY', date: '7 Jun', status: 'Game', title: 'vs Harbour Rovers', detail: 'Home · meet 8:40 · kick-off 9:30', note: '12 in · 1 maybe · 2 out · 2 to answer', extra: 'Team talk ready Friday night · Camera kit 1 booked by Rob' },
   ]
   const players = [
-    { init: 'NO', name: 'Noah', note: 'Growing fast · 3 sprints Thursday, 8 Saturday' },
+    { init: 'NO', name: 'Noah', note: 'Growing fast · 3 sprints Thursday, 8 Sunday' },
     { init: 'ZH', name: 'Zoe', note: 'Growing fast · same caps as Noah' },
     { init: 'EB', name: 'Ella', note: 'Low check-ins two days · lighter Thursday' },
-    { init: 'KR', name: 'Kai', note: 'Tight hamstring · passing only, away Saturday' },
+    { init: 'KR', name: 'Kai', note: 'Tight hamstring · passing only, away Sunday' },
   ]
   return (
     <Shell navActive="Training" sideItems={trainingNav} sideActive="This week">
@@ -116,13 +116,13 @@ export function WK1ThisWeek() {
         })}
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 12, padding: '14px 18px' }}>
           <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', color: MUT, marginBottom: 6 }}>NEXT TUESDAY 9 Jun</div>
-          <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>Built after Saturday</div>
+          <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>Built after Sunday</div>
           <div style={{ fontSize: 12, color: MUT }}>Clean Sheet suggests it Sunday, once the review is in · Coach meeting at 7:30 pm</div>
         </div>
       </div>
 
       <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 20px', marginBottom: 20 }}>
-        <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 12 }}>How we'll know on Saturday</div>
+        <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 12 }}>How we'll know on Sunday</div>
         {[
           { label: 'Seconds to win it back', was: '7 s', aim: '5 s' },
           { label: 'Gap between the lines', was: '26 m', aim: '20 m' },
@@ -162,20 +162,20 @@ export function CF1Fixtures() {
   const [selectedResult, setSelectedResult] = useState<number | null>(null)
   const homeNav = ['Overview', 'Inbox', 'Calendar', 'Fixtures and results', 'Our style', 'Team staff']
   const results = [
-    { date: 'Sat 30 May', opp: 'Ironbark United', ha: 'A', score: '3–1', res: 'W' },
-    { date: 'Sat 23 May', opp: 'Saltmarsh', ha: 'A', score: '1–2', res: 'L' },
-    { date: 'Sat 16 May', opp: 'Tallwood City', ha: 'H', score: '1–1', res: 'D' },
-    { date: 'Sat 9 May', opp: 'Tealside Town', ha: 'A', score: '2–0', res: 'W' },
-    { date: 'Sat 2 May', opp: 'Kestrel Park', ha: 'H', score: '3–1', res: 'W' },
-    { date: 'Sat 25 Apr', opp: 'Lyndhurst SC', ha: 'H', score: '2–1', res: 'W' },
-    { date: 'Sat 18 Apr', opp: 'Riverside', ha: 'A', score: '0–2', res: 'L' },
-    { date: 'Sat 11 Apr', opp: 'Banksia FC', ha: 'H', score: '4–2', res: 'W' },
+    { date: 'Sun 31 May', opp: 'Ironbark United', ha: 'A', score: '3–1', res: 'W' },
+    { date: 'Sun 24 May', opp: 'Saltmarsh', ha: 'A', score: '1–2', res: 'L' },
+    { date: 'Sun 17 May', opp: 'Tallwood City', ha: 'H', score: '1–1', res: 'D' },
+    { date: 'Sun 10 May', opp: 'Tealside Town', ha: 'A', score: '2–0', res: 'W' },
+    { date: 'Sun 3 May', opp: 'Kestrel Park', ha: 'H', score: '3–1', res: 'W' },
+    { date: 'Sun 26 Apr', opp: 'Lyndhurst SC', ha: 'H', score: '2–1', res: 'W' },
+    { date: 'Sun 19 Apr', opp: 'Riverside', ha: 'A', score: '0–2', res: 'L' },
+    { date: 'Sun 12 Apr', opp: 'Banksia FC', ha: 'H', score: '4–2', res: 'W' },
   ]
   const upcoming = [
-    { day: 'SAT', date: '6', title: 'vs Harbour Rovers', detail: '9:30 · meet 8:40 · white kit · Rob booked camera' },
-    { day: 'SAT', date: '13', title: 'at Kestrel Park', detail: '9:00 · their ground' },
-    { day: 'SAT', date: '20', title: 'at Banksia FC', detail: '9:00' },
-    { day: 'SAT', date: '27', title: 'vs Riverside', detail: '9:30' },
+    { day: 'SUN', date: '7', title: 'vs Harbour Rovers', detail: '9:30 · meet 8:40 · white kit · Rob booked camera' },
+    { day: 'SUN', date: '14', title: 'at Kestrel Park', detail: '9:00 · their ground' },
+    { day: 'SUN', date: '21', title: 'at Banksia FC', detail: '9:00' },
+    { day: 'SUN', date: '28', title: 'vs Riverside', detail: '9:30' },
   ]
   const ladder = [
     { pos: 1, name: 'Saltmarsh', played: 8, pts: 20 },
@@ -268,7 +268,7 @@ export function AV1Availability() {
   const squadNav = ['Players', 'Development goals', 'Wellness', 'Availability', 'Consent and privacy']
   const events = [
     {
-      title: 'Sat 6 Jun · 9:30', sub: 'vs Harbour Rovers',
+      title: 'Sun 7 Jun · 9:30', sub: 'vs Harbour Rovers',
       ins: [
         { init: 'AL', name: 'Ava Lindqvist', note: '' },
         { init: 'TR', name: 'Tom Reyes', note: '' },
@@ -355,7 +355,7 @@ export function AV1Availability() {
       </div>
 
       <div onClick={() => setSelEvent('sat13')} style={{ background: selEvent === 'sat13' ? PALE : '#fff', border: `${selEvent === 'sat13' ? 2 : 1}px solid ${selEvent === 'sat13' ? G : LN}`, borderRadius: 14, padding: '16px 20px', cursor: 'pointer' }}>
-        <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 4 }}>Sat 13 Jun · 9:00</div>
+        <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 4 }}>Sun 14 Jun · 9:00</div>
         <div style={{ fontSize: 13, color: MUT }}>at Kestrel Park</div>
       </div>
     </Shell>
@@ -395,7 +395,7 @@ export function MS1TeamSheet() {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 20 }}>
         <div>
           <div style={{ fontSize: 20, fontWeight: 800, color: INK, marginBottom: 2 }}>Team sheet</div>
-          <div style={{ fontSize: 13, color: MUT }}>Sat 6 Jun vs Harbour Rovers · 14 of 17 · due in Dribl by 9:00</div>
+          <div style={{ fontSize: 13, color: MUT }}>Sun 7 Jun vs Harbour Rovers · 14 of 17 · due in Dribl by 9:00</div>
         </div>
         <div style={{ display: 'flex', gap: 10 }}>
           <button onClick={() => setShowAvail(v => !v)} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: `1px solid ${showAvail ? G : LN}`, background: showAvail ? PALE : '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, color: G, cursor: 'pointer' }}>Who's coming</button>
@@ -478,7 +478,7 @@ export function R1MatchReview() {
       <div style={{ marginBottom: 20 }}>
         <div style={{ fontSize: 24, fontWeight: 800, color: INK, marginBottom: 2 }}>3–1</div>
         <div style={{ fontSize: 15, fontWeight: 600, color: G, marginBottom: 2 }}>Won away at Ironbark United</div>
-        <div style={{ fontSize: 13, color: MUT, marginBottom: 8 }}>Sat 30 May · Mia, Jai and Zoe scored · 7 key clips</div>
+        <div style={{ fontSize: 13, color: MUT, marginBottom: 8 }}>Sun 31 May · Mia, Jai and Zoe scored · 7 key clips</div>
         <div style={{ display: 'flex', gap: 10 }}>
           <div style={{ fontSize: 12, padding: '4px 12px', borderRadius: 20, background: PALE, color: G }}>Good data for 57 of 60 min</div>
           <button onClick={() => setHighlights(h => !h)} style={{ height: 32, padding: '0 16px', borderRadius: 20, border: `1px solid ${highlights ? G : LN}`, background: highlights ? PALE : '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, cursor: 'pointer' }}>{highlights ? 'Highlights playing ▶' : 'Highlights · 4 min'}</button>

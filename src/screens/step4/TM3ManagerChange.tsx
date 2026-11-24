@@ -25,8 +25,8 @@ export default function TM3ManagerChange(_: { onBack?: () => void }) {
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 8 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
             <div style={{ width: 44, height: 48, borderRadius: 12, background: '#e8cfcf', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-              <div style={{ fontSize: 10, fontWeight: 700 }}>SAT</div>
-              <div style={{ fontSize: 18, fontWeight: 700, lineHeight: 1.1 }}>6</div>
+              <div style={{ fontSize: 10, fontWeight: 700 }}>SUN</div>
+              <div style={{ fontSize: 18, fontWeight: 700, lineHeight: 1.1 }}>7</div>
             </div>
             <div style={{ fontSize: 15, fontWeight: 700 }}>vs Harbour Rovers</div>
           </div>
@@ -43,7 +43,7 @@ export default function TM3ManagerChange(_: { onBack?: () => void }) {
           </div>
           <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#7a4b5b', marginTop: 2 }}>Message</div>
           <div style={{ border: `1px solid ${LN}`, borderRadius: 12, padding: '10px 12px', fontSize: 15, lineHeight: 1.5 }}>
-            Hi all, please arrive by <strong>8:40</strong> on Saturday, not 9:00. We've moved to pitch 2 and need time to set up the camera. Kick-off is still 9:30. Thanks, Rob
+            Hi all, please arrive by <strong>8:40</strong> on Sunday, not 9:00. We've moved to pitch 2 and need time to set up the camera. Kick-off is still 9:30. Thanks, Rob
           </div>
         </div>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '4px 14px' }}>

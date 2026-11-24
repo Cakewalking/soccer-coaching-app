@@ -36,7 +36,7 @@ export default function HG2eKeeperSessionEmpty(_: { onBack?: () => void }) {
           <div style={{ fontSize: 14, fontWeight: 700, color: INK, marginBottom: 14 }}>What you'll see</div>
           {[
             { n: '1', label: 'Every keeper from U12 up', sub: 'With one thing to work on' },
-            { n: '2', label: 'Keeper clips from Saturday', sub: "Only keepers' moments" },
+            { n: '2', label: 'Keeper clips from Sunday', sub: "Only keepers' moments" },
             { n: '3', label: "Who's had a session with you", sub: "So nobody misses out" },
           ].map(r => (
             <div key={r.n} style={{ display: 'flex', gap: 12, padding: '10px 0', borderBottom: `1px solid ${LN}` }}>

@@ -300,7 +300,7 @@ export default function FormationBuilder({ team = 'juniors', onNav, empty, prese
         )}
         <IconBtn label="Undo" onClick={undo} path="M3 7v6h6M3 13a9 9 0 103-7.7L3 8" />
         <IconBtn label="Share or print" onClick={() => setShareOpen(true)} path="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8M16 6l-4-4-4 4M12 2v13" />
-        <button onClick={() => say("Saved as Saturday's line-up.")} style={btnOutline}>Save</button>
+        <button onClick={() => say(`Saved as ${cfg.game.startsWith('Sat') ? 'Saturday' : 'Sunday'}'s line-up.`)} style={btnOutline}>Save</button>
         <button onClick={() => onNav ? onNav('T2-TabletMatch') : openThing('Match day · Line-up and minutes', 'coach')} style={btnPrimary}>Use on the team sheet</button>
       </div>
 
@@ -383,7 +383,7 @@ export default function FormationBuilder({ team = 'juniors', onNav, empty, prese
               {benchPlayers.map(p => <BenchRow key={p.id} p={p} picked={picked === p.id} dragging={drag?.id === p.id} onClick={() => { if (didDrag.current) { didDrag.current = false; return } tapBench(p) }} onPointerDown={e => startDrag(e, p.id)} loose={loose} />)}
               {unavailable.length > 0 && (
                 <>
-                  <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.07em', color: MUT, margin: '10px 0 4px' }}>NOT AVAILABLE SATURDAY</div>
+                  <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.07em', color: MUT, margin: '10px 0 4px' }}>NOT AVAILABLE {cfg.game.startsWith('Sat') ? 'SATURDAY' : 'SUNDAY'}</div>
                   {unavailable.map(p => <BenchRow key={p.id} p={p} picked={false} dragging={false} onClick={() => tapBench(p)} onPointerDown={() => {}} loose={loose} />)}
                 </>
               )}
@@ -530,13 +530,13 @@ function GamePicker({ cfg, ins, onLoad, onClose, onNav, say }: { cfg: TeamCfg; i
       <div style={{ position: 'absolute', top: 60, left: 150, width: 470, maxHeight: 520, overflowY: 'auto', zIndex: 60, background: '#fff', borderRadius: 14, border: `1px solid ${LN}`, boxShadow: '0 16px 40px rgba(16,33,31,0.22)' }}>
         <div style={{ padding: '12px 14px 6px', fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', color: MUT }}>COMING UP</div>
         <Row title={cfg.game} sub={`${cfg.defaultShape} · both halves set`} tag="Editing" onClick={() => { onClose(); say('Editing this game.') }} />
-        <Row title="Sat 13 June · at Kestrel Park" sub="Not started" onClick={() => { onClose(); say('New game — pick a shape and start placing.') }} />
+        <Row title={`${cfg.game.startsWith('Sat') ? 'Sat 13 June' : 'Sun 14 June'} · at Kestrel Park`} sub="Not started" onClick={() => { onClose(); say('New game — pick a shape and start placing.') }} />
         <div style={{ padding: '12px 14px 6px', fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', color: MUT }}>START FROM ONE THAT WORKED</div>
         {ins ? wordsFor(cfg.key).map(m => {
           const l = bestLineup(ins, m.key, ins.bestShape[m.key]); if (!l) return null
           return <Row key={m.key} title={m.label} sub={`${l.shape} · ${fmt(m.key, value(l.agg, m.key, ins.gameLen))} ${m.unit} · ${l.agg.mins} minutes together`} tag="From film" onClick={() => { onClose(); onLoad(m.key) }} />
         }) : <div style={{ padding: '10px 14px', borderTop: `1px solid ${LN}`, fontSize: 12, color: MUT }}>Nothing from recorded games for this team.</div>}
-        <Row title="Last Saturday at Ironbark" sub="3-3-2 · won 3–1" tag="Used" onClick={() => { onClose(); say('Copied last Saturday’s line-up into this game.') }} />
+        <Row title={`Last ${cfg.game.startsWith('Sat') ? 'Saturday' : 'Sunday'} at Ironbark`} sub="3-3-2 · won 3–1" tag="Used" onClick={() => { onClose(); say(`Copied last ${cfg.game.startsWith('Sat') ? 'Saturday' : 'Sunday'}’s line-up into this game.`) }} />
         <div style={{ display: 'flex', gap: 8, padding: 12, borderTop: `1px solid ${LN}` }}>
           <button onClick={() => { onClose(); onNav ? onNav('SQ1-BestLineups') : openThing('Line-ups that worked', 'coach') }} style={{ ...btnOutline, flex: 1 }}>All that worked</button>
           <button onClick={() => { onClose(); say('Blank line-up — everyone on the bench.') }} style={{ ...btnPrimary, flex: 1 }}>New blank line-up</button>

@@ -33,7 +33,7 @@ export default function MetricDetailScreen({ onClose }: Props) {
             </div>
             <div style={{ display: 'flex', gap: 24, flex: 'none', textAlign: 'right' }}>
               <div>
-                <div style={{ fontSize: 11, fontWeight: 600, color: '#5c6b67', marginBottom: 2 }}>Saturday vs Ironbark</div>
+                <div style={{ fontSize: 11, fontWeight: 600, color: '#5c6b67', marginBottom: 2 }}>Sunday vs Ironbark</div>
                 <div style={{ fontSize: 36, fontWeight: 800, color: '#c39797', letterSpacing: '-0.02em' }}>7 s</div>
               </div>
               <div>
@@ -54,7 +54,7 @@ export default function MetricDetailScreen({ onClose }: Props) {
           {/* Bar chart */}
           <div style={{ background: '#ffffff', borderRadius: 16, padding: '20px 24px', border: '1px solid #e9eae8', marginBottom: 20 }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 16 }}>
-              <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>Every time we lost it on Saturday</div>
+              <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>Every time we lost it on Sunday</div>
               <div style={{ fontSize: 12, color: '#5c6b67' }}>{BAR_DATA.length} times · tap a bar for the clip</div>
             </div>
             <div style={{ position: 'relative', height: 140 }}>

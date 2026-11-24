@@ -6,16 +6,16 @@ const NAV_ITEMS = ['Home', 'Squad', 'Training', 'Match day', 'Clips']
 const SUBNAV = ['Tonight\'s session', 'This week', 'Suggested', 'Drill library', 'Growth and load', 'Record']
 
 const FOCUS_POINTS = [
-  { n: 1, title: 'Win the ball back faster', reason: '7 s on Saturday · usual is 4 s', drills: '1 drill tonight', color: '#40826d' },
+  { n: 1, title: 'Win the ball back faster', reason: '7 s on Sunday · usual is 4 s', drills: '1 drill tonight', color: '#40826d' },
   { n: 2, title: 'Keep defence and midfield closer', reason: '25 m gap before 6 of 8 chances', drills: '1 drill tonight', color: '#2f6252' },
   { n: 3, title: 'Strong last 15 minutes', reason: 'Sprints dropped 22% after min 45', drills: 'Fixed with subs', color: '#1f4a3e' },
 ]
 
 const DRILLS = [
   { start: '5:45', mins: 10, tag: 'Warm-up', name: 'Warm-up rondo, 5 v 2', why: 'Gets passing sharp and starts the pressing habit early.', setup: ['7 per group', '10 × 10 m', 'Bibs, 1 ball'], color: '#e8cfcf' },
-  { start: '6:00', mins: 25, tag: 'Focus 1', name: 'Win it back in 6 seconds', why: 'We took 7 seconds to win the ball back on Saturday; our usual is 4.', setup: ['8 v 8', '40 × 30 m', 'Bibs, cones'], color: '#40826d', textColor: '#fff', adjust: 'Noah and Zoe: 3 sprints max' },
+  { start: '6:00', mins: 25, tag: 'Focus 1', name: 'Win it back in 6 seconds', why: 'We took 7 seconds to win the ball back on Sunday; our usual is 4.', setup: ['8 v 8', '40 × 30 m', 'Bibs, cones'], color: '#40826d', textColor: '#fff', adjust: 'Noah and Zoe: 3 sprints max' },
   { start: '6:25', mins: 30, tag: 'Focus 2', name: 'Small game, tight shape', why: 'The gap between our lines was over 25 m before 6 of their 8 chances.', setup: ['7 v 7 + GKs', 'Half pitch, 3 zones', 'Goals, cones'], color: '#2f6252', textColor: '#fff', adjust: 'Mia: first 15 minutes only' },
-  { start: '6:55', mins: 10, tag: 'Recovery', name: 'Cool-down and stretch', why: 'Good recovery after a hard night keeps legs fresh for Saturday.', setup: ['Whole squad', 'Centre circle', 'No kit'], color: '#e9eae8' },
+  { start: '6:55', mins: 10, tag: 'Recovery', name: 'Cool-down and stretch', why: 'Good recovery after a hard night keeps legs fresh for Sunday.', setup: ['Whole squad', 'Centre circle', 'No kit'], color: '#e9eae8' },
 ]
 
 export default function T3TrainingTab(_: { onBack?: () => void }) {
@@ -43,7 +43,7 @@ export default function T3TrainingTab(_: { onBack?: () => void }) {
       <div style={{ flex: 'none', padding: '12px 28px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <div>
           <div style={{ fontSize: 20, fontWeight: 700, letterSpacing: '-0.02em' }}>Training tonight · 5:45–7:05 pm</div>
-          <div style={{ fontSize: 14, color: MUT }}>Wattle Creek Reserve · 16 players · 80 minutes · 2 days to Harbour Rovers</div>
+          <div style={{ fontSize: 14, color: MUT }}>Wattle Creek Reserve · 16 players · 80 minutes · 3 days to Harbour Rovers</div>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
           <button onClick={() => mark('talk')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${is('talk') ? G : LN}`, background: is('talk') ? '#eef5f2' : '#fff', fontSize: 14, fontWeight: 600, color: is('talk') ? G : INK, cursor: 'pointer' }}>{is('talk') ? 'Team talk open ✓' : 'Team talk'}</button>
@@ -57,7 +57,7 @@ export default function T3TrainingTab(_: { onBack?: () => void }) {
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, overflow: 'hidden' }}>
             <div style={{ background: '#40826d', color: '#fff', padding: '10px 14px' }}>
               <div style={{ fontSize: 15, fontWeight: 700 }}>Why this plan</div>
-              <div style={{ fontSize: 13, opacity: 0.85 }}>3 fixes from Saturday vs Ironbark</div>
+              <div style={{ fontSize: 13, opacity: 0.85 }}>3 fixes from Sunday vs Ironbark</div>
             </div>
             {FOCUS_POINTS.map(f => (
               <div key={f.n} onClick={() => setSelectedFocus(f.n)} style={{ display: 'flex', gap: 10, padding: '10px 14px', borderTop: `1px solid ${LN}`, cursor: 'pointer', background: selectedFocus === f.n ? '#eef5f2' : 'transparent' }}>

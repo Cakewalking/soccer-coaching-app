@@ -158,29 +158,29 @@ import React, { useState } from 'react'
 export function D7U9Blue() {
   return (
     <Shell>
-      <PageHeader name="U9 Mark" badge="Kangaroos · MiniRoos" sub="coach Mark Ellis (away Sat) · 11 players · read-only, the way its coaches see it" />
+      <PageHeader name="U9 Mark" badge="Kangaroos · MiniRoos" sub="coach Mark Ellis (away Sun) · 11 players · read-only, the way its coaches see it" />
       <TwoCols
         left={<>
           <StatGrid stats={[
-            { label: 'Coming Saturday', val: '9 of 11', sub: 'Parents answer in the app' },
+            { label: 'Coming Sunday', val: '9 of 11', sub: 'Parents answer in the app' },
             { label: 'Had a turn in goal', val: '7 of 11', sub: 'This term · everyone gets a go' },
             { label: 'Training turnout', val: '84%', sub: 'Last 2 weeks · club 87%', warn: true },
-            { label: 'Game leader', val: 'Booked', sub: 'Saturday · no scores or ladder under 12' },
+            { label: 'Game leader', val: 'Booked', sub: 'Sunday · no scores or ladder under 12' },
           ]} />
           <NeedsAttention items={[
-            { text: 'No coach on Saturday', sub: 'Mark is away. Tom Albers can cover if U9 Tom kicks off 30 minutes earlier.', action: 'Ask Tom' },
+            { text: 'No coach on Sunday', sub: 'Mark is away. Tom Albers can cover if U9 Tom kicks off 30 minutes earlier.', action: 'Ask Tom' },
           ]} />
           <WorkingOn phase="Discovery phase" desc="Fun games with a ball each. This fortnight: running with the ball." planned={10} total={12} />
         </>}
         right={<>
           <StaffCard
             staff={[
-              { initials: 'ME', name: 'Mark Ellis', role: 'Coach · away Sat', check: 'Valid · Oct 2027' },
+              { initials: 'ME', name: 'Mark Ellis', role: 'Coach · away Sun', check: 'Valid · Oct 2027' },
               { initials: 'KS', name: 'Kerry Shaw', role: 'Team manager', check: 'Valid · Mar 2027' },
             ]}
             fitness="Coach runs the 11+ Kids warm-up."
           />
-          <NextGame date="Sat 6 Jun" opp="Glenview Park" time="9:00 · Home · pitch 4" loc="" note="Clips only · no scores under U12&#10;Training Tue 5:00" />
+          <NextGame date="Sun 7 Jun" opp="Glenview Park" time="9:00 · Home · pitch 4" loc="" note="Clips only · no scores under U12&#10;Training Tue 5:00" />
           <Players fewest="54% of a game" fewestSub="Everyone over half a game" consent={10} consentTotal={11} />
         </>}
       />
@@ -195,10 +195,10 @@ export function D7U9Green() {
       <TwoCols
         left={<>
           <StatGrid stats={[
-            { label: 'Coming Saturday', val: '9 of 10', sub: 'Parents answer in the app' },
+            { label: 'Coming Sunday', val: '9 of 10', sub: 'Parents answer in the app' },
             { label: 'Had a turn in goal', val: '4 of 10', sub: 'This term · everyone gets a go', warn: true },
             { label: 'Training turnout', val: '93%', sub: 'Last 2 weeks · club 87%' },
-            { label: 'Game leader', val: 'Booked', sub: 'Saturday · no scores or ladder under 12' },
+            { label: 'Game leader', val: 'Booked', sub: 'Sunday · no scores or ladder under 12' },
           ]} />
           <NeedsAttention items={[
             { text: 'Club course due', sub: "Tom hasn't done the club course yet. Next one is Sat 20 Jun.", action: 'Book Tom' },
@@ -213,7 +213,7 @@ export function D7U9Green() {
             ]}
             fitness="Coach runs the 11+ Kids warm-up."
           />
-          <NextGame date="Sat 6 Jun" opp="Ironbark United" time="8:30 · Away · Ironbark Park" loc="" note="Clips only · no scores under U12&#10;Training Wed 5:00" />
+          <NextGame date="Sun 7 Jun" opp="Ironbark United" time="8:30 · Away · Ironbark Park" loc="" note="Clips only · no scores under U12&#10;Training Wed 5:00" />
           <Players fewest="60% of a game" fewestSub="Everyone over half a game" consent={10} consentTotal={10} />
         </>}
       />
@@ -228,10 +228,10 @@ export function D7U10Mixed() {
       <TwoCols
         left={<>
           <StatGrid stats={[
-            { label: 'Coming Saturday', val: '11 of 13', sub: 'Parents answer in the app' },
+            { label: 'Coming Sunday', val: '11 of 13', sub: 'Parents answer in the app' },
             { label: 'Had a turn in goal', val: '8 of 13', sub: 'This term · everyone gets a go' },
             { label: 'Training turnout', val: '86%', sub: 'Last 2 weeks · club 87%' },
-            { label: 'Game leader', val: 'Booked', sub: 'Saturday · no scores or ladder under 12' },
+            { label: 'Game leader', val: 'Booked', sub: 'Sunday · no scores or ladder under 12' },
           ]} />
           <NeedsAttention items={[
             { text: "1 family hasn't done consent", sub: "Their child can't be in team photos yet.", action: 'Remind' },
@@ -247,7 +247,7 @@ export function D7U10Mixed() {
             ]}
             fitness="Coach runs the 11+ Kids warm-up."
           />
-          <NextGame date="Sat 6 Jun" opp="Tealside Town" time="9:30 · Away · Elderberry Park" loc="" note="Clips only · no scores under U12&#10;Training Mon and Wed 5:30" />
+          <NextGame date="Sun 7 Jun" opp="Tealside Town" time="9:30 · Away · Elderberry Park" loc="" note="Clips only · no scores under U12&#10;Training Mon and Wed 5:30" />
           <Players fewest="52% of a game" fewestSub="Everyone over half a game" consent={12} consentTotal={13} />
         </>}
       />
@@ -279,7 +279,7 @@ export function D7U12Girls() {
             ]}
             fitness="Coach runs the 11+ Kids warm-up."
           />
-          <NextGame date="Sat 6 Jun" opp="Tealside Town" time="11:00 · Home · pitch 2" loc="" note="Camera: Kit 3&#10;Training Tue and Thu 5:45" />
+          <NextGame date="Sun 7 Jun" opp="Tealside Town" time="11:00 · Home · pitch 2" loc="" note="Camera: Kit 3&#10;Training Tue and Thu 5:45" />
           <Players fewest="60% of a game" fewestSub="Everyone over half a game" consent={15} consentTotal={15} />
         </>}
       />
@@ -301,7 +301,7 @@ export function D7U13Boys() {
           ]} />
           <NeedsAttention items={[
             { text: "Chris's check ends in 9 days", sub: "He can't coach from 14 Jun without it.", action: 'Send link' },
-            { text: 'Only 3 of 6 games recorded', sub: 'No camera free on Saturdays while Kit 2 is at repair.', action: 'See kit' },
+            { text: 'Only 3 of 6 games recorded', sub: 'No camera free on Sundays while Kit 2 is at repair.', action: 'See kit' },
             { text: "2 families haven't done consent", sub: "Their clips are blurred and sensor data isn't kept.", action: 'Remind' },
           ]} />
           <WorkingOn phase="Skill Acquisition phase" desc="One core skill a fortnight, in small games. Now: first touch." planned={9} total={12} />
@@ -314,7 +314,7 @@ export function D7U13Boys() {
             ]}
             fitness="No fitness lead · coach runs warm-ups."
           />
-          <NextGame date="Sat 6 Jun" opp="Glenview Park" time="12:30 · Away · Glenview Reserve" loc="" note="No camera booked&#10;Training Mon and Wed 6:30" />
+          <NextGame date="Sun 7 Jun" opp="Glenview Park" time="12:30 · Away · Glenview Reserve" loc="" note="No camera booked&#10;Training Mon and Wed 6:30" />
           <Players fewest="51% of a game" fewestSub="Everyone over half a game" consent={15} consentTotal={17} warn={true} />
         </>}
       />
@@ -346,7 +346,7 @@ export function D7U13Girls() {
             ]}
             fitness="Priya Shah, club fitness lead."
           />
-          <NextGame date="Sat 6 Jun" opp="Tallwood City" time="12:00 · Home · pitch 1" loc="" note="Camera: Kit 4&#10;Training Tue and Thu 6:30" />
+          <NextGame date="Sun 7 Jun" opp="Tallwood City" time="12:00 · Home · pitch 1" loc="" note="Camera: Kit 4&#10;Training Tue and Thu 6:30" />
           <Players fewest="53% of a game" fewestSub="Everyone over half a game" consent={18} consentTotal={18} />
         </>}
       />
@@ -381,7 +381,7 @@ export function D7U16Boys() {
             ]}
             fitness="Priya Shah, club fitness lead."
           />
-          <NextGame date="Sat 6 Jun" opp="Harbour Rovers" time="3:30 · Away · Rovers Park" loc="" note="No camera booked&#10;Training Mon and Wed 7:00" />
+          <NextGame date="Sun 7 Jun" opp="Harbour Rovers" time="3:30 · Away · Rovers Park" loc="" note="No camera booked&#10;Training Mon and Wed 7:00" />
           <Players fewest="22% of a game" fewestSub="4 players under a third" consent={14} consentTotal={14} warn={true} />
         </>}
       />

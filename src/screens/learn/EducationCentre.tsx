@@ -216,7 +216,7 @@ export default function EducationCentre({ s, k, go, say, start, isNew = false }:
 
   // ── EC5 · make one from a clip ─────────────────────────────────────────────
   if (view === 'make') {
-    const MOMENTS: [string, string, string, string, boolean][] = [['Poppy takes a player on', '0:10', 'Saturday · 22nd minute', 'Poppy', true], ['Ella: big touches into space', '0:09', 'Saturday · 9th minute', 'Ella', true], ['Jai cuts inside', '0:10', 'Saturday · 31st minute', 'Jai', false], ['Arlo: rolling it out', '0:08', 'Saturday · 40th minute', 'Arlo', true]]
+    const MOMENTS: [string, string, string, string, boolean][] = [['Poppy takes a player on', '0:10', 'Sunday · 22nd minute', 'Poppy', true], ['Ella: big touches into space', '0:09', 'Sunday · 9th minute', 'Ella', true], ['Jai cuts inside', '0:10', 'Sunday · 31st minute', 'Jai', false], ['Arlo: rolling it out', '0:08', 'Sunday · 40th minute', 'Arlo', true]]
     const [title, len, when, who, canCrop] = MOMENTS[moment], secs = Number(len.split(':')[1])
     const STEPS = ['Pick a moment', 'Trim it', 'Who is in it', 'Name it', 'Club check'], at = lib.clip === 'none' ? 2 : lib.clip === 'asked' ? 3 : 4
     const check = () => { if (!canCrop) { say(`This clip cannot be sent. Max’s family has said no to film being shared, and he is too close to ${who} to crop out. Pick another moment.`); return } setLib(x.who, { clip: 'checking' }); say('Sent to Rachel Moore. Nobody else sees it until she says yes.') }
@@ -226,7 +226,7 @@ export default function EducationCentre({ s, k, go, say, start, isNew = false }:
         <div style={col}><Note title="Why only things done well">Children did better, and felt more capable, after watching their own best moments than their everyday ones. <Src n={3} onOpen={why} /></Note><Note title="Nobody is shown without a yes">A child whose family has said no is never in a clip, even in the background.</Note></div>
       </Page>)
     return (
-      <Page id="EC5-MakeOne" title="Make one from a clip" sub="From Saturday’s film" go={go} cols={PLAY}
+      <Page id="EC5-MakeOne" title="Make one from a clip" sub="From Sunday’s film" go={go} cols={PLAY}
         right={<><Seg mode="players" onMode={mode} /><Btn big onClick={() => open('p')}>Cancel</Btn><Btn primary big onClick={check}>Send to Rachel to check</Btn></>}>
         <ol aria-label="Steps" style={{ gridColumn: '1 / -1', listStyle: 'none', margin: 0, padding: 0, display: 'grid', gridTemplateColumns: 'repeat(5, minmax(0,1fr))', gap: 8 }}>{STEPS.map((st, n) => <li key={st} aria-current={n === at ? 'step' : undefined} style={{ display: 'flex', alignItems: 'center', gap: 8, minHeight: 40, padding: '0 12px', borderRadius: 10, border: n === at ? 0 : `1px solid ${LINE}`, background: n === at ? INK : '#fff', color: n === at ? '#fff' : INK, fontSize: 14, fontWeight: 700 }}>{n < at ? <Tick /> : <span style={{ flex: 'none', width: 20, height: 20, borderRadius: 999, background: n === at ? '#fff' : PALE, color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11 }}>{n + 1}</span>}{st}</li>)}</ol>
         <div style={col}>
@@ -380,7 +380,7 @@ export default function EducationCentre({ s, k, go, say, start, isNew = false }:
     const board = sample && hero.title === 'Coaching playing out from the keeper', saved = lib.saved.includes(hero.id), now = nextLesson(c)
     const reason = board ? `Your team lost the ball 6 times playing out from the keeper, and ${day}’s session works on it. This film shows a coach at your club doing exactly that.` : `${tuesday.headline} ${day}’s session works on it. This film is from a coach at your club.`
     const list = lib.saved.map(id => item(id)).filter((i): i is Item => !!i && seen(i))
-    const chapters: Chapter[] = hero.lesson ? chaptersFor(hero.lesson, x.hasFilm) : [{ key: 'film', frame: 'figure', label: 'The film', short: 'Film', secs: hero.secs ?? 120, lines: [board ? '“Keeper, who is free?”' : hero.title] }, ...(picked && (sample || x.hasFilm) ? [{ key: 'team', frame: 'team' as const, label: 'Your team', short: 'Your team', secs: 11, lines: [board ? 'Saturday: the ball lost playing out from the keeper.' : 'From your last game.'] }] : [])]
+    const chapters: Chapter[] = hero.lesson ? chaptersFor(hero.lesson, x.hasFilm) : [{ key: 'film', frame: 'figure', label: 'The film', short: 'Film', secs: hero.secs ?? 120, lines: [board ? '“Keeper, who is free?”' : hero.title] }, ...(picked && (sample || x.hasFilm) ? [{ key: 'team', frame: 'team' as const, label: 'Your team', short: 'Your team', secs: 11, lines: [board ? 'Sunday: the ball lost playing out from the keeper.' : 'From your last game.'] }] : [])]
     return (
       <Page id="EC6-CoachesHome" title="Education centre" sub={`For coaches · ${C.length} films, reads, checklists and templates`} go={go} cols={PLAY} right={head('coaches')}>
         <div style={{ ...col, gap: 8 }}>
@@ -393,7 +393,7 @@ export default function EducationCentre({ s, k, go, say, start, isNew = false }:
         </div>
         <div style={col}>
           <section aria-label="Why this one" style={pinned}>
-            <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}><h2 style={h2}>{picked ? 'Why this one' : 'New from your club'}</h2>{picked && <span style={chipS()}>From Saturday</span>}</span>
+            <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}><h2 style={h2}>{picked ? 'Why this one' : 'New from your club'}</h2>{picked && <span style={chipS()}>From Sunday</span>}</span>
             <span style={{ fontSize: 14, lineHeight: '20px' }}>{picked ? reason : `${hero.about}. After your first filmed game, the film here is picked from what your next session works on.`}</span>
             <span style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>{picked && <Btn primary onClick={() => go('GS1-ProposedSession')}>Open {day}’s session</Btn>}<Btn onClick={() => { setLib(x.who, l => ({ notUseful: [...l.notUseful, hero.id] })); say('Thanks. You will see fewer like this.') }}>Not useful</Btn></span>
           </section>

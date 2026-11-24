@@ -119,7 +119,7 @@ function StartView({ empty, onFriendly, onDrill, onRecorded, onHowWeMeasure, onR
   )
 
   const recordOptions = [
-    { label: 'A league game', note: 'Sat 6 Jun vs Harbour Rovers · matched to your fixture', onClick: onLeague },
+    { label: 'A league game', note: 'Sun 7 Jun vs Harbour Rovers · matched to your fixture', onClick: onLeague },
     { label: 'A friendly', note: 'Any game outside the fixture list. You choose whether it counts', onClick: onFriendly },
     { label: 'A training drill', note: '4 tonight', onClick: onDrill },
     { label: 'A warm-up', note: 'The same warm-up each week shows how sharp they are', onClick: onDrill },
@@ -636,7 +636,7 @@ function HistoryView({ firstRun, onRunAgain }: { firstRun: boolean; onRunAgain: 
         <div style={{ height: 8 }}/>
         <Chip label="Run 2 had 11 players" note="Close enough. Shown with a note" dim/>
         <div style={{ marginTop: 12, padding: '10px 12px', background: PALE, borderRadius: 10 }}>
-          <div style={{ fontSize: 13, fontWeight: 700, color: GD }}>Does it show on Saturday?</div>
+          <div style={{ fontSize: 13, fontWeight: 700, color: GD }}>Does it show on Sunday?</div>
           <div style={{ fontSize: 12, color: G, marginTop: 2 }}>In league games the same measure went from 7 seconds to 5 over those four weeks.</div>
           <button onClick={() => openThing('last review', 'coach')} style={{ marginTop: 6, fontSize: 12, fontWeight: 600, color: G2, border: 'none', background: 'transparent', cursor: 'pointer', fontFamily: 'inherit', padding: 0 }}>See it in the last review</button>
         </div>
@@ -657,10 +657,10 @@ function RecordedView({ empty, onRecord, onHowWeMeasure, onResults }:
   const rows = [
     { type: 'Drill',   what: 'Win it back in 6 seconds · run 3', when: 'Tonight',    kit: 'Camera · vests · boots', status: 'Ready',         action: 'Open' },
     { type: 'Warm-up', what: '11+ Kids warm-up · run 5',         when: 'Tue 2 Jun',  kit: 'Vests',                  status: 'Ready',         action: 'Open' },
-    { type: 'League',  what: 'Ironbark United · won 3–1',        when: 'Sat 30 May', kit: 'Camera · vests · boots', status: 'Ready',         action: 'Review' },
+    { type: 'League',  what: 'Ironbark United · won 3–1',        when: 'Sun 31 May', kit: 'Camera · vests · boots', status: 'Ready',         action: 'Review' },
     { type: 'Test',    what: '20 m sprint race',                  when: 'Thu 28 May', kit: 'Phone timer · boots',    status: 'Ready',         action: 'Open' },
     { type: 'Drill',   what: 'Win it back in 6 seconds · run 2', when: 'Tue 26 May', kit: 'Camera · vests · boots', status: 'Ready',         action: 'Open' },
-    { type: 'League',  what: 'Saltmarsh · drew 1–1',             when: 'Sat 23 May', kit: 'Camera · boots',         status: 'Ready',         action: 'Review' },
+    { type: 'League',  what: 'Saltmarsh · drew 1–1',             when: 'Sun 24 May', kit: 'Camera · boots',         status: 'Ready',         action: 'Review' },
     { type: 'Friendly',what: 'Banksia Park U12 · kept separate', when: 'Wed 20 May', kit: 'Camera',                 status: 'Ready',         action: 'Review' },
     { type: 'Drill',   what: 'Rondo, 5 against 2 · run 1',       when: 'Tue 19 May', kit: 'Boots',                  status: 'Starting point',action: 'Run again' },
   ]
@@ -677,7 +677,7 @@ function RecordedView({ empty, onRecord, onHowWeMeasure, onResults }:
       </div>
       <SectionHead label="A good first three"/>
       <StepList steps={[
-        { n: '1', title: "Saturday's game", note: 'Your first match review' },
+        { n: '1', title: "Sunday's game", note: 'Your first match review' },
         { n: '2', title: 'One drill you repeat', note: 'So you can see it improve' },
         { n: '3', title: 'A sprint race', note: "Each player's starting point" },
       ]}/>

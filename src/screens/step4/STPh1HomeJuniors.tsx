@@ -49,16 +49,16 @@ export default function STPh1HomeJuniors({ onNav }: { onNav?: (s: string) => voi
               <button aria-label="Open the plan" onClick={() => tool('Training tab')} style={{ fontSize: 12, fontWeight: 700, color: '#fff', background: 'rgba(255,255,255,0.15)', border: 'none', borderRadius: 6, padding: '0 12px', cursor: 'pointer', fontFamily: 'inherit', height: 44, display: 'flex', alignItems: 'center' }}>Open the plan</button>
             </div>
             <div style={{ padding: '16px 20px' }}>
-              <div style={{ fontSize: 15, fontWeight: 800, color: INK, marginBottom: 6 }}>90 minutes · warm-up and 4 drills · built from Saturday's game</div>
+              <div style={{ fontSize: 15, fontWeight: 800, color: INK, marginBottom: 6 }}>90 minutes · warm-up and 4 drills · built from Sunday's game</div>
               <div style={{ fontSize: 13, color: G, fontWeight: 700, marginBottom: 8 }}>Pressing high: keep. Gap between the lines: tonight.</div>
-              <div style={{ fontSize: 13, color: MUT, marginBottom: 12 }}>Everyone within 6 minutes of the average. 3 players under half a game on Saturday.</div>
+              <div style={{ fontSize: 13, color: MUT, marginBottom: 12 }}>Everyone within 6 minutes of the average. 3 players under half a game on Sunday.</div>
               <button aria-label="Minutes" onClick={() => tool('Squad tab')} style={{ height: 44, padding: '0 20px', background: PALE, color: G, border: 'none', borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Minutes</button>
             </div>
           </div>
 
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 20px' }}>
             <div style={{ fontSize: 11, fontWeight: 700, color: MUT, letterSpacing: '0.07em', marginBottom: 8 }}>LAST GAME</div>
-            <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 8 }}>Sat 30 May at Ironbark United · won 3–1</div>
+            <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 8 }}>Sun 31 May at Ironbark United · won 3–1</div>
             <button aria-label="Review" onClick={() => tool('Match day › Review')} style={{ height: 44, padding: '0 20px', background: PALE, color: G, border: 'none', borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Review</button>
           </div>
 

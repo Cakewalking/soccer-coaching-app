@@ -59,7 +59,7 @@ export default function HM2SquadMiniRoos(_: { onBack?: () => void }) {
       <div style={{ padding: '14px 28px 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 20 }}>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 14 }}>
           <h1 style={{ margin: 0, fontSize: 26, fontWeight: 700, letterSpacing: '-0.02em' }}>Squad</h1>
-          <span style={{ fontSize: 14, color: MUT }}>10 players · U9 Tom · 7 coming Saturday, 1 maybe, 1 away, 1 to answer</span>
+          <span style={{ fontSize: 14, color: MUT }}>10 players · U9 Tom · 7 coming Sunday, 1 maybe, 1 away, 1 to answer</span>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
           <button onClick={() => mark('remind')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: `1px solid ${is('remind') ? G : LN}`, background: is('remind') ? PALE : '#fff', color: is('remind') ? G : INK, fontFamily: 'inherit', fontSize: 15, fontWeight: 600, cursor: 'pointer' }}>{is('remind') ? '✓ Reminded 1 family' : 'Remind 1 family'}</button>
@@ -84,7 +84,7 @@ export default function HM2SquadMiniRoos(_: { onBack?: () => void }) {
                   </div>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 6 }}>
-                  <div style={{ display: 'inline-flex', alignItems: 'center', height: 24, padding: '0 9px', borderRadius: 999, fontSize: 12, fontWeight: 700, background: statusBg[p.status], color: statusColor[p.status] }}>Sat: {p.status}</div>
+                  <div style={{ display: 'inline-flex', alignItems: 'center', height: 24, padding: '0 9px', borderRadius: 999, fontSize: 12, fontWeight: 700, background: statusBg[p.status], color: statusColor[p.status] }}>Sun: {p.status}</div>
                   <div style={{ display: 'flex', gap: 10 }}>
                     <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, fontSize: 12, fontWeight: 700, color: p.goal ? INK : MUT }}><Check on={p.goal} />Goal</span>
                     <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, fontSize: 12, fontWeight: 700, color: p.cap ? INK : MUT }}><Check on={p.cap} />Captain</span>
@@ -101,14 +101,14 @@ export default function HM2SquadMiniRoos(_: { onBack?: () => void }) {
             <div style={{ width: 48, height: 48, borderRadius: 999, background: '#e8cfcf', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 700 }}>{sel.init}</div>
             <div>
               <div style={{ fontSize: 19, fontWeight: 700 }}>{sel.name}</div>
-              <div style={{ fontSize: 14, color: MUT }}>Sat: {sel.status} · plays anywhere</div>
+              <div style={{ fontSize: 14, color: MUT }}>Sun: {sel.status} · plays anywhere</div>
             </div>
           </div>
           <div style={{ background: PALE, borderRadius: 12, padding: '10px 12px', fontSize: 14, lineHeight: '20px' }}><strong>What helps {sel.name.split(' ')[0]}:</strong> {sel.note}. Give them a clear job in the first game.</div>
           {[
-            { icon: '✓', label: 'Turn in goal', note: 'Sat 16 May', bg: PALE },
-            { icon: '✓', label: 'Captain', note: 'Sat 23 May', bg: PALE },
-            { icon: '?', label: 'Saturday', note: "Mum says maybe · school concert", bg: '#e8cfcf' },
+            { icon: '✓', label: 'Turn in goal', note: 'Sun 17 May', bg: PALE },
+            { icon: '✓', label: 'Captain', note: 'Sun 24 May', bg: PALE },
+            { icon: '?', label: 'Sunday', note: "Mum says maybe · school concert", bg: '#e8cfcf' },
             { icon: '+', label: 'First-aid card', note: 'Nothing to know', bg: LN },
           ].map(item => (
             <div key={item.label} style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 48, borderTop: `1px solid ${LN}` }}>

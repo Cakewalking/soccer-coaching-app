@@ -36,7 +36,7 @@ export default function SG5eWhatWorkedEmpty(_: { onBack?: () => void }) {
         </div>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: 20 }}>
           <div style={{ fontSize: 14, fontWeight: 700, color: INK, marginBottom: 14 }}>Then you'll see</div>
-          {[{ n: '1', label: 'What moved', sub: "And whether it's a real change" }, { n: '2', label: 'Whether it shows in games', sub: 'The same measure on Saturday' }, { n: '3', label: 'What happens next', sub: 'Keep, make harder, or swap' }].map(r => (
+          {[{ n: '1', label: 'What moved', sub: "And whether it's a real change" }, { n: '2', label: 'Whether it shows in games', sub: 'The same measure on Sunday' }, { n: '3', label: 'What happens next', sub: 'Keep, make harder, or swap' }].map(r => (
             <div key={r.n} style={{ display: 'flex', gap: 12, padding: '10px 0', borderBottom: `1px solid ${LN}` }}>
               <div style={{ width: 24, height: 24, borderRadius: '50%', background: PALE, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontSize: 12, fontWeight: 700, color: G }}>{r.n}</div>
               <div>

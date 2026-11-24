@@ -43,7 +43,7 @@ export default function PM8ParentReadOnly(_: { onBack?: () => void }) {
             <div style={{ width: 36, height: 36, borderRadius: 999, background: '#d4b896', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 12, color: INK, flexShrink: 0 }}>CB</div>
             <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: '4px 16px 16px 16px', padding: '12px 14px', maxWidth: 270 }}>
               <div style={{ display: 'inline-block', background: G, color: '#fff', fontSize: 10, fontWeight: 800, letterSpacing: '0.08em', borderRadius: 4, padding: '2px 6px', marginBottom: 6 }}>POLL</div>
-              <div style={{ fontWeight: 700, fontSize: 14, color: INK, marginBottom: 10 }}>Canteen slots for Saturday</div>
+              <div style={{ fontWeight: 700, fontSize: 14, color: INK, marginBottom: 10 }}>Canteen slots for Sunday</div>
               {pollOptions.map((opt, i) => (
                 <div key={opt.label} style={{ marginBottom: i < pollOptions.length - 1 ? 8 : 0 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13, color: INK, marginBottom: 3 }}>
@@ -67,7 +67,7 @@ export default function PM8ParentReadOnly(_: { onBack?: () => void }) {
             <div style={{ width: 36, height: 36, borderRadius: 999, background: '#d4b896', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: 12, color: INK, flexShrink: 0 }}>CB</div>
             <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: '4px 16px 16px 16px', padding: '10px 14px', maxWidth: 240 }}>
               <div style={{ width: 160, height: 90, borderRadius: 8, background: '#d8e0de', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24, marginBottom: 8 }}><Glyph n="image" /></div>
-              <div style={{ fontSize: 15, color: INK }}>Great defending on Saturday!</div>
+              <div style={{ fontSize: 15, color: INK }}>Great defending on Sunday!</div>
             </div>
           </div>
         </div>

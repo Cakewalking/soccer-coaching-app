@@ -13,7 +13,7 @@ export default function ETeamTalk(_: { onBack?: () => void }) {
       body: 'When we lose it, we hunt it back together. Six seconds.',
       metric: 'Boot sensors · seconds to win it back',
       rows: [
-        { label: 'Saturday', val: '7 s', color: '#c05' },
+        { label: 'Sunday', val: '7 s', color: '#c05' },
         { label: 'Our usual', val: '4 s', color: G },
       ],
       note: 'Min 16. Lost it on halfway. 9 seconds to win it back.',
@@ -46,7 +46,7 @@ export default function ETeamTalk(_: { onBack?: () => void }) {
               <div key={r.label} style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 10 }}>
                 <div style={{ width: 100, fontSize: 13, color: 'rgba(255,255,255,0.6)' }}>{r.label}</div>
                 <div style={{ flex: 1, height: 32, background: 'rgba(255,255,255,0.1)', borderRadius: 8, overflow: 'hidden', position: 'relative' as const }}>
-                  <div style={{ width: r.label === 'Saturday' ? '70%' : '40%', height: '100%', background: r.color, borderRadius: 8 }} />
+                  <div style={{ width: r.label === 'Sunday' ? '70%' : '40%', height: '100%', background: r.color, borderRadius: 8 }} />
                 </div>
                 <div style={{ fontSize: 20, fontWeight: 800, color: r.color, width: 50, textAlign: 'right' as const }}>{r.val}</div>
               </div>

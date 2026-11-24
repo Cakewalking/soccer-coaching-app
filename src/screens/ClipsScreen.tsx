@@ -303,7 +303,7 @@ export default function ClipsScreen({ empty, activeTab = 0, onNav, team = 'junio
             <div style={{ fontSize: 13, color: '#5c6b67' }}>
               {filterMode === 'game' && gameCtx?.sub}
               {filterMode === 'measure' && activeMeasure && MEASURE_INFO[activeMeasure]}
-              {filterMode === 'player' && 'Share a good example and one to work on before Saturday'}
+              {filterMode === 'player' && 'Share a good example and one to work on before Sunday'}
             </div>
           </div>
           <button onClick={() => showToast(filterMode === 'game' && gameCtx ? 'Playing highlights.' : `Playing all ${filtered.length} clips.`)} style={{

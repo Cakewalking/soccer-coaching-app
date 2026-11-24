@@ -2,7 +2,7 @@ import { openThing } from '../openThing'
 import { useState } from 'react'
 
 const CARDS_DATA = [
-  { ini: 'RP', name: 'Ryan Petersen', team: 'U16 Ollie', cards: [{ c: 'Y' }, { c: 'Y' }, { c: 'R' }], cardsLabel: '2 yellows · 1 red', badgeText: 'Suspended · misses Sat 6 Jun', badgeBg: '#c39797', note: "Out of Ollie's line-up" },
+  { ini: 'RP', name: 'Ryan Petersen', team: 'U16 Ollie', cards: [{ c: 'Y' }, { c: 'Y' }, { c: 'R' }], cardsLabel: '2 yellows · 1 red', badgeText: 'Suspended · misses Sun 7 Jun', badgeBg: '#c39797', note: "Out of Ollie's line-up" },
   { ini: 'DV', name: 'Dean Vukovic',  team: "Men's 1sts", cards: [{ c: 'Y' }, { c: 'Y' }, { c: 'Y' }, { c: 'Y' }], cardsLabel: '4 yellows', badgeText: '1 yellow from a ban', badgeBg: '#e8cfcf', note: 'Marko told' },
   { ini: 'NF', name: 'Nina Ferraro',  team: "Women's 1sts", cards: [{ c: 'Y' }, { c: 'Y' }, { c: 'Y' }], cardsLabel: '3 yellows', badgeText: 'OK', badgeBg: '', note: '' },
   { ini: 'LB', name: 'Leon Brooks',   team: 'U14 Josh', cards: [{ c: 'Y' }, { c: 'Y' }], cardsLabel: '2 yellows', badgeText: 'OK', badgeBg: '', note: '' },

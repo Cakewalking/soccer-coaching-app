@@ -104,8 +104,8 @@ export function PO1OlderHome() {
       {/* Availability prompt */}
       <div style={{ background: PALE, borderBottom: `1px solid ${LN}`, padding: '12px 20px', display: 'flex', gap: 16, alignItems: 'center' }}>
         <div style={{ textAlign: 'center' as const, flexShrink: 0 }}>
-          <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', color: G }}>SAT</div>
-          <div style={{ fontSize: 24, fontWeight: 800, color: G, lineHeight: 1 }}>6</div>
+          <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', color: G }}>SUN</div>
+          <div style={{ fontSize: 24, fontWeight: 800, color: G, lineHeight: 1 }}>7</div>
         </div>
         <div>
           <div style={{ fontSize: 14, fontWeight: 700, color: INK }}>at Harbour Rovers · 3:30</div>
@@ -130,7 +130,7 @@ export function PO1OlderHome() {
         </div>
         {[
           { day: 'Fri 5', event: 'Team meeting 6:00 pm' },
-          { day: 'Sat 6', event: 'Harbour Rovers 3:30, away' },
+          { day: 'Sun 7', event: 'Harbour Rovers 3:30, away' },
           { day: 'Mon 8', event: 'Training 7:00 pm' },
         ].map((e, i) => (
           <div key={i} style={{ display: 'flex', gap: 16, padding: '8px 0', borderTop: i === 0 ? 'none' : `1px solid ${LN}` }}>

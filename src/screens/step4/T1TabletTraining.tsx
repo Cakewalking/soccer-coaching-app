@@ -66,7 +66,7 @@ export default function T1TabletTraining(_: { onBack?: () => void }) {
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 18px' }}>
             <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 6 }}>Today · 5:45 pm · Wattle Creek Reserve</div>
             <div style={{ fontSize: 16, fontWeight: 800, color: INK, marginBottom: 4 }}>Training tonight</div>
-            <div style={{ fontSize: 13, color: MUT, marginBottom: 10 }}>90 minutes · warm-up and 4 drills · built from Saturday's game</div>
+            <div style={{ fontSize: 13, color: MUT, marginBottom: 10 }}>90 minutes · warm-up and 4 drills · built from Sunday's game</div>
             {['Win the ball back faster', 'Keep the lines close', 'Strong last 15 minutes'].map(d => (
               <div key={d} style={{ display: 'flex', gap: 8, padding: '4px 0', fontSize: 13, color: INK }}>
                 <div style={{ width: 6, height: 6, borderRadius: '50%', background: G, marginTop: 5, flex: 'none' }} />
@@ -85,7 +85,7 @@ export default function T1TabletTraining(_: { onBack?: () => void }) {
         <div style={{ width: 300, padding: '24px 24px 32px 0' }}>
           {/* Last game */}
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 16px', marginBottom: 14 }}>
-            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 6 }}>Last game · Sat 30 May · away</div>
+            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 6 }}>Last game · Sun 31 May · away</div>
             <div style={{ fontSize: 15, fontWeight: 800, color: GD }}>W Ironbark United</div>
             <div style={{ fontSize: 13, color: MUT, marginBottom: 6 }}>Mia, Jai and Zoe scored · 3–1</div>
             <div style={{ fontSize: 12, color: G }}>→ Open the review · 7 clips</div>
@@ -100,8 +100,8 @@ export default function T1TabletTraining(_: { onBack?: () => void }) {
               { d: 'Wed 3', t: 'Rest' },
               { d: 'Thu 4', t: 'Training 5:45 pm', bold: true },
               { d: 'Fri 5', t: 'Rest' },
-              { d: 'Sat 6', t: 'Harbour Rovers 9:30', bold: true },
-              { d: 'Sun 7', t: 'Review' },
+              { d: 'Sat 6', t: 'Rest' },
+              { d: 'Sun 7', t: 'Harbour Rovers 9:30', bold: true },
             ].map(day => (
               <div key={day.d} style={{ display: 'flex', justifyContent: 'space-between', padding: '3px 0', fontSize: 12 }}>
                 <div style={{ color: MUT }}>{day.d}</div>

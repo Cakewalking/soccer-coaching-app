@@ -22,7 +22,7 @@ const MIA: ChildCard = {
   ini: 'MT', name: 'Mia', team: 'U12 Sam', color: '#2f6252',
   events: [
     { day: 'Thu', label: 'Training 5:45 pm' },
-    { day: 'Sat', label: 'Harbour Rovers 9:30 · you said yes' },
+    { day: 'Sun', label: 'Harbour Rovers 9:30 · you said yes' },
   ],
   todo: { label: 'Nothing' },
 }
@@ -31,7 +31,7 @@ const BAO: ChildCard = {
   ini: 'BT', name: 'Bao', team: 'U8 Hannah', color: '#c39797',
   events: [
     { day: 'Wed', label: 'Training 5:00 pm · done' },
-    { day: 'Sat', label: "Festival 8:30 · not answered" },
+    { day: 'Sun', label: "Festival 8:30 · not answered" },
   ],
   todo: { label: "Say if Bao's coming", cta: 'Answer for Bao' },
   note: "Bao is 7, so nothing is filmed or measured for him. You gave consent for each child separately.",
@@ -109,10 +109,10 @@ function HomeView({ childTab, setChildTab, onSeasonSummary, onAvailability }: {
       </div>
 
       <div style={{ flexGrow: 1, overflowY: 'auto', padding: '14px 20px 32px', display: 'flex', flexDirection: 'column', gap: 12 }}>
-        {/* Saturday banner (Both view) */}
+        {/* Sunday banner (Both view) */}
         {childTab === 'both' && (
           <div style={{ background: '#fff', borderRadius: 14, border: '1px solid #e9eae8', padding: '14px 16px' }}>
-            <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', color: '#2f6252', marginBottom: 4 }}>SATURDAY, BOTH AT HOME</div>
+            <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', color: '#2f6252', marginBottom: 4 }}>SUNDAY, BOTH AT HOME</div>
             <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f', marginBottom: 4 }}>8:30 Bao, pitch 6 · 9:30 Mia, pitch 2</div>
             <div style={{ fontSize: 13, color: '#4a5a57', lineHeight: '18px' }}>Your canteen shift is 10 to 11. You'll see all of Bao's game and the first half of Mia's.</div>
           </div>
@@ -396,12 +396,12 @@ function AvailabilityAnswerView({ onBack }: { onBack: () => void }) {
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
           Back
         </button>
-        <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', marginBottom: 2 }}>U8 Hannah · this Saturday</div>
+        <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', marginBottom: 2 }}>U8 Hannah · this Sunday</div>
         <div style={{ fontSize: 22, fontWeight: 800, color: '#fff' }}>Is Bao coming?</div>
       </div>
       <div style={{ flexGrow: 1, padding: '20px 20px 32px', display: 'flex', flexDirection: 'column', gap: 14 }}>
         <div style={{ background: '#fff', borderRadius: 16, border: '1px solid #e9eae8', padding: '16px' }}>
-          <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 4 }}>Festival — Saturday 8:30</div>
+          <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 4 }}>Festival — Sunday 8:30</div>
           <div style={{ fontSize: 13, color: '#4a5a57' }}>Wattle Creek Sportsground · Pitch 6</div>
         </div>
         <button onClick={() => setAnswer('yes')} style={{ width: '100%', height: 52, borderRadius: 14, border: `2px solid ${answer === 'yes' ? '#2f6252' : '#e9eae8'}`, background: answer === 'yes' ? '#eef5f2' : '#fff', fontFamily: 'inherit', fontSize: 16, fontWeight: 700, cursor: 'pointer', color: answer === 'yes' ? '#2f6252' : '#10211f' }}>

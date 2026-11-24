@@ -13,8 +13,8 @@ export default function TM13ManagerPoll(_: { onBack?: () => void }) {
     </button>
   )
   const labels: Record<PollType, { q: string; opts: string[] }> = {
-    help: { q: 'Who can do canteen on Saturday?', opts: ['9 to 10', '10 to 11', '11 to 12'] },
-    coming: { q: "Who's coming on Saturday?", opts: ['Coming', "Can't come", 'Not sure yet'] },
+    help: { q: 'Who can do canteen on Sunday?', opts: ['9 to 10', '10 to 11', '11 to 12'] },
+    coming: { q: "Who's coming on Sunday?", opts: ['Coming', "Can't come", 'Not sure yet'] },
     own: { q: 'Your question here', opts: ['Option 1', 'Option 2'] },
   }
   const { q, opts } = labels[type]
@@ -48,7 +48,7 @@ export default function TM13ManagerPoll(_: { onBack?: () => void }) {
         </div>
         <div style={{ background: '#fff', border: `2px solid ${G}`, borderRadius: 16, padding: '4px 14px' }}>
           {[
-            { label: 'Fill in the duty roster', sub: 'Each yes goes straight onto Saturday\'s roster', on: fillRoster, toggle: () => setFillRoster(x => !x) },
+            { label: 'Fill in the duty roster', sub: 'Each yes goes straight onto Sunday\'s roster', on: fillRoster, toggle: () => setFillRoster(x => !x) },
             { label: 'Remind anyone who hasn\'t answered', sub: 'Friday at noon, once', on: remind, toggle: () => setRemind(x => !x) },
           ].map((item, i) => (
             <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 58, borderTop: i > 0 ? `1px solid ${LN}` : 'none' }}>

@@ -61,7 +61,7 @@ export default function PM3ParentAnnouncements(_: { onBack?: () => void }) {
             <span style={{ fontSize: 14, fontWeight: 600, color: INK }}>Rob Owusu · 29 May</span>
             <span style={{ background: '#e8e8e8', color: MUT, fontSize: 11, fontWeight: 700, borderRadius: 999, padding: '2px 8px' }}>Manager</span>
           </div>
-          <div style={{ fontWeight: 700, fontSize: 16, color: INK }}>Meet time for Saturday: 9:15</div>
+          <div style={{ fontWeight: 700, fontSize: 16, color: INK }}>Meet time for Sunday: 9:15</div>
           <div style={{ fontSize: 15, color: INK, lineHeight: 1.5 }}>Be at Riverside Reserve 15 minutes before kickoff.</div>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: '#f4f7f5', border: `1px solid ${LN}`, borderRadius: 999, padding: '5px 12px', alignSelf: 'flex-start' as const, fontSize: 13, fontWeight: 600, color: INK }}>
             <Glyph n="place" /> Riverside Reserve

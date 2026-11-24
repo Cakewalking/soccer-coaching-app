@@ -7,11 +7,11 @@ const TILES = [
   { n: '7/10', label: 'Volunteers', sub: '3 spots open', warn: false },
 ]
 const TODO = [
-  { p: 'red', text: 'Assign ref: U8 Hannah v Ironbark 8:30 am Sat' },
-  { p: 'red', text: 'Assign ref: U13 Girls Meg v Northgate 12:00 pm Sat' },
+  { p: 'red', text: 'Assign ref: U8 Hannah v Ironbark 8:30 am Sun' },
+  { p: 'red', text: 'Assign ref: U13 Girls Meg v Northgate 12:00 pm Sun' },
   { p: 'amber', text: '5 families yet to pay fees — send reminder' },
   { p: 'amber', text: 'Camera setup for pitch 4 not confirmed' },
-  { p: 'amber', text: 'Chase 3 volunteer slots for Saturday game day' },
+  { p: 'amber', text: 'Chase 3 volunteer slots for Sunday game day' },
 ]
 const GAMES = [
   { time: '8:30', team: 'U8 Hannah', pitch: 'Pitch 1', ref: false },
@@ -36,7 +36,7 @@ export default function DCo1CoordinatorHome(_: { onBack?: () => void }) {
       </div>
       <div style={{ flex: 'none', padding: '14px 28px 0' }}>
         <h1 style={{ margin: '0 0 2px', fontSize: 26, fontWeight: 700, letterSpacing: '-0.02em' }}>Hi Bianca</h1>
-        <span style={{ fontSize: 14, color: MUT }}>Week 9 of 18 · 14 games this Saturday</span>
+        <span style={{ fontSize: 14, color: MUT }}>Week 9 of 18 · 14 games this Sunday</span>
       </div>
       <div style={{ flex: 1, minHeight: 0, padding: '12px 28px 18px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 300px', gap: 14 }}>
         <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 10 }}>
@@ -61,7 +61,7 @@ export default function DCo1CoordinatorHome(_: { onBack?: () => void }) {
         </div>
         <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 10 }}>
           <div style={{ background: '#fff', border: `1px solid #c5c8c4`, borderRadius: 16, padding: '14px 16px', display: 'flex', flexDirection: 'column' as const, gap: 2, flex: 1 }}>
-            <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 4 }}>Saturday at a glance</div>
+            <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 4 }}>Sunday at a glance</div>
             {GAMES.map((g, i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, minHeight: 40, borderTop: `1px solid ${LN}`, fontSize: 14 }}>
                 <strong style={{ width: 42, fontVariantNumeric: 'tabular-nums', flexShrink: 0 }}>{g.time}</strong>

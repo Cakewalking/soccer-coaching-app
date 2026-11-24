@@ -90,9 +90,9 @@ export default function TermPlanner({ onBack }: { onBack: () => void }) {
           <div>
             <div style={{ background:'#f7faf8', borderRadius:12, padding:'16px', border:`1px solid ${LN}`, marginBottom:12 }}>
               <div style={{ fontSize:14, fontWeight:700, color:INK, marginBottom:12 }}>How Clean Sheet fits in</div>
-              <div style={{ fontSize:13, color:MUT, lineHeight:1.7, marginBottom:12 }}>The core skill stays for the whole block. When Saturday's game shows a problem, the moment changes, not the skill.</div>
+              <div style={{ fontSize:13, color:MUT, lineHeight:1.7, marginBottom:12 }}>The core skill stays for the whole block. When Sunday's game shows a problem, the moment changes, not the skill.</div>
               <div style={{ background:'#fff', borderRadius:8, padding:12, border:`1px solid ${LN}`, fontSize:13, color:INK, lineHeight:1.6, marginBottom:12 }}>
-                Saturday we gave the ball away 21 times in our half, so this block's games reward a first touch away from pressure.
+                Sunday we gave the ball away 21 times in our half, so this block's games reward a first touch away from pressure.
               </div>
               <div style={{ fontSize:13, color:MUT, lineHeight:1.6 }}>11+ Kids warm-up planned at least once every week, as its trial did.</div>
             </div>

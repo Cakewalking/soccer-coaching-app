@@ -98,7 +98,7 @@ export function sampleStore(): SandboxStore {
     messages: [
       { id: 'm1', from: 'Rob Okafor',   text: "Can Mia miss Thursday? She has a school event.", timestamp: Date.now() - 7200000 },
       { id: 'm2', from: 'Priya Shah',   text: "Load data for Daniel is uploaded.",              timestamp: Date.now() - 3600000 },
-      { id: 'm3', from: 'Helen Parker', text: "Sideline incident report filed for Saturday.",   timestamp: Date.now() - 1800000 },
+      { id: 'm3', from: 'Helen Parker', text: "Sideline incident report filed for Sunday.",   timestamp: Date.now() - 1800000 },
     ],
   }
 }

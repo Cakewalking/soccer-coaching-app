@@ -128,7 +128,7 @@ function Evidence({ cfg, say, onNav }: { cfg: MeasureCfg; say: (m: string) => vo
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.05em', textTransform: 'uppercase', color: MUT, flex: 1 }}>The clips · {ev.count} from {ev.games} games</div>
           <div style={{ display: 'flex', gap: 6 }}>
-            {([['sat', `Saturday ${satCount}`], ['all', `All ${ev.count}`], ['lost', `${outcomeLabel} ${lostCount}`]] as const).map(([k, l]) => (
+            {([['sat', `Sunday ${satCount}`], ['all', `All ${ev.count}`], ['lost', `${outcomeLabel} ${lostCount}`]] as const).map(([k, l]) => (
               <button key={k} onClick={() => setFilter(k)} style={{ height: 30, padding: '0 12px', borderRadius: 999, border: `1.5px solid ${filter === k ? GD : '#c5c8c4'}`, background: filter === k ? GD : '#fff', color: filter === k ? '#fff' : INK, fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>{l}</button>
             ))}
           </div>
@@ -143,7 +143,7 @@ function Evidence({ cfg, say, onNav }: { cfg: MeasureCfg; say: (m: string) => vo
           ))}
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button onClick={() => { playClips(shown.map(clipOf), cfg.title); say(`Playing all ${shown.length} clips in a row.`) }} style={{ height: 40, padding: '0 16px', borderRadius: 10, border: 'none', background: GREEN, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Play all {shown.length}{filter === 'sat' ? ' from Saturday' : ''}</button>
+          <button onClick={() => { playClips(shown.map(clipOf), cfg.title); say(`Playing all ${shown.length} clips in a row.`) }} style={{ height: 40, padding: '0 16px', borderRadius: 10, border: 'none', background: GREEN, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Play all {shown.length}{filter === 'sat' ? ' from Sunday' : ''}</button>
           <button onClick={() => { say('Pick a clip — it goes to the coach’s To check list, and the count is redone.'); onNav?.('TC1-ToCheck') }} style={{ height: 40, padding: '0 16px', borderRadius: 10, border: `1px solid #c5c8c4`, background: '#fff', fontSize: 13, color: INK, cursor: 'pointer', fontFamily: 'inherit' }}>This one is wrong</button>
         </div>
       </div>

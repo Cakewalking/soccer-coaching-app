@@ -78,7 +78,7 @@ function Sidebar({ selectedChat, panelView, onChat, onAnnouncements, onNewChat }
           <span style={{ fontSize:13, fontWeight:700, color: panelView==='announcements'?G:INK }}>Announcements</span>
           <span style={{ fontSize:11, color:MUT }}>7:12 pm</span>
         </div>
-        <div style={{ fontSize:12, color:MUT, lineHeight:1.4 }}>Rob: Meet time now 8:40 on Saturday</div>
+        <div style={{ fontSize:12, color:MUT, lineHeight:1.4 }}>Rob: Meet time now 8:40 on Sunday</div>
       </button>
 
       {/* Chat list */}
@@ -156,7 +156,7 @@ function PollCard({ onResults }: { onResults:()=>void }) {
   return (
     <div style={{ background:'#f5f6f4', borderRadius:12, padding:'12px 14px', marginBottom:4 }}>
       <div style={{ fontSize:11, fontWeight:700, letterSpacing:'0.06em', textTransform:'uppercase' as const, color:G2, marginBottom:4 }}>Poll</div>
-      <div style={{ fontSize:14, fontWeight:700, color:INK, marginBottom:10 }}>Who can bring oranges on Saturday?</div>
+      <div style={{ fontSize:14, fontWeight:700, color:INK, marginBottom:10 }}>Who can bring oranges on Sunday?</div>
       {[{label:'We will', votes:2}, {label:'Only if no one else can', votes:2}].map(opt => (
         <div key={opt.label} style={{ display:'flex', alignItems:'center', gap:8, marginBottom:6 }}>
           <div style={{ flex:1, height:28, background:'#e8edeb', borderRadius:999, overflow:'hidden', position:'relative' as const }}>
@@ -250,7 +250,7 @@ function ChatPanel({ empty, selectedChat, onResults, onPoll, onMedia, onInfo, on
             </div>
             {isU12 && <div style={{ fontSize:13, color:MUT, marginBottom:8 }}>17 families invited · 9 have joined so far</div>}
             <div style={{ fontSize:14, fontWeight:600, color:INK }}>Say hello to the team</div>
-            <div style={{ fontSize:13, color:MUT, maxWidth:360, lineHeight:1.5 }}>Families see this chat as soon as they join Clean Sheet. Try a poll for Saturday, or a photo from training.</div>
+            <div style={{ fontSize:13, color:MUT, maxWidth:360, lineHeight:1.5 }}>Families see this chat as soon as they join Clean Sheet. Try a poll for Sunday, or a photo from training.</div>
           </div>
         ) : (
           <>
@@ -406,7 +406,7 @@ function AnnouncementsPanel({ empty }: { empty:boolean }) {
             />
             <AnnouncementCard
               ini="RO" name="Rob Owusu · team manager" time="Today 7:12 pm"
-              seen={14} total={17} subject="Meet time now 8:40 on Saturday"
+              seen={14} total={17} subject="Meet time now 8:40 on Sunday"
               body="We're on pitch 2, not pitch 4. White kit. The calendar is already updated."
               attach={{ icon:'M12 2a7 7 0 017 7c0 5-7 13-7 13S5 14 5 9a7 7 0 017-7zM12 9a2 2 0 100-4 2 2 0 000 4', label:'Pitch 2, Wattle Creek Reserve', sub:'Gate on Banksia Street' }}
               reactions={[{emoji:glyph('like'),count:11},{emoji:glyph('heart'),count:2}]}
@@ -550,7 +550,7 @@ function NewPollPanel({ onCancel, onSend }: { onCancel:()=>void; onSend:()=>void
         </Section>
 
         <Section label="Question">
-          <input defaultValue="Who's coming on Saturday? Harbour Rovers, 9:30 at home" style={{ width:'100%', height:44, padding:'0 14px', borderRadius:10, border:`1px solid ${LN}`, fontSize:14, fontFamily:'inherit', outline:'none', color:INK, boxSizing:'border-box' }}/>
+          <input defaultValue="Who's coming on Sunday? Harbour Rovers, 9:30 at home" style={{ width:'100%', height:44, padding:'0 14px', borderRadius:10, border:`1px solid ${LN}`, fontSize:14, fontFamily:'inherit', outline:'none', color:INK, boxSizing:'border-box' }}/>
         </Section>
 
         <Section label="Answers">
@@ -571,7 +571,7 @@ function NewPollPanel({ onCancel, onSend }: { onCancel:()=>void; onSend:()=>void
 
         <Section label="What the answers do">
           <div style={{ background:PALE, borderRadius:10, padding:'10px 14px' }}>
-            <div style={{ fontSize:13, fontWeight:700, color:GD, marginBottom:2 }}>Fill in Who's coming for Saturday</div>
+            <div style={{ fontSize:13, fontWeight:700, color:GD, marginBottom:2 }}>Fill in Who's coming for Sunday</div>
             <div style={{ fontSize:12, color:G }}>No need to copy answers across</div>
           </div>
         </Section>
@@ -602,7 +602,7 @@ function NewPollPanel({ onCancel, onSend }: { onCancel:()=>void; onSend:()=>void
         <Section label="How it will look">
           <div style={{ background:'#f5f6f4', borderRadius:12, padding:'12px 14px', maxWidth:400 }}>
             <div style={{ fontSize:11, fontWeight:700, letterSpacing:'0.06em', textTransform:'uppercase' as const, color:G2, marginBottom:4 }}>Poll</div>
-            <div style={{ fontSize:14, fontWeight:700, color:INK, marginBottom:10 }}>Who's coming on Saturday? Harbour Rovers, 9:30 at home</div>
+            <div style={{ fontSize:14, fontWeight:700, color:INK, marginBottom:10 }}>Who's coming on Sunday? Harbour Rovers, 9:30 at home</div>
             {["Coming","Can't come","Not sure yet"].map(a => (
               <div key={a} style={{ display:'flex', alignItems:'center', gap:8, marginBottom:6 }}>
                 <div style={{ flex:1, height:28, background:LN, borderRadius:999, overflow:'hidden' }}>
@@ -628,7 +628,7 @@ function PollResultsPanel({ empty, onBack }: { empty:boolean; onBack:()=>void })
       <div style={{ padding:'12px 20px', borderBottom:`1px solid ${LN}`, display:'flex', alignItems:'center', justifyContent:'space-between', flexShrink:0, background:'#fff' }}>
         <div>
           <div style={{ fontSize:15, fontWeight:700, color:INK }}>Poll results</div>
-          <div style={{ fontSize:12, color:MUT }}>Who's coming on Saturday? · closes Fri 6 pm</div>
+          <div style={{ fontSize:12, color:MUT }}>Who's coming on Sunday? · closes Fri 6 pm</div>
         </div>
         <div style={{ display:'flex', gap:8 }}>
           <Btn label="Back to chat" onClick={onBack}/>
@@ -638,7 +638,7 @@ function PollResultsPanel({ empty, onBack }: { empty:boolean; onBack:()=>void })
       <div style={{ flex:1, overflowY:'auto', padding:'20px 24px' }}>
         {empty ? (
           <>
-            <div style={{ fontSize:14, color:MUT, marginBottom:24, lineHeight:1.5 }}>Answers show here as they come in, and fill in Who's coming for Saturday. Anyone who hasn't answered gets one reminder on Friday at noon.</div>
+            <div style={{ fontSize:14, color:MUT, marginBottom:24, lineHeight:1.5 }}>Answers show here as they come in, and fill in Who's coming for Sunday. Anyone who hasn't answered gets one reminder on Friday at noon.</div>
             <div style={{ display:'flex', flexDirection:'column', gap:14 }}>
               {[{n:1,text:'Families vote in the chat',sub:'One answer per child'},{n:2,text:'Who\'s coming fills in',sub:'No copying across'},{n:3,text:'One reminder',sub:'Friday at noon'}].map(s => (
                 <div key={s.n} style={{ display:'flex', gap:14, alignItems:'flex-start' }}>
@@ -669,7 +669,7 @@ function PollResultsPanel({ empty, onBack }: { empty:boolean; onBack:()=>void })
             ))}
             <div style={{ background:PALE, borderRadius:12, padding:'14px 16px', marginBottom:20 }}>
               <div style={{ fontSize:13, fontWeight:700, color:GD, marginBottom:4 }}>Done for you</div>
-              <div style={{ fontSize:14, color:INK, fontWeight:600 }}>Who's coming is filled in: 11 players for Saturday.</div>
+              <div style={{ fontSize:14, color:INK, fontWeight:600 }}>Who's coming is filled in: 11 players for Sunday.</div>
               <div style={{ fontSize:13, color:MUT, marginBottom:10 }}>Enough for a 9-a-side with two on the bench.</div>
               <Btn label="Open Who's coming" small/>
             </div>
@@ -706,11 +706,11 @@ function MediaPanel({ empty, onBack }: { empty:boolean; onBack:()=>void }) {
   const mediaItems = [
     {ini:'LT', iniColor:ROSE,  label:'Mia with both boots',    sender:'Linh · today',   isVideo:false},
     {ini:'LT', iniColor:ROSE,  label:'0:21',                   sender:'Linh · today',   isVideo:true},
-    {ini:'RO', iniColor:MUT,   label:'Team photo after Ironbark', sender:'Rob · Sat',    isVideo:false},
-    {ini:'SK', iniColor:G,     label:'New goals on pitch 2',   sender:'Sam · Sat',      isVideo:false},
-    {ini:'JW', iniColor:G2,    label:"0:09 Ruby's goal",       sender:'Jess · Sat',     isVideo:true},
-    {ini:'AM', iniColor:'#c3a84a', label:'Oranges at half time', sender:'Aroha · Sat',  isVideo:false},
-    {ini:'RO', iniColor:MUT,   label:'Medals from the gala day', sender:'Rob · 23 May', isVideo:false},
+    {ini:'RO', iniColor:MUT,   label:'Team photo after Ironbark', sender:'Rob · Sun',    isVideo:false},
+    {ini:'SK', iniColor:G,     label:'New goals on pitch 2',   sender:'Sam · Sun',      isVideo:false},
+    {ini:'JW', iniColor:G2,    label:"0:09 Ruby's goal",       sender:'Jess · Sun',     isVideo:true},
+    {ini:'AM', iniColor:'#c3a84a', label:'Oranges at half time', sender:'Aroha · Sun',  isVideo:false},
+    {ini:'RO', iniColor:MUT,   label:'Medals from the gala day', sender:'Rob · 24 May', isVideo:false},
     {ini:'SK', iniColor:G,     label:'0:34 Warm-up game',      sender:'Sam · 21 May',   isVideo:true},
   ]
   return (
@@ -845,7 +845,7 @@ function ChatInfoPanel({ onBack }: { onBack:()=>void }) {
           <div style={{ fontSize:11, fontWeight:700, letterSpacing:'0.06em', textTransform:'uppercase' as const, color: '#7a4b5b', marginBottom:10 }}>For you</div>
           {[
             {label:'Mute this chat', note:'Announcements and messages that name you still come through'},
-            {label:'Pinned messages', note:'1 pinned: Saturday, be there 8:40', action:'See'},
+            {label:'Pinned messages', note:'1 pinned: Sunday, be there 8:40', action:'See'},
             {label:'Pause the chat', note:''},
             {label:'Save a copy', note:''},
           ].map(item => (
@@ -1021,7 +1021,7 @@ export default function TeamChatScreen({ empty = false, miniRoos = false }: { em
           </div>
           <div style={{ flex:1, display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', padding:'32px 24px', gap:12, textAlign:'center' }}>
             <div style={{ fontSize:16, fontWeight:700, color:INK }}>Say hello to the team</div>
-            <div style={{ fontSize:14, color:MUT, lineHeight:1.5, maxWidth:340 }}>Families see this chat as soon as they join Clean Sheet. Try a poll for Saturday, or a photo from training.</div>
+            <div style={{ fontSize:14, color:MUT, lineHeight:1.5, maxWidth:340 }}>Families see this chat as soon as they join Clean Sheet. Try a poll for Sunday, or a photo from training.</div>
             <div style={{ display:'flex', gap:8, flexWrap:'wrap', justifyContent:'center', marginTop:4 }}>
               {['Photo','Video','Voice','Poll','Place','File','Clip or drill'].map(label => (
                 <button key={label} onClick={() => openThing(`${label} picker`, 'coach')} style={{ height: 44, padding:'0 12px', borderRadius:999, border:`1px solid ${LN}`, background:'#fff', color:MUT, fontSize:12, fontWeight:600, cursor:'pointer', fontFamily:'inherit' }}>{label}</button>
@@ -1056,7 +1056,7 @@ export default function TeamChatScreen({ empty = false, miniRoos = false }: { em
               <span style={{ fontSize:13, fontWeight:700, color: panelView==='announcements'?G:INK }}>Announcements</span>
               <span style={{ fontSize:11, color:MUT }}>Mon</span>
             </div>
-            <div style={{ fontSize:12, color:MUT }}>You: Photo day is Saturday 20 June</div>
+            <div style={{ fontSize:12, color:MUT }}>You: Photo day is Sunday 21 June</div>
           </button>
           <div style={{ flex:1, overflowY:'auto', padding:'6px 0' }}>
             <button onClick={() => { setSelectedChat('u12'); setPanelView('chat') }} style={{ display:'flex', alignItems:'flex-start', gap:10, padding:'10px 16px', border:'none', borderBottom:`1px solid ${LN}`, background: selectedChat==='u12'&&panelView==='chat'?PALE:'transparent', textAlign:'left', cursor:'pointer', fontFamily:'inherit', width:'100%' }}>
@@ -1114,7 +1114,7 @@ export default function TeamChatScreen({ empty = false, miniRoos = false }: { em
                     <ChatBubble ini="TA" iniColor={G} sender="You · 5:10 pm" time="">
                       <div style={{ background:'#f5f6f4', borderRadius:12, padding:'12px 14px' }}>
                         <div style={{ fontSize:11, fontWeight:700, letterSpacing:'0.06em', textTransform:'uppercase' as const, color:G2, marginBottom:4 }}>Poll</div>
-                        <div style={{ fontSize:14, fontWeight:700, color:INK, marginBottom:8 }}>Who can be game leader on Saturday?</div>
+                        <div style={{ fontSize:14, fontWeight:700, color:INK, marginBottom:8 }}>Who can be game leader on Sunday?</div>
                         {[{label:"I can", votes:2},{label:"I've never done it but I'll try",votes:1}].map(opt => (
                           <div key={opt.label} style={{ display:'flex', alignItems:'center', gap:8, marginBottom:6 }}>
                             <div style={{ flex:1, height:28, background:LN, borderRadius:999, overflow:'hidden', position:'relative' as const }}>
@@ -1124,7 +1124,7 @@ export default function TeamChatScreen({ empty = false, miniRoos = false }: { em
                             <span style={{ fontSize:14, fontWeight:700, color:INK }}>{opt.votes}</span>
                           </div>
                         ))}
-                        <div style={{ fontSize:12, color:MUT, marginTop:4 }}>3 of 10 families · the first yes fills Saturday's game leader</div>
+                        <div style={{ fontSize:12, color:MUT, marginTop:4 }}>3 of 10 families · the first yes fills Sunday's game leader</div>
                       </div>
                     </ChatBubble>
                     <ChatBubble ini="MC" iniColor={'#c3a84a'} sender="Mei Chen · Ivy's mum" time="6:22 pm">

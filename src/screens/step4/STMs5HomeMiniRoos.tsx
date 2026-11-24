@@ -49,7 +49,7 @@ export default function STMs5HomeMiniRoos({ onNav }: { onNav?: (s: string) => vo
               <button aria-label="Open the games" onClick={() => tool('the matching MiniRoos screen already in the app')} style={{ fontSize: 12, fontWeight: 700, color: '#fff', background: 'rgba(255,255,255,0.15)', border: 'none', borderRadius: 6, padding: '0 12px', cursor: 'pointer', fontFamily: 'inherit', height: 44, display: 'flex', alignItems: 'center' }}>Open the games</button>
             </div>
             <div style={{ padding: '16px 20px' }}>
-              <div style={{ fontSize: 15, fontWeight: 800, color: INK, marginBottom: 6 }}>45 minutes · built from Saturday: spread out and find a friend</div>
+              <div style={{ fontSize: 15, fontWeight: 800, color: INK, marginBottom: 6 }}>45 minutes · built from Sunday: spread out and find a friend</div>
               <div style={{ fontSize: 13, color: G, fontWeight: 700, marginBottom: 8 }}>Brave with the ball: keep. Finding a friend: Tuesday. No score kept.</div>
               <div style={{ fontSize: 13, color: MUT, marginBottom: 12 }}>In goal 7 of 10 · captain 6 of 10 · started 10 of 10. Next in goal: Ivy, Max and Arlo.</div>
               <button aria-label="Turns" onClick={() => tool('the matching MiniRoos screen already in the app')} style={{ height: 44, padding: '0 20px', background: PALE, color: G, border: 'none', borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Turns</button>
@@ -61,7 +61,7 @@ export default function STMs5HomeMiniRoos({ onNav }: { onNav?: (s: string) => vo
               <span style={{ fontSize: 11, fontWeight: 700, color: MUT, letterSpacing: '0.07em' }}>LAST REVIEW</span>
               <button aria-label="Review" onClick={() => onNav?.('MS3-MiniRoosReview')} style={{ fontSize: 13, fontWeight: 700, color: G, background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', height: 44, display: 'flex', alignItems: 'center' }}>Review</button>
             </div>
-            <div style={{ fontSize: 13, color: INK }}>Sat 6 June · Wattle Creek Reserve · 4 short games</div>
+            <div style={{ fontSize: 13, color: INK }}>Sun 7 June · Wattle Creek Reserve · 4 short games</div>
           </div>
 
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px 20px' }}>

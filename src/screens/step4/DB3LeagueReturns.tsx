@@ -2,7 +2,7 @@ import { useState } from 'react'
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2'
 const ITEMS = [
   { label: 'Team sheets', detail: '7 of 7 teams submitted', status: 'done' as const },
-  { label: 'Results', detail: 'Up to date — last entered Sat 31 May', status: 'done' as const },
+  { label: 'Results', detail: 'Up to date — last entered Sun 31 May', status: 'done' as const },
   { label: 'Player registrations', detail: '5 players to chase — FV deadline Mon 8 Jun', status: 'chase' as const },
   { label: 'Children\'s checks in WWC Connect', detail: '27 of 31 uploaded', status: 'warn' as const },
   { label: 'Child safety training', detail: '22 of 31 coaches completed', status: 'partial' as const },

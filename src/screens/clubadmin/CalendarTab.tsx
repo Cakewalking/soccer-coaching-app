@@ -23,7 +23,7 @@ const COMING_UP = [
   { date: 'MON 8 JUN',  time: '7:00',  note: 'U16 Ollie light session',             sub: 'Priya cut the load' },
   { date: 'TUE 9 JUN',  time: '7:30',  note: 'Coach meeting',                       sub: 'Clubrooms · agenda ready' },
   { date: 'THU 11 JUN', time: '5:30',  note: 'Heights measured',                   sub: 'U12 Sam, U13 Girls Meg, U14 Josh · Priya' },
-  { date: 'FRI 12 JUN', time: '',       note: 'Camera kit 2 back from repair',      sub: 'Then all 4 kits on Saturdays' },
+  { date: 'FRI 12 JUN', time: '',       note: 'Camera kit 2 back from repair',      sub: 'Then all 4 kits on Sundays' },
   { date: 'SUN 14 JUN', time: '',       note: "Chris Pham's check ends",             sub: 'Unless renewed' },
   { date: 'SAT 20 JUN', time: '9:00',  note: 'Club course',                         sub: '9 new coaches · clubrooms' },
 ]
@@ -36,11 +36,11 @@ export default function CalendarTab({ empty }: { empty?: boolean }) {
   return (
     <div style={{ padding: '16px 20px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 300px', gap: 14, alignItems: 'start' }}>
       <section>
-        {/* Saturday games */}
+        {/* Sunday games */}
         <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '14px 18px', marginBottom: 14 }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
             <div>
-              <h2 style={{ margin: 0, fontSize: 17, fontWeight: 700 }}>Saturday 6 Jun · 14 games</h2>
+              <h2 style={{ margin: 0, fontSize: 17, fontWeight: 700 }}>Sunday 7 Jun · 14 games</h2>
               <div style={{ fontSize: 13, color: '#4a5a57', marginTop: 2 }}>Green home · sand away</div>
             </div>
             <button onClick={() => setSynced(true)} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: `1px solid ${synced ? '#2f6252' : '#c5c8c4'}`, background: synced ? '#e4f2eb' : '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: synced ? '#2f6252' : '#10211f' }}>

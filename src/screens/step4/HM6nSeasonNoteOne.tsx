@@ -3,7 +3,7 @@ import { demoToast } from '../demoToast'
 const G='#2f6252',GD='#1f4a3e',INK='#10211f',MUT='#4a5a57',LN='#e8edeb',PALE='#eef5f2'
 export default function HM6nSeasonNoteOne({onBack}:{onBack?:()=>void}){
   const [saved,setSaved]=useState(false)
-  const [loved,setLoved]=useState("She loved scoring her first goal in a real game and playing with her friends every Saturday.")
+  const [loved,setLoved]=useState("She loved scoring her first goal in a real game and playing with her friends every Sunday.")
   const [better,setBetter]=useState("Her dribbling got really good — she started running at players with confidence.")
   const [home,setHome]=useState("Try kicking with your left foot when you're at the park. Even just a few times.")
   const [preview,setPreview]=useState(false)

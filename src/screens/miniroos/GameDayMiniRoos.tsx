@@ -65,7 +65,7 @@ export default function GameDayMiniRoos({ onWhatWeSaw, empty }: { onWhatWeSaw: (
       {/* Header */}
       <div style={{ flex: 'none', padding: '14px 28px 0', display: 'flex', alignItems: 'baseline', gap: 14, marginBottom: 14 }}>
         <h1 style={{ margin: 0, fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em' }}>Match day</h1>
-        <span style={{ fontSize: 14, color: '#4a5a57' }}>Saturday 6 Jun · at Northgate City · Redgum Reserve · 8 playing</span>
+        <span style={{ fontSize: 14, color: '#4a5a57' }}>Sunday 7 Jun · at Northgate City · Redgum Reserve · 8 playing</span>
         <div style={{ flexGrow: 1 }} />
         <button onClick={() => showToast('Turns sheet sent to the printer.')} style={{ height: 44, padding: '0 14px', borderRadius: 10, border: '1px solid #c5c8c4', background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>Print turns</button>
       </div>

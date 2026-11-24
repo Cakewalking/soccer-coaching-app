@@ -3,10 +3,10 @@ import { useState } from 'react'
 const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8edeb', PALE = '#eef5f2', BG = '#f5f6f4'
 
 const GAMES = [
-  { id: 'ironbark', opp: 'Ironbark United', date: 'Sat 30 May', res: 'W', score: '3–1', clips: 7, good: 4 },
-  { id: 'saltmarsh', opp: 'Saltmarsh', date: 'Sat 23 May', res: 'L', score: '1–2', clips: 5, good: 1 },
-  { id: 'tallwood', opp: 'Tallwood City', date: 'Sat 16 May', res: 'D', score: '1–1', clips: 5, good: 2 },
-  { id: 'tealside', opp: 'Tealside Town', date: 'Sat 9 May', res: 'W', score: '2–0', clips: 5, good: 5 },
+  { id: 'ironbark', opp: 'Ironbark United', date: 'Sun 31 May', res: 'W', score: '3–1', clips: 7, good: 4 },
+  { id: 'saltmarsh', opp: 'Saltmarsh', date: 'Sun 24 May', res: 'L', score: '1–2', clips: 5, good: 1 },
+  { id: 'tallwood', opp: 'Tallwood City', date: 'Sun 17 May', res: 'D', score: '1–1', clips: 5, good: 2 },
+  { id: 'tealside', opp: 'Tealside Town', date: 'Sun 10 May', res: 'W', score: '2–0', clips: 5, good: 5 },
 ]
 
 const CLIPS = [
@@ -105,7 +105,7 @@ export default function C2ClipsByGame() {
         {/* Clip list */}
         <div style={{ borderRight: `1px solid ${LN}`, overflowY: 'auto' }}>
           <div style={{ padding: '12px 16px', background: BG, borderBottom: `1px solid ${LN}` }}>
-            <div style={{ fontSize: 14, fontWeight: 700, color: INK }}>Ironbark United · Sat 30 May · Won 3–1</div>
+            <div style={{ fontSize: 14, fontWeight: 700, color: INK }}>Ironbark United · Sun 31 May · Won 3–1</div>
             <div style={{ fontSize: 12, color: MUT }}>Full match recorded · highlights are 4 min · review ready</div>
             <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
               {['Highlights', 'All', 'Good', 'To work on'].map(f => (
@@ -143,7 +143,7 @@ export default function C2ClipsByGame() {
           <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 8 }}>
             <div>
               <div style={{ fontSize: 16, fontWeight: 800, color: INK }}>9 s to win back</div>
-              <div style={{ fontSize: 13, color: MUT }}>Ironbark 3–1 · Sat 30 May · min 16 · Winning it back</div>
+              <div style={{ fontSize: 13, color: MUT }}>Ironbark 3–1 · Sun 31 May · min 16 · Winning it back</div>
             </div>
             <LabelChip label="To work on" />
           </div>
@@ -181,7 +181,7 @@ export default function C2ClipsByGame() {
           </div>
 
           <div style={{ display: 'flex', gap: 8 }}>
-            <button onClick={() => mark('talk')} style={{ height: 44, flex: 1, borderRadius: 10, border: `1px solid ${is('talk') ? G : LN}`, background: is('talk') ? PALE : '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, cursor: 'pointer' }}>{is('talk') ? "✓ In team talk" : "In Saturday's team talk"}</button>
+            <button onClick={() => mark('talk')} style={{ height: 44, flex: 1, borderRadius: 10, border: `1px solid ${is('talk') ? G : LN}`, background: is('talk') ? PALE : '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, cursor: 'pointer' }}>{is('talk') ? "✓ In team talk" : "In Sunday's team talk"}</button>
             <button onClick={() => mark('send')} style={{ height: 44, flex: 1, borderRadius: 10, border: `1px solid ${is('send') ? G : LN}`, background: is('send') ? PALE : '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 600, color: G, cursor: 'pointer' }}>{is('send') ? '✓ Sent to 2' : 'Send to 2 players'}</button>
           </div>
           <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>

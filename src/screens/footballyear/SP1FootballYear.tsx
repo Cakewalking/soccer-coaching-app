@@ -38,8 +38,8 @@ export default function SP1FootballYear({ onBack }: { onBack?: () => void }) {
         <div style={{ fontSize: 12, color: MUT, fontWeight: 600, marginBottom: 12 }}>2026 · Today, Thu 4 Jun · in season, round 9 of 18</div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 10, marginBottom: 14 }}>
           {[
-            { phase: 'Pre-season',  dates: '2 Feb to 10 Apr' },
-            { phase: 'Season',      dates: '11 Apr to 30 Aug', active: true },
+            { phase: 'Pre-season',  dates: '2 Feb to 11 Apr' },
+            { phase: 'Season',      dates: '12 Apr to 30 Aug', active: true },
             { phase: 'Post-season', dates: '31 Aug to 29 Nov' },
             { phase: 'Rest month',  dates: 'December' },
           ].map(p => (
@@ -108,7 +108,7 @@ export default function SP1FootballYear({ onBack }: { onBack?: () => void }) {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 10, marginTop: 10 }}>
           {[
             { label: 'Pre-season starts', val: '2 February' },
-            { label: 'Round 1',           val: '11 April' },
+            { label: 'Round 1',           val: '12 April' },
             { label: 'Last game',         val: '30 August' },
             { label: 'Rest month',        val: 'December' },
           ].map(r => (

@@ -81,7 +81,7 @@ export function AcademyTrainingWeek({ onBack: _onBack, onNav }: { onBack?: () =>
     { day: 'TUE', label: 'Advanced',    status: 'planned',        note: '3 June · 4:30pm', link: 'ACT3' },
     { day: 'WED', label: 'Development', status: 'needs-a-plan',   note: '4 June · 5:00pm', link: 'ACT2' },
     { day: 'THU', label: 'Advanced',    status: 'needs-a-plan',   note: '5 June · 4:30pm' },
-    { day: 'SAT', label: 'Game team · U13 Timber', status: 'planned', note: '7 June · 8:00am · Match' },
+    { day: 'SUN', label: 'Game team · U13 Timber', status: 'planned', note: '7 June · 8:00am · Match' },
   ]
 
   const statusStyle = (s: string) => ({
@@ -130,7 +130,7 @@ export function AcademyTrainingWeek({ onBack: _onBack, onNav }: { onBack?: () =>
             <div style={{ fontSize: 12, color: MUT, lineHeight: 1.5 }}>Set by Dani. Suggested drills in every session plan this fortnight.</div>
           </div>
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '14px 16px' }}>
-            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 8 }}>From Saturday's game</div>
+            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: MUT, marginBottom: 8 }}>From Sunday's game</div>
             <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 4 }}>U13s received facing own goal 31 times</div>
             <div style={{ fontSize: 12, color: MUT, lineHeight: 1.5 }}>Reinforces the fortnight's theme. Wednesday's suggested session picks this up.</div>
           </div>

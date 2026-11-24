@@ -185,7 +185,7 @@ export default function SafeguardingTab({ empty }: { empty?: boolean }) {
             <div style={{ fontSize: 18, fontWeight: 800, color: '#10211f', marginBottom: 4 }}>Sideline behaviour</div>
             <div style={{ fontSize: 13, color: '#5c6b67', marginBottom: 20 }}>Reports from team managers this season</div>
             {[
-              { date: '30 May', team: 'U12 Sam', desc: 'Sideline language complaint from opposing family. Coach managed on the day.', status: 'Noted' as const },
+              { date: '31 May', team: 'U12 Sam', desc: 'Sideline language complaint from opposing family. Coach managed on the day.', status: 'Noted' as const },
               { date: '12 Oct', team: 'U12 Sam', desc: 'Parent repeatedly coaching from the sideline despite being asked to stop.', status: 'Resolved' as const },
             ].map((r, i) => (
               <div key={i} style={{ background: '#fff', borderRadius: 14, padding: '14px 16px', border: '1px solid #e9eae8', marginBottom: 10 }}>

@@ -111,4 +111,4 @@ Built as drawn; listed so the designs can be fixed.
 - Whether the owner's look-around Home is `AD1` or the story home (`STORY_HOME` in `AcademyOwnerApp.tsx`).
 - Whether the chat button belongs on the academy's family pages.
 - Whether `AC12` should be redrawn to match its board.
-- Junior games on Sunday across the older club screens (`SUNDAY.md`): not done in this build; it is the next job.
+- Junior games on Sunday across the older club screens: done, and reported in `SUNDAY-NOTES.md` with the places a person should look at.

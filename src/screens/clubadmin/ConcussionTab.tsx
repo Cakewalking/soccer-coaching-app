@@ -33,7 +33,7 @@ const PLAYERS: Array<{
     day: 12, total: 21,
     symptomsNote: 'No symptoms since 25 May', symptomsGone: true,
     currentStage: 2,
-    note: 'Contact training from Mon 8 Jun (14 days with no symptoms). Earliest game Sat 13 Jun (21 days), after a doctor clears her.',
+    note: 'Contact training from Mon 8 Jun (14 days with no symptoms). Earliest game Sun 14 Jun, the first game after 21 days, once a doctor clears her.',
     action: "Doctor's note", actionLabel: "Request",
   },
   {

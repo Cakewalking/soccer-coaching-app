@@ -5,19 +5,19 @@ import { EmptyCard, FOOTER_DEFAULT } from './ui'
 const REPORTS = [
   {
     title: 'Spectator shouting at the referee',
-    game: 'U14 Josh v Kingfisher United · Sat 30 May · from Josh (coach)',
+    game: 'U14 Josh v Kingfisher United · Sun 31 May · from Josh (coach)',
     action: 'Helen spoke to the parent',
     status: 'resolved',
   },
   {
     title: 'Away parent swearing at players',
-    game: 'U12 Girls Ana v Glenview Park · Sat 30 May · from the team manager',
+    game: 'U12 Girls Ana v Glenview Park · Sun 31 May · from the team manager',
     action: 'Sent to Glenview Park',
     status: 'resolved',
   },
   {
     title: 'Coach on the field during play',
-    game: 'U10 Nadia v Tealside Town · Sat 23 May · from the referee',
+    game: 'U10 Nadia v Tealside Town · Sun 24 May · from the referee',
     action: 'Closed · reminder sent',
     status: 'closed',
   },

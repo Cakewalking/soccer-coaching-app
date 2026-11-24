@@ -30,7 +30,7 @@ export default function PXp1ParentDown({ onNav }: { onNav?: (s: string) => void 
           <div style={{ fontSize: 13, fontWeight: 700, color: AMBER, marginBottom: 10, letterSpacing: '0.04em', textTransform: 'uppercase' as const }}>What this means</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             <div style={{ fontSize: 14, color: '#fff', lineHeight: 1.5 }}>Thursdays with U13 Chris for 6 weeks, 5:30 to 6:45.</div>
-            <div style={{ fontSize: 14, color: PALEON, lineHeight: 1.5 }}>He stays an under 14. Tuesdays and Saturdays don't change.</div>
+            <div style={{ fontSize: 14, color: PALEON, lineHeight: 1.5 }}>He stays an under 14. Tuesdays and Sundays don't change.</div>
             <div style={{ fontSize: 14, color: PALEON, lineHeight: 1.5 }}>Players who grow late usually catch up at 15 to 17. This is about keeping football fun until then. He knows five of that group from last year.</div>
           </div>
         </div>

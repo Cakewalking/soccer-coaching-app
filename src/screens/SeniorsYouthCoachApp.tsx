@@ -143,25 +143,25 @@ const YOUTH: TeamData = {
   avatarBg: '#40826d',
   avatarLetters: 'OG',
   needsYouItems: [
-    { label: 'Cards · from Dribl', when: 'Mon', note: 'Ryan Petersen is suspended for Saturday', urgent: true },
+    { label: 'Cards · from Dribl', when: 'Mon', note: 'Ryan Petersen is suspended for Sunday', urgent: true },
     { label: 'Priya Shah · Fitness coach', when: 'Yesterday', note: 'Load is up 30% two weeks running', urgent: false },
     { label: 'Cal West · player', when: '8:10 am', note: 'Exam Friday. Can I miss the team meeting?', urgent: false },
   ],
   needsYouNote: '11 a side, 2 × 40 minutes. Players 15 and over have their own accounts and message you directly; a parent is copied in until they turn 18.',
-  gameCardTitle: 'Game in 2 days',
-  gameCardTime: 'SATURDAY · 3:30 pm · away, Rovers Park',
+  gameCardTitle: 'Game in 3 days',
+  gameCardTime: 'SUNDAY · 3:30 pm · away, Rovers Park',
   gameCardBadge: 'No training tonight · team talk to finish · 13 available, 1 suspended',
   gameCardBullets: ["Protect tired legs", "Play out under a press", "Subs from minute 50"],
   gameCardCTA: 'Finish the team talk',
   gameCardCTA2: 'Team sheet',
   opponent: 'Harbour Rovers',
   lastGame: {
-    label: 'Sat 30 May · home',
+    label: 'Sun 31 May · home',
     opponent: 'Tealside Town',
     scorer: 'Theo and Leo scored',
     score: '2–2',
     bullets: [
-      { text: 'Lost the ball 9 times playing out', tag: 'Saturday' },
+      { text: 'Lost the ball 9 times playing out', tag: 'Sunday' },
       { text: 'Sprints fell 31% in the last 20 minutes', tag: 'Load' },
       { text: 'Created 6 chances from wide', tag: 'Keep' },
     ],
@@ -172,12 +172,12 @@ const YOUTH: TeamData = {
     { day: 'Wed 3', label: 'Light session · done', done: true },
     { day: 'Thu 4', label: 'Rest · today', today: true },
     { day: 'Fri 5', label: 'Team meeting 6:00 pm' },
-    { day: 'Sat 6', label: 'Harbour Rovers 3:30' },
-    { day: 'Sun 7', label: 'Rest' },
+    { day: 'Sat 6', label: 'Rest' },
+    { day: 'Sun 7', label: 'Harbour Rovers 3:30' },
   ],
   lastFive: [{ result: 'L' }, { result: 'D' }, { result: 'L' }, { result: 'W' }, { result: 'L' }],
   lastFiveLabel: '5th of 12 · Division 1',
-  nextGame: 'Next: Sat 3:30 at Harbour Rovers · Away · 13 in, 3 to manage, 1 suspended',
+  nextGame: 'Next: Sun 3:30 at Harbour Rovers · Away · 13 in, 3 to manage, 1 suspended',
   squad: { total: 17, in: 13, label2: 'Manage', val2: 3, label3: 'Out', val3: 1 },
   roleNote: 'At this age',
 }
@@ -599,7 +599,7 @@ export default function SeniorsYouthCoachApp({ teamType, onBack: _onBack, phaseC
     else content = <RecordHub noFrame onNav={handleNav} />
   } else if (nav === 'matchday') {
     switch (matchTab) {
-      case 0: content = <MatchDayScreen onNav={handleNav} empty={sbEmptyFixture} opponent={data.opponent} away when={teamType === 'seniors' ? 'Sat 6 Jun · 3:00 pm · away' : 'Sat 6 Jun · 3:30 pm · away'} lastResult={teamType === 'seniors' ? 'won 2–0' : 'drew 2–2'} />; break
+      case 0: content = <MatchDayScreen onNav={handleNav} empty={sbEmptyFixture} opponent={data.opponent} away when={teamType === 'seniors' ? 'Sat 6 Jun · 3:00 pm · away' : 'Sun 7 Jun · 3:30 pm · away'} lastResult={teamType === 'seniors' ? 'won 2–0' : 'drew 2–2'} />; break
       case 1: content = <TeamSheetScreen empty={sbEmptyFixture} teamType={teamType === 'seniors' ? 'seniors' : 'youth'} />; break
       case 2: content = <OppositionScreen empty={sbEmptyFixture} opponent={data.opponent} scout={teamType === 'seniors' ? 'Nico' : 'Tom'} />; break
       case 3: content = sbEmptyFixture ? <ReviewScreen empty />

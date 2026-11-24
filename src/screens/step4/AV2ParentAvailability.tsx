@@ -9,7 +9,7 @@ type Answer = 'yes' | 'maybe' | 'no' | null
 export default function AV2ParentAvailability({ child = 'Bao', teamLabel = 'U8', coach = 'Hannah', self = false }: { child?: string; teamLabel?: string; coach?: string; self?: boolean } = {}) {
   const SESSIONS = [
     { id: 'thu', day: 'THU 4', label: 'Training', sub: 'Tonight · 5:45 to 7:15 pm · Wattle Creek Reserve' },
-    { id: 'sat', day: 'SAT 6', label: self ? 'Saturday game' : 'Saturday game · first go in goal', sub: 'Home · be there 8:40 for 9:30' },
+    { id: 'sat', day: 'SUN 7', label: self ? 'Sunday game' : 'Sunday game · first go in goal', sub: 'Home · be there 8:40 for 9:30' },
     { id: 'tue', day: 'TUE 9', label: 'Training', sub: '5:45 to 7:15 pm · Wattle Creek Reserve' },
   ]
   const [answers, setAnswers] = useState<Record<string, Answer>>({ thu: 'yes', sat: 'yes', tue: null })

@@ -239,7 +239,7 @@ export default function ClubTab({ role, empty, homeStory, onNav, initialView }: 
                   <div style={{ fontSize: 12, color: '#5c6b67' }}>5 things</div>
                 </div>
                 {[
-                  { text: 'U9 Mark has no coach on Saturday', sub: 'Tom Albers can cover. U9 Tom kick off 30 min earlier.', cta: 'Ask Tom' },
+                  { text: 'U9 Mark has no coach on Sunday', sub: 'Tom Albers can cover. U9 Tom kick off 30 min earlier.', cta: 'Ask Tom' },
                   { text: "4 coaches' checks run out soon", sub: "Chris and Luke inside 14 days. Can't run sessions once expired.", cta: 'Remind' },
                   { text: 'U13 Chris and U15 Girls Bec missing games', sub: 'Only 3 and 2 of their last 6 games recorded. Camera kit 2 is away for repair.', cta: 'Fix kit' },
                   { text: 'U16 Ollie heavy legs', sub: 'Load up 30% two weeks running. Fitness coach is on it.', cta: 'See load' },
@@ -254,7 +254,7 @@ export default function ClubTab({ role, empty, homeStory, onNav, initialView }: 
                       if (item.cta === 'Fix kit') { setView('kit'); return }
                       if (item.cta === 'See load') { if (onNav) onNav('D2-Teams'); else openThing('U16 Ollie’s load', 'club'); return }
                       if (item.cta === 'Open') { if (onNav) onNav('D3-Coaches'); else openThing('the coach meeting', 'club'); return }
-                      markDone(`needs:${item.cta}`); showToast(item.cta === 'Remind' ? 'Reminder sent to the four coaches. One reminder only.' : 'Tom Albers is asked to cover U9 Mark on Saturday.')
+                      markDone(`needs:${item.cta}`); showToast(item.cta === 'Remind' ? 'Reminder sent to the four coaches. One reminder only.' : 'Tom Albers is asked to cover U9 Mark on Sunday.')
                     }} style={{ flexShrink: 0, height: 44, padding: '0 12px', borderRadius: '999px', border: '1px solid #2f6252', background: '#fff', color: '#2f6252', fontFamily: 'inherit', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>{item.cta}</button>
                   </div>
                 ))}
@@ -270,7 +270,7 @@ export default function ClubTab({ role, empty, homeStory, onNav, initialView }: 
                   <div style={{ color: '#5c6b67', fontWeight: 700 }}>OUR WAY</div>
                   <div style={{ color: '#5c6b67', fontWeight: 700 }}>TURNOUT</div>
                   {[
-                    { team: 'U9 Mark', sub: 'Kangaroos', coach: '', results: [], style: 0, turnout: 84, alert: 'No coach Sat' },
+                    { team: 'U9 Mark', sub: 'Kangaroos', coach: '', results: [], style: 0, turnout: 84, alert: 'No coach Sun' },
                     { team: 'U11 Luke', sub: 'Wallabies', coach: 'Luke Fraser', results: ['W','D','L','W','L'], style: 52, turnout: 79 },
                     { team: 'U12 Sam', sub: '', coach: 'Sam K', results: ['W','W','D','L','W'], style: 78, turnout: 92 },
                     { team: 'U13 Chris', sub: 'Division 2', coach: 'Chris Pham', results: ['L','W','L','L','D'], style: 58, turnout: 81 },
@@ -422,7 +422,7 @@ export default function ClubTab({ role, empty, homeStory, onNav, initialView }: 
           <>
             <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 10 }}>Camera kit</div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 20 }}>
-              {[{ id: 'Kit 1', status: 'Available', c: '#40826d', bg: '#e4f2eb' }, { id: 'Kit 2', status: 'Booked · U12 Sat', c: '#c3a84a', bg: '#fdf8ed' }, { id: 'Kit 3', status: 'Available', c: '#40826d', bg: '#e4f2eb' }, { id: 'Kit 4', status: 'Repair needed', c: '#c39797', bg: '#fdf4f4' }].map(k => (
+              {[{ id: 'Kit 1', status: 'Available', c: '#40826d', bg: '#e4f2eb' }, { id: 'Kit 2', status: 'Booked · U12 Sun', c: '#c3a84a', bg: '#fdf8ed' }, { id: 'Kit 3', status: 'Available', c: '#40826d', bg: '#e4f2eb' }, { id: 'Kit 4', status: 'Repair needed', c: '#c39797', bg: '#fdf4f4' }].map(k => (
                 <div key={k.id} style={{ background: '#fff', borderRadius: 14, padding: '14px', border: '1px solid #e9eae8' }}>
                   <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', marginBottom: 6 }}>{k.id}</div>
                   <span style={{ fontSize: 12, fontWeight: 700, color: k.c, background: k.bg, borderRadius: 6, padding: '2px 8px' }}>{k.status}</span>

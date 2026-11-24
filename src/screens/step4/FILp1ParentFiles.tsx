@@ -14,9 +14,9 @@ export default function FILp1ParentFiles({ onBack: _onBack, onNav }: {
   function tool(name: string) { const to = toolTarget(name); if (to && onNav) { onNav(to); return } setLastTool(name) }
 
   const files: FileItem[] = [
-    { id: 'doc1', name: 'Saturday v Harbour Rovers', subtitle: 'From Sam · changed last night' },
+    { id: 'doc1', name: 'Sunday v Harbour Rovers', subtitle: 'From Sam · changed last night' },
     { id: 'doc2', name: 'Summer sevens · team sheets', subtitle: 'From Sam · today' },
-    { id: 'doc3', name: 'Canteen and kit roster, term 2', subtitle: 'From Rob · you are on 13 June' },
+    { id: 'doc3', name: 'Canteen and kit roster, term 2', subtitle: 'From Rob · you are on 14 June' },
     { id: 'doc4', name: 'Season letter to families', subtitle: 'From Sam · 12 May' },
     { id: 'doc5', name: 'Ground map, Redgum Reserve', subtitle: 'PDF · 3 May' },
     { id: 'doc6', name: 'Child-safe policy', subtitle: 'From Wattle Creek FC' },
@@ -56,7 +56,7 @@ export default function FILp1ParentFiles({ onBack: _onBack, onNav }: {
           return (
           <div key={f.id} onClick={() => tool(f.id)}
             style={{ background: hero ? DARK : (lastTool === f.id ? PALE : '#fff'), border: hero ? 'none' : `1px solid ${lastTool === f.id ? G : LN}`, borderRadius: 14, padding: hero ? '16px' : '14px 16px', marginBottom: hero ? 14 : 10, cursor: 'pointer' }}>
-            {hero && <div style={{ fontSize: 11, fontWeight: 700, color: AMBER, letterSpacing: '0.06em', textTransform: 'uppercase' as const, marginBottom: 10 }}>New for Saturday</div>}
+            {hero && <div style={{ fontSize: 11, fontWeight: 700, color: AMBER, letterSpacing: '0.06em', textTransform: 'uppercase' as const, marginBottom: 10 }}>New for Sunday</div>}
             <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
               <div style={{ width: 36, height: 36, borderRadius: 8, background: hero ? 'rgba(255,255,255,0.12)' : PALE, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={hero ? AMBER : G} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">

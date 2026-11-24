@@ -46,7 +46,7 @@ export default function STMs4MiniRoosChild({ onNav }: { onNav?: (s: string) => v
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '20px' }}>
             <div style={{ fontSize: 12, fontWeight: 700, color: MUT, letterSpacing: '0.07em', marginBottom: 10 }}>CURRENT GOAL</div>
             <div style={{ fontSize: 15, fontWeight: 800, color: INK, marginBottom: 4 }}>"Take someone on and keep going."</div>
-            <div style={{ fontSize: 13, color: MUT, marginBottom: 16 }}>Set with her mum on 12 May. She tried 3 dribbles on Saturday, her first three.</div>
+            <div style={{ fontSize: 13, color: MUT, marginBottom: 16 }}>Set with her mum on 12 May. She tried 3 dribbles on Sunday, her first three.</div>
             <div style={{ display: 'flex', gap: 10 }}>
               <button aria-label="She did it" onClick={() => tool('Marked as done. Poppy and her mum get a well done, and you pick the next goal together.')} style={{ height: 44, padding: '0 20px', background: G, color: '#fff', border: 'none', borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>She did it</button>
               <button aria-label="Change the goal" onClick={() => { setChildSubject(undefined); if (onNav) onNav('GP7-MiniGoal'); else openScreen('GP7-MiniGoal') }} style={{ height: 44, padding: '0 20px', background: '#fff', color: G, border: `1.5px solid ${G}`, borderRadius: 8, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Change the goal</button>
@@ -69,9 +69,9 @@ export default function STMs4MiniRoosChild({ onNav }: { onNav?: (s: string) => v
               <div style={{ position: 'relative' as const, background: '#f4f6f5', borderRadius: 10, padding: '12px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div>
                   <div style={{ fontSize: 13, fontWeight: 700, color: INK }}>Dribbles tried</div>
-                  <div style={{ fontSize: 12, color: MUT }}>New · 3 a game · Her first three, all on Saturday</div>
+                  <div style={{ fontSize: 12, color: MUT }}>New · 3 a game · Her first three, all on Sunday</div>
                 </div>
-                <button aria-label="Dribbles tried New 3 a game Her first three, all on Saturday" onClick={() => tool('Clips of her three dribbles.')} style={{ position: 'absolute', inset: 0, opacity: 0, cursor: 'pointer', border: 'none', background: 'transparent' }} />
+                <button aria-label="Dribbles tried New 3 a game Her first three, all on Sunday" onClick={() => tool('Clips of her three dribbles.')} style={{ position: 'absolute', inset: 0, opacity: 0, cursor: 'pointer', border: 'none', background: 'transparent' }} />
               </div>
               <div style={{ position: 'relative' as const, background: '#f4f6f5', borderRadius: 10, padding: '12px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div>

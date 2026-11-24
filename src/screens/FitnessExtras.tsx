@@ -95,7 +95,7 @@ export function FitnessSquadTab({ empty }: { empty: boolean }) {
       <div style={{ flexShrink: 0, padding: '12px 28px 0', display: 'flex', alignItems: 'center', gap: 12 }}>
         <div>
           <div style={{ fontSize: 22, fontWeight: 700, color: INK, letterSpacing: '-0.02em' }}>Squad</div>
-          <div style={{ fontSize: 13, color: MUT }}>17 players, 16 shown · Thursday 4 Jun · 2 days to Harbour Rovers</div>
+          <div style={{ fontSize: 13, color: MUT }}>17 players, 16 shown · Thursday 4 Jun · 3 days to Harbour Rovers</div>
         </div>
         <div style={{ flex: 1 }}/>
         <button onClick={() => showToast('Message started to all parents.')} style={{ height: 44, padding: '0 14px', borderRadius: 999, border: `1px solid ${LN}`, background: '#fff', fontSize: 13, fontWeight: 700, color: MUT, cursor: 'pointer', fontFamily: 'inherit' }}>Message parents</button>
@@ -193,7 +193,7 @@ const TONIGHT_DRILLS = [
 const WHY_PLAN = [
   { n: '1', t: 'Protect growing players', d: 'Noah and Zoe are growing fast, and both reported pain this week.', note: '1 drill tonight · clip and data' },
   { n: '2', t: 'Warm up to prevent injuries', d: 'The 11+ Kids warm-up was done once this week. Twice works best.', note: '1 drill tonight · clip and data' },
-  { n: '3', t: 'Strong to the final whistle, through football', d: 'Running dropped in the last 10 minutes on Saturday.', note: '1 drill tonight · clip and data' },
+  { n: '3', t: 'Strong to the final whistle, through football', d: 'Running dropped in the last 10 minutes on Sunday.', note: '1 drill tonight · clip and data' },
 ]
 
 const ADJUST_TONIGHT = [
@@ -234,7 +234,7 @@ export function FitnessTrainingTab({ empty }: { empty: boolean }) {
       <div style={{ overflowY: 'auto', padding: '16px 20px 20px 28px', display: 'flex', flexDirection: 'column', gap: 10 }}>
         <div>
           <div style={{ fontSize: 20, fontWeight: 700, color: INK, marginBottom: 2 }}>Your part tonight · 5:45–7:15 pm</div>
-          <div style={{ fontSize: 13, color: MUT }}>Wattle Creek Reserve · 16 players · 90 minutes · 2 days to Harbour Rovers</div>
+          <div style={{ fontSize: 13, color: MUT }}>Wattle Creek Reserve · 16 players · 90 minutes · 3 days to Harbour Rovers</div>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
           {['Team talk', 'Edit my part', 'Record'].map(l => (
@@ -333,7 +333,7 @@ export function FitnessMatchTab({ empty }: { empty: boolean }) {
       <div style={{ overflowY: 'auto', padding: '16px 20px 20px 28px', display: 'flex', flexDirection: 'column', gap: 14 }}>
         <div>
           <div style={{ fontSize: 20, fontWeight: 700, color: INK, marginBottom: 2 }}>vs Harbour Rovers</div>
-          <div style={{ fontSize: 13, color: MUT }}>Sat 6 Jun · 9:30 am · home · kick-off in 2 h 15 min</div>
+          <div style={{ fontSize: 13, color: MUT }}>Sun 7 Jun · 9:30 am · home · kick-off in 2 h 15 min</div>
         </div>
         <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
           <div style={{ height: 36, padding: '0 14px', borderRadius: 999, background: PALE, display: 'flex', alignItems: 'center', fontSize: 13, fontWeight: 700, color: G }}>3 of 5 ready</div>

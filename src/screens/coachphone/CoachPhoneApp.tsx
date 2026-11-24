@@ -307,13 +307,13 @@ function CoachPhoneHomeTab({ onPlan, onAsk, onKick, onIncident }: { onPlan: () =
         </div>
       </Card>
 
-      {/* Saturday's game: the four checks before recording */}
+      {/* Sunday's game: the four checks before recording */}
       {onKick && (
         <Card>
           <button onClick={onKick} style={{ width: '100%', minHeight: 60, padding: '10px 14px', display: 'flex', alignItems: 'center', gap: 12, textAlign: 'left', background: 'none', border: 0, fontFamily: 'inherit', color: INK, cursor: 'pointer' }}>
             <span style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
               <strong style={{ fontSize: 15 }}>Before kick-off</strong>
-              <span style={{ fontSize: 13, color: MUT }}>Saturday v Harbour Rovers · four checks, about 2 minutes</span>
+              <span style={{ fontSize: 13, color: MUT }}>Sunday v Harbour Rovers · four checks, about 2 minutes</span>
             </span>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
           </button>
@@ -349,11 +349,11 @@ function CoachPhoneHomeTab({ onPlan, onAsk, onKick, onIncident }: { onPlan: () =
         />
       </Card>
 
-      {/* Saturday game */}
-      <SectionHead>Saturday</SectionHead>
+      {/* Sunday game */}
+      <SectionHead>Sunday</SectionHead>
       <Card>
         <div style={{ padding: '14px 14px 10px' }}>
-          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 4 }}>Game · Sat 6 June · 10 am</div>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 4 }}>Game · Sun 7 June · 10 am</div>
           <div style={{ fontSize: 16, fontWeight: 800, letterSpacing: '-0.02em', color: INK, marginBottom: 4 }}>vs Banksia Park</div>
           <div style={{ fontSize: 14, color: MUT }}>Home · Wattle Creek Reserve</div>
         </div>
@@ -452,8 +452,8 @@ function CoachPhoneMessagesTab() {
   const read = useRead()
   const threads = [
     { initials: 'U1', name: 'U12 Sam · Team', last: 'You: Good run tonight everyone', time: '8:14 pm', unread: 0, isGroup: true },
-    { initials: 'BM', name: 'Ben Mills (parent)', last: 'Is Isla recovered for Saturday?', time: '6:40 pm', unread: 1, isGroup: false },
-    { initials: 'HP', name: 'Helen Park · Welfare', last: 'All clear for Sat', time: 'Thu', unread: 0, isGroup: false },
+    { initials: 'BM', name: 'Ben Mills (parent)', last: 'Is Isla recovered for Sunday?', time: '6:40 pm', unread: 1, isGroup: false },
+    { initials: 'HP', name: 'Helen Park · Welfare', last: 'All clear for Sun', time: 'Thu', unread: 0, isGroup: false },
     { initials: 'RC', name: 'Rhys Cooper (parent)', last: 'Thanks for today!', time: 'Wed', unread: 0, isGroup: false },
     { initials: 'CL', name: 'Coaches · Wattle Creek', last: 'AK: Confirmed for the ref', time: 'Tue', unread: 0, isGroup: true },
   ]
@@ -492,7 +492,7 @@ function CoachPhoneGameTab({ onReview }: { onReview?: () => void }) {
     <>
       {/* Score + clock */}
       <div style={{ background: GD, padding: '16px 20px 20px' }}>
-        <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,0.6)', marginBottom: 10 }}>U12 Sam · vs Banksia Park · Sat 6 June</div>
+        <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,0.6)', marginBottom: 10 }}>U12 Sam · vs Banksia Park · Sun 7 June</div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 12 }}>
           <div style={{ flex: 1, textAlign: 'center' as const }}>
             <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.6)', marginBottom: 2 }}>Wattle Creek</div>

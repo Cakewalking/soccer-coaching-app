@@ -70,14 +70,14 @@ const rowLabel: React.CSSProperties = { fontSize: 11, fontWeight: 700, letterSpa
 type CoachPath = { path: string; done: string; next: string; support: string; week: string; weekLessons: Lesson[]; dayLessons: Lesson[]; tried: string; why: string }
 const COACH: Record<LearnTeam, CoachPath> = {
   miniroos: {
-    path: 'New to coaching MiniRoos', done: 'two', next: 'reading who has had a turn, without an app', support: '50 seconds. Then try it on Saturday.',
+    path: 'New to coaching MiniRoos', done: 'two', next: 'reading who has had a turn, without an app', support: '50 seconds. Then try it on Sunday.',
     week: 'children bunching round the ball', tried: '“no lines, no laps”',
     weekLessons: [{ len: '0:48', title: 'Fixing bunching with one rule', credit: 'Luke Fraser with U11 Luke', tag: 'Small games' }, { len: '1:05', title: 'A session with no lines and no laps', credit: 'Mark Dunn with U9 Mark', tag: 'Planning', watched: true }, { len: '0:40', title: 'Getting a quiet child on the ball', credit: 'Ana Silva with U12 Girls Ana', tag: 'Every child' }],
     dayLessons: [{ len: '0:36', title: 'A team talk in 30 seconds', credit: 'Sam K with U12 Sam', tag: 'Talking', watched: true }, { len: '0:52', title: 'Changing a game that isn’t working', credit: 'Luke Fraser with U11 Luke', tag: 'Small games' }, { len: '0:44', title: 'What to say to the sideline', credit: 'Rachel Moore', tag: 'Parents' }],
     why: 'Live game help is off for MiniRoos at Wattle Creek, so you learn to see it yourself. These show how other coaches here do that.',
   },
   juniors: {
-    path: 'Coaching 9 a side', done: 'three', next: 'keeping minutes fair without a spreadsheet', support: '55 seconds. Then try it on Saturday.',
+    path: 'Coaching 9 a side', done: 'three', next: 'keeping minutes fair without a spreadsheet', support: '55 seconds. Then try it on Sunday.',
     week: 'the gap between defence and midfield', tried: '“step up together”',
     weekLessons: [{ len: '0:52', title: 'Coaching the gap with one cue', credit: 'Josh Kerr with U14 Josh', tag: 'Staying compact' }, { len: '1:10', title: 'A session that starts with a game', credit: 'Meg Doyle with U13 Girls Meg', tag: 'Planning', watched: true }, { len: '0:45', title: 'Asking instead of telling', credit: 'Ana Silva with U12 Girls Ana', tag: 'Talking' }],
     dayLessons: [{ len: '0:36', title: 'A team talk in 30 seconds', credit: 'Luke Fraser with U11 Luke', tag: 'Talking', watched: true }, { len: '0:58', title: 'Subs that keep minutes fair', credit: 'Mark Dunn with U9 Mark', tag: 'Minutes' }, { len: '0:44', title: 'What to say to the sideline', credit: 'Rachel Moore', tag: 'Parents' }],
@@ -95,7 +95,7 @@ const COACH: Record<LearnTeam, CoachPath> = {
     week: 'keepers starting too deep on through balls', tried: '“start four metres higher”',
     weekLessons: [{ len: '0:50', title: 'Starting position, taught with two cones', credit: 'Rachel Moore', tag: 'Starting spots' }, { len: '1:02', title: 'Sweeping without rushing out', credit: 'Marko Petrovic with Men’s 1sts', tag: 'Through balls', watched: true }, { len: '0:44', title: 'A keeper session inside team training', credit: 'Josh Kerr with U14 Josh', tag: 'Planning' }],
     dayLessons: [{ len: '0:38', title: 'A warm-up that is not just shots', credit: 'Meg Doyle with U13 Girls Meg', tag: 'Warm-up', watched: true }, { len: '0:47', title: 'What to say after a mistake', credit: 'Rachel Moore', tag: 'Talking' }, { len: '0:41', title: 'Restarts in under six seconds', credit: 'Ollie Grant with U16 Ollie', tag: 'Distribution' }],
-    why: 'Saturday’s film shows three keepers starting deep. These show how coaches at Wattle Creek coach it without a keeper coach on the day.',
+    why: 'Sunday’s film shows three keepers starting deep. These show how coaches at Wattle Creek coach it without a keeper coach on the day.',
   },
   seniors: {
     path: 'Leading a senior squad', done: 'four', next: 'using opposition film in ten minutes', support: '70 seconds. Then try it before Saturday.',
@@ -183,7 +183,7 @@ const PLAYERS_SIMPLE: Record<'miniroos' | 'goalkeeper', PlayersCfg> = {
   },
   goalkeeper: {
     heading: 'Learn · for your keepers · this week: starting higher',
-    sentence: 'Ava started four metres higher on Saturday and swept up two through balls. Twelve seconds every keeper can copy.',
+    sentence: 'Ava started four metres higher on Sunday and swept up two through balls. Twelve seconds every keeper can copy.',
     support: 'It goes to your eight keepers with one thing to try at Tuesday’s session. Under 12s get it through their family.',
     lead: 'Starting spot for a through ball', others: 3, group: 'keepers', of: 8,
     lessons: [

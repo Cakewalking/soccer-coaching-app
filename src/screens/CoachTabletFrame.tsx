@@ -37,7 +37,7 @@ type DemoAnswer = {
 const DEMO_ANSWERS: Record<string, DemoAnswer> = {
   'Who needs a rest this week?': {
     conclusion: 'Mia Tran is approaching her load limit.',
-    detail: ' She played 73 minutes on Saturday and her training load this week is the highest in the squad. She is under the equal-minutes threshold for U12.',
+    detail: ' She played 73 minutes on Sunday and her training load this week is the highest in the squad. She is under the equal-minutes threshold for U12.',
     used: [
       { label: 'Recorded games', note: 'Last 9 games, U12 Sam' },
       { label: 'Training load', note: 'This week' },
@@ -82,7 +82,7 @@ const DEMO_ANSWERS: Record<string, DemoAnswer> = {
   },
   "Who has exams coming up?": {
     conclusion: 'Four players have exam clashes in the next two weeks.',
-    detail: ' Priya, Tom, Alice, and Remi have exam dates on the calendar. Tom has exams on Saturday and may not be available.',
+    detail: ' Priya, Tom, Alice, and Remi have exam dates on the calendar. Tom has an exam on Monday and may miss Sunday’s game.',
     used: [
       { label: 'Team calendar', note: 'Next 2 weeks' },
       { label: 'Player notes', note: 'Availability flags' },
@@ -152,11 +152,11 @@ const DEMO_ANSWERS: Record<string, DemoAnswer> = {
     ],
     actions: [{ label: 'Open teams', nav: 'teams' }],
   },
-  'Who can cover U9 Mark on Saturday?': {
+  'Who can cover U9 Mark on Sunday?': {
     conclusion: 'Two coaches are available and qualified for U9.',
-    detail: ' Jana Kowalski holds a junior coaching certificate and has no fixture on Saturday. Sam Chen is free but has not completed the certificate yet.',
+    detail: ' Jana Kowalski holds a junior coaching certificate and has no fixture on Sunday. Sam Chen is free but has not completed the certificate yet.',
     used: [
-      { label: 'Coach availability', note: 'Saturday 14 June' },
+      { label: 'Coach availability', note: 'Sunday 14 June' },
       { label: 'Coach qualifications', note: 'All coaches' },
     ],
     actions: [{ label: 'Open coaches', nav: 'coaches' }],
@@ -169,12 +169,12 @@ const DEMO_ANSWERS: Record<string, DemoAnswer> = {
     ],
     actions: [{ label: 'Open teams', nav: 'teams' }],
   },
-  'What does Mia need for Saturday?': {
+  'What does Mia need for Sunday?': {
     conclusion: 'A friendly at Glenview, 10:00 am. White kit, shin pads, a drink.',
     detail: " It's away — allow 25 minutes to get there. Be there by 9:30. Mia is coming.",
     used: [
       { label: "Sam's message to U12 Sam", note: 'Tue' },
-      { label: 'Team calendar', note: 'Sat 14 March' },
+      { label: 'Team calendar', note: 'Sun 15 March' },
     ],
     actions: [{ label: 'Add to my calendar', nav: 'calendar' }, { label: "Say she's coming", nav: 'coming' }],
   },

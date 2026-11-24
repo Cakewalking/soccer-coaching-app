@@ -19,7 +19,7 @@ export default function PK1YoungNews(_: { onBack?: () => void }) {
       </div>
       <div style={{ flexGrow: 1, padding: '12px 16px', display: 'flex', flexDirection: 'column', gap: 10 }}>
         {[
-          { from: 'Rob, team manager', time: 'today', text: 'Be there 8:40 on Saturday', sub: 'Pitch 2. White kit.', extra: 'Pitch 2, Wattle Creek Reserve\nMum has the directions' },
+          { from: 'Rob, team manager', time: 'today', text: 'Be there 8:40 on Sunday', sub: 'Pitch 2. White kit.', extra: 'Pitch 2, Wattle Creek Reserve\nMum has the directions' },
           { from: 'Sam, your coach', time: 'today', text: '14 juggles is a new best!', sub: "Sam saw your video. Can you get to 15 by Thursday?", extra: null, reaction: true },
         ].map((msg, i) => (
           <div key={i} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '14px 16px' }}>

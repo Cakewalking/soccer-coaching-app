@@ -27,7 +27,7 @@ export default function I1eInboxVests(_: { onBack?: () => void }) {
               <div>
                 <div style={{ fontSize: 13, fontWeight: 700, color: INK }}>3 GPS vests didn't sync</div>
                 <div style={{ fontSize: 12, color: MUT }}>Ruby, Isla and Finn after Tuesday training.</div>
-                <div style={{ fontSize: 11, fontWeight: 700, background: '#fef2f2', color: '#c05', padding: '2px 8px', borderRadius: 20, display: 'inline-block', marginTop: 4 }}>Fix before Saturday</div>
+                <div style={{ fontSize: 11, fontWeight: 700, background: '#fef2f2', color: '#c05', padding: '2px 8px', borderRadius: 20, display: 'inline-block', marginTop: 4 }}>Fix before Sunday</div>
               </div>
             </div>
           </div>
@@ -42,7 +42,7 @@ export default function I1eInboxVests(_: { onBack?: () => void }) {
           </div>
           <div style={{ fontSize: 13, color: MUT, marginBottom: 20 }}>Data alert · 7:12 am</div>
           <div style={{ fontSize: 15, color: INK, lineHeight: 1.7, marginBottom: 24 }}>
-            Ruby, Isla and Finn's vests didn't sync after Tuesday training. Their running data for that session is missing. This needs fixing before Saturday's game, or their vest data won't be recorded.
+            Ruby, Isla and Finn's vests didn't sync after Tuesday training. Their running data for that session is missing. This needs fixing before Sunday's game, or their vest data won't be recorded.
           </div>
           <div style={{ background: PALE, borderRadius: 12, padding: '14px 16px', marginBottom: 16 }}>
             <div style={{ fontSize: 13, fontWeight: 700, color: GD, marginBottom: 6 }}>What to do</div>

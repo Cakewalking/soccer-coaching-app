@@ -9,9 +9,9 @@ const KEEPERS = [
   { ini: 'ST', name: 'Sophie Tan', sessions: 2, of: 4, ok: true },
 ]
 const CLIPS = [
-  { title: 'Ava — hesitant on crosses', team: 'U12 Sam', date: 'Sat 6 Jun' },
-  { title: 'Grace — good sweep positioning', team: 'U13 Girls Meg', date: 'Sat 6 Jun' },
-  { title: 'Jack — starting position too deep', team: 'U12 Sam', date: 'Sat 6 Jun' },
+  { title: 'Ava — hesitant on crosses', team: 'U12 Sam', date: 'Sun 7 Jun' },
+  { title: 'Grace — good sweep positioning', team: 'U13 Girls Meg', date: 'Sun 7 Jun' },
+  { title: 'Jack — starting position too deep', team: 'U12 Sam', date: 'Sun 7 Jun' },
 ]
 
 export default function HG1HomeKeeperCoach(_: { onBack?: () => void }) {
@@ -55,7 +55,7 @@ export default function HG1HomeKeeperCoach(_: { onBack?: () => void }) {
             <div style={{ fontSize: 14, color: MUT, borderTop: `1px solid ${LN}`, paddingTop: 6 }}>1 message in inbox from Sam K — reply before training.</div>
           </div>
           <div style={{ background: '#fff', border: `1px solid #c5c8c4`, borderRadius: 16, padding: '14px 16px', display: 'flex', flexDirection: 'column' as const, gap: 6 }}>
-            <div style={{ fontSize: 15, fontWeight: 700 }}>From Saturday clips</div>
+            <div style={{ fontSize: 15, fontWeight: 700 }}>From Sunday clips</div>
             {CLIPS.map((c, i) => (
               <div key={i} style={{ display: 'flex', gap: 10, borderTop: `1px solid ${LN}`, paddingTop: 6 }}>
                 <div style={{ width: 40, height: 44, borderRadius: 8, background: '#e8edeb', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>

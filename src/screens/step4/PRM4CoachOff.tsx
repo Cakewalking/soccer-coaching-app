@@ -41,7 +41,7 @@ export default function PRM4CoachOff({ onNav }: { onNav?: (s: string) => void })
 
       {/* Page header */}
       <div style={{ padding: '16px 24px', background: '#fff', borderBottom: `1px solid ${LN}`, flexShrink: 0 }}>
-        <div style={{ fontSize: 18, fontWeight: 900, color: INK }}>Saturday at Northgate City</div>
+        <div style={{ fontSize: 18, fontWeight: 900, color: INK }}>Sunday at Northgate City</div>
         <div style={{ fontSize: 13, color: MUT }}>U9 Tom · kick-off 8:30 · game 2 of 4</div>
       </div>
 

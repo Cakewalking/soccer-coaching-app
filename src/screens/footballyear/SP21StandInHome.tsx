@@ -8,11 +8,10 @@ export default function SP21StandInHome({onBack}:{onBack?:()=>void}){
   const SCHEDULE=[
     {date:'Tue 29 Sep',what:'First session · Linh leading'},
     {date:'Thu 1 Oct',what:'Session · from Sam\'s plan'},
-    {date:'Sat 3 Oct',what:'Game · select lineup'},
+    {date:'Sun 4 Oct',what:'Game · select lineup'},
     {date:'Tue 6 Oct',what:'Session'},
     {date:'Thu 8 Oct',what:'Session'},
-    {date:'Sat 10 Oct',what:'Game · select lineup'},
-    {date:'Sun 11 Oct',what:'Hand back to Sam'},
+    {date:'Sun 11 Oct',what:'Game · select lineup, then hand back to Sam'},
   ]
   return(
     <div style={{display:'flex',flexDirection:'column',minHeight:'100%',background:'#faf5ec',fontFamily:'var(--font-sans)',position:'relative'}}>
@@ -87,7 +86,7 @@ export default function SP21StandInHome({onBack}:{onBack?:()=>void}){
         </div>
       )}
       {tab==='training'&&<div style={{padding:'40px 28px',textAlign:'center' as const,color:MUT,fontSize:15}}>Tonight's session plan. Tap a drill to tick it off.</div>}
-      {tab==='matchday'&&<div style={{padding:'40px 28px',textAlign:'center' as const,color:MUT,fontSize:15}}>Pick your starting lineup for Saturday.</div>}
+      {tab==='matchday'&&<div style={{padding:'40px 28px',textAlign:'center' as const,color:MUT,fontSize:15}}>Pick your starting lineup for Sunday.</div>}
     </div>
   )
 }

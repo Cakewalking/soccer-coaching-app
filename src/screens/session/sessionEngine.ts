@@ -100,32 +100,35 @@ export type Team = {
 }
 const P = (names: string) => names.split(', ').map((name, i, a) => ({ name, conf: a.length - i }))
 
+/** Juniors and MiniRoos play on Sunday. Seniors play on Saturday. */
+export const gameDay = (k: TeamKey) => k === 'seniors' ? 'Saturday' : 'Sunday'
+
 export const TEAMS: Record<TeamKey, Team> = {
   u11: {
     key: 'u11', label: 'U11 Luke', coach: 'Luke', coachFull: 'Luke Fraser', ini: 'LF', age: 11, ageWord: 'under-11s', day: 'Tue 23 June', time: '5:00 to 6:00', mins: [10, 15, 15, 20], place: 'Wattle Creek Reserve, pitch 3',
-    squad: P('Ari, Leo, Jun, Tilly, Poppy, Remy, Sol, Hamza, Edie, Mack, Ines, Theo, Wren'), polled: 13, film: ['Recording quality: Good', '48 of 50 minutes'], note: 'They panic when someone runs at them', noteWhen: 'Sunday 8:10 am', ratings: '9 players',
+    squad: P('Ari, Leo, Jun, Tilly, Poppy, Remy, Sol, Hamza, Edie, Mack, Ines, Theo, Wren'), polled: 13, film: ['Recording quality: Good', '48 of 50 minutes'], note: 'They panic when someone runs at them', noteWhen: 'Monday 8:10 am', ratings: '9 players',
     evidence: [
-      { theme: 'firstTouch', weight: 10, num: '9 times', long: 'On Saturday your team lost the ball {num} playing out from the back. The week before it was 4. In most of them the first touch went straight to the player closing down.',
+      { theme: 'firstTouch', weight: 10, num: '9 times', long: 'On Sunday your team lost the ball {num} playing out from the back. The week before it was 4. In most of them the first touch went straight to the player closing down.',
         why: { new: 'lost the ball 9 times playing out from the back, up from 4.', some: 'lost it 9 times playing out, up from 4. First touch into pressure.', experienced: 'Lost it 9 times playing out (was 4).' },
         chips: [{ kind: 'film', text: 'Film', mark: 'strong' }, { kind: 'note', text: 'Your note: “they panic when someone runs at them”' }, { kind: 'players', text: 'Ari and Jun rated themselves 2 for staying calm' }] },
-      { theme: 'movingToHelp', weight: 8, long: 'Most passes on Saturday went to a player who was already marked. The players without the ball were standing still.',
-        why: { new: 'most passes on Saturday went to a player who was marked.', some: 'most passes went to a marked player. Nobody moving to help.', experienced: 'Passes into marked players.' },
+      { theme: 'movingToHelp', weight: 8, long: 'Most passes on Sunday went to a player who was already marked. The players without the ball were standing still.',
+        why: { new: 'most passes on Sunday went to a player who was marked.', some: 'most passes went to a marked player. Nobody moving to help.', experienced: 'Passes into marked players.' },
         chips: [{ kind: 'film', text: 'Film', mark: 'estimate' }, { kind: 'rating', text: 'You rated “helping the player on the ball” 2 of 5' }], gameRule: 'Goals from your keeper count double.' },
     ],
     skills: ['firstTouch', 'running', 'oneVone', 'striking'], curriculumSkill: 'First touch', lastFeedback: '7 of 9 players said it was “about right” last week. Once more.',
     season: [{ wk: 1, theme: 'oneVone', why: '' }, { wk: 2, theme: 'running', why: '' }, { wk: 3, theme: 'firstTouch', why: '' }, { wk: 4, theme: 'firstTouch', why: '' }, { wk: 5, theme: 'oneVone', why: '' }, { wk: 6, theme: 'striking', why: '' },
       { wk: 7, theme: 'oneVone', why: 'Beaten down the right 6 times' }, { wk: 8, theme: 'striking', why: 'No film · your three taps: “didn’t shoot”' }, { wk: 9, theme: 'striking', why: '3 shots all game · you rated finishing 2 of 5' }, { wk: 10, theme: 'firstTouch', why: 'Lost it 9 times playing out · your note' }],
     worked: [{ t: 'First touch, weeks 3 and 4', note: 'It crept back up in week 10', fig: 'Lost playing out: 8 to 4' }, { t: '1 v 1, weeks 5 and 7', fig: 'Beaten down the side: 6 to 3' }, { t: 'Striking the ball, weeks 8 and 9', fig: 'Shots: 3 to 7' }],
-    headline: 'Two things stood out on Saturday. Tuesday works on both.', sub: 'Losing the ball playing out from the back, and standing still without it.', scoreless: false,
+    headline: 'Two things stood out on Sunday. Tuesday works on both.', sub: 'Losing the ball playing out from the back, and standing still without it.', scoreless: false,
   },
   u9: {
     key: 'u9', label: 'U9 Tom', coach: 'Tom', coachFull: 'Tom Albers', ini: 'TA', age: 9, ageWord: 'under-9s', day: 'Tue 9 June', time: '5:00 to 5:45', mins: [10, 10, 10, 15], place: 'Wattle Creek Reserve, pitch 2',
-    squad: P('Ivy, Max, Arlo, Zara, Evie, Leo, Theo, Poppy, Jude, Omar'), polled: 10, film: ['Recording quality: Good', '38 of 40 minutes'], note: 'They all chase the ball like bees', noteWhen: 'Saturday 11:40 am', ratings: '10 players',
+    squad: P('Ivy, Max, Arlo, Zara, Evie, Leo, Theo, Poppy, Jude, Omar'), polled: 10, film: ['Recording quality: Good', '38 of 40 minutes'], note: 'They all chase the ball like bees', noteWhen: 'Sunday 11:40 am', ratings: '10 players',
     evidence: [
-      { theme: 'findSpace', weight: 10, long: 'On Saturday the team bunched round the ball. For most of the game eight of them were inside the same small patch of the pitch.',
-        why: { new: 'they bunched round the ball on Saturday. Eight of them in one small patch.', some: 'bunched round the ball. Eight in one patch.', experienced: 'Bunching: eight in one patch.' },
+      { theme: 'findSpace', weight: 10, long: 'On Sunday the team bunched round the ball. For most of the game eight of them were inside the same small patch of the pitch.',
+        why: { new: 'they bunched round the ball on Sunday. Eight of them in one small patch.', some: 'bunched round the ball. Eight in one patch.', experienced: 'Bunching: eight in one patch.' },
         chips: [{ kind: 'film', text: 'Film', mark: 'estimate' }, { kind: 'note', text: 'Your note: “they all chase the ball like bees”' }], gameRule: 'Cheer every pass to a friend in space.' },
-      { theme: 'brave', weight: 8, num: 'seven of your ten', long: 'You have been working on being brave with the ball. On Saturday {num} took a player on. A month ago it was three.',
+      { theme: 'brave', weight: 8, num: 'seven of your ten', long: 'You have been working on being brave with the ball. On Sunday {num} took a player on. A month ago it was three.',
         why: { new: 'seven of your ten took a player on, up from three. Keep it going.', some: 'seven of ten took a player on (was three). Keep going.', experienced: 'Took a player on: 7 of 10 (was 3).' },
         chips: [{ kind: 'film', text: 'Film', mark: 'strong' }, { kind: 'rating', text: 'Your three taps: “brave on the ball”' }] },
     ],
@@ -133,30 +136,30 @@ export const TEAMS: Record<TeamKey, Team> = {
     season: [{ wk: 1, theme: 'running', why: '' }, { wk: 2, theme: 'brave', why: '' }, { wk: 3, theme: 'brave', why: '' }, { wk: 4, theme: 'striking', why: '' }, { wk: 5, theme: 'findSpace', why: '' }, { wk: 6, theme: 'brave', why: '' },
       { wk: 7, theme: 'striking', why: 'Your three taps: “nobody shot”' }, { wk: 8, theme: 'brave', why: 'Three of ten took a player on' }, { wk: 9, theme: 'brave', why: 'Five of ten · your note' }, { wk: 10, theme: 'findSpace', why: 'Bunched round the ball · your note' }],
     worked: [{ t: 'Brave on the ball, weeks 8 and 9', fig: 'Took a player on: 3 to 7 of 10' }, { t: 'Striking the ball, weeks 4 and 7', fig: 'Children who had a shot: 4 to 8' }],
-    headline: 'Two things stood out on Saturday. Tuesday works on both.', sub: 'Bunching round the ball, and keeping them brave on it.', scoreless: true,
+    headline: 'Two things stood out on Sunday. Tuesday works on both.', sub: 'Bunching round the ball, and keeping them brave on it.', scoreless: true,
   },
   u12: {
     key: 'u12', label: 'U12 Sam', coach: 'Sam', coachFull: 'Sam Kelly', ini: 'SK', age: 12, ageWord: 'under-12s', day: 'Tue 9 June', time: '5:45 to 7:00', mins: [10, 20, 20, 25], place: 'Wattle Creek Reserve, pitch 2',
-    squad: P('Mia, Jai, Noah, Zoe, Harper, Grace, Leo, Ruby, Sam D, Finn, Isla, Ella, Kofi, Ben, Ava, Tom'), polled: 16, film: ['Recording quality: Good', '58 of 60 minutes'], note: 'Legs went after half time and we dropped off', noteWhen: 'Saturday 4:20 pm', ratings: '9 players',
+    squad: P('Mia, Jai, Noah, Zoe, Harper, Grace, Leo, Ruby, Sam D, Finn, Isla, Ella, Kofi, Ben, Ava, Tom'), polled: 16, film: ['Recording quality: Good', '58 of 60 minutes'], note: 'Legs went after half time and we dropped off', noteWhen: 'Sunday 4:20 pm', ratings: '9 players',
     evidence: [
-      { theme: 'winBack', weight: 10, num: '7 seconds', long: 'On Saturday it took your team {num} on average to win the ball back. Your usual is 4. After half time the nearest player went alone.',
-        why: { new: 'took 7 seconds to win the ball back on Saturday. Your usual is 4.', some: '7 seconds to win it back (usual 4). Pressing one at a time.', experienced: 'Win-back time 7 s (usual 4).' },
+      { theme: 'winBack', weight: 10, num: '7 seconds', long: 'On Sunday it took your team {num} on average to win the ball back. Your usual is 4. After half time the nearest player went alone.',
+        why: { new: 'took 7 seconds to win the ball back on Sunday. Your usual is 4.', some: '7 seconds to win it back (usual 4). Pressing one at a time.', experienced: 'Win-back time 7 s (usual 4).' },
         chips: [{ kind: 'film', text: 'Film', mark: 'strong' }, { kind: 'note', text: 'Your note: “legs went after half time and we dropped off”' }], gameRule: 'A goal inside five seconds of winning it counts double.' },
-      { theme: 'playOut', weight: 8, long: 'You want goal kicks played short. On Saturday 64% were, against your target of 70%. Twice the keeper went long with a centre back free.',
-        why: { new: '64% of goal kicks went short on Saturday. Your target is 70%.', some: 'goal kicks short 64% (target 70%). Free centre back missed twice.', experienced: 'Goal kicks short 64% (target 70%).' },
+      { theme: 'playOut', weight: 8, long: 'You want goal kicks played short. On Sunday 64% were, against your target of 70%. Twice the keeper went long with a centre back free.',
+        why: { new: '64% of goal kicks went short on Sunday. Your target is 70%.', some: 'goal kicks short 64% (target 70%). Free centre back missed twice.', experienced: 'Goal kicks short 64% (target 70%).' },
         chips: [{ kind: 'film', text: 'Film', mark: 'strong' }, { kind: 'rating', text: 'You rated “playing out” 3 of 5' }] },
     ],
     skills: ['winBack', 'playOut', 'oneVone', 'striking'], curriculumSkill: 'Winning it back', lastFeedback: '10 of 12 players said it was “about right” last week. Once more.',
     season: [{ wk: 1, theme: 'playOut', why: '' }, { wk: 2, theme: 'winBack', why: '' }, { wk: 3, theme: 'striking', why: '' }, { wk: 4, theme: 'winBack', why: '' }, { wk: 5, theme: 'playOut', why: '' }, { wk: 6, theme: 'striking', why: '' },
       { wk: 7, theme: 'oneVone', why: 'Beaten down the left 5 times' }, { wk: 8, theme: 'striking', why: '4 shots all game' }, { wk: 9, theme: 'playOut', why: 'Goal kicks short 58% · your note' }, { wk: 10, theme: 'winBack', why: 'Win-back time 7 seconds · your note' }],
     worked: [{ t: 'Winning it back, weeks 2 and 4', note: 'It slipped again in week 10', fig: 'Seconds to win it back: 6 to 4' }, { t: 'Playing out, weeks 5 and 9', fig: 'Goal kicks short: 58% to 64%' }, { t: 'Striking the ball, weeks 6 and 8', fig: 'Shots: 4 to 9' }],
-    headline: 'Two things stood out on Saturday. Tuesday works on both.', sub: 'Slower to win the ball back, and goal kicks going long.', scoreless: false,
+    headline: 'Two things stood out on Sunday. Tuesday works on both.', sub: 'Slower to win the ball back, and goal kicks going long.', scoreless: false,
   },
   u16: {
     key: 'u16', label: 'U16 Ollie', coach: 'Ollie', coachFull: 'Ollie Grant', ini: 'OG', age: 16, ageWord: 'under-16s', day: 'Tue 9 June', time: '6:30 to 7:45', mins: [10, 20, 20, 25], place: 'Wattle Creek Reserve, pitch 1',
-    squad: P('Cal, Theo, Ari, Owen, Ryan, Jake, Erin, Sami, Leo, Kai, Finn, Max, Dan, Josh, Tane, Ben'), polled: 16, film: ['Recording quality: Good', '78 of 80 minutes'], note: 'We kept giving it away at the back when they pressed', noteWhen: 'Saturday 6:05 pm', ratings: '12 players',
+    squad: P('Cal, Theo, Ari, Owen, Ryan, Jake, Erin, Sami, Leo, Kai, Finn, Max, Dan, Josh, Tane, Ben'), polled: 16, film: ['Recording quality: Good', '78 of 80 minutes'], note: 'We kept giving it away at the back when they pressed', noteWhen: 'Sunday 6:05 pm', ratings: '12 players',
     evidence: [
-      { theme: 'playOut', weight: 10, num: '9 times', long: 'On Saturday your team lost the ball {num} playing out from the back. Six of them came when Tealside pressed with three.',
+      { theme: 'playOut', weight: 10, num: '9 times', long: 'On Sunday your team lost the ball {num} playing out from the back. Six of them came when Tealside pressed with three.',
         why: { new: 'lost the ball 9 times playing out. Six came against a press of three.', some: 'lost it 9 times playing out, six against a press of three.', experienced: 'Lost it 9 times playing out.' },
         chips: [{ kind: 'film', text: 'Film', mark: 'strong' }, { kind: 'note', text: 'Your note: “we kept giving it away at the back when they pressed”' }], gameRule: 'Every restart comes from your keeper.' },
       { theme: 'movingToHelp', weight: 7, long: 'When the centre backs had the ball, the midfield stayed behind their markers. Only one pass in five went forward.',
@@ -167,7 +170,7 @@ export const TEAMS: Record<TeamKey, Team> = {
     season: [{ wk: 1, theme: 'winBack', why: '' }, { wk: 2, theme: 'striking', why: '' }, { wk: 3, theme: 'playOut', why: '' }, { wk: 4, theme: 'winBack', why: '' }, { wk: 5, theme: 'striking', why: '' }, { wk: 6, theme: 'movingToHelp', why: '' },
       { wk: 7, theme: 'winBack', why: 'Pressing one at a time · your note' }, { wk: 8, theme: 'striking', why: '5 shots, 1 on target' }, { wk: 9, theme: 'movingToHelp', why: 'Players: “nobody to pass to”' }, { wk: 10, theme: 'playOut', why: 'Lost it 9 times playing out · your note' }],
     worked: [{ t: 'Winning it back, weeks 4 and 7', fig: 'Won back inside 6 seconds: 31% to 44%' }, { t: 'Striking the ball, weeks 5 and 8', fig: 'Shots on target: 1 to 4' }],
-    headline: 'Two things stood out on Saturday. Tuesday works on both.', sub: 'Losing it playing out under a press, and nobody showing for the ball.', scoreless: false,
+    headline: 'Two things stood out on Sunday. Tuesday works on both.', sub: 'Losing it playing out under a press, and nobody showing for the ball.', scoreless: false,
   },
   seniors: {
     key: 'seniors', label: 'Men’s 1sts', coach: 'Marko', coachFull: 'Marko Petrovic', ini: 'MP', age: 30, ageWord: 'senior players', day: 'Tue 9 June', time: '7:30 to 9:00', mins: [15, 20, 25, 30], place: 'Wattle Creek Reserve, pitch 1',
@@ -248,13 +251,13 @@ export function proposeSession({ team, n, rules, swaps = {}, bye = false, filmle
   const covered = (t: Theme) => team.season.filter(w => w.theme === t).length
   const least = [...team.skills].sort((a, b) => covered(a) - covered(b))[0]
   const openChip: Chip = young ? { kind: 'curriculum', text: 'Curriculum: start with a game' } : { kind: 'vests', text: 'Vests', mark: 'strong' }
-  const openWhy = young ? all(bye ? 'everyone on a ball from the first minute.' : 'everyone is on a ball from the first minute.') : all('sprint distance fell late on Saturday. Build up with the ball, no laps.')
+  const openWhy = young ? all(bye ? 'everyone on a ball from the first minute.' : 'everyone is on a ball from the first minute.') : all(`sprint distance fell late on ${gameDay(team.key)}. Build up with the ball, no laps.`)
   const endChip: Chip = { kind: 'curriculum', text: 'Curriculum: end with a game' }
 
   if (bye || !ev.length) {
     // Nothing to go on: the least-covered skill for this age, and last week's main game once more. Never an invented reason.
     from = 'bye'; const last = team.season[team.season.length - 1].theme
-    headline = 'No game on Saturday, so this week comes from the curriculum.'
+    headline = `No game on ${gameDay(team.key)}, so this week comes from the curriculum.`
     sub = `Next for ${team.ageWord} is ${TAG[least].toLowerCase().replace('1 v 1', '1 v 1')}. You have not worked on it since round ${Math.max(1, ...team.season.filter(w => w.theme === least).map(w => w.wk))}.`
     plan = [
       { theme: young ? 'arrival' : 'warmup', why: openWhy, chips: [openChip] },

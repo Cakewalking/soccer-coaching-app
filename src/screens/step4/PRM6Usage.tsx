@@ -7,9 +7,9 @@ const G = '#2f6252', GD = '#1f4a3e', INK = '#10211f', MUT = '#4a5a57', LN = '#e8
 
 type Usage = { team: string; fk: FKey; label: string; pct: number; text: string; last: string; price: number; low?: boolean; turnOff?: boolean; ask?: string }
 const USAGE: Usage[] = [
-  { team: 'U13 Chris', fk: 'live', label: 'Live game help', pct: 87, text: '7 of 8 games', last: 'Sat 30 May', price: 15 },
-  { team: 'U15 Girls Bec', fk: 'live', label: 'Live game help', pct: 100, text: '8 of 8 games', last: 'Sat 30 May', price: 15 },
-  { team: 'U16 Ollie', fk: 'live', label: 'Live game help', pct: 75, text: '6 of 8 games', last: 'Sat 30 May', price: 15 },
+  { team: 'U13 Chris', fk: 'live', label: 'Live game help', pct: 87, text: '7 of 8 games', last: 'Sun 31 May', price: 15 },
+  { team: 'U15 Girls Bec', fk: 'live', label: 'Live game help', pct: 100, text: '8 of 8 games', last: 'Sun 31 May', price: 15 },
+  { team: 'U16 Ollie', fk: 'live', label: 'Live game help', pct: 75, text: '6 of 8 games', last: 'Sun 31 May', price: 15 },
   { team: "Men's 1sts", fk: 'live', label: 'Live game help', pct: 25, text: '2 of 8 games', last: 'Sat 2 May', price: 15, low: true, ask: 'Marko' },
   { team: 'U12 Sam', fk: 'vests', label: 'Vests and load', pct: 94, text: '15 of 16 sessions', last: 'Tue 2 June', price: 10 },
   { team: 'U13 Chris', fk: 'vests', label: 'Vests and load', pct: 81, text: '13 of 16 sessions', last: 'Tue 2 June', price: 10 },

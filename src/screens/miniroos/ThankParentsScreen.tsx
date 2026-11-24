@@ -7,7 +7,7 @@ What a great game today — the kids really gave it everything and it was wonder
 
 A big thank you for bringing them along, cheering them on, and helping with the oranges!
 
-See you next Saturday.
+See you next Sunday.
 
 Tom`
 

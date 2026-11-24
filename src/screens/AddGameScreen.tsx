@@ -100,7 +100,7 @@ export default function AddGameScreen({ onClose, initialStep = 1 }: { onClose: (
       {step === 1 && (
         <div style={{ flexGrow: 1, overflowY: 'auto', padding: '32px' }}>
           <div style={{ maxWidth: 640 }}>
-            <h2 style={{ margin: '0 0 6px', fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em', color: '#10211f' }}>We found Saturday's game</h2>
+            <h2 style={{ margin: '0 0 6px', fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em', color: '#10211f' }}>We found Sunday's game</h2>
             <p style={{ margin: '0 0 24px', fontSize: 14, color: '#5c6b67' }}>Where's the recording?</p>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 32 }}>

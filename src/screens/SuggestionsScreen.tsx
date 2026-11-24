@@ -180,7 +180,7 @@ function MainView({ empty, onWhy, onAsk, onWhatItUses, onWhatWorked }:
               <span key={tag} style={{ fontSize: 12, fontWeight: 600, color: MUT, background: '#f7f7f6', padding: '3px 10px', borderRadius: 999 }}>{tag}</span>
             ))}
           </div>
-          <div style={{ fontSize: 13, color: MUT, lineHeight: 1.5, marginTop: 10 }}>Two games isn't enough to change training for. Clean Sheet will say so again if Saturday shows the same thing.</div>
+          <div style={{ fontSize: 13, color: MUT, lineHeight: 1.5, marginTop: 10 }}>Two games isn't enough to change training for. Clean Sheet will say so again if Sunday shows the same thing.</div>
         </div>
         <div style={{ padding: '12px 16px', borderBottom: `1px solid ${LN}`, background: '#fafafa' }}>
           <div style={{ fontSize: 15, fontWeight: 700, color: MUT }}>Nothing to change yet</div>
@@ -252,12 +252,12 @@ function WhyView({ onBack }: { onBack: () => void }) {
         <SectionHead label="In games · seconds to win it back"/>
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px' }}>
           <MiniBarChart data={[
-            { label: '2 May', value: 4 },
-            { label: '9 May', value: 5 },
-            { label: '16 May', value: 6 },
-            { label: '23 May', value: 7, highlight: true },
+            { label: '3 May', value: 4 },
+            { label: '10 May', value: 5 },
+            { label: '17 May', value: 6 },
+            { label: '24 May', value: 7, highlight: true },
             { label: '26 May', value: 6, highlight: true },
-            { label: '30 May', value: 7, highlight: true },
+            { label: '31 May', value: 7, highlight: true },
           ]}/>
           <div style={{ fontSize: 13, color: MUT, marginTop: 10, lineHeight: 1.5 }}>Your usual is 4. Above 6 in each of the last four.</div>
         </div>
@@ -547,7 +547,7 @@ function WhatWorkedView({ empty, onBack, onRecord }: { empty: boolean; onBack: (
       <SectionHead label="Then you'll see"/>
       {[
         { n: '1', title: 'What moved', note: 'And whether it\'s a real change' },
-        { n: '2', title: 'Whether it shows in games', note: 'The same measure on Saturday' },
+        { n: '2', title: 'Whether it shows in games', note: 'The same measure on Sunday' },
         { n: '3', title: 'What happens next', note: 'Keep, make harder, or swap' },
       ].map(s => (
         <div key={s.n} style={{ display: 'flex', gap: 12 }}>

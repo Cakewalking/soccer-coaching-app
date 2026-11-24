@@ -20,9 +20,9 @@ export const FILMS: Film[] = [
   { id: 'gates', name: 'Two-cone gates', kind: 'Skill', mins: 4, tags: ['Just a ball', 'Small space'], themes: ['running', 'brave', 'oneVone'], len: '0:55', steps: [['Run the ball through a gate of two shoes', '10 times'], ['Go faster, keep it close', '10 times'], ['Try your other foot', '10 times']], need: 'a ball and two shoes for a gate.' },
 ]
 const WHY: Partial<Record<Theme, string>> = {
-  firstTouch: 'On Saturday the team gave the ball away when someone ran at them. A good first touch takes it away from trouble.', movingToHelp: 'On Saturday the players without the ball stood still. Looking first is how you find the free player.',
-  findSpace: 'On Saturday everyone chased the ball together. Looking up first is how you find a friend in space.', brave: 'The team is learning to take a player on. A trick you trust makes that easier.',
-  winBack: 'On Saturday the team was slow to win the ball back. Chasing your own pass is the same habit.', playOut: 'The team is learning to play out from the back. A calm first touch is where it starts.',
+  firstTouch: 'On Sunday the team gave the ball away when someone ran at them. A good first touch takes it away from trouble.', movingToHelp: 'On Sunday the players without the ball stood still. Looking first is how you find the free player.',
+  findSpace: 'On Sunday everyone chased the ball together. Looking up first is how you find a friend in space.', brave: 'The team is learning to take a player on. A trick you trust makes that easier.',
+  winBack: 'On Sunday the team was slow to win the ball back. Chasing your own pass is the same habit.', playOut: 'The team is learning to play out from the back. A calm first touch is where it starts.',
   running: 'The team is working on running with the ball. Close touches at home make it easier on the pitch.', oneVone: 'The team is learning to take a player on. A trick you trust makes that easier.',
   setPieces: 'The team is working on being first to the ball. Chasing your own pass is the same habit.', beatPress: 'The team is learning to play through a press. A calm first touch is where it starts.',
 }

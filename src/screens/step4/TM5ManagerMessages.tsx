@@ -12,7 +12,7 @@ export default function TM5ManagerMessages(_: { onBack?: () => void }) {
     { ini: 'SJ', name: 'Coaches · Sam, Jess', preview: 'Sam: Line-up done, I\'ll send it Friday night', time: '7:40 pm', unread: true },
     { ini: 'LT', name: 'Linh Tran (Mia)', preview: "Can I swap canteen to 11 to 12? Mia's dentist", time: '6:02 pm', unread: true },
     { ini: 'U12', name: 'U12 Sam team chat', preview: 'Linh: Mia found her other boot!', time: '7:48 pm', unread: false },
-    { ini: 'WC', name: 'Wattle Creek FC', preview: 'Wet weather: grounds decision by 7 am Saturday', time: 'Tue', unread: false },
+    { ini: 'WC', name: 'Wattle Creek FC', preview: 'Wet weather: grounds decision by 7 am Sunday', time: 'Tue', unread: false },
   ].map((c, i) => ({ ...c, unread: c.unread && !isRead(`tm5:${i}`) }))
   return (
     <div style={{ width: 390, background: '#faf5ec', boxSizing: 'border-box', fontFamily: 'var(--font-sans)', minHeight: 844, display: 'flex', flexDirection: 'column', position: 'relative' }}>
@@ -31,7 +31,7 @@ export default function TM5ManagerMessages(_: { onBack?: () => void }) {
         </button>
         <div style={{ background: '#fff', border: `2px solid ${G}`, borderRadius: 16, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 8 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <div style={{ flexGrow: 1, fontSize: 16, fontWeight: 700 }}>Meet time now 8:40 on Saturday</div>
+            <div style={{ flexGrow: 1, fontSize: 16, fontWeight: 700 }}>Meet time now 8:40 on Sunday</div>
             <div style={{ fontSize: 12, fontWeight: 700, padding: '0 9px', height: 24, borderRadius: 999, background: '#eef5f2', color: G, display: 'flex', alignItems: 'center', whiteSpace: 'nowrap', flexShrink: 0 }}>Sent 7:12 pm</div>
           </div>
           <div style={{ fontSize: 13, color: MUT }}>To all 17 families, Sam and Jess · calendar updated</div>

@@ -38,11 +38,11 @@ export default function DL2eTermPlannerEmpty(_: { onBack?: () => void }) {
             {[
               ['Two-week blocks', 'One core skill each'],
               ['Each session drafted', 'Game, teach, game'],
-              ['Changed by what happens', "Saturday's game shifts the focus"],
+              ['Changed by what happens', "Sunday's game shifts the focus"],
             ].map(([k, v]) => (
               <div key={k} style={{ display: 'flex', gap: 12, padding: '6px 0', borderBottom: `1px solid ${LN}` }}>
                 <div style={{ width: 20, height: 20, borderRadius: '50%', background: PALE, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, color: G, flex: 'none' }}>
-                  {['1','2','3'][[['Two-week blocks', 'One core skill each'], ['Each session drafted', 'Game, teach, game'], ['Changed by what happens', "Saturday's game shifts the focus"]].findIndex(r => r[0] === k) + 1]}
+                  {['1','2','3'][[['Two-week blocks', 'One core skill each'], ['Each session drafted', 'Game, teach, game'], ['Changed by what happens', "Sunday's game shifts the focus"]].findIndex(r => r[0] === k) + 1]}
                 </div>
                 <div>
                   <div style={{ fontSize: 13, fontWeight: 600, color: INK }}>{k}</div>

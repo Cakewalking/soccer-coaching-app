@@ -28,7 +28,7 @@ export default function TM14ManagerTeamChat(_: { onBack?: () => void }) {
           <span style={{ flexGrow: 1, fontSize: 13 }}><strong>You own this chat.</strong> Parents can post.</span>
           <strong style={{ color: G, fontSize: 13 }}>Change</strong>
         </button>
-        <button onClick={() => t('Poll opened: Who can bring oranges on Saturday?')} style={{ display: 'flex', alignItems: 'center', gap: 8, minHeight: 44, padding: '0 12px', borderRadius: 12, background: '#fff', border: `1px solid ${LN}`, cursor: 'pointer', textAlign: 'left' }}>
+        <button onClick={() => t('Poll opened: Who can bring oranges on Sunday?')} style={{ display: 'flex', alignItems: 'center', gap: 8, minHeight: 44, padding: '0 12px', borderRadius: 12, background: '#fff', border: `1px solid ${LN}`, cursor: 'pointer', textAlign: 'left' }}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={G} strokeWidth="2.4" strokeLinecap="round"><path d="M5 20V10M12 20V4M19 20v-7"/></svg>
           <span style={{ flexGrow: 1, fontSize: 13 }}><strong>Your poll: oranges.</strong> 4 of 17 so far</span>
           <strong style={{ color: G, fontSize: 13 }}>See who</strong>

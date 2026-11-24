@@ -25,7 +25,7 @@ export default function D7U15Girls(_: { onBack?: () => void }) {
                 { label: 'Last 5', val: 'W L W D D', sub: '2 W · 2 D · 1 L' },
                 { label: 'Playing our way', val: '66%', sub: 'Club average 67%' },
                 { label: 'Training turnout', val: '85%', sub: 'Last 2 weeks · club 87%' },
-                { label: 'Games recorded', val: '2 of 6', sub: 'No camera free Saturdays', warn: true },
+                { label: 'Games recorded', val: '2 of 6', sub: 'No camera free Sundays', warn: true },
               ].map(s => (
                 <div key={s.label} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 12, padding: '12px 14px' }}>
                   <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 4 }}>{s.label}</div>
@@ -38,7 +38,7 @@ export default function D7U15Girls(_: { onBack?: () => void }) {
             <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 18px', marginBottom: 14 }}>
               <div style={{ fontSize: 14, fontWeight: 700, color: INK, marginBottom: 8 }}>Needs attention · 2 things</div>
               {[
-                { text: 'Only 2 of 6 games recorded', sub: 'No camera free on Saturdays while Kit 2 is at repair.' },
+                { text: 'Only 2 of 6 games recorded', sub: 'No camera free on Sundays while Kit 2 is at repair.' },
                 { text: "Bec's check ends in 26 days", sub: 'Automatic reminders are on.' },
               ].map((item, i) => (
                 <div key={i} style={{ display: 'flex', gap: 10, padding: '8px 0', borderBottom: `1px solid ${LN}` }}>
@@ -79,7 +79,7 @@ export default function D7U15Girls(_: { onBack?: () => void }) {
             </div>
 
             <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 18px', marginBottom: 14 }}>
-              <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 6 }}>Next game · Sat 6 Jun</div>
+              <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 6 }}>Next game · Sun 7 Jun</div>
               <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>vs Kingfisher United</div>
               <div style={{ fontSize: 12, color: MUT }}>2:30 · Home · pitch 1 · Training Mon and Wed 7:00</div>
             </div>

@@ -57,7 +57,7 @@ export default function T1gHomeGameDay(_: { onBack?: () => void }) {
           </div>
 
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 18px' }}>
-            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 6 }}>Today · Saturday 6 Jun · away · 9:30 am</div>
+            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 6 }}>Today · Sunday 7 Jun · away · 9:30 am</div>
             <div style={{ fontSize: 16, fontWeight: 800, color: INK, marginBottom: 4 }}>Harbour Rovers · League</div>
             <div style={{ fontSize: 13, color: MUT, marginBottom: 10 }}>Harbour Reserve · kick-off 9:30 · 3 focus points from training</div>
             {['Press high, win it back in 5 seconds', 'Keep the lines within 20 m', 'Manage Noah and Zoe: 60 min max'].map(d => (

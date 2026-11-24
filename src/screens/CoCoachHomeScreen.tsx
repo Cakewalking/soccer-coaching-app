@@ -39,11 +39,11 @@ export default function CoCoachHomeScreen({ empty, onNav, onAsk, askQuestions }:
       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between' }}>
         <div>
           <div style={{ fontSize: 28, fontWeight: 700, letterSpacing: '-0.02em', color: INK }}>Hi Jess</div>
-          <div style={{ fontSize: 14, color: MUT, marginTop: 2 }}>U12 Sam · Thursday 4 Jun · Sam runs training tonight · you run the subs on Saturday</div>
+          <div style={{ fontSize: 14, color: MUT, marginTop: 2 }}>U12 Sam · Thursday 4 Jun · Sam runs training tonight · you run the subs on Sunday</div>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
           <button onClick={() => onNav?.('teamtalk')} style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: INK }}>Team talk</button>
-          <button onClick={() => onNav?.('pitchside')} style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Saturday warm-up</button>
+          <button onClick={() => onNav?.('pitchside')} style={{ height: 44, padding: '0 16px', borderRadius: '999px', border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>Sunday warm-up</button>
         </div>
       </div>
 
@@ -58,7 +58,7 @@ export default function CoCoachHomeScreen({ empty, onNav, onAsk, askQuestions }:
             </div>
           </div>
           <div style={{ fontSize: 14, color: INK, lineHeight: '21px', fontStyle: 'italic', background: '#faf5ec', borderRadius: 10, padding: '12px 14px', marginBottom: 12 }}>
-            "Rondo looked good tonight — keep the same format on Saturday. Noah and Zoe both felt fine after. I'll do the line-up and talk if you do the warm-up and subs."
+            "Rondo looked good tonight — keep the same format on Sunday. Noah and Zoe both felt fine after. I'll do the line-up and talk if you do the warm-up and subs."
           </div>
           <button onClick={() => showToast('Reply sent to Sam.')} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: INK }}>Reply</button>
         </div>
@@ -68,7 +68,7 @@ export default function CoCoachHomeScreen({ empty, onNav, onAsk, askQuestions }:
           <div style={{ fontSize: 13, fontWeight: 700, color: '#7a4b5b', letterSpacing: '0.06em', textTransform: 'uppercase' as const, marginBottom: 12 }}>This week</div>
           {[
             { ini: 'SK', name: 'Sam', jobs: 'training, line-up, team talk', isMe: false },
-            { ini: 'JM', name: 'You', jobs: 'Saturday warm-up and subs', isMe: true },
+            { ini: 'JM', name: 'You', jobs: 'Sunday warm-up and subs', isMe: true },
             { ini: 'PS', name: 'Priya', jobs: 'warm-up tonight, growth checks', isMe: false },
             { ini: 'RO', name: 'Rob', jobs: 'availability, roster, camera', isMe: false },
           ].map((p, i) => (
@@ -101,14 +101,14 @@ export default function CoCoachHomeScreen({ empty, onNav, onAsk, askQuestions }:
           ))}
         </div>
         <div style={{ marginTop: 10, padding: '10px 14px', background: PALE, borderRadius: 10, fontSize: 13, color: G, lineHeight: '18px' }}>
-          Built from Saturday's game and your notes. Sam edits; you can suggest swaps.
+          Built from Sunday's game and your notes. Sam edits; you can suggest swaps.
         </div>
       </div>
 
-      {/* Who's in Saturday */}
+      {/* Who's in Sunday */}
       <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '14px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <div>
-          <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>Who's in Saturday</div>
+          <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>Who's in Sunday</div>
           <div style={{ fontSize: 13, color: MUT }}>12 in · Rob is chasing 2</div>
         </div>
         <button onClick={() => onNav?.('matchday')} style={{ height: 44, padding: '0 14px', borderRadius: '999px', border: `1px solid ${LN}`, background: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', color: INK }}>See line-up</button>

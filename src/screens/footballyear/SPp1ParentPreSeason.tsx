@@ -51,7 +51,7 @@ export default function SPp1ParentPreSeason(_: { onBack?: () => void }) {
         {/* Season dates */}
         <div style={{ background: PALE, borderRadius: 12, padding: '12px 14px' }}>
           <div style={{ fontSize: 12, fontWeight: 700, color: '#7a4b5b', letterSpacing: '0.06em', textTransform: 'uppercase' as const, marginBottom: 4 }}>Season</div>
-          <div style={{ fontSize: 14, fontWeight: 700, color: GD }}>Round 1: 11 April · Last game: 30 August</div>
+          <div style={{ fontSize: 14, fontWeight: 700, color: GD }}>Round 1: 12 April · Last game: 30 August</div>
           <div style={{ fontSize: 12, color: MUT, marginTop: 2 }}>Pre-season training starts 15 February</div>
         </div>
       </div>

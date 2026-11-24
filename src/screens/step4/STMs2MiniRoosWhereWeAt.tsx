@@ -106,7 +106,7 @@ export default function STMs2MiniRoosWhereWeAt({ onNav }: { onNav?: (s: string) 
 
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' as const }}>
             <button aria-label="Open Tuesday's games" onClick={() => tool("Open Tuesday's games")} style={{ height: 44, padding: '0 20px', background: '#fff', color: G, border: `1px solid ${LN}`, borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Open Tuesday's games</button>
-            <button aria-label="Saturday's review" onClick={() => onNav?.('MS3-MiniRoosReview')} style={{ height: 44, padding: '0 20px', background: '#fff', color: G, border: `1px solid ${LN}`, borderRadius: 8, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Saturday's review</button>
+            <button aria-label="Sunday's review" onClick={() => onNav?.('MS3-MiniRoosReview')} style={{ height: 44, padding: '0 20px', background: '#fff', color: G, border: `1px solid ${LN}`, borderRadius: 8, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Sunday's review</button>
             <button aria-label="Change our three things" onClick={() => onNav?.('MS1-MiniRoosStyle')} style={{ height: 44, padding: '0 20px', background: '#fff', color: G, border: `1px solid ${LN}`, borderRadius: 8, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Change our three things</button>
             <button aria-label="All 10 children" onClick={() => tool('All 10 children')} style={{ height: 44, padding: '0 20px', background: '#fff', color: MUT, border: `1px solid ${LN}`, borderRadius: 8, fontSize: 13, cursor: 'pointer', fontFamily: 'inherit' }}>All 10 children</button>
           </div>

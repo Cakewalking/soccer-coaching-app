@@ -281,7 +281,7 @@ export default function PlayerAppScreen({ empty, initialView = 'home' }: { empty
         <div style={{ padding: '20px' }}>
           <div style={{ fontSize: 18, fontWeight: 800, color: '#fff', marginBottom: 8 }}>Your first touch on the overlap</div>
           <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.75)', lineHeight: '20px', marginBottom: 20 }}>
-            Min 34 · Saturday vs Ironbark. Watch how you let the ball run across your body — that's the touch we've been working on. Really good.
+            Min 34 · Sunday vs Ironbark. Watch how you let the ball run across your body — that's the touch we've been working on. Really good.
           </div>
 
           <div style={{ background: '#1f4a3e', borderRadius: 14, padding: '14px 16px', marginBottom: 16 }}>
@@ -390,7 +390,7 @@ export default function PlayerAppScreen({ empty, initialView = 'home' }: { empty
           <div style={{ flexGrow: 1, overflowY: 'auto', padding: '20px' }}>
             {[
               { day: 'THU', date: 4, tag: 'Tonight', title: 'Training',          note: '5:45 to 7:15 pm · Wattle Creek Reserve' },
-              { day: 'SAT', date: 6, tag: '',         title: 'vs Harbour Rovers', note: 'Home · be there 8:40 for 9:30 · white kit' },
+              { day: 'SUN', date: 7, tag: '',         title: 'vs Harbour Rovers', note: 'Home · be there 8:40 for 9:30 · white kit' },
               { day: 'TUE', date: 9, tag: '',         title: 'Training',          note: '5:45 to 7:15 pm · Wattle Creek Reserve' },
             ].map((s, i) => (
               <div key={i} style={{ background: '#fff', borderRadius: 16, padding: '16px', border: '1px solid #e9eae8', marginBottom: 10 }}>
@@ -439,7 +439,7 @@ export default function PlayerAppScreen({ empty, initialView = 'home' }: { empty
         </div>
         <div style={{ flex: 1, overflowY: 'auto', padding: '16px' }}>
           {[
-            { from: 'Rob, team manager', time: 'today', subject: 'Be there 8:40 on Saturday', body: 'Pitch 2. White kit.', attach: { label: 'Pitch 2, Wattle Creek Reserve', note: 'Mum has the directions' } },
+            { from: 'Rob, team manager', time: 'today', subject: 'Be there 8:40 on Sunday', body: 'Pitch 2. White kit.', attach: { label: 'Pitch 2, Wattle Creek Reserve', note: 'Mum has the directions' } },
             { from: 'Sam, your coach', time: 'today', subject: '14 juggles is a new best!', body: 'Sam saw your video. Can you get to 15 by Thursday?', attach: null },
           ].map((item, i) => (
             <div key={i} style={{ background: '#fff', borderRadius: 16, padding: '14px', border: '1px solid #e9eae8', marginBottom: 10 }}>
@@ -501,8 +501,8 @@ export default function PlayerAppScreen({ empty, initialView = 'home' }: { empty
         <div style={{ background: '#fff', borderRadius: 14, padding: '14px 16px', border: '1px solid #e9eae8', marginBottom: 12 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
             <div style={{ background: '#1f4a3e', borderRadius: 10, padding: '8px 12px', textAlign: 'center', flexShrink: 0 }}>
-              <div style={{ fontSize: 10, fontWeight: 600, color: 'rgba(255,255,255,0.7)' }}>SAT</div>
-              <div style={{ fontSize: 20, fontWeight: 800, color: '#fff' }}>6</div>
+              <div style={{ fontSize: 10, fontWeight: 600, color: 'rgba(255,255,255,0.7)' }}>SUN</div>
+              <div style={{ fontSize: 20, fontWeight: 800, color: '#fff' }}>7</div>
             </div>
             <div>
               <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>vs Harbour Rovers</div>

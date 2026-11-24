@@ -34,7 +34,7 @@ export default function RefereesTab({ empty }: { empty?: boolean }) {
             <h2 style={{ margin: 0, fontSize: 17, fontWeight: 700 }}>Referees</h2>
             <span style={{ fontSize: 14, color: '#c39797', fontWeight: 700 }}>2 still needed</span>
           </div>
-          <div style={{ fontSize: 14, color: '#4a5a57', marginBottom: 10 }}>Home games Sat 6 Jun · club game leaders and referees</div>
+          <div style={{ fontSize: 14, color: '#4a5a57', marginBottom: 10 }}>Home games Sun 7 Jun · club game leaders and referees</div>
 
           {/* Table header */}
           <div style={{ display: 'grid', gridTemplateColumns: '52px minmax(0,1fr) 110px minmax(0,1fr) 72px', gap: '0 10px', borderBottom: '1px solid #e9eae8', paddingBottom: 6, marginBottom: 2 }}>

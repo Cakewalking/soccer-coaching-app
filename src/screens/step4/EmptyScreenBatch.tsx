@@ -255,7 +255,7 @@ export function ACC6eReportDraftEmpty() {
   return <AcCoachShell main="players" item="Term report" title="No report drafts yet" sub="Reports are drafted from your session notes as the term progresses. Nothing ready yet." />
 }
 export function ACC7eAcademyGameDayEmpty() {
-  return <AcCoachShell main="gameday" item="This Saturday" title="No game day today" sub="When a game is scheduled, it appears here. Record the session afterwards to build clips and player stats." />
+  return <AcCoachShell main="gameday" item="This Sunday" title="No game day today" sub="When a game is scheduled, it appears here. Record the session afterwards to build clips and player stats." />
 }
 export function ACC8eAcademyRecordEmpty() {
   return <AcCoachShell main="record" item="Record" title="Nothing recorded yet" sub="Record a session to build clips and player stats. Recording is available during and after any session." ctaLabel="Record a session" />

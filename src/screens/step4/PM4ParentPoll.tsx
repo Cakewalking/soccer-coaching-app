@@ -25,14 +25,14 @@ export default function PM4ParentPoll(_: { onBack?: () => void }) {
       {/* Page heading */}
       <div style={{ padding: '20px 16px 8px' }}>
         <div style={{ fontSize: 22, fontWeight: 700, color: INK, marginBottom: 2 }}>Who's coming?</div>
-        <div style={{ fontSize: 14, color: MUT }}>U12 Sam · for Saturday's game</div>
+        <div style={{ fontSize: 14, color: MUT }}>U12 Sam · for Sunday's game</div>
       </div>
 
       <div style={{ flex: 1, overflowY: 'auto' as const, padding: '8px 16px 120px', display: 'flex', flexDirection: 'column' as const, gap: 14 }}>
 
         {/* Poll card */}
         <div style={{ background: '#fff', border: `1px solid #c5c8c4`, borderRadius: 16, overflow: 'hidden' }}>
-          <div style={{ padding: '14px 18px 10px', fontWeight: 700, fontSize: 17, color: INK, borderBottom: `1px solid ${LN}` }}>Who's coming on Saturday?</div>
+          <div style={{ padding: '14px 18px 10px', fontWeight: 700, fontSize: 17, color: INK, borderBottom: `1px solid ${LN}` }}>Who's coming on Sunday?</div>
           {options.map((opt, i) => (
             <div
               key={opt.key}
@@ -51,7 +51,7 @@ export default function PM4ParentPoll(_: { onBack?: () => void }) {
 
         {/* Info box */}
         <div style={{ background: PALE, border: `1px solid ${LN}`, borderRadius: 12, padding: '12px 14px', fontSize: 14, color: G, fontWeight: 500 }}>
-          This also answers the team's availability for Saturday.
+          This also answers the team's availability for Sunday.
         </div>
 
         {/* Who's answered */}

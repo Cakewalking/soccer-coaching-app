@@ -25,12 +25,12 @@ function SubBar() {
   )
 }
 const chats = [
-  { ini: null, icon: true, name: 'Announcements', sub: 'Rob: Meet time now 8:40 on Saturday', time: '7:12 pm', active: true },
+  { ini: null, icon: true, name: 'Announcements', sub: 'Rob: Meet time now 8:40 on Sunday', time: '7:12 pm', active: true },
   { ini: 'U12', name: 'U12 Sam team chat', sub: 'Sam: 14 is a new best. Tell her I said so.', time: '7:52 pm', active: false },
   { ini: 'JR', name: 'Jess & Rob', sub: 'You: See you at 8:30 then', time: '5:44 pm', active: false },
 ]
 const msgs = [
-  { ini: 'RO', bg: '#e8cfcf', name: 'Rob', role: 'Team manager', time: '7:12 pm', text: 'Meet time now 8:40 on Saturday. Need to allow extra time to get parked. Warm up starts 9:00.' },
+  { ini: 'RO', bg: '#e8cfcf', name: 'Rob', role: 'Team manager', time: '7:12 pm', text: 'Meet time now 8:40 on Sunday. Need to allow extra time to get parked. Warm up starts 9:00.' },
   { ini: 'SK', bg: '#c39797', name: 'Sam', role: 'Head coach', time: '7:08 pm', text: 'Kit bags and training bibs ready. Everyone bring a full drink bottle.' },
 ]
 export default function CH2Announcements(_: { onBack?: () => void }) {

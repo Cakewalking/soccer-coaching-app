@@ -102,7 +102,7 @@ export function CN12ClubClimate({ s, go, say }: CnProps) {
   const grid = 'minmax(0,1.1fr) 110px 120px 110px 100px 110px'
   // The demo parent's answer adds one family to U12 Sam's count. It is stored with no name.
   const rows = CLIMATE.map(r => r[0] === TEAMS.u12 && s.pulse ? [r[0], r[1] + 1, ...r.slice(2)] as typeof r : r)
-  // The team manager's sideline rating for Saturday moves U12 Sam's season figure.
+  // The team manager's sideline rating for Sunday moves U12 Sam's season figure.
   const side = (r: typeof CLIMATE[number]) => r[0] === TEAMS.u12 && s.sideline.sent ? Math.round(((r[5] * 7 + s.sideline.ours) / 8) * 10) / 10 : r[5]
   const families = 96 + (s.pulse ? 1 : 0)
   const tileS = (head: string, v: string, mark: ReactNode, sub: string) => <div style={{ ...tile, padding: '10px 14px', gap: 2 }}><span style={label}>{head}</span><span style={{ display: 'flex', alignItems: 'center', gap: 6 }}><strong style={{ fontSize: 27, lineHeight: '34px', letterSpacing: '-0.03em' }}>{v}</strong>{mark}</span><span style={{ fontSize: 13, color: MUT }}>{sub}</span></div>
@@ -213,7 +213,7 @@ export function CN21Pitches({ s, go, say }: CnProps) {
             </div>
           ))}
         </>}
-        <span style={{ ...cap, fontSize: 13 }}>Saturday games come from the league’s fixtures and show on each team’s calendar.</span>
+        <span style={{ ...cap, fontSize: 13 }}>Weekend games come from the league’s fixtures and show on each team’s calendar.</span>
       </section>
       <div style={col}>
         <section aria-label="To sort" style={{ ...tile, gap: 0, padding: '12px 16px 4px' }}>

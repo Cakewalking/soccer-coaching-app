@@ -48,10 +48,10 @@ export default function PP1TwoChildren(_: { onBack?: () => void }) {
       </div>
 
       <div style={{ padding: '16px 16px 32px', display: 'flex', flexDirection: 'column', gap: 20 }}>
-        {/* Saturday summary card */}
+        {/* Sunday summary card */}
         <div style={{ background: '#fff', borderRadius: 14, padding: 14 }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
-            <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>Saturday 7 June</div>
+            <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>Sunday 7 June</div>
             <div style={{ background: LN, borderRadius: 20, padding: '3px 10px', fontSize: 12, fontWeight: 600, color: MUT }}>Tomorrow</div>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
@@ -77,7 +77,7 @@ export default function PP1TwoChildren(_: { onBack?: () => void }) {
               <div style={{ background: '#fff', borderRadius: 14, padding: 14 }}>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                   <div>
-                    <div style={{ fontSize: 14, fontWeight: 600, color: INK }}>Saturday 9:30 · Game</div>
+                    <div style={{ fontSize: 14, fontWeight: 600, color: INK }}>Sunday 9:30 · Game</div>
                     <div style={{ fontSize: 13, color: MUT, marginTop: 2 }}>vs Riverside FC</div>
                   </div>
                   <div style={{ background: G, borderRadius: 20, padding: '4px 12px', fontSize: 12, fontWeight: 600, color: '#fff' }}>Coming</div>
@@ -103,7 +103,7 @@ export default function PP1TwoChildren(_: { onBack?: () => void }) {
             <div style={{ background: '#fff', borderRadius: 14, padding: 14 }}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <div>
-                  <div style={{ fontSize: 14, fontWeight: 600, color: INK }}>Saturday 11:00 · Game</div>
+                  <div style={{ fontSize: 14, fontWeight: 600, color: INK }}>Sunday 11:00 · Game</div>
                   <div style={{ fontSize: 13, color: MUT, marginTop: 2 }}>U8 Hannah</div>
                 </div>
                 <button

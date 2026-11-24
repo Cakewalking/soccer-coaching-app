@@ -22,7 +22,7 @@ export default function T1sHomeSunday(_: { onBack?: () => void }) {
           <div style={{ marginBottom: 20 }}>
             <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 8 }}>Needs you</div>
             {[
-              { from: 'Match review', time: '8:00 am', text: "Saturday's review is ready · W Ironbark 3–1", urgent: false },
+              { from: 'Match review', time: '8:00 am', text: "Sunday's review is ready · W Ironbark 3–1", urgent: false },
               { from: 'Wellness check-ins', time: '7:45 am', text: 'Ella has felt low three days running', urgent: true },
               { from: 'Match camera', time: '7:20 am', text: '7 clips tagged from yesterday', urgent: false },
             ].map((n, i) => (
@@ -56,9 +56,9 @@ export default function T1sHomeSunday(_: { onBack?: () => void }) {
           </div>
 
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 18px' }}>
-            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 6 }}>Today · Sunday 7 Jun</div>
+            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 6 }}>Today · Monday 8 Jun</div>
             <div style={{ fontSize: 16, fontWeight: 800, color: INK, marginBottom: 4 }}>Match review · rest day</div>
-            <div style={{ fontSize: 13, color: MUT, marginBottom: 10 }}>Review Saturday · plan next week · 7 clips to tag</div>
+            <div style={{ fontSize: 13, color: MUT, marginBottom: 10 }}>Review Sunday · plan next week · 7 clips to tag</div>
             <div style={{ display: 'flex', gap: 10, marginTop: 14 }}>
               <button onClick={() => openThing('the review', 'coach')} style={{ flex: 1, height: 44, borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Open the review</button>
               <button onClick={() => st('Planning next week.')} style={{ flex: 1, height: 44, borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Plan next week</button>
@@ -68,7 +68,7 @@ export default function T1sHomeSunday(_: { onBack?: () => void }) {
 
         <div style={{ width: 300, padding: '24px 24px 32px 0' }}>
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 16px', marginBottom: 14 }}>
-            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 6 }}>Yesterday · Sat 6 Jun · away</div>
+            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 6 }}>Yesterday · Sun 7 Jun · away</div>
             <div style={{ fontSize: 15, fontWeight: 800, color: GD }}>W Ironbark United</div>
             <div style={{ fontSize: 13, color: MUT, marginBottom: 6 }}>Mia, Jai and Zoe scored · 3–1</div>
             <div style={{ fontSize: 12, color: G }}>→ Open the review · 7 clips ready</div>
@@ -76,13 +76,13 @@ export default function T1sHomeSunday(_: { onBack?: () => void }) {
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 16px', marginBottom: 14 }}>
             <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 8 }}>This week ahead</div>
             {[
-              { d: 'Sun 7', t: 'Review · today', bold: true },
-              { d: 'Mon 8', t: 'Rest' },
+              { d: 'Mon 8', t: 'Review · today', bold: true },
               { d: 'Tue 9', t: 'Training 5:45 pm' },
               { d: 'Wed 10', t: 'Rest' },
               { d: 'Thu 11', t: 'Training 5:45 pm' },
               { d: 'Fri 12', t: 'Rest' },
-              { d: 'Sat 13', t: 'Lyndhurst SC 10:00' },
+              { d: 'Sat 13', t: 'Rest' },
+              { d: 'Sun 14', t: 'Lyndhurst SC 10:00' },
             ].map(day => (
               <div key={day.d} style={{ display: 'flex', justifyContent: 'space-between', padding: '3px 0', fontSize: 12 }}>
                 <div style={{ color: MUT }}>{day.d}</div>

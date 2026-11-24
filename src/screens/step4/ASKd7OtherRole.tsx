@@ -16,7 +16,7 @@ const DIR_SUB = ['Overview', 'Messages', 'Calendar', 'Season plan', 'Playing sty
 
 const SUGGESTIONS = [
   'Which teams are outside fair game time?',
-  'Who can cover U9 Mark on Saturday?',
+  'Who can cover U9 Mark on Sunday?',
   'Which teams have recorded the fewest games?',
 ] as const
 
@@ -66,7 +66,7 @@ export default function ASKd7OtherRole({ onNav }: { onNav?: (s: string) => void 
           <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 12, padding: '12px 16px', marginBottom: 14 }}>
             <div style={{ fontSize: 13, fontWeight: 700, color: INK, marginBottom: 4 }}>Fair game time</div>
             <div style={{ fontSize: 13, color: INK, marginBottom: 2 }}>12 of 14 teams are inside the club rule.</div>
-            <div style={{ fontSize: 12, color: MUT }}>2 teams are outside. Last checked Saturday.</div>
+            <div style={{ fontSize: 12, color: MUT }}>2 teams are outside. Last checked Sunday.</div>
           </div>
           <div style={{ fontSize: 12, color: MUT, marginBottom: 12 }}>Tap a team to open it read-only, the way its coach sees it.</div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 1, background: '#fff', border: `1px solid ${LN}`, borderRadius: 12, overflow: 'hidden' }}>

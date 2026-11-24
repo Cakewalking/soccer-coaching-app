@@ -6,7 +6,7 @@ const CHECKLIST=[
   {label:'Consent',note:'9 of 12 families answered',done:false,action:'See'},
   {label:'Come-and-try day',note:'Sun 12 April · 11 families confirmed',done:true},
   {label:'Pick training night',note:'Wed suits 10 of 12',done:true},
-  {label:'Helper each week',note:'8 of 10 spots filled · 2 Saturdays left',done:false,action:'See'},
+  {label:'Helper each week',note:'8 of 10 spots filled · 2 Sundays left',done:false,action:'See'},
   {label:'Shirt sizes',note:'10 of 12 answered',done:false,action:'See'},
 ]
 export default function SPm2MiniRoosPreSeason({onBack}:{onBack?:()=>void}){
@@ -23,14 +23,14 @@ export default function SPm2MiniRoosPreSeason({onBack}:{onBack?:()=>void}){
         </div>
         <div style={{display:'flex',gap:8}}>
           <button onClick={onBack} style={{height: 44,padding:'0 14px',borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:INK,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>The football year</button>
-          <button onClick={()=>openThing('this Saturday', 'mini')} style={{height: 44,padding:'0 14px',borderRadius:10,border:0,background:G,color:'#fff',fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>This Saturday</button>
+          <button onClick={()=>openThing('this Sunday', 'mini')} style={{height: 44,padding:'0 14px',borderRadius:10,border:0,background:G,color:'#fff',fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>This Sunday</button>
         </div>
       </div>
       <div style={{display:'grid',gridTemplateColumns:'minmax(0,1fr) 340px',gap:16}}>
         <div>
           <div style={{background:'#fff',border:`1px solid ${LN}`,borderRadius:16,overflow:'hidden',marginBottom:16}}>
             <div style={{padding:'12px 16px',background:G,display:'flex',alignItems:'center',gap:12}}>
-              <span style={{fontSize:15,fontWeight:700,color:'#fff'}}>Before first Saturday</span>
+              <span style={{fontSize:15,fontWeight:700,color:'#fff'}}>Before first Sunday</span>
               <span style={{fontSize:13,color:'rgba(255,255,255,0.7)'}}>{done} of {CHECKLIST.length} done</span>
             </div>
             {CHECKLIST.map(item=>(
@@ -57,7 +57,7 @@ export default function SPm2MiniRoosPreSeason({onBack}:{onBack?:()=>void}){
             {[
               {day:'SUN',date:'12',label:'Come-and-try day',sub:'11:00 · Wattle Creek Reserve'},
               {day:'WED',date:'15',label:'First training session',sub:'4:30 pm · 12 families notified'},
-              {day:'SAT',date:'25',label:'First game of the year',sub:'10:00 am · away'},
+              {day:'SUN',date:'26',label:'First game of the year',sub:'10:00 am · away'},
             ].map(ev=>(
               <div key={ev.label} style={{display:'flex',gap:12,padding:'10px 0',borderTop:`1px solid ${LN}`}}>
                 <div style={{width:36,textAlign:'center' as const,flex:'none'}}>

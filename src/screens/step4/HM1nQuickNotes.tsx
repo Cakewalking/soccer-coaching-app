@@ -12,7 +12,7 @@ export default function HM1nQuickNotes({onBack,onSave}:{onBack?:()=>void,onSave?
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
             Home
           </button>
-          <div style={{fontSize:24,fontWeight:800,letterSpacing:'-0.02em',color:INK,marginBottom:2}}>How was Saturday?</div>
+          <div style={{fontSize:24,fontWeight:800,letterSpacing:'-0.02em',color:INK,marginBottom:2}}>How was Sunday?</div>
           <div style={{fontSize:14,color:MUT}}>3 quick questions · takes 2 minutes</div>
         </div>
         <button onClick={onBack} style={{height: 44,padding:'0 14px',borderRadius:10,border:`1px solid ${LN}`,background:'#fff',color:MUT,fontFamily:'inherit',fontSize:13,fontWeight:600,cursor:'pointer'}}>Skip</button>

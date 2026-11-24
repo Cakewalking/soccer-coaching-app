@@ -23,7 +23,7 @@ export default function X11LineupEmpty(_: { onBack?: () => void }) {
         {/* Pitch */}
         <div style={{ flex: 1 }}>
           <div style={{ fontSize: 16, fontWeight: 800, color: INK, marginBottom: 4 }}>Line-up and minutes</div>
-          <div style={{ fontSize: 13, color: MUT, marginBottom: 20 }}>Sat 6 Jun vs Harbour Rovers · no players yet</div>
+          <div style={{ fontSize: 13, color: MUT, marginBottom: 20 }}>Sun 7 Jun vs Harbour Rovers · no players yet</div>
 
           <div style={{ display: 'flex', gap: 10, marginBottom: 24 }}>
             <button onClick={() => openThing('player selector', 'coach')} style={{ height: 44, padding: '0 16px', borderRadius: 10, border: 0, background: G, color: '#fff', fontFamily: 'inherit', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>Add players</button>

@@ -20,7 +20,7 @@ export default function ACP10AcademyConcern() {
 
         {[
           { label: 'At academy training', name: 'Dani Okafor', role: 'Welfare officer · Tall Timber' },
-          { label: 'At Saturday game', name: 'Helen Park', role: 'Child safety officer · Wattle Creek FC' },
+          { label: 'At Sunday game', name: 'Helen Park', role: 'Child safety officer · Wattle Creek FC' },
           { label: "Not sure where it happened", name: 'Both are notified', role: 'They coordinate between them' },
         ].map((opt, i) => (
           <div key={i} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 16px', marginBottom: 10 }}>

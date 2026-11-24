@@ -51,7 +51,7 @@ export default function StaffMiniRoos({ empty }: { empty?: boolean }) {
           <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1.2fr 1fr 1fr', gap: 10, alignItems: 'center', minHeight: 56, borderTop: '1px solid #e9eae8' }}>
             <span style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
               <span style={{ flexShrink: 0, width: 36, height: 36, borderRadius: '999px', background: '#e9eae8', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, color: '#4a5a57' }}>?</span>
-              <span style={{ fontSize: 15, fontWeight: 700 }}>Game leader this Saturday</span>
+              <span style={{ fontSize: 15, fontWeight: 700 }}>Game leader this Sunday</span>
             </span>
             <span style={{ fontSize: 14, color: '#4a5a57' }}>One-off</span>
             <span style={{ fontSize: 14, color: '#4a5a57' }}>Not needed</span>
@@ -67,7 +67,7 @@ export default function StaffMiniRoos({ empty }: { empty?: boolean }) {
           {[
             { title: 'Coaches', items: ['Player names and turns', 'Attendance', 'Parent messages', 'Season notes'] },
             { title: 'Team manager', items: ['Player names and turns', 'Duty roster', 'Parent messages', 'Game day info'] },
-            { title: 'Game leader', items: ["Saturday's turns only", 'No medical info'] },
+            { title: 'Game leader', items: ["Sunday's turns only", 'No medical info'] },
           ].map((group, i) => (
             <div key={i} style={{ marginTop: i > 0 ? 10 : 0 }}>
               <div style={{ fontSize: 13, fontWeight: 700, color: '#2f6252', marginBottom: 4 }}>{group.title}</div>

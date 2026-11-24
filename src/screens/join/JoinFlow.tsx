@@ -324,13 +324,13 @@ export default function JoinFlow({ initialStep = 'landing' }: { initialStep?: Jo
               From Rob, team manager
             </div>
             <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 4 }}>
-              Can Mia make it Saturday vs Harbour Rovers?
+              Can Mia make it Sunday vs Harbour Rovers?
             </div>
             <div style={{ fontSize: 13, color: MUT, marginBottom: 12 }}>
               Home, pitch 2 · meet 8:40 · kick-off 9:30
             </div>
             <button onClick={() => setAnswered(true)} style={{ width: '100%', height: 44, borderRadius: 10, border: 0, background: answered ? '#40826d' : G, color: '#fff', fontFamily: 'inherit', fontSize: 14, fontWeight: 700, cursor: 'pointer' }}>
-              {answered ? "You're in — see you Saturday ✓" : 'Answer now'}
+              {answered ? "You're in — see you Sunday ✓" : 'Answer now'}
             </button>
           </div>
 

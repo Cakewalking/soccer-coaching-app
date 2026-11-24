@@ -33,7 +33,7 @@ const COACH: Route[] = [
   [/team talk/, 'E-TeamTalk'], [/line-up|team sheet|minutes plan|player selector/, 'MS1-TeamSheet'], [/live game|this game|game 3/, 'L11-LiveGame11'],
   [/review/, 'R1-MatchReview'], [/season (summary|note)|all notes|draft (editor )?for|what parents see/, 'SE1-SeasonSummaries'],
   [/session|training (plan|night)|the plan|tonight|scheduler|planner|set-up editor|load plan/, 'T3-TrainingTab'],
-  [/game day|saturday/, 'T2-TabletMatch'],
+  [/game day|saturday|sunday/, 'T2-TabletMatch'],
   [/league import|playfootball/, 'FP1-PlayFootball'], [/fixture/, 'CF1-Fixtures'],
   [/calendar|new event|date picker|booking|season dates/, 'DC1-Calendar'],
   [/consent/, 'P1-Consent'], [/parent view|what they see|preview/, 'PA-Parent'],
@@ -44,7 +44,7 @@ const COACH: Route[] = [
 const MINI: Route[] = [
   [/\binbox\b|message to all families|family chat/, 'HM7-InboxMiniRoos'], [/new chat|team chat/, 'CHm1-TeamChatMiniRoos'],
   [/game library|game picker|session|training|tuesday/, 'HM3-TrainingMiniRoos'], [/best moment|review|tap editor/, 'MS3-MiniRoosReview'],
-  [/season note|all notes|draft/, 'HM6-SeasonNotes'], [/fixture|saturday/, 'HM9-FixturesMiniRoos'], [/new event|calendar/, 'HM8-CalendarMiniRoos'], [/record/, 'RCm1-RecordMiniRoos'],
+  [/season note|all notes|draft/, 'HM6-SeasonNotes'], [/fixture|saturday|sunday/, 'HM9-FixturesMiniRoos'], [/new event|calendar/, 'HM8-CalendarMiniRoos'], [/record/, 'RCm1-RecordMiniRoos'],
 ]
 const CLUB: Route[] = [
   [/safeguarding|child safety|mandatory reporting|club course/, 'D5-Safeguarding'], [/code of conduct|sideline/, 'FS1-Sideline'],

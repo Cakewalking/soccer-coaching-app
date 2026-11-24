@@ -35,7 +35,7 @@ export function MS3MiniRoosReview({ onWhatWeSaw, onThankParents }: { onWhatWeSaw
       {/* Left: review */}
       <div style={{ flex: 1, minWidth: 0 }}>
         <div style={{ marginBottom: 4 }}>
-          <div style={{ fontSize: 24, fontWeight: 700, color: INK, letterSpacing: '-0.02em' }}>Saturday at Northgate City</div>
+          <div style={{ fontSize: 24, fontWeight: 700, color: INK, letterSpacing: '-0.02em' }}>Sunday at Northgate City</div>
           <div style={{ fontSize: 13, color: MUT, marginTop: 2 }}>U9 Tom · 4 short games · no score kept</div>
         </div>
 
@@ -136,7 +136,7 @@ export function MS3eMiniRoosReviewEmpty() {
       </div>
 
       <div style={{ background: PALE, borderRadius: 16, padding: '32px 24px', maxWidth: 480, marginBottom: 24 }}>
-        <div style={{ fontSize: 18, fontWeight: 700, color: INK, marginBottom: 8 }}>Film Saturday to get this</div>
+        <div style={{ fontSize: 18, fontWeight: 700, color: INK, marginBottom: 8 }}>Film Sunday to get this</div>
         <div style={{ fontSize: 14, color: MUT, lineHeight: 1.6, marginBottom: 20 }}>After a filmed game Clean Sheet shows your three things, the turns check and suggests games for Tuesday. No score kept.</div>
         <button onClick={() => openThing('Record screen', 'mini')} style={{ height: 44, padding: '0 20px', borderRadius: 10, border: 'none', background: G, color: '#fff', fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Go to Record</button>
       </div>

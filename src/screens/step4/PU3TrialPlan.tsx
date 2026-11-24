@@ -52,9 +52,9 @@ export default function PU3TrialPlan({ onNav }: { onNav?: (s: string) => void })
             <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 0 }}>
               {[
                 { n: 1, label: 'Leo and his parents said yes', sub: "Asked 20 May. Leo: 'I want to try.' Dad agreed 21 May", status: 'Done', statusColor: G },
-                { n: 2, label: 'Train with U14 Josh, play with U13 Chris', sub: '4 weeks · Tuesdays up, Thursdays and Saturdays with his own team', status: 'Week 3', statusColor: '#d4820a' },
+                { n: 2, label: 'Train with U14 Josh, play with U13 Chris', sub: '4 weeks · Tuesdays up, Thursdays and Sundays with his own team', status: 'Week 3', statusColor: '#d4820a' },
                 { n: 3, label: 'Review', sub: '18 June · Leo first, then Chris and Josh, then you', status: 'Next', statusColor: MUT },
-                { n: 4, label: 'Half a game with U14 Josh', sub: 'Two Saturdays, at least 30 minutes each. Still in the U13 chat', status: 'If it goes well', statusColor: MUT },
+                { n: 4, label: 'Half a game with U14 Josh', sub: 'Two Sundays, at least 30 minutes each. Still in the U13 chat', status: 'If it goes well', statusColor: MUT },
                 { n: 5, label: 'Decide', sub: 'Stay up, do both, or back to U13. Looked at every 6 weeks after', status: 'By 9 July', statusColor: MUT },
               ].map((step) => (
                 <div key={step.n} style={{ display: 'flex', gap: 14, padding: '12px 0', borderBottom: `1px solid ${LN}` }}>
@@ -82,7 +82,7 @@ export default function PU3TrialPlan({ onNav }: { onNav?: (s: string) => void })
             {[
               { initials: 'LC', bg: '#6090c0', name: 'Leo, each Tuesday', quote: '"Hard but fun" three weeks running' },
               { initials: 'J', bg: '#d4820a', name: 'Josh', quote: '"Keeps up. Quiet in the group so far."' },
-              { initials: 'C', bg: G, name: 'Chris', quote: '"Still our best on Saturdays."' },
+              { initials: 'C', bg: G, name: 'Chris', quote: '"Still our best on Sundays."' },
             ].map(item => (
               <div key={item.name} style={{ display: 'flex', gap: 10, marginBottom: 10 }}>
                 <div style={{ width: 28, height: 28, borderRadius: '50%', background: item.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, color: '#fff', flexShrink: 0 }}>{item.initials}</div>

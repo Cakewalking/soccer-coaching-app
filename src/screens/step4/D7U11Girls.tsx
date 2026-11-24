@@ -22,7 +22,7 @@ export default function D7U11Girls(_: { onBack?: () => void }) {
           <div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 10, marginBottom: 16 }}>
               {[
-                { label: 'Coming Saturday', val: '13 of 14', sub: 'Parents answer in the app', ok: true },
+                { label: 'Coming Sunday', val: '13 of 14', sub: 'Parents answer in the app', ok: true },
                 { label: 'Had a turn in goal', val: '6 of 14', sub: 'This term · everyone gets a go', ok: true },
                 { label: 'Training turnout', val: '90%', sub: 'Last 2 weeks · club 87%', ok: true },
                 { label: 'Game leader', val: 'Booked', sub: 'No scores under U12', ok: true },
@@ -68,7 +68,7 @@ export default function D7U11Girls(_: { onBack?: () => void }) {
             </div>
 
             <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 18px', marginBottom: 14 }}>
-              <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 6 }}>Next game · Sat 6 Jun</div>
+              <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 6 }}>Next game · Sun 7 Jun</div>
               <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>vs Harbour Rovers</div>
               <div style={{ fontSize: 12, color: MUT }}>10:30 · Home · pitch 3 · Training Tue and Thu 5:30</div>
             </div>

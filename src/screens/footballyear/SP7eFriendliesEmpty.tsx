@@ -48,7 +48,7 @@ export default function SP7eFriendliesEmpty(_: { onBack?: () => void }) {
           <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 4 }}>When are you free for a friendly?</div>
           <div style={{ fontSize: 13, color: MUT, marginBottom: 14 }}>Shown to Clean Sheet clubs within 20 km.</div>
           <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' as const, marginBottom: 12 }}>
-            {['Sat 14 Mar','Sat 21 Mar','Sun 22 Mar','Sat 28 Mar'].map(d => (
+            {['Sun 15 Mar','Sun 22 Mar','Sun 29 Mar'].map(d => (
               <button key={d} style={{ height: 44, padding: '0 12px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: INK, fontFamily: 'inherit', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>{d}</button>
             ))}
           </div>

@@ -26,7 +26,7 @@ function ClosingCard({ onPickRole, onWhy }: { onPickRole: () => void; onWhy: () 
   return (
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', padding: '32px 48px' }}>
       <div style={{ width: '100%', maxWidth: 900, background: '#2f6252', borderRadius: 20, padding: '52px 60px', display: 'flex', flexDirection: 'column', gap: 24, color: '#fff', boxSizing: 'border-box' as const }}>
-        <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase' as const, color: '#cfe6dc' }}>The next Saturday</div>
+        <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase' as const, color: '#cfe6dc' }}>The next Sunday</div>
         <h2 style={{ margin: 0, fontSize: 40, lineHeight: '1.1', fontWeight: 800, letterSpacing: '-0.03em' }}>Did it work? The coach can see.</h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14 }}>
           {metrics.map(m => (

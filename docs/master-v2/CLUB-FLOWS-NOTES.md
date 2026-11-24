@@ -54,7 +54,7 @@ A parent can send the message themselves, or have Clean Sheet send one short ema
 
 ## Not built
 
-- **Junior games on Sunday.** `SUNDAY.md` in the v23 pack says every junior and MiniRoos game is on a Sunday and lists the older club screens that still say Saturday. That change is being made separately.
+- Nothing else from this part. Junior games on Sunday (`SUNDAY.md` in the v23 pack) is done and reported in `SUNDAY-NOTES.md`.
 
 ## Things in the pack that do not agree
 

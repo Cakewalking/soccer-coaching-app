@@ -124,16 +124,16 @@ const WHAT_WENT_WELL = [
 
 const PLAYERS_TO_KNOW = [
   { ini: 'MT', name: 'Mia Tran',    chip: 'Star',    chipColor: '#40826d', note: 'Goal on her weaker foot. 4 scans before receiving.' },
-  { ini: 'LM', name: 'Leo Marsh',   chip: 'Minutes', chipColor: '#4a5a57', note: '27 min, below his fair share. Start him Saturday.' },
+  { ini: 'LM', name: 'Leo Marsh',   chip: 'Minutes', chipColor: '#4a5a57', note: '27 min, below his fair share. Start him Sunday.' },
   { ini: 'EB', name: 'Ella Brandt', chip: 'Wellness',chipColor: '#c39797', note: 'Felt low two days running. Quick chat tonight.' },
 ]
 
-export default function ReviewScreen({ seniors = false, empty, scoreline = '3–1', resultLine = 'Won away at Ironbark United', scorerLine = 'Sat 31 Oct · Mia, Jai and Zoe scored · 24 key clips' }: { empty?: boolean; scoreline?: string; resultLine?: string; seniors?: boolean; scorerLine?: string }) {
+export default function ReviewScreen({ seniors = false, empty, scoreline = '3–1', resultLine = 'Won away at Ironbark United', scorerLine = 'Sun 1 Nov · Mia, Jai and Zoe scored · 24 key clips' }: { empty?: boolean; scoreline?: string; resultLine?: string; seniors?: boolean; scorerLine?: string }) {
   const [toast, setToast] = useState('')
   const cap = useCapture()
   if (empty) return <ReviewEmpty />
   const showToast = (msg: string) => { setToast(msg); setTimeout(() => setToast(''), 2500) }
-  // Each number carries the mark its kind earns from Saturday's recording (capture quality).
+  // Each number carries the mark its kind earns from Sunday's recording (capture quality).
   const mk = (label: string) => { const k = kindFromLabel(label); return k ? <MarkDot kind={gameMark(cap, k)} /> : null }
   return (
     <div style={{ flexGrow: 1, minHeight: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
@@ -240,7 +240,7 @@ export default function ReviewScreen({ seniors = false, empty, scoreline = '3–
         {/* Right: players to know */}
         <div style={{ borderLeft: '1px solid #e9eae8', padding: '16px 20px', display: 'flex', flexDirection: 'column', gap: 12, overflowY: 'auto', background: '#fafafa' }}>
           <span style={{ fontSize: 14, fontWeight: 700 }}>Players to know about</span>
-          <span style={{ fontSize: 12, color: '#4a5a57' }}>From Saturday and this week's check-ins</span>
+          <span style={{ fontSize: 12, color: '#4a5a57' }}>From Sunday and this week's check-ins</span>
           {PLAYERS_TO_KNOW.map((p, i) => (
             <div key={i} style={{ background: '#ffffff', border: '1px solid #e9eae8', borderRadius: 12, padding: '12px 14px', display: 'flex', gap: 10 }}>
               <span style={{ flex: 'none', width: 36, height: 36, borderRadius: '999px', background: '#c39797', fontSize: 12, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#10211f' }}>{p.ini}</span>

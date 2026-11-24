@@ -7,12 +7,12 @@ interface Msg { id: number; from: string; role: string; time: string; body: stri
 
 const TEAM: Msg[] = [
   { id: 1, from: 'Sam', role: 'Coach', time: '8:30 am', body: 'Great energy at training last night. Well done everyone.', type: 'text' },
-  { id: 2, from: 'Jess Wu', role: 'Assistant coach', time: '8:34 am', body: 'Who can help carry the goals on Saturday? Meet at the reserve at 8:15.', type: 'text' },
-  { id: 3, from: 'Sam', role: 'Coach', time: '9:01 am', body: 'Who\'s bringing oranges this week?', type: 'poll', pollQ: 'Oranges this Saturday?', pollOpts: ['I can bring them', 'I\'ll help but can\'t buy', 'Can\'t help this week'], pollVotes: [3, 1, 4] },
+  { id: 2, from: 'Jess Wu', role: 'Assistant coach', time: '8:34 am', body: 'Who can help carry the goals on Sunday? Meet at the reserve at 8:15.', type: 'text' },
+  { id: 3, from: 'Sam', role: 'Coach', time: '9:01 am', body: 'Who\'s bringing oranges this week?', type: 'poll', pollQ: 'Oranges this Sunday?', pollOpts: ['I can bring them', 'I\'ll help but can\'t buy', 'Can\'t help this week'], pollVotes: [3, 1, 4] },
   { id: 4, from: 'Mia\'s mum', role: 'Parent', time: '9:14 am', body: 'We can bring them! On our way to the reserve anyway.', type: 'text' },
 ]
 const ANNOUNCEMENTS: Msg[] = [
-  { id: 10, from: 'Sam', role: 'Coach', time: 'Mon 2 Jun', body: 'First home game is Saturday 6 Jun at Wattle Creek Reserve, kick off 9:30 am. Arrive by 9:00.', type: 'text' },
+  { id: 10, from: 'Sam', role: 'Coach', time: 'Mon 2 Jun', body: 'First home game is Sunday 7 Jun at Wattle Creek Reserve, kick off 9:30 am. Arrive by 9:00.', type: 'text' },
   { id: 11, from: 'Sam', role: 'Coach', time: 'Fri 30 May', body: 'Training is on this Thursday despite the forecast. BOM says rain stops by 5 pm.', type: 'text' },
 ]
 

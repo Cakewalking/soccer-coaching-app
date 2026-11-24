@@ -54,7 +54,7 @@ export default function YT2MatchReport({ onNav, bare = false, seniors = false }:
   return (
     <YTFrame
       onNav={onNav} active="report" lastTool={lastTool} bare={bare}
-      heading="Match report · Sat 30 May · Won 3-1 at Ironbark United"
+      heading="Match report · Sun 31 May · Won 3-1 at Ironbark United"
       sentence="Your match report is drafted. Change anything, then share it."
       support={`Written from your take, the film and the vests, in your words where you gave them. Nothing goes to ${seniors ? 'the squad' : 'families'} until you send it.`}
       buttons={[
@@ -74,7 +74,7 @@ export default function YT2MatchReport({ onNav, bare = false, seniors = false }:
           <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#7a4b5b', marginTop: 4 }}>Clips in the report · tap to play</div>
           <div style={{ display: 'flex', gap: 10 }}>
             {['0:09', '0:12', '0:07'].map((d, i) => (
-              <button key={i} aria-label={`Play clip ${i + 1} of 3, ${d}`} onClick={() => playClips(['0:09', '0:12', '0:07'].map((x, k) => ({ title: `Clip ${k + 1} in the report`, sub: 'From Saturday’s film.', len: Number(x.split(':')[1]) })), 'Clips in the report', i)} style={{ flex: 1, height: 84, borderRadius: 10, border: 'none', background: GD, position: 'relative', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <button key={i} aria-label={`Play clip ${i + 1} of 3, ${d}`} onClick={() => playClips(['0:09', '0:12', '0:07'].map((x, k) => ({ title: `Clip ${k + 1} in the report`, sub: 'From Sunday’s film.', len: Number(x.split(':')[1]) })), 'Clips in the report', i)} style={{ flex: 1, height: 84, borderRadius: 10, border: 'none', background: GD, position: 'relative', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <span style={{ width: 30, height: 30, borderRadius: '50%', border: '2px solid rgba(255,255,255,0.6)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><svg width="12" height="12" viewBox="0 0 24 24" fill="#fff"><polygon points="5 3 19 12 5 21 5 3"/></svg></span>
                 <span style={{ position: 'absolute', bottom: 6, right: 8, fontSize: 11, fontWeight: 700, color: '#fff', background: 'rgba(0,0,0,0.5)', borderRadius: 4, padding: '1px 5px' }}>{d}</span>
               </button>

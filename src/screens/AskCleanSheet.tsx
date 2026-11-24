@@ -49,7 +49,7 @@ const EXAMPLE_QUESTIONS = [
   'Who needs a rest this week?',
   'What should we work on tonight?',
   'Is everyone getting fair minutes?',
-  'Why did we concede on Saturday?',
+  'Why did we concede on Sunday?',
 ]
 
 function CoachTopBar({ onNav, askButton }: { onNav: (id: string) => void; askButton?: React.ReactNode }) {
@@ -129,7 +129,7 @@ export function AskHome({ onBack: _onBack }: { onBack?: () => void }) {
           {[
             { title: 'Tonight\'s session', sub: '17 coming · Messmate Primary', emoji: glyph('clipboard') },
             { title: 'Squad available', sub: '15 of 18 · 3 responses pending', emoji: glyph('people') },
-            { title: 'Last Saturday', sub: 'Wattle Creek 2–1 Glen Waverley', emoji: glyph('ball') },
+            { title: 'Last Sunday', sub: 'Wattle Creek 2–1 Glen Waverley', emoji: glyph('ball') },
           ].map(card => (
             <div key={card.title} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '16px' }}>
               <div style={{ fontSize: 24, marginBottom: 8 }}>{card.emoji}</div>
@@ -354,7 +354,7 @@ export function AskPhoneButton({ onBack: _onBack }: { onBack?: () => void }) {
         {[
           { emoji: glyph('clipboard'), t: 'Tonight\'s training', s: '5:00pm · Messmate Primary' },
           { emoji: glyph('people'), t: '17 of 18 coming', s: '1 no answer' },
-          { emoji: glyph('calendar'), t: 'Calendar', s: 'No fixture this Saturday' },
+          { emoji: glyph('calendar'), t: 'Calendar', s: 'No fixture this Sunday' },
         ].map(card => (
           <div key={card.t} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 16px', marginBottom: 10 }}>
             <div style={{ fontSize: 20, marginBottom: 6 }}>{card.emoji}</div>
@@ -424,7 +424,7 @@ export function AskPhoneOpen({ onBack: _onBack }: { onBack?: () => void }) {
         <div style={{ overflowY: 'auto', padding: '0 16px 12px', flex: 1 }}>
           <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 10 }}>
             <div style={{ maxWidth: '85%', padding: '8px 12px', borderRadius: '12px 12px 2px 12px', background: GD, color: '#fff', fontSize: 13, lineHeight: 1.5 }}>
-              What does Mia need for Saturday?
+              What does Mia need for Sunday?
             </div>
           </div>
           <div style={{ marginBottom: 12 }}>

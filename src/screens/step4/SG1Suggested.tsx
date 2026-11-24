@@ -7,7 +7,7 @@ const NAV_ITEMS = ['Home', 'Squad', 'Training', 'Match day', 'Clips']
 const SUBNAV = ['Tonight\'s session', 'This week', 'Suggested', 'Drill library', 'Growth and load', 'Record']
 
 const DRILLS = [
-  { rank: 1, name: 'Win it back in 6 seconds', evidence: 'Strong match data', based: ['Saturday pressing', '3 games of data'], drill: '8 v 8 · 25 min · 40 × 30 m' },
+  { rank: 1, name: 'Win it back in 6 seconds', evidence: 'Strong match data', based: ['Sunday pressing', '3 games of data'], drill: '8 v 8 · 25 min · 40 × 30 m' },
   { rank: 2, name: 'Tight shape, 3 zones', evidence: 'Match + training data', based: ['Defence gap', '5 sessions'], drill: '7 v 7 + GKs · 30 min · Half pitch' },
   { rank: 3, name: 'Rondo, 5 v 2', evidence: 'Training data', based: ['Passing accuracy', '4 sessions'], drill: '7 per group · 10 min · 10 × 10 m' },
 ]
@@ -34,7 +34,7 @@ export default function SG1Suggested(_: { onBack?: () => void }) {
       <main style={{ flexGrow: 1, minHeight: 0, padding: '16px 28px 20px', boxSizing: 'border-box', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 300px', gap: 18 }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           <div style={{ fontSize: 22, fontWeight: 700, letterSpacing: '-0.02em' }}>Suggested for tonight</div>
-          <div style={{ fontSize: 14, color: MUT }}>Based on Saturday vs Ironbark United · 3 fixes · built from game and training data</div>
+          <div style={{ fontSize: 14, color: MUT }}>Based on Sunday vs Ironbark United · 3 fixes · built from game and training data</div>
           {DRILLS.map(d => (
             <div key={d.rank} style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 16, padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 10 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
@@ -54,7 +54,7 @@ export default function SG1Suggested(_: { onBack?: () => void }) {
               </div>
               {whyOpen === d.rank && (
                 <div style={{ fontSize: 13, color: MUT, lineHeight: 1.6, background: '#faf5ec', borderRadius: 10, padding: '10px 12px' }}>
-                  Why {d.name}: {d.based.join(' and ')} point to this. The clips from Saturday show it, and three sessions of data back it up. Tap a clip in the drill to see the moment.
+                  Why {d.name}: {d.based.join(' and ')} point to this. The clips from Sunday show it, and three sessions of data back it up. Tap a clip in the drill to see the moment.
                 </div>
               )}
             </div>

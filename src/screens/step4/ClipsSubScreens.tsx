@@ -108,7 +108,7 @@ export function CL1Playlists() {
   const [toast, setToast] = useState<string|null>(null)
   function st(m: string) { setToast(m); setTimeout(() => setToast(null), 3000) }
   const playlists = [
-    { title: 'Team talk · Harbour Rovers', clips: 5, dur: '4 min', note: 'Ready for Saturday' },
+    { title: 'Team talk · Harbour Rovers', clips: 5, dur: '4 min', note: 'Ready for Sunday' },
     { title: "Pressing: what good looks like", clips: 9, dur: 'from 4 games', note: 'Used in 3 team talks' },
     { title: 'Back-post defending', clips: 4, dur: 'Leo and Grace', note: '' },
   ]

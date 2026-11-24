@@ -27,11 +27,11 @@ function SubBar() {
 const photos = [
   { type: 'photo', title: 'Mia with both boots', by: 'Linh · today' },
   { type: 'video', title: 'Mia juggling', by: 'Linh · today', dur: '0:21' },
-  { type: 'photo', title: 'Team photo after Ironbark', by: 'Rob · Sat' },
-  { type: 'photo', title: 'New goals on pitch 2', by: 'Sam · Sat' },
-  { type: 'video', title: "Ruby's goal", by: 'Jess · Sat', dur: '0:09' },
-  { type: 'photo', title: 'Oranges at half time', by: 'Aroha · Sat' },
-  { type: 'photo', title: 'Medals from the gala day', by: 'Rob · 23 May' },
+  { type: 'photo', title: 'Team photo after Ironbark', by: 'Rob · Sun' },
+  { type: 'photo', title: 'New goals on pitch 2', by: 'Sam · Sun' },
+  { type: 'video', title: "Ruby's goal", by: 'Jess · Sun', dur: '0:09' },
+  { type: 'photo', title: 'Oranges at half time', by: 'Aroha · Sun' },
+  { type: 'photo', title: 'Medals from the gala day', by: 'Rob · 24 May' },
   { type: 'video', title: 'Warm-up game', by: 'Sam · 21 May', dur: '0:34' },
 ]
 export default function CH6Media(_: { onBack?: () => void }) {

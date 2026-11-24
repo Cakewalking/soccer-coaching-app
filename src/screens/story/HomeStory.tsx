@@ -351,7 +351,7 @@ const ICON = {
   cal: 'M6 5h12a2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V7a2 2 0 012-2zM4 10h16M9 3v4M15 3v4', chat: 'M4 5h16v11H9l-5 4z', arrow: 'M5 12h14M13 6l6 6-6 6',
   home: 'M4 11l8-7 8 7v9H4z', play: 'M12 21a9 9 0 100-18 9 9 0 000 18zM10 8l6 4-6 4z', me: 'M12 12a4 4 0 100-8 4 4 0 000 8zM5 21a7 7 0 0114 0', book: 'M4 5h6a3 3 0 013 3v11a3 3 0 00-3-3H4zM20 5h-4a3 3 0 00-3 3v11a3 3 0 013-3h4z', heart: 'M12 20s-7-4.5-7-10a4 4 0 017-2.6A4 4 0 0119 10c0 5.5-7 10-7 10z', dot: 'M12 15a3 3 0 100-6 3 3 0 000 6z',
 }
-const iconFor = (t: string) => /team|played|chance/i.test(t) ? ICON.chart : /rate|vote/i.test(t) ? ICON.star : /trial|clip|film|watch/i.test(t) ? ICON.film : /week|calendar|saturday|training/i.test(t) ? ICON.cal : /message|chat|reply/i.test(t) ? ICON.chat : ICON.arrow
+const iconFor = (t: string) => /team|played|chance/i.test(t) ? ICON.chart : /rate|vote/i.test(t) ? ICON.star : /trial|clip|film|watch/i.test(t) ? ICON.film : /week|calendar|saturday|sunday|training/i.test(t) ? ICON.cal : /message|chat|reply/i.test(t) ? ICON.chat : ICON.arrow
 const tabIcon = (l: string) => /home/i.test(l) ? ICON.home : /clip/i.test(l) ? ICON.play : /message|chat/i.test(l) ? ICON.chat : /^me$|profile/i.test(l) ? ICON.me : /learn/i.test(l) ? ICON.book : /body|load/i.test(l) ? ICON.heart : /game|fixture|calendar/i.test(l) ? ICON.cal : ICON.dot
 const Glyph = ({ d, size = 20, color = 'currentColor' }: { d: string; size?: number; color?: string }) => <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ flex: 'none' }}><path d={d} /></svg>
 
@@ -547,7 +547,7 @@ function AskLine({ cfg, nav }: { cfg: HomeCfg; nav: (s: string) => void }) {
 const outlineBtnDark: React.CSSProperties = { height: 46, padding: '0 18px', borderRadius: 12, fontSize: 15, fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: 8, background: 'transparent', border: `1px solid ${PALE}`, color: '#fff', cursor: 'pointer', fontFamily: 'inherit' }
 const amberBtnDark: React.CSSProperties = { height: 46, padding: '0 18px', borderRadius: 12, fontSize: 15, fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: 8, border: 'none', background: AMBER, color: INK, cursor: 'pointer', fontFamily: 'inherit' }
 
-// STO2 — MiniRoos training-day Home (bespoke proof + "Saturday in 40 seconds" card)
+// STO2 — MiniRoos training-day Home (bespoke proof + "Sunday in 40 seconds" card)
 export function HomeStoryMiniRoosTraining({ cfg, onNav }: { cfg: HomeCfg; onNav?: (s: string) => void }) {
   const [lastTool, setLastTool] = useState('')
   const [toast, setToast] = useState<string | null>(null)
@@ -564,7 +564,7 @@ export function HomeStoryMiniRoosTraining({ cfg, onNav }: { cfg: HomeCfg; onNav?
               <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
                 <span style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', color: AMBER }}>TONIGHT · 5:00 pm · WATTLE CREEK RESERVE</span>
                 <h1 style={{ margin: 0, fontSize: 27, lineHeight: '34px', letterSpacing: '-0.02em', color: '#fff', fontWeight: 700 }}>Four games, ready. Tonight is about finding a friend in space.</h1>
-                <span style={{ fontSize: 15, lineHeight: '21px', color: PALE }}>Built from Saturday, when they bunched round the ball. 8 are coming, 2 still to answer.</span>
+                <span style={{ fontSize: 15, lineHeight: '21px', color: PALE }}>Built from Sunday, when they bunched round the ball. 8 are coming, 2 still to answer.</span>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 2 }}>
                   {games.map(g => <span key={g} style={{ height: 30, padding: '0 12px', borderRadius: 8, background: 'rgba(255,255,255,0.10)', display: 'inline-flex', alignItems: 'center', fontSize: 13, color: '#fff' }}>{g}</span>)}
                 </div>
@@ -579,14 +579,14 @@ export function HomeStoryMiniRoosTraining({ cfg, onNav }: { cfg: HomeCfg; onNav?
                   <span style={{ position: 'absolute', left: 10, bottom: 10, fontSize: 12, fontWeight: 700, background: 'rgba(0,0,0,0.35)', padding: '2px 8px', borderRadius: 6 }}>0:25</span>
                 </span>
                 <span style={{ display: 'flex', gap: 6 }}>{['Bunching', 'Space', 'A friend'].map(c => <span key={c} style={{ flex: 1, height: 30, borderRadius: 6, background: 'rgba(255,255,255,0.14)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, color: '#fff' }}>{c}</span>)}</span>
-                <span style={{ fontSize: 13, lineHeight: '18px', color: PALE }}>Why tonight: 25 seconds of Saturday’s bunching, to watch before you go.</span>
+                <span style={{ fontSize: 13, lineHeight: '18px', color: PALE }}>Why tonight: 25 seconds of Sunday’s bunching, to watch before you go.</span>
               </button>
             </div>
             {cfg.take && <TakeRow take={cfg.take} nav={nav} tool={tool} />}
           </div>
-          {/* Saturday in 40 seconds card */}
+          {/* Sunday in 40 seconds card */}
           <div style={{ background: GREEN, border: `1px solid ${GREEN}`, borderRadius: 16, padding: '14px 16px', color: '#fff', display: 'flex', flexDirection: 'column', gap: 8 }}>
-            <strong style={{ fontSize: 22, lineHeight: '27px', letterSpacing: '-0.01em' }}>Saturday in 40 seconds</strong>
+            <strong style={{ fontSize: 22, lineHeight: '27px', letterSpacing: '-0.01em' }}>Sunday in 40 seconds</strong>
             <button onClick={() => nav('RCm2-MiniRoosClips')} style={{ height: 92, borderRadius: 12, background: 'rgba(255,255,255,0.14)', border: '1px solid rgba(255,255,255,0.4)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', cursor: 'pointer', fontFamily: 'inherit' }}>
               <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5l11 7-11 7z" /></svg>
               <span style={{ position: 'absolute', left: 10, bottom: 8, fontSize: 12, fontWeight: 700, background: 'rgba(0,0,0,0.35)', padding: '2px 8px', borderRadius: 6 }}>0:40</span>
@@ -622,9 +622,9 @@ export function HomeStoryMiniRoosNoFilm({ cfg, onNav }: { cfg: HomeCfg; onNav?: 
           <div style={{ gridColumn: '1 / 4', background: DARK, borderRadius: 20, padding: '18px 24px' }}>
             <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 300px', gap: 28, alignItems: 'center' }}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
-                <span style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', color: AMBER }}>SATURDAY AT NORTHGATE CITY · FROM YOUR THREE TAPS</span>
-                <h1 style={{ margin: 0, fontSize: 27, lineHeight: '34px', letterSpacing: '-0.02em', color: '#fff', fontWeight: 700 }}>You worked on being brave with the ball. On Saturday you saw lots of them take a player on.</h1>
-                <span style={{ fontSize: 15, lineHeight: '21px', color: PALE }}>That is three Saturdays running you have tapped it. No score kept.</span>
+                <span style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.08em', color: AMBER }}>SUNDAY AT NORTHGATE CITY · FROM YOUR THREE TAPS</span>
+                <h1 style={{ margin: 0, fontSize: 27, lineHeight: '34px', letterSpacing: '-0.02em', color: '#fff', fontWeight: 700 }}>You worked on being brave with the ball. On Sunday you saw lots of them take a player on.</h1>
+                <span style={{ fontSize: 15, lineHeight: '21px', color: PALE }}>That is three Sundays running you have tapped it. No score kept.</span>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginTop: 2 }}>
                   {notes.map(n => <span key={n} style={{ fontSize: 14, color: '#fff', display: 'flex', alignItems: 'center', gap: 8 }}><span style={{ display: 'flex' }}><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke={PALE} strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10" /></svg></span>{n}</span>)}
                 </div>

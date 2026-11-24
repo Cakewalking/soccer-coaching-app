@@ -24,7 +24,7 @@ export default function SGm1SuggestedMiniRoos(_: { onBack?: () => void }) {
       </div>
       <main style={{ flexGrow: 1, padding: '14px 28px 28px', display: 'grid', gridTemplateColumns: 'repeat(3,1fr) 260px', gap: 16, overflowY: 'auto' }}>
         {[
-          { n: 1, problem: 'They bunch around the ball', basis: ['Your taps, 3 weeks running', "Saturday's clips"], insight: 'Very normal at this age. Games with wide gates give them a reason to spread out, without you telling them to.', drill: 'Four goals: score in either wide gate', setup: '4 against 4 · 10 minutes · everyone on the ball' },
+          { n: 1, problem: 'They bunch around the ball', basis: ['Your taps, 3 weeks running', "Sunday's clips"], insight: 'Very normal at this age. Games with wide gates give them a reason to spread out, without you telling them to.', drill: 'Four goals: score in either wide gate', setup: '4 against 4 · 10 minutes · everyone on the ball' },
           { n: 2, problem: 'Poppy and Jude see less of the ball', basis: ['Who had a go, 2 weeks', 'Your note'], insight: 'Smaller teams mean more touches for quieter players. Nobody is singled out.', drill: 'Pairs: 2 against 2 to small goals', setup: 'Five little pitches · 8 minutes · swap partners each round' },
           { n: 3, problem: 'Next in the term plan: striking the ball', basis: ['Curriculum, weeks 7 and 8'], insight: "Nothing to fix here. It's simply what comes next for under 9s.", drill: 'Shoot on sight, 3 against 3', setup: '10 minutes · two keepers who swap every goal' },
         ].map(card => (

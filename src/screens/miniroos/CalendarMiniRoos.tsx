@@ -6,28 +6,28 @@ type DayEvent = { label: string; bg: string; color: string }
 type Day = { n: number; today?: boolean; events: DayEvent[] }
 
 const DAYS: (Day | null)[] = [
-  null, // Mon Jun 1 offset: Jun 1 is Monday → no offset needed, but let me structure properly
+  // 1 June 2026 is a Monday, so the first day sits in the first column
   { n: 1, events: [] },
   { n: 2, today: true, events: [{ label: 'Training 5:00', bg: '#40826d', color: '#fff' }] },
   { n: 3, events: [] },
   { n: 4, events: [] },
   { n: 5, events: [] },
-  { n: 6, events: [{ label: '8:30 · away\nNorthgate', bg: '#e8cfcf', color: '#10211f' }] },
-  { n: 7, events: [] },
+  { n: 6, events: [] },
+  { n: 7, events: [{ label: '8:30 · away\nNorthgate', bg: '#e8cfcf', color: '#10211f' }] },
   { n: 8, events: [] },
   { n: 9, events: [{ label: 'Training 5:00', bg: '#40826d', color: '#fff' }] },
   { n: 10, events: [] },
   { n: 11, events: [] },
   { n: 12, events: [] },
-  { n: 13, events: [{ label: '9:00 · home\nKestrel', bg: '#e8cfcf', color: '#10211f' }] },
-  { n: 14, events: [] },
+  { n: 13, events: [] },
+  { n: 14, events: [{ label: '9:00 · home\nKestrel', bg: '#e8cfcf', color: '#10211f' }] },
   { n: 15, events: [] },
   { n: 16, events: [{ label: 'Training 5:00', bg: '#40826d', color: '#fff' }] },
   { n: 17, events: [] },
   { n: 18, events: [] },
   { n: 19, events: [] },
-  { n: 20, events: [{ label: '8:30 · away\nBanksia', bg: '#e8cfcf', color: '#10211f' }, { label: 'Photo day', bg: '#eef5f2', color: '#2f6252' }] },
-  { n: 21, events: [] },
+  { n: 20, events: [] },
+  { n: 21, events: [{ label: '8:30 · away\nBanksia', bg: '#e8cfcf', color: '#10211f' }, { label: 'Photo day', bg: '#eef5f2', color: '#2f6252' }] },
   { n: 22, events: [] },
   { n: 23, events: [{ label: 'Training 5:00', bg: '#40826d', color: '#fff' }] },
   { n: 24, events: [] },
@@ -113,8 +113,8 @@ export default function CalendarMiniRoos({ empty }: { empty?: boolean }) {
             <h2 style={{ margin: '0 0 0', fontSize: 17, fontWeight: 700 }}>Next up</h2>
             {[
               { circle: 'Tu', bg: '#40826d', title: 'Training tonight', sub: '5:00 pm · Wattle Creek Reserve' },
-              { circle: 'Sa', bg: '#e8cfcf', title: 'Northgate City', sub: 'Sat 8:30 · away, Redgum Reserve' },
-              { circle: '20', bg: '#eef5f2', title: 'Photo day', sub: 'Sat 20 Jun · wear the full kit' },
+              { circle: 'Su', bg: '#e8cfcf', title: 'Northgate City', sub: 'Sun 8:30 · away, Redgum Reserve' },
+              { circle: '21', bg: '#eef5f2', title: 'Photo day', sub: 'Sun 21 Jun · wear the full kit' },
             ].map((item, i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, minHeight: 52, borderTop: '1px solid #e9eae8' }}>
                 <span style={{ flexShrink: 0, width: 32, height: 32, borderRadius: '999px', background: item.bg, color: '#10211f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }}>{item.circle}</span>

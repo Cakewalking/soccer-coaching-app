@@ -168,7 +168,7 @@ export default function DrillLibraryMain({ filterTab, setFilterTab, agePhase, se
 
         {/* Row 4: Suggestion strip */}
         <div style={{ background:GD, borderRadius:10, padding:'10px 14px', display:'flex', alignItems:'center', gap:8, overflowX:'auto' }}>
-          <span style={{ fontSize:12, color:'rgba(255,255,255,0.45)', fontWeight:600, whiteSpace:'nowrap', flexShrink:0 }}>From Saturday vs Ironbark</span>
+          <span style={{ fontSize:12, color:'rgba(255,255,255,0.45)', fontWeight:600, whiteSpace:'nowrap', flexShrink:0 }}>From Sunday vs Ironbark</span>
           {FIX_ITEMS.map((f, i) => (
             <button key={i} onClick={() => setActiveSugg(i)} style={{ height: 44, padding:'0 12px', borderRadius:999, border:'none', background: activeSugg === i ? G2 : 'rgba(255,255,255,0.12)', color:'#fff', fontSize:12, fontWeight: activeSugg === i ? 700 : 500, cursor:'pointer', fontFamily:'inherit', whiteSpace:'nowrap', flexShrink:0 }}>
               {f.label}

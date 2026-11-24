@@ -76,7 +76,7 @@ export function MS2MiniRoosWhereWeAt() {
           <div style={{ fontSize: 14, color: INK, lineHeight: 1.6 }}>Bravery is up, so keep praising it. Passing has not moved: Tuesday has two games where a pass to a friend scores double.</div>
           <div style={{ display: 'flex', gap: 8, marginTop: 12 }}>
             <button onClick={() => goApp('training', "Opening Tuesday's games.")} style={{ height: 40, padding: '0 14px', borderRadius: 10, border: 'none', background: G, color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>{"Open Tuesday's games"}</button>
-            <button onClick={() => goApp('review', "Opening Saturday's review.")} style={{ height: 40, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{"Saturday's review"}</button>
+            <button onClick={() => goApp('review', "Opening Sunday's review.")} style={{ height: 40, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>{"Sunday's review"}</button>
             <button onClick={() => goApp('setstyle', 'Opening style picker.')} style={{ height: 40, padding: '0 14px', borderRadius: 10, border: `1px solid ${LN}`, background: '#fff', color: G, fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>Change our three things</button>
           </div>
         </div>

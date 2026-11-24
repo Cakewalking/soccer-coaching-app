@@ -30,8 +30,8 @@ export default function F4FitnessMatch(_: { onBack?: () => void }) {
         ))}
       </div>
       <div style={{ flex: 'none', padding: '14px 28px 0', display: 'flex', alignItems: 'baseline', gap: 14 }}>
-        <h1 style={{ margin: 0, fontSize: 26, fontWeight: 700, letterSpacing: '-0.02em' }}>Load limits · Saturday</h1>
-        <span style={{ fontSize: 14, color: MUT }}>U12 Sam v Ironbark United · Sat 14 Jun · 10:00 am · Away</span>
+        <h1 style={{ margin: 0, fontSize: 26, fontWeight: 700, letterSpacing: '-0.02em' }}>Load limits · Sunday</h1>
+        <span style={{ fontSize: 14, color: MUT }}>U12 Sam v Ironbark United · Sun 14 Jun · 10:00 am · Away</span>
       </div>
       <div style={{ flex: 1, minHeight: 0, padding: '12px 28px 18px', display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 300px', gap: 14 }}>
         <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 10 }}>

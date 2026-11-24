@@ -99,9 +99,9 @@ export default function EDU5CoachCorner({ onNav }: { onNav?: (s: string) => void
       <OpeningPanel
         heading="Learn · For coaches · Your path, set by Rachel"
         sentence="You are two lessons into 'New to coaching MiniRoos'. Next: reading who has had a turn, without an app."
-        support="50 seconds. Then try it on Saturday."
+        support="50 seconds. Then try it on Sunday."
         buttons={[
-          { label: 'Watch the next one', main: true, onClick: () => { tool('Watch the next one'); st('The lesson plays, then asks you to try one thing on Saturday.') } },
+          { label: 'Watch the next one', main: true, onClick: () => { tool('Watch the next one'); st('The lesson plays, then asks you to try one thing on Sunday.') } },
           { label: 'All six', onClick: () => { tool('All six'); st('The six lessons in order.') } },
         ]}
       />
@@ -117,7 +117,7 @@ export default function EDU5CoachCorner({ onNav }: { onNav?: (s: string) => void
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '12px 16px', marginBottom: 20, display: 'flex', alignItems: 'center', gap: 12 }}>
           <div style={{ flex: 1 }}>
             <div style={{ fontSize: 12, fontWeight: 700, color: MUT, marginBottom: 2 }}>NEXT UP</div>
-            <div style={{ fontSize: 13, fontWeight: 700, color: INK }}>Next: Reading who has had a turn, without an app. 50 seconds. Then try it on Saturday.</div>
+            <div style={{ fontSize: 13, fontWeight: 700, color: INK }}>Next: Reading who has had a turn, without an app. 50 seconds. Then try it on Sunday.</div>
           </div>
         </div>
 

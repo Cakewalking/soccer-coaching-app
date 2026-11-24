@@ -33,18 +33,18 @@ export default function ASKd9PhoneScreen({ onNav }: { onNav?: (s: string) => voi
       <div style={{ flex: 1, padding: '16px 16px 80px', overflowY: 'auto' }}>
         {/* Game banner */}
         <div style={{ background: GD, borderRadius: 12, padding: '14px 16px', marginBottom: 16 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: 'rgba(255,255,255,0.7)', letterSpacing: '0.07em', marginBottom: 2 }}>SAT 6 JUNE · 9:30 V HARBOUR ROVERS</div>
+          <div style={{ fontSize: 11, fontWeight: 700, color: 'rgba(255,255,255,0.7)', letterSpacing: '0.07em', marginBottom: 2 }}>SUN 7 JUNE · 9:30 V HARBOUR ROVERS</div>
           <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.85)' }}>Wattle Creek Reserve, pitch 2 · arrive by 9:00</div>
         </div>
 
         {/* Ask tip */}
         <div style={{ fontSize: 12, color: MUT, lineHeight: 1.5, marginBottom: 16, padding: '0 4px' }}>
-          The button at the top right asks about this screen: "What does Mia need for Saturday?"
+          The button at the top right asks about this screen: "What does Mia need for Sunday?"
         </div>
 
         {/* Attendance question */}
         <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '16px' }}>
-          <div style={{ fontSize: 15, fontWeight: 800, color: INK, marginBottom: 4 }}>Is Mia coming on Saturday?</div>
+          <div style={{ fontSize: 15, fontWeight: 800, color: INK, marginBottom: 4 }}>Is Mia coming on Sunday?</div>
           <div style={{ fontSize: 12, color: MUT, marginBottom: 16 }}>Sam needs to know by 3:00 pm on Friday.</div>
 
           <div style={{ display: 'flex', gap: 10 }}>

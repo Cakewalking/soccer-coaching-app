@@ -96,7 +96,7 @@ function InboxEmpty() {
 
 const MESSAGES = [
   { id: 0, from: 'Clean Sheet · Wellness check-ins', time: '7:30 am', preview: 'Ella has felt low two days running', tag: 'Needs a look', tagBg: '#c39797', tagColor: '#10211f', unread: true, icon: 'M12 2a10 10 0 100 20A10 10 0 0012 2zM12 7v5l3 3', iconBg: '#40826d' },
-  { id: 1, from: 'Clean Sheet · Data',                time: '7:12 am', preview: '3 GPS vests didn\'t sync', tag: 'Fix before Saturday', tagBg: '#e8cfcf', tagColor: '#10211f', unread: true, icon: 'M22 12h-4M6 12H2M12 2v4M12 18v4', iconBg: '#c39797' },
+  { id: 1, from: 'Clean Sheet · Data',                time: '7:12 am', preview: '3 GPS vests didn\'t sync', tag: 'Fix before Sunday', tagBg: '#e8cfcf', tagColor: '#10211f', unread: true, icon: 'M22 12h-4M6 12H2M12 2v4M12 18v4', iconBg: '#c39797' },
   { id: 2, from: 'Priya Shah · Fitness Coach',        time: 'Yesterday', preview: 'Sprint caps set for Noah and Zoe', tag: null, unread: false, icon: 'M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8', iconBg: '#c39797' },
   { id: 3, from: 'Linh Tran · Mia\'s mum',           time: 'Tue',      preview: 'Mia might be 10 minutes late Thursday', tag: 'Waiting on you', tagBg: '#e8cfcf', tagColor: '#10211f', unread: false, icon: 'M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8', iconBg: '#e8cfcf' },
   { id: 4, from: 'Clean Sheet',                       time: 'Mon',      preview: 'Player goals: 3 need work', tag: null, unread: false, icon: 'M9 11a3 3 0 100-6 3 3 0 000 6zM3 20c0-4 3-6 6-6s6 2 6 6', iconBg: '#40826d' },
@@ -105,7 +105,7 @@ const MESSAGES = [
 ]
 
 const THREAD_MSGS = [
-  { from: 'Priya Shah', time: 'Wednesday', body: "Both are in a growth spurt. I've capped them at 3 sprints on Thursday and 8 on Saturday." },
+  { from: 'Priya Shah', time: 'Wednesday', body: "Both are in a growth spurt. I've capped them at 3 sprints on Thursday and 8 on Sunday." },
   { from: 'Priya', sub: 'Noah Okafor', subNote: 'Grew 1.1 cm this month · 26 sprints last week, limit 20', time: '4:52 pm', isPlayer: true },
   { from: 'Priya', sub: 'Zoe Hartley',  subNote: 'Grew 0.9 cm this month · 24 sprints last week, limit 20', time: '4:52 pm', isPlayer: true },
   { from: 'Priya', time: '4:53 pm', body: "Shout if you want them to play more than 35 minutes." },

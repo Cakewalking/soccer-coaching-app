@@ -78,13 +78,13 @@ const band = (bg: string): CSSProperties => ({ background: bg, width: '100%' })
 const inner = (padV: string, padH = 56): CSSProperties => ({ maxWidth: 1180, margin: '0 auto', padding: `${padV}` , paddingLeft: padH, paddingRight: padH, boxSizing: 'border-box' })
 
 const WHAT_YOU_GET = [
-  { t: 'An edge on Saturday', d: 'Know what your team does well, where it leaks, and how next week’s opponent plays. Most of your rivals are still guessing.' },
+  { t: 'An edge on game day', d: 'Know what your team does well, where it leaks, and how next week’s opponent plays. Most of your rivals are still guessing.' },
   { t: 'Players who get better, faster', d: 'Every player has one goal, a clip that shows it and a session built around it. Improvement you can point to, not hope for.' },
   { t: 'A club players want to join', d: 'Show a new family exactly how you develop players: the plan, the clips, the progress. It is the strongest pitch you will ever make at a trial day.' },
 ]
 const PROBLEMS = [
   { t: 'Coaches are volunteers', d: 'Most have an hour a week to plan. Nobody has time to watch 60 minutes of film, so it stays on a phone.' },
-  { t: 'Families can’t see what they pay for', d: 'They get a result on Saturday. What their child is learning stays in the coach’s head, and the club down the road is one good trial day away.' },
+  { t: 'Families can’t see what they pay for', d: 'They get a result on Sunday. What their child is learning stays in the coach’s head, and the club down the road is one good trial day away.' },
   { t: 'The club runs on five apps and a group chat', d: 'Film in one place, vest numbers in another, check-ins in a third, messages in a group chat. Nothing joins up.' },
 ]
 const SLICES = [
@@ -115,7 +115,7 @@ const CHIPS = ['Film', 'Vests and boot sensors', 'Wellness check-ins', 'Coach’
 const BARS = [
   { n: '11', h: 34, when: 'Round 3', amber: false },
   { n: '9', h: 28, when: 'Round 6', amber: false },
-  { n: '7', h: 22, when: 'Saturday', amber: true },
+  { n: '7', h: 22, when: 'Sunday', amber: true },
 ]
 
 function Btn({ children, onClick, style }: { children: ReactNode; onClick: () => void; style: CSSProperties }) {

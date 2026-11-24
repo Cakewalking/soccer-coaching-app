@@ -225,8 +225,8 @@ function ParentHome({ empty, onCantCome, onShare, onConcern, onChat }: {
     { day: 'Wed', note: 'Club training' },
     { day: 'Thu', note: 'Academy 4:30', hi: true },
     { day: 'Fri', note: 'Rest' },
-    { day: 'Sat', note: 'Club game' },
-    { day: 'Sun', note: 'Rest' },
+    { day: 'Sat', note: 'Rest' },
+    { day: 'Sun', note: 'Club game' },
   ]
 
   return (
@@ -504,11 +504,11 @@ function JoinTeamView({ onBack }: { onBack: () => void }) {
       <PHeader title="Join U13 Timber" back={onBack}/>
       <Card>
         <div style={{ padding: 14, background: GD, color: '#fff' }}>
-          <div style={{ fontSize: 18, fontWeight: 800 }}>U13 Timber · Saturday league</div>
+          <div style={{ fontSize: 18, fontWeight: 800 }}>U13 Timber · Sunday league</div>
           <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)' }}>Wattle Creek FC · 11 a side</div>
         </div>
         <Row label="Coach" value="Reece Whitlam · the same coach as academy"/>
-        <Row label="Games" value="Starting Sat 6 Jun · 15 games"/>
+        <Row label="Games" value="Starting Sun 7 Jun · 15 games"/>
         <Row label="Kit" value="Included in the combined bill"/>
         <div style={{ padding: 14 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: MUT, marginBottom: 8, letterSpacing: '0.05em', textTransform: 'uppercase' as const }}>Combined bill</div>
@@ -639,7 +639,7 @@ function BookTab({ onClinic, onTeam }: { onClinic: () => void; onTeam: () => voi
       </button>
       <button onClick={onTeam} style={{ padding: 16, borderRadius: 16, border: `1px solid ${LN}`, background: '#fff', textAlign: 'left', cursor: 'pointer', fontFamily: 'inherit' }}>
         <div style={{ fontSize: 15, fontWeight: 700, color: INK, marginBottom: 4 }}>U13 Timber · game team</div>
-        <div style={{ fontSize: 13, color: MUT }}>Saturday league · Wattle Creek FC · $130 extra</div>
+        <div style={{ fontSize: 13, color: MUT }}>Sunday league · Wattle Creek FC · $130 extra</div>
         <div style={{ fontSize: 12, color: G2, fontWeight: 700, marginTop: 6 }}>Join →</div>
       </button>
     </div>

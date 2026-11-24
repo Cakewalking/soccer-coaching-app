@@ -26,7 +26,7 @@ function SubBar() {
   )
 }
 const chatList = [
-  { ini: null, icon: true, name: 'Announcements', sub: 'Rob: Meet time now 8:40 on Saturday', time: '7:12 pm', active: false },
+  { ini: null, icon: true, name: 'Announcements', sub: 'Rob: Meet time now 8:40 on Sunday', time: '7:12 pm', active: false },
   { ini: 'U12', name: 'U12 Sam team chat', sub: 'Dan: Why does Ruby only ever get one half?', time: '8:02 pm', active: true },
   { ini: 'JR', name: 'Jess & Rob', sub: 'You: See you at 8:30 then', time: '5:44 pm', active: false },
 ]
@@ -151,7 +151,7 @@ export default function CH9MessageActions(_: { onBack?: () => void }) {
               <span style={{ fontWeight: 700 }}>Dan said: </span>Why does Ruby only ever get one half? Some kids never come off.
             </div>
             <div style={{ fontSize: 14, color: MUT }}>This goes to Dan only, not the whole chat. It opens a private thread between you and Dan.</div>
-            <div style={{ minHeight: 80, border: `1px solid #c5c8c4`, borderRadius: 10, padding: 12, fontSize: 15, color: MUT, background: '#fff' }}>Hi Dan, happy to chat about this after the game on Saturday...</div>
+            <div style={{ minHeight: 80, border: `1px solid #c5c8c4`, borderRadius: 10, padding: 12, fontSize: 15, color: MUT, background: '#fff' }}>Hi Dan, happy to chat about this after the game on Sunday...</div>
             <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
               <button onClick={() => setModal(null)} style={{ height: 48, padding: '0 18px', borderRadius: 10, border: `1px solid #c5c8c4`, background: '#fff', fontSize: 16, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Cancel</button>
               <button onClick={() => t('Private reply sent to Dan.')} style={{ height: 48, padding: '0 18px', borderRadius: 10, border: 0, background: G, color: '#fff', fontSize: 16, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit' }}>Send privately</button>

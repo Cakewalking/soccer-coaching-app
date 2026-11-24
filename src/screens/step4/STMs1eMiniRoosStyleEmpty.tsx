@@ -39,7 +39,7 @@ export default function STMs1eMiniRoosStyleEmpty({ onNav }: { onNav?: (s: string
       <div style={{ flex: 1, display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '48px 20px' }}>
         <div style={{ maxWidth: 600, width: '100%', display: 'flex', flexDirection: 'column', gap: 20 }}>
           <div>
-            <div style={{ fontSize: 20, fontWeight: 900, color: INK }}>What do you want to see on Saturday?</div>
+            <div style={{ fontSize: 20, fontWeight: 900, color: INK }}>What do you want to see on Sunday?</div>
             <div style={{ fontSize: 14, color: MUT, marginTop: 6 }}>Pick up to three things, in words the children use. Clean Sheet looks for them in games and builds Tuesday around them.</div>
           </div>
 

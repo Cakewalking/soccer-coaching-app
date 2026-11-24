@@ -103,7 +103,7 @@ function TeamDetail({ name, onBack }: { name: string; onBack: () => void }) {
         </div>
         <div>
           <div style={{ background: '#fff', borderRadius: 14, padding: '14px 16px', border: '1px solid #e9eae8', marginBottom: 14 }}>
-            <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>Next game · Sat 6 Jun</div>
+            <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 8 }}>Next game · Sun 7 Jun</div>
             <div style={{ fontSize: 14, fontWeight: 700, color: '#10211f' }}>vs Tealside Town</div>
             <div style={{ fontSize: 12, color: '#5c6b67', marginTop: 4 }}>11:00 · Home · Pitch 2</div>
             <div style={{ fontSize: 12, color: '#5c6b67' }}>Camera: Kit 3</div>
@@ -238,7 +238,7 @@ const TEAMS_EMPTY: Partial<Record<TeamsView, { icon: string; title: string; desc
   leaguesync: { icon: 'M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15', title: 'Not connected to Dribl yet', desc: 'Connect once and fixtures, venues and changes come in for every team from U12 up.', cta: 'Connect Dribl', items: [{ title: 'Changes reach families', desc: 'Calendar, roster, reminders' }, { title: 'Results go back', desc: 'After the manager confirms' }] },
   grading:    { icon: 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5', title: "Grading hasn't started", desc: 'Grading games run in March. After them you\'ll see where the league placed each team and whether to ask for a change.', cta: 'Plan grading days', items: [{ title: 'What we asked for', desc: 'Against what we got' }, { title: 'MiniRoos levels', desc: 'Picked by the club' }] },
   referees:   { icon: 'M22 11.08V12a10 10 0 11-5.93-9.14M22 4L12 14.01l-3-3', title: 'No club referees yet', desc: 'Add your game leaders and referees. On Thursday, Clean Sheet shows which home games still need one.', cta: 'Add a referee', items: [{ title: 'Home games covered', desc: 'Or who to ask' }, { title: 'Kind feedback only', desc: 'For young referees' }] },
-  teamkit:    { icon: 'M15 10l4.553-2.069A1 1 0 0121 8.869v6.262a1 1 0 01-1.447.894L15 14M3 8h12v9H3z', title: 'No kit added yet', desc: 'Add your match cameras, boot sensors and vests so teams can book them for Saturday.', cta: 'Add a kit', items: [{ title: 'Who has which kit', desc: "And when it's back" }, { title: 'Battery and repairs', desc: 'Before game day' }] },
+  teamkit:    { icon: 'M15 10l4.553-2.069A1 1 0 0121 8.869v6.262a1 1 0 01-1.447.894L15 14M3 8h12v9H3z', title: 'No kit added yet', desc: 'Add your match cameras, boot sensors and vests so teams can book them for Sunday.', cta: 'Add a kit', items: [{ title: 'Who has which kit', desc: "And when it's back" }, { title: 'Battery and repairs', desc: 'Before game day' }] },
   cards:      { icon: 'M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8zM14 2v6h6', title: 'No cards this season', desc: 'Yellow and red cards come in from Dribl the night after each game. Anyone suspended is taken out of line-ups for you.', items: [{ title: 'Red card', desc: 'Misses the next game automatically' }, { title: '5, 10 and 15 yellows', desc: 'Each one brings a suspension' }] },
 }
 
@@ -402,7 +402,7 @@ export default function TeamsTab({ empty, initialView, onNav }: { empty?: boolea
 
       {view === 'fixtures' && (
         <div style={p}>
-          <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', marginBottom: 14 }}>Fixtures · Sat 6 Jun</div>
+          <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', marginBottom: 14 }}>Fixtures · Sun 7 Jun</div>
           {[
             { time: '9:00', team: 'U9 Mark', against: 'Glenroy Park', venue: 'Home · Pitch 4', changed: false },
             { time: '9:30', team: 'U10 Nadia', against: 'Tealside Town', venue: 'Away · Elsternwick Park', changed: false },
@@ -427,7 +427,7 @@ export default function TeamsTab({ empty, initialView, onNav }: { empty?: boolea
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, padding: p.padding }}>
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 14 }}>
-              <div><div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>This weekend from the league</div><div style={{ fontSize: 12, color: '#5c6b67' }}>Sat 6 Jun · 6 of 14 games</div></div>
+              <div><div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>This weekend from the league</div><div style={{ fontSize: 12, color: '#5c6b67' }}>Sun 7 Jun · 6 of 14 games</div></div>
               <span style={{ fontSize: 12, color: '#40826d', fontWeight: 700 }}>✓ Synced 6:02 am today</span>
             </div>
             {[{ time: '9:00', team: 'U9 Mark', against: 'Glenroy Park', note: 'Home · pitch 4', status: 'Same' }, { time: '9:30', team: 'U10 Nadia', against: 'Tealside Town', note: 'Away · Elsternwick Park', status: 'Same' }, { time: '9:30', team: 'U12 Sam', against: 'Harbour Rovers', note: 'Home · pitch 2', status: 'Same' }, { time: '12:30', team: 'U13 Chris', against: 'Glenroy Park', note: 'Division 2 · moved from 12:00', status: 'Changed' }, { time: '1:30', team: 'U14 Josh', against: 'Ironbark FC', note: 'Away · Ironbark Park', status: 'Same' }, { time: '3:30', team: 'U16 Ollie', against: 'Harbour Rovers', note: 'Away · new venue', status: 'Changed' }].map((f, i) => (
@@ -439,7 +439,7 @@ export default function TeamsTab({ empty, initialView, onNav }: { empty?: boolea
             ))}
           </div>
           <div>
-            <div style={{ marginBottom: 14 }}><div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>Results to the league</div><div style={{ fontSize: 12, color: '#5c6b67' }}>Sat 30 May</div></div>
+            <div style={{ marginBottom: 14 }}><div style={{ fontSize: 15, fontWeight: 700, color: '#10211f' }}>Results to the league</div><div style={{ fontSize: 12, color: '#5c6b67' }}>Sun 31 May</div></div>
             {[{ team: 'U12 Sam', result: 'Won 3–1 v Northgate City', status: 'Sent', ok: true }, { team: 'U12 Girls Ana', result: 'Won 2–0 v Glenroy Park', status: 'Sent', ok: true }, { team: 'U13 Chris', result: 'Drew 1–1 v Tealside Town', status: 'Sent', ok: true }, { team: 'U14 Josh', result: 'Won 2–1 v Kingsbury United', status: 'Waiting for manager', ok: false }, { team: 'U16 Ollie', result: 'Lost 1–3 v Ironbark FC', status: 'Score differs from the league', ok: false, fix: true }].map((r, i) => (
               <div key={i} style={{ display: 'flex', gap: 12, padding: '10px 0', borderTop: i > 0 ? '1px solid #f0f1f0' : 'none' }}>
                 <div style={{ flexGrow: 1 }}><div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>{r.team}</div><div style={{ fontSize: 12, color: '#5c6b67' }}>{r.result}</div></div>
@@ -500,7 +500,7 @@ export default function TeamsTab({ empty, initialView, onNav }: { empty?: boolea
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 300px', gap: 20, padding: p.padding }}>
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
-              <div><div style={{ fontSize: 18, fontWeight: 800, color: '#10211f' }}>Referees</div><div style={{ fontSize: 12, color: '#5c6b67' }}>Home games Sat 6 Jun · club game leaders and referees</div></div>
+              <div><div style={{ fontSize: 18, fontWeight: 800, color: '#10211f' }}>Referees</div><div style={{ fontSize: 12, color: '#5c6b67' }}>Home games Sun 7 Jun · club game leaders and referees</div></div>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '14px 0 10px' }}>
               <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f' }}>Home games</div>
@@ -548,7 +548,7 @@ export default function TeamsTab({ empty, initialView, onNav }: { empty?: boolea
         <div style={p}>
           <div style={{ fontSize: 13, fontWeight: 700, color: '#10211f', marginBottom: 10 }}>Camera kit</div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10, marginBottom: 20 }}>
-            {[{ id: 'Kit 1', s: 'Available', c: '#40826d', bg: '#e4f2eb' }, { id: 'Kit 2', s: 'Booked · U12 Sat', c: '#c3a84a', bg: '#fdf8ed' }, { id: 'Kit 3', s: 'Available', c: '#40826d', bg: '#e4f2eb' }, { id: 'Kit 4', s: 'Repair needed', c: '#c39797', bg: '#fdf4f4' }].map(k => (
+            {[{ id: 'Kit 1', s: 'Available', c: '#40826d', bg: '#e4f2eb' }, { id: 'Kit 2', s: 'Booked · U12 Sun', c: '#c3a84a', bg: '#fdf8ed' }, { id: 'Kit 3', s: 'Available', c: '#40826d', bg: '#e4f2eb' }, { id: 'Kit 4', s: 'Repair needed', c: '#c39797', bg: '#fdf4f4' }].map(k => (
               <div key={k.id} style={{ background: '#fff', borderRadius: 14, padding: '14px', border: '1px solid #e9eae8' }}>
                 <div style={{ fontSize: 15, fontWeight: 700, color: '#10211f', marginBottom: 6 }}>{k.id}</div>
                 <span style={{ fontSize: 12, fontWeight: 700, color: k.c, background: k.bg, borderRadius: 6, padding: '2px 8px' }}>{k.s}</span>

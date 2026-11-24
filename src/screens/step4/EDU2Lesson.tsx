@@ -50,7 +50,7 @@ export default function EDU2Lesson({ onNav }: { onNav?: (s: string) => void }) {
       </div>
 
       <OpeningPanel
-        heading="STEPPING UP TOGETHER · U14 JOSH BACK FOUR V IRONBARK, 23 MAY"
+        heading="STEPPING UP TOGETHER · U14 JOSH BACK FOUR V IRONBARK, 24 MAY"
         sentence="When the ball goes back, all four step up at once. Watch for it at 0:03."
         support="Lesson 1 of 4 in “Staying compact”. 9 of your 16 have watched it."
         buttons={[{ label: 'Send to players', main: true, onClick: () => onNav ? onNav('GP6-SendLesson') : openScreen('GP6-SendLesson') }, { label: 'Add the drill', onClick: () => st('“Step up together” added to tonight’s plan as a draft.') }]}

@@ -31,7 +31,7 @@ export default function YT3PlayerNotes({ onNav, bare = false, seniors = false }:
   return (
     <YTFrame
       onNav={onNav} active="players" lastTool={lastTool} bare={bare}
-      heading="Players · Sat 30 May · Won 3-1 at Ironbark United"
+      heading="Players · Sun 31 May · Won 3-1 at Ironbark United"
       sentence="Nine of sixteen have a rating. Four have a note."
       support="One tap rates a player. Only you see your ratings and notes. They feed season summaries and awards."
       figures={[{ num: `${ratedCount} of 16`, label: 'rated', proof: true }, { num: `${noteCount}`, label: 'notes' }]}

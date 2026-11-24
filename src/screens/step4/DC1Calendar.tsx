@@ -18,11 +18,12 @@ const GAMES = [
 ]
 const UPCOMING = [
   { date: 'Fri 5 Jun', events: ['Coach meeting · 7:30 pm · Clubrooms'] },
-  { date: 'Sat 6 Jun', events: ['14 games · see today →'] },
+  { date: 'Sun 7 Jun', events: ['14 games · see today →'] },
   { date: 'Mon 8 Jun', events: ['FV registration deadline'] },
-  { date: 'Sat 13 Jun', events: ['10 away games · no home fixtures'] },
+  { date: 'Sun 14 Jun', events: ['10 away games · no home fixtures'] },
   { date: 'Thu 18 Jun', events: ['Children\'s check reminder · Chris Pham'] },
-  { date: 'Sat 20 Jun', events: ['Club course · 9 am · Clubrooms', '12 home games'] },
+  { date: 'Sat 20 Jun', events: ['Club course · 9 am · Clubrooms'] },
+  { date: 'Sun 21 Jun', events: ['12 home games'] },
 ]
 export default function DC1Calendar(_: { onBack?: () => void }) {
   const [toast, setToast] = useState<string | null>(null)
@@ -38,7 +39,7 @@ export default function DC1Calendar(_: { onBack?: () => void }) {
       </div>
       <div style={{ padding: 32, display: 'grid', gridTemplateColumns: '1fr 280px', gap: 24 }}>
         <div>
-          <div style={{ fontSize: 20, fontWeight: 800, letterSpacing: '-0.02em', color: INK, marginBottom: 2 }}>Saturday 6 Jun</div>
+          <div style={{ fontSize: 20, fontWeight: 800, letterSpacing: '-0.02em', color: INK, marginBottom: 2 }}>Sunday 7 Jun</div>
           <div style={{ fontSize: 13, color: MUT, marginBottom: 16 }}>14 games · all home</div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
             {GAMES.map((g, i) => (

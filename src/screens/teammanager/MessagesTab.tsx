@@ -86,7 +86,7 @@ function NewPollView({ onBack }: { onBack: () => void }) {
         ))}
       </div>
       <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: MUT }}>Question</div>
-      <input defaultValue="Who can do canteen on Saturday?" style={{ width: '100%', height: 44, padding: '0 12px', borderRadius: 10, border: `1px solid ${LN}`, fontSize: 14, fontFamily: 'inherit', outline: 'none', color: INK, boxSizing: 'border-box' as const }}/>
+      <input defaultValue="Who can do canteen on Sunday?" style={{ width: '100%', height: 44, padding: '0 12px', borderRadius: 10, border: `1px solid ${LN}`, fontSize: 14, fontFamily: 'inherit', outline: 'none', color: INK, boxSizing: 'border-box' as const }}/>
       <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.07em', textTransform: 'uppercase' as const, color: MUT }}>Answers · one family each</div>
       {['9 to 10', '10 to 11', '11 to 12'].map(a => (
         <div key={a} style={{ display: 'flex', gap: 6 }}>
@@ -99,7 +99,7 @@ function NewPollView({ onBack }: { onBack: () => void }) {
       </button>
       <div style={{ padding: '8px 10px', background: '#fafafa', borderRadius: 10 }}>
         <div style={{ fontSize: 13, fontWeight: 700, color: GD, marginBottom: 2 }}>Fill in the duty roster</div>
-        <div style={{ fontSize: 12, color: MUT }}>Each yes goes straight onto Saturday's roster</div>
+        <div style={{ fontSize: 12, color: MUT }}>Each yes goes straight onto Sunday's roster</div>
       </div>
       <div style={{ display: 'flex', gap: 8, alignItems: 'center', padding: '4px 0' }}>
         <div style={{ fontSize: 13, color: INK, flex: 1 }}>Remind anyone who hasn't answered</div>
@@ -199,8 +199,8 @@ const CHIPS: Chip[] = ['Meet time', 'Venue or pitch', 'Cancelled', 'Kit or other
 const THREADS: Array<{ id: ThreadKey; ini: string; bg: string; name: string; time: string; preview: string; unread: boolean }> = [
   { id: 'coaches', ini: 'SJ', bg: '#e8cfcf', name: 'Coaches · Sam, Jess', time: '7:40 pm', preview: "Sam: Line-up done, I'll send it Friday night", unread: true },
   { id: 'linh',    ini: 'LT', bg: '#e8cfcf', name: 'Linh Tran (Mia)',      time: '6:02 pm', preview: "Can I swap canteen to 11 to 12? Mia's dentist",   unread: true },
-  { id: 'all',     ini: 'U12', bg: '#e9eae8', name: 'All U12 families',   time: '7:12 pm', preview: 'You: Meet time now 8:40 on Saturday',              unread: false },
-  { id: 'wattle',  ini: 'WC', bg: '#eef5f2', name: 'Wattle Creek FC',      time: 'Tue',     preview: 'Wet weather: grounds decision by 7 am Saturday',   unread: false },
+  { id: 'all',     ini: 'U12', bg: '#e9eae8', name: 'All U12 families',   time: '7:12 pm', preview: 'You: Meet time now 8:40 on Sunday',              unread: false },
+  { id: 'wattle',  ini: 'WC', bg: '#eef5f2', name: 'Wattle Creek FC',      time: 'Tue',     preview: 'Wet weather: grounds decision by 7 am Sunday',   unread: false },
 ]
 
 const THREAD_CONTENT: Record<ThreadKey, { title: string; msgs: Array<{ from: string; side: 'l' | 'r'; text: string }> }> = {
@@ -214,12 +214,12 @@ const THREAD_CONTENT: Record<ThreadKey, { title: string; msgs: Array<{ from: str
     { side: 'r', from: 'You',  text: "No problem, I'll ask the Bells to swap" },
   ]},
   all: { title: 'All U12 families', msgs: [
-    { side: 'r', from: 'You',      text: "Meet time now 8:40 on Saturday. We're on pitch 2." },
+    { side: 'r', from: 'You',      text: "Meet time now 8:40 on Sunday. We're on pitch 2." },
     { side: 'l', from: "Isla's mum", text: 'Got it, thanks Rob' },
     { side: 'l', from: "Kai's dad",  text: "Kai can't make it, wedding. Sorry!" },
   ]},
   wattle: { title: 'Wattle Creek FC', msgs: [
-    { side: 'l', from: 'Club', text: 'Wet weather: grounds decision by 7 am Saturday. Check the app.' },
+    { side: 'l', from: 'Club', text: 'Wet weather: grounds decision by 7 am Sunday. Check the app.' },
   ]},
 }
 
@@ -244,8 +244,8 @@ function ChangeForm({ chips, toggle, onSend }: { chips: Set<Chip>; toggle: (c: C
       <div style={{ background: '#fff', border: '1px solid #c5c8c4', borderRadius: 16, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 8 }}>
         <span style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <span style={{ flexShrink: 0, width: 44, height: 48, borderRadius: 12, background: '#e8cfcf', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-            <span style={{ fontSize: 10, fontWeight: 700 }}>SAT</span>
-            <span style={{ fontSize: 18, lineHeight: '20px', fontWeight: 700 }}>6</span>
+            <span style={{ fontSize: 10, fontWeight: 700 }}>SUN</span>
+            <span style={{ fontSize: 18, lineHeight: '20px', fontWeight: 700 }}>7</span>
           </span>
           <span style={{ flexGrow: 1, fontSize: 15, lineHeight: '20px', fontWeight: 700 }}>vs Harbour Rovers</span>
         </span>
@@ -264,7 +264,7 @@ function ChangeForm({ chips, toggle, onSend }: { chips: Set<Chip>; toggle: (c: C
 
         <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#4a5a57', marginTop: 2 }}>Message</span>
         <span style={{ border: '1px solid #c5c8c4', borderRadius: 12, padding: '10px 12px', fontSize: 15, lineHeight: '22px' }}>
-          Hi all, please arrive by <strong>8:40</strong> on Saturday, not 9:00. We've moved to pitch 2 and need time to set up the camera. Kick-off is still 9:30. Thanks, Rob
+          Hi all, please arrive by <strong>8:40</strong> on Sunday, not 9:00. We've moved to pitch 2 and need time to set up the camera. Kick-off is still 9:30. Thanks, Rob
         </span>
       </div>
 
@@ -331,7 +331,7 @@ export default function MessagesTab({ showChange, setShowChange }: { showChange:
         {/* Sent message card */}
         <div style={{ border: '2px solid #2f6252', borderRadius: 16, padding: '12px 14px', background: '#fff', display: 'flex', flexDirection: 'column', gap: 8 }}>
           <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <span style={{ flexGrow: 1, fontSize: 16, fontWeight: 700 }}>Meet time now 8:40 on Saturday</span>
+            <span style={{ flexGrow: 1, fontSize: 16, fontWeight: 700 }}>Meet time now 8:40 on Sunday</span>
             <span style={{ display: 'inline-flex', alignItems: 'center', height: 24, padding: '0 9px', borderRadius: '999px', fontSize: 12, fontWeight: 700, background: '#eef5f2', color: '#2f6252', whiteSpace: 'nowrap' as const }}>Sent 7:12 pm</span>
           </span>
           <span style={{ fontSize: 13, color: '#4a5a57' }}>To all 17 families, Sam and Jess · calendar updated</span>

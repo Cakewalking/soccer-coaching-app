@@ -27,7 +27,7 @@ export default function D7U7Mixed(_: { onBack?: () => void }) {
             {/* Stats */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 10, marginBottom: 16 }}>
               {[
-                { label: 'Coming Saturday', val: '5 of 7', sub: 'Parents answer in the app' },
+                { label: 'Coming Sunday', val: '5 of 7', sub: 'Parents answer in the app' },
                 { label: 'Had a turn in goal', val: '5 of 7', sub: 'This term · everyone gets a go' },
                 { label: 'Training turnout', val: '91%', sub: 'Last 2 weeks · club 87%' },
                 { label: 'Game leader', val: 'Booked', sub: 'No scores under U12' },
@@ -84,7 +84,7 @@ export default function D7U7Mixed(_: { onBack?: () => void }) {
 
             {/* Next game */}
             <div style={{ background: '#fff', border: `1px solid ${LN}`, borderRadius: 14, padding: '14px 18px', marginBottom: 14 }}>
-              <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 6 }}>Next game · Sat 6 Jun</div>
+              <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' as const, color: '#7a4b5b', marginBottom: 6 }}>Next game · Sun 7 Jun</div>
               <div style={{ fontSize: 15, fontWeight: 700, color: INK }}>vs Ironbark United</div>
               <div style={{ fontSize: 12, color: MUT }}>8:30 · Home festival · pitch 5</div>
               <div style={{ fontSize: 12, color: MUT, marginTop: 4 }}>Clips only · no scores under U12</div>
