@@ -896,7 +896,7 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
   // ── FAM39 · fees and helping out. Fees are paid to the club, not to Clean Sheet ──
   if (v === 'FAM39-Fees') { const swap = () => say('Ask to swap. The manager and the other families see the request.')
     return shell(v, head(squad, 'Fees and helping out', 'FAM31-Team'), <>
-      <section style={{ ...card, gap: 0, padding: '12px 14px 4px' }}><strong style={{ fontSize: 16, paddingBottom: 6 }}>Fees</strong>{f.kids.map(x => <div key={x.id} style={{ display: 'flex', justifyContent: 'space-between', gap: 10, padding: '9px 0', borderTop: `1px solid ${HAIR}`, fontSize: 15 }}><span>{f.club?.academy ? 'Term 2' : 'Winter 2026'} · {x.name}</span><strong style={{ flex: 'none' }}>{f.club?.academy ? (ap && x.id === kid.id ? `${money(fee)} · ${ap.fees_status === 'Paid' ? 'paid' : ap.fees_note || ap.fees_status.toLowerCase()}` : `${money(fee)} · paid`) : `${x.id === 'mia' ? '$260' : '$240'} · paid 2 March`}</strong></div>)}</section>
+      <section style={{ ...card, gap: 0, padding: '12px 14px 4px' }}><strong style={{ fontSize: 16, paddingBottom: 6 }}>Fees</strong>{f.kids.map(x => <div key={x.id} style={{ display: 'flex', justifyContent: 'space-between', gap: 10, padding: '9px 0', borderTop: `1px solid ${HAIR}`, fontSize: 15 }}><span>{f.club?.academy ? 'Term 2' : 'Winter 2026'} · {x.name}</span><strong style={{ flex: 'none' }}>{f.club?.academy ? (ap && x.id === kid.id ? `${money(fee)} · ${ap.fees_status === 'Paid' ? 'paid' : ap.fees_note || ap.fees_status.toLowerCase()}` : `${money(fee)} · paid`) : `${x.id === 'mia' ? '$800' : '$240'} · paid 2 March`}</strong></div>)}</section>
       {listed('Your turns', [['Oranges', 'Sun 28 June', 'Swap', swap], ['Canteen', 'Sun 5 July · 9 to 10', 'Swap', swap]])}
       <span style={note}>Fees are paid to {club}, not to Clean Sheet. Credits are separate and only for your own videos.</span>
     </>, 'team') }
@@ -986,7 +986,7 @@ export default function FamilyApp({ start, page, onPage, onNav }: { start?: stri
     if (v === 'ADP6-BookOneOnOne') { const n = Math.min(a.one ?? 0, ONES.length - 1), s = ONES[n]
       return shell(v, head(over, 'One-on-one', home), <>
         <section style={card}><strong style={{ fontSize: 16 }}>45 minutes, built around {name}’s goal</strong><span style={{ fontSize: 15, lineHeight: '21px', color: MUT }}>First touch on the move. Always on pitch 2, in open view. You’re welcome to stay and watch.</span></section>
-        <div role="radiogroup" aria-label="Times" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>{ONES.map(([day, who], k) => pick(n === k, `${day}, 6:45`, `With ${who} · $${ONE_PRICE}`, () => { set({ one: k }); say(`${day}, 6:45 chosen.`) }))}</div>
+        <div role="radiogroup" aria-label="Times" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>{ONES.map(([day, who], k) => pick(n === k, `${day}, 6:45`, `With ${who === 'Reece' ? coach : who} · $${ONE_PRICE}`, () => { set({ one: k }); say(`${day}, 6:45 chosen.`) }))}</div>
         <span style={note}>Cancel up to {ONE_CANCEL_HOURS} hours before and the full amount comes back.</span>
       </>, 'club', actions(true, <button key="a" onClick={() => { say(`Booked: ${s[0]}, 6:45, with ${s[1]}. Paid with the card ending 4410.`); home() }} style={btn(true)}>Book · ${ONE_PRICE}</button>)) }
 

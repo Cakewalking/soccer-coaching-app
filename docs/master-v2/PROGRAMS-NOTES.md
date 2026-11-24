@@ -41,10 +41,11 @@ From `clean-sheet-handover-v28` (which replaces v27). The academy's screens are 
 ## The family app
 
 - The sample family's Ari is **Ari Kovac in U9 Timber** in the academy's list. The academy pages count from his record.
-- **The coach on those pages is Marcus, not Reece.** U9 Timber's coach in the list is Marcus Obi. The family boards still say Reece.
+- **The coach on those pages is Marcus, not Reece.** U9 Timber's coach in the list is Marcus Obi, and the list wins (Booker, 25 Nov). The family boards still say Reece.
 - **The home and the term report now agree:** first touch from step 2 to step 3, and 12 of 13 sessions. The boards said 12 of 14 on one and 13 of 14 on the other.
 - **Prices:** $950 for the term, three parts of $316.67, and the move offer reads "$1,100 a term, was $950". The board still shows "$96.67 now" for three parts, which is a third of the old price.
-- **Not applied:** the pack changes Mia's fee on the community club's Fees page (`FAM39`) from $260 to $800. That looks like the academy price swap reaching a screen that is not the academy's, so it is left at $260. For an academy family that page shows the academy fee from the list.
+- **Mia's fee** on the community club's Fees page (`FAM39`) is $800, as the pack has it (Booker, 25 Nov). For an academy family that page shows the academy fee from the list.
+- **One-on-ones** are offered with the child's own coach (Marcus) and Dani.
 
 ## Where the build differs from the boards
 
@@ -61,9 +62,12 @@ From `clean-sheet-handover-v28` (which replaces v27). The academy's screens are 
 - **A coach sees no fees:** the coach's player page says "coming and moving", and has no fees row.
 - **Grammar:** four team boards say "1 families haven't" or "1 things". The build says "1 family hasn't" and "1 thing".
 
+## The coach's week, redrawn (Booker, 25 Nov)
+
+`ACT1-AcademyWeek` now shows one team's week: U13 Timber on Tuesday and Thursday, and its game on Sunday. The team, the times, the 16 players and the week of term are read from the list. The plans in each row are still sample. The board is not redrawn in the pack; it still shows three programs.
+
 ## Not done
 
-- `ACT1-AcademyWeek` still shows "Reece's groups" across three programs. The pack did not change it, and it needs a redraw.
 - `ADC14-SuggestMove` is about a player in another coach's team. Its link from Kai's file is removed; it opens by address.
 - `ACC4-PlayerPlan` and `ADC12` are still typed for Kai.
 - `AC1`'s Today list and `AC12`'s "seen" counts keep the board's older figures.
@@ -78,9 +82,3 @@ From `clean-sheet-handover-v28` (which replaces v27). The academy's screens are 
 - **`ACC2`**, **`ACC10`** and **`ACT4`** boards name players who are not in the data. The build uses the team's real names.
 - **`ACP4`:** the offer and Term 3 are $1,100, but its instalments are still $129.67 and $90.
 - **Kai's goal** reads "his left foot" in the data and "my left foot" on `ADC10`.
-
-## For Booker to decide
-
-- Whether the family pages should name Marcus (from the list) or Reece (as drawn).
-- Whether Mia's community club fee should really be $800.
-- Whether `ACT1` is redrawn for one team.

@@ -35,7 +35,7 @@ export default function ACT1eAcademyWeekEmpty({ onNav }: { onNav?: (id: string) 
               </svg>
             </span>
             <span style={{ fontSize: "22px", lineHeight: "28px", fontWeight: "700", letterSpacing: "-0.01em" }}>No sessions planned yet</span>
-            <span style={{ fontSize: "15px", lineHeight: "22px", color: "#4a5a57", maxWidth: "460px" }}>Your groups and their times come from the programs Dani set up. Plan the first one and Clean Sheet suggests the rest.</span>
+            <span style={{ fontSize: "15px", lineHeight: "22px", color: "#4a5a57", maxWidth: "460px" }}>Your team and its times come from the program Dani set up. Plan the first one and Clean Sheet suggests the rest.</span>
             <button onClick={() => go("ACT2-AcademySuggested")} style={{ margin: "0", font: "inherit", textAlign: "inherit", cursor: "pointer", ...C.primary }}>Plan a session</button>
             <button onClick={() => go("DrillFlow")} style={{ margin: "0", font: "inherit", textAlign: "inherit", cursor: "pointer", ...C.more }}>Open the drill library</button>
           </div>

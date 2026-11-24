@@ -112,3 +112,7 @@ Built as drawn; listed so the designs can be fixed.
 - Whether the chat button belongs on the academy's family pages.
 - Whether `AC12` should be redrawn to match its board.
 - Junior games on Sunday across the older club screens: done, and reported in `SUNDAY-NOTES.md` with the places a person should look at.
+
+## Trials: the cards move (Booker, 25 Nov)
+
+On `AC3-Trials` each card can be dragged to another column, or up and down its own, by mouse or finger. With the keyboard, the arrow keys move the card that has focus. The column counts, "joined" in the heading and the "offers taken up" line follow the cards. A card takes the wording of the column it lands in. "Send offer" now leaves the card reading "Offer sent · waiting on the family". Where the cards sit is kept while the app is open and is sample; a trial that is dragged to Joined is not added to the academy's list of players.
