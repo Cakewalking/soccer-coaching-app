@@ -2,7 +2,7 @@
 // Drawn from the board in the academy handover (24 Nov). The menus above it are the owner app's own (OwnerHeader).
 // The cards move (Booker, 25 Nov): drag one to another column or up and down its own, by mouse or finger.
 // With the keyboard, the arrow keys move the card that has focus. Where the cards sit is kept while the app is open; it is sample, not the academy's list.
-import { useRef, useState, useSyncExternalStore, type CSSProperties, type KeyboardEvent, type PointerEvent } from 'react'
+import { useEffect, useRef, useState, useSyncExternalStore, type CSSProperties, type KeyboardEvent, type PointerEvent } from 'react'
 import { demoToast } from '../demoToast'
 import { S } from './adStyles'
 import Tap from './Tap'
@@ -58,9 +58,11 @@ const LINE: CSSProperties = { fontSize: 13, lineHeight: '18px', color: '#4a5a57'
 export default function AC3Trials() {
   const list = useSyncExternalStore(f => { subs.add(f); return () => { subs.delete(f) } }, () => cards, () => cards)
   // The card being dragged, how far it has come, and where it would land.
-  const [drag, setDrag] = useState<{ id: string; dx: number; dy: number; col: Col; before?: string } | null>(null)
+  const [drag, setDrag] = useState<{ id: string; dx: number; dy: number; left: number; top: number; w: number; col: Col; before?: string } | null>(null)
   const from = useRef<{ id: string; x: number; y: number; on: boolean } | null>(null)
 
+  // No text is picked up, and a finger does not scroll the page, while a card is held.
+  useEffect(() => { if (!drag) return; const was = document.body.style.userSelect; document.body.style.userSelect = 'none'; return () => { document.body.style.userSelect = was } }, [drag])
   const landing = (x: number, y: number, id: string): { col: Col; before?: string } | null => {
     const el = document.elementsFromPoint(x, y).find(e => e instanceof HTMLElement && e.dataset.col) as HTMLElement | undefined
     if (!el) return null
@@ -68,27 +70,30 @@ export default function AC3Trials() {
     const next = under.find(k => { const r = k.getBoundingClientRect(); return y < r.top + r.height / 2 })
     return { col: el.dataset.col as Col, before: next?.dataset.card }
   }
+  // The drag is followed on the window, so letting go anywhere (or the pointer leaving the page) always ends it.
+  // The held card is lifted out of its column, so the cards under it close up and the line shows where it will land.
   const down = (c: Card) => (e: PointerEvent<HTMLDivElement>) => {
     if (e.button || (e.target as HTMLElement).closest('a,button')) return
-    from.current = { id: c.id, x: e.clientX, y: e.clientY, on: false }
-    e.currentTarget.setPointerCapture(e.pointerId)
-  }
-  const drift = (e: PointerEvent<HTMLDivElement>) => {
-    const s = from.current
-    if (!s) return
-    const dx = e.clientX - s.x, dy = e.clientY - s.y
-    if (!s.on && Math.hypot(dx, dy) < 6) return
-    s.on = true
-    const to = landing(e.clientX, e.clientY, s.id), me = list.find(x => x.id === s.id)!
-    setDrag({ id: s.id, dx, dy, col: to?.col ?? me.col, before: to ? to.before : undefined })
-  }
-  const up = (e: PointerEvent<HTMLDivElement>) => {
-    const s = from.current
-    from.current = null
-    setDrag(null)
-    if (!s?.on) return
-    const to = landing(e.clientX, e.clientY, s.id)
-    if (to) move(s.id, to.col, to.before)
+    const el = e.currentTarget, r = el.getBoundingClientRect(), scale = r.width / el.offsetWidth || 1
+    const s = { id: c.id, x: e.clientX, y: e.clientY, on: false }, at = { left: el.offsetLeft, top: el.offsetTop, w: el.offsetWidth }
+    from.current = s
+    const drift = (ev: globalThis.PointerEvent) => {
+      const dx = (ev.clientX - s.x) / scale, dy = (ev.clientY - s.y) / scale
+      if (!s.on && Math.hypot(dx, dy) < 6) return
+      s.on = true
+      ev.preventDefault()
+      const to = landing(ev.clientX, ev.clientY, s.id)
+      setDrag({ id: s.id, dx, dy, ...at, col: to?.col ?? c.col, before: to ? to.before : c.id })
+    }
+    const end = (ev: Event) => {
+      window.removeEventListener('pointermove', drift); window.removeEventListener('pointerup', end); window.removeEventListener('pointercancel', end); window.removeEventListener('blur', end)
+      from.current = null
+      setDrag(null)
+      if (!s.on || ev.type !== 'pointerup') return
+      const pe = ev as globalThis.PointerEvent, to = landing(pe.clientX, pe.clientY, s.id)
+      if (to) move(s.id, to.col, to.before)
+    }
+    window.addEventListener('pointermove', drift); window.addEventListener('pointerup', end); window.addEventListener('pointercancel', end); window.addEventListener('blur', end)
   }
   const keys = (c: Card) => (e: KeyboardEvent<HTMLDivElement>) => {
     if (e.target !== e.currentTarget) return
@@ -134,29 +139,31 @@ export default function AC3Trials() {
       </div>
       <main style={{ flexGrow: 1, minHeight: 0, padding: '12px 28px 18px', boxSizing: 'border-box', display: 'grid', gap: 14, gridTemplateColumns: 'repeat(4, minmax(0,1fr))' }}>
         {COLS.map(col => {
-          const mine = list.filter(c => c.col === col.id), over = drag?.col === col.id
+          const mine = list.filter(c => c.col === col.id), over = drag?.col === col.id, shown = mine.length - (drag && mine.some(c => c.id === drag.id) ? 1 : 0) + (over ? 1 : 0)
           return (
-            <section key={col.id} data-col={col.id} aria-label={col.title} style={{ display: 'flex', flexDirection: 'column', gap: 8, background: col.bg, borderRadius: 16, padding: 12, minHeight: 0, boxSizing: 'content-box', outline: over ? '2px solid #2f6252' : 'none', outlineOffset: -2 }}>
+            <section key={col.id} data-col={col.id} aria-label={col.title} style={{ position: 'relative', display: 'flex', flexDirection: 'column', gap: 8, background: col.bg, borderRadius: 16, padding: 12, minHeight: 0, boxSizing: 'content-box', outline: over ? '2px solid #2f6252' : 'none', outlineOffset: -2 }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
                 <h2 style={S.h2}>{col.title}</h2>
-                <strong style={S.num}>{mine.length}</strong>
+                <strong style={S.num}>{drag ? shown : mine.length}</strong>
               </div>
               {mine.map(c => {
                 const held = drag?.id === c.id
                 return (
                   <div key={c.id} style={{ display: 'contents' }}>
-                    {over && drag.before === c.id && !held && <span aria-hidden style={{ height: 3, borderRadius: 2, background: '#2f6252', margin: '-3px 0' }} />}
+                    {over && drag.before === c.id && <span aria-hidden style={{ height: 3, borderRadius: 2, background: '#2f6252', margin: '-3px 0' }} />}
                     <div data-card={c.id} tabIndex={0} aria-roledescription="card you can move" aria-label={`${c.name}, ${c.age}, in ${col.title}. Drag to move, or use the arrow keys.`}
-                      onPointerDown={down(c)} onPointerMove={drift} onPointerUp={up} onPointerCancel={() => { from.current = null; setDrag(null) }} onKeyDown={keys(c)}
-                      style={{ ...CARD, ...(held ? { transform: `translate(${drag.dx}px, ${drag.dy}px) rotate(1.5deg)`, boxShadow: '0 10px 24px rgba(16,33,31,0.22)', cursor: 'grabbing', position: 'relative', zIndex: 5, pointerEvents: 'none' } : null) }}>
+                      onPointerDown={down(c)} onKeyDown={keys(c)}
+                      style={{ ...CARD, ...(held ? { position: 'absolute', left: drag.left, top: drag.top, width: drag.w, boxSizing: 'border-box', transform: `translate(${drag.dx}px, ${drag.dy}px) rotate(1.5deg)`, boxShadow: '0 10px 24px rgba(16,33,31,0.22)', cursor: 'grabbing', zIndex: 5, pointerEvents: 'none', outline: 'none' } : null) }}>
                       <strong style={{ fontSize: 15, lineHeight: '20px' }}>{c.name}, {c.age}</strong>
                       {body(c)}
                     </div>
                   </div>
                 )
               })}
-              {over && !drag.before && <span aria-hidden style={{ height: 3, borderRadius: 2, background: '#2f6252', margin: '-3px 0' }} />}
-              {!mine.length && !over && <span style={{ ...S.cap, padding: '10px 2px' }}>Nobody here. Drag a card in.</span>}
+              {over && !drag.before && (shown > 1
+                ? <span aria-hidden style={{ height: 3, borderRadius: 2, background: '#2f6252', margin: '-3px 0' }} />
+                : <span aria-hidden style={{ ...S.cap, minHeight: 64, borderRadius: 12, border: '2px dashed #2f6252', boxSizing: 'border-box', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Drop here</span>)}
+              {!shown && <span style={{ ...S.cap, padding: '10px 2px' }}>Nobody here. Drag a card in.</span>}
               <span style={{ ...S.cap, marginTop: 'auto' }}>{col.id === 'joined' ? `${joined} of the last ${joined + OFFERS_NOT_TAKEN} offers were taken up.` : col.foot}</span>
             </section>
           )
