@@ -40,6 +40,25 @@ export const lowestSkill = (p: Player) => p.skills_now.indexOf(Math.min(...p.ski
 export const todayMark = (a: Academy, g: Group, p: Player): boolean | null => { const i = g.dates.indexOf(a.today); return i < 0 ? null : p.roll[i] ?? null }
 export const cameLine = (p: Player) => { const c = cameOf(p); return `${c.came} of ${c.of}` }
 
+// ── tonight: who is coming. One place, so the home (ACC1), the session plan (ACT3) and who's coming (ACT4) cannot disagree. ──
+/** SAMPLE. Tonight's answers come from parents in the family app, and the academy's list has no field for them yet. Everyone not named here
+ * has said yes (the parent in the list said so). Mila is away and her family said why; Jonah's family has not answered and has been asked twice. */
+export const TONIGHT_SAMPLE: Record<string, { answer: 'away'; why: string } | { answer: 'none'; asked: string }> = {
+  'Mila Lombardi': { answer: 'away', why: 'school camp' }, 'Jonah Marsh': { answer: 'none', asked: 'Asked twice' },
+}
+export type TonightRow = { p: Player; /** here and gone are from the roll once it is taken; yes, away and none are the family's answer before that */ state: 'here' | 'gone' | 'yes' | 'away' | 'none'; label: 'Here' | 'Coming' | 'Away' | 'No answer'; line: string }
+/** Where each player is for tonight: the roll's mark where the coach has taken it (ACC2), otherwise the family's answer (sample). */
+export function tonightOf(a: Academy, g: Group, ps: Player[]) {
+  const rows: TonightRow[] = ps.map(p => { const m = todayMark(a, g, p), s = TONIGHT_SAMPLE[p.name]
+    if (m === true) return { p, state: 'here', label: 'Here', line: 'On the roll' }
+    if (m === false) return { p, state: 'gone', label: 'Away', line: 'Marked away on the roll' }
+    if (s?.answer === 'away') return { p, state: 'away', label: 'Away', line: `Told you: ${s.why}` }
+    if (s?.answer === 'none') return { p, state: 'none', label: 'No answer', line: s.asked }
+    return { p, state: 'yes', label: 'Coming', line: `${p.parent} said yes` } })
+  const coming = rows.filter(r => r.state === 'here' || r.state === 'yes'), away = rows.filter(r => r.state === 'gone' || r.state === 'away'), none = rows.filter(r => r.state === 'none')
+  return { rows, coming, away, none, rollTaken: rows.some(r => r.state === 'here' || r.state === 'gone') }
+}
+
 // ── which player the coach has open: set by opening a file, read by the screens that work on one player (a goal, a clip, a report) ──
 let open = KAI
 const subs = new Set<() => void>()

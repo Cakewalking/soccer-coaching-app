@@ -352,3 +352,35 @@ AD1#4,AD1-AcademyHome,Four development tiles,Opens,AD5-GroupMoves / AC4-AcademyP
 AD1#7,AD1-AcademyHome,Needs you: five lines,Opens,AC3-Trials / AD4-NextTerm / AC5-Fees / AD3-Timetable / AD17-Checks,works; three counted and two sample; read
 AD9#1,AD9-RosterPay,Change a rate,Opens,AD21-RatesCosts,works; read
 AD9#3,AD9-RosterPay,Download for payroll,Says,A payroll file for 17 coaches is on its way to your email.,line of text only
+ACT3#1,ACT3-AcademySessionPlan (v33),Send to families,Says,"Sent to 16 families: tonight's time, the pitch and the home practice.",line of text only
+ACT3#2,ACT3-AcademySessionPlan (v33),Pitch view,Opens,a working view inside the screen: one part at a time in big type with a timer (no board for it in the pack),works; pressed; built here
+ACT3#3,ACT3-AcademySessionPlan (v33),Pitch view: Start the timer / Pause / Carry on,Does,counts the part's minutes down and holds on Pause,works; pressed; counted 10:00 to 9:58 and held
+ACT3#4,ACT3-AcademySessionPlan (v33),Pitch view: Reset,Does,puts the part's minutes back,works; pressed
+ACT3#5,ACT3-AcademySessionPlan (v33),Pitch view: Next / Back,Does,moves through the four parts and the wrap-up; each has its own minutes,works; pressed through all five
+ACT3#6,ACT3-AcademySessionPlan (v33),Pitch view: Done: the two taps (on the wrap-up),Opens,ADC11-AfterSession,works; pressed
+ACT3#7,ACT3-AcademySessionPlan (v33),Pitch view: Close pitch view,Does,closes the view,works; pressed
+ACT3#8,ACT3-AcademySessionPlan (v33),Run it,Opens,ACC2-RunSession,works; pressed
+ACT3#9,ACT3-AcademySessionPlan (v33),The whole session in 90 seconds,Says,"Plays the whole session in 90 seconds, as Reece ran it in Term 1.",line of text only
+ACT3#10,ACT3-AcademySessionPlan (v33),Swap (on each of the four parts),Writes,swapForTeam in the curriculum store: the next library drill for that part; the owner sees it on ADQ1 and AD6,works; all four pressed; the introduction has no other drill at this age and says so; the board's link is to ACT2-AcademySuggested
+ACT3#11,ACT3-AcademySessionPlan (v33),Put back (on a part you swapped),Writes,putBackForTeam: back to the academy's drill,works; pressed; not on the board
+ACT3#12,ACT3-AcademySessionPlan (v33),Film of the drill (three cards),Says,"Plays Two-goal rondo, 0:41, run by Carla, U14 Timber.",line of text only
+ACT3#13,ACT3-AcademySessionPlan (v33),No film yet · film it tonight (Four goals),Opens,ACC8-AcademyRecord,works; pressed; the board draws a film for this drill but the library marks it as not filmed
+ACT3#14,ACT3-AcademySessionPlan (v33),Home practice,Opens,ADC6-HomePractice,works; pressed
+ACT3#15,ACT3-AcademySessionPlan (v33),All 16,Opens,ADC2-Group,works; pressed
+ACT3#16,ACT3-AcademySessionPlan (v33),One thing each: Open,Opens,that player's file,works; pressed (Kai); the line is the player's goal from the list
+ACT3#17,ACT3-AcademySessionPlan (v33),One thing each: Set one,Opens,ADC10-SetGoal for that player,works; pressed
+ACT3#18,ACT3-AcademySessionPlan (v33),One thing each: Assess,Opens,ACC3-TrialAssess for the trial player,works; pressed
+ACT3#19,ACT3-AcademySessionPlan (v33),The term,Opens,ACT1-AcademyWeek,works; pressed
+ACT3#20,ACT3-AcademySessionPlan (v33),From Sunday,Opens,ADC7-GameReview,works; pressed; the figure is sample
+ACT3#21,ACT3-AcademySessionPlan (v33),Your team,Opens,ADC2-Group,works; pressed; counted
+ACT3#22,ACT3-AcademySessionPlan (v33),Coming,Opens,ACT4-AcademyComing,works; pressed; counted from the roll and the shared answers
+ACT3#23,ACT3-AcademySessionPlan (v33),Filming,Opens,ACC8-AcademyRecord,works; pressed; the line is sample
+ACT3#24,ACT3-AcademySessionPlan (v33),After the session,Opens,ADC11-AfterSession,works; pressed
+ACC1#23,ACC1-CoachToday,Swap a drill (changed with v33),Opens,ACT3-AcademySessionPlan where each part has its Swap (the board says ACT2-AcademySuggested),works; pressed; changed on purpose
+ACT4#1,ACT4-AcademyComing (v34),Ask Jonah's family again,Says,Asked Jonah's family again. They get it in the family app now.,line of text only; shown only while a family has not answered
+ACT4#2,ACT4-AcademyComing (v34),Take the roll,Opens,ACC2-RunSession,works; pressed
+ACT4#3,ACT4-AcademyComing (v34),A player's row (16),Opens,that player's file (ADC1 or ADCP<id>),works; two pressed
+ACT4#4,ACT4-AcademyComing (v34),The trial player's row,Opens,ACC3-TrialAssess,works; pressed
+ACT4#5,ACT4-AcademyComing (v34),Message Jonah's mum (mauve card),Opens,ACC13-AcademyChat,works; pressed; the card is there only while he has missed the last three and has not answered
+ACT4#6,ACT4-AcademyComing (v34),By night: a night (4 rows),Opens,ACT1-AcademyWeek,works; one pressed
+ACT4#7,ACT4-AcademyComing (v34),Make-ups: Mila Lombardi,Opens,ACP6-MakeUp,works; pressed

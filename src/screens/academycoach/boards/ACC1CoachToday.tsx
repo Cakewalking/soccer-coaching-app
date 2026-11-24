@@ -12,13 +12,13 @@
 import { useContext } from 'react'
 import { demoToast } from '../../demoToast'
 import { CAME_LOW, basics, count, missedLast, surveyOf, teamCounts, upAStep } from '../../academy/academyStore'
-import { NIGHTS, PARTS, coachSwaps, dateOf, gridOf, sessionOf, slotMinutes, useCurriculum, weekNow } from '../../academy/curriculum'
+import { NIGHTS, PARTS, coachSwaps, dateOf, gridOf, teamSessionOf, slotMinutes, useCurriculum, weekNow } from '../../academy/curriculum'
 import { filmedDates, longDate, shortDate as shortDay, useCoachStore, watchOf } from '../../academy/coachStore'
 import { BALL_ROLLING_FROM_FILM } from '../../academy/notYet'
 import { openTrial, useTrials } from '../../academy/trialStore'
 import CoachNav from '../CoachNav'
 import { InCoachApp, coachGo } from '../menu'
-import { coachBoard, dayMonth, firstName, ini, isNew, names, openPlayer, shortDate, todayMark, useCoachTeam } from '../coachTeam'
+import { coachBoard, dayMonth, firstName, ini, isNew, names, openPlayer, shortDate, todayMark, tonightOf, useCoachTeam } from '../coachTeam'
 import { More, Primary } from '../kit'
 import { G, HAIR, INK, LINE, MAUVE_PALE, MUT, PALE, T, plain, textLink } from '../styles'
 import { Chevron, StrongDot } from '../teamParts'
@@ -95,9 +95,9 @@ export default function ACC1CoachToday({ onNav }: { onNav?: (id: string) => void
   const nights = (week?.nights ?? []).filter(x => (NIGHTS as readonly string[]).includes(x.night)).map(x => {
     const date = dateOf(a, wk, x.night), i = g.dates.indexOf(date), done = date < a.today, tonight = date === a.today
     const came = i < 0 ? 0 : ps.filter(p => p.roll[i] === true).length, swaps = coachSwaps(g, wk, x.night), wasFilmed = filmed.includes(shortDay(date))
-    const s = sessionOf(a, cur, g.age, wk, x.night), parts = s.drills.length ? `${s.drills.length} drills` : `${PARTS.length} parts`
+    const s = teamSessionOf(a, cur, g, wk, x.night), parts = s.drills.length ? `${s.drills.length} drills` : `${PARTS.length} parts`
     const ran = [swaps.length ? `You swapped the ${swaps[0].part.toLowerCase()}` : 'Ran as planned', `${came} came`, ...(BALL_ROLLING_FROM_FILM && x.night === ROLLING.night ? [`ball rolling ${ROLLING.pct}%`] : wasFilmed ? ['filmed'] : [])].join(' · ')
-    return { night: x.night, title: x.session.split(' · ')[0], sub: done ? ran : `${mins} minutes · ${parts} · plan ready`, done, tonight, to: tonight || !done ? 'ACT3-AcademySessionPlan' : wasFilmed ? 'ADC3-SessionFilm' : 'ADC15-MySession' }
+    return { night: x.night, title: x.session.split(' · ')[0], sub: done ? ran : `${mins} minutes · ${parts} · ${swaps.length ? `you swapped the ${swaps.map(v => v.part.toLowerCase()).join(' and the ')}` : 'plan ready'}`, done, tonight, to: tonight || !done ? 'ACT3-AcademySessionPlan' : wasFilmed ? 'ADC3-SessionFilm' : 'ADC15-MySession' }
   })
   const missed = ps.filter(p => missedLast(p)), c = count(ps), survey = surveyOf(a, ps), watch = watchOf(g)
   const drafts = meters[3].n
@@ -110,7 +110,7 @@ export default function ACC1CoachToday({ onNav }: { onNav?: (id: string) => void
           <strong style={{ fontSize: 15, whiteSpace: 'nowrap' }}>Today · {shortDate(a.today)}</strong>
           <button onClick={() => go('ACT3-AcademySessionPlan')} style={chip}>
             <strong style={{ fontSize: 13, lineHeight: '16px' }}>{start} {g.name}</strong>
-            <span style={{ fontSize: 12, lineHeight: '15px', color: '#33443f' }}>{here + away ? `${here} here · ${away} away` : '14 coming'} · {onTrial ? `${onTrial} on trial` : 'plan ready'}</span>
+            <span style={{ fontSize: 12, lineHeight: '15px', color: '#33443f' }}>{here + away ? `${here} here · ${away} away` : `${tonightOf(a, g, ps).coming.length} coming`} · {onTrial ? `${onTrial} on trial` : 'plan ready'}</span>
           </button>
           {/* One-on-ones are on Friday afternoon and Saturday morning now, so tonight's second chip is the trial player, when there is one. */}
           {trial && <button data-trial={trial.id} onClick={() => { openTrial(trial.id); go('ACC3-TrialAssess') }} style={chip}>
@@ -122,7 +122,8 @@ export default function ACC1CoachToday({ onNav }: { onNav?: (id: string) => void
             <span style={{ fontSize: 12, lineHeight: '15px', color: '#33443f' }}>{g.name} at Wattle Creek</span>
           </button>
           <span style={{ flexGrow: 1 }} />
-          <More onClick={() => go('ACT2-AcademySuggested')}>Swap a drill</More>
+          {/* The swap itself is on the session plan now (pack v33): each part there has its own Swap, and a swap shows in "This week" below. The board's link is to ACT2. */}
+          <More onClick={() => go('ACT3-AcademySessionPlan')}>Swap a drill</More>
           <Primary onClick={() => go('ACC2-RunSession')}>Start the {start}</Primary>
         </section>
 

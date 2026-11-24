@@ -121,10 +121,10 @@ const WED_TOPICS = DATA_GRID.slice(0, 5).map(w => w.nights[2]?.session ?? '')
 
 // ── what the owner has changed while the app is open: a drill swapped on a night, a block changed, and what is being looked at ──
 type NightAt = { age: number; week: number; night: NightKey }
-export type Cur = { /** `age|week|night|part` to the drill put there */ swaps: Record<string, string>; /** `phase|term|block` to the block put there */ blocks: Record<string, Block>
+export type Cur = { /** `age|week|night|part` to the drill put there */ swaps: Record<string, string>; /** `team|week|night|part` to the drill a coach put there for their own team (pack v33) */ teamSwaps?: Record<string, string>; /** `phase|term|block` to the block put there */ blocks: Record<string, Block>
   age: number; at: NightAt; drill: string; libSkill: string; block: { phase: number; term: number; i: number } }
 const KEY = 'cs_curriculum_v1'
-const start = (): Cur => ({ swaps: {}, blocks: {}, age: 13, at: { age: 13, week: 8, night: 'Mon' }, drill: DRILLS[0]?.name ?? '', libSkill: SAMPLE_SKILL, block: { phase: 1, term: 3, i: 0 } })
+const start = (): Cur => ({ swaps: {}, teamSwaps: {}, blocks: {}, age: 13, at: { age: 13, week: 8, night: 'Mon' }, drill: DRILLS[0]?.name ?? '', libSkill: SAMPLE_SKILL, block: { phase: 1, term: 3, i: 0 } })
 let cur: Cur = (() => { try { const v = JSON.parse(sessionStorage.getItem(KEY) ?? 'null') as Cur | null; if (v?.swaps && v.blocks && v.at && v.block) return { ...start(), ...v } } catch { /* start from the plan */ } return start() })()
 const subs = new Set<() => void>()
 const commit = (p: Partial<Cur>) => { cur = { ...cur, ...p }; try { sessionStorage.setItem(KEY, JSON.stringify(cur)) } catch { /* kept for this page only */ } subs.forEach(f => f()) }
@@ -194,7 +194,12 @@ export const SESSIONS = SESSIONS_A_TERM
 // ── one night ──
 export type SessionPart = { part: PartKey; /** what the plan puts here */ planned: Drill | null; /** what is here now */ drill: Drill | null; swapped: boolean; /** how many of the named drills could go here */ fits: number }
 export type Session = { age: number; week: number; night: NightKey; step: string; focus: string; title: string; written: boolean
-  /** the core skill that runs through it; for game training and small games, the block's */ skill: string; core: boolean; parts: SessionPart[]; drills: Drill[]; minutes: number; date: string }
+  /** the core skill that runs through it; for game training and small games, the block's */ skill: string; core: boolean; parts: SessionPart[]; drills: Drill[]; minutes: number; date: string
+  /** the skill whose library drills fill the parts and can be swapped in: the night's own on a core night, the block's on a night the pack names drills for, otherwise null (pack v33) */ drillSkill: string | null }
+/** STILL SAMPLE (the v33 session-plan board). A night that is not on a core skill has no drills by the rule, but the coach's board draws
+ * this one (under 13s, week 7, Thursday: "Sunday's game, in small games") with four named drills on the block's skill. They are put here
+ * as that night's plan, in the order of the parts. Every other night is still worked out by the rule. */
+const ANCHORED: Record<string, string[]> = { '13|7|Thu': ['Two-goal rondo', 'Weak-foot gates', 'Finish under pressure, 2 v 1', 'Four goals, weaker foot counts double'] }
 /** The minutes at the end of every session: one question, one home practice. Not a drill. */
 export const WRAP_UP = 5
 const swapKey = (age: number, week: number, night: NightKey, part: PartKey) => `${age}|${week}|${night}|${part}`
@@ -205,15 +210,16 @@ export const drillsFor = (skill: string, part: PartKey, age: number) => DRILLS.f
 export function sessionOf(a: Academy, c: Cur, age: number, week: number, night: NightKey, weeks = gridOf(a, c, age).weeks): Session {
   const w = weeks[week - 1] ?? weeks[0], n = w.nights.find(x => x.night === night) ?? w.nights[0], k = (week - 1) % 5
   const core = a.skills.includes(n.focus), skill = core ? n.focus : (a.skills.includes(w.nights[0].focus) ? w.nights[0].focus : a.skills[0])
-  const parts: SessionPart[] = PARTS.map(part => { const fit = core ? drillsFor(n.focus, part, age) : [], planned = fit.length ? fit[(k + 5 * fit.length - 2) % fit.length] : null
+  const anchor = core ? undefined : ANCHORED[`${age}|${week}|${n.night}`], drillSkill = core ? n.focus : anchor ? skill : null
+  const parts: SessionPart[] = PARTS.map((part, pi) => { const fit = drillSkill ? drillsFor(drillSkill, part, age) : [], planned = anchor ? (fit.find(d => d.name === anchor[pi]) ?? null) : fit.length ? fit[(k + 5 * fit.length - 2) % fit.length] : null
     const put = c.swaps[swapKey(age, week, night, part)], other = put ? fit.find(d => d.name === put) : undefined
     return { part, planned, drill: other ?? planned, swapped: !!other && other !== planned, fits: fit.length } })
   const drills = parts.flatMap(p => p.drill ? [p.drill] : [])
-  return { age, week, night: n.night, step: w.step, focus: n.focus, title: n.session, written: n.written, skill, core, parts, drills, minutes: drills.reduce((t, d) => t + d.minutes, 0) + WRAP_UP, date: dateOf(a, week, n.night) }
+  return { age, week, night: n.night, step: w.step, focus: n.focus, title: n.session, written: n.written, skill, core, parts, drills, minutes: drills.reduce((t, d) => t + d.minutes, 0) + WRAP_UP, date: dateOf(a, week, n.night), drillSkill }
 }
 /** Swap: puts the next drill that fits in a part of a night. Round again to the plan's own drill takes the swap away. False when nothing else fits. */
 export function swapPart(a: Academy, age: number, week: number, night: NightKey, part: PartKey): Drill | null {
-  const s = sessionOf(a, cur, age, week, night), p = s.parts.find(x => x.part === part), fit = s.core ? drillsFor(s.focus, part, age) : []
+  const s = sessionOf(a, cur, age, week, night), p = s.parts.find(x => x.part === part), fit = s.drillSkill ? drillsFor(s.drillSkill, part, age) : []
   if (!p?.drill || fit.length < 2) return null
   const next = fit[(fit.indexOf(p.drill) + 1) % fit.length], swaps = { ...cur.swaps }, key = swapKey(age, week, night, part)
   if (next === p.planned) delete swaps[key]; else swaps[key] = next.name
@@ -221,7 +227,7 @@ export function swapPart(a: Academy, age: number, week: number, night: NightKey,
 }
 /** Puts one named drill in its part of a night. False when it does not fit the night's skill or the age. */
 export function putDrill(a: Academy, age: number, week: number, night: NightKey, d: Drill): boolean {
-  const s = sessionOf(a, cur, age, week, night); if (!s.core || s.focus !== d.skill || !fitsAge(d, age)) return false
+  const s = sessionOf(a, cur, age, week, night); if (!s.drillSkill || s.drillSkill !== d.skill || !fitsAge(d, age)) return false
   const p = s.parts.find(x => x.part === d.part), swaps = { ...cur.swaps }, key = swapKey(age, week, night, d.part)
   if (p?.planned === d) delete swaps[key]; else swaps[key] = d.name
   commit({ swaps }); return true
@@ -232,7 +238,85 @@ export const ownerSwaps = (c: Cur, age: number, week: number, night: NightKey) =
 
 /** STILL SAMPLE: a swap a coach has made on their own tablet. The coach's screens are built elsewhere; the owner sees it here. The board shows this one. */
 export const COACH_SWAPS: { group: string; week: number; night: NightKey; part: PartKey }[] = [{ group: 'U13Gold', week: 8, night: 'Mon', part: 'Arrival game' }]
-export const coachSwaps = (g: Group, week: number, night: NightKey) => COACH_SWAPS.filter(x => x.group === g.id && x.week === week && x.night === night)
+const teamKey = (g: Group, week: number, night: NightKey, part: PartKey) => `${g.id}|${week}|${night}|${part}`
+/** The parts a coach has swapped for their own team on a night: the sample one, and any made on the coach's session plan (`ACT3`) since the app opened. */
+export const coachSwaps = (g: Group, week: number, night: NightKey) => [...COACH_SWAPS.filter(x => x.group === g.id && x.week === week && x.night === night),
+  ...PARTS.filter(part => cur.teamSwaps?.[teamKey(g, week, night, part)]).map(part => ({ group: g.id, week, night, part }))]
+
+// ── the coach's own session (pack v33, `ACT3-AcademySessionPlan`): the same night the owner sees in `ADQ1`, for one team ──
+/** One team's night: the academy's session for that age (with anything the owner has swapped), then what this team's coach has swapped on top.
+ * For each part `planned` is what the academy's plan has there now, `drill` is what the team will run, and `swapped` is true where the coach changed it. */
+export function teamSessionOf(a: Academy, c: Cur, g: Group, week: number, night: NightKey): Session {
+  const s = sessionOf(a, c, g.age, week, night)
+  const parts = s.parts.map(p => { const put = c.teamSwaps?.[teamKey(g, week, s.night, p.part)], fit = s.drillSkill ? drillsFor(s.drillSkill, p.part, g.age) : [], other = put ? fit.find(d => d.name === put) : undefined
+    return other && other !== p.drill ? { ...p, planned: p.drill, drill: other, swapped: true } : { ...p, planned: p.drill, swapped: false } })
+  const drills = parts.flatMap(p => p.drill ? [p.drill] : [])
+  return { ...s, parts, drills, minutes: drills.reduce((t, d) => t + d.minutes, 0) + WRAP_UP }
+}
+/** The coach's Swap: the next library drill that fits that part, for this team only. Round again to the plan's drill takes the swap away. Null when nothing else fits.
+ * The owner sees it on the night (`ADQ1`, "Who runs it") and on the term (`AD6`) through `coachSwaps`. */
+export function swapForTeam(a: Academy, g: Group, week: number, night: NightKey, part: PartKey): Drill | null {
+  const s = teamSessionOf(a, cur, g, week, night), p = s.parts.find(x => x.part === part), fit = s.drillSkill ? drillsFor(s.drillSkill, part, g.age) : []
+  if (!p?.drill || fit.length < 2) return null
+  const next = fit[(fit.indexOf(p.drill) + 1) % fit.length], teamSwaps = { ...cur.teamSwaps }, key = teamKey(g, week, s.night, part)
+  if (next === p.planned) delete teamSwaps[key]; else teamSwaps[key] = next.name
+  commit({ teamSwaps }); return next
+}
+/** Back to the academy's drill for that part of the team's night. */
+export function putBackForTeam(g: Group, week: number, night: NightKey, part: PartKey) { const teamSwaps = { ...cur.teamSwaps }; delete teamSwaps[teamKey(g, week, night, part)]; commit({ teamSwaps }) }
+/** The drill a coach put in a part for their team, when they have: so the owner's screens can name it. */
+export const coachDrill = (c: Cur, g: Group, week: number, night: NightKey, part: PartKey) => drillNamed(c.teamSwaps?.[teamKey(g, week, night, part)] ?? '')
+
+/** STILL SAMPLE (the v33 session-plan board's words). The seven lines a coach reads on a drill's card, for the four drills that board writes out.
+ * "Look for" here is the board's sentence; the step lines beside it come from the academy's list (`stepLine`), not from here.
+ * A drill that is not here has only what `DRILL_SAMPLE` and `WRITTEN_DRILL` hold: the rest is not written yet, and the screens say so. */
+export type DrillWords = { why: string; setup: string; runs: string; say: string; look?: string; easier: string; harder: string }
+export const DRILL_WORDS: Record<string, DrillWords> = {
+  'Two-goal rondo': { why: 'Everyone on a ball inside a minute, and shooting from the start.', setup: '4 v 2 in a 12 metre square, a mini goal on two sides. Three squares.',
+    runs: 'Keep the ball. After five passes you can score in either goal. Defenders swap when they win it.', say: '“Weaker foot only to score.”', look: 'Who looks for the goal before the ball arrives.',
+    easier: 'Make the square bigger, or play 4 v 1.', harder: 'Two touches. A goal only counts first time.' },
+  'Weak-foot gates': { why: 'The technique on its own, slowly, before anyone is in the way.', setup: 'Pairs either side of a two-metre gate, 12 metres apart. Six gates.',
+    runs: 'Strike through the gate to your partner with the weaker foot. Ten each, then move one gate along.', say: '“Lock the ankle.” “Standing foot beside the ball.”',
+    easier: 'Wider gate, standing ball.', harder: 'Narrower gate. Roll it in first, then one touch.' },
+  'Finish under pressure, 2 v 1': { why: 'The same strike with a defender coming. This is where step 3 shows.', setup: 'A 20 by 25 metre box in front of a full goal with a keeper. Attackers in twos, one defender.',
+    runs: 'The coach plays in. Two attackers against one defender, shot within six seconds.', say: '“Shoot early.” “Across the keeper.”', look: 'Who shoots with the weaker foot when the stronger one is blocked.',
+    easier: 'The defender starts two metres further back.', harder: 'A second defender chases from behind.' },
+  'Four goals, weaker foot counts double': { why: 'The skill inside a real game, with the shape you play on Sunday.', setup: '6 v 6 on a half pitch, two small goals at each end, plus a keeper each.',
+    runs: 'A normal game. A goal with the weaker foot counts double. Rotate the spare players every four minutes.', say: '“Who saw the chance to shoot?”', look: 'Does anyone choose the weaker foot without being told.',
+    easier: 'Three-touch limit off.', harder: 'A weaker-foot goal is the only goal that counts.' },
+}
+/** STILL SAMPLE (the v33 board): who ran the library's film of a drill, and how long it is. Shown only for a drill the library marks as filmed (`Drill.filmed`). */
+export const FILM_RUN: Record<string, { len: string; by: string }> = {
+  'Two-goal rondo': { len: '0:41', by: 'Carla, U14 Timber' }, 'Weak-foot gates': { len: '0:48', by: 'Reece, last term' }, 'Finish under pressure, 2 v 1': { len: '1:02', by: 'Sam, U13 Gold' },
+}
+/** STILL SAMPLE (the v33 board): the one sentence for a night, where the board writes one. Other nights use the night's own title. */
+export const NIGHT_LINE: Record<string, string> = { '13|7|Thu': 'Finishing with the weaker foot, in small games before Sunday.' }
+export const nightLine = (s: Session) => NIGHT_LINE[`${s.age}|${s.week}|${s.night}`] ?? `${s.title.replace(' · ', ', ')}.`
+/** STILL SAMPLE (the v33 board, and the same question `ADQ1` has): the wrap-up for a block. Other blocks get the plain one. */
+export const WRAP_WORDS: Record<string, { question: string; practice: string }> = { 'Finishing, weaker foot': { question: '“What made it go where you wanted?”', practice: 'ten wall strikes with the weaker foot' } }
+
+/** STILL SAMPLE (the v33 board): how a drill splits the players who are there. The rule for each of the board's four drills is here; the numbers are
+ * counted by whoever calls `groupsLine` with how many are coming. A drill with no rule says how many are coming and what the library says it suits. */
+type GroupRule = { kind: 'sets'; size: number; noun: string } | { kind: 'pairs' } | { kind: 'split'; k: number; noun: string; tail?: string } | { kind: 'game'; side: number }
+const GROUP_RULES: Record<string, GroupRule> = {
+  'Two-goal rondo': { kind: 'sets', size: 5, noun: 'squares' }, 'Weak-foot gates': { kind: 'pairs' },
+  'Finish under pressure, 2 v 1': { kind: 'split', k: 2, noun: 'boxes', tail: 'Keepers swap every four goes' }, 'Four goals, weaker foot counts double': { kind: 'game', side: 6 },
+}
+const NUM = ['no', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve'], num = (n: number) => NUM[n] ?? String(n)
+const cap1 = (t: string) => t.charAt(0).toUpperCase() + t.slice(1), SIDES: Record<number, string> = { 4: 'fours', 5: 'fives', 6: 'sixes', 7: 'sevens' }
+/** How `n` players split for a drill tonight. `guest` is a trial player's first name, said when they make up an odd pair. */
+export function groupsLine(d: Drill, n: number, guest?: string): string {
+  const r = GROUP_RULES[d.name]
+  if (!r || n < 2) return `${n} ${n === 1 ? 'player' : 'players'}. The library says it suits ${d.players}`
+  if (r.kind === 'pairs') return n % 2 ? `Pairs. One three${guest ? `, with ${guest} in it` : ''}` : `${cap1(num(n / 2))} pairs`
+  if (r.kind === 'game') { const spare = n - 2 * r.side
+    if (spare < 0) return `Two teams of ${num(Math.floor(n / 2))}${n % 2 ? ' and one rolling on' : ''}`
+    return `Two ${SIDES[r.side] ?? `teams of ${num(r.side)}`}${spare ? ` and ${num(spare)} rolling on` : ''}` }
+  const k = r.kind === 'sets' ? Math.max(1, Math.round(n / r.size)) : Math.min(r.k, n), base = Math.floor(n / k), extra = n % k
+  const sing = (noun: string, count: number) => count !== 1 ? noun : noun.endsWith('xes') ? noun.slice(0, -2) : noun.slice(0, -1)
+  if (r.kind === 'split') return `${cap1(num(k))} ${sing(r.noun, k)} of ${num(base)}${extra ? ` or ${num(base + 1)}` : ''}${r.tail ? `. ${r.tail}` : ''}`
+  return `${n} players: ${extra ? `${num(extra)} ${sing(r.noun, extra)} of ${num(base + 1)} and ${num(k - extra)} of ${num(base)}` : `${num(k)} ${sing(r.noun, k)} of ${num(base)}`}`
+}
 export const teamsAt = (a: Academy, age: number) => a.groups.filter(g => g.age === age)
 export const coachFirst = (g: Group) => g.coach.split(' ')[0]
 /** How long a team's slot is, from its times in the list ("Mon to Thu · 6:35 to 7:45" is 70). */

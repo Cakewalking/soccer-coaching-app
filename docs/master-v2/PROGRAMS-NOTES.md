@@ -180,3 +180,54 @@ New stores, each beside the academy's list in `src/screens/academy/`: `trialStor
 - The drill drawing uses amber cones. Keep, or recolour, since amber is proof only?
 - Should the trial assessment open filled in, and lock after sending?
 
+---
+
+# Packs v33 and v34 (25 Nov): the coach's session plan and who's coming
+
+Two coach screens, each rebuilt. `ACT3-AcademySessionPlan` (v33) and `ACT4-AcademyComing` (v34).
+
+## What was built
+
+- **`ACT3`, the session plan.** A dark band for tonight's one thing; a card for each part with a set-up drawing, how tonight's numbers split into groups, film, and seven lines (Why, Set-up, How it runs, Say, Look for, Easier, Harder); the wrap-up; and a right column (one thing each, why tonight looks like this, who and what, when it's done, open view).
+- **It is the same session the owner sees in `ADQ1`.** A swap by the coach shows on the owner's year plan and session screen; a swap by the owner shows on the coach's plan as "Dani put this in".
+- **Pitch view** has no board in the pack. It is built inside `ACT3`: one part at a time in big type, with a countdown that starts, pauses and resets, and the two taps at the end.
+- **`ACT4`, who's coming.** A band of five numbers; one table for the team in name order with a square for every session this term and a line on what it shows; and a right column (the card for someone who has missed the last three and not answered, by night, does coming matter, make-ups).
+- **Tonight's answers from parents** are not in the data. They are one marked sample, in one place (`coachTeam.ts`), read by the coach home, the session plan and who's coming. The roll takes over as soon as it is taken.
+
+## Checks
+
+- All 342 screens open without an error on the final build; type check, lint and build are clean. The family app's 125 hand checks pass.
+- 69 scripted checks on the two screens pass: every control pressed, every button 44px or more, tiles the same height in a short and a tall window.
+- **`ACT4` against the board:** the band, all 16 rows and the trial row, by night and "Does coming matter?" all match. The data gave nothing different from the picture.
+- **The roll moves both:** marking Jonah here removes the mauve card, changes his row and the band, and adds a square to every row. With two more players away, the groups on each card of the session plan change.
+- **Swap, there and back:** coach swaps on `ACT3`, it shows on the coach home, the owner's year plan and `ADQ1`; the owner swaps another part there and both show on `ACT3`; "Put back" clears the coach's.
+- The curriculum's 483 checks still pass.
+
+## Where the build differs from the boards
+
+- **A coach's swap is kept for that coach's team, not for the whole age.** Otherwise Reece's swap would change U13 Gold's night too. `ADQ1` says a part was swapped for that team but does not yet name the drill put in.
+- **The coach home's "Swap a drill" opens the session plan**, where each part has its own Swap. The board links it to the suggestions screen.
+- **Times:** the library gives the third drill 15 minutes; the board says 20. The build shows 65 minutes in the 70-minute slot.
+- **"Four goals" has no film** in the library, so its card says "No film yet · film it tonight". The board draws a film.
+- **Equipment** is added up from the drills ("10 balls, 24 cones, 6 bibs"); the board says 16, 24 and 8.
+- **One thing each** reads each player's goal from the list, and lists Sienna as well as Ana, since both have no goal.
+- **"Not coming" and "No answer"** are two rows (Mila; Jonah), following v34. The v33 board puts both under "Not coming".
+- **`ACT4`:** each night shows its count under the bar, by the rule that a rate is shown with its count.
+
+## Not done, or still sample
+
+- A swapped-in drill with no written words shows only "Look for", and says the rest is not written yet.
+- The set-up drawings are the library's sketches. Film playback is a line of text.
+- Sunday's "2 of 11 chances", the filming line and who is coming in from U13 Gold are sample.
+- The library's "used" counts do not count a coach's team swap.
+
+## Things in the packs that do not agree
+
+- The curriculum data makes under 13s week 7 Thursday a small-games night with no drills; the v33 board gives it four striking drills. The build follows the board for that night.
+- v33 says "Not coming: Jonah, Mila"; v34 says Mila is away and Jonah has not answered.
+
+## For Booker to decide
+
+- A coach's swap: for their own team only (as built), or for every team at that age?
+- Should the coach home's "Swap a drill" open the session plan (as built) or the suggestions screen (as drawn)?
+
